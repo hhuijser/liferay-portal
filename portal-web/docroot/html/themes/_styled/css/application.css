@@ -533,9 +533,9 @@
 	font-weight: bold;
 }
 
-/* ---------- Page Personalization ---------- */
+/* ---------- Page Customization ---------- */
 
-.aui-dragging .portlet-column.personalizable {
+.aui-dragging .portlet-column.customizable {
 	background-color: #CFFCCF;
 	outline: 3px solid #9CC97B;
 }
@@ -549,11 +549,11 @@
 	background-color: #C92C3C;
 }
 
-.personalizable .customizable-layout-column-content {
+.customizable .customizable-layout-column-content {
 	background-color: #9CC97B;
 }
 
-.layout-personalizable-controls {
+.layout-customizable-controls {
 	background-color: #FFF;
 	font-size: 1.5em;
 	margin: 1em;
@@ -563,7 +563,7 @@
 	z-index: 15;
 }
 
-.ie .layout-personalizable-controls {
+.ie .layout-customizable-controls {
 	-ms-filter: alpha(opacity=90);
 	filter: alpha(opacity=90);
 }
@@ -586,6 +586,12 @@
 	width: 20px;
 }
 
+.ie7 .aui-paginator-link {
+	font-size: 0;
+	overflow: hidden;
+	text-indent: 0;
+}
+
 .aui-paginator-current-page {
 	background: #0083BD url(../images/application/paginator_link_current_bg.png) 0 0 repeat-x;
 	border-color: #38B6EF #006D9E #006D9E #46B4E6;
@@ -596,6 +602,13 @@
 .aui-paginator-page-link {
 	text-indent: 0;
 	height: auto;
+}
+
+.ie7 .aui-paginator-page-link {
+	font-size: 1em;
+	height: auto;
+	overflow: visible;
+	text-indent: 0;
 }
 
 .aui-paginator-first-link {

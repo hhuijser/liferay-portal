@@ -421,8 +421,14 @@ public class ResourcePersistenceImpl extends BasePersistenceImpl<Resource>
 		Resource resource = (Resource)EntityCacheUtil.getResult(ResourceModelImpl.ENTITY_CACHE_ENABLED,
 				ResourceImpl.class, resourceId, this);
 
+		if (resource == _nullResource) {
+			return null;
+		}
+
 		if (resource == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -431,11 +437,17 @@ public class ResourcePersistenceImpl extends BasePersistenceImpl<Resource>
 						Long.valueOf(resourceId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (resource != null) {
 					cacheResult(resource);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(ResourceModelImpl.ENTITY_CACHE_ENABLED,
+						ResourceImpl.class, resourceId, _nullResource);
 				}
 
 				closeSession(session);
@@ -1402,4 +1414,9 @@ public class ResourcePersistenceImpl extends BasePersistenceImpl<Resource>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Resource exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(ResourcePersistenceImpl.class);
+	private static Resource _nullResource = new ResourceImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

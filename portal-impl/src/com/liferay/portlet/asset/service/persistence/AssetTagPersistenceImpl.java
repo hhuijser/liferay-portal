@@ -390,8 +390,14 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 		AssetTag assetTag = (AssetTag)EntityCacheUtil.getResult(AssetTagModelImpl.ENTITY_CACHE_ENABLED,
 				AssetTagImpl.class, tagId, this);
 
+		if (assetTag == _nullAssetTag) {
+			return null;
+		}
+
 		if (assetTag == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -400,11 +406,17 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 						Long.valueOf(tagId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (assetTag != null) {
 					cacheResult(assetTag);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(AssetTagModelImpl.ENTITY_CACHE_ENABLED,
+						AssetTagImpl.class, tagId, _nullAssetTag);
 				}
 
 				closeSession(session);
@@ -1490,7 +1502,7 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the asset entry is associated with the asset tag.
+	 * Returns <code>true</code> if the asset entry is associated with the asset tag.
 	 *
 	 * @param pk the primary key of the asset tag
 	 * @param assetEntryPK the primary key of the asset entry
@@ -1526,7 +1538,7 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 	}
 
 	/**
-	 * Determines if the asset tag has any asset entries associated with it.
+	 * Returns <code>true</code> if the asset tag has any asset entries associated with it.
 	 *
 	 * @param pk the primary key of the asset tag to check for associations with asset entries
 	 * @return <code>true</code> if the asset tag has any asset entries associated with it; <code>false</code> otherwise
@@ -2044,4 +2056,9 @@ public class AssetTagPersistenceImpl extends BasePersistenceImpl<AssetTag>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AssetTag exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(AssetTagPersistenceImpl.class);
+	private static AssetTag _nullAssetTag = new AssetTagImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

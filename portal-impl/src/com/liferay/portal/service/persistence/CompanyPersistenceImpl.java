@@ -459,8 +459,14 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 		Company company = (Company)EntityCacheUtil.getResult(CompanyModelImpl.ENTITY_CACHE_ENABLED,
 				CompanyImpl.class, companyId, this);
 
+		if (company == _nullCompany) {
+			return null;
+		}
+
 		if (company == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -469,11 +475,17 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 						Long.valueOf(companyId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (company != null) {
 					cacheResult(company);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(CompanyModelImpl.ENTITY_CACHE_ENABLED,
+						CompanyImpl.class, companyId, _nullCompany);
 				}
 
 				closeSession(session);
@@ -1831,4 +1843,9 @@ public class CompanyPersistenceImpl extends BasePersistenceImpl<Company>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Company exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(CompanyPersistenceImpl.class);
+	private static Company _nullCompany = new CompanyImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

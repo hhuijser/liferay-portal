@@ -402,8 +402,14 @@ public class SCLicensePersistenceImpl extends BasePersistenceImpl<SCLicense>
 		SCLicense scLicense = (SCLicense)EntityCacheUtil.getResult(SCLicenseModelImpl.ENTITY_CACHE_ENABLED,
 				SCLicenseImpl.class, licenseId, this);
 
+		if (scLicense == _nullSCLicense) {
+			return null;
+		}
+
 		if (scLicense == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -412,11 +418,17 @@ public class SCLicensePersistenceImpl extends BasePersistenceImpl<SCLicense>
 						Long.valueOf(licenseId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (scLicense != null) {
 					cacheResult(scLicense);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(SCLicenseModelImpl.ENTITY_CACHE_ENABLED,
+						SCLicenseImpl.class, licenseId, _nullSCLicense);
 				}
 
 				closeSession(session);
@@ -2299,7 +2311,7 @@ public class SCLicensePersistenceImpl extends BasePersistenceImpl<SCLicense>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the s c product entry is associated with the s c license.
+	 * Returns <code>true</code> if the s c product entry is associated with the s c license.
 	 *
 	 * @param pk the primary key of the s c license
 	 * @param scProductEntryPK the primary key of the s c product entry
@@ -2335,7 +2347,7 @@ public class SCLicensePersistenceImpl extends BasePersistenceImpl<SCLicense>
 	}
 
 	/**
-	 * Determines if the s c license has any s c product entries associated with it.
+	 * Returns <code>true</code> if the s c license has any s c product entries associated with it.
 	 *
 	 * @param pk the primary key of the s c license to check for associations with s c product entries
 	 * @return <code>true</code> if the s c license has any s c product entries associated with it; <code>false</code> otherwise
@@ -2858,4 +2870,9 @@ public class SCLicensePersistenceImpl extends BasePersistenceImpl<SCLicense>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SCLicense exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(SCLicensePersistenceImpl.class);
+	private static SCLicense _nullSCLicense = new SCLicenseImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

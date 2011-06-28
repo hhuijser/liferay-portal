@@ -721,8 +721,14 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	public ${entity.name} fetchByPrimaryKey(${entity.PKClassName} ${entity.PKVarName}) throws SystemException {
 		${entity.name} ${entity.varName} = (${entity.name})EntityCacheUtil.getResult(${entity.name}ModelImpl.ENTITY_CACHE_ENABLED, ${entity.name}Impl.class, ${entity.PKVarName}, this);
 
+		if (${entity.varName} == _null${entity.name}) {
+			return null;
+		}
+
 		if (${entity.varName} == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -742,11 +748,16 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				);
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (${entity.varName} != null) {
 					cacheResult(${entity.varName});
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(${entity.name}ModelImpl.ENTITY_CACHE_ENABLED, ${entity.name}Impl.class, ${entity.PKVarName}, _null${entity.name});
 				}
 
 				closeSession(session);
@@ -2944,7 +2955,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				});
 
 			/**
-			 * Determines if the ${tempEntity.humanName} is associated with the ${entity.humanName}.
+			 * Returns <code>true</code> if the ${tempEntity.humanName} is associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
 			 * @param ${tempEntity.varName}PK the primary key of the ${tempEntity.humanName}
@@ -2976,7 +2987,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			}
 
 			/**
-			 * Determines if the ${entity.humanName} has any ${tempEntity.humanNames} associated with it.
+			 * Returns <code>true</code> if the ${entity.humanName} has any ${tempEntity.humanNames} associated with it.
 			 *
 			 * @param pk the primary key of the ${entity.humanName} to check for associations with ${tempEntity.humanNames}
 			 * @return <code>true</code> if the ${entity.humanName} has any ${tempEntity.humanNames} associated with it; <code>false</code> otherwise
@@ -3843,5 +3854,13 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = <#if pluginName != "">GetterUtil.getBoolean(PropsUtil.get(PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE))<#else>com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE</#if>;
 
 	private static Log _log = LogFactoryUtil.getLog(${entity.name}PersistenceImpl.class);
+
+	private static ${entity.name} _null${entity.name} = new ${entity.name}Impl() {
+
+		public Object clone() {
+			return this;
+		}
+
+	};
 
 }

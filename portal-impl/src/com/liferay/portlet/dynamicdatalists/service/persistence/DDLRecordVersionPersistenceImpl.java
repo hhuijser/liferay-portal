@@ -460,8 +460,14 @@ public class DDLRecordVersionPersistenceImpl extends BasePersistenceImpl<DDLReco
 		DDLRecordVersion ddlRecordVersion = (DDLRecordVersion)EntityCacheUtil.getResult(DDLRecordVersionModelImpl.ENTITY_CACHE_ENABLED,
 				DDLRecordVersionImpl.class, recordVersionId, this);
 
+		if (ddlRecordVersion == _nullDDLRecordVersion) {
+			return null;
+		}
+
 		if (ddlRecordVersion == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -470,11 +476,18 @@ public class DDLRecordVersionPersistenceImpl extends BasePersistenceImpl<DDLReco
 						Long.valueOf(recordVersionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (ddlRecordVersion != null) {
 					cacheResult(ddlRecordVersion);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(DDLRecordVersionModelImpl.ENTITY_CACHE_ENABLED,
+						DDLRecordVersionImpl.class, recordVersionId,
+						_nullDDLRecordVersion);
 				}
 
 				closeSession(session);
@@ -1761,4 +1774,9 @@ public class DDLRecordVersionPersistenceImpl extends BasePersistenceImpl<DDLReco
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDLRecordVersion exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(DDLRecordVersionPersistenceImpl.class);
+	private static DDLRecordVersion _nullDDLRecordVersion = new DDLRecordVersionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

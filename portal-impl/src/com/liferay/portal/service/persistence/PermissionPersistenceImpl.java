@@ -457,8 +457,14 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 		Permission permission = (Permission)EntityCacheUtil.getResult(PermissionModelImpl.ENTITY_CACHE_ENABLED,
 				PermissionImpl.class, permissionId, this);
 
+		if (permission == _nullPermission) {
+			return null;
+		}
+
 		if (permission == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -467,11 +473,17 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 						Long.valueOf(permissionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (permission != null) {
 					cacheResult(permission);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(PermissionModelImpl.ENTITY_CACHE_ENABLED,
+						PermissionImpl.class, permissionId, _nullPermission);
 				}
 
 				closeSession(session);
@@ -1448,7 +1460,7 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the group is associated with the permission.
+	 * Returns <code>true</code> if the group is associated with the permission.
 	 *
 	 * @param pk the primary key of the permission
 	 * @param groupPK the primary key of the group
@@ -1483,7 +1495,7 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 	}
 
 	/**
-	 * Determines if the permission has any groups associated with it.
+	 * Returns <code>true</code> if the permission has any groups associated with it.
 	 *
 	 * @param pk the primary key of the permission to check for associations with groups
 	 * @return <code>true</code> if the permission has any groups associated with it; <code>false</code> otherwise
@@ -1913,7 +1925,7 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the role is associated with the permission.
+	 * Returns <code>true</code> if the role is associated with the permission.
 	 *
 	 * @param pk the primary key of the permission
 	 * @param rolePK the primary key of the role
@@ -1947,7 +1959,7 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 	}
 
 	/**
-	 * Determines if the permission has any roles associated with it.
+	 * Returns <code>true</code> if the permission has any roles associated with it.
 	 *
 	 * @param pk the primary key of the permission to check for associations with roles
 	 * @return <code>true</code> if the permission has any roles associated with it; <code>false</code> otherwise
@@ -2376,7 +2388,7 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the user is associated with the permission.
+	 * Returns <code>true</code> if the user is associated with the permission.
 	 *
 	 * @param pk the primary key of the permission
 	 * @param userPK the primary key of the user
@@ -2410,7 +2422,7 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 	}
 
 	/**
-	 * Determines if the permission has any users associated with it.
+	 * Returns <code>true</code> if the permission has any users associated with it.
 	 *
 	 * @param pk the primary key of the permission to check for associations with users
 	 * @return <code>true</code> if the permission has any users associated with it; <code>false</code> otherwise
@@ -3368,4 +3380,9 @@ public class PermissionPersistenceImpl extends BasePersistenceImpl<Permission>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Permission exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(PermissionPersistenceImpl.class);
+	private static Permission _nullPermission = new PermissionImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

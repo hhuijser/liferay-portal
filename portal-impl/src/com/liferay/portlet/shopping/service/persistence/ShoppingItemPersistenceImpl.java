@@ -567,8 +567,14 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 		ShoppingItem shoppingItem = (ShoppingItem)EntityCacheUtil.getResult(ShoppingItemModelImpl.ENTITY_CACHE_ENABLED,
 				ShoppingItemImpl.class, itemId, this);
 
+		if (shoppingItem == _nullShoppingItem) {
+			return null;
+		}
+
 		if (shoppingItem == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -577,11 +583,17 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 						Long.valueOf(itemId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (shoppingItem != null) {
 					cacheResult(shoppingItem);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(ShoppingItemModelImpl.ENTITY_CACHE_ENABLED,
+						ShoppingItemImpl.class, itemId, _nullShoppingItem);
 				}
 
 				closeSession(session);
@@ -2544,7 +2556,7 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the shopping item price is associated with the shopping item.
+	 * Returns <code>true</code> if the shopping item price is associated with the shopping item.
 	 *
 	 * @param pk the primary key of the shopping item
 	 * @param shoppingItemPricePK the primary key of the shopping item price
@@ -2580,7 +2592,7 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 	}
 
 	/**
-	 * Determines if the shopping item has any shopping item prices associated with it.
+	 * Returns <code>true</code> if the shopping item has any shopping item prices associated with it.
 	 *
 	 * @param pk the primary key of the shopping item to check for associations with shopping item prices
 	 * @return <code>true</code> if the shopping item has any shopping item prices associated with it; <code>false</code> otherwise
@@ -2710,4 +2722,9 @@ public class ShoppingItemPersistenceImpl extends BasePersistenceImpl<ShoppingIte
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ShoppingItem exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(ShoppingItemPersistenceImpl.class);
+	private static ShoppingItem _nullShoppingItem = new ShoppingItemImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

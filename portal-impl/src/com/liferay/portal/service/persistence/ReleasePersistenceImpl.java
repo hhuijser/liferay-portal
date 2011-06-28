@@ -389,8 +389,14 @@ public class ReleasePersistenceImpl extends BasePersistenceImpl<Release>
 		Release release = (Release)EntityCacheUtil.getResult(ReleaseModelImpl.ENTITY_CACHE_ENABLED,
 				ReleaseImpl.class, releaseId, this);
 
+		if (release == _nullRelease) {
+			return null;
+		}
+
 		if (release == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -399,11 +405,17 @@ public class ReleasePersistenceImpl extends BasePersistenceImpl<Release>
 						Long.valueOf(releaseId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (release != null) {
 					cacheResult(release);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(ReleaseModelImpl.ENTITY_CACHE_ENABLED,
+						ReleaseImpl.class, releaseId, _nullRelease);
 				}
 
 				closeSession(session);
@@ -960,4 +972,9 @@ public class ReleasePersistenceImpl extends BasePersistenceImpl<Release>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Release exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(ReleasePersistenceImpl.class);
+	private static Release _nullRelease = new ReleaseImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

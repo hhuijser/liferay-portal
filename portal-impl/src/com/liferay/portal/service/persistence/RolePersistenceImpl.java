@@ -546,8 +546,14 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 		Role role = (Role)EntityCacheUtil.getResult(RoleModelImpl.ENTITY_CACHE_ENABLED,
 				RoleImpl.class, roleId, this);
 
+		if (role == _nullRole) {
+			return null;
+		}
+
 		if (role == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -555,11 +561,17 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 				role = (Role)session.get(RoleImpl.class, Long.valueOf(roleId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (role != null) {
 					cacheResult(role);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(RoleModelImpl.ENTITY_CACHE_ENABLED,
+						RoleImpl.class, roleId, _nullRole);
 				}
 
 				closeSession(session);
@@ -4589,7 +4601,7 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the group is associated with the role.
+	 * Returns <code>true</code> if the group is associated with the role.
 	 *
 	 * @param pk the primary key of the role
 	 * @param groupPK the primary key of the group
@@ -4624,7 +4636,7 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 	}
 
 	/**
-	 * Determines if the role has any groups associated with it.
+	 * Returns <code>true</code> if the role has any groups associated with it.
 	 *
 	 * @param pk the primary key of the role to check for associations with groups
 	 * @return <code>true</code> if the role has any groups associated with it; <code>false</code> otherwise
@@ -5055,7 +5067,7 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the permission is associated with the role.
+	 * Returns <code>true</code> if the permission is associated with the role.
 	 *
 	 * @param pk the primary key of the role
 	 * @param permissionPK the primary key of the permission
@@ -5091,7 +5103,7 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 	}
 
 	/**
-	 * Determines if the role has any permissions associated with it.
+	 * Returns <code>true</code> if the role has any permissions associated with it.
 	 *
 	 * @param pk the primary key of the role to check for associations with permissions
 	 * @return <code>true</code> if the role has any permissions associated with it; <code>false</code> otherwise
@@ -5528,7 +5540,7 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the user is associated with the role.
+	 * Returns <code>true</code> if the user is associated with the role.
 	 *
 	 * @param pk the primary key of the role
 	 * @param userPK the primary key of the user
@@ -5562,7 +5574,7 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 	}
 
 	/**
-	 * Determines if the role has any users associated with it.
+	 * Returns <code>true</code> if the role has any users associated with it.
 	 *
 	 * @param pk the primary key of the role to check for associations with users
 	 * @return <code>true</code> if the role has any users associated with it; <code>false</code> otherwise
@@ -6546,4 +6558,9 @@ public class RolePersistenceImpl extends BasePersistenceImpl<Role>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Role exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(RolePersistenceImpl.class);
+	private static Role _nullRole = new RoleImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

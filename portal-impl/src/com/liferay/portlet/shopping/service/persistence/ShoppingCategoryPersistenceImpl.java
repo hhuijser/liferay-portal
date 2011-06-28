@@ -395,8 +395,14 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 		ShoppingCategory shoppingCategory = (ShoppingCategory)EntityCacheUtil.getResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
 				ShoppingCategoryImpl.class, categoryId, this);
 
+		if (shoppingCategory == _nullShoppingCategory) {
+			return null;
+		}
+
 		if (shoppingCategory == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -405,11 +411,18 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 						Long.valueOf(categoryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
 				if (shoppingCategory != null) {
 					cacheResult(shoppingCategory);
+				}
+				else if (!hasException) {
+					EntityCacheUtil.putResult(ShoppingCategoryModelImpl.ENTITY_CACHE_ENABLED,
+						ShoppingCategoryImpl.class, categoryId,
+						_nullShoppingCategory);
 				}
 
 				closeSession(session);
@@ -2193,4 +2206,9 @@ public class ShoppingCategoryPersistenceImpl extends BasePersistenceImpl<Shoppin
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ShoppingCategory exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(ShoppingCategoryPersistenceImpl.class);
+	private static ShoppingCategory _nullShoppingCategory = new ShoppingCategoryImpl() {
+			public Object clone() {
+				return this;
+			}
+		};
 }

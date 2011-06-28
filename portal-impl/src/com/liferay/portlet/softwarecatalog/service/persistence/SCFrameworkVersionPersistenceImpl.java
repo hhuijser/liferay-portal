@@ -428,8 +428,14 @@ public class SCFrameworkVersionPersistenceImpl extends BasePersistenceImpl<SCFra
 		SCFrameworkVersion scFrameworkVersion = (SCFrameworkVersion)EntityCacheUtil.getResult(SCFrameworkVersionModelImpl.ENTITY_CACHE_ENABLED,
 				SCFrameworkVersionImpl.class, frameworkVersionId, this);
 
+		if (scFrameworkVersion == _nullSCFrameworkVersion) {
+			return null;
+		}
+
 		if (scFrameworkVersion == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -438,10 +444,17 @@ public class SCFrameworkVersionPersistenceImpl extends BasePersistenceImpl<SCFra
 						Long.valueOf(frameworkVersionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (scFrameworkVersion != null) {
+				if (!hasException && (scFrameworkVersion == null)) {
+					EntityCacheUtil.putResult(SCFrameworkVersionModelImpl.ENTITY_CACHE_ENABLED,
+						SCFrameworkVersionImpl.class, frameworkVersionId,
+						_nullSCFrameworkVersion);
+				}
+				else {
 					cacheResult(scFrameworkVersion);
 				}
 
@@ -2740,7 +2753,7 @@ public class SCFrameworkVersionPersistenceImpl extends BasePersistenceImpl<SCFra
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the s c product version is associated with the s c framework version.
+	 * Returns <code>true</code> if the s c product version is associated with the s c framework version.
 	 *
 	 * @param pk the primary key of the s c framework version
 	 * @param scProductVersionPK the primary key of the s c product version
@@ -2776,7 +2789,7 @@ public class SCFrameworkVersionPersistenceImpl extends BasePersistenceImpl<SCFra
 	}
 
 	/**
-	 * Determines if the s c framework version has any s c product versions associated with it.
+	 * Returns <code>true</code> if the s c framework version has any s c product versions associated with it.
 	 *
 	 * @param pk the primary key of the s c framework version to check for associations with s c product versions
 	 * @return <code>true</code> if the s c framework version has any s c product versions associated with it; <code>false</code> otherwise
@@ -3309,4 +3322,5 @@ public class SCFrameworkVersionPersistenceImpl extends BasePersistenceImpl<SCFra
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SCFrameworkVersion exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(SCFrameworkVersionPersistenceImpl.class);
+	private static SCFrameworkVersion _nullSCFrameworkVersion = new SCFrameworkVersionImpl();
 }

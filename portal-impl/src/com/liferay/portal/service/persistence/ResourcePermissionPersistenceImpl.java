@@ -653,8 +653,14 @@ public class ResourcePermissionPersistenceImpl extends BasePersistenceImpl<Resou
 		ResourcePermission resourcePermission = (ResourcePermission)EntityCacheUtil.getResult(ResourcePermissionModelImpl.ENTITY_CACHE_ENABLED,
 				ResourcePermissionImpl.class, resourcePermissionId, this);
 
+		if (resourcePermission == _nullResourcePermission) {
+			return null;
+		}
+
 		if (resourcePermission == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -663,10 +669,17 @@ public class ResourcePermissionPersistenceImpl extends BasePersistenceImpl<Resou
 						Long.valueOf(resourcePermissionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (resourcePermission != null) {
+				if (!hasException && (resourcePermission == null)) {
+					EntityCacheUtil.putResult(ResourcePermissionModelImpl.ENTITY_CACHE_ENABLED,
+						ResourcePermissionImpl.class, resourcePermissionId,
+						_nullResourcePermission);
+				}
+				else {
 					cacheResult(resourcePermission);
 				}
 
@@ -4317,4 +4330,5 @@ public class ResourcePermissionPersistenceImpl extends BasePersistenceImpl<Resou
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ResourcePermission exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(ResourcePermissionPersistenceImpl.class);
+	private static ResourcePermission _nullResourcePermission = new ResourcePermissionImpl();
 }

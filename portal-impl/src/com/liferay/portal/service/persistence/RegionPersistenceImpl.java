@@ -387,8 +387,14 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 		Region region = (Region)EntityCacheUtil.getResult(RegionModelImpl.ENTITY_CACHE_ENABLED,
 				RegionImpl.class, regionId, this);
 
+		if (region == _nullRegion) {
+			return null;
+		}
+
 		if (region == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -397,10 +403,16 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 						Long.valueOf(regionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (region != null) {
+				if (!hasException && (region == null)) {
+					EntityCacheUtil.putResult(RegionModelImpl.ENTITY_CACHE_ENABLED,
+						RegionImpl.class, regionId, _nullRegion);
+				}
+				else {
 					cacheResult(region);
 				}
 
@@ -1972,4 +1984,5 @@ public class RegionPersistenceImpl extends BasePersistenceImpl<Region>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Region exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(RegionPersistenceImpl.class);
+	private static Region _nullRegion = new RegionImpl();
 }

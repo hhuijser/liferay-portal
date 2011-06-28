@@ -489,8 +489,14 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 		BookmarksFolder bookmarksFolder = (BookmarksFolder)EntityCacheUtil.getResult(BookmarksFolderModelImpl.ENTITY_CACHE_ENABLED,
 				BookmarksFolderImpl.class, folderId, this);
 
+		if (bookmarksFolder == _nullBookmarksFolder) {
+			return null;
+		}
+
 		if (bookmarksFolder == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -499,10 +505,17 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 						Long.valueOf(folderId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (bookmarksFolder != null) {
+				if (!hasException && (bookmarksFolder == null)) {
+					EntityCacheUtil.putResult(BookmarksFolderModelImpl.ENTITY_CACHE_ENABLED,
+						BookmarksFolderImpl.class, folderId,
+						_nullBookmarksFolder);
+				}
+				else {
 					cacheResult(bookmarksFolder);
 				}
 
@@ -3370,4 +3383,5 @@ public class BookmarksFolderPersistenceImpl extends BasePersistenceImpl<Bookmark
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No BookmarksFolder exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(BookmarksFolderPersistenceImpl.class);
+	private static BookmarksFolder _nullBookmarksFolder = new BookmarksFolderImpl();
 }

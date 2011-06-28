@@ -510,8 +510,14 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 		ShoppingOrder shoppingOrder = (ShoppingOrder)EntityCacheUtil.getResult(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
 				ShoppingOrderImpl.class, orderId, this);
 
+		if (shoppingOrder == _nullShoppingOrder) {
+			return null;
+		}
+
 		if (shoppingOrder == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -520,10 +526,16 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 						Long.valueOf(orderId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (shoppingOrder != null) {
+				if (!hasException && (shoppingOrder == null)) {
+					EntityCacheUtil.putResult(ShoppingOrderModelImpl.ENTITY_CACHE_ENABLED,
+						ShoppingOrderImpl.class, orderId, _nullShoppingOrder);
+				}
+				else {
 					cacheResult(shoppingOrder);
 				}
 
@@ -2879,4 +2891,5 @@ public class ShoppingOrderPersistenceImpl extends BasePersistenceImpl<ShoppingOr
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No ShoppingOrder exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(ShoppingOrderPersistenceImpl.class);
+	private static ShoppingOrder _nullShoppingOrder = new ShoppingOrderImpl();
 }

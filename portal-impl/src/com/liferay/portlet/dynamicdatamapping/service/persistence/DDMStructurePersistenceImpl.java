@@ -541,8 +541,14 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 		DDMStructure ddmStructure = (DDMStructure)EntityCacheUtil.getResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
 				DDMStructureImpl.class, structureId, this);
 
+		if (ddmStructure == _nullDDMStructure) {
+			return null;
+		}
+
 		if (ddmStructure == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -551,10 +557,16 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 						Long.valueOf(structureId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (ddmStructure != null) {
+				if (!hasException && (ddmStructure == null)) {
+					EntityCacheUtil.putResult(DDMStructureModelImpl.ENTITY_CACHE_ENABLED,
+						DDMStructureImpl.class, structureId, _nullDDMStructure);
+				}
+				else {
 					cacheResult(ddmStructure);
 				}
 
@@ -3790,4 +3802,5 @@ public class DDMStructurePersistenceImpl extends BasePersistenceImpl<DDMStructur
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMStructure exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(DDMStructurePersistenceImpl.class);
+	private static DDMStructure _nullDDMStructure = new DDMStructureImpl();
 }

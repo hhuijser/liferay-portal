@@ -564,8 +564,14 @@ public class LayoutRevisionPersistenceImpl extends BasePersistenceImpl<LayoutRev
 		LayoutRevision layoutRevision = (LayoutRevision)EntityCacheUtil.getResult(LayoutRevisionModelImpl.ENTITY_CACHE_ENABLED,
 				LayoutRevisionImpl.class, layoutRevisionId, this);
 
+		if (layoutRevision == _nullLayoutRevision) {
+			return null;
+		}
+
 		if (layoutRevision == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -574,10 +580,17 @@ public class LayoutRevisionPersistenceImpl extends BasePersistenceImpl<LayoutRev
 						Long.valueOf(layoutRevisionId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (layoutRevision != null) {
+				if (!hasException && (layoutRevision == null)) {
+					EntityCacheUtil.putResult(LayoutRevisionModelImpl.ENTITY_CACHE_ENABLED,
+						LayoutRevisionImpl.class, layoutRevisionId,
+						_nullLayoutRevision);
+				}
+				else {
 					cacheResult(layoutRevision);
 				}
 
@@ -4726,4 +4739,5 @@ public class LayoutRevisionPersistenceImpl extends BasePersistenceImpl<LayoutRev
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No LayoutRevision exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(LayoutRevisionPersistenceImpl.class);
+	private static LayoutRevision _nullLayoutRevision = new LayoutRevisionImpl();
 }

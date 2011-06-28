@@ -452,8 +452,14 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 		PluginSetting pluginSetting = (PluginSetting)EntityCacheUtil.getResult(PluginSettingModelImpl.ENTITY_CACHE_ENABLED,
 				PluginSettingImpl.class, pluginSettingId, this);
 
+		if (pluginSetting == _nullPluginSetting) {
+			return null;
+		}
+
 		if (pluginSetting == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -462,10 +468,17 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 						Long.valueOf(pluginSettingId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (pluginSetting != null) {
+				if (!hasException && (pluginSetting == null)) {
+					EntityCacheUtil.putResult(PluginSettingModelImpl.ENTITY_CACHE_ENABLED,
+						PluginSettingImpl.class, pluginSettingId,
+						_nullPluginSetting);
+				}
+				else {
 					cacheResult(pluginSetting);
 				}
 
@@ -1484,4 +1497,5 @@ public class PluginSettingPersistenceImpl extends BasePersistenceImpl<PluginSett
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No PluginSetting exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(PluginSettingPersistenceImpl.class);
+	private static PluginSetting _nullPluginSetting = new PluginSettingImpl();
 }

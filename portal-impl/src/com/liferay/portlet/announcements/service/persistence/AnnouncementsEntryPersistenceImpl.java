@@ -449,8 +449,14 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 		AnnouncementsEntry announcementsEntry = (AnnouncementsEntry)EntityCacheUtil.getResult(AnnouncementsEntryModelImpl.ENTITY_CACHE_ENABLED,
 				AnnouncementsEntryImpl.class, entryId, this);
 
+		if (announcementsEntry == _nullAnnouncementsEntry) {
+			return null;
+		}
+
 		if (announcementsEntry == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -459,10 +465,17 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 						Long.valueOf(entryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (announcementsEntry != null) {
+				if (!hasException && (announcementsEntry == null)) {
+					EntityCacheUtil.putResult(AnnouncementsEntryModelImpl.ENTITY_CACHE_ENABLED,
+						AnnouncementsEntryImpl.class, entryId,
+						_nullAnnouncementsEntry);
+				}
+				else {
 					cacheResult(announcementsEntry);
 				}
 
@@ -3913,4 +3926,5 @@ public class AnnouncementsEntryPersistenceImpl extends BasePersistenceImpl<Annou
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AnnouncementsEntry exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(AnnouncementsEntryPersistenceImpl.class);
+	private static AnnouncementsEntry _nullAnnouncementsEntry = new AnnouncementsEntryImpl();
 }

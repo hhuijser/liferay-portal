@@ -438,8 +438,14 @@ public class DDMStorageLinkPersistenceImpl extends BasePersistenceImpl<DDMStorag
 		DDMStorageLink ddmStorageLink = (DDMStorageLink)EntityCacheUtil.getResult(DDMStorageLinkModelImpl.ENTITY_CACHE_ENABLED,
 				DDMStorageLinkImpl.class, storageLinkId, this);
 
+		if (ddmStorageLink == _nullDDMStorageLink) {
+			return null;
+		}
+
 		if (ddmStorageLink == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -448,10 +454,17 @@ public class DDMStorageLinkPersistenceImpl extends BasePersistenceImpl<DDMStorag
 						Long.valueOf(storageLinkId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (ddmStorageLink != null) {
+				if (!hasException && (ddmStorageLink == null)) {
+					EntityCacheUtil.putResult(DDMStorageLinkModelImpl.ENTITY_CACHE_ENABLED,
+						DDMStorageLinkImpl.class, storageLinkId,
+						_nullDDMStorageLink);
+				}
+				else {
 					cacheResult(ddmStorageLink);
 				}
 
@@ -1704,4 +1717,5 @@ public class DDMStorageLinkPersistenceImpl extends BasePersistenceImpl<DDMStorag
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMStorageLink exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(DDMStorageLinkPersistenceImpl.class);
+	private static DDMStorageLink _nullDDMStorageLink = new DDMStorageLinkImpl();
 }

@@ -504,8 +504,14 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 		Organization organization = (Organization)EntityCacheUtil.getResult(OrganizationModelImpl.ENTITY_CACHE_ENABLED,
 				OrganizationImpl.class, organizationId, this);
 
+		if (organization == _nullOrganization) {
+			return null;
+		}
+
 		if (organization == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -514,10 +520,17 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 						Long.valueOf(organizationId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (organization != null) {
+				if (!hasException && (organization == null)) {
+					EntityCacheUtil.putResult(OrganizationModelImpl.ENTITY_CACHE_ENABLED,
+						OrganizationImpl.class, organizationId,
+						_nullOrganization);
+				}
+				else {
 					cacheResult(organization);
 				}
 
@@ -3396,7 +3409,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the group is associated with the organization.
+	 * Returns <code>true</code> if the group is associated with the organization.
 	 *
 	 * @param pk the primary key of the organization
 	 * @param groupPK the primary key of the group
@@ -3431,7 +3444,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 	}
 
 	/**
-	 * Determines if the organization has any groups associated with it.
+	 * Returns <code>true</code> if the organization has any groups associated with it.
 	 *
 	 * @param pk the primary key of the organization to check for associations with groups
 	 * @return <code>true</code> if the organization has any groups associated with it; <code>false</code> otherwise
@@ -3860,7 +3873,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the user is associated with the organization.
+	 * Returns <code>true</code> if the user is associated with the organization.
 	 *
 	 * @param pk the primary key of the organization
 	 * @param userPK the primary key of the user
@@ -3894,7 +3907,7 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 	}
 
 	/**
-	 * Determines if the organization has any users associated with it.
+	 * Returns <code>true</code> if the organization has any users associated with it.
 	 *
 	 * @param pk the primary key of the organization to check for associations with users
 	 * @return <code>true</code> if the organization has any users associated with it; <code>false</code> otherwise
@@ -4965,4 +4978,5 @@ public class OrganizationPersistenceImpl extends BasePersistenceImpl<Organizatio
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No Organization exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(OrganizationPersistenceImpl.class);
+	private static Organization _nullOrganization = new OrganizationImpl();
 }

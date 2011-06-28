@@ -504,8 +504,14 @@ public class RepositoryEntryPersistenceImpl extends BasePersistenceImpl<Reposito
 		RepositoryEntry repositoryEntry = (RepositoryEntry)EntityCacheUtil.getResult(RepositoryEntryModelImpl.ENTITY_CACHE_ENABLED,
 				RepositoryEntryImpl.class, repositoryEntryId, this);
 
+		if (repositoryEntry == _nullRepositoryEntry) {
+			return null;
+		}
+
 		if (repositoryEntry == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -514,10 +520,17 @@ public class RepositoryEntryPersistenceImpl extends BasePersistenceImpl<Reposito
 						Long.valueOf(repositoryEntryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (repositoryEntry != null) {
+				if (!hasException && (repositoryEntry == null)) {
+					EntityCacheUtil.putResult(RepositoryEntryModelImpl.ENTITY_CACHE_ENABLED,
+						RepositoryEntryImpl.class, repositoryEntryId,
+						_nullRepositoryEntry);
+				}
+				else {
 					cacheResult(repositoryEntry);
 				}
 
@@ -2167,4 +2180,5 @@ public class RepositoryEntryPersistenceImpl extends BasePersistenceImpl<Reposito
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No RepositoryEntry exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(RepositoryEntryPersistenceImpl.class);
+	private static RepositoryEntry _nullRepositoryEntry = new RepositoryEntryImpl();
 }

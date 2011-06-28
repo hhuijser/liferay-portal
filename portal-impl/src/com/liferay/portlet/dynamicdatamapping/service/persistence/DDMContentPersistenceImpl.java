@@ -462,8 +462,14 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 		DDMContent ddmContent = (DDMContent)EntityCacheUtil.getResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
 				DDMContentImpl.class, contentId, this);
 
+		if (ddmContent == _nullDDMContent) {
+			return null;
+		}
+
 		if (ddmContent == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -472,10 +478,16 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 						Long.valueOf(contentId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (ddmContent != null) {
+				if (!hasException && (ddmContent == null)) {
+					EntityCacheUtil.putResult(DDMContentModelImpl.ENTITY_CACHE_ENABLED,
+						DDMContentImpl.class, contentId, _nullDDMContent);
+				}
+				else {
 					cacheResult(ddmContent);
 				}
 
@@ -2170,4 +2182,5 @@ public class DDMContentPersistenceImpl extends BasePersistenceImpl<DDMContent>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMContent exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(DDMContentPersistenceImpl.class);
+	private static DDMContent _nullDDMContent = new DDMContentImpl();
 }

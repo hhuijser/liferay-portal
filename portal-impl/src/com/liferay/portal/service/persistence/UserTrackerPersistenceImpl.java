@@ -393,8 +393,14 @@ public class UserTrackerPersistenceImpl extends BasePersistenceImpl<UserTracker>
 		UserTracker userTracker = (UserTracker)EntityCacheUtil.getResult(UserTrackerModelImpl.ENTITY_CACHE_ENABLED,
 				UserTrackerImpl.class, userTrackerId, this);
 
+		if (userTracker == _nullUserTracker) {
+			return null;
+		}
+
 		if (userTracker == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -403,10 +409,16 @@ public class UserTrackerPersistenceImpl extends BasePersistenceImpl<UserTracker>
 						Long.valueOf(userTrackerId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (userTracker != null) {
+				if (!hasException && (userTracker == null)) {
+					EntityCacheUtil.putResult(UserTrackerModelImpl.ENTITY_CACHE_ENABLED,
+						UserTrackerImpl.class, userTrackerId, _nullUserTracker);
+				}
+				else {
 					cacheResult(userTracker);
 				}
 
@@ -1972,4 +1984,5 @@ public class UserTrackerPersistenceImpl extends BasePersistenceImpl<UserTracker>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No UserTracker exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(UserTrackerPersistenceImpl.class);
+	private static UserTracker _nullUserTracker = new UserTrackerImpl();
 }

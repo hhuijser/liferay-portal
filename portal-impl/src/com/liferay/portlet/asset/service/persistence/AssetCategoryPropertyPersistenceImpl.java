@@ -470,8 +470,14 @@ public class AssetCategoryPropertyPersistenceImpl extends BasePersistenceImpl<As
 		AssetCategoryProperty assetCategoryProperty = (AssetCategoryProperty)EntityCacheUtil.getResult(AssetCategoryPropertyModelImpl.ENTITY_CACHE_ENABLED,
 				AssetCategoryPropertyImpl.class, categoryPropertyId, this);
 
+		if (assetCategoryProperty == _nullAssetCategoryProperty) {
+			return null;
+		}
+
 		if (assetCategoryProperty == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -480,10 +486,17 @@ public class AssetCategoryPropertyPersistenceImpl extends BasePersistenceImpl<As
 						Long.valueOf(categoryPropertyId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (assetCategoryProperty != null) {
+				if (!hasException && (assetCategoryProperty == null)) {
+					EntityCacheUtil.putResult(AssetCategoryPropertyModelImpl.ENTITY_CACHE_ENABLED,
+						AssetCategoryPropertyImpl.class, categoryPropertyId,
+						_nullAssetCategoryProperty);
+				}
+				else {
 					cacheResult(assetCategoryProperty);
 				}
 
@@ -2253,4 +2266,5 @@ public class AssetCategoryPropertyPersistenceImpl extends BasePersistenceImpl<As
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AssetCategoryProperty exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(AssetCategoryPropertyPersistenceImpl.class);
+	private static AssetCategoryProperty _nullAssetCategoryProperty = new AssetCategoryPropertyImpl();
 }

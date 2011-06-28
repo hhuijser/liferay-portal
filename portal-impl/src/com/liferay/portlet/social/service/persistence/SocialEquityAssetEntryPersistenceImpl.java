@@ -416,8 +416,14 @@ public class SocialEquityAssetEntryPersistenceImpl extends BasePersistenceImpl<S
 		SocialEquityAssetEntry socialEquityAssetEntry = (SocialEquityAssetEntry)EntityCacheUtil.getResult(SocialEquityAssetEntryModelImpl.ENTITY_CACHE_ENABLED,
 				SocialEquityAssetEntryImpl.class, equityAssetEntryId, this);
 
+		if (socialEquityAssetEntry == _nullSocialEquityAssetEntry) {
+			return null;
+		}
+
 		if (socialEquityAssetEntry == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -426,10 +432,17 @@ public class SocialEquityAssetEntryPersistenceImpl extends BasePersistenceImpl<S
 						Long.valueOf(equityAssetEntryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (socialEquityAssetEntry != null) {
+				if (!hasException && (socialEquityAssetEntry == null)) {
+					EntityCacheUtil.putResult(SocialEquityAssetEntryModelImpl.ENTITY_CACHE_ENABLED,
+						SocialEquityAssetEntryImpl.class, equityAssetEntryId,
+						_nullSocialEquityAssetEntry);
+				}
+				else {
 					cacheResult(socialEquityAssetEntry);
 				}
 
@@ -856,4 +869,5 @@ public class SocialEquityAssetEntryPersistenceImpl extends BasePersistenceImpl<S
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SocialEquityAssetEntry exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(SocialEquityAssetEntryPersistenceImpl.class);
+	private static SocialEquityAssetEntry _nullSocialEquityAssetEntry = new SocialEquityAssetEntryImpl();
 }

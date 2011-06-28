@@ -624,8 +624,14 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 		SocialRequest socialRequest = (SocialRequest)EntityCacheUtil.getResult(SocialRequestModelImpl.ENTITY_CACHE_ENABLED,
 				SocialRequestImpl.class, requestId, this);
 
+		if (socialRequest == _nullSocialRequest) {
+			return null;
+		}
+
 		if (socialRequest == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -634,10 +640,16 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 						Long.valueOf(requestId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (socialRequest != null) {
+				if (!hasException && (socialRequest == null)) {
+					EntityCacheUtil.putResult(SocialRequestModelImpl.ENTITY_CACHE_ENABLED,
+						SocialRequestImpl.class, requestId, _nullSocialRequest);
+				}
+				else {
 					cacheResult(socialRequest);
 				}
 
@@ -4984,4 +4996,5 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No SocialRequest exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(SocialRequestPersistenceImpl.class);
+	private static SocialRequest _nullSocialRequest = new SocialRequestImpl();
 }

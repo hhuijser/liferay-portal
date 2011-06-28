@@ -627,8 +627,14 @@ public class AssetCategoryPersistenceImpl extends BasePersistenceImpl<AssetCateg
 		AssetCategory assetCategory = (AssetCategory)EntityCacheUtil.getResult(AssetCategoryModelImpl.ENTITY_CACHE_ENABLED,
 				AssetCategoryImpl.class, categoryId, this);
 
+		if (assetCategory == _nullAssetCategory) {
+			return null;
+		}
+
 		if (assetCategory == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -637,10 +643,16 @@ public class AssetCategoryPersistenceImpl extends BasePersistenceImpl<AssetCateg
 						Long.valueOf(categoryId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (assetCategory != null) {
+				if (!hasException && (assetCategory == null)) {
+					EntityCacheUtil.putResult(AssetCategoryModelImpl.ENTITY_CACHE_ENABLED,
+						AssetCategoryImpl.class, categoryId, _nullAssetCategory);
+				}
+				else {
 					cacheResult(assetCategory);
 				}
 
@@ -4863,7 +4875,7 @@ public class AssetCategoryPersistenceImpl extends BasePersistenceImpl<AssetCateg
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Determines if the asset entry is associated with the asset category.
+	 * Returns <code>true</code> if the asset entry is associated with the asset category.
 	 *
 	 * @param pk the primary key of the asset category
 	 * @param assetEntryPK the primary key of the asset entry
@@ -4899,7 +4911,7 @@ public class AssetCategoryPersistenceImpl extends BasePersistenceImpl<AssetCateg
 	}
 
 	/**
-	 * Determines if the asset category has any asset entries associated with it.
+	 * Returns <code>true</code> if the asset category has any asset entries associated with it.
 	 *
 	 * @param pk the primary key of the asset category to check for associations with asset entries
 	 * @return <code>true</code> if the asset category has any asset entries associated with it; <code>false</code> otherwise
@@ -5715,4 +5727,5 @@ public class AssetCategoryPersistenceImpl extends BasePersistenceImpl<AssetCateg
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No AssetCategory exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(AssetCategoryPersistenceImpl.class);
+	private static AssetCategory _nullAssetCategory = new AssetCategoryImpl();
 }

@@ -467,8 +467,14 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 		DDLRecord ddlRecord = (DDLRecord)EntityCacheUtil.getResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
 				DDLRecordImpl.class, recordId, this);
 
+		if (ddlRecord == _nullDDLRecord) {
+			return null;
+		}
+
 		if (ddlRecord == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -477,10 +483,16 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 						Long.valueOf(recordId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (ddlRecord != null) {
+				if (!hasException && (ddlRecord == null)) {
+					EntityCacheUtil.putResult(DDLRecordModelImpl.ENTITY_CACHE_ENABLED,
+						DDLRecordImpl.class, recordId, _nullDDLRecord);
+				}
+				else {
 					cacheResult(ddlRecord);
 				}
 
@@ -2206,4 +2218,5 @@ public class DDLRecordPersistenceImpl extends BasePersistenceImpl<DDLRecord>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDLRecord exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(DDLRecordPersistenceImpl.class);
+	private static DDLRecord _nullDDLRecord = new DDLRecordImpl();
 }

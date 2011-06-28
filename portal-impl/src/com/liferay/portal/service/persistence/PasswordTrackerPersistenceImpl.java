@@ -370,8 +370,14 @@ public class PasswordTrackerPersistenceImpl extends BasePersistenceImpl<Password
 		PasswordTracker passwordTracker = (PasswordTracker)EntityCacheUtil.getResult(PasswordTrackerModelImpl.ENTITY_CACHE_ENABLED,
 				PasswordTrackerImpl.class, passwordTrackerId, this);
 
+		if (passwordTracker == _nullPasswordTracker) {
+			return null;
+		}
+
 		if (passwordTracker == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -380,10 +386,17 @@ public class PasswordTrackerPersistenceImpl extends BasePersistenceImpl<Password
 						Long.valueOf(passwordTrackerId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (passwordTracker != null) {
+				if (!hasException && (passwordTracker == null)) {
+					EntityCacheUtil.putResult(PasswordTrackerModelImpl.ENTITY_CACHE_ENABLED,
+						PasswordTrackerImpl.class, passwordTrackerId,
+						_nullPasswordTracker);
+				}
+				else {
 					cacheResult(passwordTracker);
 				}
 
@@ -1122,4 +1135,5 @@ public class PasswordTrackerPersistenceImpl extends BasePersistenceImpl<Password
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No PasswordTracker exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(PasswordTrackerPersistenceImpl.class);
+	private static PasswordTracker _nullPasswordTracker = new PasswordTrackerImpl();
 }

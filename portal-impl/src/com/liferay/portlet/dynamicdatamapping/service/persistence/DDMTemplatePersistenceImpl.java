@@ -506,8 +506,14 @@ public class DDMTemplatePersistenceImpl extends BasePersistenceImpl<DDMTemplate>
 		DDMTemplate ddmTemplate = (DDMTemplate)EntityCacheUtil.getResult(DDMTemplateModelImpl.ENTITY_CACHE_ENABLED,
 				DDMTemplateImpl.class, templateId, this);
 
+		if (ddmTemplate == _nullDDMTemplate) {
+			return null;
+		}
+
 		if (ddmTemplate == null) {
 			Session session = null;
+
+			boolean hasException = false;
 
 			try {
 				session = openSession();
@@ -516,10 +522,16 @@ public class DDMTemplatePersistenceImpl extends BasePersistenceImpl<DDMTemplate>
 						Long.valueOf(templateId));
 			}
 			catch (Exception e) {
+				hasException = true;
+
 				throw processException(e);
 			}
 			finally {
-				if (ddmTemplate != null) {
+				if (!hasException && (ddmTemplate == null)) {
+					EntityCacheUtil.putResult(DDMTemplateModelImpl.ENTITY_CACHE_ENABLED,
+						DDMTemplateImpl.class, templateId, _nullDDMTemplate);
+				}
+				else {
 					cacheResult(ddmTemplate);
 				}
 
@@ -3881,4 +3893,5 @@ public class DDMTemplatePersistenceImpl extends BasePersistenceImpl<DDMTemplate>
 	private static final String _NO_SUCH_ENTITY_WITH_KEY = "No DDMTemplate exists with the key {";
 	private static final boolean _HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = com.liferay.portal.util.PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE;
 	private static Log _log = LogFactoryUtil.getLog(DDMTemplatePersistenceImpl.class);
+	private static DDMTemplate _nullDDMTemplate = new DDMTemplateImpl();
 }

@@ -523,6 +523,7 @@ public abstract class BaseIndexer implements Indexer {
 		}
 
 		BooleanQuery fullQuery = BooleanQueryFactoryUtil.create();
+
 		fullQuery.add(contextQuery, BooleanClauseOccur.MUST);
 
 		if (!searchQuery.clauses().isEmpty()) {

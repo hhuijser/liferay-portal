@@ -143,4 +143,5 @@ public abstract class BaseExplodedTomcatListener implements AutoDeployListener {
 
 	private static SystemConfiguration _systemConfiguration =
 		new SystemConfiguration();
+
 }

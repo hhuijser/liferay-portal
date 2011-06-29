@@ -12,22 +12,19 @@
  * details.
  */
 
-package com.liferay.portal.model;
+package com.liferay.portal.kernel.spring.aop;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * <a href="BranchConstants.java.html"><b><i>View Source</i></b></a>
- *
- * @author Raymond Augé
+ * @author Shuyang Zhou
  */
-public class LayoutSetBranchConstants {
-
-	public static final long ALL_BRANCHES = 0;
-
-	public static final String MASTER_BRANCH_DESCRIPTION =
-		"default-backstage-of-x";
-
-	public static final String MASTER_BRANCH_NAME = "backstage";
-
-	public static final long NO_BRANCHES = -1;
-
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface Skip {
 }

@@ -16,6 +16,7 @@ package com.liferay.portlet.usersadmin.action;
 
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.UserLocalServiceUtil;
@@ -45,7 +46,14 @@ public class GetUsersCountAction extends AJAXAction {
 
 		String className = ParamUtil.getString(request, "className");
 		long[] ids = StringUtil.split(ParamUtil.getString(request, "ids"), 0L);
-		int status = ParamUtil.getInteger(request, "status");
+		int status = ParamUtil.getInteger(request, "active");
+
+		if (status == 1) {
+			status = WorkflowConstants.STATUS_APPROVED;
+		}
+		else {
+			status = WorkflowConstants.STATUS_INACTIVE;
+		}
 
 		int count = 0;
 

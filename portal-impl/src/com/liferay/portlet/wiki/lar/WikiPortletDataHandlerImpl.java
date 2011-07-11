@@ -154,8 +154,11 @@ public class WikiPortletDataHandlerImpl extends BasePortletDataHandler {
 				}
 			}
 
+			String newNodeName = getNodeName(
+				portletDataContext, node, node.getName(), 2);
+
 			importedNode = WikiNodeLocalServiceUtil.addNode(
-				userId, node.getName(), node.getDescription(), serviceContext);
+				userId, newNodeName, node.getDescription(), serviceContext);
 		}
 
 		portletDataContext.importClassedModel(node, importedNode, _NAMESPACE);
@@ -190,42 +193,33 @@ public class WikiPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		WikiPage importedPage = null;
 
-		if (portletDataContext.isDataStrategyMirror()) {
-			WikiPage existingPage = WikiPageUtil.fetchByUUID_G(
-				page.getUuid(), portletDataContext.getScopeGroupId());
+		WikiPage existingPage = WikiPageUtil.fetchByUUID_G(
+			page.getUuid(), portletDataContext.getScopeGroupId());
 
-			if (existingPage == null) {
-				try {
-					existingPage = WikiPageLocalServiceUtil.getPage(
-						nodeId, page.getTitle());
-				}
-				catch (NoSuchPageException nspe) {
-				}
+		if (existingPage == null) {
+			try {
+				existingPage = WikiPageLocalServiceUtil.getPage(
+					nodeId, page.getTitle());
 			}
-
-			if (existingPage == null) {
-				serviceContext.setUuid(page.getUuid());
-
-				importedPage = WikiPageLocalServiceUtil.addPage(
-					userId, nodeId, page.getTitle(), page.getVersion(),
-					page.getContent(), page.getSummary(), true,
-					page.getFormat(), page.getHead(), page.getParentTitle(),
-					page.getRedirectTitle(), serviceContext);
-			}
-			else {
-				importedPage = WikiPageLocalServiceUtil.updatePage(
-					userId, nodeId, existingPage.getTitle(), 0,
-					page.getContent(), page.getSummary(), true,
-					page.getFormat(), page.getParentTitle(),
-					page.getRedirectTitle(), serviceContext);
+			catch (NoSuchPageException nspe) {
 			}
 		}
-		else {
+
+		if (existingPage == null) {
+			serviceContext.setUuid(page.getUuid());
+
 			importedPage = WikiPageLocalServiceUtil.addPage(
 				userId, nodeId, page.getTitle(), page.getVersion(),
-				page.getContent(), page.getSummary(), true, page.getFormat(),
-				page.getHead(), page.getParentTitle(), page.getRedirectTitle(),
-				serviceContext);
+				page.getContent(), page.getSummary(), true,
+				page.getFormat(), page.getHead(), page.getParentTitle(),
+				page.getRedirectTitle(), serviceContext);
+		}
+		else {
+			importedPage = WikiPageLocalServiceUtil.updatePage(
+				userId, nodeId, existingPage.getTitle(), 0,
+				page.getContent(), page.getSummary(), true,
+				page.getFormat(), page.getParentTitle(),
+				page.getRedirectTitle(), serviceContext);
 		}
 
 		if (portletDataContext.getBooleanParameter(_NAMESPACE, "attachments") &&
@@ -375,6 +369,29 @@ public class WikiPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		exportNode(portletDataContext, nodesElement, page.getNodeId());
+	}
+
+		protected static String getNodeName(
+			PortletDataContext portletDataContext, WikiNode node,
+			String nodeName, int count)
+		throws Exception {
+
+		WikiNode existingNode = WikiNodeUtil.fetchByG_N(
+			portletDataContext.getScopeGroupId(), nodeName);
+
+		if (existingNode == null) {
+			return nodeName;
+		}
+
+		StringBundler sb = new StringBundler(3);
+
+		sb.append(node.getName());
+		sb.append(StringPool.SPACE);
+		sb.append(count);
+
+		nodeName = sb.toString();
+
+		return getNodeName(portletDataContext, node, nodeName, ++count);
 	}
 
 	protected static String getNodePath(

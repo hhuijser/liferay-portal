@@ -127,7 +127,7 @@ for (int i = 0; i < selectedPlids.length; i++) {
 	}
 }
 
-boolean privateLayout = tabs1.equals("private-pages");
+boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout", tabs1.equals("private-pages"));
 
 if (privateLayout) {
 	pagesCount = selGroup.getPrivateLayoutsPageCount();
@@ -180,8 +180,8 @@ selectURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 selectURL.setParameter("struts_action", "/layouts_admin/publish_layouts");
 selectURL.setParameter(Constants.CMD, cmd);
 selectURL.setParameter("pagesRedirect", pagesRedirect);
+selectURL.setParameter("privateLayout", String.valueOf(privateLayout));
 selectURL.setParameter("groupId", String.valueOf(stagingGroupId));
-selectURL.setParameter("selPlid", String.valueOf(selPlid));
 selectURL.setParameter("selectPages", String.valueOf(!selectPages));
 selectURL.setParameter("schedule", String.valueOf(schedule));
 

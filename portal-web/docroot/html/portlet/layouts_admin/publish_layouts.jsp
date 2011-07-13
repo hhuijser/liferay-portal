@@ -110,10 +110,14 @@ catch (NoSuchLayoutException nsle) {
 
 long[] selectedPlids = new long[0];
 
+boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout", tabs1.equals("private-pages"));
+
 if (selPlid > 0) {
 	selectedPlids = new long[] {selPlid};
 }
 else {
+	treeKey = treeKey + privateLayout;
+
 	selectedPlids = GetterUtil.getLongValues(StringUtil.split(SessionTreeJSClicks.getOpenNodes(request, treeKey + "SelectedNode"), ","));
 }
 
@@ -126,8 +130,6 @@ for (int i = 0; i < selectedPlids.length; i++) {
 	catch (NoSuchLayoutException nsle) {
 	}
 }
-
-boolean privateLayout = tabs1.equals("private-pages");
 
 if (privateLayout) {
 	pagesCount = selGroup.getPrivateLayoutsPageCount();
@@ -180,8 +182,8 @@ selectURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 selectURL.setParameter("struts_action", "/layouts_admin/publish_layouts");
 selectURL.setParameter(Constants.CMD, cmd);
 selectURL.setParameter("pagesRedirect", pagesRedirect);
+selectURL.setParameter("privateLayout", String.valueOf(privateLayout));
 selectURL.setParameter("groupId", String.valueOf(stagingGroupId));
-selectURL.setParameter("selPlid", String.valueOf(selPlid));
 selectURL.setParameter("selectPages", String.valueOf(!selectPages));
 selectURL.setParameter("schedule", String.valueOf(schedule));
 

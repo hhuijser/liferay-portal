@@ -167,7 +167,25 @@ public class XhtmlTranslationVisitor implements ASTVisitor {
 	}
 
 	public void visit(OrderedListItemNode orderedListItemNode) {
+		int nodeLevel = orderedListItemNode.getLevel();
+		int diff = nodeLevel - _parentLevel;
+
+		if (nodeLevel != _parentLevel) {
+			if (nodeLevel < _parentLevel) {
+				for (int i = 0; i > diff; i--) {
+					append("</ol>");
+				}
+			}
+			else {
+				for (int i = 0; i < diff; i++) {
+					append("<ol>");
+				}
+			}
+		}
+
 		traverse(orderedListItemNode.getChildASTNodes(), "<li>", "</li>");
+
+		_parentLevel = nodeLevel;
 	}
 
 	public void visit(OrderedListNode orderedListNode) {
@@ -176,6 +194,12 @@ public class XhtmlTranslationVisitor implements ASTVisitor {
 		traverse(orderedListNode.getChildASTNodes());
 
 		append("</ol>");
+
+		while (_parentLevel > 1) {
+			append("</ol>");
+
+			_parentLevel = _parentLevel - 1;
+		}
 	}
 
 	public void visit(ParagraphNode paragraphNode) {
@@ -215,7 +239,25 @@ public class XhtmlTranslationVisitor implements ASTVisitor {
 	}
 
 	public void visit(UnorderedListItemNode unorderedListItemNode) {
+		int nodeLevel = unorderedListItemNode.getLevel();
+		int diff = nodeLevel - _parentLevel;
+
+		if (nodeLevel != _parentLevel) {
+			if (nodeLevel < _parentLevel) {
+				for (int i = 0; i > diff; i--) {
+					append("</ul>");
+				}
+			}
+			else {
+				for (int i = 0; i < diff; i++) {
+					append("<ul>");
+				}
+			}
+		}
+
 		traverse(unorderedListItemNode.getChildASTNodes(), "<li>", "</li>");
+
+		_parentLevel = nodeLevel;
 	}
 
 	public void visit(UnorderedListNode unorderedListNode) {
@@ -224,6 +266,12 @@ public class XhtmlTranslationVisitor implements ASTVisitor {
 		traverse(unorderedListNode.getChildASTNodes());
 
 		append("</ul>");
+
+		while (_parentLevel > 1) {
+			append("</ul>");
+
+			_parentLevel = _parentLevel - 1;
+		}
 	}
 
 	public void visit(WikiPageNode wikiPageNode) {
@@ -265,5 +313,6 @@ public class XhtmlTranslationVisitor implements ASTVisitor {
 	}
 
 	private StringBundler _sb = new StringBundler();
+	private int _parentLevel = 1;
 
 }

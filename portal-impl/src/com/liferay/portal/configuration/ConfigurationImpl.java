@@ -235,7 +235,9 @@ public class ConfigurationImpl
 	}
 
 	public String[] getArray(String key) {
-		Object value = _values.get(key);
+		String cacheKey = _ARRAY_KEY_PREFIX.concat(key);
+
+		Object value = _values.get(cacheKey);
 
 		if (value == null) {
 			ComponentProperties componentProperties = getComponentProperties();
@@ -263,7 +265,7 @@ public class ConfigurationImpl
 				value = array;
 			}
 
-			_values.put(key, value);
+			_values.put(cacheKey, value);
 		}
 
 		if (value instanceof String[]) {
@@ -449,6 +451,8 @@ public class ConfigurationImpl
 			System.out.println(info);
 		}
 	}
+
+	private static final String _ARRAY_KEY_PREFIX = "ARRAY_";
 
 	private static final boolean _PRINT_DUPLICATE_CALLS_TO_GET = false;
 

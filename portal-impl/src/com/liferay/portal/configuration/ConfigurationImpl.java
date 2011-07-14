@@ -173,10 +173,16 @@ public class ConfigurationImpl
 				compositeConfiguration);
 
 			configurations.add(0, newConfiguration);
+
+			clearCache();
 		}
 		catch (Exception e) {
 			_log.error("The properties could not be added", e);
 		}
+	}
+
+	public void clearCache() {
+		_values.clear();
 	}
 
 	public boolean contains(String key) {
@@ -235,7 +241,9 @@ public class ConfigurationImpl
 	}
 
 	public String[] getArray(String key) {
-		Object value = _values.get(key);
+		String cacheKey = _ARRAY_KEY_PREFIX.concat(key);
+
+		Object value = _values.get(cacheKey);
 
 		if (value == null) {
 			ComponentProperties componentProperties = getComponentProperties();
@@ -263,7 +271,7 @@ public class ConfigurationImpl
 				value = array;
 			}
 
-			_values.put(key, value);
+			_values.put(cacheKey, value);
 		}
 
 		if (value instanceof String[]) {
@@ -359,6 +367,8 @@ public class ConfigurationImpl
 					aggregatedProperties.removeConfiguration(configuration);
 				}
 			}
+
+			clearCache();
 		}
 		catch (Exception e) {
 			_log.error("The properties could not be removed", e);
@@ -449,6 +459,8 @@ public class ConfigurationImpl
 			System.out.println(info);
 		}
 	}
+
+	private static final String _ARRAY_KEY_PREFIX = "ARRAY_";
 
 	private static final boolean _PRINT_DUPLICATE_CALLS_TO_GET = false;
 

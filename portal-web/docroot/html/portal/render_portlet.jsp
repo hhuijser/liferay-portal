@@ -37,7 +37,9 @@ boolean runtimePortlet = (renderPortletResource != null) && renderPortletResourc
 
 boolean access = false;
 
-if (PortalUtil.isAllowAddPortletDefaultResource(request, portlet) && !portlet.isUndeployedPortlet()) {
+boolean isAllowAddPortletDefaultResource = PortalUtil.isAllowAddPortletDefaultResource(request, portlet);
+
+if (isAllowAddPortletDefaultResource && !portlet.isUndeployedPortlet()) {
 	PortalUtil.addPortletDefaultResource(request, portlet);
 
 	access = PortletPermissionUtil.contains(permissionChecker, plid, portlet, ActionKeys.VIEW);
@@ -80,7 +82,14 @@ PortletPreferences portletSetup = PortletPreferencesFactoryUtil.getStrictLayoutP
 
 PortletPreferencesIds portletPreferencesIds = PortletPreferencesFactoryUtil.getPortletPreferencesIds(request, portletId);
 
-PortletPreferences portletPreferences = PortletPreferencesLocalServiceUtil.getStrictPreferences(portletPreferencesIds);
+PortletPreferences portletPreferences = null;
+
+if (isAllowAddPortletDefaultResource) {
+	portletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(portletPreferencesIds);
+}
+else {
+	portletPreferences = PortletPreferencesLocalServiceUtil.getStrictPreferences(portletPreferencesIds);
+}
 
 long portletItemId = ParamUtil.getLong(request, "p_p_i_id");
 

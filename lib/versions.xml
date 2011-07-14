@@ -3244,5 +3244,8 @@
 				<license-name>LGPL 3</license-name>
 			</license>
 		</licenses>
+		<comments>
+			This was recompiled for compatibility with JDK 5.
+		</comments>
 	</library>
 </libraries>

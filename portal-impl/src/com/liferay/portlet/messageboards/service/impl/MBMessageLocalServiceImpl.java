@@ -1247,6 +1247,31 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			allowPingbacks, serviceContext);
 	}
 
+	public MBMessage updateDiscussionMessage(
+			long userId, long messageId, String className, long classPK,
+			String subject, String body, int workflowAction, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(subject)) {
+			subject = body.substring(0, Math.min(body.length(), 50)) + "...";
+		}
+
+		List<ObjectValuePair<String, byte[]>> files =
+			new ArrayList<ObjectValuePair<String, byte[]>>();
+		List<String> existingFiles = new ArrayList<String>();
+		double priority = 0.0;
+		boolean allowPingbacks = false;
+
+		serviceContext.setAttribute("className", className);
+		serviceContext.setAttribute("classPK", String.valueOf(classPK));
+
+		serviceContext.setWorkflowAction(workflowAction);
+
+		return updateMessage(
+			userId, messageId, subject, body, files, existingFiles, priority,
+			allowPingbacks, serviceContext);
+	}
+
 	public MBMessage updateMessage(
 			long userId, long messageId, String subject, String body,
 			List<ObjectValuePair<String, byte[]>> files,

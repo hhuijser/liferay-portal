@@ -924,12 +924,14 @@ public class PortletDataContextImpl implements PortletDataContext {
 								message.getBody(), serviceContext);
 					}
 					else {
+						serviceContext.setModifiedDate(message.getModifiedDate());
+
 						importedMessage =
 							MBMessageLocalServiceUtil.updateDiscussionMessage(
 								userId, existingMessage.getMessageId(),
 								clazz.getName(), newClassPK,
 								message.getSubject(), message.getBody(),
-								WorkflowConstants.ACTION_PUBLISH);
+								WorkflowConstants.ACTION_PUBLISH, serviceContext);
 					}
 				}
 				else {

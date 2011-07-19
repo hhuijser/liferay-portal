@@ -110,7 +110,8 @@ public class MBUtil {
 			request, "struts_action");
 
 		boolean selectCategory = strutsAction.equals(
-			"/message_boards/select_category");
+			"/message_boards/select_category") || strutsAction.equals(
+			"/message_boards_admin/select_category");
 
 		PortletURL portletURL = renderResponse.createRenderURL();
 

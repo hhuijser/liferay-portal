@@ -394,6 +394,7 @@ boolean showIconsActions = themeDisplay.isSignedIn() && (showEditArticleIcon || 
 			className="<%= JournalArticle.class.getName() %>"
 			classPK="<%= articleDisplay.getResourcePrimKey() %>"
 			formAction="<%= discussionURL %>"
+			hideControls="<%= print %>"
 			ratingsEnabled="<%= enableCommentRatings %>"
 			redirect="<%= currentURL %>"
 			subject="<%= articleDisplay.getTitle() %>"

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.captcha.CaptchaTextException;
 import com.liferay.portal.kernel.captcha.CaptchaUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -39,6 +40,7 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletPreferences;
+import javax.portlet.PortletSession;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -48,6 +50,7 @@ import org.apache.struts.action.ActionMapping;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Tibor Kovacs
  */
 public class ForgotPasswordAction extends PortletAction {
 
@@ -58,23 +61,38 @@ public class ForgotPasswordAction extends PortletAction {
 		throws Exception {
 
 		try {
-			User user = getUser(actionRequest);
-
-			if (PropsValues.USERS_REMINDER_QUERIES_ENABLED &&
-				(PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD ||
-				 user.hasReminderQuery())) {
-
-				actionRequest.setAttribute(
-					ForgotPasswordAction.class.getName(), user);
-
+			if (PropsValues.USERS_REMINDER_QUERIES_ENABLED) {
 				int step = ParamUtil.getInteger(actionRequest, "step");
 
-				if (step == 2) {
-					if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD) {
-						CaptchaUtil.check(actionRequest);
-					}
+				if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD &&
+					(step != 2)) {
 
-					sendPassword(actionRequest, actionResponse);
+					CaptchaUtil.check(actionRequest);
+				}
+
+				User user = getUser(actionRequest);
+
+				if(PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD ||
+					user.hasReminderQuery()) {
+
+					actionRequest.setAttribute(
+						ForgotPasswordAction.class.getName(), user);
+
+					PortletSession portletSession =
+						actionRequest.getPortletSession();
+
+					int failedAttempts = GetterUtil.getInteger((Integer)
+						portletSession.getAttribute("failed-attempts"), 0);
+
+					if (step == 2) {
+						if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD &&
+							( failedAttempts > 2)) {
+
+							CaptchaUtil.check(actionRequest);
+						}
+
+						sendPassword(actionRequest, actionResponse);
+					}
 				}
 			}
 			else {

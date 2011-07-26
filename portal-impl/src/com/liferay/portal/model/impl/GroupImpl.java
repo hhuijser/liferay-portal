@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.staging.StagingConstants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Account;
 import com.liferay.portal.model.Company;
@@ -32,6 +33,8 @@ import com.liferay.portal.model.LayoutPrototype;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
@@ -41,6 +44,7 @@ import com.liferay.portal.service.LayoutPrototypeLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetPrototypeLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
@@ -403,10 +407,54 @@ public class GroupImpl extends GroupBaseImpl {
 	}
 
 	public boolean isStagedPortlet(String portletId) {
-		return GetterUtil.getBoolean(
-			getTypeSettingsProperty(
-				StagingConstants.STAGED_PORTLET.concat(portletId)),
-			true);
+		portletId = PortletConstants.getRootPortletId(portletId);
+
+		try {
+			Portlet portlet = PortletLocalServiceUtil.getPortletById(portletId);
+
+			String portletDataHandler = portlet.getPortletDataHandlerClass();
+
+			Portlet StagedPortlet = null;
+			String StagedPortletDataHandler = null;
+			String StagedPortletId = null;
+
+			String typeSettings = getTypeSettings();
+
+			int beginIndex = 0;
+			int endIndex = 0;
+			int count = 0;
+
+			while (count < typeSettings.lastIndexOf(
+					StagingConstants.STAGED_PORTLET)) {
+
+				beginIndex = typeSettings.indexOf(
+					StagingConstants.STAGED_PORTLET, count) +
+					StagingConstants.STAGED_PORTLET.length();
+
+				endIndex = typeSettings.indexOf(StringPool.EQUAL, beginIndex);
+
+				StagedPortletId= typeSettings.substring(beginIndex, endIndex);
+
+				StagedPortlet = PortletLocalServiceUtil.getPortletById(
+					StagedPortletId);
+
+				StagedPortletDataHandler =
+					StagedPortlet.getPortletDataHandlerClass();
+
+				if (StagedPortletDataHandler.equals(portletDataHandler)) {
+					return GetterUtil.getBoolean(
+						getTypeSettingsProperty(
+							StagingConstants.STAGED_PORTLET.concat(
+								StagedPortletId)), true);
+				}
+
+				count = endIndex + 1;
+			}
+		}
+		catch (Exception e) {
+		}
+
+		return true;
 	}
 
 	public boolean isStagedRemotely() {

@@ -16,6 +16,7 @@ package com.liferay.portlet.portletconfiguration.action;
 
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -24,16 +25,24 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.model.Resource;
+import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ResourceActionsUtil;
 import com.liferay.portal.service.PermissionServiceUtil;
 import com.liferay.portal.service.PortletLocalServiceUtil;
 import com.liferay.portal.service.ResourceLocalServiceUtil;
+import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionServiceUtil;
 import com.liferay.portal.servlet.filters.cache.CacheUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.wiki.model.WikiPage;
+import com.liferay.portlet.wiki.model.WikiNode;
+import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
+import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -305,7 +314,7 @@ public class EditPermissionsAction extends EditConfigurationAction {
 		}
 
 		String resourcePrimKey = ParamUtil.getString(
-			actionRequest, "resourcePrimKey");
+				actionRequest, "resourcePrimKey");
 
 		for (long roleId : roleIds) {
 			String[] actionIds = getActionIds(actionRequest, roleId);
@@ -314,6 +323,93 @@ public class EditPermissionsAction extends EditConfigurationAction {
 				themeDisplay.getScopeGroupId(), themeDisplay.getCompanyId(),
 				selResource, resourcePrimKey, roleId, actionIds);
 		}
+
+		if (portletResource.equals(PortletKeys.WIKI_ADMIN)) {
+
+			Long nodeId = Long.parseLong(resourcePrimKey);
+
+			String selResourcePage = "com.liferay.portlet.wiki.model.WikiPage";
+			
+			List<String> nodeActionList = ResourceActionsUtil.
+				getModelResourceActions(selResource);
+			List<String> pageActionList = ResourceActionsUtil.
+				getModelResourceActions(selResourcePage);
+			
+			List<String> pageActionExclusive = ListUtil.copy(pageActionList);
+			List<String> pageNodeActionsShared = new ArrayList<String>();
+			
+			//Creates page exclusive and node/page shared lists
+			for (String pageActionId: pageActionList) {
+				boolean actionIdFound = false;
+
+				for(String nodeActionId: nodeActionList) {
+					if (nodeActionId.equals(pageActionId)) {
+						actionIdFound = true;
+					}
+				}
+
+				if (actionIdFound) {
+					pageActionExclusive.remove(pageActionId);
+					pageNodeActionsShared.add(pageActionId);
+				}
+			}
+		
+			//Retrieves wiki pages associated with the node. 
+			int count = WikiPageLocalServiceUtil.getPagesCount(nodeId);
+			List<WikiPage> nodePages = 
+					WikiPageLocalServiceUtil.getPages(nodeId, 0, count);
+
+			for (WikiPage currentPage: nodePages) {
+				resourcePrimKey = String.valueOf(
+					currentPage.getResourcePrimKey());
+
+				for (long roleId : roleIds) {
+					List<String> actionIdsFinal = new ArrayList<String>();
+					String[] nodeActionIds = getActionIds(actionRequest, roleId);
+					List<String> pageActionIds = 
+						ResourcePermissionLocalServiceUtil.
+							getAvailableResourcePermissionActionIds(
+								themeDisplay.getCompanyId(), selResourcePage, 
+								ResourceConstants.SCOPE_INDIVIDUAL,
+								resourcePrimKey, roleId, pageActionList);
+					
+					//add page exclusive actions 
+					for (String actionId: pageActionIds) {
+						boolean actionIdFound = false;
+						for (String pageExclusiveActionId: pageActionExclusive){
+							if ( actionId.equals(pageExclusiveActionId)){
+								actionIdFound = true;
+							}
+						}
+						if (actionIdFound) {
+							actionIdsFinal.add(actionId);
+						}
+					}
+					
+					//adds node actions that are shared with page 
+					for (String actionId: nodeActionIds) {
+						boolean actionIdFound = false;
+						for (String pageNodeActionShared: pageNodeActionsShared) {
+							if ( actionId.equals(pageNodeActionShared)){
+								actionIdFound = true;
+							}
+						}
+						if (actionIdFound) {
+							actionIdsFinal.add(actionId);
+						}
+					}
+
+					String[]actionIds = actionIdsFinal.toArray(new String[]{});
+
+					ResourcePermissionServiceUtil.
+						setIndividualResourcePermissions(
+							themeDisplay.getScopeGroupId(),
+							themeDisplay.getCompanyId(),
+							selResourcePage, resourcePrimKey,
+							roleId, actionIds);
+				}
+			}
+		} 
 	}
 
 	protected void updateUserGroupPermissions(ActionRequest actionRequest)

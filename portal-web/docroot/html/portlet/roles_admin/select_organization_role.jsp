@@ -165,6 +165,7 @@ if (step == 1) {
 					document.<portlet:namespace />fm.<portlet:namespace />organizationId.value = organizationId;
 
 					<%
+					portletURL.setParameter("cur", "1");
 					portletURL.setParameter("step", "2");
 					%>
 

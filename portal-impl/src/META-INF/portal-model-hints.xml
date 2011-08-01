@@ -7,6 +7,9 @@
 	<hint-collection name="URL">
 		<hint name="max-length">4000</hint>
 	</hint-collection>
+	<hint-collection name="USERNAME">
+		<hint name="max-length">255</hint>
+	</hint-collection>
 	<hint-collection name="TEXTAREA">
 		<hint name="display-height">105</hint>
 		<hint name="display-width">500</hint>
@@ -32,7 +35,9 @@
 		<field name="accountId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentAccountId" type="long" />
@@ -55,7 +60,9 @@
 		<field name="addressId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -116,7 +123,9 @@
 		<field name="contactId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="accountId" type="long" />
@@ -163,7 +172,9 @@
 		<field name="emailAddressId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -269,7 +280,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="layoutSetBranchId" type="long" />
 		<field name="plid" type="long" />
 		<field name="name" type="String">
@@ -300,7 +313,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="layoutSetBranchId" type="long" />
@@ -336,7 +351,9 @@
 		</field>
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portal.model.LayoutSet">
@@ -365,7 +382,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="privateLayout" type="boolean" />
@@ -404,7 +423,9 @@
 		<field name="lockId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="className" type="String" />
 		<field name="key" type="String">
@@ -488,7 +509,9 @@
 		<field name="passwordPolicyId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="defaultPolicy" type="boolean" />
@@ -556,7 +579,9 @@
 		<field name="phoneId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -604,7 +629,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
@@ -740,7 +767,9 @@
 		<field name="subscriptionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -751,7 +780,9 @@
 		<field name="teamId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="groupId" type="long" />
@@ -926,7 +957,9 @@
 		<field name="websiteId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -944,7 +977,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -958,7 +993,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -979,7 +1016,9 @@
 		<field name="entryId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -1012,7 +1051,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentCategoryId" type="long" />
@@ -1030,7 +1071,9 @@
 		<field name="categoryPropertyId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="categoryId" type="long" />
@@ -1046,7 +1089,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -1080,7 +1125,9 @@
 		<field name="linkId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="entryId1" type="long" />
 		<field name="entryId2" type="long" />
@@ -1092,7 +1139,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
@@ -1102,7 +1151,9 @@
 		<field name="tagPropertyId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="tagId" type="long" />
@@ -1126,7 +1177,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
@@ -1145,7 +1198,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="title" type="String">
@@ -1172,7 +1227,9 @@
 		<field name="smallImageURL" type="String" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.blogs.model.BlogsStatsUser">
@@ -1192,7 +1249,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="folderId" type="long" />
@@ -1218,7 +1277,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentFolderId" type="long" />
@@ -1235,7 +1296,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="title" type="String">
@@ -1283,9 +1346,13 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="versionUserId" type="long" />
-		<field name="versionUserName" type="String" />
+		<field name="versionUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="repositoryId" type="long" />
@@ -1323,7 +1390,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
@@ -1345,7 +1414,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="repositoryId" type="long" />
@@ -1353,7 +1424,9 @@
 		<field name="toFileEntryId" type="long" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.documentlibrary.model.DLFileVersion">
@@ -1361,7 +1434,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="repositoryId" type="long" />
 		<field name="fileEntryId" type="long" />
@@ -1382,7 +1457,9 @@
 		<field name="size" type="long" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.documentlibrary.model.DLFolder">
@@ -1391,7 +1468,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="repositoryId" type="long" />
@@ -1424,9 +1503,13 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="versionUserId" type="long" />
-		<field name="versionUserName" type="String" />
+		<field name="versionUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="DDMStorageId" type="long" />
@@ -1440,7 +1523,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="DDMStructureId" type="long" />
@@ -1461,7 +1546,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="DDMStorageId" type="long" />
 		<field name="recordSetId" type="long" />
@@ -1470,7 +1557,9 @@
 		<field name="displayIndex" type="int" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.dynamicdatamapping.model.DDMContent">
@@ -1479,7 +1568,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" localized="true">
@@ -1505,7 +1596,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -1536,7 +1629,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="structureId" type="long" />
@@ -1597,7 +1692,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentFolderId" type="long" />
@@ -1614,7 +1711,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="folderId" type="long" />
@@ -1634,7 +1733,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -1683,7 +1784,9 @@
 		</field>
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.journal.model.JournalArticleImage">
@@ -1719,7 +1822,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="feedId" type="String">
@@ -1759,7 +1864,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="structureId" type="String">
@@ -1783,7 +1890,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="templateId" type="String">
@@ -1815,7 +1924,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="banUserId" type="long" />
@@ -1826,7 +1937,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentCategoryId" type="long" />
@@ -1853,7 +1966,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="categoryId" type="long" />
@@ -1862,7 +1977,9 @@
 		<field name="inServerName" type="String" />
 		<field name="inServerPort" type="int" />
 		<field name="inUseSSL" type="boolean" />
-		<field name="inUserName" type="String" />
+		<field name="inUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="inPassword" type="String">
 			<hint name="secret">true</hint>
 		</field>
@@ -1872,7 +1989,9 @@
 		<field name="outServerName" type="String" />
 		<field name="outServerPort" type="int" />
 		<field name="outUseSSL" type="boolean" />
-		<field name="outUserName" type="String" />
+		<field name="outUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="outPassword" type="String">
 			<hint name="secret">true</hint>
 		</field>
@@ -1885,7 +2004,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -1909,7 +2030,9 @@
 		<field name="allowPingbacks" type="boolean" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.messageboards.model.MBMessageFlag">
@@ -1941,7 +2064,9 @@
 		<field name="priority" type="double" />
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.polls.model.PollsChoice">
@@ -1959,7 +2084,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="title" type="String" localized="true">
@@ -1986,7 +2113,9 @@
 		<field name="entryId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="classNameId" type="long" />
@@ -2006,7 +2135,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="itemIds" type="String">
@@ -2021,7 +2152,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="parentCategoryId" type="long" />
@@ -2037,7 +2170,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="code" type="String" />
@@ -2065,7 +2200,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="categoryId" type="long" />
@@ -2152,7 +2289,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="number" type="String" />
@@ -2332,7 +2471,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String" />
@@ -2359,7 +2500,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String">
@@ -2402,7 +2545,9 @@
 		<field name="productVersionId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="productEntryId" type="long" />
@@ -2439,7 +2584,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="name" type="String">
@@ -2457,7 +2604,9 @@
 		<field name="groupId" type="long" />
 		<field name="companyId" type="long" />
 		<field name="userId" type="long" />
-		<field name="userName" type="String" />
+		<field name="userName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
 		<field name="nodeId" type="long" />
@@ -2488,7 +2637,9 @@
 		</field>
 		<field name="status" type="int" />
 		<field name="statusByUserId" type="long" />
-		<field name="statusByUserName" type="String" />
+		<field name="statusByUserName" type="String">
+			<hint-collection name="USERNAME" />
+		</field>
 		<field name="statusDate" type="Date" />
 	</model>
 	<model name="com.liferay.portlet.wiki.model.WikiPageResource">

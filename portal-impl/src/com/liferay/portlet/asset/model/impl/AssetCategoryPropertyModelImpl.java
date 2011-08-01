@@ -74,7 +74,7 @@ public class AssetCategoryPropertyModelImpl extends BaseModelImpl<AssetCategoryP
 			{ "key_", Types.VARCHAR },
 			{ "value", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table AssetCategoryProperty (categoryPropertyId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,categoryId LONG,key_ VARCHAR(75) null,value VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table AssetCategoryProperty (categoryPropertyId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,categoryId LONG,key_ VARCHAR(75) null,value VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table AssetCategoryProperty";
 	public static final String ORDER_BY_JPQL = " ORDER BY assetCategoryProperty.key ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY AssetCategoryProperty.key_ ASC";

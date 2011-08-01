@@ -42,6 +42,7 @@ import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.service.PortletLocalService;
+import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.ResourceActionLocalService;
 import com.liferay.portal.service.RoleLocalService;
 import com.liferay.portal.util.Portal;
@@ -815,6 +816,16 @@ public class ResourceActionsImpl implements ResourceActions {
 		}
 		else {
 			if (group != null) {
+				if (group.isLayout()) {
+					long parentGroupId = group.getParentGroupId();
+					try {
+						Group parentGroup =
+							GroupServiceUtil.getGroup(parentGroupId);
+						group = parentGroup;
+					}
+					catch (Exception e) {
+					}
+				}
 				if (group.isOrganization()) {
 					types = new int[] {
 						RoleConstants.TYPE_REGULAR,

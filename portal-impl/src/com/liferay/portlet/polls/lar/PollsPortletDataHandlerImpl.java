@@ -135,12 +135,13 @@ public class PollsPortletDataHandlerImpl extends BasePortletDataHandler {
 			return;
 		}
 
-		Element voteElement = questionsElement.addElement("vote");
 		User user = UserLocalServiceUtil.getUserById(vote.getUserId());
 
 		if (Validator.isNotNull(user)) {
 			vote.setUserUuid(user.getUuid());
 		}
+
+		Element voteElement = questionsElement.addElement("vote");
 
 		portletDataContext.addClassedModel(voteElement, path, vote, _NAMESPACE);
 	}

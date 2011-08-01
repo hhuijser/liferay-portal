@@ -79,7 +79,7 @@ public class BookmarksEntryModelImpl extends BaseModelImpl<BookmarksEntry>
 			{ "visits", Types.INTEGER },
 			{ "priority", Types.INTEGER }
 		};
-	public static final String TABLE_SQL_CREATE = "create table BookmarksEntry (uuid_ VARCHAR(75) null,entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,folderId LONG,name VARCHAR(255) null,url STRING null,description STRING null,visits INTEGER,priority INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table BookmarksEntry (uuid_ VARCHAR(75) null,entryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,folderId LONG,name VARCHAR(255) null,url STRING null,description STRING null,visits INTEGER,priority INTEGER)";
 	public static final String TABLE_SQL_DROP = "drop table BookmarksEntry";
 	public static final String ORDER_BY_JPQL = " ORDER BY bookmarksEntry.folderId ASC, bookmarksEntry.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY BookmarksEntry.folderId ASC, BookmarksEntry.name ASC";

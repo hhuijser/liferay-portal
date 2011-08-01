@@ -81,7 +81,7 @@ public class DLFolderModelImpl extends BaseModelImpl<DLFolder>
 			{ "defaultFileEntryTypeId", Types.BIGINT },
 			{ "overrideFileEntryTypes", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table DLFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,mountPoint BOOLEAN,parentFolderId LONG,name VARCHAR(100) null,description STRING null,lastPostDate DATE null,defaultFileEntryTypeId LONG,overrideFileEntryTypes BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table DLFolder (uuid_ VARCHAR(75) null,folderId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,repositoryId LONG,mountPoint BOOLEAN,parentFolderId LONG,name VARCHAR(100) null,description STRING null,lastPostDate DATE null,defaultFileEntryTypeId LONG,overrideFileEntryTypes BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table DLFolder";
 	public static final String ORDER_BY_JPQL = " ORDER BY dlFolder.parentFolderId ASC, dlFolder.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY DLFolder.parentFolderId ASC, DLFolder.name ASC";

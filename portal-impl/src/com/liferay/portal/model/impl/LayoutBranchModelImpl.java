@@ -73,7 +73,7 @@ public class LayoutBranchModelImpl extends BaseModelImpl<LayoutBranch>
 			{ "description", Types.VARCHAR },
 			{ "master", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table LayoutBranch (LayoutBranchId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,layoutSetBranchId LONG,plid LONG,name VARCHAR(75) null,description STRING null,master BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table LayoutBranch (LayoutBranchId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,layoutSetBranchId LONG,plid LONG,name VARCHAR(75) null,description STRING null,master BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table LayoutBranch";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";

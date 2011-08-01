@@ -80,7 +80,7 @@ public class IGImageModelImpl extends BaseModelImpl<IGImage>
 			{ "custom1ImageId", Types.BIGINT },
 			{ "custom2ImageId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table IGImage (uuid_ VARCHAR(75) null,imageId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,folderId LONG,name VARCHAR(75) null,description STRING null,smallImageId LONG,largeImageId LONG,custom1ImageId LONG,custom2ImageId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table IGImage (uuid_ VARCHAR(75) null,imageId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,folderId LONG,name VARCHAR(75) null,description STRING null,smallImageId LONG,largeImageId LONG,custom1ImageId LONG,custom2ImageId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table IGImage";
 	public static final String ORDER_BY_JPQL = " ORDER BY igImage.imageId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY IGImage.imageId ASC";

@@ -75,7 +75,7 @@ public class ShoppingCategoryModelImpl extends BaseModelImpl<ShoppingCategory>
 			{ "name", Types.VARCHAR },
 			{ "description", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ShoppingCategory (categoryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,parentCategoryId LONG,name VARCHAR(75) null,description STRING null)";
+	public static final String TABLE_SQL_CREATE = "create table ShoppingCategory (categoryId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,parentCategoryId LONG,name VARCHAR(75) null,description STRING null)";
 	public static final String TABLE_SQL_DROP = "drop table ShoppingCategory";
 	public static final String ORDER_BY_JPQL = " ORDER BY shoppingCategory.parentCategoryId ASC, shoppingCategory.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ShoppingCategory.parentCategoryId ASC, ShoppingCategory.name ASC";

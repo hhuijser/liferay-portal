@@ -78,7 +78,7 @@ public class SCProductVersionModelImpl extends BaseModelImpl<SCProductVersion>
 			{ "directDownloadURL", Types.VARCHAR },
 			{ "repoStoreArtifact", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table SCProductVersion (productVersionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,productEntryId LONG,version VARCHAR(75) null,changeLog STRING null,downloadPageURL STRING null,directDownloadURL VARCHAR(2000) null,repoStoreArtifact BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table SCProductVersion (productVersionId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,productEntryId LONG,version VARCHAR(75) null,changeLog STRING null,downloadPageURL STRING null,directDownloadURL VARCHAR(2000) null,repoStoreArtifact BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table SCProductVersion";
 	public static final String ORDER_BY_JPQL = " ORDER BY scProductVersion.createDate DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY SCProductVersion.createDate DESC";

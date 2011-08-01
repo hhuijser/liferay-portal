@@ -84,7 +84,7 @@ public class ShoppingCouponModelImpl extends BaseModelImpl<ShoppingCoupon>
 			{ "discount", Types.DOUBLE },
 			{ "discountType", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table ShoppingCoupon (couponId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,code_ VARCHAR(75) null,name VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,active_ BOOLEAN,limitCategories STRING null,limitSkus STRING null,minOrder DOUBLE,discount DOUBLE,discountType VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table ShoppingCoupon (couponId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,code_ VARCHAR(75) null,name VARCHAR(75) null,description STRING null,startDate DATE null,endDate DATE null,active_ BOOLEAN,limitCategories STRING null,limitSkus STRING null,minOrder DOUBLE,discount DOUBLE,discountType VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table ShoppingCoupon";
 	public static final String ORDER_BY_JPQL = " ORDER BY shoppingCoupon.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY ShoppingCoupon.createDate ASC";

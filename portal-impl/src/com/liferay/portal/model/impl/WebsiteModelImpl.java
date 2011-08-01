@@ -76,7 +76,7 @@ public class WebsiteModelImpl extends BaseModelImpl<Website>
 			{ "typeId", Types.INTEGER },
 			{ "primary_", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Website (websiteId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,url STRING null,typeId INTEGER,primary_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Website (websiteId LONG not null primary key,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,classNameId LONG,classPK LONG,url STRING null,typeId INTEGER,primary_ BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Website";
 	public static final String ORDER_BY_JPQL = " ORDER BY website.createDate ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Website.createDate ASC";

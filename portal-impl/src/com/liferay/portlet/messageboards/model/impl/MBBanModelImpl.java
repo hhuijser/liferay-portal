@@ -72,7 +72,7 @@ public class MBBanModelImpl extends BaseModelImpl<MBBan> implements MBBanModel {
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "banUserId", Types.BIGINT }
 		};
-	public static final String TABLE_SQL_CREATE = "create table MBBan (banId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,banUserId LONG)";
+	public static final String TABLE_SQL_CREATE = "create table MBBan (banId LONG not null primary key,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(255) null,createDate DATE null,modifiedDate DATE null,banUserId LONG)";
 	public static final String TABLE_SQL_DROP = "drop table MBBan";
 	public static final String DATA_SOURCE = "liferayDataSource";
 	public static final String SESSION_FACTORY = "liferaySessionFactory";

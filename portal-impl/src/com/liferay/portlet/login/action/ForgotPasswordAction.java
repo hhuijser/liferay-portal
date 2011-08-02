@@ -19,11 +19,11 @@ import com.liferay.portal.RequiredReminderQueryException;
 import com.liferay.portal.SendPasswordException;
 import com.liferay.portal.UserEmailAddressException;
 import com.liferay.portal.UserReminderQueryException;
+import com.liferay.portal.kernel.captcha.CaptchaException;
 import com.liferay.portal.kernel.captcha.CaptchaTextException;
 import com.liferay.portal.kernel.captcha.CaptchaUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -54,6 +54,8 @@ import org.apache.struts.action.ActionMapping;
  */
 public class ForgotPasswordAction extends PortletAction {
 
+	public static final String REMINDER_ATTEMPTS = "REMINDER_ATTEMPTS";
+
 	@Override
 	public void processAction(
 			ActionMapping mapping, ActionForm form, PortletConfig portletConfig,
@@ -62,43 +64,43 @@ public class ForgotPasswordAction extends PortletAction {
 
 		try {
 			if (PropsValues.USERS_REMINDER_QUERIES_ENABLED) {
+				PortletSession portletSession =
+					actionRequest.getPortletSession();
+
 				int step = ParamUtil.getInteger(actionRequest, "step");
 
-				if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD &&
-					(step != 2)) {
+				if (step == 1) {
+					_checkCaptcha(actionRequest);
 
-					CaptchaUtil.check(actionRequest);
+					portletSession.setAttribute(REMINDER_ATTEMPTS, 0);
 				}
 
 				User user = getUser(actionRequest);
 
-				if(PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD ||
-					user.hasReminderQuery()) {
+				actionRequest.setAttribute(
+					ForgotPasswordAction.class.getName(), user);
 
-					actionRequest.setAttribute(
-						ForgotPasswordAction.class.getName(), user);
+				if (step == 2) {
+					Integer reminderAttempts =
+						(Integer)portletSession.getAttribute(REMINDER_ATTEMPTS);
 
-					PortletSession portletSession =
-						actionRequest.getPortletSession();
-
-					int failedAttempts = GetterUtil.getInteger((Integer)
-						portletSession.getAttribute("failed-attempts"), 0);
-
-					if (step == 2) {
-						if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD &&
-							( failedAttempts > 2)) {
-
-							CaptchaUtil.check(actionRequest);
-						}
-
-						sendPassword(actionRequest, actionResponse);
+					if (reminderAttempts == null) {
+						reminderAttempts = 0;
 					}
+					else if (reminderAttempts >= 3) {
+						_checkCaptcha(actionRequest);
+					}
+
+					reminderAttempts++;
+
+					portletSession.setAttribute(
+						REMINDER_ATTEMPTS, reminderAttempts);
+
+					sendPassword(actionRequest, actionResponse);
 				}
 			}
 			else {
-				if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD) {
-					CaptchaUtil.check(actionRequest);
-				}
+				_checkCaptcha(actionRequest);
 
 				sendPassword(actionRequest, actionResponse);
 			}
@@ -221,6 +223,14 @@ public class ForgotPasswordAction extends PortletAction {
 			subject, body);
 
 		sendRedirect(actionRequest, actionResponse);
+	}
+
+	private void _checkCaptcha(ActionRequest actionRequest)
+		throws CaptchaException {
+
+		if (PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD) {
+			CaptchaUtil.check(actionRequest);
+		}
 	}
 
 	private static final boolean _CHECK_METHOD_ON_PROCESS_ACTION = false;

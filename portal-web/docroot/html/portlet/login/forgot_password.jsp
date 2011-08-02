@@ -18,12 +18,15 @@
 
 <%
 User user2 = (User)request.getAttribute(ForgotPasswordAction.class.getName());
+Integer reminderAttempts = (Integer)portletSession.getAttribute(ForgotPasswordAction.REMINDER_ATTEMPTS);
 
 if (Validator.isNull(authType)) {
 	authType = company.getAuthType();
 }
 
-int failedAttempts = GetterUtil.getInteger((Integer)portletSession.getAttribute("failed-attempts"), 0);
+if (reminderAttempts == null) {
+	reminderAttempts = 0;
+}
 %>
 
 <portlet:actionURL var="forgotPasswordURL">
@@ -66,8 +69,6 @@ int failedAttempts = GetterUtil.getInteger((Integer)portletSession.getAttribute(
 				}
 
 				String loginValue = ParamUtil.getString(request, loginParameter);
-
-				portletSession.setAttribute("failed-attempts", 0);
 				%>
 
 				<aui:input name="step" type="hidden" value="1" />
@@ -90,10 +91,6 @@ int failedAttempts = GetterUtil.getInteger((Integer)portletSession.getAttribute(
 			<c:when test="<%= (user2 != null) && Validator.isNotNull(user2.getEmailAddress()) %>">
 				<aui:input name="step" type="hidden" value="2" />
 				<aui:input name="emailAddress" type="hidden" value="<%= user2.getEmailAddress() %>" />
-
-				<%
-				portletSession.setAttribute("failed-attempts", failedAttempts + 1);
-				%>
 
 				<c:if test="<%= Validator.isNotNull(user2.getReminderQueryQuestion()) && Validator.isNotNull(user2.getReminderQueryAnswer()) %>">
 
@@ -125,7 +122,7 @@ int failedAttempts = GetterUtil.getInteger((Integer)portletSession.getAttribute(
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:if test="<%= failedAttempts > 2%>">
+						<c:if test="<%= reminderAttempts >= 3 %>">
 							<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="captchaURL">
 								<portlet:param name="struts_action" value="/login/captcha" />
 							</portlet:actionURL>

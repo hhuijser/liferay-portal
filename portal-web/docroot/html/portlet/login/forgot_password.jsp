@@ -18,9 +18,14 @@
 
 <%
 User user2 = (User)request.getAttribute(ForgotPasswordAction.class.getName());
+Integer reminderAttempts = (Integer)portletSession.getAttribute(ForgotPasswordAction.REMINDER_ATTEMPTS);
 
 if (Validator.isNull(authType)) {
 	authType = company.getAuthType();
+}
+
+if (reminderAttempts == null) {
+	reminderAttempts = 0;
 }
 %>
 
@@ -70,7 +75,7 @@ if (Validator.isNull(authType)) {
 
 				<aui:input label="<%= loginLabel %>" name="<%= loginParameter %>" size="30" type="text" value="<%= loginValue %>" />
 
-				<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD && !PropsValues.USERS_REMINDER_QUERIES_ENABLED %>">
+				<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD %>">
 					<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="captchaURL">
 						<portlet:param name="struts_action" value="/login/captcha" />
 					</portlet:actionURL>
@@ -117,7 +122,7 @@ if (Validator.isNull(authType)) {
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:if test="<%= PropsValues.CAPTCHA_CHECK_PORTAL_SEND_PASSWORD %>">
+						<c:if test="<%= reminderAttempts >= 3 %>">
 							<portlet:actionURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" var="captchaURL">
 								<portlet:param name="struts_action" value="/login/captcha" />
 							</portlet:actionURL>

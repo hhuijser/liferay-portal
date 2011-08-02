@@ -55,6 +55,8 @@ import org.apache.struts.action.ActionMapping;
 public class ForgotPasswordAction extends PortletAction {
 
 	public static final String REMINDER_ATTEMPTS = "REMINDER_ATTEMPTS";
+	
+	public static final String REMINDER_USER = "REMINDER_USER";
 
 	@Override
 	public void processAction(
@@ -68,15 +70,19 @@ public class ForgotPasswordAction extends PortletAction {
 					actionRequest.getPortletSession();
 
 				int step = ParamUtil.getInteger(actionRequest, "step");
-
+				
 				if (step == 1) {
 					_checkCaptcha(actionRequest);
 
 					portletSession.setAttribute(REMINDER_ATTEMPTS, 0);
+					portletSession.setAttribute(REMINDER_USER, "");
 				}
 
 				User user = getUser(actionRequest);
-
+				
+				portletSession.setAttribute(
+					REMINDER_USER, user.getEmailAddress());
+				
 				actionRequest.setAttribute(
 					ForgotPasswordAction.class.getName(), user);
 
@@ -141,12 +147,25 @@ public class ForgotPasswordAction extends PortletAction {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		User user = null;
+		
+		PortletSession portletSession =
+			actionRequest.getPortletSession();
+		
+		String sessionEmailAddress =
+			(String)portletSession.getAttribute(REMINDER_USER);
+		
+		if (Validator.isNotNull(sessionEmailAddress)) {
+			user = UserLocalServiceUtil.getUserByEmailAddress(
+				themeDisplay.getCompanyId(), sessionEmailAddress);
+
+			return user;
+		}
+
 		long userId = ParamUtil.getLong(actionRequest, "userId");
 		String screenName = ParamUtil.getString(actionRequest, "screenName");
 		String emailAddress = ParamUtil.getString(
 			actionRequest, "emailAddress");
-
-		User user = null;
 
 		if (Validator.isNotNull(emailAddress)) {
 			user = UserLocalServiceUtil.getUserByEmailAddress(

@@ -71,7 +71,7 @@ import org.apache.struts.action.ActionMapping;
  * @author Brian Wing Shun Chan
  * @author Wilson S. Man
  * @author Thiago Moreira
- * @author Juan FernÃ¡ndez
+ * @author Juan Fernández
  * @author Zsolt Berentey
  */
 public class EditEntryAction extends PortletAction {
@@ -102,6 +102,13 @@ public class EditEntryAction extends PortletAction {
 			}
 			else if (cmd.equals(Constants.UNSUBSCRIBE)) {
 				unsubscribe(actionRequest);
+			}
+			else if (cmd.equals(Constants.PREVIEW)) {
+				long entryId = ParamUtil.getLong(actionRequest, "entryId");
+
+				if (entryId > 0) {
+					entry = BlogsEntryLocalServiceUtil.getEntry(entryId);
+				}
 			}
 
 			String redirect = ParamUtil.getString(actionRequest, "redirect");
@@ -156,7 +163,8 @@ public class EditEntryAction extends PortletAction {
 				writeJSON(actionRequest, actionResponse, jsonObject);
 			}
 			else if ((entry != null) &&
-					 (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT)) {
+					 (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) ||
+					 cmd.equals(Constants.PREVIEW)) {
 
 				redirect = getSaveAndContinueRedirect(
 					portletConfig, actionRequest, entry, redirect);
@@ -271,6 +279,8 @@ public class EditEntryAction extends PortletAction {
 			WebKeys.THEME_DISPLAY);
 
 		String backURL = ParamUtil.getString(actionRequest, "backURL");
+		String content = ParamUtil.getString(actionRequest, "content");
+		String title = ParamUtil.getString(actionRequest, "title");
 
 		boolean preview = ParamUtil.getBoolean(actionRequest, "preview");
 
@@ -290,13 +300,20 @@ public class EditEntryAction extends PortletAction {
 		}
 
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
-		portletURL.setParameter("redirect", redirect, false);
 		portletURL.setParameter("backURL", backURL, false);
-		portletURL.setParameter(
-			"groupId", String.valueOf(entry.getGroupId()), false);
-		portletURL.setParameter(
-			"entryId", String.valueOf(entry.getEntryId()), false);
 		portletURL.setParameter("preview", String.valueOf(preview), false);
+		portletURL.setParameter("redirect", redirect, false);
+
+		if (entry != null) {
+			portletURL.setParameter(
+				"entryId", String.valueOf(entry.getEntryId()), false);
+			portletURL.setParameter(
+				"groupId", String.valueOf(entry.getGroupId()), false);
+		}
+		else {
+			portletURL.setParameter("content", content, false);
+			portletURL.setParameter("title", title, false);
+		}
 
 		return portletURL.toString();
 	}

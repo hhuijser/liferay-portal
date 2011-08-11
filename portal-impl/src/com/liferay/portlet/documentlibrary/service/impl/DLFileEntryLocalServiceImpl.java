@@ -997,6 +997,7 @@ public class DLFileEntryLocalServiceImpl
 
 				dlFileEntry.setTitle(dlFileVersion.getTitle());
 				dlFileEntry.setDescription(dlFileVersion.getDescription());
+				dlFileEntry.setExtension(dlFileVersion.getExtension());
 				dlFileEntry.setExtraSettings(dlFileVersion.getExtraSettings());
 				dlFileEntry.setFileEntryTypeId(
 					dlFileVersion.getFileEntryTypeId());

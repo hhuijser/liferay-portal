@@ -976,7 +976,10 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 						permissionChecker, organization,
 						ActionKeys.MANAGE_SUBORGANIZATIONS);
 
-				if (!manageUsers && !manageSuborganizations) {
+				if (!manageUsers && !manageSuborganizations &&
+						!OrganizationPermissionUtil.contains(
+							permissionChecker, organization, ActionKeys.VIEW)) {
+
 					continue;
 				}
 

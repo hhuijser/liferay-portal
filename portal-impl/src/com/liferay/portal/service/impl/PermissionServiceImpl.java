@@ -68,7 +68,9 @@ import com.liferay.portlet.softwarecatalog.model.SCProductEntry;
 import com.liferay.portlet.softwarecatalog.service.permission.SCFrameworkVersionPermission;
 import com.liferay.portlet.softwarecatalog.service.permission.SCProductEntryPermission;
 import com.liferay.portlet.wiki.model.WikiNode;
+import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.service.permission.WikiNodePermission;
+import com.liferay.portlet.wiki.service.permission.WikiPagePermission;
 
 import java.util.List;
 
@@ -378,6 +380,11 @@ public class PermissionServiceImpl extends PermissionServiceBaseImpl {
 		}
 		else if (name.equals(WikiNode.class.getName())) {
 			WikiNodePermission.check(
+				permissionChecker, GetterUtil.getLong(primKey),
+				ActionKeys.PERMISSIONS);
+		}
+		else if (name.equals(WikiPage.class.getName())) {
+			WikiPagePermission.check(
 				permissionChecker, GetterUtil.getLong(primKey),
 				ActionKeys.PERMISSIONS);
 		}

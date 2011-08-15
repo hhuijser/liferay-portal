@@ -210,6 +210,12 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 			scopeGroupId, privateLayout);
 
 		for (Layout layout : layouts) {
+			if (!LayoutPermissionUtil.contains(
+					getPermissionChecker(), layout, ActionKeys.VIEW)) {
+
+				continue;
+			}
+
 			if (!layout.isTypePortlet()) {
 				continue;
 			}

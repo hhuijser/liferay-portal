@@ -207,7 +207,7 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 		}
 
 		List<Layout> layouts = layoutPersistence.filterFindByG_P(
-			groupId, privateLayout);
+			scopeGroupId, privateLayout);
 
 		for (Layout layout : layouts) {
 			if (!layout.isTypePortlet()) {

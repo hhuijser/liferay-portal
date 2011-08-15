@@ -46,7 +46,6 @@
 		<aui:option label="view-in-a-specific-portlet" selected='<%= assetLinkBehavior.equals("viewInPortlet") %>' value="viewInPortlet" />
 	</aui:select>
 
-	<c:if test='<%= selectionStyle.equals("dynamic") %>'>
 		<aui:select label="maximum-items-to-display" name="preferences--delta--">
 
 			<%
@@ -69,6 +68,7 @@
 			<aui:option label="regular" selected='<%= paginationType.equals("regular") %>' />
 		</aui:select>
 
+	<c:if test='<%= selectionStyle.equals("dynamic") %>'>
 		<aui:input label="exclude-assets-with-0-views" name="preferences--excludeZeroViewCount--" type="checkbox" value="<%= excludeZeroViewCount %>" />
 	</c:if>
 

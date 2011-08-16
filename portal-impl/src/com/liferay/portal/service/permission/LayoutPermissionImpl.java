@@ -198,7 +198,8 @@ public class LayoutPermissionImpl implements LayoutPermission {
 				return false;
 			}
 
-			return contains(permissionChecker, layout, actionId);
+			return contains(
+				permissionChecker, layout, controlPanelCategory, actionId);
 		}
 	}
 

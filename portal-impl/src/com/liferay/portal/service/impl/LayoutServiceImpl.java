@@ -206,10 +206,20 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 			scopeGroupLayoutUuid = scopeGroupLayout.getUuid();
 		}
 
-		List<Layout> layouts = layoutPersistence.filterFindByG_P(
-			groupId, privateLayout);
+		List<Layout> layouts = new ArrayList<Layout>();
+
+		layouts.addAll(
+			layoutPersistence.filterFindByG_P(groupId, privateLayout));
+		layouts.addAll(
+			layoutPersistence.filterFindByG_P(scopeGroupId, privateLayout));
 
 		for (Layout layout : layouts) {
+			if (!LayoutPermissionUtil.contains(
+					getPermissionChecker(), layout, ActionKeys.VIEW)) {
+
+				continue;
+			}
+
 			if (!layout.isTypePortlet()) {
 				continue;
 			}

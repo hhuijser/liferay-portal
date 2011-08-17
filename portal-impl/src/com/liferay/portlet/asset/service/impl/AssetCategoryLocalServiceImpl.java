@@ -17,6 +17,8 @@ package com.liferay.portlet.asset.service.impl;
 import com.liferay.portal.kernel.cache.ThreadLocalCachable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -415,6 +417,8 @@ public class AssetCategoryLocalServiceImpl
 		AssetCategory category = assetCategoryPersistence.findByPrimaryKey(
 			categoryId);
 
+		String oldName = category.getName();
+
 		if (vocabularyId != category.getVocabularyId()) {
 			assetVocabularyPersistence.findByPrimaryKey(vocabularyId);
 
@@ -462,6 +466,15 @@ public class AssetCategoryLocalServiceImpl
 					userId, categoryId, key, value);
 			}
 		}
+		// Indexer
+
+				if (!oldName.equals(name)) {
+					List<AssetEntry> entries = 
+						assetCategoryPersistence.getAssetEntries(
+							category.getCategoryId());
+
+					reindex(entries);
+				}
 
 		return category;
 	}
@@ -475,6 +488,16 @@ public class AssetCategoryLocalServiceImpl
 	protected String[] getCategoryNames(List<AssetCategory> categories) {
 		return StringUtil.split(
 			ListUtil.toString(categories, AssetCategory.NAME_ACCESSOR));
+	}
+
+	protected void reindex(List<AssetEntry> entries) throws PortalException {
+		for (AssetEntry entry : entries) {
+			String className = PortalUtil.getClassName(entry.getClassNameId());
+
+			Indexer indexer = IndexerRegistryUtil.getIndexer(className);
+
+			indexer.reindex(className, entry.getClassPK());
+		}
 	}
 
 	protected void updateChildrenVocabularyId (

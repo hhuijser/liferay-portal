@@ -669,7 +669,12 @@ public class ServicePreAction extends Action {
 
 			guestLayouts = (List<Layout>)viewableLayouts[1];
 
-			layouts.addAll(0, guestLayouts);
+			if (layouts == null) {
+				layouts = guestLayouts;
+			}
+			else {
+				layouts.addAll(0, guestLayouts);
+			}
 		}
 		else {
 			HttpSession session = request.getSession();
@@ -715,7 +720,9 @@ public class ServicePreAction extends Action {
 
 				previousLayouts = (List<Layout>)viewableLayouts[1];
 
-				layouts.addAll(previousLayouts);
+				if (previousLayouts != null) {
+					layouts.addAll(previousLayouts);
+				}
 			}
 		}
 

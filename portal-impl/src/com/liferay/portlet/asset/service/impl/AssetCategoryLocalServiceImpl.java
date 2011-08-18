@@ -466,15 +466,15 @@ public class AssetCategoryLocalServiceImpl
 					userId, categoryId, key, value);
 			}
 		}
+
 		// Indexer
 
-				if (!oldName.equals(name)) {
-					List<AssetEntry> entries = 
-						assetCategoryPersistence.getAssetEntries(
-							category.getCategoryId());
+		if (!oldName.equals(name)) {
+			List<AssetEntry> entries = assetCategoryPersistence.getAssetEntries(
+				category.getCategoryId());
 
-					reindex(entries);
-				}
+			reindex(entries);
+		}
 
 		return category;
 	}

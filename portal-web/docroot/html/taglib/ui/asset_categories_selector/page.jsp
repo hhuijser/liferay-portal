@@ -32,7 +32,14 @@ if (Validator.isNotNull(className)) {
 
 	List<AssetVocabulary> vocabularies = new ArrayList<AssetVocabulary>();
 
-	vocabularies.addAll(AssetVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, false));
+	Group group = themeDisplay.getScopeGroup();
+
+	if (group.isLayout()) {
+		vocabularies.addAll(AssetVocabularyLocalServiceUtil.getGroupVocabularies(group.getParentGroupId(), false));
+	}
+	else {
+		vocabularies.addAll(AssetVocabularyLocalServiceUtil.getGroupVocabularies(scopeGroupId, false));
+	}
 
 	if (scopeGroupId != themeDisplay.getCompanyGroupId()) {
 		vocabularies.addAll(AssetVocabularyLocalServiceUtil.getGroupVocabularies(themeDisplay.getCompanyGroupId(), false));

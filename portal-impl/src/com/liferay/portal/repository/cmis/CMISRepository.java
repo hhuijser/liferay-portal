@@ -1484,7 +1484,7 @@ public class CMISRepository extends BaseCmisRepository {
 			documents[index] = document;
 
 			if (queryConfig.isScoreEnabled()) {
-				scores[index] = queryResult.getPropertyValueByQueryName(
+				scores[index] = (Float)queryResult.getPropertyValueByQueryName(
 					"SCORE");
 			}
 			else {

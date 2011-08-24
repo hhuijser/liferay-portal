@@ -62,7 +62,7 @@ public class UpgradeAssetPublisherManualEntries
 				String classUuid = rs.getString("classUuid");
 
 				Element assetEntryUuidElement = rootElement.addElement(
-						"assetEntryUuid");
+					"assetEntryUuid");
 
 				assetEntryUuidElement.addText(classUuid);
 

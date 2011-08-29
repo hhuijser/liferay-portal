@@ -445,3 +445,12 @@ for (String portletId : PropsValues.DOCKBAR_ADD_PORTLETS) {
 		customizableColumns.get('parentNode').addClass('customizable');
 	}
 </aui:script>
+
+<aui:script use="liferay-shutdown">
+	A.on(
+		'domready',
+		function() {
+			Liferay.Shutdown.init(<%= PortletKeys.DOCKBAR %>);
+		}
+	);
+</aui:script>

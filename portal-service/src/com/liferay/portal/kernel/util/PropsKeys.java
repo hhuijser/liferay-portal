@@ -1941,6 +1941,8 @@ public interface PropsKeys {
 
 	public static final String USERS_UPDATE_USER_NAME = "users.update.user.name.";
 
+	public static final String ADDRESS_ZIP_CODE_NOT_REQUIRED = "address.zip.code.not.required";
+
 	public static final String VALUE_OBJECT_ENTITY_BLOCKING_CACHE = "value.object.entity.blocking.cache";
 
 	public static final String VALUE_OBJECT_ENTITY_CACHE_ENABLED = "value.object.entity.cache.enabled";

@@ -45,7 +45,6 @@ public class ShutdownPollerProcessor extends BasePollerProcessor {
 		pollerResponse.setParameter("shutdown", shutdownInfo);
 	}
 
-	@Override
 	protected void doReceive(
 			PollerRequest pollerRequest, PollerResponse pollerResponse)
 		throws Exception {
@@ -53,7 +52,6 @@ public class ShutdownPollerProcessor extends BasePollerProcessor {
 		checkShutdown(pollerRequest, pollerResponse);
 	}
 
-	@Override
 	protected void doSend(PollerRequest pollerRequest)
 		throws Exception {
 	}

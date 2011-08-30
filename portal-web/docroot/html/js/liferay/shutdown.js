@@ -41,14 +41,13 @@ AUI.add(
 				if (amount > 0) {
 					var days=0, hours=0, minutes=0, seconds=0, output='';
 
-					// Remove the milliseconds
-					amount = Math.floor(amount/1000);
+					amount = Math.floor(amount / 1000);
 
-					hours = Math.floor(amount/3600);
-					amount = amount%3600;
+					hours = Math.floor(amount / 3600);
+					amount = amount % 3600;
 
-					minutes = Math.floor(amount/60);
-					amount = amount%60;
+					minutes = Math.floor(amount / 60);
+					amount = amount % 60;
 
 					seconds = Math.floor(amount);
 

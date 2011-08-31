@@ -35,6 +35,7 @@ import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalTemplate;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil;
+import com.liferay.portlet.journal.service.persistence.JournalArticleUtil;
 
 import java.util.Map;
 
@@ -224,6 +225,20 @@ public class JournalContentPortletDataHandlerImpl
 		String articleId = portletPreferences.getValue("articleId", null);
 
 		if (Validator.isNotNull(articleId) && (articleElement != null)) {
+			Map<String, String> articleIds =
+				(Map<String, String>)portletDataContext.getNewPrimaryKeysMap(
+					JournalArticle.class + ".articleId");
+
+			articleId = MapUtil.getString(articleIds, articleId, articleId);
+
+			JournalArticle article = JournalArticleUtil.fetchByG_A_V(
+					portletDataContext.getScopeGroupId(), articleId, 1);
+
+			if (article == null) {
+					portletDataContext.setScopeGroupId(
+						portletDataContext.getGroupId());
+			}
+
 			String importedArticleGroupId = articleElement.attributeValue(
 				"imported-article-group-id");
 
@@ -233,12 +248,6 @@ public class JournalContentPortletDataHandlerImpl
 			}
 
 			portletPreferences.setValue("groupId", importedArticleGroupId);
-
-			Map<String, String> articleIds =
-				(Map<String, String>)portletDataContext.getNewPrimaryKeysMap(
-					JournalArticle.class + ".articleId");
-
-			articleId = MapUtil.getString(articleIds, articleId, articleId);
 
 			portletPreferences.setValue("articleId", articleId);
 

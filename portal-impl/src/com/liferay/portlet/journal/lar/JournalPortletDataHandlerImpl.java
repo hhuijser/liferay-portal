@@ -298,9 +298,18 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext portletDataContext, JournalArticle article)
 		throws Exception {
 
+		Group group = GroupLocalServiceUtil.getGroup(article.getGroupId());
+		boolean isScopedArticle = false;
+
+		if (group.getParentGroupId() != 0) {
+			portletDataContext.setScopeGroupId(article.getGroupId());
+			isScopedArticle = true;
+		}
+
 		StringBundler sb = new StringBundler(8);
 
-		sb.append(portletDataContext.getPortletPath(PortletKeys.JOURNAL));
+		sb.append(portletDataContext.getPortletPath(
+				PortletKeys.JOURNAL, isScopedArticle));
 		sb.append("/articles/");
 		sb.append(article.getArticleResourceUuid());
 		sb.append(StringPool.SLASH);
@@ -369,8 +378,24 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		content = importDLFileEntries(
 			portletDataContext, articleElement, content);
 
-		Group group = GroupLocalServiceUtil.getGroup(
-			portletDataContext.getScopeGroupId());
+		Group exportedGroup = GroupLocalServiceUtil.getGroup(
+			article.getGroupId());
+
+		Group group = null;
+		boolean isScopedArticle = false;
+
+		if (exportedGroup.getParentGroupId() != 0) {
+			isScopedArticle = true;
+		}
+
+		if (isScopedArticle) {	
+			group = GroupLocalServiceUtil.getGroup(
+				portletDataContext.getGroupId());
+		}
+		else {
+			group = GroupLocalServiceUtil.getGroup(
+				portletDataContext.getScopeGroupId());
+		}
 
 		content = StringUtil.replace(
 			content, "@data_handler_group_friendly_url@",
@@ -647,10 +672,17 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		String articleResourceUuid = articleElement.attributeValue(
 			"article-resource-uuid");
 
+		Long originalGroupId = portletDataContext.getGroupId();
+
+		if (isScopedArticle) {
+			portletDataContext.setGroupId(
+				portletDataContext.getScopeGroupId());
+		}
+
 		if (portletDataContext.isDataStrategyMirror()) {
 			JournalArticleResource articleResource =
 				JournalArticleResourceUtil.fetchByUUID_G(
-					articleResourceUuid, portletDataContext.getScopeGroupId());
+					articleResourceUuid, portletDataContext.getGroupId());
 
 			if (articleResource == null) {
 				Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(
@@ -679,13 +711,13 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 			if (existingArticle == null) {
 				existingArticle = JournalArticleUtil.fetchByG_A_V(
-					portletDataContext.getScopeGroupId(), newArticleId,
+					portletDataContext.getGroupId(), newArticleId,
 					article.getVersion());
 			}
 
 			if (existingArticle == null) {
 				importedArticle = JournalArticleLocalServiceUtil.addArticle(
-					userId, portletDataContext.getScopeGroupId(), 0, 0,
+					userId, portletDataContext.getGroupId(), 0, 0,
 					articleId, autoArticleId, article.getVersion(),
 					article.getTitleMap(), article.getDescriptionMap(),
 					article.getContent(), article.getType(), parentStructureId,
@@ -719,7 +751,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 		else {
 			importedArticle = JournalArticleLocalServiceUtil.addArticle(
-				userId, portletDataContext.getScopeGroupId(), 0, 0, articleId,
+				userId, portletDataContext.getGroupId(), 0, 0, articleId,
 				autoArticleId, article.getVersion(), article.getTitleMap(),
 				article.getDescriptionMap(), article.getContent(),
 				article.getType(), parentStructureId, parentTemplateId,
@@ -732,6 +764,8 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 				article.isSmallImage(), article.getSmallImageURL(), smallFile,
 				images, articleURL, serviceContext);
 		}
+
+		portletDataContext.setGroupId(originalGroupId);
 
 		if (smallFile != null) {
 			smallFile.delete();
@@ -2117,9 +2151,15 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		Element articlesElement = rootElement.addElement("articles");
 
 		if (portletDataContext.getBooleanParameter(_NAMESPACE, "articles")) {
-			List<JournalArticle> articles = JournalArticleUtil.findByGroupId(
-				portletDataContext.getScopeGroupId(), QueryUtil.ALL_POS,
-				QueryUtil.ALL_POS, new ArticleIDComparator(true));
+			List<JournalArticle> articles = new ArrayList<JournalArticle>();
+
+			articles.addAll(JournalArticleUtil.findByGroupId(
+					portletDataContext.getScopeGroupId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, new ArticleIDComparator(true)));
+
+			articles.addAll(JournalArticleUtil.findByGroupId(
+					portletDataContext.getGroupId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, new ArticleIDComparator(true)));
 
 			for (JournalArticle article : articles) {
 				exportArticle(

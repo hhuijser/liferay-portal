@@ -232,7 +232,7 @@ public class JournalContentPortletDataHandlerImpl
 			articleId = MapUtil.getString(articleIds, articleId, articleId);
 
 			JournalArticle article = JournalArticleUtil.fetchByG_A_V(
-					portletDataContext.getScopeGroupId(), articleId, 1);
+				portletDataContext.getScopeGroupId(), articleId, 1);
 
 			if (article == null) {
 					portletDataContext.setScopeGroupId(

@@ -558,6 +558,21 @@ public class Validator {
 	}
 
 	/**
+	 * Returns <code>true</code> if the string contains a valid locale meaning
+	 * that it contains letters or numbers, then a '_' then more letters or
+	 * numbers
+	 *
+	 * @param  the locale to check
+	 * @return <code>true</code> if the string contains a valid locale name
+	 *         <code>false</code> otherwise
+	 */
+	public static boolean isLocale(String locale) {
+		Matcher matcher = _localePattern.matcher(locale);
+
+		return matcher.matches();
+	}
+
+	/**
 	 * Returns <code>true</code> if the string contains a valid number according
 	 * to the Luhn algorithm, commonly used to validate credit card numbers.
 	 *
@@ -985,4 +1000,6 @@ public class Validator {
 	private static Pattern _variableNamePattern = Pattern.compile(
 		"[_a-zA-Z]+[_a-zA-Z0-9]*");
 
+	private static Pattern _localePattern = Pattern.compile(
+	"[a-zA-Z0-1][\\w]*_[a-zA-Z0-1]*[a-zA-Z0-1]*");
 }

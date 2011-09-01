@@ -164,6 +164,12 @@ public class EditCompanyAction extends PortletAction {
 		UnicodeProperties properties = PropertiesParamUtil.getProperties(
 			actionRequest, "settings--");
 
+		validateLocales(actionRequest, properties);
+
+		if (!SessionErrors.isEmpty(actionRequest)) {
+			return;
+		}
+
 		CompanyServiceUtil.updateCompany(
 			companyId, virtualHostname, mx, homeURL, name, legalName, legalId,
 			legalType, sicCode, tickerSymbol, industry, type, size, languageId,
@@ -266,4 +272,14 @@ public class EditCompanyAction extends PortletAction {
 		}
 	}
 
+	protected void validateLocales(ActionRequest actionRequest, UnicodeProperties properties) {
+		String[] locales = properties.getProperty("locales").split(",");
+		for (String locale : locales) {
+			if (Validator.isNotNull(locale) && !Validator.isLocale(locale)) {
+				SessionErrors.add(actionRequest, "invalidLocale");
+
+				return;
+			}
+		}
+	}
 }

@@ -33,6 +33,7 @@ String defaultRegularThemeId = PrefsPropsUtil.getString(company.getCompanyId(), 
 String defaultWapThemeId = PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.DEFAULT_WAP_THEME_ID, PropsValues.DEFAULT_WAP_THEME_ID);
 String defaultControlPanelThemeId = PrefsPropsUtil.getString(company.getCompanyId(), PropsKeys.CONTROL_PANEL_LAYOUT_REGULAR_THEME_ID, PropsValues.CONTROL_PANEL_LAYOUT_REGULAR_THEME_ID);
 %>
+<liferay-ui:error-marker key="errorSection" value="display_settings" />
 
 <h3><liferay-ui:message key="language-and-time-zone" /></h3>
 
@@ -52,6 +53,8 @@ String defaultControlPanelThemeId = PrefsPropsUtil.getString(company.getCompanyI
 		%>
 
 	</aui:select>
+
+	<liferay-ui:error key="invalidLocale" message="invalid-language-id" />
 
 	<aui:input cssClass="lfr-input-text-container" label="available-languages" name='<%= "settings--" + PropsKeys.LOCALES + "--" %>' type="text" value="<%= availableLocales %>" />
 

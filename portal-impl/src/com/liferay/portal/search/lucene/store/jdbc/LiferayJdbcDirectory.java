@@ -1,4 +1,3 @@
-<%--
 /**
  * Copyright (c) 2000-2011 Liferay, Inc. All rights reserved.
  *
@@ -12,10 +11,30 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
---%>
 
-<%@ include file="/html/portlet/init.jsp" %>
+package com.liferay.portal.search.lucene.store.jdbc;
 
-<%@ page import="com.liferay.portal.NoSuchLayoutPrototypeException" %>
-<%@ page import="com.liferay.portal.service.LayoutPrototypeLocalServiceUtil" %>
-<%@ page import="com.liferay.portal.service.permission.PortalPermissionUtil" %>
+import java.io.IOException;
+
+import javax.sql.DataSource;
+
+import org.apache.lucene.store.jdbc.JdbcDirectory;
+import org.apache.lucene.store.jdbc.dialect.Dialect;
+
+/**
+ * @author Matthew Kong
+ */
+public class LiferayJdbcDirectory extends JdbcDirectory {
+
+	public LiferayJdbcDirectory(
+		DataSource dataSource, Dialect dialect, String tableName) {
+
+		super(dataSource, dialect, tableName);
+	}
+
+	@Override
+	public String[] listAll() throws IOException {
+		return list();
+	}
+
+}

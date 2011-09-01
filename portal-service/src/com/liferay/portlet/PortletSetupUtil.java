@@ -73,7 +73,7 @@ public class PortletSetupUtil {
 		if (Validator.isNotNull(css)) {
 			cssJSONObject = JSONFactoryUtil.createJSONObject(css);
 
-			cssJSONObject.put("cssValue", true);
+			cssJSONObject.put("hasCssValue", true);
 		}
 		else {
 			cssJSONObject = JSONFactoryUtil.createJSONObject();

@@ -1070,7 +1070,7 @@ AUI().add(
 							success: function(event, id, obj) {
 								var objectData = this.get('responseData');
 
-								if (objectData.cssValue) {
+								if (objectData.hasCssValue) {
 									instance._objData = objectData;
 								}
 								else {

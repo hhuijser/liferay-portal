@@ -60,6 +60,20 @@ public class SetUtil {
 		return set;
 	}
 
+	public static Set fromArray(int[] array) {
+		if ((array == null) || (array.length == 0)) {
+			return new HashSet();
+		}
+
+		Set set = new HashSet(array.length);
+
+		for (int i = 0; i < array.length; i++) {
+			set.add(array[i]);
+		}
+
+		return set;
+	}
+
 	@SuppressWarnings("rawtypes")
 	public static <E> Set<E> fromCollection(Collection<E> c) {
 		if ((c != null) && (Set.class.isAssignableFrom(c.getClass()))) {

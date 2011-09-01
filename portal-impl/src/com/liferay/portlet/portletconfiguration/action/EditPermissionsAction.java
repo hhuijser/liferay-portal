@@ -212,7 +212,7 @@ public class EditPermissionsAction extends EditConfigurationAction {
 			portlet.getPermissionPropagatorInstance();
 
 		if (permissionPropagator != null) {
-			permissionPropagator.propagateRolePermissions();
+			permissionPropagator.propagateRolePermissions(actionRequest);
 		}
 	}
 

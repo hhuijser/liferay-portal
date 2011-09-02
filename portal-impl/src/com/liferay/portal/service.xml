@@ -238,6 +238,7 @@
 		<column name="number" type="String" />
 		<column name="idd" type="String" />
 		<column name="active" type="boolean" />
+		<column name="zipCodeRequired" type="boolean" />
 
 		<!-- Order -->
 
@@ -258,6 +259,9 @@
 		</finder>
 		<finder name="Active" return-type="Collection">
 			<finder-column name="active" />
+		</finder>
+		<finder name="ZipCodeRequired" return-type="Collection">
+			<finder-column name="zipCodeRequired" />
 		</finder>
 	</entity>
 	<entity name="EmailAddress" local-service="true" remote-service="true">

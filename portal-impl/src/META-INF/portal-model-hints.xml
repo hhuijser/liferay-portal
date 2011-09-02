@@ -158,6 +158,7 @@
 		<field name="number" type="String" />
 		<field name="idd" type="String" />
 		<field name="active" type="boolean" />
+		<field name="zipCodeRequired" type="boolean" />
 	</model>
 	<model name="com.liferay.portal.model.EmailAddress">
 		<field name="emailAddressId" type="long" />

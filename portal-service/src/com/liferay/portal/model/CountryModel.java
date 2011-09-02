@@ -15,6 +15,8 @@
 package com.liferay.portal.model;
 
 import com.liferay.portal.kernel.bean.AutoEscape;
+import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -164,6 +166,27 @@ public interface CountryModel extends BaseModel<Country> {
 	 * @param active the active of this country
 	 */
 	public void setActive(boolean active);
+
+	/**
+	 * Returns the zip code required of this country.
+	 *
+	 * @return the zip code required of this country
+	 */
+	public boolean getZipCodeRequired();
+
+	/**
+	 * Returns <code>true</code> if this country is zip code required.
+	 *
+	 * @return <code>true</code> if this country is zip code required; <code>false</code> otherwise
+	 */
+	public boolean isZipCodeRequired();
+
+	/**
+	 * Sets whether this country is zip code required.
+	 *
+	 * @param zipCodeRequired the zip code required of this country
+	 */
+	public void setZipCodeRequired(boolean zipCodeRequired);
 
 	public boolean isNew();
 

@@ -300,6 +300,7 @@
 		<property name="number" type="com.liferay.portal.dao.orm.hibernate.StringType" column="number_" />
 		<property name="idd" type="com.liferay.portal.dao.orm.hibernate.StringType" column="idd_" />
 		<property name="active" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="active_" />
+		<property name="zipCodeRequired" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 	</class>
 	<class name="com.liferay.portal.model.impl.EmailAddressImpl" table="EmailAddress">
 		<cache usage="read-write" />

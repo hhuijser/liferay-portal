@@ -183,6 +183,7 @@
 			<basic name="active">
 				<column name="ACTIVE_" />
 			</basic>
+			<basic name="zipCodeRequired" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>

@@ -38,6 +38,7 @@ public class BaseToolTag extends javax.servlet.jsp.tagext.TagSupport {
 		return _icon;
 	}
 
+	@Override
 	public java.lang.String getId() {
 		return _id;
 	}
@@ -50,6 +51,7 @@ public class BaseToolTag extends javax.servlet.jsp.tagext.TagSupport {
 		_icon = icon;
 	}
 
+	@Override
 	public void setId(java.lang.String id) {
 		_id = id;
 	}

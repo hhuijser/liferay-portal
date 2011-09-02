@@ -351,7 +351,7 @@ public class CreateAccountAction extends PortletAction {
 		User anonymousUser = UserLocalServiceUtil.getUserByEmailAddress(
 			themeDisplay.getCompanyId(), emailAddress);
 
-		UserServiceUtil.deleteUser(anonymousUser.getUserId());
+		UserLocalServiceUtil.deleteUser(anonymousUser.getUserId());
 
 		addUser(actionRequest, actionResponse);
 	}

@@ -136,6 +136,7 @@ public class AssetCategoryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			setJoin(qPos, categoryProperties);
+
 			qPos.add(groupId);
 			qPos.add(name);
 			qPos.add(name);
@@ -330,6 +331,7 @@ public class AssetCategoryFinderImpl
 			QueryPos qPos = QueryPos.getInstance(q);
 
 			setJoin(qPos, categoryProperties);
+
 			qPos.add(groupId);
 			qPos.add(name);
 			qPos.add(name);

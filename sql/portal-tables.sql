@@ -1129,19 +1129,11 @@ create table MBMessage (
 	anonymous BOOLEAN,
 	priority DOUBLE,
 	allowPingbacks BOOLEAN,
+	answer BOOLEAN,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
 	statusDate DATE null
-);
-
-create table MBMessageFlag (
-	messageFlagId LONG not null primary key,
-	userId LONG,
-	modifiedDate DATE null,
-	threadId LONG,
-	messageId LONG,
-	flag INTEGER
 );
 
 create table MBStatsUser (
@@ -1164,10 +1156,18 @@ create table MBThread (
 	lastPostByUserId LONG,
 	lastPostDate DATE null,
 	priority DOUBLE,
+	question BOOLEAN,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
 	statusDate DATE null
+);
+
+create table MBThreadFlag (
+	threadFlagId LONG not null primary key,
+	userId LONG,
+	modifiedDate DATE null,
+	threadId LONG
 );
 
 create table MDRAction (
@@ -1183,8 +1183,8 @@ create table MDRAction (
 	ruleId LONG,
 	name STRING null,
 	description STRING null,
-	type_ VARCHAR(75) null,
-	typeSettings VARCHAR(75) null
+	type_ VARCHAR(255) null,
+	typeSettings TEXT null
 );
 
 create table MDRRule (
@@ -1199,8 +1199,8 @@ create table MDRRule (
 	ruleGroupId LONG,
 	name STRING null,
 	description STRING null,
-	type_ VARCHAR(75) null,
-	typeSettings VARCHAR(75) null
+	type_ VARCHAR(255) null,
+	typeSettings TEXT null
 );
 
 create table MDRRuleGroup (

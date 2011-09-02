@@ -707,6 +707,7 @@ Liferay.Service.registerClass(
 		refreshFileEntryLock: true,
 		refreshFolderLock: true,
 		revertFileEntry: true,
+		search: true,
 		unlockFolder: true,
 		updateFileShortcut: true,
 		updateFolder: true,
@@ -872,6 +873,7 @@ Liferay.Service.registerClass(
 	Liferay.Service.Expando, "ExpandoValue",
 	{
 		addValue: true,
+		addValues: true,
 		getData: true,
 		getJSONData: true
 	}
@@ -899,6 +901,7 @@ Liferay.Service.registerClass(
 		expireArticle: true,
 		getArticle: true,
 		getArticleByUrlTitle: true,
+		getArticlesByLayoutUuid: true,
 		getLatestArticle: true,
 		removeArticleLocale: true,
 		search: true,
@@ -993,16 +996,9 @@ Liferay.Service.registerClass(
 		getThreadMessagesCount: true,
 		subscribeMessage: true,
 		unsubscribeMessage: true,
+		updateAnswer: true,
 		updateDiscussionMessage: true,
 		updateMessage: true
-	}
-);
-
-Liferay.Service.registerClass(
-	Liferay.Service.MB, "MBMessageFlag",
-	{
-		addAnswerFlag: true,
-		deleteAnswerFlag: true
 	}
 );
 

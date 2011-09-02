@@ -42,6 +42,7 @@ public class ValidatorTagImpl
 		processCustom();
 	}
 
+	@Override
 	public void cleanUp() {
 		super.cleanUp();
 
@@ -83,6 +84,7 @@ public class ValidatorTagImpl
 		return _body.trim();
 	}
 
+	@Override
 	public String getErrorMessage() {
 		String errorMessage = super.getErrorMessage();
 

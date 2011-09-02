@@ -386,6 +386,12 @@ public class OrganizationLocalServiceImpl
 
 		Group group = organization.getGroup();
 
+		if (group.isSite()) {
+			group.setSite(false);
+
+			groupPersistence.update(group, false);
+		}
+
 		groupLocalService.deleteGroup(group);
 
 		// Resources
@@ -959,6 +965,16 @@ public class OrganizationLocalServiceImpl
 		throws SystemException {
 
 		organizationPersistence.rebuildTree(companyId, force);
+	}
+
+	public List<Organization> search(
+			long companyId, LinkedHashMap<String, Object> params, int start,
+			int end)
+		throws SystemException {
+
+		return organizationFinder.findByCompanyId(
+			companyId, params, start, end,
+			new OrganizationNameComparator(true));
 	}
 
 	/**

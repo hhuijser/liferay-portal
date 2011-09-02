@@ -771,6 +771,14 @@ public class OrganizationLocalServiceWrapper implements OrganizationLocalService
 		_organizationLocalService.rebuildTree(companyId, force);
 	}
 
+	public java.util.List<com.liferay.portal.model.Organization> search(
+		long companyId,
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _organizationLocalService.search(companyId, params, start, end);
+	}
+
 	/**
 	* Returns an ordered range of all the organizations that match the
 	* keywords, using the indexer. It is preferable to use this method instead

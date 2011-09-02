@@ -370,6 +370,19 @@ public class BaseDeployer implements Deployer {
 		if (PropsValues.AUTO_DEPLOY_COPY_LOG4J) {
 			copyDependencyXml("log4j.properties", srcFile + "/WEB-INF/classes");
 		}
+
+		File servicePropertiesFile = new File(
+			srcFile.getAbsolutePath() + "/WEB-INF/classes/service.properties");
+
+		if (servicePropertiesFile.exists()) {
+			File portletPropertiesFile = new File(
+				srcFile.getAbsolutePath() +
+					"/WEB-INF/classes/portlet.properties");
+
+			if (!portletPropertiesFile.exists()) {
+				FileUtil.write(portletPropertiesFile, StringPool.BLANK);
+			}
+		}
 	}
 
 	public void copyTlds(File srcFile, PluginPackage pluginPackage)
@@ -1408,21 +1421,21 @@ public class BaseDeployer implements Deployer {
 					}
 				}
 
-				File pluginPackagePropsFile = new File(
+				File pluginPackagePropertiesFile = new File(
 					file.getParent() + "/merge/" + file.getName() +
 						"/WEB-INF/liferay-plugin-package.properties");
 
-				if ((is == null) && pluginPackagePropsFile.exists()) {
-					is = new FileInputStream(pluginPackagePropsFile);
+				if ((is == null) && pluginPackagePropertiesFile.exists()) {
+					is = new FileInputStream(pluginPackagePropertiesFile);
 
 					parseProps = true;
 				}
 				else {
-					pluginPackagePropsFile = new File(
+					pluginPackagePropertiesFile = new File(
 						path + "/WEB-INF/liferay-plugin-package.properties");
 
-					if ((is == null) && pluginPackagePropsFile.exists()) {
-						is = new FileInputStream(pluginPackagePropsFile);
+					if ((is == null) && pluginPackagePropertiesFile.exists()) {
+						is = new FileInputStream(pluginPackagePropertiesFile);
 
 						parseProps = true;
 					}
@@ -1447,12 +1460,12 @@ public class BaseDeployer implements Deployer {
 					}
 				}
 
-				File pluginPackagePropsFile = new File(
+				File pluginPackagePropertiesFile = new File(
 					file.getParent() + "/merge/" + file.getName() +
 						"/WEB-INF/liferay-plugin-package.properties");
 
-				if ((is == null) && pluginPackagePropsFile.exists()) {
-					is = new FileInputStream(pluginPackagePropsFile);
+				if ((is == null) && pluginPackagePropertiesFile.exists()) {
+					is = new FileInputStream(pluginPackagePropertiesFile);
 
 					parseProps = true;
 				}

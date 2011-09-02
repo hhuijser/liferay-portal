@@ -32,6 +32,7 @@ public class ToolTag extends BaseToolTag {
 		return EVAL_PAGE;
 	}
 
+	@Override
 	protected void cleanUp() {
 		super.cleanUp();
 	}

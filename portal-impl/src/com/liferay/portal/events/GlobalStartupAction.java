@@ -154,16 +154,6 @@ public class GlobalStartupAction extends SimpleAction {
 	@Override
 	public void run(String[] ids) {
 
-		// Hot deploy
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("Registering hot deploy listeners");
-		}
-
-		for (HotDeployListener hotDeployListener : getHotDeployListeners()) {
-			HotDeployUtil.registerListener(hotDeployListener);
-		}
-
 		// Auto deploy
 
 		try {
@@ -204,6 +194,16 @@ public class GlobalStartupAction extends SimpleAction {
 		}
 		catch (Exception e) {
 			_log.error(e);
+		}
+
+		// Hot deploy
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Registering hot deploy listeners");
+		}
+
+		for (HotDeployListener hotDeployListener : getHotDeployListeners()) {
+			HotDeployUtil.registerListener(hotDeployListener);
 		}
 
 		// Sandobox deploy

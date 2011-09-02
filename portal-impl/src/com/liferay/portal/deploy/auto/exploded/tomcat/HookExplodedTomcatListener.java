@@ -29,6 +29,7 @@ public class HookExplodedTomcatListener extends BaseExplodedTomcatListener {
 		_deployer = new HookExplodedTomcatDeployer();
 	}
 
+	@Override
 	protected void deploy(File file) throws AutoDeployException {
 		if (_log.isDebugEnabled()) {
 			_log.debug("Invoking deploy for " + file.getPath());

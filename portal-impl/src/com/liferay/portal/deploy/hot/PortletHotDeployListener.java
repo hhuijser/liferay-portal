@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.servlet.DirectServletRegistry;
+import com.liferay.portal.kernel.servlet.FileTimestampUtil;
 import com.liferay.portal.kernel.servlet.PortletServlet;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.servlet.ServletContextProvider;
@@ -405,7 +406,10 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 
 		registerClpMessageListeners(servletContext, portletClassLoader);
 
+		// Clear cache
+
 		DirectServletRegistry.clearServlets();
+		FileTimestampUtil.reset();
 
 		// Variables
 

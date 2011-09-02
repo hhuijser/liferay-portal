@@ -377,7 +377,8 @@ create table Country (
 	a3 VARCHAR(75) null,
 	number_ VARCHAR(75) null,
 	idd_ VARCHAR(75) null,
-	active_ BOOLEAN
+	active_ BOOLEAN,
+	zipCodeRequired BOOLEAN
 );
 
 create table CyrusUser (

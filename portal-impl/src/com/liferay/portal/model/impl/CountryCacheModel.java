@@ -29,7 +29,7 @@ import com.liferay.portal.model.Country;
 public class CountryCacheModel implements CacheModel<Country> {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{countryId=");
 		sb.append(countryId);
@@ -45,6 +45,8 @@ public class CountryCacheModel implements CacheModel<Country> {
 		sb.append(idd);
 		sb.append(", active=");
 		sb.append(active);
+		sb.append(", zipCodeRequired=");
+		sb.append(zipCodeRequired);
 		sb.append("}");
 
 		return sb.toString();
@@ -91,6 +93,7 @@ public class CountryCacheModel implements CacheModel<Country> {
 		}
 
 		countryImpl.setActive(active);
+		countryImpl.setZipCodeRequired(zipCodeRequired);
 
 		countryImpl.resetOriginalValues();
 
@@ -104,4 +107,5 @@ public class CountryCacheModel implements CacheModel<Country> {
 	public String number;
 	public String idd;
 	public boolean active;
+	public boolean zipCodeRequired;
 }

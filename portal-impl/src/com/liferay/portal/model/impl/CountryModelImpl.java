@@ -23,6 +23,7 @@ import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.Country;
 import com.liferay.portal.model.CountryModel;
 import com.liferay.portal.model.CountrySoap;
+import com.liferay.portal.model.impl.BaseModelImpl;
 import com.liferay.portal.service.ServiceContext;
 
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -66,9 +67,10 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 			{ "a3", Types.VARCHAR },
 			{ "number_", Types.VARCHAR },
 			{ "idd_", Types.VARCHAR },
-			{ "active_", Types.BOOLEAN }
+			{ "active_", Types.BOOLEAN },
+			{ "zipCodeRequired", Types.BOOLEAN }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Country (countryId LONG not null primary key,name VARCHAR(75) null,a2 VARCHAR(75) null,a3 VARCHAR(75) null,number_ VARCHAR(75) null,idd_ VARCHAR(75) null,active_ BOOLEAN)";
+	public static final String TABLE_SQL_CREATE = "create table Country (countryId LONG not null primary key,name VARCHAR(75) null,a2 VARCHAR(75) null,a3 VARCHAR(75) null,number_ VARCHAR(75) null,idd_ VARCHAR(75) null,active_ BOOLEAN,zipCodeRequired BOOLEAN)";
 	public static final String TABLE_SQL_DROP = "drop table Country";
 	public static final String ORDER_BY_JPQL = " ORDER BY country.name ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Country.name ASC";
@@ -98,6 +100,7 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 		model.setNumber(soapModel.getNumber());
 		model.setIdd(soapModel.getIdd());
 		model.setActive(soapModel.getActive());
+		model.setZipCodeRequired(soapModel.getZipCodeRequired());
 
 		return model;
 	}
@@ -264,6 +267,19 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 		_active = active;
 	}
 
+	@JSON
+	public boolean getZipCodeRequired() {
+		return _zipCodeRequired;
+	}
+
+	public boolean isZipCodeRequired() {
+		return _zipCodeRequired;
+	}
+
+	public void setZipCodeRequired(boolean zipCodeRequired) {
+		_zipCodeRequired = zipCodeRequired;
+	}
+
 	@Override
 	public Country toEscapedModel() {
 		if (isEscapedModel()) {
@@ -306,6 +322,7 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 		countryImpl.setNumber(getNumber());
 		countryImpl.setIdd(getIdd());
 		countryImpl.setActive(getActive());
+		countryImpl.setZipCodeRequired(getZipCodeRequired());
 
 		countryImpl.resetOriginalValues();
 
@@ -413,12 +430,14 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 
 		countryCacheModel.active = getActive();
 
+		countryCacheModel.zipCodeRequired = getZipCodeRequired();
+
 		return countryCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(15);
+		StringBundler sb = new StringBundler(17);
 
 		sb.append("{countryId=");
 		sb.append(getCountryId());
@@ -434,13 +453,15 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 		sb.append(getIdd());
 		sb.append(", active=");
 		sb.append(getActive());
+		sb.append(", zipCodeRequired=");
+		sb.append(getZipCodeRequired());
 		sb.append("}");
 
 		return sb.toString();
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(25);
+		StringBundler sb = new StringBundler(28);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portal.model.Country");
@@ -474,6 +495,10 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 			"<column><column-name>active</column-name><column-value><![CDATA[");
 		sb.append(getActive());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>zipCodeRequired</column-name><column-value><![CDATA[");
+		sb.append(getZipCodeRequired());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -494,6 +519,7 @@ public class CountryModelImpl extends BaseModelImpl<Country>
 	private String _number;
 	private String _idd;
 	private boolean _active;
+	private boolean _zipCodeRequired;
 	private transient ExpandoBridge _expandoBridge;
 	private Country _escapedModelProxy;
 }

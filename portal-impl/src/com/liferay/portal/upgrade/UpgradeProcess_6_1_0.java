@@ -59,6 +59,7 @@ public class UpgradeProcess_6_1_0 extends UpgradeProcess {
 		upgrade(UpgradeAdminPortlets.class);
 		upgrade(UpgradeBlogs.class);
 		upgrade(UpgradeCamelCasePortletPreferences.class);
+		upgrade(UpgradeCountry.class);
 		upgrade(UpgradeDocumentLibrary.class);
 		upgrade(UpgradeExpando.class);
 		upgrade(UpgradeGroup.class);

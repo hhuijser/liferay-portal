@@ -80,6 +80,8 @@ public class CountryPersistenceTest extends BasePersistenceTestCase {
 
 		newCountry.setActive(randomBoolean());
 
+		newCountry.setZipCodeRequired(randomBoolean());
+
 		_persistence.update(newCountry, false);
 
 		Country existingCountry = _persistence.findByPrimaryKey(newCountry.getPrimaryKey());
@@ -91,6 +93,8 @@ public class CountryPersistenceTest extends BasePersistenceTestCase {
 		assertEquals(existingCountry.getNumber(), newCountry.getNumber());
 		assertEquals(existingCountry.getIdd(), newCountry.getIdd());
 		assertEquals(existingCountry.getActive(), newCountry.getActive());
+		assertEquals(existingCountry.getZipCodeRequired(),
+			newCountry.getZipCodeRequired());
 	}
 
 	public void testFindByPrimaryKeyExisting() throws Exception {
@@ -233,6 +237,8 @@ public class CountryPersistenceTest extends BasePersistenceTestCase {
 		country.setIdd(randomString());
 
 		country.setActive(randomBoolean());
+
+		country.setZipCodeRequired(randomBoolean());
 
 		_persistence.update(country, false);
 

@@ -3140,8 +3140,8 @@ public class JournalArticleLocalServiceImpl
 				fromName,
 				company.getVirtualHostname(),
 				portletName,
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 			});
 
 		body = StringUtil.replace(
@@ -3169,8 +3169,8 @@ public class JournalArticleLocalServiceImpl
 				fromName,
 				company.getVirtualHostname(),
 				portletName,
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);

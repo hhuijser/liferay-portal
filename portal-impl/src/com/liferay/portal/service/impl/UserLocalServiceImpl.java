@@ -3294,11 +3294,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				company.getVirtualHostname(),
 				serviceContext.getRemoteAddr(),
 				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 				serviceContext.getUserAgent(),
 				String.valueOf(user.getUserId()),
-				user.getScreenName()
+				HtmlUtil.escape(user.getScreenName())
 			});
 
 		body = StringUtil.replace(
@@ -3325,11 +3325,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				company.getVirtualHostname(),
 				serviceContext.getRemoteAddr(),
 				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 				serviceContext.getUserAgent(),
 				String.valueOf(user.getUserId()),
-				user.getScreenName()
+				HtmlUtil.escape(user.getScreenName())
 			});
 
 		try {
@@ -5084,12 +5084,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				company.getVirtualHostname(),
 				serviceContext.getRemoteAddr(),
 				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 				HtmlUtil.escape(serviceContext.getUserAgent()),
 				String.valueOf(user.getUserId()),
 				newPassword,
-				user.getScreenName()
+				HtmlUtil.escape(user.getScreenName())
 			});
 
 		body = StringUtil.replace(
@@ -5115,12 +5115,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				company.getVirtualHostname(),
 				serviceContext.getRemoteAddr(),
 				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 				HtmlUtil.escape(serviceContext.getUserAgent()),
 				String.valueOf(user.getUserId()),
 				newPassword,
-				user.getScreenName()
+				HtmlUtil.escape(user.getScreenName())
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);
@@ -5200,11 +5200,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				fromAddress,
 				fromName,
 				company.getVirtualHostname(),
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 				String.valueOf(user.getUserId()),
 				password,
-				user.getScreenName()
+				HtmlUtil.escape(user.getScreenName())
 			});
 
 		body = StringUtil.replace(
@@ -5223,11 +5223,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				fromAddress,
 				fromName,
 				company.getVirtualHostname(),
-				toAddress,
-				toName,
+				HtmlUtil.escape(toAddress),
+				HtmlUtil.escape(toName),
 				String.valueOf(user.getUserId()),
 				password,
-				user.getScreenName()
+				HtmlUtil.escape(user.getScreenName())
 			});
 
 		InternetAddress from = new InternetAddress(fromAddress, fromName);

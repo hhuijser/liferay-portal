@@ -3296,7 +3296,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				serviceContext.getRemoteHost(),
 				HtmlUtil.escape(toAddress),
 				HtmlUtil.escape(toName),
-				serviceContext.getUserAgent(),
+				HtmlUtil.escape(serviceContext.getUserAgent()),
 				String.valueOf(user.getUserId()),
 				HtmlUtil.escape(user.getScreenName())
 			});
@@ -3327,7 +3327,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				serviceContext.getRemoteHost(),
 				HtmlUtil.escape(toAddress),
 				HtmlUtil.escape(toName),
-				serviceContext.getUserAgent(),
+				HtmlUtil.escape(serviceContext.getUserAgent()),
 				String.valueOf(user.getUserId()),
 				HtmlUtil.escape(user.getScreenName())
 			});

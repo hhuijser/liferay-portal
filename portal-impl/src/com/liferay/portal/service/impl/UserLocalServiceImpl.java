@@ -49,7 +49,6 @@ import com.liferay.portal.kernel.image.ImageProcessorUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -63,7 +62,6 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -114,8 +112,10 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.PrincipalBean;
 import com.liferay.portal.service.base.UserLocalServiceBaseImpl;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portal.util.SubscriptionSender;
 import com.liferay.portlet.documentlibrary.ImageSizeException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
@@ -138,8 +138,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import javax.mail.internet.InternetAddress;
 
 /**
  * @author Brian Wing Shun Chan
@@ -1443,7 +1441,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		if (sendEmail) {
 			try {
-				sendEmail(user, password);
+				sendEmail(user, password, serviceContext);
 			}
 			catch (IOException ioe) {
 				throw new SystemException(ioe);
@@ -3270,81 +3268,30 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		String body = PrefsPropsUtil.getContent(
 			user.getCompanyId(), PropsKeys.ADMIN_EMAIL_VERIFICATION_BODY);
 
-		subject = StringUtil.replace(
-			subject,
-			new String[] {
-				"[$EMAIL_VERIFICATION_CODE$]",
-				"[$EMAIL_VERIFICATION_URL$]",
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]",
-				"[$REMOTE_ADDRESS$]",
-				"[$REMOTE_HOST$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$USER_AGENT$]",
-				"[$USER_ID$]",
-				"[$USER_SCREENNAME$]"
-			},
-			new String[] {
-				ticket.getKey(),
-				verifyEmailAddressURL,
-				fromAddress,
-				fromName,
-				company.getVirtualHostname(),
-				serviceContext.getRemoteAddr(),
-				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
-				serviceContext.getUserAgent(),
-				String.valueOf(user.getUserId()),
-				user.getScreenName()
-			});
+		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
-		body = StringUtil.replace(
-			body,
-			new String[] {
-				"[$EMAIL_VERIFICATION_CODE$]",
-				"[$EMAIL_VERIFICATION_URL$]",
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]",
-				"[$REMOTE_ADDRESS$]",
-				"[$REMOTE_HOST$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$USER_AGENT$]",
-				"[$USER_ID$]",
-				"[$USER_SCREENNAME$]"
-			},
-			new String[] {
-				ticket.getKey(),
-				verifyEmailAddressURL,
-				fromAddress,
-				fromName,
-				company.getVirtualHostname(),
-				serviceContext.getRemoteAddr(),
-				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
-				serviceContext.getUserAgent(),
-				String.valueOf(user.getUserId()),
-				user.getScreenName()
-			});
+		subscriptionSender.setBody(body);
+		subscriptionSender.setCompanyId(serviceContext.getCompanyId());
+		subscriptionSender.setContextAttributes(
+				"[$EMAIL_VERIFICATION_CODE$]", ticket.getKey(),
+				"[$EMAIL_VERIFICATION_URL$]", verifyEmailAddressURL,
+				"[$REMOTE_ADDRESS$]", serviceContext.getRemoteAddr(),
+				"[$REMOTE_HOST$]", serviceContext.getRemoteHost(),
+				"[$USER_AGENT$]", 	serviceContext.getUserAgent(),
+				"[$USER_ID$]", String.valueOf(user.getUserId()),
+				"[$USER_SCREENNAME$]", user.getScreenName()
+				);
+		subscriptionSender.setFrom(fromAddress, fromName);
+		subscriptionSender.setHtmlFormat(true);
+		subscriptionSender.setMailId("email_verification", user.getUserId());
+		subscriptionSender.setScopeGroupId(serviceContext.getScopeGroupId());
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setUserId(user.getUserId());
+		subscriptionSender.setPortletId(PortletKeys.PORTAL);
 
-		try {
-			InternetAddress from = new InternetAddress(fromAddress, fromName);
+		subscriptionSender.addRuntimeSubscribers(toAddress, toName);
 
-			InternetAddress to = new InternetAddress(toAddress, toName);
-
-			MailMessage message = new MailMessage(
-				from, to, subject, body, true);
-
-			mailService.sendEmail(message);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
+		subscriptionSender.flushNotificationsAsync();
 	}
 
 	/**
@@ -5061,75 +5008,28 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
-		subject = StringUtil.replace(
-			subject,
-			new String[] {
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PASSWORD_RESET_URL$]",
-				"[$PORTAL_URL$]",
-				"[$REMOTE_ADDRESS$]",
-				"[$REMOTE_HOST$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$USER_AGENT$]",
-				"[$USER_ID$]",
-				"[$USER_PASSWORD$]",
-				"[$USER_SCREENNAME$]"
-			},
-			new String[] {
-				fromAddress,
-				fromName,
-				passwordResetURL,
-				company.getVirtualHostname(),
-				serviceContext.getRemoteAddr(),
-				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
-				HtmlUtil.escape(serviceContext.getUserAgent()),
-				String.valueOf(user.getUserId()),
-				newPassword,
-				user.getScreenName()
-			});
+		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
-		body = StringUtil.replace(
-			body,
-			new String[] {
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PASSWORD_RESET_URL$]",
-				"[$PORTAL_URL$]",
-				"[$REMOTE_ADDRESS$]",
-				"[$REMOTE_HOST$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$USER_AGENT$]",
-				"[$USER_ID$]",
-				"[$USER_PASSWORD$]",
-				"[$USER_SCREENNAME$]"
-			},
-			new String[] {
-				fromAddress,
-				fromName,
-				passwordResetURL,
-				company.getVirtualHostname(),
-				serviceContext.getRemoteAddr(),
-				serviceContext.getRemoteHost(),
-				toAddress,
-				toName,
-				HtmlUtil.escape(serviceContext.getUserAgent()),
-				String.valueOf(user.getUserId()),
-				newPassword,
-				user.getScreenName()
-			});
+		subscriptionSender.setBody(body);
+		subscriptionSender.setCompanyId(companyId);
+		subscriptionSender.setContextAttributes(
+				"[$PASSWORD_RESET_URL$]", passwordResetURL,
+				"[$REMOTE_ADDRESS$]", serviceContext.getRemoteAddr(),
+				"[$REMOTE_HOST$]",	serviceContext.getRemoteHost(),
+				"[$USER_AGENT$]", serviceContext.getUserAgent(),
+				"[$USER_ID$]", String.valueOf(user.getUserId()),
+				"[$USER_PASSWORD$]", newPassword,
+				"[$USER_SCREENNAME$]", user.getScreenName());
+		subscriptionSender.setFrom(fromAddress, fromName);
+		subscriptionSender.setHtmlFormat(true);
+		subscriptionSender.setMailId("send_pwd", user.getUserId());
+		subscriptionSender.setScopeGroupId(serviceContext.getScopeGroupId());
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setUserId(user.getUserId());
 
-		InternetAddress from = new InternetAddress(fromAddress, fromName);
+		subscriptionSender.addRuntimeSubscribers(toAddress, toName);
 
-		InternetAddress to = new InternetAddress(toAddress, toName);
-
-		MailMessage message = new MailMessage(from, to, subject, body, true);
-
-		mailService.sendEmail(message);
+		subscriptionSender.flushNotificationsAsync();
 	}
 
 	protected String getScreenName(String screenName) {
@@ -5148,7 +5048,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		return userIds;
 	}
 
-	protected void sendEmail(User user, String password)
+	protected void sendEmail(User user,
+			String password, ServiceContext serviceContext)
 		throws IOException, PortalException, SystemException {
 
 		if (!PrefsPropsUtil.getBoolean(
@@ -5157,9 +5058,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			return;
 		}
-
-		Company company = companyPersistence.findByPrimaryKey(
-			user.getCompanyId());
 
 		String fromName = PrefsPropsUtil.getString(
 			user.getCompanyId(), PropsKeys.ADMIN_EMAIL_FROM_NAME);
@@ -5184,59 +5082,24 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				PropsKeys.ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY);
 		}
 
-		subject = StringUtil.replace(
-			subject,
-			new String[] {
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$USER_ID$]",
-				"[$USER_PASSWORD$]",
-				"[$USER_SCREENNAME$]"
-			},
-			new String[] {
-				fromAddress,
-				fromName,
-				company.getVirtualHostname(),
-				toAddress,
-				toName,
-				String.valueOf(user.getUserId()),
-				password,
-				user.getScreenName()
-			});
+		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
-		body = StringUtil.replace(
-			body,
-			new String[] {
-				"[$FROM_ADDRESS$]",
-				"[$FROM_NAME$]",
-				"[$PORTAL_URL$]",
-				"[$TO_ADDRESS$]",
-				"[$TO_NAME$]",
-				"[$USER_ID$]",
-				"[$USER_PASSWORD$]",
-				"[$USER_SCREENNAME$]"
-			},
-			new String[] {
-				fromAddress,
-				fromName,
-				company.getVirtualHostname(),
-				toAddress,
-				toName,
-				String.valueOf(user.getUserId()),
-				password,
-				user.getScreenName()
-			});
+		subscriptionSender.setBody(body);
+		subscriptionSender.setCompanyId(user.getCompanyId());
+		subscriptionSender.setContextAttributes(
+				"[$USER_ID$]", String.valueOf(user.getUserId()),
+				"[$USER_PASSWORD$]", password,
+				"[$USER_SCREENNAME$]", user.getScreenName());
+		subscriptionSender.setFrom(fromAddress, fromName);
+		subscriptionSender.setHtmlFormat(true);
+		subscriptionSender.setMailId("user_registration", user.getUserId());
+		subscriptionSender.setScopeGroupId(serviceContext.getScopeGroupId());
+		subscriptionSender.setSubject(subject);
+		subscriptionSender.setUserId(user.getUserId());
 
-		InternetAddress from = new InternetAddress(fromAddress, fromName);
+		subscriptionSender.addRuntimeSubscribers(toAddress, toName);
 
-		InternetAddress to = new InternetAddress(toAddress, toName);
-
-		MailMessage message = new MailMessage(from, to, subject, body, true);
-
-		mailService.sendEmail(message);
+		subscriptionSender.flushNotificationsAsync();
 	}
 
 	protected Hits search(

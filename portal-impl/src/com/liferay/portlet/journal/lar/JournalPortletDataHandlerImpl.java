@@ -300,17 +300,16 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Group group = GroupLocalServiceUtil.getGroup(article.getGroupId());
 
-		boolean isScopedArticle = false;
-
-		if (group.getParentGroupId() != 0) {
+		if (group.getParentGroupId() == 0) {
+			portletDataContext.setUseGroupId(true);
+		} else {
 			portletDataContext.setScopeGroupId(article.getGroupId());
-			isScopedArticle = true;
+			portletDataContext.setUseGroupId(false);
 		}
 
 		StringBundler sb = new StringBundler(7);
 
-		sb.append(portletDataContext.getPortletPath(
-			PortletKeys.JOURNAL, isScopedArticle));
+		sb.append(portletDataContext.getPortletPath(PortletKeys.JOURNAL));
 		sb.append("/articles/");
 		sb.append(article.getArticleResourceUuid());
 		sb.append(StringPool.SLASH);
@@ -382,15 +381,16 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		Group exportedGroup = GroupLocalServiceUtil.getGroup(
 			article.getGroupId());
 
-		boolean isScopedArticle = false;
-
-		if (exportedGroup.getParentGroupId() != 0) {
-			isScopedArticle = true;
+		if (exportedGroup.getParentGroupId() == 0) {
+			portletDataContext.setUseGroupId(true);
+		}
+		else {
+			portletDataContext.setUseGroupId(false);
 		}
 
 		Group group = null;
 
-		if (isScopedArticle) {	
+		if (portletDataContext.getUseGroupId()) {	
 			group = GroupLocalServiceUtil.getGroup(
 				portletDataContext.getGroupId());
 		}
@@ -676,7 +676,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		long originalGroupId = portletDataContext.getGroupId();
 
-		if (isScopedArticle) {
+		if (!portletDataContext.getUseGroupId()) {
 			portletDataContext.setGroupId(
 				portletDataContext.getScopeGroupId());
 		}

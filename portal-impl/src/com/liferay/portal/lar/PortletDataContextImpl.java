@@ -144,6 +144,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		_companyId = companyId;
 		_groupId = groupId;
 		_scopeGroupId = groupId;
+		_useGroupId = false;
 		_parameterMap = parameterMap;
 		_primaryKeys = primaryKeys;
 		_dataStrategy =  null;
@@ -737,11 +738,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	}
 
 	public String getPortletPath(String portletId) {
-		return getPortletPath(portletId, false);
-	}
-
-	public String getPortletPath(String portletId, boolean isScoped) {
-		return getRootPath(isScoped) + ROOT_PATH_PORTLETS + portletId;
+		return getRootPath() + ROOT_PATH_PORTLETS + portletId;
 	}
 
 	public Set<String> getPrimaryKeys() {
@@ -753,11 +750,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	}
 
 	public String getRootPath() {
-		return getRootPath(false);
-	}
-
-	public String getRootPath(boolean isScoped) {
-		if (isScoped) {
+		if (!_useGroupId) {
 			return ROOT_PATH_GROUPS + getScopeGroupId();
 		}
 
@@ -794,6 +787,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	public Date getStartDate() {
 		return _startDate;
+	}
+
+	public boolean getUseGroupId() {
+		return _useGroupId;
 	}
 
 	public long getUserId(String userUuid) throws SystemException {
@@ -1245,6 +1242,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 		_sourceGroupId = sourceGroupId;
 	}
 
+	public void setUseGroupId(boolean useGroupId) {
+		_useGroupId = useGroupId;
+	}
+
 	public String toXML(Object object) {
 		return _xStream.toXML(object);
 	}
@@ -1498,6 +1499,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 	private String _scopeType;
 	private long _sourceGroupId;
 	private Date _startDate;
+	private boolean _useGroupId;
 	private UserIdStrategy _userIdStrategy;
 	private XStream _xStream;
 	private ZipReader _zipReader;

@@ -535,10 +535,13 @@ public class LanguageImpl implements Language {
 		for (int i = 0; i < localesArray.length; i++) {
 			String languageId = localesArray[i];
 
+			String language = languageId;
+
 			int pos = languageId.indexOf(CharPool.UNDERLINE);
 
-			String language = languageId.substring(0, pos);
-			//String country = languageId.substring(pos + 1);
+			if (pos > 0) {
+				language = languageId.substring(0, pos);
+			}
 
 			Locale locale = LocaleUtil.fromLanguageId(languageId);
 

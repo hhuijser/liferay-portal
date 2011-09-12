@@ -334,18 +334,17 @@ public class MembershipRequestLocalServiceImpl
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(company.getLogoId());
 		subscriptionSender.setContextAttributes(
-				"[$REQUEST_USER_ADDRESS$]", requestUser.getEmailAddress(),
-				"[$REQUEST_USER_NAME$]", requestUser.getFullName(),
-				"[$STATUS$]", LanguageUtil.get(user.getLocale(), statusKey),
-				"[$USER_ADDRESS$]", user.getEmailAddress(),
-				"[$USER_NAME$]", user.getFullName(),
-				"[$COMMENTS$]", membershipRequest.getComments(),
-				"[$REPLY_COMMENTS$]", membershipRequest.getReplyComments()
-		);
+			"[$REQUEST_USER_ADDRESS$]", requestUser.getEmailAddress(),
+			"[$REQUEST_USER_NAME$]", requestUser.getFullName(),
+			"[$STATUS$]", LanguageUtil.get(user.getLocale(), statusKey),
+			"[$USER_ADDRESS$]", user.getEmailAddress(),
+			"[$USER_NAME$]", user.getFullName(),
+			"[$COMMENTS$]", membershipRequest.getComments(),
+			"[$REPLY_COMMENTS$]", membershipRequest.getReplyComments());
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("membership_request",
-				membershipRequest.getMembershipRequestId());
+			membershipRequest.getMembershipRequestId());
 		subscriptionSender.setScopeGroupId(group.getGroupId());
 		subscriptionSender.setSubject(subject);
 		subscriptionSender.setUserId(userId);

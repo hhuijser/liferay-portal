@@ -3273,14 +3273,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(serviceContext.getCompanyId());
 		subscriptionSender.setContextAttributes(
-				"[$EMAIL_VERIFICATION_CODE$]", ticket.getKey(),
-				"[$EMAIL_VERIFICATION_URL$]", verifyEmailAddressURL,
-				"[$REMOTE_ADDRESS$]", serviceContext.getRemoteAddr(),
-				"[$REMOTE_HOST$]", serviceContext.getRemoteHost(),
-				"[$USER_AGENT$]", 	serviceContext.getUserAgent(),
-				"[$USER_ID$]", String.valueOf(user.getUserId()),
-				"[$USER_SCREENNAME$]", user.getScreenName()
-				);
+			"[$EMAIL_VERIFICATION_CODE$]", ticket.getKey(),
+			"[$EMAIL_VERIFICATION_URL$]", verifyEmailAddressURL,
+			"[$REMOTE_ADDRESS$]", serviceContext.getRemoteAddr(),
+			"[$REMOTE_HOST$]", serviceContext.getRemoteHost(),
+			"[$USER_AGENT$]", 	serviceContext.getUserAgent(),
+			"[$USER_ID$]", String.valueOf(user.getUserId()),
+			"[$USER_SCREENNAME$]", user.getScreenName());
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
 		subscriptionSender.setMailId("email_verification", user.getUserId());

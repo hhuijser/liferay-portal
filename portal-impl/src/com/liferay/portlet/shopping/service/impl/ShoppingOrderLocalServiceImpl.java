@@ -639,11 +639,11 @@ public class ShoppingOrderLocalServiceImpl
 		subscriptionSender.setBody(body);
 		subscriptionSender.setCompanyId(company.getCompanyId());
 		subscriptionSender.setContextAttributes(
-				"[$ORDER_BILLING_ADDRESS$]", billingAddress,
-				"[$ORDER_CURRENCY$]", currency.getSymbol(),
-				"[$ORDER_NUMBER$]", order.getNumber(),
-				"[$ORDER_SHIPPING_ADDRESS$]", shippingAddress,
-				"[$ORDER_TOTAL$]", String.valueOf(total));
+			"[$ORDER_BILLING_ADDRESS$]", billingAddress,
+			"[$ORDER_CURRENCY$]", currency.getSymbol(),
+			"[$ORDER_NUMBER$]", order.getNumber(),
+			"[$ORDER_SHIPPING_ADDRESS$]", shippingAddress,
+			"[$ORDER_TOTAL$]", String.valueOf(total));
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setContextUserPrefix("ORDER");
 		subscriptionSender.setHtmlFormat(true);

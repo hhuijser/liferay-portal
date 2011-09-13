@@ -740,6 +740,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 		return getRootPath() + ROOT_PATH_PORTLETS + portletId;
 	}
 
+	public String getPortletPath(String portletId, long groupId) {
+		return getRootPath(groupId) + ROOT_PATH_PORTLETS + portletId;
+	}
+
 	public Set<String> getPrimaryKeys() {
 		return _primaryKeys;
 	}
@@ -749,7 +753,12 @@ public class PortletDataContextImpl implements PortletDataContext {
 	}
 
 	public String getRootPath() {
-		return ROOT_PATH_GROUPS + getScopeGroupId();
+			return ROOT_PATH_GROUPS + getScopeGroupId();
+	}
+
+	public String getRootPath(long groupId)
+	{
+		return ROOT_PATH_GROUPS + groupId;
 	}
 
 	public long getScopeGroupId() {
@@ -783,6 +792,10 @@ public class PortletDataContextImpl implements PortletDataContext {
 	public Date getStartDate() {
 		return _startDate;
 	}
+
+	/*public boolean getUseGroupId() {
+		return _useGroupId;
+	}*/
 
 	public long getUserId(String userUuid) throws SystemException {
 		return _userIdStrategy.getUserId(userUuid);

@@ -298,18 +298,9 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 			PortletDataContext portletDataContext, JournalArticle article)
 		throws Exception {
 
-		Group group = GroupLocalServiceUtil.getGroup(article.getGroupId());
-
-		if (group.getParentGroupId() == 0) {
-			portletDataContext.setUseGroupId(true);
-		} else {
-			portletDataContext.setScopeGroupId(article.getGroupId());
-			portletDataContext.setUseGroupId(false);
-		}
-
 		StringBundler sb = new StringBundler(7);
 
-		sb.append(portletDataContext.getPortletPath(PortletKeys.JOURNAL));
+		sb.append(portletDataContext.getPortletPath(PortletKeys.JOURNAL, article.getGroupId()));
 		sb.append("/articles/");
 		sb.append(article.getArticleResourceUuid());
 		sb.append(StringPool.SLASH);
@@ -381,16 +372,19 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 		Group exportedGroup = GroupLocalServiceUtil.getGroup(
 			article.getGroupId());
 
-		if (exportedGroup.getParentGroupId() == 0) {
-			portletDataContext.setUseGroupId(true);
+		boolean articleIsScoped;
+		//Determine if the article is scoped or not: 
+		if (exportedGroup.getParentGroupId() != 0) {
+			articleIsScoped = true;
 		}
 		else {
-			portletDataContext.setUseGroupId(false);
+			articleIsScoped = false;
 		}
 
 		Group group = null;
 
-		if (portletDataContext.getUseGroupId()) {	
+		//For friendly URL set the right path. 
+		if (articleIsScoped) {	
 			group = GroupLocalServiceUtil.getGroup(
 				portletDataContext.getGroupId());
 		}
@@ -676,7 +670,7 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		long originalGroupId = portletDataContext.getGroupId();
 
-		if (!portletDataContext.getUseGroupId()) {
+		if (articleIsScoped) {
 			portletDataContext.setGroupId(
 				portletDataContext.getScopeGroupId());
 		}

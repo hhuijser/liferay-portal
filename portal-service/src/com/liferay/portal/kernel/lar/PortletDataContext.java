@@ -170,11 +170,15 @@ public interface PortletDataContext extends Serializable {
 
 	public String getPortletPath(String portletId);
 
+	public String getPortletPath(String portletId, long groupId);
+
 	public Set<String> getPrimaryKeys();
 
 	public Map<String, List<RatingsEntry>> getRatingsEntries();
 
 	public String getRootPath();
+
+	public String getRootPath(long groupId);
 
 	public long getScopeGroupId();
 
@@ -193,8 +197,6 @@ public interface PortletDataContext extends Serializable {
 	public Date getStartDate();
 
 	public long getUserId(String userUuid) throws SystemException;
-
-	public boolean getUseGroupId();
 
 	public UserIdStrategy getUserIdStrategy() throws SystemException;
 
@@ -282,8 +284,6 @@ public interface PortletDataContext extends Serializable {
 	public void setSourceGroupId(long sourceGroupId);
 
 	public void setStartDate(Date startDate);
-
-	public void setUseGroupId(boolean useGroupId);
 
 	public String toXML(Object object);
 

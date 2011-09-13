@@ -497,10 +497,10 @@ public class AssetEntryFinderImpl
 
 		StringBundler sb = new StringBundler(classNameIds.length + 2);
 
-		sb.append(" AND (classNameId = ?");
+		sb.append(" AND (AssetEntry.classNameId = ?");
 
 		for (int i = 1; i < classNameIds.length; i++) {
-			sb.append(" OR classNameId = ? ");
+			sb.append(" OR AssetEntry.classNameId = ? ");
 		}
 
 		sb.append(") ");

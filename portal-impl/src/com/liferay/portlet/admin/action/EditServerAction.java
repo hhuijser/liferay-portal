@@ -375,6 +375,8 @@ public class EditServerAction extends PortletAction {
 		portletObjects.put("out", unsyncPrintWriter);
 
 		try {
+			SessionMessages.add(actionRequest, "language", language);
+
 			SessionMessages.add(actionRequest, "script", script);
 
 			ScriptingUtil.exec(null, portletObjects, language, script);

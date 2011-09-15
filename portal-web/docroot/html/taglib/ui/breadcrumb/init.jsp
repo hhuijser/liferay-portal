@@ -184,7 +184,7 @@ private void _buildPortletBreadcrumb(HttpServletRequest request, boolean showCur
 
 		boolean showGlobally = GetterUtil.get((String)data.get("show-globally"), true);
 
-        if (showCurrentGroup && showCurrentPortlet && !showGlobally) {
+		if (showCurrentGroup && showCurrentPortlet && !showGlobally) {
 			continue;
 		}
 

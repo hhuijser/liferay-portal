@@ -22,6 +22,8 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("struts_action", "/sites_admin/view");
 
 pageContext.setAttribute("portletURL", portletURL);
+
+boolean liveUsersEnabled = PropsValues.LIVE_USERS_ENABLED;
 %>
 
 <liferay-ui:success key="membership_request_sent" message="your-request-was-sent-you-will-receive-a-reply-by-email" />
@@ -105,7 +107,11 @@ pageContext.setAttribute("portletURL", portletURL);
 	headerNames.add("name");
 	headerNames.add("type");
 	headerNames.add("members");
-	headerNames.add("online-now");
+
+	if (liveUsersEnabled) {
+		headerNames.add("online-now");
+	}
+
 	headerNames.add("active");
 	headerNames.add("pending-requests");
 
@@ -163,9 +169,11 @@ pageContext.setAttribute("portletURL", portletURL);
 
 		// Online Now
 
-		int onlineCount = LiveUsers.getGroupUsersCount(company.getCompanyId(), group.getGroupId());
+		if (liveUsersEnabled) {
+			int onlineCount = LiveUsers.getGroupUsersCount(company.getCompanyId(), group.getGroupId());
 
-		row.addText(String.valueOf(onlineCount));
+			row.addText(String.valueOf(onlineCount));
+		}
 
 		// Active
 

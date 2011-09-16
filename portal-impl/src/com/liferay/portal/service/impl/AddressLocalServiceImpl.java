@@ -219,7 +219,7 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		else if (Validator.isNull(zip)) {
 			Country country = countryService.fetchCountry(countryId);
 
-			if ((country == null) || country.isZipRequired()) {
+			if ((country != null) && country.isZipRequired()) {
 				throw new AddressZipException();
 			}
 		}

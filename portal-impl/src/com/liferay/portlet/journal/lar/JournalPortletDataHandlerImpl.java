@@ -898,11 +898,12 @@ public class JournalPortletDataHandlerImpl extends BasePortletDataHandler {
 								importedFeed.getFeedId());
 				}
 			}
-		} catch (FeedTargetLayoutFriendlyUrlException ftlfue) {
+		}
+		catch (FeedTargetLayoutFriendlyUrlException ftlfue) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"A feed with the ID " + feedId + " cannot be imported " +
-						"because of missing Layout with friendly URL:" +
+						"because of missing Layout with friendly URL: " +
 							feed.getTargetLayoutFriendlyUrl());
 			}
 		}

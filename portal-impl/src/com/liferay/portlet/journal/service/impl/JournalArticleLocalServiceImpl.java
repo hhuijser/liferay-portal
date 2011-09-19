@@ -3192,6 +3192,7 @@ public class JournalArticleLocalServiceImpl
 
 		if ((article.getStatus() != WorkflowConstants.STATUS_APPROVED) &&
 			(approvedArticles.size() > 0)) {
+
 			JournalArticle previousApprovedArticle = approvedArticles.get(0);
 
 			if (article.isIndexable()) {

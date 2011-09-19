@@ -3190,7 +3190,18 @@ public class JournalArticleLocalServiceImpl
 				article.getGroupId(), article.getArticleId(),
 				WorkflowConstants.STATUS_APPROVED, 0, 2);
 
-		if (approvedArticles.size() > 1) {
+		if ((article.getStatus() != WorkflowConstants.STATUS_APPROVED) &&
+			(approvedArticles.size() > 0)) {
+			JournalArticle previousApprovedArticle = approvedArticles.get(0);
+
+			if (article.isIndexable()) {
+				Indexer indexer = IndexerRegistryUtil.getIndexer(
+					JournalArticle.class);
+
+				indexer.reindex(previousApprovedArticle);
+			}
+		}
+		else if (approvedArticles.size() > 1) {
 			JournalArticle previousApprovedArticle = approvedArticles.get(1);
 
 			if (article.isIndexable()) {

@@ -778,7 +778,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 <aui:script use="aui-base">
 	var showURLFile = A.one('.show-url-file');
-	var showWebdavFile = A.one('.show-webdav-url-file');
+	var showWebDAVFile = A.one('.show-webdav-url-file');
 
 	if (showURLFile) {
 		showURLFile.on(
@@ -791,13 +791,13 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 		);
 	}
 
-	if (showWebdavFile) {
-		showWebdavFile.on(
+	if (showWebDAVFile) {
+		showWebDAVFile.on(
 			'click',
 			function(event) {
-				var WebdavFileContainer = A.one('.webdav-url-file-container');
+				var WebDAVFileContainer = A.one('.webdav-url-file-container');
 
-				WebdavFileContainer.toggleClass('aui-helper-hidden');
+				WebDAVFileContainer.toggleClass('aui-helper-hidden');
 			}
 		);
 	}

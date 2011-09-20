@@ -778,7 +778,7 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 
 <aui:script use="aui-base">
 	var showURLFile = A.one('.show-url-file');
-	var showWebdavFile = A.one('.show-webdav-file-url');
+	var showWebdavFile = A.one('.show-webdav-url-file');
 
 	if (showURLFile) {
 		showURLFile.on(

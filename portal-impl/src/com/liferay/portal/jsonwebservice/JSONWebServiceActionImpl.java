@@ -15,11 +15,13 @@
 package com.liferay.portal.jsonwebservice;
 
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.service.ServiceContext;
 
 import java.lang.reflect.Method;
 
 import java.util.List;
+import java.util.Locale;
 
 import jodd.bean.BeanUtil;
 
@@ -105,6 +107,10 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 				if (value == Void.TYPE) {
 					parameterValue = _createDefaultParameterValue(
 						parameterName, parameterType);
+				}
+				else if (parameterTypes[i].equals(Locale.class)) {
+					parameterValue = LocaleUtil.fromLanguageId(
+						value.toString());
 				}
 				else {
 					parameterValue = ReflectUtil.castType(value, parameterType);

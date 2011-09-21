@@ -205,6 +205,23 @@ double version = ParamUtil.getDouble(request, "version");
 
 			<c:choose>
 				<c:when test="<%= (articleDisplay != null) && !expired %>">
+					<c:if test='<%= pageUrl.equals("normal") %>'>
+
+						<%
+						String redirect = ParamUtil.getString(request, "redirect");
+						String title = article.getTitle(locale);
+						%>
+
+						<portlet:renderURL var="backURL">
+							<portlet:param name="struts_action" value="/journal_articles/view" />
+							<portlet:param name="redirect" value="<%= redirect %>" />
+						</portlet:renderURL>
+
+						<liferay-ui:header
+							backURL="<%= backURL %>"
+							title="<%= title %>"
+						/>
+					</c:if>
 
 					<%
 					AssetEntryServiceUtil.incrementViewCounter(JournalArticle.class.getName(), articleDisplay.getResourcePrimKey());

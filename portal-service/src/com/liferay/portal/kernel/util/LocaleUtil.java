@@ -124,7 +124,7 @@ public class LocaleUtil {
 			}
 			else {
 				if (_log.isWarnEnabled()){
-					_log.warn("Too many entries are in Locales map.");
+					_log.warn("There are too many entries in the locales map");
 				}
 			}
 		}

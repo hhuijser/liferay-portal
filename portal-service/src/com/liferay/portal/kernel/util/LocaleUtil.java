@@ -119,7 +119,14 @@ public class LocaleUtil {
 				}
 			}
 
-			_locales.put(languageId, locale);
+			if (_locales.size() < 1000){
+				_locales.put(languageId, locale);
+			}
+			else {
+				if (_log.isWarnEnabled()){
+					_log.warn("There are too many entries in the locales map");
+				}
+			}
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

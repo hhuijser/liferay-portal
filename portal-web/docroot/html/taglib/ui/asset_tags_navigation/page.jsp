@@ -83,12 +83,20 @@ private String _buildTagsNavigation(long groupId, String selectedTagName, Portle
 
 	sb.append("\">");
 
+	int count = 0;
 	int maxCount = 1;
 	int minCount = 1;
 
 	if (showAssetCount && displayStyle.equals("cloud")) {
 		for (AssetTag tag : tags) {
-			int count = tag.getAssetCount();
+			String tagName = tag.getName();
+
+			if (classNameId > 0) {
+				count = AssetTagServiceUtil.getTagsCount(groupId, classNameId, tagName);
+			}
+			else {
+				count = AssetTagServiceUtil.getTagsCount(groupId, tagName);
+			}
 
 			if (!showZeroAssetCount && (count == 0)) {
 				continue;
@@ -108,7 +116,12 @@ private String _buildTagsNavigation(long groupId, String selectedTagName, Portle
 	for (AssetTag tag : tags) {
 		String tagName = tag.getName();
 
-		int count = tag.getAssetCount();
+		if (classNameId > 0) {
+			count = AssetTagServiceUtil.getTagsCount(groupId, classNameId, tagName);
+		}
+		else {
+			count = AssetTagServiceUtil.getTagsCount(groupId, tagName);
+		}
 
 		int popularity = (int)(1 + ((maxCount - (maxCount - (count - minCount))) * multiplier));
 
@@ -126,7 +139,7 @@ private String _buildTagsNavigation(long groupId, String selectedTagName, Portle
 			sb.append("<a class=\"tag-selected\" href=\"");
 		}
 		else {
-			portletURL.setParameter("tag", tag.getName());
+			portletURL.setParameter("tag", tagName);
 
  			sb.append("<a href=\"");
 		}

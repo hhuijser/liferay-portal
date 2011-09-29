@@ -113,6 +113,17 @@ public class AssetTagServiceWrapper implements AssetTagService {
 		return _assetTagService.getTags(className, classPK);
 	}
 
+	public int getTagsCount(long groupId, long classNameId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetTagService.getTagsCount(groupId, classNameId, name);
+	}
+
+	public int getTagsCount(long groupId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetTagService.getTagsCount(groupId, name);
+	}
+
 	public int getTagsCount(long groupId, java.lang.String name,
 		java.lang.String[] tagProperties)
 		throws com.liferay.portal.kernel.exception.SystemException {

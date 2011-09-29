@@ -33,6 +33,17 @@ public class AssetTagFinderUtil {
 		return getFinder().countByG_N_P(groupId, name, tagProperties);
 	}
 
+	public static int filterCountByG_N(long groupId, java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().filterCountByG_N(groupId, name);
+	}
+
+	public static int filterCountByG_C_N(long groupId, long classNameId,
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().filterCountByG_C_N(groupId, classNameId, name);
+	}
+
 	public static int filterCountByG_N_P(long groupId, java.lang.String name,
 		java.lang.String[] tagProperties)
 		throws com.liferay.portal.kernel.exception.SystemException {

@@ -19,14 +19,17 @@ import com.liferay.portal.kernel.image.ImageProcessorUtil;
 import com.liferay.portal.kernel.image.SpriteProcessor;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.ServletContextUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SortedProperties;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 
 import java.awt.Point;
@@ -58,6 +61,8 @@ import javax.media.jai.operator.LookupDescriptor;
 import javax.media.jai.operator.MosaicDescriptor;
 import javax.media.jai.operator.TranslateDescriptor;
 
+import javax.servlet.ServletContext;
+
 import org.geotools.image.ImageWorker;
 
 /**
@@ -72,7 +77,8 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 	public Properties generate(
 			List<File> images, String spriteFileName,
 			String spritePropertiesFileName, String spritePropertiesRootPath,
-			int maxHeight, int maxWidth, int maxSize)
+			ServletContext servletContext, int maxHeight, int maxWidth,
+			int maxSize)
 		throws IOException {
 
 		if (images.size() < 1) {
@@ -90,10 +96,52 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 
 		String spriteRootDirName = PropsValues.SPRITE_ROOT_DIR;
 
-		if (Validator.isNull(spriteRootDirName)) {
-			File image = images.get(0);
+		String imagesDirName = images.get(0).getParentFile().toString();
 
-			spriteRootDirName = String.valueOf(image.getParentFile());
+		if (Validator.isNotNull(spriteRootDirName)) {
+
+			if ((!spriteRootDirName.endsWith(StringPool.SLASH)) &&
+				(!spriteRootDirName.endsWith(StringPool.BACK_SLASH))) {
+
+				spriteRootDirName += StringPool.SLASH;
+			}
+
+			String portalProxyPath = PropsUtil.get(PropsKeys.PORTAL_PROXY_PATH);
+			if (Validator.isNotNull(portalProxyPath)) {
+
+				spriteRootDirName += portalProxyPath + StringPool.SLASH;
+			}
+
+			String portalContext = PropsUtil.get(PropsKeys.PORTAL_CTX);
+			if ((Validator.isNotNull(portalContext)) &&
+				(!StringPool.SLASH.equals(portalContext))) {
+
+				spriteRootDirName += portalContext + StringPool.SLASH;
+			}
+
+			String portletContext = servletContext.getContextPath();
+			if (Validator.isNotNull(portletContext)) {
+				spriteRootDirName +=
+					servletContext.getContextPath()	+ StringPool.SLASH;
+			}
+
+			String contextRoot = ServletContextUtil.getRealPath(
+				servletContext,	StringPool.SLASH);
+
+			spriteRootDirName = StringUtil.replace(
+				spriteRootDirName + imagesDirName.substring(
+					contextRoot.length()),
+				CharPool.BACK_SLASH, CharPool.SLASH);
+
+			if ((spriteRootDirName.endsWith(StringPool.SLASH)) ||
+				(spriteRootDirName.endsWith(StringPool.BACK_SLASH))) {
+
+				spriteRootDirName = spriteRootDirName.substring(
+					0, spriteRootDirName.length() - 1);
+			}
+		}
+		else {
+			spriteRootDirName = imagesDirName;
 		}
 
 		File spritePropertiesFile = new File(
@@ -197,6 +245,8 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 
 			File spriteFile = new File(
 				spriteRootDirName + StringPool.SLASH + spriteFileName);
+
+			spriteFile.mkdirs();
 
 			ImageIO.write(renderedImage, "png", spriteFile);
 

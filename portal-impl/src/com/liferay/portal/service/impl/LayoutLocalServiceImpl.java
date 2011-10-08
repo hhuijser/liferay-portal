@@ -254,6 +254,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		layoutSetLocalService.updatePageCount(groupId, privateLayout);
 
+		layout.setLayoutSet(
+			layoutSetLocalService.getLayoutSet(groupId, privateLayout));
+
 		// Expando
 
 		ExpandoBridge expandoBridge = layout.getExpandoBridge();

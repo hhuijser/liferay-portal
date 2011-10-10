@@ -187,7 +187,7 @@ request.setAttribute("view_entries.jsp-total", String.valueOf(total));
 	<c:choose>
 		<c:when test="<%= Validator.isNotNull(dlFileEntryTypeName) %>">
 			<div class="portlet-msg-info">
-				<%= LanguageUtil.format(pageContext, "there-are-no-x-files-in-this-folder", StringUtil.lowerCase(dlFileEntryTypeName)) %>
+				<%= LanguageUtil.format(pageContext, "there-are-no-x-files-in-this-folder", StringUtil.lowerCase(dlFileEntryTypeName), false) %>
 			</div>
 		</c:when>
 		<c:otherwise>

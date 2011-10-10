@@ -171,6 +171,8 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		long layoutId = getNextLayoutId(groupId, privateLayout);
+		LayoutSet layoutSet = layoutSetLocalService.getLayoutSet(
+			groupId, privateLayout);
 		parentLayoutId = getParentLayoutId(
 			groupId, privateLayout, parentLayoutId);
 		String name = nameMap.get(LocaleUtil.getDefault());
@@ -194,6 +196,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setCreateDate(serviceContext.getCreateDate(now));
 		layout.setModifiedDate(serviceContext.getModifiedDate(now));
 		layout.setPrivateLayout(privateLayout);
+		layout.setLayoutSet(layoutSet);
 		layout.setLayoutId(layoutId);
 		layout.setParentLayoutId(parentLayoutId);
 		layout.setNameMap(nameMap);

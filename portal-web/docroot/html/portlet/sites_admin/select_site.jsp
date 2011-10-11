@@ -25,6 +25,8 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("struts_action", "/sites_admin/select_site");
 portletURL.setParameter("target", target);
+portletURL.setParameter("includeCompany", StringUtil.valueOf(includeCompany));
+portletURL.setParameter("includeUserPersonalSite", StringUtil.valueOf(includeUserPersonalSite));
 %>
 
 <aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
@@ -63,15 +65,19 @@ portletURL.setParameter("target", target);
 			total = GroupLocalServiceUtil.searchCount(company.getCompanyId(), null, searchTerms.getName(), searchTerms.getDescription(), groupParams);
 
 			if (includeCompany) {
-				results.add(0, company.getGroup());
+				if (searchContainer.getEnd() > total && (total + 1 > searchContainer.getStart())) {
+					results.add(0, company.getGroup());
+				}
 
 				total++;
 			}
 
 			if (includeUserPersonalSite) {
-				Group userPersonalSite = GroupLocalServiceUtil.getGroup(company.getCompanyId(), GroupConstants.USER_PERSONAL_SITE);
+				if (searchContainer.getEnd() > total) {
+					Group userPersonalSite = GroupLocalServiceUtil.getGroup(company.getCompanyId(), GroupConstants.USER_PERSONAL_SITE);
 
-				results.add(0, userPersonalSite);
+					results.add(0, userPersonalSite);
+				}
 
 				total++;
 			}

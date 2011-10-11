@@ -65,7 +65,7 @@ portletURL.setParameter("includeUserPersonalSite", StringUtil.valueOf(includeUse
 			total = GroupLocalServiceUtil.searchCount(company.getCompanyId(), null, searchTerms.getName(), searchTerms.getDescription(), groupParams);
 
 			if (includeCompany) {
-				if (searchContainer.getEnd() > total && (total + 1 > searchContainer.getStart())) {
+				if ((searchContainer.getEnd() > total) && (total + 1 > searchContainer.getStart())) {
 					results.add(0, company.getGroup());
 				}
 

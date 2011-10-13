@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PortalUtil;
 
@@ -33,6 +34,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 import java.net.URL;
+import java.net.URLDecoder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +84,14 @@ public class JSONWebServiceConfigurator extends ClassFinder {
 			URL servicePropertiesURL = classLoader.getResource(
 				"service.properties");
 
-			String servicePropertiesPath = servicePropertiesURL.getPath();
+			String servicePropertiesPath = null;
+
+			try {
+				servicePropertiesPath = URLDecoder.decode(
+					servicePropertiesURL.getPath(), StringPool.UTF8);
+			}
+			catch (Exception e) {
+			}
 
 			File classPathFile = null;
 

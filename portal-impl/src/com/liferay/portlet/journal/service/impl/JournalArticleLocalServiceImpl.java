@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
@@ -213,7 +214,8 @@ public class JournalArticleLocalServiceImpl
 		String title = titleMap.get(locale);
 
 		content = format(
-			groupId, articleId, version, false, content, structureId, images);
+			groupId, articleId, version, false, content, structureId, images,
+			user.getCompanyId(), userId);
 
 		article.setResourcePrimKey(resourcePrimKey);
 		article.setGroupId(groupId);
@@ -1970,7 +1972,8 @@ public class JournalArticleLocalServiceImpl
 
 		content = format(
 			groupId, articleId, article.getVersion(), incrementVersion,
-			content, structureId, images);
+			content, structureId, images, user.getCompanyId(),
+			user.getUserId());
 
 		article.setModifiedDate(serviceContext.getModifiedDate(now));
 		article.setTitleMap(titleMap, locale);
@@ -2623,7 +2626,8 @@ public class JournalArticleLocalServiceImpl
 
 	protected void format(
 			long groupId, String articleId, double version,
-			boolean incrementVersion, Element root, Map<String, byte[]> images)
+			boolean incrementVersion, Element root, Map<String, byte[]> images,
+			long userId, long companyId)
 		throws PortalException, SystemException {
 
 		for (Element el : root.elements()) {
@@ -2637,57 +2641,63 @@ public class JournalArticleLocalServiceImpl
 					groupId, articleId, version, incrementVersion, el,
 					elInstanceId, elName, images);
 			}
-			/*else if (elType.equals("text_area")) {
+			else if ((elType.equals("text_area")) || (elType.equals("text")) ||
+					(elType.equals("text_box"))) {
 				Element dynamicContent = el.element("dynamic-content");
 
 				String text = dynamicContent.getText();
 
-				// LEP-1594
+				if (Validator.isNotNull(text)) {
 
-				try {
-					text = ParserUtils.trimTags(
-						text, new String[] {"script"}, false, true);
-				}
-				catch (ParserException pe) {
-					text = pe.getLocalizedMessage();
-				}
-				catch (UnsupportedEncodingException uee) {
-					text = uee.getLocalizedMessage();
-				}
+				    text = SanitizerUtil.sanitize(
+						companyId, groupId, userId,
+						JournalArticle.class.getName(),	0,
+						ContentTypes.TEXT_HTML, text);
 
-				dynamicContent.setText(text);
-			}*/
+				    dynamicContent.setText(text);
+				}
+			}
 
-			format(groupId, articleId, version, incrementVersion, el, images);
+			format(groupId, articleId, version, incrementVersion, el, images,
+					userId, companyId);
 		}
 	}
 
 	protected String format(
 			long groupId, String articleId, double version,
 			boolean incrementVersion, String content, String structureId,
-			Map<String, byte[]> images)
+			Map<String, byte[]> images, long companyId, long userId)
 		throws PortalException, SystemException {
 
-		if (Validator.isNotNull(structureId)) {
-			Document doc = null;
+		Document doc = null;
 
-			try {
-				doc = SAXReaderUtil.read(content);
+		try {
+			doc = SAXReaderUtil.read(content);
 
-				Element root = doc.getRootElement();
+			Element root = doc.getRootElement();
 
-				format(
-					groupId, articleId, version, incrementVersion, root,
-					images);
-
-				content = DDMXMLUtil.formatXML(doc);
+			if (Validator.isNotNull(structureId)) {
+				format(groupId, articleId, version, incrementVersion, root,
+					images, userId, companyId);
 			}
-			catch (DocumentException de) {
-				_log.error(de);
+			else {
+				Element staticContent = root.element("static-content");
+
+				String sanitizedContent = SanitizerUtil.sanitize(
+						companyId, groupId, userId,
+						JournalArticle.class.getName(),	0,
+						ContentTypes.TEXT_HTML, staticContent.getText());
+
+				staticContent.setText(sanitizedContent);
 			}
-			catch (IOException ioe) {
-				_log.error(ioe);
-			}
+
+			content = DDMXMLUtil.formatXML(doc);
+		}
+		catch (DocumentException de) {
+			_log.error(de);
+		}
+		catch (IOException ioe) {
+			_log.error(ioe);
 		}
 
 		content = HtmlUtil.replaceMsWordCharacters(content);

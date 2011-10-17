@@ -29,6 +29,7 @@ import com.liferay.portal.util.PortalUtil;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -90,7 +91,7 @@ public class JSONWebServiceConfigurator extends ClassFinder {
 				servicePropertiesPath = URLDecoder.decode(
 					servicePropertiesURL.getPath(), StringPool.UTF8);
 			}
-			catch (Exception e) {
+			catch (UnsupportedEncodingException uee) {
 			}
 
 			File classPathFile = null;

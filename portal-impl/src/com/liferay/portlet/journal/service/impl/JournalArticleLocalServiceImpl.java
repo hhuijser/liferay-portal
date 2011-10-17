@@ -2642,24 +2642,24 @@ public class JournalArticleLocalServiceImpl
 					elInstanceId, elName, images);
 			}
 			else if ((elType.equals("text_area")) || (elType.equals("text")) ||
-					(elType.equals("text_box"))) {
+				(elType.equals("text_box"))) {
+
 				Element dynamicContent = el.element("dynamic-content");
 
 				String text = dynamicContent.getText();
 
 				if (Validator.isNotNull(text)) {
-
-				    text = SanitizerUtil.sanitize(
+					text = SanitizerUtil.sanitize(
 						companyId, groupId, userId,
-						JournalArticle.class.getName(),	0,
+						JournalArticle.class.getName(), 0,
 						ContentTypes.TEXT_HTML, text);
 
-				    dynamicContent.setText(text);
+					dynamicContent.setText(text);
 				}
 			}
 
 			format(groupId, articleId, version, incrementVersion, el, images,
-					userId, companyId);
+				userId, companyId);
 		}
 	}
 

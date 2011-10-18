@@ -54,6 +54,9 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 
 		Group group = groupPersistence.findByPrimaryKey(groupId);
 
+		boolean logo = false;
+		long logoId = 0;
+
 		long layoutSetId = counterLocalService.increment();
 
 		LayoutSet layoutSet = layoutSetPersistence.create(layoutSetId);
@@ -61,6 +64,30 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 		layoutSet.setGroupId(groupId);
 		layoutSet.setCompanyId(group.getCompanyId());
 		layoutSet.setPrivateLayout(privateLayout);
+
+		if (group.isStagingGroup()) {
+			if (privateLayout) {
+				logo = group.getLiveGroup().getPrivateLayoutSet().getLogo();
+
+				if (logo) {
+					logoId = group.getLiveGroup().getPrivateLayoutSet().getLogoId();
+				}
+
+				layoutSet.setLogo(logo);
+				layoutSet.setLogoId(logoId);
+			}
+			else {
+				logo = group.getLiveGroup().getPublicLayoutSet().getLogo();
+
+				if (logo) {
+					logoId = group.getLiveGroup().getPublicLayoutSet().getLogoId();
+				}
+
+				layoutSet.setLogo(logo);
+				layoutSet.setLogoId(logoId);
+			}
+		}
+
 		layoutSet.setThemeId(
 			ThemeImpl.getDefaultRegularThemeId(group.getCompanyId()));
 		layoutSet.setColorSchemeId(

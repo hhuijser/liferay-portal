@@ -25,7 +25,7 @@ SearchContainer searchContainer = new SearchContainer();
 
 List<String> headerNames = new ArrayList<String>();
 
-headerNames.add("description");
+headerNames.add("title");
 headerNames.add("start-date");
 headerNames.add("end-date");
 headerNames.add(StringPool.BLANK);

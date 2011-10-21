@@ -520,11 +520,6 @@ public class EntityResolver implements org.xml.sax.EntityResolver {
 		),
 
 		new KeyValuePair(
-			"-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.2//EN",
-			"web-facesconfig_1_2.xsd"
-		),
-
-		new KeyValuePair(
 			"-//W3C//DTD XMLSCHEMA 200102//EN",
 			"XMLSchema.dtd"
 		)
@@ -615,6 +610,11 @@ public class EntityResolver implements org.xml.sax.EntityResolver {
 		new KeyValuePair(
 			"http://www.w3.org/2001/xml.xsd",
 			"xml.xsd"
+		),
+
+		new KeyValuePair(
+			"http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd",
+			"web-facesconfig_1_2.xsd"
 		),
 
 		new KeyValuePair(

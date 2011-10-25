@@ -19,6 +19,8 @@
 <%
 String redirectWindowState = ParamUtil.getString(request, "redirectWindowState");
 
+String redirectURL = ParamUtil.getString(request, "redirect");
+
 String cmd = ParamUtil.getString(request, Constants.CMD, Constants.EXPORT);
 
 Group group = (Group)request.getAttribute(WebKeys.GROUP);
@@ -144,6 +146,7 @@ portletsList = ListUtil.sort(portletsList, new PortletTitleComparator(applicatio
 						<portlet:param name="struts_action" value="/layouts_admin/import_layouts" />
 						<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
 						<portlet:param name="privateLayout" value="<%= String.valueOf(privateLayout) %>" />
+						<portlet:param name="redirect"  value="<%= redirectURL %>" />
 					</portlet:actionURL>
 
 					form.attr('encoding', 'multipart/form-data');

@@ -220,7 +220,7 @@ public class PortletURLUtil {
 				String name = entry.getKey();
 
 				if (!PortalUtil.isReservedParameter(name) &&
-					!name.equals("currentURL")) {
+					!name.equals("currentURL") && !name.contains("password")) {
 
 					String[] values = entry.getValue();
 

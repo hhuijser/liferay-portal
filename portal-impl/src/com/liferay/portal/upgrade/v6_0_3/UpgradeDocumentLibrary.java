@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.util.FileUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Sergio González
@@ -33,12 +35,14 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		updateFileVersions();
 	}
 
-	protected long getLatestFileVersionId(long folderId, String name)
+	protected List<Long> getFileVersionIds(long folderId, String name)
 		throws Exception {
 
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+
+		List<Long> list = new ArrayList<Long>();
 
 		try {
 			con = DataAccess.getConnection();
@@ -52,11 +56,11 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 
 			rs = ps.executeQuery();
 
-			if (rs.next()) {
-				return rs.getLong("fileVersionId");
+			while (rs.next()) {
+				list.add(rs.getLong("fileVersionId"));
 			}
 
-			return 0;
+			return list;
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
@@ -92,15 +96,16 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 						"' where uuid_ = '" + uuid_ + "' and groupId = " +
 							groupId);
 
-				long fileVersionId = getLatestFileVersionId(folderId, name);
+				List<Long> fileVersionIds = getFileVersionIds(folderId, name);
 
 				runSQL(
-					"update ExpandoRow set classPK = " + fileVersionId +
+					"update ExpandoRow set classPK = " + fileVersionIds.get(0) +
 						 " where classPK = " + fileEntryId);
 
 				runSQL(
-					"update ExpandoValue set classPK = " + fileVersionId +
-						 " where classPK = " + fileEntryId);
+					"update ExpandoValue set classPK = " +
+						fileVersionIds.get(0) + " where classPK = " +
+						fileEntryId);
 			}
 		}
 		finally {
@@ -159,11 +164,13 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 				String description = rs.getString("description");
 				String extraSettings = rs.getString("extraSettings");
 
-				long fileVersionId = getLatestFileVersionId(folderId, name);
+				List<Long> fileVersionIds = getFileVersionIds(folderId, name);
 
-				updateFileVersion(
-					fileVersionId, extension, title, description,
-					extraSettings);
+				for (long fileVersionId : fileVersionIds) {
+					updateFileVersion(
+						fileVersionId, extension, title, description,
+						extraSettings);
+				}
 			}
 		}
 		finally {

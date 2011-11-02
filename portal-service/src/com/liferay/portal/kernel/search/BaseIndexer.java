@@ -245,6 +245,10 @@ public abstract class BaseIndexer implements Indexer {
 		return _FILTER_SEARCH;
 	}
 
+	public boolean isIndexerEnabled() {
+		return _indexerEnabled;
+	}
+
 	public boolean isStagingAware() {
 		return _stagingAware;
 	}
@@ -273,7 +277,7 @@ public abstract class BaseIndexer implements Indexer {
 
 	public void reindex(Object obj) throws SearchException {
 		try {
-			if (SearchEngineUtil.isIndexReadOnly()) {
+			if (SearchEngineUtil.isIndexReadOnly() || !isIndexerEnabled()) {
 				return;
 			}
 
@@ -289,7 +293,7 @@ public abstract class BaseIndexer implements Indexer {
 
 	public void reindex(String className, long classPK) throws SearchException {
 		try {
-			if (SearchEngineUtil.isIndexReadOnly()) {
+			if (SearchEngineUtil.isIndexReadOnly() || !isIndexerEnabled()) {
 				return;
 			}
 
@@ -310,7 +314,7 @@ public abstract class BaseIndexer implements Indexer {
 
 	public void reindex(String[] ids) throws SearchException {
 		try {
-			if (SearchEngineUtil.isIndexReadOnly()) {
+			if (SearchEngineUtil.isIndexReadOnly() || !isIndexerEnabled()) {
 				return;
 			}
 
@@ -922,6 +926,8 @@ public abstract class BaseIndexer implements Indexer {
 
 	private IndexerPostProcessor[] _indexerPostProcessors =
 		new IndexerPostProcessor[0];
+	private boolean _indexerEnabled = GetterUtil.getBoolean(
+		PropsUtil.get(getClass().getName()), true);
 	private boolean _stagingAware = true;
 
 }

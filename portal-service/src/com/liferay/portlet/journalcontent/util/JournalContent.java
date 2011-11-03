@@ -24,6 +24,8 @@ public interface JournalContent {
 
 	public static final String ARTICLE_SEPARATOR = "_ARTICLE_";
 
+	public static final String VERSION_SEPARATOR = "_VERSION_";
+
 	public static final String LANGUAGE_SEPARATOR = "_LANGUAGE_";
 
 	public static final String LAYOUT_SET_SEPARATOR = "_LAYOUT_SET_";
@@ -83,6 +85,11 @@ public interface JournalContent {
 	public JournalArticleDisplay getDisplay(
 		long groupId, String articleId, String templateId, String viewMode,
 		String languageId, ThemeDisplay themeDisplay, int page,
+		String xmlRequest);
+
+	public JournalArticleDisplay getDisplay(
+		long groupId, String articleId, double version, String templateId,
+		String viewMode, String languageId, ThemeDisplay themeDisplay, int page,
 		String xmlRequest);
 
 }

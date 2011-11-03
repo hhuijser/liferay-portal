@@ -86,12 +86,11 @@ public class JournalContentUtil {
 		String xmlRequest) {
 
 		return getJournalContent().getDisplay(groupId, articleId, 0.0D,
-				templateId, viewMode, languageId, themeDisplay, page,
-				xmlRequest);
+			templateId, viewMode, languageId, themeDisplay, page, xmlRequest);
 	}
 
-	public static JournalArticleDisplay getDisplay(long groupId,
-			String articleId, double version, String templateId,
+	public static JournalArticleDisplay getDisplay(
+			long groupId, String articleId, double version, String templateId,
 			String viewMode, String languageId, ThemeDisplay themeDisplay,
 			int page, String xmlRequest) {
 

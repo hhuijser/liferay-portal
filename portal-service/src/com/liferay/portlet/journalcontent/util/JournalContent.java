@@ -88,7 +88,8 @@ public interface JournalContent {
 		String xmlRequest);
 
 	public JournalArticleDisplay getDisplay(
-		long groupId, String articleId, double version, String templateId, 
+		long groupId, String articleId, double version, String templateId,
 		String viewMode, String languageId, ThemeDisplay themeDisplay, int page,
 		String xmlRequest);
+
 }

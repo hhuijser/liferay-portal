@@ -206,11 +206,11 @@ public class JournalArticleAssetRenderer extends BaseAssetRenderer {
 	public Date getDisplayDate() {
 		return _article.getDisplayDate();
 	}
-	
+
 	public Date getExpirationDate() {
 		return _article.getExpirationDate();
 	}
-	
+
 	public String render(
 			RenderRequest renderRequest, RenderResponse renderResponse,
 			String template)

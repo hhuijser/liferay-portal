@@ -76,13 +76,11 @@ public class JournalArticleAssetRendererFactory
 					classPK);
 
 			if (type == TYPE_LATEST_APPROVED) {
-
 				article =
 					JournalArticleLocalServiceUtil.getDisplayArticle(
 						articleResource.getGroupId(),
 						articleResource.getArticleId());
 			} else {
-
 				article =
 					JournalArticleLocalServiceUtil.getLatestArticle(
 						articleResource.getGroupId(),

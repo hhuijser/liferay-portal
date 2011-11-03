@@ -89,16 +89,15 @@ public class ViewAction extends WebContentAction {
 
 				articleDisplay = JournalContentUtil.getDisplay(
 					groupId, articleId, version, templateId, viewMode,
-					languageId,	themeDisplay, page, xmlRequest);
+					languageId, themeDisplay, page, xmlRequest);
 			}
 			catch (Exception e) {
 				renderRequest.removeAttribute(WebKeys.JOURNAL_ARTICLE);
 
 				articleDisplay = JournalContentUtil.getDisplay(
-					groupId, articleId, templateId, viewMode,
-					languageId,	themeDisplay, page, xmlRequest);
+					groupId, articleId, templateId, viewMode, languageId,
+					themeDisplay, page, xmlRequest);
 			}
-
 		}
 
 		if (article != null) {

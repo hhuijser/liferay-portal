@@ -157,9 +157,9 @@ public class JournalContentImpl implements JournalContent {
 		long groupId, String articleId, String templateId, String viewMode,
 		String languageId, ThemeDisplay themeDisplay, int page,
 		String xmlRequest) {
-			
+
 		return getDisplay(
-			groupId, articleId, 0.0 , templateId, viewMode, languageId, 
+			groupId, articleId, 0.0 , templateId, viewMode, languageId,
 			themeDisplay, 1, null);
 		}
 
@@ -198,7 +198,7 @@ public class JournalContentImpl implements JournalContent {
 
 		String key = encodeKey(
 			groupId, articleId, version, templateId, layoutSetId, viewMode,
-			languageId,	page, secure);
+			languageId, page, secure);
 
 		JournalArticleDisplay articleDisplay =
 			(JournalArticleDisplay)portalCache.get(key);
@@ -241,8 +241,8 @@ public class JournalContentImpl implements JournalContent {
 	}
 
 	protected String encodeKey(
-		long groupId, String articleId, double version, String templateId, 
-		long layoutSetId, String viewMode, String languageId, int page, 
+		long groupId, String articleId, double version, String templateId,
+		long layoutSetId, String viewMode, String languageId, int page,
 		boolean secure) {
 
 		StringBundler sb = new StringBundler();

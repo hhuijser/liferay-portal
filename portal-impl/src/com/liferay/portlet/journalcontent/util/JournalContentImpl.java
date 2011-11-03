@@ -157,6 +157,16 @@ public class JournalContentImpl implements JournalContent {
 		long groupId, String articleId, String templateId, String viewMode,
 		String languageId, ThemeDisplay themeDisplay, int page,
 		String xmlRequest) {
+			
+		return getDisplay(
+			groupId, articleId, 0.0 , templateId, viewMode, languageId, 
+			themeDisplay, 1, null);
+		}
+
+	public JournalArticleDisplay getDisplay(
+		long groupId, String articleId, double version, String templateId,
+		String viewMode, String languageId, ThemeDisplay themeDisplay, int page,
+		String xmlRequest) {
 
 		StopWatch stopWatch = null;
 
@@ -187,8 +197,8 @@ public class JournalContentImpl implements JournalContent {
 		}
 
 		String key = encodeKey(
-			groupId, articleId, templateId, layoutSetId, viewMode, languageId,
-			page, secure);
+			groupId, articleId, version, templateId, layoutSetId, viewMode,
+			languageId,	page, secure);
 
 		JournalArticleDisplay articleDisplay =
 			(JournalArticleDisplay)portalCache.get(key);
@@ -231,8 +241,9 @@ public class JournalContentImpl implements JournalContent {
 	}
 
 	protected String encodeKey(
-		long groupId, String articleId, String templateId, long layoutSetId,
-		String viewMode, String languageId, int page, boolean secure) {
+		long groupId, String articleId, double version, String templateId, 
+		long layoutSetId, String viewMode, String languageId, int page, 
+		boolean secure) {
 
 		StringBundler sb = new StringBundler();
 
@@ -241,6 +252,8 @@ public class JournalContentImpl implements JournalContent {
 		sb.append(StringUtil.toHexString(groupId));
 		sb.append(ARTICLE_SEPARATOR);
 		sb.append(articleId);
+		sb.append(VERSION_SEPARATOR);
+		sb.append(version);
 		sb.append(TEMPLATE_SEPARATOR);
 		sb.append(templateId);
 

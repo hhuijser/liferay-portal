@@ -422,6 +422,8 @@ public class JournalArticleLocalServiceImpl
 				indexer.delete(article);
 			}
 
+			updatePreviousApprovedArticle(article);
+
 			JournalContentUtil.clearCache(
 				article.getGroupId(), article.getArticleId(),
 				article.getTemplateId());
@@ -1401,17 +1403,33 @@ public class JournalArticleLocalServiceImpl
 
 		if (status == WorkflowConstants.STATUS_ANY) {
 			articles = journalArticlePersistence.findByG_UT(
-				groupId, urlTitle, 0, 1, orderByComparator);
+				groupId, urlTitle, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				orderByComparator);
 		}
 		else {
 			articles = journalArticlePersistence.findByG_UT_ST(
-				groupId, urlTitle, status, 0, 1, orderByComparator);
+				groupId, urlTitle, status, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				orderByComparator);
 		}
 
 		if (articles.isEmpty()) {
 			throw new NoSuchArticleException(
 				"No JournalArticle with the key {groupId=" + groupId +
 					", urlTitle=" + urlTitle + ", status=" + status + "}");
+		}
+
+		Date now = new Date();
+
+		for (int i = 0; i < articles.size(); i++) {
+			JournalArticle article = articles.get(i);
+
+			Date expirationDate = article.getExpirationDate();
+
+			if (article.getDisplayDate().before(now) &&
+				((expirationDate == null) || expirationDate.after(now))) {
+
+				return article;
+			}
 		}
 
 		return articles.get(0);

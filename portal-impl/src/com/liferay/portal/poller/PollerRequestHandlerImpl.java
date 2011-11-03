@@ -101,7 +101,6 @@ public class PollerRequestHandlerImpl
 	}
 
 	public PollerHeader getPollerRequestHeader(String pollerRequestString) {
-
 		if (Validator.isNull(pollerRequestString)) {
 			return null;
 		}

@@ -121,6 +121,8 @@
 
 		<action path="/activities/view" forward="portlet.activities.view" />
 
+		<action path="/activities/rss" type="com.liferay.portlet.activities.action.RSSAction" />
+
 		<!-- Admin -->
 
 		<action path="/admin/edit_instance" type="com.liferay.portlet.admin.action.EditInstanceAction">

@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -213,8 +215,17 @@ public class PortletURLUtil {
 
 		String ppid = ParamUtil.getString(request, "p_p_id");
 
+		String[] reservedRefreshURLParameters = 
+			PropsUtil.getArray(PropsKeys.RESERVED_REFRESH_URL_PARAMETERS);
+
 		if (ppid.equals(portletId)) {
+			String namespace = PortalUtil.getPortletNamespace(portletId);
+
 			Map<String, String[]> parameters = request.getParameterMap();
+
+			for (String parameter : reservedRefreshURLParameters) {
+				parameters.remove(namespace.concat(parameter));
+			}
 
 			for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
 				String name = entry.getKey();

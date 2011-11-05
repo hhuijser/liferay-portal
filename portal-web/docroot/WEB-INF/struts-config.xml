@@ -119,9 +119,9 @@
 
 		<!-- Activities -->
 
-		<action path="/activities/view" forward="portlet.activities.view" />
-
 		<action path="/activities/rss" type="com.liferay.portlet.activities.action.RSSAction" />
+
+		<action path="/activities/view" forward="portlet.activities.view" />
 
 		<!-- Admin -->
 

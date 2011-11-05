@@ -135,5 +135,5 @@ Format timeFormatDate = FastDateFormatFactoryUtil.getTime(locale, timeZone);
 </c:if>
 
 <%!
-private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.taglib.ui.social_activities.page.jsp");
+private static Log _log = LogFactoryUtil.getLog("portal-web.docroot.html.taglib.ui.social_activities.page_jsp");
 %>

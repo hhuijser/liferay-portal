@@ -63,6 +63,7 @@ if (!group.isUser() && selLayout.isTypePortlet()) {
 }
 
 String[][] categorySections = {mainSections};
+
 long parentPlid = refererPlid;
 
 Set<Long> parentPlids = new HashSet<Long>();
@@ -75,6 +76,7 @@ while (parentPlid > 0) {
 		if (parentLayout.getParentPlid() > 0) {
 			parentPlids.add(parentLayout.getParentPlid());
 		}
+
 		parentPlid = parentLayout.getParentPlid();
 	}
 	catch (Exception e) {

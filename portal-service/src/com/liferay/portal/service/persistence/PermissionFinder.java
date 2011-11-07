@@ -77,6 +77,10 @@ public interface PermissionFinder {
 		long roleId, long resourceId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public java.util.List<com.liferay.portal.model.Permission> findByR_S(
+		long roleId, int[] scopes, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	public java.util.List<com.liferay.portal.model.Permission> findByU_R(
 		long userId, long resourceId)
 		throws com.liferay.portal.kernel.exception.SystemException;

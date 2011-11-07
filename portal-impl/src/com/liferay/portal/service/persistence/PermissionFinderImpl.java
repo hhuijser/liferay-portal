@@ -17,6 +17,7 @@ package com.liferay.portal.service.persistence;
 import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.dao.orm.Type;
@@ -76,6 +77,9 @@ public class PermissionFinderImpl
 
 	public static String FIND_BY_R_R =
 		PermissionFinder.class.getName() + ".findByR_R";
+
+	public static String FIND_BY_R_S =
+		PermissionFinder.class.getName() + ".findByR_S";
 
 	public static String FIND_BY_U_R =
 		PermissionFinder.class.getName() + ".findByU_R";
@@ -806,6 +810,39 @@ public class PermissionFinderImpl
 		}
 	}
 
+	public List<Permission> findByR_S(
+			long roleId, int[] scopes, int start, int end)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_R_S);
+
+			sql = StringUtil.replace(sql, "[$SCOPE$]", getScopes(scopes));
+
+			SQLQuery q = session.createSQLQuery(sql);
+
+			q.addEntity("Permission_", PermissionImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(roleId);
+			qPos.add(scopes);
+
+			return (List<Permission>)QueryUtil.list(
+				q, getDialect(), start, end);
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
 	public List<Permission> findByU_R(long userId, long resourceId)
 		throws SystemException {
 
@@ -1055,6 +1092,20 @@ public class PermissionFinderImpl
 
 			if ((i + 1) < roles.size()) {
 				sb.append(" OR ");
+			}
+		}
+
+		return sb.toString();
+	}
+
+	protected String getScopes(int[] scopes) {
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < scopes.length; i++) {
+			sb.append("ResourceCode.scope = ? ");
+
+			if ((i + 1) != scopes.length) {
+				sb.append("OR ");
 			}
 		}
 

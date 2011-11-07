@@ -481,6 +481,12 @@ public class PermissionLocalServiceUtil {
 		return getService().getRolePermissions(roleId, resourceId);
 	}
 
+	public static java.util.List<com.liferay.portal.model.Permission> getRolePermissions(
+		long roleId, int[] scopes, int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getRolePermissions(roleId, scopes, start, end);
+	}
+
 	/**
 	* Returns all the user's permissions.
 	*

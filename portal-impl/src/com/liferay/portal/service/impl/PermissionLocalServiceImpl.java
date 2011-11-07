@@ -411,6 +411,13 @@ public class PermissionLocalServiceImpl extends PermissionLocalServiceBaseImpl {
 		return permissionFinder.findByR_R(roleId, resourceId);
 	}
 
+	public List<Permission> getRolePermissions(
+		long roleId, int[] scopes, int start, int end)
+		throws SystemException {
+
+		return permissionFinder.findByR_S(roleId, scopes, start, end);
+	}
+
 	/**
 	 * Returns all the user's permissions.
 	 *

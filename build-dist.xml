@@ -1365,6 +1365,30 @@ sh startWebLogic.sh</echo>
 		<if>
 			<available file="${zip.executable.dir}/../data" />
 			<then>
+				<zip
+					destfile="dist/${zip.executable.file}-${lp.version}.zip"
+				>
+					<zipfileset
+						dir="${zip.executable.dir}"
+						excludes="**/*.sh"
+						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
+					/>
+					<zipfileset
+						dir="${zip.executable.dir}"
+						filemode="744"
+						includes="**/*.sh"
+						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
+					/>
+					<zipfileset
+						dir="${zip.executable.dir}/../data"
+						prefix="liferay-portal-${lp.version}/data"
+					/>
+					<zipfileset
+						dir="tools/zip_tmpl"
+						prefix="liferay-portal-${lp.version}"
+					/>
+				</zip>
+
 				<delete dir="${zip.executable.dir}/../patching-tool" />
 
 				<if>
@@ -1396,36 +1420,18 @@ sh startWebLogic.sh</echo>
 						<exec dir="${zip.executable.dir}/../patching-tool" executable="cmd.exe">
 							<arg line="/c patching-tool.bat auto-discovery" />
 						</exec>
+
+						<zip
+							destfile="dist/${zip.executable.file}-${lp.version}.zip"
+							update="yes"
+						>
+							<zipfileset
+								dir="${zip.executable.dir}/../patching-tool"
+								prefix="liferay-portal-${lp.version}/patching-tool"
+							/>
+						</zip>
 					</then>
 				</if>
-
-				<zip
-					destfile="dist/${zip.executable.file}-${lp.version}.zip"
-				>
-					<zipfileset
-						dir="${zip.executable.dir}"
-						excludes="**/*.sh"
-						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
-					/>
-					<zipfileset
-						dir="${zip.executable.dir}"
-						filemode="744"
-						includes="**/*.sh"
-						prefix="liferay-portal-${lp.version}/${zip.executable.dir.name}"
-					/>
-					<zipfileset
-						dir="${zip.executable.dir}/../data"
-						prefix="liferay-portal-${lp.version}/data"
-					/>
-					<zipfileset
-						dir="${zip.executable.dir}/../patching-tool"
-						prefix="liferay-portal-${lp.version}/patching-tool"
-					/>
-					<zipfileset
-						dir="tools/zip_tmpl"
-						prefix="liferay-portal-${lp.version}"
-					/>
-				</zip>
 			</then>
 			<else>
 

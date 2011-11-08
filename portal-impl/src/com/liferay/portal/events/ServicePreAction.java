@@ -976,7 +976,13 @@ public class ServicePreAction extends Action {
 
 				themeDisplay.setURLPageSettings(pageSettingsURL);
 
-				if (group.isSite() &&
+				Group liveGroup = null;
+
+				if (group.isStagingGroup()) {
+					liveGroup = group.getLiveGroup();
+				}
+
+				if ((group.isSite() || liveGroup.isSite()) &&
 					GroupPermissionUtil.contains(
 						permissionChecker, scopeGroupId,
 						ActionKeys.ASSIGN_MEMBERS)) {

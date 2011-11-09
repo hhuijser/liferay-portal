@@ -48,6 +48,10 @@
 		}
 	}
 
+	.feed-entry-enclosure {
+		display: block;
+		font-size: 0.9em;
+	}
 	.feed-entry-expander {
 		cursor: pointer;
 		float: left;

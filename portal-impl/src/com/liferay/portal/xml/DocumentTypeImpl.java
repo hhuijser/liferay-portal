@@ -14,6 +14,7 @@
 
 package com.liferay.portal.xml;
 
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.xml.DocumentType;
 
 /**
@@ -30,10 +31,18 @@ public class DocumentTypeImpl implements DocumentType {
 	}
 
 	public String getPublicId() {
+		if (_documentType == null) {
+			return null;
+		}
+
 		return _documentType.getPublicID();
 	}
 
 	public String getSystemId() {
+		if (_documentType == null) {
+			return null;
+		}
+
 		return _documentType.getSystemID();
 	}
 
@@ -43,11 +52,19 @@ public class DocumentTypeImpl implements DocumentType {
 
 	@Override
 	public int hashCode() {
+		if (_documentType == null) {
+			return super.hashCode();
+		}
+
 		return _documentType.hashCode();
 	}
 
 	@Override
 	public String toString() {
+		if (_documentType == null) {
+			return StringPool.BLANK;
+		}
+
 		return _documentType.toString();
 	}
 

@@ -3309,6 +3309,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			User user, String emailAddress, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
+		if (user.isEmailAddressVerified() &&
+			emailAddress.equalsIgnoreCase(user.getEmailAddress())) {
+
+			return;
+		}
+
 		Ticket ticket = ticketLocalService.addTicket(
 			user.getCompanyId(), User.class.getName(), user.getUserId(),
 			TicketConstants.TYPE_EMAIL_ADDRESS, emailAddress, null,
@@ -4658,6 +4664,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
+		user.setFacebookId(facebookId);
 		user.setOpenId(openId);
 		user.setLanguageId(languageId);
 		user.setTimeZoneId(timeZoneId);

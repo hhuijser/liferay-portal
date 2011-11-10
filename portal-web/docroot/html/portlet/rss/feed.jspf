@@ -18,7 +18,7 @@
 SyndFeed feed = null;
 
 try {
-	ObjectValuePair ovp = RSSUtil.getFeed(HtmlUtil.escape(url));
+	ObjectValuePair ovp = RSSUtil.getFeed(url);
 
 	feed = (SyndFeed)ovp.getValue();
 
@@ -187,7 +187,7 @@ catch (Exception e) {
 	</c:when>
 	<c:otherwise>
 		<div class="portlet-msg-error">
-			<%= LanguageUtil.format(pageContext, "cannot-be-found", urls[i], false) %>
+			<%= LanguageUtil.format(pageContext, "cannot-be-found", HtmlUtil.escape(urls[i]), false) %>
 		</div>
 	</c:otherwise>
 </c:choose>

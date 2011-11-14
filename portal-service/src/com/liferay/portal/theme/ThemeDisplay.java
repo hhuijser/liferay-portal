@@ -846,9 +846,7 @@ public class ThemeDisplay implements Serializable {
 		LocaleThreadLocal.setThemeDisplayLocale(locale);
 	}
 
-	public void setLookAndFeel(
-		String contextPath, Theme theme, ColorScheme colorScheme) {
-
+	public void setLookAndFeel(Theme theme, ColorScheme colorScheme) {
 		_theme = theme;
 		_colorScheme = colorScheme;
 
@@ -875,10 +873,6 @@ public class ThemeDisplay implements Serializable {
 			setPathThemeTemplates(
 				host + themeStaticResourcePath + theme.getTemplatesPath());
 		}
-	}
-
-	public void setLookAndFeel(Theme theme, ColorScheme colorScheme) {
-		setLookAndFeel(getPathContext(), theme, colorScheme);
 	}
 
 	public void setMDRRuleGroupInstance(

@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncPrintWriter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.scripting.ScriptingException;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -33,8 +33,10 @@ import com.liferay.portal.model.Theme;
 import com.liferay.portal.scripting.ruby.RubyExecutor;
 import com.liferay.portal.service.ThemeLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.tools.SassToCssBuilder;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.util.ContentUtil;
+
+import java.io.File;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -53,7 +55,7 @@ public class DynamicCSSUtil {
 
 	public static void init() {
 		try {
-			_rubyScript = ContentUtil.get(
+			_rubyScript = StringUtil.read(
 				PortalClassLoaderUtil.getClassLoader(),
 				"com/liferay/portal/servlet/filters/dynamiccss/main.rb");
 		}
@@ -64,11 +66,9 @@ public class DynamicCSSUtil {
 
 	public static String parseSass(
 			HttpServletRequest request, String cssRealPath, String content)
-		throws ScriptingException {
+		throws Exception {
 
-		String cssThemePath = getCssThemePath(request, cssRealPath);
-
-		if (!DynamicCSSFilter.ENABLED || (cssThemePath == null)) {
+		if (!DynamicCSSFilter.ENABLED) {
 			return content;
 		}
 
@@ -80,53 +80,79 @@ public class DynamicCSSUtil {
 			stopWatch.start();
 		}
 
-		Map<String, Object> inputObjects = new HashMap<String, Object>();
-
-		inputObjects.put("content", content);
-		inputObjects.put("cssRealPath", cssRealPath);
-		inputObjects.put("cssThemePath", cssThemePath);
-		inputObjects.put("sassCachePath", _SASS_DIR);
-
-		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
-			new UnsyncByteArrayOutputStream();
-
-		UnsyncPrintWriter unsyncPrintWriter = UnsyncPrintWriterPool.borrow(
-			unsyncByteArrayOutputStream);
-
-		inputObjects.put("out", unsyncPrintWriter);
-
-		_rubyExecutor.eval(null, inputObjects, null, _rubyScript);
-
-		unsyncPrintWriter.flush();
-
-		String parsedContent = unsyncByteArrayOutputStream.toString();
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(
-				"Parsing SASS for " + cssRealPath + " takes " +
-					stopWatch.getTime() + " ms");
-		}
-
-		if (Validator.isNotNull(parsedContent)) {
-			return parsedContent;
-		}
-
-		return content;
-	}
-
-	protected static String getCssThemePath(
-		HttpServletRequest request, String cssRealPath) {
-
-		if (request == null) {
-			return null;
-		}
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		if (themeDisplay != null) {
-			return themeDisplay.getPathThemeCss();
+		Theme theme = null;
+
+		if (themeDisplay == null) {
+			theme = _getTheme(request, cssRealPath);
+
+			if (theme == null) {
+				return content;
+			}
 		}
+
+		String parsedContent = null;
+
+		File cssRealFile = new File(cssRealPath);
+		File cacheCssRealFile = SassToCssBuilder.getCacheFile(cssRealPath);
+
+		if (cacheCssRealFile.exists() &&
+			(cacheCssRealFile.lastModified() == cssRealFile.lastModified())) {
+
+			parsedContent = FileUtil.read(cacheCssRealFile);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"Loading SASS cache from " + cacheCssRealFile + " takes " +
+						stopWatch.getTime() + " ms");
+			}
+		}
+		else {
+			parsedContent = _parseSass(
+				request, themeDisplay, theme, cssRealPath, content);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					"Parsing SASS for " + cssRealPath + " takes " +
+						stopWatch.getTime() + " ms");
+			}
+		}
+
+		if (Validator.isNull(parsedContent)) {
+			return content;
+		}
+
+		parsedContent = StringUtil.replace(
+			parsedContent, "@theme_image_path@",
+			_getThemeImagesPath(request, themeDisplay, theme));
+
+		return parsedContent;
+	}
+
+	private static String _getCssThemePath(
+			HttpServletRequest request, ThemeDisplay themeDisplay, Theme theme)
+		throws Exception {
+
+		String cssThemePath = null;
+
+		if (themeDisplay != null) {
+			cssThemePath = themeDisplay.getPathThemeCss();
+		}
+		else {
+			String cdnHost = PortalUtil.getCDNHost(request);
+			String themeStaticResourcePath = theme.getStaticResourcePath();
+
+			cssThemePath =
+				cdnHost + themeStaticResourcePath + theme.getCssPath();
+		}
+
+		return cssThemePath;
+	}
+
+	private static Theme _getTheme(
+		HttpServletRequest request, String cssRealPath) {
 
 		long companyId = PortalUtil.getCompanyId(request);
 
@@ -173,15 +199,61 @@ public class DynamicCSSUtil {
 			Theme theme = ThemeLocalServiceUtil.getTheme(
 				companyId, themeId, false);
 
-			String themeStaticResourcePath = theme.getStaticResourcePath();
-
-			return themeStaticResourcePath.concat(theme.getCssPath());
+			return theme;
 		}
 		catch (Exception e) {
 			_log.error(e, e);
 		}
 
 		return null;
+	}
+
+	private static String _getThemeImagesPath(
+			HttpServletRequest request, ThemeDisplay themeDisplay, Theme theme)
+		throws Exception {
+
+		String themeImagesPath = null;
+
+		if (themeDisplay != null) {
+			themeImagesPath = themeDisplay.getPathThemeImages();
+		}
+		else {
+			String cdnHost = PortalUtil.getCDNHost(request);
+			String themeStaticResourcePath = theme.getStaticResourcePath();
+
+			themeImagesPath =
+				cdnHost + themeStaticResourcePath + theme.getImagesPath();
+		}
+
+		return themeImagesPath;
+	}
+
+	private static String _parseSass(
+			HttpServletRequest request, ThemeDisplay themeDisplay, Theme theme,
+			String cssRealPath, String content)
+		throws Exception {
+
+		Map<String, Object> inputObjects = new HashMap<String, Object>();
+
+		inputObjects.put("content", content);
+		inputObjects.put("cssRealPath", cssRealPath);
+		inputObjects.put(
+			"cssThemePath", _getCssThemePath(request, themeDisplay, theme));
+		inputObjects.put("sassCachePath", _SASS_DIR);
+
+		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
+			new UnsyncByteArrayOutputStream();
+
+		UnsyncPrintWriter unsyncPrintWriter = UnsyncPrintWriterPool.borrow(
+			unsyncByteArrayOutputStream);
+
+		inputObjects.put("out", unsyncPrintWriter);
+
+		_rubyExecutor.eval(null, inputObjects, null, _rubyScript);
+
+		unsyncPrintWriter.flush();
+
+		return unsyncByteArrayOutputStream.toString();
 	}
 
 	private static final String _SASS_DIR =

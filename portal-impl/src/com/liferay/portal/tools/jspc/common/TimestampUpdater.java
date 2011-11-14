@@ -32,10 +32,10 @@ public class TimestampUpdater {
 		}
 	}
 
-	public TimestampUpdater(String classDir) {
+	public TimestampUpdater(String classDirName) {
 		DirectoryScanner directoryScanner = new DirectoryScanner();
 
-		directoryScanner.setBasedir(classDir);
+		directoryScanner.setBasedir(classDirName);
 		directoryScanner.setIncludes(new String[] {"**\\*.java"});
 
 		directoryScanner.scan();
@@ -43,14 +43,14 @@ public class TimestampUpdater {
 		String[] fileNames = directoryScanner.getIncludedFiles();
 
 		for (String fileName : fileNames) {
-			File javaFile = new File(classDir, fileName);
+			File javaFile = new File(classDirName, fileName);
 
 			String fileNameWithoutExtension = fileName.substring(
 				0, fileName.length() - 5);
 
 			String classFileName = fileNameWithoutExtension.concat(".class");
 
-			File classFile = new File(classDir, classFileName);
+			File classFile = new File(classDirName, classFileName);
 
 			classFile.setLastModified(javaFile.lastModified());
 		}

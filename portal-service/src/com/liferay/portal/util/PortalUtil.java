@@ -263,6 +263,12 @@ public class PortalUtil {
 		return getPortal().getCDNHost(secure);
 	}
 
+	public static String getCDNHost(HttpServletRequest request)
+		throws PortalException, SystemException {
+
+		return getPortal().getCDNHost(request);
+	}
+
 	public static String getCDNHostHttp(long companyId) {
 		return getPortal().getCDNHostHttp(companyId);
 	}

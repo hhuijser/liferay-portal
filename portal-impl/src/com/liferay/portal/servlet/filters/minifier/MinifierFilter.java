@@ -59,20 +59,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class MinifierFilter extends BasePortalFilter {
 
-	@Override
-	public void init(FilterConfig filterConfig) {
-		super.init(filterConfig);
-
-		_servletContext = filterConfig.getServletContext();
-		_servletContextName = GetterUtil.getString(
-			_servletContext.getServletContextName());
-
-		if (Validator.isNull(_servletContextName)) {
-			_tempDir += "/portal";
-		}
-	}
-
-	protected String aggregateCss(String dir, String content)
+	public static String aggregateCss(String dir, String content)
 		throws IOException {
 
 		StringBuilder sb = new StringBuilder(content.length());
@@ -167,6 +154,19 @@ public class MinifierFilter extends BasePortalFilter {
 		}
 
 		return sb.toString();
+	}
+
+	@Override
+	public void init(FilterConfig filterConfig) {
+		super.init(filterConfig);
+
+		_servletContext = filterConfig.getServletContext();
+		_servletContextName = GetterUtil.getString(
+			_servletContext.getServletContextName());
+
+		if (Validator.isNull(_servletContextName)) {
+			_tempDir += "/portal";
+		}
 	}
 
 	protected Object getMinifiedBundleContent(

@@ -1591,9 +1591,11 @@ public class PortalImpl implements Portal {
 				valueDateHour += 12;
 			}
 
+			TimeZone timeZone = (user != null) ? user.getTimeZone() : null;
+
 			value = getDate(
 				valueDateMonth, valueDateDay, valueDateYear, valueDateHour,
-				valueDateMinute, user.getTimeZone(), new ValueDataException());
+				valueDateMinute, timeZone, new ValueDataException());
 		}
 		else if (type == ExpandoColumnConstants.DATE_ARRAY) {
 		}

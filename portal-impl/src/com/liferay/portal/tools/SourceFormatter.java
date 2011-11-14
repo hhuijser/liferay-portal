@@ -964,6 +964,32 @@ public class SourceFormatter {
 			line = _replacePrimitiveWrapperInstantiation(
 				fileName, line, lineCount);
 
+			String trimmedLine = StringUtil.trimLeading(line);
+
+			if (!trimmedLine.contains(StringPool.DOUBLE_SLASH) &&
+				!trimmedLine.startsWith(StringPool.STAR)) {
+
+				while (trimmedLine.contains(StringPool.TAB)) {
+					line = StringUtil.replaceLast(
+						line, StringPool.TAB, StringPool.SPACE);
+
+					trimmedLine = StringUtil.replaceLast(
+						trimmedLine, StringPool.TAB, StringPool.SPACE);
+				}
+
+				while (trimmedLine.contains(StringPool.DOUBLE_SPACE) &&
+					   !trimmedLine.contains(
+						   StringPool.QUOTE + StringPool.DOUBLE_SPACE) &&
+					   !fileName.contains("Test")) {
+
+					line = StringUtil.replaceLast(
+						line, StringPool.DOUBLE_SPACE, StringPool.SPACE);
+
+					trimmedLine = StringUtil.replaceLast(
+						trimmedLine, StringPool.DOUBLE_SPACE, StringPool.SPACE);
+				}
+			}
+
 			sb.append(line);
 			sb.append("\n");
 
@@ -972,16 +998,6 @@ public class SourceFormatter {
 					_sourceFormatterHelper.printError(
 						fileName, "tab: " + fileName + " " + lineCount);
 				}
-			}
-
-			String trimmedLine = StringUtil.trimLeading(line);
-
-			if (trimmedLine.contains(StringPool.TAB) &&
-				!trimmedLine.contains(StringPool.DOUBLE_SLASH) &&
-				!trimmedLine.startsWith(StringPool.STAR)) {
-
-				_sourceFormatterHelper.printError(
-					fileName, "tab: " + fileName + " " + lineCount);
 			}
 
 			if (line.contains("  {") && !line.matches("\\s*\\*.*")) {
@@ -1264,12 +1280,28 @@ public class SourceFormatter {
 
 			String trimmedLine = StringUtil.trimLeading(line);
 
-			if (trimmedLine.contains(StringPool.TAB) &&
-				!trimmedLine.contains(StringPool.DOUBLE_SLASH) &&
+			if (!trimmedLine.contains(StringPool.DOUBLE_SLASH) &&
 				!trimmedLine.startsWith(StringPool.STAR)) {
 
-				_sourceFormatterHelper.printError(
-					fileName, "tab: " + fileName + " " + lineCount);
+				while (trimmedLine.contains(StringPool.TAB)) {
+					line = StringUtil.replaceLast(
+						line, StringPool.TAB, StringPool.SPACE);
+
+					trimmedLine = StringUtil.replaceLast(
+						trimmedLine, StringPool.TAB, StringPool.SPACE);
+				}
+
+				while (trimmedLine.contains(StringPool.DOUBLE_SPACE) &&
+					   !trimmedLine.contains(
+						   StringPool.QUOTE + StringPool.DOUBLE_SPACE) &&
+					   !fileName.endsWith(".vm")) {
+
+					line = StringUtil.replaceLast(
+						line, StringPool.DOUBLE_SPACE, StringPool.SPACE);
+
+					trimmedLine = StringUtil.replaceLast(
+						trimmedLine, StringPool.DOUBLE_SPACE, StringPool.SPACE);
+				}
 			}
 
 			int x = line.indexOf("<%@ include file");

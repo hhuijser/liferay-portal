@@ -375,6 +375,9 @@ public interface Portal {
 	 */
 	public String getCDNHost(boolean secure);
 
+	public String getCDNHost(HttpServletRequest request)
+		throws PortalException, SystemException;
+
 	/**
 	 * Returns the insecure (HTTP) content distribution network (CDN) host
 	 * address

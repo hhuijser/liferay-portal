@@ -231,6 +231,8 @@ boolean showPortletWithNoResults = false;
 boolean groupByClass = (assetVocabularyId == -1);
 boolean allowEmptyResults = false;
 
+Map<String, PortletURL> addPortletURLs = null;
+
 Format dateFormatDate = FastDateFormatFactoryUtil.getDate(locale, timeZone);
 %>
 

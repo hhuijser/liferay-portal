@@ -557,6 +557,8 @@ public class PropsValues {
 
 	public static final String FACEBOOK_CONNECT_OAUTH_TOKEN_URL = PropsUtil.get(PropsKeys.FACEBOOK_CONNECT_OAUTH_TOKEN_URL);
 
+	public static final boolean FACEBOOK_CONNECT_VERIFIED_ACCOUNT_REQUIRED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.FACEBOOK_CONNECT_VERIFIED_ACCOUNT_REQUIRED));
+
 	public static final String[] FIELD_EDITABLE_COM_LIFERAY_PORTAL_MODEL_USER_EMAILADDRESS = PropsUtil.getArray(PropsKeys.FIELD_EDITABLE_COM_LIFERAY_PORTAL_MODEL_USER_EMAILADDRESS);
 
 	public static final String[] FIELD_EDITABLE_COM_LIFERAY_PORTAL_MODEL_USER_SCREENNAME = PropsUtil.getArray(PropsKeys.FIELD_EDITABLE_COM_LIFERAY_PORTAL_MODEL_USER_SCREENNAME);
@@ -1050,8 +1052,6 @@ public class PropsValues {
 	public static final boolean ORGANIZATIONS_SEARCH_WITH_INDEX = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.ORGANIZATIONS_SEARCH_WITH_INDEX));
 
 	public static String[] ORGANIZATIONS_TYPES = PropsUtil.getArray(PropsKeys.ORGANIZATIONS_TYPES);
-
-	public static final boolean ORGANIZATIONS_USER_GROUP_MEMBERSHIP_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.ORGANIZATIONS_USER_GROUP_MEMBERSHIP_ENABLED));
 
 	public static final boolean OSGI_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.OSGI_ENABLED));
 

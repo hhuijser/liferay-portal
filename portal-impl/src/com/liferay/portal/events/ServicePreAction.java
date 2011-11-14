@@ -147,16 +147,7 @@ public class ServicePreAction extends Action {
 
 		// CDN host
 
-		String cdnHost = null;
-
-		if (request.isSecure()) {
-			cdnHost = PortalUtil.getCDNHostHttps(companyId);
-		}
-		else {
-			cdnHost = PortalUtil.getCDNHostHttp(companyId);
-		}
-
-		cdnHost = ParamUtil.getString(request, "cdn_host", cdnHost);
+		String cdnHost = PortalUtil.getCDNHost(request);
 
 		// Portal URL
 
@@ -752,7 +743,7 @@ public class ServicePreAction extends Action {
 		themeDisplay.setI18nLanguageId(i18nLanguageId);
 		themeDisplay.setI18nPath(i18nPath);
 		themeDisplay.setTimeZone(timeZone);
-		themeDisplay.setLookAndFeel(contextPath, theme, colorScheme);
+		themeDisplay.setLookAndFeel(theme, colorScheme);
 		themeDisplay.setThemeCssFastLoad(themeCssFastLoad);
 		themeDisplay.setThemeImagesFastLoad(themeImagesFastLoad);
 		themeDisplay.setThemeJsBarebone(themeJsBarebone);

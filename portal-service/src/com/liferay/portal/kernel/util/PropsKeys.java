@@ -673,6 +673,8 @@ public interface PropsKeys {
 
 	public static final String FACEBOOK_CONNECT_OAUTH_TOKEN_URL = "facebook.connect.oauth.token.url";
 
+	public static final String FACEBOOK_CONNECT_VERIFIED_ACCOUNT_REQUIRED = "facebook.connect.verified.account.required";
+
 	public static final String FIELD_EDITABLE_COM_LIFERAY_PORTAL_MODEL_USER_EMAILADDRESS = "field.editable.com.liferay.portal.model.User.emailAddress";
 
 	public static final String FIELD_EDITABLE_COM_LIFERAY_PORTAL_MODEL_USER_SCREENNAME = "field.editable.com.liferay.portal.model.User.screenName";
@@ -1464,8 +1466,6 @@ public interface PropsKeys {
 	public static final String ORGANIZATIONS_SEARCH_WITH_INDEX = "organizations.search.with.index";
 
 	public static final String ORGANIZATIONS_TYPES = "organizations.types";
-
-	public static final String ORGANIZATIONS_USER_GROUP_MEMBERSHIP_ENABLED = "organizations.user.group.membership.enabled";
 
 	public static final String OSGI_ENABLED = "osgi.enabled";
 

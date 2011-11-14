@@ -411,17 +411,12 @@ public class LayoutPermissionImpl implements LayoutPermission {
 		// or by users who can update the site
 
 		if (group.isSite()) {
-			if (GroupLocalServiceUtil.hasUserGroup(
-					permissionChecker.getUserId(), group.getGroupId())) {
-
-				return true;
-			}
-			else if (GroupPermissionUtil.contains(
-						permissionChecker, group.getGroupId(),
-						ActionKeys.MANAGE_LAYOUTS) ||
-					 GroupPermissionUtil.contains(
-						permissionChecker, group.getGroupId(),
-						ActionKeys.UPDATE)) {
+			if (GroupPermissionUtil.contains(
+					permissionChecker, group.getGroupId(),
+					ActionKeys.MANAGE_LAYOUTS) ||
+				 GroupPermissionUtil.contains(
+					permissionChecker, group.getGroupId(),
+					ActionKeys.UPDATE)) {
 
 				return true;
 			}
@@ -457,7 +452,7 @@ public class LayoutPermissionImpl implements LayoutPermission {
 			long organizationId = group.getOrganizationId();
 
 			if (OrganizationLocalServiceUtil.hasUserOrganization(
-					permissionChecker.getUserId(), organizationId, false, true,
+					permissionChecker.getUserId(), organizationId, false,
 					false)) {
 
 				return true;
@@ -471,7 +466,7 @@ public class LayoutPermissionImpl implements LayoutPermission {
 			if (!PropsValues.ORGANIZATIONS_MEMBERSHIP_STRICT) {
 				List<Organization> userOrgs =
 					OrganizationLocalServiceUtil.getUserOrganizations(
-						permissionChecker.getUserId(), true);
+						permissionChecker.getUserId());
 
 				for (Organization organization : userOrgs) {
 					for (Organization ancestorOrganization :

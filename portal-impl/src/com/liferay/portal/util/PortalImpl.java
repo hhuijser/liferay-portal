@@ -1003,6 +1003,23 @@ public class PortalImpl implements Portal {
 		}
 	}
 
+	public String getCDNHost(HttpServletRequest request)
+		throws PortalException, SystemException {
+
+		String cdnHost = null;
+
+		Company company = getCompany(request);
+
+		if (request.isSecure()) {
+			cdnHost = getCDNHostHttps(company.getCompanyId());
+		}
+		else {
+			cdnHost = getCDNHostHttp(company.getCompanyId());
+		}
+
+		return ParamUtil.getString(request, "cdn_host", cdnHost);
+	}
+
 	public String getCDNHostHttp(long companyId) {
 		String cdnHostHttp = _cdnHostHttpMap.get(companyId);
 
@@ -5579,7 +5596,7 @@ public class PortalImpl implements Portal {
 
 	private static final String _LOCALHOST = "localhost";
 
-	private static final String  _PRIVATE_GROUP_SERVLET_MAPPING =
+	private static final String _PRIVATE_GROUP_SERVLET_MAPPING =
 		PropsValues.LAYOUT_FRIENDLY_URL_PRIVATE_GROUP_SERVLET_MAPPING;
 
 	private static final String _PRIVATE_USER_SERVLET_MAPPING =

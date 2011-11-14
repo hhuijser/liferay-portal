@@ -166,7 +166,7 @@ public class PortletKeys {
 
 	public static final int PREFS_OWNER_TYPE_LAYOUT = 3;
 
-	public static final int PREFS_OWNER_TYPE_ORGANIZATION  = 6;
+	public static final int PREFS_OWNER_TYPE_ORGANIZATION = 6;
 
 	public static final int PREFS_OWNER_TYPE_USER = 4;
 
@@ -211,8 +211,6 @@ public class PortletKeys {
 	public static final String TAGS_COMPILER = "103";
 
 	public static final String TAGS_ENTRIES_NAVIGATION = "141";
-
-	public static final String TOP_USERS = "159";
 
 	public static final String TRANSLATOR = "26";
 

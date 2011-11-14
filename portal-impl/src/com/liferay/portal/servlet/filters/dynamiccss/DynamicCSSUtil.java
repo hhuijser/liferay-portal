@@ -80,6 +80,12 @@ public class DynamicCSSUtil {
 			stopWatch.start();
 		}
 
+		// Request will only be null when called by StripFilterTest
+
+		if (request == null) {
+			return content;
+		}
+
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

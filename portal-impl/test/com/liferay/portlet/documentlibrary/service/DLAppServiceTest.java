@@ -168,7 +168,6 @@ public class DLAppServiceTest extends BaseServiceTestCase {
 
 	public void testAddNullFileEntry() throws Exception {
 		long folderId = _folder.getFolderId();
-
 		String description = StringPool.BLANK;
 		String changeLog = StringPool.BLANK;
 
@@ -279,6 +278,43 @@ public class DLAppServiceTest extends BaseServiceTestCase {
 
 	public void testSearchFileInSubFolder() throws Exception {
 		testSearchFile(false);
+	}
+
+	public void testVersionLabel() throws Exception {
+		long folderId = _folder.getFolderId();
+		String name = "TestVersion.txt";
+		String description = StringPool.BLANK;
+		String changeLog = StringPool.BLANK;
+		byte[] bytes = _CONTENT.getBytes();
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddGroupPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+
+		FileEntry fileEntry = DLAppServiceUtil.addFileEntry(
+			TestPropsValues.getGroupId(), folderId, name,
+			ContentTypes.TEXT_PLAIN, name, description, changeLog, bytes,
+			serviceContext);
+
+		assertEquals(
+			"Version label incorrect after add", "1.0", fileEntry.getVersion());
+
+		fileEntry = DLAppServiceUtil.updateFileEntry(
+			fileEntry.getFileEntryId(), name, ContentTypes.TEXT_PLAIN, name,
+			description, changeLog, false, bytes, serviceContext);
+
+		assertEquals(
+			"Version label incorrect after minor update", "1.1",
+			fileEntry.getVersion());
+
+		fileEntry = DLAppServiceUtil.updateFileEntry(
+			fileEntry.getFileEntryId(), name, ContentTypes.TEXT_PLAIN, name,
+			description, changeLog, true, bytes, serviceContext);
+
+		assertEquals(
+			"Version label incorrect after major update", "2.0",
+			fileEntry.getVersion());
 	}
 
 	protected void addFileEntry(boolean rootFolder) throws Exception {

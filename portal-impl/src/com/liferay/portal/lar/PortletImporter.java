@@ -71,15 +71,19 @@ import com.liferay.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portlet.PortletPreferencesImpl;
 import com.liferay.portlet.asset.NoSuchCategoryException;
 import com.liferay.portlet.asset.NoSuchEntryException;
+import com.liferay.portlet.asset.NoSuchTagException;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.model.AssetCategoryConstants;
 import com.liferay.portlet.asset.model.AssetEntry;
+import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetLinkLocalServiceUtil;
+import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
 import com.liferay.portlet.asset.service.persistence.AssetCategoryUtil;
+import com.liferay.portlet.asset.service.persistence.AssetTagUtil;
 import com.liferay.portlet.asset.service.persistence.AssetVocabularyUtil;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoColumn;
@@ -501,6 +505,19 @@ public class PortletImporter {
 		return sb.toString();
 	}
 
+	protected String getAssetTagPath(
+		PortletDataContext portletDataContext, long assetTagId) {
+
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(portletDataContext.getSourceRootPath());
+		sb.append("/tags/");
+		sb.append(assetTagId);
+		sb.append(".xml");
+
+		return sb.toString();
+	}
+
 	protected Map<Locale, String> getAssetCategoryTitleMap(
 		AssetCategory assetCategory) {
 
@@ -664,6 +681,82 @@ public class PortletImporter {
 			_log.error(
 				"Could not find the parent category for category " +
 					assetCategory.getCategoryId());
+		}
+	}
+
+	protected void importAssetTag(PortletDataContext portletDataContext,
+		Map<Long, Long> assetTagPKs,
+		Element assetTagElement,
+		AssetTag assetTag)
+		throws SystemException, PortalException {
+
+		long userId = portletDataContext.getUserId(assetTag.getUserUuid());
+
+		String path = getAssetTagPath(
+			portletDataContext, assetTag.getTagId());
+
+		ServiceContext serviceContext = new ServiceContext();
+
+		serviceContext.setAddCommunityPermissions(true);
+		serviceContext.setAddGuestPermissions(true);
+		serviceContext.setCreateDate(assetTag.getCreateDate());
+		serviceContext.setModifiedDate(assetTag.getModifiedDate());
+		serviceContext.setScopeGroupId(portletDataContext.getScopeGroupId());
+
+		AssetTag importedAssetTag = null;
+
+		try {
+			List<Element> propertyElements = assetTagElement.elements(
+				"property");
+
+			String[] properties = new String[propertyElements.size()];
+
+			for (int i = 0; i < propertyElements.size(); i++) {
+				Element propertyElement = propertyElements.get(i);
+
+				String key = propertyElement.attributeValue("key");
+				String value = propertyElement.attributeValue("value");
+
+				properties[i] = key.concat(StringPool.COLON).concat(value);
+			}
+
+			AssetTag existingAssetTag = null;
+			try {
+				existingAssetTag = AssetTagUtil.findByG_N(
+					portletDataContext.getScopeGroupId(), assetTag.getName());
+			}
+			catch (NoSuchTagException e) {
+				if (_log.isDebugEnabled()) {
+					_log.debug(
+						"No existing AssetTag found:" + assetTag.getName() +
+						" for groupId:" + portletDataContext.getScopeGroupId());
+				}
+			}
+			if (existingAssetTag == null) {
+
+				importedAssetTag =
+					AssetTagLocalServiceUtil.addTag(
+						userId, assetTag.getName(), properties, serviceContext);
+			}
+			else {
+				importedAssetTag =
+					AssetTagLocalServiceUtil.updateTag(
+						userId, existingAssetTag.getTagId(),
+						assetTag.getName(), properties, serviceContext);
+			}
+
+			assetTagPKs.put(
+				assetTag.getTagId(),
+				importedAssetTag.getTagId());
+
+			portletDataContext.importPermissions(
+				AssetTag.class, assetTag.getTagId(),
+				importedAssetTag.getTagId());
+		}
+		catch (NoSuchTagException nsce) {
+			_log.error(
+				"Could not find the parent category for category " +
+					assetTag.getTagId());
 		}
 	}
 
@@ -1142,6 +1235,26 @@ public class PortletImporter {
 		Document document = SAXReaderUtil.read(xml);
 
 		Element rootElement = document.getRootElement();
+
+		List<Element> assetTagElements = rootElement.elements("tag");
+
+		Map<Long, Long> assetTagPKs =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				AssetTag.class);
+
+		for (Element assetTagElement : assetTagElements) {
+			String path = assetTagElement.attributeValue("path");
+
+			if (!portletDataContext.isPathNotProcessed(path)) {
+				continue;
+			}
+
+			AssetTag assetTag =
+				(AssetTag)portletDataContext.getZipEntryAsObject(path);
+
+			importAssetTag(
+				portletDataContext, assetTagPKs, assetTagElement, assetTag);
+		}
 
 		List<Element> assetElements = rootElement.elements("asset");
 

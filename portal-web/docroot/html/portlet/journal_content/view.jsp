@@ -49,7 +49,7 @@ boolean expired = true;
 			</c:otherwise>
 		</c:choose>
 	</c:when>
-<c:otherwise>
+	<c:otherwise>
 
 		<%
 		hasViewPermission = JournalArticlePermission.contains(permissionChecker, article.getGroupId(), article.getArticleId(), ActionKeys.VIEW);

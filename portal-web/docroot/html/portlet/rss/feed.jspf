@@ -133,7 +133,6 @@ catch (Exception e) {
 
 					for (SyndEnclosure enclosure : enclosures) {
 						if (Validator.isNotNull(enclosure.getUrl())) {
-
 							enclosureLink = enclosure.getUrl();
 
 							if (enclosureLink.indexOf('/') > -1) {

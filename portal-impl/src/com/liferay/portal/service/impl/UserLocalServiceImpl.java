@@ -646,7 +646,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		PasswordPolicy passwordPolicy = defaultUser.getPasswordPolicy();
 
-		if (passwordPolicy.isChangeable() &&
+		if (Validator.isNotNull(passwordPolicy) &&
+			passwordPolicy.isChangeable() &&
 			passwordPolicy.isChangeRequired()) {
 
 			user.setPasswordReset(true);

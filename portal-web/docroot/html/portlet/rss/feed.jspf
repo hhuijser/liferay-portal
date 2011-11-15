@@ -23,7 +23,7 @@ try {
 	feed = (SyndFeed)ovp.getValue();
 
 	if (Validator.isNull(title)) {
-		title = HtmlUtil.escape(feed.getTitle());
+		title = feed.getTitle();
 	}
 }
 catch (Exception e) {

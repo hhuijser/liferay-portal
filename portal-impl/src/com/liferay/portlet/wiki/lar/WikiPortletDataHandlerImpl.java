@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.lar.PortletDataContext;
 import com.liferay.portal.kernel.lar.PortletDataException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.portal.kernel.lar.PortletDataHandlerControl;
-import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -408,8 +407,7 @@ public class WikiPortletDataHandlerImpl extends BasePortletDataHandler {
 	}
 
 	protected static String getPageAttachementBinPath(
-		PortletDataContext portletDataContext, WikiPage page,
-		String fileName) {
+		PortletDataContext portletDataContext, WikiPage page, String fileName) {
 
 		StringBundler sb = new StringBundler(5);
 

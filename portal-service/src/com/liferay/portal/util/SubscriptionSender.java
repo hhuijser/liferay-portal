@@ -247,6 +247,10 @@ public class SubscriptionSender implements Serializable {
 		this.companyId = companyId;
 	}
 
+	public void setContextAttributeNotEscaped(String key, Object value) {
+		_context.put(key, String.valueOf(value));
+	}
+
 	public void setContextAttribute(String key, Object value) {
 		_context.put(key, HtmlUtil.escape(String.valueOf(value)));
 	}

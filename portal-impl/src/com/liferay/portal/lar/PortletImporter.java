@@ -684,16 +684,12 @@ public class PortletImporter {
 		}
 	}
 
-	protected void importAssetTag(PortletDataContext portletDataContext,
-		Map<Long, Long> assetTagPKs,
-		Element assetTagElement,
-		AssetTag assetTag)
+	protected void importAssetTag(
+			PortletDataContext portletDataContext, Map<Long, Long> assetTagPKs,
+			Element assetTagElement, AssetTag assetTag)
 		throws SystemException, PortalException {
 
 		long userId = portletDataContext.getUserId(assetTag.getUserUuid());
-
-		String path = getAssetTagPath(
-			portletDataContext, assetTag.getTagId());
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -729,25 +725,21 @@ public class PortletImporter {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"No existing AssetTag found:" + assetTag.getName() +
-						" for groupId:" + portletDataContext.getScopeGroupId());
+							" for groupId:" +
+								portletDataContext.getScopeGroupId());
 				}
 			}
 			if (existingAssetTag == null) {
-
-				importedAssetTag =
-					AssetTagLocalServiceUtil.addTag(
-						userId, assetTag.getName(), properties, serviceContext);
+				importedAssetTag = AssetTagLocalServiceUtil.addTag(
+					userId, assetTag.getName(), properties, serviceContext);
 			}
 			else {
-				importedAssetTag =
-					AssetTagLocalServiceUtil.updateTag(
-						userId, existingAssetTag.getTagId(),
-						assetTag.getName(), properties, serviceContext);
+				importedAssetTag = AssetTagLocalServiceUtil.updateTag(
+					userId, existingAssetTag.getTagId(), assetTag.getName(),
+					properties, serviceContext);
 			}
 
-			assetTagPKs.put(
-				assetTag.getTagId(),
-				importedAssetTag.getTagId());
+			assetTagPKs.put(assetTag.getTagId(), importedAssetTag.getTagId());
 
 			portletDataContext.importPermissions(
 				AssetTag.class, assetTag.getTagId(),

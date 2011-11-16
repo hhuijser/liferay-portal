@@ -478,12 +478,11 @@ public class PortletExporter {
 	}
 
 	protected void exportAssetTag(
-		PortletDataContext portletDataContext,
-		AssetTag assetTag, Element assetTagsElement)
+			PortletDataContext portletDataContext, AssetTag assetTag,
+			Element assetTagsElement)
 		throws SystemException, PortalException {
 
-		String path = getAssetTagPath(
-			portletDataContext, assetTag.getTagId());
+		String path = getAssetTagPath(portletDataContext, assetTag.getTagId());
 
 		if (!portletDataContext.isPathNotProcessed(path)) {
 			return;
@@ -501,11 +500,9 @@ public class PortletExporter {
 			AssetTagPropertyLocalServiceUtil.getTagProperties(
 				assetTag.getTagId());
 
-		for (AssetTagProperty assetTagProperty :
-				assetTagProperties) {
+		for (AssetTagProperty assetTagProperty : assetTagProperties) {
 
-			Element propertyElement = assetTagElement.addElement(
-				"property");
+			Element propertyElement = assetTagElement.addElement("property");
 
 			propertyElement.addAttribute(
 				"userUuid", assetTagProperty.getUserUuid());

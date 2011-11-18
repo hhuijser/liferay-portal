@@ -108,7 +108,14 @@ public class MBStatsUserLocalServiceImpl
 
 		dynamicQuery.add(PropertyFactoryUtil.forName("userId").eq(userId));
 
-		return dynamicQueryCount(dynamicQuery);
+		List<Long> results = mbStatsUserLocalService.dynamicQuery(dynamicQuery);
+
+		if (results.isEmpty()) {
+			return 0;
+		}
+		else {
+			return results.get(0);
+		}
 	}
 
 	public MBStatsUser getStatsUser(long groupId, long userId)

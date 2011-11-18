@@ -1286,6 +1286,39 @@ public class JournalArticleLocalServiceImpl
 		return articles.get(0);
 	}
 
+	public JournalArticle getDisplayArticleByUrlTitle(
+			long groupId, String urlTitle)
+		throws PortalException, SystemException {
+
+		List<JournalArticle> articles = null;
+
+		OrderByComparator orderByComparator = new ArticleVersionComparator();
+
+		articles = journalArticlePersistence.findByG_UT_ST(
+			groupId, urlTitle, WorkflowConstants.STATUS_APPROVED,
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS, orderByComparator);
+
+		if (articles.isEmpty()) {
+			throw new NoSuchArticleException(
+				"No JournalArticle with the key {groupId=" + groupId +
+					", urlTitle=" + urlTitle + "}");
+		}
+
+		Date now = new Date();
+
+		for (JournalArticle article : articles) {
+			Date expirationDate = article.getExpirationDate();
+
+			if (article.getDisplayDate().before(now) &&
+				((expirationDate == null) || expirationDate.after(now))) {
+
+				return article;
+			}
+		}
+
+		return articles.get(0);
+	}
+
 	public JournalArticle getLatestArticle(long resourcePrimKey)
 		throws PortalException, SystemException {
 

@@ -95,8 +95,8 @@ public class JournalArticleAssetRendererFactory
 	public AssetRenderer getAssetRenderer(long groupId, String urlTitle)
 		throws PortalException, SystemException {
 
-		JournalArticle article = JournalArticleServiceUtil.getArticleByUrlTitle(
-			groupId, urlTitle);
+		JournalArticle article = JournalArticleServiceUtil.
+			getDisplayArticleByUrlTitle(groupId, urlTitle);
 
 		return new JournalArticleAssetRenderer(article);
 	}

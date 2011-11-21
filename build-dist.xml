@@ -276,7 +276,7 @@
 
 	<target name="build-dist-tcat-admin-webapps-portal">
 		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMdd" />
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 		</tstamp>
 
 		<mkdir dir="${tstamp.value}/META-INF" />
@@ -749,7 +749,7 @@ release was successful.</echo>
 
 	<target name="rename-dist-plugin-files">
 		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMdd" />
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 		</tstamp>
 
 		<for param="dist.plugin.file">
@@ -782,7 +782,7 @@ release was successful.</echo>
 
 	<target name="rename-dist-portal-files">
 		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMdd" />
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 		</tstamp>
 
 		<for param="dist.portal.file">
@@ -891,6 +891,44 @@ release was successful.</echo>
 			<replacetoken><![CDATA[org.xml.sax.helpers ${endorsed-standard-packages}]]></replacetoken>
 			<replacevalue><![CDATA[org.xml.sax.helpers, org.apache.felix.framework ${endorsed-standard-packages}]]></replacevalue>
 		</replace>
+
+		<if>
+			<equals arg1="${app.server.glassfish.version}" arg2="3.1.1" />
+			<then>
+
+				<!-- GLASSFISH-17242 -->
+
+				<zip
+					basedir="tools/servers/glassfish/patches/GLASSFISH-17242/classes"
+					destfile="${app.server.glassfish.dir}/modules/deployment-admin.jar"
+					includes="**/InstanceDeployCommand.class"
+					update="yes"
+				/>
+
+				<zip
+					basedir="tools/servers/glassfish/patches/GLASSFISH-17242/classes"
+					destfile="${app.server.glassfish.dir}/modules/deployment-common.jar"
+					includes="**/Util.class"
+					update="yes"
+				/>
+
+				<zip
+					basedir="tools/servers/glassfish/patches/GLASSFISH-17242/classes"
+					destfile="${app.server.glassfish.dir}/modules/kernel.jar"
+					includes="**/SnifferManagerImpl.class"
+					update="yes"
+				/>
+
+				<!-- GRIZZLY-1060 -->
+
+				<zip
+					basedir="tools/servers/glassfish/patches/GRIZZLY-1060/classes"
+					destfile="${app.server.glassfish.dir}/modules/grizzly-utils.jar"
+					includes="**/OutputWriter.class"
+					update="yes"
+				/>
+			</then>
+		</if>
 	</target>
 
 	<target name="unzip-jboss">
@@ -1170,7 +1208,7 @@ rerun this task.</echo>
 		/>
 
 		<tstamp>
-			<format property="tstamp.value" pattern="yyyyMMdd" />
+			<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 		</tstamp>
 
 		<mkdir dir="${tstamp.value}" />

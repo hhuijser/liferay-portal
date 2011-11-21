@@ -292,23 +292,7 @@ public class ServletResponseUtil {
 
 				response.setContentLength(contentLength);
 
-				try {
-					response.flushBuffer();
-				}
-				catch (NullPointerException npe) {
-
-					// http://java.net/jira/browse/GLASSFISH-17150
-
-					if (!ServerDetector.isGlassfish()) {
-						throw npe;
-					}
-
-					if (_log.isDebugEnabled()) {
-						_log.debug(
-							"Ignoring NullPointerException because of " +
-								"GLASSFISH-17150");
-					}
-				}
+				response.flushBuffer();
 
 				if (response instanceof ByteBufferServletResponse) {
 					ByteBufferServletResponse byteBufferResponse =

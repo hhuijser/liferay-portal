@@ -78,6 +78,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.comparator.GroupNameComparator;
+import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.blogs.model.BlogsEntry;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.util.UniqueList;
@@ -638,6 +639,16 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 				Group.class.getName(), group.getGroupId());
 		}
 
+		// Asset Vocabularies
+
+		List<AssetVocabulary> assetVocabularies =
+			assetVocabularyLocalService.getGroupVocabularies(
+				group.getGroupId());
+
+		for (AssetVocabulary vocabulary : assetVocabularies) {
+			assetVocabularyLocalService.deleteVocabulary(vocabulary);
+		}
+
 		// Blogs
 
 		blogsEntryLocalService.deleteEntries(group.getGroupId());
@@ -691,11 +702,22 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		// Resources
 
-		List<Resource> resources = resourceFinder.findByC_P(
-			group.getCompanyId(), String.valueOf(group.getGroupId()));
+		if (PropsValues.PERMISSIONS_USER_CHECK_ALGORITHM == 6) {
+			List<Long> resourcePersmissionsIds =
+				resourcePermissionFinder.findByC_P(
+					group.getCompanyId(), String.valueOf(group.getGroupId()));
 
-		for (Resource resource : resources) {
-			resourceLocalService.deleteResource(resource);
+			for (Long id : resourcePersmissionsIds) {
+				resourcePermissionLocalService.deleteResourcePermission(id);
+			}
+
+		} else {
+			List<Resource> resources = resourceFinder.findByC_P(
+				group.getCompanyId(), String.valueOf(group.getGroupId()));
+
+			for (Resource resource : resources) {
+				resourceLocalService.deleteResource(resource);
+			}
 		}
 
 		if (!group.isStagingGroup() &&

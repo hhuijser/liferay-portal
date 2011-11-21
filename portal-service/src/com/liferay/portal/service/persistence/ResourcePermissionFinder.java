@@ -37,4 +37,8 @@ public interface ResourcePermissionFinder {
 	public java.util.List<java.lang.String> findByC_N_S(long companyId,
 		java.lang.String name, int scope)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<java.lang.Long> findByC_P(
+		long companyId, String primKey)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

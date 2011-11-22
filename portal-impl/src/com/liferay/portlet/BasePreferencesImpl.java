@@ -30,7 +30,7 @@ import javax.portlet.ValidatorException;
 /**
  * @author Alexander Chow
  */
-public abstract class BasePreferencesImpl implements Serializable{
+public abstract class BasePreferencesImpl implements Serializable {
 
 	public BasePreferencesImpl(
 		long companyId, long ownerId, int ownerType,

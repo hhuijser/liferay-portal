@@ -14,13 +14,19 @@
 
 package com.liferay.portlet.journal.asset;
 
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Layout;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -29,9 +35,13 @@ import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.asset.model.BaseAssetRenderer;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
+import com.liferay.portlet.journal.model.JournalArticleDisplay;
+import com.liferay.portlet.journal.service.JournalContentSearchLocalServiceUtil;
 import com.liferay.portlet.journal.service.permission.JournalArticlePermission;
+import com.liferay.portlet.journalcontent.util.JournalContentUtil;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
@@ -141,26 +151,44 @@ public class JournalArticleAssetRenderer extends BaseAssetRenderer {
 			String noSuchEntryRedirect)
 		throws Exception {
 
-		if (Validator.isNull(_article.getLayoutUuid())) {
-			return null;
-		}
-
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		Group group = themeDisplay.getScopeGroup();
+		String languageId = LanguageUtil.getLanguageId(liferayPortletRequest);
 
-		if (group.getGroupId() != _article.getGroupId()) {
-			group = GroupLocalServiceUtil.getGroup(_article.getGroupId());
+		JournalArticleDisplay articleDisplay = JournalContentUtil.getDisplay(
+			_article.getGroupId(), _article.getArticleId(), null, null,
+			languageId, themeDisplay);
+
+		if (articleDisplay == null) {
+			return StringPool.BLANK;
 		}
 
-		String groupFriendlyURL = PortalUtil.getGroupFriendlyURL(
-			group, false, themeDisplay);
+		Layout layout = themeDisplay.getLayout();
 
-		return groupFriendlyURL.concat(
-			JournalArticleConstants.CANONICAL_URL_SEPARATOR).concat(
-				_article.getUrlTitle());
+		List<Long> layoutIds =
+			JournalContentSearchLocalServiceUtil.getLayoutIds(
+				layout.getGroupId(), layout.isPrivateLayout(),
+				_article.getArticleId());
+
+		for (long layoutId : layoutIds) {
+			Layout curLayout = null;
+
+			try {
+				curLayout = LayoutLocalServiceUtil.getLayout(
+					layout.getGroupId(), layout.isPrivateLayout(), layoutId);
+
+				return PortalUtil.getLayoutFullURL(curLayout, themeDisplay);
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e, e);
+				}
+			}
+		}
+
+		return StringPool.BLANK;
 	}
 
 	public long getUserId() {
@@ -243,6 +271,9 @@ public class JournalArticleAssetRenderer extends BaseAssetRenderer {
 	protected String getIconPath(ThemeDisplay themeDisplay) {
 		return themeDisplay.getPathThemeImages() + "/common/history.png";
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		JournalArticleAssetRenderer.class);
 
 	private JournalArticle _article;
 

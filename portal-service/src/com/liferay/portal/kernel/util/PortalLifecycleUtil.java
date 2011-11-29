@@ -102,6 +102,8 @@ public class PortalLifecycleUtil {
 	}
 
 	private static boolean _inFlushDestroys;
+	private static List<PortalLifecycle> _portalLifecycleFiltersInit =
+		new ArrayList<PortalLifecycle>();
 	private static List<PortalLifecycle> _portalLifecyclesDestroy =
 		new ArrayList<PortalLifecycle>();
 	private static List<PortalLifecycle> _portalLifecycleFiltersInit =

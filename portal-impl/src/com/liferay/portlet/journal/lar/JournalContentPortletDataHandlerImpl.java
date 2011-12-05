@@ -148,10 +148,17 @@ public class JournalContentPortletDataHandlerImpl
 				articleGroupId, articleId, WorkflowConstants.STATUS_APPROVED);
 		}
 		catch (NoSuchArticleException nsae) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"No approved article found with group id " +
-						articleGroupId + " and article id " + articleId);
+			try {
+				article = JournalArticleLocalServiceUtil.getLatestArticle(
+					articleGroupId, articleId,
+					WorkflowConstants.STATUS_EXPIRED);
+			}
+			catch (NoSuchArticleException nsae2) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"No approved article found with group id " +
+							articleGroupId + " and article id " + articleId);
+				}
 			}
 		}
 

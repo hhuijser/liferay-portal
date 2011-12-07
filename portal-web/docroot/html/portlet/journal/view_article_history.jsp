@@ -69,8 +69,10 @@ portletURL.setParameter("articleId", article.getArticleId());
 
 	List<JournalArticle> results = JournalArticleServiceUtil.getArticles(searchTerms.getGroupId(), searchTerms.getArticleId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 
+	int total = JournalArticleServiceUtil.getArticlesCount(searchTerms.getGroupId(), searchTerms.getArticleId());
+
 	searchContainer.setResults(results);
-	searchContainer.setTotal(results.size());
+	searchContainer.setTotal(total);
 	%>
 
 	<c:if test="<%= !results.isEmpty() %>">

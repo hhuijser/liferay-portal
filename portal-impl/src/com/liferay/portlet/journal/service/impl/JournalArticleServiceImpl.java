@@ -226,6 +226,12 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		return articles;
 	}
 
+	public int getArticlesCount(long groupId, String articleId)
+		throws PortalException, SystemException {
+
+		return journalArticlePersistence.filterCountByG_A(groupId, articleId);
+	}
+
 	public JournalArticle getArticleByUrlTitle(long groupId, String urlTitle)
 		throws PortalException, SystemException {
 

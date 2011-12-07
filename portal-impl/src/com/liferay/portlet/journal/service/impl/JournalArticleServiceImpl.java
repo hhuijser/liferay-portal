@@ -211,6 +211,27 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		return article;
 	}
 
+	public List<JournalArticle> getArticles(
+			long groupId, String articleId, int start, int end,
+			OrderByComparator obc)
+		throws PortalException, SystemException {
+
+		List<JournalArticle> articles =
+			journalArticleLocalService.getArticles(
+				groupId, articleId, start, end, obc);
+
+		JournalArticlePermission.check(
+			getPermissionChecker(), groupId, articleId, ActionKeys.VIEW);
+
+		return articles;
+	}
+
+	public int getArticlesCount(long groupId, String articleId)
+		throws PortalException, SystemException {
+
+		return journalArticlePersistence.filterCountByG_A(groupId, articleId);
+	}
+
 	public JournalArticle getArticleByUrlTitle(long groupId, String urlTitle)
 		throws PortalException, SystemException {
 

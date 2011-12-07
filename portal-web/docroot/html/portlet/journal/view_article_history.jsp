@@ -67,10 +67,11 @@ portletURL.setParameter("articleId", article.getArticleId());
 	searchTerms.setAdvancedSearch(true);
 	searchTerms.setArticleId(article.getArticleId());
 
-	List<JournalArticle> results = null;
-	%>
+	List<JournalArticle> results = JournalArticleServiceUtil.getArticles(searchTerms.getGroupId(), searchTerms.getArticleId(), searchContainer.getStart(), searchContainer.getEnd(), searchContainer.getOrderByComparator());
 
-	<%@ include file="/html/portlet/journal/article_search_results.jspf" %>
+	searchContainer.setResults(results);
+	searchContainer.setTotal(results.size());
+	%>
 
 	<c:if test="<%= !results.isEmpty() %>">
 		<aui:button-row>

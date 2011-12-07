@@ -898,6 +898,7 @@ Liferay.Service.registerClass(
 		deleteArticle: true,
 		expireArticle: true,
 		getArticle: true,
+		getArticles: true,
 		getArticleByUrlTitle: true,
 		getArticlesByLayoutUuid: true,
 		getDisplayArticleByUrlTitle: true,

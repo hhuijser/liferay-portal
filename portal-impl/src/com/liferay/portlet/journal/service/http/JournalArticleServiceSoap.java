@@ -224,6 +224,21 @@ public class JournalArticleServiceSoap {
 		}
 	}
 
+	public static int getArticlesCount(long groupId, java.lang.String articleId)
+		throws RemoteException {
+		try {
+			int returnValue = JournalArticleServiceUtil.getArticlesCount(groupId,
+					articleId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.portlet.journal.model.JournalArticleSoap getArticleByUrlTitle(
 		long groupId, java.lang.String urlTitle) throws RemoteException {
 		try {

@@ -183,6 +183,12 @@ public class JournalArticleServiceUtil {
 		return getService().getArticles(groupId, articleId, start, end, obc);
 	}
 
+	public static int getArticlesCount(long groupId, java.lang.String articleId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getArticlesCount(groupId, articleId);
+	}
+
 	public static com.liferay.portlet.journal.model.JournalArticle getArticleByUrlTitle(
 		long groupId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,

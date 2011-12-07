@@ -173,6 +173,12 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 			end, obc);
 	}
 
+	public int getArticlesCount(long groupId, java.lang.String articleId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _journalArticleService.getArticlesCount(groupId, articleId);
+	}
+
 	public com.liferay.portlet.journal.model.JournalArticle getArticleByUrlTitle(
 		long groupId, java.lang.String urlTitle)
 		throws com.liferay.portal.kernel.exception.PortalException,

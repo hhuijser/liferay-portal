@@ -399,7 +399,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, double version, java.lang.String viewMode,
 		java.lang.String templateId, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -407,7 +407,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, double version, java.lang.String viewMode,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -415,7 +415,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, java.lang.String viewMode,
 		java.lang.String templateId, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -423,7 +423,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, java.lang.String viewMode,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -441,7 +441,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 		long groupId, java.lang.String articleId, double version,
 		java.lang.String templateId, java.lang.String viewMode,
 		java.lang.String languageId, int page, java.lang.String xmlRequest,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -450,7 +450,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 		long groupId, java.lang.String articleId, double version,
 		java.lang.String templateId, java.lang.String viewMode,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -458,7 +458,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public com.liferay.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
 		long groupId, java.lang.String articleId, java.lang.String viewMode,
 		java.lang.String languageId, int page, java.lang.String xmlRequest,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -467,7 +467,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 		long groupId, java.lang.String articleId, java.lang.String templateId,
 		java.lang.String viewMode, java.lang.String languageId, int page,
 		java.lang.String xmlRequest,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -475,7 +475,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public com.liferay.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
 		long groupId, java.lang.String articleId, java.lang.String templateId,
 		java.lang.String viewMode, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -483,7 +483,7 @@ public interface JournalArticleLocalService extends PersistedModelLocalService {
 	public com.liferay.portlet.journal.model.JournalArticleDisplay getArticleDisplay(
 		long groupId, java.lang.String articleId, java.lang.String viewMode,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 

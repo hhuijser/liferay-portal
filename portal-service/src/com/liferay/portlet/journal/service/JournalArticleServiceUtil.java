@@ -185,22 +185,22 @@ public class JournalArticleServiceUtil {
 	public static java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, double version,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getArticleContent(groupId, articleId, version, languageId,
-			themeDisplay);
+			themeDisplay, preview);
 	}
 
 	public static java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getArticleContent(groupId, articleId, languageId,
-			themeDisplay);
+			themeDisplay, preview);
 	}
 
 	public static java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByArticleId(

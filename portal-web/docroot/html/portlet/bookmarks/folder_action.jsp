@@ -23,6 +23,8 @@ BookmarksFolder folder = null;
 
 long folderId = 0;
 
+long curFolderId = GetterUtil.getLong((String)request.getAttribute("view.jsp-folderId"));
+
 if (row != null) {
 	folder = (BookmarksFolder)row.getObject();
 
@@ -68,6 +70,7 @@ if (row == null) {
 			<portlet:param name="struts_action" value="/bookmarks/edit_folder" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="folderId" value="<%= String.valueOf(folder.getFolderId()) %>" />
+			<portlet:param name="curFolderId" value="<%= String.valueOf(curFolderId) %>" />
 		</portlet:renderURL>
 
 		<liferay-ui:icon

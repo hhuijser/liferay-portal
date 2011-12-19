@@ -225,7 +225,7 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 
 	public String getArticleContent(
 			long groupId, String articleId, double version, String languageId,
-			ThemeDisplay themeDisplay)
+			ThemeDisplay themeDisplay, boolean preview)
 		throws PortalException, SystemException {
 
 		JournalArticlePermission.check(
@@ -233,19 +233,20 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			ActionKeys.VIEW);
 
 		return journalArticleLocalService.getArticleContent(
-			groupId, articleId, version, null, languageId, themeDisplay);
+			groupId, articleId, version, null, languageId, themeDisplay,
+			preview);
 	}
 
 	public String getArticleContent(
 			long groupId, String articleId, String languageId,
-			ThemeDisplay themeDisplay)
+			ThemeDisplay themeDisplay, boolean preview)
 		throws PortalException, SystemException {
 
 		JournalArticlePermission.check(
 			getPermissionChecker(), groupId, articleId, ActionKeys.VIEW);
 
 		return journalArticleLocalService.getArticleContent(
-			groupId, articleId, null, languageId, themeDisplay);
+			groupId, articleId, null, languageId, themeDisplay, preview);
 	}
 
 	public List<JournalArticle> getArticlesByArticleId(

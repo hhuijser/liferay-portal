@@ -66,6 +66,8 @@ JournalArticle article = (JournalArticle)row.getObject();
 		sb.append(article.getArticleId());
 		sb.append("&version=");
 		sb.append(article.getVersion());
+		sb.append("&preview=");
+		sb.append("true");
 		%>
 
 		<liferay-ui:icon

@@ -69,6 +69,8 @@ public class ViewArticleContentAction extends Action {
 
 		try {
 			String cmd = ParamUtil.getString(request, Constants.CMD);
+			
+			boolean preview = ParamUtil.getBoolean(request, Constants.PREVIEW);
 
 			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 				WebKeys.THEME_DISPLAY);
@@ -146,7 +148,8 @@ public class ViewArticleContentAction extends Action {
 			}
 			else {
 				output = JournalArticleServiceUtil.getArticleContent(
-					groupId, articleId, version, languageId, themeDisplay);
+					groupId, articleId, version, languageId, themeDisplay,
+					preview);
 			}
 
 			request.setAttribute(WebKeys.JOURNAL_ARTICLE_CONTENT, output);

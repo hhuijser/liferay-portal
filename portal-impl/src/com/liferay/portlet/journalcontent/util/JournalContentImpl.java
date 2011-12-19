@@ -294,7 +294,7 @@ public class JournalContentImpl implements JournalContent {
 
 			return JournalArticleLocalServiceUtil.getArticleDisplay(
 				groupId, articleId, templateId, viewMode, languageId, page,
-				xmlRequest, themeDisplay);
+				xmlRequest, themeDisplay, false);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

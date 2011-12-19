@@ -544,7 +544,7 @@ public class JournalArticleServiceHttp {
 	public static java.lang.String getArticleContent(
 		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
 		double version, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -552,7 +552,7 @@ public class JournalArticleServiceHttp {
 					"getArticleContent", _getArticleContentParameterTypes12);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
-					articleId, version, languageId, themeDisplay);
+					articleId, version, languageId, themeDisplay, preview);
 
 			Object returnObj = null;
 
@@ -583,7 +583,7 @@ public class JournalArticleServiceHttp {
 	public static java.lang.String getArticleContent(
 		HttpPrincipal httpPrincipal, long groupId, java.lang.String articleId,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -591,7 +591,7 @@ public class JournalArticleServiceHttp {
 					"getArticleContent", _getArticleContentParameterTypes13);
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
-					articleId, languageId, themeDisplay);
+					articleId, languageId, themeDisplay, preview);
 
 			Object returnObj = null;
 
@@ -1531,11 +1531,12 @@ public class JournalArticleServiceHttp {
 		};
 	private static final Class<?>[] _getArticleContentParameterTypes12 = new Class[] {
 			long.class, java.lang.String.class, double.class,
-			java.lang.String.class, com.liferay.portal.theme.ThemeDisplay.class
+			java.lang.String.class, com.liferay.portal.theme.ThemeDisplay.class,
+			boolean.class
 		};
 	private static final Class<?>[] _getArticleContentParameterTypes13 = new Class[] {
 			long.class, java.lang.String.class, java.lang.String.class,
-			com.liferay.portal.theme.ThemeDisplay.class
+			com.liferay.portal.theme.ThemeDisplay.class, boolean.class
 		};
 	private static final Class<?>[] _getArticlesByArticleIdParameterTypes14 = new Class[] {
 			long.class, java.lang.String.class, int.class, int.class,

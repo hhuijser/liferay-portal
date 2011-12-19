@@ -174,20 +174,20 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	public java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, double version,
 		java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticleContent(groupId, articleId,
-			version, languageId, themeDisplay);
+			version, languageId, themeDisplay, preview);
 	}
 
 	public java.lang.String getArticleContent(long groupId,
 		java.lang.String articleId, java.lang.String languageId,
-		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		com.liferay.portal.theme.ThemeDisplay themeDisplay, boolean preview)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _journalArticleService.getArticleContent(groupId, articleId,
-			languageId, themeDisplay);
+			languageId, themeDisplay, preview);
 	}
 
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByArticleId(

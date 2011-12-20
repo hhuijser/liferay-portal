@@ -72,14 +72,12 @@ public class Log4JUtil {
 
 		// See LPS-6029 and LPS-8865
 
-		if (!ServerDetector.isJBoss()) {
-			DOMConfigurator domConfigurator = new DOMConfigurator();
+		DOMConfigurator domConfigurator = new DOMConfigurator();
 
-			Reader urlReader = new StringReader(urlContent);
+		Reader urlReader = new StringReader(urlContent);
 
-			domConfigurator.doConfigure(
-				urlReader, LogManager.getLoggerRepository());
-		}
+		domConfigurator.doConfigure(
+			urlReader, LogManager.getLoggerRepository());
 
 		Set<String> currentLoggerNames = new HashSet<String>();
 

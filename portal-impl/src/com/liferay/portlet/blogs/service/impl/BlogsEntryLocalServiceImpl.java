@@ -746,7 +746,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 				}
 				else {
 					socialActivityLocalService.addActivity(
-						entry.getUserId(), entry.getGroupId(),
+						user.getUserId(), entry.getGroupId(),
 						BlogsEntry.class.getName(), entryId,
 						BlogsActivityKeys.UPDATE_ENTRY, StringPool.BLANK, 0);
 				}

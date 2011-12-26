@@ -276,7 +276,7 @@ AUI().add(
 										{
 											name: instance._formatOptionsKey(item.label),
 											type: 'option',
-											value: optionValue
+											value: Liferay.Util.escapeHTML(optionValue)
 										}
 									);
 

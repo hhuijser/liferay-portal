@@ -66,21 +66,23 @@
 			officeDoc = "SharePoint.OpenDocuments.2";
 		}
 	}
+
+	if (officeDoc != null) {
+		String openOfficeDocumentUrl = "javascript:" + liferayPortletResponse.getNamespace() + "openDocument('" + fileUrl + "','" + webDavUrl + "','" + officeDoc + "');";
 	%>
 
-	<c:if test="<%= officeDoc != null %>">
 		<liferay-ui:icon
 			image="../document_library/msoffice"
 			message="open-in-ms-office"
-			url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "openDocument();" %>'
+			url="<%= openOfficeDocumentUrl %>"
 		/>
-	</c:if>
+
+	<%
+	}
+	%>
 
 	<aui:script>
-		function <portlet:namespace />openDocument() {
-			var fileUrl = "<%= fileUrl %>";
-			var webDavUrl = "<%= webDavUrl %>";
-
+		function <portlet:namespace />openDocument(fileUrl, webDavUrl, officeDoc) {
 			<c:choose>
 				<c:when test="<%= officeDoc != null %>">
 					var officeDoc = new ActiveXObject("<%= officeDoc %>");

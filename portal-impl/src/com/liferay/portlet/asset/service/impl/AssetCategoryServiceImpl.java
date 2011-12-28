@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.asset.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -157,6 +158,16 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 		jsonObject.put("total", total);
 
 		return jsonObject;
+	}
+
+	public List<AssetCategory> getVocabularyCategoriesByKeyword(
+			long groupId, String keyword, long vocabularyId)
+		throws PortalException, SystemException {
+
+		return filterCategories(
+			assetCategoryFinder.findByG_N_V(
+				groupId, CustomSQLUtil.keywords(keyword)[0], vocabularyId,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null));
 	}
 
 	public List<AssetCategory> getVocabularyCategories(

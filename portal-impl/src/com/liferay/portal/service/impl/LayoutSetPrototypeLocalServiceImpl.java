@@ -14,6 +14,7 @@
 
 package com.liferay.portal.service.impl;
 
+import com.liferay.portal.RequiredSiteTemplateException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -21,9 +22,11 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.security.permission.PermissionCacheUtil;
+import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.LayoutSetPrototypeLocalServiceBaseImpl;
 
@@ -103,6 +106,14 @@ public class LayoutSetPrototypeLocalServiceImpl
 	@Override
 	public void deleteLayoutSetPrototype(LayoutSetPrototype layoutSetPrototype)
 		throws PortalException, SystemException {
+
+		List<LayoutSet> linkedLayoutSets =
+			LayoutSetLocalServiceUtil.getLayoutSetsByLayoutSetPrototypeUuid(
+				layoutSetPrototype.getUuid());
+
+		if (linkedLayoutSets.size() > 0) {
+			throw new RequiredSiteTemplateException();
+		}
 
 		// Group
 

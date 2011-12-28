@@ -406,7 +406,6 @@ AUI.add(
 					},
 
 					_onCheckboxClick: function(event) {
-						console.log('catchecked');
 						var instance = this;
 
 						if (event.currentTarget.attr('checked')) {
@@ -415,7 +414,6 @@ AUI.add(
 						else {
 							instance._onCheckboxUncheck(event);
 						}
-
 					},
 
 					_onCheckboxUncheck: function(event) {

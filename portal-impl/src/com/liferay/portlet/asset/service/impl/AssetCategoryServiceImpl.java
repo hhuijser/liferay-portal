@@ -161,7 +161,7 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 	}
 
 	public List<AssetCategory> getVocabularyCategoriesByKeyword(
-			long groupId, String keyword, long vocabularyId) 
+			long groupId, String keyword, long vocabularyId)
 		throws PortalException, SystemException {
 
 		return filterCategories(

@@ -95,6 +95,14 @@ public class AssetCategoryServiceWrapper implements AssetCategoryService,
 			vocabularyId, start, end, obc);
 	}
 
+	public java.util.List<com.liferay.portlet.asset.model.AssetCategory> getVocabularyCategoriesByKeyword(
+		long groupId, java.lang.String keyword, long vocabularyId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _assetCategoryService.getVocabularyCategoriesByKeyword(groupId,
+			keyword, vocabularyId);
+	}
+
 	public java.util.List<com.liferay.portlet.asset.model.AssetCategory> getVocabularyCategories(
 		long vocabularyId, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)

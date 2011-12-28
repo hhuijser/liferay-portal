@@ -28,7 +28,7 @@ public interface CookieKeys {
 
 	public static final String ID = "ID";
 
-	public static final String JSESSIONID = "jsessionid";
+	public static final String JSESSIONID = "JSESSIONID";
 
 	public static final String LOGIN = "LOGIN";
 

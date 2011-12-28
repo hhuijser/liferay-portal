@@ -32,6 +32,8 @@ import com.liferay.portal.kernel.xml.DocumentType;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.LayoutPrototype;
+import com.liferay.portal.model.LayoutSetPrototype;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.PasswordPolicy;
 import com.liferay.portal.model.Permission;
@@ -51,6 +53,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.PortletResourceBundles;
 import com.liferay.portlet.expando.model.ExpandoColumn;
+import com.liferay.portlet.mobiledevicerules.model.MDRRuleGroup;
 import com.liferay.util.UniqueList;
 
 import java.io.InputStream;
@@ -1113,9 +1116,10 @@ public class ResourceActionsImpl implements ResourceActions {
 	};
 
 	private static final String[] _PORTAL_MODEL_RESOURCES = {
-		ExpandoColumn.class.getName(), Organization.class.getName(),
-		PasswordPolicy.class.getName(), Role.class.getName(),
-		User.class.getName(), UserGroup.class.getName()
+		ExpandoColumn.class.getName(), LayoutPrototype.class.getName(),
+		LayoutSetPrototype.class.getName(), MDRRuleGroup.class.getName(),
+		Organization.class.getName(), PasswordPolicy.class.getName(),
+		Role.class.getName(), User.class.getName(), UserGroup.class.getName()
 	};
 
 	private static Log _log = LogFactoryUtil.getLog(ResourceActionsImpl.class);

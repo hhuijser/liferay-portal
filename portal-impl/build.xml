@@ -1098,7 +1098,7 @@ public class Creole10Parser]]></replacevalue>
 			fork="true"
 			newenvironment="true"
 		>
-			<jvmarg value="-Xmx256m" />
+			<jvmarg value="-Xmx512m" />
 			<jvmarg value="-Dsource.formatter.excludes=${source.formatter.excludes}" />
 		</java>
 

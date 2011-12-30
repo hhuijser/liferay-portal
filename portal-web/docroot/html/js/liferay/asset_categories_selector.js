@@ -23,6 +23,8 @@ AUI.add(
 
 		var TPL_MESSAGE = '<div class="lfr-categories-message">{0}</div>';
 
+		var TPL_SEARCH_RESULTS = '<div class="lfr-categories-selector-search-results"></div>';
+
 		/**
 		 * OPTIONS
 		 *
@@ -291,21 +293,6 @@ AUI.add(
 						return (match ? match[1] : null);
 					},
 
-					_getVocabularyCategoriesByKeyword: function(groupId, keyword, vocabularyId, callback) {
-
-						Liferay.Service.Asset.AssetCategory.getVocabularyCategoriesByKeyword(
-							{
-								groupId: groupId,
-								keyword: keyword,
-								vocabularyId: vocabularyId,
-								start: -1,
-								end: -1,
-								obc: null
-							},
-							callback
-						);
-					},
-
 					_initSearch: function() {
 						var instance = this;
 
@@ -314,54 +301,37 @@ AUI.add(
 						var vocabularyIds = instance.get('vocabularyIds');
 						var vocabularyGroupIds = instance.get('vocabularyGroupIds');
 
-						var searchResults = A.one('#searchResults');
+						var searchResults = instance._searchResultsNode;
 
 						if (!searchResults) {
-							searchResults = A.Node.create('<div id="searchResults"></div>');
-							popup.entriesNode.append(searchResults);
+							searchResults = A.Node.create(TPL_SEARCH_RESULTS);
+
+							instance._searchResultsNode = searchResults;
 						}
+
+						popup.entriesNode.append(searchResults);
+
+						instance._searchBuffer = [];
+
+						var processSearchResults = A.bind(
+							instance._processSearchResults,
+							instance,
+							searchResults
+						);
+
+						var searchCategoriesTask = A.debounce(
+							instance._searchCategories,
+							350,
+							instance,
+							searchResults,
+							vocabularyIds,
+							vocabularyGroupIds,
+							processSearchResults
+						);
 
 						var input = popup.searchField.get('node');
 
-						input.on('keypress', A.debounce(
-							function(event) {
-								var buffer = [];
-
-								var searchValue = Lang.trim(event.currentTarget.val());
-
-								if (searchValue) {
-									searchResults.addClass('loading-animation');
-
-									instance._getVocabularyCategoriesByKeyword(vocabularyGroupIds[0], searchValue, vocabularyIds[0], function(results) {
-
-									if (results.length > 0) {
-											A.each(
-												results,
-												function(item, index, collection) {
-													item.checked = instance.entries.findIndexBy('categoryId', item.categoryId) > -1 ? TPL_CHECKED : '';
-
-													var input = Lang.sub(TPL_INPUT, item);
-
-													buffer.push(input);
-												}
-											);
-										}
-										else {
-											var message = Lang.sub(TPL_MESSAGE, [Liferay.Language.get('no-categories-found')]);
-
-											buffer.push(message);
-										}
-
-										searchResults.removeClass('loading-animation');
-										searchResults.html(buffer.join(''));
-									});
-								}
-
-								searchResults.toggle(!!searchValue);
-								instance.TREEVIEWS[vocabularyIds[0]].toggle(!searchValue);
-							},
-							200
-						))
+						input.on('keypress', searchCategoriesTask);
 					},
 
 					_onBoundingBoxClick: EMPTY_FN,
@@ -374,12 +344,14 @@ AUI.add(
 						var assetId;
 						var entryMatchKey;
 
-						if (currentTarget.name != 'tree-node-check') {
+						if (A.instanceOf(currentTarget, A.Node)) {
 							assetId = currentTarget.attr('data-categoryId');
-							entryMatchKey = currentTarget.get('value');
+
+							entryMatchKey = currentTarget.val();
 						}
 						else {
 							assetId = instance._getTreeNodeAssetId(currentTarget);
+
 							entryMatchKey = currentTarget.get('label');
 						}
 
@@ -408,12 +380,13 @@ AUI.add(
 					_onCheckboxClick: function(event) {
 						var instance = this;
 
+						var method = '_onCheckboxUncheck';
+
 						if (event.currentTarget.attr('checked')) {
-							instance._onCheckboxCheck(event);
+							method = '_onCheckboxCheck';
 						}
-						else {
-							instance._onCheckboxUncheck(event);
-						}
+
+						instance[method](event);
 					},
 
 					_onCheckboxUncheck: function(event) {
@@ -422,7 +395,7 @@ AUI.add(
 						var currentTarget = event.currentTarget;
 						var assetId;
 
-						if (currentTarget.name != 'tree-node-check') {
+						if (A.instanceOf(currentTarget, A.Node)) {
 							assetId = currentTarget.attr('data-categoryId');
 						}
 						else {
@@ -430,6 +403,36 @@ AUI.add(
 						}
 
 						instance.entries.removeKey(assetId);
+					},
+
+					_processSearchResults: function(searchResults, results) {
+						var instance = this;
+
+						var buffer = instance._searchBuffer;
+
+						buffer.length = 0;
+
+						if (results.length > 0) {
+							A.each(
+								results,
+								function(item, index, collection) {
+									item.checked = instance.entries.findIndexBy('categoryId', item.categoryId) > -1 ? TPL_CHECKED : '';
+
+									var input = Lang.sub(TPL_INPUT, item);
+
+									buffer.push(input);
+								}
+							);
+						}
+						else {
+							var message = Lang.sub(TPL_MESSAGE, [Liferay.Language.get('no-categories-found')]);
+
+							buffer.push(message);
+						}
+
+						searchResults.removeClass('loading-animation');
+
+						searchResults.html(buffer.join(''));
 					},
 
 					_renderIcons: function() {
@@ -455,6 +458,34 @@ AUI.add(
 						var iconsBoundingBox = instance.icons.get(BOUNDING_BOX);
 
 						instance.entryHolder.placeAfter(iconsBoundingBox);
+					},
+
+					_searchCategories: function(event, searchResults, vocabularyIds, vocabularyGroupIds, callback) {
+						var instance = this;
+
+						var searchValue = Lang.trim(event.currentTarget.val());
+
+						if (searchValue && !event.isNavKey()) {
+							searchResults.empty();
+
+							searchResults.addClass('loading-animation');
+
+							Liferay.Service.Asset.AssetCategory.getVocabularyCategoriesByKeyword(
+								{
+									groupId: vocabularyGroupIds[0],
+									keyword: searchValue,
+									vocabularyId: vocabularyIds[0],
+									start: -1,
+									end: -1,
+									obc: null
+								},
+								callback
+							);
+						}
+
+						searchResults.toggle(!!searchValue);
+
+						instance.TREEVIEWS[vocabularyIds[0]].toggle(!searchValue);
 					},
 
 					_showSelectPopup: function(event) {
@@ -541,6 +572,6 @@ AUI.add(
 	},
 	'',
 	{
-		requires: ['aui-debounce', 'aui-tree', 'liferay-asset-tags-selector']
+		requires: ['aui-tree', 'liferay-asset-tags-selector']
 	}
 );

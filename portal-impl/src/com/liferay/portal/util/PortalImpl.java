@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.servlet.FileTimestampUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.servlet.PipingServletResponse;
+import com.liferay.portal.kernel.servlet.ServletRequestUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.StringServletResponse;
 import com.liferay.portal.kernel.servlet.taglib.ui.BreadcrumbEntry;
@@ -2725,11 +2726,7 @@ public class PortalImpl implements Portal {
 	}
 
 	public String getPortalURL(HttpServletRequest request, boolean secure) {
-		String serverName = request.getServerName();
-
-		if (!Validator.isDomain(serverName)) {
-			throw new RuntimeException("Invalid server name - " + serverName);
-		}
+		String serverName = ServletRequestUtil.getServerName(request);
 
 		return getPortalURL(serverName, request.getServerPort(), secure);
 	}

@@ -56,6 +56,16 @@ import org.apache.commons.fileupload.portlet.PortletFileUpload;
  */
 public class PortletRequestUtil {
 
+	public static String getServerName(PortletRequest request) {
+		String serverName = request.getServerName();
+
+		if (!Validator.isDomain(serverName)) {
+			throw new RuntimeException("Invalid server name - " + serverName);
+		}
+
+		return serverName;
+	}
+
 	public static List<DiskFileItem> testMultipartWithCommonsFileUpload(
 			ActionRequest actionRequest)
 		throws Exception {

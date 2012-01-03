@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
 import com.liferay.portal.kernel.servlet.ProtectedPrincipal;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
+import com.liferay.portal.kernel.servlet.ServletRequestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ContextPathUtil;
@@ -439,7 +440,9 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 	}
 
 	public String getServerName() {
-		return _request.getServerName();
+		String serverName = ServletRequestUtil.getServerName(_request);
+
+		return serverName;
 	}
 
 	public int getServerPort() {

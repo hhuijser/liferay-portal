@@ -110,7 +110,7 @@ if (Validator.isNotNull(className)) {
 					portalModelResource: <%= Validator.isNotNull(className) && (ResourceActionsUtil.isPortalModelResource(className) || className.equals(Group.class.getName())) %>,
 					singleSelect: <%= !vocabulary.isMultiValued() %>,
 					vocabularyIds: '<%= String.valueOf(vocabulary.getVocabularyId()) %>',
-					vocabularyGroupIds: '<%= vocabulary.getGroupId() %>'
+					vocabularyGroupIds: '<%= String.valueOf(vocabulary.getGroupId()) %>'
 				}
 			).render();
 		</aui:script>

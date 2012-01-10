@@ -900,7 +900,7 @@ public class StringUtil {
 		}
 
 		if (!exactMatch) {
-			replace(s, oldSubs, newSubs);
+			return replace(s, oldSubs, newSubs);
 		}
 		else {
 			for (int i = 0; i < oldSubs.length; i++) {

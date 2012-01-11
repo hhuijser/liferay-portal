@@ -31,6 +31,10 @@ public class MyPagesControlPanelEntry extends BaseControlPanelEntry {
 			PermissionChecker permissionChecker, Portlet portlet)
 		throws Exception {
 
+		if (permissionChecker.isOmniadmin()) {
+			return true;
+		}
+
 		boolean hasPowerUserRole = RoleLocalServiceUtil.hasUserRole(
 			permissionChecker.getUserId(), permissionChecker.getCompanyId(),
 			RoleConstants.POWER_USER, true);

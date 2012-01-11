@@ -152,6 +152,11 @@ if (liveGroup.isUser()) {
 	boolean privateLayoutsModifiable = PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_MODIFIABLE && (!PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED || hasPowerUserRole);
 	boolean publicLayoutsModifiable = PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_MODIFIABLE && (!PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED || hasPowerUserRole);
 
+	if (permissionChecker.isOmniadmin()) {
+		privateLayoutsModifiable = true;
+		publicLayoutsModifiable = true;
+	}
+
 	if (privateLayoutsModifiable && publicLayoutsModifiable) {
 		tabs1Names = "public-pages,private-pages";
 	}

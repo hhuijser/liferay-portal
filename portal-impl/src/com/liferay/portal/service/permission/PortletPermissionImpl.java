@@ -278,7 +278,9 @@ public class PortletPermissionImpl implements PortletPermission {
 			(layout.isPublicLayout() &&
 			 !PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_MODIFIABLE)) {
 
-			if (actionId.equals(ActionKeys.CONFIGURATION) && group.isUser()) {
+			if (actionId.equals(ActionKeys.CONFIGURATION) && group.isUser() &&
+				!permissionChecker.isOmniadmin()) {
+
 				return false;
 			}
 		}

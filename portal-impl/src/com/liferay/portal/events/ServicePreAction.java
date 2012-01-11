@@ -940,7 +940,7 @@ public class ServicePreAction extends Action {
 			}
 
 			if (signedIn) {
-				if (group.isUser()) {
+				if (group.isUser() && !permissionChecker.isOmniadmin()) {
 					if ((layout.isPrivateLayout() &&
 						 !PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_MODIFIABLE) ||
 						(layout.isPublicLayout() &&

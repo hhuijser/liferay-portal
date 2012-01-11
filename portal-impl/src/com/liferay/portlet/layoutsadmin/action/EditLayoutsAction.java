@@ -484,7 +484,8 @@ public class EditLayoutsAction extends PortletAction {
 				permissionChecker, groupUserId, organizationIds,
 				ActionKeys.UPDATE);
 
-			if (!PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_MODIFIABLE &&
+			if (!permissionChecker.isOmniadmin() &&
+				!PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_MODIFIABLE &&
 				!PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_MODIFIABLE) {
 
 				hasPermission = false;

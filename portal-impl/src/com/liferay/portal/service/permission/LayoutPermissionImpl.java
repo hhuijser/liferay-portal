@@ -179,7 +179,7 @@ public class LayoutPermissionImpl implements LayoutPermission {
 				Group group = GroupLocalServiceUtil.getGroup(
 					layout.getGroupId());
 
-				if (group.isUser()) {
+				if (group.isUser() && !permissionChecker.isOmniadmin()) {
 					return false;
 				}
 			}

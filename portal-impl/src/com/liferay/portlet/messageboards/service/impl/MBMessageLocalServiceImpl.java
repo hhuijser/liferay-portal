@@ -152,7 +152,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		if (Validator.isNull(subject) && Validator.isNotNull(body)) {
 			subject = body.substring(0, Math.min(body.length(), 50)) + "...";
 		}
-		else {
+
+		if ((Validator.isNull(subject) && Validator.isNull(body)) ||
+				(Validator.isNotNull(subject) && Validator.isNull(body))){
 			throw new MessageBodyException();
 		}
 

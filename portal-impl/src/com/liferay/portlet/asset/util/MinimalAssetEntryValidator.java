@@ -16,6 +16,7 @@ package com.liferay.portlet.asset.util;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portlet.asset.AssetTagException;
+import com.liferay.portlet.messageboards.model.MBDiscussion;
 
 /**
  * @author Brian Wing Shun Chan
@@ -27,6 +28,10 @@ public class MinimalAssetEntryValidator extends BaseAssetEntryValidator {
 			long groupId, String className, long[] categoryIds,
 			String[] tagNames)
 		throws PortalException {
+
+		if (className.equals(MBDiscussion.class.getName())) {
+			return;
+		}
 
 		if ((tagNames == null) || (tagNames.length == 0)) {
 			throw new AssetTagException(AssetTagException.AT_LEAST_ONE_TAG);

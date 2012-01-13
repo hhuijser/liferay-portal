@@ -69,7 +69,14 @@
 				if (Validator.isNotNull(controlPanelCategory)) {
 					long groupId = GetterUtil.getLong(HttpUtil.getParameter(PortalUtil.getCurrentURL(request), "doAsGroupId", false));
 
-					Group group = GroupServiceUtil.getGroup(groupId);
+					Group group = null;
+
+					if (curGroup.isUser()) {
+						group = user.getGroup();
+					}
+					else {
+						group = GroupServiceUtil.getGroup(groupId);
+					}
 
 					manageableSites = new ArrayList<Group>();
 

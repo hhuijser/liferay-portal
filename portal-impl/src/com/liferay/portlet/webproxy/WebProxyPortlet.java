@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.struts.StrutsUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.RenderResponseImpl;
 
 import java.io.IOException;
@@ -74,7 +75,10 @@ public class WebProxyPortlet extends PortletBridgePortlet {
 
 			String output = stringResponse.getString();
 
-			output = StringUtil.replace(output, "//pbhs/", "/pbhs/");
+			String contextPath = PortalUtil.getPathContext();
+
+			output = StringUtil.replace(
+				output, "//pbhs/", contextPath + "/pbhs/");
 
 			stringResponse.setString(output);
 		}

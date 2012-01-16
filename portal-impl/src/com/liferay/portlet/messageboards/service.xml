@@ -245,7 +245,7 @@
 			<finder-column name="groupId" />
 			<finder-column name="status" />
 		</finder>
-		<finder name="C_S" return-type="Collection">
+		<finder name="C_S" return-type="Collection" where="categoryId != -1">
 			<finder-column name="companyId" />
 			<finder-column name="status" />
 		</finder>

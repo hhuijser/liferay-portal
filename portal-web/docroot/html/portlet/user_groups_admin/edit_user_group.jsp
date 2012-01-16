@@ -69,11 +69,11 @@ long userGroupId = BeanParamUtil.getLong(userGroup, request, "userGroupId");
 
 		LayoutSet privateLayoutSet = null;
 		LayoutSetPrototype privateLayoutSetPrototype = null;
-		boolean privateLayoutSetPrototypeLinkEnabled = true;
+		boolean privateLayoutSetPrototypeLinkEnabled = false;
 
 		LayoutSet publicLayoutSet = null;
 		LayoutSetPrototype publicLayoutSetPrototype = null;
-		boolean publicLayoutSetPrototypeLinkEnabled = true;
+		boolean publicLayoutSetPrototypeLinkEnabled = false;
 
 		if (userGroupGroup != null) {
 			if (userGroupGroup.getPrivateLayoutsPageCount() > 0) {

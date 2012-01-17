@@ -488,6 +488,15 @@ public class DLUtil {
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
+		return getThumbnailSrc(
+			fileEntry, fileVersion, fileShortcut, themeDisplay);
+	}
+
+	public static String getThumbnailSrc(
+			FileEntry fileEntry, FileVersion fileVersion,
+			DLFileShortcut fileShortcut, ThemeDisplay themeDisplay)
+		throws Exception {
+
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(themeDisplay.getPathThemeImages());

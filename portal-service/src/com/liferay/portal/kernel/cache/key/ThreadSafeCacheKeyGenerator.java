@@ -16,30 +16,33 @@ package com.liferay.portal.kernel.cache.key;
 
 import com.liferay.portal.kernel.util.StringBundler;
 
-import java.io.Serializable;
-
 /**
- * @author Michael C. Han
- * @author Shuyang Zhou
+ * @author Brian Wing Shun Chan
  */
-public interface CacheKeyGenerator extends Cloneable {
+public class ThreadSafeCacheKeyGenerator extends CacheKeyGeneratorWrapper {
 
-	public CacheKeyGenerator append(String key);
+	public ThreadSafeCacheKeyGenerator(CacheKeyGenerator cacheKeyGenerator) {
+		super(cacheKeyGenerator);
+	}
 
-	public CacheKeyGenerator append(String[] keys);
+	@Override
+	public CacheKeyGenerator append(String key) {
+		throw new UnsupportedOperationException();
+	}
 
-	public CacheKeyGenerator append(StringBundler sb);
+	@Override
+	public CacheKeyGenerator append(String[] keys) {
+		throw new UnsupportedOperationException();
+	}
 
-	public CacheKeyGenerator clone();
+	@Override
+	public CacheKeyGenerator append(StringBundler sb) {
+		throw new UnsupportedOperationException();
+	}
 
-	public Serializable finish();
-
-	public Serializable getCacheKey(String key);
-
-	public Serializable getCacheKey(String[] keys);
-
-	public Serializable getCacheKey(StringBundler sb);
-
-	public boolean isCallingGetCacheKeyThreadSafe();
+	@Override
+	public CacheKeyGenerator clone() {
+		return this;
+	}
 
 }

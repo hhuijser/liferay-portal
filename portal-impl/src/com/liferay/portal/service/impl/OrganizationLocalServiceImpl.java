@@ -211,7 +211,7 @@ public class OrganizationLocalServiceImpl
 
 		// Indexer
 
-		if (serviceContext.isIndexingEnabled()) {
+		if ((serviceContext != null) && serviceContext.isIndexingEnabled()) {
 			Indexer indexer = IndexerRegistryUtil.getIndexer(
 				Organization.class);
 

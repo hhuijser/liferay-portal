@@ -789,7 +789,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		// Indexer
 
-		if (serviceContext.isIndexingEnabled()) {
+		if ((serviceContext != null) && serviceContext.isIndexingEnabled()) {
 			reindex(user);
 		}
 

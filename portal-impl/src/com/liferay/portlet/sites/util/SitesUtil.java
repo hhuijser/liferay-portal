@@ -519,11 +519,17 @@ public class SitesUtil {
 			PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_LINK_ENABLED,
 			new String[] {Boolean.TRUE.toString()});
 		parameterMap.put(
+			PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
+			new String[] {Boolean.FALSE.toString()});
+		parameterMap.put(
 			PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
 			new String[] {
 				PortletDataHandlerKeys.
 					LAYOUTS_IMPORT_MODE_CREATED_FROM_PROTOTYPE
 			});
+		parameterMap.put(
+			PortletDataHandlerKeys.LOGO,
+			new String[] {Boolean.FALSE.toString()});
 		parameterMap.put(
 			PortletDataHandlerKeys.PERFORM_DIRECT_BINARY_IMPORT,
 			new String[] {Boolean.TRUE.toString()});

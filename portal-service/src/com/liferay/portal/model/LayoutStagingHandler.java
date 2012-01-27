@@ -61,12 +61,12 @@ public class LayoutStagingHandler implements InvocationHandler {
 		return _layoutRevision;
 	}
 
-	public Object invoke(Object proxy, Method method, Object[] args)
+	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
 
 		try {
 			if (_layoutRevision == null) {
-				return method.invoke(_layout, args);
+				return method.invoke(_layout, arguments);
 			}
 
 			String methodName = method.getName();
@@ -93,7 +93,8 @@ public class LayoutStagingHandler implements InvocationHandler {
 					Class<?> layoutRevisionClass = _layoutRevision.getClass();
 
 					method = layoutRevisionClass.getMethod(
-						methodName, ReflectionUtil.getParameterTypes(args));
+						methodName,
+						ReflectionUtil.getParameterTypes(arguments));
 
 					bean = _layoutRevision;
 				}
@@ -102,7 +103,7 @@ public class LayoutStagingHandler implements InvocationHandler {
 				}
 			}
 
-			return method.invoke(bean, args);
+			return method.invoke(bean, arguments);
 		}
 		catch (InvocationTargetException ite) {
 			throw ite.getTargetException();
@@ -150,10 +151,13 @@ public class LayoutStagingHandler implements InvocationHandler {
 		long layoutSetBranchId = ParamUtil.getLong(
 			serviceContext, "layoutSetBranchId");
 
+		LayoutSet layoutSet = layout.getLayoutSet();
+
 		LayoutSetBranch layoutSetBranch =
 			LayoutSetBranchLocalServiceUtil.getUserLayoutSetBranch(
 				serviceContext.getUserId(), layout.getGroupId(),
-				layout.isPrivateLayout(), layoutSetBranchId);
+				layout.isPrivateLayout(), layoutSet.getLayoutSetId(),
+				layoutSetBranchId);
 
 		layoutSetBranchId = layoutSetBranch.getLayoutSetBranchId();
 
@@ -286,9 +290,6 @@ public class LayoutStagingHandler implements InvocationHandler {
 	private static Set<String> _layoutRevisionMethodNames =
 		new HashSet<String>();
 
-	private Layout _layout;
-	private LayoutRevision _layoutRevision;
-
 	static {
 		_layoutRevisionMethodNames.add("getColorScheme");
 		_layoutRevisionMethodNames.add("getColorSchemeId");
@@ -335,5 +336,8 @@ public class LayoutStagingHandler implements InvocationHandler {
 		_layoutRevisionMethodNames.add("setWapColorSchemeId");
 		_layoutRevisionMethodNames.add("setWapThemeId");
 	}
+
+	private Layout _layout;
+	private LayoutRevision _layoutRevision;
 
 }

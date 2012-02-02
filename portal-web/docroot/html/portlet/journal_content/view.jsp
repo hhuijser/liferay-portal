@@ -27,25 +27,38 @@ boolean hasViewPermission = true;
 String title = StringPool.BLANK;
 boolean approved = false;
 boolean expired = true;
+
+boolean showSelectArticleIcon = PortletPermissionUtil.contains(permissionChecker, layout, portletDisplay.getId(), ActionKeys.CONFIGURATION);
 %>
 
 <c:choose>
 	<c:when test="<%= article == null %>">
 		<c:choose>
-			<c:when test="<%= Validator.isNull(articleId) %>">
+			<c:when test="<%= showSelectArticleIcon %>">
+				<c:choose>
+					<c:when test="<%= Validator.isNull(articleId) %>">
 
-				<%
-				renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
-				%>
+						<%
+						renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
+						%>
 
-				<div class="portlet-msg-info">
-					<liferay-ui:message key="select-existing-web-content-or-add-some-web-content-to-be-displayed-in-this-portlet" />
-				</div>
+						<div class="portlet-msg-info">
+							<liferay-ui:message key="select-existing-web-content-or-add-some-web-content-to-be-displayed-in-this-portlet" />
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="portlet-msg-error">
+							<%= LanguageUtil.get(pageContext, "the-selected-web-content-no-longer-exists") %>
+						</div>
+					</c:otherwise>
+				</c:choose>
 			</c:when>
 			<c:otherwise>
-				<div class="portlet-msg-error">
-					<%= LanguageUtil.get(pageContext, "the-selected-web-content-no-longer-exists") %>
-				</div>
+
+				<%
+					portletDisplay.setShowPortlet(false);
+				%>
+
 			</c:otherwise>
 		</c:choose>
 	</c:when>
@@ -302,7 +315,6 @@ if ((articleDisplay != null) && Validator.isNotNull(articleDisplay.getTemplateId
 
 boolean showEditArticleIcon = (latestArticle != null) && JournalArticlePermission.contains(permissionChecker, latestArticle.getGroupId(), latestArticle.getArticleId(), ActionKeys.UPDATE);
 boolean showEditTemplateIcon = (template != null) && JournalTemplatePermission.contains(permissionChecker, template.getGroupId(), template.getTemplateId(), ActionKeys.UPDATE);
-boolean showSelectArticleIcon = PortletPermissionUtil.contains(permissionChecker, layout, portletDisplay.getId(), ActionKeys.CONFIGURATION);
 boolean showAddArticleIcon = showSelectArticleIcon && JournalPermission.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_ARTICLE);
 boolean showIconsActions = themeDisplay.isSignedIn() && (showEditArticleIcon || showEditTemplateIcon || showSelectArticleIcon || showAddArticleIcon);
 %>

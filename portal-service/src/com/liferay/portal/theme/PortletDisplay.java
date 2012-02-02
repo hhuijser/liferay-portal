@@ -72,6 +72,7 @@ public class PortletDisplay implements Serializable {
 		_showMaxIcon = master.isShowMaxIcon();
 		_showMinIcon = master.isShowMinIcon();
 		_showMoveIcon = master.isShowMoveIcon();
+		_showPortlet = master.isShowPortlet();
 		_showPortletCssIcon = master.isShowPortletCssIcon();
 		_showPortletIcon = master.isShowPortletIcon();
 		_showPrintIcon = master.isShowPrintIcon();
@@ -132,6 +133,7 @@ public class PortletDisplay implements Serializable {
 		slave.setShowMaxIcon(_showMaxIcon);
 		slave.setShowMinIcon(_showMinIcon);
 		slave.setShowMoveIcon(_showMoveIcon);
+		slave.setShowPortlet(_showPortlet);
 		slave.setShowPortletCssIcon(_showPortletCssIcon);
 		slave.setShowPortletIcon(_showPortletIcon);
 		slave.setShowPrintIcon(_showPrintIcon);
@@ -381,6 +383,10 @@ public class PortletDisplay implements Serializable {
 		return _showMoveIcon;
 	}
 
+	public boolean isShowPortlet() {
+		return _showPortlet;
+	}
+
 	public boolean isShowPortletCssIcon() {
 		return _showPortletCssIcon;
 	}
@@ -458,6 +464,7 @@ public class PortletDisplay implements Serializable {
 		_showMaxIcon = false;
 		_showMinIcon = false;
 		_showMoveIcon = false;
+		_showPortlet = true;
 		_showPortletCssIcon = false;
 		_showPortletIcon = false;
 		_showPrintIcon = false;
@@ -632,6 +639,10 @@ public class PortletDisplay implements Serializable {
 		_showMoveIcon = showMoveIcon;
 	}
 
+	public void setShowPortlet(boolean showPortlet) {
+		_showPortlet = showPortlet;
+	}
+
 	public void setShowPortletCssIcon(boolean showPortletCssIcon) {
 		_showPortletCssIcon = showPortletCssIcon;
 	}
@@ -788,6 +799,7 @@ public class PortletDisplay implements Serializable {
 	private boolean _showMaxIcon;
 	private boolean _showMinIcon;
 	private boolean _showMoveIcon;
+	private boolean _showPortlet;
 	private boolean _showPortletCssIcon;
 	private boolean _showPortletIcon;
 	private boolean _showPrintIcon;

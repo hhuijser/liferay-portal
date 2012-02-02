@@ -201,6 +201,7 @@ boolean showHelpIcon = false;
 boolean showMaxIcon = portlet.hasWindowState(responseContentType, WindowState.MAXIMIZED);
 boolean showMinIcon = portlet.hasWindowState(responseContentType, WindowState.MINIMIZED);
 boolean showMoveIcon = !stateMax && !themeDisplay.isStateExclusive();
+boolean showPortlet = true;
 boolean showPortletCssIcon = false;
 boolean showPortletIcon = (portletResourcePortlet != null) ? Validator.isNotNull(portletResourcePortlet.getIcon()) : Validator.isNotNull(portlet.getIcon());
 boolean showPrintIcon = portlet.hasPortletMode(responseContentType, LiferayPortletMode.PRINT);
@@ -399,6 +400,7 @@ portletDisplay.setShowHelpIcon(showHelpIcon);
 portletDisplay.setShowMaxIcon(showMaxIcon);
 portletDisplay.setShowMinIcon(showMinIcon);
 portletDisplay.setShowMoveIcon(showMoveIcon);
+portletDisplay.setShowPortlet(showPortlet);
 portletDisplay.setShowPortletCssIcon(showPortletCssIcon);
 portletDisplay.setShowPortletIcon(showPortletIcon);
 portletDisplay.setShowPrintIcon(showPrintIcon);
@@ -863,6 +865,8 @@ if ((layout.isTypePanel() || layout.isTypeControlPanel()) && !portletDisplay.get
 	<c:when test="<%= !supportsMimeType %>">
 	</c:when>
 	<c:when test="<%= !access && !portlet.isShowPortletAccessDenied() %>">
+	</c:when>
+	<c:when test="<%= !portletDisplay.isShowPortlet() %>">
 	</c:when>
 	<c:when test="<%= !portlet.isActive() && !portlet.isShowPortletInactive() %>">
 	</c:when>

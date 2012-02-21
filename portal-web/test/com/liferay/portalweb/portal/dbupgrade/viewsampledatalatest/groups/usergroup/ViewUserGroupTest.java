@@ -49,8 +49,8 @@ public class ViewUserGroupTest extends BaseTestCase {
 			RuntimeVariables.replace("User Groups"));
 		selenium.waitForPageToLoad("30000");
 		loadRequiredJavaScriptModules();
-		selenium.type("//input[@id='_127_name']",
-			RuntimeVariables.replace("User Group Sample Test"));
+		selenium.type("//input[@id='_127_keywords']",
+			RuntimeVariables.replace("Test"));
 		selenium.clickAt("//input[@value='Search']",
 			RuntimeVariables.replace("Search"));
 		selenium.waitForPageToLoad("30000");

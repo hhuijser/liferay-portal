@@ -197,14 +197,16 @@ public class DLAppHelperLocalServiceImpl
 		assetEntryLocalService.deleteEntry(
 			DLFileEntryConstants.getClassName(), fileEntry.getFileEntryId());
 
-		// Message boards
-
-		mbMessageLocalService.deleteDiscussionMessages(
-			DLFileEntryConstants.getClassName(), fileEntry.getFileEntryId());
+		// Subscriptions
 
 		SubscriptionLocalServiceUtil.deleteSubscriptions(
 			fileEntry.getCompanyId(), DLFileEntryConstants.getClassName(),
 			fileEntry.getFileEntryId());
+
+		// Message boards
+
+		mbMessageLocalService.deleteDiscussionMessages(
+			DLFileEntryConstants.getClassName(), fileEntry.getFileEntryId());
 
 		// Ratings
 

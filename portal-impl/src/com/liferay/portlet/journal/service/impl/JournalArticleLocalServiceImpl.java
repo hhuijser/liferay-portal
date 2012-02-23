@@ -641,14 +641,16 @@ public class JournalArticleLocalServiceImpl
 			ratingsStatsLocalService.deleteStats(
 				JournalArticle.class.getName(), article.getResourcePrimKey());
 
-			// Message boards
-
-			mbMessageLocalService.deleteDiscussionMessages(
-				JournalArticle.class.getName(), article.getResourcePrimKey());
+			// Subscriptions
 
 			subscriptionLocalService.deleteSubscriptions(
 				article.getCompanyId(), JournalArticle.class.getName(),
 				article.getResourcePrimKey());
+
+			// Message boards
+
+			mbMessageLocalService.deleteDiscussionMessages(
+				JournalArticle.class.getName(), article.getResourcePrimKey());
 
 			// Asset
 

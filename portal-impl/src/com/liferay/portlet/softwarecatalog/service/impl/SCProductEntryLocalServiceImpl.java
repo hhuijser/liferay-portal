@@ -243,14 +243,16 @@ public class SCProductEntryLocalServiceImpl
 		scProductVersionLocalService.deleteProductVersions(
 			productEntry.getProductEntryId());
 
-		// Message boards
-
-		mbMessageLocalService.deleteDiscussionMessages(
-			SCProductEntry.class.getName(), productEntry.getProductEntryId());
+		// Subscriptions
 
 		SubscriptionLocalServiceUtil.deleteSubscriptions(
 			productEntry.getCompanyId(), SCProductEntry.class.getName(),
 			productEntry.getProductEntryId());
+
+		// Message boards
+
+		mbMessageLocalService.deleteDiscussionMessages(
+			SCProductEntry.class.getName(), productEntry.getProductEntryId());
 
 		// Ratings
 

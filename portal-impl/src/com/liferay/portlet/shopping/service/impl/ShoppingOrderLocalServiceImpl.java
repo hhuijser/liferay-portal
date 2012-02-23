@@ -246,14 +246,16 @@ public class ShoppingOrderLocalServiceImpl
 
 		shoppingOrderItemPersistence.removeByOrderId(order.getOrderId());
 
-		// Message boards
-
-		mbMessageLocalService.deleteDiscussionMessages(
-			ShoppingOrder.class.getName(), order.getOrderId());
+		// Subscriptions
 
 		SubscriptionLocalServiceUtil.deleteSubscriptions(
 			order.getCompanyId(), ShoppingOrder.class.getName(),
 			order.getOrderId());
+
+		// Message boards
+
+		mbMessageLocalService.deleteDiscussionMessages(
+			ShoppingOrder.class.getName(), order.getOrderId());
 	}
 
 	public void deleteOrders(long groupId)

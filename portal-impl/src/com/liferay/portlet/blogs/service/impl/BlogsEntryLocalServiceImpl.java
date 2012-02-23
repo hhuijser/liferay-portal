@@ -280,14 +280,16 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		expandoValueLocalService.deleteValues(
 			BlogsEntry.class.getName(), entry.getEntryId());
 
-		// Message boards
-
-		mbMessageLocalService.deleteDiscussionMessages(
-			BlogsEntry.class.getName(), entry.getEntryId());
+		// Subscriptions
 
 		subscriptionLocalService.deleteSubscriptions(
 			entry.getCompanyId(), BlogsEntry.class.getName(),
 			entry.getEntryId());
+
+		// Message boards
+
+		mbMessageLocalService.deleteDiscussionMessages(
+			BlogsEntry.class.getName(), entry.getEntryId());
 
 		// Ratings
 

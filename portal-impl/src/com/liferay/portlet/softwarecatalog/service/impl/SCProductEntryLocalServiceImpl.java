@@ -32,7 +32,6 @@ import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.plugin.ModuleId;
 import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.webserver.WebServerServletTokenUtil;
 import com.liferay.portlet.softwarecatalog.DuplicateProductEntryModuleIdException;
@@ -245,7 +244,7 @@ public class SCProductEntryLocalServiceImpl
 
 		// Subscriptions
 
-		SubscriptionLocalServiceUtil.deleteSubscriptions(
+		subscriptionLocalService.deleteSubscriptions(
 			productEntry.getCompanyId(), SCProductEntry.class.getName(),
 			productEntry.getProductEntryId());
 

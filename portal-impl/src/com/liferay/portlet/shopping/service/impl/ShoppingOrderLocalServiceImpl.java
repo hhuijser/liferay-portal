@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.SubscriptionSender;
@@ -249,6 +250,10 @@ public class ShoppingOrderLocalServiceImpl
 
 		mbMessageLocalService.deleteDiscussionMessages(
 			ShoppingOrder.class.getName(), order.getOrderId());
+
+		SubscriptionLocalServiceUtil.deleteSubscriptions(
+			order.getCompanyId(), ShoppingOrder.class.getName(),
+			order.getOrderId());
 	}
 
 	public void deleteOrders(long groupId)

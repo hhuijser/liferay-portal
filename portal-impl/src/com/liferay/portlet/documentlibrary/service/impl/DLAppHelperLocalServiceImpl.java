@@ -29,6 +29,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileVersion;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.spring.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.asset.NoSuchEntryException;
@@ -200,6 +201,10 @@ public class DLAppHelperLocalServiceImpl
 
 		mbMessageLocalService.deleteDiscussionMessages(
 			DLFileEntryConstants.getClassName(), fileEntry.getFileEntryId());
+
+		SubscriptionLocalServiceUtil.deleteSubscriptions(
+			fileEntry.getCompanyId(), DLFileEntryConstants.getClassName(),
+			fileEntry.getFileEntryId());
 
 		// Ratings
 

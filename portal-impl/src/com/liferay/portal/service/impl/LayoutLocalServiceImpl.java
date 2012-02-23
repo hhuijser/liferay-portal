@@ -450,6 +450,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		mbMessageLocalService.deleteDiscussionMessages(
 			Layout.class.getName(), layout.getPlid());
 
+		subscriptionLocalService.deleteSubscriptions(
+			layout.getCompanyId(), Layout.class.getName(), layout.getPlid());
+
 		// Journal articles
 
 		journalArticleLocalService.deleteLayoutArticleReferences(

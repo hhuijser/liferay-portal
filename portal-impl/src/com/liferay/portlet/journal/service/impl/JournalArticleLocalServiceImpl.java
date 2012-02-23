@@ -646,6 +646,10 @@ public class JournalArticleLocalServiceImpl
 			mbMessageLocalService.deleteDiscussionMessages(
 				JournalArticle.class.getName(), article.getResourcePrimKey());
 
+			subscriptionLocalService.deleteSubscriptions(
+				article.getCompanyId(), JournalArticle.class.getName(),
+				article.getResourcePrimKey());
+
 			// Asset
 
 			assetEntryLocalService.deleteEntry(

@@ -285,6 +285,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		mbMessageLocalService.deleteDiscussionMessages(
 			BlogsEntry.class.getName(), entry.getEntryId());
 
+		subscriptionLocalService.deleteSubscriptions(
+			entry.getCompanyId(), BlogsEntry.class.getName(),
+			entry.getEntryId());
+
 		// Ratings
 
 		ratingsStatsLocalService.deleteStats(

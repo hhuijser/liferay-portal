@@ -235,7 +235,11 @@ definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
 			String name = role.getName();
 
 			if (!name.equals(RoleConstants.GUEST) && !RolePermissionUtil.contains(permissionChecker, groupId, role.getRoleId(), ActionKeys.VIEW)) {
-				itr.remove();
+				if (role.isTeam() && TeamPermissionUtil.contains(permissionChecker, role.getClassPK(), ActionKeys.PERMISSIONS)) {
+				}
+				else {
+					itr.remove();
+				}
 			}
 
 			if (name.equals(RoleConstants.GUEST) && modelResource.equals(Layout.class.getName())) {

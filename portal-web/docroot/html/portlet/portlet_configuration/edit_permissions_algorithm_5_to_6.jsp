@@ -210,6 +210,14 @@ definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
 			roles.remove(siteOwner);
 		}
 
+		Role selRole = null;
+
+		if (modelResource.equals(Role.class.getName())) {
+			selRole = RoleLocalServiceUtil.getRole(Long.valueOf(resourcePrimKey));
+
+			roles.remove(selRole);
+		}
+
 		List<Team> teams = null;
 
 		if (group.isOrganization() || group.isRegularSite()) {
@@ -223,6 +231,10 @@ definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
 			for (Team team : teams) {
 				Role role = RoleLocalServiceUtil.getTeamRole(team.getCompanyId(), team.getTeamId());
 
+				if (selRole != null && selRole.equals(role)) {
+					continue;
+				}
+
 				roles.add(role);
 			}
 		}
@@ -235,7 +247,11 @@ definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
 			String name = role.getName();
 
 			if (!name.equals(RoleConstants.GUEST) && !RolePermissionUtil.contains(permissionChecker, groupId, role.getRoleId(), ActionKeys.VIEW)) {
-				itr.remove();
+				if (role.isTeam() && TeamPermissionUtil.contains(permissionChecker, role.getClassPK(), ActionKeys.PERMISSIONS)) {
+				}
+				else {
+					itr.remove();
+				}
 			}
 
 			if (name.equals(RoleConstants.GUEST) && modelResource.equals(Layout.class.getName())) {

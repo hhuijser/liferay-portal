@@ -210,6 +210,14 @@ definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
 			roles.remove(siteOwner);
 		}
 
+		Role selRole = null;
+
+		if (modelResource.equals(Role.class.getName())) {
+			selRole = RoleLocalServiceUtil.getRole(Long.valueOf(resourcePrimKey));
+
+			roles.remove(selRole);
+		}
+
 		List<Team> teams = null;
 
 		if (group.isOrganization() || group.isRegularSite()) {
@@ -222,6 +230,10 @@ definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
 		if (teams != null) {
 			for (Team team : teams) {
 				Role role = RoleLocalServiceUtil.getTeamRole(team.getCompanyId(), team.getTeamId());
+
+				if (selRole != null && selRole.equals(role)) {
+					continue;
+				}
 
 				roles.add(role);
 			}

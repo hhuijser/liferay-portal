@@ -32,6 +32,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author Brian Wing Shun Chan
@@ -184,15 +185,28 @@ public class ListUtil {
 	 * @deprecated
 	 */
 	public static <E> boolean remove(List<E> list, E element) {
-		Iterator<E> itr = list.iterator();
+		if (list instanceof CopyOnWriteArrayList) {
+			for (int i = 0; i < list.size(); i++) {
+				E curElement = list.get(i);
 
-		while (itr.hasNext()) {
-			E curElement = itr.next();
+				if ((curElement == element) || curElement.equals(element)) {
+					list.remove(i);
 
-			if ((curElement == element) || curElement.equals(element)) {
-				itr.remove();
+					return true;
+				}
+			}
+		}
+		else {
+			Iterator<E> itr = list.iterator();
 
-				return true;
+			while (itr.hasNext()) {
+				E curElement = itr.next();
+
+				if ((curElement == element) || curElement.equals(element)) {
+					itr.remove();
+
+					return true;
+				}
 			}
 		}
 

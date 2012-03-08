@@ -43,11 +43,13 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.webdav.LockException;
+import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
+import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 
@@ -560,10 +562,16 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			String description = fileEntry.getDescription();
 			String changeLog = StringPool.BLANK;
 
-			String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
-				FileEntry.class.getName(), fileEntry.getFileEntryId());
-
 			ServiceContext serviceContext = new ServiceContext();
+
+			long[] assetCategoryIds =
+				AssetCategoryLocalServiceUtil.getCategoryIds(
+					DLFileEntry.class.getName(), fileEntry.getFileEntryId());
+
+			serviceContext.setAssetCategoryIds(assetCategoryIds);
+
+			String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
+				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
 
 			serviceContext.setAssetTagNames(assetTagNames);
 
@@ -689,8 +697,15 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 				description = fileEntry.getDescription();
 
+				long[] assetCategoryIds =
+					AssetCategoryLocalServiceUtil.getCategoryIds(
+						DLFileEntry.class.getName(),
+						fileEntry.getFileEntryId());
+
+				serviceContext.setAssetCategoryIds(assetCategoryIds);
+
 				String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
-					FileEntry.class.getName(), fileEntry.getFileEntryId());
+					DLFileEntry.class.getName(), fileEntry.getFileEntryId());
 
 				serviceContext.setAssetTagNames(assetTagNames);
 

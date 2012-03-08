@@ -43,6 +43,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.webdav.LockException;
+import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
@@ -561,10 +562,16 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			String description = fileEntry.getDescription();
 			String changeLog = StringPool.BLANK;
 
+			ServiceContext serviceContext = new ServiceContext();
+
+			long[] assetCategoryIds =
+				AssetCategoryLocalServiceUtil.getCategoryIds(
+					DLFileEntry.class.getName(), fileEntry.getFileEntryId());
+
+			serviceContext.setAssetCategoryIds(assetCategoryIds);
+
 			String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
 				DLFileEntry.class.getName(), fileEntry.getFileEntryId());
-
-			ServiceContext serviceContext = new ServiceContext();
 
 			serviceContext.setAssetTagNames(assetTagNames);
 
@@ -689,6 +696,13 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 				long fileEntryId = fileEntry.getFileEntryId();
 
 				description = fileEntry.getDescription();
+
+				long[] assetCategoryIds =
+					AssetCategoryLocalServiceUtil.getCategoryIds(
+						DLFileEntry.class.getName(),
+						fileEntry.getFileEntryId());
+
+				serviceContext.setAssetCategoryIds(assetCategoryIds);
 
 				String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
 					DLFileEntry.class.getName(), fileEntry.getFileEntryId());

@@ -186,7 +186,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				classNameId, classPK);
 
 			if (discussion == null) {
-				discussion = mbDiscussionLocalService.addDiscussion(
+				mbDiscussionLocalService.addDiscussion(
 					classNameId, classPK, message.getThreadId());
 			}
 		}
@@ -1959,7 +1959,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		String subject = message.getSubject();
 
 		if (!subjectPrefix.contains("[$MESSAGE_SUBJECT$]")) {
-			subject = subjectPrefix.trim() + " " + subject.trim();
+			message.setSubject(subjectPrefix.trim() + " " + subject.trim());
 		}
 
 		if (Validator.isNotNull(signature)) {

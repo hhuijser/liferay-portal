@@ -73,7 +73,10 @@ if (parentStructure != null) {
 
 String xsd = ParamUtil.getString(request, "xsd");
 
-if (Validator.isNull(xsd)) {
+try {
+	xsd = JournalUtil.processXMLAttributes(xsd);
+}
+catch (StructureXsdException sxe) {
 	xsd = "<root></root>";
 
 	if (structure != null) {
@@ -84,7 +87,6 @@ if (Validator.isNull(xsd)) {
 // Bug with dom4j requires you to remove "\r\n" and "  " or else root.elements()
 // and root.content() will return different number of objects
 
-xsd = JournalUtil.processXMLAttributes(xsd);
 xsd = StringUtil.replace(xsd, StringPool.RETURN_NEW_LINE, StringPool.BLANK);
 xsd = StringUtil.replace(xsd, StringPool.DOUBLE_SPACE, StringPool.BLANK);
 

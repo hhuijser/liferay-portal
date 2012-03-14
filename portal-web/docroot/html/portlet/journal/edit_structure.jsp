@@ -73,21 +73,6 @@ if (parentStructure != null) {
 
 String xsd = ParamUtil.getString(request, "xsd");
 
-if (Validator.isNull(xsd)) {
-	xsd = "<root></root>";
-
-	if (structure != null) {
-		xsd = structure.getXsd();
-	}
-}
-
-// Bug with dom4j requires you to remove "\r\n" and "  " or else root.elements()
-// and root.content() will return different number of objects
-
-xsd = JournalUtil.processXMLAttributes(xsd);
-xsd = StringUtil.replace(xsd, StringPool.RETURN_NEW_LINE, StringPool.BLANK);
-xsd = StringUtil.replace(xsd, StringPool.DOUBLE_SPACE, StringPool.BLANK);
-
 int tabIndex = 1;
 %>
 
@@ -197,6 +182,35 @@ int tabIndex = 1;
 		<liferay-ui:panel collapsible="<%= true %>" extended="<%= true %>" id="journalXSDPanel" persistState="<%= true %>" title="xsd">
 			<aui:fieldset>
 				<liferay-ui:error exception="<%= StructureXsdException.class %>" message="please-enter-a-valid-xsd" />
+
+				<%
+				// Bug with dom4j requires you to remove "\r\n" and "  " or else root.elements()
+				// and root.content() will return different number of objects
+
+				try {
+					xsd = JournalUtil.processXMLAttributes(xsd);
+				}
+				catch (StructureXsdException sxe) {
+					if (Validator.isNotNull(xsd)) {
+				%>
+
+						<div class="portlet-msg-error">
+							<liferay-ui:message key="please-enter-a-valid-xsd" />
+						</div>
+
+				<%
+					}
+
+					xsd = "<root></root>";
+
+					if (structure != null) {
+						xsd = structure.getXsd();
+					}
+				}
+
+				xsd = StringUtil.replace(xsd, StringPool.RETURN_NEW_LINE, StringPool.BLANK);
+				xsd = StringUtil.replace(xsd, StringPool.DOUBLE_SPACE, StringPool.BLANK);
+				%>
 
 				<aui:input name="xsd" type="hidden" value="<%= JS.encodeURIComponent(xsd) %>" />
 

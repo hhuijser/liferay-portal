@@ -78,10 +78,9 @@ public class EditStructureAction extends PortletAction {
 				deleteStructures(actionRequest);
 			}
 
-			if (Validator.isNotNull(cmd)) {
-				String redirect = ParamUtil.getString(
-					actionRequest, "redirect");
+			String redirect = ParamUtil.getString(actionRequest, "redirect");
 
+			if (Validator.isNotNull(cmd)) {
 				if (structure != null) {
 					boolean saveAndContinue = ParamUtil.getBoolean(
 						actionRequest, "saveAndContinue");
@@ -93,6 +92,11 @@ public class EditStructureAction extends PortletAction {
 				}
 
 				sendRedirect(actionRequest, actionResponse, redirect);
+			}
+			else {
+				String xsd = ParamUtil.getString(actionRequest, "xsd");
+
+				JournalUtil.processXMLAttributes(xsd);
 			}
 		}
 		catch (Exception e) {

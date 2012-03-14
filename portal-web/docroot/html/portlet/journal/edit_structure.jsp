@@ -73,14 +73,6 @@ if (parentStructure != null) {
 
 String xsd = ParamUtil.getString(request, "xsd");
 
-if (Validator.isNull(xsd)) {
-	xsd = "<root></root>";
-
-	if (structure != null) {
-		xsd = structure.getXsd();
-	}
-}
-
 int tabIndex = 1;
 %>
 
@@ -199,18 +191,21 @@ int tabIndex = 1;
 					xsd = JournalUtil.processXMLAttributes(xsd);
 				}
 				catch (StructureXsdException sxe) {
+					if (Validator.isNotNull(xsd)) {
+				%>
+
+						<div class="portlet-msg-error">
+							<liferay-ui:message key="please-enter-a-valid-xsd" />
+						</div>
+
+				<%
+					}
+
 					xsd = "<root></root>";
 
 					if (structure != null) {
 						xsd = structure.getXsd();
 					}
-				%>
-
-					<div class="portlet-msg-error">
-						<liferay-ui:message key="please-enter-a-valid-xsd" />
-					</div>
-
-				<%
 				}
 
 				xsd = StringUtil.replace(xsd, StringPool.RETURN_NEW_LINE, StringPool.BLANK);

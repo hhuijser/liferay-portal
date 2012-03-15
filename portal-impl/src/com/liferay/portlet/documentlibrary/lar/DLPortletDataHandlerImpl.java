@@ -448,9 +448,20 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 		if (portletDataContext.getBooleanParameter(
 				_NAMESPACE, "previews-and-thumbnails")) {
 
-			DLProcessorRegistryUtil.importGeneratedFiles(
-				portletDataContext, fileEntry, importedFileEntry,
-				fileEntryElement);
+			boolean dlProcessorEnabled = DLProcessorThreadLocal.isEnabled();
+
+			try {
+				DLProcessorThreadLocal.setEnabled(true);
+
+				DLProcessorRegistryUtil.cleanUp(fileEntry);
+			}
+			finally {
+				DLProcessorThreadLocal.setEnabled(dlProcessorEnabled);
+
+				DLProcessorRegistryUtil.importGeneratedFiles(
+					portletDataContext, fileEntry, importedFileEntry,
+					fileEntryElement);
+			}
 		}
 
 		Map<String, String> fileEntryTitles =

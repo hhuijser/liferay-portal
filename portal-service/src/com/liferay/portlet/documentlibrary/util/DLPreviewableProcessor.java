@@ -42,6 +42,7 @@ import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import java.awt.image.RenderedImage;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 
 /**
@@ -334,7 +335,18 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 			return;
 		}
 
-		portletDataContext.addZipEntry(binPath, is);
+		try {
+			portletDataContext.addZipEntry(binPath, is);
+		}
+		finally {
+			if (is != null) {
+				try {
+					is.close();
+				}
+				catch (IOException ioe) {
+				}
+			}
+		}
 	}
 
 	protected void exportPreview(

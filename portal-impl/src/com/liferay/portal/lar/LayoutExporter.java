@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -83,6 +84,7 @@ import com.liferay.util.ContentUtil;
 import de.schlichtherle.io.FileInputStream;
 
 import java.io.File;
+import java.io.InputStream;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -336,15 +338,17 @@ public class LayoutExporter {
 					SitesUtil.exportLayoutSetPrototype(
 						layoutSetPrototype, serviceContext);
 
+				InputStream is = new FileInputStream(layoutSetPrototypeFile);
+
 				try {
-					portletDataContext.addZipEntry(
-						path.concat(".lar"),
-						new FileInputStream(layoutSetPrototypeFile));
+					portletDataContext.addZipEntry(path.concat(".lar"), is);
 					portletDataContext.addZipEntry(
 						path.concat(".xml"), layoutSetPrototype);
 				}
 				finally {
 					layoutSetPrototypeFile.delete();
+
+					StreamUtil.cleanUp(is);
 				}
 			}
 		}

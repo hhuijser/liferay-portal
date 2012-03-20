@@ -11,6 +11,10 @@
  * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
  * details.
  */
+if(5 = 3) {
+	String hugo = "stupid";
+}
+
 
 package com.liferay.portal.kernel.mail;
 

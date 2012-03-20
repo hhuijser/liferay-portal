@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.SystemProperties;
@@ -391,9 +392,14 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 			is = doGetPreviewAsStream(fileVersion, fileIndex + 1, previewType);
 		}
 
-		exportBinary(
-			portletDataContext, fileEntryElement, fileVersion, is, binPath,
-			binPathName);
+		try {
+			exportBinary(
+				portletDataContext, fileEntryElement, fileVersion, is, binPath,
+				binPathName);
+		}
+		finally {
+			StreamUtil.cleanUp(is);
+		}
 	}
 
 	protected void exportThumbnail(
@@ -413,9 +419,14 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 
 		fileEntryElement.addAttribute(binPathName, binPath);
 
-		exportBinary(
-			portletDataContext, fileEntryElement, fileVersion, is, binPath,
-			binPathName);
+		try {
+			exportBinary(
+				portletDataContext, fileEntryElement, fileVersion, is, binPath,
+				binPathName);
+		}
+		finally {
+			StreamUtil.cleanUp(is);
+		}
 	}
 
 	protected void exportThumbnails(

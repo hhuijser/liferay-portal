@@ -402,7 +402,9 @@ public class AssetPublisherUtil {
 			return new long[] {scopeGroupId};
 		}
 
-		if (Validator.equals(defaultScopeId, StringPool.FALSE)) {
+		if (Validator.equals(defaultScopeId, StringPool.FALSE) ||
+			Validator.isNull(defaultScopeId)) {
+
 			String[] scopeIds = portletPreferences.getValues(
 				"scopeIds",
 				new String[] {"group" + StringPool.UNDERLINE + scopeGroupId});

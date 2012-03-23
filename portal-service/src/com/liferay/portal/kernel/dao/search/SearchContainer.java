@@ -242,6 +242,10 @@ public class SearchContainer<R> {
 	}
 
 	public List<String> getNormalizedHeaderNames() {
+		if (_normalizedHeaderNames == null) {
+			return new ArrayList<String>();
+		}
+
 		return _normalizedHeaderNames;
 	}
 
@@ -419,6 +423,10 @@ public class SearchContainer<R> {
 	}
 
 	private void _buildNormalizedHeaderNames(List<String> headerNames) {
+		if (headerNames == null) {
+			return;
+		}
+
 		_normalizedHeaderNames = new ArrayList<String>(headerNames.size());
 
 		for (String headerName: headerNames) {

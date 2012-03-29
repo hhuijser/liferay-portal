@@ -14,16 +14,19 @@
 
 package com.liferay.portlet.calendar.util.comparator;
 
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.calendar.util.CalUtil;
 
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
 /**
+ * @author Janghyun Kim
  * @author Samuel Kong
  */
 public class EventTimeComparator implements Comparator<CalEvent> {
@@ -47,22 +50,49 @@ public class EventTimeComparator implements Comparator<CalEvent> {
 			return 1;
 		}
 
-		Date startDate1 = getStartDate(event1, _timeZone);
-		Date startDate2 = getStartDate(event2, _timeZone);
+		int value = 0;
 
-		int value = startDate1.compareTo(startDate2);
+		if (event1.isRepeating() || event2.isRepeating()) {
+			Date startDate1 = getNormaizedDate(
+				event1.getStartDate(), event1.isTimeZoneSensitive());
+			Date startDate2 = getNormaizedDate(
+				event2.getStartDate(), event2.isTimeZoneSensitive());
 
-		if (value != 0) {
-			return value;
+			value = startDate1.compareTo(startDate2);
+
+			if (value != 0) {
+				return value;
+			}
+
+			Date endDate1 = getNormaizedDate(
+				event1.getEndDate(), event1.isTimeZoneSensitive());
+			Date endDate2 = getNormaizedDate(
+				event2.getEndDate(), event2.isTimeZoneSensitive());
+
+			value = endDate1.compareTo(endDate2);
+
+			if (value != 0) {
+				return value;
+			}
 		}
+		else {
+			Date startDate1 = getStartDate(event1, _timeZone);
+			Date startDate2 = getStartDate(event2, _timeZone);
 
-		Date endDate1 = getEndDate(event1, _timeZone);
-		Date endDate2 = getEndDate(event2, _timeZone);
+			value = startDate1.compareTo(startDate2);
 
-		value = endDate1.compareTo(endDate2);
+			if (value != 0) {
+				return value;
+			}
 
-		if (value != 0) {
-			return value;
+			Date endDate1 = getEndDate(event1, _timeZone);
+			Date endDate2 = getEndDate(event2, _timeZone);
+
+			value = endDate1.compareTo(endDate2);
+
+			if (value != 0) {
+				return value;
+			}
 		}
 
 		return compareTitle(event1, event2);
@@ -80,6 +110,27 @@ public class EventTimeComparator implements Comparator<CalEvent> {
 		else {
 			return CalUtil.getEndTime(event);
 		}
+	}
+
+	protected Date getNormaizedDate(Date date, boolean timeZoneSensitive) {
+		Calendar cal = Calendar.getInstance();
+
+		if (timeZoneSensitive) {
+			cal = CalendarFactoryUtil.getCalendar(_timeZone);
+		}
+		else {
+			cal = CalendarFactoryUtil.getCalendar();
+		}
+
+		cal.setTime(date);
+
+		// Normalize Year, Month and Date to compare recurring time
+
+		cal.set(Calendar.YEAR, 0);
+		cal.set(Calendar.MONTH, 0);
+		cal.set(Calendar.DATE, 0);
+
+		return Time.getDate(cal);
 	}
 
 	protected Date getStartDate(CalEvent event, TimeZone timeZone) {

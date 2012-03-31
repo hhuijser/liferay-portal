@@ -19,10 +19,6 @@ SearchContainer mainSearchSearchContainer = new SearchContainer(renderRequest, n
 
 SearchContext searchContext = SearchContextFactory.getInstance(request);
 
-searchContext.setAttribute("paginationType", "more");
-searchContext.setEnd(mainSearchSearchContainer.getEnd());
-searchContext.setStart(mainSearchSearchContainer.getStart());
-
 Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
 
 assetEntriesFacet.setStatic(true);
@@ -42,6 +38,11 @@ for (FacetConfiguration facetConfiguration : facetConfigurations) {
 
 	searchContext.addFacet(facet);
 }
+
+searchContext.setAttribute("paginationType", "more");
+searchContext.setEnd(mainSearchSearchContainer.getEnd());
+searchContext.setGroupIds(new long[]{groupId});
+searchContext.setStart(mainSearchSearchContainer.getStart());
 
 Indexer indexer = FacetedSearcher.getInstance();
 

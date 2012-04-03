@@ -5114,7 +5114,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 					int failedLoginAttempts = user.getFailedLoginAttempts();
 					int maxFailures = passwordPolicy.getMaxFailure();
 
-					if ((failedLoginAttempts >= maxFailures) &&
+					if (((failedLoginAttempts + 1) >= maxFailures) &&
 						(maxFailures != 0)) {
 
 						if (authType.equals(CompanyConstants.AUTH_TYPE_EA)) {

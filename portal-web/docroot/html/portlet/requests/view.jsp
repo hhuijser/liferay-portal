@@ -81,6 +81,7 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 							<liferay-ui:icon
 								image="activate"
 								message="confirm"
+								method="post"
 								url="<%= portletURL.toString() %>"
 							/>
 
@@ -91,6 +92,7 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(WebKeys
 							<liferay-ui:icon
 								image="deactivate"
 								message="ignore"
+								method="post"
 								url="<%= portletURL.toString() %>"
 							/>
 						</liferay-ui:icon-list>

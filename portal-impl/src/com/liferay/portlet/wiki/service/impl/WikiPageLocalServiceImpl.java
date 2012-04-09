@@ -1408,7 +1408,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 			int activity = WikiActivityKeys.ADD_PAGE;
 
-			if (page.getVersion() > 1.1) {
+			if (page.getVersion() > WikiPageConstants.VERSION_DEFAULT) {
 				activity = WikiActivityKeys.UPDATE_PAGE;
 			}
 
@@ -1421,7 +1421,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			if (!page.isMinorEdit() && NotificationThreadLocal.isEnabled()) {
 				boolean update = false;
 
-				if (page.getVersion() > 1.1) {
+				if (page.getVersion() > WikiPageConstants.VERSION_DEFAULT) {
 					update = true;
 				}
 

@@ -40,7 +40,7 @@ AssetDisplayTerms displayTerms = (AssetDisplayTerms)searchContainer.getDisplayTe
 			for (long groupId : groupIds) {
 			%>
 
-				<aui:option label='<%= (themeDisplay.getCompanyGroupId() == groupId) ? "global" : themeDisplay.getScopeGroupName() %>' selected="<%= displayTerms.getGroupId() == groupId %>" value="<%= groupId %>" />
+				<aui:option label='<%= GroupLocalServiceUtil.getGroup(groupId).getDescriptiveName(locale) %>' selected="<%= displayTerms.getGroupId() == groupId %>" value="<%= groupId %>" />
 
 			<%
 			}

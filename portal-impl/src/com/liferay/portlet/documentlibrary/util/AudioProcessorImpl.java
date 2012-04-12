@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.SystemEnv;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.log.Log4jLogFactoryImpl;
@@ -49,6 +50,7 @@ import java.io.InputStream;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.Vector;
 import java.util.concurrent.Future;
@@ -448,6 +450,10 @@ public class AudioProcessorImpl
 		}
 
 		public String call() throws ProcessException {
+			Properties systemProperties = System.getProperties();
+
+			SystemEnv.setProperties(systemProperties);
+
 			Class<?> clazz = getClass();
 
 			ClassLoader classLoader = clazz.getClassLoader();

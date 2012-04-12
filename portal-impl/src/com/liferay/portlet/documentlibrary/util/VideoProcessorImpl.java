@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.SystemEnv;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.log.Log4jLogFactoryImpl;
@@ -589,6 +590,10 @@ public class VideoProcessorImpl
 		}
 
 		public String call() throws ProcessException {
+			Properties systemProperties = System.getProperties();
+
+			SystemEnv.setProperties(systemProperties);
+
 			Class<?> clazz = getClass();
 
 			ClassLoader classLoader = clazz.getClassLoader();
@@ -646,6 +651,9 @@ public class VideoProcessorImpl
 			Class<?> clazz = getClass();
 
 			ClassLoader classLoader = clazz.getClassLoader();
+
+			Properties systemProperties = System.getProperties();
+			SystemEnv.setProperties(systemProperties);
 
 			Log4JUtil.initLog4J(
 				_serverId, _liferayHome, classLoader, new Log4jLogFactoryImpl(),

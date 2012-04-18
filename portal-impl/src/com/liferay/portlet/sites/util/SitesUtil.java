@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.sites.util;
 
+import com.liferay.portal.RequiredLayoutException;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -421,6 +422,11 @@ public class SitesUtil {
 		}
 
 		LayoutSet layoutSet = layout.getLayoutSet();
+
+		if (group.isGuest() && (layoutSet.getPageCount() == 1)) {
+			throw new RequiredLayoutException(
+				RequiredLayoutException.AT_LEAST_ONE);
+		}
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			request);

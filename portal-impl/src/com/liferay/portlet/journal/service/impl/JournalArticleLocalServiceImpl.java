@@ -2120,13 +2120,6 @@ public class JournalArticleLocalServiceImpl
 
 		journalArticlePersistence.update(article, false);
 
-		// Asset
-
-		updateAsset(
-			userId, article, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(),
-			serviceContext.getAssetLinkEntryIds());
-
 		// Expando
 
 		ExpandoBridge expandoBridge = article.getExpandoBridge();
@@ -2167,6 +2160,13 @@ public class JournalArticleLocalServiceImpl
 
 			indexer.reindex(article);
 		}
+
+		// Asset
+
+		updateAsset(
+			userId, article, serviceContext.getAssetCategoryIds(),
+			serviceContext.getAssetTagNames(),
+			serviceContext.getAssetLinkEntryIds());
 
 		return article;
 	}

@@ -185,7 +185,7 @@ viewFolderURL.setParameter("folderId", String.valueOf(folderId));
 			<c:otherwise>
 
 				<%
-					fileEntry = DLAppLocalServiceUtil.getFileEntry(fileShortcut.getToFileEntryId());
+				fileEntry = DLAppLocalServiceUtil.getFileEntry(fileShortcut.getToFileEntryId());
 				%>
 
 				<c:if test="<%= DLFileShortcutPermission.contains(permissionChecker, fileShortcut, ActionKeys.VIEW) %>">

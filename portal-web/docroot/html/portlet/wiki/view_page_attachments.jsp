@@ -43,7 +43,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "att
 </liferay-util:include>
 
 <%
-	List<String> headerNames = new ArrayList<String>();
+List<String> headerNames = new ArrayList<String>();
 
 headerNames.add("file-name");
 headerNames.add("size");

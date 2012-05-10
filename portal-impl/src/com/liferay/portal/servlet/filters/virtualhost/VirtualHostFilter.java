@@ -15,6 +15,7 @@
 package com.liferay.portal.servlet.filters.virtualhost;
 
 import com.liferay.portal.LayoutFriendlyURLException;
+import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.struts.LastPath;
@@ -27,6 +28,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.impl.LayoutImpl;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.servlet.I18nServlet;
 import com.liferay.portal.servlet.filters.BasePortalFilter;
 import com.liferay.portal.util.PortalInstances;
@@ -218,14 +220,6 @@ public class VirtualHostFilter extends BasePortalFilter {
 
 			return;
 		}
-		else if (friendlyURL.startsWith(_PATH_DOCUMENTS)) {
-			if (WebServerServlet.hasFiles(request)) {
-				processFilter(
-					VirtualHostFilter.class, request, response, filterChain);
-
-				return;
-			}
-		}
 
 		LayoutSet layoutSet = (LayoutSet)request.getAttribute(
 			WebKeys.VIRTUAL_HOST_LAYOUT_SET);
@@ -239,6 +233,20 @@ public class VirtualHostFilter extends BasePortalFilter {
 				VirtualHostFilter.class, request, response, filterChain);
 
 			return;
+		}
+
+		if (friendlyURL.startsWith(_PATH_DOCUMENTS)) {
+			try {
+				LayoutLocalServiceUtil.getFriendlyURLLayout(
+					layoutSet.getGroupId(), layoutSet.isPrivateLayout(),
+					friendlyURL);
+			}
+			catch (NoSuchLayoutException nsle) {
+				processFilter(
+					VirtualHostFilter.class, request, response, filterChain);
+
+				return;
+			}
 		}
 
 		try {

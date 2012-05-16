@@ -15,7 +15,6 @@
 package com.liferay.portlet.messageboards.service;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.util.MethodCache;
 import com.liferay.portal.kernel.util.ReferenceRegistry;
 
 /**
@@ -170,7 +169,6 @@ public class MBThreadServiceUtil {
 
 			ReferenceRegistry.registerReference(MBThreadServiceUtil.class,
 				"_service");
-			MethodCache.remove(MBThreadService.class);
 		}
 
 		return _service;

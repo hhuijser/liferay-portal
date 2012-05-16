@@ -396,11 +396,14 @@ public class JSONServiceAction extends JSONAction {
 			}
 		}
 		else if (typeNameOrClassDescriptor.equals(
-			"java.util.Map<java.util.Locale, java.lang.String>")) {
+					"java.util.Map<java.util.Locale, java.lang.String>")) {
 
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(value);
 
 			return LocalizationUtil.deserialize(jsonObject);
+		}
+		else if (typeNameOrClassDescriptor.startsWith("java.util.Map")) {
+			return JSONFactoryUtil.looseDeserializeSafe(value);
 		}
 		else {
 			_log.error(

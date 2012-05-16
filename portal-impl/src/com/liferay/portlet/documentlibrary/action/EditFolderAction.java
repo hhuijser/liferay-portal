@@ -77,7 +77,7 @@ public class EditFolderAction extends PortletAction {
 			if (e instanceof NoSuchFolderException ||
 				e instanceof PrincipalException) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName());
+				SessionErrors.add(actionRequest, e.getClass());
 
 				setForward(actionRequest, "portlet.document_library.error");
 			}
@@ -85,7 +85,7 @@ public class EditFolderAction extends PortletAction {
 					 e instanceof DuplicateFolderNameException ||
 					 e instanceof FolderNameException) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName());
+				SessionErrors.add(actionRequest, e.getClass());
 			}
 			else {
 				throw e;
@@ -106,7 +106,7 @@ public class EditFolderAction extends PortletAction {
 			if (e instanceof NoSuchFolderException ||
 				e instanceof PrincipalException) {
 
-				SessionErrors.add(renderRequest, e.getClass().getName());
+				SessionErrors.add(renderRequest, e.getClass());
 
 				return mapping.findForward("portlet.document_library.error");
 			}

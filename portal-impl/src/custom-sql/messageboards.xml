@@ -115,7 +115,7 @@
 				(currentMessage.categoryId = ?) AND
 				(currentMessage.userId = ?)
 			GROUP BY
-				currentMessage.rootMessageId
+				currentMessage.threadId, currentMessage.rootMessageId
 			ORDER BY
 				MAX(currentMessage.priority) DESC,
 				MAX(currentMessage.modifiedDate) DESC
@@ -133,7 +133,7 @@
 				(currentMessage.userId = ?) AND
 				(currentMessage.modifiedDate > ?)
 			GROUP BY
-				currentMessage.rootMessageId
+				currentMessage.threadId, currentMessage.rootMessageId
 			ORDER BY
 				MAX(currentMessage.modifiedDate) DESC
 		]]>
@@ -150,7 +150,7 @@
 				(currentMessage.userId = ?) AND
 				(currentMessage.anonymous = ?)
 			GROUP BY
-				currentMessage.rootMessageId
+				currentMessage.threadId, currentMessage.rootMessageId
 			ORDER BY
 				MAX(currentMessage.priority) DESC,
 				MAX(currentMessage.modifiedDate) DESC

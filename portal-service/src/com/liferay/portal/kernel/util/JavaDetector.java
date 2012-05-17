@@ -39,6 +39,10 @@ public class JavaDetector {
 		return _instance._javaClassVersion;
 	}
 
+	public static String getJavaRuntimeName() {
+		return _instance._javaRuntimeName;
+	}
+
 	public static String getJavaRuntimeVersion() {
 		return _instance._javaRuntimeVersion;
 	}
@@ -68,9 +72,7 @@ public class JavaDetector {
 	}
 
 	public static boolean isJDK4() {
-		if (JavaDetector.getJavaClassVersion() >=
-				JavaDetector.JAVA_CLASS_VERSION_JDK_4) {
-
+		if (getJavaClassVersion() >= JAVA_CLASS_VERSION_JDK_4) {
 			return true;
 		}
 		else {
@@ -79,9 +81,7 @@ public class JavaDetector {
 	}
 
 	public static boolean isJDK5() {
-		if (JavaDetector.getJavaClassVersion() >=
-				JavaDetector.JAVA_CLASS_VERSION_JDK_5) {
-
+		if (getJavaClassVersion() >= JavaDetector.JAVA_CLASS_VERSION_JDK_5) {
 			return true;
 		}
 		else {
@@ -90,9 +90,7 @@ public class JavaDetector {
 	}
 
 	public static boolean isJDK6() {
-		if (JavaDetector.getJavaClassVersion() >=
-				JavaDetector.JAVA_CLASS_VERSION_JDK_6) {
-
+		if (getJavaClassVersion() >= JavaDetector.JAVA_CLASS_VERSION_JDK_6) {
 			return true;
 		}
 		else {
@@ -101,9 +99,7 @@ public class JavaDetector {
 	}
 
 	public static boolean isJDK7() {
-		if (JavaDetector.getJavaClassVersion() >=
-				JavaDetector.JAVA_CLASS_VERSION_JDK_7) {
-
+		if (getJavaClassVersion() >= JavaDetector.JAVA_CLASS_VERSION_JDK_7) {
 			return true;
 		}
 		else {
@@ -111,10 +107,15 @@ public class JavaDetector {
 		}
 	}
 
+	public static boolean isOpenJDK() {
+		return _instance._openJDK;
+	}
+
 	protected JavaDetector() {
 		_javaClassPath = System.getProperty("java.class.path");
 		_javaClassVersion = Double.parseDouble(System.getProperty(
 			"java.class.version"));
+		_javaRuntimeName = System.getProperty("java.runtime.name");
 		_javaRuntimeVersion = System.getProperty("java.runtime.version");
 		_javaSpecificationVersion = Double.parseDouble(System.getProperty(
 			"java.specification.version"));
@@ -129,7 +130,13 @@ public class JavaDetector {
 			_ibm = _javaVendor.startsWith("IBM");
 		}
 
-		LogUtil.debug(_log, System.getProperties());
+		if (_javaRuntimeName != null) {
+			_openJDK = _javaRuntimeName.contains("OpenJDK");
+		}
+
+		if (_log.isDebugEnabled()) {
+			LogUtil.debug(_log, new SortedProperties(System.getProperties()));
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(JavaDetector.class);
@@ -140,10 +147,12 @@ public class JavaDetector {
 	private boolean _ibm;
 	private String _javaClassPath;
 	private double _javaClassVersion;
+	private String _javaRuntimeName;
 	private String _javaRuntimeVersion;
 	private double _javaSpecificationVersion;
 	private String _javaVendor;
 	private String _javaVersion;
 	private String _javaVmVersion;
+	private boolean _openJDK;
 
 }

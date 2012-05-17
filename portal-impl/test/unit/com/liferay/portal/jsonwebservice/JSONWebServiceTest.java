@@ -66,7 +66,8 @@ public class JSONWebServiceTest extends BaseJSONWebServiceTestCase {
 		mockHttpServletRequest.setParameter("userId", "371");
 		mockHttpServletRequest.setParameter("worldName", "Impossible Planet");
 
-		jsonWebServiceAction = lookupJSONWebServiceAction(mockHttpServletRequest);
+		jsonWebServiceAction = lookupJSONWebServiceAction(
+			mockHttpServletRequest);
 
 		assertEquals(
 			"Welcome 371 to Impossible Planet", jsonWebServiceAction.invoke());

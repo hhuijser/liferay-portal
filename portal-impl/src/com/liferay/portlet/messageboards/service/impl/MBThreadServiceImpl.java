@@ -67,6 +67,11 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 			int end)
 		throws PortalException, SystemException {
 
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return mbThreadFinder.findByG_U_MD_S(
+				groupId, userId, modifiedDate, status, start, end);
+		}
+
 		long[] categoryIds = mbCategoryService.getCategoryIds(
 			groupId, MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 
@@ -160,6 +165,11 @@ public class MBThreadServiceImpl extends MBThreadServiceBaseImpl {
 	public int getGroupThreadsCount(
 			long groupId, long userId, Date modifiedDate, int status)
 		throws SystemException {
+
+		if (!InlineSQLHelperUtil.isEnabled(groupId)) {
+			return mbThreadFinder.countByG_U_MD_S(
+				groupId, userId, modifiedDate, status);
+		}
 
 		long[] categoryIds = mbCategoryService.getCategoryIds(
 			groupId, MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);

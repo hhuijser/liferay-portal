@@ -19,8 +19,8 @@ package com.liferay.portal.jsonwebservice;
  */
 public interface FooData {
 
-	public void setId(int id);
-
 	public String getValue();
+
+	public void setId(int id);
 
 }

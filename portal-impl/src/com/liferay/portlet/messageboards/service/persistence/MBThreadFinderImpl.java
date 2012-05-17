@@ -70,7 +70,7 @@ public class MBThreadFinderImpl
 		MBThreadFinder.class.getName() + ".findByG_U_S";
 
 	public static final String FIND_BY_G_U_MD_S =
-			MBThreadFinder.class.getName() + ".findByG_U_MD_S";
+		MBThreadFinder.class.getName() + ".findByG_U_MD_S";
 
 	public static final String FIND_BY_G_U_A_S =
 		MBThreadFinder.class.getName() + ".findByG_U_A_S";

@@ -135,7 +135,7 @@ public class MBMessageFinderImpl
 			int status)
 		throws SystemException {
 
-		return doCountByG_U_C_MD_S(
+		return doCountByG_U_MD_C_S(
 			groupId, userId, modifiedDate, categoryIds, status, true);
 	}
 
@@ -162,7 +162,7 @@ public class MBMessageFinderImpl
 			int status, int start, int end)
 		throws SystemException {
 
-		return doFindByG_U_C_MD_S(
+		return doFindByG_U_MD_C_S(
 			groupId, userId, modifiedDate, categoryIds, status, start, end,
 			true);
 	}
@@ -292,7 +292,7 @@ public class MBMessageFinderImpl
 		}
 	}
 
-	protected int doCountByG_U_C_MD_S(
+	protected int doCountByG_U_MD_C_S(
 			long groupId, long userId, Date modifiedDate, long[] categoryIds,
 			int status, boolean inlineSQLHelper)
 		throws SystemException {
@@ -506,7 +506,7 @@ public class MBMessageFinderImpl
 		}
 	}
 
-	protected List<Long> doFindByG_U_C_MD_S(
+	protected List<Long> doFindByG_U_MD_C_S(
 			long groupId, long userId, Date modifiedDate, long[] categoryIds,
 			int status, int start, int end, boolean inlineSQLHelper)
 		throws SystemException {

@@ -15,6 +15,7 @@
 package com.liferay.portal.verify;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -25,22 +26,28 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileVersion;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
-import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryTypeConstants;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.service.DLAppHelperLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.service.DLFileEntryTypeLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.documentlibrary.util.comparator.FileVersionVersionComparator;
 
 import java.io.InputStream;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
 
 import java.util.Collections;
 import java.util.Date;
@@ -99,24 +106,52 @@ public class VerifyDocumentLibrary extends VerifyProcess {
 	}
 
 	protected void checkDLFileEntryType() throws Exception {
-		DLFileEntryType dlFileEntryType =
-			DLFileEntryTypeLocalServiceUtil.fetchDLFileEntryType(
-				DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
-		if (dlFileEntryType != null) {
-			return;
+		try {
+			con = DataAccess.getConnection();
+
+			ps = con.prepareStatement(
+				"select name from DLFileEntryType where " +
+					"fileEntryTypeId = 0");
+
+			rs = ps.executeQuery();
+
+			if (!rs.next()) {
+
+				String uuid = PortalUUIDUtil.generate();
+
+				Timestamp now = new Timestamp(System.currentTimeMillis());
+
+				StringBundler sb = new StringBundler(4);
+				sb.append("insert into DLFileEntryType (uuid_, ");
+				sb.append("fileEntryTypeId, groupId, companyId, userId, ");
+				sb.append("userName, createDate, modifiedDate, name, ");
+				sb.append("description) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+				String sql = sb.toString();
+
+				ps = con.prepareStatement(sql);
+
+				ps.setString(1, uuid);
+				ps.setInt(2, 0);
+				ps.setInt(3, 0);
+				ps.setInt(4, 0);
+				ps.setInt(5, 0);
+				ps.setString(6, StringPool.BLANK);
+				ps.setTimestamp(7, now);
+				ps.setTimestamp(8, now);
+				ps.setString(9, DLFileEntryTypeConstants.NAME_BASIC_DOCUMENT);
+				ps.setString(10, StringPool.BLANK);
+
+				ps.executeUpdate();
+			}
 		}
-
-		Date now = new Date();
-
-		dlFileEntryType = DLFileEntryTypeLocalServiceUtil.createDLFileEntryType(
-			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
-
-		dlFileEntryType.setCreateDate(now);
-		dlFileEntryType.setModifiedDate(now);
-		dlFileEntryType.setName(DLFileEntryTypeConstants.NAME_BASIC_DOCUMENT);
-
-		DLFileEntryTypeLocalServiceUtil.updateDLFileEntryType(dlFileEntryType);
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
 	}
 
 	protected void checkMimeTypes() throws Exception {

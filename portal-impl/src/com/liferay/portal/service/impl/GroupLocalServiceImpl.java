@@ -304,6 +304,12 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setSite(site);
 		group.setActive(active);
 
+		if ((serviceContext != null) && (classNameId == groupClassNameId) &&
+			!user.isDefaultUser()) {
+
+			group.setExpandoBridgeAttributes(serviceContext);
+		}
+
 		groupPersistence.update(group, false);
 
 		// Layout sets
@@ -2067,6 +2073,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		group.setType(type);
 		group.setFriendlyURL(friendlyURL);
 		group.setActive(active);
+
+		if ((serviceContext != null) && group.isSite()) {
+			group.setExpandoBridgeAttributes(serviceContext);
+		}
 
 		groupPersistence.update(group, false);
 

@@ -14,7 +14,6 @@
 
 package com.liferay.portal.service;
 
-import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.ListTypeConstants;
 import com.liferay.portal.model.Organization;
@@ -43,7 +42,6 @@ import org.junit.runner.RunWith;
 public class OrganizationLocalServiceTest {
 
 	@Test
-	@Transactional
 	public void testAddOrganization() throws Exception {
 		User user = ServiceTestUtil.addUser("testAddOrganization", false, null);
 

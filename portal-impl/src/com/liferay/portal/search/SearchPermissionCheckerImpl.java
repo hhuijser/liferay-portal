@@ -116,7 +116,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		String resourceName, String resourceClassPK) {
 
 		try {
-			doUpdatePermissionFields_6(resourceName, resourceClassPK);
+			doUpdatePermissionFields(resourceName, resourceClassPK);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -392,7 +392,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		return fullQuery;
 	}
 
-	protected void doUpdatePermissionFields_6(
+	protected void doUpdatePermissionFields(
 			String resourceName, String resourceClassPK)
 		throws Exception {
 

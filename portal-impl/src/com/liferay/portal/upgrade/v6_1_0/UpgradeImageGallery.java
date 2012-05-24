@@ -40,6 +40,7 @@ import com.liferay.portlet.documentlibrary.util.ImageProcessorUtil;
 import java.io.InputStream;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -237,6 +238,70 @@ public class UpgradeImageGallery extends UpgradeProcess {
 		}
 		finally {
 			DataAccess.cleanUp(con, ps);
+		}
+	}
+
+	protected void deleteConflictingIGPermissions(
+			String igResourceName, String dlResourceName)
+		throws Exception {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getConnection();
+
+			DatabaseMetaData databaseMetaData = con.getMetaData();
+
+			boolean supportsBatchUpdates =
+				databaseMetaData.supportsBatchUpdates();
+
+			ps = con.prepareStatement(
+				"select companyId, scope, primKey, roleId from " +
+					"ResourcePermission where name = ?");
+
+			ps.setString(1, igResourceName);
+
+			rs = ps.executeQuery();
+
+			ps = con.prepareStatement(
+				"delete from ResourcePermission where name = ? and " +
+					"companyId = ? and scope = ? and primKey = ? and " +
+						"roleId = ?");
+
+			int count = 0;
+
+			while (rs.next()) {
+				ps.setString(1, dlResourceName);
+				ps.setLong(2, rs.getLong("companyId"));
+				ps.setLong(3, rs.getLong("scope"));
+				ps.setLong(4, rs.getLong("primKey"));
+				ps.setLong(5, rs.getLong("roleId"));
+
+				if (supportsBatchUpdates) {
+					ps.addBatch();
+
+					if (count == PropsValues.HIBERNATE_JDBC_BATCH_SIZE) {
+						ps.executeBatch();
+
+						count = 0;
+					}
+					else {
+						count++;
+					}
+				}
+				else {
+				 	ps.executeUpdate();
+				}
+			}
+
+			if (supportsBatchUpdates && (count > 0)) {
+				ps.executeBatch();
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 
@@ -526,32 +591,12 @@ public class UpgradeImageGallery extends UpgradeProcess {
 	}
 
 	protected void updateIGFolderPermissions() throws Exception {
-		runSQL(
-			"delete from ResourcePermission where " +
-				"name = 'com.liferay.portlet.imagegallery.model.IGFolder' " +
-					"and primKey = '0'");
+		deleteConflictingIGPermissions(
+			_IG_FOLDER_CLASS_NAME, DLFolder.class.getName());
 
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			StringBundler sb = new StringBundler(4);
-
-			sb.append("update ResourcePermission set name = '");
-			sb.append(DLFolder.class.getName());
-			sb.append("' where name = 'com.liferay.portlet.imagegallery.");
-			sb.append("model.IGFolder'");
-
-			ps = con.prepareStatement(sb.toString());
-
-			ps.executeUpdate();
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
+		runSQL("update ResourcePermission set name = '" +
+			DLFolder.class.getName() +
+				"' where name = '" + _IG_FOLDER_CLASS_NAME + "'");
 	}
 
 	protected void updateIGImageEntries() throws Exception {
@@ -674,15 +719,17 @@ public class UpgradeImageGallery extends UpgradeProcess {
 	}
 
 	protected void updateIGImagePermissions() throws Exception {
-		runSQL(
-			"delete from ResourcePermission where name = '" +
-				_IG_IMAGE_CLASS_NAME + "' and primKey = '0'");
+		deleteConflictingIGPermissions(
+			_IG_IMAGE_CLASS_NAME, DLFileEntry.class.getName());
 
 		runSQL(
 			"update ResourcePermission set name = '" +
 				DLFileEntry.class.getName() + "' where name = '" +
 					_IG_IMAGE_CLASS_NAME + "'");
 	}
+
+	private static final String _IG_FOLDER_CLASS_NAME =
+		"com.liferay.portlet.imagegallery.model.IGFolder";
 
 	private static final String _IG_IMAGE_CLASS_NAME =
 		"com.liferay.portlet.imagegallery.model.IGImage";

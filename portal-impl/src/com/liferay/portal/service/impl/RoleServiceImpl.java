@@ -24,6 +24,7 @@ import com.liferay.portal.service.base.RoleServiceBaseImpl;
 import com.liferay.portal.service.permission.PortalPermissionUtil;
 import com.liferay.portal.service.permission.RolePermissionUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
+import com.liferay.portal.service.persistence.ResourcePermissionUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,6 +103,7 @@ public class RoleServiceImpl extends RoleServiceBaseImpl {
 		RolePermissionUtil.check(
 			getPermissionChecker(), roleId, ActionKeys.DELETE);
 
+		ResourcePermissionUtil.removeByRoleId(roleId);
 		roleLocalService.deleteRole(roleId);
 	}
 

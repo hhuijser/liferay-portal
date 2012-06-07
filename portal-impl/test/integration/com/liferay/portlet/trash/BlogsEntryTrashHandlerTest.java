@@ -33,6 +33,7 @@ import com.liferay.portal.test.EnvironmentExecutionTestListener;
 import com.liferay.portal.test.ExecutionTestListeners;
 import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
 import com.liferay.portal.test.TransactionalExecutionTestListener;
+import com.liferay.portal.util.TestPropsValues;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.blogs.model.BlogsEntry;
@@ -117,6 +118,8 @@ public class BlogsEntryTrashHandlerTest {
 			BlogsEntryLocalServiceUtil.updateStatus(
 				getUserId(), blogsEntry.getEntryId(),
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
+
+			Thread.sleep(1000 * TestPropsValues.JUNIT_DELAY_FACTOR);
 		}
 
 		return blogsEntry;

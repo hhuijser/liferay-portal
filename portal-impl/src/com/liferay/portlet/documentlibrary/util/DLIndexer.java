@@ -51,13 +51,9 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
-import com.liferay.portlet.asset.model.AssetCategory;
-import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
-import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryMetadata;
@@ -121,8 +117,8 @@ public class DLIndexer extends BaseIndexer {
 
 	@Override
 	public boolean hasPermission(
-			PermissionChecker permissionChecker, long entryClassPK,
-			String actionId)
+			PermissionChecker permissionChecker, String entryClassName,
+			long entryClassPK, String actionId)
 		throws Exception {
 
 		return DLFileEntryPermission.contains(
@@ -348,33 +344,11 @@ public class DLIndexer extends BaseIndexer {
 			return null;
 		}
 
+		DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
+
 		try {
-			Document document = new DocumentImpl();
-
-			long fileEntryId = dlFileEntry.getFileEntryId();
-
-			document.addUID(PORTLET_ID, fileEntryId);
-
-			List<AssetCategory> assetCategories =
-				AssetCategoryLocalServiceUtil.getCategories(
-					DLFileEntry.class.getName(), fileEntryId);
-
-			long[] assetCategoryIds = StringUtil.split(
-				ListUtil.toString(
-					assetCategories, AssetCategory.CATEGORY_ID_ACCESSOR),
-				0L);
-
-			document.addKeyword(Field.ASSET_CATEGORY_IDS, assetCategoryIds);
-
-			addSearchAssetCategoryTitles(
-				document, Field.ASSET_CATEGORY_TITLES, assetCategories);
-
-			String[] assetTagNames = AssetTagLocalServiceUtil.getTagNames(
-				DLFileEntry.class.getName(), fileEntryId);
-
-			document.addKeyword(Field.ASSET_TAG_NAMES, assetTagNames);
-
-			document.addKeyword(Field.COMPANY_ID, dlFileEntry.getCompanyId());
+			Document document = getBaseModelDocument(
+				PORTLET_ID, dlFileEntry, dlFileVersion);
 
 			if (indexContent) {
 				try {
@@ -387,32 +361,11 @@ public class DLIndexer extends BaseIndexer {
 			}
 
 			document.addText(Field.DESCRIPTION, dlFileEntry.getDescription());
-			document.addKeyword(
-				Field.ENTRY_CLASS_NAME, DLFileEntry.class.getName());
-			document.addKeyword(Field.ENTRY_CLASS_PK, fileEntryId);
 			document.addKeyword(Field.FOLDER_ID, dlFileEntry.getFolderId());
-			document.addKeyword(
-				Field.GROUP_ID, getParentGroupId(dlFileEntry.getGroupId()));
-			document.addDate(
-				Field.MODIFIED_DATE, dlFileEntry.getModifiedDate());
-			document.addKeyword(Field.PORTLET_ID, PORTLET_ID);
 			document.addText(
 				Field.PROPERTIES, dlFileEntry.getLuceneProperties());
-			document.addKeyword(Field.SCOPE_GROUP_ID, dlFileEntry.getGroupId());
 
-			DLFileVersion dlFileVersion = dlFileEntry.getFileVersion();
-
-			document.addKeyword(Field.STATUS, dlFileVersion.getStatus());
 			document.addText(Field.TITLE, dlFileEntry.getTitle());
-
-			long userId = dlFileEntry.getUserId();
-
-			document.addKeyword(Field.USER_ID, userId);
-			document.addKeyword(
-				Field.USER_NAME,
-				PortalUtil.getUserName(userId, dlFileEntry.getUserName()),
-				true);
-
 			document.addKeyword(
 				"dataRepositoryId", dlFileEntry.getDataRepositoryId());
 			document.addKeyword("extension", dlFileEntry.getExtension());

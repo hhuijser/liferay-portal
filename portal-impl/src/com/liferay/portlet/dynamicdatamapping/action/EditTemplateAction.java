@@ -104,7 +104,7 @@ public class EditTemplateAction extends PortletAction {
 			else if (e instanceof TemplateNameException ||
 					 e instanceof TemplateScriptException) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName(), e);
+				SessionErrors.add(actionRequest, e.getClass(), e);
 			}
 			else {
 				throw e;

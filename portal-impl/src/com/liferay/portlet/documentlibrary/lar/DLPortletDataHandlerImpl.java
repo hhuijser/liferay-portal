@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
@@ -109,9 +108,7 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
-		if ((fileVersion.getStatus() != WorkflowConstants.STATUS_APPROVED ) &&
-			(fileVersion.getStatus() != WorkflowConstants.STATUS_IN_TRASH)) {
-
+		if (!fileVersion.isApproved() && !fileVersion.isInTrash()) {
 			return;
 		}
 
@@ -374,9 +371,7 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 					fileEntry.getDescription(), null, is, fileEntry.getSize(),
 					serviceContext);
 
-				if (fileVersion.getStatus() ==
-						WorkflowConstants.STATUS_IN_TRASH) {
-
+				if (fileVersion.isInTrash()) {
 					importedFileEntry = DLAppServiceUtil.moveFileEntryToTrash(
 						importedFileEntry.getFileEntryId());
 				}

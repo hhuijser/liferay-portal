@@ -150,7 +150,7 @@ public class EditGroupAction extends PortletAction {
 					 e instanceof RequiredGroupException ||
 					 e instanceof SystemException) {
 
-				SessionErrors.add(actionRequest, e.getClass().getName(), e);
+				SessionErrors.add(actionRequest, e.getClass(), e);
 
 				if (cmd.equals(Constants.DEACTIVATE) ||
 					cmd.equals(Constants.DELETE) ||

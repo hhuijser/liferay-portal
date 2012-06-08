@@ -339,7 +339,7 @@
 	</category>
 
 	<category name="com.liferay.portal.kernel.util.ClassUtil">
-		<priority value="DEBUG" />
+		<priority value="ERROR" />
 	</category>
 
 	<category name="com.liferay.portal.kernel.util.JavaDetector">

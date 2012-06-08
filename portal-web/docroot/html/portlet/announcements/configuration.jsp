@@ -37,7 +37,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 			for (int pageDeltaValue : PropsValues.ANNOUNCEMENTS_ENTRY_PAGE_DELTA_VALUES) {
 			%>
 
-				<aui:option label="<%= pageDelta %>" selected="<%= pageDelta == pageDeltaValue %>" />
+				<aui:option label="<%= pageDeltaValue %>" selected="<%= pageDelta == pageDeltaValue %>" />
 
 			<%
 			}

@@ -36,6 +36,8 @@ import com.liferay.util.log4j.Log4JUtil;
 
 import com.sun.syndication.io.XmlReader;
 
+import java.util.List;
+
 import org.apache.commons.lang.time.StopWatch;
 
 /**
@@ -141,10 +143,16 @@ public class InitUtil {
 	}
 
 	public synchronized static void initWithSpring() {
-		initWithSpring(false);
+		initWithSpring(false, null);
 	}
 
 	public synchronized static void initWithSpring(boolean force) {
+		initWithSpring(force, null);
+	}
+
+	public synchronized static void initWithSpring(
+		boolean force, List<String> extraConfigLocations) {
+
 		if (force) {
 			_initialized = false;
 		}
@@ -162,9 +170,15 @@ public class InitUtil {
 
 		init();
 
-		SpringUtil.loadContext();
+		SpringUtil.loadContext(extraConfigLocations);
 
 		_initialized = true;
+	}
+
+	public synchronized static void initWithSpring(
+		List<String> extraConfigLocations) {
+
+		initWithSpring(false, extraConfigLocations);
 	}
 
 	private static final boolean _PRINT_TIME = false;

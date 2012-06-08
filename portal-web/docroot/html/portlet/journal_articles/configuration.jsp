@@ -134,7 +134,7 @@ if (Validator.isNotNull(structureId)) {
 					for (int pageDeltaValue : PropsValues.JOURNAL_ARTICLES_PAGE_DELTA_VALUES) {
 					%>
 
-						<aui:option label="<%= pageDelta %>" selected="<%= pageDelta == pageDeltaValue %>" />
+						<aui:option label="<%= pageDeltaValue %>" selected="<%= pageDelta == pageDeltaValue %>" />
 
 					<%
 					}

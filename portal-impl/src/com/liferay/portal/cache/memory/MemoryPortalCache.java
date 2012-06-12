@@ -62,6 +62,10 @@ public class MemoryPortalCache implements PortalCache {
 		return _map.get(key);
 	}
 
+	public List getKeys() {
+		return (List)_map.keySet();
+	}
+
 	public String getName() {
 		return _name;
 	}

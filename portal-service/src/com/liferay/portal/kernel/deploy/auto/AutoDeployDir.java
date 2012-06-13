@@ -135,7 +135,7 @@ public class AutoDeployDir {
 		AutoDeploymentContext autoDeploymentContext =
 			new AutoDeploymentContext();
 
-		autoDeploymentContext.setFileToDeploy(file);
+		autoDeploymentContext.setFile(file);
 
 		return autoDeploymentContext;
 	}

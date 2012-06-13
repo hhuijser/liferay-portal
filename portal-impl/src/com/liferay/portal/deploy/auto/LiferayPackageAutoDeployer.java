@@ -55,7 +55,7 @@ public class LiferayPackageAutoDeployer implements AutoDeployer {
 		ZipFile zipFile = null;
 
 		try {
-			File file = autoDeploymentContext.getFileToDeploy();
+			File file = autoDeploymentContext.getFile();
 
 			zipFile = new ZipFile(file);
 

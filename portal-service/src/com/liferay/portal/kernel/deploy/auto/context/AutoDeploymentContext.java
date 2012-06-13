@@ -33,8 +33,8 @@ public class AutoDeploymentContext {
 		return _destDir;
 	}
 
-	public File getFileToDeploy() {
-		return _fileToDeploy;
+	public File getFile() {
+		return _file;
 	}
 
 	public void setContext(String context) {
@@ -45,12 +45,12 @@ public class AutoDeploymentContext {
 		_destDir = destDir;
 	}
 
-	public void setFileToDeploy(File fileToDeploy) {
-		_fileToDeploy = fileToDeploy;
+	public void setFile(File file) {
+		_file = file;
 	}
 
 	private String _context;
 	private String _destDir;
-	private File _fileToDeploy;
+	private File _file;
 
 }

@@ -61,7 +61,7 @@ public abstract class BaseExplodedTomcatListener implements AutoDeployListener {
 	public void deploy(AutoDeploymentContext autoDeploymentContext)
 		throws AutoDeployException {
 
-		File file = autoDeploymentContext.getFileToDeploy();
+		File file = autoDeploymentContext.getFile();
 
 		deploy(file);
 	}

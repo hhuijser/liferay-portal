@@ -34,7 +34,7 @@ public class LiferayPackageAutoDeployListener extends BaseAutoDeployListener {
 	public void deploy(AutoDeploymentContext autoDeploymentContext)
 		throws AutoDeployException {
 
-		File file = autoDeploymentContext.getFileToDeploy();
+		File file = autoDeploymentContext.getFile();
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Invoking deploy for " + file.getPath());

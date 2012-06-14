@@ -18,12 +18,21 @@
 SearchContainer mainSearchSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, portletURL, null, LanguageUtil.format(pageContext, "no-results-were-found-that-matched-the-keywords-x", "<strong>" + HtmlUtil.escape(keywords) + "</strong>"));
 
 SearchContext searchContext = SearchContextFactory.getInstance(request);
-
+		 
 searchContext.setAttribute("paginationType", "more");
 searchContext.setEnd(mainSearchSearchContainer.getEnd());
 searchContext.setStart(mainSearchSearchContainer.getStart());
 
 Facet assetEntriesFacet = new AssetEntriesFacet(searchContext);
+
+String[] entryClassNamesFromRequest = searchContext.getEntryClassNames();
+String entryClassNameFromRequest = null;
+
+if(entryClassNamesFromRequest.length == 1){
+	entryClassNameFromRequest = entryClassNamesFromRequest[0];
+	portletURL.setParameter("entryClassName", entryClassNameFromRequest);
+	request.setAttribute("search.jsp-portletURL", portletURL);
+}
 
 assetEntriesFacet.setStatic(true);
 

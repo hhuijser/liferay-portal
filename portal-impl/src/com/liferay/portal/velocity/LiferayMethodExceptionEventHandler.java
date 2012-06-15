@@ -12,13 +12,30 @@
  * details.
  */
 
-package com.liferay.portal.kernel.template;
+package com.liferay.portal.velocity;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import org.apache.velocity.app.event.MethodExceptionEventHandler;
 
 /**
- * @author Tina Tian
+ * @author Raymond Augé
  */
-public enum TemplateContextType {
+public class LiferayMethodExceptionEventHandler
+	implements MethodExceptionEventHandler {
 
-	CLASS_LOADER, EMPTY, RESTRICTED, STANDARD,
+	public Object methodException(
+			@SuppressWarnings("rawtypes") Class clazz, String method,
+			Exception e)
+		throws Exception {
+
+		_log.error(e, e);
+
+		return null;
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		LiferayMethodExceptionEventHandler.class);
 
 }

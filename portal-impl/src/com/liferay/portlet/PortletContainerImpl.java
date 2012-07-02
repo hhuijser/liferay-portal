@@ -528,6 +528,22 @@ public class PortletContainerImpl implements PortletContainer {
 			boolean access = PortletPermissionUtil.hasAccessPermission(
 				permissionChecker, scopeGroupId, layout, portlet, portletMode);
 
+			if (!access) {
+				if (Boolean.TRUE.equals(request.getAttribute(
+					"hasPortletSetupLinkToLayoutUuid"))) {
+
+					Layout originalLayout = (Layout) request.getAttribute(
+						"originalLayout");
+
+					access = PortletPermissionUtil.hasAccessPermission(
+						permissionChecker, scopeGroupId, originalLayout,
+						portlet, portletMode);
+
+					request.removeAttribute("hasPortletSetupLinkToLayoutUuid");
+					request.removeAttribute("originalLayout");
+				}
+			}
+
 			if (access) {
 				invokerPortlet.processAction(
 					actionRequestImpl, actionResponseImpl);

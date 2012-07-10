@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.MathUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.struts.JSONAction;
+import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.ratings.model.RatingsStats;
 import com.liferay.portlet.ratings.service.RatingsEntryServiceUtil;
 import com.liferay.portlet.ratings.service.RatingsStatsLocalServiceUtil;
@@ -43,12 +44,15 @@ public class RateEntryAction extends JSONAction {
 		String className = getClassName(request);
 		long classPK = getClassPK(request);
 		double score = ParamUtil.getDouble(request, "score");
+		int size = ParamUtil.getInteger(
+			request, "size", PropsValues.RATINGS_DEFAULT_NUMBER_OF_STARS);
 
 		if (score == 0) {
 			RatingsEntryServiceUtil.deleteEntry(className, classPK);
 		}
 		else {
-			RatingsEntryServiceUtil.updateEntry(className, classPK, score);
+			RatingsEntryServiceUtil.updateEntry(
+				className, classPK, score, size);
 		}
 
 		RatingsStats stats = RatingsStatsLocalServiceUtil.getStats(

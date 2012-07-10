@@ -134,7 +134,7 @@ public class RatingsEntryLocalServiceImpl
 	}
 
 	public RatingsEntry updateEntry(
-			long userId, String className, long classPK, double score,
+			long userId, String className, long classPK, double score, int size,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -146,7 +146,7 @@ public class RatingsEntryLocalServiceImpl
 		double oldScore = 0;
 		Date now = new Date();
 
-		validate(className, score);
+		validate(className, score, size);
 
 		RatingsEntry entry = ratingsEntryPersistence.fetchByU_C_C(
 			userId, classNameId, classPK);
@@ -249,10 +249,10 @@ public class RatingsEntryLocalServiceImpl
 		return entry;
 	}
 
-	protected void validate(String className, double score)
+	protected void validate(String className, double score, int size)
 		throws PortalException {
 
-		double maxScore = PropsValues.RATINGS_DEFAULT_NUMBER_OF_STARS;
+		double maxScore = size;
 		double minScore = 0;
 
 		if (className.equals(MBDiscussion.class.getName()) ||

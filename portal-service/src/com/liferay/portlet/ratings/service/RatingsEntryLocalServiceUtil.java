@@ -314,11 +314,11 @@ public class RatingsEntryLocalServiceUtil {
 
 	public static com.liferay.portlet.ratings.model.RatingsEntry updateEntry(
 		long userId, java.lang.String className, long classPK, double score,
-		com.liferay.portal.service.ServiceContext serviceContext)
+		int size, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .updateEntry(userId, className, classPK, score,
+				   .updateEntry(userId, className, classPK, score, size,
 			serviceContext);
 	}
 

@@ -17,6 +17,8 @@ package com.liferay.portlet.documentlibrary.service.impl;
 import com.liferay.portal.kernel.dao.orm.QueryDefinition;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -980,6 +982,11 @@ public class DLAppHelperLocalServiceImpl
 
 				// Social
 
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("title", dlFileEntry.getTitle());
+
 				if (status == WorkflowConstants.STATUS_APPROVED) {
 					socialActivityCounterLocalService.enableActivityCounters(
 						DLFileEntryConstants.getClassName(),
@@ -990,7 +997,7 @@ public class DLAppHelperLocalServiceImpl
 						DLFileEntryConstants.getClassName(),
 						dlFileEntry.getFileEntryId(),
 						SocialActivityConstants.TYPE_RESTORE_FROM_TRASH,
-						StringPool.BLANK, 0);
+						extraDataJSONObject.toString(), 0);
 				}
 				else if (latestDlFileVersion.getStatus() ==
 							WorkflowConstants.STATUS_APPROVED) {
@@ -1000,7 +1007,7 @@ public class DLAppHelperLocalServiceImpl
 						DLFileEntryConstants.getClassName(),
 						dlFileEntry.getFileEntryId(),
 						SocialActivityConstants.TYPE_MOVE_TO_TRASH,
-						StringPool.BLANK, 0);
+						extraDataJSONObject.toString(), 0);
 				}
 
 				// Index

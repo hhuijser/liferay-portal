@@ -31,7 +31,6 @@ if (publicLayoutSetId != 0) {
 
 <c:choose>
 	<c:when test='<%= SessionMessages.contains(renderRequest, "request_processed") %>'>
-
 		<aui:script>
 			opener.<portlet:namespace />changeLogo('<%= logoURL %>');
 			window.close();
@@ -43,10 +42,9 @@ if (publicLayoutSetId != 0) {
 		</portlet:actionURL>
 
 		<aui:form action="<%= editOrganizationLogoURL %>" enctype="multipart/form-data" method="post" name="fm">
-			<aui:input name="cropRegion" type="hidden" />
 			<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 			<aui:input name="publicLayoutSetId" type="hidden" value="<%= publicLayoutSetId %>" />
-
+			<aui:input name="cropRegion" type="hidden" />
 
 			<liferay-ui:error exception="<%= ImageTypeException.class %>" message="please-enter-a-file-with-a-valid-file-type" />
 			<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />

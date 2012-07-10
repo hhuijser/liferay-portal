@@ -17,8 +17,7 @@
 <%@ include file="/html/portlet/portal_settings/init.jsp" %>
 
 <%
-long companyLogoId = company.getLogoId();
-String logoURL = themeDisplay.getPathImage() + "/company_logo?img_id=" + companyLogoId + "&t=" + WebServerServletTokenUtil.getToken(companyLogoId);
+String logoURL = themeDisplay.getPathImage() + "/company_logo?img_id=" + company.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(company.getLogoId());
 %>
 
 <liferay-ui:error exception="<%= ImageTypeException.class %>" message="please-enter-a-file-with-a-valid-file-type" />

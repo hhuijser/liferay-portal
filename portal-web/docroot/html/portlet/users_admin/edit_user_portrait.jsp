@@ -33,8 +33,8 @@ User selUser = PortalUtil.getSelectedUser(request);
 		</portlet:actionURL>
 
 		<aui:form action="<%= editUserPortraitURL %>" enctype="multipart/form-data" method="post" name="fm">
-			<aui:input name="cropRegion" type="hidden" />
 			<aui:input name="p_u_i_d" type="hidden" value="<%= selUser.getUserId() %>" />
+			<aui:input name="cropRegion" type="hidden" />
 
 			<liferay-ui:error exception="<%= UploadException.class %>" message="an-unexpected-error-occurred-while-uploading-your-file" />
 

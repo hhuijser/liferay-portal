@@ -1777,6 +1777,10 @@ public interface PropsKeys {
 
 	public static final String PREFERENCE_VALIDATE_ON_STARTUP = "preference.validate.on.startup";
 
+	public static final String RATINGS_DEFAULT_MAX_SCORE = "ratings.default.max.score";
+
+	public static final String RATINGS_DEFAULT_MIN_SCORE = "ratings.default.min.score";
+
 	public static final String RATINGS_DEFAULT_NUMBER_OF_STARS = "ratings.default.number.of.stars";
 
 	public static final String REDIRECT_URL_DOMAINS_ALLOWED = "redirect.url.domains.allowed";

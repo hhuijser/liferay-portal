@@ -1330,6 +1330,10 @@ public class PropsValues {
 
 	public static final boolean PREFERENCE_VALIDATE_ON_STARTUP = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.PREFERENCE_VALIDATE_ON_STARTUP));
 
+	public static final int RATINGS_DEFAULT_MAX_SCORE = GetterUtil.getInteger(PropsUtil.get(PropsKeys.RATINGS_DEFAULT_MAX_SCORE));
+
+	public static final int RATINGS_DEFAULT_MIN_SCORE = GetterUtil.getInteger(PropsUtil.get(PropsKeys.RATINGS_DEFAULT_MIN_SCORE));
+
 	public static final int RATINGS_DEFAULT_NUMBER_OF_STARS = GetterUtil.getInteger(PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
 
 	public static final String[] REDIRECT_URL_DOMAINS_ALLOWED = PropsUtil.getArray(PropsKeys.REDIRECT_URL_DOMAINS_ALLOWED);

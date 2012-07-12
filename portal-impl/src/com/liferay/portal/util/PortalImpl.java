@@ -5975,7 +5975,9 @@ public class PortalImpl implements Portal {
 
 		Ticket ticket = TicketLocalServiceUtil.fetchTicket(ticketKey);
 
-		if (ticket == null) {
+		if ((ticket == null) ||
+			(ticket.getType() != TicketConstants.TYPE_IMPERSONATE)) {
+
 			return false;
 		}
 
@@ -6002,9 +6004,7 @@ public class PortalImpl implements Portal {
 			return false;
 		}
 
-		if ((ticket.getClassPK() != doAsUserId) ||
-			(ticket.getType() != TicketConstants.TYPE_IMPERSONATE)) {
-
+		if (ticket.getClassPK() != doAsUserId) {
 			return false;
 		}
 

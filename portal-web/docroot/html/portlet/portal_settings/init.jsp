@@ -19,7 +19,6 @@
 <%@ page import="com.liferay.portal.AccountNameException" %><%@
 page import="com.liferay.portal.CompanyMxException" %><%@
 page import="com.liferay.portal.CompanyVirtualHostException" %><%@
-page import="com.liferay.portal.ImageTypeException" %><%@
 page import="com.liferay.portal.LocaleException" %><%@
 page import="com.liferay.portal.kernel.facebook.FacebookConnectUtil" %><%@
 page import="com.liferay.portal.security.auth.AuthSettingsUtil" %><%@

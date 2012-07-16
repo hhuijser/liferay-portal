@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.GroupConstants;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
@@ -31,6 +32,7 @@ import com.liferay.portal.service.LayoutLocalServiceUtil;
 import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portal.util.VirtualLayoutThreadLocal;
 import com.liferay.portlet.sites.util.SitesUtil;
 
 import java.lang.reflect.Method;
@@ -140,9 +142,15 @@ public class LayoutLocalServiceVirtualLayoutsAdvice
 
 				Object returnValue = methodInvocation.proceed();
 
+				long targetGroupId =
+					VirtualLayoutThreadLocal.getTargetGroupId();
+
 				if (PropsValues.
 						USER_GROUPS_COPY_LAYOUTS_TO_USER_PERSONAL_SITE &&
 					group.isUser()) {
+
+					VirtualLayoutThreadLocal.setTargetGroupId(
+						group.getGroupId());
 
 					if (parentLayoutId ==
 							LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
@@ -155,6 +163,17 @@ public class LayoutLocalServiceVirtualLayoutsAdvice
 						return addChildUserGroupLayouts(
 							group, (List<Layout>)returnValue);
 					}
+				}
+				else if (PropsValues.
+							USER_GROUPS_COPY_LAYOUTS_TO_USER_PERSONAL_SITE &&
+					group.isUserGroup() &&
+					targetGroupId != GroupConstants.DEFAULT_LIVE_GROUP_ID) {
+
+					Group targetGroup = GroupLocalServiceUtil.getGroup(
+						targetGroupId);
+
+					return addChildUserGroupLayouts(
+						targetGroup, (List<Layout>)returnValue);
 				}
 
 				return returnValue;

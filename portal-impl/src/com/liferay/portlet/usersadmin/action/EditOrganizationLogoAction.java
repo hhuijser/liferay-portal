@@ -16,15 +16,16 @@ package com.liferay.portlet.usersadmin.action;
 
 import com.liferay.portal.ImageTypeException;
 import com.liferay.portal.NoSuchOrganizationException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadException;
-import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.LayoutSetServiceUtil;
-import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.portalsettings.action.EditCompanyLogoAction;
 
 import java.io.ByteArrayInputStream;
@@ -73,8 +74,16 @@ public class EditOrganizationLogoAction extends EditCompanyLogoAction {
 
 				setForward(actionRequest, "portlet.users_admin.error");
 			}
-			else if (e instanceof ImageTypeException ||
-					 e instanceof UploadException) {
+			else if (e instanceof FileSizeException ||
+					 e instanceof ImageTypeException) {
+
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+				jsonObject.putException(e);
+
+				writeJSON(actionRequest, actionResponse, jsonObject);
+			}
+			else if (e instanceof UploadException) {
 
 				SessionErrors.add(actionRequest, e.getClass());
 			}
@@ -105,10 +114,7 @@ public class EditOrganizationLogoAction extends EditCompanyLogoAction {
 			PortletRequest portletRequest, byte[] bytes)
 		throws Exception {
 
-		UploadPortletRequest uploadPortletRequest =
-			PortalUtil.getUploadPortletRequest(portletRequest);
-
-		long groupId = ParamUtil.getLong(uploadPortletRequest, "groupId");
+		long groupId = ParamUtil.getLong(portletRequest, "groupId");
 
 		InputStream inputStream = null;
 

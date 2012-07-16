@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.TempFileUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -37,7 +38,9 @@ import com.liferay.portal.service.CompanyServiceUtil;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.documentlibrary.FileSizeException;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -45,6 +48,8 @@ import java.awt.image.RenderedImage;
 
 import java.io.File;
 import java.io.InputStream;
+
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -89,8 +94,16 @@ public class EditCompanyLogoAction extends PortletAction {
 
 				setForward(actionRequest, "portlet.portal_settings.error");
 			}
-			else if (e instanceof ImageTypeException ||
-					 e instanceof UploadException) {
+			else if (e instanceof FileSizeException ||
+					 e instanceof ImageTypeException) {
+
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+				jsonObject.putException(e);
+
+				writeJSON(actionRequest, actionResponse, jsonObject);
+			}
+			else if (e instanceof UploadException) {
 
 				SessionErrors.add(actionRequest, e.getClass());
 			}
@@ -123,7 +136,9 @@ public class EditCompanyLogoAction extends PortletAction {
 			if (cmd.equals(Constants.GET_TEMP)) {
 				File tempImageFile = getTempImageFile(resourceRequest);
 
-				serveTempImageFile(resourceResponse, tempImageFile);
+				if (tempImageFile.exists()) {
+					serveTempImageFile(resourceResponse, tempImageFile);
+				}
 			}
 		}
 		catch (Exception e) {
@@ -144,6 +159,12 @@ public class EditCompanyLogoAction extends PortletAction {
 
 		try {
 			inputStream = uploadPortletRequest.getFileAsStream("fileName");
+
+			String mimeType = MimeTypesUtil.getContentType(inputStream, null);
+
+			if (!_imageMimeTypes.contains(mimeType)) {
+				throw new ImageTypeException();
+			}
 
 			TempFileUtil.addTempFile(
 				themeDisplay.getUserId(), getTempImageFileName(portletRequest),
@@ -169,7 +190,8 @@ public class EditCompanyLogoAction extends PortletAction {
 			x, y, croppedRectangle.width, croppedRectangle.height);
 	}
 
-	protected File getTempImageFile(PortletRequest portletRequest) {
+	protected File getTempImageFile(PortletRequest portletRequest)
+		throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
@@ -195,15 +217,12 @@ public class EditCompanyLogoAction extends PortletAction {
 		throws Exception {
 
 		File tempImageFile = getTempImageFile(actionRequest);
+		ImageBag imageBag = null;
 
 		try {
-			ImageBag imageBag = ImageToolUtil.read(tempImageFile);
+			imageBag = ImageToolUtil.read(tempImageFile);
 
 			RenderedImage renderedImage = imageBag.getRenderedImage();
-
-			if (renderedImage == null) {
-				throw new UploadException();
-			}
 
 			String cropRegionJSON = ParamUtil.getString(
 				actionRequest, "cropRegion");
@@ -225,6 +244,15 @@ public class EditCompanyLogoAction extends PortletAction {
 				renderedImage, imageBag.getType());
 
 			saveTempImageFile(actionRequest, bytes);
+		}
+
+		catch(Exception e) {
+			if (imageBag == null) {
+				throw new UploadException();
+			}
+			else {
+				throw e;
+			}
 		}
 		finally {
 			tempImageFile.delete();
@@ -262,6 +290,9 @@ public class EditCompanyLogoAction extends PortletAction {
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(
-		EditCompanyLogoAction.class);
+			EditCompanyLogoAction.class);
+
+	private Set<String> _imageMimeTypes = SetUtil.fromArray(
+			PropsValues.DL_FILE_ENTRY_PREVIEW_IMAGE_MIME_TYPES);
 
 }

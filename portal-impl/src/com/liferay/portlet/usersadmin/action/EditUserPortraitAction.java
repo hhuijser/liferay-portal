@@ -14,19 +14,19 @@
 
 package com.liferay.portlet.usersadmin.action;
 
+import com.liferay.portal.ImageTypeException;
 import com.liferay.portal.NoSuchUserException;
 import com.liferay.portal.UserPortraitSizeException;
 import com.liferay.portal.UserPortraitTypeException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.UserServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.portalsettings.action.EditCompanyLogoAction;
 
 import javax.portlet.ActionRequest;
@@ -71,9 +71,18 @@ public class EditUserPortraitAction extends EditCompanyLogoAction {
 
 				setForward(actionRequest, "portlet.users_admin.error");
 			}
-			else if (e instanceof UploadException ||
-					 e instanceof UserPortraitSizeException ||
+			else if (e instanceof FileSizeException ||
+					 e instanceof ImageTypeException ||
 					 e instanceof UserPortraitTypeException) {
+
+				JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+				jsonObject.putException(e);
+
+				writeJSON(actionRequest, actionResponse, jsonObject);
+			}
+			else if (e instanceof UploadException ||
+					 e instanceof UserPortraitSizeException) {
 
 				SessionErrors.add(actionRequest, e.getClass());
 			}
@@ -96,10 +105,7 @@ public class EditUserPortraitAction extends EditCompanyLogoAction {
 
 	@Override
 	protected String getTempImageFileName(PortletRequest portletRequest) {
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		return String.valueOf(themeDisplay.getUserId());
+		return ParamUtil.getString(portletRequest, "p_u_i_d");
 	}
 
 	@Override
@@ -107,9 +113,9 @@ public class EditUserPortraitAction extends EditCompanyLogoAction {
 			PortletRequest portletRequest, byte[] bytes)
 		throws Exception {
 
-		User user = PortalUtil.getSelectedUser(portletRequest);
+		long selUserId = ParamUtil.getLong(portletRequest, "p_u_i_d");
 
-		UserServiceUtil.updatePortrait(user.getUserId(), bytes);
+		UserServiceUtil.updatePortrait(selUserId, bytes);
 	}
 
 }

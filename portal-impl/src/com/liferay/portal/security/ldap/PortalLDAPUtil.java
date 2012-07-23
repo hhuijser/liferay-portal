@@ -98,6 +98,10 @@ public class PortalLDAPUtil {
 		environmentProperties.put(
 			Context.REFERRAL,
 			PrefsPropsUtil.getString(companyId, PropsKeys.LDAP_REFERRAL));
+		environmentProperties.put(
+			"com.sun.jndi.ldap.connect.pool.maxsize", "20");
+		environmentProperties.put(
+			"com.sun.jndi.ldap.connect.pool.prefsize", "10");
 
 		Properties ldapConnectionProperties = PropsUtil.getProperties(
 			PropsKeys.LDAP_CONNECTION_PROPERTY_PREFIX, true);

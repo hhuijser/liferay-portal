@@ -166,7 +166,7 @@
 				<entry key=".*_el_GR" value-ref="org.apache.lucene.analysis.el.GreekAnalyzer" />
 				<entry key=".*_fa_IR" value-ref="org.apache.lucene.analysis.fa.PersianAnalyzer" />
 				<entry key=".*_ru_RU" value-ref="org.apache.lucene.analysis.ru.RussianAnalyzer" />
-				<entry key=".*_zh_TW" value-ref="org.apache.lucene.analysis.th.ThaiAnalyzer" />
+				<entry key=".*_zh_TW" value-ref="org.apache.lucene.analysis.cjk.CJKAnalyzer" />
 			</util:map>
 		</constructor-arg>
 	</bean>

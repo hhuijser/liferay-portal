@@ -28,8 +28,11 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Image;
 import com.liferay.portal.service.ImageLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.model.DLProcessorConstants;
 import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
-import com.liferay.portlet.documentlibrary.util.ImageProcessorUtil;
+import com.liferay.portlet.documentlibrary.util.DLProcessor;
+import com.liferay.portlet.documentlibrary.util.DLProcessorRegistryUtil;
+import com.liferay.portlet.documentlibrary.util.ImageProcessor;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalFeed;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
@@ -323,15 +326,23 @@ public class JournalRSSUtil {
 		else {
 			FileEntry fileEntry = getFileEntry(url);
 
-			Set<String> imageMimeTypes = ImageProcessorUtil.getImageMimeTypes();
+			DLProcessor dlProcessor = DLProcessorRegistryUtil.getDLProcessor(
+				DLProcessorConstants.IMAGE_PROCESSOR);
 
-			if ((fileEntry != null) &&
-				imageMimeTypes.contains(fileEntry.getMimeType())) {
+			if (dlProcessor != null) {
+				ImageProcessor imageProcessor = (ImageProcessor)dlProcessor;
 
-				type = fileEntry.getExtension();
-				size = fileEntry.getSize();
+				Set<String> imageMimeTypes = imageProcessor.getImageMimeTypes();
+
+				if ((fileEntry != null) &&
+					imageMimeTypes.contains(fileEntry.getMimeType())) {
+
+					type = fileEntry.getExtension();
+					size = fileEntry.getSize();
+				}
 			}
-		}
+
+	}
 
 		if (Validator.isNotNull(type)) {
 			return new Object[] {type, size};

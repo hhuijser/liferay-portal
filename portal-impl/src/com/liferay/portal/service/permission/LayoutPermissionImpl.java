@@ -163,8 +163,9 @@ public class LayoutPermissionImpl implements LayoutPermission {
 			return false;
 		}
 
-		if (actionId.equals(ActionKeys.CUSTOMIZE) &&
-			(layout instanceof VirtualLayout)) {
+		if ((actionId.equals(ActionKeys.CUSTOMIZE)
+				|| actionId.equals(ActionKeys.UPDATE)) &&
+					(layout instanceof VirtualLayout)) {
 
 			VirtualLayout virtualLayout = (VirtualLayout)layout;
 

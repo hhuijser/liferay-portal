@@ -197,7 +197,9 @@ public class CharPipeTest extends TestCase {
 	public void testClosePeacefullyNotEmpty() throws IOException {
 		CharPipe charPipe = new CharPipe();
 
-		charPipe.getWriter().write("abcd");
+		Writer writer = charPipe.getWriter();
+
+		writer.write("abcd");
 
 		assertFalse(charPipe.finished);
 

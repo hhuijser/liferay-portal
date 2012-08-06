@@ -1465,6 +1465,8 @@ public interface PropsKeys {
 
 	public static final String MOBILE_DEVICE_RULES_RULE_GROUP_COPY_POSTFIX = "mobile.device.rules.rule.group.copy.postfix";
 
+	public static final String MOBILE_DEVICE_SESSION_CACHE_ENABLED = "mobile.device.session.cache.enabled";
+
 	public static final String MODEL_HINTS_CONFIGS = "model.hints.configs";
 
 	public static final String MODULE_FRAMEWORK_BEGINNING_START_LEVEL = "module.framework.beginning.start.level";

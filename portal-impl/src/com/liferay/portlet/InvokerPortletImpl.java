@@ -20,9 +20,9 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletFilterUtil;
+import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.servlet.PluginContextListener;
 import com.liferay.portal.kernel.servlet.PortletServlet;
-import com.liferay.portal.kernel.servlet.StringServletResponse;
 import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -38,6 +38,7 @@ import com.liferay.portal.tools.deploy.PortletDeployer;
 import com.liferay.portal.util.WebKeys;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -362,8 +363,9 @@ public class InvokerPortletImpl implements InvokerPortlet {
 			RenderResponseImpl renderResponseImpl =
 				(RenderResponseImpl)renderResponse;
 
-			StringServletResponse stringResponse = (StringServletResponse)
-				renderResponseImpl.getHttpServletResponse();
+			BufferCacheServletResponse bufferCacheServletResponse =
+				(BufferCacheServletResponse)
+					renderResponseImpl.getHttpServletResponse();
 
 			PortletSession portletSession = renderRequest.getPortletSession();
 
@@ -385,7 +387,7 @@ public class InvokerPortletImpl implements InvokerPortlet {
 				String title = invokeRender(renderRequest, renderResponse);
 
 				response = new InvokerPortletResponse(
-					title, stringResponse.getString(),
+					title, bufferCacheServletResponse.getString(),
 					now + Time.SECOND * _expCache.intValue());
 
 				sessionResponses.put(sessionResponseId, response);
@@ -394,12 +396,16 @@ public class InvokerPortletImpl implements InvokerPortlet {
 				String title = invokeRender(renderRequest, renderResponse);
 
 				response.setTitle(title);
-				response.setContent(stringResponse.getString());
+				response.setContent(bufferCacheServletResponse.getString());
 				response.setTime(now + Time.SECOND * _expCache.intValue());
 			}
 			else {
 				renderResponseImpl.setTitle(response.getTitle());
-				stringResponse.getWriter().print(response.getContent());
+
+				PrintWriter printWriter =
+					bufferCacheServletResponse.getWriter();
+
+				printWriter.print(response.getContent());
 			}
 		}
 

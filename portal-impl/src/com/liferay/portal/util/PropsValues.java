@@ -1046,6 +1046,8 @@ public class PropsValues {
 
 	public static final String MOBILE_DEVICE_RULES_RULE_GROUP_COPY_POSTFIX = PropsUtil.get(PropsKeys.MOBILE_DEVICE_RULES_RULE_GROUP_COPY_POSTFIX);
 
+	public static final boolean MOBILE_DEVICE_SESSION_CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.MOBILE_DEVICE_SESSION_CACHE_ENABLED));
+
 	public static final int MODULE_FRAMEWORK_BEGINNING_START_LEVEL = GetterUtil.getInteger(PropsUtil.get(PropsKeys.MODULE_FRAMEWORK_BEGINNING_START_LEVEL));
 
 	public static final boolean MODULE_FRAMEWORK_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.MODULE_FRAMEWORK_ENABLED));

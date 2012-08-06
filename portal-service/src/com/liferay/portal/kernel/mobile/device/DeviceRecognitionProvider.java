@@ -32,4 +32,7 @@ public interface DeviceRecognitionProvider {
 
 	public void reload() throws Exception;
 
+	public void setDeviceCapabilityFilter(
+		DeviceCapabilityFilter deviceCapabilityFilter);
+
 }

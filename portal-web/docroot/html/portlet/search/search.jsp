@@ -129,44 +129,49 @@ request.setAttribute("search.jsp-portletURL", portletURL);
 </aui:form>
 
 <aui:script use="aui-base">
-	var pageLinks = A.one('.portlet-search .result .page-links');
+	var allPageLinks = A.all('.portlet-search .result .page-links');
 
-	if (pageLinks) {
-		pageLinks.delegate(
-			'click',
-			function(event) {
-				document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value = 1;
+	for (i = 0; i < allPageLinks.size(); i++){
+		pageLinks = allPageLinks.item(i);
 
-				submitForm(document.<portlet:namespace />fm);
+		if (pageLinks) {
+			pageLinks.delegate(
+				'click',
+				function(event) {
+					document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value = 1;
 
-				event.preventDefault();
-			},
-			'a.first'
-		);
+					submitForm(document.<portlet:namespace />fm);
 
-		pageLinks.delegate(
-			'click',
-			function(event) {
-				document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value = parseInt(document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value) - 1;
+					event.preventDefault();
+				},
+				'a.first'
+			);
 
-				submitForm(document.<portlet:namespace />fm);
+			pageLinks.delegate(
+				'click',
+				function(event) {
+					document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value = parseInt(document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value) - 1;
 
-				event.preventDefault();
-			},
-			'a.previous'
-		);
+					submitForm(document.<portlet:namespace />fm);
 
-		pageLinks.delegate(
-			'click',
-			function(event) {
-				document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value = parseInt(document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value) + 1;
+					event.preventDefault();
+				},
+				'a.previous'
+			);
 
-				submitForm(document.<portlet:namespace />fm);
+			pageLinks.delegate(
+				'click',
+				function(event) {
+					document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value = parseInt(document.<portlet:namespace />fm.<portlet:namespace /><%= SearchContainer.DEFAULT_CUR_PARAM %>.value) + 1;
 
-				event.preventDefault();
-			},
-			'a.next'
-		);
+					submitForm(document.<portlet:namespace />fm);
+
+					event.preventDefault();
+				},
+				'a.next'
+			);
+		}
+
 	}
 
 	var resultsGrid = A.one('.portlet-search .result .results-grid');

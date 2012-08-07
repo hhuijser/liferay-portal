@@ -147,6 +147,20 @@ public class DeployUtil {
 		}
 
 		if (!deployDir.exists()) {
+			String deployDirPath = deployDir.getAbsolutePath();
+
+			if (StringUtil.endsWith(deployDirPath, ".war")) {
+				deployDirPath = deployDirPath.substring(
+					0, deployDirPath.length() - 4);
+			}
+			else {
+				deployDirPath = deployDirPath.concat(".war");
+			}
+
+			deployDir = new File(deployDirPath);
+		}
+
+		if (!deployDir.exists()) {
 			return;
 		}
 

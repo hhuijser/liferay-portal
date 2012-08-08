@@ -38,7 +38,7 @@ row.addText(dateFormatDateTime.format(curArticle.getDisplayDate()), rowURL);
 
 // Author
 
-row.addText(HtmlUtil.escape(PortalUtil.getUserName(curArticle.getUserId(), curArticle.getUserName())), rowURL);
+row.addText(PortalUtil.getUserName(curArticle), rowURL);
 
 // Action
 

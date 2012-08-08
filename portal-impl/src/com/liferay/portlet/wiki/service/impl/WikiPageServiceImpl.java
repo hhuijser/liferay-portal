@@ -366,14 +366,15 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			nodeId, title, deletedFileName);
 	}
 
-	public void movePageAttachmentToTrash(
+	public String movePageAttachmentToTrash(
 			long nodeId, String title, String fileName)
 		throws PortalException, SystemException {
 
 		WikiPagePermission.check(
 			getPermissionChecker(), nodeId, title, ActionKeys.DELETE);
 
-		wikiPageLocalService.movePageAttachmentToTrash(nodeId, title, fileName);
+		return wikiPageLocalService.movePageAttachmentToTrash(
+			nodeId, title, fileName);
 	}
 
 	public WikiPage revertPage(
@@ -443,8 +444,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		StringBundler link = new StringBundler(7);
 
 		for (WikiPage page : pages) {
-			String author = HtmlUtil.escape(
-				PortalUtil.getUserName(page.getUserId(), page.getUserName()));
+			String author = PortalUtil.getUserName(page);
 
 			String title =
 				page.getTitle() + StringPool.SPACE + page.getVersion();

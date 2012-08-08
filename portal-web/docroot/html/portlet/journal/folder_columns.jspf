@@ -54,7 +54,7 @@ row.addText("--");
 
 // Author
 
-row.addText(HtmlUtil.escape(PortalUtil.getUserName(curFolder.getUserId(), curFolder.getUserName())), rowURL);
+row.addText(PortalUtil.getUserName(curFolder), rowURL);
 
 // Action
 

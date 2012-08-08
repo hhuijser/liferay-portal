@@ -110,9 +110,7 @@ public class RSSAction extends PortletAction {
 			String link = getEntryURL(
 				portletRequest, portletResponse, linkBehavior, assetEntry);
 
-			String author = HtmlUtil.escape(
-				PortalUtil.getUserName(
-					assetEntry.getUserId(), assetEntry.getUserName()));
+			String author = PortalUtil.getUserName(assetEntry);
 
 			String value = null;
 

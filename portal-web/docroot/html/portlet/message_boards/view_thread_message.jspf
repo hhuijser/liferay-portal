@@ -164,7 +164,7 @@
 						parentMessageURL.setParameter("struts_action", "/message_boards/view_message");
 						parentMessageURL.setParameter("messageId", String.valueOf(parentMessage.getMessageId()));
 
-						String author = parentMessage.isAnonymous() ? LanguageUtil.get(pageContext, "anonymous") : HtmlUtil.escape(PortalUtil.getUserName(parentMessage.getUserId(), parentMessage.getUserName()));
+						String author = parentMessage.isAnonymous() ? LanguageUtil.get(pageContext, "anonymous") : PortalUtil.getUserName(parentMessage);
 						%>
 
 						<%= LanguageUtil.format(pageContext, "posted-as-a-reply-to", author) %>

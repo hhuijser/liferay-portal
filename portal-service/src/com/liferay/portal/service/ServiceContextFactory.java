@@ -280,9 +280,6 @@ public class ServiceContextFactory {
 
 			serviceContext.setCompanyId(themeDisplay.getCompanyId());
 			serviceContext.setLanguageId(themeDisplay.getLanguageId());
-			serviceContext.setLayoutFullURL(
-				PortalUtil.getLayoutFullURL(themeDisplay));
-			serviceContext.setLayoutURL(PortalUtil.getLayoutURL(themeDisplay));
 			serviceContext.setPathMain(PortalUtil.getPathMain());
 			serviceContext.setPlid(themeDisplay.getPlid());
 			serviceContext.setPortalURL(
@@ -295,6 +292,9 @@ public class ServiceContextFactory {
 			serviceContext.setUserId(user.getUserId());
 		}
 
+		serviceContext.setLayoutFullURL(
+			PortalUtil.getLayoutFullURL(themeDisplay));
+		serviceContext.setLayoutURL(PortalUtil.getLayoutURL(themeDisplay));
 		serviceContext.setScopeGroupId(themeDisplay.getScopeGroupId());
 
 		// Attributes

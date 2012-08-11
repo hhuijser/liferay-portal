@@ -2138,7 +2138,35 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		String extraContent = getExtraContent(
 			webXmlVersion, srcFile, displayName);
 
-		int pos = content.indexOf("</web-app>");
+		boolean pluginContextListenerFirst = true;
+
+		if (properties != null) {
+			pluginContextListenerFirst = GetterUtil.getBoolean(
+				properties.getProperty("plugin-context-listener-first"), true);
+		}
+
+		for (Element listenerElement : rootElement.elements("listener")) {
+			String listenerClass = listenerElement.elementText(
+				"listener-class");
+
+			if (listenerClass.equals(
+					"org.springframework.web.context.ContextLoaderListener")) {
+
+				pluginContextListenerFirst = false;
+
+				break;
+			}
+		}
+
+		int pos = -1;
+
+		if (pluginContextListenerFirst) {
+			pos = content.indexOf("<listener>");
+		}
+
+		if (pos == -1) {
+			pos = content.indexOf("</web-app>");
+		}
 
 		String newContent =
 			content.substring(0, pos) + pluginContextListenerContent +

@@ -144,7 +144,7 @@ public class LayoutExporter {
 	}
 
 	public static void updateLastPublishDate(
-			LayoutSet layoutSet, long lastPublishDate)
+			LayoutSet layoutSet, long lastPublishDate, boolean delay)
 		throws Exception {
 
 		UnicodeProperties settingsProperties =
@@ -158,9 +158,16 @@ public class LayoutExporter {
 				"last-publish-date", String.valueOf(lastPublishDate));
 		}
 
-		LayoutSetLocalServiceUtil.updateSettings(
-			layoutSet.getGroupId(), layoutSet.isPrivateLayout(),
-			settingsProperties.toString());
+		if (!delay) {
+			LayoutSetLocalServiceUtil.updateSettings(
+				layoutSet.getGroupId(), layoutSet.isPrivateLayout(),
+				settingsProperties.toString());
+		}
+		else {
+			LayoutSetLocalServiceUtil.updateSettingsDelayed(
+				layoutSet.getGroupId(), layoutSet.isPrivateLayout(),
+				settingsProperties.toString());
+		}
 	}
 
 	public byte[] exportLayouts(
@@ -554,7 +561,7 @@ public class LayoutExporter {
 		}
 		finally {
 			if (updateLastPublishDate) {
-				updateLastPublishDate(layoutSet, lastPublishDate);
+				updateLastPublishDate(layoutSet, lastPublishDate, true);
 			}
 		}
 	}

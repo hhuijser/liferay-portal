@@ -1344,6 +1344,8 @@ public class PropsValues {
 
 	public static final boolean PREFERENCE_VALIDATE_ON_STARTUP = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.PREFERENCE_VALIDATE_ON_STARTUP));
 
+	public static final int PUBLISH_TO_LIVE_ATTEMPTS = GetterUtil.getInteger(PropsUtil.get(PropsKeys.PUBLISH_TO_LIVE_ATTEMPTS));
+
 	public static final int RATINGS_DEFAULT_NUMBER_OF_STARS = GetterUtil.getInteger(PropsUtil.get(PropsKeys.RATINGS_DEFAULT_NUMBER_OF_STARS));
 
 	public static final int RATINGS_MAX_SCORE = GetterUtil.getInteger(PropsUtil.get(PropsKeys.RATINGS_MAX_SCORE));

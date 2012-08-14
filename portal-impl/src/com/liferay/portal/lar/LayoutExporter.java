@@ -554,7 +554,25 @@ public class LayoutExporter {
 		}
 		finally {
 			if (updateLastPublishDate) {
-				updateLastPublishDate(layoutSet, lastPublishDate);
+				int attempts = GetterUtil.getInteger(
+					PropsValues.PUBLISH_TO_LIVE_ATTEMPTS, 1);
+
+				while (true) {
+					attempts--;
+					try {
+						updateLastPublishDate(layoutSet, lastPublishDate);
+						break;
+					}
+
+					catch(Exception e) {
+						if (attempts > 0) {
+							continue;
+						}
+						else {
+							throw e;
+						}
+					}
+				}
 			}
 		}
 	}

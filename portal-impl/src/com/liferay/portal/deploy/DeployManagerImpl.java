@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.plugin.PluginPackageUtil;
+import com.liferay.portal.security.lang.PortalSecurityManagerThreadLocal;
 
 import java.io.File;
 
@@ -57,7 +58,16 @@ public class DeployManagerImpl implements DeployManager {
 			return file.getAbsolutePath();
 		}
 
-		return DeployUtil.getAutoDeployDestDir();
+		boolean enabled = PortalSecurityManagerThreadLocal.isEnabled();
+
+		try {
+			PortalSecurityManagerThreadLocal.setEnabled(false);
+
+			return DeployUtil.getAutoDeployDestDir();
+		}
+		finally {
+			PortalSecurityManagerThreadLocal.setEnabled(enabled);
+		}
 	}
 
 	public PluginPackage getInstalledPluginPackage(String context) {

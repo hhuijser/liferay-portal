@@ -135,6 +135,29 @@ public class SecurePluginContextListener
 		}
 	}
 
+	@Override
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		servletContext = servletContextEvent.getServletContext();
+
+		servletContext.setAttribute(
+			SecurePluginContextListener.class.getName(), this);
+
+		super.contextInitialized(servletContextEvent);
+	}
+
+	public void instantiatingListeners() throws Exception {
+		if (_servletRequestListeners != null) {
+			return;
+		}
+
+		String[] listenerClassNames = StringUtil.split(
+			servletContext.getInitParameter("portalListenerClasses"));
+
+		for (String listenerClassName : listenerClassNames) {
+			instantiatingListener(listenerClassName);
+		}
+	}
+
 	public void requestDestroyed(ServletRequestEvent servletRequestEvent) {
 		if (_servletRequestListeners == null) {
 			return;
@@ -229,22 +252,6 @@ public class SecurePluginContextListener
 	}
 
 	@Override
-	protected void fireDeployEvent() {
-		super.fireDeployEvent();
-
-		if (_servletContextListeners != null) {
-			ServletContextEvent servletContextEvent = new ServletContextEvent(
-				servletContext);
-
-			for (ServletContextListener servletContextListener :
-					_servletContextListeners) {
-
-				servletContextListener.contextInitialized(servletContextEvent);
-			}
-		}
-	}
-
-	@Override
 	protected void fireUndeployEvent() {
 		if (_servletContextListeners != null) {
 			ServletContextEvent servletContextEvent = new ServletContextEvent(
@@ -315,7 +322,15 @@ public class SecurePluginContextListener
 					new CopyOnWriteArrayList<ServletContextListener>();
 			}
 
-			_servletContextListeners.add((ServletContextListener)listener);
+			ServletContextListener servletContextListener =
+				(ServletContextListener)listener;
+
+			_servletContextListeners.add(servletContextListener);
+
+			ServletContextEvent servletContextEvent = new ServletContextEvent(
+				servletContext);
+
+			servletContextListener.contextInitialized(servletContextEvent);
 		}
 
 		if (listener instanceof ServletRequestAttributeListener) {
@@ -335,15 +350,6 @@ public class SecurePluginContextListener
 			}
 
 			_servletRequestListeners.add((ServletRequestListener)listener);
-		}
-	}
-
-	protected void instantiatingListeners() throws Exception {
-		String[] listenerClassNames = StringUtil.split(
-			servletContext.getInitParameter("portalListenerClasses"));
-
-		for (String listenerClassName : listenerClassNames) {
-			instantiatingListener(listenerClassName);
 		}
 	}
 

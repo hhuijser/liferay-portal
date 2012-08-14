@@ -1791,6 +1791,8 @@ public interface PropsKeys {
 
 	public static final String PREFERENCE_VALIDATE_ON_STARTUP = "preference.validate.on.startup";
 
+	public static final String PUBLISH_TO_LIVE_ATTEMPTS = "publish.to.live.attempts";
+
 	public static final String RATINGS_DEFAULT_NUMBER_OF_STARS = "ratings.default.number.of.stars";
 
 	public static final String RATINGS_MAX_SCORE = "ratings.max.score";

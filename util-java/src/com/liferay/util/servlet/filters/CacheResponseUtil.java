@@ -33,19 +33,18 @@ public class CacheResponseUtil {
 		HttpServletResponse response, Map<String, Set<Header>> headers) {
 
 		for (Map.Entry<String, Set<Header>> entry : headers.entrySet()) {
-			String headerKey = entry.getKey();
-			Set<Header> headerValues = entry.getValue();
+			String key = entry.getKey();
 
 			boolean first = true;
 
-			for (Header header : headerValues) {
+			for (Header header : entry.getValue()) {
 				if (first) {
-					header.setToResponse(headerKey, response);
+					header.setToResponse(key, response);
 
 					first = false;
 				}
 				else {
-					header.addToResponse(headerKey, response);
+					header.addToResponse(key, response);
 				}
 			}
 		}

@@ -1239,13 +1239,6 @@ public class JournalUtil {
 
 			if (newElement == null) {
 				curElement.detach();
-
-				String type = curElement.attributeValue("type");
-
-				if (type.equals("image")) {
-					_mergeArticleContentDeleteImages(
-						curElement.elements("dynamic-content"));
-				}
 			}
 		}
 	}

@@ -77,16 +77,12 @@ public class SecureFilter extends BasePortalFilter {
 				filterConfig.getInitParameter("hosts.allowed"));
 			_httpsRequired = GetterUtil.getBoolean(
 				filterConfig.getInitParameter("https.required"));
-			_remoteAccess = GetterUtil.getBoolean(
-				filterConfig.getInitParameter("remote.access"), true);
 		}
 		else {
 			hostsAllowedArray = PropsUtil.getArray(
 				propertyPrefix + "hosts.allowed");
 			_httpsRequired = GetterUtil.getBoolean(
 				PropsUtil.get(propertyPrefix + "https.required"));
-			_remoteAccess = GetterUtil.getBoolean(
-				PropsUtil.get(propertyPrefix + "remote.access"), true);
 		}
 
 		for (String host : hostsAllowedArray) {
@@ -326,7 +322,6 @@ public class SecureFilter extends BasePortalFilter {
 	private boolean _digestAuthEnabled;
 	private Set<String> _hostsAllowed = new HashSet<String>();
 	private boolean _httpsRequired;
-	private boolean _remoteAccess;
 	private boolean _usePermissionChecker;
 
 }

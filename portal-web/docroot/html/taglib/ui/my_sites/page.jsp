@@ -90,7 +90,7 @@ List<Group> mySites = user.getMySites(true, max);
 				showPrivateSite = false;
 			}
 
-			if (!(mySite.isRegularSite() && GroupPermissionUtil.contains(permissionChecker, mySite.getGroupId(), ActionKeys.ADD_LAYOUT)) && !(mySite.isUser())) {
+			if (!(mySite.isSite()) && !(mySite.isUser()) && !(mySite.isControlPanel())) {
 				showPublicSite = false;
 				showPrivateSite = false;
 			}

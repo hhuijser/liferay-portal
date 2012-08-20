@@ -90,9 +90,7 @@ List<Group> mySites = user.getMySites(true, max);
 				showPrivateSite = false;
 			}
 
-			boolean hasAddLayoutPermission = GroupPermissionUtil.contains(permissionChecker, mySite.getGroupId(), ActionKeys.ADD_LAYOUT);
-
-			if (!(mySite.isRegularSite() && hasAddLayoutPermission) && !mySite.isUser()) {
+			if (!(mySite.isSite()) && !(mySite.isUser()) && !(mySite.isControlPanel())) {
 				showPublicSite = false;
 				showPrivateSite = false;
 			}

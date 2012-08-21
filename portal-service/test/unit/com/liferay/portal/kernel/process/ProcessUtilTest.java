@@ -414,6 +414,7 @@ public class ProcessUtilTest extends TestCase {
 
 		try {
 			countDownLatch.countDown();
+
 			future.get();
 
 			fail();

@@ -153,15 +153,9 @@ type = ParamUtil.getString(request, "type", type);
 
 	ArticleSearch searchContainer = new ArticleSearch(dynamicRenderRequest, configurationRenderURL);
 
-	List headerNames = searchContainer.getHeaderNames();
+	List<String> headerNames = searchContainer.getHeaderNames();
 
-	headerNames.clear();
-
-	headerNames.add("id");
-	headerNames.add("title");
-	headerNames.add("modified-date");
-	headerNames.add("display-date");
-	headerNames.add("author");
+	headerNames.remove("status");
 	%>
 
 	<liferay-ui:search-form

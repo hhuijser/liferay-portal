@@ -30,7 +30,7 @@ public class ServiceBeanAopCacheManagerUtil {
 
 	public static void reset() {
 		for (ServiceBeanAopCacheManager serviceBeanAopCacheManager :
-			_serviceBeanAopCacheManagers) {
+				_serviceBeanAopCacheManagers) {
 
 			serviceBeanAopCacheManager.reset();
 		}

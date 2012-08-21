@@ -96,13 +96,13 @@ public abstract class AnnotationChainableMethodAdvice<T extends Annotation>
 		}
 
 		Map<Class<? extends Annotation>, AnnotationChainableMethodAdvice<?>>
-			annotationChainableMethodAdviceMap =
+			annotationChainableMethodAdvices =
 				serviceBeanAopCacheManager.
 					getRegisteredAnnotationChainableMethodAdvices();
 
 		for (Map.Entry<Class<? extends Annotation>,
 				AnnotationChainableMethodAdvice<?>> entry :
-					annotationChainableMethodAdviceMap.entrySet()) {
+					annotationChainableMethodAdvices.entrySet()) {
 
 			Class<? extends Annotation> annotationClass = entry.getKey();
 			AnnotationChainableMethodAdvice<?> annotationChainableMethodAdvice =
@@ -119,6 +119,7 @@ public abstract class AnnotationChainableMethodAdvice<T extends Annotation>
 		return (T)annotation;
 	}
 
+	@Override
 	protected void setServiceBeanAopCacheManager(
 		ServiceBeanAopCacheManager serviceBeanAopCacheManager) {
 

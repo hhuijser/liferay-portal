@@ -902,6 +902,7 @@ public class WebDriverToSeleniumBridge
 	public void select(String selectLocator, String optionLocator) {
 		if (optionLocator.startsWith("index=") ||
 			optionLocator.startsWith("value=")) {
+
 			throw new UnsupportedOperationException();
 		}
 		else {

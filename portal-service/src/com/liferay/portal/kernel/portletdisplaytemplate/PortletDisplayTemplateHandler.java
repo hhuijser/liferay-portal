@@ -35,11 +35,11 @@ public interface PortletDisplayTemplateHandler {
 	 * Returns a list of elements containing the information of the portlet
 	 * display templates to be installed by default.
 	 *
-	 * @return 	a list of elements containing the information of the portlet
-	 * 			display templates to be installed by default. These templates
-	 * 			will be installed when registering the portlet
+	 * @return a list of elements containing the information of the portlet
+	 *         display templates to be installed by default. These templates
+	 *         will be installed when registering the portlet
 	 */
-	public List<Element> getDefaultTemplates() throws Exception;
+	public List<Element> getDefaultTemplateElements() throws Exception;
 
 	/**
 	 * Returns the path to the help template of the portlet display.

@@ -20,7 +20,8 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
-import java.util.ArrayList;
+import edu.emory.mathcs.backport.java.util.Collections;
+
 import java.util.List;
 
 /**
@@ -29,23 +30,23 @@ import java.util.List;
 public abstract class BasePortletDisplayTemplateHandler
 	implements PortletDisplayTemplateHandler {
 
-	public List<Element> getDefaultTemplates() throws Exception {
-		List<Element> templateElements = new ArrayList<Element>();
+	public List<Element> getDefaultTemplateElements() throws Exception {
+		String defaultTemplatesConfigPath = getDefaultTemplatesConfigPath();
 
-		String filePath = getDefaultTemplatesConfigPath();
-
-		if (Validator.isNotNull(filePath)) {
-			String xml = StringUtil.read(
-				getClass().getClassLoader(), filePath, false);
-
-			Document document = SAXReaderUtil.read(xml);
-
-			Element rootElement = document.getRootElement();
-
-			templateElements = rootElement.elements("template");
+		if (Validator.isNull(defaultTemplatesConfigPath)) {
+			return Collections.emptyList();
 		}
 
-		return templateElements;
+		Class<?> clazz = getClass();
+
+		String xml = StringUtil.read(
+			clazz.getClassLoader(), defaultTemplatesConfigPath, false);
+
+		Document document = SAXReaderUtil.read(xml);
+
+		Element rootElement = document.getRootElement();
+
+		return rootElement.elements("template");
 	}
 
 	public String getHelpTemplatePath() {

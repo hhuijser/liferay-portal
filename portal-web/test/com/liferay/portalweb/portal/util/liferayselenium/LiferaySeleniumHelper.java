@@ -80,7 +80,4 @@ public class LiferaySeleniumHelper {
 	private static final String _SELENIUM_EXECUTABLE_AUTOIT_DIR =
 		TestPropsValues.SELENIUM_EXECUTABLE_DIR + "autoit/";
 
-	private static final String _SELENIUM_EXECUTABLE_DIR =
-		TestPropsValues.SELENIUM_EXECUTABLE_DIR;
-
 }

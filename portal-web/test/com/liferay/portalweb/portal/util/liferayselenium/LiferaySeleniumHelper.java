@@ -32,14 +32,13 @@ public class LiferaySeleniumHelper {
 		}
 
 		try {
-			String command =
-				RuntimeVariables.replace(
-					_SELENIUM_EXECUTABLE_AUTOIT_DIR +
-						TestPropsValues.SELENIUM_DOWNLOAD_FILE);
+			Thread.sleep(5000);
 
 			Runtime runtime = Runtime.getRuntime();
 
-			Thread.sleep(5000);
+			String command = RuntimeVariables.replace(
+				_SELENIUM_EXECUTABLE_AUTOIT_DIR +
+					TestPropsValues.SELENIUM_DOWNLOAD_FILE);
 
 			runtime.exec(command);
 
@@ -58,14 +57,14 @@ public class LiferaySeleniumHelper {
 		}
 
 		try {
+			Runtime runtime = Runtime.getRuntime();
+
 			String[] commands = {
 				RuntimeVariables.replace(
 					_SELENIUM_EXECUTABLE_AUTOIT_DIR +
 						TestPropsValues.SELENIUM_SET_BROWSER_OPTION),
 					TestPropsValues.OUTPUT_DIR
 			};
-
-			Runtime runtime = Runtime.getRuntime();
 
 			runtime.exec(commands);
 

@@ -30,35 +30,36 @@ public class MethodInterceptorInvocationHandler implements InvocationHandler {
 		Object target, List<MethodInterceptor> methodInterceptors) {
 
 		if (target == null) {
-			throw new NullPointerException("Missing target");
+			throw new NullPointerException("Target is null");
 		}
 
+		_target = target;
+		_targetClass = target.getClass();
+
 		if (methodInterceptors == null) {
-			throw new NullPointerException("Missing methodInterceptors");
+			throw new NullPointerException("Method interceptors is null");
 		}
 
 		if (methodInterceptors.isEmpty()) {
-			throw new IllegalArgumentException("methodInterceptors is empty");
+			throw new IllegalArgumentException("Method interceptors is empty");
 		}
 
 		for (int i = 0; i < methodInterceptors.size(); i++) {
 			if (methodInterceptors.get(i) == null) {
 				throw new IllegalArgumentException(
-					"methodInterceptors contains null value at index " + i);
+					"Method interceptor " + i + " is null");
 			}
 		}
 
 		_methodInterceptors = methodInterceptors;
-		_target = target;
-		_targetClass = target.getClass();
 	}
 
-	public Object invoke(Object proxy, Method method, Object[] args)
+	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
 
 		ServiceBeanMethodInvocation serviceBeanMethodInvocation =
 			new ServiceBeanMethodInvocation(
-				_target, _targetClass, method, args);
+				_target, _targetClass, method, arguments);
 
 		serviceBeanMethodInvocation.setMethodInterceptors(_methodInterceptors);
 

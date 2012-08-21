@@ -155,7 +155,13 @@ type = ParamUtil.getString(request, "type", type);
 
 	List<String> headerNames = searchContainer.getHeaderNames();
 
-	headerNames.remove("status");
+	headerNames.clear();
+
+	headerNames.add("id");
+	headerNames.add("title");
+	headerNames.add("modified-date");
+	headerNames.add("display-date");
+	headerNames.add("author");
 	%>
 
 	<liferay-ui:search-form

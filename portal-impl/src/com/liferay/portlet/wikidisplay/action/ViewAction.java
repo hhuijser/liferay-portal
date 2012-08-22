@@ -62,6 +62,8 @@ public class ViewAction extends PortletAction {
 				renderRequest, "title",
 				preferences.getValue("title", WikiPageConstants.FRONT_PAGE));
 
+			double version = ParamUtil.getDouble(renderRequest, "version");
+
 			WikiNode node = WikiNodeServiceUtil.getNode(nodeId);
 
 			if (node.getGroupId() != themeDisplay.getScopeGroupId()) {
@@ -71,7 +73,7 @@ public class ViewAction extends PortletAction {
 			WikiPage wikiPage = null;
 
 			try {
-				wikiPage = WikiPageServiceUtil.getPage(nodeId, title);
+				wikiPage = WikiPageServiceUtil.getPage(nodeId, title, version);
 			}
 			catch (NoSuchPageException nspe) {
 				wikiPage = WikiPageServiceUtil.getPage(

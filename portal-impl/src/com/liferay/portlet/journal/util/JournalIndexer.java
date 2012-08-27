@@ -45,6 +45,8 @@ import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Node;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.security.pacl.PACLClassLoaderUtil;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.journal.NoSuchStructureException;
 import com.liferay.portlet.journal.model.JournalArticle;
@@ -52,6 +54,7 @@ import com.liferay.portlet.journal.model.JournalArticleConstants;
 import com.liferay.portlet.journal.model.JournalStructure;
 import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.portlet.journal.service.JournalStructureLocalServiceUtil;
+import com.liferay.portlet.journal.service.permission.JournalArticlePermission;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -76,6 +79,7 @@ public class JournalIndexer extends BaseIndexer {
 	public static final String PORTLET_ID = PortletKeys.JOURNAL;
 
 	public JournalIndexer() {
+		setFilterSearch(true);
 		setPermissionAware(true);
 	}
 
@@ -85,6 +89,16 @@ public class JournalIndexer extends BaseIndexer {
 
 	public String getPortletId() {
 		return PORTLET_ID;
+	}
+
+	@Override
+	public boolean hasPermission(
+			PermissionChecker permissionChecker, String entryClassName,
+			long entryClassPK, String actionId)
+		throws Exception {
+
+		return JournalArticlePermission.contains(
+			permissionChecker, entryClassPK, ActionKeys.VIEW);
 	}
 
 	@Override
@@ -297,13 +311,26 @@ public class JournalIndexer extends BaseIndexer {
 		Document document, Locale locale, String snippet,
 		PortletURL portletURL) {
 
-		String title = document.get(locale, Field.TITLE);
+		Locale snippetLocale = getSnippetLocale(document, locale);
 
-		String content = snippet;
+		String prefix = Field.SNIPPET + StringPool.UNDERLINE;
 
-		if (Validator.isNull(snippet)) {
-			content = StringUtil.shorten(
-				document.get(locale, Field.CONTENT), 200);
+		String title = document.get(
+			snippetLocale, prefix + Field.TITLE, Field.TITLE);
+
+		String content = document.get(
+			snippetLocale, prefix + Field.DESCRIPTION, prefix + Field.CONTENT);
+
+		if (Validator.isBlank(content)) {
+			content = document.get(locale, Field.DESCRIPTION, Field.CONTENT);
+
+			if (Validator.isBlank(content)) {
+				content = document.get(Field.DESCRIPTION, Field.CONTENT);
+			}
+		}
+
+		if (content.length() > 200) {
+			content = StringUtil.shorten(content, 200);
 		}
 
 		String groupId = document.get(Field.GROUP_ID);
@@ -315,7 +342,7 @@ public class JournalIndexer extends BaseIndexer {
 		portletURL.setParameter("articleId", articleId);
 		portletURL.setParameter("version", version);
 
-		return new Summary(title, content, portletURL);
+		return new Summary(snippetLocale, title, content, portletURL);
 	}
 
 	@Override

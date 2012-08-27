@@ -52,7 +52,7 @@ public class WebDriverToSeleniumBridge
 
 		initKeys();
 
-		_parentFrameHandle = getWindowHandle();
+		_defaultWindowHandle = getWindowHandle();
 	}
 
 	public void addCustomRequestHeader(String key, String value) {
@@ -900,22 +900,46 @@ public class WebDriverToSeleniumBridge
 	}
 
 	public void select(String selectLocator, String optionLocator) {
+		if (optionLocator.startsWith("index=") ||
+			optionLocator.startsWith("value=")) {
+
+			throw new UnsupportedOperationException();
+		}
+
+		String label = optionLocator;
+
+		if (optionLocator.startsWith("label=")) {
+			label = optionLocator.substring(6);
+		}
+
 		WebElement webElement = getWebElement(selectLocator);
+
+		webElement.click();
 
 		Select select = new Select(webElement);
 
-		if (optionLocator.startsWith("index=")) {
-			select.selectByIndex(
-				GetterUtil.getInteger(optionLocator.substring(6)));
-		}
-		else if (optionLocator.startsWith("label=")) {
-			select.selectByVisibleText(optionLocator.substring(6));
-		}
-		else if (optionLocator.startsWith("value=")) {
-			select.selectByValue(optionLocator.substring(6));
-		}
-		else {
-			select.selectByVisibleText(optionLocator);
+		List<WebElement> options = select.getOptions();
+
+		for (WebElement option : options) {
+			String optionText = option.getText();
+
+			if (!optionText.equals(label)) {
+				continue;
+			}
+
+			WrapsDriver wrapsDriver = (WrapsDriver)option;
+
+			WebDriver webDriver = wrapsDriver.getWrappedDriver();
+
+			Actions actions = new Actions(webDriver);
+
+			actions.doubleClick(option);
+
+			Action action = actions.build();
+
+			action.perform();
+
+			break;
 		}
 	}
 
@@ -923,14 +947,12 @@ public class WebDriverToSeleniumBridge
 		WebDriver.TargetLocator targetLocator = switchTo();
 
 		if (locator.equals("relative=parent")) {
-			targetLocator.window(_parentFrameHandle);
+			throw new UnsupportedOperationException();
 		}
 		else if (locator.equals("relative=top")) {
-			targetLocator.defaultContent();
+			targetLocator.window(_defaultWindowHandle);
 		}
 		else {
-			_parentFrameHandle = getWindowHandle();
-
 			WebElement webElement = getWebElement(locator);
 
 			targetLocator.frame(webElement);
@@ -952,6 +974,9 @@ public class WebDriverToSeleniumBridge
 					return;
 				}
 			}
+
+			BaseTestCase.fail(
+				"Unable to find the window ID \"" + windowID + "\"");
 		}
 		else {
 			selectWindow(windowID);
@@ -964,7 +989,7 @@ public class WebDriverToSeleniumBridge
 		if (windowID.equals("null")) {
 			WebDriver.TargetLocator targetLocator = switchTo();
 
-			targetLocator.defaultContent();
+			targetLocator.window(_defaultWindowHandle);
 		}
 		else {
 			String targetWindowTitle = windowID;
@@ -982,6 +1007,9 @@ public class WebDriverToSeleniumBridge
 					return;
 				}
 			}
+
+			BaseTestCase.fail(
+				"Unable to find the window ID \"" + windowID + "\"");
 		}
 	}
 
@@ -1014,8 +1042,7 @@ public class WebDriverToSeleniumBridge
 
 		Timeouts timeouts = options.timeouts();
 
-		timeouts.implicitlyWait(
-			GetterUtil.getLong(timeout), TimeUnit.MILLISECONDS);
+		timeouts.implicitlyWait(1, TimeUnit.MILLISECONDS);
 	}
 
 	public void shiftKeyDown() {
@@ -1138,7 +1165,7 @@ public class WebDriverToSeleniumBridge
 					targetLocator.window(windowHandle);
 
 					if (targetWindowTitle.equals(getTitle())) {
-						targetLocator.window(_parentFrameHandle);
+						targetLocator.window(_defaultWindowHandle);
 
 						return;
 					}
@@ -1172,7 +1199,7 @@ public class WebDriverToSeleniumBridge
 	}
 
 	protected WebElement getWebElement(String locator) {
-		WebDriverWait wait = new WebDriverWait(this, 10);
+		WebDriverWait wait = new WebDriverWait(this, 1);
 
 		WebElement webElement;
 
@@ -1219,7 +1246,7 @@ public class WebDriverToSeleniumBridge
 	}
 
 	protected List<WebElement> getWebElements(String locator) {
-		WebDriverWait wait = new WebDriverWait(this, 10);
+		WebDriverWait wait = new WebDriverWait(this, 1);
 
 		List<WebElement> webElements;
 
@@ -1335,8 +1362,7 @@ public class WebDriverToSeleniumBridge
 		//keyTable[] = Keys.UP;
 	}
 
+	private String _defaultWindowHandle;
 	private Keys[] _keysArray = new Keys[128];
-
-	private String _parentFrameHandle;
 
 }

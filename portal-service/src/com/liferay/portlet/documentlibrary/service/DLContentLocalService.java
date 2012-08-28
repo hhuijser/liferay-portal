@@ -311,7 +311,7 @@ public interface DLContentLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<java.lang.String> getFileVersions(long companyId,
-		long repositoryId)
+		long repositoryId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)

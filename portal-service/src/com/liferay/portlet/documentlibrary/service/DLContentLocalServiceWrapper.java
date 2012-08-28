@@ -354,9 +354,10 @@ public class DLContentLocalServiceWrapper implements DLContentLocalService,
 	}
 
 	public java.util.List<java.lang.String> getFileVersions(long companyId,
-		long repositoryId)
+		long repositoryId, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return _dlContentLocalService.getFileVersions(companyId, repositoryId);
+		return _dlContentLocalService.getFileVersions(companyId, repositoryId,
+			fileName);
 	}
 
 	public java.util.List<java.lang.Long> getRepositoryIds(long companyId)

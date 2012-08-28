@@ -112,10 +112,10 @@ public class DLFileEntryFinderUtil {
 		return getFinder().findRByCompanyId(companyId);
 	}
 
-	public static java.util.List<java.lang.String> findVByC_R(long companyId,
-		long repositoryId)
+	public static java.util.List<java.lang.String> findVByC_R_P(
+		long companyId, long repositoryId, java.lang.String path)
 		throws com.liferay.portal.kernel.exception.SystemException {
-		return getFinder().findVByC_R(companyId, repositoryId);
+		return getFinder().findVByC_R_P(companyId, repositoryId, path);
 	}
 
 	public static DLFileEntryFinder getFinder() {

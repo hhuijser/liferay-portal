@@ -76,7 +76,7 @@ public interface DLFileEntryFinder {
 	public java.util.List<java.lang.Long> findRByCompanyId(long companyId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	public java.util.List<java.lang.String> findVByC_R(long companyId,
-		long repositoryId)
+	public java.util.List<java.lang.String> findVByC_R_P(long companyId,
+		long repositoryId, java.lang.String path)
 		throws com.liferay.portal.kernel.exception.SystemException;
 }

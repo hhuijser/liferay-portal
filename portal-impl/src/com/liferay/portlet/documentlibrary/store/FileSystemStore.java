@@ -32,7 +32,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -227,21 +229,24 @@ public class FileSystemStore extends BaseStore {
 			long companyId, long repositoryId, String dirName)
 		throws PortalException {
 
-		File dirNameDir = getDirNameDir(companyId, repositoryId, dirName);
+		File file = getDirNameDir(companyId, repositoryId, dirName);
 
-		if (!dirNameDir.exists()) {
-			throw new NoSuchDirectoryException(dirNameDir.getPath());
+		if (!file.exists()) {
+			file = getFileNameDir(companyId, repositoryId, dirName);
+
+			if (!file.exists()) {
+				throw new NoSuchDirectoryException(file.getPath());
+			}
 		}
 
-		String[] fileNames = FileUtil.listDirs(dirNameDir);
+		String[] fileNames = FileUtil.listDirs(file);
 
 		Arrays.sort(fileNames);
 
 		// Convert /${fileName} to /${dirName}/${fileName}
 
 		for (int i = 0; i < fileNames.length; i++) {
-			fileNames[i] =
-				StringPool.SLASH + dirName + StringPool.SLASH + fileNames[i];
+			fileNames[i] = dirName + StringPool.SLASH + fileNames[i];
 		}
 
 		return fileNames;
@@ -262,6 +267,39 @@ public class FileSystemStore extends BaseStore {
 		}
 
 		return fileNameVersionFile.length();
+	}
+
+	@Override
+	public String[] getFileVersions(
+			long companyId, long repositoryId, String fileName)
+		throws PortalException {
+
+		File dirNameDir = getDirNameDir(companyId, repositoryId, fileName);
+
+		if (!dirNameDir.exists()) {
+			throw new NoSuchDirectoryException(dirNameDir.getPath());
+		}
+
+		String[] fileVersions = FileUtil.listFiles(dirNameDir);
+
+		Arrays.sort(fileVersions);
+
+		return fileVersions;
+	}
+
+	@Override
+	public List<Long> getRepositoryIds(long companyId) {
+		List<Long> repositoryIds = new ArrayList<Long>();
+
+		File companyFolder = getCompanyDir(companyId);
+
+		String[] repositoryNames = FileUtil.listDirs(companyFolder);
+
+		for (String repositoryName : repositoryNames) {
+			repositoryIds.add(Long.valueOf(repositoryName));
+		}
+
+		return repositoryIds;
 	}
 
 	@Override

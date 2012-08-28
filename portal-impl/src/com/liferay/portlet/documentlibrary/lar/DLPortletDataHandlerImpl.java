@@ -269,6 +269,12 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 		FileEntry fileEntry = (FileEntry)portletDataContext.getZipEntryAsObject(
 			path);
 
+		Group group = GroupLocalServiceUtil.getGroup(fileEntry.getGroupId());
+
+		if (group.isCompany()) {
+			return;
+		}
+
 		long userId = portletDataContext.getUserId(fileEntry.getUserUuid());
 
 		Map<Long, Long> folderIds =

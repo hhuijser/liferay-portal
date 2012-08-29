@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.journal.model.JournalArticle;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,8 +41,6 @@ public class UpgradeAsset extends UpgradeProcess {
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 
-		long journalStructureId = 0;
-
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
@@ -53,17 +52,19 @@ public class UpgradeAsset extends UpgradeProcess {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				journalStructureId = rs.getLong("id_");
+				return rs.getLong("id_");
 			}
+
+			return 0;
 		}
 		finally {
 			DataAccess.cleanUp(con, ps, rs);
 		}
-
-		return journalStructureId;
 	}
 
 	protected void updateAssetClassTypeId() throws Exception {
+		long classNameId = PortalUtil.getClassNameId(JournalArticle.class);
+
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -85,8 +86,8 @@ public class UpgradeAsset extends UpgradeProcess {
 
 				runSQL(
 					"update AssetEntry set classTypeId = " +
-						journalStructureId + " where classPK = " +
-							resourcePrimKey);
+						journalStructureId + " where classNameId = " +
+							classNameId + " and classPK = " + resourcePrimKey);
 			}
 		}
 		finally {

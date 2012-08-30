@@ -552,7 +552,29 @@ public class PortalImpl implements Portal {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		if (!portletDisplay.isFocused()) {
+		HttpServletRequest originalRequest =
+			PortalUtil.getOriginalServletRequest(request);
+
+		String originalPortletId = originalRequest.getParameter("p_p_id");
+
+		String requestPortletName = portletDisplay.getPortletName();
+
+		String instanceId = portletDisplay.getInstanceId();
+
+		if (Validator.isNull(originalPortletId) ||
+			Validator.isNull(requestPortletName)) {
+
+			return;
+		}
+
+		if (Validator.isNotNull(instanceId)) {
+			requestPortletName = requestPortletName.concat(
+				PortletConstants.INSTANCE_SEPARATOR);
+
+			requestPortletName = requestPortletName.concat(instanceId);
+		}
+
+		if (!originalPortletId.equals(requestPortletName)) {
 			return;
 		}
 

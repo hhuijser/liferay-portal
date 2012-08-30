@@ -449,11 +449,11 @@ public class LangBuilder {
 			value.trim(),
 			new String[] {
 				"  ", "<b>", "</b>", "<i>", "</i>", " url ", "&#39;", "&#39 ;",
-				"&quot;", "&quot ;"
+				"&quot;", "&quot ;", "ReCaptcha", "Captcha"
 			},
 			new String[] {
 				" ", "<strong>", "</strong>", "<em>", "</em>", " URL ", "\'",
-				"\'", "\"", "\""
+				"\'", "\"", "\"", "reCAPTCHA", "CAPTCHA"
 			});
 
 		return value;

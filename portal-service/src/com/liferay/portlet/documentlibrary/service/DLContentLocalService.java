@@ -300,6 +300,26 @@ public interface DLContentLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.String> getContentNames(long companyId,
+		long repositoryId, java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public long getContentSize(long companyId, long repositoryId,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.Long> getContentRepositoryIds(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<java.lang.String> getContentVersions(long companyId,
+		long repositoryId, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasContent(long companyId, long repositoryId,
 		java.lang.String path, java.lang.String version)
 		throws com.liferay.portal.kernel.exception.SystemException;

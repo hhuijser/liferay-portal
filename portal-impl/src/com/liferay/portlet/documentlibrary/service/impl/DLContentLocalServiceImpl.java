@@ -21,9 +21,11 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.documentlibrary.NoSuchContentException;
 import com.liferay.portlet.documentlibrary.model.DLContent;
 import com.liferay.portlet.documentlibrary.service.base.DLContentLocalServiceBaseImpl;
+import com.liferay.portlet.documentlibrary.service.persistence.DLContentFinderUtil;
 import com.liferay.portlet.documentlibrary.util.comparator.DLContentVersionComparator;
 
 import java.io.InputStream;
@@ -171,6 +173,44 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 
 		return dlContentPersistence.findByC_R_LikeP(
 			companyId, repositoryId, dirName);
+	}
+
+	public List<String> getContentNames(
+			long companyId, long repositoryId, String dirName)
+		throws SystemException {
+
+		if (Validator.isNotNull(dirName) &&
+			!dirName.endsWith(StringPool.SLASH)) {
+
+			dirName = dirName.concat(StringPool.SLASH);
+		}
+
+		dirName = dirName.concat(StringPool.PERCENT);
+
+		return DLContentFinderUtil.findPByC_R_LikeP(
+			companyId, repositoryId, dirName);
+	}
+
+	public long getContentSize(
+			long companyId, long repositoryId, String fileName)
+		throws SystemException {
+
+		return DLContentFinderUtil.findSByC_R_P(
+			companyId, repositoryId, fileName);
+	}
+
+	public List<Long> getContentRepositoryIds(long companyId)
+		throws SystemException {
+
+		return DLContentFinderUtil.findRByCompanyId(companyId);
+	}
+
+	public List<String> getContentVersions(
+			long companyId, long repositoryId, String fileName)
+		throws SystemException {
+
+		return DLContentFinderUtil.findVByC_R_P(
+			companyId, repositoryId, fileName);
 	}
 
 	public boolean hasContent(

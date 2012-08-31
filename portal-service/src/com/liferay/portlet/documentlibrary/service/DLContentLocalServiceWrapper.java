@@ -340,6 +340,33 @@ public class DLContentLocalServiceWrapper implements DLContentLocalService,
 			repositoryId, dirName);
 	}
 
+	public java.util.List<java.lang.String> getContentNames(long companyId,
+		long repositoryId, java.lang.String dirName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _dlContentLocalService.getContentNames(companyId, repositoryId,
+			dirName);
+	}
+
+	public long getContentSize(long companyId, long repositoryId,
+		java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _dlContentLocalService.getContentSize(companyId, repositoryId,
+			fileName);
+	}
+
+	public java.util.List<java.lang.Long> getContentRepositoryIds(
+		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _dlContentLocalService.getContentRepositoryIds(companyId);
+	}
+
+	public java.util.List<java.lang.String> getContentVersions(long companyId,
+		long repositoryId, java.lang.String fileName)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _dlContentLocalService.getContentVersions(companyId,
+			repositoryId, fileName);
+	}
+
 	public boolean hasContent(long companyId, long repositoryId,
 		java.lang.String path, java.lang.String version)
 		throws com.liferay.portal.kernel.exception.SystemException {

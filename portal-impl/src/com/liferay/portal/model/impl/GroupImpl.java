@@ -449,6 +449,10 @@ public class GroupImpl extends GroupBaseImpl {
 			}
 		}
 
+		if (!isControlPanel() && !isSite() && !isUser()) {
+			showSite = false;
+		}
+
 		return showSite;
 	}
 

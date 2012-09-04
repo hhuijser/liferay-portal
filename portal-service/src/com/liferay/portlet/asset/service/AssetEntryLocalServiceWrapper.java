@@ -396,10 +396,30 @@ public class AssetEntryLocalServiceWrapper implements AssetEntryLocalService,
 
 	public com.liferay.portal.kernel.search.Hits search(long companyId,
 		long[] groupIds, long userId, java.lang.String className,
-		java.lang.String keywords, int start, int end)
+		java.lang.String keywords, int status, int start, int end)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _assetEntryLocalService.search(companyId, groupIds, userId,
-			className, keywords, start, end);
+			className, keywords, status, start, end);
+	}
+
+	public com.liferay.portal.kernel.search.Hits search(long companyId,
+		long[] groupIds, long userId, java.lang.String className,
+		java.lang.String userName, java.lang.String title,
+		java.lang.String description, java.lang.String assetCategoryIds,
+		java.lang.String assetTagNames, int status, boolean andSearch,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntryLocalService.search(companyId, groupIds, userId,
+			className, userName, title, description, assetCategoryIds,
+			assetTagNames, status, andSearch, start, end);
+	}
+
+	public com.liferay.portal.kernel.search.Hits search(long companyId,
+		long[] groupIds, java.lang.String className, java.lang.String keywords,
+		int start, int end)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _assetEntryLocalService.search(companyId, groupIds, className,
+			keywords, start, end);
 	}
 
 	public com.liferay.portal.kernel.search.Hits search(long companyId,
@@ -411,14 +431,6 @@ public class AssetEntryLocalServiceWrapper implements AssetEntryLocalService,
 		return _assetEntryLocalService.search(companyId, groupIds, userId,
 			className, userName, title, description, assetCategoryIds,
 			assetTagNames, andSearch, start, end);
-	}
-
-	public com.liferay.portal.kernel.search.Hits search(long companyId,
-		long[] groupIds, java.lang.String className, java.lang.String keywords,
-		int start, int end)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return _assetEntryLocalService.search(companyId, groupIds, className,
-			keywords, start, end);
 	}
 
 	public com.liferay.portlet.asset.model.AssetEntry updateEntry(long userId,

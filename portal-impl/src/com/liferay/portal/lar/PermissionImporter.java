@@ -74,16 +74,19 @@ public class PermissionImporter {
 			String resourceName = Layout.class.getName();
 			String resourcePrimKey = String.valueOf(layout.getPlid());
 
+			boolean isPrivate = layout.isPrivateLayout();
+
 			importPermissions(
 				layoutCache, companyId, groupId, userId, resourceName,
-				resourcePrimKey, permissionsElement, false);
+				resourcePrimKey, permissionsElement, isPrivate, false);
 		}
 	}
 
 	protected void importPermissions(
 			LayoutCache layoutCache, long companyId, long groupId, long userId,
 			String resourceName, String resourcePrimKey,
-			Element permissionsElement, boolean portletActions)
+			Element permissionsElement, boolean isPrivate,
+			boolean portletActions)
 		throws Exception {
 
 		Map<Long, String[]> roleIdsToActionIds = new HashMap<Long, String[]>();
@@ -135,10 +138,13 @@ public class PermissionImporter {
 					userId, companyId, name, titleMap, descriptionMap, type);
 			}
 
-			List<String> actions = getActions(roleElement);
+			if (!(isPrivate && role.getName().equals("Guest"))) {
+				List<String> actions = getActions(roleElement);
 
-			roleIdsToActionIds.put(
-				role.getRoleId(), actions.toArray(new String[actions.size()]));
+				roleIdsToActionIds.put(
+					role.getRoleId(),
+					actions.toArray(new String[actions.size()]));
+			}
 		}
 
 		if (roleIdsToActionIds.isEmpty()) {
@@ -163,9 +169,11 @@ public class PermissionImporter {
 			String resourcePrimKey = PortletPermissionUtil.getPrimaryKey(
 				layout.getPlid(), portletId);
 
+			boolean isPrivate = layout.isPrivateLayout();
+
 			importPermissions(
 				layoutCache, companyId, groupId, userId, resourceName,
-				resourcePrimKey, permissionsElement, true);
+				resourcePrimKey, permissionsElement, isPrivate, true);
 		}
 	}
 

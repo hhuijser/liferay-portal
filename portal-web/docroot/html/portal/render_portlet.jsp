@@ -72,16 +72,6 @@ else {
 
 if (allowAddPortletDefaultResource) {
 	portletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(portletPreferencesIds);
-
-	String scopeLayoutUuid = portletPreferences.getValue("lfrScopeLayoutUuid", null);
-
-	if (Validator.isNotNull(scopeLayoutUuid)) {
-		Layout scopeLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(scopeLayoutUuid, group.getGroupId());
-
-		portletPreferencesIds = PortletPreferencesFactoryUtil.getPortletPreferencesIds(request, scopeLayout, portletId);
-
-		portletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(portletPreferencesIds);
-	}
 }
 else {
 	portletPreferences = PortletPreferencesLocalServiceUtil.getStrictPreferences(portletPreferencesIds);

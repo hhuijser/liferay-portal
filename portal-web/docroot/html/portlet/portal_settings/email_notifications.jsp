@@ -40,7 +40,7 @@ String adminEmailVerificationBody = PrefsPropsUtil.getContent(company.getCompany
 <liferay-ui:error-marker key="errorSection" value="email_notifications" />
 
 <liferay-ui:tabs
-	names="sender,account-created-notification,email-verification-notification,password-changed-notification,password-reset-notification"
+	names="sender,account-created-notification,password-changed-notification,password-reset-notification,email-verification-notification"
 	refresh="<%= false %>"
 >
 	<liferay-ui:section>

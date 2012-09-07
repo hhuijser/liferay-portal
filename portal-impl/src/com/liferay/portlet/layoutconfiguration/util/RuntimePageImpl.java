@@ -52,8 +52,6 @@ import com.liferay.taglib.util.VelocityTaglib;
 
 import java.io.Closeable;
 
-import java.lang.reflect.Constructor;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -220,25 +218,6 @@ public class RuntimePageImpl implements RuntimePage {
 		}
 	}
 
-	protected Object buildVelocityTaglib(
-			HttpServletRequest request, HttpServletResponse response,
-			PageContext pageContext)
-		throws Exception {
-
-		// We have to load this class from the plugin class loader (context
-		// class loader) or we will throw a ClassCastException
-
-		Class<?> clazz = Class.forName(VelocityTaglib.class.getName());
-
-		Constructor<?> constructor = clazz.getConstructor(
-			ServletContext.class, HttpServletRequest.class,
-			HttpServletResponse.class, PageContext.class);
-
-		return constructor.newInstance(
-			pageContext.getServletContext(), request, response, pageContext);
-
-	}
-
 	protected void doDispatch(
 			PageContext pageContext, String portletId,
 			TemplateResource templateResource, boolean processTemplate)
@@ -320,8 +299,9 @@ public class RuntimePageImpl implements RuntimePage {
 
 		// liferay:include tag library
 
-		Object velocityTaglib = buildVelocityTaglib(
-			request, response, pageContext);
+		VelocityTaglib velocityTaglib = new VelocityTaglib(
+			pageContext.getServletContext(), request, response, pageContext,
+			template);
 
 		template.put("taglibLiferay", velocityTaglib);
 		template.put("theme", velocityTaglib);
@@ -363,9 +343,10 @@ public class RuntimePageImpl implements RuntimePage {
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
-		Object velocityTaglib = buildVelocityTaglib(
-			request, new PipingServletResponse(response, unsyncStringWriter),
-			pageContext);
+		VelocityTaglib velocityTaglib = new VelocityTaglib(
+			pageContext.getServletContext(), request,
+			new PipingServletResponse(response, unsyncStringWriter),
+			pageContext, template);
 
 		template.put("taglibLiferay", velocityTaglib);
 		template.put("theme", velocityTaglib);

@@ -244,7 +244,7 @@ public class MapUtil {
 			sb.append(StringPool.COMMA_AND_SPACE);
 		}
 
-		sb.setStringAt(StringPool.CLOSE_CURLY_BRACE, sb.index());
+		sb.setStringAt(StringPool.CLOSE_CURLY_BRACE, sb.index() - 1);
 
 		return sb.toString();
 	}

@@ -14,9 +14,14 @@
 
 package com.liferay.portal.verify;
 
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import java.util.List;
 
@@ -35,6 +40,48 @@ public class VerifyLayout extends VerifyProcess {
 
 			LayoutLocalServiceUtil.updateFriendlyURL(
 				layout.getPlid(), friendlyURL);
+		}
+
+		verifyLayoutUuid();
+	}
+
+	protected void verifyLayoutUuid() throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select uuid_, sourcePrototypeLayoutUuid from layout where " +
+					"sourcePrototypeLayoutUuid is not null and " +
+						"sourcePrototypeLayoutUuid not like '' and uuid_ " +
+							"not like sourcePrototypeLayoutUuid");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				String sourcePrototypeUuid = rs.getString(
+					"sourcePrototypeLayoutUuid");
+				String uuid = rs.getString("uuid_");
+
+				runSQL(
+					"update assetentry set layoutUuid = '" +
+						sourcePrototypeUuid + "' where layoutUuid = '" +
+							uuid + "'");
+				runSQL(
+					"update journalarticle set layoutUuid = '" +
+						sourcePrototypeUuid + "' where layoutUuid = '" +
+							uuid + "'");
+				runSQL(
+					"update layout set uuid_ = sourcePrototypeLayoutUuid " +
+						"where sourcePrototypeLayoutUuid = '" +
+							sourcePrototypeUuid + "'");
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 

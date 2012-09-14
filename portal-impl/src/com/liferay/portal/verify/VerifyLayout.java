@@ -14,9 +14,15 @@
 
 package com.liferay.portal.verify;
 
+import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 import java.util.List;
 
@@ -35,6 +41,54 @@ public class VerifyLayout extends VerifyProcess {
 
 			LayoutLocalServiceUtil.updateFriendlyURL(
 				layout.getPlid(), friendlyURL);
+		}
+
+		verifyLayoutUuid();
+	}
+
+	protected void verifyLayoutUuid() throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			StringBundler sb = new StringBundler(7);
+
+			sb.append("update assetentry t1, layout t2 set t1.layoutUuid = ");
+			sb.append("t2.sourcePrototypeLayoutUuid where t1.layoutUuid in ");
+			sb.append("(select uuid_ from layout where ");
+			sb.append("sourcePrototypeLayoutUuid is not null and ");
+			sb.append("sourcePrototypeLayoutUuid not like '' and uuid_ not ");
+			sb.append("like sourcePrototypeLayoutUuid) and t2.uuid_ = ");
+			sb.append("t1.layoutUuid");
+
+			runSQL(sb.toString());
+
+			sb = new StringBundler(7);
+
+			sb.append("update journalarticle t1, layout t2 set ");
+			sb.append("t1.layoutUuid = t2.sourcePrototypeLayoutUuid where ");
+			sb.append("t1.layoutUuid in (select uuid_ from layout where ");
+			sb.append("sourcePrototypeLayoutUuid is not null and ");
+			sb.append("sourcePrototypeLayoutUuid not like '' and uuid_ not ");
+			sb.append("like sourcePrototypeLayoutUuid) and t2.uuid_ = ");
+			sb.append("t1.layoutUuid");
+
+			runSQL(sb.toString());
+
+			sb = new StringBundler(4);
+
+			sb.append("update layout set uuid_ = sourcePrototypeLayoutUuid ");
+			sb.append("where sourcePrototypeLayoutUuid is not null and ");
+			sb.append("sourcePrototypeLayoutUuid not like '' and uuid_ not ");
+			sb.append("like sourcePrototypeLayoutUuid");
+
+			runSQL(sb.toString());
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 

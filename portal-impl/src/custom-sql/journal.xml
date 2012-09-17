@@ -248,21 +248,24 @@
 	<sql id="com.liferay.portlet.journal.service.persistence.JournalStructureFinder.findByC_G_S_N_D">
 		<![CDATA[
 			SELECT
-				JournalStructure.*
-			FROM JournalStructure where id_ in (
-				SELECT
-					id_
-				FROM
-					JournalStructure
-				WHERE
-					(companyId = ?) AND
-					[$GROUP_ID$]
-					(
-						(structureId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])
-					)
-			) 
+				{JournalStructure.*}
+			FROM
+				JournalStructure
+			WHERE
+				(id_ IN (
+					SELECT
+						id_
+					FROM
+						JournalStructure
+					WHERE
+						(companyId = ?) AND
+						[$GROUP_ID$]
+						(
+							(structureId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+							(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+							(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])
+						)
+				))
 			ORDER BY
 				structureId ASC
 		]]>
@@ -287,22 +290,25 @@
 	<sql id="com.liferay.portlet.journal.service.persistence.JournalTemplateFinder.findByC_G_T_S_N_D">
 		<![CDATA[
 			SELECT
-				JournalTemplate.*
-			FROM JournalTemplate WHERE id_ in (
-				SELECT
-					id_
-				FROM
-					JournalTemplate
-				WHERE
-					(companyId = ?) AND
-					[$GROUP_ID$]
-					(
-						(templateId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(structureId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-						(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])
-					)
-			)
+				{JournalTemplate.*}
+			FROM
+				JournalTemplate
+			WHERE
+				(id_ IN (
+					SELECT
+						id_
+					FROM
+						JournalTemplate
+					WHERE
+						(companyId = ?) AND
+						[$GROUP_ID$]
+						(
+							(templateId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+							(structureId LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+							(lower(name) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+							(lower(description) LIKE ? [$AND_OR_NULL_CHECK$])
+						)
+				))
 			ORDER BY
 				templateId ASC
 		]]>

@@ -77,8 +77,16 @@ public class WikiPageAssetRendererFactory extends BaseAssetRendererFactory {
 			PermissionChecker permissionChecker, long classPK, String actionId)
 		throws Exception {
 
-		return WikiPagePermission.contains(
-			permissionChecker, classPK, actionId);
+		try {
+			WikiPage page = WikiPageLocalServiceUtil.getWikiPage(classPK);
+
+			return WikiPagePermission.contains(
+				permissionChecker, page, actionId);
+		}
+		catch (NoSuchPageException nspe) {
+			return WikiPagePermission.contains(
+				permissionChecker, classPK, actionId);
+		}
 	}
 
 	@Override

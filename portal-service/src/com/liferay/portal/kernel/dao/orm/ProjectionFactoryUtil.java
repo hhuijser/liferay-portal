@@ -72,6 +72,10 @@ public class ProjectionFactoryUtil {
 		return getProjectionFactory().rowCount();
 	}
 
+	public static Projection sqlProjection(String sql, String[] columnAliases, Object[] types) {
+		return getProjectionFactory().sqlProjection(sql, columnAliases, types);
+	}
+
 	public static Projection sum(String propertyName) {
 		return getProjectionFactory().sum(propertyName);
 	}

@@ -41,6 +41,8 @@ public interface ProjectionFactory {
 
 	public Projection rowCount();
 
+	public Projection sqlProjection(String sql, String[] columnAliases, Object[] types);
+
 	public Projection sum(String propertyName);
 
 }

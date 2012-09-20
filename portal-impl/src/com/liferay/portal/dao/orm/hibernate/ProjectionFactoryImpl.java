@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.dao.orm.ProjectionFactory;
 import com.liferay.portal.kernel.dao.orm.ProjectionList;
 
 import org.hibernate.criterion.Projections;
+import org.hibernate.type.Type;
 
 /**
  * @author Brian Wing Shun Chan
@@ -73,6 +74,12 @@ public class ProjectionFactoryImpl implements ProjectionFactory {
 
 	public Projection rowCount() {
 		return new ProjectionImpl(Projections.rowCount());
+	}
+
+	public Projection sqlProjection(String sql, String[] columnAliases, Object[] types) {
+		Type[] hibernateTypes = (Type[])types;
+
+		return new ProjectionImpl(Projections.sqlProjection(sql, columnAliases, hibernateTypes));
 	}
 
 	public Projection sum(String propertyName) {

@@ -18,6 +18,8 @@ import com.liferay.portal.LocaleException;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.RequiredLayoutException;
 import com.liferay.portal.kernel.bean.BeanReference;
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.Criterion;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -2168,6 +2170,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 			PACLClassLoaderUtil.getPortalClassLoader());
 
 		Projection plidProjection = ProjectionFactoryUtil.property("plid");
+
+		if (DBFactoryUtil.getDB().getType().equals(DB.TYPE_SYBASE)) {
+			plidProjection = ProjectionFactoryUtil.sqlProjection(
+				LayoutImpl.TABLE_NAME + "_.plid", null, null);
+		}
 
 		layoutDynamicQuery.setProjection(plidProjection);
 

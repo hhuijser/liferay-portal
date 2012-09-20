@@ -68,6 +68,10 @@ public class ProjectionFactoryImpl implements ProjectionFactory {
 		throw new UnsupportedOperationException();
 	}
 
+	public Projection sqlProjection(String sql, String[] columnAliases, Object[] types) {
+		throw new UnsupportedOperationException();
+	}
+
 	public Projection sum(String propertyName) {
 		throw new UnsupportedOperationException();
 	}

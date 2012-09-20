@@ -14,6 +14,7 @@
 
 package com.liferay.portal.verify;
 
+import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.cal.TZSRecurrence;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -117,6 +118,8 @@ public class VerifyCalendar extends VerifyProcess {
 				"select eventId, recurrence from CalEvent where (CAST_TEXT(" +
 					"recurrence) is not null or CAST_TEXT(recurrence) != '') " +
 						"and recurrence not like '%serializable%'";
+
+			sql = SQLTransformer.transform(sql);
 
 			ps = con.prepareStatement(sql);
 

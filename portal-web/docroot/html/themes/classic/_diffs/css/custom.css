@@ -44,6 +44,10 @@ hr, .separator {
 	position: relative;
 }
 
+.ie7 #banner {
+	z-index: 2;
+}
+
 .site-title .site-name {
 	background: #555 url(../images/common/site_icon.png) no-repeat 15px 50%;
 	color: #FFF;

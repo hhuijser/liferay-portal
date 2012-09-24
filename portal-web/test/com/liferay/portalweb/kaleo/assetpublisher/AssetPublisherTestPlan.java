@@ -15,6 +15,7 @@
 package com.liferay.portalweb.kaleo.assetpublisher;
 
 import com.liferay.portalweb.kaleo.assetpublisher.blogsentry.BlogsEntryTestPlan;
+import com.liferay.portalweb.kaleo.assetpublisher.dmdocument.DMDocumentTestPlan;
 import com.liferay.portalweb.kaleo.assetpublisher.mbmessage.MBMessageTestPlan;
 import com.liferay.portalweb.kaleo.assetpublisher.wcwebcontent.WCWebContentTestPlan;
 import com.liferay.portalweb.portal.BaseTestSuite;
@@ -31,6 +32,7 @@ public class AssetPublisherTestPlan extends BaseTestSuite {
 		TestSuite testSuite = new TestSuite();
 
 		testSuite.addTest(BlogsEntryTestPlan.suite());
+		testSuite.addTest(DMDocumentTestPlan.suite());
 		testSuite.addTest(MBMessageTestPlan.suite());
 		testSuite.addTest(WCWebContentTestPlan.suite());
 

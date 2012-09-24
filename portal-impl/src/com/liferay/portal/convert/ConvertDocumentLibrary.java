@@ -24,7 +24,9 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.CompanyConstants;
+import com.liferay.portal.model.Image;
 import com.liferay.portal.security.pacl.PACLClassLoaderUtil;
+import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.util.MaintenanceUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.documentlibrary.DuplicateDirectoryException;
@@ -211,6 +213,28 @@ public class ConvertDocumentLibrary extends ConvertProcess {
 		}
 	}
 
+	protected void migrateImages() throws Exception {
+		int count = ImageLocalServiceUtil.getImagesCount();
+
+		MaintenanceUtil.appendStatus("Migrating " + count + " images");
+
+		int pages = count / Indexer.DEFAULT_INTERVAL;
+
+		for (int i = 0; i <= pages; i++) {
+			int start = (i * Indexer.DEFAULT_INTERVAL);
+			int end = start + Indexer.DEFAULT_INTERVAL;
+
+			List<Image> images = ImageLocalServiceUtil.getImages(start, end);
+
+			for (Image image : images) {
+				String fileName =
+					image.getImageId() + StringPool.PERIOD + image.getType();
+
+				migrateFile(0, 0, fileName, Store.VERSION_DEFAULT);
+			}
+		}
+	}
+
 	protected void migrateMB() throws Exception {
 		int count = MBMessageLocalServiceUtil.getMBMessagesCount();
 
@@ -235,6 +259,7 @@ public class ConvertDocumentLibrary extends ConvertProcess {
 	}
 
 	protected void migratePortlets() throws Exception {
+		migrateImages();
 		migrateDL();
 		migrateMB();
 		migrateWiki();

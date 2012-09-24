@@ -20,8 +20,6 @@
 	<property name="plink.executable" location="${project.dir}/tools/putty/plink.exe" />
 	<property name="pscp.executable" location="${project.dir}/tools/putty/pscp.exe" />
 
-	<property name="selenium.nanny.executable" location="${project.dir}/tools/selenium/selenium_nanny.exe" />
-
 	<trycatch>
 		<try>
 			<taskdef
@@ -66,7 +64,7 @@
 				<isset property="test.ant.script.social.office" />
 				<then>
 					<property name="test.ant.script.plugin.hooks" value="so-hook" />
-					<property name="test.ant.script.plugin.portlets" value="chat-portlet,contacts-portlet,events-display-portlet,microblogs-portlet,private-messaging-portlet,so-portlet,tasks-portlet,weather-portlet,wysiwyg-portlet" />
+					<property name="test.ant.script.plugin.portlets" value="chat-portlet,contacts-portlet,events-display-portlet,microblogs-portlet,private-messaging-portlet,so-configurations-portlet,so-portlet,tasks-portlet,weather-portlet,wysiwyg-portlet" />
 					<property name="test.ant.script.plugin.themes" value="so-theme" />
 				</then>
 			</elseif>
@@ -283,7 +281,7 @@
 	</target>
 
 	<target name="build-test-ant-scripts">
-		<property name="build-test-ant-scripts.version" value="7" />
+		<property name="build-test-ant-scripts.version" value="9" />
 
 		<if>
 			<available file="portal-web/test-ant-scripts/version" />
@@ -1395,7 +1393,7 @@
 
 		<antcall target="build-test-ant-script">
 			<param name="test.ant.script.command" value="plugins-test-pacl" />
-			<param name="test.ant.script.plugin.portlets" value="chat-portlet,flash-portlet,test-pacl-portlet" />
+			<param name="test.ant.script.plugin.portlets" value="chat-portlet,flash-portlet,sample-service-builder-portlet,test-pacl-portlet" />
 			<param name="test.ant.script.suite" value="PluginsTestPACLTestSuite" />
 		</antcall>
 
@@ -2906,47 +2904,6 @@ svn --username ${svn.username} --password ${svn.password} update -r ${svn.info.r
 
 	<target name="prepare-selenium">
 		<if>
-			<not>
-				<isset property="selenium.executable.zip" />
-			</not>
-			<then>
-				<fail>
-.
-
-Please set "selenium.executable.zip" in test.properties to point to the Selenium
-executable ZIP file.
-				</fail>
-			</then>
-		</if>
-
-		<if>
-			<or>
-				<not>
-					<available file="${selenium.nanny.executable}" />
-				</not>
-				<uptodate
-					srcfile="${selenium.nanny.executable}"
-					targetfile="${selenium.executable.zip}"
-				/>
-			</or>
-			<then>
-				<delete>
-					<fileset
-						dir="${project.dir}/tools/selenium"
-						includes="*.exe"
-					/>
-				</delete>
-
-				<unzip
-					dest="${project.dir}/tools/selenium"
-					src="${selenium.executable.zip}"
-				/>
-
-				<touch file="${selenium.nanny.executable}" />
-			</then>
-		</if>
-
-		<if>
 			<isset property="selenium.output.dir" />
 			<then>
 				<replace
@@ -3131,7 +3088,7 @@ executable ZIP file.
 127.0.0.1	www.easy.com
 127.0.0.1	www.fox.com</echo>
 
- 		<if>
+		<if>
 			<not>
 				<isset property="build.war" />
 			</not>
@@ -3809,7 +3766,7 @@ file.
 				<ant antfile="build-test-plugins.xml" target="deploy-simple-server-plugins">
 					<property name="plugin.types" value="portlets" />
 					<property name="plugins.deployed" value="${plugins.deployed}" />
-					<property name="plugins.includes" value="chat-portlet,flash-portlet,test-pacl-portlet" />
+					<property name="plugins.includes" value="chat-portlet,flash-portlet,sample-service-builder-portlet,test-pacl-portlet" />
 				</ant>
 
 				<property name="plugins.deployed" value="true" />
@@ -3849,15 +3806,6 @@ file.
 			<then>
 				<antcall target="start-chrome-driver" />
 			</then>
-			<elseif>
-				<or>
-					<equals arg1="${test.browser}" arg2="iehta" />
-					<equals arg1="${test.browser}" arg2="iexplore" />
-				</or>
-				<then>
-					<antcall target="start-selenium-nanny" />
-				</then>
-			</elseif>
 		</if>
 
 		<parallel>
@@ -3910,15 +3858,6 @@ file.
 			<then>
 				<antcall target="stop-chrome-driver" />
 			</then>
-			<elseif>
-				<or>
-					<equals arg1="${test.browser}" arg2="iehta" />
-					<equals arg1="${test.browser}" arg2="iexplore" />
-				</or>
-				<then>
-					<antcall target="stop-selenium-nanny" />
-				</then>
-			</elseif>
 		</if>
 	</target>
 
@@ -3961,12 +3900,6 @@ which can be downloaded from this website: http://code.google.com/p/chromedriver
 		</java>
 	</target>
 
-	<target name="start-selenium-nanny">
-		<forget>
-			<exec executable="${selenium.nanny.executable}" />
-		</forget>
-	</target>
-
 	<target name="stop-chrome-driver">
 		<exec executable="taskkill.exe">
 			<arg line="/F /IM chromedriver.exe" />
@@ -3975,12 +3908,6 @@ which can be downloaded from this website: http://code.google.com/p/chromedriver
 
 	<target name="stop-selenium">
 		<antelope:post to="http://localhost:14444/selenium-server/driver/?cmd=shutDownSeleniumServer" wantresponse="true" />
-	</target>
-
-	<target name="stop-selenium-nanny">
-		<exec executable="taskkill.exe">
-			<arg line="/F /IM selenium_nanny.exe" />
-		</exec>
 	</target>
 
 	<target name="stop-vm">

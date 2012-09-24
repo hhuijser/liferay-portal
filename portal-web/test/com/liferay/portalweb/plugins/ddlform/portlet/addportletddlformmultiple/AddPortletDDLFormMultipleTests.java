@@ -14,6 +14,7 @@
 
 package com.liferay.portalweb.plugins.ddlform.portlet.addportletddlformmultiple;
 
+import com.liferay.portalweb.plugins.ddlform.portlet.addportletddlform.AddPageDDLFormTest;
 import com.liferay.portalweb.portal.BaseTestSuite;
 import com.liferay.portalweb.portal.util.TearDownPageTest;
 

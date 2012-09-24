@@ -84,7 +84,7 @@ if (Validator.isNotNull(target)) {
 			String rowHREF = null;
 
 			if (OrganizationPermissionUtil.contains(permissionChecker, organization.getOrganizationId(), ActionKeys.ASSIGN_MEMBERS)) {
-				StringBundler sb = new StringBundler(10);
+				StringBundler sb = new StringBundler(13);
 
 				sb.append("javascript:opener.");
 				sb.append(renderResponse.getNamespace());
@@ -98,8 +98,7 @@ if (Validator.isNotNull(target)) {
 				sb.append(UnicodeLanguageUtil.get(pageContext, organization.getType()));
 				sb.append("', '");
 				sb.append(target);
-				sb.append("');");
-				sb.append("window.close();");
+				sb.append("'); window.close();");
 
 				rowHREF = sb.toString();
 			}

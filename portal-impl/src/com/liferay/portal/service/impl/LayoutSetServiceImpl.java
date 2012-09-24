@@ -79,14 +79,20 @@ public class LayoutSetServiceImpl extends LayoutSetServiceBaseImpl {
 			long groupId, boolean privateLayout, boolean logo, byte[] bytes)
 		throws PortalException, SystemException {
 
-		updateLogo(groupId, privateLayout, logo, bytes);
+		GroupPermissionUtil.check(
+			getPermissionChecker(), groupId, ActionKeys.UPDATE);
+
+		layoutSetLocalService.updateLogo(groupId, privateLayout, logo, bytes);
 	}
 
 	public void updateLogo(
 			long groupId, boolean privateLayout, boolean logo, File file)
 		throws PortalException, SystemException {
 
-		updateLogo(groupId, privateLayout, logo, file);
+		GroupPermissionUtil.check(
+			getPermissionChecker(), groupId, ActionKeys.UPDATE);
+
+		layoutSetLocalService.updateLogo(groupId, privateLayout, logo, file);
 	}
 
 	public void updateLogo(

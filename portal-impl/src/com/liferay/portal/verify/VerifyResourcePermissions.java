@@ -38,8 +38,6 @@ import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.model.AssetVocabulary;
 import com.liferay.portlet.blogs.model.BlogsEntry;
-import com.liferay.portlet.bookmarks.model.BookmarksEntry;
-import com.liferay.portlet.bookmarks.model.BookmarksFolder;
 import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileShortcut;
@@ -188,12 +186,6 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		},
 		new String[] {
 			BlogsEntry.class.getName(), "BlogsEntry", "entryId"
-		},
-		new String[] {
-			BookmarksEntry.class.getName(), "BookmarksEntry", "entryId"
-		},
-		new String[] {
-			BookmarksFolder.class.getName(), "BookmarksFolder", "folderId"
 		},
 		new String[] {
 			CalEvent.class.getName(), "CalEvent", "eventId"

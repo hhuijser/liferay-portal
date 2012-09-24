@@ -442,6 +442,8 @@ public class ServicePreAction extends Action {
 			}
 		}
 
+		String ppid = ParamUtil.getString(request, "p_p_id");
+
 		Boolean redirectToDefaultLayout = (Boolean)request.getAttribute(
 			WebKeys.REDIRECT_TO_DEFAULT_LAYOUT);
 
@@ -455,8 +457,6 @@ public class ServicePreAction extends Action {
 			if (!signedIn && PropsValues.AUTH_FORWARD_BY_REDIRECT) {
 				request.setAttribute(WebKeys.REQUESTED_LAYOUT, layout);
 			}
-
-			String ppid = ParamUtil.getString(request, "p_p_id");
 
 			if (Validator.isNull(controlPanelCategory) &&
 				Validator.isNotNull(ppid) &&
@@ -802,6 +802,7 @@ public class ServicePreAction extends Action {
 		themeDisplay.setLayouts(layouts);
 		themeDisplay.setUnfilteredLayouts(unfilteredLayouts);
 		themeDisplay.setPlid(plid);
+		themeDisplay.setPpid(ppid);
 		themeDisplay.setLayoutTypePortlet(layoutTypePortlet);
 		themeDisplay.setScopeGroupId(scopeGroupId);
 		themeDisplay.setParentGroupId(parentGroupId);

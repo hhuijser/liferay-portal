@@ -1663,6 +1663,10 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 		return _layout.isSelected(selectable, layout, ancestorPlid);
 	}
 
+	public boolean isSupportsEmbeddedPortlets() {
+		return _layout.isSupportsEmbeddedPortlets();
+	}
+
 	public boolean isTypeArticle() {
 		return _layout.isTypeArticle();
 	}

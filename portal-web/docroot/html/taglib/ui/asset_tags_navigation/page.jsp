@@ -51,6 +51,10 @@ else {
 
 <%
 }
+
+if (Validator.isNotNull(tag)) {
+	PortalUtil.addPortletBreadcrumbEntry(request, tag, currentURL);
+}
 %>
 
 <%!
@@ -145,7 +149,7 @@ private String _buildTagsNavigation(long groupId, String selectedTagName, Portle
 			portletURL.setParameter("resetCur", Boolean.TRUE.toString());
 			portletURL.setParameter("tag", tagName);
 
- 			sb.append("<a href=\"");
+			sb.append("<a href=\"");
 		}
 
 		sb.append(portletURL.toString());

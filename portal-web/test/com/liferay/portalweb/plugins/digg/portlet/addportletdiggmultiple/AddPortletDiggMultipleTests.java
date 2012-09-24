@@ -14,6 +14,7 @@
 
 package com.liferay.portalweb.plugins.digg.portlet.addportletdiggmultiple;
 
+import com.liferay.portalweb.plugins.digg.portlet.addportletdigg.AddPageDiggTest;
 import com.liferay.portalweb.portal.BaseTestSuite;
 import com.liferay.portalweb.portal.util.TearDownPageTest;
 

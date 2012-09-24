@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.model.Group;
 import com.liferay.portlet.trash.model.TrashEntry;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -51,6 +52,15 @@ public class TrashUtil {
 		return getTrash().appendTrashNamespace(title, separator);
 	}
 
+	public static void deleteEntriesAttachments(
+			long companyId, long repositoryId, Date date,
+			String[] attachmentFileNames)
+		throws PortalException, SystemException {
+
+		getTrash().deleteEntriesAttachments(
+			companyId, repositoryId, date, attachmentFileNames);
+	}
+
 	public static List<TrashEntry> getEntries(Hits hits)
 		throws PortalException, SystemException {
 
@@ -77,6 +87,12 @@ public class TrashUtil {
 
 	public static String getTrashTime(String title, String separator) {
 		return getTrash().getTrashTime(title, separator);
+	}
+
+	public static boolean isInTrash(String className, long classPK)
+		throws PortalException, SystemException {
+
+		return getTrash().isInTrash(className, classPK);
 	}
 
 	public static boolean isTrashEnabled(long groupId)

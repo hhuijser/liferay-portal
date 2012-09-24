@@ -85,11 +85,11 @@ portletURL.setParameter("includeUserPersonalSite", String.valueOf(includeUserPer
 				start = searchContainer.getStart() - additionalSites;
 			}
 
-			List<Group> sites = GroupLocalServiceUtil.search(company.getCompanyId(), null, searchTerms.getName(), searchTerms.getDescription(), groupParams, start, end, searchContainer.getOrderByComparator());
+			List<Group> sites = GroupLocalServiceUtil.search(company.getCompanyId(), null, searchTerms.getName(), searchTerms.getDescription(), groupParams, searchTerms.isAndOperator(), start, end, searchContainer.getOrderByComparator());
 
 			results.addAll(sites);
 
-			total = GroupLocalServiceUtil.searchCount(company.getCompanyId(), null, searchTerms.getName(), searchTerms.getDescription(), groupParams) + additionalSites;
+			total = GroupLocalServiceUtil.searchCount(company.getCompanyId(), null, searchTerms.getName(), searchTerms.getDescription(), groupParams, searchTerms.isAndOperator()) + additionalSites;
 
 			pageContext.setAttribute("results", results);
 			pageContext.setAttribute("total", total);
@@ -106,7 +106,7 @@ portletURL.setParameter("includeUserPersonalSite", String.valueOf(includeUserPer
 		>
 
 			<%
-			StringBundler sb = new StringBundler(10);
+			StringBundler sb = new StringBundler(9);
 
 			sb.append("javascript:opener.");
 			sb.append(renderResponse.getNamespace());
@@ -116,8 +116,7 @@ portletURL.setParameter("includeUserPersonalSite", String.valueOf(includeUserPer
 			sb.append(UnicodeFormatter.toString(group.getDescriptiveName(locale)));
 			sb.append("', '");
 			sb.append(target);
-			sb.append("');");
-			sb.append("window.close();");
+			sb.append("'); window.close();");
 
 			String rowHREF = sb.toString();
 			%>

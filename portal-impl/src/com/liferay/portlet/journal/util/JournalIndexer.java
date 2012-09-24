@@ -525,7 +525,7 @@ public class JournalIndexer extends BaseIndexer {
 
 		addReindexCriteria(
 			dynamicQuery, companyId, JournalArticleConstants.VERSION_DEFAULT,
-			WorkflowConstants.STATUS_APPROVED);
+			WorkflowConstants.STATUS_DRAFT);
 
 		return JournalArticleLocalServiceUtil.dynamicQuery(dynamicQuery);
 	}
@@ -617,8 +617,10 @@ public class JournalIndexer extends BaseIndexer {
 				"index-type", StringPool.BLANK);
 
 			if (structureDocument != null) {
-				String path = element.getPath().concat(
-					"[@name='").concat(elName).concat("']");
+				String path = element.getPath();
+
+				path = path.concat("[@name=").concat(
+					HtmlUtil.escapeXPathAttribute(elName)).concat("]");
 
 				Node structureNode = structureDocument.selectSingleNode(path);
 

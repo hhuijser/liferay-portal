@@ -813,13 +813,9 @@ public class LayoutExporter {
 				}
 			}
 		}
+		else if (layout.isSupportsEmbeddedPortlets()) {
 
-		// All of these layout types support embedded portlets
-
-		else if (layout.isTypeArticle() || layout.isTypeEmbedded() ||
-				 layout.isTypePanel() || layout.isTypePortlet()) {
-
-			// However, only portlet type layouts support page scoping
+			// Only portlet type layouts support page scoping
 
 			if (layout.isTypePortlet()) {
 				for (Portlet portlet : portlets) {

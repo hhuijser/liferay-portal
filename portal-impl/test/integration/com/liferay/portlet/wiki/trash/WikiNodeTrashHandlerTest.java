@@ -16,6 +16,7 @@ package com.liferay.portlet.wiki.trash;
 
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.BaseModel;
+import com.liferay.portal.model.ClassedModel;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceTestUtil;
 import com.liferay.portal.test.EnvironmentExecutionTestListener;
@@ -27,6 +28,7 @@ import com.liferay.portlet.trash.BaseTrashHandlerTestCase;
 import com.liferay.portlet.wiki.model.WikiNode;
 import com.liferay.portlet.wiki.service.WikiNodeLocalServiceUtil;
 
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 
 /**
@@ -41,6 +43,36 @@ import org.junit.runner.RunWith;
 public class WikiNodeTrashHandlerTest extends BaseTrashHandlerTestCase {
 
 	@Override
+	public void testTrashAndDeleteDraft() throws Exception {
+		Assert.assertTrue("This test does not apply", true);
+	}
+
+	@Override
+	public void testTrashAndRestoreDraft() throws Exception {
+		Assert.assertTrue("This test does not apply", true);
+	}
+
+	@Override
+	public void testTrashParentAndDeleteParent() throws Exception {
+		Assert.assertTrue("This test does not apply", true);
+	}
+
+	@Override
+	public void testTrashParentAndRestoreModel() throws Exception {
+		Assert.assertTrue("This test does not apply", true);
+	}
+
+	@Override
+	public void testTrashVersionAndDelete() throws Exception {
+		Assert.assertTrue("This test does not apply", true);
+	}
+
+	@Override
+	public void testTrashVersionAndRestore() throws Exception {
+		Assert.assertTrue("This test does not apply", true);
+	}
+
+	@Override
 	protected BaseModel<?> addBaseModel(
 			BaseModel<?> parentBaseModel, boolean approved,
 			ServiceContext serviceContext)
@@ -48,7 +80,7 @@ public class WikiNodeTrashHandlerTest extends BaseTrashHandlerTestCase {
 
 		serviceContext = (ServiceContext)serviceContext.clone();
 
-		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_SAVE_DRAFT);
+		serviceContext.setWorkflowAction(WorkflowConstants.ACTION_PUBLISH);
 
 		return WikiNodeLocalServiceUtil.addNode(
 			TestPropsValues.getUserId(), getSearchKeywords(),
@@ -66,6 +98,13 @@ public class WikiNodeTrashHandlerTest extends BaseTrashHandlerTestCase {
 	}
 
 	@Override
+	protected String getBaseModelName(ClassedModel classedModel) {
+		WikiNode wikiNode = (WikiNode)classedModel;
+
+		return wikiNode.getName();
+	}
+
+	@Override
 	protected int getBaseModelsNotInTrashCount(BaseModel<?> parentBaseModel)
 		throws Exception {
 
@@ -77,6 +116,16 @@ public class WikiNodeTrashHandlerTest extends BaseTrashHandlerTestCase {
 	@Override
 	protected String getSearchKeywords() {
 		return "Title";
+	}
+
+	@Override
+	protected boolean isAssetableModel() {
+		return false;
+	}
+
+	@Override
+	protected boolean isIndexableBaseModel() {
+		return false;
 	}
 
 	@Override

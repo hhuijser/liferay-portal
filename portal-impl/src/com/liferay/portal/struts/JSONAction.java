@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.ac.AccessControlUtil;
 import com.liferay.portal.security.auth.AuthSettingsUtil;
 import com.liferay.portal.security.auth.AuthTokenUtil;
+import com.liferay.portal.security.auth.PortalSessionAuthVerifier;
 import com.liferay.portal.servlet.SharedSessionServletRequest;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsValues;
@@ -90,6 +91,8 @@ public abstract class JSONAction extends Action {
 			json = JSONFactoryUtil.serializeException(se);
 		}
 		catch (Exception e) {
+			_log.error(e, e);
+
 			PortalUtil.sendError(
 				HttpServletResponse.SC_INTERNAL_SERVER_ERROR, e, request,
 				response);
@@ -149,7 +152,7 @@ public abstract class JSONAction extends Action {
 			// The new web service should only check auth tokens when the user
 			// is authenticated using portal session cookies
 
-			if (!authType.equals("PortalSessionAuthVerifier")) {
+			if (!authType.equals(PortalSessionAuthVerifier.AUTH_TYPE)) {
 				return;
 			}
 		}

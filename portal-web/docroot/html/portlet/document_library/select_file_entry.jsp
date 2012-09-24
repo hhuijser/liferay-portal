@@ -152,7 +152,7 @@ if (folder != null) {
 
 		ResultRow row = new ResultRow(fileEntry, fileEntry.getFileEntryId(), i);
 
-		StringBundler sb = new StringBundler(9);
+		StringBundler sb = new StringBundler(7);
 
 		sb.append("javascript:opener.");
 		sb.append(renderResponse.getNamespace());

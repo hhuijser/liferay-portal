@@ -353,6 +353,10 @@ public class ThemeDisplay
 		return getScopeGroupId();
 	}
 
+	public String getPpid() {
+		return _ppid;
+	}
+
 	public String getRealCompanyLogo() {
 		return _realCompanyLogo;
 	}
@@ -1054,6 +1058,10 @@ public class ThemeDisplay
 		_portalURL = portalURL;
 	}
 
+	public void setPpid(String ppid) {
+		_ppid = ppid;
+	}
+
 	public void setRealCompanyLogo(String realCompanyLogo) {
 		_realCompanyLogo = realCompanyLogo;
 	}
@@ -1379,6 +1387,7 @@ public class ThemeDisplay
 	private long _plid;
 	private String _portalURL = StringPool.BLANK;
 	private PortletDisplay _portletDisplay = new PortletDisplay();
+	private String _ppid = StringPool.BLANK;
 	private String _realCompanyLogo = StringPool.BLANK;
 	private int _realCompanyLogoHeight;
 	private int _realCompanyLogoWidth;

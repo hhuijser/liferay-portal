@@ -476,6 +476,8 @@ public class PropsValues {
 
 	public static final String[] DL_FILE_ENTRY_PREVIEW_AUDIO_MIME_TYPES = PropsUtil.getArray(PropsKeys.DL_FILE_ENTRY_PREVIEW_AUDIO_MIME_TYPES);
 
+	public static final boolean DL_FILE_ENTRY_PREVIEW_AUTO_CREATE_ON_UPGRADE = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.DL_FILE_ENTRY_PREVIEW_AUTO_CREATE_ON_UPGRADE));
+
 	public static final int DL_FILE_ENTRY_PREVIEW_DOCUMENT_DEPTH = GetterUtil.getInteger(PropsUtil.get(PropsKeys.DL_FILE_ENTRY_PREVIEW_DOCUMENT_DEPTH));
 
 	public static final int DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI = GetterUtil.getInteger(PropsUtil.get(PropsKeys.DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI));
@@ -755,6 +757,8 @@ public class PropsValues {
 	public static final String JOURNAL_LAR_CREATION_STRATEGY = PropsUtil.get(PropsKeys.JOURNAL_LAR_CREATION_STRATEGY);
 
 	public static final boolean JOURNAL_PUBLISH_TO_LIVE_BY_DEFAULT = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.JOURNAL_PUBLISH_TO_LIVE_BY_DEFAULT));
+
+	public static final boolean JOURNAL_PUBLISH_VERSION_HISTORY_BY_DEFAULT = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.JOURNAL_PUBLISH_VERSION_HISTORY_BY_DEFAULT));
 
 	public static final boolean JOURNAL_STRUCTURE_FORCE_AUTOGENERATE_ID = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.JOURNAL_STRUCTURE_FORCE_AUTOGENERATE_ID));
 
@@ -1556,6 +1560,8 @@ public class PropsValues {
 
 	public static boolean STRIP_JS_LANGUAGE_ATTRIBUTE_SUPPORT_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.STRIP_JS_LANGUAGE_ATTRIBUTE_SUPPORT_ENABLED));
 
+	public static String[] STRIP_MIME_TYPES = PropsUtil.getArray(PropsKeys.STRIP_MIME_TYPES);
+
 	public static final String STRUTS_PORTLET_REQUEST_PROCESSOR = PropsUtil.get(PropsKeys.STRUTS_PORTLET_REQUEST_PROCESSOR);
 
 	public static final boolean TAGS_COMPILER_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.TAGS_COMPILER_ENABLED));
@@ -1691,8 +1697,6 @@ public class PropsValues {
 	public static final boolean VALUE_OBJECT_FINDER_CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.VALUE_OBJECT_FINDER_CACHE_ENABLED));
 
 	public static final int VALUE_OBJECT_FINDER_THREAD_LOCAL_CACHE_MAX_SIZE = GetterUtil.getInteger(PropsUtil.get(PropsKeys.VALUE_OBJECT_FINDER_THREAD_LOCAL_CACHE_MAX_SIZE));
-
-	public static final boolean VELOCITY_ENGINE_RESOURCE_MANAGER_CACHE_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.VELOCITY_ENGINE_RESOURCE_MANAGER_CACHE_ENABLED));
 
 	public static final int VELOCITY_ENGINE_RESOURCE_MODIFICATION_CHECK_INTERVAL = GetterUtil.getInteger(PropsUtil.get(PropsKeys.VELOCITY_ENGINE_RESOURCE_MODIFICATION_CHECK_INTERVAL));
 

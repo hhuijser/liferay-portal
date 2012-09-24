@@ -166,6 +166,8 @@ public interface Layout extends LayoutModel, PersistedModel {
 	public boolean isSelected(boolean selectable,
 		com.liferay.portal.model.Layout layout, long ancestorPlid);
 
+	public boolean isSupportsEmbeddedPortlets();
+
 	public boolean isTypeArticle();
 
 	public boolean isTypeControlPanel();

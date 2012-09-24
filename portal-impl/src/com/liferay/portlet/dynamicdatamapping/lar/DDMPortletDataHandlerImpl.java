@@ -112,7 +112,8 @@ public class DDMPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		DDMStructure structure =
-			(DDMStructure)portletDataContext.getZipEntryAsObject(path);
+			(DDMStructure)portletDataContext.getZipEntryAsObject(
+				structureElement, path);
 
 		prepareLanguagesForImport(structure);
 
@@ -148,6 +149,7 @@ public class DDMPortletDataHandlerImpl extends BasePortletDataHandler {
 
 				importedStructure = DDMStructureLocalServiceUtil.addStructure(
 					userId, portletDataContext.getScopeGroupId(),
+					structure.getParentStructureId(),
 					structure.getClassNameId(), structure.getStructureKey(),
 					structure.getNameMap(), structure.getDescriptionMap(),
 					structure.getXsd(), structure.getStorageType(),
@@ -157,6 +159,7 @@ public class DDMPortletDataHandlerImpl extends BasePortletDataHandler {
 				importedStructure =
 					DDMStructureLocalServiceUtil.updateStructure(
 						existingStructure.getStructureId(),
+						structure.getParentStructureId(),
 						structure.getNameMap(), structure.getDescriptionMap(),
 						structure.getXsd(), serviceContext);
 			}
@@ -164,10 +167,11 @@ public class DDMPortletDataHandlerImpl extends BasePortletDataHandler {
 		else {
 			importedStructure = DDMStructureLocalServiceUtil.addStructure(
 				userId, portletDataContext.getScopeGroupId(),
-				structure.getClassNameId(), structure.getStructureKey(),
-				structure.getNameMap(), structure.getDescriptionMap(),
-				structure.getXsd(), structure.getStorageType(),
-				structure.getType(), serviceContext);
+				structure.getParentStructureId(), structure.getClassNameId(),
+				structure.getStructureKey(), structure.getNameMap(),
+				structure.getDescriptionMap(), structure.getXsd(),
+				structure.getStorageType(), structure.getType(),
+				serviceContext);
 		}
 
 		portletDataContext.importClassedModel(
@@ -188,7 +192,8 @@ public class DDMPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		DDMTemplate template =
-			(DDMTemplate)portletDataContext.getZipEntryAsObject(path);
+			(DDMTemplate)portletDataContext.getZipEntryAsObject(
+				templateElement, path);
 
 		long userId = portletDataContext.getUserId(template.getUserUuid());
 
@@ -320,10 +325,10 @@ public class DDMPortletDataHandlerImpl extends BasePortletDataHandler {
 		throws PortalException {
 
 		Locale structureDefaultLocale = LocaleUtil.fromLanguageId(
-			structure.getDefaultLocale());
+			structure.getDefaultLanguageId());
 
 		Locale[] structureAvailableLocales = LocaleUtil.fromLanguageIds(
-			structure.getAvailableLocales());
+			structure.getAvailableLanguageIds());
 
 		Locale defaultImportLocale = LocalizationUtil.getDefaultImportLocale(
 			DDMStructure.class.getName(), structure.getPrimaryKey(),

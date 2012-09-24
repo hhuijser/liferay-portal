@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
@@ -162,22 +161,23 @@ public class EditLayoutSetAction extends EditLayoutsAction {
 	@Override
 	protected void setThemeSettingProperties(
 		ActionRequest actionRequest, UnicodeProperties typeSettingsProperties,
-		String device,
-		Map<String, ThemeSetting> themeSettings) {
+		String themeId, Map<String, ThemeSetting> themeSettings, String device,
+		String deviceThemeId) {
 
 		for (String key : themeSettings.keySet()) {
 			ThemeSetting themeSetting = themeSettings.get(key);
 
-			String type = GetterUtil.getString(themeSetting.getType(), "text");
+			String value = null;
 
-			String property =
-				device + "ThemeSettingsProperties--" + key +
-					StringPool.DOUBLE_DASH;
+			if (!themeId.equals(deviceThemeId)) {
+				value = themeSetting.getValue();
+			}
+			else {
+				String property =
+					device + "ThemeSettingsProperties--" + key +
+						StringPool.DOUBLE_DASH;
 
-			String value = ParamUtil.getString(actionRequest, property);
-
-			if (type.equals("checkbox")) {
-				value = String.valueOf(GetterUtil.getBoolean(value));
+				value = ParamUtil.getString(actionRequest, property);
 			}
 
 			if (!value.equals(themeSetting.getValue())) {
@@ -264,7 +264,7 @@ public class EditLayoutSetAction extends EditLayoutsAction {
 
 	protected void updateLookAndFeel(
 			ActionRequest actionRequest, long companyId, long liveGroupId,
-			long stagingGroupId, boolean privateLayout, String oldThemeId,
+			long stagingGroupId, boolean privateLayout, String themeId,
 			UnicodeProperties typeSettingsProperties)
 		throws Exception {
 
@@ -272,20 +272,22 @@ public class EditLayoutSetAction extends EditLayoutsAction {
 			ParamUtil.getString(actionRequest, "devices"));
 
 		for (String device : devices) {
-			String themeId = ParamUtil.getString(
+			String deviceThemeId = ParamUtil.getString(
 				actionRequest, device + "ThemeId");
-			String colorSchemeId = ParamUtil.getString(
+			String deviceColorSchemeId = ParamUtil.getString(
 				actionRequest, device + "ColorSchemeId");
-			String css = ParamUtil.getString(actionRequest, device + "Css");
-			boolean wapTheme = device.equals("wap");
+			String deviceCss = ParamUtil.getString(
+				actionRequest, device + "Css");
+			boolean deviceWapTheme = device.equals("wap");
 
-			if (Validator.isNotNull(themeId)) {
-				colorSchemeId = getColorSchemeId(
-					companyId, themeId, colorSchemeId, wapTheme);
+			if (Validator.isNotNull(deviceThemeId)) {
+				deviceColorSchemeId = getColorSchemeId(
+					companyId, deviceThemeId, deviceColorSchemeId,
+					deviceWapTheme);
 
 				updateThemeSettingsProperties(
-					actionRequest, companyId, typeSettingsProperties, device,
-					themeId, wapTheme);
+					actionRequest, companyId, typeSettingsProperties, themeId,
+					device, deviceThemeId, deviceWapTheme);
 			}
 
 			long groupId = liveGroupId;
@@ -295,7 +297,8 @@ public class EditLayoutSetAction extends EditLayoutsAction {
 			}
 
 			LayoutSetServiceUtil.updateLookAndFeel(
-				groupId, privateLayout, themeId, colorSchemeId, css, wapTheme);
+				groupId, privateLayout, deviceThemeId, deviceColorSchemeId,
+				deviceCss, deviceWapTheme);
 		}
 	}
 

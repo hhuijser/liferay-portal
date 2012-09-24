@@ -502,6 +502,12 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			return;
 		}
 
+		File targetFile = new File(targetDir, "META-INF/context.xml");
+
+		if (targetFile.exists()) {
+			return;
+		}
+
 		String contextPath = DeployUtil.getResourcePath("context.xml");
 
 		String content = FileUtil.read(contextPath);
@@ -511,7 +517,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 				content, "antiResourceLocking=\"true\"", StringPool.BLANK);
 		}
 
-		FileUtil.write(new File(targetDir, "META-INF/context.xml"), content);
+		FileUtil.write(targetFile, content);
 	}
 
 	public void copyXmls(
@@ -656,7 +662,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			if (contextXml.exists()) {
 				String content = FileUtil.read(contextXml);
 
-				if (content.indexOf(_PORTAL_CLASS_LOADER) != -1) {
+				if (content.contains(_PORTAL_CLASS_LOADER)) {
 					excludes += "**/WEB-INF/lib/util-bridges.jar,";
 					excludes += "**/WEB-INF/lib/util-java.jar,";
 					excludes += "**/WEB-INF/lib/util-taglib.jar,";

@@ -41,6 +41,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.tika.detect.DefaultDetector;
 import org.apache.tika.detect.Detector;
+import org.apache.tika.io.CloseShieldInputStream;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.mime.MediaType;
@@ -110,12 +111,15 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 		String contentType = null;
 
 		try {
+			CloseShieldInputStream closeShieldInputStream =
+				new CloseShieldInputStream(inputStream);
+
 			Metadata metadata = new Metadata();
 
 			metadata.set(Metadata.RESOURCE_NAME_KEY, fileName);
 
 			MediaType mediaType = _detector.detect(
-				TikaInputStream.get(inputStream), metadata);
+				TikaInputStream.get(closeShieldInputStream), metadata);
 
 			contentType = mediaType.toString();
 

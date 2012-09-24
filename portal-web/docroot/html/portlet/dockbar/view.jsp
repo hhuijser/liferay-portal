@@ -74,8 +74,6 @@ boolean hasLayoutUpdatePermission = LayoutPermissionUtil.contains(permissionChec
 												<ul>
 
 													<%
-													Set<String> runtimePortletIds = RuntimeTag.getRuntimePortletIDs(request);
-
 													int j = 0;
 
 													for (int i = 0; i < portlets.size(); i++) {
@@ -84,14 +82,6 @@ boolean hasLayoutUpdatePermission = LayoutPermissionUtil.contains(permissionChec
 														boolean portletInstanceable = portlet.isInstanceable();
 
 														boolean portletUsed = layoutTypePortlet.hasPortletId(portlet.getPortletId());
-
-														if (runtimePortletIds != null) {
-															for (String runtimePortletId : runtimePortletIds) {
-																if (PortletConstants.hasIdenticalRootPortletId(runtimePortletId, portlet.getPortletId())) {
-																	portletUsed = true;
-																}
-															}
-														}
 
 														boolean portletLocked = !portletInstanceable && portletUsed;
 
@@ -390,11 +380,11 @@ boolean hasLayoutUpdatePermission = LayoutPermissionUtil.contains(permissionChec
 				%>
 
 					<li>
-						<label>
-							<a href="javascript:;">
+						<a href="javascript:;">
+							<label>
 								<input name="template" type="radio" value="<%= layoutPrototype.getLayoutPrototypeId() %>" /> <%= HtmlUtil.escape(layoutPrototype.getName(user.getLanguageId())) %>
-							</a>
-						</label>
+							</label>
+						</a>
 					</li>
 
 				<%

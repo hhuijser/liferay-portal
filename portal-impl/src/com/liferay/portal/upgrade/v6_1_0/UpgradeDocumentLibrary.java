@@ -90,7 +90,11 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		updateFileShortcuts();
 		updateFileVersions();
 		updateLocks();
-		updateThumbnails();
+
+		if (PropsValues.DL_FILE_ENTRY_PREVIEW_AUTO_CREATE_ON_UPGRADE) {
+			updateThumbnails();
+		}
+
 		//updateSyncs();
 	}
 

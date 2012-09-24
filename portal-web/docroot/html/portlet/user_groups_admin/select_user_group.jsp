@@ -70,7 +70,7 @@ portletURL.setParameter("struts_action", "/user_groups_admin/select_user_group")
 		>
 
 			<%
-			StringBundler sb = new StringBundler(10);
+			StringBundler sb = new StringBundler(9);
 
 			sb.append("javascript:opener.");
 			sb.append(renderResponse.getNamespace());
@@ -80,8 +80,7 @@ portletURL.setParameter("struts_action", "/user_groups_admin/select_user_group")
 			sb.append(UnicodeFormatter.toString(userGroup.getName()));
 			sb.append("', '");
 			sb.append(target);
-			sb.append("');");
-			sb.append("window.close();");
+			sb.append("'); window.close();");
 
 			String rowHREF = sb.toString();
 			%>

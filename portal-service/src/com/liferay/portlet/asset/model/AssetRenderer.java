@@ -51,6 +51,8 @@ public interface AssetRenderer {
 
 	public String getIconPath(PortletRequest portletRequest);
 
+	public String getSearchSummary(Locale locale);
+
 	public String getSummary(Locale locale);
 
 	public String getTitle(Locale locale);
@@ -60,6 +62,12 @@ public interface AssetRenderer {
 	public PortletURL getURLEdit(
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
+		throws Exception;
+
+	public PortletURL getURLEdit(
+			LiferayPortletRequest liferayPortletRequest,
+			LiferayPortletResponse liferayPortletResponse,
+			WindowState windowState, PortletURL redirectURL)
 		throws Exception;
 
 	public PortletURL getURLExport(

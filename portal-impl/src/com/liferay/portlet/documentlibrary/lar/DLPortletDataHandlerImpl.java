@@ -47,7 +47,6 @@ import com.liferay.portal.service.RepositoryLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.persistence.RepositoryEntryUtil;
 import com.liferay.portal.service.persistence.RepositoryUtil;
-import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
@@ -581,11 +580,10 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		Repository repository =
-			(Repository)portletDataContext.getZipEntryAsObject(path);
+			(Repository)portletDataContext.getZipEntryAsObject(
+				repositoryElement, path);
 
 		long userId = portletDataContext.getUserId(repository.getUserUuid());
-		long classNameId = PortalUtil.getClassNameId(
-			repositoryElement.attributeValue("class-name"));
 
 		ServiceContext serviceContext = portletDataContext.createServiceContext(
 			repositoryElement, repository, _NAMESPACE);
@@ -603,7 +601,7 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 					importedRepositoryId =
 						RepositoryLocalServiceUtil.addRepository(
 							userId, portletDataContext.getScopeGroupId(),
-							classNameId,
+							repository.getClassNameId(),
 							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 							repository.getName(), repository.getDescription(),
 							repository.getPortletId(),
@@ -620,7 +618,8 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 			}
 			else {
 				importedRepositoryId = RepositoryLocalServiceUtil.addRepository(
-					userId, portletDataContext.getScopeGroupId(), classNameId,
+					userId, portletDataContext.getScopeGroupId(),
+					repository.getClassNameId(),
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 					repository.getName(), repository.getDescription(),
 					repository.getPortletId(),
@@ -1108,8 +1107,6 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 
 		Element repositoryElement = repositoriesElement.addElement(
 			"repository");
-
-		repositoryElement.addAttribute("class-name", repository.getClassName());
 
 		portletDataContext.addClassedModel(
 			repositoryElement, path, repository, _NAMESPACE);

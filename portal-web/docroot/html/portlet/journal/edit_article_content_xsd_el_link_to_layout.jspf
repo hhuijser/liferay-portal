@@ -34,7 +34,7 @@ if (layoutList.size() > 1) {
 		String[] nodeValues = StringUtil.split(layoutDesc, '|');
 
 		long objId = GetterUtil.getLong(nodeValues[3]);
-		String name = nodeValues[4];
+		String name = HtmlUtil.escape(nodeValues[4]);
 
 		int depth2 = 0;
 
@@ -55,7 +55,7 @@ if (layoutList.size() > 1) {
 		}
 
 		if (linkableLayout != null) {
-			if (elContent.indexOf(StringPool.AT) == -1) {
+			if (!elContent.contains(StringPool.AT)) {
 				elContent += "@public";
 			}
 

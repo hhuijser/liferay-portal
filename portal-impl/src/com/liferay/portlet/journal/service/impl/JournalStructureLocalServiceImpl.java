@@ -80,7 +80,7 @@ public class JournalStructureLocalServiceImpl
 		Date now = new Date();
 
 		try {
-			xsd = JournalUtil.processXMLAttributes(xsd);
+			xsd = JournalUtil.validateXSD(xsd);
 			xsd = DDMXMLUtil.formatXML(xsd);
 		}
 		catch (Exception e) {
@@ -191,7 +191,7 @@ public class JournalStructureLocalServiceImpl
 
 		String xsd = structure.getXsd();
 
-		if ((xsd != null) && (xsd.indexOf("\\n") != -1)) {
+		if ((xsd != null) && xsd.contains("\\n")) {
 			xsd = StringUtil.replace(
 				xsd, new String[] {"\\n", "\\r"}, new String[] {"\n", "\r"});
 
@@ -492,7 +492,7 @@ public class JournalStructureLocalServiceImpl
 		structureId = structureId.trim().toUpperCase();
 
 		try {
-			xsd = JournalUtil.processXMLAttributes(xsd);
+			xsd = JournalUtil.validateXSD(xsd);
 			xsd = DDMXMLUtil.formatXML(xsd);
 		}
 		catch (Exception e) {

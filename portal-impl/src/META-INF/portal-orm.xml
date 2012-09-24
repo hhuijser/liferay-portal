@@ -2216,6 +2216,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="parentStructureId" />
 			<basic name="classNameId" />
 			<basic name="structureKey" />
 			<basic name="name" />

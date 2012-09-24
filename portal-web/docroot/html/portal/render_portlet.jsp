@@ -78,9 +78,11 @@ if (allowAddPortletDefaultResource) {
 	if (Validator.isNotNull(scopeLayoutUuid)) {
 		Layout scopeLayout = LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(scopeLayoutUuid, group.getGroupId());
 
-		portletPreferencesIds = PortletPreferencesFactoryUtil.getPortletPreferencesIds(request, scopeLayout, portletId);
+		if (scopeLayout != null) {
+			portletPreferencesIds = PortletPreferencesFactoryUtil.getPortletPreferencesIds(request, scopeLayout, portletId);
 
-		portletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(portletPreferencesIds);
+			portletPreferences = PortletPreferencesLocalServiceUtil.getPreferences(portletPreferencesIds);
+		}
 	}
 }
 else {
@@ -418,12 +420,6 @@ portletDisplay.setPortletSetup(portletSetup);
 String customCSSClassName = PortletConfigurationUtil.getPortletCustomCSSClassName(portletSetup);
 
 portletDisplay.setCustomCSSClassName(customCSSClassName);
-
-// Portlet focused
-
-boolean focused = portletId.equals(originalRequest.getParameter("p_p_id"));
-
-portletDisplay.setFocused(focused);
 
 // Portlet icon
 

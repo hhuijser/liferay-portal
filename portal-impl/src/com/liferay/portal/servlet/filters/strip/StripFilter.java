@@ -27,12 +27,12 @@ import com.liferay.portal.kernel.servlet.BufferCacheServletResponse;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.KMPSearch;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.servlet.filters.BasePortalFilter;
 import com.liferay.portal.servlet.filters.dynamiccss.DynamicCSSUtil;
@@ -213,6 +213,26 @@ public class StripFilter extends BasePortalFilter {
 		}
 	}
 
+	protected boolean isStripContentType(String contentType) {
+		for (String stripContentType : PropsValues.STRIP_MIME_TYPES) {
+			if (stripContentType.endsWith(StringPool.STAR)) {
+				stripContentType = stripContentType.substring(
+					0, stripContentType.length() - 1);
+
+				if (contentType.startsWith(stripContentType)) {
+					return true;
+				}
+			}
+			else {
+				if (contentType.equals(stripContentType)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	protected void outputCloseTag(
 			CharBuffer charBuffer, Writer writer, String closeTag)
 		throws Exception {
@@ -348,7 +368,7 @@ public class StripFilter extends BasePortalFilter {
 
 		response.setContentType(contentType);
 
-		if (contentType.startsWith(ContentTypes.TEXT_HTML) &&
+		if (isStripContentType(contentType) &&
 			(bufferCacheServletResponse.getStatus() ==
 				HttpServletResponse.SC_OK)) {
 
@@ -530,9 +550,7 @@ public class StripFilter extends BasePortalFilter {
 		}
 
 		if (!Validator.isNull(minifiedContent)) {
-			writer.write(_CDATA_OPEN);
 			writer.write(minifiedContent);
-			writer.write(_CDATA_CLOSE);
 		}
 
 		outputCloseTag(charBuffer, writer, _MARKER_SCRIPT_CLOSE);
@@ -667,10 +685,6 @@ public class StripFilter extends BasePortalFilter {
 
 		writer.flush();
 	}
-
-	private static final String _CDATA_CLOSE = "/*]]>*/";
-
-	private static final String _CDATA_OPEN = "/*<![CDATA[*/";
 
 	private static final String _ENSURE_CONTENT_LENGTH = "ensureContentLength";
 

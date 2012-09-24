@@ -70,7 +70,7 @@ portletURL.setParameter("struts_action", "/roles_admin/select_regular_role");
 			<liferay-util:param name="classHoverName" value="<%= RolesAdminUtil.getCssClassName(role) %>" />
 
 			<%
-			StringBundler sb = new StringBundler(10);
+			StringBundler sb = new StringBundler(7);
 
 			sb.append("javascript:opener.");
 			sb.append(renderResponse.getNamespace());
@@ -78,10 +78,7 @@ portletURL.setParameter("struts_action", "/roles_admin/select_regular_role");
 			sb.append(role.getRoleId());
 			sb.append("', '");
 			sb.append(UnicodeFormatter.toString(role.getTitle(locale)));
-			sb.append("', '");
-			sb.append("roles");
-			sb.append("');");
-			sb.append("window.close();");
+			sb.append("', 'roles'); window.close();");
 
 			String rowHREF = sb.toString();
 			%>

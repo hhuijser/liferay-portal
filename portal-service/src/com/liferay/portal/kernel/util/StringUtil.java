@@ -245,7 +245,8 @@ public class StringUtil {
 	 *
 	 * <pre>
 	 * <code>
-	 * contains("application", "app") returns true
+	 * contains("one,two,three", "two") returns true
+	 * contains("one,two,three", "thr") returns false
 	 * </code>
 	 * </pre>
 	 *
@@ -685,6 +686,14 @@ public class StringUtil {
 		}
 		else {
 			return s.toLowerCase();
+		}
+	}
+
+	public static void lowerCase(String... array) {
+		if (array != null) {
+			for (int i = 0; i < array.length; i++) {
+				array[i] = array[i].toLowerCase();
+			}
 		}
 	}
 
@@ -1318,9 +1327,9 @@ public class StringUtil {
 	 *
 	 * <pre>
 	 * <code>
-	 * remove("red;blue;green;yellow", "blue") returns "red,green,yellow;"
-	 * remove("blue", "blue") returns ""
-	 * remove("blue;", "blue") returns ""
+	 * remove("red;blue;green;yellow", "blue", ";") returns "red;green;yellow;"
+	 * remove("blue", "blue", ";") returns ""
+	 * remove("blue;", "blue", ";") returns ""
 	 * </code>
 	 * </pre>
 	 *

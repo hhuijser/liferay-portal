@@ -549,19 +549,21 @@ public class PortalImpl implements Portal {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		if (!portletDisplay.isFocused()) {
-			return;
+		String name = WebKeys.PORTLET_BREADCRUMBS;
+
+		if (Validator.isNotNull(portletDisplay.getId()) &&
+			!portletDisplay.isFocused()) {
+
+			name += StringPool.UNDERLINE + portletDisplay.getId();
 		}
 
 		List<BreadcrumbEntry> breadcrumbEntries =
-			(List<BreadcrumbEntry>)request.getAttribute(
-				WebKeys.PORTLET_BREADCRUMBS);
+			(List<BreadcrumbEntry>)request.getAttribute(name);
 
 		if (breadcrumbEntries == null) {
 			breadcrumbEntries = new ArrayList<BreadcrumbEntry>();
 
-			request.setAttribute(
-				WebKeys.PORTLET_BREADCRUMBS, breadcrumbEntries);
+			request.setAttribute(name, breadcrumbEntries);
 		}
 
 		BreadcrumbEntry breadcrumbEntry = new BreadcrumbEntry();
@@ -1475,7 +1477,7 @@ public class PortalImpl implements Portal {
 			currentURL = HttpUtil.getCompleteURL(request);
 
 			if (Validator.isNotNull(currentURL) &&
-				(currentURL.indexOf(_J_SECURITY_CHECK) == -1)) {
+				!currentURL.contains(_J_SECURITY_CHECK)) {
 
 				currentURL = currentURL.substring(
 					currentURL.indexOf(Http.PROTOCOL_DELIMITER) +
@@ -1702,7 +1704,7 @@ public class PortalImpl implements Portal {
 		while (enu.hasMoreElements()) {
 			String param = enu.nextElement();
 
-			if (param.indexOf("ExpandoAttributeName--") != -1) {
+			if (param.contains("ExpandoAttributeName--")) {
 				String name = ParamUtil.getString(portletRequest, param);
 
 				names.add(name);
@@ -1745,7 +1747,7 @@ public class PortalImpl implements Portal {
 		while (enu.hasMoreElements()) {
 			String param = enu.nextElement();
 
-			if (param.indexOf("ExpandoAttributeName--") != -1) {
+			if (param.contains("ExpandoAttributeName--")) {
 				String name = ParamUtil.getString(uploadPortletRequest, param);
 
 				names.add(name);
@@ -3148,8 +3150,20 @@ public class PortalImpl implements Portal {
 	public List<BreadcrumbEntry> getPortletBreadcrumbs(
 		HttpServletRequest request) {
 
-		return (List<BreadcrumbEntry>)request.getAttribute(
-			WebKeys.PORTLET_BREADCRUMBS);
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		String name = WebKeys.PORTLET_BREADCRUMBS;
+
+		if (Validator.isNotNull(portletDisplay.getId()) &&
+			!portletDisplay.isFocused()) {
+
+			name += StringPool.UNDERLINE + portletDisplay.getId();
+		}
+
+		return (List<BreadcrumbEntry>)request.getAttribute(name);
 	}
 
 	public String getPortletDescription(
@@ -5673,7 +5687,7 @@ public class PortalImpl implements Portal {
 		if (count == 0) {
 			ResourceLocalServiceUtil.addResources(
 				companyId, groupId, 0, name, primaryKey, portletActions, true,
-				true);
+				!layout.isPrivateLayout());
 		}
 	}
 

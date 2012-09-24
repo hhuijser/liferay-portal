@@ -48,6 +48,18 @@ public class WikiPageAssetRenderer
 
 	public static final String TYPE = "wiki_page";
 
+	public static long getClassPK(WikiPage page) {
+		if (!page.isApproved() && !page.isDraft() && !page.isPending() &&
+			!page.isInTrash() &&
+			(page.getVersion() != WikiPageConstants.VERSION_DEFAULT)) {
+
+			return page.getPageId();
+		}
+		else {
+			return page.getResourcePrimKey();
+		}
+	}
+
 	public WikiPageAssetRenderer(WikiPage page) {
 		_page = page;
 	}
@@ -57,14 +69,7 @@ public class WikiPageAssetRenderer
 	}
 
 	public long getClassPK() {
-		if (!_page.isApproved() &&
-			(_page.getVersion() != WikiPageConstants.VERSION_DEFAULT)) {
-
-			return _page.getPageId();
-		}
-		else {
-			return _page.getResourcePrimKey();
-		}
+		return getClassPK(_page);
 	}
 
 	@Override

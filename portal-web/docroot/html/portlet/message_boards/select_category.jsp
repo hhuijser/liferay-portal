@@ -115,7 +115,7 @@ if (category != null) {
 	<aui:button-row>
 
 		<%
-		String taglibSelectOnClick = "opener." + renderResponse.getNamespace() + "selectCategory('" + categoryId + "','" + ((category != null) ? category.getName() : LanguageUtil.get(pageContext, "message-boards-home")) + "');window.close();";
+		String taglibSelectOnClick = "opener." + renderResponse.getNamespace() + "selectCategory('" + categoryId + "','" + ((category != null) ? category.getName() : LanguageUtil.get(pageContext, "message-boards-home")) + "'); window.close();";
 		%>
 
 		<aui:button onClick="<%= taglibSelectOnClick %>" value="choose-this-category" />

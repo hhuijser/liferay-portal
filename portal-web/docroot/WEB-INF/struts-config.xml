@@ -654,6 +654,10 @@
 			<forward name="portlet.dynamic_data_mapping.error" path="portlet.dynamic_data_mapping.error" />
 		</action>
 
+		<action path="/dynamic_data_mapping/get_structure" type="com.liferay.portlet.dynamicdatamapping.action.GetStructureAction" />
+
+		<action path="/dynamic_data_mapping/get_template" type="com.liferay.portlet.dynamicdatamapping.action.GetTemplateAction" />
+
 		<action path="/dynamic_data_mapping/select_structure" forward="portlet.dynamic_data_mapping.select_structure" />
 
 		<action path="/dynamic_data_mapping/view" forward="portlet.dynamic_data_mapping.view" />
@@ -1836,6 +1840,10 @@
 		</action>
 
 		<action path="/sites_admin/select_site" forward="portlet.sites_admin.select_site" />
+
+		<action path="/sites_admin/select_site_role" forward="portlet.roles_admin.select_site_role" />
+
+		<action path="/sites_admin/select_team" forward="portlet.sites_admin.select_team" />
 
 		<action path="/sites_admin/view" forward="portlet.sites_admin.view" />
 

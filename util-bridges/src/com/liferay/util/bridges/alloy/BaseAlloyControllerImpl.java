@@ -20,18 +20,31 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.messaging.Destination;
+import com.liferay.portal.kernel.messaging.InvokerMessageListener;
+import com.liferay.portal.kernel.messaging.MessageBus;
+import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.messaging.MessageListener;
+import com.liferay.portal.kernel.messaging.SerialDestination;
 import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletBag;
 import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
+import com.liferay.portal.kernel.scheduler.CronText;
+import com.liferay.portal.kernel.scheduler.CronTrigger;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.StorageType;
+import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchContextFactory;
+import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
@@ -51,6 +64,8 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 
+import java.io.Serializable;
+
 import java.lang.reflect.Method;
 
 import java.util.Date;
@@ -58,6 +73,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -93,6 +109,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		initMethods();
 		initPaths();
 		initIndexer();
+		initScheduler();
 	}
 
 	public void execute() throws Exception {
@@ -182,6 +199,10 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		return null;
 	}
 
+	protected MessageListener buildSchedulerMessageListener() {
+		return null;
+	}
+
 	protected void executeAction(Method method) throws Exception {
 		if (method != null) {
 			method.invoke(this);
@@ -253,6 +274,51 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 
 		return sb.toString();
+	}
+
+	protected String getSchedulerDestinationName() {
+		return "liferay/alloy/".concat(getSchedulerGroupName());
+	}
+
+	protected String getSchedulerGroupName() {
+		String rootPortletId = portlet.getRootPortletId();
+
+		return rootPortletId.concat(StringPool.SLASH).concat(controllerPath);
+	}
+
+	protected String getSchedulerJobName() {
+		return getSchedulerGroupName();
+	}
+
+	protected Trigger getSchedulerTrigger() {
+		CronText cronText = new CronText(
+			CalendarFactoryUtil.getCalendar(), CronText.DAILY_FREQUENCY, 1);
+
+		return new CronTrigger(
+			getSchedulerJobName(), getSchedulerGroupName(),
+			cronText.toString());
+	}
+
+	protected Map<String, Serializable> getSearchAttributes(
+			Object... attributes)
+		throws Exception {
+
+		Map<String, Serializable> attributesMap =
+			new HashMap<String, Serializable>();
+
+		if ((attributes.length == 0) || ((attributes.length % 2) != 0)) {
+			throw new Exception("Arguments length is not an even number");
+		}
+
+		for (int i = 0; i < attributes.length; i += 2) {
+			String name = String.valueOf(attributes[i]);
+
+			Serializable value = (Serializable)attributes[i + 1];
+
+			attributesMap.put(name, value);
+		}
+
+		return attributesMap;
 	}
 
 	protected long increment(String name) throws Exception {
@@ -415,6 +481,88 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		}
 	}
 
+	protected void initScheduler() {
+		schedulerMessageListener = buildSchedulerMessageListener();
+
+		if (schedulerMessageListener == null) {
+			return;
+		}
+
+		MessageBus messageBus = MessageBusUtil.getMessageBus();
+
+		Destination destination = messageBus.getDestination(
+			getSchedulerDestinationName());
+
+		if (destination != null) {
+			Set<MessageListener> messageListeners =
+				destination.getMessageListeners();
+
+			for (MessageListener messageListener : messageListeners) {
+				if (!(messageListener instanceof InvokerMessageListener)) {
+					continue;
+				}
+
+				InvokerMessageListener invokerMessageListener =
+					(InvokerMessageListener)messageListener;
+
+				messageListener = invokerMessageListener.getMessageListener();
+
+				if (schedulerMessageListener == messageListener) {
+					return;
+				}
+
+				Class<?> schedulerMessageListenerClass =
+					schedulerMessageListener.getClass();
+
+				String schedulerMessageListenerClassName =
+					schedulerMessageListenerClass.getName();
+
+				Class<?> messageListenerClass = messageListener.getClass();
+
+				if (!schedulerMessageListenerClassName.equals(
+						messageListenerClass.getName())) {
+
+					continue;
+				}
+
+				try {
+					SchedulerEngineUtil.unschedule(
+						getSchedulerJobName(), getSchedulerGroupName(),
+						StorageType.MEMORY_CLUSTERED);
+
+					MessageBusUtil.unregisterMessageListener(
+						getSchedulerDestinationName(), messageListener);
+				}
+				catch (Exception e) {
+					log.error(e, e);
+				}
+
+				break;
+			}
+		}
+		else {
+			SerialDestination serialDestination = new SerialDestination();
+
+			serialDestination.setName(getSchedulerDestinationName());
+
+			serialDestination.open();
+
+			MessageBusUtil.addDestination(serialDestination);
+		}
+
+		try {
+			MessageBusUtil.registerMessageListener(
+				getSchedulerDestinationName(), schedulerMessageListener);
+
+			SchedulerEngineUtil.schedule(
+				getSchedulerTrigger(), StorageType.MEMORY_CLUSTERED, null,
+				getSchedulerDestinationName(), null, 0);
+		}
+		catch (Exception e) {
+			log.error(e, e);
+		}
+	}
+
 	protected void initServletVariables() {
 		servletConfig = pageContext.getServletConfig();
 		servletContext = pageContext.getServletContext();
@@ -465,7 +613,17 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		render(_VIEW_PATH_ERROR);
 	}
 
-	protected AlloySearchResult search(String keywords) throws Exception {
+	protected AlloySearchResult search(
+			Map<String, Serializable> attributes, String keywords, Sort sort)
+		throws Exception {
+
+		return search(attributes, keywords, new Sort[] {sort});
+	}
+
+	protected AlloySearchResult search(
+			Map<String, Serializable> attributes, String keywords, Sort[] sorts)
+		throws Exception {
+
 		if (indexer == null) {
 			throw new Exception("No indexer found for " + controllerPath);
 		}
@@ -480,10 +638,18 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		SearchContext searchContext = SearchContextFactory.getInstance(request);
 
+		if ((attributes != null) && !attributes.isEmpty()) {
+			searchContext.setAttributes(attributes);
+		}
+
 		searchContext.setEnd(searchContainer.getEnd());
 
 		if (Validator.isNotNull(keywords)) {
 			searchContext.setKeywords(keywords);
+		}
+
+		if ((sorts != null) && (sorts.length > 0)) {
+			searchContext.setSorts(sorts);
 		}
 
 		searchContext.setStart(searchContainer.getStart());
@@ -497,6 +663,22 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 		alloySearchResult.afterPropertiesSet();
 
 		return alloySearchResult;
+	}
+
+	protected AlloySearchResult search(String keywords) throws Exception {
+		return search(keywords, (Sort[])null);
+	}
+
+	protected AlloySearchResult search(String keywords, Sort sort)
+		throws Exception {
+
+		return search(keywords, new Sort[] {sort});
+	}
+
+	protected AlloySearchResult search(String keywords, Sort[] sorts)
+		throws Exception {
+
+		return search(null, keywords, sorts);
 	}
 
 	protected String translate(String pattern, Object... arguments) {
@@ -616,6 +798,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	protected ResourceRequest resourceRequest;
 	protected ResourceResponse resourceResponse;
 	protected HttpServletResponse response;
+	protected MessageListener schedulerMessageListener;
 	protected ServletConfig servletConfig;
 	protected ServletContext servletContext;
 	protected ThemeDisplay themeDisplay;

@@ -171,6 +171,8 @@ if (step == 1) {
 				RoleSearchTerms searchTerms = (RoleSearchTerms)searchContainer.getSearchTerms();
 				%>
 
+				<div class="separator"><!-- --></div>
+
 				<liferay-ui:search-container-results>
 
 					<%
@@ -202,7 +204,7 @@ if (step == 1) {
 					<liferay-util:param name="classHoverName" value="<%= RolesAdminUtil.getCssClassName(role) %>" />
 
 					<%
-					StringBundler sb = new StringBundler(14);
+					StringBundler sb = new StringBundler(13);
 
 					sb.append("javascript:opener.");
 					sb.append(renderResponse.getNamespace());
@@ -211,13 +213,12 @@ if (step == 1) {
 					sb.append("', '");
 					sb.append(UnicodeFormatter.toString(role.getTitle(locale)));
 					sb.append("', '");
-					sb.append("communityRoles");
+					sb.append("siteRoles");
 					sb.append("', '");
 					sb.append(UnicodeFormatter.toString(group.getDescriptiveName(locale)));
 					sb.append("', '");
 					sb.append(group.getGroupId());
-					sb.append("');");
-					sb.append("window.close();");
+					sb.append("'); window.close();");
 
 					String rowHREF = sb.toString();
 					%>

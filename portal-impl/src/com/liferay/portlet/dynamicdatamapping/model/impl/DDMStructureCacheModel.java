@@ -35,7 +35,7 @@ public class DDMStructureCacheModel implements CacheModel<DDMStructure>,
 	Serializable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(31);
+		StringBundler sb = new StringBundler(33);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -53,6 +53,8 @@ public class DDMStructureCacheModel implements CacheModel<DDMStructure>,
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", parentStructureId=");
+		sb.append(parentStructureId);
 		sb.append(", classNameId=");
 		sb.append(classNameId);
 		sb.append(", structureKey=");
@@ -108,6 +110,7 @@ public class DDMStructureCacheModel implements CacheModel<DDMStructure>,
 			ddmStructureImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		ddmStructureImpl.setParentStructureId(parentStructureId);
 		ddmStructureImpl.setClassNameId(classNameId);
 
 		if (structureKey == null) {
@@ -162,6 +165,7 @@ public class DDMStructureCacheModel implements CacheModel<DDMStructure>,
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public long parentStructureId;
 	public long classNameId;
 	public String structureKey;
 	public String name;

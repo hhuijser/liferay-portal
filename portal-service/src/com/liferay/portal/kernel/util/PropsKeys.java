@@ -581,6 +581,8 @@ public interface PropsKeys {
 
 	public static final String DL_FILE_ENTRY_PREVIEW_AUDIO_SAMPLE_RATE = "dl.file.entry.preview.audio.sample.rate";
 
+	public static final String DL_FILE_ENTRY_PREVIEW_AUTO_CREATE_ON_UPGRADE = "dl.file.entry.preview.auto.create.on.upgrade";
+
 	public static final String DL_FILE_ENTRY_PREVIEW_DOCUMENT_DEPTH = "dl.file.entry.preview.document.depth";
 
 	public static final String DL_FILE_ENTRY_PREVIEW_DOCUMENT_DPI = "dl.file.entry.preview.document.dpi";
@@ -1032,6 +1034,8 @@ public interface PropsKeys {
 	public static final String JOURNAL_LAR_CREATION_STRATEGY = "journal.lar.creation.strategy";
 
 	public static final String JOURNAL_PUBLISH_TO_LIVE_BY_DEFAULT = "journal.publish.to.live.by.default";
+
+	public static final String JOURNAL_PUBLISH_VERSION_HISTORY_BY_DEFAULT = "journal.publish.version.history.by.default";
 
 	public static final String JOURNAL_STRUCTURE_FORCE_AUTOGENERATE_ID = "journal.structure.force.autogenerate.id";
 
@@ -2123,6 +2127,8 @@ public interface PropsKeys {
 
 	public static final String STRIP_JS_LANGUAGE_ATTRIBUTE_SUPPORT_ENABLED = "strip.js.language.attribute.support.enabled";
 
+	public static final String STRIP_MIME_TYPES = "strip.mime.types";
+
 	public static final String STRUTS_PORTLET_REQUEST_PROCESSOR = "struts.portlet.request.processor";
 
 	public static final String SYSTEM_GROUPS = "system.groups";
@@ -2288,10 +2294,6 @@ public interface PropsKeys {
 	public static final String VELOCITY_ENGINE_LOGGER = "velocity.engine.logger";
 
 	public static final String VELOCITY_ENGINE_LOGGER_CATEGORY = "velocity.engine.logger.category";
-
-	public static final String VELOCITY_ENGINE_RESOURCE_MANAGER = "velocity.engine.resource.manager";
-
-	public static final String VELOCITY_ENGINE_RESOURCE_MANAGER_CACHE_ENABLED = "velocity.engine.resource.manager.cache.enabled";
 
 	public static final String VELOCITY_ENGINE_RESOURCE_MODIFICATION_CHECK_INTERVAL = "velocity.engine.resource.modification.check.interval";
 

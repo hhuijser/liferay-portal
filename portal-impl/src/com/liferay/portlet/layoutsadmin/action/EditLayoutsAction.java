@@ -91,6 +91,12 @@ import com.liferay.portal.util.LayoutSettings;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.mobiledevicerules.model.MDRAction;
+import com.liferay.portlet.mobiledevicerules.model.MDRRuleGroupInstance;
+import com.liferay.portlet.mobiledevicerules.service.MDRActionLocalServiceUtil;
+import com.liferay.portlet.mobiledevicerules.service.MDRActionServiceUtil;
+import com.liferay.portlet.mobiledevicerules.service.MDRRuleGroupInstanceLocalServiceUtil;
+import com.liferay.portlet.mobiledevicerules.service.MDRRuleGroupInstanceServiceUtil;
 import com.liferay.portlet.sites.action.ActionUtil;
 import com.liferay.portlet.sites.util.SitesUtil;
 
@@ -98,6 +104,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -836,7 +843,8 @@ public class EditLayoutsAction extends PortletAction {
 
 				layout = LayoutServiceUtil.addLayout(
 					groupId, privateLayout, parentLayoutId, nameMap, titleMap,
-					descriptionMap, keywordsMap, robotsMap,
+					parentLayout.getDescriptionMap(), parentLayout.
+					getKeywordsMap(), parentLayout.getRobotsMap(),
 					parentLayout.getType(), hidden, friendlyURL,
 					serviceContext);
 
@@ -850,6 +858,9 @@ public class EditLayoutsAction extends PortletAction {
 
 					SitesUtil.copyLookAndFeel(layout, parentLayout);
 				}
+
+				updateMobileRuleGroups(groupId, privateLayout, Layout.class.
+						getName(), layout, parentLayout, serviceContext);
 			}
 			else if (layoutPrototypeId > 0) {
 				LayoutPrototype layoutPrototype =
@@ -1102,6 +1113,37 @@ public class EditLayoutsAction extends PortletAction {
 			LayoutServiceUtil.updateLookAndFeel(
 				groupId, privateLayout, layoutId, deviceThemeId,
 				deviceColorSchemeId, deviceCss, deviceWapTheme);
+		}
+	}
+
+	protected void updateMobileRuleGroups(
+			long groupId, boolean privateLayout, String className,
+			Layout layout, Layout parentLayout, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		List<MDRRuleGroupInstance> parentMDRRuleGroupInstances =
+			MDRRuleGroupInstanceLocalServiceUtil.getRuleGroupInstances(
+				className, parentLayout.getPlid());
+
+		for (MDRRuleGroupInstance parentMDRRuleGroupInstance :
+			parentMDRRuleGroupInstances) {
+
+			MDRRuleGroupInstance mdrRuleGroupInstance =
+				MDRRuleGroupInstanceServiceUtil.addRuleGroupInstance(
+					groupId, className, layout.getPlid(),
+					parentMDRRuleGroupInstance.getRuleGroupId(),
+					parentMDRRuleGroupInstance.getPriority(), serviceContext);
+
+			List<MDRAction> parentMDRActions = MDRActionLocalServiceUtil.
+				getActions(parentMDRRuleGroupInstance.getRuleGroupInstanceId());
+
+			for (MDRAction prentMDRAction : parentMDRActions) {
+				MDRActionServiceUtil.addAction(
+					mdrRuleGroupInstance.getRuleGroupInstanceId(),
+					prentMDRAction.getNameMap(), prentMDRAction.
+					getDescriptionMap(), prentMDRAction.getType(),
+					prentMDRAction.getTypeSettings(), serviceContext);
+			}
 		}
 	}
 

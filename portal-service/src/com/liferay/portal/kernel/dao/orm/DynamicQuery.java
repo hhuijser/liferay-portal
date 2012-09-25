@@ -35,6 +35,8 @@ public interface DynamicQuery {
 
 	public void setLimit(int start, int end);
 
+	public DynamicQuery setNoColumnAliasProjection(Projection projection);
+
 	public DynamicQuery setProjection(Projection projection);
 
 }

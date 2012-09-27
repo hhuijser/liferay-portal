@@ -15,6 +15,8 @@
 package com.liferay.portal.kernel.upgrade;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
@@ -40,7 +42,19 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		updatePortletPreferences();
+		_log.info("Adding Index IX_FEED0003 to table PortletPreferences");
+		runSQL(
+			"alter table PortletPreferences"
+			+ " add index IX_FEED0003 (portletPreferencesId);");
+		
+		try {
+			updatePortletPreferences();
+		}
+		finally {
+			_log.info(
+				"Removing Index IX_FEED0003 from table PortletPreferences");
+			runSQL("alter table PortletPreferences drop index IX_FEED0003;");
+		}
 	}
 
 	protected long getCompanyId(long userId) throws Exception {
@@ -328,4 +342,6 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 	private static final String _GET_USER =
 		"select * from User_ where userId = ?";
 
+	private static Log _log =
+			LogFactoryUtil.getLog(BaseUpgradePortletPreferences.class);
 }

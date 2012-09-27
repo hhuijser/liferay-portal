@@ -31,6 +31,24 @@ public class PermissionLocalServiceWrapper implements PermissionLocalService,
 	}
 
 	/**
+	* Adds a resource permission to the database
+	*
+	* @param Resource the resource
+	* @param String the actionId
+	* @param long the companyId
+	* @param List<Permission> the permissions
+	* @return void
+	* @throws SystemException if a system exception occurred
+	*/
+	public void addResource(
+		com.liferay.portal.model.Resource resource, String actionId, 
+		long companyId,
+		java.util.List<com.liferay.portal.model.Permission> permissions) 
+		throws com.liferay.portal.kernel.exception.SystemException {
+		_permissionLocalService.addResource(resource, actionId, companyId, permissions);
+	}
+
+	/**
 	* Adds the permission to the database. Also notifies the appropriate model listeners.
 	*
 	* @param permission the permission

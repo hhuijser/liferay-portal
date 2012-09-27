@@ -249,6 +249,9 @@ public class PermissionLocalServiceImpl extends PermissionLocalServiceBaseImpl {
 			ResourceActionsUtil.getModelResourceGuestDefaultActions(name);
 
 		List<Company> companies = companyPersistence.findAll();
+		
+		_log.info("checkResourceActions() entering loop company - of size: "
+				+ companies.size());
 
 		for (Company company : companies) {
 			long companyId = company.getCompanyId();
@@ -266,6 +269,10 @@ public class PermissionLocalServiceImpl extends PermissionLocalServiceBaseImpl {
 				companyId, RoleConstants.OWNER);
 			Role siteMemberRole = rolePersistence.fetchByC_N(
 				companyId, RoleConstants.SITE_MEMBER);
+			
+			_log.info(
+					"checkResourceActions() entering loop actionIds - of size: "
+					+ actionIds.size());
 
 			for (String actionId : actionIds) {
 				List<Resource> resources = resourceFinder.findByNoActions(
@@ -274,20 +281,19 @@ public class PermissionLocalServiceImpl extends PermissionLocalServiceBaseImpl {
 				List<Permission> permissions = new ArrayList<Permission>(
 					resources.size());
 
+				long resourcecount = 0;
+				long size = resources.size();
 				for (Resource resource : resources) {
-					long permissionId = counterLocalService.increment(
-						Permission.class.getName());
-
-					Permission permission = permissionPersistence.create(
-						permissionId);
-
-					permission.setCompanyId(companyId);
-					permission.setActionId(actionId);
-					permission.setResourceId(resource.getResourceId());
-
-					permissionPersistence.update(permission, false);
-
-					permissions.add(permission);
+					permissionLocalService.addResource(
+							resource, actionId, companyId, permissions);
+						if ((resourcecount % 1000) == 0) {
+							_log.info(" resource name: " + resource.toString()
+								+ " companyId: " + companyId + " actionId: "
+								+ actionId + " resourceId: "
+								+ resource.getResourceId() + " numcount: "
+								+ resourcecount + " total: " + size);
+						}
+						resourcecount++;
 				}
 
 				if ((guestRole != null) &&
@@ -317,6 +323,30 @@ public class PermissionLocalServiceImpl extends PermissionLocalServiceBaseImpl {
 		}
 
 		PermissionCacheUtil.clearCache();
+	}
+
+	/**
+	* Adds a resource permission to the database
+	*
+	* @param Resource the resource
+	* @param String the actionId
+	* @param long the companyId
+	* @param List<Permission> the permissions
+	* @return void
+	* @throws SystemException if a system exception occurred
+	*/
+	public void addResource(
+		Resource resource, String actionId, long companyId,
+		List<Permission> permissions) throws SystemException {
+		long permissionId = counterLocalService.increment(
+			Permission.class.getName());
+		Permission permission = permissionPersistence.create(
+			permissionId);
+		permission.setCompanyId(companyId);
+		permission.setActionId(actionId);
+		permission.setResourceId(resource.getResourceId());
+		permissionPersistence.update(permission, false);
+		permissions.add(permission);
 	}
 
 	/**

@@ -822,4 +822,24 @@ public interface PermissionLocalService extends BaseLocalService,
 	public void unsetUserPermissions(long userId, java.lang.String[] actionIds,
 		long resourceId)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Adds a resource permission to the database.
+	* Performance Profiling has shown that this function
+	* drastically increases performance when it is its own
+	* transaction.  No transaction integrity is lost
+	* over the upgrade process as a whole.
+	*
+	* @param Resource the resource
+	* @param String the actionId
+	* @param long the companyId
+	* @param List<Permission> the permissions
+	* @return void
+	* @throws SystemException if a system exception occurred
+	*/
+	@Transactional(propagation=Propagation.REQUIRES_NEW)
+	public void addResource(com.liferay.portal.model.Resource resource, 
+		String actionId, long companyId,
+		java.util.List<com.liferay.portal.model.Permission> permissions)
+		throws SystemException;
 }

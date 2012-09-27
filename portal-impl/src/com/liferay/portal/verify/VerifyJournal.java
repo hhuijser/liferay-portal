@@ -166,8 +166,16 @@ public class VerifyJournal extends VerifyProcess {
 		List<JournalContentSearch> contentSearches =
 			JournalContentSearchLocalServiceUtil.getArticleContentSearches();
 
-		for (JournalContentSearch contentSearch : contentSearches) {
-			verifyContentSearch(contentSearch);
+		_log.info("Adding Index IX_FEED0009 to table PortletPreferences");
+		runSQL("alter table PortletPreferences  add index IX_FEED0009 (portletId);");
+		try {
+			for (JournalContentSearch contentSearch : contentSearches) {
+				verifyContentSearch(contentSearch);
+			}
+		} 
+		finally {
+			_log.info("Removing Index IX_FEED0009 from table PortletPreferences");
+			runSQL("alter table PortletPreferences drop index IX_FEED0009;");
 		}
 	}
 

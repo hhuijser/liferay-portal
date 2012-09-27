@@ -15,6 +15,8 @@
 package com.liferay.portal.upgrade.v5_2_0;
 
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -36,15 +38,34 @@ public class UpgradePortletId extends UpgradeProcess {
 
 		String[][] portletIdsArray = getPortletIdsArray();
 
-		for (int i = 0; i < portletIdsArray.length; i++) {
-			String[] portletIds = portletIdsArray[i];
+		_log.info("Adding Index IX_FEED0001 to table Resource_");
+		runSQL("alter table Resource_ add index IX_FEED0001 (primKey);");
 
-			String oldRootPortletId = portletIds[0];
-			String newRootPortletId = portletIds[1];
+		_log.info("Adding Index IX_FEED0002 to table PortletPreferences");
+		runSQL(
+			"alter table PortletPreferences"
+			+ " add index IX_FEED0002 (portletId);");
 
-			updatePortlet(oldRootPortletId, newRootPortletId);
-			updateResource(oldRootPortletId, newRootPortletId);
-			updateResourceCode(oldRootPortletId, newRootPortletId);
+		try {
+			for (int i = 0; i < portletIdsArray.length; i++) {
+				String[] portletIds = portletIdsArray[i];
+
+				String oldRootPortletId = portletIds[0];
+				String newRootPortletId = portletIds[1];
+
+				updatePortlet(oldRootPortletId, newRootPortletId);
+				updateResource(oldRootPortletId, newRootPortletId);
+				updateResourceCode(oldRootPortletId, newRootPortletId);
+			}
+		}
+		finally {
+
+			_log.info("Removing Index IX_FEED0001 from table Resource_");
+			runSQL("alter table Resource_ drop index IX_FEED0001;");
+
+			_log.info(
+				"Removing Index IX_FEED0002 from table PortletPreferences");
+			runSQL("alter table PortletPreferences drop index IX_FEED0002;");
 		}
 	}
 
@@ -211,5 +232,5 @@ public class UpgradePortletId extends UpgradeProcess {
 			"update ResourceCode set name = '" + newRootPortletId +
 				"' where name = '" + oldRootPortletId + "'");
 	}
-
+	private static Log _log = LogFactoryUtil.getLog(UpgradePortletId.class);
 }

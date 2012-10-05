@@ -789,7 +789,7 @@
 
 			iframeBody.delegate(
 				EVENT_CLICK,
-				function(){
+				function() {
 					dialog.set('visible', false, SRC_HIDE_LINK);
 
 					iframeDocument.purge(true);
@@ -802,7 +802,7 @@
 			if (rolesSearchContainer) {
 				rolesSearchContainer.delegate(
 					EVENT_CLICK,
-					function(event){
+					function(event) {
 						event.preventDefault();
 
 						iframeDocument.purge(true);

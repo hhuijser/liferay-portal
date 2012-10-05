@@ -180,7 +180,8 @@
 
 			if (params) {
 				var loc = url || location.href;
-				var anchorHash, finalUrl;
+				var anchorHash;
+				var finalUrl;
 
 				if (loc.indexOf('#') > -1) {
 					var locationPieces = loc.split('#');
@@ -789,7 +790,7 @@
 
 			iframeBody.delegate(
 				EVENT_CLICK,
-				function(){
+				function() {
 					dialog.set('visible', false, SRC_HIDE_LINK);
 
 					iframeDocument.purge(true);
@@ -802,7 +803,7 @@
 			if (rolesSearchContainer) {
 				rolesSearchContainer.delegate(
 					EVENT_CLICK,
-					function(event){
+					function(event) {
 						event.preventDefault();
 
 						iframeDocument.purge(true);

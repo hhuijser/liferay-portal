@@ -270,6 +270,7 @@ public class AssetEntryServiceHttp {
 		HttpPrincipal httpPrincipal, long groupId, java.lang.String className,
 		long classPK, java.lang.String classUuid, long classTypeId,
 		long[] categoryIds, java.lang.String[] tagNames, boolean visible,
+		java.util.Date createDate, java.util.Date modifiedDate,
 		java.util.Date startDate, java.util.Date endDate,
 		java.util.Date publishDate, java.util.Date expirationDate,
 		java.lang.String mimeType, java.lang.String title,
@@ -284,9 +285,10 @@ public class AssetEntryServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
 					className, classPK, classUuid, classTypeId, categoryIds,
-					tagNames, visible, startDate, endDate, publishDate,
-					expirationDate, mimeType, title, description, summary, url,
-					layoutUuid, height, width, priority, sync);
+					tagNames, visible, createDate, modifiedDate, startDate,
+					endDate, publishDate, expirationDate, mimeType, title,
+					description, summary, url, layoutUuid, height, width,
+					priority, sync);
 
 			Object returnObj = null;
 
@@ -318,6 +320,7 @@ public class AssetEntryServiceHttp {
 		HttpPrincipal httpPrincipal, long groupId, java.lang.String className,
 		long classPK, java.lang.String classUuid, long classTypeId,
 		long[] categoryIds, java.lang.String[] tagNames, boolean visible,
+		java.util.Date createDate, java.util.Date modifiedDate,
 		java.util.Date startDate, java.util.Date endDate,
 		java.util.Date expirationDate, java.lang.String mimeType,
 		java.lang.String title, java.lang.String description,
@@ -332,9 +335,9 @@ public class AssetEntryServiceHttp {
 
 			MethodHandler methodHandler = new MethodHandler(methodKey, groupId,
 					className, classPK, classUuid, classTypeId, categoryIds,
-					tagNames, visible, startDate, endDate, expirationDate,
-					mimeType, title, description, summary, url, layoutUuid,
-					height, width, priority, sync);
+					tagNames, visible, createDate, modifiedDate, startDate,
+					endDate, expirationDate, mimeType, title, description,
+					summary, url, layoutUuid, height, width, priority, sync);
 
 			Object returnObj = null;
 
@@ -386,19 +389,20 @@ public class AssetEntryServiceHttp {
 			java.lang.String.class, long.class, long[].class,
 			java.lang.String[].class, boolean.class, java.util.Date.class,
 			java.util.Date.class, java.util.Date.class, java.util.Date.class,
+			java.util.Date.class, java.util.Date.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class, int.class, int.class,
+			java.lang.String.class, int.class, int.class,
 			java.lang.Integer.class, boolean.class
 		};
 	private static final Class<?>[] _updateEntryParameterTypes7 = new Class[] {
 			long.class, java.lang.String.class, long.class,
 			java.lang.String.class, long.class, long[].class,
 			java.lang.String[].class, boolean.class, java.util.Date.class,
-			java.util.Date.class, java.util.Date.class, java.lang.String.class,
+			java.util.Date.class, java.util.Date.class, java.util.Date.class,
+			java.util.Date.class, java.lang.String.class, java.lang.String.class,
 			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, java.lang.String.class,
-			java.lang.String.class, int.class, int.class,
+			java.lang.String.class, java.lang.String.class, int.class, int.class,
 			java.lang.Integer.class, boolean.class
 		};
 }

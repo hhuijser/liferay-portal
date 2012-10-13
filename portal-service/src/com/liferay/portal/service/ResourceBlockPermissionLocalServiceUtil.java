@@ -281,6 +281,11 @@ public class ResourceBlockPermissionLocalServiceUtil {
 			resourceBlockPermissionsContainer);
 	}
 
+	public static int countByR_R(long resourceBlockId, long roleId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().countByR_R(resourceBlockId, roleId);
+	}
+
 	public static void deleteResourceBlockPermissions(long resourceBlockId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		getService().deleteResourceBlockPermissions(resourceBlockId);

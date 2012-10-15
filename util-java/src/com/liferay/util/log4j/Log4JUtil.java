@@ -39,9 +39,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.log4j.Appender;
 import org.apache.log4j.Level;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.apache.log4j.WriterAppender;
 import org.apache.log4j.xml.DOMConfigurator;
 
 import org.dom4j.Document;
@@ -50,13 +52,45 @@ import org.dom4j.io.SAXReader;
 
 /**
  * @author Brian Wing Shun Chan
+ * @author Tomas Polesovsky
  */
 public class Log4JUtil {
 
 	public static void configureLog4J(ClassLoader classLoader) {
 		configureLog4J(classLoader.getResource("META-INF/portal-log4j.xml"));
-		configureLog4J(
-			classLoader.getResource("META-INF/portal-log4j-ext.xml"));
+
+		try {
+			Enumeration<URL> enu = classLoader.getResources(
+				"META-INF/portal-log4j-ext.xml");
+
+			while (enu.hasMoreElements()) {
+				configureLog4J(enu.nextElement());
+			}
+		}
+		catch (IOException ioe) {
+			java.util.logging.Logger logger =
+				java.util.logging.Logger.getLogger(Log4JUtil.class.getName());
+
+			logger.log(
+				java.util.logging.Level.WARNING,
+				"Unable to load portal-log4j-ext.xml", ioe);
+		}
+
+		if (ServerDetector.isJBoss5()) {
+			Logger rootLogger = LogManager.getRootLogger();
+
+			Enumeration<Appender> enu = rootLogger.getAllAppenders();
+
+			while (enu.hasMoreElements()) {
+				Appender appender = enu.nextElement();
+
+				if (appender instanceof WriterAppender) {
+					WriterAppender writerAppender = (WriterAppender)appender;
+
+					writerAppender.activateOptions();
+				}
+			}
+		}
 	}
 
 	public static void configureLog4J(URL url) {

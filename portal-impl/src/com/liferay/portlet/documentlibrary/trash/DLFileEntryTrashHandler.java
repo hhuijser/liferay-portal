@@ -20,8 +20,11 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.repository.Repository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.trash.BaseTrashHandler;
+import com.liferay.portal.kernel.trash.TrashActionKeys;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.repository.liferayrepository.LiferayRepository;
+import com.liferay.portal.security.permission.ActionKeys;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.service.RepositoryServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileVersion;
@@ -30,8 +33,11 @@ import com.liferay.portlet.documentlibrary.service.DLAppLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLAppServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFileVersionLocalServiceUtil;
+import com.liferay.portlet.documentlibrary.service.permission.DLFileEntryPermission;
+import com.liferay.portlet.documentlibrary.service.permission.DLFolderPermission;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 import com.liferay.portlet.trash.DuplicateEntryException;
+import com.liferay.portlet.trash.TrashEntryConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.util.TrashUtil;
 
@@ -42,16 +48,22 @@ import javax.portlet.PortletRequest;
  *
  * @author Alexander Chow
  * @author Manuel de la Peña
+ * @author Zsolt Berentey
  */
 public class DLFileEntryTrashHandler extends BaseTrashHandler {
 
 	public static final String CLASS_NAME = DLFileEntry.class.getName();
 
 	@Override
-	public void checkDuplicateTrashEntry(TrashEntry trashEntry, String newName)
+	public void checkDuplicateTrashEntry(
+			TrashEntry trashEntry, long containerModelId, String newName)
 		throws PortalException, SystemException {
 
 		DLFileEntry dlFileEntry = getDLFileEntry(trashEntry.getClassPK());
+
+		if (containerModelId == TrashEntryConstants.DEFAULT_CONTAINER_ID) {
+			containerModelId = dlFileEntry.getFolderId();
+		}
 
 		String restoredTitle = dlFileEntry.getTitle();
 
@@ -63,8 +75,7 @@ public class DLFileEntryTrashHandler extends BaseTrashHandler {
 
 		DLFileEntry duplicateDLFileEntry =
 			DLFileEntryLocalServiceUtil.fetchFileEntry(
-				dlFileEntry.getGroupId(), dlFileEntry.getFolderId(),
-				originalTitle);
+				dlFileEntry.getGroupId(), containerModelId, originalTitle);
 
 		if (duplicateDLFileEntry != null) {
 			DuplicateEntryException dee = new DuplicateEntryException();
@@ -134,6 +145,21 @@ public class DLFileEntryTrashHandler extends BaseTrashHandler {
 		return DLUtil.getAbsolutePath(portletRequest, dlFolder.getFolderId());
 	}
 
+	@Override
+	public boolean hasTrashPermission(
+			PermissionChecker permissionChecker, long groupId, long classPK,
+			String trashActionId)
+		throws PortalException, SystemException {
+
+		if (trashActionId.equals(TrashActionKeys.MOVE)) {
+			return DLFolderPermission.contains(
+				permissionChecker, groupId, classPK, ActionKeys.ADD_DOCUMENT);
+		}
+
+		return super.hasTrashPermission(
+			permissionChecker, groupId, classPK, trashActionId);
+	}
+
 	public boolean isInTrash(long classPK)
 		throws PortalException, SystemException {
 
@@ -195,6 +221,15 @@ public class DLFileEntryTrashHandler extends BaseTrashHandler {
 		FileEntry fileEntry = repository.getFileEntry(classPK);
 
 		return (DLFileEntry)fileEntry.getModel();
+	}
+
+	@Override
+	protected boolean hasPermission(
+			PermissionChecker permissionChecker, long classPK, String actionId)
+		throws PortalException, SystemException {
+
+		return DLFileEntryPermission.contains(
+			permissionChecker, classPK, actionId);
 	}
 
 }

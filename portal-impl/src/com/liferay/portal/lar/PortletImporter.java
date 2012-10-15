@@ -343,13 +343,9 @@ public class PortletImporter {
 		if ((portletDataHandler != null) &&
 			portletDataHandler.isDataLocalized()) {
 
-			Element sourceAvailableLocalesElement = rootElement.element(
-				"locale");
-
 			Locale[] sourceAvailableLocales = LocaleUtil.fromLanguageIds(
 				StringUtil.split(
-					sourceAvailableLocalesElement.attributeValue(
-						"available-locales")));
+					headerElement.attributeValue("available-locales")));
 
 			Locale[] targetAvailableLocales =
 				LanguageUtil.getAvailableLocales();
@@ -939,9 +935,9 @@ public class PortletImporter {
 					PermissionThreadLocal.getPermissionChecker();
 
 				if (permissionChecker.hasPermission(
-					groupId, AssetVocabulary.class.getName(),
-					existingAssetVocabulary.getVocabularyId(),
-					ActionKeys.UPDATE)) {
+						groupId, AssetVocabulary.class.getName(),
+						existingAssetVocabulary.getVocabularyId(),
+						ActionKeys.UPDATE)) {
 
 					serviceContext.setScopeGroupId(groupId);
 				}

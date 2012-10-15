@@ -290,6 +290,32 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
+		String[] defaultOrganizationGroupNames = PrefsPropsUtil.getStringArray(
+			user.getCompanyId(),
+			PropsKeys.ADMIN_DEFAULT_ORGANIZATION_GROUP_NAMES,
+			StringPool.NEW_LINE,
+			PropsValues.ADMIN_DEFAULT_ORGANIZATION_GROUP_NAMES);
+
+		for (String defaultOrganizationGroupName :
+				defaultOrganizationGroupNames) {
+
+			defaultOrganizationGroupName +=
+				GroupLocalServiceImpl.ORGANIZATION_NAME_SUFFIX;
+
+			try {
+				Group group = groupPersistence.findByC_N(
+					user.getCompanyId(), defaultOrganizationGroupName);
+
+				if (!userPersistence.containsGroup(
+						userId, group.getGroupId())) {
+
+					groupIdsSet.add(group.getGroupId());
+				}
+			}
+			catch (NoSuchGroupException nsge) {
+			}
+		}
+
 		long[] groupIds = ArrayUtil.toArray(
 			groupIdsSet.toArray(new Long[groupIdsSet.size()]));
 
@@ -666,6 +692,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			autoScreenName = true;
 		}
+
+		// PLACEHOLDER 01
 
 		long userId = counterLocalService.increment();
 
@@ -3733,10 +3761,11 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		Group companyGroup = company.getGroup();
 
 		assetEntryLocalService.updateEntry(
-			userId, companyGroup.getGroupId(), User.class.getName(),
-			user.getUserId(), user.getUuid(), 0, assetCategoryIds,
-			assetTagNames, false, null, null, null, null, user.getFullName(),
-			null, null, null, null, 0, 0, null, false);
+			userId, companyGroup.getGroupId(), user.getCreateDate(),
+			user.getModifiedDate(), User.class.getName(), user.getUserId(),
+			user.getUuid(), 0, assetCategoryIds, assetTagNames, false, null,
+			null, null, null, user.getFullName(), null, null, null, null, 0, 0,
+			null, false);
 	}
 
 	/**
@@ -5330,6 +5359,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
+		// PLACEHOLDER 02
+
 		return authResult;
 	}
 
@@ -5434,7 +5465,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			searchContext.setQueryConfig(queryConfig);
 
-			searchContext.setSorts(new Sort[] {sort});
+			if (sort != null) {
+				searchContext.setSorts(new Sort[] {sort});
+			}
+
 			searchContext.setStart(start);
 
 			Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
@@ -5549,7 +5583,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		List<Group> oldGroups = userPersistence.getGroups(userId);
 
-		List<Long> oldGroupIds = new ArrayList<Long>(oldGroups.size());
+		Set<Long> oldGroupIds = new HashSet<Long>(oldGroups.size());
 
 		for (Group oldGroup : oldGroups) {
 			long oldGroupId = oldGroup.getGroupId();
@@ -5589,7 +5623,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		List<Organization> oldOrganizations = userPersistence.getOrganizations(
 			userId);
 
-		List<Long> oldOrganizationIds = new ArrayList<Long>(
+		Set<Long> oldOrganizationIds = new HashSet<Long>(
 			oldOrganizations.size());
 
 		for (Organization oldOrganization : oldOrganizations) {

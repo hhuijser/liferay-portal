@@ -741,7 +741,8 @@ public class CalEventLocalServiceImpl extends CalEventLocalServiceBaseImpl {
 		throws PortalException, SystemException {
 
 		AssetEntry assetEntry = assetEntryLocalService.updateEntry(
-			userId, event.getGroupId(), CalEvent.class.getName(),
+			userId, event.getGroupId(), event.getCreateDate(),
+			event.getModifiedDate(), CalEvent.class.getName(),
 			event.getEventId(), event.getUuid(), 0, assetCategoryIds,
 			assetTagNames, true, null, null, null, ContentTypes.TEXT_HTML,
 			event.getTitle(), event.getDescription(), null, null, null, 0, 0,
@@ -1543,8 +1544,8 @@ public class CalEventLocalServiceImpl extends CalEventLocalServiceBaseImpl {
 			Dur dur = new Dur(
 				0, event.getDurationHour(), event.getDurationMinute(), 0);
 
-			DtEnd dtEnd = new DtEnd(new DateTime(dur.getTime(
-				event.getStartDate())));
+			DtEnd dtEnd = new DtEnd(
+				new DateTime(dur.getTime(event.getStartDate())));
 
 			eventProps.add(dtEnd);
 		}

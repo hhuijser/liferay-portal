@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.shard.ShardUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.CookieKeys;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -388,8 +389,8 @@ public class PortalInstances {
 		}
 
 		try {
-			String xml = HttpUtil.URLtoString(servletContext.getResource(
-				"/WEB-INF/liferay-display.xml"));
+			String xml = HttpUtil.URLtoString(
+				servletContext.getResource("/WEB-INF/liferay-display.xml"));
 
 			PortletCategory portletCategory = (PortletCategory)WebAppPool.get(
 				companyId, WebKeys.PORTLET_CATEGORY);

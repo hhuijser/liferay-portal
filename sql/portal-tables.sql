@@ -552,7 +552,8 @@ create table DLFileEntry (
 	smallImageId LONG,
 	largeImageId LONG,
 	custom1ImageId LONG,
-	custom2ImageId LONG
+	custom2ImageId LONG,
+	manualCheckInRequired BOOLEAN
 );
 
 create table DLFileEntryMetadata (
@@ -640,6 +641,7 @@ create table DLFileVersion (
 	fileEntryTypeId LONG,
 	version VARCHAR(75) null,
 	size_ LONG,
+	checksum VARCHAR(75) null,
 	status INTEGER,
 	statusByUserId LONG,
 	statusByUserName VARCHAR(75) null,
@@ -662,6 +664,7 @@ create table DLFolder (
 	description STRING null,
 	lastPostDate DATE null,
 	defaultFileEntryTypeId LONG,
+	hidden_ BOOLEAN,
 	overrideFileEntryTypes BOOLEAN,
 	status INTEGER,
 	statusByUserId LONG,
@@ -712,6 +715,7 @@ create table ExpandoColumn (
 create table ExpandoRow (
 	rowId_ LONG not null primary key,
 	companyId LONG,
+	modifiedDate DATE null,
 	tableId LONG,
 	classPK LONG
 );
@@ -1537,7 +1541,8 @@ create table RepositoryEntry (
 	repositoryEntryId LONG not null primary key,
 	groupId LONG,
 	repositoryId LONG,
-	mappedId VARCHAR(75) null
+	mappedId VARCHAR(75) null,
+	manualCheckInRequired BOOLEAN
 );
 
 create table ResourceAction (

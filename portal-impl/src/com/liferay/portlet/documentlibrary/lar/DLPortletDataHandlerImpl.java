@@ -190,7 +190,7 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 		}
 
 		if (portletDataContext.getBooleanParameter(
-			_NAMESPACE, "previews-and-thumbnails")) {
+				_NAMESPACE, "previews-and-thumbnails")) {
 
 			DLProcessorRegistryUtil.exportGeneratedFiles(
 				portletDataContext, fileEntry, fileEntryElement);
@@ -605,7 +605,7 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 							repository.getName(), repository.getDescription(),
 							repository.getPortletId(),
-							repository.getTypeSettingsProperties(),
+							repository.getTypeSettingsProperties(), false,
 							serviceContext);
 				}
 				else {
@@ -623,7 +623,8 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 					repository.getName(), repository.getDescription(),
 					repository.getPortletId(),
-					repository.getTypeSettingsProperties(), serviceContext);
+					repository.getTypeSettingsProperties(), false,
+					serviceContext);
 			}
 		}
 		catch (Exception e) {
@@ -697,6 +698,14 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 					portletDataContext.getScopeGroupId(), repositoryId,
 					repositoryEntry.getMappedId(), serviceContext);
 		}
+
+		Map<Long, Long> repositoryEntryIds =
+			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
+				RepositoryEntry.class);
+
+		repositoryEntryIds.put(
+			repositoryEntry.getRepositoryEntryId(),
+			importedRepositoryEntry.getRepositoryEntryId());
 
 		portletDataContext.importClassedModel(
 			repositoryEntry, importedRepositoryEntry, _NAMESPACE);
@@ -1064,8 +1073,10 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 			return;
 		}
 		else if (!folder.isDefaultRepository()) {
-			//no need to export non-Liferay Repository items since they would
-			//be exported as part of repository export
+
+			// No need to export non-Liferay repository items since they would
+			// be exported as part of repository export
+
 			return;
 		}
 
@@ -1626,6 +1637,8 @@ public class DLPortletDataHandlerImpl extends BasePortletDataHandler {
 				userId, portletDataContext.getScopeGroupId(), parentFolderId,
 				name, folder.getDescription(), serviceContext);
 		}
+
+		folderIds.put(folder.getFolderId(), importedFolder.getFolderId());
 
 		importFolderFileEntryTypes(
 			portletDataContext, folderElement, importedFolder, serviceContext);

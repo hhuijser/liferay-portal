@@ -265,21 +265,21 @@ public class LayoutTemplateLocalServiceImpl
 		String servletContextName, ServletContext servletContext, String[] xmls,
 		PluginPackage pluginPackage) {
 
-		List<ObjectValuePair<String, Boolean>> layoutTemplateIds =
+		List<ObjectValuePair<String, Boolean>> layoutTemplateIdOVPs =
 			new ArrayList<ObjectValuePair<String, Boolean>>();
 
 		try {
 			for (int i = 0; i < xmls.length; i++) {
-				Set<ObjectValuePair<String, Boolean>> curLayoutTemplateIds =
+				Set<ObjectValuePair<String, Boolean>> curLayoutTemplateIdOVPs =
 					_readLayoutTemplates(
 						servletContextName, servletContext, xmls[i],
 						pluginPackage);
 
-				for (ObjectValuePair<String, Boolean> ovp :
-						curLayoutTemplateIds) {
+				for (ObjectValuePair<String, Boolean> layoutTemplateIdOVP :
+						curLayoutTemplateIdOVPs) {
 
-					if (!layoutTemplateIds.contains(ovp)) {
-						layoutTemplateIds.add(ovp);
+					if (!layoutTemplateIdOVPs.contains(layoutTemplateIdOVP)) {
+						layoutTemplateIdOVPs.add(layoutTemplateIdOVP);
 					}
 				}
 			}
@@ -288,12 +288,12 @@ public class LayoutTemplateLocalServiceImpl
 			_log.error(e, e);
 		}
 
-		return layoutTemplateIds;
+		return layoutTemplateIdOVPs;
 	}
 
 	public void readLayoutTemplate(
 		String servletContextName, ServletContext servletContext,
-		Set<ObjectValuePair<String, Boolean>> layoutTemplateIds,
+		Set<ObjectValuePair<String, Boolean>> layoutTemplateIdOVPs,
 		Element element, boolean standard, String themeId,
 		PluginPackage pluginPackage) {
 
@@ -331,12 +331,12 @@ public class LayoutTemplateLocalServiceImpl
 			String layoutTemplateId = layoutTemplateElement.attributeValue(
 				"id");
 
-			if (layoutTemplateIds != null) {
-				ObjectValuePair<String, Boolean> ovp =
+			if (layoutTemplateIdOVPs != null) {
+				ObjectValuePair<String, Boolean> layoutTemplateIdOVP =
 					new ObjectValuePair<String, Boolean>(
 						layoutTemplateId, standard);
 
-				layoutTemplateIds.add(ovp);
+				layoutTemplateIdOVPs.add(layoutTemplateIdOVP);
 			}
 
 			LayoutTemplate layoutTemplateModel = layoutTemplates.get(
@@ -360,24 +360,29 @@ public class LayoutTemplateLocalServiceImpl
 
 			layoutTemplateModel.setStandard(standard);
 			layoutTemplateModel.setThemeId(themeId);
-			layoutTemplateModel.setName(GetterUtil.getString(
-				layoutTemplateElement.attributeValue("name"),
-				layoutTemplateModel.getName()));
-			layoutTemplateModel.setTemplatePath(GetterUtil.getString(
-				layoutTemplateElement.elementText("template-path"),
-				layoutTemplateModel.getTemplatePath()));
-			layoutTemplateModel.setWapTemplatePath(GetterUtil.getString(
-				layoutTemplateElement.elementText("wap-template-path"),
-				layoutTemplateModel.getWapTemplatePath()));
-			layoutTemplateModel.setThumbnailPath(GetterUtil.getString(
-				layoutTemplateElement.elementText("thumbnail-path"),
-				layoutTemplateModel.getThumbnailPath()));
+			layoutTemplateModel.setName(
+				GetterUtil.getString(
+					layoutTemplateElement.attributeValue("name"),
+					layoutTemplateModel.getName()));
+			layoutTemplateModel.setTemplatePath(
+				GetterUtil.getString(
+					layoutTemplateElement.elementText("template-path"),
+					layoutTemplateModel.getTemplatePath()));
+			layoutTemplateModel.setWapTemplatePath(
+				GetterUtil.getString(
+					layoutTemplateElement.elementText("wap-template-path"),
+					layoutTemplateModel.getWapTemplatePath()));
+			layoutTemplateModel.setThumbnailPath(
+				GetterUtil.getString(
+					layoutTemplateElement.elementText("thumbnail-path"),
+					layoutTemplateModel.getThumbnailPath()));
 
 			String content = null;
 
 			try {
-				content = HttpUtil.URLtoString(servletContext.getResource(
-					layoutTemplateModel.getTemplatePath()));
+				content = HttpUtil.URLtoString(
+					servletContext.getResource(
+						layoutTemplateModel.getTemplatePath()));
 			}
 			catch (Exception e) {
 				_log.error(
@@ -601,11 +606,11 @@ public class LayoutTemplateLocalServiceImpl
 			String xml, PluginPackage pluginPackage)
 		throws Exception {
 
-		Set<ObjectValuePair<String, Boolean>> layoutTemplateIds =
+		Set<ObjectValuePair<String, Boolean>> layoutTemplateIdOVPs =
 			new HashSet<ObjectValuePair<String, Boolean>>();
 
 		if (xml == null) {
-			return layoutTemplateIds;
+			return layoutTemplateIdOVPs;
 		}
 
 		Document document = SAXReaderUtil.read(xml, true);
@@ -616,7 +621,7 @@ public class LayoutTemplateLocalServiceImpl
 
 		if (standardElement != null) {
 			readLayoutTemplate(
-				servletContextName, servletContext, layoutTemplateIds,
+				servletContextName, servletContext, layoutTemplateIdOVPs,
 				standardElement, true, null, pluginPackage);
 		}
 
@@ -624,11 +629,11 @@ public class LayoutTemplateLocalServiceImpl
 
 		if (customElement != null) {
 			readLayoutTemplate(
-				servletContextName, servletContext, layoutTemplateIds,
+				servletContextName, servletContext, layoutTemplateIdOVPs,
 				customElement, false, null, pluginPackage);
 		}
 
-		return layoutTemplateIds;
+		return layoutTemplateIdOVPs;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

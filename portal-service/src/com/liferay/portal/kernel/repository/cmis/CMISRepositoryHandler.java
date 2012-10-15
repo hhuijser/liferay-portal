@@ -80,10 +80,12 @@ public abstract class CMISRepositoryHandler extends BaseRepositoryImpl {
 			fileEntryId, major, changeLog, serviceContext);
 	}
 
-	public void checkInFileEntry(long fileEntryId, String lockUuid)
+	public void checkInFileEntry(
+			long fileEntryId, String lockUuid, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		_baseCmisRepository.checkInFileEntry(fileEntryId, lockUuid);
+		_baseCmisRepository.checkInFileEntry(
+			fileEntryId, lockUuid, serviceContext);
 	}
 
 	public FileEntry checkOutFileEntry(
@@ -130,7 +132,7 @@ public abstract class CMISRepositoryHandler extends BaseRepositoryImpl {
 
 	public List<FileEntry> getFileEntries(
 			long folderId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return _baseCmisRepository.getFileEntries(folderId, start, end, obc);
 	}
@@ -138,7 +140,7 @@ public abstract class CMISRepositoryHandler extends BaseRepositoryImpl {
 	public List<FileEntry> getFileEntries(
 			long folderId, long fileEntryTypeId, int start, int end,
 			OrderByComparator obc)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return _baseCmisRepository.getFileEntries(
 			folderId, fileEntryTypeId, start, end, obc);
@@ -298,7 +300,7 @@ public abstract class CMISRepositoryHandler extends BaseRepositoryImpl {
 
 	public List<Folder> getMountFolders(
 			long parentFolderId, int start, int end, OrderByComparator obc)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return _baseCmisRepository.getMountFolders(
 			parentFolderId, start, end, obc);
@@ -326,13 +328,13 @@ public abstract class CMISRepositoryHandler extends BaseRepositoryImpl {
 		throws PortalException, SystemException;
 
 	public void getSubfolderIds(List<Long> folderIds, long folderId)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		_baseCmisRepository.getSubfolderIds(folderIds, folderId);
 	}
 
 	public List<Long> getSubfolderIds(long folderId, boolean recurse)
-		throws SystemException {
+		throws PortalException, SystemException {
 
 		return _baseCmisRepository.getSubfolderIds(folderId, recurse);
 	}

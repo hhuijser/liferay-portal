@@ -23,8 +23,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Attribute;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -154,7 +155,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 			throw new StructureFieldException();
 		}
 
-		Map<String, Map<String, String>> fieldsMap = _getFieldsMap(locale);
+		Map<String, Map<String, String>> fieldsMap = getFieldsMap(locale);
 
 		Map<String, String> field = fieldsMap.get(fieldName);
 
@@ -179,23 +180,24 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 		String locale) {
 
 		try {
-			StringBundler sb = new StringBundler(7);
+			if ((attributeName == null) || (attributeValue == null)) {
+				return null;
+			}
 
-			sb.append("//dynamic-element[@name=");
-			sb.append(HtmlUtil.escapeXPathAttribute(fieldName));
-			sb.append("] //dynamic-element[@");
-			sb.append(HtmlUtil.escapeXPath(attributeName));
-			sb.append("=");
-			sb.append(HtmlUtil.escapeXPathAttribute(attributeValue));
-			sb.append("]");
+			Map<String, Map<String, String>> fieldsMap = getTransientFieldsMap(
+				locale);
 
-			XPath xPathSelector = SAXReaderUtil.createXPath(sb.toString());
+			for (Map<String, String> fields : fieldsMap.values()) {
+				String parentName = fields.get(
+					_getPrivateAttributeKey("parentName"));
 
-			Node node = xPathSelector.selectSingleNode(getDocument());
+				if (!fieldName.equals(parentName)) {
+					continue;
+				}
 
-			if (node != null) {
-				return _getField(
-					(Element)node.asXPathResult(node.getParent()), locale);
+				if (attributeValue.equals(fields.get(attributeName))) {
+					return fields;
+				}
 			}
 		}
 		catch (Exception e) {
@@ -208,13 +210,18 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	public Map<String, Map<String, String>> getFieldsMap()
 		throws PortalException, SystemException {
 
-		return _getFieldsMap(getDefaultLanguageId());
+		return getFieldsMap(getDefaultLanguageId());
 	}
 
 	public Map<String, Map<String, String>> getFieldsMap(String locale)
 		throws PortalException, SystemException {
 
-		return _getFieldsMap(locale);
+		_indexFieldsMap(locale);
+
+		Map<String, Map<String, String>> fieldsMap = _localizedFieldsMap.get(
+			locale);
+
+		return fieldsMap;
 	}
 
 	public String getFieldType(String fieldName)
@@ -223,8 +230,33 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 		return getFieldProperty(fieldName, "type");
 	}
 
+	@Override
+	public Map<String, Map<String, Map<String, String>>>
+		getLocalizedFieldsMap() {
+
+		return _localizedFieldsMap;
+	}
+
+	@Override
+	public Map<String, Map<String, Map<String, String>>>
+		getLocalizedTransientFieldsMap() {
+
+		return _localizedTransientFieldsMap;
+	}
+
 	public List<DDMTemplate> getTemplates() throws SystemException {
 		return DDMTemplateLocalServiceUtil.getTemplates(getStructureId());
+	}
+
+	public Map<String, Map<String, String>> getTransientFieldsMap(String locale)
+		throws PortalException, SystemException {
+
+		_indexFieldsMap(locale);
+
+		Map<String, Map<String, String>> fieldsMap =
+			_localizedTransientFieldsMap.get(locale);
+
+		return fieldsMap;
 	}
 
 	public boolean hasField(String fieldName)
@@ -269,10 +301,19 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 		_document = document;
 	}
 
+	@Override
 	public void setLocalizedFieldsMap(
 		Map<String, Map<String, Map<String, String>>> localizedFieldsMap) {
 
 		_localizedFieldsMap = localizedFieldsMap;
+	}
+
+	@Override
+	public void setLocalizedTransientFieldsMap(
+		Map<String, Map<String, Map<String, String>>>
+			localizedTransientFieldsMap) {
+
+		_localizedTransientFieldsMap = localizedTransientFieldsMap;
 	}
 
 	@Override
@@ -281,6 +322,7 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 
 		_document = null;
 		_localizedFieldsMap.clear();
+		_localizedTransientFieldsMap.clear();
 	}
 
 	private Map<String, String> _getField(Element element, String locale) {
@@ -318,44 +360,69 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 			field.put(attribute.getName(), attribute.getValue());
 		}
 
+		Element parentElement = element.getParent();
+
+		if (parentElement != null) {
+			String parentName = parentElement.attributeValue("name");
+
+			if (Validator.isNotNull(parentName)) {
+				field.put(_getPrivateAttributeKey("parentName"), parentName);
+			}
+		}
+
 		return field;
 	}
 
-	private Map<String, Map<String, String>> _getFieldsMap(String locale)
+	private String _getPrivateAttributeKey(String attributeName) {
+		return StringPool.UNDERLINE.concat(attributeName).concat(
+			StringPool.UNDERLINE);
+	}
+
+	private void _indexFieldsMap(String locale)
 		throws PortalException, SystemException {
 
 		Map<String, Map<String, String>> fieldsMap = _localizedFieldsMap.get(
 			locale);
+		Map<String, Map<String, String>> transientFieldsMap =
+			_localizedTransientFieldsMap.get(locale);
 
-		if (fieldsMap == null) {
-			if (getParentStructureId() > 0) {
-				DDMStructure parentStructure =
-					DDMStructureLocalServiceUtil.getStructure(
-						getParentStructureId());
-
-				fieldsMap = parentStructure.getFieldsMap(locale);
-			}
-			else {
-				fieldsMap = new LinkedHashMap<String, Map<String, String>>();
-			}
-
-			XPath xPathSelector = SAXReaderUtil.createXPath(
-				"//dynamic-element[@dataType]");
-
-			List<Node> nodes = xPathSelector.selectNodes(getDocument());
-
-			for (Node node : nodes) {
-				Element element = (Element)node;
-
-				String name = element.attributeValue("name");
-
-				fieldsMap.put(name, _getField(element, locale));
-			}
-
-			_localizedFieldsMap.put(locale, fieldsMap);
+		if (fieldsMap != null) {
+			return;
 		}
 
-		return fieldsMap;
+		if (getParentStructureId() > 0) {
+			DDMStructure parentStructure =
+				DDMStructureLocalServiceUtil.getStructure(
+					getParentStructureId());
+
+			fieldsMap = parentStructure.getFieldsMap(locale);
+			transientFieldsMap = parentStructure.getTransientFieldsMap(locale);
+		}
+		else {
+			fieldsMap = new LinkedHashMap<String, Map<String, String>>();
+			transientFieldsMap =
+				new LinkedHashMap<String, Map<String, String>>();
+		}
+
+		XPath xPathSelector = SAXReaderUtil.createXPath("//dynamic-element");
+
+		List<Node> nodes = xPathSelector.selectNodes(getDocument());
+
+		for (Node node : nodes) {
+			Element element = (Element)node;
+
+			String name = element.attributeValue("name");
+
+			if (Validator.isNotNull(element.attributeValue("dataType"))) {
+				fieldsMap.put(name, _getField(element, locale));
+			}
+			else {
+				transientFieldsMap.put(name, _getField(element, locale));
+			}
+		}
+
+		_localizedFieldsMap.put(locale, fieldsMap);
+		_localizedTransientFieldsMap.put(locale, transientFieldsMap);
 	}
 
 	private String _mergeXsds(String xsd1, String xsd2) throws SystemException {
@@ -384,7 +451,13 @@ public class DDMStructureImpl extends DDMStructureBaseImpl {
 	@CacheField
 	private Document _document;
 
+	@CacheField
 	private Map<String, Map<String, Map<String, String>>> _localizedFieldsMap =
 		new ConcurrentHashMap<String, Map<String, Map<String, String>>>();
+
+	@CacheField
+	private Map<String, Map<String, Map<String, String>>>
+		_localizedTransientFieldsMap =
+			new ConcurrentHashMap<String, Map<String, Map<String, String>>>();
 
 }

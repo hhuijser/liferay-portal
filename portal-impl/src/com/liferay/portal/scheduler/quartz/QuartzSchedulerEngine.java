@@ -32,7 +32,7 @@ import com.liferay.portal.kernel.scheduler.IntervalTrigger;
 import com.liferay.portal.kernel.scheduler.JobState;
 import com.liferay.portal.kernel.scheduler.JobStateSerializeUtil;
 import com.liferay.portal.kernel.scheduler.SchedulerEngine;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.SchedulerException;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.TriggerFactoryUtil;
@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.scheduler.TriggerType;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerEventMessageListenerWrapper;
 import com.liferay.portal.kernel.scheduler.messaging.SchedulerResponse;
 import com.liferay.portal.kernel.util.CharPool;
+import com.liferay.portal.kernel.util.ClassLoaderPool;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringPool;
@@ -886,7 +887,7 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 				message.put(JOB_NAME, jobKey.getName());
 				message.put(GROUP_NAME, jobKey.getGroup());
 
-				SchedulerEngineUtil.auditSchedulerJobs(
+				SchedulerEngineHelperUtil.auditSchedulerJobs(
 					message, TriggerState.EXPIRED);
 
 				_persistedScheduler.deleteJob(jobKey);
@@ -915,6 +916,15 @@ public class QuartzSchedulerEngine implements SchedulerEngine {
 		}
 		else {
 			classLoader = PortletClassLoaderUtil.getClassLoader(portletId);
+
+			if (classLoader == null) {
+
+				// No class loader found for the portlet ID, try getting the
+				// class loader where we assume the portlet ID is really a
+				// servlet context name
+
+				classLoader = ClassLoaderPool.getClassLoader(portletId);
+			}
 		}
 
 		if (classLoader == null) {

@@ -19,7 +19,10 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
 import com.liferay.portal.model.RepositoryEntry;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 
 /**
  * The cache model class for representing RepositoryEntry in entity cache.
@@ -29,10 +32,10 @@ import java.io.Serializable;
  * @generated
  */
 public class RepositoryEntryCacheModel implements CacheModel<RepositoryEntry>,
-	Serializable {
+	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -44,6 +47,8 @@ public class RepositoryEntryCacheModel implements CacheModel<RepositoryEntry>,
 		sb.append(repositoryId);
 		sb.append(", mappedId=");
 		sb.append(mappedId);
+		sb.append(", manualCheckInRequired=");
+		sb.append(manualCheckInRequired);
 		sb.append("}");
 
 		return sb.toString();
@@ -70,9 +75,43 @@ public class RepositoryEntryCacheModel implements CacheModel<RepositoryEntry>,
 			repositoryEntryImpl.setMappedId(mappedId);
 		}
 
+		repositoryEntryImpl.setManualCheckInRequired(manualCheckInRequired);
+
 		repositoryEntryImpl.resetOriginalValues();
 
 		return repositoryEntryImpl;
+	}
+
+	public void readExternal(ObjectInput objectInput) throws IOException {
+		uuid = objectInput.readUTF();
+		repositoryEntryId = objectInput.readLong();
+		groupId = objectInput.readLong();
+		repositoryId = objectInput.readLong();
+		mappedId = objectInput.readUTF();
+		manualCheckInRequired = objectInput.readBoolean();
+	}
+
+	public void writeExternal(ObjectOutput objectOutput)
+		throws IOException {
+		if (uuid == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(uuid);
+		}
+
+		objectOutput.writeLong(repositoryEntryId);
+		objectOutput.writeLong(groupId);
+		objectOutput.writeLong(repositoryId);
+
+		if (mappedId == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(mappedId);
+		}
+
+		objectOutput.writeBoolean(manualCheckInRequired);
 	}
 
 	public String uuid;
@@ -80,4 +119,5 @@ public class RepositoryEntryCacheModel implements CacheModel<RepositoryEntry>,
 	public long groupId;
 	public long repositoryId;
 	public String mappedId;
+	public boolean manualCheckInRequired;
 }

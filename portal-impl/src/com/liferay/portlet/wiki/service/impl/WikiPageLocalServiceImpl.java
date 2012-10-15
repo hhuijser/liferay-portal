@@ -317,18 +317,19 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 	public void addPageAttachments(
 			long userId, long nodeId, String title,
-			List<ObjectValuePair<String, InputStream>> inputStreams)
+			List<ObjectValuePair<String, InputStream>> inputStreamOVPs)
 		throws PortalException, SystemException {
 
-		if (inputStreams.size() == 0) {
+		if (inputStreamOVPs.size() == 0) {
 			return;
 		}
 
-		for (int i = 0; i < inputStreams.size(); i++) {
-			ObjectValuePair<String, InputStream> ovp = inputStreams.get(i);
+		for (int i = 0; i < inputStreamOVPs.size(); i++) {
+			ObjectValuePair<String, InputStream> inputStreamOVP =
+				inputStreamOVPs.get(i);
 
-			String fileName = ovp.getKey();
-			InputStream inputStream = ovp.getValue();
+			String fileName = inputStreamOVP.getKey();
+			InputStream inputStream = inputStreamOVP.getValue();
 
 			addPageAttachment(userId, nodeId, title, fileName, inputStream);
 		}
@@ -1344,14 +1345,16 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		if (addDraftAssetEntry) {
 			assetEntry = assetEntryLocalService.updateEntry(
-				userId, page.getGroupId(), WikiPage.class.getName(),
+				userId, page.getGroupId(), page.getCreateDate(),
+				page.getModifiedDate(), WikiPage.class.getName(),
 				page.getPrimaryKey(), page.getUuid(), 0, assetCategoryIds,
 				assetTagNames, false, null, null, null, ContentTypes.TEXT_HTML,
 				page.getTitle(), null, null, null, null, 0, 0, null, false);
 		}
 		else {
 			assetEntry = assetEntryLocalService.updateEntry(
-				userId, page.getGroupId(), WikiPage.class.getName(),
+				userId, page.getGroupId(), page.getCreateDate(),
+				page.getModifiedDate(), WikiPage.class.getName(),
 				page.getResourcePrimKey(), page.getUuid(), 0, assetCategoryIds,
 				assetTagNames, page.isApproved(), null, null, null,
 				ContentTypes.TEXT_HTML, page.getTitle(), null, null, null, null,
@@ -1556,7 +1559,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 							assetLinks, AssetLink.ENTRY_ID2_ACCESSOR), 0L);
 
 					AssetEntry assetEntry = assetEntryLocalService.updateEntry(
-						userId, page.getGroupId(), WikiPage.class.getName(),
+						userId, page.getGroupId(), page.getCreateDate(),
+						page.getModifiedDate(), WikiPage.class.getName(),
 						page.getResourcePrimKey(), page.getUuid(), 0,
 						assetCategoryIds, assetTagNames, true, null, null, null,
 						ContentTypes.TEXT_HTML, page.getTitle(), null, null,

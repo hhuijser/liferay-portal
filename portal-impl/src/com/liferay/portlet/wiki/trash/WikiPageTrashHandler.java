@@ -25,12 +25,14 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.CompanyConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.LayoutConstants;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.PortletURLFactoryUtil;
 import com.liferay.portlet.documentlibrary.NoSuchDirectoryException;
 import com.liferay.portlet.documentlibrary.store.DLStoreUtil;
 import com.liferay.portlet.trash.DuplicateEntryException;
+import com.liferay.portlet.trash.TrashEntryConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.util.TrashUtil;
 import com.liferay.portlet.wiki.asset.WikiPageAssetRenderer;
@@ -40,6 +42,7 @@ import com.liferay.portlet.wiki.model.WikiPageResource;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageResourceLocalServiceUtil;
 import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
+import com.liferay.portlet.wiki.service.permission.WikiPagePermission;
 
 import java.util.Date;
 
@@ -53,11 +56,16 @@ public class WikiPageTrashHandler extends BaseTrashHandler {
 	public static final String CLASS_NAME = WikiPage.class.getName();
 
 	@Override
-	public void checkDuplicateTrashEntry(TrashEntry trashEntry, String newName)
+	public void checkDuplicateTrashEntry(
+			TrashEntry trashEntry, long containerModelId, String newName)
 		throws PortalException, SystemException {
 
 		WikiPage page = WikiPageLocalServiceUtil.getPage(
 			trashEntry.getClassPK());
+
+		if (containerModelId == TrashEntryConstants.DEFAULT_CONTAINER_ID) {
+			containerModelId = page.getNodeId();
+		}
 
 		String restoredTitle = page.getTitle();
 
@@ -68,7 +76,7 @@ public class WikiPageTrashHandler extends BaseTrashHandler {
 		String originalTitle = TrashUtil.stripTrashNamespace(restoredTitle);
 
 		WikiPage duplicatePage = WikiPageLocalServiceUtil.fetchPage(
-			page.getNodeId(), originalTitle, page.getVersion());
+			containerModelId, originalTitle, page.getVersion());
 
 		if (duplicatePage != null) {
 			DuplicateEntryException dee = new DuplicateEntryException();
@@ -85,7 +93,7 @@ public class WikiPageTrashHandler extends BaseTrashHandler {
 	 * Deletes trash attachments from all the wiki pages from a group that were
 	 * deleted after a given date.
 	 *
-	 * @param  groupId the primary key of the group
+	 * @param  group the group
 	 * @param  date the date from which attachments will be deleted
 	 * @throws SystemException if a system exception occurred
 	 */
@@ -251,6 +259,15 @@ public class WikiPageTrashHandler extends BaseTrashHandler {
 
 		WikiPageResourceLocalServiceUtil.updateWikiPageResource(
 			pageResource, false);
+	}
+
+	@Override
+	protected boolean hasPermission(
+			PermissionChecker permissionChecker, long classPK, String actionId)
+		throws PortalException, SystemException {
+
+		return WikiPagePermission.contains(
+			permissionChecker, classPK, actionId);
 	}
 
 }

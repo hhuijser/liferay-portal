@@ -31,9 +31,10 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.Message;
+import com.liferay.portal.kernel.messaging.proxy.ProxyModeThreadLocal;
 import com.liferay.portal.kernel.scheduler.SchedulerEngine;
 import com.liferay.portal.kernel.scheduler.SchedulerEngineClusterManager;
-import com.liferay.portal.kernel.scheduler.SchedulerEngineUtil;
+import com.liferay.portal.kernel.scheduler.SchedulerEngineHelperUtil;
 import com.liferay.portal.kernel.scheduler.SchedulerException;
 import com.liferay.portal.kernel.scheduler.StorageType;
 import com.liferay.portal.kernel.scheduler.Trigger;
@@ -47,7 +48,6 @@ import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.messaging.proxy.ProxyModeThreadLocal;
 import com.liferay.portal.model.Lock;
 import com.liferay.portal.service.LockLocalServiceUtil;
 import com.liferay.portal.util.PropsValues;
@@ -661,7 +661,7 @@ public class ClusterSchedulerEngine
 			Trigger oldTrigger = schedulerResponse.getTrigger();
 
 			String jobName = schedulerResponse.getJobName();
-			String groupName = SchedulerEngineUtil.namespaceGroupName(
+			String groupName = SchedulerEngineHelperUtil.namespaceGroupName(
 				schedulerResponse.getGroupName(), StorageType.MEMORY_CLUSTERED);
 
 			Trigger newTrigger = TriggerFactoryUtil.buildTrigger(
@@ -671,7 +671,7 @@ public class ClusterSchedulerEngine
 
 			schedulerResponse.setTrigger(newTrigger);
 
-			TriggerState triggerState = SchedulerEngineUtil.getJobState(
+			TriggerState triggerState = SchedulerEngineHelperUtil.getJobState(
 				schedulerResponse);
 
 			Message message = schedulerResponse.getMessage();
@@ -864,9 +864,13 @@ public class ClusterSchedulerEngine
 				if (StorageType.MEMORY_CLUSTERED ==
 						schedulerResponse.getStorageType()) {
 
-					_schedulerEngine.delete(
-						schedulerResponse.getJobName(),
+					String groupName = StorageType.MEMORY_CLUSTERED.toString();
+
+					groupName = groupName.concat(StringPool.POUND).concat(
 						schedulerResponse.getGroupName());
+
+					_schedulerEngine.delete(
+						schedulerResponse.getJobName(), groupName);
 				}
 			}
 
@@ -900,7 +904,7 @@ public class ClusterSchedulerEngine
 	private static MethodKey _getScheduledJobsMethodKey2 = new MethodKey(
 		SchedulerEngine.class.getName(), "getScheduledJobs", String.class);
 	private static MethodKey _getScheduledJobsMethodKey3 = new MethodKey(
-		SchedulerEngineUtil.class.getName(), "getScheduledJobs",
+		SchedulerEngineHelperUtil.class.getName(), "getScheduledJobs",
 		StorageType.class);
 
 	private String _beanIdentifier;

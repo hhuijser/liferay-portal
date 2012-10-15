@@ -199,6 +199,11 @@ public class GetFileAction extends PortletAction {
 					DLFileEntryLocalServiceUtil.fetchFileEntryByName(
 						groupId, folderId, name);
 
+				if (dlFileEntry == null) {
+					dlFileEntry = DLFileEntryLocalServiceUtil.
+						fetchFileEntryByName(folderId, name);
+				}
+
 				if (dlFileEntry != null) {
 					fileEntry = new LiferayFileEntry(dlFileEntry);
 				}

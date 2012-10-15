@@ -840,6 +840,12 @@ public class DLFileEntryLocalServiceImpl
 		return dlFileEntryPersistence.fetchByG_F_N(groupId, folderId, name);
 	}
 
+	public DLFileEntry fetchFileEntryByName(long folderId, String name)
+		throws SystemException {
+
+		return dlFileEntryPersistence.fetchByF_N_First(folderId, name, null);
+	}
+
 	public List<DLFileEntry> getExtraSettingsFileEntries(int start, int end)
 		throws SystemException {
 

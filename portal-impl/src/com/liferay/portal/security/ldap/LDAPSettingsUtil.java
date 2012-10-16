@@ -25,7 +25,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
 
+import java.util.ArrayList;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 /**
  * @author Edward Han
@@ -33,6 +35,153 @@ import java.util.Properties;
  * @author Brian Wing Shun Chan
  */
 public class LDAPSettingsUtil {
+
+	public static boolean validateLDAPFilter(
+			String filter, boolean throwException)
+		throws SystemException {
+
+		boolean retVal = validateLDAPFilter(filter);
+		if ((retVal == false) && (throwException == true)) {
+			throw new SystemException();
+		}
+
+		return retVal;
+	}
+
+	public static boolean validateLDAPFilter(String filter) {
+
+		/* Rules here are based upon:
+		 * [1] http://www.ietf.org/rfc/rfc2251.txt
+		 * [2] http://www.ietf.org/rfc/rfc2252.txt
+		 * [3] http://www.ietf.org/rfc/rfc2253.txt
+		 * [4] http://www.ietf.org/rfc/rfc2254.txt
+		 * [5] http://www.ietf.org/rfc/rfc4515.txt
+		 */
+		String s = null;
+		boolean retVal = true;
+		if (filter != null) {
+			s = new String(filter);
+			s = s.trim();
+
+			/* There are two special values which
+		     * may be used: an empty list with no attributes, and the attribute
+		     * description string "*".  Both of these signify that all user
+		     * attributes are to be returned.
+		     */
+			if (s.equals("") || s.equals("*")) {
+				s = null;
+			}
+			else {
+				//insert spaces
+				s = s.replaceAll("\\(", " \\( ");
+				s = s.replaceAll("\\)", " \\) ");
+				s = s.replaceAll("~=", " ~= ");
+				s = s.replaceAll("<=", " <= ");
+				s = s.replaceAll(">=", " >= ");
+				s = s.replaceAll("=", "= ");
+				ArrayList<Integer> items = new ArrayList<Integer>();
+				for (int j = 0; j < s.length(); j++) {
+					if ((s.charAt(j) == '=') && (j>0)) {
+
+						if (!(s.charAt(j-1) == '~') &&
+							!(s.charAt(j-1) == '<') &&
+							!(s.charAt(j-1) == '>')) {
+
+							items.add(new Integer(j));
+						}
+					}
+				}
+
+				if (items.size() > 0) {
+					int offset = 0;
+					for (int j = 0; j < items.size(); j++) {
+						s = s.substring(0, (Integer)(items.get(j)) + offset) +
+							" " +
+							s.substring((Integer)(items.get(j)) + offset);
+
+						offset++;
+					}
+				}
+
+				//Multiple whitespace is replaced with a single whitespace
+				s = s.replaceAll("\\s+", " ");
+				s = s.trim();
+			}
+		}
+
+		// Must have an opening and closing parenthesis
+
+		if (retVal == true) {
+			if (s != null) {
+				if ( !(s.startsWith("(")) || ( !(s.endsWith(")")))) {
+					retVal = false;
+				}
+			}
+		}
+
+		// Balance left and right parenthesis
+
+		if (retVal == true) {
+			if (s != null) {
+				int i = 0;
+				for (int j = 0; j < s.length(); j++) {
+					if (s.charAt(j) == '(') {
+						i++;
+					}
+					else if (s.charAt(j) == ')') {
+						i--;
+					}
+
+					if (i < 0) {
+						retVal = false;
+					}
+				}
+
+				if (i != 0) {
+					retVal = false;
+				}
+			}
+		}
+
+		if (retVal == true) {
+			if (s != null) {
+				boolean b = Pattern.matches(".*[~<>]*= [~<>]*=.*", s);
+				retVal = !b;
+			}
+		}
+
+		// Cannot have a "filtertype" after an opening parenthesis
+
+		if (retVal == true) {
+			if (s != null) {
+				boolean b = Pattern.matches("\\( [~<>]*=.*", s);
+				retVal = !b;
+			}
+		}
+
+		// Cannot have a "attribute" without a "filtertype" or "extensible"
+
+		//<item> ::= <simple> | <present> | <substring>
+		//<simple> ::= <attr> <filtertype> <value>
+		//<present> ::= <attr> '=*'
+		//<substring> ::= <attr> '=' <initial> <any> <final>
+
+		if (retVal == true) {
+			if (s != null) {
+				boolean b = Pattern.matches("\\( [^~<>= ]* \\)", s);
+				retVal = !b;
+			}
+		}
+
+		if (retVal == true) {
+			if (s != null) {
+				boolean b = Pattern.matches(".*[^~<>= ]* [~<>]*= \\)", s);
+				retVal = !b;
+			}
+		}
+
+		return retVal;
+	}
 
 	public static String getAuthSearchFilter(
 			long ldapServerId, long companyId, String emailAddress,
@@ -56,6 +205,8 @@ public class LDAPSettingsUtil {
 			new String[] {
 				String.valueOf(companyId), emailAddress, screenName, userId
 			});
+
+		validateLDAPFilter(filter, true);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Search filter after transformation " + filter);

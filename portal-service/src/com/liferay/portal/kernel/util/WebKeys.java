@@ -53,6 +53,8 @@ public interface WebKeys {
 
 	public static final String JAVASCRIPT_CONTEXT = "JAVASCRIPT_CONTEXT";
 
+	public static final String JOURNAL_ARTICLE = "JOURNAL_ARTICLE";
+
 	public static final String JOURNAL_ARTICLE_DISPLAY = "JOURNAL_ARTICLE_DISPLAY";
 
 	public static final String LAST_PATH = "LAST_PATH";

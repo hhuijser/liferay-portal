@@ -144,8 +144,6 @@ public class WebKeys implements com.liferay.portal.kernel.util.WebKeys {
 
 	public static final String IFRAME_SRC = "IFRAME_SRC";
 
-	public static final String JOURNAL_ARTICLE = "JOURNAL_ARTICLE";
-
 	public static final String JOURNAL_ARTICLE_CONTENT = "JOURNAL_ARTICLE_CONTENT";
 
 	public static final String JOURNAL_ARTICLE_CONTENT_EL = "JOURNAL_ARTICLE_CONTENT_EL";

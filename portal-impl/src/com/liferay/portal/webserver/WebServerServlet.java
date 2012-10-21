@@ -597,8 +597,10 @@ public class WebServerServlet extends HttpServlet {
 			return null;
 		}
 
-		if ((image.getHeight() > PropsValues.USERS_IMAGE_MAX_HEIGHT) ||
-			(image.getWidth() > PropsValues.USERS_IMAGE_MAX_WIDTH)) {
+		if (((PropsValues.USERS_IMAGE_MAX_HEIGHT > 0) &&
+			 (image.getHeight() > PropsValues.USERS_IMAGE_MAX_HEIGHT)) ||
+			((PropsValues.USERS_IMAGE_MAX_WIDTH > 0) &&
+			 (image.getWidth() > PropsValues.USERS_IMAGE_MAX_WIDTH))) {
 
 			User user = UserLocalServiceUtil.getUserByPortraitId(imageId);
 

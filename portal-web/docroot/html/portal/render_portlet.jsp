@@ -415,15 +415,15 @@ portletDisplay.setRestoreCurrentView(portlet.isRestoreCurrentView());
 
 portletDisplay.setPortletSetup(portletSetup);
 
-// Portlet CSS class wrapper
-
-portletDisplay.setCSSClassWrapper(portlet.getCssClassWrapper());
-
 // Portlet custom CSS class name
 
 String customCSSClassName = PortletConfigurationUtil.getPortletCustomCSSClassName(portletSetup);
 
 portletDisplay.setCustomCSSClassName(customCSSClassName);
+
+// Portlet CSS class wrapper
+
+portletDisplay.setCSSClassWrapper(portlet.getCssClassWrapper());
 
 // Portlet icon
 

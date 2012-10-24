@@ -452,7 +452,7 @@ AUI.add(
 				portletClasses = Lang.trim(portletClasses).replace(/(\s)/g, '$1.');
 
 				var portletInfoText =
-					Liferay.Language.get('your-current-portlet-information-is-as-follows') + '<br />' +
+					Liferay.Language.get('your-current-portlet-information-is-as-follows') + ':<br />' +
 						Liferay.Language.get('portlet-id') + ': <strong>#' + portletId + '</strong><br />' +
 							Liferay.Language.get('portlet-classes') + ': <strong>.' + portletClasses + '</strong>';
 

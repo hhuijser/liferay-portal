@@ -14,6 +14,8 @@
 
 package com.liferay.portal.model;
 
+import com.liferay.portal.util.PropsValues;
+
 /**
  * @author Brian Wing Shun Chan
  */
@@ -23,7 +25,7 @@ public class LayoutConstants {
 
 	public static final long DEFAULT_PLID = 0;
 
-	public static final int FRIENDLY_URL_MAX_LENGTH = 255;
+	public static final int FRIENDLY_URL_MAX_LENGTH = PropsValues.LAYOUT_FRIENDLY_URL_MAX_LENGTH;
 
 	public static final String NAME_CONTROL_PANEL_DEFAULT = "Control Panel";
 

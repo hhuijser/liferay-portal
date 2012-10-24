@@ -46,7 +46,6 @@ public class PortletDisplay implements Serializable {
 		_columnId = master.getColumnId();
 		_columnPos = master.getColumnPos();
 		_content = master.getContent();
-		_cssClassWrapper = master.getCSSClassWrapper();
 		_customCSSClassName = master.getCustomCSSClassName();
 		_description = master.getDescription();
 		_id = master.getId();
@@ -112,7 +111,6 @@ public class PortletDisplay implements Serializable {
 		slave.setColumnId(_columnId);
 		slave.setColumnPos(_columnPos);
 		slave.setContent(_content);
-		slave.setCSSClassWrapper(_cssClassWrapper);
 		slave.setCustomCSSClassName(_customCSSClassName);
 		slave.setDescription(_description);
 		slave.setId(_id);
@@ -186,10 +184,6 @@ public class PortletDisplay implements Serializable {
 
 	public StringBundler getContent() {
 		return _content;
-	}
-
-	public String getCSSClassWrapper() {
-		return _cssClassWrapper;
 	}
 
 	public String getCustomCSSClassName() {
@@ -541,10 +535,6 @@ public class PortletDisplay implements Serializable {
 		}
 	}
 
-	public void setCSSClassWrapper(String cssClassWrapper) {
-		_cssClassWrapper = cssClassWrapper;
-	}
-
 	public void setCustomCSSClassName(String customCSSClassName) {
 		_customCSSClassName = customCSSClassName;
 	}
@@ -794,7 +784,6 @@ public class PortletDisplay implements Serializable {
 	private String _columnId = StringPool.BLANK;
 	private int _columnPos;
 	private StringBundler _content = _blankStringBundler;
-	private String _cssClassWrapper = StringPool.BLANK;
 	private String _customCSSClassName = StringPool.BLANK;
 	private String _description = StringPool.BLANK;
 	private String _id = StringPool.BLANK;

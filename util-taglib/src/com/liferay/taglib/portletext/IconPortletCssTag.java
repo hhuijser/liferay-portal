@@ -15,7 +15,6 @@
 package com.liferay.taglib.portletext;
 
 import com.liferay.portal.kernel.servlet.taglib.FileAvailabilityUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.theme.PortletDisplay;
 import com.liferay.taglib.ui.IconTag;
 
@@ -42,15 +41,11 @@ public class IconPortletCssTag extends IconTag {
 		setImage("../portlet/portlet_css");
 		setMessage("look-and-feel");
 
-		StringBundler sb = new StringBundler(5);
+		String onClick =
+			"Liferay.Portlet.loadCSSEditor('".concat(
+				portletDisplay.getId()).concat("'); return false;");
 
-		sb.append("Liferay.Portlet.loadCSSEditor('");
-		sb.append(portletDisplay.getId());
-		sb.append("', '");
-		sb.append(portletDisplay.getCSSClassWrapper());
-		sb.append("'); return false;");
-
-		setOnClick(sb.toString());
+		setOnClick(onClick);
 
 		setToolTip(false);
 		setUrl(portletDisplay.getURLPortletCss());

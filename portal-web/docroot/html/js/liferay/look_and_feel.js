@@ -5,7 +5,7 @@ AUI.add(
 		var Lang = A.Lang;
 
 		var PortletCSS = {
-			init: function(portletId, cssClassWrapper) {
+			init: function(portletId) {
 				var instance = this;
 
 				var curPortletBoundaryId = 'p_p_id_' + portletId + '_';
@@ -13,7 +13,6 @@ AUI.add(
 
 				if (obj) {
 					instance._portletId = portletId;
-					instance._cssClassWrapper = cssClassWrapper;
 					instance._curPortlet = obj.one('.portlet');
 
 					instance._portletBoundary = obj;
@@ -447,7 +446,7 @@ AUI.add(
 				var refreshText = '';
 
 				var portletId = instance._curPortletWrapperId;
-				var portletClasses = instance._cssClassWrapper;
+				var portletClasses = portlet.get('className');
 
 				portletClasses = Lang.trim(portletClasses).replace(/(\s)/g, '$1.');
 
@@ -538,14 +537,12 @@ AUI.add(
 				var insertContainer = A.one('#lfr-add-rule-container');
 				var addIdLink = A.one('#lfr-add-id');
 				var addClassLink = A.one('#lfr-add-class');
-				var addAllPortletsLink = A.one('#lfr-add-all-portlets');
 				var updateOnType = A.one('#lfr-update-on-type');
 
 				if (!insertContainer) {
 					insertContainer = A.Node.create('<div id="lfr-add-rule-container"></div>');
 					addIdLink = A.Node.create('<a href="javascript:;" id="lfr-add-id">' + Liferay.Language.get('add-a-css-rule-for-just-this-portlet') + '</a>');
 					addClassLink = A.Node.create('<a href="javascript:;" id="lfr-add-class">' + Liferay.Language.get('add-a-css-rule-for-all-portlets-like-this-one') + '</a>');
-					addAllPortletsLink = A.Node.create('<a href="javascript:;" id="lfr-add-all-portlets">' + Liferay.Language.get('add-a-css-rule-for-all-portlets') + '</a>');
 
 					var updateOnTypeHolder = A.Node.create('<span class="aui-field"><span class="aui-field-content"></span></span>');
 					var updateOnTypeLabel = A.Node.create('<label>' + Liferay.Language.get('update-my-styles-as-i-type') + ' </label>');
@@ -562,10 +559,6 @@ AUI.add(
 					insertContainer.append('<br />');
 
 					insertContainer.appendChild(addClassLink);
-
-					insertContainer.append('<br />');
-
-					insertContainer.appendChild(addAllPortletsLink);
 					insertContainer.appendChild(updateOnTypeHolder);
 
 					insertContainer.after(customNote);
@@ -600,15 +593,6 @@ AUI.add(
 					'click',
 					function() {
 						customCSS.getDOM().value += '\n.' + portletClasses.replace(/\s/g, '') + '{\n\t\n}\n';
-					}
-				);
-
-				addAllPortletsLink.detach('click');
-
-				addAllPortletsLink.on(
-					'click',
-					function() {
-						customCSS.getDOM().value += '\n.' + portlet.get('className').replace(/\s/g, '') + '{\n\t\n}\n';
 					}
 				);
 			},

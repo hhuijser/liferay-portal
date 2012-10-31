@@ -97,11 +97,7 @@ public class DBUpgrader {
 
 		CacheRegistryUtil.setActive(false);
 
-		// Upgrade
-
-		if (_log.isDebugEnabled()) {
-			_log.debug("Run upgrade process");
-		}
+		// Check release
 
 		int buildNumber = ReleaseLocalServiceUtil.getBuildNumberOrCreate();
 
@@ -130,7 +126,7 @@ public class DBUpgrader {
 		CustomSQLUtil.reloadCustomSQL();
 		SQLTransformer.reloadSQLTransformer();
 
-		// Upgrade build
+		// Upgrade
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Update build " + buildNumber);
@@ -167,7 +163,7 @@ public class DBUpgrader {
 			_updateCompanyKey();
 		}
 
-		// Class names
+		// Check class names
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Check class names");
@@ -175,7 +171,7 @@ public class DBUpgrader {
 
 		ClassNameLocalServiceUtil.checkClassNames();
 
-		// Resource actions
+		// Check resource actions
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Check resource actions");
@@ -204,7 +200,7 @@ public class DBUpgrader {
 
 	public static void verify() throws Exception {
 
-		// Verify
+		// Check release
 
 		Release release = null;
 
@@ -248,6 +244,14 @@ public class DBUpgrader {
 			if (PropsValues.VERIFY_DATABASE_TRANSACTIONS_DISABLED) {
 				_enableTransactions();
 			}
+		}
+
+		// Update indexes
+
+		if (PropsValues.DATABASE_INDEXES_UPDATE_ON_STARTUP ||
+			StartupHelperUtil.isUpgraded()) {
+
+			StartupHelperUtil.updateIndexes(false);
 		}
 
 		// Update release

@@ -130,7 +130,7 @@ else {
 	%>
 
 	<aui:fieldset>
-		<aui:select label="question" name="reminderQueryQuestion">
+		<select id="<portlet:namespace />reminderQueryQuestion" name="<portlet:namespace />reminderQueryQuestion">
 
 			<%
 			Set<String> questions = selUser.getReminderQueryQuestions();
@@ -140,14 +140,14 @@ else {
 					hasCustomQuestion = false;
 			%>
 
-					<aui:option label="<%= question %>" selected="<%= true %>" value="<%= question %>" />
+					<option selected value="<%= question %>"><liferay-ui:message key="<%= question %>" />
 
 			<%
 				}
 				else {
 			%>
 
-					<aui:option label="<%= question %>" />
+					<option value="<%= question %>"><liferay-ui:message key="<%= question %>" />
 
 			<%
 				}
@@ -159,9 +159,9 @@ else {
 			%>
 
 			<c:if test="<%= PropsValues.USERS_REMINDER_QUERIES_CUSTOM_QUESTION_ENABLED %>">
-				<aui:option label="write-my-own-question" selected="<%= hasCustomQuestion %>" value="<%= UsersAdminUtil.CUSTOM_QUESTION %>" />
+				<option <%= hasCustomQuestion ? "selected" : "" %> value="<%= UsersAdminUtil.CUSTOM_QUESTION %>"><liferay-ui:message key="write-my-own-question" />
 			</c:if>
-		</aui:select>
+		</select>
 
 		<c:if test="<%= PropsValues.USERS_REMINDER_QUERIES_CUSTOM_QUESTION_ENABLED %>">
 			<div id="<portlet:namespace />customQuestionDiv">

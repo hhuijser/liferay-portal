@@ -40,6 +40,7 @@ public abstract class BaseUpgradePortletPreferences extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+
 		updatePortletPreferences();
 	}
 

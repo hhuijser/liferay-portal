@@ -1540,6 +1540,12 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
+			<name>ignoreModelValue</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<type>boolean</type>
+		</attribute>
+		<attribute>
 			<name>label</name>
 			<required>false</required>
 			<rtexprvalue>true</rtexprvalue>

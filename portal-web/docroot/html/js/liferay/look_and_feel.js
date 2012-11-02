@@ -8,7 +8,7 @@ AUI.add(
 
 		var REGEX_IGNORED_CLASSES_PORTLET = /(?:^|\s)portlet(?=\s|$)/g;
 
-		var REGEX_VALID_CLASSES = /portlet-([a-zA-Z0-9-_]+)/g;
+		var REGEX_VALID_CLASSES = /(portlet-([a-zA-Z0-9-_]+)|([a-zA-Z0-9-_]+)portlet-([a-zA-Z0-9-_]+))/g;
 
 		var PortletCSS = {
 			init: function(portletId) {

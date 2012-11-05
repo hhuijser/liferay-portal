@@ -1792,8 +1792,9 @@ public interface UserLocalService extends BaseLocalService,
 	* first name, middle name, last name, screen name, and email address match
 	* the keywords specified for them, without using the indexer. It is
 	* preferable to use the indexed version {@link #search(long, String,
-	* String, String, String, String, int, LinkedHashMap, boolean, int, int,
-	* Sort)} instead of this method wherever possible for performance reasons.
+	* String, String, String, String, String, int, LinkedHashMap, boolean, int,
+	* int, Sort)} instead of this method wherever possible for performance
+	* reasons.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end -
@@ -1810,6 +1811,7 @@ public interface UserLocalService extends BaseLocalService,
 	* @param middleName the middle name keywords
 	* @param lastName the last name keywords
 	* @param screenName the screen name keywords
+	* @param jobTitle the job title keywords
 	* @param emailAddress the email address keywords
 	* @param status the workflow status
 	* @param params the finder parameters (optionally <code>null</code>). For
@@ -1831,7 +1833,8 @@ public interface UserLocalService extends BaseLocalService,
 	public java.util.List<com.liferay.portal.model.User> search(
 		long companyId, java.lang.String firstName,
 		java.lang.String middleName, java.lang.String lastName,
-		java.lang.String screenName, java.lang.String emailAddress, int status,
+		java.lang.String screenName, java.lang.String emailAddress,
+		java.lang.String jobTitle, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
@@ -1880,7 +1883,7 @@ public interface UserLocalService extends BaseLocalService,
 	public com.liferay.portal.kernel.search.Hits search(long companyId,
 		java.lang.String firstName, java.lang.String middleName,
 		java.lang.String lastName, java.lang.String screenName,
-		java.lang.String emailAddress, int status,
+		java.lang.String emailAddress, java.lang.String jobTitle, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.search.Sort sort)
@@ -1917,6 +1920,7 @@ public interface UserLocalService extends BaseLocalService,
 	* @param lastName the last name keywords
 	* @param screenName the screen name keywords
 	* @param emailAddress the email address keywords
+	* @param jobTitle the job title keywords
 	* @param status the workflow status
 	* @param params the finder parameters (optionally <code>null</code>). For
 	more information see {@link
@@ -1931,7 +1935,8 @@ public interface UserLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int searchCount(long companyId, java.lang.String firstName,
 		java.lang.String middleName, java.lang.String lastName,
-		java.lang.String screenName, java.lang.String emailAddress, int status,
+		java.lang.String screenName, java.lang.String emailAddress,
+		java.lang.String jobTitle, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch)
 		throws com.liferay.portal.kernel.exception.SystemException;

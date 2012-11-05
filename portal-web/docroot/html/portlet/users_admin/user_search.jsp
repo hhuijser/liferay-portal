@@ -36,6 +36,8 @@ UserDisplayTerms displayTerms = (UserDisplayTerms)searchContainer.getDisplayTerm
 
 		<aui:input name="<%= displayTerms.SCREEN_NAME %>" size="20" value="<%= displayTerms.getScreenName() %>" />
 
+		<aui:input name="<%= displayTerms.JOB_TITLE %>" size="20" value="<%= displayTerms.getJobTitle() %>" />
+
 		<aui:input name="<%= displayTerms.EMAIL_ADDRESS %>" size="20" value="<%= displayTerms.getEmailAddress() %>" />
 
 		<c:if test="<%= showActiveUserSelect %>">

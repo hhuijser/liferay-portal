@@ -97,6 +97,8 @@ public class UserSearch extends SearchContainer<User> {
 		iteratorURL.setParameter(
 			UserDisplayTerms.FIRST_NAME, displayTerms.getFirstName());
 		iteratorURL.setParameter(
+			UserDisplayTerms.JOB_TITLE, displayTerms.getJobTitle());
+		iteratorURL.setParameter(
 			UserDisplayTerms.LAST_NAME, displayTerms.getLastName());
 		iteratorURL.setParameter(
 			UserDisplayTerms.MIDDLE_NAME, displayTerms.getMiddleName());

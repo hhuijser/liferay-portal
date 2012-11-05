@@ -1219,7 +1219,7 @@
 				(User_.userId = ?)
 		]]>
 	</sql>
-	<sql id="com.liferay.portal.service.persistence.UserFinder.countByC_FN_MN_LN_SN_EA_S">
+	<sql id="com.liferay.portal.service.persistence.UserFinder.countByC_FN_MN_LN_SN_EA_JT_S">
 		<![CDATA[
 			SELECT
 				DISTINCT User_.userId AS userId
@@ -1235,7 +1235,8 @@
 					(lower(User_.middleName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(User_.lastName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(User_.screenName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-					(lower(User_.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$])
+					(lower(User_.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(User_.jobTitle) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND (User_.status = ?)
 		]]>
 	</sql>
@@ -1296,7 +1297,7 @@
 				(defaultUser = [$FALSE$])
 		]]>
 	</sql>
-	<sql id="com.liferay.portal.service.persistence.UserFinder.findByC_FN_MN_LN_SN_EA_S">
+	<sql id="com.liferay.portal.service.persistence.UserFinder.findByC_FN_MN_LN_SN_EA_JT_S">
 		<![CDATA[
 			SELECT
 				DISTINCT User_.userId AS userId, User_.screenName AS screenName, User_.emailAddress AS emailAddress, User_.firstName AS firstName, User_.middleName AS middleName, User_.lastName AS lastName, User_.jobTitle AS jobTitle, User_.loginDate AS loginDate
@@ -1312,7 +1313,8 @@
 					(lower(User_.middleName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(User_.lastName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
 					(lower(User_.screenName) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
-					(lower(User_.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$])
+					(lower(User_.emailAddress) LIKE ? [$AND_OR_NULL_CHECK$]) [$AND_OR_CONNECTOR$]
+					(lower(User_.jobTitle) LIKE ? [$AND_OR_NULL_CHECK$])
 				) AND (User_.status = ?)
 		]]>
 	</sql>

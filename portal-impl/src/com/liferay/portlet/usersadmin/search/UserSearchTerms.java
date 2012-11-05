@@ -30,6 +30,7 @@ public class UserSearchTerms extends UserDisplayTerms {
 
 		emailAddress = DAOParamUtil.getString(portletRequest, EMAIL_ADDRESS);
 		firstName = DAOParamUtil.getString(portletRequest, FIRST_NAME);
+		jobTitle = DAOParamUtil.getString(portletRequest, JOB_TITLE);
 		lastName = DAOParamUtil.getString(portletRequest, LAST_NAME);
 		middleName = DAOParamUtil.getString(portletRequest, MIDDLE_NAME);
 		organizationId = ParamUtil.getLong(portletRequest, ORGANIZATION_ID);

@@ -3088,6 +3088,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		String fullName = null;
 		String screenName = null;
 		String emailAddress = null;
+		String jobTitle = null;
 		String street = null;
 		String city = null;
 		String zip = null;
@@ -3102,6 +3103,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			fullName = keywords;
 			screenName = keywords;
 			emailAddress = keywords;
+			jobTitle = keywords;
 			street = keywords;
 			city = keywords;
 			zip = keywords;
@@ -3118,8 +3120,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		return search(
 			companyId, firstName, middleName, lastName, fullName, screenName,
-			emailAddress, street, city, zip, region, country, status, params,
-			andOperator, start, end, sort);
+			emailAddress, jobTitle, street, city, zip, region, country, status,
+			params, andOperator, start, end, sort);
 	}
 
 	/**
@@ -3127,8 +3129,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * first name, middle name, last name, screen name, and email address match
 	 * the keywords specified for them, without using the indexer. It is
 	 * preferable to use the indexed version {@link #search(long, String,
-	 * String, String, String, String, int, LinkedHashMap, boolean, int, int,
-	 * Sort)} instead of this method wherever possible for performance reasons.
+	 * String, String, String, String, String, int, LinkedHashMap, boolean, int,
+	 * int, Sort)} instead of this method wherever possible for performance
+	 * reasons.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end -
@@ -3145,6 +3148,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  middleName the middle name keywords
 	 * @param  lastName the last name keywords
 	 * @param  screenName the screen name keywords
+	 * @param  jobTitle the job title keywords
 	 * @param  emailAddress the email address keywords
 	 * @param  status the workflow status
 	 * @param  params the finder parameters (optionally <code>null</code>). For
@@ -3164,14 +3168,14 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 */
 	public List<User> search(
 			long companyId, String firstName, String middleName,
-			String lastName, String screenName, String emailAddress, int status,
-			LinkedHashMap<String, Object> params, boolean andSearch, int start,
-			int end, OrderByComparator obc)
+			String lastName, String screenName, String emailAddress,
+			String jobTitle, int status, LinkedHashMap<String, Object> params,
+			boolean andSearch, int start, int end, OrderByComparator obc)
 		throws SystemException {
 
-		return userFinder.findByC_FN_MN_LN_SN_EA_S(
+		return userFinder.findByC_FN_MN_LN_SN_EA_JT_S(
 			companyId, firstName, middleName, lastName, screenName,
-			emailAddress, status, params, andSearch, start, end, obc);
+			emailAddress, jobTitle, status, params, andSearch, start, end, obc);
 	}
 
 	/**
@@ -3215,15 +3219,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 */
 	public Hits search(
 			long companyId, String firstName, String middleName,
-			String lastName, String screenName, String emailAddress, int status,
-			LinkedHashMap<String, Object> params, boolean andSearch, int start,
-			int end, Sort sort)
+			String lastName, String screenName, String emailAddress,
+			String jobTitle, int status, LinkedHashMap<String, Object> params,
+			boolean andSearch, int start, int end, Sort sort)
 		throws SystemException {
 
 		return search(
 			companyId, firstName, middleName, lastName, null, screenName,
-			emailAddress, null, null, null, null, null, status, params,
-			andSearch, start, end, sort);
+			emailAddress, jobTitle, null, null, null, null, null, status,
+			params, andSearch, start, end, sort);
 	}
 
 	/**
@@ -3259,6 +3263,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  lastName the last name keywords
 	 * @param  screenName the screen name keywords
 	 * @param  emailAddress the email address keywords
+	 * @param  jobTitle the job title keywords
 	 * @param  status the workflow status
 	 * @param  params the finder parameters (optionally <code>null</code>). For
 	 *         more information see {@link
@@ -3272,13 +3277,14 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 */
 	public int searchCount(
 			long companyId, String firstName, String middleName,
-			String lastName, String screenName, String emailAddress, int status,
-			LinkedHashMap<String, Object> params, boolean andSearch)
+			String lastName, String screenName, String emailAddress,
+			String jobTitle, int status, LinkedHashMap<String, Object> params,
+			boolean andSearch)
 		throws SystemException {
 
-		return userFinder.countByC_FN_MN_LN_SN_EA_S(
+		return userFinder.countByC_FN_MN_LN_SN_EA_JT_S(
 			companyId, firstName, middleName, lastName, screenName,
-			emailAddress, status, params, andSearch);
+			emailAddress, jobTitle, status, params, andSearch);
 	}
 
 	/**
@@ -5459,8 +5465,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	protected Hits search(
 			long companyId, String firstName, String middleName,
 			String lastName, String fullName, String screenName,
-			String emailAddress, String street, String city, String zip,
-			String region, String country, int status,
+			String emailAddress, String jobTitle, String street, String city,
+			String zip, String region, String country, int status,
 			LinkedHashMap<String, Object> params, boolean andSearch, int start,
 			int end, Sort sort)
 		throws SystemException {
@@ -5478,6 +5484,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			attributes.put("emailAddress", emailAddress);
 			attributes.put("firstName", firstName);
 			attributes.put("fullName", fullName);
+			attributes.put("jobTitle", jobTitle);
 			attributes.put("lastName", lastName);
 			attributes.put("middleName", middleName);
 			attributes.put("params", params);

@@ -39,6 +39,8 @@ UserDisplayTerms displayTerms = (UserDisplayTerms)searchContainer.getDisplayTerm
 		<aui:input name="<%= displayTerms.SCREEN_NAME %>" size="20" type="text" value="<%= displayTerms.getScreenName() %>" />
 
 		<aui:input name="<%= displayTerms.EMAIL_ADDRESS %>" size="20" type="text" value="<%= displayTerms.getEmailAddress() %>" />
+
+		<aui:input name="<%= displayTerms.JOB_TITLE %>" size="20" type="text" value="<%= displayTerms.getJobTitle() %>" />
 	</aui:fieldset>
 </liferay-ui:search-toggle>
 

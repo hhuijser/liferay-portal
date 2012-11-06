@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -35,6 +36,8 @@ import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetCategoryPropertyLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagPropertyLocalServiceUtil;
+import com.liferay.portlet.asset.util.comparator.AssetCategoryLeftCategoryIdComparator;
+import com.liferay.portlet.asset.util.comparator.AssetCategoryRightCategoryIdComparator;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -100,6 +103,29 @@ public class AssetUtil {
 		PortalUtil.addPortletBreadcrumbEntry(
 			request, assetCategory.getTitleCurrentValue(),
 			portletURL.toString());
+	}
+
+	public static OrderByComparator getAssetCategoryOrderByComparator(
+		String orderByCol, String orderByType) {
+
+		boolean orderByAsc = true;
+
+		if (orderByType.equals("desc")) {
+			orderByAsc = false;
+		}
+
+		OrderByComparator orderByComparator = null;
+
+		if (orderByCol.equals("rightCategoryId")) {
+			orderByComparator = new AssetCategoryRightCategoryIdComparator(
+				orderByAsc);
+		}
+		else {
+			orderByComparator = new AssetCategoryLeftCategoryIdComparator(
+				orderByAsc);
+		}
+
+		return orderByComparator;
 	}
 
 	public static String getAssetKeywords(String className, long classPK)

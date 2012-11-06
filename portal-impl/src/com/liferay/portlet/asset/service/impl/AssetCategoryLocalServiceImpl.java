@@ -15,6 +15,7 @@
 package com.liferay.portlet.asset.service.impl;
 
 import com.liferay.portal.kernel.cache.ThreadLocalCachable;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.CharPool;
@@ -38,6 +39,7 @@ import com.liferay.portlet.asset.model.AssetCategoryConstants;
 import com.liferay.portlet.asset.model.AssetCategoryProperty;
 import com.liferay.portlet.asset.model.AssetEntry;
 import com.liferay.portlet.asset.service.base.AssetCategoryLocalServiceBaseImpl;
+import com.liferay.portlet.asset.util.AssetUtil;
 
 import java.util.Date;
 import java.util.Iterator;
@@ -167,6 +169,12 @@ public class AssetCategoryLocalServiceImpl
 	public void deleteCategory(AssetCategory category)
 		throws PortalException, SystemException {
 
+		deleteCategory(category, true);
+	}
+
+	public void deleteCategory(AssetCategory category, boolean deleteChildren)
+		throws PortalException, SystemException {
+
 		// Entries
 
 		List<AssetEntry> entries = assetTagPersistence.getAssetEntries(
@@ -184,12 +192,19 @@ public class AssetCategoryLocalServiceImpl
 
 		// Categories
 
-		List<AssetCategory> categories =
-			assetCategoryPersistence.findByParentCategoryId(
-				category.getCategoryId());
+		if (deleteChildren) {
+			OrderByComparator orderByComparator =
+				AssetUtil.getAssetCategoryOrderByComparator("rightCategoryId",
+					"desc");
 
-		for (AssetCategory curCategory : categories) {
-			deleteCategory(curCategory);
+			List<AssetCategory> categories =
+				getChildCategories(
+					category.getCategoryId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, orderByComparator);
+
+			for (AssetCategory curCategory : categories) {
+				deleteCategory(curCategory, true);
+			}
 		}
 
 		// Properties
@@ -214,11 +229,17 @@ public class AssetCategoryLocalServiceImpl
 	public void deleteVocabularyCategories(long vocabularyId)
 		throws PortalException, SystemException {
 
+		OrderByComparator orderByComparator =
+			AssetUtil.getAssetCategoryOrderByComparator("rightCategoryId",
+				"desc");
+
 		List<AssetCategory> categories =
-			assetCategoryPersistence.findByVocabularyId(vocabularyId);
+			getVocabularyCategories(
+				vocabularyId, QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				orderByComparator);
 
 		for (AssetCategory category : categories) {
-			deleteCategory(category);
+			deleteCategory(category, false);
 		}
 	}
 

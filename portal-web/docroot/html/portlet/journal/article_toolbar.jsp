@@ -17,8 +17,6 @@
 <%@ include file="/html/portlet/journal/init.jsp" %>
 
 <%
-String originalRedirect = ParamUtil.getString(request, "originalRedirect");
-
 JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_ARTICLE);
 
 long classNameId = BeanParamUtil.getLong(article, request, "classNameId");
@@ -126,7 +124,6 @@ if ((article != null) && article.isDraft()) {
 		<portlet:renderURL var="viewHistoryURL">
 			<portlet:param name="struts_action" value="/journal/view_article_history" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
-			<portlet:param name="originalRedirect" value="<%= originalRedirect %>" />
 			<portlet:param name="articleId" value="<%= article.getArticleId() %>" />
 		</portlet:renderURL>
 

@@ -59,7 +59,6 @@ public class ClassLoaderPool {
 		return classLoader;
 	}
 
-	 
 	/**
 	 * Returns the context name associated with the class loader.
 	 *

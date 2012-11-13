@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.kernel.mail.SMTPAccount;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.EscapableObject;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlEscapableObject;
@@ -33,6 +34,7 @@ import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Subscription;
@@ -304,7 +306,7 @@ public class SubscriptionSender implements Serializable {
 
 	public void setMailId(String popPortletPrefix, Object... ids) {
 		_mailIdPopPortletPrefix = popPortletPrefix;
-		_mailIdIds = ids;
+		_mailIdIds = ArrayUtil.append(ids, PortalUUIDUtil.generate());
 	}
 
 	public void setPortletId(String portletId) {

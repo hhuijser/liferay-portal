@@ -193,9 +193,6 @@ public class EditStructureAction extends PortletAction {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		String originalRedirect = ParamUtil.getString(
-			actionRequest, "originalRedirect");
-
 		PortletURLImpl portletURL = new PortletURLImpl(
 			actionRequest, portletConfig.getPortletName(),
 			themeDisplay.getPlid(), PortletRequest.RENDER_PHASE);
@@ -205,7 +202,6 @@ public class EditStructureAction extends PortletAction {
 		portletURL.setParameter("struts_action", "/journal/edit_structure");
 		portletURL.setParameter(Constants.CMD, Constants.UPDATE, false);
 		portletURL.setParameter("redirect", redirect, false);
-		portletURL.setParameter("originalRedirect", originalRedirect, false);
 		portletURL.setParameter(
 			"groupId", String.valueOf(structure.getGroupId()), false);
 		portletURL.setParameter(

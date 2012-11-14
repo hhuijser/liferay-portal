@@ -38,14 +38,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	}
 }*/
 
-String originalRedirect = ParamUtil.getString(request, "originalRedirect", StringPool.BLANK);
-
-if (originalRedirect.equals(StringPool.BLANK)) {
-	originalRedirect = redirect;
-}
-else {
-	redirect = originalRedirect;
-}
+String originalRedirect = ParamUtil.getString(request, "originalRedirect");
 
 String backURL = ParamUtil.getString(request, "backURL");
 
@@ -158,7 +151,6 @@ request.setAttribute("edit_article.jsp-toLanguageId", toLanguageId);
 	<aui:input name="<%= Constants.CMD %>" type="hidden" />
 	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="originalRedirect" type="hidden" value="<%= originalRedirect %>" />
 	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
 	<aui:input name="referringPortletResource" type="hidden" value="<%= referringPortletResource %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
@@ -185,7 +177,9 @@ request.setAttribute("edit_article.jsp-toLanguageId", toLanguageId);
 					<aui:workflow-status id="<%= String.valueOf(article.getArticleId()) %>" status="<%= article.getStatus() %>" version="<%= String.valueOf(article.getVersion()) %>" />
 				</c:if>
 
-				<liferay-util:include page="/html/portlet/journal/article_toolbar.jsp" />
+				<liferay-util:include page="/html/portlet/journal/article_toolbar.jsp">
+					<liferay-util:param name="originalRedirect" value="<%= originalRedirect %>" />
+				</liferay-util:include>
 			</c:if>
 
 			<liferay-util:buffer var="htmlTop">

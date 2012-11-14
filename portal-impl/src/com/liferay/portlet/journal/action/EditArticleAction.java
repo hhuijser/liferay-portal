@@ -218,8 +218,9 @@ public class EditArticleAction extends PortletAction {
 					redirect = portletURL.toString();
 				}
 			}
-			else if (cmd.equals(Constants.DELETE_TRANSLATION) ||
-					 cmd.equals(Constants.TRANSLATE)) {
+
+			if (cmd.equals(Constants.DELETE_TRANSLATION) ||
+				cmd.equals(Constants.TRANSLATE)) {
 
 				setForward(
 					actionRequest,

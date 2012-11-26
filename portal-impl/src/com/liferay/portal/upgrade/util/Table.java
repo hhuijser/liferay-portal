@@ -64,14 +64,14 @@ public class Table {
 		{StringPool.RETURN, StringPool.COMMA, StringPool.NEW_LINE},
 		{
 			Table.SAFE_RETURN_CHARACTER, Table.SAFE_COMMA_CHARACTER,
-			Table.SAFE_NEWLINE_CHARACTER
+			Table.SAFE_UPDATE_TABLE_NEWLINE_CHARACTER
 		}
 	};
 
 	public static final String SAFE_COMMA_CHARACTER = "_SAFE_COMMA_CHARACTER_";
 
-	public static final String SAFE_NEWLINE_CHARACTER =
-		"_SAFE_NEWLINE_CHARACTER_";
+	public static final String SAFE_UPDATE_TABLE_NEWLINE_CHARACTER =
+		"_SAFE_UPDATE_TABLE_NEWLINE_CHARACTER_";
 
 	public static final String SAFE_RETURN_CHARACTER =
 		"_SAFE_RETURN_CHARACTER_";
@@ -395,7 +395,7 @@ public class Table {
 
 					while ((line = unsyncBufferedReader.readLine()) != null) {
 						if (sb.length() != 0) {
-							sb.append(SAFE_NEWLINE_CHARACTER);
+							sb.append(SAFE_UPDATE_TABLE_NEWLINE_CHARACTER);
 						}
 
 						sb.append(line);

@@ -2831,6 +2831,17 @@
 		</licenses>
 	</library>
 	<library>
+		<file-name>portal/scala-library.jar</file-name>
+		<version>2.9.2</version>
+		<project-name>Scala</project-name>
+		<project-url>http://www.scala-lang.org</project-url>
+		<licenses>
+			<license>
+				<license-name>BSD Style License</license-name>
+			</license>
+		</licenses>
+	</library>
+	<library>
 		<file-name>portal/scribe.jar</file-name>
 		<version>1.0.8</version>
 		<project-name>Scribe</project-name>

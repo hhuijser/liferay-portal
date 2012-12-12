@@ -145,9 +145,7 @@ public class I18nFilter extends BasePortalFilter {
 			}
 		}
 
-		Locale i18nPathLocale = LocaleUtil.fromLanguageId(i18nPathLanguageId);
-
-		if (!LanguageUtil.isAvailableLocale(i18nPathLocale)) {
+		if (!LanguageUtil.isAvailableLocale(locale)) {
 			return null;
 		}
 

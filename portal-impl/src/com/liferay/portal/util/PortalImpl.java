@@ -3656,7 +3656,11 @@ public class PortalImpl implements Portal {
 				Group doAsGroup = GroupLocalServiceUtil.fetchGroup(doAsGroupId);
 
 				if ((doAsGroupId <= 0) || (doAsGroup == null)) {
-					doAsGroupId = getDefaultScopeGroupId(group.getCompanyId());
+					long parentGroupId = GetterUtil.getLong(
+							getPortletParam(request, "parentGroupId"));
+
+					doAsGroupId = getDefaultScopeGroupId(
+						group.getCompanyId(), parentGroupId);
 				}
 
 				if (doAsGroupId > 0) {
@@ -5894,7 +5898,7 @@ public class PortalImpl implements Portal {
 		return filteredPortlets;
 	}
 
-	protected long getDefaultScopeGroupId(long companyId)
+	protected long getDefaultScopeGroupId(long companyId, long parentGroupId)
 		throws PortalException, SystemException {
 
 		long doAsGroupId = 0;
@@ -5902,7 +5906,14 @@ public class PortalImpl implements Portal {
 		Collection<Portlet> portlets = getControlPanelPortlets(
 			companyId, PortletCategoryKeys.CONTENT);
 
-		List<Group> groups = GroupServiceUtil.getManageableSites(portlets, 1);
+		List<Group> groups = new ArrayList<Group>();
+
+		if (parentGroupId > 0) {
+			groups.add(GroupServiceUtil.getGroup(parentGroupId));
+		}
+		else {
+			groups = GroupServiceUtil.getManageableSites(portlets, 1);
+		}
 
 		if (!groups.isEmpty()) {
 			Group group = groups.get(0);

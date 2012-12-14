@@ -2162,7 +2162,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				mbCategoryPersistence.update(category);
 			}
 
-			thread.setMessageCount(thread.getMessageCount() + 1);
+			int messageCount = mbMessagePersistence.countByThreadId(
+				thread.getThreadId());
+
+			thread.setMessageCount(messageCount);
 
 			if (message.isAnonymous()) {
 				thread.setLastPostByUserId(0);
@@ -2195,7 +2198,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				mbCategoryPersistence.update(category);
 			}
 
-			thread.setMessageCount(thread.getMessageCount() - 1);
+			int messageCount = mbMessagePersistence.countByThreadId(
+				thread.getThreadId());
+
+			thread.setMessageCount(messageCount);
 
 			// Category
 

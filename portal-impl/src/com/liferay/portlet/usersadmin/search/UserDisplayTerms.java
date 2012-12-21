@@ -31,6 +31,8 @@ public class UserDisplayTerms extends DisplayTerms {
 
 	public static final String FIRST_NAME = "firstName";
 
+	public static final String JOB_TITLE = "jobTitle";
+
 	public static final String LAST_NAME = "lastName";
 
 	public static final String MIDDLE_NAME = "middleName";
@@ -56,6 +58,7 @@ public class UserDisplayTerms extends DisplayTerms {
 
 		emailAddress = ParamUtil.getString(portletRequest, EMAIL_ADDRESS);
 		firstName = ParamUtil.getString(portletRequest, FIRST_NAME);
+		jobTitle = ParamUtil.getString(portletRequest, JOB_TITLE);
 		lastName = ParamUtil.getString(portletRequest, LAST_NAME);
 		middleName = ParamUtil.getString(portletRequest, MIDDLE_NAME);
 		organizationId = ParamUtil.getLong(portletRequest, ORGANIZATION_ID);
@@ -70,6 +73,10 @@ public class UserDisplayTerms extends DisplayTerms {
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public String getJobTitle() {
+		return jobTitle;
 	}
 
 	public String getLastName() {
@@ -115,6 +122,7 @@ public class UserDisplayTerms extends DisplayTerms {
 
 	protected String emailAddress;
 	protected String firstName;
+	protected String jobTitle;
 	protected String lastName;
 	protected String middleName;
 	protected long organizationId;

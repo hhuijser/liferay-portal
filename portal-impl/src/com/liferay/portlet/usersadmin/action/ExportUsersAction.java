@@ -204,7 +204,7 @@ public class ExportUsersAction extends PortletAction {
 					themeDisplay.getCompanyId(), searchTerms.getFirstName(),
 					searchTerms.getMiddleName(), searchTerms.getLastName(),
 					searchTerms.getScreenName(), searchTerms.getEmailAddress(),
-					searchTerms.getStatus(), params,
+					searchTerms.getJobTitle(), searchTerms.getStatus(), params,
 					searchTerms.isAndOperator(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, (Sort)null);
 			}
@@ -225,7 +225,7 @@ public class ExportUsersAction extends PortletAction {
 					themeDisplay.getCompanyId(), searchTerms.getFirstName(),
 					searchTerms.getMiddleName(), searchTerms.getLastName(),
 					searchTerms.getScreenName(), searchTerms.getEmailAddress(),
-					searchTerms.getStatus(), params,
+					searchTerms.getJobTitle(), searchTerms.getStatus(), params,
 					searchTerms.isAndOperator(), QueryUtil.ALL_POS,
 					QueryUtil.ALL_POS, (OrderByComparator)null);
 			}

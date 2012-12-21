@@ -1972,13 +1972,13 @@ public class UserLocalServiceWrapper implements UserLocalService,
 	* @param screenName the screen name keywords
 	* @param emailAddress the email address keywords
 	* @param status the workflow status
-	* @param params the finder parameters (optionally <code>null</code>). For
-	more information see {@link
+	* @param params the finder parameters (optionally <code>null</code>).
+	For more information see {@link
 	com.liferay.portal.service.persistence.UserFinder}.
-	* @param andSearch whether every field must match its keywords, or just
-	one field. For example, &quot;users with the first name 'bob' and
-	last name 'smith'&quot; vs &quot;users with the first name 'bob'
-	or the last name 'smith'&quot;.
+	* @param andSearch whether every field must match its keywords, or
+	just one field. For example, &quot;users with the first name
+	'bob' and last name 'smith'&quot; vs &quot;users with the
+	first name 'bob' or the last name 'smith'&quot;.
 	* @param start the lower bound of the range of users
 	* @param end the upper bound of the range of users (not inclusive)
 	* @param obc the comparator to order the users by (optionally
@@ -1986,6 +1986,9 @@ public class UserLocalServiceWrapper implements UserLocalService,
 	* @return the matching users
 	* @throws SystemException if a system exception occurred
 	* @see com.liferay.portal.service.persistence.UserFinder
+	* @deprecated {@link #search(long, String, String, String, String, String,
+	String, int, java.util.LinkedHashMap, boolean, int, int,
+	com.liferay.portal.kernel.util.OrderByComparator)}
 	*/
 	public java.util.List<com.liferay.portal.model.User> search(
 		long companyId, java.lang.String firstName,
@@ -2024,6 +2027,118 @@ public class UserLocalServiceWrapper implements UserLocalService,
 	* @param screenName the screen name keywords
 	* @param emailAddress the email address keywords
 	* @param status the workflow status
+	* @param params the indexer parameters (optionally <code>null</code>).
+	For more information see {@link
+	com.liferay.portlet.usersadmin.util.UserIndexer}.
+	* @param andSearch whether every field must match its keywords, or
+	just one field. For example, &quot;users with the first name
+	'bob' and last name 'smith'&quot; vs &quot;users with the
+	first name 'bob' or the last name 'smith'&quot;.
+	* @param start the lower bound of the range of users
+	* @param end the upper bound of the range of users (not inclusive)
+	* @param sort the field and direction to sort by (optionally
+	<code>null</code>)
+	* @return the matching users
+	* @throws SystemException if a system exception occurred
+	* @see com.liferay.portlet.usersadmin.util.UserIndexer
+	* @deprecated {@link #search(long, String, String, String, String, String,
+	String, int, java.util.LinkedHashMap, boolean, int, int,
+	com.liferay.portal.kernel.search.Sort)}
+	*/
+	public com.liferay.portal.kernel.search.Hits search(long companyId,
+		java.lang.String firstName, java.lang.String middleName,
+		java.lang.String lastName, java.lang.String screenName,
+		java.lang.String emailAddress, int status,
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
+		boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.search.Sort sort)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userLocalService.search(companyId, firstName, middleName,
+			lastName, screenName, emailAddress, status, params, andSearch,
+			start, end, sort);
+	}
+
+	/**
+	* Returns an ordered range of all the users with the status, and whose
+	* first name, middle name, last name, screen name, and email address match
+	* the keywords specified for them, without using the indexer. It is
+	* preferable to use the indexed version {@link #search(long, String,
+	* String, String, String, String, String, int, LinkedHashMap, boolean, int,
+	* int, Sort)} instead of this method wherever possible for performance
+	* reasons.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link
+	* com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param companyId the primary key of the user's company
+	* @param firstName the first name keywords (space separated)
+	* @param middleName the middle name keywords
+	* @param lastName the last name keywords
+	* @param screenName the screen name keywords
+	* @param emailAddress the email address keywords
+	* @param jobTitle the job title keywords
+	* @param status the workflow status
+	* @param params the finder parameters (optionally <code>null</code>). For
+	more information see {@link
+	com.liferay.portal.service.persistence.UserFinder}.
+	* @param andSearch whether every field must match its keywords, or just
+	one field. For example, &quot;users with the first name 'bob' and
+	last name 'smith'&quot; vs &quot;users with the first name 'bob'
+	or the last name 'smith'&quot;.
+	* @param start the lower bound of the range of users
+	* @param end the upper bound of the range of users (not inclusive)
+	* @param obc the comparator to order the users by (optionally
+	<code>null</code>)
+	* @return the matching users
+	* @throws SystemException if a system exception occurred
+	* @see com.liferay.portal.service.persistence.UserFinder
+	*/
+	public java.util.List<com.liferay.portal.model.User> search(
+		long companyId, java.lang.String firstName,
+		java.lang.String middleName, java.lang.String lastName,
+		java.lang.String screenName, java.lang.String emailAddress,
+		java.lang.String jobTitle, int status,
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
+		boolean andSearch, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userLocalService.search(companyId, firstName, middleName,
+			lastName, screenName, emailAddress, jobTitle, status, params,
+			andSearch, start, end, obc);
+	}
+
+	/**
+	* Returns an ordered range of all the users with the status, and whose
+	* first name, middle name, last name, screen name, and email address match
+	* the keywords specified for them, using the indexer. It is preferable to
+	* use this method instead of the non-indexed version whenever possible for
+	* performance reasons.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link
+	* com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param companyId the primary key of the user's company
+	* @param firstName the first name keywords (space separated)
+	* @param middleName the middle name keywords
+	* @param lastName the last name keywords
+	* @param screenName the screen name keywords
+	* @param emailAddress the email address keywords
+	* @param jobTitle the job title keywords
+	* @param status the workflow status
 	* @param params the indexer parameters (optionally <code>null</code>). For
 	more information see {@link
 	com.liferay.portlet.usersadmin.util.UserIndexer}.
@@ -2042,14 +2157,14 @@ public class UserLocalServiceWrapper implements UserLocalService,
 	public com.liferay.portal.kernel.search.Hits search(long companyId,
 		java.lang.String firstName, java.lang.String middleName,
 		java.lang.String lastName, java.lang.String screenName,
-		java.lang.String emailAddress, int status,
+		java.lang.String emailAddress, java.lang.String jobTitle, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch, int start, int end,
 		com.liferay.portal.kernel.search.Sort sort)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _userLocalService.search(companyId, firstName, middleName,
-			lastName, screenName, emailAddress, status, params, andSearch,
-			start, end, sort);
+			lastName, screenName, emailAddress, jobTitle, status, params,
+			andSearch, start, end, sort);
 	}
 
 	/**
@@ -2085,6 +2200,40 @@ public class UserLocalServiceWrapper implements UserLocalService,
 	* @param screenName the screen name keywords
 	* @param emailAddress the email address keywords
 	* @param status the workflow status
+	* @param params the finder parameters (optionally <code>null</code>).
+	For more information see {@link
+	com.liferay.portal.service.persistence.UserFinder}.
+	* @param andSearch whether every field must match its keywords, or
+	just one field. For example, &quot;users with the first name
+	'bob' and last name 'smith'&quot; vs &quot;users with the
+	first name 'bob' or the last name 'smith'&quot;.
+	* @return the number of matching users
+	* @throws SystemException if a system exception occurred
+	* @deprecated {@link #searchCount(long, String, String, String, String,
+	String, String, int, java.util.LinkedHashMap, boolean)}
+	*/
+	public int searchCount(long companyId, java.lang.String firstName,
+		java.lang.String middleName, java.lang.String lastName,
+		java.lang.String screenName, java.lang.String emailAddress, int status,
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
+		boolean andSearch)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _userLocalService.searchCount(companyId, firstName, middleName,
+			lastName, screenName, emailAddress, status, params, andSearch);
+	}
+
+	/**
+	* Returns the number of users with the status, and whose first name, middle
+	* name, last name, screen name, and email address match the keywords
+	* specified for them.
+	*
+	* @param companyId the primary key of the user's company
+	* @param firstName the first name keywords (space separated)
+	* @param middleName the middle name keywords
+	* @param lastName the last name keywords
+	* @param screenName the screen name keywords
+	* @param emailAddress the email address keywords
+	* @param status the workflow status
 	* @param params the finder parameters (optionally <code>null</code>). For
 	more information see {@link
 	com.liferay.portal.service.persistence.UserFinder}.
@@ -2097,12 +2246,14 @@ public class UserLocalServiceWrapper implements UserLocalService,
 	*/
 	public int searchCount(long companyId, java.lang.String firstName,
 		java.lang.String middleName, java.lang.String lastName,
-		java.lang.String screenName, java.lang.String emailAddress, int status,
+		java.lang.String screenName, java.lang.String emailAddress,
+		java.lang.String jobTitle, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _userLocalService.searchCount(companyId, firstName, middleName,
-			lastName, screenName, emailAddress, status, params, andSearch);
+			lastName, screenName, emailAddress, jobTitle, status, params,
+			andSearch);
 	}
 
 	/**

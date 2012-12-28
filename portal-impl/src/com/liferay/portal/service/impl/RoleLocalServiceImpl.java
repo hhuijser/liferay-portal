@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
@@ -1268,10 +1269,10 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 	}
 
 	protected String[] getDefaultControlPanelPortlets() {
-		return new String[] {
-			PortletKeys.MY_ACCOUNT, PortletKeys.MY_PAGES,
-			PortletKeys.MY_WORKFLOW_INSTANCES, PortletKeys.MY_WORKFLOW_TASKS
-		};
+		String[] portletIds = PropsUtil.getArray(
+			PropsKeys.CONTROL_PANEL_DEFAULT_PORTLETS);
+
+		return portletIds;
 	}
 
 	protected void initPersonalControlPanelPortletsPermissions(Role role)

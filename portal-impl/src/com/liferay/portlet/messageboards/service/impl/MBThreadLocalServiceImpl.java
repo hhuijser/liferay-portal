@@ -38,6 +38,7 @@ import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.model.MBThreadConstants;
 import com.liferay.portlet.messageboards.model.MBTreeWalker;
 import com.liferay.portlet.messageboards.service.base.MBThreadLocalServiceBaseImpl;
+import com.liferay.portlet.messageboards.util.MBUtil;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 
@@ -876,21 +877,19 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 			if (thread.getCategoryId() !=
 					MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID) {
 
-				// Category
-
 				MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 					thread.getCategoryId());
 
-				if (status == WorkflowConstants.STATUS_IN_TRASH) {
-					category.setThreadCount(category.getThreadCount() - 1);
-					category.setMessageCount(
-						category.getMessageCount() - thread.getMessageCount());
-				}
-				else {
-					category.setThreadCount(category.getThreadCount() + 1);
-					category.setMessageCount(
-						category.getMessageCount() + thread.getMessageCount());
-				}
+				int messageCount = MBUtil.getCurrentCategoryMessageCount(
+					category);
+
+				category.setMessageCount(messageCount);
+
+				int threadCount = mbThreadLocalService.getCategoryThreadsCount(
+					category.getGroupId(), category.getCategoryId(),
+					WorkflowConstants.STATUS_APPROVED);
+
+				category.setThreadCount(threadCount);
 
 				mbCategoryPersistence.update(category);
 			}

@@ -25,6 +25,7 @@ import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
+import com.liferay.portlet.messageboards.util.MBUtil;
 
 import java.util.List;
 
@@ -132,10 +133,9 @@ public class VerifyMessageBoards extends VerifyProcess {
 			int threadCount = MBThreadLocalServiceUtil.getCategoryThreadsCount(
 				category.getGroupId(), category.getCategoryId(),
 				WorkflowConstants.STATUS_APPROVED);
-			int messageCount =
-				MBMessageLocalServiceUtil.getCategoryMessagesCount(
-					category.getGroupId(), category.getCategoryId(),
-					WorkflowConstants.STATUS_APPROVED);
+
+			int messageCount = MBUtil.getCurrentMessageCountForCategory(
+				category);
 
 			if ((category.getThreadCount() != threadCount) ||
 				(category.getMessageCount() != messageCount)) {

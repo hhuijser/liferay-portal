@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.messageboards.util;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -30,6 +31,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Role;
@@ -53,8 +55,11 @@ import com.liferay.portlet.messageboards.model.MBMailingList;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
 import com.liferay.portlet.messageboards.model.MBStatsUser;
+import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.service.MBCategoryLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.MBMailingListLocalServiceUtil;
+import com.liferay.portlet.messageboards.service.MBMessageLocalServiceUtil;
+import com.liferay.portlet.messageboards.service.MBThreadLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.permission.MBMessagePermission;
 import com.liferay.util.ContentUtil;
 import com.liferay.util.mail.JavaMailUtil;
@@ -298,6 +303,31 @@ public class MBUtil {
 		categoryId = ParamUtil.getLong(request, "mbCategoryId", categoryId);
 
 		return categoryId;
+	}
+
+	public static int getCurrentCategoryMessageCount(MBCategory category)
+		throws SystemException {
+
+		int messageCount =
+			MBMessageLocalServiceUtil.getCategoryMessagesCount(
+				category.getGroupId(), category.getCategoryId(),
+				WorkflowConstants.STATUS_APPROVED);
+
+		List<MBThread> trashedThreads = MBThreadLocalServiceUtil.getThreads(
+			category.getGroupId(), category.getCategoryId(),
+			WorkflowConstants.STATUS_IN_TRASH, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
+
+		for (MBThread trashedThread : trashedThreads) {
+			int threadMesssgeCount =
+				MBMessageLocalServiceUtil.getThreadMessagesCount(
+					trashedThread.getThreadId(),
+					WorkflowConstants.STATUS_APPROVED);
+
+			messageCount = messageCount - threadMesssgeCount;
+		}
+
+		return messageCount;
 	}
 
 	public static String getEmailFromAddress(

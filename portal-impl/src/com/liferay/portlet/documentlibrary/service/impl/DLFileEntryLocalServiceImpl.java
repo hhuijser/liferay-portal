@@ -203,8 +203,12 @@ public class DLFileEntryLocalServiceImpl
 		// Folder
 
 		if (folderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			dlFolderLocalService.updateLastPostDate(
-				dlFileEntry.getFolderId(), dlFileEntry.getModifiedDate());
+			DLFolder dlfolder = dlFolderLocalService.getFolder(
+				dlFileEntry.getFolderId());
+
+			dlfolder.setLastPostDate(dlFileEntry.getModifiedDate());
+
+			dlFolderPersistence.update(dlfolder);
 		}
 
 		// File
@@ -241,6 +245,21 @@ public class DLFileEntryLocalServiceImpl
 			dlFileVersionLocalService.getLatestFileVersion(fileEntryId, false);
 
 		removeFileVersion(dlFileEntry, dlFileVersion);
+
+		//folder
+
+		if (dlFileEntry.getFolderId() !=
+				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			Date now = new Date();
+
+			DLFolder dlfolder = dlFolderLocalService.getFolder(
+				dlFileEntry.getFolderId());
+
+			dlfolder.setLastPostDate(now);
+
+			dlFolderPersistence.update(dlfolder);
+		}
 
 		return dlFileVersion;
 	}
@@ -345,8 +364,12 @@ public class DLFileEntryLocalServiceImpl
 		if (dlFileEntry.getFolderId() !=
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
-			dlFolderLocalService.updateLastPostDate(
-				dlFileEntry.getFolderId(), dlFileEntry.getModifiedDate());
+			DLFolder dlfolder = dlFolderLocalService.getFolder(
+				dlFileEntry.getFolderId());
+
+			dlfolder.setLastPostDate(dlFileEntry.getModifiedDate());
+
+			dlFolderPersistence.update(dlfolder);
 		}
 
 		// Workflow
@@ -538,6 +561,21 @@ public class DLFileEntryLocalServiceImpl
 				dlFileEntry.getCompanyId(), dlFileVersion.getFileEntryTypeId(),
 				fileEntryId, dlFileVersionId, dlFileVersion.getFileVersionId(),
 				serviceContext);
+		}
+
+		//folder
+
+		if (dlFileEntry.getFolderId() !=
+				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+			Date now = new Date();
+
+			DLFolder dlfolder = dlFolderLocalService.getFolder(
+				dlFileEntry.getFolderId());
+
+			dlfolder.setLastPostDate(now);
+
+			dlFolderPersistence.update(dlfolder);
 		}
 
 		return dlFileEntry;
@@ -2237,6 +2275,19 @@ public class DLFileEntryLocalServiceImpl
 				description, changeLog, extraSettings, fileEntryTypeId,
 				fieldsMap, version, size, dlFileVersion.getStatus(),
 				serviceContext.getModifiedDate(now), serviceContext);
+
+			// Folder
+
+			if (dlFileEntry.getFolderId() !=
+				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+				DLFolder dlFolder = dlFolderLocalService.getDLFolder(
+					dlFileEntry.getFolderId());
+
+				dlFolder.setLastPostDate(serviceContext.getModifiedDate(now));
+
+				dlFolderPersistence.update(dlFolder);
+			}
 
 			// App helper
 

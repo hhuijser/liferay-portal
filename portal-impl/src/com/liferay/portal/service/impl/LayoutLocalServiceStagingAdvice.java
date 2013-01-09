@@ -257,7 +257,7 @@ public class LayoutLocalServiceStagingAdvice implements MethodInterceptor {
 		layoutRevision.setKeywordsMap(keywordsMap);
 		layoutRevision.setRobotsMap(robotsMap);
 		originalLayout.setType(type);
-		originalLayout.setHidden(hidden);
+		originalLayout.setHidden_(hidden);
 		originalLayout.setFriendlyURL(friendlyURL);
 
 		if (iconImage != null) {

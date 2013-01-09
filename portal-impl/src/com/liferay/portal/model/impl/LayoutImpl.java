@@ -228,7 +228,7 @@ public class LayoutImpl extends LayoutBaseImpl {
 		while (itr.hasNext()) {
 			Layout layout = itr.next();
 
-			if (layout.isHidden() ||
+			if (layout.isHidden_() ||
 				!LayoutPermissionUtil.contains(
 					permissionChecker, layout, ActionKeys.VIEW)) {
 

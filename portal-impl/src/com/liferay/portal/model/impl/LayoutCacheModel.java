@@ -70,8 +70,8 @@ public class LayoutCacheModel implements CacheModel<Layout>, Externalizable {
 		sb.append(type);
 		sb.append(", typeSettings=");
 		sb.append(typeSettings);
-		sb.append(", hidden=");
-		sb.append(hidden);
+		sb.append(", hidden_=");
+		sb.append(hidden_);
 		sb.append(", friendlyURL=");
 		sb.append(friendlyURL);
 		sb.append(", iconImage=");
@@ -182,7 +182,7 @@ public class LayoutCacheModel implements CacheModel<Layout>, Externalizable {
 			layoutImpl.setTypeSettings(typeSettings);
 		}
 
-		layoutImpl.setHidden(hidden);
+		layoutImpl.setHidden_(hidden_);
 
 		if (friendlyURL == null) {
 			layoutImpl.setFriendlyURL(StringPool.BLANK);
@@ -269,7 +269,7 @@ public class LayoutCacheModel implements CacheModel<Layout>, Externalizable {
 		robots = objectInput.readUTF();
 		type = objectInput.readUTF();
 		typeSettings = objectInput.readUTF();
-		hidden = objectInput.readBoolean();
+		hidden_ = objectInput.readBoolean();
 		friendlyURL = objectInput.readUTF();
 		iconImage = objectInput.readBoolean();
 		iconImageId = objectInput.readLong();
@@ -351,7 +351,7 @@ public class LayoutCacheModel implements CacheModel<Layout>, Externalizable {
 			objectOutput.writeUTF(typeSettings);
 		}
 
-		objectOutput.writeBoolean(hidden);
+		objectOutput.writeBoolean(hidden_);
 
 		if (friendlyURL == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
@@ -433,7 +433,7 @@ public class LayoutCacheModel implements CacheModel<Layout>, Externalizable {
 	public String robots;
 	public String type;
 	public String typeSettings;
-	public boolean hidden;
+	public boolean hidden_;
 	public String friendlyURL;
 	public boolean iconImage;
 	public long iconImageId;

@@ -944,7 +944,7 @@ create table Layout (
 	robots STRING null,
 	type_ VARCHAR(75) null,
 	typeSettings TEXT null,
-	hidden BOOLEAN,
+	hidden_ BOOLEAN,
 	friendlyURL VARCHAR(255) null,
 	iconImage BOOLEAN,
 	iconImageId LONG,

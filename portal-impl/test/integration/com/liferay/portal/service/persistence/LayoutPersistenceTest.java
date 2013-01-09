@@ -139,7 +139,7 @@ public class LayoutPersistenceTest {
 
 		newLayout.setTypeSettings(ServiceTestUtil.randomString());
 
-		newLayout.setHidden(ServiceTestUtil.randomBoolean());
+		newLayout.setHidden_(ServiceTestUtil.randomBoolean());
 
 		newLayout.setFriendlyURL(ServiceTestUtil.randomString());
 
@@ -196,7 +196,7 @@ public class LayoutPersistenceTest {
 		Assert.assertEquals(existingLayout.getType(), newLayout.getType());
 		Assert.assertEquals(existingLayout.getTypeSettings(),
 			newLayout.getTypeSettings());
-		Assert.assertEquals(existingLayout.getHidden(), newLayout.getHidden());
+		Assert.assertEquals(existingLayout.getHidden_(), newLayout.getHidden_());
 		Assert.assertEquals(existingLayout.getFriendlyURL(),
 			newLayout.getFriendlyURL());
 		Assert.assertEquals(existingLayout.getIconImage(),
@@ -411,7 +411,7 @@ public class LayoutPersistenceTest {
 
 		layout.setTypeSettings(ServiceTestUtil.randomString());
 
-		layout.setHidden(ServiceTestUtil.randomBoolean());
+		layout.setHidden_(ServiceTestUtil.randomBoolean());
 
 		layout.setFriendlyURL(ServiceTestUtil.randomString());
 

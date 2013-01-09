@@ -224,7 +224,7 @@ public class SitesUtil {
 			targetLayout.getNameMap(), targetLayout.getTitleMap(),
 			targetLayout.getDescriptionMap(), targetLayout.getKeywordsMap(),
 			targetLayout.getRobotsMap(), layoutPrototypeLayout.getType(),
-			targetLayout.getHidden(), targetLayout.getFriendlyURL(),
+			targetLayout.getHidden_(), targetLayout.getFriendlyURL(),
 			targetLayout.getIconImage(), null, serviceContext);
 
 		targetLayout = LayoutLocalServiceUtil.updateLayout(

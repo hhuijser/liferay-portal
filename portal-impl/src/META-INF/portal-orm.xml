@@ -303,7 +303,7 @@
 				<column name="TYPE_" />
 			</basic>
 			<basic name="typeSettings" />
-			<basic name="hidden" />
+			<basic name="hidden_" />
 			<basic name="friendlyURL" />
 			<basic name="iconImage" />
 			<basic name="iconImageId" />

@@ -170,7 +170,7 @@ public class ViewAction extends PortletAction {
 			themeDisplay.getPermissionChecker();
 
 		for (Layout layout : layouts) {
-			if (!layout.isHidden() &&
+			if (!layout.isHidden_() &&
 				LayoutPermissionUtil.contains(
 					permissionChecker, layout, ActionKeys.VIEW)) {
 

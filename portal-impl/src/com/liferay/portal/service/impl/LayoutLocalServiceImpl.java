@@ -223,7 +223,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setKeywordsMap(keywordsMap);
 		layout.setRobotsMap(robotsMap);
 		layout.setType(type);
-		layout.setHidden(hidden);
+		layout.setHidden_(hidden);
 		layout.setFriendlyURL(friendlyURL);
 		layout.setPriority(priority);
 
@@ -1599,7 +1599,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 					RequiredLayoutException.FIRST_LAYOUT_TYPE);
 			}
 
-			if (layout.isHidden()) {
+			if (layout.isHidden_()) {
 				throw new RequiredLayoutException(
 					RequiredLayoutException.FIRST_LAYOUT_HIDDEN);
 			}
@@ -1768,7 +1768,7 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		layout.setKeywordsMap(keywordsMap);
 		layout.setRobotsMap(robotsMap);
 		layout.setType(type);
-		layout.setHidden(hidden);
+		layout.setHidden_(hidden);
 		layout.setFriendlyURL(friendlyURL);
 
 		if (iconImage != null) {

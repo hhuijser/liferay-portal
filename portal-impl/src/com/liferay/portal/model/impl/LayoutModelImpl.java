@@ -83,7 +83,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 			{ "robots", Types.VARCHAR },
 			{ "type_", Types.VARCHAR },
 			{ "typeSettings", Types.CLOB },
-			{ "hidden", Types.BOOLEAN },
+			{ "hidden_", Types.BOOLEAN },
 			{ "friendlyURL", Types.VARCHAR },
 			{ "iconImage", Types.BOOLEAN },
 			{ "iconImageId", Types.BIGINT },
@@ -97,7 +97,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 			{ "layoutPrototypeLinkEnabled", Types.BOOLEAN },
 			{ "sourcePrototypeLayoutUuid", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table Layout (uuid_ VARCHAR(75) null,plid LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,privateLayout BOOLEAN,layoutId LONG,parentLayoutId LONG,name STRING null,title STRING null,description STRING null,keywords STRING null,robots STRING null,type_ VARCHAR(75) null,typeSettings TEXT null,hidden BOOLEAN,friendlyURL VARCHAR(255) null,iconImage BOOLEAN,iconImageId LONG,themeId VARCHAR(75) null,colorSchemeId VARCHAR(75) null,wapThemeId VARCHAR(75) null,wapColorSchemeId VARCHAR(75) null,css STRING null,priority INTEGER,layoutPrototypeUuid VARCHAR(75) null,layoutPrototypeLinkEnabled BOOLEAN,sourcePrototypeLayoutUuid VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table Layout (uuid_ VARCHAR(75) null,plid LONG not null primary key,groupId LONG,companyId LONG,createDate DATE null,modifiedDate DATE null,privateLayout BOOLEAN,layoutId LONG,parentLayoutId LONG,name STRING null,title STRING null,description STRING null,keywords STRING null,robots STRING null,type_ VARCHAR(75) null,typeSettings TEXT null,hidden_ BOOLEAN,friendlyURL VARCHAR(255) null,iconImage BOOLEAN,iconImageId LONG,themeId VARCHAR(75) null,colorSchemeId VARCHAR(75) null,wapThemeId VARCHAR(75) null,wapColorSchemeId VARCHAR(75) null,css STRING null,priority INTEGER,layoutPrototypeUuid VARCHAR(75) null,layoutPrototypeLinkEnabled BOOLEAN,sourcePrototypeLayoutUuid VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table Layout";
 	public static final String ORDER_BY_JPQL = " ORDER BY layout.parentLayoutId ASC, layout.priority ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY Layout.parentLayoutId ASC, Layout.priority ASC";
@@ -155,7 +155,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 		model.setRobots(soapModel.getRobots());
 		model.setType(soapModel.getType());
 		model.setTypeSettings(soapModel.getTypeSettings());
-		model.setHidden(soapModel.getHidden());
+		model.setHidden_(soapModel.getHidden_());
 		model.setFriendlyURL(soapModel.getFriendlyURL());
 		model.setIconImage(soapModel.getIconImage());
 		model.setIconImageId(soapModel.getIconImageId());
@@ -242,7 +242,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 		attributes.put("robots", getRobots());
 		attributes.put("type", getType());
 		attributes.put("typeSettings", getTypeSettings());
-		attributes.put("hidden", getHidden());
+		attributes.put("hidden_", getHidden_());
 		attributes.put("friendlyURL", getFriendlyURL());
 		attributes.put("iconImage", getIconImage());
 		attributes.put("iconImageId", getIconImageId());
@@ -359,10 +359,10 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 			setTypeSettings(typeSettings);
 		}
 
-		Boolean hidden = (Boolean)attributes.get("hidden");
+		Boolean hidden_ = (Boolean)attributes.get("hidden_");
 
-		if (hidden != null) {
-			setHidden(hidden);
+		if (hidden_ != null) {
+			setHidden_(hidden_);
 		}
 
 		String friendlyURL = (String)attributes.get("friendlyURL");
@@ -1069,16 +1069,16 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 	}
 
 	@JSON
-	public boolean getHidden() {
-		return _hidden;
+	public boolean getHidden_() {
+		return _hidden_;
 	}
 
-	public boolean isHidden() {
-		return _hidden;
+	public boolean isHidden_() {
+		return _hidden_;
 	}
 
-	public void setHidden(boolean hidden) {
-		_hidden = hidden;
+	public void setHidden_(boolean hidden_) {
+		_hidden_ = hidden_;
 	}
 
 	@JSON
@@ -1344,7 +1344,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 		layoutImpl.setRobots(getRobots());
 		layoutImpl.setType(getType());
 		layoutImpl.setTypeSettings(getTypeSettings());
-		layoutImpl.setHidden(getHidden());
+		layoutImpl.setHidden_(getHidden_());
 		layoutImpl.setFriendlyURL(getFriendlyURL());
 		layoutImpl.setIconImage(getIconImage());
 		layoutImpl.setIconImageId(getIconImageId());
@@ -1566,7 +1566,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 			layoutCacheModel.typeSettings = null;
 		}
 
-		layoutCacheModel.hidden = getHidden();
+		layoutCacheModel.hidden_ = getHidden_();
 
 		layoutCacheModel.friendlyURL = getFriendlyURL();
 
@@ -1681,8 +1681,8 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 		sb.append(getType());
 		sb.append(", typeSettings=");
 		sb.append(getTypeSettings());
-		sb.append(", hidden=");
-		sb.append(getHidden());
+		sb.append(", hidden_=");
+		sb.append(getHidden_());
 		sb.append(", friendlyURL=");
 		sb.append(getFriendlyURL());
 		sb.append(", iconImage=");
@@ -1784,8 +1784,8 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 		sb.append(getTypeSettings());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>hidden</column-name><column-value><![CDATA[");
-		sb.append(getHidden());
+			"<column><column-name>hidden_</column-name><column-value><![CDATA[");
+		sb.append(getHidden_());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>friendlyURL</column-name><column-value><![CDATA[");
@@ -1876,7 +1876,7 @@ public class LayoutModelImpl extends BaseModelImpl<Layout>
 	private String _type;
 	private String _originalType;
 	private String _typeSettings;
-	private boolean _hidden;
+	private boolean _hidden_;
 	private String _friendlyURL;
 	private String _originalFriendlyURL;
 	private boolean _iconImage;

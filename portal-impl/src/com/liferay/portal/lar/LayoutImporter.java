@@ -1255,7 +1255,7 @@ public class LayoutImporter {
 			updateTypeSettings(importedLayout, layout);
 		}
 
-		importedLayout.setHidden(layout.isHidden());
+		importedLayout.setHidden_(layout.isHidden_());
 		importedLayout.setFriendlyURL(friendlyURL);
 
 		if (importThemeSettings) {

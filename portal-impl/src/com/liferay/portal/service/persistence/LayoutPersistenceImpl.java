@@ -8451,7 +8451,7 @@ public class LayoutPersistenceImpl extends BasePersistenceImpl<Layout>
 		layoutImpl.setRobots(layout.getRobots());
 		layoutImpl.setType(layout.getType());
 		layoutImpl.setTypeSettings(layout.getTypeSettings());
-		layoutImpl.setHidden(layout.isHidden());
+		layoutImpl.setHidden_(layout.isHidden_());
 		layoutImpl.setFriendlyURL(layout.getFriendlyURL());
 		layoutImpl.setIconImage(layout.isIconImage());
 		layoutImpl.setIconImageId(layout.getIconImageId());

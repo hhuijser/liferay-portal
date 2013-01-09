@@ -499,7 +499,7 @@
 		<column name="robots" type="String" localized="true" />
 		<column name="type" type="String" />
 		<column name="typeSettings" type="String" />
-		<column name="hidden" type="boolean" />
+		<column name="hidden_" type="boolean" />
 		<column name="friendlyURL" type="String" />
 		<column name="iconImage" type="boolean" />
 		<column name="iconImageId" type="long" />

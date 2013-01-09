@@ -248,7 +248,7 @@
 		<field name="typeSettings" type="String">
 			<hint-collection name="CLOB" />
 		</field>
-		<field name="hidden" type="boolean" />
+		<field name="hidden_" type="boolean" />
 		<field name="friendlyURL" type="String">
 			<hint name="display-width">150</hint>
 			<hint name="max-length">255</hint>

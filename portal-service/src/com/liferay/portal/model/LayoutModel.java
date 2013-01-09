@@ -723,25 +723,25 @@ public interface LayoutModel extends BaseModel<Layout> {
 	public void setTypeSettings(String typeSettings);
 
 	/**
-	 * Returns the hidden of this layout.
+	 * Returns the hidden_ of this layout.
 	 *
-	 * @return the hidden of this layout
+	 * @return the hidden_ of this layout
 	 */
-	public boolean getHidden();
+	public boolean getHidden_();
 
 	/**
-	 * Returns <code>true</code> if this layout is hidden.
+	 * Returns <code>true</code> if this layout is hidden_.
 	 *
-	 * @return <code>true</code> if this layout is hidden; <code>false</code> otherwise
+	 * @return <code>true</code> if this layout is hidden_; <code>false</code> otherwise
 	 */
-	public boolean isHidden();
+	public boolean isHidden_();
 
 	/**
-	 * Sets whether this layout is hidden.
+	 * Sets whether this layout is hidden_.
 	 *
-	 * @param hidden the hidden of this layout
+	 * @param hidden_ the hidden_ of this layout
 	 */
-	public void setHidden(boolean hidden);
+	public void setHidden_(boolean hidden_);
 
 	/**
 	 * Returns the friendly u r l of this layout.

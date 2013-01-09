@@ -1688,7 +1688,7 @@ public class ServicePreAction extends Action {
 		for (int i = 0; i < layouts.size(); i++) {
 			Layout curLayout = layouts.get(i);
 
-			if (!curLayout.isHidden() &&
+			if (!curLayout.isHidden_() &&
 				(LayoutPermissionUtil.contains(
 					permissionChecker, curLayout, false, ActionKeys.VIEW) ||
 				 hasViewStagingPermission)) {

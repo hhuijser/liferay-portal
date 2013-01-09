@@ -59,7 +59,7 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 		attributes.put("robots", getRobots());
 		attributes.put("type", getType());
 		attributes.put("typeSettings", getTypeSettings());
-		attributes.put("hidden", getHidden());
+		attributes.put("hidden_", getHidden_());
 		attributes.put("friendlyURL", getFriendlyURL());
 		attributes.put("iconImage", getIconImage());
 		attributes.put("iconImageId", getIconImageId());
@@ -175,10 +175,10 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 			setTypeSettings(typeSettings);
 		}
 
-		Boolean hidden = (Boolean)attributes.get("hidden");
+		Boolean hidden_ = (Boolean)attributes.get("hidden_");
 
-		if (hidden != null) {
-			setHidden(hidden);
+		if (hidden_ != null) {
+			setHidden_(hidden_);
 		}
 
 		String friendlyURL = (String)attributes.get("friendlyURL");
@@ -1117,30 +1117,30 @@ public class LayoutWrapper implements Layout, ModelWrapper<Layout> {
 	}
 
 	/**
-	* Returns the hidden of this layout.
+	* Returns the hidden_ of this layout.
 	*
-	* @return the hidden of this layout
+	* @return the hidden_ of this layout
 	*/
-	public boolean getHidden() {
-		return _layout.getHidden();
+	public boolean getHidden_() {
+		return _layout.getHidden_();
 	}
 
 	/**
-	* Returns <code>true</code> if this layout is hidden.
+	* Returns <code>true</code> if this layout is hidden_.
 	*
-	* @return <code>true</code> if this layout is hidden; <code>false</code> otherwise
+	* @return <code>true</code> if this layout is hidden_; <code>false</code> otherwise
 	*/
-	public boolean isHidden() {
-		return _layout.isHidden();
+	public boolean isHidden_() {
+		return _layout.isHidden_();
 	}
 
 	/**
-	* Sets whether this layout is hidden.
+	* Sets whether this layout is hidden_.
 	*
-	* @param hidden the hidden of this layout
+	* @param hidden_ the hidden_ of this layout
 	*/
-	public void setHidden(boolean hidden) {
-		_layout.setHidden(hidden);
+	public void setHidden_(boolean hidden_) {
+		_layout.setHidden_(hidden_);
 	}
 
 	/**

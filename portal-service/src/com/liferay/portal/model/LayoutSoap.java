@@ -47,7 +47,7 @@ public class LayoutSoap implements Serializable {
 		soapModel.setRobots(model.getRobots());
 		soapModel.setType(model.getType());
 		soapModel.setTypeSettings(model.getTypeSettings());
-		soapModel.setHidden(model.getHidden());
+		soapModel.setHidden_(model.getHidden_());
 		soapModel.setFriendlyURL(model.getFriendlyURL());
 		soapModel.setIconImage(model.getIconImage());
 		soapModel.setIconImageId(model.getIconImageId());
@@ -244,16 +244,16 @@ public class LayoutSoap implements Serializable {
 		_typeSettings = typeSettings;
 	}
 
-	public boolean getHidden() {
-		return _hidden;
+	public boolean getHidden_() {
+		return _hidden_;
 	}
 
-	public boolean isHidden() {
-		return _hidden;
+	public boolean isHidden_() {
+		return _hidden_;
 	}
 
-	public void setHidden(boolean hidden) {
-		_hidden = hidden;
+	public void setHidden_(boolean hidden_) {
+		_hidden_ = hidden_;
 	}
 
 	public String getFriendlyURL() {
@@ -377,7 +377,7 @@ public class LayoutSoap implements Serializable {
 	private String _robots;
 	private String _type;
 	private String _typeSettings;
-	private boolean _hidden;
+	private boolean _hidden_;
 	private String _friendlyURL;
 	private boolean _iconImage;
 	private long _iconImageId;

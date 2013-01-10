@@ -1164,21 +1164,17 @@ public class PortletExporter {
 
 		PortletPreferences portletPreferences = null;
 
-		try {
-			if ((ownerType == PortletKeys.PREFS_OWNER_TYPE_COMPANY) ||
-				(ownerType == PortletKeys.PREFS_OWNER_TYPE_GROUP) ||
-				(ownerType == PortletKeys.PREFS_OWNER_TYPE_ARCHIVED)) {
+		if ((ownerType == PortletKeys.PREFS_OWNER_TYPE_COMPANY) ||
+			(ownerType == PortletKeys.PREFS_OWNER_TYPE_GROUP) ||
+			(ownerType == PortletKeys.PREFS_OWNER_TYPE_ARCHIVED)) {
 
-				portletPreferences =
-					PortletPreferencesLocalServiceUtil.getPortletPreferences(
-						ownerId, ownerType, PortletKeys.PREFS_OWNER_ID_DEFAULT,
-						portletId);
-			}
-			else {
-				portletPreferences =
-					PortletPreferencesLocalServiceUtil.getPortletPreferences(
-						ownerId, ownerType, plid, portletId);
-			}
+			plid = PortletKeys.PREFS_OWNER_ID_DEFAULT;
+		}
+
+		try {
+			portletPreferences =
+				PortletPreferencesLocalServiceUtil.getPortletPreferences(
+					ownerId, ownerType, plid, portletId);
 		}
 		catch (NoSuchPortletPreferencesException nsppe) {
 			return;

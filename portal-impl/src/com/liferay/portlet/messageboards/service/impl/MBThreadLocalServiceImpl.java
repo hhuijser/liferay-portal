@@ -193,9 +193,19 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 			MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 				thread.getCategoryId());
 
-			category.setThreadCount(category.getThreadCount() - 1);
-			category.setMessageCount(
-				category.getMessageCount() - thread.getMessageCount());
+			int threadCount =
+				mbThreadLocalService.getCategoryThreadsCount(
+					category.getGroupId(), category.getCategoryId(),
+					WorkflowConstants.STATUS_APPROVED);
+
+			category.setThreadCount(threadCount - 1);
+
+			int categoryMessageCount =
+				mbMessageLocalService.getCategoryMessagesCount(
+					category.getGroupId(), category.getCategoryId(),
+					WorkflowConstants.STATUS_APPROVED);
+
+			category.setMessageCount(categoryMessageCount);
 
 			mbCategoryPersistence.update(category);
 		}
@@ -620,17 +630,31 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 		// Category
 
 		if ((oldCategory != null) && (categoryId != oldCategoryId)) {
-			oldCategory.setThreadCount(oldCategory.getThreadCount() - 1);
-			oldCategory.setMessageCount(
-				oldCategory.getMessageCount() - thread.getMessageCount());
+			int messageCount =
+				mbMessageLocalService.getCategoryMessagesCount(
+					groupId, oldCategoryId, WorkflowConstants.STATUS_APPROVED);
+
+			oldCategory.setMessageCount(messageCount);
+
+			int threadCount = mbThreadLocalService.getCategoryThreadsCount(
+				groupId, oldCategoryId, WorkflowConstants.STATUS_APPROVED);
+
+			oldCategory.setThreadCount(threadCount);
 
 			mbCategoryPersistence.update(oldCategory);
 		}
 
 		if ((category != null) && (categoryId != oldCategoryId)) {
-			category.setThreadCount(category.getThreadCount() + 1);
-			category.setMessageCount(
-				category.getMessageCount() + thread.getMessageCount());
+			int messageCount =
+				mbMessageLocalService.getCategoryMessagesCount(
+					groupId, categoryId, WorkflowConstants.STATUS_APPROVED);
+
+			category.setMessageCount(messageCount);
+
+			int threadCount = mbThreadLocalService.getCategoryThreadsCount(
+				groupId, categoryId, WorkflowConstants.STATUS_APPROVED);
+
+			category.setThreadCount(threadCount);
 
 			mbCategoryPersistence.update(category);
 		}
@@ -784,20 +808,24 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 
 		// Update children
 
-		int messagesMoved = 1;
-
-		messagesMoved += moveChildrenMessages(
-			message, category, oldThread.getThreadId());
+		moveChildrenMessages(message, category, oldThread.getThreadId());
 
 		// Update new thread
 
-		thread.setMessageCount(messagesMoved);
+		int threadMessageCount = mbMessageLocalService.getThreadMessagesCount(
+			thread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+		thread.setMessageCount(threadMessageCount);
 
 		mbThreadPersistence.update(thread);
 
 		// Update old thread
 
-		oldThread.setMessageCount(oldThread.getMessageCount() - messagesMoved);
+		int oldThreadMessageCount =
+			mbMessageLocalService.getThreadMessagesCount(
+				oldThread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+		oldThread.setMessageCount(oldThreadMessageCount);
 
 		mbThreadPersistence.update(oldThread);
 
@@ -808,7 +836,11 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 			(message.getCategoryId() !=
 				MBCategoryConstants.DISCUSSION_CATEGORY_ID)) {
 
-			category.setThreadCount(category.getThreadCount() + 1);
+			int threadCount = mbThreadLocalService.getCategoryThreadsCount(
+				category.getGroupId(), category.getCategoryId(),
+				WorkflowConstants.STATUS_APPROVED);
+
+			category.setThreadCount(threadCount);
 
 			mbCategoryPersistence.update(category);
 		}
@@ -881,16 +913,18 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 				MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 					thread.getCategoryId());
 
-				if (status == WorkflowConstants.STATUS_IN_TRASH) {
-					category.setThreadCount(category.getThreadCount() - 1);
-					category.setMessageCount(
-						category.getMessageCount() - thread.getMessageCount());
-				}
-				else {
-					category.setThreadCount(category.getThreadCount() + 1);
-					category.setMessageCount(
-						category.getMessageCount() + thread.getMessageCount());
-				}
+				int messageCount =
+					mbMessageLocalService.getCategoryMessagesCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setMessageCount(messageCount);
+
+				int threadCount = mbThreadLocalService.getCategoryThreadsCount(
+					category.getGroupId(), category.getCategoryId(),
+					WorkflowConstants.STATUS_APPROVED);
+
+				category.setThreadCount(threadCount);
 
 				mbCategoryPersistence.update(category);
 			}

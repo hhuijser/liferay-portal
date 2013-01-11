@@ -545,8 +545,19 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 					message.getCategoryId());
 
-				category.setThreadCount(category.getThreadCount() - 1);
-				category.setMessageCount(category.getMessageCount() - 1);
+				int messageCount =
+					mbMessageLocalService.getCategoryMessagesCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setMessageCount(messageCount - 1);
+
+				int threadCount =
+					mbThreadLocalService.getCategoryThreadsCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setThreadCount(threadCount);
 
 				mbCategoryPersistence.update(category);
 			}
@@ -655,7 +666,10 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 					message.getCategoryId());
 
-				category.setMessageCount(category.getMessageCount() - 1);
+				int messageCount = mbMessageLocalService.getThreadMessagesCount(
+					thread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+				category.setMessageCount(messageCount - 1);
 
 				mbCategoryPersistence.update(category);
 			}
@@ -2152,12 +2166,20 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			if ((category != null) &&
 				(thread.getRootMessageId() == message.getMessageId())) {
 
-				category.setThreadCount(category.getThreadCount() + 1);
+				int categoryThreadCount =
+					mbThreadLocalService.getCategoryThreadsCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setThreadCount(categoryThreadCount + 1);
 
 				mbCategoryPersistence.update(category);
 			}
 
-			thread.setMessageCount(thread.getMessageCount() + 1);
+			int messageCount = mbMessageLocalService.getThreadMessagesCount(
+				thread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+			thread.setMessageCount(messageCount);
 
 			if (message.isAnonymous()) {
 				thread.setLastPostByUserId(0);
@@ -2171,7 +2193,12 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			// Category
 
 			if (category != null) {
-				category.setMessageCount(category.getMessageCount() + 1);
+				int categoryMessageCount =
+					mbMessageLocalService.getCategoryMessagesCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setMessageCount(categoryMessageCount);
 				category.setLastPostDate(modifiedDate);
 
 				mbCategoryPersistence.update(category);
@@ -2185,17 +2212,30 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			if ((category != null) &&
 				(thread.getRootMessageId() == message.getMessageId())) {
 
-				category.setThreadCount(category.getThreadCount() - 1);
+				int categoryThreadCount =
+					mbThreadLocalService.getCategoryThreadsCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setThreadCount(categoryThreadCount - 1);
 
 				mbCategoryPersistence.update(category);
 			}
 
-			thread.setMessageCount(thread.getMessageCount() - 1);
+			int messageCount = mbMessageLocalService.getThreadMessagesCount(
+				thread.getThreadId(), WorkflowConstants.STATUS_APPROVED);
+
+			thread.setMessageCount(messageCount - 1);
 
 			// Category
 
 			if (category != null) {
-				category.setMessageCount(category.getMessageCount() - 1);
+				int categoryMessageCount =
+					mbMessageLocalService.getCategoryMessagesCount(
+						category.getGroupId(), category.getCategoryId(),
+						WorkflowConstants.STATUS_APPROVED);
+
+				category.setMessageCount(categoryMessageCount - 1);
 
 				mbCategoryPersistence.update(category);
 			}

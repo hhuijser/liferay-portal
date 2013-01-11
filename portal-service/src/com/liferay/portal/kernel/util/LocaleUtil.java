@@ -161,7 +161,8 @@ public class LocaleUtil {
 
 			if (validate) {
 				if (!LanguageUtil.isAvailableLocale(locale) &&
-					!LanguageUtil.isDuplicateLanguageCode(languageId)) {
+					!LanguageUtil.isDuplicateLanguageCode(languageId) &&
+					!LanguageUtil.isAvailableLanguageCode(languageId)) {
 
 					throw new IllegalArgumentException(
 						"Invalid locale " + locale);

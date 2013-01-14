@@ -545,10 +545,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 					message.getCategoryId());
 
-				category.setThreadCount(category.getThreadCount() - 1);
-				category.setMessageCount(category.getMessageCount() - 1);
-
-				mbCategoryPersistence.update(category);
+				MBUtil.updateCategoryStatistics(category);
 			}
 		}
 		else {
@@ -636,13 +633,12 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			// Thread
 
 			if (message.isApproved()) {
-				int messageCount = mbMessagePersistence.countByT_S(
-					message.getThreadId(), WorkflowConstants.STATUS_APPROVED);
-
-				thread.setMessageCount(messageCount - 1);
+				MBUtil.updateThreadMessagesCount(thread);
 			}
 
-			mbThreadPersistence.update(thread);
+			if (!message.isApproved()) {
+				mbThreadPersistence.update(thread);
+			}
 
 			// Category
 
@@ -655,9 +651,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				MBCategory category = mbCategoryPersistence.findByPrimaryKey(
 					message.getCategoryId());
 
-				category.setMessageCount(category.getMessageCount() - 1);
-
-				mbCategoryPersistence.update(category);
+				MBUtil.updateCategoryMessagesCount(category);
 			}
 		}
 
@@ -2144,64 +2138,51 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			thread.setStatusDate(modifiedDate);
 		}
 
-		if ((status == WorkflowConstants.STATUS_APPROVED) &&
-			(oldStatus != WorkflowConstants.STATUS_APPROVED)) {
+		boolean statusApprovedChanges =
+			(status == WorkflowConstants.STATUS_APPROVED) &&
+			(oldStatus != WorkflowConstants.STATUS_APPROVED) ||
+			(oldStatus == WorkflowConstants.STATUS_APPROVED) &&
+			(status != WorkflowConstants.STATUS_APPROVED);
+
+		if (statusApprovedChanges) {
+
+			if ((status == WorkflowConstants.STATUS_APPROVED) &&
+				(oldStatus != WorkflowConstants.STATUS_APPROVED)) {
+
+				if (message.isAnonymous()) {
+					thread.setLastPostByUserId(0);
+				}
+				else {
+					thread.setLastPostByUserId(message.getUserId());
+				}
+
+				thread.setLastPostDate(modifiedDate);
+
+				if (category != null) {
+					category.setLastPostDate(modifiedDate);
+				}
+			}
 
 			// Thread
+
+			MBUtil.updateThreadMessagesCount(thread);
+
+			// Category
 
 			if ((category != null) &&
 				(thread.getRootMessageId() == message.getMessageId())) {
 
-				category.setThreadCount(category.getThreadCount() + 1);
-
-				mbCategoryPersistence.update(category);
+				MBUtil.updateCategoryStatistics(category);
 			}
-
-			thread.setMessageCount(thread.getMessageCount() + 1);
-
-			if (message.isAnonymous()) {
-				thread.setLastPostByUserId(0);
-			}
-			else {
-				thread.setLastPostByUserId(message.getUserId());
-			}
-
-			thread.setLastPostDate(modifiedDate);
-
-			// Category
-
-			if (category != null) {
-				category.setMessageCount(category.getMessageCount() + 1);
-				category.setLastPostDate(modifiedDate);
-
-				mbCategoryPersistence.update(category);
-			}
-		}
-		else if ((oldStatus == WorkflowConstants.STATUS_APPROVED) &&
-				 (status != WorkflowConstants.STATUS_APPROVED)) {
-
-			// Thread
 
 			if ((category != null) &&
-				(thread.getRootMessageId() == message.getMessageId())) {
+				!(thread.getRootMessageId() == message.getMessageId())) {
 
-				category.setThreadCount(category.getThreadCount() - 1);
-
-				mbCategoryPersistence.update(category);
-			}
-
-			thread.setMessageCount(thread.getMessageCount() - 1);
-
-			// Category
-
-			if (category != null) {
-				category.setMessageCount(category.getMessageCount() - 1);
-
-				mbCategoryPersistence.update(category);
+				MBUtil.updateCategoryMessagesCount(category);
 			}
 		}
 
-		if (status != oldStatus) {
+		if (!statusApprovedChanges && (status != oldStatus)) {
 			mbThreadPersistence.update(thread);
 		}
 	}

@@ -14,22 +14,12 @@
 
 package com.liferay.portal.kernel.search;
 
-import com.liferay.portal.kernel.messaging.proxy.MessagingProxy;
-import com.liferay.portal.kernel.messaging.proxy.ProxyMode;
-
 /**
- * @author Bruno Farache
- * @author Raymond Augé
+ * @author Michael C. Han
  */
-@MessagingProxy(mode = ProxyMode.SYNC)
-public interface IndexSearcher extends QuerySuggester {
+public interface HitsProcessor {
 
-	public Hits search(SearchContext searchContext, Query query)
-		throws SearchException;
-
-	public Hits search(
-			String searchEngineId, long companyId, Query query, Sort[] sort,
-			int start, int end)
+	public boolean process(SearchContext searchContext, Hits hits)
 		throws SearchException;
 
 }

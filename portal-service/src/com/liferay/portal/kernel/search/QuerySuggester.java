@@ -17,19 +17,23 @@ package com.liferay.portal.kernel.search;
 import com.liferay.portal.kernel.messaging.proxy.MessagingProxy;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMode;
 
+import java.util.List;
+import java.util.Map;
+
 /**
- * @author Bruno Farache
- * @author Raymond Augé
+ * @author Michael C. Han
  */
 @MessagingProxy(mode = ProxyMode.SYNC)
-public interface IndexSearcher extends QuerySuggester {
+public interface QuerySuggester {
 
-	public Hits search(SearchContext searchContext, Query query)
+	public String spellCheckKeywords(SearchContext searchContext)
 		throws SearchException;
 
-	public Hits search(
-			String searchEngineId, long companyId, Query query, Sort[] sort,
-			int start, int end)
+	public Map<String, List<String>> spellCheckKeywords(
+			SearchContext searchContext, int max)
+		throws SearchException;
+
+	public String[] suggestKeywordQueries(SearchContext searchContext, int max)
 		throws SearchException;
 
 }

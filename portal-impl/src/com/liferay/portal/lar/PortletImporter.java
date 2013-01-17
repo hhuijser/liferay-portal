@@ -1824,7 +1824,7 @@ public class PortletImporter {
 
 				updateAssetPublisherClassNameIds(jxPreferences, name);
 			}
-			else if (name.equals("defaultScope") || name.equals("scopeIds")) {
+			else if (name.equals("scopeIds")) {
 				updateAssetPublisherScopeIds(
 					portletDataContext, jxPreferences, name,
 					companyGroup.getGroupId(), layout.getPlid());

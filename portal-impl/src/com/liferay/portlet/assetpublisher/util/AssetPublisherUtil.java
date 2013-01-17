@@ -415,11 +415,11 @@ public class AssetPublisherUtil {
 		PortletPreferences portletPreferences, long scopeGroupId,
 		Layout layout) {
 
-		String defaultScopeId = GetterUtil.getString(
+		String defaultScope = GetterUtil.getString(
 			portletPreferences.getValue("defaultScope", null));
 
-		if (Validator.isNull(defaultScopeId) ||
-			defaultScopeId.equals(StringPool.FALSE)) {
+		if (Validator.isNull(defaultScope) ||
+			defaultScope.equals(StringPool.FALSE)) {
 
 			String[] scopeIds = portletPreferences.getValues(
 				"scopeIds",
@@ -440,13 +440,13 @@ public class AssetPublisherUtil {
 			return groupIds;
 		}
 
-		if (defaultScopeId.equals(StringPool.TRUE)) {
+		if (defaultScope.equals(StringPool.TRUE)) {
 			return new long[] {scopeGroupId};
 		}
 
 		try {
 			long groupId = _getGroupId(
-				defaultScopeId, scopeGroupId, layout.isPrivateLayout());
+				defaultScope, scopeGroupId, layout.isPrivateLayout());
 
 			return new long[] {groupId};
 		}

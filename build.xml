@@ -285,6 +285,12 @@ ${app.server.tomcat.dir}, then run "ant -buildfile build-dist.xml unzip-tomcat".
 							tofile="${app.server.dir}/common/lib/slf4j-jboss-logging.jar.bak"
 						/>
 
+						<copy
+							file="tools/servers/jboss/WEB-INF/jboss-classloading.xml"
+							tofile="${app.server.jboss.deploy.dir}/ROOT.war/WEB-INF/jboss-classloading.xml"
+							overwrite="true"
+						/>
+
 						<delete>
 							<fileset
 								dir="${app.server.lib.portal.dir}"

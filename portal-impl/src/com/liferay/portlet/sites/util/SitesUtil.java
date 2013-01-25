@@ -568,7 +568,7 @@ public class SitesUtil {
 
 			return LayoutLocalServiceUtil.fetchLayoutByUuidAndGroupId(
 				layout.getSourcePrototypeLayoutUuid(), group.getGroupId(),
-				layout.isPrivateLayout());
+				true);
 		}
 		catch (Exception e) {
 			_log.error(
@@ -680,7 +680,7 @@ public class SitesUtil {
 					layoutSet.getLayoutSetPrototypeUuid(),
 					layout.getCompanyId(),
 					layout.getSourcePrototypeLayoutUuid(),
-					layout.isPrivateLayout())) {
+					true)) {
 
 				return false;
 			}

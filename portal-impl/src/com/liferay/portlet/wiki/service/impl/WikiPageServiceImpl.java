@@ -616,6 +616,10 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 		WikiPage latestPage = null;
 
+		if (pages.size() == 1) {
+			latestPage = pages.get(0);
+		}
+
 		StringBundler sb = new StringBundler(6);
 
 		for (WikiPage page : pages) {
@@ -644,8 +648,15 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 					sb.append("version=");
 					sb.append(page.getVersion());
 
-					String value = getPageDiff(
-						companyId, latestPage, page, locale);
+					String value = null;
+
+					if (pages.size() == 1) {
+						value = page.getContent();
+					}
+					else {
+						value = getPageDiff(
+							companyId, latestPage, page, locale);
+					}
 
 					syndContent.setValue(value);
 

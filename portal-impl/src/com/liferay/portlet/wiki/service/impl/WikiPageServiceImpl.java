@@ -637,7 +637,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 				sb.append(HttpUtil.encodeURL(page.getTitle()));
 			}
 
-			if (diff) {
+			if (diff && (pages.size() > 1)) {
 				if (latestPage != null) {
 					sb.append(StringPool.QUESTION);
 					sb.append(PortalUtil.getPortletNamespace(PortletKeys.WIKI));

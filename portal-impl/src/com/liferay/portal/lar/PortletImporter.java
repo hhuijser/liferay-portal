@@ -1826,8 +1826,8 @@ public class PortletImporter {
 			}
 			else if (name.equals("defaultScope") || name.equals("scopeIds")) {
 				updateAssetPublisherScopeIds(
-					jxPreferences, name, companyGroup.getGroupId(),
-					layout.getPlid());
+					portletDataContext, jxPreferences, name,
+					companyGroup.getGroupId(), layout.getPlid());
 			}
 			else if (name.startsWith("queryName") &&
 					 value.equalsIgnoreCase("assetCategories")) {
@@ -1844,6 +1844,7 @@ public class PortletImporter {
 	}
 
 	protected void updateAssetPublisherScopeIds(
+			PortletDataContext portletDataContext,
 			javax.portlet.PortletPreferences jxPreferences, String key,
 			long groupId, long plid)
 		throws Exception {
@@ -1857,20 +1858,32 @@ public class PortletImporter {
 		String groupScopeId =
 			AssetPublisherUtil.SCOPE_ID_GROUP_PREFIX + groupId;
 
-		Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-		String layoutScopeId =
-			AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX + layout.getLayoutId();
-
 		String[] newValues = new String[oldValues.length];
 
 		for (int i = 0; i < oldValues.length; i++) {
 			String oldValue = oldValues[i];
 
-			newValues[i] = StringUtil.replace(
-				oldValue,
-				new String[] {"[$GROUP_SCOPE_ID$]", "[$LAYOUT_SCOPE_ID$]"},
-				new String[] {groupScopeId, layoutScopeId});
+			if (oldValue.startsWith(
+					AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX)) {
+
+				long oldLayoutId = GetterUtil.getLong(
+					oldValue.substring(
+						AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX.length()));
+
+				Map<Long, Layout> newLayoutsMap =
+					(Map<Long, Layout>)portletDataContext.getNewPrimaryKeysMap(
+						Layout.class);
+
+				Layout newLayout = newLayoutsMap.get(oldLayoutId);
+
+				newValues[i] =
+					AssetPublisherUtil.SCOPE_ID_LAYOUT_PREFIX +
+						newLayout.getLayoutId();
+			}
+			else {
+				newValues[i] = StringUtil.replace(
+					oldValue, "[$GROUP_SCOPE_ID$]", groupScopeId);
+			}
 		}
 
 		jxPreferences.setValues(key, newValues);

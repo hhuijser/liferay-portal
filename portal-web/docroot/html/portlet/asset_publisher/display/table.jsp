@@ -99,100 +99,102 @@ if ((assetEntryIndex % 2) == 0) {
 }
 %>
 
-<tr <%= style %>>
-	<td>
-		<c:choose>
-			<c:when test="<%= Validator.isNotNull(viewURL) %>">
-				<a href="<%= viewURL %>"><%= HtmlUtil.escape(title) %></a>
-			</c:when>
-			<c:otherwise>
-				<%= HtmlUtil.escape(title) %>
-			</c:otherwise>
-		</c:choose>
-	</td>
-
-	<%
-	for (int m = 0; m < metadataFields.length; m++) {
-		String value = null;
-
-		if (metadataFields[m].equals("create-date")) {
-			value = dateFormatDate.format(assetEntry.getCreateDate());
-		}
-		else if (metadataFields[m].equals("modified-date")) {
-			value = dateFormatDate.format(assetEntry.getModifiedDate());
-		}
-		else if (metadataFields[m].equals("publish-date")) {
-			if (assetEntry.getPublishDate() == null) {
-				value = StringPool.BLANK;
-			}
-			else {
-				value = dateFormatDate.format(assetEntry.getPublishDate());
-			}
-		}
-		else if (metadataFields[m].equals("expiration-date")) {
-			if (assetEntry.getExpirationDate() == null) {
-				value = StringPool.BLANK;
-			}
-			else {
-				value = dateFormatDate.format(assetEntry.getExpirationDate());
-			}
-		}
-		else if (metadataFields[m].equals("priority")) {
-			value = String.valueOf(assetEntry.getPriority());
-		}
-		else if (metadataFields[m].equals("author")) {
-			String userName = PortalUtil.getUserName(assetRenderer.getUserId(), assetRenderer.getUserName());
-
-			value = HtmlUtil.escape(userName);
-		}
-		else if (metadataFields[m].equals("view-count")) {
-			value = String.valueOf(assetEntry.getViewCount());
-		}
-		else if (metadataFields[m].equals("categories")) {
-		%>
-
-			<td>
-				<liferay-ui:asset-categories-summary
-					className="<%= assetEntry.getClassName() %>"
-					classPK="<%= assetEntry.getClassPK () %>"
-					portletURL="<%= renderResponse.createRenderURL() %>"
-				/>
-			</td>
-
-		<%
-		}
-		else if (metadataFields[m].equals("tags")) {
-		%>
-
-			<td>
-				<liferay-ui:asset-tags-summary
-					className="<%= assetEntry.getClassName() %>"
-					classPK="<%= assetEntry.getClassPK () %>"
-					portletURL="<%= renderResponse.createRenderURL() %>"
-				/>
-			</td>
-
-		<%
-		}
-
-		if (value != null) {
-	%>
-
-			<td>
-				<liferay-ui:message key="<%= value %>" />
-			</td>
-
-	<%
-		}
-	}
-	%>
-
-	<c:if test="<%= assetRenderer.hasEditPermission(permissionChecker) && (editPortletURL != null) && !stageableGroup.hasStagingGroup() %>">
+<c:if test="<%= assetRenderer.hasViewPermission(permissionChecker) %>">
+	<tr <%= style %>>
 		<td>
-			<liferay-util:include page="/html/portlet/asset_publisher/asset_actions.jsp" />
+			<c:choose>
+				<c:when test="<%= Validator.isNotNull(viewURL) %>">
+					<a href="<%= viewURL %>"><%= HtmlUtil.escape(title) %></a>
+				</c:when>
+				<c:otherwise>
+					<%= HtmlUtil.escape(title) %>
+				</c:otherwise>
+			</c:choose>
 		</td>
-	</c:if>
-</tr>
+
+		<%
+		for (int m = 0; m < metadataFields.length; m++) {
+			String value = null;
+
+			if (metadataFields[m].equals("create-date")) {
+				value = dateFormatDate.format(assetEntry.getCreateDate());
+			}
+			else if (metadataFields[m].equals("modified-date")) {
+				value = dateFormatDate.format(assetEntry.getModifiedDate());
+			}
+			else if (metadataFields[m].equals("publish-date")) {
+				if (assetEntry.getPublishDate() == null) {
+					value = StringPool.BLANK;
+				}
+				else {
+					value = dateFormatDate.format(assetEntry.getPublishDate());
+				}
+			}
+			else if (metadataFields[m].equals("expiration-date")) {
+				if (assetEntry.getExpirationDate() == null) {
+					value = StringPool.BLANK;
+				}
+				else {
+					value = dateFormatDate.format(assetEntry.getExpirationDate());
+				}
+			}
+			else if (metadataFields[m].equals("priority")) {
+				value = String.valueOf(assetEntry.getPriority());
+			}
+			else if (metadataFields[m].equals("author")) {
+				String userName = PortalUtil.getUserName(assetRenderer.getUserId(), assetRenderer.getUserName());
+
+				value = HtmlUtil.escape(userName);
+			}
+			else if (metadataFields[m].equals("view-count")) {
+				value = String.valueOf(assetEntry.getViewCount());
+			}
+			else if (metadataFields[m].equals("categories")) {
+			%>
+
+				<td>
+					<liferay-ui:asset-categories-summary
+						className="<%= assetEntry.getClassName() %>"
+						classPK="<%= assetEntry.getClassPK () %>"
+						portletURL="<%= renderResponse.createRenderURL() %>"
+					/>
+				</td>
+
+			<%
+			}
+			else if (metadataFields[m].equals("tags")) {
+			%>
+
+				<td>
+					<liferay-ui:asset-tags-summary
+						className="<%= assetEntry.getClassName() %>"
+						classPK="<%= assetEntry.getClassPK () %>"
+						portletURL="<%= renderResponse.createRenderURL() %>"
+					/>
+				</td>
+
+			<%
+			}
+
+			if (value != null) {
+		%>
+
+				<td>
+					<liferay-ui:message key="<%= value %>" />
+				</td>
+
+		<%
+			}
+		}
+		%>
+
+		<c:if test="<%= assetRenderer.hasEditPermission(permissionChecker) && (editPortletURL != null) && !stageableGroup.hasStagingGroup() %>">
+			<td>
+				<liferay-util:include page="/html/portlet/asset_publisher/asset_actions.jsp" />
+			</td>
+		</c:if>
+	</tr>
+</c:if>
 
 <c:if test="<%= (assetEntryIndex + 1) == results.size() %>">
 	</table>

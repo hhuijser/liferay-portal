@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.DiffUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.WebKeys;
@@ -110,10 +111,18 @@ public class CompareVersionsAction extends PortletAction {
 			editPageURL.setParameter("nodeId", String.valueOf(nodeId));
 			editPageURL.setParameter("title", title);
 
-			String attachmentURLPrefix =
-				themeDisplay.getPathMain() + "/wiki/get_page_attachment?" +
-					"p_l_id=" + themeDisplay.getPlid() + "&nodeId=" + nodeId +
-						"&title=" + HttpUtil.encodeURL(title) + "&fileName=";
+			StringBundler sb = new StringBundler(8);
+
+			sb.append(themeDisplay.getPathMain());
+			sb.append("/wiki/get_page_attachment?p_l_id=");
+			sb.append(themeDisplay.getPlid());
+			sb.append("&nodeId=");
+			sb.append(nodeId);
+			sb.append("&title=");
+			sb.append(HttpUtil.encodeURL(title));
+			sb.append("&fileName=");
+
+			String attachmentURLPrefix = sb.toString();
 
 			String htmlDiffResult = WikiUtil.diffHtml(
 				sourcePage, targetPage, viewPageURL, editPageURL,

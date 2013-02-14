@@ -1,5 +1,5 @@
 #macro (processColumn $changedLine)
-	#set ($changedLine = $changedLine.replaceAll(" ", "&nbsp;"))
+	#set ($changedLine = $wikiUtil.escapeSpaces($changedLine))
 	#set ($changedLine = $changedLine.replaceAll("\t", "&nbsp;&nbsp;&nbsp;"))
 
 	#set ($changedLine = $changedLine.replaceAll("<ins>", "<ins style=\"background: #E6FFE6\">"))

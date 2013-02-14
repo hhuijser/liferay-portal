@@ -542,7 +542,8 @@ request.setAttribute("view_file_entry.jsp-fileEntry", fileEntry);
 								<aui:field-wrapper helpMessage="<%= webDavHelpMessage %>" name="webdavUrl">
 									<liferay-ui:input-resource
 										id="webdavUrl"
-										url="<%= webDavUrl %>" />
+										url="<%= webDavUrl %>"
+									/>
 								</aui:field-wrapper>
 							</div>
 						</c:if>

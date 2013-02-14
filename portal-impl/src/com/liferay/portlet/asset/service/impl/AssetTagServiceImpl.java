@@ -121,6 +121,8 @@ public class AssetTagServiceImpl extends AssetTagServiceBaseImpl {
 		int page = end / (end - start);
 
 		assetsPage.setPage(page);
+		assetsPage.setStart(start);
+		assetsPage.setEnd(end);
 
 		List<AssetTag> tags = null;
 		int total = 0;

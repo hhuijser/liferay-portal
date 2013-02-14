@@ -184,6 +184,8 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 		int page = end / (end - start);
 
 		assetsPage.setPage(page);
+		assetsPage.setStart(start);
+		assetsPage.setEnd(end);
 
 		List<AssetVocabulary> vocabularies;
 		int total = 0;

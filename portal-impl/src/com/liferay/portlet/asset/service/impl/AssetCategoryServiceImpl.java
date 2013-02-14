@@ -289,6 +289,8 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 		}
 
 		assetsPage.setPage(page);
+		assetsPage.setStart(start);
+		assetsPage.setEnd(end);
 
 		List<AssetCategory> categories;
 		int total = 0;

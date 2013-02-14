@@ -27,8 +27,16 @@ public class AssetsPage<E> {
 		return _assets;
 	}
 
+	public int getEnd() {
+		return _end;
+	}
+
 	public int getPage() {
 		return _page;
+	}
+
+	public int getStart() {
+		return _start;
 	}
 
 	public int getTotal() {
@@ -39,8 +47,16 @@ public class AssetsPage<E> {
 		_assets = assets;
 	}
 
+	public void setEnd(int end) {
+		_end = end;
+	}
+
 	public void setPage(int page) {
 		_page = page;
+	}
+
+	public void setStart(int start) {
+		_start = start;
 	}
 
 	public void setTotal(int total) {
@@ -49,7 +65,9 @@ public class AssetsPage<E> {
 
 	@JSON
 	private List<E> _assets;
+	private int _end;
 	private int _page;
+	private int _start;
 	private int _total;
 
 }

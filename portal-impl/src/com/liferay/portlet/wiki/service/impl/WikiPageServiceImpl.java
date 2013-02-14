@@ -682,6 +682,8 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 					if (latestPage == null) {
 						value = WikiUtil.convert(
 							page, null, null, attachmentURLPrefix);
+
+						value = WikiUtil.escapeContent(value);
 					}
 					else {
 						value = getPageDiff(

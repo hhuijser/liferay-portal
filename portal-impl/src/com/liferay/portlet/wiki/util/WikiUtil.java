@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.DiffHtmlUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -119,6 +120,34 @@ public class WikiUtil {
 		return DiffHtmlUtil.diff(
 			new UnsyncStringReader(sourceContent),
 			new UnsyncStringReader(targetContent));
+	}
+
+	public static String escapeContent(String content) {
+		content = content.replaceAll("\t", StringPool.THREE_SPACES);
+
+		StringBundler sb = new StringBundler();
+
+		char[] chars = content.toCharArray();
+
+		boolean inTag = false;
+
+		for (int i = 0; i < chars.length; i++) {
+			if (Validator.equals(chars[i], CharPool.LESS_THAN)) {
+				inTag = true;
+			}
+			else if (Validator.equals(chars[i], CharPool.GREATER_THAN)) {
+				inTag = false;
+			}
+
+			if (!inTag && Character.isWhitespace(chars[i])) {
+				sb.append(StringPool.NBSP);
+			}
+			else {
+				sb.append(chars[i]);
+			}
+		}
+
+		return sb.toString();
 	}
 
 	public static List<WikiPage> filterOrphans(List<WikiPage> pages)
@@ -426,6 +455,10 @@ public class WikiUtil {
 
 	public static String getHelpURL(String format) {
 		return _instance._getHelpURL(format);
+	}
+
+	public static WikiUtil getInstance() {
+		return _instance;
 	}
 
 	public static Map<String, Boolean> getLinks(WikiPage page)

@@ -15,6 +15,7 @@
 package com.liferay.portlet.wiki.action;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -71,14 +72,30 @@ public class RSSAction extends com.liferay.portal.struts.RSSAction {
 
 		String rss = StringPool.BLANK;
 
-		if ((nodeId > 0) && Validator.isNotNull(title)) {
-			rss = WikiPageServiceUtil.getPagesRSS(
-				companyId, nodeId, title, max, type, version, displayStyle,
-				feedURL, entryURL, locale);
-		}
-		else if (nodeId > 0) {
-			rss = WikiPageServiceUtil.getNodePagesRSS(
-				nodeId, max, type, version, displayStyle, feedURL, entryURL);
+		if (nodeId > 0) {
+			sb = new StringBundler(8);
+
+			sb.append(themeDisplay.getPathMain());
+			sb.append("/wiki/get_page_attachment?p_l_id=");
+			sb.append(themeDisplay.getPlid());
+			sb.append("&nodeId=");
+			sb.append(nodeId);
+			sb.append("&title=");
+			sb.append(HttpUtil.encodeURL(title));
+			sb.append("&fileName=");
+
+			String attachmentURLPrefix = sb.toString();
+
+			if (Validator.isNotNull(title)) {
+				rss = WikiPageServiceUtil.getPagesRSS(
+					companyId, nodeId, title, max, type, version, displayStyle,
+					feedURL, entryURL, attachmentURLPrefix, locale);
+			}
+			else {
+				rss = WikiPageServiceUtil.getNodePagesRSS(
+					nodeId, max, type, version, displayStyle, feedURL, entryURL,
+					attachmentURLPrefix);
+			}
 		}
 
 		return rss.getBytes(StringPool.UTF8);

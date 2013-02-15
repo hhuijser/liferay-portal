@@ -1862,11 +1862,19 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		WikiPage previousVersionPage = getPreviousVersionPage(page);
 
-		String attachmentURLPrefix =
-			portalURL + serviceContext.getPathMain() +
-				"/wiki/get_page_attachment?p_l_id=" + serviceContext.getPlid() +
-					"&nodeId=" + page.getNodeId() + "&title=" +
-						HttpUtil.encodeURL(page.getTitle()) + "&fileName=";
+		StringBundler sb = new StringBundler(9);
+
+		sb.append(portalURL);
+		sb.append(serviceContext.getPathMain());
+		sb.append("/wiki/get_page_attachment?p_l_id=");
+		sb.append(serviceContext.getPlid());
+		sb.append("&nodeId=");
+		sb.append(page.getNodeId());
+		sb.append("&title=");
+		sb.append(HttpUtil.encodeURL(page.getTitle()));
+		sb.append("&fileName=");
+
+		String attachmentURLPrefix = sb.toString();
 
 		String pageDiffs = StringPool.BLANK;
 
@@ -1898,7 +1906,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 						HttpUtil.encodeURL(page.getTitle());
 
 			if (previousVersionPage != null) {
-				StringBundler sb = new StringBundler(16);
+				sb = new StringBundler(16);
 
 				sb.append(layoutFullURL);
 				sb.append("?p_p_id=");

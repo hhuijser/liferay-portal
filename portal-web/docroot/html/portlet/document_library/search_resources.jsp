@@ -202,10 +202,10 @@ else if ((searchType == DLSearchConstants.SINGLE) && !ajaxRequest) {
 
 				PortletURL hitURL = liferayPortletResponse.createRenderURL();
 
-				List<SearchResult> searchResults = SearchResultUtil.getSearchResults(hits, locale, hitURL);
+				List<SearchResult> searchResultsList = SearchResultUtil.getSearchResults(hits, locale, hitURL);
 
-				for (int i = 0; i < searchResults.size(); i++) {
-					SearchResult searchResult = searchResults.get(i);
+				for (int i = 0; i < searchResultsList.size(); i++) {
+					SearchResult searchResult = searchResultsList.get(i);
 
 					Summary summary = searchResult.getSummary();
 

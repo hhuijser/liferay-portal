@@ -78,6 +78,7 @@ import com.liferay.portlet.expando.service.ExpandoRowLocalService;
 import com.liferay.portlet.expando.service.ExpandoTableLocalService;
 import com.liferay.portlet.expando.service.ExpandoValueLocalService;
 import com.liferay.portlet.journalcontent.util.JournalContentUtil;
+import com.liferay.portlet.wiki.util.WikiUtil;
 import com.liferay.taglib.util.VelocityTaglibImpl;
 import com.liferay.util.portlet.PortletRequestUtil;
 
@@ -471,6 +472,15 @@ public class TemplateContextHelper {
 		try {
 			variables.put(
 				"journalContentUtil", JournalContentUtil.getJournalContent());
+		}
+		catch (SecurityException se) {
+			_log.error(se, se);
+		}
+
+		// Wiki util
+
+		try {
+			variables.put("wikiUtil", WikiUtil.getInstance());
 		}
 		catch (SecurityException se) {
 			_log.error(se, se);

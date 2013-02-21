@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.documentlibrary.store;
 
+import com.liferay.portal.kernel.dao.jdbc.OutputBlob;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
@@ -26,6 +27,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.model.DLContent;
 import com.liferay.portlet.documentlibrary.service.DLContentLocalServiceUtil;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -125,7 +127,11 @@ public class DBStore extends BaseStore {
 
 		Blob blobData = dlContent.getData();
 
-		if (blobData == null) {
+		if ((blobData == null) && CustomSQLUtil.isVendorOracle()) {
+			blobData = new OutputBlob(
+				new UnsyncByteArrayInputStream(new byte[0]), 0);
+		}
+		else if (blobData == null) {
 			if (_log.isWarnEnabled()) {
 				StringBundler sb = new StringBundler(9);
 
@@ -173,7 +179,11 @@ public class DBStore extends BaseStore {
 
 		Blob blobData = dlContent.getData();
 
-		if (blobData == null) {
+		if ((blobData == null) && CustomSQLUtil.isVendorOracle()) {
+			blobData = new OutputBlob(
+				new UnsyncByteArrayInputStream(new byte[0]), 0);
+		}
+		else if (blobData == null) {
 			if (_log.isWarnEnabled()) {
 				StringBundler sb = new StringBundler(9);
 

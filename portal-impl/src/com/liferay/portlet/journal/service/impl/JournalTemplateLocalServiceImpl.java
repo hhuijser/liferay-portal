@@ -36,7 +36,6 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portlet.dynamicdatamapping.util.DDMXMLUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.journal.DuplicateTemplateIdException;
 import com.liferay.portlet.journal.NoSuchTemplateException;
 import com.liferay.portlet.journal.RequiredTemplateException;
@@ -132,6 +131,7 @@ public class JournalTemplateLocalServiceImpl
 		template.setSmallImage(smallImage);
 		template.setSmallImageId(counterLocalService.increment());
 		template.setSmallImageURL(smallImageURL);
+		template.setExpandoBridgeAttributes(serviceContext);
 
 		journalTemplatePersistence.update(template);
 
@@ -149,12 +149,6 @@ public class JournalTemplateLocalServiceImpl
 				template, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
-
-		// Expando
-
-		ExpandoBridge expandoBridge = template.getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
 
 		// Small image
 
@@ -277,6 +271,7 @@ public class JournalTemplateLocalServiceImpl
 		newTemplate.setSmallImage(oldTemplate.isSmallImage());
 		newTemplate.setSmallImageId(counterLocalService.increment());
 		newTemplate.setSmallImageURL(oldTemplate.getSmallImageURL());
+		newTemplate.setExpandoBridgeAttributes(oldTemplate);
 
 		journalTemplatePersistence.update(newTemplate);
 
@@ -596,14 +591,9 @@ public class JournalTemplateLocalServiceImpl
 		template.setSmallImage(smallImage);
 		template.setSmallImageURL(smallImageURL);
 		template.setModifiedDate(serviceContext.getModifiedDate(null));
+		template.setExpandoBridgeAttributes(serviceContext);
 
 		journalTemplatePersistence.update(template);
-
-		// Expando
-
-		ExpandoBridge expandoBridge = template.getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
 
 		// Small image
 

@@ -89,7 +89,6 @@ import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
 import com.liferay.portlet.dynamicdatamapping.util.DDMXMLUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.journal.ArticleContentException;
 import com.liferay.portlet.journal.ArticleDisplayDateException;
 import com.liferay.portlet.journal.ArticleExpirationDateException;
@@ -277,6 +276,8 @@ public class JournalArticleLocalServiceImpl
 			article.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
+		article.setExpandoBridgeAttributes(serviceContext);
+
 		journalArticlePersistence.update(article);
 
 		// Resources
@@ -293,12 +294,6 @@ public class JournalArticleLocalServiceImpl
 				article, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
-
-		// Expando
-
-		ExpandoBridge expandoBridge = article.getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
 
 		// Small image
 
@@ -634,6 +629,7 @@ public class JournalArticleLocalServiceImpl
 		newArticle.setSmallImageId(counterLocalService.increment());
 		newArticle.setSmallImageURL(oldArticle.getSmallImageURL());
 		newArticle.setStatus(oldArticle.getStatus());
+		newArticle.setExpandoBridgeAttributes(oldArticle);
 
 		journalArticlePersistence.update(newArticle);
 
@@ -2397,6 +2393,8 @@ public class JournalArticleLocalServiceImpl
 			article.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
+		article.setExpandoBridgeAttributes(serviceContext);
+
 		journalArticlePersistence.update(article);
 
 		// Asset
@@ -2414,12 +2412,6 @@ public class JournalArticleLocalServiceImpl
 			updateDDMStructureXSD(
 				article.getClassPK(), content, serviceContext);
 		}
-
-		// Expando
-
-		ExpandoBridge expandoBridge = article.getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
 
 		// Small image
 
@@ -3966,9 +3958,17 @@ public class JournalArticleLocalServiceImpl
 			DDMTemplate ddmTemplate = null;
 
 			if (Validator.isNotNull(templateId)) {
-				ddmTemplate = ddmTemplateService.getTemplate(
-					groupId, PortalUtil.getClassNameId(DDMStructure.class),
-					templateId);
+				try {
+					ddmTemplate = ddmTemplatePersistence.findByG_C_T(
+						groupId, PortalUtil.getClassNameId(DDMStructure.class),
+						templateId);
+				}
+				catch (NoSuchTemplateException nste) {
+					ddmTemplate = ddmTemplatePersistence.findByG_C_T(
+						companyGroup.getGroupId(),
+						PortalUtil.getClassNameId(DDMStructure.class),
+						templateId);
+				}
 
 				if (ddmTemplate.getClassPK() != ddmStructure.getStructureId()) {
 					throw new NoSuchTemplateException();

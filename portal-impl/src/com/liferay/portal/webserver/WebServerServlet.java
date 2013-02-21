@@ -61,7 +61,6 @@ import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileVersion;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
-import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
@@ -70,6 +69,7 @@ import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ImageLocalServiceUtil;
 import com.liferay.portal.service.ImageServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
+import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
@@ -855,10 +855,9 @@ public class WebServerServlet extends HttpServlet {
 				PermissionChecker permissionChecker =
 					PermissionThreadLocal.getPermissionChecker();
 
-				if (!permissionChecker.hasPermission(
-						fileEntry.getGroupId(), PortletKeys.TRASH,
-						PortletKeys.TRASH,
-						ActionKeys.ACCESS_IN_CONTROL_PANEL)) {
+				if (!PortletPermissionUtil.hasControlPanelAccessPermission(
+						permissionChecker, fileEntry.getGroupId(),
+						PortletKeys.TRASH)) {
 
 					throw new PrincipalException();
 				}

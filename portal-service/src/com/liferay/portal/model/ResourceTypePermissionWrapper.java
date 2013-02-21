@@ -252,6 +252,16 @@ public class ResourceTypePermissionWrapper implements ResourceTypePermission,
 	}
 
 	public void setExpandoBridgeAttributes(
+		com.liferay.portal.model.BaseModel<?> baseModel) {
+		_resourceTypePermission.setExpandoBridgeAttributes(baseModel);
+	}
+
+	public void setExpandoBridgeAttributes(
+		com.liferay.portlet.expando.model.ExpandoBridge expandoBridge) {
+		_resourceTypePermission.setExpandoBridgeAttributes(expandoBridge);
+	}
+
+	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_resourceTypePermission.setExpandoBridgeAttributes(serviceContext);
 	}

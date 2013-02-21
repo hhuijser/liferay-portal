@@ -34,7 +34,6 @@ import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.dynamicdatamapping.util.DDMXMLUtil;
-import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.journal.DuplicateStructureElementException;
 import com.liferay.portlet.journal.DuplicateStructureIdException;
 import com.liferay.portlet.journal.NoSuchArticleException;
@@ -112,6 +111,7 @@ public class JournalStructureLocalServiceImpl
 		structure.setNameMap(nameMap);
 		structure.setDescriptionMap(descriptionMap);
 		structure.setXsd(xsd);
+		structure.setExpandoBridgeAttributes(serviceContext);
 
 		journalStructurePersistence.update(structure);
 
@@ -129,12 +129,6 @@ public class JournalStructureLocalServiceImpl
 				structure, serviceContext.getGroupPermissions(),
 				serviceContext.getGuestPermissions());
 		}
-
-		// Expando
-
-		ExpandoBridge expandoBridge = structure.getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
 
 		return structure;
 	}
@@ -245,6 +239,7 @@ public class JournalStructureLocalServiceImpl
 		newStructure.setNameMap(oldStructure.getNameMap());
 		newStructure.setDescriptionMap(oldStructure.getDescriptionMap());
 		newStructure.setXsd(oldStructure.getXsd());
+		newStructure.setExpandoBridgeAttributes(oldStructure);
 
 		journalStructurePersistence.update(newStructure);
 
@@ -512,14 +507,9 @@ public class JournalStructureLocalServiceImpl
 		structure.setNameMap(nameMap);
 		structure.setDescriptionMap(descriptionMap);
 		structure.setXsd(xsd);
+		structure.setExpandoBridgeAttributes(serviceContext);
 
 		journalStructurePersistence.update(structure);
-
-		// Expando
-
-		ExpandoBridge expandoBridge = structure.getExpandoBridge();
-
-		expandoBridge.setAttributes(serviceContext);
 
 		return structure;
 	}

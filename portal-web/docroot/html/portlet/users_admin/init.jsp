@@ -76,6 +76,7 @@ page import="com.liferay.portlet.usersadmin.search.UserDisplayTerms" %><%@
 page import="com.liferay.portlet.usersadmin.search.UserOrganizationChecker" %><%@
 page import="com.liferay.portlet.usersadmin.search.UserSearch" %><%@
 page import="com.liferay.portlet.usersadmin.search.UserSearchTerms" %><%@
+page import="com.liferay.portlet.usersadmin.util.UsersAdmin" %><%@
 page import="com.liferay.portlet.usersadmin.util.UsersAdminUtil" %>
 
 <%

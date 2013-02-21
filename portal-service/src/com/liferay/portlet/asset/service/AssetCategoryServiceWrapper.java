@@ -126,7 +126,8 @@ public class AssetCategoryServiceWrapper implements AssetCategoryService,
 	}
 
 	/**
-	* @deprecated {@link #getVocabularyCategoriesDisplay(long, int, int, OrderByComparator)}
+	* @deprecated {@link #getVocabularyCategoriesDisplay(long, int, int,
+	OrderByComparator)}
 	*/
 	public com.liferay.portal.kernel.json.JSONObject getJSONVocabularyCategories(
 		long vocabularyId, int start, int end,
@@ -138,7 +139,8 @@ public class AssetCategoryServiceWrapper implements AssetCategoryService,
 	}
 
 	/**
-	* @deprecated {@link #getVocabularyCategoriesDisplay(long, String, long, int, int, OrderByComparator)}
+	* @deprecated {@link #getVocabularyCategoriesDisplay(long, String, long,
+	int, int, OrderByComparator)}
 	*/
 	public com.liferay.portal.kernel.json.JSONObject getJSONVocabularyCategories(
 		long groupId, java.lang.String name, long vocabularyId, int start,

@@ -64,7 +64,7 @@ if (referer.equals(themeDisplay.getPathMain() + "/portal/update_reminder_query")
 	var customQuestionContainer = A.one('#customQuestionContainer');
 
 	if (reminderQueryQuestion && customQuestionContainer) {
-		if (reminderQueryQuestion.val() != '<%= UsersAdminUtil.CUSTOM_QUESTION %>') {
+		if (reminderQueryQuestion.val() != '<%= UsersAdmin.CUSTOM_QUESTION %>') {
 			customQuestionContainer.hide();
 		}
 		else {
@@ -74,7 +74,7 @@ if (referer.equals(themeDisplay.getPathMain() + "/portal/update_reminder_query")
 		reminderQueryQuestion.on(
 			'change',
 			function(event) {
-				if (this.val() == '<%= UsersAdminUtil.CUSTOM_QUESTION %>') {
+				if (this.val() == '<%= UsersAdmin.CUSTOM_QUESTION %>') {
 					<c:if test="<%= PropsValues.USERS_REMINDER_QUERIES_CUSTOM_QUESTION_ENABLED %>">
 						customQuestionContainer.show();
 

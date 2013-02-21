@@ -218,7 +218,8 @@ public class AssetCategoryServiceSoap {
 	}
 
 	/**
-	* @deprecated {@link #getVocabularyCategoriesDisplay(long, int, int, OrderByComparator)}
+	* @deprecated {@link #getVocabularyCategoriesDisplay(long, int, int,
+	OrderByComparator)}
 	*/
 	public static java.lang.String getJSONVocabularyCategories(
 		long vocabularyId, int start, int end,
@@ -238,7 +239,8 @@ public class AssetCategoryServiceSoap {
 	}
 
 	/**
-	* @deprecated {@link #getVocabularyCategoriesDisplay(long, String, long, int, int, OrderByComparator)}
+	* @deprecated {@link #getVocabularyCategoriesDisplay(long, String, long,
+	int, int, OrderByComparator)}
 	*/
 	public static java.lang.String getJSONVocabularyCategories(long groupId,
 		java.lang.String name, long vocabularyId, int start, int end,

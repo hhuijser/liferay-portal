@@ -153,7 +153,7 @@ else {
 			reminderQueryQuestion.on(
 				'change',
 				function(event) {
-					if (event.target.val() == '<%= UsersAdminUtil.CUSTOM_QUESTION %>') {
+					if (event.target.val() == '<%= UsersAdmin.CUSTOM_QUESTION %>') {
 						var reminderQueryCustomQuestion = A.one('#<portlet:namespace />reminderQueryCustomQuestion');
 
 						if (customQuestionDiv) {

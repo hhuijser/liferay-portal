@@ -95,6 +95,10 @@ public interface BaseModel<T>
 	 */
 	public void setCachedModel(boolean cachedModel);
 
+	public void setExpandoBridgeAttributes(BaseModel<?> baseModel);
+
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge);
+
 	/**
 	 * Sets the expando bridge attributes for this model instance to the
 	 * attributes stored in the service context.

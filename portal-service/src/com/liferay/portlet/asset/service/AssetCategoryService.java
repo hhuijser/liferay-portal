@@ -120,7 +120,8 @@ public interface AssetCategoryService extends BaseService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* @deprecated {@link #getVocabularyCategoriesDisplay(long, int, int, OrderByComparator)}
+	* @deprecated {@link #getVocabularyCategoriesDisplay(long, int, int,
+	OrderByComparator)}
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.json.JSONObject getJSONVocabularyCategories(
@@ -130,7 +131,8 @@ public interface AssetCategoryService extends BaseService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	/**
-	* @deprecated {@link #getVocabularyCategoriesDisplay(long, String, long, int, int, OrderByComparator)}
+	* @deprecated {@link #getVocabularyCategoriesDisplay(long, String, long,
+	int, int, OrderByComparator)}
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.json.JSONObject getJSONVocabularyCategories(

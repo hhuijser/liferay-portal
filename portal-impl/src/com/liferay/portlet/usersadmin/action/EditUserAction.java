@@ -86,6 +86,7 @@ import com.liferay.portlet.announcements.model.AnnouncementsEntryConstants;
 import com.liferay.portlet.announcements.model.impl.AnnouncementsDeliveryImpl;
 import com.liferay.portlet.announcements.service.AnnouncementsDeliveryLocalServiceUtil;
 import com.liferay.portlet.sites.util.SitesUtil;
+import com.liferay.portlet.usersadmin.util.UsersAdmin;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 
 import java.util.ArrayList;
@@ -327,7 +328,7 @@ public class EditUserAction extends PortletAction {
 		String reminderQueryQuestion = ParamUtil.getString(
 			actionRequest, "reminderQueryQuestion");
 
-		if (reminderQueryQuestion.equals(UsersAdminUtil.CUSTOM_QUESTION)) {
+		if (reminderQueryQuestion.equals(UsersAdmin.CUSTOM_QUESTION)) {
 			reminderQueryQuestion = ParamUtil.getString(
 				actionRequest, "reminderQueryCustomQuestion");
 		}
@@ -553,7 +554,7 @@ public class EditUserAction extends PortletAction {
 		String reminderQueryQuestion = BeanParamUtil.getString(
 			user, actionRequest, "reminderQueryQuestion");
 
-		if (reminderQueryQuestion.equals(UsersAdminUtil.CUSTOM_QUESTION)) {
+		if (reminderQueryQuestion.equals(UsersAdmin.CUSTOM_QUESTION)) {
 			reminderQueryQuestion = BeanParamUtil.getStringSilent(
 				user, actionRequest, "reminderQueryCustomQuestion");
 		}

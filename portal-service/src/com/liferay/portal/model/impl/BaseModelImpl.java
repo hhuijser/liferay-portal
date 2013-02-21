@@ -65,6 +65,20 @@ public abstract class BaseModelImpl<T> implements BaseModel<T> {
 		_cachedModel = cachedModel;
 	}
 
+	public void setExpandoBridgeAttributes(BaseModel<?> baseModel) {
+		ExpandoBridge thisExpandoBridge = getExpandoBridge();
+
+		ExpandoBridge baseModelExpandoBridge = baseModel.getExpandoBridge();
+
+		thisExpandoBridge.setAttributes(baseModelExpandoBridge.getAttributes());
+	}
+
+	public void setExpandoBridgeAttributes(ExpandoBridge expandoBridge) {
+		ExpandoBridge thisExpandoBridge = getExpandoBridge();
+
+		thisExpandoBridge.setAttributes(expandoBridge.getAttributes());
+	}
+
 	public void setExpandoBridgeAttributes(ServiceContext serviceContext) {
 		throw new UnsupportedOperationException();
 	}

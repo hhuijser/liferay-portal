@@ -87,12 +87,51 @@ public class Java2WsddTask {
 
 		java2Wsdl.setProject(project);
 		java2Wsdl.setClassName(className);
-		java2Wsdl.setOutput(new File(wsdlFileName));
+		File outputFile = new File(wsdlFileName);
+		java2Wsdl.setOutput(outputFile);
 		java2Wsdl.setLocation(location);
 		java2Wsdl.setNamespace(namespace);
 		java2Wsdl.addMapping(mapping);
 
 		java2Wsdl.execute();
+
+		// fixes
+
+		if (serviceName.equals("Portlet_Asset_AssetCategoryService")) {
+			String content = FileUtil.read(outputFile);
+
+			content = StringUtil.replace(
+				content, "AssetCategoryDisplay", "AssetCategoryDisplaySoap");
+
+			int startIndex = content.indexOf("AssetCategorySoap[]");
+
+			startIndex = content.lastIndexOf("<complexType", startIndex);
+
+			startIndex = content.indexOf('\"', startIndex);
+
+			startIndex++;
+
+			int endIndex = content.indexOf('\"', startIndex);
+
+			String assetCategorySoapArrayTypeName = content.substring(
+				startIndex, endIndex);
+
+			content = StringUtil.replace(
+					content, "<complexType name=\"AssetCategorySoap\">",
+					"<complexType name=\"AssetCategoryDisplaySoap\">" +
+					"<sequence>" +
+					"<element name=\"categories\" type=\"impl:" +
+					assetCategorySoapArrayTypeName + "\"/>" +
+					"<element name=\"end\" type=\"xsd:int\"/>" +
+					"<element name=\"page\" type=\"xsd:int\"/>" +
+					"<element name=\"start\" type=\"xsd:int\"/>" +
+					"</sequence>" +
+					"</complexType>\n" +
+					"<complexType name=\"AssetCategorySoap\">"
+			);
+
+			FileUtil.write(outputFile, content);
+		}
 
 		// axis-wsdl2java
 

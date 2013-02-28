@@ -194,8 +194,10 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 	}
 
 	private Object _addVariableStatement(
-			Statement statement, Statement variableStatement, Object result)
+			Statement variableStatement, Object result)
 		throws Exception {
+
+		Statement statement = variableStatement.getParentStatement();
 
 		result = _populateFlags(statement, result);
 
@@ -203,16 +205,57 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 
 		Object variableResult = _executeStatement(variableStatement);
 
-		Map<String, Object> map = _convertObjectToMap(statement, result);
+		Map<String, Object> map = _convertObjectToMap(statement, result, null);
 
-		map.put(name.substring(1), variableResult);
+		if (variableStatement.isInner()) {
+			int index = name.indexOf(".$");
+
+			String innerBeanName = name.substring(0, index);
+
+			if (innerBeanName.contains(StringPool.PERIOD)) {
+				throw new IllegalArgumentException(
+					"Only 1-level inner properties are supported!");
+			}
+
+			Object innerObject = map.get(innerBeanName);
+
+			String innerPropertyName = name.substring(index + 2);
+			if (innerObject instanceof List) {
+				List<Object> innerList = (List)innerObject;
+
+				List<Object> newInnerList = new ArrayList<Object>(
+					innerList.size());
+
+				for (Object innerListElement : innerList) {
+					Map<String, Object> newInnerListElement =
+						_convertObjectToMap(
+							statement, innerListElement, innerBeanName);
+
+					newInnerListElement.put(innerPropertyName, variableResult);
+
+					newInnerList.add(newInnerListElement);
+				}
+
+				map.put(innerBeanName, newInnerList);
+			}
+			else {
+				Map<String, Object> innerMap = _convertObjectToMap(
+					statement, innerObject, innerBeanName);
+
+				innerMap.put(innerPropertyName, variableResult);
+
+				map.put(innerBeanName, innerMap);
+			}
+		}
+		else {
+			map.put(name.substring(1), variableResult);
+		}
 
 		return map;
 	}
 
 	private Object _addVariableStatementList(
-			Statement statement, Statement variableStatement, Object result,
-			List<Object> results)
+			Statement variableStatement, Object result, List<Object> results)
 		throws Exception {
 
 		List<Object> list = _convertObjectToList(result);
@@ -220,13 +263,12 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 		for (Object object : list) {
 			if (object instanceof List) {
 				Object value = _addVariableStatementList(
-					statement, variableStatement, object, results);
+					variableStatement, object, results);
 
 				results.add(value);
 			}
 			else {
-				Object value = _addVariableStatement(
-					statement, variableStatement, object);
+				Object value = _addVariableStatement(variableStatement, object);
 
 				results.add(value);
 			}
@@ -253,10 +295,15 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 	}
 
 	private Map<String, Object> _convertObjectToMap(
-		Statement statement, Object object) {
+		Statement statement, Object object, String prefix) {
 
 		if (!(object instanceof Map)) {
-			String json = JSONFactoryUtil.looseSerialize(object);
+			JSONSerializer jsonSerializer =
+				JSONFactoryUtil.createJSONSerializer();
+
+			jsonSerializer.exclude("class");
+
+			String json = jsonSerializer.serialize(object);
 
 			Class<?> clazz = object.getClass();
 
@@ -265,6 +312,10 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			String[] includes = JSONIncludesManagerUtil.lookupIncludes(clazz);
 
 			for (String include : includes) {
+				if (prefix != null) {
+					include = prefix + '.' + include;
+				}
+
 				_addInclude(statement, include);
 			}
 		}
@@ -286,14 +337,30 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 
 		if (variableStatements != null) {
 			for (Statement variableStatement : variableStatements) {
+				boolean innerStatement = variableStatement.isInner();
+
+				if (innerStatement) {
+					result = variableStatement.push(result);
+				}
+
 				if (result instanceof List) {
 					result = _addVariableStatementList(
-						statement, variableStatement, result,
-						new ArrayList<Object>());
+						variableStatement, result, new ArrayList<Object>());
+
+					variableStatement.setExecuted(true);
+
+					if (innerStatement) {
+						result = variableStatement.pop(result);
+					}
 				}
 				else {
-					result = _addVariableStatement(
-						statement, variableStatement, result);
+					if (innerStatement) {
+						result = variableStatement.pop(result);
+					}
+
+					result = _addVariableStatement(variableStatement, result);
+
+					variableStatement.setExecuted(true);
 				}
 			}
 		}
@@ -338,7 +405,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			return result;
 		}
 
-		Map<String, Object> map = _convertObjectToMap(statement, result);
+		Map<String, Object> map = _convertObjectToMap(statement, result, null);
 
 		Map<String, Object> whitelistMap = new HashMap<String, Object>(
 			whitelist.length);
@@ -414,7 +481,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 
 				flags.add(flag);
 			}
-			else if (key.startsWith(StringPool.DOLLAR)) {
+			else if (key.startsWith(StringPool.DOLLAR) || key.contains(".$")) {
 				Map<String, Object> map =
 					(Map<String, Object>)statementBody.get(key);
 
@@ -480,9 +547,21 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			return;
 		}
 
+		String pushedName = null;
+
+		int index = name.indexOf('.');
+
+		if (index != -1) {
+			pushedName = name.substring(0, index + 1);
+		}
+
 		name = name.concat(StringPool.PERIOD);
 
 		for (Statement statement : _statements) {
+			if (statement.isExecuted()) {
+				continue;
+			}
+
 			List<Flag> flags = statement.getFlags();
 
 			if (flags == null) {
@@ -492,16 +571,30 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			for (Flag flag : flags) {
 				String value = flag.getValue();
 
-				if ((value == null) || !value.startsWith(name)) {
+				if (value == null) {
 					continue;
 				}
 
-				Map<String, Object> parameterMap = statement.getParameterMap();
+				if (value.startsWith(name)) {
+					Map<String, Object> parameterMap =
+						statement.getParameterMap();
 
-				Object propertyValue = BeanUtil.getDeclaredProperty(
-					object, value.substring(name.length()));
+					Object propertyValue = BeanUtil.getDeclaredProperty(
+						object, value.substring(name.length()));
 
-				parameterMap.put(flag.getName(), propertyValue);
+					parameterMap.put(flag.getName(), propertyValue);
+				}
+				else if (statement.isPushed() && value.startsWith(pushedName)) {
+					Map<String, Object> parameterMap =
+						statement.getParameterMap();
+
+					Object target = statement._pushTarget;
+
+					Object propertyValue = BeanUtil.getDeclaredProperty(
+						target, value.substring(pushedName.length()));
+
+					parameterMap.put(flag.getName(), propertyValue);
+				}
 			}
 		}
 	}
@@ -516,7 +609,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 
 	private class Statement {
 
-		public Statement(Statement parentStatement) {
+		private Statement(Statement parentStatement) {
 			_parentStatement = parentStatement;
 		}
 
@@ -536,12 +629,93 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			return _parameterMap;
 		}
 
+		public Statement getParentStatement() {
+			return _parentStatement;
+		}
+
 		public List<Statement> getVariableStatements() {
 			return _variableStatements;
 		}
 
 		public String[] getWhitelist() {
 			return _whitelist;
+		}
+
+		public boolean isExecuted() {
+			return _executed;
+		}
+
+		public boolean isInner() {
+			return _inner;
+		}
+
+		public boolean isPushed() {
+			if (_pushTarget != null) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
+		public Object push(Object result) {
+
+			if (_parentStatement == null) {
+				return null;
+			}
+
+			_pushTarget = result;
+
+			Statement statement = getParentStatement();
+
+			String variableName = getName();
+
+			int index = variableName.indexOf(".$");
+
+			String beanName = variableName.substring(0, index);
+
+			result = BeanUtil.getDeclaredProperty(result, beanName);
+
+			statement.setName(statement.getName() + '.' + beanName);
+
+			variableName = variableName.substring(index + 1);
+
+			setName(variableName);
+
+			return result;
+		}
+
+		public Object pop(Object result) {
+
+			if (_pushTarget == null) {
+				return null;
+			}
+
+			Statement statement = getParentStatement();
+
+			String statementName = statement.getName();
+
+			int index = statementName.lastIndexOf('.');
+
+			String beanName = statementName.substring(index + 1);
+
+			statementName = statementName.substring(0, index);
+
+			statement.setName(statementName);
+
+			setName(beanName + '.' + getName());
+
+			BeanUtil.setDeclaredProperty(_pushTarget, beanName, result);
+
+			result = _pushTarget;
+
+			_pushTarget = null;
+
+			return result;
+		}
+
+		public void setExecuted(boolean executed) {
+			_executed = executed;
 		}
 
 		public void setFlags(List<Flag> flags) {
@@ -553,6 +727,13 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 		}
 
 		public void setName(String name) {
+			if (name.contains(".$")) {
+				_inner = true;
+			}
+			else {
+				_inner = false;
+			}
+
 			_name = name;
 		}
 
@@ -568,11 +749,14 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 			_whitelist = whitelist;
 		}
 
+		private boolean _executed;
 		private List<Flag> _flags;
+		private boolean _inner;
 		private String _method;
 		private String _name;
 		private Map<String, Object> _parameterMap;
 		private Statement _parentStatement;
+		private Object _pushTarget;
 		private List<Statement> _variableStatements;
 		private String[] _whitelist;
 

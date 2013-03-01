@@ -12,58 +12,52 @@
  * details.
  */
 
-package com.liferay.portlet.asset.model.impl;
+package com.liferay.portal.jsonwebservice;
 
 import com.liferay.portal.kernel.json.JSON;
-import com.liferay.portlet.asset.model.AssetTag;
-import com.liferay.portlet.asset.model.AssetTagDisplay;
 
 import java.util.List;
 
 /**
  * @author Igor Spasic
  */
-public class AssetTagDisplayImpl implements AssetTagDisplay {
+public class FooDataPage {
 
-	public AssetTagDisplayImpl(
-		List<AssetTag> tags, int total, int start, int end) {
-
-		_tags = tags;
-		_total = total;
-		_start = start;
-		_end = end;
+	public FooDataPage(FooData data, List<FooData> list, int page) {
+		_data = data;
+		_list = list;
+		_page = page;
 	}
 
-	public int getEnd() {
-		return _end;
+	public FooData getData() {
+		return _data;
+	}
+
+	public List<FooData> getList() {
+		return _list;
 	}
 
 	public int getPage() {
-		if ((_end > 0) && (_start > 0)) {
-			return _end / (_end - _start);
-		}
-
-		return 0;
+		return _page;
 	}
 
-	public int getStart() {
-		return _start;
+	public void setData(FooData data) {
+		_data = data;
 	}
 
-	public List<AssetTag> getTags() {
-		return _tags;
+	public void setList(List<FooData> list) {
+		_list = list;
 	}
 
-	public int getTotal() {
-		return _total;
+	public void setPage(int page) {
+		_page = page;
 	}
 
-	private int _end;
-	private int _start;
+	private FooData _data;
 
 	@JSON
-	private List<AssetTag> _tags;
+	private List<FooData> _list;
 
-	private int _total;
+	private int _page;
 
 }

@@ -367,12 +367,13 @@ public class AnnouncementsEntryLocalServiceImpl
 		params.put("announcementsDeliveryEmailOrSms", entry.getType());
 
 		if (classPK > 0) {
+			params.put("inherit", Boolean.TRUE);
+
 			if (className.equals(Group.class.getName())) {
 				Group group = groupPersistence.findByPrimaryKey(classPK);
 
 				toName = group.getName();
 
-				params.put("inherit", Boolean.TRUE);
 				params.put("usersGroups", classPK);
 			}
 			else if (className.equals(Organization.class.getName())) {

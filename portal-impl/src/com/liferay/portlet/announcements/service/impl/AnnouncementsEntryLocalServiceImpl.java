@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.announcements.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.CustomSQLParam;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -23,6 +24,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -31,6 +33,7 @@ import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.util.PortalUtil;
@@ -390,7 +393,25 @@ public class AnnouncementsEntryLocalServiceImpl
 
 				toName = role.getName();
 
-				params.put("usersRoles", classPK);
+				if (role.getType() == RoleConstants.TYPE_REGULAR) {
+					params.put("usersRoles", classPK);
+				}
+				else {
+					StringBundler sb = new StringBundler(5);
+
+					sb.append("INNER JOIN ");
+					sb.append("UserGroupRole ON ");
+					sb.append("(UserGroupRole.userId = User_.userId) ");
+					sb.append("WHERE ");
+					sb.append("(UserGroupRole.roleId = ?)");
+
+					String sql = sb.toString();
+
+					CustomSQLParam customSQLParam = new CustomSQLParam(
+						sql, classPK);
+
+					params.put("joinUserGroupRoleByRoleId", customSQLParam);
+				}
 			}
 			else if (className.equals(UserGroup.class.getName())) {
 				UserGroup userGroup = userGroupPersistence.findByPrimaryKey(

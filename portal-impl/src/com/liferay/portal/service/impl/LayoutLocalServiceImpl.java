@@ -78,6 +78,8 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.comparator.LayoutComparator;
 import com.liferay.portal.util.comparator.LayoutPriorityComparator;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.dynamicdatalists.RecordSetDuplicateRecordSetKeyException;
+import com.liferay.portlet.dynamicdatamapping.StructureDuplicateStructureKeyException;
 import com.liferay.portlet.expando.model.ExpandoBridge;
 import com.liferay.portlet.sites.util.SitesUtil;
 
@@ -1463,7 +1465,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		catch (PortalException pe) {
 			Throwable cause = pe.getCause();
 
-			if (cause instanceof LocaleException) {
+			if ((cause instanceof LocaleException) ||
+				(cause instanceof StructureDuplicateStructureKeyException) ||
+				(cause instanceof RecordSetDuplicateRecordSetKeyException)) {
 				throw (PortalException)cause;
 			}
 

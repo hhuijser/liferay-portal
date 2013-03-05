@@ -43,6 +43,8 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
+import com.liferay.portlet.dynamicdatalists.RecordSetDuplicateRecordSetKeyException;
+import com.liferay.portlet.dynamicdatamapping.StructureDuplicateStructureKeyException;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -292,7 +294,9 @@ public class ExportImportAction extends EditConfigurationAction {
 		catch (Exception e) {
 			if ((e instanceof LARFileException) ||
 				(e instanceof LARTypeException) ||
-				(e instanceof PortletIdException)) {
+				(e instanceof PortletIdException) ||
+				(e instanceof StructureDuplicateStructureKeyException) ||
+				(e instanceof RecordSetDuplicateRecordSetKeyException)) {
 
 				SessionErrors.add(actionRequest, e.getClass());
 			}

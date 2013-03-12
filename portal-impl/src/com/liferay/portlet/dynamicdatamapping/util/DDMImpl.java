@@ -379,6 +379,27 @@ public class DDMImpl implements DDM {
 				inputStream = uploadRequest.getFileAsStream(
 					fieldNameValue, true);
 
+				if (Validator.isNull(fileName) && (inputStream == null)) {
+					Locale locale = PortalUtil.getLocale(request);
+
+					Field field = fields.get(fieldName);
+
+					Serializable fieldValue = field.getValue(
+						locale, ((int)CompanyConstants.SYSTEM));
+
+					JSONObject fileJSONObject =
+						JSONFactoryUtil.createJSONObject(
+							String.valueOf(fieldValue));
+
+					fileName = fileJSONObject.getString("name");
+
+					String filePath = fileJSONObject.getString("path");
+
+					inputStream = DLStoreUtil.getFileAsStream(
+						serviceContext.getCompanyId(), CompanyConstants.SYSTEM,
+						filePath);
+				}
+
 				if (inputStream != null) {
 					String filePath = storeFieldFile(
 						baseModel, fieldName, inputStream, serviceContext);

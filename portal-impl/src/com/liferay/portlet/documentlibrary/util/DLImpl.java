@@ -937,7 +937,7 @@ public class DLImpl implements DL {
 		if (fileEntry != null) {
 			String extension = fileEntry.getExtension();
 
-			fileEntryTitle = fileEntry.getTitle();
+			fileEntryTitle = HtmlUtil.unescape(fileEntry.getTitle());
 
 			if (openDocumentUrl && isOfficeExtension(extension) &&
 				!fileEntryTitle.endsWith(StringPool.PERIOD + extension)) {
@@ -958,16 +958,19 @@ public class DLImpl implements DL {
 		if (folder != null) {
 			Folder curFolder = folder;
 
-			while (true) {
-				sb.insert(0, HttpUtil.encodeURL(curFolder.getName(), true));
-				sb.insert(0, StringPool.SLASH);
+			if (curFolder.getFolderId() !=
+					DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
-				if (curFolder.getParentFolderId() ==
-						DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+				while (true) {
+					sb.insert(0, HttpUtil.encodeURL(curFolder.getName(), true));
+					sb.insert(0, StringPool.SLASH);
 
-					break;
-				}
-				else {
+					if (curFolder.getParentFolderId() ==
+							DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+
+						break;
+					}
+
 					curFolder = DLAppLocalServiceUtil.getFolder(
 						curFolder.getParentFolderId());
 				}

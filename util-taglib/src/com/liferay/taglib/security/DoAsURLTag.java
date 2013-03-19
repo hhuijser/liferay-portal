@@ -55,22 +55,8 @@ public class DoAsURLTag extends TagSupport {
 		String doAsURL = company.getHomeURL();
 
 		if (Validator.isNull(doAsURL)) {
-			Layout layout = null;
-
-			List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
-				themeDisplay.getScopeGroupId(), false,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-			if (!layouts.isEmpty()) {
-				layout = layouts.get(0);
-
-				doAsURL = PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
-			}
-
-			if (Validator.isNull(doAsURL)) {
-				doAsURL =
-					themeDisplay.getPathContext() + _COMPANY_DEFAULT_HOME_URL;
-			}
+			doAsURL =
+				themeDisplay.getPathContext() + _COMPANY_DEFAULT_HOME_URL;
 		}
 		else {
 			doAsURL = themeDisplay.getPathContext() + doAsURL;

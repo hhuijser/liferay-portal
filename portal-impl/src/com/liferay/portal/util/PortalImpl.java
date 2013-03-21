@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ * Copyright (c) 2000-2012 Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
 import com.liferay.portal.kernel.servlet.DynamicServletRequest;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
+import com.liferay.portal.kernel.servlet.NonSerializableObjectRequestWrapper;
 import com.liferay.portal.kernel.servlet.PersistentHttpServletRequestWrapper;
 import com.liferay.portal.kernel.servlet.PortalSessionThreadLocal;
 import com.liferay.portal.kernel.servlet.ServletContextUtil;
@@ -74,6 +75,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringComparator;
@@ -4270,6 +4272,19 @@ public class PortalImpl implements Portal {
 					// This block should never be reached unless this method is
 					// called from a hot deployable portlet. See LayoutAction.
 
+					if (ServerDetector.isWebLogic()) {
+						if (requestWrapper instanceof
+							NonSerializableObjectRequestWrapper) {
+
+							parentRequest = requestWrapper;
+						}
+						else {
+							parentRequest =
+								new NonSerializableObjectRequestWrapper(
+								parentRequest);
+						}
+					}
+
 					uploadServletRequest = new UploadServletRequestImpl(
 						parentRequest);
 
@@ -6505,13 +6520,13 @@ public class PortalImpl implements Portal {
 
 	private static Log _log = LogFactoryUtil.getLog(PortalImpl.class);
 
-	private static Log _logWebServerServlet = LogFactoryUtil.getLog(
-		WebServerServlet.class);
-
 	private static Map<Long, String> _cdnHostHttpMap =
 		new ConcurrentHashMap<Long, String>();
 	private static Map<Long, String> _cdnHostHttpsMap =
 		new ConcurrentHashMap<Long, String>();
+	private static Log _logWebServerServlet = LogFactoryUtil.getLog(
+		WebServerServlet.class);
+
 	private static MethodHandler _resetCDNHostsMethodHandler =
 		new MethodHandler(new MethodKey(PortalUtil.class, "resetCDNHosts"));
 	private static Date _upTime = new Date();

@@ -67,7 +67,7 @@ public class VerifyOracle extends VerifyProcess {
 						buildNumber, ReleaseInfo.RELEASE_6_0_5_BUILD_NUMBER,
 						ReleaseInfo.RELEASE_6_1_20_BUILD_NUMBER)) {
 
-					if (dataLength != 4000) {
+					if ((dataLength != 4000) && (dataLength >= 300)) {
 						dataLength = dataLength / 4;
 					}
 				}

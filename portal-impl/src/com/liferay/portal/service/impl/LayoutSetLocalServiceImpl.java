@@ -30,7 +30,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.model.VirtualHost;
-import com.liferay.portal.model.impl.ThemeImpl;
+import com.liferay.portal.kernel.util.ThemeFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.LayoutSetLocalServiceBaseImpl;
 import com.liferay.portal.util.PrefsPropsUtil;
@@ -107,11 +107,11 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 		}
 		else {
 			layoutSet.setThemeId(
-				ThemeImpl.getDefaultRegularThemeId(group.getCompanyId()));
+				ThemeFactoryUtil.getDefaultRegularThemeId(group.getCompanyId()));
 			layoutSet.setColorSchemeId(
 				ColorSchemeFactoryUtil.getDefaultRegularColorSchemeId());
 			layoutSet.setWapThemeId(
-				ThemeImpl.getDefaultWapThemeId(group.getCompanyId()));
+				ThemeFactoryUtil.getDefaultWapThemeId(group.getCompanyId()));
 			layoutSet.setWapColorSchemeId(
 				ColorSchemeFactoryUtil.getDefaultWapColorSchemeId());
 			layoutSet.setCss(StringPool.BLANK);
@@ -385,7 +385,7 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 		layoutSet.setModifiedDate(new Date());
 
 		if (Validator.isNull(themeId)) {
-			themeId = ThemeImpl.getDefaultRegularThemeId(
+			themeId = ThemeFactoryUtil.getDefaultRegularThemeId(
 				layoutSet.getCompanyId());
 		}
 

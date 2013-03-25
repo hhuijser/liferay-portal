@@ -69,6 +69,7 @@ import com.liferay.portlet.messageboards.RequiredMessageException;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBCategoryConstants;
 import com.liferay.portlet.messageboards.model.MBDiscussion;
+import com.liferay.portlet.messageboards.model.MBMailingList;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
 import com.liferay.portlet.messageboards.model.MBMessageDisplay;
@@ -76,6 +77,7 @@ import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.messageboards.model.MBThreadConstants;
 import com.liferay.portlet.messageboards.model.impl.MBCategoryImpl;
 import com.liferay.portlet.messageboards.model.impl.MBMessageDisplayImpl;
+import com.liferay.portlet.messageboards.service.MBMailingListLocalServiceUtil;
 import com.liferay.portlet.messageboards.service.base.MBMessageLocalServiceBaseImpl;
 import com.liferay.portlet.messageboards.social.MBActivityKeys;
 import com.liferay.portlet.messageboards.util.MBSubscriptionSender;
@@ -1881,6 +1883,19 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			mailingListAddress = MBUtil.getMailingListAddress(
 				message.getGroupId(), message.getCategoryId(),
 				message.getMessageId(), company.getMx(), fromAddress);
+		}
+
+		if (Validator.isNull(mailingListAddress)) {
+			MBMailingList mailingList =
+				MBMailingListLocalServiceUtil.getCategoryMailingList(
+					message.getGroupId(), message.getCategoryId());
+
+			if (mailingList.isActive()) {
+				mailingListAddress = mailingList.getEmailAddress();
+			}
+			else {
+				mailingListAddress = fromAddress;
+			}
 		}
 
 		String subjectPrefix = null;

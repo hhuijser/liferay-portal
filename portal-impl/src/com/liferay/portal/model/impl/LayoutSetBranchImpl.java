@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.staging.LayoutStagingUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.ThemeFactoryUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ColorScheme;
@@ -122,8 +123,12 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 	}
 
 	public Theme getTheme() throws SystemException {
-		return ThemeLocalServiceUtil.getTheme(
-			getCompanyId(), getThemeId(), false);
+
+		long companyId = getCompanyId();
+
+		String themeId = ThemeFactoryUtil.getDefaultRegularThemeId(companyId);
+
+		return ThemeLocalServiceUtil.getTheme(companyId, themeId, false);
 	}
 
 	public String getThemeSetting(String key, String device)
@@ -177,8 +182,12 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 	}
 
 	public Theme getWapTheme() throws SystemException {
-		return ThemeLocalServiceUtil.getTheme(
-			getCompanyId(), getWapThemeId(), true);
+
+		long companyId = getCompanyId();
+
+		String themeId = ThemeFactoryUtil.getDefaultWapThemeId(companyId);
+
+		return ThemeLocalServiceUtil.getTheme(companyId, themeId, true);
 	}
 
 	public boolean isLayoutSetPrototypeLinkActive() {

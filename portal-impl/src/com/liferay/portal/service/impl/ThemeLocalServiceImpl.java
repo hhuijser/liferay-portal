@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.ThemeFactoryUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -149,10 +150,10 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 			}
 
 			if (wapTheme) {
-				themeId = ThemeImpl.getDefaultWapThemeId(companyId);
+				themeId = ThemeFactoryUtil.getDefaultWapThemeId(companyId);
 			}
 			else {
-				themeId = ThemeImpl.getDefaultRegularThemeId(companyId);
+				themeId = ThemeFactoryUtil.getDefaultRegularThemeId(companyId);
 			}
 
 			theme = _themes.get(themeId);

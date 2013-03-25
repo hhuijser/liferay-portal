@@ -224,7 +224,7 @@ public class MBMailingListLocalServiceImpl
 		mailingListRequest.setAllowAnonymous(mailingList.getAllowAnonymous());
 
 		SchedulerEngineHelperUtil.schedule(
-			trigger, StorageType.MEMORY_CLUSTERED, null,
+			trigger, StorageType.PERSISTED, null,
 			DestinationNames.MESSAGE_BOARDS_MAILING_LIST, mailingListRequest,
 			0);
 	}
@@ -235,7 +235,7 @@ public class MBMailingListLocalServiceImpl
 		String groupName = getSchedulerGroupName(mailingList);
 
 		SchedulerEngineHelperUtil.unschedule(
-			groupName, StorageType.MEMORY_CLUSTERED);
+			groupName, StorageType.PERSISTED);
 	}
 
 	protected void validate(

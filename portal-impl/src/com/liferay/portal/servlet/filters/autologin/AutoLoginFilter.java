@@ -31,6 +31,7 @@ import com.liferay.portal.servlet.filters.BasePortalFilter;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
 
@@ -186,6 +187,11 @@ public class AutoLoginFilter extends BasePortalFilter {
 
 					String redirect = (String)request.getAttribute(
 						AutoLogin.AUTO_LOGIN_REDIRECT);
+
+					if (Validator.isNull(redirect) && (credentials != null)) {
+						redirect = (String)request.getParameter(
+								"_" + PortletKeys.LOGIN + "_redirect");
+					}
 
 					if (Validator.isNotNull(redirect)) {
 						response.sendRedirect(redirect);

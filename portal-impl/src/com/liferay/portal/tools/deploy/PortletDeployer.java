@@ -32,6 +32,7 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.xml.DocumentImpl;
+import com.liferay.util.bridges.alloy.AlloyPortlet;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 import com.liferay.util.xml.XMLMerger;
 import com.liferay.util.xml.descriptor.FacesXMLDescriptor;
@@ -135,6 +136,8 @@ public class PortletDeployer extends BaseDeployer {
 
 		sb.append(getServletContent(portletXML, webXML));
 
+		setupAlloy(srcFile, portletXML);
+
 		setupJSF(facesXML, portletXML);
 
 		if (_sunFacesPortlet) {
@@ -234,6 +237,26 @@ public class PortletDeployer extends BaseDeployer {
 		}
 
 		return sb.toString();
+	}
+
+	public void setupAlloy(File srcFile, File portletXML) throws Exception {
+		String content = FileUtil.read(portletXML);
+
+		if (!content.contains(AlloyPortlet.class.getName())) {
+			return;
+		}
+
+		String[] dirNames = FileUtil.listDirs(srcFile + "/WEB-INF/jsp");
+
+		for (String dirName : dirNames) {
+			File dir = new File(srcFile + "/WEB-INF/jsp/" + dirName + "/views");
+
+			if (!dir.exists() || !dir.isDirectory()) {
+				continue;
+			}
+
+			copyDependencyXml("touch.jsp", dir.toString());
+		}
 	}
 
 	public void setupJSF(File facesXML, File portletXML) throws Exception {

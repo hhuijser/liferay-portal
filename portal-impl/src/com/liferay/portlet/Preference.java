@@ -73,9 +73,9 @@ public class Preference implements Cloneable, Serializable {
 
 		sb.append("{name=");
 		sb.append(getName());
-		sb.append(",readOnly=");
+		sb.append(", readOnly=");
 		sb.append(_readOnly);
-		sb.append(",values=[");
+		sb.append(", values=[");
 
 		for (int i = 0; i < _values.length; i++) {
 			sb.append(_values[i]);

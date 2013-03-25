@@ -2579,22 +2579,25 @@ public class SourceFormatter {
 				}
 			}
 
-			int x = line.indexOf("<%@ include file");
+			if (!fileName.endsWith("/touch.jsp")) {
+				int x = line.indexOf("<%@ include file");
 
-			if (x != -1) {
-				x = line.indexOf(StringPool.QUOTE, x);
+				if (x != -1) {
+					x = line.indexOf(StringPool.QUOTE, x);
 
-				int y = line.indexOf(StringPool.QUOTE, x + 1);
+					int y = line.indexOf(StringPool.QUOTE, x + 1);
 
-				if (y != -1) {
-					String includeFileName = line.substring(x + 1, y);
+					if (y != -1) {
+						String includeFileName = line.substring(x + 1, y);
 
-					Matcher matcher = _jspIncludeFilePattern.matcher(
-						includeFileName);
+						Matcher matcher = _jspIncludeFilePattern.matcher(
+							includeFileName);
 
-					if (!matcher.find()) {
-						_processErrorMessage(
-							fileName, "include: " + fileName + " " + lineCount);
+						if (!matcher.find()) {
+							_processErrorMessage(
+								fileName,
+								"include: " + fileName + " " + lineCount);
+						}
 					}
 				}
 			}

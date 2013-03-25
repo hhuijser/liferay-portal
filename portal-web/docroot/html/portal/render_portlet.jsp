@@ -99,6 +99,7 @@ if (portletItemId > 0) {
 }
 
 PortletConfig portletConfig = PortletConfigFactoryUtil.create(portlet, application);
+
 PortletContext portletCtx = portletConfig.getPortletContext();
 
 WindowState windowState = WindowState.NORMAL;

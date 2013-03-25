@@ -15,7 +15,9 @@
 package com.liferay.portal.security.lang;
 
 import com.liferay.portal.kernel.security.pacl.NotPrivileged;
+import com.liferay.portal.kernel.security.pacl.permission.PortalServicePermission;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.security.pacl.PACLPolicyManager;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
@@ -46,8 +48,23 @@ public class DoPrivilegedHandler
 		return _bean;
 	}
 
-	public Object invoke(Object object, Method method, Object[] arguments)
+	public Object invoke(Object proxy, Method method, Object[] arguments)
 		throws Throwable {
+
+		try {
+			return doInvoke(proxy, method, arguments);
+		}
+		catch (InvocationTargetException ite) {
+			throw ite.getTargetException();
+		}
+	}
+
+	protected Object doInvoke(Object proxy, Method method, Object[] arguments)
+		throws Throwable {
+
+		if (!PACLPolicyManager.isActive()) {
+			return method.invoke(_bean, arguments);
+		}
 
 		Class<?> methodDeclaringClass = method.getDeclaringClass();
 		String methodName = method.getName();
@@ -61,6 +78,14 @@ public class DoPrivilegedHandler
 			return method.invoke(_bean, arguments);
 		}
 
+		String declaringClassName = methodDeclaringClass.getName();
+
+		if (declaringClassName.endsWith(_BEAN_NAME_SUFFIX_FINDER) ||
+			declaringClassName.endsWith(_BEAN_NAME_SUFFIX_PERSISTENCE)) {
+
+			PortalServicePermission.checkService(_bean, method, arguments);
+		}
+
 		try {
 			return AccessController.doPrivileged(
 				new InvokePrivilegedExceptionAction(_bean, method, arguments));
@@ -68,13 +93,7 @@ public class DoPrivilegedHandler
 		catch (PrivilegedActionException pae) {
 			Exception e = pae.getException();
 
-			if (e instanceof InvocationTargetException) {
-				InvocationTargetException ite = (InvocationTargetException)e;
-
-				throw ite.getTargetException();
-			}
-
-			throw e;
+			throw e.getCause();
 		}
 	}
 
@@ -113,6 +132,10 @@ public class DoPrivilegedHandler
 
 		return false;
 	}
+
+	private static final String _BEAN_NAME_SUFFIX_FINDER = "Finder";
+
+	private static final String _BEAN_NAME_SUFFIX_PERSISTENCE = "Persistence";
 
 	private Object _bean;
 	private boolean _hasNotPrivilegedMethods = false;

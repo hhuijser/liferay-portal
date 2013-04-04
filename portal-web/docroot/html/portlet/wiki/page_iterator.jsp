@@ -189,6 +189,32 @@ else if (type.equals("categorized_pages") || type.equals("tagged_pages")) {
 	for (AssetEntry assetEntry : assetEntries) {
 		WikiPageResource pageResource = WikiPageResourceLocalServiceUtil.getPageResource(assetEntry.getClassPK());
 
+		String portletId = themeDisplay.getPpid();
+
+		if (portletId.equals(PortletKeys.WIKI)) {
+			String[] visiableNodeNames = StringUtil.split(preferences.getValue("visibleNodes", StringPool.BLANK));
+
+			List<String> nodeNamesLists = ListUtil.fromArray(visiableNodeNames);
+
+			WikiNode wikiNode = WikiNodeLocalServiceUtil.getWikiNode(pageResource.getNodeId());
+
+			if (!nodeNamesLists.contains(wikiNode.getName())) {
+				total--;
+
+				continue;
+			}
+		}
+		else {
+			long nodeId = GetterUtil.getLong(preferences.getValue("nodeId", StringPool.BLANK));
+
+			if ((nodeId > 0) && (nodeId != pageResource.getNodeId())) {
+				total--;
+
+				continue;
+			}
+
+		}
+
 		WikiPage assetPage = WikiPageLocalServiceUtil.getPage(pageResource.getNodeId(), pageResource.getTitle());
 
 		results.add(assetPage);

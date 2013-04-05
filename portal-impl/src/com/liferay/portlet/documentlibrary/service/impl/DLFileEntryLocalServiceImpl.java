@@ -936,10 +936,6 @@ public class DLFileEntryLocalServiceImpl
 
 		HashMap<String, Fields> fieldsMap = new HashMap<String, Fields>();
 
-		if (fileEntryTypeId <= 0) {
-			return fieldsMap;
-		}
-
 		DLFileEntryType fileEntryType =
 			DLFileEntryTypeLocalServiceUtil.getFileEntryType(fileEntryTypeId);
 

@@ -91,6 +91,7 @@ import com.liferay.portlet.documentlibrary.util.comparator.RepositoryModelModifi
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil;
+import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
 import com.liferay.portlet.expando.NoSuchRowException;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoBridge;
@@ -157,9 +158,17 @@ public class DLFileEntryLocalServiceImpl
 		String name = String.valueOf(
 			counterLocalService.increment(DLFileEntry.class.getName()));
 		String extension = DLAppUtil.getExtension(title, sourceFileName);
-		fileEntryTypeId = getFileEntryTypeId(
+
+		long newFileEntryTypeId = getFileEntryTypeId(
 			PortalUtil.getSiteAndCompanyGroupIds(groupId), folderId,
 			fileEntryTypeId);
+
+		if (fileEntryTypeId == -1) {
+			fieldsMap = getFieldsMap(newFileEntryTypeId, serviceContext);
+		}
+
+		fileEntryTypeId = newFileEntryTypeId;
+
 		Date now = new Date();
 
 		validateFile(
@@ -1802,6 +1811,35 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		return dlFileVersionStatusOVPs;
+	}
+
+	protected HashMap<String, Fields> getFieldsMap(
+			long fileEntryTypeId, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		HashMap<String, Fields> fieldsMap = new HashMap<String, Fields>();
+
+		DLFileEntryType fileEntryType =
+			dlFileEntryTypeLocalService.getFileEntryType(fileEntryTypeId);
+
+		List<DDMStructure> ddmStructures = fileEntryType.getDDMStructures();
+
+		for (DDMStructure ddmStructure : ddmStructures) {
+			Fields fields = (Fields)serviceContext.getAttribute(
+				Fields.class.getName() + ddmStructure.getStructureId());
+
+			if (fields == null) {
+				String namespace = String.valueOf(
+					ddmStructure.getStructureId());
+
+				fields = DDMUtil.getFields(
+					ddmStructure.getStructureId(), namespace, serviceContext);
+			}
+
+			fieldsMap.put(ddmStructure.getStructureKey(), fields);
+		}
+
+		return fieldsMap;
 	}
 
 	protected Long getFileEntryTypeId(

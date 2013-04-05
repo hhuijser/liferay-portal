@@ -1173,6 +1173,30 @@ public class ServiceBuilder {
 		}
 	}
 
+	public String getPrimitiveObjClass(String type) {
+		if (type.equals("boolean")) {
+			return "Boolean.TYPE";
+		}
+		else if (type.equals("double")) {
+			return "Double.TYPE";
+		}
+		else if (type.equals("float")) {
+			return "Float.TYPE";
+		}
+		else if (type.equals("int")) {
+			return "Integer.TYPE";
+		}
+		else if (type.equals("long")) {
+			return "Long.TYPE";
+		}
+		else if (type.equals("short")) {
+			return "Short.TYPE";
+		}
+		else {
+			return type + ".class";
+		}
+	}
+
 	public String getPrimitiveObjValue(String colType) {
 		if (colType.equals("Boolean")) {
 			return ".booleanValue()";

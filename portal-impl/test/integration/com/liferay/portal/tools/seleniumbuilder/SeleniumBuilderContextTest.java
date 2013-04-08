@@ -57,12 +57,10 @@ public class SeleniumBuilderContextTest {
 		String actualErrorMessage = null;
 
 		try {
-			SeleniumBuilderContext seleniumBuilderContext =
-				new SeleniumBuilderContext(
-					_BASE_DIR, _DIR_NAME + "/" + fileName);
+			new SeleniumBuilderContext(_BASE_DIR, _DIR_NAME + "/" + fileName);
 		}
-		catch (IllegalArgumentException e) {
-			actualErrorMessage = e.getMessage();
+		catch (IllegalArgumentException iae) {
+			actualErrorMessage = iae.getMessage();
 		}
 		finally {
 			if (expectException) {
@@ -79,7 +77,5 @@ public class SeleniumBuilderContextTest {
 	private static final String _DIR_NAME =
 		"/../../../portal-impl/test/integration/com/liferay/portal/tools/" +
 			"seleniumbuilder/dependencies";
-
-	private SeleniumBuilderFileUtil _seleniumBuilderFileUtil;
 
 }

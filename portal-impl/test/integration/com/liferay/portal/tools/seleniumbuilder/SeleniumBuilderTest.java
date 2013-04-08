@@ -1762,8 +1762,8 @@ public class SeleniumBuilderTest {
 		try {
 			_seleniumBuilderFileUtil.getRootElement(_DIR_NAME + "/" + fileName);
 		}
-		catch (IllegalArgumentException e) {
-			actualErrorMessage = e.getMessage();
+		catch (IllegalArgumentException iae) {
+			actualErrorMessage = iae.getMessage();
 		}
 		finally {
 			if (expectException) {

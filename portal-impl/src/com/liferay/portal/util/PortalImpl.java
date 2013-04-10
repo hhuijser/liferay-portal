@@ -4567,13 +4567,12 @@ public class PortalImpl implements Portal {
 					request, PortletKeys.DIRECTORY, layout.getPlid(),
 					PortletRequest.RENDER_PHASE);
 
-				portletURL.setWindowState(WindowState.MAXIMIZED);
-				portletURL.setPortletMode(PortletMode.VIEW);
-
 				portletURL.setParameter(
 					"struts_action", "/directory/view_user");
 				portletURL.setParameter(
 					"p_u_i_d", String.valueOf(user.getUserId()));
+				portletURL.setPortletMode(PortletMode.VIEW);
+				portletURL.setWindowState(WindowState.MAXIMIZED);
 
 				userName =
 					"<a href=\"" + portletURL.toString() + "\">" +

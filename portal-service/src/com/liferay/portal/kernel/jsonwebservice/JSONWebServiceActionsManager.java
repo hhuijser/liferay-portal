@@ -40,12 +40,14 @@ public interface JSONWebServiceActionsManager {
 		String signature);
 
 	public List<JSONWebServiceActionMapping> getJSONWebServiceActionMappings(
-		String servletContextPath);
+		String contextPath);
+
+	public int getJSONWebServiceActionsCount(String contextPath);
 
 	public void registerJSONWebServiceAction(
-		String servletContextPath, Class<?> actionClass, Method actionMethod,
+		String contextPath, Class<?> actionClass, Method actionMethod,
 		String path, String method);
 
-	public int unregisterJSONWebServiceActions(String servletContextPath);
+	public int unregisterJSONWebServiceActions(String contextPath);
 
 }

@@ -202,7 +202,6 @@ public class FacebookConnectAction extends PortletAction {
 		redirectURL.setWindowState(LiferayWindowState.POP_UP);
 
 		portletURL.setParameter("redirect", redirectURL.toString());
-
 		portletURL.setParameter("userId", String.valueOf(user.getUserId()));
 		portletURL.setParameter("emailAddress", user.getEmailAddress());
 		portletURL.setParameter("firstName", user.getFirstName());

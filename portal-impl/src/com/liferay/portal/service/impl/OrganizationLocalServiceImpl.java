@@ -221,6 +221,7 @@ public class OrganizationLocalServiceImpl
 		User user = userPersistence.findByPrimaryKey(userId);
 		parentOrganizationId = getParentOrganizationId(
 			user.getCompanyId(), parentOrganizationId);
+		Date now = new Date();
 
 		validate(
 			user.getCompanyId(), parentOrganizationId, name, type, countryId,
@@ -236,12 +237,20 @@ public class OrganizationLocalServiceImpl
 		}
 
 		organization.setCompanyId(user.getCompanyId());
+		organization.setUserId(user.getUserId());
+		organization.setUserName(user.getFullName());
+
+		if (serviceContext != null) {
+			organization.setCreateDate(serviceContext.getCreateDate(now));
+			organization.setModifiedDate(serviceContext.getModifiedDate(now));
+		}
+		else {
+			organization.setCreateDate(now);
+			organization.setModifiedDate(now);
+		}
+
 		organization.setParentOrganizationId(parentOrganizationId);
-
-		String treePath = organization.buildTreePath();
-
-		organization.setTreePath(treePath);
-
+		organization.setTreePath(organization.buildTreePath());
 		organization.setName(name);
 		organization.setType(type);
 		organization.setRecursable(true);
@@ -720,7 +729,7 @@ public class OrganizationLocalServiceImpl
 		Organization organization = organizationPersistence.findByPrimaryKey(
 			organizationId);
 
-		return getParentOrganizations(organization, true);
+		return organization.getAncestors();
 	}
 
 	/**
@@ -975,9 +984,7 @@ public class OrganizationLocalServiceImpl
 			organizationPersistence.findByCompanyId(companyId);
 
 		for (Organization organization : organizations) {
-			String treePath = organization.buildTreePath();
-
-			organization.setTreePath(treePath);
+			organization.setTreePath(organization.buildTreePath());
 
 			organizationPersistence.update(organization);
 		}
@@ -1691,11 +1698,7 @@ public class OrganizationLocalServiceImpl
 
 		organization.setModifiedDate(new Date());
 		organization.setParentOrganizationId(parentOrganizationId);
-
-		String treePath = organization.buildTreePath();
-
-		organization.setTreePath(treePath);
-
+		organization.setTreePath(organization.buildTreePath());
 		organization.setName(name);
 		organization.setType(type);
 		organization.setRecursable(true);
@@ -1818,35 +1821,6 @@ public class OrganizationLocalServiceImpl
 		return parentOrganizationId;
 	}
 
-	protected List<Organization> getParentOrganizations(
-			Organization organization, boolean lastOrganization)
-		throws PortalException, SystemException {
-
-		List<Organization> organizations = new ArrayList<Organization>();
-
-		if (!lastOrganization) {
-			organizations.add(organization);
-		}
-
-		long parentOrganizationId = organization.getParentOrganizationId();
-
-		if (parentOrganizationId ==
-				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
-
-			return organizations;
-		}
-
-		Organization parentOrganization =
-			organizationPersistence.findByPrimaryKey(parentOrganizationId);
-
-		List<Organization> parentOrganizatons = getParentOrganizations(
-			parentOrganization, false);
-
-		organizations.addAll(parentOrganizatons);
-
-		return organizations;
-	}
-
 	protected long[] getReindexOrganizationIds(Organization organization)
 		throws PortalException, SystemException {
 
@@ -1868,9 +1842,7 @@ public class OrganizationLocalServiceImpl
 		for (int i = 0; i < organizations.size(); i++) {
 			Organization curOrganization = organizations.get(i);
 
-			String treePath = curOrganization.buildTreePath();
-
-			curOrganization.setTreePath(treePath.toString());
+			curOrganization.setTreePath(curOrganization.buildTreePath());
 
 			organizationPersistence.update(curOrganization);
 
@@ -1918,13 +1890,20 @@ public class OrganizationLocalServiceImpl
 		// Return true if parentOrganizationId is among the parent organizatons
 		// of organizationId
 
-		Organization parentOrganization =
-			organizationPersistence.findByPrimaryKey(parentOrganizationId);
+		if (organizationId ==
+				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
 
-		List<Organization> parentOrganizations = getParentOrganizations(
+			return false;
+		}
+
+		Organization organization = organizationPersistence.findByPrimaryKey(
 			organizationId);
 
-		if (parentOrganizations.contains(parentOrganization)) {
+		String treePath = organization.getTreePath();
+
+		if (treePath.contains(
+				StringPool.SLASH + parentOrganizationId + StringPool.SLASH)) {
+
 			return true;
 		}
 		else {

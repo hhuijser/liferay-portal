@@ -56,13 +56,13 @@ public class JSONWebServiceActionsManagerUtil {
 	}
 
 	public static List<JSONWebServiceActionMapping>
-		getJSONWebServiceActionMappings(String servletContextPath) {
+		getJSONWebServiceActionMappings(String contextPath) {
 
 		PortalRuntimePermission.checkGetBeanProperty(
 			JSONWebServiceActionsManagerUtil.class);
 
 		return _jsonWebServiceActionsManager.getJSONWebServiceActionMappings(
-			servletContextPath);
+			contextPath);
 	}
 
 	public static JSONWebServiceActionsManager
@@ -71,19 +71,22 @@ public class JSONWebServiceActionsManagerUtil {
 		return _jsonWebServiceActionsManager;
 	}
 
+	public static int getJSONWebServiceActionsCount(String contextPath) {
+		return getJSONWebServiceActionsManager().getJSONWebServiceActionsCount(
+			contextPath);
+	}
+
 	public static void registerJSONWebServiceAction(
-		String servletContextPath, Class<?> actionClass, Method actionMethod,
+		String contextPath, Class<?> actionClass, Method actionMethod,
 		String path, String method) {
 
 		getJSONWebServiceActionsManager().registerJSONWebServiceAction(
-			servletContextPath, actionClass, actionMethod, path, method);
+			contextPath, actionClass, actionMethod, path, method);
 	}
 
-	public static int unregisterJSONWebServiceActions(
-		String servletContextPath) {
-
+	public static int unregisterJSONWebServiceActions(String contextPath) {
 		return getJSONWebServiceActionsManager().
-			unregisterJSONWebServiceActions(servletContextPath);
+			unregisterJSONWebServiceActions(contextPath);
 	}
 
 	public void setJSONWebServiceActionsManager(

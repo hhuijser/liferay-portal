@@ -30,11 +30,24 @@ MBMessage message = (MBMessage)objArray[0];
 </liferay-portlet:renderURL>
 
 <div class="question-subject">
-	<a class="question-subject" href="<%= viewMessage.toString() %>"><%= message.getSubject() %></a>
+	<a class="question-subject" href="<%= viewMessage.toString() %>"><%= HtmlUtil.escape(message.getSubject()) %></a>
 </div>
 
 <div class="summary">
-	<%= StringUtil.shorten(message.getBody(), 250) %>
+
+	<%
+	String msgBody = StringPool.BLANK;
+
+	if (message.isFormatBBCode()) {
+		msgBody = BBCodeTranslatorUtil.getHTML(message.getBody());
+		msgBody = StringUtil.replace(msgBody, "@theme_images_path@/emoticons", themeDisplay.getPathThemeImages() + "/emoticons");
+	}
+	else {
+		msgBody = message.getBody();
+	}
+	%>
+
+	<%= StringUtil.shorten(msgBody, 250) %>
 </div>
 
 <div class="tags">

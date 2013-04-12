@@ -36,14 +36,11 @@ MBMessage message = (MBMessage)objArray[0];
 <div class="summary">
 
 	<%
-	String msgBody = StringPool.BLANK;
+	String msgBody = message.getBody();
 
 	if (message.isFormatBBCode()) {
-		msgBody = BBCodeTranslatorUtil.getHTML(message.getBody());
+		msgBody = BBCodeTranslatorUtil.getHTML(msgBody);
 		msgBody = StringUtil.replace(msgBody, "@theme_images_path@/emoticons", themeDisplay.getPathThemeImages() + "/emoticons");
-	}
-	else {
-		msgBody = message.getBody();
 	}
 	%>
 

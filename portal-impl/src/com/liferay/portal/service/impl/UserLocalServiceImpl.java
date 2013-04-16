@@ -929,12 +929,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				serviceContext.getAssetTagNames());
 		}
 
-		// Indexer
-
-		if ((serviceContext == null) || serviceContext.isIndexingEnabled()) {
-			reindex(user);
-		}
-
 		// Workflow
 
 		long workflowUserId = creatorUserId;

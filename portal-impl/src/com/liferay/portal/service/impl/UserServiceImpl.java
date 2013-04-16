@@ -605,45 +605,30 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			boolean sendEmail, ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
-		boolean indexingEnabled = serviceContext.isIndexingEnabled();
+		User user = addUserWithWorkflow(
+			companyId, autoPassword, password1, password2, autoScreenName,
+			screenName, emailAddress, facebookId, openId, locale, firstName,
+			middleName, lastName, prefixId, suffixId, male, birthdayMonth,
+			birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
+			roleIds, userGroupIds, sendEmail, serviceContext);
 
-		serviceContext.setIndexingEnabled(false);
+		UsersAdminUtil.updateAddresses(
+			Contact.class.getName(), user.getContactId(), addresses);
 
-		try {
-			User user = addUserWithWorkflow(
-				companyId, autoPassword, password1, password2, autoScreenName,
-				screenName, emailAddress, facebookId, openId, locale, firstName,
-				middleName, lastName, prefixId, suffixId, male, birthdayMonth,
-				birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
-				roleIds, userGroupIds, sendEmail, serviceContext);
+		UsersAdminUtil.updateEmailAddresses(
+			Contact.class.getName(), user.getContactId(), emailAddresses);
 
-			UsersAdminUtil.updateAddresses(
-				Contact.class.getName(), user.getContactId(), addresses);
+		UsersAdminUtil.updatePhones(
+			Contact.class.getName(), user.getContactId(), phones);
 
-			UsersAdminUtil.updateEmailAddresses(
-				Contact.class.getName(), user.getContactId(), emailAddresses);
+		UsersAdminUtil.updateWebsites(
+			Contact.class.getName(), user.getContactId(), websites);
 
-			UsersAdminUtil.updatePhones(
-				Contact.class.getName(), user.getContactId(), phones);
+		updateAnnouncementsDeliveries(
+			user.getUserId(), announcementsDelivers);
 
-			UsersAdminUtil.updateWebsites(
-				Contact.class.getName(), user.getContactId(), websites);
+		return user;
 
-			updateAnnouncementsDeliveries(
-				user.getUserId(), announcementsDelivers);
-
-			if (indexingEnabled) {
-				Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-					User.class);
-
-				indexer.reindex(user);
-			}
-
-			return user;
-		}
-		finally {
-			serviceContext.setIndexingEnabled(indexingEnabled);
-		}
 	}
 
 	/**

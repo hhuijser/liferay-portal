@@ -929,12 +929,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				serviceContext.getAssetTagNames());
 		}
 
-		// Indexer
-
-		if ((serviceContext == null) || serviceContext.isIndexingEnabled()) {
-			reindex(user);
-		}
-
 		// Workflow
 
 		long workflowUserId = creatorUserId;
@@ -4560,6 +4554,22 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		userPersistence.update(user);
 
 		reindex(user);
+
+		return user;
+	}
+
+	public User updateStatus(long userId, int status, boolean isIndexingEnabled)
+		throws PortalException, SystemException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		user.setStatus(status);
+
+		userPersistence.update(user);
+
+		if (isIndexingEnabled) {
+			reindex(user);
+		}
 
 		return user;
 	}

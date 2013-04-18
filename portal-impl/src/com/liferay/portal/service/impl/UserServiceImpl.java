@@ -632,6 +632,10 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			updateAnnouncementsDeliveries(
 				user.getUserId(), announcementsDelivers);
 
+			long userId = user.getUserId();
+
+			user = userLocalService.getUser(userId);
+
 			if (indexingEnabled) {
 				Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 					User.class);

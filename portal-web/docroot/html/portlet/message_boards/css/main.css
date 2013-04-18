@@ -160,6 +160,11 @@
 		padding: 15px;
 	}
 
+	.thread-body td {
+		border: 1px solid #ccc;
+		padding: 0;
+	}
+
 	.message-container .user-info {
 		border-right: 1px solid #ccc;
 		padding: 5px;

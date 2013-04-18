@@ -101,6 +101,8 @@ import com.liferay.portlet.dynamicdatamapping.storage.Field;
 import com.liferay.portlet.dynamicdatamapping.storage.Fields;
 import com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil;
 import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
+import com.liferay.portlet.journal.model.JournalArticle;
+import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
 
 import java.awt.image.RenderedImage;
 
@@ -714,6 +716,15 @@ public class WebServerServlet extends HttpServlet {
 
 				Fields fields = StorageEngineUtil.getFields(
 					fileEntryMetadata.getDDMStorageId());
+
+				field = fields.get(fieldName);
+			}
+			else if (className.equals(JournalArticle.class.getName())) {
+				JournalArticle article =
+					JournalArticleLocalServiceUtil.getArticle(classPK);
+
+				Fields fields = StorageEngineUtil.getFields(
+					article.getDDMStorageId());
 
 				field = fields.get(fieldName);
 			}

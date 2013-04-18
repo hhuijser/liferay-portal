@@ -132,6 +132,8 @@ public class JournalArticlePersistenceTest {
 
 		newJournalArticle.setModifiedDate(ServiceTestUtil.nextDate());
 
+		newJournalArticle.setDDMStorageId(ServiceTestUtil.nextLong());
+
 		newJournalArticle.setFolderId(ServiceTestUtil.nextLong());
 
 		newJournalArticle.setClassNameId(ServiceTestUtil.nextLong());
@@ -204,6 +206,8 @@ public class JournalArticlePersistenceTest {
 		Assert.assertEquals(Time.getShortTimestamp(
 				existingJournalArticle.getModifiedDate()),
 			Time.getShortTimestamp(newJournalArticle.getModifiedDate()));
+		Assert.assertEquals(existingJournalArticle.getDDMStorageId(),
+			newJournalArticle.getDDMStorageId());
 		Assert.assertEquals(existingJournalArticle.getFolderId(),
 			newJournalArticle.getFolderId());
 		Assert.assertEquals(existingJournalArticle.getClassNameId(),
@@ -306,14 +310,14 @@ public class JournalArticlePersistenceTest {
 		return OrderByComparatorFactoryUtil.create("JournalArticle", "uuid",
 			true, "id", true, "resourcePrimKey", true, "groupId", true,
 			"companyId", true, "userId", true, "userName", true, "createDate",
-			true, "modifiedDate", true, "folderId", true, "classNameId", true,
-			"classPK", true, "articleId", true, "version", true, "title", true,
-			"urlTitle", true, "description", true, "content", true, "type",
-			true, "structureId", true, "templateId", true, "layoutUuid", true,
-			"displayDate", true, "expirationDate", true, "reviewDate", true,
-			"indexable", true, "smallImage", true, "smallImageId", true,
-			"smallImageURL", true, "status", true, "statusByUserId", true,
-			"statusByUserName", true, "statusDate", true);
+			true, "modifiedDate", true, "DDMStorageId", true, "folderId", true,
+			"classNameId", true, "classPK", true, "articleId", true, "version",
+			true, "title", true, "urlTitle", true, "description", true,
+			"content", true, "type", true, "structureId", true, "templateId",
+			true, "layoutUuid", true, "displayDate", true, "expirationDate",
+			true, "reviewDate", true, "indexable", true, "smallImage", true,
+			"smallImageId", true, "smallImageURL", true, "status", true,
+			"statusByUserId", true, "statusByUserName", true, "statusDate", true);
 	}
 
 	@Test
@@ -480,6 +484,8 @@ public class JournalArticlePersistenceTest {
 		journalArticle.setCreateDate(ServiceTestUtil.nextDate());
 
 		journalArticle.setModifiedDate(ServiceTestUtil.nextDate());
+
+		journalArticle.setDDMStorageId(ServiceTestUtil.nextLong());
 
 		journalArticle.setFolderId(ServiceTestUtil.nextLong());
 

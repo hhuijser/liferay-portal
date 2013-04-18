@@ -1715,6 +1715,7 @@
 		<field name="userName" type="String" />
 		<field name="createDate" type="Date" />
 		<field name="modifiedDate" type="Date" />
+		<field name="DDMStorageId" type="long" />
 		<field name="folderId" type="long" />
 		<field name="classNameId" type="long" />
 		<field name="classPK" type="long" />

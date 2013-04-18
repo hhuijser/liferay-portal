@@ -55,6 +55,7 @@ public class JournalArticleWrapper implements JournalArticle,
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("DDMStorageId", getDDMStorageId());
 		attributes.put("folderId", getFolderId());
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
@@ -136,6 +137,12 @@ public class JournalArticleWrapper implements JournalArticle,
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		Long DDMStorageId = (Long)attributes.get("DDMStorageId");
+
+		if (DDMStorageId != null) {
+			setDDMStorageId(DDMStorageId);
 		}
 
 		Long folderId = (Long)attributes.get("folderId");
@@ -485,6 +492,24 @@ public class JournalArticleWrapper implements JournalArticle,
 	*/
 	public void setModifiedDate(java.util.Date modifiedDate) {
 		_journalArticle.setModifiedDate(modifiedDate);
+	}
+
+	/**
+	* Returns the d d m storage ID of this journal article.
+	*
+	* @return the d d m storage ID of this journal article
+	*/
+	public long getDDMStorageId() {
+		return _journalArticle.getDDMStorageId();
+	}
+
+	/**
+	* Sets the d d m storage ID of this journal article.
+	*
+	* @param DDMStorageId the d d m storage ID of this journal article
+	*/
+	public void setDDMStorageId(long DDMStorageId) {
+		_journalArticle.setDDMStorageId(DDMStorageId);
 	}
 
 	/**

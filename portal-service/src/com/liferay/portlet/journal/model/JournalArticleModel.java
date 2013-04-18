@@ -215,6 +215,20 @@ public interface JournalArticleModel extends AttachedModel,
 	public void setModifiedDate(Date modifiedDate);
 
 	/**
+	 * Returns the d d m storage ID of this journal article.
+	 *
+	 * @return the d d m storage ID of this journal article
+	 */
+	public long getDDMStorageId();
+
+	/**
+	 * Sets the d d m storage ID of this journal article.
+	 *
+	 * @param DDMStorageId the d d m storage ID of this journal article
+	 */
+	public void setDDMStorageId(long DDMStorageId);
+
+	/**
 	 * Returns the folder ID of this journal article.
 	 *
 	 * @return the folder ID of this journal article

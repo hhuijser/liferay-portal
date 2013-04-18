@@ -838,6 +838,8 @@
 			<forward name="portlet.message_boards.error" path="portlet.journal.error" />
 		</action>
 
+		<action path="/journal/edit_article_file" type="com.liferay.portlet.journal.action.EditArticleFileAction" />
+
 		<action path="/journal/edit_entry" type="com.liferay.portlet.journal.action.EditEntryAction">
 			<forward name="portlet.journal.asset.add_asset_redirect" path="portlet.journal.asset.add_asset_redirect" />
 			<forward name="portlet.journal.error" path="portlet.journal.error" />

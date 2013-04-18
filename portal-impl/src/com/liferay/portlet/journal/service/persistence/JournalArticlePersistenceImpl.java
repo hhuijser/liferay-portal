@@ -25612,6 +25612,7 @@ public class JournalArticlePersistenceImpl extends BasePersistenceImpl<JournalAr
 		journalArticleImpl.setUserName(journalArticle.getUserName());
 		journalArticleImpl.setCreateDate(journalArticle.getCreateDate());
 		journalArticleImpl.setModifiedDate(journalArticle.getModifiedDate());
+		journalArticleImpl.setDDMStorageId(journalArticle.getDDMStorageId());
 		journalArticleImpl.setFolderId(journalArticle.getFolderId());
 		journalArticleImpl.setClassNameId(journalArticle.getClassNameId());
 		journalArticleImpl.setClassPK(journalArticle.getClassPK());

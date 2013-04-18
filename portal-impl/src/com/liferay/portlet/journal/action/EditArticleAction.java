@@ -83,6 +83,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -900,6 +901,10 @@ public class EditArticleAction extends PortletAction {
 				actionRequest, portletResource, article.getArticleId());
 		}
 
+		// Upload files
+
+		uploadJournalArticleFieldFile(article, serviceContext);
+
 		return new Object[] {article, oldUrlTitle};
 	}
 
@@ -916,6 +921,35 @@ public class EditArticleAction extends PortletAction {
 		JournalContentSearchLocalServiceUtil.updateContentSearch(
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			portletResource, articleId, true);
+	}
+
+	protected void uploadJournalArticleFieldFile(
+			JournalArticle article, ServiceContext serviceContext)
+		throws Exception {
+
+		String structureId = article.getStructureId();
+
+		long groupId = serviceContext.getScopeGroupId();
+
+		if (article.isTemplateDriven()) {
+			DDMStructure ddmStructure =
+				DDMStructureLocalServiceUtil.getStructure(
+					groupId, PortalUtil.getClassNameId(JournalArticle.class),
+					structureId);
+
+			Set<String> fieldNames = ddmStructure.getFieldNames();
+
+			for (String fieldName : fieldNames) {
+				String fieldDataType = ddmStructure.getFieldDataType(fieldName);
+
+				if (fieldDataType.equals(FieldConstants.FILE_UPLOAD)) {
+					DDMUtil.uploadFieldFile(
+						ddmStructure.getStructureId(),
+						article.getDDMStorageId(), article, fieldName,
+						serviceContext);
+				}
+			}
+		}
 	}
 
 }

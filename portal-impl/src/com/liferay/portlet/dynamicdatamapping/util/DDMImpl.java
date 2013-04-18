@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.security.pacl.DoPrivileged;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.upload.UploadRequest;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -59,6 +60,7 @@ import com.liferay.portlet.dynamicdatamapping.util.comparator.StructureIdCompara
 import com.liferay.portlet.dynamicdatamapping.util.comparator.StructureModifiedDateComparator;
 import com.liferay.portlet.dynamicdatamapping.util.comparator.TemplateIdComparator;
 import com.liferay.portlet.dynamicdatamapping.util.comparator.TemplateModifiedDateComparator;
+import com.liferay.portlet.journal.model.JournalArticle;
 
 import java.io.File;
 import java.io.IOException;
@@ -202,6 +204,13 @@ public class DDMImpl implements DDM {
 				DLFileVersion fileVersion = fileEntryMetadata.getFileVersion();
 
 				version = fileVersion.getVersion();
+			}
+			else if (baseModel instanceof JournalArticle) {
+				JournalArticle article = (JournalArticle)baseModel;
+
+				primaryKey = article.getPrimaryKey();
+
+				version = String.valueOf(article.getVersion());
 			}
 
 			sb.append("ddm");
@@ -377,8 +386,21 @@ public class DDMImpl implements DDM {
 				}
 
 				if (inputStream != null) {
+					String name = null;
+
+					if (fieldNames.size() > 1) {
+						StringBundler sb = new StringBundler();
+						sb.append(i);
+						sb.append(CharPool.UNDERLINE);
+						sb.append(fieldName);
+						name = sb.toString();
+					}
+					else {
+						name = fieldName;
+					}
+
 					String filePath = storeFieldFile(
-						baseModel, fieldName, inputStream, serviceContext);
+						baseModel, name, inputStream, serviceContext);
 
 					JSONObject recordFileJSONObject =
 						JSONFactoryUtil.createJSONObject();

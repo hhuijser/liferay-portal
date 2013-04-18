@@ -80,6 +80,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 			{ "userName", Types.VARCHAR },
 			{ "createDate", Types.TIMESTAMP },
 			{ "modifiedDate", Types.TIMESTAMP },
+			{ "DDMStorageId", Types.BIGINT },
 			{ "folderId", Types.BIGINT },
 			{ "classNameId", Types.BIGINT },
 			{ "classPK", Types.BIGINT },
@@ -105,7 +106,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table JournalArticle (uuid_ VARCHAR(75) null,id_ LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,folderId LONG,classNameId LONG,classPK LONG,articleId VARCHAR(75) null,version DOUBLE,title STRING null,urlTitle VARCHAR(150) null,description STRING null,content TEXT null,type_ VARCHAR(75) null,structureId VARCHAR(75) null,templateId VARCHAR(75) null,layoutUuid VARCHAR(75) null,displayDate DATE null,expirationDate DATE null,reviewDate DATE null,indexable BOOLEAN,smallImage BOOLEAN,smallImageId LONG,smallImageURL STRING null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table JournalArticle (uuid_ VARCHAR(75) null,id_ LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,DDMStorageId LONG,folderId LONG,classNameId LONG,classPK LONG,articleId VARCHAR(75) null,version DOUBLE,title STRING null,urlTitle VARCHAR(150) null,description STRING null,content TEXT null,type_ VARCHAR(75) null,structureId VARCHAR(75) null,templateId VARCHAR(75) null,layoutUuid VARCHAR(75) null,displayDate DATE null,expirationDate DATE null,reviewDate DATE null,indexable BOOLEAN,smallImage BOOLEAN,smallImageId LONG,smallImageURL STRING null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table JournalArticle";
 	public static final String ORDER_BY_JPQL = " ORDER BY journalArticle.articleId ASC, journalArticle.version DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY JournalArticle.articleId ASC, JournalArticle.version DESC";
@@ -160,6 +161,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 		model.setUserName(soapModel.getUserName());
 		model.setCreateDate(soapModel.getCreateDate());
 		model.setModifiedDate(soapModel.getModifiedDate());
+		model.setDDMStorageId(soapModel.getDDMStorageId());
 		model.setFolderId(soapModel.getFolderId());
 		model.setClassNameId(soapModel.getClassNameId());
 		model.setClassPK(soapModel.getClassPK());
@@ -251,6 +253,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 		attributes.put("userName", getUserName());
 		attributes.put("createDate", getCreateDate());
 		attributes.put("modifiedDate", getModifiedDate());
+		attributes.put("DDMStorageId", getDDMStorageId());
 		attributes.put("folderId", getFolderId());
 		attributes.put("classNameId", getClassNameId());
 		attributes.put("classPK", getClassPK());
@@ -333,6 +336,12 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 
 		if (modifiedDate != null) {
 			setModifiedDate(modifiedDate);
+		}
+
+		Long DDMStorageId = (Long)attributes.get("DDMStorageId");
+
+		if (DDMStorageId != null) {
+			setDDMStorageId(DDMStorageId);
 		}
 
 		Long folderId = (Long)attributes.get("folderId");
@@ -637,6 +646,15 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 
 	public void setModifiedDate(Date modifiedDate) {
 		_modifiedDate = modifiedDate;
+	}
+
+	@JSON
+	public long getDDMStorageId() {
+		return _DDMStorageId;
+	}
+
+	public void setDDMStorageId(long DDMStorageId) {
+		_DDMStorageId = DDMStorageId;
 	}
 
 	@JSON
@@ -1350,6 +1368,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 		journalArticleImpl.setUserName(getUserName());
 		journalArticleImpl.setCreateDate(getCreateDate());
 		journalArticleImpl.setModifiedDate(getModifiedDate());
+		journalArticleImpl.setDDMStorageId(getDDMStorageId());
 		journalArticleImpl.setFolderId(getFolderId());
 		journalArticleImpl.setClassNameId(getClassNameId());
 		journalArticleImpl.setClassPK(getClassPK());
@@ -1545,6 +1564,8 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 			journalArticleCacheModel.modifiedDate = Long.MIN_VALUE;
 		}
 
+		journalArticleCacheModel.DDMStorageId = getDDMStorageId();
+
 		journalArticleCacheModel.folderId = getFolderId();
 
 		journalArticleCacheModel.classNameId = getClassNameId();
@@ -1692,7 +1713,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(69);
 
 		sb.append("{uuid=");
 		sb.append(getUuid());
@@ -1712,6 +1733,8 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 		sb.append(getCreateDate());
 		sb.append(", modifiedDate=");
 		sb.append(getModifiedDate());
+		sb.append(", DDMStorageId=");
+		sb.append(getDDMStorageId());
 		sb.append(", folderId=");
 		sb.append(getFolderId());
 		sb.append(", classNameId=");
@@ -1766,7 +1789,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 	}
 
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(103);
+		StringBundler sb = new StringBundler(106);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portlet.journal.model.JournalArticle");
@@ -1807,6 +1830,10 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 		sb.append(
 			"<column><column-name>modifiedDate</column-name><column-value><![CDATA[");
 		sb.append(getModifiedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>DDMStorageId</column-name><column-value><![CDATA[");
+		sb.append(getDDMStorageId());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>folderId</column-name><column-value><![CDATA[");
@@ -1933,6 +1960,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 	private String _userName;
 	private Date _createDate;
 	private Date _modifiedDate;
+	private long _DDMStorageId;
 	private long _folderId;
 	private long _originalFolderId;
 	private boolean _setOriginalFolderId;

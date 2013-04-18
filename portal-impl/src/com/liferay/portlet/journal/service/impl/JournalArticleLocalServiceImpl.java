@@ -89,7 +89,11 @@ import com.liferay.portlet.dynamicdatamapping.NoSuchStructureException;
 import com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
+import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.FieldConstants;
+import com.liferay.portlet.dynamicdatamapping.storage.Fields;
+import com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil;
+import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
 import com.liferay.portlet.dynamicdatamapping.util.DDMXMLUtil;
 import com.liferay.portlet.journal.ArticleContentException;
 import com.liferay.portlet.journal.ArticleDisplayDateException;
@@ -367,6 +371,8 @@ public class JournalArticleLocalServiceImpl
 		article.setContent(content);
 		article.setType(type);
 		article.setStructureId(ddmStructureKey);
+		article.setDDMStorageId(
+			getDDMStorageId(ddmStructureKey, serviceContext));
 		article.setTemplateId(ddmTemplateKey);
 		article.setLayoutUuid(layoutUuid);
 		article.setDisplayDate(displayDate);
@@ -4317,6 +4323,8 @@ public class JournalArticleLocalServiceImpl
 			user, groupId, articleId, article.getVersion(), addNewVersion,
 			content, ddmStructureKey, images);
 
+		long existingDDMStorageId = latestArticle.getDDMStorageId();
+
 		article.setModifiedDate(serviceContext.getModifiedDate(now));
 		article.setFolderId(folderId);
 		article.setTitleMap(titleMap, locale);
@@ -4328,6 +4336,9 @@ public class JournalArticleLocalServiceImpl
 		article.setContent(content);
 		article.setType(type);
 		article.setStructureId(ddmStructureKey);
+		article.setDDMStorageId(
+			getDDMStorageId(
+				existingDDMStorageId, ddmStructureKey, serviceContext));
 		article.setTemplateId(ddmTemplateKey);
 		article.setLayoutUuid(layoutUuid);
 		article.setDisplayDate(displayDate);
@@ -5596,6 +5607,42 @@ public class JournalArticleLocalServiceImpl
 		dateInterval[1] = latestExpirationDate;
 
 		return dateInterval;
+	}
+
+	protected long getDDMStorageId(
+			Long existingDDMStorageId, String ddmStructureKey,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		long groupId = serviceContext.getScopeGroupId();
+
+		DDMStructure ddmStructure =
+			DDMStructureLocalServiceUtil.getStructure(
+				groupId, PortalUtil.getClassNameId(JournalArticle.class),
+				ddmStructureKey);
+
+		Fields fields = DDMUtil.getFields(
+			ddmStructure.getStructureId(), serviceContext);
+
+		if (Validator.isNotNull(existingDDMStorageId)) {
+			Fields existingFields = StorageEngineUtil.getFields(
+				existingDDMStorageId);
+
+			fields = DDMUtil.mergeFields(fields, existingFields);
+		}
+
+		long ddmStorageId = StorageEngineUtil.create(
+			serviceContext.getCompanyId(), ddmStructure.getStructureId(),
+			fields, serviceContext);
+
+		return ddmStorageId;
+	}
+
+	protected long getDDMStorageId(
+			String ddmStructureKey, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		return getDDMStorageId(null, ddmStructureKey, serviceContext);
 	}
 
 	protected String getExtraDataJSON(

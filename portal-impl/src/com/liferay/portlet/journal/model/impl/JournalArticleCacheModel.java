@@ -38,7 +38,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(67);
+		StringBundler sb = new StringBundler(69);
 
 		sb.append("{uuid=");
 		sb.append(uuid);
@@ -58,6 +58,8 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 		sb.append(createDate);
 		sb.append(", modifiedDate=");
 		sb.append(modifiedDate);
+		sb.append(", DDMStorageId=");
+		sb.append(DDMStorageId);
 		sb.append(", folderId=");
 		sb.append(folderId);
 		sb.append(", classNameId=");
@@ -148,6 +150,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 			journalArticleImpl.setModifiedDate(new Date(modifiedDate));
 		}
 
+		journalArticleImpl.setDDMStorageId(DDMStorageId);
 		journalArticleImpl.setFolderId(folderId);
 		journalArticleImpl.setClassNameId(classNameId);
 		journalArticleImpl.setClassPK(classPK);
@@ -281,6 +284,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 		userName = objectInput.readUTF();
 		createDate = objectInput.readLong();
 		modifiedDate = objectInput.readLong();
+		DDMStorageId = objectInput.readLong();
 		folderId = objectInput.readLong();
 		classNameId = objectInput.readLong();
 		classPK = objectInput.readLong();
@@ -331,6 +335,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 
 		objectOutput.writeLong(createDate);
 		objectOutput.writeLong(modifiedDate);
+		objectOutput.writeLong(DDMStorageId);
 		objectOutput.writeLong(folderId);
 		objectOutput.writeLong(classNameId);
 		objectOutput.writeLong(classPK);
@@ -436,6 +441,7 @@ public class JournalArticleCacheModel implements CacheModel<JournalArticle>,
 	public String userName;
 	public long createDate;
 	public long modifiedDate;
+	public long DDMStorageId;
 	public long folderId;
 	public long classNameId;
 	public long classPK;

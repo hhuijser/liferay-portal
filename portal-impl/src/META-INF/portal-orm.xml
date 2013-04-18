@@ -2475,6 +2475,7 @@
 			<basic name="modifiedDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
+			<basic name="DDMStorageId" />
 			<basic name="folderId" />
 			<basic name="classNameId" />
 			<basic name="classPK" />

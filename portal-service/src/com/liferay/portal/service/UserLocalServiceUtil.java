@@ -3212,6 +3212,13 @@ public class UserLocalServiceUtil {
 		return getService().updateStatus(userId, status);
 	}
 
+	public static com.liferay.portal.model.User updateStatus(long userId,
+		int status, boolean isIndexingEnabled)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateStatus(userId, status, isIndexingEnabled);
+	}
+
 	/**
 	* Updates the user.
 	*

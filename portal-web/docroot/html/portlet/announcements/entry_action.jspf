@@ -1,3 +1,5 @@
+<%@ page
+		import="com.liferay.portlet.announcements.service.permission.AlertsEntryPermission" %>
 <%--
 /**
  * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
@@ -17,10 +19,15 @@
 <div class="edit-actions">
 	<table class="lfr-table">
 	<tr>
-		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
+		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) ||
+		 				entry.getAlert() && AlertsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
 			<td class="edit-entry">
 				<portlet:renderURL var="editURL">
-					<portlet:param name="struts_action" value="/announcements/edit_entry" />
+					<% if(!entry.getAlert()){ %>
+						<portlet:param name="struts_action" value="/announcements/edit_entry" />
+					<% } else { %>
+						<portlet:param name="struts_action" value="/alerts/edit_entry" />
+					<% } %>
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />
 				</portlet:renderURL>
@@ -33,10 +40,15 @@
 			</td>
 		</c:if>
 
-		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
+		<c:if test="<%= AnnouncementsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) ||
+						entry.getAlert() && AlertsEntryPermission.contains(permissionChecker, entry, ActionKeys.DELETE) %>">
 			<td class="delete-entry">
 				<portlet:actionURL var="deleteURL">
-					<portlet:param name="struts_action" value="/announcements/edit_entry" />
+					<% if(!entry.getAlert()){ %>
+						<portlet:param name="struts_action" value="/announcements/edit_entry" />
+					<% } else { %>
+						<portlet:param name="struts_action" value="/alerts/edit_entry" />
+					<% } %>
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.DELETE %>" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 					<portlet:param name="entryId" value="<%= String.valueOf(entry.getEntryId()) %>" />

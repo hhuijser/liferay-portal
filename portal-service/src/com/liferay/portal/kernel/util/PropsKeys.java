@@ -2507,7 +2507,7 @@ public interface PropsKeys {
 
 	public static final String WEBDAV_SERVLET_HTTPS_REQUIRED = "webdav.servlet.https.required";
 
-	public static final String WEBLOGIC_WRAP_NON_SERIALIZABLE = "weblogic.wrap.non.serializable";
+	public static final String WEBLOGIC_REQUEST_WRAP_NON_SERIALIZABLE = "weblogic.request.wrap.non.serializable";
 
 	public static final String WIDGET_SERVLET_MAPPING = "widget.servlet.mapping";
 

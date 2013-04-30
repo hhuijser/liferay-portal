@@ -1763,6 +1763,8 @@ public interface PropsKeys {
 
 	public static final String ORGANIZATIONS_TYPES = "organizations.types";
 
+	public static final String PASSWORDS_DEFAULT_CUSTOM_POLICY_LENGTH = "passwords.default.custom.policy.length";
+
 	public static final String PASSWORDS_DEFAULT_POLICY_ALLOW_DICTIONARY_WORDS = "passwords.default.policy.allow.dictionary.words";
 
 	public static final String PASSWORDS_DEFAULT_POLICY_CHANGE_REQUIRED = "passwords.default.policy.change.required";

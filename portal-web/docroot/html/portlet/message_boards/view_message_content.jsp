@@ -167,6 +167,29 @@ MBThreadFlag threadFlag = MBThreadFlagLocalServiceUtil.getThreadFlag(themeDispla
 				/>
 			</c:if>
 
+			<c:if test="<%= MBMessagePermission.contains(permissionChecker, message, ActionKeys.PERMISSIONS) && !thread.isLocked() %>">
+
+				<%
+				MBMessage parentMessage = message;
+
+				if (!message.isRoot()) {
+					 parentMessage = messageDisplay.getParentMessage();
+				}
+				%>
+
+				<liferay-security:permissionsURL
+					modelResource="<%= MBMessage.class.getName() %>"
+					modelResourceDescription="<%= parentMessage.getSubject() %>"
+					resourcePrimKey="<%= String.valueOf(thread.getRootMessageId()) %>"
+					var="permissionsURL"
+				/>
+
+				<liferay-ui:icon
+					image="permissions"
+					url="<%= permissionsURL %>"
+				/>
+			</c:if>
+
 			<c:if test="<%= enableRSS && MBMessagePermission.contains(permissionChecker, message, ActionKeys.VIEW) %>">
 
 				<%

@@ -81,7 +81,9 @@ public class SearchContainerRowTag<R>
 			searchContainer.setHeaderNames(_headerNames);
 			searchContainer.setOrderableHeaders(_orderableHeaders);
 
-			_headerNamesAssigned = true;
+			if ((_headerNames != null) && !_headerNames.isEmpty()) {
+				_headerNamesAssigned = true;
+			}
 		}
 
 		if (!_resultRow.isSkip()) {

@@ -70,7 +70,9 @@ public class SearchContainerRowTag<R>
 
 	@Override
 	public int doAfterBody() {
-		if (!_headerNamesAssigned) {
+		if (!_headerNamesAssigned && (_headerNames != null) &&
+			!_headerNames.isEmpty()) {
+
 			SearchContainerTag<R> searchContainerTag =
 				(SearchContainerTag<R>)findAncestorWithClass(
 					this, SearchContainerTag.class);
@@ -81,9 +83,7 @@ public class SearchContainerRowTag<R>
 			searchContainer.setHeaderNames(_headerNames);
 			searchContainer.setOrderableHeaders(_orderableHeaders);
 
-			if ((_headerNames != null) && !_headerNames.isEmpty()) {
-				_headerNamesAssigned = true;
-			}
+			_headerNamesAssigned = true;
 		}
 
 		if (!_resultRow.isSkip()) {

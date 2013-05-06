@@ -167,7 +167,7 @@ type = ParamUtil.getString(request, "type", type);
 		searchContainer="<%= searchContainer %>"
 	>
 		<liferay-ui:param name="groupId" value="<%= String.valueOf(groupId) %>" />
-		<liferay-ui:param name="type" value="<%= type %>" />
+		<liferay-ui:param name="type" value="<%= HtmlUtil.escape(type) %>" />
 	</liferay-ui:search-form>
 
 	<br />

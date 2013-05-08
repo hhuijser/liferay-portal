@@ -1617,8 +1617,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			user.setPassword(PasswordEncryptorUtil.encrypt(password));
 			user.setPasswordEncrypted(true);
 			user.setPasswordUnencrypted(password);
+			user.setPasswordModified(true);
+			user.setPasswordModifiedDate(new Date());
 
 			userPersistence.update(user);
+
+			user.setPasswordModified(false);
 		}
 
 		if (user.hasCompanyMx()) {

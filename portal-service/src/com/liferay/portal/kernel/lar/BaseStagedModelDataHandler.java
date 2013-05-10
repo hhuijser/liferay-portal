@@ -44,6 +44,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 		}
 	}
 
+	@Override
 	public abstract String[] getClassNames();
 
 	public String getDisplayName(T stagedModel) {
@@ -68,6 +69,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 		}
 	}
 
+	@Override
 	public boolean validateReference(
 		Element rootElement, Element referenceElement) {
 

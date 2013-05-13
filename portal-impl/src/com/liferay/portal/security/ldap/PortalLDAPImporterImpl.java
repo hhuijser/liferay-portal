@@ -761,9 +761,13 @@ public class PortalLDAPImporterImpl implements PortalLDAPImporter {
 			UserGroup userGroup = importUserGroup(
 				companyId, groupAttributes, groupMappings);
 
-			userGroupId = userGroup.getUserGroupId();
+			if (Validator.isNotNull(userGroup)) {
+				userGroupId = userGroup.getUserGroupId();
+			}
 
-			if (PropsValues.LDAP_IMPORT_GROUP_CACHE_ENABLED) {
+			if (PropsValues.LDAP_IMPORT_GROUP_CACHE_ENABLED &&
+				Validator.isNotNull(userGroupId)) {
+
 				_portalCache.put(userGroupIdKey, userGroupId);
 			}
 		}

@@ -1297,7 +1297,7 @@ public class PortletExporter {
 	protected String getAssetCategoryPath(
 		PortletDataContext portletDataContext, long assetCategoryId) {
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(ExportImportPathUtil.getRootPath(portletDataContext));
 		sb.append("/categories/");
@@ -1310,7 +1310,7 @@ public class PortletExporter {
 	protected String getAssetLinkPath(
 		PortletDataContext portletDataContext, long assetLinkId) {
 
-		StringBundler sb = new StringBundler(6);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(ExportImportPathUtil.getRootPath(portletDataContext));
 		sb.append("/links/");
@@ -1336,7 +1336,7 @@ public class PortletExporter {
 	protected String getAssetVocabulariesPath(
 		PortletDataContext portletDataContext, long assetVocabularyId) {
 
-		StringBundler sb = new StringBundler(8);
+		StringBundler sb = new StringBundler(4);
 
 		sb.append(ExportImportPathUtil.getRootPath(portletDataContext));
 		sb.append("/vocabularies/");

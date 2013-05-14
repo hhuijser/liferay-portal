@@ -33,7 +33,7 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 %>
 
 <aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
-	<aui:fieldset>
+	<aui:fieldset id="fieldSet">
 
 		<%
 		boolean submitOnChange = true;
@@ -43,7 +43,20 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 
 	</aui:fieldset>
 
-	<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
+	<%
+		boolean hasDistributionScope = (Boolean) request.getAttribute("hasDistributionScope");
+	%>
+
+	<c:choose>
+		<c:when test='<%= hasDistributionScope %>'>
+			<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
+		</c:when>
+		<c:otherwise>
+			<div class="alert alert-info">
+				<%= HtmlUtil.escape("There are no distribution scopes to manage.") %>
+			</div>
+		</c:otherwise>
+	</c:choose>
 
 	<c:if test="<%= Validator.isNotNull(distributionScope) %>">
 		<div class="separator"><!-- --></div>

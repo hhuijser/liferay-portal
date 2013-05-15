@@ -44,12 +44,12 @@ if ((classNameId == 0) && (classPK == 0) && !permissionChecker.isOmniadmin()) {
 	</aui:fieldset>
 
 	<c:choose>
-		<c:when test="<%= distributionScopeArray.length > 1 %>">
+		<c:when test="<%= distributionScopeArray.length > 0 %>">
 			<aui:button onClick='<%= renderResponse.getNamespace() + "addEntry()" %>' value="add-entry" />
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-info">
-				<liferay-ui:message key="please-select-a-distribution-scope-if-there-is-one-available" />
+				<liferay-ui:message key="please-select-a-distribution-scope" />
 			</div>
 		</c:otherwise>
 	</c:choose>

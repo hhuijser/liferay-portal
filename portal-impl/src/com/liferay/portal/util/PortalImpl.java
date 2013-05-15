@@ -1437,7 +1437,7 @@ public class PortalImpl implements Portal {
 
 			if (category.equals(portletCategory) ||
 				(category.endsWith(StringPool.PERIOD) &&
-				 Validator.startsWith(portletCategory, category))) {
+				 StringUtil.startsWith(portletCategory, category))) {
 
 				portletsSet.add(portlet);
 			}

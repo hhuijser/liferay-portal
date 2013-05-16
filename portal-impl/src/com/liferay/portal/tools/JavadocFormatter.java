@@ -224,6 +224,31 @@ public class JavadocFormatter {
 		}
 	}
 
+	private List<JavaClass> _addAncestorJavaClasses(
+		JavaClass javaClass, List<JavaClass> ancestorJavaClasses) {
+
+		JavaClass superJavaClass = javaClass.getSuperJavaClass();
+
+		if (superJavaClass != null) {
+			ancestorJavaClasses.add(superJavaClass);
+
+			ancestorJavaClasses = _addAncestorJavaClasses(
+				superJavaClass, ancestorJavaClasses);
+		}
+
+		JavaClass[] implementedInterfaces =
+			javaClass.getImplementedInterfaces();
+
+		for (JavaClass implementedInterface : implementedInterfaces) {
+			ancestorJavaClasses.add(implementedInterface);
+
+			ancestorJavaClasses = _addAncestorJavaClasses(
+				implementedInterface, ancestorJavaClasses);
+		}
+
+		return ancestorJavaClasses;
+	}
+
 	private void _addClassCommentElement(
 		Element rootElement, JavaClass javaClass) {
 
@@ -750,31 +775,6 @@ public class JavadocFormatter {
 			"(?i)(?<!<code>|\\w)(null|false|true)(?!\\w)", "<code>$1</code>");
 
 		return text;
-	}
-
-	private List<JavaClass> _addAncestorJavaClasses(
-		JavaClass javaClass, List<JavaClass> ancestorJavaClasses) {
-
-		JavaClass superJavaClass = javaClass.getSuperJavaClass();
-
-		if (superJavaClass != null) {
-			ancestorJavaClasses.add(superJavaClass);
-
-			ancestorJavaClasses = _addAncestorJavaClasses(
-				superJavaClass, ancestorJavaClasses);
-		}
-
-		JavaClass[] implementedInterfaces =
-			javaClass.getImplementedInterfaces();
-
-		for (JavaClass implementedInterface : implementedInterfaces) {
-			ancestorJavaClasses.add(implementedInterface);
-
-			ancestorJavaClasses = _addAncestorJavaClasses(
-				implementedInterface, ancestorJavaClasses);
-		}
-
-		return ancestorJavaClasses;
 	}
 
 	private String _getCDATA(AbstractJavaEntity abstractJavaEntity) {

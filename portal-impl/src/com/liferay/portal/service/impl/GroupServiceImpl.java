@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.model.Group;
@@ -41,6 +42,7 @@ import com.liferay.portal.service.permission.PortalPermissionUtil;
 import com.liferay.portal.service.permission.PortletPermissionUtil;
 import com.liferay.portal.service.permission.RolePermissionUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
+import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.model.AssetTag;
@@ -540,8 +542,12 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		if ((classNames == null) ||
 			ArrayUtil.contains(classNames, User.class.getName())) {
 
-			if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED ||
-				PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) {
+			long companyId = user.getCompanyId();
+
+			if (PrefsPropsUtil.getBoolean(
+					companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) ||
+				PrefsPropsUtil.getBoolean(
+					companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED)) {
 
 				Group userGroup = user.getGroup();
 

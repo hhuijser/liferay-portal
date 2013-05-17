@@ -45,7 +45,6 @@ import com.liferay.portal.upload.LiferayFileUpload;
 import com.liferay.portal.upload.LiferayServletRequest;
 import com.liferay.portal.upload.UploadServletRequestImpl;
 import com.liferay.portal.util.PrefsPropsUtil;
-import com.liferay.portal.util.PropsValues;
 
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -322,8 +321,12 @@ public abstract class BaseCommandReceiver implements CommandReceiver {
 			groups.add(0, organization.getGroup());
 		}
 
-		if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED ||
-			PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) {
+		long companyId = commandArgument.getCompanyId();
+
+		if (PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) ||
+			PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED)) {
 
 			Group userGroup = GroupLocalServiceUtil.getUserGroup(
 				commandArgument.getCompanyId(), commandArgument.getUserId());

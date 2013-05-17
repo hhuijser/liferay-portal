@@ -143,16 +143,18 @@ String[] mainSections = PropsValues.USERS_FORM_ADD_MAIN;
 String[] identificationSections = PropsValues.USERS_FORM_ADD_IDENTIFICATION;
 String[] miscellaneousSections = PropsValues.USERS_FORM_ADD_MISCELLANEOUS;
 
+long companyId = company.getCompanyId();
+
 if (selUser != null) {
 	if (portletName.equals(PortletKeys.MY_ACCOUNT)) {
-		mainSections = PropsValues.USERS_FORM_MY_ACCOUNT_MAIN;
-		identificationSections = PropsValues.USERS_FORM_MY_ACCOUNT_IDENTIFICATION;
-		miscellaneousSections = PropsValues.USERS_FORM_MY_ACCOUNT_MISCELLANEOUS;
+		mainSections = PrefsPropsUtil.getStringArray(companyId, PropsKeys.USERS_FORM_MY_ACCOUNT_MAIN, StringPool.COMMA);
+		identificationSections = PrefsPropsUtil.getStringArray(companyId, PropsKeys.USERS_FORM_MY_ACCOUNT_IDENTIFICATION, StringPool.COMMA);
+		miscellaneousSections = PrefsPropsUtil.getStringArray(companyId, PropsKeys.USERS_FORM_MY_ACCOUNT_MISCELLANEOUS, StringPool.COMMA);
 	}
 	else {
-		mainSections = PropsValues.USERS_FORM_UPDATE_MAIN;
-		identificationSections = PropsValues.USERS_FORM_UPDATE_IDENTIFICATION;
-		miscellaneousSections = PropsValues.USERS_FORM_UPDATE_MISCELLANEOUS;
+		mainSections = PrefsPropsUtil.getStringArray(companyId, PropsKeys.USERS_FORM_UPDATE_MAIN, StringPool.COMMA);
+		identificationSections = PrefsPropsUtil.getStringArray(companyId, PropsKeys.USERS_FORM_UPDATE_IDENTIFICATION, StringPool.COMMA);
+		miscellaneousSections = PrefsPropsUtil.getStringArray(companyId, PropsKeys.USERS_FORM_UPDATE_MISCELLANEOUS, StringPool.COMMA);
 	}
 }
 

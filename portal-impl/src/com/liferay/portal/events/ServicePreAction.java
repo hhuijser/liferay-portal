@@ -380,20 +380,31 @@ public class ServicePreAction extends Action {
 			}
 
 			if (Validator.isNull(controlPanelCategory) &&
-				Validator.isNotNull(ppid)) {
+				Validator.isNotNull(ppid) &&
+				(LiferayWindowState.isPopUp(request) ||
+				 LiferayWindowState.isExclusive(request))) {
 
-				if (LiferayWindowState.isPopUp(request) ||
-					LiferayWindowState.isExclusive(request)) {
+				controlPanelCategory =
+					_CONTROL_PANEL_CATEGORY_PORTLET_PREFIX + ppid;
+			}
+			else if (Validator.isNotNull(ppid)) {
+				Portlet portlet = PortletLocalServiceUtil.getPortletById(
+					companyId, ppid);
 
-					controlPanelCategory =
-						_CONTROL_PANEL_CATEGORY_PORTLET_PREFIX + ppid;
+				String portletControlPanelEntryCategory =
+					portlet.getControlPanelEntryCategory();
+
+				if (!controlPanelCategory.equals(
+						PortletCategoryKeys.CURRENT_SITE) &&
+					portletControlPanelEntryCategory.startsWith(
+						PortletCategoryKeys.SITE_ADMINISTRATION)) {
+
+					portletControlPanelEntryCategory =
+						PortletCategoryKeys.SITES;
 				}
-				else {
-					Portlet portlet = PortletLocalServiceUtil.getPortletById(
-						companyId, ppid);
 
-					controlPanelCategory =
-						portlet.getControlPanelEntryCategory();
+				if (Validator.isNotNull(portletControlPanelEntryCategory)) {
+					controlPanelCategory = portletControlPanelEntryCategory;
 				}
 			}
 
@@ -1983,12 +1994,20 @@ public class ServicePreAction extends Action {
 
 		boolean addDefaultUserPrivateLayouts = false;
 
-		if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED &&
-			PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_AUTO_CREATE) {
+		long companyId = user.getCompanyId();
+
+		if (PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) &&
+			PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_AUTO_CREATE)) {
 
 			addDefaultUserPrivateLayouts = true;
 
-			if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED) {
+			if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.
+						LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED)) {
+
 				if (hasPowerUserRole == null) {
 					hasPowerUserRole = hasPowerUserRole(user);
 				}
@@ -2012,10 +2031,16 @@ public class ServicePreAction extends Action {
 
 		boolean deleteDefaultUserPrivateLayouts = false;
 
-		if (!PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) {
+		if (!PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED)) {
+
 			deleteDefaultUserPrivateLayouts = true;
 		}
-		else if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED) {
+		else if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.
+						LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED)) {
+
 			if (hasPowerUserRole == null) {
 				hasPowerUserRole = hasPowerUserRole(user);
 			}
@@ -2040,12 +2065,17 @@ public class ServicePreAction extends Action {
 
 		boolean addDefaultUserPublicLayouts = false;
 
-		if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED &&
-			PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_AUTO_CREATE) {
+		if (PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) &&
+			PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_AUTO_CREATE)) {
 
 			addDefaultUserPublicLayouts = true;
 
-			if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED) {
+			if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED)) {
+
 				if (hasPowerUserRole == null) {
 					hasPowerUserRole = hasPowerUserRole(user);
 				}
@@ -2069,10 +2099,15 @@ public class ServicePreAction extends Action {
 
 		boolean deleteDefaultUserPublicLayouts = false;
 
-		if (!PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) {
+		if (!PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED)) {
+
 			deleteDefaultUserPublicLayouts = true;
 		}
-		else if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED) {
+		else if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED)) {
+
 			if (hasPowerUserRole == null) {
 				hasPowerUserRole = hasPowerUserRole(user);
 			}

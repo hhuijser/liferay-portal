@@ -136,7 +136,7 @@ birthdayCalendar.set(Calendar.YEAR, 1970);
 		</aui:col>
 
 		<aui:col width="<%= 50 %>">
-			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
+			<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD) %>">
 				<aui:input label="password" name="password1" size="30" type="password" value="" />
 
 				<aui:input label="enter-again" name="password2" size="30" type="password" value="">

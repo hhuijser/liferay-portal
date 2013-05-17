@@ -35,7 +35,7 @@ long logoId = organization.getLogoId();
 			<%= LanguageUtil.get(pageContext, organization.getType()) %>
 		</dd>
 
-		<c:if test="<%= PropsValues.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_ORGANIZATION_STATUS %>">
+		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_MODEL_ORGANIZATION_STATUS) %>">
 			<dt>
 				<liferay-ui:message key="status" />
 			</dt>

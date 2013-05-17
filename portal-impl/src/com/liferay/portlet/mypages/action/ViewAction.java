@@ -15,13 +15,14 @@
 package com.liferay.portlet.mypages.action;
 
 import com.liferay.portal.kernel.servlet.DynamicServletRequest;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.util.PortalUtil;
-import com.liferay.portal.util.PropsValues;
+import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portlet.RenderRequestImpl;
 import com.liferay.portlet.sites.action.ActionUtil;
 
@@ -70,7 +71,9 @@ public class ViewAction extends PortletAction {
 			user.getUserId(), user.getCompanyId(), RoleConstants.POWER_USER,
 			true);
 
-		if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED &&
+		if (PrefsPropsUtil.getBoolean(
+				user.getCompanyId(),
+				PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED) &&
 			!hasPowerUserRole) {
 
 			tabs1 = "private-pages";

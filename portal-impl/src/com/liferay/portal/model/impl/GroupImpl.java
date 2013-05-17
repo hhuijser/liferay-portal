@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.staging.StagingConstants;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -51,6 +52,7 @@ import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.permission.LayoutPermissionUtil;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
 
 import java.io.IOException;
@@ -552,8 +554,11 @@ public class GroupImpl extends GroupBaseImpl {
 						PropsValues.
 							MY_SITES_SHOW_USER_PRIVATE_SITES_WITH_NO_LAYOUTS;
 
-					if (PropsValues.
-							LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED &&
+					if (PrefsPropsUtil.getBoolean(
+							permissionChecker.getCompanyId(),
+							PropsKeys.
+								LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED)
+						&&
 						!hasPowerUserRole) {
 
 						showSite = false;
@@ -564,8 +569,11 @@ public class GroupImpl extends GroupBaseImpl {
 						PropsValues.
 							MY_SITES_SHOW_USER_PUBLIC_SITES_WITH_NO_LAYOUTS;
 
-					if (PropsValues.
-							LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED &&
+					if (PrefsPropsUtil.getBoolean(
+							permissionChecker.getCompanyId(),
+							PropsKeys.
+								LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED)
+						&&
 						!hasPowerUserRole) {
 
 						showSite = false;

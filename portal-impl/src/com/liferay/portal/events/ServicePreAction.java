@@ -1994,12 +1994,20 @@ public class ServicePreAction extends Action {
 
 		boolean addDefaultUserPrivateLayouts = false;
 
-		if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED &&
-			PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_AUTO_CREATE) {
+		long companyId = user.getCompanyId();
+
+		if (PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) &&
+			PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_AUTO_CREATE)) {
 
 			addDefaultUserPrivateLayouts = true;
 
-			if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED) {
+			if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.
+						LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED)) {
+
 				if (hasPowerUserRole == null) {
 					hasPowerUserRole = hasPowerUserRole(user);
 				}
@@ -2023,10 +2031,16 @@ public class ServicePreAction extends Action {
 
 		boolean deleteDefaultUserPrivateLayouts = false;
 
-		if (!PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) {
+		if (!PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED)) {
+
 			deleteDefaultUserPrivateLayouts = true;
 		}
-		else if (PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED) {
+		else if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.
+						LAYOUT_USER_PRIVATE_LAYOUTS_POWER_USER_REQUIRED)) {
+
 			if (hasPowerUserRole == null) {
 				hasPowerUserRole = hasPowerUserRole(user);
 			}
@@ -2051,12 +2065,17 @@ public class ServicePreAction extends Action {
 
 		boolean addDefaultUserPublicLayouts = false;
 
-		if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED &&
-			PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_AUTO_CREATE) {
+		if (PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) &&
+			PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_AUTO_CREATE)) {
 
 			addDefaultUserPublicLayouts = true;
 
-			if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED) {
+			if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED)) {
+
 				if (hasPowerUserRole == null) {
 					hasPowerUserRole = hasPowerUserRole(user);
 				}
@@ -2080,10 +2099,15 @@ public class ServicePreAction extends Action {
 
 		boolean deleteDefaultUserPublicLayouts = false;
 
-		if (!PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) {
+		if (!PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED)) {
+
 			deleteDefaultUserPublicLayouts = true;
 		}
-		else if (PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED) {
+		else if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_POWER_USER_REQUIRED)) {
+
 			if (hasPowerUserRole == null) {
 				hasPowerUserRole = hasPowerUserRole(user);
 			}

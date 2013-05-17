@@ -77,7 +77,7 @@ if (selUser != null) {
 	%>
 
 	<c:choose>
-		<c:when test="<%= PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED && ((selUser == null) || ((publicLayoutSetPrototype == null) && (selUser.getPublicLayoutsPageCount() == 0))) && !layoutSetPrototypes.isEmpty() %>">
+		<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) && ((selUser == null) || ((publicLayoutSetPrototype == null) && (selUser.getPublicLayoutsPageCount() == 0))) && !layoutSetPrototypes.isEmpty() %>">
 			<aui:select label="public-pages" name="publicLayoutSetPrototypeId">
 				<aui:option label="none" selected="<%= true %>" value="" />
 
@@ -130,7 +130,7 @@ if (selUser != null) {
 							</c:otherwise>
 						</c:choose>
 
-						<c:if test="<%= PropsValues.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED %>">
+						<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.LAYOUT_USER_PUBLIC_LAYOUTS_ENABLED) %>">
 							<c:choose>
 								<c:when test="<%= (publicLayoutSetPrototype != null) && hasUnlinkLayoutSetPrototypePermission %>">
 									<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(publicLayoutSetPrototype.getName(user.getLanguageId()))) %>' name="publicLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= publicLayoutSetPrototypeLinkEnabled %>" />
@@ -149,7 +149,7 @@ if (selUser != null) {
 	</c:choose>
 
 	<c:choose>
-		<c:when test="<%= PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED && ((selUser == null) || ((privateLayoutSetPrototype == null) && (selUser.getPrivateLayoutsPageCount() == 0))) && !layoutSetPrototypes.isEmpty() %>">
+		<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) && ((selUser == null) || ((privateLayoutSetPrototype == null) && (selUser.getPrivateLayoutsPageCount() == 0))) && !layoutSetPrototypes.isEmpty() %>">
 			<aui:select label="private-pages" name="privateLayoutSetPrototypeId">
 				<aui:option label="none" selected="<%= true %>" value="" />
 
@@ -202,7 +202,7 @@ if (selUser != null) {
 								</c:otherwise>
 						</c:choose>
 
-						<c:if test="<%= PropsValues.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED %>">
+						<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.LAYOUT_USER_PRIVATE_LAYOUTS_ENABLED) %>">
 							<c:choose>
 								<c:when test="<%= (privateLayoutSetPrototype != null) && hasUnlinkLayoutSetPrototypePermission %>">
 									<aui:input label='<%= LanguageUtil.format(pageContext, "enable-propagation-of-changes-from-the-site-template-x", HtmlUtil.escape(privateLayoutSetPrototype.getName(user.getLanguageId()))) %>' name="privateLayoutSetPrototypeLinkEnabled" type="checkbox" value="<%= privateLayoutSetPrototypeLinkEnabled %>" />

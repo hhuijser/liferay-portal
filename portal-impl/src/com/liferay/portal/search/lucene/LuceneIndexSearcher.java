@@ -598,84 +598,84 @@ public class LuceneIndexSearcher extends BaseIndexSearcher {
 
 		Hits hits = new HitsImpl();
 
-		if ((start > -1) && (start <= end)) {
-			if (end > length) {
-				end = length;
-			}
-
-			if (start > end) {
-				start = end;
-			}
-
-			int subsetTotal = end - start;
-
-			if (subsetTotal > PropsValues.INDEX_SEARCH_LIMIT) {
-				subsetTotal = PropsValues.INDEX_SEARCH_LIMIT;
-			}
-
-			List<Document> subsetDocs = new ArrayList<Document>(subsetTotal);
-			List<Float> subsetScores = new ArrayList<Float>(subsetTotal);
-
-			QueryConfig queryConfig = query.getQueryConfig();
-
-			for (int i = start; i < start + subsetTotal; i++) {
-				int docId = hitDocs.getDocId(i);
-
-				org.apache.lucene.document.Document document =
-					indexSearcher.doc(docId);
-
-				Document subsetDocument = getDocument(document);
-
-				if (queryConfig.isHighlightEnabled()) {
-					Locale locale = queryConfig.getLocale();
-
-					getSnippet(
-						document, query, Field.CONTENT, locale, subsetDocument,
-						queryTerms);
-					getSnippet(
-						document, query, Field.DESCRIPTION, locale,
-						subsetDocument, queryTerms);
-					getSnippet(
-						document, query, Field.TITLE, locale, subsetDocument,
-						queryTerms);
-				}
-
-				subsetDocs.add(subsetDocument);
-
-				Float subsetScore = hitDocs.getScore(i);
-
-				if (scoredFieldNamesCount > 0) {
-					subsetScore = subsetScore / scoredFieldNamesCount;
-				}
-
-				subsetScores.add(subsetScore);
-
-				if (_log.isDebugEnabled()) {
-					try {
-						Explanation explanation = indexSearcher.explain(
-							luceneQuery, docId);
-
-						_log.debug(explanation.toString());
-					}
-					catch (Exception e) {
-					}
-				}
-			}
-
-			if (!queryConfig.isHighlightEnabled()) {
-				queryTerms = getQueryTerms(query);
-			}
-
-			hits.setDocs(subsetDocs.toArray(new Document[subsetDocs.size()]));
-			hits.setLength(length);
-			hits.setQuery(query);
-			hits.setQueryTerms(
-				queryTerms.toArray(new String[queryTerms.size()]));
-			hits.setScores(
-				subsetScores.toArray(new Float[subsetScores.size()]));
-			hits.setSearchTime(searchTime);
-			hits.setStart(startTime);
+		if ((start < 0) || (start > end)) {
+			return hits;
 		}
+
+		if (end > length) {
+			end = length;
+		}
+
+		if (start > end) {
+			start = end;
+		}
+
+		int subsetTotal = end - start;
+
+		if (subsetTotal > PropsValues.INDEX_SEARCH_LIMIT) {
+			subsetTotal = PropsValues.INDEX_SEARCH_LIMIT;
+		}
+
+		List<Document> subsetDocs = new ArrayList<Document>(subsetTotal);
+		List<Float> subsetScores = new ArrayList<Float>(subsetTotal);
+
+		QueryConfig queryConfig = query.getQueryConfig();
+
+		for (int i = start; i < start + subsetTotal; i++) {
+			int docId = hitDocs.getDocId(i);
+
+			org.apache.lucene.document.Document document = indexSearcher.doc(
+				docId);
+
+			Document subsetDocument = getDocument(document);
+
+			if (queryConfig.isHighlightEnabled()) {
+				Locale locale = queryConfig.getLocale();
+
+				getSnippet(
+					document, query, Field.CONTENT, locale, subsetDocument,
+					queryTerms);
+				getSnippet(
+					document, query, Field.DESCRIPTION, locale, subsetDocument,
+					queryTerms);
+				getSnippet(
+					document, query, Field.TITLE, locale, subsetDocument,
+					queryTerms);
+			}
+
+			subsetDocs.add(subsetDocument);
+
+			Float subsetScore = hitDocs.getScore(i);
+
+			if (scoredFieldNamesCount > 0) {
+				subsetScore = subsetScore / scoredFieldNamesCount;
+			}
+
+			subsetScores.add(subsetScore);
+
+			if (_log.isDebugEnabled()) {
+				try {
+					Explanation explanation = indexSearcher.explain(
+						luceneQuery, docId);
+
+					_log.debug(explanation.toString());
+				}
+				catch (Exception e) {
+				}
+			}
+		}
+
+		if (!queryConfig.isHighlightEnabled()) {
+			queryTerms = getQueryTerms(query);
+		}
+
+		hits.setDocs(subsetDocs.toArray(new Document[subsetDocs.size()]));
+		hits.setLength(length);
+		hits.setQuery(query);
+		hits.setQueryTerms(queryTerms.toArray(new String[queryTerms.size()]));
+		hits.setScores(subsetScores.toArray(new Float[subsetScores.size()]));
+		hits.setSearchTime(searchTime);
+		hits.setStart(startTime);
 
 		return hits;
 	}

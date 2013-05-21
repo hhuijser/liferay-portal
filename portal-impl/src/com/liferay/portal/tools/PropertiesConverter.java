@@ -155,12 +155,6 @@ public class PropertiesConverter {
 		}
 	}
 
-	private int _getLineCount(String s) {
-		String[] lines = s.split("\r\n|\r|\n");
-
-		return lines.length;
-	}
-
 	private List<String> _extractComments(PropertiesSection section) {
 		String sectionText = section.getText();
 
@@ -374,6 +368,12 @@ public class PropertiesConverter {
 		title = StringUtil.replaceFirst(title, "##", StringPool.BLANK);
 
 		return title.trim();
+	}
+
+	private int _getLineCount(String s) {
+		String[] lines = s.split("\r\n|\r|\n");
+
+		return lines.length;
 	}
 
 	private List<PropertiesSection> _getPropertiesSections(File propertiesFile)

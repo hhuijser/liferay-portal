@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Company;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
@@ -89,6 +91,8 @@ public class UpdateEmailAddressAction extends Action {
 	protected void updateEmailAddress(HttpServletRequest request)
 		throws Exception {
 
+
+		User user = PortalUtil.getUser(request);
 		long userId = PortalUtil.getUserId(request);
 		String password = AdminUtil.getUpdateUserPassword(request, userId);
 		String emailAddress1 = ParamUtil.getString(request, "emailAddress1");
@@ -96,6 +100,14 @@ public class UpdateEmailAddressAction extends Action {
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			request);
+
+		if (!user.hasCompanyMx() && user.hasCompanyMx(emailAddress1)) {
+			Company company = PortalUtil.getCompany(request);
+
+			if (!company.isStrangersWithMx()) {
+				throw new ReservedUserEmailAddressException();
+			}
+		}
 
 		UserServiceUtil.updateEmailAddress(
 			userId, password, emailAddress1, emailAddress2, serviceContext);

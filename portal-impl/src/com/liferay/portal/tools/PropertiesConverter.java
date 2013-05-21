@@ -15,6 +15,7 @@
 package com.liferay.portal.tools;
 
 import com.liferay.portal.freemarker.FreeMarkerUtil;
+import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -22,9 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.FileImpl;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -65,7 +64,8 @@ public class PropertiesConverter {
 
 		// Create a data model for Freemarker
 
-		Map context = new HashMap();
+		Map<String, Object> context = new HashMap<String, Object>();
+
 		context.put("pageTitle", title);
 		context.put("toc", toc);
 
@@ -80,67 +80,72 @@ public class PropertiesConverter {
 		String propertiesString = _fileUtil.read(propertiesFile);
 
 		String[] sectionStrings = propertiesString.split("\n\n");
+
 		List<PropertiesSection> sections = new ArrayList<PropertiesSection>(
-				sectionStrings.length);
+			sectionStrings.length);
 
-		PropertiesSection section;
+		for (String sectionString : sectionStrings) {
+			sectionString = StringUtil.trimLeading(
+				sectionString, CharPool.SPACE);
 
-		for (int i = 0; i < sectionStrings.length; i++) {
-			String sectionString = StringUtil.trimLeading(
-					sectionStrings[i], ' ');
-
-			section = new PropertiesSection(sectionString);
+			PropertiesSection section = new PropertiesSection(sectionString);
 
 			if (sectionString.startsWith("##")) {
-				int numLines = _countLines(sectionString);
+				int lineCount = _getLineCount(sectionString);
 
-				if (numLines == 3) {
+				if (lineCount == 3) {
 					section.setTitle(_extractTitle(section));
 
 					sections.add(section);
 				}
-				else if (numLines > 3) {
+				else if (lineCount > 3) {
 					section.setComments(_extractComments(section));
 
 					sections.add(section);
 				}
 				else {
-					System.out.println(
-							"Error: PropertiesSection should consist of 3 or " +
-							"more lines:\n" +
-							"##\n" +
-							"## Comment(s)\n" +
-							"##");
+					StringBundler sb = new StringBundler(8);
+
+					sb.append("Error: PropertiesSection should consist of 3 ");
+					sb.append("or more lines:");
+					sb.append(StringPool.NEW_LINE);
+					sb.append("##");
+					sb.append(StringPool.NEW_LINE);
+					sb.append("## Comment(s)");
+					sb.append(StringPool.NEW_LINE);
+					sb.append("##");
+
+					System.out.println(sb.toString());
 
 					return;
 				}
-
 			}
 			else {
-				section.setPropertyComments(_extractPropertyComments(section));
-
 				section.setDefaultProperties(
 					_extractDefaultProperties(section));
-
 				section.setExampleProperties(
 					_extractExampleProperties(section));
+				section.setPropertyComments(_extractPropertyComments(section));
 
 				sections.add(section);
 			}
-
 		}
 
 		context.put("sections", sections);
 
 		try {
-			String htmlFilePath =
-				new StringBundler(propertiesDestDir).append(
-					StringPool.SLASH).append(propertiesFileName).append(
-						".html").toString();
+			StringBundler sb = new StringBundler(4);
 
-			System.out.println("Writing " + htmlFilePath);
+			sb.append(propertiesDestDir);
+			sb.append(StringPool.SLASH);
+			sb.append(propertiesFileName);
+			sb.append(".html");
 
-			File propertiesHTMLFile = new File(htmlFilePath);
+			String htmlFileName = sb.toString();
+
+			System.out.println("Writing " + htmlFileName);
+
+			File propertiesHTMLFile = new File(htmlFileName);
 
 			Writer writer = new FileWriter(propertiesHTMLFile);
 
@@ -165,12 +170,13 @@ public class PropertiesConverter {
 		public PropertyComment(String comment) {
 			_comment = comment;
 
-			String[] lines = comment.split(StringPool.NEW_LINE);
+			String[] lines = StringUtil.split(comment, CharPool.NEW_LINE);
 
-			for (int i = 0; i < lines.length; i++) {
-				if (lines[i].startsWith(_INDENT)) {
+			for (String line : lines) {
+				if (line.startsWith(_INDENT)) {
 					_isPreFormatted = true;
-					break;
+
+					return;
 				}
 			}
 		}
@@ -183,217 +189,218 @@ public class PropertiesConverter {
 			return _isPreFormatted;
 		}
 
-		private boolean _isPreFormatted;
 		private String _comment;
+		private boolean _isPreFormatted;
 
 	}
 
-	private void _appendParagraphAsPropertyComment(
-		List<PropertyComment> propertyComments, StringBundler paragraph) {
+	private void _addParagraph(
+		List<PropertyComment> propertyComments, String paragraph) {
 
-		if (paragraph.length() > 0) {
-			propertyComments.add(new PropertyComment(paragraph.toString()));
+		if (Validator.isNotNull(paragraph)) {
+			propertyComments.add(new PropertyComment(paragraph));
 		}
 	}
 
-	private int _countLines(String str) {
-		String[] lines = str.split("\r\n|\r|\n");
+	private int _getLineCount(String s) {
+		String[] lines = s.split("\r\n|\r|\n");
+
 		return lines.length;
 	}
 
 	private List<String> _extractComments(PropertiesSection section) {
+		String sectionText = section.getText();
 
-		List<String> sectionComments = new ArrayList<String>();
-		StringBundler paragraph = new StringBundler();
+		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
 
-		String[] lines = section.getText().split(StringPool.NEW_LINE);
+		List<String> comments = new ArrayList<String>();
 
-		for (int i = 0; i < lines.length; i++) {
+		StringBundler sb = new StringBundler();
 
-			if (lines[i].trim().startsWith("## ")) {
-				String line = lines[i].substring(2);
+		for (String line : lines) {
+			String trimmedLine = line.trim();
 
-				paragraph.append(line.trim());
+			if (trimmedLine.startsWith("## ")) {
+				trimmedLine = trimmedLine.substring(2);
+
+				sb.append(trimmedLine.trim());
 			}
 
-			if (lines[i].trim().length() < 3) {
-				if (paragraph.length() == 0) {
+			if (trimmedLine.length() < 3) {
+				if (sb.index() == 0) {
 					continue;
 				}
-				else {
-					sectionComments.add(paragraph.toString());
-					paragraph = new StringBundler();
-				}
+
+				comments.add(sb.toString());
+
+				sb = new StringBundler();
 			}
 		}
 
-		return sectionComments;
+		return comments;
 	}
 
 	private String _extractDefaultProperties(PropertiesSection section) {
+		String sectionText = section.getText();
 
-		StringBundler defaultProperties = new StringBundler();
+		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
 
-		String[] lines = section.getText().split(StringPool.NEW_LINE);
+		StringBundler sb = new StringBundler();
 
-		boolean prevIsDefaultProperty = false;
+		boolean previousLineIsDefaultProperty = false;
 
-		for (int i = 0; i < lines.length; i++) {
-			String line = lines[i];
+		for (String line : lines) {
+			if (!previousLineIsDefaultProperty) {
+				if (!line.startsWith("#") && !line.startsWith(_INDENT + "#")) {
+					previousLineIsDefaultProperty = true;
 
-			if (!prevIsDefaultProperty) {
-				if (line.startsWith("#") || line.startsWith(_INDENT + "#")) {
-					continue;
-				}
-				else {
-					prevIsDefaultProperty = true;
-
-					defaultProperties.append(line + StringPool.NEW_LINE);
+					sb.append(line);
+					sb.append(StringPool.NEW_LINE);
 				}
 			}
 			else {
 				if (line.startsWith("#") || line.startsWith(_INDENT + "#")) {
-					prevIsDefaultProperty = false;
+					previousLineIsDefaultProperty = false;
 
 					continue;
 				}
-				else {
-					defaultProperties.append(line + StringPool.NEW_LINE);
-				}
+
+				sb.append(line);
+				sb.append(StringPool.NEW_LINE);
 			}
 		}
 
-		return defaultProperties.toString();
+		return sb.toString();
 	}
 
 	private String _extractExampleProperties(PropertiesSection section) {
-		StringBundler exampleProperties = new StringBundler();
+		String sectionText = section.getText();
 
-		boolean prevIsExample = false;
-		String[] lines = section.getText().split(StringPool.NEW_LINE);
+		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
 
-		for (int i = 0; i < lines.length; i++) {
-			String line = lines[i];
+		StringBundler sb = new StringBundler();
 
-			if (!prevIsExample) {
+		boolean previousLineIsExample = false;
+
+		for (String line : lines) {
+			String trimmedLine = line.trim();
+
+			if (!previousLineIsExample) {
 				if (line.startsWith(_INDENT + "# ") ||
-					line.trim().equals("#")) {
+					trimmedLine.equals("#")) {
 
 					continue;
 				}
-				else if (line.startsWith(_INDENT + "#")) {
-					prevIsExample = true;
+
+				if (line.startsWith(_INDENT + "#")) {
+					previousLineIsExample = true;
 
 					String exampleProperty =
-						line.replaceFirst("#", StringPool.BLANK) +
+						StringUtil.replaceFirst(line, "#", StringPool.BLANK) +
 							StringPool.NEW_LINE;
 
-					exampleProperties.append(exampleProperty);
+					sb.append(exampleProperty);
 				}
 			}
 			else {
-				if (!line.trim().startsWith("#")) {
-					prevIsExample = false;
+				if (!trimmedLine.startsWith("#")) {
+					previousLineIsExample = false;
 
 					continue;
 				}
-				else {
-					String exampleProperty =
-						line.replaceFirst("#", StringPool.BLANK) +
-							StringPool.NEW_LINE;
 
-					exampleProperties.append(exampleProperty);
-				}
+				String exampleProperty =
+					line.replaceFirst("#", StringPool.BLANK) +
+						StringPool.NEW_LINE;
+
+				sb.append(exampleProperty);
 			}
 		}
 
-		return exampleProperties.toString();
+		return sb.toString();
 	}
 
 	private List<PropertyComment> _extractPropertyComments(
-		PropertiesSection propertiesSection) {
+		PropertiesSection section) {
+
+		String sectionText = section.getText();
+
+		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
 
 		List<PropertyComment> propertyComments =
 			new ArrayList<PropertyComment>();
 
-		StringBundler paragraph = new StringBundler();
+		StringBundler sb = new StringBundler();
 
-		boolean prevIsPreformatted = false;
+		boolean previousLineIsPreformatted = false;
 
 		// Add property comments as paragraphs. Stop on the first property
 		// assignment.
 
-		String[] lines = propertiesSection.getText().split(StringPool.NEW_LINE);
+		for (String line : lines) {
+			line = StringUtil.trimTrailing(line);
 
-		for (int i = 0; i < lines.length; i++) {
-			String line = StringUtil.trimTrailing(lines[i]);
-
-			if (line.startsWith(_INDENT_DOUBLE + "#")) {
+			if (line.startsWith(_DOUBLE_INDENT + "#")) {
 				break;
 			}
-			else if (line.trim().startsWith("# " + _INDENT)) {
 
-				if (prevIsPreformatted) {
-					paragraph.append(
-							line.trim().replaceFirst("#", StringPool.BLANK));
+			String trimmedLine = line.trim();
+
+			if (trimmedLine.startsWith("# " + _INDENT)) {
+				if (previousLineIsPreformatted) {
+					sb.append(
+						StringUtil.replaceFirst(
+							trimmedLine, "#", StringPool.BLANK));
 				}
 				else {
-					_appendParagraphAsPropertyComment(
-						propertyComments, paragraph);
+					_addParagraph(propertyComments, sb.toString());
 
-					paragraph = new StringBundler(
-						line.trim().replaceFirst("#", StringPool.BLANK));
+					sb = new StringBundler();
+
+					sb.append(
+						StringUtil.replaceFirst(
+							trimmedLine, "#", StringPool.BLANK));
 				}
 
-				paragraph.append(StringPool.NEW_LINE);
-				prevIsPreformatted = true;
+				sb.append(StringPool.NEW_LINE);
+				previousLineIsPreformatted = true;
 			}
-			else if (line.trim().startsWith("# ")) {
+			else if (trimmedLine.startsWith("# ")) {
+				if (previousLineIsPreformatted) {
+					_addParagraph(propertyComments, sb.toString());
 
-				if (prevIsPreformatted) {
-					_appendParagraphAsPropertyComment(
-						propertyComments, paragraph);
+					sb = new StringBundler();
 
-					paragraph = new StringBundler(
-						line.trim().replaceFirst("#", StringPool.BLANK).trim());
+					trimmedLine = StringUtil.replaceFirst(
+						trimmedLine, "#", StringPool.BLANK);
+
+					sb.append(trimmedLine.trim());
 				}
 				else {
-					if (paragraph.length() > 0) {
-						paragraph.append(StringPool.SPACE);
+					if (sb.length() > 0) {
+						sb.append(StringPool.SPACE);
 					}
 
-					paragraph.append(
-							line.replaceFirst("#", StringPool.BLANK).trim());
+					line = StringUtil.replaceFirst(line, "#", StringPool.BLANK);
+
+					sb.append(line.trim());
 				}
 
-				paragraph.append(StringPool.NEW_LINE);
-				prevIsPreformatted = false;
+				sb.append(StringPool.NEW_LINE);
+
+				previousLineIsPreformatted = false;
+			}
+			else if (trimmedLine.startsWith("#") &&
+					 (trimmedLine.length() < 2)) {
+
+				_addParagraph(propertyComments, sb.toString());
+
+				sb = new StringBundler();
 			}
 			else {
-				String trimmedLine = line.trim();
+				_addParagraph(propertyComments, sb.toString());
 
-				if (trimmedLine.startsWith("#")) {
-					if (trimmedLine.length() < 2) {
-						_appendParagraphAsPropertyComment(
-							propertyComments, paragraph);
-
-						paragraph = new StringBundler();
-
-						continue;
-					}
-					else {
-						_appendParagraphAsPropertyComment(
-							propertyComments, paragraph);
-
-						break;
-					}
-				}
-				else {
-					_appendParagraphAsPropertyComment(
-						propertyComments, paragraph);
-
-					break;
-				}
+				break;
 			}
 		}
 
@@ -401,21 +408,26 @@ public class PropertiesConverter {
 	}
 
 	private String _extractTitle(PropertiesSection section) {
-		String[] lines = section.getText().split(StringPool.NEW_LINE);
+		String sectionText = section.getText();
 
-		String title = null;
+		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
 
-		if ((lines != null) && (lines.length > 1)) {
-			title = lines[1].replaceFirst("##", StringPool.BLANK).trim();
+		if ((lines == null) || (lines.length <= 1)) {
+			return null;
 		}
 
-		return title;
+		String title = lines[1];
+
+		title = StringUtil.replaceFirst(title, "##", StringPool.BLANK);
+
+		return title.trim();
 	}
 
-	private static final String _INDENT =
-			new StringBundler(StringPool.SPACE).append(StringPool.SPACE).append(
-					StringPool.SPACE).append(StringPool.SPACE).toString();
-	private static final String _INDENT_DOUBLE = _INDENT + _INDENT;
+	private static final String _DOUBLE_INDENT =
+		PropertiesConverter._INDENT + PropertiesConverter._INDENT;
+
+	private static final String _INDENT = StringPool.FOUR_SPACES;
+
 	private static final String _TPL_PROPERTIES_HTML =
 		"com/liferay/portal/tools/dependencies/properties_html.ftl";
 

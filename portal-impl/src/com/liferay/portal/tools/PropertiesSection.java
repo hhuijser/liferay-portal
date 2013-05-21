@@ -54,7 +54,12 @@ public class PropertiesSection {
 	}
 
 	public boolean hasComments() {
-		return Validator.isNotNull(_comments);
+		if ((_comments != null) && !_comments.isEmpty()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public boolean hasDefaultProperties() {
@@ -66,7 +71,12 @@ public class PropertiesSection {
 	}
 
 	public boolean hasPropertyComments() {
-		return Validator.isNotNull(_propertyComments);
+		if ((_propertyComments != null) && !_propertyComments.isEmpty()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public boolean hasTitle() {
@@ -98,7 +108,6 @@ public class PropertiesSection {
 	private String _exampleProperties;
 	private List<PropertyComment> _propertyComments;
 	private final String _text;
-
 	private String _title;
 
 }

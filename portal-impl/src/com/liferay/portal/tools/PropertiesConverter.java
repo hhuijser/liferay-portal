@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.util.FileImpl;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -48,7 +49,7 @@ public class PropertiesConverter {
 		}
 	}
 
-	public PropertiesConverter(String[] args) {
+	public PropertiesConverter(String[] args) throws IOException {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
 		String propertiesDestDir = GetterUtil.getString(
@@ -76,7 +77,7 @@ public class PropertiesConverter {
 
 		context.put("propertiesFileName", propertiesFileName);
 
-		String propertiesString = _read(propertiesFile);
+		String propertiesString = _fileUtil.read(propertiesFile);
 
 		String[] sectionStrings = propertiesString.split("\n\n");
 		List<PropertiesSection> sections = new ArrayList<PropertiesSection>(
@@ -411,34 +412,13 @@ public class PropertiesConverter {
 		return title;
 	}
 
-	private String _read(File file) {
-
-		StringBuilder contents = new StringBuilder();
-		try {
-			BufferedReader input = new BufferedReader(new FileReader(file));
-			try {
-				String line = null;
-				while ((line = input.readLine()) != null) {
-					contents.append(line);
-					contents.append("\n");
-				}
-			}
-			finally {
-				input.close();
-			}
-		}
-		catch (IOException ex) {
-			ex.printStackTrace();
-		}
-
-		return contents.toString();
-	}
-
 	private static final String _INDENT =
 			new StringBundler(StringPool.SPACE).append(StringPool.SPACE).append(
 					StringPool.SPACE).append(StringPool.SPACE).toString();
 	private static final String _INDENT_DOUBLE = _INDENT + _INDENT;
 	private static final String _TPL_PROPERTIES_HTML =
 		"com/liferay/portal/tools/dependencies/properties_html.ftl";
+
+	private static FileImpl _fileUtil = FileImpl.getInstance();
 
 }

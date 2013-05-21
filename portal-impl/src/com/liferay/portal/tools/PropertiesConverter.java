@@ -77,61 +77,14 @@ public class PropertiesConverter {
 
 		context.put("propertiesFileName", propertiesFileName);
 
-		String propertiesString = _fileUtil.read(propertiesFile);
+		List<PropertiesSection> propertiesSections = _getPropertiesSections(
+			propertiesFile);
 
-		String[] sectionStrings = propertiesString.split("\n\n");
-
-		List<PropertiesSection> sections = new ArrayList<PropertiesSection>(
-			sectionStrings.length);
-
-		for (String sectionString : sectionStrings) {
-			sectionString = StringUtil.trimLeading(
-				sectionString, CharPool.SPACE);
-
-			PropertiesSection section = new PropertiesSection(sectionString);
-
-			if (sectionString.startsWith("##")) {
-				int lineCount = _getLineCount(sectionString);
-
-				if (lineCount == 3) {
-					section.setTitle(_extractTitle(section));
-
-					sections.add(section);
-				}
-				else if (lineCount > 3) {
-					section.setComments(_extractComments(section));
-
-					sections.add(section);
-				}
-				else {
-					StringBundler sb = new StringBundler(8);
-
-					sb.append("Error: PropertiesSection should consist of 3 ");
-					sb.append("or more lines:");
-					sb.append(StringPool.NEW_LINE);
-					sb.append("##");
-					sb.append(StringPool.NEW_LINE);
-					sb.append("## Comment(s)");
-					sb.append(StringPool.NEW_LINE);
-					sb.append("##");
-
-					System.out.println(sb.toString());
-
-					return;
-				}
-			}
-			else {
-				section.setDefaultProperties(
-					_extractDefaultProperties(section));
-				section.setExampleProperties(
-					_extractExampleProperties(section));
-				section.setPropertyComments(_extractPropertyComments(section));
-
-				sections.add(section);
-			}
+		if (propertiesSections == null) {
+			return;
 		}
 
-		context.put("sections", sections);
+		context.put("sections", propertiesSections);
 
 		try {
 			StringBundler sb = new StringBundler(4);
@@ -421,6 +374,70 @@ public class PropertiesConverter {
 		title = StringUtil.replaceFirst(title, "##", StringPool.BLANK);
 
 		return title.trim();
+	}
+
+	private List<PropertiesSection> _getPropertiesSections(File propertiesFile)
+		throws IOException {
+
+		String propertiesFileString = _fileUtil.read(propertiesFile);
+
+		String[] sectionStrings = propertiesFileString.split("\n\n");
+
+		List<PropertiesSection> propertiesSections =
+			new ArrayList<PropertiesSection>(sectionStrings.length);
+
+		for (String sectionString : sectionStrings) {
+			sectionString = StringUtil.trimLeading(
+				sectionString, CharPool.SPACE);
+
+			PropertiesSection propertiesSection = new PropertiesSection(
+				sectionString);
+
+			if (sectionString.startsWith("##")) {
+				int lineCount = _getLineCount(sectionString);
+
+				if (lineCount == 3) {
+					propertiesSection.setTitle(
+						_extractTitle(propertiesSection));
+
+					propertiesSections.add(propertiesSection);
+				}
+				else if (lineCount > 3) {
+					propertiesSection.setComments(
+						_extractComments(propertiesSection));
+
+					propertiesSections.add(propertiesSection);
+				}
+				else {
+					StringBundler sb = new StringBundler(8);
+
+					sb.append("Error: PropertiesSection should consist of 3 ");
+					sb.append("or more lines:");
+					sb.append(StringPool.NEW_LINE);
+					sb.append("##");
+					sb.append(StringPool.NEW_LINE);
+					sb.append("## Comment(s)");
+					sb.append(StringPool.NEW_LINE);
+					sb.append("##");
+
+					System.out.println(sb.toString());
+
+					return null;
+				}
+			}
+			else {
+				propertiesSection.setDefaultProperties(
+					_extractDefaultProperties(propertiesSection));
+				propertiesSection.setExampleProperties(
+					_extractExampleProperties(propertiesSection));
+				propertiesSection.setPropertyComments(
+					_extractPropertyComments(propertiesSection));
+
+				propertiesSections.add(propertiesSection);
+			}
+		}
+
+		return propertiesSections;
 	}
 
 	private static final String _DOUBLE_INDENT =

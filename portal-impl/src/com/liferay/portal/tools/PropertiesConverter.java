@@ -51,17 +51,16 @@ public class PropertiesConverter {
 	public PropertiesConverter(String[] args) {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
-		String propertiesFilePath = GetterUtil.getString(
-				arguments.get("properties.file.path"));
-
-		String destDir = GetterUtil.getString(
-				arguments.get("properties.dest.file.path"));
-
+		String propertiesDestDir = GetterUtil.getString(
+			arguments.get("properties.dest.dir"));
+		String propertiesFileName = GetterUtil.getString(
+			arguments.get("properties.file"));
 		String title = GetterUtil.getString(arguments.get("properties.title"));
-
 		boolean toc = GetterUtil.getBoolean(arguments.get("properties.toc"));
 
-		System.out.println("Converting " + propertiesFilePath + " to HTML");
+		System.out.println("Converting " + propertiesFileName + " to HTML");
+
+		File propertiesFile = new File(propertiesFileName);
 
 		// Create a data model for Freemarker
 
@@ -69,19 +68,14 @@ public class PropertiesConverter {
 		context.put("pageTitle", title);
 		context.put("toc", toc);
 
-		String propertiesFileName = StringPool.BLANK;
-		int pos = propertiesFilePath.lastIndexOf("/");
+		int pos = propertiesFileName.lastIndexOf(StringPool.SLASH);
 
 		if (pos != -1) {
-			propertiesFileName = propertiesFilePath.substring(pos + 1);
-		}
-		else {
-			propertiesFileName = propertiesFilePath;
+			propertiesFileName = propertiesFileName.substring(pos + 1);
 		}
 
 		context.put("propertiesFileName", propertiesFileName);
 
-		File propertiesFile = new File(propertiesFilePath);
 		String propertiesString = _read(propertiesFile);
 
 		String[] sectionStrings = propertiesString.split("\n\n");
@@ -139,8 +133,9 @@ public class PropertiesConverter {
 
 		try {
 			String htmlFilePath =
-				new StringBundler(destDir).append(StringPool.SLASH).append(
-						propertiesFileName).append(".html").toString();
+				new StringBundler(propertiesDestDir).append(
+					StringPool.SLASH).append(propertiesFileName).append(
+						".html").toString();
 
 			System.out.println("Writing " + htmlFilePath);
 

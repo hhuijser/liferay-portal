@@ -178,10 +178,6 @@ public class PropertiesConverter {
 			return _comment;
 		}
 
-		public boolean hasComment() {
-			return Validator.isNotNull(_comment);
-		}
-
 		public boolean isPreFormatted() {
 			return _isPreFormatted;
 		}

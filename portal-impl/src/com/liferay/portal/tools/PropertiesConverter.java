@@ -155,16 +155,12 @@ public class PropertiesConverter {
 		}
 	}
 
-	private List<String> _extractComments(PropertiesSection section) {
-		String sectionText = section.getText();
-
-		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
-
+	private List<String> _extractComments(String[] sectionLines) {
 		List<String> comments = new ArrayList<String>();
 
 		StringBundler sb = new StringBundler();
 
-		for (String line : lines) {
+		for (String line : sectionLines) {
 			String trimmedLine = line.trim();
 
 			if (trimmedLine.startsWith("## ")) {
@@ -187,16 +183,12 @@ public class PropertiesConverter {
 		return comments;
 	}
 
-	private String _extractDefaultProperties(PropertiesSection section) {
-		String sectionText = section.getText();
-
-		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
-
+	private String _extractDefaultProperties(String[] sectionLines) {
 		StringBundler sb = new StringBundler();
 
 		boolean previousLineIsDefaultProperty = false;
 
-		for (String line : lines) {
+		for (String line : sectionLines) {
 			if (!previousLineIsDefaultProperty) {
 				if (!line.startsWith("#") && !line.startsWith(_INDENT + "#")) {
 					previousLineIsDefaultProperty = true;
@@ -220,16 +212,12 @@ public class PropertiesConverter {
 		return sb.toString();
 	}
 
-	private String _extractExampleProperties(PropertiesSection section) {
-		String sectionText = section.getText();
-
-		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
-
+	private String _extractExampleProperties(String[] sectionLines) {
 		StringBundler sb = new StringBundler();
 
 		boolean previousLineIsExample = false;
 
-		for (String line : lines) {
+		for (String line : sectionLines) {
 			String trimmedLine = line.trim();
 
 			if (!previousLineIsExample) {
@@ -268,11 +256,7 @@ public class PropertiesConverter {
 	}
 
 	private List<PropertyComment> _extractPropertyComments(
-		PropertiesSection section) {
-
-		String sectionText = section.getText();
-
-		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
+		String[] sectionLines) {
 
 		List<PropertyComment> propertyComments =
 			new ArrayList<PropertyComment>();
@@ -284,7 +268,7 @@ public class PropertiesConverter {
 		// Add property comments as paragraphs. Stop on the first property
 		// assignment.
 
-		for (String line : lines) {
+		for (String line : sectionLines) {
 			line = StringUtil.trimTrailing(line);
 
 			if (line.startsWith(_DOUBLE_INDENT + "#")) {
@@ -354,16 +338,12 @@ public class PropertiesConverter {
 		return propertyComments;
 	}
 
-	private String _extractTitle(PropertiesSection section) {
-		String sectionText = section.getText();
-
-		String[] lines = StringUtil.split(sectionText, CharPool.NEW_LINE);
-
-		if ((lines == null) || (lines.length <= 1)) {
+	private String _extractTitle(String[] sectionLines) {
+		if ((sectionLines == null) || (sectionLines.length <= 1)) {
 			return null;
 		}
 
-		String title = lines[1];
+		String title = sectionLines[1];
 
 		title = StringUtil.replaceFirst(title, "##", StringPool.BLANK);
 
@@ -393,18 +373,22 @@ public class PropertiesConverter {
 			PropertiesSection propertiesSection = new PropertiesSection(
 				sectionString);
 
+			String sectionText = propertiesSection.getText();
+
+			String[] sectionLines = StringUtil.split(
+				sectionText, CharPool.NEW_LINE);
+
 			if (sectionString.startsWith("##")) {
 				int lineCount = _getLineCount(sectionString);
 
 				if (lineCount == 3) {
-					propertiesSection.setTitle(
-						_extractTitle(propertiesSection));
+					propertiesSection.setTitle(_extractTitle(sectionLines));
 
 					propertiesSections.add(propertiesSection);
 				}
 				else if (lineCount > 3) {
 					propertiesSection.setComments(
-						_extractComments(propertiesSection));
+						_extractComments(sectionLines));
 
 					propertiesSections.add(propertiesSection);
 				}
@@ -427,11 +411,11 @@ public class PropertiesConverter {
 			}
 			else {
 				propertiesSection.setDefaultProperties(
-					_extractDefaultProperties(propertiesSection));
+					_extractDefaultProperties(sectionLines));
 				propertiesSection.setExampleProperties(
-					_extractExampleProperties(propertiesSection));
+					_extractExampleProperties(sectionLines));
 				propertiesSection.setPropertyComments(
-					_extractPropertyComments(propertiesSection));
+					_extractPropertyComments(sectionLines));
 
 				propertiesSections.add(propertiesSection);
 			}

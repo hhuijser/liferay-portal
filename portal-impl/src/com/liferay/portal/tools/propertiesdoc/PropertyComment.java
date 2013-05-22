@@ -14,8 +14,7 @@
 
 package com.liferay.portal.tools.propertiesdoc;
 
-import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author Jesse Rao
@@ -27,7 +26,7 @@ public class PropertyComment {
 	public PropertyComment(String comment) {
 		_comment = comment;
 
-		String[] lines = StringUtil.split(comment, CharPool.NEW_LINE);
+		String[] lines = comment.split(StringPool.NEW_LINE);
 
 		for (String line : lines) {
 			if (line.startsWith(PropertiesDocBuilder._INDENT)) {

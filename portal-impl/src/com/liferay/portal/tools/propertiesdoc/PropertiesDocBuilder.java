@@ -38,7 +38,7 @@ import java.util.Map;
  * @author Jesse Rao
  * @author James Hinkey
  */
-public class PropertiesDocBuilder  {
+public class PropertiesDocBuilder {
 
 	public static void main(String[] args) {
 		try {
@@ -119,34 +119,13 @@ public class PropertiesDocBuilder  {
 		}
 	}
 
-	public class PropertyComment {
+	protected static final String _DOUBLE_INDENT =
+		PropertiesDocBuilder._INDENT + PropertiesDocBuilder._INDENT;
 
-		public PropertyComment(String comment) {
-			_comment = comment;
+	protected static final String _INDENT = StringPool.FOUR_SPACES;
 
-			String[] lines = StringUtil.split(comment, CharPool.NEW_LINE);
-
-			for (String line : lines) {
-				if (line.startsWith(_INDENT)) {
-					_isPreFormatted = true;
-
-					return;
-				}
-			}
-		}
-
-		public String getComment() {
-			return _comment;
-		}
-
-		public boolean isPreFormatted() {
-			return _isPreFormatted;
-		}
-
-		private String _comment;
-		private boolean _isPreFormatted;
-
-	}
+	protected static final String _TPL_PROPERTIES_HTML =
+		"com/liferay/portal/tools/dependencies/properties_html.ftl";
 
 	private void _addParagraph(
 		List<PropertyComment> propertyComments, String paragraph) {
@@ -424,14 +403,6 @@ public class PropertiesDocBuilder  {
 
 		return propertiesSections;
 	}
-
-	private static final String _DOUBLE_INDENT =
-		PropertiesDocBuilder._INDENT + PropertiesDocBuilder._INDENT;
-
-	private static final String _INDENT = StringPool.FOUR_SPACES;
-
-	private static final String _TPL_PROPERTIES_HTML =
-		"com/liferay/portal/tools/dependencies/properties_html.ftl";
 
 	private static FileImpl _fileUtil = FileImpl.getInstance();
 

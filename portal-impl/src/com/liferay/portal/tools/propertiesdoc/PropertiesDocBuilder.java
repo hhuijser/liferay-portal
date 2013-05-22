@@ -125,7 +125,8 @@ public class PropertiesDocBuilder {
 	protected static final String _INDENT = StringPool.FOUR_SPACES;
 
 	protected static final String _TPL_PROPERTIES_HTML =
-		"com/liferay/portal/tools/dependencies/properties_html.ftl";
+		"com/liferay/portal/tools/propertiesdoc/dependencies/" +
+			"properties_html.ftl";
 
 	private void _addParagraph(
 		List<PropertyComment> propertyComments, String paragraph) {

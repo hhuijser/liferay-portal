@@ -356,8 +356,7 @@ public class PropertiesDocBuilder {
 
 			String sectionText = propertiesSection.getText();
 
-			String[] sectionLines = StringUtil.split(
-				sectionText, CharPool.NEW_LINE);
+			String[] sectionLines = sectionText.split(StringPool.NEW_LINE);
 
 			if (sectionString.startsWith("##")) {
 				int lineCount = _getLineCount(sectionString);

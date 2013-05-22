@@ -15,7 +15,6 @@
 package com.liferay.portal.tools.propertiesdoc;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.propertiesdoc.PropertiesDocBuilder.PropertyComment;
 
 import java.util.List;
 

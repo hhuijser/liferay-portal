@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.portal.tools.propertiesdoc;
 
 import com.liferay.portal.freemarker.FreeMarkerUtil;
 import com.liferay.portal.kernel.util.CharPool;
@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.ArgumentsUtil;
 import com.liferay.portal.util.FileImpl;
 
 import java.io.File;
@@ -37,18 +38,18 @@ import java.util.Map;
  * @author Jesse Rao
  * @author James Hinkey
  */
-public class PropertiesConverter {
+public class PropertiesDocBuilder  {
 
 	public static void main(String[] args) {
 		try {
-			new PropertiesConverter(args);
+			new PropertiesDocBuilder (args);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public PropertiesConverter(String[] args) throws IOException {
+	public PropertiesDocBuilder(String[] args) throws IOException {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
 		String propertiesDestDir = GetterUtil.getString(
@@ -425,7 +426,7 @@ public class PropertiesConverter {
 	}
 
 	private static final String _DOUBLE_INDENT =
-		PropertiesConverter._INDENT + PropertiesConverter._INDENT;
+		PropertiesDocBuilder._INDENT + PropertiesDocBuilder._INDENT;
 
 	private static final String _INDENT = StringPool.FOUR_SPACES;
 

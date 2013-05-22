@@ -275,6 +275,7 @@ public class PropertiesDocBuilder {
 				}
 
 				sb.append(StringPool.NEW_LINE);
+
 				previousLineIsPreformatted = true;
 			}
 			else if (trimmedLine.startsWith("# ")) {

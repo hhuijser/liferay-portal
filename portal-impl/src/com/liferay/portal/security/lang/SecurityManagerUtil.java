@@ -30,16 +30,12 @@ import java.util.List;
 public class SecurityManagerUtil {
 
 	public static void applySmartStrategy() {
-		if (_portalSecurityManagerStrategy !=
-				PortalSecurityManagerStrategy.SMART) {
+		if ((_portalSecurityManagerStrategy ==
+				PortalSecurityManagerStrategy.SMART) &&
+			(_originalSecurityManager == null) &&
+			ServerDetector.isWebSphere()) {
 
-			return;
-		}
-
-		if (ServerDetector.isWebSphere()) {
-			if (_originalSecurityManager == null) {
-				System.setSecurityManager(null);
-			}
+			System.setSecurityManager(null);
 		}
 	}
 

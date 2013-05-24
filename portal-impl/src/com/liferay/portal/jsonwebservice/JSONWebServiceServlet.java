@@ -115,7 +115,7 @@ public class JSONWebServiceServlet extends JSONServlet {
 
 				String redirectPath =
 					"/api/jsonws?contextPath=" +
-					HttpUtil.encodeURL(servletContextPath);
+						HttpUtil.encodeURL(servletContextPath);
 
 				response.sendRedirect(redirectPath);
 			}

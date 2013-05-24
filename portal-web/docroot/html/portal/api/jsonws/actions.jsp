@@ -30,8 +30,6 @@ Set<String> contextPaths = JSONWebServiceActionsManagerUtil.getContextPaths();
 			String curContextPathView = curContextPath;
 
 			if (Validator.isNull(curContextPath)) {
-				curContextPath = StringPool.BLANK;
-
 				curContextPathView = StringPool.SLASH;
 			}
 		%>

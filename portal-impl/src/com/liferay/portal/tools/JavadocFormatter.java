@@ -70,6 +70,7 @@ import org.apache.tools.ant.DirectoryScanner;
  * @author Brian Wing Shun Chan
  * @author Connor McKay
  * @author James Hinkey
+ * @author Hugo Huijser
  */
 public class JavadocFormatter {
 
@@ -224,29 +225,37 @@ public class JavadocFormatter {
 		}
 	}
 
-	private List<JavaClass> _addAncestorJavaClasses(
-		JavaClass javaClass, List<JavaClass> ancestorJavaClasses) {
+	private List<Tuple> _addAncestorJavaClassTuples(
+		JavaClass javaClass, List<Tuple> ancestorJavaClassTuples) {
 
 		JavaClass superJavaClass = javaClass.getSuperJavaClass();
 
 		if (superJavaClass != null) {
-			ancestorJavaClasses.add(superJavaClass);
+			ancestorJavaClassTuples.add(new Tuple(superJavaClass));
 
-			ancestorJavaClasses = _addAncestorJavaClasses(
-				superJavaClass, ancestorJavaClasses);
+			ancestorJavaClassTuples = _addAncestorJavaClassTuples(
+				superJavaClass, ancestorJavaClassTuples);
 		}
 
-		JavaClass[] implementedInterfaces =
-			javaClass.getImplementedInterfaces();
+		Type[] implementz = javaClass.getImplements();
 
-		for (JavaClass implementedInterface : implementedInterfaces) {
-			ancestorJavaClasses.add(implementedInterface);
+		for (Type implement : implementz) {
+			Type[] actualTypeArguments = implement.getActualTypeArguments();
+			JavaClass implementedInterface = implement.getJavaClass();
 
-			ancestorJavaClasses = _addAncestorJavaClasses(
-				implementedInterface, ancestorJavaClasses);
+			if (actualTypeArguments == null) {
+				ancestorJavaClassTuples.add(new Tuple(implementedInterface));
+			}
+			else {
+				ancestorJavaClassTuples.add(
+					new Tuple(implementedInterface, actualTypeArguments));
+			}
+
+			ancestorJavaClassTuples = _addAncestorJavaClassTuples(
+				implementedInterface, ancestorJavaClassTuples);
 		}
 
-		return ancestorJavaClasses;
+		return ancestorJavaClassTuples;
 	}
 
 	private void _addClassCommentElement(
@@ -1326,7 +1335,7 @@ public class JavadocFormatter {
 
 	private boolean _isOverrideMethod(
 		JavaClass javaClass, JavaMethod javaMethod,
-		Collection<JavaClass> ancestorJavaClasses) {
+		Collection<Tuple> ancestorJavaClassTuples) {
 
 		if (javaMethod.isConstructor() || javaMethod.isPrivate() ||
 			javaMethod.isStatic()) {
@@ -1346,9 +1355,55 @@ public class JavadocFormatter {
 
 		// Check for matching method in each ancestor
 
-		for (JavaClass ancestorJavaClass : ancestorJavaClasses) {
-			JavaMethod ancestorJavaMethod =
-				ancestorJavaClass.getMethodBySignature(methodName, types);
+		for (Tuple ancestorJavaClassTuple : ancestorJavaClassTuples) {
+			JavaClass ancestorJavaClass =
+				(JavaClass)ancestorJavaClassTuple.getObject(0);
+
+			JavaMethod ancestorJavaMethod = null;
+
+			if (ancestorJavaClassTuple.getSize() > 1) {
+
+				// LPS-35613
+
+				Type[] ancestorActualTypeArguments =
+					(Type[])ancestorJavaClassTuple.getObject(1);
+
+				Type[] genericTypes = new Type[types.length];
+
+				for (int i = 0; i < types.length; i++) {
+					Type type = types[i];
+
+					String typeValue = type.getValue();
+
+					boolean useGenericType = false;
+
+					for (int j = 0; j < ancestorActualTypeArguments.length;
+							j++) {
+
+						if (typeValue.equals(
+								ancestorActualTypeArguments[j].getValue())) {
+
+							useGenericType = true;
+
+							break;
+						}
+					}
+
+					if (useGenericType) {
+						genericTypes[i] = new Type("java.lang.Object");
+					}
+					else {
+						genericTypes[i] = type;
+					}
+				}
+
+				ancestorJavaMethod = ancestorJavaClass.getMethodBySignature(
+					methodName, genericTypes);
+			}
+			else {
+				ancestorJavaMethod = ancestorJavaClass.getMethodBySignature(
+					methodName, types);
+			}
 
 			if (ancestorJavaMethod == null) {
 				continue;
@@ -1512,10 +1567,10 @@ public class JavadocFormatter {
 
 		_updateLanguageProperties(document, javaClass.getName());
 
-		List<JavaClass> ancestorJavaClasses = new ArrayList<JavaClass>();
+		List<Tuple> ancestorJavaClassTuples = new ArrayList<Tuple>();
 
-		ancestorJavaClasses = _addAncestorJavaClasses(
-			javaClass, ancestorJavaClasses);
+		ancestorJavaClassTuples = _addAncestorJavaClassTuples(
+			javaClass, ancestorJavaClassTuples);
 
 		Element rootElement = document.getRootElement();
 
@@ -1549,7 +1604,7 @@ public class JavadocFormatter {
 
 			if (!_hasAnnotation(javaMethod, "Override")) {
 				if (_isOverrideMethod(
-						javaClass, javaMethod, ancestorJavaClasses)) {
+						javaClass, javaMethod, ancestorJavaClassTuples)) {
 
 					String overrideLine =
 						_getIndent(lines, javaMethod) + "@Override\n";

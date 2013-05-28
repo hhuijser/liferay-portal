@@ -18,6 +18,7 @@ import com.liferay.portal.NoSuchResourcePermissionException;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.LayoutSetBranch;
@@ -72,17 +73,54 @@ public class VerifyResourcePermissions extends VerifyProcess {
 
 	@Override
 	protected void doVerify() throws Exception {
-		long[] companyIds = PortalInstances.getCompanyIdsBySQL();
+		verifyBookmarks();
+		verifyDocumentLibrary();
+		verifyModelAndLayout();
+	}
 
-		for (long companyId : companyIds) {
-			Role role = RoleLocalServiceUtil.getRole(
-				companyId, RoleConstants.OWNER);
+	protected void verifyBookmarks() throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
 
-			for (String[] model : _MODELS) {
-				verifyModel(role, model[0], model[1], model[2]);
-			}
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
 
-			verifyLayout(role);
+			StringBundler sb = new StringBundler();
+
+			sb.append("update ResourcePermission set actionIds = 17 where ");
+			sb.append("name = 'com.liferay.portlet.bookmarks' and roleId = ");
+			sb.append("(select roleId from Role_ where name = 'Site Member') ");
+			sb.append("and primKey != 0");
+
+			ps = con.prepareStatement(sb.toString());
+
+			ps.executeUpdate();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
+	}
+
+	protected void verifyDocumentLibrary() throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			StringBundler sb = new StringBundler();
+
+			sb.append("update ResourcePermission set actionIds = 513 where ");
+			sb.append("name = 'com.liferay.portlet.documentlibrary' and ");
+			sb.append("roleId = (select roleId from Role_ where name = 'Site ");
+			sb.append("Member') and primKey != 0");
+
+			ps = con.prepareStatement(sb.toString());
+
+			ps.executeUpdate();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
 		}
 	}
 
@@ -187,6 +225,21 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		}
 	}
 
+	protected void verifyModelAndLayout() throws Exception {
+		long[] companyIds = PortalInstances.getCompanyIdsBySQL();
+
+		for (long companyId : companyIds) {
+			Role role = RoleLocalServiceUtil.getRole(
+				companyId, RoleConstants.OWNER);
+
+			for (String[] model : _MODELS) {
+				verifyModel(role, model[0], model[1], model[2]);
+			}
+
+			verifyLayout(role);
+		}
+	}
+		
 	private static final String[][] _MODELS = new String[][] {
 		new String[] {
 			AnnouncementsEntry.class.getName(), "AnnouncementsEntry", "entryId"

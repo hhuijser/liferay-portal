@@ -106,7 +106,7 @@ FCKConfig.BackgroundBlockerOpacity = 0.70 ;
 FCKConfig.BodyClass = 'html-editor <%= cssClasses %>' ;
 FCKConfig.CustomStyles = {};
 FCKConfig.StylesXmlPath = FCKConfig.EditorPath + 'fckstyles.xml' ;
-FCKConfig.EditorAreaCSS = '<%= HtmlUtil.escape(cssPath) %>/main.css' ;
+FCKConfig.EditorAreaCSS = '<%= HtmlUtil.escape(cssPath) %>' ;
 
 FCKConfig.LinkBrowserURL = FCKConfig.BasePath + "filemanager/browser/liferay/browser.html?Connector=<%= connectorURL %>";
 FCKConfig.ImageBrowserURL = FCKConfig.BasePath + "filemanager/browser/liferay/browser.html?Type=Document&Connector=<%= connectorURL %>";

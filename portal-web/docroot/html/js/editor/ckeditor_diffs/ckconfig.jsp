@@ -71,7 +71,7 @@ CKEDITOR.config.bodyClass = 'html-editor <%= HtmlUtil.escapeJS(cssClasses) %>';
 
 CKEDITOR.config.closeNoticeTimeout = 8000;
 
-CKEDITOR.config.contentsCss = '<%= HtmlUtil.escapeJS(cssPath) %>/main.css';
+CKEDITOR.config.contentsCss = '<%= HtmlUtil.escapeJS(cssPath) %>';
 
 <%
 Locale contentsLocale = LocaleUtil.fromLanguageId(contentsLanguageId);

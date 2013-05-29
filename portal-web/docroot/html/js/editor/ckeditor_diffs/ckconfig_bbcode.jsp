@@ -67,7 +67,7 @@ CKEDITOR.config.toolbar_bbcode = [
 
 CKEDITOR.config.bodyClass = 'html-editor <%= HtmlUtil.escapeJS(cssClasses) %>';
 
-CKEDITOR.config.contentsCss = '<%= HtmlUtil.escapeJS(cssPath) %>/main.css';
+CKEDITOR.config.contentsCss = '<%= HtmlUtil.escapeJS(cssPath) %>';
 
 <%
 Locale contentsLocale = LocaleUtil.fromLanguageId(contentsLanguageId);

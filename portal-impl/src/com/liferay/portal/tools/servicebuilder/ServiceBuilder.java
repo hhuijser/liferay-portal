@@ -4050,7 +4050,6 @@ public class ServiceBuilder {
 
 					return name1.compareTo(name2);
 				}
-
 			});
 
 		StringBundler sb = new StringBundler();

@@ -120,7 +120,9 @@ public class UserServiceTest {
 		UserLocalServiceUtil.updateUser(user);
 
 		try {
-			String emailAddress = "testcompanymx@liferay.com";
+			String emailAddress =
+				"UserServiceTest." + ServiceTestUtil.nextLong() +
+					"@liferay.com";
 
 			UserServiceUtil.updateEmailAddress(
 				user.getUserId(), user.getPassword(), emailAddress,

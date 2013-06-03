@@ -119,6 +119,10 @@ public class UserServiceTest {
 
 		UserLocalServiceUtil.updateUser(user);
 
+		String name = PrincipalThreadLocal.getName();
+
+		PrincipalThreadLocal.setName(user.getUserId());
+
 		try {
 			String emailAddress =
 				"UserServiceTest." + ServiceTestUtil.nextLong() +
@@ -134,6 +138,8 @@ public class UserServiceTest {
 		}
 		finally {
 			field.set(null, value);
+
+			PrincipalThreadLocal.setName(name);
 		}
 	}
 

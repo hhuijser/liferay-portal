@@ -456,6 +456,8 @@ public class LayoutImporter {
 
 				LayoutSetLocalServiceUtil.updateLogo(
 					groupId, privateLayout, true, logo);
+
+				FileUtil.delete(logo);
 			}
 			else {
 				LayoutSetLocalServiceUtil.updateLogo(

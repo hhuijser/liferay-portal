@@ -21,14 +21,10 @@ import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.model.Address;
-import com.liferay.portal.model.EmailAddress;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
-import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroupRole;
-import com.liferay.portal.model.Website;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
 import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
@@ -41,7 +37,6 @@ import com.liferay.portal.util.OrganizationTestUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.TestPropsValues;
 import com.liferay.portal.util.UserTestUtil;
-import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -85,23 +80,24 @@ public class UserServiceTest {
 	}
 
 	@Test
-	public void testEmailSecurityAddUserWithWorkFlow() throws Exception {
+	public void testEmailSecurityAddUser() throws Exception {
 		Field field = getField("COMPANY_SECURITY_STRANGERS_WITH_MX");
 
 		Object value = field.get(null);
 
+		field.set(null, Boolean.FALSE);
+
 		String name = PrincipalThreadLocal.getName();
 
 		PrincipalThreadLocal.setName(0);
-
-		field.set(null, Boolean.FALSE);
 
 		try {
 			addUser();
 
 			Assert.fail();
 		}
-		catch (ReservedUserEmailAddressException rueae) {}
+		catch (ReservedUserEmailAddressException rueae) {
+		}
 		finally {
 			field.set(null, value);
 
@@ -115,38 +111,35 @@ public class UserServiceTest {
 
 		Object value = field.get(null);
 
+		field.set(null, Boolean.FALSE);
+
 		User user = addUserWithoutPermissions();
 
 		user.setEmailAddress("testcompanymx@test.com");
 
 		UserLocalServiceUtil.updateUser(user);
 
-		field.set(null, Boolean.FALSE);
-
 		try {
-			long userId = user.getUserId();
-
 			String emailAddress = "testcompanymx@liferay.com";
 
 			UserServiceUtil.updateEmailAddress(
-				userId, user.getPassword(), emailAddress, emailAddress,
-				new ServiceContext());
+				user.getUserId(), user.getPassword(), emailAddress,
+				emailAddress, new ServiceContext());
 
 			Assert.fail();
 		}
-		catch (ReservedUserEmailAddressException rueae) {}
+		catch (ReservedUserEmailAddressException rueae) {
+		}
 		finally {
 			field.set(null, value);
 		}
 	}
 
 	@Test
-	public void testEmailUpdateUser() throws Exception {
+	public void testEmailSecurityUpdateUser() throws Exception {
 		Field field = getField("COMPANY_SECURITY_STRANGERS_WITH_MX");
 
 		Object value = field.get(null);
-
-		String name = PrincipalThreadLocal.getName();
 
 		field.set(null, Boolean.FALSE);
 
@@ -154,16 +147,19 @@ public class UserServiceTest {
 
 		user.setEmailAddress("testcompanymx@test.com");
 
-		PrincipalThreadLocal.setName(user.getUserId());
-
 		UserLocalServiceUtil.updateUser(user);
+
+		String name = PrincipalThreadLocal.getName();
+
+		PrincipalThreadLocal.setName(user.getUserId());
 
 		try {
 			updateUser(user);
 
 			Assert.fail();
 		}
-		catch (ReservedUserEmailAddressException rueae) {}
+		catch (ReservedUserEmailAddressException rueae) {
+		}
 		finally {
 			field.set(null, value);
 
@@ -500,13 +496,13 @@ public class UserServiceTest {
 
 	protected Field getField(String fieldName) throws Exception {
 		Field field = ReflectionUtil.getDeclaredField(
-				PropsValues.class, fieldName);
+			PropsValues.class, fieldName);
 
 		int modifiers = field.getModifiers();
 
 		if ((modifiers & Modifier.FINAL) == Modifier.FINAL) {
 			Field modifiersField = ReflectionUtil.getDeclaredField(
-					Field.class, "modifiers");
+				Field.class, "modifiers");
 
 			modifiersField.setInt(field, modifiers & ~Modifier.FINAL);
 		}
@@ -515,7 +511,7 @@ public class UserServiceTest {
 	}
 
 	protected void unsetGroupUsers(
-				long groupId, User subjectUser, User objectUser)
+			long groupId, User subjectUser, User objectUser)
 		throws Exception {
 
 		PermissionChecker permissionChecker =
@@ -583,11 +579,6 @@ public class UserServiceTest {
 		long[] roleIds = null;
 		List<UserGroupRole> userGroupRoles = null;
 		long[] userGroupIds = null;
-		List<Address> addresses = null;
-		List<EmailAddress> emailAddresses = null;
-		List<Phone> phones = null;
-		List<Website> websites = null;
-		List<AnnouncementsDelivery> announcementsDeliveries = null;
 		ServiceContext serviceContext = new ServiceContext();
 
 		return UserServiceUtil.updateUser(
@@ -598,8 +589,7 @@ public class UserServiceTest {
 			prefixId, suffixId, male, birthdayMonth, birthdayDay, birthdayYear,
 			smsSn, aimSn, facebookSn, icqSn, jabberSn, msnSn, mySpaceSn,
 			skypeSn, twitterSn, ymSn, jobTitle, groupIds, organizationIds,
-			roleIds, userGroupRoles, userGroupIds, addresses, emailAddresses,
-			phones, websites, announcementsDeliveries, serviceContext);
+			roleIds, userGroupRoles, userGroupIds, serviceContext);
 	}
 
 }

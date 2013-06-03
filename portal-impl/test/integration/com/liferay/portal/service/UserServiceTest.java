@@ -113,13 +113,9 @@ public class UserServiceTest {
 
 		field.set(null, Boolean.FALSE);
 
-		User user = addUserWithoutPermissions();
-
-		user.setEmailAddress("testcompanymx@test.com");
-
-		UserLocalServiceUtil.updateUser(user);
-
 		String name = PrincipalThreadLocal.getName();
+
+		User user = addUserWithoutPermissions();
 
 		PrincipalThreadLocal.setName(user.getUserId());
 
@@ -151,13 +147,9 @@ public class UserServiceTest {
 
 		field.set(null, Boolean.FALSE);
 
-		User user = addUserWithoutPermissions();
-
-		user.setEmailAddress("testcompanymx@test.com");
-
-		UserLocalServiceUtil.updateUser(user);
-
 		String name = PrincipalThreadLocal.getName();
+
+		User user = addUserWithoutPermissions();
 
 		PrincipalThreadLocal.setName(user.getUserId());
 
@@ -471,7 +463,7 @@ public class UserServiceTest {
 		boolean autoScreenName = true;
 		String screenName = StringPool.BLANK;
 		String emailAddress =
-			"UserServiceTest." + ServiceTestUtil.nextLong() + "@liferay.com";
+			"UserServiceTest." + ServiceTestUtil.nextLong() + "@test.com";
 		long facebookId = 0;
 		String openId = StringPool.BLANK;
 		Locale locale = LocaleUtil.getDefault();

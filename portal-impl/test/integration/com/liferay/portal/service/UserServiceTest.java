@@ -81,17 +81,17 @@ public class UserServiceTest {
 
 	@Test
 	public void testEmailSecurityAddUser() throws Exception {
-		Field field = getField("COMPANY_SECURITY_STRANGERS_WITH_MX");
+		Field field = getDeclaredField("COMPANY_SECURITY_STRANGERS_WITH_MX");
 
 		Object value = field.get(null);
 
-		field.set(null, Boolean.FALSE);
-
 		String name = PrincipalThreadLocal.getName();
 
-		PrincipalThreadLocal.setName(0);
-
 		try {
+			field.set(null, Boolean.FALSE);
+
+			PrincipalThreadLocal.setName(0);
+
 			addUser();
 
 			Assert.fail();
@@ -107,19 +107,19 @@ public class UserServiceTest {
 
 	@Test
 	public void testEmailSecurityUpdateEmailAddress() throws Exception {
-		Field field = getField("COMPANY_SECURITY_STRANGERS_WITH_MX");
+		Field field = getDeclaredField("COMPANY_SECURITY_STRANGERS_WITH_MX");
 
 		Object value = field.get(null);
 
-		field.set(null, Boolean.FALSE);
-
 		String name = PrincipalThreadLocal.getName();
 
-		User user = addUserWithoutPermissions();
-
-		PrincipalThreadLocal.setName(user.getUserId());
-
 		try {
+			field.set(null, Boolean.FALSE);
+
+			User user = addUserWithoutPermissions();
+
+			PrincipalThreadLocal.setName(user.getUserId());
+
 			String emailAddress =
 				"UserServiceTest." + ServiceTestUtil.nextLong() +
 					"@liferay.com";
@@ -141,19 +141,19 @@ public class UserServiceTest {
 
 	@Test
 	public void testEmailSecurityUpdateUser() throws Exception {
-		Field field = getField("COMPANY_SECURITY_STRANGERS_WITH_MX");
+		Field field = getDeclaredField("COMPANY_SECURITY_STRANGERS_WITH_MX");
 
 		Object value = field.get(null);
 
-		field.set(null, Boolean.FALSE);
-
 		String name = PrincipalThreadLocal.getName();
 
-		User user = addUserWithoutPermissions();
-
-		PrincipalThreadLocal.setName(user.getUserId());
-
 		try {
+			field.set(null, Boolean.FALSE);
+
+			User user = addUserWithoutPermissions();
+
+			PrincipalThreadLocal.setName(user.getUserId());
+
 			updateUser(user);
 
 			Assert.fail();
@@ -494,7 +494,7 @@ public class UserServiceTest {
 			userGroupIds, sendMail, serviceContext);
 	}
 
-	protected Field getField(String fieldName) throws Exception {
+	protected Field getDeclaredField(String fieldName) throws Exception {
 		Field field = ReflectionUtil.getDeclaredField(
 			PropsValues.class, fieldName);
 
@@ -579,6 +579,7 @@ public class UserServiceTest {
 		long[] roleIds = null;
 		List<UserGroupRole> userGroupRoles = null;
 		long[] userGroupIds = null;
+
 		ServiceContext serviceContext = new ServiceContext();
 
 		return UserServiceUtil.updateUser(

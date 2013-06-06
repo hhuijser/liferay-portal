@@ -2943,7 +2943,7 @@ public class ServiceBuilder {
 			_outputPath + "/service/base/" + entity.getName() +
 				_getSessionTypeName(sessionType) + "ServiceClpInvoker.java");
 
-		writeFile(ejbFile, content);
+		writeFile(ejbFile, content, _author);
 	}
 
 	private void _createServiceClpMessageListener() throws Exception {
@@ -2965,7 +2965,7 @@ public class ServiceBuilder {
 		File ejbFile = new File(
 			_serviceOutputPath + "/service/messaging/ClpMessageListener.java");
 
-		writeFile(ejbFile, content);
+		writeFile(ejbFile, content, _author);
 	}
 
 	private void _createServiceClpSerializer(List<String> exceptions)
@@ -2989,7 +2989,7 @@ public class ServiceBuilder {
 		File ejbFile = new File(
 			_serviceOutputPath + "/service/ClpSerializer.java");
 
-		writeFile(ejbFile, content);
+		writeFile(ejbFile, content, _author);
 	}
 
 	private void _createServiceFactory(Entity entity, int sessionType) {

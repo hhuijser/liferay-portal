@@ -49,12 +49,12 @@ import java.util.Map;
  * The SOAP utility is only generated for remote services.
  * </p>
  *
- * @author    ${author}
- * @see       ${entity.name}ServiceHttp
+ * @author ${author}
+ * @see ${entity.name}ServiceHttp
 <#if entity.hasColumns()>
- * @see       ${packagePath}.model.${entity.name}Soap
+ * @see ${packagePath}.model.${entity.name}Soap
 </#if>
- * @see       ${packagePath}.service.${entity.name}ServiceUtil
+ * @see ${packagePath}.service.${entity.name}ServiceUtil
 <#if isDeprecated>
  * @deprecated ${deprecatedComment}
 </#if>

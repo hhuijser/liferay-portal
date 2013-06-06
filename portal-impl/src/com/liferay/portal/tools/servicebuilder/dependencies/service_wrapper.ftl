@@ -5,8 +5,8 @@ import com.liferay.portal.service.ServiceWrapper;
 /**
  * Provides a wrapper for {@link ${entity.name}${sessionTypeName}Service}.
  *
- * @author    ${author}
- * @see       ${entity.name}${sessionTypeName}Service
+ * @author ${author}
+ * @see ${entity.name}${sessionTypeName}Service
 <#if isDeprecated>
  * @deprecated ${deprecatedComment}
 </#if>

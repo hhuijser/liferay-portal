@@ -150,7 +150,7 @@ public class ${entity.name}ServiceSoap {
 
 			) throws RemoteException {
 				try {
-		            ${localizationMapVariables}
+					${localizationMapVariables}
 
 					<#if returnValueName != "void">
 						${returnTypeGenericsName} returnValue =

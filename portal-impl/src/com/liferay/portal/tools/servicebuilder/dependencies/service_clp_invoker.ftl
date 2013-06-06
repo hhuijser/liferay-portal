@@ -9,6 +9,7 @@ import java.util.Arrays;
 <#if isDeprecated>
  * @deprecated ${deprecatedComment}
 </#if>
+ * @generated
  */
 
 public class ${entity.name}${sessionTypeName}ServiceClpInvoker {

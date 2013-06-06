@@ -7,6 +7,7 @@ import com.liferay.portal.service.Invokable${sessionTypeName}Service;
 <#if isDeprecated>
  * @deprecated ${deprecatedComment}
 </#if>
+ * @generated
  */
 
 public class ${entity.name}${sessionTypeName}ServiceClp implements ${entity.name}${sessionTypeName}Service {

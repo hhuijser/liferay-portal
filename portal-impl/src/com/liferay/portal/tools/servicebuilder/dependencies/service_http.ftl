@@ -37,6 +37,9 @@ import com.liferay.portal.service.http.TunnelUtil;
  * @see       ${entity.name}ServiceSoap
  * @see       com.liferay.portal.security.auth.HttpPrincipal
  * @see       ${packagePath}.service.${entity.name}ServiceUtil
+<#if isDeprecated>
+ * @deprecated ${deprecatedComment}
+</#if>
  * @generated
  */
 public class ${entity.name}ServiceHttp {

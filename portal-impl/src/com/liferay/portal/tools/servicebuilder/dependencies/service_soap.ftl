@@ -55,6 +55,9 @@ import java.util.Map;
  * @see       ${packagePath}.model.${entity.name}Soap
 </#if>
  * @see       ${packagePath}.service.${entity.name}ServiceUtil
+<#if isDeprecated>
+ * @deprecated ${deprecatedComment}
+</#if>
  * @generated
  */
 public class ${entity.name}ServiceSoap {

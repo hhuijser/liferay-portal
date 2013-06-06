@@ -7,6 +7,9 @@ import com.liferay.portal.service.ServiceWrapper;
  *
  * @author    ${author}
  * @see       ${entity.name}${sessionTypeName}Service
+<#if isDeprecated>
+ * @deprecated ${deprecatedComment}
+</#if>
  * @generated
  */
 public class ${entity.name}${sessionTypeName}ServiceWrapper implements ${entity.name}${sessionTypeName}Service, ServiceWrapper<${entity.name}${sessionTypeName}Service> {

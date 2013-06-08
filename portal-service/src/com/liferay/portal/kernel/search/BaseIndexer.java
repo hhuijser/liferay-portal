@@ -1449,6 +1449,7 @@ public abstract class BaseIndexer implements Indexer {
 				auditedModel.getUserId(), auditedModel.getUserName());
 
 			document.addKeyword(Field.USER_NAME, userName, true);
+			document.addKeyword(Field.USER_NAME_DISPLAY, userName, false);
 		}
 
 		GroupedModel groupedModel = null;

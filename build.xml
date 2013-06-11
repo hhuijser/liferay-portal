@@ -746,8 +746,8 @@ print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
 		>
 			<arg value="properties.dest.dir=${properties.dest.dir}" />
 			<arg value="properties.file=${properties.file}" />
-			<arg value="properties.toc=${properties.toc}" />
 			<arg value="properties.title=${properties.title}" />
+			<arg value="properties.toc=${properties.toc}" />
 		</java>
 	</target>
 

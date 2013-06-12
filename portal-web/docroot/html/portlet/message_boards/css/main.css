@@ -389,6 +389,12 @@
 	}
 }
 
+.ie8 {
+	.question-details {
+		float: none;
+	}
+}
+
 .trash-restore-popup {
 	.form {
 		fieldset {

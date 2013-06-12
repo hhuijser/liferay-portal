@@ -150,7 +150,7 @@ public class BasicLoginModule implements LoginModule {
 				if (UserLocalServiceUtil.authenticateForJAAS(
 						userId, password)) {
 
-					return new String[] {String.valueOf(userId), password};
+					return new String[] {name, password};
 				}
 			}
 		}

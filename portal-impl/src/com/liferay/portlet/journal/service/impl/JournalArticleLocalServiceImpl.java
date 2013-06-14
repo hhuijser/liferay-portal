@@ -4866,6 +4866,12 @@ public class JournalArticleLocalServiceImpl
 
 		int oldStatus = article.getStatus();
 
+		if ((status == WorkflowConstants.STATUS_APPROVED) &&
+			now.before(article.getDisplayDate())) {
+
+			status = WorkflowConstants.STATUS_SCHEDULED;
+		}
+
 		int oldArticleVersionStatus = WorkflowConstants.STATUS_ANY;
 
 		List<ObjectValuePair<Long, Integer>> articleVersionStatusOVPs =

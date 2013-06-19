@@ -57,36 +57,9 @@ import org.jamwiki.Environment;
 public class GlobalStartupAction extends SimpleAction {
 
 	public static List<AutoDeployListener> getAutoDeployListeners() {
-		if (_autoDeployListeners != null) {
-			return _autoDeployListeners;
+		if (_autoDeployListeners == null) {
+			initAutoDeployListener();
 		}
-
-		List<AutoDeployListener> autoDeployListeners =
-			new ArrayList<AutoDeployListener>();
-
-		String[] autoDeployListenerClassNames = PropsUtil.getArray(
-			PropsKeys.AUTO_DEPLOY_LISTENERS);
-
-		for (String autoDeployListenerClassName :
-				autoDeployListenerClassNames) {
-
-			try {
-				if (_log.isDebugEnabled()) {
-					_log.debug("Instantiating " + autoDeployListenerClassName);
-				}
-
-				AutoDeployListener autoDeployListener =
-					(AutoDeployListener)InstanceFactory.newInstance(
-						autoDeployListenerClassName);
-
-				autoDeployListeners.add(autoDeployListener);
-			}
-			catch (Exception e) {
-				_log.error(e);
-			}
-		}
-
-		_autoDeployListeners = autoDeployListeners;
 
 		return _autoDeployListeners;
 	}
@@ -152,6 +125,35 @@ public class GlobalStartupAction extends SimpleAction {
 		}
 
 		return sandboxDeployListeners;
+	}
+
+	public static void initAutoDeployListener() {
+		List<AutoDeployListener> autoDeployListeners =
+				new ArrayList<AutoDeployListener>();
+
+		String[] autoDeployListenerClassNames = PropsUtil.getArray(
+				PropsKeys.AUTO_DEPLOY_LISTENERS);
+
+		for (String autoDeployListenerClassName :
+				autoDeployListenerClassNames) {
+
+			try {
+				if (_log.isDebugEnabled()) {
+					_log.debug("Instantiating " + autoDeployListenerClassName);
+				}
+
+				AutoDeployListener autoDeployListener =
+					(AutoDeployListener)InstanceFactory.newInstance(
+						autoDeployListenerClassName);
+
+				autoDeployListeners.add(autoDeployListener);
+			}
+			catch (Exception e) {
+				_log.error(e);
+			}
+		}
+
+		_autoDeployListeners = autoDeployListeners;
 	}
 
 	@Override

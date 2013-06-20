@@ -203,10 +203,8 @@ public class InstallPluginAction extends PortletAction {
 				_log.info("Registering auto deploy directories");
 			}
 
-			GlobalStartupAction.initAutoDeployListener();
-
 			List<AutoDeployListener> autoDeployListeners =
-				GlobalStartupAction.getAutoDeployListeners();
+				GlobalStartupAction.getAutoDeployListeners(true);
 
 			AutoDeployDir autoDeployDir = new AutoDeployDir(
 				"defaultAutoDeployDir", new File(deployDir), new File(destDir),

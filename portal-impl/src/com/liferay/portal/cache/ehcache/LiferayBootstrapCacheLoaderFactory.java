@@ -32,11 +32,11 @@ public class LiferayBootstrapCacheLoaderFactory
 
 	public LiferayBootstrapCacheLoaderFactory() {
 		String className = PropsValues.EHCACHE_BOOTSTRAP_CACHE_LOADER_FACTORY;
-		
+
 		if (PropsValues.CLUSTER_LINK_ENABLED &&
 			PropsValues.EHCACHE_CLUSTER_LINK_REPLICATION_ENABLED) {
 
-			className = 
+			className =
 				EhcacheStreamBootstrapCacheLoaderFactory.class.getName();
 		}
 

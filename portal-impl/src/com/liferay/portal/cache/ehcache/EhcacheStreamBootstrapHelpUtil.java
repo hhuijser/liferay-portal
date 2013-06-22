@@ -1,3 +1,17 @@
+/**
+ * Copyright (c) 2000-2013 Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
 package com.liferay.portal.cache.ehcache;
 
 import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
@@ -38,13 +52,17 @@ import java.util.concurrent.TimeUnit;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
+
+/**
+ * @author Shuyang Zhou Sherry Yang
+ */
 public class EhcacheStreamBootstrapHelpUtil {
 
 	public static void acquireCachePeers(Ehcache cache) throws Exception {
 		List<Address> clusterNodeAddresses =
 			ClusterExecutorUtil.getClusterNodeAddresses();
 
-		if(_log.isInfoEnabled()) {
+		if (_log.isInfoEnabled()) {
 			_log.info("Cluster Node addresses: " + clusterNodeAddresses);
 		}
 
@@ -117,8 +135,7 @@ public class EhcacheStreamBootstrapHelpUtil {
 
 		try {
 			clusterNodeResponse = clusterNodeResponses.poll(
-				_BOOTUP_CLUSTER_NODE_RESPONSE_TIMEOUT,
-				TimeUnit.MILLISECONDS);
+				_BOOTUP_CLUSTER_NODE_RESPONSE_TIMEOUT, TimeUnit.MILLISECONDS);
 		}
 		catch (InterruptedException ie) {
 			return;
@@ -144,31 +161,31 @@ public class EhcacheStreamBootstrapHelpUtil {
 
 			socket.connect(remoteSocketAddress);
 			socket.shutdownOutput();
-			
+
 			objectInputStream = new AnnotatedObjectInputStream(
 				socket.getInputStream());
 
-			while(true) {
+			while (true) {
 				Object object = objectInputStream.readObject();
 
-				if (object instanceof EhcacheElement){
+				if (object instanceof EhcacheElement) {
 					EhcacheElement ehcacheElement = (EhcacheElement)object;
 
 					Element element = ehcacheElement.toElement();
 
 					ehcache.put(element, true);
 				}
-				else if(object instanceof String) {
+				else if (object instanceof String) {
 					String command = (String)object;
 
-					if(command.equals(_SOCKET_CLOSE)) {
+					if (command.equals(_SOCKET_CLOSE)) {
 						break;
 					}
-					else if(command.equals(_CACHE_TX_START)) {
+					else if (command.equals(_CACHE_TX_START)) {
 						String cacheName =
 							(String)objectInputStream.readObject();
 
-						if(!cacheName.equals(ehcache.getName())) {
+						if (!cacheName.equals(ehcache.getName())) {
 							break;
 						}
 					}
@@ -193,11 +210,11 @@ public class EhcacheStreamBootstrapHelpUtil {
 		PropsValues.BOOTUP_CLUSTER_NODE_RESPONSE_TIMEOUT;
 
 	private static final String _CACHE_TX_START = "${CACHE_TX_START}";
-	
-	private static final String _SOCKET_CLOSE = "${SOCKET_CLOSE}";
 
 	private static final String _MULTI_VM_PORTAL_CACHE_MANAGER_BEAN_NAME =
 		"com.liferay.portal.kernel.cache.MultiVMPortalCacheManager";
+
+	private static final String _SOCKET_CLOSE = "${SOCKET_CLOSE}";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		EhcacheStreamBootstrapHelpUtil.class);
@@ -207,39 +224,25 @@ public class EhcacheStreamBootstrapHelpUtil {
 			EhcacheStreamBootstrapHelpUtil.class,
 			"createServerSocketFromCluster", String.class);
 
-	private final static int _SO_TIMEOUT = PropsValues.EHCACHE_SOCKET_SO_TIMEOUT;
+	private final static int _SO_TIMEOUT =
+		PropsValues.EHCACHE_SOCKET_SO_TIMEOUT;
 
-	private final static int _START_PORT = PropsValues.EHCACHE_SOCKET_START_PORT;
-
-	@SuppressWarnings("serial")
-	private static class EhcacheElement implements Serializable {
-		
-		public EhcacheElement (Serializable key, Serializable value) {
-			_key = key;
-			_value = value;
-		}		
-
-		public Element toElement() {
-			return new Element(_key, _value);
-		}
-
-		private Serializable _key;
-		private Serializable _value;
-		
-	}
+	private final static int _START_PORT =
+		PropsValues.EHCACHE_SOCKET_START_PORT;
 
 	private static class CacheStreamRunnable implements Runnable {
 
 		@SuppressWarnings("rawtypes")
-		public CacheStreamRunnable(ServerSocket serverSocket, String cacheName) {
+		public CacheStreamRunnable(
+			ServerSocket serverSocket, String cacheName) {
+
 			_serverSocket = serverSocket;
 			_cacheName = cacheName;
 			EhcachePortalCacheManager ehcachePortalCacheManager =
 				(EhcachePortalCacheManager)PortalBeanLocatorUtil.locate(
 					_MULTI_VM_PORTAL_CACHE_MANAGER_BEAN_NAME);
-	
-			 _portalCacheManager =
-				ehcachePortalCacheManager.getEhcacheManager();
+
+			_portalCacheManager = ehcachePortalCacheManager.getEhcacheManager();
 		}
 
 		@SuppressWarnings("unchecked")
@@ -271,17 +274,19 @@ public class EhcacheStreamBootstrapHelpUtil {
 						EhcacheStreamBootstrapCacheLoader.resetSkip();
 					}
 				}
-				else  {
+				else {
 					objectOutputStream.writeObject(_cacheName);
 
 					List<Object> keys = ehcache.getKeys();
 
 					for (Object key : keys) {
 						if (!(key instanceof Serializable)) {
-							if(_log.isWarnEnabled()) {
-								_log.warn("Key " + key.toString() + 
+							if (_log.isWarnEnabled()) {
+								_log.warn(
+									"Key " + key.toString() +
 									" can not be serializable");
 							}
+
 							continue;
 						}
 
@@ -289,15 +294,17 @@ public class EhcacheStreamBootstrapHelpUtil {
 
 						Object value = element.getObjectValue();
 
-						if(value == null) {
+						if (value == null) {
 							continue;
 						}
 						else {
 							if (!(value instanceof Serializable)) {
-								if(_log.isWarnEnabled()) {
-									_log.warn("Value " + value.toString() + 
-										" can not be serializable");
+								if (_log.isWarnEnabled()) {
+									_log.warn(
+										"Value " + value.toString() +
+											" can not be serializable");
 								}
+
 								continue;
 							}
 						}
@@ -331,6 +338,23 @@ public class EhcacheStreamBootstrapHelpUtil {
 		private ServerSocket _serverSocket;
 		private String _cacheName;
 		private CacheManager _portalCacheManager;
+	}
+
+	@SuppressWarnings("serial")
+	private static class EhcacheElement implements Serializable {
+
+		public EhcacheElement(Serializable key, Serializable value) {
+			_key = key;
+			_value = value;
+		}
+
+		public Element toElement() {
+			return new Element(_key, _value);
+		}
+
+		private Serializable _key;
+		private Serializable _value;
+
 	}
 
 	private static class SocketCacheServerSocketConfiguration

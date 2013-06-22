@@ -92,6 +92,10 @@ public abstract class ClusterBase {
 
 	public abstract void destroy();
 
+	public InetAddress getBindInetAddress() {
+		return bindInetAddress;
+	}
+
 	public boolean isEnabled() {
 		return PropsValues.CLUSTER_LINK_ENABLED;
 	}
@@ -134,10 +138,6 @@ public abstract class ClusterBase {
 		}
 
 		return addresses;
-	}
-
-	public InetAddress getBindInetAddress() {
-		return bindInetAddress;
 	}
 
 	protected void initBindAddress() throws IOException {

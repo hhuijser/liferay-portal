@@ -15,67 +15,75 @@
 --%>
 
 <%
-int total = assetEntryXmls.length;
-
-searchContainer.setTotal(total);
-
 List results = ListUtil.fromArray(assetEntryXmls);
 
-int end = (assetEntryXmls.length < searchContainer.getEnd()) ? assetEntryXmls.length : searchContainer.getEnd();
+List<AssetEntry> viewableResults = new ArrayList<AssetEntry>();
 
-results = results.subList(searchContainer.getStart(), end);
+for (int assetEntryIndex = 0; assetEntryIndex < results.size(); assetEntryIndex++) {
+	String assetEntryXml = (String)results.get(assetEntryIndex);
 
-searchContainer.setResults(results);
+	Document document = SAXReaderUtil.read(assetEntryXml);
 
-request.setAttribute("view.jsp-results", results);
+	Element rootElement = document.getRootElement();
+
+	String assetEntryUuid = rootElement.elementText("asset-entry-uuid");
+
+	AssetEntry assetEntry = null;
+
+	for (long groupId : groupIds) {
+		try {
+			assetEntry = AssetEntryLocalServiceUtil.getEntry(groupId, assetEntryUuid);
+
+			break;
+		}
+		catch (NoSuchEntryException nsee) {
+		}
+	}
+
+	if ((assetEntry == null) || !assetEntry.isVisible()) {
+		continue;
+	}
+
+	AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
+
+	if (!assetRenderer.isDisplayable() || (enablePermissions && !assetRenderer.hasViewPermission(permissionChecker))) {
+		continue;
+	}
+
+	viewableResults.add(assetEntry);
+}
+
+searchContainer.setTotal(viewableResults.size());
+
+int end = (viewableResults.size() < searchContainer.getEnd()) ? viewableResults.size() : searchContainer.getEnd();
+
+viewableResults = viewableResults.subList(searchContainer.getStart(), end);
+
+searchContainer.setResults(viewableResults);
+
+request.setAttribute("view.jsp-results", viewableResults);
 %>
 
 <c:choose>
 	<c:when test="<%= portletDisplayDDMTemplateId > 0 %>">
-		<%= PortletDisplayTemplateUtil.renderDDMTemplate(pageContext, portletDisplayDDMTemplateId, results, contextObjects) %>
+		<%= PortletDisplayTemplateUtil.renderDDMTemplate(pageContext, portletDisplayDDMTemplateId, viewableResults, contextObjects) %>
 	</c:when>
 	<c:otherwise>
 
 		<%
-		for (int assetEntryIndex = 0; assetEntryIndex < results.size(); assetEntryIndex++) {
-			String assetEntryXml = (String)results.get(assetEntryIndex);
-
-			Document document = SAXReaderUtil.read(assetEntryXml);
-
-			Element rootElement = document.getRootElement();
-
-			String assetEntryUuid = rootElement.elementText("asset-entry-uuid");
-
-			AssetEntry assetEntry = null;
-
-			for (long groupId : groupIds) {
-				try {
-					assetEntry = AssetEntryLocalServiceUtil.getEntry(groupId, assetEntryUuid);
-
-					break;
-				}
-				catch (NoSuchEntryException nsee) {
-				}
-			}
-
-			if ((assetEntry == null) || !assetEntry.isVisible()) {
-				continue;
-			}
+		for (int viewableAssetEntryIndex = 0; viewableAssetEntryIndex < viewableResults.size(); viewableAssetEntryIndex++) {
+			AssetEntry assetEntry = viewableResults.get(viewableAssetEntryIndex);
 
 			AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());
 
 			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(assetEntry.getClassPK());
-
-			if (!assetRenderer.isDisplayable() || (enablePermissions && !assetRenderer.hasViewPermission(permissionChecker))) {
-				continue;
-			}
 
 			String title = assetRenderer.getTitle(locale);
 
 			boolean show = true;
 			boolean print = false;
 
-			request.setAttribute("view.jsp-assetEntryIndex", new Integer(assetEntryIndex));
+			request.setAttribute("view.jsp-assetEntryIndex", new Integer(viewableAssetEntryIndex));
 
 			request.setAttribute("view.jsp-assetEntry", assetEntry);
 			request.setAttribute("view.jsp-assetRendererFactory", assetRendererFactory);

@@ -301,6 +301,7 @@
 .tree-pages {
 	.tree-node-selected {
 		.tree-label a {
+			color: #006CA2;
 			cursor: move;
 		}
 	}

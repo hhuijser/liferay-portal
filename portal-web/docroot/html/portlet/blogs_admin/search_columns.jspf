@@ -39,5 +39,5 @@
 	href="<%= rowURL %>"
 	name="status"
 >
-	<liferay-ui:message key="<%= WorkflowConstants.toLabel(entry.getStatus()) %>" />
+	<liferay-ui:message key="<%= WorkflowConstants.getStatusLabel(entry.getStatus()) %>" />
 </liferay-ui:search-container-column-text>

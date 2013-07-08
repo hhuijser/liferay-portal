@@ -89,7 +89,7 @@ portletURL.setParameter("recordId", String.valueOf(record.getRecordId()));
 
 		// Status
 
-		row.addText(WorkflowConstants.toLabel(recordVersion.getStatus()), rowURL);
+		row.addText(WorkflowConstants.getStatusLabel(recordVersion.getStatus()), rowURL);
 
 		// Author
 

@@ -126,7 +126,7 @@ JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_AR
 
 				// Status
 
-				String status = WorkflowConstants.toLabel(articleVersion.getStatus());
+				String status = WorkflowConstants.getStatusLabel(articleVersion.getStatus());
 
 				row.addText(LanguageUtil.get(pageContext, status), rowURL);
 

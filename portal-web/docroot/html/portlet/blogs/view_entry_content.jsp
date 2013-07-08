@@ -26,7 +26,7 @@ AssetEntry assetEntry = (AssetEntry)request.getAttribute("view_entry_content.jsp
 
 <c:choose>
 	<c:when test="<%= BlogsEntryPermission.contains(permissionChecker, entry, ActionKeys.VIEW) && (entry.isVisible() || (entry.getUserId() == user.getUserId()) || BlogsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE)) %>">
-		<div class="entry <%= WorkflowConstants.toLabel(entry.getStatus()) %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
+		<div class="entry <%= WorkflowConstants.getStatusLabel(entry.getStatus()) %>" id="<portlet:namespace /><%= entry.getEntryId() %>">
 			<div class="entry-content">
 
 				<%
@@ -35,7 +35,7 @@ AssetEntry assetEntry = (AssetEntry)request.getAttribute("view_entry_content.jsp
 
 				<c:if test="<%= !entry.isApproved() %>">
 					<h3>
-						<liferay-ui:message key='<%= entry.isPending() ? "pending-approval" : WorkflowConstants.toLabel(entry.getStatus()) %>' />
+						<liferay-ui:message key='<%= entry.isPending() ? "pending-approval" : WorkflowConstants.getStatusLabel(entry.getStatus()) %>' />
 					</h3>
 				</c:if>
 

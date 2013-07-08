@@ -64,9 +64,108 @@ OrderByComparator orderByComparator = BackgroundTaskUtil.getBackgroundTaskOrderB
 		/>
 
 		<liferay-ui:search-container-column-text
-			name="status"
-			value="<%= LanguageUtil.get(pageContext, backgroundTask.getStatusLabel()) %>"
-		/>
+			name="status" cssClass="background-task-status-column"
+		>
+			<strong class="label background-task-status-<%= BackgroundTaskConstants.getStatusLabel(backgroundTask.getStatus()) %> <%= BackgroundTaskConstants.getStatusCssClass(backgroundTask.getStatus()) %>">
+				<liferay-ui:message key="<%= backgroundTask.getStatusLabel() %>" />
+			</strong>
+
+			<c:if test="<%= Validator.isNotNull(backgroundTask.getStatusMessage()) %>">
+				<div class="background-task-status-message toggler-content-collapsed">
+
+					<%
+					JSONObject jsonObject = null;
+
+					try {
+						jsonObject = JSONFactoryUtil.createJSONObject(backgroundTask.getStatusMessage());
+					}
+					catch (JSONException jsone) {
+					}
+					%>
+
+					<c:choose>
+						<c:when test="<%= jsonObject == null %>">
+							<div class="alert <%= backgroundTask.getStatus() == BackgroundTaskConstants.STATUS_FAILED ? "alert-error" : StringPool.BLANK %> publish-error">
+								<%= backgroundTask.getStatusMessage() %>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="alert alert-error publish-error">
+								<h4 class="upload-error-message"><liferay-ui:message key="the-publication-process-did-not-start-due-to-validation-errors" /></h4>
+
+								<span class="error-message"><%= jsonObject.getString("message") %></span>
+
+								<%
+								JSONArray messageListItemsJSONArray = jsonObject.getJSONArray("messageListItems");
+								%>
+
+								<c:if test="<%= (messageListItemsJSONArray != null) && (messageListItemsJSONArray.length() > 0) %>">
+									<ul class="error-list-items">
+
+										<%
+										for (int i = 0; i < messageListItemsJSONArray.length(); i++) {
+											JSONObject messageListItemJSONArray = messageListItemsJSONArray.getJSONObject(i);
+
+											String info = messageListItemJSONArray.getString("info");
+										%>
+
+											<li>
+												<%= messageListItemJSONArray.getString("type") %>:
+
+												<strong><%= messageListItemJSONArray.getString("name") %></strong>
+
+												<c:if test="<%= Validator.isNotNull(info) %>">
+													<span class="error-info">(<%= messageListItemJSONArray.getString("info") %>)</span>
+												</c:if>
+											</li>
+
+										<%
+										}
+										%>
+
+									</ul>
+								</c:if>
+							</div>
+
+							<%
+							JSONArray warningMessagesJSONArray = jsonObject.getJSONArray("warningMessages");
+							%>
+
+							<c:if test="<%= (warningMessagesJSONArray != null) && (warningMessagesJSONArray.length() > 0) %>">
+								<div class="alert upload-error">
+									<span class="error-message"><liferay-ui:message key='<%= ((messageListItemsJSONArray != null) && (messageListItemsJSONArray.length() > 0)) ? "consider-that-the-following-data-would-not-have-been-published-either" : "the-following-data-has-not-been-published" %>' /></span>
+
+									<ul class="error-list-items">
+
+										<%
+										for (int i = 0; i < warningMessagesJSONArray.length(); i++) {
+											JSONObject warningMessageJSONArray = warningMessagesJSONArray.getJSONObject(i);
+
+											String info = warningMessageJSONArray.getString("info");
+										%>
+
+											<li>
+												<%= warningMessageJSONArray.getString("type") %>:
+
+												<strong><%= warningMessageJSONArray.getString("size") %></strong>
+
+												<c:if test="<%= Validator.isNotNull(info) %>">
+													<span class="error-info">(<%= warningMessageJSONArray.getString("info") %>)</span>
+												</c:if>
+											</li>
+
+										<%
+										}
+										%>
+
+									</ul>
+								</div>
+							</c:if>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</c:if>
+		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
 			name="create-date"

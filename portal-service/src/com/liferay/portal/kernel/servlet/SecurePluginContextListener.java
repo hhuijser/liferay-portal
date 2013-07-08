@@ -90,7 +90,6 @@ public class SecurePluginContextListener
 			httpSessionAttributeListener.attributeRemoved(
 				httpSessionBindingEvent);
 		}
-
 	}
 
 	@Override

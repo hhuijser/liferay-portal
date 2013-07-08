@@ -322,7 +322,7 @@ for (int i = 0; i < results.size(); i++) {
 						<c:if test="<%= curArticle.isDraft() || curArticle.isPending() %>">
 
 							<%
-							String statusLabel = WorkflowConstants.toLabel(curArticle.getStatus());
+							String statusLabel = WorkflowConstants.getStatusLabel(curArticle.getStatus());
 							%>
 
 							<span class="workflow-status-<%= statusLabel %>">

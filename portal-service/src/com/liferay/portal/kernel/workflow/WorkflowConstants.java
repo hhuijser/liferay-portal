@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.workflow;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 /**
  * @author Jorge Ferrer
  * @author Zsolt Berentey
@@ -102,7 +104,60 @@ public class WorkflowConstants {
 
 	public static final int TYPE_COMPLETE = 10001;
 
-	public static String toLabel(int status) {
+	public static int getLabelStatus(String label) {
+		if (label.equals(LABEL_ANY)) {
+			return STATUS_ANY;
+		}
+		else if (label.equals(LABEL_APPROVED)) {
+			return STATUS_APPROVED;
+		}
+		else if (label.equals(LABEL_DENIED)) {
+			return STATUS_DENIED;
+		}
+		else if (label.equals(LABEL_DRAFT)) {
+			return STATUS_DRAFT;
+		}
+		else if (label.equals(LABEL_EXPIRED)) {
+			return STATUS_EXPIRED;
+		}
+		else if (label.equals(LABEL_INACTIVE)) {
+			return STATUS_INACTIVE;
+		}
+		else if (label.equals(LABEL_IN_TRASH)) {
+			return STATUS_IN_TRASH;
+		}
+		else if (label.equals(LABEL_INCOMPLETE)) {
+			return STATUS_INCOMPLETE;
+		}
+		else if (label.equals(LABEL_PENDING)) {
+			return STATUS_PENDING;
+		}
+		else if (label.equals(LABEL_SCHEDULED)) {
+			return STATUS_SCHEDULED;
+		}
+		else {
+			return STATUS_ANY;
+		}
+	}
+
+	public static String getStatusCssClass(int status) {
+		if (status == STATUS_APPROVED) {
+			return "label-success";
+		}
+		else if (status == STATUS_DRAFT) {
+			return "label-info";
+		}
+		else if (status == STATUS_EXPIRED) {
+			return "label-important";
+		}
+		else if (status == STATUS_PENDING) {
+			return "label-warning";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public static String getStatusLabel(int status) {
 		if (status == STATUS_ANY) {
 			return LABEL_ANY;
 		}
@@ -138,40 +193,18 @@ public class WorkflowConstants {
 		}
 	}
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #getStatusLabel(int)}
+	 */
+	public static String toLabel(int status) {
+		return getStatusLabel(status);
+	}
+
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #getLabelStatus(String)}
+	 */
 	public static int toStatus(String label) {
-		if (label.equals(LABEL_ANY)) {
-			return STATUS_ANY;
-		}
-		else if (label.equals(LABEL_APPROVED)) {
-			return STATUS_APPROVED;
-		}
-		else if (label.equals(LABEL_DENIED)) {
-			return STATUS_DENIED;
-		}
-		else if (label.equals(LABEL_DRAFT)) {
-			return STATUS_DRAFT;
-		}
-		else if (label.equals(LABEL_EXPIRED)) {
-			return STATUS_EXPIRED;
-		}
-		else if (label.equals(LABEL_INACTIVE)) {
-			return STATUS_INACTIVE;
-		}
-		else if (label.equals(LABEL_IN_TRASH)) {
-			return STATUS_IN_TRASH;
-		}
-		else if (label.equals(LABEL_INCOMPLETE)) {
-			return STATUS_INCOMPLETE;
-		}
-		else if (label.equals(LABEL_PENDING)) {
-			return STATUS_PENDING;
-		}
-		else if (label.equals(LABEL_SCHEDULED)) {
-			return STATUS_SCHEDULED;
-		}
-		else {
-			return STATUS_ANY;
-		}
+		return getLabelStatus(label);
 	}
 
 }

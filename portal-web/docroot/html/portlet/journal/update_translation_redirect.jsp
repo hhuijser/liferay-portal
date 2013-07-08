@@ -35,7 +35,7 @@ if (cmd.equals(Constants.TRANSLATE)) {
 <aui:script use="aui-base">
 	var openingWindow = Liferay.Util.getOpener();
 
-	openingWindow.<portlet:namespace />postProcessTranslation('<%= System.currentTimeMillis() %>', '<%= HtmlUtil.escapeJS(cmd) %>', '<%= article.getVersion() %>', '<%= HtmlUtil.escapeJS(toLanguageId) %>', '<%= toLanguageDisplayName %>', '<%= WorkflowConstants.toLabel(article.getStatus()) %>');
+	openingWindow.<portlet:namespace />postProcessTranslation('<%= System.currentTimeMillis() %>', '<%= HtmlUtil.escapeJS(cmd) %>', '<%= article.getVersion() %>', '<%= HtmlUtil.escapeJS(toLanguageId) %>', '<%= toLanguageDisplayName %>', '<%= WorkflowConstants.getStatusLabel(article.getStatus()) %>');
 
 	Liferay.fire(
 		'closeWindow',

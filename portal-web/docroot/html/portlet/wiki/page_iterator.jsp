@@ -307,7 +307,7 @@ for (int i = 0; i < results.size(); i++) {
 
 	// Status
 
-	row.addText(LanguageUtil.get(pageContext, WorkflowConstants.toLabel(curWikiPage.getStatus())), rowURL);
+	row.addText(LanguageUtil.get(pageContext, WorkflowConstants.getStatusLabel(curWikiPage.getStatus())), rowURL);
 
 	// Revision
 

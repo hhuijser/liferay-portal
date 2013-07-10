@@ -734,10 +734,10 @@ public class StagingImpl implements Staging {
 	}
 
 	@Override
-	public JSONObject getExceptionMessagesJSONArray(
+	public JSONObject getExceptionMessagesJSONObject(
 		Locale locale, Exception e, Map<String, Serializable> contextMap) {
 
-		JSONObject exceptionMessagesJSONArray =
+		JSONObject exceptionMessagesJSONObject =
 			JSONFactoryUtil.createJSONObject();
 
 		String errorMessage = StringPool.BLANK;
@@ -903,25 +903,25 @@ public class StagingImpl implements Staging {
 			errorType = ServletResponseConstants.SC_FILE_CUSTOM_EXCEPTION;
 		}
 
-		exceptionMessagesJSONArray.put("message", errorMessage);
+		exceptionMessagesJSONObject.put("message", errorMessage);
 
 		if ((errorMessagesJSONArray != null) &&
 			(errorMessagesJSONArray.length() > 0)) {
 
-			exceptionMessagesJSONArray.put(
+			exceptionMessagesJSONObject.put(
 				"messageListItems", errorMessagesJSONArray);
 		}
 
-		exceptionMessagesJSONArray.put("status", errorType);
+		exceptionMessagesJSONObject.put("status", errorType);
 
 		if ((warningMessagesJSONArray != null) &&
 			(warningMessagesJSONArray.length() > 0)) {
 
-			exceptionMessagesJSONArray.put(
+			exceptionMessagesJSONObject.put(
 				"warningMessages", warningMessagesJSONArray);
 		}
 
-		return exceptionMessagesJSONArray;
+		return exceptionMessagesJSONObject;
 	}
 
 	@Override

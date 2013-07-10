@@ -793,6 +793,8 @@ public interface PropsKeys {
 
 	public static final String EHCACHE_CACHE_MANAGER_PEER_PROVIDER_FACTORY = "ehcache.cache.manager.peer.provider.factory";
 
+	public static final String EHCACHE_CACHE_MANAGER_STATISTICS_THREAD_POOL_SIZE = "ehcache.cache.manager.statistics.thread.pool.size";
+
 	public static final String EHCACHE_CLUSTER_LINK_REPLICATION_ENABLED = "ehcache.cluster.link.replication.enabled";
 
 	public static final String EHCACHE_MULTI_VM_CONFIG_LOCATION = "ehcache.multi.vm.config.location";
@@ -872,6 +874,8 @@ public interface PropsKeys {
 	public static final String GOOGLE_GADGET_SERVLET_MAPPING = "google.gadget.servlet.mapping";
 
 	public static final String GZIP_COMPRESSION_LEVEL = "gzip.compression.level";
+
+	public static final String HIBERNATE_CACHE_USE_QUERY_CACHE = "hibernate.cache.use_query_cache";
 
 	public static final String HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE = "hibernate.cache.use_second_level_cache";
 

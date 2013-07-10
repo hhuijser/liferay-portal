@@ -69,11 +69,14 @@ public class LayoutStagingBackgroundTaskExecutor
 			sourceGroupId, privateLayout, layoutIds, parameterMap, startDate,
 			endDate);
 
-		MissingReferences missingReferences =
-			LayoutLocalServiceUtil.validateImportLayoutsFile(
-				userId, targetGroupId, privateLayout, parameterMap, larFile);
+		MissingReferences missingReferences = null;
 
 		try {
+			missingReferences =
+				LayoutLocalServiceUtil.validateImportLayoutsFile(
+					userId, targetGroupId, privateLayout, parameterMap,
+					larFile);
+
 			LayoutLocalServiceUtil.importLayouts(
 				userId, targetGroupId, privateLayout, parameterMap, larFile);
 		}
@@ -104,7 +107,7 @@ public class LayoutStagingBackgroundTaskExecutor
 
 	@Override
 	public String handleException(BackgroundTask backgroundTask, Exception e) {
-		JSONObject jsonObject = StagingUtil.getExceptionMessagesJSONArray(
+		JSONObject jsonObject = StagingUtil.getExceptionMessagesJSONObject(
 			getLocale(backgroundTask), e, backgroundTask.getTaskContextMap());
 
 		return jsonObject.toString();

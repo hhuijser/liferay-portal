@@ -188,10 +188,10 @@ public class StagingUtil {
 			locale, missingReferences, contextMap);
 	}
 
-	public static JSONObject getExceptionMessagesJSONArray(
+	public static JSONObject getExceptionMessagesJSONObject(
 		Locale locale, Exception e, Map<String, Serializable> contextMap) {
 
-		return getStaging().getExceptionMessagesJSONArray(
+		return getStaging().getExceptionMessagesJSONObject(
 			locale, e, contextMap);
 	}
 

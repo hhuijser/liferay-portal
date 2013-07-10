@@ -21,8 +21,13 @@ String redirect = ParamUtil.getString(request, "backURL");
 
 redirect = ParamUtil.getString(request, "redirect");
 
-int assetEntryOrder = GetterUtil.getInteger((String)request.getAttribute("configuration_manual.jsp-asset-order"));
-boolean last = GetterUtil.getBoolean((String)request.getAttribute("configuration_manual.jsp-last"));
+SearchContainer searchContainer = (SearchContainer)request.getAttribute("liferay-ui:search:searchContainer");
+
+ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
+
+int assetEntryOrder = searchContainer.getStart() + row.getPos();
+
+boolean last = assetEntryOrder == (searchContainer.getTotal() - 1);
 %>
 
 <c:choose>

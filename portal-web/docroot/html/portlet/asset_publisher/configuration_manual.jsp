@@ -72,17 +72,6 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 				Document doc = SAXReaderUtil.read(assetEntryXml);
 
-				int assetEntryOrder = start + i;
-
-				request.setAttribute("configuration_manual.jsp-asset-order", assetEntryOrder);
-
-				if (assetEntryOrder == (assetEntryXmls.length - 1)) {
-					request.setAttribute("configuration_manual.jsp-last", true);
-				}
-				else {
-					request.setAttribute("configuration_manual.jsp-last", false);
-				}
-
 				AssetEntry assetEntry = assetEntries.get(i);
 
 				AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetEntry.getClassName());

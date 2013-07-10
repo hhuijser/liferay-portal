@@ -72,17 +72,15 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 				Document doc = SAXReaderUtil.read(assetEntryXml);
 
-				Element root = doc.getRootElement();
-
 				int assetEntryOrder = start + i;
 
-				DocUtil.add(root, "asset-order", assetEntryOrder);
+				request.setAttribute("configuration_manual.jsp-asset-order", assetEntryOrder);
 
 				if (assetEntryOrder == (assetEntryXmls.length - 1)) {
-					DocUtil.add(root, "last", true);
+					request.setAttribute("configuration_manual.jsp-last", true);
 				}
 				else {
-					DocUtil.add(root, "last", false);
+					request.setAttribute("configuration_manual.jsp-last", false);
 				}
 
 				AssetEntry assetEntry = assetEntries.get(i);

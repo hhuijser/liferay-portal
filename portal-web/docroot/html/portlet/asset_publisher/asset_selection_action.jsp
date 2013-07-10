@@ -21,14 +21,8 @@ String redirect = ParamUtil.getString(request, "backURL");
 
 redirect = ParamUtil.getString(request, "redirect");
 
-ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);
-
-Document assetDoc = (Document)row.getObject();
-
-Element root = assetDoc.getRootElement();
-
-int assetEntryOrder = GetterUtil.getInteger(root.elementText("asset-order"));
-boolean last = GetterUtil.getBoolean(root.elementText("last"));
+int assetEntryOrder = GetterUtil.getInteger((String)request.getAttribute("configuration_manual.jsp-asset-order"));
+boolean last = GetterUtil.getBoolean((String)request.getAttribute("configuration_manual.jsp-last"));
 %>
 
 <c:choose>

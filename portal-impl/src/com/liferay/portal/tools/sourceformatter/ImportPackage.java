@@ -14,8 +14,6 @@
 
 package com.liferay.portal.tools.sourceformatter;
 
-import com.liferay.portal.kernel.util.Validator;
-
 /**
  * @author Carlos Sierra Andrés
  */
@@ -38,7 +36,7 @@ public class ImportPackage implements Comparable<ImportPackage> {
 
 		ImportPackage importPackage = (ImportPackage)obj;
 
-		return Validator.equals(_import, importPackage._import);
+		return _import.equals(importPackage._import);
 	}
 
 	public String getImport() {

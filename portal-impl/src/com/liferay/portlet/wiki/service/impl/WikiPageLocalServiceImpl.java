@@ -1797,7 +1797,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			oldPage, PageVersionException.class);
 
 		long resourcePrimKey =
-			wikiPageResourceLocalService.getPageResourcePrimKey(nodeId, title);
+			wikiPageResourceLocalService.getPageResourcePrimKey(
+				nodeId, oldPage.getTitle());
+
 		long groupId = oldPage.getGroupId();
 
 		WikiPage page = oldPage;

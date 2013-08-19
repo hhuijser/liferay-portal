@@ -33,7 +33,9 @@ import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.servlet.FilterChain;
@@ -91,6 +93,55 @@ public class AutoLoginFilter extends BasePortalFilter {
 
 		if ((user == null) || user.isLockout()) {
 			return null;
+		}
+
+		if (PropsValues.SESSION_ENABLE_PHISHING_PROTECTION) {
+
+			// Invalidate the previous session to prevent phishing
+
+			String[] protectedAttributeNames =
+				PropsValues.SESSION_PHISHING_PROTECTED_ATTRIBUTES;
+
+			Map<String, Object> protectedAttributes =
+				new HashMap<String, Object>();
+
+			for (String protectedAttributeName : protectedAttributeNames) {
+				Object protectedAttributeValue = session.getAttribute(
+					protectedAttributeName);
+
+				if (protectedAttributeValue == null) {
+					continue;
+				}
+
+				protectedAttributes.put(
+					protectedAttributeName, protectedAttributeValue);
+			}
+
+			try {
+				session.invalidate();
+			}
+			catch (IllegalStateException ise) {
+
+				// This only happens in Geronimo
+
+				if (_log.isWarnEnabled()) {
+					_log.warn(ise.getMessage());
+				}
+			}
+
+			session = request.getSession(true);
+
+			for (String protectedAttributeName : protectedAttributeNames) {
+				Object protectedAttributeValue = protectedAttributes.get(
+					protectedAttributeName);
+
+				if (protectedAttributeValue == null) {
+					continue;
+				}
+
+				session.setAttribute(
+					protectedAttributeName, protectedAttributeValue);
+			}
 		}
 
 		session.setAttribute("j_username", jUsername);

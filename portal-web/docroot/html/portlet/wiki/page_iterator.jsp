@@ -282,7 +282,7 @@ for (int i = 0; i < results.size(); i++) {
 			rowURL.setParameter("struts_action", "/wiki/view");
 		}
 		else {
-			rowURL.setParameter("struts_action", "/wiki/view_page_activities");
+			rowURL.setParameter("struts_action", "/wiki/view_page");
 		}
 
 		rowURL.setParameter("redirect", currentURL);

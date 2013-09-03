@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.util.UniqueList;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
-import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.model.LayoutConstants;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
@@ -425,17 +424,6 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		updatePage(
 			userId, nodeId, title, version, content, summary, minorEdit, format,
 			newParentTitle, redirectTitle, serviceContext);
-
-		List<WikiPage> oldPages = wikiPagePersistence.findByN_T_H(
-			nodeId, title, false);
-
-		for (WikiPage oldPage : oldPages) {
-			if (!WorkflowThreadLocal.isEnabled()) {
-				oldPage.setParentTitle(originalParentTitle);
-
-				wikiPagePersistence.update(oldPage);
-			}
-		}
 	}
 
 	@Override
@@ -1951,6 +1939,20 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		wikiPagePersistence.update(page);
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
+			String cmd = serviceContext.getCommand();
+
+			if (Validator.isNotNull(cmd)) {
+				if (cmd.equals("changeParent")) {
+					List<WikiPage> versionPages = wikiPagePersistence.findByR_N(
+						page.getResourcePrimKey(), page.getNodeId());
+
+					for (WikiPage versionPage : versionPages) {
+						versionPage.setParentTitle(page.getParentTitle());
+
+						wikiPagePersistence.update(versionPage);
+					}
+				}
+			}
 
 			// Asset
 

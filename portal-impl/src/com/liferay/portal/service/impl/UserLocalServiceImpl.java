@@ -92,6 +92,7 @@ import com.liferay.portal.model.PasswordPolicy;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.Team;
 import com.liferay.portal.model.Ticket;
 import com.liferay.portal.model.TicketConstants;
@@ -116,17 +117,22 @@ import com.liferay.portal.security.auth.ScreenNameValidator;
 import com.liferay.portal.security.auth.ScreenNameValidatorFactory;
 import com.liferay.portal.security.ldap.LDAPSettingsUtil;
 import com.liferay.portal.security.permission.PermissionCacheUtil;
+import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.pwd.PasswordEncryptorUtil;
 import com.liferay.portal.security.pwd.PwdAuthenticator;
 import com.liferay.portal.security.pwd.PwdToolkitUtil;
 import com.liferay.portal.security.pwd.RegExpToolkit;
 import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.SubscriptionLocalServiceUtil;
 import com.liferay.portal.service.base.UserLocalServiceBaseImpl;
+import com.liferay.portal.service.permission.SubscriptionPermissionUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.SubscriptionSender;
+import com.liferay.portal.util.comparator.SubscriptionClassNameIdComparator;
 import com.liferay.portlet.documentlibrary.ImageSizeException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
@@ -3600,6 +3606,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		groupPersistence.removeUsers(groupId, userIds);
 
+		removeUserSubscriptions(userIds);
+
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(User.class);
 
 		indexer.reindex(userIds);
@@ -5518,6 +5526,41 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		};
 
 		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+	}
+
+	protected void removeUserSubscriptions(long[] userIds)
+		throws PortalException, SystemException {
+
+		for (long userId : userIds) {
+			User user = getUserById(userId);
+
+			PermissionChecker permissionChecker = null;
+
+			try {
+				permissionChecker = PermissionCheckerFactoryUtil.create(user);
+			}
+			catch (Exception e) {
+				throw new PrincipalException(e);
+			}
+
+			int subscriptionsCount =
+				SubscriptionLocalServiceUtil.getUserSubscriptionsCount(userId);
+
+			List<Subscription> subscriptions =
+				SubscriptionLocalServiceUtil.getUserSubscriptions(
+					userId, 0, subscriptionsCount,
+					new SubscriptionClassNameIdComparator(true));
+
+			for (Subscription subscription : subscriptions) {
+				if (!SubscriptionPermissionUtil.contains(
+						permissionChecker, subscription.getClassName(),
+						subscription.getClassPK(), null, 0)) {
+
+					SubscriptionLocalServiceUtil.deleteSubscription(
+						subscription.getSubscriptionId());
+				}
+			}
+		}
 	}
 
 	protected Hits search(

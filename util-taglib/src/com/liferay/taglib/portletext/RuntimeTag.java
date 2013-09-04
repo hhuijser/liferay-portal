@@ -221,6 +221,8 @@ public class RuntimeTag extends TagSupport {
 
 		PrintWriter printWriter = response.getWriter();
 
+		boolean dataWritten = false;
+
 		JSONArray footerCssPathsJSONArray = jsonObject.getJSONArray(
 			"footerCssPaths");
 
@@ -230,6 +232,8 @@ public class RuntimeTag extends TagSupport {
 			printWriter.print("<link href=\"");
 			printWriter.print(HtmlUtil.escape(value));
 			printWriter.println("\" rel=\"stylesheet\" type=\"text/css\" />");
+
+			dataWritten = true;
 		}
 
 		JSONArray footerJavaScriptPathsJSONArray = jsonObject.getJSONArray(
@@ -241,9 +245,13 @@ public class RuntimeTag extends TagSupport {
 			printWriter.print("<script src=\"");
 			printWriter.print(HtmlUtil.escape(value));
 			printWriter.println("\" type=\"text/javascript\"></script>");
+
+			dataWritten = true;
 		}
 
-		printWriter.flush();
+		if (dataWritten) {
+			printWriter.flush();
+		}
 	}
 
 	protected static void writeHeaderPaths(
@@ -251,6 +259,8 @@ public class RuntimeTag extends TagSupport {
 		throws IOException {
 
 		PrintWriter printWriter = response.getWriter();
+
+		boolean dataWritten = false;
 
 		JSONArray headerCssPathsJSONArray = jsonObject.getJSONArray(
 			"headerCssPaths");
@@ -261,6 +271,8 @@ public class RuntimeTag extends TagSupport {
 			printWriter.print("<link href=\"");
 			printWriter.print(HtmlUtil.escape(value));
 			printWriter.println("\" rel=\"stylesheet\" type=\"text/css\" />");
+
+			dataWritten = true;
 		}
 
 		JSONArray headerJavaScriptPathsJSONArray = jsonObject.getJSONArray(
@@ -272,9 +284,13 @@ public class RuntimeTag extends TagSupport {
 			printWriter.print("<script src=\"");
 			printWriter.print(HtmlUtil.escape(value));
 			printWriter.println("\" type=\"text/javascript\"></script>");
+
+			dataWritten = true;
 		}
 
-		printWriter.flush();
+		if (dataWritten) {
+			printWriter.flush();
+		}
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RuntimeTag.class);

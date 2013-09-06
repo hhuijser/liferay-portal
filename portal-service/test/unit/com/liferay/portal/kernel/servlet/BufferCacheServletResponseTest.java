@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.test.CodeCoverageAssertor;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ReflectionUtil;
-import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
@@ -1001,23 +1000,34 @@ public class BufferCacheServletResponseTest {
 
 	@Test
 	public void testSetBufferSize() throws IOException {
-		_testSetBufferSize(true);
-	}
+		StubHttpServletResponse stubHttpServletResponse =
+			new StubHttpServletResponse() {
 
-	@Test
-	public void testSetBufferSizeOnWeblogic() throws Exception {
-		Field weblogicField = ServerDetector.class.getDeclaredField(
-			"_webLogic");
+				@Override
+				public boolean isCommitted() {
+					return false;
+				}
 
-		weblogicField.setAccessible(true);
+			};
 
-		ServerDetector serverDetector = ServerDetector.getInstance();
+		BufferCacheServletResponse bufferCacheServletResponse =
+			new BufferCacheServletResponse(stubHttpServletResponse);
 
-		weblogicField.set(serverDetector, Boolean.TRUE);
+		// Normal
 
-		_testSetBufferSize(false);
+		bufferCacheServletResponse.setBufferSize(1024);
 
-		weblogicField.set(serverDetector, Boolean.FALSE);
+		// Set after commit
+
+		bufferCacheServletResponse.flushBuffer();
+
+		try {
+			bufferCacheServletResponse.setBufferSize(2048);
+
+			Assert.fail();
+		}
+		catch (IllegalStateException ise) {
+		}
 	}
 
 	@Test
@@ -1043,44 +1053,6 @@ public class BufferCacheServletResponseTest {
 
 		Assert.assertEquals(
 			_TEST_STRING, bufferCacheServletResponse.getString());
-	}
-
-	private void _testSetBufferSize(boolean expectIllegalStateException)
-		throws IOException {
-
-		StubHttpServletResponse stubHttpServletResponse =
-			new StubHttpServletResponse() {
-
-				@Override
-				public boolean isCommitted() {
-					return false;
-				}
-
-			};
-
-		BufferCacheServletResponse bufferCacheServletResponse =
-			new BufferCacheServletResponse(stubHttpServletResponse);
-
-		// Normal
-
-		bufferCacheServletResponse.setBufferSize(1024);
-
-		// Set after commit
-
-		bufferCacheServletResponse.flushBuffer();
-
-		try {
-			bufferCacheServletResponse.setBufferSize(2048);
-
-			if (expectIllegalStateException) {
-				Assert.fail();
-			}
-		}
-		catch (IllegalStateException ise) {
-			if (!expectIllegalStateException) {
-				Assert.fail();
-			}
-		}
 	}
 
 	private static final byte[] _TEST_BYTES = {'a', 'b', 'c'};

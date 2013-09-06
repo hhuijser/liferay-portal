@@ -247,8 +247,6 @@ public class RuntimeTag extends TagSupport {
 			printWriter.print(HtmlUtil.escape(value));
 			printWriter.println("\" type=\"text/javascript\"></script>");
 		}
-
-		printWriter.flush();
 	}
 
 	protected static void writeHeaderPaths(
@@ -283,8 +281,6 @@ public class RuntimeTag extends TagSupport {
 			printWriter.print(HtmlUtil.escape(value));
 			printWriter.println("\" type=\"text/javascript\"></script>");
 		}
-
-		printWriter.flush();
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(RuntimeTag.class);

@@ -539,13 +539,12 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 		Group group = null;
 
-		// If the current group is a staging group, check the live group. If the
-		// current group is a scope group for a layout, check the original
-		// group.
-
 		try {
 			if (groupId > 0) {
 				group = GroupLocalServiceUtil.getGroup(groupId);
+
+				// If the group is a personal site, check the "User Personal
+				// Site" group.
 
 				if (group.isUser() && (group.getClassPK() == getUserId())) {
 					group = GroupLocalServiceUtil.getGroup(
@@ -553,6 +552,9 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 					groupId = group.getGroupId();
 				}
+
+				// If the group is a scope group for a layout, check the
+				// original group.
 
 				if (group.isLayout() &&
 					!ResourceBlockLocalServiceUtil.isSupported(name)) {
@@ -564,6 +566,8 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 					group = GroupLocalServiceUtil.getGroup(groupId);
 				}
+
+				// If the group is a staging group, check the live group.
 
 				if (group.isStagingGroup()) {
 					if (primKey.equals(String.valueOf(groupId))) {
@@ -994,6 +998,12 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 		}
 
 		long companyId = user.getCompanyId();
+
+		if (groupId > 0) {
+			Group group = GroupLocalServiceUtil.getGroup(groupId);
+
+			companyId = group.getCompanyId();
+		}
 
 		boolean hasLayoutManagerPermission = true;
 

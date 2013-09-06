@@ -579,9 +579,19 @@
 				<outputType>boolean</outputType>
 			</attribute>
 			<attribute>
+				<name>max</name>
+				<inputType>int</inputType>
+				<outputType>int</outputType>
+			</attribute>
+			<attribute>
 				<name>model</name>
 				<inputType><![CDATA[java.lang.Class<?>]]></inputType>
 				<outputType><![CDATA[java.lang.Class<?>]]></outputType>
+			</attribute>
+			<attribute>
+				<name>min</name>
+				<inputType>int</inputType>
+				<outputType>int</outputType>
 			</attribute>
 			<attribute>
 				<name>multiple</name>

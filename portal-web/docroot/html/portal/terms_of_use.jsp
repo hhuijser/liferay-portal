@@ -38,7 +38,7 @@ if (JournalArticleLocalServiceUtil.hasArticle(termsArticleGroupId, termsArticleI
 else {
 	if (_log.isErrorEnabled()) {
 		_log.error("groupId: " + termsArticleGroupId + ", articleId: " + termsArticleId);
-		_log.error(UnicodeLanguageUtil.get(pageContext, "no-such-article-exists"));
+		_log.error(LanguageUtil.get(pageContext, "no-such-article-exists"));
 	}
 }
 %>

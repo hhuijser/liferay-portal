@@ -341,6 +341,21 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
+		long nodeId, java.lang.String title, double version,
+		java.lang.String content, java.lang.String summary, boolean minorEdit,
+		java.lang.String format, boolean head, java.lang.String parentTitle,
+		java.lang.String redirectTitle,
+		com.liferay.portal.service.ServiceContext serviceContext,
+		boolean workflowEnabled)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPage(userId, nodeId, title, version, content, summary,
+			minorEdit, format, head, parentTitle, redirectTitle,
+			serviceContext, workflowEnabled);
+	}
+
+	public static com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
 		long nodeId, java.lang.String title, java.lang.String content,
 		java.lang.String summary, boolean minorEdit,
 		com.liferay.portal.service.ServiceContext serviceContext)

@@ -1668,6 +1668,116 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			AssetLinkConstants.TYPE_RELATED);
 	}
 
+	public void updateMoveStatus(
+			long userId, WikiPage page, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		String cmd = serviceContext.getCommand();
+
+		if (Validator.isNotNull(cmd)) {
+			if (cmd.equals("changeParent")) {
+				List<WikiPage> versionPages = wikiPagePersistence.findByR_N(
+					page.getResourcePrimKey(), page.getNodeId());
+
+				for (WikiPage versionPage : versionPages) {
+					versionPage.setParentTitle(page.getParentTitle());
+
+					wikiPagePersistence.update(versionPage);
+				}
+			}
+			else if (cmd.equals("rename")) {
+				long nodeId = page.getNodeId();
+				long resourcePrimKey = page.getResourcePrimKey();
+				String title = page.getTitle();
+
+				// All versions
+
+				List<WikiPage> versionPages = wikiPagePersistence.findByR_N(
+					resourcePrimKey, nodeId, QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, new PageVersionComparator());
+
+				WikiPage oldPage = versionPages.get(1);
+
+				String oldTitle = oldPage.getTitle();
+
+				for (WikiPage p : versionPages) {
+					p.setTitle(title);
+
+					wikiPagePersistence.update(p);
+				}
+
+				// Children
+
+				List<WikiPage> children = wikiPagePersistence.findByN_P(
+					nodeId, oldTitle);
+
+				for (WikiPage child : children) {
+					child.setParentTitle(title);
+
+					wikiPagePersistence.update(child);
+				}
+
+				// Page resource
+
+				WikiPageResource pageResource =
+					wikiPageResourcePersistence.findByPrimaryKey(
+						resourcePrimKey);
+
+				pageResource.setTitle(title);
+
+				wikiPageResourcePersistence.update(pageResource);
+
+				// Create stub page at the old location
+
+				double version = WikiPageConstants.VERSION_DEFAULT;
+				String summary = WikiPageConstants.MOVED + " to " + title;
+				String format = oldPage.getFormat();
+				boolean head = true;
+				String parentTitle = oldPage.getParentTitle();
+				String content =
+					StringPool.DOUBLE_OPEN_BRACKET + title +
+						StringPool.DOUBLE_CLOSE_BRACKET;
+
+				serviceContext.setAddGroupPermissions(true);
+				serviceContext.setAddGuestPermissions(true);
+
+				populateServiceContext(serviceContext, page);
+
+				addPage(
+					userId, oldPage.getNodeId(), oldTitle, version, content,
+					summary, false, format, head, parentTitle, title,
+					serviceContext, false);
+
+				// Move redirects to point to the page with the new title
+
+				List<WikiPage> redirectedPages = wikiPagePersistence.findByN_R(
+					nodeId, oldTitle);
+
+				for (WikiPage redirectedPage : redirectedPages) {
+					redirectedPage.setRedirectTitle(title);
+
+					wikiPagePersistence.update(redirectedPage);
+				}
+
+				// Asset
+
+				updateAsset(
+					userId, page, serviceContext.getAssetCategoryIds(),
+					serviceContext.getAssetTagNames(),
+					serviceContext.getAssetLinkEntryIds());
+
+				// Indexer
+
+				Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+					WikiPage.class);
+
+				indexer.delete(
+					new Object[] {
+						page.getCompanyId(), nodeId, oldTitle});
+			}
+		}
+	}
+
 	@Override
 	public WikiPage updatePage(
 			long userId, long nodeId, String title, double version,
@@ -1884,110 +1994,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		page.setStatusDate(now);
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
-			String cmd = serviceContext.getCommand();
-
-			if (Validator.isNotNull(cmd)) {
-				if (cmd.equals("changeParent")) {
-					List<WikiPage> versionPages = wikiPagePersistence.findByR_N(
-						page.getResourcePrimKey(), page.getNodeId());
-
-					for (WikiPage versionPage : versionPages) {
-						versionPage.setParentTitle(page.getParentTitle());
-
-						wikiPagePersistence.update(versionPage);
-					}
-				}
-				else if (cmd.equals("rename")) {
-					long nodeId = page.getNodeId();
-					long resourcePrimKey = page.getResourcePrimKey();
-					String title = page.getTitle();
-
-					// All versions
-
-					List<WikiPage> versionPages = wikiPagePersistence.findByR_N(
-						resourcePrimKey, nodeId, QueryUtil.ALL_POS,
-						QueryUtil.ALL_POS, new PageVersionComparator());
-
-					WikiPage oldPage = versionPages.get(1);
-
-					String oldTitle = oldPage.getTitle();
-
-					for (WikiPage p : versionPages) {
-						p.setTitle(title);
-
-						wikiPagePersistence.update(p);
-					}
-
-					// Children
-
-					List<WikiPage> children = wikiPagePersistence.findByN_P(
-						nodeId, oldTitle);
-
-					for (WikiPage child : children) {
-						child.setParentTitle(title);
-
-						wikiPagePersistence.update(child);
-					}
-
-					// Page resource
-
-					WikiPageResource pageResource =
-						wikiPageResourcePersistence.findByPrimaryKey(
-							resourcePrimKey);
-
-					pageResource.setTitle(title);
-
-					wikiPageResourcePersistence.update(pageResource);
-
-					// Create stub page at the old location
-
-					double version = WikiPageConstants.VERSION_DEFAULT;
-					String summary = WikiPageConstants.MOVED + " to " + title;
-					String format = oldPage.getFormat();
-					boolean head = true;
-					String parentTitle = oldPage.getParentTitle();
-					String content =
-						StringPool.DOUBLE_OPEN_BRACKET + title +
-							StringPool.DOUBLE_CLOSE_BRACKET;
-
-					serviceContext.setAddGroupPermissions(true);
-					serviceContext.setAddGuestPermissions(true);
-
-					populateServiceContext(serviceContext, page);
-
-					addPage(
-						userId, oldPage.getNodeId(), oldTitle, version, content,
-						summary, false, format, head, parentTitle, title,
-						serviceContext, false);
-
-					// Move redirects to point to the page with the new title
-
-					List<WikiPage> redirectedPages =
-						wikiPagePersistence.findByN_R(nodeId, oldTitle);
-
-					for (WikiPage redirectedPage : redirectedPages) {
-						redirectedPage.setRedirectTitle(title);
-
-						wikiPagePersistence.update(redirectedPage);
-					}
-
-					// Asset
-
-					updateAsset(
-						userId, page, serviceContext.getAssetCategoryIds(),
-						serviceContext.getAssetTagNames(),
-						serviceContext.getAssetLinkEntryIds());
-
-					// Indexer
-
-					Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-						WikiPage.class);
-
-					indexer.delete(
-						new Object[] {
-							page.getCompanyId(), nodeId, oldTitle});
-				}
-			}
+			updateMoveStatus(userId, page, serviceContext);
 
 			// Asset
 

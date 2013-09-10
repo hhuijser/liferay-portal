@@ -57,6 +57,9 @@ public interface SubscriptionPermission {
 			long inferredClassPK)
 		throws PortalException, SystemException;
 
+	public void cleanUpUserSubscriptions(long userId)
+		throws PortalException, SystemException;
+
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link #contains(PermissionChecker,
 	 *             String, long, String, long)}

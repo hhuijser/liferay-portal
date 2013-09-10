@@ -57,6 +57,7 @@ import com.liferay.portal.service.permission.OrganizationPermissionUtil;
 import com.liferay.portal.service.permission.PasswordPolicyPermissionUtil;
 import com.liferay.portal.service.permission.PortalPermissionUtil;
 import com.liferay.portal.service.permission.RolePermissionUtil;
+import com.liferay.portal.service.permission.SubscriptionPermissionUtil;
 import com.liferay.portal.service.permission.TeamPermissionUtil;
 import com.liferay.portal.service.permission.UserGroupPermissionUtil;
 import com.liferay.portal.service.permission.UserGroupRolePermissionUtil;
@@ -1237,6 +1238,10 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 
 		userLocalService.unsetGroupUsers(groupId, userIds, serviceContext);
 
+		for (long userId : userIds) {
+			SubscriptionPermissionUtil.cleanUpUserSubscriptions(userId);
+		}
+
 		SiteMembershipPolicyUtil.propagateMembership(
 			userIds, null, new long[] {groupId});
 	}
@@ -2005,6 +2010,8 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			icqSn, jabberSn, msnSn, mySpaceSn, skypeSn, twitterSn, ymSn,
 			jobTitle, groupIds, organizationIds, roleIds, userGroupRoles,
 			userGroupIds, serviceContext);
+
+		SubscriptionPermissionUtil.cleanUpUserSubscriptions(userId);
 
 		if (!addGroupIds.isEmpty() || !removeGroupIds.isEmpty()) {
 			SiteMembershipPolicyUtil.propagateMembership(

@@ -58,6 +58,12 @@ public class SubscriptionPermissionUtil {
 			inferredClassName, inferredClassPK);
 	}
 
+	public static void cleanUpUserSubscriptions(long userId)
+		throws PortalException, SystemException {
+
+		getSubscriptionPermission().cleanUpUserSubscriptions(userId);
+	}
+
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link #contains(PermissionChecker,
 	 *             String, long, String, long)}

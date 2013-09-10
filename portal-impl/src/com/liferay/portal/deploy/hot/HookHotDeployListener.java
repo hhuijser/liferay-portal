@@ -147,6 +147,7 @@ import com.liferay.portal.struts.StrutsActionRegistryUtil;
 import com.liferay.portal.upgrade.UpgradeProcessUtil;
 import com.liferay.portal.util.CustomJspRegistryUtil;
 import com.liferay.portal.util.JavaScriptBundleUtil;
+import com.liferay.portal.util.LayoutSettings;
 import com.liferay.portal.util.PortalInstances;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsUtil;
@@ -2579,6 +2580,10 @@ public class HookHotDeployListener
 		value = stringArraysContainer.getStringArray();
 
 		field.set(null, value);
+
+		if (key.equals(PropsKeys.LAYOUT_TYPES)) {
+			LayoutSettings.updateLayoutSettings(value);
+		}
 	}
 
 	protected void updateRelease(

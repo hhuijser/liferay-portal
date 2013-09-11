@@ -46,8 +46,7 @@ public class LayoutSettings {
 		layoutSettingsCopy.putAll(_layoutSettingsMap);
 
 		for (String key : layoutSettingsCopy.keySet()) {
-
-			if (key.equals("control_panel")){
+			if (key.equals("control_panel")) {
 				continue;
 			}
 
@@ -57,7 +56,6 @@ public class LayoutSettings {
 		}
 
 		for (String type : types) {
-
 			if (!_layoutSettingsMap.containsKey(type)) {
 				new LayoutSettings(type);
 			}

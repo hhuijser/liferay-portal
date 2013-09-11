@@ -39,6 +39,7 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.UserGroupRole;
@@ -62,7 +63,11 @@ import com.liferay.portal.service.permission.UserGroupPermissionUtil;
 import com.liferay.portal.service.permission.UserGroupRolePermissionUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portal.util.comparator.SubscriptionClassNameIdComparator;
 import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
+import com.liferay.portlet.messageboards.NoSuchDiscussionException;
+import com.liferay.portlet.messageboards.model.MBDiscussion;
+import com.liferay.portlet.messageboards.model.MBThread;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 
 import java.util.ArrayList;
@@ -1237,6 +1242,10 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 
 		userLocalService.unsetGroupUsers(groupId, userIds, serviceContext);
 
+		for (long userId : userIds) {
+			cleanUpUserSubscriptions(groupId, userId);
+		}
+
 		SiteMembershipPolicyUtil.propagateMembership(
 			userIds, null, new long[] {groupId});
 	}
@@ -1844,6 +1853,12 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 				SiteMembershipPolicyUtil.checkMembership(
 					new long[] {userId}, ArrayUtil.toLongArray(addGroupIds),
 					ArrayUtil.toLongArray(removeGroupIds));
+			}
+		}
+
+		for (long oldGroupId : oldGroupIds) {
+			if (!ArrayUtil.contains(groupIds, oldGroupId)) {
+				cleanUpUserSubscriptions(oldGroupId, userId);
 			}
 		}
 
@@ -2514,6 +2529,44 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		}
 
 		return userGroupRoles;
+	}
+
+	protected void cleanUpUserSubscriptions(long oldGroupId, long userId)
+		throws PortalException, SystemException {
+
+		int subscriptionsCount =
+			subscriptionLocalService.getUserSubscriptionsCount(userId);
+
+		List<Subscription> subscriptions =
+			subscriptionLocalService.getUserSubscriptions(
+				userId, 0, subscriptionsCount,
+				new SubscriptionClassNameIdComparator(true));
+
+		for (Subscription subscription : subscriptions) {
+			long groupId = 0;
+
+			try {
+				MBDiscussion discussion =
+					mbDiscussionLocalService.getDiscussion(
+						subscription.getClassName(), subscription.getClassPK());
+
+				MBThread thread = mbThreadLocalService.fetchThread(
+					discussion.getThreadId());
+
+				groupId = thread.getGroupId();
+			}
+			catch (NoSuchDiscussionException nsde) {
+			}
+
+			if (groupId == 0) {
+				groupId = subscription.getClassPK();
+			}
+
+			if (oldGroupId == groupId) {
+				subscriptionLocalService.deleteSubscription(
+					subscription.getSubscriptionId());
+			}
+		}
 	}
 
 	protected void propagateMembership(

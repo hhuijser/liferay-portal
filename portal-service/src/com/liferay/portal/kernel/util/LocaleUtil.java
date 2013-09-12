@@ -263,6 +263,7 @@ public class LocaleUtil {
 		}
 		catch (Exception e) {
 			locale = null;
+			useDefault = false;
 
 			if (_log.isWarnEnabled()) {
 				_log.warn(languageId + " is not a valid language id");

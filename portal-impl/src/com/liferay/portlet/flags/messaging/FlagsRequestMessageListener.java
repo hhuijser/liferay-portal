@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
@@ -81,7 +80,7 @@ public class FlagsRequestMessageListener extends BaseMessageListener {
 
 		Group group = layout.getGroup();
 
-		String groupName = HtmlUtil.unescape(group.getDescriptiveName());
+		String groupName = group.getDescriptiveName();
 
 		// Reporter user
 
@@ -122,9 +121,6 @@ public class FlagsRequestMessageListener extends BaseMessageListener {
 
 		// Content
 
-		String contentTitle = HtmlUtil.unescape(flagsRequest.getContentTitle());
-		String contentURL = HtmlUtil.unescape(flagsRequest.getContentURL());
-
 		String contentType = ResourceActionsUtil.getModelResource(
 			locale, flagsRequest.getClassName());
 
@@ -156,8 +152,8 @@ public class FlagsRequestMessageListener extends BaseMessageListener {
 				notify(
 					company, groupName, reporterEmailAddress, reporterUserName,
 					reportedEmailAddress, reportedUserName, reportedURL,
-					flagsRequest.getClassPK(), contentTitle, contentType,
-					contentURL, reason, fromName, fromAddress,
+					flagsRequest.getClassPK(), flagsRequest.getContentTitle(), contentType,
+					flagsRequest.getContentURL(), reason, fromName, fromAddress,
 					recipient.getFullName(), recipient.getEmailAddress(),
 					subject, body, serviceContext);
 			}

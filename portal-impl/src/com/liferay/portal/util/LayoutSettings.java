@@ -15,6 +15,7 @@
 package com.liferay.portal.util;
 
 import com.liferay.portal.kernel.configuration.Filter;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringPool;
@@ -36,6 +37,29 @@ public class LayoutSettings {
 
 	public static LayoutSettings getInstance(String type) {
 		return _layoutSettingsMap.get(type);
+	}
+
+	public static void updateLayoutSettings(String[] types) {
+		Map<String, LayoutSettings> layoutSettingsCopy =
+			new HashMap<String, LayoutSettings>();
+
+		layoutSettingsCopy.putAll(_layoutSettingsMap);
+
+		for (String key : layoutSettingsCopy.keySet()) {
+			if (key.equals("control_panel")) {
+				continue;
+			}
+
+			if (!ArrayUtil.contains(types, key)) {
+				_layoutSettingsMap.remove(key);
+			}
+		}
+
+		for (String type : types) {
+			if (!_layoutSettingsMap.containsKey(type)) {
+				new LayoutSettings(type);
+			}
+		}
 	}
 
 	public String[] getConfigurationActionDelete() {

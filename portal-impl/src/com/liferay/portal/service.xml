@@ -2325,8 +2325,10 @@
 		<reference package-path="com.liferay.portlet.documentlibrary" entity="DLFileRank" />
 		<reference package-path="com.liferay.portlet.expando" entity="ExpandoRow" />
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBBan" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBDiscussion" />
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBMessage" />
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBStatsUser" />
+		<reference package-path="com.liferay.portlet.messageboards" entity="MBThread" />
 		<reference package-path="com.liferay.portlet.messageboards" entity="MBThreadFlag" />
 		<reference package-path="com.liferay.portlet.shopping" entity="ShoppingCart" />
 		<reference package-path="com.liferay.portlet.social" entity="SocialActivity" />

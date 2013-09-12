@@ -39,6 +39,7 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Phone;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.Subscription;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.UserGroupRole;
@@ -50,6 +51,7 @@ import com.liferay.portal.security.membershippolicy.SiteMembershipPolicyUtil;
 import com.liferay.portal.security.membershippolicy.UserGroupMembershipPolicyUtil;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.PermissionChecker;
+import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.UserServiceBaseImpl;
 import com.liferay.portal.service.permission.GroupPermissionUtil;
@@ -57,11 +59,13 @@ import com.liferay.portal.service.permission.OrganizationPermissionUtil;
 import com.liferay.portal.service.permission.PasswordPolicyPermissionUtil;
 import com.liferay.portal.service.permission.PortalPermissionUtil;
 import com.liferay.portal.service.permission.RolePermissionUtil;
+import com.liferay.portal.service.permission.SubscriptionPermissionUtil;
 import com.liferay.portal.service.permission.TeamPermissionUtil;
 import com.liferay.portal.service.permission.UserGroupPermissionUtil;
 import com.liferay.portal.service.permission.UserGroupRolePermissionUtil;
 import com.liferay.portal.service.permission.UserPermissionUtil;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portal.util.comparator.SubscriptionClassNameIdComparator;
 import com.liferay.portlet.announcements.model.AnnouncementsDelivery;
 import com.liferay.portlet.usersadmin.util.UsersAdminUtil;
 
@@ -1237,6 +1241,10 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 
 		userLocalService.unsetGroupUsers(groupId, userIds, serviceContext);
 
+		for (long userId : userIds) {
+			cleanUpUserSubscriptions(userId);
+		}
+
 		SiteMembershipPolicyUtil.propagateMembership(
 			userIds, null, new long[] {groupId});
 	}
@@ -2006,6 +2014,8 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			jobTitle, groupIds, organizationIds, roleIds, userGroupRoles,
 			userGroupIds, serviceContext);
 
+		cleanUpUserSubscriptions(userId);
+
 		if (!addGroupIds.isEmpty() || !removeGroupIds.isEmpty()) {
 			SiteMembershipPolicyUtil.propagateMembership(
 				new long[] {user.getUserId()},
@@ -2514,6 +2524,39 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		}
 
 		return userGroupRoles;
+	}
+
+	protected void cleanUpUserSubscriptions(long userId)
+		throws PortalException, SystemException {
+
+		User user = getUserById(userId);
+
+		PermissionChecker permissionChecker = null;
+
+		try {
+			permissionChecker = PermissionCheckerFactoryUtil.create(user);
+		}
+		catch (Exception e) {
+			throw new PrincipalException(e);
+		}
+
+		int subscriptionsCount =
+			subscriptionLocalService.getUserSubscriptionsCount(userId);
+
+		List<Subscription> subscriptions =
+			subscriptionLocalService.getUserSubscriptions(
+				userId, 0, subscriptionsCount,
+				new SubscriptionClassNameIdComparator(true));
+
+		for (Subscription subscription : subscriptions) {
+			if (!SubscriptionPermissionUtil.contains(
+					permissionChecker, subscription.getClassName(),
+					subscription.getClassPK(), null, 0)) {
+
+				subscriptionLocalService.deleteSubscription(
+					subscription.getSubscriptionId());
+			}
+		}
 	}
 
 	protected void propagateMembership(

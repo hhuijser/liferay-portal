@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.QName;
 import com.liferay.portal.model.Company;
@@ -849,10 +850,11 @@ public class PortletURLImpl
 					_layoutFriendlyURL = GetterUtil.getString(
 						PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
 
-					if (_secure) {
-						_layoutFriendlyURL = HttpUtil.protocolize(
-							_layoutFriendlyURL, true);
-					}
+					String notSecurePortalURL = PortalUtil.getPortalURL(
+						_request, !_secure);
+
+					_layoutFriendlyURL = StringUtil.replaceFirst(
+						_layoutFriendlyURL, notSecurePortalURL, portalURL);
 				}
 			}
 		}

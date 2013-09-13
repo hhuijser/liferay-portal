@@ -21,6 +21,7 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.OrganizationConstants;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.permission.LayoutPrototypePermissionUtil;
@@ -219,6 +220,14 @@ public class PermissionCheckerBagImpl implements PermissionCheckerBag {
 	protected boolean isGroupAdminImpl(
 			PermissionChecker permissionChecker, Group group)
 		throws PortalException, SystemException {
+
+		if (group.isLayout()) {
+			long parentGroupId = group.getParentGroupId();
+
+			if (parentGroupId > 0) {
+				group = GroupLocalServiceUtil.getGroup(parentGroupId);
+			}
+		}
 
 		if (group.isSite()) {
 			if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(

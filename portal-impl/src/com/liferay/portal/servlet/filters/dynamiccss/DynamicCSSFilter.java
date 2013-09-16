@@ -27,7 +27,9 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.servlet.filters.IgnoreModuleRequestFilter;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsUtil;
 
 import java.io.File;
@@ -107,10 +109,27 @@ public class DynamicCSSFilter extends IgnoreModuleRequestFilter {
 
 		String cacheCommonFileName = getCacheFileName(request);
 
+		String cdnRequest = StringPool.BLANK;
+
+		String cdnHost = PortalUtil.getCDNHost(request);
+
+		if (Validator.isNotNull(cdnHost)) {
+			String content = StringUtil.read(urlConnection.getInputStream());
+
+			if (content.contains("@theme_image_path@")) {
+				if (request.isSecure()) {
+					cdnRequest = "_CDN_HTTPS";
+				}
+				else {
+					cdnRequest = "_CDN_HTTP";
+				}
+			}
+		}
+
 		File cacheContentTypeFile = new File(
 			_tempDir, cacheCommonFileName + "_E_CONTENT_TYPE");
 		File cacheDataFile = new File(
-			_tempDir, cacheCommonFileName + "_E_DATA");
+			_tempDir, cacheCommonFileName + "_E_DATA" + cdnRequest);
 
 		if (cacheDataFile.exists() &&
 			(cacheDataFile.lastModified() >= urlConnection.getLastModified())) {

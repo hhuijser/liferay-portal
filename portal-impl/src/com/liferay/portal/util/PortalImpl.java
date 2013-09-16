@@ -6459,7 +6459,10 @@ public class PortalImpl implements Portal {
 				response.sendError(status, e.getMessage());
 			}
 			else {
-				response.sendError(status);
+				String currentURL = (String)request.getAttribute(
+					WebKeys.CURRENT_URL);
+
+				response.sendError(status, "Error in " + currentURL);
 			}
 		}
 	}

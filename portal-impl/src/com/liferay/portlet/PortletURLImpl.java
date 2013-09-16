@@ -850,11 +850,11 @@ public class PortletURLImpl
 					_layoutFriendlyURL = GetterUtil.getString(
 						PortalUtil.getLayoutFriendlyURL(layout, themeDisplay));
 
-					String notSecurePortalURL = PortalUtil.getPortalURL(
+					String unsecurePortalURL = PortalUtil.getPortalURL(
 						_request, !_secure);
 
 					_layoutFriendlyURL = StringUtil.replaceFirst(
-						_layoutFriendlyURL, notSecurePortalURL, portalURL);
+						_layoutFriendlyURL, unsecurePortalURL, portalURL);
 				}
 			}
 		}

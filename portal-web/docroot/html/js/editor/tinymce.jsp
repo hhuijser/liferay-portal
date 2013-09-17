@@ -30,6 +30,17 @@ if (Validator.isNotNull(onChangeMethod)) {
 
 boolean resizable = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:input-editor:resizable"));
 boolean skipEditorLoading = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:input-editor:skipEditorLoading"));
+
+String languageId = HtmlUtil.escape(locale.getLanguage());
+
+if (languageId.equals("zh")) {
+	if (locale.getCountry().equals("CN")) {
+		languageId = "zh-cn";
+	}
+	else if (locale.getCountry().equals("TW")) {
+		languageId = "zh-tw";
+	}
+}
 %>
 
 <c:if test="<%= !skipEditorLoading %>">
@@ -130,7 +141,7 @@ boolean skipEditorLoading = GetterUtil.getBoolean((String)request.getAttribute("
 			file_browser_callback: window['<%= name %>'].fileBrowserCallback,
 			init_instance_callback: window['<%= name %>'].initInstanceCallback,
 			invalid_elements: 'script',
-			language: '<%= HtmlUtil.escape(locale.getLanguage()) %>',
+			language: '<%= languageId %>',
 			mode: 'exact',
 
 			<%

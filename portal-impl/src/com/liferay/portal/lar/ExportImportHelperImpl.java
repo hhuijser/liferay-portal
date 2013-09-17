@@ -941,6 +941,13 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 				continue;
 			}
 
+			long groupId = GetterUtil.getLong(
+				referenceDataElement.attributeValue("group-id"));
+
+			if (groupId != 0) {
+				portletDataContext.setSourceGroupId(groupId);
+			}
+
 			FileEntry fileEntry =
 				(FileEntry)portletDataContext.getZipEntryAsObject(path);
 

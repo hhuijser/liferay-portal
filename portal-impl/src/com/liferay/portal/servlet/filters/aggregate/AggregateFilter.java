@@ -39,6 +39,7 @@ import com.liferay.portal.servlet.filters.dynamiccss.DynamicCSSUtil;
 import com.liferay.portal.util.AggregateUtil;
 import com.liferay.portal.util.JavaScriptBundleUtil;
 import com.liferay.portal.util.MinifierUtil;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 
@@ -362,10 +363,27 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 
 		String cacheCommonFileName = getCacheFileName(request);
 
+		String cdnRequest = StringPool.BLANK;
+
+		String cdnHost = PortalUtil.getCDNHost(request);
+
+		if (Validator.isNotNull(cdnHost)) {
+			String content = StringUtil.read(urlConnection.getInputStream());
+
+			if (content.contains("@theme_image_path@")) {
+				if (request.isSecure()) {
+					cdnRequest = "_CDN_HTTPS";
+				}
+				else {
+					cdnRequest = "_CDN_HTTP";
+				}
+			}
+		}
+
 		File cacheContentTypeFile = new File(
 			_tempDir, cacheCommonFileName + "_E_CONTENT_TYPE");
 		File cacheDataFile = new File(
-			_tempDir, cacheCommonFileName + "_E_DATA");
+			_tempDir, cacheCommonFileName + "_E_DATA" + cdnRequest);
 
 		if (cacheDataFile.exists() &&
 			(cacheDataFile.lastModified() >= urlConnection.getLastModified())) {

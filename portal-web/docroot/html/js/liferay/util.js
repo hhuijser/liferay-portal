@@ -1775,8 +1775,6 @@
 			var button = A.byIdNS(namespace, 'removeFolderButton');
 
 			if (button) {
-				button.set('disabled', false);
-
 				Liferay.Util.toggleDisabled(button, false);
 			}
 		},

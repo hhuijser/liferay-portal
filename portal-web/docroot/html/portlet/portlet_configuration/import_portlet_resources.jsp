@@ -25,7 +25,7 @@ long groupId = ParamUtil.getLong(request, "groupId", scopeGroupId);
 
 FileEntry fileEntry = ExportImportHelperUtil.getTempFileEntry(groupId, themeDisplay.getUserId(), ExportImportHelper.TEMP_FOLDER_NAME + selPortlet.getPortletId());
 
-ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(user.getUserId(), groupId, new HashMap<String, String[]>(), fileEntry);
+ManifestSummary manifestSummary = ExportImportHelperUtil.getManifestSummary(themeDisplay.getUserId(), groupId, new HashMap<String, String[]>(), fileEntry);
 %>
 
 <portlet:actionURL var="importPortletActionURL">

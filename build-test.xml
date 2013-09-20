@@ -52,7 +52,7 @@
 					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 				</tstamp>
 
-				<wget dest="${tstamp.value}.zip" src="${sql.legacy.url}" />
+				<get dest="${tstamp.value}.zip" src="${sql.legacy.url}" />
 
 				<unzip src="${tstamp.value}.zip" dest="sql" />
 			</then>

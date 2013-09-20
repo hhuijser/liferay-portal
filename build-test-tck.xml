@@ -28,7 +28,7 @@ tck.url=true</echo>
 					<format property="tstamp.value" pattern="yyyyMMddkkmmssSSS" />
 				</tstamp>
 
-				<wget dest="${tstamp.value}.zip" src="${portlet.tck.url}" />
+				<get dest="${tstamp.value}.zip" src="${portlet.tck.url}" />
 
 				<unzip src="${tstamp.value}.zip" dest="tools/tck" />
 

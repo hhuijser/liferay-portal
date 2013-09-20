@@ -77,15 +77,15 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 		Map<String, LongWrapper> modelAdditionCounters =
 			manifestSummary.getModelAdditionCounters();
 
-		LongWrapper folderModelAdditionCounter = modelAdditionCounters.get(
-			Folder.class.getName());
-
-		Assert.assertEquals(0, folderModelAdditionCounter.getValue());
-
 		LongWrapper fileEntryModelAdditionCounter = modelAdditionCounters.get(
 			FileEntry.class.getName());
 
 		Assert.assertEquals(0, fileEntryModelAdditionCounter.getValue());
+
+		LongWrapper folderModelAdditionCounter = modelAdditionCounters.get(
+			Folder.class.getName());
+
+		Assert.assertEquals(0, folderModelAdditionCounter.getValue());
 
 		modelAdditionCounters.clear();
 
@@ -96,15 +96,15 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 		modelAdditionCounters = manifestSummary.getModelAdditionCounters();
 
-		folderModelAdditionCounter = modelAdditionCounters.get(
-			Folder.class.getName());
-
-		Assert.assertEquals(0, folderModelAdditionCounter.getValue());
-
 		fileEntryModelAdditionCounter = modelAdditionCounters.get(
 			FileEntry.class.getName());
 
 		Assert.assertEquals(0, fileEntryModelAdditionCounter.getValue());
+
+		folderModelAdditionCounter = modelAdditionCounters.get(
+			Folder.class.getName());
+
+		Assert.assertEquals(0, folderModelAdditionCounter.getValue());
 	}
 
 	@Test

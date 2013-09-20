@@ -17,59 +17,47 @@ package com.liferay.portal.util;
 import com.dumbster.smtp.SimpleSmtpServer;
 import com.dumbster.smtp.SmtpMessage;
 
-import com.liferay.portal.kernel.mail.MailMessage;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
 
 /**
  * @author Manuel de la Peña
  */
 public class MailServiceTestUtil {
 
-	public static MailMessage createMailMessage(
-			String from, String to, String subject, String body, boolean isHtml)
-		throws AddressException {
-
-		InternetAddress fromInternetAddress = new InternetAddress(from);
-
-		InternetAddress toInternetAddress = new InternetAddress(to);
-
-		return new MailMessage(
-			fromInternetAddress, toInternetAddress, subject, body, isHtml);
+	public static int getInboxSize() {
+		return _simpleSmtpServer.getReceivedEmailSize();
 	}
 
-	public static List<SmtpMessage> findMessagesByBody(String body) {
-		Iterator<SmtpMessage> receivedEMail =
-			_simpleSmtpServer.getReceivedEmail();
+	public static List<SmtpMessage> getMessages(
+		String headerName, String headerValue) {
 
-		List<SmtpMessage> messages = new ArrayList<SmtpMessage>();
+		List<SmtpMessage> smtpMessages = new ArrayList<SmtpMessage>();
 
-		while (receivedEMail.hasNext()) {
-			SmtpMessage email = receivedEMail.next();
+		Iterator<SmtpMessage> iterator = _simpleSmtpServer.getReceivedEmail();
 
-			if (email.getBody().equals(body)) {
-				messages.add(email);
+		while (iterator.hasNext()) {
+			SmtpMessage smtpMessage = iterator.next();
+
+			if (headerName.equals("Body")) {
+				String body = smtpMessage.getBody();
+
+				if (body.equals(headerValue)) {
+					smtpMessages.add(smtpMessage);
+				}
+			}
+			else {
+				String smtpMessageHeaderValue = smtpMessage.getHeaderValue(
+					headerName);
+
+				if (smtpMessageHeaderValue.equals(headerValue)) {
+					smtpMessages.add(smtpMessage);
+				}
 			}
 		}
 
-		return messages;
-	}
-
-	public static List<SmtpMessage> findMessagesByDestination(String to) {
-		return findMessagesByHeader("To", to);
-	}
-
-	public static List<SmtpMessage> findMessagesBySubject(String subject) {
-		return findMessagesByHeader("Subject", subject);
-	}
-
-	public static int getInboxSize() {
-		return _simpleSmtpServer.getReceivedEmailSize();
+		return smtpMessages;
 	}
 
 	public static void start() {
@@ -89,25 +77,6 @@ public class MailServiceTestUtil {
 		_simpleSmtpServer.stop();
 
 		_simpleSmtpServer = null;
-	}
-
-	protected static List<SmtpMessage> findMessagesByHeader(
-		String header, String value) {
-
-		Iterator<SmtpMessage> receivedEMail =
-			_simpleSmtpServer.getReceivedEmail();
-
-		List<SmtpMessage> messages = new ArrayList<SmtpMessage>();
-
-		while (receivedEMail.hasNext()) {
-			SmtpMessage email = receivedEMail.next();
-
-			if (email.getHeaderValue(header).equals(value)) {
-				messages.add(email);
-			}
-		}
-
-		return messages;
 	}
 
 	private static SimpleSmtpServer _simpleSmtpServer;

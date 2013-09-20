@@ -16,11 +16,14 @@ package com.liferay.portal.util.mail;
 
 import com.dumbster.smtp.SmtpMessage;
 
+import com.liferay.portal.kernel.mail.MailMessage;
 import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
 import com.liferay.portal.util.MailServiceTestUtil;
 import com.liferay.util.mail.MailEngine;
 
 import java.util.List;
+
+import javax.mail.internet.InternetAddress;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -46,24 +49,25 @@ public class MailEngineTest {
 
 	@Test
 	public void testSendMail() throws Exception {
-		MailEngine.send(
-			MailServiceTestUtil.createMailMessage(
-				"sender@here.com", "receiver@here.com", "Test", "Test Body",
-				true));
+		MailMessage mailMessage = new MailMessage(
+			new InternetAddress("from@test.com"),
+			new InternetAddress("to@test.com"), "Hello",
+			"My name is Inigo Montoya.", true);
+
+		MailEngine.send(mailMessage);
 
 		Assert.assertEquals(1, MailServiceTestUtil.getInboxSize());
 
-		List<SmtpMessage> messages = MailServiceTestUtil.findMessagesBySubject(
-			"Test");
+		List<SmtpMessage> messages = MailServiceTestUtil.getMessages(
+			"Body", "My name is Inigo Montoya.");
 
 		Assert.assertEquals(1, messages.size());
 
-		messages = MailServiceTestUtil.findMessagesByDestination(
-			"receiver@here.com");
+		messages = MailServiceTestUtil.getMessages("Subject", "Hello");
 
 		Assert.assertEquals(1, messages.size());
 
-		messages = MailServiceTestUtil.findMessagesByBody("Test Body");
+		messages = MailServiceTestUtil.getMessages("To", "to@test.com");
 
 		Assert.assertEquals(1, messages.size());
 	}

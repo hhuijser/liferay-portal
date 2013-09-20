@@ -404,8 +404,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 				</c:when>
 				<c:otherwise>
 					<div class="alert alert-success">
-						<strike><%= currencyFormat.format(subtotal) %></strike>
-						<%= currencyFormat.format(actualSubtotal) %>
+						<strike><%= currencyFormat.format(subtotal) %></strike> <%= currencyFormat.format(actualSubtotal) %>
 					</div>
 				</c:otherwise>
 			</c:choose>

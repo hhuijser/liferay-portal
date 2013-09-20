@@ -55,6 +55,8 @@
 				<get dest="${tstamp.value}.zip" src="${sql.legacy.url}" />
 
 				<unzip src="${tstamp.value}.zip" dest="sql" />
+
+				<delete file="${tstamp.value}.zip" />
 			</then>
 			<else>
 				<if>

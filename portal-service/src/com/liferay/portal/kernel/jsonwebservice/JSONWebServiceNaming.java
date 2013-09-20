@@ -22,6 +22,9 @@ import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import java.lang.reflect.Method;
 
 import java.util.Set;
@@ -81,6 +84,22 @@ public class JSONWebServiceNaming {
 			return false;
 		}
 
+		if (excludedArgumentTypes != null) {
+			Class[] parameterTypes = method.getParameterTypes();
+
+			for (Class parameterType : parameterTypes) {
+				if (excludedArgumentTypes.contains(parameterType)) {
+					return false;
+				}
+			}
+
+			Class returnType = method.getReturnType();
+
+			if (excludedArgumentTypes.contains(returnType)) {
+				return false;
+			}
+		}
+
 		return true;
 	}
 
@@ -106,6 +125,8 @@ public class JSONWebServiceNaming {
 		return methodName.substring(0, i);
 	}
 
+	protected Set<Class> excludedArgumentTypes = SetUtil.fromArray(
+		new Class[] {InputStream.class, OutputStream.class});
 	protected Set<String> excludedMethodNames = SetUtil.fromArray(
 			new String[] {"getBeanIdentifier", "setBeanIdentifier"});
 	protected Set<String> invalidHttpMethods = SetUtil.fromArray(

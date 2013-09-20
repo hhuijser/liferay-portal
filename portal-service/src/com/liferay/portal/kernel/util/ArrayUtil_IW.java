@@ -414,6 +414,10 @@ public class ArrayUtil_IW {
 		return ArrayUtil.remove(array, value);
 	}
 
+	public float[] remove(float[] array, float value) {
+		return ArrayUtil.remove(array, value);
+	}
+
 	public int[] remove(int[] array, int value) {
 		return ArrayUtil.remove(array, value);
 	}

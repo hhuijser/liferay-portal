@@ -16,6 +16,7 @@ package com.liferay.portal.tools.seleniumbuilder;
 
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.tools.ArgumentsUtil;
@@ -24,6 +25,7 @@ import com.liferay.portal.util.InitUtil;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author Michael Hashimoto
@@ -129,8 +131,7 @@ public class SeleniumBuilder {
 		SeleniumBuilderFileUtil seleniumBuilderFileUtil =
 			new SeleniumBuilderFileUtil(baseDir);
 
-		StringBundler sb = new StringBundler();
-
+		Set<String> testCaseMethodNames = new TreeSet<String>();
 		int testCaseCount = 0;
 
 		Set<String> testCaseNames = seleniumBuilderContext.getTestCaseNames();
@@ -144,21 +145,21 @@ public class SeleniumBuilder {
 					rootElement, "command");
 
 			for (Element commandElement : commandElements) {
-				sb.append(testCaseName);
-				sb.append("TestCase#test");
-				sb.append(commandElement.attributeValue("name"));
-				sb.append(" ");
+				testCaseMethodNames.add(
+					testCaseName + "TestCase#test" +
+						commandElement.attributeValue("name"));
 			}
 
 			testCaseCount += commandElements.size();
 		}
 
-		String content = sb.toString();
-
-		content = content.trim();
-
 		seleniumBuilderFileUtil.writeFile(
-			"../../../test-case-method-list", content, false);
+			"../../../test-case-method-names",
+			StringUtil.merge(
+				testCaseMethodNames.toArray(
+					new String[testCaseMethodNames.size()]),
+				StringPool.SPACE),
+			false);
 
 		System.out.println("\nThere are " + testCaseCount + " test cases.");
 	}

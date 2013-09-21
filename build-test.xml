@@ -1100,7 +1100,7 @@
 			<isset property="test.evaluate.logs" />
 			<then>
 				<ant dir="portal-web" target="test-class" inheritAll="false">
-					<property name="class" value="EvaluateLogTestSuite" />
+					<property name="test.class" value="EvaluateLogTestSuite" />
 				</ant>
 			</then>
 		</if>
@@ -2435,7 +2435,7 @@ custom.sql.function.isnotnull=CONVERT(VARCHAR,?) IS NOT NULL</echo>
 		<ant dir="portal-impl" target="compile-test" inheritAll="false" />
 
 		<ant dir="portal-web" target="test-class" inheritAll="false">
-			<property name="class" value="SeleniumSmokeTestSuite" />
+			<property name="test.class" value="SeleniumSmokeTestSuite" />
 		</ant>
 
 		<antcall target="stop-selenium" />
@@ -2451,11 +2451,11 @@ custom.sql.function.isnotnull=CONVERT(VARCHAR,?) IS NOT NULL</echo>
 			</and>
 			<then>
 				<ant dir="portal-impl" target="test-class" inheritAll="false">
-					<property name="class" value="ServiceHttpTestSuite" />
+					<property name="test.class" value="ServiceHttpTestSuite" />
 				</ant>
 
 				<ant dir="portal-impl" target="test-class" inheritAll="false">
-					<property name="class" value="ServiceSoapTestSuite" />
+					<property name="test.class" value="ServiceSoapTestSuite" />
 				</ant>
 			</then>
 		</if>
@@ -2545,8 +2545,8 @@ custom.sql.function.isnotnull=CONVERT(VARCHAR,?) IS NOT NULL</echo>
 				</for>
 
 				<ant dir="portal-web" target="test-method">
-					<property name="class" value="${test.class.name}" />
-					<property name="methods" value="${test.method.name}" />
+					<property name="test.class" value="${test.class.name}" />
+					<property name="test.methods" value="${test.method.name}" />
 					<property name="test.type" value="functional" />
 				</ant>
 			</then>
@@ -2556,7 +2556,7 @@ custom.sql.function.isnotnull=CONVERT(VARCHAR,?) IS NOT NULL</echo>
 				</antcall>
 
 				<ant dir="portal-web" target="test-class" inheritAll="false">
-					<property name="class" value="${test.class}" />
+					<property name="test.class" value="${test.class}" />
 				</ant>
 			</else>
 		</if>

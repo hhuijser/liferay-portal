@@ -25,7 +25,8 @@ public class UserLoginDateComparator extends OrderByComparator {
 
 	public static final String ORDER_BY_ASC = "loginDate ASC";
 
-	public static final String ORDER_BY_DESC = "loginDate DESC";
+	public static final String ORDER_BY_DESC =
+		"loginDate DESC, firstName ASC, lastName ASC";
 
 	public static final String[] ORDER_BY_FIELDS = {"loginDate"};
 

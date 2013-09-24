@@ -72,6 +72,38 @@ boolean skipEditorLoading = GetterUtil.getBoolean((String)request.getAttribute("
 			return tinyMCE.editors['<%= name %>'].getContent();
 		},
 
+		getLanguage: function() {
+			var language = '<%= HtmlUtil.escape(locale.getLanguage()) %>';
+			var country = '<%= HtmlUtil.escape(locale.getCountry()) %>';
+
+			var convertLanguage = new Array();
+
+			if (tinyMCE.majorVersion == "3") {
+				convertLanguage = ["zh-CN", "zh-TW"];
+
+				var languageConutry = language + "-" + country;
+
+				for (var i = 0; i < convertLanguage.length; i++) {
+					if (languageConutry == convertLanguage[i]) {
+						return convertLanguage[i].toLowerCase();
+					}
+				}
+			}
+			else if (tinyMCE.majorVersion == "4") {
+				convertLanguage = ["bg_BG", "zh_CN", "zh_TW", "fr_FR", "ka_GE", "de_AT", "he_IL", "hu_HU", "ko_KR", "nb_NO", "pt_BR", "pt_PT", "si_LK", "sl_SI", "sv_SE", "ta_IN", "th_TH", "tr_TR", "uk_UA", "vi_VN"];
+
+				var languageConutry = language + "_" + country;
+
+				for (var i = 0; i < convertLanguage.length; i++) {
+					if (languageConutry == convertLanguage[i]) {
+						return convertLanguage[i];
+					}
+				}
+			}
+
+			return language;
+		},
+
 		init: function(value) {
 			if (typeof value != 'string') {
 				value = '';
@@ -130,7 +162,7 @@ boolean skipEditorLoading = GetterUtil.getBoolean((String)request.getAttribute("
 			file_browser_callback: window['<%= name %>'].fileBrowserCallback,
 			init_instance_callback: window['<%= name %>'].initInstanceCallback,
 			invalid_elements: 'script',
-			language: '<%= HtmlUtil.escape(locale.getLanguage()) %>',
+			language: window['<%= name %>'].getLanguage(),
 			mode: 'textareas',
 
 			<%

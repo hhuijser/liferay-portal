@@ -23,11 +23,15 @@ import com.liferay.portal.model.User;
  */
 public class UserLoginDateComparator extends OrderByComparator {
 
-	public static final String ORDER_BY_ASC = "loginDate ASC";
+	public static final String ORDER_BY_ASC =
+		"loginDate ASC, lastName ASC, firstName ASC, middleName ASC";
 
-	public static final String ORDER_BY_DESC = "loginDate DESC";
+	public static final String ORDER_BY_DESC =
+		"loginDate DESC, lastName DESC, firstName DESC, middleName DESC";
 
-	public static final String[] ORDER_BY_FIELDS = {"loginDate"};
+	public static final String[] ORDER_BY_FIELDS = {
+		"loginDate", "lastName", "firstName", "middleName"
+	};
 
 	public UserLoginDateComparator() {
 		this(false);

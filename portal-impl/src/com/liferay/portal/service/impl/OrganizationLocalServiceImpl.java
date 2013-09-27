@@ -20,6 +20,7 @@ import com.liferay.portal.OrganizationParentException;
 import com.liferay.portal.OrganizationTypeException;
 import com.liferay.portal.RequiredOrganizationException;
 import com.liferay.portal.kernel.configuration.Filter;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -54,6 +55,7 @@ import com.liferay.portal.model.impl.OrganizationImpl;
 import com.liferay.portal.security.permission.PermissionCacheUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.OrganizationLocalServiceBaseImpl;
+import com.liferay.portal.service.persistence.UserFinderImpl;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.comparator.OrganizationNameComparator;
@@ -100,6 +102,9 @@ public class OrganizationLocalServiceImpl
 		groupPersistence.addOrganizations(groupId, organizationIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -1570,6 +1575,9 @@ public class OrganizationLocalServiceImpl
 		groupPersistence.setOrganizations(groupId, organizationIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -1587,6 +1595,9 @@ public class OrganizationLocalServiceImpl
 		groupPersistence.removeOrganizations(groupId, organizationIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**

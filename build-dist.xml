@@ -1025,6 +1025,39 @@ release was successful.</echo>
 					/>
 				</unzip>
 
+				<zip
+					basedir="tools/servers/jboss/patches/JBPAPP-9353/classes"
+					destfile="${app.server.jboss.dir}/modules/org/jboss/as/server/main/jboss-as-server-${app.server.jboss.version}.Final.jar"
+					update="yes"
+				/>
+
+				<echo file="${app.server.jboss.dir}/modules/ibm/jdk/main/module.xml"><![CDATA[<?xml version="1.0"?>
+
+					<module xmlns="urn:jboss:module:1.1" name="ibm.jdk">
+						<dependencies>
+							<system export="true">
+								<paths>
+									<path name="com/ibm" />
+									<path name="com/ibm/crypto/provider" />
+									<path name="com/ibm/jvm" />
+									<path name="com/ibm/jvm/io" />
+									<path name="com/ibm/jvm/util" />
+									<path name="com/ibm/match" />
+									<path name="com/ibm/misc" />
+									<path name="com/ibm/net" />
+									<path name="com/ibm/nio" />
+									<path name="com/ibm/nio/ch" />
+									<path name="com/ibm/security/auth" />
+									<path name="com/ibm/security/bootstrap" />
+									<path name="com/ibm/security/auth/module" />
+									<path name="com/ibm/security/util" />
+									<path name="META-INF/services" />
+								</paths>
+							</system>
+						</dependencies>
+					</module>]]>
+				</echo>
+
 				<replace file="${app.server.jboss.dir}/modules/sun/jdk/main/module.xml">
 					<replacetoken><![CDATA[<paths>]]></replacetoken>
 					<replacevalue>
@@ -2227,30 +2260,9 @@ plugins.includes=</echo>
 				<delete dir="${zip.executable.dir}/../patching-tool" />
 
 				<if>
-					<available file="${patching.tool.source.dir}" type="dir" />
+					<available file="${patching.tool.zip}" />
 					<then>
-						<mkdir dir="${zip.executable.dir}/../patching-tool" />
-
-						<copy todir="${zip.executable.dir}/../patching-tool">
-							<fileset
-								dir="${patching.tool.source.dir}/scripts"
-							/>
-						</copy>
-
-						<mkdir dir="${zip.executable.dir}/../patching-tool/lib" />
-
-						<copy todir="${zip.executable.dir}/../patching-tool/lib">
-							<fileset
-								dir="${patching.tool.source.dir}"
-								includes="patching-tool.jar"
-							/>
-							<fileset
-								dir="${patching.tool.source.dir}/lib"
-							/>
-						</copy>
-
-						<mkdir dir="${zip.executable.dir}/../patching-tool/logs" />
-						<mkdir dir="${zip.executable.dir}/../patching-tool/patches" />
+						<unzip dest="${zip.executable.dir}/.." src="${patching.tool.zip}" />
 
 						<if>
 							<contains string="${zip.executable.dir}" substring="glassfish" />

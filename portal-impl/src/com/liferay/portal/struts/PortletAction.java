@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.BrowserSnifferUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
@@ -253,15 +252,19 @@ public class PortletAction extends Action {
 		return getResources();
 	}
 
+	/**
+	 * @deprecated As of 6.2.0 {@link #hideDefaultSuccessMessage(PortletRequest)
+	 */
 	protected void hideDefaultSuccessMessage(
 		PortletConfig portletConfig, PortletRequest portletRequest) {
 
-		LiferayPortletConfig liferayPortletConfig =
-			(LiferayPortletConfig)portletConfig;
+		hideDefaultSuccessMessage(portletRequest);
+	}
 
+	protected void hideDefaultSuccessMessage(PortletRequest portletRequest) {
 		SessionMessages.add(
 			portletRequest,
-			liferayPortletConfig.getPortletId() +
+			PortalUtil.getPortletId(portletRequest) +
 				SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE);
 	}
 
@@ -373,12 +376,9 @@ public class PortletAction extends Action {
 			redirect = HttpUtil.setParameter(
 				redirect, "closeRedirect", closeRedirect);
 
-			LiferayPortletConfig liferayPortletConfig =
-				(LiferayPortletConfig)portletConfig;
-
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_CLOSE_REDIRECT,
 				closeRedirect);
 		}

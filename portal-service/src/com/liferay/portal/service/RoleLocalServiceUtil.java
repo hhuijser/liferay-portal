@@ -754,6 +754,13 @@ public class RoleLocalServiceUtil {
 		return getService().getDefaultGroupRole(groupId);
 	}
 
+	public static java.util.List<com.liferay.portal.model.Role> getGroupRelatedRoles(
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService().getGroupRelatedRoles(groupId);
+	}
+
 	public static java.util.List<com.liferay.portal.model.Role> getResourceBlockRoles(
 		long resourceBlockId, java.lang.String className,
 		java.lang.String actionId)
@@ -853,6 +860,14 @@ public class RoleLocalServiceUtil {
 		return getService().getRoles(companyId);
 	}
 
+	/**
+	* Returns all the roles with the types.
+	*
+	* @param companyId the primary key of the company
+	* @param types the role types (optionally <code>null</code>)
+	* @return the roles with the types
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.portal.model.Role> getRoles(
 		long companyId, int[] types)
 		throws com.liferay.portal.kernel.exception.SystemException {
@@ -917,6 +932,16 @@ public class RoleLocalServiceUtil {
 		return getService().getTeamRole(companyId, teamId);
 	}
 
+	/**
+	* Returns the team role map for the group.
+	*
+	* @param groupId the primary key of the group
+	* @return the team role map for the group
+	* @throws PortalException if a group with the primary key could not be
+	found, if a role could not be found in one of the group's teams,
+	or if a portal exception occurred
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.Map<com.liferay.portal.model.Team, com.liferay.portal.model.Role> getTeamRoleMap(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -924,6 +949,16 @@ public class RoleLocalServiceUtil {
 		return getService().getTeamRoleMap(groupId);
 	}
 
+	/**
+	* Returns the team roles in the group.
+	*
+	* @param groupId the primary key of the group
+	* @return the team roles in the group
+	* @throws PortalException if a group with the primary key could not be
+	found, if a role could not be found in one of the group's teams,
+	or if a portal exception occurred
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.portal.model.Role> getTeamRoles(
 		long groupId)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -931,11 +966,23 @@ public class RoleLocalServiceUtil {
 		return getService().getTeamRoles(groupId);
 	}
 
+	/**
+	* Returns the team roles in the group, excluding the specified role IDs.
+	*
+	* @param groupId the primary key of the group
+	* @param excludedRoleIds the primary keys of the roles to exclude
+	(optionally <code>null</code>)
+	* @return the team roles in the group, excluding the specified role IDs
+	* @throws PortalException if a group with the primary key could not be
+	found, if a role could not be found in one of the group's teams,
+	or if a portal exception occurred
+	* @throws SystemException if a system exception occurred
+	*/
 	public static java.util.List<com.liferay.portal.model.Role> getTeamRoles(
-		long groupId, long[] skipRoleIds)
+		long groupId, long[] excludedRoleIds)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
-		return getService().getTeamRoles(groupId, skipRoleIds);
+		return getService().getTeamRoles(groupId, excludedRoleIds);
 	}
 
 	/**

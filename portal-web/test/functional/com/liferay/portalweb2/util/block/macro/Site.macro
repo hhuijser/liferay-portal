@@ -125,6 +125,19 @@
 		<execute action="CPSitemembershipsAddmembers#assertTextEquals" locator-key1="SUCCESS_MESSAGE" value1="Your request completed successfully." />
 	</command>
 
+	<command name="addMemberOrganizationCP">
+		<var name="key_orgName" value="${orgName}" />
+
+		<execute action="CPSitememberships#assertClick" locator-key1="TOOLBAR_ADD_MEMBERS" value1="Add Members" />
+		<execute action="CPSitememberships#assertClick" locator-key1="ADD_MEMBERS_MENULIST_ORGANIZATION" value1="Organization" />
+		<execute action="CPSitemembershipsAddmembers#type" locator-key1="SEARCH_ORGANIZATION_FIELD" value1="${orgName}" />
+		<execute action="CPSitemembershipsAddmembers#assertClick" locator-key1="SEARCH_BUTTON" value1="Search" />
+		<execute action="CPSitemembershipsAddmembers#assertTextEquals" locator-key1="ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		<execute action="CPSitemembershipsAddmembers#check" locator-key1="ORGANIZATION_TABLE_CHECKBOX" />
+		<execute action="CPSitemembershipsAddmembers#click" locator-key1="SAVE_BUTTON" />
+		<execute action="CPSitemembershipsAddmembers#assertTextEquals" locator-key1="SUCCESS_MESSAGE" value1="Your request completed successfully." />
+	</command>
+
 	<command name="addSiteTemplateCP">
 		<execute macro="Site#addCP">
 			<var name="siteType" value="Site Template" />
@@ -160,23 +173,27 @@
 		<execute action="CPSitememberships#assertClick" locator-key1="TOOLBAR_ADD_SITE_ROLES_TO" value1="Add Site Roles to" />
 		<execute action="CPSitememberships#assertClick" locator-key1="ADD_SITE_ROLES_TO_MENULIST_USERS" value1="Users"/>
 
-		<execute action="CPSitemembershipsAssignuserroles#type" locator-key1="ROLES_SEARCH_FIELD" value1="Siterole" />
+		<var name="key_roleName" value="${roleName}" />
+
+		<execute action="CPSitemembershipsAssignuserroles#type" locator-key1="ROLES_SEARCH_FIELD" value1="${roleName}" />
 		<execute action="CPSitemembershipsAssignuserroles#click" locator-key1="ROLES_SEARCH_BUTTON" />
-		<execute action="CPSitemembershipsAssignuserroles#assertTextEquals" locator-key1="ROLE_TABLE_TITLE_1" value1="${roleName}" />
-		<execute action="CPSitemembershipsAssignuserroles#click" locator-key1="ROLE_TABLE_TITLE_1" value1="${roleName}" />
+		<execute action="CPSitemembershipsAssignuserroles#assertTextEquals" locator-key1="ROLE_TABLE_TITLE" value1="${roleName}" />
+		<execute action="CPSitemembershipsAssignuserroles#click" locator-key1="ROLE_TABLE_TITLE" value1="${roleName}" />
+
+		<var name="key_userScreenName" value="${userScreenName}" />
 
 		<execute action="CPSitemembershipsAssignuserrolesUser#click" locator-key1="AVAILABLE" />
 		<execute action="CPSitemembershipsAssignuserrolesUser#type" locator-key1="BASIC_SEARCH_FIELD" value1="${userScreenName}" />
-		<execute action="CPSitemembershipsAssignuserrolesUser#click" locator-key1="BASIC_SEARCH_BUTTON" />
-		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="USER_TABLE_SCREEN_NAME_1" value1="${userScreenName}" />
-		<execute action="CPSitemembershipsAssignuserrolesUser#check" locator-key1="USER_TABLE_CHECKBOX_1" />
+		<execute action="CPSitemembershipsAssignuserrolesUser#assertClick" locator-key1="BASIC_SEARCH_BUTTON" value1="Search" />
+		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute action="CPSitemembershipsAssignuserrolesUser#check" locator-key1="USER_TABLE_CHECKBOX" />
 		<execute action="CPSitemembershipsAssignuserrolesUser#click" locator-key1="UPDATE_ASSOCIATIONS_BUTTON" />
 		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="SUCCESS_MESSAGE" value1="Your request completed successfully." />
 
 		<execute action="CPSitemembershipsAssignuserrolesUser#click" locator-key1="CURRENT" />
-		<execute action="CPSitemembershipsAssignuserrolesUser#assertChecked" locator-key1="USER_TABLE_CHECKBOX_1" />
-		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="USER_TABLE_USER_NAME_1" value1="${userFirstName} ${userLastName}" />
-		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="USER_TABLE_SCREEN_NAME_1" value1="${userScreenName}" />
+		<execute action="CPSitemembershipsAssignuserrolesUser#assertChecked" locator-key1="USER_TABLE_CHECKBOX" />
+		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="USER_TABLE_USER_NAME" value1="${userFirstName} ${userLastName}" />
+		<execute action="CPSitemembershipsAssignuserrolesUser#assertTextEquals" locator-key1="USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
 	</command>
 
 	<command name="deleteCP">
@@ -337,6 +354,30 @@
 		</while>
 	</command>
 
+	<command name="viewChildChildCP">
+		<var name="key_childSiteName" value="${childSiteName}" />
+
+		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_NAME" value1="${childSiteName}" />
+		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_TYPE" value1="${siteType}" />
+		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_ACTIVE" value1="Yes" />
+		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_PENDING_REQUESTS" value1="" />
+		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_TAGS" value1="" />
+		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_ACTIONS" value1="Actions" />
+		<execute action="CPSitesChild#assertClick" locator-key1="SITE_TABLE_CHILD_SITE" value1="This site has 1 child site." />
+
+		<var name="key_childChildSiteName" value="${childChildSiteName}" />
+		<var name="key_childSiteName" value="${childSiteName}" />
+
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_NAME" value1="${childSiteName}" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_NAME" value1="${childChildSiteName}" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_TYPE" value1="${siteType}" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_MEMBERS_USERS" value1="1 User" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_ACTIVE" value1="Yes" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_PENDING_REQUESTS" value1="" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_TAGS" value1="" />
+		<execute action="CPSitesChildChild#assertTextEquals" locator-key1="SITE_TABLE_ACTIONS" value1="Actions" />
+	</command>
+
 	<command name="viewChildCP">
 		<var name="key_siteName" value="${siteName}" />
 
@@ -359,23 +400,6 @@
 		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_PENDING_REQUESTS" value1="" />
 		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_TAGS" value1="" />
 		<execute action="CPSitesChild#assertTextEquals" locator-key1="SITE_TABLE_ACTIONS" value1="Actions" />
-	</command>
-
-	<command name="viewLimitMembershipParentSiteCP">
-		<var name="key_userScreenName" value="${userScreenName}" />
-
-		<execute action="CPSitememberships#assertClick" locator-key1="TOOLBAR_ADD_MEMBERS" value1="Add Members" />
-		<execute action="CPSitememberships#assertClick" locator-key1="ADD_MEMBERS_MENULIST_USER" value1="User" />
-		<execute action="CPSitemembershipsAddmembers#assertTextNotPresent" locator-key1="USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
-		<execute action="CPSitemembershipsAddmembers#assertTextNotPresent" locator-key1="USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
-	</command>
-
-	<command name="viewMemberCP">
-		<var name="key_userScreenName" value="${userScreenName}" />
-
-		<execute action="CPSitememberships#assertTextEquals" locator-key1="USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
-		<execute action="CPSitememberships#assertTextEquals" locator-key1="USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
-		<execute action="CPSitememberships#assertTextEquals" locator-key1="USER_TABLE_ACTIONS" value1="Actions" />
 	</command>
 
 	<command name="viewCP">
@@ -407,6 +431,37 @@
 		<execute action="CPSites#assertTextEquals" locator-key1="SITE_TABLE_ACTIONS" value1="Actions" />
 	</command>
 
+	<command name="viewLimitMembershipParentSiteCP">
+		<var name="key_userScreenName" value="${userScreenName}" />
+
+		<execute action="CPSitememberships#assertClick" locator-key1="TOOLBAR_ADD_MEMBERS" value1="Add Members" />
+		<execute action="CPSitememberships#assertClick" locator-key1="ADD_MEMBERS_MENULIST_USER" value1="User" />
+		<execute action="CPSitemembershipsAddmembers#assertTextNotPresent" locator-key1="USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
+		<execute action="CPSitemembershipsAddmembers#assertTextNotPresent" locator-key1="USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+	</command>
+
+	<command name="viewMemberCP">
+		<var name="key_userScreenName" value="${userScreenName}" />
+
+		<execute action="CPSitememberships#assertTextEquals" locator-key1="USER_TABLE_NAME" value1="${userFirstName} ${userLastName}" />
+		<execute action="CPSitememberships#assertTextEquals" locator-key1="USER_TABLE_SCREEN_NAME" value1="${userScreenName}" />
+		<execute action="CPSitememberships#assertTextEquals" locator-key1="USER_TABLE_ACTIONS" value1="Actions" />
+	</command>
+
+	<command name="viewMemberOrganizationCP">
+		<var name="key_orgName" value="${orgName}" />
+
+		<execute action="CPSitememberships#assertClick" locator-key1="NAVIGATION_ORGANIZATIONS" value1="Organizations" />
+
+		<execute action="CPSitememberships#assertTextEquals" locator-key1="ORGANIZATION_TABLE_NAME" value1="${orgName}" />
+		<if>
+			<equals arg1="${toolTip}" arg2="true" />
+			<then>
+				<execute action="CPSitememberships#assertTextEquals" locator-key1="ORGANIZATION_TABLE_TOOLTIP" value1="This site belongs to ${orgName} which is an organization" />
+			</then>
+		</if>
+	</command>
+
 	<command name="viewMySitesViaMySitesPG">
 		<var name="key_siteName" value="${siteName}" />
 
@@ -414,5 +469,18 @@
 		<execute action="PGMysites#assertTextEquals" locator-key1="SITE_TABLE_SITE_NAME" value1="${siteName}" />
 		<execute action="PGMysites#assertTextEquals" locator-key1="SITE_TABLE_SITE_NAME_MEMBERS" value1="2" />
 		<execute action="PGMysites#assertTextEquals" locator-key1="SITE_TABLE_SITE_ACTIONS" value1="Actions" />
+	</command>
+
+	<command name="viewSiteAdminPermissionsCP">
+		<var name="key_siteName" value="${siteName}" />
+
+		<execute action="CPSites#type" locator-key1="BASIC_SEARCH_FIELD" value1="${siteName}" />
+		<execute action="CPSites#assertClick" locator-key1="BASIC_SEARCH_BUTTON" value1="Search" />
+		<execute action="CPSites#assertClick" locator-key1="SITE_TABLE_ACTIONS" value1="Actions" />
+		<execute action="CPSites#assertTextEquals" locator-key1="SITE_MENULIST_SITE_ADMINISTRATION" value1="Site Administration" />
+		<execute action="CPSites#assertTextEquals" locator-key1="SITE_MENULIST_ADD_CHILD_SITE" value1="Add Child Site" />
+		<execute action="CPSites#assertTextEquals" locator-key1="SITE_MENULIST_LEAVE" value1="Leave" />
+		<execute action="CPSites#assertTextEquals" locator-key1="SITE_MENULIST_DEACTIVATE" value1="Deactivate" />
+		<execute action="CPSites#assertTextEquals" locator-key1="SITE_MENULIST_DELETE" value1="Delete" />
 	</command>
 </definition>

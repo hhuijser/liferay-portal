@@ -15,6 +15,8 @@
 package com.liferay.portal.service.persistence;
 
 import com.liferay.portal.kernel.dao.orm.CustomSQLParam;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
+import com.liferay.portal.kernel.dao.orm.FinderPath;
 import com.liferay.portal.kernel.dao.orm.QueryPos;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.SQLQuery;
@@ -34,6 +36,7 @@ import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.impl.UserImpl;
+import com.liferay.portal.model.impl.UserModelImpl;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.persistence.impl.BasePersistenceImpl;
 import com.liferay.util.dao.orm.CustomSQLUtil;
@@ -72,6 +75,19 @@ public class UserFinderImpl
 
 	public static final String FIND_BY_C_FN_MN_LN_SN_EA_S =
 		UserFinder.class.getName() + ".findByC_FN_MN_LN_SN_EA_S";
+
+	public static final FinderPath FINDER_PATH_COUNT_BY_KEYWORDS =
+		new FinderPath(
+			UserModelImpl.ENTITY_CACHE_ENABLED,
+			UserModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			UserPersistenceImpl.FINDER_CLASS_NAME_ENTITY + ".countByKeywords",
+			"countByKeywords", new String[] {
+				Long.class.getName(), String.class.getName(),
+				Integer.class.getName(), String.class.getName()
+			});
+
+	public static final String FINDER_COUNT_BY_KEYWORDS_CACHE_NAME =
+		UserFinderImpl.FINDER_PATH_COUNT_BY_KEYWORDS.getCacheName();
 
 	public static final String JOIN_BY_CONTACT_TWITTER_SN =
 		UserFinder.class.getName() + ".joinByContactTwitterSN";
@@ -167,27 +183,42 @@ public class UserFinderImpl
 			LinkedHashMap<String, Object> params)
 		throws SystemException {
 
-		String[] firstNames = null;
-		String[] middleNames = null;
-		String[] lastNames = null;
-		String[] screenNames = null;
-		String[] emailAddresses = null;
-		boolean andOperator = false;
+		String paramValues = StringUtil.merge(params.values().toArray());
 
-		if (Validator.isNotNull(keywords)) {
-			firstNames = CustomSQLUtil.keywords(keywords);
-			middleNames = CustomSQLUtil.keywords(keywords);
-			lastNames = CustomSQLUtil.keywords(keywords);
-			screenNames = CustomSQLUtil.keywords(keywords);
-			emailAddresses = CustomSQLUtil.keywords(keywords);
-		}
-		else {
-			andOperator = true;
+		Object[] finderArgs =
+			new Object[] { companyId, keywords, status, paramValues };
+
+		Integer count = (Integer)FinderCacheUtil.getResult(
+			FINDER_PATH_COUNT_BY_KEYWORDS, finderArgs, this);
+
+		if (count == null) {
+			String[] firstNames = null;
+			String[] middleNames = null;
+			String[] lastNames = null;
+			String[] screenNames = null;
+			String[] emailAddresses = null;
+			boolean andOperator = false;
+
+			if (Validator.isNotNull(keywords)) {
+				firstNames = CustomSQLUtil.keywords(keywords);
+				middleNames = CustomSQLUtil.keywords(keywords);
+				lastNames = CustomSQLUtil.keywords(keywords);
+				screenNames = CustomSQLUtil.keywords(keywords);
+				emailAddresses = CustomSQLUtil.keywords(keywords);
+			}
+			else {
+				andOperator = true;
+			}
+
+			count = countByC_FN_MN_LN_SN_EA_S(
+				companyId, firstNames, middleNames, lastNames, screenNames,
+				emailAddresses, status, params, andOperator);
+
+			FinderCacheUtil.putResult(
+				FINDER_PATH_COUNT_BY_KEYWORDS, finderArgs, count);
 		}
 
-		return countByC_FN_MN_LN_SN_EA_S(
-			companyId, firstNames, middleNames, lastNames, screenNames,
-			emailAddresses, status, params, andOperator);
+		return count;
 	}
 
 	@Override

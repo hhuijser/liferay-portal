@@ -78,6 +78,8 @@ import com.liferay.portlet.asset.AssetTagException;
 import com.liferay.portlet.sites.util.Sites;
 import com.liferay.portlet.sites.util.SitesUtil;
 
+import java.security.InvalidKeyException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +138,7 @@ public class EditGroupAction extends PortletAction {
 
 					redirect = siteAdministrationURL.toString();
 
-					hideDefaultSuccessMessage(portletConfig, actionRequest);
+					hideDefaultSuccessMessage(actionRequest);
 				}
 				else {
 					String oldFriendlyURL = (String)returnValue[1];
@@ -183,6 +185,7 @@ public class EditGroupAction extends PortletAction {
 					 e instanceof GroupFriendlyURLException ||
 					 e instanceof GroupNameException ||
 					 e instanceof GroupParentException ||
+					 e instanceof InvalidKeyException ||
 					 e instanceof LayoutSetVirtualHostException ||
 					 e instanceof LocaleException ||
 					 e instanceof PendingBackgroundTaskException ||
@@ -192,6 +195,10 @@ public class EditGroupAction extends PortletAction {
 					 e instanceof SystemException) {
 
 				SessionErrors.add(actionRequest, e.getClass(), e);
+
+				sendRedirect(
+					portletConfig, actionRequest, actionResponse, redirect,
+					closeRedirect);
 			}
 			else {
 				throw e;

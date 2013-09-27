@@ -48,6 +48,17 @@
 	<td></td>
 	<td></td>
 </tr>
+<!--CONTROL_PANEL_GENERAL_PERMISSIONS-->
+<tr>
+	<td>CONTROL_PANEL_GENERAL_PERMISSIONS_GO_TO_CONTROL_PANEL</td>
+	<td>//input[@value='90VIEW_CONTROL_PANEL']</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
 <!--SITE_ADMIN_PAGES_SITE_PAGES_SITE-->
 <tr>
 	<td>SITE_ADMIN_PAGES_SITE_PAGES_SITE_GO_TO_SITE_ADMINISTRATION</td>
@@ -61,7 +72,7 @@
 </tr>
 <!--SITE_ADMIN_CONTENT_WEB_CONTENT_GENERAL-->
 <tr>
-	<td>SITE_ADMIN_CONTENT_WEB_CONTENT_GENERAL</td>
+	<td>SITE_ADMIN_CONTENT_WEB_CONTENT_GENERAL_ALL_CHECKBOX</td>
 	<td>xpath=(//input[@name='_128_allRowIds'])[1]</td>
 	<td></td>
 </tr>
@@ -77,13 +88,24 @@
 </tr>
 <!--SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_GENERAL-->
 <tr>
-	<td>SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_GENERAL</td>
+	<td>SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_GENERAL_ALL_CHECKBOX</td>
 	<td>xpath=(//input[@name='_128_allRowIds'])[1]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_GENERAL_ACCESS_IN_SITE_ADMINISTRATION</td>
 	<td>//input[@value='20ACCESS_IN_CONTROL_PANEL']</td>
+	<td></td>
+</tr>
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+<!--SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_DOCUMENTS-->
+<tr>
+	<td>SITE_ADMIN_CONTENT_DOCUMENTS_AND_MEDIA_DOCUMENTS_ADD_DOCUMENT</td>
+	<td>//input[@value='com.liferay.portlet.documentlibraryADD_DOCUMENT']</td>
 	<td></td>
 </tr>
 <tr>
@@ -191,7 +213,7 @@
 </tr>
 <!--SITE_ADMIN_CONTENT_MESSAGE_BOARDS_GENERAL-->
 <tr>
-	<td>SITE_ADMIN_CONTENT_MESSAGE_BOARDS_GENERAL</td>
+	<td>SITE_ADMIN_CONTENT_MESSAGE_BOARDS_GENERAL_ALL_CHECKBOX</td>
 	<td>xpath=(//input[@name='_128_allRowIds'])[1]</td>
 	<td></td>
 </tr>
@@ -207,7 +229,7 @@
 </tr>
 <!--SITE_ADMIN_CONTENT_WIKI_GENERAL-->
 <tr>
-	<td>SITE_ADMIN_CONTENT_WIKI_GENERAL</td>
+	<td>SITE_ADMIN_CONTENT_WIKI_GENERAL_ALL_CHECKBOX</td>
 	<td>xpath=(//input[@name='_128_allRowIds'])[1]</td>
 	<td></td>
 </tr>

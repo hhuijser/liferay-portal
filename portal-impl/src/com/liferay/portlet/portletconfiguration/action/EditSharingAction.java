@@ -14,7 +14,6 @@
 
 package com.liferay.portlet.portletconfiguration.action;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -89,21 +88,18 @@ public class EditSharingAction extends PortletAction {
 			return;
 		}
 
-		LiferayPortletConfig liferayPortletConfig =
-			(LiferayPortletConfig)portletConfig;
-
 		String portletResource = ParamUtil.getString(
 			actionRequest, "portletResource");
 
 		SessionMessages.add(
 			actionRequest,
-			liferayPortletConfig.getPortletId() +
+			PortalUtil.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 			portletResource);
 
 		SessionMessages.add(
 			actionRequest,
-			liferayPortletConfig.getPortletId() +
+			PortalUtil.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 
 		String redirect = PortalUtil.escapeRedirect(

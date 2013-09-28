@@ -14,7 +14,6 @@
 
 package com.liferay.portlet.dynamicdatamapping.action;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -26,6 +25,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletURLImpl;
 import com.liferay.portlet.dynamicdatamapping.NoSuchTemplateException;
@@ -71,12 +71,9 @@ public class CopyTemplateAction extends PortletAction {
 				redirect = HttpUtil.setParameter(
 					redirect, "closeRedirect", closeRedirect);
 
-				LiferayPortletConfig liferayPortletConfig =
-					(LiferayPortletConfig)portletConfig;
-
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_CLOSE_REDIRECT,
 					closeRedirect);
 			}

@@ -16,7 +16,6 @@ package com.liferay.portlet.journal.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -28,6 +27,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.assetpublisher.util.AssetPublisherUtil;
 import com.liferay.portlet.journal.DuplicateFolderNameException;
 import com.liferay.portlet.journal.FolderNameException;
@@ -69,12 +69,10 @@ public class EditFolderAction extends PortletAction {
 				updateFolder(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteFolders(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deleteFolders(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteFolders(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deleteFolders(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.RESTORE)) {
 				restoreFolderFromTrash(actionRequest);
@@ -132,7 +130,6 @@ public class EditFolderAction extends PortletAction {
 	}
 
 	protected void deleteFolders(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -186,10 +183,10 @@ public class EditFolderAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 
@@ -225,6 +222,9 @@ public class EditFolderAction extends PortletAction {
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 
+		boolean mergeWithParentFolder = ParamUtil.getBoolean(
+			actionRequest, "mergeWithParentFolder");
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			JournalFolder.class.getName(), actionRequest);
 
@@ -241,8 +241,8 @@ public class EditFolderAction extends PortletAction {
 			// Update folder
 
 			JournalFolderServiceUtil.updateFolder(
-				folderId, parentFolderId, name, description, false,
-				serviceContext);
+				folderId, parentFolderId, name, description,
+				mergeWithParentFolder, serviceContext);
 		}
 	}
 

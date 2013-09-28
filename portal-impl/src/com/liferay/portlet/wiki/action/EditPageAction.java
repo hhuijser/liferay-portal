@@ -14,7 +14,6 @@
 
 package com.liferay.portlet.wiki.action;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.sanitizer.SanitizerException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -31,6 +30,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.struts.StrutsActionPortletURL;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletResponseImpl;
 import com.liferay.portlet.PortletURLImpl;
@@ -84,12 +84,10 @@ public class EditPageAction extends PortletAction {
 				page = updatePage(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deletePage(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deletePage(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deletePage(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deletePage(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.RESTORE)) {
 				restorePage(actionRequest);
@@ -199,9 +197,7 @@ public class EditPageAction extends PortletAction {
 			getForward(renderRequest, "portlet.wiki.edit_page"));
 	}
 
-	protected void deletePage(
-			LiferayPortletConfig liferayPortletConfig,
-			ActionRequest actionRequest, boolean moveToTrash)
+	protected void deletePage(ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
 		long nodeId = ParamUtil.getLong(actionRequest, "nodeId");
@@ -243,10 +239,10 @@ public class EditPageAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 

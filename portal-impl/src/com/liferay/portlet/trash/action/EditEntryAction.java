@@ -16,7 +16,6 @@ package com.liferay.portlet.trash.action;
 
 import com.liferay.portal.TrashPermissionException;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -32,6 +31,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.service.TrashEntryServiceUtil;
@@ -100,9 +100,7 @@ public class EditEntryAction extends PortletAction {
 			if (cmd.equals(Constants.RENAME) || cmd.equals(Constants.RESTORE) ||
 				cmd.equals(Constants.OVERRIDE) || cmd.equals(Constants.MOVE)) {
 
-				addRestoreData(
-					(LiferayPortletConfig)portletConfig, actionRequest,
-					entryOVPs);
+				addRestoreData(actionRequest, entryOVPs);
 			}
 
 			sendRedirect(actionRequest, actionResponse);
@@ -139,7 +137,6 @@ public class EditEntryAction extends PortletAction {
 	}
 
 	protected void addRestoreData(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest,
 			List<ObjectValuePair<String, Long>> entryOVPs)
 		throws Exception {
@@ -201,10 +198,10 @@ public class EditEntryAction extends PortletAction {
 
 		SessionMessages.add(
 			actionRequest,
-			liferayPortletConfig.getPortletId() +
+			PortalUtil.getPortletId(actionRequest) +
 				SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-		hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+		hideDefaultSuccessMessage(actionRequest);
 	}
 
 	protected void deleteEntries(ActionRequest actionRequest) throws Exception {

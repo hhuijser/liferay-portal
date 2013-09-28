@@ -14,7 +14,6 @@
 
 package com.liferay.portlet.workflowtasks.action;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
@@ -78,12 +77,9 @@ public class EditWorkflowTaskAction extends PortletAction {
 				redirect = HttpUtil.setParameter(
 					redirect, "closeRedirect", closeRedirect);
 
-				LiferayPortletConfig liferayPortletConfig =
-					(LiferayPortletConfig)portletConfig;
-
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_CLOSE_REDIRECT,
 					closeRedirect);
 			}

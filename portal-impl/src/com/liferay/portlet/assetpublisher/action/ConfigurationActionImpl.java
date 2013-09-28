@@ -17,7 +17,6 @@ package com.liferay.portlet.assetpublisher.action;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.DefaultConfigurationAction;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.PortletResponseUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -160,18 +159,15 @@ public class ConfigurationActionImpl extends DefaultConfigurationAction {
 			if (SessionErrors.isEmpty(actionRequest)) {
 				preferences.store();
 
-				LiferayPortletConfig liferayPortletConfig =
-					(LiferayPortletConfig)portletConfig;
-
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 					portletResource);
 
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_UPDATED_CONFIGURATION);
 			}
 

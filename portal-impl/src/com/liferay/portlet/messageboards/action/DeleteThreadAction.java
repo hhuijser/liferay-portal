@@ -14,7 +14,6 @@
 
 package com.liferay.portlet.messageboards.action;
 
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -24,6 +23,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.struts.PortletAction;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.messageboards.LockedThreadException;
 import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBThread;
@@ -58,12 +58,10 @@ public class DeleteThreadAction extends PortletAction {
 
 		try {
 			if (cmd.equals(Constants.DELETE)) {
-				deleteThreads(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deleteThreads(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteThreads(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deleteThreads(actionRequest, true);
 			}
 
 			sendRedirect(actionRequest, actionResponse);
@@ -83,7 +81,6 @@ public class DeleteThreadAction extends PortletAction {
 	}
 
 	protected void deleteThreads(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -136,10 +133,10 @@ public class DeleteThreadAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 

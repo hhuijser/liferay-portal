@@ -17,7 +17,6 @@ package com.liferay.portlet.documentlibrary.action;
 import com.liferay.portal.DuplicateLockException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -93,15 +92,13 @@ public class EditEntryAction extends PortletAction {
 				checkOutEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteEntries(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deleteEntries(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE)) {
 				moveEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteEntries(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deleteEntries(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.RESTORE)) {
 				restoreEntries(actionRequest);
@@ -269,7 +266,6 @@ public class EditEntryAction extends PortletAction {
 	}
 
 	protected void deleteEntries(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -370,10 +366,10 @@ public class EditEntryAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 

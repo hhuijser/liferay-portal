@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.sanitizer.SanitizerException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
@@ -107,12 +106,10 @@ public class EditEntryAction extends PortletAction {
 				oldUrlTitle = ((String)returnValue[1]);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteEntries(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deleteEntries(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteEntries(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deleteEntries(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.SUBSCRIBE)) {
 				subscribe(actionRequest);
@@ -294,7 +291,6 @@ public class EditEntryAction extends PortletAction {
 	}
 
 	protected void deleteEntries(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -344,10 +340,10 @@ public class EditEntryAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 

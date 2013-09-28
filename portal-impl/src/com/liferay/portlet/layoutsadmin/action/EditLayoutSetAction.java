@@ -18,7 +18,6 @@ import com.liferay.portal.ImageTypeException;
 import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.ByteArrayFileInputStream;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.upload.UploadException;
@@ -96,12 +95,9 @@ public class EditLayoutSetAction extends EditLayoutsAction {
 				redirect = HttpUtil.setParameter(
 					redirect, "closeRedirect", closeRedirect);
 
-				LiferayPortletConfig liferayPortletConfig =
-					(LiferayPortletConfig)portletConfig;
-
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_CLOSE_REDIRECT,
 					closeRedirect);
 			}

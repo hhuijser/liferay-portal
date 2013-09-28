@@ -17,7 +17,6 @@ package com.liferay.portlet.messageboards.action;
 import com.liferay.portal.kernel.captcha.CaptchaMaxChallengesException;
 import com.liferay.portal.kernel.captcha.CaptchaTextException;
 import com.liferay.portal.kernel.captcha.CaptchaUtil;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -30,6 +29,7 @@ import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsValues;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.messageboards.CategoryNameException;
@@ -76,12 +76,10 @@ public class EditCategoryAction extends PortletAction {
 				updateCategory(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteCategories(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deleteCategories(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteCategories(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deleteCategories(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.SUBSCRIBE)) {
 				subscribeCategory(actionRequest);
@@ -147,7 +145,6 @@ public class EditCategoryAction extends PortletAction {
 	}
 
 	protected void deleteCategories(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -202,10 +199,10 @@ public class EditCategoryAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 

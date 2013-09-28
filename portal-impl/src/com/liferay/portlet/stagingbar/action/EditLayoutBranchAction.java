@@ -17,7 +17,6 @@ package com.liferay.portlet.stagingbar.action;
 import com.liferay.portal.LayoutBranchNameException;
 import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.Constants;
@@ -26,6 +25,7 @@ import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.LayoutBranchServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.layoutsadmin.action.EditLayoutsAction;
 
@@ -69,16 +69,13 @@ public class EditLayoutBranchAction extends EditLayoutsAction {
 				updateLayoutBranch(actionRequest);
 			}
 			else if (cmd.equals(Constants.DELETE)) {
-				deleteLayoutBranch(actionRequest, portletConfig);
+				deleteLayoutBranch(actionRequest);
 			}
 
 			if (SessionErrors.isEmpty(actionRequest)) {
-				LiferayPortletConfig liferayPortletConfig =
-					(LiferayPortletConfig)portletConfig;
-
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_REFRESH_PORTLET,
 					PortletKeys.STAGING_BAR);
 
@@ -88,7 +85,7 @@ public class EditLayoutBranchAction extends EditLayoutsAction {
 
 				SessionMessages.add(
 					actionRequest,
-					liferayPortletConfig.getPortletId() +
+					PortalUtil.getPortletId(actionRequest) +
 						SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA,
 					data);
 			}
@@ -152,8 +149,7 @@ public class EditLayoutBranchAction extends EditLayoutsAction {
 				renderRequest, "portlet.staging_bar.edit_layout_branch"));
 	}
 
-	protected void deleteLayoutBranch(
-			ActionRequest actionRequest, PortletConfig portletConfig)
+	protected void deleteLayoutBranch(ActionRequest actionRequest)
 		throws Exception {
 
 		long layoutBranchId = ParamUtil.getLong(
@@ -167,12 +163,9 @@ public class EditLayoutBranchAction extends EditLayoutsAction {
 		SessionMessages.add(actionRequest, "pageVariationDeleted");
 
 		if (layoutBranchId == currentLayoutBranchId) {
-			LiferayPortletConfig liferayPortletConfig =
-				(LiferayPortletConfig)portletConfig;
-
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_PORTLET_NOT_AJAXABLE);
 		}
 	}

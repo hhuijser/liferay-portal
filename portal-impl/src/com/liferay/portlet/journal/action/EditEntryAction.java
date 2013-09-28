@@ -16,7 +16,6 @@ package com.liferay.portlet.journal.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.portlet.LiferayPortletConfig;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -79,8 +78,7 @@ public class EditEntryAction extends PortletAction {
 			if (cmd.equals(Constants.DELETE) ||
 				cmd.equals(Constants.DELETE_VERSIONS)) {
 
-				deleteEntries(
-					(LiferayPortletConfig)portletConfig, actionRequest, false);
+				deleteEntries(actionRequest, false);
 			}
 			else if (cmd.equals(Constants.EXPIRE)) {
 				expireEntries(actionRequest);
@@ -89,8 +87,7 @@ public class EditEntryAction extends PortletAction {
 				moveEntries(actionRequest);
 			}
 			else if (cmd.equals(Constants.MOVE_TO_TRASH)) {
-				deleteEntries(
-					(LiferayPortletConfig)portletConfig, actionRequest, true);
+				deleteEntries(actionRequest, true);
 			}
 			else if (cmd.equals(Constants.RESTORE)) {
 				restoreEntryFromTrash(actionRequest);
@@ -190,7 +187,6 @@ public class EditEntryAction extends PortletAction {
 	}
 
 	protected void deleteEntries(
-			LiferayPortletConfig liferayPortletConfig,
 			ActionRequest actionRequest, boolean moveToTrash)
 		throws Exception {
 
@@ -272,10 +268,10 @@ public class EditEntryAction extends PortletAction {
 
 			SessionMessages.add(
 				actionRequest,
-				liferayPortletConfig.getPortletId() +
+				PortalUtil.getPortletId(actionRequest) +
 					SessionMessages.KEY_SUFFIX_DELETE_SUCCESS_DATA, data);
 
-			hideDefaultSuccessMessage(liferayPortletConfig, actionRequest);
+			hideDefaultSuccessMessage(actionRequest);
 		}
 	}
 

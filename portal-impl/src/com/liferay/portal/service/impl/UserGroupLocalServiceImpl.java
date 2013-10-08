@@ -18,6 +18,7 @@ import com.liferay.portal.DuplicateUserGroupException;
 import com.liferay.portal.NoSuchUserGroupException;
 import com.liferay.portal.RequiredUserGroupException;
 import com.liferay.portal.UserGroupNameException;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
@@ -45,6 +46,7 @@ import com.liferay.portal.security.ldap.LDAPUserGroupTransactionThreadLocal;
 import com.liferay.portal.security.permission.PermissionCacheUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.UserGroupLocalServiceBaseImpl;
+import com.liferay.portal.service.persistence.UserFinderImpl;
 import com.liferay.portal.util.PropsValues;
 
 import java.io.File;
@@ -79,6 +81,9 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		groupPersistence.addUserGroups(groupId, userGroupIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -703,6 +708,9 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		indexer.reindex(userId);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -728,6 +736,9 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		groupPersistence.removeUserGroups(groupId, userGroupIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**

@@ -1146,6 +1146,15 @@
 		<indexer-class>com.liferay.portlet.usersadmin.util.ContactIndexer</indexer-class>
 		<indexer-class>com.liferay.portlet.usersadmin.util.OrganizationIndexer</indexer-class>
 		<indexer-class>com.liferay.portlet.usersadmin.util.UserIndexer</indexer-class>
+		<scheduler-entry>
+			<scheduler-event-listener-class>com.liferay.portlet.usersadmin.messaging.UserCacheMessageListener</scheduler-event-listener-class>
+			<trigger>
+				<simple>
+					<property-key>value.object.finder.cache.rebuild.interval</property-key>
+					<time-unit>minute</time-unit>
+				</simple>
+			</trigger>
+		</scheduler-entry>
 		<portlet-url-class>com.liferay.portal.struts.StrutsActionPortletURL</portlet-url-class>
 		<portlet-data-handler-class>com.liferay.portlet.usersadmin.lar.UsersAdminPortletDataHandler</portlet-data-handler-class>
 		<staged-model-data-handler-class>com.liferay.portlet.usersadmin.lar.AddressStagedModelDataHandler</staged-model-data-handler-class>

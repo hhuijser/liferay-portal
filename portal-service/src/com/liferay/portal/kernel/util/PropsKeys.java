@@ -2549,6 +2549,8 @@ public interface PropsKeys {
 
 	public static final String VALUE_OBJECT_FINDER_CACHE_ENABLED = "value.object.finder.cache.enabled";
 
+	public static final String VALUE_OBJECT_FINDER_CACHE_REBUILD_INTERVAL_ENABLED = "value.object.finder.cache.rebuild.interval.enabled";
+
 	public static final String VALUE_OBJECT_FINDER_THREAD_LOCAL_CACHE_MAX_SIZE = "value.object.finder.thread.local.cache.max.size";
 
 	public static final String VALUE_OBJECT_LISTENER = "value.object.listener.";

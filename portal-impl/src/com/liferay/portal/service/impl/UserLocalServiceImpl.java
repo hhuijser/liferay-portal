@@ -43,6 +43,7 @@ import com.liferay.portal.UserPortraitTypeException;
 import com.liferay.portal.UserReminderQueryException;
 import com.liferay.portal.UserScreenNameException;
 import com.liferay.portal.UserSmsException;
+import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.dao.shard.ShardCallable;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
@@ -123,6 +124,7 @@ import com.liferay.portal.security.pwd.RegExpToolkit;
 import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.base.UserLocalServiceBaseImpl;
+import com.liferay.portal.service.persistence.UserFinderImpl;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PrefsPropsUtil;
 import com.liferay.portal.util.PropsValues;
@@ -440,6 +442,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		PermissionCacheUtil.clearCache();
 
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
+
 		addDefaultRolesAndTeams(groupId, userIds);
 	}
 
@@ -463,6 +468,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		indexer.reindex(userIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -640,6 +648,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		indexer.reindex(userIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -3561,6 +3572,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		indexer.reindex(userIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -3611,6 +3625,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		indexer.reindex(userIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -3640,6 +3657,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		indexer.reindex(userIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**
@@ -3761,6 +3781,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		indexer.reindex(userIds);
 
 		PermissionCacheUtil.clearCache();
+
+		FinderCacheUtil.clearCache(
+			UserFinderImpl.FINDER_COUNT_BY_KEYWORDS_CACHE_NAME);
 	}
 
 	/**

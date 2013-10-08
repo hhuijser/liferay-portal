@@ -101,6 +101,7 @@ import com.liferay.portlet.dynamicdatamapping.storage.StorageEngineUtil;
 import com.liferay.portlet.expando.NoSuchRowException;
 import com.liferay.portlet.expando.NoSuchTableException;
 import com.liferay.portlet.expando.model.ExpandoBridge;
+import com.liferay.portlet.expando.model.ExpandoColumn;
 import com.liferay.portlet.expando.model.ExpandoColumnConstants;
 import com.liferay.portlet.expando.model.ExpandoRow;
 import com.liferay.portlet.expando.model.ExpandoTable;
@@ -2032,12 +2033,6 @@ public class DLFileEntryLocalServiceImpl
 			return false;
 		}
 
-		if (lastDLFileVersion.getFolderId() !=
-				latestDLFileVersion.getFolderId()) {
-
-			return false;
-		}
-
 		if (!Validator.equals(
 				lastDLFileVersion.getTitle(), latestDLFileVersion.getTitle())) {
 
@@ -2126,32 +2121,25 @@ public class DLFileEntryLocalServiceImpl
 		}
 
 		if (expandoTable != null) {
-			Date lastModifiedDate = null;
+			List<ExpandoColumn> expandoColumns =
+				expandoColumnLocalService.getColumns(expandoTable.getTableId());
 
-			try {
-				ExpandoRow lastExpandoRow = expandoRowLocalService.getRow(
-					expandoTable.getTableId(),
-					lastDLFileVersion.getPrimaryKey());
+			for (ExpandoColumn expandoColumn : expandoColumns) {
+				Serializable lastData = expandoValueLocalService.getData(
+					lastDLFileVersion.getCompanyId(),
+					DLFileEntry.class.getName(), expandoTable.getName(),
+					expandoColumn.getName(),
+					lastDLFileVersion.getFileVersionId());
 
-				lastModifiedDate = lastExpandoRow.getModifiedDate();
-			}
-			catch (NoSuchRowException nsre) {
-			}
+				Serializable latestData = expandoValueLocalService.getData(
+					lastDLFileVersion.getCompanyId(),
+					DLFileEntry.class.getName(), expandoTable.getName(),
+					expandoColumn.getName(),
+					latestDLFileVersion.getFileVersionId());
 
-			Date latestModifiedDate = null;
-
-			try {
-				ExpandoRow latestExpandoRow = expandoRowLocalService.getRow(
-					expandoTable.getTableId(),
-					latestDLFileVersion.getPrimaryKey());
-
-				latestModifiedDate = latestExpandoRow.getModifiedDate();
-			}
-			catch (NoSuchRowException nsre) {
-			}
-
-			if (!Validator.equals(lastModifiedDate, latestModifiedDate)) {
-				return false;
+				if (!Validator.equals(lastData, latestData)) {
+					return false;
+				}
 			}
 		}
 

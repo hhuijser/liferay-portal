@@ -77,7 +77,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 			count = document.<portlet:namespace />fm.<portlet:namespace />item_<%= item.getItemId() %>_<%= itemsCount %>_count.value;
 
-			if ((count == "") || (isNaN(count)) || (count < 0 ) || ((count > <%= maxQuantityPossible %>) && (<%= maxQuantityPossible %> != 0))) {
+			if ((count == "") || isNaN(count) || (count < 0) || ((count > <%= maxQuantityPossible %>) && (<%= maxQuantityPossible %> != 0))) {
 				validQuantities = false;
 				invalidSKUlist += "\n<%= item.getSku() %>";
 			}
@@ -97,8 +97,9 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 		if (validQuantities) {
 			submitForm(document.<portlet:namespace />fm);
-		} else {
-			alert("<%= UnicodeLanguageUtil.get(pageContext, "please-enter-valid-quantities-for-the-following-SKUs-x") %>" + invalidSKUlist);
+		}
+		else {
+			alert("<%= UnicodeLanguageUtil.get(pageContext, "please-enter-valid-quantities-for-the-following-skus") %>" + invalidSKUlist);
 		}
 	}
 </aui:script>
@@ -360,7 +361,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 			sb.append("<option value=\"0\">0</option>");
 
-			for (int j = 1; j <=  maxQuantityPossible / item.getMinQuantity(); j++) {
+			for (int j = 1; j <= maxQuantityPossible / item.getMinQuantity(); j++) {
 				int curQuantity = item.getMinQuantity() * j;
 
 				sb.append("<option ");
@@ -540,13 +541,13 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 private static int getMaxQuantityPossible(ShoppingItemPrice[] itemPrices) {
 	int maxQuantityPossible = 0;
 
-	for (int j = 0; j < itemPrices.length; j++) {
-		ShoppingItemPrice itemPrice = itemPrices[j];
+	for (int i = 0; i < itemPrices.length; i++) {
+		ShoppingItemPrice itemPrice = itemPrices[i];
 
 		if (itemPrice.getMaxQuantity() == 0) {
-			maxQuantityPossible = 0;
-			break;
-		} else if (maxQuantityPossible < itemPrice.getMaxQuantity()) {
+			return 0;
+		}
+		else if (maxQuantityPossible < itemPrice.getMaxQuantity()) {
 			maxQuantityPossible = itemPrice.getMaxQuantity();
 		}
 	}

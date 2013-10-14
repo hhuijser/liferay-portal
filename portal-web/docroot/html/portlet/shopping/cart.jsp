@@ -71,9 +71,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 			count = document.<portlet:namespace />fm.<portlet:namespace />item_<%= item.getItemId() %>_<%= itemsCount %>_count.value;
 
-			for (var i = 0; i < count; i++) {
-				itemIds += "<%= cartItem.getCartItemId() %>,";
-			}
+			itemIds += "<%= cartItem.getCartItemId() %>," + count + ",";
 
 			count = 0;
 
@@ -332,7 +330,20 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 		sb.setIndex(0);
 
-		if (minQuantityMultiple && (item.getMinQuantity() > 0)) {
+		int maxQuantityPossible = 0;
+
+		for (int j = 0; j < itemPrices.length; j++) {
+			ShoppingItemPrice itemPrice = itemPrices[j];
+
+			if (itemPrice.getMaxQuantity() == 0) {
+				maxQuantityPossible = 0;
+				break;
+			} else if (maxQuantityPossible < itemPrice.getMaxQuantity()) {
+				maxQuantityPossible = itemPrice.getMaxQuantity();
+			}
+		}
+
+		if (minQuantityMultiple && (item.getMinQuantity() > 1) && (maxQuantityPossible != 0)) {
 			sb.append("<select name=\"");
 			sb.append(renderResponse.getNamespace());
 			sb.append("item_");
@@ -343,7 +354,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 
 			sb.append("<option value=\"0\">0</option>");
 
-			for (int j = 1; j <= 10; j++) {
+			for (int j = 1; j <= maxQuantityPossible / item.getMinQuantity(); j++) {
 				int curQuantity = item.getMinQuantity() * j;
 
 				sb.append("<option ");

@@ -17,6 +17,8 @@ package com.liferay.portlet.shopping.action;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.struts.PortletAction;
@@ -117,13 +119,51 @@ public class CartAction extends PortletAction {
 
 			ShoppingItem item = ShoppingItemLocalServiceUtil.getItem(itemId);
 
-			if (item.getMinQuantity() > 0) {
-				for (int i = 0; i < item.getMinQuantity(); i++) {
-					cart.addItemId(itemId, fields);
+			String[] ids = cart.getItemIds().split(StringPool.COMMA);
+
+			StringBundler sb = new StringBundler();
+
+			int count = 1;
+
+			for (int i = 0; i < ids.length; i++) {
+				if ((ids.length == 1) && !ids[i].equals(StringPool.BLANK)) {
+					sb.append(ids[i]);
+					sb.append(StringPool.COMMA);
+					sb.append(count);
+					sb.append(StringPool.COMMA);
+				}
+				else if (i < (ids.length - 1)) {
+					if (ids[i].equals(ids[i + 1])) {
+						count++;
+					}
+					else if (i > 0) {
+						sb.append(ids[i]);
+						sb.append(StringPool.COMMA);
+						sb.append(count);
+						sb.append(StringPool.COMMA);
+						count = 1;
+					}
+				}
+				else if (i > 0) {
+					sb.append(ids[i]);
+					sb.append(StringPool.COMMA);
+					sb.append(count);
+					sb.append(StringPool.COMMA);
+					count = 1;
 				}
 			}
+
+			String existingItemIds = sb.toString();
+
+			if (item.getMinQuantity() > 0) {
+				cart.setItemIds(
+					existingItemIds + itemId + fields + StringPool.COMMA +
+					item.getMinQuantity() + StringPool.COMMA);
+			}
 			else {
-				cart.addItemId(itemId, fields);
+				cart.setItemIds(
+					existingItemIds + itemId + fields + StringPool.COMMA + "1" +
+					StringPool.COMMA);
 			}
 		}
 		else {

@@ -17,7 +17,6 @@ package com.liferay.portlet.shopping.action;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -34,6 +33,9 @@ import com.liferay.portlet.shopping.model.ShoppingItem;
 import com.liferay.portlet.shopping.service.ShoppingCartLocalServiceUtil;
 import com.liferay.portlet.shopping.service.ShoppingItemLocalServiceUtil;
 import com.liferay.portlet.shopping.util.ShoppingUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -119,52 +121,40 @@ public class CartAction extends PortletAction {
 
 			ShoppingItem item = ShoppingItemLocalServiceUtil.getItem(itemId);
 
-			String[] ids = cart.getItemIds().split(StringPool.COMMA);
+			String cartItemIds = cart.getItemIds();
 
-			StringBundler sb = new StringBundler();
+			String[] ids = cartItemIds.split(StringPool.COMMA);
 
-			int count = 1;
+			Map<String, Integer> map = new HashMap<String, Integer>();
 
 			for (int i = 0; i < ids.length; i++) {
-				if ((ids.length == 1) && !ids[i].equals(StringPool.BLANK)) {
-					sb.append(ids[i]);
-					sb.append(StringPool.COMMA);
-					sb.append(count);
-					sb.append(StringPool.COMMA);
+				String testItemId = ids[i];
+
+				if (!map.containsKey(testItemId)) {
+					map.put(testItemId, 1);
 				}
-				else if (i < (ids.length - 1)) {
-					if (ids[i].equals(ids[i + 1])) {
-						count++;
-					}
-					else if (i > 0) {
-						sb.append(ids[i]);
-						sb.append(StringPool.COMMA);
-						sb.append(count);
-						sb.append(StringPool.COMMA);
-						count = 1;
-					}
-				}
-				else if (i > 0) {
-					sb.append(ids[i]);
-					sb.append(StringPool.COMMA);
-					sb.append(count);
-					sb.append(StringPool.COMMA);
-					count = 1;
+				else {
+					map.put(testItemId, map.get(testItemId) + 1);
 				}
 			}
 
-			String existingItemIds = sb.toString();
+			String itemIds = "";
+
+			for (Map.Entry<String, Integer> entry : map.entrySet()) {
+				itemIds += entry.getKey() + StringPool.COMMA +
+					entry.getValue() + StringPool.COMMA;
+			}
+
+			itemIds += itemId + fields + StringPool.COMMA;
 
 			if (item.getMinQuantity() > 0) {
-				cart.setItemIds(
-					existingItemIds + itemId + fields + StringPool.COMMA +
-					item.getMinQuantity() + StringPool.COMMA);
+				itemIds += item.getMinQuantity() + StringPool.COMMA;
 			}
 			else {
-				cart.setItemIds(
-					existingItemIds + itemId + fields + StringPool.COMMA + "1" +
-					StringPool.COMMA);
+				itemIds += _SINGLE_ITEM + StringPool.COMMA;
 			}
+
+			cart.setItemIds(itemIds);
 		}
 		else {
 			String itemIds = ParamUtil.getString(actionRequest, "itemIds");
@@ -188,5 +178,7 @@ public class CartAction extends PortletAction {
 			addSuccessMessage(actionRequest, actionResponse);
 		}
 	}
+
+	private static final String _SINGLE_ITEM = "1";
 
 }

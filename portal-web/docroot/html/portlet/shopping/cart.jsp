@@ -338,7 +338,8 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 			if (itemPrice.getMaxQuantity() == 0) {
 				maxQuantityPossible = 0;
 				break;
-			} else if (maxQuantityPossible < itemPrice.getMaxQuantity()) {
+			}
+			else if (maxQuantityPossible < itemPrice.getMaxQuantity()) {
 				maxQuantityPossible = itemPrice.getMaxQuantity();
 			}
 		}

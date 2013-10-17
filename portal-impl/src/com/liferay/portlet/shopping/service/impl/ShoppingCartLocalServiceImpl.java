@@ -131,8 +131,9 @@ public class ShoppingCartLocalServiceImpl
 		if (itemIdAndQuantity.length > 1) {
 			for (int i = 0; i < itemIdAndQuantity.length; i += 2) {
 				if (!Validator.isNumber(itemIdAndQuantity[i + 1])) {
-					String[] id = itemIdAndQuantity[i].split("\\|");
-					badItemIds.add(Long.valueOf(id[0]));
+					long itemId = ShoppingUtil.getItemId(itemIdAndQuantity[i]);
+
+					badItemIds.add(itemId);
 				}
 				else {
 					String itemId = itemIdAndQuantity[i];

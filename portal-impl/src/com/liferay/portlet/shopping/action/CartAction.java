@@ -17,6 +17,7 @@ package com.liferay.portlet.shopping.action;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.struts.PortletAction;
@@ -32,6 +33,9 @@ import com.liferay.portlet.shopping.model.ShoppingItem;
 import com.liferay.portlet.shopping.service.ShoppingCartLocalServiceUtil;
 import com.liferay.portlet.shopping.service.ShoppingItemLocalServiceUtil;
 import com.liferay.portlet.shopping.util.ShoppingUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -117,14 +121,40 @@ public class CartAction extends PortletAction {
 
 			ShoppingItem item = ShoppingItemLocalServiceUtil.getItem(itemId);
 
-			if (item.getMinQuantity() > 0) {
-				for (int i = 0; i < item.getMinQuantity(); i++) {
-					cart.addItemId(itemId, fields);
+			String cartItemIds = cart.getItemIds();
+
+			String[] ids = cartItemIds.split(StringPool.COMMA);
+
+			Map<String, Integer> map = new HashMap<String, Integer>();
+
+			for (int i = 0; i < ids.length; i++) {
+				String testItemId = ids[i];
+
+				if (!map.containsKey(testItemId)) {
+					map.put(testItemId, 1);
+				}
+				else {
+					map.put(testItemId, map.get(testItemId) + 1);
 				}
 			}
-			else {
-				cart.addItemId(itemId, fields);
+
+			String itemIds = "";
+
+			for (Map.Entry<String, Integer> entry : map.entrySet()) {
+				itemIds += entry.getKey() + StringPool.COMMA +
+					entry.getValue() + StringPool.COMMA;
 			}
+
+			itemIds += itemId + fields + StringPool.COMMA;
+
+			if (item.getMinQuantity() > 0) {
+				itemIds += item.getMinQuantity() + StringPool.COMMA;
+			}
+			else {
+				itemIds += _SINGLE_ITEM + StringPool.COMMA;
+			}
+
+			cart.setItemIds(itemIds);
 		}
 		else {
 			String itemIds = ParamUtil.getString(actionRequest, "itemIds");
@@ -148,5 +178,7 @@ public class CartAction extends PortletAction {
 			addSuccessMessage(actionRequest, actionResponse);
 		}
 	}
+
+	private static final String _SINGLE_ITEM = "1";
 
 }

@@ -18,7 +18,10 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.User;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portlet.shopping.CartMinQuantityException;
@@ -121,6 +124,30 @@ public class ShoppingCartLocalServiceImpl
 		throws PortalException, SystemException {
 
 		List<Long> badItemIds = new ArrayList<Long>();
+
+		String[] itemIdAndQuantity = itemIds.split(StringPool.COMMA);
+		StringBundler sb = new StringBundler();
+
+		if (itemIdAndQuantity.length > 1) {
+			for (int i = 0; i < itemIdAndQuantity.length; i += 2) {
+				if (!Validator.isNumber(itemIdAndQuantity[i + 1])) {
+					long itemId = ShoppingUtil.getItemId(itemIdAndQuantity[i]);
+
+					badItemIds.add(itemId);
+				}
+				else {
+					String itemId = itemIdAndQuantity[i];
+					String itemQuantity = itemIdAndQuantity[i + 1];
+
+					for (int j = 0; j < Integer.valueOf(itemQuantity); j++) {
+						sb.append(itemId);
+						sb.append(StringPool.COMMA);
+					}
+				}
+			}
+		}
+
+		itemIds = sb.toString();
 
 		Map<ShoppingCartItem, Integer> items = getItems(groupId, itemIds);
 

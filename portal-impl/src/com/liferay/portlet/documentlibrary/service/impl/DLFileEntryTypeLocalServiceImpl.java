@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.SortedArrayList;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.SystemEventConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
@@ -45,6 +46,8 @@ import com.liferay.portlet.dynamicdatamapping.RequiredStructureException;
 import com.liferay.portlet.dynamicdatamapping.StructureXsdException;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructureConstants;
+import com.liferay.portlet.dynamicdatamapping.storage.Fields;
+import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -415,6 +418,42 @@ public class DLFileEntryTypeLocalServiceImpl
 
 		dlFileEntryTypePersistence.setDDMStructures(
 			fileEntryTypeId, ddmStructureIds);
+
+		HashMap<String, Fields> fieldsMap = new HashMap<String, Fields>();
+
+		List<DDMStructure> ddmStructures = dlFileEntryType.getDDMStructures();
+
+		for (DDMStructure ddmStructure : ddmStructures) {
+			String namespace = String.valueOf(ddmStructure.getStructureId());
+
+			Fields fields = (Fields)serviceContext.getAttribute(
+				Fields.class.getName() + ddmStructure.getStructureId());
+
+			if (fields == null) {
+				fields = DDMUtil.getFields(
+					ddmStructure.getStructureId(), namespace, serviceContext);
+			}
+
+			fieldsMap.put(ddmStructure.getStructureKey(), fields);
+		}
+
+		List<DLFileEntry> dlFileEntries =
+			dlFileEntryPersistence.findByFileEntryTypeId(
+				fileEntryTypeId);
+
+		while (dlFileEntries.size() > 0){
+			for (DLFileEntry dlFileEntry : dlFileEntries) {
+				List<DLFileVersion> dlFileVersions =
+					dlFileEntry.getFileVersions(WorkflowConstants.STATUS_ANY);
+	
+				for (DLFileVersion dlFileVersion : dlFileVersions) {
+					dlFileEntryMetadataLocalService.updateFileEntryMetadata(
+						fileEntryTypeId, dlFileEntry.getFileEntryId(),
+						dlFileVersion.getFileVersionId(), fieldsMap,
+						serviceContext);
+				}
+			}
+		}
 	}
 
 	@Override

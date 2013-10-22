@@ -406,12 +406,12 @@ public class MainServlet extends ActionServlet {
 		catch (Exception e) {
 			if (e instanceof NoSuchLayoutException) {
 				if (_log.isDebugEnabled()) {
-				_log.error(e, e);
+					_log.debug(e, e);
 				}
 			}
-
-			else
+			else {
 				_log.error(e, e);
+			}
 		}
 
 		if (_log.isDebugEnabled()) {

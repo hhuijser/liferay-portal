@@ -438,20 +438,17 @@ public class DLFileEntryTypeLocalServiceImpl
 		}
 
 		List<DLFileEntry> dlFileEntries =
-			dlFileEntryPersistence.findByFileEntryTypeId(
-				fileEntryTypeId);
+			dlFileEntryPersistence.findByFileEntryTypeId(fileEntryTypeId);
 
-		while (dlFileEntries.size() > 0){
-			for (DLFileEntry dlFileEntry : dlFileEntries) {
-				List<DLFileVersion> dlFileVersions =
-					dlFileEntry.getFileVersions(WorkflowConstants.STATUS_ANY);
-	
-				for (DLFileVersion dlFileVersion : dlFileVersions) {
-					dlFileEntryMetadataLocalService.updateFileEntryMetadata(
-						fileEntryTypeId, dlFileEntry.getFileEntryId(),
-						dlFileVersion.getFileVersionId(), fieldsMap,
-						serviceContext);
-				}
+		for (DLFileEntry dlFileEntry : dlFileEntries) {
+			List<DLFileVersion> dlFileVersions = dlFileEntry.getFileVersions(
+				WorkflowConstants.STATUS_ANY);
+
+			for (DLFileVersion dlFileVersion : dlFileVersions) {
+				dlFileEntryMetadataLocalService.updateFileEntryMetadata(
+					fileEntryTypeId, dlFileEntry.getFileEntryId(),
+					dlFileVersion.getFileVersionId(), fieldsMap,
+					serviceContext);
 			}
 		}
 	}

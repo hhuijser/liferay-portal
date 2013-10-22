@@ -404,7 +404,14 @@ public class MainServlet extends ActionServlet {
 			}
 		}
 		catch (Exception e) {
-			_log.error(e, e);
+			if (e instanceof NoSuchLayoutException) {
+				if (_log.isDebugEnabled()) {
+				_log.error(e, e);
+				}
+			}
+
+			else
+				_log.error(e, e);
 		}
 
 		if (_log.isDebugEnabled()) {

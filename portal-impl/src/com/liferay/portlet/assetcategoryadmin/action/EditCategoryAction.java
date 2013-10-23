@@ -25,6 +25,8 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
+import com.liferay.portlet.asset.CategoryPropertyKeyException;
+import com.liferay.portlet.asset.CategoryPropertyValueException;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
 
@@ -88,7 +90,9 @@ public class EditCategoryAction extends PortletAction {
 				renderRequest, "portlet.asset_category_admin.edit_category"));
 	}
 
-	protected String[] getCategoryProperties(ActionRequest actionRequest) {
+	protected String[] getCategoryProperties(ActionRequest actionRequest)
+		throws Exception {
+
 		int[] categoryPropertiesIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "categoryPropertiesIndexes"), 0);
 
@@ -105,8 +109,16 @@ public class EditCategoryAction extends PortletAction {
 				continue;
 			}
 
+			if (key.contains(StringPool.COLON)) {
+				throw new CategoryPropertyKeyException();
+			}
+
 			String value = ParamUtil.getString(
 				actionRequest, "value" + categoryPropertiesIndex);
+
+			if (value.contains(StringPool.COLON)) {
+				throw new CategoryPropertyValueException();
+			}
 
 			categoryProperties[i] = key + StringPool.COLON + value;
 		}

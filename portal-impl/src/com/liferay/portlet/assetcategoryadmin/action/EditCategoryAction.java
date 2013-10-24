@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.assetcategoryadmin.action;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
@@ -29,6 +30,7 @@ import com.liferay.portlet.asset.CategoryPropertyKeyException;
 import com.liferay.portlet.asset.CategoryPropertyValueException;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
+import com.liferay.portlet.asset.util.AssetUtil;
 
 import java.util.Locale;
 import java.util.Map;
@@ -109,16 +111,10 @@ public class EditCategoryAction extends PortletAction {
 				continue;
 			}
 
-			if (key.contains(StringPool.COLON)) {
-				throw new CategoryPropertyKeyException();
-			}
-
 			String value = ParamUtil.getString(
 				actionRequest, "value" + categoryPropertiesIndex);
 
-			if (value.contains(StringPool.COLON)) {
-				throw new CategoryPropertyValueException();
-			}
+			validate(key, value);
 
 			categoryProperties[i] = key + StringPool.COLON + value;
 		}
@@ -190,6 +186,16 @@ public class EditCategoryAction extends PortletAction {
 		jsonObject.put("parentCategoryId", category.getParentCategoryId());
 
 		return jsonObject;
+	}
+
+	protected void validate(String key, String value) throws PortalException {
+		if (!AssetUtil.isValidWord(key)) {
+			throw new CategoryPropertyKeyException();
+		}
+
+		if (!AssetUtil.isValidWord(value)) {
+			throw new CategoryPropertyValueException();
+		}
 	}
 
 }

@@ -17,11 +17,8 @@ package com.liferay.portlet.asset.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.model.User;
-import com.liferay.portlet.asset.CategoryPropertyKeyException;
-import com.liferay.portlet.asset.CategoryPropertyValueException;
 import com.liferay.portlet.asset.model.AssetCategoryProperty;
 import com.liferay.portlet.asset.service.base.AssetCategoryPropertyLocalServiceBaseImpl;
-import com.liferay.portlet.asset.util.AssetUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -40,8 +37,6 @@ public class AssetCategoryPropertyLocalServiceImpl
 
 		User user = userPersistence.findByPrimaryKey(userId);
 		Date now = new Date();
-
-		validate(key, value);
 
 		long categoryPropertyId = counterLocalService.increment();
 
@@ -133,8 +128,6 @@ public class AssetCategoryPropertyLocalServiceImpl
 			long categoryPropertyId, String key, String value)
 		throws PortalException, SystemException {
 
-		validate(key, value);
-
 		AssetCategoryProperty categoryProperty =
 			assetCategoryPropertyPersistence.findByPrimaryKey(
 				categoryPropertyId);
@@ -146,16 +139,6 @@ public class AssetCategoryPropertyLocalServiceImpl
 		assetCategoryPropertyPersistence.update(categoryProperty);
 
 		return categoryProperty;
-	}
-
-	protected void validate(String key, String value) throws PortalException {
-		if (!AssetUtil.isValidWord(key)) {
-			throw new CategoryPropertyKeyException();
-		}
-
-		if (!AssetUtil.isValidWord(value)) {
-			throw new CategoryPropertyValueException();
-		}
 	}
 
 }

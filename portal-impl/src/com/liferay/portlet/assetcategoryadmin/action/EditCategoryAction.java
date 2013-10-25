@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.assetcategoryadmin.action;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.Constants;
@@ -25,8 +26,11 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
+import com.liferay.portlet.asset.CategoryPropertyKeyException;
+import com.liferay.portlet.asset.CategoryPropertyValueException;
 import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.service.AssetCategoryServiceUtil;
+import com.liferay.portlet.asset.util.AssetUtil;
 
 import java.util.Locale;
 import java.util.Map;
@@ -88,7 +92,9 @@ public class EditCategoryAction extends PortletAction {
 				renderRequest, "portlet.asset_category_admin.edit_category"));
 	}
 
-	protected String[] getCategoryProperties(ActionRequest actionRequest) {
+	protected String[] getCategoryProperties(ActionRequest actionRequest)
+		throws Exception {
+
 		int[] categoryPropertiesIndexes = StringUtil.split(
 			ParamUtil.getString(actionRequest, "categoryPropertiesIndexes"), 0);
 
@@ -107,6 +113,8 @@ public class EditCategoryAction extends PortletAction {
 
 			String value = ParamUtil.getString(
 				actionRequest, "value" + categoryPropertiesIndex);
+
+			validate(key, value);
 
 			categoryProperties[i] = key + StringPool.COLON + value;
 		}
@@ -178,6 +186,16 @@ public class EditCategoryAction extends PortletAction {
 		jsonObject.put("parentCategoryId", category.getParentCategoryId());
 
 		return jsonObject;
+	}
+
+	protected void validate(String key, String value) throws PortalException {
+		if (!AssetUtil.isValidWord(key)) {
+			throw new CategoryPropertyKeyException();
+		}
+
+		if (!AssetUtil.isValidWord(value)) {
+			throw new CategoryPropertyValueException();
+		}
 	}
 
 }

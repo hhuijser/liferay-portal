@@ -130,7 +130,7 @@ public class AssetCategoryLocalServiceImpl
 		for (int i = 0; i < categoryProperties.length; i++) {
 			String[] categoryProperty = StringUtil.split(
 				categoryProperties[i],
-				AssetCategoryConstants.PROPERTY_SEPARATOR);
+				AssetCategoryConstants.CATEGORY_PROPERTY_SEPARATOR);
 
 			String key = StringPool.BLANK;
 			String value = StringPool.BLANK;
@@ -520,7 +520,7 @@ public class AssetCategoryLocalServiceImpl
 		for (int i = 0; i < categoryProperties.length; i++) {
 			String[] categoryProperty = StringUtil.split(
 				categoryProperties[i],
-				AssetCategoryConstants.PROPERTY_SEPARATOR);
+				AssetCategoryConstants.CATEGORY_PROPERTY_SEPARATOR);
 
 			String key = StringPool.BLANK;
 

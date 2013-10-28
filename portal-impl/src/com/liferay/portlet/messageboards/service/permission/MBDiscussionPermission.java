@@ -96,6 +96,12 @@ public class MBDiscussionPermission {
 			String className, long classPK, long ownerId, String actionId)
 		throws SystemException {
 
+		if (MBBanLocalServiceUtil.hasBan(
+				groupId, permissionChecker.getUserId())) {
+
+			return false;
+		}
+
 		Boolean hasPermission = StagingPermissionUtil.hasPermission(
 			permissionChecker, groupId, className, classPK,
 			PortletKeys.MESSAGE_BOARDS, actionId);
@@ -111,21 +117,25 @@ public class MBDiscussionPermission {
 			return true;
 		}
 
-		if (MBBanLocalServiceUtil.hasBan(
-				groupId, permissionChecker.getUserId())) {
+		return _hasPermission(
+			permissionChecker, companyId, groupId, className, classPK, ownerId,
+			actionId);
+	}
 
-			return false;
-		}
+	private static boolean _hasPermission(
+		PermissionChecker permissionChecker, long companyId, long groupId,
+		String className, long classPK, long ownerId, String actionId) {
 
-		if ((ownerId > 0) &&
-			permissionChecker.hasOwnerPermission(
-				companyId, className, classPK, ownerId, actionId)) {
+		if (((ownerId > 0) &&
+			 permissionChecker.hasOwnerPermission(
+				companyId, className, classPK, ownerId, actionId)) ||
+			permissionChecker.hasPermission(
+				groupId, className, classPK, actionId)) {
 
 			return true;
 		}
 
-		return permissionChecker.hasPermission(
-			groupId, className, classPK, actionId);
+		return false;
 	}
 
 }

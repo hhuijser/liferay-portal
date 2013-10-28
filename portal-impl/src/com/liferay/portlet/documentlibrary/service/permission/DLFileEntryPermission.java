@@ -82,20 +82,6 @@ public class DLFileEntryPermission {
 			return hasPermission.booleanValue();
 		}
 
-		DLFileVersion latestDLFileVersion = dlFileEntry.getLatestFileVersion(
-			true);
-
-		if (latestDLFileVersion.isPending()) {
-			hasPermission = WorkflowPermissionUtil.hasPermission(
-				permissionChecker, dlFileEntry.getGroupId(),
-				DLFileEntry.class.getName(), dlFileEntry.getFileEntryId(),
-				actionId);
-
-			if (hasPermission != null) {
-				return hasPermission.booleanValue();
-			}
-		}
-
 		if (actionId.equals(ActionKeys.VIEW) &&
 			PropsValues.PERMISSIONS_VIEW_DYNAMIC_INHERITANCE) {
 
@@ -122,17 +108,21 @@ public class DLFileEntryPermission {
 			}
 		}
 
-		if (permissionChecker.hasOwnerPermission(
-				dlFileEntry.getCompanyId(), DLFileEntry.class.getName(),
-				dlFileEntry.getFileEntryId(), dlFileEntry.getUserId(),
-				actionId)) {
+		DLFileVersion latestDLFileVersion = dlFileEntry.getLatestFileVersion(
+			true);
 
-			return true;
+		if (latestDLFileVersion.isPending()) {
+			hasPermission = WorkflowPermissionUtil.hasPermission(
+				permissionChecker, dlFileEntry.getGroupId(),
+				DLFileEntry.class.getName(), dlFileEntry.getFileEntryId(),
+				actionId);
+
+			if (hasPermission != null) {
+				return hasPermission.booleanValue();
+			}
 		}
 
-		return permissionChecker.hasPermission(
-			dlFileEntry.getGroupId(), DLFileEntry.class.getName(),
-			dlFileEntry.getFileEntryId(), actionId);
+		return _hasPermission(permissionChecker, dlFileEntry, actionId);
 	}
 
 	public static boolean contains(
@@ -151,6 +141,24 @@ public class DLFileEntryPermission {
 		FileEntry fileEntry = DLAppLocalServiceUtil.getFileEntry(fileEntryId);
 
 		return fileEntry.containsPermission(permissionChecker, actionId);
+	}
+
+	private static boolean _hasPermission(
+		PermissionChecker permissionChecker, DLFileEntry dlFileEntry,
+		String actionId) {
+
+		if (permissionChecker.hasOwnerPermission(
+				dlFileEntry.getCompanyId(), DLFileEntry.class.getName(),
+				dlFileEntry.getFileEntryId(), dlFileEntry.getUserId(),
+				actionId) ||
+			permissionChecker.hasPermission(
+				dlFileEntry.getGroupId(), DLFileEntry.class.getName(),
+				dlFileEntry.getFileEntryId(), actionId)) {
+
+			return true;
+		}
+
+		return false;
 	}
 
 }

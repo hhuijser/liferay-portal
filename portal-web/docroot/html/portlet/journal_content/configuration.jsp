@@ -23,17 +23,17 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 JournalArticle article = null;
 
-groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getScopeGroupId());
+long groupId = ParamUtil.getLong(request, "groupId", themeDisplay.getScopeGroupId());
 
 String type = ParamUtil.getString(request, "type");
 
 try {
 	if (Validator.isNotNull(articleId)) {
-		article = JournalArticleLocalServiceUtil.getLatestArticle(groupId, articleId);
+		article = JournalArticleLocalServiceUtil.getLatestArticle(articleGroupId, articleId);
 
 		article = article.toEscapedModel();
 
-		groupId = article.getGroupId();
+		articleGroupId = article.getGroupId();
 		type = article.getType();
 	}
 }
@@ -67,10 +67,10 @@ catch (NoSuchArticleException nsae) {
 
 		DDMStructure ddmStructure = null;
 
-		long ddmStructureGroupId = groupId;
+		long ddmStructureGroupId = articleGroupId;
 
 		if (Validator.isNotNull(structureId)) {
-			ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(groupId, PortalUtil.getClassNameId(JournalArticle.class), structureId);
+			ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(articleGroupId, PortalUtil.getClassNameId(JournalArticle.class), structureId);
 
 			List<DDMTemplate> ddmTemplates = new ArrayList<DDMTemplate>();
 
@@ -79,8 +79,8 @@ catch (NoSuchArticleException nsae) {
 
 				ddmTemplates.addAll(DDMTemplateLocalServiceUtil.getTemplates(ddmStructureGroupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructure.getStructureId()));
 
-				if (groupId != ddmStructureGroupId) {
-					ddmTemplates.addAll(DDMTemplateLocalServiceUtil.getTemplates(groupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructure.getStructureId()));
+				if (articleGroupId != ddmStructureGroupId) {
+					ddmTemplates.addAll(DDMTemplateLocalServiceUtil.getTemplates(articleGroupId, PortalUtil.getClassNameId(DDMStructure.class), ddmStructure.getStructureId()));
 				}
 			}
 
@@ -236,7 +236,7 @@ catch (NoSuchArticleException nsae) {
 <aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value='<%= configurationRenderURL + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>' />
-	<aui:input name="preferences--groupId--" type="hidden" value="<%= groupId %>" />
+	<aui:input name="preferences--groupId--" type="hidden" value="<%= articleGroupId %>" />
 	<aui:input name="preferences--articleId--" type="hidden" value="<%= articleId %>" />
 	<aui:input name="preferences--ddmTemplateKey--" type="hidden" value="<%= ddmTemplateKey %>" />
 

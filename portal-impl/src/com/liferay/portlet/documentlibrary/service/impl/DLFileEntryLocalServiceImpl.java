@@ -117,7 +117,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Provides the local service for accessing, adding, checking in/out, deleting,
@@ -318,15 +317,15 @@ public class DLFileEntryLocalServiceImpl
 		DLFileVersion latestDLFileVersion =
 			dlFileVersionLocalService.getLatestFileVersion(fileEntryId, false);
 
-		boolean keepFileVersionLabel = false;
+		boolean versionChanged = true;
 
 		if (!majorVersion) {
-			keepFileVersionLabel = isKeepFileVersionLabel(
+			versionChanged = hasVersionChanged(
 				dlFileEntry, lastDLFileVersion, latestDLFileVersion,
 				serviceContext.getWorkflowAction());
 		}
 
-		if (keepFileVersionLabel) {
+		if (!versionChanged) {
 			if (lastDLFileVersion.getSize() != latestDLFileVersion.getSize()) {
 
 				// File entry
@@ -406,7 +405,7 @@ public class DLFileEntryLocalServiceImpl
 		// Workflow
 
 		if ((serviceContext.getWorkflowAction() ==
-				WorkflowConstants.ACTION_PUBLISH) && !keepFileVersionLabel) {
+				WorkflowConstants.ACTION_PUBLISH) && versionChanged) {
 
 			startWorkflowInstance(
 				userId, serviceContext, latestDLFileVersion,
@@ -1925,42 +1924,36 @@ public class DLFileEntryLocalServiceImpl
 		return versionParts[0] + StringPool.PERIOD + versionParts[1];
 	}
 
-	protected boolean isKeepFileVersionLabel(
+	protected boolean hasVersionChanged(
 			DLFileEntry dlFileEntry, DLFileVersion lastDLFileVersion,
 			DLFileVersion latestDLFileVersion, int workflowAction)
 		throws PortalException, SystemException {
 
 		if (PropsValues.DL_FILE_ENTRY_VERSION_POLICY != 1) {
-			return false;
-		}
-
-		if (lastDLFileVersion.getFolderId() !=
-				latestDLFileVersion.getFolderId()) {
-
-			return false;
+			return true;
 		}
 
 		if (!Validator.equals(
 				lastDLFileVersion.getTitle(), latestDLFileVersion.getTitle())) {
 
-			return false;
+			return true;
 		}
 
 		if (!Validator.equals(
 				lastDLFileVersion.getDescription(),
 				latestDLFileVersion.getDescription())) {
 
-			return false;
+			return true;
 		}
 
 		if (lastDLFileVersion.getFileEntryTypeId() !=
 				latestDLFileVersion.getFileEntryTypeId()) {
 
-			return false;
+			return true;
 		}
 
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
-			return false;
+			return true;
 		}
 
 		// File entry type
@@ -1981,7 +1974,7 @@ public class DLFileEntryLocalServiceImpl
 						lastDLFileVersion.getFileVersionId());
 			}
 			catch (NoSuchFileEntryMetadataException nsfeme) {
-				return false;
+				return true;
 			}
 
 			DLFileEntryMetadata latestFileEntryMetadata =
@@ -1994,67 +1987,24 @@ public class DLFileEntryLocalServiceImpl
 			Fields latestFields = StorageEngineUtil.getFields(
 				latestFileEntryMetadata.getDDMStorageId());
 
-			Set<String> lastFieldNames = lastFields.getNames();
-			Set<String> latestFieldNames = latestFields.getNames();
-
-			if (lastFieldNames.size() != latestFieldNames.size()) {
-				return false;
-			}
-
-			for (String fieldName : lastFieldNames) {
-				com.liferay.portlet.dynamicdatamapping.storage.Field
-					lastField = lastFields.get(fieldName);
-				com.liferay.portlet.dynamicdatamapping.storage.Field
-					latestField = latestFields.get(fieldName);
-
-				if ((latestFieldNames == null) ||
-					(!lastField.equals(latestField) &&
-					 !lastField.isPrivate())) {
-
-					return false;
-				}
+			if (!Validator.equals(lastFields, latestFields)) {
+				return true;
 			}
 		}
 
 		// Expando
 
-		ExpandoTable expandoTable = null;
+		ExpandoBridge lastExpandoBridge = lastDLFileVersion.getExpandoBridge();
+		ExpandoBridge latestExpandoBridge =
+			latestDLFileVersion.getExpandoBridge();
 
-		try {
-			expandoTable = expandoTableLocalService.getDefaultTable(
-				lastDLFileVersion.getCompanyId(), DLFileEntry.class.getName());
-		}
-		catch (NoSuchTableException nste) {
-		}
+		Map<String, Serializable> lastAttributes =
+			lastExpandoBridge.getAttributes();
+		Map<String, Serializable> latestAttributes =
+			latestExpandoBridge.getAttributes();
 
-		if (expandoTable != null) {
-			Date lastModifiedDate = null;
-
-			try {
-				ExpandoRow lastExpandoRow = expandoRowLocalService.getRow(
-					expandoTable.getTableId(),
-					lastDLFileVersion.getPrimaryKey());
-
-				lastModifiedDate = lastExpandoRow.getModifiedDate();
-			}
-			catch (NoSuchRowException nsre) {
-			}
-
-			Date latestModifiedDate = null;
-
-			try {
-				ExpandoRow latestExpandoRow = expandoRowLocalService.getRow(
-					expandoTable.getTableId(),
-					latestDLFileVersion.getPrimaryKey());
-
-				latestModifiedDate = latestExpandoRow.getModifiedDate();
-			}
-			catch (NoSuchRowException nsre) {
-			}
-
-			if (!Validator.equals(lastModifiedDate, latestModifiedDate)) {
-				return false;
-			}
+		if (!Validator.equals(lastAttributes, latestAttributes)) {
+			return true;
 		}
 
 		// Size
@@ -2063,11 +2013,11 @@ public class DLFileEntryLocalServiceImpl
 		long latestSize = latestDLFileVersion.getSize();
 
 		if ((lastSize == 0) && (latestSize >= 0)) {
-			return true;
+			return false;
 		}
 
 		if (lastSize != latestSize) {
-			return false;
+			return true;
 		}
 
 		// Checksum
@@ -2099,7 +2049,7 @@ public class DLFileEntryLocalServiceImpl
 				latestInputStream);
 
 			if (lastChecksum.equals(latestChecksum)) {
-				return true;
+				return false;
 			}
 
 			latestDLFileVersion.setChecksum(latestChecksum);
@@ -2116,7 +2066,7 @@ public class DLFileEntryLocalServiceImpl
 			StreamUtil.cleanUp(latestInputStream);
 		}
 
-		return false;
+		return true;
 	}
 
 	protected DLFileEntry moveFileEntryImpl(

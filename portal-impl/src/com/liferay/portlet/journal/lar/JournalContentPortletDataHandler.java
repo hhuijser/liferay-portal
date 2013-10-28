@@ -73,7 +73,7 @@ public class JournalContentPortletDataHandler
 
 	public JournalContentPortletDataHandler() {
 		setDataLevel(DataLevel.PORTLET_INSTANCE);
-		setDataPortletPreferences("articleId", "ddmTemplateKey", "groupId");
+		setDataPortletPreferences("articleId", "ddmTemplateKey");
 		setExportControls(
 			new PortletDataHandlerBoolean(
 				NAMESPACE, "selected-web-content", true, true, null,

@@ -200,6 +200,8 @@ catch (NoSuchArticleException nsae) {
 		sb.append(HtmlUtil.escapeJS(curArticle.getArticleId()));
 		sb.append("','");
 		sb.append(HtmlUtil.escapeJS(curArticle.getTitle(locale)));
+		sb.append("','");
+		sb.append(HtmlUtil.escapeJS(String.valueOf(curArticle.getGroupId())));
 		sb.append("');");
 
 		String rowHREF = sb.toString();
@@ -295,10 +297,11 @@ catch (NoSuchArticleException nsae) {
 	Liferay.provide(
 		window,
 		'<portlet:namespace />selectArticle',
-		function(articleId, articletTitle) {
+		function(articleId, articletTitle, articleGroupId) {
 			var A = AUI();
 
 			document.<portlet:namespace />fm.<portlet:namespace />articleId.value = articleId;
+			document.<portlet:namespace />fm.<portlet:namespace />groupId.value = articleGroupId;
 			document.<portlet:namespace />fm.<portlet:namespace />ddmTemplateKey.value = "";
 
 			A.one('.displaying-article-id-holder').show();

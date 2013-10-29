@@ -15,15 +15,10 @@
 package com.liferay.portlet.asset.model;
 
 /**
- * @author Jorge Ferrer
+ * @author Hai Yu
  */
-public class AssetCategoryConstants {
+public class AssetTagConstants {
 
-	public static final long ALL_CLASS_NAME_IDS = 0;
-
-	public static final String CATEGORY_PROPERTY_SEPARATOR =
-		"_CATEGORY_PROPERTY_";
-
-	public static final long DEFAULT_PARENT_CATEGORY_ID = 0;
+	public static final String TAG_PROPERTY_SEPARATOR = "_TAG_PROPERTY_";
 
 }

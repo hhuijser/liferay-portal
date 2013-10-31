@@ -1506,7 +1506,6 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		List<String> pluginTypes = pluginPackage.getTypes();
 
 		String pluginType = pluginTypes.get(0);
-		StringBuilder sb;
 
 		if (!pluginType.equals(getPluginType())) {
 			return null;
@@ -1514,23 +1513,28 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 
 		Map<String, String> filterMap = new HashMap<String, String>();
 
+		StringBundler longDescription = new StringBundler(3);
+
+		longDescription.append(StringPool.CDATA_OPEN);
+		longDescription.append(pluginPackage.getLongDescription());
+		longDescription.append(StringPool.CDATA_CLOSE);
+
+		StringBundler shortDescription = new StringBundler(3);
+
+		shortDescription.append(StringPool.CDATA_OPEN);
+		shortDescription.append(pluginPackage.getShortDescription());
+		shortDescription.append(StringPool.CDATA_CLOSE);
+
 		filterMap.put("author", pluginPackage.getAuthor());
 		filterMap.put("change_log", pluginPackage.getChangeLog());
 		filterMap.put(
-				"licenses",
-				getPluginPackageLicensesXml(pluginPackage.getLicenses()));
+			"licenses",
+			getPluginPackageLicensesXml(pluginPackage.getLicenses()));
 		filterMap.put(
-				"liferay_versions",
-				getPluginPackageLiferayVersionsXml(
-						pluginPackage.getLiferayVersions()));
-
-		sb = new StringBuilder(pluginPackage.getLongDescription());
-
-		sb.insert(0,"<![CDATA[");
-		sb.insert(sb.length(),"]]>");
-
-		filterMap.put("long_description", sb.toString());
-
+			"liferay_versions",
+			getPluginPackageLiferayVersionsXml(
+				pluginPackage.getLiferayVersions()));
+		filterMap.put("long_description", longDescription.toString());
 		filterMap.put("module_artifact_id", pluginPackage.getArtifactId());
 		filterMap.put("module_group_id", pluginPackage.getGroupId());
 		filterMap.put("module_version", pluginPackage.getVersion());
@@ -1547,14 +1551,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			"required_deployment_contexts",
 			getPluginPackageRequiredDeploymentContextsXml(
 				pluginPackage.getRequiredDeploymentContexts()));
-
-		sb = new StringBuilder(pluginPackage.getShortDescription());
-
-		sb.insert(0,"<![CDATA[");
-		sb.insert(sb.length(),"]]>");
-
-		filterMap.put("short_description", sb.toString());
-
+		filterMap.put("short_description", shortDescription.toString());
 		filterMap.put("tags", getPluginPackageTagsXml(pluginPackage.getTags()));
 
 		return filterMap;

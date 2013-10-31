@@ -1506,6 +1506,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		List<String> pluginTypes = pluginPackage.getTypes();
 
 		String pluginType = pluginTypes.get(0);
+		StringBuilder sb;
 
 		if (!pluginType.equals(getPluginType())) {
 			return null;
@@ -1516,13 +1517,20 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		filterMap.put("author", pluginPackage.getAuthor());
 		filterMap.put("change_log", pluginPackage.getChangeLog());
 		filterMap.put(
-			"licenses",
-			getPluginPackageLicensesXml(pluginPackage.getLicenses()));
+				"licenses",
+				getPluginPackageLicensesXml(pluginPackage.getLicenses()));
 		filterMap.put(
-			"liferay_versions",
-			getPluginPackageLiferayVersionsXml(
-				pluginPackage.getLiferayVersions()));
-		filterMap.put("long_description", pluginPackage.getLongDescription());
+				"liferay_versions",
+				getPluginPackageLiferayVersionsXml(
+						pluginPackage.getLiferayVersions()));
+
+		sb = new StringBuilder(pluginPackage.getLongDescription());
+
+		sb.insert(0,"<![CDATA[");
+		sb.insert(sb.length(),"]]>");
+
+		filterMap.put("long_description", sb.toString());
+
 		filterMap.put("module_artifact_id", pluginPackage.getArtifactId());
 		filterMap.put("module_group_id", pluginPackage.getGroupId());
 		filterMap.put("module_version", pluginPackage.getVersion());
@@ -1539,7 +1547,14 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			"required_deployment_contexts",
 			getPluginPackageRequiredDeploymentContextsXml(
 				pluginPackage.getRequiredDeploymentContexts()));
-		filterMap.put("short_description", pluginPackage.getShortDescription());
+
+		sb = new StringBuilder(pluginPackage.getShortDescription());
+
+		sb.insert(0,"<![CDATA[");
+		sb.insert(sb.length(),"]]>");
+
+		filterMap.put("short_description", sb.toString());
+
 		filterMap.put("tags", getPluginPackageTagsXml(pluginPackage.getTags()));
 
 		return filterMap;

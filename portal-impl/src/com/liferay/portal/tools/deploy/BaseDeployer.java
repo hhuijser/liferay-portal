@@ -1513,6 +1513,18 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 
 		Map<String, String> filterMap = new HashMap<String, String>();
 
+		StringBundler longDescription = new StringBundler(3);
+
+		longDescription.append(StringPool.CDATA_OPEN);
+		longDescription.append(pluginPackage.getLongDescription());
+		longDescription.append(StringPool.CDATA_CLOSE);
+
+		StringBundler shortDescription = new StringBundler(3);
+
+		shortDescription.append(StringPool.CDATA_OPEN);
+		shortDescription.append(pluginPackage.getShortDescription());
+		shortDescription.append(StringPool.CDATA_CLOSE);
+
 		filterMap.put("author", pluginPackage.getAuthor());
 		filterMap.put("change_log", pluginPackage.getChangeLog());
 		filterMap.put(
@@ -1522,7 +1534,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			"liferay_versions",
 			getPluginPackageLiferayVersionsXml(
 				pluginPackage.getLiferayVersions()));
-		filterMap.put("long_description", pluginPackage.getLongDescription());
+		filterMap.put("long_description", longDescription.toString());
 		filterMap.put("module_artifact_id", pluginPackage.getArtifactId());
 		filterMap.put("module_group_id", pluginPackage.getGroupId());
 		filterMap.put("module_version", pluginPackage.getVersion());
@@ -1539,7 +1551,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			"required_deployment_contexts",
 			getPluginPackageRequiredDeploymentContextsXml(
 				pluginPackage.getRequiredDeploymentContexts()));
-		filterMap.put("short_description", pluginPackage.getShortDescription());
+		filterMap.put("short_description", shortDescription.toString());
 		filterMap.put("tags", getPluginPackageTagsXml(pluginPackage.getTags()));
 
 		return filterMap;

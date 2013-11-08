@@ -37,7 +37,7 @@ public class MBStatsUserCacheModel implements CacheModel<MBStatsUser>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{statsUserId=");
 		sb.append(statsUserId);
@@ -45,6 +45,8 @@ public class MBStatsUserCacheModel implements CacheModel<MBStatsUser>,
 		sb.append(groupId);
 		sb.append(", userId=");
 		sb.append(userId);
+		sb.append(", answerCount=");
+		sb.append(answerCount);
 		sb.append(", messageCount=");
 		sb.append(messageCount);
 		sb.append(", lastPostDate=");
@@ -61,6 +63,7 @@ public class MBStatsUserCacheModel implements CacheModel<MBStatsUser>,
 		mbStatsUserImpl.setStatsUserId(statsUserId);
 		mbStatsUserImpl.setGroupId(groupId);
 		mbStatsUserImpl.setUserId(userId);
+		mbStatsUserImpl.setAnswerCount(answerCount);
 		mbStatsUserImpl.setMessageCount(messageCount);
 
 		if (lastPostDate == Long.MIN_VALUE) {
@@ -80,6 +83,7 @@ public class MBStatsUserCacheModel implements CacheModel<MBStatsUser>,
 		statsUserId = objectInput.readLong();
 		groupId = objectInput.readLong();
 		userId = objectInput.readLong();
+		answerCount = objectInput.readInt();
 		messageCount = objectInput.readInt();
 		lastPostDate = objectInput.readLong();
 	}
@@ -90,6 +94,7 @@ public class MBStatsUserCacheModel implements CacheModel<MBStatsUser>,
 		objectOutput.writeLong(statsUserId);
 		objectOutput.writeLong(groupId);
 		objectOutput.writeLong(userId);
+		objectOutput.writeInt(answerCount);
 		objectOutput.writeInt(messageCount);
 		objectOutput.writeLong(lastPostDate);
 	}
@@ -97,6 +102,7 @@ public class MBStatsUserCacheModel implements CacheModel<MBStatsUser>,
 	public long statsUserId;
 	public long groupId;
 	public long userId;
+	public int answerCount;
 	public int messageCount;
 	public long lastPostDate;
 }

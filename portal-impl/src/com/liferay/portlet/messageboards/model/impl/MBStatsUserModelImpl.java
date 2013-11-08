@@ -62,10 +62,11 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 			{ "statsUserId", Types.BIGINT },
 			{ "groupId", Types.BIGINT },
 			{ "userId", Types.BIGINT },
+			{ "answerCount", Types.INTEGER },
 			{ "messageCount", Types.INTEGER },
 			{ "lastPostDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table MBStatsUser (statsUserId LONG not null primary key,groupId LONG,userId LONG,messageCount INTEGER,lastPostDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table MBStatsUser (statsUserId LONG not null primary key,groupId LONG,userId LONG,answerCount INTEGER,messageCount INTEGER,lastPostDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table MBStatsUser";
 	public static final String ORDER_BY_JPQL = " ORDER BY mbStatsUser.messageCount DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY MBStatsUser.messageCount DESC";
@@ -127,6 +128,7 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 		attributes.put("statsUserId", getStatsUserId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("userId", getUserId());
+		attributes.put("answerCount", getAnswerCount());
 		attributes.put("messageCount", getMessageCount());
 		attributes.put("lastPostDate", getLastPostDate());
 
@@ -151,6 +153,12 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 
 		if (userId != null) {
 			setUserId(userId);
+		}
+
+		Integer answerCount = (Integer)attributes.get("answerCount");
+
+		if (answerCount != null) {
+			setAnswerCount(answerCount);
 		}
 
 		Integer messageCount = (Integer)attributes.get("messageCount");
@@ -241,6 +249,16 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 	}
 
 	@Override
+	public int getAnswerCount() {
+		return _answerCount;
+	}
+
+	@Override
+	public void setAnswerCount(int answerCount) {
+		_answerCount = answerCount;
+	}
+
+	@Override
 	public int getMessageCount() {
 		return _messageCount;
 	}
@@ -306,6 +324,7 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 		mbStatsUserImpl.setStatsUserId(getStatsUserId());
 		mbStatsUserImpl.setGroupId(getGroupId());
 		mbStatsUserImpl.setUserId(getUserId());
+		mbStatsUserImpl.setAnswerCount(getAnswerCount());
 		mbStatsUserImpl.setMessageCount(getMessageCount());
 		mbStatsUserImpl.setLastPostDate(getLastPostDate());
 
@@ -393,6 +412,8 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 
 		mbStatsUserCacheModel.userId = getUserId();
 
+		mbStatsUserCacheModel.answerCount = getAnswerCount();
+
 		mbStatsUserCacheModel.messageCount = getMessageCount();
 
 		Date lastPostDate = getLastPostDate();
@@ -409,7 +430,7 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{statsUserId=");
 		sb.append(getStatsUserId());
@@ -417,6 +438,8 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 		sb.append(getGroupId());
 		sb.append(", userId=");
 		sb.append(getUserId());
+		sb.append(", answerCount=");
+		sb.append(getAnswerCount());
 		sb.append(", messageCount=");
 		sb.append(getMessageCount());
 		sb.append(", lastPostDate=");
@@ -428,7 +451,7 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("com.liferay.portlet.messageboards.model.MBStatsUser");
@@ -445,6 +468,10 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 		sb.append(
 			"<column><column-name>userId</column-name><column-value><![CDATA[");
 		sb.append(getUserId());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>answerCount</column-name><column-value><![CDATA[");
+		sb.append(getAnswerCount());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>messageCount</column-name><column-value><![CDATA[");
@@ -473,6 +500,7 @@ public class MBStatsUserModelImpl extends BaseModelImpl<MBStatsUser>
 	private String _userUuid;
 	private long _originalUserId;
 	private boolean _setOriginalUserId;
+	private int _answerCount;
 	private int _messageCount;
 	private int _originalMessageCount;
 	private boolean _setOriginalMessageCount;

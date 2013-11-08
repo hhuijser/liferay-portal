@@ -2112,6 +2112,7 @@
 		</id>
 		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="answerCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="messageCount" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="lastPostDate" type="org.hibernate.type.TimestampType" />
 	</class>

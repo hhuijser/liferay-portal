@@ -49,7 +49,7 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 						MBStatsUser statsUser = MBStatsUserLocalServiceUtil.getStatsUser(scopeGroupId, message.getUserId());
 
 						int posts = statsUser.getMessageCount();
-						String[] ranks = MBUtil.getUserRank(portletPreferences, themeDisplay.getLanguageId(), statsUser);
+						String[] ranks = MBUtil.getUserRank(portletPreferences, themeDisplay.getLanguageId(), statsUser, rankUsersByAnsweredThreads);
 						%>
 
 						<c:if test="<%= Validator.isNotNull(ranks[1]) %>">
@@ -59,6 +59,12 @@ MBThread thread = (MBThread)request.getAttribute("edit_message.jsp-thread");
 						<c:if test="<%= Validator.isNotNull(ranks[0]) %>">
 							<div class="thread-user-rank">
 								<span><liferay-ui:message key="rank" />:</span> <%= ranks[0] %>
+							</div>
+						</c:if>
+
+						<c:if test="<%= rankUsersByAnsweredThreads %>">
+							<div class="thread-user-answer-count">
+								<span><liferay-ui:message key="answered-threads" />:</span> <%= statsUser.getAnswerCount() %>
 							</div>
 						</c:if>
 

@@ -93,6 +93,8 @@ int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", Str
 String rssDisplayStyle = portletPreferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
 String rssFeedType = portletPreferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
 
+boolean rankUsersByAnsweredThreads = GetterUtil.getBoolean(portletPreferences.getValue("rankUsersByAnsweredThreads", null), false);
+
 ResourceURL rssURL = liferayPortletResponse.createResourceURL();
 
 rssURL.setParameter("struts_action", "/message_boards/rss");

@@ -275,6 +275,25 @@ public class MBStatsUserLocalServiceImpl
 		return statsUser;
 	}
 
+	@Override
+	public MBStatsUser updateStatsUserAnswerCount(
+			long groupId, long userId, boolean answer)
+		throws SystemException {
+
+		MBStatsUser statsUser = getStatsUser(groupId, userId);
+
+		if (answer) {
+			statsUser.setAnswerCount(statsUser.getAnswerCount() + 1);
+		}
+		else {
+			statsUser.setAnswerCount(statsUser.getAnswerCount() - 1);
+		}
+
+		mbStatsUserPersistence.update(statsUser);
+
+		return statsUser;
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
 		MBStatsUserLocalServiceImpl.class);
 

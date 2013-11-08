@@ -307,4 +307,8 @@ public interface MBStatsUserLocalService extends BaseLocalService,
 	public com.liferay.portlet.messageboards.model.MBStatsUser updateStatsUser(
 		long groupId, long userId, int messageCount, java.util.Date lastPostDate)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portlet.messageboards.model.MBStatsUser updateStatsUserAnswerCount(
+		long groupId, long userId, boolean answer)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

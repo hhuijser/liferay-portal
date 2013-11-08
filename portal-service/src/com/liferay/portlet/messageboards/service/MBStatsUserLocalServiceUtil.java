@@ -357,6 +357,12 @@ public class MBStatsUserLocalServiceUtil {
 				   .updateStatsUser(groupId, userId, messageCount, lastPostDate);
 	}
 
+	public static com.liferay.portlet.messageboards.model.MBStatsUser updateStatsUserAnswerCount(
+		long groupId, long userId, boolean answer)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateStatsUserAnswerCount(groupId, userId, answer);
+	}
+
 	public static MBStatsUserLocalService getService() {
 		if (_service == null) {
 			_service = (MBStatsUserLocalService)PortalBeanLocatorUtil.locate(MBStatsUserLocalService.class.getName());

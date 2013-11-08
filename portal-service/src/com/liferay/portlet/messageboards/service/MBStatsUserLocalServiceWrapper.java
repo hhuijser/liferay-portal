@@ -385,6 +385,14 @@ public class MBStatsUserLocalServiceWrapper implements MBStatsUserLocalService,
 			messageCount, lastPostDate);
 	}
 
+	@Override
+	public com.liferay.portlet.messageboards.model.MBStatsUser updateStatsUserAnswerCount(
+		long groupId, long userId, boolean answer)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mbStatsUserLocalService.updateStatsUserAnswerCount(groupId,
+			userId, answer);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

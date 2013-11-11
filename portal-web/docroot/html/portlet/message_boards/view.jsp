@@ -329,6 +329,16 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 					<dd>
 						<%= numberFormat.format(categoryDisplay.getAllCategoriesCount()) %>
 					</dd>
+
+					<c:if test="<%= rankUsersByAnsweredThreads %>">
+						<dt>
+							<liferay-ui:message key="num-of-answered-threads" />:
+						</dt>
+						<dd>
+							<%= numberFormat.format(MBStatsUserLocalServiceUtil.getAnsweredThreadCountByGroupId(scopeGroupId)) %>
+						</dd>
+					</c:if>
+
 					<dt>
 						<liferay-ui:message key="num-of-posts" />:
 					</dt>
@@ -344,14 +354,32 @@ request.setAttribute("view.jsp-portletURL", portletURL);
 				</dl>
 			</liferay-ui:panel>
 
-			<liferay-ui:panel collapsible="<%= true %>" cssClass="statistics-panel-content" extended="<%= true %>" id="messageBoardsTopPostersPanel" persistState="<%= true %>" title="top-posters">
+			<%
+			String emptyStatisticsResultsMessage = null;
+			String statisticsResultsTitle = null;
+
+			OrderByComparator obc = null;
+
+			if (rankUsersByAnsweredThreads) {
+				emptyStatisticsResultsMessage = "there-are-no-top-answerers";
+				statisticsResultsTitle = "top-answerers";
+
+				obc = new AnsweredThreadComparator();
+			}
+			else {
+				emptyStatisticsResultsMessage = "there-are-no-top-posters";
+				statisticsResultsTitle = "top-posters";
+			}
+			%>
+
+			<liferay-ui:panel collapsible="<%= true %>" cssClass="statistics-panel-content" extended="<%= true %>" id="messageBoardsTopPostersPanel" persistState="<%= true %>" title="<%= statisticsResultsTitle %>">
 				<liferay-ui:search-container
-					emptyResultsMessage="there-are-no-top-posters"
+					emptyResultsMessage="<%= emptyStatisticsResultsMessage %>"
 					iteratorURL="<%= portletURL %>"
 					total="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupIdCount(scopeGroupId) %>"
 				>
 					<liferay-ui:search-container-results
-						results="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd()) %>"
+						results="<%= MBStatsUserLocalServiceUtil.getStatsUsersByGroupId(scopeGroupId, searchContainer.getStart(), searchContainer.getEnd(), obc) %>"
 					/>
 
 					<liferay-ui:search-container-row

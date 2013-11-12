@@ -2931,6 +2931,7 @@
 			<id name="statsUserId" />
 			<basic name="groupId" />
 			<basic name="userId" />
+			<basic name="answerCount" />
 			<basic name="messageCount" />
 			<basic name="lastPostDate">
 				<temporal>TIMESTAMP</temporal>

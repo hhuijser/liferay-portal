@@ -322,6 +322,18 @@ public class MBStatsUserLocalServiceWrapper implements MBStatsUserLocalService,
 	}
 
 	@Override
+	public long getAnsweredThreadCountByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mbStatsUserLocalService.getAnsweredThreadCountByGroupId(groupId);
+	}
+
+	@Override
+	public long getAnsweredThreadCountByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mbStatsUserLocalService.getAnsweredThreadCountByUserId(userId);
+	}
+
+	@Override
 	public long getMessageCountByGroupId(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _mbStatsUserLocalService.getMessageCountByGroupId(groupId);
@@ -347,6 +359,16 @@ public class MBStatsUserLocalServiceWrapper implements MBStatsUserLocalService,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _mbStatsUserLocalService.getStatsUsersByGroupId(groupId, start,
 			end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.portlet.messageboards.model.MBStatsUser> getStatsUsersByGroupId(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _mbStatsUserLocalService.getStatsUsersByGroupId(groupId, start,
+			end, orderByComparator);
 	}
 
 	@Override
@@ -383,6 +405,14 @@ public class MBStatsUserLocalServiceWrapper implements MBStatsUserLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _mbStatsUserLocalService.updateStatsUser(groupId, userId,
 			messageCount, lastPostDate);
+	}
+
+	@Override
+	public com.liferay.portlet.messageboards.model.MBStatsUser updateStatsUserAnswerCount(
+		long groupId, long userId, boolean answer)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mbStatsUserLocalService.updateStatsUserAnswerCount(groupId,
+			userId, answer);
 	}
 
 	/**

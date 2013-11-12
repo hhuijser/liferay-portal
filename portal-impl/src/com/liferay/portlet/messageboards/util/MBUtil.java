@@ -774,14 +774,26 @@ public class MBUtil {
 		return rank;
 	}
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #getUserRank(
+	 *             PortletPreferences, String, MBStatsUser, boolean)}
+	 */
 	public static String[] getUserRank(
 			PortletPreferences preferences, String languageId,
 			MBStatsUser statsUser)
 		throws Exception {
 
+		return getUserRank(preferences, languageId, statsUser, false);
+	}
+
+	public static String[] getUserRank(
+			PortletPreferences preferences, String languageId,
+			MBStatsUser statsUser, boolean answeredThreads)
+		throws Exception {
+
 		String[] rank = {StringPool.BLANK, StringPool.BLANK};
 
-		int maxPosts = 0;
+		int maxRankCount = 0;
 
 		Group group = GroupLocalServiceUtil.getGroup(statsUser.getGroupId());
 
@@ -789,6 +801,15 @@ public class MBUtil {
 
 		String[] ranks = LocalizationUtil.getPreferencesValues(
 			preferences, "ranks", languageId);
+
+		int userRankCount = 0;
+
+		if (answeredThreads) {
+			userRankCount = statsUser.getAnswerCount();
+		}
+		else {
+			userRankCount = statsUser.getMessageCount();
+		}
 
 		for (int i = 0; i < ranks.length; i++) {
 			String[] kvp = StringUtil.split(ranks[i], CharPool.EQUAL);
@@ -800,13 +821,13 @@ public class MBUtil {
 				curRankValue, CharPool.COLON);
 
 			if (curRankValueKvp.length <= 1) {
-				int posts = GetterUtil.getInteger(curRankValue);
+				int rankCount = GetterUtil.getInteger(curRankValue);
 
-				if ((posts <= statsUser.getMessageCount()) &&
-					(posts >= maxPosts)) {
+				if ((rankCount <= userRankCount) &&
+					(rankCount >= maxRankCount)) {
 
 					rank[0] = curRank;
-					maxPosts = posts;
+					maxRankCount = rankCount;
 				}
 			}
 			else {

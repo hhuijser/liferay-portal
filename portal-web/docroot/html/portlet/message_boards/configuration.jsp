@@ -597,6 +597,8 @@ String emailSignature = PrefsParamUtil.getString(portletPreferences, request, em
 				<liferay-ui:message key="enter-rank-and-minimum-post-pairs-per-line" />
 			</div>
 
+			<aui:input name="preferences--rankUsersByAnsweredThreads--" type="checkbox" value="<%= rankUsersByAnsweredThreads %>" />
+
 			<aui:fieldset>
 				<table class="lfr-table">
 				<tr>

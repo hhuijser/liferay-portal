@@ -135,6 +135,20 @@ public interface MBStatsUserModel extends BaseModel<MBStatsUser> {
 	public void setUserUuid(String userUuid);
 
 	/**
+	 * Returns the answer count of this message boards stats user.
+	 *
+	 * @return the answer count of this message boards stats user
+	 */
+	public int getAnswerCount();
+
+	/**
+	 * Sets the answer count of this message boards stats user.
+	 *
+	 * @param answerCount the answer count of this message boards stats user
+	 */
+	public void setAnswerCount(int answerCount);
+
+	/**
 	 * Returns the message count of this message boards stats user.
 	 *
 	 * @return the message count of this message boards stats user

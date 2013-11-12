@@ -1225,6 +1225,7 @@ create table MBStatsUser (
 	statsUserId LONG not null primary key,
 	groupId LONG,
 	userId LONG,
+	answerCount INTEGER,
 	messageCount INTEGER,
 	lastPostDate DATE null
 );

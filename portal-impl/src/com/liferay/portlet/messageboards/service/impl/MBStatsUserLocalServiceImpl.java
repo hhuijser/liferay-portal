@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.util.ClassLoaderUtil;
@@ -109,6 +110,56 @@ public class MBStatsUserLocalServiceImpl
 		for (MBStatsUser statsUser : statsUsers) {
 			deleteStatsUser(statsUser);
 		}
+	}
+
+	@Override
+	public long getAnsweredThreadCountByGroupId(long groupId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+				MBStatsUser.class, MBStatsUserImpl.TABLE_NAME,
+				ClassLoaderUtil.getPortalClassLoader());
+
+		Projection projection = ProjectionFactoryUtil.sum("answerCount");
+
+		dynamicQuery.setProjection(projection);
+
+		Property property = PropertyFactoryUtil.forName("groupId");
+
+		dynamicQuery.add(property.eq(groupId));
+
+		List<Long> results = mbStatsUserLocalService.dynamicQuery(dynamicQuery);
+
+		if (results.get(0) == null) {
+			return 0;
+		}
+
+		return results.get(0);
+	}
+
+	@Override
+	public long getAnsweredThreadCountByUserId(long userId)
+		throws SystemException {
+
+		DynamicQuery dynamicQuery = DynamicQueryFactoryUtil.forClass(
+				MBStatsUser.class, MBStatsUserImpl.TABLE_NAME,
+				ClassLoaderUtil.getPortalClassLoader());
+
+		Projection projection = ProjectionFactoryUtil.sum("answerCount");
+
+		dynamicQuery.setProjection(projection);
+
+		Property property = PropertyFactoryUtil.forName("userId");
+
+		dynamicQuery.add(property.eq(userId));
+
+		List<Long> results = mbStatsUserLocalService.dynamicQuery(dynamicQuery);
+
+		if (results.get(0) == null) {
+			return 0;
+		}
+
+		return results.get(0);
 	}
 
 	@Override
@@ -219,6 +270,21 @@ public class MBStatsUserLocalServiceImpl
 	}
 
 	@Override
+	public List<MBStatsUser> getStatsUsersByGroupId(
+			long groupId, int start, int end,
+			OrderByComparator orderByComparator)
+		throws PortalException, SystemException {
+
+		Group group = groupPersistence.findByPrimaryKey(groupId);
+
+		long defaultUserId = userLocalService.getDefaultUserId(
+			group.getCompanyId());
+
+		return mbStatsUserPersistence.findByG_NotU_NotM(
+			groupId, defaultUserId, 0, start, end, orderByComparator);
+	}
+
+	@Override
 	public int getStatsUsersByGroupIdCount(long groupId)
 		throws PortalException, SystemException {
 
@@ -268,6 +334,25 @@ public class MBStatsUserLocalServiceImpl
 
 		if (lastPostDate != null) {
 			statsUser.setLastPostDate(lastPostDate);
+		}
+
+		mbStatsUserPersistence.update(statsUser);
+
+		return statsUser;
+	}
+
+	@Override
+	public MBStatsUser updateStatsUserAnswerCount(
+			long groupId, long userId, boolean answer)
+		throws SystemException {
+
+		MBStatsUser statsUser = getStatsUser(groupId, userId);
+
+		if (answer) {
+			statsUser.setAnswerCount(statsUser.getAnswerCount() + 1);
+		}
+		else {
+			statsUser.setAnswerCount(statsUser.getAnswerCount() - 1);
 		}
 
 		mbStatsUserPersistence.update(statsUser);

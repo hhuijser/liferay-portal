@@ -118,6 +118,8 @@ public class MBStatsUserPersistenceTest {
 
 		newMBStatsUser.setUserId(ServiceTestUtil.nextLong());
 
+		newMBStatsUser.setAnswerCount(ServiceTestUtil.nextInt());
+
 		newMBStatsUser.setMessageCount(ServiceTestUtil.nextInt());
 
 		newMBStatsUser.setLastPostDate(ServiceTestUtil.nextDate());
@@ -132,6 +134,8 @@ public class MBStatsUserPersistenceTest {
 			newMBStatsUser.getGroupId());
 		Assert.assertEquals(existingMBStatsUser.getUserId(),
 			newMBStatsUser.getUserId());
+		Assert.assertEquals(existingMBStatsUser.getAnswerCount(),
+			newMBStatsUser.getAnswerCount());
 		Assert.assertEquals(existingMBStatsUser.getMessageCount(),
 			newMBStatsUser.getMessageCount());
 		Assert.assertEquals(Time.getShortTimestamp(
@@ -175,7 +179,7 @@ public class MBStatsUserPersistenceTest {
 	protected OrderByComparator getOrderByComparator() {
 		return OrderByComparatorFactoryUtil.create("MBStatsUser",
 			"statsUserId", true, "groupId", true, "userId", true,
-			"messageCount", true, "lastPostDate", true);
+			"answerCount", true, "messageCount", true, "lastPostDate", true);
 	}
 
 	@Test
@@ -314,6 +318,8 @@ public class MBStatsUserPersistenceTest {
 		mbStatsUser.setGroupId(ServiceTestUtil.nextLong());
 
 		mbStatsUser.setUserId(ServiceTestUtil.nextLong());
+
+		mbStatsUser.setAnswerCount(ServiceTestUtil.nextInt());
 
 		mbStatsUser.setMessageCount(ServiceTestUtil.nextInt());
 

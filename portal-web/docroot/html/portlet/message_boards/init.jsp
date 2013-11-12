@@ -64,6 +64,7 @@ page import="com.liferay.portlet.messageboards.service.permission.MBMessagePermi
 page import="com.liferay.portlet.messageboards.service.permission.MBPermission" %><%@
 page import="com.liferay.portlet.messageboards.util.MBMessageAttachmentsUtil" %><%@
 page import="com.liferay.portlet.messageboards.util.MBUtil" %><%@
+page import="com.liferay.portlet.messageboards.util.comparator.AnsweredThreadComparator" %><%@
 page import="com.liferay.portlet.messageboards.util.comparator.MessageCreateDateComparator" %><%@
 page import="com.liferay.portlet.ratings.model.RatingsStats" %><%@
 page import="com.liferay.portlet.ratings.service.RatingsStatsLocalServiceUtil" %><%@
@@ -92,6 +93,8 @@ boolean enableRSS = !PortalUtil.isRSSFeedsEnabled() ? false : GetterUtil.getBool
 int rssDelta = GetterUtil.getInteger(portletPreferences.getValue("rssDelta", StringPool.BLANK), SearchContainer.DEFAULT_DELTA);
 String rssDisplayStyle = portletPreferences.getValue("rssDisplayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
 String rssFeedType = portletPreferences.getValue("rssFeedType", RSSUtil.FEED_TYPE_DEFAULT);
+
+boolean rankUsersByAnsweredThreads = GetterUtil.getBoolean(portletPreferences.getValue("rankUsersByAnsweredThreads", null), false);
 
 ResourceURL rssURL = liferayPortletResponse.createResourceURL();
 

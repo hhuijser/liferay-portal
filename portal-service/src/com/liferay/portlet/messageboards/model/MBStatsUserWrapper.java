@@ -56,6 +56,7 @@ public class MBStatsUserWrapper implements MBStatsUser,
 		attributes.put("statsUserId", getStatsUserId());
 		attributes.put("groupId", getGroupId());
 		attributes.put("userId", getUserId());
+		attributes.put("answerCount", getAnswerCount());
 		attributes.put("messageCount", getMessageCount());
 		attributes.put("lastPostDate", getLastPostDate());
 
@@ -80,6 +81,12 @@ public class MBStatsUserWrapper implements MBStatsUser,
 
 		if (userId != null) {
 			setUserId(userId);
+		}
+
+		Integer answerCount = (Integer)attributes.get("answerCount");
+
+		if (answerCount != null) {
+			setAnswerCount(answerCount);
 		}
 
 		Integer messageCount = (Integer)attributes.get("messageCount");
@@ -217,6 +224,26 @@ public class MBStatsUserWrapper implements MBStatsUser,
 	@Override
 	public void setUserUuid(java.lang.String userUuid) {
 		_mbStatsUser.setUserUuid(userUuid);
+	}
+
+	/**
+	* Returns the answer count of this message boards stats user.
+	*
+	* @return the answer count of this message boards stats user
+	*/
+	@Override
+	public int getAnswerCount() {
+		return _mbStatsUser.getAnswerCount();
+	}
+
+	/**
+	* Sets the answer count of this message boards stats user.
+	*
+	* @param answerCount the answer count of this message boards stats user
+	*/
+	@Override
+	public void setAnswerCount(int answerCount) {
+		_mbStatsUser.setAnswerCount(answerCount);
 	}
 
 	/**

@@ -2075,6 +2075,7 @@
 		<field name="statsUserId" type="long" />
 		<field name="groupId" type="long" />
 		<field name="userId" type="long" />
+		<field name="answerCount" type="int" />
 		<field name="messageCount" type="int" />
 		<field name="lastPostDate" type="Date" />
 	</model>

@@ -33,6 +33,7 @@ public class MBStatsUserSoap implements Serializable {
 		soapModel.setStatsUserId(model.getStatsUserId());
 		soapModel.setGroupId(model.getGroupId());
 		soapModel.setUserId(model.getUserId());
+		soapModel.setAnswerCount(model.getAnswerCount());
 		soapModel.setMessageCount(model.getMessageCount());
 		soapModel.setLastPostDate(model.getLastPostDate());
 
@@ -111,6 +112,14 @@ public class MBStatsUserSoap implements Serializable {
 		_userId = userId;
 	}
 
+	public int getAnswerCount() {
+		return _answerCount;
+	}
+
+	public void setAnswerCount(int answerCount) {
+		_answerCount = answerCount;
+	}
+
 	public int getMessageCount() {
 		return _messageCount;
 	}
@@ -130,6 +139,7 @@ public class MBStatsUserSoap implements Serializable {
 	private long _statsUserId;
 	private long _groupId;
 	private long _userId;
+	private int _answerCount;
 	private int _messageCount;
 	private Date _lastPostDate;
 }

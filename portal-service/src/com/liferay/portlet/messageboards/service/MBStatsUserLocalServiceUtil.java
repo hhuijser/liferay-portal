@@ -304,6 +304,16 @@ public class MBStatsUserLocalServiceUtil {
 		return getService().getLastPostDateByUserId(groupId, userId);
 	}
 
+	public static long getAnsweredThreadCountByGroupId(long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAnsweredThreadCountByGroupId(groupId);
+	}
+
+	public static long getAnsweredThreadCountByUserId(long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getAnsweredThreadCountByUserId(userId);
+	}
+
 	public static long getMessageCountByGroupId(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getMessageCountByGroupId(groupId);
@@ -325,6 +335,16 @@ public class MBStatsUserLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getStatsUsersByGroupId(groupId, start, end);
+	}
+
+	public static java.util.List<com.liferay.portlet.messageboards.model.MBStatsUser> getStatsUsersByGroupId(
+		long groupId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator orderByComparator)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .getStatsUsersByGroupId(groupId, start, end,
+			orderByComparator);
 	}
 
 	public static int getStatsUsersByGroupIdCount(long groupId)
@@ -355,6 +375,12 @@ public class MBStatsUserLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .updateStatsUser(groupId, userId, messageCount, lastPostDate);
+	}
+
+	public static com.liferay.portlet.messageboards.model.MBStatsUser updateStatsUserAnswerCount(
+		long groupId, long userId, boolean answer)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().updateStatsUserAnswerCount(groupId, userId, answer);
 	}
 
 	public static MBStatsUserLocalService getService() {

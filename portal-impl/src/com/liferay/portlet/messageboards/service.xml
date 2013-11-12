@@ -392,6 +392,7 @@
 
 		<!-- Other fields -->
 
+		<column name="answerCount" type="int" />
 		<column name="messageCount" type="int" />
 		<column name="lastPostDate" type="Date" />
 

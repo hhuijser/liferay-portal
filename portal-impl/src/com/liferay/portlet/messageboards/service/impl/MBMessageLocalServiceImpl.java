@@ -1393,6 +1393,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			message.setAnswer(answer);
 
 			mbMessagePersistence.update(message);
+
+			mbStatsUserLocalService.updateStatsUserAnswerCount(
+				message.getGroupId(), message.getUserId(), answer);
 		}
 
 		if (cascade) {

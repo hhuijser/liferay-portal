@@ -26,6 +26,11 @@ import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceTestUtil;
 import com.liferay.portal.test.EnvironmentExecutionTestListener;
@@ -34,12 +39,17 @@ import com.liferay.portal.test.Sync;
 import com.liferay.portal.test.SynchronousDestinationExecutionTestListener;
 import com.liferay.portal.test.TransactionalExecutionTestListener;
 import com.liferay.portal.util.GroupTestUtil;
+import com.liferay.portal.util.RoleTestUtil;
+import com.liferay.portal.util.TestPropsValues;
+import com.liferay.portal.util.UserTestUtil;
 import com.liferay.portlet.bookmarks.model.BookmarksEntry;
 import com.liferay.portlet.bookmarks.model.BookmarksFolder;
+import com.liferay.portlet.bookmarks.service.permission.BookmarksPermission;
 import com.liferay.portlet.bookmarks.util.BookmarksTestUtil;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,6 +72,19 @@ public class BookmarksFolderServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
+
+		RoleTestUtil.addResourcePermission(
+			RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		RoleTestUtil.removeResourcePermission(
+			RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
 	}
 
 	@Test
@@ -94,6 +117,18 @@ public class BookmarksFolderServiceTest {
 			_group.getGroupId(), ServiceTestUtil.randomString());
 
 		BookmarksFolderServiceUtil.getFolder(folder.getFolderId());
+	}
+
+	@Test
+	@Transactional(enabled = false)
+	public void testGetFolderWithoutRootPermission() throws Exception {
+		checkFolderRootPermission(false);
+	}
+
+	@Test
+	@Transactional(enabled = false)
+	public void testGetFolderWithRootPermission() throws Exception {
+		checkFolderRootPermission(true);
 	}
 
 	@Test
@@ -221,6 +256,65 @@ public class BookmarksFolderServiceTest {
 		Document[] documents = hits.getDocs();
 
 		Assert.assertEquals(2, documents.length);
+	}
+
+	protected void checkFolderRootPermission(boolean hasRootPermission)
+		throws Exception {
+
+		User user = UserTestUtil.addUser();
+
+		ServiceContext serviceContext = ServiceTestUtil.getServiceContext(
+			_group.getGroupId());
+
+		BookmarksFolder folder = BookmarksTestUtil.addFolder(
+			_group.getGroupId(), "Test Folder");
+
+		BookmarksFolder subfolder = BookmarksTestUtil.addFolder(
+			folder.getFolderId(), "Test Subfolder", serviceContext);
+
+		ServiceTestUtil.setUser(user);
+
+		if (!hasRootPermission) {
+			RoleTestUtil.removeResourcePermission(
+				RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		try {
+			BookmarksFolderServiceUtil.getFolder(folder.getFolderId());
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get folder");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get folder");
+			}
+		}
+
+		try {
+			BookmarksFolderServiceUtil.getFolder(subfolder.getFolderId());
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get subfolder");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get subfolder");
+			}
+		}
+
+		if (!hasRootPermission) {
+			RoleTestUtil.addResourcePermission(
+				RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		ServiceTestUtil.setUser(TestPropsValues.getUser());
 	}
 
 	private Group _group;

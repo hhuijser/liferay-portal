@@ -18,6 +18,10 @@ import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.DoAsUserThread;
 import com.liferay.portal.service.ServiceContext;
@@ -27,16 +31,22 @@ import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
 import com.liferay.portal.test.MainServletExecutionTestListener;
 import com.liferay.portal.test.TransactionalCallbackAwareExecutionTestListener;
 import com.liferay.portal.util.GroupTestUtil;
+import com.liferay.portal.util.RoleTestUtil;
+import com.liferay.portal.util.TestPropsValues;
 import com.liferay.portal.util.UserTestUtil;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBCategoryConstants;
+import com.liferay.portlet.messageboards.model.MBMessage;
 import com.liferay.portlet.messageboards.model.MBMessageConstants;
+import com.liferay.portlet.messageboards.service.permission.MBPermission;
+import com.liferay.portlet.messageboards.util.MBTestUtil;
 
 import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -100,6 +110,19 @@ public class MBMessageServiceTest {
 			outPassword, allowAnonymous, mailingListActive, serviceContext);
 
 		_userIds = UserLocalServiceUtil.getGroupUserIds(_group.getGroupId());
+
+		RoleTestUtil.addResourcePermission(
+			RoleConstants.POWER_USER, MBPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		RoleTestUtil.removeResourcePermission(
+			RoleConstants.POWER_USER, MBPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
 	}
 
 	@Test
@@ -132,6 +155,75 @@ public class MBMessageServiceTest {
 			"Only " + successCount + " out of " + _userIds.length +
 				" threads added messages successfully",
 			successCount == _userIds.length);
+	}
+
+	@Test
+	public void testGetMessageWithoutRootPermission() throws Exception {
+		checkMessageRootPermission(false);
+	}
+
+	@Test
+	public void testGetMessageWithRootPermission() throws Exception {
+		checkMessageRootPermission(true);
+	}
+
+	protected void checkMessageRootPermission(boolean hasRootPermission)
+		throws Exception {
+
+		User user = UserTestUtil.addUser();
+
+		MBMessage message = MBTestUtil.addMessage(_group.getGroupId());
+
+		MBMessage submessage = MBTestUtil.addMessage(
+			_group.getGroupId(), _category.getCategoryId());
+
+		if (!hasRootPermission) {
+			RoleTestUtil.removeResourcePermission(
+				RoleConstants.POWER_USER, MBPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		ServiceTestUtil.setUser(user);
+
+		try {
+			MBMessageServiceUtil.getMessage(message.getMessageId());
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get message");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get message");
+			}
+		}
+
+		try {
+			MBMessageServiceUtil.getMessage(submessage.getMessageId());
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get submessage");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get submessage");
+			}
+		}
+
+		if (!hasRootPermission) {
+			RoleTestUtil.addResourcePermission(
+				RoleConstants.POWER_USER, MBPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		ServiceTestUtil.setUser(TestPropsValues.getUser());
+
+		MBMessageServiceUtil.deleteMessage(message.getMessageId());
+
+		MBMessageServiceUtil.deleteMessage(submessage.getMessageId());
 	}
 
 	private MBCategory _category;

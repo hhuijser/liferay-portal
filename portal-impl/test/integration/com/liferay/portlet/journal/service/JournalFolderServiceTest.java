@@ -18,17 +18,29 @@ import com.liferay.portal.kernel.dao.orm.FinderCacheUtil;
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
+import com.liferay.portal.service.ServiceTestUtil;
 import com.liferay.portal.test.EnvironmentExecutionTestListener;
 import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
 import com.liferay.portal.test.Sync;
 import com.liferay.portal.test.SynchronousDestinationExecutionTestListener;
 import com.liferay.portal.test.TransactionalExecutionTestListener;
 import com.liferay.portal.util.GroupTestUtil;
+import com.liferay.portal.util.RoleTestUtil;
+import com.liferay.portal.util.TestPropsValues;
+import com.liferay.portal.util.UserTestUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalFolder;
+import com.liferay.portlet.journal.model.JournalFolderConstants;
+import com.liferay.portlet.journal.service.permission.JournalPermission;
 import com.liferay.portlet.journal.util.JournalTestUtil;
 
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -49,8 +61,23 @@ import org.junit.runner.RunWith;
 public class JournalFolderServiceTest {
 
 	@Before
-	public void setUp() {
+	public void setUp() throws Exception {
 		FinderCacheUtil.clearCache();
+
+		_group = GroupTestUtil.addGroup();
+
+		RoleTestUtil.addResourcePermission(
+			RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		RoleTestUtil.removeResourcePermission(
+			RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
 	}
 
 	@Test
@@ -68,6 +95,16 @@ public class JournalFolderServiceTest {
 
 		JournalFolderLocalServiceUtil.deleteFolder(folder);
 		GroupLocalServiceUtil.deleteGroup(group);
+	}
+
+	@Test
+	public void testGetFolderWithoutRootPermission() throws Exception {
+		checkFolderRootPermission(false);
+	}
+
+	@Test
+	public void testGetFolderWithRootPermission() throws Exception {
+		checkFolderRootPermission(true);
 	}
 
 	@Test
@@ -94,5 +131,69 @@ public class JournalFolderServiceTest {
 		Assert.assertEquals(
 			folder11.getFolderId(), folder111.getParentFolderId());
 	}
+
+	protected void checkFolderRootPermission(boolean hasRootPermission)
+		throws Exception {
+
+		User user = UserTestUtil.addUser();
+
+		if (!hasRootPermission) {
+			RoleTestUtil.removeResourcePermission(
+				RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		JournalFolder folder = JournalTestUtil.addFolder(
+			_group.getGroupId(),
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Test Folder");
+
+		JournalFolder subfolder = JournalTestUtil.addFolder(
+			_group.getGroupId(),
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Test SubFolder");
+
+		ServiceTestUtil.setUser(user);
+
+		try {
+			JournalFolderServiceUtil.getFolder(folder.getFolderId());
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get folder");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get folder");
+			}
+		}
+
+		try {
+			JournalFolderServiceUtil.getFolder(subfolder.getFolderId());
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get subfolder");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get subfolder");
+			}
+		}
+
+		if (!hasRootPermission) {
+			RoleTestUtil.addResourcePermission(
+				RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		ServiceTestUtil.setUser(TestPropsValues.getUser());
+
+		JournalFolderLocalServiceUtil.deleteFolder(subfolder.getFolderId());
+
+		JournalFolderLocalServiceUtil.deleteFolder(folder.getFolderId());
+	}
+
+	private Group _group;
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.bookmarks.service;
+package com.liferay.portlet.shopping.service;
 
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.transaction.Transactional;
@@ -22,19 +22,17 @@ import com.liferay.portal.model.RoleConstants;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.permission.ActionKeys;
-import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceTestUtil;
-import com.liferay.portal.test.EnvironmentExecutionTestListener;
 import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
+import com.liferay.portal.test.MainServletExecutionTestListener;
 import com.liferay.portal.test.TransactionalCallbackAwareExecutionTestListener;
 import com.liferay.portal.util.GroupTestUtil;
 import com.liferay.portal.util.RoleTestUtil;
 import com.liferay.portal.util.TestPropsValues;
 import com.liferay.portal.util.UserTestUtil;
-import com.liferay.portlet.bookmarks.model.BookmarksEntry;
-import com.liferay.portlet.bookmarks.model.BookmarksFolder;
-import com.liferay.portlet.bookmarks.service.permission.BookmarksPermission;
-import com.liferay.portlet.bookmarks.util.BookmarksTestUtil;
+import com.liferay.portlet.shopping.model.ShoppingCategory;
+import com.liferay.portlet.shopping.service.permission.ShoppingPermission;
+import com.liferay.portlet.shopping.util.ShoppingTestUtil;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -43,131 +41,111 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Eric Chin
  */
 @ExecutionTestListeners(
 	listeners = {
-		EnvironmentExecutionTestListener.class,
+		MainServletExecutionTestListener.class,
 		TransactionalCallbackAwareExecutionTestListener.class
 	})
 @RunWith(LiferayIntegrationJUnitTestRunner.class)
 @Transactional
-public class BookmarksEntryServiceTest {
+public class ShoppingCategoryServiceTest {
 
 	@Before
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		_entry = BookmarksTestUtil.addEntry(_group.getGroupId(), true);
-
-		_folder = BookmarksTestUtil.addFolder(
-			_group.getGroupId(), "Test Folder Permission");
+		_category = ShoppingTestUtil.addCategory(_group.getGroupId());
 
 		RoleTestUtil.addResourcePermission(
-			RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+			RoleConstants.POWER_USER, ShoppingPermission.RESOURCE_NAME,
 			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
 			ActionKeys.VIEW);
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		ShoppingCategoryLocalServiceUtil.deleteCategory(
+			_category.getCategoryId());
+
 		RoleTestUtil.removeResourcePermission(
-			RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+			RoleConstants.POWER_USER, ShoppingPermission.RESOURCE_NAME,
 			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
 			ActionKeys.VIEW);
 	}
 
 	@Test
-	public void testAddEntry() throws Exception {
-		BookmarksTestUtil.addEntry(_group.getGroupId(), true);
+	public void testGetShoppingCategoryWithoutRootPermission()
+		throws Exception {
+
+		checkShoppingCategoryRootPermission(false);
 	}
 
 	@Test
-	public void testDeleteEntry() throws Exception {
-		BookmarksEntry entry = BookmarksTestUtil.addEntry(
-			_group.getGroupId(), true);
-
-		BookmarksEntryServiceUtil.deleteEntry(entry.getEntryId());
+	public void testGetShoppingCategoryWithRootPermission() throws Exception {
+		checkShoppingCategoryRootPermission(true);
 	}
 
-	@Test
-	public void testGetEntry() throws Exception {
-		BookmarksEntry entry = BookmarksTestUtil.addEntry(
-			_group.getGroupId(), true);
-
-		BookmarksEntryServiceUtil.getEntry(entry.getEntryId());
-	}
-
-	@Test
-	@Transactional(enabled = false)
-	public void testGetEntryWithoutRootPermission() throws Exception {
-		checkEntryRootPermission(false);
-	}
-
-	@Test
-	@Transactional(enabled = false)
-	public void testGetEntryWithRootPermission() throws Exception {
-		checkEntryRootPermission(false);
-	}
-
-	protected void checkEntryRootPermission(boolean hasRootPermission)
+	protected void checkShoppingCategoryRootPermission(
+			boolean hasRootPermission)
 		throws Exception {
 
 		User user = UserTestUtil.addUser();
 
-		ServiceContext serviceContext = ServiceTestUtil.getServiceContext(
-			_group.getGroupId());
-
-		BookmarksEntry subentry = BookmarksTestUtil.addEntry(
-			_folder.getFolderId(), true, serviceContext);
+		ShoppingCategory subcategory = ShoppingTestUtil.addCategory(
+			"Test Subcategory", _group.getGroupId(), _category.getCategoryId());
 
 		ServiceTestUtil.setUser(user);
 
 		if (!hasRootPermission) {
 			RoleTestUtil.removeResourcePermission(
-				RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+				RoleConstants.POWER_USER, ShoppingPermission.RESOURCE_NAME,
 				ResourceConstants.SCOPE_GROUP,
 				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
 		}
 
 		try {
-			BookmarksEntryServiceUtil.getEntry(_entry.getEntryId());
+			ShoppingCategoryServiceUtil.getCategory(_category.getCategoryId());
 
 			if (!hasRootPermission) {
-				Assert.fail("User is able to get entry");
+				Assert.fail("User is able to get category");
 			}
 		}
 		catch (PrincipalException pe) {
 			if (hasRootPermission) {
-				Assert.fail("User is unable to get entry");
+				Assert.fail("User is unable to get category");
 			}
 		}
 
 		try {
-			BookmarksEntryServiceUtil.getEntry(subentry.getEntryId());
+			ShoppingCategoryServiceUtil.getCategory(
+				subcategory.getCategoryId());
 
 			if (!hasRootPermission) {
-				Assert.fail("User is able to get subentry");
+				Assert.fail("User is able to get subcategory");
 			}
 		}
 		catch (PrincipalException pe) {
 			if (hasRootPermission) {
-				Assert.fail("User is unable to get subentry");
+				Assert.fail("User is unable to get subcategory");
 			}
 		}
 
 		if (!hasRootPermission) {
 			RoleTestUtil.addResourcePermission(
-				RoleConstants.POWER_USER, BookmarksPermission.RESOURCE_NAME,
+				RoleConstants.POWER_USER, ShoppingPermission.RESOURCE_NAME,
 				ResourceConstants.SCOPE_GROUP,
 				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
 		}
 
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
+
+		ShoppingCategoryLocalServiceUtil.deleteCategory(
+			subcategory.getCategoryId());
 	}
 
-	private BookmarksEntry _entry;
-	private BookmarksFolder _folder;
+	private ShoppingCategory _category;
 	private Group _group;
 
 }

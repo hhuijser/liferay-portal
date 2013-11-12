@@ -22,16 +22,24 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.ResourceConstants;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
+import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceTestUtil;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.test.EnvironmentExecutionTestListener;
 import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
 import com.liferay.portal.test.Sync;
 import com.liferay.portal.test.SynchronousDestinationExecutionTestListener;
 import com.liferay.portal.test.TransactionalExecutionTestListener;
 import com.liferay.portal.util.GroupTestUtil;
+import com.liferay.portal.util.RoleTestUtil;
 import com.liferay.portal.util.TestPropsValues;
+import com.liferay.portal.util.UserTestUtil;
 import com.liferay.portlet.dynamicdatamapping.StorageFieldRequiredException;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
@@ -39,7 +47,9 @@ import com.liferay.portlet.dynamicdatamapping.util.DDMStructureTestUtil;
 import com.liferay.portlet.dynamicdatamapping.util.DDMTemplateTestUtil;
 import com.liferay.portlet.journal.model.JournalArticle;
 import com.liferay.portlet.journal.model.JournalArticleConstants;
+import com.liferay.portlet.journal.model.JournalFolder;
 import com.liferay.portlet.journal.model.JournalFolderConstants;
+import com.liferay.portlet.journal.service.permission.JournalPermission;
 import com.liferay.portlet.journal.util.JournalTestUtil;
 
 import java.io.InputStream;
@@ -80,6 +90,11 @@ public class JournalArticleServiceTest {
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID, "Version 1",
 			"This is a test article.");
+
+		RoleTestUtil.addResourcePermission(
+			RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
 	}
 
 	@After
@@ -88,6 +103,11 @@ public class JournalArticleServiceTest {
 			_group.getGroupId(), _article.getArticleId(), new ServiceContext());
 
 		GroupLocalServiceUtil.deleteGroup(_group);
+
+		RoleTestUtil.removeResourcePermission(
+			RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+			ResourceConstants.SCOPE_GROUP, String.valueOf(_group.getGroupId()),
+			ActionKeys.VIEW);
 	}
 
 	@Test
@@ -381,6 +401,16 @@ public class JournalArticleServiceTest {
 	}
 
 	@Test
+	public void testGetGroupArticleWithoutRootPermission() throws Exception {
+		checkGroupArticleRootPermission(false);
+	}
+
+	@Test
+	public void testGetGroupArticleWithRootPermission() throws Exception {
+		checkGroupArticleRootPermission(true);
+	}
+
+	@Test
 	public void testSearchArticlesByKeyword() throws Exception {
 		List<JournalArticle> expectedArticles = createArticlesWithKeyword(2);
 
@@ -438,6 +468,85 @@ public class JournalArticleServiceTest {
 		}
 
 		return articles;
+	}
+
+	protected void checkGroupArticleRootPermission(boolean hasRootPermission)
+		throws Exception {
+
+		JournalFolder folder = JournalTestUtil.addFolder(
+			_group.getGroupId(),
+			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
+			"Test Folder Permission");
+
+		JournalArticle article = JournalTestUtil.addArticle(
+			_group.getGroupId(), "Test Permission Article",
+			"Test Permission Article");
+
+		JournalArticle subarticle = JournalTestUtil.addArticle(
+			_group.getGroupId(), folder.getFolderId(), "Test sub article",
+			"Test sub article");
+
+		User user = UserTestUtil.addUser();
+
+		UserLocalServiceUtil.addGroupUser(_group.getGroupId(), user);
+
+		ServiceTestUtil.setUser(user);
+
+		if (!hasRootPermission) {
+			RoleTestUtil.removeResourcePermission(
+				RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		try {
+			JournalArticleServiceUtil.getLatestArticle(
+				_group.getGroupId(), article.getArticleId(),
+				WorkflowConstants.STATUS_ANY);
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get the article");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get the article");
+			}
+		}
+
+		try {
+			JournalArticleServiceUtil.getLatestArticle(
+				_group.getGroupId(), subarticle.getArticleId(),
+				WorkflowConstants.STATUS_ANY);
+
+			if (!hasRootPermission) {
+				Assert.fail("User is able to get sub article");
+			}
+		}
+		catch (PrincipalException pe) {
+			if (hasRootPermission) {
+				Assert.fail("User is unable to get sub article");
+			}
+		}
+
+		if (!hasRootPermission) {
+			RoleTestUtil.addResourcePermission(
+				RoleConstants.POWER_USER, JournalPermission.RESOURCE_NAME,
+				ResourceConstants.SCOPE_GROUP,
+				String.valueOf(_group.getGroupId()), ActionKeys.VIEW);
+		}
+
+		ServiceTestUtil.setUser(TestPropsValues.getUser());
+
+		JournalArticleLocalServiceUtil.deleteArticle(
+			_group.getGroupId(), article.getArticleId(),
+			ServiceTestUtil.getServiceContext());
+
+		JournalArticleLocalServiceUtil.deleteArticle(
+			_group.getGroupId(), subarticle.getArticleId(),
+			ServiceTestUtil.getServiceContext());
+
+		JournalFolderLocalServiceUtil.deleteFolder(folder.getFolderId());
 	}
 
 	protected int countArticlesByKeyword(String keyword, int status)

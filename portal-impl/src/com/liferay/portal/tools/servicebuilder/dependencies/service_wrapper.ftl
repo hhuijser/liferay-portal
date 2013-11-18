@@ -2,6 +2,7 @@ package ${packagePath}.service;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.service.ServiceWrapper;
 
 /**

@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.test.AssertUtils;
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.util.IntegerWrapper;
@@ -103,6 +104,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				<#if column_has_next>
@@ -122,6 +125,8 @@ public class ${entity.name}PersistenceTest {
 				ServiceTestUtil.nextLong()
 			<#elseif column.type == "String">
 				ServiceTestUtil.randomString()
+			<#elseif column.type == "Version">
+				Version.getInstance(ServiceTestUtil.randomString())
 			</#if>
 
 			;
@@ -162,6 +167,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				<#if column_has_next>
@@ -181,6 +188,8 @@ public class ${entity.name}PersistenceTest {
 				ServiceTestUtil.nextLong()
 			<#elseif column.type == "String">
 				ServiceTestUtil.randomString()
+			<#elseif column.type == "Version">
+				Version.getInstance(ServiceTestUtil.randomString())
 			</#if>
 
 			;
@@ -214,6 +223,8 @@ public class ${entity.name}PersistenceTest {
 					 new${column.methodName}Blob
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				);
@@ -260,6 +271,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				<#if column_has_next>
@@ -279,6 +292,8 @@ public class ${entity.name}PersistenceTest {
 				ServiceTestUtil.nextLong()
 			<#elseif column.type == "String">
 				ServiceTestUtil.randomString()
+			<#elseif column.type == "Version">
+				Version.getInstance(ServiceTestUtil.randomString())
 			</#if>
 
 			;
@@ -359,6 +374,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				<#if column_has_next>
@@ -378,6 +395,8 @@ public class ${entity.name}PersistenceTest {
 				ServiceTestUtil.nextLong()
 			<#elseif column.type == "String">
 				ServiceTestUtil.randomString()
+			<#elseif column.type == "Version">
+				Version.getInstance(ServiceTestUtil.randomString())
 			</#if>
 
 			;
@@ -451,6 +470,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				));
@@ -466,6 +487,8 @@ public class ${entity.name}PersistenceTest {
 				ServiceTestUtil.nextLong()
 			<#elseif column.type == "String">
 				ServiceTestUtil.randomString()
+			<#elseif column.type == "Version">
+				Version.getInstance(ServiceTestUtil.randomString())
 			</#if>
 
 			));
@@ -527,6 +550,8 @@ public class ${entity.name}PersistenceTest {
 			ServiceTestUtil.nextLong()
 		<#elseif column.type == "String">
 			ServiceTestUtil.randomString()
+		<#elseif column.type == "Version">
+			Version.getInstance(ServiceTestUtil.randomString())
 		</#if>
 
 		}));
@@ -578,6 +603,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				<#if column_has_next>
@@ -597,6 +624,8 @@ public class ${entity.name}PersistenceTest {
 				ServiceTestUtil.nextLong()
 			<#elseif column.type == "String">
 				ServiceTestUtil.randomString()
+			<#elseif column.type == "Version">
+				Version.getInstance(ServiceTestUtil.randomString())
 			</#if>
 
 			;
@@ -630,6 +659,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextDate()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				);
@@ -820,6 +851,8 @@ public class ${entity.name}PersistenceTest {
 						ServiceTestUtil.nextLong()
 					<#elseif column.type == "String">
 						ServiceTestUtil.randomString()
+					<#elseif column.type == "Version">
+						Version.getInstance(ServiceTestUtil.randomString())
 					</#if>
 
 					<#if column_has_next>
@@ -839,6 +872,8 @@ public class ${entity.name}PersistenceTest {
 					ServiceTestUtil.nextLong()
 				<#elseif column.type == "String">
 					ServiceTestUtil.randomString()
+				<#elseif column.type == "Version">
+					Version.getInstance(ServiceTestUtil.randomString())
 				</#if>
 
 				;
@@ -875,6 +910,8 @@ public class ${entity.name}PersistenceTest {
 							ServiceTestUtil.nextDate()
 						<#elseif column.type == "String">
 							ServiceTestUtil.randomString()
+						<#elseif column.type == "Version">
+							Version.getInstance(ServiceTestUtil.randomString())
 						</#if>
 
 						);

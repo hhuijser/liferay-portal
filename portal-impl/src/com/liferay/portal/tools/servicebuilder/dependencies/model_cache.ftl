@@ -2,6 +2,7 @@ package ${packagePath}.model.impl;
 
 import ${packagePath}.model.${entity.name};
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;

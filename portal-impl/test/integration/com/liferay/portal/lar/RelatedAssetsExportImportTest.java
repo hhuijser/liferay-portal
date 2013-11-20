@@ -183,8 +183,7 @@ public class RelatedAssetsExportImportTest
 
 		Map<String, String[]> preferenceMap = new HashMap<String, String[]>();
 
-		preferenceMap.put(
-			"queryName0", new String[] {"assetCategories"});
+		preferenceMap.put("queryName0", new String[] {"assetCategories"});
 		preferenceMap.put(
 			"queryValues0",
 			new String[] {StringUtil.valueOf(assetCategory.getCategoryId())});
@@ -197,7 +196,7 @@ public class RelatedAssetsExportImportTest
 			preferenceMap);
 
 		long importedAssetVocabularyId = GetterUtil.getLong(
-				portletPreferences.getValue("assetVocabularyId", null));
+			portletPreferences.getValue("assetVocabularyId", null));
 
 		Assert.assertNotNull(
 			"Portlet preference \"assetVocabularyId\" is null",
@@ -208,11 +207,11 @@ public class RelatedAssetsExportImportTest
 				importedAssetVocabularyId);
 
 		Assert.assertNotNull(
-				"Vocabulary " + importedAssetVocabularyId + " does not exist",
-				importedVocabulary);
+			"Vocabulary " + importedAssetVocabularyId + " does not exist",
+			importedVocabulary);
 
 		long importedCategoryId = GetterUtil.getLong(
-				portletPreferences.getValue("queryValues0", null));
+			portletPreferences.getValue("queryValues0", null));
 
 		Assert.assertNotNull(
 			"Portlet preference for query by Category is null",

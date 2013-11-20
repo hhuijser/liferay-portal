@@ -17,16 +17,12 @@ package com.liferay.portal.lar;
 import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.transaction.Transactional;
-import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Company;
-import com.liferay.portal.model.Group;
-import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.PortletConstants;
 import com.liferay.portal.service.CompanyLocalServiceUtil;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
@@ -35,14 +31,13 @@ import com.liferay.portal.service.ServiceTestUtil;
 import com.liferay.portal.test.LiferayIntegrationJUnitTestRunner;
 import com.liferay.portal.test.MainServletExecutionTestListener;
 import com.liferay.portal.test.TransactionalCallbackAwareExecutionTestListener;
-import com.liferay.portal.util.GroupTestUtil;
-import com.liferay.portal.util.LayoutTestUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.TestPropsValues;
+import com.liferay.portlet.asset.model.AssetCategory;
 import com.liferay.portlet.asset.model.AssetVocabulary;
+import com.liferay.portlet.asset.service.AssetCategoryLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetVocabularyLocalServiceUtil;
-import com.liferay.portlet.assetpublisher.util.AssetPublisher;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryType;
 import com.liferay.portlet.documentlibrary.util.DLAppTestUtil;
@@ -62,6 +57,7 @@ import org.junit.runner.RunWith;
 
 /**
  * @author Julio Camarero
+ * @author Andrew Betts
  */
 @ExecutionTestListeners(
 	listeners = {
@@ -75,7 +71,7 @@ public class RelatedAssetsExportImportTest
 
 	@Override
 	public String getPortletId() throws Exception {
-		return PortletKeys.ASSET_PUBLISHER +
+		return PortletKeys.RELATED_ASSETS +
 			PortletConstants.INSTANCE_SEPARATOR +
 				ServiceTestUtil.randomString();
 	}
@@ -169,6 +165,73 @@ public class RelatedAssetsExportImportTest
 	@Override
 	@Test
 	public void testExportImportAssetLinks() throws Exception {
+	}
+
+	@Test
+	public void testOneAssetVocabularyAndAssetCategory() throws Exception {
+		ServiceContext serviceContext = ServiceTestUtil.getServiceContext(
+			group.getGroupId());
+
+		AssetVocabulary assetVocabulary =
+			AssetVocabularyLocalServiceUtil.addVocabulary(
+				serviceContext.getUserId(), "TestVocabulary", serviceContext);
+
+		AssetCategory assetCategory =
+			AssetCategoryLocalServiceUtil.addCategory(
+				serviceContext.getUserId(), "TestCategory",
+				assetVocabulary.getVocabularyId(), serviceContext);
+
+		Map<String, String[]> preferenceMap = new HashMap<String, String[]>();
+
+		preferenceMap.put(
+			"queryName0", new String[] {"assetCategories"});
+		preferenceMap.put(
+			"queryValues0",
+			new String[] {StringUtil.valueOf(assetCategory.getCategoryId())});
+		preferenceMap.put(
+			"assetVocabularyId",
+			new String[] {StringUtil.valueOf(
+				assetVocabulary.getVocabularyId())});
+
+		PortletPreferences portletPreferences = getImportedPortletPreferences(
+			preferenceMap);
+
+		long importedAssetVocabularyId = GetterUtil.getLong(
+				portletPreferences.getValue("assetVocabularyId", null));
+
+		Assert.assertNotNull(
+			"Portlet preference \"assetVocabularyId\" is null",
+			importedAssetVocabularyId);
+
+		AssetVocabulary importedVocabulary =
+			AssetVocabularyLocalServiceUtil.fetchAssetVocabulary(
+				importedAssetVocabularyId);
+
+		Assert.assertNotNull(
+				"Vocabulary " + importedAssetVocabularyId + " does not exist",
+				importedVocabulary);
+
+		long importedCategoryId = GetterUtil.getLong(
+				portletPreferences.getValue("queryValues0", null));
+
+		Assert.assertNotNull(
+			"Portlet preference for query by Category is null",
+			importedCategoryId);
+
+		Assert.assertNotEquals(
+			"Portlet preference for query by Category was not updated",
+			assetCategory.getCategoryId(), importedCategoryId);
+
+		AssetCategory importedCategory =
+			AssetCategoryLocalServiceUtil.fetchCategory(importedCategoryId);
+
+		Assert.assertNotNull(
+			"Category " + importedCategoryId + " does not exist",
+			importedCategory);
+
+		AssetCategoryLocalServiceUtil.deleteAssetCategory(assetCategory);
+
+		AssetVocabularyLocalServiceUtil.deleteAssetVocabulary(assetVocabulary);
 	}
 
 	@Test

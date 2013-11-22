@@ -52,15 +52,15 @@ String type = ParamUtil.getString(request, "type");
 
 		<%
 		String title = (String)request.getAttribute(WebKeys.TITLE);
-		double sourceVersion = (Double)request.getAttribute(WebKeys.SOURCE_VERSION);
-		double targetVersion = (Double)request.getAttribute(WebKeys.TARGET_VERSION);
+		Version sourceVersion = (Version)request.getAttribute(WebKeys.SOURCE_VERSION);
+		Version targetVersion = (Version)request.getAttribute(WebKeys.TARGET_VERSION);
 		List[] diffResults = (List[])request.getAttribute(WebKeys.DIFF_RESULTS);
 		%>
 
 		<liferay-ui:diff
 			diffResults="<%= diffResults %>"
-			sourceName="<%= title + StringPool.SPACE + sourceVersion %>"
-			targetName="<%= title + StringPool.SPACE + targetVersion %>"
+			sourceName="<%= title + StringPool.SPACE + sourceVersion.toString() %>"
+			targetName="<%= title + StringPool.SPACE + targetVersion.toString() %>"
 		/>
 	</c:otherwise>
 </c:choose>

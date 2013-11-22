@@ -241,7 +241,7 @@ long portletDisplayDDMTemplateId = PortletDisplayTemplateUtil.getPortletDisplayT
 
 		<c:if test="<%= !wikiPage.isHead() %>">
 			<div class="page-old-version">
-				(<liferay-ui:message key="you-are-viewing-an-archived-version-of-this-page" /> (<%= wikiPage.getVersion() %>), <aui:a href="<%= viewPageURL.toString() %>" label="go-to-the-latest-version" />)
+				(<liferay-ui:message key="you-are-viewing-an-archived-version-of-this-page" /> (<%= String.valueOf(wikiPage.getVersion()) %>), <aui:a href="<%= viewPageURL.toString() %>" label="go-to-the-latest-version" />)
 			</div>
 		</c:if>
 

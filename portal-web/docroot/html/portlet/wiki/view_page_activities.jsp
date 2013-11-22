@@ -152,7 +152,7 @@ iteratorURL.setParameter("title", wikiPage.getTitle());
 					<c:when test="<%= (socialActivity.getType() == SocialActivityConstants.TYPE_MOVE_TO_TRASH) || (socialActivity.getType() == SocialActivityConstants.TYPE_RESTORE_FROM_TRASH) || (socialActivity.getType() == WikiActivityKeys.ADD_PAGE) || (socialActivity.getType() == WikiActivityKeys.UPDATE_PAGE) %>">
 
 						<%
-						double version = extraDataJSONObject.getDouble("version");
+						Version version = Version.getInstance(extraDataJSONObject.getString("version"));
 
 						WikiPage socialActivityWikiPage = WikiPageLocalServiceUtil.getPage(node.getNodeId(), wikiPage.getTitle(), version);
 						%>
@@ -161,7 +161,7 @@ iteratorURL.setParameter("title", wikiPage.getTitle());
 							<portlet:param name="struts_action" value="/wiki/view" />
 							<portlet:param name="nodeName" value="<%= node.getName() %>" />
 							<portlet:param name="title" value="<%= socialActivityWikiPage.getTitle() %>" />
-							<portlet:param name="version" value="<%= String.valueOf(version) %>" />
+							<portlet:param name="version" value="<%= version.toString() %>" />
 						</portlet:renderURL>
 
 						<c:choose>
@@ -197,7 +197,7 @@ iteratorURL.setParameter("title", wikiPage.getTitle());
 							<c:when test="<%= socialActivity.getType() == WikiActivityKeys.UPDATE_PAGE %>">
 								<liferay-util:buffer var="pageTitleLink">
 									<aui:a href="<%= viewPageURL.toString() %>">
-										<%= version %>
+										<%= version.toString() %>
 
 										<c:if test="<%= socialActivityWikiPage.isMinorEdit() %>">
 											(<liferay-ui:message key="minor-edit" />)

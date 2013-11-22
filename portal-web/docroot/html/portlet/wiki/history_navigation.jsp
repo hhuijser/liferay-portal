@@ -19,38 +19,45 @@
 <%
 long nodeId = (Long)request.getAttribute(WebKeys.WIKI_NODE_ID);
 String title = (String)request.getAttribute(WebKeys.TITLE);
-double sourceVersion = (Double)request.getAttribute(WebKeys.SOURCE_VERSION);
-double targetVersion = (Double)request.getAttribute(WebKeys.TARGET_VERSION);
+Version sourceVersion = (Version)request.getAttribute(WebKeys.SOURCE_VERSION);
+Version targetVersion = (Version)request.getAttribute(WebKeys.TARGET_VERSION);
 
-double previousVersion = 0;
-double nextVersion = 0;
+Version previousVersion = null;
+Version nextVersion = null;
 
-List<WikiPage> allPages = WikiPageLocalServiceUtil.getPages(nodeId, title, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new PageVersionComparator());
-List<WikiPage> intermediatePages = new ArrayList<WikiPage>();
+List<WikiPage> allPages = WikiPageLocalServiceUtil.getPages(nodeId, title, QueryUtil.ALL_POS, QueryUtil.ALL_POS, new PageVersionComparator(true));
 
-for (WikiPage wikiPage : allPages) {
-	if ((wikiPage.getVersion() < sourceVersion) &&
-		(wikiPage.getVersion() > previousVersion)) {
+int sourceIndex = 0;
+int targetIndex = allPages.size();
 
-		previousVersion = wikiPage.getVersion();
+for (int i = 0; i < allPages.size(); i++) {
+	WikiPage wikiPage = allPages.get(i);
+
+	Version version = wikiPage.getVersion();
+
+	if (version.equals(sourceVersion) && (sourceIndex < i)) {
+		WikiPage previousPage = allPages.get(i - 1);
+
+		previousVersion = previousPage.getVersion();
+
+		sourceIndex = i;
 	}
 
-	if ((wikiPage.getVersion() > targetVersion) &&
-		((wikiPage.getVersion() < nextVersion) ||
-		 (nextVersion == 0))) {
+	if (version.equals(targetVersion) && (i < (targetIndex - 1))) {
+		WikiPage nextPage = allPages.get(i + 1);
 
-		nextVersion = wikiPage.getVersion();
-	}
+		nextVersion = nextPage.getVersion();
 
-	if ((wikiPage.getVersion() > sourceVersion) &&
-		(wikiPage.getVersion() <= targetVersion)) {
+		targetIndex = i;
 
-		intermediatePages.add(wikiPage);
+		break;
 	}
 }
 
-String sourceVersionString = (previousVersion != 0) ? String.valueOf(sourceVersion) : String.valueOf(sourceVersion) + " (" + LanguageUtil.get(pageContext, "first-version") + ")";
-String targetVersionString = (nextVersion != 0) ? String.valueOf(targetVersion) : String.valueOf(targetVersion) + " (" + LanguageUtil.get(pageContext, "last-version") + ")";
+List<WikiPage> intermediatePages = allPages.subList(sourceIndex, targetIndex);
+
+String sourceVersionString = (previousVersion != null) ? sourceVersion.toString() : sourceVersion.toString() + " (" + LanguageUtil.get(pageContext, "first-version") + ")";
+String targetVersionString = (nextVersion != null) ? targetVersion.toString() : targetVersion.toString() + " (" + LanguageUtil.get(pageContext, "last-version") + ")";
 
 String type = ParamUtil.getString(request, "type", "text");
 
@@ -65,8 +72,8 @@ if (type.equals("html")) {
 	<portlet:param name="struts_action" value="/wiki/compare_versions" />
 	<portlet:param name="nodeId" value="<%= String.valueOf(nodeId) %>" />
 	<portlet:param name="title" value="<%= title %>" />
-	<portlet:param name="sourceVersion" value="<%= String.valueOf(sourceVersion) %>" />
-	<portlet:param name="targetVersion" value="<%= String.valueOf(targetVersion) %>" />
+	<portlet:param name="sourceVersion" value="<%= sourceVersion.toString() %>" />
+	<portlet:param name="targetVersion" value="<%= targetVersion.toString() %>" />
 	<portlet:param name="type" value='<%= htmlMode ? "text" : "html" %>' />
 </portlet:renderURL>
 
@@ -74,8 +81,8 @@ if (type.equals("html")) {
 	<portlet:param name="struts_action" value="/wiki/compare_versions" />
 	<portlet:param name="nodeId" value="<%= String.valueOf(nodeId) %>" />
 	<portlet:param name="title" value="<%= title %>" />
-	<portlet:param name="sourceVersion" value="<%= String.valueOf(previousVersion) %>" />
-	<portlet:param name="targetVersion" value="<%= String.valueOf(sourceVersion) %>" />
+	<portlet:param name="sourceVersion" value="<%= (previousVersion != null) ? previousVersion.toString() : StringPool.BLANK %>" />
+	<portlet:param name="targetVersion" value="<%= sourceVersion.toString() %>" />
 	<portlet:param name="type" value="<%= type %>" />
 </portlet:renderURL>
 
@@ -83,14 +90,14 @@ if (type.equals("html")) {
 	<portlet:param name="struts_action" value="/wiki/compare_versions" />
 	<portlet:param name="nodeId" value="<%= String.valueOf(nodeId) %>" />
 	<portlet:param name="title" value="<%= title %>" />
-	<portlet:param name="sourceVersion" value="<%= String.valueOf(targetVersion) %>" />
-	<portlet:param name="targetVersion" value="<%= String.valueOf(nextVersion) %>" />
+	<portlet:param name="sourceVersion" value="<%= targetVersion.toString() %>" />
+	<portlet:param name="targetVersion" value="<%= (nextVersion != null) ? nextVersion.toString() : StringPool.BLANK %>" />
 	<portlet:param name="type" value="<%= type %>" />
 </portlet:renderURL>
 
 <div class="history-navigation">
 	<c:choose>
-		<c:when test="<%= previousVersion != 0 %>">
+		<c:when test="<%= previousVersion != null %>">
 			<aui:a cssClass="previous" href="<%= previousChange %>" label="previous-change" />
 		</c:when>
 		<c:otherwise>
@@ -134,10 +141,12 @@ if (type.equals("html")) {
 					StringBundler sb = new StringBundler(intermediatePages.size() * 7);
 
 					for (WikiPage wikiPage: intermediatePages) {
+						Version version = wikiPage.getVersion();
+
 						sb.append(HtmlUtil.escape(wikiPage.getUserName()));
 						sb.append(StringPool.SPACE);
 						sb.append(StringPool.OPEN_PARENTHESIS);
-						sb.append(wikiPage.getVersion());
+						sb.append(version.toString());
 						sb.append(StringPool.CLOSE_PARENTHESIS);
 						sb.append(StringPool.COMMA);
 						sb.append(StringPool.SPACE);
@@ -182,7 +191,7 @@ if (type.equals("html")) {
 	</div>
 
 	<c:choose>
-		<c:when test="<%= nextVersion != 0 %>">
+		<c:when test="<%= nextVersion != null %>">
 			<aui:a cssClass="next" href="<%= nextChange %>" label="next-change" />
 		</c:when>
 		<c:otherwise>

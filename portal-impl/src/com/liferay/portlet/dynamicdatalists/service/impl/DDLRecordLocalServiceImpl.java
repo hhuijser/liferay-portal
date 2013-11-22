@@ -698,6 +698,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	/**
 	 * @see com.liferay.portlet.documentlibrary.service.impl.DLFileEntryLocalServiceImpl#isKeepFileVersionLabel(
 	 *      DLFileEntry, DLFileVersion, DLFileVersion, int)
+	 * @see com.liferay.portlet.wiki.service.impl.WikiPageLocalServiceImpl#isKeepPageVersionLabel(
+	 *      WikiPage, int)
 	 */
 	protected boolean isKeepRecordVersionLabel(
 			DDLRecordVersion lastRecordVersion,

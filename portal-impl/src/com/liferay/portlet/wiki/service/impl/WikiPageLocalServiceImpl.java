@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.service.impl;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -90,6 +91,7 @@ import com.liferay.portlet.wiki.util.comparator.PageVersionComparator;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -1930,6 +1932,42 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		page.setExpandoBridgeAttributes(serviceContext);
 
+		boolean keepPageVersion = isKeepPageVersionLabel(
+			page, serviceContext.getWorkflowAction());
+
+		if (keepPageVersion) {
+			List<SocialActivity> socialActivities =
+				socialActivityLocalService.getActivities(
+					0, WikiPage.class.getName(), page.getResourcePrimKey(),
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+			for (SocialActivity socialActivity : socialActivities) {
+				if (Validator.isNull(socialActivity.getExtraData())) {
+					continue;
+				}
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject(
+						socialActivity.getExtraData());
+
+				double pageVersion = extraDataJSONObject.getDouble("version");
+
+				if (pageVersion == page.getVersion()) {
+					socialActivityLocalService.deleteActivity(
+						socialActivity.getActivityId());
+				}
+			}
+
+			try {
+				discardDraft(
+					oldPage.getNodeId(), oldPage.getTitle(), oldVersion);
+			}
+			catch (NoSuchPageException nspe) {
+			}
+
+			page = getPage(oldPage.getNodeId(), oldPage.getTitle());
+		}
+
 		wikiPagePersistence.update(page);
 
 		// Node
@@ -1946,6 +1984,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			userId, page, serviceContext.getAssetCategoryIds(),
 			serviceContext.getAssetTagNames(),
 			serviceContext.getAssetLinkEntryIds());
+
+		if (keepPageVersion) {
+			return page;
+		}
 
 		// Social
 
@@ -2333,6 +2375,58 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		}
 
 		return getPage(page.getNodeId(), page.getTitle(), previousVersion);
+	}
+
+	/**
+	 * @see com.liferay.portlet.documentlibrary.service.impl.DLFileEntryLocalServiceImpl#isKeepFileVersionLabel(
+	 *      DLFileEntry, DLFileVersion, DLFileVersion, int)
+	 * @see com.liferay.portlet.dynamicdatalists.service.impl.DDLRecordLocalServiceImpl#isKeepRecordVersionLabel(
+	 *      DDLRecordVersion, DDLRecordVersion, int)
+	 */
+	protected boolean isKeepPageVersionLabel(WikiPage page, int workflowAction)
+		throws PortalException, SystemException {
+
+		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
+			return false;
+		}
+
+		WikiPage headPage = getPage(page.getNodeId(), page.getTitle());
+
+		if (headPage.isDraft()) {
+			return false;
+		}
+
+		if (!Validator.equals(headPage.getContent(), page.getContent())) {
+			return false;
+		}
+
+		ExpandoBridge oldExpandoBridge = headPage.getExpandoBridge();
+		ExpandoBridge newExpandoBridge = page.getExpandoBridge();
+
+		Map<String, Serializable> oldAttributes =
+			oldExpandoBridge.getAttributes();
+		Map<String, Serializable> newAttributes =
+			newExpandoBridge.getAttributes();
+
+		if (!Validator.equals(oldAttributes, newAttributes)) {
+			return false;
+		}
+
+		if (!Validator.equals(headPage.getFormat(), page.getFormat())) {
+			return false;
+		}
+
+		if (!Validator.equals(
+				headPage.getRedirectTitle(), page.getRedirectTitle())) {
+
+			return false;
+		}
+
+		if (!Validator.equals(headPage.getTitle(), page.getTitle())) {
+			return false;
+		}
+
+		return true;
 	}
 
 	protected boolean isLinkedTo(WikiPage page, String targetTitle)

@@ -1934,6 +1934,8 @@ public class DLFileEntryLocalServiceImpl
 	/**
 	 * @see com.liferay.portlet.dynamicdatalists.service.impl.DDLRecordLocalServiceImpl#isKeepRecordVersionLabel(
 	 *      DDLRecordVersion, DDLRecordVersion, int)
+	 * @see com.liferay.portlet.wiki.service.impl.WikiPageLocalServiceImpl#isKeepPageVersionLabel(
+	 *      WikiPage, int)
 	 */
 	protected boolean isKeepFileVersionLabel(
 			DLFileEntry dlFileEntry, DLFileVersion lastDLFileVersion,

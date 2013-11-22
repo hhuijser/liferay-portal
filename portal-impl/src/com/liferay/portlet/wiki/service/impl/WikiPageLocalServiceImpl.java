@@ -127,6 +127,23 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 	@Override
 	public WikiPage addPage(
+			long userId, long nodeId, String title, String content,
+			String summary, boolean minorEdit, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		Version version = WikiPageConstants.VERSION_DEFAULT;
+		String format = WikiPageConstants.DEFAULT_FORMAT;
+		boolean head = false;
+		String parentTitle = null;
+		String redirectTitle = null;
+
+		return addPage(
+			userId, nodeId, title, version, content, summary, minorEdit, format,
+			head, parentTitle, redirectTitle, serviceContext);
+	}
+
+	@Override
+	public WikiPage addPage(
 			long userId, long nodeId, String title, Version version,
 			String content, String summary, boolean minorEdit, String format,
 			boolean head, String parentTitle, String redirectTitle,
@@ -221,23 +238,6 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			WikiPage.class.getName(), page.getPageId(), page, serviceContext);
 
 		return page;
-	}
-
-	@Override
-	public WikiPage addPage(
-			long userId, long nodeId, String title, String content,
-			String summary, boolean minorEdit, ServiceContext serviceContext)
-		throws PortalException, SystemException {
-
-		Version version = WikiPageConstants.VERSION_DEFAULT;
-		String format = WikiPageConstants.DEFAULT_FORMAT;
-		boolean head = false;
-		String parentTitle = null;
-		String redirectTitle = null;
-
-		return addPage(
-			userId, nodeId, title, version, content, summary, minorEdit, format,
-			head, parentTitle, redirectTitle, serviceContext);
 	}
 
 	@Override

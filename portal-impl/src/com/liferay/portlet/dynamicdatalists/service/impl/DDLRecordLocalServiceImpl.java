@@ -17,6 +17,7 @@ package com.liferay.portlet.dynamicdatalists.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.workflow.WorkflowHandlerRegistryUtil;
@@ -678,21 +678,20 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	protected String getNextVersion(
 		String version, boolean majorVersion, int workflowAction) {
 
+		Version versionObj = Version.getInstance(version);
+
 		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
 			majorVersion = false;
 		}
 
-		int[] versionParts = StringUtil.split(version, StringPool.PERIOD, 0);
-
 		if (majorVersion) {
-			versionParts[0]++;
-			versionParts[1] = 0;
+			versionObj = Version.incrementMajor(versionObj);
 		}
 		else {
-			versionParts[1]++;
+			versionObj = Version.incrementMinor(versionObj);
 		}
 
-		return versionParts[0] + StringPool.PERIOD + versionParts[1];
+		return versionObj.toString();
 	}
 
 	/**

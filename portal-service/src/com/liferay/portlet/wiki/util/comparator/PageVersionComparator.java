@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.util.comparator;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portlet.wiki.model.WikiPage;
 
@@ -41,20 +42,14 @@ public class PageVersionComparator extends OrderByComparator {
 		WikiPage page1 = (WikiPage)obj1;
 		WikiPage page2 = (WikiPage)obj2;
 
-		int value = 0;
-
-		if (page1.getVersion() < page2.getVersion()) {
-			value = -1;
-		}
-		else if (page1.getVersion() > page2.getVersion()) {
-			value = 1;
-		}
+		Version version1 = page1.getVersion();
+		Version version2 = page2.getVersion();
 
 		if (_ascending) {
-			return value;
+			return version1.compareTo(version2);
 		}
 		else {
-			return -value;
+			return -version1.compareTo(version2);
 		}
 	}
 

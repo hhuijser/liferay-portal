@@ -243,7 +243,11 @@ public class Version implements Comparable<Version>, Serializable {
 	}
 
 	public boolean isLaterVersionThan(String version) {
-		if (compareTo(getInstance(version)) > 0) {
+		return isLaterVersionThan(getInstance(version));
+	}
+
+	public boolean isLaterVersionThan(Version version) {
+		if (compareTo(version) > 0) {
 			return true;
 		}
 		else {
@@ -252,7 +256,11 @@ public class Version implements Comparable<Version>, Serializable {
 	}
 
 	public boolean isPreviousVersionThan(String version) {
-		if (compareTo(getInstance(version)) < 0) {
+		return isPreviousVersionThan(getInstance(version));
+	}
+
+	public boolean isPreviousVersionThan(Version version) {
+		if (compareTo(version) < 0) {
 			return true;
 		}
 		else {
@@ -261,7 +269,11 @@ public class Version implements Comparable<Version>, Serializable {
 	}
 
 	public boolean isSameVersionAs(String version) {
-		if (compareTo(getInstance(version)) == 0) {
+		return isSameVersionAs(getInstance(version));
+	}
+
+	public boolean isSameVersionAs(Version version) {
+		if (compareTo(version) == 0) {
 			return true;
 		}
 		else {

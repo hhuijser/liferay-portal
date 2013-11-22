@@ -17,6 +17,7 @@ package com.liferay.portlet.wiki.action;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -71,7 +72,8 @@ public class ExportPageAction extends PortletAction {
 			long nodeId = ParamUtil.getLong(actionRequest, "nodeId");
 			String nodeName = ParamUtil.getString(actionRequest, "nodeName");
 			String title = ParamUtil.getString(actionRequest, "title");
-			double version = ParamUtil.getDouble(actionRequest, "version");
+			Version version = Version.getInstance(
+				ParamUtil.getString(actionRequest, "version"));
 
 			String targetExtension = ParamUtil.getString(
 				actionRequest, "targetExtension");
@@ -131,7 +133,7 @@ public class ExportPageAction extends PortletAction {
 	}
 
 	protected void getFile(
-			long nodeId, String title, double version, String targetExtension,
+			long nodeId, String title, Version version, String targetExtension,
 			PortletURL viewPageURL, PortletURL editPageURL,
 			ThemeDisplay themeDisplay, HttpServletRequest request,
 			HttpServletResponse response)

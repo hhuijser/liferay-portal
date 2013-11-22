@@ -15,6 +15,7 @@
 package com.liferay.portlet.wiki.social;
 
 import com.liferay.portal.NoSuchModelException;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
@@ -232,7 +233,7 @@ public class WikiActivityInterpreter extends BaseSocialActivityInterpreter {
 				WikiPageResourceLocalServiceUtil.getPageResource(
 					activity.getClassPK());
 
-			double version = GetterUtil.getDouble(
+			Version version = Version.getInstance(
 				activity.getExtraDataValue("version"));
 
 			WikiPage page = WikiPageLocalServiceUtil.getPage(

@@ -16,6 +16,7 @@ package com.liferay.portlet.wiki.service.permission;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.staging.permission.StagingPermissionUtil;
 import com.liferay.portal.kernel.workflow.permission.WorkflowPermissionUtil;
 import com.liferay.portal.security.auth.PrincipalException;
@@ -46,7 +47,7 @@ public class WikiPagePermission {
 
 	public static void check(
 			PermissionChecker permissionChecker, long nodeId, String title,
-			double version, String actionId)
+			Version version, String actionId)
 		throws PortalException, SystemException {
 
 		if (!contains(permissionChecker, nodeId, title, version, actionId)) {
@@ -91,7 +92,7 @@ public class WikiPagePermission {
 
 	public static boolean contains(
 			PermissionChecker permissionChecker, long nodeId, String title,
-			double version, String actionId)
+			Version version, String actionId)
 		throws PortalException, SystemException {
 
 		try {
@@ -113,7 +114,7 @@ public class WikiPagePermission {
 
 		try {
 			WikiPage page = WikiPageLocalServiceUtil.getPage(
-				nodeId, title, null);
+				nodeId, title, (Boolean)null);
 
 			return contains(permissionChecker, page, actionId);
 		}

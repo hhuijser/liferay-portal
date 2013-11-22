@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.action;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.sanitizer.SanitizerException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
@@ -203,12 +204,13 @@ public class EditPageAction extends PortletAction {
 
 		long nodeId = ParamUtil.getLong(actionRequest, "nodeId");
 		String title = ParamUtil.getString(actionRequest, "title");
-		double version = ParamUtil.getDouble(actionRequest, "version");
+		Version version = Version.getInstance(
+			ParamUtil.getString(actionRequest, "version"));
 
 		WikiPage wikiPage = null;
 
 		if (moveToTrash) {
-			if (version > 0) {
+			if (version != null) {
 				wikiPage = WikiPageServiceUtil.movePageToTrash(
 					nodeId, title, version);
 			}
@@ -217,7 +219,7 @@ public class EditPageAction extends PortletAction {
 			}
 		}
 		else {
-			if (version > 0) {
+			if (version != null) {
 				WikiPageServiceUtil.discardDraft(nodeId, title, version);
 			}
 			else {
@@ -235,7 +237,8 @@ public class EditPageAction extends PortletAction {
 	protected void getPage(RenderRequest renderRequest) throws Exception {
 		long nodeId = ParamUtil.getLong(renderRequest, "nodeId");
 		String title = ParamUtil.getString(renderRequest, "title");
-		double version = ParamUtil.getDouble(renderRequest, "version");
+		Version version = Version.getInstance(
+			ParamUtil.getString(renderRequest, "version"));
 		boolean removeRedirect = ParamUtil.getBoolean(
 			renderRequest, "removeRedirect");
 
@@ -257,8 +260,9 @@ public class EditPageAction extends PortletAction {
 		}
 
 		try {
-			if (version == 0) {
-				page = WikiPageServiceUtil.getPage(nodeId, title, null);
+			if (version == null) {
+				page = WikiPageServiceUtil.getPage(
+					nodeId, title, (Boolean)null);
 			}
 			else {
 				page = WikiPageServiceUtil.getPage(nodeId, title, version);
@@ -270,7 +274,7 @@ public class EditPageAction extends PortletAction {
 			}
 			catch (NoSuchPageException nspe2) {
 				if (title.equals(WikiPageConstants.FRONT_PAGE) &&
-					(version == 0)) {
+					(version == null)) {
 
 					ServiceContext serviceContext = new ServiceContext();
 
@@ -362,7 +366,8 @@ public class EditPageAction extends PortletAction {
 	protected void revertPage(ActionRequest actionRequest) throws Exception {
 		long nodeId = ParamUtil.getLong(actionRequest, "nodeId");
 		String title = ParamUtil.getString(actionRequest, "title");
-		double version = ParamUtil.getDouble(actionRequest, "version");
+		Version version = Version.getInstance(
+			ParamUtil.getString(actionRequest, "version"));
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			WikiPage.class.getName(), actionRequest);
@@ -393,7 +398,8 @@ public class EditPageAction extends PortletAction {
 
 		long nodeId = ParamUtil.getLong(actionRequest, "nodeId");
 		String title = ParamUtil.getString(actionRequest, "title");
-		double version = ParamUtil.getDouble(actionRequest, "version");
+		Version version = Version.getInstance(
+			ParamUtil.getString(actionRequest, "version"));
 
 		String content = ParamUtil.getString(actionRequest, "content");
 		String summary = ParamUtil.getString(actionRequest, "summary");

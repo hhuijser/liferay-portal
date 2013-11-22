@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wikidisplay.action;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -64,7 +65,8 @@ public class ViewAction extends PortletAction {
 				renderRequest, "title",
 				portletPreferences.getValue(
 					"title", WikiPageConstants.FRONT_PAGE));
-			double version = ParamUtil.getDouble(renderRequest, "version");
+			Version version = Version.getInstance(
+				ParamUtil.getString(renderRequest, "version"));
 
 			WikiNode node = WikiNodeServiceUtil.getNode(nodeId);
 

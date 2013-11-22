@@ -345,7 +345,19 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
-		long nodeId, java.lang.String title, double version,
+		long nodeId, java.lang.String title, java.lang.String content,
+		java.lang.String summary, boolean minorEdit,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wikiPageLocalService.addPage(userId, nodeId, title, content,
+			summary, minorEdit, serviceContext);
+	}
+
+	@Override
+	public com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		java.lang.String content, java.lang.String summary, boolean minorEdit,
 		java.lang.String format, boolean head, java.lang.String parentTitle,
 		java.lang.String redirectTitle,
@@ -355,17 +367,6 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 		return _wikiPageLocalService.addPage(userId, nodeId, title, version,
 			content, summary, minorEdit, format, head, parentTitle,
 			redirectTitle, serviceContext);
-	}
-
-	@Override
-	public com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
-		long nodeId, java.lang.String title, java.lang.String content,
-		java.lang.String summary, boolean minorEdit,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return _wikiPageLocalService.addPage(userId, nodeId, title, content,
-			summary, minorEdit, serviceContext);
 	}
 
 	@Override
@@ -472,7 +473,7 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	/**
 	* @deprecated As of 6.2.0 replaced by {@link #discardDraft(long, String,
-	double)}
+	Version)}
 	*/
 	@Override
 	public void deletePage(long nodeId, java.lang.String title, double version)
@@ -527,7 +528,8 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 	}
 
 	@Override
-	public void discardDraft(long nodeId, java.lang.String title, double version)
+	public void discardDraft(long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_wikiPageLocalService.discardDraft(nodeId, title, version);
@@ -566,7 +568,7 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage fetchPage(long nodeId,
-		java.lang.String title, double version)
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageLocalService.fetchPage(nodeId, title, version);
 	}
@@ -676,7 +678,7 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage getPage(long nodeId,
-		java.lang.String title, double version)
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageLocalService.getPage(nodeId, title, version);
@@ -942,7 +944,8 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage movePageToTrash(
-		long userId, long nodeId, java.lang.String title, double version)
+		long userId, long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageLocalService.movePageToTrash(userId, nodeId, title,
@@ -976,7 +979,8 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage revertPage(long userId,
-		long nodeId, java.lang.String title, double version,
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -1010,7 +1014,8 @@ public class WikiPageLocalServiceWrapper implements WikiPageLocalService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage updatePage(long userId,
-		long nodeId, java.lang.String title, double version,
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		java.lang.String content, java.lang.String summary, boolean minorEdit,
 		java.lang.String format, java.lang.String parentTitle,
 		java.lang.String redirectTitle,

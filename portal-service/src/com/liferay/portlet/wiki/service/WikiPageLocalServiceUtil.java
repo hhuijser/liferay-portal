@@ -331,7 +331,19 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
-		long nodeId, java.lang.String title, double version,
+		long nodeId, java.lang.String title, java.lang.String content,
+		java.lang.String summary, boolean minorEdit,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .addPage(userId, nodeId, title, content, summary, minorEdit,
+			serviceContext);
+	}
+
+	public static com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		java.lang.String content, java.lang.String summary, boolean minorEdit,
 		java.lang.String format, boolean head, java.lang.String parentTitle,
 		java.lang.String redirectTitle,
@@ -341,17 +353,6 @@ public class WikiPageLocalServiceUtil {
 		return getService()
 				   .addPage(userId, nodeId, title, version, content, summary,
 			minorEdit, format, head, parentTitle, redirectTitle, serviceContext);
-	}
-
-	public static com.liferay.portlet.wiki.model.WikiPage addPage(long userId,
-		long nodeId, java.lang.String title, java.lang.String content,
-		java.lang.String summary, boolean minorEdit,
-		com.liferay.portal.service.ServiceContext serviceContext)
-		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
-		return getService()
-				   .addPage(userId, nodeId, title, content, summary, minorEdit,
-			serviceContext);
 	}
 
 	public static void addPageAttachment(long userId, long nodeId,
@@ -451,7 +452,7 @@ public class WikiPageLocalServiceUtil {
 
 	/**
 	* @deprecated As of 6.2.0 replaced by {@link #discardDraft(long, String,
-	double)}
+	Version)}
 	*/
 	public static void deletePage(long nodeId, java.lang.String title,
 		double version)
@@ -501,7 +502,7 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static void discardDraft(long nodeId, java.lang.String title,
-		double version)
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		getService().discardDraft(nodeId, title, version);
@@ -536,7 +537,8 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage fetchPage(
-		long nodeId, java.lang.String title, double version)
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().fetchPage(nodeId, title, version);
 	}
@@ -633,7 +635,7 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage getPage(long nodeId,
-		java.lang.String title, double version)
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().getPage(nodeId, title, version);
@@ -866,7 +868,8 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage movePageToTrash(
-		long userId, long nodeId, java.lang.String title, double version)
+		long userId, long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().movePageToTrash(userId, nodeId, title, version);
@@ -895,7 +898,8 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage revertPage(
-		long userId, long nodeId, java.lang.String title, double version,
+		long userId, long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -928,7 +932,8 @@ public class WikiPageLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.wiki.model.WikiPage updatePage(
-		long userId, long nodeId, java.lang.String title, double version,
+		long userId, long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		java.lang.String content, java.lang.String summary, boolean minorEdit,
 		java.lang.String format, java.lang.String parentTitle,
 		java.lang.String redirectTitle,

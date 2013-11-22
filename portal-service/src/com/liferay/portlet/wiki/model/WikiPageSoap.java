@@ -14,6 +14,8 @@
 
 package com.liferay.portlet.wiki.model;
 
+import com.liferay.portal.kernel.plugin.Version;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -194,11 +196,11 @@ public class WikiPageSoap implements Serializable {
 		_title = title;
 	}
 
-	public double getVersion() {
+	public Version getVersion() {
 		return _version;
 	}
 
-	public void setVersion(double version) {
+	public void setVersion(Version version) {
 		_version = version;
 	}
 
@@ -309,7 +311,7 @@ public class WikiPageSoap implements Serializable {
 	private Date _modifiedDate;
 	private long _nodeId;
 	private String _title;
-	private double _version;
+	private Version _version;
 	private boolean _minorEdit;
 	private String _content;
 	private String _summary;

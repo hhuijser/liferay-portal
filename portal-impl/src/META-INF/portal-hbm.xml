@@ -2748,7 +2748,7 @@
 		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
 		<property name="nodeId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="title" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="version" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="version" type="com.liferay.portal.dao.orm.hibernate.VersionType" />
 		<property name="minorEdit" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
 		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="summary" type="com.liferay.portal.dao.orm.hibernate.StringType" />

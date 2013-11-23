@@ -4,6 +4,7 @@
 
 	.header-title {
 		margin: 0.1em;
+		word-break: break-word;
 	}
 
 	.header-back-to a {

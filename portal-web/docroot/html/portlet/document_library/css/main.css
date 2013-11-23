@@ -451,6 +451,7 @@
 		.document-description {
 			margin: 8px 0;
 			display: block;
+			word-break: break-word;
 		}
 
 		.document-thumbnail {
@@ -498,6 +499,10 @@
 			.lfr-asset-ratings {
 				margin: 0 0 1em;
 			}
+		}
+
+		.lfr-asset-description {
+			word-break: break-word;
 		}
 	}
 

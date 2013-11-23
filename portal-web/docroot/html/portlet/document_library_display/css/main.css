@@ -1,9 +1,14 @@
 .portlet-document-library-display {
 	.entry-title {
 		display: block;
+		float: left;
 		font-size: 1.15em;
 		font-weight: bold;
 		padding: 1.4em 0 0;
+	}
+
+	.lfr-search-container .table-cell a {
+		word-break: break-word;
 	}
 
 	.view-folders .repository-error {
@@ -44,10 +49,6 @@
 			max-height: 128px;
 			max-width: 128px;
 		}
-	}
-
-	.entry-title {
-		float: left;
 	}
 
 	.taglib-webdav {

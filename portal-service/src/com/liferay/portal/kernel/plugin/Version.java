@@ -35,7 +35,7 @@ public class Version implements Comparable<Version>, Serializable {
 	public static Version getInstance(String version) {
 		Version versionObj = _versions.get(version);
 
-		if (versionObj == null) {
+		if ((versionObj == null) && !version.equals(StringPool.BLANK)) {
 			versionObj = new Version(version);
 
 			_versions.put(version, versionObj);
@@ -45,63 +45,91 @@ public class Version implements Comparable<Version>, Serializable {
 	}
 
 	public static Version incrementBugFix(Version version) {
-		String bugFix = version.getBugFix();
+		String bugFix = version._bugFix;
 
-		int bugFixInt = GetterUtil.getInteger(bugFix);
+		if (bugFix != null) {
+			int bugFixInt = GetterUtil.getInteger(bugFix);
 
-		if (bugFixInt > 0) {
 			bugFix = String.valueOf(bugFixInt + 1);
 		}
 
+		String buildNumber = null;
+
+		if (version._buildNumber != null) {
+			buildNumber = "0";
+		}
+
 		return getInstance(
-			_toString(
-				version.getMajor(), version.getMinor(), bugFix,
-				version.getBuildNumber()));
+			_toString(version._major, version._minor, bugFix, buildNumber));
 	}
 
 	public static Version incrementBuildNumber(Version version) {
-		String buildNumber = version.getBuildNumber();
+		String buildNumber = version._buildNumber;
 
-		int buildNumberInt = GetterUtil.getInteger(buildNumber);
+		if (buildNumber != null) {
+			int buildNumberInt = GetterUtil.getInteger(buildNumber);
 
-		if (buildNumberInt > 0) {
 			buildNumber = String.valueOf(buildNumberInt + 1);
 		}
 
 		return getInstance(
 			_toString(
-				version.getMajor(), version.getMinor(), version.getBugFix(),
-				buildNumber));
+				version._major, version._minor, version._bugFix, buildNumber));
 	}
 
 	public static Version incrementMajor(Version version) {
-		String major = version.getMajor();
+		String major = version._major;
 
-		int majorInt = GetterUtil.getInteger(major);
+		if (major != null) {
+			int majorInt = GetterUtil.getInteger(major);
 
-		if (majorInt > 0) {
 			major = String.valueOf(majorInt + 1);
 		}
 
-		return getInstance(
-			_toString(
-				major, version.getMinor(), version.getBugFix(),
-				version.getBuildNumber()));
+		String minor = null;
+
+		if (version._minor != null) {
+			minor = "0";
+		}
+
+		String bugFix = null;
+
+		if (version._bugFix != null) {
+			bugFix = "0";
+		}
+
+		String buildNumber = null;
+
+		if (version._buildNumber != null) {
+			buildNumber = "0";
+		}
+
+		return getInstance(_toString(major, minor, bugFix, buildNumber));
 	}
 
 	public static Version incrementMinor(Version version) {
-		String minor = version.getMinor();
+		String minor = version._minor;
 
-		int minorInt = GetterUtil.getInteger(minor);
+		if (minor != null) {
+			int minorInt = GetterUtil.getInteger(minor);
 
-		if (minorInt > 0) {
 			minor = String.valueOf(minorInt + 1);
 		}
 
+		String bugFix = null;
+
+		if (version._bugFix != null) {
+			bugFix = "0";
+		}
+
+		String buildNumber = null;
+
+		if (version._buildNumber != null) {
+			buildNumber = "0";
+		}
+
 		return getInstance(
-			_toString(
-				version.getMajor(), minor, version.getBugFix(),
-				version.getBuildNumber()));
+			_toString(version._major, minor, bugFix, buildNumber));
 	}
 
 	@Override

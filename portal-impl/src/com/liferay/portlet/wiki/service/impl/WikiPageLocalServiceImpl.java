@@ -1984,7 +1984,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 					socialActivityPersistence.update(lastSocialActivity);
 				}
 			}
-			else {
+			else if (oldPage.isApproved()) {
 				JSONObject extraDataJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
@@ -1995,6 +1995,19 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 					userId, page.getGroupId(), WikiPage.class.getName(),
 					page.getResourcePrimKey(), WikiActivityKeys.UPDATE_PAGE,
 					extraDataJSONObject.toString(), 0);
+			}
+			else {
+				SocialActivity lastSocialActivity =
+					socialActivityLocalService.fetchFirstActivity(
+						WikiPage.class.getName(), oldPage.getResourcePrimKey(),
+						WikiActivityKeys.UPDATE_PAGE);
+
+				if (lastSocialActivity != null) {
+					lastSocialActivity.setExtraDataValue(
+						"version", nextVersion.toString());
+
+					socialActivityPersistence.update(lastSocialActivity);
+				}
 			}
 		}
 

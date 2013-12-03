@@ -1132,13 +1132,7 @@ public class DLImpl implements DL {
 		String[] fileExtensions = PrefsPropsUtil.getStringArray(
 			PropsKeys.MICROSOFT_OFFICE_EXTENSIONS, StringPool.COMMA);
 
-		for (String fileExtension : fileExtensions) {
-			if (StringUtil.equalsIgnoreCase(extension, fileExtension)) {
-				return true;
-			}
-		}
-
-		return false;
+		return ArrayUtil.contains(fileExtensions, extension);
 	}
 
 	@Override

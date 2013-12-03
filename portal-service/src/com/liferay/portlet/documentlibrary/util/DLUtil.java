@@ -370,7 +370,9 @@ public class DLUtil {
 			ddmStructureKey);
 	}
 
-	public static boolean isOfficeExtension(String extension) {
+	public static boolean isOfficeExtension(String extension)
+		throws SystemException {
+
 		return getDL().isOfficeExtension(extension);
 	}
 

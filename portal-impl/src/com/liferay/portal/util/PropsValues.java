@@ -1212,6 +1212,8 @@ public class PropsValues {
 
 	public static final String MESSAGE_BOARDS_THREAD_VIEWS_DEFAULT = PropsUtil.get(PropsKeys.MESSAGE_BOARDS_THREAD_VIEWS_DEFAULT);
 
+	public static final String[] MICROSOFT_OFFICE_EXTENSIONS = PropsUtil.getArray(PropsKeys.MICROSOFT_OFFICE_EXTENSIONS);
+
 	public static final String MICROSOFT_TRANSLATOR_CLIENT_ID = PropsUtil.get(PropsKeys.MICROSOFT_TRANSLATOR_CLIENT_ID);
 
 	public static final String MICROSOFT_TRANSLATOR_CLIENT_SECRET = PropsUtil.get(PropsKeys.MICROSOFT_TRANSLATOR_CLIENT_SECRET);

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.Session;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.sanitizer.Sanitizer;
 import com.liferay.portal.kernel.sanitizer.SanitizerException;
 import com.liferay.portal.kernel.sanitizer.SanitizerUtil;
@@ -6816,7 +6817,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			FINDER_CLASS_NAME_ENTITY, "fetchByR_N_V",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
-				Double.class.getName()
+				Version.class.getName()
 			},
 			WikiPageModelImpl.RESOURCEPRIMKEY_COLUMN_BITMASK |
 			WikiPageModelImpl.NODEID_COLUMN_BITMASK |
@@ -6826,7 +6827,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByR_N_V",
 			new String[] {
 				Long.class.getName(), Long.class.getName(),
-				Double.class.getName()
+				Version.class.getName()
 			});
 
 	/**
@@ -6841,7 +6842,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public WikiPage findByR_N_V(long resourcePrimKey, long nodeId,
-		double version) throws NoSuchPageException, SystemException {
+		Version version) throws NoSuchPageException, SystemException {
 		WikiPage wikiPage = fetchByR_N_V(resourcePrimKey, nodeId, version);
 
 		if (wikiPage == null) {
@@ -6881,7 +6882,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public WikiPage fetchByR_N_V(long resourcePrimKey, long nodeId,
-		double version) throws SystemException {
+		Version version) throws SystemException {
 		return fetchByR_N_V(resourcePrimKey, nodeId, version, true);
 	}
 
@@ -6897,7 +6898,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public WikiPage fetchByR_N_V(long resourcePrimKey, long nodeId,
-		double version, boolean retrieveFromCache) throws SystemException {
+		Version version, boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { resourcePrimKey, nodeId, version };
 
 		Object result = null;
@@ -6912,7 +6913,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			if ((resourcePrimKey != wikiPage.getResourcePrimKey()) ||
 					(nodeId != wikiPage.getNodeId()) ||
-					(version != wikiPage.getVersion())) {
+					!Validator.equals(version, wikiPage.getVersion())) {
 				result = null;
 			}
 		}
@@ -6926,7 +6927,16 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			query.append(_FINDER_COLUMN_R_N_V_NODEID_2);
 
-			query.append(_FINDER_COLUMN_R_N_V_VERSION_2);
+			boolean bindVersion = false;
+
+			if (version == null) {
+				query.append(_FINDER_COLUMN_R_N_V_VERSION_1);
+			}
+			else {
+				bindVersion = true;
+
+				query.append(_FINDER_COLUMN_R_N_V_VERSION_2);
+			}
 
 			String sql = query.toString();
 
@@ -6943,7 +6953,9 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 				qPos.add(nodeId);
 
-				qPos.add(version);
+				if (bindVersion) {
+					qPos.add(version);
+				}
 
 				List<WikiPage> list = q.list();
 
@@ -6960,7 +6972,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 					if ((wikiPage.getResourcePrimKey() != resourcePrimKey) ||
 							(wikiPage.getNodeId() != nodeId) ||
-							(wikiPage.getVersion() != version)) {
+							(wikiPage.getVersion() == null) ||
+							!wikiPage.getVersion().equals(version)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_R_N_V,
 							finderArgs, wikiPage);
 					}
@@ -6996,7 +7009,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 */
 	@Override
 	public WikiPage removeByR_N_V(long resourcePrimKey, long nodeId,
-		double version) throws NoSuchPageException, SystemException {
+		Version version) throws NoSuchPageException, SystemException {
 		WikiPage wikiPage = findByR_N_V(resourcePrimKey, nodeId, version);
 
 		return remove(wikiPage);
@@ -7012,7 +7025,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByR_N_V(long resourcePrimKey, long nodeId, double version)
+	public int countByR_N_V(long resourcePrimKey, long nodeId, Version version)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_R_N_V;
 
@@ -7030,7 +7043,16 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			query.append(_FINDER_COLUMN_R_N_V_NODEID_2);
 
-			query.append(_FINDER_COLUMN_R_N_V_VERSION_2);
+			boolean bindVersion = false;
+
+			if (version == null) {
+				query.append(_FINDER_COLUMN_R_N_V_VERSION_1);
+			}
+			else {
+				bindVersion = true;
+
+				query.append(_FINDER_COLUMN_R_N_V_VERSION_2);
+			}
 
 			String sql = query.toString();
 
@@ -7047,7 +7069,9 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 				qPos.add(nodeId);
 
-				qPos.add(version);
+				if (bindVersion) {
+					qPos.add(version);
+				}
 
 				count = (Long)q.uniqueResult();
 
@@ -7068,6 +7092,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 	private static final String _FINDER_COLUMN_R_N_V_RESOURCEPRIMKEY_2 = "wikiPage.resourcePrimKey = ? AND ";
 	private static final String _FINDER_COLUMN_R_N_V_NODEID_2 = "wikiPage.nodeId = ? AND ";
+	private static final String _FINDER_COLUMN_R_N_V_VERSION_1 = "wikiPage.version IS NULL";
 	private static final String _FINDER_COLUMN_R_N_V_VERSION_2 = "wikiPage.version = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_R_N_H = new FinderPath(WikiPageModelImpl.ENTITY_CACHE_ENABLED,
 			WikiPageModelImpl.FINDER_CACHE_ENABLED, WikiPageImpl.class,
@@ -10720,7 +10745,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			FINDER_CLASS_NAME_ENTITY, "fetchByN_T_V",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
+				Version.class.getName()
 			},
 			WikiPageModelImpl.NODEID_COLUMN_BITMASK |
 			WikiPageModelImpl.TITLE_COLUMN_BITMASK |
@@ -10730,7 +10755,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByN_T_V",
 			new String[] {
 				Long.class.getName(), String.class.getName(),
-				Double.class.getName()
+				Version.class.getName()
 			});
 
 	/**
@@ -10744,7 +10769,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public WikiPage findByN_T_V(long nodeId, String title, double version)
+	public WikiPage findByN_T_V(long nodeId, String title, Version version)
 		throws NoSuchPageException, SystemException {
 		WikiPage wikiPage = fetchByN_T_V(nodeId, title, version);
 
@@ -10784,7 +10809,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public WikiPage fetchByN_T_V(long nodeId, String title, double version)
+	public WikiPage fetchByN_T_V(long nodeId, String title, Version version)
 		throws SystemException {
 		return fetchByN_T_V(nodeId, title, version, true);
 	}
@@ -10800,7 +10825,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public WikiPage fetchByN_T_V(long nodeId, String title, double version,
+	public WikiPage fetchByN_T_V(long nodeId, String title, Version version,
 		boolean retrieveFromCache) throws SystemException {
 		Object[] finderArgs = new Object[] { nodeId, title, version };
 
@@ -10816,7 +10841,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 
 			if ((nodeId != wikiPage.getNodeId()) ||
 					!Validator.equals(title, wikiPage.getTitle()) ||
-					(version != wikiPage.getVersion())) {
+					!Validator.equals(version, wikiPage.getVersion())) {
 				result = null;
 			}
 		}
@@ -10842,7 +10867,16 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				query.append(_FINDER_COLUMN_N_T_V_TITLE_2);
 			}
 
-			query.append(_FINDER_COLUMN_N_T_V_VERSION_2);
+			boolean bindVersion = false;
+
+			if (version == null) {
+				query.append(_FINDER_COLUMN_N_T_V_VERSION_1);
+			}
+			else {
+				bindVersion = true;
+
+				query.append(_FINDER_COLUMN_N_T_V_VERSION_2);
+			}
 
 			String sql = query.toString();
 
@@ -10861,7 +10895,9 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 					qPos.add(title.toLowerCase());
 				}
 
-				qPos.add(version);
+				if (bindVersion) {
+					qPos.add(version);
+				}
 
 				List<WikiPage> list = q.list();
 
@@ -10879,7 +10915,8 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 					if ((wikiPage.getNodeId() != nodeId) ||
 							(wikiPage.getTitle() == null) ||
 							!wikiPage.getTitle().equals(title) ||
-							(wikiPage.getVersion() != version)) {
+							(wikiPage.getVersion() == null) ||
+							!wikiPage.getVersion().equals(version)) {
 						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_N_T_V,
 							finderArgs, wikiPage);
 					}
@@ -10914,7 +10951,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public WikiPage removeByN_T_V(long nodeId, String title, double version)
+	public WikiPage removeByN_T_V(long nodeId, String title, Version version)
 		throws NoSuchPageException, SystemException {
 		WikiPage wikiPage = findByN_T_V(nodeId, title, version);
 
@@ -10931,7 +10968,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	 * @throws SystemException if a system exception occurred
 	 */
 	@Override
-	public int countByN_T_V(long nodeId, String title, double version)
+	public int countByN_T_V(long nodeId, String title, Version version)
 		throws SystemException {
 		FinderPath finderPath = FINDER_PATH_COUNT_BY_N_T_V;
 
@@ -10961,7 +10998,16 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 				query.append(_FINDER_COLUMN_N_T_V_TITLE_2);
 			}
 
-			query.append(_FINDER_COLUMN_N_T_V_VERSION_2);
+			boolean bindVersion = false;
+
+			if (version == null) {
+				query.append(_FINDER_COLUMN_N_T_V_VERSION_1);
+			}
+			else {
+				bindVersion = true;
+
+				query.append(_FINDER_COLUMN_N_T_V_VERSION_2);
+			}
 
 			String sql = query.toString();
 
@@ -10980,7 +11026,9 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 					qPos.add(title.toLowerCase());
 				}
 
-				qPos.add(version);
+				if (bindVersion) {
+					qPos.add(version);
+				}
 
 				count = (Long)q.uniqueResult();
 
@@ -11003,6 +11051,7 @@ public class WikiPagePersistenceImpl extends BasePersistenceImpl<WikiPage>
 	private static final String _FINDER_COLUMN_N_T_V_TITLE_1 = "wikiPage.title IS NULL AND ";
 	private static final String _FINDER_COLUMN_N_T_V_TITLE_2 = "lower(wikiPage.title) = ? AND ";
 	private static final String _FINDER_COLUMN_N_T_V_TITLE_3 = "(wikiPage.title IS NULL OR wikiPage.title = '') AND ";
+	private static final String _FINDER_COLUMN_N_T_V_VERSION_1 = "wikiPage.version IS NULL";
 	private static final String _FINDER_COLUMN_N_T_V_VERSION_2 = "wikiPage.version = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_N_T_H = new FinderPath(WikiPageModelImpl.ENTITY_CACHE_ENABLED,
 			WikiPageModelImpl.FINDER_CACHE_ENABLED, WikiPageImpl.class,

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.dao.orm;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.CalendarUtil;
 
 import java.sql.Timestamp;
@@ -267,6 +268,9 @@ public class QueryPos {
 		else if (clazz == Timestamp.class) {
 			add((Timestamp)obj);
 		}
+		else if (clazz == Version.class) {
+			add((Version)obj);
+		}
 		else {
 			throw new RuntimeException("Unsupport type " + clazz.getName());
 		}
@@ -339,6 +343,10 @@ public class QueryPos {
 				add(values[i]);
 			}
 		}
+	}
+
+	public void add(Version version) {
+		_query.setString(_pos++, version.toString());
 	}
 
 	public int getPos() {

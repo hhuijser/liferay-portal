@@ -2341,7 +2341,7 @@ create table WikiPage (
 	modifiedDate DATE null,
 	nodeId LONG,
 	title VARCHAR(255) null,
-	version DOUBLE,
+	version VARCHAR(75) null,
 	minorEdit BOOLEAN,
 	content TEXT null,
 	summary STRING null,

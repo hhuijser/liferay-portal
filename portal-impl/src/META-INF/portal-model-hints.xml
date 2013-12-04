@@ -2749,7 +2749,7 @@
 			<sanitize content-type="text/plain" modes="ALL" />
 			<validator name="required" />
 		</field>
-		<field name="version" type="double" />
+		<field name="version" type="Version" />
 		<field name="minorEdit" type="boolean" />
 		<field name="content" type="String">
 			<hint-collection name="CLOB" />

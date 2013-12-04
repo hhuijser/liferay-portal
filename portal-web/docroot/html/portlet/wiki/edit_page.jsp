@@ -195,7 +195,7 @@ if (Validator.isNull(redirect)) {
 	<aui:input name="editTitle" type="hidden" value="<%= editTitle %>" />
 
 	<c:if test="<%= wikiPage != null %>">
-		<aui:input name="version" type="hidden" value="<%= wikiPage.getVersion() %>" />
+		<aui:input name="version" type="hidden" value="<%= String.valueOf(wikiPage.getVersion()) %>" />
 	</c:if>
 
 	<c:if test="<%= templatePage != null %>">
@@ -351,7 +351,7 @@ if (Validator.isNull(redirect)) {
 				long assetEntryId = 0;
 				long classPK = resourcePrimKey;
 
-				if (!newPage && !wikiPage.isApproved() && (wikiPage.getVersion() != WikiPageConstants.VERSION_DEFAULT)) {
+				if (!newPage && !wikiPage.isApproved() && !WikiPageConstants.VERSION_DEFAULT.equals(wikiPage.getVersion())) {
 					AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(WikiPage.class.getName(), wikiPage.getPrimaryKey());
 
 					if (assetEntry != null) {

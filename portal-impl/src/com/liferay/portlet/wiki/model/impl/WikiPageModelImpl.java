@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -87,7 +88,7 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 			{ "modifiedDate", Types.TIMESTAMP },
 			{ "nodeId", Types.BIGINT },
 			{ "title", Types.VARCHAR },
-			{ "version", Types.DOUBLE },
+			{ "version", Types.VARCHAR },
 			{ "minorEdit", Types.BOOLEAN },
 			{ "content", Types.CLOB },
 			{ "summary", Types.VARCHAR },
@@ -100,7 +101,7 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 			{ "statusByUserName", Types.VARCHAR },
 			{ "statusDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table WikiPage (uuid_ VARCHAR(75) null,pageId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,nodeId LONG,title VARCHAR(255) null,version DOUBLE,minorEdit BOOLEAN,content TEXT null,summary STRING null,format VARCHAR(75) null,head BOOLEAN,parentTitle VARCHAR(255) null,redirectTitle VARCHAR(255) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table WikiPage (uuid_ VARCHAR(75) null,pageId LONG not null primary key,resourcePrimKey LONG,groupId LONG,companyId LONG,userId LONG,userName VARCHAR(75) null,createDate DATE null,modifiedDate DATE null,nodeId LONG,title VARCHAR(255) null,version VARCHAR(75) null,minorEdit BOOLEAN,content TEXT null,summary STRING null,format VARCHAR(75) null,head BOOLEAN,parentTitle VARCHAR(255) null,redirectTitle VARCHAR(255) null,status INTEGER,statusByUserId LONG,statusByUserName VARCHAR(75) null,statusDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table WikiPage";
 	public static final String ORDER_BY_JPQL = " ORDER BY wikiPage.nodeId ASC, wikiPage.title ASC, wikiPage.version DESC";
 	public static final String ORDER_BY_SQL = " ORDER BY WikiPage.nodeId ASC, WikiPage.title ASC, WikiPage.version DESC";
@@ -325,7 +326,7 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 			setTitle(title);
 		}
 
-		Double version = (Double)attributes.get("version");
+		Version version = (Version)attributes.get("version");
 
 		if (version != null) {
 			setVersion(version);
@@ -629,24 +630,22 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 
 	@JSON
 	@Override
-	public double getVersion() {
+	public Version getVersion() {
 		return _version;
 	}
 
 	@Override
-	public void setVersion(double version) {
+	public void setVersion(Version version) {
 		_columnBitmask = -1L;
 
-		if (!_setOriginalVersion) {
-			_setOriginalVersion = true;
-
+		if (_originalVersion == null) {
 			_originalVersion = _version;
 		}
 
 		_version = version;
 	}
 
-	public double getOriginalVersion() {
+	public Version getOriginalVersion() {
 		return _originalVersion;
 	}
 
@@ -1161,15 +1160,7 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 			return value;
 		}
 
-		if (getVersion() < wikiPage.getVersion()) {
-			value = -1;
-		}
-		else if (getVersion() > wikiPage.getVersion()) {
-			value = 1;
-		}
-		else {
-			value = 0;
-		}
+		value = getVersion().compareTo(wikiPage.getVersion());
 
 		value = value * -1;
 
@@ -1236,8 +1227,6 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 		wikiPageModelImpl._originalTitle = wikiPageModelImpl._title;
 
 		wikiPageModelImpl._originalVersion = wikiPageModelImpl._version;
-
-		wikiPageModelImpl._setOriginalVersion = false;
 
 		wikiPageModelImpl._originalFormat = wikiPageModelImpl._format;
 
@@ -1573,9 +1562,8 @@ public class WikiPageModelImpl extends BaseModelImpl<WikiPage>
 	private boolean _setOriginalNodeId;
 	private String _title;
 	private String _originalTitle;
-	private double _version;
-	private double _originalVersion;
-	private boolean _setOriginalVersion;
+	private Version _version;
+	private Version _originalVersion;
 	private boolean _minorEdit;
 	private String _content;
 	private String _summary;

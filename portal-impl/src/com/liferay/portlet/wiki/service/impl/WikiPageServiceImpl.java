@@ -17,6 +17,7 @@ package com.liferay.portlet.wiki.service.impl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -199,13 +200,15 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 	/**
 	 * @deprecated As of 6.2.0 replaced by {@link #discardDraft(long, String,
-	 *             double)}
+	 *             Version)}
 	 */
 	@Override
 	public void deletePage(long nodeId, String title, double version)
 		throws PortalException, SystemException {
 
-		discardDraft(nodeId, title, version);
+		Version versionObj = Version.getInstance(String.valueOf(version));
+
+		discardDraft(nodeId, title, versionObj);
 	}
 
 	@Override
@@ -253,7 +256,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 	}
 
 	@Override
-	public void discardDraft(long nodeId, String title, double version)
+	public void discardDraft(long nodeId, String title, Version version)
 		throws PortalException, SystemException {
 
 		WikiPagePermission.check(
@@ -263,7 +266,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 	}
 
 	@Override
-	public WikiPage fetchPage(long nodeId, String title, double version)
+	public WikiPage fetchPage(long nodeId, String title, Version version)
 		throws PortalException, SystemException {
 
 		WikiPagePermission.check(
@@ -329,7 +332,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link #getNodePagesRSS(long, int,
-	 *             String, double, String, String, String, String)}
+	 *             String, Version, String, String, String, String)}
 	 */
 	@Override
 	public String getNodePagesRSS(
@@ -337,13 +340,16 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			String displayStyle, String feedURL, String entryURL)
 		throws PortalException, SystemException {
 
+		Version versionObj = Version.getInstance(String.valueOf(version));
+
 		return getNodePagesRSS(
-			nodeId, max, type, version, displayStyle, feedURL, entryURL, null);
+			nodeId, max, type, versionObj, displayStyle, feedURL, entryURL,
+			null);
 	}
 
 	@Override
 	public String getNodePagesRSS(
-			long nodeId, int max, String type, double version,
+			long nodeId, int max, String type, Version version,
 			String displayStyle, String feedURL, String entryURL,
 			String attachmentURLPrefix)
 		throws PortalException, SystemException {
@@ -409,8 +415,21 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		return wikiPageLocalService.getPage(nodeId, title, head);
 	}
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #getPage(long, int,
+	 *             String, Version, String, String, String, String)}
+	 */
 	@Override
 	public WikiPage getPage(long nodeId, String title, double version)
+		throws PortalException, SystemException {
+
+		Version versionObj = Version.getInstance(String.valueOf(version));
+
+		return getPage(nodeId, title, versionObj);
+	}
+
+	@Override
+	public WikiPage getPage(long nodeId, String title, Version version)
 		throws PortalException, SystemException {
 
 		WikiPagePermission.check(
@@ -489,7 +508,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link #getPagesRSS(long, long,
-	 *             String, int, String, double, String, String, String, String,
+	 *             String, int, String, Version, String, String, String, String,
 	 *             java.util.Locale)}
 	 */
 	@Override
@@ -499,15 +518,17 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			String entryURL, Locale locale)
 		throws PortalException, SystemException {
 
+		Version versionObj = Version.getInstance(String.valueOf(version));
+
 		return getPagesRSS(
-			companyId, nodeId, title, max, type, version, displayStyle, feedURL,
-			entryURL, null, locale);
+			companyId, nodeId, title, max, type, versionObj, displayStyle,
+			feedURL, entryURL, null, locale);
 	}
 
 	@Override
 	public String getPagesRSS(
 			long companyId, long nodeId, String title, int max, String type,
-			double version, String displayStyle, String feedURL,
+			Version version, String displayStyle, String feedURL,
 			String entryURL, String attachmentURLPrefix, Locale locale)
 		throws PortalException, SystemException {
 
@@ -606,7 +627,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 	}
 
 	@Override
-	public WikiPage movePageToTrash(long nodeId, String title, double version)
+	public WikiPage movePageToTrash(long nodeId, String title, Version version)
 		throws PortalException, SystemException {
 
 		WikiPagePermission.check(
@@ -640,9 +661,24 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		wikiPageLocalService.restorePageFromTrash(getUserId(), page);
 	}
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #revertPage(long, String,
+	 *             Version, com.liferay.portal.service.ServiceContext)}
+	 */
 	@Override
 	public WikiPage revertPage(
 			long nodeId, String title, double version,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		Version versionObj = Version.getInstance(String.valueOf(version));
+
+		return revertPage(nodeId, title, versionObj, serviceContext);
+	}
+
+	@Override
+	public WikiPage revertPage(
+			long nodeId, String title, Version version,
 			ServiceContext serviceContext)
 		throws PortalException, SystemException {
 
@@ -673,9 +709,29 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		wikiPageLocalService.unsubscribePage(getUserId(), nodeId, title);
 	}
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link #updatePage(long, String,
+	 *             Version, String, String, boolean, String, String, String,
+	 *             com.liferay.portal.service.ServiceContext)}
+	 */
 	@Override
 	public WikiPage updatePage(
 			long nodeId, String title, double version, String content,
+			String summary, boolean minorEdit, String format,
+			String parentTitle, String redirectTitle,
+			ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		Version versionObj = Version.getInstance(String.valueOf(version));
+
+		return updatePage(
+			nodeId, title, versionObj, content, summary, minorEdit, format,
+			parentTitle, redirectTitle, serviceContext);
+	}
+
+	@Override
+	public WikiPage updatePage(
+			long nodeId, String title, Version version, String content,
 			String summary, boolean minorEdit, String format,
 			String parentTitle, String redirectTitle,
 			ServiceContext serviceContext)
@@ -691,7 +747,7 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 	protected String exportToRSS(
 			long companyId, String name, String description, String type,
-			double version, String displayStyle, String feedURL,
+			Version version, String displayStyle, String feedURL,
 			String entryURL, String attachmentURLPrefix, List<WikiPage> pages,
 			boolean diff, Locale locale)
 		throws PortalException, SystemException {
@@ -808,7 +864,8 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 			latestPage = page;
 		}
 
-		syndFeed.setFeedType(RSSUtil.getFeedType(type, version));
+		syndFeed.setFeedType(
+			RSSUtil.getFeedType(type, Double.valueOf(version.toString())));
 
 		List<SyndLink> syndLinks = new ArrayList<SyndLink>();
 

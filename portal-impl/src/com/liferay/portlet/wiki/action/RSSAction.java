@@ -15,6 +15,7 @@
 package com.liferay.portlet.wiki.action;
 
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -24,6 +25,7 @@ import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.wiki.model.WikiPageConstants;
 import com.liferay.portlet.wiki.service.WikiPageServiceUtil;
 import com.liferay.portlet.wiki.util.WikiUtil;
 import com.liferay.util.RSSUtil;
@@ -49,8 +51,14 @@ public class RSSAction extends com.liferay.portal.struts.RSSAction {
 			request, "max", SearchContainer.DEFAULT_DELTA);
 		String type = ParamUtil.getString(
 			request, "type", RSSUtil.FORMAT_DEFAULT);
-		double version = ParamUtil.getDouble(
-			request, "version", RSSUtil.VERSION_DEFAULT);
+
+		Version version = Version.getInstance(
+			ParamUtil.getString(request, "version"));
+
+		if (version == null) {
+			version = WikiPageConstants.VERSION_DEFAULT;
+		}
+
 		String displayStyle = ParamUtil.getString(
 			request, "displayStyle", RSSUtil.DISPLAY_STYLE_DEFAULT);
 

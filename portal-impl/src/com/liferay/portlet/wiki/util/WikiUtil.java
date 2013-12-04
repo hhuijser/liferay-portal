@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
@@ -405,7 +406,8 @@ public class WikiUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		double version = ParamUtil.getDouble(renderRequest, "version");
+		Version version = Version.getInstance(
+			ParamUtil.getString(renderRequest, "version"));
 
 		PortletURL curViewPageURL = PortletURLUtil.clone(
 			viewPageURL, renderResponse);
@@ -425,7 +427,7 @@ public class WikiUtil {
 
 		String attachmentURLPrefix = sb.toString();
 
-		if (!preview && (version == 0)) {
+		if (!preview && (version == null)) {
 			WikiPageDisplay pageDisplay = WikiCacheUtil.getDisplay(
 				wikiPage.getNodeId(), title, curViewPageURL, curEditPageURL,
 				attachmentURLPrefix);

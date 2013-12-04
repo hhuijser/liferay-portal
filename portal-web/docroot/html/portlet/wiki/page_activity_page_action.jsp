@@ -23,7 +23,7 @@ SocialActivity socialActivity = (SocialActivity)row.getObject();
 
 JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject(HtmlUtil.unescape(socialActivity.getExtraData()));
 
-double version = extraDataJSONObject.getDouble("version");
+Version version = Version.getInstance(extraDataJSONObject.getString("version"));
 
 WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 
@@ -31,19 +31,19 @@ WikiPage socialActivityPage = WikiPageLocalServiceUtil.getPage(wikiPage.getNodeI
 %>
 
 <liferay-ui:icon-menu>
-	<c:if test="<%= (version != wikiPage.getVersion()) && (socialActivityPage.isApproved()) && (WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE)) %>">
+	<c:if test="<%= !version.equals(wikiPage.getVersion()) && socialActivityPage.isApproved() && WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE) %>">
 		<portlet:actionURL var="revertURL">
 			<portlet:param name="struts_action" value="/wiki/edit_page" />
 			<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.REVERT %>" />
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 			<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
 			<portlet:param name="title" value="<%= HtmlUtil.unescape(wikiPage.getTitle()) %>" />
-			<portlet:param name="version" value="<%= String.valueOf(version) %>" />
+			<portlet:param name="version" value="<%= version.toString() %>" />
 		</portlet:actionURL>
 
 		<liferay-ui:icon
 			image="undo"
-			message='<%= LanguageUtil.get(pageContext, "restore-version") + " " + String.valueOf(version) %>'
+			message='<%= LanguageUtil.get(pageContext, "restore-version") + " " + version.toString() %>'
 			url="<%= revertURL %>"
 		/>
 	</c:if>
@@ -53,7 +53,7 @@ WikiPage socialActivityPage = WikiPageLocalServiceUtil.getPage(wikiPage.getNodeI
 		<portlet:param name="redirect" value="<%= currentURL %>" />
 		<portlet:param name="nodeId" value="<%= String.valueOf(wikiPage.getNodeId()) %>" />
 		<portlet:param name="title" value="<%= HtmlUtil.unescape(wikiPage.getTitle()) %>" />
-		<portlet:param name="sourceVersion" value="<%= String.valueOf(version) %>" />
+		<portlet:param name="sourceVersion" value="<%= version.toString() %>" />
 	</portlet:renderURL>
 
 	<%

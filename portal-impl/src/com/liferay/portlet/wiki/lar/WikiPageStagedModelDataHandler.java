@@ -172,9 +172,10 @@ public class WikiPageStagedModelDataHandler
 		}
 		else {
 			importedPage = WikiPageLocalServiceUtil.updatePage(
-				userId, nodeId, existingPage.getTitle(), 0, page.getContent(),
-				page.getSummary(), page.isMinorEdit(), page.getFormat(),
-				page.getParentTitle(), page.getRedirectTitle(), serviceContext);
+				userId, nodeId, existingPage.getTitle(), null,
+				page.getContent(), page.getSummary(), page.isMinorEdit(),
+				page.getFormat(), page.getParentTitle(),
+				page.getRedirectTitle(), serviceContext);
 		}
 
 		if (page.isHead()) {

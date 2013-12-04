@@ -1272,7 +1272,7 @@ public class ServiceBuilder {
 		else if (type.equals("Date")) {
 			return "TIMESTAMP";
 		}
-		else if (type.equals("String")) {
+		else if (type.equals("String") || type.equals("Version")) {
 			Map<String, String> hints = ModelHintsUtil.getHints(model, field);
 
 			if (hints != null) {
@@ -3887,7 +3887,9 @@ public class ServiceBuilder {
 				else if (StringUtil.equalsIgnoreCase(colType, "long")) {
 					sb.append("LONG");
 				}
-				else if (colType.equals("String")) {
+				else if (colType.equals("String") ||
+						 colType.equals("Version")) {
+
 					Map<String, String> hints = ModelHintsUtil.getHints(
 						_packagePath + ".model." + entity.getName(), colName);
 
@@ -3924,7 +3926,9 @@ public class ServiceBuilder {
 				if (col.isPrimary()) {
 					sb.append(" not null");
 				}
-				else if (colType.equals("Date") || colType.equals("String")) {
+				else if (colType.equals("Date") || colType.equals("String") ||
+						 colType.equals("Version")) {
+
 					sb.append(" null");
 				}
 
@@ -4006,7 +4010,7 @@ public class ServiceBuilder {
 			else if (colType.equals("Date")) {
 				sb.append("DATE");
 			}
-			else if (colType.equals("String")) {
+			else if (colType.equals("String") || colType.equals("Version")) {
 				Map<String, String> hints = ModelHintsUtil.getHints(
 					_packagePath + ".model." + entity.getName(), colName);
 
@@ -4044,7 +4048,9 @@ public class ServiceBuilder {
 					sb.append(" primary key");
 				}
 			}
-			else if (colType.equals("Date") || colType.equals("String")) {
+			else if (colType.equals("Date") || colType.equals("String") ||
+					 colType.equals("Version")) {
+
 				sb.append(" null");
 			}
 

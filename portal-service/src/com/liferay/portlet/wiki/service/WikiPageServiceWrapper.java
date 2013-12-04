@@ -140,7 +140,7 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	/**
 	* @deprecated As of 6.2.0 replaced by {@link #discardDraft(long, String,
-	double)}
+	Version)}
 	*/
 	@Override
 	public void deletePage(long nodeId, java.lang.String title, double version)
@@ -181,7 +181,8 @@ public class WikiPageServiceWrapper implements WikiPageService,
 	}
 
 	@Override
-	public void discardDraft(long nodeId, java.lang.String title, double version)
+	public void discardDraft(long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		_wikiPageService.discardDraft(nodeId, title, version);
@@ -189,7 +190,7 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage fetchPage(long nodeId,
-		java.lang.String title, double version)
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageService.fetchPage(nodeId, title, version);
@@ -221,7 +222,7 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	/**
 	* @deprecated As of 6.2.0, replaced by {@link #getNodePagesRSS(long, int,
-	String, double, String, String, String, String)}
+	String, Version, String, String, String, String)}
 	*/
 	@Override
 	public java.lang.String getNodePagesRSS(long nodeId, int max,
@@ -235,9 +236,10 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	@Override
 	public java.lang.String getNodePagesRSS(long nodeId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
-		java.lang.String attachmentURLPrefix)
+		java.lang.String type,
+		com.liferay.portal.kernel.plugin.Version version,
+		java.lang.String displayStyle, java.lang.String feedURL,
+		java.lang.String entryURL, java.lang.String attachmentURLPrefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageService.getNodePagesRSS(nodeId, max, type, version,
@@ -276,9 +278,21 @@ public class WikiPageServiceWrapper implements WikiPageService,
 		return _wikiPageService.getPage(nodeId, title, head);
 	}
 
+	/**
+	* @deprecated As of 6.2.0, replaced by {@link #getPage(long, int,
+	String, Version, String, String, String, String)}
+	*/
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage getPage(long nodeId,
 		java.lang.String title, double version)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wikiPageService.getPage(nodeId, title, version);
+	}
+
+	@Override
+	public com.liferay.portlet.wiki.model.WikiPage getPage(long nodeId,
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageService.getPage(nodeId, title, version);
@@ -319,7 +333,7 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	/**
 	* @deprecated As of 6.2.0, replaced by {@link #getPagesRSS(long, long,
-	String, int, String, double, String, String, String, String,
+	String, int, String, Version, String, String, String, String,
 	java.util.Locale)}
 	*/
 	@Override
@@ -335,7 +349,8 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	@Override
 	public java.lang.String getPagesRSS(long companyId, long nodeId,
-		java.lang.String title, int max, java.lang.String type, double version,
+		java.lang.String title, int max, java.lang.String type,
+		com.liferay.portal.kernel.plugin.Version version,
 		java.lang.String displayStyle, java.lang.String feedURL,
 		java.lang.String entryURL, java.lang.String attachmentURLPrefix,
 		java.util.Locale locale)
@@ -398,7 +413,8 @@ public class WikiPageServiceWrapper implements WikiPageService,
 
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage movePageToTrash(
-		long nodeId, java.lang.String title, double version)
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return _wikiPageService.movePageToTrash(nodeId, title, version);
@@ -419,9 +435,24 @@ public class WikiPageServiceWrapper implements WikiPageService,
 		_wikiPageService.restorePageFromTrash(resourcePrimKey);
 	}
 
+	/**
+	* @deprecated As of 6.2.0, replaced by {@link #revertPage(long, String,
+	Version, com.liferay.portal.service.ServiceContext)}
+	*/
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage revertPage(long nodeId,
 		java.lang.String title, double version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wikiPageService.revertPage(nodeId, title, version,
+			serviceContext);
+	}
+
+	@Override
+	public com.liferay.portlet.wiki.model.WikiPage revertPage(long nodeId,
+		java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -443,11 +474,31 @@ public class WikiPageServiceWrapper implements WikiPageService,
 		_wikiPageService.unsubscribePage(nodeId, title);
 	}
 
+	/**
+	* @deprecated As of 6.2.0, replaced by {@link #updatePage(long, String,
+	Version, String, String, boolean, String, String, String,
+	com.liferay.portal.service.ServiceContext)}
+	*/
 	@Override
 	public com.liferay.portlet.wiki.model.WikiPage updatePage(long nodeId,
 		java.lang.String title, double version, java.lang.String content,
 		java.lang.String summary, boolean minorEdit, java.lang.String format,
 		java.lang.String parentTitle, java.lang.String redirectTitle,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _wikiPageService.updatePage(nodeId, title, version, content,
+			summary, minorEdit, format, parentTitle, redirectTitle,
+			serviceContext);
+	}
+
+	@Override
+	public com.liferay.portlet.wiki.model.WikiPage updatePage(long nodeId,
+		java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
+		java.lang.String content, java.lang.String summary, boolean minorEdit,
+		java.lang.String format, java.lang.String parentTitle,
+		java.lang.String redirectTitle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {

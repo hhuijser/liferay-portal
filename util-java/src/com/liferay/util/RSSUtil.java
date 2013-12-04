@@ -92,6 +92,12 @@ public class RSSUtil {
 		}
 	}
 
+	public static String getFeedType(
+			String type, com.liferay.portal.kernel.plugin.Version version) {
+
+		return type + StringPool.UNDERLINE + version.toString();
+	}
+
 	public static String getFeedType(String type, double version) {
 		return type + StringPool.UNDERLINE + version;
 	}

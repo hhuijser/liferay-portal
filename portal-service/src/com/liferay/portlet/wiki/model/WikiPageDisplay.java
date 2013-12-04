@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.model;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 
 import java.io.Serializable;
@@ -41,7 +42,7 @@ public interface WikiPageDisplay extends Serializable {
 
 	public long getUserId();
 
-	public double getVersion();
+	public Version getVersion();
 
 	public boolean isHead();
 
@@ -62,6 +63,6 @@ public interface WikiPageDisplay extends Serializable {
 
 	public void setUserId(long userId);
 
-	public void setVersion(double version);
+	public void setVersion(Version version);
 
 }

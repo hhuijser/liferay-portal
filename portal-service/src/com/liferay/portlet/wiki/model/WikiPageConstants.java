@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.model;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 
@@ -39,6 +40,6 @@ public class WikiPageConstants {
 
 	public static final String REVERTED = "Reverted";
 
-	public static final double VERSION_DEFAULT = 1.0;
+	public static final Version VERSION_DEFAULT = Version.getInstance("1.0");
 
 }

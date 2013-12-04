@@ -15,9 +15,14 @@
 package com.liferay.portal.upgrade.v6_2_0;
 
 import com.liferay.portal.kernel.upgrade.BaseUpgradePortletPreferences;
+import com.liferay.portal.kernel.upgrade.util.UpgradeColumn;
+import com.liferay.portal.kernel.upgrade.util.UpgradeTable;
+import com.liferay.portal.kernel.upgrade.util.UpgradeTableFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.upgrade.v6_2_0.util.WikiPageTable;
+import com.liferay.portal.upgrade.v6_2_0.util.WikiPageUpgradeColumnImpl;
 import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 import javax.portlet.PortletPreferences;
@@ -30,6 +35,17 @@ public class UpgradeWiki extends BaseUpgradePortletPreferences {
 	@Override
 	protected void doUpgrade() throws Exception {
 		super.doUpgrade();
+
+		UpgradeColumn versionColumn = new WikiPageUpgradeColumnImpl("version");
+
+		UpgradeTable upgradeTable = UpgradeTableFactoryUtil.getUpgradeTable(
+			WikiPageTable.TABLE_NAME, WikiPageTable.TABLE_COLUMNS,
+			versionColumn);
+
+		upgradeTable.setCreateSQL(WikiPageTable.TABLE_SQL_CREATE);
+		upgradeTable.setIndexesSQL(WikiPageTable.TABLE_SQL_ADD_INDEXES);
+
+		upgradeTable.updateTable();
 	}
 
 	@Override

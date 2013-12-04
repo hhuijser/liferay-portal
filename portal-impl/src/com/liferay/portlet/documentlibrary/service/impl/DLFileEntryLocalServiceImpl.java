@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.increment.NumberIncrement;
 import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Hits;
 import com.liferay.portal.kernel.search.Indexable;
@@ -50,7 +51,6 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TreePathUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
@@ -1918,22 +1918,23 @@ public class DLFileEntryLocalServiceImpl
 			majorVersion = false;
 		}
 
-		int[] versionParts = StringUtil.split(version, StringPool.PERIOD, 0);
+		Version versionObj = Version.getInstance(version);
 
 		if (majorVersion) {
-			versionParts[0]++;
-			versionParts[1] = 0;
+			versionObj = Version.incrementMajor(versionObj);
 		}
 		else {
-			versionParts[1]++;
+			versionObj = Version.incrementMinor(versionObj);
 		}
 
-		return versionParts[0] + StringPool.PERIOD + versionParts[1];
+		return versionObj.toString();
 	}
 
 	/**
 	 * @see com.liferay.portlet.dynamicdatalists.service.impl.DDLRecordLocalServiceImpl#isKeepRecordVersionLabel(
 	 *      DDLRecordVersion, DDLRecordVersion, int)
+	 * @see com.liferay.portlet.wiki.service.impl.WikiPageLocalServiceImpl#isKeepPageVersionLabel(
+	 *      WikiPage, int)
 	 */
 	protected boolean isKeepFileVersionLabel(
 			DLFileEntry dlFileEntry, DLFileVersion lastDLFileVersion,

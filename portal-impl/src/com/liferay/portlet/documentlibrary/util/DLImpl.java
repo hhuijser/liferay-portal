@@ -1128,19 +1128,11 @@ public class DLImpl implements DL {
 	}
 
 	@Override
-	public boolean isOfficeExtension(String extension) {
-		if (StringUtil.equalsIgnoreCase(extension, "doc") ||
-			StringUtil.equalsIgnoreCase(extension, "docx") ||
-			StringUtil.equalsIgnoreCase(extension, "dot") ||
-			StringUtil.equalsIgnoreCase(extension, "ppt") ||
-			StringUtil.equalsIgnoreCase(extension, "pptx") ||
-			StringUtil.equalsIgnoreCase(extension, "xls") ||
-			StringUtil.equalsIgnoreCase(extension, "xlsx")) {
+	public boolean isOfficeExtension(String extension) throws SystemException {
+		String[] fileExtensions = PrefsPropsUtil.getStringArray(
+			PropsKeys.MICROSOFT_OFFICE_EXTENSIONS, StringPool.COMMA);
 
-			return true;
-		}
-
-		return false;
+		return ArrayUtil.contains(fileExtensions, extension);
 	}
 
 	@Override

@@ -92,12 +92,10 @@ public class PortletPreferencesServiceImpl
 		int ownerType = PortletKeys.PREFS_OWNER_TYPE_ARCHIVED;
 		long plid = 0;
 
-		String rootPortletId = PortletConstants.getRootPortletId(portletId);
-
 		javax.portlet.PortletPreferences archivedPreferences =
 			portletPreferencesLocalService.getPreferences(
 				portletItem.getCompanyId(), ownerId, ownerType, plid,
-				rootPortletId);
+				PortletConstants.getRootPortletId(portletId));
 
 		copyPreferences(archivedPreferences, preferences);
 	}

@@ -1380,6 +1380,18 @@ public class LayoutTypePortletImpl
 			String[] portletIds = StringUtil.split(columnValue);
 
 			for (String columnPortletId : portletIds) {
+				if (columnPortletId.equals(portletId)) {
+					return columnId;
+				}
+			}
+		}
+
+		for (String columnId : columns) {
+			String columnValue = getColumnValue(columnId);
+
+			String[] portletIds = StringUtil.split(columnValue);
+
+			for (String columnPortletId : portletIds) {
 				if (PortletConstants.hasIdenticalRootPortletId(
 						columnPortletId, portletId)) {
 

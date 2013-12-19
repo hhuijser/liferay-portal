@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.workflow.RequiredWorkflowDefinitionException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionFileException;
 import com.liferay.portal.kernel.workflow.WorkflowDefinitionManagerUtil;
@@ -78,7 +79,12 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 			sendRedirect(actionRequest, actionResponse);
 		}
 		catch (Exception e) {
-			if (e instanceof WorkflowDefinitionFileException) {
+			if (e instanceof RequiredWorkflowDefinitionException) {
+				SessionErrors.add(actionRequest, e.getClass());
+
+				setForward(actionRequest, "portlet.workflow_definitions.error");
+			}
+			else if (e instanceof WorkflowDefinitionFileException) {
 				SessionErrors.add(actionRequest, e.getClass());
 			}
 			else if (e instanceof WorkflowException) {

@@ -1139,7 +1139,7 @@
 		<icon>/html/icons/default.png</icon>
 		<struts-path>social</struts-path>
 		<social-activity-interpreter-class>com.liferay.portlet.social.util.PortalActivityInterpreter</social-activity-interpreter-class>
-		<social-request-interpreter-class>com.liferay.portlet.social.util.PortalRequestInterpreter</social-request-interpreter-class>
+		<social-request-interpreter-class>com.liferay.portlet.social.util.MembersRequestInterpreter</social-request-interpreter-class>
 		<preferences-owned-by-group>true</preferences-owned-by-group>
 		<system>true</system>
 	</portlet>

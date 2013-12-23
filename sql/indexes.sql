@@ -614,6 +614,7 @@ create unique index IX_9CBC6A39 on MDRRuleGroupInstance (uuid_, groupId);
 
 create index IX_8A1CC4B on MembershipRequest (groupId);
 create index IX_C28C72EC on MembershipRequest (groupId, statusId);
+create index IX_F9DFA985 on MembershipRequest (groupId, userId);
 create index IX_35AA8FA6 on MembershipRequest (groupId, userId, statusId);
 create index IX_66D70879 on MembershipRequest (userId);
 
@@ -868,6 +869,7 @@ create index IX_A90FE5A0 on SocialRequest (companyId);
 create index IX_32292ED1 on SocialRequest (receiverUserId);
 create index IX_D9380CB7 on SocialRequest (receiverUserId, status);
 create index IX_80F7A9C2 on SocialRequest (userId);
+create index IX_D1817E97 on SocialRequest (userId, classNameId, classPK);
 create unique index IX_36A90CA7 on SocialRequest (userId, classNameId, classPK, type_, receiverUserId);
 create index IX_CC86A444 on SocialRequest (userId, classNameId, classPK, type_, status);
 create index IX_AB5906A8 on SocialRequest (userId, status);

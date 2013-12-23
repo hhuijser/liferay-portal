@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.jdbc.SqlUpdateFactoryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.service.BaseServiceImpl;
 import com.liferay.portal.service.persistence.ClassNamePersistence;
+import com.liferay.portal.service.persistence.MembershipRequestPersistence;
 import com.liferay.portal.service.persistence.UserFinder;
 import com.liferay.portal.service.persistence.UserPersistence;
 import com.liferay.portal.util.PortalUtil;
@@ -596,6 +597,63 @@ public abstract class SocialRequestServiceBaseImpl extends BaseServiceImpl
 	}
 
 	/**
+	 * Returns the membership request local service.
+	 *
+	 * @return the membership request local service
+	 */
+	public com.liferay.portal.service.MembershipRequestLocalService getMembershipRequestLocalService() {
+		return membershipRequestLocalService;
+	}
+
+	/**
+	 * Sets the membership request local service.
+	 *
+	 * @param membershipRequestLocalService the membership request local service
+	 */
+	public void setMembershipRequestLocalService(
+		com.liferay.portal.service.MembershipRequestLocalService membershipRequestLocalService) {
+		this.membershipRequestLocalService = membershipRequestLocalService;
+	}
+
+	/**
+	 * Returns the membership request remote service.
+	 *
+	 * @return the membership request remote service
+	 */
+	public com.liferay.portal.service.MembershipRequestService getMembershipRequestService() {
+		return membershipRequestService;
+	}
+
+	/**
+	 * Sets the membership request remote service.
+	 *
+	 * @param membershipRequestService the membership request remote service
+	 */
+	public void setMembershipRequestService(
+		com.liferay.portal.service.MembershipRequestService membershipRequestService) {
+		this.membershipRequestService = membershipRequestService;
+	}
+
+	/**
+	 * Returns the membership request persistence.
+	 *
+	 * @return the membership request persistence
+	 */
+	public MembershipRequestPersistence getMembershipRequestPersistence() {
+		return membershipRequestPersistence;
+	}
+
+	/**
+	 * Sets the membership request persistence.
+	 *
+	 * @param membershipRequestPersistence the membership request persistence
+	 */
+	public void setMembershipRequestPersistence(
+		MembershipRequestPersistence membershipRequestPersistence) {
+		this.membershipRequestPersistence = membershipRequestPersistence;
+	}
+
+	/**
 	 * Returns the resource local service.
 	 *
 	 * @return the resource local service
@@ -802,6 +860,12 @@ public abstract class SocialRequestServiceBaseImpl extends BaseServiceImpl
 	protected com.liferay.portal.service.ClassNameService classNameService;
 	@BeanReference(type = ClassNamePersistence.class)
 	protected ClassNamePersistence classNamePersistence;
+	@BeanReference(type = com.liferay.portal.service.MembershipRequestLocalService.class)
+	protected com.liferay.portal.service.MembershipRequestLocalService membershipRequestLocalService;
+	@BeanReference(type = com.liferay.portal.service.MembershipRequestService.class)
+	protected com.liferay.portal.service.MembershipRequestService membershipRequestService;
+	@BeanReference(type = MembershipRequestPersistence.class)
+	protected MembershipRequestPersistence membershipRequestPersistence;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)
 	protected com.liferay.portal.service.ResourceLocalService resourceLocalService;
 	@BeanReference(type = com.liferay.portal.service.UserLocalService.class)

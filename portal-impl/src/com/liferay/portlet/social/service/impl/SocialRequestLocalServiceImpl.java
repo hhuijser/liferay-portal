@@ -540,7 +540,7 @@ public class SocialRequestLocalServiceImpl
 		socialRequestPersistence.update(request);
 
 		if (request.getClassNameId() == classNameLocalService.getClassNameId(
-			Group.class)) {
+				Group.class)) {
 
 			MembershipRequest membershipRequest =
 				membershipRequestLocalService.getMembershipRequest(
@@ -548,7 +548,7 @@ public class SocialRequestLocalServiceImpl
 
 			membershipRequestService.updateStatus(
 				membershipRequest.getMembershipRequestId(), comments, status,
-					null);
+				null);
 		}
 
 		if (status == SocialRequestConstants.STATUS_CONFIRM) {

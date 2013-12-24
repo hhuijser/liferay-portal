@@ -16,7 +16,6 @@ package com.liferay.portlet.social.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.model.SocialRequest;
@@ -40,7 +39,20 @@ public class SocialRequestServiceImpl extends SocialRequestServiceBaseImpl {
 			getPermissionChecker(), requestId, ActionKeys.UPDATE);
 
 		return socialRequestLocalService.updateRequest(
-			requestId, status, themeDisplay, StringPool.BLANK);
+			requestId, status, themeDisplay);
+	}
+
+	@Override
+	public SocialRequest updateRequest(
+			long requestId, int status, ThemeDisplay themeDisplay,
+			String comments)
+		throws PortalException, SystemException {
+
+		SocialRequestPermissionUtil.check(
+			getPermissionChecker(), requestId, ActionKeys.UPDATE);
+
+		return socialRequestLocalService.updateRequest(
+			requestId, status, themeDisplay, comments);
 	}
 
 }

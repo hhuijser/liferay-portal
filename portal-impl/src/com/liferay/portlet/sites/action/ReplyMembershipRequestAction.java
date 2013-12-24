@@ -28,6 +28,7 @@ import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.social.model.SocialRequest;
 import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialRequestServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -71,7 +72,7 @@ public class ReplyMembershipRequestAction extends PortletAction {
 					membershipRequest.getUserId(), Group.class.getName(),
 					membershipRequest.getGroupId());
 
-			SocialRequestLocalServiceUtil.updateRequest(
+			SocialRequestServiceUtil.updateRequest(
 				socialRequest.getRequestId(), statusId, themeDisplay,
 				replyComments);
 

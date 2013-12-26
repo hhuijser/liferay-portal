@@ -16,6 +16,7 @@ package com.liferay.portlet.requests.action;
 
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.struts.PortletAction;
@@ -75,7 +76,8 @@ public class UpdateRequestAction extends PortletAction {
 		long requestId = ParamUtil.getLong(actionRequest, "requestId");
 		int status = ParamUtil.getInteger(actionRequest, "status");
 
-		SocialRequestServiceUtil.updateRequest(requestId, status, themeDisplay);
+		SocialRequestServiceUtil.updateRequest(
+			requestId, status, themeDisplay, StringPool.BLANK);
 	}
 
 }

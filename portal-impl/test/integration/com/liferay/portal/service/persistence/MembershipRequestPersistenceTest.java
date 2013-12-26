@@ -30,11 +30,13 @@ import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.model.MembershipRequest;
+import com.liferay.portal.model.impl.MembershipRequestModelImpl;
 import com.liferay.portal.service.ServiceTestUtil;
 import com.liferay.portal.service.persistence.BasePersistence;
 import com.liferay.portal.service.persistence.PersistenceExecutionTestListener;
 import com.liferay.portal.test.LiferayPersistenceIntegrationJUnitTestRunner;
 import com.liferay.portal.test.persistence.TransactionalPersistenceAdvice;
+import com.liferay.portal.util.PropsValues;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -309,6 +311,24 @@ public class MembershipRequestPersistenceTest {
 		List<Object> result = _persistence.findWithDynamicQuery(dynamicQuery);
 
 		Assert.assertEquals(0, result.size());
+	}
+
+	@Test
+	public void testResetOriginalValues() throws Exception {
+		if (!PropsValues.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE) {
+			return;
+		}
+
+		MembershipRequest newMembershipRequest = addMembershipRequest();
+
+		_persistence.clearCache();
+
+		MembershipRequestModelImpl existingMembershipRequestModelImpl = (MembershipRequestModelImpl)_persistence.findByPrimaryKey(newMembershipRequest.getPrimaryKey());
+
+		Assert.assertEquals(existingMembershipRequestModelImpl.getGroupId(),
+			existingMembershipRequestModelImpl.getOriginalGroupId());
+		Assert.assertEquals(existingMembershipRequestModelImpl.getUserId(),
+			existingMembershipRequestModelImpl.getOriginalUserId());
 	}
 
 	protected MembershipRequest addMembershipRequest()

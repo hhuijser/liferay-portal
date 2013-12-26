@@ -63,6 +63,17 @@ public class SocialRequestServiceWrapper implements SocialRequestService,
 			themeDisplay);
 	}
 
+	@Override
+	public com.liferay.portlet.social.model.SocialRequest updateRequest(
+		long requestId, int status,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay,
+		java.lang.String comments)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _socialRequestService.updateRequest(requestId, status,
+			themeDisplay, comments);
+	}
+
 	/**
 	 * @deprecated As of 6.1.0, replaced by {@link #getWrappedService}
 	 */

@@ -19,16 +19,16 @@ import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.liveusers.LiveUsers;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.MembershipRequest;
-import com.liferay.portal.model.MembershipRequestConstants;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.MembershipRequestServiceUtil;
-import com.liferay.portal.service.ServiceContext;
-import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.social.model.SocialRequest;
+import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
+import com.liferay.portlet.social.service.SocialRequestServiceUtil;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -63,21 +63,18 @@ public class ReplyMembershipRequestAction extends PortletAction {
 			String replyComments = ParamUtil.getString(
 				actionRequest, "replyComments");
 
-			ServiceContext serviceContext = ServiceContextFactory.getInstance(
-				actionRequest);
+			MembershipRequest membershipRequest =
+				MembershipRequestServiceUtil.getMembershipRequest(
+					membershipRequestId);
 
-			MembershipRequestServiceUtil.updateStatus(
-				membershipRequestId, replyComments, statusId, serviceContext);
+			SocialRequest socialRequest =
+				SocialRequestLocalServiceUtil.getUserRequest(
+					membershipRequest.getUserId(), Group.class.getName(),
+					membershipRequest.getGroupId());
 
-			if (statusId == MembershipRequestConstants.STATUS_APPROVED) {
-				MembershipRequest membershipRequest =
-					MembershipRequestServiceUtil.getMembershipRequest(
-						membershipRequestId);
-
-				LiveUsers.joinGroup(
-					themeDisplay.getCompanyId(), membershipRequest.getGroupId(),
-					new long[] {membershipRequest.getUserId()});
-			}
+			SocialRequestServiceUtil.updateRequest(
+				socialRequest.getRequestId(), statusId, themeDisplay,
+				replyComments);
 
 			SessionMessages.add(actionRequest, "membershipReplySent");
 

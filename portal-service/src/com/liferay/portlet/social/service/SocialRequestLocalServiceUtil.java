@@ -498,6 +498,23 @@ public class SocialRequestLocalServiceUtil {
 	}
 
 	/**
+	* Returns the social request for the requesting user.
+	*
+	* @param userId the primary key of the requesting user
+	* @param className the class name of the asset that is the subject of the
+	request
+	* @param classPK the primary key of the asset that is the subject of the
+	request
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portlet.social.model.SocialRequest getUserRequest(
+		long userId, java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portlet.social.NoSuchRequestException {
+		return getService().getUserRequest(userId, className, classPK);
+	}
+
+	/**
 	* Returns a range of all the social requests for the requesting user.
 	*
 	* <p>
@@ -649,6 +666,40 @@ public class SocialRequestLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		return getService().updateRequest(requestId, status, themeDisplay);
+	}
+
+	/**
+	* Updates the social request replacing its status.
+	*
+	* <p>
+	* If the status is updated to {@link
+	* com.liferay.portlet.social.model.SocialRequestConstants#STATUS_CONFIRM}
+	* then {@link
+	* com.liferay.portlet.social.service.SocialRequestInterpreterLocalService#processConfirmation(
+	* SocialRequest, ThemeDisplay)} is called. If the status is updated to
+	* {@link
+	* com.liferay.portlet.social.model.SocialRequestConstants#STATUS_IGNORE}
+	* then {@link
+	* com.liferay.portlet.social.service.SocialRequestInterpreterLocalService#processRejection(
+	* SocialRequest, ThemeDisplay)} is called.
+	* </p>
+	*
+	* @param requestId the primary key of the social request
+	* @param status the new status
+	* @param themeDisplay the theme display
+	* @param comments the comments from the approver
+	* @return the updated social request
+	* @throws PortalException if the social request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portlet.social.model.SocialRequest updateRequest(
+		long requestId, int status,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay,
+		java.lang.String comments)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getService()
+				   .updateRequest(requestId, status, themeDisplay, comments);
 	}
 
 	public static SocialRequestLocalService getService() {

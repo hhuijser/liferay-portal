@@ -1013,6 +1013,85 @@ public class SocialRequestUtil {
 	}
 
 	/**
+	* Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.portlet.social.NoSuchRequestException} if it could not be found.
+	*
+	* @param userId the user ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @return the matching social request
+	* @throws com.liferay.portlet.social.NoSuchRequestException if a matching social request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portlet.social.model.SocialRequest findByU_C_C(
+		long userId, long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portlet.social.NoSuchRequestException {
+		return getPersistence().findByU_C_C(userId, classNameId, classPK);
+	}
+
+	/**
+	* Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param userId the user ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @return the matching social request, or <code>null</code> if a matching social request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portlet.social.model.SocialRequest fetchByU_C_C(
+		long userId, long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByU_C_C(userId, classNameId, classPK);
+	}
+
+	/**
+	* Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param userId the user ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching social request, or <code>null</code> if a matching social request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portlet.social.model.SocialRequest fetchByU_C_C(
+		long userId, long classNameId, long classPK, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence()
+				   .fetchByU_C_C(userId, classNameId, classPK, retrieveFromCache);
+	}
+
+	/**
+	* Removes the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @return the social request that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portlet.social.model.SocialRequest removeByU_C_C(
+		long userId, long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException,
+			com.liferay.portlet.social.NoSuchRequestException {
+		return getPersistence().removeByU_C_C(userId, classNameId, classPK);
+	}
+
+	/**
+	* Returns the number of social requests where userId = &#63; and classNameId = &#63; and classPK = &#63;.
+	*
+	* @param userId the user ID
+	* @param classNameId the class name ID
+	* @param classPK the class p k
+	* @return the number of matching social requests
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByU_C_C(long userId, long classNameId, long classPK)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByU_C_C(userId, classNameId, classPK);
+	}
+
+	/**
 	* Returns all the social requests where userId = &#63; and status = &#63;.
 	*
 	* @param userId the user ID

@@ -610,6 +610,79 @@ public class MembershipRequestUtil {
 	}
 
 	/**
+	* Returns the membership request where groupId = &#63; and userId = &#63; or throws a {@link com.liferay.portal.NoSuchMembershipRequestException} if it could not be found.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the matching membership request
+	* @throws com.liferay.portal.NoSuchMembershipRequestException if a matching membership request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.model.MembershipRequest findByG_U(
+		long groupId, long userId)
+		throws com.liferay.portal.NoSuchMembershipRequestException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().findByG_U(groupId, userId);
+	}
+
+	/**
+	* Returns the membership request where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the matching membership request, or <code>null</code> if a matching membership request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.model.MembershipRequest fetchByG_U(
+		long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByG_U(groupId, userId);
+	}
+
+	/**
+	* Returns the membership request where groupId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @param retrieveFromCache whether to use the finder cache
+	* @return the matching membership request, or <code>null</code> if a matching membership request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.model.MembershipRequest fetchByG_U(
+		long groupId, long userId, boolean retrieveFromCache)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().fetchByG_U(groupId, userId, retrieveFromCache);
+	}
+
+	/**
+	* Removes the membership request where groupId = &#63; and userId = &#63; from the database.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the membership request that was removed
+	* @throws SystemException if a system exception occurred
+	*/
+	public static com.liferay.portal.model.MembershipRequest removeByG_U(
+		long groupId, long userId)
+		throws com.liferay.portal.NoSuchMembershipRequestException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().removeByG_U(groupId, userId);
+	}
+
+	/**
+	* Returns the number of membership requests where groupId = &#63; and userId = &#63;.
+	*
+	* @param groupId the group ID
+	* @param userId the user ID
+	* @return the number of matching membership requests
+	* @throws SystemException if a system exception occurred
+	*/
+	public static int countByG_U(long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getPersistence().countByG_U(groupId, userId);
+	}
+
+	/**
 	* Returns all the membership requests where groupId = &#63; and userId = &#63; and statusId = &#63;.
 	*
 	* @param groupId the group ID

@@ -312,6 +312,15 @@ public class MembershipRequestLocalServiceWrapper
 	}
 
 	@Override
+	public com.liferay.portal.model.MembershipRequest getMembershipRequest(
+		long groupId, long userId)
+		throws com.liferay.portal.NoSuchMembershipRequestException,
+			com.liferay.portal.kernel.exception.SystemException {
+		return _membershipRequestLocalService.getMembershipRequest(groupId,
+			userId);
+	}
+
+	@Override
 	public java.util.List<com.liferay.portal.model.MembershipRequest> getMembershipRequests(
 		long userId, long groupId, int statusId)
 		throws com.liferay.portal.kernel.exception.SystemException {

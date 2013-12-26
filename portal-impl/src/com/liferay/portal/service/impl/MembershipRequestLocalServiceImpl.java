@@ -15,6 +15,7 @@
 package com.liferay.portal.service.impl;
 
 import com.liferay.portal.MembershipRequestCommentsException;
+import com.liferay.portal.NoSuchMembershipRequestException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -112,6 +113,13 @@ public class MembershipRequestLocalServiceImpl
 		for (MembershipRequest membershipRequest : membershipRequests) {
 			deleteMembershipRequest(membershipRequest);
 		}
+	}
+
+	@Override
+	public MembershipRequest getMembershipRequest(long groupId, long userId)
+		throws NoSuchMembershipRequestException, SystemException {
+
+		return membershipRequestPersistence.findByG_U(groupId, userId);
 	}
 
 	@Override

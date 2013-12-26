@@ -42,4 +42,17 @@ public class SocialRequestServiceImpl extends SocialRequestServiceBaseImpl {
 			requestId, status, themeDisplay);
 	}
 
+	@Override
+	public SocialRequest updateRequest(
+			long requestId, int status, ThemeDisplay themeDisplay,
+			String comments)
+		throws PortalException, SystemException {
+
+		SocialRequestPermissionUtil.check(
+			getPermissionChecker(), requestId, ActionKeys.UPDATE);
+
+		return socialRequestLocalService.updateRequest(
+			requestId, status, themeDisplay, comments);
+	}
+
 }

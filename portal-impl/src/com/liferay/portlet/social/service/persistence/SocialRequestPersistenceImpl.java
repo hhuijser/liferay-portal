@@ -2938,6 +2938,269 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 	}
 
 	private static final String _FINDER_COLUMN_RECEIVERUSERID_RECEIVERUSERID_2 = "socialRequest.receiverUserId = ?";
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_C_C = new FinderPath(SocialRequestModelImpl.ENTITY_CACHE_ENABLED,
+			SocialRequestModelImpl.FINDER_CACHE_ENABLED,
+			SocialRequestImpl.class, FINDER_CLASS_NAME_ENTITY, "fetchByU_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			},
+			SocialRequestModelImpl.USERID_COLUMN_BITMASK |
+			SocialRequestModelImpl.CLASSNAMEID_COLUMN_BITMASK |
+			SocialRequestModelImpl.CLASSPK_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_C_C = new FinderPath(SocialRequestModelImpl.ENTITY_CACHE_ENABLED,
+			SocialRequestModelImpl.FINDER_CACHE_ENABLED, Long.class,
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_C_C",
+			new String[] {
+				Long.class.getName(), Long.class.getName(), Long.class.getName()
+			});
+
+	/**
+	 * Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; or throws a {@link com.liferay.portlet.social.NoSuchRequestException} if it could not be found.
+	 *
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the matching social request
+	 * @throws com.liferay.portlet.social.NoSuchRequestException if a matching social request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SocialRequest findByU_C_C(long userId, long classNameId, long classPK)
+		throws NoSuchRequestException, SystemException {
+		SocialRequest socialRequest = fetchByU_C_C(userId, classNameId, classPK);
+
+		if (socialRequest == null) {
+			StringBundler msg = new StringBundler(8);
+
+			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+			msg.append("userId=");
+			msg.append(userId);
+
+			msg.append(", classNameId=");
+			msg.append(classNameId);
+
+			msg.append(", classPK=");
+			msg.append(classPK);
+
+			msg.append(StringPool.CLOSE_CURLY_BRACE);
+
+			if (_log.isWarnEnabled()) {
+				_log.warn(msg.toString());
+			}
+
+			throw new NoSuchRequestException(msg.toString());
+		}
+
+		return socialRequest;
+	}
+
+	/**
+	 * Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the matching social request, or <code>null</code> if a matching social request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SocialRequest fetchByU_C_C(long userId, long classNameId,
+		long classPK) throws SystemException {
+		return fetchByU_C_C(userId, classNameId, classPK, true);
+	}
+
+	/**
+	 * Returns the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 *
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @param retrieveFromCache whether to use the finder cache
+	 * @return the matching social request, or <code>null</code> if a matching social request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SocialRequest fetchByU_C_C(long userId, long classNameId,
+		long classPK, boolean retrieveFromCache) throws SystemException {
+		Object[] finderArgs = new Object[] { userId, classNameId, classPK };
+
+		Object result = null;
+
+		if (retrieveFromCache) {
+			result = FinderCacheUtil.getResult(FINDER_PATH_FETCH_BY_U_C_C,
+					finderArgs, this);
+		}
+
+		if (result instanceof SocialRequest) {
+			SocialRequest socialRequest = (SocialRequest)result;
+
+			if ((userId != socialRequest.getUserId()) ||
+					(classNameId != socialRequest.getClassNameId()) ||
+					(classPK != socialRequest.getClassPK())) {
+				result = null;
+			}
+		}
+
+		if (result == null) {
+			StringBundler query = new StringBundler(5);
+
+			query.append(_SQL_SELECT_SOCIALREQUEST_WHERE);
+
+			query.append(_FINDER_COLUMN_U_C_C_USERID_2);
+
+			query.append(_FINDER_COLUMN_U_C_C_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_U_C_C_CLASSPK_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				List<SocialRequest> list = q.list();
+
+				if (list.isEmpty()) {
+					FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C,
+						finderArgs, list);
+				}
+				else {
+					if ((list.size() > 1) && _log.isWarnEnabled()) {
+						_log.warn(
+							"SocialRequestPersistenceImpl.fetchByU_C_C(long, long, long, boolean) with parameters (" +
+							StringUtil.merge(finderArgs) +
+							") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
+					}
+
+					SocialRequest socialRequest = list.get(0);
+
+					result = socialRequest;
+
+					cacheResult(socialRequest);
+
+					if ((socialRequest.getUserId() != userId) ||
+							(socialRequest.getClassNameId() != classNameId) ||
+							(socialRequest.getClassPK() != classPK)) {
+						FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C,
+							finderArgs, socialRequest);
+					}
+				}
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C,
+					finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		if (result instanceof List<?>) {
+			return null;
+		}
+		else {
+			return (SocialRequest)result;
+		}
+	}
+
+	/**
+	 * Removes the social request where userId = &#63; and classNameId = &#63; and classPK = &#63; from the database.
+	 *
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the social request that was removed
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SocialRequest removeByU_C_C(long userId, long classNameId,
+		long classPK) throws NoSuchRequestException, SystemException {
+		SocialRequest socialRequest = findByU_C_C(userId, classNameId, classPK);
+
+		return remove(socialRequest);
+	}
+
+	/**
+	 * Returns the number of social requests where userId = &#63; and classNameId = &#63; and classPK = &#63;.
+	 *
+	 * @param userId the user ID
+	 * @param classNameId the class name ID
+	 * @param classPK the class p k
+	 * @return the number of matching social requests
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public int countByU_C_C(long userId, long classNameId, long classPK)
+		throws SystemException {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_C_C;
+
+		Object[] finderArgs = new Object[] { userId, classNameId, classPK };
+
+		Long count = (Long)FinderCacheUtil.getResult(finderPath, finderArgs,
+				this);
+
+		if (count == null) {
+			StringBundler query = new StringBundler(4);
+
+			query.append(_SQL_COUNT_SOCIALREQUEST_WHERE);
+
+			query.append(_FINDER_COLUMN_U_C_C_USERID_2);
+
+			query.append(_FINDER_COLUMN_U_C_C_CLASSNAMEID_2);
+
+			query.append(_FINDER_COLUMN_U_C_C_CLASSPK_2);
+
+			String sql = query.toString();
+
+			Session session = null;
+
+			try {
+				session = openSession();
+
+				Query q = session.createQuery(sql);
+
+				QueryPos qPos = QueryPos.getInstance(q);
+
+				qPos.add(userId);
+
+				qPos.add(classNameId);
+
+				qPos.add(classPK);
+
+				count = (Long)q.uniqueResult();
+
+				FinderCacheUtil.putResult(finderPath, finderArgs, count);
+			}
+			catch (Exception e) {
+				FinderCacheUtil.removeResult(finderPath, finderArgs);
+
+				throw processException(e);
+			}
+			finally {
+				closeSession(session);
+			}
+		}
+
+		return count.intValue();
+	}
+
+	private static final String _FINDER_COLUMN_U_C_C_USERID_2 = "socialRequest.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_C_CLASSNAMEID_2 = "socialRequest.classNameId = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_C_CLASSPK_2 = "socialRequest.classPK = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_U_S = new FinderPath(SocialRequestModelImpl.ENTITY_CACHE_ENABLED,
 			SocialRequestModelImpl.FINDER_CACHE_ENABLED,
 			SocialRequestImpl.class, FINDER_CLASS_NAME_LIST_WITH_PAGINATION,
@@ -6148,6 +6411,12 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 			new Object[] { socialRequest.getUuid(), socialRequest.getGroupId() },
 			socialRequest);
 
+		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C,
+			new Object[] {
+				socialRequest.getUserId(), socialRequest.getClassNameId(),
+				socialRequest.getClassPK()
+			}, socialRequest);
+
 		FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C_T_R,
 			new Object[] {
 				socialRequest.getUserId(), socialRequest.getClassNameId(),
@@ -6241,6 +6510,16 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 
 			args = new Object[] {
 					socialRequest.getUserId(), socialRequest.getClassNameId(),
+					socialRequest.getClassPK()
+				};
+
+			FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_C_C, args,
+				Long.valueOf(1));
+			FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C, args,
+				socialRequest);
+
+			args = new Object[] {
+					socialRequest.getUserId(), socialRequest.getClassNameId(),
 					socialRequest.getClassPK(), socialRequest.getType(),
 					socialRequest.getReceiverUserId()
 				};
@@ -6262,6 +6541,20 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_UUID_G, args,
 					Long.valueOf(1));
 				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_UUID_G, args,
+					socialRequest);
+			}
+
+			if ((socialRequestModelImpl.getColumnBitmask() &
+					FINDER_PATH_FETCH_BY_U_C_C.getColumnBitmask()) != 0) {
+				Object[] args = new Object[] {
+						socialRequest.getUserId(),
+						socialRequest.getClassNameId(),
+						socialRequest.getClassPK()
+					};
+
+				FinderCacheUtil.putResult(FINDER_PATH_COUNT_BY_U_C_C, args,
+					Long.valueOf(1));
+				FinderCacheUtil.putResult(FINDER_PATH_FETCH_BY_U_C_C, args,
 					socialRequest);
 			}
 
@@ -6301,6 +6594,26 @@ public class SocialRequestPersistenceImpl extends BasePersistenceImpl<SocialRequ
 
 			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_UUID_G, args);
 			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_UUID_G, args);
+		}
+
+		args = new Object[] {
+				socialRequest.getUserId(), socialRequest.getClassNameId(),
+				socialRequest.getClassPK()
+			};
+
+		FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_C_C, args);
+		FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C, args);
+
+		if ((socialRequestModelImpl.getColumnBitmask() &
+				FINDER_PATH_FETCH_BY_U_C_C.getColumnBitmask()) != 0) {
+			args = new Object[] {
+					socialRequestModelImpl.getOriginalUserId(),
+					socialRequestModelImpl.getOriginalClassNameId(),
+					socialRequestModelImpl.getOriginalClassPK()
+				};
+
+			FinderCacheUtil.removeResult(FINDER_PATH_COUNT_BY_U_C_C, args);
+			FinderCacheUtil.removeResult(FINDER_PATH_FETCH_BY_U_C_C, args);
 		}
 
 		args = new Object[] {

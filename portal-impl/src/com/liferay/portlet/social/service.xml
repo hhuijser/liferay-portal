@@ -473,6 +473,11 @@
 		<finder name="ReceiverUserId" return-type="Collection">
 			<finder-column name="receiverUserId" />
 		</finder>
+		<finder name="U_C_C" return-type="SocialRequest">
+			<finder-column name="userId" />
+			<finder-column name="classNameId" />
+			<finder-column name="classPK" />
+		</finder>
 		<finder name="U_S" return-type="Collection">
 			<finder-column name="userId" />
 			<finder-column name="status" />
@@ -506,6 +511,10 @@
 			<finder-column name="receiverUserId" />
 			<finder-column name="status" />
 		</finder>
+
+		<!-- References -->
+
+		<reference package-path="com.liferay.portal" entity="MembershipRequest" />
 	</entity>
 	<entity name="SocialRequestInterpreter" local-service="true" remote-service="false" tx-manager="none" />
 	<exceptions>

@@ -116,6 +116,14 @@ public class MembershipRequestLocalServiceImpl
 
 	@Override
 	public List<MembershipRequest> getMembershipRequests(
+			long groupId, long userId)
+		throws PortalException, SystemException {
+
+		return membershipRequestPersistence.findByG_U(groupId, userId);
+	}
+
+	@Override
+	public List<MembershipRequest> getMembershipRequests(
 			long userId, long groupId, int statusId)
 		throws SystemException {
 

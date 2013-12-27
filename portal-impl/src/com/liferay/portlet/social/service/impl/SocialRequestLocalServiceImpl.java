@@ -16,6 +16,10 @@ package com.liferay.portlet.social.service.impl;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.MembershipRequest;
 import com.liferay.portal.model.User;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portlet.social.RequestUserIdException;
@@ -322,6 +326,28 @@ public class SocialRequestLocalServiceImpl
 	}
 
 	/**
+	 * Returns all social requests with the given class name and primary key for
+	 * the requesting user.
+	 *
+	 * @param userId the primary key of the requesting user
+	 * @param className the class name of the asset that is the subject of the
+	 *         request
+	 * @param classPK the primary key of the asset that is the subject of the
+	 *         request
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public List<SocialRequest> getUserRequests(
+			long userId, String className, long classPK)
+		throws PortalException, SystemException {
+
+		long classNameId = classNameLocalService.getClassNameId(className);
+
+		return socialRequestPersistence.findByU_C_C(
+			userId, classNameId, classPK);
+	}
+
+	/**
 	 * Returns the number of social requests for the requesting user.
 	 *
 	 * @param  userId the primary key of the requesting user
@@ -451,6 +477,81 @@ public class SocialRequestLocalServiceImpl
 		request.setStatus(status);
 
 		socialRequestPersistence.update(request);
+
+		if (status == SocialRequestConstants.STATUS_CONFIRM) {
+			socialRequestInterpreterLocalService.processConfirmation(
+				request, themeDisplay);
+		}
+		else if (status == SocialRequestConstants.STATUS_IGNORE) {
+			socialRequestInterpreterLocalService.processRejection(
+				request, themeDisplay);
+		}
+
+		return request;
+	}
+
+	/**
+	 * Updates the social request replacing its status.
+	 *
+	 * <p>
+	 * If the status is updated to {@link
+	 * com.liferay.portlet.social.model.SocialRequestConstants#STATUS_CONFIRM}
+	 * then {@link
+	 * com.liferay.portlet.social.service.SocialRequestInterpreterLocalService#processConfirmation(
+	 * SocialRequest, ThemeDisplay)} is called. If the status is updated to
+	 * {@link
+	 * com.liferay.portlet.social.model.SocialRequestConstants#STATUS_IGNORE}
+	 * then {@link
+	 * com.liferay.portlet.social.service.SocialRequestInterpreterLocalService#processRejection(
+	 * SocialRequest, ThemeDisplay)} is called.
+	 * </p>
+	 *
+	 * @param  requestId the primary key of the social request
+	 * @param  status the new status
+	 * @param  themeDisplay the theme display
+	 * @param  comments the comments from the approver
+	 * @return the updated social request
+	 * @throws PortalException if the social request could not be found
+	 * @throws SystemException if a system exception occurred
+	 */
+	@Override
+	public SocialRequest updateRequest(
+			long requestId, int status, ThemeDisplay themeDisplay,
+			String comments)
+		throws PortalException, SystemException {
+
+		if (Validator.isNull(comments)) {
+			if (status == SocialRequestConstants.STATUS_CONFIRM) {
+				comments = LanguageUtil.get(
+				themeDisplay.getLocale(), "request-approved");
+			}
+			else {
+				comments = LanguageUtil.get(
+				themeDisplay.getLocale(), "request-denied");
+			}
+		}
+
+		SocialRequest request = socialRequestPersistence.findByPrimaryKey(
+			requestId);
+
+		request.setModifiedDate(System.currentTimeMillis());
+		request.setStatus(status);
+
+		socialRequestPersistence.update(request);
+
+		if (request.getClassNameId() == classNameLocalService.getClassNameId(
+				Group.class)) {
+
+			List<MembershipRequest> membershipRequests =
+				membershipRequestLocalService.getMembershipRequests(
+					request.getClassPK(), request.getUserId());
+
+			for (MembershipRequest membershipRequest : membershipRequests) {
+				membershipRequestService.updateStatus(
+					membershipRequest.getMembershipRequestId(), comments,
+					status, null);
+			}
+		}
 
 		if (status == SocialRequestConstants.STATUS_CONFIRM) {
 			socialRequestInterpreterLocalService.processConfirmation(

@@ -500,6 +500,23 @@ public interface SocialRequestLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**
+	* Returns all social requests with the given class name and primary key for
+	* the requesting user.
+	*
+	* @param userId the primary key of the requesting user
+	* @param className the class name of the asset that is the subject of the
+	request
+	* @param classPK the primary key of the asset that is the subject of the
+	request
+	* @throws SystemException if a system exception occurred
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.social.model.SocialRequest> getUserRequests(
+		long userId, java.lang.String className, long classPK)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
 	* Returns the number of social requests for the requesting user.
 	*
 	* @param userId the primary key of the requesting user
@@ -590,6 +607,37 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	public com.liferay.portlet.social.model.SocialRequest updateRequest(
 		long requestId, int status,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	/**
+	* Updates the social request replacing its status.
+	*
+	* <p>
+	* If the status is updated to {@link
+	* com.liferay.portlet.social.model.SocialRequestConstants#STATUS_CONFIRM}
+	* then {@link
+	* com.liferay.portlet.social.service.SocialRequestInterpreterLocalService#processConfirmation(
+	* SocialRequest, ThemeDisplay)} is called. If the status is updated to
+	* {@link
+	* com.liferay.portlet.social.model.SocialRequestConstants#STATUS_IGNORE}
+	* then {@link
+	* com.liferay.portlet.social.service.SocialRequestInterpreterLocalService#processRejection(
+	* SocialRequest, ThemeDisplay)} is called.
+	* </p>
+	*
+	* @param requestId the primary key of the social request
+	* @param status the new status
+	* @param themeDisplay the theme display
+	* @param comments the comments from the approver
+	* @return the updated social request
+	* @throws PortalException if the social request could not be found
+	* @throws SystemException if a system exception occurred
+	*/
+	public com.liferay.portlet.social.model.SocialRequest updateRequest(
+		long requestId, int status,
+		com.liferay.portal.theme.ThemeDisplay themeDisplay,
+		java.lang.String comments)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

@@ -261,6 +261,12 @@ public interface MembershipRequestLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.model.MembershipRequest> getMembershipRequests(
+		long groupId, long userId)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.model.MembershipRequest> getMembershipRequests(
 		long userId, long groupId, int statusId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 

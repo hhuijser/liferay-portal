@@ -16,14 +16,32 @@ package com.liferay.portlet.sites.action;
 
 import com.liferay.portal.MembershipRequestCommentsException;
 import com.liferay.portal.NoSuchGroupException;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
+import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.WebKeys;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
+import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Role;
+import com.liferay.portal.model.RoleConstants;
+import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.MembershipRequestServiceUtil;
+import com.liferay.portal.service.RoleLocalServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
+import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.struts.PortletAction;
+import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portlet.social.service.SocialRequestLocalServiceUtil;
+import com.liferay.portlet.social.util.MembersRequestKeys;
+
+import java.util.LinkedHashMap;
+import java.util.List;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -50,6 +68,49 @@ public class PostMembershipRequestAction extends PortletAction {
 		try {
 			long groupId = ParamUtil.getLong(actionRequest, "groupId");
 			String comments = ParamUtil.getString(actionRequest, "comments");
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)actionRequest.getAttribute(WebKeys.THEME_DISPLAY);
+
+			Group group = GroupLocalServiceUtil.getGroup(
+				themeDisplay.getScopeGroupId());
+
+			Role siteAdminRole = RoleLocalServiceUtil.getRole(
+				themeDisplay.getCompanyId(), RoleConstants.SITE_ADMINISTRATOR);
+
+			LinkedHashMap<String, Object> userParams =
+				new LinkedHashMap<String, Object>();
+
+			userParams.put(
+				"userGroupRole", new Long[] {group.getGroupId(),
+				siteAdminRole.getRoleId()});
+
+			List<User> users = UserLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), null,
+				WorkflowConstants.STATUS_APPROVED, userParams,
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, (OrderByComparator)null);
+
+			if (users.isEmpty()) {
+				Role adminRole = RoleLocalServiceUtil.getRole(
+					themeDisplay.getCompanyId(), RoleConstants.ADMINISTRATOR);
+
+				userParams.clear();
+
+				userParams.put("usersRoles", adminRole.getRoleId());
+
+				users = UserLocalServiceUtil.search(
+					themeDisplay.getCompanyId(), null,
+					WorkflowConstants.STATUS_APPROVED, userParams,
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+					(OrderByComparator)null);
+			}
+
+			for (User user : users) {
+				SocialRequestLocalServiceUtil.addRequest(
+					themeDisplay.getUserId(), 0, Group.class.getName(),
+					group.getGroupId(), MembersRequestKeys.ADD_MEMBER,
+					StringPool.BLANK, user.getUserId());
+			}
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				actionRequest);

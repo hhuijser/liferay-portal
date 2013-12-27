@@ -1140,6 +1140,10 @@
 			<finder-column name="groupId" />
 			<finder-column name="statusId" />
 		</finder>
+		<finder name="G_U" return-type="Collection">
+			<finder-column name="groupId" />
+			<finder-column name="userId" />
+		</finder>
 		<finder name="G_U_S" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="userId" />

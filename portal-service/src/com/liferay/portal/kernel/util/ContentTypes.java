@@ -71,6 +71,8 @@ public interface ContentTypes {
 
 	public static final String MULTIPART_MIXED = "multipart/mixed";
 
+	public static final String MULTIPART_WILDCARD = "multipart/*";
+
 	public static final String TEXT = "text";
 
 	public static final String TEXT_CALENDAR = "text/calendar";

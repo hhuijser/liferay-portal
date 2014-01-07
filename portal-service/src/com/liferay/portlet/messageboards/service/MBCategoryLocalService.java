@@ -400,6 +400,10 @@ public interface MBCategoryLocalService extends BaseLocalService,
 		long groupId, long categoryId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	public boolean categoryContainsLockedThread(
+		com.liferay.portlet.messageboards.model.MBCategory category)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getCategoriesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;

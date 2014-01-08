@@ -332,6 +332,11 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 				Sites.LAYOUT_UPDATEABLE, String.valueOf(layoutUpdateable));
 		}
 
+		if (privateLayout) {
+			typeSettingsProperties.put(
+				"privateLayout", String.valueOf(privateLayout));
+		}
+
 		validateTypeSettingsProperties(typeSettingsProperties);
 
 		layout.setTypeSettingsProperties(typeSettingsProperties);

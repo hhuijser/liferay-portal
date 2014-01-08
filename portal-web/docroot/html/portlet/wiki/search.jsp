@@ -125,7 +125,7 @@ portletURL.setParameter("keywords", keywords);
 
 			<liferay-ui:app-view-search-entry
 				containerIcon="all_pages"
-				containerName="<%= curNode.getName() %>"
+				containerName="<%= HtmlUtil.escape(curNode.getName()) %>"
 				containerType='<%= LanguageUtil.get(locale, "wiki-node") %>'
 				cssClass='<%= MathUtil.isEven(index) ? "search" : "search alt" %>'
 				description="<%= (summary != null) ? HtmlUtil.escape(summary.getContent()) : wikiPage.getSummary() %>"

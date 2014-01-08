@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
@@ -292,12 +293,12 @@ public class MBUtil {
 		for (MBCategory curCategory : categories) {
 			sb.append(StringPool.RAQUO);
 			sb.append(StringPool.SPACE);
-			sb.append(curCategory.getName());
+			sb.append(HtmlUtil.escape(curCategory.getName()));
 		}
 
 		sb.append(StringPool.RAQUO);
 		sb.append(StringPool.SPACE);
-		sb.append(mbCategory.getName());
+		sb.append(HtmlUtil.escape(mbCategory.getName()));
 
 		return sb.toString();
 	}

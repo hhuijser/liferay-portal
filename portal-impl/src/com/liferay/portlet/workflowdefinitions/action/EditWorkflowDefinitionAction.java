@@ -202,7 +202,7 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 
 		WorkflowDefinition workflowDefinition = null;
 
-		if (file == null) {
+		if (!file.isFile()) {
 			String name = ParamUtil.getString(actionRequest, "name");
 			int version = ParamUtil.getInteger(actionRequest, "version");
 

@@ -471,6 +471,12 @@ public class MBCategoryLocalServiceUtil {
 		return getService().getCategoriesAndThreads(groupId, categoryId);
 	}
 
+	public static boolean categoryContainsLockedThread(
+		com.liferay.portlet.messageboards.model.MBCategory category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().categoryContainsLockedThread(category);
+	}
+
 	public static int getCategoriesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getCategoriesCount(groupId);

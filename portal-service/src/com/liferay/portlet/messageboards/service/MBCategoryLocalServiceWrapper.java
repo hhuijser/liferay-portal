@@ -508,6 +508,13 @@ public class MBCategoryLocalServiceWrapper implements MBCategoryLocalService,
 	}
 
 	@Override
+	public boolean categoryContainsLockedThread(
+		com.liferay.portlet.messageboards.model.MBCategory category)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return _mbCategoryLocalService.categoryContainsLockedThread(category);
+	}
+
+	@Override
 	public int getCategoriesCount(long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _mbCategoryLocalService.getCategoriesCount(groupId);

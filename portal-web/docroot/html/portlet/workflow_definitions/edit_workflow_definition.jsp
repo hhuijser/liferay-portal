@@ -54,7 +54,7 @@ portletURL.setParameter("struts_action", "/workflow_definitions/view");
 
 	<aui:fieldset>
 		<aui:field-wrapper label="title">
-			<liferay-ui:input-localized name="title" xml='<%= BeanPropertiesUtil.getString(workflowDefinition, "title") %>' />
+			<liferay-ui:input-localized name="title" required="true" xml='<%= BeanPropertiesUtil.getString(workflowDefinition, "title") %>' />
 		</aui:field-wrapper>
 
 		<aui:input name="file" type="file" />

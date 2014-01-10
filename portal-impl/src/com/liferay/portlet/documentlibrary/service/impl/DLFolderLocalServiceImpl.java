@@ -139,12 +139,7 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		// Parent folder
 
 		if (parentFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			DLFolder parentDLFolder = dlFolderPersistence.findByPrimaryKey(
-				parentFolderId);
-
-			parentDLFolder.setLastPostDate(now);
-
-			dlFolderPersistence.update(parentDLFolder);
+			dlFolderLocalService.setLastPostDate(parentFolderId, now);
 		}
 
 		// App helper
@@ -1054,11 +1049,7 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 	public void updateLastPostDate(long folderId, Date lastPostDate)
 		throws PortalException, SystemException {
 
-		DLFolder dlFolder = dlFolderPersistence.findByPrimaryKey(folderId);
-
-		dlFolder.setLastPostDate(lastPostDate);
-
-		dlFolderPersistence.update(dlFolder);
+		setLastPostDate(folderId, lastPostDate);
 	}
 
 	@Override

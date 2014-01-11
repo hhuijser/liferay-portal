@@ -19,15 +19,15 @@ import java.util.Date;
 /**
  * @author László Csontos
  */
-public class LastDateIncrement extends ComparableIncrement<Date> {
+public class LastDateOverrideIncrement extends OverrideIncrement<Date> {
 
-	public LastDateIncrement(Date value) {
-		super(value, true);
+	public LastDateOverrideIncrement(Date date) {
+		super(date);
 	}
 
 	@Override
-	protected ComparableIncrement<Date> createComparableIncrement() {
-		return new LastDateIncrement((Date)value);
+	protected LastDateOverrideIncrement createOverrideIncrement(Date date) {
+		return new LastDateOverrideIncrement(date);
 	}
 
 }

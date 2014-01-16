@@ -19,6 +19,7 @@ import aQute.bnd.annotation.ProviderType;
 import com.liferay.portal.kernel.bean.AutoEscape;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.trash.TrashHandler;
 import com.liferay.portal.model.BaseModel;
 import com.liferay.portal.model.CacheModel;
@@ -269,14 +270,14 @@ public interface WikiPageModel extends BaseModel<WikiPage>, ResourcedModel,
 	 *
 	 * @return the version of this wiki page
 	 */
-	public double getVersion();
+	public Version getVersion();
 
 	/**
 	 * Sets the version of this wiki page.
 	 *
 	 * @param version the version of this wiki page
 	 */
-	public void setVersion(double version);
+	public void setVersion(Version version);
 
 	/**
 	 * Returns the minor edit of this wiki page.

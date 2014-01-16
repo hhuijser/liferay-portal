@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.test.AssertUtils;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -136,7 +136,8 @@ public class WikiPagePersistenceTest {
 
 		newWikiPage.setTitle(ServiceTestUtil.randomString());
 
-		newWikiPage.setVersion(ServiceTestUtil.nextDouble());
+		newWikiPage.setVersion(Version.getInstance(
+				ServiceTestUtil.randomString()));
 
 		newWikiPage.setMinorEdit(ServiceTestUtil.randomBoolean());
 
@@ -186,7 +187,7 @@ public class WikiPagePersistenceTest {
 		Assert.assertEquals(existingWikiPage.getNodeId(),
 			newWikiPage.getNodeId());
 		Assert.assertEquals(existingWikiPage.getTitle(), newWikiPage.getTitle());
-		AssertUtils.assertEquals(existingWikiPage.getVersion(),
+		Assert.assertEquals(existingWikiPage.getVersion(),
 			newWikiPage.getVersion());
 		Assert.assertEquals(existingWikiPage.getMinorEdit(),
 			newWikiPage.getMinorEdit());
@@ -388,16 +389,18 @@ public class WikiPagePersistenceTest {
 			existingWikiPageModelImpl.getOriginalResourcePrimKey());
 		Assert.assertEquals(existingWikiPageModelImpl.getNodeId(),
 			existingWikiPageModelImpl.getOriginalNodeId());
-		AssertUtils.assertEquals(existingWikiPageModelImpl.getVersion(),
-			existingWikiPageModelImpl.getOriginalVersion());
+		Assert.assertTrue(Validator.equals(
+				existingWikiPageModelImpl.getVersion(),
+				existingWikiPageModelImpl.getOriginalVersion()));
 
 		Assert.assertEquals(existingWikiPageModelImpl.getNodeId(),
 			existingWikiPageModelImpl.getOriginalNodeId());
 		Assert.assertTrue(Validator.equals(
 				existingWikiPageModelImpl.getTitle(),
 				existingWikiPageModelImpl.getOriginalTitle()));
-		AssertUtils.assertEquals(existingWikiPageModelImpl.getVersion(),
-			existingWikiPageModelImpl.getOriginalVersion());
+		Assert.assertTrue(Validator.equals(
+				existingWikiPageModelImpl.getVersion(),
+				existingWikiPageModelImpl.getOriginalVersion()));
 	}
 
 	protected WikiPage addWikiPage() throws Exception {
@@ -425,7 +428,7 @@ public class WikiPagePersistenceTest {
 
 		wikiPage.setTitle(ServiceTestUtil.randomString());
 
-		wikiPage.setVersion(ServiceTestUtil.nextDouble());
+		wikiPage.setVersion(Version.getInstance(ServiceTestUtil.randomString()));
 
 		wikiPage.setMinorEdit(ServiceTestUtil.randomBoolean());
 

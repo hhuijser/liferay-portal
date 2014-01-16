@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.model.impl;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.model.CacheModel;
@@ -200,7 +201,8 @@ public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable 
 	}
 
 	@Override
-	public void readExternal(ObjectInput objectInput) throws IOException {
+	public void readExternal(ObjectInput objectInput)
+		throws ClassNotFoundException, IOException {
 		uuid = objectInput.readUTF();
 		pageId = objectInput.readLong();
 		resourcePrimKey = objectInput.readLong();
@@ -212,7 +214,7 @@ public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable 
 		modifiedDate = objectInput.readLong();
 		nodeId = objectInput.readLong();
 		title = objectInput.readUTF();
-		version = objectInput.readDouble();
+		version = (Version)objectInput.readObject();
 		minorEdit = objectInput.readBoolean();
 		content = objectInput.readUTF();
 		summary = objectInput.readUTF();
@@ -260,7 +262,7 @@ public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable 
 			objectOutput.writeUTF(title);
 		}
 
-		objectOutput.writeDouble(version);
+		objectOutput.writeObject(version);
 		objectOutput.writeBoolean(minorEdit);
 
 		if (content == null) {
@@ -324,7 +326,7 @@ public class WikiPageCacheModel implements CacheModel<WikiPage>, Externalizable 
 	public long modifiedDate;
 	public long nodeId;
 	public String title;
-	public double version;
+	public Version version;
 	public boolean minorEdit;
 	public String content;
 	public String summary;

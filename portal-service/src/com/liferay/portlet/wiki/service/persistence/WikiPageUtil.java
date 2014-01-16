@@ -2240,7 +2240,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage findByR_N_V(
-		long resourcePrimKey, long nodeId, double version)
+		long resourcePrimKey, long nodeId,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portlet.wiki.NoSuchPageException {
 		return getPersistence().findByR_N_V(resourcePrimKey, nodeId, version);
@@ -2256,7 +2257,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage fetchByR_N_V(
-		long resourcePrimKey, long nodeId, double version)
+		long resourcePrimKey, long nodeId,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByR_N_V(resourcePrimKey, nodeId, version);
 	}
@@ -2272,7 +2274,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage fetchByR_N_V(
-		long resourcePrimKey, long nodeId, double version,
+		long resourcePrimKey, long nodeId,
+		com.liferay.portal.kernel.plugin.Version version,
 		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
@@ -2290,7 +2293,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage removeByR_N_V(
-		long resourcePrimKey, long nodeId, double version)
+		long resourcePrimKey, long nodeId,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portlet.wiki.NoSuchPageException {
 		return getPersistence().removeByR_N_V(resourcePrimKey, nodeId, version);
@@ -2306,7 +2310,7 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByR_N_V(long resourcePrimKey, long nodeId,
-		double version)
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByR_N_V(resourcePrimKey, nodeId, version);
 	}
@@ -3461,7 +3465,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage findByN_T_V(
-		long nodeId, java.lang.String title, double version)
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portlet.wiki.NoSuchPageException {
 		return getPersistence().findByN_T_V(nodeId, title, version);
@@ -3477,7 +3482,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage fetchByN_T_V(
-		long nodeId, java.lang.String title, double version)
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().fetchByN_T_V(nodeId, title, version);
 	}
@@ -3493,7 +3499,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage fetchByN_T_V(
-		long nodeId, java.lang.String title, double version,
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		boolean retrieveFromCache)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence()
@@ -3510,7 +3517,8 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static com.liferay.portlet.wiki.model.WikiPage removeByN_T_V(
-		long nodeId, java.lang.String title, double version)
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException,
 			com.liferay.portlet.wiki.NoSuchPageException {
 		return getPersistence().removeByN_T_V(nodeId, title, version);
@@ -3526,7 +3534,7 @@ public class WikiPageUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static int countByN_T_V(long nodeId, java.lang.String title,
-		double version)
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getPersistence().countByN_T_V(nodeId, title, version);
 	}

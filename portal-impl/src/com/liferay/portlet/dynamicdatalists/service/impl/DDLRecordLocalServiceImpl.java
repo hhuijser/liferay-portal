@@ -168,12 +168,17 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 			StorageEngineUtil.deleteByClass(recordVersion.getDDMStorageId());
 
+			expandoRowLocalService.deleteRows(
+				recordVersion.getRecordVersionId());
+
 			// Workflow
 
 			workflowInstanceLinkLocalService.deleteWorkflowInstanceLinks(
 				record.getCompanyId(), record.getGroupId(),
 				DDLRecord.class.getName(), recordVersion.getPrimaryKey());
 		}
+
+		expandoRowLocalService.deleteRows(record.getRecordId());
 
 		// Indexer
 
@@ -532,6 +537,9 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 				serviceContext.getWorkflowAction())) {
 
 			ddlRecordVersionPersistence.remove(recordVersion);
+
+			expandoRowLocalService.deleteRows(
+				recordVersion.getRecordVersionId());
 
 			return record;
 		}

@@ -20,12 +20,15 @@ import com.ecyrd.jspwiki.WikiPage;
 import com.ecyrd.jspwiki.providers.ProviderException;
 import com.ecyrd.jspwiki.providers.WikiPageProvider;
 
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portlet.wiki.NoSuchPageException;
 import com.liferay.portlet.wiki.service.WikiPageLocalServiceUtil;
+import com.liferay.portlet.wiki.service.persistence.WikiPageUtil;
+import com.liferay.portlet.wiki.util.comparator.PageVersionComparator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,8 +49,21 @@ public class LiferayPageProvider implements WikiPageProvider {
 		com.ecyrd.jspwiki.WikiPage jspWikiPage = new com.ecyrd.jspwiki.WikiPage(
 			engine, page.getTitle());
 
+		int version = 1;
+
+		try {
+			List<com.liferay.portlet.wiki.model.WikiPage> wikiPages =
+				WikiPageUtil.findByN_T(
+					page.getNodeId(), page.getTitle(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS, new PageVersionComparator(true));
+
+			version = wikiPages.indexOf(page) + 1;
+		}
+		catch (SystemException se) {
+		}
+
 		jspWikiPage.setAuthor(page.getUserName());
-		jspWikiPage.setVersion((int)(page.getVersion() * 10));
+		jspWikiPage.setVersion(version);
 		jspWikiPage.setLastModified(page.getCreateDate());
 
 		return jspWikiPage;

@@ -16,6 +16,7 @@ package com.liferay.portlet.wiki.action;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
@@ -132,7 +133,8 @@ public class ActionUtil {
 
 		long nodeId = ParamUtil.getLong(request, "nodeId");
 		String title = ParamUtil.getString(request, "title");
-		double version = ParamUtil.getDouble(request, "version");
+		Version version = Version.getInstance(
+			ParamUtil.getString(request, "version"));
 
 		WikiNode node = null;
 
@@ -166,7 +168,9 @@ public class ActionUtil {
 			}
 		}
 		catch (NoSuchPageException nspe) {
-			if (title.equals(WikiPageConstants.FRONT_PAGE) && (version == 0)) {
+			if (title.equals(WikiPageConstants.FRONT_PAGE) &&
+				(version == null)) {
+
 				ServiceContext serviceContext = new ServiceContext();
 
 				Layout layout = themeDisplay.getLayout();

@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.wiki.model.impl;
 
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portlet.wiki.model.WikiPageDisplay;
 
@@ -25,7 +26,7 @@ import java.util.List;
 public class WikiPageDisplayImpl implements WikiPageDisplay {
 
 	public WikiPageDisplayImpl(
-		long userId, long nodeId, String title, double version, String content,
+		long userId, long nodeId, String title, Version version, String content,
 		String formattedContent, String format, boolean head,
 		List<FileEntry> attachmentsFileEntries) {
 
@@ -81,7 +82,7 @@ public class WikiPageDisplayImpl implements WikiPageDisplay {
 	}
 
 	@Override
-	public double getVersion() {
+	public Version getVersion() {
 		return _version;
 	}
 
@@ -133,7 +134,7 @@ public class WikiPageDisplayImpl implements WikiPageDisplay {
 	}
 
 	@Override
-	public void setVersion(double version) {
+	public void setVersion(Version version) {
 		_version = version;
 	}
 
@@ -145,6 +146,6 @@ public class WikiPageDisplayImpl implements WikiPageDisplay {
 	private long _nodeId;
 	private String _title;
 	private long _userId;
-	private double _version;
+	private Version _version;
 
 }

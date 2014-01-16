@@ -16,6 +16,7 @@ package com.liferay.portlet.wiki.service.http;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.security.auth.HttpPrincipal;
@@ -373,7 +374,7 @@ public class WikiPageServiceHttp {
 	}
 
 	public static void deletePage(HttpPrincipal httpPrincipal, long nodeId,
-		java.lang.String title, double version)
+		java.lang.String title, Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -542,7 +543,7 @@ public class WikiPageServiceHttp {
 	}
 
 	public static void discardDraft(HttpPrincipal httpPrincipal, long nodeId,
-		java.lang.String title, double version)
+		java.lang.String title, Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -576,7 +577,7 @@ public class WikiPageServiceHttp {
 
 	public static com.liferay.portlet.wiki.model.WikiPage fetchPage(
 		HttpPrincipal httpPrincipal, long nodeId, java.lang.String title,
-		double version)
+		Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -726,7 +727,7 @@ public class WikiPageServiceHttp {
 
 	public static java.lang.String getNodePagesRSS(
 		HttpPrincipal httpPrincipal, long nodeId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
+		java.lang.String type, Version version, java.lang.String displayStyle,
 		java.lang.String feedURL, java.lang.String entryURL)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
@@ -765,7 +766,7 @@ public class WikiPageServiceHttp {
 
 	public static java.lang.String getNodePagesRSS(
 		HttpPrincipal httpPrincipal, long nodeId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
+		java.lang.String type, Version version, java.lang.String displayStyle,
 		java.lang.String feedURL, java.lang.String entryURL,
 		java.lang.String attachmentURLPrefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -956,7 +957,7 @@ public class WikiPageServiceHttp {
 
 	public static com.liferay.portlet.wiki.model.WikiPage getPage(
 		HttpPrincipal httpPrincipal, long nodeId, java.lang.String title,
-		double version)
+		Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -1145,7 +1146,7 @@ public class WikiPageServiceHttp {
 
 	public static java.lang.String getPagesRSS(HttpPrincipal httpPrincipal,
 		long companyId, long nodeId, java.lang.String title, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
+		java.lang.String type, Version version, java.lang.String displayStyle,
 		java.lang.String feedURL, java.lang.String entryURL,
 		java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1186,7 +1187,7 @@ public class WikiPageServiceHttp {
 
 	public static java.lang.String getPagesRSS(HttpPrincipal httpPrincipal,
 		long companyId, long nodeId, java.lang.String title, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
+		java.lang.String type, Version version, java.lang.String displayStyle,
 		java.lang.String feedURL, java.lang.String entryURL,
 		java.lang.String attachmentURLPrefix, java.util.Locale locale)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -1452,7 +1453,7 @@ public class WikiPageServiceHttp {
 
 	public static com.liferay.portlet.wiki.model.WikiPage movePageToTrash(
 		HttpPrincipal httpPrincipal, long nodeId, java.lang.String title,
-		double version)
+		Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -1559,7 +1560,7 @@ public class WikiPageServiceHttp {
 
 	public static com.liferay.portlet.wiki.model.WikiPage revertPage(
 		HttpPrincipal httpPrincipal, long nodeId, java.lang.String title,
-		double version, com.liferay.portal.service.ServiceContext serviceContext)
+		Version version, com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException {
 		try {
@@ -1663,7 +1664,7 @@ public class WikiPageServiceHttp {
 
 	public static com.liferay.portlet.wiki.model.WikiPage updatePage(
 		HttpPrincipal httpPrincipal, long nodeId, java.lang.String title,
-		double version, java.lang.String content, java.lang.String summary,
+		Version version, java.lang.String content, java.lang.String summary,
 		boolean minorEdit, java.lang.String format,
 		java.lang.String parentTitle, java.lang.String redirectTitle,
 		com.liferay.portal.service.ServiceContext serviceContext)

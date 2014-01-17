@@ -1935,13 +1935,12 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		WikiPage page = oldPage;
 
-		Version nextVersion = oldVersion;
-
 		if (oldPage.isApproved()) {
-			nextVersion = Version.incrementMinor(nextVersion);
-
 			page = wikiPagePersistence.create(pageId);
 		}
+
+		Version nextVersion = getNextVersion(
+			oldPage, minorEdit, serviceContext.getWorkflowAction());
 
 		page.setResourcePrimKey(resourcePrimKey);
 		page.setGroupId(groupId);
@@ -1994,6 +1993,20 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			serviceContext.getAssetLinkEntryIds());
 
 		// Social
+
+		if (oldPage.getStatus() == WorkflowConstants.STATUS_DRAFT &&
+				!oldVersion.equals(nextVersion)) {
+
+			SocialActivity lastSocialActivity =
+				socialActivityLocalService.fetchFirstActivity(
+					WikiPage.class.getName(), oldPage.getResourcePrimKey(),
+					WikiActivityKeys.UPDATE_PAGE);
+
+			if (lastSocialActivity != null) {
+				socialActivityLocalService.deleteSocialActivity(
+					lastSocialActivity);
+			}
+		}
 
 		if (!page.isMinorEdit() ||
 			PropsValues.WIKI_PAGE_MINOR_EDIT_ADD_SOCIAL_ACTIVITY) {
@@ -2304,6 +2317,36 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		portletURL.setParameter("type", "html");
 
 		return portletURL.toString();
+	}
+
+	/**
+	 * @see com.liferay.portlet.documentlibrary.service.impl.DLFileEntryLocalServiceImpl#getNextVersion(
+	 *      com.liferay.portlet.documentlibrary.model.DLFileEntry, boolean, int)
+	 * @see com.liferay.portlet.dynamicdatalists.service.impl.DDLRecordLocalServiceImpl#getNextVersion(
+	 *      String, boolean, int)
+	 */
+	protected Version getNextVersion(
+			WikiPage page, boolean minorEdit, int workflowAction)
+			throws PortalException, SystemException {
+
+		WikiPage headPage = getPage(page.getNodeId(), page.getTitle(), true);
+
+		Version version = headPage.getVersion();
+
+		if (headPage.isDraft()) {
+			return version;
+		}
+
+		if (workflowAction == WorkflowConstants.ACTION_SAVE_DRAFT) {
+			minorEdit = true;
+		}
+
+		if (minorEdit) {
+			return Version.incrementMinor(version);
+		}
+		else {
+			return Version.incrementMajor(version);
+		}
 	}
 
 	protected String getPageURL(

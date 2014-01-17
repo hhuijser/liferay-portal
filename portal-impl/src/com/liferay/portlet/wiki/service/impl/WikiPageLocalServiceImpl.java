@@ -1994,8 +1994,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		// Social
 
-		if (oldPage.getStatus() == WorkflowConstants.STATUS_DRAFT &&
-				!oldVersion.equals(nextVersion)) {
+		if ((oldPage.getStatus() == WorkflowConstants.STATUS_DRAFT) &&
+			!oldVersion.equals(nextVersion)) {
 
 			SocialActivity lastSocialActivity =
 				socialActivityLocalService.fetchFirstActivity(
@@ -2327,7 +2327,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 	 */
 	protected Version getNextVersion(
 			WikiPage page, boolean minorEdit, int workflowAction)
-			throws PortalException, SystemException {
+		throws PortalException, SystemException {
 
 		WikiPage headPage = getPage(page.getNodeId(), page.getTitle(), true);
 

@@ -74,7 +74,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(pageContext, "det
 		<liferay-ui:message key="latest-version" />
 	</th>
 	<td class="table-cell">
-		<%= wikiPage.getVersion() %>
+		<%= String.valueOf(wikiPage.getVersion()) %>
 
 		<c:if test="<%= wikiPage.isMinorEdit() %>">
 			(<liferay-ui:message key="minor-edit" />)

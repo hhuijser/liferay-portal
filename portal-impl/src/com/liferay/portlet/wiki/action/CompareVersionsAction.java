@@ -15,6 +15,7 @@
 package com.liferay.portlet.wiki.action;
 
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.DiffResult;
 import com.liferay.portal.kernel.util.DiffUtil;
@@ -84,10 +85,10 @@ public class CompareVersionsAction extends PortletAction {
 
 		String title = ParamUtil.getString(renderRequest, "title");
 
-		double sourceVersion = ParamUtil.getDouble(
-			renderRequest, "sourceVersion");
-		double targetVersion = ParamUtil.getDouble(
-			renderRequest, "targetVersion");
+		Version sourceVersion = Version.getInstance(
+			ParamUtil.getString(renderRequest, "sourceVersion"));
+		Version targetVersion = Version.getInstance(
+			ParamUtil.getString(renderRequest, "targetVersion"));
 		String type = ParamUtil.getString(renderRequest, "type", "escape");
 
 		WikiPage sourcePage = WikiPageServiceUtil.getPage(

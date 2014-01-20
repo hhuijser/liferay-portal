@@ -4,6 +4,8 @@ package ${packagePath}.model;
 	import ${packagePath}.service.persistence.${entity.name}PK;
 </#if>
 
+import com.liferay.portal.kernel.plugin.Version;
+
 import java.io.Serializable;
 
 import java.sql.Blob;

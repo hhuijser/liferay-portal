@@ -141,13 +141,20 @@ public interface WikiPageService extends BaseService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
-	public void discardDraft(long nodeId, java.lang.String title, double version)
+	public void discardDraft(long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.wiki.model.WikiPage fetchPage(long nodeId,
 		java.lang.String title, double version)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public com.liferay.portlet.wiki.model.WikiPage fetchPage(long nodeId,
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -171,7 +178,7 @@ public interface WikiPageService extends BaseService {
 
 	/**
 	* @deprecated As of 6.2.0, replaced by {@link #getNodePagesRSS(long, int,
-	String, double, String, String, String, String)}
+	String, Version, String, String, String, String)}
 	*/
 	@Deprecated
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -183,9 +190,10 @@ public interface WikiPageService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.String getNodePagesRSS(long nodeId, int max,
-		java.lang.String type, double version, java.lang.String displayStyle,
-		java.lang.String feedURL, java.lang.String entryURL,
-		java.lang.String attachmentURLPrefix)
+		java.lang.String type,
+		com.liferay.portal.kernel.plugin.Version version,
+		java.lang.String displayStyle, java.lang.String feedURL,
+		java.lang.String entryURL, java.lang.String attachmentURLPrefix)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -212,6 +220,11 @@ public interface WikiPageService extends BaseService {
 
 	public com.liferay.portlet.wiki.model.WikiPage getPage(long nodeId,
 		java.lang.String title, double version)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portlet.wiki.model.WikiPage getPage(long nodeId,
+		java.lang.String title, com.liferay.portal.kernel.plugin.Version version)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
@@ -262,6 +275,16 @@ public interface WikiPageService extends BaseService {
 			com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.lang.String getPagesRSS(long companyId, long nodeId,
+		java.lang.String title, int max, java.lang.String type,
+		com.liferay.portal.kernel.plugin.Version version,
+		java.lang.String displayStyle, java.lang.String feedURL,
+		java.lang.String entryURL, java.lang.String attachmentURLPrefix,
+		java.util.Locale locale)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portlet.wiki.model.WikiPage> getRecentChanges(
 		long groupId, long nodeId, int start, int end)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -299,6 +322,12 @@ public interface WikiPageService extends BaseService {
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public com.liferay.portlet.wiki.model.WikiPage movePageToTrash(
+		long nodeId, java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
 	public void restorePageAttachmentFromTrash(long nodeId,
 		java.lang.String title, java.lang.String fileName)
 		throws com.liferay.portal.kernel.exception.PortalException,
@@ -310,6 +339,13 @@ public interface WikiPageService extends BaseService {
 
 	public com.liferay.portlet.wiki.model.WikiPage revertPage(long nodeId,
 		java.lang.String title, double version,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portlet.wiki.model.WikiPage revertPage(long nodeId,
+		java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
@@ -326,6 +362,16 @@ public interface WikiPageService extends BaseService {
 		java.lang.String title, double version, java.lang.String content,
 		java.lang.String summary, boolean minorEdit, java.lang.String format,
 		java.lang.String parentTitle, java.lang.String redirectTitle,
+		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public com.liferay.portlet.wiki.model.WikiPage updatePage(long nodeId,
+		java.lang.String title,
+		com.liferay.portal.kernel.plugin.Version version,
+		java.lang.String content, java.lang.String summary, boolean minorEdit,
+		java.lang.String format, java.lang.String parentTitle,
+		java.lang.String redirectTitle,
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;

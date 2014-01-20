@@ -17,6 +17,7 @@ package com.liferay.portlet.wiki.model;
 import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.lar.StagedModelType;
+import com.liferay.portal.kernel.plugin.Version;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.ModelWrapper;
 
@@ -148,7 +149,7 @@ public class WikiPageWrapper implements WikiPage, ModelWrapper<WikiPage> {
 			setTitle(title);
 		}
 
-		Double version = (Double)attributes.get("version");
+		Version version = (Version)attributes.get("version");
 
 		if (version != null) {
 			setVersion(version);
@@ -494,7 +495,7 @@ public class WikiPageWrapper implements WikiPage, ModelWrapper<WikiPage> {
 	* @return the version of this wiki page
 	*/
 	@Override
-	public double getVersion() {
+	public com.liferay.portal.kernel.plugin.Version getVersion() {
 		return _wikiPage.getVersion();
 	}
 
@@ -504,7 +505,7 @@ public class WikiPageWrapper implements WikiPage, ModelWrapper<WikiPage> {
 	* @param version the version of this wiki page
 	*/
 	@Override
-	public void setVersion(double version) {
+	public void setVersion(com.liferay.portal.kernel.plugin.Version version) {
 		_wikiPage.setVersion(version);
 	}
 

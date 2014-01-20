@@ -19,7 +19,7 @@
 <%
 WikiPage wikiPage = (WikiPage)request.getAttribute(WebKeys.WIKI_PAGE);
 
-double sourceVersion = ParamUtil.getDouble(request, "sourceVersion");
+Version sourceVersion = Version.getInstance(ParamUtil.getString(request, "sourceVersion"));
 String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectVersion");
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -28,7 +28,7 @@ portletURL.setParameter("struts_action", "/wiki/select_version");
 portletURL.setParameter("redirect", currentURL);
 portletURL.setParameter("nodeId", String.valueOf(wikiPage.getNodeId()));
 portletURL.setParameter("title", HtmlUtil.unescape(wikiPage.getTitle()));
-portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
+portletURL.setParameter("sourceVersion", sourceVersion.toString());
 %>
 
 <aui:form action="<%= portletURL.toString() %>" method="post" name="selectVersionFm">
@@ -58,17 +58,15 @@ portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 			<liferay-ui:search-container-column-text
 				name=""
 			>
-				<c:if test="<%= sourceVersion != curWikiPage.getVersion() %>">
+				<c:if test="<%= !sourceVersion.equals(curWikiPage.getVersion()) %>">
 
 					<%
-					double curSourceVersion = sourceVersion;
-					double curTargetVersion = curWikiPage.getVersion();
+					Version curSourceVersion = sourceVersion;
+					Version curTargetVersion = curWikiPage.getVersion();
 
-					if (curTargetVersion < curSourceVersion) {
-						double tempVersion = curTargetVersion;
-
-						curTargetVersion = curSourceVersion;
-						curSourceVersion = tempVersion;
+					if (curTargetVersion.isPreviousVersionThan(curSourceVersion)) {
+						curTargetVersion = sourceVersion;
+						curSourceVersion = curWikiPage.getVersion();
 					}
 
 					Map<String, Object> data = new HashMap<String, Object>();

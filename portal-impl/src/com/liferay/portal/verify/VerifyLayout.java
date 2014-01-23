@@ -14,6 +14,7 @@
 
 package com.liferay.portal.verify;
 
+import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -44,8 +45,11 @@ public class VerifyLayout extends VerifyProcess {
 		try {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
-			ps = con.prepareStatement(
-				"select plid from Layout where layoutPrototypeUuid != ''");
+			String query = SQLTransformer.transform(
+				"select plid from Layout where layoutPrototypeUuid is not " +
+					"null and layoutPrototypeUuid != ''");
+
+			ps = con.prepareStatement(query);
 
 			rs = ps.executeQuery();
 

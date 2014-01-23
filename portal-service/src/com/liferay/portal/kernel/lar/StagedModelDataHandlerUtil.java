@@ -135,7 +135,11 @@ public class StagedModelDataHandlerUtil {
 			}
 		}
 
-		exportStagedModel(portletDataContext, stagedModel);
+		if (portletDataContext.isWithinDateRange(
+				stagedModel.getModifiedDate())) {
+
+			exportStagedModel(portletDataContext, stagedModel);
+		}
 
 		referenceElement = portletDataContext.addReferenceElement(
 			referrerStagedModel, referrerStagedModelElement, stagedModel,
@@ -222,7 +226,9 @@ public class StagedModelDataHandlerUtil {
 			portletDataContext.getReferenceDataElement(
 				referrerStagedModel, stagedModelClass, classPK);
 
-		importStagedModel(portletDataContext, referenceDataElement);
+		if (referenceDataElement != null) {
+			importStagedModel(portletDataContext, referenceDataElement);
+		}
 	}
 
 	public static void importReferenceStagedModels(

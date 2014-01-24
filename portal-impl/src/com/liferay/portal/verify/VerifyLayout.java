@@ -46,8 +46,7 @@ public class VerifyLayout extends VerifyProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			String query = SQLTransformer.transform(
-				"select plid from Layout where layoutPrototypeUuid is not " +
-					"null and layoutPrototypeUuid != ''");
+				"select plid from Layout where layoutPrototypeUuid != ''");
 
 			ps = con.prepareStatement(query);
 

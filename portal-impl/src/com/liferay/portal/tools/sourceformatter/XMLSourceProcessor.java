@@ -308,38 +308,29 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return content;
 	}
 
-	protected String fixPoshiXMLUnalphabetizedCommands(
-			String fileName, String content)
-		throws DocumentException {
-
+	protected String fixPoshiXMLUnalphabetizedCommands(String content) {
 		Pattern pattern = Pattern.compile(
-			"\\<command name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?" +
-				"\\</command\\>[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+");
+			"\\<command name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?\\</command\\>" +
+				"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+");
 
 		Matcher matcher = pattern.matcher(content);
 
-		List<String> sortedCommandNames = new ArrayList<String>();
-
-		Map<String,String> commandDefinitions = new HashMap<String,String>();
+		Map<String, String> commandBlockMap = new HashMap<String, String>();
+		List<String> commandNames = new ArrayList<String>();
 
 		String previousName = StringPool.BLANK;
 
 		boolean outOfOrder = false;
 
 		while (matcher.find()) {
-			String commandDefinition = matcher.group();
-
+			String commandBlock = matcher.group();
 			String commandName = matcher.group(1);
 
-			commandDefinitions.put(commandName, commandDefinition);
+			commandBlockMap.put(commandName, commandBlock);
 
-			sortedCommandNames.add(commandName);
+			commandNames.add(commandName);
 
 			if (commandName.compareToIgnoreCase(previousName) < 0) {
-				processErrorMessage(fileName,
-					fileName + " has an unordered command " +
-						commandName);
-
 				outOfOrder = true;
 			}
 
@@ -347,6 +338,8 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		}
 
 		if (outOfOrder) {
+			StringBundler sb = new StringBundler();
+
 			String setUpPattern =
 				"\\n[\\t]++\\<set-up\\>([\\s\\S]*?)\\</set-up\\>" +
 					"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+\\n";
@@ -355,12 +348,12 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 			matcher = pattern.matcher(content);
 
-			String setUpDefinition = StringPool.BLANK;
-
 			if (matcher.find()) {
-				setUpDefinition = matcher.group();
+				String setUpBlock = matcher.group();
 
-				content = content.replace(setUpDefinition, "");
+				content = content.replace(setUpBlock, "");
+
+				sb.append(setUpBlock);
 			}
 
 			String tearDownPattern =
@@ -371,56 +364,41 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 			matcher = pattern.matcher(content);
 
-			String tearDownDefinition = StringPool.BLANK;
-
 			if (matcher.find()) {
-				tearDownDefinition = matcher.group();
+				String tearDownBlock = matcher.group();
 
-				content = content.replace(tearDownDefinition, "");
+				content = content.replace(tearDownBlock, "");
+
+				sb.append(tearDownBlock);
 			}
 
-			StringBundler sb = new StringBundler();
+			Collections.sort(commandNames, String.CASE_INSENSITIVE_ORDER);
 
-			sb.append(setUpDefinition);
-			sb.append(tearDownDefinition);
-			sb.append("\n");
+			for (int i = 0; i < commandNames.size(); i++) {
+				String commandName = commandNames.get(i);
 
-			Collections.sort(sortedCommandNames, String.CASE_INSENSITIVE_ORDER);
-
-			for (int i = 0; i < sortedCommandNames.size(); i++) {
-				String sortedCommandName = sortedCommandNames.get(i);
-
-				sb.append("\t");
-				sb.append(commandDefinitions.get(sortedCommandName));
+				sb.append("\n\t");
+				sb.append(commandBlockMap.get(commandName));
 				sb.append("\n");
-
-				if (i < sortedCommandNames.size() - 1) {
-					sb.append("\n");
-				}
 			}
 
-			int startCommandsIndex = content.indexOf("<command");
+			int x = content.indexOf("<command");
+			int y = content.lastIndexOf("</command>");
 
-			int endCommandsIndex = content.lastIndexOf("</command>");
+			String commandBlock = content.substring(x, y);
 
-			String unalphabetizedCommands =
-				content.substring(startCommandsIndex, endCommandsIndex);
+			commandBlock = "\n\t" + commandBlock + "</command>\n";
 
-			unalphabetizedCommands =
-				"\n\t" + unalphabetizedCommands + "</command>\n";
+			String newCommandBlock = sb.toString();
 
-			String alphabetizedCommands = sb.toString();
-
-			content = StringUtil.replace(
-				content, unalphabetizedCommands, alphabetizedCommands);
+			content = StringUtil.replaceFirst(
+				content, commandBlock, newCommandBlock);
 		}
 
 		return content;
 	}
 
-	protected String fixPoshiXMLUnalphabetizedVariables(
-		String fileName, String content) {
-
+	protected String fixPoshiXMLUnalphabetizedVariables(String content) {
 		Pattern pattern = Pattern.compile(
 			"((?:[\\t]*+\\<var.*?\\>\\n[\\t]*+){2,}?)" +
 				"(?:(?:\\n){1,}+|\\</execute\\>)");
@@ -428,27 +406,24 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
+			boolean outOfOrder = false;
+
+			String previousName = StringPool.BLANK;
+			String tabs = StringPool.BLANK;
+
+			Map<String, String> variableLineMap = new HashMap<String, String>();
+			List<String> variableNames = new ArrayList<String>();
+
 			String variableBlock = matcher.group(1);
 
 			variableBlock = variableBlock.trim();
 
-			Pattern variableLinePattern =
-				Pattern.compile(
-					"([\\t]*+)(\\<var name=\\\"([^\\\"]*)\\\".*?/\\>" +
-						".*+(?:\\</var\\>)??)");
+			Pattern variableLinePattern = Pattern.compile(
+				"([\\t]*+)(\\<var name=\\\"([^\\\"]*)\\\".*?/\\>.*+" +
+					"(?:\\</var\\>)??)");
 
-			Matcher variableLineMatcher =
-				variableLinePattern.matcher(variableBlock);
-
-			boolean outOfOrder = false;
-
-			String previousName = StringPool.BLANK;
-
-			List<String> sortedVariableNames = new ArrayList<String>();
-
-			String tabs = StringPool.BLANK;
-
-			Map<String,String> variableLines = new HashMap<String,String>();
+			Matcher variableLineMatcher = variableLinePattern.matcher(
+				variableBlock);
 
 			while (variableLineMatcher.find()) {
 				if (tabs.equals(StringPool.BLANK)) {
@@ -456,18 +431,13 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 				}
 
 				String variableLine = variableLineMatcher.group(2);
-
 				String variableName = variableLineMatcher.group(3);
 
-				sortedVariableNames.add(variableName);
+				variableNames.add(variableName);
 
-				variableLines.put(variableName, variableLine);
+				variableLineMap.put(variableName, variableLine);
 
 				if (variableName.compareToIgnoreCase(previousName) < 0) {
-					processErrorMessage(fileName,
-						fileName + " has an unordered variable " +
-							variableName);
-
 					outOfOrder = true;
 				}
 
@@ -475,25 +445,22 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 			}
 
 			if (outOfOrder) {
-				Collections.sort(
-					sortedVariableNames, String.CASE_INSENSITIVE_ORDER);
+				Collections.sort(variableNames, String.CASE_INSENSITIVE_ORDER);
 
 				StringBundler sb = new StringBundler();
 
-				for (String sortedVariableName : sortedVariableNames) {
+				for (String variableName : variableNames) {
 					sb.append(tabs);
-					sb.append(variableLines.get(sortedVariableName));
+					sb.append(variableLineMap.get(variableName));
 					sb.append("\n");
 				}
 
-				String alphabetizedVariableBlock = sb.toString();
+				String newVariableBlock = sb.toString();
 
-				alphabetizedVariableBlock = alphabetizedVariableBlock.trim();
+				newVariableBlock = newVariableBlock.trim();
 
-				content = StringUtil.replace(
-					content, variableBlock, alphabetizedVariableBlock);
-
-				continue;
+				content = StringUtil.replaceFirst(
+					content, variableBlock, newVariableBlock);
 			}
 		}
 
@@ -558,7 +525,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 					 portalSource && fileName.endsWith(".macro") ||
 					 portalSource && fileName.endsWith(".testcase")) {
 
-				newContent = formatPoshiXML(fileName, newContent);
+				newContent = formatPoshiXML(newContent);
 			}
 			else if (portalSource && fileName.endsWith("/service.xml")) {
 				formatServiceXML(fileName, newContent);
@@ -824,12 +791,10 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return document.formattedString();
 	}
 
-	protected String formatPoshiXML(String fileName, String content)
-		throws DocumentException {
+	protected String formatPoshiXML(String content) {
+		content = fixPoshiXMLUnalphabetizedCommands(content);
 
-		content = fixPoshiXMLUnalphabetizedCommands(fileName, content);
-
-		content = fixPoshiXMLUnalphabetizedVariables(fileName, content);
+		content = fixPoshiXMLUnalphabetizedVariables(content);
 
 		content = fixPoshiXMLElementWithNoChild(content);
 

@@ -133,6 +133,165 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return content;
 	}
 
+	protected String fixPoshiXMLAlphabetizedCommands(String content) {
+		Pattern pattern = Pattern.compile(
+			"\\<command name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?\\</command\\>" +
+				"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+");
+
+		Matcher matcher = pattern.matcher(content);
+
+		Map<String, String> commandBlockMap = new HashMap<String, String>();
+		List<String> commandNames = new ArrayList<String>();
+
+		String previousName = StringPool.BLANK;
+
+		boolean outOfOrder = false;
+
+		while (matcher.find()) {
+			String commandBlock = matcher.group();
+			String commandName = matcher.group(1);
+
+			commandBlockMap.put(commandName, commandBlock);
+
+			commandNames.add(commandName);
+
+			if (commandName.compareToIgnoreCase(previousName) < 0) {
+				outOfOrder = true;
+			}
+
+			previousName = commandName;
+		}
+
+		if (outOfOrder) {
+			StringBundler sb = new StringBundler();
+
+			String setUpPattern =
+				"\\n[\\t]++\\<set-up\\>([\\s\\S]*?)\\</set-up\\>" +
+					"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+\\n";
+
+			pattern = Pattern.compile(setUpPattern);
+
+			matcher = pattern.matcher(content);
+
+			if (matcher.find()) {
+				String setUpBlock = matcher.group();
+
+				content = content.replace(setUpBlock, "");
+
+				sb.append(setUpBlock);
+			}
+
+			String tearDownPattern =
+				"\\n[\\t]++\\<tear-down\\>([\\s\\S]*?)\\</tear-down\\>" +
+					"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+\\n";
+
+			pattern = Pattern.compile(tearDownPattern);
+
+			matcher = pattern.matcher(content);
+
+			if (matcher.find()) {
+				String tearDownBlock = matcher.group();
+
+				content = content.replace(tearDownBlock, "");
+
+				sb.append(tearDownBlock);
+			}
+
+			Collections.sort(commandNames, String.CASE_INSENSITIVE_ORDER);
+
+			for (int i = 0; i < commandNames.size(); i++) {
+				String commandName = commandNames.get(i);
+
+				sb.append("\n\t");
+				sb.append(commandBlockMap.get(commandName));
+				sb.append("\n");
+			}
+
+			int x = content.indexOf("<command");
+			int y = content.lastIndexOf("</command>");
+
+			String commandBlock = content.substring(x, y);
+
+			commandBlock = "\n\t" + commandBlock + "</command>\n";
+
+			String newCommandBlock = sb.toString();
+
+			content = StringUtil.replaceFirst(
+				content, commandBlock, newCommandBlock);
+		}
+
+		return content;
+	}
+
+	protected String fixPoshiXMLAlphabetizedVariables(String content) {
+		Pattern pattern = Pattern.compile(
+			"((?:[\\t]*+\\<var.*?\\>\\n[\\t]*+){2,}?)" +
+				"(?:(?:\\n){1,}+|\\</execute\\>)");
+
+		Matcher matcher = pattern.matcher(content);
+
+		while (matcher.find()) {
+			boolean outOfOrder = false;
+
+			String previousName = StringPool.BLANK;
+			String tabs = StringPool.BLANK;
+
+			Map<String, String> variableLineMap = new HashMap<String, String>();
+			List<String> variableNames = new ArrayList<String>();
+
+			String variableBlock = matcher.group(1);
+
+			variableBlock = variableBlock.trim();
+
+			Pattern variableLinePattern = Pattern.compile(
+				"([\\t]*+)(\\<var name=\\\"([^\\\"]*)\\\".*?/\\>.*+" +
+					"(?:\\</var\\>)??)");
+
+			Matcher variableLineMatcher = variableLinePattern.matcher(
+				variableBlock);
+
+			while (variableLineMatcher.find()) {
+				if (tabs.equals(StringPool.BLANK)) {
+					tabs = variableLineMatcher.group(1);
+				}
+
+				String variableLine = variableLineMatcher.group(2);
+				String variableName = variableLineMatcher.group(3);
+
+				variableNames.add(variableName);
+
+				variableLineMap.put(variableName, variableLine);
+
+				if (variableName.compareToIgnoreCase(previousName) < 0) {
+					outOfOrder = true;
+				}
+
+				previousName = variableName;
+			}
+
+			if (outOfOrder) {
+				Collections.sort(variableNames, String.CASE_INSENSITIVE_ORDER);
+
+				StringBundler sb = new StringBundler();
+
+				for (String variableName : variableNames) {
+					sb.append(tabs);
+					sb.append(variableLineMap.get(variableName));
+					sb.append("\n");
+				}
+
+				String newVariableBlock = sb.toString();
+
+				newVariableBlock = newVariableBlock.trim();
+
+				content = StringUtil.replaceFirst(
+					content, variableBlock, newVariableBlock);
+			}
+		}
+
+		return content;
+	}
+
 	protected String fixPoshiXMLElementWithNoChild(String content) {
 		Pattern pattern = Pattern.compile(
 			"\\\"[\\s]*\\>[\\n\\s\\t]*\\</[a-z\\-]+>");
@@ -302,165 +461,6 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 				!statement.contains("]]>")) {
 
 				tabCount++;
-			}
-		}
-
-		return content;
-	}
-
-	protected String fixPoshiXMLUnalphabetizedCommands(String content) {
-		Pattern pattern = Pattern.compile(
-			"\\<command name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?\\</command\\>" +
-				"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+");
-
-		Matcher matcher = pattern.matcher(content);
-
-		Map<String, String> commandBlockMap = new HashMap<String, String>();
-		List<String> commandNames = new ArrayList<String>();
-
-		String previousName = StringPool.BLANK;
-
-		boolean outOfOrder = false;
-
-		while (matcher.find()) {
-			String commandBlock = matcher.group();
-			String commandName = matcher.group(1);
-
-			commandBlockMap.put(commandName, commandBlock);
-
-			commandNames.add(commandName);
-
-			if (commandName.compareToIgnoreCase(previousName) < 0) {
-				outOfOrder = true;
-			}
-
-			previousName = commandName;
-		}
-
-		if (outOfOrder) {
-			StringBundler sb = new StringBundler();
-
-			String setUpPattern =
-				"\\n[\\t]++\\<set-up\\>([\\s\\S]*?)\\</set-up\\>" +
-					"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+\\n";
-
-			pattern = Pattern.compile(setUpPattern);
-
-			matcher = pattern.matcher(content);
-
-			if (matcher.find()) {
-				String setUpBlock = matcher.group();
-
-				content = content.replace(setUpBlock, "");
-
-				sb.append(setUpBlock);
-			}
-
-			String tearDownPattern =
-				"\\n[\\t]++\\<tear-down\\>([\\s\\S]*?)\\</tear-down\\>" +
-					"[\\n|\\t]*?(?:[^(?:/\\>)]*?--\\>)*+\\n";
-
-			pattern = Pattern.compile(tearDownPattern);
-
-			matcher = pattern.matcher(content);
-
-			if (matcher.find()) {
-				String tearDownBlock = matcher.group();
-
-				content = content.replace(tearDownBlock, "");
-
-				sb.append(tearDownBlock);
-			}
-
-			Collections.sort(commandNames, String.CASE_INSENSITIVE_ORDER);
-
-			for (int i = 0; i < commandNames.size(); i++) {
-				String commandName = commandNames.get(i);
-
-				sb.append("\n\t");
-				sb.append(commandBlockMap.get(commandName));
-				sb.append("\n");
-			}
-
-			int x = content.indexOf("<command");
-			int y = content.lastIndexOf("</command>");
-
-			String commandBlock = content.substring(x, y);
-
-			commandBlock = "\n\t" + commandBlock + "</command>\n";
-
-			String newCommandBlock = sb.toString();
-
-			content = StringUtil.replaceFirst(
-				content, commandBlock, newCommandBlock);
-		}
-
-		return content;
-	}
-
-	protected String fixPoshiXMLUnalphabetizedVariables(String content) {
-		Pattern pattern = Pattern.compile(
-			"((?:[\\t]*+\\<var.*?\\>\\n[\\t]*+){2,}?)" +
-				"(?:(?:\\n){1,}+|\\</execute\\>)");
-
-		Matcher matcher = pattern.matcher(content);
-
-		while (matcher.find()) {
-			boolean outOfOrder = false;
-
-			String previousName = StringPool.BLANK;
-			String tabs = StringPool.BLANK;
-
-			Map<String, String> variableLineMap = new HashMap<String, String>();
-			List<String> variableNames = new ArrayList<String>();
-
-			String variableBlock = matcher.group(1);
-
-			variableBlock = variableBlock.trim();
-
-			Pattern variableLinePattern = Pattern.compile(
-				"([\\t]*+)(\\<var name=\\\"([^\\\"]*)\\\".*?/\\>.*+" +
-					"(?:\\</var\\>)??)");
-
-			Matcher variableLineMatcher = variableLinePattern.matcher(
-				variableBlock);
-
-			while (variableLineMatcher.find()) {
-				if (tabs.equals(StringPool.BLANK)) {
-					tabs = variableLineMatcher.group(1);
-				}
-
-				String variableLine = variableLineMatcher.group(2);
-				String variableName = variableLineMatcher.group(3);
-
-				variableNames.add(variableName);
-
-				variableLineMap.put(variableName, variableLine);
-
-				if (variableName.compareToIgnoreCase(previousName) < 0) {
-					outOfOrder = true;
-				}
-
-				previousName = variableName;
-			}
-
-			if (outOfOrder) {
-				Collections.sort(variableNames, String.CASE_INSENSITIVE_ORDER);
-
-				StringBundler sb = new StringBundler();
-
-				for (String variableName : variableNames) {
-					sb.append(tabs);
-					sb.append(variableLineMap.get(variableName));
-					sb.append("\n");
-				}
-
-				String newVariableBlock = sb.toString();
-
-				newVariableBlock = newVariableBlock.trim();
-
-				content = StringUtil.replaceFirst(
-					content, variableBlock, newVariableBlock);
 			}
 		}
 
@@ -792,9 +792,9 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 	}
 
 	protected String formatPoshiXML(String content) {
-		content = fixPoshiXMLUnalphabetizedCommands(content);
+		content = fixPoshiXMLAlphabetizedCommands(content);
 
-		content = fixPoshiXMLUnalphabetizedVariables(content);
+		content = fixPoshiXMLAlphabetizedVariables(content);
 
 		content = fixPoshiXMLElementWithNoChild(content);
 

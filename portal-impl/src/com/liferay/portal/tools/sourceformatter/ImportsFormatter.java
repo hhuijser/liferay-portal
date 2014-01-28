@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 class ImportsFormatter {
@@ -35,43 +36,45 @@ class ImportsFormatter {
 			return imports + "\n";
 		}
 
-		List<ImportPackage> importPackages = new ArrayList<ImportPackage>();
+		HashSet<ImportPackage> noDuplicates = new HashSet<ImportPackage>();
 
 		UnsyncBufferedReader unsyncBufferedReader = new UnsyncBufferedReader(
 			new UnsyncStringReader(imports));
-
-		String line = null;
-
-		while ((line = unsyncBufferedReader.readLine()) != null) {
-			ImportPackage importPackage = ImportPackageFactoryUtil.create(line);
-
-			if ((importPackage != null) &&
-				!importPackages.contains(importPackage)) {
-
-				importPackages.add(importPackage);
+		try {
+	
+			String line = null;
+	
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				ImportPackage importPackage = 
+					ImportPackageFactoryUtil.create(line);
+	
+				if (importPackage != null) {
+					noDuplicates.add(importPackage);
+				}
 			}
+			
+		} 
+		finally {
+			unsyncBufferedReader.close();
 		}
+ 
+		List<ImportPackage> sorted = ListUtil.sort(
+			new ArrayList<ImportPackage>(noDuplicates));
 
-		importPackages = ListUtil.sort(importPackages);
-
-		StringBundler sb = new StringBundler(3 * importPackages.size());
+		StringBundler sb = new StringBundler(3 * sorted.size());
 
 		String temp = null;
 
-		for (int i = 0; i < importPackages.size(); i++) {
-			ImportPackage importPackage = importPackages.get(i);
+		for (int i = 0; i < sorted.size(); i++) {
+			ImportPackage importPackage = sorted.get(i);
 
 			String s = importPackage.getLine();
 
-			int pos = s.indexOf(".");
+			int firstDot = s.indexOf(".");
+			int secondDot = s.indexOf(".", firstDot + 1);
+			int upToDot = secondDot != -1 ? secondDot : firstDot;
 
-			pos = s.indexOf(".", pos + 1);
-
-			if (pos == -1) {
-				pos = s.indexOf(".");
-			}
-
-			String packageLevel = s.substring(classStartPos, pos);
+			String packageLevel = s.substring(classStartPos, upToDot);
 
 			if ((i != 0) && !packageLevel.equals(temp)) {
 				sb.append("\n");

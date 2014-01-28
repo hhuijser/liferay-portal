@@ -16,7 +16,6 @@ package com.liferay.portal.tools.sourceformatter;
 
 import java.io.IOException;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -105,7 +104,6 @@ public class ImportsFormatterTest {
 		assertFormat(original, expected);
 	}
 
-	@Ignore("See the bug manifest: activate this test.")
 	@Test
 	public void testMultipleStaticImports__shouldBePreserved()
 		throws IOException {

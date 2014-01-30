@@ -91,6 +91,19 @@ public class ImportsFormatterTest {
 	}
 
 	@Test
+	public void testSortingOfStaticImports() throws Exception {
+		String original =
+			"import static org.mockito.Mockito.*;" + "\n\n" +
+			"import static org.junit.Assert.*;";
+
+		String expected =
+			"import static org.junit.Assert.*;" + "\n\n" +
+			"import static org.mockito.Mockito.*;" + "\n";
+
+		assertFormat(original, expected);
+	}
+
+	@Test
 	public void testSortingWithInnerClass() throws Exception {
 		String original =
 			"import javax.servlet.FilterRegistration.Dynamic;" + "\n" +

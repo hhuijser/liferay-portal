@@ -14,122 +14,108 @@
 
 package com.liferay.portal.tools.sourceformatter;
 
-import java.io.IOException;
-
+import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-
+/**
+ * @author André de Oliveira
+ */
 public class ImportsFormatterTest {
 
 	@Test
-	public void testNoImports__nothingHappens()
-		throws IOException {
+	public void testIfDuplicateImportsAreRemoved() throws Exception {
+		String original =
+			"import org.junit.Test;" + "\n" +
+			"import org.junit.Assert;" + "\n" +
+			"import org.junit.Assert;";
 
-		String original = "";
-		String expected = "";
+		String expected =
+			"import org.junit.Assert;" + "\n" +
+			"import org.junit.Test;" + "\n";
 
 		assertFormat(original, expected);
 	}
 
 	@Test
-	public void testSingleImport__newlineIsAppended()
-		throws IOException {
-
+	public void testIfNewlineIsAppendedAfterImport() throws Exception {
 		String original = "import org.junit.Test;";
-		String expected = original + '\n';
+
+		String expected = original + "\n";
 
 		assertFormat(original, expected);
 	}
 
 	@Test
-	public void testMultipleImports__areSorted()
-		throws IOException {
+	public void testIfNewlineIsAppendedBetweenDifferentPackages()
+		throws Exception {
 
 		String original =
-			"import org.junit.Test;" + "\n"
-				+ "import org.junit.Assert;";
+			"import org.mockito.Mockito;" + "\n" +
+			"import org.junit.Assert;";
+
 		String expected =
-			"import org.junit.Assert;" + "\n"
-				+ "import org.junit.Test;"
-				+ '\n';
+			"import org.junit.Assert;" + "\n" +
+			"\n" +
+			"import org.mockito.Mockito;" + "\n";
 
 		assertFormat(original, expected);
 	}
 
 	@Test
-	public void testDifferentPackages__areSeparated()
-		throws IOException {
-
+	public void testMultipleStaticImports() throws Exception {
 		String original =
-			"import org.mockito.Mockito;" + "\n"
-				+ "import org.junit.Assert;";
+			"import static org.junit.Assert.*;" + "\n\n" +
+			"import static org.mockito.Mockito.*;";
+
+		String expected = original + "\n";
+
+		assertFormat(original, expected);
+	}
+
+	@Test
+	public void testNoImports() throws Exception {
+		assertFormat("", "");
+	}
+
+	@Test
+	public void testSorting() throws Exception {
+		String original =
+			"import org.junit.Test;" + "\n" +
+			"import org.junit.Assert;";
+
 		String expected =
-			"import org.junit.Assert;" + "\n"
-				+ '\n'
-				+ "import org.mockito.Mockito;"
-				+ '\n';
+			"import org.junit.Assert;" + "\n" +
+			"import org.junit.Test;" + "\n";
 
 		assertFormat(original, expected);
 	}
 
 	@Test
-	public void testDuplicates__areRemoved()
-		throws IOException {
-
+	public void testSortingWithInnerClass() throws Exception {
 		String original =
-			"import org.junit.Test;" + "\n"
-				+ "import org.junit.Assert;" + "\n"
-				+ "import org.junit.Assert;";
+			"import javax.servlet.FilterRegistration.Dynamic;" + "\n" +
+			"import javax.servlet.FilterRegistration;";
+
 		String expected =
-			"import org.junit.Assert;" + "\n"
-				+ "import org.junit.Test;"
-				+ '\n';
+			"import javax.servlet.FilterRegistration;" + "\n" +
+			"import javax.servlet.FilterRegistration.Dynamic;" + '\n';
 
 		assertFormat(original, expected);
 	}
 
-	@Test
-	public void testClassAndInnerClass__innerClassMustBeSecond()
-		throws IOException {
+	protected void assertFormat(
+			String original, int classStartPos, String expected)
+		throws Exception {
 
-		String original =
-			"import javax.servlet.FilterRegistration.Dynamic;" + "\n"
-				+ "import javax.servlet.FilterRegistration;";
-		String expected =
-			"import javax.servlet.FilterRegistration;" + "\n"
-				+ "import javax.servlet.FilterRegistration.Dynamic;"
-				+ '\n';
+		String formatted = ImportsFormatter.format(original, classStartPos);
 
-		assertFormat(original, expected);
+		Assert.assertEquals(expected, formatted);
 	}
 
-	@Test
-	public void testMultipleStaticImports__shouldBePreserved()
-		throws IOException {
-
-		String original =
-			"import static org.junit.Assert.*;" + "\n" +
-				'\n' +
-				"import static org.mockito.Mockito.*;";
-		String expected = original + '\n';
-
-		assertFormat(original, expected);
-	}
-
-	private void assertFormat(String original, String expected)
-		throws IOException {
+	protected void assertFormat(String original, String expected)
+		throws Exception {
 
 		assertFormat(original, 0, expected);
-	}
-
-	private void assertFormat(
-		String original, int classStartPos, String expected)
-	throws IOException {
-
-		String formatted =
-			ImportsFormatter.formatImports(original, classStartPos);
-		assertEquals(expected, formatted);
 	}
 
 }

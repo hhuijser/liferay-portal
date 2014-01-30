@@ -24,10 +24,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-class ImportsFormatter {
+/**
+ * @author André de Oliveira
+ */
+public class ImportsFormatter {
 
-	static String formatImports(String imports, int classStartPos)
+	public static String format(String imports, int classStartPos)
 		throws IOException {
 
 		if (imports.contains("/*") || imports.contains("*/") ||
@@ -36,45 +40,48 @@ class ImportsFormatter {
 			return imports + "\n";
 		}
 
-		HashSet<ImportPackage> noDuplicates = new HashSet<ImportPackage>();
+		Set<ImportPackage> importPackages = new HashSet<ImportPackage>();
 
 		UnsyncBufferedReader unsyncBufferedReader = new UnsyncBufferedReader(
 			new UnsyncStringReader(imports));
+
 		try {
-	
 			String line = null;
-	
+
 			while ((line = unsyncBufferedReader.readLine()) != null) {
-				ImportPackage importPackage = 
-					ImportPackageFactoryUtil.create(line);
-	
+				ImportPackage importPackage = ImportPackageFactoryUtil.create(
+					line);
+
 				if (importPackage != null) {
-					noDuplicates.add(importPackage);
+					importPackages.add(importPackage);
 				}
 			}
-			
-		} 
+		}
 		finally {
 			unsyncBufferedReader.close();
 		}
- 
-		List<ImportPackage> sorted = ListUtil.sort(
-			new ArrayList<ImportPackage>(noDuplicates));
 
-		StringBundler sb = new StringBundler(3 * sorted.size());
+		List<ImportPackage> importPackagesSorted = ListUtil.sort(
+			new ArrayList<ImportPackage>(importPackages));
+
+		StringBundler sb = new StringBundler(3 * importPackagesSorted.size());
 
 		String temp = null;
 
-		for (int i = 0; i < sorted.size(); i++) {
-			ImportPackage importPackage = sorted.get(i);
+		for (int i = 0; i < importPackagesSorted.size(); i++) {
+			ImportPackage importPackage = importPackagesSorted.get(i);
 
 			String s = importPackage.getLine();
 
-			int firstDot = s.indexOf(".");
-			int secondDot = s.indexOf(".", firstDot + 1);
-			int upToDot = secondDot != -1 ? secondDot : firstDot;
+			int pos = s.indexOf(".");
 
-			String packageLevel = s.substring(classStartPos, upToDot);
+			pos = s.indexOf(".", pos + 1);
+
+			if (pos == -1) {
+				pos = s.indexOf(".");
+			}
+
+			String packageLevel = s.substring(classStartPos, pos);
 
 			if ((i != 0) && !packageLevel.equals(temp)) {
 				sb.append("\n");

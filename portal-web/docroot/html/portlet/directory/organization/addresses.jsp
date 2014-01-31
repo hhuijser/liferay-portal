@@ -81,7 +81,7 @@ if (classPK > 0) {
 				<%= HtmlUtil.escape(countryName) %>
 			</c:if>
 
-		<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
+			<c:if test="<%= address.isMailing() %>">(<liferay-ui:message key="mailing" />)</c:if>
 		</li>
 
 	<%

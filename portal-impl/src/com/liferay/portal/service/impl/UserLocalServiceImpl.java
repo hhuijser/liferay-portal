@@ -4625,11 +4625,16 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		user.setPasswordUnencrypted(password1);
 		user.setPasswordEncrypted(true);
 		user.setPasswordReset(passwordReset);
-		user.setPasswordModifiedDate(new Date());
+
+		if (Validator.isNull(user.getPasswordModifiedDate())) {
+			user.setPasswordModifiedDate(new Date());
+		}
+
 		user.setDigest(StringPool.BLANK);
 		user.setGraceLoginCount(0);
 
 		if (!silentUpdate) {
+			user.setPasswordModifiedDate(new Date());
 			user.setPasswordModified(true);
 		}
 

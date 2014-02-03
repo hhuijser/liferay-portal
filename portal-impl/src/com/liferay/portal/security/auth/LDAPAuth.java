@@ -172,6 +172,20 @@ public class LDAPAuth implements Authenticator {
 				ldapAuthResult.setResponseControl(responseControls);
 			}
 			catch (Exception e) {
+				if (PrefsPropsUtil.getBoolean(
+						companyId, PropsKeys.LDAP_AUTH_REQUIRED)) {
+
+					StringBundler sb = new StringBundler(4);
+
+					sb.append("The portal property ");
+					sb.append(
+						PropsKeys.LDAP_AUTH_PASSWORD_ENCRYPTION_ALGORITHM);
+					sb.append(" must match the password encryption algorithm ");
+					sb.append("set in the LDAP server");
+
+					_log.error(sb.toString());
+				}
+
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Failed to bind to the LDAP server with userDN " +

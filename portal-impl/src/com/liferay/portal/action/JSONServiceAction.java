@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.SetUtil;
@@ -43,6 +44,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -203,6 +205,13 @@ public class JSONServiceAction extends JSONAction {
 		}
 		else if (typeNameOrClassDescriptor.equals(Date.class.getName())) {
 			return new Date(ParamUtil.getLong(request, parameter));
+		}
+		else if (typeNameOrClassDescriptor.equals(Calendar.class.getName())) {
+			Calendar cal = Calendar.getInstance(LocaleUtil.getDefault());
+
+			cal.setTimeInMillis(ParamUtil.getLong(request, parameter));
+
+			return cal;
 		}
 		else if (typeNameOrClassDescriptor.equals(
 					ServiceContext.class.getName())) {

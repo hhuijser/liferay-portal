@@ -40,7 +40,7 @@ public class DefaultScreenNameGenerator implements ScreenNameGenerator {
 
 		User user = UserLocalServiceUtil.fetchUser(userId);
 
-		if (Validator.isNotNull(user)) {
+		if (user != null) {
 			return user.getScreenName();
 		}
 

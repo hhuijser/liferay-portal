@@ -202,6 +202,12 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 
 		WorkflowDefinition workflowDefinition = null;
 
+		String title = getTitle(titleMap);
+
+		if (Validator.isNull(title)) {
+			throw new WorkflowException();
+		}
+
 		if (!file.isFile()) {
 			String name = ParamUtil.getString(actionRequest, "name");
 			int version = ParamUtil.getInteger(actionRequest, "version");
@@ -212,13 +218,13 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 
 			WorkflowDefinitionManagerUtil.updateTitle(
 				themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
-				version, getTitle(titleMap));
+				version, title);
 		}
 		else {
 			workflowDefinition =
 				WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
 					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					getTitle(titleMap), FileUtil.getBytes(file));
+					title, FileUtil.getBytes(file));
 		}
 
 		actionRequest.setAttribute(

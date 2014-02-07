@@ -4630,7 +4630,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			user.setPasswordModifiedDate(new Date());
 		}
 
-		user.setDigest(StringPool.BLANK);
+		if (!Validator.equals(newEncPwd, oldEncPwd)) {
+			user.setDigest(StringPool.BLANK);
+		}
+
 		user.setGraceLoginCount(0);
 
 		if (!silentUpdate) {

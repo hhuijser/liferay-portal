@@ -430,7 +430,7 @@ public class DefaultPortalToLDAPConverter implements PortalToLDAPConverter {
 		try {
 			StringBundler sb = new StringBundler(4);
 
-			if (!algorithm.equals(_defaultLDAPAuthPassEncAlgorithm)) {
+			if (!algorithm.equals(PasswordEncryptorUtil.TYPE_NONE)) {
 				sb.append(StringPool.OPEN_CURLY_BRACE);
 				sb.append(algorithm);
 				sb.append(StringPool.CLOSE_CURLY_BRACE);
@@ -561,6 +561,5 @@ public class DefaultPortalToLDAPConverter implements PortalToLDAPConverter {
 	private Map<String, String> _reservedUserFieldNames =
 		new HashMap<String, String>();
 	private String _userDNFieldName = UserConverterKeys.SCREEN_NAME;
-	private String _defaultLDAPAuthPassEncAlgorithm = "NONE";
 
 }

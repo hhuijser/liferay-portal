@@ -63,8 +63,7 @@ public class UserWorkflowHandler extends BaseWorkflowHandler {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		if (user.getStatus() == WorkflowConstants.STATUS_APPROVED) {
-
+		if (status == WorkflowConstants.STATUS_APPROVED) {
 			ServiceContext serviceContext = (ServiceContext)workflowContext.get(
 				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 

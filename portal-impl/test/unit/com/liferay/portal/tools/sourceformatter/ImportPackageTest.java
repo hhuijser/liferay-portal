@@ -29,9 +29,9 @@ public class ImportPackageTest {
 
 	@Test
 	public void testContains() {
-		ImportPackage importPackage = ImportPackageFactoryUtil.create(
+		ImportPackage importPackage = _toImportPackage(
 			_ARRAYS_IMPORT_STATEMENT);
-		ImportPackage importPackage2 = ImportPackageFactoryUtil.create(
+		ImportPackage importPackage2 = _toImportPackage(
 			_ARRAYS_IMPORT_STATEMENT);
 
 		List<ImportPackage> importPackages = new ArrayList<ImportPackage>();
@@ -47,10 +47,10 @@ public class ImportPackageTest {
 
 	@Test
 	public void testEquals() {
-		ImportPackage importPackage = ImportPackageFactoryUtil.create(
+		ImportPackage importPackage = _toImportPackage(
 			_ARRAYS_IMPORT_STATEMENT);
 
-		ImportPackage importPackage2 = ImportPackageFactoryUtil.create(
+		ImportPackage importPackage2 = _toImportPackage(
 			_ARRAYS_IMPORT_STATEMENT);
 
 		Assert.assertEquals(importPackage, importPackage2);
@@ -60,13 +60,13 @@ public class ImportPackageTest {
 	public void testImportSorting() {
 		List<ImportPackage> importPackages = new ArrayList<ImportPackage>();
 
-		ImportPackage graphicsImportPackage = ImportPackageFactoryUtil.create(
+		ImportPackage graphicsImportPackage = _toImportPackage(
 			"import java.awt.Graphics;");
-		ImportPackage graphics2dImportPackage = ImportPackageFactoryUtil.create(
+		ImportPackage graphics2dImportPackage = _toImportPackage(
 			"import java.awt.Graphics2D;");
-		ImportPackage mapEntryImportPackage = ImportPackageFactoryUtil.create(
+		ImportPackage mapEntryImportPackage = _toImportPackage(
 			"import java.util.Map.Entry;");
-		ImportPackage mapImportPackage = ImportPackageFactoryUtil.create(
+		ImportPackage mapImportPackage = _toImportPackage(
 			"import java.util.Map;");
 
 		importPackages.add(graphicsImportPackage);
@@ -81,6 +81,14 @@ public class ImportPackageTest {
 		Assert.assertEquals(2, importPackages.indexOf(mapImportPackage));
 		Assert.assertEquals(3, importPackages.indexOf(mapEntryImportPackage));
 	}
+
+	private ImportPackage _toImportPackage(String line) {
+
+		return _javaImports.toImportPackage(line);
+	}
+
+	private final JavaImportsFormatter _javaImports =
+		new JavaImportsFormatter();
 
 	private static final String _ARRAYS_IMPORT_STATEMENT =
 		"import java.util.Arrays";

@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.workflow;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.messaging.proxy.MessagingProxy;
 import com.liferay.portal.kernel.messaging.proxy.ProxyMode;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -32,7 +34,7 @@ public interface WorkflowDefinitionManager {
 
 	public WorkflowDefinition deployWorkflowDefinition(
 			long companyId, long userId, String title, byte[] bytes)
-		throws WorkflowException;
+		throws PortalException, SystemException;
 
 	public int getActiveWorkflowDefinitionCount(long companyId)
 		throws WorkflowException;

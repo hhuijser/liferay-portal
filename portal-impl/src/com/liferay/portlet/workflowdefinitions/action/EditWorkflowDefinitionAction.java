@@ -204,29 +204,39 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 
 		WorkflowDefinition workflowDefinition = null;
 
+		boolean isFile = file.isFile();
+		String name = ParamUtil.getString(actionRequest, "name");
 		String title = getTitle(titleMap);
 
-		if (Validator.isNull(title)) {
+		if (Validator.isNull(title) || (!isFile && Validator.isNull(name))) {
 			throw new WorkflowException();
 		}
 
-		if (!file.isFile()) {
-			String name = ParamUtil.getString(actionRequest, "name");
-			int version = ParamUtil.getInteger(actionRequest, "version");
+		int version = ParamUtil.getInteger(actionRequest, "version");
 
-			workflowDefinition =
-				WorkflowDefinitionManagerUtil.getWorkflowDefinition(
-					themeDisplay.getCompanyId(), name, version);
+		if (isFile) {
+			if (Validator.isNotNull(name)) {
+				WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
+					FileUtil.getBytes(file));
 
-			WorkflowDefinitionManagerUtil.updateTitle(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
-				version, title);
+				workflowDefinition =
+					WorkflowDefinitionManagerUtil.updateTitle(
+						themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+						name, version, title);
+			}
+			else {
+				workflowDefinition =
+					WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
+						themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+						title, FileUtil.getBytes(file));
+			}
 		}
 		else {
 			workflowDefinition =
-				WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					title, FileUtil.getBytes(file));
+				WorkflowDefinitionManagerUtil.updateTitle(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
+					version, title);
 		}
 
 		actionRequest.setAttribute(

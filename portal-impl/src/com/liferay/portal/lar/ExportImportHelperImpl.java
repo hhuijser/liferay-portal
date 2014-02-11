@@ -1634,7 +1634,7 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 				portletDataContext.addReferenceElement(
 					portlet, rootElement, assetCategory,
-					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
+					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, false);
 			}
 		}
 		else if (className.equals(AssetVocabulary.class.getName())) {

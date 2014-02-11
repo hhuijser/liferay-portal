@@ -98,7 +98,7 @@ public class SassToCssBuilder {
 		return fileName.substring(0, pos) + "_rtl" + fileName.substring(pos);
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
 
 		List<String> dirNames = new ArrayList<String>();
@@ -124,12 +124,7 @@ public class SassToCssBuilder {
 		String docrootDirName = arguments.get("sass.docroot.dir");
 		String portalCommonDirName = arguments.get("sass.portal.common.dir");
 
-		try {
-			new SassToCssBuilder(dirNames, docrootDirName, portalCommonDirName);
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		new SassToCssBuilder(dirNames, docrootDirName, portalCommonDirName);
 	}
 
 	public static String parseStaticTokens(String content) {
@@ -196,11 +191,14 @@ public class SassToCssBuilder {
 			futures.add(executorService.submit(callable));
 		}
 
-		for (Future<String> future : futures) {
-			System.out.println(future.get());
+		try {
+			for (Future<String> future : futures) {
+				System.out.println(future.get());
+			}
 		}
-
-		executorService.shutdownNow();
+		finally {
+			executorService.shutdownNow();
+		}
 	}
 
 	private void _collectSassFiles(

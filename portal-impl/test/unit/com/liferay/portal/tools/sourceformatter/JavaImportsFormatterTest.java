@@ -15,7 +15,6 @@
 package com.liferay.portal.tools.sourceformatter;
 
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -23,7 +22,6 @@ import org.junit.Test;
  */
 public class JavaImportsFormatterTest {
 
-	@Ignore("See the bug manifest: activate this test.")
 	@Test
 	public void testAlphabeticalOrderVersusImportStatic() throws Exception {
 		String original =
@@ -85,7 +83,6 @@ public class JavaImportsFormatterTest {
 			original, expected);
 	}
 
-	@Ignore("See the bug manifest: activate this test.")
 	@Test
 	public void testMixedIntentsMultiplePackages() throws Exception {
 		String original =
@@ -116,7 +113,6 @@ public class JavaImportsFormatterTest {
 			original, expected);
 	}
 
-	@Ignore("See the bug manifest: activate this test.")
 	@Test
 	public void testMixedIntentsSinglePackage() throws Exception {
 		String original =
@@ -139,7 +135,6 @@ public class JavaImportsFormatterTest {
 			original, expected);
 	}
 
-	@Ignore("See the bug manifest: activate this test.")
 	@Test
 	public void testMultipleStaticImports() throws Exception {
 		String original =
@@ -171,7 +166,6 @@ public class JavaImportsFormatterTest {
 		assertFormat("multiple imports are sorted", original, expected);
 	}
 
-	@Ignore("See the bug manifest: activate this test.")
 	@Test
 	public void testSortingOfStaticImports() throws Exception {
 		String original =
@@ -210,7 +204,7 @@ public class JavaImportsFormatterTest {
 		String message, String original, String expected)
 	throws Exception {
 
-		String formatted = new JavaImportsFormatter().format(original, 7);
+		String formatted = new JavaImportsFormatter().format(original);
 
 		Assert.assertEquals(message, expected, formatted);
 	}

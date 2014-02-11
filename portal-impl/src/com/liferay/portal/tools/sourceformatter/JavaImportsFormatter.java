@@ -27,13 +27,15 @@ class JavaImportsFormatter extends ImportsFormatter {
 		Matcher javaMatcher = _javaImportPattern.matcher(line);
 
 		if (javaMatcher.find()) {
-			return new ImportPackage(javaMatcher.group(1), line);
+			boolean isStatic = null != javaMatcher.group(1);
+			String importString = javaMatcher.group(2);
+			return new ImportPackage(importString, isStatic, line);
 		}
 
 		return null;
 	}
 
 	private static final Pattern _javaImportPattern = Pattern.compile(
-		"import ([^\\s;]+)");
+		"import( static)? ([^;]+);");
 
 }

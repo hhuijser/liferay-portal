@@ -30,66 +30,55 @@ import com.liferay.portal.kernel.util.StringBundler;
  */
 abstract class ImportsFormatter {
 
-	protected String format(String imports, int classStartPos)
+	protected String format(String imports)
 		throws IOException {
-	
+
 		if (imports.contains("/*") || imports.contains("*/") ||
 			imports.contains("//")) {
-	
+
 			return imports + "\n";
 		}
-	
+
 		Set<ImportPackage> importPackages = new HashSet<ImportPackage>();
-	
+
 		UnsyncBufferedReader unsyncBufferedReader = new UnsyncBufferedReader(
 			new UnsyncStringReader(imports));
 		try {
 			String line = null;
-		
+
 			while ((line = unsyncBufferedReader.readLine()) != null) {
+
 				ImportPackage importPackage = toImportPackage(line);
-		
+
 				if (importPackage != null) {
 					importPackages.add(importPackage);
 				}
+
 			}
 		}
 		finally {
 			unsyncBufferedReader.close();
 		}
-	
+
 		List<ImportPackage> importPackagesSorted = ListUtil.sort(
-				new ArrayList<ImportPackage>(importPackages));
-	
+			new ArrayList<ImportPackage>(importPackages));
+
 		StringBundler sb = new StringBundler(3 * importPackagesSorted.size());
-	
-		String temp = null;
-	
-		for (int i = 0; i < importPackagesSorted.size(); i++) {
-			ImportPackage importPackage = importPackagesSorted.get(i);
-	
-			String s = importPackage.getLine();
-	
-			int pos = s.indexOf(".");
-	
-			pos = s.indexOf(".", pos + 1);
-	
-			if (pos == -1) {
-				pos = s.indexOf(".");
-			}
-	
-			String packageLevel = s.substring(classStartPos, pos);
-	
-			if ((i != 0) && !packageLevel.equals(temp)) {
+
+		ImportPackage previous = null;
+
+		for (ImportPackage current : importPackagesSorted) {
+
+			if (!current.staysTogetherWith(previous)) {
 				sb.append("\n");
 			}
-	
-			temp = packageLevel;
-	
-			sb.append(s);
+
+			sb.append(current.getLine());
 			sb.append("\n");
+
+			previous = current;
 		}
-	
+
 		return sb.toString();
 	}
 

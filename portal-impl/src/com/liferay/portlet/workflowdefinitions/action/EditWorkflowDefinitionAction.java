@@ -87,6 +87,8 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 				setForward(actionRequest, "portlet.workflow_definitions.view");
 			}
 			else if (e instanceof WorkflowDefinitionFileException) {
+				hideDefaultErrorMessage(actionRequest);
+
 				SessionErrors.add(actionRequest, e.getClass());
 			}
 			else if (e instanceof WorkflowException) {

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.User;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 
@@ -36,6 +37,12 @@ public class DefaultScreenNameGenerator implements ScreenNameGenerator {
 	@Override
 	public String generate(long companyId, long userId, String emailAddress)
 		throws Exception {
+
+		User user = UserLocalServiceUtil.fetchUser(userId);
+
+		if (user != null) {
+			return user.getScreenName();
+		}
 
 		String screenName = null;
 

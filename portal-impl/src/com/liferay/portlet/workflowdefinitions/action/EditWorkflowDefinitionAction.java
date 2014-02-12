@@ -205,6 +205,7 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 		WorkflowDefinition workflowDefinition = null;
 
 		boolean isFile = file.isFile();
+
 		String name = ParamUtil.getString(actionRequest, "name");
 		String title = getTitle(titleMap);
 

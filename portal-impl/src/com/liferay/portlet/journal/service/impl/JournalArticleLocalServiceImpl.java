@@ -5441,7 +5441,8 @@ public class JournalArticleLocalServiceImpl
 							serviceContext);
 
 					articleURL = setArticleURL(
-						articleURL, groupId, folderId, articleId);
+						articleURL, article.getGroupId(), article.getFolderId(),
+						article.getArticleId());
 
 					sendEmail(
 						article, articleURL, preferences, msg, serviceContext);
@@ -5768,9 +5769,6 @@ public class JournalArticleLocalServiceImpl
 				portletPreferencesLocalService.getPreferences(
 					article.getCompanyId(), ownerId, ownerType, plid,
 					portletId);
-
-			articleURL = setArticleURL(
-				articleURL, groupId, folderId, articleId);
 
 			sendEmail(
 				article, articleURL, preferences, "review",
@@ -6629,7 +6627,7 @@ public class JournalArticleLocalServiceImpl
 	}
 
 	protected String setArticleURL(
-		String articleURL, long groupId, String folderId, double articleId) {
+		String articleURL, long groupId, long folderId, String articleId) {
 
 		StringBundler sb = new StringBundler(7);
 

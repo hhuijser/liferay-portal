@@ -336,6 +336,8 @@ public class JournalArticleLocalServiceImpl
 			articleId = String.valueOf(counterLocalService.increment());
 		}
 
+		serviceContext.setAttribute("articleId", articleId);
+
 		long id = counterLocalService.increment();
 
 		long resourcePrimKey =
@@ -460,6 +462,8 @@ public class JournalArticleLocalServiceImpl
 			article, articleURL, preferences, "requested", serviceContext);
 
 		// Workflow
+
+		serviceContext.setAttribute("articleURL", articleURL);
 
 		if (classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
 			WorkflowHandlerRegistryUtil.startWorkflowInstance(
@@ -4905,6 +4909,8 @@ public class JournalArticleLocalServiceImpl
 
 			sendEmail(
 				article, articleURL, preferences, "requested", serviceContext);
+
+			serviceContext.setAttribute("articleURL", articleURL);
 
 			WorkflowHandlerRegistryUtil.startWorkflowInstance(
 				user.getCompanyId(), groupId, userId,

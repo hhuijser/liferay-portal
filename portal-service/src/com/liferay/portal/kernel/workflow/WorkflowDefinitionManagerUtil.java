@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.workflow;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermission;
 import com.liferay.portal.kernel.util.OrderByComparator;
 
@@ -31,7 +33,7 @@ public class WorkflowDefinitionManagerUtil {
 
 	public static WorkflowDefinition deployWorkflowDefinition(
 			long companyId, long userId, String title, byte[] bytes)
-		throws WorkflowException {
+		throws PortalException, SystemException {
 
 		return getWorkflowDefinitionManager().deployWorkflowDefinition(
 			companyId, userId, title, bytes);

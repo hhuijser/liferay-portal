@@ -87,6 +87,8 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 				setForward(actionRequest, "portlet.workflow_definitions.view");
 			}
 			else if (e instanceof WorkflowDefinitionFileException) {
+				hideDefaultErrorMessage(actionRequest);
+
 				SessionErrors.add(actionRequest, e.getClass());
 			}
 			else if (e instanceof WorkflowException) {
@@ -202,23 +204,40 @@ public class EditWorkflowDefinitionAction extends PortletAction {
 
 		WorkflowDefinition workflowDefinition = null;
 
-		if (file == null) {
-			String name = ParamUtil.getString(actionRequest, "name");
-			int version = ParamUtil.getInteger(actionRequest, "version");
+		boolean isFile = file.isFile();
 
-			workflowDefinition =
-				WorkflowDefinitionManagerUtil.getWorkflowDefinition(
-					themeDisplay.getCompanyId(), name, version);
+		String name = ParamUtil.getString(actionRequest, "name");
+		String title = getTitle(titleMap);
 
-			WorkflowDefinitionManagerUtil.updateTitle(
-				themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
-				version, getTitle(titleMap));
+		if (Validator.isNull(title) || (!isFile && Validator.isNull(name))) {
+			throw new WorkflowException();
+		}
+
+		int version = ParamUtil.getInteger(actionRequest, "version");
+
+		if (isFile) {
+			if (Validator.isNotNull(name)) {
+				WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
+					FileUtil.getBytes(file));
+
+				workflowDefinition =
+					WorkflowDefinitionManagerUtil.updateTitle(
+						themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+						name, version, title);
+			}
+			else {
+				workflowDefinition =
+					WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
+						themeDisplay.getCompanyId(), themeDisplay.getUserId(),
+						title, FileUtil.getBytes(file));
+			}
 		}
 		else {
 			workflowDefinition =
-				WorkflowDefinitionManagerUtil.deployWorkflowDefinition(
-					themeDisplay.getCompanyId(), themeDisplay.getUserId(),
-					getTitle(titleMap), FileUtil.getBytes(file));
+				WorkflowDefinitionManagerUtil.updateTitle(
+					themeDisplay.getCompanyId(), themeDisplay.getUserId(), name,
+					version, title);
 		}
 
 		actionRequest.setAttribute(

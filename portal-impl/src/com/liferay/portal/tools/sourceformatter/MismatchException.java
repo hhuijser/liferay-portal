@@ -14,30 +14,36 @@
 
 package com.liferay.portal.tools.sourceformatter;
 
-import org.junit.Assert;
-import org.junit.Test;
+import java.io.File;
 
 /**
- * @author Hugo Huijser
+ * @author André de Oliveira
  */
-public class SourceFormatterTest {
+class MismatchException extends RuntimeException {
 
-	@Test
-	public void testSourceFormatter() throws Exception {
-		SourceFormatter sourceFormatter = SourceFormatterUtil.create(
-			false, true, false, false);
-
-		try {
-			sourceFormatter.format();
-		}
-		catch (MismatchException m) {
-			/*
-			Convert to org.junit.ComparisonFailure, so that your favorite IDE's
-			Result Comparison will render the diff graphically.
-			*/
-			Assert.assertEquals(
-				m.getFile().toString(), m.getFormatted(), m.getOriginal());
-		}
+	MismatchException(File file, String original, String formatted) {
+		_file = file;
+		_original = original;
+		_formatted = formatted;
 	}
+
+	File getFile() {
+
+		return _file;
+	}
+
+	String getFormatted() {
+
+		return _formatted;
+	}
+
+	String getOriginal() {
+
+		return _original;
+	}
+
+	private final File _file;
+	private final String _formatted;
+	private final String _original;
 
 }

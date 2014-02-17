@@ -33,4 +33,25 @@ public interface SourceProcessor {
 
 	public List<String> getErrorMessages();
 
+	/**
+	 * Returns the first occurrence of a source file where the formatted,
+	 * auto-corrected code mismatched the original. <p>
+	 *
+	 * Why only the first mismatch, instead of them all? <p>
+	 *
+	 * <ol>
+	 * <li> On IDEs we want to render the diff graphically, therefore
+	 * SourceFormatterTest converts the mismatch to a JUnit ComparisonFailure.
+	 * That takes a single diff only, so the others would be discarded anyway.
+	 *
+	 * <li> On the command line there is no mismatch reporting because
+	 * autocorrection is already applied, so we don't need any.
+	 *
+	 * <li> The mismatch contains both the full original and formatted content.
+	 * Holding the full list of mismatches would risk an OutOfMemoryError when
+	 * there's a lot of them.
+	 * </ol>
+	 */
+	public MismatchException getFirstMismatch();
+
 }

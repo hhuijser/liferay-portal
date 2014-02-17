@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
-
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaClass;
 import com.thoughtworks.qdox.model.JavaSource;
@@ -1092,12 +1091,15 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 			oldContent = newContent;
 		}
 
-		if (isAutoFix() && (newContent != null) &&
-			!content.equals(newContent)) {
+		if (!content.equals(newContent)) {
 
-			fileUtil.write(file, newContent);
+			if (isAutoFix()) {
+				fileUtil.write(file, newContent);
+			}
 
 			sourceFormatterHelper.printError(fileName, file);
+
+			processMismatch(file, content, newContent);
 		}
 
 		return newContent;

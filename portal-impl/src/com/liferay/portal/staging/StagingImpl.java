@@ -590,6 +590,12 @@ public class StagingImpl implements Staging {
 			JSONObject errorMessageJSONObject =
 				JSONFactoryUtil.createJSONObject();
 
+			errorMessageJSONObject.put(
+				"site",
+				LanguageUtil.format(
+					locale, "in-site-x", missingReference.getGroupIdString(),
+					false));
+
 			String className = missingReference.getClassName();
 			Map<String, String> referrers = missingReference.getReferrers();
 
@@ -791,7 +797,9 @@ public class StagingImpl implements Staging {
 					locale,
 					"there-are-missing-references-that-could-not-be-found-in-" +
 						"the-live-environment.-please-publish-again-to-live-" +
-							"ensuring-the-following-elements-are-published");
+							"ensuring-the-following-elements-are-published." +
+								".-please-note-that-global-references-must-" +
+									"be-published-from-the-global-site");
 			}
 			else {
 				errorMessage = LanguageUtil.get(

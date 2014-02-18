@@ -88,6 +88,11 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		return _errorMessages;
 	}
 
+	@Override
+	public MismatchException getFirstMismatch() {
+		return _firstMismatch;
+	}
+
 	protected static String formatImports(String imports, int classStartPos)
 		throws IOException {
 
@@ -960,6 +965,14 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		}
 	}
 
+	protected void processMismatch(File file, String original,
+		String formatted) {
+
+		if (_firstMismatch == null) {
+			_firstMismatch = new MismatchException(file, original, formatted);
+		}
+	}
+
 	protected String replacePrimitiveWrapperInstantiation(
 		String fileName, String line, int lineCount) {
 
@@ -1225,6 +1238,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	private String[] _excludes;
 	private boolean _initialized;
 	private String _oldCopyright;
+	private MismatchException _firstMismatch;
 	private int _pluginsDirectorylevel;
 	private Properties _portalLanguageKeysProperties;
 	private boolean _printErrors;

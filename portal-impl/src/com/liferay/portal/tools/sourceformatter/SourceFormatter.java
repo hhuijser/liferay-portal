@@ -85,6 +85,8 @@ public class SourceFormatter {
 
 						_errorMessages.addAll(
 							sourceProcessor.getErrorMessages());
+
+						processMismatch(sourceProcessor.getFirstMismatch());
 					}
 				}
 				catch (Exception e) {
@@ -107,6 +109,8 @@ public class SourceFormatter {
 						_mainReleaseVersion);
 
 					_errorMessages.addAll(sourceProcessor.getErrorMessages());
+
+					processMismatch(sourceProcessor.getFirstMismatch());
 				}
 				catch (Exception e) {
 					e.printStackTrace();
@@ -121,8 +125,14 @@ public class SourceFormatter {
 		thread1.join();
 		thread2.join();
 
-		if (_throwException && !_errorMessages.isEmpty()) {
-			throw new Exception(StringUtil.merge(_errorMessages, "\n"));
+		if (_throwException) {
+			if (!_errorMessages.isEmpty()) {
+				throw new Exception(StringUtil.merge(_errorMessages, "\n"));
+			}
+
+			if (_firstMismatch != null) {
+				throw _firstMismatch;
+			}
 		}
 	}
 
@@ -148,6 +158,12 @@ public class SourceFormatter {
 		return _mainReleaseVersion;
 	}
 
+	void processMismatch(MismatchException mismatch) {
+		if ((mismatch != null) && (_firstMismatch == null)) {
+			_firstMismatch = mismatch;
+		}
+	}
+
 	private void _setVersion() throws Exception {
 		String releaseInfoVersion = ReleaseInfo.getVersion();
 
@@ -171,6 +187,7 @@ public class SourceFormatter {
 
 	private boolean _autoFix;
 	private List<String> _errorMessages = new UniqueList<String>();
+	private MismatchException _firstMismatch;
 	private String _mainReleaseVersion;
 	private boolean _printErrors;
 	private boolean _throwException;

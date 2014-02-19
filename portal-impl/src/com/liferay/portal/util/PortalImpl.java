@@ -3542,7 +3542,7 @@ public class PortalImpl implements Portal {
 			layoutFriendlyURL = layout.getFriendlyURL(originalLocale);
 		}
 
-		if (requestURI.contains(layoutFriendlyURL)) {
+		if (StringUtil.toLowerCase(requestURI).contains(layoutFriendlyURL)) {
 			requestURI = StringUtil.replaceFirst(
 				requestURI, layoutFriendlyURL, layout.getFriendlyURL(locale));
 		}

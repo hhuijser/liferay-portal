@@ -12,43 +12,54 @@
  * details.
  */
 
-package com.liferay.portlet.assetpublisher;
+package com.liferay.portal.kernel.portlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.portlet.BasePortletLayoutListener;
-import com.liferay.portal.kernel.portlet.PortletLayoutListener;
-import com.liferay.portal.kernel.portlet.PortletLayoutListenerException;
 import com.liferay.portal.model.Layout;
 import com.liferay.portal.service.LayoutLocalServiceUtil;
-import com.liferay.portlet.journal.service.JournalArticleLocalServiceUtil;
+import com.liferay.portlet.PortletPreferencesFactoryUtil;
 
 /**
- * @author Zsolt Berentey
+ * @author Preston Crary
  */
-public class AssetPublisherPortletLayoutListener
-	extends BasePortletLayoutListener implements PortletLayoutListener {
+public class BasePortletLayoutListener implements PortletLayoutListener {
 
-	@Override
-	public void onRemoveFromLayout(String portletId, long plid)
+	public void onAddToLayout(String portletId, long plid)
 		throws PortletLayoutListenerException {
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Remove " + portletId + " from layout " + plid);
+			_log.debug("Add " + portletId + " to layout " + plid);
 		}
 
 		try {
 			Layout layout = LayoutLocalServiceUtil.getLayout(plid);
 
-			JournalArticleLocalServiceUtil.deleteLayoutArticleReferences(
-				layout.getGroupId(), layout.getUuid());
+			PortletPreferencesFactoryUtil.getLayoutPortletSetup(
+				layout, portletId);
 		}
 		catch (Exception e) {
 			throw new PortletLayoutListenerException(e);
 		}
 	}
 
+	public void onMoveInLayout(String portletId, long plid)
+		throws PortletLayoutListenerException {
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Move " + portletId + " from in " + plid);
+		}
+	}
+
+	public void onRemoveFromLayout(String portletId, long plid)
+		throws PortletLayoutListenerException {
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Remove " + portletId + " from layout " + plid);
+		}
+	}
+
 	private static Log _log = LogFactoryUtil.getLog(
-		AssetPublisherPortletLayoutListener.class);
+		BasePortletLayoutListener.class);
 
 }

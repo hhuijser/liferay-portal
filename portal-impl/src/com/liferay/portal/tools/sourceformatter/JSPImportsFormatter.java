@@ -14,38 +14,27 @@
 
 package com.liferay.portal.tools.sourceformatter;
 
-import com.liferay.portal.kernel.util.Validator;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * @author Carlos Sierra Andrés
+ * @author André de Oliveira
  */
-public class ImportPackageFactoryUtil {
+public class JSPImportsFormatter extends ImportsFormatter {
 
-	public static ImportPackage create(String line) {
-		if (Validator.isNull(line)) {
-			return null;
-		}
-
-		Matcher javaMatcher = _javaImportPattern.matcher(line);
-
-		if (javaMatcher.find()) {
-			return new ImportPackage(javaMatcher.group(1), line);
-		}
+	@Override
+	protected ImportPackage createImportPackage(String line) {
 
 		Matcher jspMatcher = _jspImportPattern.matcher(line);
 
 		if (jspMatcher.find()) {
-			return new ImportPackage(jspMatcher.group(1), line);
+			return new ImportPackage(jspMatcher.group(1), false, line);
 		}
 
 		return null;
 	}
 
-	private static final Pattern _javaImportPattern = Pattern.compile(
-		"import ([^\\s;]+)");
 	private static final Pattern _jspImportPattern = Pattern.compile(
 		"import=\"([^\\s\"]+)\"");
 

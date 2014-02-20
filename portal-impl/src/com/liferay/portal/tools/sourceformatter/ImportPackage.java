@@ -20,8 +20,13 @@ package com.liferay.portal.tools.sourceformatter;
 public class ImportPackage implements Comparable<ImportPackage> {
 
 	@Override
-	public int compareTo(ImportPackage importPackage) {
-		return _import.compareTo(importPackage._import);
+	public int compareTo(ImportPackage other) {
+
+		if (_static != other._static) {
+			return _static ? -1 : 1;
+		}
+
+		return _import.compareTo(other._import);
 	}
 
 	@Override
@@ -34,17 +39,33 @@ public class ImportPackage implements Comparable<ImportPackage> {
 			return false;
 		}
 
-		ImportPackage importPackage = (ImportPackage)obj;
+		ImportPackage other = (ImportPackage)obj;
 
-		return _import.equals(importPackage._import);
-	}
+		if (_static != other._static) {
+			return false;
+		}
 
-	public String getImport() {
-		return _import;
+		return _import.equals(other._import);
 	}
 
 	public String getLine() {
 		return _line;
+	}
+
+	public String getPackageLevel() {
+
+		String s = _import;
+
+		int pos = s.indexOf(".");
+
+		pos = s.indexOf(".", pos + 1);
+
+		if (pos == -1) {
+			pos = s.indexOf(".");
+		}
+
+		String packageLevel = s.substring(0, pos);
+		return packageLevel;
 	}
 
 	@Override
@@ -52,12 +73,27 @@ public class ImportPackage implements Comparable<ImportPackage> {
 		return _import.hashCode();
 	}
 
-	protected ImportPackage(String importString, String line) {
+	public boolean isGroupedWith(ImportPackage previous) {
+
+		// First import is "grouped" (i.e., should not have a break before it)
+
+		if (previous == null) {
+			return true;
+		}
+
+		return (_static == previous._static) &&
+			getPackageLevel().equals(previous.getPackageLevel());
+	}
+
+	protected ImportPackage(String importString, boolean isStatic, String line)
+	{
 		_import = importString;
+		_static = isStatic;
 		_line = line;
 	}
 
 	private String _import;
 	private String _line;
+	private boolean _static;
 
 }

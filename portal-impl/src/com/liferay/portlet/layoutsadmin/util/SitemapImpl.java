@@ -280,42 +280,40 @@ public class SitemapImpl implements Sitemap {
 		UnicodeProperties typeSettingsProperties =
 			layout.getTypeSettingsProperties();
 
-		if (!PortalUtil.isLayoutSitemapable(layout) ||
-			!GetterUtil.getBoolean(
+		if (PortalUtil.isLayoutSitemapable(layout) &&
+			GetterUtil.getBoolean(
 				typeSettingsProperties.getProperty("sitemap-include"), true)) {
 
-			return;
-		}
+			String layoutFullURL = PortalUtil.getLayoutFullURL(
+				layout, themeDisplay);
 
-		String layoutFullURL = PortalUtil.getLayoutFullURL(
-			layout, themeDisplay);
+			layoutFullURL = PortalUtil.getCanonicalURL(
+				layoutFullURL, themeDisplay, layout);
 
-		layoutFullURL = PortalUtil.getCanonicalURL(
-			layoutFullURL, themeDisplay, layout);
+			addURLElement(
+				element, layoutFullURL, typeSettingsProperties,
+				layout.getModifiedDate(), layoutFullURL,
+				getAlternateURLs(layoutFullURL, themeDisplay, layout));
 
-		addURLElement(
-			element, layoutFullURL, typeSettingsProperties,
-			layout.getModifiedDate(), layoutFullURL,
-			getAlternateURLs(layoutFullURL, themeDisplay, layout));
+			Locale[] availableLocales = LanguageUtil.getAvailableLocales(
+				layout.getGroupId());
 
-		Locale[] availableLocales = LanguageUtil.getAvailableLocales(
-			layout.getGroupId());
+			if (availableLocales.length > 1) {
+				Locale defaultLocale = LocaleUtil.getSiteDefault();
 
-		if (availableLocales.length > 1) {
-			Locale defaultLocale = LocaleUtil.getSiteDefault();
+				for (Locale availableLocale : availableLocales) {
+					if (availableLocale.equals(defaultLocale)) {
+						continue;
+					}
 
-			for (Locale availableLocale : availableLocales) {
-				if (availableLocale.equals(defaultLocale)) {
-					continue;
+					String alternateURL = PortalUtil.getAlternateURL(
+						layoutFullURL, themeDisplay, availableLocale, layout);
+
+					addURLElement(
+						element, alternateURL, typeSettingsProperties,
+						layout.getModifiedDate(), layoutFullURL,
+						getAlternateURLs(layoutFullURL, themeDisplay, layout));
 				}
-
-				String alternateURL = PortalUtil.getAlternateURL(
-					layoutFullURL, themeDisplay, availableLocale, layout);
-
-				addURLElement(
-					element, alternateURL, typeSettingsProperties,
-					layout.getModifiedDate(), layoutFullURL,
-					getAlternateURLs(layoutFullURL, themeDisplay, layout));
 			}
 		}
 	}

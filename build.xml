@@ -40,24 +40,24 @@
 	</web>
 </application>]]></echo>
 
-			<loadfile failonerror="false" property="system-ext.properties.content" srcfile="portal-impl/src/system-ext.properties" />
+			<loadfile failonerror="false" property="system-jrebel.properties.content" srcfile="portal-impl/src/system-jrebel.properties" />
 
 			<if>
 				<not>
-					<contains string="${system-ext.properties.content}"  substring="liferay.lib.portal.dir" />
+					<contains string="${system-jrebel.properties.content}"  substring="liferay.lib.portal.dir" />
 				</not>
 				<then>
 					<echo
 						append="true"
-						file="portal-impl/src/system-ext.properties"
+						file="portal-impl/src/system-jrebel.properties"
 					>
 						liferay.lib.portal.dir=${app.server.lib.portal.dir}
 					</echo>
 
 					<copy
-						file="portal-impl/src/system-ext.properties"
+						file="portal-impl/src/system-jrebel.properties"
 						overwrite="true"
-						tofile="portal-impl/classes/system-ext.properties"
+						tofile="portal-impl/classes/system-jrebel.properties"
 					/>
 				</then>
 			</if>

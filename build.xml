@@ -49,16 +49,10 @@
 				<then>
 					<echo
 						append="true"
-						file="portal-impl/src/system-jrebel.properties"
+						file="portal-impl/classes/system-jrebel.properties"
 					>
 						liferay.lib.portal.dir=${app.server.lib.portal.dir}
 					</echo>
-
-					<copy
-						file="portal-impl/src/system-jrebel.properties"
-						overwrite="true"
-						tofile="portal-impl/classes/system-jrebel.properties"
-					/>
 				</then>
 			</if>
 		</sequential>

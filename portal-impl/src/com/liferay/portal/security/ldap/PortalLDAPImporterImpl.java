@@ -1253,18 +1253,7 @@ public class PortalLDAPImporterImpl implements PortalLDAPImporter {
 		}
 
 		if (Validator.isNull(ldapUser.getScreenName())) {
-			if (ldapUser.isAutoScreenName()) {
-				ldapUser.setScreenName(user.getScreenName());
-			}
-			else {
-				ScreenNameGenerator screenNameGenerator =
-					ScreenNameGeneratorFactory.getInstance();
-
-				ldapUser.setScreenName(
-					screenNameGenerator.generate(
-						companyId, user.getUserId(),
-						ldapUser.getEmailAddress()));
-			}
+			ldapUser.setScreenName(user.getScreenName());
 		}
 
 		if (ldapUser.isUpdatePassword()) {

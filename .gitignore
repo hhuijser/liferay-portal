@@ -91,6 +91,7 @@ log
 
 /portal-impl/src/portal-ext.properties
 /portal-impl/src/system-ext.properties
+/portal-impl/src/system-jrebel.properties
 
 /portal-impl/src/META-INF/MANIFEST.MF.JOnAS
 /portal-impl/src/META-INF/portal-log4j-ext.xml

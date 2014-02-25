@@ -40,25 +40,19 @@
 	</web>
 </application>]]></echo>
 
-			<loadfile failonerror="false" property="system-ext.properties.content" srcfile="portal-impl/src/system-ext.properties" />
+			<loadfile failonerror="false" property="system-jrebel.properties.content" srcfile="portal-impl/src/system-jrebel.properties" />
 
 			<if>
 				<not>
-					<contains string="${system-ext.properties.content}"  substring="liferay.lib.portal.dir" />
+					<contains string="${system-jrebel.properties.content}"  substring="liferay.lib.portal.dir" />
 				</not>
 				<then>
 					<echo
 						append="true"
-						file="portal-impl/src/system-ext.properties"
+						file="portal-impl/classes/system-jrebel.properties"
 					>
 						liferay.lib.portal.dir=${app.server.lib.portal.dir}
 					</echo>
-
-					<copy
-						file="portal-impl/src/system-ext.properties"
-						overwrite="true"
-						tofile="portal-impl/classes/system-ext.properties"
-					/>
 				</then>
 			</if>
 		</sequential>
@@ -640,11 +634,13 @@ print AdminControl.invoke(appManager, 'startApplication', 'liferay-portal')
 			<then>
 				<war destfile="${app.server.glassfish.portal.dir}" update="true">
 					<classes dir="portal-impl/src" includes="portal-*.properties,system-*.properties" />
+					<classes dir="portal-impl/classes" includes="system-jrebel.properties" />
 				</war>
 			</then>
 			<else>
 				<copy todir="${app.server.classes.portal.dir}" overwrite="true">
 					<fileset dir="portal-impl/src" includes="portal-*.properties,system-*.properties" />
+					<fileset dir="portal-impl/classes" includes="system-jrebel.properties" />
 				</copy>
 			</else>
 		</if>

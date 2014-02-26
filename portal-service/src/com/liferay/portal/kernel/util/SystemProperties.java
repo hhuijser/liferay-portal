@@ -101,6 +101,29 @@ public class SystemProperties {
 			e.printStackTrace();
 		}
 
+		// system-jrebel.properties
+
+		try {
+			URL url = classLoader.getResource("system-jrebel.properties");
+
+			if (url != null) {
+				_loaded = true;
+
+				InputStream inputStream = url.openStream();
+
+				properties.load(inputStream);
+
+				inputStream.close();
+
+				if (!systemPropertiesQuiet) {
+					System.out.println("Loading " + url);
+				}
+			}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
 		// system-ext.properties
 
 		try {

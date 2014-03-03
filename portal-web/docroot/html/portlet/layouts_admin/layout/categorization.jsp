@@ -14,11 +14,24 @@
  */
 --%>
 
-<%@ include file="/html/taglib/init.jsp" %>
+<%@ include file="/html/portlet/sites_admin/init.jsp" %>
 
 <%
-boolean autoFocus = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:search-toggle:autoFocus"));
-String buttonLabel = (String)request.getAttribute("liferay-ui:search-toggle:buttonLabel");
-DisplayTerms displayTerms = (DisplayTerms)request.getAttribute("liferay-ui:search-toggle:displayTerms");
-String id = (String)request.getAttribute("liferay-ui:search-toggle:id");
+Layout selLayout = (Layout)request.getAttribute("edit_pages.jsp-selLayout");
 %>
+
+<liferay-ui:error-marker key="errorSection" value="categorization" />
+
+<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+
+<h3><liferay-ui:message key="categorization" /></h3>
+
+<liferay-ui:asset-categories-error />
+
+<liferay-ui:asset-tags-error />
+
+<aui:fieldset>
+	<aui:input name="categories" type="assetCategories" />
+
+	<aui:input name="tags" type="assetTags" />
+</aui:fieldset>

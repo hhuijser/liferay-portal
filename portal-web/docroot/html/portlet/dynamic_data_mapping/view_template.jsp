@@ -93,6 +93,11 @@ String title = ddmDisplay.getViewTemplatesTitle(structure, controlPanel, templat
 		rowChecker="<%= new RowChecker(renderResponse) %>"
 		searchContainer="<%= templateSearch %>"
 	>
+
+		<%
+		request.setAttribute(WebKeys.SEARCH_CONTAINER, searchContainer);
+		%>
+
 		<liferay-util:include page="/html/portlet/dynamic_data_mapping/template_toolbar.jsp">
 			<liferay-util:param name="redirect" value="<%= currentURL %>" />
 			<liferay-util:param name="classNameId" value="<%= String.valueOf(classNameId) %>" />
@@ -164,7 +169,7 @@ String title = ddmDisplay.getViewTemplatesTitle(structure, controlPanel, templat
 				if (template.getClassPK() > 0) {
 					DDMStructure templateStructure = DDMStructureServiceUtil.getStructure(template.getClassPK());
 
-					structureName = templateStructure.getName();
+					structureName = templateStructure.getName(locale);
 				}
 				%>
 

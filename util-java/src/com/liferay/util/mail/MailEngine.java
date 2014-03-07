@@ -252,9 +252,11 @@ public class MailEngine {
 
 			message.setFrom(from);
 
-			if (to != null) {
-				message.setRecipients(Message.RecipientType.TO, to);
+			if ((to != null) && (to.length == 0)) {
+				to = null;
 			}
+
+			message.setRecipients(Message.RecipientType.TO, to);
 
 			if (cc != null) {
 				message.setRecipients(Message.RecipientType.CC, cc);

@@ -16,6 +16,7 @@ package com.liferay.portal.util;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
 import com.liferay.portal.ImageTypeException;
+import com.liferay.portal.NoSuchGroupException;
 import com.liferay.portal.NoSuchImageException;
 import com.liferay.portal.NoSuchLayoutException;
 import com.liferay.portal.NoSuchUserException;
@@ -6871,9 +6872,24 @@ public class PortalImpl implements Portal {
 
 		String redirect = PATH_MAIN + "/portal/status";
 
-		if ((e instanceof NoSuchLayoutException) &&
+		if ((e instanceof NoSuchGroupException) &&
 			Validator.isNotNull(
-				PropsValues.LAYOUT_FRIENDLY_URL_PAGE_NOT_FOUND)) {
+				PropsValues.SITES_FRIENDLY_URL_PAGE_NOT_FOUND)) {
+
+			response.setStatus(status);
+
+			redirect = PropsValues.SITES_FRIENDLY_URL_PAGE_NOT_FOUND;
+
+			RequestDispatcher requestDispatcher =
+				servletContext.getRequestDispatcher(redirect);
+
+			if (requestDispatcher != null) {
+				requestDispatcher.forward(request, response);
+			}
+		}
+		else if ((e instanceof NoSuchLayoutException) &&
+				 Validator.isNotNull(
+					PropsValues.LAYOUT_FRIENDLY_URL_PAGE_NOT_FOUND)) {
 
 			response.setStatus(status);
 

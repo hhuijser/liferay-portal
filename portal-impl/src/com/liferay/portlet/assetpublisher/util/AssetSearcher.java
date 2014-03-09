@@ -428,6 +428,14 @@ public class AssetSearcher extends BaseSearcher {
 		contextQuery.add(tagIdsQuery, BooleanClauseOccur.MUST_NOT);
 	}
 
+	@Override
+	protected void postProcessFullQuery(
+			BooleanQuery fullQuery, SearchContext searchContext)
+		throws Exception {
+
+		fullQuery.addRequiredTerm("visible", true);
+	}
+
 	private AssetEntryQuery _assetEntryQuery;
 
 }

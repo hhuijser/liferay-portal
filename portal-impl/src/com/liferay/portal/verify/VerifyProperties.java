@@ -271,6 +271,8 @@ public class VerifyProperties extends VerifyProcess {
 		"dynamic.data.lists.template.language.parser[vm]",
 		"dynamic.data.lists.template.language.parser[xsl]",
 		"dynamic.data.mapping.template.language.types",
+		"editor.wysiwyg.portal-web.docroot.html.portlet.asset_publisher." +
+			"configuration.jsp",
 		"editor.wysiwyg.portal-web.docroot.html.portlet.blogs.configuration." +
 			"jsp",
 		"editor.wysiwyg.portal-web.docroot.html.portlet.bookmarks." +
@@ -278,10 +280,14 @@ public class VerifyProperties extends VerifyProcess {
 		"editor.wysiwyg.portal-web.docroot.html.portlet.document_library." +
 		"editor.wysiwyg.portal-web.docroot.html.portlet.invitation." +
 			"configuration.jsp",
+		"editor.wysiwyg.portal-web.docroot.html.portlet.journal." +
+			"configuration.jsp",
 		"editor.wysiwyg.portal-web.docroot.html.portlet.login.configuration." +
 			"jsp",
 		"editor.wysiwyg.portal-web.docroot.html.portlet.message_boards." +
 			"configuration.jsp",
+		"editor.wysiwyg.portal-web.docroot.html.portlet.portal_settings." +
+			"email_notifications.jsp",
 		"ehcache.statistics.enabled", "index.filter.search.limit",
 		"javax.persistence.validation.mode", "jbi.workflow.url",
 		"journal.template.language.parser[css]",

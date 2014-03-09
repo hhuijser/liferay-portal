@@ -48,6 +48,16 @@ public class PropsValues {
 
 	public static final String ADMIN_EMAIL_PASSWORD_SENT_SUBJECT = PropsUtil.get(PropsKeys.ADMIN_EMAIL_PASSWORD_SENT_SUBJECT);
 
+	public static final String ADMIN_EMAIL_USER_ADDED_BODY = PropsUtil.get(PropsKeys.ADMIN_EMAIL_USER_ADDED_BODY);
+
+	public static final String ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY = PropsUtil.get(PropsKeys.ADMIN_EMAIL_USER_ADDED_NO_PASSWORD_BODY);
+
+	public static final String ADMIN_EMAIL_USER_ADDED_SUBJECT = PropsUtil.get(PropsKeys.ADMIN_EMAIL_USER_ADDED_SUBJECT);
+
+	public static final String ADMIN_EMAIL_VERIFICATION_BODY = PropsUtil.get(PropsKeys.ADMIN_EMAIL_VERIFICATION_BODY);
+
+	public static final String ADMIN_EMAIL_VERIFICATION_SUBJECT = PropsUtil.get(PropsKeys.ADMIN_EMAIL_VERIFICATION_SUBJECT);
+
 	public static final String[] ADMIN_MAIL_HOST_NAMES = StringUtil.splitLines(PropsUtil.get(PropsKeys.ADMIN_MAIL_HOST_NAMES));
 
 	public static final String[] ADMIN_RESERVED_EMAIL_ADDRESSES = StringUtil.splitLines(PropsUtil.get(PropsKeys.ADMIN_RESERVED_EMAIL_ADDRESSES));
@@ -1731,6 +1741,8 @@ public class PropsValues {
 	public static String[] SITES_FORM_UPDATE_MISCELLANEOUS = PropsUtil.getArray(PropsKeys.SITES_FORM_UPDATE_MISCELLANEOUS);
 
 	public static String[] SITES_FORM_UPDATE_SEO = PropsUtil.getArray(PropsKeys.SITES_FORM_UPDATE_SEO);
+
+	public static final String SITES_FRIENDLY_URL_PAGE_NOT_FOUND = PropsUtil.get(PropsKeys.SITES_FRIENDLY_URL_PAGE_NOT_FOUND);
 
 	public static String SITES_SITEMAP_DEFAULT_CHANGE_FREQUENCY = PropsUtil.get(PropsKeys.SITES_SITEMAP_DEFAULT_CHANGE_FREQUENCY);
 

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.io.ByteArrayFileInputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.ServletResponseConstants;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -107,21 +108,26 @@ public abstract class BaseCommandReceiver implements CommandReceiver {
 				_log.debug(cause, cause);
 			}
 
-			returnValue = "110";
+			returnValue = String.valueOf(
+				ServletResponseConstants.SC_UNKNOWN_ERROR_CREATING_FOLDER);
 
 			if (cause != null) {
 				String causeString = GetterUtil.getString(cause.toString());
 
 				if (causeString.contains("DuplicateFolderNameException")) {
-					returnValue = "101";
+					returnValue = String.valueOf(
+						ServletResponseConstants.SC_FOLDER_ALREADY_EXISTS);
 				}
 				else if (causeString.contains("FolderNameException")) {
-					returnValue = "102";
+					returnValue = String.valueOf(
+						ServletResponseConstants.SC_INVALID_FOLDER_NAME);
 				}
 				else if (causeString.contains("NoSuchGroupException") ||
 						 causeString.contains("PrincipalException")) {
 
-					returnValue = "103";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_YOU_HAVE_NO_PERMISSIONS_TO_CREATE_THE_FOLDER);
 				}
 				else {
 					throw fcke;
@@ -215,40 +221,57 @@ public abstract class BaseCommandReceiver implements CommandReceiver {
 
 			Throwable cause = fcke.getCause();
 
-			returnValue = "203";
+			returnValue = String.valueOf(
+				ServletResponseConstants.SC_AN_UNEXPECTED_ERROR_OCCURRED);
 
 			if (cause != null) {
 				String causeString = GetterUtil.getString(cause.toString());
 
 				if (causeString.contains("DuplicateFileException")) {
-					returnValue = "201";
+					returnValue = String.valueOf
+						(ServletResponseConstants.
+							SC_A_FILE_WITH_THE_SAME_NAME_IS_ALREADY_AVAILABLE);
 				}
 				else if (causeString.contains("NoSuchFolderException")||
 						 causeString.contains("NoSuchGroupException")) {
 
-					returnValue = "204";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_YOU_CANNOT_UPLOAD_INTO_THE_ROOT_FOLDER);
 				}
 				else if (causeString.contains("ImageNameException")) {
-					returnValue = "205";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_PLEASE_ENTER_A_VALID_IMAGE_NAME);
 				}
 				else if (causeString.contains("FileExtensionException") ||
 						 causeString.contains("FileNameException")) {
 
-					returnValue = "206";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_PLEASE_ENTER_A_VALID_FILE_NAME);
 				}
 				else if (causeString.contains("PrincipalException")) {
-					returnValue = "207";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_YOU_DO_NOT_HAVE_THE_PERMISSION_TO_UPLOAD_TO_THIS_FOLDER);
 				}
 				else if (causeString.contains("ImageSizeException") ||
 						 causeString.contains("FileSizeException")) {
 
-					returnValue = "208";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_FILE_SIZE_EXCEEDS_UPLOAD_LIMIT);
 				}
 				else if (causeString.contains("SystemException")) {
-					returnValue = "209";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_AN_INTERNAL_SERVER_ERROR_OCCURED);
 				}
 				else if (causeString.contains("AssetCategoryException")) {
-					returnValue = "210";
+					returnValue = String.valueOf(
+						ServletResponseConstants.
+							SC_YOU_CANNOT_UPLOAD_A_FILE_IF_CATEGORY_IS_REQUIRED);
 				}
 				else {
 					throw fcke;

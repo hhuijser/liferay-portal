@@ -34,6 +34,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletResponse;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -83,7 +85,29 @@ public abstract class BaseWorkflowHandler implements WorkflowHandler {
 			AssetRenderer assetRenderer = getAssetRenderer(classPK);
 
 			if (assetRenderer != null) {
-				return assetRenderer.getSummary(locale);
+				return assetRenderer.getSummary(locale, null, null);
+			}
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(e, e);
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public String getSummary(
+		long classPK, Locale locale, PortletRequest portletRequest,
+		PortletResponse portletResponse) {
+
+		try {
+			AssetRenderer assetRenderer = getAssetRenderer(classPK);
+
+			if (assetRenderer != null) {
+				return assetRenderer.getSummary(
+					locale, portletRequest, portletResponse);
 			}
 		}
 		catch (Exception e) {

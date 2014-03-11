@@ -131,10 +131,10 @@ else if (selUser != null) {
 	}
 }
 
-List<UserGroupGroupRole> inheritedSiteRoles = Collections.emptyList();
+List<UserGroupGroupRole> userGroupGroupRoles = Collections.emptyList();
 
 if (selUser != null) {
-	inheritedSiteRoles = UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByUser(selUser.getUserId());
+	userGroupGroupRoles = UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByUser(selUser.getUserId());
 }
 
 List<Group> relatedGroups = GroupLocalServiceUtil.getUserGroupsRelatedGroups(userGroups);
@@ -236,12 +236,13 @@ if (selUser != null) {
 	request.setAttribute("user.passwordPolicy", passwordPolicy);
 	request.setAttribute("user.groups", groups);
 	request.setAttribute("user.regularGroups", regularGroups);
+	request.setAttribute("user.organizationsRelatedGroups", organizationsRelatedGroups);
 	request.setAttribute("user.organizations", organizations);
 	request.setAttribute("user.roles", roles);
 	request.setAttribute("user.organizationRoles", organizationRoles);
 	request.setAttribute("user.siteRoles", siteRoles);
-	request.setAttribute("user.inheritedSiteRoles", inheritedSiteRoles);
 	request.setAttribute("user.userGroups", userGroups);
+	request.setAttribute("user.userGroupGroupRoles", userGroupGroupRoles);
 	request.setAttribute("user.allGroups", allGroups);
 
 	request.setAttribute("addresses.className", Contact.class.getName());

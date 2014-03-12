@@ -159,37 +159,39 @@ for (UserGroupRole siteRole : siteRoles) {
 		>
 
 			<%
-			Map<Role, List<String>> roleUserGroupNames = groupRoleUserGroupMap.get(group);
+			if (!groupRoleUserGroupMap.isEmpty()) {
+				Map<Role, List<String>> roleUserGroupNames = groupRoleUserGroupMap.get(group);
 
-			for (Role role : roleUserGroupNames.keySet()) {
-				buffer.append(HtmlUtil.escape(role.getTitle(locale)));
+				for (Role role : roleUserGroupNames.keySet()) {
+					buffer.append(HtmlUtil.escape(role.getTitle(locale)));
 
-				List<String> userGroupNames = roleUserGroupNames.get(role);
+					List<String> userGroupNames = roleUserGroupNames.get(role);
 
-				if (userGroupNames != null) {
-					String message = StringPool.BLANK;
+					if (userGroupNames != null) {
+						String message = StringPool.BLANK;
 
-					if (userGroupNames.size() == 1) {
-						message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x", new Object[] {userGroupNames.get(0)}, false);
+						if (userGroupNames.size() == 1) {
+							message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x", new Object[] {userGroupNames.get(0)}, false);
+						}
+						else {
+							message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x-and-x", new Object[] {StringUtil.merge(userGroupNames.subList(0, userGroupNames.size() - 1).toArray(new String[userGroupNames.size() - 1]), ", "), userGroupNames.get(userGroupNames.size() - 1)}, false);
+						}
+					%>
+
+						<liferay-util:buffer var="iconHelp">
+							<liferay-ui:icon-help message="<%= message %>" />
+						</liferay-util:buffer>
+
+					<%
+						buffer.append(iconHelp);
 					}
-					else {
-						message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x-and-x", new Object[] {StringUtil.merge(userGroupNames.subList(0, userGroupNames.size() - 1).toArray(new String[userGroupNames.size() - 1]), ", "), userGroupNames.get(userGroupNames.size() - 1)}, false);
-					}
-				%>
 
-					<liferay-util:buffer var="iconHelp">
-						<liferay-ui:icon-help message="<%= message %>" />
-					</liferay-util:buffer>
-
-				<%
-					buffer.append(iconHelp);
+					buffer.append(StringPool.COMMA_AND_SPACE);
 				}
 
-				buffer.append(StringPool.COMMA_AND_SPACE);
-			}
-
-			if (!roleUserGroupNames.isEmpty()) {
-				buffer.setIndex(buffer.index() - 1);
+				if (!roleUserGroupNames.isEmpty()) {
+					buffer.setIndex(buffer.index() - 1);
+				}
 			}
 			%>
 

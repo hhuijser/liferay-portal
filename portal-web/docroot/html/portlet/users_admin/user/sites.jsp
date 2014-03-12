@@ -137,8 +137,11 @@ for (UserGroupRole siteRole : siteRoles) {
 				if (names.size() == 1) {
 					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x", new Object[] {groupName, names.get(0)}, false);
 				}
+				else if (names.size() == 2) {
+					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x-and-x", new Object[] {groupName, names.get(0), names.get(1)}, false);
+				}
 				else {
-					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x-and-x", new Object[] {groupName, StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
+					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x,-and-x", new Object[] {groupName, StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
 				}
 			%>
 
@@ -163,7 +166,9 @@ for (UserGroupRole siteRole : siteRoles) {
 				Map<Role, List<String>> roleUserGroupNames = groupRoleUserGroupMap.get(group);
 
 				for (Role role : roleUserGroupNames.keySet()) {
-					buffer.append(HtmlUtil.escape(role.getTitle(locale)));
+					String title = HtmlUtil.escape(role.getTitle(locale));
+
+					buffer.append(title);
 
 					List<String> userGroupNames = roleUserGroupNames.get(role);
 
@@ -171,10 +176,13 @@ for (UserGroupRole siteRole : siteRoles) {
 						String message = StringPool.BLANK;
 
 						if (userGroupNames.size() == 1) {
-							message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x", new Object[] {userGroupNames.get(0)}, false);
+							message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x", new Object[] {title, userGroupNames.get(0)}, false);
+						}
+						else if (userGroupNames.size() == 2) {
+							message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x-and-x", new Object[] {title, userGroupNames.get(0), userGroupNames.get(1)}, false);
 						}
 						else {
-							message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x-and-x", new Object[] {StringUtil.merge(userGroupNames.subList(0, userGroupNames.size() - 1).toArray(new String[userGroupNames.size() - 1]), ", "), userGroupNames.get(userGroupNames.size() - 1)}, false);
+							message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x,-and-x", new Object[] {title, StringUtil.merge(userGroupNames.subList(0, userGroupNames.size() - 1).toArray(new String[userGroupNames.size() - 1]), ", "), userGroupNames.get(userGroupNames.size() - 1)}, false);
 						}
 					%>
 

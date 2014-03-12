@@ -105,7 +105,9 @@ for (Role role : roleGroupNames.keySet()) {
 		>
 
 			<%
-			buffer.append(HtmlUtil.escape(role.getTitle(locale)));
+			String title = HtmlUtil.escape(role.getTitle(locale));
+
+			buffer.append(title);
 
 			if (hasImplicitRole) {
 				List<String> names = roleGroupNames.get(role);
@@ -113,10 +115,13 @@ for (Role role : roleGroupNames.keySet()) {
 				String message = StringPool.BLANK;
 
 				if (names.size() == 1) {
-					message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x", new Object[] {names.get(0)}, false);
+					message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x", new Object[] {title, names.get(0)}, false);
+				}
+				else if (names.size() == 2) {
+					message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x-and-x", new Object[] {title, names.get(0), names.get(1)}, false);
 				}
 				else {
-					message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x-and-x", new Object[] {StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
+					message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x,-and-x", new Object[] {title, StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
 				}
 			%>
 
@@ -409,16 +414,21 @@ for (UserGroupRole siteRole : siteRoles) {
 		>
 
 			<%
-			buffer.append(HtmlUtil.escape(role.getTitle(locale)));
+			String title = HtmlUtil.escape(role.getTitle(locale));
+
+			buffer.append(title);
 
 			if (hasImplicitRole) {
 				String message = StringPool.BLANK;
 
 				if (names.size() == 1) {
-					message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x", new Object[] {names.get(0)}, false);
+					message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x", new Object[] {title, names.get(0)}, false);
+				}
+				else if (names.size() == 2) {
+					message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x-and-x", new Object[] {title, names.get(0), names.get(1)}, false);
 				}
 				else {
-					message = LanguageUtil.format(pageContext, "this-role-is-assigned-to-x-and-x", new Object[] {StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
+					message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x,-and-x", new Object[] {title, StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
 				}
 			%>
 

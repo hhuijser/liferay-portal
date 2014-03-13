@@ -18,8 +18,9 @@
 
 <%
 User selUser = (User)request.getAttribute("user.selUser");
-List<Group> groups = (List<Group>)request.getAttribute("user.groups");
-List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSites");
+List<Group> regularGroups = (List<Group>)request.getAttribute("user.regularGroups");
+List<UserGroupRole> siteRoles = (List<UserGroupRole>)request.getAttribute("user.siteRoles");
+List<UserGroupGroupRole> userGroupGroupRoles = (List<UserGroupGroupRole>)request.getAttribute("user.userGroupGroupRoles");
 %>
 
 <liferay-ui:error-marker key="errorSection" value="sites" />
@@ -36,12 +37,62 @@ List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSi
 
 <h3><liferay-ui:message key="sites" /></h3>
 
+<%
+Map<Group, Map<Role, List<String>>> groupRoleUserGroupMap = new HashMap<Group, Map<Role, List<String>>>();
+
+for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+	Group group = userGroupGroupRole.getGroup();
+	Role role = userGroupGroupRole.getRole();
+	UserGroup userGroup = userGroupGroupRole.getUserGroup();
+
+	Map<Role, List<String>> roleUserGroupNames = groupRoleUserGroupMap.get(group);
+
+	if (roleUserGroupNames != null) {
+		List<String> userGroupNames = roleUserGroupNames.get(role);
+
+		if (userGroupNames != null) {
+			userGroupNames.add(userGroup.getName());
+		}
+		else {
+			roleUserGroupNames.put(role, new ArrayList<String>(Arrays.asList(userGroup.getName())));
+		}
+	}
+	else {
+		roleUserGroupNames = new HashMap<Role, List<String>>();
+
+		roleUserGroupNames.put(role, new ArrayList<String>(Arrays.asList(userGroup.getName())));
+
+		groupRoleUserGroupMap.put(group, roleUserGroupNames);
+	}
+}
+
+for (UserGroupRole siteRole : siteRoles) {
+	Group group = siteRole.getGroup();
+	Role role = siteRole.getRole();
+
+	Map<Role, List<String>> roleUserGroupNames = groupRoleUserGroupMap.get(group);
+
+	if (roleUserGroupNames != null) {
+		if (!roleUserGroupNames.containsKey(role)) {
+			roleUserGroupNames.put(role, null);
+		}
+	}
+	else {
+		roleUserGroupNames = new HashMap<Role, List<String>>();
+
+		roleUserGroupNames.put(role, null);
+
+		groupRoleUserGroupMap.put(group, roleUserGroupNames);
+	}
+}
+%>
+
 <liferay-ui:search-container
 	headerNames="name,roles,null"
 >
 	<liferay-ui:search-container-results
-		results="<%= groups %>"
-		total="<%= groups.size() %>"
+		results="<%= regularGroups %>"
+		total="<%= regularGroups.size() %>"
 	/>
 
 	<liferay-ui:search-container-row
@@ -51,10 +102,59 @@ List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSi
 		modelVar="group"
 		rowIdProperty="friendlyURL"
 	>
+
+		<%
+		List<String> names = new ArrayList<String>();
+
+		for (UserGroupGroupRole userGroupGroupRole : userGroupGroupRoles) {
+			if (group.getGroupId() == userGroupGroupRole.getGroupId()) {
+				String userGroupName = userGroupGroupRole.getUserGroup().getName();
+
+				if (!names.contains(userGroupName)) {
+					names.add(userGroupName);
+				}
+			}
+		}
+
+		SitesUtil.isOrganizationUser(company.getCompanyId(), group, selUser, names);
+
+		boolean hasImplicitSiteMembership = !names.isEmpty();
+		%>
+
 		<liferay-ui:search-container-column-text
+			buffer="buffer"
 			name="name"
-			value="<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>"
-		/>
+		>
+
+			<%
+			String groupName = HtmlUtil.escape(group.getDescriptiveName(locale));
+
+			buffer.append(groupName);
+
+			if (hasImplicitSiteMembership) {
+				String message = StringPool.BLANK;
+
+				if (names.size() == 1) {
+					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x", new Object[] {groupName, names.get(0)}, false);
+				}
+				else if (names.size() == 2) {
+					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x-and-x", new Object[] {groupName, names.get(0), names.get(1)}, false);
+				}
+				else {
+					message = LanguageUtil.format(pageContext, "this-user-is-a-member-of-x-because-he-belongs-to-x,-and-x", new Object[] {groupName, StringUtil.merge(names.subList(0, names.size() - 1).toArray(new String[names.size() - 1]), ", "), names.get(names.size() - 1)}, false);
+				}
+			%>
+
+				<liferay-util:buffer var="iconHelp">
+					<liferay-ui:icon-help message="<%= message %>" />
+				</liferay-util:buffer>
+
+			<%
+				buffer.append(iconHelp);
+			}
+			%>
+
+		</liferay-ui:search-container-column-text>
 
 		<liferay-ui:search-container-column-text
 			buffer="buffer"
@@ -62,17 +162,44 @@ List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSi
 		>
 
 			<%
-			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), group.getGroupId());
+			if (!groupRoleUserGroupMap.isEmpty()) {
+				Map<Role, List<String>> roleUserGroupNames = groupRoleUserGroupMap.get(group);
 
-			for (UserGroupRole userGroupRole : userGroupRoles) {
-				Role role = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
+				for (Role role : roleUserGroupNames.keySet()) {
+					String title = HtmlUtil.escape(role.getTitle(locale));
 
-				buffer.append(HtmlUtil.escape(role.getTitle(locale)));
-				buffer.append(StringPool.COMMA_AND_SPACE);
-			}
+					buffer.append(title);
 
-			if (!userGroupRoles.isEmpty()) {
-				buffer.setIndex(buffer.index() - 1);
+					List<String> userGroupNames = roleUserGroupNames.get(role);
+
+					if (userGroupNames != null) {
+						String message = StringPool.BLANK;
+
+						if (userGroupNames.size() == 1) {
+							message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x", new Object[] {title, userGroupNames.get(0)}, false);
+						}
+						else if (userGroupNames.size() == 2) {
+							message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x-and-x", new Object[] {title, userGroupNames.get(0), userGroupNames.get(1)}, false);
+						}
+						else {
+							message = LanguageUtil.format(pageContext, "this-user-is-assigned-x-from-x,-and-x", new Object[] {title, StringUtil.merge(userGroupNames.subList(0, userGroupNames.size() - 1).toArray(new String[userGroupNames.size() - 1]), ", "), userGroupNames.get(userGroupNames.size() - 1)}, false);
+						}
+					%>
+
+						<liferay-util:buffer var="iconHelp">
+							<liferay-ui:icon-help message="<%= message %>" />
+						</liferay-util:buffer>
+
+					<%
+						buffer.append(iconHelp);
+					}
+
+					buffer.append(StringPool.COMMA_AND_SPACE);
+				}
+
+				if (!roleUserGroupNames.isEmpty()) {
+					buffer.setIndex(buffer.index() - 1);
+				}
 			}
 			%>
 
@@ -80,7 +207,7 @@ List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSi
 
 		<c:if test="<%= !portletName.equals(PortletKeys.MY_ACCOUNT) && !SiteMembershipPolicyUtil.isMembershipRequired(selUser.getUserId(), group.getGroupId()) && !SiteMembershipPolicyUtil.isMembershipProtected(permissionChecker, selUser.getUserId(), group.getGroupId()) %>">
 			<liferay-ui:search-container-column-text>
-				<c:if test="<%= group.isManualMembership() %>">
+				<c:if test="<%= !hasImplicitSiteMembership && group.isManualMembership() %>">
 					<a class="modify-link" data-rowId="<%= group.getGroupId() %>" href="javascript:;"><%= removeGroupIcon %></a>
 				</c:if>
 			</liferay-ui:search-container-column-text>
@@ -180,53 +307,3 @@ List<Group> inheritedSites = (List<Group>)request.getAttribute("user.inheritedSi
 		);
 	</aui:script>
 </c:if>
-
-<h3><liferay-ui:message key="inherited-sites" /></h3>
-
-<c:if test="<%= inheritedSites.isEmpty() %>">
-	<liferay-ui:message key="this-user-does-not-have-any-inherited-sites" />
-</c:if>
-
-<liferay-ui:search-container
-	headerNames="name,roles"
->
-	<liferay-ui:search-container-results
-		results="<%= inheritedSites %>"
-		total="<%= inheritedSites.size() %>"
-	/>
-
-	<liferay-ui:search-container-row
-		className="com.liferay.portal.model.Group"
-		escapedModel="<%= true %>"
-		keyProperty="groupId"
-		modelVar="inheritedSite"
-		rowIdProperty="friendlyURL"
-	>
-		<liferay-ui:search-container-column-text
-			name="name"
-			value="<%= HtmlUtil.escape(inheritedSite.getDescriptiveName(locale)) %>"
-		/>
-
-		<liferay-ui:search-container-column-text
-			buffer="buffer"
-			name="roles"
-		>
-
-			<%
-			List<Role> inheritedRoles = RoleLocalServiceUtil.getUserGroupGroupRoles(selUser.getUserId(), inheritedSite.getGroupId());
-
-			for (Role role : inheritedRoles) {
-				buffer.append(HtmlUtil.escape(role.getTitle(locale)));
-				buffer.append(StringPool.COMMA_AND_SPACE);
-			}
-
-			if (!inheritedRoles.isEmpty()) {
-				buffer.setIndex(buffer.index() - 1);
-			}
-			%>
-
-		</liferay-ui:search-container-column-text>
-	</liferay-ui:search-container-row>
-
-	<liferay-ui:search-iterator paginate="<%= false %>" />
-</liferay-ui:search-container>

@@ -6712,7 +6712,8 @@ public class JournalArticleLocalServiceImpl
 				ddmTemplateKey, true);
 
 			if (ddmTemplate.getClassPK() != ddmStructure.getStructureId()) {
-				throw new NoSuchTemplateException();
+				throw new NoSuchTemplateException(
+					"{templateKey=" + ddmTemplateKey + "}");
 			}
 		}
 		else if (classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT) {

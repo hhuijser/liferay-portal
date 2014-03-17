@@ -5348,7 +5348,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			if (userPersistence.fetchByC_EA(
 					user.getCompanyId(), emailAddress) != null) {
 
-				throw new DuplicateUserEmailAddressException();
+				throw new DuplicateUserEmailAddressException(
+					"{userId=" + user.getUserId() + "}");
 			}
 
 			setEmailAddress(
@@ -6119,7 +6120,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			User user = userPersistence.fetchByC_EA(companyId, emailAddress);
 
 			if ((user != null) && (user.getUserId() != userId)) {
-				throw new DuplicateUserEmailAddressException();
+				throw new DuplicateUserEmailAddressException(
+					"{userId=" + userId + "}");
 			}
 		}
 
@@ -6163,7 +6165,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 				if (userPersistence.fetchByC_EA(
 						user.getCompanyId(), emailAddress) != null) {
 
-					throw new DuplicateUserEmailAddressException();
+					throw new DuplicateUserEmailAddressException(
+						"{userId=" + userId + "}");
 				}
 			}
 
@@ -6247,7 +6250,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			if (userPersistence.fetchByC_EA(
 					user.getCompanyId(), emailAddress1) != null) {
 
-				throw new DuplicateUserEmailAddressException();
+				throw new DuplicateUserEmailAddressException(
+					"{userId=" + user.getUserId() + "}");
 			}
 		}
 	}
@@ -6288,7 +6292,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		User user = userPersistence.fetchByC_O(companyId, openId);
 
 		if ((user != null) && (user.getUserId() != userId)) {
-			throw new DuplicateOpenIdException();
+			throw new DuplicateOpenIdException("{userId=" + userId + "}");
 		}
 	}
 
@@ -6379,7 +6383,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		User user = userPersistence.fetchByC_SN(companyId, screenName);
 
 		if ((user != null) && (user.getUserId() != userId)) {
-			throw new DuplicateUserScreenNameException();
+			throw new DuplicateUserScreenNameException(
+				"{userId=" + userId + "}");
 		}
 
 		String friendlyURL = StringPool.SLASH + screenName;

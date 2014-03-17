@@ -315,7 +315,7 @@ for (DLFileShortcut curFileShortcut : fileShortcuts) {
 
 		<aui:field-wrapper label="new-folder">
 			<div class="input-append">
-				<liferay-ui:input-resource id="folderName" url="<%= folderName %>" />
+				<liferay-ui:input-resource hideAccessibleLabel="folderName" id="folderName" url="<%= folderName %>" />
 
 				<aui:button name="selectFolderButton" value="select" />
 			</div>

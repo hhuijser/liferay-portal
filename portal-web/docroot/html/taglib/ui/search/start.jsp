@@ -53,7 +53,7 @@ pageContext.setAttribute("portletURL", portletURL);
 			<aui:option label='<%= "this-" + (group.isOrganization() ? "organization" : "site") %>' selected="<%= (groupId != 0) %>" value="<%= group.getGroupId() %>" />
 		</aui:select>
 
-		<aui:input alt="search" inlineField="<%= true %>" label="" name="search" src='<%= themeDisplay.getPathThemeImages() + "/common/search.png" %>' title="search" type="image" />
+		<aui:input alt='<%= LanguageUtil.get(pageContext, "search") %>' inlineField="<%= true %>" label="" name="search" src='<%= themeDisplay.getPathThemeImages() + "/common/search.png" %>' title="search" type="image" />
 	</aui:fieldset>
 
 	<aui:script>

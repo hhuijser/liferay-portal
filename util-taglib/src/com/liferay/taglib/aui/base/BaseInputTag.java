@@ -93,6 +93,10 @@ public class BaseInputTag extends com.liferay.taglib.util.IncludeTag {
 		return _formName;
 	}
 
+	public java.lang.String getHideAccessibleLabel() {
+		return _hideAccessibleLabel;
+	}
+
 	public java.lang.String getHelpMessage() {
 		return _helpMessage;
 	}
@@ -295,6 +299,12 @@ public class BaseInputTag extends com.liferay.taglib.util.IncludeTag {
 		setScopedAttribute("formName", formName);
 	}
 
+	public void setHideAccessibleLabel(java.lang.String hideAccessibleLabel) {
+		_hideAccessibleLabel = hideAccessibleLabel;
+
+		setScopedAttribute("hideAccessibleLabel", hideAccessibleLabel);
+	}
+
 	public void setHelpMessage(java.lang.String helpMessage) {
 		_helpMessage = helpMessage;
 
@@ -480,6 +490,7 @@ public class BaseInputTag extends com.liferay.taglib.util.IncludeTag {
 		_fieldParam = null;
 		_first = false;
 		_formName = null;
+		_hideAccessibleLabel = null;
 		_helpMessage = null;
 		_helpTextCssClass = "add-on";
 		_id = null;
@@ -532,6 +543,7 @@ public class BaseInputTag extends com.liferay.taglib.util.IncludeTag {
 		setNamespacedAttribute(request, "fieldParam", _fieldParam);
 		setNamespacedAttribute(request, "first", _first);
 		setNamespacedAttribute(request, "formName", _formName);
+		setNamespacedAttribute(request, "hideAccessibleLabel", _hideAccessibleLabel);
 		setNamespacedAttribute(request, "helpMessage", _helpMessage);
 		setNamespacedAttribute(request, "helpTextCssClass", _helpTextCssClass);
 		setNamespacedAttribute(request, "id", _id);
@@ -582,6 +594,7 @@ public class BaseInputTag extends com.liferay.taglib.util.IncludeTag {
 	private java.lang.String _fieldParam = null;
 	private boolean _first = false;
 	private java.lang.String _formName = null;
+	private java.lang.String _hideAccessibleLabel = null;
 	private java.lang.String _helpMessage = null;
 	private java.lang.String _helpTextCssClass = "add-on";
 	private java.lang.String _id = null;

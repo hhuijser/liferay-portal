@@ -34,6 +34,7 @@ java.lang.String field = GetterUtil.getString((java.lang.String)request.getAttri
 java.lang.String fieldParam = GetterUtil.getString((java.lang.String)request.getAttribute("aui:input:fieldParam"));
 boolean first = GetterUtil.getBoolean(String.valueOf(request.getAttribute("aui:input:first")));
 java.lang.String formName = GetterUtil.getString((java.lang.String)request.getAttribute("aui:input:formName"));
+java.lang.String hideAccessibleLabel = GetterUtil.getString((java.lang.String)request.getAttribute("aui:input:hideAccessibleLabel"));
 java.lang.String helpMessage = GetterUtil.getString((java.lang.String)request.getAttribute("aui:input:helpMessage"));
 java.lang.String helpTextCssClass = GetterUtil.getString((java.lang.String)request.getAttribute("aui:input:helpTextCssClass"), "add-on");
 java.lang.String id = GetterUtil.getString((java.lang.String)request.getAttribute("aui:input:id"));

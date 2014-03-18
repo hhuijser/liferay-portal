@@ -102,7 +102,7 @@ for (String[] vArray : values) {
 				%>
 
 				<td>
-					<aui:input label="" name='<%= "fieldsQuantity" + i %>' size="4" type="text" value="<%= fieldsQuantity %>" />
+					<aui:input hideAccessibleLabel="fieldsQuantity" label="" name='<%= "fieldsQuantity" + i %>' size="4" type="text" value="<%= fieldsQuantity %>" />
 				</td>
 			</tr>
 

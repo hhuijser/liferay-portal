@@ -159,7 +159,7 @@ String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAd
 						and over
 					</c:if>
 
-					<aui:input label="" maxlength="6" name='<%= "shipping" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingSettings.getShipping()[i]) %>" />
+					<aui:input hideAccessibleLabel="shipping" label="" maxlength="6" name='<%= "shipping" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingSettings.getShipping()[i]) %>" />
 
 					<%
 					}
@@ -200,7 +200,7 @@ String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAd
 						and over
 					</c:if>
 
-					<aui:input label="" maxlength="6" name='<%= "insurance" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingSettings.getInsurance()[i]) %>" />
+					<aui:input hideAccessibleLabel="insurance" label="" maxlength="6" name='<%= "insurance" + i %>' size="6" type="text" value="<%= GetterUtil.getString(shoppingSettings.getInsurance()[i]) %>" />
 
 					<%
 					}

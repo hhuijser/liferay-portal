@@ -225,7 +225,7 @@ if (Validator.isNotNull(structureAvailableFields)) {
 										<aui:fieldset>
 											<aui:input cssClass="lfr-ddm-small-image-type" inlineField="<%= true %>" label="small-image" name="type" type="radio" />
 
-											<aui:input cssClass="lfr-ddm-small-image-value" inlineField="<%= true %>"  label="" name="smallImageFile" type="file" />
+											<aui:input cssClass="lfr-ddm-small-image-value" inlineField="<%= true %>"  label="" name="smallFile" type="file" />
 										</aui:fieldset>
 									</aui:col>
 								</aui:row>

@@ -36,13 +36,18 @@
 	<div class="<%= controlGroupCssClass %>">
 </c:if>
 
-<c:if test='<%= !type.equals("assetCategories") && !type.equals("hidden") && Validator.isNotNull(label) %>'>
-	<label <%= labelTag %>>
-		<c:if test='<%= !choiceField && !inlineLabel.equals("right") %>'>
-				<%= labelContent %>
-			</label>
-		</c:if>
-</c:if>
+<c:choose>
+	<c:when test='<%= !type.equals("assetCategories") && !type.equals("hidden") && Validator.isNotNull(label) %>'>
+		<label <%= labelTag %>>
+			<c:if test='<%= !choiceField && !inlineLabel.equals("right") %>'>
+					<%= labelContent %>
+				</label>
+			</c:if>
+	</c:when>
+	<c:when test='<%= !type.equals("hidden") && !type.equals("image") %>'>
+		<label class="hide-accessible" for="<%= forLabel %>"><liferay-ui:message key='<%= Validator.isNotNull(hideAccessibleLabel) ? hideAccessibleLabel : name %>' /></label>
+	</c:when>
+</c:choose>
 
 <c:if test="<%= Validator.isNotNull(prefix) || Validator.isNotNull(suffix) %>">
 	<div class="<%= addOnCssClass %>">

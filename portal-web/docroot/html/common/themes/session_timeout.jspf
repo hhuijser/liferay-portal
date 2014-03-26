@@ -15,6 +15,7 @@
 --%>
 
 <c:if test="<%= !PropsValues.SESSION_DISABLED %>">
+
 	<%
 	int sessionTimeout = PropsValues.SESSION_TIMEOUT;
 	int sessionTimeoutMinute = sessionTimeout * (int)Time.MINUTE;

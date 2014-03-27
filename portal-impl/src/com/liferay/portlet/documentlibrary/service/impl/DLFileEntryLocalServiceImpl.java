@@ -1896,7 +1896,7 @@ public class DLFileEntryLocalServiceImpl
 		if (!fieldsMap.isEmpty()) {
 			dlFileEntryMetadataLocalService.updateFileEntryMetadata(
 				companyId, ddmStructures, fileEntryTypeId, fileEntryId,
-				toFileVersionId, fieldsMap, serviceContext);
+				toFileVersionId, fieldsMap, serviceContext, true);
 		}
 	}
 

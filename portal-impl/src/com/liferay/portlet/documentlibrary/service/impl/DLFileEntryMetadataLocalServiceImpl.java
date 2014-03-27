@@ -121,11 +121,30 @@ public class DLFileEntryMetadataLocalServiceImpl
 			fileVersionId);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link #updateFileEntryMetadata(
+	 *             long, java.util.List, long, long, long, java.util.Map,
+	 *             com.liferay.portal.service.ServiceContext, boolean)}
+	 */
+	@Deprecated
 	@Override
 	public void updateFileEntryMetadata(
 			long companyId, List<DDMStructure> ddmStructures,
 			long fileEntryTypeId, long fileEntryId, long fileVersionId,
 			Map<String, Fields> fieldsMap, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		updateFileEntryMetadata(
+			companyId, ddmStructures, fileEntryTypeId, fileEntryId,
+			fileVersionId, fieldsMap, serviceContext, false);
+	}
+
+	@Override
+	public void updateFileEntryMetadata(
+			long companyId, List<DDMStructure> ddmStructures,
+			long fileEntryTypeId, long fileEntryId, long fileVersionId,
+			Map<String, Fields> fieldsMap, ServiceContext serviceContext,
+			boolean isCopy)
 		throws PortalException, SystemException {
 
 		for (DDMStructure ddmStructure : ddmStructures) {
@@ -134,15 +153,33 @@ public class DLFileEntryMetadataLocalServiceImpl
 			if (fields != null) {
 				updateFileEntryMetadata(
 					companyId, ddmStructure, fileEntryTypeId, fileEntryId,
-					fileVersionId, fields, serviceContext);
+					fileVersionId, fields, serviceContext, isCopy);
 			}
 		}
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link #updateFileEntryMetadata(
+	 *             long, long, long, java.util.Map,
+	 *             com.liferay.portal.service.ServiceContext, boolean)}
+	 */
+	@Deprecated
+	@Override
+	public void updateFileEntryMetadata(
+			long fileEntryTypeId, long fileEntryId, long fileVersionId,
+			Map<String, Fields> fieldsMap, ServiceContext serviceContext)
+		throws PortalException, SystemException {
+
+		updateFileEntryMetadata(
+			fileEntryTypeId, fileEntryId, fileVersionId, fieldsMap,
+			serviceContext, false);
 	}
 
 	@Override
 	public void updateFileEntryMetadata(
 			long fileEntryTypeId, long fileEntryId, long fileVersionId,
-			Map<String, Fields> fieldsMap, ServiceContext serviceContext)
+			Map<String, Fields> fieldsMap, ServiceContext serviceContext,
+			boolean isCopy)
 		throws PortalException, SystemException {
 
 		DLFileEntryType fileEntryType =
@@ -152,7 +189,7 @@ public class DLFileEntryMetadataLocalServiceImpl
 
 		updateFileEntryMetadata(
 			fileEntryType.getCompanyId(), ddmStructures, fileEntryTypeId,
-			fileEntryId, fileVersionId, fieldsMap, serviceContext);
+			fileEntryId, fileVersionId, fieldsMap, serviceContext, isCopy);
 	}
 
 	protected void deleteFileEntryMetadata(
@@ -176,7 +213,7 @@ public class DLFileEntryMetadataLocalServiceImpl
 	protected void updateFileEntryMetadata(
 			long companyId, DDMStructure ddmStructure, long fileEntryTypeId,
 			long fileEntryId, long fileVersionId, Fields fields,
-			ServiceContext serviceContext)
+			ServiceContext serviceContext, boolean isCopy)
 		throws StorageException, SystemException {
 
 		DLFileEntryMetadata fileEntryMetadata =
@@ -199,7 +236,7 @@ public class DLFileEntryMetadataLocalServiceImpl
 
 			long ddmStorageId = StorageEngineUtil.create(
 				companyId, ddmStructure.getStructureId(), fields,
-				serviceContext);
+				serviceContext, isCopy);
 
 			fileEntryMetadata.setDDMStorageId(ddmStorageId);
 

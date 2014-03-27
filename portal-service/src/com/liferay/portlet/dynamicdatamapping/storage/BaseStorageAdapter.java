@@ -44,8 +44,19 @@ public abstract class BaseStorageAdapter implements StorageAdapter {
 			ServiceContext serviceContext)
 		throws StorageException {
 
+		return create(companyId, ddmStructureId, fields, serviceContext, false);
+	}
+
+	@Override
+	public long create(
+			long companyId, long ddmStructureId, Fields fields,
+			ServiceContext serviceContext, boolean isCopy)
+		throws StorageException {
+
 		try {
-			validateDDMStructureFields(ddmStructureId, fields);
+			if (!isCopy) {
+				validateDDMStructureFields(ddmStructureId, fields);
+			}
 
 			return doCreate(companyId, ddmStructureId, fields, serviceContext);
 		}

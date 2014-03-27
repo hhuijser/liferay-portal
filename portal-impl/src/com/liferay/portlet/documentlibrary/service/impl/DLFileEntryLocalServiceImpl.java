@@ -1758,7 +1758,7 @@ public class DLFileEntryLocalServiceImpl
 		if ((fileEntryTypeId > 0) && (fieldsMap != null)) {
 			dlFileEntryMetadataLocalService.updateFileEntryMetadata(
 				fileEntryTypeId, dlFileEntry.getFileEntryId(), fileVersionId,
-				fieldsMap, serviceContext);
+				fieldsMap, serviceContext, false);
 		}
 
 		return dlFileVersion;
@@ -2417,7 +2417,8 @@ public class DLFileEntryLocalServiceImpl
 		if ((fileEntryTypeId > 0) && (fieldsMap != null)) {
 			dlFileEntryMetadataLocalService.updateFileEntryMetadata(
 				fileEntryTypeId, dlFileVersion.getFileEntryId(),
-				dlFileVersion.getFileVersionId(), fieldsMap, serviceContext);
+				dlFileVersion.getFileVersionId(), fieldsMap, serviceContext,
+				false);
 		}
 
 		return dlFileVersion;

@@ -294,6 +294,7 @@ public interface DLFileEntryMetadataLocalService extends BaseLocalService,
 	public long getFileVersionFileEntryMetadatasCount(long fileVersionId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
+	@Deprecated
 	public void updateFileEntryMetadata(long companyId,
 		java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> ddmStructures,
 		long fileEntryTypeId, long fileEntryId, long fileVersionId,
@@ -302,10 +303,26 @@ public interface DLFileEntryMetadataLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 
+	public void updateFileEntryMetadata(long companyId,
+		java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> ddmStructures,
+		long fileEntryTypeId, long fileEntryId, long fileVersionId,
+		java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.storage.Fields> fieldsMap,
+		com.liferay.portal.service.ServiceContext serviceContext, boolean isCopy)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	@Deprecated
 	public void updateFileEntryMetadata(long fileEntryTypeId, long fileEntryId,
 		long fileVersionId,
 		java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.storage.Fields> fieldsMap,
 		com.liferay.portal.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException;
+
+	public void updateFileEntryMetadata(long fileEntryTypeId, long fileEntryId,
+		long fileVersionId,
+		java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.storage.Fields> fieldsMap,
+		com.liferay.portal.service.ServiceContext serviceContext, boolean isCopy)
 		throws com.liferay.portal.kernel.exception.PortalException,
 			com.liferay.portal.kernel.exception.SystemException;
 }

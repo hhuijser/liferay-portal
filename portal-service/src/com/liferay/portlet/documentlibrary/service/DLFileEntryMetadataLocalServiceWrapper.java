@@ -356,6 +356,7 @@ public class DLFileEntryMetadataLocalServiceWrapper
 		return _dlFileEntryMetadataLocalService.getFileVersionFileEntryMetadatasCount(fileVersionId);
 	}
 
+	@Deprecated
 	@Override
 	public void updateFileEntryMetadata(long companyId,
 		java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> ddmStructures,
@@ -370,6 +371,20 @@ public class DLFileEntryMetadataLocalServiceWrapper
 	}
 
 	@Override
+	public void updateFileEntryMetadata(long companyId,
+		java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> ddmStructures,
+		long fileEntryTypeId, long fileEntryId, long fileVersionId,
+		java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.storage.Fields> fieldsMap,
+		com.liferay.portal.service.ServiceContext serviceContext, boolean isCopy)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_dlFileEntryMetadataLocalService.updateFileEntryMetadata(companyId,
+			ddmStructures, fileEntryTypeId, fileEntryId, fileVersionId,
+			fieldsMap, serviceContext, isCopy);
+	}
+
+	@Deprecated
+	@Override
 	public void updateFileEntryMetadata(long fileEntryTypeId, long fileEntryId,
 		long fileVersionId,
 		java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.storage.Fields> fieldsMap,
@@ -378,6 +393,17 @@ public class DLFileEntryMetadataLocalServiceWrapper
 			com.liferay.portal.kernel.exception.SystemException {
 		_dlFileEntryMetadataLocalService.updateFileEntryMetadata(fileEntryTypeId,
 			fileEntryId, fileVersionId, fieldsMap, serviceContext);
+	}
+
+	@Override
+	public void updateFileEntryMetadata(long fileEntryTypeId, long fileEntryId,
+		long fileVersionId,
+		java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.storage.Fields> fieldsMap,
+		com.liferay.portal.service.ServiceContext serviceContext, boolean isCopy)
+		throws com.liferay.portal.kernel.exception.PortalException,
+			com.liferay.portal.kernel.exception.SystemException {
+		_dlFileEntryMetadataLocalService.updateFileEntryMetadata(fileEntryTypeId,
+			fileEntryId, fileVersionId, fieldsMap, serviceContext, isCopy);
 	}
 
 	/**

@@ -413,7 +413,13 @@ public class PortletExporter {
 			document, portletDataContext.getManifestSummary());
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Exporting portlet took " + stopWatch.getTime() + " ms");
+			if (stopWatch != null) {
+				_log.info(
+					"Exporting portlet took " + stopWatch.getTime() + " ms");
+			}
+			else {
+				_log.info("Exporting portlets is finished");
+			}
 		}
 
 		try {

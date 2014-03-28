@@ -640,9 +640,21 @@ public class LuceneHelperImpl implements LuceneHelper {
 		indexAccessor.loadIndex(inputStream);
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Finished loading index files for company " + companyId +
-					" in " + stopWatch.getTime() + " ms");
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("Loading index files for {company=");
+			sb.append(companyId);
+
+			if (stopWatch != null) {
+				sb.append("} took ");
+				sb.append(stopWatch.getTime());
+				sb.append(" ms");
+			}
+			else {
+				sb.append("} is finished");
+			}
+
+			_log.info(sb.toString());
 		}
 	}
 

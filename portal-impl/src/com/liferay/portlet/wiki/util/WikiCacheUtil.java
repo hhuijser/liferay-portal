@@ -71,10 +71,27 @@ public class WikiCacheUtil {
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug(
-				"getDisplay for {" + nodeId + ", " + title + ", " +
-					viewPageURL + ", " + editPageURL + "} takes " +
-						stopWatch.getTime() + " ms");
+			StringBundler sb = new StringBundler(11);
+
+			sb.append("getDisplay for {nodeId=");
+			sb.append(nodeId);
+			sb.append(", title=");
+			sb.append(title);
+			sb.append(", viewPageURL=");
+			sb.append(viewPageURL);
+			sb.append(", editPageURL=");
+			sb.append(editPageURL);
+
+			if (stopWatch != null) {
+				sb.append("} took ");
+				sb.append(stopWatch.getTime());
+				sb.append(" ms");
+			}
+			else {
+				sb.append("} is finished");
+			}
+
+			_log.debug(sb.toString());
 		}
 
 		return pageDisplay;

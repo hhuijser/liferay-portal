@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.service.PortletLocalServiceUtil;
@@ -136,9 +137,14 @@ public class LuceneIndexer implements Runnable {
 			}
 
 			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Reindexing Lucene completed in " +
-						(stopWatch.getTime() / Time.SECOND) + " seconds");
+				if (stopWatch != null) {
+					_log.info(
+						"Reindexing Lucene took " +
+							(stopWatch.getTime() / Time.SECOND) + " seconds");
+				}
+				else {
+					_log.info("Reindexing Lucene is finished");
+				}
 			}
 		}
 		catch (Exception e) {
@@ -170,10 +176,21 @@ public class LuceneIndexer implements Runnable {
 		_usedSearchEngineIds.add(indexer.getSearchEngineId());
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Reindexing with " + indexer.getClass() +
-					" completed in " + (stopWatch.getTime() / Time.SECOND) +
-						" seconds");
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("Reindexing with {indexerClass=");
+			sb.append(indexer.getClass());
+
+			if (stopWatch != null) {
+				sb.append("} took ");
+				sb.append(stopWatch.getTime() / Time.SECOND);
+				sb.append(" seconds");
+			}
+			else {
+				sb.append("} is finished");
+			}
+
+			_log.info(sb.toString());
 		}
 	}
 

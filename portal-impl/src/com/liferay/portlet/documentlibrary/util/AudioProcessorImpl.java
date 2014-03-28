@@ -406,10 +406,23 @@ public class AudioProcessorImpl
 			getPreviewFilePath(fileVersion, containerType), destFile);
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				"Xuggler generated a " + containerType + " preview audio for " +
-					fileVersion.getFileVersionId() + " in " +
-						stopWatch.getTime() + "ms");
+			StringBundler sb = new StringBundler(7);
+
+			sb.append("Xuggler generated for {containerType=");
+			sb.append(containerType);
+			sb.append(", fileVersionId=");
+			sb.append(fileVersion.getFileVersionId());
+
+			if (stopWatch != null) {
+				sb.append("} took ");
+				sb.append(stopWatch.getTime());
+				sb.append(" ms");
+			}
+			else {
+				sb.append("} is finished");
+			}
+
+			_log.info(sb.toString());
 		}
 	}
 

@@ -367,7 +367,12 @@ public class MailEngine {
 		}
 
 		if (_log.isDebugEnabled()) {
-			_log.debug("Sending mail takes " + stopWatch.getTime() + " ms");
+			if (stopWatch != null) {
+				_log.debug("Sending mail took " + stopWatch.getTime() + " ms");
+			}
+			else {
+				_log.debug("Sending mail is finished");
+			}
 		}
 	}
 

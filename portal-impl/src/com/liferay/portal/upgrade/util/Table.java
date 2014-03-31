@@ -186,9 +186,23 @@ public class Table {
 			}
 
 			if (_log.isInfoEnabled()) {
-				_log.info(
-					"Finished backup of " + _tableName + " to " +
-						tempFileName + " in " + stopWatch.getTime() + " ms");
+				StringBundler sb = new StringBundler(7);
+
+				sb.append("Backup of ");
+				sb.append(_tableName);
+				sb.append(" to ");
+				sb.append(tempFileName);
+
+				if (stopWatch != null) {
+					sb.append(" took ");
+					sb.append(stopWatch.getTime());
+					sb.append(" ms");
+				}
+				else {
+					sb.append(" is finished");
+				}
+
+				_log.info(sb.toString());
 			}
 		}
 		catch (Exception e) {

@@ -737,7 +737,13 @@ public class LayoutImporter {
 			portletDataContext);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Importing layouts takes " + stopWatch.getTime() + " ms");
+			if (stopWatch != null) {
+				_log.info(
+					"Importing layouts took " + stopWatch.getTime() + " ms");
+			}
+			else {
+				_log.info("Importing layouts is finished");
+			}
 		}
 
 		zipReader.close();

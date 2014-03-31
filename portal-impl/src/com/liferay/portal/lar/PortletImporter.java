@@ -534,7 +534,13 @@ public class PortletImporter {
 			portletDataContext);
 
 		if (_log.isInfoEnabled()) {
-			_log.info("Importing portlet takes " + stopWatch.getTime() + " ms");
+			if (stopWatch != null) {
+				_log.info(
+					"Importing portlet took " + stopWatch.getTime() + " ms");
+			}
+			else {
+				_log.info("Importing portlet is finished");
+			}
 		}
 
 		zipReader.close();

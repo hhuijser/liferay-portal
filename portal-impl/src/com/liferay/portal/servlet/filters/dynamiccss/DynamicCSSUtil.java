@@ -163,9 +163,21 @@ public class DynamicCSSUtil {
 				cacheResourceURLConnection.getInputStream());
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Loading SASS cache from " + cacheResourceURL.getPath() +
-						" takes " + stopWatch.getTime() + " ms");
+				StringBundler sb = new StringBundler(5);
+
+				sb.append("Loading SASS cache from {cacheResourceURLPath=");
+				sb.append(cacheResourceURL.getPath());
+
+				if (stopWatch != null) {
+					sb.append("} took ");
+					sb.append(stopWatch.getTime());
+					sb.append(" ms");
+				}
+				else {
+					sb.append("} is finished");
+				}
+
+				_log.debug(sb.toString());
 			}
 		}
 		else {
@@ -207,9 +219,21 @@ public class DynamicCSSUtil {
 			}
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Parsing SASS for " + resourcePath + " takes " +
-						stopWatch.getTime() + " ms");
+				StringBundler sb = new StringBundler(5);
+
+				sb.append("Parsing SASS for {resourcePath=");
+				sb.append(resourcePath);
+
+				if (stopWatch != null) {
+					sb.append("} took ");
+					sb.append(stopWatch.getTime());
+					sb.append(" ms");
+				}
+				else {
+					sb.append("} finished");
+				}
+
+				_log.debug(sb.toString());
 			}
 		}
 

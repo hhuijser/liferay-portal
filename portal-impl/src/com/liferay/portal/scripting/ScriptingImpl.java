@@ -96,8 +96,14 @@ public class ScriptingImpl implements Scripting {
 		}
 		finally {
 			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Evaluated script in " + stopWatch.getTime() + " ms");
+				if (stopWatch != null) {
+					_log.debug(
+						"Evaluating script took " + stopWatch.getTime() +
+							" ms");
+				}
+				else {
+					_log.debug("Evaluating script is finished");
+				}
 			}
 		}
 	}

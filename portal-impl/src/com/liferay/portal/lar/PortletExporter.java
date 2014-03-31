@@ -418,7 +418,7 @@ public class PortletExporter {
 					"Exporting portlet took " + stopWatch.getTime() + " ms");
 			}
 			else {
-				_log.info("Exporting portlets is finished");
+				_log.info("Exporting portlet is finished");
 			}
 		}
 

@@ -1365,7 +1365,7 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 		sb.append(actionId);
 
 		if (stopWatch != null) {
-			sb.append("} takes ");
+			sb.append("} took ");
 			sb.append(stopWatch.getTime());
 			sb.append(" ms");
 		}

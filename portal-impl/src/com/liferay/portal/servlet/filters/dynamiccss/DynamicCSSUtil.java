@@ -169,7 +169,7 @@ public class DynamicCSSUtil {
 				sb.append(cacheResourceURL.getPath());
 
 				if (stopWatch != null) {
-					sb.append("} takes ");
+					sb.append("} took ");
 					sb.append(stopWatch.getTime());
 					sb.append(" ms");
 				}
@@ -225,7 +225,7 @@ public class DynamicCSSUtil {
 				sb.append(resourcePath);
 
 				if (stopWatch != null) {
-					sb.append("} takes ");
+					sb.append("} took ");
 					sb.append(stopWatch.getTime());
 					sb.append(" ms");
 				}

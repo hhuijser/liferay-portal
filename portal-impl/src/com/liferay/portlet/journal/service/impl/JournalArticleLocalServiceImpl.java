@@ -1735,11 +1735,9 @@ public class JournalArticleLocalServiceImpl
 			String ddmTemplateKey, String languageId, ThemeDisplay themeDisplay)
 		throws PortalException, SystemException {
 
-		JournalArticleDisplay articleDisplay = getArticleDisplay(
-			groupId, articleId, ddmTemplateKey, viewMode, languageId,
-			themeDisplay);
-
-		return articleDisplay.getContent();
+		return getArticleContent(
+			groupId, articleId, viewMode, ddmTemplateKey, languageId,
+			(PortletRequestModel)null, themeDisplay);
 	}
 
 	/**

@@ -837,7 +837,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 	protected String[] getLanguageKeys(Matcher matcher) {
 		String match = matcher.group();
 
-		if (match.startsWith("label=\"\"")) {
+		if (match.startsWith("aui:")) {
 			int index = match.indexOf("name=\"");
 
 			String languageKey = match.substring(index + 6);
@@ -1325,7 +1325,9 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		"(?:confirmation|label|(?:M|m)essage|message key|names|title)=\"[^A-Z" +
 			"<=%\\[\\s]+\"");
 	private Pattern _taglibLanguageKeyPattern2 = Pattern.compile(
-		"label=\"\".*name=\"[^<=%\\[\\s]+\"");
+		"aui:(input|select|field-wrapper) (?!.*label=('|\").+('|\").*name=\"[" +
+			"^<=%\\[\\s]+\")(?!.*name=\"[^<=%\\[\\s]+\".*type=\"hidden\").*" +
+			"name=\"[^<=%\\[\\s]+\"");
 	private Properties _unusedVariablesExclusions;
 	private Pattern _xssPattern = Pattern.compile(
 		"\\s+([^\\s]+)\\s*=\\s*(Bean)?ParamUtil\\.getString\\(");

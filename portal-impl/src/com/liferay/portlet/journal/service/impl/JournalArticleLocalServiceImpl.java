@@ -1694,7 +1694,7 @@ public class JournalArticleLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return getArticleContent(
-			groupId, articleId, version, viewMode, null, languageId,
+			groupId, articleId, version, viewMode, null, languageId, null,
 			themeDisplay);
 	}
 
@@ -1760,7 +1760,7 @@ public class JournalArticleLocalServiceImpl
 		throws PortalException, SystemException {
 
 		return getArticleContent(
-			groupId, articleId, viewMode, null, languageId, themeDisplay);
+			groupId, articleId, viewMode, null, languageId, null, themeDisplay);
 	}
 
 	@Override

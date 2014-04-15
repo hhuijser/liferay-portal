@@ -32,6 +32,7 @@ import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.social.DLActivityKeys;
 import com.liferay.portlet.journal.model.JournalArticle;
+import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.social.WikiActivityKeys;
 
@@ -141,7 +142,9 @@ public class UpgradeSocial extends UpgradeProcess {
 	protected void updateBlogsEntryActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(BlogsEntry.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL("delete from SocialActivity where classNameId = " + classNameId +
+			" and type_ != " + String.valueOf(
+				SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -195,7 +198,9 @@ public class UpgradeSocial extends UpgradeProcess {
 	protected void updateBookmarksActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(BookmarksEntry.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL("delete from SocialActivity where classNameId = " + classNameId +
+			" and type_ != " + String.valueOf(
+				SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -245,7 +250,9 @@ public class UpgradeSocial extends UpgradeProcess {
 	protected void updateCalEventActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(CalEvent.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL("delete from SocialActivity where classNameId = " + classNameId +
+			" and type_ != " + String.valueOf(
+				SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -295,7 +302,9 @@ public class UpgradeSocial extends UpgradeProcess {
 	protected void updateDLFileVersionActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(DLFileEntry.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL("delete from SocialActivity where classNameId = " + classNameId +
+			" and type_ != " + String.valueOf(
+				SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -411,7 +420,9 @@ public class UpgradeSocial extends UpgradeProcess {
 	protected void updateWikiPageActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(WikiPage.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL("delete from SocialActivity where classNameId = " + classNameId +
+			" and type_ != " + String.valueOf(
+				SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;

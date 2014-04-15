@@ -503,8 +503,11 @@ public class UpgradeSocial extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"select groupId, companyId, userId, modifiedDate, " +
-					"resourcePrimKey, version from WikiPage");
+				"select groupId, companyId, userId, modifiedDate, title, " +
+					"resourcePrimKey, version from WikiPage " +
+						"where status = ?");
+
+			ps.setInt(1, WorkflowConstants.STATUS_APPROVED);
 
 			rs = ps.executeQuery();
 
@@ -513,6 +516,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				long companyId = rs.getLong("companyId");
 				long userId = rs.getLong("userId");
 				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
+				String title = rs.getString("title");
 				long resourcePrimKey = rs.getLong("resourcePrimKey");
 				double version = rs.getDouble("version");
 
@@ -529,6 +533,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				JSONObject extraDataJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
+				extraDataJSONObject.put("title", title);
 				extraDataJSONObject.put("version", version);
 
 				addActivity(

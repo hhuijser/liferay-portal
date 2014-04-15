@@ -32,6 +32,8 @@ import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.social.DLActivityKeys;
 import com.liferay.portlet.journal.model.JournalArticle;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.model.MBMessageConstants;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.social.WikiActivityKeys;
@@ -104,6 +106,7 @@ public class UpgradeSocial extends UpgradeProcess {
 		updateCalEventActivities();
 		updateDLFileVersionActivities();
 		updateJournalActivities();
+		updateMBMessageActivities();
 		updateSOSocialActivities();
 		updateWikiPageActivities();
 	}
@@ -376,6 +379,72 @@ public class UpgradeSocial extends UpgradeProcess {
 			sb.append(classNameId);
 
 			runSQL(sb.toString());
+		}
+	}
+
+	protected void updateMBMessageActivities() throws Exception {
+		long classNameId = PortalUtil.getClassNameId(MBMessage.class);
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			String defaultParentMessageId = String.valueOf(
+				MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID);
+			String type = String.valueOf(
+				SocialActivityConstants.TYPE_ADD_COMMENT);
+
+			ps = con.prepareStatement(
+					"select messageId, classPK, subject from MBMessage where " +
+						"messageId in (select classPK from SocialActivity " +
+							"where classNameId = " + classNameId + ") or " +
+								"(classPK in (select classPK from " +
+									"SocialActivity where type_ = " + type +
+										") and parentMessageId !=" +
+											defaultParentMessageId + ")");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long messageId = rs.getLong("messageId");
+				long classPK = rs.getLong("classPK");
+				String subject = rs.getString("subject");
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("title", subject);
+
+				if (classPK > 0) {
+					extraDataJSONObject.put("messageId", messageId);
+				}
+
+				StringBundler sb = new StringBundler(8);
+
+				sb.append("update SocialActivity set extraData = ");
+				sb.append("'" + extraDataJSONObject.toString() + "'");
+
+				if (classPK > 0) {
+					sb.append(" where classPK = ");
+					sb.append(classPK);
+					sb.append(" and type_ = ");
+					sb.append(type);
+					sb.append(" and extraData like ");
+					sb.append("'%" + "\"messageId\":" + messageId + "%'");
+				}
+				else {
+					sb.append(" where classPK = ");
+					sb.append(messageId);
+				}
+
+				runSQL(sb.toString());
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 

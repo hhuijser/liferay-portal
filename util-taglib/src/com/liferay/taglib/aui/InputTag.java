@@ -265,7 +265,8 @@ public class InputTag extends BaseInputTag {
 		}
 		else if (Validator.isNotNull(type)) {
 			if (Validator.equals(type, "checkbox") ||
-				Validator.equals(type, "radio")) {
+				Validator.equals(type, "radio") ||
+				Validator.equals(type, "resource")) {
 
 				baseType = type;
 			}

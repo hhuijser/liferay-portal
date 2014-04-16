@@ -136,7 +136,7 @@ public class SelectTag extends BaseSelectTag {
 
 		setNamespacedAttribute(request, "bean", bean);
 		setNamespacedAttribute(request, "id", id);
-		setNamespacedAttribute(request, "hideLabel", String.valueOf(hideLabel));
+		setNamespacedAttribute(request, "hideLabel", hideLabel);
 		setNamespacedAttribute(request, "label", label);
 		setNamespacedAttribute(request, "listTypeFieldName", listTypeFieldName);
 		setNamespacedAttribute(request, "value", value);

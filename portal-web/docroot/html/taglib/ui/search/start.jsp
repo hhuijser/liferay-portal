@@ -45,7 +45,7 @@ pageContext.setAttribute("portletURL", portletURL);
 <form action="<%= HtmlUtil.escapeAttribute(portletURL.toString()) %>" method="get" name="<%= randomNamespace %><%= namespace %>fm" onSubmit="<%= randomNamespace %><%= namespace %>search(); return false;">
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
 
-	<aui:fieldset cssClass="lfr-search">
+	<aui:fieldset id="searchContainer">
 		<aui:input inlineField="<%= true %>" label="search" name='<%= namespace + "keywords" %>' size="30" title="search" type="text" useNamespace="<%= false %>" value="<%= HtmlUtil.escapeAttribute(keywords) %>" />
 
 		<%

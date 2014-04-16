@@ -289,7 +289,7 @@ public class InputTag extends BaseInputTag {
 		setNamespacedAttribute(request, "field", field);
 		setNamespacedAttribute(request, "forLabel", forLabel);
 		setNamespacedAttribute(request, "formName", formName);
-		setNamespacedAttribute(request, "hideLabel", String.valueOf(hideLabel));
+		setNamespacedAttribute(request, "hideLabel", hideLabel);
 		setNamespacedAttribute(request, "id", id);
 		setNamespacedAttribute(request, "label", label);
 		setNamespacedAttribute(request, "model", model);

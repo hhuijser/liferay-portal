@@ -187,7 +187,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				<a name="<%= randomNamespace %>messages_top"></a>
 
 				<c:if test="<%= treeWalker != null %>">
-				<table class="table table-bordered table-hover table-striped tree-walker">
+				<table class="tree-walker table table-bordered table-hover table-striped">
 					<thead class="table-columns">
 					<tr>
 						<th class="table-header" colspan="2">

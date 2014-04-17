@@ -107,6 +107,17 @@ public class SelectTag extends BaseSelectTag {
 			label = TextFormatter.format(name, TextFormatter.K);
 		}
 
+		String title = getTitle();
+
+		if (title == null) {
+			if (label.equals(StringPool.BLANK)) {
+				title = TextFormatter.format(name, TextFormatter.K);
+			}
+			else {
+				title = label;
+			}
+		}
+
 		String listType = getListType();
 		String listTypeFieldName = getListTypeFieldName();
 
@@ -132,6 +143,7 @@ public class SelectTag extends BaseSelectTag {
 		setNamespacedAttribute(request, "id", id);
 		setNamespacedAttribute(request, "label", label);
 		setNamespacedAttribute(request, "listTypeFieldName", listTypeFieldName);
+		setNamespacedAttribute(request, "title", String.valueOf(title));
 		setNamespacedAttribute(request, "value", value);
 	}
 

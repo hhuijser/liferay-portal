@@ -221,10 +221,12 @@ if (!portletName.equals(PortletKeys.RELATED_ASSETS) || (assetEntryQuery.getLinke
 	}
 }
 
-if ((total == 0) && (assetPublisherDisplayContext.getPortletDisplayDDMTemplateId() == 0)) {
+if (total == 0) {
 	if (!hasAddPortletURLs && !((assetCategoryId > 0) || Validator.isNotNull(assetTagName))) {
 		renderRequest.setAttribute(WebKeys.PORTLET_CONFIGURATOR_VISIBILITY, Boolean.TRUE);
 	}
+
+	if (assetPublisherDisplayContext.getPortletDisplayDDMTemplateId() == 0) {
 %>
 
 	<div class="alert alert-info">
@@ -239,5 +241,6 @@ if ((total == 0) && (assetPublisherDisplayContext.getPortletDisplayDDMTemplateId
 	</div>
 
 <%
+	}
 }
 %>

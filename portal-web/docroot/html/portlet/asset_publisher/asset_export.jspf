@@ -18,12 +18,24 @@
 PortletURL exportAssetURL = assetRenderer.getURLExport(liferayPortletRequest, liferayPortletResponse);
 
 exportAssetURL.setWindowState(LiferayWindowState.EXCLUSIVE);
+
+List<String> extensions = ListUtil.toList(assetPublisherDisplayContext.getExtensions());
+
+if (assetRenderer.getClassName().equals(DLFileEntry.class.getName())) {
+	DLFileEntry dlFileEntry = DLFileEntryLocalServiceUtil.getDLFileEntry(assetEntry.getClassPK());
+
+	String dlFileEntryExtension = dlFileEntry.getExtension();
+
+	Collection<String> conversions = ListUtil.toList(DocumentConversionUtil.getConversions(dlFileEntryExtension));
+
+	extensions.retainAll(conversions);
+}
 %>
 
 <liferay-ui:icon-list>
 
 	<%
-	for (String extension : assetPublisherDisplayContext.getExtensions()) {
+	for (String extension : extensions) {
 		exportAssetURL.setParameter("targetExtension", extension);
 	%>
 

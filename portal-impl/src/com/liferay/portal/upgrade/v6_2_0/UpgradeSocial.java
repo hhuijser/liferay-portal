@@ -24,9 +24,17 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portlet.blogs.model.BlogsEntry;
+import com.liferay.portlet.blogs.social.BlogsActivityKeys;
+import com.liferay.portlet.bookmarks.model.BookmarksEntry;
+import com.liferay.portlet.bookmarks.social.BookmarksActivityKeys;
+import com.liferay.portlet.calendar.model.CalEvent;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.social.DLActivityKeys;
 import com.liferay.portlet.journal.model.JournalArticle;
+import com.liferay.portlet.messageboards.model.MBMessage;
+import com.liferay.portlet.messageboards.model.MBMessageConstants;
+import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.wiki.model.WikiPage;
 import com.liferay.portlet.wiki.social.WikiActivityKeys;
 
@@ -93,8 +101,12 @@ public class UpgradeSocial extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
+		updateBlogsEntryActivities();
+		updateBookmarksActivities();
+		updateCalEventActivities();
 		updateDLFileVersionActivities();
 		updateJournalActivities();
+		updateMBMessageActivities();
 		updateSOSocialActivities();
 		updateWikiPageActivities();
 	}
@@ -130,10 +142,175 @@ public class UpgradeSocial extends UpgradeProcess {
 		}
 	}
 
+	protected void updateBlogsEntryActivities() throws Exception {
+		long classNameId = PortalUtil.getClassNameId(BlogsEntry.class);
+
+		runSQL(
+			"delete from SocialActivity where classNameId = " + classNameId +
+				" and type_ != " +
+					String.valueOf(SocialActivityConstants.TYPE_ADD_COMMENT));
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Set<String> keys = new HashSet<String>();
+
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select groupId, companyId, userId, modifiedDate, entryId, " +
+					"title from BlogsEntry where status = ? or status = ?");
+
+			ps.setInt(1, WorkflowConstants.STATUS_APPROVED);
+			ps.setInt(2, WorkflowConstants.STATUS_SCHEDULED);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long groupId = rs.getLong("groupId");
+				long companyId = rs.getLong("companyId");
+				long userId = rs.getLong("userId");
+				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
+				long entryId = rs.getLong("entryId");
+				String title = rs.getString("title");
+
+				int type = BlogsActivityKeys.ADD_ENTRY;
+
+				modifiedDate = getUniqueModifiedDate(
+					keys, groupId, userId, modifiedDate, classNameId, entryId,
+					type);
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("title", title);
+
+				addActivity(
+					increment(), groupId, companyId, userId, modifiedDate, 0,
+					classNameId, entryId, type, extraDataJSONObject.toString(),
+					0);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
+	protected void updateBookmarksActivities() throws Exception {
+		long classNameId = PortalUtil.getClassNameId(BookmarksEntry.class);
+
+		runSQL(
+			"delete from SocialActivity where classNameId = " + classNameId +
+				" and type_ != " +
+					String.valueOf(SocialActivityConstants.TYPE_ADD_COMMENT));
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Set<String> keys = new HashSet<String>();
+
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select groupId, companyId, userId, modifiedDate, entryId, " +
+					"name from BookmarksEntry");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long groupId = rs.getLong("groupId");
+				long companyId = rs.getLong("companyId");
+				long userId = rs.getLong("userId");
+				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
+				long entryId = rs.getLong("entryId");
+				String name = rs.getString("name");
+
+				int type = BookmarksActivityKeys.ADD_ENTRY;
+
+				modifiedDate = getUniqueModifiedDate(
+					keys, groupId, userId, modifiedDate, classNameId, entryId,
+					type);
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("title", name);
+
+				addActivity(
+					increment(), groupId, companyId, userId, modifiedDate, 0,
+					classNameId, entryId, type, extraDataJSONObject.toString(),
+					0);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
+	protected void updateCalEventActivities() throws Exception {
+		long classNameId = PortalUtil.getClassNameId(CalEvent.class);
+
+		runSQL(
+			"delete from SocialActivity where classNameId = " + classNameId +
+				" and type_ != " +
+					String.valueOf(SocialActivityConstants.TYPE_ADD_COMMENT));
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			Set<String> keys = new HashSet<String>();
+
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"select groupId, companyId, userId, modifiedDate, eventId, " +
+					"title from CalEvent");
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long groupId = rs.getLong("groupId");
+				long companyId = rs.getLong("companyId");
+				long userId = rs.getLong("userId");
+				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
+				long eventId = rs.getLong("eventId");
+				String title = rs.getString("title");
+
+				int type = 1;
+
+				modifiedDate = getUniqueModifiedDate(
+					keys, groupId, userId, modifiedDate, classNameId, eventId,
+					type);
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("title", title);
+
+				addActivity(
+					increment(), groupId, companyId, userId, modifiedDate, 0,
+					classNameId, eventId, type, extraDataJSONObject.toString(),
+					0);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
 	protected void updateDLFileVersionActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(DLFileEntry.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL(
+			"delete from SocialActivity where classNameId = " + classNameId +
+				" and type_ != " +
+					String.valueOf(SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -208,6 +385,81 @@ public class UpgradeSocial extends UpgradeProcess {
 		}
 	}
 
+	protected void updateMBMessageActivities() throws Exception {
+		long classNameId = PortalUtil.getClassNameId(MBMessage.class);
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			long defaultParentMessageId =
+				MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID;
+			int type = SocialActivityConstants.TYPE_ADD_COMMENT;
+
+			StringBundler query = new StringBundler(7);
+
+			query.append("select messageId, classPK, subject from MBMessage");
+			query.append(" where messageId in");
+			query.append(" (select classPK from SocialActivity");
+			query.append(" where classNameId = ?)");
+			query.append(" or (classPK in (select classPK from SocialActivity");
+			query.append(" where type_ = ?)");
+			query.append(" and parentMessageId != ?)");
+
+			ps = con.prepareStatement(query.toString());
+
+			ps.setLong(1, classNameId);
+			ps.setInt(2, type);
+			ps.setLong(3, defaultParentMessageId);
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				long messageId = rs.getLong("messageId");
+				long classPK = rs.getLong("classPK");
+				String subject = rs.getString("subject");
+
+				JSONObject extraDataJSONObject =
+					JSONFactoryUtil.createJSONObject();
+
+				extraDataJSONObject.put("title", subject);
+
+				if (classPK > 0) {
+					extraDataJSONObject.put("messageId", messageId);
+				}
+
+				StringBundler sb = new StringBundler(11);
+
+				sb.append("update SocialActivity set extraData = ");
+				sb.append("'");
+				sb.append(extraDataJSONObject.toString());
+				sb.append("'");
+
+				if (classPK > 0) {
+					sb.append(" where classPK = ");
+					sb.append(classPK);
+					sb.append(" and type_ = ");
+					sb.append(type);
+					sb.append(" and extraData like '%\"messageId\":");
+					sb.append(messageId);
+					sb.append("%'");
+				}
+				else {
+					sb.append(" where classPK = ");
+					sb.append(messageId);
+				}
+
+				runSQL(sb.toString());
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
 	protected void updateSOSocialActivities() throws Exception {
 		if (!hasTable("SO_SocialActivity")) {
 			return;
@@ -249,7 +501,10 @@ public class UpgradeSocial extends UpgradeProcess {
 	protected void updateWikiPageActivities() throws Exception {
 		long classNameId = PortalUtil.getClassNameId(WikiPage.class);
 
-		runSQL("delete from SocialActivity where classNameId = " + classNameId);
+		runSQL(
+			"delete from SocialActivity where classNameId = " + classNameId +
+				" and type_ != " +
+					String.valueOf(SocialActivityConstants.TYPE_ADD_COMMENT));
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -261,8 +516,11 @@ public class UpgradeSocial extends UpgradeProcess {
 			con = DataAccess.getUpgradeOptimizedConnection();
 
 			ps = con.prepareStatement(
-				"select groupId, companyId, userId, modifiedDate, " +
-					"resourcePrimKey, version from WikiPage");
+				"select groupId, companyId, userId, modifiedDate, title, " +
+					"resourcePrimKey, version from WikiPage " +
+						"where status = ?");
+
+			ps.setInt(1, WorkflowConstants.STATUS_APPROVED);
 
 			rs = ps.executeQuery();
 
@@ -271,6 +529,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				long companyId = rs.getLong("companyId");
 				long userId = rs.getLong("userId");
 				Timestamp modifiedDate = rs.getTimestamp("modifiedDate");
+				String title = rs.getString("title");
 				long resourcePrimKey = rs.getLong("resourcePrimKey");
 				double version = rs.getDouble("version");
 
@@ -287,6 +546,7 @@ public class UpgradeSocial extends UpgradeProcess {
 				JSONObject extraDataJSONObject =
 					JSONFactoryUtil.createJSONObject();
 
+				extraDataJSONObject.put("title", title);
 				extraDataJSONObject.put("version", version);
 
 				addActivity(

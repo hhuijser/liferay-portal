@@ -233,6 +233,17 @@ public class InputTag extends BaseInputTag {
 			label = TextFormatter.format(name, TextFormatter.K);
 		}
 
+		String title = getTitle();
+
+		if (title == null) {
+			if (label.equals(StringPool.BLANK)) {
+				title = TextFormatter.format(name, TextFormatter.K);
+			}
+			else {
+				title = label;
+			}
+		}
+
 		String languageId = getLanguageId();
 
 		if (Validator.isNotNull(languageId)) {
@@ -282,6 +293,7 @@ public class InputTag extends BaseInputTag {
 		setNamespacedAttribute(request, "id", id);
 		setNamespacedAttribute(request, "label", label);
 		setNamespacedAttribute(request, "model", model);
+		setNamespacedAttribute(request, "title", String.valueOf(title));
 		setNamespacedAttribute(request, "wrappedField", wrappedField);
 
 		request.setAttribute(getAttributeNamespace() + "value", getValue());

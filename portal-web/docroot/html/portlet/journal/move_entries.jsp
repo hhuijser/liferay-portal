@@ -121,7 +121,7 @@ for (JournalArticle curArticle : articles) {
 				for (JournalFolder folder : invalidMoveFolders) {
 				%>
 
-					<li class="move-error move-folder">
+					<li class="move-folder move-error">
 						<span class="folder-title">
 							<%= folder.getName() %>
 						</span>

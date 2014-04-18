@@ -50,6 +50,7 @@ portletURL.setParameter("struts_action", "/monitoring/view");
 				keyProperty="userTrackerId"
 				modelVar="userTracker"
 			>
+
 				<%
 				User user2 = null;
 

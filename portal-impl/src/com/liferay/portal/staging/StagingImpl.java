@@ -1908,11 +1908,8 @@ public class StagingImpl implements Staging {
 	@Deprecated
 	@Override
 	public void validateRemote(
-			String remoteAddress, int remotePort, String remotePathContext,
-			boolean secureConnection, long remoteGroupId)
-		throws PortalException {
-
-		return;
+		String remoteAddress, int remotePort, String remotePathContext,
+		boolean secureConnection, long remoteGroupId) {
 	}
 
 	protected void addDefaultLayoutSetBranch(

@@ -101,16 +101,21 @@ public class SelectTag extends BaseSelectTag {
 			id = name;
 		}
 
-		boolean hideLabel = getHideLabel();
 		String label = getLabel();
 
 		if (label == null) {
-			label = TextFormatter.format(name, TextFormatter.K);
+			label = TextFormatter.format(name, TextFormatter.P);
 		}
-		else if (label.equals(StringPool.BLANK)) {
-			label = TextFormatter.format(name, TextFormatter.K);
 
-			hideLabel = true;
+		String title = getTitle();
+
+		if (title == null) {
+			if (label.equals(StringPool.BLANK)) {
+				title = TextFormatter.format(name, TextFormatter.P);
+			}
+			else {
+				title = label;
+			}
 		}
 
 		String listType = getListType();
@@ -136,9 +141,9 @@ public class SelectTag extends BaseSelectTag {
 
 		setNamespacedAttribute(request, "bean", bean);
 		setNamespacedAttribute(request, "id", id);
-		setNamespacedAttribute(request, "hideLabel", String.valueOf(hideLabel));
 		setNamespacedAttribute(request, "label", label);
 		setNamespacedAttribute(request, "listTypeFieldName", listTypeFieldName);
+		setNamespacedAttribute(request, "title", String.valueOf(title));
 		setNamespacedAttribute(request, "value", value);
 	}
 

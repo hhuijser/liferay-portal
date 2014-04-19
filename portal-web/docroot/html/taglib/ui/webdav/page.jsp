@@ -25,7 +25,7 @@ String path = (String)request.getAttribute("liferay-ui:webdav:path");
 <div class="taglib-webdav" id="<%= randomNamespace %>webdav">
 	<a class="show-webdav" href="javascript:;"><liferay-ui:message key="access-from-desktop" /></a>
 
-	<aui:input name="webdavUrl" type="resource" value='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/webdav" + themeDisplay.getScopeGroup().getFriendlyURL() + path %>' />
+	<aui:input name="webdavURL" type="resource" value='<%= themeDisplay.getPortalURL() + themeDisplay.getPathContext() + "/webdav" + themeDisplay.getScopeGroup().getFriendlyURL() + path %>' />
 </div>
 
 <aui:script use="aui-base">

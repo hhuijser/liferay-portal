@@ -369,7 +369,7 @@ DLActionsDisplayContext dlActionsDisplayContext = new DLActionsDisplayContext(re
 								}
 								%>
 
-								<aui:input helpMessage="<%= webDavHelpMessage %>" name="webdavUrl"  type="resource" value="<%= webDavUrl %>" />
+								<aui:input helpMessage="<%= webDavHelpMessage %>" name="webdavURL"  type="resource" value="<%= webDavUrl %>" />
 							</div>
 						</c:if>
 					</div>

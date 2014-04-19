@@ -230,14 +230,14 @@ public class InputTag extends BaseInputTag {
 		String label = getLabel();
 
 		if (label == null) {
-			label = TextFormatter.format(name, TextFormatter.K);
+			label = TextFormatter.format(name, TextFormatter.P);
 		}
 
 		String title = getTitle();
 
 		if (title == null) {
 			if (label.equals(StringPool.BLANK)) {
-				title = TextFormatter.format(name, TextFormatter.K);
+				title = TextFormatter.format(name, TextFormatter.P);
 			}
 			else {
 				title = label;

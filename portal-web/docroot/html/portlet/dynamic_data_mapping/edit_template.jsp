@@ -184,7 +184,7 @@ if (Validator.isNotNull(structureAvailableFields)) {
 					<aui:input name="url" type="resource" value='<%= themeDisplay.getPortalURL() + themeDisplay.getPathMain() + "/dynamic_data_mapping/get_template?templateId=" + templateId %>' />
 
 					<c:if test="<%= Validator.isNotNull(refererWebDAVToken) %>">
-						<aui:input name="webdavUrl" type="resource" value="<%= template.getWebDavURL(themeDisplay, refererWebDAVToken) %>" />
+						<aui:input name="webdavURL" type="resource" value="<%= template.getWebDavURL(themeDisplay, refererWebDAVToken) %>" />
 					</c:if>
 				</c:if>
 

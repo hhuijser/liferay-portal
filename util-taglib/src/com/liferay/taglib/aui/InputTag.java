@@ -227,26 +227,24 @@ public class InputTag extends BaseInputTag {
 			forLabel = forLabel.concat("Checkbox");
 		}
 
-		boolean hideLabel = getHideLabel();
-		String label = getLabel();
-
-		if (label == null) {
-			label = TextFormatter.format(name, TextFormatter.K);
-		}
-		else if (label.equals(StringPool.BLANK)) {
-			label = TextFormatter.format(name, TextFormatter.K);
-
-			hideLabel = true;
-		}
-
-		if ((type != null) && type.equals("image")) {
-			hideLabel = true;
-		}
-
 		String languageId = getLanguageId();
 
 		if (Validator.isNotNull(languageId)) {
 			forLabel = LocalizationUtil.getLocalizedName(forLabel, languageId);
+		}
+
+		String label = getLabel();
+
+		if (label == null) {
+			label = TextFormatter.format(name, TextFormatter.P);
+		}
+
+		String title = getTitle();
+
+		if ((title == null) && (Validator.isNull(label) ||
+			 Validator.equals(type, "image"))) {
+
+			title = TextFormatter.format(name, TextFormatter.P);
 		}
 
 		_inputName = getName();
@@ -264,7 +262,8 @@ public class InputTag extends BaseInputTag {
 		}
 		else if (Validator.isNotNull(type)) {
 			if (Validator.equals(type, "checkbox") ||
-				Validator.equals(type, "radio")) {
+				Validator.equals(type, "radio") ||
+				Validator.equals(type, "resource")) {
 
 				baseType = type;
 			}
@@ -289,10 +288,10 @@ public class InputTag extends BaseInputTag {
 		setNamespacedAttribute(request, "field", field);
 		setNamespacedAttribute(request, "forLabel", forLabel);
 		setNamespacedAttribute(request, "formName", formName);
-		setNamespacedAttribute(request, "hideLabel", String.valueOf(hideLabel));
 		setNamespacedAttribute(request, "id", id);
 		setNamespacedAttribute(request, "label", label);
 		setNamespacedAttribute(request, "model", model);
+		setNamespacedAttribute(request, "title", String.valueOf(title));
 		setNamespacedAttribute(request, "wrappedField", wrappedField);
 
 		request.setAttribute(getAttributeNamespace() + "value", getValue());

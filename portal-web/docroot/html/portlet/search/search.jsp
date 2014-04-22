@@ -38,6 +38,10 @@ String keywords = ParamUtil.getString(request, "keywords");
 
 String format = ParamUtil.getString(request, "format");
 
+long userId = ParamUtil.getLong(request, "userId");
+
+String modifiedselection = ParamUtil.getString(request, "modifiedselection");
+
 List<String> portletTitles = new ArrayList<String>();
 
 PortletURL portletURL = renderResponse.createRenderURL();
@@ -46,6 +50,8 @@ portletURL.setParameter("struts_action", "/search/search");
 portletURL.setParameter("groupId", String.valueOf(groupId));
 portletURL.setParameter("keywords", keywords);
 portletURL.setParameter("format", format);
+portletURL.setParameter("userId", String.valueOf(userId));
+portletURL.setParameter("modifiedselection", modifiedselection);
 
 request.setAttribute("search.jsp-portletURL", portletURL);
 request.setAttribute("search.jsp-returnToFullPageURL", portletDisplay.getURLBack());

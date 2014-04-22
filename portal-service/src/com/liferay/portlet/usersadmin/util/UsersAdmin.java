@@ -146,6 +146,9 @@ public interface UsersAdmin {
 	public List<Website> getWebsites(
 		ActionRequest actionRequest, List<Website> defaultWebsites);
 
+	public boolean hasUpdateAllFieldsPermission(User user)
+		throws SystemException;
+
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link
 	 *             #hasUpdateFieldPermission(User, String)}

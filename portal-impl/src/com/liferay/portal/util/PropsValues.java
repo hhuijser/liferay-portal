@@ -66,6 +66,8 @@ public class PropsValues {
 
 	public static final boolean ADMIN_SYNC_DEFAULT_ASSOCIATIONS = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.ADMIN_SYNC_DEFAULT_ASSOCIATIONS));
 
+	public static final String[] ALL_FIELDS_EDITABLE_ROLES = PropsUtil.getArray(PropsKeys.ALL_FIELDS_EDITABLE_ROLES);
+
 	public static final String AMAZON_ACCESS_KEY_ID = PropsUtil.get(PropsKeys.AMAZON_ACCESS_KEY_ID);
 
 	public static final String AMAZON_ASSOCIATE_TAG = PropsUtil.get(PropsKeys.AMAZON_ASSOCIATE_TAG);

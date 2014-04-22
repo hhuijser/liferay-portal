@@ -1078,7 +1078,7 @@ public class UsersAdminImpl implements UsersAdmin {
 
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link
-	 *             #hasUpdateFieldPermission(User, String)}
+	 *             #hasUpdateFieldPermission(User, String, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -1086,12 +1086,41 @@ public class UsersAdminImpl implements UsersAdmin {
 			PermissionChecker permissionChecker, User user)
 		throws PortalException, SystemException {
 
-		return hasUpdateFieldPermission(user, "emailAddress");
+		return hasUpdateFieldPermission(user, "emailAddress", false);
 	}
 
+	/**
+	 * @deprecated As of 6.2.0, replaced by {@link
+	 *             #hasUpdateFieldPermission(User, String, boolean)}
+	 */
+	@Deprecated
 	@Override
 	public boolean hasUpdateFieldPermission(User user, String field)
 		throws PortalException, SystemException {
+
+		return hasUpdateFieldPermission(user, field, false);
+	}
+
+	@Override
+	public boolean hasUpdateFieldPermission(
+			User user, String field, boolean checkEditorsPermission)
+		throws PortalException, SystemException {
+
+		if (checkEditorsPermission) {
+			for (String roleName : PropsValues.FIELD_ALL_USERS_EDITABLE_ROLES) {
+				Role role = RoleLocalServiceUtil.fetchRole(
+					user.getCompanyId(), roleName);
+
+				if ((role != null) &&
+					RoleLocalServiceUtil.hasUserRole(
+						user.getUserId(), role.getRoleId())) {
+
+					return true;
+				}
+			}
+
+			return false;
+		}
 
 		if (user == null) {
 			return true;
@@ -1141,7 +1170,7 @@ public class UsersAdminImpl implements UsersAdmin {
 
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link
-	 *             #hasUpdateFieldPermission(User, String)}
+	 *             #hasUpdateFieldPermission(User, String, boolean)}
 	 */
 	@Deprecated
 	@Override
@@ -1149,7 +1178,7 @@ public class UsersAdminImpl implements UsersAdmin {
 			PermissionChecker permissionChecker, User user)
 		throws PortalException, SystemException {
 
-		return hasUpdateFieldPermission(user, "screenName");
+		return hasUpdateFieldPermission(user, "screenName", false);
 	}
 
 	@Override

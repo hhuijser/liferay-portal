@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.lar.ExportImportHelper;
 import com.liferay.portal.kernel.lar.ExportImportHelperUtil;
 import com.liferay.portal.kernel.lar.MissingReference;
 import com.liferay.portal.kernel.lar.MissingReferences;
+import com.liferay.portal.kernel.lar.PortletDataHandlerKeys;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -39,10 +40,13 @@ import com.liferay.portal.kernel.upload.UploadException;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.ContentTypes;
+import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.model.LayoutSet;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.service.LayoutServiceUtil;
+import com.liferay.portal.service.LayoutSetLocalServiceUtil;
 import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
@@ -53,6 +57,7 @@ import com.liferay.portlet.sites.action.ActionUtil;
 
 import java.io.InputStream;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -371,9 +376,16 @@ public class ImportLayoutsAction extends PortletAction {
 		boolean privateLayout = ParamUtil.getBoolean(
 			actionRequest, "privateLayout");
 
+		Map<String, String[]> parameterMap =
+			new LinkedHashMap<String, String[]>(
+				actionRequest.getParameterMap());
+
+		parameterMap.put(
+			PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_LINK_ENABLED,
+			new String[] {Boolean.FALSE.toString()});
+
 		LayoutServiceUtil.importLayoutsInBackground(
-			fileName, groupId, privateLayout, actionRequest.getParameterMap(),
-			inputStream);
+			fileName, groupId, privateLayout, parameterMap, inputStream);
 	}
 
 	protected void validateFile(

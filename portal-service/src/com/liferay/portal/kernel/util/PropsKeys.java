@@ -65,6 +65,8 @@ public interface PropsKeys {
 
 	public static final String AIM_PASSWORD = "aim.password";
 
+	public static final String ALL_FIELDS_EDITABLE_ROLES = "all.fields.editable.roles";
+
 	public static final String AMAZON_ACCESS_KEY_ID = "amazon.access.key.id";
 
 	public static final String AMAZON_ASSOCIATE_TAG = "amazon.associate.tag";

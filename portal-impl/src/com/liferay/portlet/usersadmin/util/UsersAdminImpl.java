@@ -1076,6 +1076,25 @@ public class UsersAdminImpl implements UsersAdmin {
 		return websites;
 	}
 
+	@Override
+	public boolean hasUpdateAllFieldsPermission(User user)
+		throws SystemException {
+
+		for (String roleName : PropsValues.ALL_FIELDS_EDITABLE_ROLES) {
+			Role role = RoleLocalServiceUtil.fetchRole(
+				user.getCompanyId(), roleName);
+
+			if ((role != null) &&
+				RoleLocalServiceUtil.hasUserRole(
+					user.getUserId(), role.getRoleId())) {
+
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link
 	 *             #hasUpdateFieldPermission(User, String)}

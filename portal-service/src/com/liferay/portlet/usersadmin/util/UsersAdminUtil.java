@@ -256,6 +256,12 @@ public class UsersAdminUtil {
 		return getUsersAdmin().getWebsites(actionRequest, defaultWebsites);
 	}
 
+	public static boolean hasUpdateAllFieldsPermission(User user)
+		throws SystemException {
+
+		return getUsersAdmin().hasUpdateAllFieldsPermission(user);
+	}
+
 	/**
 	 * @deprecated As of 6.2.0, replaced by {@link
 	 *             #hasUpdateFieldPermission(User, String)}

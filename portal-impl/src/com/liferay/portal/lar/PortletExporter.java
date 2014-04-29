@@ -409,6 +409,8 @@ public class PortletExporter {
 				portletDataContext);
 		}
 
+		ExportImportHelperUtil.cleanUpMissingReferences(portletDataContext);
+
 		ExportImportHelperUtil.writeManifestSummary(
 			document, portletDataContext.getManifestSummary());
 

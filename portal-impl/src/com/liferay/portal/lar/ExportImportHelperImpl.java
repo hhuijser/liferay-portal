@@ -148,6 +148,34 @@ import org.xml.sax.InputSource;
  */
 public class ExportImportHelperImpl implements ExportImportHelper {
 
+	public void cleanUpMissingReferences(
+		PortletDataContext portletDataContext) {
+
+		Element missingReferencesElement =
+			portletDataContext.getMissingReferencesElement();
+
+		List<Element> missingReferencesElements = new ArrayList<Element>(
+			missingReferencesElement.elements());
+
+		for (Element missingReferenceElement : missingReferencesElements) {
+			String className = GetterUtil.getString(
+				missingReferenceElement.attributeValue("class-name"));
+
+			long classPK = GetterUtil.getLong(
+				missingReferenceElement.attributeValue("class-pk"));
+
+			long groupId = GetterUtil.getLong(
+				missingReferenceElement.attributeValue("group-id"));
+
+			String path = ExportImportPathUtil.getModelPath(
+				groupId, className, classPK);
+
+			if (portletDataContext.hasPrimaryKey(String.class, path)) {
+				missingReferencesElement.remove(missingReferenceElement);
+			}
+		}
+	}
+
 	/**
 	 * @deprecated As of 7.0.0, moved to {@link
 	 *             ExportImportDateUtil#getCalendar(PortletRequest, String,

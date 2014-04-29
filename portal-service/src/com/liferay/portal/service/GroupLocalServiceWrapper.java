@@ -1496,10 +1496,11 @@ public class GroupLocalServiceWrapper implements GroupLocalService,
 	*/
 	@Override
 	public java.util.List<com.liferay.portal.model.Group> getLayoutsGroups(
-		long companyId, long parentGroupId, boolean site, int start, int end)
+		long companyId, long parentGroupId, boolean site, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return _groupLocalService.getLayoutsGroups(companyId, parentGroupId,
-			site, start, end);
+			site, start, end, obc);
 	}
 
 	/**

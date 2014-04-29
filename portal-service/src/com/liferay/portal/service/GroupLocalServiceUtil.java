@@ -1400,10 +1400,12 @@ public class GroupLocalServiceUtil {
 	* @throws SystemException if a system exception occurred
 	*/
 	public static java.util.List<com.liferay.portal.model.Group> getLayoutsGroups(
-		long companyId, long parentGroupId, boolean site, int start, int end)
+		long companyId, long parentGroupId, boolean site, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
-				   .getLayoutsGroups(companyId, parentGroupId, site, start, end);
+				   .getLayoutsGroups(companyId, parentGroupId, site, start,
+			end, obc);
 	}
 
 	/**

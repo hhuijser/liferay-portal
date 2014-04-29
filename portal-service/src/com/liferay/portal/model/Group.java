@@ -43,7 +43,8 @@ public interface Group extends GroupModel, PersistedModel, TreeModel {
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public java.util.List<com.liferay.portal.model.Group> getChildrenWithLayouts(
-		boolean site, int start, int end)
+		boolean site, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	public int getChildrenWithLayoutsCount(boolean site)

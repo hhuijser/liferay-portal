@@ -1562,11 +1562,11 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 	@Override
 	public List<Group> getLayoutsGroups(
 			long companyId, long parentGroupId, boolean site, int start,
-			int end)
+			int end, OrderByComparator obc)
 		throws SystemException {
 
 		return groupFinder.findByLayouts(
-			companyId, parentGroupId, site, start, end);
+			companyId, parentGroupId, site, start, end, obc);
 	}
 
 	/**

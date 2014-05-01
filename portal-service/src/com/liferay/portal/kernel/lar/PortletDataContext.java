@@ -243,6 +243,11 @@ public interface PortletDataContext extends Serializable {
 	public void addZipEntry(String name, StringBuilder sb)
 		throws SystemException;
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link
+	 *             #ExportImportHelper#cleanUpMissingReferences(PortletDataContext)}
+	 */
+	@Deprecated
 	public void cleanUpMissingReferences(ClassedModel classedModel);
 
 	public void clearScopedPrimaryKeys();

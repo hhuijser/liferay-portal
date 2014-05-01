@@ -561,8 +561,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 			_references.add(referenceKey);
 
 			referenceElement.addAttribute("missing", Boolean.FALSE.toString());
-
-			cleanUpMissingReferences(classedModel);
 		}
 
 		return referenceElement;
@@ -652,6 +650,11 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link
+	 *             #ExportImportHelper#cleanUpMissingReferences(PortletDataContext)}
+	 */
+	@Deprecated
 	@Override
 	public void cleanUpMissingReferences(ClassedModel classedModel) {
 		String referenceKey = getReferenceKey(classedModel);

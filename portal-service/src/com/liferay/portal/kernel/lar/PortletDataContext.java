@@ -245,7 +245,8 @@ public interface PortletDataContext extends Serializable {
 
 	/**
 	 * @deprecated As of 7.0.0, replaced by {@link
-	 *             #ExportImportHelper#cleanUpMissingReferences(PortletDataContext)}
+	 *             ExportImportHelperUtil#cleanUpMissingReferences(
+	 *             PortletDataContext)}
 	 */
 	@Deprecated
 	public void cleanUpMissingReferences(ClassedModel classedModel);

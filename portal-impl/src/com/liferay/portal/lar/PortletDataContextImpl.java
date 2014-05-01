@@ -652,7 +652,8 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	/**
 	 * @deprecated As of 7.0.0, replaced by {@link
-	 *             #ExportImportHelper#cleanUpMissingReferences(PortletDataContext)}
+	 *             com.liferay.portal.kernel.lar.ExportImportHelperUtil#cleanUpMissingReferences(
+	 *             PortletDataContext)}
 	 */
 	@Deprecated
 	@Override

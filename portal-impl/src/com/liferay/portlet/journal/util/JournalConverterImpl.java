@@ -67,11 +67,18 @@ public class JournalConverterImpl implements JournalConverter {
 		_ddmDataTypes = new HashMap<String, String>();
 
 		_ddmDataTypes.put("boolean", "boolean");
+		_ddmDataTypes.put("ddm-date", "date");
+		_ddmDataTypes.put("ddm-decimal", "double");
+		_ddmDataTypes.put("ddm-geolocation", "geolocation");
+		_ddmDataTypes.put("ddm-integer", "integer");
+		_ddmDataTypes.put("ddm-number", "number");
 		_ddmDataTypes.put("document_library", "document-library");
 		_ddmDataTypes.put("image", "image");
 		_ddmDataTypes.put("link_to_layout", "link-to-page");
 		_ddmDataTypes.put("list", "string");
 		_ddmDataTypes.put("multi-list", "string");
+		_ddmDataTypes.put("radio", "string");
+		_ddmDataTypes.put("selection_break", "ddm");
 		_ddmDataTypes.put("text", "string");
 		_ddmDataTypes.put("text_area", "html");
 		_ddmDataTypes.put("text_box", "string");
@@ -85,9 +92,15 @@ public class JournalConverterImpl implements JournalConverter {
 		_ddmTypesToJournalTypes = new HashMap<String, String>();
 
 		_ddmTypesToJournalTypes.put("checkbox", "boolean");
+		_ddmTypesToJournalTypes.put("ddm-date", "ddm-date");
+		_ddmTypesToJournalTypes.put("ddm-decimal", "ddm-decimal");
+		_ddmTypesToJournalTypes.put("ddm-geolocation", "ddm-geolocation");
+		_ddmTypesToJournalTypes.put("ddm-integer", "ddm-integer");
+		_ddmTypesToJournalTypes.put("ddm-number", "ddm-number");
 		_ddmTypesToJournalTypes.put("ddm-documentlibrary", "document_library");
 		_ddmTypesToJournalTypes.put("ddm-image", "image");
 		_ddmTypesToJournalTypes.put("ddm-link-to-page", "link_to_layout");
+		_ddmTypesToJournalTypes.put("radio", "radio");
 		_ddmTypesToJournalTypes.put("ddm-separator", "selection_break");
 		_ddmTypesToJournalTypes.put("ddm-text-html", "text_area");
 		_ddmTypesToJournalTypes.put("select", "list");
@@ -97,12 +110,18 @@ public class JournalConverterImpl implements JournalConverter {
 		_journalTypesToDDMTypes = new HashMap<String, String>();
 
 		_journalTypesToDDMTypes.put("boolean", "checkbox");
+		_journalTypesToDDMTypes.put("ddm-date", "ddm-date");
+		_journalTypesToDDMTypes.put("ddm-decimal", "ddm-decimal");
+		_journalTypesToDDMTypes.put("ddm-geolocation", "ddm-geolocation");
+		_journalTypesToDDMTypes.put("ddm-integer", "ddm-integer");
+		_journalTypesToDDMTypes.put("ddm-number", "ddm-number");
 		_journalTypesToDDMTypes.put("document_library", "ddm-documentlibrary");
 		_journalTypesToDDMTypes.put("image", "ddm-image");
 		_journalTypesToDDMTypes.put("image_gallery", "ddm-documentlibrary");
 		_journalTypesToDDMTypes.put("link_to_layout", "ddm-link-to-page");
 		_journalTypesToDDMTypes.put("list", "select");
 		_journalTypesToDDMTypes.put("multi-list", "select");
+		_journalTypesToDDMTypes.put("radio", "radio");
 		_journalTypesToDDMTypes.put("selection_break", "ddm-separator");
 		_journalTypesToDDMTypes.put("text", "text");
 		_journalTypesToDDMTypes.put("text_area", "ddm-text-html");

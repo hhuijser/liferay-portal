@@ -359,9 +359,11 @@ public class AssetPublisherImpl implements AssetPublisher {
 				"queryName" + i, StringPool.BLANK);
 
 			if (Validator.equals(queryName, "assetCategories") &&
-				queryContains && queryAndOperator) {
+				queryContains) {
 
-				assetCategoryIds = GetterUtil.getLongValues(queryValues);
+				if (queryAndOperator || (queryValues.length == 1)) {
+					assetCategoryIds = GetterUtil.getLongValues(queryValues);
+				}
 			}
 		}
 
@@ -765,9 +767,11 @@ public class AssetPublisherImpl implements AssetPublisher {
 				"queryName" + i, StringPool.BLANK);
 
 			if (!Validator.equals(queryName, "assetCategories") &&
-				queryContains && queryAndOperator) {
+				queryContains) {
 
-				allAssetTagNames = queryValues;
+				if (queryAndOperator || (queryValues.length == 1)) {
+					allAssetTagNames = queryValues;
+				}
 			}
 		}
 

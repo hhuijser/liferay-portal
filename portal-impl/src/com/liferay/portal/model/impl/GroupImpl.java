@@ -131,6 +131,18 @@ public class GroupImpl extends GroupBaseImpl {
 			getCompanyId(), getGroupId(), site);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link
+	 *             #getChildrenWithLayouts(boolean, int, int, OrderByComparator}
+	 */
+	@Deprecated
+	@Override
+	public List<Group> getChildrenWithLayouts(boolean site, int start, int end)
+		throws SystemException {
+
+		return getChildrenWithLayouts(site, start, end, null);
+	}
+
 	@Override
 	public List<Group> getChildrenWithLayouts(boolean site, int start, int end, OrderByComparator obc)
 		throws SystemException {

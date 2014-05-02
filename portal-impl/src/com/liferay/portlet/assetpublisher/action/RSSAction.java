@@ -217,6 +217,10 @@ public class RSSAction extends com.liferay.portal.struts.RSSAction {
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				assetEntry.getClassName());
 
+		if (assetRendererFactory == null) {
+			return StringPool.BLANK;
+		}
+
 		StringBundler sb = new StringBundler(4);
 
 		sb.append(getAssetPublisherURL(portletRequest));

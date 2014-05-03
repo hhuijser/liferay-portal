@@ -543,6 +543,8 @@ public class LayoutExporter {
 				portletDataContext);
 		}
 
+		ExportImportHelperUtil.cleanUpMissingReferences(portletDataContext);
+
 		ExportImportHelperUtil.writeManifestSummary(
 			document, portletDataContext.getManifestSummary());
 

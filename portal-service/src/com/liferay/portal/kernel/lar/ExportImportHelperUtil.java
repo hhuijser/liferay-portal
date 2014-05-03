@@ -43,6 +43,12 @@ import javax.portlet.PortletRequest;
 @ProviderType
 public class ExportImportHelperUtil {
 
+	public static void cleanUpMissingReferences(
+		PortletDataContext portletDataContext) {
+
+		getExportImportHelper().cleanUpMissingReferences(portletDataContext);
+	}
+
 	/**
 	 * @deprecated As of 7.0.0, moved to {@link
 	 *             ExportImportDateUtil#getCalendar(PortletRequest, String,

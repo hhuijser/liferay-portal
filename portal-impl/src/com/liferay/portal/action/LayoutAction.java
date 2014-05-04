@@ -349,7 +349,7 @@ public class LayoutAction extends Action {
 				// Always clear render parameters on a layout url, but do not
 				// clear on portlet urls invoked on the same layout
 
-				RenderParametersPool.clear(request, plid);
+				RenderParametersPool.clear(request, layout.getPlid());
 			}
 
 			Portlet portlet = null;

@@ -952,7 +952,9 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	}
 
 	protected boolean isRunsOutsidePortal(String fileName) {
-		if (fileName.contains("/sync-engine-shared/")) {
+		String absolutePath = fileUtil.getAbsolutePath(new File(fileName));
+
+		if (absolutePath.contains("/sync-engine-shared/")) {
 			return true;
 		}
 		else {

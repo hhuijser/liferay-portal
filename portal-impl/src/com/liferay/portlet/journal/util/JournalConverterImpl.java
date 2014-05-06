@@ -914,8 +914,6 @@ public class JournalConverterImpl implements JournalConverter {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(JournalConverterImpl.class);
-
 	private static final Map<String, String> _ddmDataTypes =
 		new HashMap<String, String>();
 	private static final Map<String, String> _ddmMetadataAttributes =
@@ -981,5 +979,7 @@ public class JournalConverterImpl implements JournalConverter {
 		_journalTypesToDDMTypes.put("text_area", "ddm-text-html");
 		_journalTypesToDDMTypes.put("text_box", "textarea");
 	}
+
+	private static Log _log = LogFactoryUtil.getLog(JournalConverterImpl.class);
 
 }

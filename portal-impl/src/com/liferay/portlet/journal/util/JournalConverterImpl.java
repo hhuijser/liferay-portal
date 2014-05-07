@@ -63,52 +63,6 @@ import java.util.Set;
  */
 public class JournalConverterImpl implements JournalConverter {
 
-	public JournalConverterImpl() {
-		_ddmDataTypes = new HashMap<String, String>();
-
-		_ddmDataTypes.put("boolean", "boolean");
-		_ddmDataTypes.put("document_library", "document-library");
-		_ddmDataTypes.put("image", "image");
-		_ddmDataTypes.put("link_to_layout", "link-to-page");
-		_ddmDataTypes.put("list", "string");
-		_ddmDataTypes.put("multi-list", "string");
-		_ddmDataTypes.put("text", "string");
-		_ddmDataTypes.put("text_area", "html");
-		_ddmDataTypes.put("text_box", "string");
-
-		_ddmMetadataAttributes = new HashMap<String, String>();
-
-		_ddmMetadataAttributes.put("instructions", "tip");
-		_ddmMetadataAttributes.put("label", "label");
-		_ddmMetadataAttributes.put("predefinedValue", "predefinedValue");
-
-		_ddmTypesToJournalTypes = new HashMap<String, String>();
-
-		_ddmTypesToJournalTypes.put("checkbox", "boolean");
-		_ddmTypesToJournalTypes.put("ddm-documentlibrary", "document_library");
-		_ddmTypesToJournalTypes.put("ddm-image", "image");
-		_ddmTypesToJournalTypes.put("ddm-link-to-page", "link_to_layout");
-		_ddmTypesToJournalTypes.put("ddm-separator", "selection_break");
-		_ddmTypesToJournalTypes.put("ddm-text-html", "text_area");
-		_ddmTypesToJournalTypes.put("select", "list");
-		_ddmTypesToJournalTypes.put("text", "text");
-		_ddmTypesToJournalTypes.put("textarea", "text_box");
-
-		_journalTypesToDDMTypes = new HashMap<String, String>();
-
-		_journalTypesToDDMTypes.put("boolean", "checkbox");
-		_journalTypesToDDMTypes.put("document_library", "ddm-documentlibrary");
-		_journalTypesToDDMTypes.put("image", "ddm-image");
-		_journalTypesToDDMTypes.put("image_gallery", "ddm-documentlibrary");
-		_journalTypesToDDMTypes.put("link_to_layout", "ddm-link-to-page");
-		_journalTypesToDDMTypes.put("list", "select");
-		_journalTypesToDDMTypes.put("multi-list", "select");
-		_journalTypesToDDMTypes.put("selection_break", "ddm-separator");
-		_journalTypesToDDMTypes.put("text", "text");
-		_journalTypesToDDMTypes.put("text_area", "ddm-text-html");
-		_journalTypesToDDMTypes.put("text_box", "textarea");
-	}
-
 	@Override
 	public String getContent(DDMStructure ddmStructure, Fields ddmFields)
 		throws Exception {
@@ -960,11 +914,72 @@ public class JournalConverterImpl implements JournalConverter {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(JournalConverterImpl.class);
+	private static final Map<String, String> _ddmDataTypes =
+		new HashMap<String, String>();
+	private static final Map<String, String> _ddmMetadataAttributes =
+		new HashMap<String, String>();
+	private static final Map<String, String> _ddmTypesToJournalTypes =
+		new HashMap<String, String>();
+	private static final Map<String, String> _journalTypesToDDMTypes =
+		new HashMap<String, String>();
 
-	private Map<String, String> _ddmDataTypes;
-	private Map<String, String> _ddmMetadataAttributes;
-	private Map<String, String> _ddmTypesToJournalTypes;
-	private Map<String, String> _journalTypesToDDMTypes;
+	static {
+		_ddmDataTypes.put("boolean", "boolean");
+		_ddmDataTypes.put("ddm-date", "date");
+		_ddmDataTypes.put("ddm-decimal", "double");
+		_ddmDataTypes.put("ddm-geolocation", "geolocation");
+		_ddmDataTypes.put("ddm-integer", "integer");
+		_ddmDataTypes.put("ddm-number", "number");
+		_ddmDataTypes.put("document_library", "document-library");
+		_ddmDataTypes.put("image", "image");
+		_ddmDataTypes.put("link_to_layout", "link-to-page");
+		_ddmDataTypes.put("list", "string");
+		_ddmDataTypes.put("multi-list", "string");
+		_ddmDataTypes.put("radio", "string");
+		_ddmDataTypes.put("selection_break", "ddm");
+		_ddmDataTypes.put("text", "string");
+		_ddmDataTypes.put("text_area", "html");
+		_ddmDataTypes.put("text_box", "string");
+
+		_ddmMetadataAttributes.put("instructions", "tip");
+		_ddmMetadataAttributes.put("label", "label");
+		_ddmMetadataAttributes.put("predefinedValue", "predefinedValue");
+
+		_ddmTypesToJournalTypes.put("checkbox", "boolean");
+		_ddmTypesToJournalTypes.put("ddm-date", "ddm-date");
+		_ddmTypesToJournalTypes.put("ddm-decimal", "ddm-decimal");
+		_ddmTypesToJournalTypes.put("ddm-geolocation", "ddm-geolocation");
+		_ddmTypesToJournalTypes.put("ddm-integer", "ddm-integer");
+		_ddmTypesToJournalTypes.put("ddm-number", "ddm-number");
+		_ddmTypesToJournalTypes.put("ddm-documentlibrary", "document_library");
+		_ddmTypesToJournalTypes.put("ddm-image", "image");
+		_ddmTypesToJournalTypes.put("ddm-link-to-page", "link_to_layout");
+		_ddmTypesToJournalTypes.put("radio", "radio");
+		_ddmTypesToJournalTypes.put("ddm-separator", "selection_break");
+		_ddmTypesToJournalTypes.put("ddm-text-html", "text_area");
+		_ddmTypesToJournalTypes.put("select", "list");
+		_ddmTypesToJournalTypes.put("text", "text");
+		_ddmTypesToJournalTypes.put("textarea", "text_box");
+
+		_journalTypesToDDMTypes.put("boolean", "checkbox");
+		_journalTypesToDDMTypes.put("ddm-date", "ddm-date");
+		_journalTypesToDDMTypes.put("ddm-decimal", "ddm-decimal");
+		_journalTypesToDDMTypes.put("ddm-geolocation", "ddm-geolocation");
+		_journalTypesToDDMTypes.put("ddm-integer", "ddm-integer");
+		_journalTypesToDDMTypes.put("ddm-number", "ddm-number");
+		_journalTypesToDDMTypes.put("document_library", "ddm-documentlibrary");
+		_journalTypesToDDMTypes.put("image", "ddm-image");
+		_journalTypesToDDMTypes.put("image_gallery", "ddm-documentlibrary");
+		_journalTypesToDDMTypes.put("link_to_layout", "ddm-link-to-page");
+		_journalTypesToDDMTypes.put("list", "select");
+		_journalTypesToDDMTypes.put("multi-list", "select");
+		_journalTypesToDDMTypes.put("radio", "radio");
+		_journalTypesToDDMTypes.put("selection_break", "ddm-separator");
+		_journalTypesToDDMTypes.put("text", "text");
+		_journalTypesToDDMTypes.put("text_area", "ddm-text-html");
+		_journalTypesToDDMTypes.put("text_box", "textarea");
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(JournalConverterImpl.class);
 
 }

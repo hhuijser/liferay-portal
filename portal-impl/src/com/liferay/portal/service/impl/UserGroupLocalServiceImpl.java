@@ -431,6 +431,12 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 		return userGroupPersistence.fetchByC_N(companyId, name);
 	}
 
+	public List<UserGroup> fetchUserGroups(long userId, long groupId)
+		throws SystemException {
+
+		return userGroupFinder.findByU_G(userId, groupId);
+	}
+
 	/**
 	 * Returns the user group with the name.
 	 *

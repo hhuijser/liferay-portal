@@ -516,6 +516,12 @@ public class OrganizationLocalServiceImpl
 		return organizationPersistence.fetchByC_N(companyId, name);
 	}
 
+	public List<Organization> fetchOrganzations(long userId, long groupId)
+		throws SystemException {
+
+		return organizationFinder.findByU_G(userId, groupId);
+	}
+
 	@Override
 	public List<Organization> getNoAssetOrganizations() throws SystemException {
 		return organizationFinder.findByNoAssets();

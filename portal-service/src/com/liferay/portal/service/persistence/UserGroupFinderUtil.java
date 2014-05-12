@@ -90,6 +90,12 @@ public class UserGroupFinderUtil {
 			andOperator, start, end, obc);
 	}
 
+	public static java.util.List<com.liferay.portal.model.UserGroup> findByU_G(
+		long userId, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getFinder().findByU_G(userId, groupId);
+	}
+
 	public static UserGroupFinder getFinder() {
 		if (_finder == null) {
 			_finder = (UserGroupFinder)PortalBeanLocatorUtil.locate(UserGroupFinder.class.getName());

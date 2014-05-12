@@ -62,4 +62,8 @@ public interface UserGroupFinder {
 		boolean andOperator, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator obc)
 		throws com.liferay.portal.kernel.exception.SystemException;
+
+	public java.util.List<com.liferay.portal.model.UserGroup> findByU_G(
+		long userId, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException;
 }

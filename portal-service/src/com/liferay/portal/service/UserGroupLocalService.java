@@ -717,11 +717,6 @@ public interface UserGroupLocalService extends BaseLocalService,
 		java.lang.String name)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.model.UserGroup> fetchUserGroups(
-		long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
 	/**
 	* Returns the user group with the name.
 	*
@@ -747,6 +742,11 @@ public interface UserGroupLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.model.UserGroup> getUserGroups(
 		long companyId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.model.UserGroup> getUserGroups(
+		long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -663,11 +663,6 @@ public interface OrganizationLocalService extends BaseLocalService,
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public java.util.List<com.liferay.portal.model.Organization> fetchOrganzations(
-		long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException;
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portal.model.Organization> getNoAssetOrganizations()
 		throws com.liferay.portal.kernel.exception.SystemException;
 
@@ -777,6 +772,11 @@ public interface OrganizationLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getOrganizationsCount(long companyId, long parentOrganizationId)
+		throws com.liferay.portal.kernel.exception.SystemException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portal.model.Organization> getOrganzations(
+		long userId, long groupId)
 		throws com.liferay.portal.kernel.exception.SystemException;
 
 	/**

@@ -772,12 +772,6 @@ public class OrganizationLocalServiceUtil {
 		return getService().fetchOrganization(companyId, name);
 	}
 
-	public static java.util.List<com.liferay.portal.model.Organization> fetchOrganzations(
-		long userId, long groupId)
-		throws com.liferay.portal.kernel.exception.SystemException {
-		return getService().fetchOrganzations(userId, groupId);
-	}
-
 	public static java.util.List<com.liferay.portal.model.Organization> getNoAssetOrganizations()
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService().getNoAssetOrganizations();
@@ -899,6 +893,12 @@ public class OrganizationLocalServiceUtil {
 		throws com.liferay.portal.kernel.exception.SystemException {
 		return getService()
 				   .getOrganizationsCount(companyId, parentOrganizationId);
+	}
+
+	public static java.util.List<com.liferay.portal.model.Organization> getOrganzations(
+		long userId, long groupId)
+		throws com.liferay.portal.kernel.exception.SystemException {
+		return getService().getOrganzations(userId, groupId);
 	}
 
 	/**

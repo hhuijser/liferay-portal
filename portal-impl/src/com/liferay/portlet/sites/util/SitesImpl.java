@@ -1064,7 +1064,7 @@ public class SitesImpl implements Sites {
 		throws Exception {
 
 		List<Organization> userOrganizations =
-			OrganizationLocalServiceUtil.fetchOrganzations(
+			OrganizationLocalServiceUtil.getOrganzations(
 				user.getUserId(), group.getGroupId());
 
 		for (Organization org : userOrganizations) {
@@ -1108,7 +1108,7 @@ public class SitesImpl implements Sites {
 		throws Exception {
 
 		List<UserGroup> usersUserGroups =
-			UserGroupLocalServiceUtil.fetchUserGroups(
+			UserGroupLocalServiceUtil.getUserGroups(
 				user.getUserId(), group.getGroupId());
 
 		for (UserGroup userGroup : usersUserGroups) {

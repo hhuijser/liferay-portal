@@ -516,12 +516,6 @@ public class OrganizationLocalServiceImpl
 		return organizationPersistence.fetchByC_N(companyId, name);
 	}
 
-	public List<Organization> fetchOrganzations(long userId, long groupId)
-		throws SystemException {
-
-		return organizationFinder.findByU_G(userId, groupId);
-	}
-
 	@Override
 	public List<Organization> getNoAssetOrganizations() throws SystemException {
 		return organizationFinder.findByNoAssets();
@@ -709,6 +703,13 @@ public class OrganizationLocalServiceImpl
 			return organizationPersistence.countByC_P(
 				companyId, parentOrganizationId);
 		}
+	}
+
+	@Override
+	public List<Organization> getOrganzations(long userId, long groupId)
+		throws SystemException {
+
+		return organizationFinder.findByU_G(userId, groupId);
 	}
 
 	/**

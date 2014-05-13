@@ -232,6 +232,36 @@ public class UserGroupFinderImpl
 	}
 
 	@Override
+	public List<UserGroup> findByU_G(long userId, long groupId)
+		throws SystemException {
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			String sql = CustomSQLUtil.get(FIND_BY_U_G);
+
+			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+
+			q.addEntity("UserGroup", UserGroupImpl.class);
+
+			QueryPos qPos = QueryPos.getInstance(q);
+
+			qPos.add(userId);
+			qPos.add(groupId);
+
+			return q.list();
+		}
+		catch (Exception e) {
+			throw new SystemException(e);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	@Override
 	public List<UserGroup> findByC_N_D(
 			long companyId, String name, String description,
 			LinkedHashMap<String, Object> params, boolean andOperator,
@@ -287,35 +317,6 @@ public class UserGroupFinderImpl
 			qPos.add(descriptions, 2);
 
 			return (List<UserGroup>)QueryUtil.list(q, getDialect(), start, end);
-		}
-		catch (Exception e) {
-			throw new SystemException(e);
-		}
-		finally {
-			closeSession(session);
-		}
-	}
-
-	public List<UserGroup> findByU_G(long userId, long groupId)
-		throws SystemException {
-
-		Session session = null;
-
-		try {
-			session = openSession();
-
-			String sql = CustomSQLUtil.get(FIND_BY_U_G);
-
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
-
-			q.addEntity("UserGroup", UserGroupImpl.class);
-
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(userId);
-			qPos.add(groupId);
-
-			return q.list();
 		}
 		catch (Exception e) {
 			throw new SystemException(e);

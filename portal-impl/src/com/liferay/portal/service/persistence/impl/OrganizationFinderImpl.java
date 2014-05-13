@@ -397,6 +397,7 @@ public class OrganizationFinderImpl
 		}
 	}
 
+	@Override
 	public List<Organization> findByU_G(long userId, long groupId)
 		throws SystemException {
 

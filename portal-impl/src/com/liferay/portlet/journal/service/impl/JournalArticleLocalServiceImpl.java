@@ -5359,12 +5359,6 @@ public class JournalArticleLocalServiceImpl
 
 					Date publishDate = dateInterval[0];
 
-					if ((oldStatus != WorkflowConstants.STATUS_APPROVED) &&
-						publishDate.before(now)) {
-
-						publishDate = now;
-					}
-
 					Date expirationDate = dateInterval[1];
 
 					if (neverExpire) {

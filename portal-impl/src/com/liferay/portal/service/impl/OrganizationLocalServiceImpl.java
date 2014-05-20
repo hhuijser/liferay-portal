@@ -875,6 +875,9 @@ public class OrganizationLocalServiceImpl
 
 		Set<Long> organizationsIds = new HashSet<Long>();
 
+		organizationsIds.addAll(
+			userPersistence.getOrganizationPrimaryKeys(userId));
+
 		if (includeAdministrative) {
 			List<UserGroupRole> userGroupRoles =
 				userGroupRoleLocalService.getUserGroupRoles(userId);
@@ -893,9 +896,6 @@ public class OrganizationLocalServiceImpl
 				}
 			}
 		}
-
-		organizationsIds.addAll(
-			userPersistence.getOrganizationPrimaryKeys(userId));
 
 		return new ArrayList<Long>(organizationsIds);
 	}

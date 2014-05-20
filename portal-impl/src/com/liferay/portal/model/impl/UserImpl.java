@@ -669,8 +669,11 @@ public class UserImpl extends UserBaseImpl {
 	public long[] getOrganizationIds(boolean includeAdministrative)
 		throws PortalException, SystemException {
 
-		return OrganizationLocalServiceUtil.getOrganizationsIds(
-			getUserId(), includeAdministrative);
+		List<Long> organizationIds =
+			OrganizationLocalServiceUtil.getUserOrganizationIds(
+				getUserId(), includeAdministrative);
+
+		return ArrayUtil.toLongArray(organizationIds);
 	}
 
 	@Override

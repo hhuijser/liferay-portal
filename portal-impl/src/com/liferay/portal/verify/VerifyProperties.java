@@ -288,9 +288,9 @@ public class VerifyProperties extends VerifyProcess {
 			"configuration.jsp",
 		"editor.wysiwyg.portal-web.docroot.html.portlet.portal_settings." +
 			"email_notifications.jsp",
-		"ehcache.statistics.enabled", "index.filter.search.limit",
-		"javax.persistence.validation.mode", "jbi.workflow.url",
-		"journal.template.language.parser[css]",
+		"ehcache.statistics.enabled", "field.all.users.editable.roles",
+		"index.filter.search.limit", "javax.persistence.validation.mode",
+		"jbi.workflow.url", "journal.template.language.parser[css]",
 		"journal.template.language.parser[ftl]",
 		"journal.template.language.parser[vm]",
 		"journal.template.language.parser[xsl]",

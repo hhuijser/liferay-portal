@@ -27,6 +27,7 @@ import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.Portal;
 import com.liferay.portal.util.PortalUtil;
+import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.social.model.SocialActivity;
 import com.liferay.portlet.social.model.SocialActivityFeedEntry;
@@ -126,9 +127,20 @@ public class RSSAction extends com.liferay.portal.struts.RSSAction {
 
 		syndLinks.add(selfSyndLink);
 
-		String link =
-			PortalUtil.getLayoutFullURL(themeDisplay) +
-				Portal.FRIENDLY_URL_SEPARATOR + "activities/rss";
+		String portletId = serviceContext.getPortletId();
+
+		String link = null;
+
+		if (portletId.equals(PortletKeys.ACTIVITIES)) {
+			link =
+				PortalUtil.getLayoutFullURL(themeDisplay) +
+					Portal.FRIENDLY_URL_SEPARATOR + "activities/rss";
+		}
+		else {
+			link =
+				PortalUtil.getLayoutFullURL(themeDisplay) +
+					Portal.FRIENDLY_URL_SEPARATOR + "members_activities/rss";
+		}
 
 		selfSyndLink.setHref(link);
 

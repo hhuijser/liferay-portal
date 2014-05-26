@@ -52,6 +52,7 @@ import com.liferay.portlet.asset.service.AssetLinkLocalServiceUtil;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.DuplicateFolderNameException;
+import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
 import com.liferay.portlet.documentlibrary.NoSuchFolderException;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
@@ -738,6 +739,9 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 			}
 
 			return HttpServletResponse.SC_CREATED;
+		}
+		catch (FileSizeException pe) {
+			return HttpServletResponse.SC_REQUEST_ENTITY_TOO_LARGE;
 		}
 		catch (PrincipalException pe) {
 			return HttpServletResponse.SC_FORBIDDEN;

@@ -2693,6 +2693,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 			"**\\service\\persistence\\*Query.java",
 			"**\\service\\persistence\\impl\\*.java",
 			"**\\portal-impl\\test\\**\\*.java",
+			"**\\portal-test\\src\\**\\*.java",
 			"**\\util-bridges\\**\\*.java"
 		};
 

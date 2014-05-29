@@ -6292,6 +6292,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
+		if (ListUtil.isEmpty(userGroupRoles)) {
+			return;
+		}
+
 		long[] validGroupIds = null;
 
 		if (groupIds != null) {

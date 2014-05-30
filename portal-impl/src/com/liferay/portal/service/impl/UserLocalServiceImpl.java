@@ -6254,7 +6254,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			List<UserGroupRole> previousUserGroupRoles)
 		throws PortalException, SystemException {
 
-		if (ListUtil.isEmpty(userGroupRoles)) {
+		if (ListUtil.isEmpty(userGroupRoles) &&
+			ListUtil.isEmpty(previousUserGroupRoles)) {
+
 			return;
 		}
 
@@ -6267,6 +6269,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			else {
 				userGroupRoleLocalService.deleteUserGroupRole(userGroupRole);
 			}
+		}
+
+		if (ListUtil.isEmpty(userGroupRoles)) {
+			return;
 		}
 
 		long[] validGroupIds = null;

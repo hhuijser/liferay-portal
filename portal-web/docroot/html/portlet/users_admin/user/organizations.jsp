@@ -67,7 +67,8 @@ List<Organization> organizations = (List<Organization>)request.getAttribute("use
 
 			<%
 			if (selUser != null) {
-				List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), organization.getGroup().getGroupId());
+				List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), organization.getGroupId(), 0, SearchContainer.DEFAULT_DELTA);
+				int userGroupRolesCount = UserGroupRoleLocalServiceUtil.getUserGroupRolesCount(selUser.getUserId(), organization.getGroupId());
 
 				for (UserGroupRole userGroupRole : userGroupRoles) {
 					Role role = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
@@ -78,6 +79,10 @@ List<Organization> organizations = (List<Organization>)request.getAttribute("use
 
 				if (!userGroupRoles.isEmpty()) {
 					buffer.setIndex(buffer.index() - 1);
+				}
+
+				if (userGroupRoles.size() < userGroupRolesCount) {
+					buffer.append(StringPool.TRIPLE_PERIOD);
 				}
 			}
 			%>

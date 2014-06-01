@@ -4254,6 +4254,11 @@
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>
 		<attribute>
+			<name>count</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<name>property</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>

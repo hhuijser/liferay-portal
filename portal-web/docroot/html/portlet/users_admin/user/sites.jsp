@@ -66,7 +66,8 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 		>
 
 			<%
-			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), group.getGroupId());
+			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), group.getGroupId(), 0, SearchContainer.DEFAULT_DELTA);
+			int userGroupRolesCount = UserGroupRoleLocalServiceUtil.getUserGroupRolesCount(selUser.getUserId(), group.getGroupId());
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				Role role = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
@@ -77,6 +78,10 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 
 			if (!userGroupRoles.isEmpty()) {
 				buffer.setIndex(buffer.index() - 1);
+			}
+
+			if (userGroupRoles.size() < userGroupRolesCount) {
+				buffer.append(StringPool.TRIPLE_PERIOD);
 			}
 			%>
 
@@ -220,15 +225,22 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites"
 		>
 
 			<%
-			List<Role> inheritedRoles = RoleLocalServiceUtil.getUserGroupGroupRoles(selUser.getUserId(), inheritedSite.getGroupId());
+			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), inheritedSite.getGroupId(), 0, SearchContainer.DEFAULT_DELTA);
+			int userGroupRolesCount = UserGroupRoleLocalServiceUtil.getUserGroupRolesCount(selUser.getUserId(), inheritedSite.getGroupId());
 
-			for (Role role : inheritedRoles) {
+			for (UserGroupRole userGroupRole : userGroupRoles) {
+				Role role = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
+
 				buffer.append(HtmlUtil.escape(role.getTitle(locale)));
 				buffer.append(StringPool.COMMA_AND_SPACE);
 			}
 
-			if (!inheritedRoles.isEmpty()) {
+			if (!userGroupRoles.isEmpty()) {
 				buffer.setIndex(buffer.index() - 1);
+			}
+
+			if (userGroupRoles.size() < userGroupRolesCount) {
+				buffer.append(StringPool.TRIPLE_PERIOD);
 			}
 			%>
 

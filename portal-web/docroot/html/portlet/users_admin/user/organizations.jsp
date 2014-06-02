@@ -71,7 +71,8 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organi
 
 			<%
 			if (selUser != null) {
-				List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), organization.getGroup().getGroupId());
+				List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(selUser.getUserId(), organization.getGroupId(), 0, SearchContainer.DEFAULT_DELTA);
+				int userGroupRolesCount = UserGroupRoleLocalServiceUtil.getUserGroupRolesCount(selUser.getUserId(), organization.getGroupId());
 
 				for (UserGroupRole userGroupRole : userGroupRoles) {
 					Role role = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
@@ -82,6 +83,11 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organi
 
 				if (!userGroupRoles.isEmpty()) {
 					buffer.setIndex(buffer.index() - 1);
+				}
+
+				if (userGroupRoles.size() < userGroupRolesCount) {
+					buffer.append(StringPool.SPACE);
+					buffer.append(LanguageUtil.format(pageContext, "and-x-more", String.valueOf(userGroupRolesCount - userGroupRoles.size()), false));
 				}
 			}
 			%>

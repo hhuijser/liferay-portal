@@ -77,6 +77,7 @@ public class PortalOpenSearchImpl extends BaseOpenSearchImpl {
 				themeDisplay.getCompanyId(), userId, keywords, start, end);
 
 			String[] queryTerms = results.getQueryTerms();
+			String[] snippets = results.getSnippets();
 
 			int total = results.getLength();
 
@@ -135,14 +136,21 @@ public class PortalOpenSearchImpl extends BaseOpenSearchImpl {
 					entryClassName);
 
 				if (indexer != null) {
-					String snippet = results.snippet(i);
+					String snippet = StringPool.BLANK;
+
+					if (i < snippets.length) {
+						snippet = results.snippet(i);
+					}
 
 					Summary summary = indexer.getSummary(
 						result, snippet, portletURL, null, null);
 
-					title = summary.getTitle();
+					if (Validator.isNotNull(summary)) {
+						title = summary.getTitle();
+						content = summary.getContent();
+					}
+
 					url = portletURL.toString();
-					content = summary.getContent();
 
 					if (portlet.getPortletId().equals(PortletKeys.JOURNAL)) {
 						url = getJournalURL(

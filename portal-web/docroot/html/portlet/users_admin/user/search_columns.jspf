@@ -39,7 +39,8 @@
 		>
 
 			<%
-			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), organizationGroupId);
+			List<UserGroupRole> userGroupRoles = UserGroupRoleLocalServiceUtil.getUserGroupRoles(user2.getUserId(), organizationGroupId, 0, SearchContainer.DEFAULT_DELTA);
+			int userGroupRolesCount = UserGroupRoleLocalServiceUtil.getUserGroupRolesCount(user2.getUserId(), organizationGroupId);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
 				Role curRole = RoleLocalServiceUtil.getRole(userGroupRole.getRoleId());
@@ -51,6 +52,11 @@
 			if (!userGroupRoles.isEmpty()) {
 				buffer.setIndex(buffer.index() - 1);
 			}
+
+			if (userGroupRoles.size() < userGroupRolesCount) {
+				buffer.append(StringPool.SPACE);
+				buffer.append(LanguageUtil.format(pageContext, "and-x-more", String.valueOf(userGroupRolesCount - userGroupRoles.size()), false));
+			}
 			%>
 
 		</liferay-ui:search-container-column-text>
@@ -60,7 +66,7 @@
 			href="<%= rowURL %>"
 			name="organizations"
 		>
-			<liferay-ui:write bean="<%= user2 %>" property="organizations" />
+			<liferay-ui:write bean="<%= user2 %>" count="<%= SearchContainer.DEFAULT_DELTA %>" property="organizations" />
 		</liferay-ui:search-container-column-text>
 	</c:otherwise>
 </c:choose>
@@ -69,5 +75,5 @@
 	href="<%= rowURL %>"
 	name="user-groups"
 >
-	<liferay-ui:write bean="<%= user2 %>" property="user-groups" />
+	<liferay-ui:write bean="<%= user2 %>" count="<%= SearchContainer.DEFAULT_DELTA %>" property="user-groups" />
 </liferay-ui:search-container-column-text>

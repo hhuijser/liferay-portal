@@ -5248,13 +5248,13 @@ public class JournalArticleLocalServiceImpl
 
 		article.setModifiedDate(serviceContext.getModifiedDate(now));
 
-		boolean neverExpire = false;
+		boolean expired = false;
 
 		if (status == WorkflowConstants.STATUS_APPROVED) {
 			Date expirationDate = article.getExpirationDate();
 
 			if ((expirationDate != null) && expirationDate.before(now)) {
-				neverExpire = true;
+				expired = true;
 
 				article.setExpirationDate(null);
 			}
@@ -5358,7 +5358,7 @@ public class JournalArticleLocalServiceImpl
 
 					visible = true;
 
-					if (neverExpire) {
+					if (expired) {
 						expirationDate = null;
 					}
 				}

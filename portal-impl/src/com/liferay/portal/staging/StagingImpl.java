@@ -658,7 +658,7 @@ public class StagingImpl implements Staging {
 			if (Validator.equals(cmd, Constants.PUBLISH)) {
 				errorMessage = LanguageUtil.format(
 					locale,
-					"file-size-limit-exceeded.-please-check-the-following-" +
+					"file-size-limit-exceeded-please-check-the-following-" +
 						"portal-properties-in-both-the-live-environment-" +
 							"and-the-staging-environment-x-x",
 					new String[] {
@@ -674,6 +674,7 @@ public class StagingImpl implements Staging {
 					TextFormatter.formatStorageSize(fileMaxSize, locale),
 					false);
 			}
+
 			errorType = ServletResponseConstants.SC_FILE_SIZE_EXCEPTION;
 		}
 		else if (e instanceof LARTypeException) {

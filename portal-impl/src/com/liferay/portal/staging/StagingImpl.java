@@ -649,10 +649,31 @@ public class StagingImpl implements Staging {
 			catch (Exception ex) {
 			}
 
-			errorMessage = LanguageUtil.format(
-				locale,
-				"please-enter-a-file-with-a-valid-file-size-no-larger-than-x",
-				TextFormatter.formatStorageSize(fileMaxSize, locale), false);
+			String cmd = null;
+
+			if (contextMap != null) {
+				cmd = (String)contextMap.get(Constants.CMD);
+			}
+
+			if (Validator.equals(cmd, Constants.PUBLISH)) {
+				errorMessage = LanguageUtil.format(
+					locale,
+					"file-size-limit-exceeded.-please-check-the-following-" +
+						"portal-properties-in-both-the-live-environment-" +
+							"and-the-staging-environment-x-x",
+					new String[] {
+						PropsKeys.DL_FILE_MAX_SIZE,
+						PropsKeys.UPLOAD_SERVLET_REQUEST_IMPL_MAX_SIZE
+					}, false);
+			}
+			else {
+				errorMessage = LanguageUtil.format(
+					locale,
+					"please-enter-a-file-with-a-valid-file-size-no-larger-" +
+						"than-x",
+					TextFormatter.formatStorageSize(fileMaxSize, locale),
+					false);
+			}
 			errorType = ServletResponseConstants.SC_FILE_SIZE_EXCEPTION;
 		}
 		else if (e instanceof LARTypeException) {

@@ -2377,7 +2377,7 @@ public class StagingImpl implements Staging {
 
 			String remoteGroupUuid = remoteGroup.getUuid();
 
-			if (group.isCompany() ^ remoteGroup.isCompany() ||
+			if ((group.isCompany() ^ remoteGroup.isCompany()) ||
 				groupUuid.equals(remoteGroupUuid)) {
 
 				RemoteExportException ree = new RemoteExportException(

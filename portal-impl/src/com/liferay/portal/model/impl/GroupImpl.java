@@ -549,7 +549,7 @@ public class GroupImpl extends GroupBaseImpl {
 			return super.getTypeSettings();
 		}
 		else {
-			return _typeSettingsProperties.toString();
+			return _typeSettingsProperties.toSortedString();
 		}
 	}
 
@@ -969,7 +969,7 @@ public class GroupImpl extends GroupBaseImpl {
 
 		_typeSettingsProperties = typeSettingsProperties;
 
-		super.setTypeSettings(_typeSettingsProperties.toString());
+		super.setTypeSettings(_typeSettingsProperties.toSortedString());
 	}
 
 	protected long getDefaultPlid(boolean privateLayout) {

@@ -596,9 +596,9 @@ AUI.add(
 						if (trashEnabled) {
 							var repositoryId = instance._appViewSelect.get(STR_SELECTED_FOLDER).repositoryId;
 
-							var scopeGroupId = themeDisplay.getScopeGroupId();
+							var scopeGroupId =instance._config.scopeGroupId;
 
-							trashEnabled = (scopeGroupId === repositoryId);
+							trashEnabled = (scopeGroupId == repositoryId);
 						}
 
 						instance.one('#deleteAction').toggle(!trashEnabled);

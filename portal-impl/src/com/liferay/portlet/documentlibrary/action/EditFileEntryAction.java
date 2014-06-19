@@ -381,7 +381,13 @@ public class EditFileEntryAction extends PortletAction {
 			int pos = selectedFileName.indexOf(TEMP_RANDOM_SUFFIX);
 
 			if (pos != -1) {
-				selectedFileName = selectedFileName.substring(0, pos);
+				int periodPos = selectedFileName.indexOf(StringPool.PERIOD);
+
+				String tempRandomSuffix = selectedFileName.substring(
+					pos, periodPos);
+
+				selectedFileName = StringUtil.replace(
+					selectedFileName, tempRandomSuffix, StringPool.BLANK);
 			}
 
 			while (true) {
@@ -451,8 +457,15 @@ public class EditFileEntryAction extends PortletAction {
 
 		String title = sourceFileName;
 
-		sourceFileName = sourceFileName.concat(
-			TEMP_RANDOM_SUFFIX).concat(StringUtil.randomString());
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(FileUtil.stripExtension(sourceFileName));
+		sb.append(TEMP_RANDOM_SUFFIX);
+		sb.append(StringUtil.randomString());
+		sb.append(StringPool.PERIOD);
+		sb.append(FileUtil.getExtension(sourceFileName));
+
+		sourceFileName = sb.toString();
 
 		InputStream inputStream = null;
 

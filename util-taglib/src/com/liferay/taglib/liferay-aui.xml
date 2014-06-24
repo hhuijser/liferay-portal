@@ -41,6 +41,12 @@
 				<outputType>java.lang.String</outputType>
 			</attribute>
 			<attribute>
+				<name>localizeLabel</name>
+				<inputType>boolean</inputType>
+				<outputType>boolean</outputType>
+				<defaultValue>true</defaultValue>
+			</attribute>
+			<attribute>
 				<name>lang</name>
 				<inputType>java.lang.String</inputType>
 				<outputType>java.lang.String</outputType>
@@ -938,6 +944,12 @@
 				<name>label</name>
 				<inputType>java.lang.Object</inputType>
 				<outputType>java.lang.Object</outputType>
+			</attribute>
+			<attribute>
+				<name>localizeLabel</name>
+				<inputType>boolean</inputType>
+				<outputType>boolean</outputType>
+				<defaultValue>true</defaultValue>
 			</attribute>
 			<attribute>
 				<name>selected</name>

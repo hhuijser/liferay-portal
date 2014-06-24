@@ -49,6 +49,7 @@ long permissionClassPK = GetterUtil.getLong((String)request.getAttribute("lifera
 boolean ratingsEnabled = GetterUtil.getBoolean((String)request.getAttribute("liferay-ui:discussion:ratingsEnabled"));
 String redirect = (String)request.getAttribute("liferay-ui:discussion:redirect");
 long userId = GetterUtil.getLong((String)request.getAttribute("liferay-ui:discussion:userId"));
+long ownerId = layout.getUserId();
 
 String strutsAction = ParamUtil.getString(request, "struts_action");
 
@@ -79,7 +80,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 <div class="hide lfr-message-response" id="<portlet:namespace />discussion-status-messages"></div>
 
-<c:if test="<%= (messagesCount > 1) || MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, userId, ActionKeys.VIEW) %>">
+<c:if test="<%= (messagesCount > 1) || MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, ownerId, ActionKeys.VIEW) %>">
 	<div class="taglib-discussion">
 		<aui:form action="<%= formAction %>" method="post" name="<%= formName %>">
 			<aui:input name="randomNamespace" type="hidden" value="<%= randomNamespace %>" />
@@ -91,7 +92,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 			<aui:input name="classPK" type="hidden" value="<%= classPK %>" />
 			<aui:input name="permissionClassName" type="hidden" value="<%= permissionClassName %>" />
 			<aui:input name="permissionClassPK" type="hidden" value="<%= permissionClassPK %>" />
-			<aui:input name="permissionOwnerId" type="hidden" value="<%= String.valueOf(userId) %>" />
+			<aui:input name="permissionOwnerId" type="hidden" value="<%= ownerId %>" />
 			<aui:input name="messageId" type="hidden" />
 			<aui:input name="threadId" type="hidden" value="<%= thread.getThreadId() %>" />
 			<aui:input name="parentMessageId" type="hidden" />
@@ -104,7 +105,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 			MBMessage message = rootMessage;
 			%>
 
-			<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, userId, ActionKeys.ADD_DISCUSSION) %>">
+			<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, ownerId, ActionKeys.ADD_DISCUSSION) %>">
 				<aui:fieldset cssClass="add-comment" id='<%= randomNamespace + "messageScroll0" %>'>
 					<div id="<%= randomNamespace %>messageScroll<%= message.getMessageId() %>">
 						<aui:input name='<%= "messageId" + i %>' type="hidden" value="<%= message.getMessageId() %>" />
@@ -289,7 +290,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 					for (i = 1; i <= messages.size(); i++) {
 						message = messages.get(i - 1);
 
-						if ((!message.isApproved() && ((message.getUserId() != user.getUserId()) || user.isDefaultUser()) && !permissionChecker.isGroupAdmin(scopeGroupId)) || !MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, userId, ActionKeys.VIEW)) {
+						if ((!message.isApproved() && ((message.getUserId() != user.getUserId()) || user.isDefaultUser()) && !permissionChecker.isGroupAdmin(scopeGroupId)) || !MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, ownerId, ActionKeys.VIEW)) {
 							continue;
 						}
 
@@ -360,7 +361,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 
 										<c:if test="<%= !hideControls && !TrashUtil.isInTrash(message.getClassName(), message.getClassPK()) %>">
 											<ul class="lfr-discussion-actions">
-												<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, userId, ActionKeys.ADD_DISCUSSION) %>">
+												<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, ownerId, ActionKeys.ADD_DISCUSSION) %>">
 													<li class="lfr-discussion-reply-to">
 
 														<%
@@ -390,7 +391,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 															/>
 													</li>
 
-													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, message.getMessageId(), userId, ActionKeys.UPDATE_DISCUSSION) %>">
+													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, message.getMessageId(), ownerId, ActionKeys.UPDATE_DISCUSSION) %>">
 
 														<%
 														String taglibEditURL = "javascript:" + randomNamespace + "showForm('" + randomNamespace + "editForm" + i + "', '" + namespace + randomNamespace + "editReplyBody" + i + "');" + randomNamespace + "hideForm('" + randomNamespace + "postReplyForm" + i + "', '" + namespace + randomNamespace + "postReplyBody" + i + "', '')";
@@ -405,7 +406,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 														</li>
 													</c:if>
 
-													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, message.getMessageId(), userId, ActionKeys.DELETE_DISCUSSION) %>">
+													<c:if test="<%= MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, message.getMessageId(), ownerId, ActionKeys.DELETE_DISCUSSION) %>">
 
 														<%
 														String taglibDeleteURL = "javascript:" + randomNamespace + "deleteMessage(" + i + ");";
@@ -447,7 +448,7 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 									</aui:button-row>
 								</div>
 
-								<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, message.getMessageId(), userId, ActionKeys.UPDATE_DISCUSSION) %>">
+								<c:if test="<%= !hideControls && MBDiscussionPermission.contains(permissionChecker, company.getCompanyId(), scopeGroupId, permissionClassName, permissionClassPK, message.getMessageId(), ownerId, ActionKeys.UPDATE_DISCUSSION) %>">
 									<div class="lfr-discussion-form lfr-discussion-form-edit span12" id="<%= randomNamespace %>editForm<%= i %>" style='<%= "display: none; max-width: " + ModelHintsConstants.TEXTAREA_DISPLAY_WIDTH + "px;" %>'>
 										<aui:input id='<%= randomNamespace + "editReplyBody" + i %>' label="" name='<%= "editReplyBody" + i %>' style='<%= "height: " + ModelHintsConstants.TEXTAREA_DISPLAY_HEIGHT + "px;" %>' type="textarea" value="<%= message.getBody() %>" wrap="soft" />
 

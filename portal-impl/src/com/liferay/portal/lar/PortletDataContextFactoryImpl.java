@@ -162,18 +162,10 @@ public class PortletDataContextFactoryImpl
 
 		PortletDataContext portletDataContext = new PortletDataContextImpl();
 
-		try {
-			Group companyGroup = GroupLocalServiceUtil.fetchCompanyGroup(
-				companyId);
+		Group companyGroup = GroupLocalServiceUtil.fetchCompanyGroup(companyId);
 
-			if (companyGroup != null) {
-				portletDataContext.setCompanyGroupId(companyGroup.getGroupId());
-			}
-		}
-		catch (Exception e) {
-			if (!CompanyThreadLocal.isDeleteInProcess()) {
-				throw new IllegalStateException(e);
-			}
+		if (companyGroup != null) {
+			portletDataContext.setCompanyGroupId(companyGroup.getGroupId());
 		}
 
 		portletDataContext.setCompanyId(companyId);

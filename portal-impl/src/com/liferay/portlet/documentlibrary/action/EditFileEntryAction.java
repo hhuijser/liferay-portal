@@ -451,8 +451,8 @@ public class EditFileEntryAction extends PortletAction {
 
 		String title = sourceFileName;
 
-		sourceFileName = sourceFileName.concat(
-			TEMP_RANDOM_SUFFIX).concat(StringUtil.randomString());
+		sourceFileName = FileUtil.stripExtension(sourceFileName).concat(
+			TEMP_RANDOM_SUFFIX).concat(StringUtil.randomString()).concat(StringPool.PERIOD).concat(FileUtil.getExtension(sourceFileName));
 
 		InputStream inputStream = null;
 

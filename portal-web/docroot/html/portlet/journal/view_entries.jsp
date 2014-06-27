@@ -145,11 +145,13 @@ int totalVar = 0;
 	<c:when test="<%= Validator.isNotNull(displayTerms.getStructureId()) %>">
 
 		<%
-		totalVar = JournalArticleServiceUtil.getArticlesCountByStructureId(displayTerms.getGroupId(), searchTerms.getStructureId());
+		long[] groupIds = PortalUtil.getSharedContentSiteGroupIds(company.getCompanyId(), displayTerms.getGroupId(), user.getUserId());
+
+		totalVar = JournalArticleServiceUtil.getArticlesCountByStructureId(groupIds, searchTerms.getStructureId());
 
 		articleSearchContainer.setTotal(totalVar);
 
-		resultsList = JournalArticleServiceUtil.getArticlesByStructureId(displayTerms.getGroupId(), displayTerms.getStructureId(), articleSearchContainer.getStart(), articleSearchContainer.getEnd(), articleSearchContainer.getOrderByComparator());
+		resultsList = JournalArticleServiceUtil.getArticlesByStructureId(groupIds, displayTerms.getStructureId(), articleSearchContainer.getStart(), articleSearchContainer.getEnd(), articleSearchContainer.getOrderByComparator());
 		%>
 
 	</c:when>

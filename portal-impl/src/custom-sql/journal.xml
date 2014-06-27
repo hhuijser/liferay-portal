@@ -27,7 +27,7 @@
 			FROM
 				JournalArticle
 			WHERE
-				(groupId = ?) AND
+				[$GROUP_ID$]
 				(classNameId = ?) AND
 				(structureId = ?) AND
 				([$STATUS$])

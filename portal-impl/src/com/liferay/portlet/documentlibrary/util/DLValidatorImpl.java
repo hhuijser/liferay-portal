@@ -28,6 +28,7 @@ import com.liferay.portlet.documentlibrary.FileSizeException;
 import com.liferay.portlet.documentlibrary.FolderNameException;
 import com.liferay.portlet.documentlibrary.InvalidFileVersionException;
 import com.liferay.portlet.documentlibrary.SourceFileNameException;
+import com.liferay.portlet.documentlibrary.action.EditFileEntryAction;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,6 +99,12 @@ public final class DLValidatorImpl implements DLValidator {
 		String[] fileExtensions = PrefsPropsUtil.getStringArray(
 			PropsKeys.DL_FILE_EXTENSIONS, StringPool.COMMA);
 
+		int pos = fileName.indexOf(EditFileEntryAction.TEMP_RANDOM_SUFFIX);
+
+		if (pos != -1) {
+			fileName = fileName.substring(0, pos);
+		}
+		
 		for (String fileExtension : fileExtensions) {
 			if (StringPool.STAR.equals(fileExtension) ||
 				StringUtil.endsWith(fileName, fileExtension)) {

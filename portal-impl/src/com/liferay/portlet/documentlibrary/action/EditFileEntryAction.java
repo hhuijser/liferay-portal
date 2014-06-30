@@ -111,9 +111,9 @@ import org.apache.struts.action.ActionMapping;
 /**
  * @author Brian Wing Shun Chan
  * @author Alexander Chow
- * @author Sergio González
- * @author Manuel de la Peña
- * @author Levente Hudák
+ * @author Sergio Gonz谩lez
+ * @author Manuel de la Pe帽a
+ * @author Levente Hud谩k
  * @author Kenneth Chang
  */
 public class EditFileEntryAction extends PortletAction {
@@ -382,8 +382,11 @@ public class EditFileEntryAction extends PortletAction {
 
 			if (pos != -1) {
 				String extension = FileUtil.getExtension(selectedFileName);
-				selectedFileName = selectedFileName.substring(0, pos).concat(StringPool.PERIOD).concat(extension);
+				selectedFileName = selectedFileName.substring(0, pos);
+				if (!extension.isEmpty())
+					selectedFileName= selectedFileName.concat(StringPool.PERIOD).concat(extension);
 			}
+
 
 			while (true) {
 				try {
@@ -452,8 +455,14 @@ public class EditFileEntryAction extends PortletAction {
 
 		String title = sourceFileName;
 
-		sourceFileName = FileUtil.stripExtension(sourceFileName).concat(
-			TEMP_RANDOM_SUFFIX).concat(StringUtil.randomString()).concat(StringPool.PERIOD).concat(FileUtil.getExtension(sourceFileName));
+        String extension = FileUtil.getExtension(sourceFileName);
+		
+		sourceFileName = FileUtil.stripExtension(sourceFileName)
+				.concat(TEMP_RANDOM_SUFFIX).concat(StringUtil.randomString());
+
+		if (!extension.isEmpty()) {
+			sourceFileName = sourceFileName.concat(StringPool.PERIOD).concat(extension);
+		}
 
 		InputStream inputStream = null;
 

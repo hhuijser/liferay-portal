@@ -167,8 +167,7 @@ long folderId = BeanParamUtil.getLong(fileEntry, request, "folderId");
 													var pos = originalFileName.indexOf('<%= EditFileEntryAction.TEMP_RANDOM_SUFFIX %>');
 
 													if (pos != -1) {
-													    var extension = FileUtil.getExtension(originalFileName);
-														originalFileName = originalFileName.substr(0, pos).concat(StringPool.PERIOD).concat(extension);
+													    originalFileName = originalFileName.substr(0, pos);
 													}
 
 													if (originalFileName === item.fileName) {

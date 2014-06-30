@@ -121,7 +121,7 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 
 		String extension = getFileNameExtension();
 
-		if (extension != null) {
+		if (extension != null && extension != StringPool.BLANK) {
 			tempFileName += "." + extension;
 		}
 

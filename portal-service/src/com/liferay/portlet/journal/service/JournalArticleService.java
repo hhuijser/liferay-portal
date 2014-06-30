@@ -736,6 +736,10 @@ public interface JournalArticleService extends BaseService {
 	public int getArticlesCountByStructureId(long groupId, long classNameId,
 		java.lang.String ddmStructureKey, int status);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getArticlesCountByStructureId(long[] groupIds, long classNameId,
+		java.lang.String ddmStructureKey, int status);
+
 	/**
 	* Returns the number of web content articles matching the group, default
 	* class name ID, and DDM structure key.
@@ -747,6 +751,10 @@ public interface JournalArticleService extends BaseService {
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCountByStructureId(long groupId,
+		java.lang.String ddmStructureKey);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getArticlesCountByStructureId(long[] groupIds,
 		java.lang.String ddmStructureKey);
 
 	/**

@@ -32,7 +32,7 @@ public interface JournalArticleFinder {
 		java.util.List<java.lang.Long> folderIds,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition queryDefinition);
 
-	public int countByG_C_S(long groupId, long classNameId,
+	public int countByG_C_S(long[] groupIds, long classNameId,
 		java.lang.String ddmStructureKey,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition queryDefinition);
 
@@ -83,7 +83,7 @@ public interface JournalArticleFinder {
 		java.util.List<java.lang.Long> folderIds,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition queryDefinition);
 
-	public int filterCountByG_C_S(long groupId, long classNameId,
+	public int filterCountByG_C_S(long[] groupId, long classNameId,
 		java.lang.String ddmStructureKey,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition queryDefinition);
 

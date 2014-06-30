@@ -819,6 +819,13 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 			classNameId, ddmStructureKey, status);
 	}
 
+	@Override
+	public int getArticlesCountByStructureId(long[] groupIds, long classNameId,
+		java.lang.String ddmStructureKey, int status) {
+		return _journalArticleService.getArticlesCountByStructureId(groupIds,
+			classNameId, ddmStructureKey, status);
+	}
+
 	/**
 	* Returns the number of web content articles matching the group, default
 	* class name ID, and DDM structure key.
@@ -832,6 +839,13 @@ public class JournalArticleServiceWrapper implements JournalArticleService,
 	public int getArticlesCountByStructureId(long groupId,
 		java.lang.String ddmStructureKey) {
 		return _journalArticleService.getArticlesCountByStructureId(groupId,
+			ddmStructureKey);
+	}
+
+	@Override
+	public int getArticlesCountByStructureId(long[] groupIds,
+		java.lang.String ddmStructureKey) {
+		return _journalArticleService.getArticlesCountByStructureId(groupIds,
 			ddmStructureKey);
 	}
 

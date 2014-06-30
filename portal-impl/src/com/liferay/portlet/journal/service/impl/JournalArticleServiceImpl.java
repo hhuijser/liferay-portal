@@ -923,8 +923,16 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 	public int getArticlesCountByStructureId(
 		long groupId, long classNameId, String ddmStructureKey, int status) {
 
+		return getArticlesCountByStructureId(
+			new long[] {groupId}, classNameId, ddmStructureKey, status);
+	}
+
+	@Override
+	public int getArticlesCountByStructureId(
+		long[] groupIds, long classNameId, String ddmStructureKey, int status) {
+
 		return journalArticleFinder.filterCountByG_C_S(
-			groupId, classNameId, ddmStructureKey, new QueryDefinition(status));
+			groupIds, classNameId, ddmStructureKey, new QueryDefinition(status));
 	}
 
 	/**
@@ -941,7 +949,14 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		long groupId, String ddmStructureKey) {
 
 		return getArticlesCountByStructureId(
-			groupId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			new long[] {groupId}, ddmStructureKey);
+	}
+
+	public int getArticlesCountByStructureId(
+		long[] groupIds, String ddmStructureKey) {
+
+		return getArticlesCountByStructureId(
+			groupIds, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
 			ddmStructureKey, WorkflowConstants.STATUS_ANY);
 	}
 

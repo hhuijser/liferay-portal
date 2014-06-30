@@ -808,6 +808,13 @@ public class JournalArticleServiceUtil {
 			ddmStructureKey, status);
 	}
 
+	public static int getArticlesCountByStructureId(long[] groupIds,
+		long classNameId, java.lang.String ddmStructureKey, int status) {
+		return getService()
+				   .getArticlesCountByStructureId(groupIds, classNameId,
+			ddmStructureKey, status);
+	}
+
 	/**
 	* Returns the number of web content articles matching the group, default
 	* class name ID, and DDM structure key.
@@ -821,6 +828,12 @@ public class JournalArticleServiceUtil {
 		java.lang.String ddmStructureKey) {
 		return getService()
 				   .getArticlesCountByStructureId(groupId, ddmStructureKey);
+	}
+
+	public static int getArticlesCountByStructureId(long[] groupIds,
+		java.lang.String ddmStructureKey) {
+		return getService()
+				   .getArticlesCountByStructureId(groupIds, ddmStructureKey);
 	}
 
 	/**

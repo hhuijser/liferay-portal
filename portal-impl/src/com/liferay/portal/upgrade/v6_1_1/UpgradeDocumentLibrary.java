@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -92,7 +93,7 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 					rs.getString("extension"));
 				String version = rs.getString("version");
 
-				String periodAndExtension = StringPool.PERIOD.concat(extension);
+				String periodAndExtension = Validator.isNull(extension)?"":StringPool.PERIOD.concat(extension);
 
 				if (!title.endsWith(periodAndExtension)) {
 					continue;

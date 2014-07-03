@@ -72,7 +72,7 @@ response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 		['Image', 'Smiley', '-', 'TextColor', '-', 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
 		['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Blockquote', '-', 'Code'],
 		'/',
-		['Font', 'FontSize', '-', 'Format', '-', 'Undo', 'Redo', '-', 'Source'],
+		['Font', 'FontSize', '-', 'Format', '-', 'Table', '-', 'Undo', 'Redo', '-', 'Source'],
 		['A11YBtn']
 	];
 

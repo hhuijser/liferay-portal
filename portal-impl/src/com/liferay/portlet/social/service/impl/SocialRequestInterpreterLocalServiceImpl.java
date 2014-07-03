@@ -14,6 +14,13 @@
 
 package com.liferay.portlet.social.service.impl;
 
+import com.liferay.portal.kernel.json.JSONException;
+import com.liferay.portal.kernel.json.JSONFactoryUtil;
+import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.social.model.SocialRequest;
@@ -135,6 +142,12 @@ public class SocialRequestInterpreterLocalServiceImpl
 	public SocialRequestFeedEntry interpret(
 		SocialRequest request, ThemeDisplay themeDisplay) {
 
+		String requestPortletId = getSocialRequestPortletId(request);
+
+		if (Validator.isNotNull(requestPortletId)) {
+			return interpret(request, themeDisplay, requestPortletId);
+		}
+
 		String className = PortalUtil.getClassName(request.getClassNameId());
 
 		for (int i = 0; i < _requestInterpreters.size(); i++) {
@@ -175,6 +188,14 @@ public class SocialRequestInterpreterLocalServiceImpl
 	public void processConfirmation(
 		SocialRequest request, ThemeDisplay themeDisplay) {
 
+		String requestPortletId = getSocialRequestPortletId(request);
+
+		if (Validator.isNotNull(requestPortletId)) {
+			processConfirmation(request, themeDisplay, requestPortletId);
+
+			return;
+		}
+
 		String className = PortalUtil.getClassName(request.getClassNameId());
 
 		for (int i = 0; i < _requestInterpreters.size(); i++) {
@@ -211,6 +232,14 @@ public class SocialRequestInterpreterLocalServiceImpl
 	public void processRejection(
 		SocialRequest request, ThemeDisplay themeDisplay) {
 
+		String requestPortletId = getSocialRequestPortletId(request);
+
+		if (Validator.isNotNull(requestPortletId)) {
+			processRejection(request, themeDisplay, requestPortletId);
+
+			return;
+		}
+
 		String className = PortalUtil.getClassName(request.getClassNameId());
 
 		for (int i = 0; i < _requestInterpreters.size(); i++) {
@@ -227,6 +256,110 @@ public class SocialRequestInterpreterLocalServiceImpl
 			}
 		}
 	}
+
+	protected String getSocialRequestPortletId(SocialRequest request) {
+		String portletId = null;
+
+		try {
+			String extraData = request.getExtraData();
+
+			JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
+
+			if (extraData != null) {
+				jsonObject = JSONFactoryUtil.createJSONObject(extraData);
+			}
+
+			portletId = jsonObject.getString(WebKeys.PORTLET_ID);
+		}
+		catch (JSONException e) {
+			_log.error(e, e);
+		}
+
+		return portletId;
+	}
+
+	protected SocialRequestFeedEntry interpret(
+		SocialRequest request, ThemeDisplay themeDisplay,
+		String requestPortletId) {
+
+		String className = PortalUtil.getClassName(request.getClassNameId());
+
+		for (int i = 0; i < _requestInterpreters.size(); i++) {
+			SocialRequestInterpreterImpl requestInterpreter =
+				(SocialRequestInterpreterImpl)_requestInterpreters.get(i);
+
+			String portletId = requestInterpreter.getPortletId();
+
+			if (requestInterpreter.hasClassName(className) &&
+				requestPortletId.equals(portletId)) {
+
+				SocialRequestFeedEntry requestFeedEntry =
+					requestInterpreter.interpret(request, themeDisplay);
+
+				if (requestFeedEntry != null) {
+					requestFeedEntry.setPortletId(
+						requestInterpreter.getPortletId());
+
+					return requestFeedEntry;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	protected void processConfirmation(
+		SocialRequest request, ThemeDisplay themeDisplay,
+		String requestPortletId) {
+
+		String className = PortalUtil.getClassName(request.getClassNameId());
+
+		for (int i = 0; i < _requestInterpreters.size(); i++) {
+			SocialRequestInterpreterImpl requestInterpreter =
+				(SocialRequestInterpreterImpl)_requestInterpreters.get(i);
+
+			String portletId = requestInterpreter.getPortletId();
+
+			if (requestInterpreter.hasClassName(className) &&
+				requestPortletId.equals(portletId)) {
+
+				boolean value = requestInterpreter.processConfirmation(
+					request, themeDisplay);
+
+				if (value) {
+					return;
+				}
+			}
+		}
+	}
+
+	protected void processRejection(
+		SocialRequest request, ThemeDisplay themeDisplay,
+		String requestPortletId) {
+
+		String className = PortalUtil.getClassName(request.getClassNameId());
+
+		for (int i = 0; i < _requestInterpreters.size(); i++) {
+			SocialRequestInterpreterImpl requestInterpreter =
+				(SocialRequestInterpreterImpl)_requestInterpreters.get(i);
+
+			String portletId = requestInterpreter.getPortletId();
+
+			if (requestInterpreter.hasClassName(className) &&
+				requestPortletId.equals(portletId)) {
+
+				boolean value = requestInterpreter.processRejection(
+					request, themeDisplay);
+
+				if (value) {
+					return;
+				}
+			}
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(
+		SocialRequestInterpreterLocalServiceImpl.class);
 
 	private List<SocialRequestInterpreter> _requestInterpreters =
 		new CopyOnWriteArrayList<SocialRequestInterpreter>();

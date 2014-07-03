@@ -102,6 +102,8 @@ response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 
 	config.contentsLanguage = '<%= contentsLanguageId.replace("iw_", "he_") %>';
 
+	config.disableObjectResizing = true;
+
 	config.enterMode = CKEDITOR.ENTER_BR;
 
 	config.extraPlugins = 'a11yhelpbtn,bbcode,wikilink';
@@ -139,6 +141,47 @@ response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 	config.smiley_path = '<%= HtmlUtil.escapeJS(emoticonsPath) %>' + '/';
 
 	config.smiley_symbols = ['<%= StringUtil.merge(BBCodeTranslatorUtil.getEmoticonSymbols(), "','") %>'];
+
+	CKEDITOR.on(
+		'dialogDefinition',
+		function(event) {
+			var dialogName = event.data.name;
+
+			var dialogDefinition = event.data.definition;
+
+			var infoTab;
+
+			if (dialogName === 'table' || dialogName === 'tableProperties') {
+				dialogDefinition.removeContents('advanced');
+
+				infoTab = dialogDefinition.getContents('info');
+
+				infoTab.remove('cmbAlign');
+				infoTab.remove('txtCaption');
+				infoTab.remove('txtCellPad');
+				infoTab.remove('txtCellSpace');
+				infoTab.remove('txtHeight');
+				infoTab.remove('txtSummary');
+
+				dialogDefinition.onShow = function() {
+					var currentDialog = dialogDefinition.dialog;
+
+					var borderInput = currentDialog.getContentElement('info', 'txtBorder');
+					borderInput.disable();
+
+					var widthInput = currentDialog.getContentElement('info', 'txtWidth');
+					widthInput.disable();
+				};
+			}
+		}
+	);
+
+	CKEDITOR.on(
+		'instanceReady',
+		function(ck) {
+			ck.editor.removeMenuItem('table');
+		}
+	);
 
 	<%@ include file="/html/js/editor/ckeditor/ckconfig_bbcode-ext.jsp" %>
 };

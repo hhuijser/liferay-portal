@@ -18,7 +18,6 @@
 
 	<%
 	Map<String, List<Portlet>> categoriesMap = PortalUtil.getSiteAdministrationCategoriesMap(request);
-	System.out.println(1);
 	%>
 
 	<c:if test="<%= Validator.isNotNull(categoriesMap) && !categoriesMap.isEmpty() && categoriesMap.keySet().size()>0 %>">

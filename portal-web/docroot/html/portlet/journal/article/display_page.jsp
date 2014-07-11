@@ -559,7 +559,7 @@ Group group = GroupLocalServiceUtil.fetchGroup(groupId);
 
 			<c:choose>
 				<c:when test="<%= Validator.isNull(toLanguageId) %>">
-					Liferay.once('formNavigator:reveal<portlet:namespace />displayPage', <portlet:namespace />loadDisplayPage);
+					Liferay.once('formNavigator:reveal<portlet:namespace />displayPage', <portlet:namespace />loadDisplayPage());
 				</c:when>
 				<c:otherwise>
 					<portlet:namespace />loadDisplayPage();

@@ -62,6 +62,8 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		var itemIds = '';
 		var count = 0;
 		var invalidSKUs = '';
+		var shoppingSettingsMinOrder = <%= shoppingSettings.getMinOrder() %>;
+		var subtotal = 0;
 
 		<%
 		int itemsCount= 0;
@@ -75,6 +77,8 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 		%>
 
 			count = document.<portlet:namespace />fm.<portlet:namespace />item_<%= item.getItemId() %>_<%= itemsCount %>_count.value;
+
+			subtotal += <%= ShoppingUtil.calculateActualPrice(item, 1) %> * count;
 
 			if ((count == '') || isNaN(count) || (count < 0) || ((count > <%= maxQuantity %>) && (<%= maxQuantity %> > 0))) {
 				if (invalidSKUs != '') {
@@ -94,6 +98,12 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 			itemsCount++;
 		}
 		%>
+
+		if (subtotal < shoppingSettingsMinOrder) {
+			alert('<%= UnicodeLanguageUtil.format(request, "your-order-cannot-be-processed-because-it-falls-below-the-minimum-required-amount-of-x", currencyFormat.format(shoppingSettings.getMinOrder()), false) %>');
+
+			return;
+		}
 
 		document.<portlet:namespace />fm.<portlet:namespace />itemIds.value = itemIds;
 

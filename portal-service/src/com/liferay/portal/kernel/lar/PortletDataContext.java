@@ -443,8 +443,7 @@ public interface PortletDataContext extends Serializable {
 		StagedModel parentStagedModel, Class<?> clazz);
 
 	public Map<Long, Set<String>> getRoleToActionIds(
-			long companyId, String resourceName, String resourcePrimKey,
-			boolean portletActions)
+			String resourceName, String resourcePrimKey, boolean portletActions)
 		throws PortalException;
 
 	/**

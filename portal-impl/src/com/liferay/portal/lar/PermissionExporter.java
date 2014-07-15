@@ -52,14 +52,14 @@ public class PermissionExporter {
 	}
 
 	protected void exportPermissions(
-			PortletDataContext portletDataContext, long companyId,
-			String resourceName, String resourcePrimKey,
-			Element permissionsElement, boolean portletActions)
+			PortletDataContext portletDataContext, String resourceName,
+			String resourcePrimKey, Element permissionsElement,
+			boolean portletActions)
 		throws Exception {
 
 		Map<Long, Set<String>> roleToActionIds =
 			portletDataContext.getRoleToActionIds(
-				companyId, resourceName, resourcePrimKey, portletActions);
+				resourceName, resourcePrimKey, portletActions);
 
 		for (Map.Entry<Long, Set<String>> entry : roleToActionIds.entrySet()) {
 			long roleId = entry.getKey();
@@ -131,12 +131,9 @@ public class PermissionExporter {
 	}
 
 	protected void exportPortletPermissions(
-			PortletDataContext portletDataContext, LayoutCache layoutCache,
-			String portletId, Layout layout, Element portletElement)
+			PortletDataContext portletDataContext, String portletId,
+			Layout layout, Element portletElement)
 		throws Exception {
-
-		long companyId = portletDataContext.getCompanyId();
-		long groupId = portletDataContext.getGroupId();
 
 		String resourceName = PortletConstants.getRootPortletId(portletId);
 		String resourcePrimKey = PortletPermissionUtil.getPrimaryKey(
@@ -145,7 +142,7 @@ public class PermissionExporter {
 		Element permissionsElement = portletElement.addElement("permissions");
 
 		exportPermissions(
-			portletDataContext, companyId, resourceName, resourcePrimKey,
+			portletDataContext, resourceName, resourcePrimKey,
 			permissionsElement, true);
 	}
 

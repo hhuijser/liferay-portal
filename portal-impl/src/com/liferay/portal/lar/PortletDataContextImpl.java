@@ -371,7 +371,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		Map<Long, Set<String>> roleIdsToActionIds = getRoleToActionIds(
-			_companyId, resourceName, String.valueOf(resourcePK), true);
+			resourceName, String.valueOf(resourcePK), true);
 
 		List<KeyValuePair> permissions = new ArrayList<KeyValuePair>();
 
@@ -1187,8 +1187,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	@Override
 	public Map<Long, Set<String>> getRoleToActionIds(
-			long companyId, String resourceName, String resourcePrimKey,
-			boolean portletActions)
+			String resourceName, String resourcePrimKey, boolean portletActions)
 		throws PortalException {
 
 		List<String> availableActionIds = null;
@@ -1211,7 +1210,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 		List<ResourcePermission> resourcePermissions =
 			ResourcePermissionLocalServiceUtil.getResourcePermissions(
-				companyId, resourceName, ResourceConstants.SCOPE_INDIVIDUAL,
+				_companyId, resourceName, ResourceConstants.SCOPE_INDIVIDUAL,
 				resourcePrimKey);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {

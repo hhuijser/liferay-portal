@@ -227,7 +227,11 @@ BackgroundTask lastCompletedInitialPublicationBackgroundTask = BackgroundTaskLoc
 
 					PortletDataHandler portletDataHandler = curPortlet.getPortletDataHandlerInstance();
 
-					boolean staged = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty(StagingUtil.getStagedPortletId(curPortlet.getRootPortletId())), portletDataHandler.isPublishToLiveByDefault());
+					boolean staged = portletDataHandler.isPublishToLiveByDefault();
+
+					if (GetterUtil.getBoolean(liveGroupTypeSettings.getProperty("staged"))) {
+						staged = GetterUtil.getBoolean(liveGroupTypeSettings.getProperty(StagingUtil.getStagedPortletId(curPortlet.getRootPortletId())));
+					}
 				%>
 
 					<aui:input disabled="<%= liveGroupRemoteStaging %>" label="<%= PortalUtil.getPortletTitle(curPortlet, application, locale) %>" name="<%= StagingConstants.STAGED_PREFIX + StagingUtil.getStagedPortletId(curPortlet.getRootPortletId()) + StringPool.DOUBLE_DASH %>" type="checkbox" value="<%= staged %>" />

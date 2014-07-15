@@ -36,6 +36,8 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -799,9 +801,28 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			return;
 		}
 
-		typeSettingsProperties.putAll(
-			PropertiesParamUtil.getProperties(
-				serviceContext, StagingConstants.STAGED_PREFIX));
+		String[] checkboxNames = StringUtil.split(
+			(String) serviceContext.getAttribute("checkboxNames"));
+
+		UnicodeProperties properties = PropertiesParamUtil.getProperties(
+			serviceContext, StagingConstants.STAGED_PREFIX);
+
+		for (String checkboxName : checkboxNames) {
+			if (!checkboxName.startsWith(StagingConstants.STAGED_PREFIX)) {
+				continue;
+			}
+
+			String key =
+				checkboxName.substring(
+					checkboxName.indexOf(StagingConstants.STAGED_PORTLET),
+					checkboxName.lastIndexOf(StringPool.DOUBLE_DASH));
+
+			if (Validator.isNull(properties.get(key))) {
+				typeSettingsProperties.remove(key);
+			}
+		}
+
+		typeSettingsProperties.putAll(properties);
 	}
 
 	protected Layout updateLayoutWithLayoutRevision(

@@ -29,7 +29,7 @@ JournalArticle article = (JournalArticle)request.getAttribute(WebKeys.JOURNAL_AR
 <aui:fieldset>
 	<liferay-ui:custom-attribute-list
 		className="<%= JournalArticle.class.getName() %>"
-		classPK="<%= (article != null) ? article.getPrimaryKey() : 0 %>"
+		classPK="<%= (article != null) ? article.getResourcePrimKey() : 0 %>"
 		editable="<%= true %>"
 		label="<%= true %>"
 	/>

@@ -1631,7 +1631,7 @@ public class JournalArticleModelImpl extends BaseModelImpl<JournalArticle>
 	@Override
 	public ExpandoBridge getExpandoBridge() {
 		return ExpandoBridgeFactoryUtil.getExpandoBridge(getCompanyId(),
-			JournalArticle.class.getName(), getPrimaryKey());
+			JournalArticle.class.getName(), getResourcePrimKey());
 	}
 
 	@Override

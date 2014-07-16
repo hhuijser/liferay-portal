@@ -4,8 +4,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.rotty3000</groupId>
   <artifactId>phidias</artifactId>
-  <version>0.3.1</version>
-  <name>Phidias Compiler Adaptor</name>
+  <version>0.3.2</version>
+  <name>Phidias Compiler Adapter</name>
   <description>A small javax compiler adapter for OSGi environments.</description>
   <url>https://github.com/rotty3000/phidias</url>
   <inceptionYear>2012</inceptionYear>
@@ -21,6 +21,11 @@
       <id>rotty3000</id>
       <name>Raymond Augé</name>
       <email>rotty3000@gmail.com</email>
+    </developer>
+    <developer>
+      <id>migue</id>
+      <name>Miguel Pastor</name>
+      <email>miguel.pastor@liferay.com</email>
     </developer>
   </developers>
   <scm>

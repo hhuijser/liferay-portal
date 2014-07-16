@@ -554,7 +554,7 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 	}
 
 	protected void handleTable(StringBundler sb, Stack<String> tags) {
-		handleSimpleTag(sb, tags, "table");
+		handleSimpleTag(sb, tags, _TABLE_TAG_OPEN);
 	}
 
 	protected void handleTableCell(StringBundler sb, Stack<String> tags) {
@@ -732,6 +732,9 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 		{"wink.gif", ":wink:", "wink"},
 		{"wub.gif", ":wub:", "wub"}
 	};
+
+	private static final String _TABLE_TAG_OPEN =
+		"table border=\"1\" style=\"width: 500px\"";
 
 	private static Log _log = LogFactoryUtil.getLog(
 		HtmlBBCodeTranslatorImpl.class);

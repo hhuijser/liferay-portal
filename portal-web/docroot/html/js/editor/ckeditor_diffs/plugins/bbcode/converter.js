@@ -107,6 +107,8 @@
 
 	var STR_TAG_P_CLOSE = '</p>';
 
+	var STR_TAG_TABLE_OPEN = 'table border="1" style="width: 500px;"';
+
 	var STR_TAG_SPAN_CLOSE = '</span>';
 
 	var STR_TAG_SPAN_STYLE_OPEN = '<span style="';
@@ -457,7 +459,7 @@
 		_handleTable: function(token) {
 			var instance = this;
 
-			instance._handleSimpleTag('table');
+			instance._handleSimpleTag(STR_TAG_TABLE_OPEN);
 		},
 
 		_handleTableCell: function(token) {

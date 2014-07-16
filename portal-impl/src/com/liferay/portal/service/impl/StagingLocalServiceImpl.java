@@ -802,7 +802,7 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		}
 
 		String[] checkboxNames = StringUtil.split(
-			(String) serviceContext.getAttribute("checkboxNames"));
+			(String)serviceContext.getAttribute("checkboxNames"));
 
 		UnicodeProperties properties = PropertiesParamUtil.getProperties(
 			serviceContext, StagingConstants.STAGED_PREFIX);
@@ -812,10 +812,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 				continue;
 			}
 
-			String key =
-				checkboxName.substring(
-					checkboxName.indexOf(StagingConstants.STAGED_PORTLET),
-					checkboxName.lastIndexOf(StringPool.DOUBLE_DASH));
+			String key = checkboxName.substring(
+				checkboxName.indexOf(StagingConstants.STAGED_PORTLET),
+				checkboxName.lastIndexOf(StringPool.DOUBLE_DASH));
 
 			if (Validator.isNull(properties.get(key))) {
 				typeSettingsProperties.remove(key);

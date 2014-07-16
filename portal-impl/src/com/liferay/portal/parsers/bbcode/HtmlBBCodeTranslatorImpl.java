@@ -403,26 +403,39 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 
 		BBCodeItem bbCodeItem = bbCodeItems.get(pos);
 
-		String dimensions = bbCodeItem.getAttribute();
+		String bbCodeItemAttribute = bbCodeItem.getAttribute();
 
-		if (Validator.isNotNull(dimensions)) {
-			String[] dim = StringUtil.split(dimensions, CharPool.LOWER_CASE_X);
+		if (Validator.isNotNull(bbCodeItemAttribute)) {
+			Matcher imageAttributeMatcher = _imageAttributePattern.matcher(
+				bbCodeItem.getAttribute());
 
-			sb.append("style=\"");
+			while (imageAttributeMatcher.find()) {
+				String attribute = imageAttributeMatcher.group();
 
-			if (!dim[0].equals("auto")) {
-				sb.append("width:");
-				sb.append(HtmlUtil.escapeAttribute(dim[0]));
-				sb.append("px;");
+				if (attribute.startsWith(_ALT_TEXT_PREFIX)) {
+					sb.append(attribute);
+				}
+				else {
+					String[] dim = StringUtil.split(
+						attribute, CharPool.LOWER_CASE_X);
+
+					sb.append("style=\"");
+
+					if (!dim[0].equals("auto")) {
+						sb.append("width:");
+						sb.append(HtmlUtil.escapeAttribute(dim[0]));
+						sb.append("px;");
+					}
+
+					if (!dim[1].equals("auto")) {
+						sb.append("height:");
+						sb.append(HtmlUtil.escapeAttribute(dim[1]));
+						sb.append("px;");
+					}
+
+					sb.append("\"");
+				}
 			}
-
-			if (!dim[1].equals("auto")) {
-				sb.append("height:");
-				sb.append(HtmlUtil.escapeAttribute(dim[1]));
-				sb.append("px;");
-			}
-
-			sb.append("\"");
 		}
 
 		sb.append(" />");
@@ -694,6 +707,8 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 		return false;
 	}
 
+	private static final String _ALT_TEXT_PREFIX = "alt=";
+
 	private static final String[][] _EMOTICONS = {
 		{"happy.gif", ":)", "happy"},
 		{"smile.gif", ":D", "smile"},
@@ -748,6 +763,8 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 	private String[] _emoticonSymbols = new String[_EMOTICONS.length];
 	private Map<String, Integer> _excludeNewLineTypes;
 	private int[] _fontSizes = {10, 12, 16, 18, 24, 32, 48};
+	private Pattern _imageAttributePattern = Pattern.compile(
+		"(?:([^\\s=]+)(?:=(?:(.*)))?)", Pattern.CASE_INSENSITIVE);
 	private Pattern _imagePattern = Pattern.compile(
 		"^(?:https?://|/)[-;/?:@&=+$,_.!~*'()%0-9a-z]{1,512}$",
 		Pattern.CASE_INSENSITIVE);

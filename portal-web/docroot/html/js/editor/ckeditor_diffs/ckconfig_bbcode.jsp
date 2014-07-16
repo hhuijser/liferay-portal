@@ -140,6 +140,30 @@ response.setContentType(ContentTypes.TEXT_JAVASCRIPT);
 
 	config.smiley_symbols = ['<%= StringUtil.merge(BBCodeTranslatorUtil.getEmoticonSymbols(), "','") %>'];
 
+	CKEDITOR.on(
+		'dialogDefinition',
+		function(event) {
+			var dialogName = event.data.name;
+
+			if (dialogName === 'image') {
+				var dialogDefinition = event.data.definition;
+
+				dialogDefinition.removeContents('advanced');
+
+				var infoTab = dialogDefinition.getContents('info');
+
+				infoTab.remove('cmbAlign' );
+				infoTab.remove('txtBorder');
+				infoTab.remove('txtHSpace');
+				infoTab.remove('txtVSpace');
+
+				var linkTab = dialogDefinition.getContents('Link');
+
+				linkTab.remove('cmbTarget')
+			}
+		}
+	);
+
 	<%@ include file="/html/js/editor/ckeditor/ckconfig_bbcode-ext.jsp" %>
 };
 

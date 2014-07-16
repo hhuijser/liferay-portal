@@ -65,6 +65,8 @@
 
 	var REGEX_COLOR = /^(:?aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|purple|red|silver|teal|white|yellow|#(?:[0-9a-f]{3})?[0-9a-f]{3})$/i;
 
+	var REGEX_IMAGE_ATTRIBUTE = /(?:([^\s=]+)(?:=(?:(.*)))?)/ig;
+
 	var REGEX_IMAGE_SRC = /^(?:https?:\/\/|\/)[-;\/\?:@&=\+\$,_\.!~\*'\(\)%0-9a-z]{1,512}$/i;
 
 	var REGEX_LASTCHAR_NEWLINE = /\r?\n$/;
@@ -78,6 +80,8 @@
 	var REGEX_TAG_NAME = /^\/?(?:b|center|code|colou?r|email|i|img|justify|left|pre|q|quote|right|\*|s|size|table|tr|th|td|li|list|font|u|url)$/i;
 
 	var REGEX_URI = /^[-;\/\?:@&=\+\$,_\.!~\*'\(\)%0-9a-z#]{1,512}$|\${\S+}/i;
+
+	var STR_ALT_TEXT_PREFIX = 'alt=';
 
 	var STR_BLANK = '';
 
@@ -121,7 +125,7 @@
 
 	var TOKEN_TAG_START = Parser.TOKEN_TAG_START;
 
-	var tplImage = new CKEDITOR.template('<img src="{imageSrc}" {imageSize} />');
+	var tplImage = new CKEDITOR.template('<img src="{imageSrc}" {imageSize} {alt} />');
 
 	var Converter = function(config) {
 		var instance = this;
@@ -295,30 +299,43 @@
 				imageSrc = CKTools.htmlEncodeAttr(imageSrcInput);
 			}
 
+			var altText = '';
 			var imageSize = '';
 
 			if (token.attribute) {
-				var dimensions = token.attribute.split('x');
+				var attribute = token.attribute;
 
-				imageSize = 'style="';
+				var attributes = attribute.match(REGEX_IMAGE_ATTRIBUTE);
 
-				var width = dimensions[0];
+				attributes.forEach(function(imgAttribute) {
+					if (imgAttribute.startsWith(STR_ALT_TEXT_PREFIX)) {
+						altText = imgAttribute;
+					}
+					else {
+						var dimensions = imgAttribute.split('x');
 
-				if (width && width !== 'auto') {
-					imageSize += 'width: ' + CKTools.htmlEncodeAttr(width) + 'px;';
-				}
+						imageSize = 'style="';
 
-				var height = dimensions[1];
+						var width = dimensions[0];
 
-				if (height && height !== 'auto') {
-					imageSize += 'height: ' + CKTools.htmlEncodeAttr(height) + 'px;';
-				}
+						if (width && width !== 'auto') {
+							imageSize += 'width: ' + CKTools.htmlEncodeAttr(width) + 'px;';
+						}
 
-				imageSize += '"';
+						var height = dimensions[1];
+
+						if (height && height !== 'auto') {
+							imageSize += 'height: ' + CKTools.htmlEncodeAttr(height) + 'px;';
+						}
+
+						imageSize += '"';
+					}
+				});
 			}
 
 			var result = tplImage.output(
 				{
+					alt: altText,
 					imageSize: imageSize,
 					imageSrc: imageSrc
 				}

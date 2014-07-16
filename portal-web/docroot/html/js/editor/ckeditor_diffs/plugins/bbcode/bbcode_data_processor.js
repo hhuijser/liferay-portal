@@ -95,7 +95,11 @@
 
 	var tplImage = new CKEDITOR.template('<img src="{image}" />');
 
-	var tplImageOpenTag = new CKEDITOR.template('[img={width}x{height}]');
+	var tplImageOpenTagAlt = new CKEDITOR.template('[img {alt}]');
+
+	var tplImageOpenTagAltAndStyle = new CKEDITOR.template('[img={width}x{height} {alt}]');
+
+	var tplImageOpenTagStyle = new CKEDITOR.template('[img={width}x{height}]');
 
 	var emoticonImages;
 	var emoticonPath;
@@ -500,10 +504,34 @@
 				var height = domElement.getStyle('height').replace('px', '') || 'auto';
 				var width = domElement.getStyle('width').replace('px', '') || 'auto';
 
+				var alt = domElement.getAttribute('alt');
+
 				var openTag = '[img]';
 
-				if ((height !== 'auto') || (width !== 'auto')) {
-					openTag = tplImageOpenTag.output(
+				var addHeight = height !== 'auto';
+				var addWidth = width !== 'auto';
+				var addAlt = (!((alt === null) || (alt === '')));
+
+				if (addAlt) {
+					if (!addHeight && !addWidth) {
+						openTag = tplImageOpenTagAlt.output(
+							{
+								alt: 'alt="' + alt + '"'
+							}
+						);
+					}
+					else {
+						openTag = tplImageOpenTagAltAndStyle.output(
+							{
+								alt: 'alt="' + alt + '"',
+								height: height,
+								width: width
+							}
+						);
+					}
+				}
+				else if (!addAlt && (addHeight || addWidth)) {
+					openTag = tplImageOpenTagStyle.output(
 						{
 							height: height,
 							width: width

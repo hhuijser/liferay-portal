@@ -41,8 +41,8 @@
 		<m:dependency.management__org.sonatype.aether__aether-api__version>1.13.1</m:dependency.management__org.sonatype.aether__aether-api__version>
 		<m:dependency.management__org.codehaus.plexus__plexus-component-annotations__exclusion_0>junit__junit</m:dependency.management__org.codehaus.plexus__plexus-component-annotations__exclusion_0>
 		<m:properties__plexusUtilsVersion>2.0.6</m:properties__plexusUtilsVersion>
-		<m:properties__jxpathVersion>1.3</m:properties__jxpathVersion>
 		<m:dependency.management__org.codehaus.plexus__plexus-classworlds__version>2.4</m:dependency.management__org.codehaus.plexus__plexus-classworlds__version>
+		<m:properties__jxpathVersion>1.3</m:properties__jxpathVersion>
 		<m:properties__siteDeployUrl>scp://people.apache.org/www/maven.apache.org/ref/${project.version}/</m:properties__siteDeployUrl>
 		<m:dependency.management__org.sonatype.plexus__plexus-cipher__version>1.7</m:dependency.management__org.sonatype.plexus__plexus-cipher__version>
 		<m:properties__aetherVersion>1.13.1</m:properties__aetherVersion>

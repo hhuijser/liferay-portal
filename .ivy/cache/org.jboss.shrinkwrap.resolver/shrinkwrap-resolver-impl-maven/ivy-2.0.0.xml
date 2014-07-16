@@ -34,15 +34,15 @@
 		<m:dependency.management__org.jboss.shrinkwrap__shrinkwrap-api-nio2__version>1.1.2</m:dependency.management__org.jboss.shrinkwrap__shrinkwrap-api-nio2__version>
 		<m:properties__version.apt.plugin>1.0-alpha-4</m:properties__version.apt.plugin>
 		<m:dependency.management__org.jboss.shrinkwrap__shrinkwrap-api__version>1.1.2</m:dependency.management__org.jboss.shrinkwrap__shrinkwrap-api__version>
-		<m:properties__version.clean.plugin>2.4.1</m:properties__version.clean.plugin>
 		<m:properties__version.javacc.plugin>2.6</m:properties__version.javacc.plugin>
+		<m:properties__version.clean.plugin>2.4.1</m:properties__version.clean.plugin>
 		<m:properties__version.buildnumber.plugin>1.0</m:properties__version.buildnumber.plugin>
 		<m:properties__version.org.apache.maven.wagon>2.4</m:properties__version.org.apache.maven.wagon>
 		<m:properties__maven.compiler.argument.target>${maven.compiler.target}</m:properties__maven.compiler.argument.target>
 		<m:properties__downloadSources>true</m:properties__downloadSources>
 		<m:properties__project.build.sourceEncoding>UTF-8</m:properties__project.build.sourceEncoding>
-		<m:properties__version.war.plugin>2.1.1</m:properties__version.war.plugin>
 		<m:properties__useReleaseProfile>false</m:properties__useReleaseProfile>
+		<m:properties__version.war.plugin>2.1.1</m:properties__version.war.plugin>
 		<m:dependency.management__org.codehaus.plexus__plexus-classworlds__version>2.4</m:dependency.management__org.codehaus.plexus__plexus-classworlds__version>
 		<m:properties__version.site.plugin>3.0-beta-3</m:properties__version.site.plugin>
 		<m:properties__version.org.codehaus.plexus.interpolation>1.14</m:properties__version.org.codehaus.plexus.interpolation>

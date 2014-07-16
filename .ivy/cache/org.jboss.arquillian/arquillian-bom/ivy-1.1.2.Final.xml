@@ -10,12 +10,12 @@
 		<description homepage="http://arquillian.org">
 		Arquillian Bill Of Material
 		</description>
-		<m:dependency.management__org.jboss.arquillian.junit__arquillian-junit-core__version>1.1.2.Final</m:dependency.management__org.jboss.arquillian.junit__arquillian-junit-core__version>
 		<m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-impl-jboss__version>2.0.0-alpha-3</m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-impl-jboss__version>
+		<m:dependency.management__org.jboss.arquillian.junit__arquillian-junit-core__version>1.1.2.Final</m:dependency.management__org.jboss.arquillian.junit__arquillian-junit-core__version>
 		<m:properties__version.shrinkwrap_descriptors>2.0.0-alpha-3</m:properties__version.shrinkwrap_descriptors>
 		<m:dependency.management__org.jboss.shrinkwrap.resolver__shrinkwrap-resolver-depchain__version>2.0.0</m:dependency.management__org.jboss.shrinkwrap.resolver__shrinkwrap-resolver-depchain__version>
-		<m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-api-jboss__version>2.0.0-alpha-3</m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-api-jboss__version>
 		<m:dependency.management__org.jboss.arquillian.container__arquillian-container-test-spi__version>1.1.2.Final</m:dependency.management__org.jboss.arquillian.container__arquillian-container-test-spi__version>
+		<m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-api-jboss__version>2.0.0-alpha-3</m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-api-jboss__version>
 		<m:dependency.management__org.jboss.arquillian.container__arquillian-container-test-api__version>1.1.2.Final</m:dependency.management__org.jboss.arquillian.container__arquillian-container-test-api__version>
 		<m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-api-base__version>2.0.0-alpha-3</m:dependency.management__org.jboss.shrinkwrap.descriptors__shrinkwrap-descriptors-api-base__version>
 		<m:dependency.management__org.jboss.arquillian.protocol__arquillian-protocol-jmx__version>1.1.2.Final</m:dependency.management__org.jboss.arquillian.protocol__arquillian-protocol-jmx__version>

@@ -14,28 +14,10 @@
 
 package com.liferay.portlet.grouppages.action;
 
-import com.liferay.portal.model.Group;
-import com.liferay.portal.theme.ThemeDisplay;
-import com.liferay.portal.util.WebKeys;
-
-import javax.portlet.PortletRequest;
-
 /**
  * @author Jorge Ferrer
  */
 public class EditLayoutsAction
 	extends com.liferay.portlet.layoutsadmin.action.EditLayoutsAction {
-
-	@Override
-	protected Group getGroup(PortletRequest portletRequest) throws Exception {
-		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Group group = themeDisplay.getSiteGroup();
-
-		portletRequest.setAttribute(WebKeys.GROUP, group);
-
-		return group;
-	}
 
 }

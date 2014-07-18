@@ -609,7 +609,14 @@ public class EditLayoutsAction extends PortletAction {
 	}
 
 	protected Group getGroup(PortletRequest portletRequest) throws Exception {
-		return ActionUtil.getGroup(portletRequest);
+		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		Group group = themeDisplay.getSiteGroup();
+
+		portletRequest.setAttribute(WebKeys.GROUP, group);
+
+		return group;
 	}
 
 	protected byte[] getIconBytes(

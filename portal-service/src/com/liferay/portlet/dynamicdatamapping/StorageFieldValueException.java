@@ -12,22 +12,27 @@
  * details.
  */
 
-package com.liferay.portal.spring.transaction;
-
-import java.util.List;
-import java.util.concurrent.Callable;
+package com.liferay.portlet.dynamicdatamapping;
 
 /**
- * @author Miguel Pastor
+ * @author Brian Wing Shun Chan
  */
-public class TransactionCommitCallbackTestUtil {
+public class StorageFieldValueException extends StorageException {
 
-	public static List<Callable<?>> popCallbackList() {
-		return TransactionCommitCallbackUtil.popCallbackList();
+	public StorageFieldValueException() {
+		super();
 	}
 
-	public static void pushCallbackList() {
-		TransactionCommitCallbackUtil.pushCallbackList();
+	public StorageFieldValueException(String msg) {
+		super(msg);
+	}
+
+	public StorageFieldValueException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public StorageFieldValueException(Throwable cause) {
+		super(cause);
 	}
 
 }

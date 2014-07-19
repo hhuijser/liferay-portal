@@ -320,6 +320,11 @@
 .app-view-drop-active {
 	background-color: #00A2EA;
 	font-weight: bold;
+
+	.category-portlets & {
+		background-color: #00A2EA;
+		color: #FFF;
+	}
 }
 
 .basecelleditor [class~="form-validator-message"] {
@@ -448,6 +453,11 @@
 
 	.modal-body {
 		overflow: auto;
+
+		&.dialog-iframe-bd {
+			overflow-x: hidden;
+			overflow-y: auto;
+		}
 	}
 
 	.modal-hidden {
@@ -632,6 +642,10 @@
 .aui {
 	.cke_dialog .cke_dialog_ui_input_text {
 		height: auto;
+	}
+
+	.cke_editable_inline a {
+		cursor: pointer;
 	}
 
 	.cke_panel.cke_combopanel {

@@ -14,8 +14,13 @@
 
 package com.liferay.portal.kernel.transaction;
 
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author Michael Young
+ * @author Shuyang Zhou
  */
 public enum Isolation {
 
@@ -27,12 +32,25 @@ public enum Isolation {
 	REPEATABLE_READ(TransactionDefinition.ISOLATION_REPEATABLE_READ),
 	SERIALIZABLE(TransactionDefinition.ISOLATION_SERIALIZABLE);
 
+	public static Isolation getIsolation(int value) {
+		return _isolations.get(value);
+	}
+
 	Isolation(int value) {
 		_value = value;
 	}
 
 	public int value() {
 		return _value;
+	}
+
+	private static Map<Integer, Isolation> _isolations =
+		new HashMap<Integer, Isolation>();
+
+	static {
+		for (Isolation isolation : EnumSet.allOf(Isolation.class)) {
+			_isolations.put(isolation._value, isolation);
+		}
 	}
 
 	private int _value;

@@ -228,7 +228,7 @@ public class PingbackMethodImplTest extends PowerMockito {
 
 		verifyFault(
 			PingbackMethodImpl.PINGBACK_ALREADY_REGISTERED,
-			"Pingback previously registered");
+			"Pingback is already registered");
 	}
 
 	@Test
@@ -312,7 +312,8 @@ public class PingbackMethodImplTest extends PowerMockito {
 		execute("MALFORMED");
 
 		verifyFault(
-			PingbackMethodImpl.TARGET_URI_INVALID, "Error parsing target URI");
+			PingbackMethodImpl.TARGET_URI_INVALID,
+			"Unable to parse target URI");
 	}
 
 	@Test
@@ -323,7 +324,7 @@ public class PingbackMethodImplTest extends PowerMockito {
 
 		verifyFault(
 			PingbackMethodImpl.SOURCE_URI_INVALID,
-			"Could not find target URI in source");
+			"Unable to find target URI in source");
 	}
 
 	@Test

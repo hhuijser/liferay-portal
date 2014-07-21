@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.test;
+package com.liferay.portal.test.listeners;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.test.TestContext;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.model.Company;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.PersistedModel;
@@ -33,6 +34,7 @@ import com.liferay.portal.service.PersistedModelLocalService;
 import com.liferay.portal.service.PersistedModelLocalServiceRegistryUtil;
 import com.liferay.portal.service.ServiceTestUtil;
 import com.liferay.portal.servlet.MainServlet;
+import com.liferay.portal.test.DeleteAfterTestRun;
 import com.liferay.portal.util.test.TestPropsValues;
 
 import java.io.File;
@@ -377,6 +379,6 @@ public class MainServletExecutionTestListener
 	private static Set<Class<?>> _orderedClasses = new LinkedHashSet<Class<?>>(
 		Arrays.asList(
 			User.class, Organization.class, Role.class, UserGroup.class,
-			Group.class));
+			Group.class, Company.class));
 
 }

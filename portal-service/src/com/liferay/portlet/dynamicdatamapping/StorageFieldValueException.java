@@ -12,32 +12,27 @@
  * details.
  */
 
-package com.liferay.portal.test;
-
-import java.util.Arrays;
-import java.util.List;
-
-import org.junit.runners.model.InitializationError;
+package com.liferay.portlet.dynamicdatamapping;
 
 /**
- * @author Miguel Pastor
+ * @author Brian Wing Shun Chan
  */
-public class NullThreadLocalCacheJUnitTestRunner
-	extends CustomizableSpringContextJUnitTestRunner {
+public class StorageFieldValueException extends StorageException {
 
-	public NullThreadLocalCacheJUnitTestRunner(Class<?> clazz)
-		throws InitializationError {
-
-		super(clazz);
+	public StorageFieldValueException() {
+		super();
 	}
 
-	@Override
-	public void afterApplicationContextInit() {
+	public StorageFieldValueException(String msg) {
+		super(msg);
 	}
 
-	@Override
-	public List<String> getExtraConfigLocations() {
-		return Arrays.asList("META-INF/test-thread-local-spring.xml");
+	public StorageFieldValueException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
+
+	public StorageFieldValueException(Throwable cause) {
+		super(cause);
 	}
 
 }

@@ -101,15 +101,49 @@ public class LiferayToHtmlSerializer extends ToHtmlSerializer {
 	}
 
 	protected void print(SidebarNode sidebarNode) {
-		printer.print("<p><img src=\"");
-		printer.print(sidebarNode.getSrc());
-		printer.print("\" alt=\"");
-		printer.print(sidebarNode.getAlt());
-		printer.print("\" />");
+		String alt = sidebarNode.getAlt();
 
-		visitChildren(sidebarNode);
+		if (alt.equalsIgnoreCase("note")) {
+			printer.print("<div class=\"sidebar\">");
+			printer.print("<div class=\"sidebar-note-image\"></div>");
+			printer.print("<div class=\"sidebar-note-paragraph\">");
 
-		printer.print("</p>");
+			visitChildren(sidebarNode);
+
+			printer.print("</div>");
+			printer.print("</div>");
+		}
+		else if (alt.equalsIgnoreCase("tip")) {
+			printer.print("<div class=\"sidebar\">");
+			printer.print("<div class=\"sidebar-tip-image\"></div>");
+			printer.print("<div class=\"sidebar-tip-paragraph\">");
+
+			visitChildren(sidebarNode);
+
+			printer.print("</div>");
+			printer.print("</div>");
+		}
+		else if (alt.equalsIgnoreCase("warning")) {
+			printer.print("<div class=\"sidebar\">");
+			printer.print("<div class=\"sidebar-warning-image\"></div>");
+			printer.print("<div class=\"sidebar-warning-paragraph\">");
+
+			visitChildren(sidebarNode);
+
+			printer.print("</div>");
+			printer.print("</div>");
+		}
+		else {
+			printer.print("<p><img src=\"");
+			printer.print(sidebarNode.getSrc());
+			printer.print("\" alt=\"");
+			printer.print(alt);
+			printer.print("\"/>");
+
+			visitChildren(sidebarNode);
+
+			printer.print("</p>");
+		}
 	}
 
 }

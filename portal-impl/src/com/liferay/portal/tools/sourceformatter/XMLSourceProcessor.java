@@ -286,6 +286,22 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return content;
 	}
 
+	protected String fixPoshiCharactersOutsideDefinitionTag(String content) {
+		Matcher matcher = _poshiCharactersBeforeDefinitionTag.matcher(content);
+
+		while (matcher.find()) {
+			content = StringUtil.replace(content, matcher.group(1), "");
+		}
+
+		Matcher matcher2 = _poshiCharactersAfterDefinitionTag.matcher(content);
+
+		while (matcher2.find()) {
+			content = StringUtil.replace(content, matcher2.group(1), "");
+		}
+
+		return content;
+	}
+
 	protected String fixPoshiXMLElementWithNoChild(String content) {
 		Matcher matcher = _poshiElementWithNoChildPattern.matcher(content);
 
@@ -731,6 +747,8 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 		content = sortPoshiVariables(content);
 
+		content = fixPoshiCharactersOutsideDefinitionTag(content);
+
 		content = fixPoshiXMLElementWithNoChild(content);
 
 		content = fixPoshiXMLEndLinesAfterClosingElement(content);
@@ -1153,6 +1171,10 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 	private List<String> _columnNames;
 	private List<String> _friendlyUrlRoutesSortExclusions;
 	private List<String> _numericalPortletNameElementExclusions;
+	private Pattern _poshiCharactersAfterDefinitionTag = Pattern.compile(
+		"</definition>([a-zA-Z0-9\\s\\t\\n]+)");
+	private Pattern _poshiCharactersBeforeDefinitionTag = Pattern.compile(
+		"([a-zA-Z0-9\\s\\t\\n]+)<definition");
 	private Pattern _poshiClosingTagPattern = Pattern.compile("</[^>/]*>");
 	private Pattern _poshiCommandsPattern = Pattern.compile(
 		"\\<command.*name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?\\</command\\>" +

@@ -44,6 +44,7 @@ import com.liferay.portlet.bookmarks.util.comparator.FolderIdComparator;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.model.TrashVersion;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -333,9 +334,19 @@ public class BookmarksFolderLocalServiceImpl
 			folderId);
 
 		folder.setParentFolderId(parentFolderId);
-		folder.setTreePath(folder.buildTreePath());
 
 		bookmarksFolderPersistence.update(folder);
+
+		// Indexer and build tree path
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			BookmarksFolder.class);
+
+		indexer.reindex(buildBookmarkFoldersTreePath(folder));
+
+		indexer = IndexerRegistryUtil.nullSafeGetIndexer(BookmarksEntry.class);
+
+		indexer.reindex(buildBookmarkEntriesTreePath(folder));
 
 		return folder;
 	}
@@ -618,6 +629,45 @@ public class BookmarksFolderLocalServiceImpl
 		indexer.reindex(folder);
 
 		return folder;
+	}
+
+	protected List<BookmarksEntry> buildBookmarkEntriesTreePath(
+			BookmarksFolder bookmarksFolder)
+		throws PortalException {
+
+		List<BookmarksEntry> bookmarksEntries =
+			bookmarksEntryPersistence.findByC_T(
+				bookmarksFolder.getCompanyId(),
+				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0],
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
+
+		for (BookmarksEntry bookmarksEntry : bookmarksEntries) {
+			bookmarksEntry.setTreePath(bookmarksEntry.buildTreePath());
+
+			bookmarksEntryPersistence.update(bookmarksEntry);
+		}
+
+		return bookmarksEntries;
+	}
+
+	protected List<BookmarksFolder> buildBookmarkFoldersTreePath(
+			BookmarksFolder bookmarksFolder)
+		throws PortalException {
+
+		List<BookmarksFolder> bookmarksFolders =
+			bookmarksFolderPersistence.findByC_T(
+				bookmarksFolder.getCompanyId(),
+				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0],
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new FolderIdComparator(true));
+
+		for (BookmarksFolder curBookmarksFolder : bookmarksFolders) {
+			curBookmarksFolder.setTreePath(curBookmarksFolder.buildTreePath());
+
+			bookmarksFolderPersistence.update(curBookmarksFolder);
+		}
+
+		return bookmarksFolders;
 	}
 
 	protected long getParentFolderId(

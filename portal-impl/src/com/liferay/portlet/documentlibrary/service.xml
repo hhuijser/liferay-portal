@@ -168,6 +168,10 @@
 		<finder name="FileEntryTypeId" return-type="Collection">
 			<finder-column name="fileEntryTypeId" />
 		</finder>
+		<finder name="C_T" return-type="Collection" db-index="false">
+			<finder-column name="companyId" />
+			<finder-column name="treePath" comparator="LIKE" />
+		</finder>
 		<finder name="F_N" return-type="Collection">
 			<finder-column name="folderId" />
 			<finder-column name="name" />
@@ -419,6 +423,10 @@
 			<finder-column name="companyId" />
 			<finder-column name="status" comparator="!=" />
 		</finder>
+		<finder name="C_T" return-type="Collection" db-index="false">
+			<finder-column name="companyId" />
+			<finder-column name="treePath" comparator="LIKE" />
+		</finder>
 		<finder name="G_F_A" return-type="Collection">
 			<finder-column name="groupId" />
 			<finder-column name="folderId" />
@@ -592,6 +600,10 @@
 		<finder name="C_NotS" return-type="Collection">
 			<finder-column name="companyId" />
 			<finder-column name="status" comparator="!=" />
+		</finder>
+		<finder name="C_T" return-type="Collection" db-index="false">
+			<finder-column name="companyId" />
+			<finder-column name="treePath" comparator="LIKE" />
 		</finder>
 		<finder name="P_N" return-type="Collection">
 			<finder-column name="parentFolderId" />

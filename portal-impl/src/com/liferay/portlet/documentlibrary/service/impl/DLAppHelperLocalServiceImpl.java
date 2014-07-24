@@ -74,6 +74,7 @@ import com.liferay.portlet.documentlibrary.util.comparator.FileVersionVersionCom
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.model.TrashVersion;
+import com.liferay.portlet.trash.service.TrashEntryServiceUtil;
 import com.liferay.portlet.trash.util.TrashUtil;
 
 import java.io.Serializable;
@@ -327,6 +328,8 @@ public class DLAppHelperLocalServiceImpl
 		for (FileEntry fileEntry : fileEntries) {
 			deleteFileEntry(fileEntry);
 		}
+
+		trashEntryService.deleteEntries(repositoryId);
 	}
 
 	@Override

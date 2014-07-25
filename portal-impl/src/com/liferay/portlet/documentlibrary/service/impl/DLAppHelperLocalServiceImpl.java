@@ -327,6 +327,8 @@ public class DLAppHelperLocalServiceImpl
 		for (FileEntry fileEntry : fileEntries) {
 			deleteFileEntry(fileEntry);
 		}
+
+		trashEntryService.deleteEntries(repositoryId);
 	}
 
 	@Override

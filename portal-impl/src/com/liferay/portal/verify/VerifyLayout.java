@@ -14,6 +14,7 @@
 
 package com.liferay.portal.verify;
 
+import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -98,9 +99,13 @@ public class VerifyLayout extends VerifyProcess {
 	}
 
 	protected void verifyLayoutPrototypeLinkEnabled() throws Exception {
-		runSQL(
-			"update Layout set layoutPrototypeLinkEnabled = 0 where type_ = " +
-				"'link_to_layout' and layoutPrototypeLinkEnabled = 1");
+		String sql =
+			"update Layout set layoutPrototypeLinkEnabled = [$FALSE$] where " +
+				"layoutPrototypeLinkEnabled = [$TRUE$]";
+
+		sql = SQLTransformer.transform(sql);
+
+		runSQL(sql);
 	}
 
 	protected void verifyUuid() throws Exception {

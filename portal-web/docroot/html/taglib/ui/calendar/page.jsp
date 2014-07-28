@@ -108,17 +108,17 @@ int weekNumber = 1;
 		maxDayOfPrevMonth = (maxDayOfPrevMonth - dayOfWeek) + 1;
 
 		for (int i = 1; i < dayOfWeek; i++) {
-			String className = "table-cell calendar-inactive calendar-previous-month";
+			String cssClass = "table-cell calendar-inactive calendar-previous-month";
 
 			if (i == 1) {
-				className += " first";
+				cssClass += " first";
 			}
 			else if (i == 7) {
-				className += " last";
+				cssClass += " last";
 			}
 		%>
 
-			<td class="<%= className %>"><%= maxDayOfPrevMonth + i %></td>
+			<td class="<%= cssClass %>"><%= maxDayOfPrevMonth + i %></td>
 
 		<%
 		}
@@ -143,27 +143,27 @@ int weekNumber = 1;
 
 			boolean hasData = (data != null) && data.contains(new Integer(i));
 
-			String className = "";
+			String cssClass = "";
 
 			if (i == selDay) {
-				className = "table-cell calendar-current-day portlet-section-selected";
+				cssClass = "table-cell calendar-current-day portlet-section-selected";
 			}
 
 			if (hasData) {
-				className += " has-events";
+				cssClass += " has-events";
 			}
 
 			if (dayOfWeek == 1) {
-				className += " first";
+				cssClass += " first";
 			}
 			else if (dayOfWeek == 7) {
-				className += " last";
+				cssClass += " last";
 			}
 
 			dayOfWeek++;
 		%>
 
-			<td class="<%= className %>">
+			<td class="<%= cssClass %>">
 				<a href="javascript:<%= namespace %>updateCalendar(<%= selMonth %>, <%= i %>, <%= selYear %>);"><span><%= i %></span></a>
 			</td>
 
@@ -173,17 +173,17 @@ int weekNumber = 1;
 		int dayOfNextMonth = 1;
 
 		for (int i = 7; i >= dayOfWeek; i--) {
-			String className = "table-cell calendar-inactive calendar-next-month";
+			String cssClass = "table-cell calendar-inactive calendar-next-month";
 
 			if (dayOfWeek == 1) {
-				className += " first";
+				cssClass += " first";
 			}
 			else if (i == dayOfWeek) {
-				className += " last";
+				cssClass += " last";
 			}
 		%>
 
-			<td class="<%= className %>"><%= dayOfNextMonth++ %></td>
+			<td class="<%= cssClass %>"><%= dayOfNextMonth++ %></td>
 
 		<%
 		}
@@ -195,17 +195,17 @@ int weekNumber = 1;
 
 				<%
 				for (int i = 1; i <= 7; i++) {
-					String className = "table-cell calendar-inactive calendar-next-month";
+					String cssClass = "table-cell calendar-inactive calendar-next-month";
 
 					if (i == 1) {
-						className += " first";
+						cssClass += " first";
 					}
 					else if (i == 7) {
-						className += " last";
+						cssClass += " last";
 					}
 				%>
 
-					<td class="<%= className %>"><%= dayOfNextMonth++ %></td>
+					<td class="<%= cssClass %>"><%= dayOfNextMonth++ %></td>
 
 				<%
 				}

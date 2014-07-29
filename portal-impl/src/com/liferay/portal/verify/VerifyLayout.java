@@ -99,8 +99,8 @@ public class VerifyLayout extends VerifyProcess {
 
 	protected void verifyLayoutPrototypeLinkEnabled() throws Exception {
 		runSQL(
-			"update Layout set layoutPrototypeLinkEnabled = 0 where type_ = " +
-				"'link_to_layout' and layoutPrototypeLinkEnabled = 1");
+			"update Layout set layoutPrototypeLinkEnabled = FALSE where " +
+				"layoutPrototypeLinkEnabled = TRUE");
 	}
 
 	protected void verifyUuid() throws Exception {

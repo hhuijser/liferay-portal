@@ -7955,11 +7955,12 @@ public class PortalImpl implements Portal {
 
 		boolean useGroupVirtualHostName = false;
 
-		if (canonicalURL ||
-			!StringUtil.equalsIgnoreCase(
-				themeDisplay.getServerName(), _LOCALHOST)) {
-
+		if (canonicalURL) {
 			useGroupVirtualHostName = true;
+		}
+
+		if (isValidVirtualHost(themeDisplay.getServerName())) {
+			useGroupVirtualHostName = false;
 		}
 
 		long refererPlid = themeDisplay.getRefererPlid();
@@ -8190,14 +8191,8 @@ public class PortalImpl implements Portal {
 	}
 
 	protected String getValidPortalDomain(long companyId, String domain) {
-		for (String virtualHost : PropsValues.VIRTUAL_HOSTS_VALID_HOSTS) {
-			if (StringUtil.equalsIgnoreCase(domain, virtualHost) ||
-				StringUtil.wildcardMatches(
-					domain, virtualHost, CharPool.QUESTION, CharPool.STAR,
-					CharPool.PERCENT, false)) {
-
-				return domain;
-			}
+		if (isValidVirtualHost(domain)) {
+			return domain;
 		}
 
 		if (StringUtil.equalsIgnoreCase(domain, PropsValues.WEB_SERVER_HOST)) {
@@ -8314,6 +8309,20 @@ public class PortalImpl implements Portal {
 				panelSelectedPortlets);
 
 			return ArrayUtil.contains(panelSelectedPortletsArray, portletId);
+		}
+
+		return false;
+	}
+
+	protected boolean isValidVirtualHost(String domain) {
+		for (String virtualHost : PropsValues.VIRTUAL_HOSTS_VALID_HOSTS) {
+			if (StringUtil.equalsIgnoreCase(domain, virtualHost) ||
+				StringUtil.wildcardMatches(
+					domain, virtualHost, CharPool.QUESTION, CharPool.STAR,
+					CharPool.PERCENT, false)) {
+
+				return true;
+			}
 		}
 
 		return false;

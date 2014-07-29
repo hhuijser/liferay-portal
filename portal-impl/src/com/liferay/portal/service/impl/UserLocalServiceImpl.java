@@ -807,13 +807,16 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		user.setEmailAddress(emailAddress);
 		user.setFacebookId(facebookId);
 
-		Long ldapServerId = (Long)serviceContext.getAttribute("ldapServerId");
+		if (serviceContext != null) {
+			Long ldapServerId = (Long)serviceContext.getAttribute(
+				"ldapServerId");
 
-		if (ldapServerId != null) {
-			user.setLdapServerId(ldapServerId);
-		}
-		else {
-			user.setLdapServerId(-1);
+			if (Validator.isNotNull(ldapServerId)) {
+				user.setLdapServerId(ldapServerId);
+			}
+			else {
+				user.setLdapServerId(-1);
+			}
 		}
 
 		user.setOpenId(openId);
@@ -4295,9 +4298,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			long userId, long[] newGroupIds, ServiceContext serviceContext)
 		throws PortalException {
 
-		updateGroups(
-			userId, newGroupIds, serviceContext,
-			serviceContext.isIndexingEnabled());
+		boolean indexingEnabled = false;
+
+		if (serviceContext != null) {
+			indexingEnabled = serviceContext.isIndexingEnabled();
+		}
+
+		updateGroups(userId, newGroupIds, serviceContext, indexingEnabled);
 	}
 
 	/**
@@ -5192,10 +5199,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		user.setFacebookId(facebookId);
 
-		Long ldapServerId = (Long)serviceContext.getAttribute("ldapServerId");
+		if (serviceContext != null) {
+			Long ldapServerId = (Long)serviceContext.getAttribute(
+				"ldapServerId");
 
-		if (ldapServerId != null) {
-			user.setLdapServerId(ldapServerId);
+			if (Validator.isNotNull(ldapServerId)) {
+				user.setLdapServerId(ldapServerId);
+			}
 		}
 
 		user.setOpenId(openId);

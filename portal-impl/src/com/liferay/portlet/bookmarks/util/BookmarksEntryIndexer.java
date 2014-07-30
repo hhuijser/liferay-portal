@@ -140,9 +140,9 @@ public class BookmarksEntryIndexer extends BaseIndexer {
 	@Override
 	protected void doReindex(Object obj) throws Exception {
 		if (obj instanceof List<?>) {
-			List<BookmarksEntry> bookmarksEntrys = (List<BookmarksEntry>)obj;
+			List<BookmarksEntry> bookmarksEntries = (List<BookmarksEntry>)obj;
 
-			for (BookmarksEntry bookmarksEntry : bookmarksEntrys) {
+			for (BookmarksEntry bookmarksEntry : bookmarksEntries) {
 				doReindex(bookmarksEntry);
 			}
 		}

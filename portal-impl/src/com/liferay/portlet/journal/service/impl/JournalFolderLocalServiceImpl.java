@@ -1058,36 +1058,36 @@ public class JournalFolderLocalServiceImpl
 			JournalFolder journalFolder)
 		throws PortalException {
 
-		List<JournalArticle> JournalArticles =
+		List<JournalArticle> journalArticles =
 			journalArticlePersistence.findByC_T(
 				journalFolder.getCompanyId(),
 				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
 
-		for (JournalArticle journalArticle : JournalArticles) {
+		for (JournalArticle journalArticle : journalArticles) {
 			journalArticle.setTreePath(journalArticle.buildTreePath());
 
 			journalArticlePersistence.update(journalArticle);
 		}
 
-		return JournalArticles;
+		return journalArticles;
 	}
 
 	protected List<JournalFolder> getReindexJournalFolders(
 			JournalFolder journalFolder)
 		throws PortalException {
 
-		List<JournalFolder> JournalFolders =
+		List<JournalFolder> journalFolders =
 			journalFolderPersistence.findByC_T(
 				journalFolder.getCompanyId(),
 				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
 
-		for (JournalFolder curJournalFolder : JournalFolders) {
+		for (JournalFolder curJournalFolder : journalFolders) {
 			curJournalFolder.setTreePath(curJournalFolder.buildTreePath());
 
 			journalFolderPersistence.update(curJournalFolder);
 		}
 
-		return JournalFolders;
+		return journalFolders;
 	}
 
 	protected void mergeFolders(JournalFolder fromFolder, long toFolderId)

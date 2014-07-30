@@ -145,7 +145,41 @@ int totalVar = 0;
 	<c:when test="<%= Validator.isNotNull(displayTerms.getStructureId()) %>">
 
 		<%
-		long[] groupIds = PortalUtil.getSharedContentSiteGroupIds(company.getCompanyId(), displayTerms.getGroupId(), user.getUserId());
+		long[] groupIds;
+
+		Group siteGroup = GroupLocalServiceUtil.getGroup(displayTerms.getGroupId());
+
+		if (siteGroup.isCompany()) {
+			groupIds = PortalUtil.getSharedContentSiteGroupIds(company.getCompanyId(), displayTerms.getGroupId(), user.getUserId());
+		}
+		else {
+			DDMStructure ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(siteGroup.getGroupId(), PortalUtil.getClassNameId(JournalArticle.class), displayTerms.getStructureId(), true);
+
+			Group ddmStructureGroup = GroupLocalServiceUtil.getGroup(ddmStructure.getGroupId());
+
+			if (ddmStructureGroup.isCompany()) {
+				groupIds= new long[] {siteGroup.getGroupId()};
+			}
+			else {
+				List<Group> groups = new UniqueList<Group>();
+
+				groups.add(siteGroup);
+
+				if (siteGroup.getGroupId() == ddmStructure.getGroupId()) {
+					groups.addAll(siteGroup.getDescendants(true));
+				}
+
+				long[] tempGroupIds = new long[groups.size()];
+
+				for (int i = 0; i < groups.size(); i++) {
+					Group group = groups.get(i);
+
+					tempGroupIds[i] = group.getGroupId();
+				}
+
+				groupIds = tempGroupIds;
+			}
+		}
 
 		totalVar = JournalArticleServiceUtil.getArticlesCountByStructureId(groupIds, searchTerms.getStructureId());
 

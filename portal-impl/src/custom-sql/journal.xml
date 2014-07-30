@@ -156,7 +156,7 @@
 				(JournalArticle.articleId = tempJournalArticle.articleId) AND
 				(JournalArticle.version < tempJournalArticle.version)
 			WHERE
-				(JournalArticle.groupId = ?) AND
+				[$GROUP_ID$]
 				(JournalArticle.classNameId = ?) AND
 				(JournalArticle.structureId = ?) AND
 				([$STATUS$]) AND

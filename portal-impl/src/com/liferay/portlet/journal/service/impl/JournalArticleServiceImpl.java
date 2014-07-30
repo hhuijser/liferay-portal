@@ -825,7 +825,8 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			new QueryDefinition<JournalArticle>(status, start, end, obc);
 
 		return journalArticleFinder.filterFindByG_C_S(
-			groupId, classNameId, ddmStructureKey, queryDefinition);
+			new long[] {groupId}, classNameId, ddmStructureKey,
+			queryDefinition);
 	}
 
 	/**
@@ -858,12 +859,21 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 		long groupId, String ddmStructureKey, int start, int end,
 		OrderByComparator<JournalArticle> obc) {
 
+		return getArticlesByStructureId(
+			new long[] {groupId}, ddmStructureKey, start, end,
+			obc);
+	}
+
+	public List<JournalArticle> getArticlesByStructureId(
+		long[] groupIds, String ddmStructureKey, int start, int end,
+		OrderByComparator<JournalArticle> obc) {
+
 		QueryDefinition<JournalArticle> queryDefinition =
 			new QueryDefinition<JournalArticle>(
 				WorkflowConstants.STATUS_ANY, start, end, obc);
 
 		return journalArticleFinder.filterFindByG_C_S(
-			groupId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupIds, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
 			ddmStructureKey, queryDefinition);
 	}
 
@@ -930,15 +940,6 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 			new long[] {groupId}, classNameId, ddmStructureKey, status);
 	}
 
-	@Override
-	public int getArticlesCountByStructureId(
-		long[] groupIds, long classNameId, String ddmStructureKey, int status) {
-
-		return journalArticleFinder.filterCountByG_C_S(
-			groupIds, classNameId, ddmStructureKey,
-			new QueryDefinition<JournalArticle>(status));
-	}
-
 	/**
 	 * Returns the number of web content articles matching the group, default
 	 * class name ID, and DDM structure key.
@@ -954,6 +955,15 @@ public class JournalArticleServiceImpl extends JournalArticleServiceBaseImpl {
 
 		return getArticlesCountByStructureId(
 			new long[] {groupId}, ddmStructureKey);
+	}
+
+	@Override
+	public int getArticlesCountByStructureId(
+		long[] groupIds, long classNameId, String ddmStructureKey, int status) {
+
+		return journalArticleFinder.filterCountByG_C_S(
+			groupIds, classNameId, ddmStructureKey,
+			new QueryDefinition<JournalArticle>(status));
 	}
 
 	public int getArticlesCountByStructureId(

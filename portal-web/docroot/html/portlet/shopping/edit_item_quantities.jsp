@@ -79,12 +79,12 @@ for (int i = values.size() - 1; i >= 0; i--) {
 
 				<liferay-ui:search-container-column-jsp
 					name="quantity"
-					path="/html/portlet/shopping/edit_item_quantities_row.jsp"
+					path="/html/portlet/shopping/edit_item_quantities_column.jsp"
 				/>
 
 			</liferay-ui:search-container-row>
 
-			<aui:script>
+			<aui:script use="aui-base">
 				var fieldsQuantities = opener.document.<portlet:namespace />fm.<portlet:namespace />fieldsQuantities.value;
 				var itemQuantities = [];
 
@@ -127,7 +127,7 @@ for (int i = values.size() - 1; i >= 0; i--) {
 					self.close();
 				}
 
-				AUI().all('ul.lfr-pagination-buttons li a').each(
+				AUI().all('.taglib-page-iterator li a').each(
 					function(node) {
 						node.on('click', <portlet:namespace />setItemQuantities);
 					}

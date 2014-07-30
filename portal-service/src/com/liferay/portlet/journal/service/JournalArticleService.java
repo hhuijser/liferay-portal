@@ -677,6 +677,11 @@ public interface JournalArticleService extends BaseService {
 		long groupId, java.lang.String ddmStructureKey, int start, int end,
 		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portlet.journal.model.JournalArticle> obc);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByStructureId(
+		long[] groupIds, java.lang.String ddmStructureKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portlet.journal.model.JournalArticle> obc);
+
 	/**
 	* Returns the number of web content articles matching the group and folder.
 	*
@@ -722,10 +727,6 @@ public interface JournalArticleService extends BaseService {
 	public int getArticlesCountByStructureId(long groupId, long classNameId,
 		java.lang.String ddmStructureKey, int status);
 
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getArticlesCountByStructureId(long[] groupIds, long classNameId,
-		java.lang.String ddmStructureKey, int status);
-
 	/**
 	* Returns the number of web content articles matching the group, default
 	* class name ID, and DDM structure key.
@@ -738,6 +739,10 @@ public interface JournalArticleService extends BaseService {
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCountByStructureId(long groupId,
 		java.lang.String ddmStructureKey);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getArticlesCountByStructureId(long[] groupIds, long classNameId,
+		java.lang.String ddmStructureKey, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getArticlesCountByStructureId(long[] groupIds,

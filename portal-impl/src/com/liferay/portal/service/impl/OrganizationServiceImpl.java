@@ -219,7 +219,7 @@ public class OrganizationServiceImpl extends OrganizationServiceBaseImpl {
 			List<Website> websites, ServiceContext serviceContext)
 		throws PortalException {
 
-		boolean indexingEnabled = false;
+		boolean indexingEnabled = true;
 
 		if (serviceContext != null) {
 			indexingEnabled = serviceContext.isIndexingEnabled();

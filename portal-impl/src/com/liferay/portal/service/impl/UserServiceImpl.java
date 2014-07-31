@@ -608,7 +608,7 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			boolean sendEmail, ServiceContext serviceContext)
 		throws PortalException {
 
-		boolean indexingEnabled = false;
+		boolean indexingEnabled = true;
 
 		if (serviceContext != null) {
 			indexingEnabled = serviceContext.isIndexingEnabled();

@@ -89,6 +89,14 @@ Map<String, String[]> companyPortletPreferencesMap = companyPortletPreferences.g
 
 		boolean overriddenPropertyValue = false;
 
+		String[] obfuscatedPropertyValues = PropsUtil.getArray("obfuscated.property.values");
+
+		for (String obfuscatedPropertyValue : obfuscatedPropertyValues) {
+			if (property.equalsIgnoreCase(obfuscatedPropertyValue)) {
+				value = "********";
+			}
+		}
+
 		if (tabs3.equals("portal-properties")) {
 			if (serverPortletPreferencesMap.containsKey(property)) {
 				value = serverPortletPreferences.getValue(property, StringPool.BLANK);

@@ -57,18 +57,37 @@ public class CamelCaseUtil {
 		return sb.toString();
 	}
 
-	public static String normalizeCamelCase(String s) {
+	public static String normalizeCamelCase(String s, boolean onlyFirstWord) {
 		StringBuilder sb = new StringBuilder();
 
 		boolean upperCase = false;
+		boolean afterDot = false;
 
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
 
+			if (afterDot) {
+				sb.append(c);
+
+				continue;
+			}
+
+			if (onlyFirstWord && c == '.') {
+				afterDot = true;
+
+				sb.append(c);
+
+				continue;
+			}
+
 			boolean nextUpperCase = true;
 
 			if (i < (s.length() - 1)) {
-				nextUpperCase = Character.isUpperCase(s.charAt(i + 1));
+				char nextChar = s.charAt(i + 1);
+
+				if (nextChar != '.') {
+					nextUpperCase = Character.isUpperCase(nextChar);
+				}
 			}
 
 			if ((i > 0) && Character.isUpperCase(c)) {

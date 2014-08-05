@@ -67,6 +67,8 @@ Map<String, String[]> serverPortletPreferencesMap = serverPortletPreferences.get
 PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(company.getCompanyId());
 
 Map<String, String[]> companyPortletPreferencesMap = companyPortletPreferences.getMap();
+
+Set<String> obfuscatedPropertyValues = new HashSet<String>(Arrays.asList(PropsValues.OBFUSCATED_PROPERTY_VALUES));
 %>
 
 <liferay-ui:search-container
@@ -89,10 +91,8 @@ Map<String, String[]> companyPortletPreferencesMap = companyPortletPreferences.g
 
 		boolean overriddenPropertyValue = false;
 
-		for (String obfuscatedPropertyValue : PropsValues.OBFUSCATED_PROPERTY_VALUES) {
-			if (property.equalsIgnoreCase(obfuscatedPropertyValue)) {
-				value = "********";
-			}
+		if (obfuscatedPropertyValues.contains(property)) {
+			value = "********";
 		}
 
 		if (tabs3.equals("portal-properties")) {

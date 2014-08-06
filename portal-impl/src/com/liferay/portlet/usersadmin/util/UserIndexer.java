@@ -115,7 +115,7 @@ public class UserIndexer extends BaseIndexer {
 			Class<?> clazz = value.getClass();
 
 			if (clazz.isArray()) {
-				Object[] values = ArrayUtil.toObjectArray(value);
+				Object[] values = ArrayUtil.convertObjectToArray(value);
 
 				if (values.length == 0) {
 					continue;

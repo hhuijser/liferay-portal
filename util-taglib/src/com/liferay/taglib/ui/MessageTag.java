@@ -112,7 +112,7 @@ public class MessageTag extends TagSupport {
 		Class<?> clazz = argument.getClass();
 
 		if (clazz.isArray()) {
-			_arguments = ArrayUtil.toObjectArray(argument);
+			_arguments = ArrayUtil.convertObjectToArray(argument);
 		}
 		else {
 			_arguments = new Object[] {argument};

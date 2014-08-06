@@ -26,7 +26,7 @@ public class CSVUtil {
 			return encode(String.valueOf(obj));
 		}
 
-		Object[] array = (Object[])obj;
+		Object[] array = ArrayUtil.convertObjectToArray(obj);
 
 		return encode(StringUtil.merge(array));
 	}

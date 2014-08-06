@@ -806,6 +806,34 @@ public class ArrayUtil {
 		return true;
 	}
 
+	public static Object[] convertObjectToArray(Object object) {
+		if (object == null) {
+			return null;
+		}
+
+		Class<?> clazz = object.getClass();
+
+		if (!clazz.isArray()) {
+			return null;
+		}
+
+		Class<?> componentType = clazz.getComponentType();
+
+		if (componentType.isPrimitive()) {
+			int length = Array.getLength(object);
+
+			Object[] newArray = new Object[length];
+
+			for (int i = 0; i < length; i++) {
+				newArray[i] = Array.get(object, i);
+			}
+
+			return newArray;
+		}
+
+		return (Object[])object;
+	}
+
 	public static <T> int count(T[] array, PredicateFilter<T> predicateFilter) {
 		if (isEmpty(array)) {
 			return 0;

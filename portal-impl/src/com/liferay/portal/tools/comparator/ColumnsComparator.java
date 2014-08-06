@@ -14,6 +14,8 @@
 
 package com.liferay.portal.tools.comparator;
 
+import com.liferay.portal.kernel.util.ArrayUtil;
+
 import java.util.Comparator;
 import java.util.List;
 
@@ -36,8 +38,8 @@ public class ColumnsComparator implements Comparator<Object> {
 
 	@Override
 	public int compare(Object obj1, Object obj2) {
-		Object[] column1 = (Object[])obj1;
-		Object[] column2 = (Object[])obj2;
+		Object[] column1 = ArrayUtil.convertObjectToArray(obj1);
+		Object[] column2 = ArrayUtil.convertObjectToArray(obj2);
 
 		String columnName1 = (String)column1[0];
 		String columnName2 = (String)column2[0];

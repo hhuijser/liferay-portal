@@ -1116,7 +1116,10 @@ public abstract class BaseIndexer implements Indexer {
 			Class<?> clazz = serializable.getClass();
 
 			if (clazz.isArray()) {
-				value = StringUtil.merge((Object[])serializable);
+				Object[] serializableArray = ArrayUtil.convertObjectToArray(
+					serializable);
+
+				value = StringUtil.merge(serializableArray);
 			}
 			else {
 				value = GetterUtil.getString(serializable);

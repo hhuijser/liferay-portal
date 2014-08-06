@@ -173,8 +173,9 @@ public class ExpandoConverterUtil {
 				 (type == ExpandoColumnConstants.SHORT_ARRAY) ||
 				 (type == ExpandoColumnConstants.STRING_ARRAY)) {
 
-			return StringUtil.merge(
-				ArrayUtil.toStringArray((Object[])attribute));
+			Object[] attributeArray = ArrayUtil.convertObjectToArray(attribute);
+
+			return StringUtil.merge(ArrayUtil.toStringArray(attributeArray));
 		}
 		else if (type == ExpandoColumnConstants.DATE) {
 			DateFormat dateFormat = _getDateFormat();

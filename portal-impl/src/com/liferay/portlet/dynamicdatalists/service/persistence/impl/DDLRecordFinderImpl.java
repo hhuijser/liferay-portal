@@ -261,7 +261,7 @@ public class DDLRecordFinderImpl extends BasePersistenceImpl<DDLRecord>
 			qPos.add(scope);
 			qPos.add(companyId);
 
-			Object[] array = (Object[])q.iterateNext();
+			Object[] array = ArrayUtil.convertObjectToArray(q.iterateNext());
 
 			if (array == null) {
 				return null;

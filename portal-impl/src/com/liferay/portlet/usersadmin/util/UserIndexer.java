@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -114,7 +115,7 @@ public class UserIndexer extends BaseIndexer {
 			Class<?> clazz = value.getClass();
 
 			if (clazz.isArray()) {
-				Object[] values = (Object[])value;
+				Object[] values = ArrayUtil.convertObjectToArray(value);
 
 				if (values.length == 0) {
 					continue;

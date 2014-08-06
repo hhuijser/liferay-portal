@@ -16,6 +16,7 @@ package com.liferay.taglib.ui;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.language.UnicodeLanguageUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.ServerDetector;
@@ -111,7 +112,7 @@ public class MessageTag extends TagSupport {
 		Class<?> clazz = argument.getClass();
 
 		if (clazz.isArray()) {
-			_arguments = (Object[])argument;
+			_arguments = ArrayUtil.convertObjectToArray(argument);
 		}
 		else {
 			_arguments = new Object[] {argument};

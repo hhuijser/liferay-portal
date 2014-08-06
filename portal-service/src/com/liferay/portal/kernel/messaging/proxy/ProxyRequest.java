@@ -15,6 +15,7 @@
 package com.liferay.portal.kernel.messaging.proxy;
 
 import com.liferay.portal.kernel.annotation.AnnotationLocator;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.MethodKey;
 import com.liferay.portal.kernel.util.StringBundler;
 
@@ -116,7 +117,7 @@ public class ProxyRequest implements Externalizable {
 	public void readExternal(ObjectInput objectInput)
 		throws ClassNotFoundException, IOException {
 
-		_arguments = (Object[])objectInput.readObject();
+		_arguments = ArrayUtil.convertObjectToArray(objectInput.readObject());
 		_hasReturnValue = objectInput.readBoolean();
 
 		MethodKey methodKey = (MethodKey)objectInput.readObject();

@@ -384,7 +384,7 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 
 		for (Map.Entry<String, Object> entry : _headers.entrySet()) {
 			String name = entry.getKey();
-			Object[] values = (Object[])entry.getValue();
+			Object[] values = ArrayUtil.convertObjectToArray(entry.getValue());
 
 			String[] valuesString = new String[values.length];
 

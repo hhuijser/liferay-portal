@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.repository.model.FileVersion;
+import com.liferay.portal.kernel.util.ArrayUtil;
 
 /**
  * @author Alexander Chow
@@ -27,7 +28,7 @@ public abstract class BaseProcessorMessageListener extends BaseMessageListener {
 
 	@Override
 	protected void doReceive(Message message) throws Exception {
-		Object[] array = (Object[])message.getPayload();
+		Object[] array = ArrayUtil.convertObjectToArray(message.getPayload());
 
 		FileVersion sourceFileVersion = (FileVersion)array[0];
 		FileVersion destinationFileVersion = (FileVersion)array[1];

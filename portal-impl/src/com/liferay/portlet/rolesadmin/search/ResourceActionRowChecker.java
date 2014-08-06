@@ -15,6 +15,7 @@
 package com.liferay.portlet.rolesadmin.search;
 
 import com.liferay.portal.kernel.dao.search.RowChecker;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.model.Role;
 import com.liferay.portal.service.ResourceBlockLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
@@ -43,7 +44,7 @@ public class ResourceActionRowChecker extends RowChecker {
 	}
 
 	protected boolean doIsChecked(Object obj) throws Exception {
-		Object[] objArray = (Object[])obj;
+		Object[] objArray = ArrayUtil.convertObjectToArray(obj);
 
 		Role role = (Role)objArray[0];
 		String actionId = (String)objArray[1];

@@ -15,6 +15,7 @@
 package com.liferay.portal.xmlrpc;
 
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.xmlrpc.Fault;
 import com.liferay.portal.kernel.xmlrpc.Response;
@@ -70,7 +71,7 @@ public class XmlRpcParserTest {
 		Tuple tuple = XmlRpcParser.parseMethod(xml);
 
 		String methodName = (String)tuple.getObject(0);
-		Object[] arguments = (Object[])tuple.getObject(1);
+		Object[] arguments = ArrayUtil.convertObjectToArray(tuple.getObject(1));
 
 		Assert.assertEquals("method.name", methodName);
 		Assert.assertEquals(2, arguments.length);
@@ -83,7 +84,7 @@ public class XmlRpcParserTest {
 		Tuple tuple = XmlRpcParser.parseMethod(_PARAMETERIZED_METHOD);
 
 		String methodName = (String)tuple.getObject(0);
-		Object[] arguments = (Object[])tuple.getObject(1);
+		Object[] arguments = ArrayUtil.convertObjectToArray(tuple.getObject(1));
 
 		Assert.assertEquals("params", methodName);
 		Assert.assertEquals(3, arguments.length);
@@ -95,7 +96,7 @@ public class XmlRpcParserTest {
 			tuple = XmlRpcParser.parseMethod(xml);
 
 			methodName = (String)tuple.getObject(0);
-			arguments = (Object[])tuple.getObject(1);
+			arguments = ArrayUtil.convertObjectToArray(tuple.getObject(1));
 
 			Assert.assertEquals("noParams", methodName);
 			Assert.assertEquals(0, arguments.length);

@@ -17,6 +17,7 @@ package com.liferay.portal.xmlrpc;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -60,7 +61,9 @@ public class XmlRpcServlet extends HttpServlet {
 			Tuple methodTuple = XmlRpcParser.parseMethod(xml);
 
 			String methodName = (String)methodTuple.getObject(0);
-			Object[] args = (Object[])methodTuple.getObject(1);
+
+			Object[] args = ArrayUtil.convertObjectToArray(
+				methodTuple.getObject(1));
 
 			xmlRpcResponse = invokeMethod(companyId, token, methodName, args);
 		}

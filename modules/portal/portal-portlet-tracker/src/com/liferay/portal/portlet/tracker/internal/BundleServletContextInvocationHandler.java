@@ -29,8 +29,8 @@ public class BundleServletContextInvocationHandler
 	implements InvocationHandler {
 
 	public BundleServletContextInvocationHandler(
-		ServletContext servletContext,
-		BundlePortletApp bundlePortletApp, ClassLoader classLoader) {
+		ServletContext servletContext, BundlePortletApp bundlePortletApp,
+		ClassLoader classLoader) {
 
 		_servletContext = servletContext;
 

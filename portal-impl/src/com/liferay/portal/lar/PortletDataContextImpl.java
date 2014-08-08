@@ -2398,7 +2398,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 		}
 
 		Set<XStreamConverter> xStreamConverters =
-			XStreamConverterRegistryUtil.getConverters();
+			XStreamConverterRegistryUtil.getXStreamConverters();
 
 		for (XStreamConverter xStreamConverter : xStreamConverters) {
 			_xStream.registerConverter(

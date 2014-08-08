@@ -67,6 +67,14 @@ public class ModuleResourceLoader implements ServiceComponentConfiguration {
 	protected InputStream getInputStream(String location) {
 		URL url = _bundle.getResource(location);
 
+		if (url == null) {
+			if (_log.isInfoEnabled()) {
+				_log.info("Unable to find " + location);
+			}
+
+			return null;
+		}
+
 		InputStream inputStream = null;
 
 		try {

@@ -30,8 +30,8 @@ import java.util.Set;
  */
 public class XStreamConverterRegistryUtil {
 
-	public static Set<XStreamConverter> getConverters() {
-		return _instance._getConverters();
+	public static Set<XStreamConverter> getXStreamConverters() {
+		return _instance._getXStreamConverters();
 	}
 
 	public static void register(XStreamConverter xStreamConverter) {
@@ -52,7 +52,7 @@ public class XStreamConverterRegistryUtil {
 		_serviceTracker.open();
 	}
 
-	private Set<XStreamConverter> _getConverters() {
+	private Set<XStreamConverter> _getXStreamConverters() {
 		return _xStreamConverters;
 	}
 

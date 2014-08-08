@@ -742,10 +742,16 @@ public class PortletTracker
 		ServiceReference<Portlet> serviceReference,
 		com.liferay.portal.model.Portlet portletModel) {
 
+		Set<String> unlinkedRoles = new HashSet<String>();
+
 		List<String> roleRefs = StringPlus.asList(
 			serviceReference.getProperty("javax.portlet.security-role-ref"));
 
-		Set<String> unlinkedRoles = new HashSet<String>(roleRefs);
+		for (String roleRef : roleRefs) {
+			for (String curRoleRef : StringUtil.split(roleRef)) {
+				unlinkedRoles.add(curRoleRef);
+			}
+		}
 
 		portletModel.setUnlinkedRoles(unlinkedRoles);
 

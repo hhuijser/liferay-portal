@@ -29,8 +29,8 @@ public class BundleServletContextInvocationHandler
 	implements InvocationHandler {
 
 	public BundleServletContextInvocationHandler(
-		ServletContext servletContext,
-		BundlePortletApp bundlePortletApp, ClassLoader classLoader) {
+		ServletContext servletContext, BundlePortletApp bundlePortletApp,
+		ClassLoader classLoader) {
 
 		_servletContext = servletContext;
 
@@ -53,7 +53,7 @@ public class BundleServletContextInvocationHandler
 		return method.invoke(_servletContext, args);
 	}
 
-	private static Map<Method, Method> _bundleServletContextMethods =
+	private static final Map<Method, Method> _bundleServletContextMethods =
 		new HashMap<Method, Method>();
 
 	static {
@@ -78,7 +78,7 @@ public class BundleServletContextInvocationHandler
 		}
 	}
 
-	private BundleServletContext _bundleServletContext;
-	private ServletContext _servletContext;
+	private final BundleServletContext _bundleServletContext;
+	private final ServletContext _servletContext;
 
 }

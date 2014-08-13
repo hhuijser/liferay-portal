@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PredicateFilter;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.model.Portlet;
+import com.liferay.portal.model.impl.PortletAppImpl;
 import com.liferay.portal.model.impl.PortletImpl;
 import com.liferay.portal.util.HtmlImpl;
 import com.liferay.portal.util.HttpImpl;
@@ -38,10 +39,6 @@ import javax.servlet.ServletContext;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.modules.junit4.PowerMockRunner;
 
 import org.springframework.mock.web.MockServletContext;
 
@@ -50,8 +47,7 @@ import org.testng.Assert;
 /**
  * @author Carlos Sierra Andrés
  */
-@RunWith(PowerMockRunner.class)
-public class ComboServletStaticURLGeneratorTest extends PowerMockito {
+public class ComboServletStaticURLGeneratorTest {
 
 	@Before
 	public void setUp() {
@@ -366,7 +362,7 @@ public class ComboServletStaticURLGeneratorTest extends PowerMockito {
 	protected Portlet buildPortlet(
 		String contextName, String... portletResources) {
 
-		PortletImpl portlet = spy(new PortletImpl());
+		PortletImpl portlet = new PortletImpl();
 
 		List<String> portletResourcesList = Arrays.asList(portletResources);
 
@@ -378,20 +374,18 @@ public class ComboServletStaticURLGeneratorTest extends PowerMockito {
 		portlet.setHeaderPortalJavaScript(portletResourcesList);
 		portlet.setHeaderPortletCss(portletResourcesList);
 		portlet.setHeaderPortletJavaScript(portletResourcesList);
-
+		portlet.setPortletId(PortletKeys.ACTIVITIES);
 		portlet.setPortletName(contextName);
 
-		doReturn(
-			contextName
-		).when(
-			portlet
-		).getContextName();
+		PortletAppImpl portletApp = new PortletAppImpl(contextName);
 
-		doReturn(
-			PortletKeys.ACTIVITIES
-		).when(
-			portlet
-		).getPortletId();
+		ServletContext servletContext = new MockServletContext();
+
+		ServletContextPool.put(contextName, servletContext);
+
+		portletApp.setServletContext(servletContext);
+
+		portlet.setPortletApp(portletApp);
 
 		return portlet;
 	}
@@ -399,12 +393,11 @@ public class ComboServletStaticURLGeneratorTest extends PowerMockito {
 	protected void setPortletTimestamp(
 		String servletContextName, long timestamp) {
 
-		ServletContext servletContext = new MockServletContext();
+		ServletContext servletContext = ServletContextPool.get(
+			servletContextName);
 
 		servletContext.setAttribute(
 			ServletContextUtil.class.getName() + "./", timestamp);
-
-		ServletContextPool.put(servletContextName, servletContext);
 	}
 
 	private <T> List<T> toList(T... t) {

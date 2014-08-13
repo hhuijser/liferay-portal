@@ -56,9 +56,7 @@ public class PortalCacheClusterEvent implements Serializable {
 			throw new NullPointerException("Element key is null");
 		}
 
-		if ((timeToLive != PortalCache.DEFAULT_TIME_TO_LIVE) &&
-			(timeToLive < 0)) {
-
+		if (timeToLive < 0) {
 			throw new IllegalArgumentException("Time to live is negative");
 		}
 
@@ -127,9 +125,7 @@ public class PortalCacheClusterEvent implements Serializable {
 	}
 
 	public void setTimeToLive(int timeToLive) {
-		if ((timeToLive != PortalCache.DEFAULT_TIME_TO_LIVE) &&
-			(timeToLive < 0)) {
-
+		if (timeToLive < 0) {
 			throw new IllegalArgumentException("Time to live is negative");
 		}
 
@@ -155,10 +151,10 @@ public class PortalCacheClusterEvent implements Serializable {
 		return sb.toString();
 	}
 
-	private String _cacheName;
-	private Serializable _elementKey;
+	private final String _cacheName;
+	private final Serializable _elementKey;
 	private Serializable _elementValue;
-	private PortalCacheClusterEventType _portalCacheClusterEventType;
+	private final PortalCacheClusterEventType _portalCacheClusterEventType;
 	private int _timeToLive;
 
 }

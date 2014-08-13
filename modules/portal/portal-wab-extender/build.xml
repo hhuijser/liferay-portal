@@ -4,8 +4,6 @@
 <project>
 	<property name="osgi.ide.dependencies" value="axis.jar" />
 	<property name="osgi.runtime.dependencies" value="org.apache.felix.eventadmin.jar,org.eclipse.equinox.http.servlet.jar" />
-	<property name="plugin.full.version" value="1.0.0" />
-	<property name="plugin.name" value="com.liferay.portal.wab.extender" />
 
 	<import file="../../../tools/sdk/build-common-osgi-plugin.xml" />
 

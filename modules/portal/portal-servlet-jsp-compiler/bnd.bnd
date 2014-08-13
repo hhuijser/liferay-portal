@@ -1,5 +1,6 @@
 Bundle-Activator: com.liferay.portal.servlet.jsp.compiler.compiler.internal.JspResolverFactory
-Bundle-Version: ${plugin.full.version}
+Bundle-SymbolicName: com.liferay.portal.servlet.jsp.compiler
+Bundle-Version: 1.0.0
 Export-Package:\
 	com.liferay.portal.servlet.jsp.compiler.compiler;version='1.0.0',\
 	com.liferay.portal.servlet.jsp.compiler.el;version='1.0.0',\

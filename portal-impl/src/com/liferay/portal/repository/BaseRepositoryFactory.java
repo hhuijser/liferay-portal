@@ -56,6 +56,7 @@ import com.liferay.portlet.documentlibrary.service.DLFolderService;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -240,25 +241,29 @@ public abstract class BaseRepositoryFactory<T> {
 	protected Map<Class<? extends Capability>, Capability>
 		getExternalSupportedCapabilities() {
 
-		return _externalSupportedCapabilities;
+		return new HashMap<Class<? extends Capability>, Capability>(
+			_externalSupportedCapabilities);
 	}
 
 	protected Set<Class<? extends Capability>>
 		getExternalExportedCapabilityClasses() {
 
-		return _externalExportedCapabilityClasses;
+		return new HashSet<Class<? extends Capability>>(
+			_externalExportedCapabilityClasses);
 	}
 
 	protected Set<Class<? extends Capability>>
 		getInternalExportedCapabilityClasses() {
 
-		return _internalExportedCapabilityClasses;
+		return new HashSet<Class<? extends Capability>>(
+			_internalExportedCapabilityClasses);
 	}
 
 	protected Map<Class<? extends Capability>, Capability>
 		getInternalSupportedCapabilities() {
 
-		return _internalSupportedCapabilities;
+		return new HashMap<Class<? extends Capability>, Capability>(
+			_internalSupportedCapabilities);
 	}
 
 	protected DLAppHelperLocalService getDlAppHelperLocalService() {
@@ -456,15 +461,15 @@ public abstract class BaseRepositoryFactory<T> {
 		_userLocalService = userLocalService;
 	}
 
-	private static Set<Class<? extends Capability>>
+	private static final Set<Class<? extends Capability>>
 		_externalExportedCapabilityClasses = Collections.emptySet();
-	private static Map<Class<? extends Capability>, Capability>
+	private static final Map<Class<? extends Capability>, Capability>
 		_externalSupportedCapabilities = Collections.emptyMap();
-	private static Set<Class<? extends Capability>>
+	private static final Set<Class<? extends Capability>>
 		_internalExportedCapabilityClasses =
 			Collections.<Class<? extends Capability>>singleton(
 				TrashCapability.class);
-	private static Map<Class<? extends Capability>, Capability>
+	private static final Map<Class<? extends Capability>, Capability>
 		_internalSupportedCapabilities =
 			new HashMap<Class<? extends Capability>, Capability>();
 

@@ -62,7 +62,7 @@ public class ServiceConfiguratorImpl
 
 		reconfigureCaches();
 
-		processResourceActionsConfigs();
+		readResourceActions();
 	}
 
 	@Override
@@ -166,7 +166,7 @@ public class ServiceConfiguratorImpl
 		}
 	}
 
-	protected void processResourceActionsConfigs() {
+	protected void readResourceActions() {
 		Configuration configuration = ConfigurationFactoryUtil.getConfiguration(
 			_classLoader, "portlet");
 
@@ -176,7 +176,7 @@ public class ServiceConfiguratorImpl
 		for (String resourceActionsConfig : resourceActionsConfigs) {
 			try {
 				ResourceActionsUtil.read(
-					"", _classLoader, resourceActionsConfig);
+					null, _classLoader, resourceActionsConfig);
 			}
 			catch (Exception e) {
 				_log.error(
@@ -245,7 +245,7 @@ public class ServiceConfiguratorImpl
 				PropsKeys.NET_SF_EHCACHE_CONFIGURATION_RESOURCE_NAME));
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		ServiceConfiguratorImpl.class);
 
 	private BundleContext _bundleContext;

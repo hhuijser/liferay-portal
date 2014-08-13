@@ -30,8 +30,8 @@ import java.util.Set;
  */
 public class XStreamConverterRegistryUtil {
 
-	public static Set<XStreamConverter> getConverters() {
-		return _instance._getConverters();
+	public static Set<XStreamConverter> getXStreamConverters() {
+		return _instance._getXStreamConverters();
 	}
 
 	public static void register(XStreamConverter xStreamConverter) {
@@ -52,7 +52,7 @@ public class XStreamConverterRegistryUtil {
 		_serviceTracker.open();
 	}
 
-	private Set<XStreamConverter> _getConverters() {
+	private Set<XStreamConverter> _getXStreamConverters() {
 		return _xStreamConverters;
 	}
 
@@ -74,13 +74,14 @@ public class XStreamConverterRegistryUtil {
 		}
 	}
 
-	private static XStreamConverterRegistryUtil _instance =
+	private static final XStreamConverterRegistryUtil _instance =
 		new XStreamConverterRegistryUtil();
 
-	private ServiceRegistrationMap<XStreamConverter> _serviceRegistrations =
-		new ServiceRegistrationMap<XStreamConverter>();
-	private ServiceTracker <XStreamConverter, XStreamConverter> _serviceTracker;
-	private Set<XStreamConverter> _xStreamConverters =
+	private final ServiceRegistrationMap<XStreamConverter>
+		_serviceRegistrations = new ServiceRegistrationMap<XStreamConverter>();
+	private final ServiceTracker <XStreamConverter, XStreamConverter>
+		_serviceTracker;
+	private final Set<XStreamConverter> _xStreamConverters =
 		new HashSet<XStreamConverter>();
 
 	private class XStreamConverterServiceTrackerCustomizer

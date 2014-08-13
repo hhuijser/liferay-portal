@@ -1,5 +1,6 @@
 Bundle-Name: Liferay Portal Portlet Tracker
-Bundle-Version: ${plugin.full.version}
+Bundle-SymbolicName: com.liferay.portal.portlet.tracker
+Bundle-Version: 1.0.0
 Import-Package:\
 	com.liferay.portal.servlet.jsp.compiler.compiler;version='[1.0.0,2.0.0)',\
 	com.liferay.portal.servlet.jsp.compiler.el;version='[1.0.0,2.0.0)',\

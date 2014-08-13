@@ -133,9 +133,10 @@ public abstract class CMISModel {
 		return user;
 	}
 
-	private static Map<String, Action> _mappedActionKeys =
+	private static final Map<String, Action> _mappedActionKeys =
 		new HashMap<String, Action>();
-	private static Set<String> _unsupportedActionKeys = new HashSet<String>();
+	private static final Set<String> _unsupportedActionKeys =
+		new HashSet<String>();
 
 	private Folder _parentFolder;
 
@@ -154,6 +155,7 @@ public abstract class CMISModel {
 		_unsupportedActionKeys.add(ActionKeys.ADD_SHORTCUT);
 		_unsupportedActionKeys.add(ActionKeys.DELETE_DISCUSSION);
 		_unsupportedActionKeys.add(ActionKeys.PERMISSIONS);
+		_unsupportedActionKeys.add(ActionKeys.SUBSCRIBE);
 		_unsupportedActionKeys.add(ActionKeys.UPDATE_DISCUSSION);
 	}
 

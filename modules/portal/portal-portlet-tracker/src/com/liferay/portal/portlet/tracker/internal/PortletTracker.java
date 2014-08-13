@@ -14,6 +14,8 @@
 
 package com.liferay.portal.portlet.tracker.internal;
 
+import com.liferay.portal.kernel.configuration.Configuration;
+import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -23,6 +25,7 @@ import com.liferay.portal.kernel.portlet.PortletBagPool;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -40,6 +43,7 @@ import com.liferay.portal.model.PortletInfo;
 import com.liferay.portal.model.PublicRenderParameter;
 import com.liferay.portal.model.impl.PortletImpl;
 import com.liferay.portal.security.permission.ResourceActions;
+import com.liferay.portal.security.permission.ResourceActionsUtil;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.PortletLocalService;
 import com.liferay.portal.service.ResourceActionLocalService;
@@ -50,7 +54,6 @@ import com.liferay.portal.util.WebKeys;
 import com.liferay.portlet.PortletBagFactory;
 import com.liferay.portlet.PortletInstanceFactory;
 import com.liferay.registry.util.StringPlus;
-import com.liferay.util.JS;
 
 import java.io.IOException;
 
@@ -63,6 +66,7 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -78,8 +82,6 @@ import org.apache.jasper.servlet.JspServlet;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.Filter;
-import org.osgi.framework.InvalidSyntaxException;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.framework.wiring.BundleWiring;
@@ -109,42 +111,47 @@ public class PortletTracker
 	public com.liferay.portal.model.Portlet addingService(
 		ServiceReference<Portlet> serviceReference) {
 
+		BundleContext bundleContext = _componentContext.getBundleContext();
+
+		Portlet portlet = bundleContext.getService(serviceReference);
+
 		String portletName = (String)serviceReference.getProperty(
 			"javax.portlet.name");
 
-		try {
-			String portletId = JS.getSafeName(portletName);
+		if (Validator.isNull(portletName)) {
+			Class<?> clazz = portlet.getClass();
 
-			if (portletId.length() > _PORTLET_ID_MAX_LENGTH) {
-				throw new IllegalArgumentException(
-					"Portlet id " + portletId + " has more than " +
-						_PORTLET_ID_MAX_LENGTH + " characters");
-			}
-
-			com.liferay.portal.model.Portlet portletModel =
-				_portletLocalService.getPortletById(portletId);
-
-			if (portletModel != null) {
-				throw new IllegalArgumentException(
-					"Portlet id " + portletId + " is already in use.");
-			}
-
-			if (_log.isInfoEnabled()) {
-				_log.info("Adding " + serviceReference);
-			}
-
-			BundleContext bundleContext = _componentContext.getBundleContext();
-
-			Portlet portlet = bundleContext.getService(serviceReference);
-
-			return addingPortlet(
-				serviceReference, portlet, portletName, portletId);
-		}
-		catch (Throwable t) {
-			_log.error(t, t);
+			portletName = clazz.getName();
 		}
 
-		return null;
+		String portletId = StringUtil.replace(portletName, ".", "_");
+
+		if (portletId.length() > _PORTLET_ID_MAX_LENGTH) {
+			_log.error(
+				"Portlet id " + portletId + " has more than " +
+					_PORTLET_ID_MAX_LENGTH + " characters");
+
+			bundleContext.ungetService(serviceReference);
+
+			return null;
+		}
+
+		com.liferay.portal.model.Portlet portletModel =
+			_portletLocalService.getPortletById(portletId);
+
+		if (portletModel != null) {
+			_log.error("Portlet id " + portletId + " is already in use");
+
+			bundleContext.ungetService(serviceReference);
+
+			return null;
+		}
+
+		if (_log.isInfoEnabled()) {
+			_log.info("Adding " + serviceReference);
+		}
+
+		return addingPortlet(serviceReference, portlet, portletName, portletId);
 	}
 
 	@Override
@@ -165,6 +172,10 @@ public class PortletTracker
 		portletModel.setReady(false);
 
 		clearServiceRegistrations(serviceReference.getBundle());
+
+		BundleContext bundleContext = _componentContext.getBundleContext();
+
+		bundleContext.ungetService(serviceReference);
 
 		_portletInstanceFactory.destroy(portletModel);
 
@@ -191,21 +202,9 @@ public class PortletTracker
 
 		BundleContext bundleContext = _componentContext.getBundleContext();
 
-		Filter filter = null;
-
-		try {
-			filter = bundleContext.createFilter(
-				"(&(javax.portlet.name=*)(objectClass=" +
-					Portlet.class.getName() + "))");
-		}
-		catch (InvalidSyntaxException ise) {
-			throw new RuntimeException(
-				"Unable to activate Liferay Portal Portlet Tracker", ise);
-		}
-
 		_serviceTracker =
 			new ServiceTracker<Portlet, com.liferay.portal.model.Portlet>(
-				bundleContext, filter, this);
+				bundleContext, Portlet.class, this);
 
 		_serviceTracker.open();
 
@@ -215,9 +214,8 @@ public class PortletTracker
 	}
 
 	protected com.liferay.portal.model.Portlet addingPortlet(
-			ServiceReference<Portlet> serviceReference, Portlet portlet,
-			String portletName, String portletId)
-		throws Exception {
+		ServiceReference<Portlet> serviceReference, Portlet portlet,
+		String portletName, String portletId) {
 
 		Bundle bundle = serviceReference.getBundle();
 
@@ -257,23 +255,34 @@ public class PortletTracker
 			bundlePortletApp.getServletContext());
 		portletBagFactory.setWARFile(true);
 
-		portletBagFactory.create(portletModel);
+		try {
+			portletBagFactory.create(portletModel);
 
-		checkWebResources(bundle, portletModel, serviceRegistrations);
+			checkWebResources(bundle, portletModel, serviceRegistrations);
 
-		List<Company> companies = _companyLocalService.getCompanies();
+			List<Company> companies = _companyLocalService.getCompanies();
 
-		deployPortlet(serviceReference, portletModel, companies);
+			deployPortlet(serviceReference, portletModel, companies);
 
-		checkResources(serviceReference, portletModel, companies);
+			checkResources(serviceReference, portletModel, companies);
 
-		portletModel.setReady(true);
+			portletModel.setReady(true);
 
-		if (_log.isInfoEnabled()) {
-			_log.info("Added " + serviceReference);
+			if (_log.isInfoEnabled()) {
+				_log.info("Added " + serviceReference);
+			}
+
+			return portletModel;
 		}
+		catch (Exception e) {
+			_log.error(e, e);
 
-		return portletModel;
+			BundleContext bundleContext = _componentContext.getBundleContext();
+
+			bundleContext.ungetService(serviceReference);
+
+			return null;
+		}
 	}
 
 	protected com.liferay.portal.model.Portlet buildPortletModel(
@@ -646,6 +655,11 @@ public class PortletTracker
 		String portletInfoTitle = GetterUtil.getString(
 			serviceReference.getProperty("javax.portlet.info.title"),
 			portletModel.getPortletId());
+
+		String portletDisplayName = GetterUtil.getString(
+			serviceReference.getProperty("javax.portlet.display-name"),
+			portletInfoTitle);
+
 		String portletInfoShortTitle = GetterUtil.getString(
 			serviceReference.getProperty("javax.portlet.info.short-title"),
 			portletModel.getPortletId());
@@ -657,7 +671,7 @@ public class PortletTracker
 			portletModel.getPortletId());
 
 		PortletInfo portletInfo = new PortletInfo(
-			portletInfoTitle, portletInfoShortTitle, portletInfoKeyWords,
+			portletDisplayName, portletInfoShortTitle, portletInfoKeyWords,
 			portletDescription);
 
 		portletModel.setPortletInfo(portletInfo);
@@ -742,10 +756,16 @@ public class PortletTracker
 		ServiceReference<Portlet> serviceReference,
 		com.liferay.portal.model.Portlet portletModel) {
 
+		Set<String> unlinkedRoles = new HashSet<String>();
+
 		List<String> roleRefs = StringPlus.asList(
 			serviceReference.getProperty("javax.portlet.security-role-ref"));
 
-		Set<String> unlinkedRoles = new HashSet<String>(roleRefs);
+		for (String roleRef : roleRefs) {
+			for (String curRoleRef : StringUtil.split(roleRef)) {
+				unlinkedRoles.add(curRoleRef);
+			}
+		}
 
 		portletModel.setUnlinkedRoles(unlinkedRoles);
 
@@ -950,6 +970,18 @@ public class PortletTracker
 
 		bundlePortletApp.setServletContext(servletContext);
 
+		try {
+			serviceRegistrations._configuration =
+				ConfigurationFactoryUtil.getConfiguration(
+					classLoader, "portlet");
+		}
+		catch (Exception e) {
+		}
+
+		readResourceActions(
+			serviceRegistrations._configuration,
+			bundlePortletApp.getServletContextName(), classLoader);
+
 		Dictionary<String, Object> properties = new Hashtable<String, Object>();
 
 		properties.put(
@@ -1037,12 +1069,8 @@ public class PortletTracker
 			List<Company> companies)
 		throws PortalException {
 
-		String categoryName = (String)serviceReference.getProperty(
-			"com.liferay.portal.portlet.display.category");
-
-		if (categoryName == null) {
-			categoryName = "category.undefined";
-		}
+		String categoryName = GetterUtil.getString(
+			get(serviceReference, "display-category"), "category.undefined");
 
 		for (Company company : companies) {
 			com.liferay.portal.model.Portlet companyPortletModel =
@@ -1086,6 +1114,30 @@ public class PortletTracker
 		}
 
 		return serviceRegistrations;
+	}
+
+	protected void readResourceActions(
+		Configuration configuration, String servletContextName,
+		ClassLoader classLoader) {
+
+		if (configuration == null) {
+			return;
+		}
+
+		Properties properties = configuration.getProperties();
+
+		String[] resourceActionConfigs = StringUtil.split(
+			properties.getProperty(PropsKeys.RESOURCE_ACTIONS_CONFIGS));
+
+		for (String resourceActionConfig : resourceActionConfigs) {
+			try {
+				ResourceActionsUtil.read(
+					servletContextName, classLoader, resourceActionConfig);
+			}
+			catch (Exception e) {
+				_log.error(e, e);
+			}
+		}
 	}
 
 	@Reference
@@ -1209,6 +1261,7 @@ public class PortletTracker
 	private class ServiceRegistrations {
 
 		private ServiceRegistration<?> _bundlePortletAppServiceRegistration;
+		private Configuration _configuration;
 		private int _counter;
 		private ServiceRegistration<?> _jspServletServiceRegistration;
 		private ServiceRegistration<?>

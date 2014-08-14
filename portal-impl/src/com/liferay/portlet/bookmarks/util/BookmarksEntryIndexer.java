@@ -42,7 +42,6 @@ import com.liferay.portlet.bookmarks.service.BookmarksEntryLocalServiceUtil;
 import com.liferay.portlet.bookmarks.service.BookmarksFolderLocalServiceUtil;
 import com.liferay.portlet.bookmarks.service.permission.BookmarksEntryPermission;
 
-import java.util.List;
 import java.util.Locale;
 
 import javax.portlet.PortletRequest;
@@ -139,21 +138,12 @@ public class BookmarksEntryIndexer extends BaseIndexer {
 
 	@Override
 	protected void doReindex(Object obj) throws Exception {
-		if (obj instanceof List<?>) {
-			List<BookmarksEntry> bookmarksEntries = (List<BookmarksEntry>)obj;
+		BookmarksEntry entry = (BookmarksEntry)obj;
 
-			for (BookmarksEntry bookmarksEntry : bookmarksEntries) {
-				doReindex(bookmarksEntry);
-			}
-		}
-		else if (obj instanceof BookmarksEntry) {
-			BookmarksEntry entry = (BookmarksEntry)obj;
+		Document document = getDocument(entry);
 
-			Document document = getDocument(entry);
-
-			SearchEngineUtil.updateDocument(
-				getSearchEngineId(), entry.getCompanyId(), document);
-		}
+		SearchEngineUtil.updateDocument(
+			getSearchEngineId(), entry.getCompanyId(), document);
 	}
 
 	@Override

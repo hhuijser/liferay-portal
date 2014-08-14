@@ -464,6 +464,7 @@ public class JournalFolderLocalServiceImpl
 		}
 	}
 
+	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public JournalFolder moveFolder(
 			long folderId, long parentFolderId, ServiceContext serviceContext)
@@ -482,20 +483,30 @@ public class JournalFolderLocalServiceImpl
 
 		folder.setModifiedDate(serviceContext.getModifiedDate(null));
 		folder.setParentFolderId(parentFolderId);
+		folder.setTreePath(folder.buildTreePath());
 		folder.setExpandoBridgeAttributes(serviceContext);
 
 		journalFolderPersistence.update(folder);
 
-		// Indexer
+		// Update Children Three Path
 
-		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-			JournalArticle.class);
+		List<JournalArticle> journalArticles =
+			journalArticlePersistence.findByC_T(
+				folder.getCompanyId(),
+				CustomSQLUtil.keywords(folder.getTreePath())[0]);
 
-		indexer.reindex(getReindexJournalArticles(folder));
+		for (JournalArticle journalArticle : journalArticles) {
+			updateTreePath(journalArticle);
+		}
 
-		indexer = IndexerRegistryUtil.nullSafeGetIndexer(JournalFolder.class);
+		List<JournalFolder> journalFolders =
+			journalFolderPersistence.findByC_T(
+				folder.getCompanyId(),
+				CustomSQLUtil.keywords(folder.getTreePath())[0]);
 
-		indexer.reindex(getReindexJournalFolders(folder));
+		for (JournalFolder curJournalFolder : journalFolders) {
+			updateTreePath(curJournalFolder);
+		}
 
 		return folder;
 	}
@@ -1054,42 +1065,6 @@ public class JournalFolderLocalServiceImpl
 		return parentFolderId;
 	}
 
-	protected List<JournalArticle> getReindexJournalArticles(
-			JournalFolder journalFolder)
-		throws PortalException {
-
-		List<JournalArticle> journalArticles =
-			journalArticlePersistence.findByC_T(
-				journalFolder.getCompanyId(),
-				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
-
-		for (JournalArticle journalArticle : journalArticles) {
-			journalArticle.setTreePath(journalArticle.buildTreePath());
-
-			journalArticlePersistence.update(journalArticle);
-		}
-
-		return journalArticles;
-	}
-
-	protected List<JournalFolder> getReindexJournalFolders(
-			JournalFolder journalFolder)
-		throws PortalException {
-
-		List<JournalFolder> journalFolders =
-			journalFolderPersistence.findByC_T(
-				journalFolder.getCompanyId(),
-				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
-
-		for (JournalFolder curJournalFolder : journalFolders) {
-			curJournalFolder.setTreePath(curJournalFolder.buildTreePath());
-
-			journalFolderPersistence.update(curJournalFolder);
-		}
-
-		return journalFolders;
-	}
-
 	protected void mergeFolders(JournalFolder fromFolder, long toFolderId)
 		throws PortalException {
 
@@ -1365,6 +1340,36 @@ public class JournalFolderLocalServiceImpl
 				indexer.reindex(folder);
 			}
 		}
+	}
+
+	protected JournalArticle updateTreePath(JournalArticle article)
+		throws PortalException {
+
+		article.setTreePath(article.buildTreePath());
+
+		journalArticlePersistence.update(article);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			JournalArticle.class);
+
+		indexer.reindex(article);
+
+		return article;
+	}
+
+	protected JournalFolder updateTreePath(JournalFolder folder)
+		throws PortalException {
+
+		folder.setTreePath(folder.buildTreePath());
+
+		journalFolderPersistence.update(folder);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			JournalFolder.class);
+
+		indexer.reindex(folder);
+
+		return folder;
 	}
 
 	protected void validateArticleDDMStructures(

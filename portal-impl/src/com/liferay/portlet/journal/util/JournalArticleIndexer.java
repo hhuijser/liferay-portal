@@ -478,30 +478,21 @@ public class JournalArticleIndexer extends BaseIndexer {
 
 	@Override
 	protected void doReindex(Object obj) throws Exception {
-		if (obj instanceof List<?>) {
-			List<JournalArticle> journalArticles = (List<JournalArticle>)obj;
+		JournalArticle article = (JournalArticle)obj;
 
-			for (JournalArticle journalArticle : journalArticles) {
-				doReindex(journalArticle);
-			}
+		if (PortalUtil.getClassNameId(DDMStructure.class) ==
+				article.getClassNameId()) {
+
+			Document document = getDocument(article);
+
+			SearchEngineUtil.deleteDocument(
+				getSearchEngineId(), article.getCompanyId(),
+				document.get(Field.UID));
+
+			return;
 		}
-		else if (obj instanceof JournalArticle) {
-			JournalArticle article = (JournalArticle)obj;
 
-			if (PortalUtil.getClassNameId(DDMStructure.class) ==
-					article.getClassNameId()) {
-
-				Document document = getDocument(article);
-
-				SearchEngineUtil.deleteDocument(
-					getSearchEngineId(), article.getCompanyId(),
-					document.get(Field.UID));
-
-				return;
-			}
-
-			reindexArticleVersions(article);
-		}
+		reindexArticleVersions(article);
 	}
 
 	@Override

@@ -272,36 +272,34 @@ if (!ParamUtil.getBoolean(renderRequest, "advancedSearch")) {
 		<c:if test="<%= (usersListView.equals(UserConstants.LIST_VIEW_FLAT_USERS)) && (userOrganization == null) %>">
 			<div class="separator"><!-- --></div>
 		</c:if>
-
-		<div class="form-group user-table">
-			<c:if test="<%= showDeleteButton %>">
-
-				<%
-				String taglibOnClick = renderResponse.getNamespace() + "deleteUsers('" + (searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE) + "');";
-				%>
-
-				<aui:button disabled="<%= true %>" name="deactivate" onClick="<%= taglibOnClick %>" value="<%= searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE %>" />
-			</c:if>
-
-			<c:if test="<%= showRestoreButton %>">
-
-				<%
-				String taglibOnClick = renderResponse.getNamespace() + "deleteUsers('" + Constants.RESTORE + "');";
-				%>
-
-				<aui:button disabled="<%= true %>" name="restore" onClick="<%= taglibOnClick %>" value="restore" />
-			</c:if>
-
-			<c:if test="<%= (inactiveUsersCount > 0) && (usersCount > 0) %>">
-				<div class="pull-right user-status-selector">
-					<aui:select changesContext="<%= true %>" inlineLabel="left" label="show" name="userStatusSelect" onChange='<%= renderResponse.getNamespace() + "showUsers(this);" %>'>
-						<aui:option label="active" selected="<%= status == WorkflowConstants.STATUS_APPROVED %>" value="<%= WorkflowConstants.STATUS_APPROVED %>" />
-						<aui:option label="inactive" selected="<%= status == WorkflowConstants.STATUS_INACTIVE %>" value="<%= WorkflowConstants.STATUS_INACTIVE %>" />
-					</aui:select>
-				</div>
-			</c:if>
-		</div>
 	</c:if>
+
+	<div class="form-group user-table">
+		<c:if test="<%= showDeleteButton %>">
+
+			<%
+			String taglibOnClick = renderResponse.getNamespace() + "deleteUsers('" + (searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE) + "');";
+			%>
+
+			<aui:button disabled="<%= true %>" name="deactivate" onClick="<%= taglibOnClick %>" value="<%= searchTerms.isActive() ? Constants.DEACTIVATE : Constants.DELETE %>" />
+		</c:if>
+
+		<c:if test="<%= showRestoreButton %>">
+
+			<%
+			String taglibOnClick = renderResponse.getNamespace() + "deleteUsers('" + Constants.RESTORE + "');";
+			%>
+
+			<aui:button disabled="<%= true %>" name="restore" onClick="<%= taglibOnClick %>" value="restore" />
+		</c:if>
+
+		<div class="pull-right user-status-selector">
+			<aui:select changesContext="<%= true %>" inlineLabel="left" label="show" name="userStatusSelect" onChange='<%= renderResponse.getNamespace() + "showUsers(this);" %>'>
+				<aui:option label="active" selected="<%= status == WorkflowConstants.STATUS_APPROVED %>" value="<%= WorkflowConstants.STATUS_APPROVED %>" />
+				<aui:option label="inactive" selected="<%= status == WorkflowConstants.STATUS_INACTIVE %>" value="<%= WorkflowConstants.STATUS_INACTIVE %>" />
+			</aui:select>
+		</div>
+	</div>
 
 	<%
 	if (!showDeleteButton && !showRestoreButton) {

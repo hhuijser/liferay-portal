@@ -84,7 +84,7 @@
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
-			name="num-of-users"
+			name="number-of-users"
 			value="<%= String.valueOf(UserLocalServiceUtil.searchCount(curCompany.getCompanyId(), null, WorkflowConstants.STATUS_APPROVED, null)) %>"
 		/>
 
@@ -94,7 +94,7 @@
 
 		<liferay-ui:search-container-column-text
 			href="<%= rowURL %>"
-			name="max-num-of-users"
+			name="max-number-of-users"
 			value='<%= (maxUsers > 0) ? String.valueOf(maxUsers) : LanguageUtil.get(request, "unlimited") %>'
 		/>
 

@@ -5,7 +5,7 @@
 <html class="$root_css_class" dir="#language ("lang.dir")" lang="$w3c_language_id">
 
 <head>
-	#if ($site_name.equals($company_name) || $the_title.equals($site_name))
+	#if ($site_name == $company_name || $the_title == $site_name)
 		<title>$the_title - $company_name</title>
 	#else
 		<title>$the_title - $site_name - $company_name</title>

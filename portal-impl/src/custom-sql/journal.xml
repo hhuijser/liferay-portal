@@ -47,9 +47,9 @@
 			WHERE
 				(JournalArticle.groupId = ?) AND
 				(JournalArticle.classNameId = ?) AND
-				(JournalArticle.userId = ?) AND
 				([$FOLDER_ID$]) AND
-				[$STATUS$] AND
+				([$OWNER$] OR
+				[$STATUS$]) AND
 				(tempJournalArticle.id_ IS NULL)
 		]]>
 	</sql>
@@ -179,9 +179,9 @@
 			WHERE
 				(JournalArticle.groupId = ?) AND
 				(JournalArticle.classNameId = ?) AND
-				(JournalArticle.userId = ?) AND
 				([$FOLDER_ID$]) AND
-				([$STATUS$]) AND
+				([$OWNER$] OR
+				[$STATUS$]) AND
 				(tempJournalArticle.id_ IS NULL)
 			ORDER BY
 				JournalArticle.id_ ASC

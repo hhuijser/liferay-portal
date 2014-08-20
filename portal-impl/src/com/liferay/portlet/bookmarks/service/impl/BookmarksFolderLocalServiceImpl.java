@@ -44,6 +44,7 @@ import com.liferay.portlet.bookmarks.util.comparator.FolderIdComparator;
 import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.model.TrashVersion;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -324,7 +325,6 @@ public class BookmarksFolderLocalServiceImpl
 		}
 	}
 
-	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public BookmarksFolder moveFolder(long folderId, long parentFolderId)
 		throws PortalException {
@@ -333,9 +333,14 @@ public class BookmarksFolderLocalServiceImpl
 			folderId);
 
 		folder.setParentFolderId(parentFolderId);
-		folder.setTreePath(folder.buildTreePath());
 
 		bookmarksFolderPersistence.update(folder);
+
+		// Update children and current folder three path
+
+		updateBookmarksEntryTreePath(folder);
+
+		updateBookmarksFolderTreePath(folder);
 
 		return folder;
 	}
@@ -896,6 +901,47 @@ public class BookmarksFolderLocalServiceImpl
 
 				indexer.reindex(folder);
 			}
+		}
+	}
+
+	protected void updateBookmarksEntryTreePath(BookmarksFolder bookmarksFolder)
+		throws PortalException {
+
+		List<BookmarksEntry> bookmarksEntries =
+			bookmarksEntryPersistence.findByC_T(
+				bookmarksFolder.getCompanyId(),
+				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0]);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			BookmarksEntry.class);
+
+		for (BookmarksEntry bookmarksEntry : bookmarksEntries) {
+			bookmarksEntry.setTreePath(bookmarksEntry.buildTreePath());
+
+			bookmarksEntryPersistence.update(bookmarksEntry);
+
+			indexer.reindex(bookmarksEntry);
+		}
+	}
+
+	protected void updateBookmarksFolderTreePath(
+			BookmarksFolder bookmarksFolder)
+		throws PortalException {
+
+		List<BookmarksFolder> bookmarksFolders =
+			bookmarksFolderPersistence.findByC_T(
+				bookmarksFolder.getCompanyId(),
+				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0]);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			BookmarksFolder.class);
+
+		for (BookmarksFolder curBookmarksFolder : bookmarksFolders) {
+			curBookmarksFolder.setTreePath(curBookmarksFolder.buildTreePath());
+
+			bookmarksFolderPersistence.update(curBookmarksFolder);
+
+			indexer.reindex(curBookmarksFolder);
 		}
 	}
 

@@ -60,6 +60,7 @@ import com.liferay.portlet.social.model.SocialActivityConstants;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.model.TrashVersion;
 import com.liferay.portlet.trash.util.TrashUtil;
+import com.liferay.util.dao.orm.CustomSQLUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -463,7 +464,6 @@ public class JournalFolderLocalServiceImpl
 		}
 	}
 
-	@Indexable(type = IndexableType.REINDEX)
 	@Override
 	public JournalFolder moveFolder(
 			long folderId, long parentFolderId, ServiceContext serviceContext)
@@ -482,10 +482,15 @@ public class JournalFolderLocalServiceImpl
 
 		folder.setModifiedDate(serviceContext.getModifiedDate(null));
 		folder.setParentFolderId(parentFolderId);
-		folder.setTreePath(folder.buildTreePath());
 		folder.setExpandoBridgeAttributes(serviceContext);
 
 		journalFolderPersistence.update(folder);
+
+		// Update children and current folder three path
+
+		updateJournalArticleTreePath(folder);
+
+		updateJournalFolderTreePath(folder);
 
 		return folder;
 	}
@@ -1318,6 +1323,46 @@ public class JournalFolderLocalServiceImpl
 
 				indexer.reindex(folder);
 			}
+		}
+	}
+
+	protected void updateJournalArticleTreePath(JournalFolder journalFolder)
+		throws PortalException {
+
+		List<JournalArticle> journalArticles =
+			journalArticlePersistence.findByC_T(
+				journalFolder.getCompanyId(),
+				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			JournalArticle.class);
+
+		for (JournalArticle journalArticle : journalArticles) {
+			journalArticle.setTreePath(journalArticle.buildTreePath());
+
+			journalArticlePersistence.update(journalArticle);
+
+			indexer.reindex(journalArticle);
+		}
+	}
+
+	protected void updateJournalFolderTreePath(JournalFolder journalFolder)
+		throws PortalException {
+
+		List<JournalFolder> journalFolders =
+			journalFolderPersistence.findByC_T(
+				journalFolder.getCompanyId(),
+				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			JournalFolder.class);
+
+		for (JournalFolder curJournalFolder : journalFolders) {
+			curJournalFolder.setTreePath(curJournalFolder.buildTreePath());
+
+			journalFolderPersistence.update(curJournalFolder);
+
+			indexer.reindex(curJournalFolder);
 		}
 	}
 

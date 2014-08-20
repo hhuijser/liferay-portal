@@ -483,12 +483,11 @@ public class JournalFolderLocalServiceImpl
 
 		folder.setModifiedDate(serviceContext.getModifiedDate(null));
 		folder.setParentFolderId(parentFolderId);
-		folder.setTreePath(folder.buildTreePath());
 		folder.setExpandoBridgeAttributes(serviceContext);
 
 		journalFolderPersistence.update(folder);
 
-		// Update Children Three Path
+		// Update Children and current folder Three Path
 
 		List<JournalArticle> journalArticles =
 			journalArticlePersistence.findByC_T(

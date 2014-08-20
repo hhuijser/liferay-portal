@@ -739,18 +739,13 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 
 			dlFolderPersistence.update(dlFolder);
 
-			buildFileShortcutsTreePath(dlFolder);
+			// Update children and current folder three path
 
-			// Indexer
+			updateDlFileEntryTreePath(dlFolder);
 
-			Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-				DLFileEntry.class);
+			updateDlFolderTreePath(dlFolder);
 
-			indexer.reindex(getReindexFileEntries(dlFolder));
-
-			indexer = IndexerRegistryUtil.nullSafeGetIndexer(DLFolder.class);
-
-			indexer.reindex(getReindexFolders(dlFolder));
+			updateFileShortcutsTreePath(dlFolder);
 
 			return dlFolder;
 		}
@@ -1106,21 +1101,6 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		addFolderResources(dlFolder, groupPermissions, guestPermissions);
 	}
 
-	protected void buildFileShortcutsTreePath(DLFolder dlFolder)
-		throws PortalException {
-
-		List<DLFileShortcut> dlFileShortcuts =
-			dlFileShortcutPersistence.findByC_T(
-				dlFolder.getCompanyId(),
-				CustomSQLUtil.keywords(dlFolder.getTreePath())[0]);
-
-		for (DLFileShortcut dlFileShortcut : dlFileShortcuts) {
-			dlFileShortcut.setTreePath(dlFileShortcut.buildTreePath());
-
-			dlFileShortcutPersistence.update(dlFileShortcut);
-		}
-	}
-
 	protected long getParentFolderId(DLFolder dlFolder, long parentFolderId) {
 		if (parentFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			return parentFolderId;
@@ -1166,36 +1146,57 @@ public class DLFolderLocalServiceImpl extends DLFolderLocalServiceBaseImpl {
 		return parentFolderId;
 	}
 
-	protected List<DLFileEntry> getReindexFileEntries(DLFolder dlFolder)
+	protected void updateDlFileEntryTreePath(DLFolder dlFolder)
 		throws PortalException {
 
 		List<DLFileEntry> dlFileEntries = dlFileEntryPersistence.findByC_T(
 			dlFolder.getCompanyId(),
 			CustomSQLUtil.keywords(dlFolder.getTreePath())[0]);
 
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			DLFileEntry.class);
+
 		for (DLFileEntry dlFileEntry : dlFileEntries) {
 			dlFileEntry.setTreePath(dlFileEntry.buildTreePath());
 
 			dlFileEntryPersistence.update(dlFileEntry);
-		}
 
-		return dlFileEntries;
+			indexer.reindex(dlFileEntry);
+		}
 	}
 
-	protected List<DLFolder> getReindexFolders(DLFolder dlFolder)
+	protected void updateDlFolderTreePath(DLFolder dlFolder)
 		throws PortalException {
 
 		List<DLFolder> dlFolders = dlFolderPersistence.findByC_T(
 			dlFolder.getCompanyId(),
 			CustomSQLUtil.keywords(dlFolder.getTreePath())[0]);
 
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			DLFolder.class);
+
 		for (DLFolder curDlFolder : dlFolders) {
 			curDlFolder.setTreePath(curDlFolder.buildTreePath());
 
 			dlFolderPersistence.update(curDlFolder);
-		}
 
-		return dlFolders;
+			indexer.reindex(curDlFolder);
+		}
+	}
+
+	protected void updateFileShortcutsTreePath(DLFolder dlFolder)
+		throws PortalException {
+
+		List<DLFileShortcut> dlFileShortcuts =
+			dlFileShortcutPersistence.findByC_T(
+				dlFolder.getCompanyId(),
+				CustomSQLUtil.keywords(dlFolder.getTreePath())[0]);
+
+		for (DLFileShortcut dlFileShortcut : dlFileShortcuts) {
+			dlFileShortcut.setTreePath(dlFileShortcut.buildTreePath());
+
+			dlFileShortcutPersistence.update(dlFileShortcut);
+		}
 	}
 
 	protected void validateFolder(

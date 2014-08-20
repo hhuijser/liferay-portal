@@ -336,16 +336,11 @@ public class BookmarksFolderLocalServiceImpl
 
 		bookmarksFolderPersistence.update(folder);
 
-		// Indexer
+		// Update children and current folder three path
 
-		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-			BookmarksEntry.class);
+		updateBookmarksEntryTreePath(folder);
 
-		indexer.reindex(getReindexBookmarksEntries(folder));
-
-		indexer = IndexerRegistryUtil.nullSafeGetIndexer(BookmarksFolder.class);
-
-		indexer.reindex(getReindexBookmarksFolders(folder));
+		updateBookmarksFolderTreePath(folder);
 
 		return folder;
 	}
@@ -682,42 +677,6 @@ public class BookmarksFolderLocalServiceImpl
 		return parentFolderId;
 	}
 
-	protected List<BookmarksEntry> getReindexBookmarksEntries(
-			BookmarksFolder bookmarksFolder)
-		throws PortalException {
-
-		List<BookmarksEntry> bookmarksEntries =
-			bookmarksEntryPersistence.findByC_T(
-				bookmarksFolder.getCompanyId(),
-				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0]);
-
-		for (BookmarksEntry bookmarksEntry : bookmarksEntries) {
-			bookmarksEntry.setTreePath(bookmarksEntry.buildTreePath());
-
-			bookmarksEntryPersistence.update(bookmarksEntry);
-		}
-
-		return bookmarksEntries;
-	}
-
-	protected List<BookmarksFolder> getReindexBookmarksFolders(
-			BookmarksFolder bookmarksFolder)
-		throws PortalException {
-
-		List<BookmarksFolder> bookmarksFolders =
-			bookmarksFolderPersistence.findByC_T(
-				bookmarksFolder.getCompanyId(),
-				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0]);
-
-		for (BookmarksFolder curBookmarksFolder : bookmarksFolders) {
-			curBookmarksFolder.setTreePath(curBookmarksFolder.buildTreePath());
-
-			bookmarksFolderPersistence.update(curBookmarksFolder);
-		}
-
-		return bookmarksFolders;
-	}
-
 	protected void mergeFolders(BookmarksFolder fromFolder, long toFolderId)
 		throws PortalException {
 
@@ -942,6 +901,47 @@ public class BookmarksFolderLocalServiceImpl
 
 				indexer.reindex(folder);
 			}
+		}
+	}
+
+	protected void updateBookmarksEntryTreePath(BookmarksFolder bookmarksFolder)
+		throws PortalException {
+
+		List<BookmarksEntry> bookmarksEntries =
+			bookmarksEntryPersistence.findByC_T(
+				bookmarksFolder.getCompanyId(),
+				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0]);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			BookmarksEntry.class);
+
+		for (BookmarksEntry bookmarksEntry : bookmarksEntries) {
+			bookmarksEntry.setTreePath(bookmarksEntry.buildTreePath());
+
+			bookmarksEntryPersistence.update(bookmarksEntry);
+
+			indexer.reindex(bookmarksEntry);
+		}
+	}
+
+	protected void updateBookmarksFolderTreePath(
+			BookmarksFolder bookmarksFolder)
+		throws PortalException {
+
+		List<BookmarksFolder> bookmarksFolders =
+			bookmarksFolderPersistence.findByC_T(
+				bookmarksFolder.getCompanyId(),
+				CustomSQLUtil.keywords(bookmarksFolder.getTreePath())[0]);
+
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			BookmarksFolder.class);
+
+		for (BookmarksFolder curBookmarksFolder : bookmarksFolders) {
+			curBookmarksFolder.setTreePath(curBookmarksFolder.buildTreePath());
+
+			bookmarksFolderPersistence.update(curBookmarksFolder);
+
+			indexer.reindex(curBookmarksFolder);
 		}
 	}
 

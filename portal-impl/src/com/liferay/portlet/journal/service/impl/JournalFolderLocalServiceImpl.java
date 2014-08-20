@@ -486,25 +486,11 @@ public class JournalFolderLocalServiceImpl
 
 		journalFolderPersistence.update(folder);
 
-		// Update Children and current folder Three Path
+		// Update children and current folder three path
 
-		List<JournalArticle> journalArticles =
-			journalArticlePersistence.findByC_T(
-				folder.getCompanyId(),
-				CustomSQLUtil.keywords(folder.getTreePath())[0]);
+		updateJournalArticleTreePath(folder);
 
-		for (JournalArticle journalArticle : journalArticles) {
-			updateTreePath(journalArticle);
-		}
-
-		List<JournalFolder> journalFolders =
-			journalFolderPersistence.findByC_T(
-				folder.getCompanyId(),
-				CustomSQLUtil.keywords(folder.getTreePath())[0]);
-
-		for (JournalFolder curJournalFolder : journalFolders) {
-			updateTreePath(curJournalFolder);
-		}
+		updateJournalFolderTreePath(folder);
 
 		return folder;
 	}
@@ -1340,34 +1326,44 @@ public class JournalFolderLocalServiceImpl
 		}
 	}
 
-	protected JournalArticle updateTreePath(JournalArticle article)
+	protected void updateJournalArticleTreePath(JournalFolder journalFolder)
 		throws PortalException {
 
-		article.setTreePath(article.buildTreePath());
-
-		journalArticlePersistence.update(article);
+		List<JournalArticle> journalArticles =
+			journalArticlePersistence.findByC_T(
+				journalFolder.getCompanyId(),
+				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
 
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			JournalArticle.class);
 
-		indexer.reindex(article);
+		for (JournalArticle journalArticle : journalArticles) {
+			journalArticle.setTreePath(journalArticle.buildTreePath());
 
-		return article;
+			journalArticlePersistence.update(journalArticle);
+
+			indexer.reindex(journalArticle);
+		}
 	}
 
-	protected JournalFolder updateTreePath(JournalFolder folder)
+	protected void updateJournalFolderTreePath(JournalFolder journalFolder)
 		throws PortalException {
 
-		folder.setTreePath(folder.buildTreePath());
-
-		journalFolderPersistence.update(folder);
+		List<JournalFolder> journalFolders =
+			journalFolderPersistence.findByC_T(
+				journalFolder.getCompanyId(),
+				CustomSQLUtil.keywords(journalFolder.getTreePath())[0]);
 
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			JournalFolder.class);
 
-		indexer.reindex(folder);
+		for (JournalFolder curJournalFolder : journalFolders) {
+			curJournalFolder.setTreePath(curJournalFolder.buildTreePath());
 
-		return folder;
+			journalFolderPersistence.update(curJournalFolder);
+
+			indexer.reindex(curJournalFolder);
+		}
 	}
 
 	protected void validateArticleDDMStructures(

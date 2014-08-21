@@ -44,7 +44,7 @@ if (hints != null) {
 }
 
 if (type.equals("int") || type.equals("String")) {
-	cssClass+=" form-control";
+	cssClass += " form-control";
 }
 %>
 

@@ -286,17 +286,21 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return content;
 	}
 
-	protected String fixPoshiCharactersOutsideDefinitionTag(String content) {
-		Matcher matcher = _poshiCharactersBeforeDefinitionTag.matcher(content);
+	protected String fixPoshiCharsOutsideDefinitionElement(String content) {
+		Matcher poshiCharsBeforeDefinitionElementMatcher =
+			_poshiCharsBeforeDefinitionElementPattern.matcher(content);
 
-		while (matcher.find()) {
-			content = StringUtil.replace(content, matcher.group(1), "");
+		while (poshiCharsBeforeDefinitionElementMatcher.find()) {
+			content = StringUtil.replaceFirst(
+				content, poshiCharsBeforeDefinitionElementMatcher.group(1), "");
 		}
 
-		Matcher matcher2 = _poshiCharactersAfterDefinitionTag.matcher(content);
+		Matcher poshiCharsAfterDefinitionElementMatcher =
+			_poshiCharsAfterDefinitionElementPattern.matcher(content);
 
-		while (matcher2.find()) {
-			content = StringUtil.replace(content, matcher2.group(1), "");
+		while (poshiCharsAfterDefinitionElementMatcher.find()) {
+			content = StringUtil.replaceLast(
+				content, poshiCharsAfterDefinitionElementMatcher.group(1), "");
 		}
 
 		return content;
@@ -747,7 +751,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 		content = sortPoshiVariables(content);
 
-		content = fixPoshiCharactersOutsideDefinitionTag(content);
+		content = fixPoshiCharsOutsideDefinitionElement(content);
 
 		content = fixPoshiXMLElementWithNoChild(content);
 
@@ -1171,9 +1175,9 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 	private List<String> _columnNames;
 	private List<String> _friendlyUrlRoutesSortExclusions;
 	private List<String> _numericalPortletNameElementExclusions;
-	private Pattern _poshiCharactersAfterDefinitionTag = Pattern.compile(
+	private Pattern _poshiCharsAfterDefinitionElementPattern = Pattern.compile(
 		"</definition>([a-zA-Z0-9\\s\\t\\n]+)");
-	private Pattern _poshiCharactersBeforeDefinitionTag = Pattern.compile(
+	private Pattern _poshiCharsBeforeDefinitionElementPattern = Pattern.compile(
 		"([a-zA-Z0-9\\s\\t\\n]+)<definition");
 	private Pattern _poshiClosingTagPattern = Pattern.compile("</[^>/]*>");
 	private Pattern _poshiCommandsPattern = Pattern.compile(

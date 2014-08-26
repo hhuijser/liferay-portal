@@ -78,6 +78,8 @@ public interface Portal {
 
 	public static final String FRIENDLY_URL_SEPARATOR = "/-/";
 
+	public static final String JSESSIONID = ";jsessionid=";
+
 	public static final String PATH_IMAGE = "/image";
 
 	public static final String PATH_MAIN = "/c";

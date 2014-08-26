@@ -26,6 +26,7 @@ import com.liferay.portal.struts.PortletAction;
 import com.liferay.portal.theme.ThemeDisplay;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.WebKeys;
+import com.liferay.portlet.shopping.DuplicateItemFieldNameException;
 import com.liferay.portlet.shopping.DuplicateItemSKUException;
 import com.liferay.portlet.shopping.ItemLargeImageNameException;
 import com.liferay.portlet.shopping.ItemLargeImageSizeException;
@@ -41,6 +42,7 @@ import com.liferay.portlet.shopping.model.ShoppingItem;
 import com.liferay.portlet.shopping.model.ShoppingItemField;
 import com.liferay.portlet.shopping.model.ShoppingItemPrice;
 import com.liferay.portlet.shopping.model.ShoppingItemPriceConstants;
+import com.liferay.portlet.shopping.model.impl.ShoppingItemImpl;
 import com.liferay.portlet.shopping.service.ShoppingItemServiceUtil;
 import com.liferay.portlet.shopping.service.persistence.ShoppingItemFieldUtil;
 import com.liferay.portlet.shopping.service.persistence.ShoppingItemPriceUtil;
@@ -95,7 +97,8 @@ public class EditItemAction extends PortletAction {
 
 				setForward(actionRequest, "portlet.shopping.error");
 			}
-			else if (e instanceof DuplicateItemSKUException ||
+			else if (e instanceof DuplicateItemFieldNameException ||
+					 e instanceof DuplicateItemSKUException ||
 					 e instanceof ItemLargeImageNameException ||
 					 e instanceof ItemLargeImageSizeException ||
 					 e instanceof ItemMediumImageNameException ||
@@ -105,7 +108,7 @@ public class EditItemAction extends PortletAction {
 					 e instanceof ItemSmallImageNameException ||
 					 e instanceof ItemSmallImageSizeException) {
 
-				SessionErrors.add(actionRequest, e.getClass());
+				SessionErrors.add(actionRequest, e.getClass(), e);
 			}
 			else {
 				throw e;
@@ -239,8 +242,13 @@ public class EditItemAction extends PortletAction {
 
 		boolean requiresShipping = ParamUtil.getBoolean(
 			uploadPortletRequest, "requiresShipping");
+
 		int stockQuantity = ParamUtil.getInteger(
 			uploadPortletRequest, "stockQuantity");
+
+		if (ParamUtil.getBoolean(uploadPortletRequest, "hasInfiniteStock")) {
+			stockQuantity = ShoppingItemImpl.STOCK_QUANTITY_INFINITE_STOCK;
+		}
 
 		boolean featured = ParamUtil.getBoolean(
 			uploadPortletRequest, "featured");

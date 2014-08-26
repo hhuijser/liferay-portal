@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.capabilities.TrashCapability;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
-import com.liferay.portal.kernel.util.Accessor;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Repository;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
@@ -38,7 +36,6 @@ import com.liferay.portlet.documentlibrary.service.DLFileEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.service.DLFolderLocalServiceUtil;
 import com.liferay.portlet.trash.model.TrashEntry;
 import com.liferay.portlet.trash.service.TrashEntryLocalServiceUtil;
-import com.liferay.portlet.trash.service.TrashEntryServiceUtil;
 import com.liferay.portlet.trash.service.TrashVersionLocalServiceUtil;
 
 import java.util.List;
@@ -89,28 +86,8 @@ public class LiferayTrashCapability implements TrashCapability {
 				repositoryId, DLFolder.class.getName());
 		}
 		else {
-			QueryDefinition<Object> queryDefinition =
-				new QueryDefinition<Object>();
-
-			queryDefinition.setStatus(WorkflowConstants.STATUS_ANY);
-
-			List<Object> foldersAndFileEntriesAndFileShortcuts =
-				DLFolderLocalServiceUtil.
-					getFoldersAndFileEntriesAndFileShortcuts(
-						repository.getGroupId(), repository.getDlFolderId(),
-						null, true, queryDefinition);
-
-			for (Object folderFileEntryOrFileShortcut :
-					foldersAndFileEntriesAndFileShortcuts) {
-
-				if (folderFileEntryOrFileShortcut instanceof DLFileEntry) {
-					deleteTrashEntry(
-						(DLFileEntry)folderFileEntryOrFileShortcut);
-				}
-				else if (folderFileEntryOrFileShortcut instanceof DLFolder) {
-					deleteTrashEntry((DLFolder)folderFileEntryOrFileShortcut);
-				}
-			}
+			deleteTrashEntries(
+				repository.getGroupId(), repository.getDlFolderId());
 		}
 	}
 
@@ -182,20 +159,50 @@ public class LiferayTrashCapability implements TrashCapability {
 	}
 
 	protected void deleteRepositoryTrashEntries(
-			long repositoryId, String className)
-		throws PortalException {
+		long repositoryId, String className) {
 
 		List<TrashEntry> trashEntries = TrashEntryLocalServiceUtil.getEntries(
 			repositoryId, className);
 
-		long[] trashEntryIds = ListUtil.toLongArray(
-			trashEntries, _TRASH_ENTRY_ID_ACCESSOR);
+		for (TrashEntry trashEntry : trashEntries) {
+			TrashEntryLocalServiceUtil.deleteTrashEntry(trashEntry);
+		}
+	}
 
-		TrashEntryServiceUtil.deleteEntries(trashEntryIds);
+	protected void deleteTrashEntries(long groupId, long dlFolderId)
+		throws PortalException {
+
+		QueryDefinition<Object> queryDefinition = new QueryDefinition<Object>();
+
+		queryDefinition.setStatus(WorkflowConstants.STATUS_ANY);
+
+		List<Object> foldersAndFileEntriesAndFileShortcuts =
+			DLFolderLocalServiceUtil.getFoldersAndFileEntriesAndFileShortcuts(
+				groupId, dlFolderId, null, true, queryDefinition);
+
+		for (Object folderFileEntryOrFileShortcut :
+				foldersAndFileEntriesAndFileShortcuts) {
+
+			if (folderFileEntryOrFileShortcut instanceof DLFileEntry) {
+				deleteTrashEntry((DLFileEntry)folderFileEntryOrFileShortcut);
+			}
+			else if (folderFileEntryOrFileShortcut instanceof DLFolder) {
+				DLFolder dlFolder = (DLFolder)folderFileEntryOrFileShortcut;
+
+				deleteTrashEntries(
+					dlFolder.getGroupId(), dlFolder.getFolderId());
+
+				deleteTrashEntry(dlFolder);
+			}
+		}
 	}
 
 	protected void deleteTrashEntry(DLFileEntry dlFileEntry)
 		throws PortalException {
+
+		if (!dlFileEntry.isInTrash()) {
+			return;
+		}
 
 		if (dlFileEntry.isInTrashExplicitly()) {
 			TrashEntryLocalServiceUtil.deleteEntry(
@@ -215,6 +222,10 @@ public class LiferayTrashCapability implements TrashCapability {
 	}
 
 	protected void deleteTrashEntry(DLFolder dlFolder) throws PortalException {
+		if (!dlFolder.isInTrash()) {
+			return;
+		}
+
 		if (dlFolder.isInTrashExplicitly()) {
 			TrashEntryLocalServiceUtil.deleteEntry(
 				DLFolderConstants.getClassName(), dlFolder.getFolderId());
@@ -224,25 +235,5 @@ public class LiferayTrashCapability implements TrashCapability {
 				DLFolderConstants.getClassName(), dlFolder.getFolderId());
 		}
 	}
-
-	private static final Accessor<TrashEntry, Long> _TRASH_ENTRY_ID_ACCESSOR =
-		new Accessor<TrashEntry, Long>() {
-
-			@Override
-			public Long get(TrashEntry trashEntry) {
-				return trashEntry.getEntryId();
-			}
-
-			@Override
-			public Class<Long> getAttributeClass() {
-				return Long.class;
-			}
-
-			@Override
-			public Class<TrashEntry> getTypeClass() {
-				return TrashEntry.class;
-			}
-
-		};
 
 }

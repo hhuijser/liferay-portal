@@ -228,6 +228,29 @@ public class AssetVocabularyServiceImpl extends AssetVocabularyServiceBaseImpl {
 
 	@Override
 	public List<AssetVocabulary> getGroupVocabularies(
+			long groupId, boolean createDefaultVocabulary, int start, int end,
+			OrderByComparator<AssetVocabulary> obc)
+		throws PortalException {
+
+		List<AssetVocabulary> vocabularies = getGroupVocabularies(
+			groupId, start, end, obc);
+
+		if (!vocabularies.isEmpty() || !createDefaultVocabulary) {
+			return vocabularies;
+		}
+
+		vocabularies = new ArrayList<AssetVocabulary>();
+
+		AssetVocabulary vocabulary =
+			assetVocabularyLocalService.addDefaultVocabulary(groupId);
+
+		vocabularies.add(vocabulary);
+
+		return vocabularies;
+	}
+
+	@Override
+	public List<AssetVocabulary> getGroupVocabularies(
 		long groupId, int start, int end,
 		OrderByComparator<AssetVocabulary> obc) {
 

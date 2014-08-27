@@ -136,6 +136,10 @@ public class SourceFormatter {
 			sourceProcessor = JavaSourceProcessor.class.newInstance();
 		}
 
+		else if (fileName.endsWith(".testxml")) {
+			sourceProcessor = XMLSourceProcessor.class.newInstance();
+		}
+
 		if (sourceProcessor == null) {
 			return null;
 		}

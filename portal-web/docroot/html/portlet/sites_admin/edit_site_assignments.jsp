@@ -118,22 +118,33 @@ request.setAttribute("edit_site_assignments.jsp-portletURL", portletURL);
 					int pendingRequests = MembershipRequestLocalServiceUtil.searchCount(group.getGroupId(), MembershipRequestConstants.STATUS_PENDING);
 					%>
 
-					<c:if test="<%= pendingRequests > 0 %>">
-						<br />
+					<c:when test="<%= pendingRequests > 0 %>">
+							<br />
 
-						<portlet:renderURL var="viewMembershipRequestsURL">
-							<portlet:param name="struts_action" value="/sites_admin/view_membership_requests" />
-							<portlet:param name="redirect" value="<%= currentURL %>" />
-							<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
-						</portlet:renderURL>
-
-						<liferay-ui:icon
-							iconCssClass="icon-tasks"
-							label="<%= true %>"
-							message='<%= LanguageUtil.format(request, "there-are-x-membership-requests-pending", String.valueOf(pendingRequests), false) %>'
-							url="<%= viewMembershipRequestsURL %>"
-						/>
-					</c:if>
+							<portlet:renderURL var="viewMembershipRequestsURL">
+								<portlet:param name="struts_action" value="/sites_admin/view_membership_requests" />
+								<portlet:param name="redirect" value="<%= currentURL %>" />
+								<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
+							</portlet:renderURL>
+							<c:choose>
+								<c:when test="<%= pendingRequests == 1 %>">
+									<liferay-ui:icon
+										iconCssClass="icon-tasks"
+										label="<%= true %>"
+										message="there-is-one-membership-request-pending"
+										url="<%= viewMembershipRequestsURL %>"
+									/>
+							</c:when>
+							<c:otherwise>
+									<liferay-ui:icon
+										iconCssClass="icon-tasks"
+										label="<%= true %>"
+										message='<%= LanguageUtil.format(request,"there-are-x-membership-requests-pending", String.valueOf(pendingRequests), false) %>'
+										url="<%= viewMembershipRequestsURL %>"
+									/>
+							</c:otherwise>
+						</c:choose>
+					</c:when>
 				</c:if>
 			</div>
 

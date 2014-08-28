@@ -380,11 +380,11 @@ public class JournalArticleFinderImpl
 
 	@Override
 	public List<JournalArticle> filterFindByG_C_S(
-		long groupId, long classNameId, String ddmStructureKey,
+		long[] groupIds, long classNameId, String ddmStructureKey,
 		QueryDefinition<JournalArticle> queryDefinition) {
 
 		return doFindByG_C_S(
-			groupId, classNameId, ddmStructureKey, queryDefinition, true);
+			groupIds, classNameId, ddmStructureKey, queryDefinition, true);
 	}
 
 	@Override
@@ -622,11 +622,11 @@ public class JournalArticleFinderImpl
 
 	@Override
 	public List<JournalArticle> findByG_C_S(
-		long groupId, long classNameId, String ddmStructureKey,
+		long[] groupIds, long classNameId, String ddmStructureKey,
 		QueryDefinition<JournalArticle> queryDefinition) {
 
 		return doFindByG_C_S(
-			groupId, classNameId, ddmStructureKey, queryDefinition, false);
+			groupIds, classNameId, ddmStructureKey, queryDefinition, false);
 	}
 
 	@Override
@@ -1117,7 +1117,7 @@ public class JournalArticleFinderImpl
 	}
 
 	protected List<JournalArticle> doFindByG_C_S(
-		long groupId, long classNameId, String ddmStructureKey,
+		long[] groupIds, long classNameId, String ddmStructureKey,
 		QueryDefinition<JournalArticle> queryDefinition,
 		boolean inlineSQLHelper) {
 
@@ -1134,10 +1134,8 @@ public class JournalArticleFinderImpl
 			sql = CustomSQLUtil.replaceOrderBy(
 				sql, queryDefinition.getOrderByComparator("JournalArticle"));
 
-			if (groupId <= 0) {
-				sql = StringUtil.replace(
-					sql, "(JournalArticle.groupId = ?) AND", StringPool.BLANK);
-			}
+			sql = StringUtil.replace(
+				sql, "[$GROUP_ID$]", getGroupIds(groupIds, "JournalArticle"));
 
 			if (ddmStructureKey.equals(
 					String.valueOf(
@@ -1153,7 +1151,7 @@ public class JournalArticleFinderImpl
 			if (inlineSQLHelper) {
 				sql = InlineSQLHelperUtil.replacePermissionCheck(
 					sql, JournalArticle.class.getName(),
-					"JournalArticle.resourcePrimKey", groupId);
+					"JournalArticle.resourcePrimKey", groupIds);
 			}
 
 			SQLQuery q = session.createSynchronizedSQLQuery(sql);
@@ -1163,8 +1161,8 @@ public class JournalArticleFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
-			if (groupId > 0) {
-				qPos.add(groupId);
+			if (!ArrayUtil.isEmpty(groupIds)) {
+				qPos.add(groupIds);
 			}
 
 			qPos.add(classNameId);

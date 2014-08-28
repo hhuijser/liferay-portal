@@ -161,7 +161,7 @@ int totalVar = 0;
 				groupIds= new long[] {siteGroup.getGroupId()};
 			}
 			else {
-				List<Group> groups = new UniqueList<Group>();
+				Set<Group> groups = new LinkedHashSet<Group>();
 
 				groups.add(siteGroup);
 
@@ -171,10 +171,10 @@ int totalVar = 0;
 
 				long[] tempGroupIds = new long[groups.size()];
 
-				for (int i = 0; i < groups.size(); i++) {
-					Group group = groups.get(i);
+				int i = 0;
 
-					tempGroupIds[i] = group.getGroupId();
+				for (Group group : groups) {
+					tempGroupIds[i++] = group.getGroupId();
 				}
 
 				groupIds = tempGroupIds;

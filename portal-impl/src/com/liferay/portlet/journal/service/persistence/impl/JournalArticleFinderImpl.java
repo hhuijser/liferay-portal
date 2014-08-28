@@ -1429,6 +1429,30 @@ public class JournalArticleFinderImpl
 		return sb.toString();
 	}
 
+	protected String getGroupIds(long[] groupIds, String table) {
+		if (groupIds.length == 0) {
+			return StringPool.BLANK;
+		}
+
+		StringBundler sb = new StringBundler(groupIds.length * 3 + 2);
+
+		sb.append("(");
+
+		for (int i = 0; i < groupIds.length; i++) {
+			sb.append(table);
+			sb.append(".groupId = ?");
+
+			if ((i + 1) < groupIds.length) {
+				sb.append(" OR ");
+			}
+		}
+
+		sb.append(")");
+		sb.append(" AND ");
+
+		return sb.toString();
+	}
+
 	protected JournalArticle getLatestArticle(
 		long groupId, String articleId, int status) {
 
@@ -1532,27 +1556,6 @@ public class JournalArticleFinderImpl
 
 		return StringUtil.replace(
 			sql, "[$TYPE_STRUCTURE_TEMPLATE$]", sb.toString());
-	}
-
-	protected String getGroupIds(long[] groupIds, String table) {
-		if (groupIds.length == 0) {
-			return StringPool.BLANK;
-		}
-
-		StringBundler sb = new StringBundler(groupIds.length * 3 - 1);
-
-		for (int i = 0; i < groupIds.length; i++) {
-			sb.append(table);
-			sb.append(".groupId = ?");
-
-			if ((i + 1) < groupIds.length) {
-				sb.append(" OR ");
-			}
-		}
-
-		sb.append(" AND ");
-
-		return sb.toString();
 	}
 
 	private static final String _AND_OR_CONNECTOR = "[$AND_OR_CONNECTOR$] ";

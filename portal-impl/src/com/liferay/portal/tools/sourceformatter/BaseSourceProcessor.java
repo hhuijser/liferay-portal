@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -52,6 +53,17 @@ import org.apache.tools.ant.DirectoryScanner;
  * @author Hugo Huijser
  */
 public abstract class BaseSourceProcessor implements SourceProcessor {
+
+	public BaseSourceProcessor() {
+		portalSource = _isPortalSource();
+
+		try {
+			_properties = _getProperties();
+		}
+		catch (Exception e) {
+			ReflectionUtil.throwException(e);
+		}
+	}
 
 	@Override
 	public void format(
@@ -1570,10 +1582,6 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		_autoFix = autoFix;
 
 		BaseSourceProcessor.mainReleaseVersion = mainReleaseVersion;
-
-		portalSource = _isPortalSource();
-
-		_properties = _getProperties();
 
 		_excludes = _getExcludes();
 

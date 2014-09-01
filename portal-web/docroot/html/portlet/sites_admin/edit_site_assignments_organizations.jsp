@@ -171,7 +171,7 @@ searchContainer.setEmptyResultsMessage(emptyResultsMessage);
 	</liferay-util:buffer>
 
 	<c:choose>
-		<c:when test='<%= tabs1.equals("summary") && (total > 0) %>'>
+		<c:when test='<%= tabs1.equals("summary") && (!results.isEmpty()) %>'>
 			<liferay-ui:panel collapsible="<%= true %>" extended="<%= false %>" persistState="<%= true %>" title='<%= LanguageUtil.format(request, (total > 1) ? "x-organizations" : "x-organization", total, false) %>'>
 				<span class="form-search">
 					<liferay-ui:input-search name='<%= DisplayTerms.KEYWORDS + "_organizations" %>' />

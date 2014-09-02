@@ -32,7 +32,7 @@ public interface JournalArticleFinder {
 		java.util.List<java.lang.Long> folderIds,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
-	public int countByG_C_S(long groupId, long classNameId,
+	public int countByG_C_S(long[] groupIds, long classNameId,
 		java.lang.String ddmStructureKey,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
@@ -83,7 +83,7 @@ public interface JournalArticleFinder {
 		java.util.List<java.lang.Long> folderIds,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
-	public int filterCountByG_C_S(long groupId, long classNameId,
+	public int filterCountByG_C_S(long[] groupId, long classNameId,
 		java.lang.String ddmStructureKey,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
@@ -137,7 +137,7 @@ public interface JournalArticleFinder {
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> filterFindByG_C_S(
-		long groupId, long classNameId, java.lang.String ddmStructureKey,
+		long[] groupIds, long classNameId, java.lang.String ddmStructureKey,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> filterFindByG_U_F_C(
@@ -203,7 +203,7 @@ public interface JournalArticleFinder {
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> findByG_C_S(
-		long groupId, long classNameId, java.lang.String ddmStructureKey,
+		long[] groupIds, long classNameId, java.lang.String ddmStructureKey,
 		com.liferay.portal.kernel.dao.orm.QueryDefinition<com.liferay.portlet.journal.model.JournalArticle> queryDefinition);
 
 	public java.util.List<com.liferay.portlet.journal.model.JournalArticle> findByG_U_F_C(

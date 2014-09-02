@@ -739,6 +739,14 @@ public class JournalArticleServiceUtil {
 			end, obc);
 	}
 
+	public static java.util.List<com.liferay.portlet.journal.model.JournalArticle> getArticlesByStructureId(
+		long[] groupIds, java.lang.String ddmStructureKey, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portlet.journal.model.JournalArticle> obc) {
+		return getService()
+				   .getArticlesByStructureId(groupIds, ddmStructureKey, start,
+			end, obc);
+	}
+
 	/**
 	* Returns the number of web content articles matching the group and folder.
 	*
@@ -814,6 +822,19 @@ public class JournalArticleServiceUtil {
 		java.lang.String ddmStructureKey) {
 		return getService()
 				   .getArticlesCountByStructureId(groupId, ddmStructureKey);
+	}
+
+	public static int getArticlesCountByStructureId(long[] groupIds,
+		long classNameId, java.lang.String ddmStructureKey, int status) {
+		return getService()
+				   .getArticlesCountByStructureId(groupIds, classNameId,
+			ddmStructureKey, status);
+	}
+
+	public static int getArticlesCountByStructureId(long[] groupIds,
+		java.lang.String ddmStructureKey) {
+		return getService()
+				   .getArticlesCountByStructureId(groupIds, ddmStructureKey);
 	}
 
 	/**

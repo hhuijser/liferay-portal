@@ -145,11 +145,47 @@ int totalVar = 0;
 	<c:when test="<%= Validator.isNotNull(displayTerms.getStructureId()) %>">
 
 		<%
-		totalVar = JournalArticleServiceUtil.getArticlesCountByStructureId(displayTerms.getGroupId(), searchTerms.getStructureId());
+		long[] groupIds;
+
+		Group siteGroup = GroupLocalServiceUtil.getGroup(displayTerms.getGroupId());
+
+		if (siteGroup.isCompany()) {
+			groupIds = PortalUtil.getSharedContentSiteGroupIds(company.getCompanyId(), displayTerms.getGroupId(), user.getUserId());
+		}
+		else {
+			DDMStructure ddmStructure = DDMStructureLocalServiceUtil.fetchStructure(siteGroup.getGroupId(), PortalUtil.getClassNameId(JournalArticle.class), displayTerms.getStructureId(), true);
+
+			Group ddmStructureGroup = GroupLocalServiceUtil.getGroup(ddmStructure.getGroupId());
+
+			if (ddmStructureGroup.isCompany()) {
+				groupIds= new long[] {siteGroup.getGroupId()};
+			}
+			else {
+				Set<Group> groups = new LinkedHashSet<Group>();
+
+				groups.add(siteGroup);
+
+				if (siteGroup.getGroupId() == ddmStructure.getGroupId()) {
+					groups.addAll(siteGroup.getDescendants(true));
+				}
+
+				long[] tempGroupIds = new long[groups.size()];
+
+				int i = 0;
+
+				for (Group group : groups) {
+					tempGroupIds[i++] = group.getGroupId();
+				}
+
+				groupIds = tempGroupIds;
+			}
+		}
+
+		totalVar = JournalArticleServiceUtil.getArticlesCountByStructureId(groupIds, searchTerms.getStructureId());
 
 		articleSearchContainer.setTotal(totalVar);
 
-		resultsList = JournalArticleServiceUtil.getArticlesByStructureId(displayTerms.getGroupId(), displayTerms.getStructureId(), articleSearchContainer.getStart(), articleSearchContainer.getEnd(), articleSearchContainer.getOrderByComparator());
+		resultsList = JournalArticleServiceUtil.getArticlesByStructureId(groupIds, displayTerms.getStructureId(), articleSearchContainer.getStart(), articleSearchContainer.getEnd(), articleSearchContainer.getOrderByComparator());
 		%>
 
 	</c:when>

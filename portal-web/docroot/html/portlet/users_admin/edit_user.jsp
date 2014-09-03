@@ -131,30 +131,34 @@ else if (selUser != null) {
 	}
 }
 
-List<UserGroupGroupRole> inheritedSiteRoles = Collections.emptyList();
+List<UserGroupGroupRole> userGroupGroupRoles = Collections.emptyList();
 
 if (selUser != null) {
-	inheritedSiteRoles = UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByUser(selUser.getUserId());
+	userGroupGroupRoles = UserGroupGroupRoleLocalServiceUtil.getUserGroupGroupRolesByUser(selUser.getUserId());
 }
 
-List<Group> inheritedSites = GroupLocalServiceUtil.getUserGroupsRelatedGroups(userGroups);
-List<Group> organizationsRelatedGroups = Collections.emptyList();
+List<Group> relatedGroups = GroupLocalServiceUtil.getUserGroupsRelatedGroups(userGroups);
 
-if (!organizations.isEmpty()) {
-	organizationsRelatedGroups = GroupLocalServiceUtil.getOrganizationsRelatedGroups(organizations);
+ListUtil.distinct(relatedGroups);
 
-	for (Group group : organizationsRelatedGroups) {
-		if (!inheritedSites.contains(group)) {
-			inheritedSites.add(group);
-		}
+List<Group> organizationsRelatedGroups = GroupLocalServiceUtil.getOrganizationsRelatedGroups(organizations);
+
+for (Group group : organizationsRelatedGroups) {
+	if (!relatedGroups.contains(group)) {
+		relatedGroups.add(group);
 	}
 }
 
-List<Group> allGroups = new ArrayList<Group>();
+List<Group> regularGroups = new ArrayList<Group>(groups);
 
-allGroups.addAll(groups);
-allGroups.addAll(inheritedSites);
-allGroups.addAll(organizationsRelatedGroups);
+for (Group group : relatedGroups) {
+	if (!regularGroups.contains(group)) {
+		regularGroups.add(group);
+	}
+}
+
+List<Group> allGroups = new ArrayList<Group>(regularGroups);
+
 allGroups.addAll(GroupLocalServiceUtil.getOrganizationsGroups(organizations));
 allGroups.addAll(GroupLocalServiceUtil.getUserGroupsGroups(userGroups));
 
@@ -237,13 +241,14 @@ if (selUser != null) {
 	request.setAttribute("user.selContact", selContact);
 	request.setAttribute("user.passwordPolicy", passwordPolicy);
 	request.setAttribute("user.groups", groups);
-	request.setAttribute("user.inheritedSites", inheritedSites);
+	request.setAttribute("user.regularGroups", regularGroups);
+	request.setAttribute("user.organizationsRelatedGroups", organizationsRelatedGroups);
 	request.setAttribute("user.organizations", organizations);
 	request.setAttribute("user.roles", roles);
 	request.setAttribute("user.organizationRoles", organizationRoles);
 	request.setAttribute("user.siteRoles", siteRoles);
-	request.setAttribute("user.inheritedSiteRoles", inheritedSiteRoles);
 	request.setAttribute("user.userGroups", userGroups);
+	request.setAttribute("user.userGroupGroupRoles", userGroupGroupRoles);
 	request.setAttribute("user.allGroups", allGroups);
 	request.setAttribute("user.roleGroups", roleGroups);
 

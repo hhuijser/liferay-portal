@@ -28,4 +28,16 @@ public class XMLSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("IncorrectTabs3.testxml");
 	}
 
+	@Test
+	public void testIncorrectPoshiCharacters() throws Exception {
+		test("PoshiCharactersAfterDefinitionElement1.testxml");
+		test("PoshiCharactersAfterDefinitionElement2.testxml");
+		test("PoshiCharactersAfterDefinitionElement3.testxml");
+		test("PoshiCharactersAfterDefinitionElement4.testxml");
+		test("PoshiCharactersBeforeDefinitionElement1.testxml");
+		test("PoshiCharactersBeforeDefinitionElement2.testxml");
+		test("PoshiCharactersBeforeDefinitionElement3.testxml");
+		test("PoshiCharactersBeforeDefinitionElement4.testxml");
+	}
+
 }

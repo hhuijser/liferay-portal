@@ -16,6 +16,7 @@ package com.liferay.portal.kernel.servlet;
 
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.Map;
@@ -60,7 +61,7 @@ public class ServletContextPool {
 	}
 
 	private boolean _containsKey(String servletContextName) {
-		if (servletContextName == null) {
+		if (Validator.isNull(servletContextName)) {
 			return false;
 		}
 

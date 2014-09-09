@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.security.pacl.permission.PortalRuntimePermissio
 import com.liferay.portal.kernel.servlet.PluginContextListener;
 import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.ClassLoaderPool;
+import com.liferay.portal.kernel.util.Validator;
 
 import javax.servlet.ServletContext;
 
@@ -51,7 +52,7 @@ public class PortletClassLoaderUtil {
 	public static String getServletContextName() {
 		String servletContextName = _servletContextName.get();
 
-		if (servletContextName == null) {
+		if (Validator.isNull(servletContextName)) {
 			throw new IllegalStateException(
 				"No servlet context name specified");
 		}

@@ -343,34 +343,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 	}
 
 	protected String checkImmutableAndStaticableFieldTypes(
-		String fileName, String packagePath, String className,
-		String content) {
-
-		if (!portalSource) {
-			return content;
-		}
-
-		ClassLibrary classLibrary = new ClassLibrary();
-
-		classLibrary.addClassLoader(JavaSourceProcessor.class.getClassLoader());
-
-		JavaDocBuilder javaDocBuilder = new JavaDocBuilder(classLibrary);
-
-		try {
-			javaDocBuilder.addSource(
-				new UnsyncStringReader(sanitizeContent(content)));
-		}
-		catch (ParseException pe) {
-			System.err.println(
-				"Unable to parse " + fileName + StringPool.COMMA_AND_SPACE +
-					pe.getMessage());
-
-			return content;
-		}
-
-		com.thoughtworks.qdox.model.JavaClass javaClass =
-			javaDocBuilder.getClassByName(
-				packagePath.concat(StringPool.PERIOD).concat(className));
+		com.thoughtworks.qdox.model.JavaClass javaClass, String content) {
 
 		String[] lines = null;
 
@@ -1002,9 +975,35 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		//newContent = applyDiamondOperator(newContent);
 
 		// LPS-49294
+		if (portalSource) {
+			ClassLibrary classLibrary = new ClassLibrary();
 
-		newContent = checkImmutableAndStaticableFieldTypes(
-			fileName, packagePath, className, newContent);
+			classLibrary.addClassLoader(
+				JavaSourceProcessor.class.getClassLoader());
+
+			JavaDocBuilder javaDocBuilder = new JavaDocBuilder(classLibrary);
+
+			try {
+				javaDocBuilder.addSource(
+					new UnsyncStringReader(sanitizeContent(newContent)));
+			}
+			catch (ParseException pe) {
+				System.err.println(
+					"Unable to parse " + fileName + StringPool.COMMA_AND_SPACE +
+						pe.getMessage());
+
+				return content;
+			}
+
+			com.thoughtworks.qdox.model.JavaClass javaClass =
+				javaDocBuilder.getClassByName(
+					packagePath.concat(StringPool.PERIOD).concat(className));
+
+			newContent = checkImmutableAndStaticableFieldTypes(javaClass, 
+				newContent);
+
+			newContent = sortStaticInitializations(javaClass, newContent);
+		}
 
 		// LPS-49552
 
@@ -2451,6 +2450,117 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		return line;
 	}
 
+	protected String sortStaticInitializations(
+			com.thoughtworks.qdox.model.JavaClass javaClass, String content)
+		throws Exception {
+
+		int lastStaticFieldLineNumber = -1;
+		String lastStaticFieldName = null;
+		String lastStaticFieldInitializationExpression = null;
+
+		for (JavaField javaField : javaClass.getFields()) {
+			if (javaField.isStatic() &&
+					(javaField.getLineNumber() > lastStaticFieldLineNumber)) {
+
+				lastStaticFieldLineNumber = javaField.getLineNumber();
+
+				lastStaticFieldName = javaField.getName();
+
+				lastStaticFieldInitializationExpression =
+					javaField.getInitializationExpression();
+				lastStaticFieldInitializationExpression =
+					lastStaticFieldInitializationExpression.trim();
+			}
+		}
+
+		if (lastStaticFieldName == null) {
+			return content;
+		}
+
+		String[] lines = StringUtil.splitLines(content);
+		String line = lines[lastStaticFieldLineNumber-1];
+
+		/*
+		 * In order to correctly place the static block after the last static
+		 * field, we have to know the index of the character immediately after
+		 * the last static field - however, at the moment we only have the
+		 * lineNumber and the name. Thus, we do the following to locate the
+		 * correct position.
+		 *
+		 * First, we pull the line of the last static filed, and find it in
+		 * the overall content. then, using that index as a starting point, we
+		 * find the name of the field - we have to do this before finding the
+		 * first semi-colon in case of multiple fields being declared on the
+		 * same line.
+		 *
+		 * Then, we have to account for the possiblity that the initalization
+		 * expression itself may have interior semicolons, and thus we manually
+		 * grab the first index after it.
+		 *
+		 * Finally, we search for the index of the first semicolon after all of
+		 * these offsets, in order to find where that static field's initializ-
+		 * ation finally ends. Using this index, we proceed with the rest of the
+		 * process
+		 */
+
+		int lineOffset = content.indexOf(line);
+		int nameOffset = content.indexOf(lastStaticFieldName, lineOffset);
+		int initOffset = content.indexOf(
+			lastStaticFieldInitializationExpression, nameOffset);
+
+		int lastStaticFieldEndIndex = 1 + content.indexOf(
+			CharPool.SEMICOLON,
+			initOffset + lastStaticFieldInitializationExpression.length());
+
+		Matcher matcher = _staticInitializationBlockPattern.matcher(content);
+
+		if (!matcher.find()) {
+			return content;
+		}
+
+		int staticBlockStartIndex = matcher.start();
+		int staticBlockEndIndex = staticBlockStartIndex;
+		int openBrackets = 1;
+
+		for (int pos = matcher.end(); pos < content.length(); pos++) {
+			if (content.charAt(pos) == CharPool.CLOSE_CURLY_BRACE) {
+				openBrackets--;
+
+				if (openBrackets == 0) {
+					staticBlockEndIndex = pos + 1;
+
+					break;
+				}
+			}
+			else if (content.charAt(pos) == CharPool.OPEN_CURLY_BRACE) {
+				openBrackets++;
+			}
+		}
+
+		StringBundler sb = new StringBundler(4);
+
+		if (lastStaticFieldEndIndex > staticBlockEndIndex) {
+			sb.append(content.substring(0, staticBlockStartIndex));
+			sb.append(
+				content.substring(
+					staticBlockEndIndex, lastStaticFieldEndIndex));
+			sb.append(
+				content.substring(staticBlockStartIndex, staticBlockEndIndex));
+			sb.append(content.substring(lastStaticFieldEndIndex));
+		}
+		else {
+			sb.append(content.substring(0, lastStaticFieldEndIndex));
+			sb.append(
+				content.substring(staticBlockStartIndex, staticBlockEndIndex));
+			sb.append(
+				content.substring(
+					lastStaticFieldEndIndex, staticBlockStartIndex));
+			sb.append(content.substring(staticBlockEndIndex));
+		}
+
+		return sb.toString();
+	}
+
 	private static Pattern _importsPattern = Pattern.compile(
 		"(^[ \t]*import\\s+.*;\n+)+", Pattern.MULTILINE);
 
@@ -2486,6 +2596,8 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 	private List<String> _secureRandomExclusions;
 	private Pattern _stagedModelTypesPattern = Pattern.compile(
 		"StagedModelType\\(([a-zA-Z.]*(class|getClassName[\\(\\)]*))\\)");
+	private Pattern _staticInitializationBlockPattern = Pattern.compile(
+		"\\s*static\\s*\\{");
 	private List<String> _staticLogVariableExclusions;
 	private List<String> _testAnnotationsExclusions;
 	private Pattern _throwsSystemExceptionPattern = Pattern.compile(

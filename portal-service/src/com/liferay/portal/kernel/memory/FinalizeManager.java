@@ -144,6 +144,19 @@ public class FinalizeManager {
 	private static final ReferenceQueue<Object> _referenceQueue =
 		new ReferenceQueue<Object>();
 
+	static {
+		if (THREAD_ENABLED) {
+			Thread thread = new FinalizeThread("Finalize Thread");
+
+			thread.setContextClassLoader(
+				FinalizeManager.class.getClassLoader());
+
+			thread.setDaemon(true);
+
+			thread.start();
+		}
+	}
+
 	private static class FinalizeThread extends Thread {
 
 		public FinalizeThread(String name) {
@@ -159,19 +172,6 @@ public class FinalizeManager {
 				catch (InterruptedException ie) {
 				}
 			}
-		}
-	}
-
-	static {
-		if (THREAD_ENABLED) {
-			Thread thread = new FinalizeThread("Finalize Thread");
-
-			thread.setContextClassLoader(
-				FinalizeManager.class.getClassLoader());
-
-			thread.setDaemon(true);
-
-			thread.start();
 		}
 	}
 

@@ -79,6 +79,9 @@ public class EditTagAction extends PortletAction {
 			else if (e instanceof AssetTagException) {
 				SessionErrors.add(actionRequest, e.getClass(), e);
 			}
+			else {
+				throw e;
+			}
 		}
 	}
 

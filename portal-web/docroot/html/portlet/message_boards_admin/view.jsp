@@ -175,9 +175,11 @@ if ((category != null) && layout.isTypeControlPanel()) {
 
 							<br>
 
-							<aui:button disabled="<%= true %>" name="deleteCategory" onClick='<%= renderResponse.getNamespace() + "deleteCategories();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
+							<c:if test="<%= !results.isEmpty() %>">
+								<aui:button disabled="<%= true %>" name="deleteCategory" onClick='<%= renderResponse.getNamespace() + "deleteCategories();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
 
-							<div class="separator"><!-- --></div>
+								<div class="separator"><!-- --></div>
+							</c:if>
 
 							<liferay-ui:search-iterator />
 						</liferay-ui:search-container>
@@ -438,6 +440,7 @@ if ((category != null) && layout.isTypeControlPanel()) {
 				</liferay-ui:search-container-row>
 
 				<br>
+
 				<c:if test="<%= !results.isEmpty() %>">
 					<aui:button disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteThreads();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
 
@@ -447,6 +450,7 @@ if ((category != null) && layout.isTypeControlPanel()) {
 
 					<div class="separator"><!-- --></div>
 				</c:if>
+
 				<liferay-ui:search-iterator />
 			</liferay-ui:search-container>
 		</aui:form>

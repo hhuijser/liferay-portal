@@ -1151,7 +1151,8 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			PortletApp portletApp = portlet.getPortletApp();
 
-			if ((servletContextName != null) && portletApp.isWARFile() &&
+			if (Validator.isNotNull(servletContextName) &&
+				portletApp.isWARFile() &&
 				portletId.endsWith(
 					PortletConstants.WAR_SEPARATOR +
 						PortalUtil.getJsSafePortletId(servletContextName)) &&
@@ -1159,7 +1160,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 				undefinedPortletIds.add(portletId);
 			}
-			else if ((servletContextName == null) &&
+			else if (Validator.isNull(servletContextName) &&
 					 !portletApp.isWARFile() &&
 					 !portletId.contains(PortletConstants.WAR_SEPARATOR) &&
 					 !portletIds.contains(portletId)) {

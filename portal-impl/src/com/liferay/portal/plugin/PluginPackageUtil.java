@@ -999,7 +999,7 @@ public class PluginPackageUtil {
 		String servletContextName = servletContext.getServletContextName();
 
 		if (_log.isInfoEnabled()) {
-			if (servletContextName == null) {
+			if (Validator.isNull(servletContextName)) {
 				_log.info("Reading plugin package for the root context");
 			}
 			else {

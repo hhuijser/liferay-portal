@@ -715,7 +715,7 @@ public class ServicePreAction extends Action {
 		}
 
 		boolean themeImagesFastLoad = PropsValues.THEME_IMAGES_FAST_LOAD;
-		
+
 		if (PropsValues.THEME_IMAGES_FAST_LOAD_CHECK_REQUEST_PARAMETER) {
 			SessionParamUtil.getBoolean(
 				request, "images_fast_load",

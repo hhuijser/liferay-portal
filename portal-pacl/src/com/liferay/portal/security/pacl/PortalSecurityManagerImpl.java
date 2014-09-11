@@ -1301,10 +1301,9 @@ public class PortalSecurityManagerImpl extends SecurityManager
 					PortletClassLoaderUtil.getClassLoader(), _classes));
 		}
 
-		private static Map<String, Class<?>> _classes =
-			new HashMap<String, Class<?>>();
+		private static Map<String, Class<?>> createClassesMap() {
+			Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
 
-		static {
 			for (String className :
 					PropsValues.
 						PORTAL_SECURITY_MANAGER_PRELOAD_CLASSLOADER_CLASSES) {
@@ -1318,9 +1317,13 @@ public class PortalSecurityManagerImpl extends SecurityManager
 					_log.error(cnfe, cnfe);
 				}
 
-				_classes.put(clazz.getName(), clazz);
+				classes.put(clazz.getName(), clazz);
 			}
+
+			return classes;
 		}
+
+		private static Map<String, Class<?>> _classes = createClassesMap();
 
 	}
 

@@ -79,7 +79,7 @@ portletURL.setParameter("struts_action", "/blogs_admin/view");
 			/>
 		</liferay-ui:search-container-row>
 
-		<c:if test="<%= total > 0 %>">
+		<c:if test="<%= !results.isEmpty() %>">
 			<aui:button disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteEntries();" %>' value='<%= TrashUtil.isTrashEnabled(scopeGroupId) ? "move-to-the-recycle-bin" : "delete" %>' />
 
 			<div class="separator"><!-- --></div>

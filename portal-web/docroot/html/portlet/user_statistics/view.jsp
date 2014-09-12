@@ -86,13 +86,13 @@ if (!rankingNamesList.isEmpty()) {
 		</div>
 	</c:if>
 
-	<c:if test="<%= total == 0 %>">
+	<c:if test="<%= results.isEmpty() %>">
 		<liferay-ui:message key="there-are-no-active-users-for-this-period" />
 	</c:if>
 
 	<liferay-ui:search-iterator paginate="<%= false %>" searchContainer="<%= searchContainer %>" />
 
-	<c:if test="<%= results.size() > 0 %>">
+	<c:if test="<%= !results.isEmpty() %>">
 		<div class="taglib-search-iterator-page-iterator-bottom" id="<portlet:namespace />searchTopUsers">
 			<liferay-ui:search-paginator searchContainer="<%= searchContainer %>" type="article" />
 		</div>

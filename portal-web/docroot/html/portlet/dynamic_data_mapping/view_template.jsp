@@ -235,7 +235,7 @@ String title = ddmDisplay.getViewTemplatesTitle(structure, controlPanel, templat
 			/>
 		</liferay-ui:search-container-row>
 
-		<c:if test="<%= total > 0 %>">
+		<c:if test="<%= !results.isEmpty() %>">
 			<aui:button-row>
 				<aui:button cssClass="delete-templates-button" disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteTemplates();" %>' value="delete" />
 			</aui:button-row>

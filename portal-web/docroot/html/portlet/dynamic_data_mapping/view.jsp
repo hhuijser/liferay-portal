@@ -165,7 +165,7 @@ portletURL.setParameter("tabs1", tabs1);
 			/>
 		</liferay-ui:search-container-row>
 
-		<c:if test="<%= total > 0 %>">
+		<c:if test="<%= !results.isEmpty() %>">
 			<aui:button-row>
 				<aui:button cssClass="delete-structures-button" disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteStructures();" %>' value="delete" />
 			</aui:button-row>

@@ -88,7 +88,7 @@ portletURL.setParameter("groupId", String.valueOf(groupId));
 			<%@ include file="/html/portlet/mobile_device_rules/rule_group_columns.jspf" %>
 		</liferay-ui:search-container-row>
 
-		<c:if test="<%= total > 0 %>">
+		<c:if test="<%= !results.isEmpty() %>">
 			<aui:button-row>
 				<aui:button cssClass="delete-rules-button" disabled="<%= true %>" name="delete" onClick='<%= renderResponse.getNamespace() + "deleteRules();" %>' value="delete" />
 			</aui:button-row>

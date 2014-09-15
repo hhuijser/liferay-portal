@@ -3159,11 +3159,6 @@ if (ppstate.equals("normal")) {
 	<target name="record-test-package-names">
 		<script classpathref="project.classpath" language="beanshell">
 			<![CDATA[
-				import com.liferay.portal.kernel.util.GetterUtil;
-				import com.liferay.portal.kernel.util.OSDetector;
-				import com.liferay.portal.kernel.util.StringBundler;
-				import com.liferay.portal.kernel.util.StringUtil;
-
 				import org.apache.tools.ant.DirectoryScanner;
 
 				Map getPackageGroups(Set packageNames, int packageGroupsSize) {
@@ -3206,7 +3201,7 @@ if (ppstate.equals("normal")) {
 						int x = fileName.indexOf("com/");
 						int y = fileName.lastIndexOf("/");
 
-						if (OSDetector.isWindows()) {
+						if (File.separator.equals("\\")) {
 							x = fileName.indexOf("com\\");
 							y = fileName.lastIndexOf("\\");
 						}
@@ -3217,8 +3212,8 @@ if (ppstate.equals("normal")) {
 
 						String packageName = fileName.substring(x, y);
 
-						packageName = StringUtil.replace(packageName, "/", ".");
-						packageName = StringUtil.replace(packageName, "\\", ".");
+						packageName = packageName.replace("/", ".");
+						packageName = packageName.replace("\\", ".");
 
 						packageNames.add(packageName);
 					}
@@ -3226,10 +3221,10 @@ if (ppstate.equals("normal")) {
 					return packageNames;
 				}
 
-				StringBundler sb = new StringBundler();
+				StringBuilder sb = new StringBuilder();
 
 				Set packageNames = getPackageNames();
-				int packageGroupsSize = GetterUtil.getInteger(project.getProperty("test.package.groups.size"));
+				int packageGroupsSize = Integer.parseInt(project.getProperty("test.package.groups.size"));
 
 				Map packageGroups = getPackageGroups(packageNames, packageGroupsSize);
 
@@ -3239,7 +3234,19 @@ if (ppstate.equals("normal")) {
 					sb.append("TEST_PACKAGE_GROUP_");
 					sb.append(i);
 					sb.append("=");
-					sb.append(StringUtil.merge(packageGroup));
+
+					Iterator iterator = packageGroup.iterator();
+
+					while (iterator.hasNext()) {
+						String packageName = iterator.next();
+
+						sb.append(packageName);
+
+						if (iterator.hasNext()) {
+							sb.append(",");
+						}
+					}
+
 					sb.append("\n\n");
 				}
 
@@ -3255,7 +3262,18 @@ if (ppstate.equals("normal")) {
 
 				sb.append("\n\n");
 				sb.append("TEST_PACKAGE_NAMES=");
-				sb.append(StringUtil.merge(packageNames, " "));
+
+				Iterator iterator = packageNames.iterator();
+
+				while (iterator.hasNext()) {
+					String packageName = iterator.next();
+
+					sb.append(packageName);
+
+					if (iterator.hasNext()) {
+						sb.append(" ");
+					}
+				}
 
 				project.setProperty("test.package.names.properties.content", sb.toString());
 			]]>

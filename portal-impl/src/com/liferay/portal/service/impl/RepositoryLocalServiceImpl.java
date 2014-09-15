@@ -367,14 +367,17 @@ public class RepositoryLocalServiceImpl
 	}
 
 	protected long getExternalRepositoryId(
-			long folderId, long fileEntryId, long fileVersionId)
-		throws PortalException {
+		long folderId, long fileEntryId, long fileVersionId) {
 
 		long repositoryEntryId = RepositoryUtil.getRepositoryEntryId(
 			folderId, fileEntryId, fileVersionId);
 
 		RepositoryEntry repositoryEntry =
-			repositoryEntryLocalService.getRepositoryEntry(repositoryEntryId);
+			repositoryEntryLocalService.fetchRepositoryEntry(repositoryEntryId);
+
+		if (repositoryEntry == null) {
+			return 0;
+		}
 
 		return repositoryEntry.getRepositoryId();
 	}
@@ -422,8 +425,7 @@ public class RepositoryLocalServiceImpl
 	}
 
 	protected long getRepositoryId(
-			long folderId, long fileEntryId, long fileVersionId)
-		throws PortalException {
+		long folderId, long fileEntryId, long fileVersionId) {
 
 		long repositoryId = getInternalRepositoryId(
 			folderId, fileEntryId, fileVersionId);
@@ -432,7 +434,17 @@ public class RepositoryLocalServiceImpl
 			return repositoryId;
 		}
 
-		return getExternalRepositoryId(folderId, fileEntryId, fileVersionId);
+		repositoryId = getExternalRepositoryId(
+			folderId, fileEntryId, fileVersionId);
+
+		if (repositoryId == 0) {
+			throw new InvalidRepositoryIdException(
+				String.format(
+					"No folder or repository entry found with folder ID %s",
+					folderId));
+		}
+
+		return repositoryId;
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

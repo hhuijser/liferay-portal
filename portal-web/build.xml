@@ -207,7 +207,7 @@
 
 				<property name="alloy.bootstrap.lib.dir" value="${alloy.bootstrap.tmp.dir}/bootstrap-sass-${alloy.bootstrap.version}/assets/stylesheets" />
 
-				<delete includeemptydirs="true" quiet="true" failonerror="false">
+				<delete failonerror="false" includeemptydirs="true" quiet="true">
 					<fileset
 						dir="${alloy.bootstrap.lib.dir}"
 						includes="_bootstrap-*.scss"

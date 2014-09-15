@@ -22,7 +22,10 @@ import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchEngine;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.StringPool;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager;
 import com.liferay.portal.search.elasticsearch.index.IndexFactory;
 import com.liferay.portal.search.elasticsearch.util.LogUtil;
@@ -49,6 +52,7 @@ import org.elasticsearch.client.AdminClient;
 import org.elasticsearch.client.ClusterAdminClient;
 import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.cluster.metadata.RepositoryMetaData;
+import org.elasticsearch.common.Strings;
 import org.elasticsearch.common.collect.ImmutableList;
 import org.elasticsearch.common.settings.ImmutableSettings;
 import org.elasticsearch.repositories.RepositoryMissingException;
@@ -73,6 +77,10 @@ public class ElasticsearchSearchEngine extends BaseSearchEngine {
 	@Override
 	public synchronized String backup(long companyId, String backupName)
 		throws SearchException {
+
+		backupName = StringUtil.toLowerCase(backupName);
+
+		validateBackupName(backupName);
 
 		ClusterAdminClient clusterAdminClient =
 			_elasticsearchConnectionManager.getClusterAdminClient();
@@ -319,6 +327,43 @@ public class ElasticsearchSearchEngine extends BaseSearchEngine {
 			}
 			else {
 				throw ee;
+			}
+		}
+	}
+
+	protected void validateBackupName(String backupName)
+		throws SearchException {
+
+		if (Validator.isNull(backupName)) {
+			throw new SearchException(
+				"Backup name must not be an empty string");
+		}
+
+		if (StringUtil.contains(backupName, StringPool.COMMA)) {
+			throw new SearchException("Backup name must not contain comma");
+		}
+
+		if (StringUtil.startsWith(backupName, StringPool.DASH)) {
+			throw new SearchException("Backup name must not start with dash");
+		}
+
+		if (StringUtil.contains(backupName, StringPool.POUND)) {
+			throw new SearchException("Backup name must not contain pounds");
+		}
+
+		if (StringUtil.contains(backupName, StringPool.SPACE)) {
+			throw new SearchException("Backup name must not contain spaces");
+		}
+
+		if (StringUtil.contains(backupName, StringPool.TAB)) {
+			throw new SearchException("Backup name must not contain tabs");
+		}
+
+		for (char c : backupName.toCharArray()) {
+			if (Strings.INVALID_FILENAME_CHARS.contains(c)) {
+				throw new SearchException(
+					"Backup name must not contain invalid file name " +
+						"characters");
 			}
 		}
 	}

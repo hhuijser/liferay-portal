@@ -222,6 +222,22 @@ public class SeleniumBuilder {
 		return testCaseCount;
 	}
 
+	private boolean _isCommandNameOverridden(
+		Element rootElement, String commandName) {
+
+		List<Element> commandElements =
+			_seleniumBuilderFileUtil.getAllChildElements(
+				rootElement, "command");
+
+		for (Element commandElement : commandElements) {
+			if (commandName.equals(commandElement.attributeValue("name"))) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	private boolean _isIgnoreCommandName(
 		Element rootElement, String commandName) {
 
@@ -305,6 +321,10 @@ public class SeleniumBuilder {
 
 				for (Element commandElement : commandElements) {
 					String commandName = commandElement.attributeValue("name");
+
+					if (_isCommandNameOverridden(rootElement, commandName)) {
+						continue;
+					}
 
 					if (_isIgnoreCommandName(rootElement, commandName)) {
 						continue;

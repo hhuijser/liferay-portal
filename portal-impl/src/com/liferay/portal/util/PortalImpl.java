@@ -7823,8 +7823,7 @@ public class PortalImpl implements Portal {
 		String virtualHostname, String portalDomain) {
 
 		if (Validator.isBlank(portalDomain) ||
-			StringUtil.equalsIgnoreCase(portalDomain, _LOCALHOST) ||
-			!StringUtil.equalsIgnoreCase(virtualHostname, _LOCALHOST)) {
+			StringUtil.equalsIgnoreCase(portalDomain, _LOCALHOST)) {
 
 			return virtualHostname;
 		}

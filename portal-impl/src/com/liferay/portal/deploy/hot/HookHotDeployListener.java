@@ -2505,8 +2505,7 @@ public class HookHotDeployListener
 			_dlProcessors.clear();
 		}
 
-		private List<DLProcessor> _dlProcessors =
-			new ArrayList<DLProcessor>();
+		private List<DLProcessor> _dlProcessors = new ArrayList<DLProcessor>();
 
 	}
 

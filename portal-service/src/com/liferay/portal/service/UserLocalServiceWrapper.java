@@ -2417,6 +2417,16 @@ public class UserLocalServiceWrapper implements UserLocalService,
 			params, start, end, sort);
 	}
 
+	@Override
+	public com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.portal.model.User> searchUsersWithoutAddress(
+		long companyId, java.lang.String keywords, int status,
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
+		int start, int end, com.liferay.portal.kernel.search.Sort sort)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _userLocalService.searchUsersWithoutAddress(companyId, keywords,
+			status, params, start, end, sort);
+	}
+
 	/**
 	* Sends an email address verification to the user.
 	*

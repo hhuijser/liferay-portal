@@ -78,7 +78,8 @@ public class StreamUtilTest {
 		Assert.assertArrayEquals(_data, Files.readAllBytes(_toFilePath));
 	}
 
-	private final byte[] _data = new byte[1024 * 1024];
+	private static final byte[] _data = new byte[1024 * 1024];
+
 	private Path _fromFilePath;
 	private Path _toFilePath;
 

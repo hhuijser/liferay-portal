@@ -478,6 +478,7 @@
 				<classpath mode="compile">lib/portal/msnm.jar</classpath>
 				<classpath mode="compile">lib/portal/nekohtml.jar</classpath>
 				<classpath mode="compile">lib/portal/netcdf.jar</classpath>
+				<classpath mode="compile">lib/portal/netty-all.jar</classpath>
 				<classpath mode="compile">lib/portal/odmg.jar</classpath>
 				<classpath mode="compile">lib/portal/openid4java.jar</classpath>
 				<classpath mode="compile">lib/portal/oro.jar</classpath>

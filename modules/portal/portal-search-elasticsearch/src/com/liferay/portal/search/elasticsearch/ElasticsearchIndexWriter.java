@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.IndexWriter;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
+import com.liferay.portal.kernel.search.SpellCheckIndexWriter;
 import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.search.elasticsearch.connection.ElasticsearchConnectionManager;
 import com.liferay.portal.search.elasticsearch.util.DocumentTypes;
@@ -179,6 +180,14 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 	}
 
 	@Override
+	@Reference
+	public void setSpellCheckIndexWriter(
+		SpellCheckIndexWriter spellCheckIndexWriter) {
+
+		super.setSpellCheckIndexWriter(spellCheckIndexWriter);
+	}
+
+	@Override
 	public void updateDocument(SearchContext searchContext, Document document)
 		throws SearchException {
 
@@ -195,7 +204,7 @@ public class ElasticsearchIndexWriter extends BaseIndexWriter {
 			DocumentTypes.LIFERAY, searchContext, documents, true);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		ElasticsearchIndexWriter.class);
 
 	private ElasticsearchConnectionManager _elasticsearchConnectionManager;

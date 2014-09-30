@@ -3503,6 +3503,40 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		return searchUsers(searchContext);
 	}
 
+	@Override
+	public BaseModelSearchResult<User> searchUsersWithoutAddress(
+			long companyId, String keywords, int status,
+			LinkedHashMap<String, Object> params, int start, int end, Sort sort)
+		throws PortalException {
+
+		String firstName = null;
+		String middleName = null;
+		String lastName = null;
+		String fullName = null;
+		String screenName = null;
+		String emailAddress = null;
+		boolean andOperator = false;
+
+		if (Validator.isNotNull(keywords)) {
+			firstName = keywords;
+			middleName = keywords;
+			lastName = keywords;
+			fullName = keywords;
+			screenName = keywords;
+			emailAddress = keywords;
+		}
+		else {
+			andOperator = true;
+		}
+
+		SearchContext searchContext = buildSearchContext(
+			companyId, firstName, middleName, lastName, fullName, screenName,
+			emailAddress, null, null, null, null, null, status, params,
+			andOperator, start, end, sort);
+
+		return searchUsers(searchContext);
+	}
+
 	/**
 	 * Sends an email address verification to the user.
 	 *

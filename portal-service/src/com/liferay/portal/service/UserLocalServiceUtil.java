@@ -2276,6 +2276,16 @@ public class UserLocalServiceUtil {
 			end, sort);
 	}
 
+	public static com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.portal.model.User> searchUsersWithoutAddress(
+		long companyId, java.lang.String keywords, int status,
+		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
+		int start, int end, com.liferay.portal.kernel.search.Sort sort)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .searchUsersWithoutAddress(companyId, keywords, status,
+			params, start, end, sort);
+	}
+
 	/**
 	* Sends an email address verification to the user.
 	*

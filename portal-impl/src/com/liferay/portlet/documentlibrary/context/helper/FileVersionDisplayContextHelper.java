@@ -15,7 +15,7 @@
 package com.liferay.portlet.documentlibrary.context.helper;
 
 import com.liferay.portal.kernel.repository.model.FileVersion;
-import com.liferay.portlet.documentlibrary.model.DLFileEntry;
+import com.liferay.portlet.documentlibrary.model.DLFileVersion;
 import com.liferay.portlet.documentlibrary.util.DLUtil;
 
 /**
@@ -47,7 +47,7 @@ public class FileVersionDisplayContextHelper {
 	}
 
 	public boolean isDLFileVersion() {
-		if (_fileVersion.getModel() instanceof DLFileEntry) {
+		if (_fileVersion.getModel() instanceof DLFileVersion) {
 			return true;
 		}
 
@@ -80,7 +80,7 @@ public class FileVersionDisplayContextHelper {
 
 	private Boolean _approved;
 	private Boolean _draft;
-	private FileVersion _fileVersion;
+	private final FileVersion _fileVersion;
 	private Boolean _officeDoc;
 	private Boolean _pending;
 

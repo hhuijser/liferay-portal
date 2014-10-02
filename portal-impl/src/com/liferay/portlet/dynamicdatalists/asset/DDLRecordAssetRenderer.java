@@ -123,8 +123,22 @@ public class DDLRecordAssetRenderer extends BaseAssetRenderer {
 			"struts_action", "/dynamic_data_lists/edit_record");
 		portletURL.setParameter(
 			"recordId", String.valueOf(_record.getRecordId()));
+		portletURL.setParameter("version", _recordVersion.getVersion());
 
 		return portletURL;
+	}
+
+	@Override
+	public String getURLViewInContext(
+			LiferayPortletRequest liferayPortletRequest,
+			LiferayPortletResponse liferayPortletResponse,
+			String noSuchEntryRedirect)
+		throws Exception {
+
+		return getURLViewInContext(
+			liferayPortletRequest, noSuchEntryRedirect,
+			"/dynamic_data_lists/find_record", "recordId",
+			_record.getRecordId());
 	}
 
 	@Override
@@ -183,7 +197,7 @@ public class DDLRecordAssetRenderer extends BaseAssetRenderer {
 		return themeDisplay.getPathThemeImages() + "/common/history.png";
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		DDLRecordAssetRenderer.class);
 
 	private final DDMStructure _ddmStructure;

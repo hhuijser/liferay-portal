@@ -128,6 +128,10 @@ public class RegistryWrapper implements Registry {
 		return _registry.getServices(className, filterString);
 	}
 
+	public Registry getWrappedRegistry() {
+		return _registry;
+	}
+
 	@Override
 	public <T> com.liferay.registry.ServiceRegistration<T> registerService(
 		Class<T> clazz, T service) {
@@ -226,8 +230,8 @@ public class RegistryWrapper implements Registry {
 		return _registry.ungetService(serviceReference);
 	}
 
-	private Registry _registry;
-	private ConcurrentHashMap<ServiceReference<?>, AtomicInteger>
+	private final Registry _registry;
+	private final ConcurrentHashMap<ServiceReference<?>, AtomicInteger>
 		_serviceReferenceCountsMap =
 			new ConcurrentHashMap<ServiceReference<?>, AtomicInteger>();
 

@@ -1,0 +1,6 @@
+CREATE INDEX index1 ON table1 (feild1(10));
+CREATE INDEX index2 ON table1 (feild2(10));
+
+UPDATE table1 set feild1 = 0;
+
+INSERT INTO table1 (feild1,feild2,feild3) VALUES (1,2,3);

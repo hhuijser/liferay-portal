@@ -185,12 +185,6 @@ public class DDMStructureWrapper implements DDMStructure,
 	}
 
 	@Override
-	public com.liferay.portlet.dynamicdatamapping.model.DDMForm createFullHierarchyDDMForm()
-		throws com.liferay.portal.kernel.exception.PortalException {
-		return _ddmStructure.createFullHierarchyDDMForm();
-	}
-
-	@Override
 	public java.lang.String[] getAvailableLanguageIds() {
 		return _ddmStructure.getAvailableLanguageIds();
 	}
@@ -256,7 +250,8 @@ public class DDMStructureWrapper implements DDMStructure,
 
 	@Override
 	public java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMFormField> getDDMFormFields(
-		boolean includeTransientFields) {
+		boolean includeTransientFields)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmStructure.getDDMFormFields(includeTransientFields);
 	}
 
@@ -379,7 +374,8 @@ public class DDMStructureWrapper implements DDMStructure,
 	}
 
 	@Override
-	public java.util.Set<java.lang.String> getFieldNames() {
+	public java.util.Set<java.lang.String> getFieldNames()
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmStructure.getFieldNames();
 	}
 
@@ -423,13 +419,15 @@ public class DDMStructureWrapper implements DDMStructure,
 	}
 
 	@Override
-	public com.liferay.portlet.dynamicdatamapping.model.DDMForm getFullHierarchyDDMForm() {
+	public com.liferay.portlet.dynamicdatamapping.model.DDMForm getFullHierarchyDDMForm()
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmStructure.getFullHierarchyDDMForm();
 	}
 
 	@Override
 	public java.util.Map<java.lang.String, com.liferay.portlet.dynamicdatamapping.model.DDMFormField> getFullHierarchyDDMFormFieldsMap(
-		boolean includeNestedDDMFormFields) {
+		boolean includeNestedDDMFormFields)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmStructure.getFullHierarchyDDMFormFieldsMap(includeNestedDDMFormFields);
 	}
 
@@ -556,7 +554,8 @@ public class DDMStructureWrapper implements DDMStructure,
 	}
 
 	@Override
-	public java.util.List<java.lang.String> getRootFieldNames() {
+	public java.util.List<java.lang.String> getRootFieldNames()
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmStructure.getRootFieldNames();
 	}
 
@@ -670,7 +669,8 @@ public class DDMStructureWrapper implements DDMStructure,
 	}
 
 	@Override
-	public boolean hasField(java.lang.String fieldName) {
+	public boolean hasField(java.lang.String fieldName)
+		throws com.liferay.portal.kernel.exception.PortalException {
 		return _ddmStructure.hasField(fieldName);
 	}
 
@@ -865,12 +865,6 @@ public class DDMStructureWrapper implements DDMStructure,
 	public void setExpandoBridgeAttributes(
 		com.liferay.portal.service.ServiceContext serviceContext) {
 		_ddmStructure.setExpandoBridgeAttributes(serviceContext);
-	}
-
-	@Override
-	public void setFullHierarchyDDMForm(
-		com.liferay.portlet.dynamicdatamapping.model.DDMForm fullHierarchyDDMForm) {
-		_ddmStructure.setFullHierarchyDDMForm(fullHierarchyDDMForm);
 	}
 
 	/**

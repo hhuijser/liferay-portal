@@ -1417,7 +1417,9 @@ public class DDMStructureLocalServiceImpl
 		return elementNames;
 	}
 
-	protected DDMForm getParentDDMForm(long parentStructureId) {
+	protected DDMForm getParentDDMForm(long parentStructureId)
+		throws PortalException {
+
 		DDMStructure parentStructure =
 			ddmStructurePersistence.fetchByPrimaryKey(parentStructureId);
 

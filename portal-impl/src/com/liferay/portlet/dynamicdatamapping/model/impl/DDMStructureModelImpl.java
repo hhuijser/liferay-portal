@@ -872,14 +872,6 @@ public class DDMStructureModelImpl extends BaseModelImpl<DDMStructure>
 		com.liferay.portlet.dynamicdatamapping.model.DDMForm ddmForm) {
 	}
 
-	public com.liferay.portlet.dynamicdatamapping.model.DDMForm getFullHierarchyDDMForm() {
-		return null;
-	}
-
-	public void setFullHierarchyDDMForm(
-		com.liferay.portlet.dynamicdatamapping.model.DDMForm fullHierarchyDDMForm) {
-	}
-
 	@Override
 	public StagedModelType getStagedModelType() {
 		return new StagedModelType(PortalUtil.getClassNameId(
@@ -1103,8 +1095,6 @@ public class DDMStructureModelImpl extends BaseModelImpl<DDMStructure>
 
 		setDDMForm(null);
 
-		setFullHierarchyDDMForm(null);
-
 		ddmStructureModelImpl._columnBitmask = 0;
 	}
 
@@ -1201,8 +1191,6 @@ public class DDMStructureModelImpl extends BaseModelImpl<DDMStructure>
 		ddmStructureCacheModel.type = getType();
 
 		ddmStructureCacheModel._ddmForm = getDDMForm();
-
-		ddmStructureCacheModel._fullHierarchyDDMForm = getFullHierarchyDDMForm();
 
 		return ddmStructureCacheModel;
 	}

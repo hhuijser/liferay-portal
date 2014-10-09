@@ -26,14 +26,19 @@ boolean passwordResetDisabled = false;
 if (((selUser == null) || (selUser.getLastLoginDate() == null)) && ((passwordPolicy == null) || (passwordPolicy.isChangeable() && passwordPolicy.isChangeRequired()))) {
 	passwordResetDisabled = true;
 }
+if ((passwordPolicy != null) && !passwordPolicy.isChangeable()) {
+	passwordResetDisabled = true;
+}
 
 boolean passwordReset = false;
 
-if (passwordResetDisabled) {
-	passwordReset = true;
-}
-else {
-	passwordReset = BeanParamUtil.getBoolean(selUser, request, "passwordReset");
+if ((passwordPolicy != null) && passwordPolicy.isChangeable()) {
+	if (passwordResetDisabled) {
+		passwordReset = true;
+	}
+	else {
+		passwordReset = BeanParamUtil.getBoolean(selUser, request, "passwordReset");
+	}
 }
 %>
 

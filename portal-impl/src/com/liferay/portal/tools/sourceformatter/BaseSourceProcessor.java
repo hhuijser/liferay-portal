@@ -1408,7 +1408,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 			content = content.substring(0, content.length() - 1);
 		}
 
-		return content;
+		return StringUtil.replace(content, "\n\n\n", "\n\n");
 	}
 
 	protected String trimLine(String line, boolean allowLeadingSpaces) {

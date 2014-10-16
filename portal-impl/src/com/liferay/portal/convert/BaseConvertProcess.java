@@ -97,7 +97,8 @@ public abstract class BaseConvertProcess implements ConvertProcess {
 
 	protected abstract void doConvert() throws Exception;
 
-	private static final Log _log = LogFactoryUtil.getLog(BaseConvertProcess.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		BaseConvertProcess.class);
 
 	private String[] _paramValues = null;
 

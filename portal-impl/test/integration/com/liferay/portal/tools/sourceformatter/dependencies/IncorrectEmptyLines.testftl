@@ -1,0 +1,14 @@
+<#include "../init.ftl">
+ 
+   
+	
+		
+<div class="field-empty-content lfr-forms-field-empty-content">
+	<#if formatEmptyContent >
+		<label>
+			<@liferay_ui.message key=escape(content) />
+		</label>
+	</#if>
+</div>
+
+

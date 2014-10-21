@@ -1386,7 +1386,8 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		}
 	}
 
-	protected String trimContent(String content, boolean allowLeadingSpaces)
+	protected String trimContent(String content, boolean allowLeadingSpaces,
+			boolean allowEmptyLines)
 		throws IOException {
 
 		StringBundler sb = new StringBundler();
@@ -1406,6 +1407,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		if (content.endsWith("\n")) {
 			content = content.substring(0, content.length() - 1);
+		}
+
+		if (!allowEmptyLines) {
+			content = StringUtil.replace(content, "\n\n\n", "\n\n");
 		}
 
 		return content;

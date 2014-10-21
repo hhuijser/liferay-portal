@@ -35,7 +35,7 @@ public class CSSSourceProcessor extends BaseSourceProcessor {
 			File file, String fileName, String absolutePath, String content)
 		throws Exception {
 
-		String newContent = trimContent(content, false);
+		String newContent = trimContent(content, false, false);
 
 		newContent = fixComments(newContent);
 

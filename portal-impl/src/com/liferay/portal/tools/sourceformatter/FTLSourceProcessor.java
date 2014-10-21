@@ -15,9 +15,8 @@
 package com.liferay.portal.tools.sourceformatter;
 
 import java.io.File;
-import java.util.List;
 
-import com.liferay.portal.kernel.util.StringUtil;
+import java.util.List;
 
 /**
  * @author Hugo Huijser
@@ -29,9 +28,9 @@ public class FTLSourceProcessor extends BaseSourceProcessor {
 			File file, String fileName, String absolutePath, String content)
 		throws Exception {
 
-		content = trimContent(content, false);
+		content = trimContent(content, false, false);
 
-		return StringUtil.replace(content, "\n\n\n", "\n\n");
+		return content;
 	}
 
 	@Override

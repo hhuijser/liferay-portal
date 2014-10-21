@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
+import com.thoughtworks.qdox.model.Annotation;
 import com.thoughtworks.qdox.model.ClassLibrary;
 import com.thoughtworks.qdox.model.JavaField;
 import com.thoughtworks.qdox.model.JavaMethod;
@@ -211,6 +212,25 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		com.thoughtworks.qdox.model.JavaClass javaClass,
 		com.thoughtworks.qdox.model.JavaClass[] javaClasses,
 		JavaField javaField, String content) {
+
+		Annotation[] annotations = javaField.getAnnotations();
+
+		List<String> annotationExclusions = new ArrayList<String>();
+
+		annotationExclusions.add(
+			"com.liferay.portal.kernel.bean.BeanReference");
+		annotationExclusions.add("org.mockito.Mock");
+		annotationExclusions.add("java.lang.SuppressWarnings");
+
+		for (Annotation annotation: annotations) {
+			Type annotationType = annotation.getType();
+
+			String annotationTypeString = annotationType.toString();
+
+			if (annotationExclusions.contains(annotationTypeString)) {
+				return content;
+			}
+		}
 
 		Type javaClassType = javaClass.asType();
 

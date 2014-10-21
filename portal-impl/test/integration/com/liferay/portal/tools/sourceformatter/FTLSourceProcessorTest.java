@@ -14,35 +14,16 @@
 
 package com.liferay.portal.tools.sourceformatter;
 
-import java.io.File;
-
-import java.util.List;
+import org.junit.Test;
 
 /**
- * @author Hugo Huijser
+ * @author David Zhang
  */
-public class TLDSourceProcessor extends BaseSourceProcessor {
+public class FTLSourceProcessorTest extends BaseSourceProcessorTestCase {
 
-	@Override
-	protected String doFormat(
-			File file, String fileName, String absolutePath, String content)
-		throws Exception {
-
-		content = trimContent(content, false, false);
-
-		return content;
-	}
-
-	@Override
-	protected void format() throws Exception {
-		String[] excludes = new String[] {"**\\WEB-INF\\tld\\**"};
-		String[] includes = new String[] {"**\\*.tld"};
-
-		List<String> fileNames = getFileNames(excludes, includes);
-
-		for (String fileName : fileNames) {
-			format(fileName);
-		}
+	@Test
+	public void testIncorrectEmptyLines() throws Exception {
+		test("IncorrectEmptyLines.testftl");
 	}
 
 }

@@ -173,7 +173,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		String newContent = content;
 
 		if (!fileName.contains("/build")) {
-			newContent = trimContent(newContent, false);
+			newContent = trimContent(newContent, false, true);
 		}
 
 		if (fileName.contains("/build") && !fileName.contains("/tools/")) {
@@ -473,7 +473,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 	protected String formatAntXML(String fileName, String content)
 		throws Exception {
 
-		String newContent = trimContent(content, true);
+		String newContent = trimContent(content, true, true);
 
 		newContent = fixAntXMLProjectName(fileName, newContent);
 

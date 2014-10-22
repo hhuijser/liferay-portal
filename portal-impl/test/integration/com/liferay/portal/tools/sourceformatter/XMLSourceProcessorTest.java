@@ -28,4 +28,35 @@ public class XMLSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("IncorrectTabs3.testxml");
 	}
 
+	@Test
+	public void testCharactersAfterDefinitionTag() throws Exception {
+		test(
+			"CharactersAfterDefinitionTag1.testxml",
+			"Character(s) found after definition element:");
+		test(
+			"CharactersAfterDefinitionTag2.testxml",
+			"Character(s) found after definition element:");
+		test(
+			"CharactersAfterDefinitionTag3.testxml",
+			"Character(s) found after definition element:");
+		test(
+			"CharactersAfterDefinitionTag4.testxml",
+			"Character(s) found after definition element:");
+	}
+
+	@Test
+	public void testCharactersBeforeDefinitionTag() throws Exception {
+		test(
+			"CharactersBeforeDefinitionTag1.testxml",
+			"Character(s) found before definition element:");
+		test(
+			"CharactersBeforeDefinitionTag2.testxml",
+			"Character(s) found before definition element:");
+		test(
+			"CharactersBeforeDefinitionTag3.testxml",
+			"Character(s) found before definition element:");
+		test(
+			"CharactersBeforeDefinitionTag4.testxml",
+			"Character(s) found before definition element:");
+	}
 }

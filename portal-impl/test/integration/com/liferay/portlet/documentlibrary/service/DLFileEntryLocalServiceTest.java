@@ -16,6 +16,7 @@ package com.liferay.portlet.documentlibrary.service;
 
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
+import com.liferay.portal.kernel.search.IndexerInterval;
 import com.liferay.portal.kernel.test.ExecutionTestListeners;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.StringPool;
@@ -35,7 +36,6 @@ import com.liferay.portlet.asset.service.AssetEntryLocalServiceUtil;
 import com.liferay.portlet.documentlibrary.model.DLFileEntry;
 import com.liferay.portlet.documentlibrary.model.DLFolder;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
-import com.liferay.portlet.documentlibrary.service.impl.DLFileEntryLocalServiceImpl;
 import com.liferay.portlet.documentlibrary.util.test.DLAppTestUtil;
 import com.liferay.portlet.documentlibrary.util.test.DLTestUtil;
 
@@ -80,7 +80,7 @@ public class DLFileEntryLocalServiceTest {
 				TestPropsValues.getUserId(), fileEntry.getFileEntryId());
 		}
 
-		for (int i = 0; i < DLFileEntryLocalServiceImpl.DELETE_INTERVAL; i++) {
+		for (int i = 0; i < IndexerInterval.DEFAULT_INTERVAL; i++) {
 			DLAppTestUtil.addFileEntry(
 				_group.getGroupId(), _group.getGroupId(), folder.getFolderId());
 		}
@@ -132,7 +132,7 @@ public class DLFileEntryLocalServiceTest {
 			DLFileEntryLocalServiceUtil.getNoAssetFileEntries();
 
 		Assert.assertEquals(1, dlFileEntries.size());
-		
+
 		DLFileEntry dlFileEntry = dlFileEntries.get(0);
 
 		Assert.assertEquals(

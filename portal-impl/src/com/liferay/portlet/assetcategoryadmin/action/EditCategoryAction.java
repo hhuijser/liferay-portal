@@ -123,7 +123,15 @@ public class EditCategoryAction extends PortletAction {
 		}
 
 		for (long deleteCategoryId : deleteCategoryIds) {
-			AssetCategoryServiceUtil.deleteCategory(deleteCategoryId);
+			if (deleteCategoryId ==
+					deleteCategoryIds[deleteCategoryIds.length - 1]) {
+
+				AssetCategoryServiceUtil.deleteCategory(deleteCategoryId, true);
+			}
+			else {
+				AssetCategoryServiceUtil.deleteCategory(
+					deleteCategoryId, false);
+			}
 		}
 	}
 

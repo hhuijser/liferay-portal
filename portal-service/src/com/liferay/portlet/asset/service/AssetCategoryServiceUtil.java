@@ -76,9 +76,19 @@ public class AssetCategoryServiceUtil {
 		return getService().deleteCategories(categoryIds, serviceContext);
 	}
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	boolean)}
+	*/
+	@Deprecated
 	public static void deleteCategory(long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		getService().deleteCategory(categoryId);
+	}
+
+	public static void deleteCategory(long categoryId, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteCategory(categoryId, rebuildTree);
 	}
 
 	/**

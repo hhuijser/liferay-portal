@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.model.Group;
 import com.liferay.portal.model.ModelHintsUtil;
 import com.liferay.portal.model.ResourceConstants;
 import com.liferay.portal.model.SystemEventConstants;
@@ -86,8 +87,20 @@ public class AssetCategoryLocalServiceImpl
 
 		// Category
 
-		User user = userPersistence.findByPrimaryKey(userId);
-		long groupId = serviceContext.getScopeGroupId();
+		User user = userPersistence.fetchByPrimaryKey(userId);
+
+		if (user == null) {
+			user = userPersistence.fetchByPrimaryKey(
+				serviceContext.getUserId());
+		}
+
+		Group group = serviceContext.getScopeGroup();
+
+		if (user == null) {
+			user = userLocalService.getDefaultUser(group.getCompanyId());
+		}
+
+		long groupId = group.getGroupId();
 
 		String name = titleMap.get(LocaleUtil.getSiteDefault());
 

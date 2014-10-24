@@ -81,6 +81,11 @@ public class AssetCategoryServiceUtil {
 		getService().deleteCategory(categoryId);
 	}
 
+	public static void deleteCategory(long categoryId, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().deleteCategory(categoryId, rebuildTree);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

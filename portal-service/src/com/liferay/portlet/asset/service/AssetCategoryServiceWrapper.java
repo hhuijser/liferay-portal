@@ -80,6 +80,12 @@ public class AssetCategoryServiceWrapper implements AssetCategoryService,
 		_assetCategoryService.deleteCategory(categoryId);
 	}
 
+	@Override
+	public void deleteCategory(long categoryId, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		_assetCategoryService.deleteCategory(categoryId, rebuildTree);
+	}
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

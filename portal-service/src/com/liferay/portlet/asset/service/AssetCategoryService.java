@@ -76,6 +76,9 @@ public interface AssetCategoryService extends BaseService {
 	public void deleteCategory(long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	public void deleteCategory(long categoryId, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
 	/**
 	* Returns the Spring bean ID for this bean.
 	*

@@ -252,11 +252,15 @@ public class AssetCategoryLocalServiceImpl
 			assetCategoryPersistence.findByParentCategoryId(
 				category.getCategoryId());
 
+		if (categories.size() > 0) {
+			_isHaveChildCategory = true;
+		}
+
 		for (AssetCategory curCategory : categories) {
 			deleteCategory(curCategory, true, false);
 		}
 
-		if (rebuildTree) {
+		if (rebuildTree && _isHaveChildCategory) {
 			final long groupId = category.getGroupId();
 
 			TransactionCommitCallbackRegistryUtil.registerCallback(
@@ -265,6 +269,8 @@ public class AssetCategoryLocalServiceImpl
 					@Override
 					public Void call() throws Exception {
 						assetCategoryLocalService.rebuildTree(groupId, true);
+
+						_isHaveChildCategory = false;
 
 						return null;
 					}
@@ -831,4 +837,5 @@ public class AssetCategoryLocalServiceImpl
 		}
 	}
 
+	private boolean _isHaveChildCategory;
 }

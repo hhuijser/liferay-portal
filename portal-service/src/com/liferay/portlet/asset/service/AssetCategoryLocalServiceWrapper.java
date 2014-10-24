@@ -181,6 +181,11 @@ public class AssetCategoryLocalServiceWrapper
 			categoryId);
 	}
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link
+	#deleteCategory(AssetCategory, boolean, boolean)}
+	*/
+	@Deprecated
 	@Override
 	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		com.liferay.portlet.asset.model.AssetCategory category)
@@ -188,6 +193,11 @@ public class AssetCategoryLocalServiceWrapper
 		return _assetCategoryLocalService.deleteCategory(category);
 	}
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link
+	#deleteCategory(AssetCategory, boolean, boolean)}
+	*/
+	@Deprecated
 	@Override
 	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		com.liferay.portlet.asset.model.AssetCategory category,
@@ -198,9 +208,31 @@ public class AssetCategoryLocalServiceWrapper
 
 	@Override
 	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
+		com.liferay.portlet.asset.model.AssetCategory category,
+		boolean childCategory, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _assetCategoryLocalService.deleteCategory(category,
+			childCategory, rebuildTree);
+	}
+
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	boolean, boolean)}
+	*/
+	@Deprecated
+	@Override
+	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return _assetCategoryLocalService.deleteCategory(categoryId);
+	}
+
+	@Override
+	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
+		long categoryId, boolean childCategory, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _assetCategoryLocalService.deleteCategory(categoryId,
+			childCategory, rebuildTree);
 	}
 
 	/**

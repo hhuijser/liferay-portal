@@ -73,7 +73,15 @@ public interface AssetCategoryService extends BaseService {
 		com.liferay.portal.service.ServiceContext serviceContext)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	boolean)}
+	*/
+	@java.lang.Deprecated
 	public void deleteCategory(long categoryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public void deleteCategory(long categoryId, boolean rebuildTree)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**

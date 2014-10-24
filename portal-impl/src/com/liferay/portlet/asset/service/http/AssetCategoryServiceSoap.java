@@ -148,10 +148,27 @@ public class AssetCategoryServiceSoap {
 		}
 	}
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	boolean)}
+	*/
+	@Deprecated
 	public static void deleteCategory(long categoryId)
 		throws RemoteException {
 		try {
 			AssetCategoryServiceUtil.deleteCategory(categoryId);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteCategory(long categoryId, boolean rebuildTree)
+		throws RemoteException {
+		try {
+			AssetCategoryServiceUtil.deleteCategory(categoryId, rebuildTree);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

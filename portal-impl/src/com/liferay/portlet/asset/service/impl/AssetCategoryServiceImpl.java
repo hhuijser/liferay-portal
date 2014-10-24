@@ -106,7 +106,14 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 				AssetCategoryPermission.check(
 					getPermissionChecker(), categoryId, ActionKeys.DELETE);
 
-				assetCategoryLocalService.deleteCategory(categoryId);
+				if (categoryId == categoryIds[categoryIds.length - 1]) {
+					assetCategoryLocalService.deleteCategory(
+						categoryId, true, true);
+				}
+				else {
+					assetCategoryLocalService.deleteCategory(
+						categoryId, true, false);
+				}
 			}
 			catch (PortalException pe) {
 				if (serviceContext == null) {
@@ -131,12 +138,24 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 		return failedCategories;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	 *             boolean)}
+	 */
+	@Deprecated
 	@Override
 	public void deleteCategory(long categoryId) throws PortalException {
+		deleteCategory(categoryId, true);
+	}
+
+	@Override
+	public void deleteCategory(long categoryId, boolean rebuildTree)
+		throws PortalException {
+
 		AssetCategoryPermission.check(
 			getPermissionChecker(), categoryId, ActionKeys.DELETE);
 
-		assetCategoryLocalService.deleteCategory(categoryId);
+		assetCategoryLocalService.deleteCategory(categoryId, true, rebuildTree);
 	}
 
 	@Override

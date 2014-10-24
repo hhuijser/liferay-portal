@@ -217,18 +217,38 @@ public class AssetCategoryLocalServiceImpl
 			category.getCategoryId(), groupPermissions, guestPermissions);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, Replaced by {@link
+	 *             #deleteCategory(AssetCategory, boolean, boolean)}
+	 */
+	@Deprecated
 	@Override
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public AssetCategory deleteCategory(AssetCategory category)
 		throws PortalException {
 
-		return assetCategoryLocalService.deleteCategory(category, false);
+		return assetCategoryLocalService.deleteCategory(category, false, true);
+	}
+
+	/**
+	 * @deprecated As of 7.0.0, Replaced by {@link
+	 *             #deleteCategory(AssetCategory, boolean, boolean)}
+	 */
+	@Deprecated
+	@Indexable(type = IndexableType.DELETE)
+	@Override
+	public AssetCategory deleteCategory(
+			AssetCategory category, boolean childCategory)
+		throws PortalException {
+
+		return assetCategoryLocalService.deleteCategory(
+			category, childCategory, true);
 	}
 
 	@Indexable(type = IndexableType.DELETE)
 	@Override
 	public AssetCategory deleteCategory(
-			AssetCategory category, boolean childCategory)
+			AssetCategory category, boolean childCategory, boolean rebuildTree)
 		throws PortalException {
 
 		// Categories
@@ -238,10 +258,10 @@ public class AssetCategoryLocalServiceImpl
 				category.getCategoryId());
 
 		for (AssetCategory curCategory : categories) {
-			deleteCategory(curCategory, true);
+			deleteCategory(curCategory, true, false);
 		}
 
-		if (!categories.isEmpty() && !childCategory) {
+		if (rebuildTree) {
 			final long groupId = category.getGroupId();
 
 			TransactionCommitCallbackRegistryUtil.registerCallback(
@@ -284,14 +304,28 @@ public class AssetCategoryLocalServiceImpl
 		return category;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	 *             boolean, boolean)}
+	 */
+	@Deprecated
 	@Override
 	public AssetCategory deleteCategory(long categoryId)
+		throws PortalException {
+
+		return assetCategoryLocalService.deleteCategory(categoryId, true, true);
+	}
+
+	@Override
+	public AssetCategory deleteCategory(
+			long categoryId, boolean childCategory, boolean rebuildTree)
 		throws PortalException {
 
 		AssetCategory category = assetCategoryPersistence.findByPrimaryKey(
 			categoryId);
 
-		return assetCategoryLocalService.deleteCategory(category);
+		return assetCategoryLocalService.deleteCategory(
+			category, childCategory, rebuildTree);
 	}
 
 	@Override
@@ -305,7 +339,14 @@ public class AssetCategoryLocalServiceImpl
 				new AssetCategoryLeftCategoryIdComparator(false));
 
 		for (AssetCategory category : categories) {
-			assetCategoryLocalService.deleteCategory(category);
+			if (category.getCategoryId() ==
+					categories.get(categories.size() - 1).getCategoryId()) {
+
+				assetCategoryLocalService.deleteCategory(category, true, true);
+			}
+			else {
+				assetCategoryLocalService.deleteCategory(category, true, false);
+			}
 		}
 	}
 
@@ -475,7 +516,7 @@ public class AssetCategoryLocalServiceImpl
 			}
 		}
 
-		assetCategoryLocalService.deleteCategory(fromCategoryId);
+		assetCategoryLocalService.deleteCategory(fromCategoryId, true, true);
 
 		return getCategory(toCategoryId);
 	}

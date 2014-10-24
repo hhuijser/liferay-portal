@@ -136,19 +136,44 @@ public interface AssetCategoryLocalService extends BaseLocalService,
 
 	public void deleteAssetEntryAssetCategory(long entryId, long categoryId);
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link
+	#deleteCategory(AssetCategory, boolean, boolean)}
+	*/
+	@java.lang.Deprecated
 	@com.liferay.portal.kernel.systemevent.SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		com.liferay.portlet.asset.model.AssetCategory category)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link
+	#deleteCategory(AssetCategory, boolean, boolean)}
+	*/
+	@java.lang.Deprecated
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		com.liferay.portlet.asset.model.AssetCategory category,
 		boolean childCategory)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
+	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
+	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
+		com.liferay.portlet.asset.model.AssetCategory category,
+		boolean childCategory, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link #deleteCategory(long,
+	boolean, boolean)}
+	*/
+	@java.lang.Deprecated
 	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		long categoryId)
+		throws com.liferay.portal.kernel.exception.PortalException;
+
+	public com.liferay.portlet.asset.model.AssetCategory deleteCategory(
+		long categoryId, boolean childCategory, boolean rebuildTree)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**

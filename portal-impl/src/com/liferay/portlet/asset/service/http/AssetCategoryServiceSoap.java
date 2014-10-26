@@ -160,6 +160,18 @@ public class AssetCategoryServiceSoap {
 		}
 	}
 
+	public static void deleteCategory(long categoryId, boolean rebuildTree)
+		throws RemoteException {
+		try {
+			AssetCategoryServiceUtil.deleteCategory(categoryId, rebuildTree);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static com.liferay.portlet.asset.model.AssetCategorySoap[] getCategories(
 		java.lang.String className, long classPK) throws RemoteException {
 		try {

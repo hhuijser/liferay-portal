@@ -173,6 +173,11 @@ public class AssetCategoryLocalServiceUtil {
 		return getService().deleteCategory(category);
 	}
 
+	/**
+	* @deprecated As of 7.0.0, Replaced by {@link
+	#deleteCategory(AssetCategory, boolean, boolean)}
+	*/
+	@Deprecated
 	public static com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		com.liferay.portlet.asset.model.AssetCategory category,
 		boolean childCategory)
@@ -181,9 +186,23 @@ public class AssetCategoryLocalServiceUtil {
 	}
 
 	public static com.liferay.portlet.asset.model.AssetCategory deleteCategory(
+		com.liferay.portlet.asset.model.AssetCategory category,
+		boolean childCategory, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().deleteCategory(category, childCategory, rebuildTree);
+	}
+
+	public static com.liferay.portlet.asset.model.AssetCategory deleteCategory(
 		long categoryId)
 		throws com.liferay.portal.kernel.exception.PortalException {
 		return getService().deleteCategory(categoryId);
+	}
+
+	public static com.liferay.portlet.asset.model.AssetCategory deleteCategory(
+		long categoryId, boolean childCategory, boolean rebuildTree)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .deleteCategory(categoryId, childCategory, rebuildTree);
 	}
 
 	/**

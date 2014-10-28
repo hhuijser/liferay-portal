@@ -286,6 +286,26 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 		return content;
 	}
 
+	protected String fixPoshiCharsOutsideDefinitionElement(String content) {
+		Matcher poshiCharsBeforeDefinitionElementMatcher =
+			_poshiCharsBeforeDefinitionElementPattern.matcher(content);
+
+		while (poshiCharsBeforeDefinitionElementMatcher.find()) {
+			content = StringUtil.replaceFirst(
+				content, poshiCharsBeforeDefinitionElementMatcher.group(1), "");
+		}
+
+		Matcher poshiCharsAfterDefinitionElementMatcher =
+			_poshiCharsAfterDefinitionElementPattern.matcher(content);
+
+		while (poshiCharsAfterDefinitionElementMatcher.find()) {
+			content = StringUtil.replaceLast(
+				content, poshiCharsAfterDefinitionElementMatcher.group(1), "");
+		}
+
+		return content;
+	}
+
 	protected String fixPoshiXMLElementWithNoChild(String content) {
 		Matcher matcher = _poshiElementWithNoChildPattern.matcher(content);
 
@@ -731,6 +751,8 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 		content = sortPoshiVariables(content);
 
+		content = fixPoshiCharsOutsideDefinitionElement(content);
+
 		content = fixPoshiXMLElementWithNoChild(content);
 
 		content = fixPoshiXMLEndLinesAfterClosingElement(content);
@@ -1153,6 +1175,10 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 	private List<String> _columnNames;
 	private List<String> _friendlyUrlRoutesSortExclusions;
 	private List<String> _numericalPortletNameElementExclusions;
+	private Pattern _poshiCharsAfterDefinitionElementPattern = Pattern.compile(
+		"</definition>([a-zA-Z0-9\\s\\t\\n]+)");
+	private Pattern _poshiCharsBeforeDefinitionElementPattern = Pattern.compile(
+		"([a-zA-Z0-9\\s\\t\\n]+)<definition");
 	private Pattern _poshiClosingTagPattern = Pattern.compile("</[^>/]*>");
 	private Pattern _poshiCommandsPattern = Pattern.compile(
 		"\\<command.*name=\\\"([^\\\"]*)\\\".*\\>[\\s\\S]*?\\</command\\>" +

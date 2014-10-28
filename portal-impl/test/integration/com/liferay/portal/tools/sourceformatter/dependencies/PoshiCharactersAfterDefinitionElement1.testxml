@@ -1,0 +1,9 @@
+<definition component-name="portal-document-management">
+	<property name="testray.main.component.name" value="Documents Management" />
+
+	<command name="test">
+		<execute action="Page#assertClick" locator-key1="TEST" />
+	</command>
+</definition> 	
+
+ ABCDEFGHIJKLMNOPQURSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789

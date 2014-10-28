@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.lar.ExportImportThreadLocal;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.UserNotificationDefinition;
@@ -295,6 +296,23 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		if (threadId > 0) {
 			thread = mbThreadPersistence.fetchByPrimaryKey(threadId);
+		}
+		else {
+			Group group = groupLocalService.getGroup(groupId);
+
+			if (group.isStaged() &&
+				ExportImportThreadLocal.isImportInProcess() &&
+				parentMessageId > 0) {
+
+				MBMessage parentMessage = getMessage(parentMessageId);
+
+				String uuid = parentMessage.getUuid();
+
+				MBMessage stageParentMessage = fetchMBMessageByUuidAndGroupId(
+					uuid, groupId);
+
+				thread = stageParentMessage.getThread();
+			}
 		}
 
 		if (thread == null) {

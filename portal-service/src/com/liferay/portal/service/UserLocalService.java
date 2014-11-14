@@ -1710,9 +1710,7 @@ public interface UserLocalService extends BaseLocalService,
 	* Returns an ordered range of all the users with the status, and whose
 	* first name, middle name, last name, screen name, and email address match
 	* the keywords specified for them, without using the indexer. It is
-	* preferable to use the indexed version {@link #search(long, String,
-	* String, String, String, String, int, LinkedHashMap, boolean, int, int,
-	* Sort)} instead of this method wherever possible for performance reasons.
+	* preferable to use the indexed version {@link com.liferay.portal.service.UserLocalService#search(long, String, String, String, String, String, int, java.util.LinkedHashMap, boolean, int, int, com.liferay.portal.kernel.search.Sort[])} instead of this method wherever possible for performance reasons.
 	*
 	* <p>
 	* Useful when paginating results. Returns a maximum of <code>end -
@@ -1787,7 +1785,7 @@ public interface UserLocalService extends BaseLocalService,
 	or the last name 'smith'&quot;.
 	* @param start the lower bound of the range of users
 	* @param end the upper bound of the range of users (not inclusive)
-	* @param sort the field and direction to sort by (optionally
+	* @param sorts the field and direction to sort by (optionally
 	<code>null</code>)
 	* @return the matching users
 	* @see com.liferay.portlet.usersadmin.util.UserIndexer
@@ -1799,12 +1797,12 @@ public interface UserLocalService extends BaseLocalService,
 		java.lang.String emailAddress, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.search.Sort sort);
+		com.liferay.portal.kernel.search.Sort[] sorts);
 
 	/**
 	* Returns an ordered range of all the users who match the keywords and
 	* status, without using the indexer. It is preferable to use the indexed
-	* version {@link #search(long, String, int, LinkedHashMap, int, int, Sort)}
+	* version {@link com.liferay.portal.service.UserLocalService#search(long, String, int, java.util.LinkedHashMap, int, int, com.liferay.portal.kernel.search.Sort[])}
 	* instead of this method wherever possible for performance reasons.
 	*
 	* <p>
@@ -1864,7 +1862,7 @@ public interface UserLocalService extends BaseLocalService,
 	com.liferay.portlet.usersadmin.util.UserIndexer}.
 	* @param start the lower bound of the range of users
 	* @param end the upper bound of the range of users (not inclusive)
-	* @param sort the field and direction to sort by (optionally
+	* @param sorts the field and direction to sort by (optionally
 	<code>null</code>)
 	* @return the matching users
 	* @see com.liferay.portlet.usersadmin.util.UserIndexer
@@ -1873,7 +1871,7 @@ public interface UserLocalService extends BaseLocalService,
 	public com.liferay.portal.kernel.search.Hits search(long companyId,
 		java.lang.String keywords, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
-		int start, int end, com.liferay.portal.kernel.search.Sort sort);
+		int start, int end, com.liferay.portal.kernel.search.Sort[] sorts);
 
 	/**
 	* Returns the number of users with the status, and whose first name, middle
@@ -1945,14 +1943,14 @@ public interface UserLocalService extends BaseLocalService,
 		java.lang.String screenName, java.lang.String emailAddress, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
 		boolean andSearch, int start, int end,
-		com.liferay.portal.kernel.search.Sort sort)
+		com.liferay.portal.kernel.search.Sort[] sorts)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.search.BaseModelSearchResult<com.liferay.portal.model.User> searchUsers(
 		long companyId, java.lang.String keywords, int status,
 		java.util.LinkedHashMap<java.lang.String, java.lang.Object> params,
-		int start, int end, com.liferay.portal.kernel.search.Sort sort)
+		int start, int end, com.liferay.portal.kernel.search.Sort[] sorts)
 		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**

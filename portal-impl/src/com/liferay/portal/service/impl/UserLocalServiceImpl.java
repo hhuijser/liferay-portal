@@ -3004,7 +3004,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	/**
 	 * Returns an ordered range of all the users who match the keywords and
 	 * status, without using the indexer. It is preferable to use the indexed
-	 * version {@link #search(long, String, int, LinkedHashMap, int, int, Sort)}
+	 * version {@link com.liferay.portal.service.UserLocalService#search(long, String, int, java.util.LinkedHashMap, int, int, com.liferay.portal.kernel.search.Sort[])}
 	 * instead of this method wherever possible for performance reasons.
 	 *
 	 * <p>
@@ -3067,7 +3067,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         com.liferay.portlet.usersadmin.util.UserIndexer}.
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  sort the field and direction to sort by (optionally
+	 * @param  sorts the field and direction to sort by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 * @see    com.liferay.portlet.usersadmin.util.UserIndexer
@@ -3075,7 +3075,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	public Hits search(
 		long companyId, String keywords, int status,
-		LinkedHashMap<String, Object> params, int start, int end, Sort sort) {
+		LinkedHashMap<String, Object> params, int start, int end,
+		Sort[] sorts) {
 
 		String firstName = null;
 		String middleName = null;
@@ -3118,7 +3119,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			SearchContext searchContext = buildSearchContext(
 				companyId, firstName, middleName, lastName, fullName,
 				screenName, emailAddress, street, city, zip, region, country,
-				status, params, andOperator, start, end, sort);
+				status, params, andOperator, start, end, sorts);
 
 			return indexer.search(searchContext);
 		}
@@ -3131,9 +3132,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * Returns an ordered range of all the users with the status, and whose
 	 * first name, middle name, last name, screen name, and email address match
 	 * the keywords specified for them, without using the indexer. It is
-	 * preferable to use the indexed version {@link #search(long, String,
-	 * String, String, String, String, int, LinkedHashMap, boolean, int, int,
-	 * Sort)} instead of this method wherever possible for performance reasons.
+	 * preferable to use the indexed version {@link com.liferay.portal.service.UserLocalService#search(long, String, String, String, String, String, int, java.util.LinkedHashMap, boolean, int, int, com.liferay.portal.kernel.search.Sort[])} instead of this method wherever possible for performance reasons.
 	 *
 	 * <p>
 	 * Useful when paginating results. Returns a maximum of <code>end -
@@ -3211,7 +3210,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         or the last name 'smith'&quot;.
 	 * @param  start the lower bound of the range of users
 	 * @param  end the upper bound of the range of users (not inclusive)
-	 * @param  sort the field and direction to sort by (optionally
+	 * @param  sorts the field and direction to sort by (optionally
 	 *         <code>null</code>)
 	 * @return the matching users
 	 * @see    com.liferay.portlet.usersadmin.util.UserIndexer
@@ -3221,7 +3220,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		long companyId, String firstName, String middleName, String lastName,
 		String screenName, String emailAddress, int status,
 		LinkedHashMap<String, Object> params, boolean andSearch, int start,
-		int end, Sort sort) {
+		int end, Sort[] sorts) {
 
 		try {
 			Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
@@ -3230,7 +3229,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			SearchContext searchContext = buildSearchContext(
 				companyId, firstName, middleName, lastName, null, screenName,
 				emailAddress, null, null, null, null, null, status, params,
-				andSearch, start, end, sort);
+				andSearch, start, end, sorts);
 
 			return indexer.search(searchContext);
 		}
@@ -3442,7 +3441,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	public BaseModelSearchResult<User> searchUsers(
 			long companyId, String keywords, int status,
-			LinkedHashMap<String, Object> params, int start, int end, Sort sort)
+			LinkedHashMap<String, Object> params, int start, int end,
+			Sort[] sorts)
 		throws PortalException {
 
 		String firstName = null;
@@ -3482,7 +3482,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		SearchContext searchContext = buildSearchContext(
 			companyId, firstName, middleName, lastName, fullName, screenName,
 			emailAddress, street, city, zip, region, country, status, params,
-			andOperator, start, end, sort);
+			andOperator, start, end, sorts);
 
 		return searchUsers(searchContext);
 	}
@@ -3492,13 +3492,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			long companyId, String firstName, String middleName,
 			String lastName, String screenName, String emailAddress, int status,
 			LinkedHashMap<String, Object> params, boolean andSearch, int start,
-			int end, Sort sort)
+			int end, Sort[] sorts)
 		throws PortalException {
 
 		SearchContext searchContext = buildSearchContext(
 			companyId, firstName, middleName, lastName, null, screenName,
 			emailAddress, null, null, null, null, null, status, params,
-			andSearch, start, end, sort);
+			andSearch, start, end, sorts);
 
 		return searchUsers(searchContext);
 	}
@@ -5887,7 +5887,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		String fullName, String screenName, String emailAddress, String street,
 		String city, String zip, String region, String country, int status,
 		LinkedHashMap<String, Object> params, boolean andSearch, int start,
-		int end, Sort sort) {
+		int end, Sort[] sorts) {
 
 		SearchContext searchContext = new SearchContext();
 
@@ -5923,8 +5923,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			}
 		}
 
-		if (sort != null) {
-			searchContext.setSorts(sort);
+		if (sorts != null) {
+			searchContext.setSorts(sorts);
 		}
 
 		searchContext.setStart(start);

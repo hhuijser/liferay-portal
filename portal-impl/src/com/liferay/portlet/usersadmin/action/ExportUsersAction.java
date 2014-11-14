@@ -206,13 +206,13 @@ public class ExportUsersAction extends PortletAction {
 					searchTerms.getScreenName(), searchTerms.getEmailAddress(),
 					searchTerms.getStatus(), params,
 					searchTerms.isAndOperator(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS, (Sort)null);
+					QueryUtil.ALL_POS, (Sort[])null);
 			}
 			else {
 				hits = UserLocalServiceUtil.search(
 					themeDisplay.getCompanyId(), searchTerms.getKeywords(),
 					searchTerms.getStatus(), params, QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS, (Sort)null);
+					QueryUtil.ALL_POS, (Sort[])null);
 			}
 
 			return UsersAdminUtil.getUsers(hits);

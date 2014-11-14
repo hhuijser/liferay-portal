@@ -70,9 +70,10 @@ public class EditTagAction extends PortletAction {
 			sendRedirect(actionRequest, actionResponse);
 		}
 		catch (Exception e) {
-			if (e instanceof AssetTagException ||
-				e instanceof DuplicateTagException) {
-
+			if (e instanceof DuplicateTagException) {
+				SessionErrors.add(actionRequest, e.getClass());
+			}
+			else if (e instanceof AssetTagException) {
 				SessionErrors.add(actionRequest, e.getClass(), e);
 			}
 			else if (e instanceof NoSuchTagException ||

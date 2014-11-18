@@ -22,10 +22,10 @@ Sort sort = SortFactoryUtil.getSort(User.class, userSearchContainer.getOrderByCo
 BaseModelSearchResult<User> baseModelSearchResult = null;
 
 if (searchTerms.isAdvancedSearch()) {
-	baseModelSearchResult = UserLocalServiceUtil.searchUsers(company.getCompanyId(), searchTerms.getFirstName(), searchTerms.getMiddleName(), searchTerms.getLastName(), searchTerms.getScreenName(), searchTerms.getEmailAddress(), searchTerms.getStatus(), userParams, searchTerms.isAndOperator(), userSearchContainer.getStart(), userSearchContainer.getEnd(), sort);
+	baseModelSearchResult = UserLocalServiceUtil.searchUsers(company.getCompanyId(), searchTerms.getFirstName(), searchTerms.getMiddleName(), searchTerms.getLastName(), searchTerms.getScreenName(), searchTerms.getEmailAddress(), searchTerms.getStatus(), userParams, searchTerms.isAndOperator(), userSearchContainer.getStart(), userSearchContainer.getEnd(), new Sort[] {sort});
 }
 else {
-	baseModelSearchResult = UserLocalServiceUtil.searchUsers(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getStatus(), userParams, userSearchContainer.getStart(), userSearchContainer.getEnd(), sort);
+	baseModelSearchResult = UserLocalServiceUtil.searchUsers(company.getCompanyId(), searchTerms.getKeywords(), searchTerms.getStatus(), userParams, userSearchContainer.getStart(), userSearchContainer.getEnd(), new Sort[] {sort});
 }
 
 results = baseModelSearchResult.getBaseModels();

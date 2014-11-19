@@ -34,11 +34,13 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.PasswordPolicyRel;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.impl.ContactImpl;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.PasswordPolicyRelLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
@@ -203,6 +205,10 @@ public class UserIndexer extends BaseIndexer {
 			contextQuery.addRequiredTerm(
 				"organizationCount", String.valueOf(value));
 		}
+		else if (key.equals("usersPasswordPolicies")) {
+			contextQuery.addRequiredTerm(
+				"passwordPolicyId", String.valueOf(value));
+		}
 		else if (key.equals("usersRoles")) {
 			contextQuery.addRequiredTerm("roleIds", String.valueOf(value));
 		}
@@ -263,6 +269,9 @@ public class UserIndexer extends BaseIndexer {
 		document.addText("screenName", user.getScreenName());
 		document.addKeyword("teamIds", user.getTeamIds());
 		document.addKeyword("userGroupIds", user.getUserGroupIds());
+
+		document.addKeyword(
+			"passwordPolicyId", getPasswordPolicyId(user.getUserId()));
 
 		populateAddresses(document, user.getAddresses(), 0, 0);
 
@@ -422,6 +431,20 @@ public class UserIndexer extends BaseIndexer {
 		}
 
 		return ArrayUtil.toLongArray(ancestorOrganizationIds);
+	}
+
+	protected long getPasswordPolicyId(long userId) {
+		PasswordPolicyRel passwordPolicyRel =
+			PasswordPolicyRelLocalServiceUtil.fetchPasswordPolicyRel(
+				User.class.getName(), userId);
+
+		long passwordPolicyId = 0;
+
+		if (passwordPolicyRel != null) {
+			passwordPolicyId = passwordPolicyRel.getPasswordPolicyId();
+		}
+
+		return passwordPolicyId;
 	}
 
 	@Override

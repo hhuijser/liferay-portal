@@ -14,8 +14,6 @@
 
 package com.liferay.portal.scripting.groovy;
 
-import com.liferay.portal.kernel.cache.PortalCache;
-import com.liferay.portal.kernel.cache.SingleVMPoolUtil;
 import com.liferay.portal.kernel.concurrent.ConcurrentReferenceKeyHashMap;
 import com.liferay.portal.kernel.memory.FinalizeManager;
 import com.liferay.portal.kernel.scripting.BaseScriptingExecutor;
@@ -111,8 +109,6 @@ public class GroovyExecutor extends BaseScriptingExecutor {
 
 		return groovyShell;
 	}
-
-	private static final String _CACHE_NAME = GroovyExecutor.class.getName();
 
 	private static final String _LANGUAGE = "groovy";
 

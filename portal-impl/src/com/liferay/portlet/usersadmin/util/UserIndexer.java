@@ -30,17 +30,20 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.PasswordPolicyRel;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.impl.ContactImpl;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PasswordPolicyRelLocalServiceUtil;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
@@ -50,6 +53,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -181,6 +185,15 @@ public class UserIndexer extends BaseIndexer {
 				contextQuery.addRequiredTerm("groupIds", String.valueOf(value));
 			}
 		}
+		else if (key.equals("userGroupRole")) {
+			if (value instanceof Long[] && ((Long[])value).length == 2) {
+				Long[] values = (Long[])value;
+
+				contextQuery.addRequiredTerm(
+					"userGroupRoleIds",
+					values[0] + StringPool.UNDERLINE + values[1]);
+			}
+		}
 		else if (key.equals("usersOrgs")) {
 			if (value instanceof Long[]) {
 				Long[] values = (Long[])value;
@@ -293,6 +306,9 @@ public class UserIndexer extends BaseIndexer {
 
 		document.addKeyword(
 			"passwordPolicyId", getPasswordPolicyId(user.getUserId()));
+
+		document.addKeyword(
+			"userGroupRoleIds", getUserGroupRoleIds(user.getUserId()));
 
 		populateAddresses(document, user.getAddresses(), 0, 0);
 
@@ -492,6 +508,23 @@ public class UserIndexer extends BaseIndexer {
 	@Override
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
+	}
+
+	protected String[] getUserGroupRoleIds(long userId) {
+		List<UserGroupRole> userGroupRoles =
+			UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId);
+
+		String[] userGroupRoleIds = new String[userGroupRoles.size()];
+
+		for (int i = 0; i < userGroupRoles.size(); i++) {
+			UserGroupRole userGroupRole = userGroupRoles.get(i);
+
+			userGroupRoleIds[i] =
+				userGroupRole.getGroupId() + StringPool.UNDERLINE +
+					userGroupRole.getRoleId();
+		}
+
+		return userGroupRoleIds;
 	}
 
 	protected void reindexUsers(long companyId) throws PortalException {

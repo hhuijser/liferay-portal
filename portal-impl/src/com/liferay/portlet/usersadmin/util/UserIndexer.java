@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -37,12 +38,14 @@ import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.PasswordPolicyRel;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
 import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.impl.ContactImpl;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PasswordPolicyRelLocalServiceUtil;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
@@ -112,6 +115,14 @@ public class UserIndexer extends BaseIndexer {
 			return;
 		}
 
+		boolean inherited = MapUtil.getBoolean(params, "inherit", false);
+
+		if (inherited) {
+			if (params.containsKey("usersGroups")) {
+				params.put("inheritedUsersGroups",params.remove("usersGroups"));
+			}
+		}
+
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
@@ -168,7 +179,25 @@ public class UserIndexer extends BaseIndexer {
 			Object value)
 		throws Exception {
 
-		if (key.equals("usersGroups")) {
+		if (key.equals("inheritedUsersGroups")) {
+			if (value instanceof Long[]) {
+				Long[] values = (Long[])value;
+
+				BooleanQuery usersGroupsQuery = BooleanQueryFactoryUtil.create(
+					searchContext);
+
+				for (long groupId : values) {
+					usersGroupsQuery.addTerm("inheritedGroupIds", groupId);
+				}
+
+				contextQuery.add(usersGroupsQuery, BooleanClauseOccur.MUST);
+			}
+			else {
+				contextQuery.addRequiredTerm(
+					"inheritedGroupIds", String.valueOf(value));
+			}
+		}
+		else if (key.equals("usersGroups")) {
 			if (value instanceof Long[]) {
 				Long[] values = (Long[])value;
 
@@ -300,6 +329,12 @@ public class UserIndexer extends BaseIndexer {
 		document.addText("screenName", user.getScreenName());
 		document.addKeyword("teamIds", user.getTeamIds());
 		document.addKeyword("userGroupIds", user.getUserGroupIds());
+
+		document.addKeyword(
+			"inheritedGroupIds",
+			getInheritedGroupIds(
+				user.getGroupIds(), user.getOrganizationIds(),
+				user.getUserGroupIds()));
 
 		document.addKeyword(
 			"orgTreeIds", getDescendantOrganizationIds(organizationIds));
@@ -468,6 +503,49 @@ public class UserIndexer extends BaseIndexer {
 		}
 
 		return ArrayUtil.toLongArray(ancestorOrganizationIds);
+	}
+
+	protected long[] getInheritedGroupIds(
+			long[] userGroupIds, long[] userOrganizationIds,
+			long[] userUserGroupIds)
+		throws PortalException {
+
+		Set<Long> inheritedGroupIds = new HashSet<Long>();
+
+		for (long groupId : userGroupIds) {
+			inheritedGroupIds.add(groupId);
+		}
+
+		for (long organizationId : userOrganizationIds) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(organizationId);
+
+			inheritedGroupIds.add(organization.getGroupId());
+
+			long[] organizationSiteIds =
+				OrganizationLocalServiceUtil.getGroupPrimaryKeys(
+					organizationId);
+
+			for (long organizationSiteId : organizationSiteIds) {
+				inheritedGroupIds.add(organizationSiteId);
+			}
+		}
+
+		for (long userUserGroupId : userUserGroupIds) {
+			UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(
+				userUserGroupId);
+
+			inheritedGroupIds.add(userGroup.getGroupId());
+
+			long[] userGroupSiteIds =
+				UserGroupLocalServiceUtil.getGroupPrimaryKeys(userUserGroupId);
+
+			for (long userGroupSiteId : userGroupSiteIds) {
+				inheritedGroupIds.add(userGroupSiteId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(inheritedGroupIds);
 	}
 
 	protected long[] getDescendantOrganizationIds(long[] organizationIds)

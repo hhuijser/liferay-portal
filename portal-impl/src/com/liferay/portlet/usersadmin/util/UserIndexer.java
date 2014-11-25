@@ -43,6 +43,7 @@ import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.impl.ContactImpl;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGeneratorFactory;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.service.PasswordPolicyRelLocalServiceUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
@@ -121,6 +122,10 @@ public class UserIndexer extends BaseIndexer {
 			if (params.containsKey("usersGroups")) {
 				params.put("inheritedUsersGroups",params.remove("usersGroups"));
 			}
+
+			if (params.containsKey("usersRoles")) {
+				params.put("inheritedUsersRoles", params.remove("usersRoles"));
+			}
 		}
 
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
@@ -196,6 +201,10 @@ public class UserIndexer extends BaseIndexer {
 				contextQuery.addRequiredTerm(
 					"inheritedGroupIds", String.valueOf(value));
 			}
+		}
+		else if (key.equals("inheritedUsersRoles")) {
+			contextQuery.addRequiredTerm(
+				"inheritedRoleIds", String.valueOf(value));
 		}
 		else if (key.equals("usersGroups")) {
 			if (value instanceof Long[]) {
@@ -330,11 +339,15 @@ public class UserIndexer extends BaseIndexer {
 		document.addKeyword("teamIds", user.getTeamIds());
 		document.addKeyword("userGroupIds", user.getUserGroupIds());
 
+		long[] inheritedGroupIds = getInheritedGroupIds(
+			user.getGroupIds(), user.getOrganizationIds(),
+			user.getUserGroupIds());
+
+		document.addKeyword("inheritedGroupIds", inheritedGroupIds);
+
 		document.addKeyword(
-			"inheritedGroupIds",
-			getInheritedGroupIds(
-				user.getGroupIds(), user.getOrganizationIds(),
-				user.getUserGroupIds()));
+			"inheritedRoleIds",
+			getInheritedRoleIds(inheritedGroupIds, user.getRoleIds()));
 
 		document.addKeyword(
 			"orgTreeIds", getDescendantOrganizationIds(organizationIds));
@@ -546,6 +559,27 @@ public class UserIndexer extends BaseIndexer {
 		}
 
 		return ArrayUtil.toLongArray(inheritedGroupIds);
+	}
+
+	protected long[] getInheritedRoleIds(
+		long[] inheritedGroupIds, long[] roleIds) {
+
+		Set<Long> inheritedRoleIds = new HashSet<Long>();
+
+		for (long roleId : roleIds) {
+			inheritedRoleIds.add(roleId);
+		}
+
+		for (long inheritedGroupId : inheritedGroupIds) {
+			long[] inheritedGroupRoleIds =
+				GroupLocalServiceUtil.getRolePrimaryKeys(inheritedGroupId);
+
+			for (long inheritedGroupRoleId : inheritedGroupRoleIds) {
+				inheritedRoleIds.add(inheritedGroupRoleId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(inheritedRoleIds);
 	}
 
 	protected long[] getDescendantOrganizationIds(long[] organizationIds)

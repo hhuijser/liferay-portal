@@ -79,19 +79,19 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 
 		Matcher matcher = _poshiCharactersAfterDefinitionTag.matcher(content);
 
-		if (matcher.find()) {
-			processErrorMessage(
-				fileName,
-				"Characters found after definition element: " + fileName);
+		if (!content.endsWith("</definition")){
+			if (matcher.find()) {
+				processErrorMessage(
+					fileName,
+					"Characters found after definition element: " + fileName);
+			}
 		}
 	}
 
 	protected void checkPoshiCharactersBeforeDefinition(
 		String fileName, String content) {
 
-		Matcher matcher = _poshiCharactersBeforeDefinitionTag.matcher(content);
-
-		if (matcher.find()) {
+		if (!content.startsWith("<definition")) {
 			processErrorMessage(
 				fileName,
 				"Characters found before definition element: " + fileName);
@@ -1204,7 +1204,7 @@ public class XMLSourceProcessor extends BaseSourceProcessor {
 	private List<String> _friendlyUrlRoutesSortExclusions;
 	private List<String> _numericalPortletNameElementExclusions;
 	private Pattern _poshiCharactersAfterDefinitionTag = Pattern.compile(
-		"</definition>([\\w\\s\\t\\n\\<\\>]+)");
+		"<definition(.*) />([\\w\\s\\t\\n\\<\\>]+)");
 	private Pattern _poshiCharactersBeforeDefinitionTag = Pattern.compile(
 		"([\\w\\s\\t\\n\\<\\>]+)<definition");
 	private Pattern _poshiClosingTagPattern = Pattern.compile("</[^>/]*>");

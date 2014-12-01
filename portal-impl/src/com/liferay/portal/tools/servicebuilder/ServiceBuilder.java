@@ -4573,7 +4573,15 @@ public class ServiceBuilder {
 		return new ArrayList<Entity>(set);
 	}
 
-	private void _parseEntity(Element entityElement) throws Exception {
+	private void _parseEntity(
+		Element entityElement, Set<String> badTableNames,
+		boolean autoNamespaceTables, String portletShortName, 
+		String packagePath, String outputPath, boolean mvcc,
+		Set<String> badColumnNames, Map<String, EntityMapping> entityMappings, 
+		Set<String> badAliasNames, boolean build, String pluginName,
+		String implDir, boolean autoImportDefaultReferences, 
+		String portletName) throws Exception {
+
 		String ejbName = entityElement.attributeValue("name");
 		String humanName = entityElement.attributeValue("human-name");
 
@@ -4582,12 +4590,12 @@ public class ServiceBuilder {
 		if (Validator.isNull(table)) {
 			table = ejbName;
 
-			if (_badTableNames.contains(ejbName)) {
+			if (badTableNames.contains(ejbName)) {
 				table += StringPool.UNDERLINE;
 			}
 
-			if (_autoNamespaceTables) {
-				table = _portletShortName + StringPool.UNDERLINE + ejbName;
+			if (autoNamespaceTables) {
+				table = portletShortName + StringPool.UNDERLINE + ejbName;
 			}
 		}
 
@@ -4601,52 +4609,52 @@ public class ServiceBuilder {
 			entityElement.attributeValue("remote-service"), true);
 		String persistenceClass = GetterUtil.getString(
 			entityElement.attributeValue("persistence-class"),
-			_packagePath + ".service.persistence.impl." + ejbName +
+			packagePath + ".service.persistence.impl." + ejbName +
 				"PersistenceImpl");
 
 		String finderClass = "";
 
 		if (FileUtil.exists(
-				_outputPath + "/service/persistence/" + ejbName +
+				outputPath + "/service/persistence/" + ejbName +
 					"FinderImpl.java")) {
 
 			FileUtil.move(
-				_outputPath + "/service/persistence/" + ejbName +
+				outputPath + "/service/persistence/" + ejbName +
 					"FinderImpl.java",
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java");
 
 			String content = FileUtil.read(
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java");
 
 			StringBundler sb = new StringBundler();
 
 			sb.append(
-				"package " + _packagePath + ".service.persistence.impl;\n\n");
+				"package " + packagePath + ".service.persistence.impl;\n\n");
 			sb.append(
-				"import " + _packagePath + ".service.persistence." + ejbName +
+				"import " + packagePath + ".service.persistence." + ejbName +
 					"Finder;\n");
 			sb.append(
-				"import " + _packagePath + ".service.persistence." + ejbName +
+				"import " + packagePath + ".service.persistence." + ejbName +
 					"Util;");
 
 			content = StringUtil.replace(
-				content, "package " + _packagePath + ".service.persistence;",
+				content, "package " + packagePath + ".service.persistence;",
 				sb.toString());
 
 			FileUtil.write(
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java",
 				content);
 		}
 
 		if (FileUtil.exists(
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java")) {
 
 			finderClass =
-				_packagePath +
+				packagePath +
 					".service.persistence.impl." + ejbName + "FinderImpl";
 		}
 
@@ -4658,7 +4666,7 @@ public class ServiceBuilder {
 		boolean jsonEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("json-enabled"), remoteService);
 		boolean mvccEnabled = GetterUtil.getBoolean(
-			entityElement.attributeValue("mvcc-enabled"), _mvccEnabled);
+			entityElement.attributeValue("mvcc-enabled"), mvcc);
 		boolean trashEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("trash-enabled"));
 		boolean deprecated = GetterUtil.getBoolean(
@@ -4710,7 +4718,7 @@ public class ServiceBuilder {
 			if (Validator.isNull(columnDBName)) {
 				columnDBName = columnName;
 
-				if (_badColumnNames.contains(columnName)) {
+				if (badColumnNames.contains(columnName)) {
 					columnDBName += StringPool.UNDERLINE;
 				}
 			}
@@ -4727,13 +4735,13 @@ public class ServiceBuilder {
 			String mappingTable = columnElement.attributeValue("mapping-table");
 
 			if (Validator.isNotNull(mappingTable)) {
-				if (_badTableNames.contains(mappingTable)) {
+				if (badTableNames.contains(mappingTable)) {
 					mappingTable += StringPool.UNDERLINE;
 				}
 
-				if (_autoNamespaceTables) {
+				if (autoNamespaceTables) {
 					mappingTable =
-						_portletShortName + StringPool.UNDERLINE + mappingTable;
+						portletShortName + StringPool.UNDERLINE + mappingTable;
 				}
 			}
 
@@ -4781,8 +4789,8 @@ public class ServiceBuilder {
 				EntityMapping entityMapping = new EntityMapping(
 					mappingTable, ejbName, collectionEntity);
 
-				if (!_entityMappings.containsKey(mappingTable)) {
-					_entityMappings.put(mappingTable, entityMapping);
+				if (!entityMappings.containsKey(mappingTable)) {
+					entityMappings.put(mappingTable, entityMapping);
 				}
 			}
 		}
@@ -4921,7 +4929,7 @@ public class ServiceBuilder {
 
 		String alias = TextFormatter.format(ejbName, TextFormatter.I);
 
-		if (_badAliasNames.contains(StringUtil.toLowerCase(alias))) {
+		if (badAliasNames.contains(StringUtil.toLowerCase(alias))) {
 			alias += StringPool.UNDERLINE;
 		}
 
@@ -4988,15 +4996,15 @@ public class ServiceBuilder {
 		List<Entity> referenceList = new ArrayList<Entity>();
 		List<String> unresolvedReferenceList = new ArrayList<String>();
 
-		if (_build) {
-			if (Validator.isNotNull(_pluginName)) {
+		if (build) {
+			if (Validator.isNotNull(pluginName)) {
 				for (String config : PropsValues.RESOURCE_ACTIONS_CONFIGS) {
-					File file = new File(_implDir + "/" + config);
+					File file = new File(implDir + "/" + config);
 
 					if (file.exists()) {
 						InputStream inputStream = new FileInputStream(file);
 
-						ResourceActionsUtil.read(_pluginName, inputStream);
+						ResourceActionsUtil.read(pluginName, inputStream);
 					}
 				}
 			}
@@ -5015,11 +5023,11 @@ public class ServiceBuilder {
 				referenceSet.add(referencePackage + "." + referenceEntity);
 			}
 
-			if (!_packagePath.equals("com.liferay.counter")) {
+			if (!packagePath.equals("com.liferay.counter")) {
 				referenceSet.add("com.liferay.counter.Counter");
 			}
 
-			if (_autoImportDefaultReferences) {
+			if (autoImportDefaultReferences) {
 				referenceSet.add("com.liferay.portal.ClassName");
 				referenceSet.add("com.liferay.portal.Resource");
 				referenceSet.add("com.liferay.portal.User");
@@ -5048,7 +5056,7 @@ public class ServiceBuilder {
 
 		_ejbList.add(
 			new Entity(
-				_packagePath, _portletName, _portletShortName, ejbName,
+				packagePath, portletName, portletShortName, ejbName,
 				humanName, table, alias, uuid, uuidAccessor, localService,
 				remoteService, persistenceClass, finderClass, dataSource,
 				sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,

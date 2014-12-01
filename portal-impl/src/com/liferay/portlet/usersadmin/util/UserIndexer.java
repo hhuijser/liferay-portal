@@ -518,6 +518,27 @@ public class UserIndexer extends BaseIndexer {
 		return ArrayUtil.toLongArray(ancestorOrganizationIds);
 	}
 
+	protected long[] getDescendantOrganizationIds(long[] organizationIds)
+		throws PortalException {
+
+		Set<Long> descendantOrganizationIds = new HashSet<Long>();
+
+		for (long organizationId : organizationIds) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(organizationId);
+
+			descendantOrganizationIds.add(organizationId);
+
+			for (long descendantId :
+					organization.getDescendantOrganizationIds()) {
+
+				descendantOrganizationIds.add(descendantId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(descendantOrganizationIds);
+	}
+
 	protected long[] getInheritedGroupIds(
 			long[] userGroupIds, long[] userOrganizationIds,
 			long[] userUserGroupIds)
@@ -580,27 +601,6 @@ public class UserIndexer extends BaseIndexer {
 		}
 
 		return ArrayUtil.toLongArray(inheritedRoleIds);
-	}
-
-	protected long[] getDescendantOrganizationIds(long[] organizationIds)
-		throws PortalException {
-
-		Set<Long> descendantOrganizationIds = new HashSet<Long>();
-
-		for (long organizationId : organizationIds) {
-			Organization organization =
-				OrganizationLocalServiceUtil.getOrganization(organizationId);
-
-			descendantOrganizationIds.add(organizationId);
-
-			for (long descendantId :
-					organization.getDescendantOrganizationIds()) {
-
-				descendantOrganizationIds.add(descendantId);
-			}
-		}
-
-		return ArrayUtil.toLongArray(descendantOrganizationIds);
 	}
 
 	protected long getPasswordPolicyId(long userId) {

@@ -62,7 +62,14 @@ PortletURL portletURL = (PortletURL)request.getAttribute("edit_team_assignments.
 	%>
 
 	<liferay-ui:search-container-results>
-		<%@ include file="/html/portlet/users_admin/user_search_results.jspf" %>
+		<c:choose>
+			<c:when test="<%= PropsValues.USERS_INDEXER_ENABLED && PropsValues.USERS_SEARCH_WITH_INDEX %>">
+				<%@ include file="/html/portlet/users_admin/user_search_results_index.jspf" %>
+			</c:when>
+			<c:otherwise>
+				<%@ include file="/html/portlet/users_admin/user_search_results_database.jspf" %>
+			</c:otherwise>
+		</c:choose>
 	</liferay-ui:search-container-results>
 
 	<liferay-ui:search-container-row

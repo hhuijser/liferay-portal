@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -85,7 +84,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 /**
  * Provides the local service for accessing, adding, deleting, and updating
@@ -2214,28 +2212,12 @@ public class OrganizationLocalServiceImpl
 
 	protected void reindexOrganizationUsers(long[] organizationIds) {
 		for (long organizationId : organizationIds) {
-			final long[] userIds = getUserPrimaryKeys(organizationId);
+			Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+				User.class.getName());
 
-			final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-				User.class);
+			long[] userIds = getUserPrimaryKeys(organizationId);
 
-			Callable<Void> callable = new Callable<Void>() {
-
-				@Override
-				public Void call() throws Exception {
-					for (long userId : userIds) {
-						User user = userLocalService.fetchUser(userId);
-
-						if (user != null) {
-							indexer.reindex(user);
-						}
-					}
-
-					return null;
-				}
-			};
-
-			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+			indexer.commitCallbackReindex(userIds);
 		}
 	}
 

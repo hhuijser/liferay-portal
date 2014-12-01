@@ -18,7 +18,6 @@ import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.impl.UserModelImpl;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -34,7 +33,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 /**
  * @author Scott Lee
@@ -130,31 +128,15 @@ public class UserModelListener extends BaseModelListener<User> {
 		PortalLDAPExporterUtil.exportToLDAP(user, expandoBridgeAttributes);
 	}
 
-	protected void reindexUsers(
-		final long userId, String associationClassName) {
-
+	protected void reindexUsers(long userId, String associationClassName) {
 		if (!_TABLE_MAPPER_CLASSES.contains(associationClassName)) {
 			return;
 		}
 
-		final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			User.class.getName());
 
-		Callable<Void> callable = new Callable<Void>() {
-
-			@Override
-			public Void call() throws Exception {
-				User user = UserLocalServiceUtil.fetchUser(userId);
-
-				if (user != null) {
-					indexer.reindex(user);
-				}
-
-				return null;
-			}
-		};
-
-		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+		indexer.commitCallbackReindex(userId);
 	}
 
 	protected void updateMembershipRequestStatus(long userId, long groupId)

@@ -17,16 +17,13 @@ package com.liferay.portal.model;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.security.ldap.LDAPOperation;
 import com.liferay.portal.security.ldap.LDAPUserTransactionThreadLocal;
 import com.liferay.portal.security.ldap.PortalLDAPExporterUtil;
 import com.liferay.portal.service.UserGroupLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * @author Marcellus Tavares
@@ -91,29 +88,13 @@ public class UserGroupModelListener extends BaseModelListener<UserGroup> {
 			return;
 		}
 
-		final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
-			User.class.getName());
-
-		final long[] userIds = UserGroupLocalServiceUtil.getUserPrimaryKeys(
+		long[] userIds = UserGroupLocalServiceUtil.getUserPrimaryKeys(
 			userGroupId);
 
-		Callable<Void> callable = new Callable<Void>() {
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			User.class.getName());
 
-			@Override
-			public Void call() throws Exception {
-				for (long userId : userIds) {
-					User user = UserLocalServiceUtil.fetchUser(userId);
-
-					if (user != null) {
-						indexer.reindex(user);
-					}
-				}
-
-				return null;
-			}
-		};
-
-		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+		indexer.commitCallbackReindex(userIds);
 	}
 
 	private static final List<String> _TABLE_MAPPER_CLASSES =

@@ -17,10 +17,7 @@ package com.liferay.portal.model;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
-
-import java.util.concurrent.Callable;
 
 /**
  * @author Andrew Betts
@@ -50,29 +47,13 @@ public class UserGroupGroupRoleModelListener
 	}
 
 	protected void reindexUsers(UserGroupGroupRole userGroupGroupRole) {
-		final long[] userIds = UserLocalServiceUtil.getUserGroupPrimaryKeys(
+		long[] userIds = UserLocalServiceUtil.getUserGroupPrimaryKeys(
 			userGroupGroupRole.getUserGroupId());
 
-		final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			User.class.getName());
 
-		Callable<Void> callable = new Callable<Void>() {
-
-			@Override
-			public Void call() throws Exception {
-				for (long userId : userIds) {
-					User user = UserLocalServiceUtil.fetchUser(userId);
-
-					if (user != null) {
-						indexer.reindex(user);
-					}
-				}
-
-				return null;
-			}
-		};
-
-		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+		indexer.commitCallbackReindex(userIds);
 	}
 
 }

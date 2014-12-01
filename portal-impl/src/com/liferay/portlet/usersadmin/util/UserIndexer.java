@@ -412,7 +412,11 @@ public class UserIndexer extends BaseIndexer {
 		if (obj instanceof Long) {
 			long userId = (Long)obj;
 
-			User user = UserLocalServiceUtil.getUserById(userId);
+			User user = UserLocalServiceUtil.fetchUserById(userId);
+
+			if (user == null) {
+				return;
+			}
 
 			doReindex(user);
 		}

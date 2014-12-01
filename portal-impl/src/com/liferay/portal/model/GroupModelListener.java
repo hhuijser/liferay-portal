@@ -17,13 +17,10 @@ package com.liferay.portal.model;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.service.GroupLocalServiceUtil;
-import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * @author Andrew Betts
@@ -37,9 +34,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		throws ModelListenerException {
 
 		try {
-			long groupId = ((Long)classPK).longValue();
-
-			reindexUsers(groupId, associationClassName);
+			reindexUsers((Long)classPK, associationClassName);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -53,9 +48,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 		throws ModelListenerException {
 
 		try {
-			long groupId = ((Long)classPK).longValue();
-
-			reindexUsers(groupId, associationClassName);
+			reindexUsers((Long)classPK, associationClassName);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -67,29 +60,12 @@ public class GroupModelListener extends BaseModelListener<Group> {
 			return;
 		}
 
-		final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			User.class.getName());
 
-		final long[] userIds = GroupLocalServiceUtil.getUserPrimaryKeys(
-			groupId);
+		long[] userIds = GroupLocalServiceUtil.getUserPrimaryKeys(groupId);
 
-		Callable<Void> callable = new Callable<Void>() {
-
-			@Override
-			public Void call() throws Exception {
-				for (long userId : userIds) {
-					User user = UserLocalServiceUtil.fetchUser(userId);
-
-					if (user != null) {
-						indexer.reindex(user);
-					}
-				}
-
-				return null;
-			}
-		};
-
-		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+		indexer.commitCallbackReindex(userIds);
 	}
 
 	private static final List<String> _TABLE_MAPPER_CLASSES =

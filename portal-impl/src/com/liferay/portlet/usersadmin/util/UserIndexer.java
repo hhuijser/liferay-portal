@@ -311,50 +311,47 @@ public class UserIndexer extends BaseIndexer {
 
 		Document document = getBaseModelDocument(PORTLET_ID, user);
 
+		long[] groupIds = user.getGroupIds();
 		long[] organizationIds = user.getOrganizationIds();
+		long[] roleIds = user.getRoleIds();
+		long[] userGroupIds = user.getUserGroupIds();
+
+		long[] inheritedGroupIds = getInheritedGroupIds(
+			groupIds, organizationIds, userGroupIds);
 
 		document.addKeyword(Field.COMPANY_ID, user.getCompanyId());
-		document.addKeyword(Field.GROUP_ID, user.getGroupIds());
+		document.addKeyword(Field.GROUP_ID, groupIds);
 		document.addDate(Field.MODIFIED_DATE, user.getModifiedDate());
-		document.addKeyword(Field.SCOPE_GROUP_ID, user.getGroupIds());
+		document.addKeyword(Field.SCOPE_GROUP_ID, groupIds);
 		document.addKeyword(Field.STATUS, user.getStatus());
 		document.addKeyword(Field.USER_ID, user.getUserId());
 		document.addKeyword(Field.USER_NAME, user.getFullName());
 
 		document.addKeyword(
 			"ancestorOrganizationIds",
-			getAncestorOrganizationIds(user.getOrganizationIds()));
+			getAncestorOrganizationIds(organizationIds));
 		document.addText("emailAddress", user.getEmailAddress());
 		document.addText("firstName", user.getFirstName());
 		document.addText("fullName", user.getFullName());
-		document.addKeyword("groupIds", user.getGroupIds());
+		document.addKeyword("groupIds", groupIds);
 		document.addText("jobTitle", user.getJobTitle());
 		document.addText("lastName", user.getLastName());
 		document.addText("middleName", user.getMiddleName());
 		document.addKeyword("organizationIds", organizationIds);
 		document.addKeyword(
 			"organizationCount", String.valueOf(organizationIds.length));
-		document.addKeyword("roleIds", user.getRoleIds());
+		document.addKeyword("roleIds", roleIds);
 		document.addText("screenName", user.getScreenName());
 		document.addKeyword("teamIds", user.getTeamIds());
-		document.addKeyword("userGroupIds", user.getUserGroupIds());
-
-		long[] inheritedGroupIds = getInheritedGroupIds(
-			user.getGroupIds(), user.getOrganizationIds(),
-			user.getUserGroupIds());
-
+		document.addKeyword("userGroupIds", userGroupIds);
 		document.addKeyword("inheritedGroupIds", inheritedGroupIds);
-
 		document.addKeyword(
 			"inheritedRoleIds",
-			getInheritedRoleIds(inheritedGroupIds, user.getRoleIds()));
-
+			getInheritedRoleIds(inheritedGroupIds, roleIds));
 		document.addKeyword(
 			"orgTreeIds", getDescendantOrganizationIds(organizationIds));
-
 		document.addKeyword(
 			"passwordPolicyId", getPasswordPolicyId(user.getUserId()));
-
 		document.addKeyword(
 			"userGroupRoleIds", getUserGroupRoleIds(user.getUserId()));
 

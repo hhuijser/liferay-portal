@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.search.Sort;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -84,6 +85,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 /**
  * Provides the local service for accessing, adding, deleting, and updating
@@ -333,6 +335,18 @@ public class OrganizationLocalServiceImpl
 			indexer.reindex(organization);
 		}
 
+		List<Organization> ancestors = getParentOrganizations(organizationId);
+
+		long[] ancestorIds = new long[ancestors.size()];
+
+		for (int i = 0; i < ancestorIds.length; i++) {
+			Organization ancestor = ancestors.get(i);
+
+			ancestorIds[i] = ancestor.getOrganizationId();
+		}
+
+		reindexOrganizationUsers(ancestorIds);
+
 		return organization;
 	}
 
@@ -510,6 +524,17 @@ public class OrganizationLocalServiceImpl
 	@Override
 	public Organization fetchOrganization(long companyId, String name) {
 		return organizationPersistence.fetchByC_N(companyId, name);
+	}
+
+	@Override
+	public List<Organization> getDescendantOrganizations(
+		Organization organization) {
+
+		return organizationPersistence.findByC_T(
+			organization.getCompanyId(),
+			CustomSQLUtil.keywords(organization.getTreePath())[0],
+			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+			new OrganizationNameComparator(true));
 	}
 
 	@Override
@@ -1890,9 +1915,56 @@ public class OrganizationLocalServiceImpl
 			Organization.class);
 
 		if (oldParentOrganizationId != parentOrganizationId) {
-			long[] organizationIds = getReindexOrganizationIds(organization);
+			Set<Long> relations = new HashSet<Long>();
+
+			if (oldParentOrganizationId !=
+					OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
+
+				Organization oldParentOrganization = getOrganization(
+					oldParentOrganizationId);
+
+				for (long ancestorId :
+						oldParentOrganization.getAncestorOrganizationIds()) {
+
+					relations.add(ancestorId);
+				}
+
+				relations.add(oldParentOrganizationId);
+			}
+
+			if (parentOrganizationId !=
+					OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) {
+
+				Organization parentOrganization = getOrganization(
+					parentOrganizationId);
+
+				for (long ancestorId :
+						parentOrganization.getAncestorOrganizationIds()) {
+
+					relations.add(ancestorId);
+				}
+
+				relations.add(parentOrganizationId);
+			}
+
+			long[] organizationIds = rebuildDescendantTreePaths(organization);
+
+			for (long descendantId : organizationIds) {
+				relations.add(descendantId);
+			}
+
+			if (!ArrayUtil.contains(
+					organizationIds, organization.getOrganizationId())) {
+
+				organizationIds = ArrayUtil.append(
+					organizationIds, organization.getOrganizationId());
+
+				relations.add(organization.getOrganizationId());
+			}
 
 			indexer.reindex(organizationIds);
+
+			reindexOrganizationUsers(ArrayUtil.toLongArray(relations));
 		}
 		else {
 			indexer.reindex(organization);
@@ -2061,37 +2133,6 @@ public class OrganizationLocalServiceImpl
 		return parentOrganizationId;
 	}
 
-	protected long[] getReindexOrganizationIds(Organization organization)
-		throws PortalException {
-
-		List<Organization> organizations = organizationPersistence.findByC_T(
-			organization.getCompanyId(),
-			CustomSQLUtil.keywords(organization.getTreePath())[0],
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS,
-			new OrganizationNameComparator(true));
-
-		long[] organizationIds = new long[organizations.size()];
-
-		for (int i = 0; i < organizations.size(); i++) {
-			Organization curOrganization = organizations.get(i);
-
-			curOrganization.setTreePath(curOrganization.buildTreePath());
-
-			organizationPersistence.update(curOrganization);
-
-			organizationIds[i] = curOrganization.getOrganizationId();
-		}
-
-		if (!ArrayUtil.contains(
-				organizationIds, organization.getOrganizationId())) {
-
-			organizationIds = ArrayUtil.append(
-				organizationIds, organization.getOrganizationId());
-		}
-
-		return organizationIds;
-	}
-
 	protected boolean isOrganizationGroup(long organizationId, long groupId) {
 		if ((organizationId ==
 				OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID) &&
@@ -2148,6 +2189,54 @@ public class OrganizationLocalServiceImpl
 		}
 
 		return true;
+	}
+
+	protected long[] rebuildDescendantTreePaths(Organization organization)
+		throws PortalException {
+
+		List<Organization> organizations = getDescendantOrganizations(
+			organization);
+
+		long[] organizationIds = new long[organizations.size()];
+
+		for (int i = 0; i < organizations.size(); i++) {
+			Organization curOrganization = organizations.get(i);
+
+			curOrganization.setTreePath(curOrganization.buildTreePath());
+
+			organizationPersistence.update(curOrganization);
+
+			organizationIds[i] = curOrganization.getOrganizationId();
+		}
+
+		return organizationIds;
+	}
+
+	protected void reindexOrganizationUsers(long[] organizationIds) {
+		for (long organizationId : organizationIds) {
+			final long[] userIds = getUserPrimaryKeys(organizationId);
+
+			final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+				User.class);
+
+			Callable<Void> callable = new Callable<Void>() {
+
+				@Override
+				public Void call() throws Exception {
+					for (long userId : userIds) {
+						User user = userLocalService.fetchUser(userId);
+
+						if (user != null) {
+							indexer.reindex(user);
+						}
+					}
+
+					return null;
+				}
+			};
+
+			TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+		}
 	}
 
 	protected void validate(

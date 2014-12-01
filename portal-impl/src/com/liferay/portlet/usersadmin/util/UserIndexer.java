@@ -205,6 +205,24 @@ public class UserIndexer extends BaseIndexer {
 			contextQuery.addRequiredTerm(
 				"organizationCount", String.valueOf(value));
 		}
+		else if (key.equals("usersOrgsTree")) {
+			if (value instanceof Long[]) {
+				Long[] values = (Long[])value;
+
+				BooleanQuery usersGroupsQuery = BooleanQueryFactoryUtil.create(
+					searchContext);
+
+				for (long organizationId : values) {
+					usersGroupsQuery.addTerm("orgTreeIds", organizationId);
+				}
+
+				contextQuery.add(usersGroupsQuery, BooleanClauseOccur.MUST);
+			}
+			else {
+				contextQuery.addRequiredTerm(
+					"orgTreeIds", String.valueOf(value));
+			}
+		}
 		else if (key.equals("usersPasswordPolicies")) {
 			contextQuery.addRequiredTerm(
 				"passwordPolicyId", String.valueOf(value));
@@ -269,6 +287,9 @@ public class UserIndexer extends BaseIndexer {
 		document.addText("screenName", user.getScreenName());
 		document.addKeyword("teamIds", user.getTeamIds());
 		document.addKeyword("userGroupIds", user.getUserGroupIds());
+
+		document.addKeyword(
+			"orgTreeIds", getDescendantOrganizationIds(organizationIds));
 
 		document.addKeyword(
 			"passwordPolicyId", getPasswordPolicyId(user.getUserId()));
@@ -431,6 +452,27 @@ public class UserIndexer extends BaseIndexer {
 		}
 
 		return ArrayUtil.toLongArray(ancestorOrganizationIds);
+	}
+
+	protected long[] getDescendantOrganizationIds(long[] organizationIds)
+		throws PortalException {
+
+		Set<Long> descendantOrganizationIds = new HashSet<Long>();
+
+		for (long organizationId : organizationIds) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(organizationId);
+
+			descendantOrganizationIds.add(organizationId);
+
+			for (long descendantId :
+					organization.getDescendantOrganizationIds()) {
+
+				descendantOrganizationIds.add(descendantId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(descendantOrganizationIds);
 	}
 
 	protected long getPasswordPolicyId(long userId) {

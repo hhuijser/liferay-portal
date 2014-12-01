@@ -16,6 +16,9 @@ package com.liferay.portal.model;
 
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.language.LanguageUtil;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackRegistryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.model.impl.UserModelImpl;
 import com.liferay.portal.security.auth.PrincipalThreadLocal;
@@ -28,8 +31,10 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 
 import java.io.Serializable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 /**
  * @author Scott Lee
@@ -46,12 +51,15 @@ public class UserModelListener extends BaseModelListener<User> {
 		throws ModelListenerException {
 
 		try {
+			long userId = ((Long)classPK).longValue();
+
 			if (associationClassName.equals(Group.class.getName())) {
-				long userId = ((Long)classPK).longValue();
 				long groupId = ((Long)associationClassPK).longValue();
 
 				updateMembershipRequestStatus(userId, groupId);
 			}
+
+			reindexUsers(userId, associationClassName);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -62,6 +70,22 @@ public class UserModelListener extends BaseModelListener<User> {
 	public void onAfterCreate(User user) throws ModelListenerException {
 		try {
 			exportToLDAP(user);
+		}
+		catch (Exception e) {
+			throw new ModelListenerException(e);
+		}
+	}
+
+	@Override
+	public void onAfterRemoveAssociation(
+			Object classPK, String associationClassName,
+			Object associationClassPK)
+		throws ModelListenerException {
+
+		try {
+			long userId = ((Long)classPK).longValue();
+
+			reindexUsers(userId, associationClassName);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -106,6 +130,33 @@ public class UserModelListener extends BaseModelListener<User> {
 		PortalLDAPExporterUtil.exportToLDAP(user, expandoBridgeAttributes);
 	}
 
+	protected void reindexUsers(
+		final long userId, String associationClassName) {
+
+		if (!_TABLE_MAPPER_CLASSES.contains(associationClassName)) {
+			return;
+		}
+
+		final Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+			User.class.getName());
+
+		Callable<Void> callable = new Callable<Void>() {
+
+			@Override
+			public Void call() throws Exception {
+				User user = UserLocalServiceUtil.fetchUser(userId);
+
+				if (user != null) {
+					indexer.reindex(user);
+				}
+
+				return null;
+			}
+		};
+
+		TransactionCommitCallbackRegistryUtil.registerCallback(callable);
+	}
+
 	protected void updateMembershipRequestStatus(long userId, long groupId)
 		throws Exception {
 
@@ -126,6 +177,17 @@ public class UserModelListener extends BaseModelListener<User> {
 				MembershipRequestConstants.STATUS_APPROVED, false,
 				new ServiceContext());
 		}
+	}
+
+	private static final List<String> _TABLE_MAPPER_CLASSES =
+		new ArrayList<String>();
+
+	static {
+		_TABLE_MAPPER_CLASSES.add(Group.class.getName());
+		_TABLE_MAPPER_CLASSES.add(Organization.class.getName());
+		_TABLE_MAPPER_CLASSES.add(Role.class.getName());
+		_TABLE_MAPPER_CLASSES.add(Team.class.getName());
+		_TABLE_MAPPER_CLASSES.add(UserGroup.class.getName());
 	}
 
 }

@@ -17,18 +17,15 @@ package com.liferay.portal.model;
 import com.liferay.portal.ModelListenerException;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistryUtil;
-import com.liferay.portal.security.ldap.LDAPOperation;
-import com.liferay.portal.security.ldap.LDAPUserTransactionThreadLocal;
-import com.liferay.portal.security.ldap.PortalLDAPExporterUtil;
-import com.liferay.portal.service.UserGroupLocalServiceUtil;
+import com.liferay.portal.service.OrganizationLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Marcellus Tavares
+ * @author Andrew Betts
  */
-public class UserGroupModelListener extends BaseModelListener<UserGroup> {
+public class OrganizationModelListener extends BaseModelListener<Organization> {
 
 	@Override
 	public void onAfterAddAssociation(
@@ -37,14 +34,7 @@ public class UserGroupModelListener extends BaseModelListener<UserGroup> {
 		throws ModelListenerException {
 
 		try {
-			long userGroupId = ((Long)classPK).longValue();
-
-			if (associationClassName.equals(User.class.getName())) {
-				exportToLDAP(
-					(Long)associationClassPK, userGroupId, LDAPOperation.ADD);
-			}
-
-			reindexUsers(userGroupId, associationClassName);
+			reindexUsers((Long)classPK, associationClassName);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
@@ -58,41 +48,25 @@ public class UserGroupModelListener extends BaseModelListener<UserGroup> {
 		throws ModelListenerException {
 
 		try {
-			long userGroupId = ((Long)classPK).longValue();
-
-			if (associationClassName.equals(User.class.getName())) {
-				exportToLDAP(
-					(Long)associationClassPK, userGroupId,LDAPOperation.REMOVE);
-			}
-
-			reindexUsers(userGroupId, associationClassName);
+			reindexUsers((Long)classPK, associationClassName);
 		}
 		catch (Exception e) {
 			throw new ModelListenerException(e);
 		}
 	}
 
-	protected void exportToLDAP(
-			long userId, long userGroupId, LDAPOperation ldapOperation)
-		throws Exception {
+	protected void reindexUsers(
+		long organizationId, String associationClassName) {
 
-		if (LDAPUserTransactionThreadLocal.isOriginatesFromLDAP()) {
-			return;
-		}
-
-		PortalLDAPExporterUtil.exportToLDAP(userId, userGroupId, ldapOperation);
-	}
-
-	protected void reindexUsers(long userGroupId, String associationClassName) {
 		if (!_TABLE_MAPPER_CLASSES.contains(associationClassName)) {
 			return;
 		}
 
-		long[] userIds = UserGroupLocalServiceUtil.getUserPrimaryKeys(
-			userGroupId);
-
 		Indexer indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			User.class.getName());
+
+		long[] userIds = OrganizationLocalServiceUtil.getUserPrimaryKeys(
+			organizationId);
 
 		indexer.commitCallbackReindex(userIds);
 	}
@@ -102,7 +76,6 @@ public class UserGroupModelListener extends BaseModelListener<UserGroup> {
 
 	static {
 		_TABLE_MAPPER_CLASSES.add(Group.class.getName());
-		_TABLE_MAPPER_CLASSES.add(Team.class.getName());
 	}
 
 }

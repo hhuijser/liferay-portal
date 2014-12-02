@@ -30,15 +30,24 @@ import com.liferay.portal.kernel.search.SearchEngineUtil;
 import com.liferay.portal.kernel.search.Summary;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.MapUtil;
+import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.Contact;
 import com.liferay.portal.model.Organization;
+import com.liferay.portal.model.PasswordPolicyRel;
 import com.liferay.portal.model.User;
+import com.liferay.portal.model.UserGroup;
+import com.liferay.portal.model.UserGroupRole;
 import com.liferay.portal.model.impl.ContactImpl;
 import com.liferay.portal.security.auth.FullNameGenerator;
 import com.liferay.portal.security.auth.FullNameGeneratorFactory;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.OrganizationLocalServiceUtil;
+import com.liferay.portal.service.PasswordPolicyRelLocalServiceUtil;
+import com.liferay.portal.service.UserGroupLocalServiceUtil;
+import com.liferay.portal.service.UserGroupRoleLocalServiceUtil;
 import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
@@ -48,6 +57,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -106,6 +116,18 @@ public class UserIndexer extends BaseIndexer {
 			return;
 		}
 
+		boolean inherited = MapUtil.getBoolean(params, "inherit", false);
+
+		if (inherited) {
+			if (params.containsKey("usersGroups")) {
+				params.put("inheritedUsersGroups",params.remove("usersGroups"));
+			}
+
+			if (params.containsKey("usersRoles")) {
+				params.put("inheritedUsersRoles", params.remove("usersRoles"));
+			}
+		}
+
 		for (Map.Entry<String, Object> entry : params.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
@@ -162,7 +184,29 @@ public class UserIndexer extends BaseIndexer {
 			Object value)
 		throws Exception {
 
-		if (key.equals("usersGroups")) {
+		if (key.equals("inheritedUsersGroups")) {
+			if (value instanceof Long[]) {
+				Long[] values = (Long[])value;
+
+				BooleanQuery usersGroupsQuery = BooleanQueryFactoryUtil.create(
+					searchContext);
+
+				for (long groupId : values) {
+					usersGroupsQuery.addTerm("inheritedGroupIds", groupId);
+				}
+
+				contextQuery.add(usersGroupsQuery, BooleanClauseOccur.MUST);
+			}
+			else {
+				contextQuery.addRequiredTerm(
+					"inheritedGroupIds", String.valueOf(value));
+			}
+		}
+		else if (key.equals("inheritedUsersRoles")) {
+			contextQuery.addRequiredTerm(
+				"inheritedRoleIds", String.valueOf(value));
+		}
+		else if (key.equals("usersGroups")) {
 			if (value instanceof Long[]) {
 				Long[] values = (Long[])value;
 
@@ -177,6 +221,15 @@ public class UserIndexer extends BaseIndexer {
 			}
 			else {
 				contextQuery.addRequiredTerm("groupIds", String.valueOf(value));
+			}
+		}
+		else if (key.equals("userGroupRole")) {
+			if (value instanceof Long[] && ((Long[])value).length == 2) {
+				Long[] values = (Long[])value;
+
+				contextQuery.addRequiredTerm(
+					"userGroupRoleIds",
+					values[0] + StringPool.UNDERLINE + values[1]);
 			}
 		}
 		else if (key.equals("usersOrgs")) {
@@ -202,6 +255,28 @@ public class UserIndexer extends BaseIndexer {
 		else if (key.equals("usersOrgsCount")) {
 			contextQuery.addRequiredTerm(
 				"organizationCount", String.valueOf(value));
+		}
+		else if (key.equals("usersOrgsTree")) {
+			if (value instanceof Long[]) {
+				Long[] values = (Long[])value;
+
+				BooleanQuery usersGroupsQuery = BooleanQueryFactoryUtil.create(
+					searchContext);
+
+				for (long organizationId : values) {
+					usersGroupsQuery.addTerm("orgTreeIds", organizationId);
+				}
+
+				contextQuery.add(usersGroupsQuery, BooleanClauseOccur.MUST);
+			}
+			else {
+				contextQuery.addRequiredTerm(
+					"orgTreeIds", String.valueOf(value));
+			}
+		}
+		else if (key.equals("usersPasswordPolicies")) {
+			contextQuery.addRequiredTerm(
+				"passwordPolicyId", String.valueOf(value));
 		}
 		else if (key.equals("usersRoles")) {
 			contextQuery.addRequiredTerm("roleIds", String.valueOf(value));
@@ -236,33 +311,49 @@ public class UserIndexer extends BaseIndexer {
 
 		Document document = getBaseModelDocument(PORTLET_ID, user);
 
+		long[] groupIds = user.getGroupIds();
 		long[] organizationIds = user.getOrganizationIds();
+		long[] roleIds = user.getRoleIds();
+		long[] userGroupIds = user.getUserGroupIds();
+
+		long[] inheritedGroupIds = getInheritedGroupIds(
+			groupIds, organizationIds, userGroupIds);
 
 		document.addKeyword(Field.COMPANY_ID, user.getCompanyId());
-		document.addKeyword(Field.GROUP_ID, user.getGroupIds());
+		document.addKeyword(Field.GROUP_ID, groupIds);
 		document.addDate(Field.MODIFIED_DATE, user.getModifiedDate());
-		document.addKeyword(Field.SCOPE_GROUP_ID, user.getGroupIds());
+		document.addKeyword(Field.SCOPE_GROUP_ID, groupIds);
 		document.addKeyword(Field.STATUS, user.getStatus());
 		document.addKeyword(Field.USER_ID, user.getUserId());
 		document.addKeyword(Field.USER_NAME, user.getFullName());
 
 		document.addKeyword(
 			"ancestorOrganizationIds",
-			getAncestorOrganizationIds(user.getOrganizationIds()));
+			getAncestorOrganizationIds(organizationIds));
 		document.addText("emailAddress", user.getEmailAddress());
 		document.addText("firstName", user.getFirstName());
 		document.addText("fullName", user.getFullName());
-		document.addKeyword("groupIds", user.getGroupIds());
+		document.addKeyword("groupIds", groupIds);
+		document.addKeyword("inheritedGroupIds", inheritedGroupIds);
+		document.addKeyword(
+			"inheritedRoleIds",
+			getInheritedRoleIds(inheritedGroupIds, roleIds));
 		document.addText("jobTitle", user.getJobTitle());
 		document.addText("lastName", user.getLastName());
 		document.addText("middleName", user.getMiddleName());
-		document.addKeyword("organizationIds", organizationIds);
 		document.addKeyword(
 			"organizationCount", String.valueOf(organizationIds.length));
-		document.addKeyword("roleIds", user.getRoleIds());
+		document.addKeyword("organizationIds", organizationIds);
+		document.addKeyword(
+			"orgTreeIds", getDescendantOrganizationIds(organizationIds));
+		document.addKeyword(
+			"passwordPolicyId", getPasswordPolicyId(user.getUserId()));
+		document.addKeyword("roleIds", roleIds);
 		document.addText("screenName", user.getScreenName());
 		document.addKeyword("teamIds", user.getTeamIds());
-		document.addKeyword("userGroupIds", user.getUserGroupIds());
+		document.addKeyword("userGroupIds", userGroupIds);
+		document.addKeyword(
+			"userGroupRoleIds", getUserGroupRoleIds(user.getUserId()));
 
 		populateAddresses(document, user.getAddresses(), 0, 0);
 
@@ -321,7 +412,11 @@ public class UserIndexer extends BaseIndexer {
 		if (obj instanceof Long) {
 			long userId = (Long)obj;
 
-			User user = UserLocalServiceUtil.getUserById(userId);
+			User user = UserLocalServiceUtil.fetchUserById(userId);
+
+			if (user == null) {
+				return;
+			}
 
 			doReindex(user);
 		}
@@ -424,9 +519,125 @@ public class UserIndexer extends BaseIndexer {
 		return ArrayUtil.toLongArray(ancestorOrganizationIds);
 	}
 
+	protected long[] getDescendantOrganizationIds(long[] organizationIds)
+		throws PortalException {
+
+		Set<Long> descendantOrganizationIds = new HashSet<Long>();
+
+		for (long organizationId : organizationIds) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(organizationId);
+
+			descendantOrganizationIds.add(organizationId);
+
+			for (long descendantId :
+					organization.getDescendantOrganizationIds()) {
+
+				descendantOrganizationIds.add(descendantId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(descendantOrganizationIds);
+	}
+
+	protected long[] getInheritedGroupIds(
+			long[] userGroupIds, long[] userOrganizationIds,
+			long[] userUserGroupIds)
+		throws PortalException {
+
+		Set<Long> inheritedGroupIds = new HashSet<Long>();
+
+		for (long groupId : userGroupIds) {
+			inheritedGroupIds.add(groupId);
+		}
+
+		for (long organizationId : userOrganizationIds) {
+			Organization organization =
+				OrganizationLocalServiceUtil.getOrganization(organizationId);
+
+			inheritedGroupIds.add(organization.getGroupId());
+
+			long[] organizationSiteIds =
+				OrganizationLocalServiceUtil.getGroupPrimaryKeys(
+					organizationId);
+
+			for (long organizationSiteId : organizationSiteIds) {
+				inheritedGroupIds.add(organizationSiteId);
+			}
+		}
+
+		for (long userUserGroupId : userUserGroupIds) {
+			UserGroup userGroup = UserGroupLocalServiceUtil.getUserGroup(
+				userUserGroupId);
+
+			inheritedGroupIds.add(userGroup.getGroupId());
+
+			long[] userGroupSiteIds =
+				UserGroupLocalServiceUtil.getGroupPrimaryKeys(userUserGroupId);
+
+			for (long userGroupSiteId : userGroupSiteIds) {
+				inheritedGroupIds.add(userGroupSiteId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(inheritedGroupIds);
+	}
+
+	protected long[] getInheritedRoleIds(
+		long[] inheritedGroupIds, long[] roleIds) {
+
+		Set<Long> inheritedRoleIds = new HashSet<Long>();
+
+		for (long roleId : roleIds) {
+			inheritedRoleIds.add(roleId);
+		}
+
+		for (long inheritedGroupId : inheritedGroupIds) {
+			long[] inheritedGroupRoleIds =
+				GroupLocalServiceUtil.getRolePrimaryKeys(inheritedGroupId);
+
+			for (long inheritedGroupRoleId : inheritedGroupRoleIds) {
+				inheritedRoleIds.add(inheritedGroupRoleId);
+			}
+		}
+
+		return ArrayUtil.toLongArray(inheritedRoleIds);
+	}
+
+	protected long getPasswordPolicyId(long userId) {
+		PasswordPolicyRel passwordPolicyRel =
+			PasswordPolicyRelLocalServiceUtil.fetchPasswordPolicyRel(
+				User.class.getName(), userId);
+
+		long passwordPolicyId = 0;
+
+		if (passwordPolicyRel != null) {
+			passwordPolicyId = passwordPolicyRel.getPasswordPolicyId();
+		}
+
+		return passwordPolicyId;
+	}
+
 	@Override
 	protected String getPortletId(SearchContext searchContext) {
 		return PORTLET_ID;
+	}
+
+	protected String[] getUserGroupRoleIds(long userId) {
+		List<UserGroupRole> userGroupRoles =
+			UserGroupRoleLocalServiceUtil.getUserGroupRoles(userId);
+
+		String[] userGroupRoleIds = new String[userGroupRoles.size()];
+
+		for (int i = 0; i < userGroupRoles.size(); i++) {
+			UserGroupRole userGroupRole = userGroupRoles.get(i);
+
+			userGroupRoleIds[i] =
+				userGroupRole.getGroupId() + StringPool.UNDERLINE +
+					userGroupRole.getRoleId();
+		}
+
+		return userGroupRoleIds;
 	}
 
 	protected void reindexUsers(long companyId) throws PortalException {

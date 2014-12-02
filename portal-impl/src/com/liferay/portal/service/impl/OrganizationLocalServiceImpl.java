@@ -1921,10 +1921,10 @@ public class OrganizationLocalServiceImpl
 				Organization oldParentOrganization = getOrganization(
 					oldParentOrganizationId);
 
-				for (long ancestorId :
+				for (long ancestorOrganizationId :
 						oldParentOrganization.getAncestorOrganizationIds()) {
 
-					relations.add(ancestorId);
+					relations.add(ancestorOrganizationId);
 				}
 
 				relations.add(oldParentOrganizationId);
@@ -1936,31 +1936,34 @@ public class OrganizationLocalServiceImpl
 				Organization parentOrganization = getOrganization(
 					parentOrganizationId);
 
-				for (long ancestorId :
+				for (long ancestorOrganizationId :
 						parentOrganization.getAncestorOrganizationIds()) {
 
-					relations.add(ancestorId);
+					relations.add(ancestorOrganizationId);
 				}
 
 				relations.add(parentOrganizationId);
 			}
 
-			long[] organizationIds = rebuildDescendantTreePaths(organization);
+			long[] descendantOrganizationIds = rebuildDescendantTreePaths(
+				organization);
 
-			for (long descendantId : organizationIds) {
-				relations.add(descendantId);
+			for (long descendantOrganizationId : descendantOrganizationIds) {
+				relations.add(descendantOrganizationId);
 			}
 
 			if (!ArrayUtil.contains(
-					organizationIds, organization.getOrganizationId())) {
+					descendantOrganizationIds,
+					organization.getOrganizationId())) {
 
-				organizationIds = ArrayUtil.append(
-					organizationIds, organization.getOrganizationId());
+				descendantOrganizationIds = ArrayUtil.append(
+					descendantOrganizationIds,
+					organization.getOrganizationId());
 
 				relations.add(organization.getOrganizationId());
 			}
 
-			indexer.reindex(organizationIds);
+			indexer.reindex(descendantOrganizationIds);
 
 			reindexOrganizationUsers(ArrayUtil.toLongArray(relations));
 		}

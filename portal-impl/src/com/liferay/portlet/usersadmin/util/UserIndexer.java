@@ -334,24 +334,24 @@ public class UserIndexer extends BaseIndexer {
 		document.addText("firstName", user.getFirstName());
 		document.addText("fullName", user.getFullName());
 		document.addKeyword("groupIds", groupIds);
-		document.addText("jobTitle", user.getJobTitle());
-		document.addText("lastName", user.getLastName());
-		document.addText("middleName", user.getMiddleName());
-		document.addKeyword("organizationIds", organizationIds);
-		document.addKeyword(
-			"organizationCount", String.valueOf(organizationIds.length));
-		document.addKeyword("roleIds", roleIds);
-		document.addText("screenName", user.getScreenName());
-		document.addKeyword("teamIds", user.getTeamIds());
-		document.addKeyword("userGroupIds", userGroupIds);
 		document.addKeyword("inheritedGroupIds", inheritedGroupIds);
 		document.addKeyword(
 			"inheritedRoleIds",
 			getInheritedRoleIds(inheritedGroupIds, roleIds));
+		document.addText("jobTitle", user.getJobTitle());
+		document.addText("lastName", user.getLastName());
+		document.addText("middleName", user.getMiddleName());
+		document.addKeyword(
+			"organizationCount", String.valueOf(organizationIds.length));
+		document.addKeyword("organizationIds", organizationIds);
 		document.addKeyword(
 			"orgTreeIds", getDescendantOrganizationIds(organizationIds));
 		document.addKeyword(
 			"passwordPolicyId", getPasswordPolicyId(user.getUserId()));
+		document.addKeyword("roleIds", roleIds);
+		document.addText("screenName", user.getScreenName());
+		document.addKeyword("teamIds", user.getTeamIds());
+		document.addKeyword("userGroupIds", userGroupIds);
 		document.addKeyword(
 			"userGroupRoleIds", getUserGroupRoleIds(user.getUserId()));
 

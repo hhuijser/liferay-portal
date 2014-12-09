@@ -3443,7 +3443,7 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 		try {
 			return repositoryService.getRepositoryImpl(repositoryId);
 		}
-		catch (InvalidRepositoryIdException irie) {
+		catch (RepositoryException irie) {
 			StringBundler sb = new StringBundler(3);
 
 			sb.append("No Group exists with the key {repositoryId=");

@@ -1601,6 +1601,85 @@ public class ServicePreAction extends Action {
 			userGroup.getGroupId(), false, serviceContext);
 	}
 
+	protected Object[] getDefaultSiteLayout(User user) throws PortalException {
+		Layout layout = null;
+		List<Layout> layouts = null;
+
+		Group guestGroup = GroupLocalServiceUtil.getGroup(
+			user.getCompanyId(), GroupConstants.GUEST);
+
+		layouts = LayoutLocalServiceUtil.getLayouts(
+			guestGroup.getGroupId(), false,
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+		if (!layouts.isEmpty()) {
+			layout = layouts.get(0);
+		}
+
+		return new Object[] {layout, layouts};
+	}
+
+	protected Object[] getDefaultUserPersonalLayout(User user)
+		throws PortalException {
+
+		Layout layout = null;
+		List<Layout> layouts = null;
+
+		Group userGroup = user.getGroup();
+
+		layouts = LayoutLocalServiceUtil.getLayouts(
+			userGroup.getGroupId(), true,
+			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+		if (layouts.isEmpty()) {
+			layouts = LayoutLocalServiceUtil.getLayouts(
+				userGroup.getGroupId(), false,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+		}
+
+		if (!layouts.isEmpty()) {
+			layout = layouts.get(0);
+		}
+
+		return new Object[] {layout, layouts};
+	}
+
+	protected Object[] getDefaultUserSiteLayout(User user)
+		throws PortalException {
+
+		Layout layout = null;
+		List<Layout> layouts = null;
+
+		LinkedHashMap<String, Object> groupParams =
+			new LinkedHashMap<String, Object>();
+
+		groupParams.put("usersGroups", new Long(user.getUserId()));
+
+		List<Group> groups = GroupLocalServiceUtil.search(
+			user.getCompanyId(), null, null, groupParams, QueryUtil.ALL_POS,
+			QueryUtil.ALL_POS);
+
+		for (Group group : groups) {
+			layouts = LayoutLocalServiceUtil.getLayouts(
+				group.getGroupId(), true,
+				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+
+			if (layouts.isEmpty()) {
+				layouts = LayoutLocalServiceUtil.getLayouts(
+					group.getGroupId(), false,
+					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
+			}
+
+			if (!layouts.isEmpty()) {
+				layout = layouts.get(0);
+
+				break;
+			}
+		}
+
+		return new Object[]{layout, layouts};
+	}
+
 	protected Object[] getDefaultViewableLayouts(
 			HttpServletRequest request, User user,
 			PermissionChecker permissionChecker, long doAsGroupId,
@@ -1695,103 +1774,10 @@ public class ServicePreAction extends Action {
 		return new Object[] {layout, layouts};
 	}
 
-	protected Object[] getDefaultUserPersonalLayout(User user)
-		throws PortalException {
-
-		Layout layout = null;
-		List<Layout> layouts = null;
-
-		Group userGroup = user.getGroup();
-
-		layouts = LayoutLocalServiceUtil.getLayouts(
-			userGroup.getGroupId(), true,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-		if (layouts.isEmpty()) {
-			layouts = LayoutLocalServiceUtil.getLayouts(
-				userGroup.getGroupId(), false,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-		}
-
-		if (!layouts.isEmpty()) {
-			layout = layouts.get(0);
-		}
-
-		return new Object[] {layout, layouts};
-	}
-
-	protected Object[] getDefaultUserSiteLayout(User user)
-		throws PortalException {
-
-		Layout layout = null;
-		List<Layout> layouts = null;
-
-		LinkedHashMap<String, Object> groupParams =
-			new LinkedHashMap<String, Object>();
-
-		groupParams.put("usersGroups", new Long(user.getUserId()));
-
-		List<Group> groups = GroupLocalServiceUtil.search(
-			user.getCompanyId(), null, null, groupParams,
-			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		for (Group group : groups) {
-			layouts = LayoutLocalServiceUtil.getLayouts(
-				group.getGroupId(), true,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-			if (layouts.isEmpty()) {
-				layouts = LayoutLocalServiceUtil.getLayouts(
-					group.getGroupId(), false,
-					LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-			}
-
-			if (!layouts.isEmpty()) {
-				layout = layouts.get(0);
-
-				break;
-			}
-		}
-
-		return new Object[]{layout, layouts};
-	}
-
-	protected Object[] getDefaultSiteLayout(User user) throws PortalException {
-		Layout layout = null;
-		List<Layout> layouts = null;
-
-		Group guestGroup = GroupLocalServiceUtil.getGroup(
-			user.getCompanyId(), GroupConstants.GUEST);
-
-		layouts = LayoutLocalServiceUtil.getLayouts(
-			guestGroup.getGroupId(), false,
-			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID);
-
-		if (!layouts.isEmpty()) {
-			layout = layouts.get(0);
-		}
-
-		return new Object[] {layout, layouts};
-	}
-
 	protected String getFriendlyURL(String friendlyURL) {
 		friendlyURL = GetterUtil.getString(friendlyURL);
 
 		return FriendlyURLNormalizerUtil.normalize(friendlyURL);
-	}
-
-	protected Object[] getViewableLayouts(
-			HttpServletRequest request, User user,
-			PermissionChecker permissionChecker, Object[] defaultLayout,
-			long doAsGroupId, String controlPanelCategory)
-		throws PortalException {
-
-		Layout layout = (Layout)defaultLayout[0];
-		List<Layout> layouts = (List<Layout>)defaultLayout[1];
-
-		return getViewableLayouts(
-			request, user, permissionChecker, layout, layouts, doAsGroupId,
-			controlPanelCategory);
 	}
 
 	protected Object[] getViewableLayouts(
@@ -1859,6 +1845,20 @@ public class ServicePreAction extends Action {
 		}
 
 		return new Object[] {layout, layouts};
+	}
+
+	protected Object[] getViewableLayouts(
+			HttpServletRequest request, User user,
+			PermissionChecker permissionChecker, Object[] defaultLayout,
+			long doAsGroupId, String controlPanelCategory)
+		throws PortalException {
+
+		Layout layout = (Layout)defaultLayout[0];
+		List<Layout> layouts = (List<Layout>)defaultLayout[1];
+
+		return getViewableLayouts(
+			request, user, permissionChecker, layout, layouts, doAsGroupId,
+			controlPanelCategory);
 	}
 
 	protected boolean hasAccessPermission(

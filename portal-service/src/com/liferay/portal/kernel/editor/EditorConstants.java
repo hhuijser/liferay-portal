@@ -12,25 +12,13 @@
  * details.
  */
 
-package com.liferay.portlet.documentlibrary.context;
-
-import com.liferay.portal.kernel.exception.PortalException;
+package com.liferay.portal.kernel.editor;
 
 /**
- * @author Ivan Zaera
+ * @author Roberto Díaz
  */
-public interface DLFilePicker {
+public class EditorConstants {
 
-	public String getDescriptionFieldName();
-
-	public String getIconFieldName();
-
-	public String getJavaScript() throws PortalException;
-
-	public String getJavaScriptModuleName();
-
-	public String getOnClickCallback();
-
-	public String getTitleFieldName();
+	public static final String ATTRIBUTE_DATA_IMAGE_ID = "data-image-id";
 
 }

@@ -96,14 +96,15 @@ GoogleFilePicker.prototype = {
 
 			var googlePickerDoc = google.picker.Document;
 
-			${onFilePickCallback}({
-				"Description": doc[googlePickerDoc.DESCRIPTION] || '',
-				"Edit_URL": doc[googlePickerDoc.URL] || '',
-				"Embed_URL": doc[googlePickerDoc.EMBEDDABLE_URL] || '',
-				"Icon": doc[googlePickerDoc.ICON_URL] || '',
-				"ID": doc[googlePickerDoc.ID],
-				"Title": doc[googlePickerDoc.NAME]
-		    });
+			${onFilePickCallback}(
+				{
+					"DESCRIPTION": doc[googlePickerDoc.DESCRIPTION] || '',
+					"EMBEDDABLE_URL": doc[googlePickerDoc.EMBEDDABLE_URL] || '',
+					"ICON_URL": doc[googlePickerDoc.ICON_URL] || '',
+					"ID": doc[googlePickerDoc.ID],
+					"NAME": doc[googlePickerDoc.NAME],
+					"URL": doc[googlePickerDoc.URL] || ''
+				});
 		}
 	}
 };

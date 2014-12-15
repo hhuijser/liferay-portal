@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.login.util;
 
+import com.liferay.portal.UserLockoutException;
 import com.liferay.portal.kernel.cluster.ClusterExecutorUtil;
 import com.liferay.portal.kernel.cluster.ClusterNode;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -149,7 +150,15 @@ public class LoginUtil {
 			}
 
 			if (authResult != Authenticator.SUCCESS) {
-				throw new AuthException();
+				User user = UserLocalServiceUtil.fetchUser(userId);
+
+				if ((user != null) && user.isLockout()) {
+					throw new UserLockoutException.PasswordPolicyLockout(
+						user, user.getPasswordPolicy());
+				}
+				else {
+					throw new AuthException();
+				}
 			}
 		}
 

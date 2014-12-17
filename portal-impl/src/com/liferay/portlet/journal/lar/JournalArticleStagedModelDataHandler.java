@@ -774,8 +774,7 @@ public class JournalArticleStagedModelDataHandler
 
 		String fileName = sb.toString();
 
-		String articleImagePath = ExportImportPathUtil.getModelPath(
-			article, fileName);
+		String articleImagePath = ExportImportPathUtil.getModelPath(article);
 
 		if (!portletDataContext.isPathNotProcessed(articleImagePath)) {
 			return;

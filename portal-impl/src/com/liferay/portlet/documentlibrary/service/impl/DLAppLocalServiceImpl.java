@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.repository.InvalidRepositoryIdException;
 import com.liferay.portal.kernel.repository.LocalRepository;
+import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -1445,7 +1446,7 @@ public class DLAppLocalServiceImpl extends DLAppLocalServiceBaseImpl {
 		try {
 			return repositoryLocalService.getLocalRepositoryImpl(repositoryId);
 		}
-		catch (InvalidRepositoryIdException irie) {
+		catch (RepositoryException irie) {
 			StringBundler sb = new StringBundler(3);
 
 			sb.append("No Group exists with the key {repositoryId=");

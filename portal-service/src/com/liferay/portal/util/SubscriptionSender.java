@@ -900,13 +900,14 @@ public class SubscriptionSender implements Serializable {
 		objectOutputStream.writeUTF(servletContextName);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(SubscriptionSender.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		SubscriptionSender.class);
 
 	private List<InternetAddress> _bulkAddresses;
 	private transient ClassLoader _classLoader;
 	private String _className;
 	private long _classPK;
-	private Map<String, EscapableObject<String>> _context =
+	private final Map<String, EscapableObject<String>> _context =
 		new HashMap<String, EscapableObject<String>>();
 	private String _contextUserPrefix;
 	private String _entryTitle;
@@ -916,10 +917,10 @@ public class SubscriptionSender implements Serializable {
 	private String _mailIdPopPortletPrefix;
 	private long _notificationClassNameId;
 	private int _notificationType;
-	private List<ObjectValuePair<String, Long>> _persistestedSubscribersOVPs =
+	private final List<ObjectValuePair<String, Long>> _persistestedSubscribersOVPs =
 		new ArrayList<ObjectValuePair<String, Long>>();
-	private List<ObjectValuePair<String, String>> _runtimeSubscribersOVPs =
+	private final List<ObjectValuePair<String, String>> _runtimeSubscribersOVPs =
 		new ArrayList<ObjectValuePair<String, String>>();
-	private Set<String> _sentEmailAddresses = new HashSet<String>();
+	private final Set<String> _sentEmailAddresses = new HashSet<String>();
 
 }

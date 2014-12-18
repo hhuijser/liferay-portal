@@ -112,7 +112,7 @@ public class ServiceBeanPostProcessor
 
 	private BundleContext _bundleContext;
 	private ClassLoader _classLoader;
-	private List<ServiceRegistration<?>> _serviceRegistrations =
+	private final List<ServiceRegistration<?>> _serviceRegistrations =
 		new CopyOnWriteArrayList<ServiceRegistration<?>>();
 
 }

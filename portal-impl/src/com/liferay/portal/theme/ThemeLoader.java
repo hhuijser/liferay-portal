@@ -125,12 +125,12 @@ public class ThemeLoader {
 
 			if (Validator.isNotNull(fileStorageValue)) {
 				_fileStorage = new File(fileStorageValue);
-				_loadFromServletContext = false;
+				_LOAD_FROM_SERVLET_CONTEXT = false;
 			}
 			else {
 				_fileStorage = new File(
 					servletContext.getRealPath(_themesPath));
-				_loadFromServletContext = true;
+				_LOAD_FROM_SERVLET_CONTEXT = true;
 			}
 
 			if (!_fileStorage.exists()) {
@@ -166,7 +166,7 @@ public class ThemeLoader {
 
 			ThemeLocalServiceUtil.init(
 				_servletContextName, _servletContext, _themesPath,
-				_loadFromServletContext, new String[] {content}, null);
+				_LOAD_FROM_SERVLET_CONTEXT, new String[] {content}, null);
 		}
 		catch (Exception e) {
 			_log.error(
@@ -175,13 +175,15 @@ public class ThemeLoader {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(ThemeLoader.class);
+	private static final boolean _LOAD_FROM_SERVLET_CONTEXT = true;
 
-	private File _fileStorage;
-	private Map<String, Long> _lastModifiedMap = new HashMap<String, Long>();
-	private boolean _loadFromServletContext = true;
-	private ServletContext _servletContext;
-	private String _servletContextName;
-	private String _themesPath;
+	private static final Log _log = LogFactoryUtil.getLog(ThemeLoader.class);
+
+	private final File _fileStorage;
+	private final Map<String, Long> _lastModifiedMap =
+		new HashMap<String, Long>();
+	private final ServletContext _servletContext;
+	private final String _servletContextName;
+	private final String _themesPath;
 
 }

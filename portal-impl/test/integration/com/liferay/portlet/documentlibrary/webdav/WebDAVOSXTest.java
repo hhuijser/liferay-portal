@@ -395,6 +395,6 @@ public class WebDAVOSXTest extends BaseWebDAVTestCase {
 	private static byte[] _testFileBytes;
 	private static byte[] _testMetaBytes;
 
-	private Map<String, String> _lockMap = new HashMap<String, String>();
+	private final Map<String, String> _lockMap = new HashMap<String, String>();
 
 }

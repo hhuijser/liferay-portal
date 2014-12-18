@@ -107,12 +107,13 @@ public class LiferayInputStream extends ServletInputStreamAdapter {
 		return bytesRead;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(LiferayInputStream.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		LiferayInputStream.class);
 
-	private UnsyncByteArrayOutputStream _cachedBytes =
+	private final UnsyncByteArrayOutputStream _cachedBytes =
 		new UnsyncByteArrayOutputStream();
-	private HttpSession _session;
+	private final HttpSession _session;
 	private long _totalRead;
-	private long _totalSize;
+	private final long _totalSize;
 
 }

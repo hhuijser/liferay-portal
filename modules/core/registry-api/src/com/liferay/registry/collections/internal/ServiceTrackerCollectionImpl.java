@@ -422,8 +422,8 @@ public class ServiceTrackerCollectionImpl<S> implements ServiceTrackerList<S> {
 			return entryWrapper._serviceReference.compareTo(_serviceReference);
 		}
 
-		private S _service;
-		private ServiceReference<S> _serviceReference;
+		private final S _service;
+		private final ServiceReference<S> _serviceReference;
 
 	}
 
@@ -482,7 +482,7 @@ public class ServiceTrackerCollectionImpl<S> implements ServiceTrackerList<S> {
 			throw new UnsupportedOperationException();
 		}
 
-		private ListIterator<EntryWrapper> _listIterator;
+		private final ListIterator<EntryWrapper> _listIterator;
 
 	}
 

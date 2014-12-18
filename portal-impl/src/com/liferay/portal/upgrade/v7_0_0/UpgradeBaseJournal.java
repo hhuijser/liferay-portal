@@ -266,10 +266,11 @@ public abstract class UpgradeBaseJournal extends UpgradeDynamicDataMapping {
 			localizationMap, StringPool.BLANK, key, defaultLanguageId);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UpgradeBaseJournal.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpgradeBaseJournal.class);
 
-	private Map<String, Map<String, Long>> _bitwiseValues =
+	private final Map<String, Map<String, Long>> _bitwiseValues =
 		new HashMap<String, Map<String, Long>>();
-	private Map<String, Long> _roleIds = new HashMap<String, Long>();
+	private final Map<String, Long> _roleIds = new HashMap<String, Long>();
 
 }

@@ -830,7 +830,7 @@ public class ExportImportHelperUtilTest extends PowerMockito {
 	private Group _liveGroup;
 
 	private Layout _livePublicLayout;
-	private Pattern _pattern = Pattern.compile("href=|\\{|\\[");
+	private final Pattern _pattern = Pattern.compile("href=|\\{|\\[");
 	private PortletDataContext _portletDataContextExport;
 	private PortletDataContext _portletDataContextImport;
 	private StagedModel _referrerStagedModel;
@@ -911,8 +911,9 @@ public class ExportImportHelperUtilTest extends PowerMockito {
 			return StringPool.BLANK;
 		}
 
-		private List<String> _binaryEntries = new ArrayList<String>();
-		private Map<String, String> _entries = new HashMap<String, String>();
+		private final List<String> _binaryEntries = new ArrayList<String>();
+		private final Map<String, String> _entries =
+			new HashMap<String, String>();
 
 	}
 

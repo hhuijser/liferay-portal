@@ -2010,24 +2010,26 @@ public class SeleniumBuilderFileUtil {
 	private static final String _TPL_ROOT =
 		"com/liferay/portal/tools/seleniumbuilder/dependencies/";
 
-	private static List<String> _allowedNullAttributes = ListUtil.fromArray(
-		new String[] {
+	private static final List<String> _allowedNullAttributes =
+		ListUtil.fromArray(
+			new String[] {
 			"arg1", "arg2", "delimiter", "message", "string", "substring",
 			"value"
 		});
-	private static List<String> _allowedVarAttributes = ListUtil.fromArray(
-		new String[] {
+	private static final List<String> _allowedVarAttributes =
+		ListUtil.fromArray(
+			new String[] {
 			"attribute", "group", "input", "line-number", "locator",
 			"locator-key", "method", "name", "path", "pattern",
 			"property-value", "value"
 		});
-	private static List<String> _componentNames;
-	private static List<String> _methodNames = ListUtil.fromArray(
+	private static final List<String> _componentNames;
+	private static final List<String> _methodNames = ListUtil.fromArray(
 		new String[] {
 			"getFirstNumber", "getIPAddress", "increment", "length",
 			"lowercase", "replace", "uppercase"
 		});
-	private static List<String> _reservedTags = ListUtil.fromArray(
+	private static final List<String> _reservedTags = ListUtil.fromArray(
 		new String[] {
 			"and", "case", "command", "condition", "contains", "default",
 			"definition", "delimiter", "description", "echo", "else", "elseif",
@@ -2035,19 +2037,20 @@ public class SeleniumBuilderFileUtil {
 			"property", "set-up", "take-screenshot", "td", "tear-down", "then",
 			"tr", "while", "var"
 		});
-	private static List<String> _testcaseAvailablePropertyNames;
-	private static List<String> _testrayAvailableComponentNames;
+	private static final List<String> _testcaseAvailablePropertyNames;
+	private static final List<String> _testrayAvailableComponentNames;
 
-	private String _baseDirName;
-	private Pattern _pathTrElementStatementPattern = Pattern.compile(
+	private final String _baseDirName;
+	private final Pattern _pathTrElementStatementPattern = Pattern.compile(
 		"[A-Z0-9].*");
-	private Pattern _pathTrElementWordPattern1 = Pattern.compile(
+	private final Pattern _pathTrElementWordPattern1 = Pattern.compile(
 		"[A-Za-z0-9\\-]+");
-	private Pattern _pathTrElementWordPattern2 = Pattern.compile(
+	private final Pattern _pathTrElementWordPattern2 = Pattern.compile(
 		"[A-Z0-9][A-Za-z0-9\\-]*");
-	private Pattern _tagPattern = Pattern.compile("<[a-z\\-]+");
-	private Pattern _varElementPattern = Pattern.compile("\\$\\{([^\\}]*?)\\}");
-	private Pattern _varElementStatementPattern = Pattern.compile(
+	private final Pattern _tagPattern = Pattern.compile("<[a-z\\-]+");
+	private final Pattern _varElementPattern = Pattern.compile(
+		"\\$\\{([^\\}]*?)\\}");
+	private final Pattern _varElementStatementPattern = Pattern.compile(
 		"(.*)\\?(.*)\\(([^\\)]*?)\\)");
 
 }

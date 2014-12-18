@@ -676,10 +676,10 @@ public class LangBuilder {
 		return toText;
 	}
 
-	private String _langDir;
-	private String _langFile;
-	private boolean _langTranslate;
-	private Properties _portalLanguageProperties;
-	private Properties _renameKeys;
+	private final String _langDir;
+	private final String _langFile;
+	private final boolean _langTranslate;
+	private final Properties _portalLanguageProperties;
+	private final Properties _renameKeys;
 
 }

@@ -225,21 +225,21 @@ public class AssetRendererFactoryRegistryUtil {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		AssetRendererFactoryRegistryUtil.class);
 
-	private static AssetRendererFactoryRegistryUtil _instance =
+	private static final AssetRendererFactoryRegistryUtil _instance =
 		new AssetRendererFactoryRegistryUtil();
 
-	private Map<String, AssetRendererFactory>
+	private final Map<String, AssetRendererFactory>
 		_assetRenderFactoriesMapByClassName =
 			new ConcurrentHashMap<String, AssetRendererFactory>();
-	private Map<String, AssetRendererFactory>
+	private final Map<String, AssetRendererFactory>
 		_assetRenderFactoriesMapByClassType =
 			new ConcurrentHashMap<String, AssetRendererFactory>();
-	private ServiceRegistrationMap<AssetRendererFactory> _serviceRegistrations =
+	private final ServiceRegistrationMap<AssetRendererFactory> _serviceRegistrations =
 		new ServiceRegistrationMap<AssetRendererFactory>();
-	private ServiceTracker<AssetRendererFactory, AssetRendererFactory>
+	private final ServiceTracker<AssetRendererFactory, AssetRendererFactory>
 		_serviceTracker;
 
 	private class AssetRendererFactoryServiceTrackerCustomizer

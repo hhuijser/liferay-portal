@@ -141,37 +141,53 @@ public class ClearThreadLocalUtil {
 	private static final Field _valueField;
 
 	static {
+		boolean initialized = false;
+
+		Method expungeStaleEntriesMethod = null;
+		Field inheritableThreadLocalsField = null;
+		Method removeMethod = null;
+		Field tableField = null;
+		Field threadLocalsField = null;
+		Field valueField = null;
+
 		try {
-			_inheritableThreadLocalsField = ReflectionUtil.getDeclaredField(
+			inheritableThreadLocalsField = ReflectionUtil.getDeclaredField(
 				Thread.class, "inheritableThreadLocals");
-			_threadLocalsField = ReflectionUtil.getDeclaredField(
+			threadLocalsField = ReflectionUtil.getDeclaredField(
 				Thread.class, "threadLocals");
 
 			Class<?> threadLocalMapClass = Class.forName(
 				"java.lang.ThreadLocal$ThreadLocalMap");
 
-			_expungeStaleEntriesMethod = ReflectionUtil.getDeclaredMethod(
+			expungeStaleEntriesMethod = ReflectionUtil.getDeclaredMethod(
 				threadLocalMapClass, "expungeStaleEntries");
-			_removeMethod = ReflectionUtil.getDeclaredMethod(
+			removeMethod = ReflectionUtil.getDeclaredMethod(
 				threadLocalMapClass, "remove", ThreadLocal.class);
-			_tableField = ReflectionUtil.getDeclaredField(
+			tableField = ReflectionUtil.getDeclaredField(
 				threadLocalMapClass, "table");
 
 			Class<?> threadLocalMapEntryClass = Class.forName(
 				"java.lang.ThreadLocal$ThreadLocalMap$Entry");
 
-			_valueField = ReflectionUtil.getDeclaredField(
+			valueField = ReflectionUtil.getDeclaredField(
 				threadLocalMapEntryClass, "value");
 
-			_INITIALIZED = true;
+			initialized = true;
 		}
 		catch (Throwable t) {
-			_INITIALIZED = false;
-
 			if (_log.isWarnEnabled()) {
 				_log.warn("Failed to initialize ClearThreadLocalUtil", t);
 			}
 		}
+
+		_expungeStaleEntriesMethod = expungeStaleEntriesMethod;
+		_inheritableThreadLocalsField = inheritableThreadLocalsField;
+		_removeMethod = removeMethod;
+		_tableField = tableField;
+		_threadLocalsField = threadLocalsField;
+		_valueField = valueField;
+
+		_INITIALIZED = initialized;
 	}
 
 }

@@ -27,7 +27,7 @@ public class ExternalRepositoryFactoryImpl
 	implements ExternalRepositoryFactory {
 
 	public ExternalRepositoryFactoryImpl(String className) {
-		_className = className;
+		this(className, null);
 	}
 
 	public ExternalRepositoryFactoryImpl(

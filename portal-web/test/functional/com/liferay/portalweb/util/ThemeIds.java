@@ -78,9 +78,9 @@ public class ThemeIds {
 		_pos++;
 	}
 
-	private static ThemeIds _instance = new ThemeIds();
+	private static final ThemeIds _instance = new ThemeIds();
 
 	private int _pos;
-	private String[] _themeIds = new String[0];
+	private final String[] _themeIds = new String[0];
 
 }

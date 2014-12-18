@@ -339,7 +339,7 @@ public class LayoutSetLocalServiceStagingAdvice
 		return returnValue;
 	}
 
-	private static Set<String> _layoutSetLocalServiceStagingAdviceMethodNames =
+	private static final Set<String> _layoutSetLocalServiceStagingAdviceMethodNames =
 		new HashSet<String>();
 
 	static {

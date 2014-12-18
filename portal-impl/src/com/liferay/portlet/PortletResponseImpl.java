@@ -736,14 +736,16 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 		setPlid(plid);
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(PortletResponseImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletResponseImpl.class);
 
 	private long _companyId;
-	private Map<String, Constructor<? extends PortletURLImpl>> _constructors =
+	private final Map<String, Constructor<? extends PortletURLImpl>> _constructors =
 		new ConcurrentHashMap<String, Constructor<? extends PortletURLImpl>>();
 	private Document _document;
-	private Map<String, Object> _headers = new LinkedHashMap<String, Object>();
-	private Map<String, List<Element>> _markupHeadElements =
+	private final Map<String, Object> _headers =
+		new LinkedHashMap<String, Object>();
+	private final Map<String, List<Element>> _markupHeadElements =
 		new LinkedHashMap<String, List<Element>>();
 	private String _namespace;
 	private long _plid;
@@ -774,8 +776,8 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 				_plid, _portletName, _lifecycle, _includeLinkToLayoutUuid);
 		}
 
-		private boolean _includeLinkToLayoutUuid;
-		private String _lifecycle;
+		private final boolean _includeLinkToLayoutUuid;
+		private final String _lifecycle;
 		private long _plid;
 		private String _portletName;
 

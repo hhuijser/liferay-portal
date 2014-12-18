@@ -597,6 +597,6 @@ public class TrashImpl implements Trash {
 		return prefix.concat(String.valueOf(trashEntryId));
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(TrashImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(TrashImpl.class);
 
 }

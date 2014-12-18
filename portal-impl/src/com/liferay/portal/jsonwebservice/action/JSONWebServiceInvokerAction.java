@@ -650,12 +650,12 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 		}
 	}
 
-	private static JsonSerializer _jsonSerializer = new JsonSerializer();
+	private static final JsonSerializer _jsonSerializer = new JsonSerializer();
 
-	private String _command;
+	private final String _command;
 	private List<String> _includes;
-	private HttpServletRequest _request;
-	private List<Statement> _statements = new ArrayList<Statement>();
+	private final HttpServletRequest _request;
+	private final List<Statement> _statements = new ArrayList<Statement>();
 
 	private class Flag extends NameValue<String, String> {
 	}

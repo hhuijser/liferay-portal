@@ -48,7 +48,7 @@ public class SingletonLiferayEhcacheRegionFactory implements RegionFactory {
 					PropsKeys.HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE));
 
 			if (useQueryCache || useSecondLevelCache) {
-				_enabled = true;
+				_ENABLED = true;
 			}
 
 			if (_liferayEhcacheRegionFactory == null) {
@@ -115,20 +115,21 @@ public class SingletonLiferayEhcacheRegionFactory implements RegionFactory {
 	public synchronized void start(Settings settings, Properties properties)
 		throws CacheException {
 
-		if (_enabled && (_instanceCounter++ == 0)) {
+		if (_ENABLED && (_instanceCounter++ == 0)) {
 			_liferayEhcacheRegionFactory.start(settings, properties);
 		}
 	}
 
 	@Override
 	public synchronized void stop() {
-		if (_enabled && (--_instanceCounter == 0)) {
+		if (_ENABLED && (--_instanceCounter == 0)) {
 			_liferayEhcacheRegionFactory.stop();
 		}
 	}
 
-	private static boolean _enabled;
+	private static final boolean _ENABLED;
+
 	private static int _instanceCounter;
-	private static LiferayEhcacheRegionFactory _liferayEhcacheRegionFactory;
+	private static final LiferayEhcacheRegionFactory _liferayEhcacheRegionFactory;
 
 }

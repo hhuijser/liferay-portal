@@ -316,6 +316,7 @@ public class SPIAgentSerializable implements Serializable {
 	protected transient String servletContextName;
 	protected ThreadLocalDistributor[] threadLocalDistributors;
 
-	private static Log _log = LogFactoryUtil.getLog(SPIAgentSerializable.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		SPIAgentSerializable.class);
 
 }

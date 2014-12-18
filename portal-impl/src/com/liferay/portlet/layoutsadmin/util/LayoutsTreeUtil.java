@@ -395,7 +395,7 @@ public class LayoutsTreeUtil {
 		}
 
 		private LayoutTreeNodes _childLayoutTreeNodes = new LayoutTreeNodes();
-		private Layout _layout;
+		private final Layout _layout;
 
 	}
 
@@ -431,7 +431,7 @@ public class LayoutsTreeUtil {
 			return _layoutTreeNodesList.iterator();
 		}
 
-		private List<LayoutTreeNode> _layoutTreeNodesList =
+		private final List<LayoutTreeNode> _layoutTreeNodesList =
 			new ArrayList<LayoutTreeNode>();
 		private int _total;
 

@@ -27,7 +27,7 @@ import java.lang.reflect.Method;
 public class ClearThreadLocalUtil {
 
 	public static void clearThreadLocal() throws Exception {
-		if (!_initialized) {
+		if (!_INITIALIZED) {
 			return;
 		}
 
@@ -128,15 +128,17 @@ public class ClearThreadLocalUtil {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(ClearThreadLocalUtil.class);
+	private static final boolean _INITIALIZED;
 
-	private static Method _expungeStaleEntriesMethod;
-	private static Field _inheritableThreadLocalsField;
-	private static boolean _initialized;
-	private static Method _removeMethod;
-	private static Field _tableField;
-	private static Field _threadLocalsField;
-	private static Field _valueField;
+	private static final Log _log = LogFactoryUtil.getLog(
+		ClearThreadLocalUtil.class);
+
+	private static final Method _expungeStaleEntriesMethod;
+	private static final Field _inheritableThreadLocalsField;
+	private static final Method _removeMethod;
+	private static final Field _tableField;
+	private static final Field _threadLocalsField;
+	private static final Field _valueField;
 
 	static {
 		try {
@@ -161,10 +163,10 @@ public class ClearThreadLocalUtil {
 			_valueField = ReflectionUtil.getDeclaredField(
 				threadLocalMapEntryClass, "value");
 
-			_initialized = true;
+			_INITIALIZED = true;
 		}
 		catch (Throwable t) {
-			_initialized = false;
+			_INITIALIZED = false;
 
 			if (_log.isWarnEnabled()) {
 				_log.warn("Failed to initialize ClearThreadLocalUtil", t);

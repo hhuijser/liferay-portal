@@ -26,6 +26,7 @@ import java.util.regex.Pattern;
 public class FileFilter implements java.io.FileFilter {
 
 	public FileFilter() {
+		_pattern = null;
 	}
 
 	public FileFilter(String regex) {

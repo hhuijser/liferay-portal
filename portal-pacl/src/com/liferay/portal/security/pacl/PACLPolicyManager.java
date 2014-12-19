@@ -189,6 +189,7 @@ public class PACLPolicyManager {
 
 		public PACLPolicyPrivilegedAction(ClassLoader classLoader) {
 			_classLoader = classLoader;
+			_locationURL = null;
 		}
 
 		public PACLPolicyPrivilegedAction(ProtectionDomain protectionDomain) {
@@ -197,6 +198,8 @@ public class PACLPolicyManager {
 			CodeSource codeSource = protectionDomain.getCodeSource();
 
 			if (codeSource == null) {
+				_locationURL = null;
+
 				return;
 			}
 

@@ -87,11 +87,6 @@ public class LayoutTypePortletImpl
 
 		super(layout, layoutTypeController);
 
-		if (_NESTED_PORTLETS_NAMESPACE == null) {
-			_NESTED_PORTLETS_NAMESPACE = PortalUtil.getPortletNamespace(
-				PortletKeys.NESTED_PORTLETS);
-		}
-
 		_layoutSetPrototypeLayout = SitesUtil.getLayoutSetPrototypeLayout(
 			layout);
 	}
@@ -1874,6 +1869,11 @@ public class LayoutTypePortletImpl
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		LayoutTypePortletImpl.class);
+
+	static {
+		_NESTED_PORTLETS_NAMESPACE = PortalUtil.getPortletNamespace(
+			PortletKeys.NESTED_PORTLETS);
+	}
 
 	private boolean _customizedView;
 	private final Format _dateFormat =

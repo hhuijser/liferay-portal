@@ -1630,8 +1630,9 @@ public class AssetPublisherImpl implements AssetPublisher {
 	private static final Log _log = LogFactoryUtil.getLog(
 		AssetPublisherImpl.class);
 
-	private final Map<String, AssetEntryQueryProcessor> _assetEntryQueryProcessor =
-		new ConcurrentHashMap<String, AssetEntryQueryProcessor>();
+	private final Map<String, AssetEntryQueryProcessor>
+		_assetEntryQueryProcessor =
+			new ConcurrentHashMap<String, AssetEntryQueryProcessor>();
 
 	private final Accessor<AssetEntry, String> _titleAccessor =
 		new Accessor<AssetEntry, String>() {

@@ -50,16 +50,20 @@ public class PluginsSummaryBuilder {
 	}
 
 	public PluginsSummaryBuilder(File pluginsDir) {
-		try {
-			_pluginsDir = pluginsDir;
+		_pluginsDir = pluginsDir;
 
-			_latestHASH = _getLatestHASH(pluginsDir);
+		String lastestHASH = null;
+
+		try {
+			lastestHASH = _getLatestHASH(pluginsDir);
 
 			_createPluginsSummary();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		_latestHASH = lastestHASH;
 	}
 
 	private void _createPluginsSummary() throws Exception {

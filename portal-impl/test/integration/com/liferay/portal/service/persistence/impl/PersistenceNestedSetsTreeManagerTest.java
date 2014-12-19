@@ -732,7 +732,7 @@ public class PersistenceNestedSetsTreeManagerTest {
 		}
 
 		private boolean _failOpenSession;
-		private Object _target;
+		private final Object _target;
 
 	}
 

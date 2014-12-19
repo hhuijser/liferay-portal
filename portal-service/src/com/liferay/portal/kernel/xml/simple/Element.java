@@ -67,6 +67,8 @@ public class Element {
 		}
 
 		_openElement(this);
+
+		_parentElement = null;
 	}
 
 	public void addAttribute(String name, String value) {

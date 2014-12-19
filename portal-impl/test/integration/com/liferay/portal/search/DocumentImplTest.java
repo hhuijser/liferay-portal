@@ -513,21 +513,24 @@ public class DocumentImplTest {
 	private static final String[] _SCREEN_NAMES_ODD_MIXED =
 		new String[] {"firstuser", "fifthuser", "thirduser"};
 
-	private Map<String, Double[]> _doubleArrays =
+	private final Map<String, Double[]> _doubleArrays =
 		new HashMap<String, Double[]>();
-	private Map<String, Double> _doubles = new HashMap<String, Double>();
-	private Map<String, Float[]> _floatArrays = new HashMap<String, Float[]>();
-	private Map<String, Float> _floats = new HashMap<String, Float>();
+	private final Map<String, Double> _doubles = new HashMap<String, Double>();
+	private final Map<String, Float[]> _floatArrays =
+		new HashMap<String, Float[]>();
+	private final Map<String, Float> _floats = new HashMap<String, Float>();
 
 	@DeleteAfterTestRun
 	private Group _group;
 
 	private Indexer _indexer;
 	private IndexerPostProcessor _indexerPostProcessor;
-	private Map<String, Integer[]> _integerArrays =
+	private final Map<String, Integer[]> _integerArrays =
 		new HashMap<String, Integer[]>();
-	private Map<String, Integer> _integers = new HashMap<String, Integer>();
-	private Map<String, Long[]> _longArrays = new HashMap<String, Long[]>();
-	private Map<String, Long> _longs = new HashMap<String, Long>();
+	private final Map<String, Integer> _integers =
+		new HashMap<String, Integer>();
+	private final Map<String, Long[]> _longArrays =
+		new HashMap<String, Long[]>();
+	private final Map<String, Long> _longs = new HashMap<String, Long>();
 
 }

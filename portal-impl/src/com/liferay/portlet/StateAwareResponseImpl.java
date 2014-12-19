@@ -322,11 +322,11 @@ public abstract class StateAwareResponseImpl
 		return true;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		StateAwareResponseImpl.class);
 
 	private boolean _calledSetRenderParameter;
-	private List<Event> _events = new ArrayList<Event>();
+	private final List<Event> _events = new ArrayList<Event>();
 	private Layout _layout;
 	private Map<String, String[]> _params =
 		new LinkedHashMap<String, String[]>();

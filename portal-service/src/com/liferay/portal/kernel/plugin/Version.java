@@ -279,13 +279,21 @@ public class Version implements Comparable<Version>, Serializable {
 
 		_major = st.nextToken();
 
-		if (st.hasMoreTokens()) {
-			_minor = st.nextToken();
-		}
+		String minor = null;
 
 		if (st.hasMoreTokens()) {
-			_bugFix = st.nextToken();
+			minor = st.nextToken();
 		}
+
+		_minor = minor;
+
+		String bugFix = null;
+
+		if (st.hasMoreTokens()) {
+			bugFix = st.nextToken();
+		}
+
+		_bugFix = bugFix;
 
 		if (st.hasMoreTokens()) {
 			_buildNumber = st.nextToken();

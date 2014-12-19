@@ -527,101 +527,138 @@ public class ServiceBuilder {
 		String sqlSequencesFileName, String targetEntityName, String testDir,
 		boolean build) {
 
+		_tplActionableDynamicQuery = _TPL_ROOT + "actionable_dynamic_query.ftl";
 		_tplBadAliasNames = _getTplProperty(
-			"bad_alias_names", _tplBadAliasNames);
+			"bad_alias_names", _TPL_ROOT + "bad_alias_names.txt");
 		_tplBadColumnNames = _getTplProperty(
-			"bad_column_names", _tplBadColumnNames);
+			"bad_column_names", _TPL_ROOT + "bad_column_names.txt");
 		_tplBadTableNames = _getTplProperty(
-			"bad_table_names", _tplBadTableNames);
-		_tplBlobModel = _getTplProperty("blob_model", _tplBlobModel);
-		_tplEjbPk = _getTplProperty("ejb_pk", _tplEjbPk);
-		_tplException = _getTplProperty("exception", _tplException);
+			"bad_table_names", _TPL_ROOT + "bad_table_names.txt");
+		_tplBlobModel = _getTplProperty(
+			"blob_model", _TPL_ROOT + "blob_model.ftl");
+		_tplEjbPk = _getTplProperty("ejb_pk", _TPL_ROOT + "ejb_pk.ftl");
+		_tplException = _getTplProperty(
+			"exception", _TPL_ROOT + "exception.ftl");
+		_tplExportActionableDynamicQuery =
+			_TPL_ROOT + "export_actionable_dynamic_query.ftl";
 		_tplExtendedModel = _getTplProperty(
-			"extended_model", _tplExtendedModel);
+			"extended_model", _TPL_ROOT + "extended_model.ftl");
 		_tplExtendedModelBaseImpl = _getTplProperty(
-			"extended_model_base_impl", _tplExtendedModelBaseImpl);
+			"extended_model_base_impl",
+			_TPL_ROOT + "extended_model_base_impl.ftl");
 		_tplExtendedModelImpl = _getTplProperty(
-			"extended_model_impl", _tplExtendedModelImpl);
-		_tplFinder = _getTplProperty("finder", _tplFinder);
-		_tplFinderUtil = _getTplProperty("finder_util", _tplFinderUtil);
-		_tplHbmXml = _getTplProperty("hbm_xml", _tplHbmXml);
-		_tplJsonJs = _getTplProperty("json_js", _tplJsonJs);
-		_tplJsonJsMethod = _getTplProperty("json_js_method", _tplJsonJsMethod);
-		_tplModel = _getTplProperty("model", _tplModel);
-		_tplModelCache = _getTplProperty("model_cache", _tplModelCache);
-		_tplModelClp = _getTplProperty("model", _tplModelClp);
+			"extended_model_impl", _TPL_ROOT + "extended_model_impl.ftl");
+		_tplFinder = _getTplProperty("finder", _TPL_ROOT + "finder.ftl");
+		_tplFinderUtil = _getTplProperty(
+			"finder_util", _TPL_ROOT + "finder_util.ftl");
+		_tplHbmXml = _getTplProperty("hbm_xml", _TPL_ROOT + "hbm_xml.ftl");
+		_tplJsonJs = _getTplProperty("json_js", _TPL_ROOT + "json_js.ftl");
+		_tplJsonJsMethod = _getTplProperty(
+			"json_js_method", _TPL_ROOT + "json_js_method.ftl");
+		_tplModel = _getTplProperty("model", _TPL_ROOT + "model.ftl");
+		_tplModelCache = _getTplProperty(
+			"model_cache", _TPL_ROOT + "model_cache.ftl");
+		_tplModelClp = _getTplProperty("model", _TPL_ROOT + "model_clp.ftl");
 		_tplModelHintsXml = _getTplProperty(
-			"model_hints_xml", _tplModelHintsXml);
-		_tplModelImpl = _getTplProperty("model_impl", _tplModelImpl);
-		_tplModelSoap = _getTplProperty("model_soap", _tplModelSoap);
-		_tplModelWrapper = _getTplProperty("model_wrapper", _tplModelWrapper);
-		_tplPersistence = _getTplProperty("persistence", _tplPersistence);
+			"model_hints_xml", _TPL_ROOT + "model_hints_xml.ftl");
+		_tplModelImpl = _getTplProperty(
+			"model_impl", _TPL_ROOT + "model_impl.ftl");
+		_tplModelSoap = _getTplProperty(
+			"model_soap", _TPL_ROOT + "model_soap.ftl");
+		_tplModelWrapper = _getTplProperty(
+			"model_wrapper", _TPL_ROOT + "model_wrapper.ftl");
+		_tplPersistence = _getTplProperty(
+			"persistence", _TPL_ROOT + "persistence.ftl");
 		_tplPersistenceImpl = _getTplProperty(
-			"persistence_impl", _tplPersistenceImpl);
+			"persistence_impl", _TPL_ROOT + "persistence_impl.ftl");
+		_tplPersistenceTest = _TPL_ROOT + "persistence_test.ftl";
 		_tplPersistenceUtil = _getTplProperty(
-			"persistence_util", _tplPersistenceUtil);
-		_tplProps = _getTplProperty("props", _tplProps);
-		_tplRemotingXml = _getTplProperty("remoting_xml", _tplRemotingXml);
-		_tplService = _getTplProperty("service", _tplService);
+			"persistence_util", _TPL_ROOT + "persistence_util.ftl");
+		_tplProps = _getTplProperty("props", _TPL_ROOT + "props.ftl");
+		_tplRemotingXml = _getTplProperty(
+			"remoting_xml", _TPL_ROOT + "remoting_xml.ftl");
+		_tplService = _getTplProperty("service", _TPL_ROOT + "service.ftl");
 		_tplServiceBaseImpl = _getTplProperty(
-			"service_base_impl", _tplServiceBaseImpl);
-		_tplServiceClp = _getTplProperty("service_clp", _tplServiceClp);
+			"service_base_impl", _TPL_ROOT + "service_base_impl.ftl");
+		_tplServiceClp = _getTplProperty(
+			"service_clp", _TPL_ROOT + "service_clp.ftl");
 		_tplServiceClpInvoker = _getTplProperty(
-			"service_clp_invoker", _tplServiceClpInvoker);
+			"service_clp_invoker", _TPL_ROOT + "service_clp_invoker.ftl");
 		_tplServiceClpMessageListener = _getTplProperty(
-			"service_clp_message_listener", _tplServiceClpMessageListener);
+			"service_clp_message_listener",
+			_TPL_ROOT + "service_clp_message_listener.ftl");
 		_tplServiceClpSerializer = _getTplProperty(
-			"service_clp_serializer", _tplServiceClpSerializer);
-		_tplServiceHttp = _getTplProperty("service_http", _tplServiceHttp);
-		_tplServiceImpl = _getTplProperty("service_impl", _tplServiceImpl);
+			"service_clp_serializer", _TPL_ROOT + "service_clp_serializer.ftl");
+		_tplServiceHttp = _getTplProperty(
+			"service_http", _TPL_ROOT + "service_http.ftl");
+		_tplServiceImpl = _getTplProperty(
+			"service_impl", _TPL_ROOT + "service_impl.ftl");
 		_tplServicePropsUtil = _getTplProperty(
-			"service_props_util", _tplServicePropsUtil);
-		_tplServiceSoap = _getTplProperty("service_soap", _tplServiceSoap);
-		_tplServiceUtil = _getTplProperty("service_util", _tplServiceUtil);
+			"service_props_util", _TPL_ROOT + "service_props_util.ftl");
+		_tplServiceSoap = _getTplProperty(
+			"service_soap", _TPL_ROOT + "service_soap.ftl");
+		_tplServiceUtil = _getTplProperty(
+			"service_util",_TPL_ROOT + "service_util.ftl");
 		_tplServiceWrapper = _getTplProperty(
-			"service_wrapper", _tplServiceWrapper);
-		_tplSpringXml = _getTplProperty("spring_xml", _tplSpringXml);
+			"service_wrapper", _TPL_ROOT + "service_wrapper.ftl");
+		_tplSpringXml = _getTplProperty(
+			"spring_xml", _TPL_ROOT + "spring_xml.ftl");
+
+		_apiDir = apiDir;
+		_beanLocatorUtil = beanLocatorUtil;
+		_beanLocatorUtilShortName = _beanLocatorUtil.substring(
+			_beanLocatorUtil.lastIndexOf(".") + 1);
+		_build = build;
+		_buildNumber = buildNumber;
+		_buildNumberIncrement = buildNumberIncrement;
+		_ejbList = new ArrayList<Entity>();
+		_entityMappings = new HashMap<String, EntityMapping>();
+		_hbmFileName = hbmFileName;
+		_implDir = implDir;
+		_modelHintsFileName = modelHintsFileName;
+		_osgiModule = osgiModule;
+		_pluginName = GetterUtil.getString(pluginName);
+		_propsUtil = propsUtil;
+		_remotingFileName = remotingFileName;
+		_resourcesDir = resourcesDir;
+		_springFileName = springFileName;
+		_sqlDir = sqlDir;
+		_sqlFileName = sqlFileName;
+		_sqlIndexesFileName = sqlIndexesFileName;
+		_sqlSequencesFileName = sqlSequencesFileName;
+		_targetEntityName = targetEntityName;
+		_testDir = testDir;
+
+		
+		String author = null;
+		Set<String> badAliasNames = null;
+		Set<String> badTableNames = null;
+		Set<String> badColumnNames = null;
+		boolean importDefaultReferences = false;
+		boolean namespaceTables = false;
+		boolean mvccEnabled = false;
+		String outputPath = null;
+		String packagePath = null;
+		String portletName = StringPool.BLANK;
+		String portletPackageName = StringPool.BLANK;
+		String portletShortName = null;
+		String serviceOutputPath = null;
+		String[] springNamespacesTemp = springNamespaces;
+		String testOutputPath = null;
+
+
 
 		try {
-			_apiDir = apiDir;
-			_autoImportDefaultReferences = autoImportDefaultReferences;
-			_autoNamespaceTables = autoNamespaceTables;
-			_beanLocatorUtil = beanLocatorUtil;
-			_buildNumber = buildNumber;
-			_buildNumberIncrement = buildNumberIncrement;
-			_hbmFileName = hbmFileName;
-			_implDir = implDir;
-			_modelHintsFileName = modelHintsFileName;
-			_osgiModule = osgiModule;
-			_pluginName = GetterUtil.getString(pluginName);
-			_propsUtil = propsUtil;
-			_remotingFileName = remotingFileName;
-			_resourcesDir = resourcesDir;
-			_springFileName = springFileName;
-
-			_springNamespaces = springNamespaces;
-
 			if (!ArrayUtil.contains(
-					_springNamespaces, _SPRING_NAMESPACE_BEANS)) {
+					springNamespaces, _SPRING_NAMESPACE_BEANS)) {
 
-				_springNamespaces = ArrayUtil.append(
-					_springNamespaces, _SPRING_NAMESPACE_BEANS);
+				springNamespacesTemp = ArrayUtil.append(
+					springNamespaces, _SPRING_NAMESPACE_BEANS);
 			}
 
-			_sqlDir = sqlDir;
-			_sqlFileName = sqlFileName;
-			_sqlIndexesFileName = sqlIndexesFileName;
-			_sqlSequencesFileName = sqlSequencesFileName;
-			_targetEntityName = targetEntityName;
-			_testDir = testDir;
-			_build = build;
-
-			_badTableNames = _readLines(_tplBadTableNames);
-			_badAliasNames = _readLines(_tplBadAliasNames);
-			_badColumnNames = _readLines(_tplBadColumnNames);
-
-			_beanLocatorUtilShortName = _beanLocatorUtil.substring(
-				_beanLocatorUtil.lastIndexOf(".") + 1);
+			badTableNames = _readLines(_tplBadTableNames);
+			badAliasNames = _readLines(_tplBadAliasNames);
+			badColumnNames = _readLines(_tplBadColumnNames);
 
 			String content = getContent(inputFileName);
 
@@ -629,78 +666,76 @@ public class ServiceBuilder {
 
 			Element rootElement = document.getRootElement();
 
-			String packagePath = rootElement.attributeValue("package-path");
+			packagePath = rootElement.attributeValue("package-path");
 
 			if (Validator.isNull(packagePath)) {
 				throw new IllegalArgumentException(
 					"The package-path attribute is required");
 			}
 
-			_outputPath =
+			outputPath =
 				_implDir + "/" + StringUtil.replace(packagePath, ".", "/");
 
-			_serviceOutputPath =
+			serviceOutputPath =
 				_apiDir + "/" + StringUtil.replace(packagePath, ".", "/");
 
 			if (Validator.isNotNull(_testDir)) {
-				_testOutputPath =
+				testOutputPath =
 					_testDir + "/" + StringUtil.replace(packagePath, ".", "/");
 			}
 
-			_packagePath = packagePath;
-
-			_autoImportDefaultReferences = GetterUtil.getBoolean(
+			importDefaultReferences = GetterUtil.getBoolean(
 				rootElement.attributeValue("auto-import-default-references"),
-				_autoImportDefaultReferences);
-			_autoNamespaceTables = GetterUtil.getBoolean(
+				autoImportDefaultReferences);
+			namespaceTables = GetterUtil.getBoolean(
 				rootElement.attributeValue("auto-namespace-tables"),
-				_autoNamespaceTables);
-			_mvccEnabled = GetterUtil.getBoolean(
+				autoNamespaceTables);
+			mvccEnabled = GetterUtil.getBoolean(
 				rootElement.attributeValue("mvcc-enabled"));
 
 			Element authorElement = rootElement.element("author");
 
 			if (authorElement != null) {
-				_author = authorElement.getText();
+				author = authorElement.getText();
 			}
 			else {
-				_author = AUTHOR;
+				author = AUTHOR;
 			}
 
 			Element portletElement = rootElement.element("portlet");
 			Element namespaceElement = rootElement.element("namespace");
 
 			if (portletElement != null) {
-				_portletName = portletElement.attributeValue("name");
+				portletName = portletElement.attributeValue("name");
 
-				_portletShortName = portletElement.attributeValue("short-name");
+				portletShortName = portletElement.attributeValue("short-name");
 
-				_portletPackageName = TextFormatter.format(
-					_portletName, TextFormatter.B);
+				portletPackageName = TextFormatter.format(
+					portletName, TextFormatter.B);
 
-				_outputPath += "/" + _portletPackageName;
+				outputPath += "/" + portletPackageName;
 
-				_serviceOutputPath += "/" + _portletPackageName;
+				serviceOutputPath += "/" + portletPackageName;
 
-				_testOutputPath += "/" + _portletPackageName;
+				testOutputPath += "/" + portletPackageName;
 
-				_packagePath += "." + _portletPackageName;
+				packagePath += "." + portletPackageName;
 			}
 			else {
-				_portletShortName = namespaceElement.getText();
+				portletShortName = namespaceElement.getText();
 			}
 
-			_portletShortName = _portletShortName.trim();
+			portletShortName = portletShortName.trim();
 
-			for (char c : _portletShortName.toCharArray()) {
+			for (char c : portletShortName.toCharArray()) {
 				if (!Validator.isChar(c) && (c != CharPool.UNDERLINE)) {
 					throw new RuntimeException(
 						"The namespace element must be a valid keyword");
 				}
 			}
 
-			_ejbList = new ArrayList<Entity>();
-			_entityMappings = new HashMap<String, EntityMapping>();
+			_ejbList.clear();
+			_entityMappings.clear();
 
 			List<Element> entityElements = rootElement.elements("entity");
 
@@ -892,6 +927,22 @@ public class ServiceBuilder {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		_author = author;
+		_autoImportDefaultReferences = importDefaultReferences;
+		_autoNamespaceTables = namespaceTables;
+		_badAliasNames = badAliasNames;
+		_badColumnNames = badColumnNames;
+		_badTableNames = badTableNames;
+		_mvccEnabled = mvccEnabled;
+		_outputPath = outputPath;
+		_portletName = portletName;
+		_packagePath = packagePath;
+		_portletPackageName = portletPackageName;
+		_portletShortName = portletShortName;
+		_serviceOutputPath = serviceOutputPath;
+		_springNamespaces = springNamespacesTemp;
+		_testOutputPath = testOutputPath;
 	}
 
 	public ServiceBuilder(
@@ -4522,7 +4573,15 @@ public class ServiceBuilder {
 		return new ArrayList<Entity>(set);
 	}
 
-	private void _parseEntity(Element entityElement) throws Exception {
+	private void _parseEntity(
+		Element entityElement, Set<String> badTableNames,
+		boolean autoNamespaceTables, String portletShortName, 
+		String packagePath, String outputPath, boolean mvcc,
+		Set<String> badColumnNames, Map<String, EntityMapping> entityMappings, 
+		Set<String> badAliasNames, boolean build, String pluginName,
+		String implDir, boolean autoImportDefaultReferences, 
+		String portletName) throws Exception {
+
 		String ejbName = entityElement.attributeValue("name");
 		String humanName = entityElement.attributeValue("human-name");
 
@@ -4531,12 +4590,12 @@ public class ServiceBuilder {
 		if (Validator.isNull(table)) {
 			table = ejbName;
 
-			if (_badTableNames.contains(ejbName)) {
+			if (badTableNames.contains(ejbName)) {
 				table += StringPool.UNDERLINE;
 			}
 
-			if (_autoNamespaceTables) {
-				table = _portletShortName + StringPool.UNDERLINE + ejbName;
+			if (autoNamespaceTables) {
+				table = portletShortName + StringPool.UNDERLINE + ejbName;
 			}
 		}
 
@@ -4550,52 +4609,52 @@ public class ServiceBuilder {
 			entityElement.attributeValue("remote-service"), true);
 		String persistenceClass = GetterUtil.getString(
 			entityElement.attributeValue("persistence-class"),
-			_packagePath + ".service.persistence.impl." + ejbName +
+			packagePath + ".service.persistence.impl." + ejbName +
 				"PersistenceImpl");
 
 		String finderClass = "";
 
 		if (FileUtil.exists(
-				_outputPath + "/service/persistence/" + ejbName +
+				outputPath + "/service/persistence/" + ejbName +
 					"FinderImpl.java")) {
 
 			FileUtil.move(
-				_outputPath + "/service/persistence/" + ejbName +
+				outputPath + "/service/persistence/" + ejbName +
 					"FinderImpl.java",
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java");
 
 			String content = FileUtil.read(
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java");
 
 			StringBundler sb = new StringBundler();
 
 			sb.append(
-				"package " + _packagePath + ".service.persistence.impl;\n\n");
+				"package " + packagePath + ".service.persistence.impl;\n\n");
 			sb.append(
-				"import " + _packagePath + ".service.persistence." + ejbName +
+				"import " + packagePath + ".service.persistence." + ejbName +
 					"Finder;\n");
 			sb.append(
-				"import " + _packagePath + ".service.persistence." + ejbName +
+				"import " + packagePath + ".service.persistence." + ejbName +
 					"Util;");
 
 			content = StringUtil.replace(
-				content, "package " + _packagePath + ".service.persistence;",
+				content, "package " + packagePath + ".service.persistence;",
 				sb.toString());
 
 			FileUtil.write(
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java",
 				content);
 		}
 
 		if (FileUtil.exists(
-				_outputPath + "/service/persistence/impl/" + ejbName +
+				outputPath + "/service/persistence/impl/" + ejbName +
 					"FinderImpl.java")) {
 
 			finderClass =
-				_packagePath +
+				packagePath +
 					".service.persistence.impl." + ejbName + "FinderImpl";
 		}
 
@@ -4607,7 +4666,7 @@ public class ServiceBuilder {
 		boolean jsonEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("json-enabled"), remoteService);
 		boolean mvccEnabled = GetterUtil.getBoolean(
-			entityElement.attributeValue("mvcc-enabled"), _mvccEnabled);
+			entityElement.attributeValue("mvcc-enabled"), mvcc);
 		boolean trashEnabled = GetterUtil.getBoolean(
 			entityElement.attributeValue("trash-enabled"));
 		boolean deprecated = GetterUtil.getBoolean(
@@ -4659,7 +4718,7 @@ public class ServiceBuilder {
 			if (Validator.isNull(columnDBName)) {
 				columnDBName = columnName;
 
-				if (_badColumnNames.contains(columnName)) {
+				if (badColumnNames.contains(columnName)) {
 					columnDBName += StringPool.UNDERLINE;
 				}
 			}
@@ -4676,13 +4735,13 @@ public class ServiceBuilder {
 			String mappingTable = columnElement.attributeValue("mapping-table");
 
 			if (Validator.isNotNull(mappingTable)) {
-				if (_badTableNames.contains(mappingTable)) {
+				if (badTableNames.contains(mappingTable)) {
 					mappingTable += StringPool.UNDERLINE;
 				}
 
-				if (_autoNamespaceTables) {
+				if (autoNamespaceTables) {
 					mappingTable =
-						_portletShortName + StringPool.UNDERLINE + mappingTable;
+						portletShortName + StringPool.UNDERLINE + mappingTable;
 				}
 			}
 
@@ -4730,8 +4789,8 @@ public class ServiceBuilder {
 				EntityMapping entityMapping = new EntityMapping(
 					mappingTable, ejbName, collectionEntity);
 
-				if (!_entityMappings.containsKey(mappingTable)) {
-					_entityMappings.put(mappingTable, entityMapping);
+				if (!entityMappings.containsKey(mappingTable)) {
+					entityMappings.put(mappingTable, entityMapping);
 				}
 			}
 		}
@@ -4870,7 +4929,7 @@ public class ServiceBuilder {
 
 		String alias = TextFormatter.format(ejbName, TextFormatter.I);
 
-		if (_badAliasNames.contains(StringUtil.toLowerCase(alias))) {
+		if (badAliasNames.contains(StringUtil.toLowerCase(alias))) {
 			alias += StringPool.UNDERLINE;
 		}
 
@@ -4937,15 +4996,15 @@ public class ServiceBuilder {
 		List<Entity> referenceList = new ArrayList<Entity>();
 		List<String> unresolvedReferenceList = new ArrayList<String>();
 
-		if (_build) {
-			if (Validator.isNotNull(_pluginName)) {
+		if (build) {
+			if (Validator.isNotNull(pluginName)) {
 				for (String config : PropsValues.RESOURCE_ACTIONS_CONFIGS) {
-					File file = new File(_implDir + "/" + config);
+					File file = new File(implDir + "/" + config);
 
 					if (file.exists()) {
 						InputStream inputStream = new FileInputStream(file);
 
-						ResourceActionsUtil.read(_pluginName, inputStream);
+						ResourceActionsUtil.read(pluginName, inputStream);
 					}
 				}
 			}
@@ -4964,11 +5023,11 @@ public class ServiceBuilder {
 				referenceSet.add(referencePackage + "." + referenceEntity);
 			}
 
-			if (!_packagePath.equals("com.liferay.counter")) {
+			if (!packagePath.equals("com.liferay.counter")) {
 				referenceSet.add("com.liferay.counter.Counter");
 			}
 
-			if (_autoImportDefaultReferences) {
+			if (autoImportDefaultReferences) {
 				referenceSet.add("com.liferay.portal.ClassName");
 				referenceSet.add("com.liferay.portal.Resource");
 				referenceSet.add("com.liferay.portal.User");
@@ -4997,7 +5056,7 @@ public class ServiceBuilder {
 
 		_ejbList.add(
 			new Entity(
-				_packagePath, _portletName, _portletShortName, ejbName,
+				packagePath, portletName, portletShortName, ejbName,
 				humanName, table, alias, uuid, uuidAccessor, localService,
 				remoteService, persistenceClass, finderClass, dataSource,
 				sessionFactory, txManager, cacheEnabled, dynamicUpdateEnabled,
@@ -5158,101 +5217,94 @@ public class ServiceBuilder {
 	private static final String _TPL_ROOT =
 		"com/liferay/portal/tools/servicebuilder/dependencies/";
 
-	private static Pattern _getterPattern = Pattern.compile(
+	private static final Pattern _getterPattern = Pattern.compile(
 		"public .* get.*" + Pattern.quote("(") + "|public boolean is.*" +
 			Pattern.quote("("));
-	private static Pattern _setterPattern = Pattern.compile(
+	private static final Pattern _setterPattern = Pattern.compile(
 		"public void set.*" + Pattern.quote("("));
 
-	private String _apiDir;
-	private String _author;
-	private boolean _autoImportDefaultReferences;
-	private boolean _autoNamespaceTables;
-	private Set<String> _badAliasNames;
-	private Set<String> _badColumnNames;
-	private Set<String> _badTableNames;
-	private String _beanLocatorUtil;
-	private String _beanLocatorUtilShortName;
-	private boolean _build;
-	private long _buildNumber;
-	private boolean _buildNumberIncrement;
-	private List<Entity> _ejbList;
-	private Map<String, EntityMapping> _entityMappings;
-	private Map<String, Entity> _entityPool = new HashMap<String, Entity>();
-	private String _hbmFileName;
-	private String _implDir;
-	private Map<String, JavaClass> _javaClasses =
+	private final String _apiDir;
+	private final String _author;
+	private final boolean _autoImportDefaultReferences;
+	private final boolean _autoNamespaceTables;
+	private final Set<String> _badAliasNames;
+	private final Set<String> _badColumnNames;
+	private final Set<String> _badTableNames;
+	private final String _beanLocatorUtil;
+	private final String _beanLocatorUtilShortName;
+	private final boolean _build;
+	private final long _buildNumber;
+	private final boolean _buildNumberIncrement;
+	private final List<Entity> _ejbList;
+	private final Map<String, EntityMapping> _entityMappings;
+	private final Map<String, Entity> _entityPool = new HashMap<String, Entity>();
+	private final String _hbmFileName;
+	private final String _implDir;
+	private final Map<String, JavaClass> _javaClasses =
 		new HashMap<String, JavaClass>();
-	private String _modelHintsFileName;
-	private boolean _mvccEnabled;
-	private boolean _osgiModule;
-	private String _outputPath;
-	private String _packagePath;
-	private String _pluginName;
-	private String _portletName = StringPool.BLANK;
-	private String _portletPackageName = StringPool.BLANK;
-	private String _portletShortName = StringPool.BLANK;
-	private String _propsUtil;
-	private String _remotingFileName;
-	private String _resourcesDir;
-	private String _serviceOutputPath;
-	private String _springFileName;
-	private String[] _springNamespaces;
-	private String _sqlDir;
-	private String _sqlFileName;
-	private String _sqlIndexesFileName;
-	private String _sqlSequencesFileName;
+	private final String _modelHintsFileName;
+	private final boolean _mvccEnabled;
+	private final boolean _osgiModule;
+	private final String _outputPath;
+	private final String _packagePath;
+	private final String _pluginName;
+	private final String _portletName;
+	private final String _portletPackageName;
+	private final String _portletShortName;
+	private final String _propsUtil;
+	private final String _remotingFileName;
+	private final String _resourcesDir;
+	private final String _serviceOutputPath;
+	private final String _springFileName;
+	private final String[] _springNamespaces;
+	private final String _sqlDir;
+	private final String _sqlFileName;
+	private final String _sqlIndexesFileName;
+	private final String _sqlSequencesFileName;
 	private String _targetEntityName;
-	private String _testDir;
-	private String _testOutputPath;
-	private String _tplActionableDynamicQuery =
-		_TPL_ROOT + "actionable_dynamic_query.ftl";
-	private String _tplBadAliasNames = _TPL_ROOT + "bad_alias_names.txt";
-	private String _tplBadColumnNames = _TPL_ROOT + "bad_column_names.txt";
-	private String _tplBadTableNames = _TPL_ROOT + "bad_table_names.txt";
-	private String _tplBlobModel = _TPL_ROOT + "blob_model.ftl";
-	private String _tplEjbPk = _TPL_ROOT + "ejb_pk.ftl";
-	private String _tplException = _TPL_ROOT + "exception.ftl";
-	private String _tplExportActionableDynamicQuery =
-		_TPL_ROOT + "export_actionable_dynamic_query.ftl";
-	private String _tplExtendedModel = _TPL_ROOT + "extended_model.ftl";
-	private String _tplExtendedModelBaseImpl =
-		_TPL_ROOT + "extended_model_base_impl.ftl";
-	private String _tplExtendedModelImpl =
-		_TPL_ROOT + "extended_model_impl.ftl";
-	private String _tplFinder = _TPL_ROOT + "finder.ftl";
-	private String _tplFinderUtil = _TPL_ROOT + "finder_util.ftl";
-	private String _tplHbmXml = _TPL_ROOT + "hbm_xml.ftl";
-	private String _tplJsonJs = _TPL_ROOT + "json_js.ftl";
-	private String _tplJsonJsMethod = _TPL_ROOT + "json_js_method.ftl";
-	private String _tplModel = _TPL_ROOT + "model.ftl";
-	private String _tplModelCache = _TPL_ROOT + "model_cache.ftl";
-	private String _tplModelClp = _TPL_ROOT + "model_clp.ftl";
-	private String _tplModelHintsXml = _TPL_ROOT + "model_hints_xml.ftl";
-	private String _tplModelImpl = _TPL_ROOT + "model_impl.ftl";
-	private String _tplModelSoap = _TPL_ROOT + "model_soap.ftl";
-	private String _tplModelWrapper = _TPL_ROOT + "model_wrapper.ftl";
-	private String _tplPersistence = _TPL_ROOT + "persistence.ftl";
-	private String _tplPersistenceImpl = _TPL_ROOT + "persistence_impl.ftl";
-	private String _tplPersistenceTest = _TPL_ROOT + "persistence_test.ftl";
-	private String _tplPersistenceUtil = _TPL_ROOT + "persistence_util.ftl";
-	private String _tplProps = _TPL_ROOT + "props.ftl";
-	private String _tplRemotingXml = _TPL_ROOT + "remoting_xml.ftl";
-	private String _tplService = _TPL_ROOT + "service.ftl";
-	private String _tplServiceBaseImpl = _TPL_ROOT + "service_base_impl.ftl";
-	private String _tplServiceClp = _TPL_ROOT + "service_clp.ftl";
-	private String _tplServiceClpInvoker =
-		_TPL_ROOT + "service_clp_invoker.ftl";
-	private String _tplServiceClpMessageListener =
-		_TPL_ROOT + "service_clp_message_listener.ftl";
-	private String _tplServiceClpSerializer =
-		_TPL_ROOT + "service_clp_serializer.ftl";
-	private String _tplServiceHttp = _TPL_ROOT + "service_http.ftl";
-	private String _tplServiceImpl = _TPL_ROOT + "service_impl.ftl";
-	private String _tplServicePropsUtil = _TPL_ROOT + "service_props_util.ftl";
-	private String _tplServiceSoap = _TPL_ROOT + "service_soap.ftl";
-	private String _tplServiceUtil = _TPL_ROOT + "service_util.ftl";
-	private String _tplServiceWrapper = _TPL_ROOT + "service_wrapper.ftl";
-	private String _tplSpringXml = _TPL_ROOT + "spring_xml.ftl";
+	private final String _testDir;
+	private final String _testOutputPath;
+	private final String _tplActionableDynamicQuery;
+	private final String _tplBadAliasNames;
+	private final String _tplBadColumnNames;
+	private final String _tplBadTableNames;
+	private final String _tplBlobModel;
+	private final String _tplEjbPk;
+	private final String _tplException;
+	private final String _tplExportActionableDynamicQuery;
+	private final String _tplExtendedModel;
+	private final String _tplExtendedModelBaseImpl;
+	private final String _tplExtendedModelImpl;
+	private final String _tplFinder;
+	private final String _tplFinderUtil;
+	private final String _tplHbmXml;
+	private final String _tplJsonJs;
+	private final String _tplJsonJsMethod;
+	private final String _tplModel;
+	private final String _tplModelCache;
+	private final String _tplModelClp;
+	private final String _tplModelHintsXml;
+	private final String _tplModelImpl;
+	private final String _tplModelSoap;
+	private final String _tplModelWrapper;
+	private final String _tplPersistence;
+	private final String _tplPersistenceImpl;
+	private final String _tplPersistenceTest;
+	private final String _tplPersistenceUtil;
+	private final String _tplProps;
+	private final String _tplRemotingXml;
+	private final String _tplService;
+	private final String _tplServiceBaseImpl;
+	private final String _tplServiceClp;
+	private final String _tplServiceClpInvoker;
+	private final String _tplServiceClpMessageListener;
+	private final String _tplServiceClpSerializer;
+	private final String _tplServiceHttp;
+	private final String _tplServiceImpl;
+	private final String _tplServicePropsUtil;
+	private final String _tplServiceSoap;
+	private final String _tplServiceUtil;
+	private final String _tplServiceWrapper;
+	private final String _tplSpringXml;
 
 }

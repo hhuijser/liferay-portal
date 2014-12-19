@@ -32,6 +32,7 @@ public class AntivirusScannerException extends PortalException {
 	 */
 	@Deprecated
 	public AntivirusScannerException() {
+		_type = 0;
 	}
 
 	public AntivirusScannerException(int type) {
@@ -44,7 +45,7 @@ public class AntivirusScannerException extends PortalException {
 	 */
 	@Deprecated
 	public AntivirusScannerException(String msg) {
-		super(msg);
+		this(msg, 0);
 	}
 
 	public AntivirusScannerException(String msg, int type) {
@@ -55,10 +56,14 @@ public class AntivirusScannerException extends PortalException {
 
 	public AntivirusScannerException(String msg, Throwable cause) {
 		super(msg, cause);
+
+		_type = 0;
 	}
 
 	public AntivirusScannerException(Throwable cause) {
 		super(cause);
+
+		_type = 0;
 	}
 
 	public String getMessageKey() {

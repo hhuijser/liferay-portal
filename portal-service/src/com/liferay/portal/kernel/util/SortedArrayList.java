@@ -24,9 +24,11 @@ import java.util.Comparator;
 public class SortedArrayList<E> extends ArrayList<E> {
 
 	public SortedArrayList() {
+		_comparator = null;
 	}
 
 	public SortedArrayList(Collection<? extends E> c) {
+		_comparator = null;
 		addAll(c);
 	}
 

@@ -574,7 +574,7 @@ public class SeleniumBuilder {
 			false);
 	}
 
-	private SeleniumBuilderContext _seleniumBuilderContext;
-	private SeleniumBuilderFileUtil _seleniumBuilderFileUtil;
+	private final SeleniumBuilderContext _seleniumBuilderContext;
+	private final SeleniumBuilderFileUtil _seleniumBuilderFileUtil;
 
 }

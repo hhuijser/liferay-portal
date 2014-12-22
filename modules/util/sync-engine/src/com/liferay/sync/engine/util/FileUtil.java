@@ -298,9 +298,10 @@ public class FileUtil {
 
 	private static final Charset _CHARSET = Charset.forName("UTF-8");
 
-	private static Logger _logger = LoggerFactory.getLogger(FileUtil.class);
+	private static final Logger _logger = LoggerFactory.getLogger(
+		FileUtil.class);
 
-	private static Set<String> _syncFileIgnoreNames = new HashSet<String>(
+	private static final Set<String> _syncFileIgnoreNames = new HashSet<String>(
 		Arrays.asList(PropsValues.SYNC_FILE_IGNORE_NAMES));
 
 }

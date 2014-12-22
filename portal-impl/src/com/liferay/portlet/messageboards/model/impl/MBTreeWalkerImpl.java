@@ -36,12 +36,13 @@ public class MBTreeWalkerImpl implements MBTreeWalker {
 
 		_messageIdsMap = new HashMap<Long, Integer>();
 
+		List<MBMessage> messages = null;
 		try {
-			_messages = messageLocalService.getThreadMessages(
+			messages = messageLocalService.getThreadMessages(
 				message.getThreadId(), status);
 
-			for (int i = 0; i < _messages.size(); i++) {
-				MBMessage curMessage = _messages.get(i);
+			for (int i = 0; i < messages.size(); i++) {
+				MBMessage curMessage = messages.get(i);
 
 				long parentMessageId = curMessage.getParentMessageId();
 
@@ -55,6 +56,8 @@ public class MBTreeWalkerImpl implements MBTreeWalker {
 		catch (Exception e) {
 			_log.error(e);
 		}
+
+		_messages = messages;
 	}
 
 	@Override
@@ -126,10 +129,11 @@ public class MBTreeWalkerImpl implements MBTreeWalker {
 		return _odd;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(MBTreeWalkerImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBTreeWalkerImpl.class);
 
-	private Map<Long, Integer> _messageIdsMap;
-	private List<MBMessage> _messages;
+	private final Map<Long, Integer> _messageIdsMap;
+	private final List<MBMessage> _messages;
 	private boolean _odd;
 
 }

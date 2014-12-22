@@ -27,6 +27,7 @@ import java.util.regex.Pattern;
 public class DirectoryFilter implements FileFilter {
 
 	public DirectoryFilter() {
+		_pattern = null;
 	}
 
 	public DirectoryFilter(String regex) {

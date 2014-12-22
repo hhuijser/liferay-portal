@@ -6684,8 +6684,10 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(UserLocalServiceImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		UserLocalServiceImpl.class);
 
-	private Map<Long, User> _defaultUsers = new ConcurrentHashMap<Long, User>();
+	private final Map<Long, User> _defaultUsers =
+		new ConcurrentHashMap<Long, User>();
 
 }

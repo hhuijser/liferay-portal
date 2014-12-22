@@ -172,6 +172,6 @@ public class DDMFormTemplateSynchonizer {
 	}
 
 	private List<DDMTemplate> _ddmFormTemplates = new ArrayList<DDMTemplate>();
-	private DDMForm _structureDDMForm;
+	private final DDMForm _structureDDMForm;
 
 }

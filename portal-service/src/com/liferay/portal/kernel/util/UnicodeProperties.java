@@ -44,6 +44,7 @@ import java.util.TreeSet;
 public class UnicodeProperties extends HashMap<String, String> {
 
 	public UnicodeProperties() {
+		_safe = false;
 	}
 
 	public UnicodeProperties(boolean safe) {
@@ -236,9 +237,10 @@ public class UnicodeProperties extends HashMap<String, String> {
 	private static final String _SAFE_NEWLINE_CHARACTER =
 		"_SAFE_NEWLINE_CHARACTER_";
 
-	private static Log _log = LogFactoryUtil.getLog(UnicodeProperties.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnicodeProperties.class);
 
 	private int _length;
-	private boolean _safe = false;
+	private final boolean _safe;
 
 }

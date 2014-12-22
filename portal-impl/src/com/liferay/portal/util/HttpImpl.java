@@ -124,6 +124,8 @@ public class HttpImpl implements Http {
 		// Mimic behavior found in
 		// http://java.sun.com/j2se/1.5.0/docs/guide/net/properties.html
 
+		Pattern nonProxyHostsPattern = null;
+
 		if (Validator.isNotNull(_NON_PROXY_HOSTS)) {
 			String nonProxyHostsRegEx = _NON_PROXY_HOSTS;
 
@@ -133,8 +135,10 @@ public class HttpImpl implements Http {
 
 			nonProxyHostsRegEx = "(" + nonProxyHostsRegEx + ")";
 
-			_nonProxyHostsPattern = Pattern.compile(nonProxyHostsRegEx);
+			nonProxyHostsPattern = Pattern.compile(nonProxyHostsRegEx);
 		}
+
+		_nonProxyHostsPattern = nonProxyHostsPattern;
 
 		MultiThreadedHttpConnectionManager httpConnectionManager =
 			new MultiThreadedHttpConnectionManager();
@@ -152,14 +156,18 @@ public class HttpImpl implements Http {
 		_httpClient.setHttpConnectionManager(httpConnectionManager);
 		_proxyHttpClient.setHttpConnectionManager(httpConnectionManager);
 
+		Credentials proxyCredentials = null;
+
 		if (!hasProxyConfig() || Validator.isNull(_PROXY_USERNAME)) {
+			_proxyCredentials = proxyCredentials;
+
 			return;
 		}
 
 		List<String> authPrefs = new ArrayList<String>();
 
 		if (_PROXY_AUTH_TYPE.equals("username-password")) {
-			_proxyCredentials = new UsernamePasswordCredentials(
+			proxyCredentials = new UsernamePasswordCredentials(
 				_PROXY_USERNAME, _PROXY_PASSWORD);
 
 			authPrefs.add(AuthPolicy.BASIC);
@@ -167,7 +175,7 @@ public class HttpImpl implements Http {
 			authPrefs.add(AuthPolicy.NTLM);
 		}
 		else if (_PROXY_AUTH_TYPE.equals("ntlm")) {
-			_proxyCredentials = new NTCredentials(
+			proxyCredentials = new NTCredentials(
 				_PROXY_USERNAME, _PROXY_PASSWORD, _PROXY_NTLM_HOST,
 				_PROXY_NTLM_DOMAIN);
 
@@ -180,6 +188,8 @@ public class HttpImpl implements Http {
 
 		httpClientParams.setParameter(
 			AuthPolicy.AUTH_SCHEME_PRIORITY, authPrefs);
+
+		_proxyCredentials = proxyCredentials;
 	}
 
 	@Override
@@ -1712,14 +1722,15 @@ public class HttpImpl implements Http {
 	private static final int _TIMEOUT = GetterUtil.getInteger(
 		PropsUtil.get(HttpImpl.class.getName() + ".timeout"), 5000);
 
-	private static Log _log = LogFactoryUtil.getLog(HttpImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(HttpImpl.class);
 
-	private static ThreadLocal<Cookie[]> _cookies = new ThreadLocal<Cookie[]>();
+	private static final ThreadLocal<Cookie[]> _cookies =
+		new ThreadLocal<Cookie[]>();
 
-	private HttpClient _httpClient = new HttpClient();
-	private Pattern _nonProxyHostsPattern;
-	private Credentials _proxyCredentials;
-	private HttpClient _proxyHttpClient = new HttpClient();
+	private final HttpClient _httpClient = new HttpClient();
+	private final Pattern _nonProxyHostsPattern;
+	private final Credentials _proxyCredentials;
+	private final HttpClient _proxyHttpClient = new HttpClient();
 
 	private class FastProtocolSocketFactory
 		extends DefaultProtocolSocketFactory {

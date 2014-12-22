@@ -41,6 +41,7 @@ public class AIMConnector {
 	}
 
 	private AIMConnector() {
+		_aim = null;
 	}
 
 	private void _connect() {

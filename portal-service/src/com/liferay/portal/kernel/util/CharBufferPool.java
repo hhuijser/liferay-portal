@@ -179,19 +179,19 @@ public class CharBufferPool {
 	 */
 	private static final int _MAX_POOL_SIZE = _INITIAL_POOL_SIZE * 2;
 
-	private static ThreadLocal<List<CharBufferHolder>>
+	private static final ThreadLocal<List<CharBufferHolder>>
 		_borrowedCharBufferHoldersThreadLocal =
 			new AutoResetThreadLocal<List<CharBufferHolder>>(
 				CharBufferPool.class.getName() +
 					"._borrowedCharBufferHoldersThreadLocal",
 				new ArrayList<CharBufferHolder>());
-	private static List<CharBufferHolder> _charBufferHoldersPool =
+	private static final List<CharBufferHolder> _charBufferHoldersPool =
 		new ArrayList<CharBufferHolder>(_INITIAL_POOL_SIZE);
-	private static ThreadLocal<Boolean> _enabledThreadLocal =
+	private static final ThreadLocal<Boolean> _enabledThreadLocal =
 		new AutoResetThreadLocal<Boolean>(
 			CharBufferPool.class.getName() + "._enabledThreadLocal", false);
-	private static Lock _modifyLock = new ReentrantLock();
-	private static ReferenceQueue<Object> _referenceQueue =
+	private static final Lock _modifyLock = new ReentrantLock();
+	private static final ReferenceQueue<Object> _referenceQueue =
 		new ReferenceQueue<Object>();
 
 	private static class CharBufferHolder
@@ -215,7 +215,7 @@ public class CharBufferPool {
 		}
 
 		private boolean _borrowed;
-		private int _length;
+		private final int _length;
 
 	}
 

@@ -402,6 +402,7 @@ public class LayoutsTreeUtil {
 	private static class LayoutTreeNodes implements Iterable<LayoutTreeNode> {
 
 		public LayoutTreeNodes() {
+			_layoutTreeNodesList = new ArrayList<LayoutTreeNode>();
 		}
 
 		public LayoutTreeNodes(

@@ -59,15 +59,19 @@ import org.apache.chemistry.opencmis.commons.impl.dataobjects.ContentStreamImpl;
 public class CMISStore extends BaseStore {
 
 	public CMISStore() {
-		_systemRootDir = getFolder(
+		Folder systemRootDir = null;
+
+		systemRootDir = getFolder(
 			SessionHolder.session.getRootFolder(),
 			PropsValues.DL_STORE_CMIS_SYSTEM_ROOT_DIR);
 
-		if (_systemRootDir == null) {
-			_systemRootDir = createFolder(
+		if (systemRootDir == null) {
+			systemRootDir = createFolder(
 				SessionHolder.session.getRootFolder(),
 				PropsValues.DL_STORE_CMIS_SYSTEM_ROOT_DIR);
 		}
+
+		_systemRootDir = systemRootDir;
 	}
 
 	@Override

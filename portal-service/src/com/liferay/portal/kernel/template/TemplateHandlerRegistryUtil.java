@@ -114,7 +114,8 @@ public class TemplateHandlerRegistryUtil {
 	private final StringServiceRegistrationMap<TemplateHandler>
 		_serviceRegistrations =
 			new StringServiceRegistrationMap<TemplateHandler>();
-	private final ServiceTracker<TemplateHandler, TemplateHandler> _serviceTracker;
+	private final ServiceTracker<TemplateHandler, TemplateHandler>
+		_serviceTracker;
 	private final Map<String, TemplateHandler> _templateHandlers =
 		new ConcurrentHashMap<String, TemplateHandler>();
 

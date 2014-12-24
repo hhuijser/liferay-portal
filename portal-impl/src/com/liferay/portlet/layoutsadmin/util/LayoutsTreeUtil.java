@@ -432,8 +432,7 @@ public class LayoutsTreeUtil {
 			return _layoutTreeNodesList.iterator();
 		}
 
-		private final List<LayoutTreeNode> _layoutTreeNodesList =
-			new ArrayList<LayoutTreeNode>();
+		private final List<LayoutTreeNode> _layoutTreeNodesList;
 		private int _total;
 
 	}

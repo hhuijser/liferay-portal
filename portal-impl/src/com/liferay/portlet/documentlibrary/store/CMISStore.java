@@ -559,7 +559,7 @@ public class CMISStore extends BaseStore {
 		return versioningFolder;
 	}
 
-	private static final Folder _systemRootDir;
+	private final Folder _systemRootDir;
 
 	private static class SessionHolder {
 

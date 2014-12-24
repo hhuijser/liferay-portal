@@ -153,7 +153,7 @@ public class ThemeLoader {
 			_log.error(e, e);
 		}
 
-		_LOAD_FROM_SERVLET_CONTEXT = loadFromServletContext;
+		_loadFromServletContext = loadFromServletContext;
 		_fileStorage = fileStorage;
 		_themesPath = themesPath;
 
@@ -173,7 +173,7 @@ public class ThemeLoader {
 
 			ThemeLocalServiceUtil.init(
 				_servletContextName, _servletContext, _themesPath,
-				_LOAD_FROM_SERVLET_CONTEXT, new String[] {content}, null);
+				_loadFromServletContext, new String[] {content}, null);
 		}
 		catch (Exception e) {
 			_log.error(
@@ -182,13 +182,12 @@ public class ThemeLoader {
 		}
 	}
 
-	private static final boolean _LOAD_FROM_SERVLET_CONTEXT = true;
-
 	private static final Log _log = LogFactoryUtil.getLog(ThemeLoader.class);
 
 	private final File _fileStorage;
 	private final Map<String, Long> _lastModifiedMap =
 		new HashMap<String, Long>();
+	private final boolean _loadFromServletContext;
 	private final ServletContext _servletContext;
 	private final String _servletContextName;
 	private final String _themesPath;

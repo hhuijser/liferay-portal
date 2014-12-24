@@ -46,7 +46,8 @@ public abstract class BaseWebDriverImpl
 		super(webDriver);
 
 		String dependenciesDirName =
-			"portal-web//test//functional//com//liferay//portalweb//dependencies//";
+			"portal-web//test//functional//com//liferay//portalweb//" +
+				"dependencies//";
 
 		String outputDirName = TestPropsValues.OUTPUT_DIR_NAME;
 

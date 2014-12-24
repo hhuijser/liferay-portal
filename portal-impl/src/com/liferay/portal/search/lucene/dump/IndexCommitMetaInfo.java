@@ -129,13 +129,13 @@ public class IndexCommitMetaInfo implements Serializable {
 			return sb.toString();
 		}
 
-		private String _fileName;
-		private long _fileSize;
+		private final String _fileName;
+		private final long _fileSize;
 
 	}
 
-	private boolean _empty;
-	private long _generation;
-	private List<Segment> _segments;
+	private final boolean _empty;
+	private final long _generation;
+	private final List<Segment> _segments;
 
 }

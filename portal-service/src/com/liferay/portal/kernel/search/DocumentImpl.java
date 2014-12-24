@@ -925,8 +925,9 @@ public class DocumentImpl implements Document {
 	private static final String _UID_PORTLET = "_PORTLET_";
 
 	private static Format _dateFormat;
-	private static Set<String> _defaultSortableTextFields = SetUtil.fromArray(
-		PropsUtil.getArray(PropsKeys.INDEX_SORTABLE_TEXT_FIELDS));
+	private static final Set<String> _defaultSortableTextFields =
+		SetUtil.fromArray(
+			PropsUtil.getArray(PropsKeys.INDEX_SORTABLE_TEXT_FIELDS));
 
 	private Map<String, Field> _fields = new HashMap<String, Field>();
 	private Set<String> _sortableTextFields = _defaultSortableTextFields;

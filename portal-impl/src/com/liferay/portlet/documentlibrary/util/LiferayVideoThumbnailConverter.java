@@ -40,8 +40,8 @@ public class LiferayVideoThumbnailConverter extends LiferayConverter {
 		_inputURL = inputURL;
 		_outputFile = outputFile;
 		_extension = extension;
-		_height = height;
-		_width = width;
+		_HEIGHT = height;
+		_WIDTH = width;
 		_percentage = percentage;
 	}
 
@@ -171,7 +171,7 @@ public class LiferayVideoThumbnailConverter extends LiferayConverter {
 				int value = decodeVideo(
 					null, inputIVideoPictures[streamIndex], null, inputIPacket,
 					null, inputIStreamCoder, null, null, _outputFile,
-					_extension, _height, _width, timeStampOffset);
+					_extension, _HEIGHT, _WIDTH, timeStampOffset);
 
 				if (value <= 0) {
 					if (inputIPacket.isKey()) {
@@ -206,15 +206,17 @@ public class LiferayVideoThumbnailConverter extends LiferayConverter {
 		return _inputIContainer;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final int _HEIGHT = 240;
+
+	private static final int _WIDTH = 320;
+
+	private static final Log _log = LogFactoryUtil.getLog(
 		LiferayVideoThumbnailConverter.class);
 
-	private String _extension;
-	private int _height = 240;
+	private final String _extension;
 	private IContainer _inputIContainer;
-	private String _inputURL;
-	private File _outputFile;
-	private int _percentage;
-	private int _width = 320;
+	private final String _inputURL;
+	private final File _outputFile;
+	private final int _percentage;
 
 }

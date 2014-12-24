@@ -2605,12 +2605,12 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		PropsValues.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING +
 			StringPool.SLASH;
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		ExportImportHelperImpl.class);
 
-	private Pattern _exportLinksToLayoutPattern = Pattern.compile(
+	private final Pattern _exportLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
-	private Pattern _importLinksToLayoutPattern = Pattern.compile(
+	private final Pattern _importLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)@(\\p{XDigit}{8}\\-" +
 			"(?:\\p{XDigit}{4}\\-){3}\\p{XDigit}{12})@([a-z0-9./_-]*)" +
 				"(@([\\d]+))?\\]");
@@ -2693,8 +2693,8 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 			}
 		}
 
-		private Group _group;
-		private ManifestSummary _manifestSummary;
+		private final Group _group;
+		private final ManifestSummary _manifestSummary;
 
 	}
 

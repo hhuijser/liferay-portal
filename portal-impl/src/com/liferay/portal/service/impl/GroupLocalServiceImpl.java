@@ -4629,11 +4629,12 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 	protected File publicLARFile;
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		GroupLocalServiceImpl.class);
 
 	private volatile long[] _classNameIds;
 	private volatile long[] _complexSQLClassNameIds;
-	private Map<String, Group> _systemGroupsMap = new HashMap<String, Group>();
+	private final Map<String, Group> _systemGroupsMap =
+		new HashMap<String, Group>();
 
 }

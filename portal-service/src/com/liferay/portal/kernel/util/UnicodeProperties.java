@@ -44,11 +44,11 @@ import java.util.TreeSet;
 public class UnicodeProperties extends HashMap<String, String> {
 
 	public UnicodeProperties() {
-		_safe = false;
+		_SAFE = false;
 	}
 
 	public UnicodeProperties(boolean safe) {
-		_safe = safe;
+		_SAFE = safe;
 	}
 
 	public void fastLoad(String props) {
@@ -86,7 +86,7 @@ public class UnicodeProperties extends HashMap<String, String> {
 	}
 
 	public boolean isSafe() {
-		return _safe;
+		return _SAFE;
 	}
 
 	public void load(String props) throws IOException {
@@ -128,7 +128,7 @@ public class UnicodeProperties extends HashMap<String, String> {
 				String key = line.substring(0, pos).trim();
 				String value = line.substring(pos + 1).trim();
 
-				if (_safe) {
+				if (_SAFE) {
 					value = _decode(value);
 				}
 
@@ -195,7 +195,7 @@ public class UnicodeProperties extends HashMap<String, String> {
 				continue;
 			}
 
-			if (_safe) {
+			if (_SAFE) {
 				value = _encode(value);
 			}
 
@@ -234,12 +234,14 @@ public class UnicodeProperties extends HashMap<String, String> {
 		return (line.length() == 0) || line.startsWith(StringPool.POUND);
 	}
 
+	private static final boolean _SAFE = false;
+
 	private static final String _SAFE_NEWLINE_CHARACTER =
 		"_SAFE_NEWLINE_CHARACTER_";
 
-	private static Log _log = LogFactoryUtil.getLog(UnicodeProperties.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnicodeProperties.class);
 
 	private int _length;
-	private boolean _safe = false;
 
 }

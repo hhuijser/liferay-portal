@@ -236,11 +236,11 @@ public class DBLoader {
 		_fileUtil.write(_sqlDir + "/" + _databaseName + ".script", content);
 	}
 
-	private static FileImpl _fileUtil = FileImpl.getInstance();
+	private static final FileImpl _fileUtil = FileImpl.getInstance();
 
-	private String _databaseName;
-	private String _databaseType;
-	private String _fileName;
-	private String _sqlDir;
+	private final String _databaseName;
+	private final String _databaseType;
+	private final String _fileName;
+	private final String _sqlDir;
 
 }

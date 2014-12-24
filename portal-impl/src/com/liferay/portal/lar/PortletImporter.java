@@ -1360,13 +1360,14 @@ public class PortletImporter {
 	private PortletImporter() {
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(PortletImporter.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		PortletImporter.class);
 
-	private static PortletImporter _instance = new PortletImporter();
+	private static final PortletImporter _instance = new PortletImporter();
 
-	private DeletionSystemEventImporter _deletionSystemEventImporter =
+	private final DeletionSystemEventImporter _deletionSystemEventImporter =
 		DeletionSystemEventImporter.getInstance();
-	private PermissionImporter _permissionImporter =
+	private final PermissionImporter _permissionImporter =
 		PermissionImporter.getInstance();
 
 }

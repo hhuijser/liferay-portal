@@ -1742,7 +1742,7 @@ public class WebDriverToSeleniumBridge
 		select.selectByIndex(index);
 	}
 
-	private Map<String, String> _keysSpecialChars =
+	private final Map<String, String> _keysSpecialChars =
 		new HashMap<String, String>();
 
 }

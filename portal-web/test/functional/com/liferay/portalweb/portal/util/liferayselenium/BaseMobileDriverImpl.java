@@ -323,7 +323,7 @@ public abstract class BaseMobileDriverImpl
 
 	@Override
 	public String getProjectDirName() {
-		return _projectDirName;
+		return null;
 	}
 
 	@Override
@@ -810,7 +810,6 @@ public abstract class BaseMobileDriverImpl
 		"portal-web//test//functional//com//liferay//portalweb//dependencies//";
 	private String _outputDirName = TestPropsValues.OUTPUT_DIR_NAME;
 	private String _primaryTestSuiteName;
-	private String _projectDirName;
 	private String _sikuliImagesDirName =
 		_dependenciesDirName + "sikuli//linux//";
 

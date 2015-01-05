@@ -2419,15 +2419,15 @@ public class IntrabandProxyUtilTest {
 		return classNode;
 	}
 
-	private static Map<Class<?>, Class<?>> _autoboxingMap =
+	private static final Map<Class<?>, Class<?>> _autoboxingMap =
 		new HashMap<Class<?>, Class<?>>();
-	private static ClassLoader _classLoader =
+	private static final ClassLoader _classLoader =
 		IntrabandProxyUtilTest.class.getClassLoader();
-	private static Map<Class<?>, Object> _defaultValueMap =
+	private static final Map<Class<?>, Object> _defaultValueMap =
 		new HashMap<Class<?>, Object>();
-	private static Map<Class<?>, Object> _sampleValueMap =
+	private static final Map<Class<?>, Object> _sampleValueMap =
 		new HashMap<Class<?>, Object>();
-	private static Type[] _types = {
+	private static final Type[] _types = {
 		Type.BOOLEAN_TYPE, Type.BYTE_TYPE, Type.CHAR_TYPE, Type.DOUBLE_TYPE,
 		Type.FLOAT_TYPE, Type.INT_TYPE, Type.LONG_TYPE, Type.SHORT_TYPE,
 		Type.getType(String.class), Type.getType(Object.class)
@@ -2600,7 +2600,7 @@ public class IntrabandProxyUtilTest {
 			}
 		}
 
-		private static Log _log = LogFactoryUtil.getLog(
+		private static final Log _log = LogFactoryUtil.getLog(
 			TestGenerateStubFunction1.class);
 
 		static {
@@ -2644,7 +2644,7 @@ public class IntrabandProxyUtilTest {
 			}
 		}
 
-		private static Log _log = LogFactoryUtil.getLog(
+		private static final Log _log = LogFactoryUtil.getLog(
 			TestGenerateStubFunction2.class);
 
 	}
@@ -2694,7 +2694,7 @@ public class IntrabandProxyUtilTest {
 				});
 		}
 
-		private Class<?> _clazz;
+		private final Class<?> _clazz;
 		private String _id;
 
 	}

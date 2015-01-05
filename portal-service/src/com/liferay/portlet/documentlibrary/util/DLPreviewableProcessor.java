@@ -1283,7 +1283,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 	protected Map<String, Future<?>> futures =
 		new ConcurrentHashMap<String, Future<?>>();
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		DLPreviewableProcessor.class);
 
 }

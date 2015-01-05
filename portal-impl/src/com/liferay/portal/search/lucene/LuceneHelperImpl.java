@@ -806,13 +806,16 @@ public class LuceneHelperImpl implements LuceneHelper {
 					LuceneHelperImpl.class.getName());
 		}
 
+		LoadIndexClusterEventListener loadIndexClusterEventListener = null;
+
 		if (isLoadIndexFromClusterEnabled()) {
-			_loadIndexClusterEventListener =
-				new LoadIndexClusterEventListener();
+			loadIndexClusterEventListener = new LoadIndexClusterEventListener();
 
 			ClusterExecutorUtil.addClusterEventListener(
-				_loadIndexClusterEventListener);
+				loadIndexClusterEventListener);
 		}
+
+		_loadIndexClusterEventListener = loadIndexClusterEventListener;
 
 		BooleanQuery.setMaxClauseCount(_LUCENE_BOOLEAN_QUERY_CLAUSE_MAX_SIZE);
 
@@ -1015,19 +1018,20 @@ public class LuceneHelperImpl implements LuceneHelper {
 			PropsUtil.get(PropsKeys.LUCENE_BOOLEAN_QUERY_CLAUSE_MAX_SIZE),
 			BooleanQuery.getMaxClauseCount());
 
-	private static Log _log = LogFactoryUtil.getLog(LuceneHelperImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		LuceneHelperImpl.class);
 
-	private static MethodKey _createTokenMethodKey = new MethodKey(
+	private static final MethodKey _createTokenMethodKey = new MethodKey(
 		TransientTokenUtil.class, "createToken", long.class);
-	private static MethodKey _getLastGenerationMethodKey = new MethodKey(
+	private static final MethodKey _getLastGenerationMethodKey = new MethodKey(
 		LuceneHelperUtil.class, "getLastGeneration", long.class);
 
 	private Analyzer _analyzer;
-	private Map<Long, IndexAccessor> _indexAccessors =
+	private final Map<Long, IndexAccessor> _indexAccessors =
 		new ConcurrentHashMap<Long, IndexAccessor>();
-	private LoadIndexClusterEventListener _loadIndexClusterEventListener;
+	private final LoadIndexClusterEventListener _loadIndexClusterEventListener;
 	private ThreadPoolExecutor _luceneIndexThreadPoolExecutor;
-	private String _protocol;
+	private final String _protocol;
 	private Version _version;
 
 	private static class ShutdownSyncJob implements Runnable {
@@ -1222,9 +1226,9 @@ public class LuceneHelperImpl implements LuceneHelper {
 		}
 
 		private int _clusterNodeAddressesCount;
-		private long _companyId;
-		private IndexAccessor _indexAccessor;
-		private long _localLastGeneration;
+		private final long _companyId;
+		private final IndexAccessor _indexAccessor;
+		private final long _localLastGeneration;
 
 	}
 

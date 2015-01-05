@@ -47,17 +47,17 @@ public abstract class BaseWebDriverImpl
 		_projectDirName = projectDirName;
 
 		if (OSDetector.isWindows()) {
-			_dependenciesDirName = StringUtil.replace(
-				_dependenciesDirName, "//", "\\");
+			_DEPENDENCIES_DIR_NAME = StringUtil.replace(
+				_DEPENDENCIES_DIR_NAME, "//", "\\");
 
-			_outputDirName = StringUtil.replace(_outputDirName, "//", "\\");
+			_OUTPUT_DIR_NAME = StringUtil.replace(_OUTPUT_DIR_NAME, "//", "\\");
 
 			_projectDirName = StringUtil.replace(_projectDirName, "//", "\\");
 
-			_sikuliImagesDirName = StringUtil.replace(
-				_sikuliImagesDirName, "//", "\\");
-			_sikuliImagesDirName = StringUtil.replace(
-				_sikuliImagesDirName, "linux", "windows");
+			_SIKULI_IMAGES_DIR_NAME = StringUtil.replace(
+				_SIKULI_IMAGES_DIR_NAME, "//", "\\");
+			_SIKULI_IMAGES_DIR_NAME = StringUtil.replace(
+				_SIKULI_IMAGES_DIR_NAME, "linux", "windows");
 		}
 
 		if (!PropsValues.MOBILE_DEVICE_ENABLED) {
@@ -326,7 +326,7 @@ public abstract class BaseWebDriverImpl
 
 	@Override
 	public String getDependenciesDirName() {
-		return _dependenciesDirName;
+		return _DEPENDENCIES_DIR_NAME;
 	}
 
 	@Override
@@ -391,7 +391,7 @@ public abstract class BaseWebDriverImpl
 
 	@Override
 	public String getOutputDirName() {
-		return _outputDirName;
+		return _OUTPUT_DIR_NAME;
 	}
 
 	@Override
@@ -406,7 +406,7 @@ public abstract class BaseWebDriverImpl
 
 	@Override
 	public String getSikuliImagesDirName() {
-		return _sikuliImagesDirName;
+		return _SIKULI_IMAGES_DIR_NAME;
 	}
 
 	@Override
@@ -804,7 +804,7 @@ public abstract class BaseWebDriverImpl
 
 	@Override
 	public void uploadCommonFile(String location, String value) {
-		uploadFile(location, _projectDirName + _dependenciesDirName + value);
+		uploadFile(location, _projectDirName + _DEPENDENCIES_DIR_NAME + value);
 	}
 
 	@Override
@@ -824,7 +824,7 @@ public abstract class BaseWebDriverImpl
 			slash = "\\";
 		}
 
-		uploadFile(location, _outputDirName + slash + value);
+		uploadFile(location, _OUTPUT_DIR_NAME + slash + value);
 	}
 
 	@Override
@@ -934,13 +934,16 @@ public abstract class BaseWebDriverImpl
 		super.waitForPageToLoad("30000");
 	}
 
-	private String _clipBoard = "";
-	private String _dependenciesDirName =
+	private static final String _DEPENDENCIES_DIR_NAME =
 		"portal-web//test//functional//com//liferay//portalweb//dependencies//";
-	private String _outputDirName = PropsValues.OUTPUT_DIR_NAME;
+
+	private static final String _OUTPUT_DIR_NAME = PropsValues.OUTPUT_DIR_NAME;
+
+	private static final String _SIKULI_IMAGES_DIR_NAME =
+		_DEPENDENCIES_DIR_NAME + "sikuli//linux//";
+
+	private String _clipBoard = "";
 	private String _primaryTestSuiteName;
-	private String _projectDirName;
-	private String _sikuliImagesDirName =
-		_dependenciesDirName + "sikuli//linux//";
+	private final String _projectDirName;
 
 }

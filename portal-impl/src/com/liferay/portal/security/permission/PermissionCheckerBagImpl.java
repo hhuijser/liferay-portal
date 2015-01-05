@@ -458,14 +458,17 @@ public class PermissionCheckerBagImpl
 		return false;
 	}
 
-	private Map<Long, Boolean> _contentReviewers = new HashMap<Long, Boolean>();
-	private Map<Long, Boolean> _groupAdmins = new HashMap<Long, Boolean>();
-	private Map<Long, Boolean> _groupOwners = new HashMap<Long, Boolean>();
-	private Map<Long, Boolean> _organizationAdmins =
+	private final Map<Long, Boolean> _contentReviewers =
 		new HashMap<Long, Boolean>();
-	private Map<Long, Boolean> _organizationOwners =
+	private final Map<Long, Boolean> _groupAdmins =
+		new HashMap<Long, Boolean>();
+	private final Map<Long, Boolean> _groupOwners =
+		new HashMap<Long, Boolean>();
+	private final Map<Long, Boolean> _organizationAdmins =
+		new HashMap<Long, Boolean>();
+	private final Map<Long, Boolean> _organizationOwners =
 		new HashMap<Long, Boolean>();
 	private long[] _roleIds;
-	private List<Role> _roles;
+	private final List<Role> _roles;
 
 }

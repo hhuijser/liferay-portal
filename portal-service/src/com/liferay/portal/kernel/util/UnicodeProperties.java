@@ -44,6 +44,7 @@ import java.util.TreeSet;
 public class UnicodeProperties extends HashMap<String, String> {
 
 	public UnicodeProperties() {
+		_safe = false;
 	}
 
 	public UnicodeProperties(boolean safe) {

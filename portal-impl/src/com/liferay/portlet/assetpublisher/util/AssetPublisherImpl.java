@@ -1633,12 +1633,13 @@ public class AssetPublisherImpl implements AssetPublisher {
 		return recentFolderIds;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(AssetPublisherImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		AssetPublisherImpl.class);
 
-	private Map<String, AssetEntryQueryProcessor> _assetEntryQueryProcessor =
+	private final Map<String, AssetEntryQueryProcessor> _assetEntryQueryProcessor =
 		new ConcurrentHashMap<String, AssetEntryQueryProcessor>();
 
-	private Accessor<AssetEntry, String> _titleAccessor =
+	private final Accessor<AssetEntry, String> _titleAccessor =
 		new Accessor<AssetEntry, String>() {
 
 			@Override

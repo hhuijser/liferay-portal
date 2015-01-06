@@ -237,10 +237,10 @@ public class UnicodeProperties extends HashMap<String, String> {
 	private static final String _SAFE_NEWLINE_CHARACTER =
 		"_SAFE_NEWLINE_CHARACTER_";
 
-	private static Log _log = LogFactoryUtil.getLog(UnicodeProperties.class);
-
-	private final boolean _safe;
+	private static final Log _log = LogFactoryUtil.getLog(
+		UnicodeProperties.class);
 
 	private int _length;
+	private final boolean _safe;
 
 }

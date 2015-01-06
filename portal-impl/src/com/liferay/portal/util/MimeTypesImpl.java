@@ -295,11 +295,11 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(MimeTypesImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(MimeTypesImpl.class);
 
+	private final Detector _detector;
+	private final Map<String, Set<String>> _extensionsMap =
+		new HashMap<String, Set<String>>();
 	private final Set<String> _webImageMimeTypes;
 
-	private Detector _detector;
-	private Map<String, Set<String>> _extensionsMap =
-		new HashMap<String, Set<String>>();
 }

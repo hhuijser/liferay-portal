@@ -206,16 +206,15 @@ public class LiferayVideoThumbnailConverter extends LiferayConverter {
 		return _inputIContainer;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		LiferayVideoThumbnailConverter.class);
 
+	private final String _extension;
 	private final int _height;
-	private final int _width;
-
-	private String _extension;
 	private IContainer _inputIContainer;
-	private String _inputURL;
-	private File _outputFile;
-	private int _percentage;
+	private final String _inputURL;
+	private final File _outputFile;
+	private final int _percentage;
+	private final int _width;
 
 }

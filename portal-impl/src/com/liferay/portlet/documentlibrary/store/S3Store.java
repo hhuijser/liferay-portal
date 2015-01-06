@@ -681,10 +681,10 @@ public class S3Store extends BaseStore {
 
 	private static final String _TEMP_DIR_PATTERN = "/yyyy/MM/dd/HH/";
 
-	private static Log _log = LogFactoryUtil.getLog(S3Store.class);
+	private static final Log _log = LogFactoryUtil.getLog(S3Store.class);
 
 	private int _calledGetFileCount;
-	private S3Bucket _s3Bucket;
-	private S3Service _s3Service;
+	private final S3Bucket _s3Bucket;
+	private final S3Service _s3Service;
 
 }

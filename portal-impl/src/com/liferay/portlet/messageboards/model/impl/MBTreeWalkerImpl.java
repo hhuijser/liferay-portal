@@ -130,10 +130,11 @@ public class MBTreeWalkerImpl implements MBTreeWalker {
 		return _odd;
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(MBTreeWalkerImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		MBTreeWalkerImpl.class);
 
-	private Map<Long, Integer> _messageIdsMap;
-	private List<MBMessage> _messages;
+	private final Map<Long, Integer> _messageIdsMap;
+	private final List<MBMessage> _messages;
 	private boolean _odd;
 
 }

@@ -182,14 +182,14 @@ public class ThemeLoader {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(ThemeLoader.class);
+	private static final Log _log = LogFactoryUtil.getLog(ThemeLoader.class);
 
+	private final File _fileStorage;
+	private final Map<String, Long> _lastModifiedMap =
+		new HashMap<String, Long>();
 	private final boolean _loadFromServletContext;
-
-	private File _fileStorage;
-	private Map<String, Long> _lastModifiedMap = new HashMap<String, Long>();
-	private ServletContext _servletContext;
-	private String _servletContextName;
-	private String _themesPath;
+	private final ServletContext _servletContext;
+	private final String _servletContextName;
+	private final String _themesPath;
 
 }

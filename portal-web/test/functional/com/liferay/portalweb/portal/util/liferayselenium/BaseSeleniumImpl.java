@@ -35,13 +35,13 @@ public abstract class BaseSeleniumImpl
 	public BaseSeleniumImpl(String projectDirName, Selenium selenium) {
 		super(selenium);
 
-		 String dependenciesDirName =
-			 "portal-web//test//functional//com//liferay//portalweb//" +
+		String dependenciesDirName =
+			"portal-web//test//functional//com//liferay//portalweb//" +
 				"dependencies//";
 
-		 String outputDirName = TestPropsValues.OUTPUT_DIR_NAME;
+		String outputDirName = TestPropsValues.OUTPUT_DIR_NAME;
 
-		 String sikuliImagesDirName = dependenciesDirName + "sikuli//linux//";
+		String sikuliImagesDirName = dependenciesDirName + "sikuli//linux//";
 
 		if (OSDetector.isWindows()) {
 			dependenciesDirName = StringUtil.replace(
@@ -939,11 +939,11 @@ public abstract class BaseSeleniumImpl
 
 	private String _clipBoard = "";
 	private CommandProcessor _commandProcessor;
-	private String _dependenciesDirName;
-	private String _outputDirName;
+	private final String _dependenciesDirName;
+	private final String _outputDirName;
 	private String _primaryTestSuiteName;
-	private String _projectDirName;
-	private String _sikuliImagesDirName;
+	private final String _projectDirName;
+	private final String _sikuliImagesDirName;
 	private String _timeout = "90000";
 
 }

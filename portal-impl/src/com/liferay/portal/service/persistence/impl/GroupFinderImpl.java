@@ -1466,15 +1466,15 @@ public class GroupFinderImpl
 		return join;
 	}
 
-	private LinkedHashMap<String, Object> _emptyLinkedHashMap =
+	private final LinkedHashMap<String, Object> _emptyLinkedHashMap =
 		new LinkedHashMap<String, Object>(0);
-	private Map<String, String> _findByC_C_PG_N_DSQLCache =
+	private final Map<String, String> _findByC_C_PG_N_DSQLCache =
 		new ConcurrentHashMap<String, String>();
-	private Map<String, String> _findByCompanyIdSQLCache =
+	private final Map<String, String> _findByCompanyIdSQLCache =
 		new ConcurrentHashMap<String, String>();
 	private volatile long[] _groupOrganizationClassNameIds;
 	private volatile Map<String, String> _joinMap;
-	private Map<String, String> _replaceJoinAndWhereSQLCache =
+	private final Map<String, String> _replaceJoinAndWhereSQLCache =
 		new ConcurrentHashMap<String, String>();
 	private volatile Map<String, String> _whereMap;
 

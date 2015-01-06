@@ -949,10 +949,10 @@ public abstract class BaseWebDriverImpl
 	}
 
 	private String _clipBoard = "";
-	private String _dependenciesDirName;
-	private String _outputDirName;
+	private final String _dependenciesDirName;
+	private final String _outputDirName;
 	private String _primaryTestSuiteName;
-	private String _projectDirName;
-	private String _sikuliImagesDirName;
+	private final String _projectDirName;
+	private final String _sikuliImagesDirName;
 
 }

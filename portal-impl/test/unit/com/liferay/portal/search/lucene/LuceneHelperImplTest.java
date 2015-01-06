@@ -777,7 +777,7 @@ public class LuceneHelperImplTest {
 			return _blockingQueue.poll(1000, TimeUnit.MILLISECONDS);
 		}
 
-		private BlockingQueue<E> _blockingQueue;
+		private final BlockingQueue<E> _blockingQueue;
 
 	}
 
@@ -974,7 +974,7 @@ public class LuceneHelperImplTest {
 			return null;
 		}
 
-		private List<Address> _addresses = new ArrayList<Address>();
+		private final List<Address> _addresses = new ArrayList<Address>();
 		private boolean _autoResponse = true;
 		private final List<ClusterEventListener> _clusterEventListeners =
 			new ArrayList<ClusterEventListener>();

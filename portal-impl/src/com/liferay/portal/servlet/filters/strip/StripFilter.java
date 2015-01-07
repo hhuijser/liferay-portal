@@ -498,7 +498,11 @@ public class StripFilter extends BasePortalFilter {
 			return;
 		}
 
-		writer.append(charBuffer, 0, endPos);
+		CharBuffer duplicateCharBuffer = charBuffer.duplicate();
+
+		int position = duplicateCharBuffer.position() + endPos;
+
+		writer.append((CharSequence)duplicateCharBuffer.limit(position));
 
 		charBuffer.position(charBuffer.position() + endPos);
 

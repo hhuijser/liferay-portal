@@ -79,17 +79,18 @@ public class IndexAccessorImpl implements IndexAccessor {
 
 		_path = PropsValues.LUCENE_DIR + _companyId + StringPool.SLASH;
 
+		IndexSearcherManager indexSearcherManager = null;
+
 		try {
 			if (!SPIUtil.isSPI()) {
 				_checkLuceneDir();
 				_initIndexWriter();
 				_initCommitScheduler();
 
-				_indexSearcherManager = new IndexSearcherManager(_indexWriter);
+				indexSearcherManager = new IndexSearcherManager(_indexWriter);
 			}
 			else {
-				_indexSearcherManager = new IndexSearcherManager(
-					getLuceneDir());
+				indexSearcherManager = new IndexSearcherManager(getLuceneDir());
 			}
 		}
 		catch (IOException ioe) {
@@ -98,6 +99,8 @@ public class IndexAccessorImpl implements IndexAccessor {
 					_companyId,
 				ioe);
 		}
+
+		_indexSearcherManager = indexSearcherManager;
 	}
 
 	@Override
@@ -540,17 +543,18 @@ public class IndexAccessorImpl implements IndexAccessor {
 
 	private static final String _LUCENE_STORE_TYPE_RAM = "ram";
 
-	private static Log _log = LogFactoryUtil.getLog(IndexAccessorImpl.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		IndexAccessorImpl.class);
 
 	private volatile int _batchCount;
-	private Lock _commitLock = new ReentrantLock();
+	private final Lock _commitLock = new ReentrantLock();
 	private long _companyId;
 	private Directory _directory;
-	private DumpIndexDeletionPolicy _dumpIndexDeletionPolicy =
+	private final DumpIndexDeletionPolicy _dumpIndexDeletionPolicy =
 		new DumpIndexDeletionPolicy();
-	private IndexSearcherManager _indexSearcherManager;
+	private final IndexSearcherManager _indexSearcherManager;
 	private IndexWriter _indexWriter;
-	private String _path;
+	private final String _path;
 	private ScheduledExecutorService _scheduledExecutorService;
 
 	private static class InvalidateProcessCallable

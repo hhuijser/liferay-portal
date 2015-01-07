@@ -71,13 +71,15 @@ public class UpgradeImageGallery extends UpgradeProcess {
 	public UpgradeImageGallery() throws Exception {
 		ClassLoader classLoader = ClassLoaderUtil.getPortalClassLoader();
 
-		_sourceHookClassName = FileSystemHook.class.getName();
+		String sourceHookClassName = FileSystemHook.class.getName();
 
 		if (Validator.isNotNull(PropsValues.IMAGE_HOOK_IMPL)) {
-			_sourceHookClassName = PropsValues.IMAGE_HOOK_IMPL;
+			sourceHookClassName = PropsValues.IMAGE_HOOK_IMPL;
 		}
 
-		Class<?> clazz = classLoader.loadClass(_sourceHookClassName);
+		Class<?> clazz = classLoader.loadClass(sourceHookClassName);
+
+		_sourceHookClassName = sourceHookClassName;
 
 		_sourceHook = (Hook)clazz.newInstance();
 	}
@@ -1111,9 +1113,10 @@ public class UpgradeImageGallery extends UpgradeProcess {
 	private static final String _IG_IMAGE_CLASS_NAME =
 		"com.liferay.portlet.imagegallery.model.IGImage";
 
-	private static Log _log = LogFactoryUtil.getLog(UpgradeImageGallery.class);
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpgradeImageGallery.class);
 
-	private Hook _sourceHook;
-	private String _sourceHookClassName;
+	private final Hook _sourceHook;
+	private final String _sourceHookClassName;
 
 }

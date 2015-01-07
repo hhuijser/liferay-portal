@@ -128,13 +128,13 @@ public class BatchDownloadEvent {
 	private static final Logger _logger = LoggerFactory.getLogger(
 		BatchDownloadEvent.class);
 
-	private List<Map<String, Object>> _batchParameters =
+	private final List<Map<String, Object>> _batchParameters =
 		new ArrayList<Map<String, Object>>();
 	private boolean _closed;
 	private int _eventCount;
-	private Map<String, DownloadFileHandler> _handlers =
+	private final Map<String, DownloadFileHandler> _handlers =
 		new HashMap<String, DownloadFileHandler>();
-	private long _syncAccountId;
+	private final long _syncAccountId;
 	private long _totalFileSize;
 
 }

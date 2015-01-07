@@ -60,15 +60,17 @@ public class CustomizationSettingsProcessor implements ColumnProcessor {
 
 		_layoutTypeSettings = selLayout.getTypeSettingsProperties();
 
-		_customizationEnabled = true;
+		boolean customizationEnabled = true;
 
 		if (!SitesUtil.isLayoutUpdateable(selLayout)) {
-			_customizationEnabled = false;
+			customizationEnabled = false;
 		}
 
 		if (selLayout.isLayoutPrototypeLinkActive()) {
-			_customizationEnabled = false;
+			customizationEnabled = false;
 		}
+
+		_customizationEnabled = customizationEnabled;
 	}
 
 	@Override
@@ -150,9 +152,9 @@ public class CustomizationSettingsProcessor implements ColumnProcessor {
 		return processPortlet(portletId);
 	}
 
-	private boolean _customizationEnabled;
-	private UnicodeProperties _layoutTypeSettings;
-	private PageContext _pageContext;
-	private Writer _writer;
+	private final boolean _customizationEnabled;
+	private final UnicodeProperties _layoutTypeSettings;
+	private final PageContext _pageContext;
+	private final Writer _writer;
 
 }

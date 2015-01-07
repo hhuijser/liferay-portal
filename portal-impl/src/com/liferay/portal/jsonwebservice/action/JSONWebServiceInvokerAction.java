@@ -60,16 +60,20 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 	public JSONWebServiceInvokerAction(HttpServletRequest request) {
 		_request = request;
 
-		_command = request.getParameter(Constants.CMD);
+		String command = null;
 
-		if (_command == null) {
+		command = request.getParameter(Constants.CMD);
+
+		if (command == null) {
 			try {
-				_command = ServletUtil.readRequestBody(request);
+				command = ServletUtil.readRequestBody(request);
 			}
 			catch (IOException ioe) {
 				throw new IllegalArgumentException(ioe);
 			}
 		}
+
+		_command = command;
 	}
 
 	@Override
@@ -650,12 +654,12 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 		}
 	}
 
-	private static JsonSerializer _jsonSerializer = new JsonSerializer();
+	private static final JsonSerializer _jsonSerializer = new JsonSerializer();
 
-	private String _command;
+	private final String _command;
 	private List<String> _includes;
-	private HttpServletRequest _request;
-	private List<Statement> _statements = new ArrayList<Statement>();
+	private final HttpServletRequest _request;
+	private final List<Statement> _statements = new ArrayList<Statement>();
 
 	private class Flag extends NameValue<String, String> {
 	}

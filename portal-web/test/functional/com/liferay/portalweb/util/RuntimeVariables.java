@@ -215,11 +215,15 @@ public class RuntimeVariables {
 
 		String absolutePath = file.getAbsolutePath();
 
+		String sourceDir = null;
+
 		if (absolutePath.endsWith(StringPool.PERIOD)) {
 			absolutePath = absolutePath.substring(0, absolutePath.length() - 1);
 
-			_sourceDir = absolutePath;
+			sourceDir = absolutePath;
 		}
+
+		_sourceDir = sourceDir;
 	}
 
 	private String _getValue(String key) {
@@ -297,16 +301,16 @@ public class RuntimeVariables {
 		_contextReplace = new ContextReplace(_runtimeVariables);
 	}
 
-	private static RuntimeVariables _instance = new RuntimeVariables();
+	private static final RuntimeVariables _instance = new RuntimeVariables();
 
-	private static Pattern _variablePattern = Pattern.compile(
+	private static final Pattern _variablePattern = Pattern.compile(
 		"\\$\\{([^}]*?)\\}");
-	private static Pattern _variableStatementPattern = Pattern.compile(
+	private static final Pattern _variableStatementPattern = Pattern.compile(
 		"(.*)\\?(.*)\\(([^\\)]*?)\\)");
 
 	private ContextReplace _contextReplace;
-	private Map<String, String> _runtimeVariables =
+	private final Map<String, String> _runtimeVariables =
 		new HashMap<String, String>();
-	private String _sourceDir;
+	private final String _sourceDir;
 
 }

@@ -237,7 +237,7 @@ public class DefaultSiteMembershipPolicy extends BaseSiteMembershipPolicy {
 		}
 	}
 
-	private static Log _log = LogFactoryUtil.getLog(
+	private static final Log _log = LogFactoryUtil.getLog(
 		DefaultSiteMembershipPolicy.class);
 
 }

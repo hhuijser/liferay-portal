@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.Validator;
 
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaMethod;
+import edu.emory.mathcs.backport.java.util.Collections;
 
 import java.io.File;
 
@@ -337,12 +338,23 @@ public class JavaClass {
 			}
 		}
 
-		StringBundler sb = new StringBundler(4);
+		StringBundler sb = new StringBundler(6);
+		String javaTermName = javaTerm.getName();
 
-		sb.append("(\\b|\\.)");
-		sb.append(javaTerm.getName());
-		sb.append(" (=)|(\\+\\+)|(--)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)");
-		sb.append("|(\\|=)|(&=)|(^=) ");
+		if (true) {
+			sb.append("(\\b|\\.)");
+			sb.append(javaTermName);
+			sb.append(" (=)|(\\+\\+)|(--)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)");
+			sb.append("|(\\|=)|(&=)|(^=) ");
+		}
+		else {
+			sb.append("(((\\+\\+( ?))|(--( ?)))" + javaTermName + ")");
+			sb.append("|((\\b|\\.)");
+			sb.append(javaTermName);
+			sb.append("((( )((=)|(\\+=)|(-=)|(\\*=)|(/=)|(%=)))");
+			sb.append("|(\\+\\+)|(--)");
+			sb.append("|(( )((\\|=)|(&=)|(^=)))))");
+		}
 
 		Pattern pattern = Pattern.compile(sb.toString());
 
@@ -878,10 +890,6 @@ public class JavaClass {
 	}
 
 	protected Set<JavaTerm> getJavaTerms() throws Exception {
-		if (_javaTerms != null) {
-			return _javaTerms;
-		}
-
 		Set<JavaTerm> javaTerms = new TreeSet<JavaTerm>(
 			new JavaTermComparator(false));
 		List<JavaTerm> staticBlocks = new ArrayList<JavaTerm>();
@@ -923,7 +931,7 @@ public class JavaClass {
 				Tuple tuple = getJavaTermTuple(line, _content, index);
 
 				if (tuple == null) {
-					return null;
+					return Collections.emptySet();
 				}
 
 				int javaTermEndPosition = 0;
@@ -943,7 +951,7 @@ public class JavaClass {
 						javaTermStartPosition, javaTermEndPosition);
 
 					if (javaTerm == null) {
-						return null;
+						return Collections.emptySet();
 					}
 
 					if (javaTermType == JavaTerm.TYPE_STATIC_BLOCK) {
@@ -1001,7 +1009,7 @@ public class JavaClass {
 				javaTermStartPosition, javaTermEndPosition);
 
 			if (javaTerm == null) {
-				return null;
+				return Collections.emptySet();
 			}
 
 			if (javaTermType == JavaTerm.TYPE_STATIC_BLOCK) {
@@ -1012,9 +1020,7 @@ public class JavaClass {
 			}
 		}
 
-		_javaTerms = addStaticBlocks(javaTerms, staticBlocks);
-
-		return _javaTerms;
+		return addStaticBlocks(javaTerms, staticBlocks);
 	}
 
 	protected Tuple getJavaTermTuple(String line, String accessModifier) {
@@ -1203,10 +1209,21 @@ public class JavaClass {
 				continue;
 			}
 
-			Matcher matcher = pattern.matcher(curJavaTerm.getContent());
+			String content = curJavaTerm.getContent();
 
-			if (matcher.find()) {
-				return false;
+			Matcher matcher = pattern.matcher(content);
+
+			if (true) {
+				if (matcher.find()) {
+					return false;
+				}
+			}
+			else {
+				if (content.contains(javaTerm.getName())) {
+					if (matcher.find()) {
+						return false;
+					}
+				}
 			}
 		}
 

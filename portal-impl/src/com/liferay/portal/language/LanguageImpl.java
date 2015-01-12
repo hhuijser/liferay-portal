@@ -931,8 +931,14 @@ public class LanguageImpl implements Language, Serializable {
 		try {
 			Group group = GroupLocalServiceUtil.getGroup(groupId);
 
+			Group liveGroup = group;
+
+			if (group.isStagingGroup()) {
+				liveGroup = group.getLiveGroup();
+			}
+
 			UnicodeProperties typeSettingsProperties =
-				group.getTypeSettingsProperties();
+				liveGroup.getTypeSettingsProperties();
 
 			languageIds = StringUtil.split(
 				typeSettingsProperties.getProperty(PropsKeys.LOCALES));

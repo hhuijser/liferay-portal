@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -148,12 +149,12 @@ public class VerifyJournal extends VerifyProcess {
 	protected String getElementTemplateName(
 		Element element, String parentElementTemplateNames) {
 
-		if ((element.getParent() != null) &&
-			!element.getParent().isRootElement()) {
+		Element parentElement = element.getParent();
 
+		if ((parentElement != null) && !parentElement.isRootElement()) {
 			parentElementTemplateNames =
 				getElementTemplateName(
-					element.getParent(), parentElementTemplateNames) +
+					parentElement, parentElementTemplateNames) +
 						StringPool.PERIOD;
 		}
 
@@ -212,9 +213,9 @@ public class VerifyJournal extends VerifyProcess {
 
 		articleElement.addAttribute("name", structureElementName);
 
-		if ((structureElement.attributeValue("type") != null) &&
-			structureElement.attributeValue("type").equals("select")) {
+		String type = structureElement.attributeValue("type");
 
+		if (Validator.isNotNull(type) && type.equals("select")) {
 			return;
 		}
 
@@ -384,9 +385,9 @@ public class VerifyJournal extends VerifyProcess {
 	protected void updateCreateDate(JournalArticleResource articleResource) {
 		List<JournalArticle> articles =
 			JournalArticleLocalServiceUtil.getArticles(
-					articleResource.getGroupId(),
-					articleResource.getArticleId(), QueryUtil.ALL_POS,
-					QueryUtil.ALL_POS, new ArticleVersionComparator(true));
+				articleResource.getGroupId(), articleResource.getArticleId(),
+				QueryUtil.ALL_POS, QueryUtil.ALL_POS,
+				new ArticleVersionComparator(true));
 
 		if (articles.size() <= 1) {
 			return;
@@ -489,7 +490,9 @@ public class VerifyJournal extends VerifyProcess {
 	}
 
 	protected void updateElementNameAttributes(Element element, Random random) {
-		if (element.attributeValue("type").equals("option")) {
+		String type = element.attributeValue("type");
+
+		if (type.equals("option")) {
 			return;
 		}
 
@@ -642,10 +645,11 @@ public class VerifyJournal extends VerifyProcess {
 		Map<String, String> newTemplateVariablesMap = new HashMap<>();
 
 		for (int i = 0; i < newTemplateVariables.size(); i++) {
-			if (!newTemplateVariables.get(i).equals("null")) {
+			String newTemplateVariable = newTemplateVariables.get(i);
+
+			if (!newTemplateVariable.equals(StringPool.NULL)) {
 				newTemplateVariablesMap.put(
-					originalTemplateVariables.get(i),
-					newTemplateVariables.get(i));
+					originalTemplateVariables.get(i), newTemplateVariable);
 			}
 		}
 
@@ -672,8 +676,8 @@ public class VerifyJournal extends VerifyProcess {
 			originalTemplateVariablesSet);
 
 		ListUtil.sort(
-				originalTemplateVariablesList,
-				new StringPeriodOccurrenceComparator());
+			originalTemplateVariablesList,
+			new StringPeriodOccurrenceComparator());
 
 		List<DDMTemplate> templates =
 			DDMTemplateLocalServiceUtil.getTemplatesByClassPK(
@@ -682,9 +686,8 @@ public class VerifyJournal extends VerifyProcess {
 		for (DDMTemplate template : templates) {
 			String script = template.getScript();
 
-			for (
-				String originalTemplateVariable : originalTemplateVariablesList)
-				{
+			for (String originalTemplateVariable :
+					originalTemplateVariablesList) {
 
 				script = StringUtil.replace(
 					script, originalTemplateVariable,
@@ -899,9 +902,10 @@ public class VerifyJournal extends VerifyProcess {
 
 							Document document = SAXReaderUtil.read(xml);
 
-							if (containsDuplicateNames(document) &&
-								!structures.contains(structure)) {
-									structures.add(structure);
+							if (!structures.contains(structure) &&
+								containsDuplicateNames(document)) {
+
+								structures.add(structure);
 							}
 						}
 					}

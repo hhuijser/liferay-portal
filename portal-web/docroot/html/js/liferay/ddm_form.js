@@ -144,8 +144,6 @@ AUI.add(
 					)
 				);
 
-				field.addTarget(instance);
-
 				var translationManager = field.get('translationManager');
 
 				if (translationManager) {

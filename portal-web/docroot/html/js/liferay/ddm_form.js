@@ -138,6 +138,7 @@ AUI.add(
 							instanceId: fieldInstanceId,
 							name: fieldName,
 							parent: instance,
+							translationManager: instance.get('translationManager'),
 							values: instance.get('values')
 						}
 					)
@@ -145,7 +146,7 @@ AUI.add(
 
 				field.addTarget(instance);
 
-				var translationManager = instance.get('translationManager');
+				var translationManager = field.get('translationManager');
 
 				if (translationManager) {
 					translationManager.addTarget(field);
@@ -238,6 +239,9 @@ AUI.add(
 					repeatable: {
 						getter: '_getRepeatable',
 						readOnly: true
+					},
+
+					translationManager: {
 					}
 				},
 
@@ -608,9 +612,7 @@ AUI.add(
 					updateTranslationsDefaultValue: function() {
 						var instance = this;
 
-						var parent = instance.get('parent');
-
-						var translationManager = parent.get('translationManager');
+						var translationManager = instance.get('translationManager');
 
 						var localizationMap = instance.get('localizationMap');
 

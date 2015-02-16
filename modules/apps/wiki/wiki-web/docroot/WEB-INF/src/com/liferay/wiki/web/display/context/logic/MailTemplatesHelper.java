@@ -24,7 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @author Ivan Zaera
+ * @author Iván Zaera
  */
 public class MailTemplatesHelper {
 

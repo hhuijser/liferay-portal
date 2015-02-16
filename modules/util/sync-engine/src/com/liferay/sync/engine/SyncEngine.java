@@ -159,10 +159,30 @@ public class SyncEngine {
 			return;
 		}
 
-		SyncWatchEventService.deleteSyncWatchEvents(syncAccountId);
-
 		SyncAccount syncAccount = ServerEventUtil.synchronizeSyncAccount(
 			syncAccountId);
+
+		Path filePath = Paths.get(syncAccount.getFilePathName());
+
+		SyncFile syncFile = SyncFileService.fetchSyncFile(
+			syncAccount.getFilePathName());
+
+		if (FileUtil.getFileKey(filePath) != syncFile.getSyncFileId()) {
+			syncAccount.setActive(false);
+			syncAccount.setUiEvent(
+				SyncAccount.UI_EVENT_SYNC_ACCOUNT_FOLDER_MISSING);
+
+			SyncAccountService.update(syncAccount);
+
+			return;
+		}
+		else if (!syncAccount.isActive()) {
+			SyncAccountService.activateSyncAccount(syncAccountId, false);
+
+			return;
+		}
+
+		SyncWatchEventService.deleteSyncWatchEvents(syncAccountId);
 
 		Path dataFilePath = FileUtil.getFilePath(
 			syncAccount.getFilePathName(), ".data");
@@ -179,8 +199,6 @@ public class SyncEngine {
 
 			ServerEventUtil.synchronizeSyncSites(syncAccountId);
 		}
-
-		Path filePath = Paths.get(syncAccount.getFilePathName());
 
 		SyncWatchEventProcessor syncWatchEventProcessor =
 			new SyncWatchEventProcessor(syncAccountId);
@@ -216,10 +234,8 @@ public class SyncEngine {
 
 		UpgradeUtil.upgrade();
 
-		for (long activeSyncAccountId :
-				SyncAccountService.getActiveSyncAccountIds()) {
-
-			scheduleSyncAccountTasks(activeSyncAccountId);
+		for (SyncAccount syncAccount : SyncAccountService.findAll()) {
+			scheduleSyncAccountTasks(syncAccount.getSyncAccountId());
 		}
 
 		SyncEngineUtil.fireSyncEngineStateChanged(
@@ -255,10 +271,7 @@ public class SyncEngine {
 		_running = false;
 	}
 
-	protected static void fireDeleteEvents(
-			Path filePath, final long syncAccountId)
-		throws IOException {
-
+	protected static void fireDeleteEvents(Path filePath) throws IOException {
 		long startTime = System.currentTimeMillis();
 
 		Files.walkFileTree(
@@ -273,10 +286,8 @@ public class SyncEngine {
 						filePath.toString());
 
 					if (syncFile == null) {
-						String fileKey = FileUtil.getFileKey(filePath);
-
-						syncFile = SyncFileService.fetchSyncFileByFileKey(
-							fileKey, syncAccountId);
+						syncFile = SyncFileService.fetchSyncFile(
+							FileUtil.getFileKey(filePath));
 					}
 
 					if (syncFile != null) {
@@ -296,10 +307,8 @@ public class SyncEngine {
 						filePath.toString());
 
 					if (syncFile == null) {
-						String fileKey = FileUtil.getFileKey(filePath);
-
-						syncFile = SyncFileService.fetchSyncFileByFileKey(
-							fileKey, syncAccountId);
+						syncFile = SyncFileService.fetchSyncFile(
+							FileUtil.getFileKey(filePath));
 					}
 
 					if (syncFile != null) {
@@ -318,6 +327,12 @@ public class SyncEngine {
 			filePath.toString(), startTime);
 
 		for (SyncFile deletedSyncFile : deletedSyncFiles) {
+			if (deletedSyncFile.getTypePK() == 0) {
+				SyncFileService.deleteSyncFile(deletedSyncFile);
+
+				continue;
+			}
+
 			if (deletedSyncFile.isFolder()) {
 				FileEventUtil.deleteFolder(
 					deletedSyncFile.getSyncAccountId(), deletedSyncFile);
@@ -402,7 +417,7 @@ public class SyncEngine {
 			Path filePath, long syncAccountId)
 		throws IOException {
 
-		fireDeleteEvents(filePath, syncAccountId);
+		fireDeleteEvents(filePath);
 
 		FileEventUtil.retryFileTransfers(syncAccountId);
 	}

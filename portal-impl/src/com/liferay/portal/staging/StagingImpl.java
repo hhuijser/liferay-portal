@@ -89,6 +89,7 @@ import com.liferay.portal.model.Portlet;
 import com.liferay.portal.model.StagedModel;
 import com.liferay.portal.model.User;
 import com.liferay.portal.model.WorkflowInstanceLink;
+import com.liferay.portal.model.adapter.StagedTheme;
 import com.liferay.portal.security.auth.HttpPrincipal;
 import com.liferay.portal.security.auth.PrincipalException;
 import com.liferay.portal.security.auth.RemoteAuthException;
@@ -124,7 +125,6 @@ import com.liferay.portlet.documentlibrary.DuplicateFileException;
 import com.liferay.portlet.documentlibrary.FileExtensionException;
 import com.liferay.portlet.documentlibrary.FileNameException;
 import com.liferay.portlet.documentlibrary.FileSizeException;
-import com.liferay.portlet.layoutsadmin.lar.StagedTheme;
 
 import java.io.Serializable;
 
@@ -1279,10 +1279,6 @@ public class StagingImpl implements Staging {
 
 	@Override
 	public void lockGroup(long userId, long groupId) throws PortalException {
-		if (!PropsValues.STAGING_LOCK_ENABLED) {
-			return;
-		}
-
 		if (LockLocalServiceUtil.isLocked(Staging.class.getName(), groupId)) {
 			Lock lock = LockLocalServiceUtil.getLock(
 				Staging.class.getName(), groupId);
@@ -1624,10 +1620,6 @@ public class StagingImpl implements Staging {
 
 	@Override
 	public void unlockGroup(long groupId) {
-		if (!PropsValues.STAGING_LOCK_ENABLED) {
-			return;
-		}
-
 		LockLocalServiceUtil.unlock(Staging.class.getName(), groupId);
 	}
 

@@ -1,3 +1,6 @@
+@import "bourbon";
+@import "mixins";
+
 @import url(common_main.css);
 
 .portlet-blogs {
@@ -11,7 +14,7 @@
 
 	.edit-entry {
 		h3 {
-			color: #2B4256;
+			color: #2B4259;
 			font-size: 22px;
 			margin-top: 0;
 		}
@@ -26,17 +29,16 @@
 	}
 
 	.entry-author {
-		border-right: 1px solid #999;
 		color: #999;
 		float: left;
-		font-weight: bold;
 		line-height: 20px;
-		margin-right: 10px;
-		padding-right: 10px;
+		vertical-align: middle;
 	}
 
-	.entry-body {
-		margin-bottom: 10px;
+	.taglib-user-display {
+		color: #999;
+		display: inline;
+		padding: 0;
 	}
 
 	.edit-actions {
@@ -44,7 +46,7 @@
 	}
 
 	.entry-abstract-wrapper {
-		color: #2B4256;
+		color: #2B4259;
 
 		.entry-abstract-options {
 			margin-top: 20px;
@@ -84,32 +86,77 @@
 		margin-bottom: 40px;
 	}
 
-	.entry-footer:after {
-		clear: both;
-		content: '';
-		display: block;
-		height: 0;
-		visibility: hidden;
-	}
+	.entry-footer {
+		margin-bottom: 60px;
+		margin-top: 80px;
+		vertical-align: middle;
 
-	.taglib-asset-categories-summary, .taglib-asset-tags-summary {
-		border-left: 1px solid #999;
-		padding-left: 10px;
-	}
+		.entry-social, .flags, .social-bookmarks {
+			display: inline-block;
 
-	.alloy-editor-placeholder {
-		color: #2B4256;
-		padding-left: 10px;
+			&:before {
+				background: #EDEEF0;
+				content: '';
+				display: inline-block;
+				height: 20px;
+				margin: 0 40px;
+				vertical-align: middle;
+				width: 1px;
 
-		&:empty:not(:focus) {
-			background: transparent;
-			border-left: 2px solid #DBDDE1;
-			color: #B0B4BB;
+				@include respond-to(phone, tablet) {
+					margin: 0 15px;
+				}
+			}
 		}
 
-		&.readonly {
-			color: #CCC;
+		.entry-social {
+			.ratings {
+				display: inline-block;
+
+				.taglib-ratings {
+					display: inline-block;
+					vertical-align: middle;
+
+					&.stars {
+						margin-top: 0;
+
+						.liferay-rating-score {
+							padding-left: 0;
+						}
+					}
+				}
+			}
+
+			.taglib-flags {
+				color: #999;
+				vertical-align: middle;
+			}
+
+			.taglib-social-bookmarks {
+				display: inline-block;
+				margin-top: 0;
+				vertical-align: middle;
+			}
+
+			@include respond-to(phone, tablet) {
+				clear: both;
+				display: block;
+
+				&:before {
+					display: none;
+				}
+			}
 		}
+
+		&:after {
+			content: '';
+			display: inline;
+			line-height: 60px;
+		}
+	}
+
+	.comments {
+		margin-top: 60px;
 	}
 
 	.edit-entry {
@@ -132,11 +179,11 @@
 
 	.entry-title {
 		display: block;
-		font-weight: bold;
 
 		h2 {
-			font-size: 30px;
-			margin-bottom: 30px;
+			font-size: 26px;
+			font-weight: bold;
+			margin-bottom: 24px;
 
 			.alloy-editor-placeholder {
 				color: #32A8E6;
@@ -145,6 +192,10 @@
 					margin-bottom: 0;
 				}
 			}
+		}
+
+		a {
+			font-weight: bold;
 		}
 	}
 
@@ -163,19 +214,92 @@
 		}
 	}
 
-	.entry-navigation {
-		background: #EEE;
-		border-top: 1px solid #B0B4BB;
-		margin: 15px 0 0;
-		overflow: hidden;
-		padding: 5px;
+	.entry-navigation, .entry-metadata {
+		h2 {
+			color: #868896;
+			display: block;
+			font-size: 20px;
+			font-weight: 400;
+			margin-bottom: 16px;
+			margin-top: 0;
+		}
+	}
 
-		.previous {
-			float: left;
+	.entry-tags, .entry-categories, .entry-links {
+		margin-bottom: 60px;
+	}
+
+	.entry-navigation {
+		border-bottom: 1px solid #EDEEF0;
+		border-top: 1px solid #EDEEF0;
+		padding: 60px 0;
+		width: 100%;
+
+		h2 {
+			@include ellipsis;
 		}
 
-		.next {
+		h3 {
+			font-size: 20px;
+			margin-bottom: 16px;
+			margin-top: 0;
+
+			a {
+				color: #2B4259;
+				font-weight: bold;
+			}
+
+			@include ellipsis;
+		}
+
+		.entry-content {
+			overflow: hidden;
+
+			.entry-content-body {
+				font-size: 18px;
+				font-weight: 400;
+				margin-bottom: 0;
+			}
+		}
+
+		.small-image {
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
 			float: right;
+			height: 140px;
+			margin-left: 60px;
+			width: 140px;
+		}
+
+		.taglib-user-display {
+			display: inline-block;
+			margin-top: 28px;
+		}
+
+		.previous-entry {
+			.previous-entry-content {
+				padding-right: 60px;
+			}
+
+			&.has-next-entry .previous-entry-content {
+				border-right: 1px solid #EDEEF0;
+
+				@include respond-to(phone) {
+					border-right-width: 0;
+				}
+			}
+		}
+
+		.next-entry {
+			> h2, .next-entry-content {
+				margin-left: 30px;
+
+				@include respond-to(phone) {
+					margin-left: 0;
+					margin-top: 40px;
+				}
+			}
 		}
 	}
 
@@ -199,34 +323,13 @@
 		float: right;
 	}
 
-	.stats {
-		color: #999;
-		float: left;
-		padding-right: 10px;
-	}
-
 	.subscribe {
 		margin-bottom: 1.5em;
 		text-align: right;
 	}
 
-	.taglib-flags {
-		border-left: 1px solid #999;
-		color: #999;
-		padding-left: 10px;
-		padding-right: 10px;
-	}
-
 	.taglib-page-iterator .lfr-pagination {
 		margin-top: 25px;
-	}
-
-	.taglib-ratings.stars {
-		float: left;
-	}
-
-	.taglib-social-bookmarks {
-		float: right;
 	}
 
 	.form-search:after {

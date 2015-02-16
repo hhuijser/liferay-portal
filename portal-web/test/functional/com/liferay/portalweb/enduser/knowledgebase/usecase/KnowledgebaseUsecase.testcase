@@ -65,13 +65,13 @@
 			<var name="portletName" value="Knowledge Base" />
 		</execute>
 
-		<execute action="CPKnowledgebaseadmin#assertClick" locator-key1="ADD_BUTTON" value1="Add" />
-		<execute action="CPKnowledgebaseadmin#assertClick" locator-key1="ADD_ARTICLE_BUTTON" value1="Add Article" />
+		<execute function="AssertClick" locator1="CPKnowledgebaseadmin#ADD_BUTTON" value1="Add" />
+		<execute function="AssertClick" locator1="CPKnowledgebaseadmin#ADD_ARTICLE_BUTTON" value1="Add Article" />
 
-		<execute action="CPKnowledgebaseadminAddarticle#type" locator-key1="TITLE_FIELD" value1="KB Admin Article" />
-		<execute action="CPKnowledgebaseadminAddarticle#type" locator-key1="CONTENT_FIELD" value1="This is an article created from the KB Admin." />
-		<execute action="CPKnowledgebaseadminAddarticle#select" locator-key1="SECTIONS_SELECT" value1="Portlets" />
-		<execute action="CPKnowledgebaseadminAddarticle#assertClick" locator-key1="PUBLISH_BUTTON" value1="Publish" />
+		<execute function="Type" locator1="CPKnowledgebaseadminAddarticle#TITLE_FIELD" value1="KB Admin Article" />
+		<execute function="Type#typeFrameWaitForCKEditor" locator1="CPKnowledgebaseadminAddarticle#CONTENT_FIELD" value1="This is an article created from the KB Admin." />
+		<execute function="Select" locator1="CPKnowledgebaseadminAddarticle#SECTIONS_SELECT" value1="Portlets" />
+		<execute function="AssertClick" locator1="CPKnowledgebaseadminAddarticle#PUBLISH_BUTTON" value1="Publish" />
 
 		<execute macro="Page#addPG">
 			<var name="pageName" value="Knowledge Base Display Page" />
@@ -467,7 +467,7 @@
 			<var name="portletName" value="Documents and Media" />
 		</execute>
 
-		<execute action="CPDocumentsandmedia#assertTextEquals" locator-key1="INFO_MESSAGE" value1="There are no documents or media files in this folder." />
+		<execute function="AssertTextEquals" locator1="CPDocumentsandmedia#INFO_MESSAGE" value1="There are no documents or media files in this folder." />
 
 		<execute macro="Page#gotoContentCP">
 			<var name="portletName" value="Knowledge Base" />
@@ -525,6 +525,51 @@
 		<execute macro="KBArticle#viewSourceURLPG">
 			<var name="kbArticleSourceURL" value="https://github.com/liferay/liferay-docs/blob/master/develop/tutorials/articles/adt/intro.markdown" />
 			<var name="kbArticleTitle" value="Application Display Templates" />
+		</execute>
+	</command>
+
+	<command name="ViewKBArticleGitHubSourceURL" priority="3">
+		<var name="history" value="true" />
+		<var name="kbArticleSourceURL" value="http://www.google.com" />
+		<var name="kbArticleTitle" value="Knowledge Base Article Title" />
+		<var name="print" value="true" />
+		<var name="subscribe" value="true" />
+
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Knowledge Base" />
+		</execute>
+
+		<execute macro="KBArticle#addCP">
+			<var name="kbArticleContent" value="Knowledge Base Article Content" />
+			<var name="kbArticleSourceURL" value="${kbArticleSourceURL}" />
+			<var name="kbArticleTitle" value="${kbArticleTitle}" />
+		</execute>
+
+		<execute macro="KBArticle#viewSourceURLCP">
+			<var name="kbArticleTitle" value="${kbArticleTitle}" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="Welcome" />
+		</execute>
+
+		<execute macro="Page#addPG">
+			<var name="pageName" value="KB Page" />
+		</execute>
+
+		<execute macro="Page#gotoPG">
+			<var name="pageName" value="KB Page" />
+		</execute>
+
+		<execute macro="Portlet#addPG">
+			<var name="portletName" value="Knowledge Base Display" />
+		</execute>
+
+		<execute macro="KBArticle#viewKBDisplayPG">
+			<var name="history" value="${history}" />
+			<var name="print" value="${print}" />
+			<var name="sourceURL" value="true" />
+			<var name="subscribe" value="${subscribe}" />
 		</execute>
 	</command>
 

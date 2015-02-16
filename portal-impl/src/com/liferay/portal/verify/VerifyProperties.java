@@ -387,6 +387,13 @@ public class VerifyProperties extends VerifyProcess {
 			"cas.service.url", "service.url", "com.liferay.portal.sso.cas"
 		},
 
+		// Currency Converter
+
+		new String[] {
+			"currency.converter.symbols", "symbols",
+			"com.liferay.currency.converter.web"
+		},
+
 		// FreeMarker Engine
 
 		new String[] {
@@ -422,6 +429,22 @@ public class VerifyProperties extends VerifyProcess {
 		new String[] {
 			"journal.template.freemarker.restricted.variables",
 			"restricted.variables", "com.liferay.portal.template.freemarker"
+		},
+
+		// IFrame
+
+		new String[] {
+			"iframe.auth", "auth", "com.liferay.iframe.web"
+		},
+		new String[] {
+			"iframe.auth-type", "auth.type", "com.liferay.iframe.web"
+		},
+		new String[] {
+			"iframe.form-method", "form.method", "com.liferay.iframe.web"
+		},
+		new String[] {
+			"iframe.hidden-variables", "hidden.variables",
+			"com.liferay.iframe.web"
 		},
 
 		// Journal
@@ -556,6 +579,13 @@ public class VerifyProperties extends VerifyProcess {
 			"com.liferay.rss.web"
 		},
 
+		// Site Map
+
+		new String[] {
+			"sitemap.display.templates.config", "display.templates.config",
+			"com.liferay.site.map.web"
+		},
+
 		// Translator
 
 		new String[] {
@@ -566,7 +596,48 @@ public class VerifyProperties extends VerifyProcess {
 			"translator.languages", "language.ids", "com.liferay.translator.web"
 		},
 
-		// XSL content
+		// Velocity Engine
+
+		new String[] {
+			"velocity.engine.directive.if.to.string.null.check",
+			"directive.if.to.string.null.check",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.resource.parsers", "resource.parsers",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.resource.modification.check.interval",
+			"resource.modification.check.interval",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.restricted.classes", "restricted.classes",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.restricted.packages", "restricted.packages",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.restricted.variables", "restricted.variables",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.velocimacro.library", "macro.library",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.logger", "logger",
+			"com.liferay.portal.template.velocity"
+		},
+		new String[] {
+			"velocity.engine.logger.category", "logger.category",
+			"com.liferay.portal.template.velocity"
+		},
+
+		// XSL Content
 
 		new String[] {
 			"xsl.content.xml.doctype.declaration.allowed",
@@ -662,9 +733,7 @@ public class VerifyProperties extends VerifyProcess {
 		"permissions.thread.local.cache.max.size",
 		"permissions.user.check.algorithm", "persistence.provider",
 		"ratings.max.score", "ratings.min.score", "scheduler.classes",
-		"schema.run.minimal", "shard.available.names",
-		"velocity.engine.resource.manager",
-		"velocity.engine.resource.manager.cache.enabled",
+		"schema.run.minimal", "shard.available.names", "staging.lock.enabled",
 		"webdav.storage.class", "webdav.storage.show.edit.url",
 		"webdav.storage.show.view.url", "webdav.storage.tokens",
 		"wiki.email.page.added.signature", "wiki.email.page.updated.signature",

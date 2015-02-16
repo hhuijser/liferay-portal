@@ -253,6 +253,7 @@
 				<package-root>util-java/test/unit</package-root>
 				<package-root>util-taglib/src</package-root>
 				<classpath mode="compile">lib/development/activation.jar</classpath>
+				<classpath mode="compile">lib/development/alloy-taglib.jar</classpath>
 				<classpath mode="compile">lib/development/annotations.jar</classpath>
 				<classpath mode="compile">lib/development/ant-apache-bsf.jar</classpath>
 				<classpath mode="compile">lib/development/ant-contrib.jar</classpath>
@@ -330,10 +331,11 @@
 				<classpath mode="compile">lib/development/spring-instrument-tomcat.jar</classpath>
 				<classpath mode="compile">lib/development/spring-test.jar</classpath>
 				<classpath mode="compile">lib/development/tomcat-coyote.jar</classpath>
+				<classpath mode="compile">lib/development/velocity.jar</classpath>
+				<classpath mode="compile">lib/development/velocity-tools.jar</classpath>
 				<classpath mode="compile">lib/development/xmltask.jar</classpath>
 				<classpath mode="compile">lib/global/portlet.jar</classpath>
 				<classpath mode="compile">lib/portal/abdera.jar</classpath>
-				<classpath mode="compile">lib/portal/alloy-taglib.jar</classpath>
 				<classpath mode="compile">lib/portal/ant.jar</classpath>
 				<classpath mode="compile">lib/portal/antlr2.jar</classpath>
 				<classpath mode="compile">lib/portal/antlr3-runtime.jar</classpath>
@@ -365,6 +367,7 @@
 				<classpath mode="compile">lib/portal/chemistry-opencmis-commons-api.jar</classpath>
 				<classpath mode="compile">lib/portal/chemistry-opencmis-commons-impl.jar</classpath>
 				<classpath mode="compile">lib/portal/closure-compiler.jar</classpath>
+				<classpath mode="compile">lib/portal/com.liferay.sass.compiler.jar</classpath>
 				<classpath mode="compile">lib/portal/commons-beanutils.jar</classpath>
 				<classpath mode="compile">lib/portal/commons-codec.jar</classpath>
 				<classpath mode="compile">lib/portal/commons-collections.jar</classpath>
@@ -542,8 +545,6 @@
 				<classpath mode="compile">lib/portal/unoil.jar</classpath>
 				<classpath mode="compile">lib/portal/urlrewritefilter.jar</classpath>
 				<classpath mode="compile">lib/portal/vaadin.jar</classpath>
-				<classpath mode="compile">lib/portal/velocity-tools.jar</classpath>
-				<classpath mode="compile">lib/portal/velocity.jar</classpath>
 				<classpath mode="compile">lib/portal/vorbis-java-core.jar</classpath>
 				<classpath mode="compile">lib/portal/vorbis-java-tika.jar</classpath>
 				<classpath mode="compile">lib/portal/wsdl4j.jar</classpath>

@@ -1,11 +1,34 @@
 Bundle-Name: Liferay Portal Search Elasticsearch
 Bundle-SymbolicName: com.liferay.portal.search.elasticsearch
 Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.portal.search.elasticsearch.spi.*;version=${plugin.full.version}
 Import-Package:\
 	com.liferay.portal.kernel.log.*,\
 	com.liferay.portal.kernel.messaging.*,\
 	com.liferay.portal.kernel.search.*,\
 	com.liferay.portal.kernel.util.*,\
+	com.liferay.registry.util,\
+	javax.servlet,\
+	javax.servlet.http,\
+	javax.xml.parsers,\
+	javax.xml.transform,\
+	javax.xml.transform.dom,\
+	javax.xml.transform.stream,\
+	org.apache.commons.lang.time,\
+	org.apache.commons.logging,\
+	org.apache.log4j,\
+	org.apache.log4j.helpers,\
+	org.apache.regexp,\
+	org.objectweb.asm.tree,\
+	org.osgi.framework,\
+	org.osgi.service.log,\
+	org.osgi.util.tracker,\
+	org.slf4j,\
+	org.w3c.dom,\
+	org.xml.sax,\
+	org.xml.sax.helpers,\
+	sun.misc,\
 	*;resolution:="optional"
 Include-Resource:\
 	${replace;${libs};^;@lib/},\

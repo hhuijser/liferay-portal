@@ -31,9 +31,19 @@ PasswordPolicy passwordPolicy = user.getPasswordPolicy();
 %>
 
 <c:choose>
-	<c:when test="<%= SessionErrors.contains(request, UserLockoutException.class.getName()) %>">
+	<c:when test="<%= SessionErrors.contains(request, UserLockoutException.LDAPLockout.class.getName()) %>">
 		<div class="alert alert-danger">
-			<liferay-ui:message key="this-account-has-been-locked" />
+			<liferay-ui:message key="this-account-is-locked" />
+		</div>
+	</c:when>
+	<c:when test="<%= SessionErrors.contains(request, UserLockoutException.PasswordPolicyLockout.class.getName()) %>">
+		<div class="alert alert-danger">
+
+			<%
+			UserLockoutException.PasswordPolicyLockout ule = (UserLockoutException.PasswordPolicyLockout)SessionErrors.get(request, UserLockoutException.PasswordPolicyLockout.class.getName());
+			%>
+
+			<liferay-ui:message arguments="<%= ule.user.getUnlockDate() %>" key="this-account-is-locked-until-x" translateArguments="<%= false %>" />
 		</div>
 	</c:when>
 	<c:otherwise>
@@ -75,7 +85,7 @@ PasswordPolicy passwordPolicy = user.getPasswordPolicy();
 						</c:when>
 
 						<c:when test="<%= SessionErrors.contains(request, UserPasswordException.MustMatch.class.getName()) %>">
-							<liferay-ui:message key="the-passwords-you-entered-do-not-match-each-other-please-re-enter-your-password" />
+							<liferay-ui:message key="the-passwords-you-entered-do-not-match" />
 						</c:when>
 
 						<c:when test="<%= SessionErrors.contains(request, UserPasswordException.MustNotBeEqualToCurrent.class.getName()) %>">

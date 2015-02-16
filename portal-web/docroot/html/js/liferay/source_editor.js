@@ -9,6 +9,8 @@ AUI.add(
 
 		var STR_BOUNDING_BOX = 'boundingBox';
 
+		var STR_CHANGE = 'change';
+
 		var STR_CHANGE_CURSOR = 'changeCursor';
 
 		var STR_CHANGE_FOLD = 'changeFold';
@@ -87,6 +89,8 @@ AUI.add(
 				NS: 'liferaysourceeditor',
 
 				prototype: {
+					CONTENT_TEMPLATE: null,
+
 					initializer: function() {
 						var instance = this;
 
@@ -107,6 +111,7 @@ AUI.add(
 
 						aceEditor.selection.on(STR_CHANGE_CURSOR, updateActiveLineFn);
 						aceEditor.session.on(STR_CHANGE_FOLD, updateActiveLineFn);
+						aceEditor.session.on(STR_CHANGE, A.bind('_notifyEditorChange', instance));
 
 						var toolbar = instance.get(STR_BOUNDING_BOX).one(STR_DOT + instance.getClassName(STR_TOOLBAR));
 
@@ -122,6 +127,7 @@ AUI.add(
 
 						aceEditor.selection.removeAllListeners(STR_CHANGE_CURSOR);
 						aceEditor.session.removeAllListeners(STR_CHANGE_FOLD);
+						aceEditor.session.removeAllListeners(STR_CHANGE);
 
 						(new A.EventHandle(instance._eventHandles)).detach();
 					},
@@ -209,6 +215,18 @@ AUI.add(
 						if (themes.length) {
 							instance.get(STR_BOUNDING_BOX).addClass(themes[0].cssClass);
 						}
+					},
+
+					_notifyEditorChange: function(data) {
+						var instance = this;
+
+						instance.fire(
+							'change',
+							{
+								change: data,
+								newVal: instance.get('value')
+							}
+						);
 					},
 
 					_onToolbarClick: function(event) {

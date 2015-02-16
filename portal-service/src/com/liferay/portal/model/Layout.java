@@ -416,8 +416,6 @@ public interface Layout extends LayoutModel, PersistedModel {
 
 	public boolean isTypeControlPanel();
 
-	public boolean isTypeUserPersonalPanel();
-
 	public boolean isTypeEmbedded();
 
 	public boolean isTypeLinkToLayout();
@@ -427,6 +425,8 @@ public interface Layout extends LayoutModel, PersistedModel {
 	public boolean isTypePortlet();
 
 	public boolean isTypeURL();
+
+	public boolean isTypeUserPersonalPanel();
 
 	public boolean matches(javax.servlet.http.HttpServletRequest request,
 		java.lang.String friendlyURL);

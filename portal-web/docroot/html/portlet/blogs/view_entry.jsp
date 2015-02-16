@@ -73,7 +73,7 @@ request.setAttribute("view_entry_content.jsp-assetEntry", assetEntry);
 	<liferay-util:include page="/html/portlet/blogs/view_entry_content.jsp" />
 </aui:form>
 
-<c:if test="<%= PropsValues.BLOGS_ENTRY_PREVIOUS_AND_NEXT_NAVIGATION_ENABLED %>">
+<c:if test="<%= !portletId.equals(PortletKeys.BLOGS_ADMIN) && PropsValues.BLOGS_ENTRY_PREVIOUS_AND_NEXT_NAVIGATION_ENABLED %>">
 
 	<%
 	BlogsEntry[] prevAndNext = BlogsEntryLocalServiceUtil.getEntriesPrevAndNext(entryId);
@@ -82,42 +82,109 @@ request.setAttribute("view_entry_content.jsp-assetEntry", assetEntry);
 	BlogsEntry nextEntry = prevAndNext[2];
 	%>
 
-	<div class="entry-navigation">
-		<c:choose>
-			<c:when test="<%= previousEntry != null %>">
-				<portlet:renderURL var="previousEntryURL">
-					<portlet:param name="struts_action" value="/blogs/view_entry" />
-					<portlet:param name="redirect" value="<%= redirect %>" />
-					<portlet:param name="entryId" value="<%= String.valueOf(previousEntry.getEntryId()) %>" />
-				</portlet:renderURL>
+	<c:if test="<%= (previousEntry != null) || (nextEntry != null) %>">
+		<aui:container cssClass="entry-navigation">
+			<aui:row>
+				<c:if test="<%= previousEntry != null %>">
+					<aui:col cssClass='<%= "previous-entry " + ((nextEntry != null) ? "has-next-entry" : StringPool.BLANK) %>' md="6" sm="6">
+						<h2><liferay-ui:message key="previous-entry" /></h2>
 
-				<aui:a cssClass="icon-circle-arrow-left" href="<%= previousEntryURL %>" label="previous" />
-			</c:when>
-			<c:otherwise>
-				<span class="icon-circle-arrow-left"><liferay-ui:message key="previous" /></span>
-			</c:otherwise>
-		</c:choose>
+						<div class="previous-entry-content">
+							<portlet:renderURL var="previousEntryURL">
+								<portlet:param name="struts_action" value="/blogs/view_entry" />
+								<portlet:param name="redirect" value="<%= redirect %>" />
+								<portlet:param name="entryId" value="<%= String.valueOf(previousEntry.getEntryId()) %>" />
+							</portlet:renderURL>
 
-		<c:choose>
-			<c:when test="<%= nextEntry != null %>">
-				<portlet:renderURL var="nextEntryURL">
-					<portlet:param name="struts_action" value="/blogs/view_entry" />
-					<portlet:param name="redirect" value="<%= redirect %>" />
-					<portlet:param name="entryId" value="<%= String.valueOf(nextEntry.getEntryId()) %>" />
-				</portlet:renderURL>
+							<%
+							String smallImageURL = previousEntry.getSmallImageURL(themeDisplay);
+							%>
 
-				<aui:a cssClass="next" href="<%= nextEntryURL %>" label="next">
-					<i class="icon-circle-arrow-right"></i>
-				</aui:a>
-			</c:when>
-			<c:otherwise>
-				<span class="next">
-					<liferay-ui:message key="next" />
-					<i class="icon-circle-arrow-right"></i>
-				</span>
-			</c:otherwise>
-		</c:choose>
-	</div>
+							<c:if test="<%= Validator.isNotNull(smallImageURL) %>">
+								<div class="small-image visible-lg-block visible-md-block" style="background-image: url(<%= HtmlUtil.escape(smallImageURL) %>)"></div>
+							</c:if>
+
+							<div class="entry-content">
+								<h3><a href="<%= previousEntryURL %>" title="<%= previousEntry.getTitle() %>"><%= previousEntry.getTitle() %></a></h3>
+
+								<p class="entry-content-body visible-lg-block">
+									<c:choose>
+										<c:when test="<%= Validator.isNotNull(previousEntry.getSubtitle()) %>">
+											<%= StringUtil.shorten(previousEntry.getSubtitle(), 100) %>
+										</c:when>
+										<c:otherwise>
+											<%= StringUtil.shorten(HtmlUtil.stripHtml(previousEntry.getContent()), 100) %>
+										</c:otherwise>
+									</c:choose>
+								</p>
+
+								<liferay-ui:user-display
+									userId="<%= previousEntry.getUserId() %>"
+									userName="<%= previousEntry.getUserName() %>"
+								>
+
+									<%
+									Date createDate = previousEntry.getCreateDate();
+									%>
+
+									<liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true) %>" key="x-ago" translateArguments="<%= false %>" />
+								</liferay-ui:user-display>
+							</div>
+						</div>
+					</aui:col>
+				</c:if>
+
+				<c:if test="<%= nextEntry != null %>">
+					<aui:col cssClass='<%= "next-entry " + ((previousEntry != null) ? "has-previous-entry" : StringPool.BLANK) %>' md="6" sm="6">
+						<h2><liferay-ui:message key="next-entry" /></h2>
+
+						<div class="next-entry-content">
+							<portlet:renderURL var="nextEntryURL">
+								<portlet:param name="struts_action" value="/blogs/view_entry" />
+								<portlet:param name="redirect" value="<%= redirect %>" />
+								<portlet:param name="entryId" value="<%= String.valueOf(nextEntry.getEntryId()) %>" />
+							</portlet:renderURL>
+
+							<%
+							String smallImageURL = nextEntry.getSmallImageURL(themeDisplay);
+							%>
+
+							<c:if test="<%= Validator.isNotNull(smallImageURL) %>">
+								<div class="small-image visible-lg-block visible-md-block" style="background-image: url(<%= HtmlUtil.escape(smallImageURL) %>)"></div>
+							</c:if>
+
+							<div class="entry-content">
+								<h3><a href="<%= nextEntryURL %>" title="<%= nextEntry.getTitle() %>"><%= nextEntry.getTitle() %></a></h3>
+
+								<p class="entry-content-body visible-lg-block">
+									<c:choose>
+										<c:when test="<%= Validator.isNotNull(nextEntry.getSubtitle()) %>">
+											<%= StringUtil.shorten(nextEntry.getSubtitle(), 100) %>
+										</c:when>
+										<c:otherwise>
+											<%= StringUtil.shorten(HtmlUtil.stripHtml(nextEntry.getContent()), 100) %>
+										</c:otherwise>
+									</c:choose>
+								</p>
+
+								<liferay-ui:user-display
+									userId="<%= nextEntry.getUserId() %>"
+									userName="<%= nextEntry.getUserName() %>"
+								>
+
+									<%
+									Date createDate = nextEntry.getCreateDate();
+									%>
+
+									<liferay-ui:message arguments="<%= LanguageUtil.getTimeDescription(request, System.currentTimeMillis() - createDate.getTime(), true) %>" key="x-ago" translateArguments="<%= false %>" />
+								</liferay-ui:user-display>
+							</div>
+						</div>
+					</aui:col>
+				</c:if>
+			</aui:row>
+		</aui:container>
+	</c:if>
 </c:if>
 
 <c:if test="<%= blogsPortletInstanceSettings.isEnableComments() %>">
@@ -131,11 +198,16 @@ request.setAttribute("view_entry_content.jsp-assetEntry", assetEntry);
 				<portlet:param name="struts_action" value="/blogs/edit_entry_discussion" />
 			</portlet:actionURL>
 
+			<portlet:resourceURL var="discussionPaginationURL">
+				<portlet:param name="struts_action" value="/blogs/edit_entry_discussion" />
+			</portlet:resourceURL>
+
 			<liferay-ui:discussion
 				className="<%= BlogsEntry.class.getName() %>"
 				classPK="<%= entry.getEntryId() %>"
 				formAction="<%= discussionURL %>"
 				formName="fm2"
+				paginationURL="<%= discussionPaginationURL %>"
 				ratingsEnabled="<%= blogsPortletInstanceSettings.isEnableCommentRatings() %>"
 				redirect="<%= currentURL %>"
 				userId="<%= entry.getUserId() %>"

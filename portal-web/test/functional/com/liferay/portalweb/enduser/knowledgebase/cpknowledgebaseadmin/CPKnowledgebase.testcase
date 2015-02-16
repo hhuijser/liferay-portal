@@ -197,7 +197,7 @@
 
 	<command name="AddKBArticleWithSourceViaKBAdmin" priority="5">
 		<var name="kbArticleContentSource">
-			<![CDATA[<b>Knowledge Base's Article Content</b>]]>
+			<![CDATA[<b>Knowledge Base&rsquo;s Article Content</b>]]>
 		</var>
 
 		<execute macro="Page#gotoContentCP">
@@ -216,12 +216,14 @@
 			<var name="kbPriority" value="1.0" />
 		</execute>
 
+		<execute function="Pause" value1="5000" />
+
 		<execute macro="KBArticle#viewCP">
 			<var name="kbArticleContent" value="Knowledge Base’s Article Content" />
 			<var name="kbArticleTitle" value="Knowledge Base Article Title" />
 		</execute>
 
-		<execute action="CPKnowledgebaseadminArticle#assertTextNotEquals" locator-key1="CONTENT" value1="${kbArticleContentSource}" />
+		<execute function="AssertTextNotEquals" locator1="CPKnowledgebaseadminArticle#CONTENT" value1="${kbArticleContentSource}" />
 	</command>
 
 	<command name="AddTemplateCP" priority="5">
@@ -306,6 +308,81 @@
 		<execute macro="KBArticle#viewCP">
 			<var name="kbArticleContent" value="Knowledge Base Article Content Edit" />
 			<var name="kbArticleTitle" value="Knowledge Base Article Title Edit" />
+		</execute>
+	</command>
+
+	<command name="RemoveParentArticleViaKBAdmin" priority="5">
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Knowledge Base" />
+		</execute>
+
+		<execute macro="KBArticle#addCP">
+			<var name="kbArticleContent" value="Knowledge Base Article Content Parent" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+		</execute>
+
+		<execute macro="KBArticle#addCP">
+			<var name="kbArticleContent" value="Knowledge Base Article Content Child" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Child" />
+		</execute>
+
+		<execute macro="KBArticle#moveArticleCP">
+			<var name="kbArticleCurrentParent" value="(None)" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Child" />
+		</execute>
+
+		<execute macro="KBArticle#selectParentArticleCP">
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+		</execute>
+
+		<execute macro="KBArticle#gotoViaKBAdminCP">
+			<var name="hasChildArticle" value="true" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+		</execute>
+
+		<execute macro="KBArticle#moveArticleCP">
+			<var name="kbArticleCurrentParent" value="Knowledge Base Article Title Parent" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Child" />
+		</execute>
+
+		<execute macro="KBArticle#removeParentArticleCP" />
+	</command>
+
+	<command name="SelectParentArticleViaKBAdmin" priority="5">
+		<execute macro="Page#gotoContentCP">
+			<var name="portletName" value="Knowledge Base" />
+		</execute>
+
+		<execute macro="KBArticle#addCP">
+			<var name="kbArticleContent" value="Knowledge Base Article Content Parent" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+		</execute>
+
+		<execute macro="KBArticle#addCP">
+			<var name="kbArticleContent" value="Knowledge Base Article Content Child" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Child" />
+		</execute>
+
+		<execute macro="KBArticle#moveArticleCP">
+			<var name="kbArticleCurrentParent" value="(None)" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Child" />
+		</execute>
+
+		<execute macro="KBArticle#selectParentArticleCP">
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+		</execute>
+
+		<execute macro="KBArticle#gotoViaKBAdminCP">
+			<var name="hasChildArticle" value="true" />
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+		</execute>
+
+		<execute macro="KBArticle#viewChildArticleCP">
+			<var name="kbArticleTitle" value="Knowledge Base Article Title Parent" />
+			<var name="kbAuthor" value="Test Test" />
+			<var name="kbChildArticleContent" value="Knowledge Base Article Content Child" />
+			<var name="kbChildArticleTitle" value="Knowledge Base Article Title Child" />
+			<var name="kbPriority" value="1.0" />
 		</execute>
 	</command>
 

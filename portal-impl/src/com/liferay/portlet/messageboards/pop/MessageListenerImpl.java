@@ -141,6 +141,31 @@ public class MessageListenerImpl implements MessageListener {
 				_log.debug("Message id " + messageIdString);
 			}
 
+			long parentMessageId = getParentMessageId(messageIdString);
+
+			if (_log.isDebugEnabled()) {
+				_log.debug("Parent message id " + parentMessageId);
+			}
+
+			MBMessage parentMessage = null;
+
+			try {
+				if (parentMessageId > 0) {
+					parentMessage = MBMessageLocalServiceUtil.getMessage(
+						parentMessageId);
+				}
+			}
+			catch (NoSuchMessageException nsme) {
+
+				// If the parent message does not exist we ignore it and post
+				// the message as a new thread.
+
+			}
+
+			if (_log.isDebugEnabled()) {
+				_log.debug("Parent message " + parentMessage);
+			}
+
 			long groupId = 0;
 			long categoryId = getCategoryId(messageIdString);
 
@@ -173,31 +198,6 @@ public class MessageListenerImpl implements MessageListener {
 
 			User user = UserLocalServiceUtil.getUserByEmailAddress(
 				company.getCompanyId(), from);
-
-			long parentMessageId = getParentMessageId(messageIdString);
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Parent message id " + parentMessageId);
-			}
-
-			MBMessage parentMessage = null;
-
-			try {
-				if (parentMessageId > 0) {
-					parentMessage = MBMessageLocalServiceUtil.getMessage(
-						parentMessageId);
-				}
-			}
-			catch (NoSuchMessageException nsme) {
-
-				// If the parent message does not exist we ignore it and post
-				// the message as a new thread.
-
-			}
-
-			if (_log.isDebugEnabled()) {
-				_log.debug("Parent message " + parentMessage);
-			}
 
 			String subject = MBUtil.getSubjectForEmail(message);
 

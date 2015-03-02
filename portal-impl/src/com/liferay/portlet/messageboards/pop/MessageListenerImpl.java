@@ -75,7 +75,7 @@ public class MessageListenerImpl implements MessageListener {
 
 			if ((messageIdString == null) ||
 				!messageIdString.startsWith(
-					MBUtil.MESSAGE_POP_PORTLET_PREFIX, getOffset())) {
+					MBUtil.MESSAGE_POP_PORTLET_PREFIX, MBUtil.getOffset())) {
 
 				return false;
 			}
@@ -270,7 +270,7 @@ public class MessageListenerImpl implements MessageListener {
 	}
 
 	protected long getCategoryId(String messageIdString) {
-		String[] parts = getMessageIdStringParts(messageIdString);
+		String[] parts = MBUtil.getMessageIdStringParts(messageIdString);
 
 		return GetterUtil.getLong(parts[0]);
 	}
@@ -296,7 +296,7 @@ public class MessageListenerImpl implements MessageListener {
 	}
 
 	protected long getMessageId(String messageIdString) {
-		String[] parts = getMessageIdStringParts(messageIdString);
+		String[] parts = MBUtil.getMessageIdStringParts(messageIdString);
 
 		return GetterUtil.getLong(parts[1]);
 	}
@@ -310,23 +310,6 @@ public class MessageListenerImpl implements MessageListener {
 		else {
 			return MBUtil.getParentMessageIdString(message);
 		}
-	}
-
-	protected String[] getMessageIdStringParts(String messageIdString) {
-		int pos = messageIdString.indexOf(CharPool.AT);
-
-		String target = messageIdString.substring(
-			MBUtil.MESSAGE_POP_PORTLET_PREFIX.length() + getOffset(), pos);
-
-		return StringUtil.split(target, CharPool.PERIOD);
-	}
-
-	protected int getOffset() {
-		if (PropsValues.POP_SERVER_SUBDOMAIN.length() == 0) {
-			return 1;
-		}
-
-		return 0;
 	}
 
 	protected long getParentMessageId(String recipient, Message message)

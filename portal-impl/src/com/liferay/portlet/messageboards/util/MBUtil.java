@@ -602,6 +602,23 @@ public class MBUtil {
 		return messageId;
 	}
 
+	public static String[] getMessageIdStringParts(String messageIdString) {
+		int pos = messageIdString.indexOf(CharPool.AT);
+
+		String target = messageIdString.substring(
+			MBUtil.MESSAGE_POP_PORTLET_PREFIX.length() + getOffset(), pos);
+
+		return StringUtil.split(target, CharPool.PERIOD);
+	}
+
+	public static int getOffset() {
+		if (PropsValues.POP_SERVER_SUBDOMAIN.length() == 0) {
+			return 1;
+		}
+
+		return 0;
+	}
+
 	public static long getParentMessageId(Message message) throws Exception {
 		long parentMessageId = -1;
 

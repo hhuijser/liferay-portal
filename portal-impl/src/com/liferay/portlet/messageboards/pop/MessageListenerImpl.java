@@ -37,7 +37,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portal.util.PropsValues;
-import com.liferay.portlet.messageboards.NoSuchMessageException;
 import com.liferay.portlet.messageboards.model.MBCategory;
 import com.liferay.portlet.messageboards.model.MBCategoryConstants;
 import com.liferay.portlet.messageboards.model.MBMessage;
@@ -149,17 +148,9 @@ public class MessageListenerImpl implements MessageListener {
 
 			MBMessage parentMessage = null;
 
-			try {
-				if (parentMessageId > 0) {
-					parentMessage = MBMessageLocalServiceUtil.getMessage(
-						parentMessageId);
-				}
-			}
-			catch (NoSuchMessageException nsme) {
-
-				// If the parent message does not exist we ignore it and post
-				// the message as a new thread.
-
+			if (parentMessageId > 0) {
+				parentMessage = MBMessageLocalServiceUtil.getMessage(
+					parentMessageId);
 			}
 
 			if (_log.isDebugEnabled()) {
@@ -287,12 +278,6 @@ public class MessageListenerImpl implements MessageListener {
 		return CompanyLocalServiceUtil.getCompanyByMx(mx);
 	}
 
-	protected long getParentMessageId(String messageIdString) {
-		String[] parts = MBUtil.getMessageIdStringParts(messageIdString);
-
-		return GetterUtil.getLong(parts[1]);
-	}
-
 	protected String getMessageIdString(String recipient, Message message)
 		throws Exception {
 
@@ -302,6 +287,12 @@ public class MessageListenerImpl implements MessageListener {
 		else {
 			return MBUtil.getParentMessageIdString(message);
 		}
+	}
+
+	protected long getParentMessageId(String messageIdString) {
+		String[] parts = MBUtil.getMessageIdStringParts(messageIdString);
+
+		return GetterUtil.getLong(parts[1]);
 	}
 
 	protected boolean isAutoReply(Message message) throws MessagingException {

@@ -584,22 +584,39 @@ public class MBUtil {
 	}
 
 	public static long getMessageId(String mailId) {
-		int x = mailId.indexOf(CharPool.LESS_THAN) + 1;
+		int x = mailId.indexOf(CharPool.LESS_THAN);
 		int y = mailId.indexOf(CharPool.AT);
 
-		long messageId = 0;
-
-		if ((x > 0 ) && (y != -1)) {
-			String temp = mailId.substring(x, y);
-
-			int z = temp.lastIndexOf(CharPool.PERIOD);
-
-			if (z != -1) {
-				messageId = GetterUtil.getLong(temp.substring(z + 1));
-			}
+		if ((x == -1) || (y == -1)) {
+			return 0;
 		}
 
-		return messageId;
+		String temp = mailId.substring(x + 1, y);
+
+		String[] mailIdParts = getMessageIdStringParts(temp);
+
+		if (mailIdParts.length == 4) {
+			return GetterUtil.getLong(mailIdParts[2]);
+		}
+
+		return 0;
+	}
+
+	public static String[] getMessageIdStringParts(String messageIdString) {
+		int pos = messageIdString.indexOf(CharPool.AT);
+
+		String target = messageIdString.substring(
+			MBUtil.MESSAGE_POP_PORTLET_PREFIX.length() + getOffset(), pos);
+
+		return StringUtil.split(target, CharPool.PERIOD);
+	}
+
+	public static int getOffset() {
+		if (PropsValues.POP_SERVER_SUBDOMAIN.length() == 0) {
+			return 1;
+		}
+
+		return 0;
 	}
 
 	public static long getParentMessageId(Message message) throws Exception {

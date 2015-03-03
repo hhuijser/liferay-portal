@@ -319,12 +319,6 @@ public class MBUtil {
 			pathThemeImages + EMOTICONS);
 	}
 
-	public static long getCategoryId(String messageIdString) {
-		String[] parts = getMessageIdStringParts(messageIdString);
-
-		return GetterUtil.getLong(parts[0]);
-	}
-
 	public static long getCategoryId(
 		HttpServletRequest request, MBCategory category) {
 
@@ -351,6 +345,12 @@ public class MBUtil {
 		categoryId = ParamUtil.getLong(request, "mbCategoryId", categoryId);
 
 		return categoryId;
+	}
+
+	public static long getCategoryId(String messageIdString) {
+		String[] parts = getMessageIdStringParts(messageIdString);
+
+		return GetterUtil.getLong(parts[0]);
 	}
 
 	public static Set<Long> getCategorySubscriptionClassPKs(long userId) {
@@ -589,12 +589,6 @@ public class MBUtil {
 		return entries;
 	}
 
-	public static long getMessageId(String messageIdString) {
-		String[] parts = getMessageIdStringParts(messageIdString);
-
-		return GetterUtil.getLong(parts[1]);
-	}
-
 	public static String[] getMessageIdStringParts(String messageIdString) {
 		int pos = messageIdString.indexOf(CharPool.AT);
 
@@ -622,7 +616,7 @@ public class MBUtil {
 				_log.debug("Parent header " + messageIdString);
 			}
 
-				parentMessageId = getMessageId(messageIdString);
+				parentMessageId = getParentMessageId(messageIdString);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Parent message id " + parentMessageId);
@@ -630,6 +624,12 @@ public class MBUtil {
 		}
 
 		return parentMessageId;
+	}
+
+	public static long getParentMessageId(String messageIdString) {
+		String[] parts = getMessageIdStringParts(messageIdString);
+
+		return GetterUtil.getLong(parts[1]);
 	}
 
 	public static String getParentMessageIdString(Message message)

@@ -81,7 +81,7 @@ public class MessageListenerImpl implements MessageListener {
 			}
 
 			Company company = getCompany(messageIdString);
-			long categoryId = getCategoryId(messageIdString);
+			long categoryId = MBUtil.getCategoryId(messageIdString);
 
 			MBCategory category = MBCategoryLocalServiceUtil.getCategory(
 				categoryId);
@@ -142,7 +142,7 @@ public class MessageListenerImpl implements MessageListener {
 			}
 
 			long groupId = 0;
-			long categoryId = getCategoryId(messageIdString);
+			long categoryId = MBUtil.getCategoryId(messageIdString);
 
 			MBCategory category = MBCategoryLocalServiceUtil.fetchMBCategory(
 				categoryId);
@@ -155,7 +155,7 @@ public class MessageListenerImpl implements MessageListener {
 				groupId = category.getGroupId();
 
 				if (category.isRoot()) {
-					long messageId = getMessageId(messageIdString);
+					long messageId = MBUtil.getMessageId(messageIdString);
 
 					MBMessage threadMessage =
 						MBMessageLocalServiceUtil.fetchMBMessage(messageId);
@@ -269,12 +269,6 @@ public class MessageListenerImpl implements MessageListener {
 		return MessageListenerImpl.class.getName();
 	}
 
-	protected long getCategoryId(String messageIdString) {
-		String[] parts = MBUtil.getMessageIdStringParts(messageIdString);
-
-		return GetterUtil.getLong(parts[0]);
-	}
-
 	protected Company getCompany(String messageIdString) throws Exception {
 		int pos =
 			messageIdString.indexOf(CharPool.AT) +
@@ -293,12 +287,6 @@ public class MessageListenerImpl implements MessageListener {
 		String mx = messageIdString.substring(pos, endPos);
 
 		return CompanyLocalServiceUtil.getCompanyByMx(mx);
-	}
-
-	protected long getMessageId(String messageIdString) {
-		String[] parts = MBUtil.getMessageIdStringParts(messageIdString);
-
-		return GetterUtil.getLong(parts[1]);
 	}
 
 	protected String getMessageIdString(String recipient, Message message)

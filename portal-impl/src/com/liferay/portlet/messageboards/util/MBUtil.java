@@ -319,6 +319,12 @@ public class MBUtil {
 			pathThemeImages + EMOTICONS);
 	}
 
+	public static long getCategoryId(String messageIdString) {
+		String[] parts = getMessageIdStringParts(messageIdString);
+
+		return GetterUtil.getLong(parts[0]);
+	}
+
 	public static long getCategoryId(
 		HttpServletRequest request, MBCategory category) {
 
@@ -583,23 +589,10 @@ public class MBUtil {
 		return entries;
 	}
 
-	public static long getMessageId(String mailId) {
-		int x = mailId.indexOf(CharPool.LESS_THAN) + 1;
-		int y = mailId.indexOf(CharPool.AT);
+	public static long getMessageId(String messageIdString) {
+		String[] parts = getMessageIdStringParts(messageIdString);
 
-		long messageId = 0;
-
-		if ((x > 0 ) && (y != -1)) {
-			String temp = mailId.substring(x, y);
-
-			int z = temp.lastIndexOf(CharPool.PERIOD);
-
-			if (z != -1) {
-				messageId = GetterUtil.getLong(temp.substring(z + 1));
-			}
-		}
-
-		return messageId;
+		return GetterUtil.getLong(parts[1]);
 	}
 
 	public static String[] getMessageIdStringParts(String messageIdString) {
@@ -622,17 +615,17 @@ public class MBUtil {
 	public static long getParentMessageId(Message message) throws Exception {
 		long parentMessageId = -1;
 
-		String parentHeader = getParentMessageIdString(message);
+		String messageIdString = getParentMessageIdString(message);
 
-		if (parentHeader != null) {
+		if (messageIdString != null) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Parent header " + parentHeader);
+				_log.debug("Parent header " + messageIdString);
 			}
 
-			parentMessageId = getMessageId(parentHeader);
+				parentMessageId = getMessageId(messageIdString);
 
 			if (_log.isDebugEnabled()) {
-				_log.debug("Previous message id " + parentMessageId);
+				_log.debug("Parent message id " + parentMessageId);
 			}
 		}
 

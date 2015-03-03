@@ -574,12 +574,14 @@ public class DocumentImpl implements Document {
 			return;
 		}
 
-		String sortableFieldName = getSortableFieldName(name);
+		if (values.length == 1) {
+			String sortableFieldName = getSortableFieldName(name);
 
-		Field field = createField(sortableFieldName, values);
+			Field field = createField(sortableFieldName, values);
 
-		field.setNumeric(true);
-		field.setNumericClass(clazz);
+			field.setNumeric(true);
+			field.setNumericClass(clazz);
+		}
 
 		addKeyword(name, values);
 	}

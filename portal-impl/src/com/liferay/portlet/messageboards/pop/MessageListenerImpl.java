@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.pop.MessageListener;
 import com.liferay.portal.kernel.pop.MessageListenerException;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -155,7 +154,7 @@ public class MessageListenerImpl implements MessageListener {
 				groupId = category.getGroupId();
 
 				if (category.isRoot()) {
-					long messageId = MBUtil.getMessageId(messageIdString);
+					long messageId = MBUtil.getParentMessageId(messageIdString);
 
 					MBMessage threadMessage =
 						MBMessageLocalServiceUtil.fetchMBMessage(messageId);
@@ -174,7 +173,7 @@ public class MessageListenerImpl implements MessageListener {
 			User user = UserLocalServiceUtil.getUserByEmailAddress(
 				company.getCompanyId(), from);
 
-			long parentMessageId = getParentMessageId(recipient, message);
+			long parentMessageId = MBUtil.getParentMessageId(messageIdString);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Parent message id " + parentMessageId);
@@ -298,39 +297,6 @@ public class MessageListenerImpl implements MessageListener {
 		else {
 			return MBUtil.getParentMessageIdString(message);
 		}
-	}
-
-	protected long getParentMessageId(String recipient, Message message)
-		throws Exception {
-
-		if (!StringUtil.startsWith(
-				recipient, MBUtil.MESSAGE_POP_PORTLET_PREFIX)) {
-
-			return MBUtil.getParentMessageId(message);
-		}
-
-		int pos = recipient.indexOf(CharPool.AT);
-
-		if (pos < 0) {
-			return MBUtil.getParentMessageId(message);
-		}
-
-		String target = recipient.substring(
-			MBUtil.MESSAGE_POP_PORTLET_PREFIX.length(), pos);
-
-		String[] parts = StringUtil.split(target, CharPool.PERIOD);
-
-		long parentMessageId = 0;
-
-		if (parts.length == 2) {
-			parentMessageId = GetterUtil.getLong(parts[1]);
-		}
-
-		if (parentMessageId > 0) {
-			return parentMessageId;
-		}
-
-		return MBUtil.getParentMessageId(message);
 	}
 
 	protected boolean isAutoReply(Message message) throws MessagingException {

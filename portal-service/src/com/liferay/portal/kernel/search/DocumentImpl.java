@@ -139,12 +139,14 @@ public class DocumentImpl implements Document {
 			datesTime[i] = String.valueOf(values[i].getTime());
 		}
 
-		String sortableFieldName = getSortableFieldName(name);
+		if (values.length == 1) {
+			String sortableFieldName = getSortableFieldName(name);
 
-		Field field = createField(sortableFieldName, datesTime);
+			Field field = createField(sortableFieldName, datesTime);
 
-		field.setNumeric(true);
-		field.setNumericClass(Long.class);
+			field.setNumeric(true);
+			field.setNumericClass(Long.class);
+		}
 
 		addKeyword(name, dates);
 	}

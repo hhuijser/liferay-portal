@@ -163,22 +163,14 @@ public class MessageListenerImpl implements MessageListener {
 				categoryId);
 
 			if (category == null) {
-				groupId = categoryId;
 				categoryId = MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID;
+
+				if (parentMessage != null) {
+					groupId = parentMessage.getGroupId();
+				}
 			}
 			else {
 				groupId = category.getGroupId();
-
-				if (category.isRoot()) {
-					long messageId = MBUtil.getParentMessageId(messageIdString);
-
-					MBMessage threadMessage =
-						MBMessageLocalServiceUtil.fetchMBMessage(messageId);
-
-					if (threadMessage != null) {
-						groupId = threadMessage.getGroupId();
-					}
-				}
 			}
 
 			if (_log.isDebugEnabled()) {

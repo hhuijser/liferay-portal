@@ -207,8 +207,8 @@ if (assetEntry != null) {
 				</portlet:resourceURL>
 
 				<liferay-ui:discussion
-					className="<%= WorkflowInstance.class.getName() %>"
-					classPK="<%= workflowInstance.getWorkflowInstanceId() %>"
+					className="<%= assetRenderer.getClassName() %>"
+					classPK="<%= assetRenderer.getClassName() %>"
 					formAction="<%= discussionURL %>"
 					formName="fm1"
 					paginationURL="<%= discussionPaginationURL %>"

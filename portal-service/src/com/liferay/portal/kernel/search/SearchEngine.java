@@ -47,6 +47,8 @@ public interface SearchEngine {
 
 	public boolean isLuceneBased();
 
+	public boolean isSupportMultiValued();
+
 	public void removeBackup(long companyId, String backupName)
 		throws SearchException;
 

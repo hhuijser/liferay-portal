@@ -139,7 +139,9 @@ public class DocumentImpl implements Document {
 			datesTime[i] = String.valueOf(values[i].getTime());
 		}
 
-		if (values.length == 1) {
+		boolean isSupportMultiValued = isSupportMultiValued();
+
+		if ((values.length == 1) || isSupportMultiValued) {
 			String sortableFieldName = getSortableFieldName(name);
 
 			Field field = createField(sortableFieldName, datesTime);
@@ -576,7 +578,9 @@ public class DocumentImpl implements Document {
 			return;
 		}
 
-		if (values.length == 1) {
+		boolean isSupportMultiValued = isSupportMultiValued();
+
+		if ((values.length == 1) || isSupportMultiValued) {
 			String sortableFieldName = getSortableFieldName(name);
 
 			Field field = createField(sortableFieldName, values);
@@ -887,6 +891,13 @@ public class DocumentImpl implements Document {
 		}
 
 		return field;
+	}
+
+	protected boolean isSupportMultiValued() {
+		SearchEngine searchEngine = SearchEngineUtil.getSearchEngine(
+			SearchEngineUtil.getDefaultSearchEngineId());
+
+		return searchEngine.isSupportMultiValued();
 	}
 
 	protected void setSortableTextFields(Set<String> sortableTextFields) {

@@ -181,6 +181,11 @@ public class BaseSearchEngine implements SearchEngine {
 		return _luceneBased;
 	}
 
+	@Override
+	public boolean isSupportMultiValued() {
+		return _multiValued;
+	}
+
 	/**
 	 * @throws SearchException
 	 */
@@ -233,6 +238,10 @@ public class BaseSearchEngine implements SearchEngine {
 		_luceneBased = luceneBased;
 	}
 
+	public void setMultiValued(boolean multiValued) {
+		_multiValued = multiValued;
+	}
+
 	public void setTermQueryFactory(TermQueryFactory termQueryFactory) {
 		_termQueryFactory = termQueryFactory;
 	}
@@ -257,6 +266,7 @@ public class BaseSearchEngine implements SearchEngine {
 	private IndexSearcher _indexSearcher = new DummyIndexSearcher();
 	private IndexWriter _indexWriter = new DummyIndexWriter();
 	private boolean _luceneBased;
+	private boolean _multiValued = true;
 	private TermQueryFactory _termQueryFactory;
 	private TermRangeQueryFactory _termRangeQueryFactory;
 	private String _vendor;

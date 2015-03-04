@@ -97,6 +97,11 @@ public class SearchEngineProxyWrapper implements SearchEngine {
 	}
 
 	@Override
+	public boolean isSupportMultiValued() {
+		return _searchEngine.isSupportMultiValued();
+	}
+
+	@Override
 	public void removeBackup(long companyId, String backupName)
 		throws SearchException {
 

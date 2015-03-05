@@ -348,7 +348,7 @@ public class MBUtil {
 	}
 
 	public static long getCategoryId(String messageIdString) {
-		String[] parts = getMessageIdStringParts(messageIdString);
+		String[] parts = _getMessageIdStringParts(messageIdString);
 
 		return GetterUtil.getLong(parts[0]);
 	}
@@ -597,17 +597,6 @@ public class MBUtil {
 		return 0;
 	}
 
-	public static String[] getMessageIdStringParts(String messageIdString) {
-		int pos = messageIdString.indexOf(CharPool.AT);
-
-		String target = messageIdString.substring(
-			MBUtil.MESSAGE_POP_PORTLET_PREFIX.length() +
-				getMessageIdStringOffset(),
-			pos);
-
-		return StringUtil.split(target, CharPool.PERIOD);
-	}
-
 	public static long getParentMessageId(Message message) throws Exception {
 		long parentMessageId = -1;
 
@@ -629,7 +618,7 @@ public class MBUtil {
 	}
 
 	public static long getParentMessageId(String messageIdString) {
-		String[] parts = getMessageIdStringParts(messageIdString);
+		String[] parts = _getMessageIdStringParts(messageIdString);
 
 		return GetterUtil.getLong(parts[1]);
 	}
@@ -1151,6 +1140,17 @@ public class MBUtil {
 		return MBMessageLocalServiceUtil.getCategoryMessagesCount(
 			category.getGroupId(), category.getCategoryId(),
 			WorkflowConstants.STATUS_APPROVED);
+	}
+
+	private static String[] _getMessageIdStringParts(String messageIdString) {
+		int pos = messageIdString.indexOf(CharPool.AT);
+
+		String target = messageIdString.substring(
+			MBUtil.MESSAGE_POP_PORTLET_PREFIX.length() +
+				getMessageIdStringOffset(),
+			pos);
+
+		return StringUtil.split(target, CharPool.PERIOD);
 	}
 
 	private static String _getParentMessageIdFromSubject(Message message)

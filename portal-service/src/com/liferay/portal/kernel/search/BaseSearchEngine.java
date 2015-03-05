@@ -268,7 +268,7 @@ public class BaseSearchEngine implements SearchEngine {
 	private IndexSearcher _indexSearcher = new DummyIndexSearcher();
 	private IndexWriter _indexWriter = new DummyIndexWriter();
 	private boolean _luceneBased;
-	private boolean _supportsSortMultiValuedField = true;
+	private boolean _supportsSortMultiValuedField;
 	private TermQueryFactory _termQueryFactory;
 	private TermRangeQueryFactory _termRangeQueryFactory;
 	private String _vendor;

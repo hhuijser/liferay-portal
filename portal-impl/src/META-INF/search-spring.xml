@@ -154,6 +154,7 @@
 		<property name="indexSearcher" ref="com.liferay.portal.search.lucene.LuceneIndexSearcher" />
 		<property name="indexWriter" ref="com.liferay.portal.search.lucene.LuceneIndexWriter" />
 		<property name="luceneBased" value="true" />
+		<property name="supportsSortMultiValuedField" value="true" />
 		<property name="termQueryFactory">
 			<bean class="com.liferay.portal.search.lucene.TermQueryFactoryImpl" />
 		</property>

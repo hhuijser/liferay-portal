@@ -97,8 +97,8 @@ public class SearchEngineProxyWrapper implements SearchEngine {
 	}
 
 	@Override
-	public boolean isSupportMultiValued() {
-		return _searchEngine.isSupportMultiValued();
+	public boolean isSupportsSortMultiValuedField() {
+		return _searchEngine.isSupportsSortMultiValuedField();
 	}
 
 	@Override

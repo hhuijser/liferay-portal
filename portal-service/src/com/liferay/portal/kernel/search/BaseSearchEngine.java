@@ -182,8 +182,8 @@ public class BaseSearchEngine implements SearchEngine {
 	}
 
 	@Override
-	public boolean isSupportMultiValued() {
-		return _multiValued;
+	public boolean isSupportsSortMultiValuedField() {
+		return _supportsSortMultiValuedField;
 	}
 
 	/**
@@ -238,8 +238,10 @@ public class BaseSearchEngine implements SearchEngine {
 		_luceneBased = luceneBased;
 	}
 
-	public void setMultiValued(boolean multiValued) {
-		_multiValued = multiValued;
+	public void setSupportsSortMultiValuedField(
+		boolean supportsSortMultiValuedField) {
+
+		_supportsSortMultiValuedField = supportsSortMultiValuedField;
 	}
 
 	public void setTermQueryFactory(TermQueryFactory termQueryFactory) {
@@ -266,7 +268,7 @@ public class BaseSearchEngine implements SearchEngine {
 	private IndexSearcher _indexSearcher = new DummyIndexSearcher();
 	private IndexWriter _indexWriter = new DummyIndexWriter();
 	private boolean _luceneBased;
-	private boolean _multiValued = true;
+	private boolean _supportsSortMultiValuedField = true;
 	private TermQueryFactory _termQueryFactory;
 	private TermRangeQueryFactory _termRangeQueryFactory;
 	private String _vendor;

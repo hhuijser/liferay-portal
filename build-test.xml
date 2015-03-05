@@ -518,23 +518,14 @@
 
 	<macrodef name="get-testray-logs">
 		<sequential>
-			<if>
-				<isset property="jenkins.testray.results.dir" />
-				<then>
-					<antelope:stringutil property="job.name" string="${env.JOB_NAME}">
-						<antelope:replace regex="," replacement="_" />
-					</antelope:stringutil>
+			<antelope:stringutil property="job.name" string="${env.JOB_NAME}">
+				<antelope:replace regex="," replacement="_" />
+			</antelope:stringutil>
 
-					<property name="testray.logs.dir" value="${jenkins.testray.results.dir}/logs/${job.name}/builds/${env.TOP_LEVEL_BUILD_NUMBER}" />
+			<property name="testray.logs.dir" value="${job.name}/builds/${env.TOP_LEVEL_BUILD_NUMBER}" />
 
-					<property name="testray.logs.console" value="${testray.logs.dir}/console.txt" />
-					<property name="testray.logs.report" value="${testray.logs.dir}/report.html" />
-				</then>
-				<else>
-					<property name="testray.logs.console" value="" />
-					<property name="testray.logs.report" value="" />
-				</else>
-			</if>
+			<property name="testray.logs.console" value="${testray.logs.dir}/console.txt" />
+			<property name="testray.logs.report" value="${testray.logs.dir}/report.html" />
 		</sequential>
 	</macrodef>
 
@@ -1430,6 +1421,15 @@ create database lportal${database.index} character set utf8;</echo>
 								</not>
 							</or>
 							<then>
+								<get-testcase-property property.name="database.minimal.enabled" />
+
+								<if>
+									<equals arg1="${database.minimal.enabled}" arg2="true" />
+									<then>
+										<var name="database.create.suffix" value="-bare" />
+									</then>
+								</if>
+
 								<property name="sql.dir" value="sql\create${database.create.suffix}\" />
 								<property name="sql.file" value="create${database.create.suffix}-${database.type}.sql" />
 							</then>

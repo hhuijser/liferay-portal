@@ -4,7 +4,7 @@
 		module="jcifs"
 		revision="1.3.17"
 		status="release"
-		publication="20120322102843"
+		publication="20120322082843"
 	>
 		<license name="GNU Lesser General Public License, version 2.1" url="http://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt" />
 		<description homepage="http://jcifs.samba.org">

@@ -16,8 +16,8 @@
 		<m:properties__aries.javadoc.exclude.packages>${aries.osgi.private.pkg}</m:properties__aries.javadoc.exclude.packages>
 		<m:properties__distMgmtSnapshotsUrl>https://repository.apache.org/content/repositories/snapshots</m:properties__distMgmtSnapshotsUrl>
 		<m:dependency.management__org.ops4j.pax.logging__pax-logging-service__exclusion_3>log4j__log4j</m:dependency.management__org.ops4j.pax.logging__pax-logging-service__exclusion_3>
-		<m:properties__aries.osgi.symbolic.name>${project.artifactId}</m:properties__aries.osgi.symbolic.name>
 		<m:properties__sourceReleaseAssemblyDescriptor>source-release</m:properties__sourceReleaseAssemblyDescriptor>
+		<m:properties__aries.osgi.symbolic.name>${project.artifactId}</m:properties__aries.osgi.symbolic.name>
 		<m:dependency.management__org.ops4j.pax.logging__pax-logging-service__exclusion_0>com.sun.jdmk__jmxtools</m:dependency.management__org.ops4j.pax.logging__pax-logging-service__exclusion_0>
 		<m:dependency.management__org.ops4j.pax.logging__pax-logging-service__exclusion_2>javax.mail__mail</m:dependency.management__org.ops4j.pax.logging__pax-logging-service__exclusion_2>
 		<m:dependency.management__org.slf4j__slf4j-api__version>1.5.11</m:dependency.management__org.slf4j__slf4j-api__version>

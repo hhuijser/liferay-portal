@@ -19,9 +19,9 @@ import com.liferay.portal.kernel.metadata.RawMetadataProcessor;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.documentlibrary.model.DLFileEntryMetadata;
-import com.liferay.portlet.documentlibrary.service.permission.DLPermission;
 import com.liferay.portlet.dynamicdatamapping.storage.StorageType;
 import com.liferay.portlet.dynamicdatamapping.util.BaseDDMDisplay;
+import com.liferay.portlet.dynamicdatamapping.util.DDMPermissionHandler;
 
 import java.util.Locale;
 
@@ -36,23 +36,13 @@ public class DLDDMDisplay extends BaseDDMDisplay {
 	};
 
 	@Override
+	public DDMPermissionHandler getDDMPermissionHandler() {
+		return _ddmPermissionHandler;
+	}
+
+	@Override
 	public String getPortletId() {
 		return PortletKeys.DOCUMENT_LIBRARY;
-	}
-
-	@Override
-	public long[] getResourceClassNameIds() {
-		return RESOURCE_CLASS_NAME_IDS;
-	}
-
-	@Override
-	public String getResourceName() {
-		return DLPermission.RESOURCE_NAME;
-	}
-
-	@Override
-	public String getResourceName(long classNameId) {
-		return DLPermission.RESOURCE_NAME;
 	}
 
 	@Override
@@ -69,5 +59,8 @@ public class DLDDMDisplay extends BaseDDMDisplay {
 	public String getStructureType() {
 		return DLFileEntryMetadata.class.getName();
 	}
+
+	private final DDMPermissionHandler _ddmPermissionHandler =
+		new DLDDMPermissionHandler();
 
 }

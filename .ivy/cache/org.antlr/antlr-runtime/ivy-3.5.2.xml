@@ -19,8 +19,8 @@
 		<m:properties__project.build.sourceEncoding>UTF-8</m:properties__project.build.sourceEncoding>
 		<m:dependency.management__antlr__antlr__version>2.7.7</m:dependency.management__antlr__antlr__version>
 		<m:dependency.management__junit__junit__version>4.10</m:dependency.management__junit__junit__version>
-		<m:dependency.management__org.antlr__stringtemplate__scope>compile</m:dependency.management__org.antlr__stringtemplate__scope>
 		<m:properties__bootclasspath.compile>${bootclasspath.java5}</m:properties__bootclasspath.compile>
+		<m:dependency.management__org.antlr__stringtemplate__scope>compile</m:dependency.management__org.antlr__stringtemplate__scope>
 		<m:properties__sonatypeOssDistMgmtSnapshotsUrl>https://oss.sonatype.org/content/repositories/snapshots/</m:properties__sonatypeOssDistMgmtSnapshotsUrl>
 		<m:dependency.management__org.antlr__ST4__version>4.0.8</m:dependency.management__org.antlr__ST4__version>
 		<m:dependency.management__antlr__antlr__scope>compile</m:dependency.management__antlr__antlr__scope>

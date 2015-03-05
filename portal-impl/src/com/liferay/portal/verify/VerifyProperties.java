@@ -349,7 +349,7 @@ public class VerifyProperties extends VerifyProcess {
 		},
 		new String[] {
 			"asset.tags.navigation.display.templates.config",
-			"display.templates.config", "com.liferay.asset.tags.web"
+			"display.templates.config", "com.liferay.asset.tags.navigation.web"
 		},
 
 		// Bookmarks
@@ -1041,6 +1041,10 @@ public class VerifyProperties extends VerifyProcess {
 		new String[] {
 			"passwords.passwordpolicytoolkit.charset.uppercase",
 			"passwords.passwordpolicytoolkit.validator.charset.uppercase"
+		},
+		new String[] {
+			"permissions.inline.sql.resource.block.query.threshhold=100",
+			"permissions.inline.sql.resource.block.query.threshold=100"
 		},
 		new String[] {
 			"portal.instance.http.port", "portal.instance.http.socket.address"

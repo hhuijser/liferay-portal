@@ -7,7 +7,7 @@
 		revision="working@bchan-yosemite-1"
 		conf="default"
 		confs="default"
-		date="20150225135655"/>
+		date="20150304152848"/>
 	<dependencies>
 		<module organisation="com.liferay" name="com.liferay.arquillian.extension">
 			<revision name="1.0.0-SNAPSHOT" status="integration" pubdate="20150130073350" resolver="liferay-public" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="system, default, optional, compile, *, provided, runtime, javadoc, sources, master" position="22">
@@ -248,7 +248,7 @@
 		</module>
 		<module organisation="org.jboss.shrinkwrap" name="shrinkwrap-impl-base">
 			<revision name="1.2.2" status="release" pubdate="20140325073750" resolver="liferay-public" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="20">
-				<metadata-artifact status="no" details="" size="9303" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-impl-base/ivy-1.2.2.xml" searched="false" origin-is-local="false" origin-location="http://cdn.repository.liferay.com/nexus/content/groups/public/org/jboss/shrinkwrap/shrinkwrap-impl-base/1.2.2/shrinkwrap-impl-base-1.2.2.pom"/>
+				<metadata-artifact status="no" details="" size="9372" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-impl-base/ivy-1.2.2.xml" searched="false" origin-is-local="false" origin-location="http://cdn.repository.liferay.com/nexus/content/groups/public/org/jboss/shrinkwrap/shrinkwrap-impl-base/1.2.2/shrinkwrap-impl-base-1.2.2.pom"/>
 				<caller organisation="org.jboss.arquillian.junit" name="arquillian-junit-container" conf="default, compile, runtime, master" rev="1.2.2" rev-constraint-default="1.2.2" rev-constraint-dynamic="1.2.2" callerrev="1.1.6.Final"/>
 				<artifacts>
 					<artifact name="shrinkwrap-impl-base" type="jar" ext="jar" status="no" details="" size="186491" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-impl-base/jars/shrinkwrap-impl-base-1.2.2.jar">
@@ -259,7 +259,7 @@
 		</module>
 		<module organisation="org.jboss.shrinkwrap" name="shrinkwrap-spi">
 			<revision name="1.2.2" status="release" pubdate="20140325073715" resolver="liferay-public" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="21">
-				<metadata-artifact status="no" details="" size="8685" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-spi/ivy-1.2.2.xml" searched="false" origin-is-local="false" origin-location="http://cdn.repository.liferay.com/nexus/content/groups/public/org/jboss/shrinkwrap/shrinkwrap-spi/1.2.2/shrinkwrap-spi-1.2.2.pom"/>
+				<metadata-artifact status="no" details="" size="8754" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-spi/ivy-1.2.2.xml" searched="false" origin-is-local="false" origin-location="http://cdn.repository.liferay.com/nexus/content/groups/public/org/jboss/shrinkwrap/shrinkwrap-spi/1.2.2/shrinkwrap-spi-1.2.2.pom"/>
 				<caller organisation="org.jboss.shrinkwrap" name="shrinkwrap-impl-base" conf="compile, runtime" rev="1.2.2" rev-constraint-default="1.2.2" rev-constraint-dynamic="1.2.2" callerrev="1.2.2"/>
 				<artifacts>
 					<artifact name="shrinkwrap-spi" type="jar" ext="jar" status="no" details="" size="4028" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-spi/jars/shrinkwrap-spi-1.2.2.jar">
@@ -270,7 +270,7 @@
 		</module>
 		<module organisation="org.jboss.shrinkwrap" name="shrinkwrap-api">
 			<revision name="1.2.2" status="release" pubdate="20140325073643" resolver="liferay-public" artresolver="default" homepage="" downloaded="false" searched="false" default="false" conf="compile, master(*), runtime, compile(*), runtime(*), master" position="7">
-				<metadata-artifact status="no" details="" size="8698" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-api/ivy-1.2.2.xml" searched="false" origin-is-local="false" origin-location="http://cdn.repository.liferay.com/nexus/content/groups/public/org/jboss/shrinkwrap/shrinkwrap-api/1.2.2/shrinkwrap-api-1.2.2.pom"/>
+				<metadata-artifact status="no" details="" size="8767" time="0" location="/Users/brian/dev/projects/github/liferay-portal/.ivy/cache/org.jboss.shrinkwrap/shrinkwrap-api/ivy-1.2.2.xml" searched="false" origin-is-local="false" origin-location="http://cdn.repository.liferay.com/nexus/content/groups/public/org/jboss/shrinkwrap/shrinkwrap-api/1.2.2/shrinkwrap-api-1.2.2.pom"/>
 				<caller organisation="org.jboss.shrinkwrap" name="shrinkwrap-spi" conf="compile, runtime" rev="1.2.2" rev-constraint-default="1.2.2" rev-constraint-dynamic="1.2.2" callerrev="1.2.2"/>
 				<caller organisation="org.jboss.shrinkwrap" name="shrinkwrap-impl-base" conf="compile, runtime" rev="1.2.2" rev-constraint-default="1.2.2" rev-constraint-dynamic="1.2.2" callerrev="1.2.2"/>
 				<caller organisation="org.jboss.arquillian.container" name="arquillian-container-test-api" conf="compile, runtime" rev="1.2.2" rev-constraint-default="1.2.2" rev-constraint-dynamic="1.2.2" callerrev="1.1.6.Final"/>

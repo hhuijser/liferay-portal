@@ -13,13 +13,13 @@
 		<m:properties__tycho.version>0.20.0</m:properties__tycho.version>
 		<m:properties__jgit.dirtyWorkingTree>ignore</m:properties__jgit.dirtyWorkingTree>
 		<m:properties__tycho-repo.url>https://oss.sonatype.org/content/repositories/public/</m:properties__tycho-repo.url>
+		<m:properties__tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git</m:properties__tycho.scmUrl>
 		<m:properties__cbi-jdt-version>3.10.0.v20140604-1726</m:properties__cbi-jdt-version>
 		<m:properties__code.ignoredWarnings>-warn:-deprecation,unavoidableGenericProblems</m:properties__code.ignoredWarnings>
-		<m:properties__tycho.scmUrl>scm:git:git://git.eclipse.org/gitroot/equinox/rt.equinox.bundles.git</m:properties__tycho.scmUrl>
 		<m:properties__emf-repo.url>http://download.eclipse.org/modeling/emf/emf/updates/2.10milestones/base/S201405141158/</m:properties__emf-repo.url>
+		<m:properties__releaseNumberPlatform>4.5</m:properties__releaseNumberPlatform>
 		<m:properties__cbi-jdt-repo.url>https://repo.eclipse.org/content/repositories/eclipse-staging/</m:properties__cbi-jdt-repo.url>
 		<m:properties__releaseNumberSDK>4.5</m:properties__releaseNumberSDK>
-		<m:properties__releaseNumberPlatform>4.5</m:properties__releaseNumberPlatform>
 		<m:properties__buildId>${buildType}${buildTimestamp}</m:properties__buildId>
 		<m:properties__comparator.repo>http://download.eclipse.org/eclipse/updates/4.5-I-builds</m:properties__comparator.repo>
 		<m:properties__ecf-repo.url>http://download.eclipse.org/rt/ecf/3.8.1.rc3/site.p2/</m:properties__ecf-repo.url>

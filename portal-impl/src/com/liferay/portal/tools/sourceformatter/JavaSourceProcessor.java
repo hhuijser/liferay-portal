@@ -299,7 +299,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 			String replacement = StringUtil.replaceFirst(
 				match, whitespace + "<" + parameterType + ">", "<>");
 
-			return StringUtil.replace(content, match, replacement);
+			content = StringUtil.replace(content, match, replacement);
 		}
 
 		return content;

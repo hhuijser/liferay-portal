@@ -139,12 +139,14 @@ public class DocumentImpl implements Document {
 			datesTime[i] = String.valueOf(values[i].getTime());
 		}
 
-		String sortableFieldName = getSortableFieldName(name);
+		if ((values.length == 1) || isSupportsSortMultiValuedField()) {
+			String sortableFieldName = getSortableFieldName(name);
 
-		Field field = createField(sortableFieldName, datesTime);
+			Field field = createField(sortableFieldName, datesTime);
 
-		field.setNumeric(true);
-		field.setNumericClass(Long.class);
+			field.setNumeric(true);
+			field.setNumericClass(Long.class);
+		}
 
 		addKeyword(name, dates);
 	}
@@ -574,12 +576,14 @@ public class DocumentImpl implements Document {
 			return;
 		}
 
-		String sortableFieldName = getSortableFieldName(name);
+		if ((values.length == 1) || isSupportsSortMultiValuedField()) {
+			String sortableFieldName = getSortableFieldName(name);
 
-		Field field = createField(sortableFieldName, values);
+			Field field = createField(sortableFieldName, values);
 
-		field.setNumeric(true);
-		field.setNumericClass(clazz);
+			field.setNumeric(true);
+			field.setNumericClass(clazz);
+		}
 
 		addKeyword(name, values);
 	}
@@ -883,6 +887,13 @@ public class DocumentImpl implements Document {
 		}
 
 		return field;
+	}
+
+	protected boolean isSupportsSortMultiValuedField() {
+		SearchEngine searchEngine = SearchEngineUtil.getSearchEngine(
+			SearchEngineUtil.getDefaultSearchEngineId());
+
+		return searchEngine.isSupportsSortMultiValuedField();
 	}
 
 	protected void setSortableTextFields(Set<String> sortableTextFields) {

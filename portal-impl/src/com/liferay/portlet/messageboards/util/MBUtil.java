@@ -638,12 +638,13 @@ public class MBUtil {
 		if (ArrayUtil.isNotEmpty(references)) {
 			String reference = references[0];
 
-			int x = reference.lastIndexOf("<mb.");
+			int x = reference.lastIndexOf(StringPool.LESS_THAN +
+				MESSAGE_POP_PORTLET_PREFIX);
 
 			if (x > -1) {
-				int y = reference.indexOf(">", x);
+				int y = reference.indexOf(StringPool.GREATER_THAN, x);
 
-				parentHeader = reference.substring(x, y);
+				parentHeader = reference.substring(x, y + 1);
 			}
 		}
 

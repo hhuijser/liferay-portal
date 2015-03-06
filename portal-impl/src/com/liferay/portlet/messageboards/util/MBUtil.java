@@ -589,6 +589,12 @@ public class MBUtil {
 		return entries;
 	}
 
+	public static long getMessageId(String messageIdString) {
+		String[] parts = _getMessageIdStringParts(messageIdString);
+
+		return GetterUtil.getLong(parts[1]);
+	}
+
 	public static int getMessageIdStringOffset() {
 		if (PropsValues.POP_SERVER_SUBDOMAIN.length() == 0) {
 			return 1;
@@ -600,14 +606,14 @@ public class MBUtil {
 	public static long getParentMessageId(Message message) throws Exception {
 		long parentMessageId = -1;
 
-		String messageIdString = getParentMessageIdString(message);
+		String parentMessageIdString = getParentMessageIdString(message);
 
-		if (messageIdString != null) {
+		if (parentMessageIdString != null) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Parent header " + messageIdString);
+				_log.debug("Parent header " + parentMessageIdString);
 			}
 
-				parentMessageId = getParentMessageId(messageIdString);
+			parentMessageId = getMessageId(parentMessageIdString);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Parent message id " + parentMessageId);
@@ -615,12 +621,6 @@ public class MBUtil {
 		}
 
 		return parentMessageId;
-	}
-
-	public static long getParentMessageId(String messageIdString) {
-		String[] parts = _getMessageIdStringParts(messageIdString);
-
-		return GetterUtil.getLong(parts[1]);
 	}
 
 	public static String getParentMessageIdString(Message message)

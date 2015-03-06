@@ -154,7 +154,7 @@ public class MessageListenerImpl implements MessageListener {
 				groupId = category.getGroupId();
 
 				if (category.isRoot()) {
-					long messageId = MBUtil.getParentMessageId(messageIdString);
+					long messageId = MBUtil.getMessageId(messageIdString);
 
 					MBMessage threadMessage =
 						MBMessageLocalServiceUtil.fetchMBMessage(messageId);
@@ -173,7 +173,7 @@ public class MessageListenerImpl implements MessageListener {
 			User user = UserLocalServiceUtil.getUserByEmailAddress(
 				company.getCompanyId(), from);
 
-			long parentMessageId = MBUtil.getParentMessageId(messageIdString);
+			long parentMessageId = MBUtil.getMessageId(messageIdString);
 
 			if (_log.isDebugEnabled()) {
 				_log.debug("Parent message id " + parentMessageId);

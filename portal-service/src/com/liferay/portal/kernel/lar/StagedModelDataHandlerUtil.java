@@ -284,7 +284,9 @@ public class StagedModelDataHandlerUtil {
 
 		StagedModel stagedModel = _getStagedModel(portletDataContext, element);
 
-		importStagedModel(portletDataContext, stagedModel);
+		if (Validator.isNotNull(stagedModel)) {
+			importStagedModel(portletDataContext, stagedModel);
+		}
 	}
 
 	public static <T extends StagedModel> void importStagedModel(
@@ -334,12 +336,14 @@ public class StagedModelDataHandlerUtil {
 		if (elementName.equals("reference")) {
 			stagedModel = _getReferenceStagedModel(portletDataContext, element);
 
-			Element referenceStagedModelElement =
-				portletDataContext.getImportDataElement(stagedModel);
+			if (Validator.isNotNull(stagedModel)) {
+				Element referenceStagedModelElement =
+					portletDataContext.getImportDataElement(stagedModel);
 
-			if (referenceStagedModelElement != null) {
-				classNameAttribute = referenceStagedModelElement.attribute(
-					"class-name");
+				if (referenceStagedModelElement != null) {
+					classNameAttribute = referenceStagedModelElement.attribute(
+						"class-name");
+				}
 			}
 		}
 		else {

@@ -347,6 +347,30 @@ public class DDMStructurePersistenceTest {
 	}
 
 	@Test
+	public void testCountByG_C_C() {
+		try {
+			_persistence.countByG_C_C(RandomTestUtil.nextLong(),
+				RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+
+			_persistence.countByG_C_C(0L, 0L, 0L);
+		}
+		catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test
+	public void testCountByG_C_CArrayable() {
+		try {
+			_persistence.countByG_C_C(new long[] { RandomTestUtil.nextLong(), 0L },
+				RandomTestUtil.nextLong(), RandomTestUtil.nextLong());
+		}
+		catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test
 	public void testCountByG_C_S() {
 		try {
 			_persistence.countByG_C_S(RandomTestUtil.nextLong(),

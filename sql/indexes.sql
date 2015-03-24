@@ -128,6 +128,7 @@ create index IX_32A18526 on DDMStorageLink (uuid_);
 create index IX_31817A62 on DDMStructure (classNameId);
 create index IX_4FBAC092 on DDMStructure (companyId, classNameId);
 create unique index IX_C8785130 on DDMStructure (groupId, classNameId, structureKey);
+create index IX_763ABBE4 on DDMStructure (groupId, companyId, classNameId);
 create index IX_43395316 on DDMStructure (groupId, parentStructureId);
 create index IX_657899A8 on DDMStructure (parentStructureId);
 create index IX_20FDE04C on DDMStructure (structureKey);

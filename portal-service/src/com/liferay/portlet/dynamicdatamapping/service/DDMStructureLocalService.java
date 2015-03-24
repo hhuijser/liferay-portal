@@ -613,6 +613,63 @@ public interface DDMStructureLocalService extends BaseLocalService,
 		long companyId, long classNameId, int start, int end);
 
 	/**
+	* Returns all the structures matching the groups and class name ID.
+	*
+	* @param groupIds the primary keys of the groups
+	* @param companyId the primary key of the structure's company
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @return the structures matching the class name ID
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> getClassStructures(
+		long[] groupIds, long companyId, long classNameId);
+
+	/**
+	* Returns all the structures matching the groups and class name ID ordered
+	* by the comparator.
+	*
+	* @param groupIds the primary keys of the groups
+	* @param companyId the primary key of the structure's company
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @param orderByComparator the comparator to order the structures
+	(optionally <code>null</code>)
+	* @return the matching structures ordered by the comparator
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> getClassStructures(
+		long[] groupIds, long companyId, long classNameId,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> orderByComparator);
+
+	/**
+	* Returns a range of all the structures matching the groups and class name
+	* ID.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end -
+	* start</code> instances. <code>start</code> and <code>end</code> are not
+	* primary keys, they are indexes in the result set. Thus, <code>0</code>
+	* refers to the first result in the set. Setting both <code>start</code>
+	* and <code>end</code> to {@link
+	* com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS} will return the full
+	* result set.
+	* </p>
+	*
+	* @param groupIds the primary keys of the groups
+	* @param companyId the primary key of the structure's company
+	* @param classNameId the primary key of the class name for the structure's
+	related model
+	* @param start the lower bound of the range of structures to return
+	* @param end the upper bound of the range of structures to return (not
+	inclusive)
+	* @return the range of matching structures
+	*/
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMStructure> getClassStructures(
+		long[] groupIds, long companyId, long classNameId, int start, int end);
+
+	/**
 	* Returns the d d m structure with the primary key.
 	*
 	* @param structureId the primary key of the d d m structure

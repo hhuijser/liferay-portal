@@ -150,9 +150,21 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 		return TemplateHandlerRegistryUtil.getClassNameIds();
 	}
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
 	@Override
 	public long[] getTemplateClassPKs(
 			long companyId, long classNameId, long classPK)
+		throws Exception {
+
+		return getTemplateClassPKs(
+			companyId, new long[] {0}, classNameId, classPK);
+	}
+
+	@Override
+	public long[] getTemplateClassPKs(
+			long companyId, long[] groupIds, long classNameId, long classPK)
 		throws Exception {
 
 		if (classPK > 0) {
@@ -165,7 +177,8 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 
 		List<DDMStructure> structures =
 			DDMStructureLocalServiceUtil.getClassStructures(
-				companyId, PortalUtil.getClassNameId(getStructureType()));
+				groupIds, companyId,
+				PortalUtil.getClassNameId(getStructureType()));
 
 		for (DDMStructure structure : structures) {
 			classPKs.add(structure.getPrimaryKey());

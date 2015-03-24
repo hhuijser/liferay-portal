@@ -62,8 +62,15 @@ public interface DDMDisplay {
 
 	public long[] getTemplateClassNameIds(long classNameId);
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
 	public long[] getTemplateClassPKs(
 			long companyId, long classNameId, long classPK)
+		throws Exception;
+
+	public long[] getTemplateClassPKs(
+			long companyId, long[] groupIds, long classNameId, long classPK)
 		throws Exception;
 
 	public long[] getTemplateGroupIds(

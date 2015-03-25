@@ -9,6 +9,8 @@ AUI.add(
 
 		var STATUS_CODE = Liferay.STATUS_CODE;
 
+		var LANGUAGE = Liferay.Language;
+
 		var STRINGS = 'strings';
 
 		var STR_BLANK = '';
@@ -178,32 +180,32 @@ AUI.add(
 
 					strings: {
 						value: {
-							allFilesSelectedText: Liferay.Language.get('all-files-selected'),
-							cancelFileText: Liferay.Language.get('cancel-upload'),
-							cancelUploadsText: Liferay.Language.get('cancel-all-uploads'),
-							clearRecentUploadsText: Liferay.Language.get('clear-documents-already-saved'),
-							deleteFileText: Liferay.Language.get('delete-file'),
-							dropFilesText: Liferay.Language.get('drop-files-here-to-upload'),
-							dropFileText: Liferay.Language.get('drop-file-here-to-upload'),
-							fileCannotBeSavedText: Liferay.Language.get('the-file-x-cannot-be-saved'),
-							invalidFileNameText: Liferay.Language.get('please-enter-a-file-with-a-valid-file-name'),
-							invalidFileSizeText: Liferay.Language.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'),
-							noFilesSelectedText: Liferay.Language.get('no-files-selected'),
-							notAvailableText: Liferay.Language.get('multiple-file-uploading-is-not-available'),
-							orText: Liferay.Language.get('or'),
-							pendingFileText: Liferay.Language.get('these-files-have-been-previously-uploaded-but-not-actually-saved.-please-save-or-delete-them-before-they-are-removed'),
-							selectFilesText: Liferay.Language.get('select-files'),
-							selectFileText: Liferay.Language.get('select-file'),
-							unexpectedErrorOnDeleteText: Liferay.Language.get('an-unexpected-error-occurred-while-deleting-the-file'),
-							unexpectedErrorOnUploadText: Liferay.Language.get('an-unexpected-error-occurred-while-uploading-your-file'),
-							uploadingFileXofXText: Liferay.Language.get('uploading-file-x-of-x'),
-							uploadingText: Liferay.Language.get('uploading'),
-							uploadsCompleteText: Liferay.Language.get('all-files-ready-to-be-saved'),
-							warningFailureText: Liferay.Language.get('consider-that-the-following-data-would-not-have-been-imported-either'),
-							warningText: Liferay.Language.get('the-following-data-will-not-be-imported'),
-							xFilesReadyText: Liferay.Language.get('x-files-ready-to-be-uploaded'),
-							xFilesSelectedText: Liferay.Language.get('x-files-selected'),
-							zeroByteSizeText: Liferay.Language.get('the-file-contains-no-data-and-cannot-be-uploaded.-please-use-the-classic-uploader')
+							allFilesSelectedText: LANGUAGE.get('all-files-selected'),
+							cancelFileText: LANGUAGE.get('cancel-upload'),
+							cancelUploadsText: LANGUAGE.get('cancel-all-uploads'),
+							clearRecentUploadsText: LANGUAGE.get('clear-documents-already-saved'),
+							deleteFileText: LANGUAGE.get('delete-file'),
+							dropFilesText: LANGUAGE.get('drop-files-here-to-upload'),
+							dropFileText: LANGUAGE.get('drop-file-here-to-upload'),
+							fileCannotBeSavedText: LANGUAGE.get('the-file-x-cannot-be-saved'),
+							invalidFileNameText: LANGUAGE.get('please-enter-a-file-with-a-valid-file-name'),
+							invalidFileSizeText: LANGUAGE.get('please-enter-a-file-with-a-valid-file-size-no-larger-than-x'),
+							noFilesSelectedText: LANGUAGE.get('no-files-selected'),
+							notAvailableText: LANGUAGE.get('multiple-file-uploading-is-not-available'),
+							orText: LANGUAGE.get('or'),
+							pendingFileText: LANGUAGE.get('these-files-have-been-previously-uploaded-but-not-actually-saved.-please-save-or-delete-them-before-they-are-removed'),
+							selectFilesText: LANGUAGE.get('select-files'),
+							selectFileText: LANGUAGE.get('select-file'),
+							unexpectedErrorOnDeleteText: LANGUAGE.get('an-unexpected-error-occurred-while-deleting-the-file'),
+							unexpectedErrorOnUploadText: LANGUAGE.get('an-unexpected-error-occurred-while-uploading-your-file'),
+							uploadingFileXofXText: LANGUAGE.get('uploading-file-x-of-x'),
+							uploadingText: LANGUAGE.get('uploading'),
+							uploadsCompleteText: LANGUAGE.get('all-files-ready-to-be-saved'),
+							warningFailureText: LANGUAGE.get('consider-that-the-following-data-would-not-have-been-imported-either'),
+							warningText: LANGUAGE.get('the-following-data-will-not-be-imported'),
+							xFilesReadyText: LANGUAGE.get('x-files-ready-to-be-uploaded'),
+							xFilesSelectedText: LANGUAGE.get('x-files-selected'),
+							zeroByteSizeText: LANGUAGE.get('the-file-contains-no-data-and-cannot-be-uploaded.-please-use-the-classic-uploader')
 						}
 					},
 

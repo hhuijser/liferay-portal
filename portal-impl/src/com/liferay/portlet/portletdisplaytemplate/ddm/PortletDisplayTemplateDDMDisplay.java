@@ -72,7 +72,7 @@ public class PortletDisplayTemplateDDMDisplay extends BaseDDMDisplay {
 
 	@Override
 	public long[] getTemplateClassPKs(
-			long companyId, long classNameId, long classPK)
+			long[] groupIds, long classNameId, long classPK)
 		throws Exception {
 
 		return null;

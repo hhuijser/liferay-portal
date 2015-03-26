@@ -35,6 +35,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
+import com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,9 +151,27 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 		return TemplateHandlerRegistryUtil.getClassNameIds();
 	}
 
-	@Override
+	/**
+	 * @deprecated As of 7.0.0
+	 */
 	public long[] getTemplateClassPKs(
 			long companyId, long classNameId, long classPK)
+		throws Exception {
+
+		return getTemplateClassPKs(
+			new long[] {0}, companyId, classNameId, classPK);
+	}
+
+	@Override
+	public long[] getTemplateClassPKs(
+			long[] groupIds, long classNameId, long classPK)
+		throws Exception {
+
+		return getTemplateClassPKs(groupIds, 0L, classNameId, classPK);
+	}
+
+	protected long[] getTemplateClassPKs(
+			long[] groupIds, long companyId, long classNameId, long classPK)
 		throws Exception {
 
 		if (classPK > 0) {
@@ -163,9 +182,16 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 
 		classPKs.add(0L);
 
-		List<DDMStructure> structures =
-			DDMStructureLocalServiceUtil.getClassStructures(
+		List<DDMStructure> structures = null;
+
+		if (companyId > 0) {
+			structures = DDMStructureLocalServiceUtil.getClassStructures(
 				companyId, PortalUtil.getClassNameId(getStructureType()));
+		}
+		else {
+			structures = DDMStructureServiceUtil.getStructures(
+				groupIds, PortalUtil.getClassNameId(getStructureType()));
+		}
 
 		for (DDMStructure structure : structures) {
 			classPKs.add(structure.getPrimaryKey());

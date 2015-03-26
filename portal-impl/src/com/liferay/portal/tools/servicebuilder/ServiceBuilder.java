@@ -401,6 +401,8 @@ public class ServiceBuilder {
 
 		String packagePath = _getPackagePath(file);
 
+		String filePath = file.getPath();
+
 		String className = file.getName();
 
 		className = className.substring(0, className.length() - 5);
@@ -408,8 +410,10 @@ public class ServiceBuilder {
 		content = JavaSourceProcessor.stripJavaImports(
 			content, packagePath, className);
 
-		content = JavaSourceProcessor._stripFullyQualifiedClassNames(
-			content, file);
+		if (!filePath.endsWith(".temp")) {
+			content = JavaSourceProcessor._stripFullyQualifiedClassNames(
+				content, file);
+		}
 
 		File tempFile = new File("ServiceBuilder.temp");
 
@@ -2526,14 +2530,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createPersistence(Entity entity) throws Exception {
-		JavaClass javaClass = _getJavaClass(
-			_outputPath + "/service/persistence/impl/" + entity.getName() +
-				"PersistenceImpl.java");
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
+		context.put("methods", _persistenceImplMethods);
 
 		// Content
 
@@ -2569,6 +2569,18 @@ public class ServiceBuilder {
 				"PersistenceImpl.java");
 
 		writeFile(ejbFile, content, _author);
+
+		File tempFile = new File(
+			_outputPath + "/service/persistence/impl/" + entity.getName() +
+				"PersistenceImpl.temp");
+
+		writeFile(tempFile, content, _author);
+
+		JavaClass javaClass = _getJavaClass(tempFile.getPath());
+
+		_persistenceImplMethods = _getMethods(javaClass);
+
+		tempFile.delete();
 
 		ejbFile = new File(
 			_outputPath + "/service/persistence/" + entity.getName() +
@@ -2610,14 +2622,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createPersistenceUtil(Entity entity) throws Exception {
-		JavaClass javaClass = _getJavaClass(
-			_outputPath + "/service/persistence/impl/" + entity.getName() +
-				"PersistenceImpl.java");
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
+		context.put("methods", _persistenceImplMethods);
 
 		// Content
 
@@ -5210,6 +5218,7 @@ public class ServiceBuilder {
 	private boolean _osgiModule;
 	private String _outputPath;
 	private String _packagePath;
+	private JavaMethod[] _persistenceImplMethods;
 	private String _pluginName;
 	private String _portletName = StringPool.BLANK;
 	private String _portletPackageName = StringPool.BLANK;

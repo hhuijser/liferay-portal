@@ -170,36 +170,6 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 		return getTemplateClassPKs(groupIds, 0L, classNameId, classPK);
 	}
 
-	protected long[] getTemplateClassPKs(
-			long[] groupIds, long companyId, long classNameId, long classPK)
-		throws Exception {
-
-		if (classPK > 0) {
-			return new long[] {classPK};
-		}
-
-		List<Long> classPKs = new ArrayList<>();
-
-		classPKs.add(0L);
-
-		List<DDMStructure> structures = null;
-
-		if (companyId > 0) {
-			structures = DDMStructureLocalServiceUtil.getClassStructures(
-				companyId, PortalUtil.getClassNameId(getStructureType()));
-		}
-		else {
-			structures = DDMStructureServiceUtil.getStructures(
-				groupIds, PortalUtil.getClassNameId(getStructureType()));
-		}
-
-		for (DDMStructure structure : structures) {
-			classPKs.add(structure.getPrimaryKey());
-		}
-
-		return ArrayUtil.toLongArray(classPKs);
-	}
-
 	@Override
 	public long[] getTemplateGroupIds(
 			ThemeDisplay themeDisplay, boolean includeAncestorTemplates)
@@ -323,6 +293,36 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 
 	protected String getDefaultViewTemplateTitle(Locale locale) {
 		return LanguageUtil.get(locale, "templates");
+	}
+
+	protected long[] getTemplateClassPKs(
+			long[] groupIds, long companyId, long classNameId, long classPK)
+		throws Exception {
+
+		if (classPK > 0) {
+			return new long[] {classPK};
+		}
+
+		List<Long> classPKs = new ArrayList<>();
+
+		classPKs.add(0L);
+
+		List<DDMStructure> structures = null;
+
+		if (companyId > 0) {
+			structures = DDMStructureLocalServiceUtil.getClassStructures(
+				companyId, PortalUtil.getClassNameId(getStructureType()));
+		}
+		else {
+			structures = DDMStructureServiceUtil.getStructures(
+				groupIds, PortalUtil.getClassNameId(getStructureType()));
+		}
+
+		for (DDMStructure structure : structures) {
+			classPKs.add(structure.getPrimaryKey());
+		}
+
+		return ArrayUtil.toLongArray(classPKs);
 	}
 
 	protected String getViewTemplatesURL(

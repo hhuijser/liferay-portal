@@ -411,7 +411,7 @@ public class ServiceBuilder {
 			content, packagePath, className);
 
 		if (!filePath.endsWith(".temp")) {
-			content = JavaSourceProcessor._stripFullyQualifiedClassNames(
+			content = JavaSourceProcessor.stripFullyQualifiedClassNames(
 				content, file);
 		}
 
@@ -4210,15 +4210,15 @@ public class ServiceBuilder {
 		return dimensions;
 	}
 
-	private JavaClass _getJavaClass(String fileName) throws IOException {
-		fileName = StringUtil.replace(fileName, "\\", "/");
+	private JavaClass _getJavaClass(String filePath) throws IOException {
+		filePath = StringUtil.replace(filePath, "\\", "/");
 
-		String srcFile = fileName.substring(fileName.lastIndexOf("/src/") + 5);
+		String srcFile = filePath.substring(filePath.lastIndexOf("/src/") + 5);
 
-		String className = StringUtil.replace(
+		String fullyQualifiedClassName = StringUtil.replace(
 			srcFile.substring(0, srcFile.length() - 5), "/", ".");
 
-		JavaClass javaClass = _javaClasses.get(className);
+		JavaClass javaClass = _javaClasses.get(fullyQualifiedClassName);
 
 		if (javaClass == null) {
 			ClassLibrary classLibrary = new ClassLibrary();
@@ -4227,7 +4227,7 @@ public class ServiceBuilder {
 
 			JavaDocBuilder builder = new JavaDocBuilder(classLibrary);
 
-			File file = new File(fileName);
+			File file = new File(filePath);
 
 			if (!file.exists()) {
 				return null;
@@ -4235,9 +4235,9 @@ public class ServiceBuilder {
 
 			builder.addSource(file);
 
-			javaClass = builder.getClassByName(className);
+			javaClass = builder.getClassByName(fullyQualifiedClassName);
 
-			_javaClasses.put(className, javaClass);
+			_javaClasses.put(fullyQualifiedClassName, javaClass);
 		}
 
 		return javaClass;

@@ -35,6 +35,7 @@ import com.liferay.portal.util.PortletKeys;
 import com.liferay.portlet.dynamicdatamapping.model.DDMStructure;
 import com.liferay.portlet.dynamicdatamapping.model.DDMTemplate;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
+import com.liferay.portlet.dynamicdatamapping.service.DDMStructureServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,28 +151,23 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 		return TemplateHandlerRegistryUtil.getClassNameIds();
 	}
 
-	@Override
+	/**
+	 * @deprecated As of 7.0.0
+	 */
 	public long[] getTemplateClassPKs(
 			long companyId, long classNameId, long classPK)
 		throws Exception {
 
-		if (classPK > 0) {
-			return new long[] {classPK};
-		}
+		return getTemplateClassPKs(
+			new long[] {0}, companyId, classNameId, classPK);
+	}
 
-		List<Long> classPKs = new ArrayList<>();
+	@Override
+	public long[] getTemplateClassPKs(
+			long[] groupIds, long classNameId, long classPK)
+		throws Exception {
 
-		classPKs.add(0L);
-
-		List<DDMStructure> structures =
-			DDMStructureLocalServiceUtil.getClassStructures(
-				companyId, PortalUtil.getClassNameId(getStructureType()));
-
-		for (DDMStructure structure : structures) {
-			classPKs.add(structure.getPrimaryKey());
-		}
-
-		return ArrayUtil.toLongArray(classPKs);
+		return getTemplateClassPKs(groupIds, 0L, classNameId, classPK);
 	}
 
 	@Override
@@ -297,6 +293,36 @@ public abstract class BaseDDMDisplay implements DDMDisplay {
 
 	protected String getDefaultViewTemplateTitle(Locale locale) {
 		return LanguageUtil.get(locale, "templates");
+	}
+
+	protected long[] getTemplateClassPKs(
+			long[] groupIds, long companyId, long classNameId, long classPK)
+		throws Exception {
+
+		if (classPK > 0) {
+			return new long[] {classPK};
+		}
+
+		List<Long> classPKs = new ArrayList<>();
+
+		classPKs.add(0L);
+
+		List<DDMStructure> structures = null;
+
+		if (companyId > 0) {
+			structures = DDMStructureLocalServiceUtil.getClassStructures(
+				companyId, PortalUtil.getClassNameId(getStructureType()));
+		}
+		else {
+			structures = DDMStructureServiceUtil.getStructures(
+				groupIds, PortalUtil.getClassNameId(getStructureType()));
+		}
+
+		for (DDMStructure structure : structures) {
+			classPKs.add(structure.getPrimaryKey());
+		}
+
+		return ArrayUtil.toLongArray(classPKs);
 	}
 
 	protected String getViewTemplatesURL(

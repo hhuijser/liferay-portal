@@ -401,12 +401,19 @@ public class ServiceBuilder {
 
 		String packagePath = _getPackagePath(file);
 
+		String filePath = file.getPath();
+
 		String className = file.getName();
 
 		className = className.substring(0, className.length() - 5);
 
 		content = JavaSourceProcessor.stripJavaImports(
 			content, packagePath, className);
+
+		if (!filePath.endsWith(".temp")) {
+			content = JavaSourceProcessor.stripFullyQualifiedClassNames(
+				content, file);
+		}
 
 		File tempFile = new File("ServiceBuilder.temp");
 
@@ -2523,14 +2530,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createPersistence(Entity entity) throws Exception {
-		JavaClass javaClass = _getJavaClass(
-			_outputPath + "/service/persistence/impl/" + entity.getName() +
-				"PersistenceImpl.java");
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
+		context.put("methods", _persistenceImplMethods);
 
 		// Content
 
@@ -2566,6 +2569,18 @@ public class ServiceBuilder {
 				"PersistenceImpl.java");
 
 		writeFile(ejbFile, content, _author);
+
+		File tempFile = new File(
+			_outputPath + "/service/persistence/impl/" + entity.getName() +
+				"PersistenceImpl.temp");
+
+		writeFile(tempFile, content, _author);
+
+		JavaClass javaClass = _getJavaClass(tempFile.getPath());
+
+		_persistenceImplMethods = _getMethods(javaClass);
+
+		tempFile.delete();
 
 		ejbFile = new File(
 			_outputPath + "/service/persistence/" + entity.getName() +
@@ -2607,14 +2622,10 @@ public class ServiceBuilder {
 	}
 
 	private void _createPersistenceUtil(Entity entity) throws Exception {
-		JavaClass javaClass = _getJavaClass(
-			_outputPath + "/service/persistence/impl/" + entity.getName() +
-				"PersistenceImpl.java");
-
 		Map<String, Object> context = _getContext();
 
 		context.put("entity", entity);
-		context.put("methods", _getMethods(javaClass));
+		context.put("methods", _persistenceImplMethods);
 
 		// Content
 
@@ -4199,21 +4210,15 @@ public class ServiceBuilder {
 		return dimensions;
 	}
 
-	private JavaClass _getJavaClass(String fileName) throws IOException {
-		int pos = fileName.indexOf(_implDir + "/");
+	private JavaClass _getJavaClass(String filePath) throws IOException {
+		filePath = StringUtil.replace(filePath, "\\", "/");
 
-		if (pos != -1) {
-			pos += _implDir.length();
-		}
-		else {
-			pos = fileName.indexOf(_apiDir + "/") + _apiDir.length();
-		}
+		String srcFile = filePath.substring(filePath.lastIndexOf("/src/") + 5);
 
-		String srcFile = fileName.substring(pos + 1);
-		String className = StringUtil.replace(
+		String fullyQualifiedClassName = StringUtil.replace(
 			srcFile.substring(0, srcFile.length() - 5), "/", ".");
 
-		JavaClass javaClass = _javaClasses.get(className);
+		JavaClass javaClass = _javaClasses.get(fullyQualifiedClassName);
 
 		if (javaClass == null) {
 			ClassLibrary classLibrary = new ClassLibrary();
@@ -4222,7 +4227,7 @@ public class ServiceBuilder {
 
 			JavaDocBuilder builder = new JavaDocBuilder(classLibrary);
 
-			File file = new File(fileName);
+			File file = new File(filePath);
 
 			if (!file.exists()) {
 				return null;
@@ -4230,9 +4235,9 @@ public class ServiceBuilder {
 
 			builder.addSource(file);
 
-			javaClass = builder.getClassByName(className);
+			javaClass = builder.getClassByName(fullyQualifiedClassName);
 
-			_javaClasses.put(className, javaClass);
+			_javaClasses.put(fullyQualifiedClassName, javaClass);
 		}
 
 		return javaClass;
@@ -5213,6 +5218,7 @@ public class ServiceBuilder {
 	private boolean _osgiModule;
 	private String _outputPath;
 	private String _packagePath;
+	private JavaMethod[] _persistenceImplMethods;
 	private String _pluginName;
 	private String _portletName = StringPool.BLANK;
 	private String _portletPackageName = StringPool.BLANK;

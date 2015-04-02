@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.TransientValue;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.model.Image;
 import com.liferay.portal.model.LocalizedModel;
 import com.liferay.portal.model.StagedGroupedModel;
 import com.liferay.portal.model.StagedModel;
@@ -730,7 +731,8 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 
 			if (className.equals(AssetCategory.class.getName()) ||
 				className.equals(RatingsEntry.class.getName()) ||
-				className.equals(MBMessage.class.getName())) {
+				className.equals(MBMessage.class.getName()) ||
+				className.equals(Image.class.getName())) {
 
 				continue;
 			}

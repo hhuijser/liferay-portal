@@ -39,7 +39,7 @@ public abstract class BasePortalToolsTask extends JavaExec {
 			project, getConfigurationName());
 
 		configuration.setDescription(
-			"The " + getToolName() + " tool to be used in this project.");
+			"Configures the " + getToolName() + " tool for this project.");
 		configuration.setVisible(false);
 
 		GradleUtil.executeIfEmpty(

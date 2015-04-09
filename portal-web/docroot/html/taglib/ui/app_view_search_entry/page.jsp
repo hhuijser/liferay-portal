@@ -171,7 +171,7 @@ summary.setQueryTerms(queryTerms);
 					</span>
 
 					<span class="body">
-						<%= summary.getHighlightedContent() %>
+						<%= HtmlUtil.extractText(summary.getHighlightedContent()) %>
 					</span>
 				</aui:a>
 			</div>

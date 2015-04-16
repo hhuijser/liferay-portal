@@ -67,9 +67,11 @@ if (Validator.isNotNull(historyKey)) {
 				<%@ include file="/html/taglib/ui/form_navigator/sections.jspf" %>
 			</liferay-ui:panel-container>
 
-			<aui:button-row>
-				<aui:button cssClass="btn-primary" type="submit" />
-			</aui:button-row>
+			<c:if test="<%= showButtons %>">
+				<aui:button-row>
+					<aui:button cssClass="btn-primary" type="submit" />
+				</aui:button-row>
+			</c:if>
 		</c:when>
 		<c:otherwise>
 

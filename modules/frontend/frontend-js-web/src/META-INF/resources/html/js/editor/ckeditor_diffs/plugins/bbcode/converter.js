@@ -125,6 +125,8 @@
 
 	var STR_TAG_SPAN_STYLE_OPEN = '<span style="';
 
+	var STR_TAG_DIV_STYLE_OPEN = '<div style="';
+
 	var STR_TAG_URL = 'url';
 
 	var STR_TEXT_ALIGN = '<p style="text-align: ';
@@ -343,6 +345,14 @@
 			return attrs;
 		},
 
+		_handleIndent: function(token) {
+			var instance = this;
+
+			var indent = token.attribute;
+
+			instance._result.push(STR_TAG_DIV_STYLE_OPEN, 'margin-left: ', indent, 'px;', STR_TAG_ATTR_CLOSE);
+		},
+
 		_handleList: function(token) {
 			var instance = this;
 
@@ -453,7 +463,7 @@
 				size = '1';
 			}
 
-			instance._result.push(STR_TAG_SPAN_STYLE_OPEN, 'font-size: ', instance._getFontSize(size), 'px', STR_TAG_ATTR_CLOSE);
+			instance._result.push(STR_TAG_SPAN_STYLE_OPEN, 'font-size: ', instance._getFontSize(size), 'px;', STR_TAG_ATTR_CLOSE);
 
 			instance._stack.push(STR_TAG_SPAN_CLOSE);
 		},

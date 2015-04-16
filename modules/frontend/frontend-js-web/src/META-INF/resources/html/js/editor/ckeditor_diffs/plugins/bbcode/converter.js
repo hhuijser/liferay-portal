@@ -343,6 +343,14 @@
 			return attrs;
 		},
 
+		_handleIndent: function(token) {
+			var instance = this;
+
+			var indent = token.attribute;
+
+			instance._result.push(STR_TAG_SPAN_STYLE_OPEN, 'margin-left: ', indent, 'px;', STR_TAG_ATTR_CLOSE);
+		},
+
 		_handleList: function(token) {
 			var instance = this;
 

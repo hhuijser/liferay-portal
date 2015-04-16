@@ -729,6 +729,18 @@
 			}
 		},
 
+		_handleStyleIndent: function(element, stylesTagsIn, stylesTagsOut) {
+			var style = element.style;
+
+			var marginLeft = style.marginLeft;
+
+			if (marginLeft) {
+				stylesTagsIn.push('[indent=', parseInt(marginLeft), ']');
+
+				stylesTagsOut.push('[/indent]');
+			}
+		},
+
 		_handleStyleItalic: function(element, stylesTagsIn, stylesTagsOut) {
 			var style = element.style;
 
@@ -755,6 +767,7 @@
 				instance._handleStyleColor(element, stylesTagsIn, stylesTagsOut);
 				instance._handleStyleFontFamily(element, stylesTagsIn, stylesTagsOut);
 				instance._handleStyleFontSize(element, stylesTagsIn, stylesTagsOut);
+				instance._handleStyleIndent(element, stylesTagsIn, stylesTagsOut);
 				instance._handleStyleItalic(element, stylesTagsIn, stylesTagsOut);
 				instance._handleStyleTextDecoration(element, stylesTagsIn, stylesTagsOut);
 			}

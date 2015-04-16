@@ -3148,7 +3148,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		return false;
 	}
 
-	protected boolean isGenerated(String content) {
+	public static boolean isGenerated(String content) {
 		if (content.contains("* @generated") || content.contains("$ANTLR")) {
 			return true;
 		}

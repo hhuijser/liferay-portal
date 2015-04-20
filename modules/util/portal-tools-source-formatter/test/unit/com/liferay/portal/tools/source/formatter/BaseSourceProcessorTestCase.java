@@ -20,17 +20,28 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 
+import java.net.URL;
+
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 
 import org.junit.Assert;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
 
 /**
  * @author Hugo Huijser
  */
 public class BaseSourceProcessorTestCase {
+
+	@Rule
+	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	protected SourceFormatterBean getSourceFormatterBean() {
 		SourceFormatterBean sourceFormatterBean = new SourceFormatterBean();
@@ -73,9 +84,29 @@ public class BaseSourceProcessorTestCase {
 			Integer[] lineNumbers)
 		throws Exception {
 
-		String fullFileName = _DIR_NAME + StringPool.SLASH + fileName;
+		String originalExtension = FilenameUtils.getExtension(fileName);
+		fileName = FilenameUtils.getBaseName(fileName);
+		String extension = originalExtension;
+
+		if (!keepTestExtension && originalExtension.startsWith("test")) {
+			extension = extension.substring(4);
+		}
+
+		String fullFileName =
+			_DIR_NAME + StringPool.SLASH + fileName + "." + originalExtension;
+
+		File newFile = temporaryFolder.newFile(fileName + "." + extension);
+
+		URL url = classLoader.getResource(fullFileName);
+
+		try (InputStream inputStream = url.openStream()) {
+			FileUtils.copyInputStreamToFile(inputStream, newFile);
+		}
 
 		SourceFormatterBean sourceFormatterBean = getSourceFormatterBean();
+
+		sourceFormatterBean.setFileNames(
+			Collections.singletonList(newFile.getAbsolutePath()));
 
 		SourceFormatter sourceFormatter = new SourceFormatter(
 			sourceFormatterBean);
@@ -86,7 +117,7 @@ public class BaseSourceProcessorTestCase {
 
 		if (processedFiles.isEmpty()) {
 			throw new IllegalArgumentException(
-				"The file name " + fullFileName +
+				"The file name " + newFile.getAbsolutePath() +
 					" does not end with a valid extension");
 		}
 
@@ -104,7 +135,7 @@ public class BaseSourceProcessorTestCase {
 
 				sb.append(expectedErrorMessage);
 				sb.append(StringPool.SPACE);
-				sb.append(fullFileName);
+				sb.append(newFile.getAbsolutePath());
 
 				if (lineNumbers != null) {
 					sb.append(StringPool.SPACE);
@@ -119,10 +150,12 @@ public class BaseSourceProcessorTestCase {
 				new File(processedFiles.get(0)));
 
 			try {
-				File file = new File(_DIR_NAME + "/expected/" + fileName);
+				URL expectedUrl = classLoader.getResource(
+					_DIR_NAME + "/expected/" + fileName + "." +
+						originalExtension);
 
-				String expectedFormattedContent = FileUtils.readFileToString(
-					file, StringPool.UTF8);
+				String expectedFormattedContent = IOUtils.toString(
+					expectedUrl, StringPool.UTF8);
 
 				expectedFormattedContent = StringUtil.replace(
 					expectedFormattedContent, StringPool.RETURN_NEW_LINE,
@@ -137,7 +170,12 @@ public class BaseSourceProcessorTestCase {
 		}
 	}
 
+	protected final ClassLoader classLoader =
+		BaseSourceProcessorTestCase.class.getClassLoader();
+
 	private static final String _DIR_NAME =
 		"com/liferay/portal/tools/source/formatter/dependencies";
+
+	protected boolean keepTestExtension = false;
 
 }

@@ -137,8 +137,6 @@ public class BaseSourceProcessorTestCase {
 		}
 	}
 
-	protected SourceFormatter sourceFormatter;
-
 	private static final String _DIR_NAME =
 		"com/liferay/portal/tools/source/formatter/dependencies";
 

@@ -366,15 +366,13 @@ public class JavaClass {
 
 		Pattern pattern = Pattern.compile(sb.toString());
 
-		if (!isFinalableField(javaTerm, _name, pattern, true)) {
-			return;
+		if (isFinalableField(javaTerm, _name, pattern, true)) {
+			BaseSourceProcessor.processErrorMessage(
+				_fileName, "Field " + javaTerm.getName() +
+				" can be made final: " + _fileName + " " +
+				javaTerm.getLineCount());
 		}
 
-		String newJavaTermContent = StringUtil.replaceFirst(
-			javaTermContent, modifierDefinition, modifierDefinition + " final");
-
-		_content = StringUtil.replace(
-			_content, javaTermContent, newJavaTermContent);
 	}
 
 	protected void checkImmutableFieldType(JavaTerm javaTerm) {

@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ArgumentsUtil;
+import com.liferay.portal.tools.sourceformatter.JavaSourceProcessor;
 import com.liferay.portal.xml.SAXReaderFactory;
 import com.liferay.util.xml.Dom4jDocUtil;
 import com.liferay.util.xml.XMLFormatter;
@@ -831,7 +832,7 @@ public class JavadocFormatter {
 			fileName.endsWith("JavadocFormatter.java") ||
 			fileName.endsWith("SourceFormatter.java") ||
 			fileName.endsWith("WebProxyPortlet.java") ||
-			_hasGeneratedTag(originalContent)) {
+			JavaSourceProcessor.isGenerated(originalContent)) {
 
 			return;
 		}
@@ -1473,15 +1474,6 @@ public class JavadocFormatter {
 		}
 
 		return false;
-	}
-
-	private boolean _hasGeneratedTag(String content) {
-		if (content.contains("* @generated") || content.contains("$ANTLR")) {
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 
 	private boolean _hasPublicModifier(AbstractJavaEntity abstractJavaEntity) {

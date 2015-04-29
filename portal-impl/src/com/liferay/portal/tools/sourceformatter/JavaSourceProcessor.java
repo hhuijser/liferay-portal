@@ -41,6 +41,15 @@ import java.util.regex.Pattern;
  */
 public class JavaSourceProcessor extends BaseSourceProcessor {
 
+	public static boolean isGenerated(String content) {
+		if (content.contains("* @generated") || content.contains("$ANTLR")) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	protected static String checkAnnotationParameterProperties(
 		String content, String annotation) {
 
@@ -3146,15 +3155,6 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		}
 
 		return false;
-	}
-
-	protected boolean isGenerated(String content) {
-		if (content.contains("* @generated") || content.contains("$ANTLR")) {
-			return true;
-		}
-		else {
-			return false;
-		}
 	}
 
 	protected boolean isValidJavaParameter(String javaParameter) {

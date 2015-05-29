@@ -219,6 +219,6 @@ String[] types = LayoutTypeControllerTracker.getTypes();
 	<aui:button-row cssClass="lfr-add-page-toolbar">
 		<aui:button id="addLayoutSubmit" type="submit" value="add-page" />
 
-		<aui:button id="cancelAddOperation" value="cancel" />
+		<aui:button href="<%= editLayoutRenderURL %>" id="cancelAddOperation" value="cancel" />
 	</aui:button-row>
 </aui:form>

@@ -12,8 +12,10 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
+package com.liferay.portal.security.access.control;
 
+import com.liferay.portal.kernel.security.access.control.AccessControl;
+import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.portal.spring.aop.AnnotationChainableMethodAdvice;
 
 import org.aopalliance.intercept.MethodInvocation;

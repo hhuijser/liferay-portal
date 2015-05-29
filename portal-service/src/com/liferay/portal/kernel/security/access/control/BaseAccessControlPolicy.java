@@ -12,23 +12,27 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
+package com.liferay.portal.kernel.security.access.control;
 
 import java.lang.reflect.Method;
 
 /**
  * @author Tomas Polesovsky
  */
-public interface AccessControlPolicy {
+public abstract class BaseAccessControlPolicy implements AccessControlPolicy {
 
+	@Override
 	public void onServiceAccess(
 			Method method, Object[] arguments,
 			AccessControlled accessControlled)
-		throws SecurityException;
+		throws SecurityException {
+	}
 
+	@Override
 	public void onServiceRemoteAccess(
 			Method method, Object[] arguments,
 			AccessControlled accessControlled)
-		throws SecurityException;
+		throws SecurityException {
+	}
 
 }

@@ -12,8 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
+package com.liferay.portal.security.access.control;
 
+import com.liferay.portal.kernel.security.access.control.AccessControlPolicy;
+import com.liferay.portal.kernel.security.access.control.AccessControlThreadLocal;
+import com.liferay.portal.kernel.security.access.control.AccessControlled;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;

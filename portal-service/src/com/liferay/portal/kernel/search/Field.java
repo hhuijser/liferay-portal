@@ -199,6 +199,10 @@ public class Field implements Serializable {
 		_fields.add(field);
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link Query#getBoost}
+	 */
+	@Deprecated
 	public float getBoost() {
 		return _boost;
 	}
@@ -273,6 +277,10 @@ public class Field implements Serializable {
 		return _tokenized;
 	}
 
+	/**
+	 * @deprecated As of 7.0.0, replaced by {@link Query#setBoost(float)}
+	 */
+	@Deprecated
 	public void setBoost(float boost) {
 		_boost = boost;
 	}

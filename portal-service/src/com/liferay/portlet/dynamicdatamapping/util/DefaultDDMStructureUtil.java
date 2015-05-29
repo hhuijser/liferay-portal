@@ -12,19 +12,18 @@
  * details.
  */
 
-package com.liferay.portal.events;
+package com.liferay.portlet.dynamicdatamapping.util;
 
-import com.liferay.portal.kernel.events.SimpleAction;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.upgrade.util.UpgradeProcessUtil;
+import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Attribute;
 import com.liferay.portal.kernel.xml.Document;
-import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.UnsecureSAXReaderUtil;
 import com.liferay.portal.service.ServiceContext;
@@ -39,9 +38,6 @@ import com.liferay.portlet.dynamicdatamapping.model.DDMTemplateConstants;
 import com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.service.DDMTemplateLocalServiceUtil;
 import com.liferay.portlet.dynamicdatamapping.storage.StorageType;
-import com.liferay.portlet.dynamicdatamapping.util.DDMUtil;
-import com.liferay.portlet.dynamicdatamapping.util.DDMXMLUtil;
-import com.liferay.util.ContentUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,16 +47,18 @@ import java.util.Map;
 /**
  * @author Michael C. Han
  */
-public abstract class BaseDefaultDDMStructureAction extends SimpleAction {
+public class DefaultDDMStructureUtil {
 
-	protected void addDDMStructures(
-			long userId, long groupId, long classNameId, String fileName,
+	public static void addDDMStructures(
+			long userId, long groupId, long classNameId,
+			ClassLoader classLoader, String fileName,
 			ServiceContext serviceContext)
 		throws Exception {
 
 		Locale locale = PortalUtil.getSiteDefaultLocale(groupId);
 
-		List<Element> structureElements = getDDMStructures(fileName, locale);
+		List<Element> structureElements = getDDMStructures(
+			classLoader, fileName, locale);
 
 		for (Element structureElement : structureElements) {
 			boolean dynamicStructure = GetterUtil.getBoolean(
@@ -134,7 +132,12 @@ public abstract class BaseDefaultDDMStructureAction extends SimpleAction {
 
 			String templateFileName = templateElement.elementText("file-name");
 
-			boolean templateCacheable = GetterUtil.getBoolean(
+			String script = StringUtil.read(
+				classLoader,
+				FileUtil.getPath(fileName) + StringPool.SLASH +
+					templateFileName);
+
+			boolean cacheable = GetterUtil.getBoolean(
 				templateElement.elementText("cacheable"));
 
 			DDMTemplateLocalServiceUtil.addTemplate(
@@ -142,36 +145,18 @@ public abstract class BaseDefaultDDMStructureAction extends SimpleAction {
 				ddmStructure.getStructureId(), ddmStructure.getClassNameId(),
 				null, nameMap, null, DDMTemplateConstants.TEMPLATE_TYPE_DISPLAY,
 				DDMTemplateConstants.TEMPLATE_MODE_CREATE,
-				TemplateConstants.LANG_TYPE_FTL, getContent(templateFileName),
-				templateCacheable, false, StringPool.BLANK, null,
-				serviceContext);
+				TemplateConstants.LANG_TYPE_FTL, script, cacheable, false,
+				StringPool.BLANK, null, serviceContext);
 		}
 	}
 
-	protected String getContent(String fileName) {
-		return ContentUtil.get(
-			"com/liferay/portal/events/dependencies/" + fileName);
-	}
+	public static String getDynamicDDMStructureDefinition(
+			ClassLoader classLoader, String fileName,
+			String dynamicDDMStructureName, Locale locale)
+		throws Exception {
 
-	protected List<Element> getDDMStructures(String fileName, Locale locale)
-		throws DocumentException {
-
-		String xml = getContent(fileName);
-
-		xml = StringUtil.replace(xml, "[$LOCALE_DEFAULT$]", locale.toString());
-
-		Document document = UnsecureSAXReaderUtil.read(xml);
-
-		Element rootElement = document.getRootElement();
-
-		return rootElement.elements("structure");
-	}
-
-	protected String getDynamicDDMStructureDefinition(
-			String fileName, String dynamicDDMStructureName, Locale locale)
-		throws DocumentException {
-
-		List<Element> structureElements = getDDMStructures(fileName, locale);
+		List<Element> structureElements = getDDMStructures(
+			classLoader, fileName, locale);
 
 		for (Element structureElement : structureElements) {
 			boolean dynamicStructure = GetterUtil.getBoolean(
@@ -194,6 +179,21 @@ public abstract class BaseDefaultDDMStructureAction extends SimpleAction {
 		}
 
 		return null;
+	}
+
+	protected static List<Element> getDDMStructures(
+			ClassLoader classLoader, String fileName, Locale locale)
+		throws Exception {
+
+		String xml = StringUtil.read(classLoader, fileName);
+
+		xml = StringUtil.replace(xml, "[$LOCALE_DEFAULT$]", locale.toString());
+
+		Document document = UnsecureSAXReaderUtil.read(xml);
+
+		Element rootElement = document.getRootElement();
+
+		return rootElement.elements("structure");
 	}
 
 }

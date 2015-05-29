@@ -12,26 +12,20 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
+package com.liferay.portal.kernel.security.access.control.profile;
 
-import com.liferay.portal.kernel.util.AutoResetThreadLocal;
+import java.util.List;
+import java.util.Locale;
 
 /**
- * @author Michael C. Han
- * @author Raymond Augé
+ * @author Mika Koivisto
  */
-public class AccessControlThreadLocal {
+public interface ServiceAccessControlProfile {
 
-	public static boolean isRemoteAccess() {
-		return _remoteAccess.get();
-	}
+	public List<String> getAllowedServiceSignaturesList();
 
-	public static void setRemoteAccess(boolean remoteAccess) {
-		_remoteAccess.set(remoteAccess);
-	}
+	public String getName();
 
-	private static final ThreadLocal<Boolean> _remoteAccess =
-		new AutoResetThreadLocal<>(
-			AutoResetThreadLocal.class + "._remoteAccess", false);
+	public String getTitle(Locale locale);
 
 }

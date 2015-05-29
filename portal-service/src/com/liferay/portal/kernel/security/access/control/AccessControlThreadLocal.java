@@ -12,27 +12,26 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
+package com.liferay.portal.kernel.security.access.control;
 
-import java.lang.reflect.Method;
+import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 
 /**
- * @author Tomas Polesovsky
+ * @author Michael C. Han
+ * @author Raymond Augé
  */
-public abstract class BaseAccessControlPolicy implements AccessControlPolicy {
+public class AccessControlThreadLocal {
 
-	@Override
-	public void onServiceAccess(
-			Method method, Object[] arguments,
-			AccessControlled accessControlled)
-		throws SecurityException {
+	public static boolean isRemoteAccess() {
+		return _remoteAccess.get();
 	}
 
-	@Override
-	public void onServiceRemoteAccess(
-			Method method, Object[] arguments,
-			AccessControlled accessControlled)
-		throws SecurityException {
+	public static void setRemoteAccess(boolean remoteAccess) {
+		_remoteAccess.set(remoteAccess);
 	}
+
+	private static final ThreadLocal<Boolean> _remoteAccess =
+		new AutoResetThreadLocal<>(
+			AutoResetThreadLocal.class + "._remoteAccess", false);
 
 }

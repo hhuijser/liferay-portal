@@ -12,35 +12,23 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
-
-import com.liferay.portal.security.permission.PermissionChecker;
-import com.liferay.portal.security.permission.PermissionThreadLocal;
+package com.liferay.portal.kernel.security.access.control;
 
 import java.lang.reflect.Method;
 
 /**
  * @author Tomas Polesovsky
- * @author Igor Spasic
- * @author Michael C. Han
- * @author Raymond Augé
  */
-public class AuthenticatedAccessControlPolicy extends BaseAccessControlPolicy {
+public interface AccessControlPolicy {
 
-	@Override
+	public void onServiceAccess(
+			Method method, Object[] arguments,
+			AccessControlled accessControlled)
+		throws SecurityException;
+
 	public void onServiceRemoteAccess(
 			Method method, Object[] arguments,
 			AccessControlled accessControlled)
-		throws SecurityException {
-
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
-		if (!accessControlled.guestAccessEnabled() &&
-			((permissionChecker == null) || !permissionChecker.isSignedIn())) {
-
-			throw new SecurityException("Authenticated access required");
-		}
-	}
+		throws SecurityException;
 
 }

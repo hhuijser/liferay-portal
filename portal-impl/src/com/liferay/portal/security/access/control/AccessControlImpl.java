@@ -12,9 +12,11 @@
  * details.
  */
 
-package com.liferay.portal.security.ac;
+package com.liferay.portal.security.access.control;
 
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.access.control.AccessControl;
+import com.liferay.portal.kernel.security.access.control.AccessControlThreadLocal;
 import com.liferay.portal.model.User;
 import com.liferay.portal.security.auth.AccessControlContext;
 import com.liferay.portal.security.auth.AuthException;

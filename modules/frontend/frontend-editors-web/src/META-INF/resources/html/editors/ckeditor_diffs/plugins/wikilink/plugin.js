@@ -19,7 +19,7 @@ CKEDITOR.plugins.add(
 				'Unlink',
 				{
 					command: 'unlink',
-					label: editor.lang.unlink
+					label: editor.lang.link.unlink
 				}
 			);
 
@@ -73,7 +73,7 @@ CKEDITOR.plugins.add(
 						unlink: {
 							command: 'unlink',
 							group: 'link',
-							label: editor.lang.unlink,
+							label: editor.lang.link.unlink,
 							order: 5
 						}
 					}

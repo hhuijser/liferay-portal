@@ -237,10 +237,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		PermissionCheckerBag permissionCheckerBag = getPermissionCheckerBag(
 			advancedPermissionChecker, userId);
 
-		if (permissionCheckerBag == null) {
-			return booleanFilter;
-		}
-
 		Set<Group> groups = new LinkedHashSet<>();
 		Set<Role> roles = new LinkedHashSet<>();
 		Set<UserGroupRole> userGroupRoles = new LinkedHashSet<>();

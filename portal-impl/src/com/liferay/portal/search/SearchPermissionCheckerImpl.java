@@ -269,6 +269,9 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			Field.GROUP_ROLE_ID);
 		TermsFilter rolesTermsFilter = new TermsFilter(Field.ROLE_ID);
 
+		List<Role> regularRoles = new ArrayList<>();
+		List<Role> groupRoles = new ArrayList<>();
+
 		for (Role role : roles) {
 			String roleName = role.getName();
 
@@ -276,54 +279,59 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 				return booleanFilter;
 			}
 
-			if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
-					companyId, className, ResourceConstants.SCOPE_COMPANY,
-					String.valueOf(companyId), role.getRoleId(),
+			if (role.getType() == RoleConstants.TYPE_REGULAR) {
+				regularRoles.add(role);
+			}
+			else {
+				groupRoles.add(role);
+			}
+
+			rolesTermsFilter.addValue(String.valueOf(role.getRoleId()));
+		}
+
+		long[] regularRoleIds = ListUtil.toLongArray(
+			regularRoles, Role.ROLE_ID_ACCESSOR);
+		long[] groupRoleIds = ListUtil.toLongArray(
+			groupRoles, Role.ROLE_ID_ACCESSOR);
+		long[] roleIds = ArrayUtil.append(regularRoleIds, groupRoleIds);
+
+		if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
+				companyId, className, ResourceConstants.SCOPE_COMPANY,
+				String.valueOf(companyId), roleIds, ActionKeys.VIEW)) {
+
+			return booleanFilter;
+		}
+
+		if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
+				companyId, className, ResourceConstants.SCOPE_GROUP_TEMPLATE,
+				String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID),
+				regularRoleIds, ActionKeys.VIEW)) {
+
+			return booleanFilter;
+		}
+
+		for (Group group : groups) {
+			if (advancedPermissionChecker.isGroupAdmin(
+					group.getGroupId()) ||
+				ResourcePermissionLocalServiceUtil.hasResourcePermission(
+					companyId, className, ResourceConstants.SCOPE_GROUP,
+					String.valueOf(group.getGroupId()), roleIds,
 					ActionKeys.VIEW)) {
 
-				return booleanFilter;
+				groupsTermsFilter.addValue(String.valueOf(group.getGroupId()));
 			}
-
-			if ((role.getType() == RoleConstants.TYPE_REGULAR) &&
-				ResourcePermissionLocalServiceUtil.hasResourcePermission(
-					companyId, className,
-					ResourceConstants.SCOPE_GROUP_TEMPLATE,
-					String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID),
-					role.getRoleId(), ActionKeys.VIEW)) {
-
-				return booleanFilter;
-			}
-
-			for (Group group : groups) {
-				if (advancedPermissionChecker.isGroupAdmin(
-						group.getGroupId()) ||
-					ResourcePermissionLocalServiceUtil.hasResourcePermission(
-						companyId, className, ResourceConstants.SCOPE_GROUP,
-						String.valueOf(group.getGroupId()), role.getRoleId(),
-						ActionKeys.VIEW)) {
-
-					groupsTermsFilter.addValue(
-						String.valueOf(group.getGroupId()));
-				}
-
-				if ((role.getType() != RoleConstants.TYPE_REGULAR) &&
-					ResourcePermissionLocalServiceUtil.hasResourcePermission(
+			else if (ResourcePermissionLocalServiceUtil.hasResourcePermission(
 						companyId, className,
 						ResourceConstants.SCOPE_GROUP_TEMPLATE,
 						String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID),
-						role.getRoleId(), ActionKeys.VIEW)) {
+						groupRoleIds, ActionKeys.VIEW)) {
 
-					List<Role> groupRoles = groupIdsToRoles.get(
-						group.getGroupId());
+				groupsTermsFilter.addValue(String.valueOf(group.getGroupId()));
+			}
 
-					if (groupRoles.contains(role)) {
-						groupsTermsFilter.addValue(
-							String.valueOf(group.getGroupId()));
-					}
-				}
-
+			for (Role role : groupRoles) {
 				if (group.isSite() &&
-					!roleName.equals(RoleConstants.SITE_MEMBER) &&
+					!RoleConstants.SITE_MEMBER.equals(role.getName()) &&
 					(role.getType() == RoleConstants.TYPE_SITE)) {
 
 					groupRolesTermsFilter.addValue(
@@ -331,8 +339,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 							role.getRoleId());
 				}
 			}
-
-			rolesTermsFilter.addValue(String.valueOf(role.getRoleId()));
 		}
 
 		for (Group group : groups) {

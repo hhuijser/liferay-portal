@@ -426,13 +426,13 @@
 						value = value.substring(0, value.length - 1);
 					}
 				}
+			}
 
-				if (value) {
-					value = value.replace(
-						REGEX_NEW_LINE,
-						'<br>'
-					);
-				}
+			if (value) {
+				value = value.replace(
+					REGEX_NEW_LINE,
+					'<br>'
+				);
 			}
 
 			return value;

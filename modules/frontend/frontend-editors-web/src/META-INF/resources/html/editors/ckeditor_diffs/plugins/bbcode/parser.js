@@ -38,6 +38,8 @@
 		'url': 1
 	};
 
+	var REGEX_TAG_NAME = /^\/?(?:b|center|code|colou?r|email|i|img|justify|left|pre|q|quote|right|\*|s|size|table|tr|th|td|li|list|font|u|url)$/i;
+
 	var STR_TAG_CODE = 'code';
 
 	var Parser = function(config) {
@@ -122,7 +124,7 @@
 
 			var lastIndex = length;
 
-			if (token) {
+			if (token && instance._isValidTag(token[1] || token[3])) {
 				length = token.index;
 
 				lastIndex = instance._lexer.getLastIndex();
@@ -147,6 +149,8 @@
 
 			var stack = instance._stack;
 
+			var tagName;
+
 			if (token) {
 				var tagName;
 
@@ -166,7 +170,7 @@
 				}
 			}
 
-			if (pos >= 0) {
+			if (pos >= 0 && instance._isValidTag(tagName)) {
 				var tokenTagEnd = Parser.TOKEN_TAG_END;
 
 				for (var i = stack.length - 1; i >= pos; i--) {
@@ -187,29 +191,41 @@
 
 			var tagName = token[1].toLowerCase();
 
-			var stack = instance._stack;
+			if (instance._isValidTag(tagName)) {
+				var stack = instance._stack;
 
-			if (hasOwnProperty.call(ELEMENTS_BLOCK, tagName)) {
-				var lastTag;
+				if (hasOwnProperty.call(ELEMENTS_BLOCK, tagName)) {
+					var lastTag;
 
-				while ((lastTag = stack.last()) && hasOwnProperty.call(ELEMENTS_INLINE, lastTag)) {
-					instance._handleTagEnd(lastTag);
+					while ((lastTag = stack.last()) && hasOwnProperty.call(ELEMENTS_INLINE, lastTag)) {
+						instance._handleTagEnd(lastTag);
+					}
 				}
+
+				if (hasOwnProperty.call(ELEMENTS_CLOSE_SELF, tagName) && stack.last() == tagName) {
+					instance._handleTagEnd(tagName);
+				}
+
+				stack.push(tagName);
+
+				instance._result.push(
+					{
+						attribute: token[2],
+						type: Parser.TOKEN_TAG_START,
+						value: tagName
+					}
+				);
+			}
+		},
+
+		_isValidTag: function(tagName) {
+			var valid = false;
+
+			if (tagName && tagName.length) {
+				valid = REGEX_TAG_NAME.test(tagName);
 			}
 
-			if (hasOwnProperty.call(ELEMENTS_CLOSE_SELF, tagName) && stack.last() == tagName) {
-				instance._handleTagEnd(tagName);
-			}
-
-			stack.push(tagName);
-
-			instance._result.push(
-				{
-					attribute: token[2],
-					type: Parser.TOKEN_TAG_START,
-					value: tagName
-				}
-			);
+			return valid;
 		},
 
 		_reset: function() {

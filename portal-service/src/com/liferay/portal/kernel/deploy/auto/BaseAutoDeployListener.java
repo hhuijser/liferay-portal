@@ -33,7 +33,7 @@ public abstract class BaseAutoDeployListener implements AutoDeployListener {
 	public boolean isExtPlugin(File file) {
 		String fileName = file.getName();
 
-		if (fileName.contains("-ext") && !isJarFile(file)) {
+		if (fileName.endsWith("-ext") && !isJarFile(file)) {
 			return true;
 		}
 
@@ -45,7 +45,7 @@ public abstract class BaseAutoDeployListener implements AutoDeployListener {
 
 		if (isMatchingFile(file, "WEB-INF/liferay-hook.xml") &&
 			!isMatchingFile(file, "WEB-INF/liferay-portlet.xml") &&
-			!fileName.contains("-theme") && !fileName.contains("-web") &&
+			!fileName.endsWith("-theme") && !fileName.endsWith("-web") &&
 			!isJarFile(file)) {
 
 			return true;
@@ -150,7 +150,7 @@ public abstract class BaseAutoDeployListener implements AutoDeployListener {
 		String fileName = file.getName();
 
 		if (isMatchingFile(file, "WEB-INF/liferay-plugin-package.properties") &&
-			fileName.contains("-theme")) {
+			fileName.endsWith("-theme")) {
 
 			return true;
 		}
@@ -162,7 +162,7 @@ public abstract class BaseAutoDeployListener implements AutoDeployListener {
 		String fileName = file.getName();
 
 		if (isMatchingFile(file, "WEB-INF/liferay-plugin-package.properties") &&
-			fileName.contains("-web") && !isJarFile(file)) {
+			fileName.endsWith("-web") && !isJarFile(file)) {
 
 			return true;
 		}

@@ -193,13 +193,11 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		List<String> groupRoleIds = new ArrayList<>();
 
 		for (Role role : roles) {
-			if ((role.getType() == RoleConstants.TYPE_ORGANIZATION) ||
-				(role.getType() == RoleConstants.TYPE_SITE)) {
-
-				groupRoleIds.add(groupId + StringPool.DASH + role.getRoleId());
+			if (role.getType() == RoleConstants.TYPE_REGULAR) {
+				roleIds.add(role.getRoleId());
 			}
 			else {
-				roleIds.add(role.getRoleId());
+				groupRoleIds.add(groupId + StringPool.DASH + role.getRoleId());
 			}
 		}
 

@@ -53,10 +53,8 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.util.PortalUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -245,24 +243,21 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		Set<Group> groups = new LinkedHashSet<>();
 		Set<Role> roles = new LinkedHashSet<>();
 		Set<UserGroupRole> userGroupRoles = new LinkedHashSet<>();
-		Map<Long, List<Role>> groupIdsToRoles = new HashMap<>();
 
 		populate(
 			companyId, groupIds, userId, advancedPermissionChecker,
-			permissionCheckerBag, groups, roles, userGroupRoles,
-			groupIdsToRoles);
+			permissionCheckerBag, groups, roles, userGroupRoles);
 
 		return doGetPermissionFilter_6(
 			companyId, groupIds, userId, advancedPermissionChecker, className,
-			booleanFilter, groups, roles, userGroupRoles, groupIdsToRoles);
+			booleanFilter, groups, roles, userGroupRoles);
 	}
 
 	protected BooleanFilter doGetPermissionFilter_6(
 			long companyId, long[] groupIds, long userId,
 			AdvancedPermissionChecker advancedPermissionChecker,
 			String className, BooleanFilter booleanFilter, Set<Group> groups,
-			Set<Role> roles, Set<UserGroupRole> userGroupRoles,
-			Map<Long, List<Role>> groupIdsToRoles)
+			Set<Role> roles, Set<UserGroupRole> userGroupRoles)
 		throws Exception {
 
 		BooleanFilter permissionBooleanFilter = new BooleanFilter();
@@ -412,8 +407,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			long companyId, long[] groupIds, long userId,
 			AdvancedPermissionChecker advancedPermissionChecker,
 			PermissionCheckerBag permissionCheckerBag, Set<Group> groups,
-			Set<Role> roles, Set<UserGroupRole> userGroupRoles,
-			Map<Long, List<Role>> groupIdsToRoles)
+			Set<Role> roles, Set<UserGroupRole> userGroupRoles)
 		throws Exception {
 
 		roles.addAll(permissionCheckerBag.getRoles());
@@ -452,8 +446,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 				userId, group.getGroupId());
 
 			List<Role> groupRoles = ListUtil.fromCollection(userBag.getRoles());
-
-			groupIdsToRoles.put(group.getGroupId(), groupRoles);
 
 			roles.addAll(groupRoles);
 		}

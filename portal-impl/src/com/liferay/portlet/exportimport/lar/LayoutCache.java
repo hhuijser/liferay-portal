@@ -99,6 +99,25 @@ public class LayoutCache {
 		return role;
 	}
 
+	protected Role getRoleByUuidAndCompanyId(long companyId, String uuid)
+		throws PortalException {
+
+		Role role = rolesMap.get(uuid);
+
+		if (role == null) {
+			try {
+				role = RoleLocalServiceUtil.getRoleByUuidAndCompanyId(
+					uuid, companyId);
+
+				rolesMap.put(uuid, role);
+			}
+			catch (NoSuchRoleException nsre) {
+			}
+		}
+
+		return role;
+	}
+
 	protected List<Role> getUserRoles(long userId) {
 		List<Role> userRoles = userRolesMap.get(userId);
 

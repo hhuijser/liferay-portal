@@ -141,27 +141,18 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		}
 	}
 
-	protected void addRequiredMemberRole(
-			Group group, TermsFilter groupRolesTermsFilter)
+	protected void addRequiredMemberRole(long companyId, Set<Role> roles)
 		throws Exception {
 
-		if (group.isOrganization()) {
-			Role organizationUserRole = RoleLocalServiceUtil.getRole(
-				group.getCompanyId(), RoleConstants.ORGANIZATION_USER);
+		Role organizationUserRole = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.ORGANIZATION_USER);
 
-			groupRolesTermsFilter.addValue(
-				group.getGroupId() + StringPool.DASH +
-					organizationUserRole.getRoleId());
-		}
+		roles.add(organizationUserRole);
 
-		if (group.isSite()) {
-			Role siteMemberRole = RoleLocalServiceUtil.getRole(
-				group.getCompanyId(), RoleConstants.SITE_MEMBER);
+		Role siteMemberRole = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.SITE_MEMBER);
 
-			groupRolesTermsFilter.addValue(
-				group.getGroupId() + StringPool.DASH +
-					siteMemberRole.getRoleId());
-		}
+		roles.add(siteMemberRole);
 	}
 
 	protected void doAddPermissionFields_6(
@@ -326,20 +317,13 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 				groupsTermsFilter.addValue(String.valueOf(group.getGroupId()));
 			}
 
-			for (Role role : groupRoles) {
-				if (group.isSite() &&
-					!RoleConstants.SITE_MEMBER.equals(role.getName()) &&
-					(role.getType() == RoleConstants.TYPE_SITE)) {
-
+			if (group.isOrganization() || group.isSite()) {
+				for (Role role : groupRoles) {
 					groupRolesTermsFilter.addValue(
 						group.getGroupId() + StringPool.DASH +
 							role.getRoleId());
 				}
 			}
-		}
-
-		for (Group group : groups) {
-			addRequiredMemberRole(group, groupRolesTermsFilter);
 		}
 
 		if (!groupsTermsFilter.isEmpty()) {
@@ -429,6 +413,8 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
 			roles.addAll(groupRoles);
 		}
+
+		addRequiredMemberRole(companyId, roles);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

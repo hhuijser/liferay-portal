@@ -242,15 +242,8 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		AdvancedPermissionChecker advancedPermissionChecker =
 			(AdvancedPermissionChecker)permissionChecker;
 
-		UserPermissionCheckerBag userPermissionCheckerBag = null;
-
-		if (advancedPermissionChecker.isSignedIn()) {
-			userPermissionCheckerBag = advancedPermissionChecker.getUserBag();
-		}
-		else {
-			userPermissionCheckerBag =
-				advancedPermissionChecker.getGuestUserBag();
-		}
+		UserPermissionCheckerBag userPermissionCheckerBag =
+			advancedPermissionChecker.getUserBag();
 
 		Set<Group> groups = new LinkedHashSet<>();
 		Set<Role> roles = new LinkedHashSet<>();

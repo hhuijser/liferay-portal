@@ -43,6 +43,7 @@ import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionCheckerBag;
 import com.liferay.portal.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
+import com.liferay.portal.security.permission.UserPermissionCheckerBag;
 import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.ResourceBlockLocalServiceUtil;
 import com.liferay.portal.service.ResourcePermissionLocalServiceUtil;
@@ -241,14 +242,14 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		AdvancedPermissionChecker advancedPermissionChecker =
 			(AdvancedPermissionChecker)permissionChecker;
 
-		PermissionCheckerBag permissionCheckerBag = null;
+		UserPermissionCheckerBag userPermissionCheckerBag = null;
 
 		if (advancedPermissionChecker.isSignedIn()) {
-			permissionCheckerBag = advancedPermissionChecker.getUserBag(
-				userId, 0);
+			userPermissionCheckerBag = advancedPermissionChecker.getUserBag();
 		}
 		else {
-			permissionCheckerBag = advancedPermissionChecker.getGuestUserBag();
+			userPermissionCheckerBag =
+				advancedPermissionChecker.getGuestUserBag();
 		}
 
 		Set<Group> groups = new LinkedHashSet<>();
@@ -256,7 +257,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
 		populate(
 			companyId, groupIds, userId, advancedPermissionChecker,
-			permissionCheckerBag, groups, roles);
+			userPermissionCheckerBag, groups, roles);
 
 		return doGetPermissionFilter_6(
 			companyId, groupIds, userId, advancedPermissionChecker, className,
@@ -378,14 +379,14 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 	protected void populate(
 			long companyId, long[] groupIds, long userId,
 			AdvancedPermissionChecker advancedPermissionChecker,
-			PermissionCheckerBag permissionCheckerBag, Set<Group> groups,
-			Set<Role> roles)
+			UserPermissionCheckerBag userPermissionCheckerBag,
+			Set<Group> groups, Set<Role> roles)
 		throws Exception {
 
-		roles.addAll(permissionCheckerBag.getRoles());
+		roles.addAll(userPermissionCheckerBag.getRoles());
 
 		if (ArrayUtil.isEmpty(groupIds)) {
-			groups.addAll(permissionCheckerBag.getGroups());
+			groups.addAll(userPermissionCheckerBag.getGroups());
 		}
 		else {
 			for (long groupId : groupIds) {

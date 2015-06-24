@@ -268,6 +268,10 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
 		permissionBooleanFilter.addTerm(Field.USER_ID, userId);
 
+		if (advancedPermissionChecker.isCompanyAdmin(companyId)) {
+			return booleanFilter;
+		}
+
 		TermsFilter groupsTermsFilter = new TermsFilter(Field.GROUP_ID);
 		TermsFilter groupRolesTermsFilter = new TermsFilter(
 			Field.GROUP_ROLE_ID);
@@ -277,12 +281,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		List<Role> groupRoles = new ArrayList<>();
 
 		for (Role role : roles) {
-			String roleName = role.getName();
-
-			if (roleName.equals(RoleConstants.ADMINISTRATOR)) {
-				return booleanFilter;
-			}
-
 			if (role.getType() == RoleConstants.TYPE_REGULAR) {
 				regularRoles.add(role);
 			}

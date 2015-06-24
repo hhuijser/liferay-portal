@@ -399,7 +399,10 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			resourceName);
 
-		indexer.reindex(resourceName, GetterUtil.getLong(resourceClassPK));
+		if (indexer.isPermissionAware()) {
+			indexer.reindex(
+				resourceName, GetterUtil.getLong(resourceClassPK));
+		}
 	}
 
 	protected PermissionCheckerBag getPermissionCheckerBag(

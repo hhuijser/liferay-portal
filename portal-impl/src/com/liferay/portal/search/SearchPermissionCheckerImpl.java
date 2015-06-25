@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.search.filter.TermsFilter;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.model.Group;
@@ -331,12 +332,9 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 				groupsTermsFilter.addValue(String.valueOf(group.getGroupId()));
 			}
 
-			if (group.isOrganization() || group.isSite()) {
-				for (Role role : groupRoles) {
-					groupRolesTermsFilter.addValue(
-						group.getGroupId() + StringPool.DASH +
-							role.getRoleId());
-				}
+			for (Role role : groupRoles) {
+				groupRolesTermsFilter.addValue(
+					group.getGroupId() + StringPool.DASH + role.getRoleId());
 			}
 		}
 
@@ -377,13 +375,20 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		roles.addAll(userPermissionCheckerBag.getRoles());
 
 		if (ArrayUtil.isEmpty(groupIds)) {
-			groups.addAll(userPermissionCheckerBag.getGroups());
+			groups.addAll(userPermissionCheckerBag.getUserGroups());
+			groups.addAll(userPermissionCheckerBag.getUserOrgGroups());
 		}
 		else {
-			for (long groupId : groupIds) {
-				if (GroupLocalServiceUtil.hasUserGroup(userId, groupId)) {
-					Group group = GroupLocalServiceUtil.getGroup(groupId);
+			Set<Long> groupIdsSet = SetUtil.fromArray(groupIds);
 
+			for (Group group : userPermissionCheckerBag.getUserGroups()) {
+				if (groupIdsSet.contains(group.getGroupId())) {
+					groups.add(group);
+				}
+			}
+
+			for (Group group : userPermissionCheckerBag.getUserOrgGroups()) {
+				if (groupIdsSet.contains(group.getGroupId())) {
 					groups.add(group);
 				}
 			}

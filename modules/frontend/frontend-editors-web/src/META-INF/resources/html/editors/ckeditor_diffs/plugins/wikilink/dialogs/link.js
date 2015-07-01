@@ -7,6 +7,22 @@ CKEDITOR.dialog.add(
 
 		var PLUGIN = CKEDITOR.plugins.link;
 
+		var handleAddress = function(val) {
+			var address = val.toString().trim();
+
+			address = address.replace(/[\u200B-\u200D\uFEFF]/g, '');
+
+			if (address.indexOf('/') === 0) {
+				return address;
+			}
+
+			if (address.indexOf('://') === -1) {
+				address = 'http://' + address;
+			}
+
+			return address;
+		}
+
 		var parseLink = function(editor, element) {
 			var instance = this;
 
@@ -29,6 +45,8 @@ CKEDITOR.dialog.add(
 
 				data.address = selection.getSelectedText();
 			}
+
+			data.address = handleAddress(data.address);
 
 			instance._.selectedElement = element;
 
@@ -53,9 +71,7 @@ CKEDITOR.dialog.add(
 
 										var address = val;
 
-										if (val.indexOf('www.') === 0) {
-											address = 'http://' + val;
-										}
+										address = handleAddress(address);
 
 										data.address = address;
 										data.text = val;

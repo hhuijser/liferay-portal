@@ -149,9 +149,7 @@ public class LiferaySerializer extends AbstractSerializer {
 					// Omit the object entirely if it is a circular reference or
 					// duplicate. It will be regenerated in the fixups phase.
 
-					if ((JSONSerializer.CIRC_REF_OR_DUPLICATE != fieldObject) ||
-						!serializableJSONObject.has(fieldName)) {
-
+					if (JSONSerializer.CIRC_REF_OR_DUPLICATE != fieldObject) {
 						serializableJSONObject.put(fieldName, fieldObject);
 					}
 				}

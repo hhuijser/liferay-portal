@@ -149,13 +149,10 @@ public class LiferaySerializer extends AbstractSerializer {
 					// Omit the object entirely if it is a circular reference or
 					// duplicate. It will be regenerated in the fixups phase.
 
-					if (JSONSerializer.CIRC_REF_OR_DUPLICATE != fieldObject) {
-						serializableJSONObject.put(fieldName, fieldObject);
-					}
+					if ((JSONSerializer.CIRC_REF_OR_DUPLICATE != fieldObject) ||
+						!serializableJSONObject.has(fieldName)) {
 
-					if (!serializableJSONObject.has(fieldName)) {
-						serializableJSONObject.put(
-							fieldName, field.get(object));
+						serializableJSONObject.put(fieldName, fieldObject);
 					}
 				}
 
@@ -335,12 +332,14 @@ public class LiferaySerializer extends AbstractSerializer {
 
 					Object value = null;
 
+					if (!serializableJSONObject.has(fieldName)) {
+						continue;
+					}
+
 					try {
-						if (serializableJSONObject.has(fieldName)) {
-							value = ser.unmarshall(
-								serializerState, field.getType(),
-								serializableJSONObject.get(fieldName));
-						}
+						value = ser.unmarshall(
+							serializerState, field.getType(),
+							serializableJSONObject.get(fieldName));
 					}
 					catch (Exception e) {
 					}

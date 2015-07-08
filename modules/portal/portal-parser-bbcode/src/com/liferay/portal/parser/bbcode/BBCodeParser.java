@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Iliyan Peychev
@@ -111,14 +113,24 @@ public class BBCodeParser {
 		List<BBCodeItem> bbCodeItems, BBCodeLexer bbCodeLexer,
 		IntegerWrapper marker, BBCodeToken bbCodeToken, String data) {
 
+		int lastIndex = 0;
+
 		int length = data.length();
 
-		int lastIndex = length;
-
 		if (bbCodeToken != null) {
-			length = bbCodeToken.getStart();
-
 			lastIndex = bbCodeLexer.getLastIndex();
+
+			length = lastIndex;
+
+			String tag = bbCodeToken.getStartTag();
+
+			if (tag == null) {
+				tag = bbCodeToken.getEndTag();
+			}
+
+			if (isValidTag(tag)) {
+				length = bbCodeToken.getStart();
+			}
 		}
 
 		if (length > marker.getValue()) {
@@ -137,8 +149,10 @@ public class BBCodeParser {
 
 		int size = 0;
 
+		String endTag = null;
+
 		if (bbCodeToken != null) {
-			String endTag = bbCodeToken.getEndTag();
+			endTag = bbCodeToken.getEndTag();
 
 			for (size = tags.size() - 1; size >= 0; size--) {
 				if (endTag.equals(tags.elementAt(size))) {
@@ -147,7 +161,7 @@ public class BBCodeParser {
 			}
 		}
 
-		if (size >= 0) {
+		if ((size >= 0) && isValidTag(endTag)) {
 			for (int i = tags.size() - 1; i >= size; i--) {
 				BBCodeItem bbCodeItem = new BBCodeItem(
 					TYPE_TAG_END, null, tags.elementAt(i));
@@ -165,37 +179,54 @@ public class BBCodeParser {
 
 		String startTag = bbCodeToken.getStartTag();
 
-		if (_blockElements.contains(startTag)) {
-			String currentTag = null;
+		if (isValidTag(startTag)) {
+			if (_blockElements.contains(startTag)) {
+				String currentTag = null;
 
-			while (!tags.isEmpty() &&
-				   ((currentTag = tags.lastElement()) != null) &&
-				   _inlineElements.contains(currentTag)) {
+				while (!tags.isEmpty() &&
+					   ((currentTag = tags.lastElement()) != null) &&
+					   _inlineElements.contains(currentTag)) {
 
-				BBCodeToken currentTagBBCodeToken = new BBCodeToken(currentTag);
+					BBCodeToken currentTagBBCodeToken = new BBCodeToken(
+						currentTag);
 
-				handleTagEnd(bbCodeItems, tags, currentTagBBCodeToken);
+					handleTagEnd(bbCodeItems, tags, currentTagBBCodeToken);
+				}
 			}
+
+			if (_selfCloseElements.contains(startTag) &&
+				startTag.equals(tags.lastElement())) {
+
+				BBCodeToken tagBBCodeToken = new BBCodeToken(startTag);
+
+				handleTagEnd(bbCodeItems, tags, tagBBCodeToken);
+			}
+
+			tags.push(startTag);
+
+			BBCodeItem bbCodeItem = new BBCodeItem(
+				TYPE_TAG_START, bbCodeToken.getAttribute(), startTag);
+
+			bbCodeItems.add(bbCodeItem);
+		}
+	}
+
+	protected boolean isValidTag(String tag) {
+		if ((tag != null) && (tag.length() > 0)) {
+			Matcher matcher = _tagPattern.matcher(tag);
+
+			return matcher.matches();
 		}
 
-		if (_selfCloseElements.contains(startTag) &&
-			startTag.equals(tags.lastElement())) {
-
-			BBCodeToken tagBBCodeToken = new BBCodeToken(startTag);
-
-			handleTagEnd(bbCodeItems, tags, tagBBCodeToken);
-		}
-
-		tags.push(startTag);
-
-		BBCodeItem bbCodeItem = new BBCodeItem(
-			TYPE_TAG_START, bbCodeToken.getAttribute(), startTag);
-
-		bbCodeItems.add(bbCodeItem);
+		return false;
 	}
 
 	private final Set<String> _blockElements;
 	private final Set<String> _inlineElements;
 	private final Set<String> _selfCloseElements;
+	private final Pattern _tagPattern = Pattern.compile(
+		"^/?(?:b|center|code|colou?r|email|i|img|justify|left|pre|q|quote|" +
+			"right|\\*|s|size|table|tr|th|td|li|list|font|u|url)$",
+		Pattern.CASE_INSENSITIVE);
 
 }

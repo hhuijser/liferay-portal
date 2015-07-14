@@ -361,6 +361,8 @@ public interface PropsKeys {
 
 	public static final String CDN_DYNAMIC_RESOURCES_ENABLED = "cdn.dynamic.resources.enabled";
 
+	public static final String CDN_EXCLUDE_PATHS = "cdn.exclude.paths";
+
 	public static final String CDN_HOST_HTTP = "cdn.host.http";
 
 	public static final String CDN_HOST_HTTPS = "cdn.host.https";

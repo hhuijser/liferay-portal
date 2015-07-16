@@ -1546,6 +1546,31 @@
 	);
 
 	Liferay.provide(
+		Util,
+		'updateCheckboxValue',
+		function(checkbox) {
+			checkbox = A.one(checkbox);
+
+			if (checkbox) {
+				var checked = checkbox.attr(STR_CHECKED);
+
+				var value = 'false';
+
+				if (checked) {
+					value = checkbox.val();
+
+					if (value == 'false') {
+						value = 'true';
+					}
+				}
+
+				checkbox.val(value);
+			}
+		},
+		['aui-base']
+	);
+
+	Liferay.provide(
 		window,
 		'submitForm',
 		function(form, action, singleSubmit, validate) {

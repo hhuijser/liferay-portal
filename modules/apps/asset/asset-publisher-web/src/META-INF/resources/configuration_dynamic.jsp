@@ -667,7 +667,9 @@ String selectStyle = (String)request.getAttribute("configuration.jsp-selectStyle
 
 					var subtypeFieldsFilterEnabled = $('#<portlet:namespace />subtypeFieldsFilterEnabled<%= className %>');
 
-					subtypeFieldsFilterEnabled.val(false);
+					if (subtypeFieldsFilterEnabled.val() == 'true') {
+						subtypeFieldsFilterEnabled.val(false);
+					}
 
 					subtypeFieldsFilterEnabled.prop('checked', false);
 

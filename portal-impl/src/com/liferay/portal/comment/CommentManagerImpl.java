@@ -185,6 +185,20 @@ public class CommentManagerImpl implements CommentManager {
 	}
 
 	@Override
+	public void moveDiscussionToTrash(String className, long classPK) {
+		CommentManager commentManager = getCommentManager();
+
+		commentManager.moveDiscussionToTrash(className, classPK);
+	}
+
+	@Override
+	public void restoreDiscussionFromTrash(String className, long classPK) {
+		CommentManager commentManager = getCommentManager();
+
+		commentManager.restoreDiscussionFromTrash(className, classPK);
+	}
+
+	@Override
 	public void subscribeDiscussion(
 			long userId, long groupId, String className, long classPK)
 		throws PortalException {

@@ -110,6 +110,14 @@ public class DummyCommentManagerImpl implements CommentManager {
 	}
 
 	@Override
+	public void moveDiscussionToTrash(String className, long classPK) {
+	}
+
+	@Override
+	public void restoreDiscussionFromTrash(String className, long classPK) {
+	}
+
+	@Override
 	public void subscribeDiscussion(
 		long userId, long groupId, String className, long classPK) {
 	}

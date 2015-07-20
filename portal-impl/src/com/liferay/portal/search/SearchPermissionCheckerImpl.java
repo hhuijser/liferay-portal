@@ -257,15 +257,12 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			String className, BooleanFilter booleanFilter)
 		throws Exception {
 
-		UserPermissionCheckerBag userPermissionCheckerBag =
-			advancedPermissionChecker.getUserBag();
-
 		Set<Group> groups = new LinkedHashSet<>();
 		Set<Role> roles = new LinkedHashSet<>();
 
 		populate(
-			companyId, groupIds, userId, advancedPermissionChecker,
-			userPermissionCheckerBag, groups, roles);
+			companyId, groupIds, userId, advancedPermissionChecker, groups,
+			roles);
 
 		BooleanFilter permissionBooleanFilter = new BooleanFilter();
 
@@ -366,9 +363,11 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 	protected void populate(
 			long companyId, long[] groupIds, long userId,
 			AdvancedPermissionChecker advancedPermissionChecker,
-			UserPermissionCheckerBag userPermissionCheckerBag,
 			Set<Group> groups, Set<Role> roles)
 		throws Exception {
+
+		UserPermissionCheckerBag userPermissionCheckerBag =
+			advancedPermissionChecker.getUserBag();
 
 		roles.addAll(userPermissionCheckerBag.getRoles());
 

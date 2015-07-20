@@ -101,7 +101,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 				return;
 			}
 
-			doAddPermissionFields_6(
+			doAddPermissionFields(
 				companyId, groupId, className, classPK, document);
 		}
 		catch (NoSuchResourceException nsre) {
@@ -167,7 +167,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		roles.add(siteMemberRole);
 	}
 
-	protected void doAddPermissionFields_6(
+	protected void doAddPermissionFields(
 			long companyId, long groupId, String className, String classPK,
 			Document doc)
 		throws Exception {
@@ -246,12 +246,12 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		AdvancedPermissionChecker advancedPermissionChecker =
 			(AdvancedPermissionChecker)permissionChecker;
 
-		return doGetPermissionFilter_6(
+		return doGetPermissionFilter(
 			companyId, groupIds, advancedPermissionChecker, className,
 			booleanFilter);
 	}
 
-	protected BooleanFilter doGetPermissionFilter_6(
+	protected BooleanFilter doGetPermissionFilter(
 			long companyId, long[] groupIds,
 			AdvancedPermissionChecker advancedPermissionChecker,
 			String className, BooleanFilter booleanFilter)

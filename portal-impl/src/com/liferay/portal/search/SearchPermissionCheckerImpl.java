@@ -247,6 +247,17 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		AdvancedPermissionChecker advancedPermissionChecker =
 			(AdvancedPermissionChecker)permissionChecker;
 
+		return doGetPermissionFilter_6(
+			companyId, groupIds, userId, advancedPermissionChecker, className,
+			booleanFilter);
+	}
+
+	protected BooleanFilter doGetPermissionFilter_6(
+			long companyId, long[] groupIds, long userId,
+			AdvancedPermissionChecker advancedPermissionChecker,
+			String className, BooleanFilter booleanFilter)
+		throws Exception {
+
 		UserPermissionCheckerBag userPermissionCheckerBag =
 			advancedPermissionChecker.getUserBag();
 
@@ -256,18 +267,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		populate(
 			companyId, groupIds, userId, advancedPermissionChecker,
 			userPermissionCheckerBag, groups, roles);
-
-		return doGetPermissionFilter_6(
-			companyId, groupIds, userId, advancedPermissionChecker, className,
-			booleanFilter, groups, roles);
-	}
-
-	protected BooleanFilter doGetPermissionFilter_6(
-			long companyId, long[] groupIds, long userId,
-			AdvancedPermissionChecker advancedPermissionChecker,
-			String className, BooleanFilter booleanFilter, Set<Group> groups,
-			Set<Role> roles)
-		throws Exception {
 
 		BooleanFilter permissionBooleanFilter = new BooleanFilter();
 

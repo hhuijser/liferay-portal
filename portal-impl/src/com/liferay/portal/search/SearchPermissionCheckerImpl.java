@@ -121,8 +121,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
 		try {
 			booleanFilter = doGetPermissionBooleanFilter(
-				companyId, groupIds, userId, className, booleanFilter,
-				searchContext);
+				companyId, groupIds, userId, className, booleanFilter);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
@@ -214,7 +213,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
 	protected BooleanFilter doGetPermissionBooleanFilter(
 			long companyId, long[] groupIds, long userId, String className,
-			BooleanFilter booleanFilter, SearchContext searchContext)
+			BooleanFilter booleanFilter)
 		throws Exception {
 
 		Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(className);

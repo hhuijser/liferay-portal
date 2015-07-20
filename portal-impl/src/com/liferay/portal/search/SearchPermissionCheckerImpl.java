@@ -247,12 +247,12 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			(AdvancedPermissionChecker)permissionChecker;
 
 		return doGetPermissionFilter_6(
-			companyId, groupIds, userId, advancedPermissionChecker, className,
+			companyId, groupIds, advancedPermissionChecker, className,
 			booleanFilter);
 	}
 
 	protected BooleanFilter doGetPermissionFilter_6(
-			long companyId, long[] groupIds, long userId,
+			long companyId, long[] groupIds,
 			AdvancedPermissionChecker advancedPermissionChecker,
 			String className, BooleanFilter booleanFilter)
 		throws Exception {
@@ -260,13 +260,12 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		Set<Group> groups = new LinkedHashSet<>();
 		Set<Role> roles = new LinkedHashSet<>();
 
-		populate(
-			companyId, groupIds, userId, advancedPermissionChecker, groups,
-			roles);
+		populate(companyId, groupIds, advancedPermissionChecker, groups, roles);
 
 		BooleanFilter permissionBooleanFilter = new BooleanFilter();
 
-		permissionBooleanFilter.addTerm(Field.USER_ID, userId);
+		permissionBooleanFilter.addTerm(
+			Field.USER_ID, advancedPermissionChecker.getUserId());
 
 		TermsFilter groupsTermsFilter = new TermsFilter(Field.GROUP_ID);
 		TermsFilter groupRolesTermsFilter = new TermsFilter(
@@ -361,7 +360,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 	}
 
 	protected void populate(
-			long companyId, long[] groupIds, long userId,
+			long companyId, long[] groupIds,
 			AdvancedPermissionChecker advancedPermissionChecker,
 			Set<Group> groups, Set<Role> roles)
 		throws Exception {
@@ -393,7 +392,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 
 		for (Group group : groups) {
 			PermissionCheckerBag userBag = advancedPermissionChecker.getUserBag(
-				userId, group.getGroupId());
+				advancedPermissionChecker.getUserId(), group.getGroupId());
 
 			List<Role> groupRoles = ListUtil.fromCollection(userBag.getRoles());
 

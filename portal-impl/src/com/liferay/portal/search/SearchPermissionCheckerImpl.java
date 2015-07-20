@@ -141,8 +141,13 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		}
 	}
 
-	protected void addRequiredMemberRole(long companyId, Set<Role> roles)
+	protected void addRequiredRoles(long companyId, Set<Role> roles)
 		throws Exception {
+
+		Role guestRole = RoleLocalServiceUtil.getRole(
+			companyId, RoleConstants.GUEST);
+
+		roles.add(guestRole);
 
 		Role organizationUserRole = RoleLocalServiceUtil.getRole(
 			companyId, RoleConstants.ORGANIZATION_USER);
@@ -400,11 +405,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			}
 		}
 
-		if (advancedPermissionChecker.isSignedIn()) {
-			roles.add(
-				RoleLocalServiceUtil.getRole(companyId, RoleConstants.GUEST));
-		}
-
 		for (Group group : groups) {
 			PermissionCheckerBag userBag = advancedPermissionChecker.getUserBag(
 				userId, group.getGroupId());
@@ -414,7 +414,7 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			roles.addAll(groupRoles);
 		}
 
-		addRequiredMemberRole(companyId, roles);
+		addRequiredRoles(companyId, roles);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

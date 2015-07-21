@@ -15,6 +15,7 @@
 package com.liferay.portal.workflow.kaleo.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -28,7 +29,6 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PersistenceTestRule;
@@ -43,9 +43,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+
 import org.junit.runner.RunWith;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -142,11 +144,11 @@ public class KaleoNotificationRecipientPersistenceTest {
 
 		newKaleoNotificationRecipient.setRecipientScriptLanguage(RandomTestUtil.randomString());
 
-		newKaleoNotificationRecipient.setRecipientScriptRequiredContexts(RandomTestUtil.randomString());
+		newKaleoNotificationRecipient.setRecipientScriptContexts(RandomTestUtil.randomString());
 
 		newKaleoNotificationRecipient.setAddress(RandomTestUtil.randomString());
 
-		newKaleoNotificationRecipient.setNotificationReceptionType(StringUtil.randomString(3));
+		newKaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString());
 
 		_kaleoNotificationRecipients.add(_persistence.update(
 				newKaleoNotificationRecipient));
@@ -185,8 +187,8 @@ public class KaleoNotificationRecipientPersistenceTest {
 			newKaleoNotificationRecipient.getRecipientScript());
 		Assert.assertEquals(existingKaleoNotificationRecipient.getRecipientScriptLanguage(),
 			newKaleoNotificationRecipient.getRecipientScriptLanguage());
-		Assert.assertEquals(existingKaleoNotificationRecipient.getRecipientScriptRequiredContexts(),
-			newKaleoNotificationRecipient.getRecipientScriptRequiredContexts());
+		Assert.assertEquals(existingKaleoNotificationRecipient.getRecipientScriptContexts(),
+			newKaleoNotificationRecipient.getRecipientScriptContexts());
 		Assert.assertEquals(existingKaleoNotificationRecipient.getAddress(),
 			newKaleoNotificationRecipient.getAddress());
 		Assert.assertEquals(existingKaleoNotificationRecipient.getNotificationReceptionType(),
@@ -245,7 +247,7 @@ public class KaleoNotificationRecipientPersistenceTest {
 			"kaleoNotificationId", true, "recipientClassName", true,
 			"recipientClassPK", true, "recipientRoleType", true,
 			"recipientScript", true, "recipientScriptLanguage", true,
-			"recipientScriptRequiredContexts", true, "address", true,
+			"recipientScriptContexts", true, "address", true,
 			"notificationReceptionType", true);
 	}
 
@@ -492,11 +494,11 @@ public class KaleoNotificationRecipientPersistenceTest {
 
 		kaleoNotificationRecipient.setRecipientScriptLanguage(RandomTestUtil.randomString());
 
-		kaleoNotificationRecipient.setRecipientScriptRequiredContexts(RandomTestUtil.randomString());
+		kaleoNotificationRecipient.setRecipientScriptContexts(RandomTestUtil.randomString());
 
 		kaleoNotificationRecipient.setAddress(RandomTestUtil.randomString());
 
-		kaleoNotificationRecipient.setNotificationReceptionType(StringUtil.randomString(3));
+		kaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString());
 
 		_kaleoNotificationRecipients.add(_persistence.update(
 				kaleoNotificationRecipient));

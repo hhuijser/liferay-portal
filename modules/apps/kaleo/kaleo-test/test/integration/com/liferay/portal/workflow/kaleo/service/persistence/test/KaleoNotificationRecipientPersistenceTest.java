@@ -15,7 +15,6 @@
 package com.liferay.portal.workflow.kaleo.service.persistence.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -29,6 +28,7 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.OrderByComparatorFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PersistenceTestRule;
@@ -43,11 +43,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-
 import org.junit.runner.RunWith;
 
 import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -148,7 +146,7 @@ public class KaleoNotificationRecipientPersistenceTest {
 
 		newKaleoNotificationRecipient.setAddress(RandomTestUtil.randomString());
 
-		newKaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString());
+		newKaleoNotificationRecipient.setNotificationReceptionType(StringUtil.randomString(3));
 
 		_kaleoNotificationRecipients.add(_persistence.update(
 				newKaleoNotificationRecipient));
@@ -498,7 +496,7 @@ public class KaleoNotificationRecipientPersistenceTest {
 
 		kaleoNotificationRecipient.setAddress(RandomTestUtil.randomString());
 
-		kaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString());
+		kaleoNotificationRecipient.setNotificationReceptionType(StringUtil.randomString(3));
 
 		_kaleoNotificationRecipients.add(_persistence.update(
 				kaleoNotificationRecipient));

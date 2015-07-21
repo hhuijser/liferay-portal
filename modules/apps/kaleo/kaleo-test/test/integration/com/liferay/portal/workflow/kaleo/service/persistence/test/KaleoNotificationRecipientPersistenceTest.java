@@ -148,7 +148,7 @@ public class KaleoNotificationRecipientPersistenceTest {
 
 		newKaleoNotificationRecipient.setAddress(RandomTestUtil.randomString());
 
-		newKaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString());
+		newKaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString(3));
 
 		_kaleoNotificationRecipients.add(_persistence.update(
 				newKaleoNotificationRecipient));
@@ -498,7 +498,7 @@ public class KaleoNotificationRecipientPersistenceTest {
 
 		kaleoNotificationRecipient.setAddress(RandomTestUtil.randomString());
 
-		kaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString());
+		kaleoNotificationRecipient.setNotificationReceptionType(RandomTestUtil.randomString(3));
 
 		_kaleoNotificationRecipients.add(_persistence.update(
 				kaleoNotificationRecipient));

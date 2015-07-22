@@ -235,6 +235,10 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			permissionChecker = PermissionCheckerFactoryUtil.create(user);
 		}
 
+		if (permissionChecker.isCompanyAdmin(companyId)) {
+			return booleanFilter;
+		}
+
 		if (!(permissionChecker instanceof AdvancedPermissionChecker)) {
 			return booleanFilter;
 		}
@@ -267,10 +271,6 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		BooleanFilter permissionBooleanFilter = new BooleanFilter();
 
 		permissionBooleanFilter.addTerm(Field.USER_ID, userId);
-
-		if (advancedPermissionChecker.isCompanyAdmin(companyId)) {
-			return booleanFilter;
-		}
 
 		TermsFilter groupsTermsFilter = new TermsFilter(Field.GROUP_ID);
 		TermsFilter groupRolesTermsFilter = new TermsFilter(

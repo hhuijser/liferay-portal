@@ -34,6 +34,7 @@ public interface DDMTemplate extends StagedGroupedModel {
 
 	public String getDescription(Locale locale);
 
+	@Override
 	public long getGroupId();
 
 	public String getLanguage();
@@ -65,8 +66,10 @@ public interface DDMTemplate extends StagedGroupedModel {
 
 	public String getType();
 
+	@Override
 	public long getUserId();
 
+	@Override
 	public String getUserName();
 
 	public String getVersion();

@@ -77,7 +77,7 @@ public abstract class EmailAddressServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the email address remote service
 	 */
-	public EmailAddressService getEmailAddressService() {
+	public com.liferay.portal.service.EmailAddressService getEmailAddressService() {
 		return emailAddressService;
 	}
 
@@ -86,7 +86,8 @@ public abstract class EmailAddressServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @param emailAddressService the email address remote service
 	 */
-	public void setEmailAddressService(EmailAddressService emailAddressService) {
+	public void setEmailAddressService(
+		com.liferay.portal.service.EmailAddressService emailAddressService) {
 		this.emailAddressService = emailAddressService;
 	}
 
@@ -376,7 +377,7 @@ public abstract class EmailAddressServiceBaseImpl extends BaseServiceImpl
 	@BeanReference(type = com.liferay.portal.service.EmailAddressLocalService.class)
 	protected com.liferay.portal.service.EmailAddressLocalService emailAddressLocalService;
 	@BeanReference(type = com.liferay.portal.service.EmailAddressService.class)
-	protected EmailAddressService emailAddressService;
+	protected com.liferay.portal.service.EmailAddressService emailAddressService;
 	@BeanReference(type = EmailAddressPersistence.class)
 	protected EmailAddressPersistence emailAddressPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

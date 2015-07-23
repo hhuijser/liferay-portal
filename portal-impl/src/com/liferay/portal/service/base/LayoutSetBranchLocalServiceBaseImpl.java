@@ -311,7 +311,7 @@ public abstract class LayoutSetBranchLocalServiceBaseImpl
 	 *
 	 * @return the layout set branch local service
 	 */
-	public LayoutSetBranchLocalService getLayoutSetBranchLocalService() {
+	public com.liferay.portal.service.LayoutSetBranchLocalService getLayoutSetBranchLocalService() {
 		return layoutSetBranchLocalService;
 	}
 
@@ -321,7 +321,7 @@ public abstract class LayoutSetBranchLocalServiceBaseImpl
 	 * @param layoutSetBranchLocalService the layout set branch local service
 	 */
 	public void setLayoutSetBranchLocalService(
-		LayoutSetBranchLocalService layoutSetBranchLocalService) {
+		com.liferay.portal.service.LayoutSetBranchLocalService layoutSetBranchLocalService) {
 		this.layoutSetBranchLocalService = layoutSetBranchLocalService;
 	}
 
@@ -839,7 +839,7 @@ public abstract class LayoutSetBranchLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.LayoutSetBranchLocalService.class)
-	protected LayoutSetBranchLocalService layoutSetBranchLocalService;
+	protected com.liferay.portal.service.LayoutSetBranchLocalService layoutSetBranchLocalService;
 	@BeanReference(type = com.liferay.portal.service.LayoutSetBranchService.class)
 	protected com.liferay.portal.service.LayoutSetBranchService layoutSetBranchService;
 	@BeanReference(type = LayoutSetBranchPersistence.class)

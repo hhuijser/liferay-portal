@@ -306,7 +306,7 @@ public abstract class TrashEntryLocalServiceBaseImpl
 	 *
 	 * @return the trash entry local service
 	 */
-	public TrashEntryLocalService getTrashEntryLocalService() {
+	public com.liferay.portlet.trash.service.TrashEntryLocalService getTrashEntryLocalService() {
 		return trashEntryLocalService;
 	}
 
@@ -316,7 +316,7 @@ public abstract class TrashEntryLocalServiceBaseImpl
 	 * @param trashEntryLocalService the trash entry local service
 	 */
 	public void setTrashEntryLocalService(
-		TrashEntryLocalService trashEntryLocalService) {
+		com.liferay.portlet.trash.service.TrashEntryLocalService trashEntryLocalService) {
 		this.trashEntryLocalService = trashEntryLocalService;
 	}
 
@@ -740,7 +740,7 @@ public abstract class TrashEntryLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.trash.service.TrashEntryLocalService.class)
-	protected TrashEntryLocalService trashEntryLocalService;
+	protected com.liferay.portlet.trash.service.TrashEntryLocalService trashEntryLocalService;
 	@BeanReference(type = com.liferay.portlet.trash.service.TrashEntryService.class)
 	protected com.liferay.portlet.trash.service.TrashEntryService trashEntryService;
 	@BeanReference(type = TrashEntryPersistence.class)

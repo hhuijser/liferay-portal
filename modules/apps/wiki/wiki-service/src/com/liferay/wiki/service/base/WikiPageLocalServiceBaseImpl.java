@@ -475,7 +475,7 @@ public abstract class WikiPageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the wiki page local service
 	 */
-	public WikiPageLocalService getWikiPageLocalService() {
+	public com.liferay.wiki.service.WikiPageLocalService getWikiPageLocalService() {
 		return wikiPageLocalService;
 	}
 
@@ -485,7 +485,7 @@ public abstract class WikiPageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param wikiPageLocalService the wiki page local service
 	 */
 	public void setWikiPageLocalService(
-		WikiPageLocalService wikiPageLocalService) {
+		com.liferay.wiki.service.WikiPageLocalService wikiPageLocalService) {
 		this.wikiPageLocalService = wikiPageLocalService;
 	}
 
@@ -1475,7 +1475,7 @@ public abstract class WikiPageLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@BeanReference(type = com.liferay.wiki.service.WikiPageLocalService.class)
-	protected WikiPageLocalService wikiPageLocalService;
+	protected com.liferay.wiki.service.WikiPageLocalService wikiPageLocalService;
 	@BeanReference(type = com.liferay.wiki.service.WikiPageService.class)
 	protected com.liferay.wiki.service.WikiPageService wikiPageService;
 	@BeanReference(type = WikiPagePersistence.class)

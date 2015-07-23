@@ -74,7 +74,7 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	public com.liferay.portlet.social.model.SocialRequest addRequest(
 		long userId, long groupId, java.lang.String className, long classPK,
 		int type, java.lang.String extraData, long receiverUserId)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the social request to the database. Also notifies the appropriate model listeners.
@@ -101,7 +101,7 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Removes all the social requests for the receiving user.
@@ -125,7 +125,8 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	* @param requestId the primary key of the social request
 	* @throws PortalException if the social request could not be found
 	*/
-	public void deleteRequest(long requestId) throws PortalException;
+	public void deleteRequest(long requestId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void deleteRequests(long className, long classPK);
 
@@ -138,7 +139,8 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portlet.social.model.SocialRequest deleteSocialRequest(
-		long requestId) throws PortalException;
+		long requestId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the social request from the database. Also notifies the appropriate model listeners.
@@ -250,7 +252,8 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns a range of all the social requests for the receiving user.
@@ -327,7 +330,8 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.social.model.SocialRequest getSocialRequest(
-		long requestId) throws PortalException;
+		long requestId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the social request matching the UUID and group.
@@ -339,7 +343,8 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.social.model.SocialRequest getSocialRequestByUuidAndGroupId(
-		java.lang.String uuid, long groupId) throws PortalException;
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns a range of all the social requests.
@@ -522,7 +527,7 @@ public interface SocialRequestLocalService extends BaseLocalService,
 	public com.liferay.portlet.social.model.SocialRequest updateRequest(
 		long requestId, int status,
 		com.liferay.portal.theme.ThemeDisplay themeDisplay)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Updates the social request in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.

@@ -167,7 +167,7 @@ public abstract class CalendarBookingServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * @return the calendar booking remote service
 	 */
-	public CalendarBookingService getCalendarBookingService() {
+	public com.liferay.calendar.service.CalendarBookingService getCalendarBookingService() {
 		return calendarBookingService;
 	}
 
@@ -177,7 +177,7 @@ public abstract class CalendarBookingServiceBaseImpl extends BaseServiceImpl
 	 * @param calendarBookingService the calendar booking remote service
 	 */
 	public void setCalendarBookingService(
-		CalendarBookingService calendarBookingService) {
+		com.liferay.calendar.service.CalendarBookingService calendarBookingService) {
 		this.calendarBookingService = calendarBookingService;
 	}
 
@@ -1083,7 +1083,7 @@ public abstract class CalendarBookingServiceBaseImpl extends BaseServiceImpl
 	@BeanReference(type = com.liferay.calendar.service.CalendarBookingLocalService.class)
 	protected com.liferay.calendar.service.CalendarBookingLocalService calendarBookingLocalService;
 	@BeanReference(type = com.liferay.calendar.service.CalendarBookingService.class)
-	protected CalendarBookingService calendarBookingService;
+	protected com.liferay.calendar.service.CalendarBookingService calendarBookingService;
 	@BeanReference(type = CalendarBookingPersistence.class)
 	protected CalendarBookingPersistence calendarBookingPersistence;
 	@BeanReference(type = CalendarBookingFinder.class)

@@ -315,7 +315,7 @@ public abstract class SocialActivityAchievementLocalServiceBaseImpl
 	 *
 	 * @return the social activity achievement local service
 	 */
-	public SocialActivityAchievementLocalService getSocialActivityAchievementLocalService() {
+	public com.liferay.portlet.social.service.SocialActivityAchievementLocalService getSocialActivityAchievementLocalService() {
 		return socialActivityAchievementLocalService;
 	}
 
@@ -325,7 +325,7 @@ public abstract class SocialActivityAchievementLocalServiceBaseImpl
 	 * @param socialActivityAchievementLocalService the social activity achievement local service
 	 */
 	public void setSocialActivityAchievementLocalService(
-		SocialActivityAchievementLocalService socialActivityAchievementLocalService) {
+		com.liferay.portlet.social.service.SocialActivityAchievementLocalService socialActivityAchievementLocalService) {
 		this.socialActivityAchievementLocalService = socialActivityAchievementLocalService;
 	}
 
@@ -635,7 +635,7 @@ public abstract class SocialActivityAchievementLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.social.service.SocialActivityAchievementLocalService.class)
-	protected SocialActivityAchievementLocalService socialActivityAchievementLocalService;
+	protected com.liferay.portlet.social.service.SocialActivityAchievementLocalService socialActivityAchievementLocalService;
 	@BeanReference(type = SocialActivityAchievementPersistence.class)
 	protected SocialActivityAchievementPersistence socialActivityAchievementPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

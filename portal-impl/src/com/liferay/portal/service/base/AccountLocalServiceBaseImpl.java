@@ -295,7 +295,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the account local service
 	 */
-	public AccountLocalService getAccountLocalService() {
+	public com.liferay.portal.service.AccountLocalService getAccountLocalService() {
 		return accountLocalService;
 	}
 
@@ -304,7 +304,8 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param accountLocalService the account local service
 	 */
-	public void setAccountLocalService(AccountLocalService accountLocalService) {
+	public void setAccountLocalService(
+		com.liferay.portal.service.AccountLocalService accountLocalService) {
 		this.accountLocalService = accountLocalService;
 	}
 
@@ -427,7 +428,7 @@ public abstract class AccountLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.AccountLocalService.class)
-	protected AccountLocalService accountLocalService;
+	protected com.liferay.portal.service.AccountLocalService accountLocalService;
 	@BeanReference(type = com.liferay.portal.service.AccountService.class)
 	protected com.liferay.portal.service.AccountService accountService;
 	@BeanReference(type = AccountPersistence.class)

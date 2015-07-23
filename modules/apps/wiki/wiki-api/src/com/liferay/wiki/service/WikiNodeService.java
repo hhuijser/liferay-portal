@@ -53,9 +53,10 @@ public interface WikiNodeService extends BaseService {
 	public com.liferay.wiki.model.WikiNode addNode(java.lang.String name,
 		java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void deleteNode(long nodeId) throws PortalException;
+	public void deleteNode(long nodeId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the Spring bean ID for this bean.
@@ -66,15 +67,17 @@ public interface WikiNodeService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wiki.model.WikiNode getNode(long groupId,
-		java.lang.String name) throws PortalException;
+		java.lang.String name)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.wiki.model.WikiNode getNode(long nodeId)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wiki.model.WikiNode> getNodes(
-		long groupId) throws PortalException;
+		long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wiki.model.WikiNode> getNodes(
@@ -82,7 +85,8 @@ public interface WikiNodeService extends BaseService {
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wiki.model.WikiNode> getNodes(
-		long groupId, int status) throws PortalException;
+		long groupId, int status)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.wiki.model.WikiNode> getNodes(
@@ -97,12 +101,13 @@ public interface WikiNodeService extends BaseService {
 	public void importPages(long nodeId, java.lang.String importer,
 		java.io.InputStream[] inputStreams,
 		java.util.Map<java.lang.String, java.lang.String[]> options)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.wiki.model.WikiNode moveNodeToTrash(long nodeId)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void restoreNodeFromTrash(long nodeId) throws PortalException;
+	public void restoreNodeFromTrash(long nodeId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Sets the Spring bean ID for this bean.
@@ -111,12 +116,14 @@ public interface WikiNodeService extends BaseService {
 	*/
 	public void setBeanIdentifier(java.lang.String beanIdentifier);
 
-	public void subscribeNode(long nodeId) throws PortalException;
+	public void subscribeNode(long nodeId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
-	public void unsubscribeNode(long nodeId) throws PortalException;
+	public void unsubscribeNode(long nodeId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.wiki.model.WikiNode updateNode(long nodeId,
 		java.lang.String name, java.lang.String description,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

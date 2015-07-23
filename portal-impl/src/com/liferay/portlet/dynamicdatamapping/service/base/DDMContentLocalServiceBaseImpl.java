@@ -420,7 +420,7 @@ public abstract class DDMContentLocalServiceBaseImpl
 	 *
 	 * @return the d d m content local service
 	 */
-	public DDMContentLocalService getDDMContentLocalService() {
+	public com.liferay.portlet.dynamicdatamapping.service.DDMContentLocalService getDDMContentLocalService() {
 		return ddmContentLocalService;
 	}
 
@@ -430,7 +430,7 @@ public abstract class DDMContentLocalServiceBaseImpl
 	 * @param ddmContentLocalService the d d m content local service
 	 */
 	public void setDDMContentLocalService(
-		DDMContentLocalService ddmContentLocalService) {
+		com.liferay.portlet.dynamicdatamapping.service.DDMContentLocalService ddmContentLocalService) {
 		this.ddmContentLocalService = ddmContentLocalService;
 	}
 
@@ -609,7 +609,7 @@ public abstract class DDMContentLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMContentLocalService.class)
-	protected DDMContentLocalService ddmContentLocalService;
+	protected com.liferay.portlet.dynamicdatamapping.service.DDMContentLocalService ddmContentLocalService;
 	@BeanReference(type = DDMContentPersistence.class)
 	protected DDMContentPersistence ddmContentPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

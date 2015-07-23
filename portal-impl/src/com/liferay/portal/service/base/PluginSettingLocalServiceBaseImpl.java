@@ -304,7 +304,7 @@ public abstract class PluginSettingLocalServiceBaseImpl
 	 *
 	 * @return the plugin setting local service
 	 */
-	public PluginSettingLocalService getPluginSettingLocalService() {
+	public com.liferay.portal.service.PluginSettingLocalService getPluginSettingLocalService() {
 		return pluginSettingLocalService;
 	}
 
@@ -314,7 +314,7 @@ public abstract class PluginSettingLocalServiceBaseImpl
 	 * @param pluginSettingLocalService the plugin setting local service
 	 */
 	public void setPluginSettingLocalService(
-		PluginSettingLocalService pluginSettingLocalService) {
+		com.liferay.portal.service.PluginSettingLocalService pluginSettingLocalService) {
 		this.pluginSettingLocalService = pluginSettingLocalService;
 	}
 
@@ -643,7 +643,7 @@ public abstract class PluginSettingLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.PluginSettingLocalService.class)
-	protected PluginSettingLocalService pluginSettingLocalService;
+	protected com.liferay.portal.service.PluginSettingLocalService pluginSettingLocalService;
 	@BeanReference(type = com.liferay.portal.service.PluginSettingService.class)
 	protected com.liferay.portal.service.PluginSettingService pluginSettingService;
 	@BeanReference(type = PluginSettingPersistence.class)

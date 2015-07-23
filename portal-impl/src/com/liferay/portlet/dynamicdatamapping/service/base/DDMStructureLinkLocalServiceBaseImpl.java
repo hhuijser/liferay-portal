@@ -304,7 +304,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 *
 	 * @return the d d m structure link local service
 	 */
-	public DDMStructureLinkLocalService getDDMStructureLinkLocalService() {
+	public com.liferay.portlet.dynamicdatamapping.service.DDMStructureLinkLocalService getDDMStructureLinkLocalService() {
 		return ddmStructureLinkLocalService;
 	}
 
@@ -314,7 +314,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	 * @param ddmStructureLinkLocalService the d d m structure link local service
 	 */
 	public void setDDMStructureLinkLocalService(
-		DDMStructureLinkLocalService ddmStructureLinkLocalService) {
+		com.liferay.portlet.dynamicdatamapping.service.DDMStructureLinkLocalService ddmStructureLinkLocalService) {
 		this.ddmStructureLinkLocalService = ddmStructureLinkLocalService;
 	}
 
@@ -419,7 +419,7 @@ public abstract class DDMStructureLinkLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureLinkLocalService.class)
-	protected DDMStructureLinkLocalService ddmStructureLinkLocalService;
+	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureLinkLocalService ddmStructureLinkLocalService;
 	@BeanReference(type = DDMStructureLinkPersistence.class)
 	protected DDMStructureLinkPersistence ddmStructureLinkPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

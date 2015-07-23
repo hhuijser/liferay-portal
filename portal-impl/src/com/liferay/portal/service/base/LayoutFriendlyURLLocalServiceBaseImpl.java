@@ -425,7 +425,7 @@ public abstract class LayoutFriendlyURLLocalServiceBaseImpl
 	 *
 	 * @return the layout friendly u r l local service
 	 */
-	public LayoutFriendlyURLLocalService getLayoutFriendlyURLLocalService() {
+	public com.liferay.portal.service.LayoutFriendlyURLLocalService getLayoutFriendlyURLLocalService() {
 		return layoutFriendlyURLLocalService;
 	}
 
@@ -435,7 +435,7 @@ public abstract class LayoutFriendlyURLLocalServiceBaseImpl
 	 * @param layoutFriendlyURLLocalService the layout friendly u r l local service
 	 */
 	public void setLayoutFriendlyURLLocalService(
-		LayoutFriendlyURLLocalService layoutFriendlyURLLocalService) {
+		com.liferay.portal.service.LayoutFriendlyURLLocalService layoutFriendlyURLLocalService) {
 		this.layoutFriendlyURLLocalService = layoutFriendlyURLLocalService;
 	}
 
@@ -614,7 +614,7 @@ public abstract class LayoutFriendlyURLLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.LayoutFriendlyURLLocalService.class)
-	protected LayoutFriendlyURLLocalService layoutFriendlyURLLocalService;
+	protected com.liferay.portal.service.LayoutFriendlyURLLocalService layoutFriendlyURLLocalService;
 	@BeanReference(type = LayoutFriendlyURLPersistence.class)
 	protected LayoutFriendlyURLPersistence layoutFriendlyURLPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

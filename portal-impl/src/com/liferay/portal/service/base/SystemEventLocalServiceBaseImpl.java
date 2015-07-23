@@ -305,7 +305,7 @@ public abstract class SystemEventLocalServiceBaseImpl
 	 *
 	 * @return the system event local service
 	 */
-	public SystemEventLocalService getSystemEventLocalService() {
+	public com.liferay.portal.service.SystemEventLocalService getSystemEventLocalService() {
 		return systemEventLocalService;
 	}
 
@@ -315,7 +315,7 @@ public abstract class SystemEventLocalServiceBaseImpl
 	 * @param systemEventLocalService the system event local service
 	 */
 	public void setSystemEventLocalService(
-		SystemEventLocalService systemEventLocalService) {
+		com.liferay.portal.service.SystemEventLocalService systemEventLocalService) {
 		this.systemEventLocalService = systemEventLocalService;
 	}
 
@@ -624,7 +624,7 @@ public abstract class SystemEventLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.SystemEventLocalService.class)
-	protected SystemEventLocalService systemEventLocalService;
+	protected com.liferay.portal.service.SystemEventLocalService systemEventLocalService;
 	@BeanReference(type = SystemEventPersistence.class)
 	protected SystemEventPersistence systemEventPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

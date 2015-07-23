@@ -239,7 +239,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @return the create date of this wiki node
 	*/
 	@Override
-	public Date getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return _wikiNode.getCreateDate();
 	}
 
@@ -280,7 +280,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @return the last post date of this wiki node
 	*/
 	@Override
-	public Date getLastPostDate() {
+	public java.util.Date getLastPostDate() {
 		return _wikiNode.getLastPostDate();
 	}
 
@@ -290,7 +290,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @return the last publish date of this wiki node
 	*/
 	@Override
-	public Date getLastPublishDate() {
+	public java.util.Date getLastPublishDate() {
 		return _wikiNode.getLastPublishDate();
 	}
 
@@ -300,7 +300,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @return the modified date of this wiki node
 	*/
 	@Override
-	public Date getModifiedDate() {
+	public java.util.Date getModifiedDate() {
 		return _wikiNode.getModifiedDate();
 	}
 
@@ -395,7 +395,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @return the status date of this wiki node
 	*/
 	@Override
-	public Date getStatusDate() {
+	public java.util.Date getStatusDate() {
 		return _wikiNode.getStatusDate();
 	}
 
@@ -636,7 +636,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @param createDate the create date of this wiki node
 	*/
 	@Override
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		_wikiNode.setCreateDate(createDate);
 	}
 
@@ -684,7 +684,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @param lastPostDate the last post date of this wiki node
 	*/
 	@Override
-	public void setLastPostDate(Date lastPostDate) {
+	public void setLastPostDate(java.util.Date lastPostDate) {
 		_wikiNode.setLastPostDate(lastPostDate);
 	}
 
@@ -694,7 +694,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @param lastPublishDate the last publish date of this wiki node
 	*/
 	@Override
-	public void setLastPublishDate(Date lastPublishDate) {
+	public void setLastPublishDate(java.util.Date lastPublishDate) {
 		_wikiNode.setLastPublishDate(lastPublishDate);
 	}
 
@@ -704,7 +704,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @param modifiedDate the modified date of this wiki node
 	*/
 	@Override
-	public void setModifiedDate(Date modifiedDate) {
+	public void setModifiedDate(java.util.Date modifiedDate) {
 		_wikiNode.setModifiedDate(modifiedDate);
 	}
 
@@ -804,7 +804,7 @@ public class WikiNodeWrapper implements WikiNode, ModelWrapper<WikiNode> {
 	* @param statusDate the status date of this wiki node
 	*/
 	@Override
-	public void setStatusDate(Date statusDate) {
+	public void setStatusDate(java.util.Date statusDate) {
 		_wikiNode.setStatusDate(statusDate);
 	}
 

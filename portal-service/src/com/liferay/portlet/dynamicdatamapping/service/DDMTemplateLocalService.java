@@ -92,7 +92,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		java.lang.String type, java.lang.String mode,
 		java.lang.String language, java.lang.String script,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds a template with additional parameters.
@@ -137,7 +137,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		boolean smallImage, java.lang.String smallImageURL,
 		java.io.File smallImageFile,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the resources to the template.
@@ -150,20 +150,19 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	public void addTemplateResources(
 		com.liferay.portlet.dynamicdatamapping.model.DDMTemplate template,
 		boolean addGroupPermissions, boolean addGuestPermissions)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Adds the model resources with the permissions to the template.
 	*
 	* @param template the template to add resources to
-	* @param groupPermissions the group permissions to be added
-	* @param guestPermissions the guest permissions to be added
+	* @param modelPermissions the permissions to be added
 	* @throws PortalException if a portal exception occurred
 	*/
 	public void addTemplateResources(
 		com.liferay.portlet.dynamicdatamapping.model.DDMTemplate template,
-		java.lang.String[] groupPermissions, java.lang.String[] guestPermissions)
-		throws PortalException;
+		com.liferay.portal.service.permission.ModelPermissions modelPermissions)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Copies the template, creating a new template with all the values
@@ -186,12 +185,12 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		java.util.Map<java.util.Locale, java.lang.String> nameMap,
 		java.util.Map<java.util.Locale, java.lang.String> descriptionMap,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate copyTemplate(
 		long userId, long templateId,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Copies all the templates matching the class name ID, class PK, and type.
@@ -215,7 +214,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		long userId, long classNameId, long oldClassPK, long newClassPK,
 		java.lang.String type,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Creates a new d d m template with the primary key. Does not add the d d m template to the database.
@@ -245,7 +244,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	*/
 	@com.liferay.portal.kernel.search.Indexable(type = IndexableType.DELETE)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate deleteDDMTemplate(
-		long templateId) throws PortalException;
+		long templateId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* @throws PortalException
@@ -253,7 +253,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Override
 	public com.liferay.portal.model.PersistedModel deletePersistedModel(
 		com.liferay.portal.model.PersistedModel persistedModel)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the template and its resources.
@@ -264,7 +264,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@com.liferay.portal.kernel.systemevent.SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteTemplate(
 		com.liferay.portlet.dynamicdatamapping.model.DDMTemplate template)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes the template and its resources.
@@ -272,7 +272,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	* @param templateId the primary key of the template to be deleted
 	* @throws PortalException if a portal exception occurred
 	*/
-	public void deleteTemplate(long templateId) throws PortalException;
+	public void deleteTemplate(long templateId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Deletes all the templates of the group.
@@ -280,10 +281,11 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	* @param groupId the primary key of the group
 	* @throws PortalException if a portal exception occurred
 	*/
-	public void deleteTemplates(long groupId) throws PortalException;
+	public void deleteTemplates(long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public void deleteTemplates(long groupId, long classNameId)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	public com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery();
 
@@ -405,7 +407,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate fetchTemplate(
 		long groupId, long classNameId, java.lang.String templateKey,
-		boolean includeAncestorTemplates) throws PortalException;
+		boolean includeAncestorTemplates)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery getActionableDynamicQuery();
@@ -426,7 +429,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplate(
-		long templateId) throws PortalException;
+		long templateId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the d d m template matching the UUID and group.
@@ -438,7 +442,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getDDMTemplateByUuidAndGroupId(
-		java.lang.String uuid, long groupId) throws PortalException;
+		java.lang.String uuid, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns a range of all the d d m templates.
@@ -496,7 +501,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portal.model.PersistedModel getPersistedModel(
-		java.io.Serializable primaryKeyObj) throws PortalException;
+		java.io.Serializable primaryKeyObj)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the template matching the group and template key.
@@ -511,7 +517,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getTemplate(
 		long groupId, long classNameId, java.lang.String templateKey)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the template matching the group and template key, optionally
@@ -538,7 +544,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getTemplate(
 		long groupId, long classNameId, java.lang.String templateKey,
-		boolean includeAncestorTemplates) throws PortalException;
+		boolean includeAncestorTemplates)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns the template with the ID.
@@ -549,11 +556,13 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getTemplate(
-		long templateId) throws PortalException;
+		long templateId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public com.liferay.portlet.dynamicdatamapping.model.DDMTemplate getTemplateBySmallImageId(
-		long smallImageId) throws PortalException;
+		long smallImageId)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns all the templates with the class PK.
@@ -594,7 +603,8 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.util.List<com.liferay.portlet.dynamicdatamapping.model.DDMTemplate> getTemplates(
 		long groupId, long classNameId, long classPK,
-		boolean includeAncestorTemplates) throws PortalException;
+		boolean includeAncestorTemplates)
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns all the templates matching the group, class name ID, class PK,
@@ -735,7 +745,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 	public void revertTemplate(long userId, long templateId,
 		java.lang.String version,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Returns an ordered range of all the templates matching the group, class
@@ -1080,7 +1090,7 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		java.lang.String type, java.lang.String mode,
 		java.lang.String language, java.lang.String script, boolean cacheable,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 
 	/**
 	* Updates the template matching the ID.
@@ -1118,5 +1128,5 @@ public interface DDMTemplateLocalService extends BaseLocalService,
 		boolean smallImage, java.lang.String smallImageURL,
 		java.io.File smallImageFile,
 		com.liferay.portal.service.ServiceContext serviceContext)
-		throws PortalException;
+		throws com.liferay.portal.kernel.exception.PortalException;
 }

@@ -261,7 +261,7 @@ public class JournalFeedWrapper implements JournalFeed,
 	* @return the create date of this journal feed
 	*/
 	@Override
-	public Date getCreateDate() {
+	public java.util.Date getCreateDate() {
 		return _journalFeed.getCreateDate();
 	}
 
@@ -376,7 +376,7 @@ public class JournalFeedWrapper implements JournalFeed,
 	* @return the last publish date of this journal feed
 	*/
 	@Override
-	public Date getLastPublishDate() {
+	public java.util.Date getLastPublishDate() {
 		return _journalFeed.getLastPublishDate();
 	}
 
@@ -386,7 +386,7 @@ public class JournalFeedWrapper implements JournalFeed,
 	* @return the modified date of this journal feed
 	*/
 	@Override
-	public Date getModifiedDate() {
+	public java.util.Date getModifiedDate() {
 		return _journalFeed.getModifiedDate();
 	}
 
@@ -578,7 +578,7 @@ public class JournalFeedWrapper implements JournalFeed,
 	* @param createDate the create date of this journal feed
 	*/
 	@Override
-	public void setCreateDate(Date createDate) {
+	public void setCreateDate(java.util.Date createDate) {
 		_journalFeed.setCreateDate(createDate);
 	}
 
@@ -707,7 +707,7 @@ public class JournalFeedWrapper implements JournalFeed,
 	* @param lastPublishDate the last publish date of this journal feed
 	*/
 	@Override
-	public void setLastPublishDate(Date lastPublishDate) {
+	public void setLastPublishDate(java.util.Date lastPublishDate) {
 		_journalFeed.setLastPublishDate(lastPublishDate);
 	}
 
@@ -717,7 +717,7 @@ public class JournalFeedWrapper implements JournalFeed,
 	* @param modifiedDate the modified date of this journal feed
 	*/
 	@Override
-	public void setModifiedDate(Date modifiedDate) {
+	public void setModifiedDate(java.util.Date modifiedDate) {
 		_journalFeed.setModifiedDate(modifiedDate);
 	}
 

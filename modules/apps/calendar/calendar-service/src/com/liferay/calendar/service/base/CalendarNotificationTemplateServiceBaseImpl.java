@@ -252,7 +252,7 @@ public abstract class CalendarNotificationTemplateServiceBaseImpl
 	 *
 	 * @return the calendar notification template remote service
 	 */
-	public CalendarNotificationTemplateService getCalendarNotificationTemplateService() {
+	public com.liferay.calendar.service.CalendarNotificationTemplateService getCalendarNotificationTemplateService() {
 		return calendarNotificationTemplateService;
 	}
 
@@ -262,7 +262,7 @@ public abstract class CalendarNotificationTemplateServiceBaseImpl
 	 * @param calendarNotificationTemplateService the calendar notification template remote service
 	 */
 	public void setCalendarNotificationTemplateService(
-		CalendarNotificationTemplateService calendarNotificationTemplateService) {
+		com.liferay.calendar.service.CalendarNotificationTemplateService calendarNotificationTemplateService) {
 		this.calendarNotificationTemplateService = calendarNotificationTemplateService;
 	}
 
@@ -591,7 +591,7 @@ public abstract class CalendarNotificationTemplateServiceBaseImpl
 	@BeanReference(type = com.liferay.calendar.service.CalendarNotificationTemplateLocalService.class)
 	protected com.liferay.calendar.service.CalendarNotificationTemplateLocalService calendarNotificationTemplateLocalService;
 	@BeanReference(type = com.liferay.calendar.service.CalendarNotificationTemplateService.class)
-	protected CalendarNotificationTemplateService calendarNotificationTemplateService;
+	protected com.liferay.calendar.service.CalendarNotificationTemplateService calendarNotificationTemplateService;
 	@BeanReference(type = CalendarNotificationTemplatePersistence.class)
 	protected CalendarNotificationTemplatePersistence calendarNotificationTemplatePersistence;
 	@BeanReference(type = com.liferay.calendar.service.CalendarResourceLocalService.class)

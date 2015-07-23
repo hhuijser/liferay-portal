@@ -63,6 +63,7 @@ public interface DDMStructure extends StagedGroupedModel {
 
 	public DDMForm getFullHierarchyDDMForm();
 
+	@Override
 	public long getGroupId();
 
 	public String getName();
@@ -85,6 +86,7 @@ public interface DDMStructure extends StagedGroupedModel {
 
 	public int getType();
 
+	@Override
 	public long getUserId();
 
 	public boolean hasField(String fieldName);

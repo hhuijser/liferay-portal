@@ -437,7 +437,7 @@ public abstract class CalEventLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the cal event local service
 	 */
-	public CalEventLocalService getCalEventLocalService() {
+	public com.liferay.portlet.calendar.service.CalEventLocalService getCalEventLocalService() {
 		return calEventLocalService;
 	}
 
@@ -447,7 +447,7 @@ public abstract class CalEventLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @param calEventLocalService the cal event local service
 	 */
 	public void setCalEventLocalService(
-		CalEventLocalService calEventLocalService) {
+		com.liferay.portlet.calendar.service.CalEventLocalService calEventLocalService) {
 		this.calEventLocalService = calEventLocalService;
 	}
 
@@ -1376,7 +1376,7 @@ public abstract class CalEventLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.calendar.service.CalEventLocalService.class)
-	protected CalEventLocalService calEventLocalService;
+	protected com.liferay.portlet.calendar.service.CalEventLocalService calEventLocalService;
 	@BeanReference(type = CalEventPersistence.class)
 	protected CalEventPersistence calEventPersistence;
 	@BeanReference(type = CalEventFinder.class)

@@ -398,7 +398,7 @@ public abstract class AddressLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the address local service
 	 */
-	public AddressLocalService getAddressLocalService() {
+	public com.liferay.portal.service.AddressLocalService getAddressLocalService() {
 		return addressLocalService;
 	}
 
@@ -407,7 +407,8 @@ public abstract class AddressLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param addressLocalService the address local service
 	 */
-	public void setAddressLocalService(AddressLocalService addressLocalService) {
+	public void setAddressLocalService(
+		com.liferay.portal.service.AddressLocalService addressLocalService) {
 		this.addressLocalService = addressLocalService;
 	}
 
@@ -754,7 +755,7 @@ public abstract class AddressLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.AddressLocalService.class)
-	protected AddressLocalService addressLocalService;
+	protected com.liferay.portal.service.AddressLocalService addressLocalService;
 	@BeanReference(type = com.liferay.portal.service.AddressService.class)
 	protected com.liferay.portal.service.AddressService addressService;
 	@BeanReference(type = AddressPersistence.class)

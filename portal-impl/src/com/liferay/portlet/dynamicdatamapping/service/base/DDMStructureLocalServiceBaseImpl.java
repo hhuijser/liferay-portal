@@ -444,7 +444,7 @@ public abstract class DDMStructureLocalServiceBaseImpl
 	 *
 	 * @return the d d m structure local service
 	 */
-	public DDMStructureLocalService getDDMStructureLocalService() {
+	public com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService getDDMStructureLocalService() {
 		return ddmStructureLocalService;
 	}
 
@@ -454,7 +454,7 @@ public abstract class DDMStructureLocalServiceBaseImpl
 	 * @param ddmStructureLocalService the d d m structure local service
 	 */
 	public void setDDMStructureLocalService(
-		DDMStructureLocalService ddmStructureLocalService) {
+		com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService ddmStructureLocalService) {
 		this.ddmStructureLocalService = ddmStructureLocalService;
 	}
 
@@ -1066,7 +1066,7 @@ public abstract class DDMStructureLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService.class)
-	protected DDMStructureLocalService ddmStructureLocalService;
+	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureLocalService ddmStructureLocalService;
 	@BeanReference(type = com.liferay.portlet.dynamicdatamapping.service.DDMStructureService.class)
 	protected com.liferay.portlet.dynamicdatamapping.service.DDMStructureService ddmStructureService;
 	@BeanReference(type = DDMStructurePersistence.class)

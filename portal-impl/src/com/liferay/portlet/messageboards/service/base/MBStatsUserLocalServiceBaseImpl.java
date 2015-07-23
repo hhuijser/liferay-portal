@@ -309,7 +309,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 *
 	 * @return the message boards stats user local service
 	 */
-	public MBStatsUserLocalService getMBStatsUserLocalService() {
+	public com.liferay.portlet.messageboards.service.MBStatsUserLocalService getMBStatsUserLocalService() {
 		return mbStatsUserLocalService;
 	}
 
@@ -319,7 +319,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	 * @param mbStatsUserLocalService the message boards stats user local service
 	 */
 	public void setMBStatsUserLocalService(
-		MBStatsUserLocalService mbStatsUserLocalService) {
+		com.liferay.portlet.messageboards.service.MBStatsUserLocalService mbStatsUserLocalService) {
 		this.mbStatsUserLocalService = mbStatsUserLocalService;
 	}
 
@@ -721,7 +721,7 @@ public abstract class MBStatsUserLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portlet.messageboards.service.MBStatsUserLocalService.class)
-	protected MBStatsUserLocalService mbStatsUserLocalService;
+	protected com.liferay.portlet.messageboards.service.MBStatsUserLocalService mbStatsUserLocalService;
 	@BeanReference(type = MBStatsUserPersistence.class)
 	protected MBStatsUserPersistence mbStatsUserPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)

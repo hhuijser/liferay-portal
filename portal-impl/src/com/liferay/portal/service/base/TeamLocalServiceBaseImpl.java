@@ -669,7 +669,7 @@ public abstract class TeamLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @return the team local service
 	 */
-	public TeamLocalService getTeamLocalService() {
+	public com.liferay.portal.service.TeamLocalService getTeamLocalService() {
 		return teamLocalService;
 	}
 
@@ -678,7 +678,8 @@ public abstract class TeamLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 *
 	 * @param teamLocalService the team local service
 	 */
-	public void setTeamLocalService(TeamLocalService teamLocalService) {
+	public void setTeamLocalService(
+		com.liferay.portal.service.TeamLocalService teamLocalService) {
 		this.teamLocalService = teamLocalService;
 	}
 
@@ -1061,7 +1062,7 @@ public abstract class TeamLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.TeamLocalService.class)
-	protected TeamLocalService teamLocalService;
+	protected com.liferay.portal.service.TeamLocalService teamLocalService;
 	@BeanReference(type = com.liferay.portal.service.TeamService.class)
 	protected com.liferay.portal.service.TeamService teamService;
 	@BeanReference(type = TeamPersistence.class)

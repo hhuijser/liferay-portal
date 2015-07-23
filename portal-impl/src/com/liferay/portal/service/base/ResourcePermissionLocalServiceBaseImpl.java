@@ -308,7 +308,7 @@ public abstract class ResourcePermissionLocalServiceBaseImpl
 	 *
 	 * @return the resource permission local service
 	 */
-	public ResourcePermissionLocalService getResourcePermissionLocalService() {
+	public com.liferay.portal.service.ResourcePermissionLocalService getResourcePermissionLocalService() {
 		return resourcePermissionLocalService;
 	}
 
@@ -318,7 +318,7 @@ public abstract class ResourcePermissionLocalServiceBaseImpl
 	 * @param resourcePermissionLocalService the resource permission local service
 	 */
 	public void setResourcePermissionLocalService(
-		ResourcePermissionLocalService resourcePermissionLocalService) {
+		com.liferay.portal.service.ResourcePermissionLocalService resourcePermissionLocalService) {
 		this.resourcePermissionLocalService = resourcePermissionLocalService;
 	}
 
@@ -592,7 +592,7 @@ public abstract class ResourcePermissionLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.ResourcePermissionLocalService.class)
-	protected ResourcePermissionLocalService resourcePermissionLocalService;
+	protected com.liferay.portal.service.ResourcePermissionLocalService resourcePermissionLocalService;
 	@BeanReference(type = com.liferay.portal.service.ResourcePermissionService.class)
 	protected com.liferay.portal.service.ResourcePermissionService resourcePermissionService;
 	@BeanReference(type = ResourcePermissionPersistence.class)

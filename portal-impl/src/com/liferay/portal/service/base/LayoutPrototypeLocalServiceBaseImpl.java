@@ -400,7 +400,7 @@ public abstract class LayoutPrototypeLocalServiceBaseImpl
 	 *
 	 * @return the layout prototype local service
 	 */
-	public LayoutPrototypeLocalService getLayoutPrototypeLocalService() {
+	public com.liferay.portal.service.LayoutPrototypeLocalService getLayoutPrototypeLocalService() {
 		return layoutPrototypeLocalService;
 	}
 
@@ -410,7 +410,7 @@ public abstract class LayoutPrototypeLocalServiceBaseImpl
 	 * @param layoutPrototypeLocalService the layout prototype local service
 	 */
 	public void setLayoutPrototypeLocalService(
-		LayoutPrototypeLocalService layoutPrototypeLocalService) {
+		com.liferay.portal.service.LayoutPrototypeLocalService layoutPrototypeLocalService) {
 		this.layoutPrototypeLocalService = layoutPrototypeLocalService;
 	}
 
@@ -851,7 +851,7 @@ public abstract class LayoutPrototypeLocalServiceBaseImpl
 	}
 
 	@BeanReference(type = com.liferay.portal.service.LayoutPrototypeLocalService.class)
-	protected LayoutPrototypeLocalService layoutPrototypeLocalService;
+	protected com.liferay.portal.service.LayoutPrototypeLocalService layoutPrototypeLocalService;
 	@BeanReference(type = com.liferay.portal.service.LayoutPrototypeService.class)
 	protected com.liferay.portal.service.LayoutPrototypeService layoutPrototypeService;
 	@BeanReference(type = LayoutPrototypePersistence.class)

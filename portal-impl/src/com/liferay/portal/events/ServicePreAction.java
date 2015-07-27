@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SessionParamUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -118,6 +119,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.TimeZone;
 
 import javax.portlet.PortletMode;
@@ -155,15 +157,44 @@ public class ServicePreAction extends Action {
 
 		// CDN host
 
-		String cdnHost = PortalUtil.getCDNHost(request);
+		String cdnHost = StringPool.BLANK;
 
 		String dynamicResourcesCDNHost = StringPool.BLANK;
+
+		String friendlyURL = (String)request.getAttribute("FRIENDLY_URL");
 
 		boolean cdnDynamicResourceEnabled =
 			PortalUtil.isCDNDynamicResourcesEnabled(request);
 
-		if (cdnDynamicResourceEnabled) {
-			dynamicResourcesCDNHost = cdnHost;
+		Set<String> cdnExcludePathsSet = _cdnExcludePathsMap.get(companyId);
+
+		if (cdnExcludePathsSet == null) {
+			String[] cdnExcludePaths = PropsUtil.getArray(
+				PropsKeys.CDN_EXCLUDE_PATHS);
+
+			cdnExcludePathsSet = SetUtil.fromArray(cdnExcludePaths);
+
+			_cdnExcludePathsMap.put(companyId, cdnExcludePathsSet);
+		}
+
+		Boolean isInCDNExcludePaths = false;
+
+		if (Validator.isNotNull(friendlyURL)) {
+			for (String cdnExcludePath : cdnExcludePathsSet) {
+				if (friendlyURL.contains(cdnExcludePath)) {
+					isInCDNExcludePaths = true;
+
+					break;
+				}
+			}
+		}
+
+		if (!isInCDNExcludePaths) {
+			cdnHost = PortalUtil.getCDNHost(request);
+
+			if (cdnDynamicResourceEnabled) {
+				dynamicResourcesCDNHost = cdnHost;
+			}
 		}
 
 		// Portal URL
@@ -2374,5 +2405,8 @@ public class ServicePreAction extends Action {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ServicePreAction.class);
+
+	private static final Map<Long, Set<String>> _cdnExcludePathsMap =
+		new HashMap<>();
 
 }

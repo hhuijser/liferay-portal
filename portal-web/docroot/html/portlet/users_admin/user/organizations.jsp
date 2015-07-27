@@ -113,7 +113,9 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organi
 
 		var addOrganizationIds = [];
 
-		addOrganizationIds.push(document.<portlet:namespace />fm.<portlet:namespace />addOrganizationIds.value);
+		if (document.<portlet:namespace />fm.<portlet:namespace />addOrganizationIds.value) {
+			addOrganizationIds.push(document.<portlet:namespace />fm.<portlet:namespace />addOrganizationIds.value);
+		}
 
 		var deleteOrganizationIds = [];
 

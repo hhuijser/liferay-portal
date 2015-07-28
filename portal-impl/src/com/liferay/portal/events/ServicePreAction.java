@@ -159,33 +159,35 @@ public class ServicePreAction extends Action {
 
 		String dynamicResourcesCDNHost = StringPool.BLANK;
 
-		String friendlyURL = (String)request.getAttribute(WebKeys.FRIENDLY_URL);
-
 		boolean cdnDynamicResourceEnabled =
 			PortalUtil.isCDNDynamicResourcesEnabled(request);
 
-		String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
+		if (cdnDynamicResourceEnabled) {
+			String friendlyURL = (String)request.getAttribute(
+				WebKeys.FRIENDLY_URL);
 
-		if (cdnExcludePaths == null) {
-			cdnExcludePaths = PropsUtil.getArray(PropsKeys.CDN_EXCLUDE_PATHS);
+			String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
 
-			_cdnExcludePathsMap.put(companyId, cdnExcludePaths);
-		}
+			if (cdnExcludePaths == null) {
+				cdnExcludePaths = PropsUtil.getArray(
+					PropsKeys.CDN_EXCLUDE_PATHS);
 
-		Boolean isInCDNExcludePaths = false;
+				_cdnExcludePathsMap.put(companyId, cdnExcludePaths);
+			}
 
-		if (Validator.isNotNull(friendlyURL)) {
-			for (String cdnExcludePath : cdnExcludePaths) {
-				if (friendlyURL.contains(cdnExcludePath)) {
-					isInCDNExcludePaths = true;
+			Boolean isInCDNExcludePaths = false;
 
-					break;
+			if (Validator.isNotNull(friendlyURL)) {
+				for (String cdnExcludePath : cdnExcludePaths) {
+					if (friendlyURL.contains(cdnExcludePath)) {
+						isInCDNExcludePaths = true;
+
+						break;
+					}
 				}
 			}
-		}
 
-		if (!isInCDNExcludePaths) {
-			if (cdnDynamicResourceEnabled) {
+			if (!isInCDNExcludePaths) {
 				dynamicResourcesCDNHost = cdnHost;
 			}
 		}

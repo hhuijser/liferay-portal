@@ -159,7 +159,7 @@ public class ServicePreAction extends Action {
 
 		String dynamicResourcesCDNHost = StringPool.BLANK;
 
-		String friendlyURL = (String)request.getAttribute("FRIENDLY_URL");
+		String friendlyURL = (String)request.getAttribute(WebKeys.FRIENDLY_URL);
 
 		if (Validator.isNotNull(friendlyURL)) {
 			String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
@@ -171,18 +171,12 @@ public class ServicePreAction extends Action {
 				_cdnExcludePathsMap.put(companyId, cdnExcludePaths);
 			}
 
-			Boolean isInCDNExcludePaths = false;
-
 			for (String cdnExcludePath : cdnExcludePaths) {
 				if (friendlyURL.contains(cdnExcludePath)) {
-					isInCDNExcludePaths = true;
+					cdnHost = StringPool.BLANK;
 
 					break;
 				}
-			}
-
-			if (isInCDNExcludePaths) {
-				cdnHost = StringPool.BLANK;
 			}
 		}
 

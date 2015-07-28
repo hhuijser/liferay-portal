@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
 import com.liferay.portal.kernel.util.SessionParamUtil;
-import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -119,7 +118,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 import java.util.TimeZone;
 
 import javax.portlet.PortletMode;
@@ -166,21 +164,18 @@ public class ServicePreAction extends Action {
 		boolean cdnDynamicResourceEnabled =
 			PortalUtil.isCDNDynamicResourcesEnabled(request);
 
-		Set<String> cdnExcludePathsSet = _cdnExcludePathsMap.get(companyId);
+		String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
 
-		if (cdnExcludePathsSet == null) {
-			String[] cdnExcludePaths = PropsUtil.getArray(
-				PropsKeys.CDN_EXCLUDE_PATHS);
+		if (cdnExcludePaths == null) {
+			cdnExcludePaths = PropsUtil.getArray(PropsKeys.CDN_EXCLUDE_PATHS);
 
-			cdnExcludePathsSet = SetUtil.fromArray(cdnExcludePaths);
-
-			_cdnExcludePathsMap.put(companyId, cdnExcludePathsSet);
+			_cdnExcludePathsMap.put(companyId, cdnExcludePaths);
 		}
 
 		Boolean isInCDNExcludePaths = false;
 
 		if (Validator.isNotNull(friendlyURL)) {
-			for (String cdnExcludePath : cdnExcludePathsSet) {
+			for (String cdnExcludePath : cdnExcludePaths) {
 				if (friendlyURL.contains(cdnExcludePath)) {
 					isInCDNExcludePaths = true;
 
@@ -2406,7 +2401,7 @@ public class ServicePreAction extends Action {
 	private static final Log _log = LogFactoryUtil.getLog(
 		ServicePreAction.class);
 
-	private static final Map<Long, Set<String>> _cdnExcludePathsMap =
+	private static final Map<Long, String[]> _cdnExcludePathsMap =
 		new HashMap<>();
 
 }

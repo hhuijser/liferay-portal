@@ -163,7 +163,33 @@ public class ServicePreAction extends Action {
 			PortalUtil.isCDNDynamicResourcesEnabled(request);
 
 		if (cdnDynamicResourceEnabled) {
-			dynamicResourcesCDNHost = cdnHost;
+			String friendlyURL = (String)request.getAttribute(
+				WebKeys.FRIENDLY_URL);
+
+			String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
+
+			if (cdnExcludePaths == null) {
+				cdnExcludePaths = PropsUtil.getArray(
+					PropsKeys.CDN_EXCLUDE_PATHS);
+
+				_cdnExcludePathsMap.put(companyId, cdnExcludePaths);
+			}
+
+			Boolean isInCDNExcludePaths = false;
+
+			if (Validator.isNotNull(friendlyURL)) {
+				for (String cdnExcludePath : cdnExcludePaths) {
+					if (friendlyURL.contains(cdnExcludePath)) {
+						isInCDNExcludePaths = true;
+
+						break;
+					}
+				}
+			}
+
+			if (!isInCDNExcludePaths) {
+				dynamicResourcesCDNHost = cdnHost;
+			}
 		}
 
 		// Portal URL
@@ -2374,5 +2400,8 @@ public class ServicePreAction extends Action {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ServicePreAction.class);
+
+	private static final Map<Long, String[]> _cdnExcludePathsMap =
+		new HashMap<>();
 
 }

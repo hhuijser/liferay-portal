@@ -155,7 +155,7 @@ public class ServicePreAction extends Action {
 
 		// CDN host
 
-		String cdnHost = StringPool.BLANK;
+		String cdnHost = PortalUtil.getCDNHost(request);
 
 		String dynamicResourcesCDNHost = StringPool.BLANK;
 
@@ -185,8 +185,6 @@ public class ServicePreAction extends Action {
 		}
 
 		if (!isInCDNExcludePaths) {
-			cdnHost = PortalUtil.getCDNHost(request);
-
 			if (cdnDynamicResourceEnabled) {
 				dynamicResourcesCDNHost = cdnHost;
 			}

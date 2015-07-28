@@ -159,7 +159,7 @@ public class ServicePreAction extends Action {
 
 		String dynamicResourcesCDNHost = StringPool.BLANK;
 
-		String friendlyURL = (String)request.getAttribute("FRIENDLY_URL");
+		String friendlyURL = (String)request.getAttribute(WebKeys.FRIENDLY_URL);
 
 		boolean cdnDynamicResourceEnabled =
 			PortalUtil.isCDNDynamicResourcesEnabled(request);

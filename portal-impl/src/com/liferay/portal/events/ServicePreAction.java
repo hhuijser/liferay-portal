@@ -161,7 +161,7 @@ public class ServicePreAction extends Action {
 
 		String friendlyURL = (String)request.getAttribute(WebKeys.FRIENDLY_URL);
 
-		if (Validator.isNotNull(friendlyURL)) {
+		if (Validator.isNotNull(cdnHost) && Validator.isNotNull(friendlyURL)) {
 			String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
 
 			if (cdnExcludePaths == null) {

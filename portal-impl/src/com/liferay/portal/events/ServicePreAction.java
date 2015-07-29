@@ -158,6 +158,30 @@ public class ServicePreAction extends Action {
 
 		String dynamicResourcesCDNHost = StringPool.BLANK;
 
+		if (Validator.isNotNull(cdnHost)) {
+			String friendlyURL = (String)request.getAttribute(
+				WebKeys.FRIENDLY_URL);
+
+			if (Validator.isNotNull(friendlyURL)) {
+				String[] cdnExcludePaths = _cdnExcludePathsMap.get(companyId);
+
+				if (cdnExcludePaths == null) {
+					cdnExcludePaths = PropsUtil.getArray(
+						PropsKeys.CDN_EXCLUDE_PATHS);
+
+					_cdnExcludePathsMap.put(companyId, cdnExcludePaths);
+				}
+
+				for (String cdnExcludePath : cdnExcludePaths) {
+					if (friendlyURL.contains(cdnExcludePath)) {
+						cdnHost = StringPool.BLANK;
+
+						break;
+					}
+				}
+			}
+		}
+
 		boolean cdnDynamicResourceEnabled =
 			PortalUtil.isCDNDynamicResourcesEnabled(request);
 
@@ -2370,5 +2394,8 @@ public class ServicePreAction extends Action {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		ServicePreAction.class);
+
+	private static final Map<Long, String[]> _cdnExcludePathsMap =
+		new HashMap<>();
 
 }

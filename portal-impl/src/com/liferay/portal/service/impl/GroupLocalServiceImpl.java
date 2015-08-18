@@ -777,8 +777,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					group.getGroupId());
 			}
 
-			if (groupPersistence.countByC_P_S(
-					group.getCompanyId(), group.getGroupId(), true) > 0) {
+			if ((groupPersistence.countByC_P_S(
+					group.getCompanyId(), group.getGroupId(), true) > 0) ||
+				enableChildGroupStaging(group)) {
 
 				throw new RequiredGroupException.MustNotDeleteGroupThatHasChild(
 					group.getGroupId());
@@ -3984,6 +3985,24 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			return joinedGroups;
 		}
+	}
+
+	protected boolean enableChildGroupStaging(Group group) {
+		if (group.isStagingGroup()) {
+			List<Group> childGroups = groupPersistence.findByC_P(
+				group.getCompanyId(), group.getGroupId());
+
+			for (Group childGroup : childGroups) {
+				if ((childGroup.getLiveGroupId() !=
+						GroupConstants.DEFAULT_PARENT_GROUP_ID) &&
+					childGroup.getClassName().equals(Group.class.getName())) {
+
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	protected long[] getClassNameIds() {

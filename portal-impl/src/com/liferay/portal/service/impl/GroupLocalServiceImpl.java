@@ -779,7 +779,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 			if ((groupPersistence.countByC_P_S(
 					group.getCompanyId(), group.getGroupId(), true) > 0) ||
-				isEnableChildGroupStaging(group)) {
+				hasChildStagingGroup(group)) {
 
 				throw new RequiredGroupException.MustNotDeleteGroupThatHasChild(
 					group.getGroupId());
@@ -4106,6 +4106,21 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		return CustomSQLUtil.keywords(name);
 	}
 
+	protected boolean hasChildStagingGroup(Group group) {
+		if (group.isStagingGroup()) {
+			List<Group> childGroups = groupPersistence.findByC_P(
+				group.getCompanyId(), group.getGroupId());
+
+			for (Group childGroup : childGroups) {
+				if (childGroup.isRegularSite()) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	protected void initImportLARFile() {
 		String publicLARFileName = PropsValues.DEFAULT_GUEST_PUBLIC_LAYOUTS_LAR;
 
@@ -4189,21 +4204,6 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		setRolePermissions(group, role, "com.liferay.portlet.journal");
 		setRolePermissions(group, role, "com.liferay.portlet.messageboards");
 		setRolePermissions(group, role, "com.liferay.portlet.wiki");
-	}
-
-	protected boolean isEnableChildGroupStaging(Group group) {
-		if (group.isStagingGroup()) {
-			List<Group> childGroups = groupPersistence.findByC_P(
-				group.getCompanyId(), group.getGroupId());
-
-			for (Group childGroup : childGroups) {
-				if (childGroup.isRegularSite()) {
-					return true;
-				}
-			}
-		}
-
-		return false;
 	}
 
 	protected boolean isParentGroup(long parentGroupId, long groupId)

@@ -144,6 +144,8 @@ BackgroundTask lastCompletedInitialPublicationBackgroundTask = BackgroundTaskMan
 				</c:if>
 			</liferay-ui:error>
 
+			<liferay-ui:error exception="<%= RequiredGroupException.MustNotDeleteGroupThatHasChild.class %>" message="you-cannot-delete-sites-that-have-subsites" />
+
 			<liferay-ui:error exception="<%= SystemException.class %>">
 
 				<%

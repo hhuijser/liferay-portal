@@ -777,8 +777,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					group.getGroupId());
 			}
 
-			if (groupPersistence.countByC_P_S(
-					group.getCompanyId(), group.getGroupId(), true) > 0) {
+			if ((groupPersistence.countByC_P_S(
+					group.getCompanyId(), group.getGroupId(), true) > 0) ||
+				hasChildStagingGroup(group)) {
 
 				throw new RequiredGroupException.MustNotDeleteGroupThatHasChild(
 					group.getGroupId());
@@ -4103,6 +4104,21 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		}
 
 		return CustomSQLUtil.keywords(name);
+	}
+
+	protected boolean hasChildStagingGroup(Group group) {
+		if (group.isStagingGroup()) {
+			List<Group> childGroups = groupPersistence.findByC_P(
+				group.getCompanyId(), group.getGroupId());
+
+			for (Group childGroup : childGroups) {
+				if (childGroup.isRegularSite()) {
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	protected void initImportLARFile() {

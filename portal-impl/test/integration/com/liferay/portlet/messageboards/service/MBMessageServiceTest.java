@@ -14,6 +14,8 @@
 
 package com.liferay.portlet.messageboards.service;
 
+import com.liferay.portal.kernel.dao.db.DB;
+import com.liferay.portal.kernel.dao.db.DBFactoryUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;
 import com.liferay.portal.kernel.messaging.SynchronousDestination;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -24,6 +26,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.security.permission.DoAsUserThread;
@@ -148,49 +151,57 @@ public class MBMessageServiceTest {
 				doAsUserThread.join();
 			}
 
-			for (LoggingEvent loggingEvent :
-					captureAppender1.getLoggingEvents()) {
+			DB db = DBFactoryUtil.getDB();
 
-				Assert.assertEquals(
-					"Application exception overridden by commit exception",
-					loggingEvent.getMessage());
-			}
+			String dbType = db.getType();
 
-			for (LoggingEvent loggingEvent :
-					captureAppender2.getLoggingEvents()) {
+			if (dbType.equals(DB.TYPE_SYBASE)) {
+				for (LoggingEvent loggingEvent :
+						captureAppender1.getLoggingEvents()) {
 
-				String message = loggingEvent.getRenderedMessage();
+					Assert.assertEquals(
+						"Application exception overridden by commit exception",
+						loggingEvent.getMessage());
+				}
 
-				Assert.assertTrue(
-					message.startsWith(
-						"Unable to process message {destinationName=" +
-							DestinationNames.ASYNC_SERVICE)
-					);
-			}
+				for (LoggingEvent loggingEvent :
+						captureAppender2.getLoggingEvents()) {
 
-			for (LoggingEvent loggingEvent :
-					captureAppender3.getLoggingEvents()) {
+					String message = loggingEvent.getRenderedMessage();
 
-				String message = loggingEvent.getRenderedMessage();
+					Assert.assertTrue(
+						message.startsWith(
+							"Unable to process message {destinationName=" +
+								DestinationNames.ASYNC_SERVICE)
+						);
+				}
 
-				Assert.assertTrue(
-					message.startsWith(
-						"com.liferay.portal.kernel.exception.SystemException:" +
-							" com.liferay.portal.kernel.dao.orm.ORMException:" +
-								" org.hibernate.exception." +
-									"GenericJDBCException: Could not execute"));
-			}
+				for (LoggingEvent loggingEvent :
+						captureAppender3.getLoggingEvents()) {
 
-			for (LoggingEvent loggingEvent :
-					captureAppender4.getLoggingEvents()) {
+					String message = loggingEvent.getRenderedMessage();
 
-				String message = loggingEvent.getRenderedMessage();
+					StringBundler sb = new StringBundler();
 
-				Assert.assertTrue(message.contains("Your server command"));
-				Assert.assertTrue(
-					message.contains(
-						"encountered a deadlock situation. Please re-run " +
-							"your command."));
+					sb.append("com.liferay.portal.kernel.exception.");
+					sb.append("SystemException: com.liferay.portal.kernel.");
+					sb.append("dao.orm.ORMException: org.hibernate.exception.");
+					sb.append("GenericJDBCException: Could not execute");
+
+					Assert.assertTrue(message.startsWith(sb.toString()));
+				}
+
+				for (LoggingEvent loggingEvent :
+						captureAppender4.getLoggingEvents()) {
+
+					String message = loggingEvent.getRenderedMessage();
+
+					Assert.assertTrue(message.contains("Your server command"));
+					Assert.assertTrue(
+						message.contains(
+							"encountered a deadlock situation. Please re-run " +
+								"your command."));
+				}
 			}
 		}
 

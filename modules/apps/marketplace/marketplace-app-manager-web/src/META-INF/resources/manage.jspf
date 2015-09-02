@@ -60,6 +60,10 @@ portletURL.setParameter("category", category);
 
 			boolean displayActions = true;
 
+			if (app.getContextNames().length == 0) {
+				displayActions = false;
+			}
+
 			for (String contextName : app.getContextNames()) {
 				ServletContext servletContext = ServletContextPool.get(contextName);
 

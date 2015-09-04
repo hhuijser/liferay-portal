@@ -58,7 +58,7 @@ portletURL.setParameter("category", category);
 			List<Portlet> portlets = new ArrayList<Portlet>();
 			List<Theme> themes = new ArrayList<Theme>();
 
-			boolean displayActions = true;
+			boolean displayActions = false;
 
 			for (String contextName : app.getContextNames()) {
 				ServletContext servletContext = ServletContextPool.get(contextName);
@@ -110,11 +110,8 @@ portletURL.setParameter("category", category);
 					themes.addAll(servletContextThemes);
 				}
 
-				if (contextName.equals(PortalUtil.getPathContext())) {
-					displayActions = false;
-				}
-				else if (DeployManagerUtil.isRequiredDeploymentContext(contextName)) {
-					displayActions = false;
+				if (!contextName.equals(PortalUtil.getPathContext()) && !DeployManagerUtil.isRequiredDeploymentContext(contextName)) {
+					displayActions = true;
 				}
 			}
 

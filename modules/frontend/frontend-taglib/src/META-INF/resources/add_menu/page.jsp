@@ -33,7 +33,7 @@ List<AddMenuItem> addMenuItems = (List<AddMenuItem>)request.getAttribute("lifera
 		}
 		%>
 
-		<a aria-label="<%= HtmlUtil.escapeAttribute(addMenuItem.getLabel()) %>" class="btn btn-action btn-bottom-right btn-primary" data-placement="left" data-toggle="tooltip" href="<%= HtmlUtil.escapeAttribute(addMenuItem.getUrl()) %>" id="<%= namespace + id %>" title="<%= HtmlUtil.escapeAttribute(addMenuItem.getLabel()) %>">
+		<a class="btn btn-action btn-bottom-right btn-primary" data-placement="left" data-toggle="tooltip" href="<%= HtmlUtil.escapeAttribute(addMenuItem.getUrl()) %>" id="<%= namespace + id %>" title="<%= HtmlUtil.escapeAttribute(addMenuItem.getLabel()) %>">
 			<span class="icon-plus"></span>
 		</a>
 
@@ -47,11 +47,11 @@ List<AddMenuItem> addMenuItems = (List<AddMenuItem>)request.getAttribute("lifera
 	</c:when>
 	<c:otherwise>
 		<div class="btn-action-secondary btn-bottom-right dropdown">
-			<button aria-expanded="false" aria-label="<liferay-ui:message key="add" />" class="btn btn-primary" data-toggle="dropdown" type="button">
+			<button aria-expanded="false" class="btn btn-primary" data-toggle="dropdown" type="button">
 				<span class="icon-plus"></span>
 			</button>
 
-			<ul class="dropdown-menu dropdown-menu-left-side-bottom" role="menu">
+			<ul class="dropdown-menu dropdown-menu-left-side-bottom">
 
 				<%
 				for (int i = 0; i < addMenuItems.size(); i++) {
@@ -64,8 +64,8 @@ List<AddMenuItem> addMenuItems = (List<AddMenuItem>)request.getAttribute("lifera
 					}
 				%>
 
-					<li role="presentation">
-						<a href="<%= HtmlUtil.escapeAttribute(addMenuItem.getUrl()) %>" id="<%= namespace + id %>" role="menuitem"><%= HtmlUtil.escape(addMenuItem.getLabel()) %></a>
+					<li>
+						<a href="<%= HtmlUtil.escapeAttribute(addMenuItem.getUrl()) %>" id="<%= namespace + id %>"><%= HtmlUtil.escape(addMenuItem.getLabel()) %></a>
 					</li>
 
 				<%

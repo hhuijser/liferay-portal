@@ -1442,6 +1442,21 @@ public class JournalArticleLocalServiceImpl
 
 		Date now = new Date();
 
+		JournalArticle latestArticle = articles.get(0);
+
+		if (JournalServiceConfigurationValues.
+				JOURNAL_ARTICLE_EXPIRE_ALL_VERSIONS) {
+
+			Date latestArticleExpirationDate =
+				latestArticle.getExpirationDate();
+
+			if ((latestArticleExpirationDate != null) &&
+					latestArticleExpirationDate.before(now)) {
+
+				return latestArticle;
+			}
+		}
+
 		for (JournalArticle article : articles) {
 			Date displayDate = article.getDisplayDate();
 			Date expirationDate = article.getExpirationDate();
@@ -1453,7 +1468,7 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
-		return articles.get(0);
+		return latestArticle;
 	}
 
 	@Override
@@ -2700,6 +2715,21 @@ public class JournalArticleLocalServiceImpl
 
 		Date now = new Date();
 
+		JournalArticle latestArticle = articles.get(0);
+
+		if (JournalServiceConfigurationValues.
+				JOURNAL_ARTICLE_EXPIRE_ALL_VERSIONS) {
+
+			Date latestArticleExpirationDate =
+				latestArticle.getExpirationDate();
+
+			if ((latestArticleExpirationDate != null) &&
+					latestArticleExpirationDate.before(now)) {
+
+				return latestArticle;
+			}
+		}
+
 		for (JournalArticle article : articles) {
 			Date displayDate = article.getDisplayDate();
 			Date expirationDate = article.getExpirationDate();
@@ -2711,7 +2741,7 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
-		return articles.get(0);
+		return latestArticle;
 	}
 
 	@Override

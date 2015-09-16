@@ -174,7 +174,7 @@ public class GetterUtil {
 			}
 
 			try {
-				return new BigDecimal(StringUtil.trim(valueString));
+				return new BigDecimal(valueString.trim());
 			}
 			catch (NumberFormatException nfe) {
 				return defaultValue;
@@ -244,7 +244,7 @@ public class GetterUtil {
 		}
 
 		value = value.toLowerCase();
-		value = StringUtil.trim(value);
+		value = value.trim();
 
 		if (value.equals(BOOLEANS[0]) || value.equals(BOOLEANS[1]) ||
 			value.equals(BOOLEANS[2]) || value.equals(BOOLEANS[3]) ||
@@ -265,7 +265,7 @@ public class GetterUtil {
 		}
 
 		try {
-			Date date = dateFormat.parse(StringUtil.trim(value));
+			Date date = dateFormat.parse(value.trim());
 
 			if (date != null) {
 				return date;
@@ -280,7 +280,7 @@ public class GetterUtil {
 	public static double get(String value, double defaultValue) {
 		if (value != null) {
 			try {
-				return Double.parseDouble(StringUtil.trim(value));
+				return Double.parseDouble(value.trim());
 			}
 			catch (Exception e) {
 			}
@@ -295,7 +295,7 @@ public class GetterUtil {
 		}
 
 		try {
-			return Float.parseFloat(StringUtil.trim(value));
+			return Float.parseFloat(value.trim());
 		}
 		catch (Exception e) {
 		}
@@ -308,7 +308,7 @@ public class GetterUtil {
 			return defaultValue;
 		}
 
-		return _parseInt(StringUtil.trim(value), defaultValue);
+		return _parseInt(value.trim(), defaultValue);
 	}
 
 	public static long get(String value, long defaultValue) {
@@ -316,7 +316,7 @@ public class GetterUtil {
 			return defaultValue;
 		}
 
-		return _parseLong(StringUtil.trim(value), defaultValue);
+		return _parseLong(value.trim(), defaultValue);
 	}
 
 	public static short get(String value, short defaultValue) {
@@ -324,7 +324,7 @@ public class GetterUtil {
 			return defaultValue;
 		}
 
-		return _parseShort(StringUtil.trim(value), defaultValue);
+		return _parseShort(value.trim(), defaultValue);
 	}
 
 	public static String get(String value, String defaultValue) {
@@ -332,7 +332,7 @@ public class GetterUtil {
 			return defaultValue;
 		}
 
-		value = StringUtil.trim(value);
+		value = value.trim();
 
 		if (value.indexOf(CharPool.RETURN) != -1) {
 			value = value.replaceAll(

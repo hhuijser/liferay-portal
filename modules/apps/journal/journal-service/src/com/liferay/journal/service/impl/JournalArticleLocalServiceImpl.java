@@ -5798,7 +5798,8 @@ public class JournalArticleLocalServiceImpl
 		if ((status == WorkflowConstants.STATUS_APPROVED) &&
 			(article.getExpirationDate() != null) &&
 			(JournalServiceConfigurationValues.
-				JOURNAL_ARTICLE_EXPIRE_ALL_VERSIONS)) {
+				JOURNAL_ARTICLE_EXPIRE_ALL_VERSIONS) &&
+			!ExportImportThreadLocal.isImportInProcess()) {
 
 			List<JournalArticle> currentArticles =
 				journalArticlePersistence.findByG_A(

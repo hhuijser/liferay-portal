@@ -464,6 +464,8 @@ public class SitesImpl implements Sites {
 				serviceContext.getUserId(), sourceLayout, targetLayout,
 				sourcePreferences, targetPreferences, sourcePortletId,
 				serviceContext.getLanguageId());
+
+			updatePortletScopeIds(targetLayout, sourcePortletId);
 		}
 	}
 
@@ -2034,6 +2036,46 @@ public class SitesImpl implements Sites {
 			groupId, privateLayout);
 
 		mergeLayoutSetPrototypeLayouts(group, layoutSet);
+	}
+
+	protected void updatePortletScopeIds(Layout layout, String portletId)
+		throws Exception {
+
+		Group targetGroup = layout.getGroup();
+
+		if (!targetGroup.isStagingGroup()) {
+			return;
+		}
+
+		PortletPreferences targetPreferences =
+			PortletPreferencesFactoryUtil.getPortletSetup(
+				layout, portletId, null);
+
+		String[] scopeGroupIds = targetPreferences.getValues("scopeIds", null);
+
+		if (ArrayUtil.isEmpty(scopeGroupIds)) {
+			return;
+		}
+
+		String defaultGroupScopeId =
+			Sites.SCOPE_ID_GROUP_PREFIX + GroupConstants.DEFAULT;
+
+		Group companyGroup = GroupLocalServiceUtil.getCompanyGroup(
+			layout.getCompanyId());
+
+		String companyGroupId =
+			Sites.SCOPE_ID_GROUP_PREFIX + companyGroup.getGroupId();
+
+		if (ArrayUtil.contains(scopeGroupIds, companyGroupId)) {
+			targetPreferences.setValues(
+				"scopeIds", new String[] {defaultGroupScopeId, companyGroupId});
+		}
+		else {
+			targetPreferences.setValues(
+				"scopeIds", new String[] {defaultGroupScopeId});
+		}
+
+		targetPreferences.store();
 	}
 
 	private static final String _TEMP_DIR =

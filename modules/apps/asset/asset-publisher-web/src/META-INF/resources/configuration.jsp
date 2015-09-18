@@ -24,6 +24,8 @@ String redirect = ParamUtil.getString(request, "redirect");
 String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortletResource()) + "_selectSite";
 
 List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>();
+
+Group currentGroup = themeDisplay.getScopeGroup();
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
@@ -219,15 +221,17 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 						data.put("title", LanguageUtil.get(request, "sites"));
 						%>
 
-						<liferay-ui:icon
-							cssClass="highlited scope-selector"
-							data="<%= data %>"
-							iconCssClass="icon-plus"
-							id="selectManageableGroup"
-							message='<%= LanguageUtil.get(request, "other-site") + StringPool.TRIPLE_PERIOD %>'
-							method="get"
-							url="javascript:;"
-						/>
+						<c:if test="<%= !currentGroup.isStagingGroup() %>">
+							<liferay-ui:icon
+								cssClass="highlited scope-selector"
+								data="<%= data %>"
+								iconCssClass="icon-plus"
+								id="selectManageableGroup"
+								message='<%= LanguageUtil.get(request, "other-site") + StringPool.TRIPLE_PERIOD %>'
+								method="get"
+								url="javascript:;"
+							/>
+						</c:if>
 					</c:if>
 				</liferay-ui:icon-menu>
 			</div>

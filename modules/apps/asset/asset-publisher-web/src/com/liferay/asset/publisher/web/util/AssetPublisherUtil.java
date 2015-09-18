@@ -1060,7 +1060,7 @@ public class AssetPublisherUtil {
 			}
 		}
 
-		return ArrayUtil.toLongArray(groupIds);
+		return ArrayUtil.unique(ArrayUtil.toLongArray(groupIds));
 	}
 
 	public static String getScopeId(Group group, long scopeGroupId)

@@ -1117,6 +1117,20 @@ public class AssetPublisherUtil {
 		long groupId = getGroupIdFromScopeId(
 			scopeId, layout.getGroupId(), layout.isPrivateLayout());
 
+		if (layout.getGroup().isStagingGroup()) {
+			String defaultGroupScopeId =
+				SCOPE_ID_GROUP_PREFIX + GroupConstants.DEFAULT;
+
+			if (scopeId.equals(defaultGroupScopeId) ||
+				(groupId == companyGroupId)) {
+
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+
 		if (scopeId.startsWith(SCOPE_ID_CHILD_GROUP_PREFIX)) {
 			Group group = GroupLocalServiceUtil.getGroup(groupId);
 

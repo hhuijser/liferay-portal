@@ -219,15 +219,17 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 						data.put("title", LanguageUtil.get(request, "sites"));
 						%>
 
-						<liferay-ui:icon
-							cssClass="highlited scope-selector"
-							data="<%= data %>"
-							iconCssClass="icon-plus"
-							id="selectManageableGroup"
-							message='<%= LanguageUtil.get(request, "other-site") + StringPool.TRIPLE_PERIOD %>'
-							method="get"
-							url="javascript:;"
-						/>
+						<c:if test="<%= !themeDisplay.getScopeGroup().isStagingGroup() %>">
+							<liferay-ui:icon
+								cssClass="highlited scope-selector"
+								data="<%= data %>"
+								iconCssClass="icon-plus"
+								id="selectManageableGroup"
+								message='<%= LanguageUtil.get(request, "other-site") + StringPool.TRIPLE_PERIOD %>'
+								method="get"
+								url="javascript:;"
+							/>
+						</c:if>
 					</c:if>
 				</liferay-ui:icon-menu>
 			</div>

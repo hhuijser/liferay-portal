@@ -1060,7 +1060,9 @@ public class AssetPublisherUtil {
 			}
 		}
 
-		return ArrayUtil.unique(ArrayUtil.toLongArray(groupIds));
+		long[] groupIdsArray = ArrayUtil.toLongArray(groupIds);
+
+		return ArrayUtil.unique(groupIdsArray);
 	}
 
 	public static String getScopeId(Group group, long scopeGroupId)
@@ -1117,7 +1119,9 @@ public class AssetPublisherUtil {
 		long groupId = getGroupIdFromScopeId(
 			scopeId, layout.getGroupId(), layout.isPrivateLayout());
 
-		if (layout.getGroup().isStagingGroup()) {
+		Group group = layout.getGroup();
+
+		if (group.isStagingGroup()) {
 			String defaultGroupScopeId =
 				SCOPE_ID_GROUP_PREFIX + GroupConstants.DEFAULT;
 
@@ -1126,13 +1130,12 @@ public class AssetPublisherUtil {
 
 				return true;
 			}
-			else {
-				return false;
-			}
+
+			return false;
 		}
 
 		if (scopeId.startsWith(SCOPE_ID_CHILD_GROUP_PREFIX)) {
-			Group group = GroupLocalServiceUtil.getGroup(groupId);
+			group = GroupLocalServiceUtil.getGroup(groupId);
 
 			if (!group.hasAncestor(layout.getGroupId())) {
 				return false;
@@ -1145,7 +1148,7 @@ public class AssetPublisherUtil {
 				return false;
 			}
 
-			Group group = GroupLocalServiceUtil.getGroup(groupId);
+			group = GroupLocalServiceUtil.getGroup(groupId);
 
 			if (SitesUtil.isContentSharingWithChildrenEnabled(group)) {
 				return true;

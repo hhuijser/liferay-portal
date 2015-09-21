@@ -24,8 +24,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 String eventName = "_" + HtmlUtil.escapeJS(assetPublisherDisplayContext.getPortletResource()) + "_selectSite";
 
 List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>();
-
-Group currentGroup = themeDisplay.getScopeGroup();
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
@@ -221,7 +219,7 @@ Group currentGroup = themeDisplay.getScopeGroup();
 						data.put("title", LanguageUtil.get(request, "sites"));
 						%>
 
-						<c:if test="<%= !currentGroup.isStagingGroup() %>">
+						<c:if test="<%= !themeDisplay.getScopeGroup().isStagingGroup() %>">
 							<liferay-ui:icon
 								cssClass="highlited scope-selector"
 								data="<%= data %>"

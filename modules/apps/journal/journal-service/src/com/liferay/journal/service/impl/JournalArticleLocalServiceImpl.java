@@ -98,6 +98,7 @@ import com.liferay.portal.kernel.social.SocialActivityManagerUtil;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
 import com.liferay.portal.kernel.template.TemplateConstants;
+import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.CharPool;
@@ -170,6 +171,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import javax.portlet.PortletPreferences;
 
@@ -5808,6 +5810,35 @@ public class JournalArticleLocalServiceImpl
 		article.setStatusDate(serviceContext.getModifiedDate(now));
 
 		journalArticlePersistence.update(article);
+
+		if ((status == WorkflowConstants.STATUS_APPROVED) &&
+			(article.getExpirationDate() != null) &&
+			JournalServiceConfigurationValues.
+				JOURNAL_ARTICLE_EXPIRE_ALL_VERSIONS &&
+			!ExportImportThreadLocal.isImportInProcess()) {
+
+			final List<JournalArticle> articles =
+				journalArticlePersistence.findByG_A(
+					article.getGroupId(), article.getArticleId());
+			final Date expirationDate = article.getExpirationDate();
+
+			TransactionCommitCallbackUtil.registerCallback(
+				new Callable<Void>() {
+
+					@Override
+					public Void call() throws Exception {
+						for (JournalArticle curArticle : articles) {
+							curArticle.setExpirationDate(expirationDate);
+
+							journalArticleLocalService.updateJournalArticle(
+								curArticle);
+						}
+
+						return null;
+					}
+
+				});
+		}
 
 		if (hasModifiedLatestApprovedVersion(
 				article.getGroupId(), article.getArticleId(),

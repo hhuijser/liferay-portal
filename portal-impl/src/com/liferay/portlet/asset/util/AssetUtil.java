@@ -797,7 +797,7 @@ public class AssetUtil {
 	}
 
 	protected static String getOrderByCol(
-		String sortField, int sortType, Locale locale) {
+		String sortField, String fieldType, int sortType, Locale locale) {
 
 		if (sortField.startsWith(
 				DDMStructureManager.STRUCTURE_INDEXER_FIELD_PREFIX)) {
@@ -805,9 +805,10 @@ public class AssetUtil {
 			sortField = sortField.concat(StringPool.UNDERLINE).concat(
 				LocaleUtil.toLanguageId(locale));
 
-			if ((sortType == Sort.DOUBLE_TYPE) ||
-				(sortType == Sort.FLOAT_TYPE) || (sortType == Sort.INT_TYPE) ||
-				(sortType == Sort.LONG_TYPE)) {
+			if (!fieldType.equals("ddm-date") &&
+				((sortType == Sort.DOUBLE_TYPE) ||
+				 (sortType == Sort.FLOAT_TYPE) || (sortType == Sort.INT_TYPE) ||
+				 (sortType == Sort.LONG_TYPE))) {
 
 				sortField = sortField.concat(StringPool.UNDERLINE).concat(
 					"Number");
@@ -842,7 +843,7 @@ public class AssetUtil {
 
 		return SortFactoryUtil.getSort(
 			AssetEntry.class, sortType,
-			getOrderByCol(sortField, sortType, locale),
+			getOrderByCol(sortField, ddmFormFieldType, sortType, locale),
 			!sortField.startsWith(
 				DDMStructureManager.STRUCTURE_INDEXER_FIELD_PREFIX),
 			orderByType);

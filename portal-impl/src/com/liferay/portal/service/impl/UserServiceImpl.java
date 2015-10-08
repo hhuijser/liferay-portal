@@ -2056,43 +2056,54 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 			organizationIds, roleIds, userGroupRoles, userGroupIds,
 			serviceContext);
 
-		if (!addGroupIds.isEmpty() || !removeGroupIds.isEmpty()) {
+		if ((groupIds != null) &&
+			(!addGroupIds.isEmpty() || !removeGroupIds.isEmpty())) {
+
 			SiteMembershipPolicyUtil.propagateMembership(
 				new long[] {user.getUserId()},
 				ArrayUtil.toLongArray(addGroupIds),
 				ArrayUtil.toLongArray(removeGroupIds));
 		}
 
-		if (!addOrganizationIds.isEmpty() || !removeOrganizationIds.isEmpty()) {
+		if ((organizationIds != null) &&
+			(!addOrganizationIds.isEmpty() ||
+			 !removeOrganizationIds.isEmpty())) {
+
 			OrganizationMembershipPolicyUtil.propagateMembership(
 				new long[] {user.getUserId()},
 				ArrayUtil.toLongArray(addOrganizationIds),
 				ArrayUtil.toLongArray(removeOrganizationIds));
 		}
 
-		if (!addRoleIds.isEmpty() || !removeRoleIds.isEmpty()) {
+		if ((roleIds != null) &&
+			(!addRoleIds.isEmpty() || !removeRoleIds.isEmpty())) {
+
 			RoleMembershipPolicyUtil.propagateRoles(
 				new long[] {user.getUserId()},
 				ArrayUtil.toLongArray(addRoleIds),
 				ArrayUtil.toLongArray(removeRoleIds));
 		}
 
-		if (!addSiteUserGroupRoles.isEmpty() ||
-			!removeSiteUserGroupRoles.isEmpty()) {
+		if ((userGroupRoles != null) &&
+			(!addSiteUserGroupRoles.isEmpty() ||
+			 !removeSiteUserGroupRoles.isEmpty())) {
 
 			SiteMembershipPolicyUtil.propagateRoles(
 				addSiteUserGroupRoles, removeSiteUserGroupRoles);
 		}
 
-		if (!addOrganizationUserGroupRoles.isEmpty() ||
-			!removeOrganizationUserGroupRoles.isEmpty()) {
+		if ((userGroupRoles != null) &&
+			(!addOrganizationUserGroupRoles.isEmpty() ||
+			 !removeOrganizationUserGroupRoles.isEmpty())) {
 
 			OrganizationMembershipPolicyUtil.propagateRoles(
 				addOrganizationUserGroupRoles,
 				removeOrganizationUserGroupRoles);
 		}
 
-		if (!addUserGroupIds.isEmpty() || !removeGroupIds.isEmpty()) {
+		if ((userGroupIds != null) &&
+			(!addUserGroupIds.isEmpty() || !removeUserGroupIds.isEmpty())) {
+
 			UserGroupMembershipPolicyUtil.propagateMembership(
 				new long[] {user.getUserId()},
 				ArrayUtil.toLongArray(addUserGroupIds),

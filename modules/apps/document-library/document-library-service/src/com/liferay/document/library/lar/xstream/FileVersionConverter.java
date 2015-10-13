@@ -33,7 +33,7 @@ public class FileVersionConverter extends BaseXStreamConverter {
 
 	@Override
 	public boolean canConvert(Class<?> clazz) {
-		return clazz.equals(FileVersionProxyBean.class);
+		return clazz == FileVersionProxyBean.class;
 	}
 
 	@Override

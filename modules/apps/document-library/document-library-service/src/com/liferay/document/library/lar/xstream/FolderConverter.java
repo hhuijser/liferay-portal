@@ -33,7 +33,7 @@ public class FolderConverter extends BaseXStreamConverter {
 
 	@Override
 	public boolean canConvert(Class<?> clazz) {
-		return clazz.equals(FolderProxyBean.class);
+		return clazz == FolderProxyBean.class;
 	}
 
 	@Override

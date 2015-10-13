@@ -35,7 +35,7 @@ public class FileEntryConverter extends BaseXStreamConverter {
 
 	@Override
 	public boolean canConvert(Class<?> clazz) {
-		return clazz.equals(FileEntryProxyBean.class);
+		return clazz == FileEntryProxyBean.class;
 	}
 
 	@Override

@@ -42,8 +42,13 @@ public class UserGroupsAdminPortletDataHandlerTest
 	protected void addStagedModels() throws Exception {
 	}
 
+	protected doNothing() {
+	}
+
 	@Override
 	protected String getPortletId() {
+		doNothing();
+
 		return UserGroupsAdminPortletKeys.USER_GROUPS_ADMIN;
 	}
 

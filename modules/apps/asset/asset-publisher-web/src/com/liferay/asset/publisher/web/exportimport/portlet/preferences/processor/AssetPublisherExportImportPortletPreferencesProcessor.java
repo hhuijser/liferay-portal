@@ -41,6 +41,7 @@ import com.liferay.portal.model.Layout;
 import com.liferay.portal.model.Organization;
 import com.liferay.portal.model.Portlet;
 import com.liferay.portal.security.auth.PrincipalException;
+import com.liferay.portal.security.permission.PermissionChecker;
 import com.liferay.portal.security.permission.PermissionThreadLocal;
 import com.liferay.portal.service.CompanyLocalService;
 import com.liferay.portal.service.LayoutLocalService;
@@ -734,10 +735,13 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 			String newValue = StringUtil.replace(
 				oldValue, "[$COMPANY_GROUP_SCOPE_ID$]", companyGroupScopeId);
 
+			PermissionChecker permissionChecker =
+				PermissionThreadLocal.getPermissionChecker();
+
 			try {
-				if (!AssetPublisherUtil.isScopeIdSelectable(
-						PermissionThreadLocal.getPermissionChecker(), newValue,
-						companyGroupId, layout)) {
+				if ((permissionChecker == null) ||
+					!AssetPublisherUtil.isScopeIdSelectable(
+						permissionChecker, newValue, companyGroupId, layout)) {
 
 					continue;
 				}

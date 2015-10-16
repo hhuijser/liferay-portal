@@ -42,7 +42,7 @@ public class UserGroupsAdminPortletDataHandlerTest
 	protected void addStagedModels() throws Exception {
 	}
 
-	protected doNothing() {
+	protected void doNothing() {
 	}
 
 	@Override

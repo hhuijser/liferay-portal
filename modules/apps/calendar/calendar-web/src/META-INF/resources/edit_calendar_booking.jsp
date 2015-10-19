@@ -426,7 +426,11 @@ for (long otherCalendarId : otherCalendarIds) {
 				var calendarId = A.one('#<portlet:namespace />calendarId').val();
 				var childCalendarIds = A.Object.keys(Liferay.CalendarUtil.availableCalendars);
 
-				A.Array.remove(childCalendarIds, A.Array.indexOf(childCalendarIds, calendarId));
+				var index = A.Array.indexOf(childCalendarIds, calendarId);
+
+				if (index > -1) {
+					A.Array.remove(childCalendarIds, index);
+				}
 
 				A.one('#<portlet:namespace />childCalendarIds').val(childCalendarIds.join(','));
 			</c:if>

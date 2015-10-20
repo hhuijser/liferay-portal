@@ -1048,7 +1048,7 @@ public class AssetPublisherUtil {
 		String[] scopeIds = portletPreferences.getValues(
 			"scopeIds", new String[] {SCOPE_ID_GROUP_PREFIX + scopeGroupId});
 
-		List<Long> groupIds = new ArrayList<>();
+		Set<Long> groupIds = new HashSet<>();
 
 		for (String scopeId : scopeIds) {
 			try {

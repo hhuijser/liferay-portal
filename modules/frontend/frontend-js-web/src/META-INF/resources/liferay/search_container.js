@@ -327,7 +327,10 @@ AUI.add(
 						if (instance._ids.length == 0) {
 							action = 'hide';
 
-							instance._emptyResultsMessage.show();
+							if(instance._emptyResultsMessage.get('innerHTML') !== null){
+								instance._emptyResultsMessage.show();
+							}
+
 						}
 
 						instance._parentContainer[action]();

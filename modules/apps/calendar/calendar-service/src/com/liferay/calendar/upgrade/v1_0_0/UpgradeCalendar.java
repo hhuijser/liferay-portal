@@ -73,7 +73,7 @@ public class UpgradeCalendar extends UpgradeProcess {
 			}
 		}
 		finally {
-			DataAccess.cleanUp(con);
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 
@@ -81,13 +81,23 @@ public class UpgradeCalendar extends UpgradeProcess {
 			Connection connection, long calendarId, String timeZoneId)
 		throws Exception {
 
-		PreparedStatement ps = connection.prepareStatement(
-			"update Calendar set timeZoneId = ? where calendarId = ?");
+		Connection con = null;
+		PreparedStatement ps = null;
 
-		ps.setString(1, timeZoneId);
-		ps.setLong(2, calendarId);
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
 
-		ps.execute();
+			ps = connection.prepareStatement(
+				"update Calendar set timeZoneId = ? where calendarId = ?");
+
+			ps.setString(1, timeZoneId);
+			ps.setLong(2, calendarId);
+
+			ps.execute();
+		}
+		finally {
+			DataAccess.cleanUp(con, ps);
+		}
 	}
 
 }

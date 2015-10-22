@@ -40,6 +40,7 @@ public class UserGroupsAdminPortletDataHandlerTest
 
 	@Override
 	protected void addStagedModels() throws Exception {
+		String asdf = "asdf";
 	}
 
 	@Override

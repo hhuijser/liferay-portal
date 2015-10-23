@@ -19,9 +19,14 @@
 			text-align: center;
 		}
 
+		h2 {
+		  overflow: hidden;
+		}
+
 		p {
 			line-height: 27px;
 			margin-bottom: 30px;
+			overflow: hidden;
 
 			&:last-child {
 				margin-bottom: 0;

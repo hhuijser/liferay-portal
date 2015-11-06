@@ -258,7 +258,7 @@ public class CalendarSearcherTest {
 			false, serviceContext);
 	}
 
-	protected void assertSearch(String keywords, final int length)
+	protected void assertSearch(final String keywords, final int length)
 		throws Exception {
 
 		IdempotentRetryAssert.retryAssert(

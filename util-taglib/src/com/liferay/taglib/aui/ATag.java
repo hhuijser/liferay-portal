@@ -47,6 +47,7 @@ public class ATag extends BaseATag {
 		if (Validator.isNotNull(getHref())) {
 			if (AUIUtil.isOpensNewWindow(getTarget())) {
 				jspWriter.write("<span class=\"opens-new-window-accessible\">");
+				jspWriter.write(StringPool.SPACE);
 				jspWriter.write(LanguageUtil.get(request, "opens-new-window"));
 				jspWriter.write("</span>");
 			}

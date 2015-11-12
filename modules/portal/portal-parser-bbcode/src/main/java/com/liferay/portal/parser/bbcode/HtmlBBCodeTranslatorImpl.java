@@ -608,7 +608,9 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 	}
 
 	protected void handleTagEnd(StringBundler sb, Stack<String> tags) {
-		sb.append(tags.pop());
+		if (!tags.empty()) {
+			sb.append(tags.pop());
+		}
 	}
 
 	protected void handleTagStart(

@@ -3421,9 +3421,25 @@ public class PortalImpl implements Portal {
 			layoutFriendlyURL = layout.getFriendlyURL(originalLocale);
 		}
 
+		String friendlyURL = StringPool.SLASH;
+
 		if (requestURI.contains(layoutFriendlyURL)) {
 			requestURI = StringUtil.replaceFirst(
 				requestURI, layoutFriendlyURL, layout.getFriendlyURL(locale));
+
+			friendlyURL = layout.getFriendlyURL(locale);
+		}
+
+		LayoutSet layoutSet = layout.getLayoutSet();
+
+		String virtualHostname = layoutSet.getVirtualHostname();
+
+		String portalURL = getPortalURL(request);
+
+		if (Validator.isNull(virtualHostname) ||
+			!portalURL.contains(virtualHostname)) {
+
+			friendlyURL = requestURI;
 		}
 
 		String i18nPath =
@@ -3445,7 +3461,7 @@ public class PortalImpl implements Portal {
 			localizedFriendlyURL += i18nPath;
 		}
 
-		localizedFriendlyURL += requestURI;
+		localizedFriendlyURL += friendlyURL;
 
 		String queryString = request.getQueryString();
 

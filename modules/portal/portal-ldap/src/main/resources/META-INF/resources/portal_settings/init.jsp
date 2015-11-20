@@ -49,6 +49,7 @@ page import="com.liferay.portal.ldap.internal.portal.settings.web.portlet.util.C
 page import="com.liferay.portal.security.ldap.PortalLDAPUtil" %><%@
 page import="com.liferay.portal.util.Portal" %><%@
 page import="com.liferay.portal.util.PortalUtil" %><%@
+page import="com.liferay.portal.util.PropsValues" %><%@
 page import="com.liferay.portlet.PortletURLUtil" %>
 
 <%@ page import="java.util.ArrayList" %><%@

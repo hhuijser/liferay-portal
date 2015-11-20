@@ -45,7 +45,8 @@ if (ldapContext == null) {
 
 if (Validator.isNull(ParamUtil.getString(request, "userMappingScreenName")) ||
 	Validator.isNull(ParamUtil.getString(request, "userMappingPassword")) ||
-	Validator.isNull(ParamUtil.getString(request, "userMappingEmailAddress")) ||
+	(Validator.isNull(ParamUtil.getString(request, "userMappingEmailAddress")) &&
+	PropsValues.USERS_EMAIL_ADDRESS_REQUIRED) ||
 	Validator.isNull(ParamUtil.getString(request, "userMappingFirstName")) ||
 	Validator.isNull(ParamUtil.getString(request, "userMappingLastName"))) {
 %>

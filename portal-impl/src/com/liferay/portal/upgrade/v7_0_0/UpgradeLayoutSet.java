@@ -30,8 +30,6 @@ import java.sql.Timestamp;
  */
 public class UpgradeLayoutSet extends UpgradeProcess {
 
-	public boolean _isOrganization = false;
-
 	@Override
 	protected void doUpgrade() throws Exception {
 		upgradeLayoutSet();
@@ -70,6 +68,14 @@ public class UpgradeLayoutSet extends UpgradeProcess {
 		}
 	}
 
+	protected void hasGroupAnOrganization(
+		long orgClassNameId, long classNameId) {
+
+		if (orgClassNameId == classNameId) {
+			_isOrganization = true;
+		}
+	}
+
 	protected boolean hasGroupAnySite(long groupId) throws Exception {
 		long classNameId = PortalUtil.getClassNameId(
 			"com.liferay.portal.model.Organization");
@@ -103,16 +109,65 @@ public class UpgradeLayoutSet extends UpgradeProcess {
 		}
 	}
 
-	protected void hasGroupAnOrganization(
-		long orgClassNameId, long classNameId) {
+	protected void updateGroupSite(long groupId) throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
-		if (orgClassNameId == classNameId) {
-			_isOrganization = true;
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			ps = con.prepareStatement(
+				"update Group_ set site = ? where groupId = ?");
+
+			ps.setInt(1, 0);
+			ps.setLong(2, groupId);
+
+			ps.executeUpdate();
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unable to update Group " + groupId, e);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
+		}
+	}
+
+	protected void updateLayoutSet(long layoutSetId) throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			con = DataAccess.getUpgradeOptimizedConnection();
+
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+			ps = con.prepareStatement(
+				"update LayoutSet set layoutSetPrototypeLinkEnabled = ? ," +
+					" layoutSetPrototypeUuid = '' , modifiedDate = ?," +
+						"pageCount = ? where layoutSetId = ?");
+
+			ps.setInt(1, 0);
+			ps.setTimestamp(2, timestamp);
+			ps.setInt(3, 0);
+			ps.setLong(4, layoutSetId);
+
+			ps.executeUpdate();
+		}
+		catch (Exception e) {
+			if (_log.isWarnEnabled()) {
+				_log.warn("Unable to update layoutSet " + layoutSetId, e);
+			}
+		}
+		finally {
+			DataAccess.cleanUp(con, ps, rs);
 		}
 	}
 
 	protected void upgradeLayoutSet() throws Exception {
-
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -156,65 +211,9 @@ public class UpgradeLayoutSet extends UpgradeProcess {
 		}
 	}
 
-	protected void updateLayoutSet(long layoutSetId) throws Exception {
+	private static final Log _log = LogFactoryUtil.getLog(
+		UpgradeLayoutSet.class);
 
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-
-			ps = con.prepareStatement(
-				"update LayoutSet set layoutSetPrototypeLinkEnabled = ? ," +
-					" layoutSetPrototypeUuid = '' , modifiedDate = ?," +
-						"pageCount = ? where layoutSetId = ?");
-
-			ps.setInt(1, 0);
-			ps.setTimestamp(2, timestamp);
-			ps.setInt(3, 0);
-			ps.setLong(4, layoutSetId);
-
-			ps.executeUpdate();
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to update layoutSet " + layoutSetId, e);
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
-	protected void updateGroupSite(long groupId) throws Exception {
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getUpgradeOptimizedConnection();
-
-			ps = con.prepareStatement(
-				"update Group_ set site = ? where groupId = ?");
-
-			ps.setInt(1, 0);
-			ps.setLong(2, groupId);
-
-			ps.executeUpdate();
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to update Group " + groupId, e);
-			}
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
-		}
-	}
-
-	private static final Log _log = LogFactoryUtil.getLog(UpgradeLayoutSet.class);
+	private boolean _isOrganization = false;
 
 }

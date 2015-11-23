@@ -71,7 +71,7 @@ public class LayoutSetLocalServiceTest {
 
 		group = _organization.getGroup();
 
-		Assert.assertFalse(group.isSite());
+		Assert.assertTrue(group.isSite());
 
 		GroupLocalServiceUtil.deleteGroup(group);
 

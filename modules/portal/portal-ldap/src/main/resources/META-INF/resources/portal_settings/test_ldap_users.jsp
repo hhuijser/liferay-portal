@@ -25,6 +25,8 @@ String principal = ParamUtil.getString(request, "principal");
 
 String credentials = request.getParameter("credentials");
 
+FullNameDefinition fullNameDefinition = FullNameDefinitionFactory.getInstance(locale);
+
 if (credentials.equals(Portal.TEMP_OBFUSCATION_VALUE)) {
 	LDAPServerConfiguration ldapServerConfiguration = ldapServerConfigurationProvider.getConfiguration(themeDisplay.getCompanyId(), ldapServerId, true);
 
@@ -45,9 +47,11 @@ if (ldapContext == null) {
 
 if (Validator.isNull(ParamUtil.getString(request, "userMappingScreenName")) ||
 	Validator.isNull(ParamUtil.getString(request, "userMappingPassword")) ||
-	Validator.isNull(ParamUtil.getString(request, "userMappingEmailAddress")) ||
+	((Validator.isNull(ParamUtil.getString(request, "userMappingEmailAddress")) &&
+	PropsValues.USERS_EMAIL_ADDRESS_REQUIRED)) ||
 	Validator.isNull(ParamUtil.getString(request, "userMappingFirstName")) ||
-	Validator.isNull(ParamUtil.getString(request, "userMappingLastName"))) {
+	((Validator.isNull(ParamUtil.getString(request, "userMappingLastName")) &&
+	fullNameDefinition.isFieldRequired("last-name")))) {
 %>
 
 	<liferay-ui:message key="please-map-each-of-the-user-properties-screen-name,-password,-email-address,-first-name,-and-last-name-to-an-ldap-attribute" />

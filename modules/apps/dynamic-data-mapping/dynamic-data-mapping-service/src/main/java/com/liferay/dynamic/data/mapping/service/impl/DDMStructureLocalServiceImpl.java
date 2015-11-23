@@ -14,6 +14,7 @@
 
 package com.liferay.dynamic.data.mapping.service.impl;
 
+import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.dynamic.data.mapping.exception.InvalidStructureVersionException;
 import com.liferay.dynamic.data.mapping.exception.NoSuchStructureException;
 import com.liferay.dynamic.data.mapping.exception.RequiredStructureException;
@@ -456,6 +457,16 @@ public class DDMStructureLocalServiceImpl
 	@SystemEvent(type = SystemEventConstants.TYPE_DELETE)
 	public void deleteStructure(DDMStructure structure) throws PortalException {
 		if (!GroupThreadLocal.isDeleteInProcess()) {
+			if (structure.getClassName().equals(DDLRecordSet.class.getName())) {
+				if (ddmStructureLinkPersistence.countByStructureId(
+						structure.getStructureId()) > 0) {
+
+				throw new RequiredStructureException.
+					MustNotDeleteStructureReferencedByStructureLinks(
+						structure.getStructureId());
+				}
+			}
+
 			if (ddmStructurePersistence.countByParentStructureId(
 					structure.getStructureId()) > 0) {
 

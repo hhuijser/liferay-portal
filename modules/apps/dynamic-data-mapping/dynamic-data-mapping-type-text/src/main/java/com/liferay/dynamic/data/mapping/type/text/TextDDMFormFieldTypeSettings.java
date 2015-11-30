@@ -57,18 +57,12 @@ public interface TextDDMFormFieldTypeSettings
 		label = "%my-text-field-has",
 		optionLabels = {"%a-single-line", "%multiple-lines"},
 		optionValues = {"singleline", "multiline"},
-		properties = {
-			"inline=true", "setting.category=basic", "setting.weight=2"
-		},
+		properties = {"inline=true"},
 		type = "radio"
 	)
 	public String displayStyle();
 
-	@DDMFormField(
-		dataType = "string", label = "%field-tip",
-		properties = {"setting.category=advanced", "setting.weight=2"},
-		type = "text"
-	)
+	@DDMFormField(dataType = "string", label = "%field-tip", type = "text")
 	public LocalizedValue placeholder();
 
 }

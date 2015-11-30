@@ -16,6 +16,10 @@ package com.liferay.dynamic.data.mapping.io;
 
 import com.liferay.dynamic.data.mapping.annotations.DDMForm;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormField;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayout;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutColumn;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutPage;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.io.internal.DDMFormFieldTypeSettingsSerializerHelper;
 import com.liferay.dynamic.data.mapping.io.internal.DDMFormJSONSerializerImpl;
 import com.liferay.dynamic.data.mapping.io.internal.DDMFormLayoutJSONSerializerImpl;
@@ -56,29 +60,38 @@ public class DDMFormFieldTypeSettingsSerializerHelperTest
 	}
 
 	@DDMForm
+	@DDMFormLayout(
+		{
+			@DDMFormLayoutPage(
+				title = "basic",
+				value = {
+					@DDMFormLayoutRow({@DDMFormLayoutColumn({ "c", "b", "a" })}
+	)
+				}
+			),
+			@DDMFormLayoutPage(
+				title = "advanced",
+				value = {
+					@DDMFormLayoutRow({@DDMFormLayoutColumn({ "e", "d" })})
+				}
+			)
+		}
+	)
 	private interface SampleDDMFormFieldTypeSettings {
 
-		@DDMFormField(
-			properties = {"setting.category=basic", "setting.weight=1"}
-		)
+		@DDMFormField
 		public String a();
 
-		@DDMFormField(
-			properties = {"setting.category=basic", "setting.weight=2"}
-		)
+		@DDMFormField
 		public String b();
 
-		@DDMFormField(
-			properties = {"setting.category=basic", "setting.weight=3"}
-		)
+		@DDMFormField
 		public String c();
 
 		@DDMFormField
 		public String d();
 
-		@DDMFormField(
-			properties = {"setting.category=advanced", "setting.weight=1"}
-		)
+		@DDMFormField
 		public String e();
 
 	}

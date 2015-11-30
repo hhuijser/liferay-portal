@@ -16,11 +16,30 @@ package com.liferay.dynamic.data.mapping.form.field.type;
 
 import com.liferay.dynamic.data.mapping.annotations.DDMForm;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormField;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayout;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutColumn;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutPage;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutRow;
 
 /**
  * @author Marcellus Tavares
  */
 @DDMForm(localization = "content/Language")
+@DDMFormLayout(
+	{
+		@DDMFormLayoutPage(
+			title = "advanced",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn({"dataType", "name", "type"}
+)
+					}
+				)
+			}
+		)
+	}
+)
 public interface DDMFormFieldTypeSettings {
 
 	@DDMFormField(required = true, visibilityExpression = "false")

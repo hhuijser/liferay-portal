@@ -16,6 +16,10 @@ package com.liferay.dynamic.data.mapping.form.field.type;
 
 import com.liferay.dynamic.data.mapping.annotations.DDMForm;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormField;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayout;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutColumn;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutPage;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldValidation;
 import com.liferay.dynamic.data.mapping.model.LocalizedValue;
 import com.liferay.portal.kernel.util.StringPool;
@@ -24,6 +28,20 @@ import com.liferay.portal.kernel.util.StringPool;
  * @author Marcellus Tavares
  */
 @DDMForm
+@DDMFormLayout( {
+	@DDMFormLayoutPage(title = "basic", value = {
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"label"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"predefinedValue"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"required"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"tip"})})
+	}),
+	@DDMFormLayoutPage(title = "advanced", value = {
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"repeatable"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"showLabel"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"validation"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"visibilityExpression"})})
+	})
+})
 public interface DefaultDDMFormFieldTypeSettings
 	extends DDMFormFieldTypeSettings {
 

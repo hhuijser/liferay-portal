@@ -40,7 +40,7 @@ public class DDMFormLayoutFactory {
 		return createDDMFormLayout(clazz);
 	}
 
-	private static com.liferay.dynamic.data.mapping.model.DDMFormLayout
+	protected static com.liferay.dynamic.data.mapping.model.DDMFormLayout
 		createDDMFormLayout(Class<?> clazz) {
 
 		com.liferay.dynamic.data.mapping.model.DDMFormLayout ddmFormLayout =
@@ -60,7 +60,23 @@ public class DDMFormLayoutFactory {
 		return ddmFormLayout;
 	}
 
-	private static com.liferay.dynamic.data.mapping.model.DDMFormLayoutPage
+	protected static com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn
+		createDDMFormLayoutColumn(DDMFormLayoutColumn ddmFormLayoutColumnAnnotation) {
+
+		com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn
+			ddmFormLayoutColumn = new com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn();
+
+		String[] formFields = ddmFormLayoutColumnAnnotation.value();
+
+		ddmFormLayoutColumn.setDDMFormFieldNames(
+			ListUtil.fromArray(formFields));
+		ddmFormLayoutColumn.setSize(
+			com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn.FULL);
+
+		return ddmFormLayoutColumn;
+	}
+
+	protected static com.liferay.dynamic.data.mapping.model.DDMFormLayoutPage
 		createDDMFormLayoutPage(DDMFormLayoutPage ddmFormLayoutPageAnnotation) {
 
 		com.liferay.dynamic.data.mapping.model.DDMFormLayoutPage
@@ -82,7 +98,7 @@ public class DDMFormLayoutFactory {
 		return ddmFormLayoutPage;
 	}
 
-	private static com.liferay.dynamic.data.mapping.model.DDMFormLayoutRow
+	protected static com.liferay.dynamic.data.mapping.model.DDMFormLayoutRow
 		createDDMFormLayoutRow(DDMFormLayoutRow ddmFormLayoutRowAnnotation) {
 
 		com.liferay.dynamic.data.mapping.model.DDMFormLayoutRow
@@ -99,25 +115,8 @@ public class DDMFormLayoutFactory {
 		return ddmFormLayoutRow;
 	}
 
-	private static com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn
-		createDDMFormLayoutColumn(DDMFormLayoutColumn ddmFormLayoutColumnAnnotation) {
-
-		com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn
-			ddmFormLayoutColumn = new com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn();
-
-		String[] formFields = ddmFormLayoutColumnAnnotation.value();
-
-		ddmFormLayoutColumn.setDDMFormFieldNames(
-			ListUtil.fromArray(formFields));
-		ddmFormLayoutColumn.setSize(
-			com.liferay.dynamic.data.mapping.model.DDMFormLayoutColumn.FULL);
-
-		return ddmFormLayoutColumn;
-	}
-
-	private DDMFormLayoutFactory() {}
-
 	private static final Class<? extends Annotation>
 		_DDM_FORM_LAYOUT_ANNOTATION =
 			com.liferay.dynamic.data.mapping.annotations.DDMFormLayout.class;
+
 }

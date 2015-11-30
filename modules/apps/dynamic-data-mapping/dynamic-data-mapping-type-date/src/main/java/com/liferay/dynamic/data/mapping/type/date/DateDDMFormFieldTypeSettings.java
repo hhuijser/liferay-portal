@@ -16,6 +16,10 @@ package com.liferay.dynamic.data.mapping.type.date;
 
 import com.liferay.dynamic.data.mapping.annotations.DDMForm;
 import com.liferay.dynamic.data.mapping.annotations.DDMFormField;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayout;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutColumn;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutPage;
+import com.liferay.dynamic.data.mapping.annotations.DDMFormLayoutRow;
 import com.liferay.dynamic.data.mapping.form.field.type.DefaultDDMFormFieldTypeSettings;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldValidation;
 import com.liferay.dynamic.data.mapping.model.LocalizedValue;
@@ -24,6 +28,27 @@ import com.liferay.dynamic.data.mapping.model.LocalizedValue;
  * @author Bruno Basto
  */
 @DDMForm
+@DDMFormLayout( {
+	@DDMFormLayoutPage(title = "basic", value = {
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"label"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"tip"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"required"})})
+	}),
+	@DDMFormLayoutPage(title = "advanced", value = {
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"showLabel"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"repeatable"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"visibilityExpression"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"predefinedValue"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"validation"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"fieldNamespace"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"indexType"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"localizable"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"readOnly"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"dataType"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"type"})}),
+		@DDMFormLayoutRow({@DDMFormLayoutColumn({"name"})})
+	})
+})
 public interface DateDDMFormFieldTypeSettings
 	extends DefaultDDMFormFieldTypeSettings {
 

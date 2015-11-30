@@ -65,15 +65,13 @@ public class DDMFormFieldTypeSettingsSerializerHelperTest
 			@DDMFormLayoutPage(
 				title = "basic",
 				value = {
-					@DDMFormLayoutRow({@DDMFormLayoutColumn({ "c", "b", "a" })}
+					@DDMFormLayoutRow({@DDMFormLayoutColumn({"c", "b", "a"})}
 	)
 				}
 			),
 			@DDMFormLayoutPage(
 				title = "advanced",
-				value = {
-					@DDMFormLayoutRow({@DDMFormLayoutColumn({ "e", "d" })})
-				}
+				value = {@DDMFormLayoutRow({@DDMFormLayoutColumn({"e", "d"})})}
 			)
 		}
 	)

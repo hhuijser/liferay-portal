@@ -28,20 +28,35 @@ import com.liferay.portal.kernel.util.StringPool;
  * @author Marcellus Tavares
  */
 @DDMForm
-@DDMFormLayout( {
-	@DDMFormLayoutPage(title = "basic", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"label"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"predefinedValue"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"required"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"tip"})})
-	}),
-	@DDMFormLayoutPage(title = "advanced", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"repeatable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"showLabel"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"validation"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"visibilityExpression"})})
-	})
-})
+@DDMFormLayout(
+	{
+		@DDMFormLayoutPage(
+			title = "basic",
+			value = {
+				@DDMFormLayoutRow(
+					{ @DDMFormLayoutColumn({"label", "tip", "required"}) }
+				)
+			}
+		),
+		@DDMFormLayoutPage(
+			title = "advanced",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{
+								"validation", "showLabel", "repeatable",
+								"predefinedValue", "visibilityExpression",
+								"fieldNamespace", "indexType", "localizable",
+								"readOnly", "dataType", "type", "name"
+							}
+						)
+					}
+				)
+			}
+		)
+	}
+)
 public interface DefaultDDMFormFieldTypeSettings
 	extends DDMFormFieldTypeSettings {
 

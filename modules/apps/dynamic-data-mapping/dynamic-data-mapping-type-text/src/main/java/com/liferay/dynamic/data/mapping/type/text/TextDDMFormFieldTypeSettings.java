@@ -27,29 +27,40 @@ import com.liferay.dynamic.data.mapping.model.LocalizedValue;
  * @author Lino Alves
  */
 @DDMForm
-@DDMFormLayout( {
-	@DDMFormLayoutPage(title = "basic", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"label"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"tip"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"displayStyle"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"required"})})
-	}),
-	@DDMFormLayoutPage(title = "advanced", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"validation"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"showLabel"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"repeatable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"placeholder"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"predefinedValue"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"visibilityExpression"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"fieldNamespace"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"indexType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"localizable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"readOnly"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"dataType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"type"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"name"})})
-	})
-})
+@DDMFormLayout(
+	{
+		@DDMFormLayoutPage(
+			title = "basic",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{"label", "tip", "displayStyle", "required"}
+						)
+					}
+				)
+			}
+		),
+		@DDMFormLayoutPage(
+			title = "advanced",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{
+								"validation", "showLabel", "repeatable",
+								"placeholder", "predefinedValue",
+								"visibilityExpression", "fieldNamespace",
+								"indexType", "localizable", "readOnly",
+								"dataType", "type", "name"
+							}
+						)
+					}
+				)
+			}
+		)
+	}
+)
 public interface TextDDMFormFieldTypeSettings
 	extends DefaultDDMFormFieldTypeSettings {
 

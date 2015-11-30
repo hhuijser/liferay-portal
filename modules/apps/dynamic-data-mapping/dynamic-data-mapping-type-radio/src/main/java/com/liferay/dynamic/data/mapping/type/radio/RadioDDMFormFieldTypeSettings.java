@@ -27,29 +27,40 @@ import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
  * @author Marcellus Tavares
  */
 @DDMForm
-@DDMFormLayout( {
-	@DDMFormLayoutPage(title = "basic", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"label"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"tip"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"required"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"options"})})
-	}),
-	@DDMFormLayoutPage(title = "advanced", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"validation"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"showLabel"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"repeatable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"predefinedValue"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"visibilityExpression"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"inline"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"fieldNamespace"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"indexType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"localizable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"readOnly"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"dataType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"type"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"name"})})
-	})
-})
+@DDMFormLayout(
+	{
+		@DDMFormLayoutPage(
+			title = "basic",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{"label", "tip", "required", "options"}
+						)
+					}
+				)
+			}
+		),
+		@DDMFormLayoutPage(
+			title = "advanced",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{
+								"validation", "showLabel", "repeatable",
+								"predefinedValue", "visibilityExpression",
+								"inline", "fieldNamespace", "indexType",
+								"localizable", "readOnly", "dataType", "type",
+								"name"
+							}
+						)
+					}
+				)
+			}
+		)
+	}
+)
 public interface RadioDDMFormFieldTypeSettings
 	extends DefaultDDMFormFieldTypeSettings {
 
@@ -57,8 +68,8 @@ public interface RadioDDMFormFieldTypeSettings
 	public boolean inline();
 
 	@DDMFormField(
-		dataType = "ddm-options", label = "%options",
-		required = true, type = "options"
+		dataType = "ddm-options", label = "%options", required = true,
+		type = "options"
 	)
 	public DDMFormFieldOptions options();
 

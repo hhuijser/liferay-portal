@@ -27,31 +27,43 @@ import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
  * @author Marcellus Tavares
  */
 @DDMForm
-@DDMFormLayout( {
-	@DDMFormLayoutPage(title = "basic", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"label"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"tip"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"required"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"dataSourceType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"ddmDataProviderInstanceId"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"options"})})
-	}),
-	@DDMFormLayoutPage(title = "advanced", value = {
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"validation"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"showLabel"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"multiple"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"repeatable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"predefinedValue"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"visibilityExpression"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"fieldNamespace"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"indexType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"localizable"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"readOnly"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"dataType"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"type"})}),
-		@DDMFormLayoutRow({@DDMFormLayoutColumn({"name"})})
-	})
-})
+@DDMFormLayout(
+	{
+		@DDMFormLayoutPage(
+			title = "basic",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{
+								"label", "tip", "required", "options",
+								"dataSourceType", "ddmDataProviderInstanceId"
+							}
+						)
+					}
+				)
+			}
+		),
+		@DDMFormLayoutPage(
+			title = "advanced",
+			value = {
+				@DDMFormLayoutRow(
+					{
+						@DDMFormLayoutColumn(
+							{
+								"validation", "showLabel", "repeatable",
+								"multiple", "predefinedValue",
+								"visibilityExpression", "fieldNamespace",
+								"indexType", "localizable", "readOnly",
+								"dataType", "type", "name"
+							}
+						)
+					}
+				)
+			}
+		)
+	}
+)
 public interface SelectDDMFormFieldTypeSettings
 	extends DefaultDDMFormFieldTypeSettings {
 
@@ -67,14 +79,10 @@ public interface SelectDDMFormFieldTypeSettings
 		properties = { "showLabel=false" },
 		type = "select",
 		visibilityExpression = "dataSourceType.equals(\"data-provider\")"
-
 	)
 	public long ddmDataProviderInstanceId();
 
-	@DDMFormField(
-		label = "%multiple",
-		properties = { "showAsSwitcher=true" }
-	)
+	@DDMFormField(label = "%multiple", properties = { "showAsSwitcher=true" })
 	public boolean multiple();
 
 	@DDMFormField(
@@ -82,10 +90,6 @@ public interface SelectDDMFormFieldTypeSettings
 		properties = { "showLabel=false" },
 		required = true, type = "options",
 		visibilityExpression = "dataSourceType.equals(\"manual\")"
-	public boolean multiple();
-
-	@DDMFormField(
-		dataType = "ddm-options", label = "%options", type = "options"
 	)
 	public DDMFormFieldOptions options();
 

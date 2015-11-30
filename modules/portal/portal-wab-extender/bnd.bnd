@@ -4,6 +4,7 @@ Bundle-Version: 1.0.0
 Export-Package:\
 	com.liferay.portal.wab.extender.ws.axis
 Import-Package:\
+	com.liferay.portal.kernel.util,\
 	javax.servlet;version='[2.3.0,4.0.0)',\
 	javax.servlet.http;version='[2.3.0,4.0.0)',\
 	org.apache.axis;resolution:='optional',\
@@ -17,7 +18,4 @@ Import-Package:\
 Include-Resource:\
 	classes,\
 	@lib/org.apache.felix.utils.jar!/org/apache/felix/utils/extender/*,\
-	@lib/org.apache.felix.utils.jar!/org/apache/felix/utils/log/*,\
-	@../../../portal-service/portal-service.jar!/com/liferay/portal/kernel/util/GetterUtil.class,\
-	@../../../portal-service/portal-service.jar!/com/liferay/portal/kernel/util/HashMapDictionary.class,\
-	@../../../portal-service/portal-service.jar!/com/liferay/portal/kernel/util/ReflectionUtil.class
+	@lib/org.apache.felix.utils.jar!/org/apache/felix/utils/log/*

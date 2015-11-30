@@ -14,6 +14,8 @@
 
 package com.liferay.dynamic.data.mapping.annotations;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -25,6 +27,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface DDMFormLayoutPage {
+
+	public String title() default StringPool.BLANK;
 
 	public DDMFormLayoutRow[] value() default {};
 

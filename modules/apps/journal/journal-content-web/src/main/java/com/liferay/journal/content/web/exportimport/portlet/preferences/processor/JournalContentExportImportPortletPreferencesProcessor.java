@@ -40,7 +40,9 @@ import com.liferay.portal.service.LayoutLocalService;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portlet.exportimport.lar.PortletDataContext;
 import com.liferay.portlet.exportimport.lar.PortletDataException;
+import com.liferay.portlet.exportimport.lar.PortletDataHandlerKeys;
 import com.liferay.portlet.exportimport.lar.StagedModelDataHandlerUtil;
+import com.liferay.portlet.exportimport.staging.MergeLayoutPrototypesThreadLocal;
 
 import java.util.List;
 import java.util.Map;
@@ -144,30 +146,40 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			return portletPreferences;
 		}
 
-		StagedModelDataHandlerUtil.exportReferenceStagedModel(
-			portletDataContext, portletId, article);
+		boolean exportData = MapUtil.getBoolean(
+			portletDataContext.getParameterMap(),
+			PortletDataHandlerKeys.PORTLET_DATA);
 
-		String defaultDDMTemplateKey = article.getDDMTemplateKey();
-		String preferenceDDMTemplateKey = portletPreferences.getValue(
-			"ddmTemplateKey", null);
+		if (MergeLayoutPrototypesThreadLocal.isInProgress() && !exportData &&
+			(articleGroupId != portletDataContext.getCompanyGroupId())) {
+		}
+		else {
+			StagedModelDataHandlerUtil.exportReferenceStagedModel(
+				portletDataContext, portletId, article);
 
-		if (Validator.isNotNull(defaultDDMTemplateKey) &&
-			Validator.isNotNull(preferenceDDMTemplateKey) &&
-			!defaultDDMTemplateKey.equals(preferenceDDMTemplateKey)) {
+			String defaultDDMTemplateKey = article.getDDMTemplateKey();
+			String preferenceDDMTemplateKey = portletPreferences.getValue(
+				"ddmTemplateKey", null);
 
-			try {
-				DDMTemplate ddmTemplate = _ddmTemplateLocalService.getTemplate(
-					article.getGroupId(),
-					PortalUtil.getClassNameId(DDMStructure.class),
-					preferenceDDMTemplateKey, true);
+			if (Validator.isNotNull(defaultDDMTemplateKey) &&
+				Validator.isNotNull(preferenceDDMTemplateKey) &&
+				!defaultDDMTemplateKey.equals(preferenceDDMTemplateKey)) {
 
-				StagedModelDataHandlerUtil.exportReferenceStagedModel(
-					portletDataContext, article, ddmTemplate,
-					PortletDataContext.REFERENCE_TYPE_STRONG);
-			}
-			catch (PortalException pe) {
-				throw new PortletDataException(
-					"Unable to export referenced article template", pe);
+				try {
+					DDMTemplate ddmTemplate =
+						_ddmTemplateLocalService.getTemplate(
+							article.getGroupId(),
+						PortalUtil.getClassNameId(DDMStructure.class),
+						preferenceDDMTemplateKey, true);
+
+					StagedModelDataHandlerUtil.exportReferenceStagedModel(
+						portletDataContext, article, ddmTemplate,
+						PortletDataContext.REFERENCE_TYPE_STRONG);
+				}
+				catch (PortalException pe) {
+					throw new PortletDataException(
+						"Unable to export referenced article template", pe);
+				}
 			}
 		}
 

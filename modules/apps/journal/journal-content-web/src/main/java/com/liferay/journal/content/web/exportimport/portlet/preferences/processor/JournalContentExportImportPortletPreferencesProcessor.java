@@ -150,10 +150,11 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.getParameterMap(),
 			PortletDataHandlerKeys.PORTLET_DATA);
 
-		if (MergeLayoutPrototypesThreadLocal.isInProgress() && !exportData &&
-			(articleGroupId != portletDataContext.getCompanyGroupId())) {
-		}
-		else {
+		if (!MergeLayoutPrototypesThreadLocal.isInProgress() ||
+			(MergeLayoutPrototypesThreadLocal.isInProgress() &&
+			 (exportData ||
+			  articleGroupId == portletDataContext.getCompanyGroupId()))) {
+
 			StagedModelDataHandlerUtil.exportReferenceStagedModel(
 				portletDataContext, portletId, article);
 

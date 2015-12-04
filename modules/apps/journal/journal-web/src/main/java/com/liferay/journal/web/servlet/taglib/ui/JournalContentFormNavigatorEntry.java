@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = {"service.ranking:Integer=80"},
+	property = {"service.ranking:Integer=90"},
 	service = FormNavigatorEntry.class
 )
 public class JournalContentFormNavigatorEntry

@@ -35,10 +35,12 @@ import org.osgi.service.component.annotations.Reference;
 public class PortalSettingsNtlmAuthenticationDynamicInclude
 	extends BaseJSPDynamicInclude {
 
+	@Override
 	protected String getJspPath() {
 		return "/com.liferay.portal.settings.web/ntlm.jsp";
 	}
 
+	@Override
 	protected Log getLog() {
 		return _log;
 	}

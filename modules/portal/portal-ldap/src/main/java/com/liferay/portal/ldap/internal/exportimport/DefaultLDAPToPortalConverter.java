@@ -130,9 +130,17 @@ public class DefaultLDAPToPortalConverter implements LDAPToPortalConverter {
 
 			String[] names = fullNameGenerator.splitFullName(fullName);
 
-			firstName = names[0];
-			middleName = names[1];
-			lastName = names[2];
+			if (Validator.isNull(firstName)) {
+				firstName = names[0];
+			}
+
+			if (Validator.isNull(middleName)) {
+				middleName = names[1];
+			}
+
+			if (Validator.isNull(lastName)) {
+				lastName = names[2];
+			}
 		}
 
 		if (!autoScreenName && Validator.isNull(screenName)) {

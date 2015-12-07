@@ -27,9 +27,7 @@ public interface DDMFormFieldTypeSettings {
 	public String dataType();
 
 	@DDMFormField(
-		label = "%name",
-		properties = {"setting.category=advanced", "setting.weight=2"},
-		required = true, visibilityExpression = "false"
+		label = "%name", required = true, visibilityExpression = "false"
 	)
 	public String name();
 

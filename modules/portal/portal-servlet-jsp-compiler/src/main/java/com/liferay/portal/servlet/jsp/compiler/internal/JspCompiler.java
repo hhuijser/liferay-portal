@@ -16,9 +16,11 @@ package com.liferay.portal.servlet.jsp.compiler.internal;
 
 import com.liferay.portal.kernel.util.ReflectionUtil;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -31,7 +33,6 @@ import java.security.PrivilegedAction;
 import java.security.ProtectionDomain;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -187,19 +188,22 @@ public class JspCompiler extends Jsr199JavaCompiler {
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
-		Collection<String> resourcePaths = bundleWiring.listResources(
-			"/", "*.tld", BundleWiring.FINDENTRIES_RECURSE);
+		List<String> resourcePaths = new ArrayList<>(
+			bundleWiring.listResources(
+				"/META-INF/", "*.tld", BundleWiring.LISTRESOURCES_RECURSE));
+
+		resourcePaths.addAll(
+			bundleWiring.listResources(
+				"/WEB-INF/", "*.tld", BundleWiring.LISTRESOURCES_RECURSE));
 
 		for (String resourcePath : resourcePaths) {
 			URL url = bundle.getResource(resourcePath);
 
 			String uri = getTldUri(url);
 
-			if (uri == null) {
-				continue;
+			if (uri != null) {
+				tldMappings.put(uri, new String[] {"/" + resourcePath, null});
 			}
-
-			tldMappings.put(uri, new String[] {"/" + resourcePath, null});
 		}
 	}
 
@@ -233,31 +237,48 @@ public class JspCompiler extends Jsr199JavaCompiler {
 	}
 
 	protected String getTldUri(URL url) {
-		try (InputStream inputStream = url.openStream()) {
-			byte[] buffer = new byte[4096];
-			int length = 0;
-			StringBuilder sb = new StringBuilder();
+		try (InputStream inputStream = url.openStream();
+			InputStreamReader inputStreamReader = new InputStreamReader(
+				inputStream);
+			BufferedReader bufferedReader = new BufferedReader(
+				inputStreamReader)) {
 
-			while ((length = inputStream.read(buffer)) > 0) {
-				String xml = new String(buffer, 0, length);
+			StringBuilder sb = null;
 
-				sb.append(xml);
+			String line = null;
 
-				if (xml.indexOf("</uri>") > -1) {
-					break;
+			while ((line = bufferedReader.readLine()) != null) {
+				if (sb == null) {
+					int x = line.indexOf("<uri>");
+
+					if (x < 0) {
+						continue;
+					}
+
+					x += 5;
+
+					int y = line.indexOf("</uri>", x);
+
+					if (y >= 0) {
+						return line.substring(x, y);
+					}
+
+					sb = new StringBuilder(line.substring(x));
+				}
+				else {
+					int y = line.indexOf("</uri>");
+
+					if (y >= 0) {
+						sb.append(line.substring(0, y));
+
+						return sb.toString();
+					}
+
+					sb.append(line);
 				}
 			}
 
-			String xml = sb.toString();
-
-			int x = xml.indexOf("<uri>");
-			int y = xml.indexOf("</uri>", x);
-
-			if (x < 0) {
-				return null;
-			}
-
-			return xml.substring(x + 5, y);
+			return null;
 		}
 		catch (IOException ioe) {
 			return ReflectionUtil.throwException(ioe);

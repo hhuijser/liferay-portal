@@ -17,15 +17,6 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String tabs1 = ParamUtil.getString(request, "tabs1");
-%>
-
-<portlet:renderURL var="backURL">
-	<portlet:param name="mvcPath" value="/view.jsp" />
-	<portlet:param name="tabs1" value="<%= tabs1 %>" />
-</portlet:renderURL>
-
-<%
 String randomId = StringUtil.randomId();
 
 String redirect = ParamUtil.getString(request, "redirect");
@@ -48,7 +39,7 @@ if (assetRenderer != null) {
 String headerTitle = workflowTaskDisplayContext.getHeaderTitle(workflowTask);
 
 portletDisplay.setShowBackIcon(true);
-portletDisplay.setURLBack(backURL.toString());
+portletDisplay.setURLBack(redirect);
 
 renderResponse.setTitle(headerTitle);
 %>

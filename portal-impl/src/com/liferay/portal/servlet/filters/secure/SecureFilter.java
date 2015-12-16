@@ -38,7 +38,6 @@ import com.liferay.portal.service.UserLocalServiceUtil;
 import com.liferay.portal.servlet.filters.BasePortalFilter;
 import com.liferay.portal.util.PortalUtil;
 import com.liferay.portal.util.PropsUtil;
-import com.liferay.portal.util.PropsValues;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -276,18 +275,6 @@ public class SecureFilter extends BasePortalFilter {
 			}
 
 			User user = PortalUtil.getUser(request);
-
-			if ((user == null) && !PropsValues.PORTAL_JAAS_ENABLE) {
-				HttpSession session = request.getSession();
-
-				String jRemoteUser = (String)session.getAttribute(
-					"j_remoteuser");
-
-				if (jRemoteUser != null) {
-					user = UserLocalServiceUtil.getUserById(
-						Long.valueOf(jRemoteUser));
-				}
-			}
 
 			if (user == null) {
 				user = PortalUtil.initUser(request);

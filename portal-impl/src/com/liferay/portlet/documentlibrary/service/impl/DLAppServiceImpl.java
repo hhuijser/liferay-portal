@@ -53,6 +53,7 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.security.permission.ActionKeys;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portlet.documentlibrary.NoSuchFileEntryException;
+import com.liferay.portlet.documentlibrary.NoSuchFileException;
 import com.liferay.portlet.documentlibrary.model.DLFolderConstants;
 import com.liferay.portlet.documentlibrary.service.DLTrashService;
 import com.liferay.portlet.documentlibrary.service.base.DLAppServiceBaseImpl;
@@ -3095,9 +3096,14 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 				if (repositoryEntry instanceof FileEntry) {
 					FileEntry fileEntry = (FileEntry)repositoryEntry;
 
-					moveFileEntry(
-						fileEntry.getFileEntryId(), newFolder.getFolderId(),
-						serviceContext);
+					try {
+						moveFileEntry(
+							fileEntry.getFileEntryId(), newFolder.getFolderId(),
+							serviceContext);
+					}
+					catch (NoSuchFileException nsfe) {
+						_log.error(nsfe, nsfe);
+					}
 				}
 				else if (repositoryEntry instanceof Folder) {
 					Folder currentFolder = (Folder)repositoryEntry;

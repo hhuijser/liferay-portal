@@ -1481,7 +1481,13 @@ public class DLAppLocalServiceImpl extends DLAppLocalServiceBaseImpl {
 		}
 
 		try {
-			sourceLocalRepository.deleteFolder(folderId);
+			int fileEntriesAndFileShortcutsCount =
+				sourceLocalRepository.getFileEntriesAndFileShortcutsCount(
+					folderId, WorkflowConstants.STATUS_ANY);
+
+			if (fileEntriesAndFileShortcutsCount == 0) {
+				sourceLocalRepository.deleteFolder(folderId);
+			}
 		}
 		catch (PortalException pe) {
 			destinationLocalRepository.deleteFolder(

@@ -3137,7 +3137,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			nodeId = newNodeId;
 		}
 
-		validate(nodeId, content, format);
+		validate(newTitle, nodeId, content, format);
 
 		serviceContext.validateModifiedDate(
 			oldPage, PageVersionException.class);
@@ -3236,7 +3236,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			throw new PageTitleException();
 		}
 
-		if (isUsedTitle(nodeId, title)) {
+		if (getPagesCount(nodeId, title) > 0) {
 			throw new DuplicatePageException("{nodeId=" + nodeId + "}");
 		}
 

@@ -3137,7 +3137,10 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			nodeId = newNodeId;
 		}
 
-		validate(newTitle, nodeId, content, format);
+		String title = Validator.isNull(
+			newTitle) ? oldPage.getTitle() : newTitle;
+
+		validate(title, nodeId, content, format);
 
 		serviceContext.validateModifiedDate(
 			oldPage, PageVersionException.class);
@@ -3167,8 +3170,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		page.setUserName(user.getFullName());
 		page.setCreateDate(oldPage.getCreateDate());
 		page.setNodeId(nodeId);
-		page.setTitle(
-			Validator.isNull(newTitle) ? oldPage.getTitle() : newTitle);
+		page.setTitle(title);
 		page.setVersion(newVersion);
 		page.setMinorEdit(minorEdit);
 		page.setContent(content);

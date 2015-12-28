@@ -325,19 +325,24 @@ public class LDAPAuth implements Authenticator {
 						_systemLDAPConfigurationProvider.getConfiguration(
 							companyId);
 
-					int pos = errorMessage.indexOf(
-						systemLDAPConfiguration.errorUserLockout());
+					String[] errorUserLockoutArray =
+						systemLDAPConfiguration.errorUserLockout();
+					String[] errorPasswordExpiredArray =
+						systemLDAPConfiguration.errorPasswordExpired();
 
-					if (pos != -1) {
-						throw new UserLockoutException.LDAPLockout(
-							fullUserDN, errorMessage);
+					for (String errorUserLockout : errorUserLockoutArray) {
+						if (errorMessage.contains(errorUserLockout)) {
+							throw new UserLockoutException.LDAPLockout(
+								fullUserDN, errorMessage);
+						}
 					}
 
-					pos = errorMessage.indexOf(
-						systemLDAPConfiguration.errorPasswordExpired());
+					for (String errorPasswordExpired :
+							errorPasswordExpiredArray) {
 
-					if (pos != -1) {
-						throw new PasswordExpiredException();
+						if (errorMessage.contains(errorPasswordExpired)) {
+							throw new PasswordExpiredException();
+						}
 					}
 				}
 

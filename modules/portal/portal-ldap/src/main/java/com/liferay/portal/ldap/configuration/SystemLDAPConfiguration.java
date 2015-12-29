@@ -60,7 +60,7 @@ public interface SystemLDAPConfiguration extends CompanyScopedConfiguration {
 	@Meta.AD(deflt = "trivial", required = false)
 	public String[] errorPasswordTrivial();
 
-	@Meta.AD(deflt = "retry limit|533", required = false)
+	@Meta.AD(deflt = "retry limit", required = false)
 	public String[] errorUserLockout();
 
 	@Meta.AD(deflt = "com.sun.jndi.ldap.LdapCtxFactory", required = false)

@@ -80,7 +80,7 @@ DDLRecordSet ddlRecordSet = ddlFormViewRecordsDisplayContext.getDDLRecordSet();
 
 			<liferay-ui:search-container-column-text
 				name="author"
-				value="<%= PortalUtil.getUserName(record) %>"
+				value="<%= HtmlUtil.escape(PortalUtil.getUserName(record)) %>"
 			/>
 
 			<liferay-ui:search-container-column-jsp

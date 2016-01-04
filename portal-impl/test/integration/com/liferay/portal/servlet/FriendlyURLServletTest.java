@@ -90,6 +90,7 @@ public class FriendlyURLServletTest {
 
 		testGetI18nRedirect("/fr", "/en");
 		testGetI18nRedirect("/hu", "/hu");
+		testGetI18nRedirect("/en_US", "/en_US");
 	}
 
 	@Test

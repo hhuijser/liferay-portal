@@ -101,7 +101,7 @@ backURL.setParameter("classPK", String.valueOf(structure.getStructureId()));
 			<liferay-ui:search-container-column-text
 				href="<%= rowURL %>"
 				name="author"
-				value="<%= HtmlUtil.escape(PortalUtil.getUserName(structureVersion)) %>"
+				value="<%= PortalUtil.getUserName(structureVersion) %>"
 			/>
 
 			<liferay-ui:search-container-column-jsp

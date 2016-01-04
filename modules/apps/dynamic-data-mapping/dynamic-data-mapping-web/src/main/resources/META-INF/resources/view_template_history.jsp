@@ -101,7 +101,7 @@ backURL.setParameter("templateId", String.valueOf(templateId));
 			<liferay-ui:search-container-column-text
 				href="<%= rowURL %>"
 				name="author"
-				value="<%= HtmlUtil.escape(PortalUtil.getUserName(templateVersion)) %>"
+				value="<%= PortalUtil.getUserName(templateVersion) %>"
 			/>
 
 			<liferay-ui:search-container-column-jsp

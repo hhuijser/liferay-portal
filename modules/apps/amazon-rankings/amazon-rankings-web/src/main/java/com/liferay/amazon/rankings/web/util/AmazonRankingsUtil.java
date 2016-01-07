@@ -35,9 +35,7 @@ public class AmazonRankingsUtil {
 	public static AmazonRankings getAmazonRankings(
 		AmazonRankingsConfiguration amazonRankingsConfiguration, String isbn) {
 
-		if (!Validator.isDigit(isbn)) {
-			return null;
-		}
+		isbn = isbn.replaceAll(StringPool.DASH, StringPool.BLANK);
 
 		WebCacheItem wci = new AmazonRankingsWebCacheItem(
 			amazonRankingsConfiguration, isbn);

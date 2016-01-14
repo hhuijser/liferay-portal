@@ -1216,6 +1216,8 @@ public class BaseExportImportContentProcessor
 
 			boolean privateLayout = type.startsWith("private");
 
+			groupId = GetterUtil.getLong(matcher.group(5));
+
 			Layout layout = LayoutLocalServiceUtil.fetchLayout(
 				groupId, privateLayout, layoutId);
 

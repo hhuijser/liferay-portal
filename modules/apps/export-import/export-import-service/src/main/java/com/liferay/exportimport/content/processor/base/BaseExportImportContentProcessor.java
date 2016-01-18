@@ -1220,6 +1220,13 @@ public class BaseExportImportContentProcessor
 				groupId, privateLayout, layoutId);
 
 			if (layout == null) {
+				groupId = GetterUtil.getLong(matcher.group(5));
+
+				layout = LayoutLocalServiceUtil.fetchLayout(
+					groupId, privateLayout, layoutId);
+			}
+
+			if (layout == null) {
 				throw new NoSuchLayoutException();
 			}
 		}

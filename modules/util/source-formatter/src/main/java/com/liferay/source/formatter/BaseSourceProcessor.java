@@ -436,6 +436,15 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 					continue;
 				}
 
+				Properties moduleLangLanguageProperties =
+					getModuleLangLanguageProperties(fileName);
+
+				if ((moduleLangLanguageProperties != null) &&
+					moduleLangLanguageProperties.containsKey(languageKey)) {
+
+					continue;
+				}
+
 				Properties bndFileLanguageProperties =
 					getBNDFileLanguageProperties(fileName);
 
@@ -1414,6 +1423,77 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		return _mainReleaseVersion;
 	}
 
+	protected Properties getModuleLangLanguageProperties(String fileName)
+		throws Exception {
+
+		Properties properties = _moduleLangLanguageProperties.get(fileName);
+
+		if (properties != null) {
+			return properties;
+		}
+
+		String buildGradleContent = null;
+		String buildGradleFileLocation = fileName;
+
+		while (true) {
+			int pos = buildGradleFileLocation.lastIndexOf(StringPool.SLASH);
+
+			if (pos == -1) {
+				return null;
+			}
+
+			buildGradleFileLocation = buildGradleFileLocation.substring(
+				0, pos + 1);
+
+			File file = new File(buildGradleFileLocation + "build.gradle");
+
+			if (file.exists()) {
+				buildGradleContent = FileUtil.read(file);
+
+				break;
+			}
+
+			buildGradleFileLocation = StringUtil.replaceLast(
+				buildGradleFileLocation, StringPool.SLASH, StringPool.BLANK);
+		}
+
+		Matcher matcher = langMergerPluginPattern.matcher(buildGradleContent);
+
+		if (!matcher.find()) {
+			return null;
+		}
+
+		String moduleLocation = StringUtil.replaceLast(
+			buildGradleFileLocation, StringPool.SLASH, StringPool.BLANK);
+
+		int pos1 = moduleLocation.lastIndexOf(StringPool.SLASH);
+		int pos2 = moduleLocation.indexOf(StringPool.DASH, pos1);
+
+		String baseModuleName = moduleLocation.substring(pos1 + 1, pos2);
+
+		String moduleLangName = baseModuleName.concat("-lang");
+
+		String moduleLangLanguagePath =
+			moduleLocation.substring(0, pos1 + 1).concat(moduleLangName).concat(
+				"/src/main/resources/content/Language.properties");
+
+		File file = new File(moduleLangLanguagePath);
+
+		if (!file.exists()) {
+			return null;
+		}
+
+		properties = new Properties();
+
+		InputStream inputStream = new FileInputStream(file);
+
+		properties.load(inputStream);
+
+		_moduleLangLanguageProperties.put(fileName, properties);
+
+		return properties;
+	}
+
 	protected Properties getModuleLanguageProperties(String fileName) {
 		Properties properties = _moduleLanguageProperties.get(fileName);
 
@@ -1926,6 +2006,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		"[a-z]+[-_a-zA-Z0-9]*");
 	protected static Pattern bndContentDirPattern = Pattern.compile(
 		"\tcontent=(.*?)(,\\\\|\n)");
+	protected static Pattern langMergerPluginPattern = Pattern.compile(
+		"^apply\\p{Blank}+plugin\\p{Blank}*:\\p{Blank}+".concat(
+			"\"com.liferay.lang.merger\"$"),
+		Pattern.MULTILINE);
 	protected static Pattern emptyCollectionPattern = Pattern.compile(
 		"Collections\\.EMPTY_(LIST|MAP|SET)");
 	protected static Pattern javaSourceInsideJSPTagPattern = Pattern.compile(
@@ -2092,6 +2176,8 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 	private Set<String> _annotationsExclusions;
 	private Map<String, Properties> _bndFileLanguageProperties =
+		new HashMap<>();
+	private Map<String, Properties> _moduleLangLanguageProperties =
 		new HashMap<>();
 	private Map<String, String> _compatClassNamesMap;
 	private String _copyright;

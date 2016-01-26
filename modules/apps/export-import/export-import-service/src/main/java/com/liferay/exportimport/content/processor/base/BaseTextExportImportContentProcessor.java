@@ -1018,6 +1018,24 @@ public class BaseTextExportImportContentProcessor
 	protected void validateDLReferences(long groupId, String content)
 		throws PortalException {
 
+		Matcher matcher = dlReferencePattern.matcher(content);
+
+		List<String> srcList = new ArrayList<>();
+
+		String src = null;
+
+		while (matcher.find()) {
+			src = StringUtil.trim(matcher.group(1));
+
+			if (!(src.startsWith("http://") || src.startsWith("https://"))) {
+				srcList.add(src);
+			}
+		}
+
+		if (srcList.size() == 0) {
+			return;
+		}
+
 		String contextPath = PortalUtil.getPathContext();
 
 		String[] patterns = {
@@ -1292,6 +1310,8 @@ public class BaseTextExportImportContentProcessor
 			PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING) +
 				StringPool.SLASH;
 
+	protected static final Pattern dlReferencePattern = Pattern.compile(
+		"src=\"([\\s\\S]*?)\"");
 	protected static final Pattern exportLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
 	protected static final Pattern importLinksToLayoutPattern = Pattern.compile(

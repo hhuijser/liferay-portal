@@ -307,6 +307,14 @@ public class DDMStructureStagedModelDataHandler
 			if (existingStructure == null) {
 				serviceContext.setUuid(structure.getUuid());
 
+				existingStructure = _ddmStructureLocalService.fetchStructure(
+					portletDataContext.getScopeGroupId(),
+					structure.getClassNameId(), structure.getStructureKey());
+
+				if (existingStructure != null) {
+					structure.setStructureKey(null);
+				}
+
 				importedStructure = _ddmStructureLocalService.addStructure(
 					userId, portletDataContext.getScopeGroupId(),
 					parentStructureId, structure.getClassNameId(),

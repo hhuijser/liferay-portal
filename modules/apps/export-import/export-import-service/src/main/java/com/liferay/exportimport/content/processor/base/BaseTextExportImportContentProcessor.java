@@ -1018,24 +1018,6 @@ public class BaseTextExportImportContentProcessor
 	protected void validateDLReferences(long groupId, String content)
 		throws PortalException {
 
-		Matcher matcher = dlReferencePattern.matcher(content);
-
-		List<String> srcList = new ArrayList<>();
-
-		String src = null;
-
-		while (matcher.find()) {
-			src = StringUtil.trim(matcher.group(1));
-
-			if (!(src.startsWith("http://") || src.startsWith("https://"))) {
-				srcList.add(src);
-			}
-		}
-
-		if (srcList.size() == 0) {
-			return;
-		}
-
 		String contextPath = PortalUtil.getPathContext();
 
 		String[] patterns = {
@@ -1044,13 +1026,16 @@ public class BaseTextExportImportContentProcessor
 			contextPath.concat("/image/image_gallery?")
 		};
 
+		Matcher matcher = dlReferencePattern.matcher(content);
+
 		int beginPos = -1;
 		int endPos = -1;
 
-		for (String internalSrc : srcList) {
-			endPos = internalSrc.length();
+		while (matcher.find()) {
+			endPos = matcher.group(1).length();
 
-			beginPos = StringUtil.lastIndexOfAny(internalSrc, patterns, endPos);
+			beginPos = StringUtil.lastIndexOfAny(
+				matcher.group(1), patterns, endPos);
 
 			if (beginPos == -1) {
 				continue;
@@ -1058,7 +1043,7 @@ public class BaseTextExportImportContentProcessor
 
 			Map<String, String[]> dlReferenceParameters =
 				getDLReferenceParameters(
-					groupId, internalSrc, beginPos + contextPath.length(),
+					groupId, matcher.group(1), beginPos + contextPath.length(),
 					endPos);
 
 			FileEntry fileEntry = getFileEntry(dlReferenceParameters);
@@ -1312,7 +1297,7 @@ public class BaseTextExportImportContentProcessor
 				StringPool.SLASH;
 
 	protected static final Pattern dlReferencePattern = Pattern.compile(
-		"src=\"([\\s\\S]*?)\"");
+		"src=\"((?!(\\s*http://|\\s*https://)).+)\"");
 	protected static final Pattern exportLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
 	protected static final Pattern importLinksToLayoutPattern = Pattern.compile(

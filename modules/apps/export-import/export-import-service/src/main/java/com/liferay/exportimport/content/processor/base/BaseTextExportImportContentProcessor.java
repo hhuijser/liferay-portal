@@ -1026,27 +1026,31 @@ public class BaseTextExportImportContentProcessor
 			contextPath.concat("/image/image_gallery?")
 		};
 
-		int beginPos = -1;
-		int endPos = content.length();
+		Matcher matcher = dlReferencePattern.matcher(content);
 
-		while (true) {
-			beginPos = StringUtil.lastIndexOfAny(content, patterns, endPos);
+		int beginPos = -1;
+		int endPos = -1;
+
+		while (matcher.find()) {
+			endPos = matcher.group(1).length();
+
+			beginPos = StringUtil.lastIndexOfAny(
+				matcher.group(1), patterns, endPos);
 
 			if (beginPos == -1) {
-				break;
+				continue;
 			}
 
 			Map<String, String[]> dlReferenceParameters =
 				getDLReferenceParameters(
-					groupId, content, beginPos + contextPath.length(), endPos);
+					groupId, matcher.group(1), beginPos + contextPath.length(),
+					endPos);
 
 			FileEntry fileEntry = getFileEntry(dlReferenceParameters);
 
 			if (fileEntry == null) {
 				throw new NoSuchFileEntryException();
 			}
-
-			endPos = beginPos - 1;
 		}
 	}
 
@@ -1292,6 +1296,8 @@ public class BaseTextExportImportContentProcessor
 			PropsKeys.LAYOUT_FRIENDLY_URL_PUBLIC_SERVLET_MAPPING) +
 				StringPool.SLASH;
 
+	protected static final Pattern dlReferencePattern = Pattern.compile(
+		"src=\"((?!(\\s*http://|\\s*https://)).+)\"");
 	protected static final Pattern exportLinksToLayoutPattern = Pattern.compile(
 		"\\[([\\d]+)@(private(-group|-user)?|public)(@([\\d]+))?\\]");
 	protected static final Pattern importLinksToLayoutPattern = Pattern.compile(

@@ -175,9 +175,9 @@ if (portletTitleBasedNavigation) {
 
 						<aui:input label="use-a-secure-network-connection" name="inUseSSL" />
 
-						<aui:input label="user-name" name="inUserName" />
+						<aui:input autocomplete="off" label="user-name" name="inUserName" />
 
-						<aui:input label="password" name="inPassword" />
+						<aui:input autocomplete="off" label="password" name="inPassword" />
 
 						<aui:input label="read-interval-minutes" name="inReadInterval" value="5" />
 					</aui:fieldset>
@@ -194,9 +194,9 @@ if (portletTitleBasedNavigation) {
 
 							<aui:input label="use-a-secure-network-connection" name="outUseSSL" />
 
-							<aui:input label="user-name" name="outUserName" />
+							<aui:input autocomplete="off" label="user-name" name="outUserName" />
 
-							<aui:input label="password" name="outPassword" />
+							<aui:input autocomplete="off" label="password" name="outPassword" />
 						</div>
 					</aui:fieldset>
 				</div>

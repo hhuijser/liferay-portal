@@ -24,7 +24,10 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = WorkflowEngineManagerImpl.class)
+@Component(
+	immediate = true,
+	service = {WorkflowEngineManager.class, WorkflowEngineManagerImpl.class}
+)
 public class WorkflowEngineManagerImpl implements WorkflowEngineManager {
 
 	@Override

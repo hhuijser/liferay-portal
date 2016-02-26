@@ -639,6 +639,10 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 				assetCategoryIdsMap, categoryId, categoryId);
 		}
 
+		if (importedAssetCategoryIds.length == 0) {
+			return;
+		}
+
 		portletDataContext.addAssetCategories(
 			ExportImportClassedModelUtil.getClassName(stagedModel),
 			ExportImportClassedModelUtil.getClassPK(stagedModel),
@@ -681,6 +685,10 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			if (assetTag != null) {
 				assetTagNames.add(assetTag.getName());
 			}
+		}
+
+		if (assetTagNames.isEmpty()) {
+			return;
 		}
 
 		portletDataContext.addAssetTags(

@@ -906,6 +906,20 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 		checkPropertyUtils(fileName, newContent);
 
+		// LPS-63953
+
+		if (!absolutePath.contains("poshi")) {
+			matcher = _preferReplaceWithCharsPattern.matcher(newContent);
+
+			if (matcher.find()) {
+				processErrorMessage(
+					fileName,
+					"Use StringUtil.replace(String, char, char) or " +
+						"StringUtil.replace(String, char, String) instead: "
+							+ fileName);
+			}
+		}
+
 		newContent = getCombinedLinesContent(
 			newContent, _combinedLinesPattern1);
 		newContent = getCombinedLinesContent(
@@ -4084,6 +4098,14 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		"(\n\t*)(public|private|protected) [^;]+? \\{");
 	private Map<String, String> _moduleFileContentsMap = new HashMap<>();
 	private Map<String, String> _moduleFileNamesMap;
+	private Pattern _preferReplaceWithCharsPattern = Pattern.compile(
+		"StringUtil\\.replace\\((\\n\\t+)?.*, (\\\"(\\\\).\\\"|StringPool." +
+		"(AMPERSAND|APOSTROPHE|AT|BACK_SLASH|CARET|CLOSE_BRACKET|" +
+		"CLOSE_CURLY_BRACE|CLOSE_PARENTHESIS|COLON|COMMA|DASH|DOLLAR|EQUAL|" +
+		"EXCLAMATION|FORWARD_SLASH|GRAVE_ACCENT|GREATER_THAN|LESS_THAN|MINUS" +
+		"|NEW_LINE|OPEN_BRACKET|OPEN_CURLY_BRACE|OPEN_PARENTHESIS|PERCENT|" +
+		"PERIOD|PIPE|PLUS|POUND|PRIME|QUESTION|QUOTE|RETURN|SEMICOLON|SPACE|" +
+		"STAR|TAB|TILDE|UNDERLINE)), .+\\);");
 	private Pattern _processCallablePattern = Pattern.compile(
 		"implements ProcessCallable\\b");
 	private List<String> _proxyExcludes;

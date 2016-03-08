@@ -139,14 +139,13 @@ int membershipRequestCount = MembershipRequestLocalServiceUtil.searchCount(group
 				name="user"
 			>
 				<c:choose>
-					<c:when test='<%= Validator.isNotNull(membershipRequestUser) %>'>
+					<c:when test="<%= Validator.isNotNull(membershipRequestUser) %>">
 						<%= HtmlUtil.escape(membershipRequestUser.getFullName()) %> (<%= membershipRequestUser.getEmailAddress() %>)
 					</c:when>
 					<c:otherwise>
-						<%= LanguageUtil.get(request, "user-is-not-found") %>
+						<%= LanguageUtil.get(request, "user-no-longer-exists") %>
 					</c:otherwise>
 				</c:choose>
-
 			</liferay-ui:search-container-column-text>
 
 			<liferay-ui:search-container-column-text
@@ -184,7 +183,7 @@ int membershipRequestCount = MembershipRequestLocalServiceUtil.searchCount(group
 							</c:choose>
 						</c:when>
 						<c:otherwise>
-							<%= LanguageUtil.get(request, "user-is-not-found") %>
+							<%= LanguageUtil.get(request, "user-no-longer-exists") %>
 						</c:otherwise>
 					</c:choose>
 				</liferay-ui:search-container-column-text>

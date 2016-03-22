@@ -858,6 +858,14 @@ public class BaseTextExportImportContentProcessor
 				importedFileEntry, importedFileEntry.getFileVersion(), null,
 				StringPool.BLANK, false, false);
 
+			int pos = content.indexOf("$]");
+
+			char question = content.charAt(pos + 2);
+
+			if (question == CharPool.QUESTION) {
+				content = StringUtil.replace(content, "$]?", "$]&");
+			}
+
 			content = StringUtil.replace(
 				content, "[$dl-reference=" + path + "$]", url);
 		}

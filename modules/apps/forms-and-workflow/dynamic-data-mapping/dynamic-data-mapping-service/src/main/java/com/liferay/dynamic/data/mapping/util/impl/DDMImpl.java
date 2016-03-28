@@ -186,41 +186,26 @@ public class DDMImpl implements DDM {
 	public JSONArray getDDMFormFieldsJSONArray(
 		DDMStructure ddmStructure, String script) {
 
-		JSONArray ddmFormFieldsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		DDMForm ddmForm = null;
-
-		if (ddmStructure != null) {
-			ddmForm = ddmStructure.getDDMForm();
+		if (ddmStructure == null) {
+			return null;
 		}
 
-		ddmFormFieldsJSONArray = getDDMFormFieldsJSONArray(ddmForm, script);
+		DDMForm ddmForm = ddmStructure.getDDMForm();
 
-		if ((ddmStructure != null) &&
-			(ddmStructure.getParentStructureId() > 0)) {
+		JSONArray ddmFormFieldsJSONArray = getDDMFormFieldsJSONArray(
+			ddmForm, script);
 
-			try {
-				JSONArray ddmFormParentFieldsJSONArray =
-					JSONFactoryUtil.createJSONArray();
+		if (ddmStructure.getParentStructureId() > 0) {
+			DDMStructure parentStructure =
+				DDMStructureLocalServiceUtil.fetchStructure(
+					ddmStructure.getParentStructureId());
 
-				DDMStructure parentStructure =
-					DDMStructureLocalServiceUtil.getStructure(
-						ddmStructure.getParentStructureId());
+			JSONArray ddmFormParentFieldsJSONArray = getDDMFormFieldsJSONArray(
+				parentStructure, parentStructure.getDefinition());
 
-				ddmFormParentFieldsJSONArray = getDDMFormFieldsJSONArray(
-					parentStructure, parentStructure.getDefinition());
-
-				int length = ddmFormParentFieldsJSONArray.length();
-
-				for (int i = 0; i < length; i++) {
-					JSONObject parentJSONObject =
-						ddmFormParentFieldsJSONArray.getJSONObject(i);
-
-					ddmFormFieldsJSONArray.put(parentJSONObject);
-				}
-			}
-			catch (Exception e) {
-				_log.error(e, e);
+			for (int i = 0; i < ddmFormParentFieldsJSONArray.length(); i++) {
+				ddmFormFieldsJSONArray.put(
+					ddmFormFieldsJSONArray.getJSONObject(i));
 			}
 		}
 

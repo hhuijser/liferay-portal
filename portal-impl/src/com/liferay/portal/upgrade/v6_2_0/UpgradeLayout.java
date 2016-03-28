@@ -78,11 +78,7 @@ public class UpgradeLayout extends UpgradeProcess {
 		sb.append(" and plid = ");
 		sb.append(Long.valueOf(primKey));
 
-		try (PreparedStatement ps = connection.prepareStatement(
-				sb.toString())) {
-
-			ps.executeUpdate();
-		}
+		runSQL(sb.toString());
 	}
 
 	protected void updateLayoutOwners() throws Exception {

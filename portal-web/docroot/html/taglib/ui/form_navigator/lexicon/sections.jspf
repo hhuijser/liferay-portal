@@ -75,11 +75,11 @@
 
 		<!-- End fragment <%= sectionId %> -->
 
-	<%
+		<%
 		String errorSection = (String)request.getAttribute(WebKeys.ERROR_SECTION);
 
 		if (Validator.equals(curFormNavigatorEntry.getKey(), errorSection)) {
-	%>
+		%>
 
 			<aui:script sandbox="<%= true %>">
 				var sectionContent = $('#<%= errorSection %>Content');

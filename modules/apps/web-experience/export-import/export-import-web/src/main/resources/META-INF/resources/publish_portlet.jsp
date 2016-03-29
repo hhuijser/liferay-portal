@@ -410,7 +410,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 
 																							if (ArrayUtil.isNotEmpty(childrenControls)) {
 																								request.setAttribute("render_controls.jsp-controls", childrenControls);
-																							%>
+																						%>
 
 																								<aui:field-wrapper label="content-metadata">
 																									<ul class="lfr-tree list-unstyled">
@@ -418,7 +418,7 @@ portletURL.setParameter("tabs3", "current-and-previous");
 																									</ul>
 																								</aui:field-wrapper>
 
-																							<%
+																						<%
 																							}
 																						}
 																						%>

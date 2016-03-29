@@ -16,8 +16,6 @@ package com.liferay.portal.upgrade.v6_2_0;
 
 import com.liferay.document.library.kernel.model.DLFileEntryTypeConstants;
 import com.liferay.document.library.kernel.store.DLStoreUtil;
-import com.liferay.portal.kernel.security.auth.FullNameGenerator;
-import com.liferay.portal.kernel.security.auth.FullNameGeneratorFactory;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.upgrade.util.UpgradeProcessUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -82,31 +80,6 @@ public class UpgradeDocumentLibrary extends UpgradeProcess {
 		// Temp directory
 
 		deleteTempDirectory();
-	}
-
-	protected String getUserName(long userId) throws Exception {
-		try (PreparedStatement ps = connection.prepareStatement(
-				"select firstName, middleName, lastName from User_ where " +
-					"userId = ?")) {
-
-			ps.setLong(1, userId);
-
-			try (ResultSet rs = ps.executeQuery()) {
-				if (rs.next()) {
-					String firstName = rs.getString("firstName");
-					String middleName = rs.getString("middleName");
-					String lastName = rs.getString("lastName");
-
-					FullNameGenerator fullNameGenerator =
-						FullNameGeneratorFactory.getInstance();
-
-					return fullNameGenerator.getFullName(
-						firstName, middleName, lastName);
-				}
-
-				return StringPool.BLANK;
-			}
-		}
 	}
 
 	protected String localize(long companyId, String content, String key)

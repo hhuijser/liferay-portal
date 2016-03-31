@@ -51,9 +51,9 @@ CamelCaseWordsAreLinksToPages
 </h4>
 
 <pre>
-<i class="icon-long-arrow-right"></i>* Item
-<i class="icon-long-arrow-right"></i>&nbsp;<i class="icon-long-arrow-right"></i>* Subitem
+	<i class="icon-long-arrow-right"></i>* Item
+	<i class="icon-long-arrow-right"></i>&nbsp;<i class="icon-long-arrow-right"></i>* Subitem
 
-<i class="icon-long-arrow-right"></i>1 Ordered Item
-<i class="icon-long-arrow-right"></i>&nbsp;<i class="icon-long-arrow-right"></i>1 Ordered Subitem
+	<i class="icon-long-arrow-right"></i>1 Ordered Item
+	<i class="icon-long-arrow-right"></i>&nbsp;<i class="icon-long-arrow-right"></i>1 Ordered Subitem
 </pre>

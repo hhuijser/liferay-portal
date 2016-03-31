@@ -106,7 +106,7 @@ public class VerifyResourcePermissions extends VerifyProcess {
 
 				verifyResourcedModel(
 					role.getCompanyId(), Layout.class.getName(),
-					layout.getPlid(), role, 0, i, total);
+					layout.getPlid(), role, layout.getUserId(), i, total);
 			}
 		}
 	}

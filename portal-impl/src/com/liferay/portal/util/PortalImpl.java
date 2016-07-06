@@ -1081,7 +1081,6 @@ public class PortalImpl implements Portal {
 					break;
 				}
 				catch (Exception e) {
-					throw new NoSuchLayoutException(e);
 				}
 			}
 		}
@@ -2855,7 +2854,6 @@ public class PortalImpl implements Portal {
 					break;
 				}
 				catch (Exception e) {
-					throw new NoSuchLayoutException(e);
 				}
 			}
 		}

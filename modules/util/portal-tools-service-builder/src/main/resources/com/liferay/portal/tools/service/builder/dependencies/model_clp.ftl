@@ -895,11 +895,15 @@ public class ${entity.name}Clp extends BaseModelImpl<${entity.name}> implements 
 			<#list entity.order.columns as column>
 				<#if column.isPrimitiveType()>
 					<#if column.type == "boolean">
-						<#assign ltComparator = "==" />
-						<#assign gtComparator = "!=" />
+						<#assign
+							ltComparator = "=="
+							gtComparator = "!="
+						/>
 					<#else>
-						<#assign ltComparator = "<" />
-						<#assign gtComparator = ">" />
+						<#assign
+							ltComparator = "<"
+							gtComparator = ">"
+						/>
 					</#if>
 
 					if (get${column.methodName}() ${ltComparator} ${entity.varName}.get${column.methodName}()) {

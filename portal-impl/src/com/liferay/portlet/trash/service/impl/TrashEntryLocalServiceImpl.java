@@ -14,6 +14,7 @@
 
 package com.liferay.portlet.trash.service.impl;
 
+import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -35,6 +36,7 @@ import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.UnicodeProperties;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.trash.service.base.TrashEntryLocalServiceBaseImpl;
 import com.liferay.trash.kernel.model.TrashEntry;
 import com.liferay.trash.kernel.model.TrashVersion;
@@ -158,6 +160,18 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 
 					if (createDate.before(date) ||
 						!TrashUtil.isTrashEnabled(group)) {
+
+						long dlFileEntryClassNameId =
+							classNameLocalService.getClassNameId(
+								DLFileEntry.class);
+
+						if ((trashEntry.getClassNameId() ==
+								dlFileEntryClassNameId) &&
+							Validator.isNull(
+								fetchEntry(trashEntry.getEntryId()))) {
+
+							return;
+						}
 
 						TrashHandler trashHandler =
 							TrashHandlerRegistryUtil.getTrashHandler(

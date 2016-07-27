@@ -14,11 +14,12 @@
 
 package com.liferay.portlet.trash.service.impl;
 
-import com.liferay.document.library.kernel.model.DLFileEntry;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.SystemEvent;
 import com.liferay.portal.kernel.model.User;
@@ -36,7 +37,6 @@ import com.liferay.portal.kernel.trash.TrashHandlerRegistryUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portlet.trash.service.base.TrashEntryLocalServiceBaseImpl;
 import com.liferay.trash.kernel.model.TrashEntry;
 import com.liferay.trash.kernel.model.TrashVersion;
@@ -161,25 +161,20 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 					if (createDate.before(date) ||
 						!TrashUtil.isTrashEnabled(group)) {
 
-						long dlFileEntryClassNameId =
-							classNameLocalService.getClassNameId(
-								DLFileEntry.class);
-
-						if ((trashEntry.getClassNameId() ==
-								dlFileEntryClassNameId) &&
-							Validator.isNull(
-								fetchEntry(trashEntry.getEntryId()))) {
-
-							return;
-						}
-
 						TrashHandler trashHandler =
 							TrashHandlerRegistryUtil.getTrashHandler(
 								trashEntry.getClassName());
 
 						if (trashHandler != null) {
-							trashHandler.deleteTrashEntry(
-								trashEntry.getClassPK());
+							try {
+								trashHandler.deleteTrashEntry(
+									trashEntry.getClassPK());
+							}
+							catch (Exception e) {
+								if (_log.isDebugEnabled()) {
+									_log.debug(e, e);
+								}
+							}
 						}
 					}
 				}
@@ -438,5 +433,8 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 
 		return calendar.getTime();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TrashEntryLocalServiceImpl.class);
 
 }

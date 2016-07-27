@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DefaultActionableDynamicQuery;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.SystemEvent;
 import com.liferay.portal.kernel.model.User;
@@ -164,8 +166,15 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 								trashEntry.getClassName());
 
 						if (trashHandler != null) {
-							trashHandler.deleteTrashEntry(
-								trashEntry.getClassPK());
+							try {
+								trashHandler.deleteTrashEntry(
+									trashEntry.getClassPK());
+							}
+							catch (Exception e) {
+								if (_log.isDebugEnabled()) {
+									_log.debug(e, e);
+								}
+							}
 						}
 					}
 				}
@@ -424,5 +433,8 @@ public class TrashEntryLocalServiceImpl extends TrashEntryLocalServiceBaseImpl {
 
 		return calendar.getTime();
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		TrashEntryLocalServiceImpl.class);
 
 }

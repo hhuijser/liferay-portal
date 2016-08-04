@@ -194,7 +194,7 @@ public class HookHotDeployListener
 		"dl.file.entry.drafts.enabled",
 		"dl.file.entry.open.in.ms.office.manual.check.in.required",
 		"dl.file.entry.processors", "dl.repository.impl",
-		"dl.store.antivirus.impl", "dl.store.antivirus.enabled",
+		"dl.store.antivirus.enabled", "dl.store.antivirus.impl",
 		"dl.store.impl",
 		"field.enable.com.liferay.portal.kernel.model.Contact.birthday",
 		"field.enable.com.liferay.portal.kernel.model.Contact.male",

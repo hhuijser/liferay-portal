@@ -30,8 +30,6 @@ else {
 	user2 = (User)request.getAttribute(ContactsWebKeys.CONTACTS_USER);
 }
 
-user2 = user2.toEscapedModel();
-
 request.setAttribute("view_user.jsp-user", user2);
 %>
 
@@ -144,11 +142,11 @@ request.setAttribute("view_user.jsp-user", user2);
 
 				<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
 					<div class="lfr-contact-name">
-						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= user2.getFullName() %></a>
+						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= HtmlUtil.escape(user2.getFullName()) %></a>
 					</div>
 
 					<div class="lfr-contact-job-title">
-						<%= user2.getJobTitle() %>
+						<%= HtmlUtil.escape(user2.getJobTitle()) %>
 					</div>
 
 					<div class="lfr-contact-extra">

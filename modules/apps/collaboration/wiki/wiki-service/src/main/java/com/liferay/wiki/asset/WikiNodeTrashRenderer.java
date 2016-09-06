@@ -16,6 +16,7 @@ package com.liferay.wiki.asset;
 
 import com.liferay.portal.kernel.trash.BaseTrashRenderer;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.trash.kernel.util.TrashUtil;
 import com.liferay.wiki.constants.WikiPortletKeys;
 import com.liferay.wiki.model.WikiNode;
@@ -71,6 +72,8 @@ public class WikiNodeTrashRenderer extends BaseTrashRenderer {
 		if (!_node.isInTrash()) {
 			return _node.getName();
 		}
+
+		for (String sourceJarLocation : StringUtil.split("sources", ':')) {}
 
 		return TrashUtil.getOriginalTitle(_node.getName());
 	}

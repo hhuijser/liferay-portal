@@ -16,6 +16,9 @@ package com.liferay.portal.kernel.search;
 
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 
 import java.util.Collection;
 import java.util.Locale;
@@ -30,7 +33,8 @@ import javax.portlet.PortletResponse;
  */
 public interface Indexer<T> {
 
-	public static final int DEFAULT_INTERVAL = 10000;
+	public static final int DEFAULT_INTERVAL = GetterUtil.getInteger(
+		PropsUtil.get(PropsKeys.INDEX_DEFAULT_INTERVAL));
 
 	public void delete(long companyId, String uid) throws SearchException;
 

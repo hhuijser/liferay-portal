@@ -81,7 +81,7 @@ public class PollerHeader implements Serializable {
 		return sb.toString();
 	}
 
-	private static final long _TIMESTAMP = System.currentTimeMillis();
+	private long _TIMESTAMP = System.currentTimeMillis();
 
 	private static final long serialVersionUID = 1L;
 

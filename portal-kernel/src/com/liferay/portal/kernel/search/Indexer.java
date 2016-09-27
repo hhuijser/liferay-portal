@@ -30,6 +30,10 @@ import javax.portlet.PortletResponse;
  */
 public interface Indexer<T> {
 
+	/**
+	 * @deprecated As of 7.0.0
+	 */
+	@Deprecated
 	public static final int DEFAULT_INTERVAL = 10000;
 
 	public void delete(long companyId, String uid) throws SearchException;

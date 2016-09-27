@@ -40,12 +40,10 @@ import com.liferay.portal.kernel.process.ProcessCallable;
 import com.liferay.portal.kernel.process.ProcessException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.TransactionCommitCallbackUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.util.PropsValues;
 
 import java.io.Serializable;
 
@@ -716,8 +714,7 @@ public class MicroblogsEntryLocalServiceImpl
 
 			int count = receiverUserIds.size();
 
-			int interval = GetterUtil.getInteger(
-				PropsUtil.get(PropsKeys.INDEX_DEFAULT_INTERVAL));
+			int interval = PropsValues.INDEX_DEFAULT_INTERVAL;
 
 			int pages = count / interval;
 

@@ -52,11 +52,17 @@ public interface Build {
 
 	public String getStatus();
 
+	public Map<String, String>getStartProperties();
+
 	public long getStatusAge();
 
 	public String getStatusReport();
 
 	public String getStatusReport(int indentSize);
+
+	public String getStatusSummary();
+
+	public Map<String, String>getStopProperties();
 
 	public boolean hasBuildURL(String buildURL);
 

@@ -268,7 +268,7 @@ List<Website> websites = new ArrayList<Website>();
 try {
 	websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
 }
-catch (NoSuchWebsiteException nsae) {
+catch (NoSuchWebsiteException nswe) {
 }
 catch (PrincipalException pe) {
 }

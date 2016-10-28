@@ -49,7 +49,15 @@ if (Validator.isNull(user2.getComments())) {
 </c:if>
 
 <%
-List<Phone> phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact2.getContactId());
+List<Phone> phones = new ArrayList<Phone>();
+
+try {
+	phones = PhoneServiceUtil.getPhones(Contact.class.getName(), contact2.getContactId());
+}
+catch (PrincipalException pe) {
+}
+catch (NoSuchPhoneException nspe) {
+}
 
 if (phones.isEmpty()) {
 	incompleteProfile = true;
@@ -82,7 +90,15 @@ if (phones.isEmpty()) {
 </c:if>
 
 <%
-List<EmailAddress> emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
+List<EmailAddress> emailAddresses = new ArrayList<EmailAddress>();
+
+try {
+	emailAddresses = EmailAddressServiceUtil.getEmailAddresses(Contact.class.getName(), contact2.getContactId());
+}
+catch (NoSuchEmailAddressException nseae) {
+}
+catch (PrincipalException pe) {
+}
 
 if (emailAddresses.isEmpty()) {
 	incompleteProfile = true;
@@ -153,7 +169,15 @@ if (Validator.isNull(jabberSn) && Validator.isNull(skypeSn)) {
 </c:if>
 
 <%
-List<Address> addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
+List<Address> addresses = new ArrayList<Address>();
+
+try {
+	addresses = AddressServiceUtil.getAddresses(Contact.class.getName(), contact2.getContactId());
+}
+catch (NoSuchAddressException nsae) {
+}
+catch (PrincipalException pe) {
+}
 
 if (addresses.isEmpty()) {
 	incompleteProfile = true;
@@ -239,7 +263,15 @@ if (addresses.isEmpty()) {
 </c:if>
 
 <%
-List<Website> websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
+List<Website> websites = new ArrayList<Website>();
+
+try {
+	websites = WebsiteServiceUtil.getWebsites(Contact.class.getName(), contact2.getContactId());
+}
+catch (NoSuchWebsiteException nsae) {
+}
+catch (PrincipalException pe) {
+}
 
 if (websites.isEmpty()) {
 	incompleteProfile = true;

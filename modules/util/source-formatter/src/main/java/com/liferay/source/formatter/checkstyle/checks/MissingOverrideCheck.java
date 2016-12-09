@@ -120,6 +120,15 @@ public class MissingOverrideCheck extends AbstractCheck {
 				implement.getJavaClass(), javaClass.getPackageName(), fileName,
 				javaDocBuilder);
 
+			String implementedInterfaceName = implementedInterface.getName();
+
+			if (!implementedInterfaceName.contains(".")) {
+				JavaPackage javaPackage = className.getPackage();
+
+				implementedInterface = new JavaClass(
+					javaPackage.getName() + "." + implementedInterfaceName);
+			}
+
 			if (actualTypeArguments == null) {
 				ancestorJavaClassTuples.add(new Tuple(implementedInterface));
 			}

@@ -458,7 +458,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 	}
 
-	@Override
 	public void assertPartialTextAceEditor(String locator, String pattern)
 		throws Exception {
 
@@ -1285,7 +1284,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		return !isPartialText(locator, value);
 	}
 
-	@Override
 	public boolean isNotPartialTextAceEditor(String locator, String value) {
 		return !isPartialTextAceEditor(locator, value);
 	}
@@ -1315,7 +1313,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		return WebDriverHelper.isPartialText(this, locator, value);
 	}
 
-	@Override
 	public boolean isPartialTextAceEditor(String locator, String value) {
 		return WebDriverHelper.isPartialTextAceEditor(this, locator, value);
 	}
@@ -2640,7 +2637,6 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 		}
 	}
 
-	@Override
 	public void waitForPartialTextAceEditor(String locator, String value)
 		throws Exception {
 

@@ -541,8 +541,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	 * @return the list of matching records ordered by the comparator
 	 */
 	@Override
-	public List<DDLRecord> getRecords(long recordSetId, long userId) {
-		return ddlRecordPersistence.findByR_U(recordSetId, userId);
+	public List<DDLRecord> getRecords(long userId, long recordSetId) {
+		return ddlRecordPersistence.findByU_R(userId, recordSetId);
 	}
 
 	@Override
@@ -550,8 +550,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		long recordSetId, long userId, int start, int end,
 		OrderByComparator<DDLRecord> obc) {
 
-		return ddlRecordPersistence.findByR_U(
-			recordSetId, userId, start, end, obc);
+		return ddlRecordPersistence.findByU_R(
+			userId, recordSetId, start, end, obc);
 	}
 
 	@Override
@@ -575,8 +575,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 	}
 
 	@Override
-	public int getRecordsCount(long recordSetId, long userId) {
-		return ddlRecordPersistence.countByR_U(recordSetId, userId);
+	public int getRecordsCount(long userId, long recordSetId) {
+		return ddlRecordPersistence.countByU_R(userId, recordSetId);
 	}
 
 	/**

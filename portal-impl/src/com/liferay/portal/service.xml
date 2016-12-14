@@ -2692,9 +2692,9 @@
 		<finder name="PortraitId" return-type="User">
 			<finder-column name="portraitId" />
 		</finder>
-		<finder name="C_U" return-type="User" unique="true">
-			<finder-column name="companyId" />
+		<finder name="U_C" return-type="User" unique="true">
 			<finder-column name="userId" />
+			<finder-column name="companyId" />
 		</finder>
 		<finder name="C_CD" return-type="Collection">
 			<finder-column name="companyId" />

@@ -2785,7 +2785,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	public User getUserById(long companyId, long userId)
 		throws PortalException {
 
-		return userPersistence.findByC_U(companyId, userId);
+		return userPersistence.findByU_C(companyId, userId);
 	}
 
 	/**

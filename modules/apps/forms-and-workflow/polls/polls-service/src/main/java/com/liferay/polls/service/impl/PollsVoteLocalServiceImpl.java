@@ -112,8 +112,8 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 	}
 
 	@Override
-	public PollsVote fetchQuestionUserVote(long questionId, long userId) {
-		List<PollsVote> votes = pollsVotePersistence.findByQ_U(
+	public PollsVote fetchQuestionUserVote(long userId, long questionId) {
+		List<PollsVote> votes = pollsVotePersistence.findByU_Q(
 			questionId, userId);
 
 		if (votes.isEmpty()) {

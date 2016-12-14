@@ -39,9 +39,9 @@
 		<finder name="RecordSetId" return-type="Collection">
 			<finder-column name="recordSetId" />
 		</finder>
-		<finder name="R_U" return-type="Collection">
-			<finder-column name="recordSetId" />
+		<finder name="U_R" return-type="Collection">
 			<finder-column name="userId" />
+			<finder-column name="recordSetId" />
 		</finder>
 
 		<!-- References -->

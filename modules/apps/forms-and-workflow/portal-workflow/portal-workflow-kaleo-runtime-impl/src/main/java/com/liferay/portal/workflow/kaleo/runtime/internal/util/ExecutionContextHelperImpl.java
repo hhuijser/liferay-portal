@@ -164,7 +164,7 @@ public class ExecutionContextHelperImpl implements ExecutionContextHelper {
 		int count =
 			_kaleoTimerInstanceTokenLocalService.
 				getKaleoTimerInstanceTokensCount(
-					kaleoInstanceToken.getKaleoInstanceTokenId(), false, true,
+					kaleoInstanceToken.getKaleoInstanceTokenId(), true, false,
 					executionContext.getServiceContext());
 
 		if (count > 0) {

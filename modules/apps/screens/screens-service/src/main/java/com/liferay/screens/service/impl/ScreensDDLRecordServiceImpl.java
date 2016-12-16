@@ -101,13 +101,13 @@ public class ScreensDDLRecordServiceImpl
 	}
 
 	@Override
-	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+	public int getDDLRecordsCount(long userId, long ddlRecordSetId)
 		throws PortalException {
 
 		DDLRecordSetPermission.check(
 			getPermissionChecker(), ddlRecordSetId, ActionKeys.VIEW);
 
-		return ddlRecordLocalService.getRecordsCount(ddlRecordSetId, userId);
+		return ddlRecordLocalService.getRecordsCount(userId, ddlRecordSetId);
 	}
 
 	protected JSONObject getDDLRecordJSONObject(

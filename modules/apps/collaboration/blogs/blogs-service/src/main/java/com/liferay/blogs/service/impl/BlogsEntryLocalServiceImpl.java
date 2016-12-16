@@ -328,7 +328,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		}
 
 		FriendlyURL friendlyURL = friendlyURLLocalService.addFriendlyURL(
-			user.getCompanyId(), groupId, BlogsEntry.class, entryId, urlTitle);
+			groupId, user.getCompanyId(), BlogsEntry.class, entryId, urlTitle);
 
 		entry.setUrlTitle(friendlyURL.getUrlTitle());
 
@@ -1266,7 +1266,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 			!urlTitle.equals(entry.getUrlTitle())) {
 
 			FriendlyURL friendlyURL = friendlyURLLocalService.addFriendlyURL(
-				entry.getCompanyId(), entry.getGroupId(), BlogsEntry.class,
+				entry.getGroupId(), entry.getCompanyId(), BlogsEntry.class,
 				entry.getEntryId(), urlTitle);
 
 			entry.setUrlTitle(friendlyURL.getUrlTitle());
@@ -1486,7 +1486,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 			String uniqueUrlTitle = _getUniqueUrlTitle(entry);
 
 			FriendlyURL friendlyURL = friendlyURLLocalService.addFriendlyURL(
-				entry.getCompanyId(), entry.getGroupId(), BlogsEntry.class,
+				entry.getGroupId(), entry.getCompanyId(), BlogsEntry.class,
 				entry.getEntryId(), uniqueUrlTitle);
 
 			entry.setUrlTitle(friendlyURL.getUrlTitle());

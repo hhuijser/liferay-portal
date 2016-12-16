@@ -260,7 +260,7 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 		ServiceContext serviceContext) {
 
 		return kaleoTimerInstanceTokenPersistence.countByKITI_B_C(
-			kaleoInstanceTokenId, completed, blocking);
+			kaleoInstanceTokenId, blocking, completed);
 	}
 
 	protected void deleteScheduledTimer(

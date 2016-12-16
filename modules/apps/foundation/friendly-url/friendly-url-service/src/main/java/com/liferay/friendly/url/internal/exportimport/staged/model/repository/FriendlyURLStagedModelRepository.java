@@ -46,7 +46,7 @@ public class FriendlyURLStagedModelRepository
 		throws PortalException {
 
 		return _friendlyURLLocalService.addFriendlyURL(
-			friendlyURL.getCompanyId(), friendlyURL.getGroupId(),
+			friendlyURL.getGroupId(), friendlyURL.getCompanyId(),
 			friendlyURL.getClassNameId(), friendlyURL.getClassPK(),
 			friendlyURL.getUrlTitle());
 	}

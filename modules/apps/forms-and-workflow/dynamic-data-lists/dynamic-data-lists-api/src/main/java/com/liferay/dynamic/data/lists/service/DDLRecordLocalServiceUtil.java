@@ -560,8 +560,8 @@ public class DDLRecordLocalServiceUtil {
 		return getService().getRecordsCount(recordSetId, status);
 	}
 
-	public static int getRecordsCount(long recordSetId, long userId) {
-		return getService().getRecordsCount(recordSetId, userId);
+	public static int getRecordsCount(long userId, long recordSetId) {
+		return getService().getRecordsCount(userId, recordSetId);
 	}
 
 	public static java.lang.Long[] getMinAndMaxCompanyRecordIds(
@@ -778,6 +778,12 @@ public class DDLRecordLocalServiceUtil {
 			orderByComparator);
 	}
 
+	public static java.util.List<com.liferay.dynamic.data.lists.model.DDLRecord> getRecords(
+		long recordSetId, long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord> obc) {
+		return getService().getRecords(recordSetId, userId, start, end, obc);
+	}
+
 	/**
 	* Returns all the records matching the record set ID and user ID.
 	*
@@ -786,14 +792,8 @@ public class DDLRecordLocalServiceUtil {
 	* @return the list of matching records ordered by the comparator
 	*/
 	public static java.util.List<com.liferay.dynamic.data.lists.model.DDLRecord> getRecords(
-		long recordSetId, long userId) {
-		return getService().getRecords(recordSetId, userId);
-	}
-
-	public static java.util.List<com.liferay.dynamic.data.lists.model.DDLRecord> getRecords(
-		long recordSetId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord> obc) {
-		return getService().getRecords(recordSetId, userId, start, end, obc);
+		long userId, long recordSetId) {
+		return getService().getRecords(userId, recordSetId);
 	}
 
 	/**

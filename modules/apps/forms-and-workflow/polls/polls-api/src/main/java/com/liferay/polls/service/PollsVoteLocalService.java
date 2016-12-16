@@ -119,7 +119,7 @@ public interface PollsVoteLocalService extends BaseLocalService,
 		long groupId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public PollsVote fetchQuestionUserVote(long questionId, long userId);
+	public PollsVote fetchQuestionUserVote(long userId, long questionId);
 
 	/**
 	* Returns the polls vote with the primary key.

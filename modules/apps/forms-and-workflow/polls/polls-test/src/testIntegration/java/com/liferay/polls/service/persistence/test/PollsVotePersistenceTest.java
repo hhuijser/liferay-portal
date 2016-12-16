@@ -222,11 +222,11 @@ public class PollsVotePersistenceTest {
 	}
 
 	@Test
-	public void testCountByQ_U() throws Exception {
-		_persistence.countByQ_U(RandomTestUtil.nextLong(),
+	public void testCountByU_Q() throws Exception {
+		_persistence.countByU_Q(RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong());
 
-		_persistence.countByQ_U(0L, 0L);
+		_persistence.countByU_Q(0L, 0L);
 	}
 
 	@Test

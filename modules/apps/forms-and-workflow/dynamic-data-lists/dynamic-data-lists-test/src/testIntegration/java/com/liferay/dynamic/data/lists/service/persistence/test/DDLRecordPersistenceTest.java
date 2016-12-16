@@ -233,11 +233,11 @@ public class DDLRecordPersistenceTest {
 	}
 
 	@Test
-	public void testCountByR_U() throws Exception {
-		_persistence.countByR_U(RandomTestUtil.nextLong(),
+	public void testCountByU_R() throws Exception {
+		_persistence.countByU_R(RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong());
 
-		_persistence.countByR_U(0L, 0L);
+		_persistence.countByU_R(0L, 0L);
 	}
 
 	@Test

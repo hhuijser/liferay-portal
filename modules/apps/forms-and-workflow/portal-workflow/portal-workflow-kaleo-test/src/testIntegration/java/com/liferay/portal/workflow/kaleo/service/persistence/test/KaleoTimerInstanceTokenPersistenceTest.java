@@ -235,11 +235,11 @@ public class KaleoTimerInstanceTokenPersistenceTest {
 	}
 
 	@Test
-	public void testCountByKITI_C_B() throws Exception {
-		_persistence.countByKITI_C_B(RandomTestUtil.nextLong(),
+	public void testCountByKITI_B_C() throws Exception {
+		_persistence.countByKITI_B_C(RandomTestUtil.nextLong(),
 			RandomTestUtil.randomBoolean(), RandomTestUtil.randomBoolean());
 
-		_persistence.countByKITI_C_B(0L, RandomTestUtil.randomBoolean(),
+		_persistence.countByKITI_B_C(0L, RandomTestUtil.randomBoolean(),
 			RandomTestUtil.randomBoolean());
 	}
 

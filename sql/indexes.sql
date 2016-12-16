@@ -514,10 +514,10 @@ create index IX_EE8ABD19 on User_ (companyId, modifiedDate);
 create index IX_89509087 on User_ (companyId, openId[$COLUMN_LENGTH:1024$]);
 create unique index IX_C5806019 on User_ (companyId, screenName[$COLUMN_LENGTH:75$]);
 create index IX_F6039434 on User_ (companyId, status);
-create unique index IX_9782AD88 on User_ (companyId, userId);
 create unique index IX_5ADBE171 on User_ (contactId);
 create index IX_762F63C6 on User_ (emailAddress[$COLUMN_LENGTH:75$]);
 create index IX_A18034A4 on User_ (portraitId);
+create unique index IX_68931CD4 on User_ (userId, companyId);
 create index IX_405CC0E on User_ (uuid_[$COLUMN_LENGTH:75$], companyId);
 
 create index IX_3499B657 on Users_Groups (companyId);

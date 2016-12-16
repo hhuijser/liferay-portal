@@ -500,7 +500,7 @@ public interface DDLRecordLocalService extends BaseLocalService,
 	public int getRecordsCount(long recordSetId, int status);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getRecordsCount(long recordSetId, long userId);
+	public int getRecordsCount(long userId, long recordSetId);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public java.lang.Long[] getMinAndMaxCompanyRecordIds(long companyId,
@@ -677,6 +677,10 @@ public interface DDLRecordLocalService extends BaseLocalService,
 	public List<DDLRecord> getRecords(long recordSetId, int status, int start,
 		int end, OrderByComparator<DDLRecord> orderByComparator);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<DDLRecord> getRecords(long recordSetId, long userId, int start,
+		int end, OrderByComparator<DDLRecord> obc);
+
 	/**
 	* Returns all the records matching the record set ID and user ID.
 	*
@@ -685,11 +689,7 @@ public interface DDLRecordLocalService extends BaseLocalService,
 	* @return the list of matching records ordered by the comparator
 	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDLRecord> getRecords(long recordSetId, long userId);
-
-	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public List<DDLRecord> getRecords(long recordSetId, long userId, int start,
-		int end, OrderByComparator<DDLRecord> obc);
+	public List<DDLRecord> getRecords(long userId, long recordSetId);
 
 	/**
 	* Returns the number of rows matching the dynamic query.

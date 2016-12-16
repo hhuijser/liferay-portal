@@ -864,63 +864,63 @@ public class UserUtil {
 	}
 
 	/**
-	* Returns the user where companyId = &#63; and userId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
+	* Returns the user where userId = &#63; and companyId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the matching user
 	* @throws NoSuchUserException if a matching user could not be found
 	*/
-	public static User findByC_U(long companyId, long userId)
+	public static User findByU_C(long userId, long companyId)
 		throws com.liferay.portal.kernel.exception.NoSuchUserException {
-		return getPersistence().findByC_U(companyId, userId);
+		return getPersistence().findByU_C(userId, companyId);
 	}
 
 	/**
-	* Returns the user where companyId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the user where userId = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the matching user, or <code>null</code> if a matching user could not be found
 	*/
-	public static User fetchByC_U(long companyId, long userId) {
-		return getPersistence().fetchByC_U(companyId, userId);
+	public static User fetchByU_C(long userId, long companyId) {
+		return getPersistence().fetchByU_C(userId, companyId);
 	}
 
 	/**
-	* Returns the user where companyId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the user where userId = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching user, or <code>null</code> if a matching user could not be found
 	*/
-	public static User fetchByC_U(long companyId, long userId,
+	public static User fetchByU_C(long userId, long companyId,
 		boolean retrieveFromCache) {
-		return getPersistence().fetchByC_U(companyId, userId, retrieveFromCache);
+		return getPersistence().fetchByU_C(userId, companyId, retrieveFromCache);
 	}
 
 	/**
-	* Removes the user where companyId = &#63; and userId = &#63; from the database.
+	* Removes the user where userId = &#63; and companyId = &#63; from the database.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the user that was removed
 	*/
-	public static User removeByC_U(long companyId, long userId)
+	public static User removeByU_C(long userId, long companyId)
 		throws com.liferay.portal.kernel.exception.NoSuchUserException {
-		return getPersistence().removeByC_U(companyId, userId);
+		return getPersistence().removeByU_C(userId, companyId);
 	}
 
 	/**
-	* Returns the number of users where companyId = &#63; and userId = &#63;.
+	* Returns the number of users where userId = &#63; and companyId = &#63;.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the number of matching users
 	*/
-	public static int countByC_U(long companyId, long userId) {
-		return getPersistence().countByC_U(companyId, userId);
+	public static int countByU_C(long userId, long companyId) {
+		return getPersistence().countByU_C(userId, companyId);
 	}
 
 	/**

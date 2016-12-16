@@ -110,8 +110,8 @@ public class PollsVoteLocalServiceUtil {
 	}
 
 	public static com.liferay.polls.model.PollsVote fetchQuestionUserVote(
-		long questionId, long userId) {
-		return getService().fetchQuestionUserVote(questionId, userId);
+		long userId, long questionId) {
+		return getService().fetchQuestionUserVote(userId, questionId);
 	}
 
 	/**

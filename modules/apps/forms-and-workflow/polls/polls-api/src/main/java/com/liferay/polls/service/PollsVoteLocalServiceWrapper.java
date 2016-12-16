@@ -111,8 +111,8 @@ public class PollsVoteLocalServiceWrapper implements PollsVoteLocalService,
 
 	@Override
 	public com.liferay.polls.model.PollsVote fetchQuestionUserVote(
-		long questionId, long userId) {
-		return _pollsVoteLocalService.fetchQuestionUserVote(questionId, userId);
+		long userId, long questionId) {
+		return _pollsVoteLocalService.fetchQuestionUserVote(userId, questionId);
 	}
 
 	/**

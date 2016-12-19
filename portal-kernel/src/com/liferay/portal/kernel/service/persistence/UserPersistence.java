@@ -665,54 +665,54 @@ public interface UserPersistence extends BasePersistence<User> {
 	public int countByPortraitId(long portraitId);
 
 	/**
-	* Returns the user where companyId = &#63; and userId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
+	* Returns the user where userId = &#63; and companyId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the matching user
 	* @throws NoSuchUserException if a matching user could not be found
 	*/
-	public User findByC_U(long companyId, long userId)
+	public User findByU_C(long userId, long companyId)
 		throws NoSuchUserException;
 
 	/**
-	* Returns the user where companyId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	* Returns the user where userId = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the matching user, or <code>null</code> if a matching user could not be found
 	*/
-	public User fetchByC_U(long companyId, long userId);
+	public User fetchByU_C(long userId, long companyId);
 
 	/**
-	* Returns the user where companyId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	* Returns the user where userId = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @param retrieveFromCache whether to retrieve from the finder cache
 	* @return the matching user, or <code>null</code> if a matching user could not be found
 	*/
-	public User fetchByC_U(long companyId, long userId,
+	public User fetchByU_C(long userId, long companyId,
 		boolean retrieveFromCache);
 
 	/**
-	* Removes the user where companyId = &#63; and userId = &#63; from the database.
+	* Removes the user where userId = &#63; and companyId = &#63; from the database.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the user that was removed
 	*/
-	public User removeByC_U(long companyId, long userId)
+	public User removeByU_C(long userId, long companyId)
 		throws NoSuchUserException;
 
 	/**
-	* Returns the number of users where companyId = &#63; and userId = &#63;.
+	* Returns the number of users where userId = &#63; and companyId = &#63;.
 	*
-	* @param companyId the company ID
 	* @param userId the user ID
+	* @param companyId the company ID
 	* @return the number of matching users
 	*/
-	public int countByC_U(long companyId, long userId);
+	public int countByU_C(long userId, long companyId);
 
 	/**
 	* Returns all the users where companyId = &#63; and createDate = &#63;.

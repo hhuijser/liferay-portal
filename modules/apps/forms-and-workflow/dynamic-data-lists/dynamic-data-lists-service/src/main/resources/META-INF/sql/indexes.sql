@@ -1,5 +1,5 @@
 create index IX_6A6C1C85 on DDLRecord (companyId);
-create index IX_AAC564D3 on DDLRecord (recordSetId, userId);
+create index IX_38139E9F on DDLRecord (userId, recordSetId);
 create index IX_384AB6F7 on DDLRecord (uuid_[$COLUMN_LENGTH:75$], companyId);
 create unique index IX_B4328F39 on DDLRecord (uuid_[$COLUMN_LENGTH:75$], groupId);
 

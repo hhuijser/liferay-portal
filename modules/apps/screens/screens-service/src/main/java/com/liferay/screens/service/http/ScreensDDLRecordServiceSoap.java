@@ -118,11 +118,12 @@ public class ScreensDDLRecordServiceSoap {
 		}
 	}
 
-	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
+	public static int getDDLRecordsCount(long userId, long ddlRecordSetId)
 		throws RemoteException {
 		try {
-			int returnValue = ScreensDDLRecordServiceUtil.getDDLRecordsCount(ddlRecordSetId,
-					userId);
+			int returnValue =
+				ScreensDDLRecordServiceUtil.getDDLRecordsCount(
+					userId, ddlRecordSetId);
 
 			return returnValue;
 		}

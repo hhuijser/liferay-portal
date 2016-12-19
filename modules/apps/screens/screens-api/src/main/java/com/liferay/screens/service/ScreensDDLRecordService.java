@@ -76,7 +76,7 @@ public interface ScreensDDLRecordService extends BaseService {
 		throws PortalException;
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-	public int getDDLRecordsCount(long ddlRecordSetId, long userId)
+	public int getDDLRecordsCount(long userId, long ddlRecordSetId)
 		throws PortalException;
 
 	/**

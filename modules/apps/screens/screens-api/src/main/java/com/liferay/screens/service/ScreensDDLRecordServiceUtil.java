@@ -70,9 +70,9 @@ public class ScreensDDLRecordServiceUtil {
 		return getService().getDDLRecordsCount(ddlRecordSetId);
 	}
 
-	public static int getDDLRecordsCount(long ddlRecordSetId, long userId)
+	public static int getDDLRecordsCount(long userId, long ddlRecordSetId)
 		throws com.liferay.portal.kernel.exception.PortalException {
-		return getService().getDDLRecordsCount(ddlRecordSetId, userId);
+		return getService().getDDLRecordsCount(userId, ddlRecordSetId);
 	}
 
 	/**

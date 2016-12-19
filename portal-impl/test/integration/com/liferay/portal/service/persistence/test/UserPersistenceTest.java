@@ -329,11 +329,11 @@ public class UserPersistenceTest {
 	}
 
 	@Test
-	public void testCountByC_U() throws Exception {
-		_persistence.countByC_U(RandomTestUtil.nextLong(),
+	public void testCountByU_C() throws Exception {
+		_persistence.countByU_C(RandomTestUtil.nextLong(),
 			RandomTestUtil.nextLong());
 
-		_persistence.countByC_U(0L, 0L);
+		_persistence.countByU_C(0L, 0L);
 	}
 
 	@Test
@@ -674,12 +674,12 @@ public class UserPersistenceTest {
 			ReflectionTestUtil.<Long>invoke(existingUser,
 				"getOriginalPortraitId", new Class<?>[0]));
 
-		Assert.assertEquals(Long.valueOf(existingUser.getCompanyId()),
-			ReflectionTestUtil.<Long>invoke(existingUser,
-				"getOriginalCompanyId", new Class<?>[0]));
 		Assert.assertEquals(Long.valueOf(existingUser.getUserId()),
 			ReflectionTestUtil.<Long>invoke(existingUser, "getOriginalUserId",
 				new Class<?>[0]));
+		Assert.assertEquals(Long.valueOf(existingUser.getCompanyId()),
+			ReflectionTestUtil.<Long>invoke(existingUser,
+				"getOriginalCompanyId", new Class<?>[0]));
 
 		Assert.assertEquals(Long.valueOf(existingUser.getCompanyId()),
 			ReflectionTestUtil.<Long>invoke(existingUser,

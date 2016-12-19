@@ -247,20 +247,20 @@ public class KaleoTimerInstanceTokenLocalServiceImpl
 
 	@Override
 	public List<KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		long kaleoInstanceTokenId, boolean blocking, boolean completed,
 		ServiceContext serviceContext) {
 
-		return kaleoTimerInstanceTokenPersistence.findByKITI_C_B(
+		return kaleoTimerInstanceTokenPersistence.findByKITI_B_C(
 			kaleoInstanceTokenId, completed, blocking);
 	}
 
 	@Override
 	public int getKaleoTimerInstanceTokensCount(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		long kaleoInstanceTokenId, boolean blocking, boolean completed,
 		ServiceContext serviceContext) {
 
-		return kaleoTimerInstanceTokenPersistence.countByKITI_C_B(
-			kaleoInstanceTokenId, completed, blocking);
+		return kaleoTimerInstanceTokenPersistence.countByKITI_B_C(
+			kaleoInstanceTokenId, blocking, completed);
 	}
 
 	protected void deleteScheduledTimer(

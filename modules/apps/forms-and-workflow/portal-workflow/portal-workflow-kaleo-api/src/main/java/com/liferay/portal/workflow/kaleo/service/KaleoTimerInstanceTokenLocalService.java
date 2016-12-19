@@ -174,7 +174,7 @@ public interface KaleoTimerInstanceTokenLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getKaleoTimerInstanceTokensCount(long kaleoInstanceTokenId,
-		boolean completed, boolean blocking, ServiceContext serviceContext);
+		boolean blocking, boolean completed, ServiceContext serviceContext);
 
 	/**
 	* Returns the OSGi service identifier.
@@ -246,7 +246,7 @@ public interface KaleoTimerInstanceTokenLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<KaleoTimerInstanceToken> getKaleoTimerInstanceTokens(
-		long kaleoInstanceTokenId, boolean completed, boolean blocking,
+		long kaleoInstanceTokenId, boolean blocking, boolean completed,
 		ServiceContext serviceContext);
 
 	/**

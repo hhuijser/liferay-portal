@@ -585,8 +585,8 @@ public class DDLRecordLocalServiceWrapper implements DDLRecordLocalService,
 	}
 
 	@Override
-	public int getRecordsCount(long recordSetId, long userId) {
-		return _ddlRecordLocalService.getRecordsCount(recordSetId, userId);
+	public int getRecordsCount(long userId, long recordSetId) {
+		return _ddlRecordLocalService.getRecordsCount(userId, recordSetId);
 	}
 
 	@Override
@@ -814,6 +814,14 @@ public class DDLRecordLocalServiceWrapper implements DDLRecordLocalService,
 			end, orderByComparator);
 	}
 
+	@Override
+	public java.util.List<com.liferay.dynamic.data.lists.model.DDLRecord> getRecords(
+		long recordSetId, long userId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord> obc) {
+		return _ddlRecordLocalService.getRecords(recordSetId, userId, start,
+			end, obc);
+	}
+
 	/**
 	* Returns all the records matching the record set ID and user ID.
 	*
@@ -823,16 +831,8 @@ public class DDLRecordLocalServiceWrapper implements DDLRecordLocalService,
 	*/
 	@Override
 	public java.util.List<com.liferay.dynamic.data.lists.model.DDLRecord> getRecords(
-		long recordSetId, long userId) {
-		return _ddlRecordLocalService.getRecords(recordSetId, userId);
-	}
-
-	@Override
-	public java.util.List<com.liferay.dynamic.data.lists.model.DDLRecord> getRecords(
-		long recordSetId, long userId, int start, int end,
-		com.liferay.portal.kernel.util.OrderByComparator<com.liferay.dynamic.data.lists.model.DDLRecord> obc) {
-		return _ddlRecordLocalService.getRecords(recordSetId, userId, start,
-			end, obc);
+		long userId, long recordSetId) {
+		return _ddlRecordLocalService.getRecords(userId, recordSetId);
 	}
 
 	/**

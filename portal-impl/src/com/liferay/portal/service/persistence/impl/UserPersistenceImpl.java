@@ -2681,40 +2681,40 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	private static final String _FINDER_COLUMN_PORTRAITID_PORTRAITID_2 = "user.portraitId = ?";
-	public static final FinderPath FINDER_PATH_FETCH_BY_C_U = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
+	public static final FinderPath FINDER_PATH_FETCH_BY_U_C = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
 			UserModelImpl.FINDER_CACHE_ENABLED, UserImpl.class,
-			FINDER_CLASS_NAME_ENTITY, "fetchByC_U",
+			FINDER_CLASS_NAME_ENTITY, "fetchByU_C",
 			new String[] { Long.class.getName(), Long.class.getName() },
-			UserModelImpl.COMPANYID_COLUMN_BITMASK |
-			UserModelImpl.USERID_COLUMN_BITMASK);
-	public static final FinderPath FINDER_PATH_COUNT_BY_C_U = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
+			UserModelImpl.USERID_COLUMN_BITMASK |
+			UserModelImpl.COMPANYID_COLUMN_BITMASK);
+	public static final FinderPath FINDER_PATH_COUNT_BY_U_C = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
 			UserModelImpl.FINDER_CACHE_ENABLED, Long.class,
-			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByC_U",
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "countByU_C",
 			new String[] { Long.class.getName(), Long.class.getName() });
 
 	/**
-	 * Returns the user where companyId = &#63; and userId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
+	 * Returns the user where userId = &#63; and companyId = &#63; or throws a {@link NoSuchUserException} if it could not be found.
 	 *
-	 * @param companyId the company ID
 	 * @param userId the user ID
+	 * @param companyId the company ID
 	 * @return the matching user
 	 * @throws NoSuchUserException if a matching user could not be found
 	 */
 	@Override
-	public User findByC_U(long companyId, long userId)
+	public User findByU_C(long userId, long companyId)
 		throws NoSuchUserException {
-		User user = fetchByC_U(companyId, userId);
+		User user = fetchByU_C(userId, companyId);
 
 		if (user == null) {
 			StringBundler msg = new StringBundler(6);
 
 			msg.append(_NO_SUCH_ENTITY_WITH_KEY);
 
-			msg.append("companyId=");
-			msg.append(companyId);
-
-			msg.append(", userId=");
+			msg.append("userId=");
 			msg.append(userId);
+
+			msg.append(", companyId=");
+			msg.append(companyId);
 
 			msg.append(StringPool.CLOSE_CURLY_BRACE);
 
@@ -2729,42 +2729,42 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	/**
-	 * Returns the user where companyId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the user where userId = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
 	 *
-	 * @param companyId the company ID
 	 * @param userId the user ID
+	 * @param companyId the company ID
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
-	public User fetchByC_U(long companyId, long userId) {
-		return fetchByC_U(companyId, userId, true);
+	public User fetchByU_C(long userId, long companyId) {
+		return fetchByU_C(userId, companyId, true);
 	}
 
 	/**
-	 * Returns the user where companyId = &#63; and userId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the user where userId = &#63; and companyId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
 	 *
-	 * @param companyId the company ID
 	 * @param userId the user ID
+	 * @param companyId the company ID
 	 * @param retrieveFromCache whether to retrieve from the finder cache
 	 * @return the matching user, or <code>null</code> if a matching user could not be found
 	 */
 	@Override
-	public User fetchByC_U(long companyId, long userId,
+	public User fetchByU_C(long userId, long companyId,
 		boolean retrieveFromCache) {
-		Object[] finderArgs = new Object[] { companyId, userId };
+		Object[] finderArgs = new Object[] { userId, companyId };
 
 		Object result = null;
 
 		if (retrieveFromCache) {
-			result = finderCache.getResult(FINDER_PATH_FETCH_BY_C_U,
+			result = finderCache.getResult(FINDER_PATH_FETCH_BY_U_C,
 					finderArgs, this);
 		}
 
 		if (result instanceof User) {
 			User user = (User)result;
 
-			if ((companyId != user.getCompanyId()) ||
-					(userId != user.getUserId())) {
+			if ((userId != user.getUserId()) ||
+					(companyId != user.getCompanyId())) {
 				result = null;
 			}
 		}
@@ -2774,9 +2774,9 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 
 			query.append(_SQL_SELECT_USER_WHERE);
 
-			query.append(_FINDER_COLUMN_C_U_COMPANYID_2);
+			query.append(_FINDER_COLUMN_U_C_USERID_2);
 
-			query.append(_FINDER_COLUMN_C_U_USERID_2);
+			query.append(_FINDER_COLUMN_U_C_COMPANYID_2);
 
 			String sql = query.toString();
 
@@ -2789,14 +2789,14 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(companyId);
-
 				qPos.add(userId);
+
+				qPos.add(companyId);
 
 				List<User> list = q.list();
 
 				if (list.isEmpty()) {
-					finderCache.putResult(FINDER_PATH_FETCH_BY_C_U, finderArgs,
+					finderCache.putResult(FINDER_PATH_FETCH_BY_U_C, finderArgs,
 						list);
 				}
 				else {
@@ -2806,15 +2806,15 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 
 					cacheResult(user);
 
-					if ((user.getCompanyId() != companyId) ||
-							(user.getUserId() != userId)) {
-						finderCache.putResult(FINDER_PATH_FETCH_BY_C_U,
+					if ((user.getUserId() != userId) ||
+							(user.getCompanyId() != companyId)) {
+						finderCache.putResult(FINDER_PATH_FETCH_BY_U_C,
 							finderArgs, user);
 					}
 				}
 			}
 			catch (Exception e) {
-				finderCache.removeResult(FINDER_PATH_FETCH_BY_C_U, finderArgs);
+				finderCache.removeResult(FINDER_PATH_FETCH_BY_U_C, finderArgs);
 
 				throw processException(e);
 			}
@@ -2832,32 +2832,32 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 	}
 
 	/**
-	 * Removes the user where companyId = &#63; and userId = &#63; from the database.
+	 * Removes the user where userId = &#63; and companyId = &#63; from the database.
 	 *
-	 * @param companyId the company ID
 	 * @param userId the user ID
+	 * @param companyId the company ID
 	 * @return the user that was removed
 	 */
 	@Override
-	public User removeByC_U(long companyId, long userId)
+	public User removeByU_C(long userId, long companyId)
 		throws NoSuchUserException {
-		User user = findByC_U(companyId, userId);
+		User user = findByU_C(userId, companyId);
 
 		return remove(user);
 	}
 
 	/**
-	 * Returns the number of users where companyId = &#63; and userId = &#63;.
+	 * Returns the number of users where userId = &#63; and companyId = &#63;.
 	 *
-	 * @param companyId the company ID
 	 * @param userId the user ID
+	 * @param companyId the company ID
 	 * @return the number of matching users
 	 */
 	@Override
-	public int countByC_U(long companyId, long userId) {
-		FinderPath finderPath = FINDER_PATH_COUNT_BY_C_U;
+	public int countByU_C(long userId, long companyId) {
+		FinderPath finderPath = FINDER_PATH_COUNT_BY_U_C;
 
-		Object[] finderArgs = new Object[] { companyId, userId };
+		Object[] finderArgs = new Object[] { userId, companyId };
 
 		Long count = (Long)finderCache.getResult(finderPath, finderArgs, this);
 
@@ -2866,9 +2866,9 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 
 			query.append(_SQL_COUNT_USER_WHERE);
 
-			query.append(_FINDER_COLUMN_C_U_COMPANYID_2);
+			query.append(_FINDER_COLUMN_U_C_USERID_2);
 
-			query.append(_FINDER_COLUMN_C_U_USERID_2);
+			query.append(_FINDER_COLUMN_U_C_COMPANYID_2);
 
 			String sql = query.toString();
 
@@ -2881,9 +2881,9 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 
 				QueryPos qPos = QueryPos.getInstance(q);
 
-				qPos.add(companyId);
-
 				qPos.add(userId);
+
+				qPos.add(companyId);
 
 				count = (Long)q.uniqueResult();
 
@@ -2902,8 +2902,8 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 		return count.intValue();
 	}
 
-	private static final String _FINDER_COLUMN_C_U_COMPANYID_2 = "user.companyId = ? AND ";
-	private static final String _FINDER_COLUMN_C_U_USERID_2 = "user.userId = ?";
+	private static final String _FINDER_COLUMN_U_C_USERID_2 = "user.userId = ? AND ";
+	private static final String _FINDER_COLUMN_U_C_COMPANYID_2 = "user.companyId = ?";
 	public static final FinderPath FINDER_PATH_WITH_PAGINATION_FIND_BY_C_CD = new FinderPath(UserModelImpl.ENTITY_CACHE_ENABLED,
 			UserModelImpl.FINDER_CACHE_ENABLED, UserImpl.class,
 			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByC_CD",
@@ -7339,8 +7339,8 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 		finderCache.putResult(FINDER_PATH_FETCH_BY_PORTRAITID,
 			new Object[] { user.getPortraitId() }, user);
 
-		finderCache.putResult(FINDER_PATH_FETCH_BY_C_U,
-			new Object[] { user.getCompanyId(), user.getUserId() }, user);
+		finderCache.putResult(FINDER_PATH_FETCH_BY_U_C,
+			new Object[] { user.getUserId(), user.getCompanyId() }, user);
 
 		finderCache.putResult(FINDER_PATH_FETCH_BY_C_DU,
 			new Object[] { user.getCompanyId(), user.getDefaultUser() }, user);
@@ -7444,12 +7444,12 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 			userModelImpl, false);
 
 		args = new Object[] {
-				userModelImpl.getCompanyId(), userModelImpl.getUserId()
+				userModelImpl.getUserId(), userModelImpl.getCompanyId()
 			};
 
-		finderCache.putResult(FINDER_PATH_COUNT_BY_C_U, args, Long.valueOf(1),
+		finderCache.putResult(FINDER_PATH_COUNT_BY_U_C, args, Long.valueOf(1),
 			false);
-		finderCache.putResult(FINDER_PATH_FETCH_BY_C_U, args, userModelImpl,
+		finderCache.putResult(FINDER_PATH_FETCH_BY_U_C, args, userModelImpl,
 			false);
 
 		args = new Object[] {
@@ -7541,22 +7541,22 @@ public class UserPersistenceImpl extends BasePersistenceImpl<User>
 
 		if (clearCurrent) {
 			Object[] args = new Object[] {
-					userModelImpl.getCompanyId(), userModelImpl.getUserId()
+					userModelImpl.getUserId(), userModelImpl.getCompanyId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_C, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_C, args);
 		}
 
 		if ((userModelImpl.getColumnBitmask() &
-				FINDER_PATH_FETCH_BY_C_U.getColumnBitmask()) != 0) {
+				FINDER_PATH_FETCH_BY_U_C.getColumnBitmask()) != 0) {
 			Object[] args = new Object[] {
-					userModelImpl.getOriginalCompanyId(),
-					userModelImpl.getOriginalUserId()
+					userModelImpl.getOriginalUserId(),
+					userModelImpl.getOriginalCompanyId()
 				};
 
-			finderCache.removeResult(FINDER_PATH_COUNT_BY_C_U, args);
-			finderCache.removeResult(FINDER_PATH_FETCH_BY_C_U, args);
+			finderCache.removeResult(FINDER_PATH_COUNT_BY_U_C, args);
+			finderCache.removeResult(FINDER_PATH_FETCH_BY_U_C, args);
 		}
 
 		if (clearCurrent) {

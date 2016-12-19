@@ -87,7 +87,7 @@ public class PollsUtil {
 
 		if (themeDisplay.isSignedIn()) {
 			PollsVote vote = PollsVoteLocalServiceUtil.fetchQuestionUserVote(
-				questionId, themeDisplay.getUserId());
+				themeDisplay.getUserId(), questionId);
 
 			if (vote == null) {
 				return false;

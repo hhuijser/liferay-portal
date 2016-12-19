@@ -129,9 +129,9 @@
 		<finder name="ChoiceId" return-type="Collection">
 			<finder-column name="choiceId" />
 		</finder>
-		<finder name="Q_U" return-type="Collection">
-			<finder-column name="questionId" />
+		<finder name="U_Q" return-type="Collection">
 			<finder-column name="userId" />
+			<finder-column name="questionId" />
 		</finder>
 
 		<!-- References -->

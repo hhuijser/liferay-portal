@@ -5302,12 +5302,28 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		String password = oldPassword;
 		screenName = getLogin(screenName);
 		emailAddress = StringUtil.toLowerCase(emailAddress.trim());
-		openId = openId.trim();
+
 		String oldFullName = user.getFullName();
-		facebookSn = StringUtil.toLowerCase(facebookSn.trim());
-		jabberSn = StringUtil.toLowerCase(jabberSn.trim());
-		skypeSn = StringUtil.toLowerCase(skypeSn.trim());
-		twitterSn = StringUtil.toLowerCase(twitterSn.trim());
+
+		if (Validator.isNotNull(openId)) {
+			openId = openId.trim();
+		}
+
+		if (Validator.isNotNull(facebookSn)) {
+			facebookSn = StringUtil.toLowerCase(facebookSn.trim());
+		}
+
+		if (Validator.isNotNull(jabberSn)) {
+			jabberSn = StringUtil.toLowerCase(jabberSn.trim());
+		}
+
+		if (Validator.isNotNull(skypeSn)) {
+			skypeSn = StringUtil.toLowerCase(skypeSn.trim());
+		}
+
+		if (Validator.isNotNull(twitterSn)) {
+			twitterSn = StringUtil.toLowerCase(twitterSn.trim());
+		}
 
 		EmailAddressGenerator emailAddressGenerator =
 			EmailAddressGeneratorFactory.getInstance();

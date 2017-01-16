@@ -69,7 +69,7 @@ public class JournalFeedLocalServiceImpl
 		// Feed
 
 		User user = userLocalService.getUser(userId);
-		feedId = StringUtil.toUpperCase(feedId.trim());
+		feedId = StringUtil.toUpperCase(StringUtil.trim(feedId));
 
 		validate(
 			user.getCompanyId(), groupId, feedId, autoFeedId, name,

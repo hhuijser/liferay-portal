@@ -495,7 +495,7 @@ public class DDMTemplateLocalServiceImpl
 	public DDMTemplate fetchTemplate(
 		long groupId, long classNameId, String templateKey) {
 
-		templateKey = StringUtil.toUpperCase(templateKey.trim());
+		templateKey = StringUtil.toUpperCase(StringUtil.trim(templateKey));
 
 		return ddmTemplatePersistence.fetchByG_C_T(
 			groupId, classNameId, templateKey);
@@ -530,7 +530,7 @@ public class DDMTemplateLocalServiceImpl
 			boolean includeAncestorTemplates)
 		throws PortalException {
 
-		templateKey = StringUtil.toUpperCase(templateKey.trim());
+		templateKey = StringUtil.toUpperCase(StringUtil.trim(templateKey));
 
 		DDMTemplate template = ddmTemplatePersistence.fetchByG_C_T(
 			groupId, classNameId, templateKey);
@@ -584,7 +584,7 @@ public class DDMTemplateLocalServiceImpl
 			long groupId, long classNameId, String templateKey)
 		throws PortalException {
 
-		templateKey = StringUtil.toUpperCase(templateKey.trim());
+		templateKey = StringUtil.toUpperCase(StringUtil.trim(templateKey));
 
 		return ddmTemplatePersistence.findByG_C_T(
 			groupId, classNameId, templateKey);
@@ -618,7 +618,7 @@ public class DDMTemplateLocalServiceImpl
 			boolean includeAncestorTemplates)
 		throws PortalException {
 
-		templateKey = StringUtil.toUpperCase(templateKey.trim());
+		templateKey = StringUtil.toUpperCase(StringUtil.trim(templateKey));
 
 		DDMTemplate template = ddmTemplatePersistence.fetchByG_C_T(
 			groupId, classNameId, templateKey);
@@ -1594,7 +1594,7 @@ public class DDMTemplateLocalServiceImpl
 			String smallImageURL, File smallImageFile, byte[] smallImageBytes)
 		throws PortalException {
 
-		templateKey = StringUtil.toUpperCase(templateKey.trim());
+		templateKey = StringUtil.toUpperCase(StringUtil.trim(templateKey));
 
 		DDMTemplate template = ddmTemplatePersistence.fetchByG_C_T(
 			groupId, classNameId, templateKey);

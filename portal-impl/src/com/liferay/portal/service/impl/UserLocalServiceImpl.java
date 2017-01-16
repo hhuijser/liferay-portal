@@ -5302,12 +5302,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		String password = oldPassword;
 		screenName = getLogin(screenName);
 		emailAddress = StringUtil.toLowerCase(emailAddress.trim());
-		openId = openId.trim();
+		openId = StringUtil.trim(openId);
 		String oldFullName = user.getFullName();
-		facebookSn = StringUtil.toLowerCase(facebookSn.trim());
-		jabberSn = StringUtil.toLowerCase(jabberSn.trim());
-		skypeSn = StringUtil.toLowerCase(skypeSn.trim());
-		twitterSn = StringUtil.toLowerCase(twitterSn.trim());
+		facebookSn = StringUtil.toLowerCase(StringUtil.trim(facebookSn));
+		jabberSn = StringUtil.toLowerCase(StringUtil.trim(jabberSn));
+		skypeSn = StringUtil.toLowerCase(StringUtil.trim(skypeSn));
+		twitterSn = StringUtil.toLowerCase(StringUtil.trim(twitterSn));
 
 		EmailAddressGenerator emailAddressGenerator =
 			EmailAddressGeneratorFactory.getInstance();

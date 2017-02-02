@@ -65,7 +65,7 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 				Arrays.asList(fabricAgent1, fabricAgent2)),
 			null);
 
-		Assert.assertEquals(1, fabricAgents.size());
+		Assert.assertEquals(fabricAgents.toString(), 1, fabricAgents.size());
 
 		Iterator<FabricAgent> iterator = fabricAgents.iterator();
 
@@ -81,7 +81,7 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 				Arrays.asList(fabricAgent1, fabricAgent2)),
 			null);
 
-		Assert.assertEquals(1, fabricAgents.size());
+		Assert.assertEquals(fabricAgents.toString(), 1, fabricAgents.size());
 
 		iterator = fabricAgents.iterator();
 
@@ -97,7 +97,7 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 				Arrays.asList(fabricAgent1, fabricAgent2)),
 			null);
 
-		Assert.assertEquals(1, fabricAgents.size());
+		Assert.assertEquals(fabricAgents.toString(), 1, fabricAgents.size());
 
 		iterator = fabricAgents.iterator();
 
@@ -113,7 +113,7 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 				Arrays.asList(fabricAgent1, fabricAgent2)),
 			null);
 
-		Assert.assertEquals(1, fabricAgents.size());
+		Assert.assertEquals(fabricAgents.toString(), 1, fabricAgents.size());
 
 		iterator = fabricAgents.iterator();
 
@@ -140,6 +140,10 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 		public Object invoke(Object proxy, Method method, Object[] args) {
 			String methodName = method.getName();
 
+			if (methodName.equals("toString")) {
+				return String.valueOf(_freePhysicalMemorySize);
+			}
+
 			if (!methodName.equals("getFreePhysicalMemorySize")) {
 				throw new UnsupportedOperationException();
 			}
@@ -161,6 +165,10 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 		@Override
 		public Object invoke(Object proxy, Method method, Object[] args) {
 			String methodName = method.getName();
+
+			if (methodName.equals("toString")) {
+				return String.valueOf(_freePhysicalMemorySize);
+			}
 
 			if (!methodName.equals("getFabricStatus")) {
 				throw new UnsupportedOperationException();
@@ -186,6 +194,10 @@ public class MaxFreePhysicalMemoryFabricAgentSelectorTest {
 		@Override
 		public Object invoke(Object proxy, Method method, Object[] args) {
 			String methodName = method.getName();
+
+			if (methodName.equals("toString")) {
+				return String.valueOf(_freePhysicalMemorySize);
+			}
 
 			if (!methodName.equals("getAdvancedOperatingSystemMXBean")) {
 				throw new UnsupportedOperationException();

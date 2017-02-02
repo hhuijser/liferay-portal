@@ -60,7 +60,7 @@ public class SystemPropertiesFilterFabricAgentSelectorTest {
 				Arrays.asList(fabricAgent1, fabricAgent2)),
 			null);
 
-		Assert.assertEquals(1, fabricAgents.size());
+		Assert.assertEquals(fabricAgents.toString(), 1, fabricAgents.size());
 
 		Iterator<FabricAgent> iterator = fabricAgents.iterator();
 
@@ -89,6 +89,10 @@ public class SystemPropertiesFilterFabricAgentSelectorTest {
 		public Object invoke(Object proxy, Method method, Object[] args) {
 			String methodName = method.getName();
 
+			if (methodName.equals("toString")) {
+				return String.valueOf(_systemProperties);
+			}
+
 			if (!methodName.equals("getFabricStatus")) {
 				throw new UnsupportedOperationException();
 			}
@@ -116,6 +120,10 @@ public class SystemPropertiesFilterFabricAgentSelectorTest {
 		public Object invoke(Object proxy, Method method, Object[] args) {
 			String methodName = method.getName();
 
+			if (methodName.equals("toString")) {
+				return String.valueOf(_systemProperties);
+			}
+
 			if (!methodName.equals("getRuntimeMXBean")) {
 				throw new UnsupportedOperationException();
 			}
@@ -142,6 +150,10 @@ public class SystemPropertiesFilterFabricAgentSelectorTest {
 		@Override
 		public Object invoke(Object proxy, Method method, Object[] args) {
 			String methodName = method.getName();
+
+			if (methodName.equals("toString")) {
+				return String.valueOf(_systemProperties);
+			}
 
 			if (!methodName.equals("getSystemProperties")) {
 				throw new UnsupportedOperationException();

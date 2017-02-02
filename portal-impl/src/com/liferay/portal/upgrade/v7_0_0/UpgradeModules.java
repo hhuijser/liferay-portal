@@ -97,6 +97,7 @@ public class UpgradeModules extends UpgradeProcess {
 						else {
 							updateServletContextName(
 								oldServletContextName, newServletContextName);
+							updateSchemaVersion(newServletContextName);
 						}
 					}
 				}
@@ -108,6 +109,14 @@ public class UpgradeModules extends UpgradeProcess {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
 			addRelease(getBundleSymbolicNames());
 		}
+	}
+
+	protected void updateSchemaVersion(String newServletContextName)
+		throws IOException, SQLException {
+
+		runSQL(
+			"update Release_ set schemaVersion = '0.0.1' where " +
+				"servletContextName = '" + newServletContextName + "'");
 	}
 
 	protected void updateServletContextName(

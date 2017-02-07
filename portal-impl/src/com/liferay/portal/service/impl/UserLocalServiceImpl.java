@@ -191,7 +191,7 @@ import javax.portlet.PortletPreferences;
  * @author Zsigmond Rab
  */
 public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
-
+	
 	/**
 	 * Adds a default admin user for the company.
 	 *

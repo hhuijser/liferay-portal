@@ -768,10 +768,9 @@ public class LDAPAuth implements Authenticator {
 
 	private boolean _authPipelineEnableLiferayCheck;
 	private final ThreadLocal<Map<String, LDAPAuthResult>>
-		_failedLDAPAuthResults =
-			new AutoResetThreadLocal<Map<String, LDAPAuthResult>>(
-				LDAPAuth.class + "._failedLDAPAuthResultCache",
-				new HashMap<String, LDAPAuthResult>());
+		_failedLDAPAuthResults = new AutoResetThreadLocal<>(
+			LDAPAuth.class + "._failedLDAPAuthResultCache",
+			new HashMap<String, LDAPAuthResult>());
 	private ConfigurationProvider<LDAPAuthConfiguration>
 		_ldapAuthConfigurationProvider;
 	private ConfigurationProvider<LDAPImportConfiguration>

@@ -118,7 +118,7 @@ public class JCRFactoryWrapper {
 	}
 
 	private static final ThreadLocal<Map<String, Session>> _sessions =
-		new AutoResetThreadLocal<Map<String, Session>>(
+		new AutoResetThreadLocal<>(
 			JCRFactoryWrapper.class + "._sessions",
 			new HashMap<String, Session>());
 

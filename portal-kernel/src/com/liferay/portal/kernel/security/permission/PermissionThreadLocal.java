@@ -107,11 +107,11 @@ public class PermissionThreadLocal {
 		new AutoResetThreadLocal<>(
 			PermissionThreadLocal.class + "._addResource", true);
 	private static final ThreadLocal<Set<String>> _flushResourceBlockEnabled =
-		new AutoResetThreadLocal<Set<String>>(
+		new AutoResetThreadLocal<>(
 			PermissionThreadLocal.class + "._flushResourceBlockEnabled",
 			new HashSet<String>());
 	private static final ThreadLocal<Set<String>>
-		_flushResourcePermissionEnabled = new AutoResetThreadLocal<Set<String>>(
+		_flushResourcePermissionEnabled = new AutoResetThreadLocal<>(
 			PermissionThreadLocal.class +
 				"._flushResourcePermissionEnabled",
 			new HashSet<String>());

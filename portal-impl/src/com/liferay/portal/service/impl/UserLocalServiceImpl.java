@@ -7011,7 +7011,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	private final Map<Long, User> _defaultUsers = new ConcurrentHashMap<>();
 
 	private final ServiceDependencyListener _serviceDependencyListener =
-		new ServiceDependencyListener() {
+		new ServiceDependencyListener() {		
 
 			@Override
 			public void dependenciesFulfilled() {

@@ -264,9 +264,7 @@ public class PropertiesSourceProcessor extends BaseSourceProcessor {
 	}
 
 	protected String fixIncorrectLicenses(String absolutePath, String content) {
-		if (!absolutePath.contains("/modules/apps/") &&
-			!absolutePath.contains("/modules/private/apps/")) {
-
+		if (!isModulesApp(absolutePath)) {
 			return content;
 		}
 
@@ -280,7 +278,7 @@ public class PropertiesSourceProcessor extends BaseSourceProcessor {
 
 		String expectedLicenses = "LGPL";
 
-		if (absolutePath.contains("/modules/private/apps/")) {
+		if (isModulesPrivateApp(absolutePath)) {
 			expectedLicenses = "DXP";
 		}
 
@@ -571,7 +569,7 @@ public class PropertiesSourceProcessor extends BaseSourceProcessor {
 				if (propertyFileName.contains(StringPool.STAR) ||
 					propertyFileName.endsWith("-ext.properties") ||
 					(portalSource && !hasPrivateAppsDir &&
-					 propertyFileName.contains("/private/apps/"))) {
+					 isModulesPrivateApp(propertyFileName))) {
 
 					continue;
 				}

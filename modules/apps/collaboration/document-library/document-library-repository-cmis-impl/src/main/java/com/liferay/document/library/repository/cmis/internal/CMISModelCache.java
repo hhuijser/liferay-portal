@@ -100,23 +100,22 @@ public class CMISModelCache {
 	}
 
 	private final ThreadLocal<Map<Long, List<FileEntry>>> _fileEntriesMaps =
-		new AutoResetThreadLocal<Map<Long, List<FileEntry>>>(
+		new AutoResetThreadLocal<>(
 			CMISRepository.class + "._fileEntriesMaps",
 			new HashMap<Long, List<FileEntry>>());
 	private final ThreadLocal<Map<Long, FileEntry>> _fileEntryMaps =
-		new AutoResetThreadLocal<Map<Long, FileEntry>>(
+		new AutoResetThreadLocal<>(
 			CMISRepository.class + "._fileEntryMaps",
 			new HashMap<Long, FileEntry>());
 	private final ThreadLocal<Map<Long, Folder>> _folderMaps =
 		new AutoResetThreadLocal<Map<Long, Folder>>(
 			CMISRepository.class + "._folderMaps", new HashMap<Long, Folder>());
 	private final ThreadLocal<Map<Long, List<Object>>>
-		_foldersAndFileEntriesMaps =
-			new AutoResetThreadLocal<Map<Long, List<Object>>>(
-				CMISRepository.class + "._foldersAndFileEntriesMaps",
-				new HashMap<Long, List<Object>>());
+		_foldersAndFileEntriesMaps = new AutoResetThreadLocal<>(
+			CMISRepository.class + "._foldersAndFileEntriesMaps",
+			new HashMap<Long, List<Object>>());
 	private final ThreadLocal<Map<Long, List<Folder>>> _foldersMap =
-		new AutoResetThreadLocal<Map<Long, List<Folder>>>(
+		new AutoResetThreadLocal<>(
 			CMISRepository.class + "._foldersMap",
 			new HashMap<Long, List<Folder>>());
 

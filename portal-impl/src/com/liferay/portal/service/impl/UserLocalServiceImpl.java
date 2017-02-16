@@ -211,7 +211,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			long companyId, String screenName, String emailAddress,
 			Locale locale, String firstName, String middleName, String lastName)
 		throws PortalException {
-
+				
 		long creatorUserId = 0;
 		boolean autoPassword = false;
 

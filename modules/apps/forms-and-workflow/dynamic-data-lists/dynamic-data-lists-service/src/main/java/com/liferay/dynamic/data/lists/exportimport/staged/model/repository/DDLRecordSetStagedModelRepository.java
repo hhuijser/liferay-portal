@@ -75,9 +75,9 @@ public class DDLRecordSetStagedModelRepository
 
 		return _ddlRecordSetLocalService.addRecordSet(
 			userId, ddlRecordSet.getGroupId(), ddlRecordSet.getDDMStructureId(),
-			ddlRecordSet.getRecordSetKey(), ddlRecordSet.getNameMap(),
-			ddlRecordSet.getDescriptionMap(), ddlRecordSet.getMinDisplayRows(),
-			ddlRecordSet.getScope(), serviceContext);
+			null, ddlRecordSet.getNameMap(), ddlRecordSet.getDescriptionMap(),
+			ddlRecordSet.getMinDisplayRows(), ddlRecordSet.getScope(),
+			serviceContext);
 	}
 
 	@Override

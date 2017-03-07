@@ -622,17 +622,17 @@ public class KaleoTaskInstanceTokenFinderImpl
 						}
 					}
 
-					sb.append(")) ");
+					sb.append("))) ");
 					sb.append("OR ");
 				}
 
 				sb.setIndex(sb.index() - 1);
 
 				if (!roleIds.isEmpty()) {
-					sb.append(")))");
+					sb.append("))");
 				}
 				else {
-					sb.append("))");
+					sb.append(")");
 				}
 			}
 

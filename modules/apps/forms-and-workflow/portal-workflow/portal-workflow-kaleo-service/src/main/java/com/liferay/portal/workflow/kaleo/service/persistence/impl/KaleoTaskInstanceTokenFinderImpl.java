@@ -571,13 +571,13 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			StringBundler sb = new StringBundler();
 
-			sb.append("AND ((");
+			sb.append("AND (");
 			sb.append("KaleoTaskAssignmentInstance.assigneeClassName = '");
 			sb.append(Role.class.getName());
-			sb.append("') ");
+			sb.append("' ");
 
 			if (!roleIds.isEmpty()) {
-				sb.append("AND ((");
+				sb.append("AND (");
 
 				sb.append("KaleoTaskAssignmentInstance.assigneeClassPK IN (");
 
@@ -591,11 +591,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 			}
 
 			if (roleIdGroupIdsMap.isEmpty()) {
-				sb.append("))))");
+				sb.append(")))");
 			}
 			else {
 				if (!roleIds.isEmpty()) {
-					sb.append(")) OR ");
+					sb.append(") OR ");
 				}
 				else {
 					sb.append("AND ");

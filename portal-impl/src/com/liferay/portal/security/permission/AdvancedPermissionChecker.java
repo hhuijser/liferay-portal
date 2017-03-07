@@ -1182,10 +1182,19 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 		}
 
 		if (group.isSite()) {
+			Group currentGroup = group;
+			while (currentGroup != null) {
+				if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
+						getUserId(), currentGroup.getGroupId(),
+						RoleConstants.SITE_ADMINISTRATOR, true)) {
+
+					return true;
+				}
+
+				currentGroup = currentGroup.getParentGroup();
+			}
+
 			if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
-					getUserId(), group.getGroupId(),
-					RoleConstants.SITE_ADMINISTRATOR, true) ||
-				UserGroupRoleLocalServiceUtil.hasUserGroupRole(
 					getUserId(), group.getGroupId(), RoleConstants.SITE_OWNER,
 					true)) {
 

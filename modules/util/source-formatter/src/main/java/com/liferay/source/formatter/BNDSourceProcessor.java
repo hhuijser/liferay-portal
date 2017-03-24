@@ -270,6 +270,9 @@ public class BNDSourceProcessor extends BaseSourceProcessor {
 
 		content = StringUtil.replace(content, " \\\n", "\\\n");
 
+		content = StringUtil.replaceFirst(
+			content, "Conditional-Package:", "-conditionalpackage:");
+
 		Matcher matcher = _trailingSemiColonPattern.matcher(content);
 
 		if (matcher.find()) {
@@ -293,6 +296,8 @@ public class BNDSourceProcessor extends BaseSourceProcessor {
 		}
 
 		checkWildcardImports(
+			fileName, absolutePath, content, _conditionalPackagePattern);
+		checkWildcardImports(
 			fileName, absolutePath, content, _exportContentsPattern);
 		checkWildcardImports(fileName, absolutePath, content, _exportsPattern);
 
@@ -300,6 +305,7 @@ public class BNDSourceProcessor extends BaseSourceProcessor {
 
 		ImportsFormatter importsFormatter = new BNDImportsFormatter();
 
+		content = importsFormatter.format(content, _conditionalPackagePattern);
 		content = importsFormatter.format(content, _exportContentsPattern);
 		content = importsFormatter.format(content, _exportsPattern);
 		content = importsFormatter.format(content, _importsPattern);
@@ -742,6 +748,9 @@ public class BNDSourceProcessor extends BaseSourceProcessor {
 		",[^\\\\]");
 	private final Pattern _capabilityLineBreakPattern2 = Pattern.compile(
 		";[^\\\\]");
+	private final Pattern _conditionalPackagePattern = Pattern.compile(
+		"\n-conditionalpackage:(\\\\\n| )((.*?)(\n[^\t]|\\Z))",
+		Pattern.DOTALL | Pattern.MULTILINE);
 	private Map<String, String> _definitionKeysMap;
 	private final Pattern _exportContentsPattern = Pattern.compile(
 		"\n-exportcontents:(\\\\\n| )((.*?)(\n[^\t]|\\Z))",

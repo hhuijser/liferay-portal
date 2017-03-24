@@ -440,8 +440,8 @@ public class WorkflowTaskDisplayContext {
 		String className = getWorkflowContextEntryClassName(workflowTask);
 		long classPK = getWorkflowContextEntryClassPK(workflowTask);
 
-		String state = WorkflowInstanceLinkLocalServiceUtil.getState(
-			companyId, groupId, className, classPK);
+		String state = HtmlUtil.escape(WorkflowInstanceLinkLocalServiceUtil.getState(
+			companyId, groupId, className, classPK));
 
 		return LanguageUtil.get(_workflowTaskRequestHelper.getRequest(), state);
 	}

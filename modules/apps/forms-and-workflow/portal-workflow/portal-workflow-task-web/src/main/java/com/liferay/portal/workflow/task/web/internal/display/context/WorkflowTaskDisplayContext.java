@@ -41,6 +41,7 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -62,6 +63,7 @@ import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUt
 import com.liferay.portal.workflow.task.web.internal.display.context.util.WorkflowTaskRequestHelper;
 import com.liferay.portal.workflow.task.web.internal.search.WorkflowTaskSearch;
 import com.liferay.portal.workflow.task.web.internal.util.WorkflowTaskPortletUtil;
+import com.liferay.portal.workflow.task.web.internal.permission.WorkflowTaskPermissionChecker;
 
 import java.io.Serializable;
 
@@ -1038,12 +1040,38 @@ public class WorkflowTaskDisplayContext {
 			searchContainer.getStart(), searchContainer.getEnd(),
 			searchContainer.getOrderByComparator());
 
-		searchContainer.setResults(results);
+		setAuthorizedSearchContainerResults(results, searchContainer);
 
 		setSearchContainerEmptyResultsMessage(
 			searchContainer, searchByUserRoles, getCompleted());
 
 		return searchContainer;
+	}
+
+	protected void setAuthorizedSearchContainerResults(List<WorkflowTask> 
+		workflowTasks, WorkflowTaskSearch searchContainer){
+
+		ThemeDisplay themeDisplay =
+			_workflowTaskRequestHelper.getThemeDisplay();
+
+		List<WorkflowTask> authorizedWorkflowTasks = new ArrayList<>();
+
+		for (WorkflowTask workFlowTask : workflowTasks ) {
+
+			long groupId = MapUtil.getLong(workFlowTask.getOptionalAttributes(), "groupId",
+				themeDisplay.getSiteGroupId());
+
+			if (!_workflowTaskPermissionChecker.hasPermission(groupId, workFlowTask,
+				themeDisplay.getPermissionChecker())) {
+
+				continue;
+			}
+
+			authorizedWorkflowTasks.add(workFlowTask);
+		}
+
+		searchContainer.setTotal(authorizedWorkflowTasks.size());
+		searchContainer.setResults(authorizedWorkflowTasks);
 	}
 
 	protected void setSearchContainerEmptyResultsMessage(
@@ -1095,5 +1123,6 @@ public class WorkflowTaskDisplayContext {
 	private final Map<Long, Role> _roles = new HashMap<>();
 	private final Map<Long, User> _users = new HashMap<>();
 	private final WorkflowTaskRequestHelper _workflowTaskRequestHelper;
-
+	private final WorkflowTaskPermissionChecker _workflowTaskPermissionChecker =
+		new WorkflowTaskPermissionChecker();
 }

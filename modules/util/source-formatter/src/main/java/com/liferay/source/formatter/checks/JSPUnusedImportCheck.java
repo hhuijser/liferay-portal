@@ -28,6 +28,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,7 +39,7 @@ import java.util.regex.Pattern;
 public class JSPUnusedImportCheck extends JSPUnusedTermCheck {
 
 	public JSPUnusedImportCheck(Map<String, String> contentsMap) {
-		_contentsMap = contentsMap;
+		_contentsMap = Objects.requireNonNull(contentsMap);
 	}
 
 	@Override
@@ -164,11 +165,17 @@ public class JSPUnusedImportCheck extends JSPUnusedTermCheck {
 
 		Matcher matcher = _compressedJSPImportPattern.matcher(content);
 
-		if (!matcher.find()) {
+		List<String> groups = new ArrayList<>();
+
+		while (matcher.find()) {
+			groups.add(matcher.group());
+		}
+
+		if (groups.isEmpty()) {
 			return content;
 		}
 
-		String imports = matcher.group();
+		String imports = StringUtil.merge(groups, StringPool.NEW_LINE);
 
 		String newImports = StringUtil.replace(
 			imports, new String[] {"<%@\r\n", "<%@\n", " %><%@ "},
@@ -176,14 +183,15 @@ public class JSPUnusedImportCheck extends JSPUnusedTermCheck {
 
 		List<String> importLines = new ArrayList<>();
 
-		UnsyncBufferedReader unsyncBufferedReader = new UnsyncBufferedReader(
-			new UnsyncStringReader(newImports));
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				new UnsyncBufferedReader(new UnsyncStringReader(newImports))) {
 
-		String line = null;
+			String line = null;
 
-		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (line.contains("import=")) {
-				importLines.add(line);
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				if (line.contains("import=")) {
+					importLines.add(line);
+				}
 			}
 		}
 
@@ -197,7 +205,13 @@ public class JSPUnusedImportCheck extends JSPUnusedTermCheck {
 				newImports, unneededImport, StringPool.BLANK);
 		}
 
-		return StringUtil.replaceFirst(content, imports, newImports);
+		for (int i = 1; i < groups.size(); i++) {
+			content = StringUtil.removeSubstring(content, groups.get(i));
+		}
+
+		content = StringUtil.replaceFirst(content, groups.get(0), newImports);
+
+		return content;
 	}
 
 	private final Pattern _compressedJSPImportPattern = Pattern.compile(

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.util.Tuple;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,7 +32,7 @@ import java.util.regex.Pattern;
 public class JSPUnusedTaglibCheck extends JSPUnusedTermCheck {
 
 	public JSPUnusedTaglibCheck(Map<String, String> contentsMap) {
-		_contentsMap = contentsMap;
+		_contentsMap = Objects.requireNonNull(contentsMap);
 	}
 
 	@Override

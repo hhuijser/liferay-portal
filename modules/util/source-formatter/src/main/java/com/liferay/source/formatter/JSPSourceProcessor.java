@@ -17,7 +17,6 @@ package com.liferay.source.formatter;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.CharPool;
-import com.liferay.portal.kernel.util.ReflectionUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -61,6 +60,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -79,10 +79,6 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 	protected String compressImportsOrTaglibs(
 		String fileName, String content, String attributePrefix) {
-
-		if (!fileName.endsWith("init.jsp") && !fileName.endsWith("init.jspf")) {
-			return content;
-		}
 
 		int x = content.indexOf(attributePrefix);
 
@@ -131,6 +127,8 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 			fileName, newContent, _compressedJSPTaglibPattern,
 			_uncompressedJSPTaglibPattern);
 
+		boolean misplacedImportsFound = false;
+
 		if ((portalSource || subrepository) &&
 			content.contains("page import=") &&
 			!fileName.contains("init.jsp") &&
@@ -139,11 +137,16 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 			!fileName.endsWith("touch.jsp") &&
 			(fileName.endsWith(".jspf") || content.contains("include file="))) {
 
+			misplacedImportsFound = true;
+
 			processMessage(fileName, "Move imports to init.jsp");
 		}
 
-		newContent = compressImportsOrTaglibs(
-			fileName, newContent, "<%@ page import=");
+		if (!misplacedImportsFound) {
+			newContent = compressImportsOrTaglibs(
+				fileName, newContent, "<%@ page import=");
+		}
+
 		newContent = compressImportsOrTaglibs(
 			fileName, newContent, "<%@ taglib uri=");
 
@@ -424,21 +427,34 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 		Matcher matcher = compressedPattern.matcher(content);
 
-		if (!matcher.find()) {
+		List<String> groups = new ArrayList<>();
+
+		while (matcher.find()) {
+			groups.add(matcher.group());
+		}
+
+		if (groups.isEmpty()) {
 			return content;
 		}
 
-		String imports = matcher.group();
+		String imports = StringUtil.merge(groups, StringPool.NEW_LINE);
 
 		String newImports = StringUtil.replace(
 			imports, new String[] {"<%@\r\n", "<%@\n", " %><%@ "},
 			new String[] {"\r\n<%@ ", "\n<%@ ", " %>\n<%@ "});
 
-		content = StringUtil.replaceFirst(content, imports, newImports);
+		for (int i = 1; i < groups.size(); i++) {
+			content = StringUtil.removeSubstring(content, groups.get(i));
+		}
+
+		content = StringUtil.replaceFirst(
+			content, groups.get(0), newImports.concat("\n"));
 
 		ImportsFormatter importsFormatter = new JSPImportsFormatter();
 
-		return importsFormatter.format(content, uncompressedPattern);
+		content = importsFormatter.format(content, uncompressedPattern);
+
+		return content;
 	}
 
 	@Override
@@ -448,6 +464,14 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 	@Override
 	protected void populateFileChecks() throws Exception {
+		Map<String, String> contentsMap = _contentsMap;
+
+		if (contentsMap == null) {
+			List<String> fileNames = sourceFormatterArgs.getFileNames();
+
+			contentsMap = _getContentsMap(fileNames);
+		}
+
 		_fileChecks.add(new JSPWhitespaceCheck());
 
 		_fileChecks.add(
@@ -471,7 +495,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 				portalSource, subrepository,
 				_getPrimitiveTagAttributeDataTypes(), _getTagJavaClassesMap()));
 		_fileChecks.add(new JSPTaglibVariableCheck());
-		_fileChecks.add(new JSPUnusedImportCheck(_contentsMap));
+		_fileChecks.add(new JSPUnusedImportCheck(contentsMap));
 		_fileChecks.add(new JSPXSSVulnerabilitiesCheck());
 		_fileChecks.add(
 			new MethodCallsOrderCheck(getExcludes(METHOD_CALL_SORT_EXCLUDES)));
@@ -480,10 +504,10 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		_fileChecks.add(new ValidatorEqualsCheck());
 
 		if (portalSource || subrepository) {
-			_fileChecks.add(new JSPUnusedTaglibCheck(_contentsMap));
+			_fileChecks.add(new JSPUnusedTaglibCheck(contentsMap));
 			_fileChecks.add(
 				new JSPUnusedVariableCheck(
-					getExcludes(_UNUSED_VARIABLES_EXCLUDES), _contentsMap));
+					getExcludes(_UNUSED_VARIABLES_EXCLUDES), contentsMap));
 			_fileChecks.add(
 				new ResourceBundleCheck(
 					getExcludes(RUN_OUTSIDE_PORTAL_EXCLUDES)));
@@ -509,17 +533,25 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 			sourceFormatterArgs.getBaseDirName(), null, excludes,
 			getIncludes(), true);
 
+		Map<String, String> contentsMap = _getContentsMap(allFileNames);
+
+		return contentsMap;
+	}
+
+	private Map<String, String> _getContentsMap(Collection<String> fileNames)
+		throws Exception {
+
 		Map<String, String> contentsMap = new HashMap<>();
 
-		try {
-			for (String fileName : allFileNames) {
-				fileName = StringUtil.replace(
-					fileName, CharPool.BACK_SLASH, CharPool.SLASH);
+		for (String fileName : fileNames) {
+			fileName = StringUtil.replace(
+				fileName, CharPool.BACK_SLASH, CharPool.SLASH);
 
-				File file = new File(fileName);
+			File file = new File(fileName);
 
-				String content = FileUtil.read(file);
+			String content = FileUtil.read(file);
 
+			if (content != null) {
 				Matcher matcher = _includeFilePattern.matcher(content);
 
 				String newContent = content;
@@ -535,9 +567,6 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 				contentsMap.put(fileName, newContent);
 			}
-		}
-		catch (Exception e) {
-			ReflectionUtil.throwException(e);
 		}
 
 		return contentsMap;

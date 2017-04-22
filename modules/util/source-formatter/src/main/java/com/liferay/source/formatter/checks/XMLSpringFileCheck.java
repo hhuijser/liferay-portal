@@ -196,7 +196,7 @@ public class XMLSpringFileCheck extends BaseFileCheck {
 
 			private static final int _SERVICE = 2;
 
-			private String _beanObjectName;
+			private final String _beanObjectName;
 			private final Pattern _finderPattern = Pattern.compile(
 				"\\.service\\.persistence\\.(\\w+)Finder");
 			private final Pattern _localServicePattern = Pattern.compile(
@@ -205,7 +205,7 @@ public class XMLSpringFileCheck extends BaseFileCheck {
 				"\\.service\\.persistence\\.(\\w+)Persistence");
 			private final Pattern _servicePattern = Pattern.compile(
 				"\\.service\\.(\\w+)Service");
-			private int _type;
+			private final int _type;
 
 		}
 

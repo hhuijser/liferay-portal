@@ -125,7 +125,11 @@ public abstract class BaseSimpleFacetTestCase extends BaseIndexingTestCase {
 
 		FacetCollector facetCollector = facet.getFacetCollector();
 
-		return facetCollector.getTermCollectors();
+		if (facetCollector != null) {
+			return facetCollector.getTermCollectors();
+		}
+
+		return null;
 	}
 
 	protected JSONObject setUpFrequencyThreshold(

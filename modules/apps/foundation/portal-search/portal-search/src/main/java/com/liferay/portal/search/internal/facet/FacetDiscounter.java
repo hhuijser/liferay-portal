@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.search.facet.collector.TermCollector;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,12 +53,11 @@ public class FacetDiscounter {
 
 		FacetCollector facetCollector = _facet.getFacetCollector();
 
-		List<TermCollector> termCollectors =
-			Collections.<TermCollector>emptyList();
-
-		if (facetCollector != null) {
-			termCollectors = facetCollector.getTermCollectors();
+		if (facetCollector == null) {
+			return;
 		}
+
+		termCollectors = facetCollector.getTermCollectors();
 
 		List<TermCollector> newTermCollectors = new ArrayList<>(
 			termCollectors.size());
@@ -103,12 +101,11 @@ public class FacetDiscounter {
 	private Stream<String> _findTermsOfField(Field field) {
 		FacetCollector facetCollector = _facet.getFacetCollector();
 
-		List<TermCollector> termCollectors =
-			Collections.<TermCollector>emptyList();
-
-		if (facetCollector != null) {
-			termCollectors = facetCollector.getTermCollectors();
+		if (facetCollector == null) {
+			return Stream.empty();
 		}
+
+		termCollectors = facetCollector.getTermCollectors();
 
 		Stream<TermCollector> termCollectorsStream = termCollectors.stream();
 

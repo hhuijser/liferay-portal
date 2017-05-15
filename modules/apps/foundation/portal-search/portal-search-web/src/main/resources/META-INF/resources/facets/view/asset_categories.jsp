@@ -17,6 +17,12 @@
 <%@ include file="/facets/init.jsp" %>
 
 <%
+if (facetCollector == null) {
+	return;
+}
+
+termCollectors = facetCollector.getTermCollectors();
+
 if (termCollectors.isEmpty()) {
 	return;
 }

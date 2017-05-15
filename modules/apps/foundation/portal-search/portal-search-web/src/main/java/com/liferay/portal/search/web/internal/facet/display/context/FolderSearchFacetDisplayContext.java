@@ -80,12 +80,11 @@ public class FolderSearchFacetDisplayContext {
 
 		FacetCollector facetCollector = _facet.getFacetCollector();
 
-		List<TermCollector> termCollectors =
-			Collections.<TermCollector>emptyList();
-
-		if (facetCollector != null) {
-			termCollectors = facetCollector.getTermCollectors();
+		if (facetCollector == null) {
+			return getEmptySearchResultTermDisplayContexts();
 		}
+
+		termCollectors = facetCollector.getTermCollectors();
 
 		if (termCollectors.isEmpty()) {
 			return getEmptySearchResultTermDisplayContexts();

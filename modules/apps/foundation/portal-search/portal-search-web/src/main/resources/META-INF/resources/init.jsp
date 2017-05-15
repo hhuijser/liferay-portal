@@ -87,7 +87,6 @@ page import="com.liferay.taglib.servlet.PipingServletResponse" %>
 
 <%@ page import="java.util.ArrayList" %><%@
 page import="java.util.Calendar" %><%@
-page import="java.util.Collections" %><%@
 page import="java.util.Date" %><%@
 page import="java.util.HashMap" %><%@
 page import="java.util.LinkedHashMap" %><%@

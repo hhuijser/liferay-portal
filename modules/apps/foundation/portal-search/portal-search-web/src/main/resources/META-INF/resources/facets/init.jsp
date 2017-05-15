@@ -36,12 +36,6 @@ JSONObject dataJSONObject = facetConfiguration.getData();
 
 FacetCollector facetCollector = facet.getFacetCollector();
 
-List<TermCollector> termCollectors = Collections.<TermCollector>emptyList();
-
-if (facetCollector != null) {
-	termCollectors = facetCollector.getTermCollectors();
-}
-
 String cssClass = "search-facet search-".concat(HtmlUtil.escapeAttribute(facetConfiguration.getDisplayStyle()));
 %>
 

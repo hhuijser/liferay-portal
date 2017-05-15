@@ -99,7 +99,11 @@ int index = 0;
 								<liferay-ui:message key="<%= label %>" />
 
 								<%
-								TermCollector termCollector = facetCollector.getTermCollector(range);
+								TermCollector termCollector = null;
+
+								if (facetCollector != null) {
+									termCollector = facetCollector.getTermCollector(range);
+								}
 								%>
 
 								<c:if test="<%= termCollector != null %>">

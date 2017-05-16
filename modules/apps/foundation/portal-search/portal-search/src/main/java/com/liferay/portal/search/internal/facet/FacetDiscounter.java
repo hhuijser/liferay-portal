@@ -53,6 +53,10 @@ public class FacetDiscounter {
 
 		FacetCollector facetCollector = _facet.getFacetCollector();
 
+		if (facetCollector == null) {
+			return;
+		}
+
 		List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 
 		List<TermCollector> newTermCollectors = new ArrayList<>(
@@ -96,6 +100,10 @@ public class FacetDiscounter {
 
 	private Stream<String> _findTermsOfField(Field field) {
 		FacetCollector facetCollector = _facet.getFacetCollector();
+
+		if (facetCollector == null) {
+			return Stream.empty();
+		}
 
 		List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 

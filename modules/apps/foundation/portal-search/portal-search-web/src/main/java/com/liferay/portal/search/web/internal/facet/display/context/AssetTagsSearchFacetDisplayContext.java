@@ -158,6 +158,10 @@ public class AssetTagsSearchFacetDisplayContext {
 
 		FacetCollector facetCollector = _facet.getFacetCollector();
 
+		if (facetCollector == null) {
+			return true;
+		}
+
 		List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 
 		if (!termCollectors.isEmpty()) {

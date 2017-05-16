@@ -98,12 +98,15 @@ int index = 0;
 							<aui:a cssClass="<%= rangeCssClass %>" data="<%= data %>" href="javascript:;">
 								<liferay-ui:message key="<%= label %>" />
 
-								<%
-								TermCollector termCollector = facetCollector.getTermCollector(range);
-								%>
+								<c:if test="<%= facetCollector != null %>">
 
-								<c:if test="<%= termCollector != null %>">
-									<span class="frequency">(<%= termCollector.getFrequency() %>)</span>
+									<%
+									TermCollector termCollector = facetCollector.getTermCollector(range);
+									%>
+
+									<c:if test="<%= termCollector != null %>">
+										<span class="frequency">(<%= termCollector.getFrequency() %>)</span>
+									</c:if>
 								</c:if>
 							</aui:a>
 						</li>

@@ -57,7 +57,7 @@ public class FacetDiscounter {
 			return;
 		}
 
-		termCollectors = facetCollector.getTermCollectors();
+		List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 
 		List<TermCollector> newTermCollectors = new ArrayList<>(
 			termCollectors.size());
@@ -105,7 +105,7 @@ public class FacetDiscounter {
 			return Stream.empty();
 		}
 
-		termCollectors = facetCollector.getTermCollectors();
+		List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 
 		Stream<TermCollector> termCollectorsStream = termCollectors.stream();
 

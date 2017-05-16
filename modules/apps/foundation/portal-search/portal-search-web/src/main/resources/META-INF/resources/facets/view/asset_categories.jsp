@@ -21,7 +21,7 @@ if (facetCollector == null) {
 	return;
 }
 
-termCollectors = facetCollector.getTermCollectors();
+List<TermCollector> termCollectors = facetCollector.getTermCollectors();
 
 if (termCollectors.isEmpty()) {
 	return;

@@ -75,12 +75,6 @@ public class XMLFormatterPlugin implements Plugin<Project> {
 		return configuration;
 	}
 
-	protected void addDependenciesXMLFormatter(Project project) {
-		GradleUtil.addDependency(
-			project, CONFIGURATION_NAME, "com.liferay",
-			"com.liferay.xml.formatter", "latest.release");
-	}
-
 	protected FormatXMLTask addTaskFormatXML(Project project) {
 		final FormatXMLTask formatXMLTask = GradleUtil.addTask(
 			project, FORMAT_XML_TASK_NAME, FormatXMLTask.class);
@@ -131,6 +125,12 @@ public class XMLFormatterPlugin implements Plugin<Project> {
 				}
 
 			});
+	}
+
+	protected void addDependenciesXMLFormatter(Project project) {
+		GradleUtil.addDependency(
+			project, CONFIGURATION_NAME, "com.liferay",
+			"com.liferay.xml.formatter", "latest.release");
 	}
 
 	protected void configureTasksFormatXML(

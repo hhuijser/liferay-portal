@@ -10,7 +10,6 @@ dependencies {
 	provided group: "com.liferay", name: "com.liferay.petra.concurrent", version: "1.0.0"
 	provided group: "com.liferay", name: "com.liferay.petra.io", version: "1.0.0"
 	provided group: "com.liferay", name: "com.liferay.petra.memory", version: "1.0.0"
-	provided group: "com.liferay", name: "com.liferay.petra.process", version: "1.0.0"
 	provided group: "com.liferay", name: "com.liferay.petra.reflect", version: "1.0.0"
 	provided group: "com.liferay", name: "com.liferay.portal.jmx", version: "3.0.4"
 	provided group: "log4j", name: "log4j", version: "1.2.17"

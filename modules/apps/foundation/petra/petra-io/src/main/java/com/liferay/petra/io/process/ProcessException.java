@@ -12,15 +12,25 @@
  * details.
  */
 
-package com.liferay.petra.process;
-
-import java.io.Serializable;
+package com.liferay.petra.io.process;
 
 /**
  * @author Shuyang Zhou
  */
-public interface ProcessCallable<T extends Serializable> extends Serializable {
+public class ProcessException extends Exception {
 
-	public T call() throws ProcessException;
+	public ProcessException(String message) {
+		super(message);
+	}
+
+	public ProcessException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	public ProcessException(Throwable cause) {
+		super(cause);
+	}
+
+	private static final long serialVersionUID = 1L;
 
 }

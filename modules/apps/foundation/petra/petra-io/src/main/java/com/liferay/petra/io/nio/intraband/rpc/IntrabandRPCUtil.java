@@ -24,7 +24,7 @@ import com.liferay.petra.io.nio.intraband.Datagram;
 import com.liferay.petra.io.nio.intraband.Intraband;
 import com.liferay.petra.io.nio.intraband.RegistrationReference;
 import com.liferay.petra.io.nio.intraband.SystemDataType;
-import com.liferay.petra.process.ProcessCallable;
+import com.liferay.petra.io.process.ProcessCallable;
 
 import java.io.IOException;
 import java.io.Serializable;

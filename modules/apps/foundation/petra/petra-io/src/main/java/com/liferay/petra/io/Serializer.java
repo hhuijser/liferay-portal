@@ -78,13 +78,13 @@ import java.util.Arrays;
  * </p>
  *
  * <p>
- * On object serialization, the Serializer uses the {@link ClassLoaderPool} to
- * look up the servlet context name corresponding to the object's ClassLoader.
- * The servlet context name is written to the serialization stream. On object
- * deserialization, the {@link Deserializer} uses the ClassLoaderPool to look up
- * the ClassLoader corresponding to the servlet context name read from the
- * deserialization stream. ObjectOutputStream and ObjectInputStream lack these
- * features, making Serializer and Deserializer better choices for
+ * On object serialization, the Serializer uses the {@link ClassLoaderPoolUtil}
+ * to look up the servlet context name corresponding to the object's
+ * ClassLoader. The servlet context name is written to the serialization stream.
+ * On object deserialization, the {@link Deserializer} uses the ClassLoaderPool
+ * to look up the ClassLoader corresponding to the servlet context name read
+ * from the deserialization stream. ObjectOutputStream and ObjectInputStream
+ * lack these features, making Serializer and Deserializer better choices for
  * ClassLoader-aware Object serialization/deserialization, especially when
  * plugins are involved.
  * </p>

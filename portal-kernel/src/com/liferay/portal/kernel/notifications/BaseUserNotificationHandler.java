@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.service.UserNotificationDeliveryLocalServiceUti
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
 
 /**
  * @author Jonathan Lee
@@ -135,7 +134,7 @@ public abstract class BaseUserNotificationHandler
 
 		String body = getBody(userNotificationEvent, serviceContext);
 
-		if (Validator.isNull(body)) {
+		if (body == null) {
 			return null;
 		}
 

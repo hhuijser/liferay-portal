@@ -1567,11 +1567,14 @@ public class ServiceBuilder {
 	public String getTypeGenericsName(Type type) {
 		StringBundler sb = new StringBundler();
 
-		sb.append(type.getValue());
-
 		Type[] actualTypeArguments = type.getActualTypeArguments();
 
-		if (actualTypeArguments != null) {
+		if (actualTypeArguments == null) {
+			sb.append(type.getGenericValue());
+		}
+		else {
+			sb.append(type.getValue());
+
 			sb.append(StringPool.LESS_THAN);
 
 			for (Type actualTypeArgument : actualTypeArguments) {

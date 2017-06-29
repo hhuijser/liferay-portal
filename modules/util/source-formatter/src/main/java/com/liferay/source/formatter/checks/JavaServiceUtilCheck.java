@@ -48,8 +48,9 @@ public class JavaServiceUtilCheck extends BaseFileCheck {
 				if (match.matches(_KERNEL_SERVICE_UTIL_IMPORT_PATTERN)) {
 					addMessage(
 						fileName,
-						"Do not use *ServiceUtil in *ServiceImpl class, " +
-							"create a reference via service.xml instead");
+						"Do not use a portal-kernel *ServiceUtil in " +
+							"*ServiceImpl class, create a reference via " +
+								"service.xml instead");
 
 					break;
 				}

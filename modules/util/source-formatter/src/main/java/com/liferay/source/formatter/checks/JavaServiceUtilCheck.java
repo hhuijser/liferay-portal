@@ -16,6 +16,9 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Hugo Huijser
  */
@@ -37,13 +40,29 @@ public class JavaServiceUtilCheck extends BaseFileCheck {
 			className.endsWith("ServiceImpl") &&
 			content.contains("ServiceUtil.")) {
 
-			addMessage(
-				fileName,
-				"Do not use *ServiceUtil in *ServiceImpl class, create a " +
-					"reference via service.xml instead");
+			Matcher m = _SERVICE_UTIL_IMPORT_PATTERN.matcher(content);
+
+			while (m.find()) {
+				String match = m.group();
+
+				if (match.matches(_KERNEL_SERVICE_UTIL_IMPORT_PATTERN)) {
+					addMessage(
+						fileName,
+						"Do not use *ServiceUtil in *ServiceImpl class, " +
+							"create a reference via service.xml instead");
+
+					break;
+				}
+			}
 		}
 
 		return content;
 	}
+
+	private static final String _KERNEL_SERVICE_UTIL_IMPORT_PATTERN =
+		"import com\\.liferay\\.[a-z]+\\.kernel\\..*ServiceUtil;\\n";
+
+	private static final Pattern _SERVICE_UTIL_IMPORT_PATTERN = Pattern.compile(
+		"import com\\.liferay.*ServiceUtil;\\n");
 
 }

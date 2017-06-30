@@ -16,11 +16,9 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 /**
  * @author Hugo Huijser
+ * @author Brent Krone-Schmidt
  */
 public class JavaServiceUtilCheck extends BaseFileCheck {
 
@@ -38,32 +36,17 @@ public class JavaServiceUtilCheck extends BaseFileCheck {
 		if (!absolutePath.contains("/wsrp/internal/bind/") &&
 			!className.equals("BaseServiceImpl") &&
 			className.endsWith("ServiceImpl") &&
-			content.contains("ServiceUtil.")) {
+			content.contains("ServiceUtil.") &&
+			content.matches(
+				".*import com\\.liferay\\.[a-z]+\\.kernel\\..*ServiceUtil.*")) {
 
-			Matcher m = _SERVICE_UTIL_IMPORT_PATTERN.matcher(content);
-
-			while (m.find()) {
-				String match = m.group();
-
-				if (match.matches(_KERNEL_SERVICE_UTIL_IMPORT_PATTERN)) {
-					addMessage(
-						fileName,
-						"Do not use a portal-kernel *ServiceUtil in " +
-							"*ServiceImpl class, create a reference via " +
-								"service.xml instead");
-
-					break;
-				}
-			}
+			addMessage(
+				fileName,
+				"Do not use a portal-kernel *ServiceUtil in a *ServiceImpl " +
+					"class, create a reference via service.xml instead");
 		}
 
 		return content;
 	}
-
-	private static final String _KERNEL_SERVICE_UTIL_IMPORT_PATTERN =
-		"import com\\.liferay\\.[a-z]+\\.kernel\\..*ServiceUtil;\\n";
-
-	private static final Pattern _SERVICE_UTIL_IMPORT_PATTERN = Pattern.compile(
-		"import com\\.liferay.*ServiceUtil;\\n");
 
 }

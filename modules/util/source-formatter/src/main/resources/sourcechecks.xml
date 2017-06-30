@@ -95,6 +95,7 @@
 		<check name="JavaTermDividersCheck" />
 		<check name="JavaTermOrderCheck" />
 		<check name="JavaTermStylingCheck" />
+		<check name="JavaUnsafeCastingCheck" />
 		<check name="JavaWhitespaceCheck" />
 		<check name="MethodCallsOrderCheck" />
 		<check name="PrimitiveWrapperInstantiationCheck" />

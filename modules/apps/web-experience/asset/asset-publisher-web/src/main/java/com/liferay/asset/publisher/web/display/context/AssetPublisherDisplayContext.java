@@ -675,9 +675,9 @@ public class AssetPublisherDisplayContext {
 			scopeAssetPublisherAddItemHolders = new HashMap<>();
 
 		LiferayPortletRequest liferayPortletRequest =
-			(LiferayPortletRequest)_portletRequest;
+			PortalUtil.getLiferayPortletRequest(_portletRequest);
 		LiferayPortletResponse liferayPortletResponse =
-			(LiferayPortletResponse)_portletResponse;
+			PortalUtil.getLiferayPortletResponse(_portletResponse);
 
 		String redirect = _getScopeAssetPortletRedirect(
 			liferayPortletRequest, liferayPortletResponse);

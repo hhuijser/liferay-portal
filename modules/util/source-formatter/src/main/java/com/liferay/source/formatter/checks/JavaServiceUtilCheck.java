@@ -37,8 +37,7 @@ public class JavaServiceUtilCheck extends BaseFileCheck {
 			!className.equals("BaseServiceImpl") &&
 			className.endsWith("ServiceImpl") &&
 			content.contains("ServiceUtil.") &&
-			content.matches(
-				".*import com\\.liferay\\.[a-z]+\\.kernel\\..*ServiceUtil.*")) {
+			content.matches(_portalKernelImportCheck)) {
 
 			addMessage(
 				fileName,
@@ -48,5 +47,9 @@ public class JavaServiceUtilCheck extends BaseFileCheck {
 
 		return content;
 	}
+
+	private static final String _portalKernelImportCheck =
+		"[\\s\\S]*import com\\.liferay\\.[a-z]+\\.kernel\\..*ServiceUtil" +
+			"[\\s\\S]*";
 
 }

@@ -32,6 +32,9 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 )
 public interface BlogsPortletInstanceConfiguration {
 
+	@Meta.AD(deflt = "bottom", required = false)
+	public String socialBookmarksDisplayPosition();
+
 	@Meta.AD(deflt = "abstract", required = false)
 	public String displayStyle();
 
@@ -67,9 +70,6 @@ public interface BlogsPortletInstanceConfiguration {
 		required = false
 	)
 	public String pageDelta();
-
-	@Meta.AD(deflt = "bottom", required = false)
-	public String socialBookmarksDisplayPosition();
 
 	@Meta.AD(deflt = "menu", required = false)
 	public String socialBookmarksDisplayStyle();

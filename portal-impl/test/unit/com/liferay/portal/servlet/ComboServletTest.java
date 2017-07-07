@@ -111,9 +111,7 @@ public class ComboServletTest extends PowerMockito {
 					else if (Objects.equals(PortletKeys.PORTAL, args[0])) {
 						return _portalPortlet;
 					}
-					else if (Objects.equals(
-								_NONEXISTING_PORTLET_ID, args[0])) {
-
+					else if (Objects.equals(_NONEXISTING_PORTLET_ID, args[0])) {
 						return null;
 					}
 

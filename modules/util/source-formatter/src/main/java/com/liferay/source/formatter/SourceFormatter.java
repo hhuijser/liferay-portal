@@ -182,6 +182,10 @@ public class SourceFormatter {
 
 	public SourceFormatter(SourceFormatterArgs sourceFormatterArgs) {
 		_sourceFormatterArgs = sourceFormatterArgs;
+
+		Boolean headless = !sourceFormatterArgs.isShowDocumentation();
+
+		System.setProperty("java.awt.headless", headless.toString());
 	}
 
 	public void format() throws Exception {

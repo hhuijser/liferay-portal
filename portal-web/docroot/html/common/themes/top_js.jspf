@@ -142,19 +142,21 @@
 		};
 
 		Liferay.ThemeDisplay = {
+
+			<%
+			Group scopeGroup = themeDisplay.getScopeGroup();
+
+			Group liveGroup = StagingUtil.getLiveGroup(scopeGroup);
+			%>
+
 			<c:if test="<%= layout != null %>">
-
-				<%
-				Group scopeGroup = themeDisplay.getScopeGroup();
-
-				Group liveGroup = StagingUtil.getLiveGroup(scopeGroup);
-
-				Layout controlPanelLayout = themeDisplay.getControlPanelLayout();
-				%>
-
 				getLayoutId: function() {
 					return '<%= layout.getLayoutId() %>';
 				},
+
+				<%
+				Layout controlPanelLayout = themeDisplay.getControlPanelLayout();
+				%>
 
 				<c:if test="<%= controlPanelLayout.getGroupId() != scopeGroup.getGroupId() %>">
 					getLayoutRelativeControlPanelURL: function() {

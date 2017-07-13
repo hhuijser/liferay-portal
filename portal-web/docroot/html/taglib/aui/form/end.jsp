@@ -84,6 +84,14 @@ String fullName = namespace + HtmlUtil.escapeJS(name);
 
 	<c:if test="<%= Validator.isNotNull(onSubmit) %>">
 		A.all('#<%= fullName %> .input-container').removeAttribute('disabled');
+		
+		<%if( GetterUtil.getBoolean(String.valueOf(request.getAttribute("aui:input:autoFocus")))){%>
+		       
+		       AUI.$('#<%=request.getAttribute("aui:input:id")%>').focus();
+		       
+		<%}%>
+
+		
 	</c:if>
 
 	Liferay.fire(

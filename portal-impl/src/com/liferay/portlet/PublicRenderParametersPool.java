@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutSet;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.servlet.PortalSessionContext;
+import com.liferay.portal.kernel.util.AutoResetThreadLocal;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.util.PropsValues;
 
@@ -49,46 +50,54 @@ public class PublicRenderParametersPool {
 	protected static Map<String, String[]> get(
 		HttpServletRequest request, long plid) {
 
+		Map<String, String[]> resultMap = null;
+
 		if (PropsValues.PORTLET_PUBLIC_RENDER_PARAMETER_DISTRIBUTION_LAYOUT) {
-			return RenderParametersPool.getOrCreate(
+			resultMap = RenderParametersPool.getOrCreate(
 				request, plid, _PUBLIC_RENDER_PARAMETERS);
 		}
+		else {
+			HttpSession session = request.getSession();
 
-		HttpSession session = request.getSession();
+			HttpSession portalSession = PortalSessionContext.get(
+				session.getId());
 
-		HttpSession portalSession = PortalSessionContext.get(session.getId());
-
-		if (portalSession != null) {
-			session = portalSession;
-		}
-
-		Map<Long, Map<String, String[]>> publicRenderParametersPool =
-			(Map<Long, Map<String, String[]>>)session.getAttribute(
-				WebKeys.PUBLIC_RENDER_PARAMETERS_POOL);
-
-		if (publicRenderParametersPool == null) {
-			publicRenderParametersPool = new ConcurrentHashMap<>();
-
-			session.setAttribute(
-				WebKeys.PUBLIC_RENDER_PARAMETERS_POOL,
-				publicRenderParametersPool);
-		}
-
-		try {
-			Layout layout = LayoutLocalServiceUtil.getLayout(plid);
-
-			LayoutSet layoutSet = layout.getLayoutSet();
-
-			return publicRenderParametersPool.computeIfAbsent(
-				layoutSet.getLayoutSetId(), key -> new HashMap<>());
-		}
-		catch (Exception e) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(e, e);
+			if (portalSession != null) {
+				session = portalSession;
 			}
 
-			return new HashMap<>();
+			Map<Long, Map<String, String[]>> publicRenderParametersPool =
+				(Map<Long, Map<String, String[]>>)session.getAttribute(
+					WebKeys.PUBLIC_RENDER_PARAMETERS_POOL);
+
+			if (publicRenderParametersPool == null) {
+				publicRenderParametersPool = new ConcurrentHashMap<>();
+
+				session.setAttribute(
+					WebKeys.PUBLIC_RENDER_PARAMETERS_POOL,
+					publicRenderParametersPool);
+			}
+
+			try {
+				Layout layout = LayoutLocalServiceUtil.getLayout(plid);
+
+				LayoutSet layoutSet = layout.getLayoutSet();
+
+				resultMap = publicRenderParametersPool.computeIfAbsent(
+					layoutSet.getLayoutSetId(), key -> new HashMap<>());
+			}
+			catch (Exception e) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(e, e);
+				}
+
+				resultMap = new HashMap<>();
+			}
 		}
+
+		resultMap.putAll(_publicRenderParametersMap.get());
+
+		return resultMap;
 	}
 
 	private static final String _PUBLIC_RENDER_PARAMETERS =
@@ -96,5 +105,10 @@ public class PublicRenderParametersPool {
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		PublicRenderParametersPool.class);
+
+	private static final ThreadLocal<Map<String, String[]>>
+		_publicRenderParametersMap = new AutoResetThreadLocal<>(
+			PublicRenderParametersPool.class + "._publicRenderParametersMap",
+			HashMap::new);
 
 }

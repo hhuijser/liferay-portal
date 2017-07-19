@@ -28,22 +28,22 @@ import java.util.regex.Pattern;
 public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 	@Override
-	public boolean isModulesCheck() {
-		return true;
-	}
-
-	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (!fileName.endsWith("test-bnd.bnd")) {
-			content = _formatIncludeResource(content);
+		if (fileName.endsWith("test-bnd.bnd")) {
+			return content;
 		}
 
-		return content;
+		if (isModulesFile(absolutePath)) {
+			content = _formatModulesIncludeResource(content);
+		}
+
+		return _sortDefinitionProperties(
+			content, new IncludeResourceComparator());
 	}
 
-	private String _formatIncludeResource(String content) {
+	private String _formatModulesIncludeResource(String content) {
 		Matcher matcher = _includeResourcePattern.matcher(content);
 
 		if (!matcher.find()) {
@@ -61,7 +61,9 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			return StringUtil.replace(content, includeResources, replacement);
 		}
 
-		for (String includeResourceDir : _INCLUDE_RESOURCE_DIRS_BLACKLIST) {
+		for (String includeResourceDir :
+				_MODULES_INCLUDE_RESOURCE_DIRS_BLACKLIST) {
+
 			Pattern includeResourceDirPattern = Pattern.compile(
 				"(\t|: )" + includeResourceDir + "(,\\\\\n|\n||\\Z)");
 
@@ -102,14 +104,21 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			return StringUtil.replace(content, includeResources, replacement);
 		}
 
-		return _sortDefinitionProperties(
-			content, includeResources, new IncludeResourceComparator());
+		return content;
 	}
 
 	private String _sortDefinitionProperties(
-		String content, String properties, Comparator<String> comparator) {
+		String content, Comparator<String> comparator) {
 
-		String[] lines = StringUtil.splitLines(properties);
+		Matcher matcher = _includeResourcePattern.matcher(content);
+
+		if (!matcher.find()) {
+			return content;
+		}
+
+		String includeResources = matcher.group(1);
+
+		String[] lines = StringUtil.splitLines(includeResources);
 
 		if (lines.length == 1) {
 			return content;
@@ -129,28 +138,29 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 
 				if (value > 0) {
 					String replacement = StringUtil.replaceFirst(
-						properties, previousProperty, property);
+						includeResources, previousProperty, property);
 
 					replacement = StringUtil.replaceLast(
 						replacement, property, previousProperty);
 
-					return StringUtil.replace(content, properties, replacement);
+					return StringUtil.replace(
+						content, includeResources, replacement);
 				}
 			}
 
 			previousProperty = property;
 		}
 
-		if (properties.endsWith(",\\")) {
+		if (includeResources.endsWith(",\\")) {
 			content = StringUtil.replace(
-				content, properties,
-				properties.substring(0, properties.length() - 2));
+				content, includeResources,
+				includeResources.substring(0, includeResources.length() - 2));
 		}
 
 		return content;
 	}
 
-	private static final String[] _INCLUDE_RESOURCE_DIRS_BLACKLIST =
+	private static final String[] _MODULES_INCLUDE_RESOURCE_DIRS_BLACKLIST =
 		new String[] {
 			"classes",
 			"META-INF/resources=src/main/resources/META-INF/resources",

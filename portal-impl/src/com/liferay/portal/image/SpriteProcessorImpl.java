@@ -41,6 +41,7 @@ import java.awt.image.RenderedImage;
 import java.awt.image.SampleModel;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.net.URL;
@@ -250,8 +251,25 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 			}
 		}
 
-		FileUtil.write(
-			spritePropertiesFile, PropertiesUtil.toString(spriteProperties));
+		try {
+			FileUtil.write(
+				spritePropertiesFile,
+				PropertiesUtil.toString(spriteProperties));
+		}
+		catch (FileNotFoundException fnfe) {
+			if (_log.isWarnEnabled()) {
+				StringBundler sb = new StringBundler(4);
+
+				sb.append("Unable to generate ");
+				sb.append(spritePropertiesFileName);
+				sb.append(" for ");
+				sb.append(servletContext.getServletContextName());
+
+				_log.warn(sb.toString());
+			}
+
+			return null;
+		}
 
 		if (lastModified > 0) {
 			spritePropertiesFile.setLastModified(lastModified);

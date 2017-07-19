@@ -141,6 +141,12 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			previousProperty = property;
 		}
 
+		if (properties.endsWith(",\\")) {
+			content = StringUtil.replace(
+				content, properties,
+				properties.substring(0, properties.length() - 2));
+		}
+
 		return content;
 	}
 

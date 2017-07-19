@@ -50,7 +50,7 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 			return content;
 		}
 
-		String includeResources = matcher.group();
+		String includeResources = matcher.group(1);
 
 		matcher = _includeResourceJarPattern.matcher(includeResources);
 
@@ -155,7 +155,7 @@ public class BNDIncludeResourceCheck extends BaseFileCheck {
 	private final Pattern _includeResourceJarPattern = Pattern.compile(
 		"-[0-9\\.]+\\.jar");
 	private final Pattern _includeResourcePattern = Pattern.compile(
-		"^(-includeresource|Include-Resource):[\\s\\S]*?([^\\\\]\n|\\Z)",
+		"^(-includeresource|Include-Resource:[\\s\\S]*?)(\n\\S|\\Z)",
 		Pattern.MULTILINE);
 
 	private static class IncludeResourceComparator

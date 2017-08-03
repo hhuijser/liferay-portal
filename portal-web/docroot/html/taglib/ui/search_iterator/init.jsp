@@ -32,7 +32,6 @@ String type = (String)request.getAttribute("liferay-ui:search:type");
 String id = searchContainer.getId(request, namespace);
 
 String emptyResultsMessage = searchContainer.getEmptyResultsMessage();
-String emptyResultsMessageCssClass = searchContainer.getEmptyResultsMessageCssClass();
 List<String> headerNames = searchContainer.getHeaderNames();
 List<String> normalizedHeaderNames = searchContainer.getNormalizedHeaderNames();
 Map orderableHeaders = searchContainer.getOrderableHeaders();

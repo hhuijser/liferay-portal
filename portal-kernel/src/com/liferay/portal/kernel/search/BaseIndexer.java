@@ -704,7 +704,15 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 		searchContext.setSearchEngineId(getSearchEngineId());
 
-		BooleanQuery fullQuery = getFullQuery(searchContext);
+		Query fullQuery = getFullQuery(searchContext);
+
+		if (!fullQuery.hasChildren()) {
+			BooleanFilter preBooleanFilter = fullQuery.getPreBooleanFilter();
+
+			fullQuery = new MatchAllQuery();
+
+			fullQuery.setPreBooleanFilter(preBooleanFilter);
+		}
 
 		fullQuery.setQueryConfig(queryConfig);
 

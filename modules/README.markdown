@@ -121,14 +121,15 @@ closure arguments.
 * Ordering inside Gradle files:
 	1. Class imports, sorted and separated in groups (same logic used in
 	Java).
-	2. `apply plugin` logic, sorted alphabetically.
-	3. `ext { ... }` block.
-	4. Task creation: `task taskName(type: TaskType)` or simply `task taskName`
+	2. `buildscript { ... }` block.
+	3. `apply plugin` logic, sorted alphabetically.
+	4. `ext { ... }` block.
+	5. Task creation: `task taskName(type: TaskType)` or simply `task taskName`
 	for default tasks. Don't declare the task dependencies here.
-	5. Project property assignments (e.g., `sourceCompatibility`).
-	6. Variables used globally by the whole script, like a URL or a relative
+	6. Project property assignments (e.g., `sourceCompatibility`).
+	7. Variables used globally by the whole script, like a URL or a relative
 	path.
-	7. Blocks `{ ... }` to configure tasks, extension objects, etc. These must be
+	8. Blocks `{ ... }` to configure tasks, extension objects, etc. These must be
 	sorted alphabetically.
 * Inside a block `{ ... }`:
 	* If variables are needed, declare them inside the block at the beginning.

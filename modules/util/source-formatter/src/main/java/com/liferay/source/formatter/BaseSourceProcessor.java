@@ -285,17 +285,6 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 		List<File> suppressionsFiles = new ArrayList<>();
 
-		// Find suppressions file in portal-impl/src/
-
-		if (portalSource) {
-			File suppressionsFile = getFile(
-				"portal-impl/src/" + fileName, PORTAL_MAX_DIR_LEVEL);
-
-			if (suppressionsFile != null) {
-				suppressionsFiles.add(suppressionsFile);
-			}
-		}
-
 		// Find suppressions files in any parent directory
 
 		int maxDirLevel = PLUGINS_MAX_DIR_LEVEL;

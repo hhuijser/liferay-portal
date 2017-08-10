@@ -148,6 +148,9 @@ PanelCategoryRegistry panelCategoryRegistry = (PanelCategoryRegistry)request.get
 												if (Objects.equals(panelAppPortlet.getControlPanelEntryClass(), com.liferay.portal.kernel.portlet.OmniadminControlPanelEntry.class.getName())) {
 													continue;
 												}
+												else if (Objects.equals(panelAppPortlet.getPortletName(), PortletKeys.LICENSE_MANAGER)) {
+													continue;
+												}
 
 												editPermissionsResourceURL.setParameter("portletResource", panelAppPortlet.getPortletId());
 

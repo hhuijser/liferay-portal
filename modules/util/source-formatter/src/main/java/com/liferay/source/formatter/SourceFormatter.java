@@ -17,6 +17,7 @@ package com.liferay.source.formatter;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -32,7 +33,6 @@ import java.io.FileInputStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -305,24 +305,25 @@ public class SourceFormatter {
 		return _firstSourceMismatchException;
 	}
 
-	private List<String> _getDefaultExcludes() throws Exception {
+	private Set<String> _getDefaultExcludes() throws Exception {
+		Set<String> defaultExcludes = SetUtil.fromArray(_DEFAULT_EXCLUDES);
+
 		File portalSourceFormatterPropertiesFile =
 			_getPortalSourceFormatterPropertiesFile();
 
 		if (portalSourceFormatterPropertiesFile == null) {
-			return Arrays.asList(_DEFAULT_EXCLUDES);
+			return defaultExcludes;
 		}
 
 		Properties portalSourceFormatterProperties = _getProperties(
 			portalSourceFormatterPropertiesFile);
 
-		List<String> defaultExcludes = ListUtil.fromString(
-			GetterUtil.getString(
-				portalSourceFormatterProperties.getProperty(
-					"source.formatter.excludes")),
-			StringPool.COMMA);
-
-		Collections.addAll(defaultExcludes, _DEFAULT_EXCLUDES);
+		defaultExcludes.addAll(
+			ListUtil.fromString(
+				GetterUtil.getString(
+					portalSourceFormatterProperties.getProperty(
+						"source.formatter.excludes")),
+				StringPool.COMMA));
 
 		return defaultExcludes;
 	}

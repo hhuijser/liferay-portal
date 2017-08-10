@@ -27,6 +27,10 @@ public class SourceFormatterExcludes {
 		_defaultExcludes = defaultExcludes;
 	}
 
+	public void addDefaultExcludes(List<String> defaultExcludes) {
+		_defaultExcludes.addAll(defaultExcludes);
+	}
+
 	public void addExcludes(
 		String propertiesFileLocation, List<String> exludes) {
 

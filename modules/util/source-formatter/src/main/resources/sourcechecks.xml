@@ -57,6 +57,7 @@
 		<check name="FTLWhitespaceCheck" />
 	</source-processor>
 	<source-processor name="GradleSourceProcessor">
+		<check name="GradleApplyPluginsCheck" />
 		<check name="GradleDependenciesCheck" />
 		<check name="GradleImportsCheck" />
 		<check name="GradleVersionCheck" />

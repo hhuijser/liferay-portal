@@ -478,9 +478,9 @@ public class SourceFormatter {
 
 	private static final String[] _DEFAULT_EXCLUDES = {
 		"**/.git/**", "**/.gradle/**", "**/bin/**", "**/build/**",
-		"**/classes/**", "**/node_modules/**", "**/npm-shrinkwrap.json",
-		"**/package-lock.json", "**/test-classes/**", "**/test-coverage/**",
-		"**/test-results/**", "**/tmp/**"
+		"**/classes/**", "**/npm-shrinkwrap.json", "**/package-lock.json",
+		"**/test-classes/**", "**/test-coverage/**", "**/test-results/**",
+		"**/tmp/**"
 	};
 
 	private static final String _PROPERTIES_FILE_NAME =

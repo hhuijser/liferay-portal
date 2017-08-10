@@ -15,7 +15,6 @@
 package com.liferay.source.formatter;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -26,6 +25,7 @@ import com.liferay.portal.tools.GitException;
 import com.liferay.portal.tools.GitUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.File;
@@ -191,12 +191,7 @@ public class SourceFormatter {
 	}
 
 	public void format() throws Exception {
-		_sourceFormatterExcludes = new SourceFormatterExcludes(
-			_getDefaultExcludes());
-
-		_populateAllFileNames();
-
-		_readProperties();
+		_init();
 
 		List<SourceProcessor> sourceProcessors = new ArrayList<>();
 
@@ -305,39 +300,16 @@ public class SourceFormatter {
 		return _firstSourceMismatchException;
 	}
 
-	private Set<String> _getDefaultExcludes() throws Exception {
-		Set<String> defaultExcludes = SetUtil.fromArray(_DEFAULT_EXCLUDES);
-
-		File portalSourceFormatterPropertiesFile =
-			_getPortalSourceFormatterPropertiesFile();
-
-		if (portalSourceFormatterPropertiesFile == null) {
-			return defaultExcludes;
-		}
-
-		Properties portalSourceFormatterProperties = _getProperties(
-			portalSourceFormatterPropertiesFile);
-
-		defaultExcludes.addAll(
-			ListUtil.fromString(
-				GetterUtil.getString(
-					portalSourceFormatterProperties.getProperty(
-						"source.formatter.excludes")),
-				StringPool.COMMA));
-
-		return defaultExcludes;
-	}
-
-	private File _getPortalSourceFormatterPropertiesFile() {
+	private int _getMaxDirLevel() {
 		File portalImplDir = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "portal-impl",
 			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
 
 		if (portalImplDir != null) {
-			return new File(portalImplDir, "../" + _PROPERTIES_FILE_NAME);
+			return ToolsUtil.PORTAL_MAX_DIR_LEVEL;
 		}
 
-		return null;
+		return ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
 	}
 
 	private Properties _getProperties(File file) throws Exception {
@@ -350,41 +322,25 @@ public class SourceFormatter {
 		return properties;
 	}
 
-	private void _populateAllFileNames() throws Exception {
+	private void _init() throws Exception {
+		_sourceFormatterExcludes = new SourceFormatterExcludes(
+			SetUtil.fromArray(_DEFAULT_EXCLUDES));
+
+		// Find properties file in any parent directory
+
+		String parentDirName = _sourceFormatterArgs.getBaseDirName();
+
+		for (int i = 0; i < _getMaxDirLevel(); i++) {
+			_readProperties(new File(parentDirName + _PROPERTIES_FILE_NAME));
+
+			parentDirName += "../";
+		}
+
 		_allFileNames = SourceFormatterUtil.scanForFiles(
 			_sourceFormatterArgs.getBaseDirName(), new String[0],
 			new String[] {"**/*.*", "**/CODEOWNERS", "**/Dockerfile"},
 			_sourceFormatterExcludes,
 			_sourceFormatterArgs.isIncludeSubrepositories());
-	}
-
-	private void _readProperties() throws Exception {
-		int maxDirLevel = -1;
-
-		// Find properties files in portal root folder
-
-		File portalSourceFormatterPropertiesFile =
-			_getPortalSourceFormatterPropertiesFile();
-
-		if (portalSourceFormatterPropertiesFile != null) {
-			_readProperties(portalSourceFormatterPropertiesFile, true);
-
-			maxDirLevel = ToolsUtil.PORTAL_MAX_DIR_LEVEL;
-		}
-		else {
-			maxDirLevel = ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
-		}
-
-		// Find properties files in any parent directory
-
-		String parentDirName = _sourceFormatterArgs.getBaseDirName();
-
-		for (int i = 0; i < maxDirLevel; i++) {
-			_readProperties(
-				new File(parentDirName + _PROPERTIES_FILE_NAME), false);
-
-			parentDirName += "../";
-		}
 
 		// Find properties file in any child directory
 
@@ -395,13 +351,11 @@ public class SourceFormatter {
 				_sourceFormatterExcludes);
 
 		for (String modulePropertiesFileName : modulePropertiesFileNames) {
-			_readProperties(new File(modulePropertiesFileName), false);
+			_readProperties(new File(modulePropertiesFileName));
 		}
 	}
 
-	private void _readProperties(File propertiesFile, boolean portalProperties)
-		throws Exception {
-
+	private void _readProperties(File propertiesFile) throws Exception {
 		Properties properties = _getProperties(propertiesFile);
 
 		if (properties.isEmpty()) {
@@ -415,14 +369,22 @@ public class SourceFormatter {
 
 		propertiesFileLocation = propertiesFileLocation.substring(0, pos + 1);
 
-		if (!portalProperties) {
-			String value = properties.getProperty("source.formatter.excludes");
+		String value = properties.getProperty("source.formatter.excludes");
 
-			if (value != null) {
-				_sourceFormatterExcludes.addExcludes(
-					propertiesFileLocation,
-					ListUtil.fromString(value, StringPool.COMMA));
-			}
+		if (value == null) {
+			_propertiesMap.put(propertiesFileLocation, properties);
+
+			return;
+		}
+
+		if (FileUtil.exists(propertiesFileLocation + "portal-impl")) {
+			_sourceFormatterExcludes.addDefaultExcludes(
+				ListUtil.fromString(value, StringPool.COMMA));
+		}
+		else {
+			_sourceFormatterExcludes.addExcludes(
+				propertiesFileLocation,
+				ListUtil.fromString(value, StringPool.COMMA));
 		}
 
 		properties.remove("source.formatter.excludes");

@@ -2873,13 +2873,21 @@ information. Make sure to commit in all build services results.
 	<target name="source-format-jdk8">
 		<run-batch-test>
 			<test-action>
+				<echo>___________DEBUG1___________</echo>
+				<echo>${liferay.releng.public}</echo>
 				<if>
 					<istrue value="${liferay.releng.public}" />
 					<then>
+						<echo>___________DEBUG2___________</echo>
+						<echo>IN THEN STATEMENT</echo>
 						<gradle-execute dir="modules/util/source-formatter" task="deploy">
 							<arg value="clean" />
 						</gradle-execute>
 					</then>
+					<else>
+						<echo>___________DEBUG3___________</echo>
+						<echo>IN ELSE STATEMENT</echo>
+					</else>
 				</if>
 
 				<loadproperties>

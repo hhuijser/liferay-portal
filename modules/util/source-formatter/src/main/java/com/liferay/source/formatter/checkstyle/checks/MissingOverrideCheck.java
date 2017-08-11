@@ -16,8 +16,11 @@ package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
+import com.liferay.source.formatter.ExcludeSyntaxPattern;
+import com.liferay.source.formatter.SourceFormatter;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
@@ -41,9 +44,9 @@ import com.thoughtworks.qdox.model.impl.DefaultJavaParameterizedType;
 import java.io.File;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Hugo Huijser
@@ -169,9 +172,12 @@ public class MissingOverrideCheck extends AbstractCheck {
 			}
 		}
 
+		Set<ExcludeSyntaxPattern> defaultExcludeSyntaxPatterns =
+			SetUtil.fromArray(SourceFormatter.DEFAULT_EXCLUDE_SYNTAX_PATTERNS);
+
 		List<String> fileNames = SourceFormatterUtil.scanForFiles(
 			absolutePath + "/", new String[0], new String[] {"**/*.java"},
-			new SourceFormatterExcludes(Arrays.asList(_EXCLUDES)), true);
+			new SourceFormatterExcludes(defaultExcludeSyntaxPatterns), true);
 
 		for (String curFileName : fileNames) {
 			curFileName = StringUtil.replace(
@@ -350,13 +356,6 @@ public class MissingOverrideCheck extends AbstractCheck {
 
 		return false;
 	}
-
-	private static final String[] _EXCLUDES = {
-		"**/.git/**", "**/.gradle/**", "**/bin/**", "**/build/**",
-		"**/classes/**", "**/node_modules/**", "**/npm-shrinkwrap.json",
-		"**/package-lock.json", "**/test-classes/**", "**/test-coverage/**",
-		"**/test-results/**", "**/tmp/**"
-	};
 
 	private static final double _LOWEST_SUPPORTED_JAVA_VERSION = 1.7;
 

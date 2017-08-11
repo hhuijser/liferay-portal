@@ -14,6 +14,9 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.portal.kernel.util.HashCode;
+import com.liferay.portal.kernel.util.HashCodeFactoryUtil;
+
 /**
  * @author Peter Shin
  */
@@ -59,6 +62,16 @@ public class ExcludeSyntaxPattern {
 
 	public ExcludeSyntax getExcludeSyntax() {
 		return _excludeSyntax;
+	}
+
+	@Override
+	public int hashCode() {
+		HashCode hashCode = HashCodeFactoryUtil.getHashCode();
+
+		hashCode.append(_excludeSyntax.getValue());
+		hashCode.append(_excludePattern);
+
+		return hashCode.toHashCode();
 	}
 
 	private final String _excludePattern;

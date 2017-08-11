@@ -2873,24 +2873,21 @@ information. Make sure to commit in all build services results.
 	<target name="source-format-jdk8">
 		<run-batch-test>
 			<test-action>
+				<echo>___________DEBUG1___________</echo>
+				<echo>${liferay.releng.public}</echo>
 				<if>
-					<contains string="${liferay.releng.branch}" substring="master" />
+					<istrue value="${liferay.releng.public}" />
 					<then>
+						<echo>___________DEBUG2___________</echo>
+						<echo>IN THEN STATEMENT</echo>
 						<gradle-execute dir="modules/util/source-formatter" task="deploy">
 							<arg value="clean" />
 						</gradle-execute>
 					</then>
-				</if>
-
-				<local name="source.formatter.excludes" />
-
-				<if>
-					<not>
-						<resourcecontains resource="${project.dir}/portal-kernel/src/com/liferay/portal/kernel/util/ReleaseInfo.java" substring=" DXP " />
-					</not>
-					<then>
-						<property name="source.formatter.excludes" value="modules/private/**" />
-					</then>
+					<else>
+						<echo>___________DEBUG3___________</echo>
+						<echo>IN ELSE STATEMENT</echo>
+					</else>
 				</if>
 
 				<loadproperties>
@@ -2903,7 +2900,7 @@ information. Make sure to commit in all build services results.
 					<property name="show.documentation" value="false" />
 					<property name="source.auto.fix" value="false" />
 					<property name="source.fail.on.error" value="true" />
-					<property name="source.formatter.excludes" value="${source.formatter.excludes}" />
+					<property if:true="${liferay.releng.public}" name="source.formatter.excludes" value="modules/private/**" />
 					<property name="source.print.errors" value="true" />
 					<property name="source.throw.exception" value="true" />
 					<property name="source.use.properties" value="false" />

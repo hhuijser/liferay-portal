@@ -14,38 +14,48 @@
 
 package com.liferay.source.formatter;
 
-import com.liferay.portal.kernel.util.StringPool;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Hugo Huijser
  */
 public class SourceFormatterExcludes {
 
-	public SourceFormatterExcludes(List<String> defaultExcludes) {
-		_defaultExcludes = defaultExcludes;
+	public SourceFormatterExcludes(
+		Set<ExcludeSyntaxPattern> defaultExcludeSyntaxPatterns) {
+
+		_defaultExcludeSyntaxPatterns = defaultExcludeSyntaxPatterns;
 	}
 
-	public void addExcludes(
-		String propertiesFileLocation, List<String> exludes) {
+	public void addDefaultExcludeSyntaxPatterns(
+		List<ExcludeSyntaxPattern> defaultExcludeSyntaxPatterns) {
 
-		int pos = propertiesFileLocation.lastIndexOf(StringPool.SLASH);
-
-		_excludesMap.put(propertiesFileLocation.substring(0, pos + 1), exludes);
+		_defaultExcludeSyntaxPatterns.addAll(defaultExcludeSyntaxPatterns);
 	}
 
-	public List<String> getDefaultExcludes() {
-		return _defaultExcludes;
+	public void addExcludeSyntaxPatterns(
+		String propertiesFileLocation,
+		List<ExcludeSyntaxPattern> excludeSyntaxPatterns) {
+
+		_excludeSyntaxPatternsMap.put(
+			propertiesFileLocation, excludeSyntaxPatterns);
 	}
 
-	public Map<String, List<String>> getExcludesMap() {
-		return _excludesMap;
+	public Set<ExcludeSyntaxPattern> getDefaultExcludeSyntaxPatterns() {
+		return _defaultExcludeSyntaxPatterns;
 	}
 
-	private final List<String> _defaultExcludes;
-	private Map<String, List<String>> _excludesMap = new HashMap<>();
+	public Map<String, List<ExcludeSyntaxPattern>>
+		getExcludeSyntaxPatternsMap() {
+
+		return _excludeSyntaxPatternsMap;
+	}
+
+	private final Set<ExcludeSyntaxPattern> _defaultExcludeSyntaxPatterns;
+	private Map<String, List<ExcludeSyntaxPattern>> _excludeSyntaxPatternsMap =
+		new HashMap<>();
 
 }

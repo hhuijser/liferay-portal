@@ -37,7 +37,7 @@ public class JavaServiceUtilCheck extends BaseFileCheck {
 			!className.equals("BaseServiceImpl") &&
 			className.endsWith("ServiceImpl") &&
 			content.matches(
-				"(?s).*import com\\.liferay\\.[a-z]+\\.kernel\\..*" +
+				".*import com\\.liferay\\.[a-z]+\\.kernel\\..*" +
 					"ServiceUtil;.*")) {
 
 			addMessage(

@@ -565,7 +565,7 @@ public class SourceFormatterUtil {
 			}
 			else if (excludeSyntax.equals(ExcludeSyntax.REGEX) &&
 					 excludePattern.endsWith(
-						Pattern.quote(File.separator) + ".*")) {
+						 Pattern.quote(File.separator) + ".*")) {
 
 				excludePattern = StringUtil.replaceLast(
 					excludePattern, Pattern.quote(File.separator) + ".*",
@@ -615,7 +615,7 @@ public class SourceFormatterUtil {
 				}
 				else if (excludeSyntax.equals(ExcludeSyntax.REGEX) &&
 						 excludePattern.endsWith(
-							Pattern.quote(File.separator) + ".*")) {
+							 Pattern.quote(File.separator) + ".*")) {
 
 					excludePattern = StringUtil.replaceLast(
 						excludePattern, Pattern.quote(File.separator) + ".*",

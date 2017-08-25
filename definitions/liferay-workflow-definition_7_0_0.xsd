@@ -94,6 +94,7 @@
 				<xs:sequence>
 					<xs:element default="regular" minOccurs="0" name="role-type" type="role-type" />
 					<xs:element minOccurs="0" name="name" type="xs:string" />
+					<xs:element minOccurs="0" name="role-name-ac" type="xs:string" />
 					<xs:element default="true" minOccurs="0" name="auto-create" type="xs:boolean" />
 				</xs:sequence>
 			</xs:choice>

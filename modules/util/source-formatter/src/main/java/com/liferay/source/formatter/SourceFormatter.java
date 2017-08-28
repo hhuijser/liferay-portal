@@ -397,9 +397,6 @@ public class SourceFormatter {
 
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
-		System.out.println(
-			"baseDirName: " + _sourceFormatterArgs.getBaseDirName());
-
 		for (int i = 0; i < _getMaxDirLevel(); i++) {
 			_readProperties(new File(parentDirName + _PROPERTIES_FILE_NAME));
 
@@ -411,12 +408,6 @@ public class SourceFormatter {
 			new String[] {"**/*.*", "**/CODEOWNERS", "**/Dockerfile"},
 			_sourceFormatterExcludes,
 			_sourceFormatterArgs.isIncludeSubrepositories());
-
-		System.out.println("_allFileNames.size(): " + _allFileNames.size());
-
-		for (String fn : _allFileNames) {
-			System.out.println("fileName: " + fn);
-		}
 
 		// Find properties file in any child directory
 

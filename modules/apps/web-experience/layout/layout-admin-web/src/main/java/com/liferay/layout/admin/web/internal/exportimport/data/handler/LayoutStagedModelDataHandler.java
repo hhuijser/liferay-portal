@@ -490,13 +490,29 @@ public class LayoutStagedModelDataHandler
 			if (existingLayout == null) {
 				existingLayout = _layoutLocalService.fetchLayoutByFriendlyURL(
 					groupId, privateLayout, friendlyURL);
+
+				if (existingLayout != null) {
+					if (Validator.isNotNull(
+							existingLayout.getSourcePrototypeLayoutUuid())) {
+
+						existingLayout = null;
+					}
+					else {
+						if (isImportedFriendlyURL(
+								layouts, existingLayout.getFriendlyURL())) {
+
+							existingLayout = null;
+						}
+					}
+				}
 			}
 
 			if (existingLayout == null) {
 				layoutId = _layoutLocalService.getNextLayoutId(
 					groupId, privateLayout);
 
-				friendlyURL = getFriendlyURL(friendlyURL, layoutId);
+				friendlyURL = findAvailableFriendlyURL(
+					groupId, privateLayout, friendlyURL, layoutId);
 			}
 		}
 
@@ -994,6 +1010,23 @@ public class LayoutStagedModelDataHandler
 		}
 	}
 
+	protected String findAvailableFriendlyURL(
+		long groupId, boolean privateLayout, String friendlyURL,
+		long layoutId) {
+
+		Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(
+			groupId, privateLayout, friendlyURL);
+
+		if (layout == null) {
+			return friendlyURL;
+		}
+
+		friendlyURL = getFriendlyURL(friendlyURL, layoutId);
+
+		return findAvailableFriendlyURL(
+			groupId, privateLayout, friendlyURL, layoutId + 1);
+	}
+
 	protected void fixExportTypeSettings(Layout layout) throws Exception {
 		Object[] friendlyURLInfo = extractFriendlyURLInfo(layout);
 
@@ -1460,6 +1493,24 @@ public class LayoutStagedModelDataHandler
 			companyId, groupId, userId, Layout.class.getName(),
 			importedLayout.getPlid(), false, addGroupPermissions,
 			addGuestPermissions);
+	}
+
+	protected boolean isImportedFriendlyURL(
+		Map<Long, Layout> layouts, String friendlyURL) {
+
+		boolean importedFriendlyURL = false;
+
+		for (Map.Entry<Long, Layout> importedLayoutEntry : layouts.entrySet()) {
+			if (friendlyURL.equals(
+					importedLayoutEntry.getValue().getFriendlyURL())) {
+
+				importedFriendlyURL = true;
+
+				break;
+			}
+		}
+
+		return importedFriendlyURL;
 	}
 
 	protected void mergePortlets(

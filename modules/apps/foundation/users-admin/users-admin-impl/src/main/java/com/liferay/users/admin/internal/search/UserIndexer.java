@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Contact;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.search.BaseIndexer;
@@ -37,6 +38,7 @@ import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.TermsFilter;
 import com.liferay.portal.kernel.security.auth.FullNameGenerator;
 import com.liferay.portal.kernel.security.auth.FullNameGeneratorFactory;
+import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.OrganizationLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -45,8 +47,10 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.model.impl.ContactImpl;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -255,7 +259,34 @@ public class UserIndexer extends BaseIndexer<User> {
 		long[] organizationIds = user.getOrganizationIds();
 
 		document.addKeyword(Field.COMPANY_ID, user.getCompanyId());
-		document.addKeyword(Field.GROUP_ID, user.getGroupIds());
+
+		List<Long> groupIdsList = new ArrayList();
+
+		for (long groupId : user.getGroupIds()) {
+			groupIdsList.add(Long.valueOf(groupId));
+		}
+
+		List<Group> inactiveGroups = groupLocalService.getActiveGroups(
+			user.getCompanyId(), false);
+		List<Long> inactiveGroupsList = new ArrayList();
+
+		for (int i = 0; i < inactiveGroups.size(); i++) {
+			inactiveGroupsList.add(inactiveGroups.get(i).getGroupId());
+		}
+
+		for (int i = 0; i < groupIdsList.size(); i++) {
+			if (inactiveGroupsList.contains(groupIdsList.get(i))) {
+				groupIdsList.remove(i);
+			}
+		}
+
+		long[] groupIds = new long[groupIdsList.size()];
+
+		for (int i = 0; i < groupIdsList.size(); i++) {
+			groupIds[i] = groupIdsList.get(i).longValue();
+		}
+
+		document.addKeyword(Field.GROUP_ID, groupIds);
 		document.addDate(Field.MODIFIED_DATE, user.getModifiedDate());
 		document.addKeyword(Field.SCOPE_GROUP_ID, user.getGroupIds());
 		document.addKeyword(Field.STATUS, user.getStatus());
@@ -398,6 +429,9 @@ public class UserIndexer extends BaseIndexer<User> {
 
 		indexableActionableDynamicQuery.performActions();
 	}
+
+	@Reference
+	protected GroupLocalService groupLocalService;
 
 	@Reference
 	protected IndexWriterHelper indexWriterHelper;

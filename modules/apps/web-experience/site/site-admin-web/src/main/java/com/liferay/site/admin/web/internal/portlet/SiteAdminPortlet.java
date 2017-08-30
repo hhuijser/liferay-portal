@@ -48,12 +48,16 @@ import com.liferay.portal.kernel.model.MembershipRequest;
 import com.liferay.portal.kernel.model.MembershipRequestConstants;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.Team;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
+import com.liferay.portal.kernel.search.Indexer;
+import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.security.auth.AuthException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.auth.RemoteAuthException;
+import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.GroupService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -477,6 +481,22 @@ public class SiteAdminPortlet extends MVCPortlet {
 		return false;
 	}
 
+	protected void reindex(User user) throws PortalException {
+		String className = portal.getClassName(
+			classNameLocalService.getClassNameId(User.class));
+
+		Indexer<?> indexer = IndexerRegistryUtil.nullSafeGetIndexer(className);
+
+		indexer.reindex(className, user.getUserId());
+	}
+
+	@Reference(unbind = "-")
+	protected void setClassNameLocalService(
+		ClassNameLocalService classNameLocalService) {
+
+		this.classNameLocalService = classNameLocalService;
+	}
+
 	@Reference(unbind = "-")
 	protected void setGroupLocalService(GroupLocalService groupLocalService) {
 		this.groupLocalService = groupLocalService;
@@ -585,6 +605,14 @@ public class SiteAdminPortlet extends MVCPortlet {
 			group.isManualMembership(), group.getMembershipRestriction(),
 			group.getFriendlyURL(), group.isInheritContent(), active,
 			serviceContext);
+
+		long[] userIds = groupLocalService.getUserPrimaryKeys(groupId);
+
+		for (int i = 0; i < userIds.length; i++) {
+			User user = userLocalService.getUser(userIds[i]);
+
+			reindex(user);
+		}
 
 		themeDisplay.setScopeGroupId(groupId);
 	}
@@ -924,6 +952,7 @@ public class SiteAdminPortlet extends MVCPortlet {
 	@Reference
 	protected BackgroundTaskManager backgroundTaskManager;
 
+	protected ClassNameLocalService classNameLocalService;
 	protected GroupLocalService groupLocalService;
 	protected GroupSearchProvider groupSearchProvider;
 	protected GroupService groupService;

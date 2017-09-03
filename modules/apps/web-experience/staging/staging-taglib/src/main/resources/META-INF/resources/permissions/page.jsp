@@ -31,16 +31,5 @@
 		</c:choose>
 	</span>
 
-	<aui:input disabled="<%= disableInputs %>" label="<%= StringPool.BLANK %>" name="<%= PortletDataHandlerKeys.PERMISSIONS %>" type="toggle-switch" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PERMISSIONS, false) %>" />
-
-	<span class="<%= descriptionCSSClass %>">
-		<c:choose>
-			<c:when test="<%= global %>">
-				<liferay-ui:message key="publish-global-permissions-help" />
-			</c:when>
-			<c:otherwise>
-				<liferay-ui:message key="export-import-permissions-help" />
-			</c:otherwise>
-		</c:choose>
-	</span>
+	<aui:input disabled="<%= disableInputs %>" label="<%= StringPool.BLANK %>" helpMessage='<%= global ? "publish-global-permissions-help" : "export-import-permissions-help" %>' name="<%= PortletDataHandlerKeys.PERMISSIONS %>" type="toggle-switch" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PERMISSIONS, false) %>" />
 </aui:fieldset>

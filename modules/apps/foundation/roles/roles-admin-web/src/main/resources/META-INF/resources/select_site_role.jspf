@@ -55,7 +55,9 @@ if (step == 1) {
 
 long groupId = ParamUtil.getLong(request, "groupId", uniqueGroupId);
 
-portletURL.setParameter("groupId", String.valueOf(groupId));
+if (groupId > 0) {
+	portletURL.setParameter("groupId", String.valueOf(groupId));
+}
 
 portletURL.setParameter("step", String.valueOf(step));
 %>

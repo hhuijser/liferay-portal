@@ -566,7 +566,7 @@ private String _getPaletteItemTitle(HttpServletRequest request, String label, Cl
 	sb.append("<br />");
 	sb.append(LanguageUtil.get(request, label));
 	sb.append(StringPool.COLON);
-	sb.append("&nbsp;");
+	sb.append(StringPool.SPACE);
 
 	String javadocURL = null;
 
@@ -615,7 +615,7 @@ private String _getPaletteItemTitle(HttpServletRequest request, ResourceBundle r
 	if (!Objects.equals(templateVariableDefinition.getDataType(), "service-locator")) {
 		sb.append(LanguageUtil.get(request, "variable"));
 		sb.append(StringPool.COLON);
-		sb.append("&nbsp;");
+		sb.append(StringPool.SPACE);
 		sb.append(templateVariableDefinition.getName());
 	}
 

@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+import com.liferay.source.formatter.util.RegexUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class JavaClassParser {
 
 		List<JavaClass> anonymousClasses = new ArrayList<>();
 
-		Matcher matcher = _anonymousClassPattern.matcher(content);
+		Matcher matcher = _ANONYMOUS_CLASS_PATTERN.matcher(content);
 
 		while (matcher.find()) {
 			String s = content.substring(matcher.start(2), matcher.end());
@@ -129,7 +130,7 @@ public class JavaClassParser {
 	private static JavaTerm _getJavaTerm(String javaTermContent, String indent)
 		throws Exception {
 
-		Pattern pattern = Pattern.compile(
+		Pattern pattern = RegexUtil.getPattern(
 			"(\n|^)" + indent +
 				"(private|protected|public|static)[ \n].*?[{;]\n",
 			Pattern.DOTALL);
@@ -358,7 +359,7 @@ public class JavaClassParser {
 		return javaClass;
 	}
 
-	private static final Pattern _anonymousClassPattern = Pattern.compile(
-		"\n\t+(\\S.* )?new ((.|\\(\n)*\\)) \\{\n\n");
+	private static final Pattern _ANONYMOUS_CLASS_PATTERN =
+		RegexUtil.getPattern("\n\t+(\\S.* )?new ((.|\\(\n)*\\)) \\{\n\n");
 
 }

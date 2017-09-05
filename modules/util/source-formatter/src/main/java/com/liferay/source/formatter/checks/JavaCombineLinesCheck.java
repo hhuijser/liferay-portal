@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.util.RegexUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -171,18 +172,18 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 		}
 
 		content = _getCombinedLinesContent(content);
-		content = _getCombinedLinesContent(content, _combinedLinesPattern1);
-		content = _getCombinedLinesContent(content, _combinedLinesPattern2);
+		content = _getCombinedLinesContent(content, _COMBINED_LINES_PATTERN_1);
+		content = _getCombinedLinesContent(content, _COMBINED_LINES_PATTERN_2);
 
 		return content;
 	}
 
 	private String _getCombinedLinesContent(String content) {
-		Matcher matcher = _combinedLinesPattern3.matcher(content);
+		Matcher matcher = _COMBINED_LINES_PATTERN_3.matcher(content);
 
 		content = matcher.replaceAll("$1 $3");
 
-		matcher = _combinedLinesPattern4.matcher(content);
+		matcher = _COMBINED_LINES_PATTERN_4.matcher(content);
 
 		return matcher.replaceAll("$1 $3");
 	}
@@ -878,16 +879,20 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 		return null;
 	}
 
+	private static final Pattern _COMBINED_LINES_PATTERN_1 =
+		RegexUtil.getPattern("\n(\t*).+(=|\\]) (\\{)\n");
+
+	private static final Pattern _COMBINED_LINES_PATTERN_2 =
+		RegexUtil.getPattern("\n(\t*)@.+(\\()\n");
+
+	private static final Pattern _COMBINED_LINES_PATTERN_3 =
+		RegexUtil.getPattern(
+			"(\n\t*(private|protected|public) void)\n\t+(\\w+\\(\\)( \\{)?\n)");
+
+	private static final Pattern _COMBINED_LINES_PATTERN_4 =
+		RegexUtil.getPattern("(\n\t*(extends|implements))\n\t+([\\w.]+ \\{\n)");
+
 	private static final String _FIT_ON_SINGLE_LINE_EXCLUDES =
 		"fit.on.single.line.excludes";
-
-	private final Pattern _combinedLinesPattern1 = Pattern.compile(
-		"\n(\t*).+(=|\\]) (\\{)\n");
-	private final Pattern _combinedLinesPattern2 = Pattern.compile(
-		"\n(\t*)@.+(\\()\n");
-	private final Pattern _combinedLinesPattern3 = Pattern.compile(
-		"(\n\t*(private|protected|public) void)\n\t+(\\w+\\(\\)( \\{)?\n)");
-	private final Pattern _combinedLinesPattern4 = Pattern.compile(
-		"(\n\t*(extends|implements))\n\t+([\\w.]+ \\{\n)");
 
 }

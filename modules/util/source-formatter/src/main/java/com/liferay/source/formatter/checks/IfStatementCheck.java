@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.util.RegexUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -111,7 +112,7 @@ public abstract class IfStatementCheck extends BaseFileCheck {
 
 		outerLoop:
 		while (true) {
-			Matcher matcher = _methodCallPattern.matcher(ifClause);
+			Matcher matcher = _METHOD_CALL_PATTERN.matcher(ifClause);
 
 			if (!matcher.find()) {
 				break;
@@ -273,6 +274,7 @@ public abstract class IfStatementCheck extends BaseFileCheck {
 		return false;
 	}
 
-	private final Pattern _methodCallPattern = Pattern.compile("\\w\\(");
+	private static final Pattern _METHOD_CALL_PATTERN = RegexUtil.getPattern(
+		"\\w\\(");
 
 }

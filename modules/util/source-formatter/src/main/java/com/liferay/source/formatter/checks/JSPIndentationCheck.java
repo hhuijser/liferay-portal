@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.util.RegexUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -162,7 +163,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 	}
 
 	private String _fixTabsInJavaSource(String content) {
-		Matcher matcher = _javaSourcePattern.matcher(content);
+		Matcher matcher = _JAVA_SOURCE_PATTERN.matcher(content);
 
 		while (matcher.find()) {
 			String tabs = matcher.group(1);
@@ -501,8 +502,14 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		}
 	}
 
-	private final Pattern _javaSourcePattern = Pattern.compile(
+	private static final Pattern _CLOSE_TAG_NAME_PATTERN = RegexUtil.getPattern(
+		"</([\\-:\\w]+?)>");
+
+	private static final Pattern _JAVA_SOURCE_PATTERN = RegexUtil.getPattern(
 		"\n(\t*)(<%\n(\t*[^\t%].*?))\n\t*%>\n", Pattern.DOTALL);
+
+	private static final Pattern _OPEN_TAG_NAME_PATTERN = RegexUtil.getPattern(
+		"<([\\-:\\w]+?)([ >\n].*|$)");
 
 	private class JSPLine {
 
@@ -541,10 +548,10 @@ public class JSPIndentationCheck extends BaseFileCheck {
 			Matcher matcher = null;
 
 			if (isCloseTag()) {
-				matcher = _closeTagNamePattern.matcher(_line);
+				matcher = _CLOSE_TAG_NAME_PATTERN.matcher(_line);
 			}
 			else if (isOpenTag()) {
-				matcher = _openTagNamePattern.matcher(_line);
+				matcher = _OPEN_TAG_NAME_PATTERN.matcher(_line);
 			}
 			else {
 				return null;
@@ -586,14 +593,10 @@ public class JSPIndentationCheck extends BaseFileCheck {
 		}
 
 		private boolean _closed;
-		private final Pattern _closeTagNamePattern = Pattern.compile(
-			"</([\\-:\\w]+?)>");
 		private final boolean _javaSource;
 		private final String _line;
 		private final int _lineCount;
 		private int _lineTabLevel;
-		private final Pattern _openTagNamePattern = Pattern.compile(
-			"<([\\-:\\w]+?)([ >\n].*|$)");
 		private final int _tabLevel;
 
 	}

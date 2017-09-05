@@ -83,8 +83,8 @@ public class JSPTagAttributesCheck extends TagAttributesCheck {
 			String line, String tagName, String attributeAndValue)
 		throws Exception {
 
-		if (attributeAndValue.matches(
-				".*=\"<%= Boolean\\.(FALSE|TRUE) %>\".*")) {
+		if (RegexUtil.matches(
+				attributeAndValue, ".*=\"<%= Boolean\\.(FALSE|TRUE) %>\".*")) {
 
 			String newAttributeAndValue = StringUtil.replace(
 				attributeAndValue,
@@ -156,7 +156,7 @@ public class JSPTagAttributesCheck extends TagAttributesCheck {
 			}
 		}
 
-		if (!attributeAndValue.matches(".*=\"(false|true)\".*")) {
+		if (!RegexUtil.matches(attributeAndValue, ".*=\"(false|true)\".*")) {
 			return line;
 		}
 
@@ -182,7 +182,7 @@ public class JSPTagAttributesCheck extends TagAttributesCheck {
 	protected String sortHTMLTagAttributes(
 		String line, String value, String attributeAndValue) {
 
-		if (!value.matches("([-a-z0-9]+ )+[-a-z0-9]+")) {
+		if (!RegexUtil.matches(value, "([-a-z0-9]+ )+[-a-z0-9]+")) {
 			return line;
 		}
 
@@ -266,7 +266,7 @@ public class JSPTagAttributesCheck extends TagAttributesCheck {
 
 				String trimmedLine = StringUtil.trimLeading(line);
 
-				if (trimmedLine.matches("<\\w+ .*>.*")) {
+				if (RegexUtil.matches(trimmedLine, "<\\w+ .*>.*")) {
 					line = formatTagAttributes(
 						fileName, line, trimmedLine, lineCount, false);
 				}

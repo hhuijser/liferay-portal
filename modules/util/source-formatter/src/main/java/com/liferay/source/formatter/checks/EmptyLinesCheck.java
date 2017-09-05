@@ -44,8 +44,8 @@ public abstract class EmptyLinesCheck extends BaseFileCheck {
 			String tagName2 = matcher.group(5);
 
 			if (tagName1.endsWith(":when") ||
-				(tagName1.matches("dd|dt|li|span|td|th|tr") &&
-				 tagName2.matches("dd|dt|li|span|td|th|tr"))) {
+				(RegexUtil.matches(tagName1, "dd|dt|li|span|td|th|tr") &&
+				 RegexUtil.matches(tagName2, "dd|dt|li|span|td|th|tr"))) {
 
 				if (lineBreaks.equals("\n\n")) {
 					return StringUtil.replaceFirst(
@@ -219,7 +219,7 @@ public abstract class EmptyLinesCheck extends BaseFileCheck {
 			String nextCommand = content.substring(matcher.end(), x + 1);
 
 			if (nextCommand.contains("{\n") ||
-				nextCommand.matches("\t*%>[\\S\\s]*")) {
+				RegexUtil.matches(nextCommand, "\t*%>[\\S\\s]*")) {
 
 				continue;
 			}

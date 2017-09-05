@@ -49,7 +49,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 				lineCount++;
 
 				if (line.startsWith("import ") || line.startsWith("package ") ||
-					line.matches("\\s*\\*.*")) {
+					RegexUtil.matches(line, "\\s*\\*.*")) {
 
 					previousLine = line;
 
@@ -351,7 +351,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 		}
 
 		if (!trimmedPreviousLine.equals("return") &&
-			previousLine.matches(".*\\w") &&
+			RegexUtil.matches(previousLine, ".*\\w") &&
 			trimmedLine.startsWith(StringPool.OPEN_PARENTHESIS)) {
 
 			return _getCombinedLinesContent(
@@ -359,7 +359,9 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 				StringPool.OPEN_PARENTHESIS, true, false, 0);
 		}
 
-		if (trimmedPreviousLine.matches("((else )?if|for|try|while) \\(")) {
+		if (RegexUtil.matches(
+				trimmedPreviousLine, "((else )?if|for|try|while) \\(")) {
+
 			return _getCombinedLinesContent(
 				content, line, trimmedLine, lineLength, lineCount, previousLine,
 				null, false, false, 0);
@@ -519,7 +521,8 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 
 		if ((trimmedLine.length() + previousLineLength) <= getMaxLineLength()) {
 			if (previousLine.endsWith(StringPool.OPEN_PARENTHESIS) &&
-				line.matches(".*\\)( \\{)?") && (getLevel(line) < 0)) {
+				RegexUtil.matches(line, ".*\\)( \\{)?") &&
+				(getLevel(line) < 0)) {
 
 				return _getCombinedLinesContent(
 					content, line, trimmedLine, lineLength, lineCount,
@@ -628,7 +631,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 			}
 		}
 
-		if (trimmedPreviousLine.matches("for \\(.*;")) {
+		if (RegexUtil.matches(trimmedPreviousLine, "for \\(.*;")) {
 			int x = -1;
 
 			while (true) {
@@ -689,8 +692,8 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 
 		if (previousLine.endsWith(StringPool.COMMA) &&
 			(previousLineTabCount == lineTabCount) &&
-			!line.matches(".*[\\^\\|\\&]") &&
-			!trimmedPreviousLine.matches("[\\)\\}],")) {
+			!RegexUtil.matches(line, ".*[\\^\\|\\&]") &&
+			!RegexUtil.matches(trimmedPreviousLine, "[\\)\\}],")) {
 
 			String nextLine = getLine(content, lineCount + 1);
 
@@ -773,7 +776,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 			}
 		}
 
-		if (trimmedPreviousLine.matches("^[^<].*[\\w>]$") &&
+		if (RegexUtil.matches(trimmedPreviousLine, "^[^<].*[\\w>]$") &&
 			(previousLineTabCount == (lineTabCount - 1)) &&
 			(getLevel(previousLine, "<", ">") == 0)) {
 
@@ -827,7 +830,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 
 			String linePart2 = trimmedLine.substring(x + 2);
 
-			if (linePart2.matches("[!=<>\\+\\-\\*]+ .*")) {
+			if (RegexUtil.matches(linePart2, "[!=<>\\+\\-\\*]+ .*")) {
 				int y = trimmedLine.indexOf(StringPool.SPACE, x + 2);
 
 				if ((previousLineLength + y) <= getMaxLineLength()) {
@@ -867,7 +870,8 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 		}
 
 		if ((getLevel(trimmedLine) < 0) &&
-			(line.matches(".*[|&^]") || line.endsWith(StringPool.COMMA) ||
+			(RegexUtil.matches(line, ".*[|&^]") ||
+			 line.endsWith(StringPool.COMMA) ||
 			 (trimmedPreviousLine.startsWith("new ") &&
 			  line.endsWith(") {")))) {
 

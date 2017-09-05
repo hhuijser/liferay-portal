@@ -161,7 +161,7 @@ public class JavaSignatureStylingCheck extends BaseJavaTermCheck {
 		String nextLine) {
 
 		if ((newLineChars != null) && (newLineChars.length() > 0) &&
-			!nextLine.matches("/[/*].*")) {
+			!RegexUtil.matches(nextLine, "/[/*].*")) {
 
 			return StringUtil.replace(
 				javaTermContent, signature + "\n", signature);

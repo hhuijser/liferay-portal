@@ -296,7 +296,7 @@ public class JavaClassParser {
 
 			if (!insideJavaTerm) {
 				if (javaTermStartPos == -1) {
-					if (line.matches(indent + "\\S+.*")) {
+					if (RegexUtil.matches(line, indent + "\\S+.*")) {
 						javaTermStartPos = _getLineStartPos(
 							classContent, lineCount);
 					}
@@ -306,19 +306,19 @@ public class JavaClassParser {
 				}
 			}
 
-			if (line.matches("\\s*//.*")) {
+			if (RegexUtil.matches(line, "\\s*//.*")) {
 				continue;
 			}
 
 			if (multiLineComment) {
-				if (line.matches(".*\\*/")) {
+				if (RegexUtil.matches(line, ".*\\*/")) {
 					multiLineComment = false;
 				}
 
 				continue;
 			}
 
-			if (line.matches("\\s*/\\*.*")) {
+			if (RegexUtil.matches(line, "\\s*/\\*.*")) {
 				multiLineComment = true;
 
 				continue;
@@ -326,14 +326,17 @@ public class JavaClassParser {
 
 			level += SourceUtil.getLevel(line, "{", "}");
 
-			if (line.matches(
+			if (RegexUtil.matches(
+					line,
 					indent +
 						"((private|protected|public)( .*|$)|static \\{)")) {
 
 				insideJavaTerm = true;
 			}
 
-			if (insideJavaTerm && line.matches(".*[};]") && (level == 1)) {
+			if (insideJavaTerm && RegexUtil.matches(line, ".*[};]") &&
+				(level == 1)) {
+
 				int nextLineStartPos = _getLineStartPos(
 					classContent, lineCount + 1);
 

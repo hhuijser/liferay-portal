@@ -40,7 +40,7 @@ public class TLDTypeCheck extends BaseFileCheck {
 		while (matcher.find()) {
 			String typeName = matcher.group(1);
 
-			if (typeName.matches("[A-Z]\\w*")) {
+			if (RegexUtil.matches(typeName, "[A-Z]\\w*")) {
 				addMessage(
 					fileName, "Use fully qualified class name, see LPS-61841",
 					getLineCount(content, matcher.start(1)));

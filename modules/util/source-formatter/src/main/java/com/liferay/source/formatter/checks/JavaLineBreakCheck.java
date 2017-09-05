@@ -68,7 +68,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 
 				if (!line.startsWith("import ") &&
 					!line.startsWith("package ") &&
-					!line.matches("\\s*\\*.*") &&
+					!RegexUtil.matches(line, "\\s*\\*.*") &&
 					(lineLength <= getMaxLineLength())) {
 
 					_checkLineBreaks(line, previousLine, fileName, lineCount);
@@ -161,7 +161,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 
 		String strippedQuotesLine = stripQuotes(trimmedLine);
 
-		if (line.matches(".*(\\(|->( \\{)?)")) {
+		if (RegexUtil.matches(line, ".*(\\(|->( \\{)?)")) {
 			int x = line.lastIndexOf(" && ");
 			int y = line.lastIndexOf(" || ");
 
@@ -190,7 +190,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 			}
 		}
 
-		if (line.matches(".*(\\(|\\^|\\&|\\||->( \\{)?)")) {
+		if (RegexUtil.matches(line, ".*(\\(|\\^|\\&|\\||->( \\{)?)")) {
 			int x = trimmedLine.length() + 1;
 
 			while (true) {
@@ -223,7 +223,9 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 			}
 		}
 
-		if (trimmedLine.matches("^[^(].*\\+$") && (getLevel(trimmedLine) > 0)) {
+		if (RegexUtil.matches(trimmedLine, "^[^(].*\\+$") &&
+			(getLevel(trimmedLine) > 0)) {
+
 			addMessage(
 				fileName, "There should be a line break after '('", lineCount);
 		}
@@ -302,7 +304,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 				fileName, "There should be a line break after '='", lineCount);
 		}
 
-		if (trimmedLine.matches("^\\} (catch|else|finally) .*")) {
+		if (RegexUtil.matches(trimmedLine, "^\\} (catch|else|finally) .*")) {
 			addMessage(
 				fileName, "There should be a line break after '}'", lineCount);
 		}
@@ -320,7 +322,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 				lineCount);
 		}
 
-		if (trimmedLine.matches("for \\(.*[^;{]")) {
+		if (RegexUtil.matches(trimmedLine, "for \\(.*[^;{]")) {
 			x = trimmedLine.length();
 
 			while (true) {
@@ -507,7 +509,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 		while (matcher.find()) {
 			String linePart = matcher.group(2);
 
-			if (linePart.matches("\\)[^\\)]+[\\(;]")) {
+			if (RegexUtil.matches(linePart, "\\)[^\\)]+[\\(;]")) {
 				return StringUtil.insert(
 					content, "\n" + matcher.group(1), matcher.start(2));
 			}
@@ -575,7 +577,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 		while (matcher.find()) {
 			String s = matcher.group(2);
 
-			if (!s.matches("\\)+;?")) {
+			if (!RegexUtil.matches(s, "\\)+;?")) {
 				addMessage(
 					fileName,
 					"There should be a line break after '" + matcher.group(1) +

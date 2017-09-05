@@ -247,7 +247,7 @@ public class JavaTermComparator implements Comparator<JavaTerm> {
 
 		String javaTermName = javaTerm.getName();
 
-		if (javaTermName.matches("(COUNT|FIND|JOIN)_.*")) {
+		if (RegexUtil.matches(javaTermName, "(COUNT|FIND|JOIN)_.*")) {
 			Matcher matcher = _SQL_KEY_PATTERN.matcher(javaTerm.getContent());
 
 			if (matcher.find()) {

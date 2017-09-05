@@ -265,7 +265,9 @@ public class WhitespaceCheck extends BaseFileCheck {
 			return line;
 		}
 
-		while (line.matches("^\t*" + StringPool.FOUR_SPACES + ".*")) {
+		while (RegexUtil.matches(
+					line, "^\t*" + StringPool.FOUR_SPACES + ".*")) {
+
 			line = StringUtil.replaceFirst(
 				line, StringPool.FOUR_SPACES, StringPool.TAB);
 		}

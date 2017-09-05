@@ -48,7 +48,7 @@ public class JavaLongLinesCheck extends BaseFileCheck {
 				lineCount++;
 
 				if (line.startsWith("import ") || line.startsWith("package ") ||
-					line.matches("\\s*\\*.*") ||
+					RegexUtil.matches(line, "\\s*\\*.*") ||
 					(fileName.endsWith("Table.java") &&
 					 (line.contains("final String TABLE_") ||
 					  line.contains("\"create index ")))) {
@@ -65,8 +65,10 @@ public class JavaLongLinesCheck extends BaseFileCheck {
 				// Allow lines with long method names or long
 				// extended/implemented class names
 
-				if (line.matches("\t*(extends|implements) [\\w.]+ \\{") ||
-					line.matches(
+				if (RegexUtil.matches(
+						line, "\t*(extends|implements) [\\w.]+ \\{") ||
+					RegexUtil.matches(
+						line,
 						"\t*(private|protected|public) void \\w+\\(\\)" +
 							"( \\{)?")) {
 

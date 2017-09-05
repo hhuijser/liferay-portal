@@ -194,7 +194,7 @@ public class PersistenceCallCheck extends AbstractCheck {
 
 		String fieldName = childAST.getText();
 
-		if (fieldName.matches("[A-Z].*")) {
+		if (RegexUtil.matches(fieldName, "[A-Z].*")) {
 			_checkClass(
 				fieldName, importNames, packageName, methodCallAST.getLineNo());
 		}

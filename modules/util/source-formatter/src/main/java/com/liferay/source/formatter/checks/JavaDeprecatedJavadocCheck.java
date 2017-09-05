@@ -90,7 +90,8 @@ public class JavaDeprecatedJavadocCheck extends BaseFileCheck {
 			}
 
 			if (deprecatedInfo.endsWith(StringPool.PERIOD) &&
-				!deprecatedInfo.matches("[\\S\\s]*\\.[ \n][\\S\\s]*")) {
+				!RegexUtil.matches(
+					deprecatedInfo, "[\\S\\s]*\\.[ \n][\\S\\s]*")) {
 
 				return StringUtil.replaceFirst(
 					content, StringPool.PERIOD, StringPool.BLANK,

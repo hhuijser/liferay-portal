@@ -54,7 +54,7 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			sb.append(variableName);
 			sb.append("\\W[\\s\\S]*");
 
-			if (content.matches(sb.toString())) {
+			if (RegexUtil.matches(content, sb.toString())) {
 				return true;
 			}
 
@@ -66,7 +66,7 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			sb.append(variableTypeRegex);
 			sb.append("[\\s\\S]*");
 
-			if (content.matches(sb.toString())) {
+			if (RegexUtil.matches(content, sb.toString())) {
 				return true;
 			}
 		}
@@ -179,8 +179,8 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 				putOrSetParameterName2 = matcher.replaceAll(StringPool.BLANK);
 			}
 
-			if (putOrSetParameterName1.matches("\".*\"") &&
-				putOrSetParameterName2.matches("\".*\"")) {
+			if (RegexUtil.matches(putOrSetParameterName1, "\".*\"") &&
+				RegexUtil.matches(putOrSetParameterName2, "\".*\"")) {
 
 				String strippedQuotes1 = putOrSetParameterName1.substring(
 					1, putOrSetParameterName1.length() - 1);

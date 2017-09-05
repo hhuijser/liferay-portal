@@ -114,7 +114,7 @@ public class JavaAnnotationsCheck extends BaseFileCheck {
 				matcher.start());
 		}
 
-		if (annotation.matches(".*\\(\n[\\S\\s]*[^\t\n]\\)\n")) {
+		if (RegexUtil.matches(annotation, ".*\\(\n[\\S\\s]*[^\t\n]\\)\n")) {
 			return StringUtil.replaceLast(annotation, ")", "\n" + indent + ")");
 		}
 
@@ -214,7 +214,8 @@ public class JavaAnnotationsCheck extends BaseFileCheck {
 				String line = getLine(content, i);
 
 				if (Validator.isNull(line) ||
-					line.matches("\t*(private|public|protected| \\*/).*")) {
+					RegexUtil.matches(
+						line, "\t*(private|public|protected| \\*/).*")) {
 
 					if (Validator.isNotNull(annotationsBlock)) {
 						annotationsBlocks.add(annotationsBlock);

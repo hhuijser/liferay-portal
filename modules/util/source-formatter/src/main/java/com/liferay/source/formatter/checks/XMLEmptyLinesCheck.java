@@ -34,9 +34,10 @@ public class XMLEmptyLinesCheck extends EmptyLinesCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		if (fileName.matches(".*\\.(action|function|macro|testcase)") ||
+		if (RegexUtil.matches(
+				fileName, ".*\\.(action|function|macro|testcase)") ||
 			fileName.startsWith(getBaseDirName() + "build") ||
-			fileName.matches(".*/(build|tools/).*") ||
+			RegexUtil.matches(fileName, ".*/(build|tools/).*") ||
 			fileName.endsWith("/content.xml")) {
 
 			return content;

@@ -53,7 +53,8 @@ public class BNDSettings {
 			return _languageProperties;
 		}
 
-		if (_content.matches(
+		if (RegexUtil.matches(
+				_content,
 				"[\\s\\S]*Provide-Capability:[\\s\\S]*liferay\\.resource\\." +
 					"bundle[\\s\\S]*")) {
 

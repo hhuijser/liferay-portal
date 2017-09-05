@@ -154,7 +154,8 @@ public class JavaIfStatementCheck extends IfStatementCheck {
 			}
 
 			if ((previousLineLength > 0) && previousLineIsStartCriteria &&
-				(previousLineLevel >= 0) && previousLine.matches(".*[|&^]")) {
+				(previousLineLevel >= 0) &&
+				RegexUtil.matches(previousLine, ".*[|&^]")) {
 
 				Matcher matcher = _IF_STATEMENT_CRITERIA_PATTERN.matcher(
 					trimmedLine);

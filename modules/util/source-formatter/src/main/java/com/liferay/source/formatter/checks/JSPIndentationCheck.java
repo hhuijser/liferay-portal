@@ -69,7 +69,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 				});
 		}
 
-		if (text.matches("(--)?%>")) {
+		if (RegexUtil.matches(text, "(--)?%>")) {
 			return -1;
 		}
 
@@ -127,10 +127,10 @@ public class JSPIndentationCheck extends BaseFileCheck {
 			String trimmedLine = StringUtil.trimLeading(line);
 
 			if (insideUnformattedTextTag) {
-				if (trimmedLine.matches(".*</(pre|textarea)>")) {
+				if (RegexUtil.matches(trimmedLine, ".*</(pre|textarea)>")) {
 					insideUnformattedTextTag = false;
 
-					if (trimmedLine.matches(".+</(pre|textarea)>")) {
+					if (RegexUtil.matches(trimmedLine, ".+</(pre|textarea)>")) {
 						continue;
 					}
 				}
@@ -153,7 +153,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 			}
 
 			if (!insideUnformattedTextTag &&
-				trimmedLine.matches("<(pre|textarea).*")) {
+				RegexUtil.matches(trimmedLine, "<(pre|textarea).*")) {
 
 				insideUnformattedTextTag = true;
 			}
@@ -288,10 +288,10 @@ public class JSPIndentationCheck extends BaseFileCheck {
 
 			String openTagLine = openTagJSPLine.getLine();
 
-			if (openTagLine.matches("\t*<%!?")) {
+			if (RegexUtil.matches(openTagLine, "\t*<%!?")) {
 				String line = jspLine.getLine();
 
-				if (line.matches("\t*%>")) {
+				if (RegexUtil.matches(line, "\t*%>")) {
 					return jspLine;
 				}
 
@@ -313,7 +313,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 
 		String startTagLine = startTagJSPLine.getLine();
 
-		if (!startTagLine.matches("\t*<%!?")) {
+		if (!RegexUtil.matches(startTagLine, "\t*<%!?")) {
 			return startTagJSPLine.getTabLevel();
 		}
 
@@ -392,10 +392,12 @@ public class JSPIndentationCheck extends BaseFileCheck {
 				}
 
 				if (insideUnformattedTextTag) {
-					if (trimmedLine.matches(".*</(pre|textarea)>")) {
+					if (RegexUtil.matches(trimmedLine, ".*</(pre|textarea)>")) {
 						insideUnformattedTextTag = false;
 
-						if (trimmedLine.matches(".+</(pre|textarea)>")) {
+						if (RegexUtil.matches(
+								trimmedLine, ".+</(pre|textarea)>")) {
+
 							continue;
 						}
 					}
@@ -405,7 +407,7 @@ public class JSPIndentationCheck extends BaseFileCheck {
 				}
 
 				if (scriptSource) {
-					if (trimmedLine.matches("</(aui:)?script>")) {
+					if (RegexUtil.matches(trimmedLine, "</(aui:)?script>")) {
 						scriptSource = false;
 					}
 					else {
@@ -428,11 +430,11 @@ public class JSPIndentationCheck extends BaseFileCheck {
 					jspLines.add(jspLine);
 				}
 
-				if (!javaSource && trimmedLine.matches("<%!?")) {
+				if (!javaSource && RegexUtil.matches(trimmedLine, "<%!?")) {
 					javaSource = true;
 				}
 				else if (!multiLineComment) {
-					if (trimmedLine.matches("<(aui:)?script.*") &&
+					if (RegexUtil.matches(trimmedLine, "<(aui:)?script.*") &&
 						(lineTabLevel > 0)) {
 
 						scriptSource = true;
@@ -442,8 +444,10 @@ public class JSPIndentationCheck extends BaseFileCheck {
 
 						multiLineComment = true;
 					}
-					else if (trimmedLine.matches("<(pre|textarea).*") &&
-							 !trimmedLine.matches(".*</(pre|textarea)>")) {
+					else if (RegexUtil.matches(
+								trimmedLine, "<(pre|textarea).*") &&
+							 !RegexUtil.matches(
+								 trimmedLine, ".*</(pre|textarea)>")) {
 
 						insideUnformattedTextTag = true;
 

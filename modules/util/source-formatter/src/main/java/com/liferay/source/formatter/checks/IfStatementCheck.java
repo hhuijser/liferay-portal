@@ -33,10 +33,11 @@ public abstract class IfStatementCheck extends BaseFileCheck {
 
 		ifClause = stripQuotes(ifClause);
 
-		if (ifClause.matches(
+		if (RegexUtil.matches(
+				ifClause,
 				"[^()]*\\((\\(?\\w+ instanceof \\w+\\)?( \\|\\| )?)+" +
 					"\\)[^()]*") &&
-			!ifClause.matches("[^()]*\\([^()]*\\)[^()]*")) {
+			!RegexUtil.matches(ifClause, "[^()]*\\([^()]*\\)[^()]*")) {
 
 			addMessage(
 				fileName, "Redundant parentheses in if-statement",
@@ -206,7 +207,7 @@ public abstract class IfStatementCheck extends BaseFileCheck {
 	}
 
 	private boolean _hasRedundantParentheses(String s) {
-		//if (s.matches("\\w+ instanceof \\w+")) {
+		//if (RegexUtil.matches(s, "\\w+ instanceof \\w+")) {
 		//	return true;
 		//}
 

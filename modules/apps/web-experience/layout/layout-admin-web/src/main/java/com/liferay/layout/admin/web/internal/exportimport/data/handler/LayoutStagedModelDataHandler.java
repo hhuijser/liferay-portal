@@ -490,13 +490,21 @@ public class LayoutStagedModelDataHandler
 			if (existingLayout == null) {
 				existingLayout = _layoutLocalService.fetchLayoutByFriendlyURL(
 					groupId, privateLayout, friendlyURL);
+
+				if ((existingLayout != null) &&
+					Validator.isNotNull(
+						existingLayout.getSourcePrototypeLayoutUuid())) {
+
+					existingLayout = null;
+				}
 			}
 
 			if (existingLayout == null) {
 				layoutId = _layoutLocalService.getNextLayoutId(
 					groupId, privateLayout);
 
-				friendlyURL = getFriendlyURL(friendlyURL, layoutId);
+				friendlyURL = getNextAvailableFriendlyURL(
+					groupId, privateLayout, friendlyURL, layoutId, layouts);
 			}
 		}
 
@@ -1058,6 +1066,24 @@ public class LayoutStagedModelDataHandler
 		return StringPool.SLASH + layoutId;
 	}
 
+	protected String getNextAvailableFriendlyURL(
+		long groupId, boolean privateLayout, String friendlyURL, long layoutId,
+		Map<Long, Layout> layouts) {
+
+		Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(
+			groupId, privateLayout, friendlyURL);
+
+		if ((layout == null) &&
+			isNotExistingFriendlyURL(layouts, friendlyURL)) {
+
+			return friendlyURL;
+		}
+
+		return getNextAvailableFriendlyURL(
+			groupId, privateLayout, getFriendlyURL(friendlyURL, layoutId),
+			layoutId + 1, layouts);
+	}
+
 	protected Map<String, Object[]> getPortletids(
 			PortletDataContext portletDataContext, Layout layout)
 		throws Exception {
@@ -1460,6 +1486,20 @@ public class LayoutStagedModelDataHandler
 			companyId, groupId, userId, Layout.class.getName(),
 			importedLayout.getPlid(), false, addGroupPermissions,
 			addGuestPermissions);
+	}
+
+	protected boolean isNotExistingFriendlyURL(
+		Map<Long, Layout> layouts, String friendlyURL) {
+
+		for (Map.Entry<Long, Layout> entry : layouts.entrySet()) {
+			Layout layout = entry.getValue();
+
+			if (friendlyURL.equals(layout.getFriendlyURL())) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	protected void mergePortlets(

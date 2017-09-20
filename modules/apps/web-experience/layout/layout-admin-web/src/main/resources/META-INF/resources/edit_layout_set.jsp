@@ -29,6 +29,11 @@ if (selGroup.isLayoutSetPrototype()) {
 	privateLayout = true;
 }
 
+String backURL = (PortalUtil.getControlPanelPortletURL(
+		request, null,
+		LayoutSetPrototypePortletKeys.LAYOUT_SET_PROTOTYPE,
+		0, 0, PortletRequest.RENDER_PHASE)).toString();
+
 renderResponse.setTitle(selGroup.getLayoutRootNodeName(privateLayout, locale));
 %>
 
@@ -47,6 +52,7 @@ renderResponse.setTitle(selGroup.getLayoutRootNodeName(privateLayout, locale));
 	<aui:input name="<%= PortletDataHandlerKeys.SELECTED_LAYOUTS %>" type="hidden" />
 
 	<liferay-ui:form-navigator
+		backURL="<%= backURL %>"
 		formModelBean="<%= selLayoutSet %>"
 		id="<%= FormNavigatorConstants.FORM_NAVIGATOR_ID_LAYOUT_SET %>"
 		markupView="lexicon"

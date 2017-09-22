@@ -202,6 +202,10 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 			return classContent;
 		}
 
+		if (!StringUtil.contains(javaVariable.getContent(), StringPool.EQUAL)) {
+			return classContent;
+		}
+
 		String javaVariableContent = javaVariable.getContent();
 
 		String newJavaVariableContent = StringUtil.replaceFirst(

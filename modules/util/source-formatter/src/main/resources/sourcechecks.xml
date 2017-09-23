@@ -116,6 +116,7 @@
 		<check name="JavaStopWatchCheck" />
 		<check name="JavaStylingCheck" />
 		<check name="JavaSystemExceptionCheck" />
+		<check name="JavaTermAnnotationCheck" />
 		<check name="JavaTermDividersCheck" />
 		<check name="JavaTermOrderCheck" />
 		<check name="JavaTermStylingCheck" />

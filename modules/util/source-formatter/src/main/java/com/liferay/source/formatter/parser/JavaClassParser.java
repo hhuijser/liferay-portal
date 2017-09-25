@@ -316,7 +316,15 @@ public class JavaClassParser {
 					}
 				}
 				else if (Validator.isNull(line)) {
-					javaTermStartPos = -1;
+					String javaTermContent = classContent.substring(
+						javaTermStartPos,
+						_getLineStartPos(classContent, lineCount + 1));
+
+					if (!StringUtil.startsWith(
+							StringUtil.trim(javaTermContent), StringPool.AT)) {
+
+						javaTermStartPos = -1;
+					}
 				}
 			}
 

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.util.ClassLoaderObjectInputStream;
 import com.liferay.portal.kernel.util.NamedThreadFactory;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.EOFException;
 import java.io.File;
@@ -373,9 +374,10 @@ public class LocalProcessExecutor implements ProcessExecutor {
 
 						if (_log.isDebugEnabled()) {
 							_log.debug(
-								"Invoked generic process callable " +
-									processCallable + " with return value " +
-										returnValue);
+								StringBundler.concat(
+									"Invoked generic process callable ",
+									processCallable, " with return value ",
+									returnValue));
 						}
 					}
 					catch (Throwable t) {

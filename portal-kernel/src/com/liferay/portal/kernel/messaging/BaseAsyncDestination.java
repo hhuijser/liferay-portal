@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.util.GroupThreadLocal;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.NamedThreadFactory;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -172,16 +173,18 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 
 		if (threadPoolExecutor.isShutdown()) {
 			throw new IllegalStateException(
-				"Destination " + getName() + " is shutdown and cannot " +
-					"receive more messages");
+				StringBundler.concat(
+					"Destination ", getName(), " is shutdown and cannot ",
+					"receive more messages"));
 		}
 
 		populateMessageFromThreadLocals(message);
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Sending message " + message + " from destination " +
-					getName() + " to message listeners " + messageListeners);
+				StringBundler.concat(
+					"Sending message ", message, " from destination ",
+					getName(), " to message listeners ", messageListeners));
 		}
 
 		dispatch(messageListeners, message);
@@ -229,9 +232,10 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 				MessageRunnable messageRunnable = (MessageRunnable)runnable;
 
 				_log.warn(
-					"Discarding message " + messageRunnable.getMessage() +
-						" because it exceeds the maximum queue size of " +
-							_maximumQueueSize);
+					StringBundler.concat(
+						"Discarding message ", messageRunnable.getMessage(),
+						" because it exceeds the maximum queue size of ",
+						_maximumQueueSize));
 			}
 
 		};

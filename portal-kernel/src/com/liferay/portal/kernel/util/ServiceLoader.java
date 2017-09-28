@@ -89,7 +89,8 @@ public class ServiceLoader {
 			}
 			catch (Exception e) {
 				_log.error(
-					"Unable to load " + clazz + " with " + defineClassLoader,
+					StringBundler.concat(
+						"Unable to load ", clazz, " with ", defineClassLoader),
 					e);
 			}
 		}

@@ -301,12 +301,33 @@ public class JavaClassParser {
 		int javaTermStartPos = -1;
 		int level = 0;
 		int lineCount = 0;
+		int metadataAnnotationLevel = 0;
 
 		boolean insideJavaTerm = false;
+		boolean insideMetadataAnnotation = false;
 		boolean multiLineComment = false;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
 			lineCount++;
+
+			if (!insideJavaTerm && line.startsWith(indent + "@")) {
+				insideMetadataAnnotation = true;
+
+				metadataAnnotationLevel = SourceUtil.getLevel(line);
+			}
+			else if (insideMetadataAnnotation) {
+				if ((metadataAnnotationLevel == 0) &&
+					Validator.isNotNull(line)) {
+
+					insideMetadataAnnotation = false;
+				}
+
+				metadataAnnotationLevel += SourceUtil.getLevel(line);
+			}
+
+			if (insideJavaTerm || line.contains(_JAVA_TERM_DEFINITION_REGEX)) {
+				insideMetadataAnnotation = false;
+			}
 
 			if (!insideJavaTerm) {
 				if (javaTermStartPos == -1) {
@@ -315,7 +336,7 @@ public class JavaClassParser {
 							classContent, lineCount);
 					}
 				}
-				else if (Validator.isNull(line)) {
+				else if (Validator.isNull(line) && !insideMetadataAnnotation) {
 					javaTermStartPos = -1;
 				}
 			}
@@ -340,11 +361,9 @@ public class JavaClassParser {
 
 			level += SourceUtil.getLevel(line, "{", "}");
 
-			if (line.matches(
-					indent +
-						"((private|protected|public)( .*|$)|static \\{)")) {
-
+			if (line.matches(indent + _JAVA_TERM_DEFINITION_REGEX)) {
 				insideJavaTerm = true;
+				insideMetadataAnnotation = false;
 			}
 
 			if (insideJavaTerm && line.matches(".*[};]") && (level == 1)) {
@@ -365,6 +384,7 @@ public class JavaClassParser {
 				javaClass.addChildJavaTerm(javaTerm);
 
 				insideJavaTerm = false;
+				insideMetadataAnnotation = false;
 
 				javaTermStartPos = nextLineStartPos;
 			}
@@ -372,6 +392,9 @@ public class JavaClassParser {
 
 		return javaClass;
 	}
+
+	private static final String _JAVA_TERM_DEFINITION_REGEX =
+		"((private|protected|public)( .*|$)|static \\{)";
 
 	private static final Pattern _anonymousClassPattern = Pattern.compile(
 		"\n\t+(\\S.* )?new ((.|\\(\n)*\\)) \\{\n\n");

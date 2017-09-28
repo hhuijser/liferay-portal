@@ -302,9 +302,11 @@ public class JavaClassParser {
 		int level = 0;
 		int lineCount = 0;
 		int metadataAnnotationLevel = 0;
+		int metadataBlockCommentLevel = 0;
 
 		boolean insideJavaTerm = false;
 		boolean insideMetadataAnnotation = false;
+		boolean insideMetadataBlockComment = false;
 		boolean multiLineComment = false;
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
@@ -325,8 +327,26 @@ public class JavaClassParser {
 				metadataAnnotationLevel += SourceUtil.getLevel(line);
 			}
 
+			if (!insideJavaTerm && line.startsWith(indent + "/*")) {
+				insideMetadataBlockComment = true;
+
+				metadataBlockCommentLevel = SourceUtil.getLevel(
+					line, "/*", "*/");
+			}
+			else if (insideMetadataBlockComment) {
+				if ((metadataBlockCommentLevel == 0) &&
+					Validator.isNotNull(line)) {
+
+					insideMetadataBlockComment = false;
+				}
+
+				metadataBlockCommentLevel += SourceUtil.getLevel(
+					line, "/*", "*/");
+			}
+
 			if (insideJavaTerm || line.contains(_JAVA_TERM_DEFINITION_REGEX)) {
 				insideMetadataAnnotation = false;
+				insideMetadataBlockComment = false;
 			}
 
 			if (!insideJavaTerm) {
@@ -336,7 +356,9 @@ public class JavaClassParser {
 							classContent, lineCount);
 					}
 				}
-				else if (Validator.isNull(line) && !insideMetadataAnnotation) {
+				else if (Validator.isNull(line) && !insideMetadataAnnotation &&
+						 !insideMetadataBlockComment) {
+
 					javaTermStartPos = -1;
 				}
 			}
@@ -364,6 +386,7 @@ public class JavaClassParser {
 			if (line.matches(indent + _JAVA_TERM_DEFINITION_REGEX)) {
 				insideJavaTerm = true;
 				insideMetadataAnnotation = false;
+				insideMetadataBlockComment = false;
 			}
 
 			if (insideJavaTerm && line.matches(".*[};]") && (level == 1)) {
@@ -385,6 +408,7 @@ public class JavaClassParser {
 
 				insideJavaTerm = false;
 				insideMetadataAnnotation = false;
+				insideMetadataBlockComment = false;
 
 				javaTermStartPos = nextLineStartPos;
 			}

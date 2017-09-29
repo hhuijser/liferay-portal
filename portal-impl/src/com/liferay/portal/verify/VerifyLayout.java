@@ -199,8 +199,9 @@ public class VerifyLayout extends VerifyProcess {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				"Updating layout " + layout.getPlid() + " from friendly URL " +
-					oldFriendlyURL + " to friendly URL " + newFriendlyURL);
+				StringBundler.concat(
+					"Updating layout ", layout.getPlid(), " from friendly URL ",
+					oldFriendlyURL, " to friendly URL ", newFriendlyURL));
 		}
 
 		List<LayoutFriendlyURL> layoutFriendlyURLs =

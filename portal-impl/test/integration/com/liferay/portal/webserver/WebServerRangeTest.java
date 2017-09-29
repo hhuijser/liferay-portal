@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -191,9 +192,9 @@ public class WebServerRangeTest extends BaseWebServerTestCase {
 			parentFolder.getFolderId(), fileName, ContentTypes.TEXT_PLAIN,
 			_SAMPLE_DATA.getBytes(), serviceContext);
 
-		String path =
-			fileEntry.getGroupId() + "/" + fileEntry.getFolderId() + "/" +
-				fileEntry.getTitle();
+		String path = StringBundler.concat(
+			fileEntry.getGroupId(), "/", fileEntry.getFolderId(), "/",
+			fileEntry.getTitle());
 
 		Map<String, String> headers = new HashMap<>();
 

@@ -84,6 +84,14 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 		try {
 			long groupId = GetterUtil.getLong(document.get(Field.GROUP_ID));
 
+			if (groupId > 0) {
+				Group group = _groupLocalService.getGroup(groupId);
+
+				if (group.isStagingGroup()) {
+					groupId = group.getLiveGroupId();
+				}
+			}
+
 			String className = document.get(Field.ENTRY_CLASS_NAME);
 			String classPK = document.get(Field.ENTRY_CLASS_PK);
 

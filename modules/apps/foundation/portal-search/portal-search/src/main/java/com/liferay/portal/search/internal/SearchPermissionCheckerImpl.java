@@ -196,6 +196,13 @@ public class SearchPermissionCheckerImpl implements SearchPermissionChecker {
 			roles = _resourcePermissionLocalService.getRoles(
 				companyId, className, ResourceConstants.SCOPE_INDIVIDUAL,
 				classPK, viewActionId);
+
+			roles.addAll(
+				_resourcePermissionLocalService.getRoles(
+					companyId, className,
+					ResourceConstants.SCOPE_GROUP_TEMPLATE,
+					String.valueOf(GroupConstants.DEFAULT_PARENT_GROUP_ID),
+					viewActionId));
 		}
 
 		if (roles.isEmpty()) {

@@ -113,7 +113,8 @@ public class ServletResponseUtil {
 
 			if (start > end) {
 				throw new IOException(
-					"Range start " + start + " is greater than end " + end);
+					StringBundler.concat(
+						"Range start ", start, " is greater than end ", end));
 			}
 
 			Range range = new Range(start, end, length);

@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.xml.Element;
@@ -152,8 +153,9 @@ public class PortalOpenSearchImpl extends BaseOpenSearchImpl {
 				addSearchResult(
 					root, resultGroupId, resultScopeGroupId, entryClassName,
 					entryClassPK,
-					portletTitle + " " + CharPool.RAQUO + " " + title, url,
-					modifiedDate, content, score, format);
+					StringBundler.concat(
+						portletTitle, " ", CharPool.RAQUO, " ", title),
+					url, modifiedDate, content, score, format);
 			}
 
 			if (_log.isDebugEnabled()) {

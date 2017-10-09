@@ -99,8 +99,11 @@ public class VerifyResourcePermissions extends VerifyProcess {
 			cur++;
 
 			_log.info(
-				"Processed " + cur + " of " + total + " resource permissions " +
-					"for company = " + companyId + " and model " + modelName);
+				StringBundler.concat(
+					"Processed ", String.valueOf(cur), " of ",
+					String.valueOf(total),
+					" resource permissions for company = ",
+					String.valueOf(companyId), " and model ", modelName));
 		}
 
 		ResourcePermission resourcePermission =
@@ -111,9 +114,11 @@ public class VerifyResourcePermissions extends VerifyProcess {
 		if (resourcePermission == null) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"No resource found for {" + companyId + ", " + modelName +
-						", " + ResourceConstants.SCOPE_INDIVIDUAL + ", " +
-							primKey + ", " + role.getRoleId() + "}");
+					StringBundler.concat(
+						"No resource found for {", String.valueOf(companyId),
+						", ", modelName, ", ",
+						ResourceConstants.SCOPE_INDIVIDUAL, ", ",
+						String.valueOf(primKey), ", ", role.getRoleId(), "}"));
 			}
 
 			ResourceLocalServiceUtil.addResources(
@@ -163,9 +168,10 @@ public class VerifyResourcePermissions extends VerifyProcess {
 				verifiableResourcedModel.getTableName());
 			Connection con = DataAccess.getUpgradeOptimizedConnection();
 			PreparedStatement ps = con.prepareStatement(
-				"select count(*) from " +
-					verifiableResourcedModel.getTableName() +
-						" where companyId = " + role.getCompanyId());
+				StringBundler.concat(
+					"select count(*) from ",
+					verifiableResourcedModel.getTableName(),
+					" where companyId = ", role.getCompanyId()));
 			ResultSet rs = ps.executeQuery()) {
 
 			if (rs.next()) {

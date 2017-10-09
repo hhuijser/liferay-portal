@@ -398,9 +398,10 @@ public class AudioProcessorImpl
 		catch (CancellationException ce) {
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Cancellation received for " +
-						fileVersion.getFileVersionId() + " " +
-							fileVersion.getTitle());
+					StringBundler.concat(
+						"Cancellation received for ",
+						fileVersion.getFileVersionId(), " ",
+						fileVersion.getTitle()));
 			}
 		}
 		catch (Exception e) {
@@ -413,9 +414,10 @@ public class AudioProcessorImpl
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Xuggler generated a " + containerType + " preview audio for " +
-					fileVersion.getFileVersionId() + " in " +
-						stopWatch.getTime() + "ms");
+				StringBundler.concat(
+					"Xuggler generated a ", containerType,
+					" preview audio for ", fileVersion.getFileVersionId(),
+					" in ", stopWatch.getTime(), "ms"));
 		}
 	}
 

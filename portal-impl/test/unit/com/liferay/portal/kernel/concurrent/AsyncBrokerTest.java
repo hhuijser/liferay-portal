@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.util.ReflectionUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.lang.reflect.Field;
@@ -155,8 +156,9 @@ public class AsyncBrokerTest {
 			LogRecord logRecord = logRecords.get(0);
 
 			Assert.assertEquals(
-				"Cancelled orphan noticeable future " + toString +
-					" with key " + _KEY,
+				StringBundler.concat(
+					"Cancelled orphan noticeable future ", toString,
+					" with key ", _KEY),
 				logRecord.getMessage());
 		}
 	}

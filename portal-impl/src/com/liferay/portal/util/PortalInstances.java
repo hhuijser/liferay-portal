@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SetUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -343,8 +344,9 @@ public class PortalInstances {
 
 			if (_log.isDebugEnabled()) {
 				_log.debug(
-					"End initializing company with web id " + webId +
-						" and company id " + companyId);
+					StringBundler.concat(
+						"End initializing company with web id ", webId,
+						" and company id ", String.valueOf(companyId)));
 			}
 
 			addCompanyId(companyId);
@@ -447,9 +449,10 @@ public class PortalInstances {
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(
-						"Company " + virtualHost.getCompanyId() +
-							" is associated with layout set " +
-								virtualHost.getLayoutSetId());
+						StringBundler.concat(
+							"Company ", virtualHost.getCompanyId(),
+							" is associated with layout set ",
+							virtualHost.getLayoutSetId()));
 				}
 
 				request.setAttribute(

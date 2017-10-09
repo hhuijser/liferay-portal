@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.resiliency.spi.agent.annotation.DistributedRegi
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.util.ClassLoaderPool;
 import com.liferay.portal.kernel.util.ClassLoaderUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.ThreadLocalDistributor;
 import com.liferay.portal.kernel.util.ThreadLocalDistributorRegistry;
@@ -75,15 +76,18 @@ public class SPIAgentSerializable implements Serializable {
 				}
 				else if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Nonserializable distributed request attribute name " +
-							name + " with value " + value);
+						StringBundler.concat(
+							"Nonserializable distributed request attribute ",
+							"name ", name, " with value ",
+							String.valueOf(value)));
 				}
 			}
 			else if (_log.isDebugEnabled()) {
 				_log.debug(
-					"Nondistributed request attribute name " + name +
-						" with direction " + direction + " and value " +
-							request.getAttribute(name));
+					StringBundler.concat(
+						"Nondistributed request attribute name ", name,
+						" with direction ", String.valueOf(direction),
+						" and value ", request.getAttribute(name)));
 			}
 		}
 
@@ -170,8 +174,9 @@ public class SPIAgentSerializable implements Serializable {
 			}
 			else if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Nonserializable session attribute name " + name +
-						" with value " + value);
+					StringBundler.concat(
+						"Nonserializable session attribute name ", name,
+						" with value ", String.valueOf(value)));
 			}
 		}
 
@@ -196,8 +201,9 @@ public class SPIAgentSerializable implements Serializable {
 				}
 				else if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Nonserializable session attribute name " + name +
-							" with value " + value);
+						StringBundler.concat(
+							"Nonserializable session attribute name ", name,
+							" with value ", String.valueOf(value)));
 				}
 			}
 

@@ -143,8 +143,9 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 				else {
 					if (_log.isWarnEnabled()) {
 						_log.warn(
-							"Unable to decode part \"" + encoded +
-								"\" from \"" + s + "\", preserve it literally");
+							StringBundler.concat(
+								"Unable to decode part \"", encoded,
+								"\" from \"", s, "\", preserve it literally"));
 					}
 
 					sb.append(s.substring(openUnderLine, index + 1));
@@ -183,8 +184,9 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 
 		if (_log.isInfoEnabled()) {
 			_log.info(
-				"Properties for " + _componentName + " loaded from " +
-					classLoaderAggregateProperties.loadedSources());
+				StringBundler.concat(
+					"Properties for ", _componentName, " loaded from ",
+					classLoaderAggregateProperties.loadedSources()));
 		}
 
 		_loadEnvOverrides(classLoaderAggregateProperties);
@@ -218,8 +220,9 @@ public class ClassLoaderComponentConfiguration extends ComponentConfiguration {
 
 			if (_log.isInfoEnabled()) {
 				_log.info(
-					"Overrode property " + newKey +
-						" with the value from the environment variable " + key);
+					StringBundler.concat(
+						"Overrode property ", newKey,
+						" with the value from the environment variable ", key));
 			}
 		}
 	}

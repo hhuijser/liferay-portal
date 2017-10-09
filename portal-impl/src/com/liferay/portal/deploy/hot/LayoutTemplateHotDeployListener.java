@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.LayoutTemplate;
 import com.liferay.portal.kernel.service.LayoutTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
@@ -106,8 +107,9 @@ public class LayoutTemplateHotDeployListener extends BaseHotDeployListener {
 			}
 			else {
 				_log.info(
-					layoutTemplates.size() + " layout templates for " +
-						servletContextName + " are available for use");
+					StringBundler.concat(
+						layoutTemplates.size(), " layout templates for ",
+						servletContextName, " are available for use"));
 			}
 		}
 	}
@@ -154,8 +156,9 @@ public class LayoutTemplateHotDeployListener extends BaseHotDeployListener {
 			}
 			else {
 				_log.info(
-					layoutTemplates.size() + " layout templates for " +
-						servletContextName + " were unregistered");
+					StringBundler.concat(
+						layoutTemplates.size(), " layout templates for ",
+						servletContextName, " were unregistered"));
 			}
 		}
 	}

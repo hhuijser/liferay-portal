@@ -14,22 +14,16 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ImportsFormatter;
-import com.liferay.source.formatter.GradleImportsFormatter;
+import com.liferay.source.formatter.parser.GradleFile;
 
 /**
- * @author Hugo Huijser
+ * @author Peter Shin
  */
-public class GradleImportsCheck extends BaseFileCheck {
+public interface GradleFileCheck extends SourceCheck {
 
-	@Override
-	protected String doProcess(
-			String fileName, String absolutePath, String content)
-		throws Exception {
-
-		ImportsFormatter importsFormatter = new GradleImportsFormatter();
-
-		return importsFormatter.format(content, null, null);
-	}
+	public String process(
+			String fileName, String absolutePath, GradleFile gradleFile,
+			String content)
+		throws Exception;
 
 }

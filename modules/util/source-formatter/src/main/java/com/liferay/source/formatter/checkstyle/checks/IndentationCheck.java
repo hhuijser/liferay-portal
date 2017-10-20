@@ -434,7 +434,15 @@ public class IndentationCheck extends BaseCheck {
 			if (outsideMethodCall &&
 				(parentAST.getType() == TokenTypes.ELIST)) {
 
-				return tabCount;
+				DetailAST sListDetailAST = parentAST.getParent();
+
+				sListDetailAST = sListDetailAST.getParent();
+
+				sListDetailAST = sListDetailAST.getParent();
+
+				if (sListDetailAST.getType() == TokenTypes.SLIST) {
+					return tabCount;
+				}
 			}
 
 			if (checkChaining) {

@@ -17,9 +17,14 @@ package com.liferay.source.formatter.checks;
 import com.liferay.portal.kernel.util.CharPool;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
+import java.util.Objects;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,6 +60,13 @@ public class JavaSignatureStylingCheck extends BaseJavaTermCheck {
 		String newLineChars = matcher.group(3);
 		String nextLine = StringUtil.trim(matcher.group(4));
 
+		String newSignature = _fixAnnotations(signature);
+
+		if (!Objects.equals(newSignature, signature)) {
+			return StringUtil.replaceFirst(
+				javaTermContent, signature, newSignature);
+		}
+
 		if (signatureLines.length == 1) {
 			return _formatSingleLineSignature(
 				javaTermContent, signature, newLineChars, nextLine);
@@ -68,6 +80,82 @@ public class JavaSignatureStylingCheck extends BaseJavaTermCheck {
 	@Override
 	protected String[] getCheckableJavaTermNames() {
 		return new String[] {JAVA_CONSTRUCTOR, JAVA_METHOD};
+	}
+
+	private String _fixAnnotations(String signature) {
+		if (!signature.contains(StringPool.AT)) {
+			return signature;
+		}
+
+		int beginIndex = signature.indexOf(CharPool.OPEN_PARENTHESIS);
+		int endIndex = signature.lastIndexOf(CharPool.CLOSE_PARENTHESIS);
+
+		if ((beginIndex == -1) || (endIndex == -1)) {
+			return signature;
+		}
+
+		String parameters = StringUtil.replace(
+			signature.substring(beginIndex + 1, endIndex),
+			new String[] {"\t", "\n"}, new String[] {"", " "});
+
+		String newParameters = StringPool.BLANK;
+		String oldParameters = parameters;
+
+		do {
+			Set<String> annotations = new TreeSet<>();
+			int annotationsPos = -1;
+
+			while (true) {
+				parameters = StringUtil.trim(parameters);
+
+				if (!parameters.startsWith(StringPool.AT)) {
+					break;
+				}
+
+				annotationsPos = parameters.indexOf(" ", annotationsPos + 1);
+
+				if (annotationsPos == -1) {
+					break;
+				}
+
+				String annotation = parameters.substring(0, annotationsPos);
+
+				if ((JavaSourceUtil.getLevel(annotation) == 0) &&
+					(JavaSourceUtil.getLevel(annotation, "<", ">") == 0)) {
+
+					annotations.add(annotation);
+					parameters = parameters.substring(annotationsPos + 1);
+
+					annotationsPos = -1;
+				}
+			}
+
+			if (!newParameters.isEmpty()) {
+				newParameters += " ";
+			}
+
+			if (!annotations.isEmpty()) {
+				newParameters += StringUtil.merge(annotations, " ") + " ";
+			}
+
+			String s = parameters;
+
+			if (parameters.indexOf(",") != -1) {
+				s = parameters.substring(0, parameters.indexOf(",") + 1);
+			}
+
+			newParameters += s;
+			parameters = StringUtil.replaceFirst(parameters, s, "");
+		}
+		while (Validator.isNotNull(parameters));
+
+		if (newParameters.equals(StringUtil.trim(oldParameters))) {
+			return signature;
+		}
+
+		return StringUtil.replaceFirst(
+			signature, signature.substring(beginIndex + 1, endIndex),
+			newParameters);
 	}
 
 	private String _fixLeadingTabs(

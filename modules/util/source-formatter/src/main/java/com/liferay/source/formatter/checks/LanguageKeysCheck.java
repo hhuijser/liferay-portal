@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -43,6 +44,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 	@Override
 	public void init() throws Exception {
+		_customLanguageProperties = _getCustomLanguageProperties();
 		_portalLanguageProperties = getPortalLanguageProperties();
 	}
 
@@ -55,6 +57,12 @@ public class LanguageKeysCheck extends BaseFileCheck {
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
 		throws Exception {
+
+		if (_customLanguageProperties != null) {
+			_checkLanguageKeys(
+				fileName, absolutePath, content, getPatterns(),
+				_customLanguageProperties);
+		}
 
 		if (!isSubrepository() &&
 			!absolutePath.contains("/modules/private/apps/")) {
@@ -157,6 +165,22 @@ public class LanguageKeysCheck extends BaseFileCheck {
 				putBNDSettings(bndSettings);
 			}
 		}
+	}
+
+	private Properties _getCustomLanguageProperties() throws Exception {
+		File customLanguagePropertiesFile = getFile(
+			_CUSTOM_LANGUAGE_PROPERTIES_FILE_NAME,
+			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+		if (customLanguagePropertiesFile == null) {
+			return null;
+		}
+
+		Properties properties = new Properties();
+
+		properties.load(new FileInputStream(customLanguagePropertiesFile));
+
+		return properties;
 	}
 
 	private String[] _getLanguageKeys(Matcher matcher) {
@@ -394,9 +418,13 @@ public class LanguageKeysCheck extends BaseFileCheck {
 		return null;
 	}
 
+	private static final String _CUSTOM_LANGUAGE_PROPERTIES_FILE_NAME =
+		"source-formatter/dependencies/Language.properties";
+
 	private final Pattern _applyLangMergerPluginPattern = Pattern.compile(
 		"^apply[ \t]+plugin[ \t]*:[ \t]+\"com.liferay.lang.merger\"$",
 		Pattern.MULTILINE);
+	private Properties _customLanguageProperties;
 	private final Pattern _mergeLangPattern = Pattern.compile(
 		"mergeLang \\{\\s*sourceDirs = \\[(.*?)\\]", Pattern.DOTALL);
 	private final Map<String, Properties> _moduleLangLanguagePropertiesMap =

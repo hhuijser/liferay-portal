@@ -382,10 +382,6 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 
 		if (ListUtil.isNotEmpty(snippets)) {
 			snippet = StringUtil.merge(snippets, StringPool.TRIPLE_PERIOD);
-
-			if (Validator.isNotNull(snippet)) {
-				snippet = snippet.concat(StringPool.TRIPLE_PERIOD);
-			}
 		}
 
 		document.addText(

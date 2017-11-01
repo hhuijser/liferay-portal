@@ -14,7 +14,7 @@
 
 package com.liferay.osgi.service.tracker.collections.internal;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Filter;

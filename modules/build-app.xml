@@ -17,6 +17,8 @@
 
 	<property name="build.modules.excludes" value="**/adaptive-media/**" />
 
+	<property name="global.lib.dir" value="${app.server.tomcat.lib.global.dir}" />
+
 	<property name="portal.lib.dir" value="${app.server.tomcat.lib.portal.dir}" />
 
 	<property name="osgi.dir" value="${liferay.home}/osgi" />
@@ -317,6 +319,7 @@
 
 	<target name="index-modules-and-app-lpkgs">
 		<path id="target.platform.indexer.classpath">
+			<fileset dir="${global.lib.dir}" includes="*.jar" />
 
 			<!-- Order is important -->
 

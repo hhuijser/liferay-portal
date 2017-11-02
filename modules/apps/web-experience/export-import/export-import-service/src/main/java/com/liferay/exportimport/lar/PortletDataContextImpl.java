@@ -240,7 +240,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 				addAssetPriority(element, clazz, classPK);
 
 				addExpando(element, path, classedModel, clazz);
-				addLocks(clazz, String.valueOf(classPK));
 				addPermissions(clazz, classPK);
 			}
 
@@ -1542,9 +1541,6 @@ public class PortletDataContextImpl implements PortletDataContext {
 			}
 		}
 
-		importLocks(
-			clazz, String.valueOf(primaryKeyObj),
-			String.valueOf(newPrimaryKeyObj));
 		importPermissions(clazz, primaryKeyObj, newPrimaryKeyObj);
 	}
 

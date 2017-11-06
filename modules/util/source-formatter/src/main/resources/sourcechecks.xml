@@ -168,6 +168,7 @@
 			<property name="allowedExportPackageDirName" value="modules/apps/web-experience/site-navigation/site-navigation-language-web" />
 			<property name="allowedExportPackageDirName" value="modules/apps/web-experience/site-navigation/site-navigation-service" />
 			<property name="allowedExportPackageDirName" value="modules/apps/web-experience/staging/staging-portlet-data-handler" />
+			<property name="allowedExportPackageDirName" value="portal-workflow-web" />
 			<property name="allowedExportPackageDirName" value="vulcan-liferay-portal" />
 			<property name="allowedExportPackageDirName" value="vulcan-sample-liferay-portal" />
 			<property name="allowedExportPackageDirName" value="vulcan-wiring-osgi" />

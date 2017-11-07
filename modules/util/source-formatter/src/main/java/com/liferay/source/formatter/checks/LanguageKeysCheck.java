@@ -43,6 +43,8 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 	@Override
 	public void init() throws Exception {
+		_gitHubPortalLanguagePropertiesMap =
+			getGitHubPortalLanguagePropertiesMap();
 		_portalLanguageProperties = getPortalLanguageProperties();
 	}
 
@@ -56,10 +58,22 @@ public class LanguageKeysCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws Exception {
 
+		Properties gitHubPortalLanguageProperties =
+			getGitHubPortalLanguageProperties(
+				absolutePath, _gitHubPortalLanguagePropertiesMap);
+
+		if (gitHubPortalLanguageProperties != null) {
+			_checkLanguageKeys(
+				fileName, absolutePath, content, getPatterns(),
+				gitHubPortalLanguageProperties);
+		}
+
 		if (!isSubrepository() &&
 			!absolutePath.contains("/modules/private/apps/")) {
 
-			_checkLanguageKeys(fileName, absolutePath, content, getPatterns());
+			_checkLanguageKeys(
+				fileName, absolutePath, content, getPatterns(),
+				_portalLanguageProperties);
 		}
 
 		return content;
@@ -74,7 +88,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 
 	private void _checkLanguageKeys(
 			String fileName, String absolutePath, String content,
-			List<Pattern> patterns)
+			List<Pattern> patterns, Properties properties)
 		throws Exception {
 
 		if (fileName.endsWith(".vm")) {
@@ -82,13 +96,14 @@ public class LanguageKeysCheck extends BaseFileCheck {
 		}
 
 		for (Pattern pattern : patterns) {
-			_checkLanguageKeys(fileName, absolutePath, content, pattern);
+			_checkLanguageKeys(
+				fileName, absolutePath, content, pattern, properties);
 		}
 	}
 
 	private void _checkLanguageKeys(
 			String fileName, String absolutePath, String content,
-			Pattern pattern)
+			Pattern pattern, Properties properties)
 		throws Exception {
 
 		Matcher matcher = pattern.matcher(content);
@@ -109,7 +124,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 					languageKey.startsWith(StringPool.OPEN_CURLY_BRACE) ||
 					languageKey.startsWith(StringPool.PERIOD) ||
 					languageKey.startsWith(StringPool.UNDERLINE) ||
-					_portalLanguageProperties.containsKey(languageKey)) {
+					properties.containsKey(languageKey)) {
 
 					continue;
 				}
@@ -394,6 +409,7 @@ public class LanguageKeysCheck extends BaseFileCheck {
 	private final Pattern _applyLangMergerPluginPattern = Pattern.compile(
 		"^apply[ \t]+plugin[ \t]*:[ \t]+\"com.liferay.lang.merger\"$",
 		Pattern.MULTILINE);
+	private Map<String, Properties> _gitHubPortalLanguagePropertiesMap;
 	private final Pattern _mergeLangPattern = Pattern.compile(
 		"mergeLang \\{\\s*sourceDirs = \\[(.*?)\\]", Pattern.DOTALL);
 	private final Map<String, Properties> _moduleLangLanguagePropertiesMap =

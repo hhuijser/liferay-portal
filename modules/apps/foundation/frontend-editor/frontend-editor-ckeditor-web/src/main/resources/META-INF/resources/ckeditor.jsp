@@ -580,6 +580,8 @@ name = HtmlUtil.escapeJS(name);
 											window['<%= name %>'].create();
 
 											initialEditor = CKEDITOR.instances['<%= name %>'].id;
+
+											CKEDITOR.instances['<%= name %>'].setData(ckEditorContent);
 										}
 									}
 								}

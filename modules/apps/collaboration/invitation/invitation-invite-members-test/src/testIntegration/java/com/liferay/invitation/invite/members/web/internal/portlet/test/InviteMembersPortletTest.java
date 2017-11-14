@@ -65,16 +65,33 @@ public class InviteMembersPortletTest {
 		User user1 = UserTestUtil.addUser();
 		User user2 = UserTestUtil.addUser();
 
+		List<User> availableUsers = _getAvailableUsers(
+			_userGroup.getCompanyId(), _userGroup.getUserGroupId());
+
+		Assert.assertEquals(
+			availableUsers.toString(), 2, availableUsers.size());
+
 		UserLocalServiceUtil.addUserGroupUser(
 			_userGroup.getUserGroupId(), user1.getUserId());
 		UserLocalServiceUtil.addUserGroupUser(
 			_userGroup.getUserGroupId(), user2.getUserId());
 
-		List<User> availableUsers = _getAvailableUsers(
+		availableUsers = _getAvailableUsers(
 			_userGroup.getCompanyId(), _userGroup.getUserGroupId());
 
 		Assert.assertEquals(
-			availableUsers.toString(), 5, availableUsers.size());
+			availableUsers.toString(), 0, availableUsers.size());
+
+		UserLocalServiceUtil.deleteUserGroupUser(
+			_userGroup.getUserGroupId(), user1.getUserId());
+
+		availableUsers = _getAvailableUsers(
+			_userGroup.getCompanyId(), _userGroup.getUserGroupId());
+
+		Assert.assertEquals(
+			availableUsers.toString(), 1, availableUsers.size());
+		Assert.assertEquals(
+			availableUsers.toString(), user2, availableUsers.get(0));
 	}
 
 	private List<User> _getAvailableUsers(long companyId, long groupId)

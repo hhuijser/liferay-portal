@@ -579,9 +579,9 @@ name = HtmlUtil.escapeJS(name);
 
 											window['<%= name %>'].create();
 
-											initialEditor = CKEDITOR.instances['<%= name %>'].id;
+											window['<%= name %>'].setHTML(ckEditorContent);
 
-											CKEDITOR.instances['<%= name %>'].setData(ckEditorContent);
+											initialEditor = CKEDITOR.instances['<%= name %>'].id;
 										}
 									}
 								}

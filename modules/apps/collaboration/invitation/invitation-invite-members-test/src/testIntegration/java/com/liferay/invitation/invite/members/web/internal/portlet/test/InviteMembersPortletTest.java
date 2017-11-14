@@ -91,7 +91,7 @@ public class InviteMembersPortletTest {
 		Assert.assertEquals(
 			availableUsers.toString(), 1, availableUsers.size());
 		Assert.assertEquals(
-			availableUsers.toString(), user2, availableUsers.get(0));
+			availableUsers.toString(), user1, availableUsers.get(0));
 	}
 
 	private List<User> _getAvailableUsers(long companyId, long groupId)

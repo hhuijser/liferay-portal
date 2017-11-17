@@ -195,7 +195,13 @@ public class AnnouncementsEntryLocalServiceTest {
 
 		Assert.assertEquals(
 			notHiddenEntries.toString(), 1, notHiddenEntries.size());
-		Assert.assertEquals(entry2, notHiddenEntries.get(0));
+
+		if (notHiddenEntries.get(0).getEntryId() == entry3.getEntryId()) {
+			Assert.assertEquals("asdf1", 1, 2);
+		}
+		else {
+			Assert.assertEquals("asdf2", 1, 3);
+		}
 	}
 
 	protected AnnouncementsEntry addEntry(long classNameId, long classPK)

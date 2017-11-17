@@ -71,7 +71,7 @@ public class InviteMembersPortletTest {
 		User user2 = UserTestUtil.addUser();
 
 		List<User> availableUsers = _getAvailableUsers(
-			_userGroup.getCompanyId(), _userGroup.getUserGroupId());
+			_userGroup.getCompanyId(), _userGroup.getGroupId());
 
 		Assert.assertEquals(
 			availableUsers.toString(), 3, availableUsers.size());
@@ -82,7 +82,7 @@ public class InviteMembersPortletTest {
 			_userGroup.getUserGroupId(), user2.getUserId());
 
 		availableUsers = _getAvailableUsers(
-			_userGroup.getCompanyId(), _userGroup.getUserGroupId());
+			_userGroup.getCompanyId(), _userGroup.getGroupId());
 
 		Assert.assertEquals(
 			availableUsers.toString(), 1, availableUsers.size());
@@ -91,7 +91,7 @@ public class InviteMembersPortletTest {
 			_userGroup.getUserGroupId(), user1.getUserId());
 
 		availableUsers = _getAvailableUsers(
-			_userGroup.getCompanyId(), _userGroup.getUserGroupId());
+			_userGroup.getCompanyId(), _userGroup.getGroupId());
 
 		Assert.assertEquals(
 			availableUsers.toString(), 2, availableUsers.size());

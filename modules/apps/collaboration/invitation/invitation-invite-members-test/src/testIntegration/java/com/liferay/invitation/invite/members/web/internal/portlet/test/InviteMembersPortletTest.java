@@ -73,7 +73,8 @@ public class InviteMembersPortletTest {
 		Assert.assertEquals(
 			availableUsers.toString(), 0, availableUsers.size());
 
-		User user = UserTestUtil.addUser();
+		User user1 = UserTestUtil.addUser();
+		User user2 = UserTestUtil.addUser();
 
 		availableUsers = _getAvailableUsers(
 			_group.getCompanyId(), _group.getGroupId());
@@ -82,7 +83,7 @@ public class InviteMembersPortletTest {
 			availableUsers.toString(), 2, availableUsers.size());
 
 		UserLocalServiceUtil.addGroupUser(
-			_group.getGroupId(), user.getUserId());
+			_group.getGroupId(), user1.getUserId());
 
 		availableUsers = _getAvailableUsers(
 			_group.getCompanyId(), _group.getGroupId());
@@ -90,10 +91,10 @@ public class InviteMembersPortletTest {
 		Assert.assertEquals(
 			availableUsers.toString(), 1, availableUsers.size());
 
-		if (availableUsers.size() == 1) {
+		if (availableUsers.get(0).getUserId() == user2.getUserId()) {
 			Assert.assertEquals("asdf1", 1, 2);
 		}
-		else if (availableUsers.size() == 2) {
+		else {
 			Assert.assertEquals("asdf2", 1, 3);
 		}
 	}

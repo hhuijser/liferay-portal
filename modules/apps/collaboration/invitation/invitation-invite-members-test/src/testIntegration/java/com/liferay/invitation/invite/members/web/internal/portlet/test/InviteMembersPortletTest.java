@@ -19,14 +19,14 @@ import com.liferay.portal.kernel.dao.orm.CustomSQLParam;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
-import com.liferay.portal.kernel.test.util.UserGroupTestUtil;
+import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
@@ -62,48 +62,39 @@ public class InviteMembersPortletTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_userGroup = UserGroupTestUtil.addUserGroup();
+		_group = GroupTestUtil.addGroup();
 	}
 
 	@Test
 	public void testGetAvailableUsers() throws Exception {
-		User user1 = UserTestUtil.addUser();
-		User user2 = UserTestUtil.addUser();
-
 		List<User> availableUsers = _getAvailableUsers(
-			_userGroup.getCompanyId(), _userGroup.getGroupId());
-
-		Assert.assertEquals(
-			availableUsers.toString(), 3, availableUsers.size());
-
-		UserLocalServiceUtil.addUserGroupUser(
-			_userGroup.getUserGroupId(), user1.getUserId());
-		UserLocalServiceUtil.addUserGroupUser(
-			_userGroup.getUserGroupId(), user2.getUserId());
-
-		availableUsers = _getAvailableUsers(
-			_userGroup.getCompanyId(), _userGroup.getGroupId());
+			_group.getCompanyId(), _group.getGroupId());
 
 		Assert.assertEquals(
 			availableUsers.toString(), 1, availableUsers.size());
 
-		UserLocalServiceUtil.deleteUserGroupUser(
-			_userGroup.getUserGroupId(), user1.getUserId());
+		User user = UserTestUtil.addUser();
 
 		availableUsers = _getAvailableUsers(
-			_userGroup.getCompanyId(), _userGroup.getGroupId());
+			_group.getCompanyId(), _group.getGroupId());
 
 		Assert.assertEquals(
 			availableUsers.toString(), 2, availableUsers.size());
 
-		if (availableUsers.get(0).getUserId() == user1.getUserId()) {
+		UserLocalServiceUtil.addGroupUser(
+			_group.getGroupId(), user.getUserId());
+
+		availableUsers = _getAvailableUsers(
+			_group.getCompanyId(), _group.getGroupId());
+
+		Assert.assertEquals(
+			availableUsers.toString(), 1, availableUsers.size());
+
+		if (availableUsers.size() == 1) {
 			Assert.assertEquals("asdf1", 1, 2);
 		}
-		else if (availableUsers.get(1).getUserId() == user1.getUserId()) {
+		else if (availableUsers.size() == 2) {
 			Assert.assertEquals("asdf2", 1, 3);
-		}
-		else {
-			Assert.assertEquals("asdf3", 1, 4);
 		}
 	}
 
@@ -167,6 +158,6 @@ public class InviteMembersPortletTest {
 	}
 
 	@DeleteAfterTestRun
-	private UserGroup _userGroup;
+	private Group _group;
 
 }

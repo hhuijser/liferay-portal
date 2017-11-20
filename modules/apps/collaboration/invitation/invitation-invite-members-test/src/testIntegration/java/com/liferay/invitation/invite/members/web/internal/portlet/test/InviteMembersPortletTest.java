@@ -71,7 +71,7 @@ public class InviteMembersPortletTest {
 			_group.getCompanyId(), _group.getGroupId());
 
 		Assert.assertEquals(
-			availableUsers.toString(), 1, availableUsers.size());
+			availableUsers.toString(), 0, availableUsers.size());
 
 		User user = UserTestUtil.addUser();
 

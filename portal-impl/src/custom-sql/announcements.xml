@@ -34,7 +34,7 @@
 					AnnouncementsEntry.entryId NOT IN
 						(
 							SELECT
-								DISTINCT AnnouncementsFlag.entryId
+								AnnouncementsFlag.entryId
 							FROM
 								AnnouncementsFlag
 							WHERE
@@ -92,7 +92,7 @@
 					AnnouncementsEntry.entryId NOT IN
 						(
 							SELECT
-								DISTINCT AnnouncementsFlag.entryId
+								AnnouncementsFlag.entryId
 							FROM
 								AnnouncementsFlag
 							WHERE

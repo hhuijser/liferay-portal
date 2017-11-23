@@ -27,15 +27,15 @@
 				AnnouncementsEntry
 			LEFT JOIN
 				AnnouncementsFlag ON
-					AnnouncementsFlag.entryId = AnnouncementsEntry.entryId
+					(AnnouncementsFlag.entryId = AnnouncementsEntry.entryId) AND
+					(AnnouncementsFlag.userId = ?) AND
+					(AnnouncementsFlag.value = ?)
 			WHERE
 				([$CLASS_PKS$]) AND
 				(AnnouncementsEntry.displayDate <= ? [$AND_OR_NULL_CHECK$]) AND
 				(AnnouncementsEntry.expirationDate >= ? [$AND_OR_NULL_CHECK$]) AND
 				(AnnouncementsEntry.alert = ?) AND
-				(AnnouncementsFlag.entryId IS NULL) AND
-				(AnnouncementsFlag.userId = ?) AND
-				(AnnouncementsFlag.value = ?)
+				(AnnouncementsFlag.entryId IS NULL)
 		]]>
 	</sql>
 	<sql id="com.liferay.announcements.kernel.service.persistence.AnnouncementsEntryFinder.findByDisplayDate">
@@ -78,15 +78,15 @@
 				AnnouncementsEntry
 			LEFT JOIN
 				AnnouncementsFlag ON
-					AnnouncementsFlag.entryId = AnnouncementsEntry.entryId
+					(AnnouncementsFlag.entryId = AnnouncementsEntry.entryId) AND
+					(AnnouncementsFlag.userId = ?) AND
+					(AnnouncementsFlag.value = ?)
 			WHERE
 				([$CLASS_PKS$]) AND
 				(AnnouncementsEntry.displayDate <= ? [$AND_OR_NULL_CHECK$]) AND
 				(AnnouncementsEntry.expirationDate >= ? [$AND_OR_NULL_CHECK$]) AND
 				(AnnouncementsEntry.alert = ?) AND
-				(AnnouncementsFlag.entryId IS NULL) AND
-				(AnnouncementsFlag.userId = ?) AND
-				(AnnouncementsFlag.value = ?)
+				(AnnouncementsFlag.entryId IS NULL)
 			ORDER BY
 				AnnouncementsEntry.priority DESC,
 				AnnouncementsEntry.modifiedDate DESC

@@ -267,6 +267,11 @@ public class AnnouncementsEntryFinderImpl
 
 			setClassPKs(qPos, classNameId, classPKs);
 
+			if (flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) {
+				qPos.add(userId);
+				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+			}
+
 			setDates(
 				qPos, displayDateMonth, displayDateDay, displayDateYear,
 				displayDateHour, displayDateMinute, expirationDateMonth,
@@ -274,8 +279,11 @@ public class AnnouncementsEntryFinderImpl
 				expirationDateMinute);
 
 			qPos.add(alert);
-			qPos.add(userId);
-			qPos.add(AnnouncementsFlagConstants.HIDDEN);
+
+			if (flagValue != AnnouncementsFlagConstants.NOT_HIDDEN) {
+				qPos.add(userId);
+				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+			}
 
 			return (List<AnnouncementsEntry>)QueryUtil.list(
 				q, getDialect(), start, end);
@@ -317,6 +325,11 @@ public class AnnouncementsEntryFinderImpl
 
 			QueryPos qPos = QueryPos.getInstance(q);
 
+			if (flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) {
+				qPos.add(userId);
+				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+			}
+
 			setClassPKs(qPos, scopes);
 
 			setDates(
@@ -326,8 +339,11 @@ public class AnnouncementsEntryFinderImpl
 				expirationDateMinute);
 
 			qPos.add(alert);
-			qPos.add(userId);
-			qPos.add(AnnouncementsFlagConstants.HIDDEN);
+
+			if (flagValue != AnnouncementsFlagConstants.NOT_HIDDEN) {
+				qPos.add(userId);
+				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+			}
 
 			return (List<AnnouncementsEntry>)QueryUtil.list(
 				q, getDialect(), start, end);

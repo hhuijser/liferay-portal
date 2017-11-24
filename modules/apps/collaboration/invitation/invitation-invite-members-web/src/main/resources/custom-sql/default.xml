@@ -5,10 +5,10 @@
 		<![CDATA[
 			LEFT JOIN
 				Users_Groups ON
-					Users_Groups.userId = User_UserId
+					(Users_Groups.groupId = ?) AND
+					(Users_Groups.userId = User_UserId)
 			WHERE
-				(Users_Groups.groupId = ?) AND
-				(Users_Groups.userId IS NULL)
+				Users_Groups.userId IS NULL
 		]]>
 	</sql>
 </custom-sql>

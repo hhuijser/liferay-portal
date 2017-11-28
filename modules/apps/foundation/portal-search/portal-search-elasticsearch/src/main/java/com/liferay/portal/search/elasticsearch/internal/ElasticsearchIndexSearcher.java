@@ -583,7 +583,7 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 	protected String getSortFieldName(Sort sort, String scoreFieldName) {
 		String sortFieldName = sort.getFieldName();
 
-		if (sortFieldName.equals(Field.PRIORITY)) {
+		if ((sortFieldName != null) && sortFieldName.equals(Field.PRIORITY)) {
 			return sortFieldName;
 		}
 

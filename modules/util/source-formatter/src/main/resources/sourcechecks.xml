@@ -151,6 +151,7 @@
 			<property name="allowedExportPackageDirName" value="vulcan-liferay-portal" />
 			<property name="allowedExportPackageDirName" value="vulcan-sample-liferay-portal" />
 			<property name="allowedExportPackageDirName" value="vulcan-wiring-osgi" />
+			<property name="ignoreExportsCheckDirName" value="modules/apps/static/modules-compat/modules-compat-data" />
 		</check>
 		<check name="BNDIncludeResourceCheck" />
 		<check name="BNDWebContextPathCheck" />

@@ -42,6 +42,10 @@ public class BNDExportsCheck extends BaseFileCheck {
 		_allowedExportPackageDirNames.add(allowedExportPackageDirName);
 	}
 
+	public void setIgnoreExportsCheckDirName(String ignoreExportsCheckDirName) {
+		_ignoreExportsCheckDirNames.add(ignoreExportsCheckDirName);
+	}
+
 	@Override
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
@@ -54,8 +58,11 @@ public class BNDExportsCheck extends BaseFileCheck {
 
 		if (!absolutePath.contains("/testIntegration/")) {
 			_checkExports(
-				fileName, content, _exportContentsPattern, "-exportcontents");
-			_checkExports(fileName, content, _exportsPattern, "Export-Package");
+				fileName, absolutePath, content, _exportContentsPattern,
+				"-exportcontents");
+			_checkExports(
+				fileName, absolutePath, content, _exportsPattern,
+				"Export-Package");
 		}
 
 		if (absolutePath.contains("/modules/apps/")) {
@@ -97,7 +104,7 @@ public class BNDExportsCheck extends BaseFileCheck {
 	}
 
 	private void _checkExports(
-		String fileName, String content, Pattern pattern,
+		String fileName, String absolutePath, String content, Pattern pattern,
 		String definitionKey) {
 
 		String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
@@ -107,6 +114,12 @@ public class BNDExportsCheck extends BaseFileCheck {
 			bundleSymbolicName.endsWith(".compat")) {
 
 			return;
+		}
+
+		for (String ignoreExportsCheckDirName : _ignoreExportsCheckDirNames) {
+			if (absolutePath.contains(ignoreExportsCheckDirName)) {
+				return;
+			}
 		}
 
 		Matcher matcher = _apiOrServiceBundleSymbolicNamePattern.matcher(
@@ -157,5 +170,6 @@ public class BNDExportsCheck extends BaseFileCheck {
 	private final Pattern _exportsPattern = Pattern.compile(
 		"\nExport-Package:(\\\\\n| )((.*?)(\n[^\t]|\\Z))",
 		Pattern.DOTALL | Pattern.MULTILINE);
+	private final List<String> _ignoreExportsCheckDirNames = new ArrayList<>();
 
 }

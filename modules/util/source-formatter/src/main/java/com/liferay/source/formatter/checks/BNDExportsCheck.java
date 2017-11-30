@@ -67,7 +67,9 @@ public class BNDExportsCheck extends BaseFileCheck {
 			_checkExportPackage(fileName, absolutePath, content);
 		}
 
-		_checkExportPackageinfo(fileName, content);
+		if (!isSubrepository() && !isReadOnly(absolutePath)) {
+			_checkExportPackageinfo(fileName, content);
+		}
 
 		return content;
 	}

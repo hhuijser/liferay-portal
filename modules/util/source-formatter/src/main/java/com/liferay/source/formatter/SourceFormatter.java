@@ -127,17 +127,28 @@ public class SourceFormatter {
 				sourceFormatterArgs.setGitWorkingBranchName(
 					gitWorkingBranchName);
 
-				sourceFormatterArgs.setRecentChangesFileNames(
-					GitUtil.getCurrentBranchFileNames(
-						baseDirName, gitWorkingBranchName));
+				List<String> fileNames = GitUtil.getCurrentBranchFileNames(
+					baseDirName, gitWorkingBranchName);
+
+				_showRecentChangesFileNames(fileNames);
+
+				sourceFormatterArgs.setRecentChangesFileNames(fileNames);
 			}
 			else if (formatLatestAuthor) {
-				sourceFormatterArgs.setRecentChangesFileNames(
-					GitUtil.getLatestAuthorFileNames(baseDirName));
+				List<String> fileNames = GitUtil.getLatestAuthorFileNames(
+					baseDirName);
+
+				_showRecentChangesFileNames(fileNames);
+
+				sourceFormatterArgs.setRecentChangesFileNames(fileNames);
 			}
 			else if (formatLocalChanges) {
-				sourceFormatterArgs.setRecentChangesFileNames(
-					GitUtil.getLocalChangesFileNames(baseDirName));
+				List<String> fileNames = GitUtil.getLocalChangesFileNames(
+					baseDirName);
+
+				_showRecentChangesFileNames(fileNames);
+
+				sourceFormatterArgs.setRecentChangesFileNames(fileNames);
 			}
 
 			String fileNamesString = ArgumentsUtil.getString(
@@ -360,6 +371,21 @@ public class SourceFormatter {
 
 	public SourceMismatchException getSourceMismatchException() {
 		return _firstSourceMismatchException;
+	}
+
+	private static void _showRecentChangesFileNames(List<String> fileNames) {
+		if (!fileNames.isEmpty()) {
+			System.out.println("Checking " + fileNames.size() + " file(s).");
+
+			if (fileNames.size() < 21) {
+				for (String fileName : fileNames) {
+					System.out.println(fileName);
+				}
+			}
+		}
+		else {
+			System.out.println("* Checking 0 files. No files were changed.");
+		}
 	}
 
 	private List<String> _getCheckNames() {

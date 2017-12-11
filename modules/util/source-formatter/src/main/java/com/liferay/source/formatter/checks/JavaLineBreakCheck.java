@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -57,11 +58,31 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 				}
 
 				if (!trimmedLine.startsWith(StringPool.DOUBLE_SLASH) &&
-					!trimmedLine.startsWith(StringPool.STAR) &&
-					trimmedLine.startsWith(StringPool.PERIOD)) {
+					!trimmedLine.startsWith(StringPool.STAR)) {
 
-					addMessage(
-						fileName, "Line should not start with '.'", lineCount);
+					if (trimmedLine.startsWith(StringPool.PERIOD)) {
+						addMessage(
+							fileName, "Line should not start with '.'",
+							lineCount);
+					}
+
+					int pos = line.lastIndexOf(StringPool.SPACE);
+
+					if (pos != -1) {
+						String s = line.substring(pos + 1);
+
+						if (ArrayUtil.contains(_RELATIONAL_OPERATORS, s) &&
+							(getLevel(line) < 0)) {
+
+							addMessage(
+								fileName,
+								StringBundler.concat(
+									"For better readability, create new var ",
+									"for the left hand side expression of the ",
+									"'", s, "' operator"),
+								lineCount);
+						}
+					}
 				}
 
 				int lineLength = getLineLength(line);
@@ -814,6 +835,9 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 
 		return formattedClassLine;
 	}
+
+	private static final String[] _RELATIONAL_OPERATORS =
+		{"==", "!=", ">", "<", ">=", "<="};
 
 	private final Pattern _arrayPattern = Pattern.compile(
 		"(\n\t*.* =) ((new \\w*\\[\\] )?\\{)\n(\t*)([^\t\\{].*)\n\t*(\\};?)\n");

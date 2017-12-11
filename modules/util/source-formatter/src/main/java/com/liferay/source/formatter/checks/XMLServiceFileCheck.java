@@ -67,6 +67,11 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 
 		Element rootElement = document.getRootElement();
 
+		String packagePath = rootElement.attributeValue("package-path");
+
+		packagePath = StringUtil.toLowerCase(
+			StringUtil.replace(packagePath, '.', ""));
+
 		ServiceReferenceElementComparator serviceReferenceElementComparator =
 			new ServiceReferenceElementComparator("entity");
 
@@ -74,6 +79,11 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 				(List<Element>)rootElement.elements("entity")) {
 
 			String entityName = entityElement.attributeValue("name");
+
+			if (packagePath.endsWith(StringUtil.toLowerCase(entityName))) {
+				addMessage(
+					"service.xml", "Entity name shouldn't repeat package name");
+			}
 
 			List<String> columnNames = _getColumnNames(
 				fileName, absolutePath, entityName);

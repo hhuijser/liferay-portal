@@ -97,31 +97,11 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 	</aui:fieldset>
 
 	<c:choose>
-		<c:when test="<%= previewBeforeRestore %>">
-			<aui:button-row>
-				<liferay-portlet:renderURL var="revertWorkflowDefinitionRedirectURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
-					<portlet:param name="mvcPath" value="/definition/revert_workflow_definition_redirect.jsp" />
-					<portlet:param name="redirect" value="<%= redirect %>" />
-				</liferay-portlet:renderURL>
-
-				<liferay-portlet:actionURL name="revertWorkflowDefinition" var="revertWorkflowDefinitionURL">
-					<portlet:param name="redirect" value="<%= revertWorkflowDefinitionRedirectURL %>" />
-					<portlet:param name="name" value="<%= workflowDefinition.getName() %>" />
-					<portlet:param name="version" value="<%= String.valueOf(workflowDefinition.getVersion()) %>" />
-				</liferay-portlet:actionURL>
-
-				<aui:form action="<%= revertWorkflowDefinitionURL.toString() %>" method="post" name="fm">
-					<aui:button cssClass="btn-lg" primary="<%= true %>" type="submit" value="restore" />
-
-					<aui:button cssClass="btn-lg" type="cancel" />
-				</aui:form>
-			</aui:button-row>
-		</c:when>
-		<c:otherwise>
+		<c:when test="<%= !previewBeforeRestore %>">
 			<aui:button-row>
 				<aui:button cssClass="btn-lg" href="<%= editWorkflowDefinitionURL %>" primary="<%= true %>" value="edit" />
 			</aui:button-row>
-		</c:otherwise>
+		</c:when>
 	</c:choose>
 </div>
 

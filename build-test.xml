@@ -1853,31 +1853,7 @@ sendPasswordCaptchaEnabled=&quot;false&quot;</echo>
 
 	<macrodef name="prepare-elasticsearch-configuration" >
 		<sequential>
-			<echo file="${liferay.home}/osgi/config/com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration.config">additionalConfigurations=&quot;
-    cluster.routing.allocation.disk.threshold_enabled:\ false
-    cluster.service.slow_task_logging_threshold:\ 1800s
-    index.indexing.slowlog.threshold.index.warn:\ 1800s
-    index.search.slowlog.threshold.fetch.warn:\ 1800s
-    index.search.slowlog.threshold.query.warn:\ 1800s
-    monitor.jvm.gc.old.warn:\ 1800s
-    monitor.jvm.gc.young.warn:\ 1800s
-    threadpool.bulk.size:\ 1
-    threadpool.fetch_shard_started.size:\ 1
-    threadpool.fetch_shard_store.size:\ 1
-    threadpool.flush.size:\ 1
-    threadpool.force_merge.size:\ 1
-    threadpool.generic.size:\ 1
-    threadpool.get.size:\ 1
-    threadpool.index.size:\ 1
-    threadpool.listener.size:\ 1
-    threadpool.management.size:\ 1
-    threadpool.percolate.size:\ 1
-    threadpool.refresh.size:\ 1
-    threadpool.search.size:\ 1
-    threadpool.snapshot.size:\ 1
-    threadpool.suggest.size:\ 1
-    threadpool.warmer.size:\ 1
-    transport.local.workers:\ 1&quot;
+			<echo file="${liferay.home}/osgi/config/com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration.config">additionalConfigurations=&quot;cluster.routing.allocation.disk.threshold_enabled:\ false\ncluster.service.slow_task_logging_threshold:\ 1800s\nindex.indexing.slowlog.threshold.index.warn:\ 1800s\nindex.search.slowlog.threshold.fetch.warn:\ 1800s\nindex.search.slowlog.threshold.query.warn:\ 1800s\nmonitor.jvm.gc.old.warn:\ 1800s\nmonitor.jvm.gc.young.warn:\ 1800s\nthreadpool.bulk.size:\ 1\nthreadpool.fetch_shard_started.size:\ 1\nthreadpool.fetch_shard_store.size:\ 1\nthreadpool.flush.size:\ 1\nthreadpool.force_merge.size:\ 1\nthreadpool.generic.size:\ 1\nthreadpool.get.size:\ 1\nthreadpool.index.size:\ 1\nthreadpool.listener.size:\ 1\nthreadpool.management.size:\ 1\nthreadpool.percolate.size:\ 1\nthreadpool.refresh.size:\ 1\nthreadpool.search.size:\ 1\nthreadpool.snapshot.size:\ 1\nthreadpool.suggest.size:\ 1\nthreadpool.warmer.size:\ 1\ntransport.local.workers:\ 1&quot;
 httpEnabled=B&quot;false&quot;
 logExceptionsOnly=B&quot;false&quot;</echo>
 		</sequential>
@@ -5224,14 +5200,23 @@ go]]></replacevalue>
 					</then>
 				</if>
 
-				<delete failonerror="false" includeemptydirs="true">
-					<fileset dir="${test.app.server.liferay.home}/data">
-						<exclude name="hypersonic/lportal.properties" if:true="${keep.hypersonicdb}" />
-						<exclude name="hypersonic/lportal.script" if:true="${keep.hypersonicdb}" />
-					</fileset>
-				</delete>
+				<if>
+					<not>
+						<equals arg1="${keep.cached.app.server.data}" arg2="true" />
+					</not>
+					<then>
+						<delete failonerror="false" includeemptydirs="true">
+							<fileset dir="${test.app.server.liferay.home}/data">
+								<exclude name="hypersonic/lportal.properties" if:true="${keep.hypersonicdb}" />
+								<exclude name="hypersonic/lportal.script" if:true="${keep.hypersonicdb}" />
+							</fileset>
+						</delete>
+					</then>
+				</if>
+
 				<delete dir="${test.app.server.liferay.home}/logs" />
 				<delete dir="${test.app.server.liferay.home}/osgi/state" />
+				<delete dir="${test.app.server.liferay.home}/work" />
 
 				<delete file="${test.app.server.liferay.home}/portal-setup-wizard.properties" />
 			</then>
@@ -5275,8 +5260,15 @@ go]]></replacevalue>
 	</target>
 
 	<target name="deploy-latest-marketplace-apps">
+		<get-testcase-property property.name="deploy.latest.marketplace.app.disabled" />
+
 		<if>
-			<available file="${liferay.home}/osgi/marketplace" />
+			<and>
+				<available file="${liferay.home}/osgi/marketplace" />
+				<not>
+					<equals arg1="${deploy.latest.marketplace.app.disabled}" arg2="true" />
+				</not>
+			</and>
 			<then>
 				<for param="app.file.path">
 					<path>
@@ -8719,8 +8711,15 @@ ANT_OPTS=${env.ANT_OPTS}</echo>
 					]]>
 				</beanshell>
 
+				<get-testcase-property property.name="test.ignore.tomcat.ext.environment" />
+
 				<if>
-					<equals arg1="${enable.ext.environment}" arg2="true" />
+					<and>
+						<equals arg1="${enable.ext.environment}" arg2="true" />
+						<not>
+							<equals arg1="${test.ignore.tomcat.ext.environment}" arg2="true" />
+						</not>
+					</and>
 					<then>
 						<replace file="${app.server.dir}/conf/Catalina/localhost/ROOT.xml">
 							<replacetoken><![CDATA[</Context>]]></replacetoken>

@@ -91,6 +91,11 @@ public class AdminPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	@Override
+	public String getServiceName() {
+		return KBConstants.SERVICE_NAME;
+	}
+
+	@Override
 	protected PortletPreferences doDeleteData(
 			PortletDataContext portletDataContext, String portletId,
 			PortletPreferences portletPreferences)

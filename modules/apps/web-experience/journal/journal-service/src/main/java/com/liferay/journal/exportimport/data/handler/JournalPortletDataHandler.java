@@ -26,6 +26,7 @@ import com.liferay.exportimport.kernel.lar.PortletDataHandlerControl;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.journal.configuration.JournalServiceConfiguration;
+import com.liferay.journal.constants.JournalConstants;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalFeed;
@@ -110,6 +111,11 @@ public class JournalPortletDataHandler extends BasePortletDataHandler {
 	@Override
 	public String getSchemaVersion() {
 		return SCHEMA_VERSION;
+	}
+
+	@Override
+	public String getServiceName() {
+		return JournalConstants.SERVICE_NAME;
 	}
 
 	@Override

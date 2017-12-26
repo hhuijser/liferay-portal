@@ -25,9 +25,7 @@ public class LineEndCharacterCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {
-			TokenTypes.GENERIC_START, TokenTypes.LPAREN, TokenTypes.TYPECAST
-		};
+		return new int[] {TokenTypes.LPAREN, TokenTypes.TYPECAST};
 	}
 
 	@Override

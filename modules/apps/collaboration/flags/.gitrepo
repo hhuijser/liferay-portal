@@ -4,8 +4,8 @@
 [subrepo]
 	autopull = false
 	cmdver = liferay
-	commit = 457e0ed58903b9f838159a6efdac0ee98c4cf0ff
+	commit = 42838fffcf32713d6259968006d7d2660e82e340
 	mergebuttonmergecommits = false
 	mode = push
-	parent = e0a62cb5c474c10a068b85a12451ea1c451759c4
+	parent = ad1e3b19090f6e69a9b2a524eb1a537dfda436df
 	remote = git@github.com:liferay/com-liferay-flags.git

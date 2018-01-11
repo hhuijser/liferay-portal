@@ -38,7 +38,7 @@ public class ValidatorEqualsCheck extends BaseFileCheck {
 			addMessage(
 				fileName,
 				"Use Objects.equals(Object, Object) instead of " +
-					"Objects.equals(Object, Object)",
+					"Validator.equals(Object, Object)",
 				"equals.markdown", getLineCount(content, matcher.start()));
 		}
 	}

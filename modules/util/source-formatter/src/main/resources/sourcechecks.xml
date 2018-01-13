@@ -144,6 +144,15 @@
 	<source-processor name="GradleSourceProcessor">
 		<check name="GradleBlockOrderCheck" />
 		<check name="GradleDependenciesCheck" />
+		<check name="GradleExportedPackageDependenciesCheck">
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.arquillian." />
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.frontend." />
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.gradle." />
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.portal." />
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.project." />
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.util." />
+			<property name="exportPackageBundleSymbolicNamePrefix" value="com.liferay.webjars." />
+		</check>
 		<check name="GradleImportsCheck" />
 		<check name="GradleIndentationCheck" />
 		<check name="GradlePropertiesCheck" />

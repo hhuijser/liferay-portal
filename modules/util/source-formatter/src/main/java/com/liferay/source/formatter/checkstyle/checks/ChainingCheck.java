@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
@@ -80,7 +81,37 @@ public class ChainingCheck extends BaseCheck {
 				chainedMethodNames, "getClass", methodCallAST, detailAST);
 
 			if (chainedMethodNames.size() == 2) {
-				continue;
+				if (dotAST == null) {
+					continue;
+				}
+
+				String methodName1 = chainedMethodNames.get(0);
+				String methodName2 = chainedMethodNames.get(1);
+
+				if (methodName1.equals("concat") ||
+					methodName2.equals("concat")) {
+
+					continue;
+				}
+
+				if (methodName1.equals("getValue") &&
+					DetailASTUtil.hasParentWithTokenType(
+						detailAST, TokenTypes.ENUM_DEF)) {
+
+					continue;
+				}
+
+				FileContents fileContents = getFileContents();
+
+				String fileName = StringUtil.replace(
+					fileContents.getFileName(), CharPool.BACK_SLASH,
+					CharPool.SLASH);
+
+				if (fileName.contains("/test/") ||
+					fileName.contains("/testIntegration/")) {
+
+					continue;
+				}
 			}
 
 			if (_isAllowedChainingMethodCall(

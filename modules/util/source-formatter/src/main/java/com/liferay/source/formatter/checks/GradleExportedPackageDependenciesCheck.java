@@ -90,7 +90,9 @@ public class GradleExportedPackageDependenciesCheck extends BaseFileCheck {
 		for (String line : StringUtil.splitLines(dependencies)) {
 			String dependencyName = _getDependencyName(line);
 
-			if (Objects.isNull(dependencyName)) {
+			if (Objects.isNull(dependencyName) ||
+				line.contains("testCompile ")) {
+
 				sb.append(line);
 				sb.append("\n");
 			}

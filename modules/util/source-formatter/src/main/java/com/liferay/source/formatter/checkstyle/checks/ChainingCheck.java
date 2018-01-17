@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
@@ -69,6 +70,10 @@ public class ChainingCheck extends BaseCheck {
 				}
 			}
 
+			if (_isInsideAnonymousClassVariableDefinition(methodCallAST)) {
+				continue;
+			}
+
 			List<String> chainedMethodNames = _getChainedMethodNames(
 				methodCallAST);
 
@@ -80,13 +85,45 @@ public class ChainingCheck extends BaseCheck {
 				chainedMethodNames, "getClass", methodCallAST, detailAST);
 
 			if (chainedMethodNames.size() == 2) {
-				continue;
+				if (dotAST == null) {
+					continue;
+				}
+
+				String methodName1 = chainedMethodNames.get(0);
+				String methodName2 = chainedMethodNames.get(1);
+
+				if (methodName1.equals("concat") ||
+					methodName2.equals("concat")) {
+
+					continue;
+				}
+
+				if (methodName1.equals("getValue") &&
+					DetailASTUtil.hasParentWithTokenType(
+						detailAST, TokenTypes.ENUM_DEF)) {
+
+					continue;
+				}
+
+				FileContents fileContents = getFileContents();
+
+				String fileName = StringUtil.replace(
+					fileContents.getFileName(), CharPool.BACK_SLASH,
+					CharPool.SLASH);
+
+				if (fileName.contains("/test/") ||
+					fileName.contains("/testIntegration/")) {
+
+					continue;
+				}
 			}
 
 			if (_isAllowedChainingMethodCall(
 					detailAST, methodCallAST, chainedMethodNames)) {
 
-				_checkStyling(methodCallAST);
+				if (chainedMethodNames.size() > 2) {
+					_checkStyling(methodCallAST);
+				}
 
 				continue;
 			}
@@ -224,6 +261,34 @@ public class ChainingCheck extends BaseCheck {
 					return true;
 				}
 			}
+		}
+
+		return false;
+	}
+
+	private boolean _isInsideAnonymousClassVariableDefinition(
+		DetailAST detailAST) {
+
+		DetailAST parentAST = detailAST.getParent();
+
+		while (parentAST != null) {
+			if ((parentAST.getType() == TokenTypes.CTOR_DEF) ||
+				(parentAST.getType() == TokenTypes.METHOD_DEF)) {
+
+				return false;
+			}
+
+			if (parentAST.getType() == TokenTypes.VARIABLE_DEF) {
+				parentAST = parentAST.getParent();
+
+				if (parentAST.getType() == TokenTypes.OBJBLOCK) {
+					return true;
+				}
+
+				return false;
+			}
+
+			parentAST = parentAST.getParent();
 		}
 
 		return false;

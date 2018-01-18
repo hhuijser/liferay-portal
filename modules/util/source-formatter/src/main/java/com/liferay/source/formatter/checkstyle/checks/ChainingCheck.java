@@ -135,6 +135,12 @@ public class ChainingCheck extends BaseCheck {
 				methodCallAST);
 
 			if (chainedMethodNames.size() == 1) {
+				DetailAST parentAST = methodCallAST.getParent();
+
+				if (parentAST.getType() == TokenTypes.DOT) {
+					log(methodCallAST.getLineNo(), "qwer");
+				}
+
 				continue;
 			}
 

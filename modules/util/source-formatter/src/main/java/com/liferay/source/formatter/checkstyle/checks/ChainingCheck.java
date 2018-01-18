@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.debug.SFDebugHelper;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
@@ -50,6 +51,60 @@ public class ChainingCheck extends BaseCheck {
 		_allowedVariableTypeNames = StringUtil.split(allowedVariableTypeNames);
 	}
 
+	private DetailAST _getOuterMethodCallAST(DetailAST detailAST) {
+		while (true) {
+			if ((detailAST.getType() != TokenTypes.DOT) &&
+				(detailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+				return null;
+			}
+
+			DetailAST parentAST = detailAST.getParent();
+
+			if ((detailAST.getType() == TokenTypes.METHOD_CALL) &&
+				(parentAST.getType() != TokenTypes.DOT)) {
+
+				break;
+			}
+
+			detailAST = parentAST;
+		}
+
+		while (true) {
+			DetailAST parentAST = detailAST.getParent();
+
+			if (parentAST == null) {
+				return null;
+			}
+
+			if (parentAST.getType() == TokenTypes.METHOD_CALL) {
+				detailAST = parentAST;
+
+				break;
+			}
+
+			detailAST = parentAST;
+		}
+
+		while (true) {
+			DetailAST childAST = detailAST.getFirstChild();
+
+			if ((detailAST.getType() != TokenTypes.DOT) &&
+				(detailAST.getType() != TokenTypes.METHOD_CALL)) {
+
+				return null;
+			}
+
+			if ((detailAST.getType() == TokenTypes.DOT) &&
+				(childAST.getType() != TokenTypes.METHOD_CALL)) {
+
+				return detailAST.getParent();
+			}
+
+			detailAST = childAST;
+		}
+	}
+
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
 		List<DetailAST> methodCallASTList = DetailASTUtil.getAllChildTokens(
@@ -69,6 +124,8 @@ public class ChainingCheck extends BaseCheck {
 					continue;
 				}
 			}
+
+			//SFDebugHelper.printStructure(methodCallAST);
 
 			if (_isInsideAnonymousClassVariableDefinition(methodCallAST)) {
 				continue;
@@ -261,6 +318,14 @@ public class ChainingCheck extends BaseCheck {
 					return true;
 				}
 			}
+		}
+
+		DetailAST outerMethodCallAST = _getOuterMethodCallAST(methodCallAST);
+
+		if (outerMethodCallAST != null) {
+			return _isAllowedChainingMethodCall(
+				detailAST, outerMethodCallAST,
+				_getChainedMethodNames(outerMethodCallAST));
 		}
 
 		return false;

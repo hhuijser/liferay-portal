@@ -125,8 +125,6 @@ public class ChainingCheck extends BaseCheck {
 				}
 			}
 
-			//SFDebugHelper.printStructure(methodCallAST);
-
 			if (_isInsideAnonymousClassVariableDefinition(methodCallAST)) {
 				continue;
 			}
@@ -134,38 +132,41 @@ public class ChainingCheck extends BaseCheck {
 			List<String> chainedMethodNames = _getChainedMethodNames(
 				methodCallAST);
 
-			if (chainedMethodNames.size() == 1) {
-				DetailAST parentAST = methodCallAST.getParent();
+			int count = chainedMethodNames.size();
 
-				if (parentAST.getType() == TokenTypes.DOT) {
-					log(methodCallAST.getLineNo(), "qwer");
-				}
-
-				continue;
-			}
-
-			_checkMethodName(
-				chainedMethodNames, "getClass", methodCallAST, detailAST);
-
-			if (chainedMethodNames.size() == 2) {
+			if (count <= 2) {
 				if (dotAST == null) {
 					continue;
 				}
 
-				String methodName1 = chainedMethodNames.get(0);
-				String methodName2 = chainedMethodNames.get(1);
+				if (count == 1) {
+					DetailAST parentAST = methodCallAST.getParent();
 
-				if (methodName1.equals("concat") ||
-					methodName2.equals("concat")) {
-
-					continue;
+					if (parentAST.getType() != TokenTypes.DOT) {
+						continue;
+					}
 				}
+
+				_checkMethodName(
+					chainedMethodNames, "getClass", methodCallAST, detailAST);
+
+				String methodName1 = chainedMethodNames.get(0);
 
 				if (methodName1.equals("getValue") &&
 					DetailASTUtil.hasParentWithTokenType(
 						detailAST, TokenTypes.ENUM_DEF)) {
 
 					continue;
+				}
+
+				if (count == 2) {
+					String methodName2 = chainedMethodNames.get(1);
+
+					if (methodName1.equals("concat") ||
+						methodName2.equals("concat")) {
+
+						continue;
+					}
 				}
 
 				FileContents fileContents = getFileContents();
@@ -184,7 +185,7 @@ public class ChainingCheck extends BaseCheck {
 			if (_isAllowedChainingMethodCall(
 					detailAST, methodCallAST, chainedMethodNames)) {
 
-				if (chainedMethodNames.size() > 2) {
+				if (count > 2) {
 					_checkStyling(methodCallAST);
 				}
 
@@ -200,7 +201,7 @@ public class ChainingCheck extends BaseCheck {
 				continue;
 			}
 
-			if ((chainedMethodNames.size() == 3) && (concatsCount == 2)) {
+			if ((count == 3) && (concatsCount == 2)) {
 				continue;
 			}
 

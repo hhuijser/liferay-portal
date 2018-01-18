@@ -14,11 +14,6 @@ project(":sample-hello") {
 	version = "1.0.2"
 }
 
-subprojects {
-	apply plugin: "eclipse"
-	apply plugin: "java"
-}
-
 runGradleTest {
 	dependsOn appJavadoc
 
@@ -29,4 +24,9 @@ runGradleTest {
 			assert generatedFile.exists()
 		}
 	}
+}
+
+subprojects {
+	apply plugin: "eclipse"
+	apply plugin: "java"
 }

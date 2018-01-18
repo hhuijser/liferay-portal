@@ -140,6 +140,10 @@ public class ChainingCheck extends BaseCheck {
 				}
 
 				if (count == 1) {
+					if (true) {
+						continue;
+					}
+
 					DetailAST parentAST = methodCallAST.getParent();
 
 					if (parentAST.getType() != TokenTypes.DOT) {
@@ -152,7 +156,8 @@ public class ChainingCheck extends BaseCheck {
 
 				String methodName1 = chainedMethodNames.get(0);
 
-				if (methodName1.equals("getValue") &&
+				if ((methodName1.equals("getParamValue") ||
+					 methodName1.equals("getValue")) &&
 					DetailASTUtil.hasParentWithTokenType(
 						detailAST, TokenTypes.ENUM_DEF)) {
 

@@ -33,4 +33,6 @@ public interface UADEntityAggregator {
 
 	public UADEntity getUADEntity(String uadEntityId) throws PortalException;
 
+	public String getUADEntitySetName();
+
 }

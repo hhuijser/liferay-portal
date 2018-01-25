@@ -6,6 +6,7 @@ import Soy from 'metal-soy';
 import './contextual_sidebar/ContextualSidebar.es';
 import './LayoutPageTemplateFragment.es';
 import './LayoutPageTemplateFragmentCollection.es';
+import './LayoutPageTemplateSidebarAddedFragment.es';
 import templates from './LayoutPageTemplateEditor.soy';
 
 /**
@@ -134,6 +135,11 @@ const SIDEBAR_TABS = [
 		name: Liferay.Language.get('fragments'),
 		visible: true,
 	},
+	{
+		id: 'added',
+		name: Liferay.Language.get('added'),
+		visible: true,
+	},
 ];
 
 /**
@@ -189,19 +195,10 @@ LayoutPageTemplateEditor.STATE = {
 	).value([]),
 
 	/**
-	 * URL for getting a fragment entry information.
-	 * @default undefined
-	 * @instance
-	 * @memberOf LayoutPageTemplateEditor
-	 * @type {!string}
-	 */
-	fragmentEntryURL: Config.string().required(),
-
-	/**
 	 * Layout page template entry id used for storing changes.
 	 * @default undefined
 	 * @instance
-	 * @memberOf PageTemplateEditor
+	 * @memberOf LayoutPageTemplateEditor
 	 * @type {!string}
 	 */
 	layoutPageTemplateEntryId: Config.string().required(),
@@ -214,6 +211,15 @@ LayoutPageTemplateEditor.STATE = {
 	 * @type {!string}
 	 */
 	portletNamespace: Config.string().required(),
+
+	/**
+	 * URL for getting a fragment content.
+	 * @default undefined
+	 * @instance
+	 * @memberOf LayoutPageTemplateEditor
+	 * @type {!string}
+	 */
+	renderFragmentEntryURL: Config.string().required(),
 
 	/**
 	 * Path of the available icons.
@@ -249,7 +255,7 @@ LayoutPageTemplateEditor.STATE = {
 	 * When true, it indicates that are changes pending to save.
 	 * @default false
 	 * @instance
-	 * @memberOf PageTemplateEditor
+	 * @memberOf LayoutPageTemplateEditor
 	 * @private
 	 * @type {bool}
 	 */
@@ -261,7 +267,7 @@ LayoutPageTemplateEditor.STATE = {
 	 * Last data when the autosave has been executed.
 	 * @default ''
 	 * @instance
-	 * @memberOf PageTemplateEditor
+	 * @memberOf LayoutPageTemplateEditor
 	 * @private
 	 * @type {string}
 	 */

@@ -14,18 +14,14 @@
 
 package com.liferay.portal.configuration.settings.internal.test;
 
-import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClassDefinition.Scope;
 import com.liferay.portal.configuration.metatype.util.ConfigurationScopedPidUtil;
 import com.liferay.portal.configuration.settings.internal.constants.SettingsLocatorTestConstants;
 import com.liferay.portal.kernel.model.PortletPreferences;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator;
-import com.liferay.portal.kernel.settings.Settings;
-import com.liferay.portal.kernel.settings.SettingsLocator;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.PortletKeys;
 
 import java.util.ArrayList;
@@ -34,22 +30,17 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 /**
  * @author Drew Brokke
  */
-@RunWith(Arquillian.class)
 public class CompanyServiceSettingsLocatorTest
 	extends BaseSettingsLocatorTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		_companyId = TestPropsValues.getCompanyId();
-		_portletId = RandomTestUtil.randomString();
-
-		_settingsLocator = new CompanyServiceSettingsLocator(
-			_companyId, _portletId,
+		settingsLocator = new CompanyServiceSettingsLocator(
+			companyId, portletId,
 			SettingsLocatorTestConstants.TEST_CONFIGURATION_PID);
 	}
 
@@ -57,53 +48,33 @@ public class CompanyServiceSettingsLocatorTest
 	public void testReturnsCompanyScopedValues() throws Exception {
 		Assert.assertEquals(
 			SettingsLocatorTestConstants.TEST_DEFAULT_VALUE,
-			getValueFromSettings());
+			getSettingsValue());
 
 		String scopedPid =
 			ConfigurationScopedPidUtil.buildConfigurationScopedPid(
 				SettingsLocatorTestConstants.TEST_CONFIGURATION_PID,
-				Scope.COMPANY, String.valueOf(_companyId));
+				Scope.COMPANY, String.valueOf(companyId));
 
 		String companyConfigurationValue = saveConfiguration(scopedPid);
 
-		Assert.assertEquals(companyConfigurationValue, getValueFromSettings());
+		Assert.assertEquals(companyConfigurationValue, getSettingsValue());
 
 		String companyPortletPreferencesValue = RandomTestUtil.randomString();
 
 		_portletPreferencesList.add(
 			PortletPreferencesLocalServiceUtil.addPortletPreferences(
-				_companyId, _companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY, 0,
-				_portletId, null,
+				companyId, companyId, PortletKeys.PREFS_OWNER_TYPE_COMPANY, 0,
+				portletId, null,
 				String.format(
-					_PORTLET_PREFERENCE_FORMAT,
+					SettingsLocatorTestConstants.PORTLET_PREFERENCES_FORMAT,
 					SettingsLocatorTestConstants.TEST_KEY,
 					companyPortletPreferencesValue)));
 
-		Assert.assertEquals(
-			companyPortletPreferencesValue, getValueFromSettings());
+		Assert.assertEquals(companyPortletPreferencesValue, getSettingsValue());
 	}
-
-	protected String getValueFromSettings() throws Exception {
-		if (_settingsLocator == null) {
-			return null;
-		}
-
-		Settings settings = _settingsLocator.getSettings();
-
-		return settings.getValue(SettingsLocatorTestConstants.TEST_KEY, null);
-	}
-
-	private static final String _PORTLET_PREFERENCE_FORMAT =
-		"<portlet-preferences><preference><name>%s</name><value>%s</value>" +
-			"</preference></portlet-preferences>";
-
-	private long _companyId;
-	private String _portletId;
 
 	@DeleteAfterTestRun
 	private final List<PortletPreferences> _portletPreferencesList =
 		new ArrayList<>();
-
-	private SettingsLocator _settingsLocator;
 
 }

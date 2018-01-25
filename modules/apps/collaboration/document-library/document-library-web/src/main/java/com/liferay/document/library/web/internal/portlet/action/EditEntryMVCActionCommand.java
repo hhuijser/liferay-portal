@@ -100,32 +100,32 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		long[] fileShortcutIds = ParamUtil.getLongValues(
 			actionRequest, "rowIdsDLFileShortcut");
 
+		List<Long> fileEntryIdsList = new ArrayList<>();
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
 
 		for (long fileEntryId : fileEntryIds) {
+			fileEntryIdsList.add(fileEntryId);
+
 			_dlAppService.checkInFileEntry(
 				fileEntryId, false, StringPool.BLANK, serviceContext);
 		}
 
-		for (long fileShortcutId : fileShortcutIds)
-		{
-			boolean flag = true;
+		for (long fileShortcutId : fileShortcutIds) {
 			FileShortcut fileShortcut = _dlAppService.getFileShortcut(
 				fileShortcutId);
 
 			long toFileEntryId = fileShortcut.getToFileEntryId();
 
-			for (long fileEntryId : fileEntryIds) {
-				if (toFileEntryId == fileEntryId) {
-					flag = false;
-				}
+			if (!fileEntryIdsList.isEmpty() &&
+				fileEntryIdsList.contains(toFileEntryId)) {
+
+				continue;
 			}
 
-			if (flag == true) {
-				_dlAppService.checkInFileEntry(
-					toFileEntryId, false, StringPool.BLANK, serviceContext);
-			}
+			_dlAppService.checkInFileEntry(
+				toFileEntryId, false, StringPool.BLANK, serviceContext);
 		}
 	}
 
@@ -138,31 +138,30 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		long[] fileShortcutIds = ParamUtil.getLongValues(
 			actionRequest, "rowIdsDLFileShortcut");
 
+		List<Long> fileEntryIdsList = new ArrayList<>();
+
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			actionRequest);
 
 		for (long fileEntryId : fileEntryIds) {
+			fileEntryIdsList.add(fileEntryId);
+
 			_dlAppService.checkOutFileEntry(fileEntryId, serviceContext);
 		}
 
-		for (long fileShortcutId : fileShortcutIds)
-		{
-			boolean flag = true;
-
+		for (long fileShortcutId : fileShortcutIds) {
 			FileShortcut fileShortcut = _dlAppService.getFileShortcut(
 				fileShortcutId);
 
 			long toFileEntryId = fileShortcut.getToFileEntryId();
 
-			for (long fileEntryId : fileEntryIds) {
-				if (toFileEntryId == fileEntryId) {
-					flag = false;
-				}
+			if (!fileEntryIdsList.isEmpty() &&
+				fileEntryIdsList.contains(toFileEntryId)) {
+
+				continue;
 			}
 
-			if (flag == true) {
-				_dlAppService.checkOutFileEntry(toFileEntryId, serviceContext);
-			}
+			_dlAppService.checkOutFileEntry(toFileEntryId, serviceContext);
 		}
 	}
 

@@ -23,6 +23,8 @@ import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.maven.artifact.versioning.ComparableVersion;
+
 /**
  * @author Hugo Huijser
  */
@@ -81,9 +83,9 @@ public class BNDSettings {
 		return _languageProperties;
 	}
 
-	public String getReleaseVersion() {
-		if (_releaseVersion != null) {
-			return _releaseVersion;
+	public ComparableVersion getReleaseComparableVersion() {
+		if (_releaseComparableVersion != null) {
+			return _releaseComparableVersion;
 		}
 
 		Matcher matcher = _releaseVersionPattern.matcher(_content);
@@ -92,9 +94,15 @@ public class BNDSettings {
 			return null;
 		}
 
-		_releaseVersion = matcher.group(1);
+		String releaseVersion = matcher.group(1);
 
-		return _releaseVersion;
+		int pos = releaseVersion.lastIndexOf(CharPool.PERIOD);
+
+		releaseVersion = releaseVersion.substring(0, pos) + ".0";
+
+		_releaseComparableVersion = new ComparableVersion(releaseVersion);
+
+		return _releaseComparableVersion;
 	}
 
 	private final String _content;
@@ -102,7 +110,7 @@ public class BNDSettings {
 		"\\scontent=(.*?)(,\\\\|\n|$)");
 	private final String _fileName;
 	private Properties _languageProperties;
-	private String _releaseVersion;
+	private ComparableVersion _releaseComparableVersion;
 	private final Pattern _releaseVersionPattern = Pattern.compile(
 		"Bundle-Version: (.*)(\n|\\Z)");
 

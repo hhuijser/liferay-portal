@@ -28,23 +28,23 @@ portletURL.setParameter("navigation", navigation);
 <clay:navigation-bar
 	inverted="<%= true %>"
 	items="<%=
-	new JSPNavigationItemList(pageContext) {
-		{
-			add(
-			navigationItem -> {
-				navigationItem.setActive(navigation.equals("entries"));
-				navigationItem.setHref(renderResponse.createRenderURL());
-				navigationItem.setLabel(LanguageUtil.get(request, "entries"));
-			});
+		new JSPNavigationItemList(pageContext) {
+			{
+				add(
+				navigationItem -> {
+					navigationItem.setActive(navigation.equals("entries"));
+					navigationItem.setHref(renderResponse.createRenderURL());
+					navigationItem.setLabel(LanguageUtil.get(request, "entries"));
+				});
 
-			add(
-			navigationItem -> {
-				navigationItem.setActive(navigation.equals("images"));
-				navigationItem.setHref(renderResponse.createRenderURL(), "navigation", "images");
-				navigationItem.setLabel(LanguageUtil.get(request, "images"));
-			});
+				add(
+				navigationItem -> {
+					navigationItem.setActive(navigation.equals("images"));
+					navigationItem.setHref(renderResponse.createRenderURL(), "navigation", "images");
+					navigationItem.setLabel(LanguageUtil.get(request, "images"));
+				});
+			}
 		}
-	}
 	%>"
 />
 

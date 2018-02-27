@@ -8,6 +8,7 @@ AUI.add(
 		var CalendarWorkflow = Liferay.CalendarWorkflow;
 
 		var isObject = Lang.isObject;
+		var isString = Lang.isString;
 		var isValue = Lang.isValue;
 
 		var toInt = function(value) {
@@ -77,6 +78,13 @@ AUI.add(
 				EXTENDS: A.SchedulerEventRecorder,
 
 				NAME: 'scheduler-event-recorder',
+
+				ATTRS: {
+					dateFormat: {
+						validator: isString,
+						value: Liferay.Language.get('a-b-d')
+					},
+				},
 
 				prototype: {
 					initializer: function() {

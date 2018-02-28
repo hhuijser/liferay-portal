@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checkstyle.util;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.source.formatter.SourceFormatterArgs;
+import com.liferay.source.formatter.SourceFormatterMessage;
 import com.liferay.source.formatter.checkstyle.Checker;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
@@ -29,6 +30,7 @@ import java.io.File;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.xml.sax.InputSource;
 
@@ -90,9 +92,10 @@ public class CheckstyleUtil {
 		return defaultConfiguration;
 	}
 
-	public static Checker getChecker(
-			Configuration configuration, List<File> suppressionsFiles,
-			SourceFormatterArgs sourceFormatterArgs)
+	public static synchronized Set<SourceFormatterMessage>
+			getSourceFormatterMessages(
+				Configuration configuration, List<File> suppressionsFiles,
+				List<File> checkFiles, SourceFormatterArgs sourceFormatterArgs)
 		throws Exception {
 
 		Checker checker = new Checker();
@@ -116,7 +119,9 @@ public class CheckstyleUtil {
 		checker.addListener(checkstyleLogger);
 		checker.setCheckstyleLogger(checkstyleLogger);
 
-		return checker;
+		checker.process(checkFiles);
+
+		return checker.getSourceFormatterMessages();
 	}
 
 	public static List<String> getCheckNames(Configuration configuration) {

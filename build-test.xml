@@ -155,6 +155,8 @@ module.framework.properties.osgi.console=11312</echo>
 			<if>
 				<not>
 					<or>
+						<equals arg1="${database.type}" arg2="auroramysql" />
+						<equals arg1="${database.type}" arg2="aurorapostgresql" />
 						<equals arg1="${database.type}" arg2="db2" />
 						<equals arg1="${database.type}" arg2="hypersonic" />
 						<equals arg1="${database.type}" arg2="mariadb" />
@@ -166,7 +168,7 @@ module.framework.properties.osgi.console=11312</echo>
 					</or>
 				</not>
 				<then>
-					<fail>Please set "database.type" to one of the following:${line.separator}db2, hypersonic, mariadb, mysql, oracle, postgresql, sqlserver, sybase.</fail>
+					<fail>Please set "database.type" to one of the following:${line.separator}auroramysql, aurorapostgresql, db2, hypersonic, mariadb, mysql, oracle, postgresql, sqlserver, sybase.</fail>
 				</then>
 			</if>
 		</sequential>
@@ -908,39 +910,6 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 		</sequential>
 	</macrodef>
 
-	<macrodef name="get-test-namespace">
-		<sequential>
-			<fail message="Please set the property ${test.class}." unless="test.class" />
-
-			<var name="test.namespace" unset="true" />
-
-			<beanshell>
-				<![CDATA[
-					import java.util.regex.Matcher;
-					import java.util.regex.Pattern;
-
-					String testClass = project.getProperty("test.class");
-
-					Pattern pattern = Pattern.compile("((?<namespace>\\w+)\\.)?(?<className>\\w+)(#(?<commandName>(\\w+(-\\w+)*|\\$\\{\\w+\\}|\\w+)*))?");
-
-					Matcher matcher = pattern.matcher(testClass);
-
-					if (!matcher.find()) {
-						throw new Exception("Invalid test class name: " + testClass);
-					}
-
-					String testNamespace = matcher.group("namespace");
-
-					if (testNamespace == null) {
-						testNamespace = project.getProperty("test.poshi.runner.default.namespace");
-					}
-
-					project.setProperty("test.namespace", testNamespace);
-				]]>
-			</beanshell>
-		</sequential>
-	</macrodef>
-
 	<macrodef name="get-test-method-name">
 		<sequential>
 			<fail message="Please set the property ${test.class}." unless="test.class" />
@@ -972,6 +941,39 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 
 						project.setProperty("test.method.name", testMethodName);
 					}
+				]]>
+			</beanshell>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="get-test-namespace">
+		<sequential>
+			<fail message="Please set the property ${test.class}." unless="test.class" />
+
+			<var name="test.namespace" unset="true" />
+
+			<beanshell>
+				<![CDATA[
+					import java.util.regex.Matcher;
+					import java.util.regex.Pattern;
+
+					String testClass = project.getProperty("test.class");
+
+					Pattern pattern = Pattern.compile("((?<namespace>\\w+)\\.)?(?<className>\\w+)(#(?<commandName>(\\w+(-\\w+)*|\\$\\{\\w+\\}|\\w+)*))?");
+
+					Matcher matcher = pattern.matcher(testClass);
+
+					if (!matcher.find()) {
+						throw new Exception("Invalid test class name: " + testClass);
+					}
+
+					String testNamespace = matcher.group("namespace");
+
+					if (testNamespace == null) {
+						testNamespace = project.getProperty("test.poshi.runner.default.namespace");
+					}
+
+					project.setProperty("test.namespace", testNamespace);
 				]]>
 			</beanshell>
 		</sequential>
@@ -1106,8 +1108,8 @@ jdbc.counter.connectionProperties=oracle.jdbc.ReadTimeout=0;oracle.net.CONNECT_T
 						</then>
 					</if>
 
-					<get-test-namespace />
 					<get-test-method-name />
+					<get-test-namespace />
 					<get-test-simple-class-name />
 
 					<beanshell>

@@ -110,6 +110,25 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 					"checkstyle-suppressions.xml", getAllFileNames(),
 					getSourceFormatterExcludes(), portalSource, subrepository);
 
+			for (File suppressionsFile : suppressionsFiles) {
+				String content = FileUtil.read(suppressionsFile);
+
+				if (!content.contains(_CHECKSTYLE_SRC_DIR)) {
+					continue;
+				}
+
+				File tmpSuppressionsFile = new File(
+					suppressionsFile.getParentFile() +
+						"/tmp/checkstyle-suppressions.xml");
+
+				String tmpContent = content.replaceAll(
+					_CHECKSTYLE_SRC_DIR, _CHECKSTYLE_TMP_DIR);
+
+				FileUtil.write(tmpSuppressionsFile, tmpContent);
+
+				suppressionsFiles.add(tmpSuppressionsFile);
+			}
+
 			_suppressionsFiles = suppressionsFiles;
 
 			if (sourceFormatterArgs.isShowDebugInformation()) {

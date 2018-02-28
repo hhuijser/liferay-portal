@@ -249,6 +249,7 @@ public class SourceFormatter {
 
 		_progressStatusThread.start();
 
+		_sourceProcessors.add(new AlloyMVCSourceProcessor());
 		_sourceProcessors.add(new BNDSourceProcessor());
 		_sourceProcessors.add(new CodeownersSourceProcessor());
 		_sourceProcessors.add(new CQLSourceProcessor());

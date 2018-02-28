@@ -23,7 +23,10 @@ import com.liferay.source.formatter.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import com.puppycrawl.tools.checkstyle.api.AuditEvent;
+import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+import com.puppycrawl.tools.checkstyle.api.Filter;
 import com.puppycrawl.tools.checkstyle.filters.SuppressionsLoader;
 
 import java.io.File;
@@ -131,6 +134,18 @@ public class CheckstyleUtil {
 				List<File> checkFiles, SourceFormatterArgs sourceFormatterArgs)
 		throws Exception {
 
+		return getSourceFormatterMessages(
+			configuration, null, suppressionsFiles, checkFiles,
+			sourceFormatterArgs);
+	}
+
+	public static synchronized Set<SourceFormatterMessage>
+			getSourceFormatterMessages(
+				Configuration configuration, List<String> enabledCheckstyles,
+				List<File> suppressionsFiles, List<File> checkFiles,
+				SourceFormatterArgs sourceFormatterArgs)
+		throws Exception {
+
 		Checker checker = new Checker();
 
 		ClassLoader classLoader = CheckstyleUtil.class.getClassLoader();
@@ -152,9 +167,36 @@ public class CheckstyleUtil {
 		checker.addListener(checkstyleLogger);
 		checker.setCheckstyleLogger(checkstyleLogger);
 
+		if (enabledCheckstyles != null) {
+			checker.addFilter(new CheckstyleFilter(enabledCheckstyles));
+		}
+
 		checker.process(checkFiles);
 
 		return checker.getSourceFormatterMessages();
+	}
+
+	private static class CheckstyleFilter
+		extends AutomaticBean implements Filter {
+
+		public CheckstyleFilter(List<String> enabledCheckstyles) {
+			_enabledCheckstyles = enabledCheckstyles;
+		}
+
+		public boolean accept(AuditEvent auditEvent) {
+			String sourceName = auditEvent.getSourceName();
+
+			for (String checkstyle : _enabledCheckstyles) {
+				if (sourceName.equals(checkstyle)) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		private final List<String> _enabledCheckstyles;
+
 	}
 
 }

@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.CheckType;
@@ -86,18 +87,6 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 				"checkstyle.xml");
 
 			configuration = CheckstyleUtil.addAttribute(
-				configuration, "maxLineLength",
-				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
-				"com.liferay.source.formatter.checkstyle.checks.Append");
-			configuration = CheckstyleUtil.addAttribute(
-				configuration, "maxLineLength",
-				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
-				"com.liferay.source.formatter.checkstyle.checks.Concat");
-			configuration = CheckstyleUtil.addAttribute(
-				configuration, "maxLineLength",
-				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
-				"com.liferay.source.formatter.checkstyle.checks.PlusStatement");
-			configuration = CheckstyleUtil.addAttribute(
 				configuration, "showDebugInformation",
 				String.valueOf(sourceFormatterArgs.isShowDebugInformation()),
 				"com.liferay.*");
@@ -140,7 +129,8 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 
 		Set<SourceFormatterMessage> sourceFormatterMessages =
 			CheckstyleUtil.getSourceFormatterMessages(
-				_configuration, _suppressionsFiles, files, sourceFormatterArgs);
+				_configuration, ListUtil.toList(_ENABLED_CHECKSTYLES),
+				_suppressionsFiles, files, sourceFormatterArgs);
 
 		_sourceFormatterMessages.addAll(sourceFormatterMessages);
 	}
@@ -189,6 +179,10 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 
 	private static final String _CHECKSTYLE_TMP_DIR =
 		"/tmp/main/resources/alloy_mvc/jsp/";
+
+	private static final String[] _ENABLED_CHECKSTYLES = {
+		"com.liferay.source.formatter.checkstyle.checks.MissingEmptyLineCheck"
+	};
 
 	private static final String[] _INCLUDES =
 		{"**/src/main/resources/alloy_mvc/jsp/**/*.jspf"};

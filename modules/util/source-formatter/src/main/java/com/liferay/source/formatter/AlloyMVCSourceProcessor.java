@@ -14,9 +14,11 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -48,7 +50,7 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 			File file, String fileName, String absolutePath, String content)
 		throws Exception {
 
-		_processCheckstyle(file);
+		_processCheckstyle(absolutePath, content);
 	}
 
 	@Override
@@ -60,22 +62,17 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 		for (SourceFormatterMessage sourceFormatterMessage :
 				_sourceFormatterMessages) {
 
-			processMessage(
-				sourceFormatterMessage.getFileName(), sourceFormatterMessage);
+			String s = sourceFormatterMessage.getFileName();
 
-			printError(
-				sourceFormatterMessage.getFileName(),
-				sourceFormatterMessage.toString());
-		}
-	}
+			s = s.replace(_CHECKSTYLE_TMP_DIR, _CHECKSTYLE_SRC_DIR);
 
-	private synchronized void _processCheckstyle(File file) throws Exception {
-		_ungeneratedFiles.add(file);
+			String fileName = s.substring(0, s.lastIndexOf(".")) + ".jspf";
 
-		if (_ungeneratedFiles.size() == _CHECKSTYLE_BATCH_SIZE) {
-			_processCheckstyle(_ungeneratedFiles);
+			sourceFormatterMessage.setFileName(fileName);
 
-			_ungeneratedFiles.clear();
+			processMessage(fileName, sourceFormatterMessage);
+
+			printError(fileName, sourceFormatterMessage.toString());
 		}
 	}
 
@@ -129,7 +126,50 @@ public class AlloyMVCSourceProcessor extends BaseSourceProcessor {
 		_sourceFormatterMessages.addAll(sourceFormatterMessages);
 	}
 
+	private synchronized void _processCheckstyle(
+			String absolutePath, String content)
+		throws Exception {
+
+		if (!content.matches("(?s)<%--.*--%>(\\s*<%@[^\\n]*)*\\s*<%!\\s.*")) {
+			return;
+		}
+
+		if (StringUtil.count(content, "<%!") != 1) {
+			return;
+		}
+
+		if (!content.endsWith("%>")) {
+			return;
+		}
+
+		String tmpPath = absolutePath.replace(
+			_CHECKSTYLE_SRC_DIR, _CHECKSTYLE_TMP_DIR);
+
+		File tmpFile = new File(
+			tmpPath.substring(0, tmpPath.lastIndexOf(".")) + ".java");
+
+		String tmpContent = StringUtil.replace(
+			content, new String[] {"<%--", "--%>", "<%@", "<%!", "%>"},
+			new String[] {"//<%--", "//--%>", "//<%@", "//<%!", "//%>"});
+
+		FileUtil.write(tmpFile, tmpContent);
+
+		_ungeneratedFiles.add(tmpFile);
+
+		if (_ungeneratedFiles.size() == _CHECKSTYLE_BATCH_SIZE) {
+			_processCheckstyle(_ungeneratedFiles);
+
+			_ungeneratedFiles.clear();
+		}
+	}
+
 	private static final int _CHECKSTYLE_BATCH_SIZE = 1000;
+
+	private static final String _CHECKSTYLE_SRC_DIR =
+		"/src/main/resources/alloy_mvc/jsp/";
+
+	private static final String _CHECKSTYLE_TMP_DIR =
+		"/tmp/main/resources/alloy_mvc/jsp/";
 
 	private static final String[] _INCLUDES =
 		{"**/src/main/resources/alloy_mvc/jsp/**/*.jspf"};

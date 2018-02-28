@@ -94,6 +94,30 @@ public class SourceFormatterMessage
 		return _message;
 	}
 
+	public void setCheckName(String checkName) {
+		_checkName = checkName;
+	}
+
+	public void setCheckType(String checkType) {
+		_checkType = checkType;
+	}
+
+	public void setFileName(String fileName) {
+		_fileName = fileName;
+	}
+
+	public void setLineCount(int lineCount) {
+		_lineCount = lineCount;
+	}
+
+	public void setMarkdownFilePath(String markdownFileName) {
+		_markdownFileName = markdownFileName;
+	}
+
+	public void setMessage(String message) {
+		_message = message;
+	}
+
 	@Override
 	public String toString() {
 		StringBundler sb = new StringBundler(14);
@@ -134,11 +158,11 @@ public class SourceFormatterMessage
 		"https://github.com/liferay/liferay-portal/blob/master/modules/util" +
 			"/source-formatter/documentation/";
 
-	private final String _checkName;
-	private final String _checkType;
-	private final String _fileName;
-	private final int _lineCount;
-	private final String _markdownFileName;
-	private final String _message;
+	private String _checkName;
+	private String _checkType;
+	private String _fileName;
+	private int _lineCount;
+	private String _markdownFileName;
+	private String _message;
 
 }

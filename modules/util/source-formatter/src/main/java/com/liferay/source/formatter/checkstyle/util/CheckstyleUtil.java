@@ -92,38 +92,6 @@ public class CheckstyleUtil {
 		return defaultConfiguration;
 	}
 
-	public static synchronized Set<SourceFormatterMessage>
-			getSourceFormatterMessages(
-				Configuration configuration, List<File> suppressionsFiles,
-				List<File> checkFiles, SourceFormatterArgs sourceFormatterArgs)
-		throws Exception {
-
-		Checker checker = new Checker();
-
-		ClassLoader classLoader = CheckstyleUtil.class.getClassLoader();
-
-		checker.setModuleClassLoader(classLoader);
-
-		for (File suppressionsFile : suppressionsFiles) {
-			checker.addFilter(
-				SuppressionsLoader.loadSuppressions(
-					suppressionsFile.getAbsolutePath()));
-		}
-
-		checker.configure(configuration);
-
-		CheckstyleLogger checkstyleLogger = new CheckstyleLogger(
-			new UnsyncByteArrayOutputStream(), true,
-			sourceFormatterArgs.getBaseDirName());
-
-		checker.addListener(checkstyleLogger);
-		checker.setCheckstyleLogger(checkstyleLogger);
-
-		checker.process(checkFiles);
-
-		return checker.getSourceFormatterMessages();
-	}
-
 	public static List<String> getCheckNames(Configuration configuration) {
 		List<String> checkNames = new ArrayList<>();
 
@@ -155,6 +123,38 @@ public class CheckstyleUtil {
 			new InputSource(
 				classLoader.getResourceAsStream(configurationFileName)),
 			new PropertiesExpander(System.getProperties()), false);
+	}
+
+	public static synchronized Set<SourceFormatterMessage>
+			getSourceFormatterMessages(
+				Configuration configuration, List<File> suppressionsFiles,
+				List<File> checkFiles, SourceFormatterArgs sourceFormatterArgs)
+		throws Exception {
+
+		Checker checker = new Checker();
+
+		ClassLoader classLoader = CheckstyleUtil.class.getClassLoader();
+
+		checker.setModuleClassLoader(classLoader);
+
+		for (File suppressionsFile : suppressionsFiles) {
+			checker.addFilter(
+				SuppressionsLoader.loadSuppressions(
+					suppressionsFile.getAbsolutePath()));
+		}
+
+		checker.configure(configuration);
+
+		CheckstyleLogger checkstyleLogger = new CheckstyleLogger(
+			new UnsyncByteArrayOutputStream(), true,
+			sourceFormatterArgs.getBaseDirName());
+
+		checker.addListener(checkstyleLogger);
+		checker.setCheckstyleLogger(checkstyleLogger);
+
+		checker.process(checkFiles);
+
+		return checker.getSourceFormatterMessages();
 	}
 
 }

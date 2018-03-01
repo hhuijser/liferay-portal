@@ -35,12 +35,13 @@ boolean privateLayout = GetterUtil.getBoolean((String)request.getAttribute("life
 String rootLinkTemplate = (String)request.getAttribute("liferay-layout:layouts-tree:rootLinkTemplate");
 String rootNodeName = (String)request.getAttribute("liferay-layout:layouts-tree:rootNodeName");
 boolean saveState = GetterUtil.getBoolean((String)request.getAttribute("liferay-layout:layouts-tree:saveState"));
+String scriptPosition = (String)request.getAttribute("liferay-layout:layouts-tree:scriptPosition");
 boolean selectableTree = GetterUtil.getBoolean((String)request.getAttribute("liferay-layout:layouts-tree:selectableTree"));
 Long selPlid = (Long)request.getAttribute("liferay-layout:layouts-tree:selPlid");
 String treeId = (String)request.getAttribute("liferay-layout:layouts-tree:treeId");
 %>
 
-<aui:script use="<%= modules %>">
+<aui:script position="<%= scriptPosition %>" use="<%= modules %>">
 	var plugins = [];
 
 	<c:if test="<%= selectableTree %>">

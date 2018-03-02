@@ -95,49 +95,6 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		}
 	}
 
-	private synchronized void _processCheckstyle(
-			String absolutePath, String content)
-		throws Exception {
-
-		if (!absolutePath.contains(CheckstyleUtil.ALLOY_MVC_SRC_DIR)) {
-			return;
-		}
-
-		if (!absolutePath.endsWith(".jspf")) {
-			return;
-		}
-
-		if (!content.matches("(?s)<%--.*--%>(\\s*<%@[^\\n]*)*\\s*<%!\\s.*")) {
-			return;
-		}
-
-		if (StringUtil.count(content, "<%!") != 1) {
-			return;
-		}
-
-		if (!content.endsWith("\n%>")) {
-			return;
-		}
-
-		File tmpFile = new File(CheckstyleUtil.getJavaFileName(absolutePath));
-
-		String tmpContent = StringUtil.replace(
-			content, new String[] {"<%--", "--%>", "<%@", "<%!"},
-			new String[] {"//<%--", "//--%>", "//<%@", "//<%!"});
-
-		tmpContent = StringUtil.replaceLast(tmpContent, "\n%>", "");
-
-		FileUtil.write(tmpFile, tmpContent);
-
-		_ungeneratedFiles.add(tmpFile);
-
-		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
-			_processCheckstyle(_ungeneratedFiles);
-
-			_ungeneratedFiles.clear();
-		}
-	}
-
 	private void _processCheckstyle(List<File> files) throws Exception {
 		if (files.isEmpty()) {
 			return;
@@ -183,6 +140,49 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 				_configuration, _suppressionsFiles, files, sourceFormatterArgs);
 
 		_sourceFormatterMessages.addAll(sourceFormatterMessages);
+	}
+
+	private synchronized void _processCheckstyle(
+			String absolutePath, String content)
+		throws Exception {
+
+		if (!absolutePath.contains(CheckstyleUtil.ALLOY_MVC_SRC_DIR)) {
+			return;
+		}
+
+		if (!absolutePath.endsWith(".jspf")) {
+			return;
+		}
+
+		if (!content.matches("(?s)<%--.*--%>(\\s*<%@[^\\n]*)*\\s*<%!\\s.*")) {
+			return;
+		}
+
+		if (StringUtil.count(content, "<%!") != 1) {
+			return;
+		}
+
+		if (!content.endsWith("\n%>")) {
+			return;
+		}
+
+		File tmpFile = new File(CheckstyleUtil.getJavaFileName(absolutePath));
+
+		String tmpContent = StringUtil.replace(
+			content, new String[] {"<%--", "--%>", "<%@", "<%!"},
+			new String[] {"//<%--", "//--%>", "//<%@", "//<%!"});
+
+		tmpContent = StringUtil.replaceLast(tmpContent, "\n%>", "");
+
+		FileUtil.write(tmpFile, tmpContent);
+
+		_ungeneratedFiles.add(tmpFile);
+
+		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
+			_processCheckstyle(_ungeneratedFiles);
+
+			_ungeneratedFiles.clear();
+		}
 	}
 
 	private static final String[] _INCLUDES =

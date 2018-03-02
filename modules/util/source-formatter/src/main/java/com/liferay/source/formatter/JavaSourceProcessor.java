@@ -190,7 +190,7 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 	private synchronized void _processCheckstyle(File file) throws Exception {
 		_ungeneratedFiles.add(file);
 
-		if (_ungeneratedFiles.size() == _CHECKSTYLE_BATCH_SIZE) {
+		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
 			_processCheckstyle(_ungeneratedFiles);
 
 			_ungeneratedFiles.clear();
@@ -243,8 +243,6 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 		_sourceFormatterMessages.addAll(sourceFormatterMessages);
 	}
-
-	private static final int _CHECKSTYLE_BATCH_SIZE = 1000;
 
 	private static final String[] _INCLUDES = {"**/*.java"};
 

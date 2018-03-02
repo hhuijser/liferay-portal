@@ -110,6 +110,12 @@
 			<type>boolean</type>
 		</attribute>
 		<attribute>
+			<description>The position of the script rendered by this tag. See the documentation for the <![CDATA[<code>&lt;aui:script&gt;</code>]]> tag's <![CDATA[<code>&lt;position&gt;</code>]]> attribute for more details.</description>
+			<name>scriptPosition</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
 			<description>Whether to provide each node a checkbox so the pages can be selected.</description>
 			<name>selectableTree</name>
 			<required>false</required>

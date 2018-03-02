@@ -14,10 +14,22 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.util.CheckType;
+import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+
+import java.io.File;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Hugo Huijser
@@ -53,7 +65,159 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
+	@Override
+	protected File format(
+			File file, String fileName, String absolutePath, String content)
+		throws Exception {
+
+		file = super.format(file, fileName, absolutePath, content);
+
+		_processCheckstyle(absolutePath, content);
+
+		return file;
+	}
+
+	@Override
+	protected void postFormat() throws Exception {
+		_processCheckstyle(_ungeneratedFiles);
+
+		_ungeneratedFiles.clear();
+
+		for (SourceFormatterMessage sourceFormatterMessage :
+				_sourceFormatterMessages) {
+
+			processMessage(
+				sourceFormatterMessage.getFileName(), sourceFormatterMessage);
+
+			printError(
+				sourceFormatterMessage.getFileName(),
+				sourceFormatterMessage.toString());
+		}
+	}
+
+	private void _processCheckstyle(List<File> files) throws Exception {
+		if (files.isEmpty()) {
+			return;
+		}
+
+		if (_configuration == null) {
+			Configuration configuration = CheckstyleUtil.getConfiguration(
+				_CHECKSTYLE_FILE_NAME);
+
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "maxLineLength",
+				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
+				"com.liferay.source.formatter.checkstyle.checks.Append");
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "maxLineLength",
+				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
+				"com.liferay.source.formatter.checkstyle.checks.Concat");
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "maxLineLength",
+				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
+				"com.liferay.source.formatter.checkstyle.checks.PlusStatement");
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "showDebugInformation",
+				String.valueOf(sourceFormatterArgs.isShowDebugInformation()),
+				"com.liferay.*");
+
+			_configuration = configuration;
+
+			List<File> suppressionsFiles =
+				SourceFormatterUtil.getSuppressionsFiles(
+					sourceFormatterArgs.getBaseDirName(),
+					"checkstyle-suppressions.xml", getAllFileNames(),
+					getSourceFormatterExcludes(), portalSource, subrepository);
+
+			for (File suppressionsFile : suppressionsFiles) {
+				String content = FileUtil.read(suppressionsFile);
+
+				if (!content.contains(CheckstyleUtil.ALLOY_MVC_SRC_DIR)) {
+					continue;
+				}
+
+				File tmpSuppressionsFile = new File(
+					suppressionsFile.getParentFile() +
+						"/tmp/checkstyle-alloy-mvc-suppressions.xml");
+
+				String tmpContent = content.replaceAll(
+					CheckstyleUtil.ALLOY_MVC_SRC_DIR,
+					CheckstyleUtil.ALLOY_MVC_TMP_DIR);
+
+				FileUtil.write(tmpSuppressionsFile, tmpContent);
+
+				suppressionsFiles.add(tmpSuppressionsFile);
+			}
+
+			_suppressionsFiles = suppressionsFiles;
+
+			if (sourceFormatterArgs.isShowDebugInformation()) {
+				DebugUtil.addCheckNames(
+					CheckType.CHECKSTYLE,
+					CheckstyleUtil.getCheckNames(configuration));
+			}
+		}
+
+		Set<SourceFormatterMessage> sourceFormatterMessages =
+			CheckstyleUtil.getSourceFormatterMessages(
+				_configuration, _suppressionsFiles, files, sourceFormatterArgs);
+
+		_sourceFormatterMessages.addAll(sourceFormatterMessages);
+	}
+
+	private synchronized void _processCheckstyle(
+			String absolutePath, String content)
+		throws Exception {
+
+		if (!absolutePath.contains(CheckstyleUtil.ALLOY_MVC_SRC_DIR)) {
+			return;
+		}
+
+		if (!absolutePath.endsWith(".jspf")) {
+			return;
+		}
+
+		if (!content.matches("(?s)<%--.*--%>(\\s*<%@[^\\n]*)*\\s*<%!\\s.*")) {
+			return;
+		}
+
+		if (StringUtil.count(content, "<%!") != 1) {
+			return;
+		}
+
+		if (!content.endsWith("\n%>")) {
+			return;
+		}
+
+		File tmpFile = new File(CheckstyleUtil.getJavaFileName(absolutePath));
+
+		String tmpContent = StringUtil.replace(
+			content, new String[] {"<%--", "--%>", "<%@", "<%!"},
+			new String[] {"//<%--", "//--%>", "//<%@", "//<%!"});
+
+		tmpContent = StringUtil.replaceLast(tmpContent, "\n%>", "");
+
+		FileUtil.write(tmpFile, tmpContent);
+
+		_ungeneratedFiles.add(tmpFile);
+
+		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
+			_processCheckstyle(_ungeneratedFiles);
+
+			_ungeneratedFiles.clear();
+		}
+	}
+
+	private static final String _CHECKSTYLE_FILE_NAME =
+		"checkstyle-alloy-mvc.xml";
+
 	private static final String[] _INCLUDES =
 		{"**/*.jsp", "**/*.jspf", "**/*.tag", "**/*.tpl", "**/*.vm"};
+
+	private Configuration _configuration;
+	private final Set<SourceFormatterMessage> _sourceFormatterMessages =
+		new HashSet<>();
+	private List<File> _suppressionsFiles;
+	private final List<File> _ungeneratedFiles = new ArrayList<>();
 
 }

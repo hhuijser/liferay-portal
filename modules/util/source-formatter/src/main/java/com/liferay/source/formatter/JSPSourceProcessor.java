@@ -123,10 +123,33 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 			_configuration = configuration;
 
-			_suppressionsFiles = SourceFormatterUtil.getSuppressionsFiles(
-				sourceFormatterArgs.getBaseDirName(),
-				"checkstyle-suppressions.xml", getAllFileNames(),
-				getSourceFormatterExcludes());
+			List<File> suppressionsFiles =
+				SourceFormatterUtil.getSuppressionsFiles(
+					sourceFormatterArgs.getBaseDirName(),
+					"checkstyle-suppressions.xml", getAllFileNames(),
+					getSourceFormatterExcludes());
+
+			for (File suppressionsFile : suppressionsFiles) {
+				String content = FileUtil.read(suppressionsFile);
+
+				if (!content.contains(CheckstyleUtil.ALLOY_MVC_SRC_DIR)) {
+					continue;
+				}
+
+				File tmpSuppressionsFile = new File(
+					suppressionsFile.getParentFile() +
+						"/tmp/checkstyle-alloy-mvc-suppressions.xml");
+
+				String tmpContent = content.replaceAll(
+					CheckstyleUtil.ALLOY_MVC_SRC_DIR,
+					CheckstyleUtil.ALLOY_MVC_TMP_DIR);
+
+				FileUtil.write(tmpSuppressionsFile, tmpContent);
+
+				suppressionsFiles.add(tmpSuppressionsFile);
+			}
+
+			_suppressionsFiles = suppressionsFiles;
 
 			if (sourceFormatterArgs.isShowDebugInformation()) {
 				DebugUtil.addCheckNames(

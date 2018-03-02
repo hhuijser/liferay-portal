@@ -98,53 +98,6 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 		}
 	}
 
-	private void _processCheckstyle(List<File> files) throws Exception {
-		if (files.isEmpty()) {
-			return;
-		}
-
-		if (_configuration == null) {
-			Configuration configuration = CheckstyleUtil.getConfiguration(
-				"checkstyle.xml");
-
-			configuration = CheckstyleUtil.addAttribute(
-				configuration, "maxLineLength",
-				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
-				"com.liferay.source.formatter.checkstyle.checks.Append");
-			configuration = CheckstyleUtil.addAttribute(
-				configuration, "maxLineLength",
-				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
-				"com.liferay.source.formatter.checkstyle.checks.Concat");
-			configuration = CheckstyleUtil.addAttribute(
-				configuration, "maxLineLength",
-				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
-				"com.liferay.source.formatter.checkstyle.checks.PlusStatement");
-			configuration = CheckstyleUtil.addAttribute(
-				configuration, "showDebugInformation",
-				String.valueOf(sourceFormatterArgs.isShowDebugInformation()),
-				"com.liferay.*");
-
-			_configuration = configuration;
-
-			_suppressionsFiles = SourceFormatterUtil.getSuppressionsFiles(
-				sourceFormatterArgs.getBaseDirName(),
-				"checkstyle-suppressions.xml", getAllFileNames(),
-				getSourceFormatterExcludes());
-
-			if (sourceFormatterArgs.isShowDebugInformation()) {
-				DebugUtil.addCheckNames(
-					CheckType.CHECKSTYLE,
-					CheckstyleUtil.getCheckNames(configuration));
-			}
-		}
-
-		Set<SourceFormatterMessage> sourceFormatterMessages =
-			CheckstyleUtil.getSourceFormatterMessages(
-				_configuration, _suppressionsFiles, files, sourceFormatterArgs);
-
-		_sourceFormatterMessages.addAll(sourceFormatterMessages);
-	}
-
 	private String[] _getPluginExcludes(String pluginDirectoryName) {
 		return new String[] {
 			pluginDirectoryName + "**/model/*Clp.java",
@@ -248,6 +201,53 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 			_ungeneratedFiles.clear();
 		}
+	}
+
+	private void _processCheckstyle(List<File> files) throws Exception {
+		if (files.isEmpty()) {
+			return;
+		}
+
+		if (_configuration == null) {
+			Configuration configuration = CheckstyleUtil.getConfiguration(
+				"checkstyle.xml");
+
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "maxLineLength",
+				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
+				"com.liferay.source.formatter.checkstyle.checks.Append");
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "maxLineLength",
+				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
+				"com.liferay.source.formatter.checkstyle.checks.Concat");
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "maxLineLength",
+				String.valueOf(sourceFormatterArgs.getMaxLineLength()),
+				"com.liferay.source.formatter.checkstyle.checks.PlusStatement");
+			configuration = CheckstyleUtil.addAttribute(
+				configuration, "showDebugInformation",
+				String.valueOf(sourceFormatterArgs.isShowDebugInformation()),
+				"com.liferay.*");
+
+			_configuration = configuration;
+
+			_suppressionsFiles = SourceFormatterUtil.getSuppressionsFiles(
+				sourceFormatterArgs.getBaseDirName(),
+				"checkstyle-suppressions.xml", getAllFileNames(),
+				getSourceFormatterExcludes());
+
+			if (sourceFormatterArgs.isShowDebugInformation()) {
+				DebugUtil.addCheckNames(
+					CheckType.CHECKSTYLE,
+					CheckstyleUtil.getCheckNames(configuration));
+			}
+		}
+
+		Set<SourceFormatterMessage> sourceFormatterMessages =
+			CheckstyleUtil.getSourceFormatterMessages(
+				_configuration, _suppressionsFiles, files, sourceFormatterArgs);
+
+		_sourceFormatterMessages.addAll(sourceFormatterMessages);
 	}
 
 	private static final int _CHECKSTYLE_BATCH_SIZE = 1000;

@@ -16,6 +16,7 @@ package com.liferay.source.formatter;
 
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
@@ -25,6 +26,8 @@ import com.liferay.source.formatter.util.SourceFormatterUtil;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
 
 import java.io.File;
+
+import java.nio.file.Files;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -80,6 +83,18 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 	@Override
 	protected void postFormat() throws Exception {
 		_processCheckstyle(_ungeneratedFiles);
+
+		for (File ungeneratedFile : _ungeneratedFiles) {
+			Files.deleteIfExists(ungeneratedFile.toPath());
+		}
+
+		for (File suppressionsFile : _suppressionsFiles) {
+			String path = SourceUtil.getAbsolutePath(suppressionsFile);
+
+			if (path.endsWith("/tmp/checkstyle-alloy-mvc-suppressions.xml")) {
+				Files.deleteIfExists(suppressionsFile.toPath());
+			}
+		}
 
 		_ungeneratedFiles.clear();
 
@@ -203,6 +218,10 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 		if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
 			_processCheckstyle(_ungeneratedFiles);
+
+			for (File ungeneratedFile : _ungeneratedFiles) {
+				Files.deleteIfExists(ungeneratedFile.toPath());
+			}
 
 			_ungeneratedFiles.clear();
 		}

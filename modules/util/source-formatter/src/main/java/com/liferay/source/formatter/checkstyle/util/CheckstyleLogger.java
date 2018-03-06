@@ -18,6 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.SourceFormatterMessage;
+import com.liferay.source.formatter.util.CheckType;
 
 import com.puppycrawl.tools.checkstyle.DefaultLogger;
 import com.puppycrawl.tools.checkstyle.api.AuditEvent;
@@ -48,13 +49,15 @@ public class CheckstyleLogger extends DefaultLogger {
 
 	@Override
 	public void addError(AuditEvent auditEvent) {
+		String fileName = CheckstyleUtil.getSourceFileName(
+			_getRelativizedFileName(auditEvent));
 		String sourceName = StringUtil.extractLast(
 			auditEvent.getSourceName(), CharPool.PERIOD);
 
 		_sourceFormatterMessages.add(
 			new SourceFormatterMessage(
-				_getRelativizedFileName(auditEvent), auditEvent.getMessage(),
-				"CheckStyle", sourceName, null, auditEvent.getLine()));
+				fileName, auditEvent.getMessage(), CheckType.CHECKSTYLE,
+				sourceName, null, auditEvent.getLine()));
 
 		super.addError(auditEvent);
 	}

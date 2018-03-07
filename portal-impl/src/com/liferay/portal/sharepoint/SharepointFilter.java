@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.servlet.filters.secure.SecureFilter;
+import com.liferay.portal.util.PropsUtil;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -33,6 +34,9 @@ public class SharepointFilter extends SecureFilter {
 	@Override
 	public void init(FilterConfig filterConfig) {
 		super.init(filterConfig);
+
+		setFilterEnabled(
+			GetterUtil.getBoolean(PropsUtil.get(getClass().getName()), true));
 
 		setUsePermissionChecker(true);
 	}

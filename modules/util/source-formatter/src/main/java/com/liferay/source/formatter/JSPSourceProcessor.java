@@ -15,9 +15,19 @@
 package com.liferay.source.formatter;
 
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleAlloyMVCUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 
+import com.puppycrawl.tools.checkstyle.api.Configuration;
+
+import java.io.File;
+
+import java.nio.file.Files;
+
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Hugo Huijser
@@ -53,7 +63,78 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
+	@Override
+	protected File format(
+			File file, String fileName, String absolutePath, String content)
+		throws Exception {
+
+		file = super.format(file, fileName, absolutePath, content);
+
+		_processCheckstyle(absolutePath, content);
+
+		return file;
+	}
+
+	@Override
+	protected void postFormat() throws Exception {
+		_processCheckstyle();
+
+		for (SourceFormatterMessage sourceFormatterMessage :
+				_sourceFormatterMessages) {
+
+			String fileName = sourceFormatterMessage.getFileName();
+
+			processMessage(fileName, sourceFormatterMessage);
+
+			printError(fileName, sourceFormatterMessage.toString());
+		}
+	}
+
+	private void _processCheckstyle() throws Exception {
+		if (_ungeneratedFiles.isEmpty()) {
+			return;
+		}
+
+		if (_configuration == null) {
+			_configuration = CheckstyleUtil.getConfiguration(
+				"checkstyle-alloy-mvc.xml",
+				sourceFormatterArgs.getMaxLineLength(),
+				sourceFormatterArgs.isShowDebugInformation());
+		}
+
+		_sourceFormatterMessages.addAll(
+			processCheckstyle(
+				_configuration,
+				_ungeneratedFiles.toArray(new File[_ungeneratedFiles.size()])));
+
+		for (File ungeneratedFile : _ungeneratedFiles) {
+			Files.deleteIfExists(ungeneratedFile.toPath());
+		}
+
+		_ungeneratedFiles.clear();
+	}
+
+	private synchronized void _processCheckstyle(
+			String absolutePath, String content)
+		throws Exception {
+
+		File file = CheckstyleAlloyMVCUtil.getJavaFile(absolutePath, content);
+
+		if (file != null) {
+			_ungeneratedFiles.add(file);
+
+			if (_ungeneratedFiles.size() == CheckstyleUtil.BATCH_SIZE) {
+				_processCheckstyle();
+			}
+		}
+	}
+
 	private static final String[] _INCLUDES =
 		{"**/*.jsp", "**/*.jspf", "**/*.tag", "**/*.tpl", "**/*.vm"};
+
+	private Configuration _configuration;
+	private final Set<SourceFormatterMessage> _sourceFormatterMessages =
+		new HashSet<>();
+	private final List<File> _ungeneratedFiles = new ArrayList<>();
 
 }

@@ -15,15 +15,16 @@
 package com.liferay.source.formatter.checkstyle.util;
 
 import com.liferay.petra.string.CharPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
-import com.liferay.source.formatter.SourceFormatterArgs;
-import com.liferay.source.formatter.checks.configuration.SourceFormatterSuppressions;
-import com.liferay.source.formatter.checkstyle.Checker;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.source.formatter.util.CheckType;
+import com.liferay.source.formatter.util.DebugUtil;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
+
+import java.io.File;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,8 @@ import org.xml.sax.InputSource;
  * @author Hugo Huijser
  */
 public class CheckstyleUtil {
+
+	public static final int BATCH_SIZE = 1000;
 
 	public static Configuration addAttribute(
 		Configuration configuration, String key, String value,
@@ -88,32 +91,6 @@ public class CheckstyleUtil {
 		return defaultConfiguration;
 	}
 
-	public static Checker getChecker(
-			Configuration configuration,
-			SourceFormatterSuppressions sourceFormatterSuppressions,
-			SourceFormatterArgs sourceFormatterArgs)
-		throws Exception {
-
-		Checker checker = new Checker();
-
-		ClassLoader classLoader = CheckstyleUtil.class.getClassLoader();
-
-		checker.setModuleClassLoader(classLoader);
-
-		checker.addFilter(sourceFormatterSuppressions.getCheckstyleFilterSet());
-
-		checker.configure(configuration);
-
-		CheckstyleLogger checkstyleLogger = new CheckstyleLogger(
-			new UnsyncByteArrayOutputStream(), true,
-			sourceFormatterArgs.getBaseDirName());
-
-		checker.addListener(checkstyleLogger);
-		checker.setCheckstyleLogger(checkstyleLogger);
-
-		return checker;
-	}
-
 	public static List<String> getCheckNames(Configuration configuration) {
 		List<String> checkNames = new ArrayList<>();
 
@@ -136,15 +113,56 @@ public class CheckstyleUtil {
 		return checkNames;
 	}
 
-	public static Configuration getConfiguration(String configurationFileName)
+	public static Configuration getConfiguration(
+			String configurationFileName, int maxLineLength,
+			boolean showDebugInformation)
 		throws Exception {
 
 		ClassLoader classLoader = CheckstyleUtil.class.getClassLoader();
 
-		return ConfigurationLoader.loadConfiguration(
+		Configuration configuration = ConfigurationLoader.loadConfiguration(
 			new InputSource(
 				classLoader.getResourceAsStream(configurationFileName)),
 			new PropertiesExpander(System.getProperties()), false);
+
+		configuration = addAttribute(
+			configuration, "maxLineLength", String.valueOf(maxLineLength),
+			"com.liferay.source.formatter.checkstyle.checks.Append");
+		configuration = addAttribute(
+			configuration, "maxLineLength", String.valueOf(maxLineLength),
+			"com.liferay.source.formatter.checkstyle.checks.Concat");
+		configuration = addAttribute(
+			configuration, "maxLineLength", String.valueOf(maxLineLength),
+			"com.liferay.source.formatter.checkstyle.checks.PlusStatement");
+		configuration = addAttribute(
+			configuration, "showDebugInformation",
+			String.valueOf(showDebugInformation), "com.liferay.*");
+
+		if (showDebugInformation) {
+			DebugUtil.addCheckNames(
+				CheckType.CHECKSTYLE, getCheckNames(configuration));
+		}
+
+		return configuration;
+	}
+
+	public static String getJavaFileName(String fileName) {
+		return CheckstyleAlloyMVCUtil.getJavaFileName(fileName);
+	}
+
+	public static String getSourceFileName(String fileName) {
+		return CheckstyleAlloyMVCUtil.getSourceFileName(fileName);
+	}
+
+	public static List<File> getSuppressionsFiles(File[] suppressionsFiles)
+		throws Exception {
+
+		List<File> files = ListUtil.copy(ListUtil.toList(suppressionsFiles));
+
+		files.addAll(
+			CheckstyleAlloyMVCUtil.getSuppressionsFiles(suppressionsFiles));
+
+		return files;
 	}
 
 }

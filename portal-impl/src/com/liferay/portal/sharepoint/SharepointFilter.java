@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.HttpMethods;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.servlet.filters.secure.SecureFilter;
+import com.liferay.portal.util.PropsUtil;
 
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -34,7 +35,15 @@ public class SharepointFilter extends SecureFilter {
 	public void init(FilterConfig filterConfig) {
 		super.init(filterConfig);
 
+		_setSharepointFilterEnabled(
+			GetterUtil.getBoolean(PropsUtil.get(getClass().getName()), true));
+
 		setUsePermissionChecker(true);
+	}
+
+	@Override
+	public boolean isFilterEnabled() {
+		return _sharepointFilterEnabled;
 	}
 
 	protected boolean isSharepointRequest(String uri) {
@@ -143,8 +152,14 @@ public class SharepointFilter extends SecureFilter {
 		response.setHeader("Connection", "close");
 	}
 
+	private void _setSharepointFilterEnabled(boolean sharepointFilterEnabled) {
+		_sharepointFilterEnabled = sharepointFilterEnabled;
+	}
+
 	private static final String[] _PREFIXES = {
 		"/_vti_inf.html", "/_vti_bin", "/sharepoint", "/history", "/resources"
 	};
+
+	private boolean _sharepointFilterEnabled;
 
 }

@@ -14,9 +14,6 @@
 
 package com.liferay.source.formatter;
 
-import com.liferay.source.formatter.checks.util.JSPSourceUtil;
-
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -28,24 +25,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 	protected List<String> doGetFileNames() throws Exception {
 		String[] excludes = {"**/null.jsp", "**/tools/**"};
 
-		List<String> fileNames = getFileNames(excludes, getIncludes());
-
-		if (fileNames.isEmpty() ||
-			(!sourceFormatterArgs.isFormatCurrentBranch() &&
-			 !sourceFormatterArgs.isFormatLatestAuthor() &&
-			 !sourceFormatterArgs.isFormatLocalChanges())) {
-
-			return fileNames;
-		}
-
-		excludes = new String[] {"**/null.jsp", "**/tools/**"};
-
-		List<String> allJSPFileNames = getFileNames(
-			excludes, getIncludes(), true);
-
-		return JSPSourceUtil.addIncludedAndReferencedFileNames(
-			fileNames, new HashSet<String>(),
-			JSPSourceUtil.getContentsMap(allJSPFileNames));
+		return getFileNames(excludes, getIncludes());
 	}
 
 	@Override

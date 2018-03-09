@@ -24,6 +24,7 @@ import com.liferay.source.formatter.ExcludeSyntax;
 import com.liferay.source.formatter.ExcludeSyntaxPattern;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -192,8 +193,10 @@ public class SourceFormatterUtil {
 	}
 
 	public static List<File> getSuppressionsFiles(
-		String basedir, List<String> allFileNames,
-		SourceFormatterExcludes sourceFormatterExcludes, String... fileNames) {
+			String basedir, List<String> allFileNames,
+			SourceFormatterExcludes sourceFormatterExcludes,
+			String... fileNames)
+		throws Exception {
 
 		List<File> suppressionsFiles = new ArrayList<>();
 
@@ -233,7 +236,8 @@ public class SourceFormatterUtil {
 			suppressionsFiles.add(new File(moduleSuppressionsFileName));
 		}
 
-		return suppressionsFiles;
+		return CheckstyleUtil.getSuppressionsFiles(
+			suppressionsFiles.toArray(new File[suppressionsFiles.size()]));
 	}
 
 	public static void printError(String fileName, File file) {

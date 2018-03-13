@@ -99,11 +99,6 @@ public class SecureFilter extends BasePortalFilter {
 		setFilterEnabled(true);
 	}
 
-	@Override
-	public boolean isFilterEnabled() {
-		return true;
-	}
-
 	protected HttpServletRequest basicAuth(
 			HttpServletRequest request, HttpServletResponse response)
 		throws Exception {

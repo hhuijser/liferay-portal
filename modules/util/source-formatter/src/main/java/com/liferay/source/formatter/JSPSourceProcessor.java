@@ -57,7 +57,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 		return JSPSourceUtil.addIncludedAndReferencedFileNames(
 			fileNames, new HashSet<String>(),
-			JSPSourceUtil.getContentsMap(allJSPFileNames));
+			JSPSourceUtil.getContentsMap(allJSPFileNames), false);
 	}
 
 	@Override

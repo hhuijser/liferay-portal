@@ -52,6 +52,28 @@ public class GitUtil {
 		return getDeletedFileNames(baseDirName, mergeBaseCommitId);
 	}
 
+	public static String getCurrentBranchFileContent(
+			String gitWorkingBranchName, String fileName)
+		throws Exception {
+
+		List<String> lines = new ArrayList<>();
+
+		String gitCommand = StringBundler.concat(
+			"git show ", gitWorkingBranchName, ":", fileName);
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				getGitCommandReader(gitCommand)) {
+
+			String line = null;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				lines.add(line);
+			}
+		}
+
+		return StringUtil.merge(lines, "\n");
+	}
+
 	public static List<String> getCurrentBranchFileNames(
 			String baseDirName, String gitWorkingBranchName)
 		throws Exception {

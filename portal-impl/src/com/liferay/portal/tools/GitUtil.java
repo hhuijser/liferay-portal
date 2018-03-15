@@ -17,6 +17,7 @@ package com.liferay.portal.tools;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -38,6 +39,18 @@ import java.util.Set;
  * @author Andrea Di Giorgi
  */
 public class GitUtil {
+
+	public static List<String> getCurrentBranchDeletedFileNames(
+			String baseDirName, String gitWorkingBranchName)
+		throws Exception {
+
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			"git merge-base HEAD " + gitWorkingBranchName);
+
+		String mergeBaseCommitId = unsyncBufferedReader.readLine();
+
+		return getDeletedFileNames(baseDirName, mergeBaseCommitId);
+	}
 
 	public static List<String> getCurrentBranchFileNames(
 			String baseDirName, String gitWorkingBranchName)
@@ -151,6 +164,41 @@ public class GitUtil {
 		catch (Exception e) {
 			ArgumentsUtil.processMainException(arguments, e);
 		}
+	}
+
+	protected static List<String> getDeletedFileNames(
+			String baseDirName, String commitId)
+		throws Exception {
+
+		Set<String> fileNames = new HashSet<>();
+
+		UnsyncBufferedReader unsyncBufferedReader = getGitCommandReader(
+			"git rev-parse HEAD");
+
+		String latestCommitId = unsyncBufferedReader.readLine();
+
+		unsyncBufferedReader = getGitCommandReader(
+			StringBundler.concat(
+				"git diff --diff-filter=RD --name-status ", commitId, " ",
+				latestCommitId));
+
+		String line = null;
+
+		int gitLevel = getGitLevel(baseDirName);
+
+		while ((line = unsyncBufferedReader.readLine()) != null) {
+			String[] array = line.split("\\s+");
+
+			if (array.length < 2) {
+				continue;
+			}
+
+			if (StringUtil.count(array[1], CharPool.SLASH) >= gitLevel) {
+				fileNames.add(getFileName(array[1], gitLevel));
+			}
+		}
+
+		return ListUtil.fromCollection(fileNames);
 	}
 
 	protected static Set<String> getDirNames(

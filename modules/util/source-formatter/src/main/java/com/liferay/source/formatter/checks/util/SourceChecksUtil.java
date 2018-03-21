@@ -199,20 +199,19 @@ public class SourceChecksUtil {
 		String attributeName, String sourceCheckName,
 		Map<String, Properties> propertiesMap) {
 
-		String[] sourceCheckNameArray = sourceCheckName.split(
-			"(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
+		sourceCheckName = sourceCheckName.replaceAll("([a-z])([A-Z])", "$1.$2");
 
-		String sourceCheckNameValue = StringUtil.merge(
-			sourceCheckNameArray, ".");
+		sourceCheckName = sourceCheckName.replaceAll(
+			"([A-Z])([A-Z][a-z])", "$1.$2");
 
-		String[] attributeNameArray = attributeName.split(
-			"(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
+		attributeName = attributeName.replaceAll("([a-z])([A-Z])", "$1.$2");
 
-		String attributeNameValue = StringUtil.merge(attributeNameArray, ".");
+		attributeName = attributeName.replaceAll(
+			"([A-Z])([A-Z][a-z])", "$1.$2");
 
 		String key = StringBundler.concat(
-			"override.", StringUtil.toLowerCase(sourceCheckNameValue), ".",
-			StringUtil.toLowerCase(attributeNameValue));
+			"override.", StringUtil.toLowerCase(sourceCheckName), ".",
+			StringUtil.toLowerCase(attributeName));
 
 		StringBundler sb = new StringBundler(propertiesMap.size() * 2);
 

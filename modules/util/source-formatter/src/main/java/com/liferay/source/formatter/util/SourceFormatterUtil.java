@@ -186,20 +186,22 @@ public class SourceFormatterUtil {
 		CheckType checkType, String checkName,
 		Map<String, Properties> propertiesMap) {
 
-		String checkTypeName = checkType.getValue();
-
-		checkTypeName = checkTypeName.replaceAll("([a-z])([A-Z])", "$1.$2");
-
-		checkTypeName = checkTypeName.replaceAll(
-			"([A-Z])([A-Z][a-z])", "$1.$2");
-
 		checkName = checkName.replaceAll("([a-z])([A-Z])", "$1.$2");
 
 		checkName = checkName.replaceAll("([A-Z])([A-Z][a-z])", "$1.$2");
 
-		String keyPrefix = StringBundler.concat(
-			StringUtil.toLowerCase(checkTypeName), ".",
-			StringUtil.toLowerCase(checkName), ".");
+		String keyPrefix = StringUtil.toLowerCase(checkName) + ".";
+
+		if (checkType != null) {
+			String checkTypeName = checkType.getValue();
+
+			checkTypeName = checkTypeName.replaceAll("([a-z])([A-Z])", "$1.$2");
+
+			checkTypeName = checkTypeName.replaceAll(
+				"([A-Z])([A-Z][a-z])", "$1.$2");
+
+			keyPrefix = StringUtil.toLowerCase(checkTypeName) + "." + keyPrefix;
+		}
 
 		Set<String> attributeNames = new HashSet<>();
 
@@ -219,6 +221,12 @@ public class SourceFormatterUtil {
 		}
 
 		return ListUtil.fromCollection(attributeNames);
+	}
+
+	public static List<String> getAttributeNames(
+		String checkName, Map<String, Properties> propertiesMap) {
+
+		return getAttributeNames(null, checkName, propertiesMap);
 	}
 
 	public static File getFile(String baseDir, String fileName, int level) {

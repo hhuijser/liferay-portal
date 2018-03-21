@@ -151,9 +151,10 @@ public class CheckstyleUtil {
 
 			String checkName = getCheckName(checkConfiguration.getName());
 
-			for (String attributeName :
-					checkConfiguration.getAttributeNames()) {
+			List<String> attributeNames = SourceFormatterUtil.getAttributeNames(
+				checkName, propertiesMap);
 
+			for (String attributeName : attributeNames) {
 				String value = SourceFormatterUtil.getPropertyValue(
 					attributeName, checkName, propertiesMap);
 

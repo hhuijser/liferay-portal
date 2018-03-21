@@ -39,6 +39,16 @@ public class CheckstyleUtil {
 
 	public static final int BATCH_SIZE = 1000;
 
+	public static String getCheckName(String name) {
+		int pos = name.lastIndexOf(CharPool.PERIOD);
+
+		if (pos != -1) {
+			return name.substring(pos + 1);
+		}
+
+		return name;
+	}
+
 	public static List<String> getCheckNames(Configuration configuration) {
 		List<String> checkNames = new ArrayList<>();
 

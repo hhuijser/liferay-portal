@@ -128,17 +128,24 @@ public class SourceFormatter {
 				sourceFormatterArgs.setGitWorkingBranchName(
 					gitWorkingBranchName);
 
-				sourceFormatterArgs.setRecentChangesFileNames(
-					GitUtil.getCurrentBranchFileNames(
-						baseDirName, gitWorkingBranchName));
+				List<String> fileNames = GitUtil.getCurrentBranchFileNames(
+					baseDirName, gitWorkingBranchName);
+
+				if (!_modifiedSourceFormatterModule(baseDirName, fileNames)) {
+					sourceFormatterArgs.setRecentChangesFileNames(fileNames);
+				}
 			}
 			else if (formatLatestAuthor) {
 				sourceFormatterArgs.setRecentChangesFileNames(
 					GitUtil.getLatestAuthorFileNames(baseDirName));
 			}
 			else if (formatLocalChanges) {
-				sourceFormatterArgs.setRecentChangesFileNames(
-					GitUtil.getLocalChangesFileNames(baseDirName));
+				List<String> fileNames = GitUtil.getLocalChangesFileNames(
+					baseDirName);
+
+				if (!_modifiedSourceFormatterModule(baseDirName, fileNames)) {
+					sourceFormatterArgs.setRecentChangesFileNames(fileNames);
+				}
 			}
 
 			String fileNamesString = ArgumentsUtil.getString(
@@ -389,6 +396,25 @@ public class SourceFormatter {
 
 	public List<SourceMismatchException> getSourceMismatchExceptions() {
 		return _sourceMismatchExceptions;
+	}
+
+	private static boolean _modifiedSourceFormatterModule(
+		String baseDir, List<String> fileNames) {
+
+		File portalImplDir = SourceFormatterUtil.getFile(
+			baseDir, "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+		if (portalImplDir == null) {
+			return false;
+		}
+
+		for (String fileName : fileNames) {
+			if (fileName.contains("/source-formatter/")) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private List<String> _getCheckNames() {

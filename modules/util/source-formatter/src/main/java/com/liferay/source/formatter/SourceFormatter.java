@@ -141,6 +141,15 @@ public class SourceFormatter {
 					GitUtil.getLocalChangesFileNames(baseDirName));
 			}
 
+			if (sourceFormatterArgs.getRecentChangesFileNames() != null) {
+				List<String> fileNames =
+					sourceFormatterArgs.getRecentChangesFileNames();
+
+				if (_modifiedSourceFormatterModule(baseDirName, fileNames)) {
+					sourceFormatterArgs.setRecentChangesFileNames(null);
+				}
+			}
+
 			String fileNamesString = ArgumentsUtil.getString(
 				arguments, "source.files", StringPool.BLANK);
 
@@ -389,6 +398,25 @@ public class SourceFormatter {
 
 	public List<SourceMismatchException> getSourceMismatchExceptions() {
 		return _sourceMismatchExceptions;
+	}
+
+	private static boolean _modifiedSourceFormatterModule(
+		String baseDir, List<String> fileNames) {
+
+		File portalImplDir = SourceFormatterUtil.getFile(
+			baseDir, "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+		if (portalImplDir == null) {
+			return false;
+		}
+
+		for (String fileName : fileNames) {
+			if (fileName.contains("/source-formatter/")) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private List<String> _getCheckNames() {

@@ -24,6 +24,7 @@ import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -45,13 +46,17 @@ public class JavaAPISignatureCheck extends BaseJavaTermCheck {
 	}
 
 	public void setIllegalAPIParameterType(String illegalAPIParameterType) {
-		_illegalAPIParameterTypes.add(illegalAPIParameterType);
+		Collections.addAll(
+			_illegalAPIParameterTypes,
+			StringUtil.split(illegalAPIParameterType));
 	}
 
 	public void setIllegalAPIServiceParameterType(
 		String illegalAPIServiceParameterType) {
 
-		_illegalAPIServiceParameterTypes.add(illegalAPIServiceParameterType);
+		Collections.addAll(
+			_illegalAPIServiceParameterTypes,
+			StringUtil.split(illegalAPIServiceParameterType));
 	}
 
 	@Override

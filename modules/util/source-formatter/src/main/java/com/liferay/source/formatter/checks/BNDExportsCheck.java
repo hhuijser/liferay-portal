@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileFilter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -44,7 +45,9 @@ public class BNDExportsCheck extends BaseFileCheck {
 	public void setAllowedExportPackageDirName(
 		String allowedExportPackageDirName) {
 
-		_allowedExportPackageDirNames.add(allowedExportPackageDirName);
+		Collections.addAll(
+			_allowedExportPackageDirNames,
+			StringUtil.split(allowedExportPackageDirName));
 	}
 
 	@Override

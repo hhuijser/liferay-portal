@@ -149,13 +149,7 @@ public class CheckstyleUtil {
 				continue;
 			}
 
-			String checkName = checkConfiguration.getName();
-
-			int pos = checkName.lastIndexOf(CharPool.PERIOD);
-
-			if (pos != -1) {
-				checkName = checkName.substring(pos + 1);
-			}
+			String checkName = getCheckName(checkConfiguration.getName());
 
 			for (String attributeName :
 					checkConfiguration.getAttributeNames()) {

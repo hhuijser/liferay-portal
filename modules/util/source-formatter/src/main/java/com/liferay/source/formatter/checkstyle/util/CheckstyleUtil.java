@@ -42,53 +42,31 @@ public class CheckstyleUtil {
 		Configuration configuration, String key, String value,
 		String... regexChecks) {
 
-		if (!(configuration instanceof DefaultConfiguration)) {
+		Configuration[] checkConfigurations = _getCheckConfigurations(
+			configuration);
+
+		if (checkConfigurations == null) {
 			return configuration;
 		}
 
-		DefaultConfiguration defaultConfiguration =
-			(DefaultConfiguration)configuration;
-
-		DefaultConfiguration treeWalkerModule = null;
-
-		for (Configuration childConfiguration :
-				defaultConfiguration.getChildren()) {
-
-			String name = childConfiguration.getName();
-
-			if (name.equals("TreeWalker") &&
-				(childConfiguration instanceof DefaultConfiguration)) {
-
-				treeWalkerModule = (DefaultConfiguration)childConfiguration;
-
-				break;
-			}
-		}
-
-		if (treeWalkerModule == null) {
-			return configuration;
-		}
-
-		for (Configuration childConfiguration :
-				treeWalkerModule.getChildren()) {
-
-			if (!(childConfiguration instanceof DefaultConfiguration)) {
+		for (Configuration checkConfiguration : checkConfigurations) {
+			if (!(checkConfiguration instanceof DefaultConfiguration)) {
 				continue;
 			}
 
-			String name = childConfiguration.getName();
+			String name = checkConfiguration.getName();
 
 			for (String regexCheck : regexChecks) {
 				if (name.matches(regexCheck)) {
 					DefaultConfiguration defaultChildConfiguration =
-						(DefaultConfiguration)childConfiguration;
+						(DefaultConfiguration)checkConfiguration;
 
 					defaultChildConfiguration.addAttribute(key, value);
 				}
 			}
 		}
 
-		return defaultConfiguration;
+		return configuration;
 	}
 
 	public static List<String> getCheckNames(Configuration configuration) {
@@ -149,6 +127,39 @@ public class CheckstyleUtil {
 		}
 
 		return configuration;
+	}
+
+	private static Configuration[] _getCheckConfigurations(
+		Configuration configuration) {
+
+		if (!(configuration instanceof DefaultConfiguration)) {
+			return null;
+		}
+
+		DefaultConfiguration defaultConfiguration =
+			(DefaultConfiguration)configuration;
+
+		DefaultConfiguration treeWalkerModule = null;
+
+		for (Configuration childConfiguration :
+				defaultConfiguration.getChildren()) {
+
+			String name = childConfiguration.getName();
+
+			if (name.equals("TreeWalker") &&
+				(childConfiguration instanceof DefaultConfiguration)) {
+
+				treeWalkerModule = (DefaultConfiguration)childConfiguration;
+
+				break;
+			}
+		}
+
+		if (treeWalkerModule != null) {
+			return treeWalkerModule.getChildren();
+		}
+
+		return null;
 	}
 
 	private static String _getPropertyValue(

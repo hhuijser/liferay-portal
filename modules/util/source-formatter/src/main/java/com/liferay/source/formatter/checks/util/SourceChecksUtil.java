@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.SourceFormatterMessage;
 import com.liferay.source.formatter.checks.FileCheck;
 import com.liferay.source.formatter.checks.GradleFileCheck;
@@ -308,7 +309,9 @@ public class SourceChecksUtil {
 					String value = _getOverrideValue(
 						attributeName, clazz.getSimpleName(), propertiesMap);
 
-					BeanUtils.setProperty(sourceCheck, attributeName, value);
+					if (Validator.isNotNull(value)) {
+						BeanUtils.setProperty(sourceCheck, attributeName, value);
+					}
 				}
 			}
 

@@ -210,7 +210,7 @@ public class SourceChecksUtil {
 			"([A-Z])([A-Z][a-z])", "$1.$2");
 
 		String key = StringBundler.concat(
-			"override.", StringUtil.toLowerCase(sourceCheckName), ".",
+			StringUtil.toLowerCase(sourceCheckName), ".",
 			StringUtil.toLowerCase(attributeName));
 
 		StringBundler sb = new StringBundler(propertiesMap.size() * 2);

@@ -14,7 +14,10 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.GitUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 import com.liferay.source.formatter.checkstyle.util.AlloyMVCCheckstyleLogger;
 import com.liferay.source.formatter.checkstyle.util.AlloyMVCCheckstyleUtil;
@@ -31,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -55,9 +59,17 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		List<String> allJSPFileNames = getFileNames(
 			excludes, getIncludes(), true);
 
-		return JSPSourceUtil.addIncludedAndReferencedFileNames(
-			fileNames, new HashSet<String>(),
-			JSPSourceUtil.getContentsMap(allJSPFileNames));
+		Map<String, String> contentsMap = JSPSourceUtil.getContentsMap(
+			allJSPFileNames);
+
+		if (sourceFormatterArgs.isFormatCurrentBranch()) {
+			return _getCurrentBranchIncludedAndReferencedFileNames(
+				fileNames, excludes, contentsMap);
+		}
+		else {
+			return JSPSourceUtil.addIncludedAndReferencedFileNames(
+				fileNames, new HashSet<String>(), contentsMap, false);
+		}
 	}
 
 	@Override
@@ -111,6 +123,57 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 
 			printError(fileName, sourceFormatterMessage.toString());
 		}
+	}
+
+	private List<String> _getCurrentBranchIncludedAndReferencedFileNames(
+			List<String> fileNames, String[] excludes,
+			Map<String, String> contentsMap)
+		throws Exception {
+
+		List<String> deletedFileNames =
+			GitUtil.getCurrentBranchDeletedFileNames(
+				sourceFormatterArgs.getBaseDirName(),
+				sourceFormatterArgs.getGitWorkingBranchName());
+
+		if (deletedFileNames.isEmpty()) {
+			return JSPSourceUtil.addIncludedAndReferencedFileNames(
+				fileNames, new HashSet<String>(), contentsMap, false);
+		}
+
+		List<String> filteredFileNames = SourceFormatterUtil.filterFileNames(
+			deletedFileNames, excludes, getIncludes(),
+			getSourceFormatterExcludes(), true);
+
+		List<String> deletedFilteredFileNames = new ArrayList<>();
+
+		for (String filteredFileName : filteredFileNames) {
+			String deletedFilteredFileName =
+				sourceFormatterArgs.getBaseDirName() + filteredFileName;
+
+			deletedFilteredFileName = StringUtil.replace(
+				deletedFilteredFileName, CharPool.BACK_SLASH, CharPool.SLASH);
+
+			deletedFilteredFileNames.add(deletedFilteredFileName);
+
+			String content = GitUtil.getCurrentBranchFileContent(
+				sourceFormatterArgs.getGitWorkingBranchName(),
+				filteredFileName);
+
+			contentsMap.put(deletedFilteredFileName, content);
+		}
+
+		List<String> allFileNames = new ArrayList<>();
+
+		allFileNames.addAll(deletedFilteredFileNames);
+		allFileNames.addAll(fileNames);
+
+		List<String> includedAndReferencedFileNames =
+			JSPSourceUtil.addIncludedAndReferencedFileNames(
+				allFileNames, new HashSet<String>(), contentsMap, true);
+
+		includedAndReferencedFileNames.removeAll(deletedFilteredFileNames);
+
+		return includedAndReferencedFileNames;
 	}
 
 	private void _processCheckstyle() throws Exception {

@@ -15,7 +15,6 @@
 package com.liferay.source.formatter.checkstyle.util;
 
 import com.liferay.petra.string.CharPool;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
@@ -70,14 +69,6 @@ public class CheckstyleUtil {
 				classLoader.getResourceAsStream(configurationFileName)),
 			new PropertiesExpander(System.getProperties()), false);
 
-		configuration = _addAttribute(
-			configuration, "allowedClassNames",
-			_getPropertyValue(propertiesMap, "chaining.allowed.class.names"),
-			"com.liferay.source.formatter.checkstyle.checks.ChainingCheck");
-		configuration = _addAttribute(
-			configuration, "allowedVariableTypeNames",
-			_getPropertyValue(propertiesMap, "chaining.allowed.variable.types"),
-			"com.liferay.source.formatter.checkstyle.checks.ChainingCheck");
 		configuration = _addAttribute(
 			configuration, "maxLineLength", String.valueOf(maxLineLength),
 			"com.liferay.source.formatter.checkstyle.checks.AppendCheck");
@@ -206,29 +197,6 @@ public class CheckstyleUtil {
 		}
 
 		return null;
-	}
-
-	private static String _getPropertyValue(
-		Map<String, Properties> propertiesMap, String key) {
-
-		StringBundler sb = new StringBundler(propertiesMap.size() * 2);
-
-		for (Map.Entry<String, Properties> entry : propertiesMap.entrySet()) {
-			Properties properties = entry.getValue();
-
-			String value = properties.getProperty(key);
-
-			if (value != null) {
-				sb.append(value);
-				sb.append(CharPool.COMMA);
-			}
-		}
-
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		return sb.toString();
 	}
 
 }

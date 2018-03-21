@@ -18,7 +18,6 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.SourceFormatterMessage;
 import com.liferay.source.formatter.checks.FileCheck;
@@ -195,44 +194,6 @@ public class SourceChecksUtil {
 		return sourceChecksResult;
 	}
 
-	private static String _getPropertyValue(
-		String attributeName, String sourceCheckName,
-		Map<String, Properties> propertiesMap) {
-
-		sourceCheckName = sourceCheckName.replaceAll("([a-z])([A-Z])", "$1.$2");
-
-		sourceCheckName = sourceCheckName.replaceAll(
-			"([A-Z])([A-Z][a-z])", "$1.$2");
-
-		attributeName = attributeName.replaceAll("([a-z])([A-Z])", "$1.$2");
-
-		attributeName = attributeName.replaceAll(
-			"([A-Z])([A-Z][a-z])", "$1.$2");
-
-		String key = StringBundler.concat(
-			StringUtil.toLowerCase(sourceCheckName), ".",
-			StringUtil.toLowerCase(attributeName));
-
-		StringBundler sb = new StringBundler(propertiesMap.size() * 2);
-
-		for (Map.Entry<String, Properties> entry : propertiesMap.entrySet()) {
-			Properties properties = entry.getValue();
-
-			String value = properties.getProperty(key);
-
-			if (value != null) {
-				sb.append(value);
-				sb.append(CharPool.COMMA);
-			}
-		}
-
-		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
-		}
-
-		return sb.toString();
-	}
-
 	private static List<SourceCheck> _getSourceChecks(
 			SourceFormatterConfiguration sourceFormatterConfiguration,
 			String sourceProcessorName, Map<String, Properties> propertiesMap,
@@ -305,7 +266,7 @@ public class SourceChecksUtil {
 				if (portalSource) {
 					Class<?> clazz = sourceCheck.getClass();
 
-					String value = _getPropertyValue(
+					String value = SourceFormatterUtil.getPropertyValue(
 						attributeName, clazz.getSimpleName(), propertiesMap);
 
 					if (Validator.isNotNull(value)) {

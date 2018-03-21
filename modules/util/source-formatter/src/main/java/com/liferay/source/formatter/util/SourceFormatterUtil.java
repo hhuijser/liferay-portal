@@ -43,6 +43,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 /**
@@ -190,6 +191,43 @@ public class SourceFormatterUtil {
 		}
 
 		return null;
+	}
+
+	public static String getPropertyValue(
+		String attributeName, String checkName,
+		Map<String, Properties> propertiesMap) {
+
+		checkName = checkName.replaceAll("([a-z])([A-Z])", "$1.$2");
+
+		checkName = checkName.replaceAll("([A-Z])([A-Z][a-z])", "$1.$2");
+
+		attributeName = attributeName.replaceAll("([a-z])([A-Z])", "$1.$2");
+
+		attributeName = attributeName.replaceAll(
+			"([A-Z])([A-Z][a-z])", "$1.$2");
+
+		String key = StringBundler.concat(
+			StringUtil.toLowerCase(checkName), ".",
+			StringUtil.toLowerCase(attributeName));
+
+		StringBundler sb = new StringBundler(propertiesMap.size() * 2);
+
+		for (Map.Entry<String, Properties> entry : propertiesMap.entrySet()) {
+			Properties properties = entry.getValue();
+
+			String value = properties.getProperty(key);
+
+			if (value != null) {
+				sb.append(value);
+				sb.append(CharPool.COMMA);
+			}
+		}
+
+		if (sb.index() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
 	}
 
 	public static List<File> getSuppressionsFiles(

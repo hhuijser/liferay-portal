@@ -16,8 +16,10 @@ package com.liferay.source.formatter.checkstyle.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.DefaultConfiguration;
@@ -90,6 +92,8 @@ public class CheckstyleUtil {
 			configuration, "showDebugInformation",
 			String.valueOf(showDebugInformation), "com.liferay.*");
 
+		configuration = _addPropertiesAttributes(configuration, propertiesMap);
+
 		if (showDebugInformation) {
 			DebugUtil.addCheckNames(
 				CheckType.CHECKSTYLE, getCheckNames(configuration));
@@ -122,6 +126,48 @@ public class CheckstyleUtil {
 						(DefaultConfiguration)checkConfiguration;
 
 					defaultChildConfiguration.addAttribute(key, value);
+				}
+			}
+		}
+
+		return configuration;
+	}
+
+	private static Configuration _addPropertiesAttributes(
+		Configuration configuration, Map<String, Properties> propertiesMap) {
+
+		Configuration[] checkConfigurations = _getCheckConfigurations(
+			configuration);
+
+		if (checkConfigurations == null) {
+			return configuration;
+		}
+
+		for (Configuration checkConfiguration : checkConfigurations) {
+			if (!(checkConfiguration instanceof DefaultConfiguration)) {
+				continue;
+			}
+
+			String checkName = checkConfiguration.getName();
+
+			int pos = checkName.lastIndexOf(CharPool.PERIOD);
+
+			if (pos != -1) {
+				checkName = checkName.substring(pos + 1);
+			}
+
+			for (String attributeName :
+					checkConfiguration.getAttributeNames()) {
+
+				String value = SourceFormatterUtil.getPropertyValue(
+					attributeName, checkName, propertiesMap);
+
+				if (Validator.isNotNull(value)) {
+					DefaultConfiguration defaultChildConfiguration =
+						(DefaultConfiguration)checkConfiguration;
+
+					defaultChildConfiguration.addAttribute(
+						attributeName, value);
 				}
 			}
 		}

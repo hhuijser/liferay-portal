@@ -43,7 +43,6 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -296,8 +295,8 @@ public class SourceChecksUtil {
 			for (String attributeName :
 					sourceCheckConfiguration.attributeNames()) {
 
-				List<String> values = sourceCheckConfiguration.getAttributeValues(
-					attributeName);
+				List<String> values =
+					sourceCheckConfiguration.getAttributeValues(attributeName);
 
 				for (String value : values) {
 					BeanUtils.setProperty(sourceCheck, attributeName, value);
@@ -310,7 +309,8 @@ public class SourceChecksUtil {
 						attributeName, clazz.getSimpleName(), propertiesMap);
 
 					if (Validator.isNotNull(value)) {
-						BeanUtils.setProperty(sourceCheck, attributeName, value);
+						BeanUtils.setProperty(
+							sourceCheck, attributeName, value);
 					}
 				}
 			}

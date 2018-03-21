@@ -42,12 +42,12 @@ public class BNDExportsCheck extends BaseFileCheck {
 		return true;
 	}
 
-	public void setAllowedExportPackageDirName(
-		String allowedExportPackageDirName) {
+	public void setAllowedExportPackageDirNames(
+		String allowedExportPackageDirNames) {
 
 		Collections.addAll(
 			_allowedExportPackageDirNames,
-			StringUtil.split(allowedExportPackageDirName));
+			StringUtil.split(allowedExportPackageDirNames));
 	}
 
 	@Override

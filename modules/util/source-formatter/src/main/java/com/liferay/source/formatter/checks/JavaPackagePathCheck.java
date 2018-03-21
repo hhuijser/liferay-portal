@@ -33,12 +33,12 @@ import java.util.regex.Pattern;
  */
 public class JavaPackagePathCheck extends BaseFileCheck {
 
-	public void setAllowedInternalPackageDirName(
-		String allowedInternalPackageDirName) {
+	public void setAllowedInternalPackageDirNames(
+		String allowedInternalPackageDirNames) {
 
 		Collections.addAll(
 			_allowedInternalPackageDirNames,
-			StringUtil.split(allowedInternalPackageDirName));
+			StringUtil.split(allowedInternalPackageDirNames));
 	}
 
 	@Override

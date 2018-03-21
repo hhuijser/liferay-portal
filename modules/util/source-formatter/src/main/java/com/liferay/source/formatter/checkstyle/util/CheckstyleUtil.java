@@ -38,37 +38,6 @@ public class CheckstyleUtil {
 
 	public static final int BATCH_SIZE = 1000;
 
-	private static Configuration _addAttribute(
-		Configuration configuration, String key, String value,
-		String... regexChecks) {
-
-		Configuration[] checkConfigurations = _getCheckConfigurations(
-			configuration);
-
-		if (checkConfigurations == null) {
-			return configuration;
-		}
-
-		for (Configuration checkConfiguration : checkConfigurations) {
-			if (!(checkConfiguration instanceof DefaultConfiguration)) {
-				continue;
-			}
-
-			String name = checkConfiguration.getName();
-
-			for (String regexCheck : regexChecks) {
-				if (name.matches(regexCheck)) {
-					DefaultConfiguration defaultChildConfiguration =
-						(DefaultConfiguration)checkConfiguration;
-
-					defaultChildConfiguration.addAttribute(key, value);
-				}
-			}
-		}
-
-		return configuration;
-	}
-
 	public static List<String> getCheckNames(Configuration configuration) {
 		List<String> checkNames = new ArrayList<>();
 
@@ -124,6 +93,37 @@ public class CheckstyleUtil {
 		if (showDebugInformation) {
 			DebugUtil.addCheckNames(
 				CheckType.CHECKSTYLE, getCheckNames(configuration));
+		}
+
+		return configuration;
+	}
+
+	private static Configuration _addAttribute(
+		Configuration configuration, String key, String value,
+		String... regexChecks) {
+
+		Configuration[] checkConfigurations = _getCheckConfigurations(
+			configuration);
+
+		if (checkConfigurations == null) {
+			return configuration;
+		}
+
+		for (Configuration checkConfiguration : checkConfigurations) {
+			if (!(checkConfiguration instanceof DefaultConfiguration)) {
+				continue;
+			}
+
+			String name = checkConfiguration.getName();
+
+			for (String regexCheck : regexChecks) {
+				if (name.matches(regexCheck)) {
+					DefaultConfiguration defaultChildConfiguration =
+						(DefaultConfiguration)checkConfiguration;
+
+					defaultChildConfiguration.addAttribute(key, value);
+				}
+			}
 		}
 
 		return configuration;

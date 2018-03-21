@@ -52,6 +52,12 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 		return true;
 	}
 
+	public void setServiceReferenceUtilClassName(
+		String serviceReferenceUtilClassName) {
+
+		_serviceReferenceUtilClassNames.add(serviceReferenceUtilClassName);
+	}
+
 	public void setServiceReferenceUtilClassNames(
 		String serviceReferenceUtilClassNames) {
 

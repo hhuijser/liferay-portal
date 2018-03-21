@@ -253,6 +253,8 @@ public class SourceChecksUtil {
 				continue;
 			}
 
+			Class<?> clazz = sourceCheck.getClass();
+
 			for (String attributeName :
 					sourceCheckConfiguration.attributeNames()) {
 
@@ -262,9 +264,12 @@ public class SourceChecksUtil {
 				for (String value : values) {
 					BeanUtils.setProperty(sourceCheck, attributeName, value);
 				}
+			}
 
-				Class<?> clazz = sourceCheck.getClass();
+			List<String> attributeNames = SourceFormatterUtil.getAttributeNames(
+				CheckType.SOURCE_CHECK, clazz.getSimpleName(), propertiesMap);
 
+			for (String attributeName : attributeNames) {
 				String value = SourceFormatterUtil.getPropertyValue(
 					attributeName, CheckType.SOURCE_CHECK,
 					clazz.getSimpleName(), propertiesMap);

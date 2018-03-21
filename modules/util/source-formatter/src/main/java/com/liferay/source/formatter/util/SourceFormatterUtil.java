@@ -194,7 +194,7 @@ public class SourceFormatterUtil {
 	}
 
 	public static String getPropertyValue(
-		String attributeName, String checkName,
+		String attributeName, CheckType checkType, String checkName,
 		Map<String, Properties> propertiesMap) {
 
 		checkName = checkName.replaceAll("([a-z])([A-Z])", "$1.$2");
@@ -209,6 +209,17 @@ public class SourceFormatterUtil {
 		String key = StringBundler.concat(
 			StringUtil.toLowerCase(checkName), ".",
 			StringUtil.toLowerCase(attributeName));
+
+		if (checkType != null) {
+			String checkTypeName = checkType.getValue();
+
+			checkTypeName = checkTypeName.replaceAll("([a-z])([A-Z])", "$1.$2");
+
+			checkTypeName = checkTypeName.replaceAll(
+				"([A-Z])([A-Z][a-z])", "$1.$2");
+
+			key = StringUtil.toLowerCase(checkTypeName) + "." + key;
+		}
 
 		StringBundler sb = new StringBundler(propertiesMap.size() * 2);
 
@@ -228,6 +239,13 @@ public class SourceFormatterUtil {
 		}
 
 		return sb.toString();
+	}
+
+	public static String getPropertyValue(
+		String attributeName, String checkName,
+		Map<String, Properties> propertiesMap) {
+
+		return getPropertyValue(attributeName, null, checkName, propertiesMap);
 	}
 
 	public static List<File> getSuppressionsFiles(

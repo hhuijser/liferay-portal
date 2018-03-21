@@ -266,7 +266,8 @@ public class SourceChecksUtil {
 				Class<?> clazz = sourceCheck.getClass();
 
 				String value = SourceFormatterUtil.getPropertyValue(
-					attributeName, clazz.getSimpleName(), propertiesMap);
+					attributeName, CheckType.SOURCE_CHECK,
+					clazz.getSimpleName(), propertiesMap);
 
 				if (Validator.isNotNull(value)) {
 					BeanUtils.setProperty(sourceCheck, attributeName, value);

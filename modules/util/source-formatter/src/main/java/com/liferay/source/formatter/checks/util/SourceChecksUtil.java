@@ -195,7 +195,7 @@ public class SourceChecksUtil {
 		return sourceChecksResult;
 	}
 
-	private static List<String> _getOverrideValues(
+	private static String _getOverrideValue(
 		String attributeName, String sourceCheckName,
 		Map<String, Properties> propertiesMap) {
 
@@ -230,7 +230,7 @@ public class SourceChecksUtil {
 			sb.setIndex(sb.index() - 1);
 		}
 
-		return ListUtil.toList(StringUtil.split(sb.toString()));
+		return sb.toString();
 	}
 
 	private static List<SourceCheck> _getSourceChecks(
@@ -305,12 +305,10 @@ public class SourceChecksUtil {
 				if (portalSource) {
 					Class<?> clazz = sourceCheck.getClass();
 
-					values = _getOverrideValues(
+					String value = _getOverrideValue(
 						attributeName, clazz.getSimpleName(), propertiesMap);
 
-					for (String value : values) {
-						BeanUtils.setProperty(sourceCheck, attributeName, value);
-					}
+					BeanUtils.setProperty(sourceCheck, attributeName, value);
 				}
 			}
 

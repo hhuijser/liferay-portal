@@ -195,7 +195,7 @@ public class SourceChecksUtil {
 		return sourceChecksResult;
 	}
 
-	private static String _getOverrideValue(
+	private static String _getPropertyValue(
 		String attributeName, String sourceCheckName,
 		Map<String, Properties> propertiesMap) {
 
@@ -305,7 +305,7 @@ public class SourceChecksUtil {
 				if (portalSource) {
 					Class<?> clazz = sourceCheck.getClass();
 
-					String value = _getOverrideValue(
+					String value = _getPropertyValue(
 						attributeName, clazz.getSimpleName(), propertiesMap);
 
 					if (Validator.isNotNull(value)) {

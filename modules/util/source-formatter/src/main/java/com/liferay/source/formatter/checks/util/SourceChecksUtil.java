@@ -196,15 +196,14 @@ public class SourceChecksUtil {
 	}
 
 	private static List<String> _getOverrideValues(
-		String attributeName, Class<? extends SourceCheck> sourceCheckClass,
+		String attributeName, String sourceCheckName,
 		Map<String, Properties> propertiesMap) {
 
-		String simpleName = sourceCheckClass.getSimpleName();
-
-		String[] simpleNameArray = simpleName.split(
+		String[] sourceCheckNameArray = sourceCheckName.split(
 			"(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
 
-		String simpleNameValue = StringUtil.merge(simpleNameArray, ".");
+		String sourceCheckNameValue = StringUtil.merge(
+			sourceCheckNameArray, ".");
 
 		String[] attributeNameArray = attributeName.split(
 			"(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
@@ -212,7 +211,7 @@ public class SourceChecksUtil {
 		String attributeNameValue = StringUtil.merge(attributeNameArray, ".");
 
 		String key = StringBundler.concat(
-			"override.", StringUtil.toLowerCase(simpleNameValue), ".",
+			"override.", StringUtil.toLowerCase(sourceCheckNameValue), ".",
 			StringUtil.toLowerCase(attributeNameValue));
 
 		StringBundler sb = new StringBundler(propertiesMap.size() * 2);
@@ -300,8 +299,10 @@ public class SourceChecksUtil {
 				List<String> values = Collections.emptyList();
 
 				if (portalSource) {
+					Class<?> clazz = sourceCheck.getClass();
+
 					values = _getOverrideValues(
-						attributeName, sourceCheck.getClass(), propertiesMap);
+						attributeName, clazz.getSimpleName(), propertiesMap);
 				}
 
 				if (values.isEmpty()) {

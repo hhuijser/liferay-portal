@@ -295,22 +295,22 @@ public class SourceChecksUtil {
 			for (String attributeName :
 					sourceCheckConfiguration.attributeNames()) {
 
-				if (portalSource) {
-					Class<?> clazz = sourceCheck.getClass();
-
-					List<String> values = _getOverrideValues(
-						attributeName, clazz.getSimpleName(), propertiesMap);
-
-					for (String value : values) {
-						BeanUtils.setProperty(sourceCheck, attributeName, value);
-					}
-				}
-
 				List<String> values = sourceCheckConfiguration.getAttributeValues(
 					attributeName);
 
 				for (String value : values) {
 					BeanUtils.setProperty(sourceCheck, attributeName, value);
+				}
+
+				if (portalSource) {
+					Class<?> clazz = sourceCheck.getClass();
+
+					values = _getOverrideValues(
+						attributeName, clazz.getSimpleName(), propertiesMap);
+
+					for (String value : values) {
+						BeanUtils.setProperty(sourceCheck, attributeName, value);
+					}
 				}
 			}
 

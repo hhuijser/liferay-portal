@@ -38,7 +38,7 @@ public class CheckstyleUtil {
 
 	public static final int BATCH_SIZE = 1000;
 
-	public static Configuration addAttribute(
+	private static Configuration _addAttribute(
 		Configuration configuration, String key, String value,
 		String... regexChecks) {
 
@@ -99,25 +99,25 @@ public class CheckstyleUtil {
 				classLoader.getResourceAsStream(configurationFileName)),
 			new PropertiesExpander(System.getProperties()), false);
 
-		configuration = addAttribute(
+		configuration = _addAttribute(
 			configuration, "allowedClassNames",
 			_getPropertyValue(propertiesMap, "chaining.allowed.class.names"),
 			"com.liferay.source.formatter.checkstyle.checks.ChainingCheck");
-		configuration = addAttribute(
+		configuration = _addAttribute(
 			configuration, "allowedVariableTypeNames",
 			_getPropertyValue(propertiesMap, "chaining.allowed.variable.types"),
 			"com.liferay.source.formatter.checkstyle.checks.ChainingCheck");
-		configuration = addAttribute(
+		configuration = _addAttribute(
 			configuration, "maxLineLength", String.valueOf(maxLineLength),
 			"com.liferay.source.formatter.checkstyle.checks.AppendCheck");
-		configuration = addAttribute(
+		configuration = _addAttribute(
 			configuration, "maxLineLength", String.valueOf(maxLineLength),
 			"com.liferay.source.formatter.checkstyle.checks.ConcatCheck");
-		configuration = addAttribute(
+		configuration = _addAttribute(
 			configuration, "maxLineLength", String.valueOf(maxLineLength),
 			"com.liferay.source.formatter.checkstyle.checks." +
 				"PlusStatementCheck");
-		configuration = addAttribute(
+		configuration = _addAttribute(
 			configuration, "showDebugInformation",
 			String.valueOf(showDebugInformation), "com.liferay.*");
 

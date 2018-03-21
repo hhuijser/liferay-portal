@@ -263,16 +263,13 @@ public class SourceChecksUtil {
 					BeanUtils.setProperty(sourceCheck, attributeName, value);
 				}
 
-				if (portalSource) {
-					Class<?> clazz = sourceCheck.getClass();
+				Class<?> clazz = sourceCheck.getClass();
 
-					String value = SourceFormatterUtil.getPropertyValue(
-						attributeName, clazz.getSimpleName(), propertiesMap);
+				String value = SourceFormatterUtil.getPropertyValue(
+					attributeName, clazz.getSimpleName(), propertiesMap);
 
-					if (Validator.isNotNull(value)) {
-						BeanUtils.setProperty(
-							sourceCheck, attributeName, value);
-					}
+				if (Validator.isNotNull(value)) {
+					BeanUtils.setProperty(sourceCheck, attributeName, value);
 				}
 			}
 

@@ -15,6 +15,7 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
@@ -38,16 +39,35 @@ public class ChainingCheck extends BaseCheck {
 		return new int[] {TokenTypes.CTOR_DEF, TokenTypes.METHOD_DEF};
 	}
 
+	public void setAllowedClassName(String allowedClassName) {
+		_allowedClassNames = ArrayUtil.append(
+			_allowedClassNames, allowedClassName);
+	}
+
 	public void setAllowedClassNames(String allowedClassNames) {
-		_allowedClassNames = StringUtil.split(allowedClassNames);
+		_allowedClassNames = ArrayUtil.append(
+			_allowedClassNames, StringUtil.split(allowedClassNames));
+	}
+
+	public void setAllowedMethodName(String allowedMethodName) {
+		_allowedMethodNames = ArrayUtil.append(
+			_allowedMethodNames, allowedMethodName);
 	}
 
 	public void setAllowedMethodNames(String allowedMethodNames) {
-		_allowedMethodNames = StringUtil.split(allowedMethodNames);
+		_allowedMethodNames = ArrayUtil.append(
+			_allowedMethodNames, StringUtil.split(allowedMethodNames));
+	}
+
+	public void setAllowedVariableTypeName(String allowedVariableTypeName) {
+		_allowedVariableTypeNames = ArrayUtil.append(
+			_allowedVariableTypeNames, allowedVariableTypeName);
 	}
 
 	public void setAllowedVariableTypeNames(String allowedVariableTypeNames) {
-		_allowedVariableTypeNames = StringUtil.split(allowedVariableTypeNames);
+		_allowedVariableTypeNames = ArrayUtil.append(
+			_allowedVariableTypeNames,
+			StringUtil.split(allowedVariableTypeNames));
 	}
 
 	@Override

@@ -23,6 +23,7 @@ import com.liferay.source.formatter.checks.util.BNDSourceUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +37,14 @@ public class JavaPackagePathCheck extends BaseFileCheck {
 		String allowedInternalPackageDirName) {
 
 		_allowedInternalPackageDirNames.add(allowedInternalPackageDirName);
+	}
+
+	public void setAllowedInternalPackageDirNames(
+		String allowedInternalPackageDirNames) {
+
+		Collections.addAll(
+			_allowedInternalPackageDirNames,
+			StringUtil.split(allowedInternalPackageDirNames));
 	}
 
 	@Override

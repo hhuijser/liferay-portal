@@ -34,7 +34,7 @@ import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.DateUtil;
+import com.liferay.portal.kernel.util.FastDateFormatConstants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -55,11 +55,11 @@ import com.liferay.portal.search.web.search.result.SearchResultImageContributor;
 
 import java.text.Format;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -487,13 +487,16 @@ public class SearchResultSummaryDisplayBuilder {
 	}
 
 	protected String formatDate(String dateString) {
+		SimpleDateFormat simpleDateFormatInput = new SimpleDateFormat(
+			"yyyyMMddHHmmss", _locale);
+
 		try {
-			Date date = DateUtil.parseDate(
-				"yyyyMMddHHmmss", dateString, _locale);
 			Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(
+				FastDateFormatConstants.LONG, FastDateFormatConstants.SHORT,
 				_locale, _themeDisplay.getTimeZone());
 
-			return dateFormatDateTime.format(date);
+			return dateFormatDateTime.format(
+				simpleDateFormatInput.parse(dateString));
 		}
 		catch (ParseException pe) {
 			throw new RuntimeException(pe);

@@ -131,6 +131,26 @@ public class StrutsActionRegistryUtil {
 		_strutsPortletActionServiceRegistrations =
 			new StringServiceRegistrationMapImpl<>();
 
+	static {
+		String filterString = StringBundler.concat(
+			"(&(|(objectClass=", StrutsAction.class.getName(), ")(objectClass=",
+			StrutsPortletAction.class.getName(), "))(path=*))");
+
+		ServiceTrackerMapFactory serviceTrackerMapFactory =
+			ServiceTrackerMapFactoryUtil.getServiceTrackerMapFactory();
+
+		_actions = serviceTrackerMapFactory.openSingleValueMap(
+			null, filterString,
+			(serviceReference, emitter) -> {
+				String[] paths = _getPaths(serviceReference);
+
+				for (String path : paths) {
+					emitter.emit(path);
+				}
+			},
+			new ActionServiceTrackerCustomizer());
+	}
+
 	private static class ActionServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer<Object, Action> {
 
@@ -166,26 +186,6 @@ public class StrutsActionRegistryUtil {
 			registry.ungetService(serviceReference);
 		}
 
-	}
-
-	static {
-		String filterString = StringBundler.concat(
-			"(&(|(objectClass=", StrutsAction.class.getName(), ")(objectClass=",
-			StrutsPortletAction.class.getName(), "))(path=*))");
-
-		ServiceTrackerMapFactory serviceTrackerMapFactory =
-			ServiceTrackerMapFactoryUtil.getServiceTrackerMapFactory();
-
-		_actions = serviceTrackerMapFactory.openSingleValueMap(
-			null, filterString,
-			(serviceReference, emitter) -> {
-				String[] paths = _getPaths(serviceReference);
-
-				for (String path : paths) {
-					emitter.emit(path);
-				}
-			},
-			new ActionServiceTrackerCustomizer());
 	}
 
 }

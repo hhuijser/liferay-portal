@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaMethod;
 import com.liferay.source.formatter.parser.JavaStaticBlock;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.parser.JavaVariable;
@@ -122,6 +123,17 @@ public class JavaStaticBlockCheck extends BaseJavaTermCheck {
 
 	private JavaTerm _getLastReferencedJavaTerm(
 		String staticBlockContent, List<JavaTerm> childJavaTerms) {
+
+		for (int i = childJavaTerms.size() - 1; i >= 0; i--) {
+			JavaTerm javaTerm = childJavaTerms.get(i);
+
+			if (javaTerm.isStatic() && (javaTerm instanceof JavaMethod) &&
+				staticBlockContent.matches(
+					"[\\s\\S]*\\s" + javaTerm.getName() + "\\([\\s\\S]*")) {
+
+				return null;
+			}
+		}
 
 		for (int i = childJavaTerms.size() - 1; i >= 0; i--) {
 			JavaTerm javaTerm = childJavaTerms.get(i);

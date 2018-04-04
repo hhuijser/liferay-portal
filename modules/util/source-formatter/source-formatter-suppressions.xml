@@ -6,6 +6,7 @@
 		<suppress checks="JavaHibernateSQLCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaHibernateSQLCheck\.java" />
 		<suppress checks="JavaIllegalImportsCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaIllegalImportsCheck\.java" />
 		<suppress checks="JavaInterfaceCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaInterfaceCheck\.java" />
+		<suppress checks="JavaJSPDynamicIncludeCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaJSPDynamicIncludeCheck\.java" />
 		<suppress checks="JavaModuleIllegalImportsCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaModuleIllegalImportsCheck\.java" />
 		<suppress checks="JavaModuleServiceProxyFactoryCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaModuleServiceProxyFactoryCheck\.java" />
 		<suppress checks="JavaStopWatchCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaStopWatchCheck\.java" />

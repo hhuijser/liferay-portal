@@ -37,7 +37,7 @@ for (int assetEntryIndex = 0; assetEntryIndex < assetEntries.size(); assetEntryI
 		}
 	}
 
-	if ((assetRenderer == null) || !assetRenderer.isDisplayable()) {
+	if (assetRenderer == null) {
 		continue;
 	}
 

@@ -358,23 +358,44 @@ public class AssetPublisherUtil {
 			int end)
 		throws Exception {
 
+		List<AssetEntry> temp = null;
+
 		if (isSearchWithIndex(portletName, assetEntryQuery)) {
-			return _assetHelper.searchAssetEntries(
-				assetEntryQuery, getAssetCategoryIds(portletPreferences),
-				getAssetTagNames(portletPreferences), attributes, companyId,
-				assetEntryQuery.getKeywords(), layout, locale, scopeGroupId,
-				timeZone, userId, start, end);
+			BaseModelSearchResult<AssetEntry> baseModelSearchResult =
+				_assetHelper.searchAssetEntries(
+					assetEntryQuery, getAssetCategoryIds(portletPreferences),
+					getAssetTagNames(portletPreferences), attributes, companyId,
+					assetEntryQuery.getKeywords(), layout, locale, scopeGroupId,
+					timeZone, userId, start, end);
+
+			temp = baseModelSearchResult.getBaseModels();
+		}
+		else {
+			assetEntryQuery.setEnd(end);
+			assetEntryQuery.setStart(start);
+
+			temp = _assetEntryService.getEntries(assetEntryQuery);
 		}
 
-		int total = _assetEntryService.getEntriesCount(assetEntryQuery);
+		List<AssetEntry> results = new ArrayList<>();
 
-		assetEntryQuery.setEnd(end);
-		assetEntryQuery.setStart(start);
+		for (AssetEntry assetEntry : temp) {
+			AssetRendererFactory<?> assetRendererFactory =
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassName(
+						assetEntry.getClassName());
 
-		List<AssetEntry> results = _assetEntryService.getEntries(
-			assetEntryQuery);
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(
+					assetEntry.getClassPK(),
+					AssetRendererFactory.TYPE_LATEST_APPROVED);
 
-		return new BaseModelSearchResult<>(results, total);
+			if (assetRenderer.isDisplayable()) {
+				results.add(assetEntry);
+			}
+		}
+
+		return new BaseModelSearchResult<>(results, results.size());
 	}
 
 	/**

@@ -36,6 +36,9 @@ public class DateUtil {
 
 	public static final String ISO_8601_PATTERN = "yyyy-MM-dd'T'HH:mm:ssZ";
 
+	//Fri Dec 31 23:59:59 UTC+12 9999
+	public static final long BIG_DATE = 253402257599999L;
+
 	public static int compareTo(Date date1, Date date2) {
 		if (date1 == date2) {
 			return 0;

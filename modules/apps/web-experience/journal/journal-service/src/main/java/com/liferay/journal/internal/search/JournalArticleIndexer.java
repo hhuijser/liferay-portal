@@ -69,6 +69,7 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -238,7 +239,7 @@ public class JournalArticleIndexer
 
 		Date now = new Date(System.currentTimeMillis());
 
-		Date future = new Date(Long.MAX_VALUE);
+		Date future = new Date(DateUtil.BIG_DATE);
 
 		String nowString = dateFormat.format(now);
 

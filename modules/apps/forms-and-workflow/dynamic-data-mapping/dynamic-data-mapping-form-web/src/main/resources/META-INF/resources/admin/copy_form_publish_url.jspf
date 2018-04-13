@@ -31,6 +31,7 @@
 						<span class="publish-button-text">
 							<liferay-ui:message key="copy" />
 						</span>
+
 						<span class="publish-button-success-icon">
 							<svg class="lexicon-icon">
 								<use xlink:href="<%= ddmFormAdminDisplayContext.getLexiconIconsPath() %>check" />

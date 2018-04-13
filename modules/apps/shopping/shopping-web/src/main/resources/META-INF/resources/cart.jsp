@@ -236,6 +236,7 @@ boolean minQuantityMultiple = PrefsPropsUtil.getBoolean(company.getCompanyId(), 
 					%>
 
 				</span>
+
 				<span>
 
 					<%

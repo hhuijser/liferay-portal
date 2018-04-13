@@ -108,6 +108,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "category." + configurationMod
 							<liferay-ui:message key="configuration-entries" />
 						</span>
 					</span>
+
 					<span class="autofit-col">
 						<span class="heading-end">
 							<portlet:renderURL var="createFactoryConfigURL">

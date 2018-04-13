@@ -264,6 +264,7 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 									<span>
 										<liferay-ui:message arguments="<%= KBFolderServiceUtil.getKBFoldersCount(kbFolder.getGroupId(), kbFolder.getKbFolderId()) %>" key="x-folders" />
 									</span>
+
 									<span class="kb-descriptive-details">
 										<liferay-ui:message arguments="<%= KBArticleServiceUtil.getKBArticlesCount(kbFolder.getGroupId(), kbFolder.getKbFolderId(), WorkflowConstants.STATUS_ANY) %>" key="x-articles" />
 									</span>
@@ -333,6 +334,7 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 									<span class="kb-descriptive-details">
 										<liferay-ui:message arguments="<%= BigDecimal.valueOf(kbArticle.getPriority()).toPlainString() %>" key="priority-x" />
 									</span>
+
 									<span class="kb-descriptive-details">
 										<liferay-ui:message arguments="<%= kbArticle.getViewCount() %>" key="x-views" />
 									</span>

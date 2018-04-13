@@ -36,6 +36,7 @@
 		<span class="meeting-name">
 			<%= HtmlUtil.escape(powwowMeeting.getName()) %>
 		</span>
+
 		<span class="meeting-status">
 			(<liferay-ui:message key="<%= PowwowMeetingConstants.getStatusLabel(powwowMeeting.getStatus()) %>" />)
 		</span>

@@ -37,6 +37,7 @@ SiteAdministrationPanelCategoryDisplayContext siteAdministrationPanelCategoryDis
 					<span class="<%= Validator.isNull(siteAdministrationPanelCategoryDisplayContext.getStagingGroupURL()) ? "active" : StringPool.BLANK %>">
 						<aui:a data="<%= data %>" href="<%= siteAdministrationPanelCategoryDisplayContext.getStagingGroupURL() %>" label="staging" />
 					</span>
+
 					<span class="links-separator"> |</span>
 
 					<%

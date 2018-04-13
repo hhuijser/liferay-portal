@@ -44,6 +44,7 @@
 					<aui:option label="em" selected='<%= Objects.equals(portletConfigurationCSSPortletDisplayContext.getBorderWidthProperty("top", "unit"), "em") %>' />
 				</aui:select>
 			</span>
+
 			<span class="field-row">
 				<aui:input cssClass="same-border-width" disabled='<%= portletConfigurationCSSPortletDisplayContext.isBorderSameForAll("borderWidth") %>' inlineField="<%= true %>" label="right" name="borderWidthRight" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderWidthProperty("right", "value") %>' />
 
@@ -53,6 +54,7 @@
 					<aui:option label="em" selected='<%= Objects.equals(portletConfigurationCSSPortletDisplayContext.getBorderWidthProperty("right", "unit"), "em") %>' />
 				</aui:select>
 			</span>
+
 			<span class="field-row">
 				<aui:input cssClass="same-border-width" disabled='<%= portletConfigurationCSSPortletDisplayContext.isBorderSameForAll("borderWidth") %>' inlineField="<%= true %>" label="bottom" name="borderWidthBottom" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderWidthProperty("bottom", "value") %>' />
 
@@ -62,6 +64,7 @@
 					<aui:option label="em" selected='<%= Objects.equals(portletConfigurationCSSPortletDisplayContext.getBorderWidthProperty("bottom", "unit"), "em") %>' />
 				</aui:select>
 			</span>
+
 			<span class="field-row">
 				<aui:input cssClass="same-border-width" disabled='<%= portletConfigurationCSSPortletDisplayContext.isBorderSameForAll("borderWidth") %>' inlineField="<%= true %>" label="left" name="borderWidthLeft" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderWidthProperty("left", "value") %>' />
 

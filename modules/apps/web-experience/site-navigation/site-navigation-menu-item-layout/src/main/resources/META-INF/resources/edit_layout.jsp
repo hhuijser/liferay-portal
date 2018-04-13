@@ -40,6 +40,7 @@ String title = GetterUtil.getString(request.getAttribute(WebKeys.TITLE));
 	<span id="<portlet:namespace />layoutItemRemove" role="button">
 		<aui:icon cssClass="icon-monospaced" image="times" markupView="lexicon" />
 	</span>
+
 	<span id="<portlet:namespace />layoutNameInput">
 		<c:choose>
 			<c:when test="<%= selLayout != null %>">

@@ -45,6 +45,7 @@ String href = (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF);
 		<span class="form-instance-id">
 			<liferay-ui:message key="id" />: <%= ddmFormInstance.getFormInstanceId() %>
 		</span>
+
 		<span class="form-instance-modified-date">
 			<liferay-ui:message key="modified-date" />: <%= dateSearchEntry.getName(request) %>
 		</span>

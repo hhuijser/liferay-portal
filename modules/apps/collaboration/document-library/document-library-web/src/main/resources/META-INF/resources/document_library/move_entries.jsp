@@ -182,6 +182,7 @@ if (portletTitleBasedNavigation) {
 									<span class="folder-title">
 										<%= HtmlUtil.escape(folder.getName()) %>
 									</span>
+
 									<span class="error-message">
 										<c:choose>
 											<c:when test="<%= folder.isLocked() && !folder.hasLock() %>">
@@ -264,6 +265,7 @@ if (portletTitleBasedNavigation) {
 									<span class="file-title" title="<%= HtmlUtil.escapeAttribute(invalidMoveFileEntry.getTitle()) %>">
 										<%= HtmlUtil.escape(invalidMoveFileEntry.getTitle()) %>
 									</span>
+
 									<span class="error-message">
 										<c:choose>
 											<c:when test="<%= invalidMoveFileEntry.isCheckedOut() && !invalidMoveFileEntry.hasLock() %>">
@@ -328,6 +330,7 @@ if (portletTitleBasedNavigation) {
 									<span class="file-title">
 										<%= fileShortcut.getToTitle() + " (" + LanguageUtil.get(themeDisplay.getLocale(), "shortcut") + ")" %>
 									</span>
+
 									<span class="error-message">
 										<liferay-ui:message key="you-do-not-have-the-required-permissions" />
 									</span>

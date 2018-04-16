@@ -142,6 +142,7 @@ SearchContainer entriesSearchContainer = (SearchContainer)request.getAttribute("
 			<span class="h6 text-default">
 				<liferay-ui:message arguments="<%= repliesCount %>" key='<%= repliesCount == 1 ? "x-reply" : "x-replies" %>' />
 			</span>
+
 			<span class="h6 text-default">
 				<liferay-ui:message arguments="<%= viewCount %>" key='<%= viewCount == 1 ? "x-view" : "x-views" %>' />
 			</span>

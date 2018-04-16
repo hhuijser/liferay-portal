@@ -29,6 +29,7 @@
 						user="<%= user %>"
 					/>
 				</span>
+
 				<span class="user-full-name">
 					<%= HtmlUtil.escape(user.getFullName()) %>
 				</span>

@@ -121,6 +121,7 @@ if (powwowMeeting != null) {
 				name="startTime"
 			/>
 		</span>
+
 		<span class="to"><liferay-ui:message key="to" /></span>
 
 		<span class="end-date-container" id="<portlet:namespace />endDateContainer">

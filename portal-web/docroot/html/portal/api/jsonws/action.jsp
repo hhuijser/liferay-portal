@@ -117,6 +117,7 @@ String signature = ParamUtil.getString(request, "signature");
 					<span class="lfr-api-param-name">
 						p_auth
 					</span>
+
 					<span class="lfr-action-label lfr-api-param-type">
 						String
 					</span>
@@ -150,6 +151,7 @@ String signature = ParamUtil.getString(request, "signature");
 					<span class="lfr-api-param-name">
 						<%= methodParameter.getName() %>
 					</span>
+
 					<span class="lfr-action-label lfr-api-param-type">
 						<%= methodParameterTypeClassName %>
 					</span>

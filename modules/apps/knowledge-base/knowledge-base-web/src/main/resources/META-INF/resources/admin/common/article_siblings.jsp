@@ -58,6 +58,7 @@ KBArticleURLHelper kbArticleURLHelper = new KBArticleURLHelper(renderRequest, re
 			</aui:a>
 		</c:if>
 	</span>
+
 	<span class="kb-article-next">
 		<c:if test="<%= nextKBArticle != null %>">
 

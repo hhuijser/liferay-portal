@@ -70,6 +70,7 @@ if (siteNavigationMenu != null) {
 												<%= siteNavigationMenuName %>
 											</c:if>
 										</span>
+
 										<span class="mt-1 <%= ((siteNavigationMenuDisplayContext.getSiteNavigationMenuType() == -1) && (siteNavigationMenuDisplayContext.getSiteNavigationMenuId() > 0)) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />removeSiteNavigationMenu" role="button">
 											<aui:icon cssClass="icon-monospaced" image="times" markupView="lexicon" />
 										</span>

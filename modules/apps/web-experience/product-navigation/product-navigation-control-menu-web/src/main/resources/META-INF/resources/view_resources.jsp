@@ -63,6 +63,7 @@ if (Validator.isNotNull(keywords)) {
 
 		</ul>
 	</span>
+
 	<span class="pull-right" id="<portlet:namespace />displayStyleContainer">
 
 		<%

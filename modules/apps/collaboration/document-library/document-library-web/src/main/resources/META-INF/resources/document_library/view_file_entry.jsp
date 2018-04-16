@@ -225,6 +225,7 @@ if (portletTitleBasedNavigation) {
 									url="<%= DLUtil.getDownloadURL(fileEntry, fileVersion, themeDisplay, StringPool.BLANK) %>"
 								/>
 							</span>
+
 							<span class="conversions">
 
 								<%
@@ -245,6 +246,7 @@ if (portletTitleBasedNavigation) {
 								%>
 
 							</span>
+
 							<span class="webdav-url">
 								<c:choose>
 									<c:when test="<%= portletDisplay.isWebDAVEnabled() && fileEntry.isSupportsSocial() %>">
@@ -485,6 +487,7 @@ if (portletTitleBasedNavigation) {
 							<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="thumbnail" />" class="thumbnail" src="<%= thumbnailSrc %>" style="<%= DLUtil.getThumbnailStyle(true, 0, 128, 128) %>" />
 						</c:if>
 					</span>
+
 					<span class="user-date">
 
 						<%

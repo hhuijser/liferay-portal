@@ -51,6 +51,7 @@
 					portletURL=renderResponse.createRenderURL()
 				/>
 			</span>
+
 			<span class="entry-tags">
 				<@liferay_ui["asset-tags-summary"]
 					className=blogsEntryClassName

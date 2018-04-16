@@ -65,6 +65,7 @@ PanelCategoryHelper panelCategoryHelper = (PanelCategoryHelper)request.getAttrib
 									</c:otherwise>
 								</c:choose>
 							</span>
+
 							<span class="nav-equal-height-heading-field">
 								<div class="dropdown">
 									<a aria-expanded="false" class="dropdown-toggle icon-monospaced" data-toggle="dropdown" href="javascript:;">

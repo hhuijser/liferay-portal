@@ -151,6 +151,7 @@ if (portletTitleBasedNavigation) {
 									<span class="folder-title">
 										<%= HtmlUtil.escape(folder.getName()) %>
 									</span>
+
 									<span class="error-message">
 										<liferay-ui:message key="you-do-not-have-the-required-permissions" />
 									</span>
@@ -224,6 +225,7 @@ if (portletTitleBasedNavigation) {
 									<span class="file-title" title="<%= HtmlUtil.escapeAttribute(invalidMoveEntry.getName()) %>">
 										<%= HtmlUtil.escape(invalidMoveEntry.getName()) %>
 									</span>
+
 									<span class="error-message">
 										<liferay-ui:message key="you-do-not-have-the-required-permissions" />
 									</span>

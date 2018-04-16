@@ -69,7 +69,6 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.DateUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -79,6 +78,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -237,17 +237,12 @@ public class JournalArticleIndexer
 		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
 
+		Date future = new Date(System.currentTimeMillis() + (Time.YEAR * 1000));
 		Date now = new Date(System.currentTimeMillis());
 
-		Date future = new Date(DateUtil.BIG_DATE);
-
-		String nowString = dateFormat.format(now);
-
-		String futureString = dateFormat.format(future);
-
 		contextBooleanFilter.addRangeTerm(
-			Field.EXPIRATION_DATE, Long.parseLong(nowString),
-			Long.parseLong(futureString));
+			Field.EXPIRATION_DATE, Long.parseLong(dateFormat.format(now)),
+			Long.parseLong(dateFormat.format(future)));
 	}
 
 	@Override

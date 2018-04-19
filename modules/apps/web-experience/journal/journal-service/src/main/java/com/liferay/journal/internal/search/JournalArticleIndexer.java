@@ -241,8 +241,8 @@ public class JournalArticleIndexer
 		Date now = new Date(System.currentTimeMillis());
 
 		contextBooleanFilter.addRangeTerm(
-			Field.EXPIRATION_DATE, Long.parseLong(dateFormat.format(now)),
-			Long.parseLong(dateFormat.format(future)));
+			Field.EXPIRATION_DATE, GetterUtil.getLong(dateFormat.format(now)),
+			GetterUtil.getLong(dateFormat.format(future)));
 	}
 
 	@Override

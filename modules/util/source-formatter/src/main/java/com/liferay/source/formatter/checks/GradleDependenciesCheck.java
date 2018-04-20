@@ -114,6 +114,14 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 			uniqueDependencies.add(dependency);
 		}
 
+		boolean checkScope = false;
+
+		if (isModulesApp(absolutePath, false) && _hasBNDFile(absolutePath) &&
+			!_isSpringBootExecutable(content)) {
+
+			checkScope = true;
+		}
+
 		StringBundler sb = new StringBundler();
 
 		String previousConfiguration = null;
@@ -121,10 +129,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		for (String dependency : uniqueDependencies) {
 			String configuration = _getConfiguration(dependency);
 
-			if (isModulesApp(absolutePath, false) &&
-				_hasBNDFile(absolutePath) &&
-				!_isSpringBootExecutable(content)) {
-
+			if (checkScope) {
 				if (!_isTestUtilModule(absolutePath) &&
 					configuration.equals("compile")) {
 

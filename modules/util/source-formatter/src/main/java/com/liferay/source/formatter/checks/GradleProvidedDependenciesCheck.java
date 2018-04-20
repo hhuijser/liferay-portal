@@ -34,21 +34,21 @@ public class GradleProvidedDependenciesCheck extends BaseFileCheck {
 			return content;
 		}
 
+		String scope = _getScope(content);
+
 		for (String block : _getBlocks(content)) {
-			content = _format(content, block);
+			content = _format(content, block, scope);
 		}
 
 		return StringUtil.replace(
 			content,
 			new String[] {"configurations.provided", "extendsFrom provided"},
-			new String[] {
-				"configurations.compileOnly", "extendsFrom compileOnly"
-			});
+			new String[] {"configurations." + scope, "extendsFrom " + scope});
 	}
 
-	private String _format(String content, String dependencies) {
+	private String _format(String content, String dependencies, String scope) {
 		String newDependencies = dependencies.replaceAll(
-			"\\bprovided\\b", "compileOnly");
+			"\\bprovided\\b", scope);
 
 		return StringUtil.replace(content, dependencies, newDependencies);
 	}
@@ -65,8 +65,50 @@ public class GradleProvidedDependenciesCheck extends BaseFileCheck {
 		return blocks;
 	}
 
+	private String _getScope(String content) {
+		if (_isSpringBootExecutable(content)) {
+			return "compile";
+		}
+
+		return "compileOnly";
+	}
+
+	private boolean _isSpringBootExecutable(String content) {
+		Matcher matcher = _springBootPattern.matcher(content);
+
+		if (!matcher.find()) {
+			return false;
+		}
+
+		int x = matcher.start();
+
+		while (true) {
+			x = content.indexOf("}", x + 1);
+
+			if (x == -1) {
+				return false;
+			}
+
+			String s = content.substring(matcher.start(), x + 1);
+
+			int level = getLevel(s, "{", "}");
+
+			if (level == 0) {
+				if (s.matches("(?is).*executable\\s*=\\s*true.*") &&
+					s.matches("(?is).*mainClass\\s*=.*")) {
+
+					return true;
+				}
+
+				return false;
+			}
+		}
+	}
+
 	private final Pattern _blocksPattern = Pattern.compile(
 		"^(configurations|dependencies)\\s*(\\{\\s*\\}|\\{.*?\\n\\})",
 		Pattern.DOTALL | Pattern.MULTILINE);
+	private final Pattern _springBootPattern = Pattern.compile(
+		"\\s*springBoot\\s*\\{", Pattern.CASE_INSENSITIVE);
 
 }

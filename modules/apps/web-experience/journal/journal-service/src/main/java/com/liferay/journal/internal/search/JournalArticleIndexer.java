@@ -237,12 +237,11 @@ public class JournalArticleIndexer
 		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
 			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
 
-		Date future = new Date(System.currentTimeMillis() + (Time.YEAR * 1000));
 		Date now = new Date(System.currentTimeMillis());
 
 		contextBooleanFilter.addRangeTerm(
 			Field.EXPIRATION_DATE, GetterUtil.getLong(dateFormat.format(now)),
-			GetterUtil.getLong(dateFormat.format(future)));
+			GetterUtil.getLong(Time.DATE_MAX_VALUE));
 	}
 
 	@Override

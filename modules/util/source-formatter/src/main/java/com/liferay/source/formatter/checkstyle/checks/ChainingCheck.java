@@ -50,6 +50,11 @@ public class ChainingCheck extends BaseCheck {
 			_allowedMethodNames, StringUtil.split(allowedMethodNames));
 	}
 
+	public void setAllowedVariableNames(String allowedVariableNames) {
+		_allowedVariableNames = ArrayUtil.append(
+			_allowedVariableNames, StringUtil.split(allowedVariableNames));
+	}
+
 	public void setAllowedVariableTypeNames(String allowedVariableTypeNames) {
 		_allowedVariableTypeNames = ArrayUtil.append(
 			_allowedVariableTypeNames,
@@ -341,6 +346,12 @@ public class ChainingCheck extends BaseCheck {
 				}
 			}
 
+			for (String allowedVariableName : _allowedVariableNames) {
+				if (classOrVariableName.matches(allowedVariableName)) {
+					return true;
+				}
+			}
+
 			String variableTypeName = DetailASTUtil.getVariableTypeName(
 				methodCallAST, classOrVariableName, false);
 
@@ -450,6 +461,7 @@ public class ChainingCheck extends BaseCheck {
 
 	private String[] _allowedClassNames = new String[0];
 	private String[] _allowedMethodNames = new String[0];
+	private String[] _allowedVariableNames = new String[0];
 	private String[] _allowedVariableTypeNames = new String[0];
 
 }

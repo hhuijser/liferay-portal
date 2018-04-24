@@ -29,6 +29,8 @@ import java.util.TimeZone;
  */
 public class Time {
 
+	public static final String DATE_MAX_VALUE = "99950812133000";
+
 	public static final long DAY = Time.HOUR * 24;
 
 	public static final String DURATION_FORMAT = "HH:mm:ss.SSS";

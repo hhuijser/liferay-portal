@@ -103,6 +103,14 @@ public class JavaUpgradeConnectionCheck extends BaseJavaTermCheck {
 
 			JavaMethod javaMethod = (JavaMethod)childJavaTerm;
 
+			String methodName = javaMethod.getName();
+
+			if (javaMethod.hasAnnotation("Override") &&
+				methodName.equals("upgrade")) {
+
+				continue;
+			}
+
 			String methodContent = javaMethod.getContent();
 
 			int x = methodContent.indexOf("DataAccess.getConnection");

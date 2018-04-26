@@ -1326,8 +1326,13 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		List<AssetLink> assetLinks = assetLinkLocalService.getDirectLinks(
 			assetEntry.getEntryId(), AssetLinkConstants.TYPE_RELATED);
 
-		long[] assetLinkEntryIds = StringUtil.split(
-			ListUtil.toString(assetLinks, AssetLink.ENTRY_ID2_ACCESSOR), 0L);
+		long[] assetLinkEntryIds = null;
+
+		if ((assetLinks != null) && !assetLinks.isEmpty()) {
+			assetLinkEntryIds = StringUtil.split(
+				ListUtil.toString(assetLinks, AssetLink.ENTRY_ID2_ACCESSOR),
+				0L);
+		}
 
 		updateKBArticleAsset(
 			userId, kbArticle, assetEntry.getCategoryIds(),

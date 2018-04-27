@@ -12,31 +12,23 @@
  * details.
  */
 
-package com.liferay.portal.kernel.io;
+package com.liferay.oauth2.provider.rest.internal.endpoint.authorize.configuration.definition;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.liferay.oauth2.provider.rest.internal.endpoint.authorize.configuration.AuthorizeScreenConfiguration;
+import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
+
+import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Shuyang Zhou
+ * @author Tomas Polesovsky
  */
-public class AutoDeleteFileInputStream extends FileInputStream {
-
-	public AutoDeleteFileInputStream(File file) throws FileNotFoundException {
-		super(file);
-
-		_file = file;
-	}
+@Component
+public class AuthorizeScreenConfigurationBeanDeclaration
+	implements ConfigurationBeanDeclaration {
 
 	@Override
-	public void close() throws IOException {
-		if (_file.exists() && !_file.delete()) {
-			_file.deleteOnExit();
-		}
+	public Class<?> getConfigurationBeanClass() {
+		return AuthorizeScreenConfiguration.class;
 	}
-
-	private final File _file;
 
 }

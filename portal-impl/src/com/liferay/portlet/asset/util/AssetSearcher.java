@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PropsValues;
 
@@ -462,7 +463,7 @@ public class AssetSearcher extends BaseSearcher {
 
 		booleanFilter.addRangeTerm(
 			Field.EXPIRATION_DATE, GetterUtil.getLong(dateFormat.format(now)),
-			99950812133000L);
+			GetterUtil.getLong(Time.DATE_MAX_VALUE));
 
 		if (booleanFilter.hasClauses() && !showInvisible) {
 			fullQuery.setPreBooleanFilter(booleanFilter);

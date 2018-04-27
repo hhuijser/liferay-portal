@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ArgumentsUtil;
 import com.liferay.portal.tools.GitException;
 import com.liferay.portal.tools.GitUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.configuration.ConfigurationLoader;
 import com.liferay.source.formatter.checks.configuration.SourceCheckConfiguration;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterConfiguration;
@@ -482,7 +481,7 @@ public class SourceFormatter {
 
 		File file = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "gradle.properties",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			PORTAL_MAX_DIR_LEVEL);
 
 		if (file == null) {
 			return null;
@@ -513,7 +512,7 @@ public class SourceFormatter {
 
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < PORTAL_MAX_DIR_LEVEL; i++) {
 			_readProperties(new File(parentDirName + _PROPERTIES_FILE_NAME));
 
 			parentDirName += "../";
@@ -567,7 +566,7 @@ public class SourceFormatter {
 	private boolean _isPortalSource() {
 		File portalImplDir = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "portal-impl",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			PORTAL_MAX_DIR_LEVEL);
 
 		if (portalImplDir != null) {
 			return true;

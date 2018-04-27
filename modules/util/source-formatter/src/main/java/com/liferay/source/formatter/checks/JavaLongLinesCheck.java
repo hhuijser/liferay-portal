@@ -21,8 +21,8 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -227,7 +227,7 @@ public class JavaLongLinesCheck extends BaseFileCheck {
 					break;
 				}
 
-				if (!ToolsUtil.isInsideQuotes(line, x) &&
+				if (!SourceUtil.isInsideQuotes(line, x) &&
 					JavaSourceUtil.isValidJavaParameter(line.substring(0, x))) {
 
 					String firstLine = line.substring(0, x + 1);
@@ -315,7 +315,7 @@ public class JavaLongLinesCheck extends BaseFileCheck {
 			else {
 				x = line.lastIndexOf(StringPool.SPACE);
 
-				if ((x != -1) && !ToolsUtil.isInsideQuotes(line, x)) {
+				if ((x != -1) && !SourceUtil.isInsideQuotes(line, x)) {
 					String firstLine = line.substring(0, x);
 					String secondLine =
 						indent + StringPool.TAB + line.substring(x + 1);
@@ -377,7 +377,7 @@ public class JavaLongLinesCheck extends BaseFileCheck {
 				break;
 			}
 
-			if (!ToolsUtil.isInsideQuotes(line, x)) {
+			if (!SourceUtil.isInsideQuotes(line, x)) {
 				return false;
 			}
 		}

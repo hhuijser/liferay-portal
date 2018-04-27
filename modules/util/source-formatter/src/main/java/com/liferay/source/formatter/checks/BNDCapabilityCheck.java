@@ -18,7 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -108,7 +108,7 @@ public class BNDCapabilityCheck extends BaseFileCheck {
 		for (int i = 0; i < capabilities.length(); i++) {
 			char c = capabilities.charAt(i);
 
-			if (ToolsUtil.isInsideQuotes(capabilities, i)) {
+			if (SourceUtil.isInsideQuotes(capabilities, i)) {
 				sb.append(c);
 
 				continue;

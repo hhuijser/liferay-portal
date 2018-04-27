@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 
 import java.io.File;
 
@@ -261,7 +260,7 @@ public class SourceUtil {
 					continue forLoop;
 				}
 
-				if (!ToolsUtil.isInsideQuotes(line, x)) {
+				if (!isInsideQuotes(line, x)) {
 					level += diff;
 				}
 			}

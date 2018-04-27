@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -75,7 +75,7 @@ public class JSONWhitespaceCheck extends WhitespaceCheck {
 		Matcher matcher = _missingWhitespacePattern.matcher(content);
 
 		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (!SourceUtil.isInsideQuotes(content, matcher.start())) {
 				return StringUtil.insert(
 					content, StringPool.SPACE, matcher.start() + 1);
 			}

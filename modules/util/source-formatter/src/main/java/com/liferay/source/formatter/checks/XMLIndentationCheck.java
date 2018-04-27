@@ -18,7 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 /**
  * @author Hugo Huijser
@@ -210,7 +210,7 @@ public class XMLIndentationCheck extends BaseFileCheck {
 
 			int i = Math.max(0, startPos);
 
-			if (!ToolsUtil.isInsideQuotes(line.substring(i), pos - i, false)) {
+			if (!SourceUtil.isInsideQuotes(line.substring(i), pos - i, false)) {
 				return pos;
 			}
 		}

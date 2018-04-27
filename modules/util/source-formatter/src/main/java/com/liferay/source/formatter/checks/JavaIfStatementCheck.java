@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -168,7 +168,7 @@ public class JavaIfStatementCheck extends IfStatementCheck {
 					trimmedLine);
 
 				while (matcher.find()) {
-					if (ToolsUtil.isInsideQuotes(trimmedLine, matcher.end())) {
+					if (SourceUtil.isInsideQuotes(trimmedLine, matcher.end())) {
 						continue;
 					}
 
@@ -323,7 +323,7 @@ public class JavaIfStatementCheck extends IfStatementCheck {
 				return x;
 			}
 
-			if (ToolsUtil.isInsideQuotes(line, x)) {
+			if (SourceUtil.isInsideQuotes(line, x)) {
 				continue;
 			}
 

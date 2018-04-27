@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,7 +64,7 @@ public class WhitespaceCheck extends BaseFileCheck {
 			return line;
 		}
 
-		if (ToolsUtil.isInsideQuotes(line, matcher.start(1))) {
+		if (SourceUtil.isInsideQuotes(line, matcher.start(1))) {
 			return line;
 		}
 
@@ -98,7 +98,7 @@ public class WhitespaceCheck extends BaseFileCheck {
 				return line;
 			}
 
-			if (!ToolsUtil.isInsideQuotes(line, x)) {
+			if (!SourceUtil.isInsideQuotes(line, x)) {
 				line = StringUtil.replaceFirst(
 					line, incorrectSyntax, correctSyntax, x);
 			}
@@ -143,7 +143,7 @@ public class WhitespaceCheck extends BaseFileCheck {
 					break;
 				}
 
-				if (ToolsUtil.isInsideQuotes(linePart, x)) {
+				if (SourceUtil.isInsideQuotes(linePart, x)) {
 					continue;
 				}
 
@@ -177,7 +177,7 @@ public class WhitespaceCheck extends BaseFileCheck {
 
 		if ((pos != -1) && ((pos + 2) < linePart.length()) &&
 			!linePart.contains(StringPool.AT) &&
-			!ToolsUtil.isInsideQuotes(linePart, pos)) {
+			!SourceUtil.isInsideQuotes(linePart, pos)) {
 
 			String linePart2 = linePart.substring(pos + 2);
 
@@ -195,7 +195,7 @@ public class WhitespaceCheck extends BaseFileCheck {
 		pos = linePart.indexOf(" (");
 
 		if ((pos != -1) && !linePart.contains(StringPool.EQUAL) &&
-			!ToolsUtil.isInsideQuotes(linePart, pos) &&
+			!SourceUtil.isInsideQuotes(linePart, pos) &&
 			(linePart.startsWith("private ") ||
 			 linePart.startsWith("protected ") ||
 			 linePart.startsWith("public "))) {
@@ -217,7 +217,7 @@ public class WhitespaceCheck extends BaseFileCheck {
 				x = Math.max(posComma, posSemicolon);
 			}
 
-			if (ToolsUtil.isInsideQuotes(linePart, x)) {
+			if (SourceUtil.isInsideQuotes(linePart, x)) {
 				continue;
 			}
 

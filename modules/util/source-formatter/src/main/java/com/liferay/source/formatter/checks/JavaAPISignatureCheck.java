@@ -18,7 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.SourceFormatter;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaParameter;
 import com.liferay.source.formatter.parser.JavaSignature;
@@ -154,7 +154,7 @@ public class JavaAPISignatureCheck extends BaseJavaTermCheck {
 				StringUtil.splitLines(FileUtil.read(file)));
 		}
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < SourceFormatter.PORTAL_MAX_DIR_LEVEL; i++) {
 			File file = new File(getBaseDirName() + fileName);
 
 			if (file.exists()) {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.source.formatter;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ClassUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.util.ImportPackage;
 
 import java.io.IOException;
 

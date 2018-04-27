@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.source.formatter;
 
 import java.io.IOException;
 

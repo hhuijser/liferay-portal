@@ -17,12 +17,12 @@ package com.liferay.source.formatter;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.GitUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.AlloyMVCCheckstyleLogger;
 import com.liferay.source.formatter.checkstyle.util.AlloyMVCCheckstyleUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
+import com.liferay.source.formatter.util.GitUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.Configuration;

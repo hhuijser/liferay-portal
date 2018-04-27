@@ -12,12 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.source.formatter.util;
 
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -101,6 +102,21 @@ public class ArgumentsUtil {
 		}
 
 		e.printStackTrace();
+	}
+
+	private static class ArgumentsMap extends HashMap<String, String> {
+
+		@Override
+		public String get(Object key) {
+			String value = super.get(key);
+
+			if (Validator.isNull(value)) {
+				value = System.getProperty((String)key);
+			}
+
+			return value;
+		}
+
 	}
 
 }

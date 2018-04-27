@@ -12,14 +12,16 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.source.formatter.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.source.formatter.SourceFormatter;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +32,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -102,47 +103,23 @@ public class GitUtil {
 		return fileNames;
 	}
 
-	public static void main(String[] args) throws Exception {
-		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
+	public static class GitException extends PortalException {
 
-		String baseDirName = ArgumentsUtil.getString(
-			arguments, "git.base.dir", "./");
-		String markerFileName = ArgumentsUtil.getString(
-			arguments, "git.marker.file", null);
-		String type = ArgumentsUtil.getString(
-			arguments, "git.type", "current-branch");
-
-		try {
-			Iterable<String> fileNames = null;
-
-			if (type.equals("current-branch")) {
-				String gitWorkingBranchName = ArgumentsUtil.getString(
-					arguments, "git.working.branch.name", "master");
-
-				fileNames = getCurrentBranchFileNames(
-					baseDirName, gitWorkingBranchName, false);
-			}
-			else if (type.equals("latest-author")) {
-				fileNames = getLatestAuthorFileNames(baseDirName, false);
-			}
-			else if (type.equals("local-changes")) {
-				fileNames = getLocalChangesFileNames(baseDirName, false);
-			}
-			else {
-				throw new IllegalArgumentException();
-			}
-
-			if (Validator.isNotNull(markerFileName)) {
-				fileNames = getDirNames(baseDirName, fileNames, markerFileName);
-			}
-
-			for (String fileName : fileNames) {
-				System.out.println(fileName);
-			}
+		public GitException() {
 		}
-		catch (Exception e) {
-			ArgumentsUtil.processMainException(arguments, e);
+
+		public GitException(String msg) {
+			super(msg);
 		}
+
+		public GitException(String msg, Throwable cause) {
+			super(msg, cause);
+		}
+
+		public GitException(Throwable cause) {
+			super(cause);
+		}
+
 	}
 
 	protected static String getCurrentBranchCommitId(
@@ -311,7 +288,7 @@ public class GitUtil {
 	}
 
 	protected static int getGitLevel(String baseDirName) throws GitException {
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < SourceFormatter.PORTAL_MAX_DIR_LEVEL; i++) {
 			File file = new File(baseDirName + ".git");
 
 			if (file.exists()) {

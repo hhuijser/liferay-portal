@@ -14,8 +14,8 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ImportsFormatter;
 import com.liferay.source.formatter.FTLImportsFormatter;
+import com.liferay.source.formatter.ImportsFormatter;
 
 /**
  * @author Hugo Huijser

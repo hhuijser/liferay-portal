@@ -33,7 +33,6 @@ Main-Class: com.liferay.source.formatter.SourceFormatter
 	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ImportPackage.class,\
 	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ImportsFormatter.class,\
 	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/JavaImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ToolsUtil.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/bean/BeanProperties.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/bean/BeanPropertiesUtil.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/exception/NestableException.class,\

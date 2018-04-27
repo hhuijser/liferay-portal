@@ -19,7 +19,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.GradleSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
@@ -68,7 +67,7 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		Matcher matcher = _incorrectWhitespacePattern.matcher(dependencies);
 
 		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(dependencies, matcher.start())) {
+			if (!SourceUtil.isInsideQuotes(dependencies, matcher.start())) {
 				String newDependencies = StringUtil.insert(
 					dependencies, StringPool.SPACE, matcher.end() - 1);
 

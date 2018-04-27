@@ -16,7 +16,7 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ImportPackage;
+import com.liferay.source.formatter.util.ImportPackage;
 
 import java.util.Comparator;
 import java.util.regex.Matcher;

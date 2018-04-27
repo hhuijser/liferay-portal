@@ -16,8 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.lang.reflect.Field;
 
@@ -48,7 +48,7 @@ public class StringUtilCheck extends BaseFileCheck {
 		Matcher matcher = _stringUtilReplacePattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (SourceUtil.isInsideQuotes(content, matcher.start())) {
 				continue;
 			}
 

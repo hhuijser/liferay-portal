@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
-import com.liferay.portal.xml.SAXReaderFactory;
 
 import java.io.File;
 
@@ -161,14 +159,81 @@ public class SourceUtil {
 		return sb.toString();
 	}
 
+	public static boolean isInsideQuotes(String s, int pos) {
+		return isInsideQuotes(s, pos, true);
+	}
+
+	public static boolean isInsideQuotes(
+		String s, int pos, boolean allowEscapedQuotes) {
+
+		int start = s.lastIndexOf(CharPool.NEW_LINE, pos);
+
+		if (start == -1) {
+			start = 0;
+		}
+
+		int end = s.indexOf(CharPool.NEW_LINE, pos);
+
+		if (end == -1) {
+			end = s.length();
+		}
+
+		String line = s.substring(start, end);
+
+		pos -= start;
+
+		char delimeter = CharPool.SPACE;
+		boolean insideQuotes = false;
+
+		for (int i = 0; i < line.length(); i++) {
+			char c = line.charAt(i);
+
+			if (insideQuotes) {
+				if (c == delimeter) {
+					if (!allowEscapedQuotes) {
+						insideQuotes = false;
+					}
+					else {
+						int precedingBackSlashCount = 0;
+
+						for (int j = i - 1; j >= 0; j--) {
+							if (line.charAt(j) == CharPool.BACK_SLASH) {
+								precedingBackSlashCount += 1;
+							}
+							else {
+								break;
+							}
+						}
+
+						if ((precedingBackSlashCount == 0) ||
+							((precedingBackSlashCount % 2) == 0)) {
+
+							insideQuotes = false;
+						}
+					}
+				}
+			}
+			else if ((c == CharPool.APOSTROPHE) || (c == CharPool.QUOTE)) {
+				delimeter = c;
+				insideQuotes = true;
+			}
+
+			if (pos == i) {
+				return insideQuotes;
+			}
+		}
+
+		return false;
+	}
+
 	public static Document readXML(File file) throws Exception {
-		SAXReader saxReader = SAXReaderFactory.getSAXReader(null, false, false);
+		SAXReader saxReader = _getSAXReader();
 
 		return saxReader.read(file);
 	}
 
 	public static Document readXML(String content) throws Exception {
-		SAXReader saxReader = SAXReaderFactory.getSAXReader(null, false, false);
+		SAXReader saxReader = _getSAXReader();
 
 		return saxReader.read(new UnsyncStringReader(content));
 	}
@@ -195,13 +260,28 @@ public class SourceUtil {
 					continue forLoop;
 				}
 
-				if (!ToolsUtil.isInsideQuotes(line, x)) {
+				if (!isInsideQuotes(line, x)) {
 					level += diff;
 				}
 			}
 		}
 
 		return level;
+	}
+
+	private static SAXReader _getSAXReader() throws Exception {
+		SAXReader saxReader = new SAXReader(false);
+
+		saxReader.setFeature(
+			"http://apache.org/xml/features/disallow-doctype-decl", false);
+		saxReader.setFeature(
+			"http://apache.org/xml/features/nonvalidating/load-dtd-grammar",
+			false);
+		saxReader.setFeature(
+			"http://apache.org/xml/features/nonvalidating/load-external-dtd",
+			false);
+
+		return saxReader;
 	}
 
 	private static final String[] _ARTICLES = {"a", "an", "the"};

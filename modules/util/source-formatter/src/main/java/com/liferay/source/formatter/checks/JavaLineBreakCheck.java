@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,7 +108,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 
 		int pos = line.indexOf("->");
 
-		if ((pos == -1) || ToolsUtil.isInsideQuotes(line, pos)) {
+		if ((pos == -1) || SourceUtil.isInsideQuotes(line, pos)) {
 			return;
 		}
 
@@ -156,7 +156,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 				break;
 			}
 
-			if (!ToolsUtil.isInsideQuotes(trimmedLine, x) &&
+			if (!SourceUtil.isInsideQuotes(trimmedLine, x) &&
 				(getLevel(trimmedLine.substring(0, x + 1), "{", "}") < 0)) {
 
 				addMessage(
@@ -220,7 +220,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 					break;
 				}
 
-				if (ToolsUtil.isInsideQuotes(trimmedLine, x)) {
+				if (SourceUtil.isInsideQuotes(trimmedLine, x)) {
 					continue;
 				}
 
@@ -303,7 +303,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 					break;
 				}
 
-				if (!ToolsUtil.isInsideQuotes(trimmedLine, x)) {
+				if (!SourceUtil.isInsideQuotes(trimmedLine, x)) {
 					addMessage(
 						fileName,
 						"There should be a line break after '" +
@@ -610,7 +610,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 					return content;
 				}
 
-				if (ToolsUtil.isInsideQuotes(content, x)) {
+				if (SourceUtil.isInsideQuotes(content, x)) {
 					continue;
 				}
 
@@ -694,7 +694,7 @@ public class JavaLineBreakCheck extends LineBreakCheck {
 			int y = x - 1;
 
 			while (true) {
-				if (ToolsUtil.isInsideQuotes(content, y) ||
+				if (SourceUtil.isInsideQuotes(content, y) ||
 					(getLevel(content.substring(y, x)) != 0)) {
 
 					y--;

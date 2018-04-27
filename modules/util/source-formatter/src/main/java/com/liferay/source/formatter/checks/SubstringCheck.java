@@ -16,8 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -40,7 +40,7 @@ public class SubstringCheck extends BaseFileCheck {
 		Matcher matcher = _substringPattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start(1))) {
+			if (SourceUtil.isInsideQuotes(content, matcher.start(1))) {
 				continue;
 			}
 

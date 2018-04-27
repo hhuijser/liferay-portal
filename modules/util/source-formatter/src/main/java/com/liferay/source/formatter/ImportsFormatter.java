@@ -12,31 +12,21 @@
  * details.
  */
 
-package com.liferay.portal.kernel.io;
+package com.liferay.source.formatter;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import java.util.regex.Pattern;
+
 /**
- * @author Shuyang Zhou
+ * @author Hugo Huijser
  */
-public class AutoDeleteFileInputStream extends FileInputStream {
+public interface ImportsFormatter {
 
-	public AutoDeleteFileInputStream(File file) throws FileNotFoundException {
-		super(file);
+	public String format(String content, Pattern importPattern)
+		throws IOException;
 
-		_file = file;
-	}
-
-	@Override
-	public void close() throws IOException {
-		if (_file.exists() && !_file.delete()) {
-			_file.deleteOnExit();
-		}
-	}
-
-	private final File _file;
+	public String format(String content, String packageDir, String className)
+		throws IOException;
 
 }

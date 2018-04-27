@@ -17,7 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.Objects;
@@ -69,7 +69,7 @@ public class JavaForLoopCheck extends BaseJavaTermCheck {
 					return javaTermContent;
 				}
 
-				if (ToolsUtil.isInsideQuotes(javaTermContent, x)) {
+				if (SourceUtil.isInsideQuotes(javaTermContent, x)) {
 					continue;
 				}
 

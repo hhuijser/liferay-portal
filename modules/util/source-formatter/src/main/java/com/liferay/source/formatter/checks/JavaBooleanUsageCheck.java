@@ -15,8 +15,8 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -43,7 +43,7 @@ public class JavaBooleanUsageCheck extends BaseFileCheck {
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (SourceUtil.isInsideQuotes(content, matcher.start())) {
 				continue;
 			}
 

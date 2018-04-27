@@ -17,7 +17,6 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.regex.Matcher;
@@ -285,7 +284,7 @@ public abstract class EmptyLinesCheck extends BaseFileCheck {
 
 			x = matcher2.start(1);
 
-			if (ToolsUtil.isInsideQuotes(nextCommand, x)) {
+			if (SourceUtil.isInsideQuotes(nextCommand, x)) {
 				continue;
 			}
 

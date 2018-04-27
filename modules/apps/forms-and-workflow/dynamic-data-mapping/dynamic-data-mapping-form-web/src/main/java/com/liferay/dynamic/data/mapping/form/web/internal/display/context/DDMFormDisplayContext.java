@@ -345,11 +345,10 @@ public class DDMFormDisplayContext {
 
 		ddmFormRenderingContext.setHttpServletResponse(
 			PortalUtil.getHttpServletResponse(_renderResponse));
-
 		ddmFormRenderingContext.setLocale(getLocale(request, ddmForm));
-
 		ddmFormRenderingContext.setPortletNamespace(
 			_renderResponse.getNamespace());
+		ddmFormRenderingContext.setViewMode(true);
 
 		return ddmFormRenderingContext;
 	}

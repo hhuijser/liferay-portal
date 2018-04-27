@@ -16,8 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ImportsFormatter;
 import com.liferay.source.formatter.GradleImportsFormatter;
+import com.liferay.source.formatter.ImportsFormatter;
 import com.liferay.source.formatter.parser.GradleFile;
 
 /**

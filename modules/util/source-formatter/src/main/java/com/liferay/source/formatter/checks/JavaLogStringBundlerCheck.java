@@ -15,8 +15,8 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -39,7 +39,7 @@ public class JavaLogStringBundlerCheck extends BaseFileCheck {
 		Matcher matcher1 = _logPattern.matcher(content);
 
 		while (matcher1.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher1.start())) {
+			if (SourceUtil.isInsideQuotes(content, matcher1.start())) {
 				continue;
 			}
 

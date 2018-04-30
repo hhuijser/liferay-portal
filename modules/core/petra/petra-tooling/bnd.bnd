@@ -1,0 +1,10 @@
+Bundle-Name: Liferay Petra Tooling
+Bundle-SymbolicName: com.liferay.petra.tooling
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.petra.tooling,\
+	com.liferay.petra.tooling.arguments,\
+	com.liferay.petra.tooling.git,\
+	com.liferay.petra.tooling.java.imports.formatter
+Liferay-Releng-Module-Group-Description:
+Liferay-Releng-Module-Group-Title:

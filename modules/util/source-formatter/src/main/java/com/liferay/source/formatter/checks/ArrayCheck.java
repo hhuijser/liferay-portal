@@ -17,7 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,7 +47,7 @@ public class ArrayCheck extends BaseFileCheck {
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (!SourceUtil.isInsideQuotes(content, matcher.start())) {
 				addMessage(
 					fileName, "Use Collections.addAll", "collections.markdown",
 					getLineCount(content, matcher.start()));
@@ -129,7 +129,7 @@ public class ArrayCheck extends BaseFileCheck {
 		Matcher matcher = _emptyArrayPattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.end(1))) {
+			if (SourceUtil.isInsideQuotes(content, matcher.end(1))) {
 				continue;
 			}
 

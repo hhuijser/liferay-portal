@@ -22,19 +22,18 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ArgumentsUtil;
-import com.liferay.portal.tools.GitException;
-import com.liferay.portal.tools.GitUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.configuration.ConfigurationLoader;
 import com.liferay.source.formatter.checks.configuration.SourceCheckConfiguration;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterConfiguration;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterSuppressions;
 import com.liferay.source.formatter.checks.configuration.SuppressionsLoader;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+import com.liferay.source.formatter.util.ArgumentsUtil;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.DebugUtil;
 import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.source.formatter.util.GitUtil;
+import com.liferay.source.formatter.util.GitUtil.GitException;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.File;
@@ -84,6 +83,10 @@ public class SourceFormatter {
 				ExcludeSyntax.REGEX,
 				"^((?!/frontend-js-node-shims/src/).)*/node_modules/.*")
 		};
+
+	public static final int PLUGINS_MAX_DIR_LEVEL = 3;
+
+	public static final int PORTAL_MAX_DIR_LEVEL = 7;
 
 	public static void main(String[] args) throws Exception {
 		Map<String, String> arguments = ArgumentsUtil.parseArguments(args);
@@ -478,7 +481,7 @@ public class SourceFormatter {
 
 		File file = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "gradle.properties",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			PORTAL_MAX_DIR_LEVEL);
 
 		if (file == null) {
 			return null;
@@ -509,7 +512,7 @@ public class SourceFormatter {
 
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < PORTAL_MAX_DIR_LEVEL; i++) {
 			_readProperties(new File(parentDirName + _PROPERTIES_FILE_NAME));
 
 			parentDirName += "../";
@@ -563,7 +566,7 @@ public class SourceFormatter {
 	private boolean _isPortalSource() {
 		File portalImplDir = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "portal-impl",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			PORTAL_MAX_DIR_LEVEL);
 
 		if (portalImplDir != null) {
 			return true;

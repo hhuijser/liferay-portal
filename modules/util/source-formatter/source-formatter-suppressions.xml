@@ -17,6 +17,7 @@
 		<suppress checks="JavaVariableTypeCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/XMLSpringFileCheck\.java" />
 		<suppress checks="JavaVerifyUpgradeConnectionCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaUpgradeConnectionCheck\.java" />
 		<suppress checks="JavaXMLSecurityCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JavaXMLSecurityCheck\.java" />
+		<suppress checks="JavaXMLSecurityCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/util/SourceUtil\.java" />
 		<suppress checks="LanguageKeysCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/JSPLanguageUtilCheck\.java" />
 		<suppress checks="PrimitiveWrapperInstantiationCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/PrimitiveWrapperInstantiationCheck\.java" />
 		<suppress checks="ResourceBundleCheck" files="modules/util/source-formatter/src/main/java/com/liferay/source/formatter/checks/ResourceBundleCheck\.java" />

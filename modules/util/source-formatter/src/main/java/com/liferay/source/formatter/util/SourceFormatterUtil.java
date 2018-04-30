@@ -21,9 +21,9 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.ExcludeSyntax;
 import com.liferay.source.formatter.ExcludeSyntaxPattern;
+import com.liferay.source.formatter.SourceFormatter;
 import com.liferay.source.formatter.SourceFormatterExcludes;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
@@ -255,7 +255,7 @@ public class SourceFormatterUtil {
 		throws Exception {
 
 		String content = getContent(
-			baseDirName, fileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			baseDirName, fileName, SourceFormatter.PORTAL_MAX_DIR_LEVEL);
 
 		if (Validator.isNotNull(content)) {
 			return content;
@@ -352,7 +352,7 @@ public class SourceFormatterUtil {
 
 			String parentDirName = baseDirName;
 
-			for (int j = 0; j < ToolsUtil.PORTAL_MAX_DIR_LEVEL; j++) {
+			for (int j = 0; j < SourceFormatter.PORTAL_MAX_DIR_LEVEL; j++) {
 				File suppressionsFile = new File(parentDirName + fileName);
 
 				if (suppressionsFile.exists()) {

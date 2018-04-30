@@ -17,7 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.SourceFormatter;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
@@ -85,7 +85,7 @@ public class CopyrightCheck extends BaseFileCheck {
 
 	private String _getCopyright() throws Exception {
 		String copyright = getContent(
-			_copyrightFileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			_copyrightFileName, SourceFormatter.PORTAL_MAX_DIR_LEVEL);
 
 		if (Validator.isNotNull(copyright)) {
 			return copyright;

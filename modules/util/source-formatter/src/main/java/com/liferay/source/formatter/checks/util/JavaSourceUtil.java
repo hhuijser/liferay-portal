@@ -17,7 +17,6 @@ package com.liferay.source.formatter.checks.util;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,7 +100,7 @@ public class JavaSourceUtil extends SourceUtil {
 				return parametersList;
 			}
 
-			if (ToolsUtil.isInsideQuotes(parameters, x)) {
+			if (SourceUtil.isInsideQuotes(parameters, x)) {
 				continue;
 			}
 

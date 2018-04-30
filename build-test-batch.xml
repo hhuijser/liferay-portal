@@ -3439,9 +3439,17 @@ information. Make sure to commit in all build services results.
 					<then>
 						<var name="format.current.branch" value="false" />
 
-						<antcall target="compile" />
+						<antcall target="setup-sdk" />
 
-						<antcall target="install-portal-snapshots" />
+						<antcall target="setup-libs" />
+
+						<gradle-execute dir="modules/core" task="deploy">
+							<arg value="--parallel" />
+							<arg value="-Dbuild.profile=portal-pre" />
+							<arg value="-Pforced.deploy.dir=${project.dir}/tmp/lib-pre" />
+						</gradle-execute>
+
+						<ant dir="portal-kernel" inheritAll="false" target="install-portal-snapshot" />
 
 						<if>
 							<available file="modules/util/source-formatter" />

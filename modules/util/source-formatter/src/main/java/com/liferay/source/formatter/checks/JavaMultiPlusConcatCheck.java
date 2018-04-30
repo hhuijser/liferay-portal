@@ -19,7 +19,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
 
@@ -85,7 +85,7 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 				continue;
 			}
 
-			if (ToolsUtil.isInsideQuotes(javaTermContent, x) ||
+			if (SourceUtil.isInsideQuotes(javaTermContent, x) ||
 				_isInsideAnnotation(javaTermContent, x)) {
 
 				continue;
@@ -166,7 +166,7 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 			char c = content.charAt(i);
 
 			if (!ArrayUtil.contains(endChars, c) ||
-				ToolsUtil.isInsideQuotes(content, i)) {
+				SourceUtil.isInsideQuotes(content, i)) {
 
 				continue;
 			}
@@ -185,7 +185,7 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 		while (true) {
 			x = plusStatement.indexOf(CharPool.PLUS, x + 1);
 
-			if (ToolsUtil.isInsideQuotes(plusStatement, x)) {
+			if (SourceUtil.isInsideQuotes(plusStatement, x)) {
 				continue;
 			}
 
@@ -226,7 +226,7 @@ public class JavaMultiPlusConcatCheck extends BaseJavaTermCheck {
 
 			if ((ArrayUtil.contains(startChars, c) ||
 				 Character.isWhitespace(c)) &&
-				!ToolsUtil.isInsideQuotes(content, i)) {
+				!SourceUtil.isInsideQuotes(content, i)) {
 
 				String s = content.substring(i + 1, x);
 

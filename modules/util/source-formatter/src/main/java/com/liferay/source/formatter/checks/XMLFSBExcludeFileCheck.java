@@ -14,9 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ImportPackage;
 import com.liferay.source.formatter.checks.comparator.ElementComparator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
+import com.liferay.source.formatter.util.ImportPackage;
 
 import java.util.List;
 

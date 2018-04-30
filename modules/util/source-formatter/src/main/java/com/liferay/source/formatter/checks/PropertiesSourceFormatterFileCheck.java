@@ -18,7 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.SourceFormatter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -53,10 +53,10 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 	private void _checkSourceFormatterProperties(String fileName)
 		throws Exception {
 
-		int level = ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
+		int level = SourceFormatter.PLUGINS_MAX_DIR_LEVEL;
 
 		if (isPortalSource()) {
-			level = ToolsUtil.PORTAL_MAX_DIR_LEVEL;
+			level = SourceFormatter.PORTAL_MAX_DIR_LEVEL;
 		}
 
 		Properties properties = new Properties();
@@ -117,7 +117,7 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 		}
 
 		File privateAppsDir = getFile(
-			"modules/private/apps", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			"modules/private/apps", SourceFormatter.PORTAL_MAX_DIR_LEVEL);
 
 		if (privateAppsDir != null) {
 			return true;

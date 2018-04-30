@@ -17,8 +17,7 @@ package com.liferay.source.formatter;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.BaseImportsFormatter;
-import com.liferay.portal.tools.ImportPackage;
+import com.liferay.source.formatter.util.ImportPackage;
 
 import java.io.IOException;
 

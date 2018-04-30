@@ -12,24 +12,21 @@
  * details.
  */
 
-package com.liferay.source.formatter.checks;
+package com.liferay.source.formatter;
 
-import com.liferay.source.formatter.FTLImportsFormatter;
-import com.liferay.source.formatter.ImportsFormatter;
+import java.io.IOException;
+
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
  */
-public class FTLImportsCheck extends BaseFileCheck {
+public interface ImportsFormatter {
 
-	@Override
-	protected String doProcess(
-			String fileName, String absolutePath, String content)
-		throws Exception {
+	public String format(String content, Pattern importPattern)
+		throws IOException;
 
-		ImportsFormatter importsFormatter = new FTLImportsFormatter();
-
-		return importsFormatter.format(content, null, null);
-	}
+	public String format(String content, String packageDir, String className)
+		throws IOException;
 
 }

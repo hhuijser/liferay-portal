@@ -29,20 +29,14 @@ import com.liferay.portal.kernel.search.filter.TermsFilter;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
-import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PropsValues;
 
-import java.text.Format;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -456,13 +450,11 @@ public class AssetSearcher extends BaseSearcher {
 
 		booleanFilter.addRequiredTerm("visible", true);
 
-		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
-			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
-
-		Date now = new Date(System.currentTimeMillis());
+		long dateNow = GetterUtil.getLong(
+			searchContext.getAttribute("dateNow"));
 
 		booleanFilter.addRangeTerm(
-			Field.EXPIRATION_DATE, GetterUtil.getLong(dateFormat.format(now)),
+			Field.EXPIRATION_DATE, dateNow,
 			GetterUtil.getLong(Time.DATE_MAX_VALUE));
 
 		if (booleanFilter.hasClauses() && !showInvisible) {

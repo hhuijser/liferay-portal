@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.geolocation.GeoLocationPoint;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
@@ -50,8 +51,6 @@ public class DefaultElasticsearchDocumentFactory
 	public static final FastDateFormat DATE_FORMAT = FastDateFormat.getInstance(
 		"yyyyMMddHHmmss");
 
-	public static final String DATE_MAX_VALUE = "99950812133000";
-
 	@Override
 	public String getElasticsearchDocument(Document document)
 		throws IOException {
@@ -76,7 +75,7 @@ public class DefaultElasticsearchDocumentFactory
 			String value;
 
 			if (date.getTime() == Long.MAX_VALUE) {
-				value = DATE_MAX_VALUE;
+				value = Time.DATE_MAX_VALUE;
 			}
 			else {
 				value = DATE_FORMAT.format(date);

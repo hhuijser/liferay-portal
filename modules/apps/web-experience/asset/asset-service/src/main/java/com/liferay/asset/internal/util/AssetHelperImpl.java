@@ -56,11 +56,14 @@ import com.liferay.portal.kernel.service.PortletLocalService;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -70,8 +73,11 @@ import com.liferay.portlet.asset.util.AssetSearcher;
 
 import java.io.Serializable;
 
+import java.text.Format;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -410,6 +416,13 @@ public class AssetHelperImpl implements AssetHelper {
 			int start, int end)
 		throws Exception {
 
+		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
+			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
+
+		Date now = new Date(System.currentTimeMillis());
+
+		searchContext.setAttribute("dateNow", dateFormat.format(now));
+
 		AssetSearcher assetSearcher = _getAssetSearcher(
 			searchContext, assetEntryQuery, start, end);
 
@@ -448,6 +461,13 @@ public class AssetHelperImpl implements AssetHelper {
 			SearchContext searchContext, AssetEntryQuery assetEntryQuery,
 			int start, int end)
 		throws Exception {
+
+		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
+			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
+
+		Date now = new Date(System.currentTimeMillis());
+
+		searchContext.setAttribute("dateNow", dateFormat.format(now));
 
 		AssetSearcher assetSearcher = _getAssetSearcher(
 			searchContext, assetEntryQuery, start, end);

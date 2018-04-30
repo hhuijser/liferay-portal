@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PropsValues;
 
@@ -448,6 +449,13 @@ public class AssetSearcher extends BaseSearcher {
 		}
 
 		booleanFilter.addRequiredTerm("visible", true);
+
+		long dateNow = GetterUtil.getLong(
+			searchContext.getAttribute("dateNow"));
+
+		booleanFilter.addRangeTerm(
+			Field.EXPIRATION_DATE, dateNow,
+			GetterUtil.getLong(Time.DATE_MAX_VALUE));
 
 		if (booleanFilter.hasClauses() && !showInvisible) {
 			fullQuery.setPreBooleanFilter(booleanFilter);

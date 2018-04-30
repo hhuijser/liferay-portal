@@ -34,13 +34,19 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.service.test.ServiceTestUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portlet.asset.util.AssetSearcher;
 
+import java.text.Format;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -187,6 +193,13 @@ public class AssetSearcherClassNameIdsTest {
 	protected Hits search(
 			AssetEntryQuery assetEntryQuery, SearchContext searchContext)
 		throws Exception {
+
+		Format dateFormat = FastDateFormatFactoryUtil.getSimpleDateFormat(
+			PropsUtil.get(PropsKeys.INDEX_DATE_FORMAT_PATTERN));
+
+		Date now = new Date(System.currentTimeMillis());
+
+		searchContext.setAttribute("dateNow", dateFormat.format(now));
 
 		AssetSearcher assetSearcher = new AssetSearcher();
 

@@ -867,8 +867,10 @@ public class DLAppHelperLocalServiceImpl
 						previousAssetEntry.getEntryId(),
 						AssetLinkConstants.TYPE_RELATED, false);
 
-				assetLinkEntryIds = ListUtil.toLongArray(
-					assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+				if ((assetLinks != null) && !assetLinks.isEmpty()) {
+					assetLinkEntryIds = ListUtil.toLongArray(
+						assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+				}
 			}
 
 			assetEntry = assetEntryLocalService.updateEntry(
@@ -1072,8 +1074,12 @@ public class DLAppHelperLocalServiceImpl
 								draftAssetEntry.getEntryId(),
 								AssetLinkConstants.TYPE_RELATED, false);
 
-						long[] assetLinkEntryIds = ListUtil.toLongArray(
-							assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+						long[] assetLinkEntryIds = null;
+
+						if ((assetLinks != null) && !assetLinks.isEmpty()) {
+							assetLinkEntryIds = ListUtil.toLongArray(
+								assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+						}
 
 						AssetEntry assetEntry =
 							assetEntryLocalService.updateEntry(

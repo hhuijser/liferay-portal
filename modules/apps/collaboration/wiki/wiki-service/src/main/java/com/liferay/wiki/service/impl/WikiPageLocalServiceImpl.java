@@ -2160,8 +2160,12 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 							draftAssetEntry.getEntryId(),
 							AssetLinkConstants.TYPE_RELATED, false);
 
-					long[] assetLinkEntryIds = ListUtil.toLongArray(
-						assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+					long[] assetLinkEntryIds = null;
+
+					if ((assetLinks != null) && !assetLinks.isEmpty()) {
+						assetLinkEntryIds = ListUtil.toLongArray(
+							assetLinks, AssetLink.ENTRY_ID2_ACCESSOR);
+					}
 
 					AssetEntry assetEntry = assetEntryLocalService.updateEntry(
 						userId, page.getGroupId(), page.getCreateDate(),

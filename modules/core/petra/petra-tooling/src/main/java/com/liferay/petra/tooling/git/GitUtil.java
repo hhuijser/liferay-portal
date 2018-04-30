@@ -12,14 +12,14 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.petra.tooling.git;
 
+import com.liferay.petra.io.unsync.UnsyncBufferedReader;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.petra.tooling.ToolingUtil;
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -132,7 +132,7 @@ public class GitUtil {
 				throw new IllegalArgumentException();
 			}
 
-			if (Validator.isNotNull(markerFileName)) {
+			if ((markerFileName != null) && !markerFileName.isEmpty()) {
 				fileNames = getDirNames(baseDirName, fileNames, markerFileName);
 			}
 
@@ -182,7 +182,7 @@ public class GitUtil {
 				continue;
 			}
 
-			if (StringUtil.count(array[1], CharPool.SLASH) >= gitLevel) {
+			if (ToolingUtil.count(array[1], CharPool.SLASH) >= gitLevel) {
 				fileNames.add(getFileName(array[1], gitLevel));
 			}
 		}
@@ -209,8 +209,7 @@ public class GitUtil {
 				String dirName = String.valueOf(
 					baseDirPath.relativize(dir.toPath()));
 
-				dirName = StringUtil.replace(
-					dirName, File.separatorChar, CharPool.SLASH);
+				dirName = dirName.replace(File.separatorChar, CharPool.SLASH);
 
 				dirNames.add(dirName);
 			}
@@ -277,7 +276,7 @@ public class GitUtil {
 		int gitLevel = getGitLevel(baseDirName);
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) >= gitLevel) {
+			if (ToolingUtil.count(line, CharPool.SLASH) >= gitLevel) {
 				fileNames.add(getFileName(line, gitLevel));
 			}
 		}
@@ -311,7 +310,7 @@ public class GitUtil {
 	}
 
 	protected static int getGitLevel(String baseDirName) throws GitException {
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < ToolingUtil.PORTAL_MAX_DIR_LEVEL; i++) {
 			File file = new File(baseDirName + ".git");
 
 			if (file.exists()) {
@@ -368,11 +367,13 @@ public class GitUtil {
 		int gitLevel = getGitLevel(baseDirName);
 
 		while ((line = unsyncBufferedReader.readLine()) != null) {
-			if (StringUtil.count(line, CharPool.SLASH) < gitLevel) {
+			if (ToolingUtil.count(line, CharPool.SLASH) < gitLevel) {
 				continue;
 			}
 
-			if (Validator.isNull(command) || !line.startsWith(command + " '")) {
+			if ((command == null) || command.isEmpty() ||
+				!line.startsWith(command + " '")) {
+
 				continue;
 			}
 

@@ -12,9 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
-
-import com.liferay.portal.kernel.util.Validator;
+package com.liferay.petra.tooling.arguments;
 
 import java.util.HashMap;
 
@@ -27,7 +25,7 @@ public class ArgumentsMap extends HashMap<String, String> {
 	public String get(Object key) {
 		String value = super.get(key);
 
-		if (Validator.isNull(value)) {
+		if ((value == null) || value.isEmpty()) {
 			value = System.getProperty((String)key);
 		}
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.petra.tooling.java.imports.formatter;
 
 import java.io.IOException;
 

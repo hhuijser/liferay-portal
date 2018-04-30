@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.petra.tooling.java.imports.formatter;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringUtil;
 
 /**
  * @author Carlos Sierra Andrés
@@ -61,7 +60,7 @@ public class ImportPackage implements Comparable<ImportPackage> {
 			return value;
 		}
 
-		int startsWithWeight = StringUtil.startsWithWeight(
+		int startsWithWeight = startsWithWeight(
 			_importString, importPackageImportString);
 
 		String importStringPart1 = _importString.substring(startsWithWeight);
@@ -165,6 +164,25 @@ public class ImportPackage implements Comparable<ImportPackage> {
 
 	public boolean isStatic() {
 		return _isStatic;
+	}
+
+	protected static int startsWithWeight(String s1, String s2) {
+		if ((s1 == null) || (s2 == null)) {
+			return 0;
+		}
+
+		char[] chars1 = s1.toCharArray();
+		char[] chars2 = s2.toCharArray();
+
+		int i = 0;
+
+		for (; (i < chars1.length) && (i < chars2.length); i++) {
+			if (chars1[i] != chars2[i]) {
+				break;
+			}
+		}
+
+		return i;
 	}
 
 	private final boolean _bndImport;

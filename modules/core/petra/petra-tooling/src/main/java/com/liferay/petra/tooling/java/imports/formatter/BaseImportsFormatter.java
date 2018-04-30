@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.petra.tooling.java.imports.formatter;
 
+import com.liferay.petra.io.unsync.UnsyncBufferedReader;
+import com.liferay.petra.io.unsync.UnsyncStringReader;
 import com.liferay.petra.string.CharPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
-import com.liferay.portal.kernel.util.ClassUtil;
-import com.liferay.portal.kernel.util.StringBundler;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.petra.string.StringBundler;
 
 import java.io.IOException;
 
@@ -59,7 +57,9 @@ public abstract class BaseImportsFormatter implements ImportsFormatter {
 
 		boolean isStatic = false;
 
-		if (Validator.isNotNull(matcher.group(1))) {
+		String staticKeyword = matcher.group(1);
+
+		if ((staticKeyword != null) && !staticKeyword.isEmpty()) {
 			isStatic = true;
 		}
 
@@ -121,7 +121,7 @@ public abstract class BaseImportsFormatter implements ImportsFormatter {
 			String className, String classNameExceptionRegex)
 		throws IOException {
 
-		Set<String> classes = ClassUtil.getClasses(
+		Set<String> classes = JavaClassUtil.getClasses(
 			new UnsyncStringReader(content), className);
 
 		StringBundler sb = new StringBundler();

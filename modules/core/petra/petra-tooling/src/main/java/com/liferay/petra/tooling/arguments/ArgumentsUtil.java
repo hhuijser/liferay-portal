@@ -12,11 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.tools;
-
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+package com.liferay.petra.tooling.arguments;
 
 import java.util.Map;
 
@@ -33,11 +29,11 @@ public class ArgumentsUtil {
 
 		String value = arguments.get(key);
 
-		if (Validator.isNull(value) || value.startsWith("$")) {
+		if ((value == null) || value.isEmpty() || value.startsWith("$")) {
 			return defaultValue;
 		}
 
-		return GetterUtil.getBoolean(value);
+		return Boolean.parseBoolean(value);
 	}
 
 	public static int getInteger(
@@ -45,11 +41,16 @@ public class ArgumentsUtil {
 
 		String value = arguments.get(key);
 
-		if (Validator.isNull(value) || value.startsWith("$")) {
+		if ((value == null) || value.isEmpty() || value.startsWith("$")) {
 			return defaultValue;
 		}
 
-		return GetterUtil.getInteger(value);
+		try {
+			return Integer.parseInt(value);
+		}
+		catch (NumberFormatException nfe) {
+			return defaultValue;
+		}
 	}
 
 	public static String getString(
@@ -57,7 +58,7 @@ public class ArgumentsUtil {
 
 		String value = arguments.get(key);
 
-		if (Validator.isNull(value) || value.startsWith("$")) {
+		if ((value == null) || value.isEmpty() || value.startsWith("$")) {
 			return defaultValue;
 		}
 
@@ -74,8 +75,13 @@ public class ArgumentsUtil {
 				throw new IllegalArgumentException("Bad argument " + arg);
 			}
 
-			String key = StringUtil.trim(arg.substring(0, pos));
-			String value = StringUtil.trim(arg.substring(pos + 1));
+			String key = arg.substring(0, pos);
+
+			key = key.trim();
+
+			String value = arg.substring(pos + 1);
+
+			value = value.trim();
 
 			if (key.startsWith("-D")) {
 				key = key.substring(2);
@@ -96,7 +102,9 @@ public class ArgumentsUtil {
 
 		String throwMainException = arguments.get("tools.throw.main.exception");
 
-		if (GetterUtil.getBoolean(throwMainException, true)) {
+		if ((throwMainException == null) || throwMainException.isEmpty() ||
+			Boolean.parseBoolean(throwMainException)) {
+
 			throw e;
 		}
 

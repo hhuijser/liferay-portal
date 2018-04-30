@@ -12,12 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.kernel.util;
+package com.liferay.petra.tooling.java.imports.formatter;
 
-import com.liferay.petra.string.CharPool;
+import com.liferay.petra.io.unsync.UnsyncBufferedReader;
+import com.liferay.petra.io.unsync.UnsyncStringReader;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.petra.tooling.ToolingUtil;
 
 import java.io.File;
 import java.io.FileReader;
@@ -36,7 +36,7 @@ import java.util.regex.Pattern;
  * @author Brian Wing Shun Chan
  * @author Sandeep Soni
  */
-public class ClassUtil {
+public class JavaClassUtil {
 
 	public static Set<String> getClasses(File file) throws IOException {
 		String fileName = file.getName();
@@ -161,15 +161,17 @@ public class ClassUtil {
 
 					annotationParameters += st.sval;
 
-					String trimmedValue = StringUtil.trim(st.sval);
+					String stringValue = st.sval;
+
+					String trimmedValue = stringValue.trim();
 
 					if (!trimmedValue.endsWith(")")) {
 						continue;
 					}
 
-					int closeParenthesesCount = StringUtil.count(
+					int closeParenthesesCount = ToolingUtil.count(
 						annotationParameters, ')');
-					int openParenthesesCount = StringUtil.count(
+					int openParenthesesCount = ToolingUtil.count(
 						annotationParameters, '(');
 
 					if (closeParenthesesCount > openParenthesesCount) {

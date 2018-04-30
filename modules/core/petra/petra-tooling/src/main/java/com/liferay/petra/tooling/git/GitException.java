@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.portal.tools;
-
-import com.liferay.portal.kernel.exception.PortalException;
+package com.liferay.petra.tooling.git;
 
 /**
  * @author Hugo Huijser
  */
-public class GitException extends PortalException {
+public class GitException extends Exception {
 
 	public GitException() {
 	}

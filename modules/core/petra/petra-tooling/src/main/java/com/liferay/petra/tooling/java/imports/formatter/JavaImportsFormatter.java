@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.petra.tooling.java.imports.formatter;
 
-import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.petra.tooling.ToolingUtil;
 
 import java.io.IOException;
 
@@ -59,7 +58,7 @@ public class JavaImportsFormatter extends BaseImportsFormatter {
 
 		String imports = getImports(content);
 
-		if (Validator.isNull(imports)) {
+		if ((imports == null) || imports.isEmpty()) {
 			return content;
 		}
 
@@ -69,10 +68,10 @@ public class JavaImportsFormatter extends BaseImportsFormatter {
 		newImports = sortAndGroupImports(newImports);
 
 		if (!imports.equals(newImports)) {
-			content = StringUtil.replaceFirst(content, imports, newImports);
+			content = content.replaceFirst(imports, newImports);
 		}
 
-		content = ToolsUtil.stripFullyQualifiedClassNames(
+		content = ToolingUtil.stripFullyQualifiedClassNames(
 			content, newImports, packagePath);
 
 		return content.replaceFirst(

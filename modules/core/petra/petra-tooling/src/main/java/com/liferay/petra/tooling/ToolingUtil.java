@@ -12,14 +12,16 @@
  * details.
  */
 
-package com.liferay.portal.tools;
+package com.liferay.petra.tooling;
 
+import com.liferay.petra.io.unsync.UnsyncBufferedReader;
+import com.liferay.petra.io.unsync.UnsyncStringReader;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.petra.tooling.java.imports.formatter.JavaImportsFormatter;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,15 +42,35 @@ import java.util.regex.Pattern;
  * @author James Hinkey
  * @author Hugo Huijser
  */
-public class ToolsUtil {
+public class ToolingUtil {
 
 	public static final int PLUGINS_MAX_DIR_LEVEL = 3;
 
 	public static final int PORTAL_MAX_DIR_LEVEL = 7;
 
+	public static int count(String s, char c) {
+		if ((s == null) || s.isEmpty() || (s.length() < 1)) {
+			return 0;
+		}
+
+		int count = 0;
+		int pos = 0;
+
+		while ((pos < s.length()) && ((pos = s.indexOf(c, pos)) != -1)) {
+			if (pos < s.length()) {
+				count++;
+			}
+
+			pos++;
+		}
+
+		return count;
+	}
+
 	public static String getPackagePath(File file) {
-		String fileName = StringUtil.replace(
-			file.toString(), CharPool.BACK_SLASH, CharPool.SLASH);
+		String fileName = file.toString();
+
+		fileName = fileName.replace(CharPool.BACK_SLASH, CharPool.SLASH);
 
 		return getPackagePath(fileName);
 	}
@@ -60,7 +82,7 @@ public class ToolsUtil {
 
 		String packagePath = fileName.substring(x + 1, y);
 
-		return StringUtil.replace(packagePath, CharPool.SLASH, CharPool.PERIOD);
+		return packagePath.replace(CharPool.SLASH, CharPool.PERIOD);
 	}
 
 	public static boolean isInsideQuotes(String s, int pos) {
@@ -143,7 +165,9 @@ public class ToolsUtil {
 			String content, String imports, String packagePath)
 		throws IOException {
 
-		if (Validator.isNull(content) || Validator.isNull(imports)) {
+		if ((content == null) || content.isEmpty() || (imports == null) ||
+			imports.isEmpty()) {
+
 			return content;
 		}
 
@@ -212,7 +236,7 @@ public class ToolsUtil {
 						continue;
 					}
 
-					s = StringUtil.trim(s);
+					s = s.trim();
 
 					if (s.startsWith("//")) {
 						continue;
@@ -223,7 +247,7 @@ public class ToolsUtil {
 							importPackageAndClassName.lastIndexOf(
 								StringPool.PERIOD) + 1);
 
-					afterImportsContent = StringUtil.replaceFirst(
+					afterImportsContent = _replaceFirst(
 						afterImportsContent, importPackageAndClassName,
 						importClassName, x);
 				}
@@ -237,11 +261,33 @@ public class ToolsUtil {
 		}
 	}
 
+	private static String _replaceFirst(
+		String s, String oldSub, String newSub, int fromIndex) {
+
+		if ((s == null) || (oldSub == null) || (newSub == null)) {
+			return null;
+		}
+
+		if (oldSub.equals(newSub)) {
+			return s;
+		}
+
+		int y = s.indexOf(oldSub, fromIndex);
+
+		if (y >= 0) {
+			return s.substring(0, y).concat(newSub).concat(
+				s.substring(y + oldSub.length()));
+		}
+		else {
+			return s;
+		}
+	}
+
 	private static String _stripFullyQualifiedClassNames(
 		String imports, String afterImportsContent, String packagePath) {
 
 		Pattern pattern1 = Pattern.compile(
-			"\n(.*)" + StringUtil.replace(packagePath, CharPool.PERIOD, "\\.") +
+			"\n(.*)" + packagePath.replace(StringPool.PERIOD, "\\.") +
 				"\\.([A-Z]\\w+)\\W");
 
 		outerLoop:
@@ -249,9 +295,9 @@ public class ToolsUtil {
 			Matcher matcher1 = pattern1.matcher(afterImportsContent);
 
 			while (matcher1.find()) {
-				String lineStart = StringUtil.trimLeading(matcher1.group(1));
+				String value = matcher1.group(1);
 
-				if (lineStart.contains("//") ||
+				if (value.contains("//") ||
 					isInsideQuotes(afterImportsContent, matcher1.start(2))) {
 
 					continue;
@@ -268,7 +314,7 @@ public class ToolsUtil {
 					continue;
 				}
 
-				afterImportsContent = StringUtil.replaceFirst(
+				afterImportsContent = _replaceFirst(
 					afterImportsContent, packagePath + ".", StringPool.BLANK,
 					matcher1.start());
 

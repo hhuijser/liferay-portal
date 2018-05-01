@@ -15,6 +15,9 @@
 package com.liferay.portal.tools;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
+import com.liferay.petra.tooling.java.imports.formatter.ImportsFormatter;
+import com.liferay.petra.tooling.java.imports.formatter.JavaImportsFormatter;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -63,7 +66,7 @@ import org.dom4j.io.SAXReader;
  * @author James Hinkey
  * @author Hugo Huijser
  */
-public class ToolsUtil {
+public class ToolsUtil extends ToolingUtil {
 
 	public static final String AUTHOR = "Brian Wing Shun Chan";
 

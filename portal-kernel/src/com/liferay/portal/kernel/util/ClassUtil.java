@@ -16,6 +16,7 @@ package com.liferay.portal.kernel.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.java.imports.formatter.JavaClassUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -27,7 +28,7 @@ import java.net.URL;
  * @author Brian Wing Shun Chan
  * @author Sandeep Soni
  */
-public class ClassUtil {
+public class ClassUtil extends JavaClassUtil {
 
 	public static String getClassName(Object object) {
 		if (object == null) {

@@ -14,10 +14,10 @@
 
 package com.liferay.portal.tools.propertiesdoc;
 
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
 import com.liferay.portal.freemarker.FreeMarkerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
-import com.liferay.portal.tools.ArgumentsUtil;
 
 import java.io.File;
 import java.io.FileWriter;

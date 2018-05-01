@@ -119,7 +119,7 @@ message.
 
 	<target name="baseline-current-branch">
 		<java
-			classname="com.liferay.portal.tools.GitUtil"
+			classname="com.liferay.petra.tooling.git.GitUtil"
 			classpathref="project.classpath"
 			dir="${project.dir}/modules"
 			fork="true"

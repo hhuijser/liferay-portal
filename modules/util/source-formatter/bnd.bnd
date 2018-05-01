@@ -25,21 +25,6 @@ Main-Class: com.liferay.source.formatter.SourceFormatter
 	@com.liferay.petra.memory-[0-9]*.jar!/com/liferay/petra/memory/FinalizeManager$*.class,\
 	@com.liferay.petra.reflect-[0-9]*.jar!/com/liferay/petra/reflect/ReflectionUtil.class,\
 	@com.liferay.petra.xml-[0-9]*.jar!/com/liferay/petra/xml/Dom4jUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/deploy/dependencies/web.xml,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ArgumentsMap.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ArgumentsUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/BaseImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/GitException.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/GitUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ImportPackage.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/JavaImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/LangBuilder.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ToolsUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/util/EntityResolver.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/xml/DocumentFactory.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/xml/QNameCache.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/xml/SAXReaderFactory.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/bean/BeanProperties.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/bean/BeanPropertiesUtil.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/exception/NestableException.class,\

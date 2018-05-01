@@ -17,10 +17,10 @@ package com.liferay.source.formatter;
 import com.liferay.petra.nio.CharsetDecoderUtil;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.SourceCheck;
 import com.liferay.source.formatter.checks.configuration.SourceChecksResult;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterConfiguration;
@@ -74,10 +74,10 @@ import org.apache.tools.ant.types.selectors.SelectorUtils;
 public abstract class BaseSourceProcessor implements SourceProcessor {
 
 	public static final int PLUGINS_MAX_DIR_LEVEL =
-		ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
+		ToolingUtil.PLUGINS_MAX_DIR_LEVEL;
 
 	public static final int PORTAL_MAX_DIR_LEVEL =
-		ToolsUtil.PORTAL_MAX_DIR_LEVEL;
+		ToolingUtil.PORTAL_MAX_DIR_LEVEL;
 
 	@Override
 	public final void format() throws Exception {

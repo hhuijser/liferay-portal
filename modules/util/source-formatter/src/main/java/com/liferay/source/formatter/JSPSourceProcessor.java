@@ -15,9 +15,9 @@
 package com.liferay.source.formatter;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.tooling.git.GitUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.GitUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.AlloyMVCCheckstyleLogger;

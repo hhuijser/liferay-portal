@@ -16,6 +16,7 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
@@ -508,7 +508,7 @@ public class JSPTagAttributesCheck extends TagAttributesCheck {
 
 		String tldDirLocation = "portal-web/docroot/WEB-INF/tld/";
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL - 1; i++) {
+		for (int i = 0; i < ToolingUtil.PORTAL_MAX_DIR_LEVEL - 1; i++) {
 			File file = new File(getBaseDirName() + tldDirLocation);
 
 			if (file.exists()) {
@@ -528,7 +528,7 @@ public class JSPTagAttributesCheck extends TagAttributesCheck {
 
 	private String _getUtilTaglibSrcDirName() {
 		File utilTaglibDir = getFile(
-			"util-taglib/src", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			"util-taglib/src", ToolingUtil.PORTAL_MAX_DIR_LEVEL);
 
 		if (utilTaglibDir == null) {
 			return StringPool.BLANK;

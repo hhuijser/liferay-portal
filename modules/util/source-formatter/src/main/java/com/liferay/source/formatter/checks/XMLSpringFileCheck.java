@@ -15,9 +15,9 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.java.imports.formatter.ImportPackage;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ImportPackage;
 import com.liferay.source.formatter.checks.comparator.ElementComparator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 

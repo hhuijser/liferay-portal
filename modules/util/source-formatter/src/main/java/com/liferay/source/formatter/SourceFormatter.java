@@ -16,16 +16,16 @@ package com.liferay.source.formatter;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
+import com.liferay.petra.tooling.git.GitException;
+import com.liferay.petra.tooling.git.GitUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ArgumentsUtil;
-import com.liferay.portal.tools.GitException;
-import com.liferay.portal.tools.GitUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.configuration.ConfigurationLoader;
 import com.liferay.source.formatter.checks.configuration.SourceCheckConfiguration;
 import com.liferay.source.formatter.checks.configuration.SourceFormatterConfiguration;
@@ -478,7 +478,7 @@ public class SourceFormatter {
 
 		File file = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "gradle.properties",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			ToolingUtil.PORTAL_MAX_DIR_LEVEL);
 
 		if (file == null) {
 			return null;
@@ -509,7 +509,7 @@ public class SourceFormatter {
 
 		String parentDirName = _sourceFormatterArgs.getBaseDirName();
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL; i++) {
+		for (int i = 0; i < ToolingUtil.PORTAL_MAX_DIR_LEVEL; i++) {
 			_readProperties(new File(parentDirName + _PROPERTIES_FILE_NAME));
 
 			parentDirName += "../";
@@ -563,7 +563,7 @@ public class SourceFormatter {
 	private boolean _isPortalSource() {
 		File portalImplDir = SourceFormatterUtil.getFile(
 			_sourceFormatterArgs.getBaseDirName(), "portal-impl",
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			ToolingUtil.PORTAL_MAX_DIR_LEVEL);
 
 		if (portalImplDir != null) {
 			return true;

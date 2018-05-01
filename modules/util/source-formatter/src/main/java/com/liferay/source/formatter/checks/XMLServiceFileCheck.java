@@ -16,10 +16,10 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.comparator.ElementComparator;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
@@ -44,7 +44,7 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 		_pluginsInsideModulesDirectoryNames =
 			getPluginsInsideModulesDirectoryNames();
 		_portalTablesContent = getContent(
-			"sql/portal-tables.sql", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			"sql/portal-tables.sql", ToolingUtil.PORTAL_MAX_DIR_LEVEL);
 	}
 
 	@Override

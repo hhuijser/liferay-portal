@@ -16,13 +16,13 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +143,7 @@ public class JavaAnnotationsCheck extends BaseFileCheck {
 				return annotation;
 			}
 
-			if (ToolsUtil.isInsideQuotes(annotation, x)) {
+			if (ToolingUtil.isInsideQuotes(annotation, x)) {
 				continue;
 			}
 
@@ -158,7 +158,7 @@ public class JavaAnnotationsCheck extends BaseFileCheck {
 					return annotation;
 				}
 
-				if (!ToolsUtil.isInsideQuotes(annotation, y)) {
+				if (!ToolingUtil.isInsideQuotes(annotation, y)) {
 					arrayString = annotation.substring(x + 2, y + 1);
 
 					if (getLevel(arrayString, "{", "}") == 0) {
@@ -176,7 +176,7 @@ public class JavaAnnotationsCheck extends BaseFileCheck {
 					break;
 				}
 
-				if (!ToolsUtil.isInsideQuotes(arrayString, y)) {
+				if (!ToolingUtil.isInsideQuotes(arrayString, y)) {
 					continue outerLoop;
 				}
 			}
@@ -204,7 +204,7 @@ public class JavaAnnotationsCheck extends BaseFileCheck {
 			while (true) {
 				x = annotation.indexOf(CharPool.CLOSE_CURLY_BRACE, x + 1);
 
-				if (!ToolsUtil.isInsideQuotes(annotation, x)) {
+				if (!ToolingUtil.isInsideQuotes(annotation, x)) {
 					break;
 				}
 			}

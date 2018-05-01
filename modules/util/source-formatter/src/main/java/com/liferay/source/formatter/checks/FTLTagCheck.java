@@ -16,10 +16,10 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -150,7 +150,7 @@ public class FTLTagCheck extends BaseFileCheck {
 			Matcher matcher = _tagAttributePattern.matcher(s);
 
 			while (matcher.find()) {
-				if (ToolsUtil.isInsideQuotes(s, matcher.end() - 1)) {
+				if (ToolingUtil.isInsideQuotes(s, matcher.end() - 1)) {
 					continue;
 				}
 

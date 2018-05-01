@@ -14,7 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.petra.tooling.ToolingUtil;
 
 /**
  * @author Preston Crary
@@ -41,7 +41,7 @@ public class JavaCollatorUtilCheck extends BaseFileCheck {
 		int index = content.indexOf("Collator.getInstance(");
 
 		while (index != -1) {
-			if (!ToolsUtil.isInsideQuotes(content, index)) {
+			if (!ToolingUtil.isInsideQuotes(content, index)) {
 				addMessage(
 					fileName, "Use CollatorUtil.getInstance(Locale)",
 					"collator.markdown", getLineCount(content, index));

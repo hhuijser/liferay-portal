@@ -16,6 +16,9 @@ package com.liferay.javadoc.formatter;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
+import com.liferay.petra.tooling.java.imports.formatter.JavaImportsFormatter;
 import com.liferay.petra.xml.Dom4jUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
@@ -24,10 +27,6 @@ import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ArgumentsUtil;
-import com.liferay.portal.tools.JavaImportsFormatter;
-import com.liferay.portal.tools.ToolsUtil;
-import com.liferay.portal.xml.SAXReaderFactory;
 import com.liferay.util.xml.Dom4jDocUtil;
 import com.liferay.util.xml.XMLSafeReader;
 
@@ -537,7 +536,7 @@ public class JavadocFormatter {
 			return null;
 		}
 
-		comment = ToolsUtil.stripFullyQualifiedClassNames(
+		comment = ToolingUtil.stripFullyQualifiedClassNames(
 			comment, _imports, _packagePath);
 
 		if (!comment.contains("* @deprecated ") ||
@@ -559,7 +558,7 @@ public class JavadocFormatter {
 		for (DocletTag docletTag : docletTags) {
 			String value = docletTag.getValue();
 
-			value = ToolsUtil.stripFullyQualifiedClassNames(
+			value = ToolingUtil.stripFullyQualifiedClassNames(
 				value, _imports, _packagePath);
 
 			value = _trimMultilineText(value);
@@ -854,7 +853,7 @@ public class JavadocFormatter {
 			Dom4jDocUtil.add(paramElement, "required", true);
 		}
 
-		value = ToolsUtil.stripFullyQualifiedClassNames(
+		value = ToolingUtil.stripFullyQualifiedClassNames(
 			value, _imports, _packagePath);
 
 		value = _trimMultilineText(value);
@@ -921,7 +920,7 @@ public class JavadocFormatter {
 			Dom4jDocUtil.add(returnElement, "required", true);
 		}
 
-		comment = ToolsUtil.stripFullyQualifiedClassNames(
+		comment = ToolingUtil.stripFullyQualifiedClassNames(
 			comment, _imports, _packagePath);
 
 		comment = _trimMultilineText(comment);
@@ -970,7 +969,7 @@ public class JavadocFormatter {
 			Dom4jDocUtil.add(throwsElement, "required", true);
 		}
 
-		value = ToolsUtil.stripFullyQualifiedClassNames(
+		value = ToolingUtil.stripFullyQualifiedClassNames(
 			value, _imports, _packagePath);
 
 		value = _trimMultilineText(value);
@@ -1085,7 +1084,7 @@ public class JavadocFormatter {
 		}
 
 		_imports = JavaImportsFormatter.getImports(originalContent);
-		_packagePath = ToolsUtil.getPackagePath(fileName);
+		_packagePath = ToolingUtil.getPackagePath(fileName);
 
 		JavaClass javaClass = null;
 
@@ -1442,7 +1441,7 @@ public class JavadocFormatter {
 		String comment = rootElement.elementText("comment");
 
 		if (Validator.isNotNull(comment)) {
-			comment = ToolsUtil.stripFullyQualifiedClassNames(
+			comment = ToolingUtil.stripFullyQualifiedClassNames(
 				comment, _imports, _packagePath);
 
 			sb.append(_wrapText(comment, indent + " * "));
@@ -1618,7 +1617,7 @@ public class JavadocFormatter {
 		String comment = executableElement.elementText("comment");
 
 		if (Validator.isNotNull(comment)) {
-			comment = ToolsUtil.stripFullyQualifiedClassNames(
+			comment = ToolingUtil.stripFullyQualifiedClassNames(
 				comment, _imports, _packagePath);
 
 			sb.append(_wrapText(comment, indent + " * "));
@@ -1691,7 +1690,7 @@ public class JavadocFormatter {
 		String comment = fieldElement.elementText("comment");
 
 		if (Validator.isNotNull(comment)) {
-			comment = ToolsUtil.stripFullyQualifiedClassNames(
+			comment = ToolingUtil.stripFullyQualifiedClassNames(
 				comment, _imports, _packagePath);
 
 			sb.append(_wrapText(comment, indent + " * "));
@@ -1827,8 +1826,19 @@ public class JavadocFormatter {
 		return lineNumbers;
 	}
 
-	private SAXReader _getSAXReader() {
-		return SAXReaderFactory.getSAXReader(null, false, false);
+	private SAXReader _getSAXReader() throws Exception {
+		SAXReader saxReader = new SAXReader(false);
+
+		saxReader.setFeature(
+			"http://apache.org/xml/features/disallow-doctype-decl", false);
+		saxReader.setFeature(
+			"http://apache.org/xml/features/nonvalidating/load-dtd-grammar",
+			false);
+		saxReader.setFeature(
+			"http://apache.org/xml/features/nonvalidating/load-external-dtd",
+			false);
+
+		return saxReader;
 	}
 
 	private String _getSpacesIndent(int length) {

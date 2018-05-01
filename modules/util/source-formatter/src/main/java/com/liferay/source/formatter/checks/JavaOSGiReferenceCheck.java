@@ -16,10 +16,10 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
@@ -547,7 +547,7 @@ public class JavaOSGiReferenceCheck extends BaseFileCheck {
 
 		String portalKernelLocation = "portal-kernel/";
 
-		for (int i = 0; i < ToolsUtil.PORTAL_MAX_DIR_LEVEL - 1; i++) {
+		for (int i = 0; i < ToolingUtil.PORTAL_MAX_DIR_LEVEL - 1; i++) {
 			File file = new File(getBaseDirName() + portalKernelLocation);
 
 			if (!file.exists()) {

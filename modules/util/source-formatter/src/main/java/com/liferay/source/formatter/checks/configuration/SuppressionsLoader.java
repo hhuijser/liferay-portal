@@ -15,8 +15,8 @@
 package com.liferay.source.formatter.checks.configuration;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.petra.xml.Dom4jUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.CheckType;
 import com.liferay.source.formatter.util.FileUtil;
@@ -91,7 +91,7 @@ public class SuppressionsLoader {
 		}
 
 		File portalImplDir = SourceFormatterUtil.getFile(
-			baseDirName, "portal-impl", ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+			baseDirName, "portal-impl", ToolingUtil.PORTAL_MAX_DIR_LEVEL);
 
 		if (portalImplDir == null) {
 			return null;

@@ -16,8 +16,8 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -83,7 +83,7 @@ public class BNDStylingCheck extends BaseFileCheck {
 		Matcher matcher = _multipleValuesOnSingleLinePattern.matcher(content);
 
 		while (matcher.find()) {
-			if (ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (ToolingUtil.isInsideQuotes(content, matcher.start())) {
 				continue;
 			}
 

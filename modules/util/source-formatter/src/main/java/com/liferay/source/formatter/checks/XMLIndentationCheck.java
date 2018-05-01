@@ -15,10 +15,10 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 
 /**
  * @author Hugo Huijser
@@ -210,7 +210,9 @@ public class XMLIndentationCheck extends BaseFileCheck {
 
 			int i = Math.max(0, startPos);
 
-			if (!ToolsUtil.isInsideQuotes(line.substring(i), pos - i, false)) {
+			if (!ToolingUtil.isInsideQuotes(
+					line.substring(i), pos - i, false)) {
+
 				return pos;
 			}
 		}

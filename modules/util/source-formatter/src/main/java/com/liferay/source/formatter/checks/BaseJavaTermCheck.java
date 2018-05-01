@@ -15,8 +15,8 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaConstructor;
 import com.liferay.source.formatter.parser.JavaMethod;
@@ -59,7 +59,7 @@ public abstract class BaseJavaTermCheck
 				return null;
 			}
 
-			if (!ToolsUtil.isInsideQuotes(operator, x) &&
+			if (!ToolingUtil.isInsideQuotes(operator, x) &&
 				(getLevel(operator.substring(0, x), "<", ">") == 0)) {
 
 				break;
@@ -75,7 +75,7 @@ public abstract class BaseJavaTermCheck
 				return null;
 			}
 
-			if (!ToolsUtil.isInsideQuotes(operator, y)) {
+			if (!ToolingUtil.isInsideQuotes(operator, y)) {
 				break;
 			}
 		}

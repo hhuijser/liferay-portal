@@ -14,7 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.petra.tooling.ToolingUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +37,7 @@ public class ValidatorEqualsCheck extends BaseFileCheck {
 		Matcher matcher = _validatorEqualsPattern.matcher(content);
 
 		while (matcher.find()) {
-			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+			if (!ToolingUtil.isInsideQuotes(content, matcher.start())) {
 				addMessage(
 					fileName,
 					"Use Objects.equals(Object, Object) instead of " +

@@ -570,7 +570,7 @@ svn://svn.liferay.com/repos/public/alloy/trunk/sandbox/taglibs.
 
 	<target name="format-source">
 		<java
-			classname="com.liferay.portal.tools.GitUtil"
+			classname="com.liferay.petra.tooling.git.GitUtil"
 			classpathref="project.classpath"
 			dir="${project.dir}"
 			fork="true"

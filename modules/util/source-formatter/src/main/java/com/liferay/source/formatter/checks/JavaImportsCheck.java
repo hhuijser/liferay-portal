@@ -14,10 +14,10 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.tooling.java.imports.formatter.ImportsFormatter;
+import com.liferay.petra.tooling.java.imports.formatter.JavaImportsFormatter;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ImportsFormatter;
-import com.liferay.portal.tools.JavaImportsFormatter;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
 import java.util.regex.Matcher;

@@ -14,9 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.ArrayList;
@@ -173,7 +173,7 @@ public class JavaStringBundlerInitialCapacityCheck extends BaseJavaTermCheck {
 				return parts;
 			}
 
-			if (ToolsUtil.isInsideQuotes(s, x)) {
+			if (ToolingUtil.isInsideQuotes(s, x)) {
 				continue;
 			}
 
@@ -207,7 +207,7 @@ public class JavaStringBundlerInitialCapacityCheck extends BaseJavaTermCheck {
 				return parts;
 			}
 
-			if (ToolsUtil.isInsideQuotes(s, x)) {
+			if (ToolingUtil.isInsideQuotes(s, x)) {
 				continue;
 			}
 

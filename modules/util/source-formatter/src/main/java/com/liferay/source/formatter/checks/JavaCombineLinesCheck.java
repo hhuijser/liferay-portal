@@ -16,12 +16,12 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
 import java.util.regex.Matcher;
@@ -71,7 +71,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 
 				int pos = line.indexOf(StringPool.DOUBLE_SLASH);
 
-				if (((pos == -1) || ToolsUtil.isInsideQuotes(line, pos)) &&
+				if (((pos == -1) || ToolingUtil.isInsideQuotes(line, pos)) &&
 					!trimmedLine.startsWith(StringPool.STAR)) {
 
 					String strippedQuotesLine = stripQuotes(trimmedLine);
@@ -116,7 +116,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 								break;
 							}
 
-							if (ToolsUtil.isInsideQuotes(previousLine, x)) {
+							if (ToolingUtil.isInsideQuotes(previousLine, x)) {
 								continue;
 							}
 
@@ -693,7 +693,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 					break;
 				}
 
-				if (ToolsUtil.isInsideQuotes(trimmedLine, x)) {
+				if (ToolingUtil.isInsideQuotes(trimmedLine, x)) {
 					continue;
 				}
 
@@ -782,7 +782,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 					break;
 				}
 
-				if (ToolsUtil.isInsideQuotes(trimmedLine, x)) {
+				if (ToolingUtil.isInsideQuotes(trimmedLine, x)) {
 					continue;
 				}
 
@@ -823,7 +823,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 						break;
 					}
 
-					if (ToolsUtil.isInsideQuotes(trimmedLine, x)) {
+					if (ToolingUtil.isInsideQuotes(trimmedLine, x)) {
 						continue;
 					}
 
@@ -841,7 +841,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 					while ((previousLineLength + 1 + x) < getMaxLineLength()) {
 						String linePart = trimmedLine.substring(0, x + 1);
 
-						if (!ToolsUtil.isInsideQuotes(trimmedLine, x) &&
+						if (!ToolingUtil.isInsideQuotes(trimmedLine, x) &&
 							JavaSourceUtil.isValidJavaParameter(linePart)) {
 
 							if (trimmedLine.equals(linePart)) {
@@ -896,7 +896,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 
 			int x = trimmedLine.indexOf(" = ");
 
-			if ((x != -1) && !ToolsUtil.isInsideQuotes(trimmedLine, x) &&
+			if ((x != -1) && !ToolingUtil.isInsideQuotes(trimmedLine, x) &&
 				((previousLineLength + 2 + x) < getMaxLineLength())) {
 
 				String linePart = trimmedLine.substring(0, x + 3);
@@ -936,7 +936,7 @@ public class JavaCombineLinesCheck extends BaseFileCheck {
 
 			String linePart1 = trimmedLine.substring(0, x);
 
-			if (ToolsUtil.isInsideQuotes(trimmedLine, x) ||
+			if (ToolingUtil.isInsideQuotes(trimmedLine, x) ||
 				(getLevel(linePart1) != 0)) {
 
 				continue;

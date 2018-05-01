@@ -8,18 +8,19 @@ Import-Package:\
 	*
 Main-Class: com.liferay.javadoc.formatter.JavadocFormatter
 -includeresource:\
+	@com.liferay.petra.io-[0-9]*.jar!/com/liferay/petra/io/unsync/BoundaryCheckerUtil.class,\
+	@com.liferay.petra.io-[0-9]*.jar!/com/liferay/petra/io/unsync/UnsyncBufferedReader.class,\
+	@com.liferay.petra.io-[0-9]*.jar!/com/liferay/petra/io/unsync/UnsyncStringReader.class,\
 	@com.liferay.petra.string-[0-9]*.jar!/com/liferay/petra/string/CharPool.class,\
 	@com.liferay.petra.string-[0-9]*.jar!/com/liferay/petra/string/StringPool.class,\
+	@com.liferay.petra.tooling-[0-9]*.jar!/com/liferay/petra/tooling/ToolingUtil.class,\
+	@com.liferay.petra.tooling-[0-9]*.jar!/com/liferay/petra/tooling/arguments/ArgumentsMap.class,\
+	@com.liferay.petra.tooling-[0-9]*.jar!/com/liferay/petra/tooling/arguments/ArgumentsUtil.class,\
+	@com.liferay.petra.tooling-[0-9]*.jar!/com/liferay/petra/tooling/java/imports/formatter/BaseImportsFormatter.class,\
+	@com.liferay.petra.tooling-[0-9]*.jar!/com/liferay/petra/tooling/java/imports/formatter/ImportsFormatter.class,\
+	@com.liferay.petra.tooling-[0-9]*.jar!/com/liferay/petra/tooling/java/imports/formatter/JavaImportsFormatter.class,\
 	@com.liferay.petra.xml-[0-9]*.jar!/com/liferay/petra/xml/Dom4jUtil.class,\
 	@com.liferay.petra.xml-[0-9]*.jar!/com/liferay/petra/xml/XMLUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ArgumentsMap.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ArgumentsUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/BaseImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/JavaImportsFormatter.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/tools/ToolsUtil.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/util/EntityResolver.class,\
-	@com.liferay.portal.impl-[0-9]*.jar!/com/liferay/portal/xml/SAXReaderFactory.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/exception/NestableRuntimeException.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/exception/SystemException.class,\
 	@com.liferay.portal.kernel-[0-9]*.jar!/com/liferay/portal/kernel/io/unsync/UnsyncBufferedReader.class,\

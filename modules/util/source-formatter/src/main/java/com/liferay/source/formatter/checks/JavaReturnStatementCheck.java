@@ -14,9 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.tooling.ToolingUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.parser.JavaSignature;
 import com.liferay.source.formatter.parser.JavaTerm;
 
@@ -117,7 +117,8 @@ public class JavaReturnStatementCheck extends BaseJavaTermCheck {
 				returnStatement);
 
 			if (matcher2.find() &&
-				!ToolsUtil.isInsideQuotes(returnStatement, matcher2.start(1))) {
+				!ToolingUtil.isInsideQuotes(
+					returnStatement, matcher2.start(1))) {
 
 				return _formatReturnStatement(
 					javaTermContent, returnStatement, matcher1.group(1),

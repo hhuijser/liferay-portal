@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools;
 
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
 import com.liferay.portal.image.ImageToolImpl;
 import com.liferay.portal.kernel.image.ImageBag;
 import com.liferay.portal.kernel.image.ImageTool;

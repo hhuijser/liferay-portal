@@ -14,10 +14,10 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.petra.tooling.java.imports.formatter.BaseImportsFormatter;
+import com.liferay.petra.tooling.java.imports.formatter.ImportPackage;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.BaseImportsFormatter;
-import com.liferay.portal.tools.ImportPackage;
 
 import java.io.IOException;
 

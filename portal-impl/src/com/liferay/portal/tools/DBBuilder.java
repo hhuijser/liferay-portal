@@ -15,6 +15,7 @@
 package com.liferay.portal.tools;
 
 import com.liferay.petra.string.StringPool;
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;

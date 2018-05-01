@@ -14,11 +14,10 @@
 
 package com.liferay.tld.formatter;
 
+import com.liferay.petra.tooling.arguments.ArgumentsUtil;
 import com.liferay.petra.xml.Dom4jUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.tools.ArgumentsUtil;
-import com.liferay.portal.xml.SAXReaderFactory;
 
 import java.io.IOException;
 
@@ -153,8 +152,19 @@ public class TLDFormatter {
 		}
 	}
 
-	private SAXReader _getSAXReader() {
-		return SAXReaderFactory.getSAXReader(null, false, false);
+	private SAXReader _getSAXReader() throws Exception {
+		SAXReader saxReader = new SAXReader(false);
+
+		saxReader.setFeature(
+			"http://apache.org/xml/features/disallow-doctype-decl", false);
+		saxReader.setFeature(
+			"http://apache.org/xml/features/nonvalidating/load-dtd-grammar",
+			false);
+		saxReader.setFeature(
+			"http://apache.org/xml/features/nonvalidating/load-external-dtd",
+			false);
+
+		return saxReader;
 	}
 
 	private void _sortElements(

@@ -134,15 +134,19 @@ public class DisplayPortlet extends BaseKBPortlet {
 		KBArticle kbArticle = null;
 
 		if (Validator.isNotNull(urlTitle)) {
-			kbArticle = _kbArticleLocalService.fetchKBArticleByUrlTitle(
-				kbFolder.getGroupId(), kbFolder.getUrlTitle(), urlTitle);
+			List<KBArticle> kbFolderKBArticles =
+				_kbArticleLocalService.getKBFolderKBArticles(
+					kbFolder.getGroupId(), kbFolder.getKbFolderId());
 
-			if ((kbArticle == null) &&
+			if ((kbFolderKBArticles.isEmpty()) &&
 				Validator.isNull(previousPreferredKBFolderURLTitle)) {
 
 				kbArticle = findClosestMatchingKBArticle(
 					kbFolder.getGroupId(), previousPreferredKBFolderURLTitle,
 					kbFolder.getKbFolderId(), urlTitle);
+			}
+			else {
+				kbArticle = kbFolderKBArticles.get(0);
 			}
 		}
 

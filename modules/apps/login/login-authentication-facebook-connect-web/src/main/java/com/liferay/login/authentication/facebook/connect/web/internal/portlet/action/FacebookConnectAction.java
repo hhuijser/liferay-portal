@@ -124,7 +124,7 @@ public class FacebookConnectAction extends BaseStrutsAction {
 
 		HttpSession session = request.getSession();
 
-		String redirect = ParamUtil.getString(request, "redirect");
+		String redirect = ParamUtil.getString(request, "state");
 
 		redirect = _portal.escapeRedirect(redirect);
 

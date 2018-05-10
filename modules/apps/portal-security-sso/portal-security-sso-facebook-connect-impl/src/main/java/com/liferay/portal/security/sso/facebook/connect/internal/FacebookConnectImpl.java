@@ -71,11 +71,7 @@ public class FacebookConnectImpl implements FacebookConnect {
 		url = _http.addParameter(
 			url, "redirect_uri", facebookConnectRedirectURL);
 
-		facebookConnectRedirectURL = _http.addParameter(
-			facebookConnectRedirectURL, "redirect", redirect);
-
-		url = _http.addParameter(
-			url, "redirect_uri", facebookConnectRedirectURL);
+		url = _http.addParameter(url, "state", redirect);
 
 		url = _http.addParameter(
 			url, "client_secret", facebookConnectConfiguration.appSecret());

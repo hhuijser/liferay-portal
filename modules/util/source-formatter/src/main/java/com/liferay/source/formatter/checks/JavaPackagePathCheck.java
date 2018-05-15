@@ -171,13 +171,15 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			 implementedClassNames.contains("ModelResourcePermissionLogic") ||
 			 implementedClassNames.contains(
 				 "PortletResourcePermissionLogic")) &&
-			!packageName.contains("internal.security.permission.resource")) {
+			!packageName.contains("internal.security.permission.resource") &&
+			!packageName.contains("kernel.security.permission.resource")) {
 
 			addMessage(
 				fileName,
 				StringBundler.concat(
 					"Class '", className, "' should be in a package ",
-					"'internal.security.permission.resource'"));
+					"'internal.security.permission.resource' or ",
+					"'kernel.security.permission.resource'"));
 		}
 
 		if ((implementedClassNames.contains(
@@ -185,13 +187,16 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			 implementedClassNames.contains(
 				 "PortletResourcePermissionDefinition")) &&
 			!packageName.contains(
-				"internal.security.permission.resource.definition")) {
+				"internal.security.permission.resource.definition") &&
+			!packageName.contains(
+				"kernel.security.permission.resource.definition")) {
 
 			addMessage(
 				fileName,
 				StringBundler.concat(
 					"Class '", className, "' should be in package ",
-					"'internal.security.permission.resource.definition'"));
+					"'internal.security.permission.resource.definition' or ",
+					"'kernel.security.permission.resource.definition'"));
 		}
 	}
 

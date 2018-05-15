@@ -20,7 +20,8 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
-import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.parser.JavaClass;
+import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +32,7 @@ import java.util.regex.Pattern;
 /**
  * @author Hugo Huijser
  */
-public class JavaPackagePathCheck extends BaseFileCheck {
+public class JavaPackagePathCheck extends BaseJavaTermCheck {
 
 	public void setAllowedInternalPackageDirNames(
 		String allowedInternalPackageDirNames) {
@@ -43,15 +44,26 @@ public class JavaPackagePathCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
-			String fileName, String absolutePath, String content)
+			String fileName, String absolutePath, JavaTerm javaTerm,
+			String fileContent)
 		throws Exception {
 
-		String packageName = JavaSourceUtil.getPackageName(content);
+		if (javaTerm.getParentJavaClass() != null) {
+			return javaTerm.getContent();
+		}
+
+		JavaClass javaClass = (JavaClass)javaTerm;
+
+		if (javaClass.isAnonymous()) {
+			return javaTerm.getContent();
+		}
+
+		String packageName = javaClass.getPackageName();
 
 		if (Validator.isNull(packageName)) {
 			addMessage(fileName, "Missing package");
 
-			return content;
+			return javaTerm.getContent();
 		}
 
 		_checkPackageName(fileName, absolutePath, packageName);
@@ -60,7 +72,12 @@ public class JavaPackagePathCheck extends BaseFileCheck {
 			_checkModulePackageName(fileName, packageName);
 		}
 
-		return content;
+		return javaTerm.getContent();
+	}
+
+	@Override
+	protected String[] getCheckableJavaTermNames() {
+		return new String[] {JAVA_CLASS};
 	}
 
 	private void _checkModulePackageName(String fileName, String packageName)

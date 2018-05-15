@@ -86,7 +86,7 @@ public class TestAlwaysAllowDoAsUser implements AlwaysAllowDoAsUser {
 		return strutsActions;
 	}
 
-	@Reference(target = "(test=AtomicState)", unbind = "-")
+	@Reference(target = "(test=AtomicState)")
 	protected void setAtomicBoolean(AtomicBoolean atomicBoolean) {
 		_atomicBoolean = atomicBoolean;
 	}

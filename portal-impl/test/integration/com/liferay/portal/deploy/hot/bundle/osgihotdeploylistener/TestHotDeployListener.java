@@ -38,7 +38,7 @@ public class TestHotDeployListener implements HotDeployListener {
 		_atomicBoolean.set(Boolean.TRUE);
 	}
 
-	@Reference(target = "(test=AtomicState)", unbind = "-")
+	@Reference(target = "(test=AtomicState)")
 	protected void setAtomicBoolean(AtomicBoolean atomicBoolean) {
 		_atomicBoolean = atomicBoolean;
 	}

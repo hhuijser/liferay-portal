@@ -43,7 +43,7 @@ public class TestSanitizer extends BaseSanitizer {
 		return companyId + ":" + groupId;
 	}
 
-	@Reference(target = "(test=AtomicState)", unbind = "-")
+	@Reference(target = "(test=AtomicState)")
 	protected void setAtomicBoolean(AtomicBoolean atomicBoolean) {
 		_atomicBoolean = atomicBoolean;
 	}

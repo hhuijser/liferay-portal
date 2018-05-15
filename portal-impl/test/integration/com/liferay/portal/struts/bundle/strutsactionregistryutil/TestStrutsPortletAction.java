@@ -91,7 +91,7 @@ public class TestStrutsPortletAction implements StrutsPortletAction {
 		ResourceResponse resourceResponse) {
 	}
 
-	@Reference(target = "(test=AtomicState)", unbind = "-")
+	@Reference(target = "(test=AtomicState)")
 	protected void setAtomicBoolean(AtomicBoolean atomicBoolean) {
 		_atomicBoolean = atomicBoolean;
 	}

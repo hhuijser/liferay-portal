@@ -16,6 +16,7 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.BNDSettings;
@@ -66,7 +67,9 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
-		_checkPackageName(fileName, absolutePath, packageName);
+		_checkPackageName(
+			fileName, absolutePath, packageName, javaClass.getName(),
+			javaClass.getImplementedClassNames());
 
 		if (isModulesFile(absolutePath) && !isModulesApp(absolutePath, true)) {
 			_checkModulePackageName(fileName, packageName);
@@ -120,7 +123,8 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 	}
 
 	private void _checkPackageName(
-		String fileName, String absolutePath, String packageName) {
+		String fileName, String absolutePath, String packageName,
+		String className, List<String> implementedClassNames) {
 
 		int pos = fileName.lastIndexOf(CharPool.SLASH);
 
@@ -161,6 +165,33 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 						"' package in API module",
 					"package.markdown");
 			}
+		}
+
+		if ((className.endsWith("PermissionRegistrar") ||
+			 implementedClassNames.contains("ModelResourcePermissionLogic") ||
+			 implementedClassNames.contains(
+				 "PortletResourcePermissionLogic")) &&
+			!packageName.contains("internal.security.permission.resource")) {
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Class '", className, "' should be in a package ",
+					"'internal.security.permission.resource'"));
+		}
+
+		if ((implementedClassNames.contains(
+				"ModelResourcePermissionDefinition") ||
+			 implementedClassNames.contains(
+				 "PortletResourcePermissionDefinition")) &&
+			!packageName.contains(
+				"internal.security.permission.resource.definition")) {
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Class '", className, "' should be in package ",
+					"'internal.security.permission.resource.definition'"));
 		}
 	}
 

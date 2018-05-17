@@ -161,14 +161,14 @@ AUI.add(
 					},
 
 					_normalizeFieldData: function(item, record, fieldsDisplayValues, normalized) {
-						if (!record.changed[item.id]) {
-							return;
-						}
-
 						var instance = this;
 
 						var type = item.type;
 						var value = record.get(item.name);
+
+						if ((!record.changed[item.id]) && (value && value.length > 0)) {
+							return;
+						}
 
 						if (type === 'ddm-link-to-page') {
 							value = FormBuilder.Util.parseJSON(value);

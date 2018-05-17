@@ -96,6 +96,9 @@
 		<check name="JavaBooleanUsageCheck" />
 		<check name="JavaCollatorUtilCheck" />
 		<check name="JavaCombineLinesCheck" />
+		<check name="JavaComponentServiceCheck">
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JavaConfigurationAdminCheck" />
 		<check name="JavaConstructorParametersCheck" />
 		<check name="JavaConstructorSuperCallCheck" />

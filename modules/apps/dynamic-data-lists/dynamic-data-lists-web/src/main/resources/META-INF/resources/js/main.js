@@ -161,6 +161,10 @@ AUI.add(
 					},
 
 					_normalizeFieldData: function(item, record, fieldsDisplayValues, normalized) {
+						if (!record.changed[item.id]) {
+							return;
+						}
+
 						var instance = this;
 
 						var type = item.type;

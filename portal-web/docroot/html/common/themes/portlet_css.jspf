@@ -36,15 +36,15 @@ String bgPosValue = bgPosLeftValue + " " + bgPosTopValue;
 
 boolean useBgImage = bgData.getBoolean("useBgImage");
 
-if (Validator.isNotNull(bgColor)) {
+if (Validator.isNotNull(bgColor) && !Validator.isBlank(bgColor)) {
 	finalCSS.add("background-color: " + bgColor);
 }
 
-if (Validator.isNotNull(bgImage)) {
+if (Validator.isNotNull(bgImage) && !Validator.isBlank(bgImage)) {
 	finalCSS.add("background-image: url(" + bgImage + ")");
 }
 
-if (useBgImage) {
+if (useBgImage && !Validator.isBlank(bgPosValue)) {
 	finalCSS.add("background-position: " + bgPosValue);
 }
 
@@ -102,67 +102,67 @@ String borderRightColorValue = borderColor.getString(_RIGHT_KEY);
 String borderBottomColorValue = borderColor.getString(_BOTTOM_KEY);
 String borderLeftColorValue = borderColor.getString(_LEFT_KEY);
 
-if (ufaBorderWidth && !_unitSet.contains(borderTopWidthValue)) {
+if (ufaBorderWidth && !_unitSet.contains(borderTopWidthValue) && !Validator.isBlank(borderTopWidthValue)) {
 	finalCSS.add("border-width: " + borderTopWidthValue);
 }
 else {
-	if (!_unitSet.contains(borderTopWidthValue)) {
+	if (!_unitSet.contains(borderTopWidthValue) && !Validator.isBlank(borderTopWidthValue)) {
 		finalCSS.add("border-top-width: " + borderTopWidthValue);
 	}
 
-	if (!_unitSet.contains(borderRightWidthValue)) {
+	if (!_unitSet.contains(borderRightWidthValue) && !Validator.isBlank(borderRightWidthValue)) {
 		finalCSS.add("border-right-width: " + borderRightWidthValue);
 	}
 
-	if (!_unitSet.contains(borderBottomWidthValue)) {
+	if (!_unitSet.contains(borderBottomWidthValue) && !Validator.isBlank(borderBottomWidthValue)) {
 		finalCSS.add("border-bottom-width: " + borderBottomWidthValue);
 	}
 
-	if (!_unitSet.contains(borderLeftWidthValue)) {
+	if (!_unitSet.contains(borderLeftWidthValue) && !Validator.isBlank(borderLeftWidthValue)) {
 		finalCSS.add("border-left-width: " + borderLeftWidthValue);
 	}
 }
 
-if (ufaBorderStyle && !_unitSet.contains(borderTopWidthValue)) {
+if (ufaBorderStyle && !_unitSet.contains(borderTopWidthValue) && !Validator.isBlank(borderTopStyleValue)) {
 	finalCSS.add("border-style: " + borderTopStyleValue);
 }
 else {
-	if (Validator.isNotNull(borderTopStyleValue)) {
+	if (Validator.isNotNull(borderTopStyleValue) && !Validator.isBlank(borderTopStyleValue)) {
 		finalCSS.add("border-top-style: " + borderTopStyleValue);
 	}
 
-	if (Validator.isNotNull(borderRightStyleValue)) {
+	if (Validator.isNotNull(borderRightStyleValue) && !Validator.isBlank(borderRightStyleValue)) {
 		finalCSS.add("border-right-style: " + borderRightStyleValue);
 	}
 
-	if (Validator.isNotNull(borderBottomStyleValue)) {
+	if (Validator.isNotNull(borderBottomStyleValue) && !Validator.isBlank(borderBottomStyleValue)) {
 		finalCSS.add("border-bottom-style: " + borderBottomStyleValue);
 	}
 
-	if (Validator.isNotNull(borderLeftStyleValue)) {
+	if (Validator.isNotNull(borderLeftStyleValue) && !Validator.isBlank(borderLeftStyleValue)) {
 		finalCSS.add("border-left-style: " + borderLeftStyleValue);
 	}
 }
 
 if (ufaBorderColor) {
-	if (Validator.isNotNull(borderTopColorValue)) {
+	if (Validator.isNotNull(borderTopColorValue) && !Validator.isBlank(borderTopColorValue)) {
 		finalCSS.add("border-color: " + borderTopColorValue);
 	}
 }
 else {
-	if (Validator.isNotNull(borderTopColorValue)) {
+	if (Validator.isNotNull(borderTopColorValue) && !Validator.isBlank(borderTopColorValue)) {
 		finalCSS.add("border-top-color: " + borderTopColorValue);
 	}
 
-	if (Validator.isNotNull(borderRightColorValue)) {
+	if (Validator.isNotNull(borderRightColorValue) && !Validator.isBlank(borderRightColorValue)) {
 		finalCSS.add("border-right-color: " + borderRightColorValue);
 	}
 
-	if (Validator.isNotNull(borderBottomColorValue)) {
+	if (Validator.isNotNull(borderBottomColorValue) && !Validator.isBlank(borderBottomColorValue)) {
 		finalCSS.add("border-bottom-color: " + borderBottomColorValue);
 	}
 
-	if (Validator.isNotNull(borderLeftColorValue)) {
+	if (Validator.isNotNull(borderLeftColorValue) && !Validator.isBlank(borderLeftColorValue)) {
 		finalCSS.add("border-left-color: " + borderLeftColorValue);
 	}
 }
@@ -189,23 +189,23 @@ String marginRightValue = marginRight.getString(_VALUE_KEY) + marginRight.getStr
 String marginBottomValue = marginBottom.getString(_VALUE_KEY) + marginBottom.getString(_UNIT_KEY);
 String marginLeftValue = marginLeft.getString(_VALUE_KEY) + marginLeft.getString(_UNIT_KEY);
 
-if (ufaMargin && !_unitSet.contains(marginTopValue)) {
+if (ufaMargin && !_unitSet.contains(marginTopValue) && !Validator.isBlank(marginTopValue)) {
 	finalCSS.add("margin: " + marginTopValue);
 }
 else {
-	if (!_unitSet.contains(marginTopValue)) {
+	if (!_unitSet.contains(marginTopValue) && !Validator.isBlank(marginTopValue)) {
 		finalCSS.add("margin-top: " + marginTopValue);
 	}
 
-	if (!_unitSet.contains(marginRightValue)) {
+	if (!_unitSet.contains(marginRightValue) && !Validator.isBlank(marginRightValue)) {
 		finalCSS.add("margin-right: " + marginRightValue);
 	}
 
-	if (!_unitSet.contains(marginBottomValue)) {
+	if (!_unitSet.contains(marginBottomValue) && !Validator.isBlank(marginBottomValue)) {
 		finalCSS.add("margin-bottom: " + marginBottomValue);
 	}
 
-	if (!_unitSet.contains(marginLeftValue)) {
+	if (!_unitSet.contains(marginLeftValue) && !Validator.isBlank(marginLeftValue)) {
 		finalCSS.add("margin-left: " + marginLeftValue);
 	}
 }
@@ -222,23 +222,23 @@ String paddingRightValue = paddingRight.getString(_VALUE_KEY) + paddingRight.get
 String paddingBottomValue = paddingBottom.getString(_VALUE_KEY) + paddingBottom.getString(_UNIT_KEY);
 String paddingLeftValue = paddingLeft.getString(_VALUE_KEY) + paddingLeft.getString(_UNIT_KEY);
 
-if (ufaPadding && !_unitSet.contains(paddingTopValue)) {
+if (ufaPadding && !_unitSet.contains(paddingTopValue) && !Validator.isBlank(paddingTopValue)) {
 	finalCSS.add("padding: " + paddingTopValue);
 }
 else {
-	if (!_unitSet.contains(paddingTopValue)) {
+	if (!_unitSet.contains(paddingTopValue) && !Validator.isBlank(paddingTopValue)) {
 		finalCSS.add("padding-top: " + paddingTopValue);
 	}
 
-	if (!_unitSet.contains(paddingRightValue)) {
+	if (!_unitSet.contains(paddingRightValue) && !Validator.isBlank(paddingRightValue)) {
 		finalCSS.add("padding-right: " + paddingRightValue);
 	}
 
-	if (!_unitSet.contains(paddingBottomValue)) {
+	if (!_unitSet.contains(paddingBottomValue) && !Validator.isBlank(paddingBottomValue)) {
 		finalCSS.add("padding-bottom: " + paddingBottomValue);
 	}
 
-	if (!_unitSet.contains(paddingLeftValue)) {
+	if (!_unitSet.contains(paddingLeftValue) && !Validator.isBlank(paddingLeftValue)) {
 		finalCSS.add("padding-left: " + paddingLeftValue);
 	}
 }
@@ -258,43 +258,43 @@ String textAlign = textData.getString("textAlign");
 String textDecoration = textData.getString("textDecoration");
 String wordSpacing = textData.getString("wordSpacing");
 
-if (Validator.isNotNull(color)) {
+if (Validator.isNotNull(color) && !Validator.isBlank(color)) {
 	finalCSS.add("color: " + color);
 }
 
-if (Validator.isNotNull(fontFamily)) {
+if (Validator.isNotNull(fontFamily) && !Validator.isBlank(fontFamily)) {
 	finalCSS.add("font-family: '" + fontFamily + "'");
 }
 
-if (Validator.isNotNull(fontSize)) {
+if (Validator.isNotNull(fontSize) && !Validator.isBlank(fontSize)) {
 	finalCSS.add("font-size: " + fontSize);
 }
 
-if (Validator.isNotNull(fontStyle)) {
+if (Validator.isNotNull(fontStyle) && !Validator.isBlank(fontStyle)) {
 	finalCSS.add("font-style: " + fontStyle);
 }
 
-if (Validator.isNotNull(fontWeight)) {
+if (Validator.isNotNull(fontWeight) && !Validator.isBlank(fontWeight)) {
 	finalCSS.add("font-weight: " + fontWeight);
 }
 
-if (Validator.isNotNull(letterSpacing)) {
+if (Validator.isNotNull(letterSpacing) && !Validator.isBlank(letterSpacing)) {
 	finalCSS.add("letter-spacing: " + letterSpacing);
 }
 
-if (Validator.isNotNull(lineHeight)) {
+if (Validator.isNotNull(lineHeight) && !Validator.isBlank(lineHeight)) {
 	finalCSS.add("line-height: " + lineHeight);
 }
 
-if (Validator.isNotNull(textAlign)) {
+if (Validator.isNotNull(textAlign) && !Validator.isBlank(textAlign)) {
 	finalCSS.add("text-align: " + textAlign);
 }
 
-if (Validator.isNotNull(textDecoration)) {
+if (Validator.isNotNull(textDecoration) && !Validator.isBlank(textDecoration)) {
 	finalCSS.add("text-decoration: " + textDecoration);
 }
 
-if (Validator.isNotNull(wordSpacing)) {
+if (Validator.isNotNull(wordSpacing) && !Validator.isBlank(wordSpacing)) {
 	finalCSS.add("word-spacing: " + wordSpacing);
 }
 

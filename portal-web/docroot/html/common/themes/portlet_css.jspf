@@ -102,28 +102,28 @@ String borderRightColorValue = borderColor.getString(_RIGHT_KEY);
 String borderBottomColorValue = borderColor.getString(_BOTTOM_KEY);
 String borderLeftColorValue = borderColor.getString(_LEFT_KEY);
 
-if (ufaBorderWidth && !_unitSet.contains(borderTopWidthValue)) {
+if (Validator.isNotNull(borderTopWidthValue) && ufaBorderWidth && !_unitSet.contains(borderTopWidthValue)) {
 	finalCSS.add("border-width: " + borderTopWidthValue);
 }
 else {
-	if (!_unitSet.contains(borderTopWidthValue)) {
+	if (Validator.isNotNull(borderTopWidthValue) && !_unitSet.contains(borderTopWidthValue)) {
 		finalCSS.add("border-top-width: " + borderTopWidthValue);
 	}
 
-	if (!_unitSet.contains(borderRightWidthValue)) {
+	if (Validator.isNotNull(borderRightWidthValue) && !_unitSet.contains(borderRightWidthValue)) {
 		finalCSS.add("border-right-width: " + borderRightWidthValue);
 	}
 
-	if (!_unitSet.contains(borderBottomWidthValue)) {
+	if (Validator.isNotNull(borderBottomWidthValue) && !_unitSet.contains(borderBottomWidthValue)) {
 		finalCSS.add("border-bottom-width: " + borderBottomWidthValue);
 	}
 
-	if (!_unitSet.contains(borderLeftWidthValue)) {
+	if (Validator.isNotNull(borderLeftWidthValue) && !_unitSet.contains(borderLeftWidthValue)) {
 		finalCSS.add("border-left-width: " + borderLeftWidthValue);
 	}
 }
 
-if (ufaBorderStyle && !_unitSet.contains(borderTopWidthValue)) {
+if (Validator.isNotNull(borderTopStyleValue) && ufaBorderStyle && !_unitSet.contains(borderTopWidthValue)) {
 	finalCSS.add("border-style: " + borderTopStyleValue);
 }
 else {
@@ -189,23 +189,23 @@ String marginRightValue = marginRight.getString(_VALUE_KEY) + marginRight.getStr
 String marginBottomValue = marginBottom.getString(_VALUE_KEY) + marginBottom.getString(_UNIT_KEY);
 String marginLeftValue = marginLeft.getString(_VALUE_KEY) + marginLeft.getString(_UNIT_KEY);
 
-if (ufaMargin && !_unitSet.contains(marginTopValue)) {
+if (Validator.isNotNull(marginTopValue) && ufaMargin && !_unitSet.contains(marginTopValue)) {
 	finalCSS.add("margin: " + marginTopValue);
 }
 else {
-	if (!_unitSet.contains(marginTopValue)) {
+	if (Validator.isNotNull(marginTopValue) && !_unitSet.contains(marginTopValue)) {
 		finalCSS.add("margin-top: " + marginTopValue);
 	}
 
-	if (!_unitSet.contains(marginRightValue)) {
+	if (Validator.isNotNull(marginRightValue) && !_unitSet.contains(marginRightValue)) {
 		finalCSS.add("margin-right: " + marginRightValue);
 	}
 
-	if (!_unitSet.contains(marginBottomValue)) {
+	if (Validator.isNotNull(marginBottomValue) && !_unitSet.contains(marginBottomValue)) {
 		finalCSS.add("margin-bottom: " + marginBottomValue);
 	}
 
-	if (!_unitSet.contains(marginLeftValue)) {
+	if (Validator.isNotNull(marginLeftValue) && !_unitSet.contains(marginLeftValue)) {
 		finalCSS.add("margin-left: " + marginLeftValue);
 	}
 }
@@ -222,23 +222,23 @@ String paddingRightValue = paddingRight.getString(_VALUE_KEY) + paddingRight.get
 String paddingBottomValue = paddingBottom.getString(_VALUE_KEY) + paddingBottom.getString(_UNIT_KEY);
 String paddingLeftValue = paddingLeft.getString(_VALUE_KEY) + paddingLeft.getString(_UNIT_KEY);
 
-if (ufaPadding && !_unitSet.contains(paddingTopValue)) {
+if (Validator.isNotNull(paddingTopValue) && ufaPadding && !_unitSet.contains(paddingTopValue)) {
 	finalCSS.add("padding: " + paddingTopValue);
 }
 else {
-	if (!_unitSet.contains(paddingTopValue)) {
+	if (Validator.isNotNull(paddingTopValue) && !_unitSet.contains(paddingTopValue)) {
 		finalCSS.add("padding-top: " + paddingTopValue);
 	}
 
-	if (!_unitSet.contains(paddingRightValue)) {
+	if (Validator.isNotNull(paddingRightValue) && !_unitSet.contains(paddingRightValue)) {
 		finalCSS.add("padding-right: " + paddingRightValue);
 	}
 
-	if (!_unitSet.contains(paddingBottomValue)) {
+	if (Validator.isNotNull(paddingBottomValue) && !_unitSet.contains(paddingBottomValue)) {
 		finalCSS.add("padding-bottom: " + paddingBottomValue);
 	}
 
-	if (!_unitSet.contains(paddingLeftValue)) {
+	if (Validator.isNotNull(paddingLeftValue) && !_unitSet.contains(paddingLeftValue)) {
 		finalCSS.add("padding-left: " + paddingLeftValue);
 	}
 }

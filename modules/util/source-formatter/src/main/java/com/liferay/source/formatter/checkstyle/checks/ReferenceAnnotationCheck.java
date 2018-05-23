@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
@@ -23,6 +24,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -132,7 +134,11 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 		else if (unbindName.equals(_NO_UNBIND) &&
 				 policyName.endsWith(_POLICY_DYNAMIC)) {
 
-			log(annotationAST.getLineNo(), _MSG_MISSING_DYNAMIC_POLICY_UNBIND);
+			if (!_hasPrivateStaticVariable(classDefAST, detailAST)) {
+				int lineNo = annotationAST.getLineNo();
+
+				log(lineNo, _MSG_MISSING_DYNAMIC_POLICY_UNBIND);
+			}
 		}
 	}
 
@@ -268,6 +274,45 @@ public class ReferenceAnnotationCheck extends BaseCheck {
 		}
 
 		return sb.toString();
+	}
+
+	private boolean _hasPrivateStaticVariable(
+		DetailAST classDefAST, DetailAST detailAST) {
+
+		List<String> parameterNames = DetailASTUtil.getParameterNames(
+			detailAST);
+
+		if (parameterNames.size() != 1) {
+			return false;
+		}
+
+		String variableName = StringPool.UNDERLINE + parameterNames.get(0);
+
+		DetailAST objBlockAST = classDefAST.findFirstToken(TokenTypes.OBJBLOCK);
+
+		List<DetailAST> variableDefASTList = DetailASTUtil.getAllChildTokens(
+			objBlockAST, false, TokenTypes.VARIABLE_DEF);
+
+		for (DetailAST variableDefAST : variableDefASTList) {
+			DetailAST nameAST = variableDefAST.findFirstToken(TokenTypes.IDENT);
+
+			if (!Objects.equals(variableName, nameAST.getText())) {
+				continue;
+			}
+
+			DetailAST modifiersAST = variableDefAST.findFirstToken(
+				TokenTypes.MODIFIERS);
+
+			if (modifiersAST.branchContains(TokenTypes.LITERAL_PRIVATE) &&
+				modifiersAST.branchContains(TokenTypes.LITERAL_STATIC)) {
+
+				return true;
+			}
+
+			return false;
+		}
+
+		return false;
 	}
 
 	private static final String _MSG_INCORRECT_GREEDY_POLICY_OPTION =

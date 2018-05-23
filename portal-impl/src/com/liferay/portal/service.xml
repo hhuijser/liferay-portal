@@ -243,6 +243,12 @@
 		<column name="jobClass" type="String" />
 		<column name="hoursOfOperation" type="String" />
 
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="contactId" />
+		</order>
+
 		<!-- Finder methods -->
 
 		<finder name="CompanyId" return-type="Collection">

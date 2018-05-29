@@ -60,7 +60,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author Sergio Gonz√°lez
+ * @author Sergio Gonz·lez
  */
 @RunWith(Arquillian.class)
 public class AssetEntryQueryTest {

@@ -111,9 +111,9 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Brian Wing Shun Chan
  * @author Alexander Chow
- * @author Sergio Gonz√°lez
- * @author Manuel de la Pe√±a
- * @author Levente Hud√°k
+ * @author Sergio Gonz·lez
+ * @author Manuel de la PeÒa
+ * @author Levente Hud·k
  * @author Kenneth Chang
  */
 @Component(

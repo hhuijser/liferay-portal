@@ -111,9 +111,9 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Brian Wing Shun Chan
  * @author Alexander Chow
- * @author Sergio Gonz√°lez
- * @author Manuel de la Pe√±a
- * @author Levente Hud√°k
+ * @author Sergio Gonz·lez
+ * @author Manuel de la PeÒa
+ * @author Levente Hud·k
  * @author Kenneth Chang
  */
 @Component(
@@ -295,8 +295,8 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			long[] fileEntryIds = ParamUtil.getLongValues(
 				actionRequest, "rowIdsFileEntry");
 
-			for (int i = 0; i < fileEntryIds.length; i++) {
-				_dlAppService.cancelCheckOut(fileEntryIds[i]);
+			for (long curFileEntryId : fileEntryIds) {
+				_dlAppService.cancelCheckOut(curFileEntryId);
 			}
 		}
 	}
@@ -321,9 +321,9 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			long[] fileEntryIds = ParamUtil.getLongValues(
 				actionRequest, "rowIdsFileEntry");
 
-			for (int i = 0; i < fileEntryIds.length; i++) {
+			for (long curFileEntryId : fileEntryIds) {
 				_dlAppService.checkInFileEntry(
-					fileEntryIds[i], majorVersion, changeLog, serviceContext);
+					curFileEntryId, majorVersion, changeLog, serviceContext);
 			}
 		}
 	}
@@ -343,9 +343,8 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			long[] fileEntryIds = ParamUtil.getLongValues(
 				actionRequest, "rowIdsFileEntry");
 
-			for (int i = 0; i < fileEntryIds.length; i++) {
-				_dlAppService.checkOutFileEntry(
-					fileEntryIds[i], serviceContext);
+			for (long curFileEntryId : fileEntryIds) {
+				_dlAppService.checkOutFileEntry(curFileEntryId, serviceContext);
 			}
 		}
 	}

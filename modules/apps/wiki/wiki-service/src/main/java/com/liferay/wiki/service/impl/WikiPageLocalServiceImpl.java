@@ -153,14 +153,14 @@ import org.osgi.framework.FrameworkUtil;
  *
  * @author Brian Wing Shun Chan
  * @author Jorge Ferrer
- * @author Raymond AugÃ©
+ * @author Raymond Augé
  * @author Bruno Farache
  * @author Julio Camarero
  * @author Wesley Gong
  * @author Marcellus Tavares
  * @author Zsigmond Rab
  * @author Zsolt Berentey
- * @author Roberto DÃ­az
+ * @author Roberto Díaz
  */
 public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
@@ -366,9 +366,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			return Collections.emptyList();
 		}
 
-		for (int i = 0; i < inputStreamOVPs.size(); i++) {
-			ObjectValuePair<String, InputStream> inputStreamOVP =
-				inputStreamOVPs.get(i);
+		for (ObjectValuePair<String, InputStream> inputStreamOVP :
+				inputStreamOVPs) {
 
 			String fileName = inputStreamOVP.getKey();
 			InputStream inputStream = inputStreamOVP.getValue();

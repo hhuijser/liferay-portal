@@ -366,8 +366,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			return Collections.emptyList();
 		}
 
-		for (ObjectValuePair<String, InputStream> inputStreamOVP :
-				inputStreamOVPs) {
+		for (int i = 0; i < inputStreamOVPs.size(); i++) {
+			ObjectValuePair<String, InputStream> inputStreamOVP =
+				inputStreamOVPs.get(i);
 
 			String fileName = inputStreamOVP.getKey();
 			InputStream inputStream = inputStreamOVP.getValue();

@@ -241,3 +241,4 @@ public class AssetEntriesSearchFacet extends BaseJSPSearchFacet {
 		AssetEntriesSearchFacet.class);
 
 }
+}

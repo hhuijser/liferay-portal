@@ -26,7 +26,6 @@ import com.liferay.source.formatter.checks.util.SourceUtil;
 import java.io.File;
 import java.io.Serializable;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +43,9 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		for (String dependencies : _getDependenciesBlocks(content)) {
+		List<String> blocks = GradleSourceUtil.getDependenciesBlocks(content);
+
+		for (String dependencies : blocks) {
 			content = _formatDependencies(absolutePath, content, dependencies);
 		}
 
@@ -170,39 +171,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		return dependency;
 	}
 
-	private List<String> _getDependenciesBlocks(String content) {
-		List<String> dependenciesBlocks = new ArrayList<>();
-
-		Matcher matcher = _dependenciesPattern.matcher(content);
-
-		while (matcher.find()) {
-			int y = matcher.start();
-
-			while (true) {
-				y = content.indexOf("}", y + 1);
-
-				if (y == -1) {
-					return dependenciesBlocks;
-				}
-
-				String dependencies = content.substring(
-					matcher.start(2), y + 1);
-
-				int level = getLevel(dependencies, "{", "}");
-
-				if (level == 0) {
-					if (!dependencies.contains("}\n")) {
-						dependenciesBlocks.add(dependencies);
-					}
-
-					break;
-				}
-			}
-		}
-
-		return dependenciesBlocks;
-	}
-
 	private boolean _hasBNDFile(String absolutePath) {
 		if (!absolutePath.endsWith("/build.gradle")) {
 			return false;
@@ -229,8 +197,6 @@ public class GradleDependenciesCheck extends BaseFileCheck {
 		return true;
 	}
 
-	private final Pattern _dependenciesPattern = Pattern.compile(
-		"(\n|\\A)(\t*)dependencies \\{\n");
 	private final Pattern _incorrectGroupNameVersionPattern = Pattern.compile(
 		"(^[^\\s]+)\\s+\"([^:]+?):([^:]+?):([^\"]+?)\"(.*?)", Pattern.DOTALL);
 	private final Pattern _incorrectWhitespacePattern = Pattern.compile(

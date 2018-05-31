@@ -29,7 +29,7 @@ HttpSession portalSession = PortalSessionThreadLocal.getHttpSession();
 
 String nonce = PwdGenerator.getPassword(GetterUtil.getInteger(PropsUtil.get(PropsKeys.AUTH_TOKEN_LENGTH)));
 
-portalSession.setAttribute("nonce", nonce);
+portalSession.setAttribute(WebKeys.FACEBOOK_NONCE, nonce);
 
 JSONObject stateJSONObject = JSONFactoryUtil.createJSONObject();
 

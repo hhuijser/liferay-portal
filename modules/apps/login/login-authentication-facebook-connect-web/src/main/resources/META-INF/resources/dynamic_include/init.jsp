@@ -28,4 +28,5 @@ page import="com.liferay.portal.kernel.util.PropsKeys" %><%@
 page import="com.liferay.portal.kernel.util.PropsUtil" %><%@
 page import="com.liferay.portal.kernel.util.PwdGenerator" %><%@
 page import="com.liferay.portal.kernel.util.URLCodec" %><%@
+page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.security.sso.facebook.connect.constants.FacebookConnectWebKeys" %>

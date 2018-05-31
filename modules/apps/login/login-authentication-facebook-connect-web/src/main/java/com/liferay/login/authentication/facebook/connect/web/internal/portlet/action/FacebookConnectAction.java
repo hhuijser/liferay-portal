@@ -127,7 +127,7 @@ public class FacebookConnectAction extends BaseStrutsAction {
 
 		HttpSession session = request.getSession();
 
-		String nonce = (String)session.getAttribute("nonce");
+		String nonce = (String)session.getAttribute(WebKeys.FACEBOOK_NONCE);
 
 		String state = ParamUtil.getString(request, "state");
 

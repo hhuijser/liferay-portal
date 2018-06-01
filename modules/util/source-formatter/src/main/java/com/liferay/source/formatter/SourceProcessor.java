@@ -34,9 +34,17 @@ public interface SourceProcessor {
 
 	public List<String> getModifiedFileNames();
 
+	public SourceFormatterArgs getSourceFormatterArgs();
+
 	public Set<SourceFormatterMessage> getSourceFormatterMessages();
 
 	public List<SourceMismatchException> getSourceMismatchExceptions();
+
+	public void init() throws Exception;
+
+	public boolean isPortalSource();
+
+	public boolean isSubrepository();
 
 	public void setAllFileNames(List<String> allFileNames);
 

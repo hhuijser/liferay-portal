@@ -47,10 +47,26 @@ import java.util.TreeSet;
 public class JSPSourceProcessor extends BaseSourceProcessor {
 
 	@Override
+	public void init() throws Exception {
+		SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
+
+		_checkstyleLogger = new AlloyMVCCheckstyleLogger(
+			new UnsyncByteArrayOutputStream(), true,
+			sourceFormatterArgs.getBaseDirName());
+		_configuration = CheckstyleUtil.getConfiguration(
+			"checkstyle-alloy-mvc.xml", getPropertiesMap(),
+			sourceFormatterArgs);
+
+		setConfiguration(_configuration);
+	}
+
+	@Override
 	protected List<String> doGetFileNames() throws Exception {
 		String[] excludes = {"**/null.jsp", "**/tools/**"};
 
 		List<String> fileNames = getFileNames(excludes, getIncludes());
+
+		SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
 
 		if (fileNames.isEmpty() ||
 			(!sourceFormatterArgs.isFormatCurrentBranch() &&
@@ -103,6 +119,8 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		// added to the list. Here we make sure we do not format files that
 		// should be excluded.
 
+		SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
+
 		if (sourceFormatterArgs.isFormatCurrentBranch() ||
 			sourceFormatterArgs.isFormatLatestAuthor() ||
 			sourceFormatterArgs.isFormatLocalChanges()) {
@@ -142,6 +160,7 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 		throws Exception {
 
 		List<String> fileNames = Collections.emptyList();
+		SourceFormatterArgs sourceFormatterArgs = getSourceFormatterArgs();
 
 		if (sourceFormatterArgs.isFormatCurrentBranch()) {
 			fileNames = GitUtil.getCurrentBranchFileNames(
@@ -200,15 +219,6 @@ public class JSPSourceProcessor extends BaseSourceProcessor {
 	private void _processCheckstyle() throws Exception {
 		if (_ungeneratedFiles.isEmpty()) {
 			return;
-		}
-
-		if (_configuration == null) {
-			_checkstyleLogger = new AlloyMVCCheckstyleLogger(
-				new UnsyncByteArrayOutputStream(), true,
-				sourceFormatterArgs.getBaseDirName());
-			_configuration = CheckstyleUtil.getConfiguration(
-				"checkstyle-alloy-mvc.xml", getPropertiesMap(),
-				sourceFormatterArgs);
 		}
 
 		_sourceFormatterMessages.addAll(

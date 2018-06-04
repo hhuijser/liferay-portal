@@ -44,6 +44,8 @@ public interface SourceProcessor {
 
 	public boolean isSubrepository();
 
+	public void preFormat() throws Exception;
+
 	public void setAllFileNames(List<String> allFileNames);
 
 	public void setPluginsInsideModulesDirectoryNames(

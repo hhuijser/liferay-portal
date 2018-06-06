@@ -92,7 +92,7 @@ public class Time {
 
 		if (approximate) {
 			if (milliseconds <= 0) {
-				s = "0 Seconds";
+				s = "0 Second";
 			}
 			else if (milliseconds < MINUTE) {
 				x = (int)(milliseconds / SECOND);

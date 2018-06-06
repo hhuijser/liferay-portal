@@ -68,7 +68,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -1186,16 +1185,10 @@ public class LanguageImpl implements Language, Serializable {
 
 			String x = description.substring(0, pos);
 
-			String unit = get(
-				request,
-				StringUtil.toLowerCase(description.substring(pos + 1)));
-
-			if (Objects.equals(_getLocale(request), Locale.JAPAN)) {
-				value = x.concat(unit);
-			}
-			else {
-				value = x.concat(StringPool.SPACE).concat(unit);
-			}
+			value = x.concat(StringPool.SPACE).concat(
+				get(
+					request,
+					StringUtil.toLowerCase(description.substring(pos + 1))));
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

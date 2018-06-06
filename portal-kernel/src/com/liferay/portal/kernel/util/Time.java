@@ -97,12 +97,7 @@ public class Time {
 			else if (milliseconds < MINUTE) {
 				x = (int)(milliseconds / SECOND);
 
-				if (x == 1) {
-					s = x + " second[time]";
-				}
-				else {
-					s = x + " second";
-				}
+				s = x + " Second";
 			}
 			else if (milliseconds < HOUR) {
 				x = (int)(milliseconds / MINUTE);

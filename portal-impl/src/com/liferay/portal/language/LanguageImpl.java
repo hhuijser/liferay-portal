@@ -1178,8 +1178,6 @@ public class LanguageImpl implements Language, Serializable {
 
 		String description = Time.getDescription(milliseconds, approximate);
 
-		Locale locale = _getLocale(request);
-
 		String value = null;
 
 		try {
@@ -1187,16 +1185,10 @@ public class LanguageImpl implements Language, Serializable {
 
 			String x = description.substring(0, pos);
 
-			String unit = get(
-				request,
-				StringUtil.toLowerCase(description.substring(pos + 1)));
-
-			if (locale.equals(Locale.JAPAN)) {
-				value = x.concat(unit);
-			}
-			else {
-				value = x.concat(StringPool.SPACE).concat(unit);
-			}
+			value = x.concat(StringPool.SPACE).concat(
+				get(
+					request,
+					StringUtil.toLowerCase(description.substring(pos + 1))));
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

@@ -16,6 +16,7 @@ package com.liferay.portal.security.ldap.internal.authenticator;
 
 import com.liferay.admin.kernel.util.Omniadmin;
 import com.liferay.petra.lang.CentralizedThreadLocal;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PasswordExpiredException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -32,7 +33,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.security.ldap.PortalLDAP;
@@ -198,7 +198,9 @@ public class LDAPAuth implements Authenticator {
 					_log.warn(
 						StringBundler.concat(
 							"Failed to bind to the LDAP server with userDN ",
-							userDN, " and password ", password),
+							userDN, " and password ", password.charAt(0),
+							"...redacted...",
+							password.charAt(password.length() - 1)),
 						e);
 				}
 

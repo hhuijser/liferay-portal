@@ -266,8 +266,7 @@ public class LDAPAuth implements Authenticator {
 				_log.debug(
 					StringBundler.concat(
 						"No LDAP server configuration available for LDAP ",
-						"server ", String.valueOf(ldapServerId),
-						" and company ", String.valueOf(companyId)));
+						"server ", ldapServerId, " and company ", companyId));
 			}
 
 			return FAILURE;
@@ -649,9 +648,8 @@ public class LDAPAuth implements Authenticator {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Using LDAP server ",
-					String.valueOf(user.getLdapServerId()),
-					" to authenticate user ", String.valueOf(userId)));
+					"Using LDAP server ", user.getLdapServerId(),
+					" to authenticate user ", userId));
 		}
 
 		return user.getLdapServerId();

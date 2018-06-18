@@ -28,15 +28,16 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.util.Html;
-import com.liferay.portal.kernel.util.ResourceBundleUtil;
+import com.liferay.portal.kernel.util.ResourceBundleLoader;
+import com.liferay.portal.kernel.util.ResourceBundleLoaderUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.URLCodec;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -44,6 +45,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
+import org.osgi.service.component.annotations.ReferencePolicy;
+import org.osgi.service.component.annotations.ReferencePolicyOption;
 
 /**
  * @author Pedro Queiroz
@@ -153,7 +157,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 
 		Map<String, String> stringsMap = new HashMap<>();
 
-		ResourceBundle resourceBundle = getResourceBundle(
+		ResourceBundle resourceBundle = resourceBundleLoader.loadResourceBundle(
 			ddmFormFieldRenderingContext.getLocale());
 
 		stringsMap.put("select", LanguageUtil.get(resourceBundle, "select"));
@@ -180,11 +184,22 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 		}
 	}
 
-	protected ResourceBundle getResourceBundle(Locale locale) {
-		Class<?> clazz = getClass();
+	@Reference(
+		cardinality = ReferenceCardinality.MANDATORY,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		target = "(&(bundle.symbolic.name=com.liferay.dynamic.data.mapping.type.document.library)(resource.bundle.base.name=content.Language))"
+	)
+	protected void setResourceBundleLoader(
+		ResourceBundleLoader resourceBundleLoader) {
 
-		return ResourceBundleUtil.getBundle(
-			"content.Language", locale, clazz.getClassLoader());
+		this.resourceBundleLoader = new AggregateResourceBundleLoader(
+			resourceBundleLoader,
+			ResourceBundleLoaderUtil.getPortalResourceBundleLoader());
+	}
+
+	protected void unsetResourceBundleLoader(
+		ResourceBundleLoader resourceBundleLoader) {
 	}
 
 	@Reference
@@ -195,6 +210,8 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 
 	@Reference
 	protected JSONFactory jsonFactory;
+
+	protected volatile ResourceBundleLoader resourceBundleLoader;
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		DocumentLibraryDDMFormFieldTemplateContextContributor.class);

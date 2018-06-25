@@ -3625,6 +3625,10 @@ public class ServiceBuilder {
 					continue;
 				}
 
+				if (entityColumns.equals(entity.getPKEntityColumns())) {
+					continue;
+				}
+
 				IndexMetadata indexMetadata =
 					IndexMetadataFactoryUtil.createIndexMetadata(
 						entityFinder.isUnique(), entity.getTable(),

@@ -131,11 +131,9 @@ public class UpgradeDDLRecord extends UpgradeProcess {
 	}
 
 	protected ResourceBundle getResourceBundle(DDMFormValues ddmFormValues) {
-		Class<?> clazz = _ddmFormInstanceRecordLocalService.getClass();
-
 		return ResourceBundleUtil.getBundle(
 			"content.Language", ddmFormValues.getDefaultLocale(),
-			clazz.getClassLoader());
+			_ddmFormInstanceRecordLocalService.getClass());
 	}
 
 	private final AssetEntryLocalService _assetEntryLocalService;

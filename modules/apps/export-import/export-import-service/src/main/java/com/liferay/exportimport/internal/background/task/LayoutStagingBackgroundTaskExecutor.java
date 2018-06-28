@@ -14,6 +14,7 @@
 
 package com.liferay.exportimport.internal.background.task;
 
+import com.liferay.document.library.kernel.service.DLAppHelperLocalServiceUtil;
 import com.liferay.exportimport.constants.ExportImportBackgroundTaskContextMapConstants;
 import com.liferay.exportimport.internal.background.task.display.LayoutStagingBackgroundTaskDisplay;
 import com.liferay.exportimport.kernel.lar.ExportImportHelper;
@@ -122,6 +123,8 @@ public class LayoutStagingBackgroundTaskExecutor
 				Group stagingGroup = sourceGroup.getStagingGroup();
 
 				if (stagingGroup.getGroupId() == targetGroupId) {
+					DLAppHelperLocalServiceUtil.cancelCheckOuts(sourceGroupId);
+
 					ExportImportThreadLocal.setInitialLayoutStagingInProcess(
 						true);
 

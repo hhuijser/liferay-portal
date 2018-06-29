@@ -38,6 +38,11 @@ import java.util.regex.Pattern;
 public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 
 	@Override
+	public boolean isPortalCheck() {
+		return true;
+	}
+
+	@Override
 	protected String doProcess(
 			String fileName, String absolutePath, JavaTerm javaTerm,
 			String fileContent)

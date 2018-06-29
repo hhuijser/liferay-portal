@@ -165,6 +165,13 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			Version toSchemaVersion = new Version(
 				StringUtil.removeChar(parameterList.get(1), CharPool.QUOTE));
 
+			if (isExcludedPath(
+					_JAVA_UPGRADE_PROCESS_EXCLUDES, absolutePath,
+					toSchemaVersion.toString())) {
+
+				return;
+			}
+
 			Version fromSchemaVersion = new Version(
 				StringUtil.removeChar(parameterList.get(0), CharPool.QUOTE));
 
@@ -486,6 +493,9 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private static final String _INCREMENT_TYPE_MICRO = "MICRO";
 
 	private static final String _INCREMENT_TYPE_MINOR = "MINOR";
+
+	private static final String _JAVA_UPGRADE_PROCESS_EXCLUDES =
+		"java.upgrade.process.excludes";
 
 	private final Pattern _addColumnPattern = Pattern.compile(
 		"alter table \\w+ add ");

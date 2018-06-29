@@ -385,10 +385,20 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	}
 
 	protected String getPortalContent(String fileName) throws IOException {
-		String content = getContent(fileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+		return getPortalContent(fileName, false);
+	}
 
-		if (Validator.isNotNull(content)) {
-			return content;
+	protected String getPortalContent(
+			String fileName, boolean forceRetrieveFromGit)
+		throws IOException {
+
+		if (!forceRetrieveFromGit) {
+			String content = getContent(
+				fileName, ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+			if (Validator.isNotNull(content)) {
+				return content;
+			}
 		}
 
 		URL url = _getPortalGitURL(fileName);

@@ -740,10 +740,12 @@ public class PortletPreferencesFactoryImpl
 		Portlet portlet = PortletLocalServiceUtil.getPortletById(
 			companyId, portletId);
 
+		boolean uniquePerCompany = false;
 		boolean uniquePerLayout = false;
 		boolean uniquePerGroup = false;
 
 		if (portlet.isPreferencesCompanyWide()) {
+			uniquePerCompany = true;
 			portletId = PortletIdCodec.decodePortletName(portletId);
 		}
 		else {
@@ -775,23 +777,38 @@ public class PortletPreferencesFactoryImpl
 			ownerId = PortletIdCodec.decodeUserId(originalPortletId);
 			ownerType = PortletKeys.PREFS_OWNER_TYPE_USER;
 		}
-		else if (!uniquePerLayout) {
-			plid = PortletKeys.PREFS_PLID_SHARED;
-
-			if (uniquePerGroup) {
+		else if (uniquePerLayout) {
+			if (plid == 0) {
 				if (siteGroupId > LayoutConstants.DEFAULT_PLID) {
 					ownerId = siteGroupId;
 				}
 				else {
 					ownerId = layoutGroupId;
 				}
+			}
+			ownerType = PortletKeys.PREFS_OWNER_TYPE_LAYOUT;
+		}
+		else if (uniquePerGroup) {
+			plid = PortletKeys.PREFS_PLID_SHARED;
 
-				ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
+			if (siteGroupId > LayoutConstants.DEFAULT_PLID) {
+				ownerId = siteGroupId;
 			}
 			else {
-				ownerId = companyId;
-				ownerType = PortletKeys.PREFS_OWNER_TYPE_COMPANY;
+				ownerId = layoutGroupId;
 			}
+
+			ownerType = PortletKeys.PREFS_OWNER_TYPE_GROUP;
+
+		}
+		else if (uniquePerCompany) {
+			plid = PortletKeys.PREFS_PLID_SHARED;
+
+			ownerId = companyId;
+			ownerType = PortletKeys.PREFS_OWNER_TYPE_COMPANY;
+		}
+		else {
+			//should be some kind of exception;
 		}
 
 		if (strictMode) {

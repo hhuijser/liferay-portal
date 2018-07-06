@@ -74,8 +74,7 @@ public class PortletImportControllerTest extends BaseExportImportTestCase {
 			group, lastPublishDate, null);
 
 		Assert.assertEquals(
-			PortletKeys.PREFS_OWNER_ID_DEFAULT,
-			portletPreferencesImpl.getOwnerId());
+			group.getGroupId(), portletPreferencesImpl.getOwnerId());
 		Assert.assertEquals(
 			PortletKeys.PREFS_OWNER_TYPE_LAYOUT,
 			portletPreferencesImpl.getOwnerType());

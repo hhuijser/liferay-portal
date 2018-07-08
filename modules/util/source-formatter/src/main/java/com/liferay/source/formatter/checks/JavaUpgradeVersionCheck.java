@@ -103,6 +103,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 
 		if (content.contains("AlterColumnName") ||
 			content.contains("AlterTableDropColumn") ||
+			content.contains("drop table") ||
 			_hasColumnTypeAlteration(
 				absolutePath, content, upgradePackageName)) {
 
@@ -110,7 +111,8 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 		}
 
 		if (incrementType.equals(_INCREMENT_TYPE_MINOR) ||
-			content.contains("AlterTableAddColumn")) {
+			content.contains("AlterTableAddColumn") ||
+			content.contains("create table")) {
 
 			return _INCREMENT_TYPE_MINOR;
 		}

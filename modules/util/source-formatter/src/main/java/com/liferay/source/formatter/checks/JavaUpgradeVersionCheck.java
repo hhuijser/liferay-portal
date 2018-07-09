@@ -101,7 +101,9 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			}
 		}
 
-		if (content.contains("AlterColumnName") ||
+		Matcher matcher = _dropColumnPattern.matcher(content);
+
+		if (matcher.find() || content.contains("AlterColumnName") ||
 			content.contains("AlterTableDropColumn") ||
 			content.contains("drop table") ||
 			_hasColumnTypeAlteration(

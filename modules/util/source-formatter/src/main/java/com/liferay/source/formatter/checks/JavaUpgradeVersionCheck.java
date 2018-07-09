@@ -79,7 +79,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 		return new String[] {JAVA_CLASS};
 	}
 
-	private String _adjustIncrementTypeForJava(
+	private String _adjustIncrementType(
 			String absolutePath, String content, String className,
 			String upgradePackageName, String incrementType)
 		throws Exception {
@@ -100,6 +100,15 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 				return incrementType;
 			}
 		}
+
+		return _adjustIncrementTypeForJava(
+			absolutePath, content, upgradePackageName, incrementType);
+	}
+
+	private String _adjustIncrementTypeForJava(
+			String absolutePath, String content, String upgradePackageName,
+			String incrementType)
+		throws Exception {
 
 		Matcher matcher = _dropColumnPattern.matcher(content);
 
@@ -196,8 +205,10 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 					javaTerm.getLineNumber() + getLineNumber(content, x) - 1;
 
 				addMessage(
-					fileName, "Expected new schema version: " +
-					expectedSchemaVersion, lineNumber);
+					fileName,
+					"Expected new schema version: " +
+						expectedSchemaVersion,
+					lineNumber);
 			}
 		}
 		catch (IllegalArgumentException iae) {
@@ -247,7 +258,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 
 		for (String upgradeStep : upgradeSteps) {
 			if (upgradeStep.contains("{\n")) {
-				incrementType = _adjustIncrementTypeForJava(
+				incrementType = _adjustIncrementType(
 					absolutePath, upgradeStep, null, upgradePackageName,
 					incrementType);
 
@@ -290,7 +301,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			String javaFileContent = _getJavaFileContent(
 				absolutePath, className);
 
-			incrementType = _adjustIncrementTypeForJava(
+			incrementType = _adjustIncrementType(
 				absolutePath, javaFileContent, className, upgradePackageName,
 				incrementType);
 

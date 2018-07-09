@@ -194,8 +194,8 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 					javaTerm.getLineNumber() + getLineNumber(content, x) - 1;
 
 				addMessage(
-					fileName, "Expected new version: " + expectedSchemaVersion,
-					lineNumber);
+					fileName, "Expected new schema version: " +
+					expectedSchemaVersion, lineNumber);
 			}
 		}
 		catch (IllegalArgumentException iae) {

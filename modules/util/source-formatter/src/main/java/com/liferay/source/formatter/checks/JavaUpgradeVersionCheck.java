@@ -294,10 +294,6 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 					upgradePackageName, StringPool.PERIOD, className);
 			}
 
-			if (!className.startsWith(upgradePackageName)) {
-				continue;
-			}
-
 			String javaFileContent = _getJavaFileContent(
 				absolutePath, className);
 

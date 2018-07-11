@@ -110,11 +110,11 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 			String incrementType)
 		throws Exception {
 
-		Matcher matcher = _dropColumnPattern.matcher(content);
+		incrementType = _adjustIncrementTypeForSQL(content, incrementType);
 
-		if (matcher.find() || content.contains("AlterColumnName") ||
+		if (incrementType.equals(_INCREMENT_TYPE_MAJOR) ||
+			content.contains("AlterColumnName") ||
 			content.contains("AlterTableDropColumn") ||
-			content.contains("drop table") ||
 			_hasColumnTypeAlteration(
 				absolutePath, content, upgradePackageName)) {
 
@@ -122,8 +122,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 		}
 
 		if (incrementType.equals(_INCREMENT_TYPE_MINOR) ||
-			content.contains("AlterTableAddColumn") ||
-			content.contains("create table")) {
+			content.contains("AlterTableAddColumn")) {
 
 			return _INCREMENT_TYPE_MINOR;
 		}

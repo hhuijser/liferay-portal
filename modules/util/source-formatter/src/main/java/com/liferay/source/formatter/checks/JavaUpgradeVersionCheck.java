@@ -27,6 +27,7 @@ import com.liferay.source.formatter.parser.JavaTerm;
 import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -46,7 +47,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	protected String doProcess(
 			String fileName, String absolutePath, JavaTerm javaTerm,
 			String fileContent)
-		throws Exception {
+		throws IOException {
 
 		JavaClass javaClass = (JavaClass)javaTerm;
 
@@ -82,7 +83,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private String _adjustIncrementType(
 			String absolutePath, String content, String className,
 			String upgradePackageName, String incrementType)
-		throws Exception {
+		throws IOException {
 
 		if (content == null) {
 			return incrementType;
@@ -108,7 +109,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private String _adjustIncrementTypeForJava(
 			String absolutePath, String content, String upgradePackageName,
 			String incrementType)
-		throws Exception {
+		throws IOException {
 
 		incrementType = _adjustIncrementTypeForSQL(content, incrementType);
 
@@ -165,7 +166,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private void _checkLatestUpgradeVersion(
 			String fileName, String absolutePath, JavaTerm javaTerm,
 			List<String> imports, String upgradePackageName)
-		throws Exception {
+		throws IOException {
 
 		String content = javaTerm.getContent();
 
@@ -251,7 +252,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private String _getExpectedIncrementType(
 			String absolutePath, List<String> upgradeSteps,
 			List<String> imports, String upgradePackageName)
-		throws Exception {
+		throws IOException {
 
 		String incrementType = _INCREMENT_TYPE_MICRO;
 
@@ -332,7 +333,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	}
 
 	private String _getJavaFileContent(String absolutePath, String className)
-		throws Exception {
+		throws IOException {
 
 		int x = absolutePath.lastIndexOf("/com/liferay/");
 
@@ -351,7 +352,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	}
 
 	private String _getSQLFileContent(String absolutePath, String className)
-		throws Exception {
+		throws IOException {
 
 		String fileLocation = StringUtil.replaceLast(
 			absolutePath, "/java/", "/resources/");
@@ -379,7 +380,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private String _getTableName(
 			String absolutePath, String content, String upgradePackageName,
 			String tableClassName)
-		throws Exception {
+		throws IOException {
 
 		if (!tableClassName.endsWith(".class")) {
 			return null;
@@ -421,7 +422,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 
 	private boolean _hasColumnTypeAlteration(
 			String absolutePath, String content, String upgradePackageName)
-		throws Exception {
+		throws IOException {
 
 		int x = -1;
 
@@ -464,7 +465,7 @@ public class JavaUpgradeVersionCheck extends BaseJavaTermCheck {
 	private boolean _hasColumnTypeAlteration(
 			String absolutePath, String tableName, String columnName,
 			String newType)
-		throws Exception {
+		throws IOException {
 
 		int x = absolutePath.lastIndexOf("/modules/");
 		int y = absolutePath.lastIndexOf("/src/");

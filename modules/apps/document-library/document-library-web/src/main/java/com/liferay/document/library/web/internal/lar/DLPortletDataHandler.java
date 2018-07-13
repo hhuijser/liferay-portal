@@ -32,6 +32,11 @@ import org.osgi.service.component.annotations.Component;
 )
 public class DLPortletDataHandler extends DLAdminPortletDataHandler {
 
+	@Override
+	public boolean isDisplayPortlet() {
+		return false;
+	}
+
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		setDataLevel(DataLevel.PORTLET_INSTANCE);

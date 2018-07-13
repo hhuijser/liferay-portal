@@ -30,6 +30,11 @@ import org.osgi.service.component.annotations.Component;
 )
 public class BlogsPortletDataHandler extends BlogsAdminPortletDataHandler {
 
+	@Override
+	public boolean isDisplayPortlet() {
+		return false;
+	}
+
 	@Activate
 	protected void activate() {
 		setDataLevel(DataLevel.PORTLET_INSTANCE);

@@ -56,13 +56,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = {
-		"javax.portlet.name=" + WikiPortletKeys.WIKI,
-		"javax.portlet.name=" + WikiPortletKeys.WIKI_ADMIN
-	},
+	property = "javax.portlet.name=" + WikiPortletKeys.WIKI_ADMIN,
 	service = PortletDataHandler.class
 )
-public class WikiPortletDataHandler extends BasePortletDataHandler {
+public class WikiAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "wiki";
 
@@ -95,7 +92,7 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 		finally {
 			WikiCacheThreadLocal.setClearCache(clearCache);
 
-			_portalCache.removeAll();
+			portalCache.removeAll();
 		}
 	}
 
@@ -118,7 +115,7 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 				WikiPage.class.getName()));
 		setStagingControls(getExportControls());
 
-		_portalCache = _multiVMPool.getPortalCache(
+		portalCache = multiVMPool.getPortalCache(
 			WikiPageDisplay.class.getName());
 	}
 
@@ -134,7 +131,7 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		_wikiNodeLocalService.deleteNodes(portletDataContext.getScopeGroupId());
+		wikiNodeLocalService.deleteNodes(portletDataContext.getScopeGroupId());
 
 		return portletPreferences;
 	}
@@ -157,13 +154,13 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
 		ActionableDynamicQuery nodeActionableDynamicQuery =
-			_wikiNodeLocalService.getExportActionableDynamicQuery(
+			wikiNodeLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		nodeActionableDynamicQuery.performActions();
 
 		ActionableDynamicQuery pageActionableDynamicQuery =
-			_wikiPageLocalService.getExportActionableDynamicQuery(
+			wikiPageLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		pageActionableDynamicQuery.performActions();
@@ -216,7 +213,7 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 		if (ExportImportDateUtil.isRangeFromLastPublishDate(
 				portletDataContext)) {
 
-			_staging.populateLastPublishDateCounts(
+			staging.populateLastPublishDateCounts(
 				portletDataContext,
 				new StagedModelType[] {
 					new StagedModelType(WikiNode.class.getName()),
@@ -227,13 +224,13 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 		}
 
 		ActionableDynamicQuery nodeActionableDynamicQuery =
-			_wikiNodeLocalService.getExportActionableDynamicQuery(
+			wikiNodeLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		nodeActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery pageExportActionableDynamicQuery =
-			_wikiPageLocalService.getExportActionableDynamicQuery(
+			wikiPageLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		pageExportActionableDynamicQuery.performCount();
@@ -248,25 +245,25 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 	protected void setWikiNodeLocalService(
 		WikiNodeLocalService wikiNodeLocalService) {
 
-		_wikiNodeLocalService = wikiNodeLocalService;
+		this.wikiNodeLocalService = wikiNodeLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setWikiPageLocalService(
 		WikiPageLocalService wikiPageLocalService) {
 
-		_wikiPageLocalService = wikiPageLocalService;
+		this.wikiPageLocalService = wikiPageLocalService;
 	}
 
 	@Reference
-	private MultiVMPool _multiVMPool;
+	protected MultiVMPool multiVMPool;
 
-	private PortalCache<?, ?> _portalCache;
+	protected PortalCache<?, ?> portalCache;
 
 	@Reference
-	private Staging _staging;
+	protected Staging staging;
 
-	private WikiNodeLocalService _wikiNodeLocalService;
-	private WikiPageLocalService _wikiPageLocalService;
+	protected WikiNodeLocalService wikiNodeLocalService;
+	protected WikiPageLocalService wikiPageLocalService;
 
 }

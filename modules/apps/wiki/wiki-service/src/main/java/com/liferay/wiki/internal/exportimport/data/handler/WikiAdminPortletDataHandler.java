@@ -56,13 +56,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = {
-		"javax.portlet.name=" + WikiPortletKeys.WIKI,
-		"javax.portlet.name=" + WikiPortletKeys.WIKI_ADMIN
-	},
+	property = "javax.portlet.name=" + WikiPortletKeys.WIKI_ADMIN,
 	service = PortletDataHandler.class
 )
-public class WikiPortletDataHandler extends BasePortletDataHandler {
+public class WikiAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "wiki";
 
@@ -129,7 +126,7 @@ public class WikiPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		if (portletDataContext.addPrimaryKey(
-				WikiPortletDataHandler.class, "deleteData")) {
+				WikiAdminPortletDataHandler.class, "deleteData")) {
 
 			return portletPreferences;
 		}

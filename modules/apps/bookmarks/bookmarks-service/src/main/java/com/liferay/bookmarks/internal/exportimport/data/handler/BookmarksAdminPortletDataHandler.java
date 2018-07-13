@@ -51,13 +51,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = {
-		"javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS,
-		"javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS_ADMIN
-	},
+	property = "javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS_ADMIN,
 	service = PortletDataHandler.class
 )
-public class BookmarksPortletDataHandler extends BasePortletDataHandler {
+public class BookmarksAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "bookmarks";
 
@@ -102,7 +99,7 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		if (portletDataContext.addPrimaryKey(
-				BookmarksPortletDataHandler.class, "deleteData")) {
+				BookmarksAdminPortletDataHandler.class, "deleteData")) {
 
 			return portletPreferences;
 		}

@@ -64,13 +64,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Daniel Kocsis
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN
-	},
+	property = "javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
 	service = PortletDataHandler.class
 )
-public class MBPortletDataHandler extends BasePortletDataHandler {
+public class MBAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "message_boards";
 
@@ -120,7 +117,7 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		if (portletDataContext.addPrimaryKey(
-				MBPortletDataHandler.class, "deleteData")) {
+				MBAdminPortletDataHandler.class, "deleteData")) {
 
 			return portletPreferences;
 		}

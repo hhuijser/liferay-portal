@@ -47,13 +47,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Zsolt Berentey
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + BlogsPortletKeys.BLOGS,
-		"javax.portlet.name=" + BlogsPortletKeys.BLOGS_ADMIN
-	},
+	property = "javax.portlet.name=" + BlogsPortletKeys.BLOGS_ADMIN,
 	service = PortletDataHandler.class
 )
-public class BlogsPortletDataHandler extends BasePortletDataHandler {
+public class BlogsAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "blogs";
 
@@ -92,7 +89,7 @@ public class BlogsPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		if (portletDataContext.addPrimaryKey(
-				BlogsPortletDataHandler.class, "deleteData")) {
+				BlogsAdminPortletDataHandler.class, "deleteData")) {
 
 			return portletPreferences;
 		}

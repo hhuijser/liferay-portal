@@ -87,13 +87,11 @@ import org.osgi.service.component.annotations.Reference;
  * @author Zsolt Berentey
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY,
-		"javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY_ADMIN
-	},
+	immediate = true,
+	property = "javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
 	service = PortletDataHandler.class
 )
-public class DLPortletDataHandler extends BasePortletDataHandler {
+public class DLAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "document_library";
 
@@ -151,14 +149,14 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 		setRank(90);
 		setStagingControls(getExportControls());
 
-		_dlExportableRepositoryPublishers = ServiceTrackerListFactory.open(
+		dlExportableRepositoryPublishers = ServiceTrackerListFactory.open(
 			bundleContext, DLExportableRepositoryPublisher.class);
 	}
 
 	@Deactivate
 	protected void deactivate() {
-		if (_dlExportableRepositoryPublishers != null) {
-			_dlExportableRepositoryPublishers.close();
+		if (dlExportableRepositoryPublishers != null) {
+			dlExportableRepositoryPublishers.close();
 		}
 	}
 
@@ -174,8 +172,8 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		_dlAppLocalService.deleteAll(portletDataContext.getScopeGroupId());
-		_dlFileEntryTypeLocalService.deleteFileEntryTypes(
+		dlAppLocalService.deleteAll(portletDataContext.getScopeGroupId());
+		dlFileEntryTypeLocalService.deleteFileEntryTypes(
 			portletDataContext.getScopeGroupId());
 
 		if (portletPreferences == null) {
@@ -333,7 +331,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 		if (ExportImportDateUtil.isRangeFromLastPublishDate(
 				portletDataContext)) {
 
-			_staging.populateLastPublishDateCounts(
+			staging.populateLastPublishDateCounts(
 				portletDataContext,
 				new StagedModelType[] {
 					new StagedModelType(DLFileEntry.class.getName()),
@@ -376,7 +374,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 		PortletDataContext portletDataContext) {
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			_dlFileEntryTypeLocalService.getExportActionableDynamicQuery(
+			dlFileEntryTypeLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		final ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
@@ -408,7 +406,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 		PortletDataContext portletDataContext) {
 
 		ExportActionableDynamicQuery exportActionableDynamicQuery =
-			_dlFileShortcutLocalService.getExportActionableDynamicQuery(
+			dlFileShortcutLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
@@ -425,7 +423,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 
 		exportActionableDynamicQuery.setPerformActionMethod(
 			(DLFileShortcut dlFileShortcut) -> {
-				FileShortcut fileShortcut = _dlAppLocalService.getFileShortcut(
+				FileShortcut fileShortcut = dlAppLocalService.getFileShortcut(
 					dlFileShortcut.getFileShortcutId());
 
 				StagedModelDataHandlerUtil.exportStagedModel(
@@ -444,7 +442,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 			portletDataContext);
 
 		ExportActionableDynamicQuery exportActionableDynamicQuery =
-			_dlFileEntryLocalService.getExportActionableDynamicQuery(
+			dlFileEntryLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		exportActionableDynamicQuery.setAddCriteriaMethod(
@@ -512,7 +510,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 			});
 		exportActionableDynamicQuery.setPerformActionMethod(
 			(DLFileEntry dlFileEntry) -> {
-				FileEntry fileEntry = _dlAppLocalService.getFileEntry(
+				FileEntry fileEntry = dlAppLocalService.getFileEntry(
 					dlFileEntry.getFileEntryId());
 
 				StagedModelDataHandlerUtil.exportStagedModel(
@@ -531,7 +529,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 			portletDataContext);
 
 		ExportActionableDynamicQuery exportActionableDynamicQuery =
-			_dlFolderLocalService.getExportActionableDynamicQuery(
+			dlFolderLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
@@ -552,7 +550,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 					return;
 				}
 
-				Folder folder = _dlAppLocalService.getFolder(
+				Folder folder = dlAppLocalService.getFolder(
 					dlFolder.getFolderId());
 
 				StagedModelDataHandlerUtil.exportStagedModel(
@@ -571,7 +569,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 			portletDataContext);
 
 		ExportActionableDynamicQuery exportActionableDynamicQuery =
-			_repositoryLocalService.getExportActionableDynamicQuery(
+			repositoryLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		ActionableDynamicQuery.AddCriteriaMethod addCriteriaMethod =
@@ -586,13 +584,13 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 				Property classNameIdProperty = PropertyFactoryUtil.forName(
 					"classNameId");
 
-				long liferayRepositoryClassNameId = _portal.getClassNameId(
+				long liferayRepositoryClassNameId = portal.getClassNameId(
 					LiferayRepositoryDefiner.CLASS_NAME);
 
 				conjunction.add(
 					classNameIdProperty.ne(liferayRepositoryClassNameId));
 
-				long tempFileRepositoryClassNameId = _portal.getClassNameId(
+				long tempFileRepositoryClassNameId = portal.getClassNameId(
 					TemporaryFileEntryRepositoryDefiner.CLASS_NAME);
 
 				conjunction.add(
@@ -624,11 +622,39 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 
 		exportActionableDynamicQuery.setStagedModelType(
 			new StagedModelType(
-				_portal.getClassNameId(Repository.class.getName()),
+				portal.getClassNameId(Repository.class.getName()),
 				StagedModelType.REFERRER_CLASS_NAME_ID_ALL));
 
 		return exportActionableDynamicQuery;
 	}
+
+	@Reference
+	protected DLAppLocalService dlAppLocalService;
+
+	protected ServiceTrackerList
+		<DLExportableRepositoryPublisher, DLExportableRepositoryPublisher>
+			dlExportableRepositoryPublishers;
+
+	@Reference
+	protected DLFileEntryLocalService dlFileEntryLocalService;
+
+	@Reference
+	protected DLFileEntryTypeLocalService dlFileEntryTypeLocalService;
+
+	@Reference
+	protected DLFileShortcutLocalService dlFileShortcutLocalService;
+
+	@Reference
+	protected DLFolderLocalService dlFolderLocalService;
+
+	@Reference
+	protected Portal portal;
+
+	@Reference
+	protected RepositoryLocalService repositoryLocalService;
+
+	@Reference
+	protected Staging staging;
 
 	private Collection<Long> _getExportableRepositoryIds(
 		PortletDataContext portletDataContext) {
@@ -638,7 +664,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 		exportableRepositoryIds.add(portletDataContext.getScopeGroupId());
 
 		for (DLExportableRepositoryPublisher dlExportableRepositoryPublisher :
-				_dlExportableRepositoryPublishers) {
+				dlExportableRepositoryPublishers) {
 
 			dlExportableRepositoryPublisher.publish(
 				portletDataContext.getScopeGroupId(),
@@ -647,33 +673,5 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 
 		return exportableRepositoryIds;
 	}
-
-	@Reference
-	private DLAppLocalService _dlAppLocalService;
-
-	private ServiceTrackerList
-		<DLExportableRepositoryPublisher, DLExportableRepositoryPublisher>
-			_dlExportableRepositoryPublishers;
-
-	@Reference
-	private DLFileEntryLocalService _dlFileEntryLocalService;
-
-	@Reference
-	private DLFileEntryTypeLocalService _dlFileEntryTypeLocalService;
-
-	@Reference
-	private DLFileShortcutLocalService _dlFileShortcutLocalService;
-
-	@Reference
-	private DLFolderLocalService _dlFolderLocalService;
-
-	@Reference
-	private Portal _portal;
-
-	@Reference
-	private RepositoryLocalService _repositoryLocalService;
-
-	@Reference
-	private Staging _staging;
 
 }

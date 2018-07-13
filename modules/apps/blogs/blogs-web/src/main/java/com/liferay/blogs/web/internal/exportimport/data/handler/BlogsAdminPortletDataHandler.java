@@ -47,13 +47,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Zsolt Berentey
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + BlogsPortletKeys.BLOGS,
-		"javax.portlet.name=" + BlogsPortletKeys.BLOGS_ADMIN
-	},
+	property = "javax.portlet.name=" + BlogsPortletKeys.BLOGS_ADMIN,
 	service = PortletDataHandler.class
 )
-public class BlogsPortletDataHandler extends BasePortletDataHandler {
+public class BlogsAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "blogs";
 
@@ -97,10 +94,10 @@ public class BlogsPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		_blogsEntryLocalService.deleteEntries(
+		blogsEntryLocalService.deleteEntries(
 			portletDataContext.getScopeGroupId());
 
-		_blogsStatsUserLocalService.deleteStatsUserByGroupId(
+		blogsStatsUserLocalService.deleteStatsUserByGroupId(
 			portletDataContext.getScopeGroupId());
 
 		return portletPreferences;
@@ -124,7 +121,7 @@ public class BlogsPortletDataHandler extends BasePortletDataHandler {
 			"group-id", String.valueOf(portletDataContext.getScopeGroupId()));
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			_blogsEntryLocalService.getExportActionableDynamicQuery(
+			blogsEntryLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		actionableDynamicQuery.performActions();
@@ -167,7 +164,7 @@ public class BlogsPortletDataHandler extends BasePortletDataHandler {
 		if (ExportImportDateUtil.isRangeFromLastPublishDate(
 				portletDataContext)) {
 
-			_staging.populateLastPublishDateCounts(
+			staging.populateLastPublishDateCounts(
 				portletDataContext,
 				new StagedModelType[] {
 					new StagedModelType(BlogsEntry.class.getName())
@@ -177,7 +174,7 @@ public class BlogsPortletDataHandler extends BasePortletDataHandler {
 		}
 
 		ActionableDynamicQuery actionableDynamicQuery =
-			_blogsEntryLocalService.getExportActionableDynamicQuery(
+			blogsEntryLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		actionableDynamicQuery.performCount();
@@ -187,20 +184,20 @@ public class BlogsPortletDataHandler extends BasePortletDataHandler {
 	protected void setBlogsEntryLocalService(
 		BlogsEntryLocalService blogsEntryLocalService) {
 
-		_blogsEntryLocalService = blogsEntryLocalService;
+		this.blogsEntryLocalService = blogsEntryLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setBlogsStatsUserLocalService(
 		BlogsStatsUserLocalService blogsStatsUserLocalService) {
 
-		_blogsStatsUserLocalService = blogsStatsUserLocalService;
+		this.blogsStatsUserLocalService = blogsStatsUserLocalService;
 	}
 
-	private BlogsEntryLocalService _blogsEntryLocalService;
-	private BlogsStatsUserLocalService _blogsStatsUserLocalService;
+	protected BlogsEntryLocalService blogsEntryLocalService;
+	protected BlogsStatsUserLocalService blogsStatsUserLocalService;
 
 	@Reference
-	private Staging _staging;
+	protected Staging staging;
 
 }

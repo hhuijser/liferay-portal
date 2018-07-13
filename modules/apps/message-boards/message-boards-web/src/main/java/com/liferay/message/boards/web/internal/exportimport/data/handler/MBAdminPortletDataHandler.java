@@ -64,13 +64,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Daniel Kocsis
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN
-	},
+	property = "javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
 	service = PortletDataHandler.class
 )
-public class MBPortletDataHandler extends BasePortletDataHandler {
+public class MBAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "message_boards";
 
@@ -125,16 +122,16 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		_mbBanLocalService.deleteBansByGroupId(
+		mbBanLocalService.deleteBansByGroupId(
 			portletDataContext.getScopeGroupId());
 
-		_mbCategoryLocalService.deleteCategories(
+		mbCategoryLocalService.deleteCategories(
 			portletDataContext.getScopeGroupId());
 
-		_mbStatsUserLocalService.deleteStatsUsersByGroupId(
+		mbStatsUserLocalService.deleteStatsUsersByGroupId(
 			portletDataContext.getScopeGroupId());
 
-		_mbThreadLocalService.deleteThreads(
+		mbThreadLocalService.deleteThreads(
 			portletDataContext.getScopeGroupId(),
 			MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 
@@ -158,7 +155,7 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 			portletDataContext.getBooleanParameter(NAMESPACE, "messages")) {
 
 			ActionableDynamicQuery categoryActionableDynamicQuery =
-				_mbCategoryLocalService.getExportActionableDynamicQuery(
+				mbCategoryLocalService.getExportActionableDynamicQuery(
 					portletDataContext);
 
 			categoryActionableDynamicQuery.performActions();
@@ -173,7 +170,7 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "thread-flags")) {
 			ActionableDynamicQuery threadFlagActionableDynamicQuery =
-				_mbThreadFlagLocalService.getExportActionableDynamicQuery(
+				mbThreadFlagLocalService.getExportActionableDynamicQuery(
 					portletDataContext);
 
 			threadFlagActionableDynamicQuery.performActions();
@@ -181,7 +178,7 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "user-bans")) {
 			ActionableDynamicQuery banActionableDynamicQuery =
-				_mbBanLocalService.getExportActionableDynamicQuery(
+				mbBanLocalService.getExportActionableDynamicQuery(
 					portletDataContext);
 
 			banActionableDynamicQuery.performActions();
@@ -261,7 +258,7 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 		if (ExportImportDateUtil.isRangeFromLastPublishDate(
 				portletDataContext)) {
 
-			_staging.populateLastPublishDateCounts(
+			staging.populateLastPublishDateCounts(
 				portletDataContext,
 				new StagedModelType[] {
 					new StagedModelType(MBBan.class.getName()),
@@ -275,13 +272,13 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 		}
 
 		ActionableDynamicQuery banActionableDynamicQuery =
-			_mbBanLocalService.getExportActionableDynamicQuery(
+			mbBanLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		banActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery categoryActionableDynamicQuery =
-			_mbCategoryLocalService.getExportActionableDynamicQuery(
+			mbCategoryLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		categoryActionableDynamicQuery.performCount();
@@ -292,13 +289,13 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 		messageActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery threadActionableDynamicQuery =
-			_mbThreadLocalService.getExportActionableDynamicQuery(
+			mbThreadLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		threadActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery threadFlagActionableDynamicQuery =
-			_mbThreadFlagLocalService.getExportActionableDynamicQuery(
+			mbThreadFlagLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		threadFlagActionableDynamicQuery.performCount();
@@ -308,7 +305,7 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 		final PortletDataContext portletDataContext) {
 
 		final ExportActionableDynamicQuery actionableDynamicQuery =
-			_mbMessageLocalService.getExportActionableDynamicQuery(
+			mbMessageLocalService.getExportActionableDynamicQuery(
 				portletDataContext);
 
 		actionableDynamicQuery.setAddCriteriaMethod(
@@ -366,52 +363,52 @@ public class MBPortletDataHandler extends BasePortletDataHandler {
 
 	@Reference(unbind = "-")
 	protected void setMBBanLocalService(MBBanLocalService mbBanLocalService) {
-		_mbBanLocalService = mbBanLocalService;
+		this.mbBanLocalService = mbBanLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMBCategoryLocalService(
 		MBCategoryLocalService mbCategoryLocalService) {
 
-		_mbCategoryLocalService = mbCategoryLocalService;
+		this.mbCategoryLocalService = mbCategoryLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMBMessageLocalService(
 		MBMessageLocalService mbMessageLocalService) {
 
-		_mbMessageLocalService = mbMessageLocalService;
+		this.mbMessageLocalService = mbMessageLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMBStatsUserLocalService(
 		MBStatsUserLocalService mbStatsUserLocalService) {
 
-		_mbStatsUserLocalService = mbStatsUserLocalService;
+		this.mbStatsUserLocalService = mbStatsUserLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMBThreadFlagLocalService(
 		MBThreadFlagLocalService mbThreadFlagLocalService) {
 
-		_mbThreadFlagLocalService = mbThreadFlagLocalService;
+		this.mbThreadFlagLocalService = mbThreadFlagLocalService;
 	}
 
 	@Reference(unbind = "-")
 	protected void setMBThreadLocalService(
 		MBThreadLocalService mbThreadLocalService) {
 
-		_mbThreadLocalService = mbThreadLocalService;
+		this.mbThreadLocalService = mbThreadLocalService;
 	}
 
-	private MBBanLocalService _mbBanLocalService;
-	private MBCategoryLocalService _mbCategoryLocalService;
-	private MBMessageLocalService _mbMessageLocalService;
-	private MBStatsUserLocalService _mbStatsUserLocalService;
-	private MBThreadFlagLocalService _mbThreadFlagLocalService;
-	private MBThreadLocalService _mbThreadLocalService;
+	protected MBBanLocalService mbBanLocalService;
+	protected MBCategoryLocalService mbCategoryLocalService;
+	protected MBMessageLocalService mbMessageLocalService;
+	protected MBStatsUserLocalService mbStatsUserLocalService;
+	protected MBThreadFlagLocalService mbThreadFlagLocalService;
+	protected MBThreadLocalService mbThreadLocalService;
 
 	@Reference
-	private Staging _staging;
+	protected Staging staging;
 
 }

@@ -87,13 +87,11 @@ import org.osgi.service.component.annotations.Reference;
  * @author Zsolt Berentey
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY,
-		"javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY_ADMIN
-	},
+	immediate = true,
+	property = "javax.portlet.name=" + DLPortletKeys.DOCUMENT_LIBRARY_ADMIN,
 	service = PortletDataHandler.class
 )
-public class DLPortletDataHandler extends BasePortletDataHandler {
+public class DLAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "document_library";
 
@@ -169,7 +167,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 		throws Exception {
 
 		if (portletDataContext.addPrimaryKey(
-				DLPortletDataHandler.class, "deleteData")) {
+				DLAdminPortletDataHandler.class, "deleteData")) {
 
 			return portletPreferences;
 		}
@@ -611,7 +609,7 @@ public class DLPortletDataHandler extends BasePortletDataHandler {
 					portletIdProperty.eq(DLPortletKeys.DOCUMENT_LIBRARY_ADMIN));
 				disjunction.add(
 					portletIdProperty.like(
-						DLPortletKeys.DOCUMENT_LIBRARY + "%"));
+						DLPortletKeys.DOCUMENT_LIBRARY_ADMIN + "%"));
 
 				Property repositoryIdProperty = PropertyFactoryUtil.forName(
 					"repositoryId");

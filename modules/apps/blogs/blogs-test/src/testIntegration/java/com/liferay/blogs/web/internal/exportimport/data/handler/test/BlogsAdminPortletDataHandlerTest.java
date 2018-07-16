@@ -34,7 +34,7 @@ import org.junit.runner.RunWith;
  * @author Zsolt Berentey
  */
 @RunWith(Arquillian.class)
-public class BlogsPortletDataHandlerTest
+public class BlogsAdminPortletDataHandlerTest
 	extends BasePortletDataHandlerTestCase {
 
 	@ClassRule
@@ -60,7 +60,7 @@ public class BlogsPortletDataHandlerTest
 
 	@Override
 	protected String getPortletId() {
-		return BlogsPortletKeys.BLOGS;
+		return BlogsPortletKeys.BLOGS_ADMIN;
 	}
 
 	@Override

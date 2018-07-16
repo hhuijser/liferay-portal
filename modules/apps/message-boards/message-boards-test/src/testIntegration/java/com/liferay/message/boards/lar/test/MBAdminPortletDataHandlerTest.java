@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.message.boards.compat.lar.test;
+package com.liferay.message.boards.lar.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.exportimport.kernel.lar.DataLevel;
@@ -20,15 +20,14 @@ import com.liferay.exportimport.kernel.lar.ManifestSummary;
 import com.liferay.exportimport.kernel.lar.StagedModelType;
 import com.liferay.message.boards.constants.MBCategoryConstants;
 import com.liferay.message.boards.constants.MBPortletKeys;
-import com.liferay.message.boards.kernel.model.MBCategory;
-import com.liferay.message.boards.kernel.model.MBMessage;
-import com.liferay.message.boards.kernel.service.MBBanLocalServiceUtil;
-import com.liferay.message.boards.kernel.service.MBCategoryLocalServiceUtil;
-import com.liferay.message.boards.kernel.service.MBCategoryServiceUtil;
-import com.liferay.message.boards.kernel.service.MBMessageLocalServiceUtil;
-import com.liferay.message.boards.kernel.service.MBThreadFlagLocalServiceUtil;
-import com.liferay.message.boards.kernel.service.MBThreadLocalServiceUtil;
+import com.liferay.message.boards.model.MBCategory;
+import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
+import com.liferay.message.boards.service.MBBanLocalServiceUtil;
+import com.liferay.message.boards.service.MBCategoryLocalServiceUtil;
+import com.liferay.message.boards.service.MBCategoryServiceUtil;
+import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
+import com.liferay.message.boards.service.MBThreadFlagLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
@@ -61,7 +60,8 @@ import org.junit.runner.RunWith;
  * @author Zsolt Berentey
  */
 @RunWith(Arquillian.class)
-public class MBPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
+public class MBAdminPortletDataHandlerTest
+	extends BasePortletDataHandlerTestCase {
 
 	@ClassRule
 	@Rule
@@ -137,9 +137,7 @@ public class MBPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 			serviceContext);
 
 		MBThreadFlagLocalServiceUtil.addThreadFlag(
-			TestPropsValues.getUserId(),
-			MBThreadLocalServiceUtil.getThread(message.getThreadId()),
-			serviceContext);
+			TestPropsValues.getUserId(), message.getThread(), serviceContext);
 
 		User user = UserTestUtil.addUser(TestPropsValues.getGroupId());
 
@@ -179,7 +177,7 @@ public class MBPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@Override
 	protected String getPortletId() {
-		return MBPortletKeys.MESSAGE_BOARDS;
+		return MBPortletKeys.MESSAGE_BOARDS_ADMIN;
 	}
 
 	@Override

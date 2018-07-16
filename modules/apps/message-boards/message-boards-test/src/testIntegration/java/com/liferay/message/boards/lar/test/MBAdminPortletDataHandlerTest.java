@@ -60,7 +60,7 @@ import org.junit.runner.RunWith;
  * @author Zsolt Berentey
  */
 @RunWith(Arquillian.class)
-public class MBPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
+public class MBAdminPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@ClassRule
 	@Rule
@@ -176,7 +176,7 @@ public class MBPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@Override
 	protected String getPortletId() {
-		return MBPortletKeys.MESSAGE_BOARDS;
+		return MBPortletKeys.MESSAGE_BOARDS_ADMIN;
 	}
 
 	@Override

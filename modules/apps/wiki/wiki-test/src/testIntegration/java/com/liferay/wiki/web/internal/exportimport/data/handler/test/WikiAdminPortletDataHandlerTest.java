@@ -36,7 +36,7 @@ import org.junit.runner.RunWith;
  * @author Zsolt Berentey
  */
 @RunWith(Arquillian.class)
-public class WikiPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
+public class WikiAdminPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@ClassRule
 	@Rule
@@ -76,7 +76,7 @@ public class WikiPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@Override
 	protected String getPortletId() {
-		return WikiPortletKeys.WIKI;
+		return WikiPortletKeys.WIKI_ADMIN;
 	}
 
 	@Override

@@ -51,13 +51,10 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	immediate = true,
-	property = {
-		"javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS,
-		"javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS_ADMIN
-	},
+	property = "javax.portlet.name=" + BookmarksPortletKeys.BOOKMARKS_ADMIN,
 	service = PortletDataHandler.class
 )
-public class BookmarksPortletDataHandler extends BasePortletDataHandler {
+public class BookmarksAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String NAMESPACE = "bookmarks";
 
@@ -75,7 +72,7 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 
 	@Override
 	public boolean validateSchemaVersion(String schemaVersion) {
-		return _portletDataHandlerHelper.validateSchemaVersion(
+		return portletDataHandlerHelper.validateSchemaVersion(
 			schemaVersion, getSchemaVersion());
 	}
 
@@ -107,9 +104,9 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 			return portletPreferences;
 		}
 
-		_bookmarksEntryStagedModelRepository.deleteStagedModels(
+		bookmarksEntryStagedModelRepository.deleteStagedModels(
 			portletDataContext);
-		_bookmarksFolderStagedModelRepository.deleteStagedModels(
+		bookmarksFolderStagedModelRepository.deleteStagedModels(
 			portletDataContext);
 
 		return portletPreferences;
@@ -131,7 +128,7 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "folders")) {
 			ExportActionableDynamicQuery folderActionableDynamicQuery =
-				_bookmarksFolderStagedModelRepository.
+				bookmarksFolderStagedModelRepository.
 					getExportActionableDynamicQuery(portletDataContext);
 
 			folderActionableDynamicQuery.performActions();
@@ -139,7 +136,7 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "entries")) {
 			ActionableDynamicQuery entryActionableDynamicQuery =
-				_bookmarksEntryStagedModelRepository.
+				bookmarksEntryStagedModelRepository.
 					getExportActionableDynamicQuery(portletDataContext);
 
 			entryActionableDynamicQuery.performActions();
@@ -195,7 +192,7 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 		if (ExportImportDateUtil.isRangeFromLastPublishDate(
 				portletDataContext)) {
 
-			_staging.populateLastPublishDateCounts(
+			staging.populateLastPublishDateCounts(
 				portletDataContext,
 				new StagedModelType[] {
 					new StagedModelType(BookmarksEntry.class.getName()),
@@ -206,13 +203,13 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 		}
 
 		ActionableDynamicQuery entryExportActionableDynamicQuery =
-			_bookmarksEntryStagedModelRepository.
-				getExportActionableDynamicQuery(portletDataContext);
+			bookmarksEntryStagedModelRepository.getExportActionableDynamicQuery(
+				portletDataContext);
 
 		entryExportActionableDynamicQuery.performCount();
 
 		ActionableDynamicQuery folderExportActionableDynamicQuery =
-			_bookmarksFolderStagedModelRepository.
+			bookmarksFolderStagedModelRepository.
 				getExportActionableDynamicQuery(portletDataContext);
 
 		folderExportActionableDynamicQuery.performCount();
@@ -226,19 +223,19 @@ public class BookmarksPortletDataHandler extends BasePortletDataHandler {
 	@Reference(
 		target = "(model.class.name=com.liferay.bookmarks.model.BookmarksEntry)"
 	)
-	private StagedModelRepository<BookmarksEntry>
-		_bookmarksEntryStagedModelRepository;
+	protected StagedModelRepository<BookmarksEntry>
+		bookmarksEntryStagedModelRepository;
 
 	@Reference(
 		target = "(model.class.name=com.liferay.bookmarks.model.BookmarksFolder)"
 	)
-	private StagedModelRepository<BookmarksFolder>
-		_bookmarksFolderStagedModelRepository;
+	protected StagedModelRepository<BookmarksFolder>
+		bookmarksFolderStagedModelRepository;
 
 	@Reference
-	private PortletDataHandlerHelper _portletDataHandlerHelper;
+	protected PortletDataHandlerHelper portletDataHandlerHelper;
 
 	@Reference
-	private Staging _staging;
+	protected Staging staging;
 
 }

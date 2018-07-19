@@ -46,7 +46,7 @@ import org.junit.runner.RunWith;
  * @author Zsolt Berentey
  */
 @RunWith(Arquillian.class)
-public class BookmarksPortletDataHandlerTest
+public class BookmarksAdminPortletDataHandlerTest
 	extends BasePortletDataHandlerTestCase {
 
 	@ClassRule
@@ -111,7 +111,7 @@ public class BookmarksPortletDataHandlerTest
 
 	@Override
 	protected String getPortletId() {
-		return BookmarksPortletKeys.BOOKMARKS;
+		return BookmarksPortletKeys.BOOKMARKS_ADMIN;
 	}
 
 	@Override

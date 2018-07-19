@@ -90,7 +90,8 @@ import org.junit.runner.RunWith;
  * @author Zsolt Berentey
  */
 @RunWith(Arquillian.class)
-public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
+public class DLAdminPortletDataHandlerTest
+	extends BasePortletDataHandlerTestCase {
 
 	public static final String NAMESPACE = "document_library";
 
@@ -213,7 +214,7 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 		initContext();
 
 		portletDataHandler.exportData(
-			portletDataContext, DLPortletKeys.DOCUMENT_LIBRARY, null);
+			portletDataContext, DLPortletKeys.DOCUMENT_LIBRARY_ADMIN, null);
 
 		Assert.assertTrue(atomicInteger.get() >= 1);
 	}
@@ -413,7 +414,7 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@Override
 	protected String getPortletId() {
-		return DLPortletKeys.DOCUMENT_LIBRARY;
+		return DLPortletKeys.DOCUMENT_LIBRARY_ADMIN;
 	}
 
 	@Override
@@ -493,11 +494,6 @@ public class DLPortletDataHandlerTest extends BasePortletDataHandlerTestCase {
 
 	@Override
 	protected boolean isExportImportDataTested() {
-		return true;
-	}
-
-	@Override
-	protected boolean isGetExportConfigurationControlsTested() {
 		return true;
 	}
 

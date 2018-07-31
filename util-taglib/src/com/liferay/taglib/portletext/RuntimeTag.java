@@ -261,10 +261,7 @@ public class RuntimeTag extends TagSupport implements DirectTag {
 					portlet.getPortletId(), layout.getGroupId())) {
 
 				PortletPreferencesFactoryUtil.getLayoutPortletSetup(
-					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-					PortletKeys.PREFS_OWNER_TYPE_LAYOUT,
-					PortletKeys.PREFS_PLID_SHARED, portletInstanceKey,
-					defaultPreferences);
+					layout, portletInstanceKey, defaultPreferences);
 
 				writeObject = true;
 			}

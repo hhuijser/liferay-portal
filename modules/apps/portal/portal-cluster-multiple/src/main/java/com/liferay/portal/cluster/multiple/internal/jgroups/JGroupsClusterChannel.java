@@ -14,6 +14,8 @@
 
 package com.liferay.portal.cluster.multiple.internal.jgroups;
 
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.cluster.multiple.configuration.ClusterExecutorConfiguration;
 import com.liferay.portal.cluster.multiple.internal.ClusterChannel;
 import com.liferay.portal.cluster.multiple.internal.ClusterReceiver;
 import com.liferay.portal.cluster.multiple.internal.io.ClusterSerializationUtil;
@@ -21,6 +23,7 @@ import com.liferay.portal.kernel.cluster.Address;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.io.Serializable;
@@ -39,7 +42,8 @@ public class JGroupsClusterChannel implements ClusterChannel {
 
 	public JGroupsClusterChannel(
 		String channelLogicName, String channelProperties, String clusterName,
-		ClusterReceiver clusterReceiver, InetAddress bindInetAddress) {
+		ClusterReceiver clusterReceiver, InetAddress bindInetAddress,
+		ClusterExecutorConfiguration clusterExecutorConfiguration) {
 
 		if (Validator.isNull(channelProperties)) {
 			throw new NullPointerException("Channel properties is null");
@@ -78,9 +82,20 @@ public class JGroupsClusterChannel implements ClusterChannel {
 			_localAddress = new AddressImpl(_jChannel.getAddress());
 
 			if (_log.isInfoEnabled()) {
+				String jChannelProperties = _jChannel.getProperties();
+
+				String excludedPropertyKeys = StringUtil.merge(
+					clusterExecutorConfiguration.excludedPropertyKeys(),
+					StringPool.PIPE);
+
+				String excludedPropertyKeysRegEx =
+					"((\\b" + excludedPropertyKeys + "\\b)=)(?:\\w*)(;|\\))";
+
 				_log.info(
 					"Create a new JGroups channel with properties " +
-						_jChannel.getProperties());
+						jChannelProperties.replaceAll(
+							excludedPropertyKeysRegEx,
+							"$1" + StringPool.STAR + "$3"));
 			}
 		}
 		catch (Exception e) {

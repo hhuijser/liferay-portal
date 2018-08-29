@@ -488,6 +488,13 @@ public class JournalArticleLocalServiceUtil {
 			autoArticleId, version);
 	}
 
+	public static void copyArticleResources(
+		com.liferay.journal.model.JournalArticle oldArticle,
+		long newResourcePrimKey)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		getService().copyArticleResources(oldArticle, newResourcePrimKey);
+	}
+
 	/**
 	* Creates a new journal article with the primary key. Does not add the journal article to the database.
 	*

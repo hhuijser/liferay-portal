@@ -454,6 +454,9 @@ public interface JournalArticleLocalService extends BaseLocalService,
 		String oldArticleId, String newArticleId, boolean autoArticleId,
 		double version) throws PortalException;
 
+	public void copyArticleResources(JournalArticle oldArticle,
+		long newResourcePrimKey) throws PortalException;
+
 	/**
 	* Creates a new journal article with the primary key. Does not add the journal article to the database.
 	*

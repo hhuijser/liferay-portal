@@ -377,6 +377,32 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	);
 </aui:script>
 
+<aui:script>
+	var destroyMenus = function(event) {
+		window.<portlet:namespace />calendarListsMenu.destroy();
+		window.<portlet:namespace />colorPicker.destroy();
+
+		var myCalendarList = window.<portlet:namespace />myCalendarList;
+		var otherCalendarList = window.<portlet:namespace />otherCalendarList;
+		var siteCalendarList = window.<portlet:namespace />siteCalendarList;
+
+		if (myCalendarList && myCalendarList.simpleMenu) {
+			myCalendarList.simpleMenu.destroy();
+		}
+
+		if (otherCalendarList && otherCalendarList.simpleMenu) {
+			otherCalendarList.simpleMenu.destroy();
+		}
+
+		if (siteCalendarList && siteCalendarList.simpleMenu) {
+			siteCalendarList.simpleMenu.destroy();
+		}
+
+		Liferay.detach('destroyPortlet', destroyMenus);
+	};
+	Liferay.on('destroyPortlet', destroyMenus);
+</aui:script>
+
 <%!
 protected void updateCalendarsJSONArray(HttpServletRequest request, JSONArray calendarsJSONArray) {
 	for (int i = 0; i < calendarsJSONArray.length(); i++) {

@@ -67,12 +67,55 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	 *
 	 * Never modify or reference this interface directly. Always use {@link SharingEntryLocalServiceUtil} to access the sharing entry local service. Add custom service methods to {@link com.liferay.sharing.service.impl.SharingEntryLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+
+	/**
+	* Adds a sharing entry in the database if it does not exist or it updates
+	* it if it exists.
+	*
+	* @param fromUserId the user id sharing the resource
+	* @param toUserId the user id whose resource was shared
+	* @param classNameId the class name ID of the resource being shared
+	* @param classPK the primary key of the resource being shared
+	* @param groupId the primary key of the group containing the resource
+	being shared
+	* @param shareable whether the to user id can share the resource as well
+	* @param sharingEntryActions the sharing entry actions
+	* @param expirationDate the date when the sharing entry expires
+	* @return the sharing entry
+	* @param serviceContext the service context to be applied
+	* @throws PortalException if sharing entry actions are invalid (it is
+	empty, it doesn't contain {@link SharingEntryAction#VIEW,} or
+	it contains a <code>null</code> value) or from user id and to
+	user id are the same or the expiration date is a value in the
+	past.
+	*/
 	public SharingEntry addOrUpdateSharingEntry(long fromUserId, long toUserId,
 		long classNameId, long classPK, long groupId, boolean shareable,
 		Collection<SharingEntryAction> sharingEntryActions,
 		Date expirationDate, ServiceContext serviceContext)
 		throws PortalException;
 
+	/**
+	* Adds a sharing entry in the database.
+	*
+	* @param fromUserId the user id sharing the resource
+	* @param toUserId the user id whose resource was shared
+	* @param classNameId the class name ID of the resource being shared
+	* @param classPK the primary key of the resource being shared
+	* @param groupId the primary key of the group containing the resource
+	being shared
+	* @param shareable whether the to user id can share the resource as well
+	* @param sharingEntryActions the sharing entry actions
+	* @param expirationDate the date when the sharing entry expires
+	* @return the sharing entry
+	* @param serviceContext the service context to be applied
+	* @throws PortalException if there is already a sharing entry for the same
+	from user id, to user id and resource or the sharing entry
+	actions are invalid (it is empty, it doesn't contain
+	{@link SharingEntryAction#VIEW,} or it contains a
+	<code>null</code> value) or from user id and to user id are the
+	same or the expiration date is a value in the past.
+	*/
 	public SharingEntry addSharingEntry(long fromUserId, long toUserId,
 		long classNameId, long classPK, long groupId, boolean shareable,
 		Collection<SharingEntryAction> sharingEntryActions,
@@ -88,11 +131,32 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.REINDEX)
 	public SharingEntry addSharingEntry(SharingEntry sharingEntry);
 
+	/**
+	* Returns the number of sharing entries that have been shared by a user.
+	*
+	* @param fromUserId the user id sharing the resource
+	* @return the number of sharing entries
+	*/
 	public int countFromUserSharingEntries(long fromUserId);
 
+	/**
+	* Returns the number of sharing entries of a resource that have been shared
+	* by a user.
+	*
+	* @param fromUserId the user id sharing the resource
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	* @return the number of sharing entries
+	*/
 	public int countFromUserSharingEntries(long fromUserId, long classNameId,
 		long classPK);
 
+	/**
+	* Returns the number of sharing entries that have been shared to a user.
+	*
+	* @param toUserId the user id who was shared the resource
+	* @return the number of sharing entries
+	*/
 	public int countToUserSharingEntries(long toUserId);
 
 	/**
@@ -104,8 +168,15 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Transactional(enabled = false)
 	public SharingEntry createSharingEntry(long sharingEntryId);
 
+	/**
+	* Deletes all sharing entries whose expiration date is before the current
+	* date.
+	*/
 	public void deleteExpiredEntries();
 
+	/**
+	* Deletes all sharing entries that belong to a group.
+	*/
 	public void deleteGroupSharingEntries(long groupId);
 
 	/**
@@ -115,6 +186,12 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	public PersistedModel deletePersistedModel(PersistedModel persistedModel)
 		throws PortalException;
 
+	/**
+	* Deletes all sharing entries of a resource.
+	*
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	*/
 	public void deleteSharingEntries(long classNameId, long classPK);
 
 	/**
@@ -128,6 +205,13 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	public SharingEntry deleteSharingEntry(long sharingEntryId)
 		throws PortalException;
 
+	/**
+	* Deletes the sharing entry of a user to another user for a resource.
+	*
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	* @return the deleted sharing entry
+	*/
 	public SharingEntry deleteSharingEntry(long fromUserId, long toUserId,
 		long classNameId, long classPK) throws PortalException;
 
@@ -140,6 +224,11 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Indexable(type = IndexableType.DELETE)
 	public SharingEntry deleteSharingEntry(SharingEntry sharingEntry);
 
+	/**
+	* Deletes all sharing entries shared to a user.
+	*
+	* @param toUserId the user id who was shared the resource
+	*/
 	public void deleteToUserSharingEntries(long toUserId);
 
 	public DynamicQuery dynamicQuery();
@@ -222,17 +311,49 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	public ExportActionableDynamicQuery getExportActionableDynamicQuery(
 		PortletDataContext portletDataContext);
 
+	/**
+	* Returns a list of all the sharing entries that has been shared by a user.
+	*
+	* @param fromUserId the user id sharing the resource
+	* @return the list of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getFromUserSharingEntries(long fromUserId);
 
+	/**
+	* Returns a list of all the sharing entries of a resource that has been
+	* shared by a user
+	*
+	* @param fromUserId the user id sharing the resource
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	* @return the list of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getFromUserSharingEntries(long fromUserId,
 		long classNameId, long classPK);
 
+	/**
+	* Returns a range of all the sharing entries of a resource that has been
+	* shared by a user
+	*
+	* @param fromUserId the user id sharing the resource
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	* @param start the lower bound of the range of results
+	* @param end the upper bound of the range of results (not inclusive)
+	* @return the range of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getFromUserSharingEntries(long fromUserId,
 		long classNameId, long classPK, int start, int end);
 
+	/**
+	* Returns a list of all the sharing entries of a group.
+	*
+	* @param groupId the primary key of the group
+	* @return the list of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getGroupSharingEntries(long groupId);
 
@@ -265,9 +386,25 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getSharingEntries(int start, int end);
 
+	/**
+	* Returns a list of all the sharing entries of a resource.
+	*
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	* @return the list of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getSharingEntries(long classNameId, long classPK);
 
+	/**
+	* Returns a list of all the sharing entries of a resource that has been
+	* shared to a user.
+	*
+	* @param toUserId the user id that has been shared the resource
+	* @param classNameId the class name ID of the resource
+	* @param classPK the primary key of the resource
+	* @return the list of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getSharingEntries(long toUserId,
 		long classNameId, long classPK);
@@ -329,29 +466,98 @@ public interface SharingEntryLocalService extends BaseLocalService,
 	public SharingEntry getSharingEntryByUuidAndGroupId(String uuid,
 		long groupId) throws PortalException;
 
+	/**
+	* Returns a list of all the sharing entries that has been shared to a user.
+	*
+	* @param toUserId the user id that has been shared the resource
+	* @return the range of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getToUserSharingEntries(long toUserId);
 
+	/**
+	* Returns a range of all the sharing entries that has been shared to a
+	* user.
+	*
+	* @param toUserId the user id that has been shared the resource
+	* @return the range of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getToUserSharingEntries(long toUserId, int start,
 		int end);
 
+	/**
+	* Returns a list of sharing entries of a specific class name id that has
+	* been shared to a user.
+	*
+	* @param toUserId the user id that has been shared the resource
+	* @param classNameId the class name ID of the shared resource
+	* @return the list of sharing entries
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<SharingEntry> getToUserSharingEntries(long toUserId,
 		long classNameId);
 
+	/**
+	* Returns <code>true</code> if the to user id has been shared a resource
+	* with a sharing entry action and, in addition, he can share the resource
+	* as well.
+	*
+	* @param toUserId the user id that has been shared the resource
+	* @param classNameId the class name ID of the shared resource
+	* @param classPK the primary key of the shared resource
+	* @param sharingEntryAction the sharing entry action
+	* @return <code>true</code> if the user has been shared a resource with a
+	sharing entry action and he can, in additino, share the resource
+	as well; <code>false</code> otherwise
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasShareableSharingPermission(long toUserId,
 		long classNameId, long classPK, SharingEntryAction sharingEntryAction);
 
+	/**
+	* Returns <code>true</code> if the to user id has been shared a resource
+	* with a sharing entry action
+	*
+	* @param toUserId the user id that has been shared the resource
+	* @param classNameId the class name ID of the shared resource
+	* @param classPK the primary key of the shared resource
+	* @param sharingEntryAction the sharing entry action
+	* @return <code>true</code> if the user has been shared a resource with a
+	sharing entry action; <code>false</code> otherwise
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasSharingPermission(long toUserId, long classNameId,
 		long classPK, SharingEntryAction sharingEntryAction);
 
+	/**
+	* Returns <code>true</code> if the sharing entry has certain sharing entry
+	* action
+	*
+	* @param sharingEntry the sharing entry
+	* @param sharingEntryAction the sharing entry action
+	* @return <code>true</code> if the sharing entry has the sharing entry
+	action; <code>false</code> otherwise
+	*/
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public boolean hasSharingPermission(SharingEntry sharingEntry,
 		SharingEntryAction sharingEntryAction);
 
+	/**
+	* Updates a sharing entry in the database.
+	*
+	* @param sharingEntryId the primary key of the sharing entry
+	* @param sharingEntryActions the sharing entry actions
+	* @param shareable whether the to user id can share the resource as well
+	* @param expirationDate the date when the sharing entry expires
+	* @return the sharing entry
+	* @param serviceContext the service context to be applied
+	* @throws PortalException if the sharing entry does not exist or sharing
+	entry actions are invalid (it is empty, it doesn't contain
+	{@link SharingEntryAction#VIEW,} or it contains a
+	<code>null</code> value) or the expiration date is a value in the
+	past.
+	*/
 	public SharingEntry updateSharingEntry(long sharingEntryId,
 		Collection<SharingEntryAction> sharingEntryActions, boolean shareable,
 		Date expirationDate, ServiceContext serviceContext)

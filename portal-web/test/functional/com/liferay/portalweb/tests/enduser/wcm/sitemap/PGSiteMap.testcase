@@ -61,7 +61,7 @@
 			<var name="rowEntry" value="Default Private" />
 		</execute>
 
-		<execute macro="SiteNavigationMenu#addItem">
+		<execute macro="NavigationMenusAdmin#addItem">
 			<var name="item" value="Page" />
 			<var name="pageName" value="Child Page Name" />
 			<var name="privacy" value="Private Pages" />

@@ -1509,7 +1509,7 @@
 			<var name="siteName" value="Site Name" />
 		</execute>
 
-		<execute macro="PageTemplate#viewDefaultPortletPG">
+		<execute macro="PageTemplatesAdminGlobalSite#viewDefaultPortletPG">
 			<var name="pageTemplateName" value="Blog" />
 			<var name="portletTitleList" value="Blogs,Tag Cloud,Recent Bloggers" />
 		</execute>

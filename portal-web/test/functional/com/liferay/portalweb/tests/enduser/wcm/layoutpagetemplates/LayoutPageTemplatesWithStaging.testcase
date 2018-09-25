@@ -9,15 +9,15 @@
 		<execute macro="User#firstLoginPG" />
 
 		<execute macro="JSONGroup#addGroup">
-			<var name="groupName" value="Site Name" />
+			<var name="groupName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Navigator#openWithAppendToBaseURL">
-			<var name="urlAppend" value="group/site-name/~/control_panel/manage?p_p_id=com_liferay_staging_processes_web_portlet_StagingProcessesPortlet" />
+		<execute macro="Staging#openStagingAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
 		<execute macro="Staging#activateStagingCP">
-			<var name="siteName" value="Site Name" />
+			<var name="siteName" value="Test Site Name" />
 		</execute>
 	</set-up>
 
@@ -29,22 +29,24 @@
 				<execute macro="PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Site#tearDownCP" />
+				<execute macro="JSONGroup#deleteGroupByName">
+					<var name="groupName" value="Test Site Name" />
+				</execute>
 			</else>
 		</if>
 	</tear-down>
 
 	<command name="AssertPageTemplatesAreOnlyEditableInStagingView" priority="5">
-		<execute macro="Navigator#openWithAppendToBaseURL">
-			<var name="urlAppend" value="group/site-name-staging/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet" />
+		<execute macro="SitePages#openPagesAdmin">
+			<var name="siteURLKey" value="test-site-name-staging" />
 		</execute>
 
 		<execute function="AssertVisible" locator1="NavBar#NAV_ITEM_LINK">
 			<var name="key_navItem" value="Page Templates" />
 		</execute>
 
-		<execute macro="Navigator#openWithAppendToBaseURL">
-			<var name="urlAppend" value="group/site-name/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet" />
+		<execute macro="SitePages#openPagesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
 		<execute function="AssertElementNotPresent" locator1="NavBar#NAV_ITEM_LINK">

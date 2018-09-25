@@ -19,7 +19,7 @@
 				<execute macro="PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="PageTemplate#tearDownCP" />
+				<execute macro="PageTemplatesAdminGlobalSite#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -40,7 +40,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#gotoPageTemplateViaEdit">
+		<execute macro="PageTemplatesAdminGlobalSite#gotoPageTemplateViaEdit">
 			<var name="pageTemplateName" value="Wiki" />
 		</execute>
 

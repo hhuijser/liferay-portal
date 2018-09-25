@@ -1,0 +1,59 @@
+<definition>
+	<var name="pageURL" value="control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&amp;_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_tabs1=page-templates" />
+
+	<command name="_gotoAddCollection">
+		<if>
+			<condition function="IsElementPresent" locator1="NavNested#NAV_NESTED_PLUS" />
+			<then>
+				<execute function="Click" locator1="NavNested#NAV_NESTED_PLUS" />
+			</then>
+			<else>
+				<execute macro="Button#click">
+					<var name="button" value="New" />
+				</execute>
+			</else>
+		</if>
+	</command>
+
+	<command name="add">
+		<execute macro="LexiconEntry#gotoAddMenuItem">
+			<var name="menuItem" value="Content Page Template" />
+		</execute>
+
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="${pageTemplateName}" />
+		</execute>
+
+		<execute macro="Button#clickSave" />
+	</command>
+
+	<command name="addCollection">
+		<execute macro="PageTemplatesAdmin#_gotoAddCollection" />
+
+		<execute macro="Collection#editCollection">
+			<var name="collectionDescription" value="${collectionDescription}" />
+			<var name="collectionName" value="${collectionName}" />
+		</execute>
+
+		<execute macro="Button#clickSave" />
+	</command>
+
+	<command name="openPageTemplatesAdmin">
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_layout_admin_web_portlet_GroupPagesPortlet&amp;_com_liferay_layout_admin_web_portlet_GroupPagesPortlet_tabs1=page-templates" />
+		</execute>
+	</command>
+
+	<command name="rename">
+		<execute macro="LexiconEntry#gotoEntryMenuItem">
+			<var name="menuItem" value="Rename" />
+			<var name="rowEntry" value="${rowEntry}" />
+		</execute>
+
+		<execute macro="PortletEntry#inputName">
+			<var name="name" value="${pageTemplateName}" />
+		</execute>
+
+		<execute macro="Modal#save" />
+	</command>
+</definition>

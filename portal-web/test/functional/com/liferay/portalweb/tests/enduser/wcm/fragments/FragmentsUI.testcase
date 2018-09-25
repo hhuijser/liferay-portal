@@ -12,8 +12,8 @@
 			<var name="groupName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoSite">
-			<var name="site" value="Test Site Name" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 	</set-up>
 
@@ -36,13 +36,7 @@
 	<command name="AddCollectionFragmentWithSnippets" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionName" value="Collection Name" />
 		</execute>
 
@@ -50,14 +44,12 @@
 			<var name="navNested" value="Collection Name" />
 		</execute>
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
 		<execute macro="Navigator#gotoNavNested">
@@ -74,37 +66,26 @@
 			<var name="fileName" value="fragment_button.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="TestCase#getFileContent">
 			<return name="cssSnippet" />
 			<var name="fileName" value="fragment_button.css" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="css" />
-			<var name="templateScript" value="${cssSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#CSS_EDITOR" value1="${cssSnippet}" />
 
 		<execute macro="TestCase#getFileContent">
 			<return name="javascriptSnippet" />
 			<var name="fileName" value="fragment_button.js" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="javascript" />
-			<var name="templateScript" value="${javascriptSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#JAVASCRIPT_EDITOR" value1="${javascriptSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
 		<execute macro="Navigator#gotoNavNested">

@@ -1,16 +1,6 @@
 <definition>
-	<command name="add">
-		<execute macro="LexiconEntry#gotoAdd" />
-
-		<execute macro="PortletEntry#inputName">
-			<var name="name" value="${displayPageName}" />
-		</execute>
-
-		<execute macro="Button#clickSave" />
-	</command>
-
 	<command name="assertAssetTypeUnselectable">
-		<execute macro="LayoutPageTemplates#_gotoTab">
+		<execute macro="PageEditor#gotoTab">
 			<var name="tabName" value="Mapping" />
 		</execute>
 
@@ -20,7 +10,7 @@
 	</command>
 
 	<command name="mapEditableTextToAsset">
-		<execute macro="LayoutPageTemplates#_gotoTab">
+		<execute macro="PageEditor#gotoTab">
 			<var name="tabName" value="Mapping" />
 		</execute>
 
@@ -42,7 +32,7 @@
 	</command>
 
 	<command name="selectAssetType">
-		<execute macro="LayoutPageTemplates#_gotoTab">
+		<execute macro="PageEditor#gotoTab">
 			<var name="tabName" value="Mapping" />
 		</execute>
 
@@ -70,38 +60,5 @@
 		</execute>
 
 		<execute macro="Button#clickSave" />
-	</command>
-
-	<command name="viewPGViaAP">
-		<var name="key_assetContent" value="${webContentContent}" />
-		<var name="key_assetTitle" value="${webContentTitle}" />
-
-		<execute function="AssertTextEquals" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${webContentTitle}" />
-		<execute function="AssertTextEquals#assertPartialText" locator1="AP#ASSET_ABSTRACT_DESCRIPTION" value1="${webContentContent}" />
-
-		<execute function="AssertClick" locator1="AP#ASSET_ABSTRACT_TITLE" value1="${webContentTitle}" />
-
-		<for list="${contentList}" param="content">
-			<execute function="AssertElementPresent" locator1="Fragment#EDITABLE_FIELD_CONTENT">
-				<var name="key_text" value="${content}" />
-			</execute>
-		</for>
-	</command>
-
-	<command name="viewPGViaFriendlyURL">
-		<var method="PropsUtil#get('portal.url')" name="portalURL" />
-		<var method="StringUtil#toLowerCase('${siteName}')" name="siteNameURL" />
-
-		<var method="StringUtil#replace('${siteNameURL}', ' ', '-')" name="siteNameURL" />
-
-		<execute macro="Navigator#openSpecificURL">
-			<var name="url" value="${portalURL}/web/${siteNameURL}/-/${friendlyURL}" />
-		</execute>
-
-		<for list="${contentList}" param="content">
-			<execute function="AssertElementPresent" locator1="Fragment#EDITABLE_FIELD_CONTENT">
-				<var name="key_text" value="${content}" />
-			</execute>
-		</for>
 	</command>
 </definition>

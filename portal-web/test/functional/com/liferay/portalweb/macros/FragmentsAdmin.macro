@@ -18,7 +18,7 @@
 	</command>
 
 	<command name="addCollection">
-		<execute macro="Fragment#_gotoAddCollection" />
+		<execute macro="FragmentsAdmin#_gotoAddCollection" />
 
 		<execute macro="Collection#editCollection">
 			<var name="collectionDescription" value="${collectionDescription}" />
@@ -63,15 +63,15 @@
 			</else>
 		</if>
 
-		<execute macro="MenuItem#click">
-			<var name="menuItem" value="Import" />
+		<execute macro="Button#click">
+			<var name="button" value="Import" />
 		</execute>
 
 		<execute macro="IFrame#selectConfigurationFrame" />
 	</command>
 
 	<command name="importCollectionFromDependenciesFolder">
-		<execute macro="Fragment#gotoImportCollection" />
+		<execute macro="FragmentsAdmin#gotoImportCollection" />
 
 		<execute function="UploadCommonFile" locator1="TextInput#FILE" value1="${collectionZipFile}" />
 
@@ -85,7 +85,7 @@
 	</command>
 
 	<command name="importCollectionFromTempFolder">
-		<execute macro="Fragment#gotoImportCollection" />
+		<execute macro="FragmentsAdmin#gotoImportCollection" />
 
 		<var method="PropsUtil#get('output.dir.name')" name="tempDir" />
 
@@ -110,9 +110,9 @@
 		<execute macro="IFrame#closeFrame" />
 	</command>
 
-	<command name="typeFragmentEditor">
-		<var method="StringUtil#toUpperCase('${editor}')" name="key_editor" />
-
-		<execute function="Type#typeAceEditorNoError" locator1="Fragment#${key_editor}_EDITOR" value1="${templateScript}" />
+	<command name="openFragmentsAdmin">
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="group/${siteURLKey}/~/control_panel/manage/-/fragments" />
+		</execute>
 	</command>
 </definition>

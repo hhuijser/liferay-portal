@@ -87,7 +87,7 @@
 		<if>
 			<equals arg1="${item}" arg2="Page" />
 			<then>
-				<execute macro="SiteNavigationMenu#_addItemPage">
+				<execute macro="NavigationMenusAdmin#_addItemPage">
 					<var name="pageName" value="${pageName}" />
 					<var name="privacy" value="${privacy}" />
 				</execute>
@@ -95,7 +95,7 @@
 			<elseif>
 				<equals arg1="${item}" arg2="Submenu" />
 				<then>
-					<execute macro="SiteNavigationMenu#_addItemSubmenu">
+					<execute macro="NavigationMenusAdmin#_addItemSubmenu">
 						<var name="submenuName" value="${submenuName}" />
 					</execute>
 				</then>
@@ -103,7 +103,7 @@
 			<elseif>
 				<equals arg1="${item}" arg2="URL" />
 				<then>
-					<execute macro="SiteNavigationMenu#_addItemURL">
+					<execute macro="NavigationMenusAdmin#_addItemURL">
 						<var name="url" value="${url}" />
 						<var name="urlName" value="${urlName}" />
 					</execute>
@@ -155,21 +155,21 @@
 	</command>
 
 	<command name="editItem">
-		<execute macro="SiteNavigationMenu#openItemSidebar">
+		<execute macro="NavigationMenusAdmin#openItemSidebar">
 			<var name="itemName" value="${itemName}" />
 		</execute>
 
 		<if>
 			<equals arg1="${item}" arg2="Page" />
 			<then>
-				<execute macro="SiteNavigationMenu#_editItemPage">
+				<execute macro="NavigationMenusAdmin#_editItemPage">
 					<var name="name" value="${name}" />
 				</execute>
 			</then>
 			<elseif>
 				<equals arg1="${item}" arg2="Submenu" />
 				<then>
-					<execute macro="SiteNavigationMenu#_editItemSubmenu">
+					<execute macro="NavigationMenusAdmin#_editItemSubmenu">
 						<var name="submenuName" value="${submenuName}" />
 					</execute>
 				</then>
@@ -177,7 +177,7 @@
 			<elseif>
 				<equals arg1="${item}" arg2="URL" />
 				<then>
-					<execute macro="SiteNavigationMenu#_editItemURL">
+					<execute macro="NavigationMenusAdmin#_editItemURL">
 						<var name="name" value="${name}" />
 						<var name="url" value="${url" />
 					</execute>
@@ -237,6 +237,12 @@
 		</execute>
 
 		<execute function="AssertElementPresent" locator1="SiteNavigationMenu#SIDEBAR" />
+	</command>
+
+	<command name="openNavigationMenusAdmin">
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_site_navigation_admin_web_portlet_SiteNavigationAdminPortlet" />
+		</execute>
 	</command>
 
 	<command name="viewItem">

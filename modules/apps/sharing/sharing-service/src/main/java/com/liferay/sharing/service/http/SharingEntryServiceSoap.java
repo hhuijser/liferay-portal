@@ -65,6 +65,26 @@ import java.rmi.RemoteException;
  */
 @ProviderType
 public class SharingEntryServiceSoap {
+	/**
+	* Adds a sharing entry in the database if it does not exist or it updates
+	* it if it exists.
+	*
+	* @param toUserId the user id whose resource was shared
+	* @param classNameId the class name ID of the resource being shared
+	* @param classPK the primary key of the resource being shared
+	* @param groupId the primary key of the group containing the resource
+	being shared
+	* @param shareable whether the to user id can share the resource as well
+	* @param sharingEntryActions the sharing entry actions
+	* @param expirationDate the date when the sharing entry expires
+	* @return the sharing entry
+	* @param serviceContext the service context to be applied
+	* @throws PortalException if the user does not have permission to share the
+	resource or sharing entry actions are invalid (it is empty, it
+	doesn't contain {@link SharingEntryAction#VIEW,} or it
+	contains a <code>null</code> value) or from user id and to user
+	id are the same or the expiration date is a value in the past.
+	*/
 	public static com.liferay.sharing.model.SharingEntrySoap addOrUpdateSharingEntry(
 		long toUserId, long classNameId, long classPK, long groupId,
 		boolean shareable,
@@ -86,6 +106,27 @@ public class SharingEntryServiceSoap {
 		}
 	}
 
+	/**
+	* Adds a sharing entry in the database.
+	*
+	* @param toUserId the user id whose resource was shared
+	* @param classNameId the class name ID of the resource being shared
+	* @param classPK the primary key of the resource being shared
+	* @param groupId the primary key of the group containing the resource
+	being shared
+	* @param shareable whether the to user id can share the resource as well
+	* @param sharingEntryActions the sharing entry actions
+	* @param expirationDate the date when the sharing entry expires
+	* @return the sharing entry
+	* @param serviceContext the service context to be applied
+	* @throws PortalException if the user does not have permission to share the
+	resource or there is already a sharing entry for the same from
+	user id, to user id and resource or the sharing entry actions are
+	invalid (it is empty, it doesn't contain
+	{@link SharingEntryAction#VIEW,} or it contains a
+	<code>null</code> value) or from user id and to user id are the
+	same or the expiration date is a value in the past.
+	*/
 	public static com.liferay.sharing.model.SharingEntrySoap addSharingEntry(
 		long toUserId, long classNameId, long classPK, long groupId,
 		boolean shareable,
@@ -107,6 +148,21 @@ public class SharingEntryServiceSoap {
 		}
 	}
 
+	/**
+	* Updates a sharing entry in the database.
+	*
+	* @param sharingEntryId the primary key of the sharing entry
+	* @param sharingEntryActions the sharing entry actions
+	* @param shareable whether the to user id can share the resource as well
+	* @param expirationDate the date when the sharing entry expires
+	* @return the sharing entry
+	* @param serviceContext the service context to be applied
+	* @throws PortalException if the sharing entry does not exist or sharing
+	entry actions are invalid (it is empty, it doesn't contain
+	{@link SharingEntryAction#VIEW,} or it contains a
+	<code>null</code> value) or the expiration date is a value in the
+	past.
+	*/
 	public static com.liferay.sharing.model.SharingEntrySoap updateSharingEntry(
 		long sharingEntryId,
 		java.util.Collection<com.liferay.sharing.security.permission.SharingEntryAction> sharingEntryActions,

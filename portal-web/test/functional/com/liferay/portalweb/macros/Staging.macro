@@ -748,6 +748,12 @@
 		<execute function="SelectFrame" locator1="IFrame#SITE_VARIATION_IFRAME" />
 	</command>
 
+	<command name="openStagingAdmin">
+		<execute macro="Navigator#openWithAppendToBaseURL">
+			<var name="urlAppend" value="group/${siteURLKey}/~/control_panel/manage?p_p_id=com_liferay_staging_processes_web_portlet_StagingProcessesPortlet" />
+		</execute>
+	</command>
+
 	<command name="publishCustomPublication">
 		<execute macro="LexiconEntry#gotoAdd" />
 

@@ -26,7 +26,9 @@
 				<execute macro="PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Site#tearDownCP" />
+				<execute macro="JSONGroup#deleteGroupByName">
+					<var name="groupName" value="Test Site Name" />
+				</execute>
 			</else>
 		</if>
 	</tear-down>
@@ -34,13 +36,11 @@
 	<command name="AddLayoutPageTemplateRemoveFragment" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
 			<var name="collectionName" value="Collection Name" />
 		</execute>
@@ -49,7 +49,7 @@
 			<var name="navNested" value="Collection Name" />
 		</execute>
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -58,22 +58,15 @@
 			<var name="fileName" value="fragment_button.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -81,34 +74,32 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewAutoSaveMessage" />
+		<execute macro="PageEditor#viewAutoSaveMessage" />
 
-		<execute macro="LayoutPageTemplates#removeFragment">
+		<execute macro="PageEditor#removeFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewAutoSaveMessage" />
+		<execute macro="PageEditor#viewAutoSaveMessage" />
 
-		<execute macro="LayoutPageTemplates#viewEditorEmpty" />
+		<execute macro="PageEditor#viewEditorEmpty" />
 	</command>
 
 	<command name="ChangeEditableImage" priority="5">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
 			<var name="collectionName" value="Collection Name" />
 		</execute>
@@ -117,7 +108,7 @@
 			<var name="navNested" value="Collection Name" />
 		</execute>
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -126,32 +117,22 @@
 			<var name="fileName" value="fragment_image.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="TestCase#getFileContent">
 			<return name="cssSnippet" />
 			<var name="fileName" value="fragment_image.css" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="css" />
-			<var name="templateScript" value="${cssSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#CSS_EDITOR" value1="${cssSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -159,29 +140,27 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#editFragmentImage">
+		<execute macro="PageEditor#editFragmentImage">
 			<var name="fileName" value="Document_1.png" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 	</command>
 
 	<command name="ChangeEditableText" priority="5">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
 			<var name="collectionName" value="Collection Name" />
 		</execute>
@@ -190,7 +169,7 @@
 			<var name="navNested" value="Collection Name" />
 		</execute>
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -199,22 +178,15 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -222,22 +194,22 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#editFragmentText">
+		<execute macro="PageEditor#editFragmentText">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
 			<var name="text" value="Editing Finished" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentEditableText">
+		<execute macro="PageEditor#viewFragmentEditableText">
 			<var name="editableText" value="Editing Finished" />
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
@@ -247,15 +219,11 @@
 	<command name="DeleteCollection" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Collection Name" />
 		</execute>
 
@@ -271,15 +239,11 @@
 	<command name="DeletePageTemplate" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -287,17 +251,13 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
-
-		<execute macro="NavItem#gotoPageTemplates" />
 
 		<execute macro="Navigator#gotoNavNested">
 			<var name="navNested" value="Page Template Collection" />
@@ -313,15 +273,11 @@
 	</command>
 
 	<command name="RenameCollection" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionDescription" value="Collection Description Original" />
 			<var name="collectionName" value="Collection Name Original" />
 		</execute>
@@ -338,15 +294,11 @@
 	</command>
 
 	<command name="RenamePageTemplate" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -354,23 +306,19 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
-
-		<execute macro="NavItem#gotoPageTemplates" />
 
 		<execute macro="Navigator#gotoNavNested">
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#rename">
+		<execute macro="PageTemplatesAdmin#rename">
 			<var name="pageTemplateName" value="Page Template Name New" />
 			<var name="rowEntry" value="Page Template Name" />
 		</execute>
@@ -383,13 +331,11 @@
 	<command name="ReorderFragments" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
 			<var name="collectionName" value="Collection Name" />
 		</execute>
@@ -398,7 +344,7 @@
 			<var name="navNested" value="Collection Name" />
 		</execute>
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment 1" />
 		</execute>
 
@@ -407,24 +353,18 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="TestCase#getFileContent">
 			<return name="cssSnippet" />
 			<var name="fileName" value="fragment_title.css" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="css" />
-			<var name="templateScript" value="${cssSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#CSS_EDITOR" value1="${cssSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment 2" />
 		</execute>
 
@@ -433,32 +373,22 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="TestCase#getFileContent">
 			<return name="cssSnippet" />
 			<var name="fileName" value="fragment_content.css" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="css" />
-			<var name="templateScript" value="${cssSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#CSS_EDITOR" value1="${cssSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -466,69 +396,67 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Collection Name" />
 			<var name="fragmentName" value="Fragment 1" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Collection Name" />
 			<var name="fragmentName" value="Fragment 2" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentOrder">
+		<execute macro="PageEditor#viewFragmentOrder">
 			<var name="fragmentName" value="Fragment 1" />
 			<var name="position" value="1" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentOrder">
+		<execute macro="PageEditor#viewFragmentOrder">
 			<var name="fragmentName" value="Fragment 2" />
 			<var name="position" value="2" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#moveFragment">
+		<execute macro="PageEditor#moveFragment">
 			<var name="direction" value="down" />
 			<var name="fragmentName" value="Fragment 1" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentOrder">
+		<execute macro="PageEditor#viewFragmentOrder">
 			<var name="fragmentName" value="Fragment 1" />
 			<var name="position" value="2" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentOrder">
+		<execute macro="PageEditor#viewFragmentOrder">
 			<var name="fragmentName" value="Fragment 2" />
 			<var name="position" value="1" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#moveFragment">
+		<execute macro="PageEditor#moveFragment">
 			<var name="direction" value="up" />
 			<var name="fragmentName" value="Fragment 1" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentOrder">
+		<execute macro="PageEditor#viewFragmentOrder">
 			<var name="fragmentName" value="Fragment 1" />
 			<var name="position" value="1" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentOrder">
+		<execute macro="PageEditor#viewFragmentOrder">
 			<var name="fragmentName" value="Fragment 2" />
 			<var name="position" value="2" />
 		</execute>
 	</command>
 
 	<command name="ViewDraftFragmentDoesNotDisplayInSidebar" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionDescription" value="Collection Description" />
 			<var name="collectionName" value="Collection Name" />
 		</execute>
@@ -537,19 +465,15 @@
 			<var name="navNested" value="Collection Name" />
 		</execute>
 
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="PageTemplatesAdmin#openPageTemplatesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoPageTemplates" />
-
-		<execute macro="LayoutPageTemplates#addCollection">
+		<execute macro="PageTemplatesAdmin#addCollection">
 			<var name="collectionName" value="Page Template Collection" />
 		</execute>
 
@@ -557,11 +481,11 @@
 			<var name="navNested" value="Page Template Collection" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#add">
+		<execute macro="PageTemplatesAdmin#add">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewCollectionNotPresent">
+		<execute macro="PageEditor#viewCollectionNotPresent">
 			<var name="collectionName" value="Collection Name" />
 		</execute>
 	</command>

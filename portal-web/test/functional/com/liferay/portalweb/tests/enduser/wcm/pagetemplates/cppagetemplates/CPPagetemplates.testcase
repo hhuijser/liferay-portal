@@ -20,7 +20,7 @@
 			</then>
 			<else>
 				<execute macro="Site#tearDownCP" />
-				<execute macro="PageTemplate#tearDownCP" />
+				<execute macro="PageTemplatesAdminGlobalSite#tearDownCP" />
 			</else>
 		</if>
 	</tear-down>
@@ -36,7 +36,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
@@ -56,7 +56,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
@@ -101,7 +101,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#gotoPageTemplateViaEdit">
+		<execute macro="PageTemplatesAdminGlobalSite#gotoPageTemplateViaEdit">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
@@ -147,7 +147,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#gotoPageTemplateViaEdit">
+		<execute macro="PageTemplatesAdminGlobalSite#gotoPageTemplateViaEdit">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
@@ -181,17 +181,17 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#deactivateAndActivate">
+		<execute macro="PageTemplatesAdminGlobalSite#deactivateAndActivate">
 			<var name="pageTemplateName" value="Page Template Name" />
 			<var name="pageTemplateStatus" value="Not Active" />
 		</execute>
 
-		<execute macro="PageTemplate#viewStatus">
+		<execute macro="PageTemplatesAdminGlobalSite#viewStatus">
 			<var name="pageTemplateName" value="Page Template Name" />
 			<var name="pageTemplateStatus" value="Not Active" />
 		</execute>
@@ -228,12 +228,12 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#deactivateAndActivate">
+		<execute macro="PageTemplatesAdminGlobalSite#deactivateAndActivate">
 			<var name="pageTemplateName" value="Page Template Name" />
 			<var name="pageTemplateStatus" value="Active" />
 		</execute>
 
-		<execute macro="PageTemplate#viewStatus">
+		<execute macro="PageTemplatesAdminGlobalSite#viewStatus">
 			<var name="pageTemplateName" value="Page Template Name" />
 			<var name="pageTemplateStatus" value="Active" />
 		</execute>
@@ -274,16 +274,16 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#deleteCP">
+		<execute macro="PageTemplatesAdminGlobalSite#deleteCP">
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#viewDefaultCP" />
+		<execute macro="PageTemplatesAdminGlobalSite#viewDefaultCP" />
 	</command>
 
 	<command name="EditPageTemplate" priority="5">
@@ -299,12 +299,12 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#editCP">
+		<execute macro="PageTemplatesAdminGlobalSite#editCP">
 			<var name="pageTemplateActive" value="Not Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
@@ -321,17 +321,17 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#editDescription">
+		<execute macro="PageTemplatesAdminGlobalSite#editDescription">
 			<var name="pageTemplateDescription" value="This is a page template description" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#viewDescription">
+		<execute macro="PageTemplatesAdminGlobalSite#viewDescription">
 			<var name="pageTemplateDescription" value="This is a page template description edit" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
@@ -355,11 +355,11 @@
 			<var name="uploadFrom" value="dependencies" />
 		</execute>
 
-		<execute macro="PageTemplate#viewCP">
+		<execute macro="PageTemplatesAdminGlobalSite#viewCP">
 			<var name="pageTemplateName" value="College Landing Page" />
 		</execute>
 
-		<execute macro="PageTemplate#viewCP">
+		<execute macro="PageTemplatesAdminGlobalSite#viewCP">
 			<var name="pageTemplateName" value="Department Landing Page" />
 		</execute>
 
@@ -368,7 +368,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="PageTemplate#viewPG">
+		<execute macro="PageTemplatesAdminGlobalSite#viewPG">
 			<var name="pageTemplateName" value="College Landing Page" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
@@ -398,7 +398,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#viewPG">
+		<execute macro="PageTemplatesAdminGlobalSite#viewPG">
 			<var name="pageTemplateName" value="Department Landing Page" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
@@ -434,7 +434,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#viewDefaultCP" />
+		<execute macro="PageTemplatesAdminGlobalSite#viewDefaultCP" />
 
 		<execute macro="ProductMenu#gotoPortlet">
 			<var name="category" value="My Account" />
@@ -462,7 +462,7 @@
 			<var name="portlet" value="Páginas del sitio web" />
 		</execute>
 
-		<execute macro="PageTemplate#viewDefaultLocalizedCP">
+		<execute macro="PageTemplatesAdminGlobalSite#viewDefaultLocalizedCP">
 			<var name="pageTemplateDescriptionList" value="edite y vea blogs desde esta página. Explore los temas usando etiquetas y conecte con otros miembros del blog.,edite y explore contenidos web de esta página. Busque contenido adicional, explore contenido relacionado con etiquetas y hojee las categorías del contenido.,Colabora con los miembros a través de la wiki en esta página. Descubre el contenido relacionado a través de etiquetas y navega rápida y fácilmente por las categorías." />
 			<var name="pageTemplateNameList" value="Blog,Seleccione una página de visualización,Wiki" />
 		</execute>
@@ -493,7 +493,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#viewDefaultCP" />
+		<execute macro="PageTemplatesAdminGlobalSite#viewDefaultCP" />
 	</command>
 
 	<command name="ViewEditedPageTemplatePageName" priority="4">
@@ -509,7 +509,7 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#addCP">
+		<execute macro="PageTemplatesAdminGlobalSite#addCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
@@ -519,7 +519,7 @@
 			<var name="siteName" value="${siteName}" />
 		</execute>
 
-		<execute macro="PageTemplate#viewPG">
+		<execute macro="PageTemplatesAdminGlobalSite#viewPG">
 			<var name="pageTemplateName" value="Page Template Name" />
 			<var name="siteName" value="${siteName}" />
 		</execute>
@@ -534,12 +534,12 @@
 			<var name="portlet" value="Pages" />
 		</execute>
 
-		<execute macro="PageTemplate#editCP">
+		<execute macro="PageTemplatesAdminGlobalSite#editCP">
 			<var name="pageTemplateActive" value="Active" />
 			<var name="pageTemplateName" value="Page Template Name" />
 		</execute>
 
-		<execute macro="PageTemplate#viewPG">
+		<execute macro="PageTemplatesAdminGlobalSite#viewPG">
 			<var name="pageTemplateName" value="Page Template Name Edit" />
 			<var name="siteName" value="${siteName}" />
 		</execute>

@@ -8,23 +8,15 @@
 
 		<execute macro="User#firstLoginPG" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Sites" />
-			<var name="panel" value="Control Panel" />
-			<var name="portlet" value="Sites" />
+		<execute macro="JSONGroup#addGroup">
+			<var name="groupName" value="Test Site Name" />
 		</execute>
 
-		<execute macro="Site#addBlankCP">
-			<var name="siteName" value="Test Site Name" />
+		<execute macro="FragmentsAdmin#openFragmentsAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Fragment#addCollection">
+		<execute macro="FragmentsAdmin#addCollection">
 			<var name="collectionName" value="Fragment Collection Name" />
 		</execute>
 	</set-up>
@@ -38,7 +30,9 @@
 				<execute macro="PortalInstances#tearDownCP" />
 			</then>
 			<else>
-				<execute macro="Site#tearDownCP" />
+				<execute macro="JSONGroup#deleteGroupByName">
+					<var name="groupName" value="Test Site Name" />
+				</execute>
 			</else>
 		</if>
 	</tear-down>
@@ -46,17 +40,7 @@
 	<command name="AddDisplayPage" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Navigator#gotoNavNested">
-			<var name="navNested" value="Fragment Collection Name" />
-		</execute>
-
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -65,31 +49,24 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="DisplayPagesAdmin#openDisplayPagesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoDisplayPages" />
-
-		<execute macro="DisplayPages#add">
+		<execute macro="DisplayPagesAdmin#add">
 			<var name="displayPageName" value="Display Page Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Fragment Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewAutoSaveMessage" />
+		<execute macro="PageEditor#viewAutoSaveMessage" />
 
 		<execute macro="PortletEntry#publish" />
 	</command>
@@ -97,17 +74,7 @@
 	<command name="MapDisplayPageToBasicWebContent" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Navigator#gotoNavNested">
-			<var name="navNested" value="Fragment Collection Name" />
-		</execute>
-
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -116,36 +83,29 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="DisplayPagesAdmin#openDisplayPagesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoDisplayPages" />
-
-		<execute macro="DisplayPages#add">
+		<execute macro="DisplayPagesAdmin#add">
 			<var name="displayPageName" value="Display Page Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Fragment Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="DisplayPages#selectAssetType">
+		<execute macro="PageEditorMapping#selectAssetType">
 			<var name="assetType" value="Web Content Article" />
 			<var name="subType" value="Basic Web Content" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
 			<var name="itemName" value="Title" />
@@ -155,17 +115,7 @@
 	</command>
 
 	<command name="UpdateDisplayPageEditableText" priority="5">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Navigator#gotoNavNested">
-			<var name="navNested" value="Fragment Collection Name" />
-		</execute>
-
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -174,37 +124,30 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="DisplayPagesAdmin#openDisplayPagesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoDisplayPages" />
-
-		<execute macro="DisplayPages#add">
+		<execute macro="DisplayPagesAdmin#add">
 			<var name="displayPageName" value="Display Page Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Fragment Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#editFragmentText">
+		<execute macro="PageEditor#editFragmentText">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
 			<var name="text" value="Editing Finished" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#viewFragmentEditableText">
+		<execute macro="PageEditor#viewFragmentEditableText">
 			<var name="editableText" value="Editing Finished" />
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
@@ -214,17 +157,7 @@
 	<command name="ViewDisplayPageViaAssetPublisher" priority="5">
 		<property name="portal.acceptance" value="true" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Navigator#gotoNavNested">
-			<var name="navNested" value="Fragment Collection Name" />
-		</execute>
-
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -233,10 +166,7 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
@@ -248,21 +178,21 @@
 
 		<execute macro="NavItem#gotoDisplayPages" />
 
-		<execute macro="DisplayPages#add">
+		<execute macro="DisplayPagesAdmin#add">
 			<var name="displayPageName" value="Display Page Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Fragment Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="DisplayPages#selectAssetType">
+		<execute macro="PageEditorMapping#selectAssetType">
 			<var name="assetType" value="Web Content Article" />
 			<var name="subType" value="Basic Web Content" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
 			<var name="itemName" value="Title" />
@@ -313,7 +243,7 @@
 			<var name="assetLinkBehavior" value="View in Context" />
 		</execute>
 
-		<execute macro="DisplayPages#viewPGViaAP">
+		<execute macro="DisplayPagesAdmin#viewPGViaAP">
 			<var name="contentList" value="Webcontent Title" />
 			<var name="webContentContent" value="Webcontent Content" />
 			<var name="webContentTitle" value="Webcontent Title" />
@@ -321,17 +251,7 @@
 	</command>
 
 	<command name="ViewDisplayPageViaFriendlyURL" priority="5">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Navigator#gotoNavNested">
-			<var name="navNested" value="Fragment Collection Name" />
-		</execute>
-
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -340,46 +260,36 @@
 			<var name="fileName" value="fragment_title.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="TestCase#getFileContent">
 			<return name="cssSnippet" />
 			<var name="fileName" value="fragment_title.css" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="css" />
-			<var name="templateScript" value="${cssSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#CSS_EDITOR" value1="${cssSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="DisplayPagesAdmin#openDisplayPagesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoDisplayPages" />
-
-		<execute macro="DisplayPages#add">
+		<execute macro="DisplayPagesAdmin#add">
 			<var name="displayPageName" value="Display Page Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Fragment Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="DisplayPages#selectAssetType">
+		<execute macro="PageEditorMapping#selectAssetType">
 			<var name="assetType" value="Web Content Article" />
 			<var name="subType" value="Basic Web Content" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="title" />
 			<var name="itemName" value="Title" />
@@ -407,7 +317,7 @@
 
 		<execute macro="Alert#viewSuccessMessage" />
 
-		<execute macro="DisplayPages#viewPGViaFriendlyURL">
+		<execute macro="DisplayPagesAdmin#viewPGViaFriendlyURL">
 			<var name="contentList" value="Webcontent Title" />
 			<var name="friendlyURL" value="webcontent-title" />
 			<var name="siteName" value="Test Site Name" />
@@ -415,17 +325,7 @@
 	</command>
 
 	<command name="ViewDisplayPageWithComplexRichTextFragments" priority="4">
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Page Fragments" />
-		</execute>
-
-		<execute macro="Navigator#gotoNavNested">
-			<var name="navNested" value="Fragment Collection Name" />
-		</execute>
-
-		<execute macro="Fragment#addFragment">
+		<execute macro="FragmentsAdmin#addFragment">
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
@@ -434,54 +334,47 @@
 			<var name="fileName" value="fragment_multiple_editables.html" />
 		</execute>
 
-		<execute macro="Fragment#typeFragmentEditor">
-			<var name="editor" value="html" />
-			<var name="templateScript" value="${htmlSnippet}" />
-		</execute>
+		<execute function="Type#typeAceEditorNoError" locator1="Fragment#HTML_EDITOR" value1="${htmlSnippet}" />
 
 		<execute macro="PortletEntry#publish" />
 
-		<execute macro="ProductMenu#gotoPortlet">
-			<var name="category" value="Build" />
-			<var name="panel" value="Site Administration" />
-			<var name="portlet" value="Pages" />
+		<execute macro="DisplayPagesAdmin#openDisplayPagesAdmin">
+			<var name="siteURLKey" value="test-site-name" />
 		</execute>
 
-		<execute macro="NavItem#gotoDisplayPages" />
-
-		<execute macro="DisplayPages#add">
+		<execute macro="DisplayPagesAdmin#add">
 			<var name="displayPageName" value="Display Page Name" />
 		</execute>
 
-		<execute macro="LayoutPageTemplates#selectFragment">
+		<execute macro="PageEditor#addFragment">
 			<var name="collectionName" value="Fragment Collection Name" />
 			<var name="fragmentName" value="Fragment Name" />
 		</execute>
 
-		<execute macro="DisplayPages#selectAssetType">
+		<execute macro="PageEditorMapping#selectAssetType">
 			<var name="assetType" value="Web Content Article" />
 			<var name="subType" value="Basic Web Content" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="test1" />
 			<var name="itemName" value="Title" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="test2" />
 			<var name="itemName" value="Content" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="test3" />
 			<var name="itemName" value="Tags" />
 		</execute>
 
-		<execute macro="DisplayPages#mapEditableTextToAsset">
+		<execute macro="PageEditorMapping#mapEditableTextToAsset">
 			<var name="fragmentName" value="Fragment Name" />
 			<var name="id" value="test4" />
 			<var name="itemName" value="Publish Date" />
@@ -540,7 +433,7 @@
 			<var name="assetLinkBehavior" value="View in Context" />
 		</execute>
 
-		<execute macro="DisplayPages#viewPGViaAP">
+		<execute macro="DisplayPagesAdmin#viewPGViaAP">
 			<var name="contentList" value="Webcontent Title,Webcontent Content,tag1,tag2,tag3" />
 			<var name="webContentContent" value="Webcontent Content" />
 			<var name="webContentTitle" value="Webcontent Title" />

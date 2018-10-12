@@ -330,25 +330,22 @@ public class PortletImportControllerImpl implements PortletImportController {
 			PortletDataContext portletDataContext, Element portletDataElement)
 		throws Exception {
 
-		long ownerId = PortletKeys.PREFS_OWNER_ID_DEFAULT;
-		int ownerType = PortletKeys.PREFS_OWNER_TYPE_LAYOUT;
-
-		javax.portlet.PortletPreferences portletPreferences =
-			_portletPreferencesLocalService.fetchPreferences(
-				portletDataContext.getCompanyId(), ownerId, ownerType,
-				portletDataContext.getPlid(),
+		javax.portlet.PortletPreferences jxPortletPreferences =
+			PortletPreferencesFactoryUtil.getStrictPortletSetup(
+				portletDataContext.getCompanyId(),
+				portletDataContext.getGroupId(),
 				portletDataContext.getPortletId());
 
-		if (portletPreferences == null) {
-			portletPreferences = new PortletPreferencesImpl();
-		}
-
 		String xml = importPortletData(
-			portletDataContext, portletPreferences, portletDataElement);
+			portletDataContext, jxPortletPreferences, portletDataElement);
 
 		if (Validator.isNotNull(xml)) {
+			PortletPreferencesImpl portletPreferences =
+				(PortletPreferencesImpl)jxPortletPreferences;
+
 			_portletPreferencesLocalService.updatePreferences(
-				ownerId, ownerType, portletDataContext.getPlid(),
+				portletPreferences.getOwnerId(),
+				portletPreferences.getOwnerType(), portletDataContext.getPlid(),
 				portletDataContext.getPortletId(), xml);
 		}
 	}

@@ -21,6 +21,7 @@ import com.liferay.expando.kernel.exception.ValueDataException;
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.model.ExpandoColumnConstants;
 import com.liferay.exportimport.kernel.staging.StagingUtil;
+import com.liferay.layouts.admin.kernel.model.LayoutTypePortletConstants;
 import com.liferay.petra.encryptor.Encryptor;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
@@ -3301,7 +3302,19 @@ public class PortalImpl implements Portal {
 		}
 
 		if (layout.isTypeURL()) {
-			return getLayoutActualURL(layout);
+			if (Validator.isNotNull(
+					layout.getTypeSettingsProperty(
+						LayoutTypePortletConstants.URL))) {
+
+				String url = layout.getTypeSettingsProperty(
+					LayoutTypePortletConstants.URL);
+
+				if (url.startsWith(Http.HTTP_WITH_SLASH) ||
+					url.startsWith(Http.HTTPS_WITH_SLASH)) {
+
+					return getLayoutActualURL(layout);
+				}
+			}
 		}
 
 		String layoutFriendlyURL = getLayoutFriendlyURL(layout, themeDisplay);

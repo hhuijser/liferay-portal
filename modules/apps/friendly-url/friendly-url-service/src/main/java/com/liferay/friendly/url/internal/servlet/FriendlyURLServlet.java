@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -274,9 +273,9 @@ public class FriendlyURLServlet extends HttpServlet {
 			group.getGroupId(), _private, Portal.PATH_MAIN, friendlyURL, params,
 			requestContext);
 
-		if (actualURL.startsWith(PortalUtil.getPortalURL(request))) {
+		if (actualURL.startsWith(portal.getPortalURL(request))) {
 			actualURL = StringUtil.removeSubstring(
-				actualURL, PortalUtil.getPortalURL(request));
+				actualURL, portal.getPortalURL(request));
 		}
 
 		return new Redirect(actualURL);

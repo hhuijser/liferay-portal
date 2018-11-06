@@ -57,10 +57,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Andrea Di Giorgi
  */
 @Component(
-	property = "javax.portlet.name=" + CalendarPortletKeys.CALENDAR,
+	property = "javax.portlet.name=" + CalendarPortletKeys.CALENDAR_ADMIN,
 	service = PortletDataHandler.class
 )
-public class CalendarPortletDataHandler extends BasePortletDataHandler {
+public class CalendarAdminPortletDataHandler extends BasePortletDataHandler {
 
 	public static final String[] CLASS_NAMES = {
 		Calendar.class.getName(), CalendarBooking.class.getName(),

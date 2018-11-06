@@ -54,7 +54,7 @@ public class CalendarResourceModelResourcePermissionRegistrar {
 				_portletResourcePermission,
 				(modelResourcePermission, consumer) -> consumer.accept(
 					new StagedModelPermissionLogic<>(
-						_stagingPermission, CalendarPortletKeys.CALENDAR,
+						_stagingPermission, CalendarPortletKeys.CALENDAR_ADMIN,
 						CalendarResource::getCalendarResourceId))),
 			properties);
 	}

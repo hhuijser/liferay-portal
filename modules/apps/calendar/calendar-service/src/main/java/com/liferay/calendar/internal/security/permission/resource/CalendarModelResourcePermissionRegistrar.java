@@ -93,7 +93,7 @@ public class CalendarModelResourcePermissionRegistrar {
 			return _stagingPermission.hasPermission(
 				permissionChecker, calendar.getGroupId(),
 				Calendar.class.getName(), calendar.getCalendarId(),
-				CalendarPortletKeys.CALENDAR, actionId);
+				CalendarPortletKeys.CALENDAR_ADMIN, actionId);
 		}
 
 		private StagingPermissionCheck(StagingPermission stagingPermission) {

@@ -3305,7 +3305,7 @@ public class PortalImpl implements Portal {
 			String url = layout.getTypeSettingsProperty(
 				LayoutTypePortletConstants.URL);
 
-			if (!url.startsWith(StringPool.SLASH) &&
+			if (Validator.isNotNull(url) && !url.startsWith(StringPool.SLASH) &&
 				!url.startsWith(getPortalURL(layout, themeDisplay))) {
 
 				return getLayoutActualURL(layout);

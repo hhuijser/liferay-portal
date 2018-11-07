@@ -66,7 +66,7 @@ public class CalendarStagingTestUtil {
 
 		addStagingAttribute(
 			serviceContext,
-			StagingUtil.getStagedPortletId(CalendarPortletKeys.CALENDAR),
+			StagingUtil.getStagedPortletId(CalendarPortletKeys.CALENDAR_ADMIN),
 			enableCalendarStaging);
 		addStagingAttribute(
 			serviceContext, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,

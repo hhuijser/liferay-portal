@@ -66,7 +66,7 @@ public class CalendarStagingTestUtil {
 
 		addStagingAttribute(
 			serviceContext,
-			StagingUtil.getStagedPortletId(CalendarPortletKeys.CALENDAR),
+			StagingUtil.getStagedPortletId(CalendarPortletKeys.CALENDAR_ADMIN),
 			enableCalendarStaging);
 		addStagingAttribute(
 			serviceContext, PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
@@ -114,6 +114,30 @@ public class CalendarStagingTestUtil {
 		StagingUtil.publishLayouts(
 			TestPropsValues.getUserId(), stagingGroup.getGroupId(),
 			liveGroup.getGroupId(), false, parameters);
+	}
+
+	public static void publishPortlet(
+			Group liveGroup, boolean enableCalendarStaging)
+		throws PortalException {
+
+		Group stagingGroup = liveGroup.getStagingGroup();
+
+		List<String> portletIds = new ArrayList<>();
+
+		portletIds.add(CalendarPortletKeys.CALENDAR_ADMIN);
+
+		Map<String, String[]> parameters =
+			ExportImportConfigurationParameterMapFactoryUtil.buildParameterMap(
+				PortletDataHandlerKeys.DATA_STRATEGY_MIRROR_OVERWRITE, true,
+				false, true, false, false, true, true, true, true, false, null,
+				true, false, enableCalendarStaging ? portletIds : null, false,
+				null, ExportImportDateUtil.RANGE_ALL, true, true,
+				UserIdStrategy.CURRENT_USER_ID);
+
+		StagingUtil.publishPortlet(
+			TestPropsValues.getUserId(), stagingGroup.getGroupId(),
+			liveGroup.getGroupId(), 0, 0, CalendarPortletKeys.CALENDAR_ADMIN,
+			parameters);
 	}
 
 	protected static void addStagingAttribute(

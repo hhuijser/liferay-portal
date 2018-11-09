@@ -750,6 +750,8 @@ public class CalendarBookingLocalServiceTest {
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRegularCalendarBooking(stagingCalendar);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		assertCalendarBookingsCount(liveCalendar, 1);
@@ -761,6 +763,8 @@ public class CalendarBookingLocalServiceTest {
 		assertCalendarBookingsCount(liveCalendar, 1);
 
 		assertCalendarBookingsCount(stagingCalendar, 0);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1077,6 +1081,8 @@ public class CalendarBookingLocalServiceTest {
 
 		assertCalendarBookingsCount(stagingCalendar, 1);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		assertCalendarBookingsCount(liveCalendar, 0);
@@ -1204,6 +1210,8 @@ public class CalendarBookingLocalServiceTest {
 			CalendarBookingTestUtil.addMasterCalendarBooking(
 				stagingCalendar, invitedCalendar);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		List<CalendarBooking> childCalendarBookings =
@@ -1264,6 +1272,8 @@ public class CalendarBookingLocalServiceTest {
 
 		assertStatus(calendarBooking, WorkflowConstants.STATUS_APPROVED);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		List<CalendarBooking> childCalendarBookings =
@@ -1305,6 +1315,8 @@ public class CalendarBookingLocalServiceTest {
 		assertCalendarBookingsCount(invitedCalendar, 1);
 
 		assertCalendarBookingsCount(stagingCalendar, 1);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1359,6 +1371,8 @@ public class CalendarBookingLocalServiceTest {
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRegularCalendarBooking(stagingCalendar);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		assertCalendarBookingsCount(liveCalendar, 1);
@@ -1397,6 +1411,8 @@ public class CalendarBookingLocalServiceTest {
 
 		assertCalendarBookingsCount(stagingCalendar, 1);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		assertCalendarBookingsCount(externalCalendar, 0);
@@ -1421,6 +1437,8 @@ public class CalendarBookingLocalServiceTest {
 
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRegularCalendarBooking(stagingCalendar);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1448,6 +1466,8 @@ public class CalendarBookingLocalServiceTest {
 		assertCalendarBookingsCount(liveCalendar, 1);
 
 		assertCalendarBookingsCount(stagingCalendar, 0);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1478,6 +1498,8 @@ public class CalendarBookingLocalServiceTest {
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRegularCalendarBooking(stagingCalendar1);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		assertCalendarBookingsCount(liveCalendar1, 1);
@@ -1500,6 +1522,8 @@ public class CalendarBookingLocalServiceTest {
 		assertCalendarBookingsCount(liveCalendar2, 0);
 		assertCalendarBookingsCount(stagingCalendar1, 0);
 		assertCalendarBookingsCount(stagingCalendar2, 1);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1564,6 +1588,8 @@ public class CalendarBookingLocalServiceTest {
 		CalendarNotificationTemplateTestUtil.addCalendarNotificationTemplate(
 			stagingCalendar, NotificationTemplateType.INVITE,
 			"test@liferay.com", "Test Test", mailSubject, mailBody);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1805,6 +1831,8 @@ public class CalendarBookingLocalServiceTest {
 		Calendar stagingCalendar = CalendarStagingTestUtil.getStagingCalendar(
 			_liveGroup, liveCalendar);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		long startTime = System.currentTimeMillis() + (Time.MINUTE * 2);
@@ -1813,6 +1841,8 @@ public class CalendarBookingLocalServiceTest {
 			CalendarBookingTestUtil.addRegularCalendarBookingWithReminders(
 				stagingCalendar, startTime, startTime + Time.HOUR,
 				(int)Time.MINUTE, 0);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -1862,6 +1892,8 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertEquals(
 			childCalendarBookings.toString(), 1, childCalendarBookings.size());
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
@@ -2891,6 +2923,8 @@ public class CalendarBookingLocalServiceTest {
 			CalendarBookingTestUtil.addChildCalendarBooking(
 				stagingCalendar, invitedCalendar);
 
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
+
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 
 		List<CalendarBooking> invitedCalendarBookings =
@@ -2916,6 +2950,8 @@ public class CalendarBookingLocalServiceTest {
 		CalendarBookingTestUtil.updateCalendarBooking(
 			childCalendarBooking.getParentCalendarBooking(), titleMap,
 			serviceContext);
+
+		CalendarStagingTestUtil.publishPortlet(_liveGroup, true);
 
 		CalendarStagingTestUtil.publishLayouts(_liveGroup, true);
 

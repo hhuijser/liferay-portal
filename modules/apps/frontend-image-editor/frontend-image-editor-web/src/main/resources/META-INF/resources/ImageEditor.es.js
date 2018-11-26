@@ -182,18 +182,6 @@ class ImageEditor extends Component {
 	}
 
 	/**
-	 * Normalizes different mime types to the most similar mime type
-	 * available to canvas implementations.
-	 * @param  {String} mimeType Original mime type
-	 * @return {String} The normalized mime type
-	 * @review
-	 * @see http://kangax.github.io/jstests/toDataUrl_mime_type_test/
-	 */
-	normalizeCanvasMimeType_(mimeType) {
-		return mimeType.replace('jpg', 'jpeg');
-	}
-
-	/**
 	 * Notifies the opener app of the result of the save action
 	 * @param  {Object} result The server response to the save action
 	 * @protected

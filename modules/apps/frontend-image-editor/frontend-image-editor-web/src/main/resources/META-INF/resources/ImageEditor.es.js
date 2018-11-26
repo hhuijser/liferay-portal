@@ -298,10 +298,13 @@ class ImageEditor extends Component {
 	 */
 	setterSaveMimeTypeFn_(saveMimeType) {
 		if (!saveMimeType) {
-			let imageExtensionRegex = /(?:.*:\/\/)?(?:[^\/])*[^.]*.([^?\/$]*)/;
-			let imageExtension = this.image.match(imageExtensionRegex)[1];
-
-			saveMimeType = this.normalizeCanvasMimeType_('image/' + imageExtension);
+			var params = this.image.split("?")[1];
+			params.split("&").forEach(function(part) {
+				var pair = part.split("=");
+				if (pair[0] == "mimeType") {
+					saveMimeType = pair[1];
+				}
+			})
 		}
 
 		return saveMimeType;

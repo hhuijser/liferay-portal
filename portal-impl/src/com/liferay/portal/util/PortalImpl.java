@@ -3308,7 +3308,7 @@ public class PortalImpl implements Portal {
 			if (Validator.isNotNull(url) && !url.startsWith(StringPool.SLASH) &&
 				!url.startsWith(getPortalURL(layout, themeDisplay))) {
 
-				return getLayoutActualURL(layout);
+				return url;
 			}
 		}
 

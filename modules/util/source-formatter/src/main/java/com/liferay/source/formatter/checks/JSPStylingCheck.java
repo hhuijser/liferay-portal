@@ -42,6 +42,8 @@ public class JSPStylingCheck extends StylingCheck {
 
 		content = _fixIncorrectSingleLineJavaSource(content);
 
+		content = _fixMissingSemicolonJavascriptSource(content);
+
 		content = StringUtil.replace(
 			content,
 			new String[] {
@@ -177,6 +179,24 @@ public class JSPStylingCheck extends StylingCheck {
 		return content;
 	}
 
+	private String _fixMissingSemicolonJavascriptSource(String content) {
+		Matcher matcher = _missingSemicolonJavascriptSourcePattern.matcher(
+			content);
+
+		while (matcher.find()) {
+			String javascriptSource = matcher.group(0);
+
+			if (javascriptSource.contains(StringPool.PLUS)) {
+				continue;
+			}
+
+			return StringUtil.insert(
+				content, StringPool.SEMICOLON, matcher.end(1));
+		}
+
+		return content;
+	}
+
 	private static final Pattern _chainingPattern = Pattern.compile(
 		"\\WgetClass\\(\\)\\.");
 	private static final Pattern _emptyJavaSourceTagPattern = Pattern.compile(
@@ -187,5 +207,7 @@ public class JSPStylingCheck extends StylingCheck {
 		"[\n\t]\\} ?(catch|else|finally) ");
 	private static final Pattern _incorrectSingleLineJavaSourcePattern =
 		Pattern.compile("(\t*)(<% (.*) %>)\n");
+	private static final Pattern _missingSemicolonJavascriptSourcePattern =
+		Pattern.compile("(?:.*\\\")(javascript:[\\w-().]+[^;])(?:\\\".*)");
 
 }

@@ -32,6 +32,8 @@ import java.util.regex.Pattern;
 public abstract class StylingCheck extends BaseFileCheck {
 
 	protected String formatStyling(String content) {
+		content = _addSemicolon(content);
+
 		content = _formatStyling(
 			content, "!Validator.isNotNull(", "Validator.isNull(");
 		content = _formatStyling(
@@ -62,6 +64,23 @@ public abstract class StylingCheck extends BaseFileCheck {
 
 	protected boolean isJavaSource(String content, int pos) {
 		return true;
+	}
+
+	private String _addSemicolon(String content) {
+		Matcher matcher = _callJavascriptMethodPattern.matcher(content);
+
+		while (matcher.find()) {
+			String javascriptSource = matcher.group(0);
+
+			if (javascriptSource.contains(StringPool.PLUS)) {
+				continue;
+			}
+
+			return StringUtil.insert(
+				content, StringPool.SEMICOLON, matcher.end(1));
+		}
+
+		return content;
 	}
 
 	private String _fixBooleanStatement(String content) {
@@ -224,6 +243,8 @@ public abstract class StylingCheck extends BaseFileCheck {
 
 	private static final Pattern _booleanPattern = Pattern.compile(
 		"\\((\\!)?(\\w+)\\s+(==|!=)\\s+(false|true)\\)");
+	private static final Pattern _callJavascriptMethodPattern = Pattern.compile(
+		"(?:.*\\\")(javascript:[\\w-().]+[^;])(?:\\\".*)");
 	private static final Pattern _redundantArrayInitializationPattern =
 		Pattern.compile("\\W(\\w+)\\[\\]\\[\\] (\\w+ = )?\\{\n");
 

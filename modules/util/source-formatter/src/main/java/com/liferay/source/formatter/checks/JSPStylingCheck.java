@@ -183,13 +183,7 @@ public class JSPStylingCheck extends StylingCheck {
 		Matcher matcher = _missingSemicolonJavascriptSourcePattern.matcher(
 			content);
 
-		while (matcher.find()) {
-			String javascriptSource = matcher.group();
-
-			if (javascriptSource.contains(StringPool.PLUS)) {
-				continue;
-			}
-
+		if (matcher.find()) {
 			return StringUtil.insert(
 				content, StringPool.SEMICOLON, matcher.end(1));
 		}
@@ -208,6 +202,6 @@ public class JSPStylingCheck extends StylingCheck {
 	private static final Pattern _incorrectSingleLineJavaSourcePattern =
 		Pattern.compile("(\t*)(<% (.*) %>)\n");
 	private static final Pattern _missingSemicolonJavascriptSourcePattern =
-		Pattern.compile("(?:.*\\\")(javascript:[\\w-().]+[^;])(?:\\\".*)");
+		Pattern.compile("\"javascript:([\\w-().]+)\"[^+\n]+\n");
 
 }

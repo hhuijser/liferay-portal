@@ -184,7 +184,7 @@ public class JSPStylingCheck extends StylingCheck {
 			content);
 
 		while (matcher.find()) {
-			String javascriptSource = matcher.group(0);
+			String javascriptSource = matcher.group();
 
 			if (javascriptSource.contains(StringPool.PLUS)) {
 				continue;

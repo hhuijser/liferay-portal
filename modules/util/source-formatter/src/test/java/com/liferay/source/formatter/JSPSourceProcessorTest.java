@@ -52,6 +52,11 @@ public class JSPSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissingSemicolonJavascriptSource() throws Exception {
+		test("MissingSemicolonJavascriptSource.testjsp");
+	}
+
+	@Test
 	public void testSortTagAttributes() throws Exception {
 		test("SortTagAttributes.testjsp");
 	}

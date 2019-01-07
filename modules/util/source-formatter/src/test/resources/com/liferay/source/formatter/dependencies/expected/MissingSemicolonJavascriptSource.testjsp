@@ -1,0 +1,55 @@
+<%--
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+--%>
+
+<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:;" role="button"><liferay-ui:message arguments="<%= delta %>" key="x-entries" />
+	<aui:icon image="caret-double-l" markupView="lexicon" />
+</a>
+
+<liferay-ui:icon
+	cssClass="cssClass"
+	id="entryUuid"
+	onClick="onClick"
+	url="javascript:;"
+/>
+
+<liferay-ui:header
+	backURL='<%= Validator.isNotNull(redirect) ? redirect : "javascript:history.go(-1);" %>'
+	title="error"
+/>
+
+<c:choose>
+	<c:when test="<%= Validator.isNotNull(showMessage) %>">
+		<a href="javascript:<%= stateVar %>Toggle();" id="<%= id %>_message"><%= defaultMessage %></a>
+	</c:when>
+	<c:otherwise>
+		<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="toggle" />" id="<%= id %>_image" onclick="<%= stateVar %>Toggle();" src="<%= defaultImage %>" style="margin: 0px;" />
+	</c:otherwise>
+</c:choose>
+
+<%
+href = "javascript:document." + formName + "." + curParam + ".value = '" + cur + "'; " + jsCall;
+
+taglibMarkAsReadURL = "javascript:" + renderResponse.getNamespace() + "markEntry(" + entry.getEntryId() + ");";
+
+StringBundler sb = new StringBundler(6);
+
+sb.append("javascript:");
+sb.append(renderResponse.getNamespace());
+sb.append("importCalendar");
+sb.append("('");
+sb.append(importURL);
+sb.append("');");
+%>

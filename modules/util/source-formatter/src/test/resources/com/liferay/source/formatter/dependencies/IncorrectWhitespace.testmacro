@@ -1,0 +1,50 @@
+@component-name = "portal-acceptance"
+@ignore = "true"
+definition {
+	property portal.release = "true";
+	property portal.upstream = "true";
+	property testray.main.component.name = "Smoke";
+
+	@priority = "5"
+	test AddUser {
+		Refresh()	 ;
+
+		com.liferay.poshi.runner.util.JSONCurlUtil.delete("${curl}")	
+			  ;
+	}
+
+	@description = "Ensure that a user can add multiple Blogs Entries."
+	@priority = "4"
+	test AddBlogsEntries {
+		task ("Add a blogs entry called 'Blogs Entry1 Title' with content 'Blogs Entry1 Content'") {
+			ProductMenu.gotoPortlet(
+				category = "Content",
+				panel = "Site Administration",
+				portlet = "Blogs"
+			)
+
+ 	;
+
+
+			Blogs.addEntry(
+				entryContent = "Blogs Entry1 Content",
+				entryTitle = "Blogs Entry1 Title"
+			)  ;
+		}
+
+		task ("Add a blogs entry called 'Blogs Entry2 Title' with content 'Blogs Entry2 Content'") {
+			Navigator.openURL();
+
+			ProductMenu.gotoPortlet(
+				category = "Content",
+				panel = "Site Administration",
+				portlet = "Blogs"
+			);
+
+			Blogs.addEntry(
+				entryContent = "Blogs Entry2 Content",
+				entryTitle = "Blogs Entry2 Title"
+			);
+		}
+	}
+}

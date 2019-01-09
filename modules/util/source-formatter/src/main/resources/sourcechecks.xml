@@ -384,7 +384,8 @@
 	</source-processor>
 	<source-processor name="PoshiSourceProcessor">
 		<check name="PoshiIndentationCheck" />
-		<check name="PoshiWhitespaceCheck" />
+		<check name="PoshiStylingCheck" />
+		<check name="WhitespaceCheck" />
 	</source-processor>
 	<source-processor name="PropertiesSourceProcessor">
 		<check name="PropertiesBuildIncludeDirsCheck">

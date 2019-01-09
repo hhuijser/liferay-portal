@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
 /**
  * @author Alan Huang
  */
-public class PoshiWhitespaceCheck extends WhitespaceCheck {
+public class PoshiStylingCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
@@ -35,7 +35,7 @@ public class PoshiWhitespaceCheck extends WhitespaceCheck {
 
 		content = _formatWhitespace(content);
 
-		return super.doProcess(fileName, absolutePath, content);
+		return content;
 	}
 
 	private String _formatWhitespace(String content) {

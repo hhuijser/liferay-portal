@@ -33,9 +33,23 @@ public class PoshiStylingCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
+		_checkLineBreak(fileName, content);
+
 		content = _formatWhitespace(content);
 
 		return content;
+	}
+
+	private void _checkLineBreak(String fileName, String content) {
+		Matcher matcher = _incorrectLineBreakPattern.matcher(content);
+
+		while (matcher.find()) {
+			if (!ToolsUtil.isInsideQuotes(content, matcher.start())) {
+				addMessage(
+					fileName, "There should be a line break after ';'",
+					getLineNumber(content, matcher.start()));
+			}
+		}
 	}
 
 	private String _formatWhitespace(String content) {
@@ -52,6 +66,8 @@ public class PoshiStylingCheck extends BaseFileCheck {
 		return content;
 	}
 
+	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
+		";[^\n]");
 	private static final Pattern _incorrectWhitespacePattern = Pattern.compile(
 		"\\)(\\s+);");
 

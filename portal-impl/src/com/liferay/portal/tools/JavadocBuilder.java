@@ -212,11 +212,10 @@ public class JavadocBuilder {
 			if (!curValue.startsWith(name)) {
 				continue;
 			}
-			else {
-				value = curValue;
 
-				break;
-			}
+			value = curValue;
+
+			break;
 		}
 
 		Element paramElement = methodElement.addElement("param");
@@ -276,11 +275,10 @@ public class JavadocBuilder {
 			if (!curValue.startsWith(name)) {
 				continue;
 			}
-			else {
-				value = curValue;
 
-				break;
-			}
+			value = curValue;
+
+			break;
 		}
 
 		Element throwsElement = methodElement.addElement("throws");

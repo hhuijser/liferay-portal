@@ -198,9 +198,8 @@ public class ProjectGenerator {
 
 							continue;
 						}
-						else {
-							return templateFile;
-						}
+
+						return templateFile;
 					}
 				}
 			}

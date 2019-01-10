@@ -343,11 +343,9 @@ public class NtlmFilter extends BaseFilter {
 
 				return;
 			}
-			else {
-				request.setAttribute(
-					NtlmWebKeys.NTLM_REMOTE_USER,
-					ntlmUserAccount.getUserName());
-			}
+
+			request.setAttribute(
+				NtlmWebKeys.NTLM_REMOTE_USER, ntlmUserAccount.getUserName());
 		}
 
 		processFilter(

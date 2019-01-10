@@ -421,22 +421,20 @@ public class JournalFolderLocalServiceImpl
 			return journalArticleFinder.countByG_F(
 				groupId, folderIds, queryDefinition);
 		}
-		else {
-			int start = 0;
-			int end = PropsValues.SQL_DATA_MAX_PARAMETERS;
 
-			int articlesCount = journalArticleFinder.countByG_F(
-				groupId, folderIds.subList(start, end), queryDefinition);
+		int start = 0;
+		int end = PropsValues.SQL_DATA_MAX_PARAMETERS;
 
-			List<Long> sublist = folderIds.subList(start, end);
+		int articlesCount = journalArticleFinder.countByG_F(
+			groupId, folderIds.subList(start, end), queryDefinition);
 
-			sublist.clear();
+		List<Long> sublist = folderIds.subList(start, end);
 
-			articlesCount += getFoldersAndArticlesCount(
-				groupId, folderIds, status);
+		sublist.clear();
 
-			return articlesCount;
-		}
+		articlesCount += getFoldersAndArticlesCount(groupId, folderIds, status);
+
+		return articlesCount;
 	}
 
 	@Override

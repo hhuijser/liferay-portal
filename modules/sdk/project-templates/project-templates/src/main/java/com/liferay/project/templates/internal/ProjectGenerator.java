@@ -195,9 +195,8 @@ public class ProjectGenerator {
 							if (templateVersion.equals(bundleVersion)) {
 								return templateFile;
 							}
-							else {
-								continue;
-							}
+
+							continue;
 						}
 						else {
 							return templateFile;

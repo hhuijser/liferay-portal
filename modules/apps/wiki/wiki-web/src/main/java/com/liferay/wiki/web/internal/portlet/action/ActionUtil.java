@@ -361,9 +361,8 @@ public class ActionUtil {
 
 				return getFirstVisiblePage(nodeId, portletRequest);
 			}
-			else {
-				throw nspe;
-			}
+
+			throw nspe;
 		}
 	}
 
@@ -409,9 +408,8 @@ public class ActionUtil {
 
 				return "/wiki/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		long categoryId = ParamUtil.getLong(renderRequest, "categoryId");

@@ -66,9 +66,8 @@ public abstract class GetFileEntryMVCRenderCommand implements MVCRenderCommand {
 
 				return "/document_library/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return getPath();

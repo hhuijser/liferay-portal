@@ -64,9 +64,8 @@ public class ImportPagesMVCRenderCommand implements MVCRenderCommand {
 
 				return "/wiki/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return "/wiki_admin/import_pages.jsp";

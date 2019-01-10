@@ -227,16 +227,15 @@ public class JavaIfStatementCheck extends IfStatementCheck {
 								ifClause, previousLine + "\n" + originalLine,
 								previousLine + StringPool.SPACE + trimmedLine);
 						}
-						else {
-							String newPreviousLine =
-								previousLine + StringPool.SPACE + linePart;
-							String newLine = StringUtil.replaceFirst(
-								originalLine, linePart, StringPool.BLANK);
 
-							return StringUtil.replace(
-								ifClause, previousLine + "\n" + originalLine,
-								newPreviousLine + "\n" + newLine);
-						}
+						String newPreviousLine =
+							previousLine + StringPool.SPACE + linePart;
+						String newLine = StringUtil.replaceFirst(
+							originalLine, linePart, StringPool.BLANK);
+
+						return StringUtil.replace(
+							ifClause, previousLine + "\n" + originalLine,
+							newPreviousLine + "\n" + newLine);
 					}
 				}
 			}

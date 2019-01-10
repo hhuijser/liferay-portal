@@ -259,16 +259,14 @@ public class EditPublishConfigurationMVCActionCommand
 				updatePublishLayoutRemoteExportImportConfiguration(
 					actionRequest);
 		}
-		else {
-			if (localPublishing) {
-				return ExportImportConfigurationHelper.
-					addPublishLayoutLocalExportImportConfiguration(
-						actionRequest);
-			}
 
+		if (localPublishing) {
 			return ExportImportConfigurationHelper.
-				addPublishLayoutRemoteExportImportConfiguration(actionRequest);
+				addPublishLayoutLocalExportImportConfiguration(actionRequest);
 		}
+
+		return ExportImportConfigurationHelper.
+			addPublishLayoutRemoteExportImportConfiguration(actionRequest);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

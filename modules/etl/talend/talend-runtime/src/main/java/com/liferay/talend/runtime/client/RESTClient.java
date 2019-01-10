@@ -299,16 +299,15 @@ public class RESTClient {
 		if (statusType.getFamily() == Response.Status.Family.SUCCESSFUL) {
 			return new ApioResult(statusCode, messageEntity);
 		}
-		else {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"{} request failed: {}. \n{}", httpMethod, statusCode,
-					messageEntity);
-			}
 
-			throw new ApioException(
-				statusCode, "Request failed: \n" + messageEntity);
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				"{} request failed: {}. \n{}", httpMethod, statusCode,
+				messageEntity);
 		}
+
+		throw new ApioException(
+			statusCode, "Request failed: \n" + messageEntity);
 	}
 
 	private String _jsonNodeToPrettyString(JsonNode jsonNode)

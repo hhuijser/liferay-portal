@@ -394,9 +394,8 @@ public class IMAPAccessor {
 					jxFolder.getFullName(), jxFolder.getName()
 				};
 			}
-			else {
-				throw new MailException(MailException.FOLDER_RENAME_FAILED);
-			}
+
+			throw new MailException(MailException.FOLDER_RENAME_FAILED);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);

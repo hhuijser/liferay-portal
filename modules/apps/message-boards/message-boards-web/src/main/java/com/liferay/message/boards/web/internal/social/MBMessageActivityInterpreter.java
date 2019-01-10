@@ -128,13 +128,12 @@ public class MBMessageActivityInterpreter
 
 				return "activity-message-boards-message-add-message-in";
 			}
-			else {
-				if (Validator.isNull(groupName)) {
-					return "activity-message-boards-message-reply-message";
-				}
 
-				return "activity-message-boards-message-reply-message-in";
+			if (Validator.isNull(groupName)) {
+				return "activity-message-boards-message-reply-message";
 			}
+
+			return "activity-message-boards-message-reply-message-in";
 		}
 		else if ((activityType == MBActivityKeys.REPLY_MESSAGE) &&
 				 (receiverUserId > 0)) {

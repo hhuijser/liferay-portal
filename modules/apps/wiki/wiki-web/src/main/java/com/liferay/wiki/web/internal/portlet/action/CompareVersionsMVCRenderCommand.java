@@ -69,9 +69,8 @@ public class CompareVersionsMVCRenderCommand implements MVCRenderCommand {
 
 				return "/wiki/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return "/wiki/compare_versions.jsp";

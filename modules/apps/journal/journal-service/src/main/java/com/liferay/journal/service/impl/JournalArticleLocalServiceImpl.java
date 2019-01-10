@@ -8783,18 +8783,17 @@ public class JournalArticleLocalServiceImpl
 
 				return i - 1;
 			}
-			else {
-				String suffix = StringPool.DASH + i;
 
-				String prefix = urlTitle;
+			String suffix = StringPool.DASH + i;
 
-				if (urlTitle.length() > suffix.length()) {
-					prefix = urlTitle.substring(
-						0, urlTitle.length() - suffix.length());
-				}
+			String prefix = urlTitle;
 
-				urlTitle = prefix + suffix;
+			if (urlTitle.length() > suffix.length()) {
+				prefix = urlTitle.substring(
+					0, urlTitle.length() - suffix.length());
 			}
+
+			urlTitle = prefix + suffix;
 		}
 	}
 

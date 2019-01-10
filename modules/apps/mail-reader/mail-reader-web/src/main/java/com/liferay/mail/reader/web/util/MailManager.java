@@ -295,17 +295,15 @@ public class MailManager {
 				return createJSONResult(
 					"success", "drafts-have-been-discarded");
 			}
-			else {
-				Mailbox mailbox = _getMailbox(
-					_user,
-					AccountLocalServiceUtil.getAccount(message.getAccountId()),
-					_passwordRetriever.getPassword(message.getAccountId()));
 
-				mailbox.deleteMessages(message.getFolderId(), messageIds);
+			Mailbox mailbox = _getMailbox(
+				_user,
+				AccountLocalServiceUtil.getAccount(message.getAccountId()),
+				_passwordRetriever.getPassword(message.getAccountId()));
 
-				return createJSONResult(
-					"success", "messages-have-been-deleted");
-			}
+			mailbox.deleteMessages(message.getFolderId(), messageIds);
+
+			return createJSONResult("success", "messages-have-been-deleted");
 		}
 		catch (MailException me) {
 			_log.error(me, me);

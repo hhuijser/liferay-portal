@@ -77,14 +77,13 @@ public class GoogleAutoLogin extends BaseAutoLogin {
 			return _userLocalService.getUserByEmailAddress(
 				companyId, emailAddress);
 		}
-		else {
-			String googleUserId = GetterUtil.getString(
-				(String)session.getAttribute(GoogleWebKeys.GOOGLE_USER_ID));
 
-			if (Validator.isNotNull(googleUserId)) {
-				return _userLocalService.getUserByGoogleUserId(
-					companyId, googleUserId);
-			}
+		String googleUserId = GetterUtil.getString(
+			(String)session.getAttribute(GoogleWebKeys.GOOGLE_USER_ID));
+
+		if (Validator.isNotNull(googleUserId)) {
+			return _userLocalService.getUserByGoogleUserId(
+				companyId, googleUserId);
 		}
 
 		return null;

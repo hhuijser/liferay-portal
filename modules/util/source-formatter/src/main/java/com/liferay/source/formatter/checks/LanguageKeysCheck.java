@@ -363,9 +363,8 @@ public class LanguageKeysCheck extends BaseFileCheck {
 						if (match.startsWith("names")) {
 							return StringUtil.split(languageKey);
 						}
-						else {
-							return new String[] {languageKey};
-						}
+
+						return new String[] {languageKey};
 					}
 
 					sb.append(match.charAt(i));

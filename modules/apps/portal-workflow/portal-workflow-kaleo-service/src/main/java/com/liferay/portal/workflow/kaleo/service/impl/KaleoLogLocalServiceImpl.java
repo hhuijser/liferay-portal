@@ -356,12 +356,11 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			return kaleoLogPersistence.findByKaleoInstanceId(
 				kaleoInstanceId, start, end, orderByComparator);
 		}
-		else {
-			DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
-				kaleoInstanceId, logTypes);
 
-			return dynamicQuery(dynamicQuery, start, end, orderByComparator);
-		}
+		DynamicQuery dynamicQuery = buildKaleoInstanceDynamicQuery(
+			kaleoInstanceId, logTypes);
+
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	@Override
@@ -387,12 +386,11 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			return kaleoLogPersistence.findByKaleoTaskInstanceTokenId(
 				kaleoTaskInstanceTokenId, start, end, orderByComparator);
 		}
-		else {
-			DynamicQuery dynamicQuery = buildKaleoTaskInstanceTokenDynamicQuery(
-				kaleoTaskInstanceTokenId, logTypes);
 
-			return dynamicQuery(dynamicQuery, start, end, orderByComparator);
-		}
+		DynamicQuery dynamicQuery = buildKaleoTaskInstanceTokenDynamicQuery(
+			kaleoTaskInstanceTokenId, logTypes);
+
+		return dynamicQuery(dynamicQuery, start, end, orderByComparator);
 	}
 
 	@Override
@@ -403,12 +401,11 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			return kaleoLogPersistence.countByKaleoTaskInstanceTokenId(
 				kaleoTaskInstanceTokenId);
 		}
-		else {
-			DynamicQuery dynamicQuery = buildKaleoTaskInstanceTokenDynamicQuery(
-				kaleoTaskInstanceTokenId, logTypes);
 
-			return (int)dynamicQueryCount(dynamicQuery);
-		}
+		DynamicQuery dynamicQuery = buildKaleoTaskInstanceTokenDynamicQuery(
+			kaleoTaskInstanceTokenId, logTypes);
+
+		return (int)dynamicQueryCount(dynamicQuery);
 	}
 
 	protected void addLogTypesJunction(

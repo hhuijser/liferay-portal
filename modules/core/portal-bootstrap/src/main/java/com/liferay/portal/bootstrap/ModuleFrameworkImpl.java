@@ -1080,13 +1080,12 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 					if (bundleVersion.equals(curBundleVersion)) {
 						return bundle;
 					}
-					else {
-						bundle.uninstall();
 
-						_refreshBundles(Collections.singletonList(bundle));
+					bundle.uninstall();
 
-						return null;
-					}
+					_refreshBundles(Collections.singletonList(bundle));
+
+					return null;
 				}
 			}
 

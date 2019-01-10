@@ -212,9 +212,8 @@ public class UpgradeClient {
 
 					break;
 				}
-				else {
-					System.out.println(line);
-				}
+
+				System.out.println(line);
 			}
 
 			System.out.flush();

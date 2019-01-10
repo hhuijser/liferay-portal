@@ -150,15 +150,14 @@ public class UnsyncBufferedWriter extends Writer {
 
 				break;
 			}
-			else {
-				int copyEnd = x + leftFreeSpace;
 
-				string.getChars(x, copyEnd, _buffer, _count);
+			int copyEnd = x + leftFreeSpace;
 
-				_count += leftFreeSpace;
+			string.getChars(x, copyEnd, _buffer, _count);
 
-				x = copyEnd;
-			}
+			_count += leftFreeSpace;
+
+			x = copyEnd;
 		}
 	}
 

@@ -3184,10 +3184,9 @@ public class DLAppServiceImpl extends DLAppServiceBaseImpl {
 			if (next == null) {
 				break;
 			}
-			else {
-				curSrcFolder = next[0];
-				curDestFolder = next[1];
-			}
+
+			curSrcFolder = next[0];
+			curDestFolder = next[1];
 		}
 
 		TransactionCommitCallbackUtil.registerCallback(

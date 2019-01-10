@@ -52,34 +52,33 @@ public class IdReplacer {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x + begin.length()));
 
-				String oldString = s.substring(x + begin.length(), y);
+			sb.append(s.substring(pos, x + begin.length()));
 
-				if (Validator.isNotNull(oldString)) {
-					Long oldValue = Long.valueOf(GetterUtil.getLong(oldString));
+			String oldString = s.substring(x + begin.length(), y);
 
-					Long newValue = null;
+			if (Validator.isNotNull(oldString)) {
+				Long oldValue = Long.valueOf(GetterUtil.getLong(oldString));
 
-					try {
-						newValue = (Long)valueMapper.getNewValue(oldValue);
+				Long newValue = null;
+
+				try {
+					newValue = (Long)valueMapper.getNewValue(oldValue);
+				}
+				catch (StagnantRowException sre) {
+					if (_log.isWarnEnabled()) {
+						_log.warn(sre, sre);
 					}
-					catch (StagnantRowException sre) {
-						if (_log.isWarnEnabled()) {
-							_log.warn(sre, sre);
-						}
-					}
-
-					if (newValue == null) {
-						newValue = oldValue;
-					}
-
-					sb.append(newValue);
 				}
 
-				pos = y;
+				if (newValue == null) {
+					newValue = oldValue;
+				}
+
+				sb.append(newValue);
 			}
+
+			pos = y;
 		}
 
 		return sb.toString();
@@ -109,31 +108,30 @@ public class IdReplacer {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x + begin.length()));
 
-				Long oldValue = Long.valueOf(
-					GetterUtil.getLong(s.substring(x + begin.length(), y)));
+			sb.append(s.substring(pos, x + begin.length()));
 
-				Long newValue = null;
+			Long oldValue = Long.valueOf(
+				GetterUtil.getLong(s.substring(x + begin.length(), y)));
 
-				try {
-					newValue = (Long)valueMapper.getNewValue(oldValue);
-				}
-				catch (StagnantRowException sre) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(sre, sre);
-					}
-				}
+			Long newValue = null;
 
-				if (newValue == null) {
-					newValue = oldValue;
-				}
-
-				sb.append(newValue);
-
-				pos = y;
+			try {
+				newValue = (Long)valueMapper.getNewValue(oldValue);
 			}
+			catch (StagnantRowException sre) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(sre, sre);
+				}
+			}
+
+			if (newValue == null) {
+				newValue = oldValue;
+			}
+
+			sb.append(newValue);
+
+			pos = y;
 		}
 
 		return sb.toString();

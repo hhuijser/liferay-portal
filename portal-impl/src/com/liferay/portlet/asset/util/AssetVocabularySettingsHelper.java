@@ -126,13 +126,12 @@ public class AssetVocabularySettingsHelper {
 
 				break;
 			}
-			else {
-				if (required) {
-					requiredClassNameIds.add(classNameIdAndClassTypePK);
-				}
 
-				selectedClassNameIds.add(classNameIdAndClassTypePK);
+			if (required) {
+				requiredClassNameIds.add(classNameIdAndClassTypePK);
 			}
+
+			selectedClassNameIds.add(classNameIdAndClassTypePK);
 		}
 
 		_properties.setProperty(

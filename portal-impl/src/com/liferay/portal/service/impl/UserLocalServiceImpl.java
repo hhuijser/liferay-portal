@@ -2932,9 +2932,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			throw new NoSuchUserException(sb.toString());
 		}
-		else {
-			return users.get(0);
-		}
+
+		return users.get(0);
 	}
 
 	/**

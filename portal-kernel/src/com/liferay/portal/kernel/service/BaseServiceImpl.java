@@ -94,12 +94,11 @@ public abstract class BaseServiceImpl implements BaseService {
 		if (Validator.isNull(name)) {
 			throw new PrincipalException("Principal is null");
 		}
-		else {
-			for (String anonymousName : ANONYMOUS_NAMES) {
-				if (StringUtil.equalsIgnoreCase(name, anonymousName)) {
-					throw new PrincipalException(
-						"Principal cannot be " + anonymousName);
-				}
+
+		for (String anonymousName : ANONYMOUS_NAMES) {
+			if (StringUtil.equalsIgnoreCase(name, anonymousName)) {
+				throw new PrincipalException(
+					"Principal cannot be " + anonymousName);
 			}
 		}
 

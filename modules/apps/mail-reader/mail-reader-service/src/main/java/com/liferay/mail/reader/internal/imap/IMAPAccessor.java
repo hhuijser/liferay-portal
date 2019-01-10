@@ -106,15 +106,14 @@ public class IMAPAccessor {
 			if (jxFolder.exists()) {
 				throw new MailException(MailException.FOLDER_ALREADY_EXISTS);
 			}
-			else {
-				if (jxFolder.create(Folder.HOLDS_MESSAGES)) {
-					return new String[] {
-						jxFolder.getFullName(), jxFolder.getName()
-					};
-				}
 
-				throw new MailException(MailException.FOLDER_CREATE_FAILED);
+			if (jxFolder.create(Folder.HOLDS_MESSAGES)) {
+				return new String[] {
+					jxFolder.getFullName(), jxFolder.getName()
+				};
 			}
+
+			throw new MailException(MailException.FOLDER_CREATE_FAILED);
 		}
 		catch (MessagingException me) {
 			throw new MailException(me);

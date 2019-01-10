@@ -87,9 +87,8 @@ public class ProxyRequest implements Externalizable {
 			if (t instanceof Exception) {
 				throw (Exception)t;
 			}
-			else {
-				throw new Exception(t);
-			}
+
+			throw new Exception(t);
 		}
 	}
 

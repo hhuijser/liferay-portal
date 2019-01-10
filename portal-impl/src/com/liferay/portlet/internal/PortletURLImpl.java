@@ -670,48 +670,47 @@ public class PortletURLImpl
 		if (params == null) {
 			throw new IllegalArgumentException();
 		}
+
+		Map<String, String[]> newParams = new LinkedHashMap<>();
+
+		for (Map.Entry<String, String[]> entry : params.entrySet()) {
+			try {
+				String key = entry.getKey();
+
+				if (key == null) {
+					throw new IllegalArgumentException();
+				}
+
+				String[] value = entry.getValue();
+
+				if (value == null) {
+					throw new IllegalArgumentException();
+				}
+
+				newParams.put(key, value);
+			}
+			catch (ClassCastException cce) {
+				throw new IllegalArgumentException(cce);
+			}
+		}
+
+		if (_portletSpecMajorVersion >= 3) {
+			_mutableRenderParametersImpl.clear();
+
+			if (_mutableActionParametersImpl != null) {
+				_mutableActionParametersImpl.clear();
+			}
+
+			if (_mutableResourceParametersImpl != null) {
+				_mutableResourceParametersImpl.clear();
+			}
+
+			for (Map.Entry<String, String[]> entry : newParams.entrySet()) {
+				setParameter(entry.getKey(), entry.getValue());
+			}
+		}
 		else {
-			Map<String, String[]> newParams = new LinkedHashMap<>();
-
-			for (Map.Entry<String, String[]> entry : params.entrySet()) {
-				try {
-					String key = entry.getKey();
-
-					if (key == null) {
-						throw new IllegalArgumentException();
-					}
-
-					String[] value = entry.getValue();
-
-					if (value == null) {
-						throw new IllegalArgumentException();
-					}
-
-					newParams.put(key, value);
-				}
-				catch (ClassCastException cce) {
-					throw new IllegalArgumentException(cce);
-				}
-			}
-
-			if (_portletSpecMajorVersion >= 3) {
-				_mutableRenderParametersImpl.clear();
-
-				if (_mutableActionParametersImpl != null) {
-					_mutableActionParametersImpl.clear();
-				}
-
-				if (_mutableResourceParametersImpl != null) {
-					_mutableResourceParametersImpl.clear();
-				}
-
-				for (Map.Entry<String, String[]> entry : newParams.entrySet()) {
-					setParameter(entry.getKey(), entry.getValue());
-				}
-			}
-			else {
-				_portletURLParameterMap = newParams;
-			}
+			_portletURLParameterMap = newParams;
 		}
 
 		clearCache();

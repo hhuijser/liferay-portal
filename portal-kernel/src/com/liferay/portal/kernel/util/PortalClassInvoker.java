@@ -58,9 +58,8 @@ public class PortalClassInvoker {
 			if (cause instanceof Error) {
 				throw new SystemException(ite);
 			}
-			else {
-				throw (Exception)cause;
-			}
+
+			throw (Exception)cause;
 		}
 		finally {
 			currentThread.setContextClassLoader(contextClassLoader);

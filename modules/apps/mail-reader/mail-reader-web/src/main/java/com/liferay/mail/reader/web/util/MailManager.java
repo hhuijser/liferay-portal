@@ -801,9 +801,8 @@ public class MailManager {
 				if (Validator.isNull(oldPassword)) {
 					throw new MailException("no password");
 				}
-				else {
-					password = oldPassword;
-				}
+
+				password = oldPassword;
 			}
 
 			Mailbox mailbox = _getMailbox(

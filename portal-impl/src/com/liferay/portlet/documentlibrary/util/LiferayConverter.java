@@ -211,9 +211,8 @@ public abstract class LiferayConverter {
 					throw new RuntimeException(
 						"Unable to decode audio stream " + streamIndex);
 				}
-				else {
-					stopDecoding = true;
-				}
+
+				stopDecoding = true;
 			}
 
 			updateAudioTimeStamp(inputIAudioSample, timeStampOffset);
@@ -640,9 +639,8 @@ public abstract class LiferayConverter {
 			if (writeContainer) {
 				throw new RuntimeException("Unable to open output URL");
 			}
-			else {
-				throw new RuntimeException("Unable to open input URL");
-			}
+
+			throw new RuntimeException("Unable to open input URL");
 		}
 	}
 

@@ -275,23 +275,22 @@ public class AdvancedFileSystemStore extends FileSystemStore {
 
 			return new File(pathSB.toString());
 		}
-		else {
-			File fileNameDir = getDirNameDir(companyId, repositoryId, fileName);
 
-			String fileNameFragment = FileUtil.stripExtension(
-				fileName.substring(pos + 1));
+		File fileNameDir = getDirNameDir(companyId, repositoryId, fileName);
 
-			StringBundler pathSB = new StringBundler(6);
+		String fileNameFragment = FileUtil.stripExtension(
+			fileName.substring(pos + 1));
 
-			pathSB.append(fileNameDir);
-			pathSB.append(StringPool.SLASH);
-			pathSB.append(fileNameFragment);
-			pathSB.append(StringPool.UNDERLINE);
-			pathSB.append(version);
-			pathSB.append(ext);
+		StringBundler pathSB = new StringBundler(6);
 
-			return new File(pathSB.toString());
-		}
+		pathSB.append(fileNameDir);
+		pathSB.append(StringPool.SLASH);
+		pathSB.append(fileNameFragment);
+		pathSB.append(StringPool.UNDERLINE);
+		pathSB.append(version);
+		pathSB.append(ext);
+
+		return new File(pathSB.toString());
 	}
 
 	@Override

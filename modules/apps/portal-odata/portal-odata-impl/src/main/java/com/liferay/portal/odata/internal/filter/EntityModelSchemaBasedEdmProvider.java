@@ -199,29 +199,27 @@ public class EntityModelSchemaBasedEdmProvider extends SchemaBasedEdmProvider {
 
 			return Optional.of(csdlProperty);
 		}
-		else {
-			Optional<FullQualifiedName> fullQualifiedNameOptional =
-				_getFullQualifiedName(entityField);
 
-			return fullQualifiedNameOptional.map(
-				fullQualifiedName -> {
-					if (Objects.equals(
-							entityField.getType(),
-							EntityField.Type.COLLECTION)) {
+		Optional<FullQualifiedName> fullQualifiedNameOptional =
+			_getFullQualifiedName(entityField);
 
-						return Optional.of(
-							_createCollectionCsdlProperty(
-								entityField, fullQualifiedName));
-					}
+		return fullQualifiedNameOptional.map(
+			fullQualifiedName -> {
+				if (Objects.equals(
+						entityField.getType(), EntityField.Type.COLLECTION)) {
 
 					return Optional.of(
-						_createPrimitiveCsdlProperty(
+						_createCollectionCsdlProperty(
 							entityField, fullQualifiedName));
 				}
-			).orElse(
-				Optional.empty()
-			);
-		}
+
+				return Optional.of(
+					_createPrimitiveCsdlProperty(
+						entityField, fullQualifiedName));
+			}
+		).orElse(
+			Optional.empty()
+		);
 	}
 
 	private CsdlSchema _createCsdlSchema(

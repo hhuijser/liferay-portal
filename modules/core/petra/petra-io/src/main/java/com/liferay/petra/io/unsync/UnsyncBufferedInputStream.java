@@ -193,17 +193,15 @@ public class UnsyncBufferedInputStream extends UnsyncFilterInputStream {
 
 				return inputStream.skip(skip);
 			}
-			else {
 
-				// Mark required, save the skipped data
+			// Mark required, save the skipped data
 
-				_fillInBuffer();
+			_fillInBuffer();
 
-				available = _firstInvalidIndex - _index;
+			available = _firstInvalidIndex - _index;
 
-				if (available <= 0) {
-					return 0;
-				}
+			if (available <= 0) {
+				return 0;
 			}
 		}
 
@@ -290,18 +288,16 @@ public class UnsyncBufferedInputStream extends UnsyncFilterInputStream {
 
 				return inputStream.read(bytes, offset, length);
 			}
-			else {
 
-				// Mark is required, has to read through the buffer to remember
-				// data
+			// Mark is required, has to read through the buffer to remember
+			// data
 
-				_fillInBuffer();
+			_fillInBuffer();
 
-				available = _firstInvalidIndex - _index;
+			available = _firstInvalidIndex - _index;
 
-				if (available <= 0) {
-					return -1;
-				}
+			if (available <= 0) {
+				return -1;
 			}
 		}
 

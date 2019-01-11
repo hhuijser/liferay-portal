@@ -624,15 +624,14 @@ public class SubscriptionSender implements Serializable {
 
 			return;
 		}
-		else {
-			if (_log.isDebugEnabled()) {
-				_log.debug(
-					"Add " + emailAddress +
-						" to the list of users who have received an email");
-			}
 
-			_sentEmailAddresses.add(emailAddress);
+		if (_log.isDebugEnabled()) {
+			_log.debug(
+				"Add " + emailAddress +
+					" to the list of users who have received an email");
 		}
+
+		_sentEmailAddresses.add(emailAddress);
 
 		if (!user.isActive()) {
 			if (_log.isDebugEnabled()) {

@@ -104,13 +104,12 @@ public class DateSearchEntry extends TextSearchEntry {
 
 			return "x-ago-by-x";
 		}
-		else {
-			if (_userName == null) {
-				return "within-x";
-			}
 
-			return "within-x-by-x";
+		if (_userName == null) {
+			return "within-x";
 		}
+
+		return "within-x-by-x";
 	}
 
 	private long _getTimeDelta() {

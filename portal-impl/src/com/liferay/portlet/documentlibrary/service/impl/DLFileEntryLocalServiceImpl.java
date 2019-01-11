@@ -869,17 +869,16 @@ public class DLFileEntryLocalServiceImpl
 						version, " for file entry ",
 						String.valueOf(fileEntryId)));
 			}
-			else {
-				int count = dlFileVersionPersistence.countByF_S(
-					fileEntryId, WorkflowConstants.STATUS_APPROVED);
 
-				if (count <= 1) {
-					throw new InvalidFileVersionException(
-						StringBundler.concat(
-							"Unable to delete the only approved file version ",
-							version, " for file entry ",
-							String.valueOf(fileEntryId)));
-				}
+			int count = dlFileVersionPersistence.countByF_S(
+				fileEntryId, WorkflowConstants.STATUS_APPROVED);
+
+			if (count <= 1) {
+				throw new InvalidFileVersionException(
+					StringBundler.concat(
+						"Unable to delete the only approved file version ",
+						version, " for file entry ",
+						String.valueOf(fileEntryId)));
 			}
 
 			dlFileVersionPersistence.remove(dlFileVersion);

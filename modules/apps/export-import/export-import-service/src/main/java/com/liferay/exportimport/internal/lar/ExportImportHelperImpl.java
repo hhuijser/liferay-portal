@@ -681,11 +681,10 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 
 				break;
 			}
-			else {
-				missingParentLayouts.add(parentLayout);
 
-				parentLayoutId = parentLayout.getParentLayoutId();
-			}
+			missingParentLayouts.add(parentLayout);
+
+			parentLayoutId = parentLayout.getParentLayoutId();
 		}
 
 		return missingParentLayouts;

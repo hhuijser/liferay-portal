@@ -66,9 +66,8 @@ public class PublishLayoutsSimpleMVCRenderCommand implements MVCRenderCommand {
 
 				return "/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return "/publish/simple/publish_layouts_simple.jsp";

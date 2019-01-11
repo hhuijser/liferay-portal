@@ -96,11 +96,10 @@ public class FolderArticleModifiedDateComparator
 
 			return article.getModifiedDate();
 		}
-		else {
-			JournalFolder folder = (JournalFolder)object;
 
-			return folder.getModifiedDate();
-		}
+		JournalFolder folder = (JournalFolder)object;
+
+		return folder.getModifiedDate();
 	}
 
 	private final boolean _ascending;

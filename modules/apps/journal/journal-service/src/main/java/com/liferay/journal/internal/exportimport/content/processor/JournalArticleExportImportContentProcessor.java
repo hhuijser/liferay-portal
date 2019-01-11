@@ -413,18 +413,17 @@ public class JournalArticleExportImportContentProcessor
 
 				throw eicpe;
 			}
-			else {
-				String journalArticleReference =
-					"[$journal-article-reference=" + classPK + "$]";
 
-				JSONObject jsonObject = _jsonFactory.createJSONObject();
+			String journalArticleReference =
+				"[$journal-article-reference=" + classPK + "$]";
 
-				jsonObject.put("className", JournalArticle.class.getName());
-				jsonObject.put("classPK", journalArticle.getResourcePrimKey());
+			JSONObject jsonObject = _jsonFactory.createJSONObject();
 
-				content = StringUtil.replace(
-					content, journalArticleReference, jsonObject.toString());
-			}
+			jsonObject.put("className", JournalArticle.class.getName());
+			jsonObject.put("classPK", journalArticle.getResourcePrimKey());
+
+			content = StringUtil.replace(
+				content, journalArticleReference, jsonObject.toString());
 		}
 
 		return content;

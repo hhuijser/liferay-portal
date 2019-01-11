@@ -54,13 +54,12 @@ public class PasswordTrackerLocalServiceImpl
 
 			return false;
 		}
-		else {
-			if (currentPwd.equals(newClearTextPwd)) {
-				return true;
-			}
 
-			return false;
+		if (currentPwd.equals(newClearTextPwd)) {
+			return true;
 		}
+
+		return false;
 	}
 
 	@Override

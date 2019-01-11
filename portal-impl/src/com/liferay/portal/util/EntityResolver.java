@@ -100,9 +100,8 @@ public class EntityResolver implements org.xml.sax.EntityResolver {
 
 					return inputSource;
 				}
-				else {
-					throw new XNIException("Invalid system id " + systemId);
-				}
+
+				throw new XNIException("Invalid system id " + systemId);
 			}
 		}
 

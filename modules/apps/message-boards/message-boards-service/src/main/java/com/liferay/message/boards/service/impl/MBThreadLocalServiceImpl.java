@@ -322,15 +322,14 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 			return mbThreadFinder.findByS_G_U_C(
 				groupId, userId, null, queryDefinition);
 		}
-		else {
-			if (includeAnonymous) {
-				return mbThreadFinder.findByG_U_C(
-					groupId, userId, null, queryDefinition);
-			}
 
-			return mbThreadFinder.findByG_U_C_A(
-				groupId, userId, null, false, queryDefinition);
+		if (includeAnonymous) {
+			return mbThreadFinder.findByG_U_C(
+				groupId, userId, null, queryDefinition);
 		}
+
+		return mbThreadFinder.findByG_U_C_A(
+			groupId, userId, null, false, queryDefinition);
 	}
 
 	@Override
@@ -379,15 +378,14 @@ public class MBThreadLocalServiceImpl extends MBThreadLocalServiceBaseImpl {
 			return mbThreadFinder.countByS_G_U_C(
 				groupId, userId, null, queryDefinition);
 		}
-		else {
-			if (includeAnonymous) {
-				return mbThreadFinder.countByG_U_C(
-					groupId, userId, null, queryDefinition);
-			}
 
-			return mbThreadFinder.countByG_U_C_A(
-				groupId, userId, null, false, queryDefinition);
+		if (includeAnonymous) {
+			return mbThreadFinder.countByG_U_C(
+				groupId, userId, null, queryDefinition);
 		}
+
+		return mbThreadFinder.countByG_U_C_A(
+			groupId, userId, null, false, queryDefinition);
 	}
 
 	@Override

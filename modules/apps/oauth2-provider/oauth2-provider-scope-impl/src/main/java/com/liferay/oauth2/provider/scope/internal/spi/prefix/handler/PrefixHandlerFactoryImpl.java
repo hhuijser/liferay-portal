@@ -156,25 +156,24 @@ public class PrefixHandlerFactoryImpl implements PrefixHandlerFactory {
 		if (indexOfSpace == -1) {
 			return serviceProperty;
 		}
-		else {
-			String defaultsKey = serviceProperty.substring(0, indexOfSpace);
 
-			Properties modifiers = new Properties();
+		String defaultsKey = serviceProperty.substring(0, indexOfSpace);
 
-			try {
-				modifiers.load(
-					new StringReader(serviceProperty.substring(indexOfSpace)));
-			}
-			catch (IOException ioe) {
-				throw new IllegalArgumentException(ioe);
-			}
+		Properties modifiers = new Properties();
 
-			_defaults.put(
-				defaultsKey,
-				GetterUtil.getString(modifiers.getProperty("default")));
-
-			return defaultsKey;
+		try {
+			modifiers.load(
+				new StringReader(serviceProperty.substring(indexOfSpace)));
 		}
+		catch (IOException ioe) {
+			throw new IllegalArgumentException(ioe);
+		}
+
+		_defaults.put(
+			defaultsKey,
+			GetterUtil.getString(modifiers.getProperty("default")));
+
+		return defaultsKey;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

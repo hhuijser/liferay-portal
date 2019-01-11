@@ -92,9 +92,8 @@ public class DDMRESTDataProvider implements DDMDataProvider {
 					DDMDataProviderResponseStatus.SERVICE_UNAVAILABLE
 				).build();
 			}
-			else {
-				throw new DDMDataProviderException(he);
-			}
+
+			throw new DDMDataProviderException(he);
 		}
 		catch (Exception e) {
 			throw new DDMDataProviderException(e);

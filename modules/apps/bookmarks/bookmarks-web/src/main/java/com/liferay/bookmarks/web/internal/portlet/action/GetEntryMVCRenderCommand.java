@@ -48,9 +48,8 @@ public abstract class GetEntryMVCRenderCommand implements MVCRenderCommand {
 
 				return "/bookmarks/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return getPath();

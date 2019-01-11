@@ -433,17 +433,16 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 		if (!pages.isEmpty()) {
 			return pages.get(0);
 		}
-		else {
-			StringBundler sb = new StringBundler(5);
 
-			sb.append("{nodeId=");
-			sb.append(nodeId);
-			sb.append(", title=");
-			sb.append(title);
-			sb.append("}");
+		StringBundler sb = new StringBundler(5);
 
-			throw new NoSuchPageException(sb.toString());
-		}
+		sb.append("{nodeId=");
+		sb.append(nodeId);
+		sb.append(", title=");
+		sb.append(title);
+		sb.append("}");
+
+		throw new NoSuchPageException(sb.toString());
 	}
 
 	@Override

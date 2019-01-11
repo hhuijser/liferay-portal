@@ -64,9 +64,8 @@ public class EditNodeMVCRenderCommand implements MVCRenderCommand {
 
 				return "/wiki/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return "/wiki_admin/edit_node.jsp";

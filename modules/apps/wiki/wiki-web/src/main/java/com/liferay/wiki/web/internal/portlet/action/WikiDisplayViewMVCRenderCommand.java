@@ -131,12 +131,11 @@ public class WikiDisplayViewMVCRenderCommand implements MVCRenderCommand {
 			return _wikiNodeService.getNode(
 				themeDisplay.getScopeGroupId(), nodeName);
 		}
-		else {
-			long nodeId = GetterUtil.getLong(
-				portletPreferences.getValue("nodeId", StringPool.BLANK));
 
-			return _wikiNodeService.getNode(nodeId);
-		}
+		long nodeId = GetterUtil.getLong(
+			portletPreferences.getValue("nodeId", StringPool.BLANK));
+
+		return _wikiNodeService.getNode(nodeId);
 	}
 
 	@Reference(unbind = "-")

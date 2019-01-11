@@ -72,9 +72,8 @@ public abstract class BaseViewPageMVCRenderCommand implements MVCRenderCommand {
 
 				return "/wiki/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return getPath();

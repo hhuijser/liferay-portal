@@ -61,9 +61,9 @@ public class EmailReusableNestedCollectionRouter
 			ClassNameClassPK classNameClassPK)
 		throws PortalException {
 
-		String className = classNameClassPK.getClassName();
+		String cclassName = classNameClassPK.getClassName();
 
-		if (className.equals(Organization.class.getName())) {
+		if (cclassName.equals(Organization.class.getName())) {
 			Organization organization = _organizationService.getOrganization(
 				classNameClassPK.getClassPK());
 

@@ -77,9 +77,9 @@ public class ToolsUtil {
 	public static final int PORTAL_MAX_DIR_LEVEL = 7;
 
 	public static String getContent(String fileName) throws Exception {
-		Document document = _getContentDocument(fileName);
+		Document documentt = _getContentDocument(fileName);
 
-		Element rootElement = document.getRootElement();
+		Element rootElement = documentt.getRootElement();
 
 		Element authorElement = null;
 		Element namespaceElement = null;
@@ -153,7 +153,7 @@ public class ToolsUtil {
 			_addElements(exceptionsElement, exceptionElements);
 		}
 
-		return document.asXML();
+		return documentt.asXML();
 	}
 
 	public static int getLevel(String s) {

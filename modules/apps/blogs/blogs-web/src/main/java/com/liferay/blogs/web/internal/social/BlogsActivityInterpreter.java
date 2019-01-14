@@ -127,13 +127,12 @@ public class BlogsActivityInterpreter extends BaseSocialActivityInterpreter {
 
 				return "activity-blogs-entry-schedule-entry-in";
 			}
-			else {
-				if (Validator.isNull(groupName)) {
-					return "activity-blogs-entry-add-entry";
-				}
 
-				return "activity-blogs-entry-add-entry-in";
+			if (Validator.isNull(groupName)) {
+				return "activity-blogs-entry-add-entry";
 			}
+
+			return "activity-blogs-entry-add-entry-in";
 		}
 		else if (activityType == SocialActivityConstants.TYPE_MOVE_TO_TRASH) {
 			if (Validator.isNull(groupName)) {

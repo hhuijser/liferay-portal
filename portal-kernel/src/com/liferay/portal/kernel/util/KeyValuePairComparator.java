@@ -46,16 +46,15 @@ public class KeyValuePairComparator implements Comparator<KeyValuePair> {
 
 			return -key1.compareTo(key2);
 		}
-		else {
-			String value1 = kvp1.getValue();
-			String value2 = kvp2.getValue();
 
-			if (_ascending) {
-				return value1.compareTo(value2);
-			}
+		String value1 = kvp1.getValue();
+		String value2 = kvp2.getValue();
 
-			return -value1.compareTo(value2);
+		if (_ascending) {
+			return value1.compareTo(value2);
 		}
+
+		return -value1.compareTo(value2);
 	}
 
 	private final boolean _ascending;

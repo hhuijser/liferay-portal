@@ -156,13 +156,12 @@ public class VerifySessionFactoryWrapper implements SessionFactory {
 
 				return true;
 			}
-			else {
-				_logFailure(
-					currentSessionFactoryImplementor,
-					targetSessionFactoryImplementor);
 
-				return false;
-			}
+			_logFailure(
+				currentSessionFactoryImplementor,
+				targetSessionFactoryImplementor);
+
+			return false;
 		}
 
 		if (platformTransactionManager instanceof PortletTransactionManager) {
@@ -178,13 +177,12 @@ public class VerifySessionFactoryWrapper implements SessionFactory {
 
 				return true;
 			}
-			else {
-				_logFailure(
-					currentSessionFactoryImplementor,
-					targetSessionFactoryImplementor);
 
-				return false;
-			}
+			_logFailure(
+				currentSessionFactoryImplementor,
+				targetSessionFactoryImplementor);
+
+			return false;
 		}
 
 		throw new IllegalStateException(

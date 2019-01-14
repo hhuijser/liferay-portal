@@ -956,11 +956,10 @@ public class JavadocFormatter {
 			if (!curValue.startsWith(name)) {
 				continue;
 			}
-			else {
-				value = curValue;
 
-				break;
-			}
+			value = curValue;
+
+			break;
 		}
 
 		Element throwsElement = executableElement.addElement("throws");

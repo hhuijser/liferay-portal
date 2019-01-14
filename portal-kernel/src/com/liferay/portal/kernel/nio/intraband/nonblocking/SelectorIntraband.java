@@ -269,39 +269,37 @@ public class SelectorIntraband extends BaseIntraband {
 
 				return selectionKeyRegistrationReference;
 			}
-			else {
 
-				// Register channels with zero interest, no dispatch will happen
-				// before channel contexts are ready. This ensures thread safe
-				// publication for ChannelContext#_registrationReference.
+			// Register channels with zero interest, no dispatch will happen
+			// before channel contexts are ready. This ensures thread safe
+			// publication for ChannelContext#_registrationReference.
 
-				SelectionKey readSelectionKey = _readSelectableChannel.register(
-					selector, 0);
+			SelectionKey readSelectionKey = _readSelectableChannel.register(
+				selector, 0);
 
-				SelectionKey writeSelectionKey =
-					_writeSelectableChannel.register(selector, 0);
+			SelectionKey writeSelectionKey = _writeSelectableChannel.register(
+				selector, 0);
 
-				SelectionKeyRegistrationReference
-					selectionKeyRegistrationReference =
-						new SelectionKeyRegistrationReference(
-							SelectorIntraband.this, readSelectionKey,
-							writeSelectionKey);
+			SelectionKeyRegistrationReference
+				selectionKeyRegistrationReference =
+					new SelectionKeyRegistrationReference(
+						SelectorIntraband.this, readSelectionKey,
+						writeSelectionKey);
 
-				ChannelContext channelContext = new ChannelContext(
-					new ConcurrentLinkedQueue<Datagram>());
+			ChannelContext channelContext = new ChannelContext(
+				new ConcurrentLinkedQueue<Datagram>());
 
-				channelContext.setRegistrationReference(
-					selectionKeyRegistrationReference);
+			channelContext.setRegistrationReference(
+				selectionKeyRegistrationReference);
 
-				readSelectionKey.attach(channelContext);
-				writeSelectionKey.attach(channelContext);
+			readSelectionKey.attach(channelContext);
+			writeSelectionKey.attach(channelContext);
 
-				// Alter interest ops after ChannelContexts preparation
+			// Alter interest ops after ChannelContexts preparation
 
-				readSelectionKey.interestOps(SelectionKey.OP_READ);
+			readSelectionKey.interestOps(SelectionKey.OP_READ);
 
-				return selectionKeyRegistrationReference;
-			}
+			return selectionKeyRegistrationReference;
 		}
 
 		private final SelectableChannel _readSelectableChannel;

@@ -253,9 +253,8 @@ public class ExecutorIntraband extends BaseIntraband {
 								_gatheringByteChannel +
 									" behaved in nonblocking way.");
 						}
-						else {
-							break;
-						}
+
+						break;
 					}
 
 					cleanUpTimeoutResponseWaitingDatagrams();

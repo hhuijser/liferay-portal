@@ -141,11 +141,10 @@ public class ReadingTimeEntryLocalServiceImpl
 			return addReadingTimeEntry(
 				groupId, classNameId, classPK, readingTimeDuration);
 		}
-		else {
-			readingTimeEntry.setReadingTime(readingTimeDuration.toMillis());
 
-			return updateReadingTimeEntry(readingTimeEntry);
-		}
+		readingTimeEntry.setReadingTime(readingTimeDuration.toMillis());
+
+		return updateReadingTimeEntry(readingTimeEntry);
 	}
 
 	@ServiceReference(type = ClassNameLocalService.class)

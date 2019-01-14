@@ -877,16 +877,13 @@ public class MBThreadFinderImpl
 				return MBThreadUtil.countByG_C_NotS(
 					groupId, categoryId, queryDefinition.getStatus());
 			}
-			else {
-				if (queryDefinition.getStatus() !=
-						WorkflowConstants.STATUS_ANY) {
 
-					return MBThreadUtil.countByG_C_S(
-						groupId, categoryId, queryDefinition.getStatus());
-				}
-
-				return MBThreadUtil.countByG_C(groupId, categoryId);
+			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
+				return MBThreadUtil.countByG_C_S(
+					groupId, categoryId, queryDefinition.getStatus());
 			}
+
+			return MBThreadUtil.countByG_C(groupId, categoryId);
 		}
 
 		Session session = null;
@@ -1062,21 +1059,18 @@ public class MBThreadFinderImpl
 					queryDefinition.getStart(), queryDefinition.getEnd(),
 					queryDefinition.getOrderByComparator());
 			}
-			else {
-				if (queryDefinition.getStatus() !=
-						WorkflowConstants.STATUS_ANY) {
 
-					return MBThreadUtil.findByG_C_S(
-						groupId, categoryId, queryDefinition.getStatus(),
-						queryDefinition.getStart(), queryDefinition.getEnd(),
-						queryDefinition.getOrderByComparator());
-				}
-
-				return MBThreadUtil.findByG_C(
-					groupId, categoryId, queryDefinition.getStart(),
-					queryDefinition.getEnd(),
+			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
+				return MBThreadUtil.findByG_C_S(
+					groupId, categoryId, queryDefinition.getStatus(),
+					queryDefinition.getStart(), queryDefinition.getEnd(),
 					queryDefinition.getOrderByComparator());
 			}
+
+			return MBThreadUtil.findByG_C(
+				groupId, categoryId, queryDefinition.getStart(),
+				queryDefinition.getEnd(),
+				queryDefinition.getOrderByComparator());
 		}
 
 		Session session = null;

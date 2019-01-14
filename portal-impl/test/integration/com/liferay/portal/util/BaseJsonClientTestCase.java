@@ -89,9 +89,8 @@ public abstract class BaseJsonClientTestCase {
 		if (exception != null) {
 			throw exception;
 		}
-		else {
-			throw new Exception(exceptionString);
-		}
+
+		throw new Exception(exceptionString);
 	}
 
 	public String executeRequest(HttpRequest request) throws Exception {

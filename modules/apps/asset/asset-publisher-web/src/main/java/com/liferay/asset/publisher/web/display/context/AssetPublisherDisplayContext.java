@@ -1104,14 +1104,13 @@ public class AssetPublisherDisplayContext {
 			return AssetEntryServiceUtil.incrementViewCounter(
 				assetEntry.getClassName(), assetEntry.getClassPK());
 		}
-		else {
-			ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
-				WebKeys.THEME_DISPLAY);
 
-			return AssetEntryLocalServiceUtil.incrementViewCounter(
-				themeDisplay.getUserId(), assetEntry.getClassName(),
-				assetEntry.getClassPK());
-		}
+		ThemeDisplay themeDisplay = (ThemeDisplay)_request.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		return AssetEntryLocalServiceUtil.incrementViewCounter(
+			themeDisplay.getUserId(), assetEntry.getClassName(),
+			assetEntry.getClassPK());
 	}
 
 	public Boolean isAnyAssetType() {

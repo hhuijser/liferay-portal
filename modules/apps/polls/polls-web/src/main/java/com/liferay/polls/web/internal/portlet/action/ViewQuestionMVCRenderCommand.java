@@ -56,9 +56,8 @@ public class ViewQuestionMVCRenderCommand extends EditQuestionMVCRenderCommand {
 
 				return "/polls/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return "/polls/view_question.jsp";

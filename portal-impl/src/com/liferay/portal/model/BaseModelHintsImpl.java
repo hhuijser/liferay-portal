@@ -321,10 +321,9 @@ public abstract class BaseModelHintsImpl implements ModelHints {
 
 			return;
 		}
-		else {
-			if (_log.isDebugEnabled()) {
-				_log.debug("Loading " + source);
-			}
+
+		if (_log.isDebugEnabled()) {
+			_log.debug("Loading " + source);
 		}
 
 		SAXReader saxReader = getSAXReader();

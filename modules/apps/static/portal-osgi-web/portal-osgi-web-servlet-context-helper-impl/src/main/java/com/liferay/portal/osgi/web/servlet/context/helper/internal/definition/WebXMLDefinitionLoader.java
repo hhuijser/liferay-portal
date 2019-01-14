@@ -725,10 +725,9 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 								"Init paramter name ", initParameterName,
 								" conflicts with filter name ", filterName));
 					}
-					else {
-						assembledInitParameters.put(
-							initParameterName, initParametersEntry.getValue());
-					}
+
+					assembledInitParameters.put(
+						initParameterName, initParametersEntry.getValue());
 				}
 			}
 
@@ -851,10 +850,9 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 								"Init paramter name ", initParameterName,
 								" conflicts with servlet name ", servletName));
 					}
-					else {
-						assembledInitInitParameters.put(
-							initParameterName, initParameterEntry.getValue());
-					}
+
+					assembledInitInitParameters.put(
+						initParameterName, initParameterEntry.getValue());
 				}
 			}
 

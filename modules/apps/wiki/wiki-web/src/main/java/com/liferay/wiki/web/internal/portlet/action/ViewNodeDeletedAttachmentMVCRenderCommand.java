@@ -60,9 +60,8 @@ public class ViewNodeDeletedAttachmentMVCRenderCommand
 
 				return "/wiki/error.jsp";
 			}
-			else {
-				throw new PortletException(e);
-			}
+
+			throw new PortletException(e);
 		}
 
 		return "/wiki_admin/view_node_deleted_attachments.jsp";

@@ -1026,30 +1026,29 @@ public class PortalImpl implements Portal {
 
 			return StringUtil.randomId();
 		}
-		else {
-			StringBundler sb = new StringBundler(5);
 
-			sb.append(DeterminateKeyGenerator.generate(input));
-			sb.append(StringPool.UNDERLINE);
+		StringBundler sb = new StringBundler(5);
 
-			Object columnId = request.getAttribute(
-				WebKeys.RENDER_PORTLET_COLUMN_ID);
+		sb.append(DeterminateKeyGenerator.generate(input));
+		sb.append(StringPool.UNDERLINE);
 
-			if (columnId != null) {
-				sb.append(JS.getSafeName(columnId.toString()));
-			}
+		Object columnId = request.getAttribute(
+			WebKeys.RENDER_PORTLET_COLUMN_ID);
 
-			sb.append(StringPool.UNDERLINE);
-
-			Object columnPos = request.getAttribute(
-				WebKeys.RENDER_PORTLET_COLUMN_POS);
-
-			if (columnPos != null) {
-				sb.append(JS.getSafeName(columnPos.toString()));
-			}
-
-			return sb.toString();
+		if (columnId != null) {
+			sb.append(JS.getSafeName(columnId.toString()));
 		}
+
+		sb.append(StringPool.UNDERLINE);
+
+		Object columnPos = request.getAttribute(
+			WebKeys.RENDER_PORTLET_COLUMN_POS);
+
+		if (columnPos != null) {
+			sb.append(JS.getSafeName(columnPos.toString()));
+		}
+
+		return sb.toString();
 	}
 
 	@Override
@@ -7325,118 +7324,117 @@ public class PortalImpl implements Portal {
 
 			return PortletMode.VIEW;
 		}
-		else {
-			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-				WebKeys.THEME_DISPLAY);
 
-			PermissionChecker permissionChecker =
-				themeDisplay.getPermissionChecker();
+		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+			WebKeys.THEME_DISPLAY);
 
-			Portlet portlet = PortletLocalServiceUtil.getPortletById(
-				getCompanyId(request), portletId);
+		PermissionChecker permissionChecker =
+			themeDisplay.getPermissionChecker();
 
-			boolean updateLayout = false;
+		Portlet portlet = PortletLocalServiceUtil.getPortletById(
+			getCompanyId(request), portletId);
 
-			if (portletMode.equals(LiferayPortletMode.ABOUT) &&
-				!layoutType.hasModeAboutPortletId(portletId)) {
+		boolean updateLayout = false;
 
-				layoutType.addModeAboutPortletId(portletId);
+		if (portletMode.equals(LiferayPortletMode.ABOUT) &&
+			!layoutType.hasModeAboutPortletId(portletId)) {
 
-				updateLayout = true;
-			}
-			else if (portletMode.equals(LiferayPortletMode.CONFIG) &&
-					 !layoutType.hasModeConfigPortletId(portletId) &&
-					 PortletPermissionUtil.contains(
-						 permissionChecker, getScopeGroupId(request), layout,
-						 portlet, ActionKeys.CONFIGURATION)) {
+			layoutType.addModeAboutPortletId(portletId);
 
-				layoutType.addModeConfigPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(PortletMode.EDIT) &&
-					 !layoutType.hasModeEditPortletId(portletId) &&
-					 PortletPermissionUtil.contains(
-						 permissionChecker, getScopeGroupId(request), layout,
-						 portlet, ActionKeys.PREFERENCES)) {
-
-				layoutType.addModeEditPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(LiferayPortletMode.EDIT_DEFAULTS) &&
-					 !layoutType.hasModeEditDefaultsPortletId(portletId) &&
-					 PortletPermissionUtil.contains(
-						 permissionChecker, getScopeGroupId(request), layout,
-						 portlet, ActionKeys.PREFERENCES)) {
-
-				layoutType.addModeEditDefaultsPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(LiferayPortletMode.EDIT_GUEST) &&
-					 !layoutType.hasModeEditGuestPortletId(portletId) &&
-					 PortletPermissionUtil.contains(
-						 permissionChecker, getScopeGroupId(request), layout,
-						 portlet, ActionKeys.GUEST_PREFERENCES)) {
-
-				layoutType.addModeEditGuestPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(PortletMode.HELP) &&
-					 !layoutType.hasModeHelpPortletId(portletId)) {
-
-				layoutType.addModeHelpPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(LiferayPortletMode.PREVIEW) &&
-					 !layoutType.hasModePreviewPortletId(portletId)) {
-
-				layoutType.addModePreviewPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(LiferayPortletMode.PRINT) &&
-					 !layoutType.hasModePrintPortletId(portletId)) {
-
-				layoutType.addModePrintPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (portletMode.equals(PortletMode.VIEW) &&
-					 !layoutType.hasModeViewPortletId(portletId)) {
-
-				layoutType.removeModesPortletId(portletId);
-
-				updateLayout = true;
-			}
-			else if (isCustomPortletMode(portletMode) &&
-					 !layoutType.hasModeCustomPortletId(
-						 portletId, portletMode.toString())) {
-
-				layoutType.addModeCustomPortletId(
-					portletId, portletMode.toString());
-
-				updateLayout = true;
-			}
-
-			if (updateLayout &&
-				PortletPermissionUtil.contains(
-					permissionChecker, getScopeGroupId(request), layout,
-					portlet, ActionKeys.VIEW)) {
-
-				LayoutClone layoutClone = LayoutCloneFactory.getInstance();
-
-				if (layoutClone != null) {
-					layoutClone.update(
-						request, layout.getPlid(), layout.getTypeSettings());
-				}
-			}
-
-			return portletMode;
+			updateLayout = true;
 		}
+		else if (portletMode.equals(LiferayPortletMode.CONFIG) &&
+				 !layoutType.hasModeConfigPortletId(portletId) &&
+				 PortletPermissionUtil.contains(
+					 permissionChecker, getScopeGroupId(request), layout,
+					 portlet, ActionKeys.CONFIGURATION)) {
+
+			layoutType.addModeConfigPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(PortletMode.EDIT) &&
+				 !layoutType.hasModeEditPortletId(portletId) &&
+				 PortletPermissionUtil.contains(
+					 permissionChecker, getScopeGroupId(request), layout,
+					 portlet, ActionKeys.PREFERENCES)) {
+
+			layoutType.addModeEditPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(LiferayPortletMode.EDIT_DEFAULTS) &&
+				 !layoutType.hasModeEditDefaultsPortletId(portletId) &&
+				 PortletPermissionUtil.contains(
+					 permissionChecker, getScopeGroupId(request), layout,
+					 portlet, ActionKeys.PREFERENCES)) {
+
+			layoutType.addModeEditDefaultsPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(LiferayPortletMode.EDIT_GUEST) &&
+				 !layoutType.hasModeEditGuestPortletId(portletId) &&
+				 PortletPermissionUtil.contains(
+					 permissionChecker, getScopeGroupId(request), layout,
+					 portlet, ActionKeys.GUEST_PREFERENCES)) {
+
+			layoutType.addModeEditGuestPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(PortletMode.HELP) &&
+				 !layoutType.hasModeHelpPortletId(portletId)) {
+
+			layoutType.addModeHelpPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(LiferayPortletMode.PREVIEW) &&
+				 !layoutType.hasModePreviewPortletId(portletId)) {
+
+			layoutType.addModePreviewPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(LiferayPortletMode.PRINT) &&
+				 !layoutType.hasModePrintPortletId(portletId)) {
+
+			layoutType.addModePrintPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (portletMode.equals(PortletMode.VIEW) &&
+				 !layoutType.hasModeViewPortletId(portletId)) {
+
+			layoutType.removeModesPortletId(portletId);
+
+			updateLayout = true;
+		}
+		else if (isCustomPortletMode(portletMode) &&
+				 !layoutType.hasModeCustomPortletId(
+					 portletId, portletMode.toString())) {
+
+			layoutType.addModeCustomPortletId(
+				portletId, portletMode.toString());
+
+			updateLayout = true;
+		}
+
+		if (updateLayout &&
+			PortletPermissionUtil.contains(
+				permissionChecker, getScopeGroupId(request), layout, portlet,
+				ActionKeys.VIEW)) {
+
+			LayoutClone layoutClone = LayoutCloneFactory.getInstance();
+
+			if (layoutClone != null) {
+				layoutClone.update(
+					request, layout.getPlid(), layout.getTypeSettings());
+			}
+		}
+
+		return portletMode;
 	}
 
 	@Override

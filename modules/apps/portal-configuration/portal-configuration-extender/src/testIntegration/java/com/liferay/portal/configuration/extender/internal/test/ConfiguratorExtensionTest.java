@@ -405,31 +405,29 @@ public class ConfiguratorExtensionTest {
 
 					});
 			}
-			else {
-				final StringFactoryNamedConfigurationContent sfncc =
-					(StringFactoryNamedConfigurationContent)
-						namedConfigurationContent;
 
-				return new FactoryConfigurationDescription(
-					sfncc._factoryPid, sfncc._pid,
-					new Supplier<Dictionary<String, Object>>() {
+			final StringFactoryNamedConfigurationContent sfncc =
+				(StringFactoryNamedConfigurationContent)
+					namedConfigurationContent;
 
-						@Override
-						public Dictionary<String, Object> get() {
-							try {
-								Dictionary<?, ?> properties =
-									PropertiesUtil.load(
-										sfncc.getInputStream(), "UTF-8");
+			return new FactoryConfigurationDescription(
+				sfncc._factoryPid, sfncc._pid,
+				new Supplier<Dictionary<String, Object>>() {
 
-								return (Dictionary<String, Object>)properties;
-							}
-							catch (IOException ioe) {
-								throw new RuntimeException(ioe);
-							}
+					@Override
+					public Dictionary<String, Object> get() {
+						try {
+							Dictionary<?, ?> properties = PropertiesUtil.load(
+								sfncc.getInputStream(), "UTF-8");
+
+							return (Dictionary<String, Object>)properties;
 						}
+						catch (IOException ioe) {
+							throw new RuntimeException(ioe);
+						}
+					}
 
-					});
-			}
+				});
 		}
 
 	}

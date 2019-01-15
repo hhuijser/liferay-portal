@@ -117,11 +117,10 @@ public abstract class CompanyScopedConfigurationProvider
 		if (objectValuePair == null) {
 			return new HashMapDictionary<>();
 		}
-		else {
-			Configuration configuration = objectValuePair.getKey();
 
-			return configuration.getProperties();
-		}
+		Configuration configuration = objectValuePair.getKey();
+
+		return configuration.getProperties();
 	}
 
 	@Override

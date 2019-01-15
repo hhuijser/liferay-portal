@@ -630,9 +630,8 @@ public class S3Store extends BaseStore {
 				throw new NoSuchFileException(
 					companyId, repositoryId, fileName, versionLabel);
 			}
-			else {
-				return s3Object;
-			}
+
+			return s3Object;
 		}
 		catch (AmazonClientException ace) {
 			if (isFileNotFound(ace)) {

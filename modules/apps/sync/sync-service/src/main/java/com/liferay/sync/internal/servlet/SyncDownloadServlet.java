@@ -277,25 +277,22 @@ public class SyncDownloadServlet extends HttpServlet {
 				inputStream, fileEntry.getFileName(), fileEntry.getMimeType(),
 				fileEntry.getSize());
 		}
-		else {
-			if (versionId > 0) {
-				DLFileVersion dlFileVersion =
-					_dlFileVersionLocalService.fetchDLFileVersion(versionId);
 
-				return new DownloadServletInputStream(
-					dlFileVersion.getContentStream(false),
-					dlFileVersion.getFileName(), dlFileVersion.getMimeType(),
-					dlFileVersion.getSize());
-			}
-			else {
-				FileVersion fileVersion = fileEntry.getFileVersion(version);
+		if (versionId > 0) {
+			DLFileVersion dlFileVersion =
+				_dlFileVersionLocalService.fetchDLFileVersion(versionId);
 
-				return new DownloadServletInputStream(
-					fileVersion.getContentStream(false),
-					fileVersion.getFileName(), fileVersion.getMimeType(),
-					fileVersion.getSize());
-			}
+			return new DownloadServletInputStream(
+				dlFileVersion.getContentStream(false),
+				dlFileVersion.getFileName(), dlFileVersion.getMimeType(),
+				dlFileVersion.getSize());
 		}
+
+		FileVersion fileVersion = fileEntry.getFileVersion(version);
+
+		return new DownloadServletInputStream(
+			fileVersion.getContentStream(false), fileVersion.getFileName(),
+			fileVersion.getMimeType(), fileVersion.getSize());
 	}
 
 	protected DownloadServletInputStream getPatchDownloadServletInputStream(
@@ -341,35 +338,33 @@ public class SyncDownloadServlet extends HttpServlet {
 			return new DownloadServletInputStream(
 				dataFileEntry.getContentStream(), dataFileEntry.getSize());
 		}
-		else {
-			File deltaFile = null;
+
+		File deltaFile = null;
+
+		try {
+			deltaFile = getDeltaFile(
+				userId, fileEntry.getFileEntryId(), sourceVersionId,
+				targetVersionId);
 
 			try {
-				deltaFile = getDeltaFile(
-					userId, fileEntry.getFileEntryId(), sourceVersionId,
-					targetVersionId);
-
-				try {
-					SyncDLFileVersionDiffLocalServiceUtil.
-						addSyncDLFileVersionDiff(
-							fileEntry.getFileEntryId(), sourceVersionId,
-							targetVersionId, deltaFile);
-				}
-				catch (DuplicateFileException dfe) {
-
-					// LPS-52675
-
-					if (_log.isDebugEnabled()) {
-						_log.debug(dfe, dfe);
-					}
-				}
-
-				return new DownloadServletInputStream(
-					new FileInputStream(deltaFile), deltaFile.length());
+				SyncDLFileVersionDiffLocalServiceUtil.addSyncDLFileVersionDiff(
+					fileEntry.getFileEntryId(), sourceVersionId,
+					targetVersionId, deltaFile);
 			}
-			finally {
-				FileUtil.delete(deltaFile);
+			catch (DuplicateFileException dfe) {
+
+				// LPS-52675
+
+				if (_log.isDebugEnabled()) {
+					_log.debug(dfe, dfe);
+				}
 			}
+
+			return new DownloadServletInputStream(
+				new FileInputStream(deltaFile), deltaFile.length());
+		}
+		finally {
+			FileUtil.delete(deltaFile);
 		}
 	}
 

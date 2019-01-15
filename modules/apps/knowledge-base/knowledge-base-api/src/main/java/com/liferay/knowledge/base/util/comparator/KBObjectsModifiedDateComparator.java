@@ -109,13 +109,12 @@ public class KBObjectsModifiedDateComparator<T> extends OrderByComparator<T> {
 
 			return ORDER_BY_MODEL_DESC;
 		}
-		else {
-			if (_ascending) {
-				return ORDER_BY_ASC;
-			}
 
-			return ORDER_BY_DESC;
+		if (_ascending) {
+			return ORDER_BY_ASC;
 		}
+
+		return ORDER_BY_DESC;
 	}
 
 	@Override
@@ -134,11 +133,10 @@ public class KBObjectsModifiedDateComparator<T> extends OrderByComparator<T> {
 
 			return kbArticle.getModifiedDate();
 		}
-		else {
-			KBFolder kbFolder = (KBFolder)obj;
 
-			return kbFolder.getModifiedDate();
-		}
+		KBFolder kbFolder = (KBFolder)obj;
+
+		return kbFolder.getModifiedDate();
 	}
 
 	protected String getTitle(Object obj) {
@@ -147,11 +145,10 @@ public class KBObjectsModifiedDateComparator<T> extends OrderByComparator<T> {
 
 			return kbArticle.getTitle();
 		}
-		else {
-			KBFolder kbFolder = (KBFolder)obj;
 
-			return kbFolder.getName();
-		}
+		KBFolder kbFolder = (KBFolder)obj;
+
+		return kbFolder.getName();
 	}
 
 	private final boolean _ascending;

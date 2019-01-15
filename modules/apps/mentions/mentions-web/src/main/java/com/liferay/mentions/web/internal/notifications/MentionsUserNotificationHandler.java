@@ -95,17 +95,16 @@ public class MentionsUserNotificationHandler
 				},
 				false);
 		}
-		else {
-			return LanguageUtil.format(
-				resourceBundle, "x-mentioned-you-in-a-x",
-				new String[] {
-					HtmlUtil.escape(
-						_portal.getUserName(
-							jsonObject.getLong("userId"), StringPool.BLANK)),
-					StringUtil.toLowerCase(HtmlUtil.escape(typeName))
-				},
-				false);
-		}
+
+		return LanguageUtil.format(
+			resourceBundle, "x-mentioned-you-in-a-x",
+			new String[] {
+				HtmlUtil.escape(
+					_portal.getUserName(
+						jsonObject.getLong("userId"), StringPool.BLANK)),
+				StringUtil.toLowerCase(HtmlUtil.escape(typeName))
+			},
+			false);
 	}
 
 	@Reference(unbind = "-")

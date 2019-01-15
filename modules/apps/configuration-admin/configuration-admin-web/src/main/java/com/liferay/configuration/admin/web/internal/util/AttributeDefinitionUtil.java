@@ -68,9 +68,8 @@ public class AttributeDefinitionUtil {
 			if (property instanceof Object[]) {
 				return ArrayUtil.toStringArray((Object[])property);
 			}
-			else {
-				return new String[] {String.valueOf(property)};
-			}
+
+			return new String[] {String.valueOf(property)};
 		}
 
 		Vector<?> vector = (Vector<?>)property;

@@ -303,13 +303,12 @@ public class DDMFormEvaluatorHelper {
 		if (changedProperties.containsKey(booleanPropertyName)) {
 			return MapUtil.getBoolean(changedProperties, booleanPropertyName);
 		}
-		else {
-			DDMFormField ddmFormField = _ddmFormFieldsMap.get(
-				ddmFormFieldContextKey.getName());
 
-			return GetterUtil.getBoolean(
-				ddmFormField.getProperty(booleanPropertyName), defaultValue);
-		}
+		DDMFormField ddmFormField = _ddmFormFieldsMap.get(
+			ddmFormFieldContextKey.getName());
+
+		return GetterUtil.getBoolean(
+			ddmFormField.getProperty(booleanPropertyName), defaultValue);
 	}
 
 	protected Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>

@@ -1187,22 +1187,20 @@ public class DLWebDAVStorageImpl extends BaseWebDAVStorageImpl {
 
 			return fileEntry.hasLock();
 		}
-		else {
 
-			// Client claims to know of a lock. Verify the lock UUID.
+		// Client claims to know of a lock. Verify the lock UUID.
 
-			try {
-				return _dlAppService.verifyFileEntryLock(
-					fileEntry.getRepositoryId(), fileEntry.getFileEntryId(),
-					lockUuid);
+		try {
+			return _dlAppService.verifyFileEntryLock(
+				fileEntry.getRepositoryId(), fileEntry.getFileEntryId(),
+				lockUuid);
+		}
+		catch (NoSuchLockException nsle) {
+			if (_log.isDebugEnabled()) {
+				_log.debug(nsle, nsle);
 			}
-			catch (NoSuchLockException nsle) {
-				if (_log.isDebugEnabled()) {
-					_log.debug(nsle, nsle);
-				}
 
-				return false;
-			}
+			return false;
 		}
 	}
 

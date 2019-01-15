@@ -91,9 +91,8 @@ public class DEDataDefinitionFieldsJSONSerializer
 			throw new DEDataDefinitionFieldsSerializerException(
 				"Name property is required");
 		}
-		else {
-			jsonObject.put("name", name);
-		}
+
+		jsonObject.put("name", name);
 
 		jsonObject.put("repeatable", deDataDefinitionField.isRepeatable());
 		jsonObject.put("required", deDataDefinitionField.isRequired());
@@ -110,9 +109,8 @@ public class DEDataDefinitionFieldsJSONSerializer
 			throw new DEDataDefinitionFieldsSerializerException(
 				"Type property is required");
 		}
-		else {
-			jsonObject.put("type", type);
-		}
+
+		jsonObject.put("type", type);
 
 		return jsonObject;
 	}

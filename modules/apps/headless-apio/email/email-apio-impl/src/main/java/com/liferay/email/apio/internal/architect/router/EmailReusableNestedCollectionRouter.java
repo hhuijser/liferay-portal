@@ -71,12 +71,11 @@ public class EmailReusableNestedCollectionRouter
 				organization.getModelClassName(),
 				organization.getOrganizationId());
 		}
-		else {
-			User user = _userService.getUserById(classNameClassPK.getClassPK());
 
-			return _emailAddressService.getEmailAddresses(
-				Contact.class.getName(), user.getContactId());
-		}
+		User user = _userService.getUserById(classNameClassPK.getClassPK());
+
+		return _emailAddressService.getEmailAddresses(
+			Contact.class.getName(), user.getContactId());
 	}
 
 	private PageItems<EmailAddress> _getPageItems(

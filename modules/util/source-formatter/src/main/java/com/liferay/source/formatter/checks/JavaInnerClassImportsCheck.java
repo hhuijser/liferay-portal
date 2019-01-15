@@ -103,11 +103,9 @@ public class JavaInnerClassImportsCheck extends BaseFileCheck {
 					content, innerClassName, innerClassFullyQualifiedName,
 					outerClassName, outerClassFullyQualifiedName);
 			}
-			else {
-				content = _stripRedundantOuterClass(
-					content, innerClassName, innerClassFullyQualifiedName,
-					imports);
-			}
+
+			content = _stripRedundantOuterClass(
+				content, innerClassName, innerClassFullyQualifiedName, imports);
 		}
 
 		return content;

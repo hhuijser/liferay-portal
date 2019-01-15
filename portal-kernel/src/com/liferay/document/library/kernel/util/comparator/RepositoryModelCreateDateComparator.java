@@ -102,13 +102,12 @@ public class RepositoryModelCreateDateComparator<T>
 
 			return ORDER_BY_MODEL_DESC;
 		}
-		else {
-			if (_ascending) {
-				return ORDER_BY_ASC;
-			}
 
-			return ORDER_BY_DESC;
+		if (_ascending) {
+			return ORDER_BY_ASC;
 		}
+
+		return ORDER_BY_DESC;
 	}
 
 	@Override

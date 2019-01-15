@@ -277,11 +277,10 @@ public class LocalProcessLauncher {
 					if (_detach) {
 						return;
 					}
-					else {
-						shutdownThrowable = ie;
 
-						shutdownCode = ShutdownHook.INTERRUPTION_CODE;
-					}
+					shutdownThrowable = ie;
+
+					shutdownCode = ShutdownHook.INTERRUPTION_CODE;
 				}
 				catch (IOException ioe) {
 					shutdownThrowable = ioe;

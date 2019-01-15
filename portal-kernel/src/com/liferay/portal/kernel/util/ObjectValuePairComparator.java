@@ -47,16 +47,15 @@ public class ObjectValuePairComparator<K, V>
 
 			return -key1.compareTo((K)key2);
 		}
-		else {
-			Comparable<V> value1 = (Comparable<V>)ovp1.getValue();
-			Comparable<V> value2 = (Comparable<V>)ovp2.getValue();
 
-			if (_ascending) {
-				return value1.compareTo((V)value2);
-			}
+		Comparable<V> value1 = (Comparable<V>)ovp1.getValue();
+		Comparable<V> value2 = (Comparable<V>)ovp2.getValue();
 
-			return -value1.compareTo((V)value2);
+		if (_ascending) {
+			return value1.compareTo((V)value2);
 		}
+
+		return -value1.compareTo((V)value2);
 	}
 
 	private final boolean _ascending;

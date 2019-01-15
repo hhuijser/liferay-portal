@@ -206,9 +206,8 @@ public class LiferayPortlet extends GenericPortlet {
 			if (cause != null) {
 				throw new PortletException(cause);
 			}
-			else {
-				throw new PortletException(ite);
-			}
+
+			throw new PortletException(ite);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);
@@ -252,9 +251,8 @@ public class LiferayPortlet extends GenericPortlet {
 			if (cause != null) {
 				throw new PortletException(cause);
 			}
-			else {
-				throw new PortletException(ite);
-			}
+
+			throw new PortletException(ite);
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

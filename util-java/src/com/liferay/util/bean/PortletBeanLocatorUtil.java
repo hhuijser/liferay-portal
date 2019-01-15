@@ -34,9 +34,8 @@ public class PortletBeanLocatorUtil {
 
 			throw new BeanLocatorException("BeanLocator is not set");
 		}
-		else {
-			return _beanLocator.locate(name);
-		}
+
+		return _beanLocator.locate(name);
 	}
 
 	public static void setBeanLocator(BeanLocator beanLocator) {

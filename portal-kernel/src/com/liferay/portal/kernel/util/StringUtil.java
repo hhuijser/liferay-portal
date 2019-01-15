@@ -3186,21 +3186,20 @@ public class StringUtil {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x));
 
-				String oldValue = s.substring(x + begin.length(), y);
+			sb.append(s.substring(pos, x));
 
-				String newValue = values.get(oldValue);
+			String oldValue = s.substring(x + begin.length(), y);
 
-				if (newValue == null) {
-					newValue = oldValue;
-				}
+			String newValue = values.get(oldValue);
 
-				sb.append(newValue);
-
-				pos = y + end.length();
+			if (newValue == null) {
+				newValue = oldValue;
 			}
+
+			sb.append(newValue);
+
+			pos = y + end.length();
 		}
 
 		return sb;
@@ -3253,22 +3252,21 @@ public class StringUtil {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x));
 
-				String oldValue = s.substring(x + begin.length(), y);
+			sb.append(s.substring(pos, x));
 
-				StringBundler newValueSB = values.get(oldValue);
+			String oldValue = s.substring(x + begin.length(), y);
 
-				if (newValueSB == null) {
-					sb.append(oldValue);
-				}
-				else {
-					sb.append(newValueSB);
-				}
+			StringBundler newValueSB = values.get(oldValue);
 
-				pos = y + end.length();
+			if (newValueSB == null) {
+				sb.append(oldValue);
 			}
+			else {
+				sb.append(newValueSB);
+			}
+
+			pos = y + end.length();
 		}
 
 		return sb;
@@ -4115,11 +4113,10 @@ public class StringUtil {
 
 				break;
 			}
-			else {
-				sb.append(s.substring(pos, x));
 
-				pos = y + end.length();
-			}
+			sb.append(s.substring(pos, x));
+
+			pos = y + end.length();
 		}
 
 		return sb.toString();

@@ -125,13 +125,12 @@ public class AssetVocabularySettingsHelper {
 
 				break;
 			}
-			else {
-				if (required) {
-					requiredClassNameIds.add(classNameIdAndClassTypePK);
-				}
 
-				selectedClassNameIds.add(classNameIdAndClassTypePK);
+			if (required) {
+				requiredClassNameIds.add(classNameIdAndClassTypePK);
 			}
+
+			selectedClassNameIds.add(classNameIdAndClassTypePK);
 		}
 
 		_properties.setProperty(
@@ -248,22 +247,21 @@ public class AssetVocabularySettingsHelper {
 				classNameIdsAndClassTypePK ->
 					classNameIdsAndClassTypePK.startsWith(prefix));
 		}
-		else {
-			String classNameIdAndClassTypePK = getClassNameIdAndClassTypePK(
-				classNameId, classTypePK);
 
-			if (ArrayUtil.contains(
-					classNameIdsAndClassTypePKs, classNameIdAndClassTypePK)) {
+		String classNameIdAndClassTypePK = getClassNameIdAndClassTypePK(
+			classNameId, classTypePK);
 
-				return true;
-			}
+		if (ArrayUtil.contains(
+				classNameIdsAndClassTypePKs, classNameIdAndClassTypePK)) {
 
-			String classNameIdAndAllClassTypePK = getClassNameIdAndClassTypePK(
-				classNameId, AssetCategoryConstants.ALL_CLASS_TYPE_PK);
-
-			return ArrayUtil.contains(
-				classNameIdsAndClassTypePKs, classNameIdAndAllClassTypePK);
+			return true;
 		}
+
+		String classNameIdAndAllClassTypePK = getClassNameIdAndClassTypePK(
+			classNameId, AssetCategoryConstants.ALL_CLASS_TYPE_PK);
+
+		return ArrayUtil.contains(
+			classNameIdsAndClassTypePKs, classNameIdAndAllClassTypePK);
 	}
 
 	private static final String _KEY_MULTI_VALUED = "multiValued";

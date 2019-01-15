@@ -143,9 +143,8 @@ public class ExpandoBridgeImpl implements ExpandoBridge {
 			if (e instanceof PortalException) {
 				throw (PortalException)e;
 			}
-			else {
-				throw new RuntimeException(e);
-			}
+
+			throw new RuntimeException(e);
 		}
 	}
 

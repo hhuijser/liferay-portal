@@ -170,13 +170,12 @@ public abstract class BasePreferencesImpl implements Serializable {
 		if (preference.isReadOnly()) {
 			throw new ReadOnlyException(key);
 		}
-		else {
-			preference = (Preference)preference.clone();
 
-			modifiedPreferences.put(key, preference);
+		preference = (Preference)preference.clone();
 
-			preference.setValues(new String[] {value});
-		}
+		modifiedPreferences.put(key, preference);
+
+		preference.setValues(new String[] {value});
 	}
 
 	public void setValues(String key, String[] values)
@@ -203,13 +202,12 @@ public abstract class BasePreferencesImpl implements Serializable {
 		if (preference.isReadOnly()) {
 			throw new ReadOnlyException(key);
 		}
-		else {
-			preference = (Preference)preference.clone();
 
-			modifiedPreferences.put(key, preference);
+		preference = (Preference)preference.clone();
 
-			preference.setValues(values);
-		}
+		modifiedPreferences.put(key, preference);
+
+		preference.setValues(values);
 	}
 
 	public int size() {

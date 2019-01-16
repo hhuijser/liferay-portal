@@ -39,4 +39,9 @@ public class PoshiSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("IncorrectWhitespace.testmacro");
 	}
 
+	@Test
+	public void testSortParameterNames() throws Exception {
+		test("SortParameterNames.testmacro");
+	}
+
 }

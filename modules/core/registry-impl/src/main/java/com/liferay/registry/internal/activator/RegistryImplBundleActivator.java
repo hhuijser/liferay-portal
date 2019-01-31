@@ -12,12 +12,14 @@
  * details.
  */
 
-package com.liferay.registry.internal;
+package com.liferay.registry.internal.activator;
 
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.collections.ServiceTrackerMapFactory;
 import com.liferay.registry.collections.ServiceTrackerMapFactoryUtil;
+import com.liferay.registry.internal.RegistryImpl;
+import com.liferay.registry.internal.ServiceTrackerMapFactoryImpl;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

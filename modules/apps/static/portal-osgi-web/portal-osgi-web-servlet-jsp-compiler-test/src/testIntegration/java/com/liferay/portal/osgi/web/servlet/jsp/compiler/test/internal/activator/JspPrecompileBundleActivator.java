@@ -12,9 +12,10 @@
  * details.
  */
 
-package com.liferay.portal.osgi.web.servlet.jsp.compiler.test;
+package com.liferay.portal.osgi.web.servlet.jsp.compiler.test.internal.activator;
 
 import com.liferay.portal.kernel.util.HashMapDictionary;
+import com.liferay.portal.osgi.web.servlet.jsp.compiler.test.JspPrecompilePortlet;
 
 import java.util.Dictionary;
 

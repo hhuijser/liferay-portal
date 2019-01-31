@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.websocket.whiteboard.test.activator;
+package com.liferay.websocket.whiteboard.test.internal.activator;
 
 import com.liferay.websocket.whiteboard.test.encode.data.ExampleDecoder;
 import com.liferay.websocket.whiteboard.test.encode.data.ExampleEncoder;

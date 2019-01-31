@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.external.data.source.test.activator;
+package com.liferay.external.data.source.test.internal.activator;
 
 import com.liferay.external.data.source.test.DataSourceTest;
 

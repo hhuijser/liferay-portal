@@ -15,7 +15,7 @@
 package com.liferay.arquillian.extension.junit.bridge.remote.processor;
 
 import com.liferay.arquillian.extension.junit.bridge.protocol.jmx.JMXTestRunner;
-import com.liferay.arquillian.extension.junit.bridge.remote.activator.ArquillianBundleActivator;
+import com.liferay.arquillian.extension.junit.bridge.remote.internal.activator.ArquillianBundleActivator;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;

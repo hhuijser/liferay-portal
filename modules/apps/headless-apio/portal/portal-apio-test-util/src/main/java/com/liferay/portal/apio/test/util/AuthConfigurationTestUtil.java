@@ -56,7 +56,7 @@ public class AuthConfigurationTestUtil {
 							"urls.includes",
 						"*");
 					put("auth.verifier.guest.allowed", "true");
-					put("oauth2.scopechecker.type", "none");
+					put("oauth2.scope.checker.type", "none");
 				}
 			};
 

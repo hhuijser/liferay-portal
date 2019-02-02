@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 		"auth.verifier.auth.verifier.OAuth2RestAuthVerifier.urls.includes=/*",
 		"auth.verifier.auth.verifier.PortalSessionAuthVerifier.urls.includes=/*",
 		"auth.verifier.guest.allowed=true",
-		"oauth2.scopechecker.type=annotations",
+		"oauth2.scope.checker.type=annotations",
 		"osgi.jaxrs.application.base=/headless-foundation",
 		"osgi.jaxrs.extension.select=(osgi.jaxrs.name=Liferay.OAuth2)",
 		"osgi.jaxrs.name=headless-foundation-application.rest"

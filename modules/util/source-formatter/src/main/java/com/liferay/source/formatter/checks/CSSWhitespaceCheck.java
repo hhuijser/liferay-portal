@@ -29,10 +29,10 @@ public class CSSWhitespaceCheck extends WhitespaceCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		content = StringUtil.replace(
-			content, StringPool.DOUBLE_SPACE, StringPool.SPACE);
+		content = super.doProcess(fileName, absolutePath, content);
 
-		return super.doProcess(fileName, absolutePath, content);
+		return StringUtil.replace(
+			content, StringPool.DOUBLE_SPACE, StringPool.SPACE);
 	}
 
 }

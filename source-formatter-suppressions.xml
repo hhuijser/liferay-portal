@@ -181,5 +181,22 @@
 		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/apio-architect/.*" />
 		<suppress checks="XMLLookAndFeelCompatibilityVersionCheck" files="modules/private/commerce/.*" />
 		<suppress checks="XMLServiceReferenceCheck" files="modules/private/.*" />
+
+		<!-- Temporary suppressions for test subdirectory -->
+
+		<suppress checks="BNDImportsCheck" files="modules/apps/headless-apio/folder/folder-apio-client-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/headless-apio/forms/forms-apio-client-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/headless-apio/media-object/media-object-apio-client-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/oauth2-provider/oauth2-provider-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-axis-extender-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-jaxrs-whiteboard-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-json-web-service-extender-test/bnd\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-soap-extender-test/bnd-api-handler\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-soap-extender-test/bnd-api\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-soap-extender-test/bnd-component-handler\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-remote/portal-remote-soap-extender-test/bnd-component\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-security/portal-security-auth-verifier-test/bnd-guest-allowed\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/apps/portal-security/portal-security-auth-verifier-test/bnd-tracker\.bnd" />
+		<suppress checks="BNDImportsCheck" files="modules/core/registry-test/bnd\.bnd" />
 	</source-check>
 </suppressions>

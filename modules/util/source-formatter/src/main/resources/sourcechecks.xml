@@ -300,6 +300,9 @@
 		<check name="JSONLineBreakCheck">
 			<property name="enabled" value="false" />
 		</check>
+		<check name="JSONPackageUsageCheck">
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JSONPropertyOrderCheck" />
 		<check name="JSONValidationCheck" />
 		<check name="JSONWhitespaceCheck">

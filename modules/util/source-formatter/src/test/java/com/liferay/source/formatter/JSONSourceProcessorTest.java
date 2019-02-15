@@ -33,4 +33,34 @@ public class JSONSourceProcessorTest extends BaseSourceProcessorTestCase {
 			new Integer[] {4, 5});
 	}
 
+	@Test
+	public void testJSONPackageUsageCheck() throws Exception {
+		test(
+			"JSONPackageUsageCheck1/package.testjson",
+			new String[] {
+				"For Using 'liferay-npm-scripts', 'csf' should be enforced",
+				"For Using 'liferay-npm-scripts', 'format' should be enforced"
+			});
+
+		test(
+			"JSONPackageUsageCheck2/package.testjson",
+			new String[] {
+				"For Using 'liferay-npm-scripts', 'csf' should be enforced",
+				"For Using 'liferay-npm-scripts', 'format' should be enforced"
+			});
+
+		test(
+			"JSONPackageUsageCheck3/package.testjson",
+			new String[] {
+				"For Using 'liferay-npm-scripts', 'csf' should be enforced",
+				"For Using 'liferay-npm-scripts', 'format' should be enforced"
+			});
+
+		test(
+			"JSONPackageUsageCheck4/package.testjson",
+			new String[] {
+				"For Using 'liferay-npm-scripts', 'format' should be enforced"
+			});
+	}
+
 }

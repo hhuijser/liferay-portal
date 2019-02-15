@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 
 import java.util.HashMap;
@@ -79,7 +80,7 @@ public class JSONPackageUsageCheck extends BaseFileCheck {
 						scriptsDependenciesJSONObject.getString(
 							packageEnforceScript);
 
-					if (!scriptValue.startsWith(packageName)) {
+					if (!scriptValue.startsWith(packageName + CharPool.SPACE)) {
 						addMessage(fileName, message);
 					}
 				}

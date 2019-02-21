@@ -307,7 +307,12 @@ public class SourceFormatterUtil {
 		}
 
 		if (sb.index() > 0) {
-			sb.setIndex(sb.index() - 1);
+			if (propertyName.equals(GIT_LIFERAY_PORTAL_BRANCH)) {
+				sb.setIndex(1);
+			}
+			else {
+				sb.setIndex(sb.index() - 1);
+			}
 		}
 
 		return sb.toString();

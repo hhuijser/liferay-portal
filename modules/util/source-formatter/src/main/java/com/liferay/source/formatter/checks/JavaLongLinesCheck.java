@@ -40,7 +40,7 @@ public class JavaLongLinesCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		if (fileName.endsWith("Table.java")) {
+		if (fileName.endsWith("Table.java") && !fileName.equals("Table.java")) {
 			return content;
 		}
 

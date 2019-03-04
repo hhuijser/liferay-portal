@@ -489,49 +489,6 @@ info:
     version: v1.0
 openapi: 3.0.1
 paths:
-    "/postal-addresses":
-        get:
-            parameters:
-                - in: query
-                  name: page
-                  schema:
-                      type: integer
-                - in: query
-                  name: pageSize
-                  schema:
-                      type: integer
-                - in: path
-                  name: generic-parent-id
-                  required: true
-                  schema:
-                      type: object
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                items:
-                                    $ref: "#/components/schemas/PostalAddress"
-                                type: array
-                    description: ""
-            tags: ["PostalAddress"]
-    "/postal-addresses/{postal-address-id}":
-        get:
-            parameters:
-                - in: path
-                  name: postal-address-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/PostalAddress"
-                    description: ""
-            tags: ["PostalAddress"]
     "/categories/{category-id}":
         delete:
             parameters:
@@ -1053,6 +1010,49 @@ paths:
                                 $ref: "#/components/schemas/Phone"
                     description: ""
             tags: ["Phone"]
+    "/postal-addresses":
+        get:
+            parameters:
+                - in: query
+                  name: page
+                  schema:
+                      type: integer
+                - in: query
+                  name: pageSize
+                  schema:
+                      type: integer
+                - in: path
+                  name: generic-parent-id
+                  required: true
+                  schema:
+                      type: object
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                items:
+                                    $ref: "#/components/schemas/PostalAddress"
+                                type: array
+                    description: ""
+            tags: ["PostalAddress"]
+    "/postal-addresses/{postal-address-id}":
+        get:
+            parameters:
+                - in: path
+                  name: postal-address-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/PostalAddress"
+                    description: ""
+            tags: ["PostalAddress"]
     "/roles":
         get:
             parameters:

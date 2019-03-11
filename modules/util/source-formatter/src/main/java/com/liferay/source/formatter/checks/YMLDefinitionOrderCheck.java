@@ -84,8 +84,14 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			String definition = definitions.get(i);
 			String previousDefinition = definitions.get(i - 1);
 
-			if (definitionComparator.compare(previousDefinition, definition) >
-					0) {
+			String trimdDefinition = StringUtil.trimLeading(definition);
+			String trimdPreviousDefinition = StringUtil.trimLeading(
+				previousDefinition);
+
+			if (!trimdDefinition.startsWith(StringPool.POUND) &&
+				!trimdPreviousDefinition.startsWith(StringPool.POUND) &&
+				(definitionComparator.compare(previousDefinition, definition) >
+					0)) {
 
 				definition = StringUtil.trimTrailing(definition);
 				previousDefinition = StringUtil.trimTrailing(

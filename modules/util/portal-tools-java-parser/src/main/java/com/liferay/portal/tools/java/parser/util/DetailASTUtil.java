@@ -237,15 +237,19 @@ public class DetailASTUtil {
 
 		DetailAST parentDetailAST = detailAST.getParent();
 
-		while (parentDetailAST != null) {
+		while (true) {
+			if ((parentDetailAST == null) ||
+				(parentDetailAST.getType() == TokenTypes.SLIST)) {
+
+				return false;
+			}
+
 			if (ArrayUtil.contains(tokenTypes, parentDetailAST.getType())) {
 				return true;
 			}
 
 			parentDetailAST = parentDetailAST.getParent();
 		}
-
-		return false;
 	}
 
 	private static List<DetailAST> _getAllChildTokens(

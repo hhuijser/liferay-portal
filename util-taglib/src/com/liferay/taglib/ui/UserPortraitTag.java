@@ -53,6 +53,10 @@ public class UserPortraitTag extends IncludeTag {
 		return sb.toString();
 	}
 
+	public String getCssClass() {
+		return _cssClass;
+	}
+
 	@Override
 	public int processEndTag() throws Exception {
 		JspWriter jspWriter = pageContext.getOut();

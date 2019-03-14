@@ -48,6 +48,14 @@ public class JavaMethodCall extends JavaExpression {
 		_genericJavaTypes = genericJavaTypes;
 	}
 
+	public void setInsideConstructorCall(boolean insideConstructorCall) {
+		_insideConstructorCall = insideConstructorCall;
+	}
+
+	public void setMethodCallWithinClass(boolean methodCallWithinClass) {
+		_methodCallWithinClass = methodCallWithinClass;
+	}
+
 	public void setParameterValueJavaExpressions(
 		List<JavaExpression> parameterValueJavaExpressions) {
 
@@ -93,7 +101,7 @@ public class JavaMethodCall extends JavaExpression {
 		}
 
 		if (_parameterValueJavaExpressions.isEmpty()) {
-			if (_isUseChainStyle(2) && (getChainedJavaExpression() != null)) {
+			if (_isUseChainStyle() && (getChainedJavaExpression() != null)) {
 				append(
 					sb, _methodName, indent, prefix, "(", maxLineLength, false);
 
@@ -112,7 +120,7 @@ public class JavaMethodCall extends JavaExpression {
 			indent = append(
 				sb, _methodName, indent, prefix, "(", maxLineLength, false);
 
-			if (_isUseChainStyle(1)) {
+			if (_isUseChainStyle()) {
 				appendNewLine(
 					sb, _parameterValueJavaExpressions, indent, maxLineLength);
 
@@ -136,7 +144,7 @@ public class JavaMethodCall extends JavaExpression {
 		return sb.toString();
 	}
 
-	private boolean _isUseChainStyle(int minChainSize) {
+	private boolean _isUseChainStyle() {
 		if (_statementCondition) {
 			return false;
 		}
@@ -145,7 +153,17 @@ public class JavaMethodCall extends JavaExpression {
 			return _useChainStyle;
 		}
 
-		if (getChainSize() < minChainSize) {
+		int chainSize = getChainSize();
+
+		if (chainSize == 0) {
+			return false;
+		}
+
+		if ((chainSize == 1) &&
+			(_insideConstructorCall ||
+			 (_parameterValueJavaExpressions.isEmpty() &&
+			  _methodCallWithinClass))) {
+
 			return false;
 		}
 
@@ -155,6 +173,8 @@ public class JavaMethodCall extends JavaExpression {
 	}
 
 	private List<JavaType> _genericJavaTypes;
+	private boolean _insideConstructorCall;
+	private boolean _methodCallWithinClass;
 	private final JavaSimpleValue _methodName;
 	private List<JavaExpression> _parameterValueJavaExpressions;
 	private boolean _statementCondition;

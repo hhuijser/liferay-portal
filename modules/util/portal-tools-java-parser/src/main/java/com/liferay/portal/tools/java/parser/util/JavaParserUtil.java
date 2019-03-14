@@ -1396,7 +1396,15 @@ public class JavaParserUtil {
 
 		javaMethodCall.setStatementCondition(statementCondition);
 
+		boolean insideConstructorCall = DetailASTUtil.hasParentWithTokenType(
+			methodCallDetailAST, TokenTypes.CTOR_CALL,
+			TokenTypes.SUPER_CTOR_CALL);
+
+		javaMethodCall.setInsideConstructorCall(insideConstructorCall);
+
 		if (javaExpression == null) {
+			javaMethodCall.setMethodCallWithinClass(true);
+
 			return javaMethodCall;
 		}
 

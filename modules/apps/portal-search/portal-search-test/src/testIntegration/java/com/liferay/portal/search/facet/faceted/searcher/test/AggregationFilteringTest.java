@@ -343,9 +343,11 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 		Map<String, Integer> groupFrequencies = groupFrequenciesEntrySet.stream(
 		).collect(
 			Collectors.toMap(
-				entry -> String.valueOf(
-					entry.getKey(
-					).getGroupId()),
+				entry -> {
+					Group group = entry.getKey();
+
+					return String.valueOf(group.getGroupId());
+				},
 				Map.Entry::getValue)
 		);
 
@@ -357,8 +359,11 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 		Map<String, Integer> typeFrequencies = typeFrequenciesEntrySet.stream(
 		).collect(
 			Collectors.toMap(
-				entry -> entry.getKey(
-				).getName(),
+				entry -> {
+					Class<?> clazz = entry.getKey();
+
+					return clazz.getName();
+				},
 				Map.Entry::getValue)
 		);
 
@@ -371,9 +376,11 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 		Map<String, Integer> userFrequencies = userFrequenciesEntrySet.stream(
 		).collect(
 			Collectors.toMap(
-				entry -> StringUtil.toLowerCase(
-					entry.getKey(
-					).getFullName()),
+				entry -> {
+					User user = entry.getKey();
+
+					return StringUtil.toLowerCase(user.getFullName());
+				},
 				Map.Entry::getValue)
 		);
 

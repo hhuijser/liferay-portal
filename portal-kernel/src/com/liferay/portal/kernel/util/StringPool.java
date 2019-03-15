@@ -62,8 +62,8 @@ public class StringPool {
 
 	public static final String DASH = "-";
 
-	public static final String DEFAULT_CHARSET_NAME =
-		Charset.defaultCharset().name();
+	public static final String DEFAULT_CHARSET_NAME = Charset.defaultCharset(
+	).name();
 
 	public static final String DOLLAR = "$";
 

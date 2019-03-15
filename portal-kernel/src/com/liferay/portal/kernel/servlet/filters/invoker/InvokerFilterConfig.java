@@ -60,8 +60,8 @@ public class InvokerFilterConfig implements FilterConfig {
 				return _keys.next();
 			}
 
-			private final Iterator<String> _keys =
-				_initParameterMap.keySet().iterator();
+			private final Iterator<String> _keys = _initParameterMap.keySet(
+			).iterator();
 
 		};
 	}

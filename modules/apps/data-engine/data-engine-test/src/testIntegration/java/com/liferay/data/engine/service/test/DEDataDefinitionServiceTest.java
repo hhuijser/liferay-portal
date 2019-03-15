@@ -703,7 +703,8 @@ public class DEDataDefinitionServiceTest {
 			PermissionCheckerFactoryUtil.create(_siteMember));
 
 		DEDataDefinitionDeleteRequest deDataDefinitionDeleteRequest =
-			DEDataDefinitionRequestBuilder.deleteBuilder().build();
+			DEDataDefinitionRequestBuilder.deleteBuilder(
+			).build();
 
 		_deDataDefinitionService.execute(deDataDefinitionDeleteRequest);
 	}

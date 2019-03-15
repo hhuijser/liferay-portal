@@ -43,8 +43,10 @@ public class ServletContextUtil {
 
 	public static final String PATH_WEB_INF = "/WEB-INF";
 
-	public static final String URI_ATTRIBUTE =
-		ServletContextUtil.class.getName().concat(".rootURI");
+	public static final String URI_ATTRIBUTE = ServletContextUtil.class.getName(
+	).concat(
+		".rootURI"
+	);
 
 	public static Set<String> getClassNames(ServletContext servletContext)
 		throws IOException {

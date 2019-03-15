@@ -535,7 +535,8 @@ public class DEDataLayoutServiceTest {
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 
 		DEDataLayoutListRequest deDataLayoutListRequest =
-			DEDataLayoutRequestBuilder.listBuilder().build();
+			DEDataLayoutRequestBuilder.listBuilder(
+			).build();
 
 		DEDataLayoutListResponse deDataLayoutListResponse =
 			_deDataLayoutService.execute(deDataLayoutListRequest);

@@ -340,21 +340,27 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 		Set<Map.Entry<Group, Integer>> groupFrequenciesEntrySet =
 			expectations.groupFrequencies.entrySet();
 
-		Map<String, Integer> groupFrequencies =
-			groupFrequenciesEntrySet.stream().collect(
-				Collectors.toMap(
-					entry -> String.valueOf(entry.getKey().getGroupId()),
-					Map.Entry::getValue));
+		Map<String, Integer> groupFrequencies = groupFrequenciesEntrySet.stream(
+		).collect(
+			Collectors.toMap(
+				entry -> String.valueOf(
+					entry.getKey(
+					).getGroupId()),
+				Map.Entry::getValue)
+		);
 
 		assertFrequencies(Field.GROUP_ID, searchContext, groupFrequencies);
 
 		Set<Map.Entry<Class<?>, Integer>> typeFrequenciesEntrySet =
 			expectations.typeFrequencies.entrySet();
 
-		Map<String, Integer> typeFrequencies =
-			typeFrequenciesEntrySet.stream().collect(
-				Collectors.toMap(
-					entry -> entry.getKey().getName(), Map.Entry::getValue));
+		Map<String, Integer> typeFrequencies = typeFrequenciesEntrySet.stream(
+		).collect(
+			Collectors.toMap(
+				entry -> entry.getKey(
+				).getName(),
+				Map.Entry::getValue)
+		);
 
 		assertFrequencies(
 			Field.ENTRY_CLASS_NAME, searchContext, typeFrequencies);
@@ -362,12 +368,14 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 		Set<Map.Entry<User, Integer>> userFrequenciesEntrySet =
 			expectations.userFrequencies.entrySet();
 
-		Map<String, Integer> userFrequencies =
-			userFrequenciesEntrySet.stream().collect(
-				Collectors.toMap(
-					entry -> StringUtil.toLowerCase(
-						entry.getKey().getFullName()),
-					Map.Entry::getValue));
+		Map<String, Integer> userFrequencies = userFrequenciesEntrySet.stream(
+		).collect(
+			Collectors.toMap(
+				entry -> StringUtil.toLowerCase(
+					entry.getKey(
+					).getFullName()),
+				Map.Entry::getValue)
+		);
 
 		assertFrequencies(Field.USER_NAME, searchContext, userFrequencies);
 	}

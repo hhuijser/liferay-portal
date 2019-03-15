@@ -75,13 +75,19 @@ public class AnnotationsAndHttpPrefixApplicationClientTest
 
 		builder = authorize(webTarget.request(), tokenString);
 
-		Assert.assertEquals(403, builder.get().getStatus());
+		Assert.assertEquals(
+			403,
+			builder.get(
+			).getStatus());
 
 		webTarget = getWebTarget("/annotated");
 
 		builder = authorize(webTarget.request(), tokenString);
 
-		Assert.assertEquals(403, builder.get().getStatus());
+		Assert.assertEquals(
+			403,
+			builder.get(
+			).getStatus());
 	}
 
 	public static class AnnotationsAndHttpPrefixTestPreparatorBundleActivator

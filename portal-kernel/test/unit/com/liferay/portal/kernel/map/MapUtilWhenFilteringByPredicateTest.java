@@ -61,7 +61,10 @@ public class MapUtilWhenFilteringByPredicateTest {
 		HashMap<String, Number> outputMap = new HashMap<>();
 
 		MapUtil.filter(
-			inputMap, outputMap, entry -> entry.getValue().intValue() % 2 == 0);
+			inputMap, outputMap,
+			entry ->
+				entry.getValue(
+				).intValue() % 2 == 0);
 
 		Assert.assertEquals(outputMap.toString(), 2, outputMap.size());
 		Assert.assertEquals(2, outputMap.get("2"));

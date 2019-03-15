@@ -94,6 +94,9 @@ public class JSPTaglibHelperImpl implements JSPTaglibHelper {
 	}
 
 	private static final String _ANALYZED_TLDS =
-		JSPTaglibHelperImpl.class.getName().concat("#ANALYZED_TLDS");
+		JSPTaglibHelperImpl.class.getName(
+		).concat(
+			"#ANALYZED_TLDS"
+		);
 
 }

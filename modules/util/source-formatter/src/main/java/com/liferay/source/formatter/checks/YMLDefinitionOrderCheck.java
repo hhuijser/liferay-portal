@@ -188,6 +188,13 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 				}
 			}
 
+			if (definitionKey1.equals("- in: query") &&
+				definitionKey1.equals(definitionKey2)) {
+
+				return _sortSpecificDefinitions(
+					definition1, definition2, "name");
+			}
+
 			return definitionKey1.compareTo(definitionKey2);
 		}
 
@@ -209,6 +216,30 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			}
 
 			return -1;
+		}
+
+		private int _sortSpecificDefinitions(
+			String definition1, String definition2, String key) {
+
+			Pattern pattern = Pattern.compile(
+				"^ *" + key + ": *(\\w*)(\n|\\Z)", Pattern.MULTILINE);
+
+			String compareKey1 = "";
+			String compareKey2 = "";
+
+			Matcher matcher = pattern.matcher(definition1);
+
+			if (matcher.find()) {
+				compareKey1 = matcher.group(1);
+			}
+
+			matcher = pattern.matcher(definition2);
+
+			if (matcher.find()) {
+				compareKey2 = matcher.group(1);
+			}
+
+			return compareKey1.compareTo(compareKey2);
 		}
 
 		private final Pattern _definitionKeyPattern = Pattern.compile(".*?:.*");

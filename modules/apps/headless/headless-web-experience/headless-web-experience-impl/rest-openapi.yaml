@@ -367,6 +367,12 @@ paths:
         get:
             description: retrieve the child comments of a comment thread
             parameters:
+                - in: path
+                  name: comment-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -383,12 +389,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: comment-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -423,6 +423,12 @@ paths:
     "/content-spaces/{content-space-id}/content-structures":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -430,12 +436,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
                 - in: query
                   name: filter
@@ -458,6 +458,16 @@ paths:
     "/content-spaces/{content-space-id}/structured-contents":
         get:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -466,16 +476,6 @@ paths:
                   name: pageSize
                   schema:
                       type: integer
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
                 - in: query
                   name: filter
                   schema:
@@ -496,16 +496,16 @@ paths:
             tags: ["StructuredContent"]
         post:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: content-space-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             requestBody:
                 content:
                     application/json:
@@ -539,6 +539,16 @@ paths:
     "/content-structures/{content-structure-id}/structured-contents":
         get:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
+                - in: path
+                  name: content-structure-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -547,16 +557,6 @@ paths:
                   name: pageSize
                   schema:
                       type: integer
-                - in: path
-                  name: content-structure-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
                 - in: query
                   name: filter
                   schema:
@@ -592,16 +592,16 @@ paths:
             tags: ["StructuredContent"]
         get:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: structured-content-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             responses:
                 200:
                     content:
@@ -612,16 +612,16 @@ paths:
             tags: ["StructuredContent"]
         patch:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: structured-content-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             requestBody:
                 content:
                     application/json:
@@ -637,16 +637,16 @@ paths:
             tags: ["StructuredContent"]
         put:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: structured-content-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             requestBody:
                 content:
                     application/json:
@@ -663,6 +663,12 @@ paths:
     "/structured-contents/{structured-content-id}/comments":
         get:
             parameters:
+                - in: path
+                  name: structured-content-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -679,12 +685,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: structured-content-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:

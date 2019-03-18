@@ -439,6 +439,12 @@ paths:
     "/blog-postings/{blog-posting-id}/comments":
         get:
             parameters:
+                - in: path
+                  name: blog-posting-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -455,12 +461,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: blog-posting-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -547,6 +547,12 @@ paths:
     "/comments/{comment-id}/comments":
         get:
             parameters:
+                - in: path
+                  name: comment-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -563,12 +569,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: comment-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -603,6 +603,12 @@ paths:
     "/content-space/{content-space-id}/knowledge-base-articles":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -610,12 +616,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -651,6 +651,12 @@ paths:
     "/content-space/{content-space-id}/knowledge-base-folders":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -658,12 +664,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -699,6 +699,12 @@ paths:
     "/content-spaces/{content-space-id}/blog-posting-images":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -715,12 +721,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -761,6 +761,12 @@ paths:
     "/content-spaces/{content-space-id}/blog-postings":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -777,12 +783,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -890,6 +890,12 @@ paths:
     "/knowledge-base-articles/{knowledge-base-article-id}/knowledge-base-articles":
         get:
             parameters:
+                - in: path
+                  name: knowledge-base-article-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -897,12 +903,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: knowledge-base-article-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1088,6 +1088,12 @@ paths:
     "/knowledge-base-folders/{knowledge-base-folder-id}/knowledge-base-articles":
         get:
             parameters:
+                - in: path
+                  name: knowledge-base-folder-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1095,12 +1101,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: knowledge-base-folder-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1136,6 +1136,12 @@ paths:
     "/knowledge-base-folders/{knowledge-base-folder-id}/knowledge-base-folders":
         get:
             parameters:
+                - in: path
+                  name: knowledge-base-folder-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1143,12 +1149,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: knowledge-base-folder-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:

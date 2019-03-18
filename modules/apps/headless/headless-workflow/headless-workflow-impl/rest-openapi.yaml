@@ -123,6 +123,12 @@ paths:
     "/roles/{role-id}/workflow-tasks":
         get:
             parameters:
+                - in: path
+                  name: role-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -130,12 +136,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: role-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -314,6 +314,12 @@ paths:
     "/workflow-tasks/{workflow-task-id}/workflow-logs":
         get:
             parameters:
+                - in: path
+                  name: workflow-task-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -321,12 +327,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: workflow-task-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:

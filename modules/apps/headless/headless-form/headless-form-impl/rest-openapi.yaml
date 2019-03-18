@@ -307,6 +307,12 @@ paths:
     "/content-spaces/{content-space-id}/form-structures":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -314,12 +320,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -334,6 +334,12 @@ paths:
     "/content-spaces/{content-space-id}/forms":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -341,12 +347,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -408,16 +408,16 @@ paths:
             tags: ["FormRecord"]
         put:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: form-record-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             requestBody:
                 content:
                     application/json:
@@ -468,16 +468,16 @@ paths:
     "/forms/{form-id}/evaluate-context":
         post:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: form-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             requestBody:
                 content:
                     application/json:
@@ -511,6 +511,12 @@ paths:
     "/forms/{form-id}/form-records":
         get:
             parameters:
+                - in: path
+                  name: form-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -518,12 +524,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: form-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -537,16 +537,16 @@ paths:
             tags: ["FormRecord"]
         post:
             parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
                 - in: path
                   name: form-id
                   required: true
                   schema:
                       format: int64
                       type: integer
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
             requestBody:
                 content:
                     application/json:

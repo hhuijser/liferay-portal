@@ -48,6 +48,11 @@ paths:
     "/addresses":
         get:
             parameters:
+                - in: path
+                  name: generic-parent-id
+                  required: true
+                  schema:
+                      type: object
                 - in: query
                   name: page
                   schema:
@@ -56,11 +61,6 @@ paths:
                   name: pageSize
                   schema:
                       type: integer
-                - in: path
-                  name: generic-parent-id
-                  required: true
-                  schema:
-                      type: object
             responses:
                 200:
                     content:

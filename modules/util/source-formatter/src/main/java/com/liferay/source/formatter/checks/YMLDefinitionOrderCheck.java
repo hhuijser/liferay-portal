@@ -46,7 +46,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		Matcher matcher = _incorrectIndentationPattern.matcher(content);
 
 		while (matcher.find()) {
-			content = StringUtil.replace(
+			content = StringUtil.replaceFirst(
 				content, matcher.group(),
 				StringUtil.replace(matcher.group(), "\n", "\n  "));
 		}

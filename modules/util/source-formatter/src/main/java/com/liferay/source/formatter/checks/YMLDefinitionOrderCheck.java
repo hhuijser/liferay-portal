@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.YMLSourceUtil;
@@ -46,9 +47,21 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		Matcher matcher = _incorrectIndentationPattern.matcher(content);
 
 		while (matcher.find()) {
+			String s = matcher.group();
+
+			String[] lines = s.split("\n");
+
+			StringBundler sb = new StringBundler();
+
+			for (int i = 1; i < lines.length; i++) {
+				sb.append(StringPool.NEW_LINE);
+				sb.append("  ");
+				sb.append(lines[i]);
+			}
+
 			content = StringUtil.replaceFirst(
 				content, matcher.group(),
-				StringUtil.replace(matcher.group(), "\n", "\n  "));
+				lines[0] + _fixIncorrectIndentation(sb.toString()));
 		}
 
 		return content;

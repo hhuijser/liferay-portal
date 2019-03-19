@@ -95,15 +95,18 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 				(definitionComparator.compare(previousDefinition, definition) >
 					0)) {
 
+				int x = content.indexOf(previousDefinition);
+
 				definition = StringUtil.trimTrailing(definition);
 				previousDefinition = StringUtil.trimTrailing(
 					previousDefinition);
 
 				content = StringUtil.replaceFirst(
-					content, previousDefinition, definition);
+					content, previousDefinition, definition, x);
 
-				return StringUtil.replaceLast(
-					content, definition, previousDefinition);
+				return StringUtil.replaceFirst(
+					content, definition, previousDefinition,
+					x + definition.length());
 			}
 
 			String nestedDefinitionIndent =

@@ -161,7 +161,8 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 				if (!newDefinition.equals(definition)) {
 					content = StringUtil.replaceFirst(
-						content, definition, newDefinition);
+						content, definition, newDefinition,
+						content.indexOf(definition));
 
 					definition = newDefinition;
 				}
@@ -172,8 +173,9 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 				!nestedDefinitions.isEmpty());
 
 			if (!newDefinition.equals(definition)) {
-				content = StringUtil.replaceLast(
-					content, definition, newDefinition);
+				content = StringUtil.replaceFirst(
+					content, definition, newDefinition,
+					content.indexOf(definition));
 			}
 		}
 

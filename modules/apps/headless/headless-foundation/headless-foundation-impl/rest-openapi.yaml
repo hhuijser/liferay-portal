@@ -464,6 +464,12 @@ paths:
     "/content-spaces/{content-space-id}/keywords":
         get:
             parameters:
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -480,12 +486,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -609,6 +609,12 @@ paths:
                   schema:
                       format: int64
                       type: integer
+                - in: path
+                  name: user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -616,12 +622,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -722,6 +722,12 @@ paths:
     "/my-user-accounts/{my-user-account-id}/organizations":
         get:
             parameters:
+                - in: path
+                  name: my-user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -729,12 +735,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: my-user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -749,6 +749,12 @@ paths:
     "/my-user-accounts/{my-user-account-id}/roles":
         get:
             parameters:
+                - in: path
+                  name: my-user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -756,12 +762,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: my-user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -841,6 +841,12 @@ paths:
     "/organizations/{organization-id}/organizations":
         get:
             parameters:
+                - in: path
+                  name: organization-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -848,12 +854,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: organization-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -868,6 +868,12 @@ paths:
     "/organizations/{organization-id}/phones":
         get:
             parameters:
+                - in: path
+                  name: organization-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -875,12 +881,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: organization-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -895,6 +895,12 @@ paths:
     "/organizations/{organization-id}/postal-addresses":
         get:
             parameters:
+                - in: path
+                  name: organization-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -902,12 +908,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: organization-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -922,6 +922,12 @@ paths:
     "/organizations/{organization-id}/user-accounts":
         get:
             parameters:
+                - in: path
+                  name: organization-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -929,12 +935,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: organization-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -949,6 +949,12 @@ paths:
     "/organizations/{organization-id}/web-urls":
         get:
             parameters:
+                - in: path
+                  name: organization-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -956,12 +962,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: organization-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1048,6 +1048,12 @@ paths:
     "/segments/{segment-id}/user-accounts":
         get:
             parameters:
+                - in: path
+                  name: segment-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1055,12 +1061,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: segment-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1235,6 +1235,12 @@ paths:
     "/taxonomy-vocabularies/{taxonomy-vocabulary-id}/taxonomy-categories":
         get:
             parameters:
+                - in: path
+                  name: taxonomy-vocabulary-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -1251,12 +1257,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: taxonomy-vocabulary-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -1415,6 +1415,12 @@ paths:
     "/user-accounts/{user-account-id}/organizations":
         get:
             parameters:
+                - in: path
+                  name: user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1422,12 +1428,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1442,6 +1442,12 @@ paths:
     "/user-accounts/{user-account-id}/phones":
         get:
             parameters:
+                - in: path
+                  name: user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1449,12 +1455,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1469,6 +1469,12 @@ paths:
     "/user-accounts/{user-account-id}/postal-addresses":
         get:
             parameters:
+                - in: path
+                  name: user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1476,12 +1482,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1496,6 +1496,12 @@ paths:
     "/user-accounts/{user-account-id}/roles":
         get:
             parameters:
+                - in: path
+                  name: user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1503,12 +1509,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1523,6 +1523,12 @@ paths:
     "/user-accounts/{user-account-id}/web-urls":
         get:
             parameters:
+                - in: path
+                  name: user-account-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1530,12 +1536,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: user-account-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:
@@ -1550,6 +1550,12 @@ paths:
     "/web-sites/{web-site-id}/user-accounts":
         get:
             parameters:
+                - in: path
+                  name: web-site-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -1557,12 +1563,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: web-site-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
             responses:
                 200:

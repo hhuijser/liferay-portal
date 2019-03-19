@@ -218,6 +218,12 @@ paths:
     "/comments/{comment-id}/comments":
         get:
             parameters:
+                - in: path
+                  name: comment-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -234,12 +240,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: comment-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -477,6 +477,12 @@ paths:
     "/documents/{document-id}/comments":
         get:
             parameters:
+                - in: path
+                  name: document-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -493,12 +499,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: document-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:
@@ -606,6 +606,12 @@ paths:
     "/folders/{folder-id}/documents":
         get:
             parameters:
+                - in: path
+                  name: folder-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: page
                   schema:
@@ -613,12 +619,6 @@ paths:
                 - in: query
                   name: pageSize
                   schema:
-                      type: integer
-                - in: path
-                  name: folder-id
-                  required: true
-                  schema:
-                      format: int64
                       type: integer
                 - in: query
                   name: filter
@@ -668,6 +668,12 @@ paths:
     "/folders/{folder-id}/folders":
         get:
             parameters:
+                - in: path
+                  name: folder-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
                 - in: query
                   name: filter
                   schema:
@@ -684,12 +690,6 @@ paths:
                   name: sort
                   schema:
                       type: string
-                - in: path
-                  name: folder-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
             responses:
                 200:
                     content:

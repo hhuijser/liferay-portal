@@ -1765,7 +1765,7 @@ public class LocalProcessExecutorTest {
 		}
 
 		private interface SerializableShutdownHook
-			extends Serializable, LocalProcessLauncher.ShutdownHook {
+			extends LocalProcessLauncher.ShutdownHook, Serializable {
 		}
 
 	}

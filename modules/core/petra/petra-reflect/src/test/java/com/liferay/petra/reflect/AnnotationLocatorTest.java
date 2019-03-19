@@ -872,7 +872,7 @@ public class AnnotationLocatorTest {
 	}
 
 	@Mix(value = 3)
-	private interface TestInterface2 extends TestInterface1, SuperInterface2 {
+	private interface TestInterface2 extends SuperInterface2, TestInterface1 {
 
 		@Method(value = 3)
 		@Override

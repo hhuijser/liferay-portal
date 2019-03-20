@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checks.util.YMLSourceUtil;
@@ -202,6 +201,10 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			Matcher matcher = _definitionKeyPattern.matcher(definition);
 
 			if (matcher.find()) {
+				if (_fileName.endsWith("/.travis.yml")) {
+					return StringUtil.trim(matcher.group(1));
+				}
+
 				return StringUtil.trim(matcher.group());
 			}
 
@@ -209,10 +212,8 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 
 		private int _getTravisDefinitionKeyWeight(String definitionKey) {
-			String s = StringUtil.extractFirst(definitionKey, CharPool.COLON);
-
-			if (_travisDefinitionKeyWeightMap.containsKey(s)) {
-				return _travisDefinitionKeyWeightMap.get(s);
+			if (_travisDefinitionKeyWeightMap.containsKey(definitionKey)) {
+				return _travisDefinitionKeyWeightMap.get(definitionKey);
 			}
 
 			return -1;
@@ -243,7 +244,8 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			return value1.compareTo(value2);
 		}
 
-		private final Pattern _definitionKeyPattern = Pattern.compile(".*?:.*");
+		private final Pattern _definitionKeyPattern = Pattern.compile(
+			"(.*?):.*");
 		private final String _fileName;
 
 	}

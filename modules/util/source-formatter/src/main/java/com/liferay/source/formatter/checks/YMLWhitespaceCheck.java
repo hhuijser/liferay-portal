@@ -143,6 +143,10 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			content, indent);
 
 		for (String definition : definitions) {
+			if (StringUtil.startsWith(definition.trim(), "- '")) {
+				continue;
+			}
+
 			String nestedDefinitionIndent =
 				YMLSourceUtil.getNestedDefinitionIndent(definition);
 
@@ -185,6 +189,10 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			String[] lines = s.split("\n");
 
 			if (lines.length <= 1) {
+				continue;
+			}
+
+			if (StringUtil.startsWith(lines[0].trim(), "- '")) {
 				continue;
 			}
 

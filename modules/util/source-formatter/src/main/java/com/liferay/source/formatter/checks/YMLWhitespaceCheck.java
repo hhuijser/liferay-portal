@@ -44,7 +44,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 		content = _formatDefinitions(fileName, content, StringPool.BLANK, 0);
 
-		content = _formatMappingEntry(content);
+		content = _formatSequencesAndMappings(content);
 
 		return super.doProcess(fileName, absolutePath, content);
 	}
@@ -180,7 +180,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 		return content;
 	}
 
-	private String _formatMappingEntry(String content) {
+	private String _formatSequencesAndMappings(String content) {
 		Matcher matcher = _mappingEntryPattern.matcher(content);
 
 		while (matcher.find()) {
@@ -200,14 +200,21 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 			for (int i = 1; i < lines.length; i++) {
 				sb.append(StringPool.NEW_LINE);
-				sb.append(lines[i].substring(2));
+
+				if (lines[0].endsWith(StringPool.COLON)) {
+					sb.append(StringPool.DOUBLE_SPACE);
+					sb.append(lines[i]);
+				}
+				else {
+					sb.append(lines[i].substring(2));
+				}
 			}
 
 			sb.append(StringPool.NEW_LINE);
 
 			content = StringUtil.replaceFirst(
 				content, matcher.group(),
-				lines[0] + _formatMappingEntry(sb.toString()));
+				lines[0] + _formatSequencesAndMappings(sb.toString()));
 		}
 
 		return content;

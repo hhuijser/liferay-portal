@@ -36,4 +36,9 @@ public class YMLSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("SortSpecificDefinitions.testyaml");
 	}
 
+	@Test
+	public void testSortTravisDefinitions() throws Exception {
+		test(".travis.yml/.travis.testyml");
+	}
+
 }

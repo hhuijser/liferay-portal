@@ -1,0 +1,34 @@
+env:
+    global:
+        - _JAVA_OPTIONS=-Xmx3g
+        - COVERALLS_REPO_TOKEN=K6H7NNheywdSaWWIV7zofu4poOAC29NnF
+
+jobs:
+    include:
+        - stage: push docker image
+          if: branch = development AND type = push
+          script: ./gradlew pushAppDockerImage -Pcom.liferay.osb.faro.environment.name=asah-local
+        - stage: source formatting checks
+          script: ./gradlew npmRunLint checkSourceFormatting pmdMain pmdTest pmdTestIntegration
+        - stage: javascript tests
+          script: ./gradlew npmRunTest
+          after_script: docker-compose -f osb-asah-common/src/testIntegration/resources/elasticsearch-docker-compose.yml down
+          after_success:
+            - test $TRAVIS_BRANCH = "7.0.x-private" &&
+              test $TRAVIS_EVENT_TYPE = "push" &&
+              test $TRAVIS_REPO_SLUG = "liferay/com-liferay-osb-asah-private" &&
+              ./gradlew coveralls
+
+services:
+    - docker
+
+sudo: required
+
+before_install:
+    - mv $HOME/build $HOME/faro
+    - TRAVIS_BUILD_DIR=$HOME/faro/$TRAVIS_REPO_SLUG
+    - 'if [ "$TRAVIS_EVENT_TYPE" = "push" ] && [ "$TRAVIS_BRANCH" = "7.0.x-private" ]; then
+          ./gradlew uploadArchives -Psnapshot -Psonatype.snapshot.username=$SONATYPE_SNAPSHOT_USERNAME -Psonatype.snapshot.password=$SONATYPE_SNAPSHOT_PASSWORD;
+          ./gradlew pushDockerImage;
+          ./gradlew pushAppDockerImage;
+      fi'

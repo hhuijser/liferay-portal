@@ -245,6 +245,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 	}
 
 	private static final Pattern _mappingEntryPattern = Pattern.compile(
-		"^( +)- .+(\n|\\Z)((\\1 +.+)(\n|\\Z))+", Pattern.MULTILINE);
+//		"^( +)- .+(\n|\\Z)((\\1 +.+)(\n|\\Z))+", Pattern.MULTILINE);
+		"^( *)-(\n|\\Z)((\\1 +.+)(\n|\\Z))+", Pattern.MULTILINE);
 
 }

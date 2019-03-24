@@ -38,7 +38,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _fixIncorrectIndentation(content);
+//		content = _fixIncorrectIndentation(content);
 
 		return _sortDefinitions(fileName, content, StringPool.BLANK);
 	}
@@ -105,6 +105,8 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			if (!trimmedDefinition.startsWith(StringPool.POUND) &&
 				!trimmedPreviousDefinition.startsWith(StringPool.POUND) &&
+				!trimmedDefinition.startsWith("-") &&
+				!trimmedPreviousDefinition.startsWith("-") &&
 				(definitionComparator.compare(previousDefinition, definition) >
 					0)) {
 

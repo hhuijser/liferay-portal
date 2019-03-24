@@ -66,6 +66,8 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 	}
 
 	private String preLogic(String content) {
+		content = _fixIncorrectIndentation(content);		
+		
 		Matcher matcher = _mappingEntryPattern.matcher(content);
 
 		while (matcher.find()) {
@@ -95,11 +97,38 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 	private String postLogic(String content) {
 		
 //		content = content.replaceAll("((^ *)-(\n)) +(.*)(\n)", "$2 $4");
-		content = content.replaceAll("(\n *-)\n +(.*\n)", "$1 $2");
+//		content = content.replaceAll("(\n *-)\n +(.*\n)", "$1 $2");
+//		content = content.replaceAll("(^ *-)\n +(.*)", "$1 $2\n");
+//		content = content.replaceAll("(^( *)-)\n +(.*)", "AAA");
+		content = content.replaceAll("( *-)\n +(.*)", "$1 $2");
 
 //		content = content.replaceAll("-\n +", "ZZZZ");
 //		content = content.replaceAll("\n", "ZZZZ");
 //		content.replaceAll("cc", "XXXXX");
+
+		return content;
+	}
+
+	private String _fixIncorrectIndentation(String content) {
+		Matcher matcher = _incorrectIndentationPattern.matcher(content);
+
+		while (matcher.find()) {
+			String s = matcher.group();
+
+			String[] lines = s.split("\n");
+
+			StringBundler sb = new StringBundler();
+
+			for (int i = 1; i < lines.length; i++) {
+				sb.append(StringPool.NEW_LINE);
+				sb.append("  ");
+				sb.append(lines[i]);
+			}
+
+			content = StringUtil.replaceFirst(
+				content, matcher.group(),
+				lines[0] + _fixIncorrectIndentation(sb.toString()));
+		}
 
 		return content;
 	}
@@ -109,5 +138,7 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 	private static final Pattern _mappingEntryPattern = Pattern.compile(
 		"(^( *)- )(.+(\n|\\Z))", Pattern.MULTILINE);
 
+	private static final Pattern _incorrectIndentationPattern = Pattern.compile(
+			"^( *)[^ -].+(\n\\1- .+(\n\\1 .+)*)+", Pattern.MULTILINE);
 
 }

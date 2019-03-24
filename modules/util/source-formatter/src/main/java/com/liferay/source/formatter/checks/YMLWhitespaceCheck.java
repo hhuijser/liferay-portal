@@ -141,8 +141,13 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 		List<String> definitions = YMLSourceUtil.getDefinitions(
 			content, indent);
-
-		for (String definition : definitions) {
+		String lines[] = content.split("\n");
+		int pos = lines[0].length();
+//		for (String definition : definitions) {
+		for (int i = 0; i< definitions.size(); i ++) {
+			
+			String definition = definitions.get(i);
+			
 			if (StringUtil.startsWith(definition.trim(), "- '")) {
 				continue;
 			}
@@ -162,10 +167,15 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 				if (!newDefinition.equals(definition)) {
 					content = StringUtil.replaceFirst(
 						content, definition, newDefinition,
-						content.indexOf(definition));
+						0);
 
 					definition = newDefinition;
 				}
+				
+//				if (i > 0) {
+//					pos = pos + definition.length();
+//				}
+
 			}
 
 			String newDefinition = _formatDefinition(
@@ -175,8 +185,11 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			if (!newDefinition.equals(definition)) {
 				content = StringUtil.replaceFirst(
 					content, definition, newDefinition,
-					content.indexOf(definition));
+					pos);
 			}
+			
+
+			pos = pos + newDefinition.length();
 		}
 
 		return content;

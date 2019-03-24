@@ -216,7 +216,8 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 
 		private String _getDefinitionKey(String definition) {
-			Matcher matcher = _definitionKeyPattern.matcher(definition);
+//			Matcher matcher = _definitionKeyPattern.matcher(definition);
+			Matcher matcher = _definitionKeyPattern.matcher(definition.split("\n")[0]);
 
 			if (matcher.find()) {
 				if (_fileName.endsWith("/.travis.yml")) {
@@ -263,7 +264,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 
 		private final Pattern _definitionKeyPattern = Pattern.compile(
-			"(.*?):.*");
+			"(.*?):.*?(?:\n|\\Z)");
 		private final String _fileName;
 
 	}

@@ -100,7 +100,7 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 //		content = content.replaceAll("(\n *-)\n +(.*\n)", "$1 $2");
 //		content = content.replaceAll("(^ *-)\n +(.*)", "$1 $2\n");
 //		content = content.replaceAll("(^( *)-)\n +(.*)", "AAA");
-		content = content.replaceAll("( *-)\n +(.*)", "$1 $2");
+		content = content.replaceAll("( +-)\n +(.*)", "$1 $2");
 
 //		content = content.replaceAll("-\n +", "ZZZZ");
 //		content = content.replaceAll("\n", "ZZZZ");

@@ -44,7 +44,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 		content = _formatDefinitions(fileName, content, StringPool.BLANK, 0);
 
-		content = _formatMappingEntry(content);
+		content = _formatSequencesAndMappings(content);
 
 		return super.doProcess(fileName, absolutePath, content);
 	}
@@ -142,6 +142,10 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 		List<String> definitions = YMLSourceUtil.getDefinitions(
 			content, indent);
 
+		String[] lines = content.split("\n");
+
+		int pos = lines[0].length();
+
 		for (String definition : definitions) {
 			String nestedDefinitionIndent =
 				YMLSourceUtil.getNestedDefinitionIndent(definition);
@@ -157,7 +161,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 
 				if (!newDefinition.equals(definition)) {
 					content = StringUtil.replaceFirst(
-						content, definition, newDefinition);
+						content, definition, newDefinition, 0);
 
 					definition = newDefinition;
 				}
@@ -168,15 +172,17 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 				!nestedDefinitions.isEmpty());
 
 			if (!newDefinition.equals(definition)) {
-				content = StringUtil.replaceLast(
-					content, definition, newDefinition);
+				content = StringUtil.replaceFirst(
+					content, definition, newDefinition, pos);
 			}
+
+			pos = pos + newDefinition.length();
 		}
 
 		return content;
 	}
 
-	private String _formatMappingEntry(String content) {
+	private String _formatSequencesAndMappings(String content) {
 		Matcher matcher = _mappingEntryPattern.matcher(content);
 
 		while (matcher.find()) {
@@ -188,18 +194,29 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 				continue;
 			}
 
+			if (StringUtil.startsWith(lines[0].trim(), "- '")) {
+				continue;
+			}
+
 			StringBundler sb = new StringBundler();
 
 			for (int i = 1; i < lines.length; i++) {
 				sb.append(StringPool.NEW_LINE);
-				sb.append(lines[i].substring(2));
+
+				if (lines[0].endsWith(StringPool.COLON)) {
+					sb.append(StringPool.DOUBLE_SPACE);
+					sb.append(lines[i]);
+				}
+				else {
+					sb.append(lines[i].substring(2));
+				}
 			}
 
 			sb.append(StringPool.NEW_LINE);
 
 			content = StringUtil.replaceFirst(
 				content, matcher.group(),
-				lines[0] + _formatMappingEntry(sb.toString()));
+				lines[0] + _formatSequencesAndMappings(sb.toString()));
 		}
 
 		return content;
@@ -228,6 +245,6 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 	}
 
 	private static final Pattern _mappingEntryPattern = Pattern.compile(
-		"^( +)- .+(\n|\\Z)((\\1 +.+)(\n|\\Z))+", Pattern.MULTILINE);
+		"^( *)- *?(\n|\\Z)((\\1 +.+)(\n|\\Z))+", Pattern.MULTILINE);
 
 }

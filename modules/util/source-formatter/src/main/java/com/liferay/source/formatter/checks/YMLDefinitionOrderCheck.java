@@ -66,10 +66,10 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		return content;
 	}
-
+static int aaa = 0;
 	private String _sortDefinitions(
 		String fileName, String content, String indent) {
-
+System.out.println(aaa++);
 		List<String> definitions = YMLSourceUtil.getDefinitions(
 			content, indent);
 
@@ -205,12 +205,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 				}
 			}
 
-			if (definitionKey1.equals("- in: query") &&
-				definitionKey1.equals(definitionKey2)) {
-
-				return _sortSpecificDefinitions(
-					definition1, definition2, "name");
-			}
+//			if (definitionKey1.equals("- in: query") &&
+//				definitionKey1.equals(definitionKey2)) {
+//
+//				return _sortSpecificDefinitions(
+//					definition1, definition2, "name");
+//			}
 
 			return definitionKey1.compareTo(definitionKey2);
 		}
@@ -218,7 +218,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		private String _getDefinitionKey(String definition) {
 //			Matcher matcher = _definitionKeyPattern.matcher(definition);
 			Matcher matcher = _definitionKeyPattern.matcher(definition.split("\n")[0]);
-
+//
 			if (matcher.find()) {
 				if (_fileName.endsWith("/.travis.yml")) {
 					return StringUtil.trim(matcher.group(1));
@@ -227,6 +227,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 				return StringUtil.trim(matcher.group());
 			}
 
+			
+			if (definition.contains(":")) {
+				if (_fileName.endsWith("/.travis.yml")) {
+					return StringUtil.extractFirst(definition, ":");
+				}
+			}
 			return definition;
 		}
 
@@ -264,7 +270,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 		}
 
 		private final Pattern _definitionKeyPattern = Pattern.compile(
-			"(.*?):.*?(?:\n|\\Z)");
+			"(.*?):.*?");
 		private final String _fileName;
 
 	}

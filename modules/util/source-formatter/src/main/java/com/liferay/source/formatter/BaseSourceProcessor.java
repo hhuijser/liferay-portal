@@ -266,6 +266,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		_subrepository = subrepository;
 	}
 
+	protected List<SourceCheck> _getSourceChecks() {
+		return _sourceChecks;
+	}
+
 	protected void addProgressStatusUpdate(
 			ProgressStatusUpdate progressStatusUpdate)
 		throws InterruptedException {
@@ -429,10 +433,6 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 
 	protected Map<String, Properties> getPropertiesMap() {
 		return _propertiesMap;
-	}
-
-	protected List<SourceCheck> _getSourceChecks() {
-		return _sourceChecks;
 	}
 
 	protected SourceFormatterExcludes getSourceFormatterExcludes() {

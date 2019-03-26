@@ -38,7 +38,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-//		content = _fixIncorrectIndentation(content);
+		//		content = _fixIncorrectIndentation(content);
 
 		return _sortDefinitions(fileName, content, StringPool.BLANK);
 	}
@@ -66,10 +66,13 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		return content;
 	}
-static int aaa = 0;
+
+	static int aaa = 0;
+
 	private String _sortDefinitions(
 		String fileName, String content, String indent) {
-System.out.println(aaa++);
+
+		System.out.println(aaa++);
 		List<String> definitions = YMLSourceUtil.getDefinitions(
 			content, indent);
 
@@ -205,20 +208,22 @@ System.out.println(aaa++);
 				}
 			}
 
-//			if (definitionKey1.equals("- in: query") &&
-//				definitionKey1.equals(definitionKey2)) {
-//
-//				return _sortSpecificDefinitions(
-//					definition1, definition2, "name");
-//			}
+			//			if (definitionKey1.equals("- in: query") &&
+			//				definitionKey1.equals(definitionKey2)) {
+			//
+			//				return _sortSpecificDefinitions(
+			//					definition1, definition2, "name");
+			//			}
 
 			return definitionKey1.compareTo(definitionKey2);
 		}
 
 		private String _getDefinitionKey(String definition) {
-//			Matcher matcher = _definitionKeyPattern.matcher(definition);
-			Matcher matcher = _definitionKeyPattern.matcher(definition.split("\n")[0]);
-//
+			//			Matcher matcher = _definitionKeyPattern.matcher(definition);
+
+			Matcher matcher = _definitionKeyPattern.matcher(
+				definition.split("\n")[0]);
+			//
 			if (matcher.find()) {
 				if (_fileName.endsWith("/.travis.yml")) {
 					return StringUtil.trim(matcher.group(1));
@@ -227,12 +232,12 @@ System.out.println(aaa++);
 				return StringUtil.trim(matcher.group());
 			}
 
-			
 			if (definition.contains(":")) {
 				if (_fileName.endsWith("/.travis.yml")) {
 					return StringUtil.extractFirst(definition, ":");
 				}
 			}
+
 			return definition;
 		}
 

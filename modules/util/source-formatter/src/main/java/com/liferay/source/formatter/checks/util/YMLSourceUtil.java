@@ -21,8 +21,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Peter Shin
@@ -79,15 +77,14 @@ public class YMLSourceUtil {
 		for (int i = 1; i < lines.length; i++) {
 			String line = lines[i];
 
-//			String indent = line.replaceAll("^(\\s+).+", "$1");
+			//			String indent = line.replaceAll("^(\\s+).+", "$1");
+
 			String indent = line.replaceFirst("^( +).+", "$1");
 
 			if (!indent.equals(line)) {
 				return indent;
 			}
 		}
-		
-
 
 		return StringPool.BLANK;
 	}

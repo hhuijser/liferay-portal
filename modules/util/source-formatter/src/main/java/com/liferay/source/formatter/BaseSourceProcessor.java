@@ -431,6 +431,10 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		return _propertiesMap;
 	}
 
+	protected List<SourceCheck> getSourceChecks() {
+		return _sourceChecks;
+	}
+
 	protected SourceFormatterExcludes getSourceFormatterExcludes() {
 		return _sourceFormatterExcludes;
 	}

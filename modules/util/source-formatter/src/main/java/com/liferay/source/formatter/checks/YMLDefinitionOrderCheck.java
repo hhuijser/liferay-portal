@@ -65,8 +65,8 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					String[] definition2Lines = StringUtil.splitLines(
 						definition2);
 
-					if (definition1Lines[0].equals("- ") &&
-						definition2Lines[0].equals("- ")) {
+					if (definition1Lines[0].equals(StringPool.DASH) &&
+						definition2Lines[0].equals(StringPool.DASH)) {
 
 						String trimmedDefinitin1Line =
 							definition1Lines[1].trim();

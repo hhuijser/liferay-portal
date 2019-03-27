@@ -68,6 +68,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					String trimmedDefinition1Line = definition1Lines[0];
 					String trimmedDefinition2Line = definition2Lines[0];
 
+					if (trimmedDefinition1Line.startsWith(StringPool.POUND) ||
+						trimmedDefinition2Line.startsWith(StringPool.POUND)) {
+
+						return 0;
+					}
+
 					if (trimmedDefinition1Line.equals(StringPool.DASH) &&
 						trimmedDefinition2Line.equals(StringPool.DASH)) {
 

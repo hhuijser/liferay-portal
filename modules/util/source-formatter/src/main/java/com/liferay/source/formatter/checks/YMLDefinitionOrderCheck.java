@@ -17,6 +17,7 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.YMLSourceUtil;
 
 import java.util.Collections;
@@ -60,6 +61,12 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 				@Override
 				public int compare(String definition1, String definition2) {
+					if (Validator.isNull(definition1) ||
+						Validator.isNull(definition2)) {
+
+						return 0;
+					}
+
 					String[] definition1Lines = StringUtil.splitLines(
 						definition1);
 					String[] definition2Lines = StringUtil.splitLines(

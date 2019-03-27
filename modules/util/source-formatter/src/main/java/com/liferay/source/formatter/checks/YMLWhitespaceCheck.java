@@ -203,20 +203,21 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 			for (int i = 1; i < lines.length; i++) {
 				sb.append(StringPool.NEW_LINE);
 
-				if (lines[0].endsWith(StringPool.COLON)) {
-					sb.append(StringPool.DOUBLE_SPACE);
-					sb.append(lines[i]);
-				}
-				else {
+				if (Validator.isNotNull(lines[i])) {
 					sb.append(lines[i].substring(2));
 				}
 			}
 
 			sb.append(StringPool.NEW_LINE);
 
+			String newContent = _formatSequencesAndMappings(sb.toString());
+
+			if (s.endsWith("\n\n")) {
+				newContent = newContent + "\n";
+			}
+
 			content = StringUtil.replaceFirst(
-				content, matcher.group(),
-				lines[0] + _formatSequencesAndMappings(sb.toString()));
+				content, matcher.group(), lines[0] + newContent);
 		}
 
 		return content;
@@ -245,6 +246,7 @@ public class YMLWhitespaceCheck extends WhitespaceCheck {
 	}
 
 	private static final Pattern _mappingEntryPattern = Pattern.compile(
-		"^( *)- *?(\n|\\Z)((\\1 +.+)(\n|\\Z))+", Pattern.MULTILINE);
+//		"^( *)- *?(\n|\\Z)(((\\1 +.+)(\n|\\Z))|(\n|\\Z))+", Pattern.MULTILINE);
+		"^( *)- *?(\n|\\Z)((\\1 +.+)(\n|\\Z)+)+", Pattern.MULTILINE);
 
 }

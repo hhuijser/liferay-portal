@@ -65,27 +65,27 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 					String[] definition2Lines = StringUtil.splitLines(
 						definition2);
 
-					if (definition1Lines[0].equals(StringPool.DASH) &&
-						definition2Lines[0].equals(StringPool.DASH)) {
+					String trimmedDefinition1Line = definition1Lines[0];
+					String trimmedDefinition2Line = definition2Lines[0];
 
-						String trimmedDefinitin1Line =
-							definition1Lines[1].trim();
-						String trimmedDefinitin2Line =
-							definition2Lines[1].trim();
+					if (trimmedDefinition1Line.equals(StringPool.DASH) &&
+						trimmedDefinition2Line.equals(StringPool.DASH)) {
 
-						if (trimmedDefinitin1Line.equals("in: query") &&
-							trimmedDefinitin1Line.equals(
-								trimmedDefinitin2Line)) {
+						String value1 = definition1Lines[1].trim();
+						String value2 = definition2Lines[1].trim();
+
+						if (value1.equals("in: query") &&
+							value1.equals(value2)) {
 
 							return _sortSpecificDefinitions(
 								definition1, definition2, "name");
 						}
 
-						return definition1Lines[1].compareTo(
-							definition2Lines[1]);
+						return value1.compareTo(value2);
 					}
 
-					return definition1Lines[0].compareTo(definition2Lines[0]);
+					return trimmedDefinition1Line.compareTo(
+						trimmedDefinition2Line);
 				}
 
 			});

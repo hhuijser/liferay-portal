@@ -35,6 +35,10 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
+		if (fileName.endsWith(".travis.yml")) {
+			return content;
+		}
+
 		return _sortDefinitions(fileName, content, StringPool.BLANK);
 	}
 

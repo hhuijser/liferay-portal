@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.YMLSourceUtil;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -53,7 +54,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 			return content;
 		}
 
-		String oldDefinitions = definitions.toString();
+		List<String> oldDefinitions = new ArrayList<>(definitions);
 
 		Collections.sort(
 			definitions,
@@ -103,7 +104,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 			});
 
-		if (!oldDefinitions.equals(definitions.toString())) {
+		if (!oldDefinitions.equals(definitions)) {
 			StringBundler sb = new StringBundler();
 
 			for (String definition : definitions) {

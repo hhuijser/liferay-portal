@@ -88,3 +88,13 @@ paths:
                                 $ref: "#/components/schemas/PostalAddress"
                     description: ""
             tags: ["PostalAddress"]
+tags:
+    - description: Operations on Account
+      name: Account
+    - description: Operations on Countries
+      name: Country
+tagsA:
+    - description: Operations on AccountA
+      name: AccountA
+    - description: Operations on CountriesA
+      name: CountryA

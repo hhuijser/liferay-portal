@@ -90,9 +90,7 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 	}
 
 	private String _postProcess(String content) {
-		content = content.replaceAll("( +-)\n +(.*)", "$1 $2");
-
-		return content;
+		return content.replaceAll("( +-)\n +(.*)", "$1 $2");
 	}
 
 	private String _preProcess(String content) {
@@ -106,9 +104,7 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 					matcher.group(3)));
 		}
 
-		content = _fixIncorrectIndentation(content);
-
-		return content;
+		return _fixIncorrectIndentation(content);
 	}
 
 	private static final String[] _INCLUDES = {"**/*.yaml", "**/*.yml"};

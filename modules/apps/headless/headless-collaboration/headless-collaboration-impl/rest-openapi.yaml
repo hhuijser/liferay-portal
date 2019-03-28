@@ -1683,16 +1683,16 @@ paths:
     "/knowledge-base-articles/{knowledge-base-article-id}/knowledge-base-articles":
         get:
             parameters:
-                - in: query
-                  name: filter
-                  schema:
-                      type: string
                 - in: path
                   name: knowledge-base-article-id
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: query
+                  name: filter
+                  schema:
+                      type: string
                 - in: query
                   name: page
                   schema:
@@ -1889,16 +1889,16 @@ paths:
     "/knowledge-base-folders/{knowledge-base-folder-id}/knowledge-base-articles":
         get:
             parameters:
-                - in: query
-                  name: filter
-                  schema:
-                      type: string
                 - in: path
                   name: knowledge-base-folder-id
                   required: true
                   schema:
                       format: int64
                       type: integer
+                - in: query
+                  name: filter
+                  schema:
+                      type: string
                 - in: query
                   name: page
                   schema:

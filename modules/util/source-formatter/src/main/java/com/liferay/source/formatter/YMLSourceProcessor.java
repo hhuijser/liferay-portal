@@ -52,10 +52,10 @@ public class YMLSourceProcessor extends BaseSourceProcessor {
 		Set<String> modifiedContents = new HashSet<>();
 		Set<String> modifiedMessages = new TreeSet<>();
 
-		content = _preProcess(content);
+		String newContent = _preProcess(content);
 
-		String newContent = format(
-			file, fileName, absolutePath, content, content,
+		newContent = format(
+			file, fileName, absolutePath, newContent, content,
 			new ArrayList<>(getSourceChecks()), modifiedContents,
 			modifiedMessages, 0);
 

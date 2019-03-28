@@ -88,3 +88,15 @@ paths:
           required: true
           schema:
             type: object
+tags:
+- name: Country
+  description: Operations on Countries
+- name: Account
+  description: Operations on Account
+tagsA:
+-
+  name: CountryA
+  description: Operations on CountriesA
+-
+  name: AccountA
+  description: Operations on AccountA

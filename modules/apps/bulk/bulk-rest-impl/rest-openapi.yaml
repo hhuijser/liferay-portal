@@ -75,6 +75,8 @@ components:
                     type: boolean
                 name:
                     type: string
+                required:
+                    type: boolean
                 taxonomyCategories:
                     items:
                         $ref: "#/components/schemas/TaxonomyCategory"
@@ -82,8 +84,6 @@ components:
                 taxonomyVocabularyId:
                     format: int64
                     type: integer
-                required:
-                    type: boolean
 info:
     description: ""
     title: ""

@@ -95,12 +95,12 @@ components:
                             allOf:
                                 - $ref: "#/components/schemas/ContentDocument"
                             readOnly: true
+                        imageDescription:
+                            type: string
+                            writeOnly: true
                         imageId:
                             format: int64
                             type: integer
-                            writeOnly: true
-                        imageDescription:
-                            type: string
                             writeOnly: true
                         link:
                             format: uri
@@ -541,6 +541,58 @@ paths:
                                 $ref: "#/components/schemas/StructuredContent"
                     description: ""
             tags: ["StructuredContent"]
+    "/content-spaces/{content-space-id}/structured-contents/by-key/{key}":
+        get:
+            parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+                - in: path
+                  name: key
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/StructuredContent"
+                    description: ""
+            tags: ["StructuredContent"]
+    "/content-spaces/{content-space-id}/structured-contents/by-uuid/{uuid}":
+        get:
+            parameters:
+                - in: header
+                  name: Accept-Language
+                  schema:
+                      type: string
+                - in: path
+                  name: content-space-id
+                  required: true
+                  schema:
+                      format: int64
+                      type: integer
+                - in: path
+                  name: uuid
+                  required: true
+                  schema:
+                      type: string
+            responses:
+                200:
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/StructuredContent"
+                    description: ""
+            tags: ["StructuredContent"]
     "/content-structures/{content-structure-id}":
         get:
             parameters:
@@ -595,58 +647,6 @@ paths:
                                 items:
                                     $ref: "#/components/schemas/StructuredContent"
                                 type: array
-                    description: ""
-            tags: ["StructuredContent"]
-    "/content-spaces/{content-space-id}/structured-contents/by-key/{key}":
-        get:
-            parameters:
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: path
-                  name: key
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/StructuredContent"
-                    description: ""
-            tags: ["StructuredContent"]
-    "/content-spaces/{content-space-id}/structured-contents/by-uuid/{uuid}":
-        get:
-            parameters:
-                - in: header
-                  name: Accept-Language
-                  schema:
-                      type: string
-                - in: path
-                  name: content-space-id
-                  required: true
-                  schema:
-                      format: int64
-                      type: integer
-                - in: path
-                  name: uuid
-                  required: true
-                  schema:
-                      type: string
-            responses:
-                200:
-                    content:
-                        application/json:
-                            schema:
-                                $ref: "#/components/schemas/StructuredContent"
                     description: ""
             tags: ["StructuredContent"]
     "/structured-contents/{structured-content-id}":

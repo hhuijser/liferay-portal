@@ -107,7 +107,7 @@ public class EditWithImageEditorPortletConfigurationIcon
 			ImageEditorDLDisplayContextHelper
 				imageEditorDLDisplayContextHelper =
 					new ImageEditorDLDisplayContextHelper(
-						fileVersion, request, _dlurlHelper);
+						fileVersion, request, _dlURLHelper);
 
 			if (imageEditorDLDisplayContextHelper.isShowImageEditorAction()) {
 				return true;
@@ -162,7 +162,7 @@ public class EditWithImageEditorPortletConfigurationIcon
 	private DLAppService _dlAppService;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private Portal _portal;

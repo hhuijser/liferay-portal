@@ -83,7 +83,7 @@ public class OpenInMSOfficeFileEntryPortletConfigurationIcon
 		try {
 			FileEntry fileEntry = ActionUtil.getFileEntry(portletRequest);
 
-			String webDavURL = _dlurlHelper.getWebDavURL(
+			String webDavURL = _dlURLHelper.getWebDavURL(
 				themeDisplay, fileEntry.getFolder(), fileEntry,
 				PropsValues.
 					DL_FILE_ENTRY_OPEN_IN_MS_OFFICE_MANUAL_CHECK_IN_REQUIRED);
@@ -135,7 +135,7 @@ public class OpenInMSOfficeFileEntryPortletConfigurationIcon
 
 			UIItemsBuilder uiItemsBuilder = new UIItemsBuilder(
 				request, fileVersion, resourceBundle, _dlTrashUtil,
-				_versioningStrategy, _dlurlHelper);
+				_versioningStrategy, _dlURLHelper);
 
 			return uiItemsBuilder.isOpenInMsOfficeActionAvailable();
 		}
@@ -159,7 +159,7 @@ public class OpenInMSOfficeFileEntryPortletConfigurationIcon
 	private DLTrashUtil _dlTrashUtil;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private Portal _portal;

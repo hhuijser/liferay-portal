@@ -184,7 +184,7 @@ public class JournalArticleAssetDisplayContributor
 			FileEntry fileEntry = _dlAppService.getFileEntryByUuidAndGroupId(
 				uuid, groupId);
 
-			return _dlurlHelper.getDownloadURL(
+			return _dlURLHelper.getDownloadURL(
 				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK);
 		}
 		catch (Exception e) {
@@ -208,7 +208,7 @@ public class JournalArticleAssetDisplayContributor
 	private DLAppService _dlAppService;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private FieldsToDDMFormValuesConverter _fieldsToDDMFormValuesConverter;

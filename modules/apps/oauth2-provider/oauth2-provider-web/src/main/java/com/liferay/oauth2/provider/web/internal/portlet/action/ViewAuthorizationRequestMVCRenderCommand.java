@@ -107,7 +107,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 			OAuth2AuthorizePortletDisplayContext
 				oAuth2AuthorizePortletDisplayContext =
 					new OAuth2AuthorizePortletDisplayContext(
-						themeDisplay, _dlurlHelper);
+						themeDisplay, _dlURLHelper);
 
 			oAuth2AuthorizePortletDisplayContext.setOAuth2Application(
 				oAuth2Application);
@@ -201,7 +201,7 @@ public class ViewAuthorizationRequestMVCRenderCommand
 	private ApplicationDescriptorLocator _applicationDescriptorLocator;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private OAuth2ApplicationScopeAliasesLocalService

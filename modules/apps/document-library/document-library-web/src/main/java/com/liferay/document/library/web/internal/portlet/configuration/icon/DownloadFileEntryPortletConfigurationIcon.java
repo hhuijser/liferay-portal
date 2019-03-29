@@ -79,7 +79,7 @@ public class DownloadFileEntryPortletConfigurationIcon
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		return _dlurlHelper.getDownloadURL(
+		return _dlURLHelper.getDownloadURL(
 			fileEntry, _getFileVersion(portletRequest, fileEntry), themeDisplay,
 			StringPool.BLANK);
 	}
@@ -135,6 +135,6 @@ public class DownloadFileEntryPortletConfigurationIcon
 	}
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 }

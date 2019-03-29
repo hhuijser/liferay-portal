@@ -857,7 +857,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					document = ContentDocumentUtil.toContentDocument(
-						_dlurlHelper, fileEntry);
+						_dlURLHelper, fileEntry);
 				}
 			};
 		}
@@ -895,7 +895,7 @@ public class StructuredContentResourceImpl
 			return new Value() {
 				{
 					image = ContentDocumentUtil.toContentDocument(
-						_dlurlHelper, fileEntry);
+						_dlURLHelper, fileEntry);
 
 					image.setDescription(jsonObject.getString("alt"));
 				}
@@ -1005,7 +1005,7 @@ public class StructuredContentResourceImpl
 	private DLAppService _dlAppService;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private EntityFieldsProvider _entityFieldsProvider;

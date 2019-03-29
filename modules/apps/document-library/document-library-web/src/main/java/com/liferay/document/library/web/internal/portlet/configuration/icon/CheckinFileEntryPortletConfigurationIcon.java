@@ -104,7 +104,7 @@ public class CheckinFileEntryPortletConfigurationIcon
 				request, fileVersion,
 				_resourceBundleLoader.loadResourceBundle(
 					_portal.getLocale(request)),
-				_dlTrashUtil, _versioningStrategy, _dlurlHelper);
+				_dlTrashUtil, _versioningStrategy, _dlURLHelper);
 
 			request.setAttribute(
 				"checkin.jsp-menuItem", uiItemsBuilder.getCheckinMenuItem());
@@ -155,7 +155,7 @@ public class CheckinFileEntryPortletConfigurationIcon
 	private DLTrashUtil _dlTrashUtil;
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 	@Reference
 	private Portal _portal;

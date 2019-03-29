@@ -55,7 +55,7 @@ public class DLFileEntryDownloadURLAssetDisplayContributorField
 	@Override
 	public String getValue(FileEntry fileEntry, Locale locale) {
 		try {
-			return _dlurlHelper.getDownloadURL(
+			return _dlURLHelper.getDownloadURL(
 				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK);
 		}
 		catch (Exception pe) {
@@ -64,6 +64,6 @@ public class DLFileEntryDownloadURLAssetDisplayContributorField
 	}
 
 	@Reference
-	private DLURLHelper _dlurlHelper;
+	private DLURLHelper _dlURLHelper;
 
 }

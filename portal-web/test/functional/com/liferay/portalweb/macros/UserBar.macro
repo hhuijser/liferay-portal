@@ -11,11 +11,15 @@ definition {
 
 				Pause(locator1 = "5000");
 
-				AssertClick(locator1 = "UserBar#USER_DASHBOARD", value1 = "My Dashboard");
+				AssertClick(
+					locator1 = "UserBar#USER_DASHBOARD",
+					value1 = "My Dashboard");
 			}
 		}
 		else {
-			AssertClick(locator1 = "UserBar#USER_DASHBOARD", value1 = "My Dashboard");
+			AssertClick(
+				locator1 = "UserBar#USER_DASHBOARD",
+				value1 = "My Dashboard");
 		}
 	}
 
@@ -47,11 +51,15 @@ definition {
 			if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 				Click(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
-				AssertClick(locator1 = "UserBar#USER_PROFILE", value1 = "My Profile");
+				AssertClick(
+					locator1 = "UserBar#USER_PROFILE",
+					value1 = "My Profile");
 			}
 		}
 		else {
-			AssertClick(locator1 = "UserBar#USER_PROFILE", value1 = "My Profile");
+			AssertClick(
+				locator1 = "UserBar#USER_PROFILE",
+				value1 = "My Profile");
 		}
 	}
 
@@ -59,9 +67,7 @@ definition {
 		if (IsElementPresent(locator1 = "UserBar#USER_AVATAR_IMAGE")) {
 			Click(locator1 = "UserBar#USER_AVATAR_IMAGE");
 
-			AssertVisible(
-				locator1 = "UserBar#USER_AVATAR_DROPDOWN_PORTAL_OPEN"
-			);
+			AssertVisible(locator1 = "UserBar#USER_AVATAR_DROPDOWN_PORTAL_OPEN");
 
 			ScrollWebElementIntoView(locator1 = "UserBar#USER_AVATAR_DROPDOWN_SIGNOUT");
 

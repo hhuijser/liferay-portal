@@ -28,8 +28,7 @@ definition {
 			ProductMenu.gotoPortlet(
 				category = "Content &amp; Data",
 				panel = "Site Administration",
-				portlet = "Forms"
-			);
+				portlet = "Forms");
 
 			FormsAdmin.teardownForms();
 
@@ -45,8 +44,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoAddForm();
 
@@ -69,8 +67,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoEditFormByName();
 
@@ -78,7 +75,9 @@ definition {
 
 		FormsAdminNavigator.openPublishURL(publishFormURL = "${publishedFormPublicURL}");
 
-		FormFields.editText(fieldName = "TextField", fieldValue = "Text Field Value");
+		FormFields.editText(
+			fieldName = "TextField",
+			fieldValue = "Text Field Value");
 
 		Button.clickSubmitForPublication();
 
@@ -89,76 +88,65 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
 
 		WorkflowAsset.viewFormEntryTable(
 			fieldLabel = "Text Field",
 			fieldValue = "Text Field Value",
-			workflowStatus = "PENDING"
-		);
+			workflowStatus = "PENDING");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByDetails(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMe(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMeDetails(
 			workflowAssetContent = "Text",
 			workflowAssetTitle = "Created Form Name",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.approveTaskByActions(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewCompletedTask(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
 
 		WorkflowAsset.viewFormEntryTable(
 			fieldLabel = "Text Field",
 			fieldValue = "Text Field Value",
-			workflowStatus = "Approved"
-		);
+			workflowStatus = "Approved");
 	}
 
 	@description = "This is a use case LPS-61197."
@@ -169,8 +157,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoAddForm();
 
@@ -189,13 +176,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		LexiconEntry.gotoEntryMenuItem(
 			menuItem = "Edit",
-			rowEntry = "Created Form Name"
-		);
+			rowEntry = "Created Form Name");
 
 		FormsAdminNavigator.gotoSettings();
 
@@ -206,14 +191,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Form Page");
 
 		Navigator.gotoPage(pageName = "Form Page");
 
-		Portlet.addPG(pageName = "Form Page", portletName = "Form");
+		Portlet.addPG(
+			pageName = "Form Page",
+			portletName = "Form");
 
 		FormPortletNavigator.gotoSelectForm();
 
@@ -223,9 +209,13 @@ definition {
 
 		Navigator.gotoPage(pageName = "Form Page");
 
-		FormFields.viewDateLabel(fieldLabel = "Date", fieldName = "Date");
+		FormFields.viewDateLabel(
+			fieldLabel = "Date",
+			fieldName = "Date");
 
-		FormFields.editDate(fieldName = "Date", fieldValue = "02/01/2016");
+		FormFields.editDate(
+			fieldName = "Date",
+			fieldValue = "02/01/2016");
 
 		Button.clickSubmitForPublication();
 
@@ -236,50 +226,45 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByDetails(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMe(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMeDetails(
 			workflowAssetContent = "Date",
 			workflowAssetTitle = "Created Form Name",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.gotoPreviewView();
 
-		FormFields.viewDateField(fieldLabel = "Date", fieldName = "Date");
+		FormFields.viewDateField(
+			fieldLabel = "Date",
+			fieldName = "Date");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.approveTaskByActions(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewCompletedTask(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 	}
 
 	@description = "This is a use case for LPS-65270."
@@ -290,8 +275,7 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoAddForm();
 
@@ -303,7 +287,9 @@ definition {
 
 		Form.editFieldLabel(fieldValue = "Select");
 
-		FormFields.editOptionsRow(optionName = "Select1", optionValue = "Select 1");
+		FormFields.editOptionsRow(
+			optionName = "Select1",
+			optionValue = "Select 1");
 
 		Form.closeSidebar();
 
@@ -317,7 +303,9 @@ definition {
 
 		Form.editFieldLabel(fieldValue = "Radio");
 
-		FormFields.editOptionsRow(optionName = "Option1", optionValue = "Option 1");
+		FormFields.editOptionsRow(
+			optionName = "Option1",
+			optionValue = "Option 1");
 
 		Form.closeSidebar();
 
@@ -336,14 +324,12 @@ definition {
 			conditionOperator = "Is equal to",
 			conditionRowNumber = "1",
 			conditionValueField = "Select 1",
-			conditionValueType = "Value"
-		);
+			conditionValueType = "Value");
 
 		FormRules.configureActionOptions(
 			action = "Show",
 			actionRowNumber = "1",
-			actionTarget = "Text One"
-		);
+			actionTarget = "Text One");
 
 		FormRules.save();
 
@@ -354,14 +340,12 @@ definition {
 			conditionOperator = "Is equal to",
 			conditionRowNumber = "1",
 			conditionValueField = "Option 1",
-			conditionValueType = "Value"
-		);
+			conditionValueType = "Value");
 
 		FormRules.configureActionOptions(
 			action = "Show",
 			actionRowNumber = "1",
-			actionTarget = "Text Two"
-		);
+			actionTarget = "Text Two");
 
 		FormRules.save();
 
@@ -376,14 +360,15 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(pageName = "Form Page");
 
 		Navigator.gotoPage(pageName = "Form Page");
 
-		Portlet.addPG(pageName = "Form Page", portletName = "Form");
+		Portlet.addPG(
+			pageName = "Form Page",
+			portletName = "Form");
 
 		FormPortletNavigator.gotoSelectForm();
 
@@ -396,22 +381,28 @@ definition {
 		FormFields.viewTextFieldNotVisible(
 			fieldLabel = "Text One",
 			fieldName = "TextOne",
-			fieldValue = "Text One Input"
-		);
+			fieldValue = "Text One Input");
 
-		FormFields.selectSelectOption(fieldName = "Select", selectOption = "Select 1");
+		FormFields.selectSelectOption(
+			fieldName = "Select",
+			selectOption = "Select 1");
 
-		FormFields.editText(fieldName = "TextOne", fieldValue = "Text One Input");
+		FormFields.editText(
+			fieldName = "TextOne",
+			fieldValue = "Text One Input");
 
 		FormFields.viewTextFieldNotVisible(
 			fieldLabel = "Text Two",
 			fieldName = "TextTwo",
-			fieldValue = "Text Two Input"
-		);
+			fieldValue = "Text Two Input");
 
-		FormFields.selectRadioOption(fieldName = "Radio", radioOption = "Option 1");
+		FormFields.selectRadioOption(
+			fieldName = "Radio",
+			radioOption = "Option 1");
 
-		FormFields.editText(fieldName = "TextTwo", fieldValue = "Text Two Input");
+		FormFields.editText(
+			fieldName = "TextTwo",
+			fieldValue = "Text Two Input");
 
 		Button.clickSubmitForPublication();
 
@@ -422,115 +413,102 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByDetails(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMe(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMeDetails(
 			workflowAssetContent = "Text Two",
 			workflowAssetTitle = "Created Form Name",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.gotoPreviewView();
 
 		FormsAdmin.viewSelectEntry(
 			fieldLabel = "Select",
 			fieldName = "Select",
-			selectOption = "Select 1"
-		);
+			selectOption = "Select 1");
 
 		FormsAdmin.viewTextEntry(
 			fieldLabel = "Text One",
 			fieldName = "TextOne",
-			fieldValue = "Text One Input"
-		);
+			fieldValue = "Text One Input");
 
 		FormsAdmin.viewRadioEntry(
 			fieldLabel = "Radio",
 			fieldName = "Radio",
-			fieldValue = "Option 1"
-		);
+			fieldValue = "Option 1");
 
 		FormsAdmin.viewTextEntry(
 			fieldLabel = "Text Two",
 			fieldName = "TextTwo",
-			fieldValue = "Text Two Input"
-		);
+			fieldValue = "Text Two Input");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.approveTaskByActions(
 			workflowAssetTitle = "Created Form Name",
 			workflowAssetType = "Form Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Forms"
-		);
+			portlet = "Forms");
 
 		FormsAdminNavigator.gotoViewEntries();
 
-		FormsAdmin.viewFormTableEntry(fieldLabel = "Select", fieldValue = "Select 1");
+		FormsAdmin.viewFormTableEntry(
+			fieldLabel = "Select",
+			fieldValue = "Select 1");
 
 		FormsAdmin.viewFormTableEntry(
 			fieldLabel = "Text One",
-			fieldValue = "Text One Input"
-		);
+			fieldValue = "Text One Input");
 
-		FormsAdmin.viewFormTableEntry(fieldLabel = "Radio", fieldValue = "Option 1");
+		FormsAdmin.viewFormTableEntry(
+			fieldLabel = "Radio",
+			fieldValue = "Option 1");
 
 		FormsAdmin.viewFormTableEntry(
 			fieldLabel = "Text Two",
-			fieldValue = "Text Two Input"
-		);
+			fieldValue = "Text Two Input");
 
 		FormsAdminNavigator.gotoView();
 
 		FormsAdmin.viewSelectEntry(
 			fieldLabel = "Select",
 			fieldName = "Select",
-			selectOption = "Select 1"
-		);
+			selectOption = "Select 1");
 
 		FormsAdmin.viewTextEntry(
 			fieldLabel = "Text One",
 			fieldName = "TextOne",
-			fieldValue = "Text One Input"
-		);
+			fieldValue = "Text One Input");
 
 		FormsAdmin.viewRadioEntry(
 			fieldLabel = "Radio",
 			fieldName = "Radio",
-			fieldValue = "Option 1"
-		);
+			fieldValue = "Option 1");
 
 		FormsAdmin.viewTextEntry(
 			fieldLabel = "Text Two",
 			fieldName = "TextTwo",
-			fieldValue = "Text Two Input"
-		);
+			fieldValue = "Text Two Input");
 	}
 }

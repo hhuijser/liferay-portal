@@ -15,54 +15,49 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Configuration",
 			panel = "Control Panel",
-			portlet = "System Settings"
-		);
+			portlet = "System Settings");
 
 		SystemSettings.gotoConfiguration(
 			configurationCategory = "Documents and Media",
 			configurationName = "Google Drive",
-			configurationScope = "Virtual Instance Scope"
-		);
+			configurationScope = "Virtual Instance Scope");
 
 		var googleClientID = PropsUtil.get("google.client.id.2");
 
 		Type(
+			key_text = "clientId",
 			locator1 = "TextArea#ANY",
-			value1 = "${googleClientID}",
-			key_text = "clientId"
-		);
+			value1 = "${googleClientID}");
 
 		var googleClientSecret = PropsUtil.get("google.client.secret.2");
 
 		Type(
+			key_text = "clientSecret",
 			locator1 = "TextArea#ANY",
-			value1 = "${googleClientSecret}",
-			key_text = "clientSecret"
-		);
+			value1 = "${googleClientSecret}");
 
 		ScrollWebElementIntoView(locator1 = "Button#SAVE");
 
-		AssertClick(locator1 = "Button#SAVE", value1 = "Save");
+		AssertClick(
+			locator1 = "Button#SAVE",
+			value1 = "Save");
 
 		AssertElementPresent(locator1 = "Message#SUCCESS");
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",
 			panel = "Site Administration",
-			portlet = "Pages"
-		);
+			portlet = "Pages");
 
 		SitePages.addPublicPage(
 			pageName = "Documents and Media Page",
-			sitePageType = "Widget Page"
-		);
+			sitePageType = "Widget Page");
 
 		SitePages.configurePage(
 			columnName = "1 Column",
 			pageName = "Documents and Media Page",
 			privacy = "Public Pages",
-			sitePageType = "Widget Page"
-		);
+			sitePageType = "Widget Page");
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
@@ -87,8 +82,7 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.discardChanges();
 
@@ -107,18 +101,17 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Docs");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Docs");
 
-		GoogleDoc.editTitleInGoogleDoc(
-			dmDocumentTitle = "This title should not be saved"
-		);
+		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "This title should not be saved");
 
 		GoogleDoc.discardChanges();
 
@@ -126,8 +119,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "Untitled"
-		);
+			value1 = "Untitled");
 	}
 
 	@description = "This test ensures no document is generated if a user cancels creating a Google Doc."
@@ -142,8 +134,7 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.discardChanges();
 
@@ -162,18 +153,17 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Sheets");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Sheets");
 
-		GoogleDoc.editTitleInGoogleDoc(
-			dmDocumentTitle = "This title should not be saved"
-		);
+		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "This title should not be saved");
 
 		GoogleDoc.discardChanges();
 
@@ -181,8 +171,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "Untitled"
-		);
+			value1 = "Untitled");
 	}
 
 	@description = "This test ensures no document is generated if a user cancels creating a Google Doc."
@@ -197,8 +186,7 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.discardChanges();
 
@@ -217,18 +205,17 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Slides");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Slides");
 
-		GoogleDoc.editTitleInGoogleDoc(
-			dmDocumentTitle = "This title should not be saved"
-		);
+		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "This title should not be saved");
 
 		GoogleDoc.discardChanges();
 
@@ -236,8 +223,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "Untitled"
-		);
+			value1 = "Untitled");
 	}
 
 	@description = "This test ensures a Google Doc title can be changed through the editor"
@@ -252,14 +238,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Docs");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Docs");
 
 		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "Edited Google Document");
 
@@ -269,8 +256,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "Edited Google Document"
-		);
+			value1 = "Edited Google Document");
 	}
 
 	@description = "This test ensures that special characters  can be saved through the Google Doc editor"
@@ -283,14 +269,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Docs");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Docs");
 
 		var dmDocumentTitle = '''Special Characters Title 12345`~!@#$%^&*(){}[],.<>/?|''';
 
@@ -302,8 +289,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "${dmDocumentTitle}"
-		);
+			value1 = "${dmDocumentTitle}");
 	}
 
 	@description = "This test ensures a Google Sheet title can be changed through the editor"
@@ -318,14 +304,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Sheets");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Sheets");
 
 		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "Edited Google Sheet");
 
@@ -335,8 +322,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "Edited Google Sheet"
-		);
+			value1 = "Edited Google Sheet");
 	}
 
 	@description = "This test ensures a Google Slide title can be changed through the editor"
@@ -351,14 +337,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		GoogleDoc.saveAndExit();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		GoogleDoc.gotoEdit(dmDocumentTitle = "Untitled", dmGoogleApp = "Google Slides");
+		GoogleDoc.gotoEdit(
+			dmDocumentTitle = "Untitled",
+			dmGoogleApp = "Google Slides");
 
 		GoogleDoc.editTitleInGoogleDoc(dmDocumentTitle = "Edited Google Slide");
 
@@ -368,8 +355,7 @@ definition {
 
 		AssertTextEquals(
 			locator1 = "DocumentsAndMedia#DESCRIPTIVE_LIST_DOCUMENT_TITLE",
-			value1 = "Edited Google Slide"
-		);
+			value1 = "Edited Google Slide");
 	}
 
 	@description = "This test ensures that a document is checked out when the Google Doc editor is being used"
@@ -384,14 +370,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		Navigator.openURL();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		DMDocument.viewCheckedoutPG(dmDocumentTitle = "Untitled", status = "Draft");
+		DMDocument.viewCheckedoutPG(
+			dmDocumentTitle = "Untitled",
+			status = "Draft");
 	}
 
 	@description = "This test ensures that a document is checked out when the Google Sheet editor is being used"
@@ -406,14 +393,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		Navigator.openURL();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		DMDocument.viewCheckedoutPG(dmDocumentTitle = "Untitled", status = "Draft");
+		DMDocument.viewCheckedoutPG(
+			dmDocumentTitle = "Untitled",
+			status = "Draft");
 	}
 
 	@description = "This test ensures that a document is checked out when the Google Slide editor is being used"
@@ -428,14 +416,15 @@ definition {
 		Google.signIn(
 			userEmailAddress = PropsUtil.get("email.address.3"),
 			userPassword = PropsUtil.get("email.password.3"),
-			windowTitle = "Documents and Media Page - Liferay"
-		);
+			windowTitle = "Documents and Media Page - Liferay");
 
 		Navigator.openURL();
 
 		Navigator.gotoPage(pageName = "Documents and Media Page");
 
-		DMDocument.viewCheckedoutPG(dmDocumentTitle = "Untitled", status = "Draft");
+		DMDocument.viewCheckedoutPG(
+			dmDocumentTitle = "Untitled",
+			status = "Draft");
 	}
 
 	tearDown {

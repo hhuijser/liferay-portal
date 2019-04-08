@@ -35,16 +35,14 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.addCP(ddlDataDefinitionName = "Data Definition Name");
 
 		DynamicDataMapping.addField(
 			field = "Text",
 			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		DDLDataDefinition.save();
 
@@ -53,13 +51,11 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLList.addCP(
 			ddlListName = "DDL List Name",
-			workflowDefinition = "Single Approver"
-		);
+			workflowDefinition = "Single Approver");
 
 		DDLDataDefinition.selectCP(ddlDataDefinitionName = "Data Definition Name");
 
@@ -70,40 +66,34 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLRecord.addCP(
 			ddlDataDefinitionName = "Data Definition Name",
-			ddlListName = "DDL List Name"
-		);
+			ddlListName = "DDL List Name");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "DDL Record 1",
 			field = "Text",
 			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		DDLRecord.submitForPublication();
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLRecord.addCP(
 			ddlDataDefinitionName = "Data Definition Name",
-			ddlListName = "DDL List Name"
-		);
+			ddlListName = "DDL List Name");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "DDL Record 2",
 			field = "Text",
 			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		DDLRecord.submitForPublication();
 
@@ -112,54 +102,47 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(
 			ddlDataDefinitionName = "Data Definition Name",
 			workflowAssetTitle = "New Data Definition Name for List: DDL List Name",
 			workflowAssetType = "Dynamic Data Lists Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.viewTaskAssignedToMeDetails(
 			ddlDataDefinitionName = "Data Definition Name",
 			workflowAssetContent = "DDL Record",
 			workflowAssetTitle = "New Data Definition Name for List: DDL List Name",
 			workflowAssetType = "Dynamic Data Lists Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Workflow.gotoPreviewEdit();
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "DDL Record Edit",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		PortletEntry.save();
 
 		DDLRecord.viewEditPreview(
 			ddlRecordFieldDataEdit = "DDL Record Edit",
 			fieldFieldLabel = "Text",
-			fieldName = "Text"
-		);
+			fieldName = "Text");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.viewTaskAssignedToMeDetails(
 			ddlDataDefinitionName = "Data Definition Name",
 			workflowAssetContent = "DDL Record Edit",
 			workflowAssetTitle = "New Data Definition Name for List: DDL List Name",
 			workflowAssetType = "Dynamic Data Lists Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 	}
 
 	@priority = "4"
@@ -176,19 +159,16 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLDataDefinition.addCP(
 			ddlDataDefinitionDescription = "DDL Definition Description",
-			ddlDataDefinitionName = "DDL Definition"
-		);
+			ddlDataDefinitionName = "DDL Definition");
 
 		DynamicDataMapping.addField(
 			field = "Text",
 			fieldFieldLabel = "Text Label",
-			fieldName = "TextName"
-		);
+			fieldName = "TextName");
 
 		DDLDataDefinition.save();
 
@@ -197,14 +177,12 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLList.addCP(
 			ddlListDescription = "DDL List Description",
 			ddlListName = "DDL List",
-			workflowDefinition = "Single Approver"
-		);
+			workflowDefinition = "Single Approver");
 
 		DDLDataDefinition.selectCP(ddlDataDefinitionName = "DDL Definition");
 
@@ -215,20 +193,17 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLRecord.addCP(
 			ddlDataDefinitionName = "DDL Definition",
-			ddlListName = "DDL List"
-		);
+			ddlListName = "DDL List");
 
 		DDLRecord.populateFieldText(
 			ddlRecordFieldData = "Record Text",
 			field = "Text",
 			fieldFieldLabel = "Text Label",
-			fieldName = "TextName"
-		);
+			fieldName = "TextName");
 
 		DDLRecord.submitForPublication();
 
@@ -237,23 +212,20 @@ definition {
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.assignToMeTaskByActions(
 			ddlDataDefinitionName = "DDL Definition",
 			workflowAssetTitle = "DDL List",
 			workflowAssetType = "Dynamic Data Lists Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLNavigator.gotoListRecords(ddlListName = "DDL List");
 
@@ -262,45 +234,39 @@ definition {
 			field = "Text",
 			fieldFieldLabel = "Text Label",
 			fieldName = "TextName",
-			workflowStatus = "Review"
-		);
+			workflowStatus = "Review");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.rejectTaskByActions(
 			ddlDataDefinitionName = "DDL Definition",
 			workflowAssetTitle = "DDL List",
 			workflowAssetType = "Dynamic Data Lists Record",
-			workflowTask = "Review"
-		);
+			workflowTask = "Review");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "My Account",
 			panel = "User",
-			portlet = "My Workflow Tasks"
-		);
+			portlet = "My Workflow Tasks");
 
 		Workflow.viewRejectedTask(
 			ddlDataDefinitionName = "DDL Definition",
 			workflowAssetTitle = "DDL List",
-			workflowAssetType = "Dynamic Data Lists Record"
-		);
+			workflowAssetType = "Dynamic Data Lists Record");
 
 		Navigator.openURL();
 
 		ProductMenu.gotoPortlet(
 			category = "Content &amp; Data",
 			panel = "Site Administration",
-			portlet = "Dynamic Data Lists"
-		);
+			portlet = "Dynamic Data Lists");
 
 		DDLNavigator.gotoListRecords(ddlListName = "DDL List");
 
@@ -309,7 +275,6 @@ definition {
 			field = "Text",
 			fieldFieldLabel = "Text Label",
 			fieldName = "TextName",
-			workflowStatus = "Update"
-		);
+			workflowStatus = "Update");
 	}
 }

@@ -275,7 +275,8 @@ public class FreeMarkerTool {
 	}
 
 	public boolean hasPostSchemaJavaMethodSignature(
-		List<JavaMethodSignature> javaMethodSignatures, String prefix, String schemaName) {
+		List<JavaMethodSignature> javaMethodSignatures, String prefix,
+		String schemaName) {
 
 		JavaMethodSignature javaMethodSignature =
 			getPostSchemaJavaMethodSignature(

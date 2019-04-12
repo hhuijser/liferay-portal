@@ -400,7 +400,7 @@
 		<check name="PoshiAnnotationsOrderCheck">
 			<property name="enabled" value="false" />
 		</check>
-		<check name="PoshiCommandsOrderCheck">
+		<check name="PoshiMethodsOrderCheck">
 			<property name="enabled" value="false" />
 		</check>
 		<check name="PoshiIndentationCheck" />

@@ -32,33 +32,32 @@ import java.util.regex.Pattern;
 /**
  * @author Alan Huang
  */
-public class PoshiCommandsOrderCheck extends BaseFileCheck {
+public class PoshiMethodsOrderCheck extends BaseFileCheck {
 
 	@Override
 	protected String doProcess(
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		int commandStartLineNumber = 0;
+		int methodStartLineNumber = 0;
 
-		Matcher matcher = _commandBlockPattern.matcher(content);
+		Matcher matcher = _methodBlockPattern.matcher(content);
 
-		List<String> commandBlocks = new ArrayList<>();
+		List<String> methodBlocks = new ArrayList<>();
 
 		while (matcher.find()) {
-			if (commandStartLineNumber == 0) {
-				commandStartLineNumber = getLineNumber(
-					content, matcher.start());
+			if (methodStartLineNumber == 0) {
+				methodStartLineNumber = getLineNumber(content, matcher.start());
 			}
 
-			commandBlocks.add(matcher.group());
+			methodBlocks.add(matcher.group());
 		}
 
-		if (commandBlocks.isEmpty()) {
+		if (methodBlocks.isEmpty()) {
 			return content;
 		}
 
-		Collections.sort(commandBlocks, new CommandComparator());
+		Collections.sort(methodBlocks, new MethodComparator());
 
 		StringBundler sb = new StringBundler();
 
@@ -72,7 +71,7 @@ public class PoshiCommandsOrderCheck extends BaseFileCheck {
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				lineNumber++;
 
-				if (lineNumber == commandStartLineNumber) {
+				if (lineNumber == methodStartLineNumber) {
 					break;
 				}
 
@@ -81,32 +80,32 @@ public class PoshiCommandsOrderCheck extends BaseFileCheck {
 			}
 		}
 
-		sb.append(ListUtil.toString(commandBlocks, StringPool.BLANK, "\n"));
+		sb.append(ListUtil.toString(methodBlocks, StringPool.BLANK, "\n"));
 		sb.append("\n}");
 
 		return sb.toString();
 	}
 
-	private static final Pattern _commandBlockPattern = Pattern.compile(
+	private static final Pattern _methodBlockPattern = Pattern.compile(
 		"(^\t@.+?=.+?\n)*\t(function|macro|test) [\\s\\S]*?\n\t\\}\n",
 		Pattern.MULTILINE);
-	private static final Pattern _commandNamePattern = Pattern.compile(
+	private static final Pattern _methodNamePattern = Pattern.compile(
 		"(?:^\t(function|macro|test)( +))[\\s\\S]*?(?:\\{)", Pattern.MULTILINE);
 
-	private class CommandComparator implements Comparator<String> {
+	private class MethodComparator implements Comparator<String> {
 
 		@Override
 		public int compare(String s1, String s2) {
 			String name1 = StringPool.BLANK;
 			String name2 = StringPool.BLANK;
 
-			Matcher matcher = _commandNamePattern.matcher(s1);
+			Matcher matcher = _methodNamePattern.matcher(s1);
 
 			if (matcher.find()) {
 				name1 = matcher.group();
 			}
 
-			matcher = _commandNamePattern.matcher(s2);
+			matcher = _methodNamePattern.matcher(s2);
 
 			if (matcher.find()) {
 				name2 = matcher.group();

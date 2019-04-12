@@ -91,8 +91,7 @@ public class PoshiCommandsOrderCheck extends BaseFileCheck {
 		"(^\t@.+?=.+?\n)*\t(function|macro|test) [\\s\\S]*?\n\t\\}\n",
 		Pattern.MULTILINE);
 	private static final Pattern _commandNamePattern = Pattern.compile(
-		"(?<=^\t(function|macro|test))(?: +)[\\s\\S]*?(?=\\{)",
-		Pattern.MULTILINE);
+		"(?:^\t(function|macro|test)( +))[\\s\\S]*?(?:\\{)", Pattern.MULTILINE);
 
 	private class CommandComparator implements Comparator<String> {
 

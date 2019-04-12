@@ -43,47 +43,53 @@ public class PoshiMethodsOrderCheck extends BaseFileCheck {
 
 		Matcher matcher = _methodBlockPattern.matcher(content);
 
-		List<String> methodBlocks = new ArrayList<>();
+		List<String> methods = new ArrayList<>();
 
 		while (matcher.find()) {
 			if (methodStartLineNumber == 0) {
 				methodStartLineNumber = getLineNumber(content, matcher.start());
 			}
 
-			methodBlocks.add(matcher.group());
+			methods.add(matcher.group());
 		}
 
-		if (methodBlocks.isEmpty()) {
+		if (methods.isEmpty() || (methods.size() < 2)) {
 			return content;
 		}
 
-		Collections.sort(methodBlocks, new MethodComparator());
+		List<String> oldMethods = new ArrayList<>(methods);
 
-		StringBundler sb = new StringBundler();
+		Collections.sort(methods, new MethodComparator());
 
-		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+		if (!oldMethods.equals(methods)) {
+			StringBundler sb = new StringBundler();
 
-			int lineNumber = 0;
+			try (UnsyncBufferedReader unsyncBufferedReader =
+					new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
-			String line = null;
+				int lineNumber = 0;
 
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				lineNumber++;
+				String line = null;
 
-				if (lineNumber == methodStartLineNumber) {
-					break;
+				while ((line = unsyncBufferedReader.readLine()) != null) {
+					lineNumber++;
+
+					if (lineNumber == methodStartLineNumber) {
+						break;
+					}
+
+					sb.append(line);
+					sb.append("\n");
 				}
 
-				sb.append(line);
-				sb.append("\n");
+				sb.append(ListUtil.toString(methods, StringPool.BLANK, "\n"));
+				sb.append("}");
 			}
+
+			return sb.toString();
 		}
 
-		sb.append(ListUtil.toString(methodBlocks, StringPool.BLANK, "\n"));
-		sb.append("\n}");
-
-		return sb.toString();
+		return content;
 	}
 
 	private static final Pattern _methodBlockPattern = Pattern.compile(

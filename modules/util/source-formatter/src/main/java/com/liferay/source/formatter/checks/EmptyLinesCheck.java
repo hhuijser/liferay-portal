@@ -546,7 +546,8 @@ public abstract class EmptyLinesCheck extends BaseFileCheck {
 
 				String nextLine = matcher.group(1);
 
-				if (nextLine.startsWith("package ") ||
+				if (nextLine.startsWith("import ") ||
+					nextLine.startsWith("package ") ||
 					nextLine.startsWith("/*")) {
 
 					continue;

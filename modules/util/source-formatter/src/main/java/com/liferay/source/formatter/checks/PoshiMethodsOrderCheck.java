@@ -93,10 +93,10 @@ public class PoshiMethodsOrderCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _methodBlockPattern = Pattern.compile(
-		"(^\t@.+?=.+?\n)*\t(function|macro|test) [\\s\\S]*?\n\t\\}\n",
-		Pattern.MULTILINE);
+		"(?<=\n)(\t@.+?=.+?\n)*\t(function|macro|test) .*\n(.*\n)*?\t\\}\n" +
+			"(?=\\s*(@|function|macro|test|\\s*\\}$))");
 	private static final Pattern _methodNamePattern = Pattern.compile(
-		"(?:^\t(function|macro|test)( +))[\\s\\S]*?(?:\\{)", Pattern.MULTILINE);
+		"^\t(function|macro|test)( +).+(\n|\\Z)", Pattern.MULTILINE);
 
 	private class MethodComparator implements Comparator<String> {
 

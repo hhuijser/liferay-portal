@@ -25,6 +25,26 @@ definition {
 		Upgrade.resetTestUserPassword();
 	}
 
+	@description = "This is the description for MacroE."
+	macro MacroE {
+		var javaScript = '''
+if (true) {
+	if (true) {
+		if (false) {
+			return 'ready';
+		}
+		else {
+			return 'pending';
+		}
+	}
+	else {
+		return 'pending';
+	}
+}
+		''';
+		var metalComponentReady = ""
+	}
+
 	macro MacroB {
 		property setup.wizard.enabled = "true";
 	}

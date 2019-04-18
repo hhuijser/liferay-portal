@@ -18,7 +18,7 @@
 taglib uri="http://liferay.com/tld/chart" prefix="chart" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
-<%@ page import="com.liferay.frontend.taglib.chart.sample.web.constants.ChartSamplePortletKeys" %><%@
+<%@ page import="com.liferay.frontend.taglib.chart.sample.web.internal.constants.ChartSamplePortletKeys" %><%@
 page import="com.liferay.frontend.taglib.chart.sample.web.internal.display.context.ChartSampleDisplayContext" %>
 
 <liferay-theme:defineObjects />

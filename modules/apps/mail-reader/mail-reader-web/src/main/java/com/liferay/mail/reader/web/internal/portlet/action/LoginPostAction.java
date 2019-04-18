@@ -16,7 +16,7 @@ package com.liferay.mail.reader.web.internal.portlet.action;
 
 import com.liferay.mail.reader.model.Account;
 import com.liferay.mail.reader.service.AccountLocalService;
-import com.liferay.mail.reader.web.util.MailManager;
+import com.liferay.mail.reader.web.internal.util.MailManager;
 import com.liferay.portal.kernel.events.Action;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.events.LifecycleAction;

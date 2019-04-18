@@ -28,7 +28,7 @@ if (ddmDisplay.getTitle(locale) != null) {
 }
 %>
 
-<c:if test="<%= ListUtil.isEmpty(ddmDisplay.getTabItems()) && ddmDisplay.isShowBackURLInTitleBar() && showBackURL%>">
+<c:if test="<%= ListUtil.isEmpty(ddmDisplay.getTabItems()) && ddmDisplay.isShowBackURLInTitleBar() && showBackURL %>">
 
 	<%
 	portletDisplay.setShowBackIcon(true);

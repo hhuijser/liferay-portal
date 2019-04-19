@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.categories.selector.web.portlet;
+package com.liferay.asset.categories.selector.web.internal.portlet;
 
 import com.liferay.asset.categories.selector.web.contants.AssetCategoriesSelectorPortletKeys;
 import com.liferay.asset.kernel.model.AssetCategory;

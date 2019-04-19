@@ -14,7 +14,7 @@
 
 package com.liferay.mail.reader.web.internal.upgrade;
 
-import com.liferay.mail.reader.web.upgrade.v1_0_0.UpgradePortletId;
+import com.liferay.mail.reader.web.internal.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.kernel.upgrade.UpgradeException;

@@ -14,7 +14,7 @@
 
 package com.liferay.frontend.taglib.clay.sample.web.internal.portlet;
 
-import com.liferay.frontend.taglib.clay.sample.web.constants.ClaySamplePortletKeys;
+import com.liferay.frontend.taglib.clay.sample.web.internal.constants.ClaySamplePortletKeys;
 import com.liferay.frontend.taglib.clay.sample.web.internal.display.context.CardsDisplayContext;
 import com.liferay.frontend.taglib.clay.sample.web.internal.display.context.DropdownsDisplayContext;
 import com.liferay.frontend.taglib.clay.sample.web.internal.display.context.ManagementToolbarsDisplayContext;

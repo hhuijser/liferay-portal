@@ -15,7 +15,7 @@
 package com.liferay.journal.web.internal.portlet.action;
 
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.journal.web.util.JournalRSSUtil;
+import com.liferay.journal.web.internal.util.JournalRSSUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseRSSMVCResourceCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 

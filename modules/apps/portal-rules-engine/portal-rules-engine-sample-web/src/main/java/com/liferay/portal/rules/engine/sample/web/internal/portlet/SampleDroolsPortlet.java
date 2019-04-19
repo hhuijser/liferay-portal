@@ -15,7 +15,7 @@
 package com.liferay.portal.rules.engine.sample.web.internal.portlet;
 
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.rules.engine.sample.web.constants.SampleDroolsPortletKeys;
+import com.liferay.portal.rules.engine.sample.web.internal.constants.SampleDroolsPortletKeys;
 
 import javax.portlet.Portlet;
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mail.reader.web.portlet.action;
+package com.liferay.mail.reader.web.internal.portlet.action;
 
 import com.liferay.mail.reader.model.Account;
 import com.liferay.mail.reader.service.AccountLocalService;

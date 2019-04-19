@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mail.reader.web.portlet.action;
+package com.liferay.mail.reader.web.internal.portlet.action;
 
 import com.liferay.osgi.util.ComponentUtil;
 import com.liferay.portal.kernel.messaging.DestinationNames;

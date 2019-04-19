@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mail.reader.web.util;
+package com.liferay.mail.reader.web.internal.util;
 
 import com.liferay.document.library.kernel.exception.FileSizeException;
 import com.liferay.mail.reader.attachment.AttachmentHandler;

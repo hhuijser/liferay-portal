@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mail.reader.web.upgrade;
+package com.liferay.mail.reader.web.internal.upgrade;
 
 import com.liferay.mail.reader.web.upgrade.v1_0_0.UpgradePortletId;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;

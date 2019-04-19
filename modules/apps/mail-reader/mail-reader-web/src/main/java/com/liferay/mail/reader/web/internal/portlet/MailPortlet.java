@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.mail.reader.web.portlet;
+package com.liferay.mail.reader.web.internal.portlet;
 
 import com.liferay.mail.reader.attachment.AttachmentHandler;
 import com.liferay.mail.reader.constants.MailPortletKeys;

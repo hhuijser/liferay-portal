@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.util;
+package com.liferay.journal.web.internal.util;
 
 import com.liferay.document.library.kernel.document.conversion.DocumentConversionUtil;
 import com.liferay.document.library.kernel.util.DLUtil;

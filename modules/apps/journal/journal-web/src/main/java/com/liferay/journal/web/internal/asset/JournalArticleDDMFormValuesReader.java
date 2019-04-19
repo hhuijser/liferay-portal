@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.asset;
+package com.liferay.journal.web.internal.asset;
 
 import com.liferay.asset.kernel.model.BaseDDMFormValuesReader;
 import com.liferay.dynamic.data.mapping.kernel.DDMFormValues;

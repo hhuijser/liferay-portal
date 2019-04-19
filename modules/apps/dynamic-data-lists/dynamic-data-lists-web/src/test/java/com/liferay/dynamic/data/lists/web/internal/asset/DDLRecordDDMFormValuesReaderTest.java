@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.dynamic.data.lists.web.asset;
+package com.liferay.dynamic.data.lists.web.internal.asset;
 
 import com.liferay.asset.kernel.model.DDMFormValuesReader;
-import com.liferay.dynamic.data.lists.web.internal.asset.DDLRecordDDMFormValuesReader;
 import com.liferay.dynamic.data.mapping.kernel.DDMForm;
 import com.liferay.dynamic.data.mapping.kernel.DDMFormField;
 import com.liferay.dynamic.data.mapping.kernel.DDMFormFieldValue;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.rules.engine.sample.web.constants;
+package com.liferay.portal.rules.engine.sample.web.internal.constants;
 
 /**
  * @author Marcellus Tavares

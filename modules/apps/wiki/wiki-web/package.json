@@ -1,7 +1,7 @@
 {
 	"dependencies": {
-		"metal": "^2.4.7",
-		"metal-events": "^2.5.0"
+		"metal": "2.16.7",
+		"metal-events": "2.16.7"
 	},
 	"name": "wiki-web",
 	"scripts": {

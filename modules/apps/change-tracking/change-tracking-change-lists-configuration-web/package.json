@@ -1,9 +1,9 @@
 {
 	"dependencies": {
-		"metal": "^2.5.18",
-		"metal-component": "^2.16.3",
-		"metal-soy": "^2.13.2",
-		"metal-state": "^2.13.2"
+		"metal": "2.16.7",
+		"metal-component": "2.16.7",
+		"metal-soy": "2.16.7",
+		"metal-state": "2.16.7"
 	},
 	"name": "change-tracking-change-lists-configuration-web",
 	"scripts": {

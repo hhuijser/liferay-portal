@@ -1,8 +1,8 @@
 {
 	"dependencies": {
-		"metal": "^2.4.7",
-		"metal-dom": "^2.4.7",
-		"metal-uri": "^2.0.2",
+		"metal": "2.16.7",
+		"metal-dom": "2.16.7",
+		"metal-uri": "2.4.0",
 		"senna": "2.7.5"
 	},
 	"name": "frontend-js-spa-web",

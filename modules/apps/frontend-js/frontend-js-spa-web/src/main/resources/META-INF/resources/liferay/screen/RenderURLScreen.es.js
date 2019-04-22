@@ -1,5 +1,3 @@
-'use strict';
-
 import EventScreen from './EventScreen.es';
 
 /**

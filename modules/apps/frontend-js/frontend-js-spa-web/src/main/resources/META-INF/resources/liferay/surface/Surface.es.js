@@ -1,7 +1,5 @@
-'use strict';
-
-import core from 'metal/lib/core';
-import dom from 'metal-dom/lib/dom';
+import core from 'metal';
+import dom from 'metal-dom';
 import Surface from 'senna/lib/surface/Surface';
 
 /**

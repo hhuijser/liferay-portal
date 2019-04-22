@@ -1,8 +1,7 @@
-'use strict';
+import Uri from 'metal-uri';
+import {utils} from 'senna';
 
 import EventScreen from './EventScreen.es';
-import Uri from 'metal-uri/lib/Uri';
-import utils from 'senna/lib/utils/utils';
 
 /**
  * ActionURLScreen

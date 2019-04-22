@@ -1,11 +1,9 @@
-'use strict';
-
-import Uri from 'metal-uri/lib/Uri';
-import App from 'senna/lib/app/App';
-import core from 'metal/lib/core';
-import dom from 'metal-dom/lib/dom';
-import {CancellablePromise} from 'metal-promise/lib/promise/Promise';
+import {App} from 'senna';
+import {CancellablePromise} from 'metal-promise';
 import {openToast} from 'frontend-js-web/liferay/toast/commands/OpenToast.es';
+import core from 'metal';
+import dom from 'metal-dom';
+import Uri from 'metal-uri';
 
 import LiferaySurface from '../surface/Surface.es';
 import Utils from '../util/Utils.es';

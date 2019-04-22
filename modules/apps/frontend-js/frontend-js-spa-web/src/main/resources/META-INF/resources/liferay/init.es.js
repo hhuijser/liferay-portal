@@ -1,11 +1,10 @@
 'use strict';
 
-import Uri from 'metal-uri/lib/Uri';
-import async from 'metal/lib/async/async';
-import globals from 'senna/lib/globals/globals';
-import utils from 'senna/lib/utils/utils';
-import version from 'senna/lib/app/version';
+import {async} from 'metal';
 import {match} from 'metal-dom';
+import {utils, version} from 'senna';
+import globals from 'senna/lib/globals/globals';
+import Uri from 'metal-uri';
 
 import ActionURLScreen from './screen/ActionURLScreen.es';
 import App from './app/App.es';

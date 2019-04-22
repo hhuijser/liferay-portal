@@ -1,5 +1,3 @@
-'use strict';
-
 const MAX_TIMEOUT = Math.pow(2, 31) - 1;
 
 /**

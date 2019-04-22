@@ -1,14 +1,16 @@
 {
-    "ignore": [
-        "config.js",
-        "**/__tests__/*.js",
-        "**/*_field.js",
-        "**/*_support.js"
-    ],
-    "plugins": [
-        "transform-class-properties",
-        "transform-decorators-legacy",
-        "transform-object-rest-spread"
-    ],
-    "presets": ["env"]
+	"ignore": [
+		"config.js",
+		"**/__tests__/*.js",
+		"**/*_field.js",
+		"**/*_support.js"
+	],
+	"plugins": [
+		"transform-class-properties",
+		"transform-decorators-legacy",
+		"transform-object-rest-spread"
+	],
+	"presets": [
+		"env"
+	]
 }

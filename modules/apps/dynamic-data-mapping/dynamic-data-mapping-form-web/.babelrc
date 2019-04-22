@@ -1,22 +1,25 @@
 {
 	"env": {
 		"test": {
-			"presets": [
-				"env",
-				"metal-jsx"
-			],
 			"plugins": [
 				"transform-class-properties",
 				"transform-decorators-legacy",
-				["module-resolver", {
-					"alias": {
-						"dynamic-data-mapping-form-builder/*": "../dynamic-data-mapping-form-builder/src/main/resources/META-INF/resources",
-						"dynamic-data-mapping-form-field-type/*": "../dynamic-data-mapping-form-field-type/src/main/resources/META-INF/resources",
-						"frontend-js-web/*": "../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources",
-						"mock/*": "./test/metal/js/__mock__",
-						"source/*": "./src/main/resources/META-INF/resources/admin/js"
+				[
+					"module-resolver",
+					{
+						"alias": {
+							"dynamic-data-mapping-form-builder/*": "../dynamic-data-mapping-form-builder/src/main/resources/META-INF/resources",
+							"dynamic-data-mapping-form-field-type/*": "../dynamic-data-mapping-form-field-type/src/main/resources/META-INF/resources",
+							"frontend-js-web/*": "../../frontend-js/frontend-js-web/src/main/resources/META-INF/resources",
+							"mock/*": "./test/metal/js/__mock__",
+							"source/*": "./src/main/resources/META-INF/resources/admin/js"
+						}
 					}
-				}]
+				]
+			],
+			"presets": [
+				"env",
+				"metal-jsx"
 			]
 		}
 	},

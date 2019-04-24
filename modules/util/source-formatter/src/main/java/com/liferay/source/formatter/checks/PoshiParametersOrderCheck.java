@@ -18,6 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.util.PoshiSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.io.IOException;
@@ -43,8 +44,21 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 	private String _sortPoshiParameters(String fileName, String content) {
 		Matcher matcher1 = _methodCallPattern.matcher(content);
 
+		int[] multiLineCommentsPositions =
+			PoshiSourceUtil.getMultiLinePositions(
+				content, _multiLineCommentsPattern);
+
+		String oldContent = content;
+
 		outerLoop:
 		while (matcher1.find()) {
+			if (PoshiSourceUtil.isInsideMultiLines(
+					SourceUtil.getLineNumber(oldContent, matcher1.start()),
+					multiLineCommentsPositions)) {
+
+				continue outerLoop;
+			}
+
 			Map<String, String> parametersMap = new TreeMap<>(
 				new NaturalOrderStringComparator());
 
@@ -110,6 +124,8 @@ public class PoshiParametersOrderCheck extends BaseFileCheck {
 			"(,(\\s*\\w+[ \t]*=[ \t]*(('''|\").*?\\9|\\w[^\n]*\\))\\s*))*))",
 			"(?=\\)\\s*;\n)"),
 		Pattern.DOTALL);
+	private static final Pattern _multiLineCommentsPattern = Pattern.compile(
+		"[ \t]/\\*.*?\\*/", Pattern.DOTALL);
 	private static final Pattern _parametersPattern = Pattern.compile(
 		"(\\w+)([ \t]*=[ \t]*)((('''|\").*?\\5|\\w[^\n]*\\))|.+?\\))",
 		Pattern.DOTALL);

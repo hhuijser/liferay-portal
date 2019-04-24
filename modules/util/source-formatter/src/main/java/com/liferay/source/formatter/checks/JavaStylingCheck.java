@@ -14,8 +14,14 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -49,7 +55,100 @@ public class JavaStylingCheck extends StylingCheck {
 
 		content = matcher.replaceAll("$1*$3");
 
+		content = _fix(content);
+
 		return formatStyling(content);
+	}
+
+	private String _fix(String content) {
+		Pattern pattern = Pattern.compile("JSONArray (\\w+)\\s+=\\s+JSONFactoryUtil\\.createJSONArray\\(\\);");
+
+		Matcher matcher = pattern.matcher(content);
+
+		outerLoop:
+		while (matcher.find()) {
+			String varName = matcher.group(1);
+
+			int x = matcher.end();
+
+			List<String> params = new ArrayList<>();
+
+			while (true) {
+				String s = StringUtil.trim(content.substring(x));
+
+				if (!s.startsWith(varName + ".put(")) {
+					if (!params.isEmpty()) {
+						String s2 = content.substring(matcher.start(), x);
+
+						StringBundler sb = new StringBundler();
+
+						sb.append("JSONArray ");
+						sb.append(varName);
+						sb.append(" = JSONUtil.put(");
+
+						for (String param : params) {
+							sb.append(param);
+							sb.append(", ");
+						}
+
+						sb.setIndex(sb.index() -1);
+
+						sb.append(");");
+
+						content = StringUtil.replaceFirst(content, "import com.liferay.portal.kernel.json.JSONArray;", "import com.liferay.portal.kernel.json.JSONArray;\nimport com.liferay.portal.kernel.json.JSONUtil;");
+						//System.out.println("================================");
+						//System.out.println(s2);
+						//System.out.println("===========");
+						//System.out.println(sb.toString());
+
+						//return content;
+						return StringUtil.replaceFirst(content, s2, sb.toString());
+					}
+
+					break;
+				}
+
+				List<String> list = JavaSourceUtil.getParameterList(s);
+
+				if (list.size() != 1) {
+					continue outerLoop;
+				}
+
+				params.add(list.get(0));
+
+				int y = x;
+
+				while (true) {
+					y = content.indexOf(")", y + 1);
+
+					if (y == -1) {
+						continue outerLoop;
+					}
+
+					if (ToolsUtil.isInsideQuotes(content, y)) {
+						continue;
+					}
+
+					String asdf = content.substring(x, y + 1);
+
+					int level = getLevel(asdf);
+
+					if (level == 0) {
+						char nextChar = content.charAt(y + 1);
+
+						if (nextChar != CharPool.SEMICOLON) {
+							continue outerLoop;
+						}
+
+						x = y + 2;
+
+						break;
+					}
+				}
+			}
+		}
+
+		return content;
 	}
 
 	private String _fixAuthorNames(String content) {

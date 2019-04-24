@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
@@ -192,9 +193,7 @@ public class AlloyEditorBBCodeConfigContributor
 	protected JSONObject getToolbarsAddJSONObject() {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray buttonsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		buttonsJSONArray.put("image");
+		JSONArray buttonsJSONArray = JSONUtil.put("image");
 
 		jsonObject.put("buttons", buttonsJSONArray);
 
@@ -223,10 +222,9 @@ public class AlloyEditorBBCodeConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getToolbarsStylesSelectionsLinkJSONObject());
-		jsonArray.put(getToolbarsStylesSelectionsTextJSONObject(locale));
+		JSONArray jsonArray = JSONUtil.put(
+			getToolbarsStylesSelectionsLinkJSONObject(),
+			getToolbarsStylesSelectionsTextJSONObject(locale));
 
 		return jsonArray;
 	}
@@ -246,16 +244,9 @@ public class AlloyEditorBBCodeConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getStyleFormatsJSONObject(locale));
-		jsonArray.put("bold");
-		jsonArray.put("italic");
-		jsonArray.put("underline");
-		jsonArray.put("ol");
-		jsonArray.put("ul");
-		jsonArray.put("linkBrowse");
-		jsonArray.put("quote");
+		JSONArray jsonArray = JSONUtil.put(
+			getStyleFormatsJSONObject(locale), "bold", "italic", "underline",
+			"ol", "ul", "linkBrowse", "quote");
 
 		jsonObject.put("buttons", jsonArray);
 

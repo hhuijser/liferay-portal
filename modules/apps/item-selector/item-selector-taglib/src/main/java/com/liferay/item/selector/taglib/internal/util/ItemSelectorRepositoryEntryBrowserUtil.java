@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -144,13 +145,10 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 
 		JSONObject secondTabJSONObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray secondTabDataJSONArray = JSONFactoryUtil.createJSONArray();
-
-		secondTabDataJSONArray.put(
+		JSONArray secondTabDataJSONArray = JSONUtil.put(
 			_createJSONObject(
 				LanguageUtil.get(locale, "version"),
-				HtmlUtil.escape(latestFileVersion.getVersion())));
-		secondTabDataJSONArray.put(
+				HtmlUtil.escape(latestFileVersion.getVersion())),
 			_createJSONObject(
 				LanguageUtil.get(locale, "status"),
 				WorkflowConstants.getStatusLabel(

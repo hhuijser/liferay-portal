@@ -17,8 +17,8 @@ package com.liferay.portal.poller;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.notifications.ChannelException;
@@ -152,9 +152,7 @@ public class PollerServlet extends HttpServlet {
 				ChannelHubManagerUtil.fetchNotificationEvents(
 					companyId, userId, true);
 
-			JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-			jsonArray.put(pollerResponseHeaderJSONObject);
+			JSONArray jsonArray = JSONUtil.put(pollerResponseHeaderJSONObject);
 
 			for (NotificationEvent notificationEvent : notificationEvents) {
 				jsonArray.put(notificationEvent.toJSONObject());

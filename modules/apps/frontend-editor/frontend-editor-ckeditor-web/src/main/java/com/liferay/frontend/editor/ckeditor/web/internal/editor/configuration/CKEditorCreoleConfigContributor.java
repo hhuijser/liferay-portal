@@ -18,8 +18,8 @@ import com.liferay.frontend.editor.ckeditor.web.internal.constants.CKEditorConst
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -100,24 +100,19 @@ public class CKEditorCreoleConfigContributor
 	protected JSONArray getToolbarsCreoleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', '-' ,'RemoveFormat']"));
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', '-' ,'RemoveFormat']"),
 			toJSONArray(
-				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"));
-		jsonArray.put(toJSONArray("['Format']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(
+				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"),
+			toJSONArray("['Format']"), toJSONArray("['Link', 'Unlink']"),
 			toJSONArray(
 				"['Table', '-','ImageSelector', '-', 'HorizontalRule', '-', " +
-					"'SpecialChar']"));
-		jsonArray.put("/");
-		jsonArray.put(
+					"'SpecialChar']"),
+			"/",
 			toJSONArray(
 				"['Cut', 'Copy', 'Paste', '-', 'PasteText', 'PasteFromWord', " +
-					"'-', 'SelectAll', '-', 'Undo', 'Redo']"));
-		jsonArray.put(toJSONArray("['Find','Replace']"));
+					"'-', 'SelectAll', '-', 'Undo', 'Redo']"),
+			toJSONArray("['Find','Replace']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -131,12 +126,11 @@ public class CKEditorCreoleConfigContributor
 	protected JSONArray getToolbarsPhoneJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic']"));
-		jsonArray.put(toJSONArray("['NumberedList', 'BulletedList']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic']"),
+			toJSONArray("['NumberedList', 'BulletedList']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -148,15 +142,12 @@ public class CKEditorCreoleConfigContributor
 	protected JSONArray getToolbarsTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic']"));
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic']"),
 			toJSONArray(
-				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"));
-		jsonArray.put(toJSONArray("['Format']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
+				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"),
+			toJSONArray("['Format']"), toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));

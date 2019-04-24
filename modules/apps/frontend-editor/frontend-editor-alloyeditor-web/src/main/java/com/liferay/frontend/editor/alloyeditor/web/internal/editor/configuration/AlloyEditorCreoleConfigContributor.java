@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -197,9 +198,7 @@ public class AlloyEditorCreoleConfigContributor
 	protected JSONObject getToolbarsAddJSONObject() {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray buttonsJSONArray = JSONFactoryUtil.createJSONArray();
-
-		buttonsJSONArray.put("image");
+		JSONArray buttonsJSONArray = JSONUtil.put("image");
 
 		JSONObject buttonJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -247,9 +246,7 @@ public class AlloyEditorCreoleConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getStyleFormatsJSONObject(locale));
+		JSONArray jsonArray = JSONUtil.put(getStyleFormatsJSONObject(locale));
 
 		jsonObject.put("buttons", jsonArray);
 
@@ -260,12 +257,11 @@ public class AlloyEditorCreoleConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getToolbarsStylesSelectionsHeadingTextJSONObject(locale));
-		jsonArray.put(getToolbarsStylesSelectionsLinkJSONObject());
-		jsonArray.put(getToolbarsStylesSelectionsTextJSONObject(locale));
-		jsonArray.put(getToolbarsStylesSelectionsTableJSONObject());
+		JSONArray jsonArray = JSONUtil.put(
+			getToolbarsStylesSelectionsHeadingTextJSONObject(locale),
+			getToolbarsStylesSelectionsLinkJSONObject(),
+			getToolbarsStylesSelectionsTextJSONObject(locale),
+			getToolbarsStylesSelectionsTableJSONObject());
 
 		return jsonArray;
 	}
@@ -318,15 +314,9 @@ public class AlloyEditorCreoleConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getStyleFormatsJSONObject(locale));
-		jsonArray.put("bold");
-		jsonArray.put("italic");
-		jsonArray.put("ul");
-		jsonArray.put("ol");
-		jsonArray.put("linkBrowse");
-		jsonArray.put("removeFormat");
+		JSONArray jsonArray = JSONUtil.put(
+			getStyleFormatsJSONObject(locale), "bold", "italic", "ul", "ol",
+			"linkBrowse", "removeFormat");
 
 		jsonObject.put("buttons", jsonArray);
 

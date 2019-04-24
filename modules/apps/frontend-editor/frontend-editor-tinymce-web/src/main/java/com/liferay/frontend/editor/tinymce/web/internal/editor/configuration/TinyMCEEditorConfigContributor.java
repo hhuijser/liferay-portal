@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.servlet.BrowserSniffer;
@@ -75,12 +76,10 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getPluginsJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			"advlist autolink autosave link image lists charmap print " +
-				"preview hr anchor");
-		jsonArray.put("searchreplace wordcount fullscreen media");
+				"preview hr anchor",
+			"searchreplace wordcount fullscreen media");
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put("code");
@@ -190,9 +189,7 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getToolbarsEmailJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			"fontselect fontsizeselect | forecolor backcolor | bold italic " +
 				"underline strikethrough | alignleft aligncenter alignright " +
 					"alignjustify");
@@ -234,9 +231,7 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getToolbarsLiferayJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			"styleselect fontselect fontsizeselect | forecolor backcolor | " +
 				"bold italic underline strikethrough | alignleft aligncenter " +
 					"alignright alignjustify");
@@ -259,10 +254,8 @@ public class TinyMCEEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsPhoneJSONArray() {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put("bold italic underline | bullist numlist");
-		jsonArray.put("link unlink image");
+		JSONArray jsonArray = JSONUtil.put(
+			"bold italic underline | bullist numlist", "link unlink image");
 
 		return jsonArray;
 	}
@@ -288,9 +281,7 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getToolbarsTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			"styleselect fontselect fontsizeselect | bold italic underline " +
 				"strikethrough | alignleft aligncenter alignright " +
 					"alignjustify");

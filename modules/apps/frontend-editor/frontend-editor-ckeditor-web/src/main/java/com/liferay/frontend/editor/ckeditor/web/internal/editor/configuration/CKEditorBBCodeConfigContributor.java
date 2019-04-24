@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.parsers.bbcode.BBCodeTranslatorUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
@@ -108,24 +109,18 @@ public class CKEditorBBCodeConfigContributor
 	protected JSONArray getToolbarsBBCodeJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"));
-		jsonArray.put(toJSONArray("['TextColor']"));
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"),
+			toJSONArray("['TextColor']"),
 			toJSONArray(
 				"['JustifyLeft', 'JustifyCenter', 'JustifyRight', " +
-					"'JustifyBlock']"));
-		jsonArray.put(
+					"'JustifyBlock']"),
 			toJSONArray(
 				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', " +
-					"'-', 'Blockquote', '-', 'Code']"));
-		jsonArray.put("/");
-		jsonArray.put(toJSONArray("['Format', 'Font', 'FontSize']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector', '-', 'Smiley']"));
-		jsonArray.put("/");
-		jsonArray.put(
+					"'-', 'Blockquote', '-', 'Code']"),
+			"/", toJSONArray("['Format', 'Font', 'FontSize']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector', '-', 'Smiley']"), "/",
 			toJSONArray(
 				"['Cut', 'Copy', 'Paste', '-', 'SelectAll', '-', 'Undo', " +
 					"'Redo']"));
@@ -142,12 +137,11 @@ public class CKEditorBBCodeConfigContributor
 	protected JSONArray getToolbarsPhoneJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', 'Underline']"));
-		jsonArray.put(toJSONArray("['NumberedList', 'BulletedList']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', 'Underline']"),
+			toJSONArray("['NumberedList', 'BulletedList']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -159,17 +153,15 @@ public class CKEditorBBCodeConfigContributor
 	protected JSONArray getToolbarsTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"));
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"),
 			toJSONArray(
 				"['JustifyLeft', 'JustifyCenter', 'JustifyRight', " +
-					"'JustifyBlock']"));
-		jsonArray.put(toJSONArray("['NumberedList', 'BulletedList']"));
-		jsonArray.put(toJSONArray("['Styles', 'FontSize']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
+					"'JustifyBlock']"),
+			toJSONArray("['NumberedList', 'BulletedList']"),
+			toJSONArray("['Styles', 'FontSize']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));

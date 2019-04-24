@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 
@@ -72,9 +73,8 @@ public class JournalArticleDescriptionEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getToolbarsStylesSelectionsTextJSONObject(locale));
+		JSONArray jsonArray = JSONUtil.put(
+			getToolbarsStylesSelectionsTextJSONObject(locale));
 
 		return jsonArray;
 	}
@@ -84,14 +84,8 @@ public class JournalArticleDescriptionEditorConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put("bold");
-		jsonArray.put("italic");
-		jsonArray.put("underline");
-		jsonArray.put("ol");
-		jsonArray.put("ul");
-		jsonArray.put("link");
+		JSONArray jsonArray = JSONUtil.put(
+			"bold", "italic", "underline", "ol", "ul", "link");
 
 		jsonObject.put("buttons", jsonArray);
 

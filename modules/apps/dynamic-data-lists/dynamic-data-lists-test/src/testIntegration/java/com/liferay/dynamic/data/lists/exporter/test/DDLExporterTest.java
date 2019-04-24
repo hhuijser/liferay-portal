@@ -40,6 +40,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -696,9 +697,7 @@ public class DDLExporterTest {
 	}
 
 	protected String createListDDMFormFieldValue() throws Exception {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put("Value 1");
+		JSONArray jsonArray = JSONUtil.put("Value 1");
 
 		return jsonArray.toString();
 	}

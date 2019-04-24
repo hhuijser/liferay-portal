@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.ColorScheme;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
@@ -198,20 +199,15 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarEditInPlaceJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			toJSONArray(
 				"['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', " +
-					"'Superscript', '-', 'RemoveFormat']"));
-		jsonArray.put(
+					"'Superscript', '-', 'RemoveFormat']"),
 			toJSONArray(
-				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"));
-		jsonArray.put("/");
-		jsonArray.put(toJSONArray("['Styles']"));
-		jsonArray.put(
-			toJSONArray("['SpellChecker', 'Scayt', '-', 'SpecialChar']"));
-		jsonArray.put(toJSONArray("['Undo', 'Redo']"));
+				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"),
+			"/", toJSONArray("['Styles']"),
+			toJSONArray("['SpellChecker', 'Scayt', '-', 'SpecialChar']"),
+			toJSONArray("['Undo', 'Redo']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -225,26 +221,20 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarEmailJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			toJSONArray(
 				"['Bold', 'Italic', 'Underline', 'Strike', '-', " +
-					"'RemoveFormat']"));
-		jsonArray.put(toJSONArray("['TextColor', 'BGColor']"));
-		jsonArray.put(
+					"'RemoveFormat']"),
+			toJSONArray("['TextColor', 'BGColor']"),
 			toJSONArray(
 				"['JustifyLeft', 'JustifyCenter', 'JustifyRight', " +
-					"'JustifyBlock']"));
-		jsonArray.put(toJSONArray("['FontSize']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
-		jsonArray.put("/");
-		jsonArray.put(
+					"'JustifyBlock']"),
+			toJSONArray("['FontSize']"), toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"), "/",
 			toJSONArray(
 				"['Cut', 'Copy', 'Paste', '-', 'PasteText', 'PasteFromWord', " +
-					"'-', 'SelectAll', '-', 'Undo', 'Redo' ]"));
-		jsonArray.put(toJSONArray("['SpellChecker', 'Scayt']"));
+					"'-', 'SelectAll', '-', 'Undo', 'Redo' ]"),
+			toJSONArray("['SpellChecker', 'Scayt']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -258,24 +248,19 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarLiferayArticleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			toJSONArray(
 				"['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', " +
-					"'Superscript', '-', 'RemoveFormat']"));
-		jsonArray.put(toJSONArray("['TextColor', 'BGColor']"));
-		jsonArray.put(
+					"'Superscript', '-', 'RemoveFormat']"),
+			toJSONArray("['TextColor', 'BGColor']"),
 			toJSONArray(
 				"['JustifyLeft', 'JustifyCenter', 'JustifyRight', " +
-					"'JustifyBlock']"));
-		jsonArray.put(
+					"'JustifyBlock']"),
 			toJSONArray(
 				"['NumberedList', 'BulletedList', '-' ,'Outdent', 'Indent', " +
-					"'-', 'Blockquote']"));
-		jsonArray.put("/");
-		jsonArray.put(toJSONArray("['Styles', 'FontSize']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink', 'Anchor']"));
+					"'-', 'Blockquote']"),
+			"/", toJSONArray("['Styles', 'FontSize']"),
+			toJSONArray("['Link', 'Unlink', 'Anchor']"));
 
 		String buttons = "['Table', '-', 'ImageSelector',";
 
@@ -308,23 +293,18 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarLiferayJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
 			toJSONArray(
 				"['Bold', 'Italic', 'Underline', 'Strike', '-', 'Subscript', " +
-					"'Superscript', '-', 'RemoveFormat']"));
-		jsonArray.put(toJSONArray("['TextColor', 'BGColor']"));
-		jsonArray.put(
+					"'Superscript', '-', 'RemoveFormat']"),
+			toJSONArray("['TextColor', 'BGColor']"),
 			toJSONArray(
 				"['JustifyLeft', 'JustifyCenter', 'JustifyRight', " +
-					"'JustifyBlock']"));
-		jsonArray.put(
+					"'JustifyBlock']"),
 			toJSONArray(
-				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"));
-		jsonArray.put("/");
-		jsonArray.put(toJSONArray("['Styles', 'FontSize']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink', 'Anchor']"));
+				"['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent']"),
+			"/", toJSONArray("['Styles', 'FontSize']"),
+			toJSONArray("['Link', 'Unlink', 'Anchor']"));
 
 		String buttons = "['Table', '-', 'ImageSelector',";
 
@@ -365,12 +345,11 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarPhoneJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', 'Underline']"));
-		jsonArray.put(toJSONArray("['NumberedList', 'BulletedList']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', 'Underline']"),
+			toJSONArray("['NumberedList', 'BulletedList']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -382,12 +361,11 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"));
-		jsonArray.put(toJSONArray("['NumberedList', 'BulletedList']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['Table', 'ImageSelector']"));
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"),
+			toJSONArray("['NumberedList', 'BulletedList']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['Table', 'ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));
@@ -399,17 +377,15 @@ public class CKEditorConfigContributor extends BaseCKEditorConfigContributor {
 	protected JSONArray getToolbarTabletJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"));
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.put(
+			toJSONArray("['Bold', 'Italic', 'Underline', 'Strike']"),
 			toJSONArray(
 				"['JustifyLeft', 'JustifyCenter', 'JustifyRight', " +
-					"'JustifyBlock']"));
-		jsonArray.put(toJSONArray("['NumberedList', 'BulletedList']"));
-		jsonArray.put(toJSONArray("['Styles', 'FontSize']"));
-		jsonArray.put(toJSONArray("['Link', 'Unlink']"));
-		jsonArray.put(toJSONArray("['ImageSelector']"));
+					"'JustifyBlock']"),
+			toJSONArray("['NumberedList', 'BulletedList']"),
+			toJSONArray("['Styles', 'FontSize']"),
+			toJSONArray("['Link', 'Unlink']"),
+			toJSONArray("['ImageSelector']"));
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put(toJSONArray("['Source']"));

@@ -22,6 +22,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 
 import java.util.List;
 
@@ -48,10 +49,7 @@ public class LayoutPageTemplateStructureHelperUtil {
 
 			columnJSONObject.put("columnId", String.valueOf(i));
 
-			JSONArray fragmentEntryLinksJSONArray =
-				JSONFactoryUtil.createJSONArray();
-
-			fragmentEntryLinksJSONArray.put(
+			JSONArray fragmentEntryLinksJSONArray = JSONUtil.put(
 				fragmentEntryLink.getFragmentEntryLinkId());
 
 			columnJSONObject.put(

@@ -57,6 +57,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
@@ -509,9 +510,7 @@ public class JournalDisplayContext {
 		jsonObject.put(
 			"name", LanguageUtil.get(_themeDisplay.getLocale(), "home"));
 
-		JSONArray rootJSONArray = JSONFactoryUtil.createJSONArray();
-
-		rootJSONArray.put(jsonObject);
+		JSONArray rootJSONArray = JSONUtil.put(jsonObject);
 
 		return rootJSONArray;
 	}

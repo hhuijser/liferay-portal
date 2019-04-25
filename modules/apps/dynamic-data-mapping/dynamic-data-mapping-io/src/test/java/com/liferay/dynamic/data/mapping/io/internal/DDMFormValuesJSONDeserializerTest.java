@@ -30,6 +30,7 @@ import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.util.List;
@@ -468,10 +469,7 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 
 		Value value = ddmFormFieldValue.getValue();
 
-		JSONArray expectedJSONArray = JSONFactoryUtil.createJSONArray();
-
-		expectedJSONArray.put("Value 1");
-		expectedJSONArray.put("Value 3");
+		JSONArray expectedJSONArray = JSONUtil.putAll("Value 1", "Value 3");
 
 		JSONAssert.assertEquals(
 			expectedJSONArray.toString(), value.getString(LocaleUtil.US),

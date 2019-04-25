@@ -84,14 +84,8 @@ public class JournalArticleDescriptionEditorConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put("bold");
-		jsonArray.put("italic");
-		jsonArray.put("underline");
-		jsonArray.put("ol");
-		jsonArray.put("ul");
-		jsonArray.put("link");
+		JSONArray jsonArray = JSONUtil.putAll(
+			"bold", "italic", "underline", "ol", "ul", "link");
 
 		jsonObject.put("buttons", jsonArray);
 

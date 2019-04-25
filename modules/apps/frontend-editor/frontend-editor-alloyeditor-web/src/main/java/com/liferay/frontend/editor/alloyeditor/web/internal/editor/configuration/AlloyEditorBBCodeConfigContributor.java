@@ -222,10 +222,9 @@ public class AlloyEditorBBCodeConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getToolbarsStylesSelectionsLinkJSONObject());
-		jsonArray.put(getToolbarsStylesSelectionsTextJSONObject(locale));
+		JSONArray jsonArray = JSONUtil.putAll(
+			getToolbarsStylesSelectionsLinkJSONObject(),
+			getToolbarsStylesSelectionsTextJSONObject(locale));
 
 		return jsonArray;
 	}
@@ -245,16 +244,9 @@ public class AlloyEditorBBCodeConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getStyleFormatsJSONObject(locale));
-		jsonArray.put("bold");
-		jsonArray.put("italic");
-		jsonArray.put("underline");
-		jsonArray.put("ol");
-		jsonArray.put("ul");
-		jsonArray.put("linkBrowse");
-		jsonArray.put("quote");
+		JSONArray jsonArray = JSONUtil.putAll(
+			getStyleFormatsJSONObject(locale), "bold", "italic", "underline",
+			"ol", "ul", "linkBrowse", "quote");
 
 		jsonObject.put("buttons", jsonArray);
 

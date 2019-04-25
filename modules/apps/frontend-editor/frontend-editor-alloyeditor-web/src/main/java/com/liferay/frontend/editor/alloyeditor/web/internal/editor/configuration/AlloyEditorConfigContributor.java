@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -246,13 +247,12 @@ public class AlloyEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getToolbarsStylesSelectionsEmbedURLJSONObject());
-		jsonArray.put(getToolbarsStylesSelectionsLinkJSONObject());
-		jsonArray.put(getToolbarsStylesSelectionsImageJSONObject());
-		jsonArray.put(getToolbarsStylesSelectionsTextJSONObject(locale));
-		jsonArray.put(getToolbarsStylesSelectionsTableJSONObject());
+		JSONArray jsonArray = JSONUtil.putAll(
+			getToolbarsStylesSelectionsEmbedURLJSONObject(),
+			getToolbarsStylesSelectionsLinkJSONObject(),
+			getToolbarsStylesSelectionsImageJSONObject(),
+			getToolbarsStylesSelectionsTextJSONObject(locale),
+			getToolbarsStylesSelectionsTableJSONObject());
 
 		return jsonArray;
 	}
@@ -290,15 +290,9 @@ public class AlloyEditorConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(getStyleFormatsJSONObject(locale));
-		jsonArray.put("bold");
-		jsonArray.put("italic");
-		jsonArray.put("underline");
-		jsonArray.put("ol");
-		jsonArray.put("ul");
-		jsonArray.put("linkBrowse");
+		JSONArray jsonArray = JSONUtil.putAll(
+			getStyleFormatsJSONObject(locale), "bold", "italic", "underline",
+			"ol", "ul", "linkBrowse");
 
 		jsonObject.put("buttons", jsonArray);
 

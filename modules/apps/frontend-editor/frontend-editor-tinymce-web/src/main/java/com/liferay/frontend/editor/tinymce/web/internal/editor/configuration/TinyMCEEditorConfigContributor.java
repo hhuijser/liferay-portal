@@ -76,12 +76,10 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getPluginsJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put(
+		JSONArray jsonArray = JSONUtil.putAll(
 			"advlist autolink autosave link image lists charmap print " +
-				"preview hr anchor");
-		jsonArray.put("searchreplace wordcount fullscreen media");
+				"preview hr anchor",
+			"searchreplace wordcount fullscreen media");
 
 		if (isShowSource(inputEditorTaglibAttributes)) {
 			jsonArray.put("code");
@@ -256,10 +254,8 @@ public class TinyMCEEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsPhoneJSONArray() {
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
-		jsonArray.put("bold italic underline | bullist numlist");
-		jsonArray.put("link unlink image");
+		JSONArray jsonArray = JSONUtil.putAll(
+			"bold italic underline | bullist numlist", "link unlink image");
 
 		return jsonArray;
 	}

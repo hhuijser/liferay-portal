@@ -220,11 +220,9 @@ public class FileEntryAtomCollectionAdapter
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		FileEntry fileEntry = _dlAppService.addFileEntry(
+		return _dlAppService.addFileEntry(
 			repositoryId, folderId, title, mimeType, title, summary, null,
 			contentInputStream, contentDecoded.length, serviceContext);
-
-		return fileEntry;
 	}
 
 	@Override
@@ -261,11 +259,9 @@ public class FileEntryAtomCollectionAdapter
 
 		ServiceContext serviceContext = new ServiceContext();
 
-		FileEntry fileEntry = _dlAppService.addFileEntry(
+		return _dlAppService.addFileEntry(
 			repositoryId, folderId, title, mimeType, title, description, null,
 			contentInputStream, content.length, serviceContext);
-
-		return fileEntry;
 	}
 
 	@Override

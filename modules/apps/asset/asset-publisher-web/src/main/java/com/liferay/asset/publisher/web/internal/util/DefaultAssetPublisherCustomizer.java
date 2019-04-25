@@ -62,11 +62,9 @@ public class DefaultAssetPublisherCustomizer
 	public Integer getDelta(HttpServletRequest request) {
 		PortletPreferences portletPreferences = getPortletPreferences(request);
 
-		Integer delta = GetterUtil.getInteger(
+		return GetterUtil.getInteger(
 			portletPreferences.getValue("delta", null),
 			SearchContainer.DEFAULT_DELTA);
-
-		return delta;
 	}
 
 	@Override

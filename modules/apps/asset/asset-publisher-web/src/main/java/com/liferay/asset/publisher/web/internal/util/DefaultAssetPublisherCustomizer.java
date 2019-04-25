@@ -84,10 +84,8 @@ public class DefaultAssetPublisherCustomizer
 
 		PortletPreferences portletPreferences = getPortletPreferences(request);
 
-		Boolean enablePermissions = GetterUtil.getBoolean(
+		return GetterUtil.getBoolean(
 			portletPreferences.getValue("enablePermissions", null), true);
-
-		return enablePermissions;
 	}
 
 	@Override

@@ -72,11 +72,9 @@ public class BlogsCoverImageCaptionAlloyEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarStylesSelectionsJSONArray() {
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			getToolbarStylesSelectionsLinkJSONObject(),
 			getToolbarStylesSelectionsTextJSONObject());
-
-		return jsonArray;
 	}
 
 	protected JSONObject getToolbarStylesSelectionsLinkJSONObject() {

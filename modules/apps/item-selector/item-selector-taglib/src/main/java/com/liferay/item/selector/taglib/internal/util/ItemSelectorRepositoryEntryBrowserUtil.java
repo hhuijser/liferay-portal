@@ -145,16 +145,16 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 
 		JSONObject secondTabJSONObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray secondTabDataJSONArray = JSONUtil.putAll(
-			_createJSONObject(
-				LanguageUtil.get(locale, "version"),
-				HtmlUtil.escape(latestFileVersion.getVersion())),
-			_createJSONObject(
-				LanguageUtil.get(locale, "status"),
-				WorkflowConstants.getStatusLabel(
-					latestFileVersion.getStatus())));
-
-		secondTabJSONObject.put("data", secondTabDataJSONArray);
+		secondTabJSONObject.put(
+			"data",
+			JSONUtil.putAll(
+				_createJSONObject(
+					LanguageUtil.get(locale, "version"),
+					HtmlUtil.escape(latestFileVersion.getVersion())),
+				_createJSONObject(
+					LanguageUtil.get(locale, "status"),
+					WorkflowConstants.getStatusLabel(
+						latestFileVersion.getStatus()))));
 
 		secondTabJSONObject.put("title", LanguageUtil.get(locale, "version"));
 

@@ -80,9 +80,7 @@ public class AssetCategoriesSelectorDisplayContext {
 		jsonObject.put("disabled", true);
 		jsonObject.put("expanded", true);
 
-		JSONArray rootJSONArray = JSONUtil.put(jsonObject);
-
-		return rootJSONArray;
+		return JSONUtil.put(jsonObject);
 	}
 
 	public long getCategoryId() {

@@ -16,7 +16,6 @@ package com.liferay.frontend.editor.ckeditor.web.internal.editor.configuration;
 
 import com.liferay.frontend.editor.ckeditor.web.internal.constants.CKEditorConstants;
 import com.liferay.portal.kernel.editor.configuration.BaseEditorConfigContributor;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
@@ -46,18 +45,17 @@ public class BaseCKEditorConfigContributor extends BaseEditorConfigContributor {
 
 		jsonObject.put(
 			"bodyClass", "html-editor " + HtmlUtil.escape(cssClasses));
-
-		JSONArray jsonArray = JSONUtil.putAll(
-			HtmlUtil.escape(
-				PortalUtil.getStaticResourceURL(
-					themeDisplay.getRequest(),
-					themeDisplay.getPathThemeCss() + "/clay.css")),
-			HtmlUtil.escape(
-				PortalUtil.getStaticResourceURL(
-					themeDisplay.getRequest(),
-					themeDisplay.getPathThemeCss() + "/main.css")));
-
-		jsonObject.put("contentsCss", jsonArray);
+		jsonObject.put(
+			"contentsCss",
+			JSONUtil.putAll(
+				HtmlUtil.escape(
+					PortalUtil.getStaticResourceURL(
+						themeDisplay.getRequest(),
+						themeDisplay.getPathThemeCss() + "/clay.css")),
+				HtmlUtil.escape(
+					PortalUtil.getStaticResourceURL(
+						themeDisplay.getRequest(),
+						themeDisplay.getPathThemeCss() + "/main.css"))));
 
 		String contentsLanguageDir = getContentsLanguageDir(
 			inputEditorTaglibAttributes);

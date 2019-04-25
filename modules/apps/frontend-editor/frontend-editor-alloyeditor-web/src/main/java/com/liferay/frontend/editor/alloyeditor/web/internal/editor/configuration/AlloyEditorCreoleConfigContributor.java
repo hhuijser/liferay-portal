@@ -246,10 +246,8 @@ public class AlloyEditorCreoleConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONUtil.put(getStyleFormatsJSONObject(locale));
-
-		jsonObject.put("buttons", jsonArray);
-
+		jsonObject.put(
+			"buttons", JSONUtil.put(getStyleFormatsJSONObject(locale)));
 		jsonObject.put("name", "headertext");
 		jsonObject.put("test", "AlloyEditor.SelectionTest.headingtext");
 
@@ -257,13 +255,11 @@ public class AlloyEditorCreoleConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			getToolbarsStylesSelectionsHeadingTextJSONObject(locale),
 			getToolbarsStylesSelectionsLinkJSONObject(),
 			getToolbarsStylesSelectionsTextJSONObject(locale),
 			getToolbarsStylesSelectionsTableJSONObject());
-
-		return jsonArray;
 	}
 
 	protected JSONObject getToolbarsStylesSelectionsLinkJSONObject() {
@@ -314,12 +310,11 @@ public class AlloyEditorCreoleConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONUtil.putAll(
-			getStyleFormatsJSONObject(locale), "bold", "italic", "ul", "ol",
-			"linkBrowse", "removeFormat");
-
-		jsonObject.put("buttons", jsonArray);
-
+		jsonObject.put(
+			"buttons",
+			JSONUtil.putAll(
+				getStyleFormatsJSONObject(locale), "bold", "italic", "ul", "ol",
+				"linkBrowse", "removeFormat"));
 		jsonObject.put("name", "text");
 		jsonObject.put("test", "AlloyEditor.SelectionTest.text");
 

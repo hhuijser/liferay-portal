@@ -510,9 +510,7 @@ public class JournalDisplayContext {
 		jsonObject.put(
 			"name", LanguageUtil.get(_themeDisplay.getLocale(), "home"));
 
-		JSONArray rootJSONArray = JSONUtil.put(jsonObject);
-
-		return rootJSONArray;
+		return JSONUtil.put(jsonObject);
 	}
 
 	public String getFolderTitle() {

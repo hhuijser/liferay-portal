@@ -254,10 +254,8 @@ public class TinyMCEEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsPhoneJSONArray() {
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			"bold italic underline | bullist numlist", "link unlink image");
-
-		return jsonArray;
 	}
 
 	protected JSONArray getToolbarsSimpleJSONArray(

@@ -230,11 +230,9 @@ public class FragmentEntryLinkRichTextEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONUtil.putAll(
+		return JSONUtil.putAll(
 			getToolbarsStylesSelectionsLinkJSONObject(),
 			getToolbarsStylesSelectionsTextJSONObject(locale));
-
-		return jsonArray;
 	}
 
 	protected JSONObject getToolbarsStylesSelectionsLinkJSONObject() {

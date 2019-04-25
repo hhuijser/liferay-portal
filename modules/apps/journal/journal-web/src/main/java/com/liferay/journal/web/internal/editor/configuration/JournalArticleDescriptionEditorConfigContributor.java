@@ -73,10 +73,7 @@ public class JournalArticleDescriptionEditorConfigContributor
 	}
 
 	protected JSONArray getToolbarsStylesSelectionsJSONArray(Locale locale) {
-		JSONArray jsonArray = JSONUtil.put(
-			getToolbarsStylesSelectionsTextJSONObject(locale));
-
-		return jsonArray;
+		return JSONUtil.put(getToolbarsStylesSelectionsTextJSONObject(locale));
 	}
 
 	protected JSONObject getToolbarsStylesSelectionsTextJSONObject(
@@ -84,11 +81,9 @@ public class JournalArticleDescriptionEditorConfigContributor
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONUtil.putAll(
-			"bold", "italic", "underline", "ol", "ul", "link");
-
-		jsonObject.put("buttons", jsonArray);
-
+		jsonObject.put(
+			"buttons",
+			JSONUtil.putAll("bold", "italic", "underline", "ol", "ul", "link"));
 		jsonObject.put("name", "text");
 		jsonObject.put("test", "AlloyEditor.SelectionTest.text");
 

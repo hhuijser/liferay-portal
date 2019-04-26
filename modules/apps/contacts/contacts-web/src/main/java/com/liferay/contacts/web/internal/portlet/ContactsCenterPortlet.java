@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.exception.WebsiteURLException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Address;
@@ -276,9 +277,7 @@ public class ContactsCenterPortlet extends MVCPortlet {
 
 		long userId = ParamUtil.getLong(resourceRequest, "userId");
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("success", Boolean.TRUE);
+		JSONObject jsonObject = JSONUtil.put("success", Boolean.TRUE);
 
 		JSONObject userJSONObject = getUserJSONObject(
 			resourceResponse, themeDisplay, userId);

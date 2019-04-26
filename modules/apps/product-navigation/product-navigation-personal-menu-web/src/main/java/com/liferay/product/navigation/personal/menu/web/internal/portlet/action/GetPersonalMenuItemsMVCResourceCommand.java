@@ -222,10 +222,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 			WebKeys.THEME_DISPLAY);
 
 		if (themeDisplay.isImpersonated()) {
-			JSONObject impersonationJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			impersonationJSONObject.put(
+			JSONObject impersonationJSONObject = JSONUtil.put(
 				"items",
 				_getImpersonationItemsJSONArray(portletRequest, themeDisplay));
 

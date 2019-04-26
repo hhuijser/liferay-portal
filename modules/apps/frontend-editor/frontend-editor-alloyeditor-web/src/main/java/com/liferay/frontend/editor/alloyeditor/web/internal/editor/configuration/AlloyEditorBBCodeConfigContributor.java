@@ -114,14 +114,10 @@ public class AlloyEditorBBCodeConfigContributor
 	protected JSONObject getLangJSONObject(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put(
+		return JSONUtil.put(
 			"code",
 			LanguageUtil.get(
 				getContentsLocale(inputEditorTaglibAttributes), "code"));
-
-		return jsonObject;
 	}
 
 	protected JSONObject getStyleFormatJSONObject(
@@ -163,9 +159,8 @@ public class AlloyEditorBBCodeConfigContributor
 	protected JSONObject getStyleFormatsJSONObject(Locale locale) {
 		JSONObject styleFormatsJSONObject = JSONFactoryUtil.createJSONObject();
 
-		JSONObject stylesJSONObject = JSONFactoryUtil.createJSONObject();
-
-		stylesJSONObject.put("styles", getStyleFormatsJSONArray(locale));
+		JSONObject stylesJSONObject = JSONUtil.put(
+			"styles", getStyleFormatsJSONArray(locale));
 
 		styleFormatsJSONObject.put(
 			"cfg", stylesJSONObject
@@ -182,10 +177,7 @@ public class AlloyEditorBBCodeConfigContributor
 		JSONObject styleJSONObject = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(cssClass)) {
-			JSONObject attributesJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			attributesJSONObject.put("class", cssClass);
+			JSONObject attributesJSONObject = JSONUtil.put("class", cssClass);
 
 			styleJSONObject.put("attributes", attributesJSONObject);
 		}

@@ -43,10 +43,8 @@ public class BaseMentionsEditorConfigContributor
 		ThemeDisplay themeDisplay,
 		RequestBackedPortletURLFactory requestBackedPortletURLFactory) {
 
-		JSONObject autoCompleteConfigJSONObject =
-			JSONFactoryUtil.createJSONObject();
-
-		autoCompleteConfigJSONObject.put("requestTemplate", "query={query}");
+		JSONObject autoCompleteConfigJSONObject = JSONUtil.put(
+			"requestTemplate", "query={query}");
 
 		JSONObject triggerJSONObject = JSONFactoryUtil.createJSONObject();
 

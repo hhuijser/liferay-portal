@@ -56,11 +56,7 @@ public class JournalArticleDescriptionEditorConfigContributor
 	}
 
 	protected JSONObject getToolbarsJSONObject(Locale locale) {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("styles", getToolbarsStylesJSONObject(locale));
-
-		return jsonObject;
+		return JSONUtil.put("styles", getToolbarsStylesJSONObject(locale));
 	}
 
 	protected JSONObject getToolbarsStylesJSONObject(Locale locale) {

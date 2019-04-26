@@ -26,6 +26,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 
 import java.io.InputStream;
@@ -56,9 +57,7 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testDeserialize() throws Exception {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("uri", "http://localhost");
+		JSONObject jsonObject = JSONUtil.put("uri", "http://localhost");
 
 		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -105,9 +104,7 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testDeserializeWithEmptyAttributes() throws Exception {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("uri", "http://localhost");
+		JSONObject jsonObject = JSONUtil.put("uri", "http://localhost");
 
 		JSONObject attributesJSONObject = JSONFactoryUtil.createJSONObject();
 

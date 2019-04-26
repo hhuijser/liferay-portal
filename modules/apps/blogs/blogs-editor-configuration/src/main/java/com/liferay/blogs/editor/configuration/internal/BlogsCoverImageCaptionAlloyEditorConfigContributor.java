@@ -56,11 +56,7 @@ public class BlogsCoverImageCaptionAlloyEditorConfigContributor
 	}
 
 	protected JSONObject getToolbarsJSONObject() {
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("styles", getToolbarsStylesJSONObject());
-
-		return jsonObject;
+		return JSONUtil.put("styles", getToolbarsStylesJSONObject());
 	}
 
 	protected JSONObject getToolbarsStylesJSONObject() {

@@ -17,7 +17,6 @@ package com.liferay.frontend.editor.ckeditor.web.internal.editor.configuration;
 import com.liferay.message.boards.constants.MBThreadConstants;
 import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -103,14 +102,10 @@ public class CKEditorBBCodeConfigContributor
 	protected JSONObject getLangJSONObject(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put(
+		return JSONUtil.put(
 			"code",
 			LanguageUtil.get(
 				getContentsLocale(inputEditorTaglibAttributes), "code"));
-
-		return jsonObject;
 	}
 
 	protected JSONArray getToolbarsBBCodeJSONArray(

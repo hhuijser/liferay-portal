@@ -90,6 +90,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -4157,9 +4158,8 @@ public class JournalArticleLocalServiceImpl
 
 		// Social
 
-		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
-
-		extraDataJSONObject.put("title", article.getTitleMapAsXML());
+		JSONObject extraDataJSONObject = JSONUtil.put(
+			"title", article.getTitleMapAsXML());
 
 		SocialActivityManagerUtil.addActivity(
 			userId, article, SocialActivityConstants.TYPE_MOVE_TO_TRASH,
@@ -4368,9 +4368,8 @@ public class JournalArticleLocalServiceImpl
 
 		// Social
 
-		JSONObject extraDataJSONObject = JSONFactoryUtil.createJSONObject();
-
-		extraDataJSONObject.put("title", article.getTitleMapAsXML());
+		JSONObject extraDataJSONObject = JSONUtil.put(
+			"title", article.getTitleMapAsXML());
 
 		SocialActivityManagerUtil.addActivity(
 			userId, article, SocialActivityConstants.TYPE_RESTORE_FROM_TRASH,
@@ -6659,10 +6658,7 @@ public class JournalArticleLocalServiceImpl
 
 				// Social
 
-				JSONObject extraDataJSONObject =
-					JSONFactoryUtil.createJSONObject();
-
-				extraDataJSONObject.put("title", title);
+				JSONObject extraDataJSONObject = JSONUtil.put("title", title);
 
 				if (serviceContext.isCommandUpdate()) {
 					SocialActivityManagerUtil.addActivity(

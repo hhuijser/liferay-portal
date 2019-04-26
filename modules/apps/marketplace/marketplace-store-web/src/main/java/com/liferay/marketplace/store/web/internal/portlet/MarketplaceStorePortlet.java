@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.patcher.PatcherUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FileUtil;
@@ -317,9 +318,7 @@ public class MarketplaceStorePortlet extends RemoteMVCPortlet {
 		String productEntryName = ParamUtil.getString(
 			actionRequest, "productEntryName");
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("cmd", "updateAppLicense");
+		JSONObject jsonObject = JSONUtil.put("cmd", "updateAppLicense");
 
 		if (Validator.isNull(orderUuid) &&
 			Validator.isNotNull(productEntryName)) {

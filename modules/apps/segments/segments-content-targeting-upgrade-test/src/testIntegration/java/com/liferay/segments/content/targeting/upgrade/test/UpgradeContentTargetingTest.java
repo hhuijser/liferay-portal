@@ -394,9 +394,7 @@ public class UpgradeContentTargetingTest {
 
 		long contentTargetingUserSegmentId = -1L;
 
-		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
-
-		jsonObject.put("value", "liferay");
+		JSONObject jsonObject = JSONUtil.put("value", "liferay");
 
 		JSONArray jsonArray = JSONUtil.put(jsonObject);
 

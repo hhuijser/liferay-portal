@@ -216,10 +216,7 @@ public class LayoutsAdminDisplayContext {
 			privatePages = selLayout.isPrivateLayout();
 		}
 
-		JSONObject breadcrumbEntryJSONObject =
-			JSONFactoryUtil.createJSONObject();
-
-		breadcrumbEntryJSONObject.put(
+		JSONObject breadcrumbEntryJSONObject = JSONUtil.put(
 			"title", LanguageUtil.get(_request, "pages"));
 
 		PortletURL portletURL = _liferayPortletResponse.createRenderURL();
@@ -1503,10 +1500,7 @@ public class LayoutsAdminDisplayContext {
 	private JSONObject _getBreadcrumbEntryJSONObject(
 		long plid, boolean privateLayout, String title) {
 
-		JSONObject breadcrumbEntryJSONObject =
-			JSONFactoryUtil.createJSONObject();
-
-		breadcrumbEntryJSONObject.put("title", title);
+		JSONObject breadcrumbEntryJSONObject = JSONUtil.put("title", title);
 
 		PortletURL portletURL = getPortletURL();
 

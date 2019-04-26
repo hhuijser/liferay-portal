@@ -147,9 +147,8 @@ public class AlloyEditorConfigContributor
 	}
 
 	protected JSONObject getStyleFormatsJSONObject(Locale locale) {
-		JSONObject stylesJSONObject = JSONFactoryUtil.createJSONObject();
-
-		stylesJSONObject.put("styles", getStyleFormatsJSONArray(locale));
+		JSONObject stylesJSONObject = JSONUtil.put(
+			"styles", getStyleFormatsJSONArray(locale));
 
 		JSONObject styleFormatsJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -168,10 +167,7 @@ public class AlloyEditorConfigContributor
 		JSONObject styleJSONObject = JSONFactoryUtil.createJSONObject();
 
 		if (Validator.isNotNull(cssClass)) {
-			JSONObject attributesJSONObject =
-				JSONFactoryUtil.createJSONObject();
-
-			attributesJSONObject.put("class", cssClass);
+			JSONObject attributesJSONObject = JSONUtil.put("class", cssClass);
 
 			styleJSONObject.put("attributes", attributesJSONObject);
 		}

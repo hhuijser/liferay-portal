@@ -100,8 +100,6 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 
 		JSONObject itemMetadataJSONObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray groupsJSONArray = JSONFactoryUtil.createJSONArray();
-
 		JSONObject firstTabJSONObject = JSONFactoryUtil.createJSONObject();
 
 		FileVersion latestFileVersion = fileEntry.getLatestFileVersion();
@@ -133,7 +131,7 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 
 		firstTabJSONObject.put("title", LanguageUtil.get(locale, "file-info"));
 
-		groupsJSONArray.put(firstTabJSONObject);
+		JSONArray groupsJSONArray = JSONUtil.put(firstTabJSONObject);
 
 		JSONObject secondTabJSONObject = JSONFactoryUtil.createJSONObject();
 

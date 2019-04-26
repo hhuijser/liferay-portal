@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.editor.configuration.EditorConfigContributor;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -60,8 +61,6 @@ public class WikiCreoleAutoCompleteEditorConfigContributor
 
 		autoCompleteConfigJSONObject.put("requestTemplate", "query={query}");
 
-		JSONArray triggerJSONArray = JSONFactoryUtil.createJSONArray();
-
 		JSONObject triggerJSONObject = JSONFactoryUtil.createJSONObject();
 
 		triggerJSONObject.put(
@@ -94,7 +93,7 @@ public class WikiCreoleAutoCompleteEditorConfigContributor
 		triggerJSONObject.put(
 			"tplResults", "<span class=\"h5 truncate-text\">{title}</span>");
 
-		triggerJSONArray.put(triggerJSONObject);
+		JSONArray triggerJSONArray = JSONUtil.put(triggerJSONObject);
 
 		autoCompleteConfigJSONObject.put("trigger", triggerJSONArray);
 

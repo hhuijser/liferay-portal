@@ -37,9 +37,9 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -366,8 +366,6 @@ public class MailManager {
 	public JSONObject getDefaultAccountsJSONObject() {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
 		JSONObject gmailAccountJSONObject = JSONFactoryUtil.createJSONObject();
 
 		gmailAccountJSONObject.put("address", "@gmail.com");
@@ -385,8 +383,6 @@ public class MailManager {
 		gmailAccountJSONObject.put("protocol", "imap");
 		gmailAccountJSONObject.put("titleLanguageKey", "gmail-account");
 		gmailAccountJSONObject.put("useLocalPartAsLogin", true);
-
-		jsonArray.put(gmailAccountJSONObject);
 
 		JSONObject customMailAccontJSONObject =
 			JSONFactoryUtil.createJSONObject();
@@ -406,9 +402,10 @@ public class MailManager {
 			"titleLanguageKey", "custom-mail-account");
 		customMailAccontJSONObject.put("useLocalPartAsLogin", false);
 
-		jsonArray.put(customMailAccontJSONObject);
-
-		jsonObject.put("accounts", jsonArray);
+		jsonObject.put(
+			"accounts",
+			JSONUtil.putAll(
+				gmailAccountJSONObject, customMailAccontJSONObject));
 
 		return jsonObject;
 	}

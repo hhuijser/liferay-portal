@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.editor.configuration.BaseEditorConfigContributo
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -46,8 +47,6 @@ public class BaseMentionsEditorConfigContributor
 			JSONFactoryUtil.createJSONObject();
 
 		autoCompleteConfigJSONObject.put("requestTemplate", "query={query}");
-
-		JSONArray triggerJSONArray = JSONFactoryUtil.createJSONArray();
 
 		JSONObject triggerJSONObject = JSONFactoryUtil.createJSONObject();
 
@@ -83,7 +82,7 @@ public class BaseMentionsEditorConfigContributor
 
 		triggerJSONObject.put("tplResults", tplResults);
 
-		triggerJSONArray.put(triggerJSONObject);
+		JSONArray triggerJSONArray = JSONUtil.put(triggerJSONObject);
 
 		autoCompleteConfigJSONObject.put("trigger", triggerJSONArray);
 

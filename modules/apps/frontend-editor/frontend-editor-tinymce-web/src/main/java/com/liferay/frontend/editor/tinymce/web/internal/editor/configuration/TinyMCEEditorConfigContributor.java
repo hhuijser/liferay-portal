@@ -242,8 +242,6 @@ public class TinyMCEEditorConfigContributor
 	protected JSONArray getToolbarsSimpleJSONArray(
 		Map<String, Object> inputEditorTaglibAttributes) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
 		String buttons =
 			"bold italic underline strikethrough | bullist numlist | table | " +
 				"link unlink image";
@@ -252,9 +250,7 @@ public class TinyMCEEditorConfigContributor
 			buttons += " code";
 		}
 
-		jsonArray.put(buttons);
-
-		return jsonArray;
+		return JSONUtil.put(buttons);
 	}
 
 	protected JSONArray getToolbarsTabletJSONArray(

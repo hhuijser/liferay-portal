@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
+import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -89,8 +90,6 @@ public class GetPersonalMenuItemsMVCResourceCommand
 	private JSONArray _getImpersonationItemsJSONArray(
 		PortletRequest portletRequest, ThemeDisplay themeDisplay) {
 
-		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
-
 		JSONObject jsonObject1 = JSONFactoryUtil.createJSONObject();
 
 		jsonObject1.put(
@@ -103,7 +102,7 @@ public class GetPersonalMenuItemsMVCResourceCommand
 			"label",
 			LanguageUtil.get(themeDisplay.getLocale(), "be-yourself-again"));
 
-		jsonArray.put(jsonObject1);
+		JSONArray jsonArray = JSONUtil.put(jsonObject1);
 
 		User realUser = themeDisplay.getRealUser();
 		User user = themeDisplay.getUser();

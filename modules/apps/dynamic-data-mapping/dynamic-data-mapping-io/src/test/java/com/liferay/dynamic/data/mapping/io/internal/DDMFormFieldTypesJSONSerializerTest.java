@@ -81,10 +81,15 @@ public class DDMFormFieldTypesJSONSerializerTest extends BaseDDMTestCase {
 	protected String createExpectedJSON() {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("icon", "my-icon");
-		jsonObject.put("javaScriptClass", "myJavaScriptClass");
-		jsonObject.put("javaScriptModule", "myJavaScriptModule");
-		jsonObject.put("name", "Text");
+		jsonObject.put(
+			"icon", "my-icon"
+		).put(
+			"javaScriptClass", "myJavaScriptClass"
+		).put(
+			"javaScriptModule", "myJavaScriptModule"
+		).put(
+			"name", "Text"
+		);
 
 		JSONArray jsonArray = JSONUtil.put(jsonObject);
 

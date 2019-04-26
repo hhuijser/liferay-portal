@@ -127,9 +127,11 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 						HtmlUtil.escape(fileEntry.getUserName())
 					})));
 
-		firstTabJSONObject.put("data", firstTabDataJSONArray);
-
-		firstTabJSONObject.put("title", LanguageUtil.get(locale, "file-info"));
+		firstTabJSONObject.put(
+			"data", firstTabDataJSONArray
+		).put(
+			"title", LanguageUtil.get(locale, "file-info")
+		);
 
 		JSONArray groupsJSONArray = JSONUtil.put(firstTabJSONObject);
 
@@ -144,9 +146,10 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 				_createJSONObject(
 					LanguageUtil.get(locale, "status"),
 					WorkflowConstants.getStatusLabel(
-						latestFileVersion.getStatus()))));
-
-		secondTabJSONObject.put("title", LanguageUtil.get(locale, "version"));
+						latestFileVersion.getStatus())))
+		).put(
+			"title", LanguageUtil.get(locale, "version")
+		);
 
 		groupsJSONArray.put(secondTabJSONObject);
 
@@ -220,8 +223,11 @@ public class ItemSelectorRepositoryEntryBrowserUtil {
 	private static JSONObject _createJSONObject(String key, String value) {
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 
-		jsonObject.put("key", key);
-		jsonObject.put("value", value);
+		jsonObject.put(
+			"key", key
+		).put(
+			"value", value
+		);
 
 		return jsonObject;
 	}

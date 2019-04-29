@@ -120,6 +120,8 @@ public class CombineLines extends SuperClass {
 		String stringWithAFairlyMediumLongName =
 			StringPool.GREATER_THAN_OR_EQUAL;
 
+		stringWithAFairlyMediumLongName = stringWithAFairlyMediumLongName + " ";
+
 		return stringWithAFairlyMediumLongName;
 	}
 
@@ -129,6 +131,8 @@ public class CombineLines extends SuperClass {
 				"One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight",
 				"Nine", "Ten"
 			});
+
+		numbers.add("Zero");
 
 		return numbers;
 	}

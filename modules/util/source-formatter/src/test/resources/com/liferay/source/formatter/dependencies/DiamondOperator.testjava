@@ -34,6 +34,8 @@ public class DiamondOperator {
 		Set<Class<? extends Annotation>> annotationClasses =
 			new HashSet<Class<? extends Annotation>>();
 
+		annotationClasses.add(null);
+
 		return annotationClasses;
 	}
 
@@ -54,6 +56,8 @@ public class DiamondOperator {
 
 	public Map<String, Object> getObjectMap() {
 		Map<String, Object> objectMap = new HashMap<String, Object>();
+
+		objectMap.put("Name", "Liferay")
 
 		return objectMap;
 	}

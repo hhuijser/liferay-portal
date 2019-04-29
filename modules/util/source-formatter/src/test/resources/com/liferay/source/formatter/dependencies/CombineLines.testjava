@@ -157,6 +157,8 @@ public class CombineLines
 			StringPool.
 				GREATER_THAN_OR_EQUAL;
 
+		stringWithAFairlyMediumLongName = stringWithAFairlyMediumLongName + " ";
+
 		return stringWithAFairlyMediumLongName;
 	}
 
@@ -167,6 +169,8 @@ public class CombineLines
 					"One", "Two", "Three", "Four", "Five", "Six", "Seven",
 					"Eight", "Nine", "Ten"
 				});
+
+		numbers.add("Zero");
 
 		return numbers;
 	}

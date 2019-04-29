@@ -32,6 +32,8 @@ public class ElseStatement2 {
 		}
 
 		String extension = fileName;
+		
+		extension = extension.trim();
 
 		return extension;
 	}

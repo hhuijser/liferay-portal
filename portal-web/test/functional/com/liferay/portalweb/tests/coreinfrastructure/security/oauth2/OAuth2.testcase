@@ -210,15 +210,17 @@ definition {
 		Workaround for OAUTH2-243
 
 		AssertTextEquals.assertPartialText(
-			key_tableName = "OAuth Application",
 			locator1 = "OAuth2#ADMIN_TABLE_APP_SCOPES_COUNT",
-			value1 = "7");
+			value1 = "7",
+			key_tableName = "OAuth Application"
+		);
 
 		OAuth2.viewScopes(
 			applicationName = "OAuth Application",
 			checkedGlobalScope = "Everything",
 			resourceCheckedList = "example-scope-1,example-scope-2,everything.read,everything.write,everything.read.userprofile",
-			resourcePanels = "Portal Services,Sample QA app");
+			resourcePanels = "Portal Services,Sample QA app"
+		);
 
 		*/
 

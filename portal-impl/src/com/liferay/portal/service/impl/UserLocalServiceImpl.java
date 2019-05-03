@@ -728,6 +728,90 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         generated for the user
 	 * @param  screenName the user's screen name
 	 * @param  emailAddress the user's email address
+	 * @param  locale the user's locale
+	 * @param  firstName the user's first name
+	 * @param  middleName the user's middle name
+	 * @param  lastName the user's last name
+	 * @param  prefixId the user's name prefix ID
+	 * @param  suffixId the user's name suffix ID
+	 * @param  male whether the user is male
+	 * @param  birthdayMonth the user's birthday month (0-based, meaning 0 for
+	 *         January)
+	 * @param  birthdayDay the user's birthday day
+	 * @param  birthdayYear the user's birthday year
+	 * @param  jobTitle the user's job title
+	 * @param  groupIds the primary keys of the user's groups
+	 * @param  organizationIds the primary keys of the user's organizations
+	 * @param  roleIds the primary keys of the roles this user possesses
+	 * @param  userGroupIds the primary keys of the user's user groups
+	 * @param  sendEmail whether to send the user an email notification about
+	 *         their new account
+	 * @param  serviceContext the service context to be applied (optionally
+	 *         <code>null</code>). Can set the UUID (with the <code>uuid</code>
+	 *         attribute), asset category IDs, asset tag names, and expando
+	 *         bridge attributes for the user.
+	 * @return the new user
+	 */
+	@Override
+	public User addUser(
+			long creatorUserId, long companyId, boolean autoPassword,
+			String password1, String password2, boolean autoScreenName,
+			String screenName, String emailAddress, Locale locale,
+			String firstName, String middleName, String lastName, long prefixId,
+			long suffixId, boolean male, int birthdayMonth, int birthdayDay,
+			int birthdayYear, String jobTitle, long[] groupIds,
+			long[] organizationIds, long[] roleIds, long[] userGroupIds,
+			boolean sendEmail, ServiceContext serviceContext)
+		throws PortalException {
+
+		boolean workflowEnabled = WorkflowThreadLocal.isEnabled();
+
+		try {
+			WorkflowThreadLocal.setEnabled(false);
+
+			if (serviceContext == null) {
+				serviceContext = new ServiceContext();
+			}
+
+			if (serviceContext.getWorkflowAction() !=
+					WorkflowConstants.ACTION_PUBLISH) {
+
+				serviceContext.setWorkflowAction(
+					WorkflowConstants.ACTION_PUBLISH);
+			}
+
+			return addUserWithWorkflow(
+				creatorUserId, companyId, autoPassword, password1, password2,
+				autoScreenName, screenName, emailAddress, locale, firstName,
+				middleName, lastName, prefixId, suffixId, male, birthdayMonth,
+				birthdayDay, birthdayYear, jobTitle, groupIds, organizationIds,
+				roleIds, userGroupIds, sendEmail, serviceContext);
+		}
+		finally {
+			WorkflowThreadLocal.setEnabled(workflowEnabled);
+		}
+	}
+
+	/**
+	 * Adds a user.
+	 *
+	 * <p>
+	 * This method handles the creation and bookkeeping of the user including
+	 * its resources, metadata, and internal data structures. It is not
+	 * necessary to make subsequent calls to any methods to setup default
+	 * groups, resources, etc.
+	 * </p>
+	 *
+	 * @param  creatorUserId the primary key of the creator
+	 * @param  companyId the primary key of the user's company
+	 * @param  autoPassword whether a password should be automatically generated
+	 *         for the user
+	 * @param  password1 the user's password
+	 * @param  password2 the user's password confirmation
+	 * @param  autoScreenName whether a screen name should be automatically
+	 *         generated for the user
+	 * @param  screenName the user's screen name
+	 * @param  emailAddress the user's email address
 	 * @param  facebookId the user's facebook ID
 	 * @param  openId the user's OpenID
 	 * @param  locale the user's locale
@@ -753,7 +837,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         attribute), asset category IDs, asset tag names, and expando
 	 *         bridge attributes for the user.
 	 * @return the new user
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #addUser(long,
+	 *             long, boolean, String, String, boolean, String, String,
+	 *             Locale, String, String, String, long, long, boolean, int,
+	 *             int, int, String, long[], long[], long[], long[], boolean,
+	 *             ServiceContext)}
 	 */
+	@Deprecated
 	@Override
 	public User addUser(
 			long creatorUserId, long companyId, boolean autoPassword,
@@ -894,8 +984,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         generated for the user
 	 * @param  screenName the user's screen name
 	 * @param  emailAddress the user's email address
-	 * @param  facebookId the user's facebook ID
-	 * @param  openId the user's OpenID
 	 * @param  locale the user's locale
 	 * @param  firstName the user's first name
 	 * @param  middleName the user's middle name
@@ -922,6 +1010,365 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
+	public User addUserWithWorkflow(
+			long creatorUserId, long companyId, boolean autoPassword,
+			String password1, String password2, boolean autoScreenName,
+			String screenName, String emailAddress, Locale locale,
+			String firstName, String middleName, String lastName, long prefixId,
+			long suffixId, boolean male, int birthdayMonth, int birthdayDay,
+			int birthdayYear, String jobTitle, long[] groupIds,
+			long[] organizationIds, long[] roleIds, long[] userGroupIds,
+			boolean sendEmail, ServiceContext serviceContext)
+		throws PortalException {
+
+		// User
+
+		Company company = companyPersistence.findByPrimaryKey(companyId);
+		screenName = getLogin(screenName);
+
+		if (PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE)) {
+
+			autoScreenName = true;
+		}
+
+		// PLACEHOLDER 01
+
+		long userId = counterLocalService.increment();
+
+		EmailAddressGenerator emailAddressGenerator =
+			EmailAddressGeneratorFactory.getInstance();
+
+		if ((emailAddress == null) ||
+			emailAddressGenerator.isGenerated(emailAddress)) {
+
+			emailAddress = StringPool.BLANK;
+		}
+		else {
+			emailAddress = StringUtil.toLowerCase(emailAddress.trim());
+		}
+
+		if (!PrefsPropsUtil.getBoolean(
+				companyId, PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) &&
+			Validator.isNull(emailAddress)) {
+
+			emailAddress = emailAddressGenerator.generate(companyId, userId);
+		}
+
+		validate(
+			companyId, userId, autoPassword, password1, password2,
+			autoScreenName, screenName, emailAddress, firstName, middleName,
+			lastName, organizationIds, locale);
+
+		if (!autoPassword) {
+			if (Validator.isNull(password1) || Validator.isNull(password2)) {
+				throw new UserPasswordException.MustNotBeNull(userId);
+			}
+		}
+
+		if (autoScreenName) {
+			ScreenNameGenerator screenNameGenerator =
+				ScreenNameGeneratorFactory.getInstance();
+
+			try {
+				screenName = screenNameGenerator.generate(
+					companyId, userId, emailAddress);
+			}
+			catch (Exception e) {
+				throw new SystemException(e);
+			}
+		}
+
+		User defaultUser = getDefaultUser(companyId);
+
+		FullNameGenerator fullNameGenerator =
+			FullNameGeneratorFactory.getInstance();
+
+		String fullName = fullNameGenerator.getFullName(
+			firstName, middleName, lastName);
+
+		String greeting = LanguageUtil.format(
+			locale, "welcome-x", fullName, false);
+
+		User user = userPersistence.create(userId);
+
+		if (serviceContext != null) {
+			String uuid = serviceContext.getUuid();
+
+			if (Validator.isNotNull(uuid)) {
+				user.setUuid(uuid);
+			}
+		}
+
+		user.setCompanyId(companyId);
+		user.setDefaultUser(false);
+		user.setContactId(counterLocalService.increment());
+
+		if (Validator.isNotNull(password1)) {
+			user.setPassword(PasswordEncryptorUtil.encrypt(password1));
+			user.setPasswordUnencrypted(password1);
+		}
+
+		user.setPasswordEncrypted(true);
+
+		PasswordPolicy passwordPolicy = defaultUser.getPasswordPolicy();
+
+		if ((passwordPolicy != null) && passwordPolicy.isChangeable() &&
+			passwordPolicy.isChangeRequired()) {
+
+			user.setPasswordReset(true);
+		}
+		else {
+			user.setPasswordReset(false);
+		}
+
+		user.setDigest(StringPool.BLANK);
+		user.setScreenName(screenName);
+		user.setEmailAddress(emailAddress);
+
+		Long ldapServerId = null;
+
+		if (serviceContext != null) {
+			ldapServerId = (Long)serviceContext.getAttribute("ldapServerId");
+		}
+
+		if (ldapServerId != null) {
+			user.setLdapServerId(ldapServerId);
+		}
+		else {
+			user.setLdapServerId(-1);
+		}
+
+		user.setLanguageId(LocaleUtil.toLanguageId(locale));
+		user.setTimeZoneId(defaultUser.getTimeZoneId());
+		user.setGreeting(greeting);
+		user.setFirstName(firstName);
+		user.setMiddleName(middleName);
+		user.setLastName(lastName);
+		user.setJobTitle(jobTitle);
+		user.setStatus(WorkflowConstants.STATUS_DRAFT);
+		user.setExpandoBridgeAttributes(serviceContext);
+
+		userPersistence.update(user, serviceContext);
+
+		// Contact
+
+		String creatorUserName = StringPool.BLANK;
+
+		if (creatorUserId <= 0) {
+			creatorUserId = user.getUserId();
+
+			// Don't grab the full name from the User object because it doesn't
+			// have a corresponding Contact object yet
+
+			//creatorUserName = user.getFullName();
+		}
+		else {
+			User creatorUser = userPersistence.findByPrimaryKey(creatorUserId);
+
+			creatorUserName = creatorUser.getFullName();
+		}
+
+		Date birthday = getBirthday(birthdayMonth, birthdayDay, birthdayYear);
+
+		Contact contact = contactPersistence.create(user.getContactId());
+
+		contact.setCompanyId(user.getCompanyId());
+		contact.setUserId(creatorUserId);
+		contact.setUserName(creatorUserName);
+		contact.setClassName(User.class.getName());
+		contact.setClassPK(user.getUserId());
+		contact.setAccountId(company.getAccountId());
+		contact.setParentContactId(ContactConstants.DEFAULT_PARENT_CONTACT_ID);
+		contact.setEmailAddress(user.getEmailAddress());
+		contact.setFirstName(firstName);
+		contact.setMiddleName(middleName);
+		contact.setLastName(lastName);
+		contact.setPrefixId(prefixId);
+		contact.setSuffixId(suffixId);
+		contact.setMale(male);
+		contact.setBirthday(birthday);
+		contact.setJobTitle(jobTitle);
+
+		contactPersistence.update(contact, serviceContext);
+
+		// Group
+
+		groupLocalService.addGroup(
+			user.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
+			User.class.getName(), user.getUserId(),
+			GroupConstants.DEFAULT_LIVE_GROUP_ID, (Map<Locale, String>)null,
+			null, 0, true, GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION,
+			StringPool.SLASH + screenName, false, true, null);
+
+		// Groups
+
+		if (!ArrayUtil.isEmpty(groupIds)) {
+			List<Group> groups = new ArrayList<>();
+
+			for (long groupId : groupIds) {
+				Group group = groupLocalService.fetchGroup(groupId);
+
+				if (group != null) {
+					groups.add(group);
+				}
+				else {
+					if (_log.isWarnEnabled()) {
+						_log.warn("Group " + groupId + " does not exist");
+					}
+				}
+			}
+
+			groupLocalService.addUserGroups(userId, groups);
+		}
+
+		addDefaultGroups(userId);
+
+		// Organizations
+
+		updateOrganizations(userId, organizationIds, false);
+
+		// Roles
+
+		if (roleIds != null) {
+			roleIds = UsersAdminUtil.addRequiredRoles(user, roleIds);
+
+			userPersistence.setRoles(userId, roleIds);
+		}
+
+		addDefaultRoles(userId);
+
+		// User groups
+
+		if (userGroupIds != null) {
+			if (PropsValues.USER_GROUPS_COPY_LAYOUTS_TO_USER_PERSONAL_SITE) {
+				for (long userGroupId : userGroupIds) {
+					userGroupLocalService.copyUserGroupLayouts(
+						userGroupId, new long[] {userId});
+				}
+			}
+
+			userPersistence.setUserGroups(userId, userGroupIds);
+		}
+
+		addDefaultUserGroups(userId);
+
+		// Resources
+
+		resourceLocalService.addResources(
+			companyId, 0, creatorUserId, User.class.getName(), user.getUserId(),
+			false, false, false);
+
+		// Asset
+
+		if (serviceContext != null) {
+			updateAsset(
+				creatorUserId, user, serviceContext.getAssetCategoryIds(),
+				serviceContext.getAssetTagNames());
+		}
+
+		// Indexer
+
+		if ((serviceContext == null) || serviceContext.isIndexingEnabled()) {
+			reindex(user);
+		}
+
+		// Workflow
+
+		long workflowUserId = creatorUserId;
+
+		if (workflowUserId == userId) {
+			workflowUserId = defaultUser.getUserId();
+		}
+
+		ServiceContext workflowServiceContext = new ServiceContext();
+
+		if (serviceContext != null) {
+			workflowServiceContext = (ServiceContext)serviceContext.clone();
+		}
+
+		workflowServiceContext.setAttribute("autoPassword", autoPassword);
+		workflowServiceContext.setAttribute("passwordUnencrypted", password1);
+		workflowServiceContext.setAttribute("sendEmail", sendEmail);
+
+		Map<String, Serializable> workflowContext =
+			(Map<String, Serializable>)workflowServiceContext.removeAttribute(
+				"workflowContext");
+
+		if (workflowContext == null) {
+			workflowContext = Collections.emptyMap();
+		}
+
+		user = WorkflowHandlerRegistryUtil.startWorkflowInstance(
+			companyId, WorkflowConstants.DEFAULT_GROUP_ID, workflowUserId,
+			User.class.getName(), userId, user, workflowServiceContext,
+			workflowContext);
+
+		if (serviceContext != null) {
+			String passwordUnencrypted = (String)serviceContext.getAttribute(
+				"passwordUnencrypted");
+
+			if (Validator.isNotNull(passwordUnencrypted)) {
+				user.setPasswordUnencrypted(passwordUnencrypted);
+			}
+		}
+
+		return user;
+	}
+
+	/**
+	 * Adds a user with workflow.
+	 *
+	 * <p>
+	 * This method handles the creation and bookkeeping of the user including
+	 * its resources, metadata, and internal data structures. It is not
+	 * necessary to make subsequent calls to any methods to setup default
+	 * groups, resources, etc.
+	 * </p>
+	 *
+	 * @param  creatorUserId the primary key of the creator
+	 * @param  companyId the primary key of the user's company
+	 * @param  autoPassword whether a password should be automatically generated
+	 *         for the user
+	 * @param  password1 the user's password
+	 * @param  password2 the user's password confirmation
+	 * @param  autoScreenName whether a screen name should be automatically
+	 *         generated for the user
+	 * @param  screenName the user's screen name
+	 * @param  emailAddress the user's email address
+	 * @param  facebookId the user's facebook ID
+	 * @param  openId the user's OpenID
+	 * @param  locale the user's locale
+	 * @param  firstName the user's first name
+	 * @param  middleName the user's middle name
+	 * @param  lastName the user's last name
+	 * @param  prefixId the user's name prefix ID
+	 * @param  suffixId the user's name suffix ID
+	 * @param  male whether the user is male
+	 * @param  birthdayMonth the user's birthday month (0-based, meaning 0 for
+	 *         January)
+	 * @param  birthdayDay the user's birthday day
+	 * @param  birthdayYear the user's birthday year
+	 * @param  jobTitle the user's job title
+	 * @param  groupIds the primary keys of the user's groups
+	 * @param  organizationIds the primary keys of the user's organizations
+	 * @param  roleIds the primary keys of the roles this user possesses
+	 * @param  userGroupIds the primary keys of the user's user groups
+	 * @param  sendEmail whether to send the user an email notification about
+	 *         their new account
+	 * @param  serviceContext the service context to be applied (optionally
+	 *         <code>null</code>). Can set the UUID (with the <code>uuid</code>
+	 *         attribute), asset category IDs, asset tag names, and expando
+	 *         bridge attributes for the user.
+	 * @return the new user
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link
+	 *             #addUserWithWorkflow(long, long, boolean, String, String,
+	 *             boolean, String, String, Locale, String, String, String,
+	 *             long, long, boolean, int, int, int, String, long[], long[],
+	 *             long[], long[], boolean, ServiceContext)}
+	 */
+	@Deprecated
+	@Override
 	public User addUserWithWorkflow(
 			long creatorUserId, long companyId, boolean autoPassword,
 			String password1, String password2, boolean autoScreenName,
@@ -2065,7 +2512,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  facebookId the user's Facebook ID
 	 * @return the user with the Facebook ID, or <code>null</code> if a user
 	 *         with the Facebook ID could not be found
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
+	@Deprecated
 	@Override
 	public User fetchUserByFacebookId(long companyId, long facebookId) {
 		return userPersistence.fetchByC_FID(companyId, facebookId);
@@ -2103,7 +2552,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  openId the user's OpenID
 	 * @return the user with the OpenID, or <code>null</code> if a user with the
 	 *         OpenID could not be found
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
+	@Deprecated
 	@Override
 	public User fetchUserByOpenId(long companyId, String openId) {
 		return userPersistence.fetchByC_O(companyId, openId);
@@ -2709,7 +3160,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  companyId the primary key of the user's company
 	 * @param  facebookId the user's Facebook ID
 	 * @return the user with the Facebook ID
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
+	@Deprecated
 	@Override
 	public User getUserByFacebookId(long companyId, long facebookId)
 		throws PortalException {
@@ -2762,7 +3215,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  companyId the primary key of the user's company
 	 * @param  openId the user's OpenID
 	 * @return the user with the OpenID
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
+	@Deprecated
 	@Override
 	public User getUserByOpenId(long companyId, String openId)
 		throws PortalException {
@@ -4451,6 +4906,187 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         generated for the user
 	 * @param  screenName the user's screen name
 	 * @param  emailAddress the user's email address
+	 * @param  locale the user's locale
+	 * @param  firstName the user's first name
+	 * @param  middleName the user's middle name
+	 * @param  lastName the user's last name
+	 * @param  prefixId the user's name prefix ID
+	 * @param  suffixId the user's name suffix ID
+	 * @param  male whether the user is male
+	 * @param  birthdayMonth the user's birthday month (0-based, meaning 0 for
+	 *         January)
+	 * @param  birthdayDay the user's birthday day
+	 * @param  birthdayYear the user's birthday year
+	 * @param  jobTitle the user's job title
+	 * @param  updateUserInformation whether to update the user's information
+	 * @param  sendEmail whether to send the user an email notification about
+	 *         their new account
+	 * @param  serviceContext the service context to be applied (optionally
+	 *         <code>null</code>). Can set expando bridge attributes for the
+	 *         user.
+	 * @return the user
+	 */
+	@Override
+	public User updateIncompleteUser(
+			long creatorUserId, long companyId, boolean autoPassword,
+			String password1, String password2, boolean autoScreenName,
+			String screenName, String emailAddress, Locale locale,
+			String firstName, String middleName, String lastName, long prefixId,
+			long suffixId, boolean male, int birthdayMonth, int birthdayDay,
+			int birthdayYear, String jobTitle, boolean updateUserInformation,
+			boolean sendEmail, ServiceContext serviceContext)
+		throws PortalException {
+
+		User user = getUserByEmailAddress(companyId, emailAddress);
+
+		if (user.getStatus() != WorkflowConstants.STATUS_INCOMPLETE) {
+			throw new PortalException("Invalid user status");
+		}
+
+		User defaultUser = getDefaultUser(companyId);
+
+		if (updateUserInformation) {
+			autoScreenName = false;
+
+			if (PrefsPropsUtil.getBoolean(
+					companyId,
+					PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE)) {
+
+				autoScreenName = true;
+			}
+
+			validate(
+				companyId, user.getUserId(), autoPassword, password1, password2,
+				autoScreenName, screenName, emailAddress, firstName, middleName,
+				lastName, null, locale);
+
+			if (!autoPassword) {
+				if (Validator.isNull(password1) ||
+					Validator.isNull(password2)) {
+
+					throw new UserPasswordException.MustNotBeNull(
+						user.getUserId());
+				}
+			}
+
+			if (autoScreenName) {
+				ScreenNameGenerator screenNameGenerator =
+					ScreenNameGeneratorFactory.getInstance();
+
+				try {
+					screenName = screenNameGenerator.generate(
+						companyId, user.getUserId(), emailAddress);
+				}
+				catch (Exception e) {
+					throw new SystemException(e);
+				}
+			}
+
+			FullNameGenerator fullNameGenerator =
+				FullNameGeneratorFactory.getInstance();
+
+			String fullName = fullNameGenerator.getFullName(
+				firstName, middleName, lastName);
+
+			String greeting = LanguageUtil.format(
+				locale, "welcome-x", fullName, false);
+
+			if (Validator.isNotNull(password1)) {
+				user.setPassword(PasswordEncryptorUtil.encrypt(password1));
+				user.setPasswordUnencrypted(password1);
+			}
+
+			user.setPasswordEncrypted(true);
+
+			PasswordPolicy passwordPolicy = defaultUser.getPasswordPolicy();
+
+			if ((passwordPolicy != null) && passwordPolicy.isChangeable() &&
+				passwordPolicy.isChangeRequired()) {
+
+				user.setPasswordReset(true);
+			}
+			else {
+				user.setPasswordReset(false);
+			}
+
+			user.setScreenName(screenName);
+			user.setLanguageId(locale.toString());
+			user.setTimeZoneId(defaultUser.getTimeZoneId());
+			user.setGreeting(greeting);
+			user.setFirstName(firstName);
+			user.setMiddleName(middleName);
+			user.setLastName(lastName);
+			user.setJobTitle(jobTitle);
+			user.setExpandoBridgeAttributes(serviceContext);
+
+			Date birthday = getBirthday(
+				birthdayMonth, birthdayDay, birthdayYear);
+
+			Contact contact = user.getContact();
+
+			contact.setFirstName(firstName);
+			contact.setMiddleName(middleName);
+			contact.setLastName(lastName);
+			contact.setPrefixId(prefixId);
+			contact.setSuffixId(suffixId);
+			contact.setMale(male);
+			contact.setBirthday(birthday);
+			contact.setJobTitle(jobTitle);
+
+			contactPersistence.update(contact, serviceContext);
+
+			// Indexer
+
+			Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+				User.class);
+
+			indexer.reindex(user);
+		}
+
+		user.setStatus(WorkflowConstants.STATUS_DRAFT);
+
+		userPersistence.update(user, serviceContext);
+
+		// Workflow
+
+		long workflowUserId = creatorUserId;
+
+		if (workflowUserId == user.getUserId()) {
+			workflowUserId = defaultUser.getUserId();
+		}
+
+		ServiceContext workflowServiceContext = serviceContext;
+
+		if (workflowServiceContext == null) {
+			workflowServiceContext = new ServiceContext();
+		}
+
+		workflowServiceContext.setAttribute("autoPassword", autoPassword);
+		workflowServiceContext.setAttribute("passwordUnencrypted", password1);
+		workflowServiceContext.setAttribute("sendEmail", sendEmail);
+
+		WorkflowHandlerRegistryUtil.startWorkflowInstance(
+			companyId, workflowUserId, User.class.getName(), user.getUserId(),
+			user, workflowServiceContext);
+
+		return getUserByEmailAddress(companyId, emailAddress);
+	}
+
+	/**
+	 * Updates a user account that was automatically created when a guest user
+	 * participated in an action (e.g. posting a comment) and only provided his
+	 * name and email address.
+	 *
+	 * @param  creatorUserId the primary key of the creator
+	 * @param  companyId the primary key of the user's company
+	 * @param  autoPassword whether a password should be automatically generated
+	 *         for the user
+	 * @param  password1 the user's password
+	 * @param  password2 the user's password confirmation
+	 * @param  autoScreenName whether a screen name should be automatically
+	 *         generated for the user
+	 * @param  screenName the user's screen name
+	 * @param  emailAddress the user's email address
 	 * @param  facebookId the user's facebook ID
 	 * @param  openId the user's OpenID
 	 * @param  locale the user's locale
@@ -4472,7 +5108,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 *         <code>null</code>). Can set expando bridge attributes for the
 	 *         user.
 	 * @return the user
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link
+	 *             #updateIncompleteUser(long, long, boolean, String, String,
+	 *             boolean, String, String, Locale, String, String, String,
+	 *             long, long, boolean, int, int, int, String, boolean, boolean,
+	 *             ServiceContext)}
 	 */
+	@Deprecated
 	@Override
 	public User updateIncompleteUser(
 			long creatorUserId, long companyId, boolean autoPassword,
@@ -4807,7 +5449,9 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  userId the primary key of the user
 	 * @param  openId the new OpenID
 	 * @return the user
+	 * @deprecated As of Mueller (7.2.x), with no direct replacement
 	 */
+	@Deprecated
 	@Override
 	public User updateOpenId(long userId, String openId)
 		throws PortalException {
@@ -5166,8 +5810,6 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 * @param  reminderQueryAnswer the user's new password reset answer
 	 * @param  screenName the user's new screen name
 	 * @param  emailAddress the user's new email address
-	 * @param  facebookId the user's new Facebook ID
-	 * @param  openId the user's new OpenID
 	 * @param  portrait whether to update the user's portrait image
 	 * @param  portraitBytes the new portrait image data
 	 * @param  languageId the user's new language ID
@@ -5203,6 +5845,308 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	 */
 	@Override
 	@SuppressWarnings("deprecation")
+	public User updateUser(
+			long userId, String oldPassword, String newPassword1,
+			String newPassword2, boolean passwordReset,
+			String reminderQueryQuestion, String reminderQueryAnswer,
+			String screenName, String emailAddress, boolean portrait,
+			byte[] portraitBytes, String languageId, String timeZoneId,
+			String greeting, String comments, String firstName,
+			String middleName, String lastName, long prefixId, long suffixId,
+			boolean male, int birthdayMonth, int birthdayDay, int birthdayYear,
+			String smsSn, String facebookSn, String jabberSn, String skypeSn,
+			String twitterSn, String jobTitle, long[] groupIds,
+			long[] organizationIds, long[] roleIds,
+			List<UserGroupRole> userGroupRoles, long[] userGroupIds,
+			ServiceContext serviceContext)
+		throws PortalException {
+
+		// User
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		Company company = companyPersistence.findByPrimaryKey(
+			user.getCompanyId());
+
+		String password = oldPassword;
+		screenName = getLogin(screenName);
+		emailAddress = StringUtil.toLowerCase(StringUtil.trim(emailAddress));
+		facebookSn = StringUtil.toLowerCase(StringUtil.trim(facebookSn));
+		jabberSn = StringUtil.toLowerCase(StringUtil.trim(jabberSn));
+		skypeSn = StringUtil.toLowerCase(StringUtil.trim(skypeSn));
+		twitterSn = StringUtil.toLowerCase(StringUtil.trim(twitterSn));
+
+		EmailAddressGenerator emailAddressGenerator =
+			EmailAddressGeneratorFactory.getInstance();
+
+		if (emailAddressGenerator.isGenerated(emailAddress)) {
+			emailAddress = StringPool.BLANK;
+		}
+
+		if (!PropsValues.USERS_EMAIL_ADDRESS_REQUIRED &&
+			Validator.isNull(emailAddress)) {
+
+			emailAddress = emailAddressGenerator.generate(
+				user.getCompanyId(), userId);
+		}
+
+		Locale locale = LocaleUtil.fromLanguageId(languageId);
+
+		validate(
+			userId, screenName, emailAddress, firstName, middleName, lastName,
+			smsSn, locale);
+
+		if (Validator.isNotNull(newPassword1) ||
+			Validator.isNotNull(newPassword2)) {
+
+			user = updatePassword(
+				userId, newPassword1, newPassword2, passwordReset);
+
+			password = newPassword1;
+
+			user.setDigest(StringPool.BLANK);
+		}
+
+		if (user.getContactId() <= 0) {
+			user.setContactId(counterLocalService.increment());
+		}
+
+		user.setPasswordReset(passwordReset);
+
+		if (Validator.isNotNull(reminderQueryQuestion) &&
+			Validator.isNotNull(reminderQueryAnswer)) {
+
+			user.setReminderQueryQuestion(reminderQueryQuestion);
+			user.setReminderQueryAnswer(reminderQueryAnswer);
+		}
+
+		if (!StringUtil.equalsIgnoreCase(user.getScreenName(), screenName)) {
+			user.setScreenName(screenName);
+
+			user.setDigest(StringPool.BLANK);
+		}
+
+		boolean sendEmailAddressVerification = false;
+
+		if (company.isStrangersVerify() &&
+			!StringUtil.equalsIgnoreCase(
+				emailAddress, user.getEmailAddress())) {
+
+			sendEmailAddressVerification = true;
+		}
+		else {
+			setEmailAddress(
+				user, password, firstName, middleName, lastName, emailAddress);
+		}
+
+		if (serviceContext != null) {
+			String uuid = serviceContext.getUuid();
+
+			if (Validator.isNotNull(uuid)) {
+				user.setUuid(uuid);
+			}
+		}
+
+		Long ldapServerId = null;
+
+		if (serviceContext != null) {
+			ldapServerId = (Long)serviceContext.getAttribute("ldapServerId");
+		}
+
+		if (ldapServerId != null) {
+			user.setLdapServerId(ldapServerId);
+		}
+
+		PortalUtil.updateImageId(
+			user, portrait, portraitBytes, "portraitId",
+			_userFileUploadsSettings.getImageMaxSize(),
+			_userFileUploadsSettings.getImageMaxHeight(),
+			_userFileUploadsSettings.getImageMaxWidth());
+
+		user.setLanguageId(languageId);
+		user.setTimeZoneId(timeZoneId);
+		user.setGreeting(greeting);
+		user.setComments(comments);
+		user.setFirstName(firstName);
+		user.setMiddleName(middleName);
+		user.setLastName(lastName);
+		user.setJobTitle(jobTitle);
+		user.setExpandoBridgeAttributes(serviceContext);
+
+		user = userPersistence.update(user, serviceContext);
+
+		// Contact
+
+		Date birthday = getBirthday(birthdayMonth, birthdayDay, birthdayYear);
+
+		long contactId = user.getContactId();
+
+		Contact contact = contactPersistence.fetchByPrimaryKey(contactId);
+
+		if (contact == null) {
+			contact = contactPersistence.create(contactId);
+
+			contact.setCompanyId(user.getCompanyId());
+			contact.setUserName(StringPool.BLANK);
+			contact.setClassName(User.class.getName());
+			contact.setClassPK(user.getUserId());
+			contact.setAccountId(company.getAccountId());
+			contact.setParentContactId(
+				ContactConstants.DEFAULT_PARENT_CONTACT_ID);
+		}
+
+		contact.setEmailAddress(user.getEmailAddress());
+		contact.setFirstName(firstName);
+		contact.setMiddleName(middleName);
+		contact.setLastName(lastName);
+		contact.setPrefixId(prefixId);
+		contact.setSuffixId(suffixId);
+		contact.setMale(male);
+		contact.setBirthday(birthday);
+		contact.setSmsSn(smsSn);
+		contact.setFacebookSn(facebookSn);
+		contact.setJabberSn(jabberSn);
+		contact.setSkypeSn(skypeSn);
+		contact.setTwitterSn(twitterSn);
+		contact.setJobTitle(jobTitle);
+
+		contactPersistence.update(contact, serviceContext);
+
+		// Group
+
+		Group group = groupLocalService.getUserGroup(
+			user.getCompanyId(), userId);
+
+		group.setFriendlyURL(
+			FriendlyURLNormalizerUtil.normalize(StringPool.SLASH + screenName));
+
+		groupPersistence.update(group);
+
+		// Groups and organizations
+
+		// See LPS-33205. Cache the user's list of user group roles because
+		// adding or removing groups may add or remove user group roles
+		// depending on the site default user associations.
+
+		List<UserGroupRole> previousUserGroupRoles =
+			userGroupRolePersistence.findByUserId(userId);
+
+		updateGroups(userId, groupIds, false);
+		updateOrganizations(userId, organizationIds, false);
+
+		// Roles
+
+		if (roleIds != null) {
+			roleIds = UsersAdminUtil.addRequiredRoles(user, roleIds);
+
+			userPersistence.setRoles(userId, roleIds);
+		}
+
+		// User group roles
+
+		updateUserGroupRoles(
+			user, groupIds, organizationIds, userGroupRoles,
+			previousUserGroupRoles);
+
+		// User groups
+
+		if (userGroupIds != null) {
+			if (PropsValues.USER_GROUPS_COPY_LAYOUTS_TO_USER_PERSONAL_SITE) {
+				userGroupLocalService.copyUserGroupLayouts(
+					userGroupIds, userId);
+			}
+
+			userPersistence.setUserGroups(userId, userGroupIds);
+		}
+
+		// Announcements
+
+		announcementsDeliveryLocalService.getUserDeliveries(user.getUserId());
+
+		// Asset
+
+		if (serviceContext != null) {
+			updateAsset(
+				userId, user, serviceContext.getAssetCategoryIds(),
+				serviceContext.getAssetTagNames());
+		}
+
+		// Indexer
+
+		if ((serviceContext == null) || serviceContext.isIndexingEnabled()) {
+			Indexer<User> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
+				User.class);
+
+			indexer.reindex(user);
+		}
+
+		// Email address verification
+
+		if ((serviceContext != null) && sendEmailAddressVerification) {
+			sendEmailAddressVerification(user, emailAddress, serviceContext);
+		}
+
+		return user;
+	}
+
+	/**
+	 * Updates the user.
+	 *
+	 * @param  userId the primary key of the user
+	 * @param  oldPassword the user's old password
+	 * @param  newPassword1 the user's new password (optionally
+	 *         <code>null</code>)
+	 * @param  newPassword2 the user's new password confirmation (optionally
+	 *         <code>null</code>)
+	 * @param  passwordReset whether the user should be asked to reset their
+	 *         password the next time they login
+	 * @param  reminderQueryQuestion the user's new password reset question
+	 * @param  reminderQueryAnswer the user's new password reset answer
+	 * @param  screenName the user's new screen name
+	 * @param  emailAddress the user's new email address
+	 * @param  facebookId the user's new Facebook ID
+	 * @param  openId the user's new OpenID
+	 * @param  portrait whether to update the user's portrait image
+	 * @param  portraitBytes the new portrait image data
+	 * @param  languageId the user's new language ID
+	 * @param  timeZoneId the user's new time zone ID
+	 * @param  greeting the user's new greeting
+	 * @param  comments the user's new comments
+	 * @param  firstName the user's new first name
+	 * @param  middleName the user's new middle name
+	 * @param  lastName the user's new last name
+	 * @param  prefixId the user's new name prefix ID
+	 * @param  suffixId the user's new name suffix ID
+	 * @param  male whether user is male
+	 * @param  birthdayMonth the user's new birthday month (0-based, meaning 0
+	 *         for January)
+	 * @param  birthdayDay the user's new birthday day
+	 * @param  birthdayYear the user's birthday year
+	 * @param  smsSn the user's new SMS screen name
+	 * @param  facebookSn the user's new Facebook screen name
+	 * @param  jabberSn the user's new Jabber screen name
+	 * @param  skypeSn the user's new Skype screen name
+	 * @param  twitterSn the user's new Twitter screen name
+	 * @param  jobTitle the user's new job title
+	 * @param  groupIds the primary keys of the user's groups
+	 * @param  organizationIds the primary keys of the user's organizations
+	 * @param  roleIds the primary keys of the user's roles
+	 * @param  userGroupRoles the user user's group roles
+	 * @param  userGroupIds the primary keys of the user's user groups
+	 * @param  serviceContext the service context to be applied (optionally
+	 *         <code>null</code>). Can set the UUID (with the <code>uuid</code>
+	 *         attribute), asset category IDs, asset tag names, and expando
+	 *         bridge attributes for the user.
+	 * @return the user
+	 * @deprecated As of Mueller (7.2.x), replaced by {@link #updateUser(long,
+	 *             String, String, String, boolean, String, String, String,
+	 *             String, boolean, byte[], String, String, String, String,
+	 *             String, String, String, long, long, boolean, int, int, int,
+	 *             String, String, String, String, String, String, long[],
+	 *             long[], long[], List<UserGroupRole>, long[], ServiceContext)}
+	 */
+	@Deprecated
+	@Override
 	public User updateUser(
 			long userId, String oldPassword, String newPassword1,
 			String newPassword2, boolean passwordReset,
@@ -6637,6 +7581,53 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	protected void validate(
 			long companyId, long userId, boolean autoPassword, String password1,
 			String password2, boolean autoScreenName, String screenName,
+			String emailAddress, String firstName, String middleName,
+			String lastName, long[] organizationIds, Locale locale)
+		throws PortalException {
+
+		validateCompanyMaxUsers(companyId);
+
+		if (!autoScreenName) {
+			validateScreenName(companyId, userId, screenName);
+		}
+
+		if (!autoPassword) {
+			PasswordPolicy passwordPolicy =
+				passwordPolicyLocalService.getDefaultPasswordPolicy(companyId);
+
+			PwdToolkitUtil.validate(
+				companyId, 0, password1, password2, passwordPolicy);
+		}
+
+		validateEmailAddress(companyId, emailAddress);
+
+		if (Validator.isNotNull(emailAddress)) {
+			User user = userPersistence.fetchByC_EA(companyId, emailAddress);
+
+			if ((user != null) && (user.getUserId() != userId)) {
+				throw new UserEmailAddressException.MustNotBeDuplicate(
+					companyId, emailAddress);
+			}
+		}
+
+		validateFullName(companyId, firstName, middleName, lastName, locale);
+
+		if (organizationIds != null) {
+			for (long organizationId : organizationIds) {
+				Organization organization =
+					organizationPersistence.fetchByPrimaryKey(organizationId);
+
+				if (organization == null) {
+					throw new NoSuchOrganizationException(
+						"{organizationId=" + organizationId + "}");
+				}
+			}
+		}
+	}
+
+	protected void validate(
+			long companyId, long userId, boolean autoPassword, String password1,
+			String password2, boolean autoScreenName, String screenName,
 			String emailAddress, String openId, String firstName,
 			String middleName, String lastName, long[] organizationIds,
 			Locale locale)
@@ -6681,6 +7672,42 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 						"{organizationId=" + organizationId + "}");
 				}
 			}
+		}
+	}
+
+	protected void validate(
+			long userId, String screenName, String emailAddress,
+			String firstName, String middleName, String lastName, String smsSn,
+			Locale locale)
+		throws PortalException {
+
+		User user = userPersistence.findByPrimaryKey(userId);
+
+		if (!StringUtil.equalsIgnoreCase(user.getScreenName(), screenName)) {
+			validateScreenName(user.getCompanyId(), userId, screenName);
+		}
+
+		validateEmailAddress(user.getCompanyId(), emailAddress);
+
+		if (!user.isDefaultUser()) {
+			if (Validator.isNotNull(emailAddress) &&
+				!StringUtil.equalsIgnoreCase(
+					user.getEmailAddress(), emailAddress)) {
+
+				if (userPersistence.fetchByC_EA(
+						user.getCompanyId(), emailAddress) != null) {
+
+					throw new UserEmailAddressException.MustNotBeDuplicate(
+						user.getCompanyId(), userId, emailAddress);
+				}
+			}
+
+			validateFullName(
+				user.getCompanyId(), firstName, middleName, lastName, locale);
+		}
+
+		if (Validator.isNotNull(smsSn) && !Validator.isEmailAddress(smsSn)) {
+			throw new UserSmsException.MustBeEmailAddress(smsSn);
 		}
 	}
 

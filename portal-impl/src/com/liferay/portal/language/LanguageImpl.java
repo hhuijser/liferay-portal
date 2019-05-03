@@ -131,8 +131,8 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -147,7 +147,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -157,14 +157,17 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, LanguageWrapper argument) {
+		HttpServletRequest httpServletRequest, String pattern,
+		LanguageWrapper argument) {
 
-		return format(request, pattern, new LanguageWrapper[] {argument}, true);
+		return format(
+			httpServletRequest, pattern, new LanguageWrapper[] {argument},
+			true);
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -179,7 +182,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -190,17 +193,17 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, LanguageWrapper argument,
-		boolean translateArguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		LanguageWrapper argument, boolean translateArguments) {
 
 		return format(
-			request, pattern, new LanguageWrapper[] {argument},
+			httpServletRequest, pattern, new LanguageWrapper[] {argument},
 			translateArguments);
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -215,7 +218,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern and
@@ -225,15 +228,15 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern,
+		HttpServletRequest httpServletRequest, String pattern,
 		LanguageWrapper[] arguments) {
 
-		return format(request, pattern, arguments, true);
+		return format(httpServletRequest, pattern, arguments, true);
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -248,7 +251,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern
@@ -258,8 +261,8 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, LanguageWrapper[] arguments,
-		boolean translateArguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		LanguageWrapper[] arguments, boolean translateArguments) {
 
 		if (PropsValues.TRANSLATIONS_DISABLED) {
 			return pattern;
@@ -268,7 +271,7 @@ public class LanguageImpl implements Language, Serializable {
 		String value = null;
 
 		try {
-			pattern = get(request, pattern);
+			pattern = get(httpServletRequest, pattern);
 
 			if (ArrayUtil.isNotEmpty(arguments)) {
 				Object[] formattedArguments = new Object[arguments.length];
@@ -277,8 +280,10 @@ public class LanguageImpl implements Language, Serializable {
 					if (translateArguments) {
 						formattedArguments[i] =
 							arguments[i].getBefore() +
-								get(request, arguments[i].getText()) +
-									arguments[i].getAfter();
+								get(
+									httpServletRequest,
+									arguments[i].getText()) +
+										arguments[i].getAfter();
 					}
 					else {
 						formattedArguments[i] =
@@ -288,7 +293,7 @@ public class LanguageImpl implements Language, Serializable {
 				}
 
 				value = _decorateMessageFormat(
-					request, pattern, formattedArguments);
+					httpServletRequest, pattern, formattedArguments);
 			}
 			else {
 				value = pattern;
@@ -304,8 +309,8 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -320,7 +325,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -330,14 +335,16 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object argument) {
+		HttpServletRequest httpServletRequest, String pattern,
+		Object argument) {
 
-		return format(request, pattern, new Object[] {argument}, true);
+		return format(
+			httpServletRequest, pattern, new Object[] {argument}, true);
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -352,7 +359,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -363,16 +370,17 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object argument,
+		HttpServletRequest httpServletRequest, String pattern, Object argument,
 		boolean translateArguments) {
 
 		return format(
-			request, pattern, new Object[] {argument}, translateArguments);
+			httpServletRequest, pattern, new Object[] {argument},
+			translateArguments);
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -387,7 +395,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern and
@@ -397,14 +405,15 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object[] arguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		Object[] arguments) {
 
-		return format(request, pattern, arguments, true);
+		return format(httpServletRequest, pattern, arguments, true);
 	}
 
 	/**
-	 * Returns the translated pattern using the current request's locale or, if
-	 * the current request locale is not available, the server's default locale.
+	 * Returns the translated pattern using the current httpServletRequest's locale or, if
+	 * the current httpServletRequest locale is not available, the server's default locale.
 	 *
 	 * <p>
 	 * The lookup is done on the portlet configuration first, and if it's not
@@ -419,7 +428,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern
@@ -429,8 +438,8 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object[] arguments,
-		boolean translateArguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		Object[] arguments, boolean translateArguments) {
 
 		if (PropsValues.TRANSLATIONS_DISABLED) {
 			return pattern;
@@ -439,16 +448,18 @@ public class LanguageImpl implements Language, Serializable {
 		String value = null;
 
 		try {
-			pattern = get(request, pattern);
+			pattern = get(httpServletRequest, pattern);
 
 			if (ArrayUtil.isNotEmpty(arguments)) {
 				for (int i = 0; i < arguments.length; i++) {
 					if (translateArguments) {
-						arguments[i] = get(request, arguments[i].toString());
+						arguments[i] = get(
+							httpServletRequest, arguments[i].toString());
 					}
 				}
 
-				value = _decorateMessageFormat(request, pattern, arguments);
+				value = _decorateMessageFormat(
+					httpServletRequest, pattern, arguments);
 			}
 			else {
 				value = pattern;
@@ -786,7 +797,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * Returns the key's translation from the portlet configuration, or from the
 	 * portal's resource bundle if the portlet configuration is unavailable.
 	 *
-	 * @param  request the request used to determine the key's context and
+	 * @param  httpServletRequest the httpServletRequest used to determine the key's context and
 	 *         locale
 	 * @param  resourceBundle the requested key's resource bundle
 	 * @param  key the translation key
@@ -795,15 +806,16 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String get(
-		HttpServletRequest request, ResourceBundle resourceBundle, String key) {
+		HttpServletRequest httpServletRequest, ResourceBundle resourceBundle,
+		String key) {
 
-		return get(request, resourceBundle, key, key);
+		return get(httpServletRequest, resourceBundle, key, key);
 	}
 
 	@Override
 	public String get(
-		HttpServletRequest request, ResourceBundle resourceBundle, String key,
-		String defaultValue) {
+		HttpServletRequest httpServletRequest, ResourceBundle resourceBundle,
+		String key, String defaultValue) {
 
 		String value = _get(resourceBundle, key);
 
@@ -811,19 +823,19 @@ public class LanguageImpl implements Language, Serializable {
 			return value;
 		}
 
-		return get(request, key, defaultValue);
+		return get(httpServletRequest, key, defaultValue);
 	}
 
 	@Override
-	public String get(HttpServletRequest request, String key) {
-		return get(request, key, key);
+	public String get(HttpServletRequest httpServletRequest, String key) {
+		return get(httpServletRequest, key, key);
 	}
 
 	/**
 	 * Returns the key's translation from the portlet configuration, or from the
 	 * portal's resource bundle if the portlet configuration is unavailable.
 	 *
-	 * @param  request the request used to determine the key's context and
+	 * @param  httpServletRequest the httpServletRequest used to determine the key's context and
 	 *         locale
 	 * @param  key the translation key
 	 * @param  defaultValue the value to return if there is no matching
@@ -833,16 +845,18 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String get(
-		HttpServletRequest request, String key, String defaultValue) {
+		HttpServletRequest httpServletRequest, String key,
+		String defaultValue) {
 
-		if ((request == null) || (key == null)) {
+		if ((httpServletRequest == null) || (key == null)) {
 			return defaultValue;
 		}
 
-		PortletConfig portletConfig = (PortletConfig)request.getAttribute(
-			JavaConstants.JAVAX_PORTLET_CONFIG);
+		PortletConfig portletConfig =
+			(PortletConfig)httpServletRequest.getAttribute(
+				JavaConstants.JAVAX_PORTLET_CONFIG);
 
-		Locale locale = _getLocale(request);
+		Locale locale = _getLocale(httpServletRequest);
 
 		if (portletConfig == null) {
 			return get(locale, key, defaultValue);
@@ -987,8 +1001,8 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	@Override
-	public String getBCP47LanguageId(HttpServletRequest request) {
-		Locale locale = PortalUtil.getLocale(request);
+	public String getBCP47LanguageId(HttpServletRequest httpServletRequest) {
+		Locale locale = PortalUtil.getLocale(httpServletRequest);
 
 		return getBCP47LanguageId(locale);
 	}
@@ -1013,16 +1027,17 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	/**
-	 * Returns the language ID that the request is served with. The language ID
+	 * Returns the language ID that the httpServletRequest is served with. The language ID
 	 * is returned as a language code (e.g. <code>en</code>) or a specific
 	 * variant (e.g. <code>en_GB</code>).
 	 *
-	 * @param  request the request used to determine the language ID
-	 * @return the language ID that the request is served with
+	 * @param  httpServletRequest the httpServletRequest used to determine the language ID
+	 * @return the language ID that the httpServletRequest is served with
 	 */
 	@Override
-	public String getLanguageId(HttpServletRequest request) {
-		String languageId = ParamUtil.getString(request, "languageId");
+	public String getLanguageId(HttpServletRequest httpServletRequest) {
+		String languageId = ParamUtil.getString(
+			httpServletRequest, "languageId");
 
 		if (Validator.isNotNull(languageId)) {
 			CompanyLocalesBag companyLocalesBag = _getCompanyLocalesBag();
@@ -1034,7 +1049,7 @@ public class LanguageImpl implements Language, Serializable {
 			}
 		}
 
-		Locale locale = PortalUtil.getLocale(request, null, false);
+		Locale locale = PortalUtil.getLocale(httpServletRequest, null, false);
 
 		return getLanguageId(locale);
 	}
@@ -1150,16 +1165,16 @@ public class LanguageImpl implements Language, Serializable {
 	 * </li>
 	 * </ul>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  milliseconds the time interval in milliseconds to describe
 	 * @return an exact localized description of the time interval in the
 	 *         largest unit possible
 	 */
 	@Override
 	public String getTimeDescription(
-		HttpServletRequest request, long milliseconds) {
+		HttpServletRequest httpServletRequest, long milliseconds) {
 
-		return getTimeDescription(request, milliseconds, false);
+		return getTimeDescription(httpServletRequest, milliseconds, false);
 	}
 
 	/**
@@ -1200,7 +1215,7 @@ public class LanguageImpl implements Language, Serializable {
 	 * </li>
 	 * </ul>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  milliseconds the time interval in milliseconds to describe
 	 * @param  approximate whether the time description is approximate
 	 * @return a localized description of the time interval in the largest unit
@@ -1208,7 +1223,8 @@ public class LanguageImpl implements Language, Serializable {
 	 */
 	@Override
 	public String getTimeDescription(
-		HttpServletRequest request, long milliseconds, boolean approximate) {
+		HttpServletRequest httpServletRequest, long milliseconds,
+		boolean approximate) {
 
 		String description = Time.getDescription(milliseconds, approximate);
 
@@ -1223,7 +1239,7 @@ public class LanguageImpl implements Language, Serializable {
 				unit += "[time]";
 			}
 
-			value = format(request, "x-" + unit, parts[0]);
+			value = format(httpServletRequest, "x-" + unit, parts[0]);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
@@ -1258,16 +1274,16 @@ public class LanguageImpl implements Language, Serializable {
 	 * </li>
 	 * </ul>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  milliseconds the time interval in milliseconds to describe
 	 * @return an exact localized description of the time interval in the
 	 *         largest unit possible
 	 */
 	@Override
 	public String getTimeDescription(
-		HttpServletRequest request, Long milliseconds) {
+		HttpServletRequest httpServletRequest, Long milliseconds) {
 
-		return getTimeDescription(request, milliseconds.longValue());
+		return getTimeDescription(httpServletRequest, milliseconds.longValue());
 	}
 
 	/**
@@ -1635,15 +1651,15 @@ public class LanguageImpl implements Language, Serializable {
 
 	@Override
 	public void updateCookie(
-		HttpServletRequest request, HttpServletResponse response,
-		Locale locale) {
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse, Locale locale) {
 
 		String languageId = LocaleUtil.toLanguageId(locale);
 
 		Cookie languageIdCookie = new Cookie(
 			CookieKeys.GUEST_LANGUAGE_ID, languageId);
 
-		String domain = CookieKeys.getDomain(request);
+		String domain = CookieKeys.getDomain(httpServletRequest);
 
 		if (Validator.isNotNull(domain)) {
 			languageIdCookie.setDomain(domain);
@@ -1652,7 +1668,8 @@ public class LanguageImpl implements Language, Serializable {
 		languageIdCookie.setMaxAge(CookieKeys.MAX_AGE);
 		languageIdCookie.setPath(StringPool.SLASH);
 
-		CookieKeys.addCookie(request, response, languageIdCookie);
+		CookieKeys.addCookie(
+			httpServletRequest, httpServletResponse, languageIdCookie);
 	}
 
 	private static CompanyLocalesBag _getCompanyLocalesBag() {
@@ -1739,10 +1756,10 @@ public class LanguageImpl implements Language, Serializable {
 	}
 
 	private String _decorateMessageFormat(
-		HttpServletRequest request, String pattern,
+		HttpServletRequest httpServletRequest, String pattern,
 		Object[] formattedArguments) {
 
-		Locale locale = _getLocale(request);
+		Locale locale = _getLocale(httpServletRequest);
 
 		return _decorateMessageFormat(locale, pattern, formattedArguments);
 	}
@@ -1901,17 +1918,18 @@ public class LanguageImpl implements Language, Serializable {
 		return groupLanguageIdLocalesMap;
 	}
 
-	private Locale _getLocale(HttpServletRequest request) {
+	private Locale _getLocale(HttpServletRequest httpServletRequest) {
 		Locale locale = null;
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-			WebKeys.THEME_DISPLAY);
+		ThemeDisplay themeDisplay =
+			(ThemeDisplay)httpServletRequest.getAttribute(
+				WebKeys.THEME_DISPLAY);
 
 		if (themeDisplay != null) {
 			locale = themeDisplay.getLocale();
 		}
 		else {
-			locale = request.getLocale();
+			locale = httpServletRequest.getLocale();
 
 			if (!isAvailableLocale(locale)) {
 				locale = LocaleUtil.getDefault();

@@ -27,13 +27,16 @@ import javax.servlet.http.HttpServletResponse;
 public class ServicePostAction extends Action {
 
 	@Override
-	public void run(HttpServletRequest request, HttpServletResponse response) {
+	public void run(
+		HttpServletRequest httpServletRequest,
+		HttpServletResponse httpServletResponse) {
+
 		try {
 
-			// Make sure this is called only once per full request, ignore
+			// Make sure this is called only once per full httpServletRequest, ignore
 			// requests spawned by the portlet
 
-			//String requestURI = GetterUtil.getString(request.getRequestURI());
+			//String requestURI = GetterUtil.getString(httpServletRequest.getRequestURI());
 
 			// Doesn't this cause a memory leak?
 

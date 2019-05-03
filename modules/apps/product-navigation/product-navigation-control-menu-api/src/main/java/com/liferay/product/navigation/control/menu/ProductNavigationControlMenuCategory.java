@@ -47,14 +47,14 @@ public interface ProductNavigationControlMenuCategory {
 
 	/**
 	 * Returns <code>true</code> if the Control Menu category should be
-	 * displayed in the request's context.
+	 * displayed in the httpServletRequest's context.
 	 *
-	 * @param  request the request that renders the Control Menu category
+	 * @param  httpServletRequest the httpServletRequest that renders the Control Menu category
 	 * @return <code>true</code> if the Control Menu category should be
-	 *         displayed in the request's context; <code>false</code> otherwise
+	 *         displayed in the httpServletRequest's context; <code>false</code> otherwise
 	 * @throws PortalException if a portal exception occurred
 	 */
-	public boolean hasAccessPermission(HttpServletRequest request)
+	public boolean hasAccessPermission(HttpServletRequest httpServletRequest)
 		throws PortalException;
 
 }

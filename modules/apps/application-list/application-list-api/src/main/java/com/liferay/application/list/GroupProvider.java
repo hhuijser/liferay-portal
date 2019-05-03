@@ -28,20 +28,20 @@ import javax.servlet.http.HttpServletRequest;
 public interface GroupProvider {
 
 	/**
-	 * Returns the <code>Group</code> associated with the request.
+	 * Returns the <code>Group</code> associated with the httpServletRequest.
 	 *
-	 * @param  request the servlet request used to retrieve the group
-	 * @return the <code>Group</code> associated with the request
+	 * @param  httpServletRequest the servlet httpServletRequest used to retrieve the group
+	 * @return the <code>Group</code> associated with the httpServletRequest
 	 */
-	public Group getGroup(HttpServletRequest request);
+	public Group getGroup(HttpServletRequest httpServletRequest);
 
 	/**
-	 * Sets the <code>Group</code> to associate with the request.
+	 * Sets the <code>Group</code> to associate with the httpServletRequest.
 	 *
-	 * @param request the servlet request used to associate the
+	 * @param httpServletRequest the servlet httpServletRequest used to associate the
 	 *        <code>Group</code>
-	 * @param group the <code>Group</code> to associate with the request
+	 * @param group the <code>Group</code> to associate with the httpServletRequest
 	 */
-	public void setGroup(HttpServletRequest request, Group group);
+	public void setGroup(HttpServletRequest httpServletRequest, Group group);
 
 }

@@ -34,8 +34,8 @@ import javax.servlet.http.HttpServletRequest;
 public class UnicodeLanguageImpl implements UnicodeLanguage {
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -45,7 +45,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -55,15 +55,16 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, LanguageWrapper argument) {
+		HttpServletRequest httpServletRequest, String pattern,
+		LanguageWrapper argument) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.format(request, pattern, argument));
+			LanguageUtil.format(httpServletRequest, pattern, argument));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -73,7 +74,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -84,17 +85,17 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, LanguageWrapper argument,
-		boolean translateArguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		LanguageWrapper argument, boolean translateArguments) {
 
 		return UnicodeFormatter.toString(
 			LanguageUtil.format(
-				request, pattern, argument, translateArguments));
+				httpServletRequest, pattern, argument, translateArguments));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -104,7 +105,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern and
@@ -114,16 +115,16 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern,
+		HttpServletRequest httpServletRequest, String pattern,
 		LanguageWrapper[] arguments) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.format(request, pattern, arguments));
+			LanguageUtil.format(httpServletRequest, pattern, arguments));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -133,7 +134,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern
@@ -143,17 +144,17 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, LanguageWrapper[] arguments,
-		boolean translateArguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		LanguageWrapper[] arguments, boolean translateArguments) {
 
 		return UnicodeFormatter.toString(
 			LanguageUtil.format(
-				request, pattern, arguments, translateArguments));
+				httpServletRequest, pattern, arguments, translateArguments));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -163,7 +164,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -173,15 +174,16 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object argument) {
+		HttpServletRequest httpServletRequest, String pattern,
+		Object argument) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.format(request, pattern, argument));
+			LanguageUtil.format(httpServletRequest, pattern, argument));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -191,7 +193,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  argument the single argument to be substituted into the pattern
@@ -202,17 +204,17 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object argument,
+		HttpServletRequest httpServletRequest, String pattern, Object argument,
 		boolean translateArguments) {
 
 		return UnicodeFormatter.toString(
 			LanguageUtil.format(
-				request, pattern, argument, translateArguments));
+				httpServletRequest, pattern, argument, translateArguments));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -222,7 +224,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern and
@@ -232,15 +234,16 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object[] arguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		Object[] arguments) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.format(request, pattern, arguments));
+			LanguageUtil.format(httpServletRequest, pattern, arguments));
 	}
 
 	/**
-	 * Returns the translated pattern in unicode using the current request's
-	 * locale or, if the current request locale is not available, the server's
+	 * Returns the translated pattern in unicode using the current httpServletRequest's
+	 * locale or, if the current httpServletRequest locale is not available, the server's
 	 * default locale. If a translation for a given key does not exist, this
 	 * method returns the requested key as the translation.
 	 *
@@ -250,7 +253,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * standard Java {@link ResourceBundle} notion of index based substitution.
 	 * </p>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  pattern the key to look up in the current locale's resource file.
 	 *         The key follows the standard Java resource specification.
 	 * @param  arguments the arguments to be substituted into the pattern
@@ -260,12 +263,12 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String format(
-		HttpServletRequest request, String pattern, Object[] arguments,
-		boolean translateArguments) {
+		HttpServletRequest httpServletRequest, String pattern,
+		Object[] arguments, boolean translateArguments) {
 
 		return UnicodeFormatter.toString(
 			LanguageUtil.format(
-				request, pattern, arguments, translateArguments));
+				httpServletRequest, pattern, arguments, translateArguments));
 	}
 
 	/**
@@ -496,15 +499,16 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * or from the portal's resource bundle if the portlet configuration is
 	 * unavailable.
 	 *
-	 * @param  request the request used to determine the key's context and
+	 * @param  httpServletRequest the httpServletRequest used to determine the key's context and
 	 *         locale
 	 * @param  key the translation key
 	 * @return the key's translation in unicode, or the unicode key if the
 	 *         translation is unavailable
 	 */
 	@Override
-	public String get(HttpServletRequest request, String key) {
-		return UnicodeFormatter.toString(LanguageUtil.get(request, key));
+	public String get(HttpServletRequest httpServletRequest, String key) {
+		return UnicodeFormatter.toString(
+			LanguageUtil.get(httpServletRequest, key));
 	}
 
 	/**
@@ -512,7 +516,7 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * or from the portal's resource bundle if the portlet configuration is
 	 * unavailable.
 	 *
-	 * @param  request the request used to determine the key's context and
+	 * @param  httpServletRequest the httpServletRequest used to determine the key's context and
 	 *         locale
 	 * @param  key the translation key
 	 * @param  defaultValue the value to return if there is no matching
@@ -522,10 +526,11 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 */
 	@Override
 	public String get(
-		HttpServletRequest request, String key, String defaultValue) {
+		HttpServletRequest httpServletRequest, String key,
+		String defaultValue) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.get(request, key, defaultValue));
+			LanguageUtil.get(httpServletRequest, key, defaultValue));
 	}
 
 	/**
@@ -612,17 +617,17 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * </li>
 	 * </ul>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  milliseconds the time interval in milliseconds to describe
 	 * @return an exact localized description in unicode of the time interval in
 	 *         the largest unit possible
 	 */
 	@Override
 	public String getTimeDescription(
-		HttpServletRequest request, long milliseconds) {
+		HttpServletRequest httpServletRequest, long milliseconds) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.getTimeDescription(request, milliseconds));
+			LanguageUtil.getTimeDescription(httpServletRequest, milliseconds));
 	}
 
 	/**
@@ -649,17 +654,17 @@ public class UnicodeLanguageImpl implements UnicodeLanguage {
 	 * </li>
 	 * </ul>
 	 *
-	 * @param  request the request used to determine the current locale
+	 * @param  httpServletRequest the httpServletRequest used to determine the current locale
 	 * @param  milliseconds the time interval in milliseconds to describe
 	 * @return an exact localized description in unicode of the time interval in
 	 *         the largest unit possible
 	 */
 	@Override
 	public String getTimeDescription(
-		HttpServletRequest request, Long milliseconds) {
+		HttpServletRequest httpServletRequest, Long milliseconds) {
 
 		return UnicodeFormatter.toString(
-			LanguageUtil.getTimeDescription(request, milliseconds));
+			LanguageUtil.getTimeDescription(httpServletRequest, milliseconds));
 	}
 
 }

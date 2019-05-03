@@ -159,12 +159,12 @@ public abstract class ClientDataRequestImpl
 	}
 
 	protected Map<String, String[]> getPortletParameterMap(
-		HttpServletRequest request, String portletNamespace) {
+		HttpServletRequest httpServletRequest, String portletNamespace) {
 
 		Map<String, String[]> portletParameterMap = new LinkedHashMap<>();
 		Map<String, String[]> parameterMap = getParameterMap();
 		Map<String, String[]> servletRequestParameterMap =
-			request.getParameterMap();
+			httpServletRequest.getParameterMap();
 
 		RenderParameters renderParameters = getRenderParameters();
 
@@ -177,7 +177,7 @@ public abstract class ClientDataRequestImpl
 			// then regard it as an action parameter (during an ActionRequest)
 			// or as a resource parameter (during a ResourceRequest). Also,
 			// if the parameter name is prefixed with the portlet namespace in
-			// the original request, then regard it as an action or resource
+			// the original httpServletRequest, then regard it as an action or resource
 			// parameter (even if it has the same name as a public render
 			// parameter). See: TCK V3PortletParametersTests_SPEC11_3_getNames
 			// and V3PortletParametersTests_SPEC11_4_getNames.

@@ -33,17 +33,18 @@ public interface AMRequestHandler<T> {
 
 	/**
 	 * Returns the requested {@link AdaptiveMedia} instance wrapped in an {@link
-	 * Optional} instance. If no media is found matching the request, or an
+	 * Optional} instance. If no media is found matching the httpServletRequest, or an
 	 * application error is raised while fetching the media, an empty {@link
 	 * Optional} is returned.
 	 *
-	 * @param  request the request to process
+	 * @param  httpServletRequest the httpServletRequest to process
 	 * @return a non-<code>null</code> {@link Optional} instance containing the
 	 *         value (if any).
-	 * @throws IOException if an IO error occurred while processing the request
+	 * @throws IOException if an IO error occurred while processing the httpServletRequest
 	 * @throws ServletException if any other processing error occurred
 	 */
-	public Optional<AdaptiveMedia<T>> handleRequest(HttpServletRequest request)
+	public Optional<AdaptiveMedia<T>> handleRequest(
+			HttpServletRequest httpServletRequest)
 		throws IOException, ServletException;
 
 }

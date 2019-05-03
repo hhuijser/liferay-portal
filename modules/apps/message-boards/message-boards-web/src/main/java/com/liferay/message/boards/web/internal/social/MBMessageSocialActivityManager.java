@@ -62,11 +62,10 @@ public class MBMessageSocialActivityManager
 			return;
 		}
 
-		long classPK = discussion.getClassPK();
-
 		List<SocialActivity> socialActivities =
 			_socialActivityLocalService.getActivities(
-				0, className, classPK, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				0, className, discussion.getClassPK(), QueryUtil.ALL_POS,
+				QueryUtil.ALL_POS);
 
 		for (SocialActivity socialActivity : socialActivities) {
 			if (Validator.isNull(socialActivity.getExtraData())) {

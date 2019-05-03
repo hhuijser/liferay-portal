@@ -80,14 +80,12 @@ public class MSCognitiveServicesImageAssetAutoTagProvider
 				msCognitiveServicesAssetAutoTagProviderCompanyConfiguration.
 					apiEndpoint());
 
-			FileVersion fileVersion = fileEntry.getFileVersion();
-
 			JSONObject responseJSONObject = _queryComputerVisionJSONObject(
 				msCognitiveServicesAssetAutoTagProviderCompanyConfiguration.
 					apiEndpoint(),
 				msCognitiveServicesAssetAutoTagProviderCompanyConfiguration.
 					apiKey(),
-				fileVersion);
+				fileEntry.getFileVersion());
 
 			JSONArray tagsJSONArray = responseJSONObject.getJSONArray("tags");
 
@@ -124,9 +122,8 @@ public class MSCognitiveServicesImageAssetAutoTagProvider
 	}
 
 	private boolean _isSupportedFormat(FileEntry fileEntry) {
-		String extension = fileEntry.getExtension();
-
-		return _supportedFormats.contains(StringUtil.toUpperCase(extension));
+		return _supportedFormats.contains(
+			StringUtil.toUpperCase(fileEntry.getExtension()));
 	}
 
 	private boolean _isTemporary(FileEntry fileEntry) {

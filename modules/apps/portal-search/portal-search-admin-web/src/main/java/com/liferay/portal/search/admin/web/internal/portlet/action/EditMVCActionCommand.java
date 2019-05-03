@@ -140,13 +140,10 @@ public class EditMVCActionCommand extends BaseMVCActionCommand {
 				PortletSession portletSession =
 					actionRequest.getPortletSession();
 
-				long lastAccessedTime = portletSession.getLastAccessedTime();
-				int maxInactiveInterval =
-					portletSession.getMaxInactiveInterval();
-
 				int extendedMaxInactiveIntervalTime =
-					(int)(System.currentTimeMillis() - lastAccessedTime +
-						maxInactiveInterval);
+					(int)(System.currentTimeMillis() -
+						portletSession.getLastAccessedTime() +
+							portletSession.getMaxInactiveInterval());
 
 				portletSession.setMaxInactiveInterval(
 					extendedMaxInactiveIntervalTime);

@@ -681,11 +681,9 @@ public class LiferayOAuthDataProvider
 
 	@Override
 	protected Client doGetClient(String clientId) {
-		long companyId = CompanyThreadLocal.getCompanyId();
-
 		OAuth2Application oAuth2Application =
 			_oAuth2ApplicationLocalService.fetchOAuth2Application(
-				companyId, clientId);
+				CompanyThreadLocal.getCompanyId(), clientId);
 
 		if (oAuth2Application == null) {
 			if (_log.isWarnEnabled()) {

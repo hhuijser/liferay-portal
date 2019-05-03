@@ -447,11 +447,9 @@ public class ElasticsearchAggregationResultTranslator
 			_aggregationResults.reverseNested(
 				reverseNested.getName(), reverseNested.getDocCount());
 
-		Aggregations aggregations = reverseNested.getAggregations();
-
 		reverseNestedAggregationResult.addChildrenAggregationResults(
 			translateAggregationResults(
-				aggregations, reverseNestedAggregation));
+				reverseNested.getAggregations(), reverseNestedAggregation));
 
 		return reverseNestedAggregationResult;
 	}

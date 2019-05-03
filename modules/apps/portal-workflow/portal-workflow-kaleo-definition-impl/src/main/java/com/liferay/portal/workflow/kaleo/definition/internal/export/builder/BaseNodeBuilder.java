@@ -251,10 +251,8 @@ public abstract class BaseNodeBuilder<T extends Node> implements NodeBuilder {
 
 			notifications.add(notification);
 
-			String notificationTypes = kaleoNotification.getNotificationTypes();
-
 			String[] notificationTypeValues = StringUtil.split(
-				notificationTypes, StringPool.COMMA);
+				kaleoNotification.getNotificationTypes(), StringPool.COMMA);
 
 			for (String notificationTypeValue : notificationTypeValues) {
 				notification.addNotificationType(notificationTypeValue);

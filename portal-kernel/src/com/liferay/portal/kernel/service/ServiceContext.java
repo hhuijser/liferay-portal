@@ -1602,9 +1602,7 @@ public class ServiceContext implements Cloneable, Serializable {
 	}
 
 	public String translate(String pattern, Object... arguments) {
-		Locale locale = getLocale();
-
-		return LanguageUtil.format(locale, pattern, arguments);
+		return LanguageUtil.format(getLocale(), pattern, arguments);
 	}
 
 	public void validateModifiedDate(

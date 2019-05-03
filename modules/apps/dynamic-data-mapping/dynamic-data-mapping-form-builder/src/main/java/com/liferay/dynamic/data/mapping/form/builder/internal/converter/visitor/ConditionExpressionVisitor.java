@@ -130,9 +130,7 @@ public class ConditionExpressionVisitor extends ExpressionVisitor<Object> {
 
 		DDMFormRuleCondition condition = _conditions.peek();
 
-		String operator = condition.getOperator();
-
-		condition.setOperator("not-" + operator);
+		condition.setOperator("not-" + condition.getOperator());
 
 		return _conditions;
 	}

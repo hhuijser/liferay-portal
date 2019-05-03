@@ -19,8 +19,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchFixture;
 import com.liferay.portal.search.elasticsearch6.internal.connection.IndexName;
 
-import org.elasticsearch.client.AdminClient;
-
 /**
  * @author Adam Brandizzi
  */
@@ -36,10 +34,9 @@ public class CompanyIndexFactoryFixture {
 	public void createIndices() throws Exception {
 		CompanyIndexFactory companyIndexFactory = getCompanyIndexFactory();
 
-		AdminClient adminClient = _elasticsearchFixture.getAdminClient();
-
 		companyIndexFactory.createIndices(
-			adminClient, RandomTestUtil.randomLong());
+			_elasticsearchFixture.getAdminClient(),
+			RandomTestUtil.randomLong());
 	}
 
 	public CompanyIndexFactory getCompanyIndexFactory() {

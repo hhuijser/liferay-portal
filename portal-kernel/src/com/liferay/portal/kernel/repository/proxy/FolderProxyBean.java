@@ -94,10 +94,8 @@ public class FolderProxyBean
 
 	@Override
 	public ExpandoBridge getExpandoBridge() {
-		ExpandoBridge expandoBridge = _folder.getExpandoBridge();
-
 		return (ExpandoBridge)newProxyInstance(
-			expandoBridge, ExpandoBridge.class);
+			_folder.getExpandoBridge(), ExpandoBridge.class);
 	}
 
 	@Override

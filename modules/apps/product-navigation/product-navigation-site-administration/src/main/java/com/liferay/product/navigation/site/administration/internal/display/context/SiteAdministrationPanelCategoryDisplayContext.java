@@ -148,16 +148,12 @@ public class SiteAdministrationPanelCategoryDisplayContext {
 
 		_groupURL = StringPool.BLANK;
 
-		Group group = getGroup();
-
-		return _groupURLProvider.getGroupURL(group, _portletRequest);
+		return _groupURLProvider.getGroupURL(getGroup(), _portletRequest);
 	}
 
 	public String getGroupURL(boolean privateLayout) {
-		Group group = getGroup();
-
 		return _groupURLProvider.getGroupLayoutsURL(
-			group, privateLayout, _portletRequest);
+			getGroup(), privateLayout, _portletRequest);
 	}
 
 	public String getLiveGroupLabel() {

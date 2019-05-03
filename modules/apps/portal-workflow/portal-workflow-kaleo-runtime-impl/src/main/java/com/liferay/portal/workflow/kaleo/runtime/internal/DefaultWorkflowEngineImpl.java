@@ -48,7 +48,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoDefinitionVersion;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstance;
 import com.liferay.portal.workflow.kaleo.model.KaleoInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoNode;
-import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTimerInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.KaleoTransition;
 import com.liferay.portal.workflow.kaleo.runtime.ExecutionContext;
@@ -206,10 +205,8 @@ public class DefaultWorkflowEngineImpl
 				kaleoInstanceToken, kaleoTimerInstanceToken, workflowContext,
 				serviceContext);
 
-			KaleoTaskInstanceToken kaleoTaskInstanceToken =
-				kaleoTimerInstanceToken.getKaleoTaskInstanceToken();
-
-			executionContext.setKaleoTaskInstanceToken(kaleoTaskInstanceToken);
+			executionContext.setKaleoTaskInstanceToken(
+				kaleoTimerInstanceToken.getKaleoTaskInstanceToken());
 
 			final KaleoNode currentKaleoNode =
 				kaleoInstanceToken.getCurrentKaleoNode();

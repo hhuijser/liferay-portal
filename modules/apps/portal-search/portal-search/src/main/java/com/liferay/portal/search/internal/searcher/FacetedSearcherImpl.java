@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerPostProcessor;
 import com.liferay.portal.kernel.search.IndexerRegistry;
 import com.liferay.portal.kernel.search.Query;
-import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchEngineHelper;
 import com.liferay.portal.kernel.search.SearchException;
@@ -143,9 +142,7 @@ public class FacetedSearcherImpl
 			Query query = _getFinalQuery(
 				createFullQuery(booleanFilter, searchContext));
 
-			QueryConfig queryConfig = searchContext.getQueryConfig();
-
-			query.setQueryConfig(queryConfig);
+			query.setQueryConfig(searchContext.getQueryConfig());
 
 			return _indexSearcherHelper.search(searchContext, query);
 		}

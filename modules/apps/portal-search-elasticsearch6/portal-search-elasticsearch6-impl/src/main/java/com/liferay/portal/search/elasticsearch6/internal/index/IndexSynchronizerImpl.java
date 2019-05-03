@@ -30,7 +30,6 @@ import org.elasticsearch.ResourceAlreadyExistsException;
 import org.elasticsearch.action.admin.indices.create.CreateIndexAction;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentType;
 
 import org.osgi.service.component.annotations.Component;
@@ -137,10 +136,9 @@ public class IndexSynchronizerImpl implements IndexSynchronizer {
 	protected void createIndex(
 		Consumer<CreateIndexRequestBuilder> createIndexRequestBuilderConsumer) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		CreateIndexRequestBuilder createIndexRequestBuilder =
-			CreateIndexAction.INSTANCE.newRequestBuilder(client);
+			CreateIndexAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		createIndexRequestBuilderConsumer.accept(createIndexRequestBuilder);
 

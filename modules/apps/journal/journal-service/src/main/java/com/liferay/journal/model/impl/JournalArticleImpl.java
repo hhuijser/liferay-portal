@@ -419,10 +419,8 @@ public class JournalArticleImpl extends JournalArticleBaseImpl {
 
 	@Override
 	public String getFriendlyURLsXML() throws PortalException {
-		Map<Locale, String> friendlyURLMap = getFriendlyURLMap();
-
 		return LocalizationUtil.updateLocalization(
-			friendlyURLMap, StringPool.BLANK, "FriendlyURL",
+			getFriendlyURLMap(), StringPool.BLANK, "FriendlyURL",
 			LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()));
 	}
 

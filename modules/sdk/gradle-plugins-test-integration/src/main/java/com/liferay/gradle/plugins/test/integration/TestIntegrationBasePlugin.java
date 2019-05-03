@@ -318,10 +318,8 @@ public class TestIntegrationBasePlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskCheck(Test test) {
-		Project project = test.getProject();
-
 		Task task = GradleUtil.getTask(
-			project, LifecycleBasePlugin.CHECK_TASK_NAME);
+			test.getProject(), LifecycleBasePlugin.CHECK_TASK_NAME);
 
 		task.dependsOn(test);
 	}

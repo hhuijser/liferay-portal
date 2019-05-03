@@ -133,9 +133,8 @@ public class FolderLocalServiceImpl extends FolderLocalServiceBaseImpl {
 
 		Folder folder = folderPersistence.findByPrimaryKey(folderId);
 
-		int remoteMessageCount = folder.getRemoteMessageCount();
-
-		return (int)Math.ceil(remoteMessageCount / (double)messagesPerPage);
+		return (int)Math.ceil(
+			folder.getRemoteMessageCount() / (double)messagesPerPage);
 	}
 
 	@Override

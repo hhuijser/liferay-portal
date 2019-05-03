@@ -199,10 +199,8 @@ public class BookmarksEntryIndexer extends BaseIndexer<BookmarksEntry> {
 		actionableDynamicQuery.setCompanyId(companyId);
 		actionableDynamicQuery.setPerformActionMethod(
 			(BookmarksFolder folder) -> {
-				long groupId = folder.getGroupId();
-				long folderId = folder.getFolderId();
-
-				reindexEntries(companyId, groupId, folderId);
+				reindexEntries(
+					companyId, folder.getGroupId(), folder.getFolderId());
 			});
 
 		actionableDynamicQuery.performActions();

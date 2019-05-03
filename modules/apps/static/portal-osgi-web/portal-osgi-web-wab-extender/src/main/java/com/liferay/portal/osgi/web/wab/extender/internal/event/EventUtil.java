@@ -187,10 +187,9 @@ public class EventUtil
 		properties.put(
 			"extender.bundle.version", _webExtenderBundle.getVersion());
 
-		String symbolicName = bundle.getSymbolicName();
-
 		properties.put(
-			"servlet.context.name", _sanitizeSymbolicName(symbolicName));
+			"servlet.context.name",
+			_sanitizeSymbolicName(bundle.getSymbolicName()));
 
 		properties.put("timestamp", System.currentTimeMillis());
 

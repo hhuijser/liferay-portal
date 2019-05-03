@@ -142,15 +142,13 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				if (fragmentCollection == null) {
 					Locale locale = _portal.getSiteDefaultLocale(groupId);
 
-					ServiceContext serviceContext =
-						ServiceContextThreadLocal.getServiceContext();
-
 					fragmentCollection =
 						_fragmentCollectionService.addFragmentCollection(
 							groupId, _DEFAULT_FRAGMENT_COLLECTION_KEY,
 							LanguageUtil.get(
 								locale, _DEFAULT_FRAGMENT_COLLECTION_KEY),
-							StringPool.BLANK, serviceContext);
+							StringPool.BLANK,
+							ServiceContextThreadLocal.getServiceContext());
 				}
 
 				fragmentCollectionId =
@@ -175,13 +173,10 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 				groupId, fragmentCollectionKey);
 
 		if (fragmentCollection == null) {
-			ServiceContext serviceContext =
-				ServiceContextThreadLocal.getServiceContext();
-
 			fragmentCollection =
 				_fragmentCollectionService.addFragmentCollection(
 					groupId, fragmentCollectionKey, name, description,
-					serviceContext);
+					ServiceContextThreadLocal.getServiceContext());
 		}
 		else if (overwrite) {
 			fragmentCollection =
@@ -234,13 +229,10 @@ public class FragmentsImporterImpl implements FragmentsImporter {
 			StringUtil.toLowerCase(StringUtil.trim(typeLabel)));
 
 		if (fragmentEntry == null) {
-			ServiceContext serviceContext =
-				ServiceContextThreadLocal.getServiceContext();
-
 			return _fragmentEntryService.addFragmentEntry(
 				fragmentCollection.getGroupId(), fragmentCollectionId,
 				fragmentEntryKey, name, css, html, js, type, status,
-				serviceContext);
+				ServiceContextThreadLocal.getServiceContext());
 		}
 
 		return _fragmentEntryService.updateFragmentEntry(

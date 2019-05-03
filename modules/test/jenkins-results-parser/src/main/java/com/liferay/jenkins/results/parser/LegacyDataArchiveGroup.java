@@ -54,13 +54,11 @@ public class LegacyDataArchiveGroup {
 
 			LocalGitCommit latestTestLocalGitCommit =
 				_legacyDataArchivePortalVersion.getLatestTestLocalGitCommit();
-			String portalVersion =
-				_legacyDataArchivePortalVersion.getPortalVersion();
 
 			_legacyGitWorkingDirectory.commitStagedFilesToCurrentBranch(
 				JenkinsResultsParserUtil.combine(
 					"archive:ignore Update '", _dataArchiveType, "' for '",
-					portalVersion, "' at ",
+					_legacyDataArchivePortalVersion.getPortalVersion(), "' at ",
 					latestTestLocalGitCommit.getAbbreviatedSHA(), "."));
 		}
 	}

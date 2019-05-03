@@ -95,9 +95,7 @@ public abstract class BaseMessagingConfigurator
 		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
 
 		try {
-			ClassLoader operatingClassLoader = getOperatingClassloader();
-
-			currentThread.setContextClassLoader(operatingClassLoader);
+			currentThread.setContextClassLoader(getOperatingClassloader());
 
 			for (Map.Entry<String, List<MessageListener>> messageListeners :
 					_messageListeners.entrySet()) {
@@ -153,11 +151,9 @@ public abstract class BaseMessagingConfigurator
 		_destinations.clear();
 		_messageBusEventListeners.clear();
 
-		ClassLoader operatingClassLoader = getOperatingClassloader();
-
 		String servletContextName =
 			ServletContextClassLoaderPool.getServletContextName(
-				operatingClassLoader);
+				getOperatingClassloader());
 
 		if (servletContextName != null) {
 			MessagingConfiguratorRegistry.unregisterMessagingConfigurator(

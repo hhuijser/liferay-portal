@@ -222,17 +222,12 @@ public class JoinXorNodeExecutor extends BaseNodeExecutor {
 			KaleoNode kaleoNode, KaleoInstanceToken kaleoInstanceToken)
 		throws PortalException {
 
-		long kaleoNodeId = kaleoNode.getKaleoNodeId();
-
 		KaleoTask kaleoTask = _kaleoTaskLocalService.getKaleoNodeKaleoTask(
-			kaleoNodeId);
-
-		long kaleoTaskId = kaleoTask.getKaleoTaskId();
-
-		long kaleoInstanceId = kaleoInstanceToken.getKaleoInstanceId();
+			kaleoNode.getKaleoNodeId());
 
 		return _kaleoTaskInstanceTokenLocalService.getKaleoTaskInstanceTokens(
-			kaleoInstanceId, kaleoTaskId);
+			kaleoInstanceToken.getKaleoInstanceId(),
+			kaleoTask.getKaleoTaskId());
 	}
 
 	private boolean _isFinalKaleoInstanceToken(

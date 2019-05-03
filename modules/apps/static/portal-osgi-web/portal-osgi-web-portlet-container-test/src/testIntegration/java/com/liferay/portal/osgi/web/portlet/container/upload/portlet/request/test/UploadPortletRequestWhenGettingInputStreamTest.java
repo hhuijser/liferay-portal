@@ -96,9 +96,9 @@ public class UploadPortletRequestWhenGettingInputStreamTest {
 					(HttpServletRequest)liferayServletRequest.getRequest()),
 				null, _portletNamespace);
 
-		ServletInputStream inputStream = uploadPortletRequest.getInputStream();
-
-		Assert.assertTrue(inputStream instanceof ServletInputStreamAdapter);
+		Assert.assertTrue(
+			uploadPortletRequest.getInputStream() instanceof
+				ServletInputStreamAdapter);
 	}
 
 	private static final byte[] _BYTES =

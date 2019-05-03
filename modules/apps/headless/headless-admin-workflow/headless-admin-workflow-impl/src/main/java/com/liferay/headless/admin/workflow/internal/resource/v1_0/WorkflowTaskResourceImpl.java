@@ -128,12 +128,10 @@ public class WorkflowTaskResourceImpl extends BaseWorkflowTaskResourceImpl {
 			WorkflowTaskAssignToUser workflowTaskAssignToUser)
 		throws Exception {
 
-		long assigneeId = workflowTaskAssignToUser.getAssigneeId();
-
 		return _toWorkflowTask(
 			_workflowTaskManager.assignWorkflowTaskToUser(
 				contextCompany.getCompanyId(), _user.getUserId(),
-				workflowTaskId, assigneeId,
+				workflowTaskId, workflowTaskAssignToUser.getAssigneeId(),
 				workflowTaskAssignToUser.getComment(),
 				workflowTaskAssignToUser.getDueDate(), null));
 	}

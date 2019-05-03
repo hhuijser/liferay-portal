@@ -33,9 +33,8 @@ public abstract class BaseHotDeployListener implements HotDeployListener {
 
 		ServletContext servletContext = event.getServletContext();
 
-		String servletContextName = servletContext.getServletContextName();
-
-		throw new HotDeployException(msg + servletContextName, t);
+		throw new HotDeployException(
+			msg + servletContext.getServletContextName(), t);
 	}
 
 	protected String getClpServletContextName(

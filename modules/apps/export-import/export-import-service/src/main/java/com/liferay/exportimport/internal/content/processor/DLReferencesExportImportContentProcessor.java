@@ -43,7 +43,6 @@ import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.Http;
@@ -611,10 +610,8 @@ public class DLReferencesExportImportContentProcessor
 						if ((serviceContext != null) &&
 							(serviceContext.getThemeDisplay() != null)) {
 
-							ThemeDisplay themeDisplay =
-								serviceContext.getThemeDisplay();
-
-							portalURL = _portal.getPortalURL(themeDisplay);
+							portalURL = _portal.getPortalURL(
+								serviceContext.getThemeDisplay());
 						}
 					}
 

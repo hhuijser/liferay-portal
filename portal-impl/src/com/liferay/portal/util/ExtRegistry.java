@@ -37,10 +37,9 @@ public class ExtRegistry {
 			ServletContext servletContext)
 		throws Exception {
 
-		String servletContextName = servletContext.getServletContextName();
-
 		Set<String> fileNames = _readExtFileNames(
-			servletContext, "/WEB-INF/ext-" + servletContextName + ".xml");
+			servletContext,
+			"/WEB-INF/ext-" + servletContext.getServletContextName() + ".xml");
 
 		Map<String, Set<String>> conflicts = new HashMap<>();
 

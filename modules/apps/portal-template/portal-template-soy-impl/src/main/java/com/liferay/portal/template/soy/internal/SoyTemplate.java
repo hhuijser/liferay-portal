@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.template.BaseTemplate;
 import com.liferay.portal.template.soy.SoyTemplateResource;
 
-import java.io.Reader;
 import java.io.Writer;
 
 import java.util.ArrayList;
@@ -244,9 +243,7 @@ public class SoyTemplate extends BaseTemplate {
 	protected String getTemplateContent(TemplateResource templateResource)
 		throws Exception {
 
-		Reader reader = templateResource.getReader();
-
-		return CharStreams.toString(reader);
+		return CharStreams.toString(templateResource.getReader());
 	}
 
 	@Override
@@ -320,10 +317,9 @@ public class SoyTemplate extends BaseTemplate {
 		renderer.setData(_soyContextImpl.createSoyTemplateRecord());
 		renderer.setIjData(_soyContextImpl.createInjectedSoyTemplateRecord());
 
-		SoyFileSet soyFileSet = soyTofuCacheBag.getSoyFileSet();
-
 		Optional<SoyMsgBundle> soyMsgBundle = getSoyMsgBundle(
-			templateResources, soyFileSet, soyTofuCacheBag);
+			templateResources, soyTofuCacheBag.getSoyFileSet(),
+			soyTofuCacheBag);
 
 		if (soyMsgBundle.isPresent()) {
 			renderer.setMsgBundle(soyMsgBundle.get());
@@ -362,11 +358,9 @@ public class SoyTemplate extends BaseTemplate {
 			}
 			catch (Exception e) {
 				if (_log.isDebugEnabled()) {
-					String templateId = templateResource.getTemplateId();
-
 					_log.debug(
 						"Unable to get language resource bundle for template " +
-							StringUtil.quote(templateId),
+							StringUtil.quote(templateResource.getTemplateId()),
 						e);
 				}
 			}

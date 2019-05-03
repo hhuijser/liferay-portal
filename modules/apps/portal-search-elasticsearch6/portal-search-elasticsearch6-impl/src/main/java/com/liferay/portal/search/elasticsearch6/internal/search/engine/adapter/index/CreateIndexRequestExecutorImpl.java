@@ -20,7 +20,6 @@ import com.liferay.portal.search.engine.adapter.index.CreateIndexResponse;
 
 import org.elasticsearch.action.admin.indices.create.CreateIndexAction;
 import org.elasticsearch.action.admin.indices.create.CreateIndexRequestBuilder;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentType;
 
 import org.osgi.service.component.annotations.Component;
@@ -48,10 +47,9 @@ public class CreateIndexRequestExecutorImpl
 	protected CreateIndexRequestBuilder createCreateIndexRequestBuilder(
 		CreateIndexRequest createIndexRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		CreateIndexRequestBuilder createIndexRequestBuilder =
-			CreateIndexAction.INSTANCE.newRequestBuilder(client);
+			CreateIndexAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		createIndexRequestBuilder.setIndex(createIndexRequest.getIndexName());
 		createIndexRequestBuilder.setSource(

@@ -18,7 +18,6 @@ import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
 /**
@@ -36,11 +35,9 @@ public class AssetEntryUsageActionMenuContributorRegistryUtil {
 		Bundle bundle = FrameworkUtil.getBundle(
 			AssetEntryUsageActionMenuContributorRegistryUtil.class);
 
-		BundleContext bundleContext = bundle.getBundleContext();
-
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, AssetEntryUsageActionMenuContributor.class,
-			"model.class.name");
+			bundle.getBundleContext(),
+			AssetEntryUsageActionMenuContributor.class, "model.class.name");
 	}
 
 	private AssetEntryUsageActionMenuContributor

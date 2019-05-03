@@ -45,8 +45,6 @@ import com.liferay.staging.constants.StagingProcessesPortletKeys;
 import com.liferay.taglib.ui.util.SessionTreeJSClicks;
 import com.liferay.trash.service.TrashEntryService;
 
-import java.io.Serializable;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -177,12 +175,11 @@ public class EditPublishConfigurationMVCActionCommand
 		BackgroundTask backgroundTask =
 			_backgroundTaskManager.getBackgroundTask(backgroundTaskId);
 
-		Map<String, Serializable> taskContextMap =
-			backgroundTask.getTaskContextMap();
-
 		ExportImportConfiguration exportImportConfiguration =
 			_exportImportConfigurationLocalService.getExportImportConfiguration(
-				MapUtil.getLong(taskContextMap, "exportImportConfigurationId"));
+				MapUtil.getLong(
+					backgroundTask.getTaskContextMap(),
+					"exportImportConfigurationId"));
 
 		exportImportConfiguration =
 			ExportImportConfigurationFactory.cloneExportImportConfiguration(

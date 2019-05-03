@@ -124,9 +124,7 @@ public class UploadPortletRequestWhenGettingFilesTest {
 		for (Map.Entry<String, FileItem[]> entry :
 				multipartParameterMap.entrySet()) {
 
-			String key = entry.getKey();
-
-			File[] files = uploadPortletRequest.getFiles(key);
+			File[] files = uploadPortletRequest.getFiles(entry.getKey());
 
 			FileItem[] fileItems = entry.getValue();
 

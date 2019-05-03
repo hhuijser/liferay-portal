@@ -109,9 +109,8 @@ public class WeDeployPlugin implements Plugin<Project> {
 	}
 
 	private String _getProperty(Project project, String suffix) {
-		File rootDir = project.getRootDir();
-
-		Properties properties = GradleUtil.getGradleProperties(rootDir);
+		Properties properties = GradleUtil.getGradleProperties(
+			project.getRootDir());
 
 		if (properties != null) {
 			for (Object key : properties.keySet()) {

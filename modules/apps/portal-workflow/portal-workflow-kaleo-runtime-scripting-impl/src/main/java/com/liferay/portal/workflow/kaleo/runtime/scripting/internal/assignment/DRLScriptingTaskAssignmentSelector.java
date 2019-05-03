@@ -55,11 +55,10 @@ public class DRLScriptingTaskAssignmentSelector
 		List<Fact<?>> facts = _rulesContextBuilder.buildRulesContext(
 			executionContext);
 
-		String assigneeScript = kaleoTaskAssignment.getAssigneeScript();
-
 		RulesResourceRetriever rulesResourceRetriever =
 			new RulesResourceRetriever(
-				new StringResourceRetriever(assigneeScript));
+				new StringResourceRetriever(
+					kaleoTaskAssignment.getAssigneeScript()));
 
 		Query query = Query.createStandardQuery();
 

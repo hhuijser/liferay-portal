@@ -535,11 +535,8 @@ public class AutoCloseUtil {
 		String gitHubRemoteGitRepositoryName =
 			pullRequest.getGitHubRemoteGitRepositoryName();
 
-		Properties localLiferayJenkinsEEBuildProperties =
-			JenkinsResultsParserUtil.getLocalLiferayJenkinsEEBuildProperties();
-
 		String testBranchNamesAutoClose = JenkinsResultsParserUtil.getProperty(
-			localLiferayJenkinsEEBuildProperties,
+			JenkinsResultsParserUtil.getLocalLiferayJenkinsEEBuildProperties(),
 			JenkinsResultsParserUtil.combine(
 				"test.branch.names.auto.close[", gitHubRemoteGitRepositoryName,
 				"]"));
@@ -566,12 +563,10 @@ public class AutoCloseUtil {
 	public static boolean isAutoCloseOnCriticalTestFailuresActive(
 		PullRequest pullRequest) {
 
-		Properties localLiferayJenkinsEEBuildProperties =
-			JenkinsResultsParserUtil.getLocalLiferayJenkinsEEBuildProperties();
-
 		String criticalTestBranchesString =
 			JenkinsResultsParserUtil.getProperty(
-				localLiferayJenkinsEEBuildProperties,
+				JenkinsResultsParserUtil.
+					getLocalLiferayJenkinsEEBuildProperties(),
 				JenkinsResultsParserUtil.combine(
 					"test.branch.names.critical.test[",
 					pullRequest.getGitHubRemoteGitRepositoryName(), "]"));

@@ -892,11 +892,8 @@ public class CalendarBookingLocalServiceImpl
 	public List<CalendarBooking> getRecurringCalendarBookings(
 		CalendarBooking calendarBooking) {
 
-		long recurringCalendarBookingId =
-			calendarBooking.getRecurringCalendarBookingId();
-
 		return calendarBookingPersistence.findByRecurringCalendarBookingId(
-			recurringCalendarBookingId);
+			calendarBooking.getRecurringCalendarBookingId());
 	}
 
 	@Override

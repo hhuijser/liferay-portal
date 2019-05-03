@@ -183,11 +183,9 @@ public class AnnouncementsAdminViewManagementToolbarDisplayContext {
 
 							labelItem.setCloseable(true);
 
-							String currentDistributionScopeLabel =
+							labelItem.setLabel(
 								_announcementsAdminViewDisplayContext.
-									getCurrentDistributionScopeLabel();
-
-							labelItem.setLabel(currentDistributionScopeLabel);
+									getCurrentDistributionScopeLabel());
 						});
 				}
 			}

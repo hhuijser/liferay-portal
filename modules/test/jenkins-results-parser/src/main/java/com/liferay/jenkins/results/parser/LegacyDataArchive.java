@@ -76,12 +76,11 @@ public class LegacyDataArchive {
 		String dataArchiveType = _legacyDataArchiveGroup.getDataArchiveType();
 		File generatedArchiveDirectory =
 			_legacyDataArchiveUtil.getGeneratedArchiveDirectory();
-		String portalVersion =
-			_legacyDataArchivePortalVersion.getPortalVersion();
 
 		File generatedArchiveFile = new File(
 			JenkinsResultsParserUtil.combine(
-				generatedArchiveDirectory.toString(), "/", portalVersion, "/",
+				generatedArchiveDirectory.toString(), "/",
+				_legacyDataArchivePortalVersion.getPortalVersion(), "/",
 				dataArchiveType, "-", _databaseName, ".zip"));
 
 		if (generatedArchiveFile.exists()) {

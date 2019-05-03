@@ -2045,9 +2045,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		List<Group> organizationGroups = new ArrayList<>();
 
 		for (Organization organization : organizations) {
-			Group group = organization.getGroup();
-
-			organizationGroups.add(group);
+			organizationGroups.add(organization.getGroup());
 		}
 
 		return organizationGroups;
@@ -2226,9 +2224,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		List<Group> userGroupGroups = new ArrayList<>();
 
 		for (UserGroup userGroup : userGroups) {
-			Group group = userGroup.getGroup();
-
-			userGroupGroups.add(group);
+			userGroupGroups.add(userGroup.getGroup());
 		}
 
 		return userGroupGroups;
@@ -2376,9 +2372,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 			if (roleName.equals(RoleConstants.SITE_ADMINISTRATOR) ||
 				roleName.equals(RoleConstants.SITE_OWNER)) {
 
-				Group group = userGroupRole.getGroup();
-
-				sites.add(group);
+				sites.add(userGroupRole.getGroup());
 			}
 		}
 

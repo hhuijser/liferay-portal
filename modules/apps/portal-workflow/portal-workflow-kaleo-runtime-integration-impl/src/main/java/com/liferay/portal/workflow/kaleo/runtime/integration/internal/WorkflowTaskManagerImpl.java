@@ -862,11 +862,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			ExecutionContext executionContext)
 		throws PortalException {
 
-		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
-
 		TaskAssignmentSelector taskAssignmentSelector =
 			_taskAssignmentSelectorRegistry.getTaskAssignmentSelector(
-				assigneeClassName);
+				kaleoTaskAssignment.getAssigneeClassName());
 
 		return taskAssignmentSelector.calculateTaskAssignments(
 			kaleoTaskAssignment, executionContext);
@@ -969,9 +967,7 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 					kaleoTaskInstanceToken.getGroupId(), assigneeClassPK);
 
 			for (UserGroupRole userGroupRole : userGroupRoles) {
-				User user = userGroupRole.getUser();
-
-				users.add(user);
+				users.add(userGroupRole.getUser());
 			}
 
 			List<UserGroupGroupRole> userGroupGroupRoles =

@@ -94,10 +94,8 @@ public class BuildChangeLogTask extends DefaultTask {
 		String range = rangeStart + ".." + rangeEnd;
 
 		if (ticketIds.isEmpty()) {
-			Project project = getProject();
-
 			throw new StopExecutionException(
-				project + " does not have changes for range " + range);
+				getProject() + " does not have changes for range " + range);
 		}
 
 		File changeLogDir = changeLogFile.getParentFile();

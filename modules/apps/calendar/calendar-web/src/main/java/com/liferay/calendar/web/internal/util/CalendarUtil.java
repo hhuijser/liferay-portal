@@ -160,10 +160,7 @@ public class CalendarUtil {
 		Set<CalendarResource> calendarResources = new HashSet<>();
 
 		for (CalendarBooking calendarBooking : calendarBookings) {
-			CalendarResource calendarResource =
-				calendarBooking.getCalendarResource();
-
-			calendarResources.add(calendarResource);
+			calendarResources.add(calendarBooking.getCalendarResource());
 		}
 
 		return calendarResources;

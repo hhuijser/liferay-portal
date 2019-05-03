@@ -45,9 +45,7 @@ public class DDMFormInstanceFactoryHelper {
 
 		setDDMFormFieldNameMethodMap(clazz);
 
-		DDMForm ddmForm = ddmFormValues.getDDMForm();
-
-		_ddmForm = ddmForm;
+		_ddmForm = ddmFormValues.getDDMForm();
 
 		_ddmFormFieldValuesMap = ddmFormValues.getDDMFormFieldValuesMap();
 	}

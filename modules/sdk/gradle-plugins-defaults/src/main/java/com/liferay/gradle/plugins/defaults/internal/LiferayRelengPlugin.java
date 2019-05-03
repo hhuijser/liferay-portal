@@ -725,11 +725,9 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 				public boolean isSatisfiedBy(Task task) {
 					Project project = task.getProject();
 
-					File projectDir = project.getProjectDir();
-
 					String result = GitUtil.getGitResult(
 						project, "ls-files",
-						FileUtil.getAbsolutePath(projectDir));
+						FileUtil.getAbsolutePath(project.getProjectDir()));
 
 					if (Validator.isNotNull(result)) {
 						return true;

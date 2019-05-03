@@ -60,9 +60,7 @@ public class DocumentBuilderFactoryImpl implements DocumentBuilderFactory {
 			return;
 		}
 
-		Object[] values = field.getValues();
-
-		documentBuilder.setValues(key, Arrays.asList(values));
+		documentBuilder.setValues(key, Arrays.asList(field.getValues()));
 	}
 
 	@Reference

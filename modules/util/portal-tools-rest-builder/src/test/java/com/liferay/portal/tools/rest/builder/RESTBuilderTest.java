@@ -95,9 +95,7 @@ public class RESTBuilderTest {
 	private String _getDependenciesPath() {
 		URL resource = getClass().getResource("");
 
-		String path = resource.getPath();
-
-		return path + "dependencies/";
+		return resource.getPath() + "dependencies/";
 	}
 
 	private String _getFilesPath() {

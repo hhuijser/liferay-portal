@@ -213,10 +213,8 @@ public class WikiExportImportPortletPreferencesProcessor
 			return;
 		}
 
-		String portletId = portletDataContext.getPortletId();
-
 		StagedModelDataHandlerUtil.exportReferenceStagedModel(
-			portletDataContext, portletId, node);
+			portletDataContext, portletDataContext.getPortletId(), node);
 	}
 
 	@Reference(unbind = "-")

@@ -18,8 +18,6 @@ import com.liferay.javadoc.formatter.JavadocFormatter;
 import com.liferay.javadoc.formatter.JavadocFormatterArgs;
 import com.liferay.javadoc.formatter.JavadocFormatterInvoker;
 
-import java.util.Set;
-
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
@@ -37,12 +35,9 @@ public class FormatJavadocTask extends Task {
 			JavadocFormatter javadocFormatter = JavadocFormatterInvoker.invoke(
 				project.getBaseDir(), _javadocFormatterArgs);
 
-			Set<String> modifiedFileNames =
-				javadocFormatter.getModifiedFileNames();
-
 			project.addIdReference(
 				JavadocFormatterArgs.OUTPUT_KEY_MODIFIED_FILES,
-				modifiedFileNames);
+				javadocFormatter.getModifiedFileNames());
 		}
 		catch (Exception e) {
 			throw new BuildException(e);

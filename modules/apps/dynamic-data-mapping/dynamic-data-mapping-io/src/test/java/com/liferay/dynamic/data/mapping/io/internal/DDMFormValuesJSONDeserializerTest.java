@@ -339,9 +339,7 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 	}
 
 	protected void testDefaultLocale(DDMFormValues ddmFormValues) {
-		Locale defaultLocale = ddmFormValues.getDefaultLocale();
-
-		Assert.assertEquals(LocaleUtil.US, defaultLocale);
+		Assert.assertEquals(LocaleUtil.US, ddmFormValues.getDefaultLocale());
 	}
 
 	protected void testDocumentLibraryDDMFormFieldValueValues(
@@ -496,9 +494,7 @@ public class DDMFormValuesJSONDeserializerTest extends BaseDDMTestCase {
 	protected void testSeparatorDDMFormFieldValueValue(
 		DDMFormFieldValue ddmFormFieldValue) {
 
-		Value value = ddmFormFieldValue.getValue();
-
-		Assert.assertNull(value);
+		Assert.assertNull(ddmFormFieldValue.getValue());
 	}
 
 	protected void testTextDDMFormFieldValue(

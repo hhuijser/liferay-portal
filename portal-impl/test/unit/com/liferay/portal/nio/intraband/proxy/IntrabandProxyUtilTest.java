@@ -1325,9 +1325,7 @@ public class IntrabandProxyUtilTest {
 
 		Type methodType = Type.getType(method);
 
-		int argumentsAndReturnSizes = methodType.getArgumentsAndReturnSizes();
-
-		int argumentsSize = argumentsAndReturnSizes >> 2;
+		int argumentsSize = methodType.getArgumentsAndReturnSizes() >> 2;
 
 		_assertVarInsnNode(iterator.next(), Opcodes.ASTORE, argumentsSize);
 

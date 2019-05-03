@@ -82,9 +82,8 @@ public class UploadPortletRequestWhenGettingFullFileNameTest {
 		for (Map.Entry<String, FileItem[]> entry :
 				multipartParameterMap.entrySet()) {
 
-			String key = entry.getKey();
-
-			String fullFileName = uploadPortletRequest.getFullFileName(key);
+			String fullFileName = uploadPortletRequest.getFullFileName(
+				entry.getKey());
 
 			FileItem[] fileItems = entry.getValue();
 

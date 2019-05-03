@@ -53,9 +53,8 @@ public class DDMFormValueProcessor implements FormValueProcessor {
 
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 
-		DDMForm ddmForm = ddmStructure.getDDMForm();
-
-		DDMFormValues ddmFormValues = deserialize(formValues, ddmForm);
+		DDMFormValues ddmFormValues = deserialize(
+			formValues, ddmStructure.getDDMForm());
 
 		DDLRecord ddlRecord = _ddlRecordLocalService.addRecord(
 			kaleoTaskFormInstance.getUserId(),

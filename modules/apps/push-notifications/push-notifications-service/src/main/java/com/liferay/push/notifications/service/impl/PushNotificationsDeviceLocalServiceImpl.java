@@ -33,7 +33,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
 /**
@@ -74,10 +73,9 @@ public class PushNotificationsDeviceLocalServiceImpl
 		Bundle bundle = FrameworkUtil.getBundle(
 			PushNotificationsDeviceLocalServiceImpl.class);
 
-		BundleContext bundleContext = bundle.getBundleContext();
-
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, PushNotificationsSender.class, "platform");
+			bundle.getBundleContext(), PushNotificationsSender.class,
+			"platform");
 	}
 
 	@Override

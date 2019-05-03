@@ -36,11 +36,8 @@ public class LegacyDataArchiveUtil {
 		_generatedArchiveDirectory = generatedArchiveDirectory;
 		_legacyGitWorkingDirectory = legacyGitWorkingDirectory;
 
-		LocalGitBranch upstreamLocalGitBranch =
-			_legacyGitWorkingDirectory.getUpstreamLocalGitBranch();
-
 		_legacyGitWorkingDirectory.checkoutLocalGitBranch(
-			upstreamLocalGitBranch);
+			_legacyGitWorkingDirectory.getUpstreamLocalGitBranch());
 
 		_legacyGitWorkingDirectory.reset("--hard");
 

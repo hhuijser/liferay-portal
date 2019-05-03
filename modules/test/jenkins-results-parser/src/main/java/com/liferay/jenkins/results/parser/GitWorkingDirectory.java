@@ -1937,11 +1937,9 @@ public class GitWorkingDirectory {
 	}
 
 	protected Map<String, String> getLocalGitBranchesShaMap() {
-		File workingDirectory = getWorkingDirectory();
-
 		String command = JenkinsResultsParserUtil.combine(
 			"git ls-remote -h ",
-			JenkinsResultsParserUtil.getCanonicalPath(workingDirectory));
+			JenkinsResultsParserUtil.getCanonicalPath(getWorkingDirectory()));
 
 		GitUtil.ExecutionResult executionResult = executeBashCommands(
 			GitUtil.RETRIES_SIZE_MAX, GitUtil.MILLIS_RETRY_DELAY,

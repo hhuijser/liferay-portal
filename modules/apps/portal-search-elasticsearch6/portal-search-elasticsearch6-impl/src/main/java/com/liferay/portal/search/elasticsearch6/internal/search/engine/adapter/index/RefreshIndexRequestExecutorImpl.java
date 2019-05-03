@@ -24,7 +24,6 @@ import org.elasticsearch.action.ShardOperationFailedException;
 import org.elasticsearch.action.admin.indices.refresh.RefreshAction;
 import org.elasticsearch.action.admin.indices.refresh.RefreshRequestBuilder;
 import org.elasticsearch.action.admin.indices.refresh.RefreshResponse;
-import org.elasticsearch.client.Client;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -74,10 +73,9 @@ public class RefreshIndexRequestExecutorImpl
 	protected RefreshRequestBuilder createRefreshRequestBuilder(
 		RefreshIndexRequest refreshIndexRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		RefreshRequestBuilder refreshRequestBuilder =
-			RefreshAction.INSTANCE.newRequestBuilder(client);
+			RefreshAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		refreshRequestBuilder.setIndices(refreshIndexRequest.getIndexNames());
 

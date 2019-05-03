@@ -232,10 +232,8 @@ public class InitialUpgradeExtender extends AbstractExtender {
 
 			BundleWiring bundleWiring = _bundle.adapt(BundleWiring.class);
 
-			ClassLoader classLoader = bundleWiring.getClassLoader();
-
 			Configuration configuration = ConfigurationUtil.getConfiguration(
-				classLoader, "service");
+				bundleWiring.getClassLoader(), "service");
 
 			if (configuration != null) {
 				String buildNumber = configuration.get("build.number");

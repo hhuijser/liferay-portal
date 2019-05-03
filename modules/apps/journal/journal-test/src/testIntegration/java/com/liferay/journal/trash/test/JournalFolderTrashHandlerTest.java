@@ -265,9 +265,7 @@ public class JournalFolderTrashHandlerTest
 	protected String getUniqueTitle(BaseModel<?> baseModel) {
 		JournalFolder folder = (JournalFolder)baseModel;
 
-		String name = folder.getName();
-
-		return _trashHelper.getOriginalTitle(name);
+		return _trashHelper.getOriginalTitle(folder.getName());
 	}
 
 	@Override

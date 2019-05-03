@@ -1240,9 +1240,7 @@ public abstract class DLPreviewableProcessor implements DLProcessor {
 
 		ImageBag imageBag = ImageToolUtil.read(file);
 
-		RenderedImage renderedImage = imageBag.getRenderedImage();
-
-		storeThumbnailImages(fileVersion, renderedImage);
+		storeThumbnailImages(fileVersion, imageBag.getRenderedImage());
 	}
 
 	protected void storeThumbnailImages(

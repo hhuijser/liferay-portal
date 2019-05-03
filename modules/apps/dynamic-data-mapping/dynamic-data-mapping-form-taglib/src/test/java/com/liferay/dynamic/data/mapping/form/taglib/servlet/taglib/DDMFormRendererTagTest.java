@@ -238,9 +238,8 @@ public class DDMFormRendererTagTest extends PowerMockito {
 	public void testGetRedirectURLWhenFormInstanceIsNull() {
 		setDDMFormRendererTagInputs(null, null, null, null);
 
-		String redirectURL = _ddmFormRendererTag.getRedirectURL();
-
-		Assert.assertEquals(StringPool.BLANK, redirectURL);
+		Assert.assertEquals(
+			StringPool.BLANK, _ddmFormRendererTag.getRedirectURL());
 	}
 
 	protected Set<Locale> createAvailableLocales(Locale... locales) {

@@ -437,10 +437,9 @@ public class LayoutsTreeImpl implements LayoutsTree {
 				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		}
 
-		HttpSession session = request.getSession();
-
 		int loadedLayoutsCount = _getLoadedLayoutsCount(
-			session, groupId, privateLayout, parentLayoutId, treeId);
+			request.getSession(), groupId, privateLayout, parentLayoutId,
+			treeId);
 
 		int start = ParamUtil.getInteger(request, "start");
 

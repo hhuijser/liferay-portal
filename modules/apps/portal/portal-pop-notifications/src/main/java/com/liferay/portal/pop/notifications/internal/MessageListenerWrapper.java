@@ -74,9 +74,7 @@ public class MessageListenerWrapper implements MessageListener {
 
 		MessageListenerWrapper messageListener = (MessageListenerWrapper)obj;
 
-		String id = messageListener.getId();
-
-		return getId().equals(id);
+		return getId().equals(messageListener.getId());
 	}
 
 	@Override

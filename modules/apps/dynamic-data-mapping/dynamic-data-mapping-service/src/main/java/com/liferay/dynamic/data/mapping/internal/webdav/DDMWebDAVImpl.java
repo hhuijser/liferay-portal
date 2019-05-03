@@ -81,9 +81,7 @@ public class DDMWebDAVImpl implements DDMWebDAV {
 
 			Map<Locale, String> nameMap = new HashMap<>();
 
-			Locale defaultLocale = ddmForm.getDefaultLocale();
-
-			nameMap.put(defaultLocale, pathArray[3]);
+			nameMap.put(ddmForm.getDefaultLocale(), pathArray[3]);
 
 			ServiceContext serviceContext = new ServiceContext();
 

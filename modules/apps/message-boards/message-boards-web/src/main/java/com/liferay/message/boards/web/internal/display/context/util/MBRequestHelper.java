@@ -44,10 +44,8 @@ public class MBRequestHelper extends BaseRequestHelper {
 
 	public long getParentCategoryId() {
 		if (_parentCategoryId == null) {
-			MBCategory category = getCategory();
-
 			_parentCategoryId = BeanParamUtil.getLong(
-				category, getRequest(), "parentCategoryId",
+				getCategory(), getRequest(), "parentCategoryId",
 				MBCategoryConstants.DEFAULT_PARENT_CATEGORY_ID);
 		}
 

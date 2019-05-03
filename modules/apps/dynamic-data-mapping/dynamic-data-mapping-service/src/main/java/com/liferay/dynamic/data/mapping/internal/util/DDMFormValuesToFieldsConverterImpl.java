@@ -168,12 +168,10 @@ public class DDMFormValuesToFieldsConverterImpl
 	protected String getFieldDisplayValue(DDMFormFieldValue ddmFormFieldValue) {
 		String fieldName = ddmFormFieldValue.getName();
 
-		String instanceId = ddmFormFieldValue.getInstanceId();
-
 		return fieldName.concat(
 			DDMImpl.INSTANCE_SEPARATOR
 		).concat(
-			instanceId
+			ddmFormFieldValue.getInstanceId()
 		);
 	}
 

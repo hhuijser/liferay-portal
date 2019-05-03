@@ -34,10 +34,8 @@ import javax.servlet.ServletContext;
 public class FileAvailabilityUtil {
 
 	public static void clearAvailabilities() {
-		String servletContextName = PortalUtil.getServletContextName();
-
 		ServletContext servletContext = ServletContextPool.get(
-			servletContextName);
+			PortalUtil.getServletContextName());
 
 		Map<String, Boolean> availabilities =
 			(Map<String, Boolean>)servletContext.getAttribute(

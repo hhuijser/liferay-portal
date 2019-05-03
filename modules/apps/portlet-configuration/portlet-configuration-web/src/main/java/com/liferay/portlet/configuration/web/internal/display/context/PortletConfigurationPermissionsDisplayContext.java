@@ -69,7 +69,6 @@ import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.WindowStateException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -555,10 +554,8 @@ public class PortletConfigurationPermissionsDisplayContext {
 
 		HttpSession session = _request.getSession();
 
-		ServletContext servletContext = session.getServletContext();
-
 		_selResourceDescription = PortalUtil.getPortletTitle(
-			portlet, servletContext, themeDisplay.getLocale());
+			portlet, session.getServletContext(), themeDisplay.getLocale());
 
 		return _selResourceDescription;
 	}

@@ -66,9 +66,7 @@ public class SyncDirTask extends Task {
 		toDir.mkdirs();
 
 		for (File fromFile : dir.listFiles()) {
-			String name = fromFile.getName();
-
-			File toFile = new File(toDir, name);
+			File toFile = new File(toDir, fromFile.getName());
 
 			if (fromFile.isDirectory()) {
 				_buildSyncFileRunnables(

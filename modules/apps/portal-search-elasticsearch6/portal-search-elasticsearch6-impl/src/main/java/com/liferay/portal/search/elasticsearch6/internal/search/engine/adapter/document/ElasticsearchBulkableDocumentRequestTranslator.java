@@ -34,7 +34,6 @@ import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateAction;
 import org.elasticsearch.action.update.UpdateRequestBuilder;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentType;
 
@@ -55,10 +54,9 @@ public class ElasticsearchBulkableDocumentRequestTranslator
 	public DeleteRequestBuilder translate(
 		DeleteDocumentRequest deleteDocumentRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		DeleteRequestBuilder deleteRequestBuilder =
-			DeleteAction.INSTANCE.newRequestBuilder(client);
+			DeleteAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		deleteRequestBuilder.setId(deleteDocumentRequest.getUid());
 		deleteRequestBuilder.setIndex(deleteDocumentRequest.getIndexName());
@@ -75,10 +73,9 @@ public class ElasticsearchBulkableDocumentRequestTranslator
 
 	@Override
 	public GetRequestBuilder translate(GetDocumentRequest getDocumentRequest) {
-		Client client = _elasticsearchClientResolver.getClient();
-
 		GetRequestBuilder getRequestBuilder =
-			GetAction.INSTANCE.newRequestBuilder(client);
+			GetAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		getRequestBuilder.setId(getDocumentRequest.getId());
 		getRequestBuilder.setIndex(getDocumentRequest.getIndexName());
@@ -96,10 +93,9 @@ public class ElasticsearchBulkableDocumentRequestTranslator
 	public IndexRequestBuilder translate(
 		IndexDocumentRequest indexDocumentRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		IndexRequestBuilder indexRequestBuilder =
-			IndexAction.INSTANCE.newRequestBuilder(client);
+			IndexAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		setIndexRequestBuilderId(indexRequestBuilder, indexDocumentRequest);
 
@@ -121,10 +117,9 @@ public class ElasticsearchBulkableDocumentRequestTranslator
 	public UpdateRequestBuilder translate(
 		UpdateDocumentRequest updateDocumentRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		UpdateRequestBuilder updateRequestBuilder =
-			UpdateAction.INSTANCE.newRequestBuilder(client);
+			UpdateAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		setUpdateRequestBuilderId(updateRequestBuilder, updateDocumentRequest);
 

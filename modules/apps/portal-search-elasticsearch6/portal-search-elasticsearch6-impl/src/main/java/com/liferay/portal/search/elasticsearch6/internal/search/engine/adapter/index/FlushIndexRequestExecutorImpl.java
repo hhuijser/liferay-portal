@@ -24,7 +24,6 @@ import org.elasticsearch.action.ShardOperationFailedException;
 import org.elasticsearch.action.admin.indices.flush.FlushAction;
 import org.elasticsearch.action.admin.indices.flush.FlushRequestBuilder;
 import org.elasticsearch.action.admin.indices.flush.FlushResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.rest.RestStatus;
 
 import org.osgi.service.component.annotations.Component;
@@ -77,10 +76,9 @@ public class FlushIndexRequestExecutorImpl
 	protected FlushRequestBuilder createFlushRequestBuilder(
 		FlushIndexRequest flushIndexRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		FlushRequestBuilder flushRequestBuilder =
-			FlushAction.INSTANCE.newRequestBuilder(client);
+			FlushAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		flushRequestBuilder.setIndices(flushIndexRequest.getIndexNames());
 		flushRequestBuilder.setForce(flushIndexRequest.isForce());

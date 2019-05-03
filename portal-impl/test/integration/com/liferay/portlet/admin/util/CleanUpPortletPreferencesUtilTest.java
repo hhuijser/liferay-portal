@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.LayoutRevisionLocalServiceUtil;
 import com.liferay.portal.kernel.service.LayoutSetBranchLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -130,14 +129,11 @@ public class CleanUpPortletPreferencesUtilTest {
 	protected LayoutRevision getLayoutRevision() throws Exception {
 		Layout layout = LayoutTestUtil.addLayout(_group, false);
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		LayoutSetBranch layoutSetBranch =
 			LayoutSetBranchLocalServiceUtil.addLayoutSetBranch(
 				TestPropsValues.getUserId(), _group.getGroupId(), false,
 				RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-				true, 0, serviceContext);
+				true, 0, ServiceContextTestUtil.getServiceContext());
 
 		LayoutBranch layoutBranch =
 			LayoutBranchLocalServiceUtil.getMasterLayoutBranch(

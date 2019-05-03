@@ -213,9 +213,7 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 		StagingLocalServiceUtil.enableLocalStaging(
 			user.getUserId(), group, false, false, serviceContext);
 
-		Group stagingGroup = group.getStagingGroup();
-
-		createFileEntryTrashEntry(stagingGroup, false);
+		createFileEntryTrashEntry(group.getStagingGroup(), false);
 
 		TrashEntryLocalServiceUtil.checkEntries();
 

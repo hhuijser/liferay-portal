@@ -80,7 +80,6 @@ import java.util.Map;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletContext;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletSession;
 import javax.portlet.PortletURL;
@@ -322,11 +321,10 @@ public class EditServerMVCActionCommand extends BaseMVCActionCommand {
 
 		PortletConfig portletConfig = getPortletConfig(actionRequest);
 
-		PortletContext portletContext = portletConfig.getPortletContext();
-
 		Map<String, Object> portletObjects =
 			ScriptingHelperUtil.getPortletObjects(
-				portletConfig, portletContext, actionRequest, actionResponse);
+				portletConfig, portletConfig.getPortletContext(), actionRequest,
+				actionResponse);
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();

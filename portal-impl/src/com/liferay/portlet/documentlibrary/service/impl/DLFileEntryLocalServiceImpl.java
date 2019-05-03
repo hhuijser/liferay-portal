@@ -2238,9 +2238,8 @@ public class DLFileEntryLocalServiceImpl
 		UnicodeProperties extraSettingsProperties =
 			dlFileVersion.getExtraSettingsProperties();
 
-		ExpandoBridge expandoBridge = dlFileVersion.getExpandoBridge();
-
-		convertExtraSettings(extraSettingsProperties, expandoBridge, keys);
+		convertExtraSettings(
+			extraSettingsProperties, dlFileVersion.getExpandoBridge(), keys);
 
 		dlFileVersion.setExtraSettingsProperties(extraSettingsProperties);
 
@@ -2262,9 +2261,8 @@ public class DLFileEntryLocalServiceImpl
 		UnicodeProperties extraSettingsProperties =
 			dlFileEntry.getExtraSettingsProperties();
 
-		ExpandoBridge expandoBridge = dlFileEntry.getExpandoBridge();
-
-		convertExtraSettings(extraSettingsProperties, expandoBridge, keys);
+		convertExtraSettings(
+			extraSettingsProperties, dlFileEntry.getExpandoBridge(), keys);
 
 		dlFileEntry.setExtraSettingsProperties(extraSettingsProperties);
 

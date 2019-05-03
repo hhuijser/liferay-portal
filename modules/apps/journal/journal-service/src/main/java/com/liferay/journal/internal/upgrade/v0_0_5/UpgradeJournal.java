@@ -348,10 +348,8 @@ public class UpgradeJournal extends UpgradeProcess {
 
 						Document document = SAXReaderUtil.read(content);
 
-						Element rootElement = document.getRootElement();
-
 						articleFieldNames = getArticleDynamicElements(
-							rootElement);
+							document.getRootElement());
 					}
 				}
 			}

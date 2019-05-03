@@ -212,9 +212,8 @@ public class CompanyLocalServiceTest {
 
 		Company company = addCompany();
 
-		long companyId = company.getCompanyId();
-
-		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
+		long userId = UserLocalServiceUtil.getDefaultUserId(
+			company.getCompanyId());
 
 		Group companyGroup = company.getGroup();
 

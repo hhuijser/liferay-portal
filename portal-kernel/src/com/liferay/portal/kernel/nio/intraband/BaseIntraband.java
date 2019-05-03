@@ -518,9 +518,8 @@ public abstract class BaseIntraband implements Intraband {
 	protected Datagram removeResponseWaitingDatagram(
 		Datagram responseDatagram) {
 
-		long sequenceId = responseDatagram.getSequenceId();
-
-		Datagram requestDatagram = responseWaitingMap.remove(sequenceId);
+		Datagram requestDatagram = responseWaitingMap.remove(
+			responseDatagram.getSequenceId());
 
 		if (requestDatagram != null) {
 			timeoutMap.remove(requestDatagram.expireTime);

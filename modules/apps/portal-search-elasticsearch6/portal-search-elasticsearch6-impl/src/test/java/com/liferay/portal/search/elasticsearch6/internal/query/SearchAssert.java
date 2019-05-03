@@ -76,9 +76,7 @@ public class SearchAssert {
 		for (SearchHit searchHit : searchHits.getHits()) {
 			DocumentField documentField = searchHit.field(field);
 
-			String value = documentField.getValue();
-
-			values.add(value);
+			values.add(documentField.getValue());
 		}
 
 		return values;

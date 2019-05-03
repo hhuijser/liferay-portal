@@ -92,9 +92,8 @@ public class AuthVerifierPipeline {
 
 		authVerifierResult.setState(AuthVerifierResult.State.UNSUCCESSFUL);
 
-		HttpServletRequest request = accessControlContext.getRequest();
-
-		long companyId = PortalUtil.getCompanyId(request);
+		long companyId = PortalUtil.getCompanyId(
+			accessControlContext.getRequest());
 
 		long defaultUserId = UserLocalServiceUtil.getDefaultUserId(companyId);
 
@@ -393,9 +392,7 @@ public class AuthVerifierPipeline {
 					key = key.substring(authVerifierPropertyName.length());
 				}
 
-				Object value = entry.getValue();
-
-				properties.setProperty(key, String.valueOf(value));
+				properties.setProperty(key, String.valueOf(entry.getValue()));
 			}
 
 			return properties;
@@ -411,12 +408,11 @@ public class AuthVerifierPipeline {
 
 			if (urlsIncludes.length == 0) {
 				if (_log.isWarnEnabled()) {
-					String authVerifierClassName =
-						authVerifierConfiguration.getAuthVerifierClassName();
-
 					_log.warn(
-						"Auth verifier " + authVerifierClassName +
-							" does not have URLs configured");
+						"Auth verifier " +
+							authVerifierConfiguration.
+								getAuthVerifierClassName() +
+									" does not have URLs configured");
 				}
 
 				return false;

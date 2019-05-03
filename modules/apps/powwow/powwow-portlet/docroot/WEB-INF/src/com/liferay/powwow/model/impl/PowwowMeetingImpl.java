@@ -34,11 +34,9 @@ public class PowwowMeetingImpl extends PowwowMeetingBaseImpl {
 			return _providerTypeMetadataMap;
 		}
 
-		String providerTypeMetadata = getProviderTypeMetadata();
-
 		_providerTypeMetadataMap =
 			(Map<String, Serializable>)JSONFactoryUtil.deserialize(
-				providerTypeMetadata);
+				getProviderTypeMetadata());
 
 		return _providerTypeMetadataMap;
 	}

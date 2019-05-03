@@ -54,11 +54,9 @@ public class GoogleDocsIGDisplayContextFactory
 
 			FileEntry fileEntry = _dlAppService.getFileEntry(fileEntryId);
 
-			FileVersion fileVersion = fileEntry.getFileVersion();
-
 			return getIGViewFileVersionDisplayContext(
 				parentIGViewFileVersionDisplayContext, request, response,
-				fileVersion);
+				fileEntry.getFileVersion());
 		}
 		catch (PortalException pe) {
 			throw new SystemException(

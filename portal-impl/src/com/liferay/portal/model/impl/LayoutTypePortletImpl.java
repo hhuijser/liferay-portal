@@ -274,10 +274,8 @@ public class LayoutTypePortletImpl
 		List<Portlet> staticPortlets = getStaticPortlets(
 			PropsKeys.LAYOUT_STATIC_PORTLETS_ALL);
 
-		List<Portlet> embeddedPortlets = getEmbeddedPortlets();
-
 		return addStaticPortlets(
-			explicitlyAddedPortlets, staticPortlets, embeddedPortlets);
+			explicitlyAddedPortlets, staticPortlets, getEmbeddedPortlets());
 	}
 
 	@Override
@@ -381,11 +379,9 @@ public class LayoutTypePortletImpl
 
 	@Override
 	public LayoutTemplate getLayoutTemplate() {
-		String themeId = getThemeId();
-
 		LayoutTemplate layoutTemplate =
 			LayoutTemplateLocalServiceUtil.getLayoutTemplate(
-				getLayoutTemplateId(), false, themeId);
+				getLayoutTemplateId(), false, getThemeId());
 
 		if (layoutTemplate == null) {
 			layoutTemplate = new LayoutTemplateImpl(
@@ -1186,11 +1182,9 @@ public class LayoutTypePortletImpl
 			return;
 		}
 
-		String themeId = getThemeId();
-
 		LayoutTemplate newLayoutTemplate =
 			LayoutTemplateLocalServiceUtil.getLayoutTemplate(
-				newLayoutTemplateId, false, themeId);
+				newLayoutTemplateId, false, getThemeId());
 
 		if (newLayoutTemplate == null) {
 			if (_log.isWarnEnabled()) {

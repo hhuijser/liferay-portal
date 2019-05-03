@@ -118,9 +118,8 @@ public class ConnectionService {
 	public String getResponseRawString(InputDataSet inputDataSet, URI uri)
 		throws ConnectionException {
 
-		GenericDataStore genericDataStore = inputDataSet.getGenericDataStore();
-
-		String authorizationHeader = _getAuthorizationHeader(genericDataStore);
+		String authorizationHeader = _getAuthorizationHeader(
+			inputDataSet.getGenericDataStore());
 
 		_liferayHttpClient.base(uri.toASCIIString());
 

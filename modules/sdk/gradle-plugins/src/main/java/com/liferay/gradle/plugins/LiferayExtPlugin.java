@@ -199,10 +199,9 @@ public class LiferayExtPlugin implements Plugin<Project> {
 		final Sync buildExtInfoBaseDirTask, final War war,
 		FileCollection classpath) {
 
-		Project project = buildExtInfoBaseDirTask.getProject();
-
 		final BuildExtInfoTask buildExtInfoTask = GradleUtil.addTask(
-			project, BUILD_EXT_INFO_TASK_NAME, BuildExtInfoTask.class);
+			buildExtInfoBaseDirTask.getProject(), BUILD_EXT_INFO_TASK_NAME,
+			BuildExtInfoTask.class);
 
 		buildExtInfoTask.dependsOn(buildExtInfoBaseDirTask);
 

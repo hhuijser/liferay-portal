@@ -306,10 +306,7 @@ public class LDAPServerConfigurationProviderImpl
 
 				Configuration configuration = objectValuePair.getKey();
 
-				Dictionary<String, Object> properties =
-					configuration.getProperties();
-
-				configurationsProperties.add(properties);
+				configurationsProperties.add(configuration.getProperties());
 			}
 		}
 

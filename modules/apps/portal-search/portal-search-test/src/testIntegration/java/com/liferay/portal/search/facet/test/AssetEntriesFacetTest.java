@@ -18,7 +18,6 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.portal.kernel.search.BooleanClause;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.facet.AssetEntriesFacet;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.Filter;
@@ -74,10 +73,8 @@ public class AssetEntriesFacetTest {
 
 	@Test
 	public void testGetFacetFilterBooleanClause() throws Exception {
-		SearchContext searchContext = SearchContextTestUtil.getSearchContext();
-
 		AssetEntriesFacet assetEntriesFacet = new AssetEntriesFacet(
-			searchContext);
+			SearchContextTestUtil.getSearchContext());
 
 		BooleanClause<Filter> booleanClause =
 			assetEntriesFacet.getFacetFilterBooleanClause();

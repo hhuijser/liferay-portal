@@ -438,10 +438,9 @@ public class LiferayThemeDefaultsPlugin implements Plugin<Project> {
 					continue;
 				}
 
-				String path = themeProject.getPath();
-
 				writeDigestTask.dependsOn(
-					path + ":" + JavaPlugin.CLASSES_TASK_NAME);
+					themeProject.getPath() + ":" +
+						JavaPlugin.CLASSES_TASK_NAME);
 
 				writeDigestTask.source(
 					themeProject.file("src/main/resources/META-INF/resources"));

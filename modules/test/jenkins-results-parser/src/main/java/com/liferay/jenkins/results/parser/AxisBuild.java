@@ -131,9 +131,8 @@ public class AxisBuild extends BaseBuild {
 			Element listItemElement = Dom4JUtil.getNewElement(
 				"li", unorderedListElement);
 
-			String displayName = testResult.getDisplayName();
-
-			Dom4JUtil.getNewElement("strong", listItemElement, displayName);
+			Dom4JUtil.getNewElement(
+				"strong", listItemElement, testResult.getDisplayName());
 
 			Element reportLinksUnorderedListElement = Dom4JUtil.getNewElement(
 				"ul", listItemElement);

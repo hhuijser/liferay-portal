@@ -499,13 +499,11 @@ public class WabBundleProcessor {
 			for (Map.Entry<String, String> initParametersEntry :
 					initParameters.entrySet()) {
 
-				String key = initParametersEntry.getKey();
-				String value = initParametersEntry.getValue();
-
 				properties.put(
 					HttpWhiteboardConstants.
-						HTTP_WHITEBOARD_FILTER_INIT_PARAM_PREFIX + key,
-					value);
+						HTTP_WHITEBOARD_FILTER_INIT_PARAM_PREFIX +
+							initParametersEntry.getKey(),
+					initParametersEntry.getValue());
 			}
 
 			FilterExceptionAdapter filterExceptionAdaptor =
@@ -715,13 +713,11 @@ public class WabBundleProcessor {
 			for (Map.Entry<String, String> initParametersEntry :
 					initParameters.entrySet()) {
 
-				String key = initParametersEntry.getKey();
-				String value = initParametersEntry.getValue();
-
 				properties.put(
 					HttpWhiteboardConstants.
-						HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX + key,
-					value);
+						HTTP_WHITEBOARD_SERVLET_INIT_PARAM_PREFIX +
+							initParametersEntry.getKey(),
+					initParametersEntry.getValue());
 			}
 
 			ServletExceptionAdapter servletExceptionAdaptor =

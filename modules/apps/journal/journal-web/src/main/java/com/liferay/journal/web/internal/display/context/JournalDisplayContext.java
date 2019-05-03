@@ -363,9 +363,7 @@ public class JournalDisplayContext {
 	}
 
 	public List<DDMStructure> getDDMStructures() throws PortalException {
-		Integer restrictionType = getRestrictionType();
-
-		return getDDMStructures(restrictionType);
+		return getDDMStructures(getRestrictionType());
 	}
 
 	public List<DDMStructure> getDDMStructures(Integer restrictionType)
@@ -477,10 +475,8 @@ public class JournalDisplayContext {
 			return _folderId;
 		}
 
-		JournalFolder folder = getFolder();
-
 		_folderId = BeanParamUtil.getLong(
-			folder, _request, "folderId",
+			getFolder(), _request, "folderId",
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID);
 
 		return _folderId;

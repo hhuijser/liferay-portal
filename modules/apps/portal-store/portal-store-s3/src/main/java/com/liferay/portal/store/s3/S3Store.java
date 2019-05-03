@@ -532,10 +532,8 @@ public class S3Store extends BaseStore {
 	protected AmazonS3 getAmazonS3(
 		AWSCredentialsProvider awsCredentialsProvider) {
 
-		ClientConfiguration clientConfiguration = getClientConfiguration();
-
 		AmazonS3 amazonS3 = new AmazonS3Client(
-			awsCredentialsProvider, clientConfiguration);
+			awsCredentialsProvider, getClientConfiguration());
 
 		Region region = Region.getRegion(
 			Regions.fromName(_s3StoreConfiguration.s3Region()));

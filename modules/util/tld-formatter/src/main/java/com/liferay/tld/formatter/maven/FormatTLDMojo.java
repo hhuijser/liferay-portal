@@ -21,7 +21,6 @@ import com.liferay.tld.formatter.TLDFormatterInvoker;
 import java.io.File;
 
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -43,10 +42,9 @@ public class FormatTLDMojo extends AbstractMojo {
 			TLDFormatter tldFormatter = TLDFormatterInvoker.invoke(
 				baseDir, _tldFormatterArgs);
 
-			Set<String> modifiedFileNames = tldFormatter.getModifiedFileNames();
-
 			pluginContext.put(
-				TLDFormatterArgs.OUTPUT_KEY_MODIFIED_FILES, modifiedFileNames);
+				TLDFormatterArgs.OUTPUT_KEY_MODIFIED_FILES,
+				tldFormatter.getModifiedFileNames());
 		}
 		catch (Exception e) {
 			throw new MojoExecutionException(e.getMessage(), e);

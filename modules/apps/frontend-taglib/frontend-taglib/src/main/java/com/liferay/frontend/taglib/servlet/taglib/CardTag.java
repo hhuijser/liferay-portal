@@ -174,9 +174,8 @@ public class CardTag extends IncludeTag {
 	}
 
 	public void setRowChecker(RowChecker rowChecker) {
-		String cssClass = rowChecker.getCssClass();
-
-		rowChecker.setCssClass("custom-control-input " + cssClass);
+		rowChecker.setCssClass(
+			"custom-control-input " + rowChecker.getCssClass());
 
 		_rowChecker = rowChecker;
 	}

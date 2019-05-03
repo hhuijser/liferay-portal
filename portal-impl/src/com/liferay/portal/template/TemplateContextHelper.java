@@ -212,9 +212,8 @@ public class TemplateContextHelper {
 	public TemplateControlContext getTemplateControlContext() {
 		Thread currentThread = Thread.currentThread();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		return new TemplateControlContext(null, contextClassLoader);
+		return new TemplateControlContext(
+			null, currentThread.getContextClassLoader());
 	}
 
 	public void prepare(

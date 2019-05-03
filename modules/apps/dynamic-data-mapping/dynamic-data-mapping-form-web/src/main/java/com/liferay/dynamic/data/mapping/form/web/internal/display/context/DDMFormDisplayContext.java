@@ -661,10 +661,8 @@ public class DDMFormDisplayContext {
 	protected String getSubmitLabel(
 		DDMFormInstance ddmFormInstance, Locale locale) {
 
-		ThemeDisplay themeDisplay = getThemeDisplay();
-
 		boolean workflowEnabled = hasWorkflowEnabled(
-			ddmFormInstance, themeDisplay);
+			ddmFormInstance, getThemeDisplay());
 
 		ResourceBundle resourceBundle = getResourceBundle(locale);
 

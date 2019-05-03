@@ -75,11 +75,9 @@ public class LiferayInputEmitter implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		InputDataSet inputDataSet =
-			_liferayInputMapperConfiguration.getInputDataSet();
-
 		_intputSchema = _liferayService.getEndpointTalendSchema(
-			inputDataSet, _recordBuilderFactory);
+			_liferayInputMapperConfiguration.getInputDataSet(),
+			_recordBuilderFactory);
 
 		JsonNode itemsJsonNode = _getItemsJsonNode(
 			_liferayInputMapperConfiguration.getPage());

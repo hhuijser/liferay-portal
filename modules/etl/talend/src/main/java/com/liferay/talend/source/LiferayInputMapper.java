@@ -139,10 +139,9 @@ public class LiferayInputMapper implements Serializable {
 				new LiferayInputMapperConfiguration(
 					_liferayInputMapperConfiguration);
 
-			int page = _liferayInputMapperConfiguration.getPage();
-
 			liferayInputMapperConfiguration.setPage(
-				(int)(page + (i * segmentPages)));
+				(int)(_liferayInputMapperConfiguration.getPage() +
+					(i * segmentPages)));
 
 			liferayInputMapperConfiguration.setPageSize(pageSize);
 			liferayInputMapperConfiguration.setSegmentPages((int)segmentPages);

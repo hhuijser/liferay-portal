@@ -259,15 +259,12 @@ public class DLFileEntryUADAnonymizerTest
 		String changeLog = RandomTestUtil.randomString();
 		boolean majorVersion = true;
 		InputStream is = dlFileEntry.getContentStream();
-		long size = dlFileEntry.getSize();
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
 
 		_dlAppLocalService.updateFileEntry(
 			userId, fileEntryId, sourceFileName, contentType, title,
 			description, changeLog,
-			DLVersionNumberIncrease.fromMajorVersion(majorVersion), is, size,
-			serviceContext);
+			DLVersionNumberIncrease.fromMajorVersion(majorVersion), is,
+			dlFileEntry.getSize(), ServiceContextTestUtil.getServiceContext());
 	}
 
 	@Inject

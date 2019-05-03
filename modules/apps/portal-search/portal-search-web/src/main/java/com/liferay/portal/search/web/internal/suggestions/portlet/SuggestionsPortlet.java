@@ -25,7 +25,6 @@ import com.liferay.portal.search.web.internal.suggestions.display.context.Sugges
 import com.liferay.portal.search.web.internal.suggestions.display.context.SuggestionsPortletDisplayContext;
 import com.liferay.portal.search.web.portlet.shared.search.PortletSharedSearchRequest;
 import com.liferay.portal.search.web.portlet.shared.search.PortletSharedSearchResponse;
-import com.liferay.portal.search.web.search.request.SearchSettings;
 
 import java.io.IOException;
 
@@ -113,11 +112,9 @@ public class SuggestionsPortlet extends MVCPortlet {
 			portletSharedSearchResponse::getKeywordsOptional,
 			suggestionsPortletDisplayBuilder::setKeywords);
 
-		SearchSettings searchSettings =
-			portletSharedSearchResponse.getSearchSettings();
-
 		copy(
-			searchSettings::getKeywordsParameterName,
+			portletSharedSearchResponse.getSearchSettings()::
+				getKeywordsParameterName,
 			suggestionsPortletDisplayBuilder::setKeywordsParameterName);
 
 		suggestionsPortletDisplayBuilder.setRelatedQueriesSuggestions(

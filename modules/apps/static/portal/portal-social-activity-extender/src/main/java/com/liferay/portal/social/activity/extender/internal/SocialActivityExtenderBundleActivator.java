@@ -134,10 +134,9 @@ public class SocialActivityExtenderBundleActivator implements BundleActivator {
 
 			BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
-			ClassLoader classLoader = bundleWiring.getClassLoader();
-
 			_socialConfiguration.read(
-				classLoader, configs.toArray(new String[configs.size()]));
+				bundleWiring.getClassLoader(),
+				configs.toArray(new String[configs.size()]));
 		}
 
 		private final SocialConfiguration _socialConfiguration;

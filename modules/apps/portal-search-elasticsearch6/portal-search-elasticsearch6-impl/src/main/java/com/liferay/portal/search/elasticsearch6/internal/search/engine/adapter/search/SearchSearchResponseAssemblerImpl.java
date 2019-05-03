@@ -15,11 +15,9 @@
 package com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.search;
 
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.search.aggregation.Aggregation;
 import com.liferay.portal.search.aggregation.AggregationResult;
 import com.liferay.portal.search.aggregation.AggregationResultTranslator;
 import com.liferay.portal.search.aggregation.AggregationResults;
-import com.liferay.portal.search.aggregation.pipeline.PipelineAggregation;
 import com.liferay.portal.search.aggregation.pipeline.PipelineAggregationResultTranslator;
 import com.liferay.portal.search.document.DocumentBuilderFactory;
 import com.liferay.portal.search.elasticsearch6.internal.aggregation.AggregationResultTranslatorFactory;
@@ -37,7 +35,6 @@ import com.liferay.portal.search.hits.SearchHitBuilderFactory;
 import com.liferay.portal.search.hits.SearchHits;
 import com.liferay.portal.search.hits.SearchHitsBuilderFactory;
 
-import java.util.Map;
 import java.util.stream.Stream;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
@@ -113,17 +110,11 @@ public class SearchSearchResponseAssemblerImpl
 			return;
 		}
 
-		Map<String, Aggregation> aggregationsMap =
-			searchSearchRequest.getAggregationsMap();
-
-		Map<String, PipelineAggregation> pipelineAggregationsMap =
-			searchSearchRequest.getPipelineAggregationsMap();
-
 		ElasticsearchAggregationResultsTranslator
 			elasticsearchAggregationResultsTranslator =
 				new ElasticsearchAggregationResultsTranslator(
-					this, this, aggregationsMap::get,
-					pipelineAggregationsMap::get);
+					this, this, searchSearchRequest.getAggregationsMap()::get,
+					searchSearchRequest.getPipelineAggregationsMap()::get);
 
 		Stream<AggregationResult> stream =
 			elasticsearchAggregationResultsTranslator.translate(

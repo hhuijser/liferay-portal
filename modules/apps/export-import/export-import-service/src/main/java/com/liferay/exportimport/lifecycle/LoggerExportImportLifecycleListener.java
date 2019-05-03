@@ -29,10 +29,6 @@ import com.liferay.portal.kernel.model.StagedGroupedModel;
 import com.liferay.portal.kernel.model.StagedModel;
 import com.liferay.portal.kernel.util.MapUtil;
 
-import java.io.Serializable;
-
-import java.util.Map;
-
 /**
  * @author     Daniel Kocsis
  * @deprecated As of Judson (7.1.x)
@@ -345,10 +341,8 @@ public class LoggerExportImportLifecycleListener
 			return;
 		}
 
-		Map<String, Serializable> settingsMap =
-			exportImportConfiguration.getSettingsMap();
-
-		String portletId = MapUtil.getString(settingsMap, "portletId");
+		String portletId = MapUtil.getString(
+			exportImportConfiguration.getSettingsMap(), "portletId");
 
 		_log.debug(
 			"Portlet publication failed for portlet " + portletId, throwable);
@@ -363,10 +357,8 @@ public class LoggerExportImportLifecycleListener
 			return;
 		}
 
-		Map<String, Serializable> settingsMap =
-			exportImportConfiguration.getSettingsMap();
-
-		String portletId = MapUtil.getString(settingsMap, "portletId");
+		String portletId = MapUtil.getString(
+			exportImportConfiguration.getSettingsMap(), "portletId");
 
 		_log.debug("Portlet publication started for portlet " + portletId);
 	}
@@ -380,10 +372,8 @@ public class LoggerExportImportLifecycleListener
 			return;
 		}
 
-		Map<String, Serializable> settingsMap =
-			exportImportConfiguration.getSettingsMap();
-
-		String portletId = MapUtil.getString(settingsMap, "portletId");
+		String portletId = MapUtil.getString(
+			exportImportConfiguration.getSettingsMap(), "portletId");
 
 		_log.debug("Portlet publication succeeded for portlet " + portletId);
 	}

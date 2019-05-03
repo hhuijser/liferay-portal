@@ -32,9 +32,7 @@ public class CompoundSessionIdServletRequest
 
 	@Override
 	public HttpSession getSession() {
-		HttpSession session = super.getSession();
-
-		return _getCompoundSessionIdHttpSession(session);
+		return _getCompoundSessionIdHttpSession(super.getSession());
 	}
 
 	@Override

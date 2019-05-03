@@ -94,9 +94,8 @@ public class RoleFinderTest {
 			ResourceActionLocalServiceUtil.getResourceActions(name);
 
 		for (ResourcePermission resourcePermission : resourcePermissions) {
-			long roleId = resourcePermission.getRoleId();
-
-			Role role = RoleLocalServiceUtil.getRole(roleId);
+			Role role = RoleLocalServiceUtil.getRole(
+				resourcePermission.getRoleId());
 
 			long actionIds = resourcePermission.getActionIds();
 

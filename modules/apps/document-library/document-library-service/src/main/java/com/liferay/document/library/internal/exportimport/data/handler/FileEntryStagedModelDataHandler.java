@@ -752,10 +752,9 @@ public class FileEntryStagedModelDataHandler
 
 		DLFileEntry dlFileEntry = liferayFileEntry.getDLFileEntry();
 
-		long fileEntryTypeId = dlFileEntry.getFileEntryTypeId();
-
 		DLFileEntryType dlFileEntryType =
-			_dlFileEntryTypeLocalService.fetchFileEntryType(fileEntryTypeId);
+			_dlFileEntryTypeLocalService.fetchFileEntryType(
+				dlFileEntry.getFileEntryTypeId());
 
 		if ((dlFileEntryType == null) || !dlFileEntryType.isExportable()) {
 			return;

@@ -23,10 +23,6 @@ import com.liferay.portal.kernel.model.ModelListener;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
-import java.io.Serializable;
-
-import java.util.Map;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -41,11 +37,8 @@ public class BackgroundTaskModelListener
 	public void onBeforeRemove(BackgroundTask backgroundTask)
 		throws ModelListenerException {
 
-		Map<String, Serializable> taskContextMap =
-			backgroundTask.getTaskContextMap();
-
 		long exportImportConfigurationId = MapUtil.getLong(
-			taskContextMap, "exportImportConfigurationId");
+			backgroundTask.getTaskContextMap(), "exportImportConfigurationId");
 
 		if (exportImportConfigurationId == 0) {
 			return;

@@ -85,9 +85,8 @@ public abstract class FindStrutsAction implements StrutsAction {
 			PortletLayoutFinder.Result result = portletLayoutFinder.find(
 				themeDisplay, groupId);
 
-			long plid = result.getPlid();
-
-			Layout layout = _setTargetLayout(request, groupId, plid);
+			Layout layout = _setTargetLayout(
+				request, groupId, result.getPlid());
 
 			LayoutPermissionUtil.check(
 				themeDisplay.getPermissionChecker(), layout, true,

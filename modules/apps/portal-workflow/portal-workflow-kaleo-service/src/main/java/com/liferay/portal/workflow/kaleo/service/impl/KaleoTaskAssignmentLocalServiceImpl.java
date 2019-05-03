@@ -138,9 +138,8 @@ public class KaleoTaskAssignmentLocalServiceImpl
 			ResourceActionAssignment resourceActionAssignment =
 				(ResourceActionAssignment)assignment;
 
-			String actionId = resourceActionAssignment.getActionId();
-
-			kaleoTaskAssignment.setAssigneeActionId(actionId);
+			kaleoTaskAssignment.setAssigneeActionId(
+				resourceActionAssignment.getActionId());
 		}
 		else if (assignmentType.equals(AssignmentType.ROLE)) {
 			kaleoTaskAssignment.setAssigneeClassName(Role.class.getName());

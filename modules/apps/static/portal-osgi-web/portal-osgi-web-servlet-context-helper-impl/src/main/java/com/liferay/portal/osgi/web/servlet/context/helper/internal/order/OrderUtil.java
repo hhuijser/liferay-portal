@@ -226,9 +226,8 @@ public class OrderUtil {
 		Map<String, WebXMLDefinition> webXMLDefinitionsMap = new HashMap<>();
 
 		for (WebXMLDefinition webXMLDefinition : webXMLDefinitions) {
-			String fragmentName = webXMLDefinition.getFragmentName();
-
-			webXMLDefinitionsMap.put(fragmentName, webXMLDefinition);
+			webXMLDefinitionsMap.put(
+				webXMLDefinition.getFragmentName(), webXMLDefinition);
 		}
 
 		return webXMLDefinitionsMap;
@@ -479,9 +478,8 @@ public class OrderUtil {
 			_getWebXMLDefinitionsMap(webXMLDefinitions);
 
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
-			String key = entry.getKey();
-
-			preSortWebXMLDefinitions.add(webXMLDefinitionsMap.get(key));
+			preSortWebXMLDefinitions.add(
+				webXMLDefinitionsMap.get(entry.getKey()));
 		}
 
 		for (WebXMLDefinition webXMLDefinition : tempWebXMLDefinitions) {

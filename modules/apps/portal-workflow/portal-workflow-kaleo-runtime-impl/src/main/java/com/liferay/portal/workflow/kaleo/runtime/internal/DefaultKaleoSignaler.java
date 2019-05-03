@@ -98,10 +98,8 @@ public class DefaultKaleoSignaler
 
 		executionContext.setTransitionName(transitionName);
 
-		KaleoNode currentKaleoNode = kaleoInstanceToken.getCurrentKaleoNode();
-
 		PathElement pathElement = new PathElement(
-			currentKaleoNode, null, executionContext);
+			kaleoInstanceToken.getCurrentKaleoNode(), null, executionContext);
 
 		_sendPathElement(pathElement);
 	}

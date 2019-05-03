@@ -1873,11 +1873,9 @@ public class JavadocFormatter {
 
 		_updateLanguageProperties(document, javaClass.getName());
 
-		Element rootElement = document.getRootElement();
-
 		Map<Integer, String> commentsMap = _addComments(
-			new TreeMap<Integer, String>(), rootElement, javaClass,
-			javadocLessContent, lines);
+			new TreeMap<Integer, String>(), document.getRootElement(),
+			javaClass, javadocLessContent, lines);
 
 		StringBundler sb = new StringBundler(javadocLessContent.length());
 

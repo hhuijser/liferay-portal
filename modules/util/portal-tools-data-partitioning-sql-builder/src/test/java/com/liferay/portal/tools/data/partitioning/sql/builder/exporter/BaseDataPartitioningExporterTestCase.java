@@ -49,10 +49,9 @@ public abstract class BaseDataPartitioningExporterTestCase {
 		properties = DBProviderTestUtil.readProperties(
 			getTestPropertiesFileName());
 
-		DataPartitioningExporter dataPartitioningExporter =
-			DataPartitioningExporterFactory.getDataPartitioningExporter();
-
-		dbProvider = (DBProvider)dataPartitioningExporter;
+		dbProvider =
+			(DBProvider)
+				DataPartitioningExporterFactory.getDataPartitioningExporter();
 
 		executeUpdate(dbProvider.getDataSource(), getCreateTableSQL());
 	}

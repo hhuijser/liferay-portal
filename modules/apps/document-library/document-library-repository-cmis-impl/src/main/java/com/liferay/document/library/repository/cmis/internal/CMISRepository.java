@@ -413,9 +413,7 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public void deleteFileEntry(long fileEntryId) throws PortalException {
 		try {
-			Session session = getSession();
-
-			Document document = getDocument(session, fileEntryId);
+			Document document = getDocument(getSession(), fileEntryId);
 
 			deleteMappedFileEntry(document);
 
@@ -444,10 +442,8 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public void deleteFolder(long folderId) throws PortalException {
 		try {
-			Session session = getSession();
-
 			org.apache.chemistry.opencmis.client.api.Folder cmisFolder =
-				getCmisFolder(session, folderId);
+				getCmisFolder(getSession(), folderId);
 
 			deleteMappedFolder(cmisFolder);
 
@@ -545,9 +541,8 @@ public class CMISRepository extends BaseCmisRepository {
 	public int getFileEntriesCount(long folderId, String[] mimeTypes)
 		throws PortalException {
 
-		Session session = getSession();
-
-		List<String> documentIds = getDocumentIds(session, folderId, mimeTypes);
+		List<String> documentIds = getDocumentIds(
+			getSession(), folderId, mimeTypes);
 
 		return documentIds.size();
 	}
@@ -558,9 +553,7 @@ public class CMISRepository extends BaseCmisRepository {
 			FileEntry fileEntry = _cmisModelCache.getFileEntry(fileEntryId);
 
 			if (fileEntry == null) {
-				Session session = getSession();
-
-				Document document = getDocument(session, fileEntryId);
+				Document document = getDocument(getSession(), fileEntryId);
 
 				fileEntry = toFileEntry(document);
 
@@ -658,9 +651,7 @@ public class CMISRepository extends BaseCmisRepository {
 		throws PortalException {
 
 		try {
-			Session session = getSession();
-
-			return getFileVersion(session, null, fileVersionId);
+			return getFileVersion(getSession(), null, fileVersionId);
 		}
 		catch (PortalException | SystemException e) {
 			throw e;
@@ -675,9 +666,7 @@ public class CMISRepository extends BaseCmisRepository {
 	@Override
 	public Folder getFolder(long folderId) throws PortalException {
 		try {
-			Session session = getSession();
-
-			return getFolder(session, folderId);
+			return getFolder(getSession(), folderId);
 		}
 		catch (PortalException | SystemException e) {
 			throw e;
@@ -793,10 +782,8 @@ public class CMISRepository extends BaseCmisRepository {
 		if (ArrayUtil.isNotEmpty(mimeTypes)) {
 			List<Folder> folders = getFolders(folderId);
 
-			Session session = getSession();
-
 			List<String> documentIds = getDocumentIds(
-				session, folderId, mimeTypes);
+				getSession(), folderId, mimeTypes);
 
 			return folders.size() + documentIds.size();
 		}
@@ -898,10 +885,8 @@ public class CMISRepository extends BaseCmisRepository {
 		}
 
 		if (_cmisRepositoryDetector == null) {
-			RepositoryInfo repositoryInfo = session.getRepositoryInfo();
-
 			_cmisRepositoryDetector = new CMISRepositoryDetector(
-				repositoryInfo);
+				session.getRepositoryInfo());
 		}
 
 		return session;
@@ -1012,9 +997,8 @@ public class CMISRepository extends BaseCmisRepository {
 
 			RepositoryInfo repositoryInfo = session.getRepositoryInfo();
 
-			String productName = repositoryInfo.getProductName();
-
-			return _cmisRepositoryHandler.isSupportsMinorVersions(productName);
+			return _cmisRepositoryHandler.isSupportsMinorVersions(
+				repositoryInfo.getProductName());
 		}
 		catch (PortalException | SystemException e) {
 			throw e;
@@ -1171,9 +1155,7 @@ public class CMISRepository extends BaseCmisRepository {
 		throws PortalException {
 
 		try {
-			Session session = getSession();
-
-			Document document = getDocument(session, fileEntryId);
+			Document document = getDocument(getSession(), fileEntryId);
 
 			Document oldVersion = null;
 
@@ -2296,11 +2278,9 @@ public class CMISRepository extends BaseCmisRepository {
 
 		RepositoryInfo repositoryInfo = session.getRepositoryInfo();
 
-		String rootFolderId = repositoryInfo.getRootFolderId();
-
 		repositoryEntry = repositoryEntryLocalService.getRepositoryEntry(
 			dlFolder.getUserId(), getGroupId(), getRepositoryId(),
-			rootFolderId);
+			repositoryInfo.getRootFolderId());
 
 		return repositoryEntry.getMappedId();
 	}

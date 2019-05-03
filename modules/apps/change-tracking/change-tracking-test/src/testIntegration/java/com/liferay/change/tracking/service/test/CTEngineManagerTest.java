@@ -352,12 +352,9 @@ public class CTEngineManagerTest {
 
 	@Test
 	public void testEnableChangeTracking() throws PortalException {
-		int ctCollectionsCount =
-			_ctCollectionLocalService.getCTCollectionsCount();
-
 		Assert.assertEquals(
 			"Change tracking collection number must be zero", 0,
-			ctCollectionsCount);
+			_ctCollectionLocalService.getCTCollectionsCount());
 
 		_ctEngineManager.enableChangeTracking(
 			TestPropsValues.getCompanyId(), TestPropsValues.getUserId());

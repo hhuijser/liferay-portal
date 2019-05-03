@@ -568,16 +568,13 @@ public class ThreadPoolExecutorTest {
 			Integer.MAX_VALUE,
 			threadPoolExecutor.getRemainingTaskQueueCapacity());
 
-		RejectedExecutionHandler rejectedExecutionHandler =
-			threadPoolExecutor.getRejectedExecutionHandler();
-
-		Assert.assertTrue(rejectedExecutionHandler instanceof AbortPolicy);
-
-		ThreadPoolHandler threadPoolHandler =
-			threadPoolExecutor.getThreadPoolHandler();
+		Assert.assertTrue(
+			threadPoolExecutor.getRejectedExecutionHandler() instanceof
+				AbortPolicy);
 
 		Assert.assertTrue(
-			threadPoolHandler instanceof ThreadPoolHandlerAdapter);
+			threadPoolExecutor.getThreadPoolHandler() instanceof
+				ThreadPoolHandlerAdapter);
 
 		Assert.assertFalse(threadPoolExecutor.isShutdown());
 		Assert.assertFalse(threadPoolExecutor.isTerminating());
@@ -599,16 +596,13 @@ public class ThreadPoolExecutorTest {
 		Assert.assertEquals(
 			3, threadPoolExecutor.getRemainingTaskQueueCapacity());
 
-		RejectedExecutionHandler rejectedExecutionHandler =
-			threadPoolExecutor.getRejectedExecutionHandler();
-
-		Assert.assertTrue(rejectedExecutionHandler instanceof AbortPolicy);
-
-		ThreadPoolHandler threadPoolHandler =
-			threadPoolExecutor.getThreadPoolHandler();
+		Assert.assertTrue(
+			threadPoolExecutor.getRejectedExecutionHandler() instanceof
+				AbortPolicy);
 
 		Assert.assertTrue(
-			threadPoolHandler instanceof ThreadPoolHandlerAdapter);
+			threadPoolExecutor.getThreadPoolHandler() instanceof
+				ThreadPoolHandlerAdapter);
 
 		Assert.assertFalse(threadPoolExecutor.isShutdown());
 		Assert.assertFalse(threadPoolExecutor.isTerminating());

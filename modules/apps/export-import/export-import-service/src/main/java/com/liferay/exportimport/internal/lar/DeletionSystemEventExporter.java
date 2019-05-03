@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
-import java.util.Date;
 import java.util.Set;
 
 /**
@@ -91,13 +90,11 @@ public class DeletionSystemEventExporter {
 
 		Property createDateProperty = PropertyFactoryUtil.forName("createDate");
 
-		Date startDate = portletDataContext.getStartDate();
+		dynamicQuery.add(
+			createDateProperty.ge(portletDataContext.getStartDate()));
 
-		dynamicQuery.add(createDateProperty.ge(startDate));
-
-		Date endDate = portletDataContext.getEndDate();
-
-		dynamicQuery.add(createDateProperty.le(endDate));
+		dynamicQuery.add(
+			createDateProperty.le(portletDataContext.getEndDate()));
 	}
 
 	protected void doAddCriteria(

@@ -149,10 +149,8 @@ public class WabProcessor {
 	}
 
 	protected File autoDeploy() {
-		String webContextpath = getWebContextPath();
-
 		AutoDeploymentContext autoDeploymentContext =
-			buildAutoDeploymentContext(webContextpath);
+			buildAutoDeploymentContext(getWebContextPath());
 
 		executeAutoDeployers(autoDeploymentContext);
 

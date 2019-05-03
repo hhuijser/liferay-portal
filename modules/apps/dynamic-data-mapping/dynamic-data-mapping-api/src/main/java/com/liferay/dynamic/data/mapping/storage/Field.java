@@ -162,9 +162,7 @@ public class Field implements Serializable {
 	}
 
 	public Serializable getValue() {
-		Locale defaultLocale = getDefaultLocale();
-
-		return getValue(defaultLocale);
+		return getValue(getDefaultLocale());
 	}
 
 	public Serializable getValue(Locale locale) {

@@ -266,10 +266,9 @@ public class RootProjectConfigurator implements Plugin<Project> {
 	private DockerBuildImage _addTaskBuildDockerImage(
 		Dockerfile dockerfile, WorkspaceExtension workspaceExtension) {
 
-		Project project = dockerfile.getProject();
-
 		DockerBuildImage dockerBuildImage = GradleUtil.addTask(
-			project, BUILD_DOCKER_IMAGE_TASK_NAME, DockerBuildImage.class);
+			dockerfile.getProject(), BUILD_DOCKER_IMAGE_TASK_NAME,
+			DockerBuildImage.class);
 
 		dockerBuildImage.dependsOn(dockerfile, PULL_DOCKER_IMAGE_TASK_NAME);
 

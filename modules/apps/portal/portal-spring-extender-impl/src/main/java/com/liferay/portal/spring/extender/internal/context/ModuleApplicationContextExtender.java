@@ -150,12 +150,10 @@ public class ModuleApplicationContextExtender extends AbstractExtender {
 			BundleContext bundleContext =
 				ModuleApplicationContextExtender.this.getBundleContext();
 
-			Bundle bundle = bundleContext.getBundle();
-
 			_component.setImplementation(
 				new ModuleApplicationContextRegistrator(
 					_configurableApplicationContextConfigurator, _bundle,
-					bundle));
+					bundleContext.getBundle()));
 
 			BundleWiring bundleWiring = _bundle.adapt(BundleWiring.class);
 

@@ -189,9 +189,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 		try {
 			Document document = SAXReaderUtil.read(xml);
 
-			Element rootElement = document.getRootElement();
-
-			portletDataContext.setImportDataRootElement(rootElement);
+			portletDataContext.setImportDataRootElement(
+				document.getRootElement());
 
 			Element linksElement = portletDataContext.getImportDataGroupElement(
 				StagedAssetLink.class);
@@ -291,10 +290,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 				_portletDataContextFactory.clonePortletDataContext(
 					portletDataContext));
 
-			Map<String, Serializable> settingsMap =
-				exportImportConfiguration.getSettingsMap();
-
-			long userId = MapUtil.getLong(settingsMap, "userId");
+			long userId = MapUtil.getLong(
+				exportImportConfiguration.getSettingsMap(), "userId");
 
 			doImportPortletInfo(portletDataContext, userId);
 
@@ -1478,11 +1475,9 @@ public class PortletImportControllerImpl implements PortletImportController {
 			headerElement.attributeValue("build-number"));
 
 		if (importBuildNumber < ReleaseInfo.RELEASE_7_0_0_BUILD_NUMBER) {
-			int buildNumber = ReleaseInfo.getBuildNumber();
-
 			throw new LayoutImportException(
 				LayoutImportException.TYPE_WRONG_BUILD_NUMBER,
-				new Object[] {importBuildNumber, buildNumber});
+				new Object[] {importBuildNumber, ReleaseInfo.getBuildNumber()});
 		}
 
 		BiPredicate<Version, Version> majorVersionBiPredicate =

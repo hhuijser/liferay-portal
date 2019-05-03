@@ -533,9 +533,8 @@ public class CalendarBookingLocalServiceTest {
 				_user, calendar, startTime, startTime + (Time.HOUR * 10),
 				recurrence, serviceContext);
 
-		long calendarBookingId = calendarBooking.getCalendarBookingId();
-
-		assertCalendarBookingInstancesCount(calendarBookingId, 1);
+		assertCalendarBookingInstancesCount(
+			calendarBooking.getCalendarBookingId(), 1);
 	}
 
 	@Test

@@ -23,7 +23,6 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.portal.kernel.json.JSONFactory;
 
-import java.util.Locale;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,15 +52,14 @@ public class DDMFormBuilderContextFactoryImpl
 			ddmFormBuilderContextRequest.getHttpServletRequest();
 		HttpServletResponse response =
 			ddmFormBuilderContextRequest.getHttpServletResponse();
-		Locale locale = ddmFormBuilderContextRequest.getLocale();
-		boolean readOnly = ddmFormBuilderContextRequest.getReadOnly();
 
 		DDMFormBuilderContextFactoryHelper ddmFormBuilderContextFactoryHelper =
 			new DDMFormBuilderContextFactoryHelper(
 				ddmStructureOptional, ddmStructureVersionOptional,
 				_ddmFormFieldTypeServicesTracker,
 				_ddmFormTemplateContextFactory, request, response, _jsonFactory,
-				locale, readOnly);
+				ddmFormBuilderContextRequest.getLocale(),
+				ddmFormBuilderContextRequest.getReadOnly());
 
 		DDMFormBuilderContextResponse ddmFormBuilderContextResponse =
 			new DDMFormBuilderContextResponse();

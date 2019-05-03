@@ -345,10 +345,8 @@ public class TaxonomyVocabularyResourceImpl
 			transform(
 				categorizableAssetRenderFactories,
 				assetRenderedFactory -> {
-					String className = assetRenderedFactory.getClassName();
-
 					String assetTypeType = _classNameToAssetTypeTypes.get(
-						className);
+						assetRenderedFactory.getClassName());
 
 					if (assetTypeType != null) {
 						return assetTypeType;

@@ -49,12 +49,9 @@ public class DDMFormTemplateContextFactoryHelper {
 				evaluableDDMFormFieldNames.add(ddmFormField.getName());
 			}
 
-			String visibilityExpression =
-				ddmFormField.getVisibilityExpression();
-
 			evaluableDDMFormFieldNames.addAll(
 				getReferencedFieldNamesByExpression(
-					visibilityExpression, ddmFormFieldNames));
+					ddmFormField.getVisibilityExpression(), ddmFormFieldNames));
 		}
 
 		return evaluableDDMFormFieldNames;
@@ -66,11 +63,9 @@ public class DDMFormTemplateContextFactoryHelper {
 		Set<String> referencedFieldNames = new HashSet<>();
 
 		for (DDMFormRule ddmFormRule : ddmFormRules) {
-			String condition = ddmFormRule.getCondition();
-
 			referencedFieldNames.addAll(
 				getReferencedFieldNamesByExpression(
-					condition, ddmFormFieldNames));
+					ddmFormRule.getCondition(), ddmFormFieldNames));
 
 			for (String action : ddmFormRule.getActions()) {
 				referencedFieldNames.addAll(

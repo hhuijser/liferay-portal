@@ -73,10 +73,9 @@ public class PortletResourcePermissionDefinitionTracker {
 
 			Map<String, Object> properties = new HashMap<>();
 
-			String resourceName =
-				portletResourcePermissionDefinition.getResourceName();
-
-			properties.put("resource.name", resourceName);
+			properties.put(
+				"resource.name",
+				portletResourcePermissionDefinition.getResourceName());
 
 			Object serviceRanking = serviceReference.getProperty(
 				"service.ranking");

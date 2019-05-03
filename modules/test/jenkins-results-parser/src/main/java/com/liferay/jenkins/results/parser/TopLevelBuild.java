@@ -1486,11 +1486,10 @@ public class TopLevelBuild extends BaseBuild {
 				continue;
 			}
 
-			long duration = modifiedCompletedBuild.getDuration();
-
 			sendBuildMetrics(
 				StatsDMetricsUtil.generateTimerMetric(
-					"jenkins_job_build_duration", duration,
+					"jenkins_job_build_duration",
+					modifiedCompletedBuild.getDuration(),
 					modifiedCompletedBuild.getMetricLabels()));
 		}
 	}

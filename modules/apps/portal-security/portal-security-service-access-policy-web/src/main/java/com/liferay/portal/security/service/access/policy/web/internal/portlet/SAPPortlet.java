@@ -135,12 +135,9 @@ public class SAPPortlet extends MVCPortlet {
 		String mvcPath = ParamUtil.getString(renderRequest, "mvcPath");
 
 		if (mvcPath.equals("/edit_entry.jsp")) {
-			JSONArray serviceClassNamesToContextNamesJSONArray =
-				getServiceClassNamesToContextNamesJSONArray();
-
 			renderRequest.setAttribute(
 				SAPWebKeys.SERVICE_CLASS_NAMES_TO_CONTEXT_NAMES,
-				serviceClassNamesToContextNamesJSONArray);
+				getServiceClassNamesToContextNamesJSONArray());
 		}
 
 		super.render(renderRequest, renderResponse);

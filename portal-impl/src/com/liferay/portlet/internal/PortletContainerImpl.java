@@ -111,7 +111,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * @author Shuyang Zhou
@@ -338,11 +337,9 @@ public class PortletContainerImpl implements PortletContainer {
 			WebKeys.THEME_DISPLAY);
 
 		if (user != null) {
-			HttpSession session = request.getSession();
-
 			InvokerPortletUtil.clearResponse(
-				session, layout.getPrimaryKey(), portlet.getPortletId(),
-				LanguageUtil.getLanguageId(request));
+				request.getSession(), layout.getPrimaryKey(),
+				portlet.getPortletId(), LanguageUtil.getLanguageId(request));
 		}
 
 		_processPublicRenderParameters(
@@ -532,10 +529,8 @@ public class PortletContainerImpl implements PortletContainer {
 					for (Map.Entry<String, String[]> entry :
 							renderParameters.entrySet()) {
 
-						String key = entry.getKey();
-						String[] value = entry.getValue();
-
-						portletURL.setParameter(key, value);
+						portletURL.setParameter(
+							entry.getKey(), entry.getValue());
 					}
 				}
 				else {
@@ -663,13 +658,11 @@ public class PortletContainerImpl implements PortletContainer {
 				PortletApp portletApp = portlet.getPortletApp();
 
 				if (portletApp.getSpecMajorVersion() < 3) {
-					Map<String, String[]> renderParameterMap =
-						liferayEventResponse.getRenderParameterMap();
-
 					RenderParametersPool.put(
 						request, requestLayout.getPlid(),
 						portlet.getPortletId(),
-						new HashMap<>(renderParameterMap));
+						new HashMap<>(
+							liferayEventResponse.getRenderParameterMap()));
 				}
 				else {
 					_setAllRenderParameters(

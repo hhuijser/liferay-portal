@@ -40,11 +40,10 @@ public class UpgradeArticleExpirationDate extends UpgradeProcess {
 
 	protected void updateArticleExpirationDate() throws Exception {
 		try (LoggingTimer loggingTimer = new LoggingTimer()) {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			JournalServiceConfiguration journalServiceConfiguration =
 				ConfigurationProviderUtil.getCompanyConfiguration(
-					JournalServiceConfiguration.class, companyId);
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			if (!journalServiceConfiguration.
 					expireAllArticleVersionsEnabled()) {

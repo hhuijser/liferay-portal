@@ -105,9 +105,7 @@ public class DataAccess {
 			if (resultSet != null) {
 				Statement statement = resultSet.getStatement();
 
-				Connection connection = statement.getConnection();
-
-				cleanUp(connection, statement, resultSet);
+				cleanUp(statement.getConnection(), statement, resultSet);
 			}
 		}
 		catch (SQLException sqle) {

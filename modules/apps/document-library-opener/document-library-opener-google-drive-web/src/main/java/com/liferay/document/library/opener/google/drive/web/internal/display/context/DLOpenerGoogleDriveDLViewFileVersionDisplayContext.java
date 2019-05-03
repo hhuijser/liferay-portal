@@ -121,10 +121,8 @@ public class DLOpenerGoogleDriveDLViewFileVersionDisplayContext
 			return menu;
 		}
 
-		List<MenuItem> menuItems = menu.getMenuItems();
-
 		_addEditInGoogleDocsUIItem(
-			menuItems,
+			menu.getMenuItems(),
 			_createEditInGoogleDocsMenuItem(
 				DLOpenerGoogleDriveWebConstants.GOOGLE_DRIVE_CHECKOUT));
 

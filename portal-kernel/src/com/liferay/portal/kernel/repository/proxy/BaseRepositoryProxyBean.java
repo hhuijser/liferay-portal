@@ -520,9 +520,8 @@ public class BaseRepositoryProxyBean
 
 	@Override
 	public LocalRepository getLocalRepository() {
-		LocalRepository localRepository = _baseRepository.getLocalRepository();
-
-		return newLocalRepositoryProxyBean(localRepository);
+		return newLocalRepositoryProxyBean(
+			_baseRepository.getLocalRepository());
 	}
 
 	@Override

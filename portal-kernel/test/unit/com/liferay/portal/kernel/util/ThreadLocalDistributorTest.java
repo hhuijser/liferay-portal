@@ -136,10 +136,9 @@ public class ThreadLocalDistributorTest {
 
 		Thread currentThread = Thread.currentThread();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
 		Assert.assertSame(
-			contextClassLoader, threadLocalDistributor.getClassLoader());
+			currentThread.getContextClassLoader(),
+			threadLocalDistributor.getClassLoader());
 	}
 
 	@Test

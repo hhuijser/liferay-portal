@@ -127,9 +127,8 @@ public class ClusterExecutorImpl implements ClusterExecutor {
 			new FutureClusterResponses(clusterNodeIds);
 
 		if (!clusterRequest.isFireAndForget()) {
-			String uuid = clusterRequest.getUuid();
-
-			_futureClusterResponses.put(uuid, futureClusterResponses);
+			_futureClusterResponses.put(
+				clusterRequest.getUuid(), futureClusterResponses);
 		}
 
 		if (clusterNodeIds.remove(_localClusterNodeStatus.getClusterNodeId())) {

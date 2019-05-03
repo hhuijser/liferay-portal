@@ -40,10 +40,9 @@ public class FrontendEditorLangResourceBundleLoader
 	public ResourceBundle loadResourceBundle(Locale locale) {
 		Class<?> clazz = getClass();
 
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		return ResourceBundle.getBundle(
-			"content.Language", locale, classLoader, UTF8Control.INSTANCE);
+			"content.Language", locale, clazz.getClassLoader(),
+			UTF8Control.INSTANCE);
 	}
 
 	/**

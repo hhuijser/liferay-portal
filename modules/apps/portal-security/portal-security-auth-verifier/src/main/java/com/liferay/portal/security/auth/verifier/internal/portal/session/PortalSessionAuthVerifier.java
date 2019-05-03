@@ -47,9 +47,7 @@ public class PortalSessionAuthVerifier implements AuthVerifier {
 		try {
 			AuthVerifierResult authVerifierResult = new AuthVerifierResult();
 
-			HttpServletRequest request = accessControlContext.getRequest();
-
-			User user = PortalUtil.getUser(request);
+			User user = PortalUtil.getUser(accessControlContext.getRequest());
 
 			if ((user == null) || user.isDefaultUser()) {
 				return authVerifierResult;

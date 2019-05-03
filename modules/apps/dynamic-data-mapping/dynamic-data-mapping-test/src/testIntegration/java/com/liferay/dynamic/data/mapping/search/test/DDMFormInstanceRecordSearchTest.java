@@ -99,9 +99,8 @@ public class DDMFormInstanceRecordSearchTest {
 
 	@Test
 	public void testBasicSearchWithDefaultUser() throws Exception {
-		long companyId = TestPropsValues.getCompanyId();
-
-		User user = UserLocalServiceUtil.getDefaultUser(companyId);
+		User user = UserLocalServiceUtil.getDefaultUser(
+			TestPropsValues.getCompanyId());
 
 		addDDMFormInstanceRecord("Joe Bloggs", "Simple description");
 

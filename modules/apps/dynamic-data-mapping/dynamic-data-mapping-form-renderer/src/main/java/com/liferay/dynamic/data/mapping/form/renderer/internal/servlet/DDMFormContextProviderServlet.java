@@ -18,9 +18,6 @@ import com.liferay.dynamic.data.mapping.form.evaluator.DDMFormEvaluator;
 import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
 import com.liferay.dynamic.data.mapping.form.renderer.DDMFormRenderingContext;
 import com.liferay.dynamic.data.mapping.form.renderer.internal.DDMFormPagesTemplateContextFactory;
-import com.liferay.dynamic.data.mapping.model.DDMForm;
-import com.liferay.dynamic.data.mapping.model.DDMFormLayout;
-import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.portal.events.EventsProcessorUtil;
 import com.liferay.portal.kernel.events.ActionException;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -107,25 +104,20 @@ public class DDMFormContextProviderServlet extends HttpServlet {
 			DDMFormTemplateContextProcessor ddmFormTemplateContextProcessor =
 				createDDMFormTemplateContextProcessor(request);
 
-			DDMFormValues ddmFormValues =
-				ddmFormTemplateContextProcessor.getDDMFormValues();
-
-			ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
+			ddmFormRenderingContext.setDDMFormValues(
+				ddmFormTemplateContextProcessor.getDDMFormValues());
 
 			ddmFormRenderingContext.setGroupId(
 				ddmFormTemplateContextProcessor.getGroupId());
 
 			_prepareThreadLocal(locale);
 
-			DDMForm ddmForm = ddmFormTemplateContextProcessor.getDDMForm();
-
-			DDMFormLayout ddmFormLayout =
-				ddmFormTemplateContextProcessor.getDDMFormLayout();
-
 			DDMFormPagesTemplateContextFactory
 				ddmFormPagesTemplateContextFactory =
 					new DDMFormPagesTemplateContextFactory(
-						ddmForm, ddmFormLayout, ddmFormRenderingContext);
+						ddmFormTemplateContextProcessor.getDDMForm(),
+						ddmFormTemplateContextProcessor.getDDMFormLayout(),
+						ddmFormRenderingContext);
 
 			ddmFormPagesTemplateContextFactory.setDDMFormEvaluator(
 				_ddmFormEvaluator);

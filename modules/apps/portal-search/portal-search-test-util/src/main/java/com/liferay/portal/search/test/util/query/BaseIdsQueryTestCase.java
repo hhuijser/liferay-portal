@@ -67,9 +67,8 @@ public abstract class BaseIdsQueryTestCase extends BaseIndexingTestCase {
 							}
 						});
 
-				SearchHits searchHits = searchSearchResponse.getSearchHits();
-
-				Stream<Document> stream = getDocumentsStream(searchHits);
+				Stream<Document> stream = getDocumentsStream(
+					searchSearchResponse.getSearchHits());
 
 				DocumentsAssert.assertValues(
 					searchSearchResponse.getSearchRequestString(), stream,

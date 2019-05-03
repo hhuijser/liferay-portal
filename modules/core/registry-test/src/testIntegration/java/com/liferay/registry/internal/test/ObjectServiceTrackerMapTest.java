@@ -515,9 +515,8 @@ public class ObjectServiceTrackerMapTest {
 	}
 
 	protected RegistryWrapper getRegistryWrapper() {
-		Registry registry = RegistryUtil.getRegistry();
-
-		RegistryWrapper registryWrapper = new RegistryWrapper(registry);
+		RegistryWrapper registryWrapper = new RegistryWrapper(
+			RegistryUtil.getRegistry());
 
 		RegistryUtil.setRegistry(registryWrapper);
 

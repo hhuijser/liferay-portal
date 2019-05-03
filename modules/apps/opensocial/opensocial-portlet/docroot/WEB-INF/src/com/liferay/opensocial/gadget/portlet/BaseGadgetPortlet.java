@@ -87,10 +87,8 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 			themeDisplay.getCompanyId(), Layout.class.getName(),
 			ShindigUtil.getTableOpenSocial());
 
-		String namespace = renderResponse.getNamespace();
-
 		String columnName = ShindigUtil.getColumnUserPrefs(
-			namespace, themeDisplay);
+			renderResponse.getNamespace(), themeDisplay);
 
 		ExpandoColumn expandoColumn = ExpandoColumnLocalServiceUtil.getColumn(
 			expandoTable.getTableId(), columnName);

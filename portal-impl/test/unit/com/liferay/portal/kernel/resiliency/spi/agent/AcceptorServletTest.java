@@ -280,7 +280,7 @@ public class AcceptorServletTest {
 					"RuntimeException on prepare request");
 			}
 
-			_originalRequest1 = httpServletRequest;
+			_httpServletRequest = httpServletRequest;
 
 			_preparedRequest = new MockHttpServletRequest();
 
@@ -295,7 +295,7 @@ public class AcceptorServletTest {
 			HttpServletResponse httpServletResponse) {
 
 			_originalRequest2 = httpServletRequest;
-			_originalResponse = httpServletResponse;
+			_httpServletResponse = httpServletResponse;
 
 			_preparedResponse = new MockHttpServletResponse();
 
@@ -328,9 +328,9 @@ public class AcceptorServletTest {
 
 		private Exception _exception;
 		private boolean _ioExceptionOnPrepareRequest;
-		private HttpServletRequest _originalRequest1;
+		private HttpServletRequest _httpServletRequest;
 		private HttpServletRequest _originalRequest2;
-		private HttpServletResponse _originalResponse;
+		private HttpServletResponse _httpServletResponse;
 		private MockHttpServletRequest _preparedRequest;
 		private MockHttpServletResponse _preparedResponse;
 		private boolean _runtimeExceptionOnPrepareRequest;

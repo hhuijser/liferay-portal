@@ -310,7 +310,7 @@ public class UIItemsBuilder {
 		template.put("compareVersionURL", compareVersionURL.toString());
 		template.put(
 			"dialogTitle",
-			UnicodeLanguageUtil.get(_request, "compare-versions"));
+			UnicodeLanguageUtil.get(_httpServletRequest, "compare-versions"));
 		template.put("jsNamespace", jsNamespace);
 		template.put("namespace", getNamespace());
 
@@ -704,14 +704,16 @@ public class UIItemsBuilder {
 					null, DLFileShortcutConstants.getClassName(),
 					HtmlUtil.unescape(_fileShortcut.getToTitle()), null,
 					String.valueOf(_fileShortcut.getFileShortcutId()),
-					LiferayWindowState.POP_UP.toString(), null, _request);
+					LiferayWindowState.POP_UP.toString(), null,
+					_httpServletRequest);
 			}
 			else {
 				url = PermissionsURLTag.doTag(
 					null, DLFileEntryConstants.getClassName(),
 					HtmlUtil.unescape(_fileEntry.getTitle()), null,
 					String.valueOf(_fileEntry.getFileEntryId()),
-					LiferayWindowState.POP_UP.toString(), null, _request);
+					LiferayWindowState.POP_UP.toString(), null,
+					_httpServletRequest);
 			}
 		}
 		catch (Exception e) {
@@ -740,7 +742,8 @@ public class UIItemsBuilder {
 				null, DLFileEntryConstants.getClassName(),
 				HtmlUtil.unescape(_fileEntry.getTitle()), null,
 				String.valueOf(_fileEntry.getFileEntryId()),
-				LiferayWindowState.POP_UP.toString(), null, _request);
+				LiferayWindowState.POP_UP.toString(), null,
+				_httpServletRequest);
 		}
 		catch (Exception e) {
 			throw new SystemException("Unable to create permissions URL", e);
@@ -946,7 +949,8 @@ public class UIItemsBuilder {
 			UnicodeLanguageUtil.get(_resourceBundle, "describe-your-changes"));
 		template.put("namespace", getNamespace());
 		template.put(
-			"randomNamespace", _request.getAttribute("randomNamespace"));
+			"randomNamespace",
+			_httpServletRequest.getAttribute("randomNamespace"));
 
 		UnsyncStringWriter unsyncStringWriter = new UnsyncStringWriter();
 
@@ -1040,7 +1044,7 @@ public class UIItemsBuilder {
 		DLURLHelper dlURLHelper) {
 
 		try {
-			_request = httpServletRequest;
+			_httpServletRequest = httpServletRequest;
 			_fileVersion = fileVersion;
 			_fileShortcut = fileShortcut;
 			_resourceBundle = resourceBundle;
@@ -1152,12 +1156,13 @@ public class UIItemsBuilder {
 		String mvcActionCommandName, String cmd) {
 
 		String currentMVCRenderCommandName = ParamUtil.getString(
-			_request, "mvcRenderCommandName");
+			_httpServletRequest, "mvcRenderCommandName");
 
 		if (currentMVCRenderCommandName.equals(
 				"/document_library/view_file_entry")) {
 
-			String redirect = ParamUtil.getString(_request, "redirect");
+			String redirect = ParamUtil.getString(
+				_httpServletRequest, "redirect");
 
 			if (Validator.isNull(redirect)) {
 				LiferayPortletResponse liferayPortletResponse =
@@ -1176,15 +1181,16 @@ public class UIItemsBuilder {
 	}
 
 	private LiferayPortletRequest _getLiferayPortletRequest() {
-		PortletRequest portletRequest = (PortletRequest)_request.getAttribute(
-			JavaConstants.JAVAX_PORTLET_REQUEST);
+		PortletRequest portletRequest =
+			(PortletRequest)_httpServletRequest.getAttribute(
+				JavaConstants.JAVAX_PORTLET_REQUEST);
 
 		return PortalUtil.getLiferayPortletRequest(portletRequest);
 	}
 
 	private LiferayPortletResponse _getLiferayPortletResponse() {
 		PortletResponse portletResponse =
-			(PortletResponse)_request.getAttribute(
+			(PortletResponse)_httpServletRequest.getAttribute(
 				JavaConstants.JAVAX_PORTLET_RESPONSE);
 
 		return PortalUtil.getLiferayPortletResponse(portletResponse);
@@ -1212,7 +1218,7 @@ public class UIItemsBuilder {
 
 	private String _getRedirect() {
 		if (_redirect == null) {
-			_redirect = ParamUtil.getString(_request, "redirect");
+			_redirect = ParamUtil.getString(_httpServletRequest, "redirect");
 		}
 
 		return _redirect;
@@ -1305,7 +1311,7 @@ public class UIItemsBuilder {
 
 	private boolean _isIEOnWin32() {
 		if (_ieOnWin32 == null) {
-			_ieOnWin32 = BrowserSnifferUtil.isIeOnWin32(_request);
+			_ieOnWin32 = BrowserSnifferUtil.isIeOnWin32(_httpServletRequest);
 		}
 
 		return _ieOnWin32;
@@ -1347,7 +1353,7 @@ public class UIItemsBuilder {
 		_fileVersionDisplayContextHelper;
 	private Boolean _ieOnWin32;
 	private String _redirect;
-	private final HttpServletRequest _request;
+	private final HttpServletRequest _httpServletRequest;
 	private final ResourceBundle _resourceBundle;
 	private final ThemeDisplay _themeDisplay;
 	private Boolean _trashEnabled;

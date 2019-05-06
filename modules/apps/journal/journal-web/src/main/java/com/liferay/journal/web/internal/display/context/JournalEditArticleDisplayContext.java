@@ -729,6 +729,7 @@ public class JournalEditArticleDisplayContext {
 	private String _ddmTemplateKey;
 	private Long _folderId;
 	private Long _groupId;
+	private final HttpServletRequest _httpServletRequest;
 	private Long _inheritedWorkflowDDMStructuresFolderId;
 	private final LiferayPortletResponse _liferayPortletResponse;
 	private Boolean _neverExpire;
@@ -737,7 +738,6 @@ public class JournalEditArticleDisplayContext {
 	private String _redirect;
 	private Long _refererPlid;
 	private String _referringPortletResource;
-	private final HttpServletRequest _httpServletRequest;
 	private Boolean _showHeader;
 	private String _smallImageSource;
 	private final ThemeDisplay _themeDisplay;

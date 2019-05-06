@@ -1189,7 +1189,7 @@ public class HttpClientSPIAgentTest {
 			HttpServletRequest httpServletRequest,
 			BufferCacheServletResponse bufferCacheServletResponse) {
 
-			_request = httpServletRequest;
+			_httpServletRequest = httpServletRequest;
 			_bufferCacheServletResponse = bufferCacheServletResponse;
 		}
 
@@ -1205,7 +1205,7 @@ public class HttpClientSPIAgentTest {
 		private BufferCacheServletResponse _bufferCacheServletResponse;
 		private OutputStream _outputStream;
 		private RegistrationReference _registrationReference;
-		private HttpServletRequest _request;
+		private HttpServletRequest _httpServletRequest;
 
 	}
 

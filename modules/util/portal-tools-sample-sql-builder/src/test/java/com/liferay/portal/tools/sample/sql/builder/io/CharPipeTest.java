@@ -591,9 +591,8 @@ public class CharPipeTest {
 		catch (IllegalArgumentException iae) {
 		}
 
-		Writer writer = charPipe.getWriter();
-
-		SlowWriterJob slowWriterJob = new SlowWriterJob(writer, 4, false);
+		SlowWriterJob slowWriterJob = new SlowWriterJob(
+			charPipe.getWriter(), 4, false);
 
 		Thread thread = new Thread(slowWriterJob);
 
@@ -619,10 +618,8 @@ public class CharPipeTest {
 	public void testSlowReader() throws Exception {
 		CharPipe charPipe = new CharPipe(4);
 
-		Reader reader = charPipe.getReader();
-
 		SlowReaderJob slowReaderJob = new SlowReaderJob(
-			reader, 4, false, false);
+			charPipe.getReader(), 4, false, false);
 
 		Thread thread = new Thread(slowReaderJob);
 
@@ -656,9 +653,8 @@ public class CharPipeTest {
 	public void testSlowReaderOnCloseForce() throws Exception {
 		CharPipe charPipe = new CharPipe(4);
 
-		Reader reader = charPipe.getReader();
-
-		SlowReaderJob slowReaderJob = new SlowReaderJob(reader, 4, true, true);
+		SlowReaderJob slowReaderJob = new SlowReaderJob(
+			charPipe.getReader(), 4, true, true);
 
 		Thread thread = new Thread(slowReaderJob);
 
@@ -685,9 +681,8 @@ public class CharPipeTest {
 	public void testSlowReaderOnClosePeacefully() throws Exception {
 		CharPipe charPipe = new CharPipe(4);
 
-		Reader reader = charPipe.getReader();
-
-		SlowReaderJob slowReaderJob = new SlowReaderJob(reader, 4, true, false);
+		SlowReaderJob slowReaderJob = new SlowReaderJob(
+			charPipe.getReader(), 4, true, false);
 
 		Thread thread = new Thread(slowReaderJob);
 
@@ -714,9 +709,8 @@ public class CharPipeTest {
 	public void testSlowWriter() throws Exception {
 		CharPipe charPipe = new CharPipe(4);
 
-		Writer writer = charPipe.getWriter();
-
-		SlowWriterJob slowWriterJob = new SlowWriterJob(writer, 4, false);
+		SlowWriterJob slowWriterJob = new SlowWriterJob(
+			charPipe.getWriter(), 4, false);
 
 		Thread thread = new Thread(slowWriterJob);
 
@@ -743,9 +737,8 @@ public class CharPipeTest {
 	public void testSlowWriterOnClose() throws Exception {
 		CharPipe charPipe = new CharPipe(4);
 
-		Writer writer = charPipe.getWriter();
-
-		SlowWriterJob slowWriterJob = new SlowWriterJob(writer, 4, true);
+		SlowWriterJob slowWriterJob = new SlowWriterJob(
+			charPipe.getWriter(), 4, true);
 
 		Thread thread = new Thread(slowWriterJob);
 

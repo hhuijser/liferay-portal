@@ -631,10 +631,8 @@ public class SearchResultSummaryDisplayBuilder {
 		SearchResultSummaryDisplayContext searchResultSummaryDisplayContext,
 		AssetEntry assetEntry, String className) {
 
-		long entryClassPK = getEntryClassPK();
-
 		AssetEntry childAssetEntry = _assetEntryLocalService.fetchEntry(
-			className, entryClassPK);
+			className, getEntryClassPK());
 
 		if (childAssetEntry != null) {
 			assetEntry = childAssetEntry;

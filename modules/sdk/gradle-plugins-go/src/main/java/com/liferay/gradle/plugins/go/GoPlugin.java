@@ -58,10 +58,9 @@ public class GoPlugin implements Plugin<Project> {
 		String command, String description, File file,
 		DownloadGoTask downloadGoTask) {
 
-		Project project = downloadGoTask.getProject();
-
 		ExecuteGoTask executeGoTask = GradleUtil.addTask(
-			project, _getTaskName(command, file), ExecuteGoTask.class);
+			downloadGoTask.getProject(), _getTaskName(command, file),
+			ExecuteGoTask.class);
 
 		executeGoTask.dependsOn(downloadGoTask);
 

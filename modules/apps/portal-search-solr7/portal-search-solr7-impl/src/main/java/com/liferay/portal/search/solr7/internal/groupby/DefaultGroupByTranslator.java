@@ -40,9 +40,8 @@ public class DefaultGroupByTranslator implements GroupByTranslator {
 	public void translate(
 		SolrQuery solrQuery, SearchContext searchContext, int start, int end) {
 
-		GroupBy groupBy = searchContext.getGroupBy();
-
-		configureGroups(solrQuery, searchContext, start, end, groupBy);
+		configureGroups(
+			solrQuery, searchContext, start, end, searchContext.getGroupBy());
 	}
 
 	protected void addHighlightedField(

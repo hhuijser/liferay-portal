@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
 
 import java.util.List;
-import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -164,11 +163,9 @@ public class DDMPermissionSupportImpl implements DDMPermissionSupport {
 				_ddmPermissionSupportTracker.
 					getDDMStructurePermissionSupportServiceWrapper(className);
 
-		Map<String, Object> properties =
-			structurePermissionSupportServiceWrapper.getProperties();
-
 		boolean defaultModelResourceName = MapUtil.getBoolean(
-			properties, "default.model.resource.name");
+			structurePermissionSupportServiceWrapper.getProperties(),
+			"default.model.resource.name");
 
 		if (defaultModelResourceName) {
 			return DDMStructure.class.getName();
@@ -205,22 +202,18 @@ public class DDMPermissionSupportImpl implements DDMPermissionSupport {
 		ServiceWrapper<DDMStructurePermissionSupport>
 			structurePermissionSupportServiceWrapper) {
 
-		Map<String, Object> properties =
-			structurePermissionSupportServiceWrapper.getProperties();
-
 		return MapUtil.getString(
-			properties, "add.structure.action.id", DDMActionKeys.ADD_STRUCTURE);
+			structurePermissionSupportServiceWrapper.getProperties(),
+			"add.structure.action.id", DDMActionKeys.ADD_STRUCTURE);
 	}
 
 	protected String getAddTemplateActionId(
 		ServiceWrapper<DDMTemplatePermissionSupport>
 			templatePermissionSupportServiceWrapper) {
 
-		Map<String, Object> properties =
-			templatePermissionSupportServiceWrapper.getProperties();
-
 		return MapUtil.getString(
-			properties, "add.template.action.id", DDMActionKeys.ADD_TEMPLATE);
+			templatePermissionSupportServiceWrapper.getProperties(),
+			"add.template.action.id", DDMActionKeys.ADD_TEMPLATE);
 	}
 
 	protected String getResourceName(
@@ -293,11 +286,9 @@ public class DDMPermissionSupportImpl implements DDMPermissionSupport {
 				templatePermissionSupportServiceWrapper)
 		throws PortalException {
 
-		Map<String, Object> properties =
-			templatePermissionSupportServiceWrapper.getProperties();
-
 		boolean defaultModelResourceName = MapUtil.getBoolean(
-			properties, "default.model.resource.name");
+			templatePermissionSupportServiceWrapper.getProperties(),
+			"default.model.resource.name");
 
 		if (defaultModelResourceName) {
 			return DDMTemplate.class.getName();

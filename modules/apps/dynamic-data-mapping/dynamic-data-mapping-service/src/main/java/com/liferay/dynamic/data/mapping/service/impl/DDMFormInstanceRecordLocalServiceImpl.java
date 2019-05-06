@@ -139,12 +139,10 @@ public class DDMFormInstanceRecordLocalServiceImpl
 
 		// Asset
 
-		Locale locale = serviceContext.getLocale();
-
 		updateAsset(
 			userId, ddmFormInstanceRecord, ddmFormInstanceRecordVersion,
 			serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(), locale,
+			serviceContext.getAssetTagNames(), serviceContext.getLocale(),
 			serviceContext.getAssetPriority());
 
 		if (serviceContext.getWorkflowAction() ==
@@ -406,12 +404,10 @@ public class DDMFormInstanceRecordLocalServiceImpl
 			updateDDMContent(
 				ddmFormInstanceRecordVersion, ddmFormValues, serviceContext);
 
-			String version = ddmFormInstanceRecordVersion.getVersion();
-
 			updateFormInstanceRecordVersion(
 				user, ddmFormInstanceRecordVersion,
-				ddmFormInstanceRecordVersion.getStatus(), version,
-				serviceContext);
+				ddmFormInstanceRecordVersion.getStatus(),
+				ddmFormInstanceRecordVersion.getVersion(), serviceContext);
 		}
 
 		// Asset

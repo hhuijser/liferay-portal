@@ -222,11 +222,10 @@ public class JournalEditDDMStructuresDisplayContext {
 		String storageType = StorageType.JSON.getValue();
 
 		try {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			JournalServiceConfiguration journalServiceConfiguration =
 				ConfigurationProviderUtil.getCompanyConfiguration(
-					JournalServiceConfiguration.class, companyId);
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			storageType =
 				journalServiceConfiguration.journalArticleStorageType();

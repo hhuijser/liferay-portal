@@ -126,9 +126,8 @@ public class SearcherImpl implements Searcher {
 		FacetedSearcher facetedSearcher =
 			facetedSearcherManager.createFacetedSearcher();
 
-		SearchContext searchContext = searchRequestImpl.getSearchContext();
-
-		Hits hits = search(facetedSearcher, searchContext);
+		Hits hits = search(
+			facetedSearcher, searchRequestImpl.getSearchContext());
 
 		if (isCount(searchRequestImpl)) {
 			searchResponseBuilder.count(hits.getLength());

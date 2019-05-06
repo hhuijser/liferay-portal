@@ -673,10 +673,9 @@ public class AssetPublisherConfigurationAction
 			LayoutSetBranch layoutSetBranch =
 				LayoutStagingUtil.getLayoutSetBranch(layout.getLayoutSet());
 
-			long layoutSetBranchId = layoutSetBranch.getLayoutSetBranchId();
-
 			long layoutRevisionId = staging.getRecentLayoutRevisionId(
-				request, layoutSetBranchId, layout.getPlid());
+				request, layoutSetBranch.getLayoutSetBranchId(),
+				layout.getPlid());
 
 			LayoutRevision layoutRevision =
 				layoutRevisionLocalService.getLayoutRevision(layoutRevisionId);

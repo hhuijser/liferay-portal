@@ -309,9 +309,7 @@ public class BatchBuild extends BaseBuild {
 
 	@Override
 	public long getTotalDuration() {
-		long totalDuration = super.getTotalDuration();
-
-		return totalDuration - getDuration();
+		return super.getTotalDuration() - getDuration();
 	}
 
 	@Override

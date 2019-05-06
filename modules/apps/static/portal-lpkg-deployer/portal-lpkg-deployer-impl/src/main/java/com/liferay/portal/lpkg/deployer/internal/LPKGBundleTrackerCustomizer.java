@@ -506,9 +506,7 @@ public class LPKGBundleTrackerCustomizer
 			return false;
 		}
 
-		String path = url.getPath();
-
-		String name = _extractFileName(path);
+		String name = _extractFileName(url.getPath());
 
 		name = StringUtil.toLowerCase(name);
 

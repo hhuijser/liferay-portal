@@ -28,7 +28,6 @@ import java.util.Map;
 import org.elasticsearch.action.search.SearchAction;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.text.Text;
 import org.elasticsearch.search.suggest.Suggest;
 import org.elasticsearch.search.suggest.SuggestBuilder;
@@ -79,10 +78,9 @@ public class SuggestSearchRequestExecutorImpl
 	protected SearchRequestBuilder createSearchRequestBuilder(
 		SuggestSearchRequest suggestSearchRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		SearchRequestBuilder searchRequestBuilder =
-			SearchAction.INSTANCE.newRequestBuilder(client);
+			SearchAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		searchRequestBuilder.setIndices(suggestSearchRequest.getIndexNames());
 

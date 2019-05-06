@@ -116,9 +116,9 @@ public class RatingsEntryModelListener extends BaseModelListener<RatingsEntry> {
 			RatingsEntryModelImpl ratingsEntryModelImpl =
 				(RatingsEntryModelImpl)ratingsEntry;
 
-			double originalScore = ratingsEntryModelImpl.getOriginalScore();
-
-			ratingsTotalScore += ratingsEntry.getScore() - originalScore;
+			ratingsTotalScore +=
+				ratingsEntry.getScore() -
+					ratingsEntryModelImpl.getOriginalScore();
 
 			if (ratingsEntry.isNew()) {
 				ratingsTotalEntries++;

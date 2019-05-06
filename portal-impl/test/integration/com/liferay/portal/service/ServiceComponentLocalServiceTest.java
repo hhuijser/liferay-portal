@@ -174,11 +174,10 @@ public class ServiceComponentLocalServiceTest {
 		properties.put("upgrade.from.schema.version", "0.0.0");
 		properties.put("upgrade.initial.database.creation", false);
 
-		final DB db = DBManagerUtil.getDB();
-
 		ServiceRegistration<UpgradeStep> upgradeStepServiceRegistration =
 			registry.registerService(
-				UpgradeStep.class, new TestUpgradeStep(db), properties);
+				UpgradeStep.class, new TestUpgradeStep(DBManagerUtil.getDB()),
+				properties);
 
 		try {
 			ServiceComponentLocalServiceUtil.verifyDB();
@@ -213,11 +212,10 @@ public class ServiceComponentLocalServiceTest {
 		properties.put("upgrade.from.schema.version", "0.0.1");
 		properties.put("upgrade.initial.database.creation", true);
 
-		final DB db = DBManagerUtil.getDB();
-
 		ServiceRegistration<UpgradeStep> upgradeStepServiceRegistration =
 			registry.registerService(
-				UpgradeStep.class, new TestUpgradeStep(db), properties);
+				UpgradeStep.class, new TestUpgradeStep(DBManagerUtil.getDB()),
+				properties);
 
 		try {
 			ServiceComponentLocalServiceUtil.verifyDB();

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
@@ -85,10 +84,8 @@ public class FriendlyURLServletTest {
 
 		LanguageUtil.init();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext());
 
 		_group = GroupTestUtil.addGroup();
 

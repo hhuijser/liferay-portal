@@ -427,14 +427,12 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		long layoutPageTemplateCollectionId =
-			layoutPageTemplateCollection.getLayoutPageTemplateCollectionId();
-
 		LayoutPageTemplateEntry layoutPageTemplateEntry =
 			_layoutPageTemplateEntryLocalService.addLayoutPageTemplateEntry(
 				serviceContext.getUserId(), serviceContext.getScopeGroupId(),
-				layoutPageTemplateCollectionId, name,
-				LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
+				layoutPageTemplateCollection.
+					getLayoutPageTemplateCollectionId(),
+				name, LayoutPageTemplateEntryTypeConstants.TYPE_BASIC, 0,
 				WorkflowConstants.STATUS_APPROVED, serviceContext);
 
 		long previewFileEntryId = _getPreviewFileEntryId(

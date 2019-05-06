@@ -288,9 +288,7 @@ public class UserDisplayContext {
 	}
 
 	private boolean _isOrganizationRole(UserGroupRole userGroupRole) {
-		long roleId = userGroupRole.getRoleId();
-
-		Role role = RoleLocalServiceUtil.fetchRole(roleId);
+		Role role = RoleLocalServiceUtil.fetchRole(userGroupRole.getRoleId());
 
 		if ((role != null) &&
 			(role.getType() == RoleConstants.TYPE_ORGANIZATION)) {

@@ -185,9 +185,7 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 				appendable.append(", ");
 			}
 
-			String key = entry.getKey();
-
-			StringData stringData = StringData.forValue(key);
+			StringData stringData = StringData.forValue(entry.getKey());
 
 			stringData.render(appendable);
 

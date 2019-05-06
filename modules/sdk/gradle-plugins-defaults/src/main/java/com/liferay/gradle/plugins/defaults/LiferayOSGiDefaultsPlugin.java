@@ -2447,10 +2447,9 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 					ModuleVersionSelector moduleVersionSelector =
 						dependencyResolveDetails.getRequested();
 
-					String group = moduleVersionSelector.getGroup();
-					String name = moduleVersionSelector.getName();
-
-					String target = _getEasyConfDependencyTarget(group, name);
+					String target = _getEasyConfDependencyTarget(
+						moduleVersionSelector.getGroup(),
+						moduleVersionSelector.getName());
 
 					if (Validator.isNotNull(target) &&
 						GradleUtil.hasDependency(
@@ -3931,11 +3930,9 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 					@Override
 					public void execute(ProjectDependency projectDependency) {
-						Project dependencyProject =
-							projectDependency.getDependencyProject();
-
 						projectConfigurer.configure(
-							(ProjectInternal)dependencyProject);
+							(ProjectInternal)
+								projectDependency.getDependencyProject());
 					}
 
 				});

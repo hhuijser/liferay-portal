@@ -27,7 +27,6 @@ import java.util.Map;
 import org.elasticsearch.action.admin.indices.get.GetIndexAction;
 import org.elasticsearch.action.admin.indices.get.GetIndexRequestBuilder;
 import org.elasticsearch.action.admin.indices.get.GetIndexResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.cluster.metadata.MappingMetaData;
 import org.elasticsearch.common.collect.ImmutableOpenMap;
 import org.elasticsearch.common.compress.CompressedXContent;
@@ -138,10 +137,9 @@ public class GetIndexIndexRequestExecutorImpl
 	protected GetIndexRequestBuilder createGetIndexRequestBuilder(
 		GetIndexIndexRequest getIndexIndexRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		GetIndexRequestBuilder getIndexRequestBuilder =
-			GetIndexAction.INSTANCE.newRequestBuilder(client);
+			GetIndexAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		getIndexRequestBuilder.setIndices(getIndexIndexRequest.getIndexNames());
 

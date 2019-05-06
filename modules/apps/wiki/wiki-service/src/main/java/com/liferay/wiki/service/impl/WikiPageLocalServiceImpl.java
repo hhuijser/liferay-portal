@@ -144,7 +144,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.time.StopWatch;
 
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
 import org.osgi.framework.FrameworkUtil;
 
 /**
@@ -499,10 +498,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		Bundle bundle = FrameworkUtil.getBundle(WikiPageLocalServiceImpl.class);
 
-		BundleContext bundleContext = bundle.getBundleContext();
-
 		_serviceTrackerMap = ServiceTrackerMapFactory.openSingleValueMap(
-			bundleContext, WikiPageRenameContentProcessor.class,
+			bundle.getBundleContext(), WikiPageRenameContentProcessor.class,
 			"wiki.format.name");
 
 		_portalCache =
@@ -2159,9 +2156,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 				}
 			}
 			else if (cmd.equals(Constants.RENAME)) {
-				long resourcePrimKey = page.getResourcePrimKey();
-
-				WikiPage oldPage = getPage(resourcePrimKey, true);
+				WikiPage oldPage = getPage(page.getResourcePrimKey(), true);
 
 				page = doRenamePage(
 					userId, page.getNodeId(), oldPage.getTitle(),
@@ -2362,10 +2357,9 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		// Page resource
 
-		long resourcePrimKey = page.getResourcePrimKey();
-
 		WikiPageResource pageResource =
-			wikiPageResourcePersistence.findByPrimaryKey(resourcePrimKey);
+			wikiPageResourcePersistence.findByPrimaryKey(
+				page.getResourcePrimKey());
 
 		pageResource.setTitle(newTitle);
 

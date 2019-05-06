@@ -137,12 +137,12 @@ public class ArchivedSettingsImpl
 			long ownerId = _portletItem.getPortletItemId();
 			int ownerType = PortletKeys.PREFS_OWNER_TYPE_ARCHIVED;
 			long plid = 0;
-			String portletId = _portletItem.getPortletId();
 
 			portletPreferences =
 				PortletPreferencesLocalServiceUtil.getPreferences(
 					_portletItem.getCompanyId(), ownerId, ownerType, plid,
-					PortletIdCodec.decodePortletName(portletId));
+					PortletIdCodec.decodePortletName(
+						_portletItem.getPortletId()));
 		}
 		catch (SystemException se) {
 			throw new RuntimeException("Unable to load settings", se);

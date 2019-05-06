@@ -29,7 +29,6 @@ import org.elasticsearch.action.admin.indices.analyze.AnalyzeAction;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeRequestBuilder;
 import org.elasticsearch.action.admin.indices.analyze.AnalyzeResponse;
 import org.elasticsearch.action.admin.indices.analyze.DetailAnalyzeResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.io.stream.OutputStreamStreamOutput;
 
 import org.osgi.service.component.annotations.Component;
@@ -83,10 +82,9 @@ public class AnalyzeIndexRequestExecutorImpl
 	protected AnalyzeRequestBuilder createAnalyzeRequestBuilder(
 		AnalyzeIndexRequest analyzeIndexRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		AnalyzeRequestBuilder analyzeRequestBuilder =
-			AnalyzeAction.INSTANCE.newRequestBuilder(client);
+			AnalyzeAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		if (Validator.isNotNull(analyzeIndexRequest.getAnalyzer())) {
 			analyzeRequestBuilder.setAnalyzer(

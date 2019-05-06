@@ -93,11 +93,10 @@ public class SyncMaintenanceMessageListener extends BaseMessageListener {
 					Property modifiedTime = PropertyFactoryUtil.forName(
 						"modifiedTime");
 
-					long latestModifiedTime =
-						_syncDLObjectLocalService.getLatestModifiedTime();
-
 					dynamicQuery.add(
-						modifiedTime.le(latestModifiedTime - Time.HOUR));
+						modifiedTime.le(
+							_syncDLObjectLocalService.getLatestModifiedTime() -
+								Time.HOUR));
 				});
 			actionableDynamicQuery.setPerformActionMethod(
 				(DLSyncEvent dlSyncEvent) -> {

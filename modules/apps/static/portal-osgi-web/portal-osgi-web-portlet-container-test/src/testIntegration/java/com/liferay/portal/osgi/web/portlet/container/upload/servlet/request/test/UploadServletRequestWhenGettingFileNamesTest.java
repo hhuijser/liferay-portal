@@ -75,9 +75,8 @@ public class UploadServletRequestWhenGettingFileNamesTest {
 		Assert.assertEquals(map.toString(), 10, map.size());
 
 		for (Map.Entry<String, FileItem[]> entry : map.entrySet()) {
-			String key = entry.getKey();
-
-			String[] fileNames = uploadServletRequest.getFileNames(key);
+			String[] fileNames = uploadServletRequest.getFileNames(
+				entry.getKey());
 
 			FileItem[] fileItems = entry.getValue();
 

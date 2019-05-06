@@ -63,9 +63,8 @@ public class WabURLConnection extends URLConnection {
 	public InputStream getInputStream() throws IOException {
 		URL url = getURL();
 
-		String query = url.getQuery();
-
-		Map<String, String[]> parameters = HttpUtil.getParameterMap(query);
+		Map<String, String[]> parameters = HttpUtil.getParameterMap(
+			url.getQuery());
 
 		if (!parameters.containsKey("Web-ContextPath")) {
 			throw new IllegalArgumentException(

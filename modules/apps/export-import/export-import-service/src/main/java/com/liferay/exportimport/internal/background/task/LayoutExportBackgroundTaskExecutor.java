@@ -29,9 +29,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Time;
 
 import java.io.File;
-import java.io.Serializable;
-
-import java.util.Map;
 
 /**
  * @author Daniel Kocsis
@@ -66,10 +63,8 @@ public class LayoutExportBackgroundTaskExecutor
 		ExportImportConfiguration exportImportConfiguration =
 			getExportImportConfiguration(backgroundTask);
 
-		Map<String, Serializable> settingsMap =
-			exportImportConfiguration.getSettingsMap();
-
-		long userId = MapUtil.getLong(settingsMap, "userId");
+		long userId = MapUtil.getLong(
+			exportImportConfiguration.getSettingsMap(), "userId");
 
 		StringBundler sb = new StringBundler(4);
 

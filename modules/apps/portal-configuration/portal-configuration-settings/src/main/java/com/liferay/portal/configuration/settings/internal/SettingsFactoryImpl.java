@@ -116,9 +116,8 @@ public class SettingsFactoryImpl implements SettingsFactory {
 	public Settings getSettings(SettingsLocator settingsLocator)
 		throws SettingsException {
 
-		Settings settings = settingsLocator.getSettings();
-
-		return applyFallbackKeys(settingsLocator.getSettingsId(), settings);
+		return applyFallbackKeys(
+			settingsLocator.getSettingsId(), settingsLocator.getSettings());
 	}
 
 	@Override
@@ -189,10 +188,8 @@ public class SettingsFactoryImpl implements SettingsFactory {
 				_log.debug(nspie, nspie);
 			}
 
-			long userId = PrincipalThreadLocal.getUserId();
-
 			portletItem = _portletItemLocalService.updatePortletItem(
-				userId, groupId, name, portletId,
+				PrincipalThreadLocal.getUserId(), groupId, name, portletId,
 				PortletPreferences.class.getName());
 		}
 

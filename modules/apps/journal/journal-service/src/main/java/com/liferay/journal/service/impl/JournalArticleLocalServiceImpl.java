@@ -7574,9 +7574,7 @@ public class JournalArticleLocalServiceImpl
 		try {
 			document = SAXReaderUtil.read(content);
 
-			Element rootElement = document.getRootElement();
-
-			format(user, groupId, article, rootElement);
+			format(user, groupId, article, document.getRootElement());
 
 			content = XMLUtil.formatXML(document);
 		}
@@ -7624,11 +7622,10 @@ public class JournalArticleLocalServiceImpl
 
 	protected long getArticleCheckInterval() {
 		try {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			JournalServiceConfiguration journalServiceConfiguration =
 				configurationProvider.getCompanyConfiguration(
-					JournalServiceConfiguration.class, companyId);
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			return journalServiceConfiguration.checkInterval() * Time.MINUTE;
 		}
@@ -8056,11 +8053,10 @@ public class JournalArticleLocalServiceImpl
 
 	protected boolean isReindexAllArticleVersions() {
 		try {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			JournalServiceConfiguration journalServiceConfiguration =
 				configurationProvider.getCompanyConfiguration(
-					JournalServiceConfiguration.class, companyId);
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			return journalServiceConfiguration.indexAllArticleVersionsEnabled();
 		}

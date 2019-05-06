@@ -25,7 +25,6 @@ import com.liferay.portal.upload.UploadServletRequestImpl;
 import com.liferay.portal.util.test.PortletContainerTestUtil;
 
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 
@@ -84,10 +83,8 @@ public class UploadPortletRequestWhenGettingParameterNamesTest {
 					fileParameters, regularParameters),
 				null, _portletNamespace);
 
-		Enumeration<String> parameterNames =
-			uploadPortletRequest.getParameterNames();
-
-		List<String> parameterNamesList = Collections.list(parameterNames);
+		List<String> parameterNamesList = Collections.list(
+			uploadPortletRequest.getParameterNames());
 
 		for (Map.Entry<String, List<String>> entry :
 				regularParameters.entrySet()) {

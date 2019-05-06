@@ -179,9 +179,7 @@ public class PortletURLUtil {
 		sb.append(themeDisplay.getPathMain());
 		sb.append("/portal/render_portlet?p_l_id=");
 
-		long plid = themeDisplay.getPlid();
-
-		sb.append(plid);
+		sb.append(themeDisplay.getPlid());
 
 		Portlet portlet = (Portlet)request.getAttribute(WebKeys.RENDER_PORTLET);
 

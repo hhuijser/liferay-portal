@@ -268,10 +268,8 @@ public class DDMFormRendererTag extends BaseDDMFormRendererTag {
 	protected String getSubmitLabel(
 		DDMFormInstance ddmFormInstance, Locale locale) {
 
-		ThemeDisplay themeDisplay = getThemeDisplay();
-
 		boolean workflowEnabled = hasWorkflowEnabled(
-			ddmFormInstance, themeDisplay);
+			ddmFormInstance, getThemeDisplay());
 
 		ResourceBundle resourceBundle = getResourceBundle(locale);
 

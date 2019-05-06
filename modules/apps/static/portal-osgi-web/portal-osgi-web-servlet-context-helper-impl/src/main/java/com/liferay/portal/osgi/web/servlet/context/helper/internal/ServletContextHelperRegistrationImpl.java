@@ -204,13 +204,10 @@ public class ServletContextHelperRegistrationImpl
 		}
 
 		for (Map.Entry<String, String> entry : contextParameters.entrySet()) {
-			String key = entry.getKey();
-			String value = entry.getValue();
-
 			properties.put(
 				HttpWhiteboardConstants.
-					HTTP_WHITEBOARD_CONTEXT_INIT_PARAM_PREFIX + key,
-				value);
+					HTTP_WHITEBOARD_CONTEXT_INIT_PARAM_PREFIX + entry.getKey(),
+				entry.getValue());
 		}
 
 		_servletContextHelperServiceRegistration.setProperties(properties);

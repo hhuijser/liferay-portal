@@ -1424,10 +1424,10 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			selectedFileName);
 
 		InputStream inputStream = tempFileEntry.getContentStream();
-		String mimeType = tempFileEntry.getMimeType();
 
 		addAttachment(
-			userId, resourcePrimKey, selectedFileName, inputStream, mimeType);
+			userId, resourcePrimKey, selectedFileName, inputStream,
+			tempFileEntry.getMimeType());
 
 		if (tempFileEntry != null) {
 			TempFileEntryUtil.deleteTempFileEntry(

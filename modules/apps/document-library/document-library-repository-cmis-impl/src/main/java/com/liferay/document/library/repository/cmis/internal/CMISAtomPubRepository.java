@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.HashMap;
@@ -78,9 +77,7 @@ public class CMISAtomPubRepository extends CMISRepositoryHandler {
 
 		Class<?> clazz = getClass();
 
-		ClassLoader classLoader = clazz.getClassLoader();
-
-		thread.setContextClassLoader(classLoader);
+		thread.setContextClassLoader(clazz.getClassLoader());
 
 		try {
 			CMISRepositoryUtil.checkRepository(
@@ -97,10 +94,8 @@ public class CMISAtomPubRepository extends CMISRepositoryHandler {
 	protected String getTypeSettingsValue(String typeSettingsKey)
 		throws InvalidRepositoryException {
 
-		UnicodeProperties typeSettingsProperties = getTypeSettingsProperties();
-
 		return CMISRepositoryUtil.getTypeSettingsValue(
-			typeSettingsProperties, typeSettingsKey);
+			getTypeSettingsProperties(), typeSettingsKey);
 	}
 
 	private static final String _DL_REPOSITORY_GUEST_PASSWORD =

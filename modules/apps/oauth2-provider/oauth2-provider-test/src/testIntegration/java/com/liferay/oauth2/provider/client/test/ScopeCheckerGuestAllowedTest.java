@@ -215,10 +215,9 @@ public class ScopeCheckerGuestAllowedTest extends BaseClientTestCase {
 
 			Response response = invocationBuilder.get();
 
-			int status = response.getStatus();
-
 			Assert.assertEquals(
-				"Token: " + invalidToken, expectedInvalidTokenStatus, status);
+				"Token: " + invalidToken, expectedInvalidTokenStatus,
+				response.getStatus());
 		}
 
 		Invocation.Builder invocationBuilder = authorize(

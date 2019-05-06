@@ -64,10 +64,8 @@ public abstract class BaseScriptingExecutor implements ScriptingExecutor {
 
 		Thread currentThread = Thread.currentThread();
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
 		return AggregateClassLoader.getAggregateClassLoader(
-			classLoader, contextClassLoader);
+			classLoader, currentThread.getContextClassLoader());
 	}
 
 }

@@ -82,9 +82,8 @@ public class InvokerFilterContainerImplTest {
 
 		ServletContext servletContext = mainServlet.getServletContext();
 
-		String servletContextName = servletContext.getServletContextName();
-
-		PortletAppImpl portletAppImpl = new PortletAppImpl(servletContextName);
+		PortletAppImpl portletAppImpl = new PortletAppImpl(
+			servletContext.getServletContextName());
 
 		portletAppImpl.setWARFile(false);
 

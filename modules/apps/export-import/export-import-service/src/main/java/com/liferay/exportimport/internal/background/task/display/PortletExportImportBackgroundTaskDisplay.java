@@ -25,10 +25,6 @@ import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.io.Serializable;
-
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -43,14 +39,12 @@ public class PortletExportImportBackgroundTaskDisplay
 		super(backgroundTask);
 
 		try {
-			Map<String, Serializable> taskContextMap =
-				backgroundTask.getTaskContextMap();
-
 			ExportImportConfiguration exportImportConfiguration =
 				ExportImportConfigurationLocalServiceUtil.
 					getExportImportConfiguration(
 						MapUtil.getLong(
-							taskContextMap, "exportImportConfigurationId"));
+							backgroundTask.getTaskContextMap(),
+							"exportImportConfigurationId"));
 
 			if ((exportImportConfiguration.getType() !=
 					ExportImportConfigurationConstants.TYPE_EXPORT_PORTLET) &&

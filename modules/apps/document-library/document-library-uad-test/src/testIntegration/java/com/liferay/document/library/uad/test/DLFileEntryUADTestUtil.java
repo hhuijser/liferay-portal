@@ -45,13 +45,11 @@ public class DLFileEntryUADTestUtil {
 			DLFolderLocalService dlFolderLocalService, long userId)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		DLFolder dlFolder = dlFolderLocalService.addFolder(
 			userId, TestPropsValues.getGroupId(), TestPropsValues.getGroupId(),
 			false, 0L, RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), false, serviceContext);
+			RandomTestUtil.randomString(), false,
+			ServiceContextTestUtil.getServiceContext());
 
 		return addDLFileEntry(
 			dlAppLocalService, dlFileEntryLocalService, dlFolder.getFolderId(),

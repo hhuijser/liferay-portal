@@ -2775,9 +2775,7 @@ public class PortletDataContextImpl implements PortletDataContext {
 
 	protected long getUserId(AuditedModel auditedModel) {
 		try {
-			String userUuid = auditedModel.getUserUuid();
-
-			return getUserId(userUuid);
+			return getUserId(auditedModel.getUserUuid());
 		}
 		catch (SystemException se) {
 			_log.error(se, se);

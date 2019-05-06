@@ -39,9 +39,8 @@ public class ProtectedClassLoaderObjectInputStream
 	protected Class<?> doResolveClass(ObjectStreamClass objectStreamClass)
 		throws ClassNotFoundException {
 
-		String name = objectStreamClass.getName();
-
-		return ClassResolverUtil.resolve(name, _classLoader);
+		return ClassResolverUtil.resolve(
+			objectStreamClass.getName(), _classLoader);
 	}
 
 	private final ClassLoader _classLoader;

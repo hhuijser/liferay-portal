@@ -43,11 +43,10 @@ public final class JournalValidatorImpl implements JournalValidator {
 		String[] charactersBlacklist = {};
 
 		try {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			JournalServiceConfiguration journalServiceConfiguration =
 				_configurationProvider.getCompanyConfiguration(
-					JournalServiceConfiguration.class, companyId);
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			charactersBlacklist =
 				journalServiceConfiguration.charactersblacklist();

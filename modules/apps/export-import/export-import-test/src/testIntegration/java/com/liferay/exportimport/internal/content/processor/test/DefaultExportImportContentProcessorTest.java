@@ -302,17 +302,13 @@ public class DefaultExportImportContentProcessorTest {
 		TestReaderWriter testReaderWriter =
 			(TestReaderWriter)_portletDataContextExport.getZipWriter();
 
-		List<String> entries = testReaderWriter.getEntries();
-
 		_assertContainsReference(
-			entries, DLFileEntryConstants.getClassName(),
+			testReaderWriter.getEntries(), DLFileEntryConstants.getClassName(),
 			_fileEntry.getFileEntryId());
-
-		List<String> binaryEntries = testReaderWriter.getBinaryEntries();
 
 		_assertContainsBinary(
-			binaryEntries, DLFileEntryConstants.getClassName(),
-			_fileEntry.getFileEntryId());
+			testReaderWriter.getBinaryEntries(),
+			DLFileEntryConstants.getClassName(), _fileEntry.getFileEntryId());
 
 		int count = 0;
 

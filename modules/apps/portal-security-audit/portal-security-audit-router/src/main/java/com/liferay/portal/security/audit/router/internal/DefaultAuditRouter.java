@@ -94,10 +94,8 @@ public class DefaultAuditRouter implements AuditRouter {
 			globalAuditMessageProcessor.process(auditMessage);
 		}
 
-		String eventType = auditMessage.getEventType();
-
 		Set<AuditMessageProcessor> auditMessageProcessors =
-			_auditMessageProcessors.get(eventType);
+			_auditMessageProcessors.get(auditMessage.getEventType());
 
 		if (auditMessageProcessors != null) {
 			for (AuditMessageProcessor auditMessageProcessor :

@@ -29,7 +29,6 @@ import java.net.URL;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
-import java.util.EventListener;
 import java.util.List;
 import java.util.Map;
 
@@ -464,9 +463,9 @@ public class WebXMLDefinitionLoaderTest {
 			listenerDefinitions.size());
 
 		for (ListenerDefinition listenerDefinition : listenerDefinitions) {
-			EventListener eventListener = listenerDefinition.getEventListener();
-
-			Assert.assertTrue(eventListener instanceof ServletContextListener);
+			Assert.assertTrue(
+				listenerDefinition.getEventListener() instanceof
+					ServletContextListener);
 		}
 
 		Map<String, ServletDefinition> servletDefinitions =

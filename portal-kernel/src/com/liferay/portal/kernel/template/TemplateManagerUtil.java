@@ -243,10 +243,10 @@ public class TemplateManagerUtil {
 			}
 			catch (TemplateException te) {
 				if (_log.isWarnEnabled()) {
-					String name = templateManager.getName();
-
 					_log.warn(
-						"unable to init " + name + " Template Manager ", te);
+						"unable to init " + templateManager.getName() +
+							" Template Manager ",
+						te);
 				}
 			}
 

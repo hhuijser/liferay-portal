@@ -111,11 +111,11 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 			boolean readOnly = ddmFormFieldRenderingContext.isReadOnly();
 			boolean showEmptyFieldLabel =
 				ddmFormFieldRenderingContext.isShowEmptyFieldLabel();
-			Locale locale = ddmFormFieldRenderingContext.getLocale();
 
 			return getFieldHTML(
 				request, response, ddmFormField, fields, null, portletNamespace,
-				namespace, mode, readOnly, showEmptyFieldLabel, locale);
+				namespace, mode, readOnly, showEmptyFieldLabel,
+				ddmFormFieldRenderingContext.getLocale());
 		}
 		catch (Exception e) {
 			throw new PortalException(e);

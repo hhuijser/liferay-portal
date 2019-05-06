@@ -89,9 +89,8 @@ public class ThemeContributorExtension implements Extension {
 								servletContext),
 							null));
 
-					String contextPath = servletContext.getContextPath();
-
-					_bundleWebResources.setServletContextPath(contextPath);
+					_bundleWebResources.setServletContextPath(
+						servletContext.getContextPath());
 
 					serviceRegistrations.add(
 						bundleContext.registerService(

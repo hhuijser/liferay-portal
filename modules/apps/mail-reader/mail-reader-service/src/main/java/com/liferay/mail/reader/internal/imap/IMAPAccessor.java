@@ -852,9 +852,7 @@ public class IMAPAccessor {
 			return null;
 		}
 
-		long remoteMessageId = message.getRemoteMessageId();
-
-		Message jxMessage = getMessage(jxFolder, remoteMessageId);
+		Message jxMessage = getMessage(jxFolder, message.getRemoteMessageId());
 
 		if (jxMessage == null) {
 			MessageLocalServiceUtil.deleteMessage(message);

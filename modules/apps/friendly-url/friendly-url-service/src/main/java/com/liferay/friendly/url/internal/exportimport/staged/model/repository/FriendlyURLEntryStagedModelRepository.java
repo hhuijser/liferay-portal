@@ -84,11 +84,9 @@ public class FriendlyURLEntryStagedModelRepository
 
 	@Override
 	public void deleteStagedModels(PortletDataContext portletDataContext) {
-		Map<String, String[]> parameterMap =
-			portletDataContext.getParameterMap();
-
 		long classNameId = MapUtil.getLong(
-			parameterMap, "parentStagedModelClassNameId");
+			portletDataContext.getParameterMap(),
+			"parentStagedModelClassNameId");
 
 		_friendlyURLEntryLocalService.deleteGroupFriendlyURLEntries(
 			portletDataContext.getGroupId(), classNameId);

@@ -59,10 +59,8 @@ public class CMISRepositoryDetector {
 	 * @param repositoryInfo the repository description
 	 */
 	protected void detectNuxeo(RepositoryInfo repositoryInfo) {
-		String productVersion = repositoryInfo.getProductVersion();
-
 		String[] versionParts = StringUtil.split(
-			productVersion, StringPool.PERIOD);
+			repositoryInfo.getProductVersion(), StringPool.PERIOD);
 
 		int major = GetterUtil.getInteger(versionParts[0]);
 

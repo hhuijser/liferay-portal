@@ -533,9 +533,7 @@ public class MainServlet extends HttpServlet {
 			_log.debug("Check variables");
 		}
 
-		ServletContext servletContext = getServletContext();
-
-		request.setAttribute(WebKeys.CTX, servletContext);
+		request.setAttribute(WebKeys.CTX, getServletContext());
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Handle non-serializable request");
@@ -1141,11 +1139,9 @@ public class MainServlet extends HttpServlet {
 
 			request.setAttribute(PageContext.EXCEPTION, e);
 
-			ServletContext servletContext = getServletContext();
-
 			StrutsUtil.forward(
 				PropsValues.SERVLET_SERVICE_EVENTS_PRE_ERROR_PAGE,
-				servletContext, request, response);
+				getServletContext(), request, response);
 
 			if (e == request.getAttribute(PageContext.EXCEPTION)) {
 				request.removeAttribute(PageContext.EXCEPTION);

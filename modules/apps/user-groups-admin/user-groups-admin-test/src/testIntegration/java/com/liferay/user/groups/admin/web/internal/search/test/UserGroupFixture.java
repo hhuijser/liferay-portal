@@ -48,10 +48,9 @@ public class UserGroupFixture {
 	public UserGroup createUserGroup(Map<String, Serializable> expandoValues)
 		throws Exception {
 
-		long groupId = TestPropsValues.getGroupId();
-
 		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext(groupId);
+			ServiceContextTestUtil.getServiceContext(
+				TestPropsValues.getGroupId());
 
 		serviceContext.setExpandoBridgeAttributes(expandoValues);
 

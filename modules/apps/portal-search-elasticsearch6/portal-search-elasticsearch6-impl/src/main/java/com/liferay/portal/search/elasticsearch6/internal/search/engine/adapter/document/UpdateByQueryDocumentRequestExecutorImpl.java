@@ -15,13 +15,11 @@
 package com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.document;
 
 import com.liferay.portal.kernel.json.JSONObject;
-import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchClientResolver;
 import com.liferay.portal.search.engine.adapter.document.UpdateByQueryDocumentRequest;
 import com.liferay.portal.search.engine.adapter.document.UpdateByQueryDocumentResponse;
 
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
@@ -60,14 +58,12 @@ public class UpdateByQueryDocumentRequestExecutorImpl
 	protected UpdateByQueryRequestBuilder createUpdateByQueryRequestBuilder(
 		UpdateByQueryDocumentRequest updateByQueryDocumentRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		UpdateByQueryRequestBuilder updateByQueryRequestBuilder =
-			UpdateByQueryAction.INSTANCE.newRequestBuilder(client);
+			UpdateByQueryAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
-		Query query = updateByQueryDocumentRequest.getQuery();
-
-		QueryBuilder queryBuilder = _queryTranslator.translate(query, null);
+		QueryBuilder queryBuilder = _queryTranslator.translate(
+			updateByQueryDocumentRequest.getQuery(), null);
 
 		updateByQueryRequestBuilder.filter(queryBuilder);
 

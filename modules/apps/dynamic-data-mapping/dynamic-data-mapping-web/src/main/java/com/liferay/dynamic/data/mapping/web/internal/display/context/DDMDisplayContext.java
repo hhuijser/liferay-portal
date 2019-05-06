@@ -429,10 +429,8 @@ public class DDMDisplayContext {
 	}
 
 	public SearchContainer<DDMStructure> getStructureSearch() throws Exception {
-		PortletURL portletURL = getPortletURL();
-
 		StructureSearch structureSearch = new StructureSearch(
-			_renderRequest, portletURL);
+			_renderRequest, getPortletURL());
 
 		String orderByCol = getOrderByCol();
 		String orderByType = getOrderByType();
@@ -587,10 +585,8 @@ public class DDMDisplayContext {
 	}
 
 	public SearchContainer<DDMTemplate> getTemplateSearch() throws Exception {
-		PortletURL portletURL = getPortletURL();
-
 		TemplateSearch templateSearch = new TemplateSearch(
-			_renderRequest, portletURL);
+			_renderRequest, getPortletURL());
 
 		String orderByCol = getOrderByCol();
 		String orderByType = getOrderByType();

@@ -626,9 +626,8 @@ public class SelectorIntrabandTest {
 					Assert.fail();
 				}
 				catch (IOException ioe) {
-					Throwable cause = ioe.getCause();
-
-					Assert.assertTrue(cause instanceof InterruptedException);
+					Assert.assertTrue(
+						ioe.getCause() instanceof InterruptedException);
 				}
 
 				interruptThread.join();
@@ -842,9 +841,8 @@ public class SelectorIntrabandTest {
 					Assert.fail();
 				}
 				catch (IOException ioe) {
-					Throwable cause = ioe.getCause();
-
-					Assert.assertTrue(cause instanceof InterruptedException);
+					Assert.assertTrue(
+						ioe.getCause() instanceof InterruptedException);
 				}
 
 				interruptThread.join();

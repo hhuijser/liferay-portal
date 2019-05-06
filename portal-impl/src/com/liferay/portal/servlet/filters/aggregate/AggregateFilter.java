@@ -630,11 +630,9 @@ public class AggregateFilter extends IgnoreModuleRequestFilter {
 		String resourcePath, String content) {
 
 		try {
-			String requestURI = request.getRequestURI();
-
 			ServletContext cssServletContext =
 				ResourceUtil.getPathServletContext(
-					resourcePath, requestURI, _servletContext);
+					resourcePath, request.getRequestURI(), _servletContext);
 
 			return getCssContent(
 				request, response, cssServletContext, resourcePath, content);

@@ -43,9 +43,7 @@ public class ModifiedFacet extends RangeFacet {
 
 	@Override
 	protected BooleanClause<Filter> doGetFacetFilterBooleanClause() {
-		FacetConfiguration facetConfiguration = getFacetConfiguration();
-
-		normalizeDates(facetConfiguration);
+		normalizeDates(getFacetConfiguration());
 
 		return super.doGetFacetFilterBooleanClause();
 	}

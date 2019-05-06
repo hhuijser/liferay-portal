@@ -204,12 +204,11 @@ public class EditExportConfigurationMVCActionCommand
 		BackgroundTask backgroundTask = backgroundTaskManager.getBackgroundTask(
 			backgroundTaskId);
 
-		Map<String, Serializable> taskContextMap =
-			backgroundTask.getTaskContextMap();
-
 		ExportImportConfiguration exportImportConfiguration =
 			exportImportConfigurationLocalService.getExportImportConfiguration(
-				MapUtil.getLong(taskContextMap, "exportImportConfigurationId"));
+				MapUtil.getLong(
+					backgroundTask.getTaskContextMap(),
+					"exportImportConfigurationId"));
 
 		exportImportConfiguration =
 			ExportImportConfigurationFactory.cloneExportImportConfiguration(

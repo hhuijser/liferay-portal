@@ -83,9 +83,7 @@ public class AssetSearcherClassNameIdsTest {
 		addBookmarksEntry();
 		addJournalArticle();
 
-		AssetEntryQuery assetEntryQuery = getAssetEntryQuery();
-
-		Hits hits = search(assetEntryQuery, getSearchContext());
+		Hits hits = search(getAssetEntryQuery(), getSearchContext());
 
 		Assert.assertEquals(hits.toString(), 3, hits.getLength());
 	}

@@ -148,10 +148,7 @@ public class MBCommentManagerImplTest {
 		DiscussionComment discussionComment =
 			threadDiscussionCommentIterator.next();
 
-		int descendantCommentsCount =
-			discussionComment.getDescendantCommentsCount();
-
-		Assert.assertEquals(3, descendantCommentsCount);
+		Assert.assertEquals(3, discussionComment.getDescendantCommentsCount());
 	}
 
 	@Test
@@ -178,10 +175,8 @@ public class MBCommentManagerImplTest {
 		DiscussionComment rootDiscussionComment =
 			discussion.getRootDiscussionComment();
 
-		int descendantCommentsCount =
-			rootDiscussionComment.getDescendantCommentsCount();
-
-		Assert.assertEquals(2, descendantCommentsCount);
+		Assert.assertEquals(
+			2, rootDiscussionComment.getDescendantCommentsCount());
 	}
 
 	@Test

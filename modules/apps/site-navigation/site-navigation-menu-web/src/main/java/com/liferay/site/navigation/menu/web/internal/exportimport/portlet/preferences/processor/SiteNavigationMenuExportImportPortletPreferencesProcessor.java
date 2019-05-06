@@ -84,12 +84,11 @@ public class SiteNavigationMenuExportImportPortletPreferencesProcessor
 			if (siteNavigationMenu != null) {
 				String siteNavigationMenuUuid = siteNavigationMenu.getUuid();
 
-				long scopeGroupId = portletDataContext.getScopeGroupId();
-
 				SiteNavigationMenu siteNavigationMenuToExport =
 					_siteNavigationMenuLocalService.
 						fetchSiteNavigationMenuByUuidAndGroupId(
-							siteNavigationMenuUuid, scopeGroupId);
+							siteNavigationMenuUuid,
+							portletDataContext.getScopeGroupId());
 
 				if (siteNavigationMenuToExport != null) {
 					StagedModelDataHandlerUtil.exportReferenceStagedModel(

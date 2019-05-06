@@ -88,9 +88,9 @@ public class UploadServletRequestWhenGettingInputStreamTest {
 			new UploadServletRequestImpl(
 				(HttpServletRequest)liferayServletRequest.getRequest());
 
-		ServletInputStream inputStream = uploadServletRequest.getInputStream();
-
-		Assert.assertTrue(inputStream instanceof ServletInputStreamAdapter);
+		Assert.assertTrue(
+			uploadServletRequest.getInputStream() instanceof
+				ServletInputStreamAdapter);
 	}
 
 	private static final byte[] _BYTES =

@@ -160,10 +160,9 @@ public class TaskCacheApplicator {
 	}
 
 	protected Copy createRestoreCacheTask(TaskCache taskCache) {
-		Project project = taskCache.getProject();
-
 		Copy copy = GradleUtil.addTask(
-			project, taskCache.getRestoreCacheTaskName(), Copy.class);
+			taskCache.getProject(), taskCache.getRestoreCacheTaskName(),
+			Copy.class);
 
 		copy.exclude(DIGEST_FILE_NAME);
 		copy.from(taskCache.getCacheDir());

@@ -93,10 +93,8 @@ public class InvokerFilter extends BasePortalLifecycle implements Filter {
 
 			Thread currentThread = Thread.currentThread();
 
-			ClassLoader contextClassLoader =
-				currentThread.getContextClassLoader();
-
-			invokerFilterChain.setContextClassLoader(contextClassLoader);
+			invokerFilterChain.setContextClassLoader(
+				currentThread.getContextClassLoader());
 
 			invokerFilterChain.doFilter(request, response);
 		}

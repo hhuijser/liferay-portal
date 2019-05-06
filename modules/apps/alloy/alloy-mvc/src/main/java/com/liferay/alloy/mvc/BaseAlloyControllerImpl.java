@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.model.AuditedModel;
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.GroupedModel;
-import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.model.PersistedModel;
 import com.liferay.portal.kernel.model.Portlet;
@@ -680,10 +679,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 			String lifecycle, WindowState windowState, Object... parameters)
 		throws Exception {
 
-		Layout layout = themeDisplay.getLayout();
-
 		PortletURL portletURL = PortletURLFactoryUtil.create(
-			request, portlet, layout, lifecycle);
+			request, portlet, themeDisplay.getLayout(), lifecycle);
 
 		portletURL.setParameter("action", action);
 		portletURL.setParameter("controller", controller);

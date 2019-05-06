@@ -27,8 +27,6 @@ import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.io.Serializable;
-
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -43,10 +41,8 @@ public class ExportImportBackgroundTaskDisplay
 	public ExportImportBackgroundTaskDisplay(BackgroundTask backgroundTask) {
 		super(backgroundTask);
 
-		Map<String, Serializable> taskContextMap =
-			backgroundTask.getTaskContextMap();
-
-		_cmd = MapUtil.getString(taskContextMap, Constants.CMD);
+		_cmd = MapUtil.getString(
+			backgroundTask.getTaskContextMap(), Constants.CMD);
 
 		_percentage = PERCENTAGE_NONE;
 

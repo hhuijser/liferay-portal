@@ -112,11 +112,11 @@ public class PortletDisplayTemplatePortletDataHandler
 
 		Element rootElement = addExportDataRootElement(portletDataContext);
 
-		long[] classNameIds = TemplateHandlerRegistryUtil.getClassNameIds();
-
 		ActionableDynamicQuery actionableDynamicQuery =
 			getDDMTemplateActionableDynamicQuery(
-				portletDataContext, ArrayUtil.toArray(classNameIds),
+				portletDataContext,
+				ArrayUtil.toArray(
+					TemplateHandlerRegistryUtil.getClassNameIds()),
 				new StagedModelType(
 					_portal.getClassNameId(DDMTemplate.class),
 					StagedModelType.REFERRER_CLASS_NAME_ID_ALL));

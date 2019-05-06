@@ -290,9 +290,8 @@ public class ConfigurationImpl
 
 	@Override
 	public Properties getProperties(String prefix, boolean removePrefix) {
-		Properties properties = getProperties();
-
-		return PropertiesUtil.getProperties(properties, prefix, removePrefix);
+		return PropertiesUtil.getProperties(
+			getProperties(), prefix, removePrefix);
 	}
 
 	@Override

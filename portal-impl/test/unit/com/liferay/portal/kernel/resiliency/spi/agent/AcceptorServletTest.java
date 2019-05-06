@@ -327,10 +327,10 @@ public class AcceptorServletTest {
 		}
 
 		private Exception _exception;
-		private boolean _ioExceptionOnPrepareRequest;
 		private HttpServletRequest _httpServletRequest;
-		private HttpServletRequest _originalRequest2;
 		private HttpServletResponse _httpServletResponse;
+		private boolean _ioExceptionOnPrepareRequest;
+		private HttpServletRequest _originalRequest2;
 		private MockHttpServletRequest _preparedRequest;
 		private MockHttpServletResponse _preparedResponse;
 		private boolean _runtimeExceptionOnPrepareRequest;

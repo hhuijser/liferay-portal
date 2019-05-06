@@ -122,7 +122,7 @@ public class AddFormInstanceRecordMVCResourceCommandTest extends PowerMockito {
 
 		DDMFormValues ddmFormValues1 =
 			DDMFormValuesTestUtil.createDDMFormValues(
-				ddmForm, SetUtil.fromList(ListUtil.toList(LocaleUtil.BRAZIL)),
+				ddmForm, SetUtil.fromArray(new Locale[] {LocaleUtil.BRAZIL}),
 				LocaleUtil.BRAZIL);
 
 		ddmFormValues1.addDDMFormFieldValue(ddmFormFieldValue1);

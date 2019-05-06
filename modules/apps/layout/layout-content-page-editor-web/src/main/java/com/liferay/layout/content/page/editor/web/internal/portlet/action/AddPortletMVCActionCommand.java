@@ -165,7 +165,8 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private String _getPortletFragmentEntryLinkHTML(
-			HttpServletRequest request, String portletId, String instanceId)
+			HttpServletRequest httpServletRequest, String portletId,
+			String instanceId)
 		throws PortalException {
 
 		Element runtimeTagElement = new Element(
@@ -173,7 +174,7 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 
 		PortletPreferences portletPreferences =
 			PortletPreferencesFactoryUtil.getPortletPreferences(
-				request, portletId);
+				httpServletRequest, portletId);
 
 		runtimeTagElement.attr(
 			"defaultPreferences",

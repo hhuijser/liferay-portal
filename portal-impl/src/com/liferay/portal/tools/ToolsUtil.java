@@ -141,6 +141,9 @@ public class ToolsUtil {
 			throw new IllegalArgumentException(
 				"The namespace element is required");
 		}
+		else {
+			System.out.println("asdf");
+		}
 
 		rootElement.add(namespaceElement);
 

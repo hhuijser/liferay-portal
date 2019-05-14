@@ -33,7 +33,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("liferay-frontend:manag
 />
 
 <%
-PortletURL orderByColAscURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+PortletURL orderByColAscURL = PortletURLUtil.clone(portletURL, portletResponse);
 
 orderByColAscURL.setParameter("orderByCol", orderByCol);
 orderByColAscURL.setParameter("orderByType", "asc");
@@ -51,7 +51,7 @@ orderByColAscURL.setParameter("orderByType", "asc");
 </li>
 
 <%
-PortletURL orderByColDescURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+PortletURL orderByColDescURL = PortletURLUtil.clone(portletURL, portletResponse);
 
 orderByColDescURL.setParameter("orderByCol", orderByCol);
 orderByColDescURL.setParameter("orderByType", "desc");

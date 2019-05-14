@@ -30,7 +30,7 @@ String type = (String)request.getAttribute("liferay-frontend:management-bar-side
 String typeMobile = (String)request.getAttribute("liferay-frontend:management-bar-sidenav-toggler-button:typeMobile");
 String width = (String)request.getAttribute("liferay-frontend:management-bar-sidenav-toggler-button:width");
 
-String sidenavId = liferayPortletResponse.getNamespace() + "infoPanelId";
+String sidenavId = portletResponse.getNamespace() + "infoPanelId";
 
 if (Validator.isNull(href)) {
 	href = "#" + sidenavId;

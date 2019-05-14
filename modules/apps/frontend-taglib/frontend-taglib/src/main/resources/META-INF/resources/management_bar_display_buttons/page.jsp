@@ -23,7 +23,7 @@ String[] displayViews = (String[])request.getAttribute("liferay-frontend:managem
 PortletURL portletURL = (PortletURL)request.getAttribute("liferay-frontend:management-bar-display-buttons:portletURL");
 String selectedDisplayStyle = (String)request.getAttribute("liferay-frontend:management-bar-display-buttons:selectedDisplayStyle");
 
-PortletURL displayStyleURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+PortletURL displayStyleURL = PortletURLUtil.clone(portletURL, portletResponse);
 
 for (String displayStyle : defaultViews) {
 	String cssClass = StringPool.BLANK;

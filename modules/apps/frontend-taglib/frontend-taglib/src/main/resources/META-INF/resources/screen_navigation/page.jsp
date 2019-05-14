@@ -31,7 +31,7 @@ ScreenNavigationEntry selectedScreenNavigationEntry = (ScreenNavigationEntry)req
 List<ScreenNavigationCategory> screenNavigationCategories = (List<ScreenNavigationCategory>)request.getAttribute("liferay-frontend:screen-navigation:screenNavigationCategories");
 List<ScreenNavigationEntry> screenNavigationEntries = (List<ScreenNavigationEntry>)request.getAttribute("liferay-frontend:screen-navigation:screenNavigationEntries");
 
-LiferayPortletResponse finalLiferayPortletResponse = liferayPortletResponse;
+LiferayPortletResponse finalLiferayPortletResponse = portletResponse;
 %>
 
 <c:if test="<%= screenNavigationCategories.size() > 1 %>">
@@ -76,7 +76,7 @@ LiferayPortletResponse finalLiferayPortletResponse = liferayPortletResponse;
 
 							<%
 							for (ScreenNavigationEntry screenNavigationEntry : screenNavigationEntries) {
-								PortletURL screenNavigationEntryURL = PortletURLUtil.clone(portletURL, liferayPortletResponse);
+								PortletURL screenNavigationEntryURL = PortletURLUtil.clone(portletURL, portletResponse);
 
 								screenNavigationEntryURL.setParameter("screenNavigationCategoryKey", screenNavigationEntry.getCategoryKey());
 								screenNavigationEntryURL.setParameter("screenNavigationEntryKey", screenNavigationEntry.getEntryKey());

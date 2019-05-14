@@ -15,8 +15,8 @@
 package com.liferay.portal.asm;
 
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;

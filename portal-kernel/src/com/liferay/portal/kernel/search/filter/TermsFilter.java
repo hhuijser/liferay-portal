@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.search.filter;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.Collections;
 import java.util.HashSet;

@@ -14,8 +14,8 @@
 
 package com.liferay.portal.test.rule;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Shuyang Zhou

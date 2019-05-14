@@ -14,9 +14,9 @@
 
 package com.liferay.portal.kernel.nio.intraband;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.BigEndianCodec;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.EOFException;
 import java.io.IOException;

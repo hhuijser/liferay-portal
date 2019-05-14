@@ -15,7 +15,7 @@
 package com.liferay.portal.kernel.diff;
 
 import com.liferay.petra.lang.HashUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.ArrayList;
 import java.util.List;

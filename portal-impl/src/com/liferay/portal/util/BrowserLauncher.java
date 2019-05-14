@@ -16,8 +16,8 @@ package com.liferay.portal.util;
 
 import com.liferay.petra.process.ConsumerOutputProcessor;
 import com.liferay.petra.process.ProcessUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.OSDetector;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.net.HttpURLConnection;
 import java.net.URL;

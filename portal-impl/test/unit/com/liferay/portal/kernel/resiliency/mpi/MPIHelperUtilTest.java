@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.resiliency.mpi;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.messaging.config.BaseMessagingConfigurator;
 import com.liferay.portal.kernel.messaging.config.MessagingConfigurator;
 import com.liferay.portal.kernel.messaging.config.MessagingConfiguratorRegistry;
@@ -41,7 +42,6 @@ import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.resiliency.spi.SPIRegistryImpl;
 
 import java.io.IOException;

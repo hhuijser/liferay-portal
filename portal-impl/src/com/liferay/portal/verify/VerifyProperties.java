@@ -14,11 +14,11 @@
 
 package com.liferay.portal.verify;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LoggingTimer;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portlet.documentlibrary.store.StoreFactory;
@@ -2004,9 +2004,9 @@ public class VerifyProperties extends VerifyProcess {
 
 	private static final String[][] _RENAMED_SYSTEM_KEYS = {
 		{
-			"com.liferay.portal.kernel.util.StringBundler.unsafe.create." +
+			"com.liferay.petra.string.StringBundler.unsafe.create." +
 				"threshold",
-			"com.liferay.portal.kernel.util.StringBundler.threadlocal.buffer." +
+			"com.liferay.petra.string.StringBundler.threadlocal.buffer." +
 				"limit"
 		}
 	};

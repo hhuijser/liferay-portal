@@ -15,9 +15,9 @@
 package com.liferay.portal.util;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.CustomJspRegistry;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.Map;
 import java.util.Set;

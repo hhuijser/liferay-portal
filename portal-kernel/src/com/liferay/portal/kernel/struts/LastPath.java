@@ -14,8 +14,8 @@
 
 package com.liferay.portal.kernel.struts;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.Serializable;
 

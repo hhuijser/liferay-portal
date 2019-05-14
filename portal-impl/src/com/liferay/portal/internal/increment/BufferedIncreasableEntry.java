@@ -14,10 +14,10 @@
 
 package com.liferay.portal.internal.increment;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.aop.AopMethodInvocation;
 import com.liferay.portal.kernel.increment.Increment;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.Arrays;
 

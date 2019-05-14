@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.security.auth.verifier;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.HashMap;
 import java.util.Map;

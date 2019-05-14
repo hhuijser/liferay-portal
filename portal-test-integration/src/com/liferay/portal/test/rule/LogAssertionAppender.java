@@ -14,7 +14,7 @@
 
 package com.liferay.portal.test.rule;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.Level;

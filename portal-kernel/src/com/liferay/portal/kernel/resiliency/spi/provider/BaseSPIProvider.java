@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.resiliency.spi.provider;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.nio.intraband.RegistrationReference;
 import com.liferay.portal.kernel.nio.intraband.welder.Welder;
 import com.liferay.portal.kernel.process.ProcessChannel;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.resiliency.spi.remote.RemoteSPI;
 import com.liferay.portal.kernel.resiliency.spi.remote.RemoteSPIProxy;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.ServiceProxyFactory;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;

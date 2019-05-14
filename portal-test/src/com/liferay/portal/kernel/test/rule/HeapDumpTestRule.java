@@ -15,9 +15,9 @@
 package com.liferay.portal.kernel.test.rule;
 
 import com.liferay.petra.process.EchoOutputProcessor;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.GCUtil;
 import com.liferay.portal.kernel.util.HeapUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.Date;
 import java.util.concurrent.Future;

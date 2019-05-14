@@ -14,8 +14,8 @@
 
 package com.liferay.portal.minifier;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.ProxyFactory;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.registry.BasicRegistryImpl;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;

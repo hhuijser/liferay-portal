@@ -67,7 +67,7 @@ public class UpgradeSubscription extends UpgradeProcess {
 			runSQL(
 				StringBundler.concat(
 					"delete from Subscription where classNameId = ",
-					String.valueOf(classNameId),
+					classNameId,
 					" and classPK not in (select portletPreferencesId from ",
 					"PortletPreferences)"));
 		}

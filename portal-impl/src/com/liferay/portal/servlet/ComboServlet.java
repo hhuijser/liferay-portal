@@ -434,9 +434,8 @@ public class ComboServlet extends HttpServlet {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Invalid resource ",
-						String.valueOf(httpServletRequest.getRequestURL()), "?",
-						httpServletRequest.getQueryString()));
+						"Invalid resource ", httpServletRequest.getRequestURL(),
+						"?", httpServletRequest.getQueryString()));
 			}
 
 			return null;

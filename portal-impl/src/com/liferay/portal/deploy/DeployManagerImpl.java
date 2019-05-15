@@ -69,8 +69,7 @@ public class DeployManagerImpl implements DeployManager {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Level ", String.valueOf(i),
-						" required deployment WAR file names ",
+						"Level ", i, " required deployment WAR file names ",
 						levelRequiredDeploymentWARFileNamesString));
 			}
 
@@ -109,8 +108,7 @@ public class DeployManagerImpl implements DeployManager {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Level ", String.valueOf(i),
-						" required deployment contexts ",
+						"Level ", i, " required deployment contexts ",
 						StringUtil.merge(levelRequiredDeploymentContexts)));
 			}
 		}

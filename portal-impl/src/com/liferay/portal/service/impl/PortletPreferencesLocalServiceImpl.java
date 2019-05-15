@@ -117,9 +117,9 @@ public class PortletPreferencesLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Add failed, fetch {ownerId=", String.valueOf(ownerId),
-						", ownerType=", String.valueOf(ownerType), ", plid=",
-						String.valueOf(plid), ", portletId=", portletId, "}"));
+						"Add failed, fetch {ownerId=", ownerId, ", ownerType=",
+						ownerType, ", plid=", plid, ", portletId=", portletId,
+						"}"));
 			}
 
 			portletPreferences = portletPreferencesPersistence.fetchByO_O_P_P(
@@ -148,9 +148,8 @@ public class PortletPreferencesLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Delete {ownerId=", String.valueOf(ownerId), ", ownerType=",
-					String.valueOf(ownerType), ", plid=", String.valueOf(plid),
-					", portletId=", portletId, "}"));
+					"Delete {ownerId=", ownerId, ", ownerType=", ownerType,
+					", plid=", plid, ", portletId=", portletId, "}"));
 		}
 
 		portletPreferencesPersistence.removeByO_O_P_P(
@@ -617,9 +616,9 @@ public class PortletPreferencesLocalServiceImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Update {ownerId=", String.valueOf(ownerId), ", ownerType=",
-					String.valueOf(ownerType), ", plid=", String.valueOf(plid),
-					", portletId=", portletId, ", xml=", xml, "}"));
+					"Update {ownerId=", ownerId, ", ownerType=", ownerType,
+					", plid=", plid, ", portletId=", portletId, ", xml=", xml,
+					"}"));
 		}
 
 		PortletPreferences portletPreferences =

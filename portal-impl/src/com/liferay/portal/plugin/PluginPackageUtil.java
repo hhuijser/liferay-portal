@@ -604,8 +604,7 @@ public class PluginPackageUtil {
 					throw new PluginPackageException(
 						StringBundler.concat(
 							"Unable to download file ", pluginsXmlURL,
-							" because of response code ",
-							String.valueOf(responseCode)));
+							" because of response code ", responseCode));
 				}
 			}
 

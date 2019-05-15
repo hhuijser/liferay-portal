@@ -628,8 +628,7 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Check if theme ", getThemeId(), " is available for ",
-					String.valueOf(id)));
+					"Check if theme ", getThemeId(), " is available for ", id));
 		}
 
 		if (limit != null) {
@@ -689,9 +688,8 @@ public class ThemeImpl extends PluginBaseImpl implements Theme {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Theme ", getThemeId(), " is ",
-					String.valueOf(!available ? "NOT " : ""), "available for ",
-					String.valueOf(id)));
+					"Theme ", getThemeId(), " is ", !available ? "NOT " : "",
+					"available for ", id));
 		}
 
 		return available;

@@ -177,8 +177,7 @@ public class TCKtoJUnitConverter {
 		sb.append("</testsuite>");
 
 		FileUtil.write(
-			StringBundler.concat(
-				String.valueOf(outputDir), "/TEST-", className, ".xml"),
+			StringBundler.concat(outputDir, "/TEST-", className, ".xml"),
 			sb.toString());
 	}
 

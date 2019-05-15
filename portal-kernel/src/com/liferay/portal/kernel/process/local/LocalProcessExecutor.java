@@ -268,9 +268,8 @@ public class LocalProcessExecutor implements ProcessExecutor {
 								ProcessLog.Level.DEBUG,
 								StringBundler.concat(
 									"Invoked generic process callable ",
-									String.valueOf(processCallable),
-									" with return value ",
-									String.valueOf(returnValue)),
+									processCallable, " with return value ",
+									returnValue),
 								null));
 					}
 					catch (Throwable t) {

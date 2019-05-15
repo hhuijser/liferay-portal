@@ -156,7 +156,7 @@ public class SharepointDocumentWorkspaceServlet extends HttpServlet {
 
 		String url = StringBundler.concat(
 			"http://", httpServletRequest.getLocalAddr(), ":",
-			String.valueOf(httpServletRequest.getServerPort()), "/sharepoint");
+			httpServletRequest.getServerPort(), "/sharepoint");
 
 		Element subscribeUrlEl = root.addElement("SubscribeUrl");
 

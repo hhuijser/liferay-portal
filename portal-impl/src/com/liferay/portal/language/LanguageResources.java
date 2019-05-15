@@ -260,8 +260,7 @@ public class LanguageResources {
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
-						StringBundler.concat(
-							"Loading ", name, " from ", String.valueOf(url)));
+						StringBundler.concat("Loading ", name, " from ", url));
 				}
 
 				try (InputStream inputStream = url.openStream()) {
@@ -273,9 +272,8 @@ public class LanguageResources {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Loading ", String.valueOf(url), " with ",
-								String.valueOf(inputStreamProperties.size()),
-								" values"));
+								"Loading ", url, " with ",
+								inputStreamProperties.size(), " values"));
 					}
 				}
 			}

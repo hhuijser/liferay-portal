@@ -358,8 +358,7 @@ public class SPIClassPathContextListenerTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Duplicate SPI provider ",
-					String.valueOf(spiProviderReference.get()),
+					"Duplicate SPI provider ", spiProviderReference.get(),
 					" is already registered in servlet context ",
 					_mockServletContext.getContextPath()),
 				logRecord.getMessage());

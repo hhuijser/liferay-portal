@@ -142,10 +142,8 @@ public class IntrabandProxyUtil {
 
 					throw new IllegalArgumentException(
 						StringBundler.concat(
-							"Field ", String.valueOf(field),
-							" is expected to be of type ",
-							String.valueOf(clazz), " and ",
-							String.valueOf(!isStatic ? "not " : ""), "static"));
+							"Field ", field, " is expected to be of type ",
+							clazz, " and ", !isStatic ? "not " : "", "static"));
 				}
 
 				break;
@@ -908,7 +906,7 @@ public class IntrabandProxyUtil {
 		private void _unknownMethodIndex(int methodIndex) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Unknow method index ", String.valueOf(methodIndex),
+					"Unknow method index ", methodIndex,
 					" for proxy methods mappings ", _PROXY_METHODS_MAPPING));
 		}
 

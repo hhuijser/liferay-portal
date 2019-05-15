@@ -84,8 +84,7 @@ public class DeleteAfterTestRunMethodTestRule extends MethodTestRule<Void> {
 
 						throw new IllegalArgumentException(
 							StringBundler.concat(
-								"Unable to annotate field ",
-								String.valueOf(field),
+								"Unable to annotate field ", field,
 								" because it is not an array of type ",
 								PersistedModel.class.getName()));
 					}
@@ -111,8 +110,7 @@ public class DeleteAfterTestRunMethodTestRule extends MethodTestRule<Void> {
 					if (collectionType == null) {
 						throw new IllegalArgumentException(
 							StringBundler.concat(
-								"Unable to annotate field ",
-								String.valueOf(field),
+								"Unable to annotate field ", field,
 								" because it is not a collection of type ",
 								PersistedModel.class.getName()));
 					}

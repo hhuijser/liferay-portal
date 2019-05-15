@@ -53,8 +53,7 @@ public class UpgradeOracle extends UpgradeProcess {
 					runSQL(
 						StringBundler.concat(
 							"alter table ", tableName, " modify ", columnName,
-							" varchar2(", String.valueOf(rs.getInt(3)),
-							" char)"));
+							" varchar2(", rs.getInt(3), " char)"));
 				}
 				catch (SQLException sqle) {
 					if (sqle.getErrorCode() == 1441) {

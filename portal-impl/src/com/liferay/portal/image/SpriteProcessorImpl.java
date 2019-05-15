@@ -195,8 +195,7 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 					key = contextPath.concat(key);
 
 					String value = StringBundler.concat(
-						String.valueOf((int)y), ",", String.valueOf(height),
-						",", String.valueOf(width));
+						(int)y, ",", height, ",", width);
 
 					spriteProperties.setProperty(key, value);
 				}
@@ -441,10 +440,7 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 			for (int w = 0; w < width; w++) {
 				offset = (h * width * numOfBands) + (w * numOfBands);
 
-				System.out.print(
-					StringBundler.concat(
-						"[", String.valueOf(w), ", ", String.valueOf(h),
-						"] = "));
+				System.out.print(StringBundler.concat("[", w, ", ", h, "] = "));
 
 				for (int b = 0; b < numOfBands; b++) {
 					System.out.print(pixels[offset + b] + " ");

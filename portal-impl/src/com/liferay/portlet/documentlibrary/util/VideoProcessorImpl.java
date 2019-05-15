@@ -373,16 +373,15 @@ public class VideoProcessorImpl
 					_log.info(
 						StringBundler.concat(
 							"Cancellation received for ",
-							String.valueOf(fileVersion.getFileVersionId()), " ",
+							fileVersion.getFileVersionId(), " ",
 							fileVersion.getTitle()));
 				}
 			}
 			catch (Exception e) {
 				_log.error(
 					StringBundler.concat(
-						"Unable to process ",
-						String.valueOf(fileVersion.getFileVersionId()), " ",
-						fileVersion.getTitle(), "."),
+						"Unable to process ", fileVersion.getFileVersionId(),
+						" ", fileVersion.getTitle(), "."),
 					e);
 			}
 
@@ -392,8 +391,8 @@ public class VideoProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Xuggler generated a thumbnail for ",
-						fileVersion.getTitle(), " in ",
-						String.valueOf(stopWatch.getTime()), " ms"));
+						fileVersion.getTitle(), " in ", stopWatch.getTime(),
+						" ms"));
 			}
 		}
 		catch (Exception e) {
@@ -567,8 +566,7 @@ public class VideoProcessorImpl
 		catch (Exception e) {
 			_log.error(
 				StringBundler.concat(
-					"Unable to process ",
-					String.valueOf(fileVersion.getFileVersionId()), " ",
+					"Unable to process ", fileVersion.getFileVersionId(), " ",
 					fileVersion.getTitle(), "."),
 				e);
 
@@ -584,7 +582,7 @@ public class VideoProcessorImpl
 				StringBundler.concat(
 					"Xuggler generated a ", containerType,
 					" preview video for ", fileVersion.getTitle(), " in ",
-					String.valueOf(stopWatch.getTime()), " ms"));
+					stopWatch.getTime(), " ms"));
 		}
 	}
 
@@ -603,7 +601,7 @@ public class VideoProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Cancellation received for ",
-						String.valueOf(fileVersion.getFileVersionId()), " ",
+						fileVersion.getFileVersionId(), " ",
 						fileVersion.getTitle()));
 			}
 

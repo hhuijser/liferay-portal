@@ -64,7 +64,7 @@ public class SharepointWebServicesServlet extends HttpServlet {
 
 		String url = StringBundler.concat(
 			"http://", httpServletRequest.getLocalAddr(), ":",
-			String.valueOf(httpServletRequest.getServerPort()), "/sharepoint");
+			httpServletRequest.getServerPort(), "/sharepoint");
 
 		sb.append("<SOAP-ENV:Envelope xmlns:SOAP-ENV=\"");
 		sb.append("http://schemas.xmlsoap.org/soap/envelope/\">");

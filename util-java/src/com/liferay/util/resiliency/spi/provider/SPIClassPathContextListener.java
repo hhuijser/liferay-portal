@@ -134,7 +134,7 @@ public class SPIClassPathContextListener implements ServletContextListener {
 			if (!result) {
 				_log.error(
 					StringBundler.concat(
-						"Duplicate SPI provider ", String.valueOf(spiProvider),
+						"Duplicate SPI provider ", spiProvider,
 						" is already registered in servlet context ",
 						servletContext.getContextPath()));
 			}

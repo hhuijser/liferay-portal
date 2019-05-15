@@ -171,9 +171,8 @@ public class ServiceComponentLocalServiceImpl
 				throw new OldServiceComponentException(
 					StringBundler.concat(
 						"Build namespace ", buildNamespace,
-						" has build number ",
-						String.valueOf(previousBuildNumber),
-						" which is newer than ", String.valueOf(buildNumber)));
+						" has build number ", previousBuildNumber,
+						" which is newer than ", buildNumber));
 			}
 			else {
 				return serviceComponent;

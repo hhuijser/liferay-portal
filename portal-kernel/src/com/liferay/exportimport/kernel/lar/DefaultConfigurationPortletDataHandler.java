@@ -117,8 +117,7 @@ public class DefaultConfigurationPortletDataHandler
 						_log.warn(
 							StringBundler.concat(
 								"Unable to get UUID for class ", className,
-								" with primary key ",
-								String.valueOf(primaryKeyLong)));
+								" with primary key ", primaryKeyLong));
 					}
 
 					continue;

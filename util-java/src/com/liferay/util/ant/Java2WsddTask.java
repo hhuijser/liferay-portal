@@ -133,8 +133,7 @@ public class Java2WsddTask {
 
 		File deployFile = new File(
 			StringBundler.concat(
-				String.valueOf(tempDir), "/", packagePathWithSlashes,
-				"/deploy.wsdd"));
+				tempDir, "/", packagePathWithSlashes, "/deploy.wsdd"));
 
 		String deployContent = new String(
 			Files.readAllBytes(deployFile.toPath()));
@@ -149,8 +148,7 @@ public class Java2WsddTask {
 
 		File undeployFile = new File(
 			StringBundler.concat(
-				String.valueOf(tempDir), "/", packagePathWithSlashes,
-				"/undeploy.wsdd"));
+				tempDir, "/", packagePathWithSlashes, "/undeploy.wsdd"));
 
 		String undeployContent = new String(
 			Files.readAllBytes(undeployFile.toPath()));

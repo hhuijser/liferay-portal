@@ -409,15 +409,14 @@ public class AudioProcessorImpl
 				_log.info(
 					StringBundler.concat(
 						"Cancellation received for ",
-						String.valueOf(fileVersion.getFileVersionId()), " ",
+						fileVersion.getFileVersionId(), " ",
 						fileVersion.getTitle()));
 			}
 		}
 		catch (Exception e) {
 			_log.error(
 				StringBundler.concat(
-					"Unable to process ",
-					String.valueOf(fileVersion.getFileVersionId()), " ",
+					"Unable to process ", fileVersion.getFileVersionId(), " ",
 					fileVersion.getTitle(), "."),
 				e);
 		}
@@ -430,9 +429,8 @@ public class AudioProcessorImpl
 			_log.info(
 				StringBundler.concat(
 					"Xuggler generated a ", containerType,
-					" preview audio for ",
-					String.valueOf(fileVersion.getFileVersionId()), " in ",
-					String.valueOf(stopWatch.getTime()), "ms"));
+					" preview audio for ", fileVersion.getFileVersionId(),
+					" in ", stopWatch.getTime(), "ms"));
 		}
 	}
 

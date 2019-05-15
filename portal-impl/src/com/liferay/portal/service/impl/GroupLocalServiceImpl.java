@@ -4088,7 +4088,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					StringBundler.concat(
 						"Unable to add default data for portlet ",
 						portletDataHandler.getPortletId(), " in group ",
-						String.valueOf(group.getGroupId())));
+						group.getGroupId()));
 
 				if (portletDataHandler.isRollbackOnException()) {
 					throw new SystemException(e);
@@ -4116,7 +4116,7 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 					StringBundler.concat(
 						"Unable to delete data for portlet ",
 						portletDataHandler.getPortletId(), " in group ",
-						String.valueOf(group.getGroupId())),
+						group.getGroupId()),
 					e);
 
 				if (portletDataHandler.isRollbackOnException()) {

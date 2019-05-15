@@ -93,8 +93,8 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"StagingServiceImpl#createStagingRequest(",
-						String.valueOf(groupId), ", ", checksum, ")"),
+						"StagingServiceImpl#createStagingRequest(", groupId,
+						", ", checksum, ")"),
 					pe);
 			}
 
@@ -123,8 +123,7 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 				_log.debug(
 					StringBundler.concat(
 						"StagingServiceImpl#hasRemoteLayout(", uuid, ", ",
-						String.valueOf(groupId), ", ",
-						String.valueOf(privateLayout), ")"),
+						groupId, ", ", privateLayout, ")"),
 					pe);
 			}
 
@@ -226,8 +225,7 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 				_log.debug(
 					StringBundler.concat(
 						"StagingServiceImpl#publishStagingRequest(",
-						String.valueOf(stagingRequestId), ", ",
-						String.valueOf(exportImportConfiguration), ")"),
+						stagingRequestId, ", ", exportImportConfiguration, ")"),
 					pe);
 			}
 
@@ -260,8 +258,8 @@ public class StagingServiceImpl extends StagingServiceBaseImpl {
 				_log.debug(
 					StringBundler.concat(
 						"StagingServiceImpl#updateStagingRequest(",
-						String.valueOf(stagingRequestId), ", ", fileName, ", ",
-						String.valueOf(bytes.length), "bytes)"),
+						stagingRequestId, ", ", fileName, ", ", bytes.length,
+						"bytes)"),
 					pe);
 			}
 

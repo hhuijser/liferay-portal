@@ -60,8 +60,7 @@ public class ComponentPropertiesUtil {
 			_log.info(
 				StringBundler.concat(
 					"Properties for ", componentName, " loaded from ",
-					String.valueOf(
-						classLoaderAggregateProperties.loadedSources())));
+					classLoaderAggregateProperties.loadedSources()));
 		}
 
 		_loadEnvOverrides(classLoaderAggregateProperties);

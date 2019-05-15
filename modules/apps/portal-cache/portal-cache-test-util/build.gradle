@@ -4,6 +4,7 @@ dependencies {
 	compileOnly group: "junit", name: "junit", version: "4.12"
 	compileOnly project(":apps:portal-cache:portal-cache-api")
 	compileOnly project(":core:petra:petra-lang")
+	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:registry-api")
 
 	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
@@ -11,7 +12,6 @@ dependencies {
 	testCompile project(":core:petra:petra-concurrent")
 	testCompile project(":core:petra:petra-memory")
 	testCompile project(":core:petra:petra-process")
-	testCompile project(":core:petra:petra-string")
 }
 
 liferay {

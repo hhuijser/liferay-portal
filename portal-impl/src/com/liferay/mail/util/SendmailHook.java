@@ -50,8 +50,7 @@ public class SendmailHook implements Hook {
 				String home = PropsUtil.get(PropsKeys.MAIL_HOOK_SENDMAIL_HOME);
 
 				File file = new File(
-					StringBundler.concat(
-						home, "/", String.valueOf(userId), "/.forward"));
+					StringBundler.concat(home, "/", userId, "/.forward"));
 
 				if (!emailAddresses.isEmpty()) {
 					StringBundler sb = new StringBundler(
@@ -164,8 +163,7 @@ public class SendmailHook implements Hook {
 		String home = PropsUtil.get(PropsKeys.MAIL_HOOK_SENDMAIL_HOME);
 
 		File file = new File(
-			StringBundler.concat(
-				home, "/", String.valueOf(userId), "/.procmailrc"));
+			StringBundler.concat(home, "/", userId, "/.procmailrc"));
 
 		if (ListUtil.isEmpty(blocked)) {
 			file.delete();

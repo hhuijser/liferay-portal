@@ -749,8 +749,8 @@ public class AssetUtil {
 					if (_log.isDebugEnabled()) {
 						_log.debug(
 							StringBundler.concat(
-								"Word ", word, " is not valid because ",
-								String.valueOf(c), " is not allowed"));
+								"Word ", word, " is not valid because ", c,
+								" is not allowed"));
 					}
 
 					return false;

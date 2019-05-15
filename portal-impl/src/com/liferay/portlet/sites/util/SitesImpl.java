@@ -1870,7 +1870,7 @@ public class SitesImpl implements Sites {
 		if (!importData) {
 			String cacheFileName = StringBundler.concat(
 				_TEMP_DIR, layoutSetPrototype.getUuid(), ".v",
-				String.valueOf(layoutSetPrototype.getMvccVersion()), ".lar");
+				layoutSetPrototype.getMvccVersion(), ".lar");
 
 			cacheFile = new File(cacheFileName);
 
@@ -2086,8 +2086,7 @@ public class SitesImpl implements Sites {
 			_log.debug(
 				StringBundler.concat(
 					"Acquired lock for ", SitesImpl.class.getName(),
-					" to update ", className, StringPool.POUND,
-					String.valueOf(classPK)));
+					" to update ", className, StringPool.POUND, classPK));
 		}
 
 		return owner;
@@ -2101,8 +2100,7 @@ public class SitesImpl implements Sites {
 			_log.debug(
 				StringBundler.concat(
 					"Released lock for ", SitesImpl.class.getName(),
-					" to update ", className, StringPool.POUND,
-					String.valueOf(classPK)));
+					" to update ", className, StringPool.POUND, classPK));
 		}
 	}
 

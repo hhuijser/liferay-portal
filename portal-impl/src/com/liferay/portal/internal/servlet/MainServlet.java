@@ -568,8 +568,8 @@ public class MainServlet extends HttpServlet {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Authenticate user id ", String.valueOf(userId),
-						" and remote user ", remoteUser));
+						"Authenticate user id ", userId, " and remote user ",
+						remoteUser));
 			}
 
 			userId = _loginUser(

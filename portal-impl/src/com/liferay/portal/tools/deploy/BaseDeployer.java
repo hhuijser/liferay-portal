@@ -1880,8 +1880,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Unable to format ", String.valueOf(file), ": ",
-							e.getMessage()));
+							"Unable to format ", file, ": ", e.getMessage()));
 				}
 			}
 		}
@@ -2234,8 +2233,7 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Modifying Servlet ", String.valueOf(webXmlVersion), " ",
-					String.valueOf(webXml)));
+					"Modifying Servlet ", webXmlVersion, " ", webXml));
 		}
 	}
 

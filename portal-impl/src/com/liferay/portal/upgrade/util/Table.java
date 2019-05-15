@@ -206,7 +206,7 @@ public class Table {
 				_log.info(
 					StringBundler.concat(
 						"Finished backup of ", _tableName, " to ", tempFileName,
-						" in ", String.valueOf(stopWatch.getTime()), " ms"));
+						" in ", stopWatch.getTime(), " ms"));
 			}
 		}
 		catch (Exception e) {

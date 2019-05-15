@@ -257,7 +257,7 @@ public class TrashImpl implements Trash {
 					_log.warn(
 						StringBundler.concat(
 							"Unable to find trash entry for ", entryClassName,
-							" with primary key ", String.valueOf(classPK)));
+							" with primary key ", classPK));
 				}
 			}
 		}

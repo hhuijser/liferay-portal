@@ -297,8 +297,7 @@ public class JSONWebServiceActionsManagerImpl
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Configured ", String.valueOf(count), " actions for ",
-					contextPath));
+					"Configured ", count, " actions for ", contextPath));
 		}
 
 		return count;
@@ -340,8 +339,7 @@ public class JSONWebServiceActionsManagerImpl
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Configured ", String.valueOf(count), " actions for ",
-					contextPath));
+					"Configured ", count, " actions for ", contextPath));
 		}
 
 		return count;
@@ -553,8 +551,7 @@ public class JSONWebServiceActionsManagerImpl
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Found ",
-					String.valueOf(jsonWebServiceActionConfigs.size()),
+					"Found ", jsonWebServiceActionConfigs.size(),
 					" JSON web service actions with path ", path, " for ",
 					contextName));
 		}

@@ -1113,8 +1113,7 @@ public class PortalImpl implements Portal {
 			else {
 				throw new NoSuchLayoutException(
 					StringBundler.concat(
-						"{groupId=", String.valueOf(groupId),
-						", privateLayout=", String.valueOf(privateLayout),
+						"{groupId=", groupId, ", privateLayout=", privateLayout,
 						"}"));
 			}
 		}
@@ -4075,8 +4074,7 @@ public class PortalImpl implements Portal {
 				_log.debug(
 					StringBundler.concat(
 						"Portlet ", portletId,
-						" does not exist on a page in group ",
-						String.valueOf(groupId)));
+						" does not exist on a page in group ", groupId));
 			}
 		}
 
@@ -7796,9 +7794,8 @@ public class PortalImpl implements Portal {
 
 		_log.error(
 			StringBundler.concat(
-				"User ", String.valueOf(realUserIdObj),
-				" does not have the permission to impersonate ",
-				String.valueOf(doAsUserId)));
+				"User ", realUserIdObj,
+				" does not have the permission to impersonate ", doAsUserId));
 
 		return 0;
 	}

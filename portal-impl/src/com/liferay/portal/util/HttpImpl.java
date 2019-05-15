@@ -323,8 +323,8 @@ public class HttpImpl implements Http {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						toString(), " is waiting on ",
-						String.valueOf(availableConnections), " connections"));
+						toString(), " is waiting on ", availableConnections,
+						" connections"));
 			}
 
 			_poolingHttpClientConnectionManager.closeIdleConnections(

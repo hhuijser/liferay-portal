@@ -6846,9 +6846,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		if ((user != null) && (user.getUserId() != userId)) {
 			throw new DuplicateGoogleUserIdException(
 				StringBundler.concat(
-					"New user ", String.valueOf(userId),
-					" conflicts with existing user ", String.valueOf(userId),
-					" who is already associated with Google user ID ",
+					"New user ", userId, " conflicts with existing user ",
+					userId, " who is already associated with Google user ID ",
 					googleUserId));
 		}
 	}

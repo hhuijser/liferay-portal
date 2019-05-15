@@ -14,11 +14,11 @@
 
 package com.liferay.portal.dao.sql.transformer;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.internal.dao.sql.transformer.SQLFunctionTransformer;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.function.Function;
 import java.util.regex.Matcher;

@@ -14,10 +14,10 @@
 
 package com.liferay.taglib.ui;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.language.UnicodeLanguageUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.taglib.FileAvailabilityUtil;
 import com.liferay.taglib.util.TagResourceBundleUtil;
 

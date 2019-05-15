@@ -14,8 +14,8 @@
 
 package com.liferay.portal.jsonwebservice;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import junit.framework.TestCase;
 

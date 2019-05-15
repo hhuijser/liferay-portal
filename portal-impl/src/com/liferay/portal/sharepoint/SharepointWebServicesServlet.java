@@ -14,12 +14,12 @@
 
 package com.liferay.portal.sharepoint;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
 import com.liferay.portal.kernel.servlet.ServletResponseUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

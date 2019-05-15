@@ -14,6 +14,7 @@
 
 package com.liferay.portal.jsonwebservice;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.jsonwebservice.action.JSONWebServiceInvokerAction;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -23,7 +24,6 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.reflect.InvocationHandler;

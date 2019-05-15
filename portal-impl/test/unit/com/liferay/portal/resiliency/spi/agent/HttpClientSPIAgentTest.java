@@ -14,6 +14,7 @@
 
 package com.liferay.portal.resiliency.spi.agent;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.BigEndianCodec;
 import com.liferay.portal.kernel.io.Serializer;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
@@ -41,7 +42,6 @@ import com.liferay.portal.kernel.util.InetAddressUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SocketUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.impl.PortletImpl;
 import com.liferay.portal.util.PropsImpl;

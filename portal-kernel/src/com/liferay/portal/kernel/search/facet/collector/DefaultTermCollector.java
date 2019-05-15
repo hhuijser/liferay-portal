@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.search.facet.collector;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 /**
  * @author Michael C. Han

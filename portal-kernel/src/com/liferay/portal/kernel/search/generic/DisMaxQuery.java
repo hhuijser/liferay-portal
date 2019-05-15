@@ -14,10 +14,10 @@
 
 package com.liferay.portal.kernel.search.generic;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.search.BaseQueryImpl;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.Collections;
 import java.util.HashSet;

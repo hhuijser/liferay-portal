@@ -14,9 +14,9 @@
 
 package com.liferay.portal.dao.db;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.db.DB;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.IOException;
 

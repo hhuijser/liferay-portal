@@ -14,8 +14,8 @@
 
 package com.liferay.portal.kernel.servlet;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Juan González

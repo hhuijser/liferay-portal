@@ -15,7 +15,7 @@
 package com.liferay.portal.test.log;
 
 import com.liferay.petra.reflect.ReflectionUtil;
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.io.Closeable;
 

@@ -14,13 +14,13 @@
 
 package com.liferay.portlet;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
 import com.liferay.portal.kernel.template.Template;
 import com.liferay.portal.kernel.template.TemplateConstants;
 import com.liferay.portal.kernel.template.TemplateManagerUtil;
 import com.liferay.portal.kernel.template.TemplateResource;
 import com.liferay.portal.kernel.template.TemplateResourceLoaderUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.struts.StrutsUtil;
 

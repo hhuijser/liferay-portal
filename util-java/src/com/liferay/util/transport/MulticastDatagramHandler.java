@@ -14,9 +14,9 @@
 
 package com.liferay.util.transport;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.InputStream;
 

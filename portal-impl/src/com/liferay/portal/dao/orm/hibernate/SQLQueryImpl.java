@@ -14,6 +14,7 @@
 
 package com.liferay.portal.dao.orm.hibernate;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.dao.orm.CacheMode;
 import com.liferay.portal.kernel.dao.orm.LockMode;
 import com.liferay.portal.kernel.dao.orm.ORMException;
@@ -22,7 +23,6 @@ import com.liferay.portal.kernel.dao.orm.SQLQuery;
 import com.liferay.portal.kernel.dao.orm.ScrollableResults;
 import com.liferay.portal.kernel.dao.orm.Type;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.Serializable;
 

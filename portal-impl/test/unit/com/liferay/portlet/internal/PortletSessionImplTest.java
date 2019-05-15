@@ -15,6 +15,7 @@
 package com.liferay.portlet.internal;
 
 import com.liferay.petra.lang.ClassLoaderPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
@@ -28,7 +29,6 @@ import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ProxyUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.test.rule.AdviseWith;
 import com.liferay.portal.test.rule.AspectJNewEnvTestRule;
 import com.liferay.portal.util.PropsUtil;

@@ -14,8 +14,8 @@
 
 package com.liferay.portal.kernel.search.generic;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.search.QueryTerm;
-import com.liferay.portal.kernel.util.StringBundler;
 
 /**
  * @author Michael C. Han

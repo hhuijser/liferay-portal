@@ -14,7 +14,7 @@
 
 package com.liferay.portal.kernel.search;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.io.Serializable;
 

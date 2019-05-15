@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.search.generic;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.search.BaseBooleanQueryImpl;
 import com.liferay.portal.kernel.search.BooleanClause;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
@@ -22,7 +23,6 @@ import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.kernel.search.query.FieldQueryFactoryUtil;
 import com.liferay.portal.kernel.search.query.QueryVisitor;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.util.ArrayList;
 import java.util.Collection;

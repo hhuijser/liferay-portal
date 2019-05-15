@@ -146,7 +146,7 @@ public class NonSerializableObjectRequestWrapper
 					StringBundler.concat(
 						"Unable to set WebLogic class loader flag for ",
 						"attribute ", attributeName, " in servlet request ",
-						String.valueOf(servletRequest)));
+						servletRequest));
 			}
 		}
 	}

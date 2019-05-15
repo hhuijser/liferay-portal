@@ -75,8 +75,7 @@ public class YahooJavaScriptMinifier implements JavaScriptMinifier {
 			else {
 				_log.error(
 					StringBundler.concat(
-						String.valueOf(line), ": ", String.valueOf(lineOffset),
-						": ", message));
+						line, ": ", lineOffset, ": ", message));
 			}
 		}
 
@@ -105,8 +104,7 @@ public class YahooJavaScriptMinifier implements JavaScriptMinifier {
 			else {
 				_log.warn(
 					StringBundler.concat(
-						String.valueOf(line), ": ", String.valueOf(lineOffset),
-						": ", message));
+						line, ": ", lineOffset, ": ", message));
 			}
 		}
 

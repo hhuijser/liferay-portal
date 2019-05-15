@@ -35,9 +35,8 @@ public class RepositoryEntryChecker {
 		if (dlFileEntry.getRepositoryId() != repositoryId) {
 			throw new SystemException(
 				StringBundler.concat(
-					"File entry ", String.valueOf(dlFileEntry.getFileEntryId()),
-					" does not belong to repository ",
-					String.valueOf(repositoryId)));
+					"File entry ", dlFileEntry.getFileEntryId(),
+					" does not belong to repository ", repositoryId));
 		}
 
 		return dlFileEntry;
@@ -49,9 +48,8 @@ public class RepositoryEntryChecker {
 		if (fileEntry.getRepositoryId() != repositoryId) {
 			throw new SystemException(
 				StringBundler.concat(
-					"File entry ", String.valueOf(fileEntry.getFileEntryId()),
-					" does not belong to repository ",
-					String.valueOf(repositoryId)));
+					"File entry ", fileEntry.getFileEntryId(),
+					" does not belong to repository ", repositoryId));
 		}
 
 		return fileEntry;

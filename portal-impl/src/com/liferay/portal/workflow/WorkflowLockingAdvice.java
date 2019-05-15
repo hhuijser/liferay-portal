@@ -103,8 +103,7 @@ public class WorkflowLockingAdvice {
 					throw new WorkflowException(
 						StringBundler.concat(
 							"Workflow definition name ", workflowDefinitionName,
-							" and version ",
-							String.valueOf(workflowDefinitionVersion),
+							" and version ", workflowDefinitionVersion,
 							" is being undeployed"));
 				}
 
@@ -126,7 +125,7 @@ public class WorkflowLockingAdvice {
 				throw new WorkflowException(
 					StringBundler.concat(
 						"Workflow definition name ", name, " and version ",
-						String.valueOf(version), " is being undeployed"));
+						version, " is being undeployed"));
 			}
 
 			try {

@@ -36,8 +36,7 @@ public class PortalJsonParser extends JsonParser {
 
 				throw new JsonException(
 					StringBundler.concat(
-						"Not instantiating ", targetClassName, " at ",
-						String.valueOf(path)));
+						"Not instantiating ", targetClassName, " at ", path));
 			}
 		}
 

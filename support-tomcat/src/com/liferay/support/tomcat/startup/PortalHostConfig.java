@@ -74,9 +74,7 @@ public class PortalHostConfig extends HostConfig {
 			_log.debug("Sort " + files.length + " files");
 
 			for (int i = 0; i < files.length; i++) {
-				_log.debug(
-					StringBundler.concat(
-						"File ", String.valueOf(i), " ", files[i]));
+				_log.debug(StringBundler.concat("File ", i, " ", files[i]));
 			}
 		}
 

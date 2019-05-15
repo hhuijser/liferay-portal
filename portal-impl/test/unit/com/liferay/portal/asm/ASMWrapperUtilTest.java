@@ -283,30 +283,25 @@ public class ASMWrapperUtilTest {
 	private void _assertEquals(Method expectedMethod, Method actualMethod) {
 		Assert.assertEquals(
 			StringBundler.concat(
-				"Expected:", String.valueOf(expectedMethod), ", actual: ",
-				String.valueOf(actualMethod)),
+				"Expected:", expectedMethod, ", actual: ", actualMethod),
 			expectedMethod.getModifiers() - Modifier.ABSTRACT,
 			actualMethod.getModifiers());
 		Assert.assertSame(
 			StringBundler.concat(
-				"Expected:", String.valueOf(expectedMethod), ", actual: ",
-				String.valueOf(actualMethod)),
+				"Expected:", expectedMethod, ", actual: ", actualMethod),
 			expectedMethod.getReturnType(), actualMethod.getReturnType());
 		Assert.assertEquals(
 			StringBundler.concat(
-				"Expected:", String.valueOf(expectedMethod), ", actual: ",
-				String.valueOf(actualMethod)),
+				"Expected:", expectedMethod, ", actual: ", actualMethod),
 			expectedMethod.getName(), actualMethod.getName());
 		Assert.assertArrayEquals(
 			StringBundler.concat(
-				"Expected:", String.valueOf(expectedMethod), ", actual: ",
-				String.valueOf(actualMethod)),
+				"Expected:", expectedMethod, ", actual: ", actualMethod),
 			expectedMethod.getParameterTypes(),
 			actualMethod.getParameterTypes());
 		Assert.assertArrayEquals(
 			StringBundler.concat(
-				"Expected:", String.valueOf(expectedMethod), ", actual: ",
-				String.valueOf(actualMethod)),
+				"Expected:", expectedMethod, ", actual: ", actualMethod),
 			expectedMethod.getExceptionTypes(),
 			actualMethod.getExceptionTypes());
 	}

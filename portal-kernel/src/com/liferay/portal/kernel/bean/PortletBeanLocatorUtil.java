@@ -55,8 +55,7 @@ public class PortletBeanLocatorUtil {
 			if (beanLocator != null) {
 				_log.debug(
 					StringBundler.concat(
-						"Setting BeanLocator ",
-						String.valueOf(beanLocator.hashCode()),
+						"Setting BeanLocator ", beanLocator.hashCode(),
 						" for servlet context ", servletContextName));
 			}
 			else {

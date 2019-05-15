@@ -161,7 +161,7 @@ public abstract class BaseFilter implements LiferayFilter {
 		log.debug(
 			StringBundler.concat(
 				"[", threadName, "]", depther, "< ", logName, " ", path, " ",
-				String.valueOf(endTime - startTime), " ms"));
+				endTime - startTime, " ms"));
 
 		if (depther.length() > 0) {
 			depther = depther.substring(1);

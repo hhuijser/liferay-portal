@@ -415,9 +415,8 @@ public class Field implements Serializable {
 		else {
 			setValue(
 				StringBundler.concat(
-					"lat: ", String.valueOf(geoLocationPoint.getLatitude()),
-					", lon: ",
-					String.valueOf(geoLocationPoint.getLongitude())));
+					"lat: ", geoLocationPoint.getLatitude(), ", lon: ",
+					geoLocationPoint.getLongitude()));
 		}
 	}
 

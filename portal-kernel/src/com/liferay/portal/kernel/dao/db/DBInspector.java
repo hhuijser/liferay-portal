@@ -211,8 +211,8 @@ public class DBInspector {
 
 		throw new UpgradeException(
 			StringBundler.concat(
-				"Table class ", String.valueOf(tableClass),
-				" does not have column ", columnName));
+				"Table class ", tableClass, " does not have column ",
+				columnName));
 	}
 
 	private int _getColumnSize(String columnType) throws UpgradeException {

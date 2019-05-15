@@ -36,10 +36,8 @@ public class MultiDataCenterCounterFinderImpl extends CounterFinderImpl {
 		if (getBits(dataCenterDeploymentId) > _multiDataCenterBits) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Invalid data center count ",
-					String.valueOf(dataCenterCount),
-					" or data center deployment ID ",
-					String.valueOf(dataCenterDeploymentId)));
+					"Invalid data center count ", dataCenterCount,
+					" or data center deployment ID ", dataCenterDeploymentId));
 		}
 
 		int bits = _BYTE_SHIFTS_MAX - _multiDataCenterBits;

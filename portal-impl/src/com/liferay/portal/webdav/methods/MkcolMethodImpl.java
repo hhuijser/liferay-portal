@@ -54,7 +54,7 @@ public class MkcolMethodImpl implements Method {
 					StringBundler.concat(
 						PortalUtil.getPortalURL(httpServletRequest),
 						webDAVRequest.getRootPath(), StringPool.SLASH,
-						String.valueOf(status.getObject())));
+						status.getObject()));
 			}
 
 			return status.getCode();

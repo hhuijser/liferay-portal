@@ -109,9 +109,8 @@ public class LayoutTemplateHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(layoutTemplates.size()),
-						" layout templates for ", servletContextName,
-						" are available for use"));
+						layoutTemplates.size(), " layout templates for ",
+						servletContextName, " are available for use"));
 			}
 		}
 	}
@@ -159,9 +158,8 @@ public class LayoutTemplateHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(layoutTemplates.size()),
-						" layout templates for ", servletContextName,
-						" were unregistered"));
+						layoutTemplates.size(), " layout templates for ",
+						servletContextName, " were unregistered"));
 			}
 		}
 	}

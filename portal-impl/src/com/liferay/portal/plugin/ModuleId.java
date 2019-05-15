@@ -71,14 +71,14 @@ public class ModuleId implements Serializable {
 	public String getArtifactPath() {
 		return StringBundler.concat(
 			StringPool.SLASH, _groupId, StringPool.SLASH, _artifactId,
-			StringPool.SLASH, String.valueOf(_pluginVersion), StringPool.SLASH,
+			StringPool.SLASH, _pluginVersion, StringPool.SLASH,
 			getArtifactWARName());
 	}
 
 	public String getArtifactWARName() {
 		return StringBundler.concat(
-			_artifactId, StringPool.DASH, String.valueOf(_pluginVersion),
-			StringPool.PERIOD, _type);
+			_artifactId, StringPool.DASH, _pluginVersion, StringPool.PERIOD,
+			_type);
 	}
 
 	public String getGroupId() {

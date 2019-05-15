@@ -44,8 +44,7 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Contains key ", servletContextName, " ",
-					String.valueOf(value)));
+					"Contains key ", servletContextName, " ", value));
 		}
 
 		return value;
@@ -58,8 +57,7 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Get ", servletContextName, " ",
-					String.valueOf(servletContext)));
+					"Get ", servletContextName, " ", servletContext));
 		}
 
 		return servletContext;
@@ -75,8 +73,7 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Put ", servletContextName, " ",
-					String.valueOf(servletContext)));
+					"Put ", servletContextName, " ", servletContext));
 		}
 
 		_servletContexts.put(servletContextName, servletContext);
@@ -98,8 +95,7 @@ public class ServletContextPool {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Remove ", servletContextName, " ",
-					String.valueOf(servletContext)));
+					"Remove ", servletContextName, " ", servletContext));
 		}
 
 		return servletContext;

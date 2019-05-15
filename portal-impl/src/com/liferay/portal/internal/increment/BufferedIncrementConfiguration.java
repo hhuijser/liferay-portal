@@ -49,8 +49,7 @@ public class BufferedIncrementConfiguration {
 				_log.warn(
 					StringBundler.concat(
 						PropsKeys.BUFFERED_INCREMENT_THREADPOOL_KEEP_ALIVE_TIME,
-						"[", configuration, "]=",
-						String.valueOf(threadpoolKeepAliveTime),
+						"[", configuration, "]=", threadpoolKeepAliveTime,
 						". Auto reset to 0."));
 			}
 
@@ -68,7 +67,7 @@ public class BufferedIncrementConfiguration {
 				_log.warn(
 					StringBundler.concat(
 						PropsKeys.BUFFERED_INCREMENT_THREADPOOL_MAX_SIZE, "[",
-						configuration, "]=", String.valueOf(threadpoolMaxSize),
+						configuration, "]=", threadpoolMaxSize,
 						". Auto reset to 1."));
 			}
 

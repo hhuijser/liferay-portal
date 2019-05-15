@@ -347,7 +347,7 @@ public class PortalInstances {
 				_log.debug(
 					StringBundler.concat(
 						"End initializing company with web id ", webId,
-						" and company id ", String.valueOf(companyId)));
+						" and company id ", companyId));
 			}
 
 			addCompanyId(companyId);
@@ -451,10 +451,9 @@ public class PortalInstances {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Company ",
-							String.valueOf(virtualHost.getCompanyId()),
+							"Company ", virtualHost.getCompanyId(),
 							" is associated with layout set ",
-							String.valueOf(virtualHost.getLayoutSetId())));
+							virtualHost.getLayoutSetId()));
 				}
 
 				httpServletRequest.setAttribute(

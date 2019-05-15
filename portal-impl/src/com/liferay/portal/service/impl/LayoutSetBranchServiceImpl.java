@@ -75,9 +75,8 @@ public class LayoutSetBranchServiceImpl extends LayoutSetBranchServiceBaseImpl {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Unable to get layout set branches for group ",
-						String.valueOf(groupId), " with ",
-						String.valueOf(privateLayout ? "private" : "public"),
+						"Unable to get layout set branches for group ", groupId,
+						" with ", privateLayout ? "private" : "public",
 						" layouts"),
 					pe);
 			}

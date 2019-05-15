@@ -123,8 +123,7 @@ public abstract class BaseTemplateResourceLoader
 					_log.warn(
 						StringBundler.concat(
 							"Unable to parse template ", templateId,
-							" with parser ",
-							String.valueOf(templateResourceParser)),
+							" with parser ", templateResourceParser),
 						te);
 				}
 			}

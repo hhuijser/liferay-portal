@@ -343,7 +343,7 @@ public class LicenseUtil {
 					_log.info(
 						StringBundler.concat(
 							"Using proxy ", _PROXY_URL, StringPool.COLON,
-							String.valueOf(_PROXY_PORT)));
+							_PROXY_PORT));
 				}
 
 				proxyHttpHost = new HttpHost(_PROXY_URL, _PROXY_PORT);

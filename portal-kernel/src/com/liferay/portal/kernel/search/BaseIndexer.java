@@ -514,8 +514,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Unable to index ", className, " ",
-						String.valueOf(classPK)),
+						"Unable to index ", className, " ", classPK),
 					nsme);
 			}
 		}

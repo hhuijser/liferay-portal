@@ -254,8 +254,7 @@ public class PortalResiliencyPortletContainerWrapper
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Portlet ", String.valueOf(portlet),
-						" is registered to SPI ", String.valueOf(spi)));
+						"Portlet ", portlet, " is registered to SPI ", spi));
 			}
 
 			return spi.getSPIAgent();

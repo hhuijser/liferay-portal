@@ -184,8 +184,7 @@ public class TableMapperTest {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Unique key violation for left primary key ",
-					String.valueOf(leftPrimaryKey), " and right primary key ",
-					String.valueOf(rightPrimaryKey)),
+					leftPrimaryKey, " and right primary key ", rightPrimaryKey),
 				cause.getMessage());
 		}
 
@@ -255,8 +254,7 @@ public class TableMapperTest {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Unique key violation for left primary key ",
-					String.valueOf(leftPrimaryKey), " and right primary key ",
-					String.valueOf(rightPrimaryKey)),
+					leftPrimaryKey, " and right primary key ", rightPrimaryKey),
 				cause.getMessage());
 		}
 
@@ -1958,9 +1956,8 @@ public class TableMapperTest {
 				throw new RuntimeException(
 					StringBundler.concat(
 						"Unique key violation for left primary key ",
-						String.valueOf(leftPrimaryKey),
-						" and right primary key ",
-						String.valueOf(rightPrimaryKey)));
+						leftPrimaryKey, " and right primary key ",
+						rightPrimaryKey));
 			}
 			else {
 				rightPrimaryKeys = ArrayUtil.append(

@@ -529,7 +529,7 @@ public abstract class LiferayConverter {
 			_log.info(
 				StringBundler.concat(
 					"Default ", prettyPropertyName, " for ", container,
-					" configured to ", String.valueOf(property)));
+					" configured to ", property));
 		}
 
 		return property;
@@ -681,8 +681,8 @@ public abstract class LiferayConverter {
 		if (iCodec == null) {
 			throw new RuntimeException(
 				StringBundler.concat(
-					"Unable to determine ", String.valueOf(inputICodecType),
-					" encoder for ", outputURL));
+					"Unable to determine ", inputICodecType, " encoder for ",
+					outputURL));
 		}
 
 		IStream outputIStream = outputIContainer.addNewStream(iCodec);

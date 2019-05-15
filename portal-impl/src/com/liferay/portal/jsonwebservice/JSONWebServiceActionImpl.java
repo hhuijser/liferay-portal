@@ -461,7 +461,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 							StringBundler.concat(
 								"Unmatched argument type ",
 								parameterType.getName(),
-								" for method argument ", String.valueOf(i)));
+								" for method argument ", i));
 					}
 				}
 

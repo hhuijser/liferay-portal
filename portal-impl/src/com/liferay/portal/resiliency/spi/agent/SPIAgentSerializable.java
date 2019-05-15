@@ -78,17 +78,15 @@ public class SPIAgentSerializable implements Serializable {
 					_log.warn(
 						StringBundler.concat(
 							"Nonserializable distributed request attribute ",
-							"name ", name, " with value ",
-							String.valueOf(value)));
+							"name ", name, " with value ", value));
 				}
 			}
 			else if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
 						"Nondistributed request attribute name ", name,
-						" with direction ", String.valueOf(direction),
-						" and value ",
-						String.valueOf(httpServletRequest.getAttribute(name))));
+						" with direction ", direction, " and value ",
+						httpServletRequest.getAttribute(name)));
 			}
 		}
 
@@ -178,7 +176,7 @@ public class SPIAgentSerializable implements Serializable {
 				_log.warn(
 					StringBundler.concat(
 						"Nonserializable session attribute name ", name,
-						" with value ", String.valueOf(value)));
+						" with value ", value));
 			}
 		}
 
@@ -206,7 +204,7 @@ public class SPIAgentSerializable implements Serializable {
 					_log.warn(
 						StringBundler.concat(
 							"Nonserializable session attribute name ", name,
-							" with value ", String.valueOf(value)));
+							" with value ", value));
 				}
 			}
 

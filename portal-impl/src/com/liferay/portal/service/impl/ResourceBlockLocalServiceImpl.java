@@ -500,8 +500,7 @@ public class ResourceBlockLocalServiceImpl
 					_log.warn(
 						StringBundler.concat(
 							"Unable to decrement reference count for resource ",
-							"block ", String.valueOf(resourceBlockId),
-							". Retrying."));
+							"block ", resourceBlockId, ". Retrying."));
 				}
 			}
 		}
@@ -966,8 +965,7 @@ public class ResourceBlockLocalServiceImpl
 					_log.warn(
 						StringBundler.concat(
 							"Unable to increment reference count for resource ",
-							"block ",
-							String.valueOf(resourceBlock.getResourceBlockId()),
+							"block ", resourceBlock.getResourceBlockId(),
 							". Retrying"));
 				}
 			}
@@ -1020,9 +1018,8 @@ public class ResourceBlockLocalServiceImpl
 		if (_log.isWarnEnabled()) {
 			_log.warn(
 				StringBundler.concat(
-					"Resource block ",
-					String.valueOf(permissionedModel.getResourceBlockId()),
-					" missing for ", name, "#", String.valueOf(primKey)));
+					"Resource block ", permissionedModel.getResourceBlockId(),
+					" missing for ", name, "#", primKey));
 		}
 
 		long groupId = 0;

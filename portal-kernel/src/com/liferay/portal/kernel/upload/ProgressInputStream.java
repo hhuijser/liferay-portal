@@ -145,8 +145,7 @@ public class ProgressInputStream extends InputStream {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					String.valueOf(_totalRead), "/", String.valueOf(_totalSize),
-					"=", String.valueOf(percent)));
+					_totalRead, "/", _totalSize, "=", percent));
 		}
 
 		ProgressTracker progressTracker =

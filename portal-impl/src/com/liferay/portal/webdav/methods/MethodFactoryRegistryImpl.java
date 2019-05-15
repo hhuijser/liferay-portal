@@ -59,9 +59,8 @@ public class MethodFactoryRegistryImpl implements MethodFactoryRegistry {
 		if (_log.isWarnEnabled() && (previousMethodFactory != null)) {
 			_log.warn(
 				StringBundler.concat(
-					"Replacing ", String.valueOf(previousMethodFactory),
-					" for class name ", clazz.getName(), " with ",
-					String.valueOf(methodFactory)));
+					"Replacing ", previousMethodFactory, " for class name ",
+					clazz.getName(), " with ", methodFactory));
 		}
 	}
 

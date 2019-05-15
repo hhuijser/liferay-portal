@@ -112,8 +112,8 @@ public class ThemeHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(themes.size()), " themes for ",
-						servletContextName, " are available for use"));
+						themes.size(), " themes for ", servletContextName,
+						" are available for use"));
 			}
 		}
 	}
@@ -174,8 +174,8 @@ public class ThemeHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(themes.size()), " themes for ",
-						servletContextName, " were unregistered"));
+						themes.size(), " themes for ", servletContextName,
+						" were unregistered"));
 			}
 		}
 	}

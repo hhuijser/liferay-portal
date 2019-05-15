@@ -44,8 +44,8 @@ public class ProxyMessageListener implements MessageListener {
 			else if (!(payload instanceof ProxyRequest)) {
 				throw new Exception(
 					StringBundler.concat(
-						"Payload ", String.valueOf(payload.getClass()),
-						" is not of type ", ProxyRequest.class.getName()));
+						"Payload ", payload.getClass(), " is not of type ",
+						ProxyRequest.class.getName()));
 			}
 			else {
 				ProxyRequest proxyRequest = (ProxyRequest)payload;

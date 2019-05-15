@@ -223,10 +223,9 @@ public class AssetRendererFactoryRegistryUtil {
 
 				_log.warn(
 					StringBundler.concat(
-						"Replacing ",
-						String.valueOf(classNameAssetRendererFactory),
+						"Replacing ", classNameAssetRendererFactory,
 						" for class name ", className, " with ",
-						String.valueOf(assetRendererFactory)));
+						assetRendererFactory));
 			}
 
 			String type = assetRendererFactory.getType();
@@ -238,9 +237,8 @@ public class AssetRendererFactoryRegistryUtil {
 			if (_log.isWarnEnabled() && (typeAssetRendererFactory != null)) {
 				_log.warn(
 					StringBundler.concat(
-						"Replacing ", String.valueOf(typeAssetRendererFactory),
-						" for type ", type, " with ",
-						String.valueOf(assetRendererFactory)));
+						"Replacing ", typeAssetRendererFactory, " for type ",
+						type, " with ", assetRendererFactory));
 			}
 
 			return assetRendererFactory;

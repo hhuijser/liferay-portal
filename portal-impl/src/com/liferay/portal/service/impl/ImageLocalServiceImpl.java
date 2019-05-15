@@ -105,8 +105,8 @@ public class ImageLocalServiceImpl extends ImageLocalServiceBaseImpl {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Unable to get image ", String.valueOf(imageId),
-							": ", e.getMessage()));
+							"Unable to get image ", imageId, ": ",
+							e.getMessage()));
 				}
 			}
 		}

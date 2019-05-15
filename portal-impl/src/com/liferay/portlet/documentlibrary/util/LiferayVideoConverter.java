@@ -332,9 +332,8 @@ public class LiferayVideoConverter extends LiferayConverter {
 				_log.info(
 					StringBundler.concat(
 						"Default frame rate for ", _videoContainer,
-						" configured to ",
-						String.valueOf(_videoFrameRate.getNumerator()), "/",
-						String.valueOf(_videoFrameRate.getDenominator())));
+						" configured to ", _videoFrameRate.getNumerator(), "/",
+						_videoFrameRate.getDenominator()));
 			}
 		}
 	}
@@ -353,8 +352,8 @@ public class LiferayVideoConverter extends LiferayConverter {
 		if (iCodec == null) {
 			throw new RuntimeException(
 				StringBundler.concat(
-					"Unable to determine ", String.valueOf(inputICodecType),
-					" encoder for ", outputURL));
+					"Unable to determine ", inputICodecType, " encoder for ",
+					outputURL));
 		}
 
 		IStream outputIStream = outputIContainer.addNewStream(iCodec);
@@ -384,9 +383,8 @@ public class LiferayVideoConverter extends LiferayConverter {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Original frame rate ",
-					String.valueOf(iRational.getNumerator()), "/",
-					String.valueOf(iRational.getDenominator())));
+					"Original frame rate ", iRational.getNumerator(), "/",
+					iRational.getDenominator()));
 		}
 
 		iRational = getVideoFrameRate(iRational);
@@ -394,9 +392,8 @@ public class LiferayVideoConverter extends LiferayConverter {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Modified frame rate ",
-					String.valueOf(iRational.getNumerator()), "/",
-					String.valueOf(iRational.getDenominator())));
+					"Modified frame rate ", iRational.getNumerator(), "/",
+					iRational.getDenominator()));
 		}
 
 		outputIStreamCoder.setFrameRate(iRational);

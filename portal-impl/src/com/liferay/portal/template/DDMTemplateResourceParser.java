@@ -83,9 +83,8 @@ public class DDMTemplateResourceParser implements TemplateResourceParser {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
-						"Loading {companyId=", String.valueOf(companyId),
-						", groupId=", String.valueOf(groupId), ", classNameId=",
-						String.valueOf(classNameId), ", ddmTemplateKey=",
+						"Loading {companyId=", companyId, ", groupId=", groupId,
+						", classNameId=", classNameId, ", ddmTemplateKey=",
 						ddmTemplateKey, "}"));
 			}
 

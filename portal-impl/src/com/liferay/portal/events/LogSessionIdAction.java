@@ -39,7 +39,7 @@ public class LogSessionIdAction extends Action {
 			_log.debug(
 				StringBundler.concat(
 					"Session id ", session.getId(), " is ",
-					String.valueOf(!session.isNew() ? "not " : ""), "new"));
+					!session.isNew() ? "not " : "", "new"));
 		}
 	}
 

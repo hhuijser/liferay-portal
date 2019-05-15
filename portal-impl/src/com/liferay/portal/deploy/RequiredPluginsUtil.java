@@ -126,9 +126,8 @@ public class RequiredPluginsUtil {
 
 				InputStream inputStream = classLoader.getResourceAsStream(
 					StringBundler.concat(
-						"com/liferay/portal/deploy/dependencies/plugins",
-						String.valueOf(i + 1), "/",
-						levelRequiredDeploymentWARFileNames[j]));
+						"com/liferay/portal/deploy/dependencies/plugins", i + 1,
+						"/", levelRequiredDeploymentWARFileNames[j]));
 
 				try {
 					StreamUtil.transfer(

@@ -111,8 +111,8 @@ public class DoPrivilegedFactory
 
 			_log.debug(
 				StringBundler.concat(
-					"Wrapping calls to bean ", beanName, " of type ",
-					String.valueOf(clazz), " with access controller checking"));
+					"Wrapping calls to bean ", beanName, " of type ", clazz,
+					" with access controller checking"));
 		}
 
 		return wrap(bean);

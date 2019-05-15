@@ -81,8 +81,7 @@ public abstract class VerifyProcess extends BaseDBProcess {
 					StringBundler.concat(
 						"Completed verification process ",
 						ClassUtil.getClassName(this), " in ",
-						String.valueOf(System.currentTimeMillis() - start),
-						" ms"));
+						System.currentTimeMillis() - start, " ms"));
 			}
 		}
 	}

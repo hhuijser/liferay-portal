@@ -180,9 +180,8 @@ public class RestrictedByteArrayCacheOutputStreamTest {
 		catch (IllegalArgumentException iae) {
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Initial cache size ", String.valueOf(cacheCapacity),
-					" is larger than cache capacity ",
-					String.valueOf(cacheCapacity / 2)),
+					"Initial cache size ", cacheCapacity,
+					" is larger than cache capacity ", cacheCapacity / 2),
 				iae.getMessage());
 		}
 	}

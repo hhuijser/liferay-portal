@@ -52,9 +52,8 @@ public class ClusterBridgeMessageListener extends BaseMessageListener {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					StringBundler.concat(
-						"Bridging cluster link unicast message ",
-						String.valueOf(message), " to ",
-						String.valueOf(address)));
+						"Bridging cluster link unicast message ", message,
+						" to ", address));
 			}
 
 			ClusterLinkUtil.sendUnicastMessage(address, message, _priority);

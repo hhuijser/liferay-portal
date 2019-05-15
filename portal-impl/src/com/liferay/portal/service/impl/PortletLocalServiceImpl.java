@@ -538,8 +538,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					StringBundler.concat(
-						"Portlet not found for ", String.valueOf(companyId),
-						" ", portletId));
+						"Portlet not found for ", companyId, " ", portletId));
 			}
 
 			portlet = new PortletImpl(CompanyConstants.SYSTEM, portletId);
@@ -1194,8 +1193,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 							StringBundler.concat(
 								"Portlet ", portlet.getPortletName(),
 								" requires role with company ID ",
-								String.valueOf(portlet.getCompanyId()),
-								" and name ", roleName,
+								portlet.getCompanyId(), " and name ", roleName,
 								". Create the role and redeploy the portlet."));
 					}
 
@@ -2018,8 +2016,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			throw new PortletIdException(
 				StringBundler.concat(
 					"Portlet ID ", portletId, " has more than ",
-					String.valueOf(
-						PortletIdCodec.PORTLET_INSTANCE_KEY_MAX_LENGTH),
+					PortletIdCodec.PORTLET_INSTANCE_KEY_MAX_LENGTH,
 					" characters"));
 		}
 

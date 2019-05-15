@@ -134,8 +134,7 @@ public class WorkflowHandlerRegistryUtil {
 				_log.warn(
 					StringBundler.concat(
 						"Workflow already started for class ", className,
-						" with primary key ", String.valueOf(classPK),
-						" in group ", String.valueOf(groupId)));
+						" with primary key ", classPK, " in group ", groupId));
 			}
 
 			return model;

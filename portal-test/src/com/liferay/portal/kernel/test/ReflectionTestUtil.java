@@ -92,9 +92,8 @@ public class ReflectionTestUtil {
 		return ReflectionUtil.throwException(
 			new NoSuchMethodException(
 				StringBundler.concat(
-					"No bridge method on ", String.valueOf(clazz),
-					" with name ", methodName, " and parameter types ",
-					Arrays.toString(parameterTypes))));
+					"No bridge method on ", clazz, " with name ", methodName,
+					" and parameter types ", Arrays.toString(parameterTypes))));
 	}
 
 	public static Field getField(Class<?> clazz, String fieldName) {
@@ -134,8 +133,7 @@ public class ReflectionTestUtil {
 		return ReflectionUtil.throwException(
 			new NoSuchFieldException(
 				StringBundler.concat(
-					"No field on ", String.valueOf(clazz), " with name ",
-					fieldName)));
+					"No field on ", clazz, " with name ", fieldName)));
 	}
 
 	public static <T> T getFieldValue(Class<?> clazz, String fieldName) {
@@ -190,9 +188,8 @@ public class ReflectionTestUtil {
 		return ReflectionUtil.throwException(
 			new NoSuchMethodException(
 				StringBundler.concat(
-					"No method on ", String.valueOf(clazz), " with name ",
-					methodName, " and parameter types ",
-					Arrays.toString(parameterTypes))));
+					"No method on ", clazz, " with name ", methodName,
+					" and parameter types ", Arrays.toString(parameterTypes))));
 	}
 
 	public static <T> T invoke(

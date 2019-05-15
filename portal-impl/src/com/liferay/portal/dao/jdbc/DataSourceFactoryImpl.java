@@ -679,11 +679,9 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"At attempt ", String.valueOf(maxRetries - count),
-						" of ", String.valueOf(maxRetries),
-						" in acquiring a JDBC connection after a ",
-						String.valueOf(delay), " second ",
-						String.valueOf(delay)));
+						"At attempt ", maxRetries - count, " of ", maxRetries,
+						" in acquiring a JDBC connection after a ", delay,
+						" second ", delay));
 			}
 
 			try {

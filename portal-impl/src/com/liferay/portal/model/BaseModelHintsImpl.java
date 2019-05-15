@@ -82,8 +82,7 @@ public abstract class BaseModelHintsImpl implements ModelHints {
 						if (_log.isDebugEnabled()) {
 							_log.debug(
 								StringBundler.concat(
-									"Loading ", name, " from ",
-									String.valueOf(url)));
+									"Loading ", name, " from ", url));
 						}
 
 						InputStream inputStream = url.openStream();

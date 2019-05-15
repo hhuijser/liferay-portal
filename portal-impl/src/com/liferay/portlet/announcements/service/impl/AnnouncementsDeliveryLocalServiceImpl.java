@@ -58,8 +58,8 @@ public class AnnouncementsDeliveryLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Add failed, fetch {userId=", String.valueOf(userId),
-						", type=", type, "}"));
+						"Add failed, fetch {userId=", userId, ", type=", type,
+						"}"));
 			}
 
 			delivery = announcementsDeliveryPersistence.fetchByU_T(

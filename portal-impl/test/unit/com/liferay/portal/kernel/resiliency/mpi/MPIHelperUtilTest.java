@@ -361,9 +361,8 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Not registering SPI provider ",
-					String.valueOf(mockSPIProvider3), " because it duplicates ",
-					String.valueOf(mockSPIProvider1)),
+					"Not registering SPI provider ", mockSPIProvider3,
+					" because it duplicates ", mockSPIProvider1),
 				logRecord1.getMessage());
 
 			// Register SPI provider, duplicate name, without log
@@ -594,9 +593,8 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Unable to unregister SPI ", String.valueOf(mockSPI1),
-					" while unregistering SPI provider ",
-					String.valueOf(mockSPIProvider1)),
+					"Unable to unregister SPI ", mockSPI1,
+					" while unregistering SPI provider ", mockSPIProvider1),
 				logRecord1.getMessage());
 
 			Throwable throwable = logRecord1.getThrown();
@@ -698,9 +696,8 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Unregistered SPI ", String.valueOf(mockSPI1),
-					" while unregistering SPI provider ",
-					String.valueOf(mockSPIProvider1)),
+					"Unregistered SPI ", mockSPI1,
+					" while unregistering SPI provider ", mockSPIProvider1),
 				logRecord1.getMessage());
 
 			LogRecord logRecord2 = logRecords.get(1);
@@ -743,9 +740,8 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Not registering SPI ", String.valueOf(mockSPI1),
-					" with foreign MPI ", String.valueOf(mockSPI1.mpi),
-					" versus ", String.valueOf(MPIHelperUtil.getMPI())),
+					"Not registering SPI ", mockSPI1, " with foreign MPI ",
+					mockSPI1.mpi, " versus ", MPIHelperUtil.getMPI()),
 				logRecord.getMessage());
 
 			// Mismatch MPI, without log
@@ -787,7 +783,7 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Not registering SPI ", String.valueOf(mockSPI1),
+					"Not registering SPI ", mockSPI1,
 					" with unknown SPI provider ", mockSPI1.spiProviderName),
 				logRecord.getMessage());
 
@@ -879,8 +875,8 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Not registering SPI ", String.valueOf(mockSPI1),
-					" because it duplicates ", String.valueOf(mockSPI1)),
+					"Not registering SPI ", mockSPI1, " because it duplicates ",
+					mockSPI1),
 				logRecord.getMessage());
 
 			// Duplicate register, without log
@@ -1006,9 +1002,8 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Not unregistering SPI ", String.valueOf(mockSPI1),
-					" with foreign MPI ", String.valueOf(mockSPI1.mpi),
-					" versus ", String.valueOf(MPIHelperUtil.getMPI())),
+					"Not unregistering SPI ", mockSPI1, " with foreign MPI ",
+					mockSPI1.mpi, " versus ", MPIHelperUtil.getMPI()),
 				logRecord.getMessage());
 
 			// Unregister MPI mismatch, without log
@@ -1035,7 +1030,7 @@ public class MPIHelperUtilTest {
 
 			Assert.assertEquals(
 				StringBundler.concat(
-					"Not unregistering SPI ", String.valueOf(mockSPI1),
+					"Not unregistering SPI ", mockSPI1,
 					" with unknown SPI provider ", mockSPI1.spiProviderName),
 				logRecord.getMessage());
 

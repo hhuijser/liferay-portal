@@ -127,9 +127,8 @@ public abstract class BaseCompanySettingsVerifyProcess extends VerifyProcess {
 				if (_log.isInfoEnabled()) {
 					_log.info(
 						StringBundler.concat(
-							"Removing preference keys ", String.valueOf(keys),
-							" for company ",
-							String.valueOf(company.getCompanyId())));
+							"Removing preference keys ", keys, " for company ",
+							company.getCompanyId()));
 				}
 
 				companyLocalService.removePreferences(

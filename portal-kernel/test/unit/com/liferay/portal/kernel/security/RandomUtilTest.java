@@ -95,8 +95,7 @@ public class RandomUtilTest {
 			if (value >= n) {
 				throw new IllegalArgumentException(
 					StringBundler.concat(
-						"Value ", String.valueOf(value), " is larger than ",
-						String.valueOf(n)));
+						"Value ", value, " is larger than ", n));
 			}
 
 			return value;

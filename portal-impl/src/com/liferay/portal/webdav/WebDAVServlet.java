@@ -161,8 +161,7 @@ public class WebDAVServlet extends HttpServlet {
 				_log.info(
 					StringBundler.concat(
 						xLitmus, httpServletRequest.getMethod(), " ",
-						httpServletRequest.getRequestURI(), " ",
-						String.valueOf(status)));
+						httpServletRequest.getRequestURI(), " ", status));
 			}
 		}
 	}

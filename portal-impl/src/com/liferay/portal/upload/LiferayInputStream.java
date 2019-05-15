@@ -136,9 +136,7 @@ public class LiferayInputStream extends ServletInputStreamAdapter {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug(
-				StringBundler.concat(
-					String.valueOf(bytesRead), "/", String.valueOf(_totalRead),
-					"=", String.valueOf(percent)));
+				StringBundler.concat(bytesRead, "/", _totalRead, "=", percent));
 		}
 
 		if (_totalSize > 0) {

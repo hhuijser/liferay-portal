@@ -159,9 +159,8 @@ public class MPIHelperUtil {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Not registering SPI ", String.valueOf(spi),
-							" with foreign MPI ", String.valueOf(mpi),
-							" versus ", String.valueOf(_mpi)));
+							"Not registering SPI ", spi, " with foreign MPI ",
+							mpi, " versus ", _mpi));
 				}
 
 				return false;
@@ -176,7 +175,7 @@ public class MPIHelperUtil {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Not registering SPI ", String.valueOf(spi),
+							"Not registering SPI ", spi,
 							" with unknown SPI provider ", spiProviderName));
 				}
 
@@ -192,9 +191,8 @@ public class MPIHelperUtil {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Not registering SPI ", String.valueOf(spi),
-							" because it duplicates ",
-							String.valueOf(previousSPI)));
+							"Not registering SPI ", spi,
+							" because it duplicates ", previousSPI));
 				}
 
 				return false;
@@ -240,10 +238,9 @@ public class MPIHelperUtil {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Not registering SPI provider ",
-						String.valueOf(spiProvider), " because it duplicates ",
-						String.valueOf(
-							previousSPIProviderContainer.getSPIProvider())));
+						"Not registering SPI provider ", spiProvider,
+						" because it duplicates ",
+						previousSPIProviderContainer.getSPIProvider()));
 			}
 
 			return false;
@@ -290,9 +287,8 @@ public class MPIHelperUtil {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Not unregistering SPI ", String.valueOf(spi),
-							" with foreign MPI ", String.valueOf(mpi),
-							" versus ", String.valueOf(_mpi)));
+							"Not unregistering SPI ", spi, " with foreign MPI ",
+							mpi, " versus ", _mpi));
 				}
 
 				return false;
@@ -307,7 +303,7 @@ public class MPIHelperUtil {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						StringBundler.concat(
-							"Not unregistering SPI ", String.valueOf(spi),
+							"Not unregistering SPI ", spi,
 							" with unknown SPI provider ", spiProviderName));
 				}
 
@@ -365,17 +361,16 @@ public class MPIHelperUtil {
 					if (_log.isInfoEnabled()) {
 						_log.info(
 							StringBundler.concat(
-								"Unregistered SPI ", String.valueOf(spi),
+								"Unregistered SPI ", spi,
 								" while unregistering SPI provider ",
-								String.valueOf(spiProvider)));
+								spiProvider));
 					}
 				}
 				catch (RemoteException re) {
 					_log.error(
 						StringBundler.concat(
-							"Unable to unregister SPI ", String.valueOf(spi),
-							" while unregistering SPI provider ",
-							String.valueOf(spiProvider)),
+							"Unable to unregister SPI ", spi,
+							" while unregistering SPI provider ", spiProvider),
 						re);
 				}
 				finally {

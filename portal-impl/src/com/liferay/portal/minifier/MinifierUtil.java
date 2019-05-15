@@ -85,9 +85,8 @@ public class MinifierUtil {
 
 				_log.debug(
 					StringBundler.concat(
-						"Minification for ", String.valueOf(length),
-						" bytes of CSS took ",
-						String.valueOf(stopWatch.getTime()), " ms"));
+						"Minification for ", length, " bytes of CSS took ",
+						stopWatch.getTime(), " ms"));
 			}
 		}
 	}
@@ -121,9 +120,9 @@ public class MinifierUtil {
 
 				_log.debug(
 					StringBundler.concat(
-						"Minification for ", String.valueOf(length),
+						"Minification for ", length,
 						" bytes of JavaScript in resource ", resourceName,
-						" took ", String.valueOf(stopWatch.getTime()), " ms"));
+						" took ", stopWatch.getTime(), " ms"));
 			}
 		}
 	}

@@ -80,10 +80,7 @@ public class JarUtil {
 		Path path = Paths.get(libPath, name);
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				StringBundler.concat(
-					"Downloading ", String.valueOf(url), " to ",
-					String.valueOf(path)));
+			_log.info(StringBundler.concat("Downloading ", url, " to ", path));
 		}
 
 		try (InputStream inputStream = url.openStream()) {
@@ -91,10 +88,7 @@ public class JarUtil {
 		}
 
 		if (_log.isInfoEnabled()) {
-			_log.info(
-				StringBundler.concat(
-					"Downloaded ", String.valueOf(url), " to ",
-					String.valueOf(path)));
+			_log.info(StringBundler.concat("Downloaded ", url, " to ", path));
 		}
 
 		return path;
@@ -111,8 +105,7 @@ public class JarUtil {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Installing ", String.valueOf(path), " to ",
-					String.valueOf(urlClassLoader)));
+					"Installing ", path, " to ", urlClassLoader));
 		}
 
 		_addURLMethod.invoke(urlClassLoader, uri.toURL());
@@ -120,8 +113,7 @@ public class JarUtil {
 		if (_log.isInfoEnabled()) {
 			_log.info(
 				StringBundler.concat(
-					"Installed ", String.valueOf(path), " to ",
-					String.valueOf(urlClassLoader)));
+					"Installed ", path, " to ", urlClassLoader));
 		}
 	}
 

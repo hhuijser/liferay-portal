@@ -65,8 +65,8 @@ public class ReaderInputStream extends InputStream {
 		if (outputBufferSize < _maxBytesPerChar) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Output buffer size ", String.valueOf(outputBufferSize),
-					" is less than ", String.valueOf(_maxBytesPerChar)));
+					"Output buffer size ", outputBufferSize, " is less than ",
+					_maxBytesPerChar));
 		}
 
 		_outputBuffer = ByteBuffer.allocate(outputBufferSize);

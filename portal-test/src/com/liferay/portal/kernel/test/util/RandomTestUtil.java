@@ -141,8 +141,7 @@ public class RandomTestUtil {
 			StringBundler.concat(
 				"Unable to generate a random string that is acceptable by all ",
 				"randomizer bumpers ", Arrays.toString(randomizerBumpers),
-				" after ", String.valueOf(_RANDOMIZER_BUMPER_TRIES_MAX),
-				" tries"));
+				" after ", _RANDOMIZER_BUMPER_TRIES_MAX, " tries"));
 	}
 
 	@SafeVarargs

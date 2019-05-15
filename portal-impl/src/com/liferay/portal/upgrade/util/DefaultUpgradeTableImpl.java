@@ -83,8 +83,8 @@ public class DefaultUpgradeTableImpl
 
 					throw new StagnantRowException(
 						StringBundler.concat(
-							"Column ", String.valueOf(columns[i][0]),
-							" with value ", sre.getMessage()),
+							"Column ", columns[i][0], " with value ",
+							sre.getMessage()),
 						sre);
 				}
 			}

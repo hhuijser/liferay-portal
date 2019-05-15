@@ -162,9 +162,8 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 		if (group.getCompanyId() != permissionChecker.getCompanyId()) {
 			throw new NoSuchGroupException(
 				StringBundler.concat(
-					"Group ", String.valueOf(groupId),
-					" does not belong in company ",
-					String.valueOf(permissionChecker.getCompanyId())));
+					"Group ", groupId, " does not belong in company ",
+					permissionChecker.getCompanyId()));
 		}
 	}
 

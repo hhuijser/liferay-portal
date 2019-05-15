@@ -72,7 +72,7 @@ public class ThemeResourceParser extends URLResourceParser {
 			_log.debug(
 				StringBundler.concat(
 					templateId, " is associated with the theme loader ",
-					servletContextName, " ", String.valueOf(themeLoader)));
+					servletContextName, " ", themeLoader));
 		}
 
 		File fileStorage = themeLoader.getFileStorage();

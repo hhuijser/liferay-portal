@@ -71,8 +71,8 @@ public class PortalPreferencesLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Add failed, fetch {ownerId=", String.valueOf(ownerId),
-						", ownerType=", String.valueOf(ownerType), "}"));
+						"Add failed, fetch {ownerId=", ownerId, ", ownerType=",
+						ownerType, "}"));
 			}
 
 			portalPreferences = portalPreferencesPersistence.fetchByO_O(

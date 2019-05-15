@@ -193,8 +193,7 @@ public class ClassLoaderAggregateProperties extends AggregatedProperties {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"File ", String.valueOf(url),
-							" will be reloaded every ", String.valueOf(delay),
+							"File ", url, " will be reloaded every ", delay,
 							" seconds"));
 				}
 
@@ -374,8 +373,7 @@ public class ClassLoaderAggregateProperties extends AggregatedProperties {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Resource ", String.valueOf(url),
-							" will be reloaded every ", String.valueOf(delay),
+							"Resource ", url, " will be reloaded every ", delay,
 							" seconds"));
 				}
 

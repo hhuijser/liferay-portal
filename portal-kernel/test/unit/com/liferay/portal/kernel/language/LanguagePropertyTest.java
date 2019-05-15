@@ -265,8 +265,7 @@ public class LanguagePropertyTest {
 
 		Assert.assertTrue(
 			StringBundler.concat(
-				"Special key \"", key, "\" is found in: ",
-				String.valueOf(invalidFileNames)),
+				"Special key \"", key, "\" is found in: ", invalidFileNames),
 			invalidFileNames.isEmpty());
 	}
 
@@ -288,7 +287,7 @@ public class LanguagePropertyTest {
 		Assert.assertTrue(
 			StringBundler.concat(
 				"Invalid values for key \"", key, "\" are found in: ",
-				String.valueOf(invalidFileNames)),
+				invalidFileNames),
 			invalidFileNames.isEmpty());
 	}
 

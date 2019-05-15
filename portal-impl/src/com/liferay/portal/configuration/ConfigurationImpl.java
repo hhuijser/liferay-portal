@@ -381,8 +381,7 @@ public class ConfigurationImpl
 
 			if (companyId > CompanyConstants.SYSTEM) {
 				info += StringBundler.concat(
-					" for {companyId=", String.valueOf(companyId), ", webId=",
-					webId, "}");
+					" for {companyId=", companyId, ", webId=", webId, "}");
 			}
 
 			System.out.println(info);

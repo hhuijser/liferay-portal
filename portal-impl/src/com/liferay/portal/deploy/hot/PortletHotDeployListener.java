@@ -309,8 +309,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(portlets.size()), " portlets for ",
-						servletContextName, " are available for use"));
+						portlets.size(), " portlets for ", servletContextName,
+						" are available for use"));
 			}
 		}
 	}
@@ -342,9 +342,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				else {
 					_log.info(
 						StringBundler.concat(
-							String.valueOf(beanFilterNames.size()),
-							" bean filters for ", servletContextName,
-							" were unregistered"));
+							beanFilterNames.size(), " bean filters for ",
+							servletContextName, " were unregistered"));
 				}
 			}
 
@@ -361,9 +360,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				else {
 					_log.info(
 						StringBundler.concat(
-							String.valueOf(beanPortletIds.size()),
-							" bean portlets for ", servletContextName,
-							" were unregistered"));
+							beanPortletIds.size(), " bean portlets for ",
+							servletContextName, " were unregistered"));
 				}
 			}
 
@@ -409,8 +407,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 			else {
 				_log.info(
 					StringBundler.concat(
-						String.valueOf(portlets.size()), " portlets for ",
-						servletContextName, " were unregistered"));
+						portlets.size(), " portlets for ", servletContextName,
+						" were unregistered"));
 			}
 		}
 	}

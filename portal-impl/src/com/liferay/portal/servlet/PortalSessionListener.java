@@ -54,7 +54,7 @@ public class PortalSessionListener implements HttpSessionListener {
 				_log.error(
 					StringBundler.concat(
 						"Exceeded maximum number of ",
-						String.valueOf(PropsValues.SESSION_MAX_ALLOWED),
+						PropsValues.SESSION_MAX_ALLOWED,
 						" sessions allowed. You may be experiencing a DoS ",
 						"attack."));
 			}

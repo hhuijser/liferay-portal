@@ -42,9 +42,8 @@ public class RestrictedByteArrayCacheOutputStream extends OutputStream {
 		if (initialCacheSize > cacheCapacity) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Initial cache size ", String.valueOf(initialCacheSize),
-					" is larger than cache capacity ",
-					String.valueOf(cacheCapacity)));
+					"Initial cache size ", initialCacheSize,
+					" is larger than cache capacity ", cacheCapacity));
 		}
 
 		this.outputStream = outputStream;

@@ -111,9 +111,8 @@ public class RetryAdvice extends ChainableMethodAdvice {
 
 					_log.warn(
 						StringBundler.concat(
-							"Retry on ", String.valueOf(aopMethodInvocation),
-							" for ", number, " more times due to result ",
-							String.valueOf(returnValue)));
+							"Retry on ", aopMethodInvocation, " for ", number,
+							" more times due to result ", returnValue));
 				}
 			}
 			catch (Throwable t) {
@@ -132,9 +131,8 @@ public class RetryAdvice extends ChainableMethodAdvice {
 
 					_log.warn(
 						StringBundler.concat(
-							"Retry on ", String.valueOf(aopMethodInvocation),
-							" for ", number, " more times due to exception ",
-							String.valueOf(throwable)),
+							"Retry on ", aopMethodInvocation, " for ", number,
+							" more times due to exception ", throwable),
 						throwable);
 				}
 			}
@@ -144,11 +142,10 @@ public class RetryAdvice extends ChainableMethodAdvice {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Give up retrying on ",
-						String.valueOf(aopMethodInvocation), " after ",
-						String.valueOf(totalRetries),
+						"Give up retrying on ", aopMethodInvocation, " after ",
+						totalRetries,
 						" retries and rethrow last retry's exception ",
-						String.valueOf(throwable)),
+						throwable),
 					throwable);
 			}
 
@@ -158,10 +155,10 @@ public class RetryAdvice extends ChainableMethodAdvice {
 		if (_log.isWarnEnabled()) {
 			_log.warn(
 				StringBundler.concat(
-					"Give up retrying on ", String.valueOf(aopMethodInvocation),
-					" after ", String.valueOf(totalRetries),
+					"Give up retrying on ", aopMethodInvocation, " after ",
+					totalRetries,
 					" retries and returning the last retry's result ",
-					String.valueOf(returnValue)));
+					returnValue));
 		}
 
 		return returnValue;

@@ -409,9 +409,8 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 		if (_log.isDebugEnabled()) {
 			_log.debug(
 				StringBundler.concat(
-					"Checking user permissions for ", String.valueOf(userId),
-					" ", String.valueOf(resourceId), " ", actionId, " takes ",
-					String.valueOf(stopWatch.getTime()), " ms"));
+					"Checking user permissions for ", userId, " ", resourceId,
+					" ", actionId, " takes ", stopWatch.getTime(), " ms"));
 		}
 
 		return hasUserPermissions;

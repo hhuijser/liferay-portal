@@ -183,7 +183,7 @@ public class DBManagerImpl implements DBManager {
 			_log.debug(
 				StringBundler.concat(
 					"Using DB implementation ", clazz.getName(), " for ",
-					String.valueOf(db.getDBType())));
+					db.getDBType()));
 		}
 	}
 

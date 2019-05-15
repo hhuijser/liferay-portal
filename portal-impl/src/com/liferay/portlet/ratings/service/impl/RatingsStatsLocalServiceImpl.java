@@ -52,9 +52,8 @@ public class RatingsStatsLocalServiceImpl
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
-						"Add failed, fetch {classNameId=",
-						String.valueOf(classNameId), ", classPK=",
-						String.valueOf(classPK), "}"));
+						"Add failed, fetch {classNameId=", classNameId,
+						", classPK=", classPK, "}"));
 			}
 
 			stats = ratingsStatsPersistence.fetchByC_C(

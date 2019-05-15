@@ -43,9 +43,8 @@ public class SqlUpdateImpl implements SqlUpdate {
 		if (_paramSetters.length != params.length) {
 			throw new IllegalArgumentException(
 				StringBundler.concat(
-					"Expected ", String.valueOf(_paramSetters.length),
-					" parameters instead of ", String.valueOf(params.length),
-					" parameters"));
+					"Expected ", _paramSetters.length,
+					" parameters instead of ", params.length, " parameters"));
 		}
 
 		try (Connection connection = ConnectionUtil.getConnection(_dataSource);

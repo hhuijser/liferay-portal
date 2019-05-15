@@ -87,8 +87,7 @@ public class ResourceLocalServiceTest {
 
 		Assert.assertTrue(
 			StringBundler.concat(
-				"Only ", String.valueOf(successCount), " out of ",
-				String.valueOf(ServiceTestUtil.THREAD_COUNT),
+				"Only ", successCount, " out of ", ServiceTestUtil.THREAD_COUNT,
 				" threads added resources successfully"),
 			successCount == ServiceTestUtil.THREAD_COUNT);
 	}

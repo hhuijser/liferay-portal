@@ -208,8 +208,7 @@ public class ExpandoValueConversionTest {
 
 		Date[] convertedDates = _converter.convertType(
 			ExpandoColumnConstants.DATE_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(time1), ", ", String.valueOf(time2), "]"));
+			StringBundler.concat("[", time1, ", ", time2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedDates), 2, convertedDates.length);
@@ -323,9 +322,7 @@ public class ExpandoValueConversionTest {
 
 		double[] convertedDoubles = _converter.convertType(
 			ExpandoColumnConstants.DOUBLE_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(double1), ", ", String.valueOf(double2),
-				"]"));
+			StringBundler.concat("[", double1, ", ", double2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedDoubles), 2, convertedDoubles.length);
@@ -346,9 +343,7 @@ public class ExpandoValueConversionTest {
 
 		double[] convertedDoubles = _converter.convertType(
 			ExpandoColumnConstants.DOUBLE_ARRAY,
-			StringBundler.concat(
-				"[\"", String.valueOf(double1), "\",", String.valueOf(double2),
-				"]"));
+			StringBundler.concat("[\"", double1, "\",", double2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedDoubles), 2, convertedDoubles.length);
@@ -452,9 +447,7 @@ public class ExpandoValueConversionTest {
 
 		float[] convertedFloats = _converter.convertType(
 			ExpandoColumnConstants.FLOAT_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(float1), ", ", String.valueOf(float2),
-				"]"));
+			StringBundler.concat("[", float1, ", ", float2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedFloats), 2, convertedFloats.length);
@@ -576,9 +569,7 @@ public class ExpandoValueConversionTest {
 
 		int[] convertedIntegers = _converter.convertType(
 			ExpandoColumnConstants.INTEGER_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(integer1), ", ", String.valueOf(integer2),
-				"]"));
+			StringBundler.concat("[", integer1, ", ", integer2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedIntegers), 2, convertedIntegers.length);
@@ -694,8 +685,7 @@ public class ExpandoValueConversionTest {
 
 		long[] convertedLongs = _converter.convertType(
 			ExpandoColumnConstants.LONG_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(long1), ", ", String.valueOf(long2), "]"));
+			StringBundler.concat("[", long1, ", ", long2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedLongs), 2, convertedLongs.length);
@@ -815,9 +805,7 @@ public class ExpandoValueConversionTest {
 
 		Number[] convertedNumber = _converter.convertType(
 			ExpandoColumnConstants.NUMBER_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(number1), ", ", String.valueOf(number2),
-				"]"));
+			StringBundler.concat("[", number1, ", ", number2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedNumber), 2, convertedNumber.length);
@@ -840,9 +828,7 @@ public class ExpandoValueConversionTest {
 
 		Number[] convertedNumber = _converter.convertType(
 			ExpandoColumnConstants.NUMBER_ARRAY,
-			StringBundler.concat(
-				"[\"", String.valueOf(number1), "\", ", String.valueOf(number2),
-				"]"));
+			StringBundler.concat("[\"", number1, "\", ", number2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedNumber), 2, convertedNumber.length);
@@ -958,9 +944,7 @@ public class ExpandoValueConversionTest {
 
 		short[] convertedShorts = _converter.convertType(
 			ExpandoColumnConstants.SHORT_ARRAY,
-			StringBundler.concat(
-				"[", String.valueOf(short1), ", ", String.valueOf(short2),
-				"]"));
+			StringBundler.concat("[", short1, ", ", short2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedShorts), 2, convertedShorts.length);
@@ -981,9 +965,7 @@ public class ExpandoValueConversionTest {
 
 		short[] convertedShorts = _converter.convertType(
 			ExpandoColumnConstants.SHORT_ARRAY,
-			StringBundler.concat(
-				"[\"", String.valueOf(short1), "\", ", String.valueOf(short2),
-				"]"));
+			StringBundler.concat("[\"", short1, "\", ", short2, "]"));
 
 		Assert.assertEquals(
 			Arrays.toString(convertedShorts), 2, convertedShorts.length);

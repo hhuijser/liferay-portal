@@ -17,6 +17,7 @@ package com.liferay.portal.configuration;
 import com.germinus.easyconf.ComponentProperties;
 
 import com.liferay.petra.lang.HashUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.easyconf.ClassLoaderAggregateProperties;
 import com.liferay.portal.configuration.easyconf.ComponentPropertiesUtil;
 import com.liferay.portal.kernel.configuration.Filter;
@@ -27,7 +28,6 @@ import com.liferay.portal.kernel.model.CompanyConstants;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.lang.reflect.Field;

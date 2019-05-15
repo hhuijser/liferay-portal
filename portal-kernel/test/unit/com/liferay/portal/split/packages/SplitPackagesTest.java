@@ -14,7 +14,7 @@
 
 package com.liferay.portal.split.packages;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.io.IOException;
 

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.security.pwd;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.UserPasswordException;
 import com.liferay.portal.kernel.model.PasswordPolicy;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.service.PasswordTrackerLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.PwdGenerator;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.words.WordsUtil;
 import com.liferay.portal.util.PropsValues;

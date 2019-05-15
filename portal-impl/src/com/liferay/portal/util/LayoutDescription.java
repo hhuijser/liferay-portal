@@ -14,8 +14,8 @@
 
 package com.liferay.portal.util;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.HtmlUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 
 import java.io.Serializable;
 

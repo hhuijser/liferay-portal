@@ -14,7 +14,7 @@
 
 package com.liferay.portal.security.xml;
 
-import com.liferay.portal.kernel.util.StringBundler;
+import com.liferay.petra.string.StringBundler;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

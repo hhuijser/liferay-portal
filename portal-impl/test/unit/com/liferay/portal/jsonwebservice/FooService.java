@@ -14,9 +14,9 @@
 
 package com.liferay.portal.jsonwebservice;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;

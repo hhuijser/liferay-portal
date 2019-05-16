@@ -3,6 +3,7 @@ dependencies {
 
 	compileOnly group: "com.liferay", name: "org.eclipse.osgi", version: "3.13.0.LIFERAY-PATCHED-4"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:portal-app-license-api")
 }
 

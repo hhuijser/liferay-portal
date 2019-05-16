@@ -4494,10 +4494,9 @@ public class ServiceBuilder {
 				StringBundler.concat(
 					"Unable to create entity mapping \"", tableName,
 					"\" because table name exceeds ", _databaseNameMaxLength,
-					" characters. ",
-					"Some databases do not allow table names longer than 30 ",
-					"characters. To disable this warning set the ",
-					"\"service-builder\" attribute ",
+					" characters. Some databases do not allow table names ",
+					"longer than 30 characters. To disable this warning set ",
+					"the \"service-builder\" attribute ",
 					"\"database-name-max-length\" to the max length that your ",
 					"database supports."));
 		}
@@ -4637,10 +4636,9 @@ public class ServiceBuilder {
 				StringBundler.concat(
 					"Unable to create entity \"", tableName,
 					"\" because table name exceeds ", _databaseNameMaxLength,
-					" characters. ",
-					"Some databases do not allow table names longer than 30 ",
-					"characters. To disable this warning set the ",
-					"\"service-builder\" attribute ",
+					" characters. Some databases do not allow table names ",
+					"longer than 30 characters. To disable this warning set ",
+					"the \"service-builder\" attribute ",
 					"\"database-name-max-length\" to the max length that your ",
 					"database supports."));
 		}
@@ -4661,12 +4659,11 @@ public class ServiceBuilder {
 					StringBundler.concat(
 						"Unable to create entity \"", tableName,
 						"\" because column name \"", dbName, "\" exceeds ",
-						_databaseNameMaxLength, " characters. ",
-						"Some databases do not allow column names longer than ",
-						"30 characters. To disable this warning set the ",
-						"\"service-builder\" attribute ",
-						"\"database-name-max-length\" to the max length that ",
-						"your database supports"));
+						_databaseNameMaxLength, " characters. Some databases ",
+						"do not allow column names longer than 30 characters. ",
+						"To disable this warning set the \"service-builder\" ",
+						"attribute \"database-name-max-length\" to the max ",
+						"length that your database supports"));
 			}
 
 			String type = entityColumn.getType();

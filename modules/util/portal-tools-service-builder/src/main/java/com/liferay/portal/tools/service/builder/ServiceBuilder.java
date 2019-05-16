@@ -4493,8 +4493,8 @@ public class ServiceBuilder {
 			throw new ServiceBuilderException(
 				StringBundler.concat(
 					"Unable to create entity mapping \"", tableName,
-					"\" because table name exceeds ",
-					String.valueOf(_databaseNameMaxLength), " characters. ",
+					"\" because table name exceeds ", _databaseNameMaxLength,
+					" characters. ",
 					"Some databases do not allow table names longer than 30 ",
 					"characters. To disable this warning set the ",
 					"\"service-builder\" attribute ",
@@ -4519,7 +4519,7 @@ public class ServiceBuilder {
 						StringBundler.concat(
 							"Unable to create entity mapping \"", tableName,
 							"\" because column name \"", dbName, "\" exceeds ",
-							String.valueOf(_databaseNameMaxLength),
+							_databaseNameMaxLength,
 							" characters. Some databases do not allow column ",
 							"names longer than 30 characters. To disable this ",
 							"warning set the \"service-builder\" attribute ",
@@ -4636,8 +4636,8 @@ public class ServiceBuilder {
 			throw new ServiceBuilderException(
 				StringBundler.concat(
 					"Unable to create entity \"", tableName,
-					"\" because table name exceeds ",
-					String.valueOf(_databaseNameMaxLength), " characters. ",
+					"\" because table name exceeds ", _databaseNameMaxLength,
+					" characters. ",
 					"Some databases do not allow table names longer than 30 ",
 					"characters. To disable this warning set the ",
 					"\"service-builder\" attribute ",
@@ -4661,7 +4661,7 @@ public class ServiceBuilder {
 					StringBundler.concat(
 						"Unable to create entity \"", tableName,
 						"\" because column name \"", dbName, "\" exceeds ",
-						String.valueOf(_databaseNameMaxLength), " characters. ",
+						_databaseNameMaxLength, " characters. ",
 						"Some databases do not allow column names longer than ",
 						"30 characters. To disable this warning set the ",
 						"\"service-builder\" attribute ",

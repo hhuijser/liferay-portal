@@ -14,10 +14,10 @@
 
 package com.liferay.product.navigation.simulation.theme.contributor.internal.servlet.taglib;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.url.builder.AbsolutePortalURLBuilder;
 import com.liferay.portal.url.builder.AbsolutePortalURLBuilderFactory;

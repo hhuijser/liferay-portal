@@ -117,8 +117,7 @@ public class VerifyGroupedModel extends VerifyProcess {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
-							"Unable to find ", tableName, " ",
-							String.valueOf(primKey)));
+							"Unable to find ", tableName, " ", primKey));
 				}
 
 				return 0;

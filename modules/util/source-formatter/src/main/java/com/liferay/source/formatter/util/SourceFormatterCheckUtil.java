@@ -275,7 +275,7 @@ public class SourceFormatterCheckUtil {
 			cachedValuesMap.put(key, value);
 		}
 		else {
-			cachedValuesMap.put(absolutePath + ":" + key, value);
+			//cachedValuesMap.put(absolutePath + ":" + key, value);
 		}
 
 		return value;
@@ -338,7 +338,7 @@ public class SourceFormatterCheckUtil {
 			cachedValuesMap.put(key, values);
 		}
 		else {
-			cachedValuesMap.put(absolutePath + ":" + key, values);
+			//cachedValuesMap.put(absolutePath + ":" + key, values);
 		}
 
 		return values;

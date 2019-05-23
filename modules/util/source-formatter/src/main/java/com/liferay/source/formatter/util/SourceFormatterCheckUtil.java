@@ -272,10 +272,10 @@ public class SourceFormatterCheckUtil {
 		}
 
 		if (!hasSubdirectoryValue) {
-			cachedValuesMap.put(key, value);
+			//cachedValuesMap.put(key, value);
 		}
 		else {
-			cachedValuesMap.put(absolutePath + ":" + key, value);
+			//cachedValuesMap.put(absolutePath + ":" + key, value);
 		}
 
 		return value;
@@ -335,10 +335,10 @@ public class SourceFormatterCheckUtil {
 		}
 
 		if (!hasSubdirectoryValues) {
-			cachedValuesMap.put(key, values);
+			//cachedValuesMap.put(key, values);
 		}
 		else {
-			cachedValuesMap.put(absolutePath + ":" + key, values);
+			//cachedValuesMap.put(absolutePath + ":" + key, values);
 		}
 
 		return values;

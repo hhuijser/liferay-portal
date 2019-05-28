@@ -708,11 +708,13 @@ public class PortalImpl implements Portal {
 			httpServletRequest.setAttribute(name, breadcrumbEntries);
 		}
 
-		BreadcrumbEntry breadcrumbEntry = new BreadcrumbEntry();
-
-		breadcrumbEntry.setData(data);
-		breadcrumbEntry.setTitle(title);
-		breadcrumbEntry.setURL(url);
+		BreadcrumbEntry breadcrumbEntry = new BreadcrumbEntry() {
+			{
+				setData(data);
+				setTitle(title);
+				setURL(url);
+			}
+		};
 
 		breadcrumbEntries.add(breadcrumbEntry);
 	}

@@ -56,21 +56,24 @@ public abstract class BaseJSONWebServiceTestCase extends PowerMockito {
 	protected static void initPortalServices() {
 		PropsUtil.setProps(new PropsImpl());
 
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(new JSONFactoryImpl());
+			}
+		};
 
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
+		new JSONWebServiceActionsManagerUtil() {
+			{
+				setJSONWebServiceActionsManager(
+					new JSONWebServiceActionsManagerImpl());
+			}
+		};
 
-		JSONWebServiceActionsManagerUtil jsonWebServiceActionsManagerUtil =
-			new JSONWebServiceActionsManagerUtil();
-
-		jsonWebServiceActionsManagerUtil.setJSONWebServiceActionsManager(
-			new JSONWebServiceActionsManagerImpl());
-
-		MethodParametersResolverUtil methodParametersResolverUtil =
-			new MethodParametersResolverUtil();
-
-		methodParametersResolverUtil.setMethodParametersResolver(
-			new MethodParametersResolverImpl());
+		new MethodParametersResolverUtil() {
+			{
+				setMethodParametersResolver(new MethodParametersResolverImpl());
+			}
+		};
 	}
 
 	protected static void registerAction(Object action) {
@@ -126,10 +129,12 @@ public abstract class BaseJSONWebServiceTestCase extends PowerMockito {
 
 	protected MockHttpServletRequest createHttpRequest(String pathInfo) {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest30();
-
-		mockHttpServletRequest.setMethod(HttpMethods.GET);
-		mockHttpServletRequest.setPathInfo(pathInfo);
+			new MockHttpServletRequest30() {
+				{
+					setMethod(HttpMethods.GET);
+					setPathInfo(pathInfo);
+				}
+			};
 
 		return mockHttpServletRequest;
 	}
@@ -138,10 +143,12 @@ public abstract class BaseJSONWebServiceTestCase extends PowerMockito {
 		String pathInfo, String method) {
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest30();
-
-		mockHttpServletRequest.setMethod(method);
-		mockHttpServletRequest.setPathInfo(pathInfo);
+			new MockHttpServletRequest30() {
+				{
+					setMethod(method);
+					setPathInfo(pathInfo);
+				}
+			};
 
 		return mockHttpServletRequest;
 	}

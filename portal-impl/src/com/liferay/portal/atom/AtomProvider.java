@@ -95,17 +95,20 @@ public class AtomProvider extends AbstractWorkspaceProvider {
 	}
 
 	private void _initTargetResolver() {
-		RegexTargetResolver targetResolver = new RegexTargetResolver();
-
-		targetResolver.setPattern(
-			_COLLECTION_ENTRY_REGEXP, TargetType.TYPE_ENTRY, "collection",
-			"entry");
-		targetResolver.setPattern(
-			_COLLECTION_MEDIA_REGEXP, TargetType.TYPE_MEDIA, "collection",
-			"media");
-		targetResolver.setPattern(
-			_COLLECTION_REGEXP, TargetType.TYPE_COLLECTION, "collection");
-		targetResolver.setPattern(_SERVICE_REGEXP, TargetType.TYPE_SERVICE);
+		RegexTargetResolver targetResolver = new RegexTargetResolver() {
+			{
+				setPattern(
+					_COLLECTION_ENTRY_REGEXP, TargetType.TYPE_ENTRY,
+					"collection", "entry");
+				setPattern(
+					_COLLECTION_MEDIA_REGEXP, TargetType.TYPE_MEDIA,
+					"collection", "media");
+				setPattern(
+					_COLLECTION_REGEXP, TargetType.TYPE_COLLECTION,
+					"collection");
+				setPattern(_SERVICE_REGEXP, TargetType.TYPE_SERVICE);
+			}
+		};
 
 		setTargetResolver(targetResolver);
 	}

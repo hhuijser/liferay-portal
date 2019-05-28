@@ -66,10 +66,11 @@ public class BaseAsyncDatagramReceiveHandlerTest {
 
 			List<LogRecord> logRecords = captureHandler.getLogRecords();
 
-			ErrorAsyncDatagramReceiveHandler errorAsyncDatagramReceiveHandler =
-				new ErrorAsyncDatagramReceiveHandler();
-
-			errorAsyncDatagramReceiveHandler.receive(null, null);
+			new ErrorAsyncDatagramReceiveHandler() {
+				{
+					receive(null, null);
+				}
+			};
 
 			Assert.assertEquals(logRecords.toString(), 1, logRecords.size());
 

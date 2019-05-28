@@ -43,9 +43,11 @@ public class RepositoryClassDefinitionCatalogImplTest {
 	public static void setUpClass() {
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
-		LanguageUtil languageUtil = new LanguageUtil();
-
-		languageUtil.setLanguage(new LanguageImpl());
+		new LanguageUtil() {
+			{
+				setLanguage(new LanguageImpl());
+			}
+		};
 
 		_repositoryClassDefinitionCatalogImpl =
 			new RepositoryClassDefinitionCatalogImpl();

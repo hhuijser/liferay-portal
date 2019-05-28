@@ -35,9 +35,11 @@ public class FriendlyURLNormalizerImplTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 	}
 
 	@Test

@@ -53,9 +53,11 @@ public class PortalImplUnitTest {
 	@Test
 	public void testGetForwardedHost() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerName("serverName");
+			new MockHttpServletRequest() {
+				{
+					setServerName("serverName");
+				}
+			};
 
 		Assert.assertEquals(
 			"serverName", _portalImpl.getForwardedHost(mockHttpServletRequest));
@@ -76,11 +78,12 @@ public class PortalImplUnitTest {
 				"WEB_SERVER_FORWARDED_HOST_HEADER", "X-Forwarded-Custom-Host");
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader(
-				"X-Forwarded-Custom-Host", "forwardedServer");
-			mockHttpServletRequest.setServerName("serverName");
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Custom-Host", "forwardedServer");
+						setServerName("serverName");
+					}
+				};
 
 			Assert.assertEquals(
 				"forwardedServer",
@@ -107,11 +110,12 @@ public class PortalImplUnitTest {
 			setPropsValuesValue("WEB_SERVER_FORWARDED_HOST_ENABLED", false);
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader(
-				"X-Forwarded-Host", "forwardedServer");
-			mockHttpServletRequest.setServerName("serverName");
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Host", "forwardedServer");
+						setServerName("serverName");
+					}
+				};
 
 			Assert.assertEquals(
 				"serverName",
@@ -135,11 +139,12 @@ public class PortalImplUnitTest {
 			setPropsValuesValue("WEB_SERVER_FORWARDED_HOST_ENABLED", true);
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader(
-				"X-Forwarded-Host", "forwardedServer");
-			mockHttpServletRequest.setServerName("serverName");
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Host", "forwardedServer");
+						setServerName("serverName");
+					}
+				};
 
 			Assert.assertEquals(
 				"forwardedServer",
@@ -155,9 +160,11 @@ public class PortalImplUnitTest {
 	@Test
 	public void testGetForwardedPort() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerPort(8080);
+			new MockHttpServletRequest() {
+				{
+					setServerPort(8080);
+				}
+			};
 
 		Assert.assertEquals(
 			8080, _portalImpl.getForwardedPort(mockHttpServletRequest));
@@ -178,10 +185,12 @@ public class PortalImplUnitTest {
 				"WEB_SERVER_FORWARDED_PORT_HEADER", "X-Forwarded-Custom-Port");
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader("X-Forwarded-Custom-Port", 8081);
-			mockHttpServletRequest.setServerPort(8080);
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Custom-Port", 8081);
+						setServerPort(8080);
+					}
+				};
 
 			Assert.assertEquals(
 				8080, _portalImpl.getForwardedPort(mockHttpServletRequest));
@@ -207,10 +216,12 @@ public class PortalImplUnitTest {
 			setPropsValuesValue("WEB_SERVER_FORWARDED_PORT_ENABLED", false);
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader("X-Forwarded-Port", 8081);
-			mockHttpServletRequest.setServerPort(8080);
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Port", 8081);
+						setServerPort(8080);
+					}
+				};
 
 			Assert.assertEquals(
 				8080, _portalImpl.getForwardedPort(mockHttpServletRequest));
@@ -233,10 +244,12 @@ public class PortalImplUnitTest {
 			setPropsValuesValue("WEB_SERVER_FORWARDED_PORT_ENABLED", true);
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader("X-Forwarded-Port", "8081");
-			mockHttpServletRequest.setServerPort(8080);
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Port", "8081");
+						setServerPort(8080);
+					}
+				};
 
 			Assert.assertEquals(
 				8081, _portalImpl.getForwardedPort(mockHttpServletRequest));
@@ -335,9 +348,11 @@ public class PortalImplUnitTest {
 
 		try {
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.setParameter("doAsUserId", "1");
+				new MockHttpServletRequest() {
+					{
+						setParameter("doAsUserId", "1");
+					}
+				};
 
 			_portalImpl.getUserId(mockHttpServletRequest);
 
@@ -485,11 +500,12 @@ public class PortalImplUnitTest {
 				"X-Forwarded-Custom-Proto");
 
 			MockHttpServletRequest mockHttpServletRequest =
-				new MockHttpServletRequest();
-
-			mockHttpServletRequest.addHeader(
-				"X-Forwarded-Custom-Proto", "https");
-			mockHttpServletRequest.setSecure(false);
+				new MockHttpServletRequest() {
+					{
+						addHeader("X-Forwarded-Custom-Proto", "https");
+						setSecure(false);
+					}
+				};
 
 			Assert.assertTrue(_portalImpl.isSecure(mockHttpServletRequest));
 		}
@@ -553,9 +569,11 @@ public class PortalImplUnitTest {
 	@Test
 	public void testIsSecureWithSecureRequest() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setSecure(true);
+			new MockHttpServletRequest() {
+				{
+					setSecure(true);
+				}
+			};
 
 		Assert.assertTrue(_portalImpl.isSecure(mockHttpServletRequest));
 	}
@@ -579,29 +597,31 @@ public class PortalImplUnitTest {
 
 	@Test
 	public void testUpdateRedirectRemoveLayoutURL() {
-		HttpUtil httpUtil = new HttpUtil();
+		new HttpUtil() {
+			{
+				setHttp(
+					new HttpImpl() {
 
-		httpUtil.setHttp(
-			new HttpImpl() {
+						@Override
+						public String getParameter(
+							String url, String name, boolean escaped) {
 
-				@Override
-				public String getParameter(
-					String url, String name, boolean escaped) {
+							return StringPool.BLANK;
+						}
 
-					return StringPool.BLANK;
-				}
+						@Override
+						public String getPath(String url) {
+							return url;
+						}
 
-				@Override
-				public String getPath(String url) {
-					return url;
-				}
+						@Override
+						public String getQueryString(String url) {
+							return StringPool.BLANK;
+						}
 
-				@Override
-				public String getQueryString(String url) {
-					return StringPool.BLANK;
-				}
-
-			});
+					});
+			}
+		};
 
 		Assert.assertEquals(
 			"/web/group",

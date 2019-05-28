@@ -89,10 +89,12 @@ public class DirectServletRegistryImpl implements DirectServletRegistry {
 		}
 
 		if (lastModified > 0) {
-			ServletInfo servletInfo = new ServletInfo();
-
-			servletInfo.setLastModified(lastModified);
-			servletInfo.setServlet(servlet);
+			ServletInfo servletInfo = new ServletInfo() {
+				{
+					setLastModified(lastModified);
+					setServlet(servlet);
+				}
+			};
 
 			_servletInfos.put(path, servletInfo);
 		}

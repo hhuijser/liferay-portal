@@ -1143,10 +1143,12 @@ public class ExpandoValueLocalServiceImpl
 			return null;
 		}
 
-		ExpandoValue value = new ExpandoValueImpl();
-
-		value.setColumn(column);
-		value.setData(column.getDefaultData());
+		ExpandoValue value = new ExpandoValueImpl() {
+			{
+				setColumn(column);
+				setData(column.getDefaultData());
+			}
+		};
 
 		return doGetData(
 			companyId, className, tableName, columnName, classPK, value,

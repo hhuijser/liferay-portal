@@ -80,9 +80,11 @@ public class PortletURLImplTest {
 		renderParameters.put("name", values);
 
 		MockHttpServletRequest mockServletRequest =
-			new MockHttpServletRequest();
-
-		mockServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+			new MockHttpServletRequest() {
+				{
+					setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
+				}
+			};
 
 		RenderParametersPool.put(
 			mockServletRequest, plid, PortletKeys.LOGIN, renderParameters);

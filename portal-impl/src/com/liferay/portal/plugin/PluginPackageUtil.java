@@ -870,10 +870,12 @@ public class PluginPackageUtil {
 			properties.getProperty("licenses"));
 
 		for (String curLicenses : licensesArray) {
-			License license = new License();
-
-			license.setName(curLicenses.trim());
-			license.setOsiApproved(true);
+			License license = new License() {
+				{
+					setName(curLicenses.trim());
+					setOsiApproved(true);
+				}
+			};
 
 			licenses.add(license);
 		}
@@ -1175,12 +1177,14 @@ public class PluginPackageUtil {
 		}
 
 		for (Element screenshotElement : parentElement.elements("screenshot")) {
-			Screenshot screenshot = new Screenshot();
-
-			screenshot.setThumbnailURL(
-				screenshotElement.elementText("thumbnail-url"));
-			screenshot.setLargeImageURL(
-				screenshotElement.elementText("large-image-url"));
+			Screenshot screenshot = new Screenshot() {
+				{
+					setThumbnailURL(
+						screenshotElement.elementText("thumbnail-url"));
+					setLargeImageURL(
+						screenshotElement.elementText("large-image-url"));
+				}
+			};
 
 			screenshots.add(screenshot);
 		}

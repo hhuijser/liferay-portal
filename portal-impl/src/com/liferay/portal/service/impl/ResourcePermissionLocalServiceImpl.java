@@ -1579,12 +1579,14 @@ public class ResourcePermissionLocalServiceImpl
 			String[] groupPermissions, String[] guestPermissions)
 		throws PortalException {
 
-		Resource resource = new ResourceImpl();
-
-		resource.setCompanyId(companyId);
-		resource.setName(name);
-		resource.setScope(ResourceConstants.SCOPE_INDIVIDUAL);
-		resource.setPrimKey(String.valueOf(primKey));
+		Resource resource = new ResourceImpl() {
+			{
+				setCompanyId(companyId);
+				setName(name);
+				setScope(ResourceConstants.SCOPE_INDIVIDUAL);
+				setPrimKey(String.valueOf(primKey));
+			}
+		};
 
 		if (groupPermissions == null) {
 			groupPermissions = new String[0];

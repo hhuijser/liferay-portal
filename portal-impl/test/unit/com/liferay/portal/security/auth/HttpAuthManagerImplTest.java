@@ -39,19 +39,24 @@ public class HttpAuthManagerImplTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 	}
 
 	@Test
 	public void testLPS88011() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.AUTHORIZATION,
-			"Basic " + Base64.encode("test@liferay.com:te:st".getBytes()));
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.AUTHORIZATION,
+						"Basic " +
+							Base64.encode("test@liferay.com:te:st".getBytes()));
+				}
+			};
 
 		HttpAuthorizationHeader httpAuthorizationHeader =
 			_httpAuthManagerImpl.parse(mockHttpServletRequest);
@@ -65,11 +70,14 @@ public class HttpAuthManagerImplTest {
 	@Test
 	public void testParseBasic() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.AUTHORIZATION,
-			"Basic " + Base64.encode("test@liferay.com:test".getBytes()));
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.AUTHORIZATION,
+						"Basic " +
+							Base64.encode("test@liferay.com:test".getBytes()));
+				}
+			};
 
 		HttpAuthorizationHeader httpAuthorizationHeader =
 			_httpAuthManagerImpl.parse(mockHttpServletRequest);
@@ -164,11 +172,15 @@ public class HttpAuthManagerImplTest {
 	@Test
 	public void testParseBasicTrimValues() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.AUTHORIZATION,
-			"Basic " + Base64.encode(" test@liferay.com : test ".getBytes()));
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.AUTHORIZATION,
+						"Basic " +
+							Base64.encode(
+								" test@liferay.com : test ".getBytes()));
+				}
+			};
 
 		HttpAuthorizationHeader httpAuthorizationHeader =
 			_httpAuthManagerImpl.parse(mockHttpServletRequest);
@@ -197,12 +209,15 @@ public class HttpAuthManagerImplTest {
 	@Test
 	public void testParseBasicURLDecode() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.AUTHORIZATION,
-			"Basic " +
-				Base64.encode("test%40liferay%253ecom:test%40".getBytes()));
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.AUTHORIZATION,
+						"Basic " +
+							Base64.encode(
+								"test%40liferay%253ecom:test%40".getBytes()));
+				}
+			};
 
 		HttpAuthorizationHeader httpAuthorizationHeader =
 			_httpAuthManagerImpl.parse(mockHttpServletRequest);
@@ -301,10 +316,11 @@ public class HttpAuthManagerImplTest {
 	@Test(expected = UnsupportedOperationException.class)
 	public void testParseUnsupportedAuthorizationHeader() {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.AUTHORIZATION, "Unsupported");
+			new MockHttpServletRequest() {
+				{
+					addHeader(HttpHeaders.AUTHORIZATION, "Unsupported");
+				}
+			};
 
 		_httpAuthManagerImpl.parse(mockHttpServletRequest);
 	}

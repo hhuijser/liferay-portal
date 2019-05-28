@@ -389,20 +389,16 @@ public class SocialConfigurationImpl implements SocialConfiguration {
 		activityDefinition.addCounter(activityCounterDefinition);
 
 		SocialActivityCounterDefinition popularityActivityCounterDefinition =
-			new SocialActivityCounterDefinition();
-
-		popularityActivityCounterDefinition.setName(
-			SocialActivityCounterConstants.NAME_POPULARITY);
-		popularityActivityCounterDefinition.setOwnerType(
-			SocialActivityCounterConstants.TYPE_ASSET);
-		popularityActivityCounterDefinition.setIncrement(
-			activityCounterDefinition.getIncrement());
-		popularityActivityCounterDefinition.setLimitEnabled(
-			activityCounterDefinition.isLimitEnabled());
-		popularityActivityCounterDefinition.setLimitPeriod(
-			activityCounterDefinition.getLimitPeriod());
-		popularityActivityCounterDefinition.setLimitValue(
-			activityCounterDefinition.getLimitValue());
+			new SocialActivityCounterDefinition() {
+				{
+					setName(SocialActivityCounterConstants.NAME_POPULARITY);
+					setOwnerType(SocialActivityCounterConstants.TYPE_ASSET);
+					setIncrement(activityCounterDefinition.getIncrement());
+					setLimitEnabled(activityCounterDefinition.isLimitEnabled());
+					setLimitPeriod(activityCounterDefinition.getLimitPeriod());
+					setLimitValue(activityCounterDefinition.getLimitValue());
+				}
+			};
 
 		activityDefinition.addCounter(popularityActivityCounterDefinition);
 	}

@@ -46,19 +46,22 @@ public class GoogleJavaScriptMinifier implements JavaScriptMinifier {
 
 		SourceFile sourceFile = SourceFile.fromCode(resourceName, content);
 
-		CompilerOptions compilerOptions = new CompilerOptions();
-
-		compilerOptions.setLanguageIn(CompilerOptions.LanguageMode.ECMASCRIPT5);
-		compilerOptions.setWarningLevel(
-			DiagnosticGroups.NON_STANDARD_JSDOC, CheckLevel.OFF);
-		compilerOptions.setWarningLevel(
-			DiagnosticGroup.forType(
-				DiagnosticType.error("JSC_MISSING_PROVIDE_ERROR", "")),
-			CheckLevel.OFF);
-		compilerOptions.setWarningLevel(
-			DiagnosticGroup.forType(
-				DiagnosticType.error("JSC_NON_GLOBAL_DEFINE_INIT_ERROR", "")),
-			CheckLevel.OFF);
+		CompilerOptions compilerOptions = new CompilerOptions() {
+			{
+				setLanguageIn(CompilerOptions.LanguageMode.ECMASCRIPT5);
+				setWarningLevel(
+					DiagnosticGroups.NON_STANDARD_JSDOC, CheckLevel.OFF);
+				setWarningLevel(
+					DiagnosticGroup.forType(
+						DiagnosticType.error("JSC_MISSING_PROVIDE_ERROR", "")),
+					CheckLevel.OFF);
+				setWarningLevel(
+					DiagnosticGroup.forType(
+						DiagnosticType.error(
+							"JSC_NON_GLOBAL_DEFINE_INIT_ERROR", "")),
+					CheckLevel.OFF);
+			}
+		};
 
 		setCompileOptions(compilerOptions);
 

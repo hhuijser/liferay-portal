@@ -46,21 +46,24 @@ public class PortletPreferencesFactoryImplUnitTest {
 
 	@Before
 	public void setUp() {
-		HtmlUtil htmlUtil = new HtmlUtil();
+		new HtmlUtil() {
+			{
+				setHtml(new HtmlImpl());
+			}
+		};
 
-		htmlUtil.setHtml(new HtmlImpl());
+		new SecureXMLFactoryProviderUtil() {
+			{
+				setSecureXMLFactoryProvider(new SecureXMLFactoryProviderImpl());
+			}
+		};
 
-		SecureXMLFactoryProviderUtil secureXMLFactoryProviderUtil =
-			new SecureXMLFactoryProviderUtil();
-
-		secureXMLFactoryProviderUtil.setSecureXMLFactoryProvider(
-			new SecureXMLFactoryProviderImpl());
-
-		PortletPreferencesFactoryUtil portletPreferencesFactoryUtil =
-			new PortletPreferencesFactoryUtil();
-
-		portletPreferencesFactoryUtil.setPortletPreferencesFactory(
-			new PortletPreferencesFactoryImpl());
+		new PortletPreferencesFactoryUtil() {
+			{
+				setPortletPreferencesFactory(
+					new PortletPreferencesFactoryImpl());
+			}
+		};
 	}
 
 	@Test

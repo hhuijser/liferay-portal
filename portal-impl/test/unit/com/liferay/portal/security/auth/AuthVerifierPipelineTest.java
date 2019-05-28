@@ -45,10 +45,12 @@ public class AuthVerifierPipelineTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		AuthVerifierResult authVerifierResult = new AuthVerifierResult();
-
-		authVerifierResult.setSettings(new HashMap<>());
-		authVerifierResult.setState(AuthVerifierResult.State.SUCCESS);
+		AuthVerifierResult authVerifierResult = new AuthVerifierResult() {
+			{
+				setSettings(new HashMap<>());
+				setState(AuthVerifierResult.State.SUCCESS);
+			}
+		};
 
 		ServiceRegistration<AuthVerifier> serviceRegistration =
 			registry.registerService(
@@ -70,9 +72,11 @@ public class AuthVerifierPipelineTest {
 
 		mockHttpServletRequest.setRequestURI(_BASE_URL + "/Hello");
 
-		AccessControlContext accessControlContext = new AccessControlContext();
-
-		accessControlContext.setRequest(mockHttpServletRequest);
+		AccessControlContext accessControlContext = new AccessControlContext() {
+			{
+				setRequest(mockHttpServletRequest);
+			}
+		};
 
 		try {
 			Assert.assertSame(

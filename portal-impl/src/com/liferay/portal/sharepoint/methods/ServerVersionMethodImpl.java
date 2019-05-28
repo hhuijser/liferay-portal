@@ -29,12 +29,14 @@ import java.util.List;
 public class ServerVersionMethodImpl extends BaseMethodImpl {
 
 	public ServerVersionMethodImpl() {
-		Tree serverVersionTree = new Tree();
-
-		serverVersionTree.addChild(new Leaf("major ver", "6", true));
-		serverVersionTree.addChild(new Leaf("minor ver", "0", true));
-		serverVersionTree.addChild(new Leaf("phase ver", "2", true));
-		serverVersionTree.addChild(new Leaf("ver incr", "8117", true));
+		Tree serverVersionTree = new Tree() {
+			{
+				addChild(new Leaf("major ver", "6", true));
+				addChild(new Leaf("minor ver", "0", true));
+				addChild(new Leaf("phase ver", "2", true));
+				addChild(new Leaf("ver incr", "8117", true));
+			}
+		};
 
 		Property serverVersionProperty = new Property(
 			getMethodName(), serverVersionTree);

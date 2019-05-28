@@ -36,36 +36,37 @@ public class TransactionalTestRuleTest extends BaseTransactionalTestRuleTest {
 		TransactionalTestRule.INSTANCE;
 
 	static {
-		TransactionInvokerUtil transactionInvokerUtil =
-			new TransactionInvokerUtil();
+		new TransactionInvokerUtil() {
+			{
+				setTransactionInvoker(
+					new TransactionInvoker() {
 
-		transactionInvokerUtil.setTransactionInvoker(
-			new TransactionInvoker() {
+						@Override
+						public <T> T invoke(
+								TransactionConfig transactionConfig,
+								Callable<T> callable)
+							throws Throwable {
 
-				@Override
-				public <T> T invoke(
-						TransactionConfig transactionConfig,
-						Callable<T> callable)
-					throws Throwable {
+							Deque<TransactionConfig> transactionConfigs =
+								transactionConfigThreadLocal.get();
 
-					Deque<TransactionConfig> transactionConfigs =
-						transactionConfigThreadLocal.get();
+							transactionConfigs.push(transactionConfig);
 
-					transactionConfigs.push(transactionConfig);
+							try {
+								return callable.call();
+							}
+							finally {
+								transactionConfigs.pop();
 
-					try {
-						return callable.call();
-					}
-					finally {
-						transactionConfigs.pop();
-
-						if (transactionConfigs.isEmpty()) {
-							transactionConfigThreadLocal.remove();
+								if (transactionConfigs.isEmpty()) {
+									transactionConfigThreadLocal.remove();
+								}
+							}
 						}
-					}
-				}
 
-			});
+					});
+			}
+		};
 	}
 
 }

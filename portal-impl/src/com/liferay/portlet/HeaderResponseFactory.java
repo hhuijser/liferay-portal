@@ -38,10 +38,11 @@ public class HeaderResponseFactory {
 			headerRequest = ((HeaderRequestWrapper)headerRequest).getRequest();
 		}
 
-		HeaderResponseImpl headerResponseImpl = new HeaderResponseImpl();
-
-		headerResponseImpl.init(
-			(HeaderRequestImpl)headerRequest, httpServletResponse);
+		HeaderResponseImpl headerResponseImpl = new HeaderResponseImpl() {
+			{
+				init((HeaderRequestImpl)headerRequest, httpServletResponse);
+			}
+		};
 
 		return headerResponseImpl;
 	}

@@ -48,9 +48,11 @@ public class LayoutListUtilTest {
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		LocalizationUtil localizationUtil = new LocalizationUtil();
-
-		localizationUtil.setLocalization(new LocalizationImpl());
+		new LocalizationUtil() {
+			{
+				setLocalization(new LocalizationImpl());
+			}
+		};
 
 		ReflectionTestUtil.setFieldValue(
 			PropsUtil.class, "_configuration",
@@ -173,11 +175,13 @@ public class LayoutListUtilTest {
 	}
 
 	protected Layout createLayout(long plid, long parentLayoutId) {
-		Layout layout = new MockLayoutImpl();
-
-		layout.setPrimaryKey(plid);
-		layout.setLayoutId(plid);
-		layout.setParentLayoutId(parentLayoutId);
+		Layout layout = new MockLayoutImpl() {
+			{
+				setPrimaryKey(plid);
+				setLayoutId(plid);
+				setParentLayoutId(parentLayoutId);
+			}
+		};
 
 		return layout;
 	}

@@ -34,9 +34,11 @@ public class ServiceContextTest {
 
 	@Test
 	public void testJSONSerialization() {
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(new JSONFactoryImpl());
+			}
+		};
 
 		ServiceContext serviceContext = new ServiceContext();
 

@@ -38,9 +38,11 @@ public class PollerProcessorUtilTest {
 		PollerProcessor pollerProcessor = ProxyFactory.newDummyInstance(
 			PollerProcessor.class);
 
-		SPIRegistryUtil spiRegistryUtil = new SPIRegistryUtil();
-
-		spiRegistryUtil.setSPIRegistry(new SPIRegistryImpl());
+		new SPIRegistryUtil() {
+			{
+				setSPIRegistry(new SPIRegistryImpl());
+			}
+		};
 
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 

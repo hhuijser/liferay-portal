@@ -89,20 +89,22 @@ public class MPIHelperUtilTest {
 
 		PropsTestUtil.setProps(properties);
 
-		SPIRegistryUtil spiRegistryUtil = new SPIRegistryUtil();
+		new SPIRegistryUtil() {
+			{
+				setSPIRegistry(
+					new SPIRegistryImpl() {
 
-		spiRegistryUtil.setSPIRegistry(
-			new SPIRegistryImpl() {
+						@Override
+						public void registerSPI(SPI spi) {
+						}
 
-				@Override
-				public void registerSPI(SPI spi) {
-				}
+						@Override
+						public void unregisterSPI(SPI spi) {
+						}
 
-				@Override
-				public void unregisterSPI(SPI spi) {
-				}
-
-			});
+					});
+			}
+		};
 	}
 
 	@After

@@ -31,9 +31,11 @@ public class AutoEscapeBeanHandlerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		HtmlUtil htmlUtil = new HtmlUtil();
-
-		htmlUtil.setHtml(new HtmlImpl());
+		new HtmlUtil() {
+			{
+				setHtml(new HtmlImpl());
+			}
+		};
 
 		_bean = new BeanImpl(_UNESCAPED_TEXT);
 	}

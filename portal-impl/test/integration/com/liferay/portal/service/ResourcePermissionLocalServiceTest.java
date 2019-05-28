@@ -58,15 +58,19 @@ public class ResourcePermissionLocalServiceTest {
 
 		List<Resource> resources = new ArrayList<>();
 
-		Resource firstResource = new ResourceImpl();
-
-		firstResource.setScope(ResourceConstants.SCOPE_GROUP);
+		Resource firstResource = new ResourceImpl() {
+			{
+				setScope(ResourceConstants.SCOPE_GROUP);
+			}
+		};
 
 		resources.add(firstResource);
 
-		Resource lastResource = new ResourceImpl();
-
-		lastResource.setScope(ResourceConstants.SCOPE_COMPANY);
+		Resource lastResource = new ResourceImpl() {
+			{
+				setScope(ResourceConstants.SCOPE_COMPANY);
+			}
+		};
 
 		resources.add(lastResource);
 
@@ -92,15 +96,19 @@ public class ResourcePermissionLocalServiceTest {
 	public void testShouldFailIfLastResourceIsNotCompany() throws Exception {
 		List<Resource> resources = new ArrayList<>();
 
-		Resource firstResource = new ResourceImpl();
-
-		firstResource.setScope(ResourceConstants.SCOPE_INDIVIDUAL);
+		Resource firstResource = new ResourceImpl() {
+			{
+				setScope(ResourceConstants.SCOPE_INDIVIDUAL);
+			}
+		};
 
 		resources.add(firstResource);
 
-		Resource lastResource = new ResourceImpl();
-
-		lastResource.setScope(ResourceConstants.SCOPE_GROUP);
+		Resource lastResource = new ResourceImpl() {
+			{
+				setScope(ResourceConstants.SCOPE_GROUP);
+			}
+		};
 
 		resources.add(lastResource);
 

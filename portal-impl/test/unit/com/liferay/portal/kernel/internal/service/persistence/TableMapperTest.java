@@ -102,17 +102,19 @@ public class TableMapperTest {
 		PortalCacheHelperUtil.clearPortalCaches(
 			PortalCacheManagerNames.MULTI_VM);
 
-		MappingSqlQueryFactoryUtil mappingSqlQueryFactoryUtil =
-			new MappingSqlQueryFactoryUtil();
-
-		mappingSqlQueryFactoryUtil.setMappingSqlQueryFactory(
-			new MockMappingSqlQueryFactory());
+		new MappingSqlQueryFactoryUtil() {
+			{
+				setMappingSqlQueryFactory(new MockMappingSqlQueryFactory());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 
-		SqlUpdateFactoryUtil sqlUpdateFactoryUtil = new SqlUpdateFactoryUtil();
-
-		sqlUpdateFactoryUtil.setSqlUpdateFactory(new MockSqlUpdateFactory());
+		new SqlUpdateFactoryUtil() {
+			{
+				setSqlUpdateFactory(new MockSqlUpdateFactory());
+			}
+		};
 
 		Class<?> clazz = TableMapperTest.class;
 

@@ -96,9 +96,11 @@ public class JSONWebServiceServlet extends JSONServlet {
 	@Override
 	protected JSONAction getJSONAction(ServletContext servletContext) {
 		JSONWebServiceServiceAction jsonWebServiceServiceAction =
-			new JSONWebServiceServiceAction();
-
-		jsonWebServiceServiceAction.setServletContext(servletContext);
+			new JSONWebServiceServiceAction() {
+				{
+					setServletContext(servletContext);
+				}
+			};
 
 		return jsonWebServiceServiceAction;
 	}

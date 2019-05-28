@@ -115,10 +115,12 @@ public class AssetCategoryPropertyFinderImpl
 				String value = itr.next();
 
 				AssetCategoryProperty categoryProperty =
-					new AssetCategoryPropertyImpl();
-
-				categoryProperty.setKey(key);
-				categoryProperty.setValue(value);
+					new AssetCategoryPropertyImpl() {
+						{
+							setKey(key);
+							setValue(value);
+						}
+					};
 
 				categoryProperties.add(categoryProperty);
 			}

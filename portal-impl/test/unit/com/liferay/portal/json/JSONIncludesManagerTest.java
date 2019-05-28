@@ -27,9 +27,11 @@ public class JSONIncludesManagerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(new JSONFactoryImpl());
+			}
+		};
 
 		JSONInit.init();
 	}

@@ -47,9 +47,11 @@ public class PortletToolbarTest {
 
 	@Test
 	public void testGetPortletTitleMenus() {
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 
@@ -68,11 +70,13 @@ public class PortletToolbarTest {
 
 		PortletToolbar portletToolbar = new PortletToolbar();
 
-		PortletRequest portletRequest = new MockPortletRequest();
-
-		portletRequest.setAttribute(
-			PortletServlet.PORTLET_SERVLET_REQUEST,
-			new MockHttpServletRequest());
+		PortletRequest portletRequest = new MockPortletRequest() {
+			{
+				setAttribute(
+					PortletServlet.PORTLET_SERVLET_REQUEST,
+					new MockHttpServletRequest());
+			}
+		};
 
 		List<Menu> menus = portletToolbar.getPortletTitleMenus(
 			RandomTestUtil.randomString(), portletRequest,

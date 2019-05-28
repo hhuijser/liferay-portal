@@ -108,11 +108,13 @@ public abstract class BaseJsonClientTestCase {
 		URL url = new URL(TestPropsValues.PORTAL_URL);
 
 		CredentialsProvider credentialsProvider =
-			new BasicCredentialsProvider();
-
-		credentialsProvider.setCredentials(
-			new AuthScope(url.getHost(), url.getPort()),
-			new UsernamePasswordCredentials(login, password));
+			new BasicCredentialsProvider() {
+				{
+					setCredentials(
+						new AuthScope(url.getHost(), url.getPort()),
+						new UsernamePasswordCredentials(login, password));
+				}
+			};
 
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 
@@ -127,10 +129,11 @@ public abstract class BaseJsonClientTestCase {
 
 		basicAuthCache.put(httpHost, basicScheme);
 
-		BasicHttpContext basicHttpContext = new BasicHttpContext();
-
-		basicHttpContext.setAttribute(
-			HttpClientContext.AUTH_CACHE, basicAuthCache);
+		BasicHttpContext basicHttpContext = new BasicHttpContext() {
+			{
+				setAttribute(HttpClientContext.AUTH_CACHE, basicAuthCache);
+			}
+		};
 
 		return httpClient.execute(
 			httpHost, request, new StringHandler(), basicHttpContext);

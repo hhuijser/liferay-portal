@@ -32,9 +32,11 @@ public class RouteImplTest {
 
 	@Test
 	public void testNonmatchingRoute() {
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 
 		Map<String, String> parameters = new HashMap<>();
 

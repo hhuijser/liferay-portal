@@ -203,11 +203,13 @@ public class AssetTagFinderImpl
 			while (itr.hasNext()) {
 				Object[] array = itr.next();
 
-				AssetTag assetTag = new AssetTagImpl();
-
-				assetTag.setTagId(GetterUtil.getLong(array[0]));
-				assetTag.setName(GetterUtil.getString(array[1]));
-				assetTag.setAssetCount(GetterUtil.getInteger(array[2]));
+				AssetTag assetTag = new AssetTagImpl() {
+					{
+						setTagId(GetterUtil.getLong(array[0]));
+						setName(GetterUtil.getString(array[1]));
+						setAssetCount(GetterUtil.getInteger(array[2]));
+					}
+				};
 
 				assetTags.add(assetTag);
 			}

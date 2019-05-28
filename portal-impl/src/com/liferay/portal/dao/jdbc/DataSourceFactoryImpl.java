@@ -218,13 +218,15 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			String password, String jndiName)
 		throws Exception {
 
-		Properties properties = new Properties();
-
-		properties.setProperty("driverClassName", driverClassName);
-		properties.setProperty("url", url);
-		properties.setProperty("username", userName);
-		properties.setProperty("password", password);
-		properties.setProperty("jndi.name", jndiName);
+		Properties properties = new Properties() {
+			{
+				setProperty("driverClassName", driverClassName);
+				setProperty("url", url);
+				setProperty("username", userName);
+				setProperty("password", password);
+				setProperty("jndi.name", jndiName);
+			}
+		};
 
 		return initDataSource(properties);
 	}

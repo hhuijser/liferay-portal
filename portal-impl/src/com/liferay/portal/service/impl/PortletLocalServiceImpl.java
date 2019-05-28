@@ -157,9 +157,11 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 		PortletCategory newPortletCategory = new PortletCategory(categoryName);
 
 		if (newPortletCategory.getParentCategory() == null) {
-			PortletCategory rootPortletCategory = new PortletCategory();
-
-			rootPortletCategory.addCategory(newPortletCategory);
+			new PortletCategory() {
+				{
+					addCategory(newPortletCategory);
+				}
+			};
 		}
 
 		portletCategory.merge(newPortletCategory.getRootCategory());
@@ -281,15 +283,17 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 		ServletContext servletContext = portletApp.getServletContext();
 
-		PortletBagFactory portletBagFactory = new PortletBagFactory();
+		new PortletBagFactory() {
+			{
+				setClassLoader(
+					_getServletContextClassLoader(
+						servletContext.getServletContextName()));
+				setServletContext(servletContext);
+				setWARFile(true);
 
-		portletBagFactory.setClassLoader(
-			_getServletContextClassLoader(
-				servletContext.getServletContextName()));
-		portletBagFactory.setServletContext(servletContext);
-		portletBagFactory.setWARFile(true);
-
-		portletBagFactory.create(portlet, true);
+				create(portlet, true);
+			}
+		};
 
 		_portletsMap.put(portlet.getRootPortletId(), portlet);
 
@@ -345,9 +349,11 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 				categoryName);
 
 			if (newPortletCategory.getParentCategory() == null) {
-				PortletCategory rootPortletCategory = new PortletCategory();
-
-				rootPortletCategory.addCategory(newPortletCategory);
+				new PortletCategory() {
+					{
+						addCategory(newPortletCategory);
+					}
+				};
 			}
 
 			Set<String> portletIds = newPortletCategory.getPortletIds();

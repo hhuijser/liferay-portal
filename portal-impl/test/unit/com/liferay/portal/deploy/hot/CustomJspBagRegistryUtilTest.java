@@ -49,18 +49,23 @@ public class CustomJspBagRegistryUtilTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		PortalUtil portalUtil = new PortalUtil();
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 
-		portalUtil.setPortal(new PortalImpl());
+		new CustomJspRegistryUtil() {
+			{
+				setCustomJspRegistry(new CustomJspRegistryImpl());
+			}
+		};
 
-		CustomJspRegistryUtil customJspRegistryUtil =
-			new CustomJspRegistryUtil();
-
-		customJspRegistryUtil.setCustomJspRegistry(new CustomJspRegistryImpl());
-
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 	}

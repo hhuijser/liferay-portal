@@ -129,10 +129,11 @@ public class JSONWebServiceActionsManagerImpl
 		throws NoSuchJSONWebServiceException {
 
 		JSONWebServiceActionParameters jsonWebServiceActionParameters =
-			new JSONWebServiceActionParameters();
-
-		jsonWebServiceActionParameters.collectAll(
-			httpServletRequest, null, null, parameterMap);
+			new JSONWebServiceActionParameters() {
+				{
+					collectAll(httpServletRequest, null, null, parameterMap);
+				}
+			};
 
 		JSONWebServiceActionConfig jsonWebServiceActionConfig =
 			_findJSONWebServiceAction(
@@ -328,11 +329,11 @@ public class JSONWebServiceActionsManagerImpl
 			return -1;
 		}
 
-		DefaultJSONWebServiceRegistrator defaultJSONWebServiceRegistrator =
-			new DefaultJSONWebServiceRegistrator();
-
-		defaultJSONWebServiceRegistrator.processAllBeans(
-			contextName, contextPath, beanLocator);
+		new DefaultJSONWebServiceRegistrator() {
+			{
+				processAllBeans(contextName, contextPath, beanLocator);
+			}
+		};
 
 		int count = getJSONWebServiceActionsCount(contextPath);
 

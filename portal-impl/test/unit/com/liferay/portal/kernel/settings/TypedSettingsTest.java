@@ -31,16 +31,20 @@ import org.junit.Test;
 public class TypedSettingsTest {
 
 	public TypedSettingsTest() {
-		LocalizationUtil localizationUtil = new LocalizationUtil();
+		new LocalizationUtil() {
+			{
+				setLocalization(new LocalizationImpl());
+			}
+		};
 
-		localizationUtil.setLocalization(new LocalizationImpl());
-
-		ModifiableSettings modifiableSettings = new MemorySettings();
-
-		modifiableSettings.setValue(_KEY, "valueDefault");
-		modifiableSettings.setValue(_KEY + "_en_GB", "value_en_GB");
-		modifiableSettings.setValue(_KEY + "_en_US", "value_en_US");
-		modifiableSettings.setValue(_KEY + "_es_ES", "value_es_ES");
+		ModifiableSettings modifiableSettings = new MemorySettings() {
+			{
+				setValue(_KEY, "valueDefault");
+				setValue(_KEY + "_en_GB", "value_en_GB");
+				setValue(_KEY + "_en_US", "value_en_US");
+				setValue(_KEY + "_es_ES", "value_es_ES");
+			}
+		};
 
 		_typedSettings = new TypedSettings(
 			modifiableSettings, _availableLocales);

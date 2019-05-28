@@ -328,13 +328,15 @@ public class AuthVerifierPipeline {
 			Class<?> authVerifierClass = authVerifier.getClass();
 
 			AuthVerifierConfiguration authVerifierConfiguration =
-				new AuthVerifierConfiguration();
-
-			authVerifierConfiguration.setAuthVerifier(authVerifier);
-			authVerifierConfiguration.setAuthVerifierClassName(
-				authVerifierClass.getName());
-			authVerifierConfiguration.setProperties(
-				_loadProperties(serviceReference, authVerifierClass.getName()));
+				new AuthVerifierConfiguration() {
+					{
+						setAuthVerifier(authVerifier);
+						setAuthVerifierClassName(authVerifierClass.getName());
+						setProperties(
+							_loadProperties(
+								serviceReference, authVerifierClass.getName()));
+					}
+				};
 
 			if (!_validate(authVerifierConfiguration)) {
 				return null;

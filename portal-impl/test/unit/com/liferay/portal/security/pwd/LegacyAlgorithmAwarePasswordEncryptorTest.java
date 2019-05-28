@@ -37,9 +37,11 @@ public class LegacyAlgorithmAwarePasswordEncryptorTest {
 
 	@Before
 	public void setUp() {
-		DigesterUtil digesterUtil = new DigesterUtil();
-
-		digesterUtil.setDigester(new DigesterImpl());
+		new DigesterUtil() {
+			{
+				setDigester(new DigesterImpl());
+			}
+		};
 
 		_compositePasswordEncryptor = new CompositePasswordEncryptor();
 
@@ -211,12 +213,13 @@ public class LegacyAlgorithmAwarePasswordEncryptorTest {
 		try {
 			PropsValues.PASSWORDS_ENCRYPTION_ALGORITHM_LEGACY = algorithm;
 
-			PasswordEncryptorUtil passwordEncryptorUtil =
-				new PasswordEncryptorUtil();
-
-			passwordEncryptorUtil.setPasswordEncryptor(
-				LegacyAlgorithmAwarePasswordEncryptor.create(
-					_compositePasswordEncryptor));
+			new PasswordEncryptorUtil() {
+				{
+					setPasswordEncryptor(
+						LegacyAlgorithmAwarePasswordEncryptor.create(
+							_compositePasswordEncryptor));
+				}
+			};
 
 			Assert.assertEquals(
 				encryptedPassword,
@@ -256,12 +259,13 @@ public class LegacyAlgorithmAwarePasswordEncryptorTest {
 		try {
 			PropsValues.PASSWORDS_ENCRYPTION_ALGORITHM_LEGACY = null;
 
-			PasswordEncryptorUtil passwordEncryptorUtil =
-				new PasswordEncryptorUtil();
-
-			passwordEncryptorUtil.setPasswordEncryptor(
-				LegacyAlgorithmAwarePasswordEncryptor.create(
-					_compositePasswordEncryptor));
+			new PasswordEncryptorUtil() {
+				{
+					setPasswordEncryptor(
+						LegacyAlgorithmAwarePasswordEncryptor.create(
+							_compositePasswordEncryptor));
+				}
+			};
 
 			String encryptedPassword = PasswordEncryptorUtil.encrypt(
 				algorithm, "password", null);

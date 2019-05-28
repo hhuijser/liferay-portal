@@ -24,10 +24,13 @@ public class UpgradePersonalMenu extends UpgradeProcess {
 
 	@Override
 	protected void doUpgrade() throws Exception {
-		ReleaseDAO releaseDAO = new ReleaseDAO();
-
-		releaseDAO.addRelease(
-			connection, "com.liferay.product.navigation.personal.menu.web");
+		new ReleaseDAO() {
+			{
+				addRelease(
+					connection,
+					"com.liferay.product.navigation.personal.menu.web");
+			}
+		};
 	}
 
 }

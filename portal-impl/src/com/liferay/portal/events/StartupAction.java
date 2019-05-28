@@ -106,15 +106,15 @@ public class StartupAction extends SimpleAction {
 		// Portal resiliency
 
 		if (PropsValues.PORTAL_RESILIENCY_ENABLED) {
-			ServiceDependencyManager portalResiliencyServiceDependencyManager =
-				new ServiceDependencyManager();
+			new ServiceDependencyManager() {
+				{
+					addServiceDependencyListener(
+						new PortalResiliencyServiceDependencyLister());
 
-			portalResiliencyServiceDependencyManager.
-				addServiceDependencyListener(
-					new PortalResiliencyServiceDependencyLister());
-
-			portalResiliencyServiceDependencyManager.registerDependencies(
-				MessageBus.class, PortalExecutorManager.class);
+					registerDependencies(
+						MessageBus.class, PortalExecutorManager.class);
+				}
+			};
 		}
 
 		// Shutdown hook

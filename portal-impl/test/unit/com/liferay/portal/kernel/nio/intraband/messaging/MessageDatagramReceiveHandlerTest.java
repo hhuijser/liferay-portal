@@ -97,10 +97,12 @@ public class MessageDatagramReceiveHandlerTest {
 
 		SystemDataType systemDataType = SystemDataType.MESSAGE;
 
-		Message message = new Message();
-
-		message.setDestinationName(
-			MessageDatagramReceiveHandlerTest.class.getName());
+		Message message = new Message() {
+			{
+				setDestinationName(
+					MessageDatagramReceiveHandlerTest.class.getName());
+			}
+		};
 
 		MessageRoutingBag messageRoutingBag = new MessageRoutingBag(
 			message, false);

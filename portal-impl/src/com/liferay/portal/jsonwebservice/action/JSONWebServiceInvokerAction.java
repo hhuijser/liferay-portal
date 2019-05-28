@@ -526,10 +526,12 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 					statement.setFlags(flags);
 				}
 
-				Flag flag = new Flag();
-
-				flag.setName(key.substring(1));
-				flag.setValue(value);
+				Flag flag = new Flag() {
+					{
+						setName(key.substring(1));
+						setValue(value);
+					}
+				};
 
 				flags.add(flag);
 			}

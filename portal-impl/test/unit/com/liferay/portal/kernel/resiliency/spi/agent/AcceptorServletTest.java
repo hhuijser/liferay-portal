@@ -63,17 +63,19 @@ public class AcceptorServletTest {
 
 	@Before
 	public void setUp() {
-		PortalUtil portalUtil = new PortalUtil();
+		new PortalUtil() {
+			{
+				setPortal(
+					new PortalImpl() {
 
-		portalUtil.setPortal(
-			new PortalImpl() {
+						@Override
+						public String getPathContext() {
+							return _pathContext;
+						}
 
-				@Override
-				public String getPathContext() {
-					return _pathContext;
-				}
-
-			});
+					});
+			}
+		};
 
 		ConcurrentMap<String, Object> attributes =
 			LocalProcessLauncher.ProcessContext.getAttributes();
@@ -139,9 +141,11 @@ public class AcceptorServletTest {
 		acceptorServlet.init(new MockServletConfig(mockServletContext));
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerPort(1234);
+			new MockHttpServletRequest() {
+				{
+					setServerPort(1234);
+				}
+			};
 
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();

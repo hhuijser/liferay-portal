@@ -38,9 +38,11 @@ public class OrderByComparatorFactoryUtilTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		BeanPropertiesUtil beanPropertiesUtil = new BeanPropertiesUtil();
-
-		beanPropertiesUtil.setBeanProperties(new BeanPropertiesImpl());
+		new BeanPropertiesUtil() {
+			{
+				setBeanProperties(new BeanPropertiesImpl());
+			}
+		};
 	}
 
 	@Test
@@ -285,11 +287,13 @@ public class OrderByComparatorFactoryUtilTest {
 	protected EmailAddress newEmailAddress(
 		long companyId, Date createDate, String address) {
 
-		EmailAddress emailAddress = new EmailAddressImpl();
-
-		emailAddress.setCompanyId(companyId);
-		emailAddress.setCreateDate(createDate);
-		emailAddress.setAddress(address);
+		EmailAddress emailAddress = new EmailAddressImpl() {
+			{
+				setCompanyId(companyId);
+				setCreateDate(createDate);
+				setAddress(address);
+			}
+		};
 
 		return emailAddress;
 	}

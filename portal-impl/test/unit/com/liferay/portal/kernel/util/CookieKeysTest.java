@@ -46,9 +46,11 @@ public class CookieKeysTest {
 	@Test
 	public void testDomain2() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerName("www.liferay.com");
+			new MockHttpServletRequest() {
+				{
+					setServerName("www.liferay.com");
+				}
+			};
 
 		String domain = CookieKeys.getDomain(mockHttpServletRequest);
 
@@ -58,9 +60,11 @@ public class CookieKeysTest {
 	@Test
 	public void testDomain3() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerName("www.liferay.com");
+			new MockHttpServletRequest() {
+				{
+					setServerName("www.liferay.com");
+				}
+			};
 
 		Field field = ReflectionUtil.getDeclaredField(
 			CookieKeys.class, "_SESSION_COOKIE_DOMAIN");
@@ -82,9 +86,11 @@ public class CookieKeysTest {
 	@Test
 	public void testDomain4() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerName("www.liferay.com");
+			new MockHttpServletRequest() {
+				{
+					setServerName("www.liferay.com");
+				}
+			};
 
 		Field field = ReflectionUtil.getDeclaredField(
 			CookieKeys.class, "_SESSION_COOKIE_USE_FULL_HOSTNAME");
@@ -106,9 +112,11 @@ public class CookieKeysTest {
 	@Test
 	public void testDomain5() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setServerName("www.liferay.com");
+			new MockHttpServletRequest() {
+				{
+					setServerName("www.liferay.com");
+				}
+			};
 
 		Field field = ReflectionUtil.getDeclaredField(
 			CookieKeys.class, "_SESSION_COOKIE_USE_FULL_HOSTNAME");

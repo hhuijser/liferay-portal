@@ -45,10 +45,13 @@ public class EventResponseFactory {
 			eventRequest = ((EventRequestWrapper)eventRequest).getRequest();
 		}
 
-		EventResponseImpl eventResponseImpl = new EventResponseImpl();
-
-		eventResponseImpl.init(
-			(EventRequestImpl)eventRequest, httpServletResponse, user, layout);
+		EventResponseImpl eventResponseImpl = new EventResponseImpl() {
+			{
+				init(
+					(EventRequestImpl)eventRequest, httpServletResponse, user,
+					layout);
+			}
+		};
 
 		return eventResponseImpl;
 	}

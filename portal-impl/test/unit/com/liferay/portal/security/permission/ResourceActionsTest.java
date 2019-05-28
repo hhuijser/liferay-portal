@@ -40,10 +40,11 @@ public class ResourceActionsTest {
 	public void setUp() throws Exception {
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
-		UnsecureSAXReaderUtil unsecureSAXReaderUtil =
-			new UnsecureSAXReaderUtil();
-
-		unsecureSAXReaderUtil.setSAXReader(new SAXReaderImpl());
+		new UnsecureSAXReaderUtil() {
+			{
+				setSAXReader(new SAXReaderImpl());
+			}
+		};
 
 		ResourceActionsUtil resourceActionsUtil = new ResourceActionsUtil();
 

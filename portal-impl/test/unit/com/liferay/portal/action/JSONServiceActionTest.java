@@ -45,9 +45,11 @@ public class JSONServiceActionTest {
 
 	@Before
 	public void setUp() throws Exception {
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(new JSONFactoryImpl());
+			}
+		};
 	}
 
 	@Test
@@ -107,10 +109,12 @@ public class JSONServiceActionTest {
 		Type[] parameterTypes = (Type[])methodAndParameterTypes[1];
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setParameter(parameters[0], "11111");
-		mockHttpServletRequest.setParameter(parameters[1], "11111,22222,33333");
+			new MockHttpServletRequest() {
+				{
+					setParameter(parameters[0], "11111");
+					setParameter(parameters[1], "11111,22222,33333");
+				}
+			};
 
 		Object value = jsonServiceAction.getArgValue(
 			mockHttpServletRequest, GroupServiceUtil.class, method.getName(),

@@ -54,17 +54,23 @@ public class ComboServletStaticURLGeneratorTest {
 	public void setUp() {
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
-		HtmlUtil htmlUtil = new HtmlUtil();
+		new HtmlUtil() {
+			{
+				setHtml(new HtmlImpl());
+			}
+		};
 
-		htmlUtil.setHtml(new HtmlImpl());
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
-
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 	}
 
 	@Test

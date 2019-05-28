@@ -129,52 +129,56 @@ public class DLGroupServiceSettings {
 	}
 
 	private static FallbackKeys _getFallbackKeys() {
-		FallbackKeys fallbackKeys = new FallbackKeys();
-
-		fallbackKeys.add(
-			"emailFileEntryAddedBody",
-			PropsKeys.DL_EMAIL_FILE_ENTRY_ADDED_BODY);
-		fallbackKeys.add(
-			"emailFileEntryAddedEnabled",
-			PropsKeys.DL_EMAIL_FILE_ENTRY_ADDED_ENABLED);
-		fallbackKeys.add(
-			"emailFileEntryAddedSubject",
-			PropsKeys.DL_EMAIL_FILE_ENTRY_ADDED_SUBJECT);
-		fallbackKeys.add(
-			"emailFileEntryUpdatedBody",
-			PropsKeys.DL_EMAIL_FILE_ENTRY_UPDATED_BODY);
-		fallbackKeys.add(
-			"emailFileEntryUpdatedEnabled",
-			PropsKeys.DL_EMAIL_FILE_ENTRY_UPDATED_ENABLED);
-		fallbackKeys.add(
-			"emailFileEntryUpdatedSubject",
-			PropsKeys.DL_EMAIL_FILE_ENTRY_UPDATED_SUBJECT);
-		fallbackKeys.add(
-			"emailFromAddress", PropsKeys.DL_EMAIL_FROM_ADDRESS,
-			PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
-		fallbackKeys.add(
-			"emailFromName", PropsKeys.DL_EMAIL_FROM_NAME,
-			PropsKeys.ADMIN_EMAIL_FROM_NAME);
-		fallbackKeys.add(
-			"enableCommentRatings", PropsKeys.DL_COMMENT_RATINGS_ENABLED);
-		fallbackKeys.add("enableRatings", PropsKeys.DL_RATINGS_ENABLED);
-		fallbackKeys.add(
-			"enableRelatedAssets", PropsKeys.DL_RELATED_ASSETS_ENABLED);
-		fallbackKeys.add(
-			"entriesPerPage", PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA);
-		fallbackKeys.add("entryColumns", PropsKeys.DL_ENTRY_COLUMNS);
-		fallbackKeys.add("fileEntryColumns", PropsKeys.DL_FILE_ENTRY_COLUMNS);
-		fallbackKeys.add("folderColumns", PropsKeys.DL_FOLDER_COLUMNS);
-		fallbackKeys.add(
-			"foldersPerPage", PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA);
-		fallbackKeys.add(
-			"fileEntriesPerPage",
-			PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA);
-		fallbackKeys.add(
-			"showFoldersSearch", PropsKeys.DL_FOLDERS_SEARCH_VISIBLE);
-		fallbackKeys.add(
-			"showHiddenMountFolders", PropsKeys.DL_SHOW_HIDDEN_MOUNT_FOLDERS);
-		fallbackKeys.add("showSubfolders", PropsKeys.DL_SUBFOLDERS_VISIBLE);
+		FallbackKeys fallbackKeys = new FallbackKeys() {
+			{
+				add(
+					"emailFileEntryAddedBody",
+					PropsKeys.DL_EMAIL_FILE_ENTRY_ADDED_BODY);
+				add(
+					"emailFileEntryAddedEnabled",
+					PropsKeys.DL_EMAIL_FILE_ENTRY_ADDED_ENABLED);
+				add(
+					"emailFileEntryAddedSubject",
+					PropsKeys.DL_EMAIL_FILE_ENTRY_ADDED_SUBJECT);
+				add(
+					"emailFileEntryUpdatedBody",
+					PropsKeys.DL_EMAIL_FILE_ENTRY_UPDATED_BODY);
+				add(
+					"emailFileEntryUpdatedEnabled",
+					PropsKeys.DL_EMAIL_FILE_ENTRY_UPDATED_ENABLED);
+				add(
+					"emailFileEntryUpdatedSubject",
+					PropsKeys.DL_EMAIL_FILE_ENTRY_UPDATED_SUBJECT);
+				add(
+					"emailFromAddress", PropsKeys.DL_EMAIL_FROM_ADDRESS,
+					PropsKeys.ADMIN_EMAIL_FROM_ADDRESS);
+				add(
+					"emailFromName", PropsKeys.DL_EMAIL_FROM_NAME,
+					PropsKeys.ADMIN_EMAIL_FROM_NAME);
+				add(
+					"enableCommentRatings",
+					PropsKeys.DL_COMMENT_RATINGS_ENABLED);
+				add("enableRatings", PropsKeys.DL_RATINGS_ENABLED);
+				add("enableRelatedAssets", PropsKeys.DL_RELATED_ASSETS_ENABLED);
+				add(
+					"entriesPerPage",
+					PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA);
+				add("entryColumns", PropsKeys.DL_ENTRY_COLUMNS);
+				add("fileEntryColumns", PropsKeys.DL_FILE_ENTRY_COLUMNS);
+				add("folderColumns", PropsKeys.DL_FOLDER_COLUMNS);
+				add(
+					"foldersPerPage",
+					PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA);
+				add(
+					"fileEntriesPerPage",
+					PropsKeys.SEARCH_CONTAINER_PAGE_DEFAULT_DELTA);
+				add("showFoldersSearch", PropsKeys.DL_FOLDERS_SEARCH_VISIBLE);
+				add(
+					"showHiddenMountFolders",
+					PropsKeys.DL_SHOW_HIDDEN_MOUNT_FOLDERS);
+				add("showSubfolders", PropsKeys.DL_SUBFOLDERS_VISIBLE);
+			}
+		};
 
 		return fallbackKeys;
 	}

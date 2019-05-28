@@ -29,9 +29,11 @@ public class DefaultScreenNameValidatorTest extends DefaultScreenNameValidator {
 
 	@Before
 	public void setUp() {
-		HtmlUtil htmlUtil = new HtmlUtil();
-
-		htmlUtil.setHtml(new HtmlImpl());
+		new HtmlUtil() {
+			{
+				setHtml(new HtmlImpl());
+			}
+		};
 	}
 
 	@Test

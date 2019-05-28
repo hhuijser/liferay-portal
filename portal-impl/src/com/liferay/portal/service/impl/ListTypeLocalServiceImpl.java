@@ -78,9 +78,11 @@ public class ListTypeLocalServiceImpl extends ListTypeLocalServiceBaseImpl {
 		ListType listType = listTypePersistence.fetchByPrimaryKey(listTypeId);
 
 		if ((listType == null) || !Objects.equals(listType.getType(), type)) {
-			NoSuchListTypeException nslte = new NoSuchListTypeException();
-
-			nslte.setType(type);
+			NoSuchListTypeException nslte = new NoSuchListTypeException() {
+				{
+					setType(type);
+				}
+			};
 
 			throw nslte;
 		}

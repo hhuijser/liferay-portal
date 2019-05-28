@@ -169,16 +169,17 @@ public class InitUtil {
 
 		// XML
 
-		SecureXMLFactoryProviderUtil secureXMLFactoryProviderUtil =
-			new SecureXMLFactoryProviderUtil();
+		new SecureXMLFactoryProviderUtil() {
+			{
+				setSecureXMLFactoryProvider(new SecureXMLFactoryProviderImpl());
+			}
+		};
 
-		secureXMLFactoryProviderUtil.setSecureXMLFactoryProvider(
-			new SecureXMLFactoryProviderImpl());
-
-		UnsecureSAXReaderUtil unsecureSAXReaderUtil =
-			new UnsecureSAXReaderUtil();
-
-		unsecureSAXReaderUtil.setSAXReader(new SAXReaderImpl());
+		new UnsecureSAXReaderUtil() {
+			{
+				setSAXReader(new SAXReaderImpl());
+			}
+		};
 
 		XmlReader.setDefaultEncoding(StringPool.UTF8);
 

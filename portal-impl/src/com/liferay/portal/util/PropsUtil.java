@@ -58,9 +58,11 @@ public class PropsUtil {
 
 		Configuration configuration = _getConfiguration(company);
 
-		Properties properties = new Properties();
-
-		properties.putAll(unicodeProperties);
+		Properties properties = new Properties() {
+			{
+				putAll(unicodeProperties);
+			}
+		};
 
 		configuration.addProperties(properties);
 	}
@@ -74,9 +76,11 @@ public class PropsUtil {
 	public static void addProperties(UnicodeProperties unicodeProperties) {
 		Configuration configuration = _getConfiguration();
 
-		Properties properties = new Properties();
-
-		properties.putAll(unicodeProperties);
+		Properties properties = new Properties() {
+			{
+				putAll(unicodeProperties);
+			}
+		};
 
 		configuration.addProperties(properties);
 	}

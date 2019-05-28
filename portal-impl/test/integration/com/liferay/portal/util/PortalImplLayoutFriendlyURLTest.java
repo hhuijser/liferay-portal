@@ -121,16 +121,18 @@ public class PortalImplLayoutFriendlyURLTest {
 			String virtualHostname, String expectedURL)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = new ThemeDisplay();
-
-		themeDisplay.setCompany(_company);
-		themeDisplay.setLayout(_layout);
-		themeDisplay.setLayoutSet(_layout.getLayoutSet());
-		themeDisplay.setPortalDomain(virtualHostname);
-		themeDisplay.setServerName(virtualHostname);
-		themeDisplay.setServerPort(8080);
-		themeDisplay.setSiteGroupId(_group.getGroupId());
-		themeDisplay.setUser(TestPropsValues.getUser());
+		ThemeDisplay themeDisplay = new ThemeDisplay() {
+			{
+				setCompany(_company);
+				setLayout(_layout);
+				setLayoutSet(_layout.getLayoutSet());
+				setPortalDomain(virtualHostname);
+				setServerName(virtualHostname);
+				setServerPort(8080);
+				setSiteGroupId(_group.getGroupId());
+				setUser(TestPropsValues.getUser());
+			}
+		};
 
 		Assert.assertEquals(
 			expectedURL, PortalUtil.getLayoutFriendlyURL(themeDisplay));

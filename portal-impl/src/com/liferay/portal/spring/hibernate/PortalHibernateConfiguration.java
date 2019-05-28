@@ -71,9 +71,11 @@ import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 public class PortalHibernateConfiguration extends LocalSessionFactoryBean {
 
 	public PortalHibernateConfiguration() {
-		Properties properties = new Properties();
-
-		properties.put("javax.persistence.validation.mode", "none");
+		Properties properties = new Properties() {
+			{
+				put("javax.persistence.validation.mode", "none");
+			}
+		};
 
 		setHibernateProperties(properties);
 	}

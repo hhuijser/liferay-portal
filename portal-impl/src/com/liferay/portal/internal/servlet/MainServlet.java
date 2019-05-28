@@ -290,9 +290,11 @@ public class MainServlet extends HttpServlet {
 		}
 
 		try {
-			StartupAction startupAction = new StartupAction();
-
-			startupAction.run(null);
+			new StartupAction() {
+				{
+					run(null);
+				}
+			};
 		}
 		catch (Exception e) {
 			_log.error(e, e);

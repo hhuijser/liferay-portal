@@ -52,11 +52,13 @@ public class RenderRequestFactory {
 		WindowState windowState, PortletMode portletMode,
 		PortletPreferences preferences, long plid) {
 
-		RenderRequestImpl renderRequestImpl = new RenderRequestImpl();
-
-		renderRequestImpl.init(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			windowState, portletMode, preferences, plid);
+		RenderRequestImpl renderRequestImpl = new RenderRequestImpl() {
+			{
+				init(
+					httpServletRequest, portlet, invokerPortlet, portletContext,
+					windowState, portletMode, preferences, plid);
+			}
+		};
 
 		return renderRequestImpl;
 	}

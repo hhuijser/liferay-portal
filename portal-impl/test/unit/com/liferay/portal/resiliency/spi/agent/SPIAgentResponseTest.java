@@ -72,21 +72,25 @@ public class SPIAgentResponseTest {
 	public static void setUpClass() throws Exception {
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 
-		ThreadLocalDistributor threadLocalDistributor =
-			new ThreadLocalDistributor();
+		new ThreadLocalDistributor() {
+			{
+				setThreadLocalSources(
+					Arrays.asList(
+						new KeyValuePair(
+							SPIAgentResponseTest.class.getName(),
+							"_threadLocal")));
 
-		threadLocalDistributor.setThreadLocalSources(
-			Arrays.asList(
-				new KeyValuePair(
-					SPIAgentResponseTest.class.getName(), "_threadLocal")));
-
-		threadLocalDistributor.afterPropertiesSet();
+				afterPropertiesSet();
+			}
+		};
 	}
 
 	@Before

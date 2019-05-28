@@ -34,9 +34,11 @@ public class CompositePasswordEncryptorTest {
 
 	@Before
 	public void setUp() {
-		DigesterUtil digesterUtil = new DigesterUtil();
-
-		digesterUtil.setDigester(new DigesterImpl());
+		new DigesterUtil() {
+			{
+				setDigester(new DigesterImpl());
+			}
+		};
 
 		PasswordEncryptorUtil passwordEncryptorUtil =
 			new PasswordEncryptorUtil();

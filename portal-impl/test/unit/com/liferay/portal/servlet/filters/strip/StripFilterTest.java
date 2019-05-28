@@ -43,11 +43,12 @@ public class StripFilterTest {
 	public static void setUpClass() {
 		ToolDependencies.wireCaches();
 
-		CacheKeyGeneratorUtil cacheKeyGeneratorUtil =
-			new CacheKeyGeneratorUtil();
-
-		cacheKeyGeneratorUtil.setDefaultCacheKeyGenerator(
-			new HashCodeHexStringCacheKeyGenerator());
+		new CacheKeyGeneratorUtil() {
+			{
+				setDefaultCacheKeyGenerator(
+					new HashCodeHexStringCacheKeyGenerator());
+			}
+		};
 	}
 
 	@Test

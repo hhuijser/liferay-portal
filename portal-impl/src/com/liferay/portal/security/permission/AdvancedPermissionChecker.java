@@ -953,9 +953,11 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 				return true;
 			}
 
-			StopWatch stopWatch = new StopWatch();
-
-			stopWatch.start();
+			StopWatch stopWatch = new StopWatch() {
+				{
+					start();
+				}
+			};
 
 			Group parentGroup = group;
 
@@ -1026,9 +1028,11 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 				organizationId = organization.getParentOrganizationId();
 			}
 
-			StopWatch stopWatch = new StopWatch();
-
-			stopWatch.start();
+			StopWatch stopWatch = new StopWatch() {
+				{
+					start();
+				}
+			};
 
 			Organization organization =
 				OrganizationLocalServiceUtil.getOrganization(
@@ -1457,9 +1461,11 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 			String actionId)
 		throws Exception {
 
-		StopWatch stopWatch = new StopWatch();
-
-		stopWatch.start();
+		StopWatch stopWatch = new StopWatch() {
+			{
+				start();
+			}
+		};
 
 		long companyId = user.getCompanyId();
 		long groupId = 0;

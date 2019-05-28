@@ -68,17 +68,21 @@ public class HttpImplTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		PortalUtil portalUtil = new PortalUtil();
+		new PortalUtil() {
+			{
+				setPortal(
+					new PortalImpl() {
 
-		portalUtil.setPortal(
-			new PortalImpl() {
+						@Override
+						public String[] stripURLAnchor(
+							String url, String separator) {
 
-				@Override
-				public String[] stripURLAnchor(String url, String separator) {
-					return new String[] {url, StringPool.BLANK};
-				}
+							return new String[] {url, StringPool.BLANK};
+						}
 
-			});
+					});
+			}
+		};
 	}
 
 	@Test

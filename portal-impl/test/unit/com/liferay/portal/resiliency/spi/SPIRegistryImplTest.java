@@ -70,9 +70,11 @@ public class SPIRegistryImplTest {
 
 		_spiRegistryImpl.setErrorSPI(new ErrorSPI());
 
-		SPIRegistryUtil spiRegistryUtil = new SPIRegistryUtil();
-
-		spiRegistryUtil.setSPIRegistry(_spiRegistryImpl);
+		new SPIRegistryUtil() {
+			{
+				setSPIRegistry(_spiRegistryImpl);
+			}
+		};
 
 		_excludedPortletIds = ReflectionTestUtil.getFieldValue(
 			_spiRegistryImpl, "_excludedPortletIds");

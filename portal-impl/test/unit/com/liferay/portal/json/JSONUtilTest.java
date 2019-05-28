@@ -39,9 +39,11 @@ public class JSONUtilTest {
 
 		JSONFactoryImpl jsonFactoryImpl = new JSONFactoryImpl();
 
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(jsonFactoryImpl);
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(jsonFactoryImpl);
+			}
+		};
 	}
 
 	@Test

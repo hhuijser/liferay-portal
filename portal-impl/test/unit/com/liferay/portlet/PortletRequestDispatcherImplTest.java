@@ -59,9 +59,11 @@ public class PortletRequestDispatcherImplTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 	}
 
 	@Test

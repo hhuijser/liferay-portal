@@ -49,9 +49,11 @@ public class UserNotificationEventLocalServiceImpl
 
 		JSONObject payloadJSONObject = notificationEvent.getPayload();
 
-		ServiceContext serviceContext = new ServiceContext();
-
-		serviceContext.setUuid(notificationEvent.getUuid());
+		ServiceContext serviceContext = new ServiceContext() {
+			{
+				setUuid(notificationEvent.getUuid());
+			}
+		};
 
 		return addUserNotificationEvent(
 			userId, notificationEvent.getType(),
@@ -527,9 +529,11 @@ public class UserNotificationEventLocalServiceImpl
 
 				@Override
 				public Void call() throws Exception {
-					Message message = new Message();
-
-					message.setPayload(notificationEvent.getPayload());
+					Message message = new Message() {
+						{
+							setPayload(notificationEvent.getPayload());
+						}
+					};
 
 					MessageBusUtil.sendMessage(_PUSH_NOTIFICATION, message);
 

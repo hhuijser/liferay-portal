@@ -29,31 +29,32 @@ import java.util.List;
 public class OpenServiceMethodImpl extends BaseMethodImpl {
 
 	public OpenServiceMethodImpl() {
-		Tree metaInfoTree = new Tree();
+		Tree metaInfoTree = new Tree() {
+			{
+				addChild(new Leaf("vti_casesensitiveurls", "IX|0", false));
+				addChild(new Leaf("vti_longfilenames", "IX|1", false));
+				addChild(new Leaf("vti_welcomenames", "VX|index.html", false));
+				addChild(new Leaf("vti_username", "SX|joebloggs", false));
+				addChild(new Leaf("vti_servertz", "SX|-0700", false));
+				addChild(new Leaf("vti_sourcecontrolsystem", "SR|lw", false));
+				addChild(new Leaf("vti_sourcecontrolversion", "SR|V1", false));
+				addChild(new Leaf("vti_doclibwebviewenabled", "IX|0", false));
+				addChild(
+					new Leaf(
+						"vti_sourcecontrolcookie", "SX|fp_internal", false));
+				addChild(
+					new Leaf(
+						"vti_sourcecontrolproject",
+						"SX|&#60;STS-based Locking&#62;", false));
+			}
+		};
 
-		metaInfoTree.addChild(new Leaf("vti_casesensitiveurls", "IX|0", false));
-		metaInfoTree.addChild(new Leaf("vti_longfilenames", "IX|1", false));
-		metaInfoTree.addChild(
-			new Leaf("vti_welcomenames", "VX|index.html", false));
-		metaInfoTree.addChild(new Leaf("vti_username", "SX|joebloggs", false));
-		metaInfoTree.addChild(new Leaf("vti_servertz", "SX|-0700", false));
-		metaInfoTree.addChild(
-			new Leaf("vti_sourcecontrolsystem", "SR|lw", false));
-		metaInfoTree.addChild(
-			new Leaf("vti_sourcecontrolversion", "SR|V1", false));
-		metaInfoTree.addChild(
-			new Leaf("vti_doclibwebviewenabled", "IX|0", false));
-		metaInfoTree.addChild(
-			new Leaf("vti_sourcecontrolcookie", "SX|fp_internal", false));
-		metaInfoTree.addChild(
-			new Leaf(
-				"vti_sourcecontrolproject", "SX|&#60;STS-based Locking&#62;",
-				false));
-
-		Tree serviceTree = new Tree();
-
-		serviceTree.addChild(new Leaf("service_name", "/sharepoint", true));
-		serviceTree.addChild(new Leaf("meta_info", metaInfoTree));
+		Tree serviceTree = new Tree() {
+			{
+				addChild(new Leaf("service_name", "/sharepoint", true));
+				addChild(new Leaf("meta_info", metaInfoTree));
+			}
+		};
 
 		Property serviceProperty = new Property("service", serviceTree);
 

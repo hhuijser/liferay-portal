@@ -1234,13 +1234,13 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet();
 
-		ServiceDependencyManager serviceDependencyManager =
-			new ServiceDependencyManager();
+		new ServiceDependencyManager() {
+			{
+				addServiceDependencyListener(_serviceDependencyListener);
 
-		serviceDependencyManager.addServiceDependencyListener(
-			_serviceDependencyListener);
-
-		serviceDependencyManager.registerDependencies(EntityCache.class);
+				registerDependencies(EntityCache.class);
+			}
+		};
 	}
 
 	/**
@@ -4027,10 +4027,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				Message message = new Message();
-
-				message.put("groupId", groupId);
-				message.put("userIds", userIds);
+				Message message = new Message() {
+					{
+						put("groupId", groupId);
+						put("userIds", userIds);
+					}
+				};
 
 				MessageBusUtil.sendMessage(
 					DestinationNames.SUBSCRIPTION_CLEAN_UP, message);
@@ -4063,10 +4065,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				Message message = new Message();
-
-				message.put("groupId", group.getGroupId());
-				message.put("userIds", userIds);
+				Message message = new Message() {
+					{
+						put("groupId", group.getGroupId());
+						put("userIds", userIds);
+					}
+				};
 
 				MessageBusUtil.sendMessage(
 					DestinationNames.SUBSCRIPTION_CLEAN_UP, message);
@@ -6461,10 +6465,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				Message message = new Message();
-
-				message.put("groupIds", groupIds);
-				message.put("userId", userId);
+				Message message = new Message() {
+					{
+						put("groupIds", groupIds);
+						put("userId", userId);
+					}
+				};
 
 				MessageBusUtil.sendMessage(
 					DestinationNames.SUBSCRIPTION_CLEAN_UP, message);
@@ -6494,10 +6500,12 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
-				Message message = new Message();
-
-				message.put("groupIds", groupIds);
-				message.put("userId", userId);
+				Message message = new Message() {
+					{
+						put("groupIds", groupIds);
+						put("userId", userId);
+					}
+				};
 
 				MessageBusUtil.sendMessage(
 					DestinationNames.SUBSCRIPTION_CLEAN_UP, message);

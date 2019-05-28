@@ -368,11 +368,13 @@ public class LocalizationImplTest {
 
 	@Test
 	public void testSetLocalizedPreferencesValues() throws Exception {
-		MockPortletRequest request = new MockPortletRequest();
-
-		request.setParameter(
-			"greeting_" + _ENGLISH_LANGUAGE_ID, _ENGLISH_HELLO);
-		request.setParameter("greeting_" + _GERMAN_LANGUAGE_ID, _GERMAN_HELLO);
+		MockPortletRequest request = new MockPortletRequest() {
+			{
+				setParameter(
+					"greeting_" + _ENGLISH_LANGUAGE_ID, _ENGLISH_HELLO);
+				setParameter("greeting_" + _GERMAN_LANGUAGE_ID, _GERMAN_HELLO);
+			}
+		};
 
 		PortletPreferences preferences = new PortletPreferencesImpl();
 

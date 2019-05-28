@@ -43,13 +43,15 @@ public class BrowserSnifferImplTest {
 				_browserSnifferImpl.isAndroid(mockHttpServletRequest)));
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.USER_AGENT,
-			"Safari 6, 6.0, 536.26, mozilla/5.0 (ipad; cpu os 6_0 like mac " +
-				"os x) applewebkit/536.26 (khtml, like gecko) version/6.0 " +
-					"mobile/10a5355d safari/8536.25");
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.USER_AGENT,
+						"Safari 6, 6.0, 536.26, mozilla/5.0 (ipad; cpu os 6_0 like mac " +
+							"os x) applewebkit/536.26 (khtml, like gecko) version/6.0 " +
+								"mobile/10a5355d safari/8536.25");
+				}
+			};
 
 		Assert.assertFalse(
 			_browserSnifferImpl.isAndroid(mockHttpServletRequest));
@@ -73,11 +75,13 @@ public class BrowserSnifferImplTest {
 			});
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.USER_AGENT,
-			"opera/9.80 (windows nt 6.0) presto/2.12.388 version/12.14");
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.USER_AGENT,
+						"opera/9.80 (windows nt 6.0) presto/2.12.388 version/12.14");
+				}
+			};
 
 		Assert.assertFalse(_browserSnifferImpl.isEdge(mockHttpServletRequest));
 	}
@@ -90,12 +94,14 @@ public class BrowserSnifferImplTest {
 				_browserSnifferImpl.isIe(mockHttpServletRequest)));
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.USER_AGENT,
-			"Opera 12 var1, 12.14, 9.80, opera/9.80 (windows nt 6.0) " +
-				"presto/2.12.388 version/12.14");
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.USER_AGENT,
+						"Opera 12 var1, 12.14, 9.80, opera/9.80 (windows nt 6.0) " +
+							"presto/2.12.388 version/12.14");
+				}
+			};
 
 		Assert.assertFalse(_browserSnifferImpl.isIe(mockHttpServletRequest));
 	}
@@ -108,12 +114,14 @@ public class BrowserSnifferImplTest {
 				_browserSnifferImpl.isMobile(mockHttpServletRequest)));
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.addHeader(
-			HttpHeaders.USER_AGENT,
-			"IE 6 var4, , 6.0, mozilla/5.0 (compatible; msie 6.0; windows nt " +
-				"5.1)");
+			new MockHttpServletRequest() {
+				{
+					addHeader(
+						HttpHeaders.USER_AGENT,
+						"IE 6 var4, , 6.0, mozilla/5.0 (compatible; msie 6.0; windows nt " +
+							"5.1)");
+				}
+			};
 
 		Assert.assertFalse(
 			_browserSnifferImpl.isMobile(mockHttpServletRequest));
@@ -190,9 +198,11 @@ public class BrowserSnifferImplTest {
 
 			if (matches) {
 				MockHttpServletRequest mockHttpServletRequest =
-					new MockHttpServletRequest();
-
-				mockHttpServletRequest.addHeader(HttpHeaders.USER_AGENT, line);
+					new MockHttpServletRequest() {
+						{
+							addHeader(HttpHeaders.USER_AGENT, line);
+						}
+					};
 
 				requestConsumer.accept(mockHttpServletRequest);
 			}

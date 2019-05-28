@@ -98,12 +98,14 @@ public class PermissionConverterImpl implements PermissionConverter {
 				if (ResourcePermissionLocalServiceUtil.hasActionId(
 						resourcePermission, resourceAction)) {
 
-					Permission permission = new PermissionImpl();
-
-					permission.setName(resourcePermission.getName());
-					permission.setScope(resourcePermission.getScope());
-					permission.setPrimKey(resourcePermission.getPrimKey());
-					permission.setActionId(resourceAction.getActionId());
+					Permission permission = new PermissionImpl() {
+						{
+							setName(resourcePermission.getName());
+							setScope(resourcePermission.getScope());
+							setPrimKey(resourcePermission.getPrimKey());
+							setActionId(resourceAction.getActionId());
+						}
+					};
 
 					permissions.add(permission);
 				}

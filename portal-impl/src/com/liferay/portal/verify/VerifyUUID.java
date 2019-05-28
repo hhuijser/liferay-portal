@@ -42,9 +42,11 @@ public class VerifyUUID extends VerifyProcess {
 	public static void verify(VerifiableUUIDModel... verifiableUUIDModels)
 		throws Exception {
 
-		VerifyUUID verifyUUID = new VerifyUUID();
-
-		verifyUUID.doVerify(verifiableUUIDModels);
+		new VerifyUUID() {
+			{
+				doVerify(verifiableUUIDModels);
+			}
+		};
 	}
 
 	@Override

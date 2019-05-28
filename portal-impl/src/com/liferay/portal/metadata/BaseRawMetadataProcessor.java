@@ -84,10 +84,12 @@ public abstract class BaseRawMetadataProcessor implements RawMetadataProcessor {
 	}
 
 	protected DDMForm createDDMForm(Locale defaultLocale) {
-		DDMForm ddmForm = new DDMForm();
-
-		ddmForm.addAvailableLocale(defaultLocale);
-		ddmForm.setDefaultLocale(defaultLocale);
+		DDMForm ddmForm = new DDMForm() {
+			{
+				addAvailableLocale(defaultLocale);
+				setDefaultLocale(defaultLocale);
+			}
+		};
 
 		return ddmForm;
 	}
@@ -125,10 +127,12 @@ public abstract class BaseRawMetadataProcessor implements RawMetadataProcessor {
 
 			ddmForm.addDDMFormField(ddmFormField);
 
-			DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-			ddmFormFieldValue.setName(name);
-			ddmFormFieldValue.setValue(new UnlocalizedValue(value));
+			DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue() {
+				{
+					setName(name);
+					setValue(new UnlocalizedValue(value));
+				}
+			};
 
 			ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
 		}

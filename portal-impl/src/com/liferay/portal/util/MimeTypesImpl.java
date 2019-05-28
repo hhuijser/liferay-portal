@@ -128,9 +128,11 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			contentType = getCustomContentType(extension);
 
 			if (ContentTypes.APPLICATION_OCTET_STREAM.equals(contentType)) {
-				Metadata metadata = new Metadata();
-
-				metadata.set(Metadata.RESOURCE_NAME_KEY, fileName);
+				Metadata metadata = new Metadata() {
+					{
+						set(Metadata.RESOURCE_NAME_KEY, fileName);
+					}
+				};
 
 				MediaType mediaType = _detector.detect(
 					tikaInputStream, metadata);
@@ -177,9 +179,11 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			contentType = getCustomContentType(extension);
 
 			if (ContentTypes.APPLICATION_OCTET_STREAM.equals(contentType)) {
-				Metadata metadata = new Metadata();
-
-				metadata.set(Metadata.RESOURCE_NAME_KEY, fileName);
+				Metadata metadata = new Metadata() {
+					{
+						set(Metadata.RESOURCE_NAME_KEY, fileName);
+					}
+				};
 
 				MediaType mediaType = _detector.detect(null, metadata);
 

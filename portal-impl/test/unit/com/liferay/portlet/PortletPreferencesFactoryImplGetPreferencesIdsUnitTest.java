@@ -57,11 +57,12 @@ public class PortletPreferencesFactoryImplGetPreferencesIdsUnitTest {
 
 	@Before
 	public void setUp() {
-		PortletPreferencesFactoryUtil portletPreferencesFactoryUtil =
-			new PortletPreferencesFactoryUtil();
-
-		portletPreferencesFactoryUtil.setPortletPreferencesFactory(
-			new PortletPreferencesFactoryImpl());
+		new PortletPreferencesFactoryUtil() {
+			{
+				setPortletPreferencesFactory(
+					new PortletPreferencesFactoryImpl());
+			}
+		};
 
 		_layout.setPlid(RandomTestUtil.randomLong());
 		_layout.setCompanyId(RandomTestUtil.randomLong());
@@ -80,13 +81,15 @@ public class PortletPreferencesFactoryImplGetPreferencesIdsUnitTest {
 	public void testPreferencesWithModeEditGuestInPrivateLayout()
 		throws Exception {
 
-		LayoutPermissionUtil layoutPermissionUtil = new LayoutPermissionUtil();
-
-		layoutPermissionUtil.setLayoutPermission(
-			(LayoutPermission)ProxyUtil.newProxyInstance(
-				LayoutPermission.class.getClassLoader(),
-				new Class<?>[] {LayoutPermission.class},
-				new LayoutPermissionInvocationHandler(true)));
+		new LayoutPermissionUtil() {
+			{
+				setLayoutPermission(
+					(LayoutPermission)ProxyUtil.newProxyInstance(
+						LayoutPermission.class.getClassLoader(),
+						new Class<?>[] {LayoutPermission.class},
+						new LayoutPermissionInvocationHandler(true)));
+			}
+		};
 
 		long siteGroupId = _layout.getGroupId();
 		boolean modeEditGuest = true;
@@ -101,13 +104,15 @@ public class PortletPreferencesFactoryImplGetPreferencesIdsUnitTest {
 
 		_layout.setPrivateLayout(false);
 
-		LayoutPermissionUtil layoutPermissionUtil = new LayoutPermissionUtil();
-
-		layoutPermissionUtil.setLayoutPermission(
-			(LayoutPermission)ProxyUtil.newProxyInstance(
-				LayoutPermission.class.getClassLoader(),
-				new Class<?>[] {LayoutPermission.class},
-				new LayoutPermissionInvocationHandler(false)));
+		new LayoutPermissionUtil() {
+			{
+				setLayoutPermission(
+					(LayoutPermission)ProxyUtil.newProxyInstance(
+						LayoutPermission.class.getClassLoader(),
+						new Class<?>[] {LayoutPermission.class},
+						new LayoutPermissionInvocationHandler(false)));
+			}
+		};
 
 		long siteGroupId = _layout.getGroupId();
 		boolean modeEditGuest = true;
@@ -188,11 +193,13 @@ public class PortletPreferencesFactoryImplGetPreferencesIdsUnitTest {
 			if (_getPortletByIdMethod.equals(method) &&
 				args[0].equals(_companyId) && args[1].equals(_PORTLET_ID)) {
 
-				Portlet portlet = new PortletImpl();
-
-				portlet.setPreferencesCompanyWide(false);
-				portlet.setPreferencesOwnedByGroup(true);
-				portlet.setPreferencesUniquePerLayout(false);
+				Portlet portlet = new PortletImpl() {
+					{
+						setPreferencesCompanyWide(false);
+						setPreferencesOwnedByGroup(true);
+						setPreferencesUniquePerLayout(false);
+					}
+				};
 
 				return portlet;
 			}

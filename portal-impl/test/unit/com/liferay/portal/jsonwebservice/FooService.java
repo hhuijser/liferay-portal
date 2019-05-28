@@ -74,9 +74,11 @@ public class FooService {
 	}
 
 	public static FooData getFooData(int id) {
-		FooData fooData = new FooDataImpl();
-
-		fooData.setId(id);
+		FooData fooData = new FooDataImpl() {
+			{
+				setId(id);
+			}
+		};
 
 		if (id == 7) {
 			FooDataImpl fooDataImpl = (FooDataImpl)fooData;
@@ -97,12 +99,14 @@ public class FooService {
 	}
 
 	public static FooDataPage getFooDataPage() {
-		FooDataAltImpl fooDataAltImpl = new FooDataAltImpl();
-
-		fooDataAltImpl.setArray(9, 5, 7);
-		fooDataAltImpl.setHeight(8);
-		fooDataAltImpl.setId(2);
-		fooDataAltImpl.setName("life");
+		FooDataAltImpl fooDataAltImpl = new FooDataAltImpl() {
+			{
+				setArray(9, 5, 7);
+				setHeight(8);
+				setId(2);
+				setName("life");
+			}
+		};
 
 		return new FooDataPage(fooDataAltImpl, getFooDatas(), 3);
 	}

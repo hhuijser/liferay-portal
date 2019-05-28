@@ -637,10 +637,12 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 
 				if (deploy) {
 					AutoDeploymentContext autoDeploymentContext =
-						new AutoDeploymentContext();
-
-					autoDeploymentContext.setContext(context);
-					autoDeploymentContext.setFile(srcFile);
+						new AutoDeploymentContext() {
+							{
+								setContext(context);
+								setFile(srcFile);
+							}
+						};
 
 					deployFile(autoDeploymentContext);
 				}

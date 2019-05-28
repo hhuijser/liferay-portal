@@ -41,11 +41,13 @@ public class ActionRequestFactory {
 		WindowState windowState, PortletMode portletMode,
 		PortletPreferences preferences, long plid) {
 
-		ActionRequestImpl actionRequestImpl = new ActionRequestImpl();
-
-		actionRequestImpl.init(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			windowState, portletMode, preferences, plid);
+		ActionRequestImpl actionRequestImpl = new ActionRequestImpl() {
+			{
+				init(
+					httpServletRequest, portlet, invokerPortlet, portletContext,
+					windowState, portletMode, preferences, plid);
+			}
+		};
 
 		return actionRequestImpl;
 	}

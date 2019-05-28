@@ -72,9 +72,11 @@ public class ConfigurationImplTest {
 		// Examples from LPS-72541
 
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource("testName", "");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource("testName", "");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, "testName", CompanyConstants.SYSTEM, null);
@@ -104,10 +106,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testEnvironmentVariableOverrideProperties() throws IOException {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			"testName", "namespace.key1=value1\nnamespace.key2=value2");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						"testName",
+						"namespace.key1=value1\nnamespace.key2=value2");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, "testName", CompanyConstants.SYSTEM, null);
@@ -129,10 +134,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testLoadEmptyProperties() throws Exception {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(), StringPool.BLANK);
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						StringPool.BLANK);
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -146,11 +154,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testMultiValueProperty() throws IOException {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(),
-			"key1=value1,value2\nkey2=value3\nkey2=value4");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						"key1=value1,value2\nkey2=value3\nkey2=value4");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -171,11 +181,13 @@ public class ConfigurationImplTest {
 		throws IOException {
 
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(),
-			"key1=value1\nkey2=${key1},value2");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						"key1=value1\nkey2=${key1},value2");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -197,11 +209,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testPropertyVariableInterpolation() throws IOException {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(),
-			"key1=value1\nkey2=${key1}value2");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						"key1=value1\nkey2=${key1}value2");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -214,10 +228,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testSet() throws Exception {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(), StringPool.BLANK);
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						StringPool.BLANK);
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -243,11 +260,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testSetDoesNotOverrideFilter() throws Exception {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(),
-			"key=value1\nkey[filter]=value2");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						"key=value1\nkey[filter]=value2");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -270,10 +289,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testSetWithFilter() throws Exception {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(), StringPool.BLANK);
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						StringPool.BLANK);
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -295,11 +317,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testSystemPropertyOverrideProperties() throws IOException {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(),
-			"namespace.key1=value1\nnamespace.key2=value2");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						"namespace.key1=value1\nnamespace.key2=value2");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),
@@ -353,10 +377,13 @@ public class ConfigurationImplTest {
 	@Test
 	public void testSystemPropertyOverrideSingleValue() throws IOException {
 		TestResourceClassLoader testResourceClassLoader =
-			new TestResourceClassLoader();
-
-		testResourceClassLoader.addPropertiesResource(
-			ConfigurationImplTest.class.getName(), "key1=value1\nkey2=value2");
+			new TestResourceClassLoader() {
+				{
+					addPropertiesResource(
+						ConfigurationImplTest.class.getName(),
+						"key1=value1\nkey2=value2");
+				}
+			};
 
 		ConfigurationImpl configurationImpl = new ConfigurationImpl(
 			testResourceClassLoader, ConfigurationImplTest.class.getName(),

@@ -405,14 +405,16 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 				className[i]);
 		}
 
-		AssetEntryQuery entryQuery = new AssetEntryQuery();
-
-		entryQuery.setClassNameIds(classNameIds);
-		entryQuery.setEnd(end);
-		entryQuery.setExcludeZeroViewCount(true);
-		entryQuery.setOrderByCol1("viewCount");
-		entryQuery.setOrderByType1(asc ? "ASC" : "DESC");
-		entryQuery.setStart(start);
+		AssetEntryQuery entryQuery = new AssetEntryQuery() {
+			{
+				setClassNameIds(classNameIds);
+				setEnd(end);
+				setExcludeZeroViewCount(true);
+				setOrderByCol1("viewCount");
+				setOrderByType1(asc ? "ASC" : "DESC");
+				setStart(start);
+			}
+		};
 
 		return assetEntryFinder.findEntries(entryQuery);
 	}
@@ -1261,9 +1263,11 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 
 		AssetSearcher assetSearcher = (AssetSearcher)indexer;
 
-		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
-
-		assetEntryQuery.setClassNameIds(classNameIds);
+		AssetEntryQuery assetEntryQuery = new AssetEntryQuery() {
+			{
+				setClassNameIds(classNameIds);
+			}
+		};
 
 		_setAssetCategoryIds(
 			searchContext.getAssetCategoryIds(), searchContext.isAndSearch(),
@@ -1299,9 +1303,11 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 
 		AssetSearcher assetSearcher = (AssetSearcher)indexer;
 
-		AssetEntryQuery assetEntryQuery = new AssetEntryQuery();
-
-		assetEntryQuery.setClassNameIds(classNameIds);
+		AssetEntryQuery assetEntryQuery = new AssetEntryQuery() {
+			{
+				setClassNameIds(classNameIds);
+			}
+		};
 
 		_setAssetCategoryIds(
 			searchContext.getAssetCategoryIds(), searchContext.isAndSearch(),

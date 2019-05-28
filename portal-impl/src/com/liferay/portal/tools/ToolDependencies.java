@@ -87,62 +87,75 @@ public class ToolDependencies {
 		registry.registerService(
 			FullNameGenerator.class, new DefaultFullNameGenerator());
 
-		CacheKeyGeneratorUtil cacheKeyGeneratorUtil =
-			new CacheKeyGeneratorUtil();
+		new CacheKeyGeneratorUtil() {
+			{
+				setDefaultCacheKeyGenerator(new SimpleCacheKeyGenerator());
+			}
+		};
 
-		cacheKeyGeneratorUtil.setDefaultCacheKeyGenerator(
-			new SimpleCacheKeyGenerator());
+		new DigesterUtil() {
+			{
+				setDigester(new DigesterImpl());
+			}
+		};
 
-		DigesterUtil digesterUtil = new DigesterUtil();
+		new FastDateFormatFactoryUtil() {
+			{
+				setFastDateFormatFactory(new FastDateFormatFactoryImpl());
+			}
+		};
 
-		digesterUtil.setDigester(new DigesterImpl());
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
-		FastDateFormatFactoryUtil fastDateFormatFactoryUtil =
-			new FastDateFormatFactoryUtil();
+		new FriendlyURLNormalizerUtil() {
+			{
+				setFriendlyURLNormalizer(new FriendlyURLNormalizerImpl());
+			}
+		};
 
-		fastDateFormatFactoryUtil.setFastDateFormatFactory(
-			new FastDateFormatFactoryImpl());
+		new HtmlUtil() {
+			{
+				setHtml(new HtmlImpl());
+			}
+		};
 
-		FileUtil fileUtil = new FileUtil();
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 
-		fileUtil.setFile(new FileImpl());
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(new JSONFactoryImpl());
+			}
+		};
 
-		FriendlyURLNormalizerUtil friendlyURLNormalizerUtil =
-			new FriendlyURLNormalizerUtil();
-
-		friendlyURLNormalizerUtil.setFriendlyURLNormalizer(
-			new FriendlyURLNormalizerImpl());
-
-		HtmlUtil htmlUtil = new HtmlUtil();
-
-		htmlUtil.setHtml(new HtmlImpl());
-
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
-
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
-
-		PortletPermissionUtil portletPermissionUtil =
-			new PortletPermissionUtil();
-
-		portletPermissionUtil.setPortletPermission(new PortletPermissionImpl());
+		new PortletPermissionUtil() {
+			{
+				setPortletPermission(new PortletPermissionImpl());
+			}
+		};
 
 		SAXReaderUtil saxReaderUtil = new SAXReaderUtil();
 
-		SAXReaderImpl secureSAXReader = new SAXReaderImpl();
-
-		secureSAXReader.setSecure(true);
+		SAXReaderImpl secureSAXReader = new SAXReaderImpl() {
+			{
+				setSecure(true);
+			}
+		};
 
 		saxReaderUtil.setSAXReader(secureSAXReader);
 
-		SecureXMLFactoryProviderUtil secureXMLFactoryProviderUtil =
-			new SecureXMLFactoryProviderUtil();
-
-		secureXMLFactoryProviderUtil.setSecureXMLFactoryProvider(
-			new SecureXMLFactoryProviderImpl());
+		new SecureXMLFactoryProviderUtil() {
+			{
+				setSecureXMLFactoryProvider(new SecureXMLFactoryProviderImpl());
+			}
+		};
 
 		UnsecureSAXReaderUtil unsecureSAXReaderUtil =
 			new UnsecureSAXReaderUtil();
@@ -156,9 +169,11 @@ public class ToolDependencies {
 		ModelHintsUtil modelHintsUtil = new ModelHintsUtil();
 
 		DefaultModelHintsImpl defaultModelHintsImpl =
-			new DefaultModelHintsImpl();
-
-		defaultModelHintsImpl.afterPropertiesSet();
+			new DefaultModelHintsImpl() {
+				{
+					afterPropertiesSet();
+				}
+			};
 
 		modelHintsUtil.setModelHints(defaultModelHintsImpl);
 	}
@@ -182,9 +197,11 @@ public class ToolDependencies {
 	public static void wireDeployers() {
 		wireBasic();
 
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 	}
 
 	public static void wireServiceBuilder() {
@@ -192,9 +209,11 @@ public class ToolDependencies {
 
 		ResourceActionsUtil resourceActionsUtil = new ResourceActionsUtil();
 
-		ResourceActionsImpl resourceActionsImpl = new ResourceActionsImpl();
-
-		resourceActionsImpl.afterPropertiesSet();
+		ResourceActionsImpl resourceActionsImpl = new ResourceActionsImpl() {
+			{
+				afterPropertiesSet();
+			}
+		};
 
 		resourceActionsUtil.setResourceActions(resourceActionsImpl);
 	}

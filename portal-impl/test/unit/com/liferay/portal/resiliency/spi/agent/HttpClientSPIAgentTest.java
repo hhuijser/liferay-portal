@@ -560,9 +560,11 @@ public class HttpClientSPIAgentTest {
 			new MockRegistrationReference(new MockIntraband()));
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setContent(data);
+			new MockHttpServletRequest() {
+				{
+					setContent(data);
+				}
+			};
 
 		HttpServletRequest httpServletRequest =
 			httpClientSPIAgent.prepareRequest(mockHttpServletRequest);
@@ -803,10 +805,11 @@ public class HttpClientSPIAgentTest {
 		socketBlockingQueue.add(socket);
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setAttribute(
-			WebKeys.SPI_AGENT_PORTLET, _portlet);
+			new MockHttpServletRequest() {
+				{
+					setAttribute(WebKeys.SPI_AGENT_PORTLET, _portlet);
+				}
+			};
 
 		try {
 			httpClientSPIAgent.service(mockHttpServletRequest, null);

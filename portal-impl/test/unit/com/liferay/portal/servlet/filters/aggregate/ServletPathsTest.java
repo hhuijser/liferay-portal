@@ -56,9 +56,11 @@ public class ServletPathsTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
 		FileUtil.deltree(_testDir);
 	}

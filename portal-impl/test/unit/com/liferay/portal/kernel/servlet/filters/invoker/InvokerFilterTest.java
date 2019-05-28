@@ -48,9 +48,11 @@ public class InvokerFilterTest {
 	public void setUp() {
 		ToolDependencies.wireCaches();
 
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 	}

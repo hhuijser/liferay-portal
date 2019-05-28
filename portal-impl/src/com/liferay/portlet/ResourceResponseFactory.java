@@ -43,10 +43,11 @@ public class ResourceResponseFactory {
 			resourceRequest = resourceRequestWrapper.getRequest();
 		}
 
-		ResourceResponseImpl resourceResponseImpl = new ResourceResponseImpl();
-
-		resourceResponseImpl.init(
-			(ResourceRequestImpl)resourceRequest, httpServletResponse);
+		ResourceResponseImpl resourceResponseImpl = new ResourceResponseImpl() {
+			{
+				init((ResourceRequestImpl)resourceRequest, httpServletResponse);
+			}
+		};
 
 		return resourceResponseImpl;
 	}

@@ -130,16 +130,17 @@ public class AopConfigurableApplicationContextConfigurator
 
 			if (PortalClassLoaderUtil.isPortalClassLoader(_classLoader)) {
 				TransactionInvokerImpl transactionInvokerImpl =
-					new TransactionInvokerImpl();
+					new TransactionInvokerImpl() {
+						{
+							setTransactionExecutor(transactionExecutor);
+						}
+					};
 
-				transactionInvokerImpl.setTransactionExecutor(
-					transactionExecutor);
-
-				TransactionInvokerUtil transactionInvokerUtil =
-					new TransactionInvokerUtil();
-
-				transactionInvokerUtil.setTransactionInvoker(
-					transactionInvokerImpl);
+				new TransactionInvokerUtil() {
+					{
+						setTransactionInvoker(transactionInvokerImpl);
+					}
+				};
 
 				CounterServiceBeanAutoProxyCreator
 					counterServiceBeanAutoProxyCreator =
@@ -178,9 +179,11 @@ public class AopConfigurableApplicationContextConfigurator
 				(BeanDefinitionRegistry)configurableListableBeanFactory;
 
 			GenericBeanDefinition genericBeanDefinition =
-				new GenericBeanDefinition();
-
-			genericBeanDefinition.setAbstract(true);
+				new GenericBeanDefinition() {
+					{
+						setAbstract(true);
+					}
+				};
 
 			beanDefinitionRegistry.registerBeanDefinition(
 				"basePersistence", genericBeanDefinition);
@@ -220,11 +223,13 @@ public class AopConfigurableApplicationContextConfigurator
 					liferayHibernateSessionFactory::close);
 			}
 
-			SessionFactoryImpl sessionFactoryImpl = new SessionFactoryImpl();
-
-			sessionFactoryImpl.setSessionFactoryClassLoader(_classLoader);
-			sessionFactoryImpl.setSessionFactoryImplementor(
-				liferayHibernateSessionFactory);
+			SessionFactoryImpl sessionFactoryImpl = new SessionFactoryImpl() {
+				{
+					setSessionFactoryClassLoader(_classLoader);
+					setSessionFactoryImplementor(
+						liferayHibernateSessionFactory);
+				}
+			};
 
 			SessionFactory sessionFactory =
 				VerifySessionFactoryWrapper.createVerifySessionFactoryWrapper(

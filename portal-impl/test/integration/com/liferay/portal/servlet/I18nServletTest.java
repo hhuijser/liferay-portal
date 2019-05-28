@@ -151,11 +151,14 @@ public class I18nServletTest {
 		PropsValues.LOCALE_USE_DEFAULT_IF_NOT_AVAILABLE = false;
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setPathInfo(StringPool.SLASH);
-		mockHttpServletRequest.setServletPath(
-			StringPool.SLASH + LocaleUtil.CANADA_FRENCH.toLanguageTag());
+			new MockHttpServletRequest() {
+				{
+					setPathInfo(StringPool.SLASH);
+					setServletPath(
+						StringPool.SLASH +
+							LocaleUtil.CANADA_FRENCH.toLanguageTag());
+				}
+			};
 
 		I18nServlet.I18nData actualI18nData = _i18nServlet.getI18nData(
 			mockHttpServletRequest);
@@ -245,11 +248,13 @@ public class I18nServletTest {
 		throws Exception {
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setPathInfo(StringPool.SLASH);
-		mockHttpServletRequest.setServletPath(
-			StringPool.SLASH + LocaleUtil.toLanguageId(locale));
+			new MockHttpServletRequest() {
+				{
+					setPathInfo(StringPool.SLASH);
+					setServletPath(
+						StringPool.SLASH + LocaleUtil.toLanguageId(locale));
+				}
+			};
 
 		I18nServlet.I18nData actualI18nData = _i18nServlet.getI18nData(
 			mockHttpServletRequest);

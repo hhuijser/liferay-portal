@@ -71,9 +71,11 @@ public class TikaRawMetadataProcessor extends XugglerRawMetadataProcessor {
 			return metadata;
 		}
 
-		ParseContext parseContext = new ParseContext();
-
-		parseContext.set(Parser.class, parser);
+		ParseContext parseContext = new ParseContext() {
+			{
+				set(Parser.class, parser);
+			}
+		};
 
 		ContentHandler contentHandler = new WriteOutContentHandler(
 			new DummyWriter());

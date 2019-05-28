@@ -701,14 +701,17 @@ public class SPIAgentSerializableTest {
 	@Test
 	public void testThreadLocalTransfer() throws Exception {
 		ThreadLocalDistributor threadLocalDistributor =
-			new ThreadLocalDistributor();
+			new ThreadLocalDistributor() {
+				{
+					setThreadLocalSources(
+						Arrays.asList(
+							new KeyValuePair(
+								SPIAgentSerializableTest.class.getName(),
+								"_threadLocal")));
 
-		threadLocalDistributor.setThreadLocalSources(
-			Arrays.asList(
-				new KeyValuePair(
-					SPIAgentSerializableTest.class.getName(), "_threadLocal")));
-
-		threadLocalDistributor.afterPropertiesSet();
+					afterPropertiesSet();
+				}
+			};
 
 		Serializable[] serializables = ReflectionTestUtil.getFieldValue(
 			threadLocalDistributor, "_threadLocalValues");

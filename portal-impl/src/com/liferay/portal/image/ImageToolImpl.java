@@ -514,13 +514,15 @@ public class ImageToolImpl implements ImageTool {
 		int width = renderedImage.getWidth();
 		int size = bytes.length;
 
-		Image image = new ImageImpl();
-
-		image.setTextObj(bytes);
-		image.setType(type);
-		image.setHeight(height);
-		image.setWidth(width);
-		image.setSize(size);
+		Image image = new ImageImpl() {
+			{
+				setTextObj(bytes);
+				setType(type);
+				setHeight(height);
+				setWidth(width);
+				setSize(size);
+			}
+		};
 
 		return image;
 	}
@@ -696,12 +698,13 @@ public class ImageToolImpl implements ImageTool {
 		BufferedImage rotatedBufferedImage = new BufferedImage(
 			rotatedImageWidth, rotatedImageHeight, bufferedImage.getType());
 
-		AffineTransform affineTransform = new AffineTransform();
-
-		affineTransform.translate(
-			rotatedImageWidth / 2, rotatedImageHeight / 2);
-		affineTransform.rotate(radians);
-		affineTransform.translate(imageWidth / -2, imageHeight / -2);
+		AffineTransform affineTransform = new AffineTransform() {
+			{
+				translate(rotatedImageWidth / 2, rotatedImageHeight / 2);
+				rotate(radians);
+				translate(imageWidth / -2, imageHeight / -2);
+			}
+		};
 
 		Graphics2D graphics2D = rotatedBufferedImage.createGraphics();
 

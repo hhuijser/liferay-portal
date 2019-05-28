@@ -97,9 +97,11 @@ public class JSONServlet extends HttpServlet {
 	}
 
 	protected JSONAction getJSONAction(ServletContext servletContext) {
-		JSONAction jsonAction = new JSONServiceAction();
-
-		jsonAction.setServletContext(servletContext);
+		JSONAction jsonAction = new JSONServiceAction() {
+			{
+				setServletContext(servletContext);
+			}
+		};
 
 		return jsonAction;
 	}

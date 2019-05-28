@@ -41,11 +41,13 @@ public class EventRequestFactory {
 		WindowState windowState, PortletMode portletMode,
 		PortletPreferences preferences, long plid) {
 
-		EventRequestImpl eventRequestImpl = new EventRequestImpl();
-
-		eventRequestImpl.init(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			windowState, portletMode, preferences, plid);
+		EventRequestImpl eventRequestImpl = new EventRequestImpl() {
+			{
+				init(
+					httpServletRequest, portlet, invokerPortlet, portletContext,
+					windowState, portletMode, preferences, plid);
+			}
+		};
 
 		return eventRequestImpl;
 	}

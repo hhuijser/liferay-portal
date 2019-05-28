@@ -49,9 +49,11 @@ public class ModuleFrameworkAdapterHelper {
 
 		try {
 			if (FileUtil.getFile() == null) {
-				FileUtil fileUtil = new FileUtil();
-
-				fileUtil.setFile(new FileImpl());
+				new FileUtil() {
+					{
+						setFile(new FileImpl());
+					}
+				};
 			}
 
 			File coreDir = new File(

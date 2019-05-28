@@ -366,12 +366,14 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 	public Resource getResource(
 		long companyId, String name, int scope, String primKey) {
 
-		Resource resource = new ResourceImpl();
-
-		resource.setCompanyId(companyId);
-		resource.setName(name);
-		resource.setScope(scope);
-		resource.setPrimKey(primKey);
+		Resource resource = new ResourceImpl() {
+			{
+				setCompanyId(companyId);
+				setName(name);
+				setScope(scope);
+				setPrimKey(primKey);
+			}
+		};
 
 		return resource;
 	}

@@ -93,37 +93,43 @@ public class SPIAgentRequestTest {
 	public void setUp() throws Exception {
 		ToolDependencies.wireCaches();
 
-		FileUtil fileUtil = new FileUtil();
+		new FileUtil() {
+			{
+				setFile(
+					new FileImpl() {
 
-		fileUtil.setFile(
-			new FileImpl() {
+						@Override
+						public File createTempFile() {
+							try {
+								return File.createTempFile(
+									SPIAgentRequestTest.class.getName(), null);
+							}
+							catch (IOException ioe) {
+								throw new RuntimeException(ioe);
+							}
+						}
 
-				@Override
-				public File createTempFile() {
-					try {
-						return File.createTempFile(
-							SPIAgentRequestTest.class.getName(), null);
-					}
-					catch (IOException ioe) {
-						throw new RuntimeException(ioe);
-					}
-				}
+					});
+			}
+		};
 
-			});
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 
-		PortalUtil portalUtil = new PortalUtil();
+		new ThreadLocalDistributor() {
+			{
+				setThreadLocalSources(
+					Arrays.asList(
+						new KeyValuePair(
+							SPIAgentRequestTest.class.getName(),
+							"_threadLocal")));
 
-		portalUtil.setPortal(new PortalImpl());
-
-		ThreadLocalDistributor threadLocalDistributor =
-			new ThreadLocalDistributor();
-
-		threadLocalDistributor.setThreadLocalSources(
-			Arrays.asList(
-				new KeyValuePair(
-					SPIAgentRequestTest.class.getName(), "_threadLocal")));
-
-		threadLocalDistributor.afterPropertiesSet();
+				afterPropertiesSet();
+			}
+		};
 
 		_mockHttpServletRequest =
 			new BackwardCompatibleMockHttpServletRequest() {
@@ -370,9 +376,11 @@ public class SPIAgentRequestTest {
 
 		byte[] content = new byte[1024];
 
-		Random random = new Random();
-
-		random.nextBytes(content);
+		new Random() {
+			{
+				nextBytes(content);
+			}
+		};
 
 		_mockHttpServletRequest.setContent(content);
 

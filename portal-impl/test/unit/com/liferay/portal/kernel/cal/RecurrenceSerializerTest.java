@@ -232,17 +232,19 @@ public class RecurrenceSerializerTest extends RecurrenceSerializer {
 	}
 
 	protected void setUpCalendarFactoryUtil() {
-		CalendarFactoryUtil calendarFactoryUtil = new CalendarFactoryUtil();
-
-		calendarFactoryUtil.setCalendarFactory(new CalendarFactoryImpl());
+		new CalendarFactoryUtil() {
+			{
+				setCalendarFactory(new CalendarFactoryImpl());
+			}
+		};
 	}
 
 	protected void setUpFastDateFormatFactoryUtil() {
-		FastDateFormatFactoryUtil fastDateFormatFactoryUtil =
-			new FastDateFormatFactoryUtil();
-
-		fastDateFormatFactoryUtil.setFastDateFormatFactory(
-			new FastDateFormatFactoryImpl());
+		new FastDateFormatFactoryUtil() {
+			{
+				setFastDateFormatFactory(new FastDateFormatFactoryImpl());
+			}
+		};
 	}
 
 	private static final DayAndPosition[]

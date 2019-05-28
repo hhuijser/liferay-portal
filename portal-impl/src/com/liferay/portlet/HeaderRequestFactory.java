@@ -40,11 +40,13 @@ public class HeaderRequestFactory {
 		WindowState windowState, PortletMode portletMode,
 		PortletPreferences preferences, long plid) {
 
-		HeaderRequestImpl headerRequestImpl = new HeaderRequestImpl();
-
-		headerRequestImpl.init(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			windowState, portletMode, preferences, plid);
+		HeaderRequestImpl headerRequestImpl = new HeaderRequestImpl() {
+			{
+				init(
+					httpServletRequest, portlet, invokerPortlet, portletContext,
+					windowState, portletMode, preferences, plid);
+			}
+		};
 
 		return headerRequestImpl;
 	}

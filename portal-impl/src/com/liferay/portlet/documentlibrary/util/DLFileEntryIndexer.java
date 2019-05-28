@@ -259,11 +259,14 @@ public class DLFileEntryIndexer
 				}
 			}
 
-			BooleanQuery booleanQuery = new BooleanQueryImpl();
-
-			booleanQuery.addRequiredTerm(
-				ddmStructureFieldName,
-				StringPool.QUOTE + ddmStructureFieldValue + StringPool.QUOTE);
+			BooleanQuery booleanQuery = new BooleanQueryImpl() {
+				{
+					addRequiredTerm(
+						ddmStructureFieldName,
+						StringPool.QUOTE + ddmStructureFieldValue +
+							StringPool.QUOTE);
+				}
+			};
 
 			contextBooleanFilter.add(
 				new QueryFilter(booleanQuery), BooleanClauseOccur.MUST);

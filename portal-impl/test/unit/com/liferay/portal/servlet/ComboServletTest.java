@@ -73,13 +73,17 @@ public class ComboServletTest extends PowerMockito {
 	public static void setUpClass() throws Exception {
 		ToolDependencies.wireCaches();
 
-		HttpUtil httpUtil = new HttpUtil();
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 
-		httpUtil.setHttp(new HttpImpl());
-
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 
 		ReflectionTestUtil.setFieldValue(
 			PrefsPropsUtil.class, "_portalPreferencesLocalService",
@@ -217,21 +221,26 @@ public class ComboServletTest extends PowerMockito {
 
 	@Test
 	public void testMixedExtensionsRequest() throws Exception {
-		FileUtil fileUtil = new FileUtil();
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
-		fileUtil.setFile(new FileImpl());
-
-		LanguageUtil languageUtil = new LanguageUtil();
-
-		languageUtil.setLanguage(new LanguageImpl());
+		new LanguageUtil() {
+			{
+				setLanguage(new LanguageImpl());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		mockHttpServletRequest.setQueryString(
-			"/js/javascript.js&/css/styles.css");
+			new MockHttpServletRequest() {
+				{
+					setQueryString("/js/javascript.js&/css/styles.css");
+				}
+			};
 
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();

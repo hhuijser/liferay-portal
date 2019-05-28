@@ -56,9 +56,11 @@ public class JSONFactoryTest {
 			FooBean4.class.getName(), FooBean5.class.getName(),
 			FooBean6.class.getName());
 
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
-
-		jsonFactoryUtil.setJSONFactory(jsonFactoryImpl);
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(jsonFactoryImpl);
+			}
+		};
 	}
 
 	@Test

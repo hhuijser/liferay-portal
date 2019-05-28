@@ -36,9 +36,11 @@ public class BaseIntrabandPortalCacheManagerTest {
 
 	@Test
 	public void testStubGeneration() throws Exception {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
 		Class<?> stubClass = IntrabandProxyUtil.getStubClass(
 			BaseIntrabandPortalCacheManager.class,

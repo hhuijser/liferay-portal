@@ -51,17 +51,21 @@ public abstract class BaseDeployerTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 
 		SAXReaderUtil saxReaderUtil = new SAXReaderUtil();
 
-		SAXReaderImpl secureSAXReader = new SAXReaderImpl();
-
-		secureSAXReader.setSecure(true);
+		SAXReaderImpl secureSAXReader = new SAXReaderImpl() {
+			{
+				setSecure(true);
+			}
+		};
 
 		saxReaderUtil.setSAXReader(secureSAXReader);
 

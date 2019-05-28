@@ -31,9 +31,11 @@ public class URLResourceParserTest {
 
 	@Test
 	public void testIsTemplateResourceValid() {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(FileImpl.getInstance());
+		new FileUtil() {
+			{
+				setFile(FileImpl.getInstance());
+			}
+		};
 
 		URLResourceParser urlResourceParser = new URLResourceParser() {
 

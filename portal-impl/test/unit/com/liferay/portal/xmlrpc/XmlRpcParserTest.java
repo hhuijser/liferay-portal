@@ -37,15 +37,17 @@ public class XmlRpcParserTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		SecureXMLFactoryProviderUtil secureXMLFactoryProviderUtil =
-			new SecureXMLFactoryProviderUtil();
+		new SecureXMLFactoryProviderUtil() {
+			{
+				setSecureXMLFactoryProvider(new SecureXMLFactoryProviderImpl());
+			}
+		};
 
-		secureXMLFactoryProviderUtil.setSecureXMLFactoryProvider(
-			new SecureXMLFactoryProviderImpl());
-
-		XmlRpcUtil xmlRpcUtil = new XmlRpcUtil();
-
-		xmlRpcUtil.setXmlRpc(new XmlRpcImpl());
+		new XmlRpcUtil() {
+			{
+				setXmlRpc(new XmlRpcImpl());
+			}
+		};
 	}
 
 	@Test

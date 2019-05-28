@@ -222,11 +222,11 @@ public class CounterLocalServiceTest {
 			System.setProperty("portal:jdbc.default.maxIdle", "0");
 			System.setProperty("portal:jdbc.default.minIdle", "0");
 
-			CacheKeyGeneratorUtil cacheKeyGeneratorUtil =
-				new CacheKeyGeneratorUtil();
-
-			cacheKeyGeneratorUtil.setDefaultCacheKeyGenerator(
-				new SimpleCacheKeyGenerator());
+			new CacheKeyGeneratorUtil() {
+				{
+					setDefaultCacheKeyGenerator(new SimpleCacheKeyGenerator());
+				}
+			};
 
 			InitUtil.initWithSpring(
 				Arrays.asList(

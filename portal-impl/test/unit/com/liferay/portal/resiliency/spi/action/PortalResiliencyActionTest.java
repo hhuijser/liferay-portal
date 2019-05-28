@@ -104,10 +104,11 @@ public class PortalResiliencyActionTest {
 			WebKeys.SPI_AGENT_PORTLET, _portlet);
 
 		MockHttpServletRequest originalMockHttpServletRequest =
-			new MockHttpServletRequest();
-
-		originalMockHttpServletRequest.setAttribute(
-			WebKeys.SPI_AGENT_PORTLET, _portlet);
+			new MockHttpServletRequest() {
+				{
+					setAttribute(WebKeys.SPI_AGENT_PORTLET, _portlet);
+				}
+			};
 
 		_mockHttpServletRequest.setAttribute(
 			WebKeys.SPI_AGENT_REQUEST,

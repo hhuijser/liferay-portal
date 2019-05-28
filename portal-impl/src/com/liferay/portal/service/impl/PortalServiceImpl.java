@@ -224,10 +224,12 @@ public class PortalServiceImpl extends PortalServiceBaseImpl {
 		String transactionPortletBarText, boolean rollback) {
 
 		try {
-			Message message = new Message();
-
-			message.put("rollback", rollback);
-			message.put("text", transactionPortletBarText);
+			Message message = new Message() {
+				{
+					put("rollback", rollback);
+					put("text", transactionPortletBarText);
+				}
+			};
 
 			SynchronousMessageSender synchronousMessageSender =
 				SingleDestinationMessageSenderFactoryUtil.

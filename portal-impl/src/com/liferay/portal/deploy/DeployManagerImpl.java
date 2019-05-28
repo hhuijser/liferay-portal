@@ -205,9 +205,11 @@ public class DeployManagerImpl implements DeployManager {
 	public void undeploy(String context) throws Exception {
 		if (isRequiredDeploymentContext(context)) {
 			RequiredPluginPackageException rppe =
-				new RequiredPluginPackageException();
-
-			rppe.setContext(context);
+				new RequiredPluginPackageException() {
+					{
+						setContext(context);
+					}
+				};
 
 			throw rppe;
 		}

@@ -46,10 +46,11 @@ public class RenderResponseFactory {
 			renderRequest = renderRequestWrapper.getRequest();
 		}
 
-		RenderResponseImpl renderResponseImpl = new RenderResponseImpl();
-
-		renderResponseImpl.init(
-			(RenderRequestImpl)renderRequest, httpServletResponse);
+		RenderResponseImpl renderResponseImpl = new RenderResponseImpl() {
+			{
+				init((RenderRequestImpl)renderRequest, httpServletResponse);
+			}
+		};
 
 		return renderResponseImpl;
 	}

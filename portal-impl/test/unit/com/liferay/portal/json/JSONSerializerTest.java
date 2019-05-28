@@ -36,13 +36,17 @@ public class JSONSerializerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		JSONFactoryUtil jsonFactoryUtil = new JSONFactoryUtil();
+		new JSONFactoryUtil() {
+			{
+				setJSONFactory(new JSONFactoryImpl());
+			}
+		};
 
-		jsonFactoryUtil.setJSONFactory(new JSONFactoryImpl());
-
-		LocalizationUtil localizationUtil = new LocalizationUtil();
-
-		localizationUtil.setLocalization(new LocalizationImpl());
+		new LocalizationUtil() {
+			{
+				setLocalization(new LocalizationImpl());
+			}
+		};
 	}
 
 	@Test
@@ -51,9 +55,11 @@ public class JSONSerializerTest {
 
 		jsonSerializer.exclude("*.class");
 
-		TestClass testClass = new TestClass();
-
-		testClass.setName("test name");
+		TestClass testClass = new TestClass() {
+			{
+				setName("test name");
+			}
+		};
 
 		String json = jsonSerializer.serialize(testClass);
 

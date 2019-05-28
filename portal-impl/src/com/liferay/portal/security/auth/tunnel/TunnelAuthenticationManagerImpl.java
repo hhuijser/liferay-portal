@@ -103,9 +103,11 @@ public class TunnelAuthenticationManagerImpl
 			HttpAuthorizationHeader.AUTH_PARAMETER_NAME_PASSWORD);
 
 		if (!Objects.equals(expectedPassword, password)) {
-			AuthException authException = new RemoteAuthException();
-
-			authException.setType(RemoteAuthException.WRONG_SHARED_SECRET);
+			AuthException authException = new RemoteAuthException() {
+				{
+					setType(RemoteAuthException.WRONG_SHARED_SECRET);
+				}
+			};
 
 			throw authException;
 		}
@@ -189,9 +191,11 @@ public class TunnelAuthenticationManagerImpl
 					_log.warn(de, de);
 				}
 
-				AuthException authException = new AuthException();
-
-				authException.setType(AuthException.INVALID_SHARED_SECRET);
+				AuthException authException = new AuthException() {
+					{
+						setType(AuthException.INVALID_SHARED_SECRET);
+					}
+				};
 
 				throw authException;
 			}

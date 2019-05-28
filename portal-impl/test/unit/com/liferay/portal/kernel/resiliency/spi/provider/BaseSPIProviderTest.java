@@ -94,9 +94,11 @@ public class BaseSPIProviderTest {
 
 		MPIHelperUtil.registerSPIProvider(_testSPIProvider);
 
-		SPIRegistryUtil spiRegistryUtil = new SPIRegistryUtil();
-
-		spiRegistryUtil.setSPIRegistry(new SPIRegistryImpl());
+		new SPIRegistryUtil() {
+			{
+				setSPIRegistry(new SPIRegistryImpl());
+			}
+		};
 	}
 
 	@Test

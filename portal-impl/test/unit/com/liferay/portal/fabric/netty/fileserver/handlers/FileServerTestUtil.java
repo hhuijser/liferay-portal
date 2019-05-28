@@ -138,9 +138,11 @@ public class FileServerTestUtil {
 	public static byte[] createRandomData(int size) {
 		byte[] data = new byte[size];
 
-		Random random = new Random();
-
-		random.nextBytes(data);
+		new Random() {
+			{
+				nextBytes(data);
+			}
+		};
 
 		return data;
 	}

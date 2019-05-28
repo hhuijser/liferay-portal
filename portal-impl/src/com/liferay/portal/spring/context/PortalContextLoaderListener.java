@@ -262,27 +262,29 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		ServletContextClassLoaderPool.register(
 			_portalServletContextName, portalClassLoader);
 
-		ServiceDependencyManager serviceDependencyManager =
-			new ServiceDependencyManager();
+		new ServiceDependencyManager() {
+			{
+				addServiceDependencyListener(
+					new ServiceDependencyListener() {
 
-		serviceDependencyManager.addServiceDependencyListener(
-			new ServiceDependencyListener() {
+						@Override
+						public void dependenciesFulfilled() {
+							_serviceWrapperRegistry =
+								new ServiceWrapperRegistry();
+						}
 
-				@Override
-				public void dependenciesFulfilled() {
-					_serviceWrapperRegistry = new ServiceWrapperRegistry();
-				}
+						@Override
+						public void destroy() {
+						}
 
-				@Override
-				public void destroy() {
-				}
+					});
 
-			});
-
-		serviceDependencyManager.registerDependencies(
-			MessageBus.class, PortalExecutorManager.class,
-			SchedulerEngineHelper.class,
-			SingleDestinationMessageSenderFactory.class);
+				registerDependencies(
+					MessageBus.class, PortalExecutorManager.class,
+					SchedulerEngineHelper.class,
+					SingleDestinationMessageSenderFactory.class);
+			}
+		};
 
 		FutureTask<Void> springInitTask = null;
 

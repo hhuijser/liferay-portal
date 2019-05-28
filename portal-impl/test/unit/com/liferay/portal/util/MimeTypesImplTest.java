@@ -31,13 +31,17 @@ public class MimeTypesImplTest {
 
 	@Before
 	public void setUp() {
-		FileUtil fileUtil = new FileUtil();
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 
-		fileUtil.setFile(new FileImpl());
-
-		MimeTypesImpl mimeTypesImpl = new MimeTypesImpl();
-
-		mimeTypesImpl.afterPropertiesSet();
+		MimeTypesImpl mimeTypesImpl = new MimeTypesImpl() {
+			{
+				afterPropertiesSet();
+			}
+		};
 
 		_mimeTypes = mimeTypesImpl;
 	}

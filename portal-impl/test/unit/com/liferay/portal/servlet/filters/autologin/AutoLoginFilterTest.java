@@ -44,9 +44,11 @@ public class AutoLoginFilterTest {
 
 	@Test
 	public void testDoFilter() throws IOException, ServletException {
-		PortalUtil portalUtil = new PortalUtil();
-
-		portalUtil.setPortal(new PortalImpl());
+		new PortalUtil() {
+			{
+				setPortal(new PortalImpl());
+			}
+		};
 
 		RegistryUtil.setRegistry(new BasicRegistryImpl());
 
@@ -71,24 +73,28 @@ public class AutoLoginFilterTest {
 
 				});
 
-		AutoLoginFilter autoLoginFilter = new AutoLoginFilter();
+		new AutoLoginFilter() {
+			{
+				doFilter(
+					new HttpServletRequestWrapper(
+						ProxyFactory.newDummyInstance(
+							HttpServletRequest.class)) {
 
-		autoLoginFilter.doFilter(
-			new HttpServletRequestWrapper(
-				ProxyFactory.newDummyInstance(HttpServletRequest.class)) {
+						@Override
+						public String getRequestURI() {
+							return StringPool.BLANK;
+						}
 
-				@Override
-				public String getRequestURI() {
-					return StringPool.BLANK;
-				}
+						@Override
+						public HttpSession getSession() {
+							return ProxyFactory.newDummyInstance(
+								HttpSession.class);
+						}
 
-				@Override
-				public HttpSession getSession() {
-					return ProxyFactory.newDummyInstance(HttpSession.class);
-				}
-
-			},
-			null, ProxyFactory.newDummyInstance(FilterChain.class));
+					},
+					null, ProxyFactory.newDummyInstance(FilterChain.class));
+			}
+		};
 
 		try {
 			Assert.assertTrue("Login method should be invoked", calledLogin[0]);

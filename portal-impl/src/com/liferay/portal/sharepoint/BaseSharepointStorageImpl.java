@@ -155,24 +155,32 @@ public abstract class BaseSharepointStorageImpl implements SharepointStorage {
 		String createDateString = getDate(createDate, false);
 		String modifiedDateString = getDate(modifiedDate, false);
 
-		Tree metaInfoTree = new Tree();
-
-		metaInfoTree.addChild(
-			new Leaf("vti_timecreated", createDateString, false));
-		metaInfoTree.addChild(
-			new Leaf("vti_timelastmodified", modifiedDateString, false));
-		metaInfoTree.addChild(
-			new Leaf("vti_timelastwritten", modifiedDateString, false));
-		metaInfoTree.addChild(new Leaf("vti_filesize", "IR|" + size, false));
-		metaInfoTree.addChild(
-			new Leaf("vti_sourcecontrolcheckedoutby", "SR|" + userName, false));
-		metaInfoTree.addChild(
-			new Leaf(
-				"vti_sourcecontroltimecheckedout", createDateString, false));
-		metaInfoTree.addChild(
-			new Leaf("vti_sourcecontrolversion", "SR|V" + version, false));
-		metaInfoTree.addChild(
-			new Leaf("vti_sourcecontrollockexpires", createDateString, false));
+		Tree metaInfoTree = new Tree() {
+			{
+				addChild(new Leaf("vti_timecreated", createDateString, false));
+				addChild(
+					new Leaf(
+						"vti_timelastmodified", modifiedDateString, false));
+				addChild(
+					new Leaf("vti_timelastwritten", modifiedDateString, false));
+				addChild(new Leaf("vti_filesize", "IR|" + size, false));
+				addChild(
+					new Leaf(
+						"vti_sourcecontrolcheckedoutby", "SR|" + userName,
+						false));
+				addChild(
+					new Leaf(
+						"vti_sourcecontroltimecheckedout", createDateString,
+						false));
+				addChild(
+					new Leaf(
+						"vti_sourcecontrolversion", "SR|V" + version, false));
+				addChild(
+					new Leaf(
+						"vti_sourcecontrollockexpires", createDateString,
+						false));
+			}
+		};
 
 		documentTree.addChild(new Leaf("meta_info", metaInfoTree));
 

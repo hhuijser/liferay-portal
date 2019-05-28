@@ -92,10 +92,12 @@ public class LayoutListUtil {
 
 		Deque<ObjectValuePair<Layout, Integer>> deque = new LinkedList<>();
 
-		Layout rootLayout = new LayoutImpl();
-
-		rootLayout.setPlid(LayoutConstants.DEFAULT_PLID);
-		rootLayout.setName(rootNodeName);
+		Layout rootLayout = new LayoutImpl() {
+			{
+				setPlid(LayoutConstants.DEFAULT_PLID);
+				setName(rootNodeName);
+			}
+		};
 
 		deque.push(new ObjectValuePair<Layout, Integer>(rootLayout, 0));
 

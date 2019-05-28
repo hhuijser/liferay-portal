@@ -47,11 +47,13 @@ public class ActionResponseFactory {
 			actionRequest = actionRequestWrapper.getRequest();
 		}
 
-		ActionResponseImpl actionResponseImpl = new ActionResponseImpl();
-
-		actionResponseImpl.init(
-			(ActionRequestImpl)actionRequest, httpServletResponse, user, layout,
-			true);
+		ActionResponseImpl actionResponseImpl = new ActionResponseImpl() {
+			{
+				init(
+					(ActionRequestImpl)actionRequest, httpServletResponse, user,
+					layout, true);
+			}
+		};
 
 		return actionResponseImpl;
 	}

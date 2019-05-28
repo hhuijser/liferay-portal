@@ -478,9 +478,11 @@ public class PluginsEnvironmentBuilder {
 
 		File propertiesFile = new File(dirName + "/" + fileName);
 
-		Properties properties = new Properties();
-
-		properties.load(new FileInputStream(propertiesFile));
+		Properties properties = new Properties() {
+			{
+				load(new FileInputStream(propertiesFile));
+			}
+		};
 
 		Set<String> jars = new TreeSet<>();
 

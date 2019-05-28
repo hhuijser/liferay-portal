@@ -129,9 +129,11 @@ public class IntrabandProxyUtilTest {
 
 	@Before
 	public void setUp() {
-		FileUtil fileUtil = new FileUtil();
-
-		fileUtil.setFile(new FileImpl());
+		new FileUtil() {
+			{
+				setFile(new FileImpl());
+			}
+		};
 	}
 
 	@Test

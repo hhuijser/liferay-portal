@@ -41,11 +41,13 @@ public class ResourceRequestFactory {
 		WindowState windowState, PortletMode portletMode,
 		PortletPreferences preferences, long plid) {
 
-		ResourceRequestImpl resourceRequestImpl = new ResourceRequestImpl();
-
-		resourceRequestImpl.init(
-			httpServletRequest, portlet, invokerPortlet, portletContext,
-			windowState, portletMode, preferences, plid);
+		ResourceRequestImpl resourceRequestImpl = new ResourceRequestImpl() {
+			{
+				init(
+					httpServletRequest, portlet, invokerPortlet, portletContext,
+					windowState, portletMode, preferences, plid);
+			}
+		};
 
 		return resourceRequestImpl;
 	}

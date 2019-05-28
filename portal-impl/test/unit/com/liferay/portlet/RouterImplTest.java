@@ -36,9 +36,11 @@ public class RouterImplTest {
 
 	@Before
 	public void setUp() throws Exception {
-		HttpUtil httpUtil = new HttpUtil();
-
-		httpUtil.setHttp(new HttpImpl());
+		new HttpUtil() {
+			{
+				setHttp(new HttpImpl());
+			}
+		};
 
 		_routerImpl = new RouterImpl();
 

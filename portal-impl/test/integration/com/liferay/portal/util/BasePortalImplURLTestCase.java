@@ -68,18 +68,20 @@ public abstract class BasePortalImplURLTestCase {
 
 		company.setVirtualHostname(companyVirtualHostname);
 
-		ThemeDisplay themeDisplay = new ThemeDisplay();
-
-		themeDisplay.setCompany(company);
-		themeDisplay.setI18nLanguageId(StringPool.BLANK);
-		themeDisplay.setLayout(layout);
-		themeDisplay.setLayoutSet(layout.getLayoutSet());
-		themeDisplay.setSecure(false);
-		themeDisplay.setServerName(serverName);
-		themeDisplay.setServerPort(8080);
-		themeDisplay.setSiteGroupId(group.getGroupId());
-		themeDisplay.setUser(TestPropsValues.getUser());
-		themeDisplay.setWidget(false);
+		ThemeDisplay themeDisplay = new ThemeDisplay() {
+			{
+				setCompany(company);
+				setI18nLanguageId(StringPool.BLANK);
+				setLayout(layout);
+				setLayoutSet(layout.getLayoutSet());
+				setSecure(false);
+				setServerName(serverName);
+				setServerPort(8080);
+				setSiteGroupId(group.getGroupId());
+				setUser(TestPropsValues.getUser());
+				setWidget(false);
+			}
+		};
 
 		return themeDisplay;
 	}

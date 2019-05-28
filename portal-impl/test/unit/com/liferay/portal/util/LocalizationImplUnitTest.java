@@ -97,47 +97,53 @@ public class LocalizationImplUnitTest {
 		String defaultContentLocale, final String portalAvailableLocales,
 		String expectedLocale, boolean expectedResult) {
 
-		LanguageUtil languageUtil = new LanguageUtil();
+		new LanguageUtil() {
+			{
+				setLanguage(
+					(Language)ProxyUtil.newProxyInstance(
+						Language.class.getClassLoader(),
+						new Class<?>[] {Language.class},
+						new InvocationHandler() {
 
-		languageUtil.setLanguage(
-			(Language)ProxyUtil.newProxyInstance(
-				Language.class.getClassLoader(),
-				new Class<?>[] {Language.class},
-				new InvocationHandler() {
+							@Override
+							public Object invoke(
+								Object proxy, Method method, Object[] args) {
 
-					@Override
-					public Object invoke(
-						Object proxy, Method method, Object[] args) {
+								String methodName = method.getName();
 
-						String methodName = method.getName();
+								if (methodName.equals("getAvailableLocales")) {
+									return getContentAvailableLocales(
+										portalAvailableLocales);
+								}
 
-						if (methodName.equals("getAvailableLocales")) {
-							return getContentAvailableLocales(
-								portalAvailableLocales);
-						}
+								if (methodName.equals("isAvailableLocale")) {
+									Locale locale = (Locale)args[0];
 
-						if (methodName.equals("isAvailableLocale")) {
-							Locale locale = (Locale)args[0];
+									Locale[] portalLocales =
+										getContentAvailableLocales(
+											portalAvailableLocales);
 
-							Locale[] portalLocales = getContentAvailableLocales(
-								portalAvailableLocales);
+									return ArrayUtil.contains(
+										portalLocales, locale);
+								}
 
-							return ArrayUtil.contains(portalLocales, locale);
-						}
+								throw new UnsupportedOperationException();
+							}
 
-						throw new UnsupportedOperationException();
-					}
-
-				}));
+						}));
+			}
+		};
 
 		Locale locale = LocaleUtil.fromLanguageId(defaultContentLocale);
 
 		LocaleUtil.setDefault(
 			locale.getLanguage(), locale.getCountry(), locale.getVariant());
 
-		LocalizationUtil localizationUtil = new LocalizationUtil();
-
-		localizationUtil.setLocalization(new LocalizationImpl());
+		new LocalizationUtil() {
+			{
+				setLocalization(new LocalizationImpl());
+			}
+		};
 
 		Locale contentDefaultLocale = LocaleUtil.fromLanguageId("es_ES");
 

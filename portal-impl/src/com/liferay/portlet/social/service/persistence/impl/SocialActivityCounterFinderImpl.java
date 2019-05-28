@@ -165,13 +165,14 @@ public class SocialActivityCounterFinderImpl
 				Object[] array = itr.next();
 
 				SocialActivityCounter activityCounter =
-					new SocialActivityCounterImpl();
-
-				activityCounter.setName(GetterUtil.getString(array[0]));
-				activityCounter.setCurrentValue(
-					GetterUtil.getInteger(array[1]));
-				activityCounter.setStartPeriod(GetterUtil.getInteger(array[2]));
-				activityCounter.setEndPeriod(GetterUtil.getInteger(array[3]));
+					new SocialActivityCounterImpl() {
+						{
+							setName(GetterUtil.getString(array[0]));
+							setCurrentValue(GetterUtil.getInteger(array[1]));
+							setStartPeriod(GetterUtil.getInteger(array[2]));
+							setEndPeriod(GetterUtil.getInteger(array[3]));
+						}
+					};
 
 				activityCounters.add(activityCounter);
 			}
@@ -226,12 +227,13 @@ public class SocialActivityCounterFinderImpl
 				Object[] array = itr.next();
 
 				SocialActivityCounter activityCounter =
-					new SocialActivityCounterImpl();
-
-				activityCounter.setClassNameId(GetterUtil.getLong(array[0]));
-				activityCounter.setName(GetterUtil.getString(array[1]));
-				activityCounter.setCurrentValue(
-					GetterUtil.getInteger(array[2]));
+					new SocialActivityCounterImpl() {
+						{
+							setClassNameId(GetterUtil.getLong(array[0]));
+							setName(GetterUtil.getString(array[1]));
+							setCurrentValue(GetterUtil.getInteger(array[2]));
+						}
+					};
 
 				activityCounters.add(activityCounter);
 			}

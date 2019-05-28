@@ -203,10 +203,12 @@ public class UserIndexer extends BaseIndexer<User> {
 
 				organizationsTermsFilter.addValues(organizationIdsStrings);
 
-				BooleanFilter userOrgsBooleanFilter = new BooleanFilter();
-
-				userOrgsBooleanFilter.add(ancestorOrgsTermsFilter);
-				userOrgsBooleanFilter.add(organizationsTermsFilter);
+				BooleanFilter userOrgsBooleanFilter = new BooleanFilter() {
+					{
+						add(ancestorOrgsTermsFilter);
+						add(organizationsTermsFilter);
+					}
+				};
 
 				contextFilter.add(
 					userOrgsBooleanFilter, BooleanClauseOccur.MUST);
@@ -239,10 +241,12 @@ public class UserIndexer extends BaseIndexer<User> {
 		Indexer<Contact> indexer = IndexerRegistryUtil.nullSafeGetIndexer(
 			Contact.class);
 
-		Contact contact = new ContactImpl();
-
-		contact.setContactId(user.getContactId());
-		contact.setCompanyId(user.getCompanyId());
+		Contact contact = new ContactImpl() {
+			{
+				setContactId(user.getContactId());
+				setCompanyId(user.getCompanyId());
+			}
+		};
 
 		indexer.delete(contact);
 	}

@@ -42,9 +42,11 @@ public class PortletBagFactoryTest {
 	@Test
 	public void test1() throws Exception {
 		try {
-			PortletBagFactory portletBagFactory = new PortletBagFactory();
-
-			portletBagFactory.create(new PortletImpl());
+			new PortletBagFactory() {
+				{
+					create(new PortletImpl());
+				}
+			};
 
 			Assert.fail();
 		}
@@ -90,10 +92,12 @@ public class PortletBagFactoryTest {
 
 	@Test
 	public void test4_initializedInstance() throws Exception {
-		PortletImpl portletImpl = new PortletImpl();
-
-		portletImpl.setPortletApp(new PortletAppImpl(StringPool.BLANK));
-		portletImpl.setPortletClass(MVCPortlet.class.getName());
+		PortletImpl portletImpl = new PortletImpl() {
+			{
+				setPortletApp(new PortletAppImpl(StringPool.BLANK));
+				setPortletClass(MVCPortlet.class.getName());
+			}
+		};
 
 		PortletBagFactory portletBagFactory = new PortletBagFactory();
 
@@ -109,9 +113,11 @@ public class PortletBagFactoryTest {
 
 	@Test
 	public void test5_concreteInstance() throws Exception {
-		PortletImpl portletImpl = new PortletImpl();
-
-		portletImpl.setPortletApp(new PortletAppImpl(StringPool.BLANK));
+		PortletImpl portletImpl = new PortletImpl() {
+			{
+				setPortletApp(new PortletAppImpl(StringPool.BLANK));
+			}
+		};
 
 		PortletBagFactory portletBagFactory = new PortletBagFactory();
 

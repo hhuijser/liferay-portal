@@ -1432,10 +1432,12 @@ public class DLAppHelperLocalServiceImpl
 
 		int oldDLFileVersionStatus = oldDLFileVersion.getStatus();
 
-		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
-
-		typeSettingsProperties.put("fileName", dlFileEntry.getFileName());
-		typeSettingsProperties.put("title", dlFileEntry.getTitle());
+		UnicodeProperties typeSettingsProperties = new UnicodeProperties() {
+			{
+				put("fileName", dlFileEntry.getFileName());
+				put("title", dlFileEntry.getTitle());
+			}
+		};
 
 		TrashEntry trashEntry = trashEntryLocalService.addTrashEntry(
 			userId, dlFileEntry.getGroupId(),
@@ -1561,9 +1563,11 @@ public class DLAppHelperLocalServiceImpl
 
 		// Trash
 
-		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
-
-		typeSettingsProperties.put("title", dlFolder.getName());
+		UnicodeProperties typeSettingsProperties = new UnicodeProperties() {
+			{
+				put("title", dlFolder.getName());
+			}
+		};
 
 		TrashEntry trashEntry = trashEntryLocalService.addTrashEntry(
 			userId, dlFolder.getGroupId(), DLFolderConstants.getClassName(),

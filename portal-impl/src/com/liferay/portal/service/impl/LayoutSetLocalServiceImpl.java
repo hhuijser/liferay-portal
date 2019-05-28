@@ -547,9 +547,11 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 			long groupId, boolean privateLayout, String settings)
 		throws PortalException {
 
-		UnicodeProperties settingsProperties = new UnicodeProperties();
-
-		settingsProperties.fastLoad(settings);
+		UnicodeProperties settingsProperties = new UnicodeProperties() {
+			{
+				fastLoad(settings);
+			}
+		};
 
 		LayoutSet layoutSet = layoutSetPersistence.findByG_P_Head(
 			groupId, privateLayout, false);

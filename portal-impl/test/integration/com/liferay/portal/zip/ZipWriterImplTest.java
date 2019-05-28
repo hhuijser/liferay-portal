@@ -207,9 +207,11 @@ public class ZipWriterImplTest {
 
 		ZipWriter zipWriter = new ZipWriterImpl(tempZipFile);
 
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("This is a string.");
+		StringBuilder sb = new StringBuilder() {
+			{
+				append("This is a string.");
+			}
+		};
 
 		zipWriter.addEntry("string.txt", sb);
 
@@ -342,9 +344,11 @@ public class ZipWriterImplTest {
 
 		ZipWriter zipWriter = new ZipWriterImpl(tempZipFile);
 
-		StringBuilder sb = new StringBuilder();
-
-		sb.append("This is a string.");
+		StringBuilder sb = new StringBuilder() {
+			{
+				append("This is a string.");
+			}
+		};
 
 		zipWriter.addEntry("string.txt", sb);
 

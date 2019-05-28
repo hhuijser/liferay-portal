@@ -45,17 +45,21 @@ public class SPIConfigurationTest {
 
 	@Before
 	public void setUp() {
-		HtmlUtil htmlUtil = new HtmlUtil();
-
-		htmlUtil.setHtml(new HtmlImpl());
+		new HtmlUtil() {
+			{
+				setHtml(new HtmlImpl());
+			}
+		};
 
 		PropsUtil.setProps(new PropsImpl());
 
 		SAXReaderUtil saxReaderUtil = new SAXReaderUtil();
 
-		SAXReaderImpl secureSAXReader = new SAXReaderImpl();
-
-		secureSAXReader.setSecure(true);
+		SAXReaderImpl secureSAXReader = new SAXReaderImpl() {
+			{
+				setSecure(true);
+			}
+		};
 
 		saxReaderUtil.setSAXReader(secureSAXReader);
 

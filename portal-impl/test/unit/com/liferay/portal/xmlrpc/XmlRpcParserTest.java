@@ -15,13 +15,10 @@
 package com.liferay.portal.xmlrpc;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.xmlrpc.Fault;
 import com.liferay.portal.kernel.xmlrpc.Response;
 import com.liferay.portal.kernel.xmlrpc.Success;
-import com.liferay.portal.kernel.xmlrpc.XmlRpcUtil;
-import com.liferay.portal.security.xml.SecureXMLFactoryProviderImpl;
 
 import java.util.Arrays;
 
@@ -37,15 +34,6 @@ public class XmlRpcParserTest {
 
 	@BeforeClass
 	public static void setUpClass() {
-		SecureXMLFactoryProviderUtil secureXMLFactoryProviderUtil =
-			new SecureXMLFactoryProviderUtil();
-
-		secureXMLFactoryProviderUtil.setSecureXMLFactoryProvider(
-			new SecureXMLFactoryProviderImpl());
-
-		XmlRpcUtil xmlRpcUtil = new XmlRpcUtil();
-
-		xmlRpcUtil.setXmlRpc(new XmlRpcImpl());
 	}
 
 	@Test

@@ -14,12 +14,26 @@
 
 package com.liferay.source.formatter;
 
+import com.liferay.petra.string.StringBundler;
+
 import org.junit.Test;
 
 /**
  * @author Alan Huang
  */
 public class BNDSourceProcessorTest extends BaseSourceProcessorTestCase {
+
+	@Test
+	public void testFormatBndInstructions() throws Exception {
+		test("FormatBndInstructions1/app.testbnd");
+		test("FormatBndInstructions2/app.testbnd");
+		test(
+			"FormatBndInstructions3/app.testbnd",
+			StringBundler.concat(
+				"The 'Liferay-Releng-Suite' can be blank or one of the ",
+				"following values collaboration, forms-and-workflow, ",
+				"foundation, static, web-experience"));
+	}
 
 	@Test
 	public void testIncorrectBundleActivator() throws Exception {

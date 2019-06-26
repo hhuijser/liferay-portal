@@ -18,6 +18,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -40,15 +41,21 @@ public class GradleStylingCheck extends BaseFileCheck {
 
 	private String _sortMapKeys(String mapName, String content) {
 		Pattern pattern = Pattern.compile(
-			"\n(\t*)(" + mapName + ") = (?!\\[\\])\\[([\\s\\S]+?)\\]\n");
+			"\n(\t*)(" + mapName + ") = \\[([\\s\\S]*?)\\]\n");
 
 		Matcher matcher1 = pattern.matcher(content);
 
-		while (matcher1.find()) {
+		if (matcher1.find()) {
+			String match = matcher1.group(3);
+
+			if (Validator.isNull(match)) {
+				return content;
+			}
+
 			Map<String, String> map = new TreeMap<>(
 				new NaturalOrderStringComparator());
 
-			Matcher matcher2 = _mapKeyPattern.matcher(matcher1.group(3));
+			Matcher matcher2 = _mapKeyPattern.matcher(match);
 
 			while (matcher2.find()) {
 				map.put(matcher2.group(1), matcher2.group(2));
@@ -82,8 +89,7 @@ public class GradleStylingCheck extends BaseFileCheck {
 				sb.append(indent);
 			}
 
-			content = StringUtil.replaceFirst(
-				content, matcher1.group(3), sb.toString());
+			return StringUtil.replaceFirst(content, match, sb.toString());
 		}
 
 		return content;

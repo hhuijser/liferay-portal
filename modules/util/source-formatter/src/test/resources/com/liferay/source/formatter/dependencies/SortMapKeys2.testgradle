@@ -1,0 +1,16 @@
+apply plugin: "com.liferay.lang.merger"
+
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+}
+
+mergeLang {
+	setting("../document-library-web/src/main/resources/content") {
+		transformKeys = ["x-second[time]": "x-second[time]", "seconds": "seconds",
+			"second": "second"
+		]
+
+	}
+
+	sourceDirs = ["../document-library-web/src/main/resources/content"]
+}

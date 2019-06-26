@@ -107,6 +107,7 @@
 		<check name="GradleJavaVersionCheck" />
 		<check name="GradlePropertiesCheck" />
 		<check name="GradleProvidedDependenciesCheck" />
+		<check name="GradleStylingCheck" />
 		<check name="GradleTaskCreationCheck" />
 		<check name="GradleTestDependencyVersionCheck">
 			<property name="allowedDependencyNames" value="com.liferay.arquillian.arquillian-container-liferay" />

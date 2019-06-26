@@ -45,54 +45,54 @@ public class GradleStylingCheck extends BaseFileCheck {
 
 		Matcher matcher1 = pattern.matcher(content);
 
-		if (matcher1.find()) {
-			String match = matcher1.group(3);
+		if (!matcher1.find()) {
+			return content;
+		}
 
-			if (Validator.isNull(match)) {
-				return content;
-			}
+		String match = matcher1.group(3);
 
-			Map<String, String> map = new TreeMap<>(
-				new NaturalOrderStringComparator());
+		if (Validator.isNull(match)) {
+			return content;
+		}
 
-			Matcher matcher2 = _mapKeyPattern.matcher(match);
+		Map<String, String> map = new TreeMap<>(
+			new NaturalOrderStringComparator());
 
-			while (matcher2.find()) {
-				map.put(matcher2.group(1), matcher2.group(2));
-			}
+		Matcher matcher2 = _mapKeyPattern.matcher(match);
 
-			StringBundler sb = new StringBundler(map.size() * 9);
+		while (matcher2.find()) {
+			map.put(matcher2.group(1), matcher2.group(2));
+		}
 
-			String indent = matcher1.group(1);
+		StringBundler sb = new StringBundler(map.size() * 9);
 
-			for (Map.Entry<String, String> entry : map.entrySet()) {
-				if (map.size() == 1) {
-					sb.append(entry.getKey());
-					sb.append(": ");
-					sb.append(entry.getValue());
+		String indent = matcher1.group(1);
 
-					break;
-				}
-
-				sb.append(CharPool.NEW_LINE);
-				sb.append(indent);
-				sb.append(CharPool.TAB);
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			if (map.size() == 1) {
 				sb.append(entry.getKey());
 				sb.append(": ");
 				sb.append(entry.getValue());
-				sb.append(CharPool.COMMA);
+
+				break;
 			}
 
-			if (map.size() > 1) {
-				sb.setIndex(sb.index() - 1);
-				sb.append(CharPool.NEW_LINE);
-				sb.append(indent);
-			}
-
-			return StringUtil.replaceFirst(content, match, sb.toString());
+			sb.append(CharPool.NEW_LINE);
+			sb.append(indent);
+			sb.append(CharPool.TAB);
+			sb.append(entry.getKey());
+			sb.append(": ");
+			sb.append(entry.getValue());
+			sb.append(CharPool.COMMA);
 		}
 
-		return content;
+		if (map.size() > 1) {
+			sb.setIndex(sb.index() - 1);
+			sb.append(CharPool.NEW_LINE);
+			sb.append(indent);
+		}
+
+		return StringUtil.replaceFirst(content, match, sb.toString());
 	}
 
 	private static final Pattern _mapKeyPattern = Pattern.compile(

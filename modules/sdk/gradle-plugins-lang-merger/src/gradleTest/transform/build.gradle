@@ -32,7 +32,10 @@ project(":sample-web") {
 
 	mergeLang {
 		setting("../sample-foo/src/main/resources/content") {
-			transformKeys = ["hello-world": "hello-world", "hello-foo": "hello-web"]
+			transformKeys = [
+				"hello-foo": "hello-web",
+				"hello-world": "hello-world"
+			]
 		}
 
 		sourceDirs = [

@@ -13,7 +13,10 @@ dependencies {
 
 mergeLang {
 	setting("../document-library-web/src/main/resources/content") {
-		transformKeys = ["folders-and-files": "folders-and-files", "javax.portlet.title.com_liferay_document_library_web_portlet_DLPortlet": "application.name.com.liferay.document.library.uad"]
+		transformKeys = [
+			"folders-and-files": "folders-and-files",
+			"javax.portlet.title.com_liferay_document_library_web_portlet_DLPortlet": "application.name.com.liferay.document.library.uad"
+		]
 	}
 
 	sourceDirs = ["../document-library-web/src/main/resources/content"]

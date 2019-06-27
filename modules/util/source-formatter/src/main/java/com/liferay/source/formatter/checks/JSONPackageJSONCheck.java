@@ -15,6 +15,7 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.util.FileUtil;
@@ -155,6 +156,17 @@ public class JSONPackageJSONCheck extends BaseFileCheck {
 						"\"", dependencyName, "\": \"", actualVersion, "\""),
 					StringBundler.concat(
 						"\"", dependencyName, "\": \"", expectedVersion, "\""));
+			}
+
+			if (dependencyName.equals("frontend-js-web") &&
+				!actualVersion.startsWith(StringPool.CARET)) {
+
+				content = StringUtil.replace(
+					content,
+					StringBundler.concat(
+						"\"", dependencyName, "\": \"", actualVersion, "\""),
+					StringBundler.concat(
+						"\"", dependencyName, "\": \"^", actualVersion, "\""));
 			}
 		}
 

@@ -61,6 +61,11 @@ public class JSONSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testJSONDependencyVersions() throws Exception {
+		test("modules/apps/SFTest/package.testjson");
+	}
+
+	@Test
 	public void testJSONDeprecatedPackagesCheck() throws Exception {
 		test(
 			"JSONDeprecatedPackages/package.testjson",

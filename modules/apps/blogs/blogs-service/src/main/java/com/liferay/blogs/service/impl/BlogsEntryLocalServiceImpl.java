@@ -2343,10 +2343,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	private boolean _attachmentExists(
 		long groupId, long folderId, String fileName) {
 
-		FileEntry fileEntry = _portletFileRepository.getPortletFileEntry(
-			groupId, folderId, fileName);
-
 		try {
+			FileEntry fileEntry = _portletFileRepository.getPortletFileEntry(
+				groupId, folderId, fileName);
+
 			if (fileEntry != null) {
 				return true;
 			}

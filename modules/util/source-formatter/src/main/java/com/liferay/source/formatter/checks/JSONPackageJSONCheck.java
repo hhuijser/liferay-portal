@@ -147,6 +147,12 @@ public class JSONPackageJSONCheck extends BaseFileCheck {
 			String expectedVersion = expectedDependencyVersionsMap.get(
 				dependencyName);
 
+			if (dependencyName.equals("frontend-js-web") &&
+				!actualVersion.startsWith(StringPool.CARET)) {
+
+				expectedVersion = StringPool.CARET + actualVersion;
+			}
+
 			if ((expectedVersion != null) &&
 				!expectedVersion.equals(actualVersion)) {
 
@@ -156,17 +162,6 @@ public class JSONPackageJSONCheck extends BaseFileCheck {
 						"\"", dependencyName, "\": \"", actualVersion, "\""),
 					StringBundler.concat(
 						"\"", dependencyName, "\": \"", expectedVersion, "\""));
-			}
-
-			if (dependencyName.equals("frontend-js-web") &&
-				!actualVersion.startsWith(StringPool.CARET)) {
-
-				content = StringUtil.replace(
-					content,
-					StringBundler.concat(
-						"\"", dependencyName, "\": \"", actualVersion, "\""),
-					StringBundler.concat(
-						"\"", dependencyName, "\": \"^", actualVersion, "\""));
 			}
 		}
 

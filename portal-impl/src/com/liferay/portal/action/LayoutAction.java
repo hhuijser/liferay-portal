@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.PortletContainerUtil;
+import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
@@ -344,6 +345,15 @@ public class LayoutAction implements Action {
 			}
 
 			if (portlet != null) {
+				if (portlet.isInstanceable()) {
+					String decodedPortletId = PortletIdCodec.decodePortletName(
+						portletId);
+
+					if (decodedPortletId.equals(portletId)) {
+						return null;
+					}
+				}
+
 				PortletContainerUtil.preparePortlet(
 					httpServletRequest, portlet);
 

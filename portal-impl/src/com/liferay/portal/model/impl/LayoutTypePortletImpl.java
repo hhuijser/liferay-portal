@@ -1953,8 +1953,7 @@ public class LayoutTypePortletImpl
 			String decodedNonStaticPortletName =
 				PortletIdCodec.decodePortletName(nonstaticPortletId);
 
-			if (nonstaticPortletId.equals(portletId) ||
-				decodedNonStaticPortletName.equals(portletId)) {
+			if (nonstaticPortletId.equals(portletId)) {
 
 				return true;
 			}

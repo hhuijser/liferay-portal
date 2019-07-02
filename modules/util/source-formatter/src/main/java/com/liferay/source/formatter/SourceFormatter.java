@@ -96,7 +96,7 @@ public class SourceFormatter {
 				ExcludeSyntax.REGEX,
 				"^((?!/frontend-js-node-shims/src/).)*/node_modules/.*"),
 			new ExcludeSyntaxPattern(
-				ExcludeSyntax.REGEX, ".*/(\\w+\\.){2,}properties")
+				ExcludeSyntax.REGEX, ".*/([^/.]+\\.){2,}properties")
 		};
 
 	public static void main(String[] args) throws Exception {

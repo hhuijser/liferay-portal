@@ -23,7 +23,7 @@ import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.workflow.WorkflowTask;
 import com.liferay.portal.kernel.workflow.comparator.WorkflowComparatorFactoryUtil;
-import com.liferay.portal.workflow.task.web.configuration.WorkflowTaskWebConfiguration;
+import com.liferay.portal.workflow.task.web.internal.configuration.WorkflowTaskWebConfiguration;
 
 import javax.portlet.PortletRequest;
 

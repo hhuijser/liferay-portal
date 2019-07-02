@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.workflow.task.web.configuration;
+package com.liferay.portal.workflow.task.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "workflow")
 @Meta.OCD(
-	id = "com.liferay.portal.workflow.task.web.configuration.WorkflowTaskWebConfiguration",
+	id = "com.liferay.portal.workflow.task.web.internal.configuration.WorkflowTaskWebConfiguration",
 	localization = "content/Language",
 	name = "workflow-task-web-configuration-name"
 )

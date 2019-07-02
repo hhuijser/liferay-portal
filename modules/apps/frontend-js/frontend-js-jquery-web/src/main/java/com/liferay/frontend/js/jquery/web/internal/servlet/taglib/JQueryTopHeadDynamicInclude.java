@@ -14,7 +14,7 @@
 
 package com.liferay.frontend.js.jquery.web.internal.servlet.taglib;
 
-import com.liferay.frontend.js.jquery.web.configuration.JSJQueryConfiguration;
+import com.liferay.frontend.js.jquery.web.internal.configuration.JSJQueryConfiguration;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.servlet.taglib.BaseDynamicInclude;
@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julien Castelain
  */
 @Component(
-	configurationPid = "com.liferay.frontend.js.jquery.web.configuration.JSJQueryConfiguration",
+	configurationPid = "com.liferay.frontend.js.jquery.web.internal.configuration.JSJQueryConfiguration",
 	immediate = true, service = DynamicInclude.class
 )
 public class JQueryTopHeadDynamicInclude extends BaseDynamicInclude {

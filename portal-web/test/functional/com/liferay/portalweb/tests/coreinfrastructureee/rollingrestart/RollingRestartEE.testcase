@@ -414,7 +414,7 @@ definition {
 	@priority = "5"
 	test InstallFixPackWithNewOSGIConfiguration {
 		property app.server.bundles.size = "2";
-		property osgi.module.configuration.file.names = "com.liferay.frontend.js.spa.web.configuration.SPAConfiguration.cfg";
+		property osgi.module.configuration.file.names = "com.liferay.frontend.js.spa.web.internal.configuration.SPAConfiguration.cfg";
 		property osgi.module.configurations = "userNotificationTimeout=30000";
 		property portal.fixpack.release = "true";
 		property test.name.skip.portal.instance = "RollingRestartEE#InstallFixPackWithNewOSGIConfiguration";

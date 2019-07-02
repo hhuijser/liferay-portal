@@ -14,7 +14,7 @@
 
 package com.liferay.frontend.js.lodash.web.internal.servlet.taglib;
 
-import com.liferay.frontend.js.lodash.web.configuration.JSLodashConfiguration;
+import com.liferay.frontend.js.lodash.web.internal.configuration.JSLodashConfiguration;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.servlet.taglib.BaseDynamicInclude;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julien Castelain
  */
 @Component(
-	configurationPid = "com.liferay.frontend.js.lodash.web.configuration.JSLodashConfiguration",
+	configurationPid = "com.liferay.frontend.js.lodash.web.internal.configuration.JSLodashConfiguration",
 	immediate = true, service = DynamicInclude.class
 )
 public class LodashTopHeadDynamicInclude extends BaseDynamicInclude {

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.spa.web.configuration;
+package com.liferay.frontend.js.spa.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,7 +24,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 @ExtendedObjectClassDefinition(category = "infrastructure")
 @Meta.OCD(
 	description = "spa-configuration-description",
-	id = "com.liferay.frontend.js.spa.web.configuration.SPAConfiguration",
+	id = "com.liferay.frontend.js.spa.web.internal.configuration.SPAConfiguration",
 	localization = "content/Language", name = "spa-configuration-name"
 )
 public @interface SPAConfiguration {

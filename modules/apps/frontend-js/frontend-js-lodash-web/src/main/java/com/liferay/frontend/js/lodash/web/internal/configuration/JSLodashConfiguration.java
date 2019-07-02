@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.frontend.js.jquery.web.configuration;
+package com.liferay.frontend.js.lodash.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,20 +24,20 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "third-party")
 @Meta.OCD(
-	description = "frontend-js-jquery-description",
-	id = "com.liferay.frontend.js.jquery.web.configuration.JSJQueryConfiguration",
+	description = "frontend-js-lodash-description",
+	id = "com.liferay.frontend.js.lodash.web.internal.configuration.JSLodashConfiguration",
 	localization = "content/Language",
-	name = "frontend-js-jquery-configuration-name"
+	name = "frontend-js-lodash-configuration-name"
 )
-public interface JSJQueryConfiguration {
+public interface JSLodashConfiguration {
 
 	/**
-	 * Set this to <code>true</code> to enable JQuery usage.
+	 * Set this to <code>true</code> to enable Lodash usage.
 	 *
-	 * @return <code>true</code> if JQuery is enabled.
+	 * @return <code>true</code> if Lodash is enabled.
 	 * @review
 	 */
-	@Meta.AD(deflt = "true", name = "enable-jquery", required = false)
-	public boolean enableJQuery();
+	@Meta.AD(deflt = "false", name = "enable-lodash", required = false)
+	public boolean enableLodash();
 
 }

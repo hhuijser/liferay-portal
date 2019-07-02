@@ -14,8 +14,8 @@
 
 package com.liferay.frontend.js.spa.web.internal.servlet.taglib.util;
 
-import com.liferay.frontend.js.spa.web.configuration.SPAConfiguration;
-import com.liferay.frontend.js.spa.web.configuration.SPAConfigurationUtil;
+import com.liferay.frontend.js.spa.web.internal.configuration.SPAConfiguration;
+import com.liferay.frontend.js.spa.web.internal.configuration.SPAConfigurationUtil;
 import com.liferay.osgi.util.StringPlus;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
@@ -70,7 +70,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  * @author Bruno Basto
  */
 @Component(
-	configurationPid = "com.liferay.frontend.js.spa.web.configuration.SPAConfiguration",
+	configurationPid = "com.liferay.frontend.js.spa.web.internal.configuration.SPAConfiguration",
 	service = SPAUtil.class
 )
 public class SPAUtil {

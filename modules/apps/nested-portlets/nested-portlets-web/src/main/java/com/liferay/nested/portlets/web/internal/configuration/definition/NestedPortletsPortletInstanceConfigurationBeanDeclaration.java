@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.nested.portlets.web.configuration.definition;
+package com.liferay.nested.portlets.web.internal.configuration.definition;
 
-import com.liferay.nested.portlets.web.configuration.NestedPortletsPortletInstanceConfiguration;
+import com.liferay.nested.portlets.web.internal.configuration.NestedPortletsPortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;

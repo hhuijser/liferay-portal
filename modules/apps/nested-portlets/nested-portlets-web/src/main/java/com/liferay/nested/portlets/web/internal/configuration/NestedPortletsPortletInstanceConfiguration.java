@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.nested.portlets.web.configuration;
+package com.liferay.nested.portlets.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -26,7 +26,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.nested.portlets.web.configuration.NestedPortletsPortletInstanceConfiguration",
+	id = "com.liferay.nested.portlets.web.internal.configuration.NestedPortletsPortletInstanceConfiguration",
 	localization = "content/Language",
 	name = "nested-portlets-portlet-instance-configuration-name"
 )

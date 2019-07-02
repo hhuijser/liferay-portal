@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.recent.documents.web.configuration;
+package com.liferay.recent.documents.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "documents-and-media")
 @Meta.OCD(
-	id = "com.liferay.recent.documents.web.configuration.RecentDocumentsConfiguration",
+	id = "com.liferay.recent.documents.web.internal.configuration.RecentDocumentsConfiguration",
 	localization = "content/Language",
 	name = "recent-documents-configuration-name"
 )

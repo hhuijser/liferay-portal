@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.scheduler.TimeUnit;
 import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.TriggerFactory;
 import com.liferay.portal.kernel.util.Props;
-import com.liferay.recent.documents.web.configuration.RecentDocumentsConfiguration;
+import com.liferay.recent.documents.web.internal.configuration.RecentDocumentsConfiguration;
 
 import java.util.Map;
 
@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Peter Fellwock
  */
 @Component(
-	configurationPid = "com.liferay.recent.documents.web.configuration.RecentDocumentsConfiguration",
+	configurationPid = "com.liferay.recent.documents.web.internal.configuration.RecentDocumentsConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
 	service = RecentDocumentsMessageListener.class
 )

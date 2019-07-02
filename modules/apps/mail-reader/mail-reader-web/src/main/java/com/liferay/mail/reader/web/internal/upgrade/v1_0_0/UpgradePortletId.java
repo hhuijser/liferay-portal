@@ -12,31 +12,19 @@
  * details.
  */
 
-package com.liferay.mail.reader.web.portlet.route;
+package com.liferay.mail.reader.web.internal.upgrade.v1_0_0;
 
 import com.liferay.mail.reader.constants.MailPortletKeys;
-import com.liferay.portal.kernel.portlet.DefaultFriendlyURLMapper;
-import com.liferay.portal.kernel.portlet.FriendlyURLMapper;
-
-import org.osgi.service.component.annotations.Component;
+import com.liferay.portal.kernel.upgrade.BaseUpgradePortletId;
 
 /**
- * @author Sergio González
+ * @author Peter Fellwock
  */
-@Component(
-	property = {
-		"com.liferay.portlet.friendly-url-routes=META-INF/friendly-url-routes/routes.xml",
-		"javax.portlet.name=" + MailPortletKeys.MAIL
-	},
-	service = FriendlyURLMapper.class
-)
-public class MailFriendlyURLMapper extends DefaultFriendlyURLMapper {
+public class UpgradePortletId extends BaseUpgradePortletId {
 
 	@Override
-	public String getMapping() {
-		return _MAPPING;
+	protected String[][] getRenamePortletIdsArray() {
+		return new String[][] {{"1_WAR_mailportlet", MailPortletKeys.MAIL}};
 	}
-
-	private static final String _MAPPING = "mail";
 
 }

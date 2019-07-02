@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.xsl.content.web.configuration;
+package com.liferay.xsl.content.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -26,7 +26,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.xsl.content.web.configuration.XSLContentPortletInstanceConfiguration",
+	id = "com.liferay.xsl.content.web.internal.configuration.XSLContentPortletInstanceConfiguration",
 	localization = "content/Language",
 	name = "xsl-content-portlet-instance-configuration-name"
 )

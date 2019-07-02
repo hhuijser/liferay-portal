@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.StringUtil;
-import com.liferay.xsl.content.web.configuration.XSLContentConfiguration;
+import com.liferay.xsl.content.web.internal.configuration.XSLContentConfiguration;
 
 import java.io.ByteArrayInputStream;
 

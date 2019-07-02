@@ -26,8 +26,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 page import="com.liferay.portal.kernel.log.LogFactoryUtil" %><%@
 page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.xsl.content.web.configuration.XSLContentConfiguration" %><%@
-page import="com.liferay.xsl.content.web.configuration.XSLContentPortletInstanceConfiguration" %><%@
+page import="com.liferay.xsl.content.web.internal.configuration.XSLContentConfiguration" %><%@
+page import="com.liferay.xsl.content.web.internal.configuration.XSLContentPortletInstanceConfiguration" %><%@
 page import="com.liferay.xsl.content.web.internal.display.context.XSLContentDisplayContext" %>
 
 <liferay-theme:defineObjects />

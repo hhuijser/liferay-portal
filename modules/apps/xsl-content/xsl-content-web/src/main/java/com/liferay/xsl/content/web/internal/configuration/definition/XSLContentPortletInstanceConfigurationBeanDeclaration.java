@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.xsl.content.web.configuration.definition;
+package com.liferay.xsl.content.web.internal.configuration.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.xsl.content.web.configuration.XSLContentPortletInstanceConfiguration;
+import com.liferay.xsl.content.web.internal.configuration.XSLContentPortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 

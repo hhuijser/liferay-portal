@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.xsl.content.web.configuration;
+package com.liferay.xsl.content.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "xsl-content")
 @Meta.OCD(
-	id = "com.liferay.xsl.content.web.configuration.XSLContentConfiguration",
+	id = "com.liferay.xsl.content.web.internal.configuration.XSLContentConfiguration",
 	localization = "content/Language", name = "xsl-content-configuration-name"
 )
 public interface XSLContentConfiguration {

@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.xsl.content.web.configuration.XSLContentConfiguration;
+import com.liferay.xsl.content.web.internal.configuration.XSLContentConfiguration;
 import com.liferay.xsl.content.web.internal.constants.XSLContentPortletKeys;
 import com.liferay.xsl.content.web.internal.util.XSLContentUtil;
 
@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Samuel Kong
  */
 @Component(
-	configurationPid = "com.liferay.xsl.content.web.configuration.XSLContentConfiguration",
+	configurationPid = "com.liferay.xsl.content.web.internal.configuration.XSLContentConfiguration",
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + XSLContentPortletKeys.XSL_CONTENT,

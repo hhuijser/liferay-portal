@@ -27,7 +27,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 page import="com.liferay.portal.kernel.microsofttranslator.MicrosoftTranslatorException" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.Validator" %><%@
-page import="com.liferay.translator.web.configuration.TranslatorConfiguration" %><%@
+page import="com.liferay.translator.web.internal.configuration.TranslatorConfiguration" %><%@
 page import="com.liferay.translator.web.internal.model.Translation" %><%@
 page import="com.liferay.translator.web.internal.util.TranslatorUtil" %>
 

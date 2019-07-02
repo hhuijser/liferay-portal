@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.translator.web.configuration;
+package com.liferay.translator.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,7 +24,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "localization")
 @Meta.OCD(
-	id = "com.liferay.translator.web.configuration.TranslatorConfiguration",
+	id = "com.liferay.translator.web.internal.configuration.TranslatorConfiguration",
 	localization = "content/Language", name = "translator-configuration-name"
 )
 public interface TranslatorConfiguration {

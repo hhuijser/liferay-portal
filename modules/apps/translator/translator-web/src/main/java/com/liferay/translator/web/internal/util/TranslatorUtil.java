@@ -19,7 +19,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.webcache.WebCacheException;
 import com.liferay.portal.kernel.webcache.WebCacheItem;
-import com.liferay.translator.web.configuration.TranslatorConfiguration;
+import com.liferay.translator.web.internal.configuration.TranslatorConfiguration;
 import com.liferay.translator.web.internal.model.Translation;
 
 import java.util.Comparator;

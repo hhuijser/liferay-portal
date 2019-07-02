@@ -18,7 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleServiceUtil;
-import com.liferay.journal.web.util.JournalPortletUtil;
+import com.liferay.journal.web.internal.util.JournalPortletUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;

@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.journal.web.social;
+package com.liferay.journal.web.internal.social;
 
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalFolder;
-import com.liferay.journal.web.util.JournalResourceBundleLoader;
+import com.liferay.journal.web.internal.util.JournalResourceBundleLoader;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionHelper;

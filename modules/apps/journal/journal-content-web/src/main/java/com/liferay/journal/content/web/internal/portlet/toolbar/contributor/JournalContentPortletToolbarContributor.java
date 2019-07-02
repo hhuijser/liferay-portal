@@ -17,7 +17,7 @@ package com.liferay.journal.content.web.internal.portlet.toolbar.contributor;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.constants.JournalContentPortletKeys;
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.journal.content.web.configuration.JournalContentPortletInstanceConfiguration;
+import com.liferay.journal.content.web.internal.configuration.JournalContentPortletInstanceConfiguration;
 import com.liferay.journal.model.JournalFolderConstants;
 import com.liferay.journal.service.JournalFolderService;
 import com.liferay.portal.kernel.exception.PortalException;

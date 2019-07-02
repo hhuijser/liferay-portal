@@ -12,18 +12,23 @@
  * details.
  */
 
-package com.liferay.journal.content.web.configuration;
+package com.liferay.journal.content.web.internal.configuration;
 
-import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.configuration.Configuration;
+import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 
 /**
  * @author Eudaldo Alonso
  */
-public class JournalContentWebConfigurationValues {
+public class JournalContentWebConfigurationUtil {
 
-	public static final boolean PUBLISH_TO_LIVE_BY_DEFAULT =
-		GetterUtil.getBoolean(
-			JournalContentWebConfigurationUtil.get(
-				"publish.to.live.by.default"));
+	public static String get(String key) {
+		return _configuration.get(key);
+	}
+
+	private static final Configuration _configuration =
+		ConfigurationFactoryUtil.getConfiguration(
+			JournalContentWebConfigurationUtil.class.getClassLoader(),
+			"portlet");
 
 }

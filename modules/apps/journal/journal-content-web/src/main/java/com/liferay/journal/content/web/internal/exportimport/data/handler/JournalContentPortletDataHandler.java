@@ -20,7 +20,7 @@ import com.liferay.exportimport.kernel.lar.PortletDataContext;
 import com.liferay.exportimport.kernel.lar.PortletDataHandler;
 import com.liferay.exportimport.kernel.lar.PortletDataHandlerBoolean;
 import com.liferay.journal.constants.JournalContentPortletKeys;
-import com.liferay.journal.content.web.configuration.JournalContentWebConfigurationValues;
+import com.liferay.journal.content.web.internal.configuration.JournalContentWebConfigurationValues;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;

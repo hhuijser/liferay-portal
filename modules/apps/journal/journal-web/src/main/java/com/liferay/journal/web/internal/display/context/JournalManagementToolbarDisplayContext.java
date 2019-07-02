@@ -25,7 +25,7 @@ import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.model.JournalFolderConstants;
-import com.liferay.journal.web.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
 import com.liferay.journal.web.internal.security.permission.resource.JournalArticlePermission;
 import com.liferay.journal.web.internal.security.permission.resource.JournalFolderPermission;
 import com.liferay.petra.function.UnsafeConsumer;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.util;
+package com.liferay.journal.web.internal.util;
 
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.journal.configuration.JournalGroupServiceConfiguration;

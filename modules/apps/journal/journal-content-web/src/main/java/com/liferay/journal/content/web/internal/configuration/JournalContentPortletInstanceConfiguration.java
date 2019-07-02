@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.content.web.configuration;
+package com.liferay.journal.content.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -26,7 +26,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.journal.content.web.configuration.JournalContentPortletInstanceConfiguration",
+	id = "com.liferay.journal.content.web.internal.configuration.JournalContentPortletInstanceConfiguration",
 	localization = "content/Language",
 	name = "journal-content-portlet-instance-configuration-name"
 )

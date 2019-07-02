@@ -16,8 +16,8 @@ package com.liferay.journal.web.internal.portlet.action;
 
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.exception.MaxAddMenuFavItemsException;
-import com.liferay.journal.web.configuration.JournalWebConfiguration;
-import com.liferay.journal.web.util.JournalPortletUtil;
+import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.util.JournalPortletUtil;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Modified;
  * @author Eudaldo Alonso
  */
 @Component(
-	configurationPid = "com.liferay.journal.web.configuration.JournalWebConfiguration",
+	configurationPid = "com.liferay.journal.web.internal.configuration.JournalWebConfiguration",
 	immediate = true,
 	property = {
 		"javax.portlet.name=" + JournalPortletKeys.JOURNAL,

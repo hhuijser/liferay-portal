@@ -28,7 +28,7 @@ import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.constants.JournalWebKeys;
 import com.liferay.journal.content.asset.addon.entry.ContentMetadataAssetAddonEntry;
 import com.liferay.journal.content.asset.addon.entry.UserToolAssetAddonEntry;
-import com.liferay.journal.content.web.configuration.JournalContentPortletInstanceConfiguration;
+import com.liferay.journal.content.web.internal.configuration.JournalContentPortletInstanceConfiguration;
 import com.liferay.journal.content.web.internal.constants.JournalContentWebKeys;
 import com.liferay.journal.content.web.internal.security.permission.resource.JournalArticlePermission;
 import com.liferay.journal.model.JournalArticle;

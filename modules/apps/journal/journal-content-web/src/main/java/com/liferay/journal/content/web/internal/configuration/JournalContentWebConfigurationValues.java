@@ -12,22 +12,18 @@
  * details.
  */
 
-package com.liferay.journal.web.social;
+package com.liferay.journal.content.web.internal.configuration;
 
-import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
+import com.liferay.portal.kernel.util.GetterUtil;
 
 /**
- * @author     Eduardo García
- * @deprecated As of Judson (7.1.x), with no direct replacement
+ * @author Eudaldo Alonso
  */
-@Deprecated
-public class JournalSocialActivityConfigurator {
+public class JournalContentWebConfigurationValues {
 
-	protected void activate() {
-	}
-
-	protected void setModuleServiceLifecycle(
-		ModuleServiceLifecycle moduleServiceLifecycle) {
-	}
+	public static final boolean PUBLISH_TO_LIVE_BY_DEFAULT =
+		GetterUtil.getBoolean(
+			JournalContentWebConfigurationUtil.get(
+				"publish.to.live.by.default"));
 
 }

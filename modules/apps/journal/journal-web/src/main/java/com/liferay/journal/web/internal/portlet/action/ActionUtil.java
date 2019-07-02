@@ -31,7 +31,7 @@ import com.liferay.journal.util.comparator.ArticleVersionComparator;
 import com.liferay.journal.web.internal.portlet.JournalPortlet;
 import com.liferay.journal.web.internal.security.permission.resource.JournalPermission;
 import com.liferay.journal.web.internal.util.JournalHelperUtil;
-import com.liferay.journal.web.util.JournalUtil;
+import com.liferay.journal.web.internal.util.JournalUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.diff.CompareVersionsException;
 import com.liferay.portal.kernel.exception.PortalException;

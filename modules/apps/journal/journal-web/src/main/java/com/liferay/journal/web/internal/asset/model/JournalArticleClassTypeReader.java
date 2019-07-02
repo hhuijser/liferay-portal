@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.asset.model;
+package com.liferay.journal.web.internal.asset.model;
 
 import com.liferay.asset.kernel.model.BaseDDMStructureClassTypeReader;
 import com.liferay.asset.kernel.model.ClassType;

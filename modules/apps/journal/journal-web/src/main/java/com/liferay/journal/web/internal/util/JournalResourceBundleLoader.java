@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.util;
+package com.liferay.journal.web.internal.util;
 
 import com.liferay.portal.kernel.util.AggregateResourceBundleLoader;
 import com.liferay.portal.kernel.util.ClassResourceBundleLoader;

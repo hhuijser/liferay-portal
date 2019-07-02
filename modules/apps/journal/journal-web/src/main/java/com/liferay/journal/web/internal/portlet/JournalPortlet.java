@@ -53,7 +53,7 @@ import com.liferay.journal.exception.NoSuchFeedException;
 import com.liferay.journal.exception.NoSuchFolderException;
 import com.liferay.journal.util.JournalContent;
 import com.liferay.journal.util.JournalConverter;
-import com.liferay.journal.web.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
 import com.liferay.journal.web.internal.portlet.action.ActionUtil;
 import com.liferay.journal.web.internal.util.JournalDDMTemplateUtil;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
@@ -91,7 +91,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eduardo García
  */
 @Component(
-	configurationPid = "com.liferay.journal.web.configuration.JournalWebConfiguration",
+	configurationPid = "com.liferay.journal.web.internal.configuration.JournalWebConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
 	property = {
 		"com.liferay.portlet.add-default-resource=true",

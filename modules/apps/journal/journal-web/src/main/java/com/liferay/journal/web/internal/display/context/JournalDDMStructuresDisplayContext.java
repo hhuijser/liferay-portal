@@ -18,7 +18,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureServiceUtil;
 import com.liferay.dynamic.data.mapping.util.DDMUtil;
 import com.liferay.journal.model.JournalArticle;
-import com.liferay.journal.web.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.theme.ThemeDisplay;

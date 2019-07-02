@@ -16,7 +16,7 @@ package com.liferay.journal.web.internal.portlet.action;
 
 import com.liferay.journal.configuration.JournalGroupServiceConfiguration;
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.journal.web.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
 import com.liferay.journal.web.internal.display.context.util.JournalWebRequestHelper;
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eduardo García
  */
 @Component(
-	configurationPid = "com.liferay.journal.web.configuration.JournalWebConfiguration",
+	configurationPid = "com.liferay.journal.web.internal.configuration.JournalWebConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
 	property = "javax.portlet.name=" + JournalPortletKeys.JOURNAL,
 	service = ConfigurationAction.class

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.web.configuration;
+package com.liferay.journal.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "web-content")
 @Meta.OCD(
-	id = "com.liferay.journal.web.configuration.JournalWebConfiguration",
+	id = "com.liferay.journal.web.internal.configuration.JournalWebConfiguration",
 	localization = "content/Language", name = "journal-web-configuration-name"
 )
 public interface JournalWebConfiguration {

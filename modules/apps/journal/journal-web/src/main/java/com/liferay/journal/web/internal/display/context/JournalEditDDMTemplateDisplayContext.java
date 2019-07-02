@@ -21,7 +21,7 @@ import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.util.DDMTemplateHelper;
 import com.liferay.journal.configuration.JournalFileUploadsConfiguration;
 import com.liferay.journal.model.JournalArticle;
-import com.liferay.journal.web.configuration.JournalWebConfiguration;
+import com.liferay.journal.web.internal.configuration.JournalWebConfiguration;
 import com.liferay.journal.web.internal.util.JournalChangeTrackingHelperUtil;
 import com.liferay.portal.kernel.bean.BeanParamUtil;
 import com.liferay.portal.kernel.exception.PortalException;

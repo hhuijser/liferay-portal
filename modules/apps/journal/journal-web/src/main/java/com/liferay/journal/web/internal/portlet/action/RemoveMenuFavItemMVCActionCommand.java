@@ -15,7 +15,7 @@
 package com.liferay.journal.web.internal.portlet.action;
 
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.journal.web.util.JournalPortletUtil;
+import com.liferay.journal.web.internal.util.JournalPortletUtil;
 import com.liferay.portal.kernel.portlet.PortalPreferences;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;

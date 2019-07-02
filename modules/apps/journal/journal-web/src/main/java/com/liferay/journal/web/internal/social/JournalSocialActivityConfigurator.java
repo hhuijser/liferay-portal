@@ -12,23 +12,22 @@
  * details.
  */
 
-package com.liferay.journal.content.web.configuration;
+package com.liferay.journal.web.internal.social;
 
-import com.liferay.portal.kernel.configuration.Configuration;
-import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
+import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 
 /**
- * @author Eudaldo Alonso
+ * @author     Eduardo García
+ * @deprecated As of Judson (7.1.x), with no direct replacement
  */
-public class JournalContentWebConfigurationUtil {
+@Deprecated
+public class JournalSocialActivityConfigurator {
 
-	public static String get(String key) {
-		return _configuration.get(key);
+	protected void activate() {
 	}
 
-	private static final Configuration _configuration =
-		ConfigurationFactoryUtil.getConfiguration(
-			JournalContentWebConfigurationUtil.class.getClassLoader(),
-			"portlet");
+	protected void setModuleServiceLifecycle(
+		ModuleServiceLifecycle moduleServiceLifecycle) {
+	}
 
 }

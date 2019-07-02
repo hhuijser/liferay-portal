@@ -31,7 +31,7 @@ import com.liferay.portal.rules.engine.RulesEngine;
 import com.liferay.portal.rules.engine.RulesEngineException;
 import com.liferay.portal.rules.engine.RulesLanguage;
 import com.liferay.portal.rules.engine.RulesResourceRetriever;
-import com.liferay.portal.rules.engine.sample.web.constants.SampleDroolsPortletKeys;
+import com.liferay.portal.rules.engine.sample.web.internal.constants.SampleDroolsPortletKeys;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;

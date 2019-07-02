@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.server.admin.web.configuration;
+package com.liferay.server.admin.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -24,7 +24,7 @@ import com.liferay.portal.kernel.scheduler.TimeUnit;
  */
 @ExtendedObjectClassDefinition(category = "infrastructure")
 @Meta.OCD(
-	id = "com.liferay.server.admin.web.configuration.PluginRepositoriesConfiguration",
+	id = "com.liferay.server.admin.web.internal.configuration.PluginRepositoriesConfiguration",
 	localization = "content/Language",
 	name = "plugin-repositories-configuration-name"
 )

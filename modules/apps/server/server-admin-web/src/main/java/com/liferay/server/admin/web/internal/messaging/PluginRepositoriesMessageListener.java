@@ -27,7 +27,7 @@ import com.liferay.portal.kernel.scheduler.Trigger;
 import com.liferay.portal.kernel.scheduler.TriggerFactory;
 import com.liferay.portal.kernel.search.SearchEngineHelperUtil;
 import com.liferay.portal.plugin.PluginPackageUtil;
-import com.liferay.server.admin.web.configuration.PluginRepositoriesConfiguration;
+import com.liferay.server.admin.web.internal.configuration.PluginRepositoriesConfiguration;
 
 import java.util.Map;
 
@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Philip Jones
  */
 @Component(
-	configurationPid = "com.liferay.server.admin.web.configuration.PluginRepositoriesConfiguration",
+	configurationPid = "com.liferay.server.admin.web.internal.configuration.PluginRepositoriesConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
 	service = PluginRepositoriesMessageListener.class
 )

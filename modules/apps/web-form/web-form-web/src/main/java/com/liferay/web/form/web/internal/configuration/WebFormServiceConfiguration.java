@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.web.form.web.configuration;
+package com.liferay.web.form.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -25,7 +25,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	category = "forms", scope = ExtendedObjectClassDefinition.Scope.COMPANY
 )
 @Meta.OCD(
-	id = "com.liferay.web.form.web.configuration.WebFormServiceConfiguration",
+	id = "com.liferay.web.form.web.internal.configuration.WebFormServiceConfiguration",
 	localization = "content/Language",
 	name = "web-form-service-configuration-name"
 )

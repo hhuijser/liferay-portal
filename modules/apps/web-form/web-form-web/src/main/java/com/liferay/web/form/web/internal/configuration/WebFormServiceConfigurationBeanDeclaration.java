@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.web.form.web.configuration;
+package com.liferay.web.form.web.internal.configuration;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 

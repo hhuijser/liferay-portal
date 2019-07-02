@@ -50,7 +50,7 @@ import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.web.form.web.configuration.WebFormServiceConfiguration;
+import com.liferay.web.form.web.internal.configuration.WebFormServiceConfiguration;
 import com.liferay.web.form.web.internal.constants.WebFormPortletKeys;
 import com.liferay.web.form.web.internal.util.WebFormUtil;
 

@@ -14,7 +14,7 @@
 
 package com.liferay.iframe.web.internal.display.context;
 
-import com.liferay.iframe.web.configuration.IFramePortletInstanceConfiguration;
+import com.liferay.iframe.web.internal.configuration.IFramePortletInstanceConfiguration;
 import com.liferay.iframe.web.internal.constants.IFrameWebKeys;
 import com.liferay.iframe.web.internal.util.IFrameUtil;
 import com.liferay.petra.string.CharPool;

@@ -24,7 +24,7 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.iframe.web.configuration.IFramePortletInstanceConfiguration" %><%@
+<%@ page import="com.liferay.iframe.web.internal.configuration.IFramePortletInstanceConfiguration" %><%@
 page import="com.liferay.iframe.web.internal.display.context.IFrameDisplayContext" %><%@
 page import="com.liferay.iframe.web.internal.util.IFrameUtil" %><%@
 page import="com.liferay.petra.string.StringPool" %><%@

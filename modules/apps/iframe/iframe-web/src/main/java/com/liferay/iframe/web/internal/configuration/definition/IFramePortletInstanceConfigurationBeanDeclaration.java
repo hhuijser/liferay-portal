@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.iframe.web.configuration.definition;
+package com.liferay.iframe.web.internal.configuration.definition;
 
-import com.liferay.iframe.web.configuration.IFramePortletInstanceConfiguration;
+import com.liferay.iframe.web.internal.configuration.IFramePortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;

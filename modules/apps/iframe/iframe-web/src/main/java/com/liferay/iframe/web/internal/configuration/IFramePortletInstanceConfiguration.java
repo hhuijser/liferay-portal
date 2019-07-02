@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.iframe.web.configuration;
+package com.liferay.iframe.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -26,7 +26,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.iframe.web.configuration.IFramePortletInstanceConfiguration",
+	id = "com.liferay.iframe.web.internal.configuration.IFramePortletInstanceConfiguration",
 	localization = "content/Language",
 	name = "iframe-portlet-instance-configuration-name"
 )

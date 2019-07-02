@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.configuration;
+package com.liferay.wiki.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -26,7 +26,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.wiki.web.configuration.WikiPortletInstanceConfiguration",
+	id = "com.liferay.wiki.web.internal.configuration.WikiPortletInstanceConfiguration",
 	localization = "content/Language",
 	name = "wiki-portlet-instance-configuration-name"
 )

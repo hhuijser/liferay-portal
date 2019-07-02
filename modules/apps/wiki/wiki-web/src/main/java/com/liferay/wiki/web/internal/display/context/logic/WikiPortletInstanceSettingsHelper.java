@@ -21,7 +21,7 @@ import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiNodeModel;
 import com.liferay.wiki.service.WikiNodeServiceUtil;
-import com.liferay.wiki.web.configuration.WikiPortletInstanceConfiguration;
+import com.liferay.wiki.web.internal.configuration.WikiPortletInstanceConfiguration;
 import com.liferay.wiki.web.internal.display.context.util.WikiRequestHelper;
 import com.liferay.wiki.web.internal.util.WikiUtil;
 

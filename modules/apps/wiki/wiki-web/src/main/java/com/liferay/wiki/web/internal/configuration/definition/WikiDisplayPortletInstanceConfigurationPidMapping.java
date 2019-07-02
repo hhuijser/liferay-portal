@@ -12,23 +12,29 @@
  * details.
  */
 
-package com.liferay.wiki.web.configuration.definition;
+package com.liferay.wiki.web.internal.configuration.definition;
 
-import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.wiki.web.configuration.WikiPortletInstanceConfiguration;
+import com.liferay.portal.kernel.settings.definition.ConfigurationPidMapping;
+import com.liferay.wiki.constants.WikiPortletKeys;
+import com.liferay.wiki.web.internal.configuration.WikiPortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Iván Zaera
  */
-@Component(service = ConfigurationBeanDeclaration.class)
-public class WikiPortletInstanceConfigurationBeanDeclaration
-	implements ConfigurationBeanDeclaration {
+@Component(service = ConfigurationPidMapping.class)
+public class WikiDisplayPortletInstanceConfigurationPidMapping
+	implements ConfigurationPidMapping {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
 		return WikiPortletInstanceConfiguration.class;
+	}
+
+	@Override
+	public String getConfigurationPid() {
+		return WikiPortletKeys.WIKI_DISPLAY;
 	}
 
 }

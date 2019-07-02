@@ -12,11 +12,11 @@
  * details.
  */
 
-package com.liferay.wiki.web.configuration.definition;
+package com.liferay.wiki.web.internal.configuration.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationPidMapping;
 import com.liferay.wiki.constants.WikiPortletKeys;
-import com.liferay.wiki.web.configuration.WikiPortletInstanceConfiguration;
+import com.liferay.wiki.web.internal.configuration.WikiPortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Iván Zaera
  */
 @Component(service = ConfigurationPidMapping.class)
-public class WikiDisplayPortletInstanceConfigurationPidMapping
+public class WikiPortletInstanceConfigurationPidMapping
 	implements ConfigurationPidMapping {
 
 	@Override
@@ -34,7 +34,7 @@ public class WikiDisplayPortletInstanceConfigurationPidMapping
 
 	@Override
 	public String getConfigurationPid() {
-		return WikiPortletKeys.WIKI_DISPLAY;
+		return WikiPortletKeys.WIKI;
 	}
 
 }

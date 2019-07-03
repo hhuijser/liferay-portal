@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.site.navigation.directory.web.configuration.definition;
+package com.liferay.site.navigation.breadcrumb.web.internal.configuration.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.site.navigation.directory.web.configuration.SitesDirectoryPortletInstanceConfiguration;
+import com.liferay.site.navigation.breadcrumb.web.internal.configuration.SiteNavigationBreadcrumbPortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Juergen Kappler
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class SitesDirectoryPortletInstanceConfigurationBeanDeclaration
+public class SiteNavigationBreadcrumbPortletInstanceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return SitesDirectoryPortletInstanceConfiguration.class;
+		return SiteNavigationBreadcrumbPortletInstanceConfiguration.class;
 	}
 
 }

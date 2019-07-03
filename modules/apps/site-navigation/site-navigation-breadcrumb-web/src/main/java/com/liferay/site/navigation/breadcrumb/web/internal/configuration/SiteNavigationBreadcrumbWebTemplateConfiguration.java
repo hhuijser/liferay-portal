@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.breadcrumb.web.configuration;
+package com.liferay.site.navigation.breadcrumb.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "breadcrumbs")
 @Meta.OCD(
-	id = "com.liferay.site.navigation.breadcrumb.web.configuration.SiteNavigationBreadcrumbWebTemplateConfiguration",
+	id = "com.liferay.site.navigation.breadcrumb.web.internal.configuration.SiteNavigationBreadcrumbWebTemplateConfiguration",
 	localization = "content/Language",
 	name = "site-navigation-breadcrumb-web-template-configuration-name"
 )

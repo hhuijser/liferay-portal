@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.site.navigation.site.map.web.configuration.definition;
+package com.liferay.site.navigation.menu.web.internal.configuration.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.site.navigation.site.map.web.configuration.SiteNavigationSiteMapPortletInstanceConfiguration;
+import com.liferay.site.navigation.menu.web.internal.configuration.SiteNavigationMenuPortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Juergen Kappler
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class SiteNavigationSiteMapPortletInstanceConfigurationBeanDeclaration
+public class SiteNavigationMenuPortletInstanceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return SiteNavigationSiteMapPortletInstanceConfiguration.class;
+		return SiteNavigationMenuPortletInstanceConfiguration.class;
 	}
 
 }

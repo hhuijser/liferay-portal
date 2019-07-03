@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.breadcrumb.web.configuration;
+package com.liferay.site.navigation.site.map.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -22,39 +22,38 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  * @author Juergen Kappler
  */
 @ExtendedObjectClassDefinition(
-	category = "breadcrumbs",
+	category = "navigation",
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.site.navigation.breadcrumb.web.configuration.SiteNavigationBreadcrumbPortletInstanceConfiguration",
+	id = "com.liferay.site.navigation.site.map.web.internal.configuration.SiteNavigationSiteMapPortletInstanceConfiguration",
 	localization = "content/Language",
-	name = "site-navigation-breadcrumb-portlet-instance-configuration-name"
+	name = "site-navigation-site-map-portlet-instance-configuration-name"
 )
-public interface SiteNavigationBreadcrumbPortletInstanceConfiguration {
+public interface SiteNavigationSiteMapPortletInstanceConfiguration {
 
 	@Meta.AD(deflt = "0", name = "display-style-group-id", required = false)
 	public long displayStyleGroupId();
 
-	/**
-	 * Set a DDM template ID that starts with the prefix "ddmTemplate_" (i.e.
-	 * ddmTemplate_BREADCRUMB-HORIZONTAL-FTL) to use as the display style.
-	 */
 	@Meta.AD(name = "display-style", required = false)
 	public String displayStyle();
 
-	@Meta.AD(deflt = "true", name = "show-current-group", required = false)
-	public boolean showCurrentGroup();
+	@Meta.AD(name = "root-layout-uuid", required = false)
+	public String rootLayoutUuid();
 
-	@Meta.AD(deflt = "false", name = "show-guest-group", required = false)
-	public boolean showGuestGroup();
+	@Meta.AD(deflt = "0", name = "display-depth", required = false)
+	public int displayDepth();
 
-	@Meta.AD(deflt = "true", name = "show-layout", required = false)
-	public boolean showLayout();
+	@Meta.AD(deflt = "false", name = "include-root-in-tree", required = false)
+	public boolean includeRootInTree();
 
-	@Meta.AD(deflt = "true", name = "show-parent-groups", required = false)
-	public boolean showParentGroups();
+	@Meta.AD(deflt = "false", name = "show-current-page", required = false)
+	public boolean showCurrentPage();
 
-	@Meta.AD(deflt = "true", name = "show-portlet-breadcrumb", required = false)
-	public boolean showPortletBreadcrumb();
+	@Meta.AD(deflt = "false", name = "use-html-title", required = false)
+	public boolean useHtmlTitle();
+
+	@Meta.AD(deflt = "false", name = "show-hidden-pages", required = false)
+	public boolean showHiddenPages();
 
 }

@@ -19,7 +19,7 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
-import com.liferay.site.navigation.directory.web.configuration.SitesDirectoryPortletInstanceConfiguration;
+import com.liferay.site.navigation.directory.web.internal.configuration.SitesDirectoryPortletInstanceConfiguration;
 
 import javax.servlet.http.HttpServletRequest;
 

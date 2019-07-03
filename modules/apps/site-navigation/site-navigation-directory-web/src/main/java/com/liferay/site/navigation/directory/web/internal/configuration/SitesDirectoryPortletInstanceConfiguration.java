@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.language.web.configuration;
+package com.liferay.site.navigation.directory.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -21,18 +21,21 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 /**
  * @author Juergen Kappler
  */
-@ExtendedObjectClassDefinition(category = "localization")
-@Meta.OCD(
-	id = "com.liferay.site.navigation.language.web.configuration.SiteNavigationLanguageWebTemplateConfiguration",
-	localization = "content/Language",
-	name = "site-navigation-language-web-template-configuration-name"
+@ExtendedObjectClassDefinition(
+	category = "navigation",
+	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
-public interface SiteNavigationLanguageWebTemplateConfiguration {
+@Meta.OCD(
+	id = "com.liferay.site.navigation.directory.web.internal.configuration.SitesDirectoryPortletInstanceConfiguration",
+	localization = "content/Language",
+	name = "sites-directory-portlet-instance-configuration-name"
+)
+public interface SitesDirectoryPortletInstanceConfiguration {
 
-	@Meta.AD(
-		deflt = "language-icon-menu-ftl", name = "ddm-template-key",
-		required = false
-	)
-	public String ddmTemplateKey();
+	@Meta.AD(deflt = "top-level", name = "sites", required = false)
+	public String sites();
+
+	@Meta.AD(deflt = "descriptive", name = "display-style", required = false)
+	public String displayStyle();
 
 }

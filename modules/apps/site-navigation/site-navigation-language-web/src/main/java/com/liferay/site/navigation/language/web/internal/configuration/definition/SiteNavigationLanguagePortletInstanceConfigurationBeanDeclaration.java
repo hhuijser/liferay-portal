@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.site.navigation.language.web.configuration.definition;
+package com.liferay.site.navigation.language.web.internal.configuration.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.site.navigation.language.web.configuration.SiteNavigationLanguagePortletInstanceConfiguration;
+import com.liferay.site.navigation.language.web.internal.configuration.SiteNavigationLanguagePortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 

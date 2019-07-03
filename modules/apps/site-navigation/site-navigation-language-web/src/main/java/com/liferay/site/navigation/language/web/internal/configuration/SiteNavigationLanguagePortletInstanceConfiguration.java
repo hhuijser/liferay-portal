@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.site.navigation.language.web.configuration;
+package com.liferay.site.navigation.language.web.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -26,7 +26,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 	scope = ExtendedObjectClassDefinition.Scope.PORTLET_INSTANCE
 )
 @Meta.OCD(
-	id = "com.liferay.site.navigation.language.web.configuration.SiteNavigationLanguagePortletInstanceConfiguration",
+	id = "com.liferay.site.navigation.language.web.internal.configuration.SiteNavigationLanguagePortletInstanceConfiguration",
 	localization = "content/Language",
 	name = "site-navigation-language-portlet-instance-configuration-name"
 )

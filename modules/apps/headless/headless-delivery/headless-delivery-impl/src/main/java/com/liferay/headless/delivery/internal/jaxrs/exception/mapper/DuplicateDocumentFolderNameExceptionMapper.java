@@ -40,7 +40,9 @@ public class DuplicateDocumentFolderNameExceptionMapper
 	implements ExceptionMapper<DuplicateFolderNameException> {
 
 	@Override
-	public Response toResponse(DuplicateFolderNameException duplicateFolderNameException) {
+	public Response toResponse(
+		DuplicateFolderNameException duplicateFolderNameException) {
+
 		return Response.status(
 			409
 		).type(

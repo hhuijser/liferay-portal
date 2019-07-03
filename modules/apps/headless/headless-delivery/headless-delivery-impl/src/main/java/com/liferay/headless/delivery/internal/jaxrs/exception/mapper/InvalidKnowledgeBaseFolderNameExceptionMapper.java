@@ -39,7 +39,9 @@ public class InvalidKnowledgeBaseFolderNameExceptionMapper
 	implements ExceptionMapper<InvalidKBFolderNameException> {
 
 	@Override
-	public Response toResponse(InvalidKBFolderNameException invalidKBFolderNameException) {
+	public Response toResponse(
+		InvalidKBFolderNameException invalidKBFolderNameException) {
+
 		return Response.status(
 			409
 		).type(

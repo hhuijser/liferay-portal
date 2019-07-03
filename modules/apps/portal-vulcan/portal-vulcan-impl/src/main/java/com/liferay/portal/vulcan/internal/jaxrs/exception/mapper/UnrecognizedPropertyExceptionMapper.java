@@ -37,7 +37,9 @@ public class UnrecognizedPropertyExceptionMapper
 	implements ExceptionMapper<UnrecognizedPropertyException> {
 
 	@Override
-	public Response toResponse(UnrecognizedPropertyException unrecognizedPropertyException) {
+	public Response toResponse(
+		UnrecognizedPropertyException unrecognizedPropertyException) {
+
 		List<JsonMappingException.Reference> references = upe.getPath();
 
 		Stream<JsonMappingException.Reference> stream = references.stream();

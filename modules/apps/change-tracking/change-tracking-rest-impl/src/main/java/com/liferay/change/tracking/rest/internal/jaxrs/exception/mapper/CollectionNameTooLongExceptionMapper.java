@@ -37,7 +37,9 @@ public class CollectionNameTooLongExceptionMapper
 	implements ExceptionMapper<CollectionNameTooLongException> {
 
 	@Override
-	public Response toResponse(CollectionNameTooLongException collectionNameTooLongException) {
+	public Response toResponse(
+		CollectionNameTooLongException collectionNameTooLongException) {
+
 		return Response.status(
 			Response.Status.fromStatusCode(462)
 		).type(

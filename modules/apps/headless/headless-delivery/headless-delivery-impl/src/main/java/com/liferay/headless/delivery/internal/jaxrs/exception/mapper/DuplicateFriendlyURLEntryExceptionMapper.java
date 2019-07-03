@@ -40,7 +40,9 @@ public class DuplicateFriendlyURLEntryExceptionMapper
 	implements ExceptionMapper<DuplicateFriendlyURLEntryException> {
 
 	@Override
-	public Response toResponse(DuplicateFriendlyURLEntryException duplicateFriendlyURLEntryException) {
+	public Response toResponse(
+		DuplicateFriendlyURLEntryException duplicateFriendlyURLEntryException) {
+
 		return Response.status(
 			409
 		).type(

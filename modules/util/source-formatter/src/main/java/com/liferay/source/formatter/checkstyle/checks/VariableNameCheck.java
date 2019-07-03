@@ -115,6 +115,10 @@ public class VariableNameCheck extends BaseCheck {
 	private void _checkExceptionVariableName(
 		DetailAST detailAST, String name, String typeName) {
 
+		if (detailAST.getType() != TokenTypes.PARAMETER_DEF) {
+			return;
+		}
+
 		FileContents fileContents = getFileContents();
 
 		String fileName = StringUtil.replace(

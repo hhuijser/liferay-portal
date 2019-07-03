@@ -37,7 +37,7 @@ public class NoSuchCollectionExceptionMapper
 	implements ExceptionMapper<NoSuchCollectionException> {
 
 	@Override
-	public Response toResponse(NoSuchCollectionException nsce) {
+	public Response toResponse(NoSuchCollectionException noSuchCollectionException) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(

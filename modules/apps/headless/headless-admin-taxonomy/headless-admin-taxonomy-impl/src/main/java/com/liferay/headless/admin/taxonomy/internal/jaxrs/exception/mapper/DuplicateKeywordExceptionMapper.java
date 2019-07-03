@@ -40,7 +40,7 @@ public class DuplicateKeywordExceptionMapper
 	implements ExceptionMapper<DuplicateTagException> {
 
 	@Override
-	public Response toResponse(DuplicateTagException dte) {
+	public Response toResponse(DuplicateTagException duplicateTagException) {
 		return Response.status(
 			409
 		).type(

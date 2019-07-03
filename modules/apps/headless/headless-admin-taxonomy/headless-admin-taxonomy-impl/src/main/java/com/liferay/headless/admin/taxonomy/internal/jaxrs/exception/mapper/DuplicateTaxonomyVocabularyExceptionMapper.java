@@ -40,7 +40,7 @@ public class DuplicateTaxonomyVocabularyExceptionMapper
 	implements ExceptionMapper<DuplicateVocabularyException> {
 
 	@Override
-	public Response toResponse(DuplicateVocabularyException dve) {
+	public Response toResponse(DuplicateVocabularyException duplicateVocabularyException) {
 		return Response.status(
 			409
 		).type(

@@ -37,7 +37,7 @@ public class ChangeTrackingDisabledExceptionMapper
 	implements ExceptionMapper<ChangeTrackingDisabledException> {
 
 	@Override
-	public Response toResponse(ChangeTrackingDisabledException ctnee) {
+	public Response toResponse(ChangeTrackingDisabledException changeTrackingDisabledException) {
 		return Response.status(
 			Response.Status.CONFLICT
 		).type(

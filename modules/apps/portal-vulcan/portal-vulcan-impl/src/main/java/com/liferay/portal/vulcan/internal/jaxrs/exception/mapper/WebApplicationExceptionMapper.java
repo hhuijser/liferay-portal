@@ -29,7 +29,7 @@ public class WebApplicationExceptionMapper
 	implements ExceptionMapper<WebApplicationException> {
 
 	@Override
-	public Response toResponse(WebApplicationException wae) {
+	public Response toResponse(WebApplicationException webApplicationException) {
 		Response response = wae.getResponse();
 
 		return Response.status(

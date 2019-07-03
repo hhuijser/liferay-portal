@@ -40,7 +40,7 @@ public class MessageBoardMessageSubjectExceptionMapper
 	implements ExceptionMapper<MessageSubjectException> {
 
 	@Override
-	public Response toResponse(MessageSubjectException mse) {
+	public Response toResponse(MessageSubjectException messageSubjectException) {
 		return Response.status(
 			400
 		).type(

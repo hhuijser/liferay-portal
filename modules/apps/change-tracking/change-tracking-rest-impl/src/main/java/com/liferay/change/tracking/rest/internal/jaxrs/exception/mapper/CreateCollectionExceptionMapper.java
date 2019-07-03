@@ -37,7 +37,7 @@ public class CreateCollectionExceptionMapper
 	implements ExceptionMapper<CreateCollectionException> {
 
 	@Override
-	public Response toResponse(CreateCollectionException cce) {
+	public Response toResponse(CreateCollectionException createCollectionException) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(

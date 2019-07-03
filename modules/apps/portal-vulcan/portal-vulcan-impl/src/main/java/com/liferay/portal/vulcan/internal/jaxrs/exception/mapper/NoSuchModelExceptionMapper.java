@@ -37,7 +37,7 @@ public class NoSuchModelExceptionMapper
 	implements ExceptionMapper<NoSuchModelException> {
 
 	@Override
-	public Response toResponse(NoSuchModelException nsme) {
+	public Response toResponse(NoSuchModelException noSuchModelException) {
 		String method = _httpServletRequest.getMethod();
 
 		if (method.equals(HttpMethods.DELETE)) {

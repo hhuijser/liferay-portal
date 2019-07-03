@@ -37,7 +37,7 @@ public class DeleteCollectionExceptionMapper
 	implements ExceptionMapper<DeleteCollectionException> {
 
 	@Override
-	public Response toResponse(DeleteCollectionException dce) {
+	public Response toResponse(DeleteCollectionException deleteCollectionException) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(

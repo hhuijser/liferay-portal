@@ -93,7 +93,7 @@ public class AccessControlledContainerRequestResponseFilterExceptionMapper
 	}
 
 	@Override
-	public Response toResponse(SecurityException exception) {
+	public Response toResponse(SecurityException securityException) {
 		MediaType mediaType = null;
 
 		List<MediaType> mediaTypes = _httpHeaders.getAcceptableMediaTypes();

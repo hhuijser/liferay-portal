@@ -46,7 +46,8 @@ public class BlogPostingHeadlineExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(entryTitleException.getMessage(), "Title", "Headline")
+			StringUtil.replace(
+				entryTitleException.getMessage(), "Title", "Headline")
 		).build();
 	}
 

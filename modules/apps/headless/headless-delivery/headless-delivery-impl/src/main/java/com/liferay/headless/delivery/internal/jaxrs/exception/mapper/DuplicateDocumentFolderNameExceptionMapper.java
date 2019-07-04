@@ -40,13 +40,17 @@ public class DuplicateDocumentFolderNameExceptionMapper
 	implements ExceptionMapper<DuplicateFolderNameException> {
 
 	@Override
-	public Response toResponse(DuplicateFolderNameException duplicateFolderNameException) {
+	public Response toResponse(
+		DuplicateFolderNameException duplicateFolderNameException) {
+
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(duplicateFolderNameException.getMessage(), "folder", "document folder")
+			StringUtil.replace(
+				duplicateFolderNameException.getMessage(), "folder",
+				"document folder")
 		).build();
 	}
 

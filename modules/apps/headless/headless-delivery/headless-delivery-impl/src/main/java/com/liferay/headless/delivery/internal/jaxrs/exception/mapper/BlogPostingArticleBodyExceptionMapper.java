@@ -46,7 +46,8 @@ public class BlogPostingArticleBodyExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(entryContentException.getMessage(), "Content", "Article body")
+			StringUtil.replace(
+				entryContentException.getMessage(), "Content", "Article body")
 		).build();
 	}
 

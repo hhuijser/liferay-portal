@@ -37,7 +37,9 @@ public class CollectionNameTooShortExceptionMapper
 	implements ExceptionMapper<CollectionNameTooShortException> {
 
 	@Override
-	public Response toResponse(CollectionNameTooShortException collectionNameTooShortException) {
+	public Response toResponse(
+		CollectionNameTooShortException collectionNameTooShortException) {
+
 		return Response.status(
 			Response.Status.fromStatusCode(463)
 		).type(

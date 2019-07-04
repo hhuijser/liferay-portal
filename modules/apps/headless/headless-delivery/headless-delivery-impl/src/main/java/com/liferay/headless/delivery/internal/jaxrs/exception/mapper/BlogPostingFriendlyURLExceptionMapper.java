@@ -46,7 +46,9 @@ public class BlogPostingFriendlyURLExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(entryUrlTitleException.getMessage(), "URL title", "Friendly URL")
+			StringUtil.replace(
+				entryUrlTitleException.getMessage(), "URL title",
+				"Friendly URL")
 		).build();
 	}
 

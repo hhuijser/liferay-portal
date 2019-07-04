@@ -40,14 +40,17 @@ public class TaxonomyCategoryNameExceptionMapper
 	implements ExceptionMapper<AssetCategoryNameException> {
 
 	@Override
-	public Response toResponse(AssetCategoryNameException assetCategoryNameException) {
+	public Response toResponse(
+		AssetCategoryNameException assetCategoryNameException) {
+
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
 			StringUtil.replace(
-				assetCategoryNameException.getMessage(), "category", "taxonomy category")
+				assetCategoryNameException.getMessage(), "category",
+				"taxonomy category")
 		).build();
 	}
 

@@ -45,7 +45,8 @@ public class StructuredContentFolderNameExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			"Invalid structured content folder name " + folderNameException.getMessage()
+			"Invalid structured content folder name " +
+				folderNameException.getMessage()
 		).build();
 	}
 

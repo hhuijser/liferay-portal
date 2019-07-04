@@ -40,13 +40,17 @@ public class KnowledgeBaseArticleArticleBodyExceptionMapper
 	implements ExceptionMapper<KBArticleContentException> {
 
 	@Override
-	public Response toResponse(KBArticleContentException kBArticleContentException) {
+	public Response toResponse(
+		KBArticleContentException kBArticleContentException) {
+
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(kBArticleContentException.getMessage(), "Content", "Article body")
+			StringUtil.replace(
+				kBArticleContentException.getMessage(), "Content",
+				"Article body")
 		).build();
 	}
 

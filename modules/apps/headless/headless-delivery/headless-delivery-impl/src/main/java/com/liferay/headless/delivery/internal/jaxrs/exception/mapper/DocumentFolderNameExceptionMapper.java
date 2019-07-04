@@ -46,7 +46,8 @@ public class DocumentFolderNameExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(folderNameException.getMessage(), "Folder", "Document folder")
+			StringUtil.replace(
+				folderNameException.getMessage(), "Folder", "Document folder")
 		).build();
 	}
 

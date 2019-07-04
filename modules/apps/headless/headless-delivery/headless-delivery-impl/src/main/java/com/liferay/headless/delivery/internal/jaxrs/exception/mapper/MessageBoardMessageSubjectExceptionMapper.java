@@ -40,14 +40,17 @@ public class MessageBoardMessageSubjectExceptionMapper
 	implements ExceptionMapper<MessageSubjectException> {
 
 	@Override
-	public Response toResponse(MessageSubjectException messageSubjectException) {
+	public Response toResponse(
+		MessageSubjectException messageSubjectException) {
+
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
 			StringUtil.replace(
-				messageSubjectException.getMessage(), new String[] {"Subject", "body"},
+				messageSubjectException.getMessage(),
+				new String[] {"Subject", "body"},
 				new String[] {"Headline", "article body"})
 		).build();
 	}

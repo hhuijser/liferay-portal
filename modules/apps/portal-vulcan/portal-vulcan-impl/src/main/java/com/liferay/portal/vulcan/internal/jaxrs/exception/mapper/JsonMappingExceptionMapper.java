@@ -35,7 +35,8 @@ public class JsonMappingExceptionMapper
 
 	@Override
 	public Response toResponse(JsonMappingException jsonMappingException) {
-		List<JsonMappingException.Reference> references = jsonMappingException.getPath();
+		List<JsonMappingException.Reference> references =
+			jsonMappingException.getPath();
 
 		Stream<JsonMappingException.Reference> stream = references.stream();
 

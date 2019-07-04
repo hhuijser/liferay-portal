@@ -46,7 +46,8 @@ public class MessageBoardSectionNameExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(categoryNameException.getMessage(), "Name", "Title")
+			StringUtil.replace(
+				categoryNameException.getMessage(), "Name", "Title")
 		).build();
 	}
 

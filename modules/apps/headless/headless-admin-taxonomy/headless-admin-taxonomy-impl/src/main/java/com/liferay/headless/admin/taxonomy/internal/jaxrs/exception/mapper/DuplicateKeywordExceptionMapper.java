@@ -46,7 +46,8 @@ public class DuplicateKeywordExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(duplicateTagException.getMessage(), "tag", "keyword")
+			StringUtil.replace(
+				duplicateTagException.getMessage(), "tag", "keyword")
 		).build();
 	}
 

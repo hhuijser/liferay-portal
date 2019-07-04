@@ -39,7 +39,9 @@ public class KnowledgeBaseArticleTitleExceptionMapper
 	implements ExceptionMapper<KBArticleTitleException> {
 
 	@Override
-	public Response toResponse(KBArticleTitleException kBArticleTitleException) {
+	public Response toResponse(
+		KBArticleTitleException kBArticleTitleException) {
+
 		return Response.status(
 			400
 		).type(

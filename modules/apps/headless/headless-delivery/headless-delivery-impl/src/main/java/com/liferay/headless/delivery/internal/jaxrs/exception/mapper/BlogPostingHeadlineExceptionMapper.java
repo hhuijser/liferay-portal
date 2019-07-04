@@ -40,7 +40,7 @@ public class BlogPostingHeadlineExceptionMapper
 	implements ExceptionMapper<EntryTitleException> {
 
 	@Override
-	public Response toResponse(EntryTitleException ete) {
+	public Response toResponse(EntryTitleException entryTitleException) {
 		return Response.status(
 			400
 		).type(

@@ -37,13 +37,13 @@ public class CollectionNameTooLongExceptionMapper
 	implements ExceptionMapper<CollectionNameTooLongException> {
 
 	@Override
-	public Response toResponse(CollectionNameTooLongException cntle) {
+	public Response toResponse(CollectionNameTooLongException collectionNameTooLongException) {
 		return Response.status(
 			Response.Status.fromStatusCode(462)
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			cntle.getMessage()
+			collectionNameTooLongException.getMessage()
 		).build();
 	}
 

@@ -39,7 +39,7 @@ public class DocumentFileExtensionExceptionMapper
 	implements ExceptionMapper<FileExtensionException> {
 
 	@Override
-	public Response toResponse(FileExtensionException fee) {
+	public Response toResponse(FileExtensionException fileExtensionException) {
 		return Response.status(
 			400
 		).type(

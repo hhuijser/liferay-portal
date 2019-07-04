@@ -24,7 +24,7 @@ public class ExceptionMapper
 	implements javax.ws.rs.ext.ExceptionMapper<Exception> {
 
 	@Override
-	public Response toResponse(Exception e) {
+	public Response toResponse(Exception exception) {
 		return Response.status(
 			500
 		).type(

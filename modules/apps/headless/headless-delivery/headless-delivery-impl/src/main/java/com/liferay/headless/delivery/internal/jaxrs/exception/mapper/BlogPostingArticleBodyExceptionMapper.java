@@ -40,7 +40,7 @@ public class BlogPostingArticleBodyExceptionMapper
 	implements ExceptionMapper<EntryContentException> {
 
 	@Override
-	public Response toResponse(EntryContentException ece) {
+	public Response toResponse(EntryContentException entryContentException) {
 		return Response.status(
 			400
 		).type(

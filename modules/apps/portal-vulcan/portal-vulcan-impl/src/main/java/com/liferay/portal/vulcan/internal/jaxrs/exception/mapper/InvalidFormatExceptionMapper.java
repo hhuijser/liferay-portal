@@ -37,7 +37,7 @@ public class InvalidFormatExceptionMapper
 	implements ExceptionMapper<InvalidFormatException> {
 
 	@Override
-	public Response toResponse(InvalidFormatException ife) {
+	public Response toResponse(InvalidFormatException invalidFormatException) {
 		List<JsonMappingException.Reference> references = ife.getPath();
 
 		Stream<JsonMappingException.Reference> stream = references.stream();

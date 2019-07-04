@@ -40,7 +40,7 @@ public class MessageBoardSectionNameExceptionMapper
 	implements ExceptionMapper<CategoryNameException> {
 
 	@Override
-	public Response toResponse(CategoryNameException cne) {
+	public Response toResponse(CategoryNameException categoryNameException) {
 		return Response.status(
 			400
 		).type(

@@ -40,7 +40,7 @@ public class BlogPostingFriendlyURLExceptionMapper
 	implements ExceptionMapper<EntryUrlTitleException> {
 
 	@Override
-	public Response toResponse(EntryUrlTitleException eute) {
+	public Response toResponse(EntryUrlTitleException entryUrlTitleException) {
 		return Response.status(
 			400
 		).type(

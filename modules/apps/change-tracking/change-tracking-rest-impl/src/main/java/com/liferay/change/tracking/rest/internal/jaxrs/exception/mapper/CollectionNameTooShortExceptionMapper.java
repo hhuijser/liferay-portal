@@ -37,13 +37,13 @@ public class CollectionNameTooShortExceptionMapper
 	implements ExceptionMapper<CollectionNameTooShortException> {
 
 	@Override
-	public Response toResponse(CollectionNameTooShortException cntse) {
+	public Response toResponse(CollectionNameTooShortException collectionNameTooShortException) {
 		return Response.status(
 			Response.Status.fromStatusCode(463)
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			cntse.getMessage()
+			collectionNameTooShortException.getMessage()
 		).build();
 	}
 

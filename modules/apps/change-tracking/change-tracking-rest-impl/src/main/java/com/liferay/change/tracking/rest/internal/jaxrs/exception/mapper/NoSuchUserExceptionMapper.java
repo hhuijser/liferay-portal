@@ -37,13 +37,13 @@ public class NoSuchUserExceptionMapper
 	implements ExceptionMapper<NoSuchUserException> {
 
 	@Override
-	public Response toResponse(NoSuchUserException nsue) {
+	public Response toResponse(NoSuchUserException noSuchUserException) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			nsue.getMessage()
+			noSuchUserException.getMessage()
 		).build();
 	}
 

@@ -30,7 +30,7 @@ public class JsonParseExceptionMapper
 	implements ExceptionMapper<JsonParseException> {
 
 	@Override
-	public Response toResponse(JsonParseException jpe) {
+	public Response toResponse(JsonParseException jsonParseException) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).entity(

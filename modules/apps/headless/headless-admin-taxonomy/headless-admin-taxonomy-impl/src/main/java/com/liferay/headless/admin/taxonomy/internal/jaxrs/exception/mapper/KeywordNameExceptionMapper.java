@@ -40,7 +40,7 @@ public class KeywordNameExceptionMapper
 	implements ExceptionMapper<AssetTagNameException> {
 
 	@Override
-	public Response toResponse(AssetTagNameException atne) {
+	public Response toResponse(AssetTagNameException assetTagNameException) {
 		return Response.status(
 			400
 		).type(

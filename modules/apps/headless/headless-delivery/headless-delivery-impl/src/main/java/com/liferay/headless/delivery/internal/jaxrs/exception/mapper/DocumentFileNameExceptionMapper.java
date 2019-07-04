@@ -39,13 +39,13 @@ public class DocumentFileNameExceptionMapper
 	implements ExceptionMapper<FileNameException> {
 
 	@Override
-	public Response toResponse(FileNameException fne) {
+	public Response toResponse(FileNameException fileNameException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			fne.getMessage()
+			fileNameException.getMessage()
 		).build();
 	}
 

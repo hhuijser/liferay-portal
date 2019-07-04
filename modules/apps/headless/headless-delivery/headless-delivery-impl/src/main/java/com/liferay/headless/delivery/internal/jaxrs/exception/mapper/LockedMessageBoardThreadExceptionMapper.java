@@ -39,13 +39,13 @@ public class LockedMessageBoardThreadExceptionMapper
 	implements ExceptionMapper<LockedThreadException> {
 
 	@Override
-	public Response toResponse(LockedThreadException lte) {
+	public Response toResponse(LockedThreadException lockedThreadException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			lte.getMessage()
+			lockedThreadException.getMessage()
 		).build();
 	}
 

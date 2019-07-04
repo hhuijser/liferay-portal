@@ -40,13 +40,13 @@ public class KeywordNameExceptionMapper
 	implements ExceptionMapper<AssetTagNameException> {
 
 	@Override
-	public Response toResponse(AssetTagNameException atne) {
+	public Response toResponse(AssetTagNameException assetTagNameException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(atne.getMessage(), "Tag", "Keyword")
+			StringUtil.replace(assetTagNameException.getMessage(), "Tag", "Keyword")
 		).build();
 	}
 

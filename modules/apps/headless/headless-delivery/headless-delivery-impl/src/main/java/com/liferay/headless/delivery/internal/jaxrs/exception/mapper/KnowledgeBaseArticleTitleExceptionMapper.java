@@ -39,13 +39,13 @@ public class KnowledgeBaseArticleTitleExceptionMapper
 	implements ExceptionMapper<KBArticleTitleException> {
 
 	@Override
-	public Response toResponse(KBArticleTitleException kbate) {
+	public Response toResponse(KBArticleTitleException kBArticleTitleException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			kbate.getMessage()
+			kBArticleTitleException.getMessage()
 		).build();
 	}
 

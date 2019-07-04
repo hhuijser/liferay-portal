@@ -40,10 +40,10 @@ public class KnowledgeBaseArticleFriendlyURLExceptionMapper
 	implements ExceptionMapper<KBArticleUrlTitleException> {
 
 	@Override
-	public Response toResponse(KBArticleUrlTitleException kbaute) {
+	public Response toResponse(KBArticleUrlTitleException kBArticleUrlTitleException) {
 		int statusCode = 400;
 
-		if (kbaute instanceof KBArticleUrlTitleException.MustNotBeDuplicate) {
+		if (kBArticleUrlTitleException instanceof KBArticleUrlTitleException.MustNotBeDuplicate) {
 			statusCode = 409;
 		}
 
@@ -52,7 +52,7 @@ public class KnowledgeBaseArticleFriendlyURLExceptionMapper
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(kbaute.getMessage(), "URL title", "Friendly URL")
+			StringUtil.replace(kBArticleUrlTitleException.getMessage(), "URL title", "Friendly URL")
 		).build();
 	}
 

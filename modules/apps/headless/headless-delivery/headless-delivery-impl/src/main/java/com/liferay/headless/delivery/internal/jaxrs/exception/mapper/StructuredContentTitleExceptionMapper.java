@@ -39,13 +39,13 @@ public class StructuredContentTitleExceptionMapper
 	implements ExceptionMapper<ArticleTitleException> {
 
 	@Override
-	public Response toResponse(ArticleTitleException ate) {
+	public Response toResponse(ArticleTitleException articleTitleException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			ate.getMessage()
+			articleTitleException.getMessage()
 		).build();
 	}
 

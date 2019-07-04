@@ -40,13 +40,13 @@ public class BlogPostingHeadlineExceptionMapper
 	implements ExceptionMapper<EntryTitleException> {
 
 	@Override
-	public Response toResponse(EntryTitleException ete) {
+	public Response toResponse(EntryTitleException entryTitleException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(ete.getMessage(), "Title", "Headline")
+			StringUtil.replace(entryTitleException.getMessage(), "Title", "Headline")
 		).build();
 	}
 

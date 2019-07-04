@@ -40,13 +40,13 @@ public class BlogPostingArticleBodyExceptionMapper
 	implements ExceptionMapper<EntryContentException> {
 
 	@Override
-	public Response toResponse(EntryContentException ece) {
+	public Response toResponse(EntryContentException entryContentException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(ece.getMessage(), "Content", "Article body")
+			StringUtil.replace(entryContentException.getMessage(), "Content", "Article body")
 		).build();
 	}
 

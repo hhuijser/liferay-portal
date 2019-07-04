@@ -40,14 +40,14 @@ public class DuplicateTaxonomyCategoryExceptionMapper
 	implements ExceptionMapper<DuplicateCategoryException> {
 
 	@Override
-	public Response toResponse(DuplicateCategoryException dce) {
+	public Response toResponse(DuplicateCategoryException duplicateCategoryException) {
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
 			StringUtil.replace(
-				dce.getMessage(), "category", "taxonomy category")
+				duplicateCategoryException.getMessage(), "category", "taxonomy category")
 		).build();
 	}
 

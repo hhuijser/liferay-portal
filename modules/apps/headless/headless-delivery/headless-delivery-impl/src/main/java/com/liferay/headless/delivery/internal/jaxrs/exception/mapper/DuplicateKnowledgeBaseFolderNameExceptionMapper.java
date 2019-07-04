@@ -39,13 +39,13 @@ public class DuplicateKnowledgeBaseFolderNameExceptionMapper
 	implements ExceptionMapper<DuplicateKBFolderNameException> {
 
 	@Override
-	public Response toResponse(DuplicateKBFolderNameException dkbfne) {
+	public Response toResponse(DuplicateKBFolderNameException duplicateKBFolderNameException) {
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			dkbfne.getMessage()
+			duplicateKBFolderNameException.getMessage()
 		).build();
 	}
 

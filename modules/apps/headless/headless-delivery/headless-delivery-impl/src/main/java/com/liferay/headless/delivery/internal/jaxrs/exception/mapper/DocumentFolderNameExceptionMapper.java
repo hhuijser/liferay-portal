@@ -40,13 +40,13 @@ public class DocumentFolderNameExceptionMapper
 	implements ExceptionMapper<FolderNameException> {
 
 	@Override
-	public Response toResponse(FolderNameException fne) {
+	public Response toResponse(FolderNameException folderNameException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(fne.getMessage(), "Folder", "Document folder")
+			StringUtil.replace(folderNameException.getMessage(), "Folder", "Document folder")
 		).build();
 	}
 

@@ -39,14 +39,14 @@ public class DuplicateStructuredContentFolderNameExceptionMapper
 	implements ExceptionMapper<DuplicateFolderNameException> {
 
 	@Override
-	public Response toResponse(DuplicateFolderNameException dfne) {
+	public Response toResponse(DuplicateFolderNameException duplicateFolderNameException) {
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
 			"A structured content folder already exists with the name " +
-				dfne.getMessage()
+				duplicateFolderNameException.getMessage()
 		).build();
 	}
 

@@ -37,13 +37,13 @@ public class NoSuchCompanyExceptionMapper
 	implements ExceptionMapper<NoSuchCompanyException> {
 
 	@Override
-	public Response toResponse(NoSuchCompanyException nsce) {
+	public Response toResponse(NoSuchCompanyException noSuchCompanyException) {
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			nsce.getMessage()
+			noSuchCompanyException.getMessage()
 		).build();
 	}
 

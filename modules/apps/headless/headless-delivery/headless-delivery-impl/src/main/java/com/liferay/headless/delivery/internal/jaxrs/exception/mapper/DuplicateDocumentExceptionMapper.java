@@ -40,13 +40,13 @@ public class DuplicateDocumentExceptionMapper
 	implements ExceptionMapper<DuplicateFileEntryException> {
 
 	@Override
-	public Response toResponse(DuplicateFileEntryException dfee) {
+	public Response toResponse(DuplicateFileEntryException duplicateFileEntryException) {
 		return Response.status(
 			409
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(dfee.getMessage(), "file entry", "document")
+			StringUtil.replace(duplicateFileEntryException.getMessage(), "file entry", "document")
 		).build();
 	}
 

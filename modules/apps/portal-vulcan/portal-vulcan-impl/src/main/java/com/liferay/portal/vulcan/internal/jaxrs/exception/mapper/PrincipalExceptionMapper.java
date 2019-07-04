@@ -34,7 +34,7 @@ public class PrincipalExceptionMapper
 	implements ExceptionMapper<PrincipalException> {
 
 	@Override
-	public Response toResponse(PrincipalException pe) {
+	public Response toResponse(PrincipalException principalException) {
 		Response.Status status = Response.Status.FORBIDDEN;
 
 		String method = _httpServletRequest.getMethod();

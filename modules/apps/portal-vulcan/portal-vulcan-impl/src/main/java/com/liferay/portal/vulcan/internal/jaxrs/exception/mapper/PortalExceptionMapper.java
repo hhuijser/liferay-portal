@@ -29,13 +29,13 @@ import javax.ws.rs.ext.ExceptionMapper;
 public class PortalExceptionMapper implements ExceptionMapper<PortalException> {
 
 	@Override
-	public Response toResponse(PortalException pe) {
+	public Response toResponse(PortalException portalException) {
 		return Response.status(
 			Response.Status.INTERNAL_SERVER_ERROR
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			pe.getMessage()
+			portalException.getMessage()
 		).build();
 	}
 

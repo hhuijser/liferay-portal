@@ -40,13 +40,13 @@ public class MessageBoardSectionNameExceptionMapper
 	implements ExceptionMapper<CategoryNameException> {
 
 	@Override
-	public Response toResponse(CategoryNameException cne) {
+	public Response toResponse(CategoryNameException categoryNameException) {
 		return Response.status(
 			400
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			StringUtil.replace(cne.getMessage(), "Name", "Title")
+			StringUtil.replace(categoryNameException.getMessage(), "Name", "Title")
 		).build();
 	}
 

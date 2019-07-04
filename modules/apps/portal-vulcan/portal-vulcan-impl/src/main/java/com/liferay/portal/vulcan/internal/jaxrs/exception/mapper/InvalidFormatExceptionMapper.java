@@ -37,8 +37,8 @@ public class InvalidFormatExceptionMapper
 	implements ExceptionMapper<InvalidFormatException> {
 
 	@Override
-	public Response toResponse(InvalidFormatException ife) {
-		List<JsonMappingException.Reference> references = ife.getPath();
+	public Response toResponse(InvalidFormatException invalidFormatException) {
+		List<JsonMappingException.Reference> references = invalidFormatException.getPath();
 
 		Stream<JsonMappingException.Reference> stream = references.stream();
 
@@ -48,11 +48,11 @@ public class InvalidFormatExceptionMapper
 			Collectors.joining(".")
 		);
 
-		Class<?> clazz = ife.getTargetType();
+		Class<?> clazz = invalidFormatException.getTargetType();
 
 		String message = StringBundler.concat(
 			"Unable to map JSON path \"", path, "\" with value \"",
-			ife.getValue(), "\" to class \"" + clazz.getSimpleName(), "\"");
+			invalidFormatException.getValue(), "\" to class \"" + clazz.getSimpleName(), "\"");
 
 		return Response.status(
 			Response.Status.BAD_REQUEST

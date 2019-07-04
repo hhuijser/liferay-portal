@@ -30,8 +30,8 @@ public class ValidationExceptionMapper
 	implements ExceptionMapper<ValidationException> {
 
 	@Override
-	public Response toResponse(ValidationException ve) {
-		String message = ve.getMessage();
+	public Response toResponse(ValidationException validationException) {
+		String message = validationException.getMessage();
 
 		return Response.status(
 			Response.Status.BAD_REQUEST

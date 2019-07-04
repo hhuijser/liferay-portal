@@ -40,7 +40,9 @@ public class KnowledgeBaseArticleFriendlyURLExceptionMapper
 	implements ExceptionMapper<KBArticleUrlTitleException> {
 
 	@Override
-	public Response toResponse(KBArticleUrlTitleException kBArticleUrlTitleException) {
+	public Response toResponse(
+		KBArticleUrlTitleException kBArticleUrlTitleException) {
+
 		int statusCode = 400;
 
 		if (kbaute instanceof KBArticleUrlTitleException.MustNotBeDuplicate) {

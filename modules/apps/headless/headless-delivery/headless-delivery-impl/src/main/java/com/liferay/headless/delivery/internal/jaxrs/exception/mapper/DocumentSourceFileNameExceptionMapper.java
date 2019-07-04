@@ -39,7 +39,9 @@ public class DocumentSourceFileNameExceptionMapper
 	implements ExceptionMapper<SourceFileNameException> {
 
 	@Override
-	public Response toResponse(SourceFileNameException sourceFileNameException) {
+	public Response toResponse(
+		SourceFileNameException sourceFileNameException) {
+
 		return Response.status(
 			400
 		).type(

@@ -40,7 +40,9 @@ public class TaxonomyVocabularyNameExceptionMapper
 	implements ExceptionMapper<VocabularyNameException> {
 
 	@Override
-	public Response toResponse(VocabularyNameException vocabularyNameException) {
+	public Response toResponse(
+		VocabularyNameException vocabularyNameException) {
+
 		return Response.status(
 			400
 		).type(

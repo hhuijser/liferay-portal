@@ -40,7 +40,9 @@ public class KnowledgeBaseArticleArticleBodyExceptionMapper
 	implements ExceptionMapper<KBArticleContentException> {
 
 	@Override
-	public Response toResponse(KBArticleContentException kBArticleContentException) {
+	public Response toResponse(
+		KBArticleContentException kBArticleContentException) {
+
 		return Response.status(
 			400
 		).type(

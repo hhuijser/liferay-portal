@@ -40,7 +40,9 @@ public class DuplicateTaxonomyCategoryExceptionMapper
 	implements ExceptionMapper<DuplicateCategoryException> {
 
 	@Override
-	public Response toResponse(DuplicateCategoryException duplicateCategoryException) {
+	public Response toResponse(
+		DuplicateCategoryException duplicateCategoryException) {
+
 		return Response.status(
 			409
 		).type(

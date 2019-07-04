@@ -40,7 +40,9 @@ public class DuplicateDocumentExceptionMapper
 	implements ExceptionMapper<DuplicateFileEntryException> {
 
 	@Override
-	public Response toResponse(DuplicateFileEntryException duplicateFileEntryException) {
+	public Response toResponse(
+		DuplicateFileEntryException duplicateFileEntryException) {
+
 		return Response.status(
 			409
 		).type(

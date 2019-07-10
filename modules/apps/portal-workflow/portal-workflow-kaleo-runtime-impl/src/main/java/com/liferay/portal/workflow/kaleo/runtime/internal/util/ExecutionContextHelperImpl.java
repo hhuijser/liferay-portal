@@ -104,14 +104,13 @@ public class ExecutionContextHelperImpl implements ExecutionContextHelper {
 		}
 
 		jsonObject.put(
-			"workflowContext",
-			WorkflowContextUtil.convert(executionContext.getWorkflowContext()));
-
-		jsonObject.put(
 			"serviceContext",
 			_jsonFactory.serialize(executionContext.getServiceContext())
 		).put(
 			"transitionName", executionContext.getTransitionName()
+		).put(
+			"workflowContext",
+			WorkflowContextUtil.convert(executionContext.getWorkflowContext())
 		);
 
 		return jsonObject.toString();

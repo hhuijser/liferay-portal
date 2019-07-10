@@ -2170,13 +2170,12 @@ public class StagingImpl implements Staging {
 		LayoutRevision layoutRevision = LayoutStagingUtil.getLayoutRevision(
 			layout);
 
-		if (layoutRevision != null) {
-			if (isLayoutRevisionIncomplete(
-					layout.getPlid(), layoutRevision,
-					layoutRevision.getLayoutSetBranchId())) {
+		if ((layoutRevision != null) &&
+			isLayoutRevisionIncomplete(
+				layout.getPlid(), layoutRevision,
+				layoutRevision.getLayoutSetBranchId())) {
 
-				return true;
-			}
+			return true;
 		}
 
 		return false;

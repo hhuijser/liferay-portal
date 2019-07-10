@@ -208,17 +208,13 @@ public class DDLImpl implements DDL {
 				"label", label.getString(locale)
 			).put(
 				"name", name
-			);
-
-			boolean required = ddmFormField.isRequired();
-
-			jsonObject.put(
-				"required", required
+			).put(
+				"required", ddmFormField.isRequired()
 			).put(
 				"sortable", true
+			).put(
+				"type", ddmFormField.getType()
 			);
-
-			jsonObject.put("type", ddmFormField.getType());
 
 			jsonArray.put(jsonObject);
 		}

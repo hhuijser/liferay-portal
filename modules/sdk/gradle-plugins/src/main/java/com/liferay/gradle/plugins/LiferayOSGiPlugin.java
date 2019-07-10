@@ -93,6 +93,7 @@ import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.gradle.api.Action;
 import org.gradle.api.GradleException;
@@ -562,10 +563,12 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 
 						SourceDirectorySet allSource = sourceSet.getAllSource();
 
+						Set<File> srcDirs = allSource.getSrcDirs();
+
+						Stream<File> stream = srcDirs.stream();
+
 						FileCollection sourceDirs = project.files(
-							allSource.getSrcDirs(
-							).stream(
-							).filter(
+							stream.filter(
 								File::exists
 							).collect(
 								Collectors.toList()

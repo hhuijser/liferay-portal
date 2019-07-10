@@ -26,6 +26,7 @@ import com.liferay.segments.asah.connector.internal.client.model.Topic;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -74,8 +75,9 @@ public class InterestTermsChecker {
 			return;
 		}
 
-		String[] terms = topics.stream(
-		).flatMap(
+		Stream<Topic> stream = topics.stream();
+
+		String[] terms = stream.flatMap(
 			topic -> {
 				List<Topic.TopicTerm> topicTerms = topic.getTerms();
 

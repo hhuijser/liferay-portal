@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.upgrade.UpgradeStep;
 import java.util.Arrays;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 /**
  * @author Carlos Sierra Andrés
@@ -88,9 +89,9 @@ public class UpgradeStepFactory {
 			alterableBiFunction,
 		String newType, String... columnNames) {
 
-		return Arrays.stream(
-			columnNames
-		).map(
+		Stream<String> stream = Arrays.stream(columnNames);
+
+		return stream.map(
 			columnName -> alterableBiFunction.apply(columnName, newType)
 		).toArray(
 			UpgradeProcess.Alterable[]::new
@@ -101,9 +102,9 @@ public class UpgradeStepFactory {
 		Function<String, UpgradeProcess.Alterable> alterableFunction,
 		String... alterableStrings) {
 
-		return Arrays.stream(
-			alterableStrings
-		).map(
+		Stream<String> stream = Arrays.stream(alterableStrings);
+
+		return stream.map(
 			alterableFunction
 		).toArray(
 			UpgradeProcess.Alterable[]::new

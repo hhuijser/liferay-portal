@@ -112,8 +112,9 @@ public class IndividualSegmentsChecker {
 
 		ServiceContext serviceContext = _getServiceContext();
 
-		long[] segmentsEntryIds = individualSegmentIds.stream(
-		).map(
+		Stream<String> stream = individualSegmentIds.stream();
+
+		long[] segmentsEntryIds = stream.map(
 			segmentsEntryKey -> _segmentsEntryLocalService.fetchSegmentsEntry(
 				serviceContext.getScopeGroupId(), segmentsEntryKey, true)
 		).filter(

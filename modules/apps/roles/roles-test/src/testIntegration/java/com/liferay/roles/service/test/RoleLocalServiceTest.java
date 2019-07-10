@@ -243,11 +243,11 @@ public class RoleLocalServiceTest {
 			companyId, null, excludedRoleNames, roleTypes, 0, groupId,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
-		Stream<Role> expectedRolesStream = _roleLocalService.getRoles(
-			companyId
-		).stream();
+		List<Role> expectedRoles = _roleLocalService.getRoles(companyId);
 
-		List<Role> expectedRoles = expectedRolesStream.filter(
+		Stream<Role> expectedRolesStream = expectedRoles.stream();
+
+		expectedRoles = expectedRolesStream.filter(
 			role -> !excludedRoleNames.contains(role.getName())
 		).filter(
 			role -> role.getType() != RoleConstants.TYPE_SITE

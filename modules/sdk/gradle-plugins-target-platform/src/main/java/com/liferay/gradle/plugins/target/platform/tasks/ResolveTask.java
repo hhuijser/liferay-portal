@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.gradle.StartParameter;
 import org.gradle.api.DefaultTask;
@@ -177,12 +178,11 @@ public class ResolveTask extends DefaultTask {
 				_runBundles = bndrun.resolve(
 					isFailOnChanges(), false, _runbundlesFormatter);
 
+				Stream<String> stream = _runBundles.stream();
+
 				logger.lifecycle(
 					"{}:\n    {}", Constants.RUNBUNDLES,
-					_runBundles.stream(
-					).collect(
-						Collectors.joining("\n    ")
-					));
+					stream.collect(Collectors.joining("\n    ")));
 			}
 			catch (ResolutionException re) {
 				logger.error(ResolveProcess.format(re, isReportOptional()));
@@ -262,8 +262,9 @@ public class ResolveTask extends DefaultTask {
 						Collection<? extends HeaderClause> input)
 					throws IllegalArgumentException {
 
-					return input.stream(
-					).map(
+					Stream<? extends HeaderClause> stream = input.stream();
+
+					return stream.map(
 						HeaderClause::toString
 					).collect(
 						Collectors.toList()

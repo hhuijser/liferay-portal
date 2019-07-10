@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections.CollectionUtils;
 
@@ -285,8 +286,9 @@ public class FreeMarkerTool {
 	public boolean hasJavaMethodSignature(
 		List<JavaMethodSignature> javaMethodSignatures, String methodName) {
 
-		return javaMethodSignatures.stream(
-		).map(
+		Stream<JavaMethodSignature> stream = javaMethodSignatures.stream();
+
+		return stream.map(
 			JavaMethodSignature::getMethodName
 		).anyMatch(
 			javaMethodSignatureMethodName ->

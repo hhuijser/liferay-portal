@@ -127,6 +127,7 @@ import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
@@ -321,8 +322,9 @@ public class GraphQLServletExtender {
 		Function<ServletData, Object> function,
 		ProcessingElementsContainer processingElementsContainer) {
 
-		Map<String, Optional<Method>> methods = _servletDataList.stream(
-		).map(
+		Stream<ServletData> stream = _servletDataList.stream();
+
+		Map<String, Optional<Method>> methods = stream.map(
 			function
 		).map(
 			Object::getClass
@@ -696,8 +698,9 @@ public class GraphQLServletExtender {
 
 						List<Value> values = arrayValue.getValues();
 
-						return values.stream(
-						).map(
+						Stream<Value> stream = values.stream();
+
+						return stream.map(
 							this::parseLiteral
 						).collect(
 							Collectors.toList()
@@ -732,13 +735,13 @@ public class GraphQLServletExtender {
 						List<ObjectField> objectFields =
 							objectValue.getObjectFields();
 
-						return objectFields.stream(
-						).collect(
+						Stream<ObjectField> stream = objectFields.stream();
+
+						return stream.collect(
 							Collectors.toMap(
 								ObjectField::getName,
 								objectField -> parseLiteral(
-									objectField.getValue()))
-						);
+									objectField.getValue())));
 					}
 					else if (value instanceof StringValue) {
 						StringValue stringValue = (StringValue)value;
@@ -841,9 +844,9 @@ public class GraphQLServletExtender {
 
 		@Override
 		public List<GraphQLArgument> build() {
-			return Arrays.stream(
-				_method.getParameters()
-			).filter(
+			Stream<Parameter> stream = Arrays.stream(_method.getParameters());
+
+			return stream.filter(
 				parameter -> !DataFetchingEnvironment.class.isAssignableFrom(
 					parameter.getType())
 			).map(
@@ -996,8 +999,9 @@ public class GraphQLServletExtender {
 		protected List<GraphQLError> filterGraphQLErrors(
 			List<GraphQLError> graphQLErrors) {
 
-			return graphQLErrors.stream(
-			).map(
+			Stream<GraphQLError> stream = graphQLErrors.stream();
+
+			return stream.map(
 				graphQLError -> {
 					if (!isClientError(graphQLError)) {
 						return new GenericGraphQLError(

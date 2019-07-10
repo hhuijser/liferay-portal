@@ -17,7 +17,6 @@ package com.liferay.site.buildings.site.initializer.internal.util;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
@@ -64,13 +63,10 @@ public class ImagesImporter {
 				bytes = FileUtil.getBytes(is);
 			}
 
-			ServiceContext serviceContext =
-				ServiceContextThreadLocal.getServiceContext();
-
 			FileEntry fileEntry = _dlAppLocalService.addFileEntry(
 				userId, groupId, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,
 				fileName, MimeTypesUtil.getContentType(fileName), bytes,
-				serviceContext);
+				ServiceContextThreadLocal.getServiceContext());
 
 			fileEntries.add(fileEntry);
 		}

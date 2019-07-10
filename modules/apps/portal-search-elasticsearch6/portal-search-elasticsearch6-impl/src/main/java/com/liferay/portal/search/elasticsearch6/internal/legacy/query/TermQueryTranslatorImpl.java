@@ -34,11 +34,8 @@ public class TermQueryTranslatorImpl implements TermQueryTranslator {
 	public QueryBuilder translate(TermQuery termQuery) {
 		QueryTerm queryTerm = termQuery.getQueryTerm();
 
-		String field = queryTerm.getField();
-		String value = queryTerm.getValue();
-
 		TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery(
-			field, value);
+			queryTerm.getField(), queryTerm.getValue());
 
 		if (!termQuery.isDefaultBoost()) {
 			termQueryBuilder.boost(termQuery.getBoost());

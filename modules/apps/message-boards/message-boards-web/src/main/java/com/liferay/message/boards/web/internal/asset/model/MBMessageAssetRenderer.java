@@ -223,9 +223,9 @@ public class MBMessageAssetRenderer
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		long groupId = _message.getGroupId();
+		if (!_hasViewInContextGroupLayout(
+				_message.getGroupId(), themeDisplay)) {
 
-		if (!_hasViewInContextGroupLayout(groupId, themeDisplay)) {
 			return null;
 		}
 

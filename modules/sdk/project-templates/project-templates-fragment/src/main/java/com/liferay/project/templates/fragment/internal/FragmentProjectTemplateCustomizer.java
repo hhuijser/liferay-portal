@@ -45,12 +45,11 @@ public class FragmentProjectTemplateCustomizer
 
 		Properties properties = archetypeGenerationRequest.getProperties();
 
-		String hostBundleSymbolicName =
-			projectTemplatesArgs.getHostBundleSymbolicName();
-		String hostBundleVersion = projectTemplatesArgs.getHostBundleVersion();
-
-		properties.put("hostBundleSymbolicName", hostBundleSymbolicName);
-		properties.put("hostBundleVersion", hostBundleVersion);
+		properties.put(
+			"hostBundleSymbolicName",
+			projectTemplatesArgs.getHostBundleSymbolicName());
+		properties.put(
+			"hostBundleVersion", projectTemplatesArgs.getHostBundleVersion());
 	}
 
 }

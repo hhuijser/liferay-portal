@@ -105,11 +105,9 @@ public class GoogleDocsDLDisplayContextFactory
 
 			FileEntry fileEntry = _dlAppService.getFileEntry(fileEntryId);
 
-			FileVersion fileVersion = fileEntry.getFileVersion();
-
 			return getDLViewFileVersionDisplayContext(
 				parentDLViewFileVersionDisplayContext, httpServletRequest,
-				httpServletResponse, fileVersion);
+				httpServletResponse, fileEntry.getFileVersion());
 		}
 		catch (PortalException pe) {
 			throw new SystemException(

@@ -694,11 +694,10 @@ public class SubscriptionSender implements Serializable {
 	protected void processMailMessage(MailMessage mailMessage, Locale locale)
 		throws Exception {
 
-		InternetAddress from = mailMessage.getFrom();
 		InternetAddress to = mailMessage.getTo()[0];
 
 		MailTemplateContext mailTemplateContext = _getBodyMailTemplateContext(
-			locale, from, to);
+			locale, mailMessage.getFrom(), to);
 
 		MailTemplate subjectMailTemplate =
 			MailTemplateFactoryUtil.createMailTemplate(

@@ -36,8 +36,6 @@ import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.osgi.framework.Bundle;
-
 /**
  * @author Pei-Jung Lan
  */
@@ -191,10 +189,9 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 			category = StringPool.BLANK;
 		}
 
-		List<Bundle> bundles = BundleManagerUtil.getBundles();
-
 		List<AppDisplay> appDisplays = AppDisplayFactoryUtil.getAppDisplays(
-			bundles, category, BundleStateConstants.getState(getState()),
+			BundleManagerUtil.getBundles(), category,
+			BundleStateConstants.getState(getState()),
 			liferayPortletRequest.getLocale());
 
 		appDisplays = ListUtil.sort(

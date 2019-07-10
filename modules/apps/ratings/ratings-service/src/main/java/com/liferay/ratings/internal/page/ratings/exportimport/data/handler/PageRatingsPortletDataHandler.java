@@ -209,10 +209,8 @@ public class PageRatingsPortletDataHandler extends BasePortletDataHandler {
 				ManifestSummary manifestSummary =
 					portletDataContext.getManifestSummary();
 
-				StagedModelType stagedModelType =
-					exportActionableDynamicQuery.getStagedModelType();
-
-				manifestSummary.incrementModelAdditionCount(stagedModelType);
+				manifestSummary.incrementModelAdditionCount(
+					exportActionableDynamicQuery.getStagedModelType());
 			});
 		exportActionableDynamicQuery.setPerformCountMethod(
 			new ActionableDynamicQuery.PerformCountMethod() {

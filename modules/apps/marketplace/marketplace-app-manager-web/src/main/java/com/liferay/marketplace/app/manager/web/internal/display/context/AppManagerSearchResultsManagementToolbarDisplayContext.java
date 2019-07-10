@@ -30,8 +30,6 @@ import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.osgi.framework.Bundle;
-
 /**
  * @author Pei-Jung Lan
  */
@@ -95,10 +93,8 @@ public class AppManagerSearchResultsManagementToolbarDisplayContext
 		searchContainer.setOrderByCol(getOrderByCol());
 		searchContainer.setOrderByType(getOrderByType());
 
-		List<Bundle> bundles = BundleManagerUtil.getBundles();
-
 		List<Object> results = MarketplaceAppManagerSearchUtil.getResults(
-			bundles, getKeywords(), request.getLocale());
+			BundleManagerUtil.getBundles(), getKeywords(), request.getLocale());
 
 		results = ListUtil.sort(
 			results, new MarketplaceAppManagerComparator(getOrderByType()));

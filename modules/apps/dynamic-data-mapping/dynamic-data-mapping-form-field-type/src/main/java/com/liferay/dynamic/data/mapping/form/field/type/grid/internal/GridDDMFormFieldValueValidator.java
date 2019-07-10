@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 import java.util.Iterator;
-import java.util.Locale;
 import java.util.Set;
 
 import org.osgi.service.component.annotations.Component;
@@ -70,11 +69,9 @@ public class GridDDMFormFieldValueValidator
 
 		DDMForm ddmForm = ddmFormField.getDDMForm();
 
-		Locale defaultLocale = ddmForm.getDefaultLocale();
-
 		validateSelectedValue(
 			ddmFormField, rowValues, columnValues,
-			value.getString(defaultLocale));
+			value.getString(ddmForm.getDefaultLocale()));
 	}
 
 	protected JSONObject createJSONObject(String fieldName, String json) {

@@ -148,11 +148,10 @@ public class HotDeployEvent {
 		}
 
 		if (!_dependentServletContextNames.isEmpty() && _log.isInfoEnabled()) {
-			String servletContextName = _servletContext.getServletContextName();
-
 			_log.info(
 				StringBundler.concat(
-					"Plugin ", servletContextName, " requires ",
+					"Plugin ", _servletContext.getServletContextName(),
+					" requires ",
 					StringUtil.merge(_dependentServletContextNames, ", ")));
 		}
 	}

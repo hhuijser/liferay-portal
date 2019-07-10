@@ -45,16 +45,13 @@ public class ModulesExtProjectTemplateCustomizer
 
 		Properties properties = archetypeGenerationRequest.getProperties();
 
-		String originalModuleName =
-			projectTemplatesArgs.getOriginalModuleName();
-
-		properties.put("originalModuleName", originalModuleName);
+		properties.put(
+			"originalModuleName", projectTemplatesArgs.getOriginalModuleName());
 
 		if (!projectTemplatesArgs.isDependencyManagementEnabled()) {
-			String originalModuleVersion =
-				projectTemplatesArgs.getOriginalModuleVersion();
-
-			properties.put("originalModuleVersion", originalModuleVersion);
+			properties.put(
+				"originalModuleVersion",
+				projectTemplatesArgs.getOriginalModuleVersion());
 		}
 		else {
 			properties.put("originalModuleVersion", "1.0.0");

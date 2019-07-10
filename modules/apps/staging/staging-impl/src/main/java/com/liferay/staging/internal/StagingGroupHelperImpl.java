@@ -313,9 +313,9 @@ public class StagingGroupHelperImpl implements StagingGroupHelper {
 			PortletDataHandler portletDataHandler =
 				dataSiteLevelPortlet.getPortletDataHandlerInstance();
 
-			String[] classNames = portletDataHandler.getClassNames();
+			if (ArrayUtil.contains(
+					portletDataHandler.getClassNames(), className)) {
 
-			if (ArrayUtil.contains(classNames, className)) {
 				return isStagedPortlet(
 					groupId, dataSiteLevelPortlet.getRootPortletId());
 			}

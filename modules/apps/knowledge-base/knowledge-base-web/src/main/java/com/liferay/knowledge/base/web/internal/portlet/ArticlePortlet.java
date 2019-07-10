@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.exception.NoSuchSubscriptionException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.servlet.SessionMessages;
@@ -193,11 +192,9 @@ public class ArticlePortlet extends BaseKBPortlet {
 			return resourcePrimKey;
 		}
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (!_kbArticleModelResourcePermission.contains(
-				permissionChecker, defaultValue, KBActionKeys.VIEW)) {
+				themeDisplay.getPermissionChecker(), defaultValue,
+				KBActionKeys.VIEW)) {
 
 			return 0;
 		}

@@ -1413,9 +1413,7 @@ public class ServiceBuilder {
 	}
 
 	public String getReturnType(JavaMethod method) {
-		JavaType returnType = method.getReturnType();
-
-		return getTypeGenericsName(returnType);
+		return getTypeGenericsName(method.getReturnType());
 	}
 
 	public List<String> getServiceBaseExceptions(

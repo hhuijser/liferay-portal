@@ -118,10 +118,8 @@ public class PanelAppContentHelper {
 		HttpServletRequest originalHttpServletRequest =
 			PortalUtil.getOriginalServletRequest(httpServletRequest);
 
-		Portlet portlet = getPortlet();
-
 		return DynamicServletRequestUtil.createDynamicServletRequest(
-			originalHttpServletRequest, portlet,
+			originalHttpServletRequest, getPortlet(),
 			httpServletRequest.getParameterMap(), false);
 	}
 

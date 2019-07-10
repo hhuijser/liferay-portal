@@ -327,11 +327,9 @@ public abstract class BaseTrashHandler implements TrashHandler {
 
 	@Override
 	public boolean isDeletable(long classPK) throws PortalException {
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		return hasTrashPermission(
-			permissionChecker, 0, classPK, ActionKeys.DELETE);
+			PermissionThreadLocal.getPermissionChecker(), 0, classPK,
+			ActionKeys.DELETE);
 	}
 
 	/**

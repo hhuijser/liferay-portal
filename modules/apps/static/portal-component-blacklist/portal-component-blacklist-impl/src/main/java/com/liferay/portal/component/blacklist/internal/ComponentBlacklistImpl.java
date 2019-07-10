@@ -207,9 +207,8 @@ public class ComponentBlacklistImpl implements ComponentBlacklist {
 				return;
 			}
 
-			Bundle bundle = bundleEvent.getBundle();
-
-			disableComponents(bundle, _blacklistComponentNames);
+			disableComponents(
+				bundleEvent.getBundle(), _blacklistComponentNames);
 		}
 
 	}

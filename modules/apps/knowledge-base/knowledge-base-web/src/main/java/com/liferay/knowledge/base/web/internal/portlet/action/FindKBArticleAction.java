@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -208,11 +207,9 @@ public class FindKBArticleAction implements StrutsAction {
 			return null;
 		}
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		if (!KBArticlePermission.contains(
-				permissionChecker, kbArticle, KBActionKeys.VIEW)) {
+				PermissionThreadLocal.getPermissionChecker(), kbArticle,
+				KBActionKeys.VIEW)) {
 
 			return null;
 		}

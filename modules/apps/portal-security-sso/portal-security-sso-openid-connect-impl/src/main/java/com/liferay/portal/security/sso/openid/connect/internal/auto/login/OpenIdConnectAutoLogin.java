@@ -63,11 +63,8 @@ public class OpenIdConnectAutoLogin extends BaseAutoLogin {
 			return null;
 		}
 
-		OpenIdConnectFlowState openIdConnectFlowState =
-			openIdConnectSession.getOpenIdConnectFlowState();
-
 		if (OpenIdConnectFlowState.AUTH_COMPLETE.equals(
-				openIdConnectFlowState)) {
+				openIdConnectSession.getOpenIdConnectFlowState())) {
 
 			long userId = openIdConnectSession.getLoginUserId();
 

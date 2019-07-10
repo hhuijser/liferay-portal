@@ -1879,11 +1879,10 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 			WorkflowConstants.CONTEXT_URL);
 
 		if (Validator.isNull(entryURL)) {
-			String layoutFullURL = serviceContext.getLayoutFullURL();
-
 			entryURL = StringBundler.concat(
-				layoutFullURL, Portal.FRIENDLY_URL_SEPARATOR, "blogs",
-				StringPool.SLASH, entry.getEntryId());
+				serviceContext.getLayoutFullURL(),
+				Portal.FRIENDLY_URL_SEPARATOR, "blogs", StringPool.SLASH,
+				entry.getEntryId());
 		}
 
 		BlogsGroupServiceSettings blogsGroupServiceSettings =

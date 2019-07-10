@@ -188,9 +188,7 @@ public abstract class BaseRequestHelper {
 
 	public String getResourcePortletId() {
 		if (_resourcePortletId == null) {
-			String portletResource = getPortletResource();
-
-			if (Validator.isNotNull(portletResource)) {
+			if (Validator.isNotNull(getPortletResource())) {
 				_resourcePortletId = getPortletResource();
 			}
 			else {

@@ -77,18 +77,16 @@ public class ResourceOpenAPIParser {
 				operation -> {
 					String returnType = _getReturnType(
 						javaDataTypeMap, operation);
-					List<String> tags = operation.getTags();
 
 					if (!_isSchemaMethod(
-							javaDataTypeMap, returnType, schemaName, tags)) {
+							javaDataTypeMap, returnType, schemaName,
+							operation.getTags())) {
 
 						return;
 					}
 
-					RequestBody requestBody = operation.getRequestBody();
-
 					_visitRequestBodyMediaTypes(
-						requestBody,
+						operation.getRequestBody(),
 						requestBodyMediaTypes -> {
 							List<JavaMethodParameter> javaMethodParameters =
 								_getJavaMethodParameters(

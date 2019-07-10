@@ -210,9 +210,7 @@ public class YouTubeDisplayContext {
 	}
 
 	public boolean isCustomSize() {
-		String presetSize = getPresetSize();
-
-		if (Objects.equals(presetSize, "custom")) {
+		if (Objects.equals(getPresetSize(), "custom")) {
 			return true;
 		}
 

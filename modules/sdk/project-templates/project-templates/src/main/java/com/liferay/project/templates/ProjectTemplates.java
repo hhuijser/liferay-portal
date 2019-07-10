@@ -395,9 +395,7 @@ public class ProjectTemplates {
 			projectTemplatesArgs.setPackageName(_getPackageName(name));
 		}
 
-		String contributorType = projectTemplatesArgs.getContributorType();
-
-		if (Validator.isNull(contributorType)) {
+		if (Validator.isNull(projectTemplatesArgs.getContributorType())) {
 			projectTemplatesArgs.setContributorType(name);
 		}
 	}

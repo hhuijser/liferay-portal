@@ -82,9 +82,7 @@ public class DDMTemplateResource implements TemplateResource {
 
 	@Override
 	public Reader getReader() {
-		String script = _ddmTemplate.getScript();
-
-		return new UnsyncStringReader(script);
+		return new UnsyncStringReader(_ddmTemplate.getScript());
 	}
 
 	@Override

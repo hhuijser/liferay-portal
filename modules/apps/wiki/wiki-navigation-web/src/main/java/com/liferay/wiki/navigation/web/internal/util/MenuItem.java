@@ -179,10 +179,9 @@ public class MenuItem implements Serializable {
 				}
 
 				if (!url.startsWith(Http.HTTP)) {
-					long nodeId = wikiPage.getNodeId();
-
 					portletURL.setParameter("title", url);
-					portletURL.setParameter("nodeId", String.valueOf(nodeId));
+					portletURL.setParameter(
+						"nodeId", String.valueOf(wikiPage.getNodeId()));
 
 					url = portletURL.toString();
 				}

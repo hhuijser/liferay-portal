@@ -146,9 +146,8 @@ public class AMServlet extends HttpServlet {
 	private String _getRequestHandlerPattern(
 		HttpServletRequest httpServletRequest) {
 
-		String pathInfo = httpServletRequest.getPathInfo();
-
-		Matcher matcher = _requestHandlerPattern.matcher(pathInfo);
+		Matcher matcher = _requestHandlerPattern.matcher(
+			httpServletRequest.getPathInfo());
 
 		if (matcher.find()) {
 			return matcher.group(1);

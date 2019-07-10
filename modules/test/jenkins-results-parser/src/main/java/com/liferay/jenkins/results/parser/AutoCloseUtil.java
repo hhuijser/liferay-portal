@@ -73,10 +73,8 @@ public class AutoCloseUtil {
 		sb.append("<p>The pull request was closed because the following ");
 		sb.append("critical builds had failed:</p><ul>");
 
-		String buildURL = build.getBuildURL();
-
 		sb.append("<li><a href=\"");
-		sb.append(buildURL);
+		sb.append(build.getBuildURL());
 		sb.append("\">");
 
 		String jobVariant = build.getJobVariant();
@@ -369,9 +367,9 @@ public class AutoCloseUtil {
 							continue;
 						}
 
-						String packageName = testResult.getPackageName();
+						if (gitSubrepositoryPackageName.equals(
+								testResult.getPackageName())) {
 
-						if (gitSubrepositoryPackageName.equals(packageName)) {
 							failedDownstreamBuild = downstreamBuild;
 
 							StringBuilder sb = new StringBuilder();
@@ -535,11 +533,8 @@ public class AutoCloseUtil {
 		String gitHubRemoteGitRepositoryName =
 			pullRequest.getGitHubRemoteGitRepositoryName();
 
-		Properties localLiferayJenkinsEEBuildProperties =
-			JenkinsResultsParserUtil.getLocalLiferayJenkinsEEBuildProperties();
-
 		String testBranchNamesAutoClose = JenkinsResultsParserUtil.getProperty(
-			localLiferayJenkinsEEBuildProperties,
+			JenkinsResultsParserUtil.getLocalLiferayJenkinsEEBuildProperties(),
 			JenkinsResultsParserUtil.combine(
 				"test.branch.names.auto.close[", gitHubRemoteGitRepositoryName,
 				"]"));
@@ -566,12 +561,10 @@ public class AutoCloseUtil {
 	public static boolean isAutoCloseOnCriticalTestFailuresActive(
 		PullRequest pullRequest) {
 
-		Properties localLiferayJenkinsEEBuildProperties =
-			JenkinsResultsParserUtil.getLocalLiferayJenkinsEEBuildProperties();
-
 		String criticalTestBranchesString =
 			JenkinsResultsParserUtil.getProperty(
-				localLiferayJenkinsEEBuildProperties,
+				JenkinsResultsParserUtil.
+					getLocalLiferayJenkinsEEBuildProperties(),
 				JenkinsResultsParserUtil.combine(
 					"test.branch.names.critical.test[",
 					pullRequest.getGitHubRemoteGitRepositoryName(), "]"));

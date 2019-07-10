@@ -172,9 +172,7 @@ public class ATag extends BaseATag {
 		jspWriter.write(">");
 
 		if (Validator.isNotNull(label)) {
-			Boolean localizeLabel = getLocalizeLabel();
-
-			if (localizeLabel) {
+			if (getLocalizeLabel()) {
 				ResourceBundle resourceBundle =
 					TagResourceBundleUtil.getResourceBundle(pageContext);
 

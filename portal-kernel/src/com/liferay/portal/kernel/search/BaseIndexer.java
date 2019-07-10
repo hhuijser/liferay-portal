@@ -372,11 +372,10 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 	@Override
 	public boolean isIndexerEnabled() {
 		if (_indexerEnabled == null) {
-			String className = getClassName();
-
 			String indexerEnabled = PropsUtil.get(
 				PropsKeys.INDEXER_ENABLED,
-				new com.liferay.portal.kernel.configuration.Filter(className));
+				new com.liferay.portal.kernel.configuration.Filter(
+					getClassName()));
 
 			_indexerEnabled = GetterUtil.getBoolean(indexerEnabled, true);
 
@@ -445,9 +444,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			SearchContext searchContext)
 		throws Exception {
 
-		String keywords = searchContext.getKeywords();
-
-		if (Validator.isNull(keywords)) {
+		if (Validator.isNull(searchContext.getKeywords())) {
 			addSearchTerm(searchQuery, searchContext, Field.DESCRIPTION, false);
 			addSearchTerm(searchQuery, searchContext, Field.TITLE, false);
 			addSearchTerm(searchQuery, searchContext, Field.USER_NAME, false);
@@ -1376,9 +1373,7 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 			fullQuery.setPreBooleanFilter(preBooleanFilter);
 		}
 
-		QueryConfig queryConfig = searchContext.getQueryConfig();
-
-		fullQuery.setQueryConfig(queryConfig);
+		fullQuery.setQueryConfig(searchContext.getQueryConfig());
 
 		return IndexSearcherHelperUtil.search(searchContext, fullQuery);
 	}

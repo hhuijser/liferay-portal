@@ -53,9 +53,7 @@ public class WikiRequestHelper extends BaseStrutsRequestHelper {
 
 		try {
 			if (_wikiGroupServiceOverriddenConfiguration == null) {
-				String portletResource = getPortletResource();
-
-				if (Validator.isNotNull(portletResource)) {
+				if (Validator.isNotNull(getPortletResource())) {
 					_wikiGroupServiceOverriddenConfiguration =
 						ConfigurationProviderUtil.getConfiguration(
 							WikiGroupServiceOverriddenConfiguration.class,
@@ -97,9 +95,7 @@ public class WikiRequestHelper extends BaseStrutsRequestHelper {
 
 		try {
 			if (_wikiPortletInstanceConfiguration == null) {
-				String portletResource = getPortletResource();
-
-				if (Validator.isNotNull(portletResource)) {
+				if (Validator.isNotNull(getPortletResource())) {
 					_wikiPortletInstanceConfiguration =
 						ConfigurationProviderUtil.getConfiguration(
 							WikiPortletInstanceConfiguration.class,

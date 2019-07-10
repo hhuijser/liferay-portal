@@ -158,11 +158,9 @@ public class GetFileActionHelper {
 						(ThemeDisplay)httpServletRequest.getAttribute(
 							WebKeys.THEME_DISPLAY);
 
-					PermissionChecker permissionChecker =
-						themeDisplay.getPermissionChecker();
-
 					DLFileEntryPermission.check(
-						permissionChecker, dlFileEntry, ActionKeys.VIEW);
+						themeDisplay.getPermissionChecker(), dlFileEntry,
+						ActionKeys.VIEW);
 
 					fileEntry = new LiferayFileEntry(dlFileEntry);
 				}

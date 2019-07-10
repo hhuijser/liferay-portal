@@ -93,10 +93,9 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 
 		_hasMore = true;
 
-		URI endpointURI =
-			liferayConnectionResourceBaseProperties.resource.getEndpointURI();
-
-		_endpointJsonObject = _getEndpointJsonObject(endpointURI, ++actual, -1);
+		_endpointJsonObject = _getEndpointJsonObject(
+			liferayConnectionResourceBaseProperties.resource.getEndpointURI(),
+			++actual, -1);
 
 		_inputRecordsJsonArray = _endpointJsonObject.getJsonArray("items");
 
@@ -141,10 +140,9 @@ public class LiferayInputReader extends LiferayBaseReader<IndexedRecord> {
 
 	@Override
 	public boolean start() throws IOException {
-		URI endpointURI =
-			liferayConnectionResourceBaseProperties.resource.getEndpointURI();
-
-		_endpointJsonObject = _getEndpointJsonObject(endpointURI, 1, -1);
+		_endpointJsonObject = _getEndpointJsonObject(
+			liferayConnectionResourceBaseProperties.resource.getEndpointURI(),
+			1, -1);
 
 		if (_endpointJsonObject.containsKey("items")) {
 			_inputRecordsJsonArray = _endpointJsonObject.getJsonArray("items");

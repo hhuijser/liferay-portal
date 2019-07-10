@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
@@ -107,12 +106,9 @@ public class PermissionsPortletConfigurationIcon
 			return false;
 		}
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (!MBResourcePermission.contains(
-				permissionChecker, themeDisplay.getScopeGroupId(),
-				ActionKeys.PERMISSIONS)) {
+				themeDisplay.getPermissionChecker(),
+				themeDisplay.getScopeGroupId(), ActionKeys.PERMISSIONS)) {
 
 			return false;
 		}

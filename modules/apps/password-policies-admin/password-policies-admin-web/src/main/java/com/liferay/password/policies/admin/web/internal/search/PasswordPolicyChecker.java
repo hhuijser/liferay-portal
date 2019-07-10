@@ -17,7 +17,6 @@ package com.liferay.password.policies.admin.web.internal.search;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.model.PasswordPolicy;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.PasswordPolicyPermissionUtil;
 
@@ -36,13 +35,10 @@ public class PasswordPolicyChecker extends EmptyOnClickRowChecker {
 	public boolean isDisabled(Object obj) {
 		PasswordPolicy passwordPolicy = (PasswordPolicy)obj;
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		if (passwordPolicy.isDefaultPolicy() ||
 			!PasswordPolicyPermissionUtil.contains(
-				permissionChecker, passwordPolicy.getPasswordPolicyId(),
-				ActionKeys.DELETE)) {
+				PermissionThreadLocal.getPermissionChecker(),
+				passwordPolicy.getPasswordPolicyId(), ActionKeys.DELETE)) {
 
 			return true;
 		}

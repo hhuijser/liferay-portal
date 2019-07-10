@@ -235,9 +235,7 @@ public class Entity implements Comparable<Entity> {
 
 		Entity entity = (Entity)obj;
 
-		String name = entity.getName();
-
-		if (_name.equals(name)) {
+		if (_name.equals(entity.getName())) {
 			return true;
 		}
 

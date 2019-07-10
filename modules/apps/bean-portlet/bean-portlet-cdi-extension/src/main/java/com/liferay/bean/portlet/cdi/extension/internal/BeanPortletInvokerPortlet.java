@@ -75,10 +75,8 @@ public class BeanPortletInvokerPortlet implements InvokerPortlet {
 			for (BeanMethod beanMethod : entry.getValue()) {
 				Method method = beanMethod.getMethod();
 
-				Class<?> declaringClass = method.getDeclaringClass();
-
 				if (ClassUtil.isSubclass(
-						declaringClass,
+						method.getDeclaringClass(),
 						"javax.portlet.faces.GenericFacesPortlet")) {
 
 					facesPortlet = true;

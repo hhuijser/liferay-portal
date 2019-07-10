@@ -102,12 +102,9 @@ public class TaskNodeExecutor extends BaseNodeExecutor {
 		for (KaleoTaskAssignment configuredKaleoTaskAssignment :
 				configuredKaleoTaskAssignments) {
 
-			String assigneeClassName =
-				configuredKaleoTaskAssignment.getAssigneeClassName();
-
 			TaskAssignmentSelector taskAssignmentSelector =
 				_taskAssignmentSelectorRegistry.getTaskAssignmentSelector(
-					assigneeClassName);
+					configuredKaleoTaskAssignment.getAssigneeClassName());
 
 			Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 				taskAssignmentSelector.calculateTaskAssignments(

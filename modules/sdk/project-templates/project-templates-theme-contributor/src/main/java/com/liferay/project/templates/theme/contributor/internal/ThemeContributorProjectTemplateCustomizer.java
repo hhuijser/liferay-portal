@@ -45,9 +45,8 @@ public class ThemeContributorProjectTemplateCustomizer
 
 		Properties properties = archetypeGenerationRequest.getProperties();
 
-		String contributorType = projectTemplatesArgs.getContributorType();
-
-		properties.put("contributorType", contributorType);
+		properties.put(
+			"contributorType", projectTemplatesArgs.getContributorType());
 	}
 
 }

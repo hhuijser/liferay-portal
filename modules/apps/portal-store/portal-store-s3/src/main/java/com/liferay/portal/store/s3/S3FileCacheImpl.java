@@ -73,9 +73,7 @@ public class S3FileCacheImpl implements S3FileCache {
 
 			_calledCleanUpCacheFilesCount = 0;
 
-			String cacheDirName = getCacheDirName();
-
-			File cacheDir = new File(cacheDirName);
+			File cacheDir = new File(getCacheDirName());
 
 			long lastModified = System.currentTimeMillis();
 

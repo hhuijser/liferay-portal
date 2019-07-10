@@ -379,11 +379,10 @@ public class AssetPublisherConfigurationAction
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Layout layout = themeDisplay.getLayout();
-
 		if (!assetPublisherWebUtil.isScopeIdSelectable(
 				themeDisplay.getPermissionChecker(), scopeId,
-				themeDisplay.getCompanyGroupId(), layout, true)) {
+				themeDisplay.getCompanyGroupId(), themeDisplay.getLayout(),
+				true)) {
 
 			throw new PrincipalException();
 		}
@@ -679,10 +678,9 @@ public class AssetPublisherConfigurationAction
 			LayoutSetBranch layoutSetBranch =
 				LayoutStagingUtil.getLayoutSetBranch(layout.getLayoutSet());
 
-			long layoutSetBranchId = layoutSetBranch.getLayoutSetBranchId();
-
 			long layoutRevisionId = staging.getRecentLayoutRevisionId(
-				httpServletRequest, layoutSetBranchId, layout.getPlid());
+				httpServletRequest, layoutSetBranch.getLayoutSetBranchId(),
+				layout.getPlid());
 
 			LayoutRevision layoutRevision =
 				layoutRevisionLocalService.getLayoutRevision(layoutRevisionId);

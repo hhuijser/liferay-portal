@@ -120,10 +120,9 @@ public class AppDockerPlugin implements Plugin<Project> {
 		final Sync prepareAppDockerImageInputDirTask,
 		final AppDockerExtension appDockerExtension) {
 
-		Project project = prepareAppDockerImageInputDirTask.getProject();
-
 		final DockerBuildImage dockerBuildImage = GradleUtil.addTask(
-			project, BUILD_APP_DOCKER_IMAGE_TASK_NAME, DockerBuildImage.class);
+			prepareAppDockerImageInputDirTask.getProject(),
+			BUILD_APP_DOCKER_IMAGE_TASK_NAME, DockerBuildImage.class);
 
 		dockerBuildImage.setDependsOn(
 			Collections.singleton(prepareAppDockerImageInputDirTask));

@@ -137,10 +137,7 @@ public class DefaultLayoutPrototypesUtil {
 				layout, portletId);
 
 		for (Map.Entry<String, String> entry : preferences.entrySet()) {
-			String key = entry.getKey();
-			String value = entry.getValue();
-
-			portletSetup.setValue(key, value);
+			portletSetup.setValue(entry.getKey(), entry.getValue());
 		}
 
 		portletSetup.store();

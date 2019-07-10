@@ -753,12 +753,10 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 	protected void activate(ComponentContext componentContext)
 		throws Exception {
 
-		Dictionary<String, Object> properties =
-			componentContext.getProperties();
-
 		_schedulerEngineHelperConfiguration =
 			ConfigurableUtil.createConfigurable(
-				SchedulerEngineHelperConfiguration.class, properties);
+				SchedulerEngineHelperConfiguration.class,
+				componentContext.getProperties());
 
 		_bundleContext = componentContext.getBundleContext();
 

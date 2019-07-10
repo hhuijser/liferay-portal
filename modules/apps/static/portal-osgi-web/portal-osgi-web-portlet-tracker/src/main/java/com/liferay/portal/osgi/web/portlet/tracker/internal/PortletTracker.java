@@ -337,9 +337,9 @@ public class PortletTracker
 
 			portletBagFactory.create(portletModel, portlet, true);
 
-			List<Company> companies = _companyLocalService.getCompanies();
-
-			deployPortlet(serviceReference, portletModel, companies);
+			deployPortlet(
+				serviceReference, portletModel,
+				_companyLocalService.getCompanies());
 
 			portletModel.setReady(true);
 

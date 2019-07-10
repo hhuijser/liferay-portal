@@ -53,13 +53,10 @@ public class NestedFieldsContainerRequestFilter
 			List<String> fieldNames = Arrays.asList(
 				nestedFields.split("\\s*,\\s*"));
 
-			MultivaluedMap<String, String> pathParameters =
-				uriInfo.getPathParameters();
-
 			NestedFieldsContextThreadLocal.setNestedFieldsContext(
 				new NestedFieldsContext(
-					fieldNames, JAXRSUtils.getCurrentMessage(), pathParameters,
-					queryParameters));
+					fieldNames, JAXRSUtils.getCurrentMessage(),
+					uriInfo.getPathParameters(), queryParameters));
 		}
 	}
 

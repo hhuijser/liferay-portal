@@ -108,10 +108,8 @@ public class PortletRemoteStagingBackgroundTaskExecutor
 
 			httpPrincipal = (HttpPrincipal)taskContextMap.get("httpPrincipal");
 
-			Map<String, Serializable> settingsMap =
-				exportImportConfiguration.getSettingsMap();
-
-			long targetGroupId = MapUtil.getLong(settingsMap, "targetGroupId");
+			long targetGroupId = MapUtil.getLong(
+				exportImportConfiguration.getSettingsMap(), "targetGroupId");
 
 			stagingRequestId = StagingServiceHttp.createStagingRequest(
 				httpPrincipal, targetGroupId, checksum);

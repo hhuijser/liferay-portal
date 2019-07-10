@@ -155,10 +155,9 @@ public class SyncAuthVerifier implements AuthVerifier {
 			return authVerifierResult;
 		}
 
-		String scheme = httpAuthorizationHeader.getScheme();
-
 		if (!StringUtil.equalsIgnoreCase(
-				scheme, HttpAuthorizationHeader.SCHEME_BASIC)) {
+				httpAuthorizationHeader.getScheme(),
+				HttpAuthorizationHeader.SCHEME_BASIC)) {
 
 			return authVerifierResult;
 		}

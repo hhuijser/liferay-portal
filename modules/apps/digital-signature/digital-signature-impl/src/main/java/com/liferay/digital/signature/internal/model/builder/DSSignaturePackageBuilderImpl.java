@@ -129,9 +129,7 @@ public class DSSignaturePackageBuilderImpl
 				dsParticipant.getDSParticipantRole(),
 				participantRole -> new ArrayList<>());
 
-		String participantKey = dsParticipant.getParticipantKey();
-
-		if (Validator.isNull(participantKey)) {
+		if (Validator.isNull(dsParticipant.getParticipantKey())) {
 			BeanPropertiesUtil.setPropertySilent(
 				dsParticipant, "participantKey",
 				String.valueOf(_participantCounter));

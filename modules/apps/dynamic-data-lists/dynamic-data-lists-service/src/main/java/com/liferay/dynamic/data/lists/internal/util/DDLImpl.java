@@ -195,9 +195,8 @@ public class DDLImpl implements DDL {
 		for (DDMFormField ddmFormField : ddmFormFields) {
 			String name = ddmFormField.getName();
 
-			String dataType = ddmFormField.getDataType();
-
-			JSONObject jsonObject = JSONUtil.put("dataType", dataType);
+			JSONObject jsonObject = JSONUtil.put(
+				"dataType", ddmFormField.getDataType());
 
 			boolean readOnly = ddmFormField.isReadOnly();
 
@@ -219,9 +218,7 @@ public class DDLImpl implements DDL {
 				"sortable", true
 			);
 
-			String type = ddmFormField.getType();
-
-			jsonObject.put("type", type);
+			jsonObject.put("type", ddmFormField.getType());
 
 			jsonArray.put(jsonObject);
 		}

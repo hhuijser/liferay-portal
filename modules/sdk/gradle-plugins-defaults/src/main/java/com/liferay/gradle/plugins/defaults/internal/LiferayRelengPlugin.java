@@ -838,9 +838,9 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 	private void _configureTaskWriteArtifactPublishCommandsForOSGi(
 		WriteArtifactPublishCommandsTask writeArtifactPublishCommandsTask) {
 
-		Project project = writeArtifactPublishCommandsTask.getProject();
+		if (GradlePluginsDefaultsUtil.isTestProject(
+				writeArtifactPublishCommandsTask.getProject())) {
 
-		if (GradlePluginsDefaultsUtil.isTestProject(project)) {
 			writeArtifactPublishCommandsTask.setEnabled(false);
 		}
 

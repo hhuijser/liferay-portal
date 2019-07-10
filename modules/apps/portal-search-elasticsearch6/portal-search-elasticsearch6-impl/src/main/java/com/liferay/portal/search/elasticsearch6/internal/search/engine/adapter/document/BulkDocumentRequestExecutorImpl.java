@@ -35,7 +35,6 @@ import org.elasticsearch.action.delete.DeleteRequestBuilder;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateRequestBuilder;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.rest.RestStatus;
 
@@ -103,10 +102,9 @@ public class BulkDocumentRequestExecutorImpl
 	protected BulkRequestBuilder createBulkRequestBuilder(
 		BulkDocumentRequest bulkDocumentRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		BulkRequestBuilder bulkRequestBuilder =
-			BulkAction.INSTANCE.newRequestBuilder(client);
+			BulkAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		if (bulkDocumentRequest.isRefresh()) {
 			bulkRequestBuilder.setRefreshPolicy(

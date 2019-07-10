@@ -176,14 +176,12 @@ public class WorkflowDefinitionDisplayContext {
 			return StringPool.BLANK;
 		}
 
-		ResourceBundle resourceBundle = getResourceBundle();
-
 		String title = workflowDefinition.getTitle();
 
 		String defaultLanguageId = LocalizationUtil.getDefaultLanguageId(title);
 
 		String newTitle = LanguageUtil.format(
-			resourceBundle, "copy-of-x",
+			getResourceBundle(), "copy-of-x",
 			workflowDefinition.getTitle(defaultLanguageId));
 
 		return LocalizationUtil.updateLocalization(

@@ -191,13 +191,11 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 		}
 
 		if (_log.isInfoEnabled()) {
-			String hostAddress = _bindInetAddress.getHostAddress();
-			String name = _bindNetworkInterface.getName();
-
 			_log.info(
 				StringBundler.concat(
-					"Setting JGroups outgoing IP address to ", hostAddress,
-					" and interface to ", name));
+					"Setting JGroups outgoing IP address to ",
+					_bindInetAddress.getHostAddress(), " and interface to ",
+					_bindNetworkInterface.getName()));
 		}
 	}
 

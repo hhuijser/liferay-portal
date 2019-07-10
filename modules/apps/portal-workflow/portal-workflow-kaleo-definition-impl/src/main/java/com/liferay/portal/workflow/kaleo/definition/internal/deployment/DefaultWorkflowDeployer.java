@@ -164,10 +164,8 @@ public class DefaultWorkflowDeployer implements WorkflowDeployer {
 
 		KaleoNode kaleoNode = kaleoNodesMap.get(startKaleoNodeName);
 
-		long kaleoDefinitionId = kaleoDefinition.getKaleoDefinitionId();
-
 		_kaleoDefinitionLocalService.activateKaleoDefinition(
-			kaleoDefinitionId, kaleoDefinitionVersionId,
+			kaleoDefinition.getKaleoDefinitionId(), kaleoDefinitionVersionId,
 			kaleoNode.getKaleoNodeId(), serviceContext);
 
 		return _kaleoWorkflowModelConverter.toWorkflowDefinition(

@@ -30,7 +30,6 @@ import com.liferay.portal.security.sso.openid.connect.internal.exception.Strange
 import com.nimbusds.openid.connect.sdk.claims.UserInfo;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -89,9 +88,6 @@ public class OpenIdConnectUserInfoProcessorImpl
 
 		Company company = _companyLocalService.getCompany(companyId);
 
-		Locale locale = company.getLocale();
-
-		String middleName = userInfo.getMiddleName();
 		long prefixId = 0;
 		long suffixId = 0;
 		boolean male = true;
@@ -109,10 +105,11 @@ public class OpenIdConnectUserInfoProcessorImpl
 
 		user = _userLocalService.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
-			autoScreenName, screenName, emailAddress, facebookId, null, locale,
-			firstName, middleName, lastName, prefixId, suffixId, male,
-			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
-			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
+			autoScreenName, screenName, emailAddress, facebookId, null,
+			company.getLocale(), firstName, userInfo.getMiddleName(), lastName,
+			prefixId, suffixId, male, birthdayMonth, birthdayDay, birthdayYear,
+			jobTitle, groupIds, organizationIds, roleIds, userGroupIds,
+			sendEmail, serviceContext);
 
 		user = _userLocalService.updatePasswordReset(user.getUserId(), false);
 

@@ -552,9 +552,6 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 		long companyId, String className, String userIdField, long[] groupIds,
 		String bridgeJoin) {
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		String resourcePermissionSQL = _customSQL.get(
 			getClass(), FIND_BY_RESOURCE_PERMISSION);
 
@@ -563,7 +560,8 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 		}
 
 		String roleIdsOrOwnerIdSQL = getRoleIdsOrOwnerIdSQL(
-			permissionChecker, groupIds, userIdField);
+			PermissionThreadLocal.getPermissionChecker(), groupIds,
+			userIdField);
 
 		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
 

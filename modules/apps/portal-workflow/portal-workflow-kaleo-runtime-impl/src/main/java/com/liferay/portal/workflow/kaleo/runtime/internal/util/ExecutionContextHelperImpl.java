@@ -103,18 +103,14 @@ public class ExecutionContextHelperImpl implements ExecutionContextHelper {
 				kaleoTaskInstanceToken.getKaleoTaskInstanceTokenId());
 		}
 
-		Map<String, Serializable> workflowContext =
-			executionContext.getWorkflowContext();
-
 		jsonObject.put(
-			"workflowContext", WorkflowContextUtil.convert(workflowContext));
-
-		ServiceContext serviceContext = executionContext.getServiceContext();
-
-		jsonObject.put(
-			"serviceContext", _jsonFactory.serialize(serviceContext)
+			"serviceContext",
+			_jsonFactory.serialize(executionContext.getServiceContext())
 		).put(
 			"transitionName", executionContext.getTransitionName()
+		).put(
+			"workflowContext",
+			WorkflowContextUtil.convert(executionContext.getWorkflowContext())
 		);
 
 		return jsonObject.toString();

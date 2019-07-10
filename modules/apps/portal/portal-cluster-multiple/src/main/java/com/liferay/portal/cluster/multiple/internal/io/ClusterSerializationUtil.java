@@ -85,10 +85,8 @@ public class ClusterSerializationUtil {
 
 		@Override
 		protected void annotateClass(Class<?> clazz) throws IOException {
-			ClassLoader classLoader = clazz.getClassLoader();
-
 			String contextName = ClusterClassLoaderPool.getContextName(
-				classLoader);
+				clazz.getClassLoader());
 
 			writeUTF(contextName);
 		}

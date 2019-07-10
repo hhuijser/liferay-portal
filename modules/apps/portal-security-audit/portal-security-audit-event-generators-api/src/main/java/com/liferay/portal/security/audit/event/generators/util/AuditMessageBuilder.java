@@ -41,8 +41,6 @@ public class AuditMessageBuilder {
 		String eventType, String className, long classPK,
 		List<Attribute> attributes) {
 
-		long companyId = CompanyThreadLocal.getCompanyId();
-
 		long userId = 0;
 
 		if (PrincipalThreadLocal.getName() != null) {
@@ -74,8 +72,9 @@ public class AuditMessageBuilder {
 		}
 
 		return new AuditMessage(
-			eventType, companyId, realUserId, realUserName, className,
-			String.valueOf(classPK), null, additionalInfoJSONObject);
+			eventType, CompanyThreadLocal.getCompanyId(), realUserId,
+			realUserName, className, String.valueOf(classPK), null,
+			additionalInfoJSONObject);
 	}
 
 	private static JSONArray _getAttributesJSONArray(

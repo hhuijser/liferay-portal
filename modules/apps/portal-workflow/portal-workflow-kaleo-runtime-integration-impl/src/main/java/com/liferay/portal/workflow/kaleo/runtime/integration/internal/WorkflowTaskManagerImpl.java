@@ -819,9 +819,6 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			KaleoTaskInstanceToken kaleoTaskInstanceToken)
 		throws PortalException {
 
-		KaleoInstanceToken kaleoInstanceToken =
-			kaleoTaskInstanceToken.getKaleoInstanceToken();
-
 		Map<String, Serializable> workflowContext = WorkflowContextUtil.convert(
 			kaleoTaskInstanceToken.getWorkflowContext());
 
@@ -830,7 +827,8 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 				WorkflowConstants.CONTEXT_SERVICE_CONTEXT);
 
 		return new ExecutionContext(
-			kaleoInstanceToken, workflowContext, workflowContextServiceContext);
+			kaleoTaskInstanceToken.getKaleoInstanceToken(), workflowContext,
+			workflowContextServiceContext);
 	}
 
 	protected List<KaleoTaskAssignment> getCalculatedKaleoTaskAssignments(
@@ -863,11 +861,9 @@ public class WorkflowTaskManagerImpl implements WorkflowTaskManager {
 			ExecutionContext executionContext)
 		throws PortalException {
 
-		String assigneeClassName = kaleoTaskAssignment.getAssigneeClassName();
-
 		TaskAssignmentSelector taskAssignmentSelector =
 			_taskAssignmentSelectorRegistry.getTaskAssignmentSelector(
-				assigneeClassName);
+				kaleoTaskAssignment.getAssigneeClassName());
 
 		return taskAssignmentSelector.calculateTaskAssignments(
 			kaleoTaskAssignment, executionContext);

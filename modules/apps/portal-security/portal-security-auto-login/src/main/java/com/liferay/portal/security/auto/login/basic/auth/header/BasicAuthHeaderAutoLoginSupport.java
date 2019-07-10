@@ -49,12 +49,11 @@ public class BasicAuthHeaderAutoLoginSupport extends BaseAutoLogin {
 			return null;
 		}
 
-		String scheme = httpAuthorizationHeader.getScheme();
-
 		// We only handle HTTP Basic authentication
 
 		if (!StringUtil.equalsIgnoreCase(
-				scheme, HttpAuthorizationHeader.SCHEME_BASIC)) {
+				httpAuthorizationHeader.getScheme(),
+				HttpAuthorizationHeader.SCHEME_BASIC)) {
 
 			return null;
 		}

@@ -18,7 +18,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.cluster.ClusterEvent;
 import com.liferay.portal.kernel.cluster.ClusterEventListener;
-import com.liferay.portal.kernel.cluster.ClusterEventType;
 import com.liferay.portal.kernel.cluster.ClusterNode;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -36,14 +35,12 @@ public class DebuggingClusterEventListenerImpl implements ClusterEventListener {
 			return;
 		}
 
-		ClusterEventType clusterEventType = clusterEvent.getClusterEventType();
-
 		List<ClusterNode> clusterNodes = clusterEvent.getClusterNodes();
 
 		StringBundler sb = new StringBundler(clusterNodes.size() * 3 + 3);
 
 		sb.append("Cluster event ");
-		sb.append(clusterEventType);
+		sb.append(clusterEvent.getClusterEventType());
 		sb.append(StringPool.NEW_LINE);
 
 		for (ClusterNode clusterNode : clusterNodes) {

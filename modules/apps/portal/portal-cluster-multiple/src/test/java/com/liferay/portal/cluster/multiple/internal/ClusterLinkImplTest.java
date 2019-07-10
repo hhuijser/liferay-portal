@@ -226,11 +226,8 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 		for (TestClusterChannel clusterChannel : clusterChannels) {
 			Assert.assertFalse(clusterChannel.isClosed());
 
-			ClusterReceiver clusterReceiver =
-				clusterChannel.getClusterReceiver();
-
 			CountDownLatch countDownLatch = ReflectionTestUtil.getFieldValue(
-				clusterReceiver, "_countDownLatch");
+				clusterChannel.getClusterReceiver(), "_countDownLatch");
 
 			Assert.assertEquals(0, countDownLatch.getCount());
 		}

@@ -58,7 +58,6 @@ import javax.naming.directory.Attribute;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.SearchControls;
 import javax.naming.directory.SearchResult;
-import javax.naming.ldap.Control;
 import javax.naming.ldap.InitialLdapContext;
 import javax.naming.ldap.LdapContext;
 
@@ -190,11 +189,9 @@ public class LDAPAuth implements Authenticator {
 
 				// Get LDAP bind results
 
-				Control[] responseControls =
-					initialLdapContext.getResponseControls();
-
 				ldapAuthResult.setAuthenticated(true);
-				ldapAuthResult.setResponseControl(responseControls);
+				ldapAuthResult.setResponseControl(
+					initialLdapContext.getResponseControls());
 			}
 			catch (Exception e) {
 				boolean authenticationException = false;

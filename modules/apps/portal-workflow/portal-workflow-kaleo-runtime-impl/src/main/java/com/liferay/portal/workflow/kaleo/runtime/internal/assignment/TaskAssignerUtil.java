@@ -44,12 +44,9 @@ public class TaskAssignerUtil {
 			new ArrayList<>();
 
 		for (KaleoTaskAssignment kaleoTaskAssignment : kaleoTaskAssignments) {
-			String assigneeClassName =
-				kaleoTaskAssignment.getAssigneeClassName();
-
 			TaskAssignmentSelector taskAssignmentSelector =
 				_taskAssignmentSelectorRegistry.getTaskAssignmentSelector(
-					assigneeClassName);
+					kaleoTaskAssignment.getAssigneeClassName());
 
 			Collection<KaleoTaskAssignment> calculatedKaleoTaskAssignments =
 				taskAssignmentSelector.calculateTaskAssignments(

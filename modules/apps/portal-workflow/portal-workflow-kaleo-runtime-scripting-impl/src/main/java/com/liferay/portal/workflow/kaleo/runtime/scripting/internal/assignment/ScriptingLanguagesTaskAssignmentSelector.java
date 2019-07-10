@@ -52,14 +52,12 @@ public class ScriptingLanguagesTaskAssignmentSelector
 			ExecutionContext executionContext)
 		throws PortalException {
 
-		String assigneeScript = kaleoTaskAssignment.getAssigneeScript();
-
 		String assigneeScriptingLanguage =
 			kaleoTaskAssignment.getAssigneeScriptLanguage();
 
 		Map<String, Object> results = _kaleoScriptingEvaluator.execute(
 			executionContext, _outputNames, assigneeScriptingLanguage,
-			assigneeScript);
+			kaleoTaskAssignment.getAssigneeScript());
 
 		return getKaleoTaskAssignments(results);
 	}

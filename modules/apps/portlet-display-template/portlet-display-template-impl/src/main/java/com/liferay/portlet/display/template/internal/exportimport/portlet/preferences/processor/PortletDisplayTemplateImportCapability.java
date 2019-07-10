@@ -80,9 +80,7 @@ public class PortletDisplayTemplateImportCapability implements Capability {
 			return 0;
 		}
 
-		String className = templateHandler.getClassName();
-
-		return _portal.getClassNameId(className);
+		return _portal.getClassNameId(templateHandler.getClassName());
 	}
 
 	protected PortletPreferences importDisplayStyle(

@@ -778,13 +778,10 @@ public class ClusterMasterExecutorImplTest extends BaseClusterTestCase {
 		public void setCoordinatorAddress(Address address) throws Exception {
 			ClusterChannel clusterChannel = getClusterChannel();
 
-			ClusterReceiver clusterReceiver =
-				clusterChannel.getClusterReceiver();
-
 			Field field = ReflectionUtil.getDeclaredField(
 				BaseClusterReceiver.class, "_coordinatorAddress");
 
-			field.set(clusterReceiver, address);
+			field.set(clusterChannel.getClusterReceiver(), address);
 		}
 
 		@Override

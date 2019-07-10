@@ -31,14 +31,12 @@ public class ValidationExceptionMapper
 
 	@Override
 	public Response toResponse(ValidationException validationException) {
-		String message = validationException.getMessage();
-
 		return Response.status(
 			Response.Status.BAD_REQUEST
 		).type(
 			MediaType.TEXT_PLAIN
 		).entity(
-			message
+			validationException.getMessage()
 		).build();
 	}
 

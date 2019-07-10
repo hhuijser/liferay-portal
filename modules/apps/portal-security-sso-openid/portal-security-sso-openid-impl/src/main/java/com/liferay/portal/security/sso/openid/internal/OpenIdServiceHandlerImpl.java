@@ -48,7 +48,6 @@ import java.io.IOException;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -290,7 +289,6 @@ public class OpenIdServiceHandlerImpl implements OpenIdServiceHandler {
 		boolean autoScreenName = true;
 		String screenName = StringPool.BLANK;
 		long facebookId = 0;
-		Locale locale = themeDisplay.getLocale();
 		String middleName = StringPool.BLANK;
 		long prefixId = 0;
 		long suffixId = 0;
@@ -312,9 +310,10 @@ public class OpenIdServiceHandlerImpl implements OpenIdServiceHandler {
 		user = _userLocalService.addUser(
 			creatorUserId, companyId, autoPassword, password1, password2,
 			autoScreenName, screenName, emailAddress, facebookId, openId,
-			locale, firstName, middleName, lastName, prefixId, suffixId, male,
-			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
-			organizationIds, roleIds, userGroupIds, sendEmail, serviceContext);
+			themeDisplay.getLocale(), firstName, middleName, lastName, prefixId,
+			suffixId, male, birthdayMonth, birthdayDay, birthdayYear, jobTitle,
+			groupIds, organizationIds, roleIds, userGroupIds, sendEmail,
+			serviceContext);
 
 		session.setAttribute(WebKeys.OPEN_ID_LOGIN, user.getUserId());
 

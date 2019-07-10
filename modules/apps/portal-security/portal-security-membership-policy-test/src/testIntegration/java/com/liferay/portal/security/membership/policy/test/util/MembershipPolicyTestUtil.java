@@ -160,7 +160,6 @@ public class MembershipPolicyTestUtil {
 			long[] userGroupIds, List<UserGroupRole> userGroupRoles)
 		throws Exception {
 
-		long userId = user.getUserId();
 		String oldPassword = user.getPassword();
 
 		String newPassword1 = RandomTestUtil.randomString();
@@ -207,15 +206,15 @@ public class MembershipPolicyTestUtil {
 		ServiceContext serviceContext = new ServiceContext();
 
 		UserServiceUtil.updateUser(
-			userId, oldPassword, newPassword1, newPassword2, passwordReset,
-			reminderQueryQuestion, reminderQueryAnswer, screenName,
-			emailAddress, facebookId, openId, false, null, languageId,
-			timeZoneId, greeting, comments, firstName, middleName, lastName,
-			prefixId, suffixId, male, birthdayMonth, birthdayDay, birthdayYear,
-			smsSn, facebookSn, jabberSn, skypeSn, twitterSn, jobTitle, siteIds,
-			organizationIds, roleIds, userGroupRoles, userGroupIds, addresses,
-			emailAddresses, phones, websites, announcementsDelivers,
-			serviceContext);
+			user.getUserId(), oldPassword, newPassword1, newPassword2,
+			passwordReset, reminderQueryQuestion, reminderQueryAnswer,
+			screenName, emailAddress, facebookId, openId, false, null,
+			languageId, timeZoneId, greeting, comments, firstName, middleName,
+			lastName, prefixId, suffixId, male, birthdayMonth, birthdayDay,
+			birthdayYear, smsSn, facebookSn, jabberSn, skypeSn, twitterSn,
+			jobTitle, siteIds, organizationIds, roleIds, userGroupRoles,
+			userGroupIds, addresses, emailAddresses, phones, websites,
+			announcementsDelivers, serviceContext);
 	}
 
 	protected static Map<String, Serializable> addExpandoMap(Class<?> clazz)

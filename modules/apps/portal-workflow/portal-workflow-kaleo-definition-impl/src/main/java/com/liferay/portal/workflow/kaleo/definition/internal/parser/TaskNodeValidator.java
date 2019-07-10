@@ -60,12 +60,10 @@ public class TaskNodeValidator extends BaseNodeValidator<Task> {
 		Set<TaskForm> taskForms = task.getTaskForms();
 
 		for (TaskForm taskForm : taskForms) {
-			String formDefinition = taskForm.getFormDefinition();
-
 			TaskFormReference taskFormReference =
 				taskForm.getTaskFormReference();
 
-			if (Validator.isNull(formDefinition) ||
+			if (Validator.isNull(taskForm.getFormDefinition()) ||
 				(taskFormReference == null)) {
 
 				throw new KaleoDefinitionValidationException.

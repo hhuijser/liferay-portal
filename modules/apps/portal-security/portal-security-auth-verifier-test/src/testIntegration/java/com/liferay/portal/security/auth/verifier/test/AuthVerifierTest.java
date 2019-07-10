@@ -316,9 +316,7 @@ public class AuthVerifierTest {
 
 			PrintWriter printWriter = httpServletResponse.getWriter();
 
-			String remoteUser = httpServletRequest.getRemoteUser();
-
-			if (Validator.isNull(remoteUser)) {
+			if (Validator.isNull(httpServletRequest.getRemoteUser())) {
 				printWriter.write("no-remote-user");
 			}
 			else {

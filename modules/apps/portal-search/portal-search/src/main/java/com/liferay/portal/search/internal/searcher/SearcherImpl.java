@@ -26,6 +26,7 @@ import com.liferay.portal.search.searcher.SearchRequest;
 import com.liferay.portal.search.searcher.SearchResponse;
 import com.liferay.portal.search.searcher.SearchResponseBuilder;
 import com.liferay.portal.search.searcher.Searcher;
+import com.liferay.portal.search.spi.searcher.SearchRequestContributor;
 
 import java.util.List;
 import java.util.function.Function;

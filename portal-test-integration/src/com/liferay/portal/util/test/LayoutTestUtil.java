@@ -271,8 +271,6 @@ public class LayoutTestUtil {
 			Map<String, String[]> preferenceMap)
 		throws Exception {
 
-		long userId = TestPropsValues.getUserId();
-
 		LayoutTypePortlet layoutTypePortlet =
 			(LayoutTypePortlet)layout.getLayoutType();
 
@@ -283,7 +281,8 @@ public class LayoutTestUtil {
 		String columnId = columns.get(0);
 
 		return addPortletToLayout(
-			userId, layout, portletId, columnId, preferenceMap);
+			TestPropsValues.getUserId(), layout, portletId, columnId,
+			preferenceMap);
 	}
 
 	public static String addPortletToLayout(

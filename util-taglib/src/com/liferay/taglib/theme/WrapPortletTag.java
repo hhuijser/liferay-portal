@@ -15,7 +15,6 @@
 package com.liferay.taglib.theme;
 
 import com.liferay.portal.kernel.io.unsync.UnsyncStringWriter;
-import com.liferay.portal.kernel.model.Theme;
 import com.liferay.portal.kernel.servlet.DirectRequestDispatcherFactoryUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -47,7 +46,6 @@ public class WrapPortletTag
 			(ThemeDisplay)httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		Theme theme = themeDisplay.getTheme();
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		// Portlet content
@@ -69,7 +67,7 @@ public class WrapPortletTag
 
 		String content = ThemeUtil.include(
 			servletContext, httpServletRequest, httpServletResponse, wrapPage,
-			theme, false);
+			themeDisplay.getTheme(), false);
 
 		return _CONTENT_WRAPPER_PRE.concat(
 			content
@@ -84,8 +82,6 @@ public class WrapPortletTag
 			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-			Theme theme = themeDisplay.getTheme();
-
 			PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 			// Portlet content
@@ -97,7 +93,7 @@ public class WrapPortletTag
 			ThemeUtil.include(
 				servletContext, request,
 				PipingServletResponse.createPipingServletResponse(pageContext),
-				getPage(), theme);
+				getPage(), themeDisplay.getTheme());
 
 			return EVAL_PAGE;
 		}

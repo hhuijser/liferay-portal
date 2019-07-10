@@ -108,9 +108,7 @@ public class InputTag extends BaseInputTag {
 
 		Class<?> model = getModel();
 
-		String type = getType();
-
-		if ((model != null) && Validator.isNull(type)) {
+		if ((model != null) && Validator.isNull(getType())) {
 			String fieldParam = getFieldParam();
 
 			if (Validator.isNotNull(fieldParam)) {

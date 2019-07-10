@@ -16,7 +16,6 @@ package com.liferay.util.ant;
 
 import java.io.File;
 
-import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.War;
 
 /**
@@ -26,8 +25,6 @@ public class WarTask {
 
 	public static void war(
 		File baseDir, File destination, String excludes, File webxml) {
-
-		Project project = AntUtil.getProject();
 
 		War war = new War();
 
@@ -42,7 +39,7 @@ public class WarTask {
 			war.setManifest(manifestFile);
 		}
 
-		war.setProject(project);
+		war.setProject(AntUtil.getProject());
 		war.setWebxml(webxml);
 
 		war.execute();

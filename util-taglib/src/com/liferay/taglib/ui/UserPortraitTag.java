@@ -136,13 +136,11 @@ public class UserPortraitTag extends IncludeTag {
 	public int processEndTag() throws Exception {
 		JspWriter jspWriter = pageContext.getOut();
 
-		User user = getUser();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		String userPortraitHTML = getUserPortraitHTML(
-			_cssClass, _size, user, themeDisplay);
+			_cssClass, _size, getUser(), themeDisplay);
 
 		jspWriter.write(userPortraitHTML);
 

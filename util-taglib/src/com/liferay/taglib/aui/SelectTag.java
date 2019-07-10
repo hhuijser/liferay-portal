@@ -186,8 +186,6 @@ public class SelectTag extends BaseSelectTag implements BodyTag {
 			listTypeFieldName = "typeId";
 		}
 
-		Class<?> model = getModel();
-
 		String title = getTitle();
 
 		if ((title == null) && Validator.isNull(label)) {
@@ -212,7 +210,7 @@ public class SelectTag extends BaseSelectTag implements BodyTag {
 		setNamespacedAttribute(httpServletRequest, "label", label);
 		setNamespacedAttribute(
 			httpServletRequest, "listTypeFieldName", listTypeFieldName);
-		setNamespacedAttribute(httpServletRequest, "model", model);
+		setNamespacedAttribute(httpServletRequest, "model", getModel());
 		setNamespacedAttribute(
 			httpServletRequest, "title", String.valueOf(title));
 		setNamespacedAttribute(httpServletRequest, "value", value);

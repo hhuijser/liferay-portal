@@ -32,10 +32,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portlet.layoutsadmin.display.context.GroupDisplayContextHelper;
 
-import java.io.Serializable;
-
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import javax.portlet.PortletURL;
@@ -131,9 +128,6 @@ public class ExportImportToolbarDisplayContext {
 					for (ExportImportConfiguration exportImportConfiguration :
 							exportImportConfigurations) {
 
-						Map<String, Serializable> settingsMap =
-							exportImportConfiguration.getSettingsMap();
-
 						addRestDropdownItem(
 							dropdownItem -> {
 								dropdownItem.setHref(
@@ -154,7 +148,9 @@ public class ExportImportToolbarDisplayContext {
 											getLiveGroupId()),
 									"privateLayout",
 									MapUtil.getString(
-										settingsMap, "privateLayout"),
+										exportImportConfiguration.
+											getSettingsMap(),
+										"privateLayout"),
 									"displayStyle",
 									ParamUtil.getString(
 										_httpServletRequest, "displayStyle",

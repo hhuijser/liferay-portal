@@ -120,7 +120,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetExportPortletControlsMapAllConfiguration()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = "test_portlet";
 
 		ExportImportTestParameterMapBuilder builder =
@@ -143,7 +142,7 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getExportPortletControlsMap(
-				companyId, portletId, parameterMap);
+				TestPropsValues.getCompanyId(), portletId, parameterMap);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, true, true, false, true, true);
@@ -153,7 +152,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetExportPortletControlsMapNoConfiguration()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = "test_portlet";
 
 		ExportImportTestParameterMapBuilder builder =
@@ -169,7 +167,7 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getExportPortletControlsMap(
-				companyId, portletId, parameterMap);
+				TestPropsValues.getCompanyId(), portletId, parameterMap);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -179,7 +177,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetExportPortletControlsMapRootConfiguration()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		ExportImportTestParameterMapBuilder builder =
@@ -202,7 +199,7 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getExportPortletControlsMap(
-				companyId, portletId, parameterMap);
+				TestPropsValues.getCompanyId(), portletId, parameterMap);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -211,8 +208,6 @@ public class ExportImportHelperUtilTest {
 	@Test
 	public void testGetExportPortletControlsMapRootConfigurationWithPortletConfiguration()
 		throws Exception {
-
-		long companyId = TestPropsValues.getCompanyId();
 
 		String portletId = JournalPortletKeys.JOURNAL;
 
@@ -243,7 +238,7 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getExportPortletControlsMap(
-				companyId, portletId, parameterMap);
+				TestPropsValues.getCompanyId(), portletId, parameterMap);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -252,8 +247,6 @@ public class ExportImportHelperUtilTest {
 	@Test
 	public void testGetExportPortletControlsMapRootConfigurationWithPortletConfiguration2()
 		throws Exception {
-
-		long companyId = TestPropsValues.getCompanyId();
 
 		String portletId = JournalPortletKeys.JOURNAL;
 
@@ -288,7 +281,7 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getExportPortletControlsMap(
-				companyId, portletId, parameterMap);
+				TestPropsValues.getCompanyId(), portletId, parameterMap);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, true, true, false, false, false);
@@ -298,7 +291,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapAllConfiguration()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = "test_portlet";
 
 		ExportImportTestParameterMapBuilder builder =
@@ -324,8 +316,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, true, true, false, true, true);
@@ -335,7 +327,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapAllConfigurationWithSummary()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = "test_portlet";
 
 		ExportImportTestParameterMapBuilder builder =
@@ -361,8 +352,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -372,7 +363,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapAllConfigurationWithSummary2()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = "test_portlet";
 
 		ExportImportTestParameterMapBuilder builder =
@@ -404,8 +394,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -415,7 +405,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapAllConfigurationWithSummary3()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		ExportImportTestParameterMapBuilder builder =
@@ -447,8 +436,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, true, true, false, true, true);
@@ -458,7 +447,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapNoConfiguration()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = "test_portlet";
 
 		ExportImportTestParameterMapBuilder builder =
@@ -477,8 +465,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -488,7 +476,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapRootConfiguration()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		ExportImportTestParameterMapBuilder builder =
@@ -514,8 +501,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -525,7 +512,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapRootConfigurationWithManifest()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		ExportImportTestParameterMapBuilder builder =
@@ -551,8 +537,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -562,7 +548,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapRootConfigurationWithManifest2()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		ExportImportTestParameterMapBuilder builder =
@@ -594,8 +579,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -605,7 +590,6 @@ public class ExportImportHelperUtilTest {
 	public void testGetImportPortletControlsMapRootConfigurationWithManifest3()
 		throws Exception {
 
-		long companyId = TestPropsValues.getCompanyId();
 		String portletId = JournalPortletKeys.JOURNAL;
 
 		ExportImportTestParameterMapBuilder builder =
@@ -637,8 +621,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -647,8 +631,6 @@ public class ExportImportHelperUtilTest {
 	@Test
 	public void testGetImportPortletControlsMapRootConfigurationWithPortletConfiguration()
 		throws Exception {
-
-		long companyId = TestPropsValues.getCompanyId();
 
 		String portletId = JournalPortletKeys.JOURNAL;
 
@@ -682,8 +664,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, false, false, false, false, false);
@@ -692,8 +674,6 @@ public class ExportImportHelperUtilTest {
 	@Test
 	public void testGetImportPortletControlsMapRootConfigurationWithPortletConfiguration2()
 		throws Exception {
-
-		long companyId = TestPropsValues.getCompanyId();
 
 		String portletId = JournalPortletKeys.JOURNAL;
 
@@ -731,8 +711,8 @@ public class ExportImportHelperUtilTest {
 
 		Map<String, Boolean> actualPortletControlsMap =
 			ExportImportHelperUtil.getImportPortletControlsMap(
-				companyId, portletId, parameterMap, portletDataElement,
-				manifestSummary);
+				TestPropsValues.getCompanyId(), portletId, parameterMap,
+				portletDataElement, manifestSummary);
 
 		_assertPortletControlsMap(
 			actualPortletControlsMap, true, true, false, false, false);

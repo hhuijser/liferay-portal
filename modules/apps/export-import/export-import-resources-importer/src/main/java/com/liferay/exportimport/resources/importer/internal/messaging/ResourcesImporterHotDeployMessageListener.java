@@ -138,13 +138,11 @@ public class ResourcesImporterHotDeployMessageListener
 		PluginPackageProperties pluginPackageProperties =
 			new PluginPackageProperties(servletContext);
 
-		String resourcesDir = pluginPackageProperties.getResourcesDir();
-
 		if ((servletContext.getResource(ImporterFactory.RESOURCES_DIR) ==
 				null) &&
 			(servletContext.getResource(ImporterFactory.TEMPLATES_DIR) ==
 				null) &&
-			Validator.isNull(resourcesDir)) {
+			Validator.isNull(pluginPackageProperties.getResourcesDir())) {
 
 			return;
 		}

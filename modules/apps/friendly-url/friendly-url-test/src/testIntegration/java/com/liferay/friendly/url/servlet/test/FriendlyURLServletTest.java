@@ -92,10 +92,8 @@ public class FriendlyURLServletTest {
 
 		LanguageUtil.init();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
-		ServiceContextThreadLocal.pushServiceContext(serviceContext);
+		ServiceContextThreadLocal.pushServiceContext(
+			ServiceContextTestUtil.getServiceContext());
 
 		_group = GroupTestUtil.addGroup();
 

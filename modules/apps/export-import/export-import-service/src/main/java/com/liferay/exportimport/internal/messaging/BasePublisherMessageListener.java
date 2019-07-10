@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.Serializable;
 
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,9 +52,6 @@ public abstract class BasePublisherMessageListener
 	protected void initialize(ComponentContext componentContext) {
 		BundleContext bundleContext = componentContext.getBundleContext();
 
-		Dictionary<String, Object> properties =
-			componentContext.getProperties();
-
 		SchedulerEventMessageListenerWrapper
 			schedulerEventMessageListenerWrapper =
 				new SchedulerEventMessageListenerWrapper();
@@ -64,7 +60,7 @@ public abstract class BasePublisherMessageListener
 
 		serviceRegistration = bundleContext.registerService(
 			MessageListener.class, schedulerEventMessageListenerWrapper,
-			properties);
+			componentContext.getProperties());
 	}
 
 	protected void initThreadLocals(

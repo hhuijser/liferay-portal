@@ -150,11 +150,9 @@ public class MemberRequestLocalServiceImpl
 
 			User user = userLocalService.getUser(receiverUserId);
 
-			String emailAddress = user.getEmailAddress();
-
 			addMemberRequest(
-				userId, groupId, receiverUserId, emailAddress, invitedRoleId,
-				invitedTeamId, serviceContext);
+				userId, groupId, receiverUserId, user.getEmailAddress(),
+				invitedRoleId, invitedTeamId, serviceContext);
 		}
 	}
 

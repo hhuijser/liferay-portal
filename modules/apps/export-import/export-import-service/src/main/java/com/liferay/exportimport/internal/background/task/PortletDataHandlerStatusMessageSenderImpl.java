@@ -26,10 +26,8 @@ import com.liferay.portal.kernel.backgroundtask.BackgroundTaskStatusMessageSende
 import com.liferay.portal.kernel.backgroundtask.BackgroundTaskThreadLocal;
 import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.model.StagedModel;
-import com.liferay.portal.kernel.util.LongWrapper;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -139,17 +137,13 @@ public class PortletDataHandlerStatusMessageSenderImpl
 			BackgroundTaskThreadLocal.getBackgroundTaskId());
 		message.put("messageType", messageType);
 
-		Map<String, LongWrapper> modelAdditionCounters =
-			manifestSummary.getModelAdditionCounters();
+		message.put(
+			"modelAdditionCounters",
+			new HashMap<>(manifestSummary.getModelAdditionCounters()));
 
 		message.put(
-			"modelAdditionCounters", new HashMap<>(modelAdditionCounters));
-
-		Map<String, LongWrapper> modelDeletionCounters =
-			manifestSummary.getModelDeletionCounters();
-
-		message.put(
-			"modelDeletionCounters", new HashMap<>(modelDeletionCounters));
+			"modelDeletionCounters",
+			new HashMap<>(manifestSummary.getModelDeletionCounters()));
 	}
 
 	@Reference

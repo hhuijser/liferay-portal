@@ -110,10 +110,9 @@ public abstract class BaseStagingBackgroundTaskExecutor
 		getExportImportServiceConfiguration() {
 
 		try {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			return ConfigurationProviderUtil.getCompanyConfiguration(
-				ExportImportServiceConfiguration.class, companyId);
+				ExportImportServiceConfiguration.class,
+				CompanyThreadLocal.getCompanyId());
 		}
 		catch (ConfigurationException ce) {
 			_log.error(

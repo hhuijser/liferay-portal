@@ -152,10 +152,8 @@ public class NavItem implements Serializable {
 	 */
 	public List<NavItem> getBrowsableChildren() throws Exception {
 		if (_browsableChildren == null) {
-			List<NavItem> children = getChildren();
-
 			_browsableChildren = ListUtil.filter(
-				children, NavItem::isBrowsable);
+				getChildren(), NavItem::isBrowsable);
 		}
 
 		return _browsableChildren;

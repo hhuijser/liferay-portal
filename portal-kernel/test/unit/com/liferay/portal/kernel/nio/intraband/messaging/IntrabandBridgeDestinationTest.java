@@ -462,12 +462,10 @@ public class IntrabandBridgeDestinationTest {
 
 		SPIConfiguration spiConfiguration = spi.getSPIConfiguration();
 
-		String spiId = spiConfiguration.getSPIId();
-
 		return spiProviderName.concat(
 			StringPool.POUND
 		).concat(
-			spiId
+			spiConfiguration.getSPIId()
 		);
 	}
 

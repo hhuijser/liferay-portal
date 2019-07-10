@@ -33,10 +33,8 @@ public class BooleanQueryFactoryUtil {
 	public static BooleanQueryFactory getBooleanQueryFactory(
 		SearchContext searchContext) {
 
-		String searchEngineId = searchContext.getSearchEngineId();
-
 		SearchEngine searchEngine = SearchEngineHelperUtil.getSearchEngine(
-			searchEngineId);
+			searchContext.getSearchEngineId());
 
 		return searchEngine.getBooleanQueryFactory();
 	}

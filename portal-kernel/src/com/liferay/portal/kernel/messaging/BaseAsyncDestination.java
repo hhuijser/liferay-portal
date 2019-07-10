@@ -127,8 +127,6 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 			return;
 		}
 
-		ClassLoader classLoader = PortalClassLoaderUtil.getClassLoader();
-
 		if (_rejectedExecutionHandler == null) {
 			_rejectedExecutionHandler = _createRejectionExecutionHandler();
 		}
@@ -137,7 +135,8 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 			_workersCoreSize, _workersMaxSize, 60L, TimeUnit.SECONDS, false,
 			_maximumQueueSize, _rejectedExecutionHandler,
 			new NamedThreadFactory(
-				getName(), Thread.NORM_PRIORITY, classLoader),
+				getName(), Thread.NORM_PRIORITY,
+				PortalClassLoaderUtil.getClassLoader()),
 			new ThreadPoolHandlerAdapter());
 
 		ThreadPoolExecutor oldThreadPoolExecutor =

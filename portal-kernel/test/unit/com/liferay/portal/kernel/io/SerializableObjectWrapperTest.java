@@ -211,13 +211,11 @@ public class SerializableObjectWrapperTest {
 
 			// Test unwrap
 
-			List<LogRecord> logRecords = captureHandler.getLogRecords();
-
 			Assert.assertNull(
 				SerializableObjectWrapper.unwrap(
 					_getDeserializedObject(_testSerializableObjectWrapper)));
 
-			_assertLogAndClear(logRecords, cnfe);
+			_assertLogAndClear(captureHandler.getLogRecords(), cnfe);
 
 			// Test equals
 

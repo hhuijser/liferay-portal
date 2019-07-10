@@ -92,23 +92,21 @@ public class DDMStructureClassType implements ClassType {
 		List<DDMFormField> ddmFormFields = ddmStructure.getDDMFormFields(false);
 
 		for (DDMFormField ddmFormField : ddmFormFields) {
-			String indexType = ddmFormField.getIndexType();
-
 			String type = ddmFormField.getType();
 
-			if (Validator.isNull(indexType) ||
+			if (Validator.isNull(ddmFormField.getIndexType()) ||
 				!ArrayUtil.contains(_SELECTABLE_DDM_STRUCTURE_FIELDS, type)) {
 
 				continue;
 			}
 
 			LocalizedValue label = ddmFormField.getLabel();
-			String name = ddmFormField.getName();
 
 			classTypeFields.add(
 				new ClassTypeField(
 					label.getString(LocaleUtil.fromLanguageId(_languageId)),
-					name, type, ddmStructure.getStructureId()));
+					ddmFormField.getName(), type,
+					ddmStructure.getStructureId()));
 		}
 
 		return classTypeFields;

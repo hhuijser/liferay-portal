@@ -24,7 +24,6 @@ import com.liferay.portal.search.engine.adapter.search.SearchSearchResponse;
 import org.elasticsearch.action.search.SearchAction;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.Client;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -40,10 +39,9 @@ public class SearchSearchRequestExecutorImpl
 	public SearchSearchResponse execute(
 		SearchSearchRequest searchSearchRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		SearchRequestBuilder searchRequestBuilder =
-			SearchAction.INSTANCE.newRequestBuilder(client);
+			SearchAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		_searchSearchRequestAssembler.assemble(
 			searchRequestBuilder, searchSearchRequest);

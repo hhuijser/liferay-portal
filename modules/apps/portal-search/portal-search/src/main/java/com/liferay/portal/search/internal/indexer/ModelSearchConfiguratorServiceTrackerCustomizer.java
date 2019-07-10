@@ -46,7 +46,6 @@ import com.liferay.portal.search.indexer.IndexerSummaryBuilder;
 import com.liferay.portal.search.indexer.IndexerWriter;
 import com.liferay.portal.search.internal.searcher.IndexSearcherHelper;
 import com.liferay.portal.search.permission.SearchPermissionIndexWriter;
-import com.liferay.portal.search.spi.model.index.contributor.ModelDocumentContributor;
 import com.liferay.portal.search.spi.model.query.contributor.QueryConfigContributor;
 import com.liferay.portal.search.spi.model.query.contributor.SearchContextContributor;
 import com.liferay.portal.search.spi.model.registrar.ModelSearchConfigurator;
@@ -191,9 +190,6 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		ServiceRegistrationHolder serviceRegistrationHolder,
 		Dictionary<String, ?> serviceProperties) {
 
-		Iterable<ModelDocumentContributor> modelDocumentContributors =
-			modelSearchConfigurator.getModelDocumentContributors();
-
 		Iterable<DocumentContributor> documentContributors =
 			_documentContributors;
 
@@ -202,7 +198,8 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 
 		IndexerDocumentBuilder indexerDocumentBuilder =
 			new IndexerDocumentBuilderImpl(
-				baseModelDocumentFactory, modelDocumentContributors,
+				baseModelDocumentFactory,
+				modelSearchConfigurator.getModelDocumentContributors(),
 				documentContributors, indexerPostProcessorsHolder);
 
 		ServiceRegistration<IndexerDocumentBuilder>

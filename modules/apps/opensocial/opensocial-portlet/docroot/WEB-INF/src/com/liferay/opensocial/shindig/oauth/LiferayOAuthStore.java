@@ -90,11 +90,10 @@ public class LiferayOAuthStore implements OAuthStore {
 				OAuth.OAUTH_SIGNATURE_METHOD, OAuth.HMAC_SHA1);
 		}
 
-		String keyName = oAuthConsumer.getKeyName();
-
 		String callbackURL = ShindigUtil.transformURL(_CALLBACK_URL);
 
-		return new ConsumerInfo(netOAuthConsumer, keyName, callbackURL);
+		return new ConsumerInfo(
+			netOAuthConsumer, oAuthConsumer.getKeyName(), callbackURL);
 	}
 
 	public TokenInfo getTokenInfo(

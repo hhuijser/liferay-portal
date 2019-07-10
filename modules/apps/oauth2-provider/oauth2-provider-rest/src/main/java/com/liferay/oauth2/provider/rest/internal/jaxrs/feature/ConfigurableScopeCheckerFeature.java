@@ -144,8 +144,6 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 			new ConfigurableContainerScopeCheckerContainerRequestFilter(),
 			contracts);
 
-		Configuration configuration = context.getConfiguration();
-
 		Stream<CheckPattern> stream = _checkPatterns.stream();
 
 		_serviceRegistration = _bundleContext.registerService(
@@ -158,7 +156,7 @@ public class ConfigurableScopeCheckerFeature implements Feature {
 				).collect(
 					Collectors.toSet()
 				)),
-			buildProperties(configuration));
+			buildProperties(context.getConfiguration()));
 
 		return true;
 	}

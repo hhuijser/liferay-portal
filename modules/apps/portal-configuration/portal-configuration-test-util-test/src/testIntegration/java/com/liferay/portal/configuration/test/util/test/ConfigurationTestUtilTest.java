@@ -41,11 +41,9 @@ public class ConfigurationTestUtilTest
 
 		Assert.assertFalse(testConfigurationExists());
 
-		Configuration configuration = getConfiguration();
-
 		Assert.assertTrue(testConfigurationExists());
 
-		ConfigurationTestUtil.deleteConfiguration(configuration);
+		ConfigurationTestUtil.deleteConfiguration(getConfiguration());
 
 		Assert.assertFalse(testConfigurationExists());
 	}

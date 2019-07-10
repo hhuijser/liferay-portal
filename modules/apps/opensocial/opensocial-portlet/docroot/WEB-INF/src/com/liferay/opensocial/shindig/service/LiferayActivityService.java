@@ -421,9 +421,9 @@ public class LiferayActivityService implements ActivityService {
 
 		for (Map.Entry<String, String> entry : map.entrySet()) {
 			String name = entry.getKey();
-			String value = entry.getValue();
 
-			JSONObject templateParamJSONObject = JSONUtil.put(name, value);
+			JSONObject templateParamJSONObject = JSONUtil.put(
+				name, entry.getValue());
 
 			templateParamsJSONArray.put(templateParamJSONObject);
 		}

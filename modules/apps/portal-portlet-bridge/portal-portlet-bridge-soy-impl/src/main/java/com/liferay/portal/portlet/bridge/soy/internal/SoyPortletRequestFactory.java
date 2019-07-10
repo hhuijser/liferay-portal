@@ -36,7 +36,6 @@ import com.liferay.portlet.RenderResponseFactory;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletContext;
 import javax.portlet.PortletPreferences;
 import javax.portlet.PortletResponse;
 import javax.portlet.RenderRequest;
@@ -84,12 +83,11 @@ public class SoyPortletRequestFactory {
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			_portlet, servletContext);
 
-		PortletContext portletContext = portletConfig.getPortletContext();
-
 		LiferayActionRequest liferayActionRequest = ActionRequestFactory.create(
-			httpServletRequest, _portlet, invokerPortlet, portletContext,
-			resourceRequest.getWindowState(), resourceRequest.getPortletMode(),
-			portletPreferences, themeDisplay.getPlid());
+			httpServletRequest, _portlet, invokerPortlet,
+			portletConfig.getPortletContext(), resourceRequest.getWindowState(),
+			resourceRequest.getPortletMode(), portletPreferences,
+			themeDisplay.getPlid());
 
 		liferayActionRequest.setPortletRequestDispatcherRequest(
 			httpServletRequest);
@@ -137,15 +135,14 @@ public class SoyPortletRequestFactory {
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			_portlet, servletContext);
 
-		PortletContext portletContext = portletConfig.getPortletContext();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
 		LiferayRenderRequest liferayRenderRequest = RenderRequestFactory.create(
-			httpServletRequest, _portlet, invokerPortlet, portletContext,
-			resourceRequest.getWindowState(), resourceRequest.getPortletMode(),
-			portletPreferences, themeDisplay.getPlid());
+			httpServletRequest, _portlet, invokerPortlet,
+			portletConfig.getPortletContext(), resourceRequest.getWindowState(),
+			resourceRequest.getPortletMode(), portletPreferences,
+			themeDisplay.getPlid());
 
 		liferayRenderRequest.setPortletRequestDispatcherRequest(
 			httpServletRequest);

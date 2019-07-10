@@ -22,7 +22,6 @@ import com.liferay.opensocial.shindig.util.ShindigUtil;
 import com.liferay.opensocial.util.ActionKeys;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -97,14 +96,11 @@ public class AdminPortlet extends MVCPortlet {
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		long gadgetId = ParamUtil.getLong(actionRequest, "gadgetId");
 
 		GadgetPermission.check(
-			permissionChecker, themeDisplay.getScopeGroupId(), gadgetId,
-			ActionKeys.UPDATE);
+			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroupId(),
+			gadgetId, ActionKeys.UPDATE);
 
 		ShindigUtil.updateOAuthConsumers(actionRequest, actionResponse);
 	}

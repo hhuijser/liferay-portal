@@ -78,9 +78,8 @@ public class LiferayResourceOwnerLoginHandler
 	protected User authenticateUser(String login, String password) {
 		int authResult = Authenticator.FAILURE;
 
-		Long companyId = CompanyThreadLocal.getCompanyId();
-
-		Company company = _companyLocalService.fetchCompany(companyId);
+		Company company = _companyLocalService.fetchCompany(
+			CompanyThreadLocal.getCompanyId());
 
 		String authType = company.getAuthType();
 

@@ -39,11 +39,9 @@ public class MoreLikeThisQueryTranslatorImpl
 
 	@Override
 	public QueryBuilder translate(MoreLikeThisQuery moreLikeThisQuery) {
-		List<String> fields = moreLikeThisQuery.getFields();
-
 		List<String> likeTexts = new ArrayList<>();
 
-		likeTexts.addAll(fields);
+		likeTexts.addAll(moreLikeThisQuery.getFields());
 
 		List<MoreLikeThisQueryBuilder.Item> likeItems = new ArrayList<>();
 

@@ -80,13 +80,10 @@ public class ElasticsearchSearchEngineAdapterClusterRequestTest {
 			clusterHealthStatus.equals(ClusterHealthStatus.GREEN) ||
 			clusterHealthStatus.equals(ClusterHealthStatus.YELLOW));
 
-		String healthStatusMessage =
-			healthClusterResponse.getHealthStatusMessage();
-
 		JSONFactory jsonFactory = new JSONFactoryImpl();
 
 		JSONObject jsonObject = jsonFactory.createJSONObject(
-			healthStatusMessage);
+			healthClusterResponse.getHealthStatusMessage());
 
 		Assert.assertEquals(
 			"LiferayElasticsearchCluster",
@@ -102,11 +99,10 @@ public class ElasticsearchSearchEngineAdapterClusterRequestTest {
 		StateClusterResponse stateClusterResponse =
 			_searchEngineAdapter.execute(stateClusterRequest);
 
-		String stateMessage = stateClusterResponse.getStateMessage();
-
 		JSONFactory jsonFactory = new JSONFactoryImpl();
 
-		JSONObject jsonObject = jsonFactory.createJSONObject(stateMessage);
+		JSONObject jsonObject = jsonFactory.createJSONObject(
+			stateClusterResponse.getStateMessage());
 
 		String nodesString = jsonObject.getString("nodes");
 

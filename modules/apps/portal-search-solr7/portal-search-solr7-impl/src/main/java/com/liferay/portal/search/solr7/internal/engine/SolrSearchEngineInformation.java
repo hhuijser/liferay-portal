@@ -27,7 +27,6 @@ import com.liferay.portal.search.solr7.internal.connection.SolrClientManager;
 import java.util.Map;
 
 import org.apache.lucene.util.Version;
-import org.apache.solr.client.solrj.SolrClient;
 import org.apache.solr.client.solrj.SolrRequest;
 import org.apache.solr.client.solrj.request.GenericSolrRequest;
 import org.apache.solr.client.solrj.response.SimpleSolrResponse;
@@ -55,12 +54,11 @@ public class SolrSearchEngineInformation implements SearchEngineInformation {
 	@Override
 	public String getNodesString() {
 		try {
-			SolrClient solrClient = solrClientManager.getSolrClient();
-
 			GenericSolrRequest request = new GenericSolrRequest(
 				SolrRequest.METHOD.POST, "/admin/info/system", null);
 
-			SimpleSolrResponse response = request.process(solrClient);
+			SimpleSolrResponse response = request.process(
+				solrClientManager.getSolrClient());
 
 			NamedList namedList = response.getResponse();
 

@@ -85,15 +85,13 @@ public class BackgroundTaskLocalServiceImpl
 
 		backgroundTask = super.addBackgroundTask(backgroundTask);
 
-		final long backgroundTaskId = backgroundTask.getBackgroundTaskId();
-
 		TransactionCommitCallbackUtil.registerCallback(
 			new Callable<Void>() {
 
 				@Override
 				public Void call() throws Exception {
 					backgroundTaskLocalService.triggerBackgroundTask(
-						backgroundTaskId);
+						backgroundTask.getBackgroundTaskId());
 
 					return null;
 				}

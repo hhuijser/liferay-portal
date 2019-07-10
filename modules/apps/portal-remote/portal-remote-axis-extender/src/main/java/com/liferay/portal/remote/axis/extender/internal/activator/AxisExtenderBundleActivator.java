@@ -32,13 +32,11 @@ public class AxisExtenderBundleActivator implements BundleActivator {
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
-		ClassLoader classLoader = bundleWiring.getClassLoader();
-
 		Thread thread = Thread.currentThread();
 
 		ClassLoader contextClassLoader = thread.getContextClassLoader();
 
-		thread.setContextClassLoader(classLoader);
+		thread.setContextClassLoader(bundleWiring.getClassLoader());
 
 		try {
 			AxisProperties.getNameDiscoverer();

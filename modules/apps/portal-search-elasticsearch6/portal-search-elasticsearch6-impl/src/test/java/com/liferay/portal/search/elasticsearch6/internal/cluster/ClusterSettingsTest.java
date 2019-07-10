@@ -19,7 +19,6 @@ import com.liferay.portal.search.elasticsearch6.internal.connection.Elasticsearc
 import com.liferay.portal.search.elasticsearch6.internal.connection.EmbeddedElasticsearchConnection;
 
 import org.elasticsearch.cluster.service.ClusterService;
-import org.elasticsearch.cluster.service.MasterService;
 import org.elasticsearch.common.inject.Injector;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.node.Node;
@@ -58,10 +57,8 @@ public class ClusterSettingsTest {
 		ClusterService clusterService = injector.getInstance(
 			ClusterService.class);
 
-		MasterService masterService = clusterService.getMasterService();
-
 		TimeValue slowTaskLoggingThreshold = ReflectionTestUtil.getFieldValue(
-			masterService, "slowTaskLoggingThreshold");
+			clusterService.getMasterService(), "slowTaskLoggingThreshold");
 
 		Assert.assertEquals("10m", slowTaskLoggingThreshold.toString());
 	}

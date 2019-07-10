@@ -105,15 +105,13 @@ public class AuthorizationCodeGrantServiceContainerRequestFilter
 			}
 
 			if (!user.isDefaultUser() || guestAuthorized) {
-				long userId = user.getUserId();
-
 				containerRequestContext.setSecurityContext(
 					new PortalCXFSecurityContext() {
 
 						@Override
 						public Principal getUserPrincipal() {
 							return new ProtectedPrincipal(
-								String.valueOf(userId));
+								String.valueOf(user.getUserId()));
 						}
 
 						@Override

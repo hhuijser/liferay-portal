@@ -58,8 +58,6 @@ public class SearchRequestExecutorFixture {
 	}
 
 	public void setUp() {
-		FacetProcessor<?> facetProcessor = getFacetProcessor();
-
 		ElasticsearchQueryTranslatorFixture
 			elasticsearchQueryTranslatorFixture =
 				new ElasticsearchQueryTranslatorFixture();
@@ -73,13 +71,11 @@ public class SearchRequestExecutorFixture {
 				new ElasticsearchSortFieldTranslatorFixture(
 					elasticsearchQueryTranslator);
 
-		ElasticsearchSortFieldTranslator elasticsearchSortFieldTranslator =
-			elasticsearchSortFieldTranslatorFixture.
-				getElasticsearchSortFieldTranslator();
-
 		_searchRequestExecutor = createSearchRequestExecutor(
 			_elasticsearchClientResolver, elasticsearchQueryTranslator,
-			elasticsearchSortFieldTranslator, facetProcessor,
+			elasticsearchSortFieldTranslatorFixture.
+				getElasticsearchSortFieldTranslator(),
+			getFacetProcessor(),
 			new DefaultStatsTranslator() {
 				{
 					setStatsResponseBuilderFactory(

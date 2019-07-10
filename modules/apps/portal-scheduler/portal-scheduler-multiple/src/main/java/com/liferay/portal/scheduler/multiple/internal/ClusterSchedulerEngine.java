@@ -550,20 +550,18 @@ public class ClusterSchedulerEngine
 	}
 
 	protected void addMemoryClusteredJob(SchedulerResponse schedulerResponse) {
-		String jobName = schedulerResponse.getJobName();
-		String groupName = schedulerResponse.getGroupName();
-
 		Message message = schedulerResponse.getMessage();
 
 		JobState jobState = (JobState)message.get(SchedulerEngine.JOB_STATE);
 
-		TriggerState triggerState = jobState.getTriggerState();
-
 		message.remove(JOB_STATE);
 
 		_memoryClusteredJobs.put(
-			getFullName(jobName, groupName),
-			new ObjectValuePair<>(schedulerResponse, triggerState));
+			getFullName(
+				schedulerResponse.getJobName(),
+				schedulerResponse.getGroupName()),
+			new ObjectValuePair<>(
+				schedulerResponse, jobState.getTriggerState()));
 	}
 
 	protected String getFullName(String jobName, String groupName) {

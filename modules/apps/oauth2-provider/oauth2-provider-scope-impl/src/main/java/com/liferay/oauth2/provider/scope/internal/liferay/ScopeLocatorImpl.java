@@ -97,10 +97,8 @@ public class ScopeLocatorImpl implements ScopeLocator {
 				scopeFinder = serviceReferenceServiceTuple.getService();
 			}
 
-			ServiceReference<?> serviceReference =
-				serviceReferenceServiceTuple.getServiceReference();
-
-			Bundle bundle = getBundle(serviceReference);
+			Bundle bundle = getBundle(
+				serviceReferenceServiceTuple.getServiceReference());
 
 			for (String scope : scopeFinder.findScopes()) {
 				liferayOAuth2Scopes.add(

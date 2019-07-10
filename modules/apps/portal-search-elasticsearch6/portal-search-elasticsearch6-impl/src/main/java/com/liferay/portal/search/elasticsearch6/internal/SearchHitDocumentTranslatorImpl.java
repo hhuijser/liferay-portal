@@ -81,12 +81,11 @@ public class SearchHitDocumentTranslatorImpl
 	}
 
 	protected Field translate(DocumentField documentField) {
-		String name = documentField.getName();
-
 		Collection<Object> values = documentField.getValues();
 
 		return new Field(
-			name, ArrayUtil.toStringArray(values.toArray(new Object[0])));
+			documentField.getName(),
+			ArrayUtil.toStringArray(values.toArray(new Object[0])));
 	}
 
 	protected Field translateGeoPoint(DocumentField documentField) {

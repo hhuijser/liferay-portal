@@ -352,7 +352,6 @@ public class ExpandoSearchTest {
 
 	protected User addUser(ServiceContext serviceContext) throws Exception {
 		long creatorUserId = TestPropsValues.getUserId();
-		long companyId = TestPropsValues.getCompanyId();
 		boolean autoPassword = true;
 		String password1 = null;
 		String password2 = null;
@@ -379,11 +378,12 @@ public class ExpandoSearchTest {
 		boolean sendMail = false;
 
 		User user = _userLocalService.addUser(
-			creatorUserId, companyId, autoPassword, password1, password2,
-			autoScreenName, screenName, emailAddress, facebookId, openId,
-			locale, firstName, middleName, lastName, prefixId, suffixId, male,
-			birthdayMonth, birthdayDay, birthdayYear, jobTitle, groupIds,
-			organizationIds, roleIds, userGroupIds, sendMail, serviceContext);
+			creatorUserId, TestPropsValues.getCompanyId(), autoPassword,
+			password1, password2, autoScreenName, screenName, emailAddress,
+			facebookId, openId, locale, firstName, middleName, lastName,
+			prefixId, suffixId, male, birthdayMonth, birthdayDay, birthdayYear,
+			jobTitle, groupIds, organizationIds, roleIds, userGroupIds,
+			sendMail, serviceContext);
 
 		_users.add(user);
 

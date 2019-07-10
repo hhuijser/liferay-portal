@@ -506,8 +506,6 @@ public class SearchDisplayContext {
 
 		ThemeDisplay themeDisplay = _themeDisplaySupplier.getThemeDisplay();
 
-		long companyId = themeDisplay.getCompanyId();
-
 		Collection<SearchFacet> searchFacets = getEnabledSearchFacets();
 
 		Stream<SearchFacet> searchFacetsStream = searchFacets.stream();
@@ -515,7 +513,7 @@ public class SearchDisplayContext {
 		Stream<Optional<Facet>> facetOptionalsStream = searchFacetsStream.map(
 			searchFacet -> searchRequestBuilder.withSearchContextGet(
 				searchContext -> createFacet(
-					searchFacet, companyId, searchContext)));
+					searchFacet, themeDisplay.getCompanyId(), searchContext)));
 
 		searchRequestBuilder.withFacetContext(
 			facetContext -> facetOptionalsStream.forEach(

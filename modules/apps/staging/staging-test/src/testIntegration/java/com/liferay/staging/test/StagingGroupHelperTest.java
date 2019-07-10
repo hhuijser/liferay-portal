@@ -898,8 +898,6 @@ public class StagingGroupHelperTest {
 			"Invalid server port: " + serverPort,
 			(serverPort < 1) || (serverPort > 65535));
 
-		String pathContext = PortalUtil.getPathContext();
-
 		ServiceTestUtil.setUser(TestPropsValues.getUser());
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -911,7 +909,7 @@ public class StagingGroupHelperTest {
 
 		StagingLocalServiceUtil.enableRemoteStaging(
 			TestPropsValues.getUserId(), _remoteStagingGroup, false, false,
-			"localhost", serverPort, pathContext, false,
+			"localhost", serverPort, PortalUtil.getPathContext(), false,
 			_remoteLiveGroup.getGroupId(), serviceContext);
 
 		GroupUtil.clearCache();

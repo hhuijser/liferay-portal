@@ -59,20 +59,16 @@ public class TLiferayOutputDefinitionTest {
 	public void testGetPropertyClass() {
 		Class<?> propertyClass = _tLiferayOutputDefinition.getPropertyClass();
 
-		String canonicalName = propertyClass.getCanonicalName();
-
 		assertThat(
-			canonicalName,
+			propertyClass.getCanonicalName(),
 			equalTo(
 				"com.liferay.talend.tliferayoutput.TLiferayOutputProperties"));
 	}
 
 	@Test
 	public void testGetReturnProperties() {
-		Property<?>[] returnProperties =
-			_tLiferayOutputDefinition.getReturnProperties();
-
-		List<Property<?>> propertyList = Arrays.asList(returnProperties);
+		List<Property<?>> propertyList = Arrays.asList(
+			_tLiferayOutputDefinition.getReturnProperties());
 
 		assertThat(propertyList, hasSize(4));
 
@@ -95,10 +91,8 @@ public class TLiferayOutputDefinitionTest {
 		RuntimeInfo runtimeInfo = _tLiferayOutputDefinition.getRuntimeInfo(
 			ExecutionEngine.DI, null, ConnectorTopology.INCOMING);
 
-		String runtimeClassName = runtimeInfo.getRuntimeClassName();
-
 		assertThat(
-			runtimeClassName,
+			runtimeInfo.getRuntimeClassName(),
 			equalTo("com.liferay.talend.runtime.LiferaySink"));
 	}
 

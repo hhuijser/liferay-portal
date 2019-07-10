@@ -71,10 +71,9 @@ public class NodeDefaultsPlugin extends BaseDefaultsPlugin<NodePlugin> {
 	}
 
 	private void _configureTaskNpmInstall(NpmInstallTask npmInstallTask) {
-		Project project = npmInstallTask.getProject();
-
 		String sassBinarySite = GradleUtil.getProperty(
-			project, "nodejs.npm.sass.binary.site", (String)null);
+			npmInstallTask.getProject(), "nodejs.npm.sass.binary.site",
+			(String)null);
 
 		if (Validator.isNotNull(sassBinarySite)) {
 			_setTaskExecuteNodeArgDefault(

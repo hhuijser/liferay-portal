@@ -139,10 +139,9 @@ public class JobFactory {
 			PortalAcceptancePullRequestJob portalAcceptancePullRequestJob =
 				new PortalAcceptancePullRequestJob(jobName, testSuiteName);
 
-			GitWorkingDirectory gitWorkingDirectory =
-				portalAcceptancePullRequestJob.getGitWorkingDirectory();
+			if (_isCentralMergePullRequest(
+					portalAcceptancePullRequestJob.getGitWorkingDirectory())) {
 
-			if (_isCentralMergePullRequest(gitWorkingDirectory)) {
 				portalAcceptancePullRequestJob = new CentralMergePullRequestJob(
 					jobName);
 			}

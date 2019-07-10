@@ -27,13 +27,12 @@ public class PoshiTestResult extends BaseTestResult {
 
 	@Override
 	public Element getGitHubElement() {
-		String testReportURL = getTestReportURL();
-
 		Element downstreamBuildListItemElement = Dom4JUtil.getNewElement(
 			"div", null);
 
 		downstreamBuildListItemElement.add(
-			Dom4JUtil.getNewAnchorElement(testReportURL, getDisplayName()));
+			Dom4JUtil.getNewAnchorElement(
+				getTestReportURL(), getDisplayName()));
 
 		Dom4JUtil.addToElement(
 			downstreamBuildListItemElement, " - ",

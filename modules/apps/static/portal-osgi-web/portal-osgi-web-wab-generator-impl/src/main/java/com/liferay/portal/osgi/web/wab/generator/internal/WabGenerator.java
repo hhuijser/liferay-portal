@@ -225,8 +225,6 @@ public class WabGenerator
 
 		Class<?> clazz = bundle.getClass();
 
-		ClassLoader classLoader = clazz.getClassLoader();
-
 		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
 		properties.put(
@@ -234,7 +232,8 @@ public class WabGenerator
 
 		bundleContext.registerService(
 			URLStreamHandlerService.class.getName(),
-			new WabURLStreamHandlerService(classLoader, this), properties);
+			new WabURLStreamHandlerService(clazz.getClassLoader(), this),
+			properties);
 	}
 
 	/**

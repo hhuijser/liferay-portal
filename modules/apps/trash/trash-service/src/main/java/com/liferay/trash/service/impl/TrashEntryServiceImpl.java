@@ -506,13 +506,12 @@ public class TrashEntryServiceImpl extends TrashEntryServiceBaseImpl {
 	}
 
 	protected void deleteEntry(TrashEntry entry) throws PortalException {
-		PermissionChecker permissionChecker = getPermissionChecker();
-
 		TrashHandler trashHandler = TrashHandlerRegistryUtil.getTrashHandler(
 			entry.getClassName());
 
 		if (!trashHandler.hasTrashPermission(
-				permissionChecker, 0, entry.getClassPK(), ActionKeys.DELETE)) {
+				getPermissionChecker(), 0, entry.getClassPK(),
+				ActionKeys.DELETE)) {
 
 			throw new TrashPermissionException(TrashPermissionException.DELETE);
 		}

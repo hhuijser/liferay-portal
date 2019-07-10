@@ -16,7 +16,6 @@ package com.liferay.jenkins.results.parser.failure.message.generator;
 
 import com.liferay.jenkins.results.parser.Build;
 import com.liferay.jenkins.results.parser.Dom4JUtil;
-import com.liferay.jenkins.results.parser.TopLevelBuild;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -83,16 +82,14 @@ public class PluginFailureMessageGenerator extends BaseFailureMessageGenerator {
 			}
 		}
 		else {
-			TopLevelBuild topLevelBuild = build.getTopLevelBuild();
-
 			int end = consoleText.indexOf("merge-test-results:");
 
 			Dom4JUtil.addToElement(
 				paragraphElement,
 				"To include a plugin fix for this pull request, ",
 				"please edit your ",
-				getGitCommitPluginsAnchorElement(topLevelBuild), ". Click ",
-				Dom4JUtil.getNewAnchorElement(_URL_BLOG, "here"),
+				getGitCommitPluginsAnchorElement(build.getTopLevelBuild()),
+				". Click ", Dom4JUtil.getNewAnchorElement(_URL_BLOG, "here"),
 				" for more details.",
 				getConsoleTextSnippetElementByEnd(consoleText, true, end));
 		}

@@ -82,10 +82,8 @@ public class UploadServletRequestWhenGettingParameterValuesTest {
 		for (Map.Entry<String, List<String>> entry :
 				regularParameters.entrySet()) {
 
-			String key = entry.getKey();
-
 			String[] parameterValues = uploadServletRequest.getParameterValues(
-				key);
+				entry.getKey());
 
 			List<String> parameterValuesList = ListUtil.fromArray(
 				parameterValues);

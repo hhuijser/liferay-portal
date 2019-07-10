@@ -74,10 +74,9 @@ public class UpdatePropertiesTask extends DefaultTask {
 		Properties properties = FileUtil.readProperties(propertiesFile);
 
 		for (Map.Entry<String, Object> entry : _properties.entrySet()) {
-			String key = entry.getKey();
 			String value = GradleUtil.toString(entry.getValue());
 
-			properties.setProperty(key, value);
+			properties.setProperty(entry.getKey(), value);
 		}
 
 		try (OutputStream outputStream = Files.newOutputStream(

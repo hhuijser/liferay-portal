@@ -31,9 +31,6 @@ public class ParameterMapUtilWhenSettingAParameterMapWithPrefixesTest {
 
 	@Before
 	public void setUp() throws ConfigurationException {
-		ParameterMapUtilTestUtil.TestBean testBean =
-			ParameterMapUtilTestUtil.getTestBean();
-
 		Map<String, String[]> parameterMap = new HashMap<>();
 
 		parameterMap.put("prefix--testBoolean1--", new String[] {"false"});
@@ -45,8 +42,9 @@ public class ParameterMapUtilWhenSettingAParameterMapWithPrefixesTest {
 			ParameterMapUtilTestUtil.PARAMETER_MAP_STRING_ARRAY);
 
 		_testBean = ParameterMapUtil.setParameterMap(
-			ParameterMapUtilTestUtil.TestBean.class, testBean, parameterMap,
-			"prefix--", StringPool.DOUBLE_DASH);
+			ParameterMapUtilTestUtil.TestBean.class,
+			ParameterMapUtilTestUtil.getTestBean(), parameterMap, "prefix--",
+			StringPool.DOUBLE_DASH);
 	}
 
 	@Test

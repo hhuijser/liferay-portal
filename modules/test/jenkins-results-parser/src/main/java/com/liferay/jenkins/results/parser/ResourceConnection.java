@@ -93,11 +93,10 @@ public class ResourceConnection implements Comparable {
 	}
 
 	public void setState(State state) {
-		String etcdServerURL = _resourceMonitor.getEtcdServerURL();
-
 		if (!state.equals(State.RETIRE)) {
 			_node = EtcdUtil.put(
-				etcdServerURL, _node.getKey(), state.toString());
+				_resourceMonitor.getEtcdServerURL(), _node.getKey(),
+				state.toString());
 
 			return;
 		}

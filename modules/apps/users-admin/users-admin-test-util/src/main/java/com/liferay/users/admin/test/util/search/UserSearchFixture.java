@@ -69,13 +69,7 @@ public class UserSearchFixture {
 
 		ListType listType = listTypes.get(0);
 
-		long listTypeId = listType.getListTypeId();
-
-		long contactId = user.getContactId();
-
 		Contact contact = user.getContact();
-
-		String modelClassName = contact.getModelClassName();
 
 		Country country = CountryServiceUtil.getCountryByName("united-states");
 
@@ -85,14 +79,12 @@ public class UserSearchFixture {
 
 		Region region = regions.get(0);
 
-		long regionId = region.getRegionId();
-
 		Address address = AddressLocalServiceUtil.addAddress(
-			user.getUserId(), modelClassName, contactId,
+			user.getUserId(), contact.getModelClassName(), user.getContactId(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), regionId, countryId, listTypeId,
-			false, false, new ServiceContext());
+			RandomTestUtil.randomString(), region.getRegionId(), countryId,
+			listType.getListTypeId(), false, false, new ServiceContext());
 
 		_addresses.add(address);
 

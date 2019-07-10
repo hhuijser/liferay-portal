@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.DocumentException;
-import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Node;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.kernel.xml.UnsecureSAXReaderUtil;
@@ -185,11 +184,9 @@ public class WabDirURLStreamHandlerService
 
 		Document document = _readDocument(lookAndFeelXmlFile);
 
-		Element rootElement = document.getRootElement();
-
 		XPath xPath = SAXReaderUtil.createXPath("//theme/@id", null, null);
 
-		List<Node> nodes = xPath.selectNodes(rootElement);
+		List<Node> nodes = xPath.selectNodes(document.getRootElement());
 
 		String themeId = null;
 

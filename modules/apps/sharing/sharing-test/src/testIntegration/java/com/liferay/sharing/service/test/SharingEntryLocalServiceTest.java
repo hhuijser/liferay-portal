@@ -163,13 +163,13 @@ public class SharingEntryLocalServiceTest {
 
 		long classNameId = _classNameLocalService.getClassNameId(
 			Group.class.getName());
-		long classPK = _group.getClassPK();
 
 		Instant instant = Instant.now();
 
 		_sharingEntryLocalService.addOrUpdateSharingEntry(
-			_fromUser.getUserId(), _toUser.getUserId(), classNameId, classPK,
-			_group.getGroupId(), true, Arrays.asList(SharingEntryAction.VIEW),
+			_fromUser.getUserId(), _toUser.getUserId(), classNameId,
+			_group.getClassPK(), _group.getGroupId(), true,
+			Arrays.asList(SharingEntryAction.VIEW),
 			Date.from(instant.minus(2, ChronoUnit.DAYS)),
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
 	}

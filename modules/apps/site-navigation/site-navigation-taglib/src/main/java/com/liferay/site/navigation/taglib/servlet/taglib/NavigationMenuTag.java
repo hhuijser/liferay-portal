@@ -277,10 +277,8 @@ public class NavigationMenuTag extends IncludeTag {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Layout layout = themeDisplay.getLayout();
-
 		long siteNavigationMenuItemId = _getRelativeSiteNavigationMenuItemId(
-			layout);
+			themeDisplay.getLayout());
 
 		SiteNavigationMenuItem siteNavigationMenuItem =
 			SiteNavigationMenuItemLocalServiceUtil.fetchSiteNavigationMenuItem(

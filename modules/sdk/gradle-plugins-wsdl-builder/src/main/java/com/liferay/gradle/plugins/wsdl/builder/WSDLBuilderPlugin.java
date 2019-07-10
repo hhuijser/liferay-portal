@@ -167,13 +167,11 @@ public class WSDLBuilderPlugin implements Plugin<Project> {
 		BuildWSDLTask buildWSDLTask, FileCollection classpath, File inputFile,
 		File tmpDir, Task generateTask) {
 
-		Project project = buildWSDLTask.getProject();
-
 		String taskName = GradleUtil.getTaskName(
 			buildWSDLTask.getName() + "Compile", inputFile);
 
 		JavaCompile javaCompile = GradleUtil.addTask(
-			project, taskName, JavaCompile.class);
+			buildWSDLTask.getProject(), taskName, JavaCompile.class);
 
 		javaCompile.setClasspath(classpath);
 

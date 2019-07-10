@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProvider;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermissionFactory;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -401,10 +400,8 @@ public class WikiPageServiceImpl extends WikiPageServiceBaseImpl {
 
 	@Override
 	public List<WikiPage> getOrphans(WikiNode node) throws PortalException {
-		PermissionChecker permissionChecker = getPermissionChecker();
-
 		_wikiNodeModelResourcePermission.check(
-			permissionChecker, node, ActionKeys.VIEW);
+			getPermissionChecker(), node, ActionKeys.VIEW);
 
 		List<WikiPage> pages = wikiPagePersistence.filterFindByG_N_H_S(
 			node.getGroupId(), node.getNodeId(), true,

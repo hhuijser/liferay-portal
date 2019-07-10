@@ -45,9 +45,8 @@ public class ServiceWrapperProjectTemplateCustomizer
 
 		Properties properties = archetypeGenerationRequest.getProperties();
 
-		String service = projectTemplatesArgs.getService();
-
-		properties.put("serviceWrapperClass", service);
+		properties.put(
+			"serviceWrapperClass", projectTemplatesArgs.getService());
 	}
 
 }

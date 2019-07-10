@@ -79,10 +79,8 @@ public class UploadServletRequestWhenGettingFilesAsStreamTest {
 		Assert.assertEquals(map.toString(), 10, map.size());
 
 		for (Map.Entry<String, FileItem[]> entry : map.entrySet()) {
-			String key = entry.getKey();
-
 			InputStream[] inputStreams = uploadServletRequest.getFilesAsStream(
-				key);
+				entry.getKey());
 
 			FileItem[] fileItems = entry.getValue();
 

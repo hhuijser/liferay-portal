@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.trash.TrashHelper;
@@ -103,11 +102,9 @@ public class WikiNodesManagementToolbarDisplayContext {
 
 		List<String> availableActionDropdownItems = new ArrayList<>();
 
-		PermissionChecker permissionChecker =
-			_themeDisplay.getPermissionChecker();
-
 		if (WikiNodePermission.contains(
-				permissionChecker, wikiNode, ActionKeys.DELETE)) {
+				_themeDisplay.getPermissionChecker(), wikiNode,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteNodes");
 		}

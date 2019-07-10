@@ -72,9 +72,7 @@ public class UploadServletRequestWhenGettingSizeTest {
 		Assert.assertEquals(map.toString(), 1, map.size());
 
 		for (Map.Entry<String, FileItem[]> entry : map.entrySet()) {
-			String key = entry.getKey();
-
-			Long size = uploadServletRequest.getSize(key);
+			Long size = uploadServletRequest.getSize(entry.getKey());
 
 			FileItem[] fileItems = entry.getValue();
 

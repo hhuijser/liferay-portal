@@ -230,16 +230,14 @@ public class SharingEntryServiceTest {
 		ClassName invalidClassName = _classNameLocalService.addClassName(
 			"InvalidClassName");
 
-		long classNameId = invalidClassName.getClassNameId();
-
 		long classPK = _group.getGroupId();
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
 		_sharingEntryService.addSharingEntry(
-			_toUser.getUserId(), classNameId, classPK, _group.getGroupId(),
-			true,
+			_toUser.getUserId(), invalidClassName.getClassNameId(), classPK,
+			_group.getGroupId(), true,
 			Arrays.asList(SharingEntryAction.UPDATE, SharingEntryAction.VIEW),
 			null, serviceContext);
 	}

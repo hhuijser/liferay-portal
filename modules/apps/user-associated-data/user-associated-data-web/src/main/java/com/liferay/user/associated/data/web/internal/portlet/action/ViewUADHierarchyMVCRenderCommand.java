@@ -99,16 +99,14 @@ public class ViewUADHierarchyMVCRenderCommand implements MVCRenderCommand {
 			uadInfoPanelDisplay.setTopLevelView(false);
 			uadInfoPanelDisplay.setUADDisplay(uadDisplay);
 
-			Class<?> typeClass = uadDisplay.getTypeClass();
-
 			long parentContainerId = ParamUtil.getLong(
 				renderRequest, "parentContainerId");
 
 			viewUADEntitiesDisplay.setSearchContainer(
 				_uadSearchContainerBuilder.getSearchContainer(
 					renderRequest, liferayPortletResponse, applicationKey,
-					currentURL, null, typeClass, parentContainerId,
-					selectedUser, uadHierarchyDisplay));
+					currentURL, null, uadDisplay.getTypeClass(),
+					parentContainerId, selectedUser, uadHierarchyDisplay));
 
 			renderRequest.setAttribute(
 				UADWebKeys.UAD_HIERARCHY_DISPLAY, uadHierarchyDisplay);

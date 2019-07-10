@@ -30,9 +30,6 @@ public class ParameterMapUtilWhenSettingAParameterMapTest {
 
 	@Before
 	public void setUp() throws ConfigurationException {
-		ParameterMapUtilTestUtil.TestBean testBean =
-			ParameterMapUtilTestUtil.getTestBean();
-
 		Map<String, String[]> parameterMap = new HashMap<>();
 
 		parameterMap.put("testBoolean1", new String[] {"false"});
@@ -44,7 +41,8 @@ public class ParameterMapUtilWhenSettingAParameterMapTest {
 			ParameterMapUtilTestUtil.PARAMETER_MAP_STRING_ARRAY);
 
 		_testBean = ParameterMapUtil.setParameterMap(
-			ParameterMapUtilTestUtil.TestBean.class, testBean, parameterMap);
+			ParameterMapUtilTestUtil.TestBean.class,
+			ParameterMapUtilTestUtil.getTestBean(), parameterMap);
 	}
 
 	@Test

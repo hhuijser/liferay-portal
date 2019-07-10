@@ -87,10 +87,8 @@ public class UploadPortletRequestWhenGettingParameterValuesTest {
 		for (Map.Entry<String, List<String>> entry :
 				regularParameters.entrySet()) {
 
-			String key = entry.getKey();
-
 			String[] parameterValues = uploadPortletRequest.getParameterValues(
-				key);
+				entry.getKey());
 
 			List<String> parameterValuesList = ListUtil.fromArray(
 				parameterValues);

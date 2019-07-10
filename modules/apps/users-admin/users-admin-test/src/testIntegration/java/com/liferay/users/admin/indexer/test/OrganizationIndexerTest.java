@@ -128,12 +128,11 @@ public class OrganizationIndexerTest {
 	}
 
 	protected Organization addOrganization(String name) throws Exception {
-		long userId = TestPropsValues.getUserId();
 		long parentOrganizationId = 0;
 		boolean site = false;
 
 		Organization organization = _organizationLocalService.addOrganization(
-			userId, parentOrganizationId, name, site);
+			TestPropsValues.getUserId(), parentOrganizationId, name, site);
 
 		_organizations.add(organization);
 

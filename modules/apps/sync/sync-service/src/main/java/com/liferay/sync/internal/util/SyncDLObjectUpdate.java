@@ -93,12 +93,9 @@ public class SyncDLObjectUpdate {
 		while (iterator.hasNext()) {
 			Map.Entry<String, Long> entry = iterator.next();
 
-			String key = entry.getKey();
-			long value = entry.getValue();
-
-			append(sb, key, false);
+			append(sb, entry.getKey(), false);
 			sb.append(StringPool.COLON);
-			append(sb, value, false);
+			append(sb, entry.getValue(), false);
 
 			if (iterator.hasNext()) {
 				sb.append(StringPool.COMMA);

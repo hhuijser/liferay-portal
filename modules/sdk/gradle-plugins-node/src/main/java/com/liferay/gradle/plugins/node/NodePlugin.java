@@ -226,12 +226,10 @@ public class NodePlugin implements Plugin<Project> {
 	private ExecuteNpmTask _addTaskNpmLink(
 		String dependencyName, NpmInstallTask npmInstallTask) {
 
-		Project project = npmInstallTask.getProject();
-
 		String suffix = StringUtil.camelCase(dependencyName, true);
 
 		final NpmLinkTask npmLinkTask = GradleUtil.addTask(
-			project, "npmLink" + suffix, NpmLinkTask.class);
+			npmInstallTask.getProject(), "npmLink" + suffix, NpmLinkTask.class);
 
 		npmLinkTask.dependsOn(npmInstallTask);
 		npmLinkTask.setDescription(

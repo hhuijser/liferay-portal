@@ -133,9 +133,8 @@ public class LangBuilderPlugin implements Plugin<Project> {
 	}
 
 	private void _configureTaskBuildLang(BuildLangTask buildLangTask) {
-		Project project = buildLangTask.getProject();
-
-		Project appProject = GradleUtil.getAppProject(project);
+		Project appProject = GradleUtil.getAppProject(
+			buildLangTask.getProject());
 
 		if (appProject != null) {
 			File appLangFile = new File(
@@ -164,9 +163,8 @@ public class LangBuilderPlugin implements Plugin<Project> {
 
 		buildLangTask.setClasspath(fileCollection);
 
-		Project project = buildLangTask.getProject();
-
-		Project appProject = GradleUtil.getAppProject(project);
+		Project appProject = GradleUtil.getAppProject(
+			buildLangTask.getProject());
 
 		if ((appProject != null) &&
 			GradleUtil.hasTask(appProject, APP_BUILD_LANG_TASK_NAME)) {

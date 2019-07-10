@@ -62,12 +62,10 @@ public abstract class BaseFailureMessageGenerator
 				topLevelBuild.getBaseGitRepositoryDetailsTempMap();
 		}
 
-		String baseGitRepositoryName = topLevelBuild.getBaseGitRepositoryName();
-
 		sb.append(pullRequestDetailsMap.get("github.origin.name"));
 
 		sb.append("/");
-		sb.append(baseGitRepositoryName);
+		sb.append(topLevelBuild.getBaseGitRepositoryName());
 		sb.append("/tree/");
 		sb.append(pullRequestDetailsMap.get("github.sender.branch.name"));
 

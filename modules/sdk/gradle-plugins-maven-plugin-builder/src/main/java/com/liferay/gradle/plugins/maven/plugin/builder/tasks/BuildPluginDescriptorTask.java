@@ -672,9 +672,7 @@ public class BuildPluginDescriptorTask extends DefaultTask {
 			sb.append('\n');
 			sb.append("private ");
 
-			Type type = beanProperty.getType();
-
-			sb.append(_getTypeName(type));
+			sb.append(_getTypeName(beanProperty.getType()));
 
 			sb.append(' ');
 			sb.append(beanProperty.getName());

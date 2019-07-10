@@ -203,9 +203,7 @@ public class ServletContextHelperRegistrationImpl
 
 		BundleWiring bundleWiring = _bundle.adapt(BundleWiring.class);
 
-		ClassLoader classLoader = bundleWiring.getClassLoader();
-
-		clearResidualMBeans(classLoader);
+		clearResidualMBeans(bundleWiring.getClassLoader());
 	}
 
 	@Override
@@ -250,12 +248,11 @@ public class ServletContextHelperRegistrationImpl
 
 		for (Map.Entry<String, String> entry : contextParameters.entrySet()) {
 			String key = entry.getKey();
-			String value = entry.getValue();
 
 			properties.put(
 				HttpWhiteboardConstants.
 					HTTP_WHITEBOARD_CONTEXT_INIT_PARAM_PREFIX + key,
-				value);
+				entry.getValue());
 		}
 
 		_servletContextHelperServiceRegistration.setProperties(properties);

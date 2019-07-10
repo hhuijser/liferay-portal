@@ -442,9 +442,6 @@ public class RootCauseAnalysisToolBuild extends DefaultTopLevelBuild {
 		for (int i = 0; i < gitCommitGroups.size(); i++) {
 			GitCommitGroup gitCommitGroup = gitCommitGroups.get(i);
 
-			PortalBuildData portalBuildData =
-				gitCommitGroup.getPortalBuildData();
-
 			Element commitGroupHeaderElement = Dom4JUtil.getNewElement(
 				"tbody", tableBodyElement);
 
@@ -465,8 +462,8 @@ public class RootCauseAnalysisToolBuild extends DefaultTopLevelBuild {
 			Dom4JUtil.addToElement(
 				commitGroupHeaderElement,
 				getCommitGroupHeaderRowElement(
-					gitCommitGroup.get(0), portalBuildData, gitCommitGroup,
-					nextGitCommitGroup, firstCommit));
+					gitCommitGroup.get(0), gitCommitGroup.getPortalBuildData(),
+					gitCommitGroup, nextGitCommitGroup, firstCommit));
 
 			if (gitCommitGroup.size() > 1) {
 				Element commitGroupElement = Dom4JUtil.getNewElement(

@@ -412,12 +412,11 @@ public class WebFormPortlet extends MVCPortlet {
 
 		String s = sb.toString();
 
-		byte[] bytes = s.getBytes();
-
 		String contentType = ContentTypes.APPLICATION_TEXT;
 
 		PortletResponseUtil.sendFile(
-			resourceRequest, resourceResponse, fileName, bytes, contentType);
+			resourceRequest, resourceResponse, fileName, s.getBytes(),
+			contentType);
 	}
 
 	protected String getCSVFormattedValue(String value) {

@@ -180,9 +180,7 @@ public class GitWorkingDirectory {
 			timeout++;
 
 			if (timeout >= 59) {
-				String currentBranchName = getCurrentBranchName();
-
-				if (Objects.equals(branchName, currentBranchName)) {
+				if (Objects.equals(branchName, getCurrentBranchName())) {
 					return;
 				}
 
@@ -193,11 +191,7 @@ public class GitWorkingDirectory {
 	}
 
 	public void checkoutUpstreamLocalGitBranch() {
-		String currentBranchName = getCurrentBranchName();
-
-		String upstreamBranchName = getUpstreamBranchName();
-
-		if (!Objects.equals(currentBranchName, upstreamBranchName)) {
+		if (!Objects.equals(getCurrentBranchName(), getUpstreamBranchName())) {
 			checkoutLocalGitBranch(getUpstreamLocalGitBranch());
 		}
 	}

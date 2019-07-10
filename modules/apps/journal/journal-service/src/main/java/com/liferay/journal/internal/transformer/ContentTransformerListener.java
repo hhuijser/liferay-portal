@@ -135,12 +135,10 @@ public class ContentTransformerListener extends BaseTransformerListener {
 
 	protected void replace(Document document, Map<String, String> tokens) {
 		try {
-			Element rootElement = document.getRootElement();
-
 			long articleGroupId = GetterUtil.getLong(
 				tokens.get("article_group_id"));
 
-			replace(rootElement, articleGroupId);
+			replace(document.getRootElement(), articleGroupId);
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {

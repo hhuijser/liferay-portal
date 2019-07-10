@@ -220,8 +220,6 @@ public class JournalArticleIndexerLocalizedContentTest {
 				}
 			});
 
-		String articleId = journalArticle.getArticleId();
-
 		Map<String, String> titleStrings = Collections.emptyMap();
 
 		Map<String, String> contentStrings = Collections.emptyMap();
@@ -248,7 +246,7 @@ public class JournalArticleIndexerLocalizedContentTest {
 
 		Map<String, String> ddmContentStrings = Collections.emptyMap();
 
-		String searchTerm = articleId;
+		String searchTerm = journalArticle.getArticleId();
 
 		Document document = _indexerFixture.searchOnlyOne(
 			searchTerm, LocaleUtil.BRAZIL);

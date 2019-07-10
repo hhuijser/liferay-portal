@@ -292,13 +292,12 @@ public class UpgradeJournal extends UpgradeProcess {
 			String languageId = GetterUtil.getString(
 				staticContentElement.attributeValue("language-id"),
 				_getDefaultLanguageId());
-			String text = staticContentElement.getText();
 
 			Element dynamicContentElement = SAXReaderUtil.createElement(
 				"dynamic-content");
 
 			dynamicContentElement.addAttribute("language-id", languageId);
-			dynamicContentElement.addCDATA(text);
+			dynamicContentElement.addCDATA(staticContentElement.getText());
 
 			dynamicElementElement.add(dynamicContentElement);
 		}
@@ -348,10 +347,8 @@ public class UpgradeJournal extends UpgradeProcess {
 
 						Document document = SAXReaderUtil.read(content);
 
-						Element rootElement = document.getRootElement();
-
 						articleFieldNames = getArticleDynamicElements(
-							rootElement);
+							document.getRootElement());
 					}
 				}
 			}

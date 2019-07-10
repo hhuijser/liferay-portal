@@ -141,13 +141,12 @@ public class DefaultMBAdminListDisplayContext
 			searchContext.setKeywords(keywords);
 
 			String orderByCol = searchContainer.getOrderByCol();
-			String orderByType = searchContainer.getOrderByType();
 
 			Sort sort = null;
 
 			boolean orderByAsc = false;
 
-			if (Objects.equals(orderByType, "asc")) {
+			if (Objects.equals(searchContainer.getOrderByType(), "asc")) {
 				orderByAsc = true;
 			}
 

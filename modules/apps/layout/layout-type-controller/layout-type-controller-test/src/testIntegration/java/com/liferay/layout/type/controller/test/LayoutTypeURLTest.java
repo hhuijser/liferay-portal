@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
@@ -77,13 +76,11 @@ public class LayoutTypeURLTest {
 	public void testGetRegularURLLayoutTypeURL() throws Exception {
 		ThemeDisplay themeDisplay = _initThemeDisplay();
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		Layout layoutURLType = LayoutLocalServiceUtil.addLayout(
 			TestPropsValues.getUserId(), TestPropsValues.getGroupId(), false,
 			_publicLayout.getLayoutId(), "Link", "Link", "Test invalid URL",
-			LayoutConstants.TYPE_URL, false, null, serviceContext);
+			LayoutConstants.TYPE_URL, false, null,
+			ServiceContextTestUtil.getServiceContext());
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();

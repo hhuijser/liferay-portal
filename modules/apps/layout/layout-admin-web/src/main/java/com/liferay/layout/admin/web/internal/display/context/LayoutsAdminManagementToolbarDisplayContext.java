@@ -168,9 +168,10 @@ public class LayoutsAdminManagementToolbarDisplayContext
 
 	@Override
 	public Boolean isDisabled() {
-		String displayStyle = _layoutsAdminDisplayContext.getDisplayStyle();
+		if (Objects.equals(
+				_layoutsAdminDisplayContext.getDisplayStyle(),
+				"miller-columns")) {
 
-		if (Objects.equals(displayStyle, "miller-columns")) {
 			return false;
 		}
 

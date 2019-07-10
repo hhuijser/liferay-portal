@@ -26,8 +26,6 @@ import com.liferay.portal.security.sso.openid.connect.OpenIdConnect;
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnectProviderRegistry;
 import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWebKeys;
 
-import java.util.Collection;
-
 import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -76,12 +74,9 @@ public class OpenIdConnectLoginRequestMVCRenderCommand
 			return "/login.jsp";
 		}
 
-		Collection<String> openIdConnectProviderNames =
-			_openIdConnectProviderRegistry.getOpenIdConnectProviderNames();
-
 		httpServletRequest.setAttribute(
 			OpenIdConnectWebKeys.OPEN_ID_CONNECT_PROVIDER_NAMES,
-			openIdConnectProviderNames);
+			_openIdConnectProviderRegistry.getOpenIdConnectProviderNames());
 
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(_JSP_PATH);

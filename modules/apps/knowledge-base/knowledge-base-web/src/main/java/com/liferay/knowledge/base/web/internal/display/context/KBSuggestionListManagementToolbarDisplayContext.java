@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -86,11 +85,9 @@ public class KBSuggestionListManagementToolbarDisplayContext {
 
 		List<String> availableActionDropdownItems = new ArrayList<>();
 
-		PermissionChecker permissionChecker =
-			_themeDisplay.getPermissionChecker();
-
 		if (KBCommentPermission.contains(
-				permissionChecker, kbComment, ActionKeys.DELETE)) {
+				_themeDisplay.getPermissionChecker(), kbComment,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteKBComments");
 		}

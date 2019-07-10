@@ -114,24 +114,20 @@ public class MBDiscussionCommentImpl
 
 	@Override
 	public DiscussionCommentIterator getThreadDiscussionCommentIterator() {
-		List<MBMessage> messages = _treeWalker.getMessages();
-
 		int[] range = _treeWalker.getChildrenRange(getMessage());
 
 		return new MBDiscussionCommentIterator(
-			messages, range[0], range[1], _treeWalker);
+			_treeWalker.getMessages(), range[0], range[1], _treeWalker);
 	}
 
 	@Override
 	public DiscussionCommentIterator getThreadDiscussionCommentIterator(
 		int from) {
 
-		List<MBMessage> messages = _treeWalker.getMessages();
-
 		int[] range = _treeWalker.getChildrenRange(getMessage());
 
 		return new MBDiscussionCommentIterator(
-			messages, from + 1, range[1], _treeWalker);
+			_treeWalker.getMessages(), from + 1, range[1], _treeWalker);
 	}
 
 	@Override

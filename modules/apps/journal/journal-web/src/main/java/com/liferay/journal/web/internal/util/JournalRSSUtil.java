@@ -92,8 +92,6 @@ import org.osgi.service.component.annotations.Reference;
 public class JournalRSSUtil {
 
 	public List<JournalArticle> getArticles(JournalFeed feed) {
-		long companyId = feed.getCompanyId();
-		long groupId = feed.getGroupId();
 		List<Long> folderIds = Collections.emptyList();
 		String articleId = null;
 		Double version = null;
@@ -135,7 +133,7 @@ public class JournalRSSUtil {
 		}
 
 		return _journalArticleLocalService.search(
-			companyId, groupId, folderIds,
+			feed.getCompanyId(), feed.getGroupId(), folderIds,
 			JournalArticleConstants.CLASSNAME_ID_DEFAULT, articleId, version,
 			title, description, content, ddmStructureKey, ddmTemplateKey,
 			displayDateGT, displayDateLT, status, reviewDate, andOperator,

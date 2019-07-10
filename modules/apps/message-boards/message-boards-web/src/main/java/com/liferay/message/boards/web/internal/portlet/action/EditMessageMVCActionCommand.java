@@ -60,7 +60,6 @@ import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.sanitizer.SanitizerException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermission;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
@@ -504,15 +503,13 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 				}
 			}
 
-			PermissionChecker permissionChecker =
-				themeDisplay.getPermissionChecker();
-
 			boolean subscribe = ParamUtil.getBoolean(
 				actionRequest, "subscribe");
 
 			if (!preview && subscribe &&
 				_messageModelResourcePermission.contains(
-					permissionChecker, message, ActionKeys.SUBSCRIBE)) {
+					themeDisplay.getPermissionChecker(), message,
+					ActionKeys.SUBSCRIBE)) {
 
 				_mbMessageService.subscribeMessage(message.getMessageId());
 			}

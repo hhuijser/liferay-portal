@@ -1215,8 +1215,6 @@ public class LayoutStagedModelDataHandler
 				continue;
 			}
 
-			long scopeGroupId = portletDataContext.getScopeGroupId();
-
 			Settings portletInstanceSettings = SettingsFactoryUtil.getSettings(
 				new PortletInstanceSettingsLocator(layout, portletId));
 
@@ -1228,7 +1226,8 @@ public class LayoutStagedModelDataHandler
 			portletIds.put(
 				key,
 				new Object[] {
-					portletId, scopeGroupId, scopeType, scopeLayoutUuid
+					portletId, portletDataContext.getScopeGroupId(), scopeType,
+					scopeLayoutUuid
 				});
 		}
 

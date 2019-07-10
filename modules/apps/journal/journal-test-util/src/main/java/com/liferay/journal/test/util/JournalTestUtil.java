@@ -636,7 +636,6 @@ public class JournalTestUtil {
 			String ddmTemplateKey, String rendererTemplateKey)
 		throws Exception {
 
-		long userId = TestPropsValues.getUserId();
 		String feedId = StringPool.BLANK;
 		boolean autoFeedId = true;
 		String description = StringPool.BLANK;
@@ -655,10 +654,10 @@ public class JournalTestUtil {
 			ServiceContextTestUtil.getServiceContext(groupId);
 
 		return JournalFeedLocalServiceUtil.addFeed(
-			userId, groupId, feedId, autoFeedId, name, description,
-			ddmStructureKey, ddmTemplateKey, rendererTemplateKey, delta,
-			orderByCol, orderByType, friendlyURL, targetPortletId, contentField,
-			feedFormat, feedVersion, serviceContext);
+			TestPropsValues.getUserId(), groupId, feedId, autoFeedId, name,
+			description, ddmStructureKey, ddmTemplateKey, rendererTemplateKey,
+			delta, orderByCol, orderByType, friendlyURL, targetPortletId,
+			contentField, feedFormat, feedVersion, serviceContext);
 	}
 
 	public static JournalFolder addFolder(

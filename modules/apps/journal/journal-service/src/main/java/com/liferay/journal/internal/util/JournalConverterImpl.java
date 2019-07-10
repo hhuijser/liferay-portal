@@ -142,10 +142,9 @@ public class JournalConverterImpl implements JournalConverter {
 
 		rootElement.addAttribute("available-locales", availableLocales);
 
-		Locale defaultLocale = ddmFields.getDefaultLocale();
-
 		rootElement.addAttribute(
-			"default-locale", LocaleUtil.toLanguageId(defaultLocale));
+			"default-locale",
+			LocaleUtil.toLanguageId(ddmFields.getDefaultLocale()));
 
 		DDMFieldsCounter ddmFieldsCounter = new DDMFieldsCounter();
 

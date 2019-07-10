@@ -14,7 +14,6 @@
 
 package com.liferay.mail.reader.internal.search;
 
-import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeIndexerUtil;
 import com.liferay.mail.reader.model.Account;
 import com.liferay.mail.reader.service.AccountLocalService;
@@ -93,12 +92,11 @@ public class AccountIndexer extends BaseIndexer<Account> {
 	protected Document doGetDocument(Account account) throws Exception {
 		Document document = getBaseModelDocument(CLASS_NAME, account);
 
-		ExpandoBridge expandoBridge = account.getExpandoBridge();
-
 		document.addKeyword("accountId", account.getAccountId());
 		document.addText(Field.NAME, account.getAddress());
 
-		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
+		ExpandoBridgeIndexerUtil.addAttributes(
+			document, account.getExpandoBridge());
 
 		return document;
 	}

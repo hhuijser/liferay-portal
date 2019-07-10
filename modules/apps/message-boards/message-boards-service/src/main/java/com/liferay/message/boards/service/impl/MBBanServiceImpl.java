@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermissionFactory;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -39,10 +38,8 @@ public class MBBanServiceImpl extends MBBanServiceBaseImpl {
 	public MBBan addBan(long banUserId, ServiceContext serviceContext)
 		throws PortalException {
 
-		PermissionChecker permissionChecker = getPermissionChecker();
-
 		_portletResourcePermission.check(
-			permissionChecker, serviceContext.getScopeGroupId(),
+			getPermissionChecker(), serviceContext.getScopeGroupId(),
 			ActionKeys.BAN_USER);
 
 		User banUser = _userLocalService.getUser(banUserId);

@@ -93,9 +93,7 @@ public class OrphanPortletsDisplayContext {
 	}
 
 	public List<Portlet> getOrphanPortlets() {
-		Layout selLayout = getSelLayout();
-
-		return getOrphanPortlets(selLayout);
+		return getOrphanPortlets(getSelLayout());
 	}
 
 	public List<Portlet> getOrphanPortlets(Layout layout) {

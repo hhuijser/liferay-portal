@@ -89,8 +89,6 @@ public class CTJournalArticleServiceWrapper
 	private DynamicQuery _getArticlesByArticleIdDynamicQuery(
 		long groupId, String articleId) {
 
-		long userId = PrincipalThreadLocal.getUserId();
-
 		DynamicQuery query = _journalArticleLocalService.dynamicQuery();
 
 		query.add(RestrictionsFactoryUtil.eq("groupId", groupId));
@@ -102,7 +100,8 @@ public class CTJournalArticleServiceWrapper
 
 		if (journalArticleResource != null) {
 			List<CTEntry> ctEntries = _ctManager.getModelChangeCTEntries(
-				journalArticleResource.getCompanyId(), userId,
+				journalArticleResource.getCompanyId(),
+				PrincipalThreadLocal.getUserId(),
 				journalArticleResource.getResourcePrimKey());
 
 			Stream<CTEntry> ctEntryStream = ctEntries.stream();

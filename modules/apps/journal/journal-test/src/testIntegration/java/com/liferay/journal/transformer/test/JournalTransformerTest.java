@@ -139,15 +139,13 @@ public class JournalTransformerTest {
 
 	@Test
 	public void testFTLTransformation() throws Exception {
-		Map<String, String> tokens = getTokens();
-
 		String xml = DDMStructureTestUtil.getSampleStructuredContent(
 			"name", "Joe Bloggs");
 
 		String script = "${name.getData()} - ${viewMode}";
 
 		String content = (String)_transformMethod.invoke(
-			null, null, tokens, Constants.PRINT, "en_US",
+			null, null, getTokens(), Constants.PRINT, "en_US",
 			UnsecureSAXReaderUtil.read(xml), null, script,
 			TemplateConstants.LANG_TYPE_FTL);
 
@@ -236,15 +234,13 @@ public class JournalTransformerTest {
 	public void testRegexTransformerListener() throws Exception {
 		initRegexTransformerListener();
 
-		Map<String, String> tokens = getTokens();
-
 		String xml = DDMStructureTestUtil.getSampleStructuredContent(
 			"name", "Joe Bloggs");
 
 		String script = "Hello $name.getData(), Welcome to beta.sample.com.";
 
 		String content = (String)_transformMethod.invoke(
-			null, null, tokens, Constants.VIEW, "en_US",
+			null, null, getTokens(), Constants.VIEW, "en_US",
 			UnsecureSAXReaderUtil.read(xml), null, script,
 			TemplateConstants.LANG_TYPE_VM);
 

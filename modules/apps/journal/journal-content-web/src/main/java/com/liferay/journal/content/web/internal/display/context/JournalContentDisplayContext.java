@@ -131,9 +131,7 @@ public class JournalContentDisplayContext {
 	}
 
 	public void clearCache() throws PortalException {
-		String articleId = getArticleId();
-
-		if (Validator.isNotNull(articleId)) {
+		if (Validator.isNotNull(getArticleId())) {
 			JournalContent journalContent =
 				(JournalContent)_portletRequest.getAttribute(
 					JournalWebKeys.JOURNAL_CONTENT);
@@ -278,10 +276,8 @@ public class JournalContentDisplayContext {
 		AssetRenderer<JournalArticle> assetRenderer =
 			assetRendererFactory.getAssetRenderer(article, 0);
 
-		long classPK = assetRenderer.getClassPK();
-
 		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
-			JournalArticle.class.getName(), classPK);
+			JournalArticle.class.getName(), assetRenderer.getClassPK());
 
 		return assetEntry.getEntryId();
 	}
@@ -648,11 +644,9 @@ public class JournalContentDisplayContext {
 				AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
 					JournalArticle.class);
 
-			JournalArticle article = getArticle();
-
 			AssetRenderer<JournalArticle> latestArticleAssetRenderer =
 				assetRendererFactory.getAssetRenderer(
-					article, AssetRendererFactory.TYPE_LATEST_APPROVED);
+					getArticle(), AssetRendererFactory.TYPE_LATEST_APPROVED);
 
 			PortletURL portletURL = latestArticleAssetRenderer.getURLEdit(
 				PortalUtil.getLiferayPortletRequest(_portletRequest), null,

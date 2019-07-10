@@ -108,11 +108,9 @@ public class KBAdminManagementToolbarDisplayContext {
 
 		List<String> availableActionDropdownItems = new ArrayList<>();
 
-		PermissionChecker permissionChecker =
-			_themeDisplay.getPermissionChecker();
-
 		if (KBArticlePermission.contains(
-				permissionChecker, kbArticle, ActionKeys.DELETE)) {
+				_themeDisplay.getPermissionChecker(), kbArticle,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteEntries");
 		}
@@ -125,11 +123,9 @@ public class KBAdminManagementToolbarDisplayContext {
 
 		List<String> availableActionDropdownItems = new ArrayList<>();
 
-		PermissionChecker permissionChecker =
-			_themeDisplay.getPermissionChecker();
-
 		if (KBFolderPermission.contains(
-				permissionChecker, kbFolder, ActionKeys.DELETE)) {
+				_themeDisplay.getPermissionChecker(), kbFolder,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteEntries");
 		}

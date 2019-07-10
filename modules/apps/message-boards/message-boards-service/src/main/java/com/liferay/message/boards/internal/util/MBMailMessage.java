@@ -85,15 +85,13 @@ public class MBMailMessage {
 			new ArrayList<>(_bytesOVPs.size());
 
 		for (ObjectValuePair<String, byte[]> bytesOVP : _bytesOVPs) {
-			String key = bytesOVP.getKey();
-
 			byte[] bytes = bytesOVP.getValue();
 
 			ByteArrayInputStream byteArrayInputStream =
 				new ByteArrayInputStream(bytes);
 
 			ObjectValuePair<String, InputStream> inputStreamOVP =
-				new ObjectValuePair<>(key, byteArrayInputStream);
+				new ObjectValuePair<>(bytesOVP.getKey(), byteArrayInputStream);
 
 			inputStreamOVPs.add(inputStreamOVP);
 		}

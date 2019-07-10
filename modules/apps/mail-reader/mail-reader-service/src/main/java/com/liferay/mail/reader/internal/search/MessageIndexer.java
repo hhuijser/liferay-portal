@@ -14,7 +14,6 @@
 
 package com.liferay.mail.reader.internal.search;
 
-import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeIndexerUtil;
 import com.liferay.mail.reader.model.Message;
 import com.liferay.mail.reader.service.MessageLocalService;
@@ -59,8 +58,6 @@ public class MessageIndexer extends BaseIndexer<Message> {
 	protected Document doGetDocument(Message message) throws Exception {
 		Document document = getBaseModelDocument(CLASS_NAME, message);
 
-		ExpandoBridge expandoBridge = message.getExpandoBridge();
-
 		document.addText(
 			Field.CONTENT, HtmlUtil.extractText(message.getBody()));
 		document.addKeyword(Field.FOLDER_ID, message.getFolderId());
@@ -69,7 +66,8 @@ public class MessageIndexer extends BaseIndexer<Message> {
 		document.addKeyword("accountId", message.getAccountId());
 		document.addKeyword("remoteMessageId", message.getRemoteMessageId());
 
-		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
+		ExpandoBridgeIndexerUtil.addAttributes(
+			document, message.getExpandoBridge());
 
 		return document;
 	}

@@ -70,9 +70,8 @@ public class LayoutPageTemplateEntryStagedModelDataHandlerTest
 	public void testImportLayoutPageTemplateEntryByDefaultUser()
 		throws Exception {
 
-		long companyId = stagingGroup.getCompanyId();
-
-		Company company = CompanyLocalServiceUtil.getCompany(companyId);
+		Company company = CompanyLocalServiceUtil.getCompany(
+			stagingGroup.getCompanyId());
 
 		Group companyGroup = company.getGroup();
 

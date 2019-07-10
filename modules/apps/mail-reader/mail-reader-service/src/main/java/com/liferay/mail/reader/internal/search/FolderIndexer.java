@@ -14,7 +14,6 @@
 
 package com.liferay.mail.reader.internal.search;
 
-import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeIndexerUtil;
 import com.liferay.mail.reader.model.Folder;
 import com.liferay.mail.reader.service.FolderLocalService;
@@ -93,14 +92,13 @@ public class FolderIndexer extends BaseIndexer<Folder> {
 	protected Document doGetDocument(Folder folder) throws Exception {
 		Document document = getBaseModelDocument(CLASS_NAME, folder);
 
-		ExpandoBridge expandoBridge = folder.getExpandoBridge();
-
 		document.addKeyword(Field.FOLDER_ID, folder.getFolderId());
 		document.addText(Field.NAME, folder.getDisplayName());
 
 		document.addKeyword("accountId", folder.getAccountId());
 
-		ExpandoBridgeIndexerUtil.addAttributes(document, expandoBridge);
+		ExpandoBridgeIndexerUtil.addAttributes(
+			document, folder.getExpandoBridge());
 
 		return document;
 	}

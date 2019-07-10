@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -51,9 +50,6 @@ public class LayoutFixture {
 			LocalizedValuesMap nameMap, LocalizedValuesMap titleMap)
 		throws PortalException {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		LocalizedValuesMap friendlyUrlMap = new LocalizedValuesMap() {
 			{
 				String randomString = FriendlyURLNormalizerUtil.normalize(
@@ -68,7 +64,8 @@ public class LayoutFixture {
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, nameMap.getValues(),
 			titleMap.getValues(), null, null, null,
 			LayoutConstants.TYPE_CONTENT, null, false,
-			friendlyUrlMap.getValues(), serviceContext);
+			friendlyUrlMap.getValues(),
+			ServiceContextTestUtil.getServiceContext());
 
 		_layouts.add(layout);
 
@@ -76,9 +73,6 @@ public class LayoutFixture {
 	}
 
 	public Layout createLayout(String name) throws PortalException {
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		String randomString = FriendlyURLNormalizerUtil.normalize(
 			RandomTestUtil.randomString());
 
@@ -88,7 +82,7 @@ public class LayoutFixture {
 			TestPropsValues.getUserId(), _group.getGroupId(), false,
 			LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, name, null,
 			RandomTestUtil.randomString(), LayoutConstants.TYPE_CONTENT, false,
-			friendlyURL, serviceContext);
+			friendlyURL, ServiceContextTestUtil.getServiceContext());
 
 		_layouts.add(layout);
 

@@ -558,9 +558,6 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 		layoutPageTemplateEntry.setClassNameId(classNameId);
 		layoutPageTemplateEntry.setClassTypeId(classTypeId);
 
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
 		Layout layout = null;
 
 		if (layoutPageTemplateEntry.getPlid() == 0) {
@@ -568,7 +565,8 @@ public class LayoutPageTemplateEntryLocalServiceImpl
 				layoutPageTemplateEntry.getUserId(),
 				layoutPageTemplateEntry.getGroupId(),
 				layoutPageTemplateEntry.getName(),
-				layoutPageTemplateEntry.getType(), serviceContext);
+				layoutPageTemplateEntry.getType(),
+				ServiceContextThreadLocal.getServiceContext());
 		}
 
 		if (layout != null) {

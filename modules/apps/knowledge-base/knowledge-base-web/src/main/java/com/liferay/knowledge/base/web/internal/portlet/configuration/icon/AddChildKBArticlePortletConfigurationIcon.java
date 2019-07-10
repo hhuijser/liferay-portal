@@ -20,7 +20,6 @@ import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Portal;
@@ -93,12 +92,9 @@ public class AddChildKBArticlePortletConfigurationIcon
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (_portletResourcePermission.contains(
-				permissionChecker, themeDisplay.getScopeGroup(),
-				KBActionKeys.ADD_KB_ARTICLE)) {
+				themeDisplay.getPermissionChecker(),
+				themeDisplay.getScopeGroup(), KBActionKeys.ADD_KB_ARTICLE)) {
 
 			return true;
 		}

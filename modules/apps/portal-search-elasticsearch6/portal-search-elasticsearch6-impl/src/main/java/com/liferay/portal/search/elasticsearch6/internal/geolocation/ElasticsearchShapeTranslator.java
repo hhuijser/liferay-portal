@@ -31,6 +31,7 @@ import com.liferay.portal.search.geolocation.ShapeTranslator;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.elasticsearch.common.geo.builders.CircleBuilder;
 import org.elasticsearch.common.geo.builders.EnvelopeBuilder;
@@ -85,8 +86,9 @@ public class ElasticsearchShapeTranslator
 
 		List<Shape> shapes = geometryCollectionShape.getShapes();
 
-		shapes.stream(
-		).map(
+		Stream<Shape> stream = shapes.stream();
+
+		stream.map(
 			this::translate
 		).forEach(
 			geometryCollectionBuilder::shape
@@ -114,8 +116,9 @@ public class ElasticsearchShapeTranslator
 		List<LineStringShape> lineStringShapes =
 			multiLineStringShape.getLineStringShapes();
 
-		lineStringShapes.stream(
-		).map(
+		Stream<LineStringShape> stream = lineStringShapes.stream();
+
+		stream.map(
 			this::translate
 		).forEach(
 			multiLineStringBuilder::linestring
@@ -140,8 +143,9 @@ public class ElasticsearchShapeTranslator
 
 		List<PolygonShape> polygonShapes = multiPolygonShape.getPolygonShapes();
 
-		polygonShapes.stream(
-		).map(
+		Stream<PolygonShape> stream = polygonShapes.stream();
+
+		stream.map(
 			this::translate
 		).forEach(
 			multiPolygonBuilder::polygon
@@ -156,8 +160,9 @@ public class ElasticsearchShapeTranslator
 
 		PointBuilder pointBuilder = new PointBuilder();
 
-		coordinates.stream(
-		).map(
+		Stream<Coordinate> stream = coordinates.stream();
+
+		stream.map(
 			this::translate
 		).forEach(
 			pointBuilder::coordinate
@@ -176,8 +181,9 @@ public class ElasticsearchShapeTranslator
 
 		List<LineStringShape> holesLineStringShapes = polygonShape.getHoles();
 
-		holesLineStringShapes.stream(
-		).map(
+		Stream<LineStringShape> stream = holesLineStringShapes.stream();
+
+		stream.map(
 			this::translate
 		).forEach(
 			polygonBuilder::hole
@@ -196,8 +202,9 @@ public class ElasticsearchShapeTranslator
 	protected List<org.locationtech.jts.geom.Coordinate> translate(
 		List<Coordinate> coordinates) {
 
-		return coordinates.stream(
-		).map(
+		Stream<Coordinate> stream = coordinates.stream();
+
+		return stream.map(
 			this::translate
 		).collect(
 			Collectors.toList()

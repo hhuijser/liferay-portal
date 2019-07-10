@@ -22,6 +22,7 @@ import com.liferay.portal.search.query.function.score.ScoreFunction;
 import com.liferay.portal.search.query.function.score.ScoreFunctionTranslator;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -49,16 +50,17 @@ public class FunctionScoreQueryTranslatorImpl
 		List<FilterQueryScoreFunctionHolder> filterQueryScoreFunctionHolders =
 			functionScoreQuery.getFilterQueryScoreFunctionHolders();
 
-		FilterFunctionBuilder[] filterFunctionBuilders =
-			filterQueryScoreFunctionHolders.stream(
-			).map(
-				filterQueryScoreFunctionHolder -> translateFilterFunction(
-					filterQueryScoreFunctionHolder, queryTranslator,
-					translateScoreFunction(
-						filterQueryScoreFunctionHolder.getScoreFunction()))
-			).toArray(
-				FilterFunctionBuilder[]::new
-			);
+		Stream<FilterQueryScoreFunctionHolder> stream =
+			filterQueryScoreFunctionHolders.stream();
+
+		FilterFunctionBuilder[] filterFunctionBuilders = stream.map(
+			filterQueryScoreFunctionHolder -> translateFilterFunction(
+				filterQueryScoreFunctionHolder, queryTranslator,
+				translateScoreFunction(
+					filterQueryScoreFunctionHolder.getScoreFunction()))
+		).toArray(
+			FilterFunctionBuilder[]::new
+		);
 
 		FunctionScoreQueryBuilder functionScoreQueryBuilder =
 			QueryBuilders.functionScoreQuery(

@@ -20,6 +20,7 @@ import com.liferay.portal.search.highlight.Highlight;
 import com.liferay.portal.search.query.QueryTranslator;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
@@ -36,8 +37,9 @@ public class HighlightTranslator {
 
 		List<FieldConfig> fieldConfigs = highlight.getFieldConfigs();
 
-		fieldConfigs.stream(
-		).map(
+		Stream<FieldConfig> stream = fieldConfigs.stream();
+
+		stream.map(
 			this::translate
 		).forEach(
 			highlightBuilder::field

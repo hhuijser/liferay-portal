@@ -31,6 +31,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -105,8 +106,9 @@ public abstract class BaseHighlighterTestCase extends BaseIndexingTestCase {
 
 				List<String> actualValues = new ArrayList<>();
 
-				searchHitsList.stream(
-				).map(
+				Stream<SearchHit> stream = searchHitsList.stream();
+
+				stream.map(
 					searchHit -> getFragments(fieldName, searchHit)
 				).forEach(
 					actualValues::addAll

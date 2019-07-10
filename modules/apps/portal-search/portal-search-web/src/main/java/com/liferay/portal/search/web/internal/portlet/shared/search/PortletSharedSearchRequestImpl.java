@@ -276,8 +276,10 @@ public class PortletSharedSearchRequestImpl
 					PortletKeys.PREFS_OWNER_ID_DEFAULT,
 					PortletKeys.PREFS_OWNER_TYPE_LAYOUT, layout.getPlid());
 
-		return portletPreferencesList.stream(
-		).map(
+		Stream<com.liferay.portal.kernel.model.PortletPreferences> stream =
+			portletPreferencesList.stream();
+
+		return stream.map(
 			portletPreferences -> portletLocalService.getPortletById(
 				companyId, portletPreferences.getPortletId())
 		).filter(

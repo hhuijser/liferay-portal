@@ -22,6 +22,7 @@ import com.liferay.portal.search.query.GeoPolygonQuery;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.index.query.GeoPolygonQueryBuilder;
@@ -42,8 +43,9 @@ public class GeoPolygonQueryTranslatorImpl
 		Set<GeoLocationPoint> geoLocationPoints =
 			geoPolygonQuery.getGeoLocationPoints();
 
-		List<GeoPoint> geoPoints = geoLocationPoints.stream(
-		).map(
+		Stream<GeoPoint> stream = geoLocationPoints.stream();
+
+		List<GeoPoint> geoPoints = stream.map(
 			GeoLocationPointTranslator::translate
 		).collect(
 			Collectors.toList()

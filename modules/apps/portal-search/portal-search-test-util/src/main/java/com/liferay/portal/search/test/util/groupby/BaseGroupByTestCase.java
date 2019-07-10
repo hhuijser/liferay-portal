@@ -40,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -199,13 +200,13 @@ public abstract class BaseGroupByTestCase extends BaseIndexingTestCase {
 
 		Set<Map.Entry<String, Integer>> entries = map1.entrySet();
 
-		Map<String, String> map2 = entries.stream(
-		).collect(
+		Stream<Map.Entry<String, Integer>> stream = entries.stream();
+
+		Map<String, String> map2 = stream.collect(
 			Collectors.toMap(
 				Map.Entry::getKey,
 				entry -> getCountPairString(
-					entry.getValue(), entry.getValue() - 1))
-		);
+					entry.getValue(), entry.getValue() - 1)));
 
 		assertSearch(
 			indexingTestHelper -> {
@@ -249,12 +250,13 @@ public abstract class BaseGroupByTestCase extends BaseIndexingTestCase {
 
 		Set<Map.Entry<String, Integer>> entries = map1.entrySet();
 
-		Map<String, String> map2 = entries.stream(
-		).collect(
+		Stream<Map.Entry<String, Integer>> stream = entries.stream();
+
+		Map<String, String> map2 = stream.collect(
 			Collectors.toMap(
 				Map.Entry::getKey,
-				entry -> getCountPairString(entry.getValue(), entry.getValue()))
-		);
+				entry -> getCountPairString(
+					entry.getValue(), entry.getValue())));
 
 		assertSearch(
 			indexingTestHelper -> {
@@ -335,12 +337,13 @@ public abstract class BaseGroupByTestCase extends BaseIndexingTestCase {
 
 		Set<Map.Entry<String, Integer>> entries = map1.entrySet();
 
-		Map<String, String> map2 = entries.stream(
-		).collect(
+		Stream<Map.Entry<String, Integer>> stream = entries.stream();
+
+		Map<String, String> map2 = stream.collect(
 			Collectors.toMap(
 				Map.Entry::getKey,
-				entry -> getCountPairString(entry.getValue(), entry.getValue()))
-		);
+				entry -> getCountPairString(
+					entry.getValue(), entry.getValue())));
 
 		assertSearch(
 			indexingTestHelper -> {
@@ -492,12 +495,12 @@ public abstract class BaseGroupByTestCase extends BaseIndexingTestCase {
 
 		Collection<Map.Entry<String, Hits>> entries = hitsMap.entrySet();
 
-		Map<String, String> actualCountsMap = entries.stream(
-		).collect(
+		Stream<Map.Entry<String, Hits>> stream = entries.stream();
+
+		Map<String, String> actualCountsMap = stream.collect(
 			Collectors.toMap(
 				Map.Entry::getKey,
-				entry -> getCountPairString(entry.getValue()))
-		);
+				entry -> getCountPairString(entry.getValue())));
 
 		AssertUtils.assertEquals(
 			indexingTestHelper.getRequestString(), expectedCountsMap,

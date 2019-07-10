@@ -94,8 +94,9 @@ public class SortPortletSharedSearchContributor
 		ThemeDisplay themeDisplay =
 			portletSharedSearchSettings.getThemeDisplay();
 
-		return fieldValues.stream(
-		).filter(
+		Stream<String> stream = fieldValues.stream();
+
+		return stream.filter(
 			fieldValue -> !fieldValue.isEmpty()
 		).map(
 			fieldValue -> buildSort(fieldValue, themeDisplay.getLocale())

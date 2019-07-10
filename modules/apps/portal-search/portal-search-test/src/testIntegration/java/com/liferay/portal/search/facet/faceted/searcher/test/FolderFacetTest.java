@@ -236,10 +236,9 @@ public class FolderFacetTest extends BaseFacetedSearcherTestCase {
 	protected Map<String, Integer> toMap(
 		Collection<String> strings, int value) {
 
-		return strings.stream(
-		).collect(
-			Collectors.toMap(s -> s, s -> value)
-		);
+		Stream<String> stream = strings.stream();
+
+		return stream.collect(Collectors.toMap(s -> s, s -> value));
 	}
 
 	@Inject

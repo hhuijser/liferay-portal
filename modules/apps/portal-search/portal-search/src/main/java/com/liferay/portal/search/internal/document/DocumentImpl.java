@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Michael C. Han
@@ -153,8 +154,9 @@ public class DocumentImpl implements Document {
 	public <T> List<T> getValues(String name, Function<Object, T> function) {
 		List<Object> values = getValues(name);
 
-		return values.stream(
-		).map(
+		Stream<Object> stream = values.stream();
+
+		return stream.map(
 			function
 		).collect(
 			Collectors.toList()

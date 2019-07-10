@@ -36,6 +36,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.common.unit.TimeValue;
@@ -126,8 +127,9 @@ public class CommonSearchRequestBuilderAssemblerImpl
 	}
 
 	protected void copy(List<Query> clauses, Consumer<QueryBuilder> consumer) {
-		clauses.stream(
-		).map(
+		Stream<Query> stream = clauses.stream();
+
+		stream.map(
 			this::translateQuery
 		).forEach(
 			consumer

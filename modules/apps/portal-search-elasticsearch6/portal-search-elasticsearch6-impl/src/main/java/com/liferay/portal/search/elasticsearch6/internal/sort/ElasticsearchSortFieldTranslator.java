@@ -32,6 +32,7 @@ import com.liferay.portal.search.sort.SortOrder;
 import com.liferay.portal.search.sort.SortVisitor;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.elasticsearch.common.geo.GeoDistance;
 import org.elasticsearch.common.geo.GeoPoint;
@@ -92,8 +93,9 @@ public class ElasticsearchSortFieldTranslator
 		List<GeoLocationPoint> geoLocationPoints =
 			geoDistanceSort.getGeoLocationPoints();
 
-		GeoPoint[] geoPoints = geoLocationPoints.stream(
-		).map(
+		Stream<GeoLocationPoint> stream = geoLocationPoints.stream();
+
+		GeoPoint[] geoPoints = stream.map(
 			GeoLocationPointTranslator::translate
 		).toArray(
 			GeoPoint[]::new

@@ -34,6 +34,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author André de Oliveira
@@ -56,14 +57,14 @@ public class ComplexQueryBuilderImpl implements ComplexQueryBuilder {
 
 	@Override
 	public Query build() {
-		Map<String, ComplexQueryPart> complexQueryPartsMap =
-			_complexQueryParts.stream(
-			).filter(
-				filterQueryDefinition -> !Validator.isBlank(
-					filterQueryDefinition.getName())
-			).collect(
-				Collectors.toMap(ComplexQueryPart::getName, Function.identity())
-			);
+		Stream<ComplexQueryPart> stream = _complexQueryParts.stream();
+
+		Map<String, ComplexQueryPart> complexQueryPartsMap = stream.filter(
+			filterQueryDefinition -> !Validator.isBlank(
+				filterQueryDefinition.getName())
+		).collect(
+			Collectors.toMap(ComplexQueryPart::getName, Function.identity())
+		);
 
 		Build build = new Build(complexQueryPartsMap, _getRootBooleanQuery());
 

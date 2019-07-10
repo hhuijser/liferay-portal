@@ -192,12 +192,13 @@ public class SearcherImpl implements Searcher {
 	protected Stream<Function<SearchRequest, SearchRequest>> getContributors(
 		SearchRequest searchRequest) {
 
-		return searchRequestContributorsHolder.stream(
-			searchRequest.getIncludeContributors(),
-			searchRequest.getExcludeContributors()
-		).map(
-			searchRequestContributor -> searchRequestContributor::contribute
-		);
+		Stream<SearchRequestContributor> stream =
+			searchRequestContributorsHolder.stream(
+				searchRequest.getIncludeContributors(),
+				searchRequest.getExcludeContributors());
+
+		return stream.map(
+			searchRequestContributor -> searchRequestContributor::contribute);
 	}
 
 	protected Class<?> getSingleIndexerClass(

@@ -66,7 +66,6 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 	@Test
 	public void testAssetEntryShouldBeAddedWhenDraft() throws Exception {
 		String fileName = RandomTestUtil.randomString();
-		byte[] bytes = CONTENT.getBytes();
 		String[] assetTagNames = {"hello"};
 
 		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
@@ -84,7 +83,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		fileEntry = DLAppServiceUtil.updateFileEntry(
 			fileEntry.getFileEntryId(), fileName, ContentTypes.TEXT_PLAIN,
 			fileName, StringPool.BLANK, StringPool.BLANK,
-			DLVersionNumberIncrease.MINOR, bytes, serviceContext);
+			DLVersionNumberIncrease.MINOR, CONTENT.getBytes(), serviceContext);
 
 		FileVersion fileVersion = fileEntry.getLatestFileVersion();
 
@@ -157,7 +156,6 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 	@Test
 	public void testAssetTagsShouldBeOrdered() throws Exception {
 		String fileName = RandomTestUtil.randomString();
-		byte[] bytes = CONTENT.getBytes();
 
 		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId(), fileName);
@@ -172,7 +170,7 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		fileEntry = DLAppServiceUtil.updateFileEntry(
 			fileEntry.getFileEntryId(), fileName, ContentTypes.TEXT_PLAIN,
 			fileName, StringPool.BLANK, StringPool.BLANK,
-			DLVersionNumberIncrease.MINOR, bytes, serviceContext);
+			DLVersionNumberIncrease.MINOR, CONTENT.getBytes(), serviceContext);
 
 		AssetEntry assetEntry = AssetEntryLocalServiceUtil.fetchEntry(
 			DLFileEntryConstants.getClassName(), fileEntry.getFileEntryId());
@@ -296,15 +294,13 @@ public class DLAppServiceWhenUpdatingAFileEntryTest extends BaseDLAppTestCase {
 		FileEntry fileEntry = DLAppServiceTestUtil.addFileEntry(
 			group.getGroupId(), parentFolder.getFolderId());
 
-		byte[] bytes = CONTENT.getBytes();
-
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(group.getGroupId());
 
 		fileEntry = DLAppServiceUtil.updateFileEntry(
 			fileEntry.getFileEntryId(), fileName, null, fileName,
 			StringPool.BLANK, StringPool.BLANK, DLVersionNumberIncrease.MAJOR,
-			bytes, serviceContext);
+			CONTENT.getBytes(), serviceContext);
 
 		Assert.assertEquals(ContentTypes.TEXT_PLAIN, fileEntry.getMimeType());
 	}

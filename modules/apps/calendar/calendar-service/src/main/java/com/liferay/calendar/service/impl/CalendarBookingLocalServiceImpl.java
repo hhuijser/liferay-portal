@@ -892,11 +892,8 @@ public class CalendarBookingLocalServiceImpl
 	public List<CalendarBooking> getRecurringCalendarBookings(
 		CalendarBooking calendarBooking) {
 
-		long recurringCalendarBookingId =
-			calendarBooking.getRecurringCalendarBookingId();
-
 		return calendarBookingPersistence.findByRecurringCalendarBookingId(
-			recurringCalendarBookingId);
+			calendarBooking.getRecurringCalendarBookingId());
 	}
 
 	@Override
@@ -1703,12 +1700,12 @@ public class CalendarBookingLocalServiceImpl
 		}
 
 		if (calendarBooking.isMasterBooking()) {
-			Date createDate = calendarBooking.getCreateDate();
-
 			NotificationTemplateType notificationTemplateType =
 				NotificationTemplateType.INVITE;
 
-			if (!DateUtil.equals(createDate, oldModifiedDate)) {
+			if (!DateUtil.equals(
+					calendarBooking.getCreateDate(), oldModifiedDate)) {
+
 				notificationTemplateType = NotificationTemplateType.UPDATE;
 			}
 

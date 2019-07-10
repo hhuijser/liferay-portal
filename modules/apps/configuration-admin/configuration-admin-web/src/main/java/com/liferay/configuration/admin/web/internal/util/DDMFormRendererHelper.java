@@ -88,11 +88,9 @@ public class DDMFormRendererHelper {
 	}
 
 	protected DDMForm getDDMForm() {
-		String bundleSymbolicName = _configurationModel.getBundleSymbolicName();
-
 		ResourceBundleLoader resourceBundleLoader =
 			_resourceBundleLoaderProvider.getResourceBundleLoader(
-				bundleSymbolicName);
+				_configurationModel.getBundleSymbolicName());
 
 		Locale locale = getLocale();
 
@@ -124,11 +122,9 @@ public class DDMFormRendererHelper {
 	}
 
 	protected DDMFormValues getDDMFormValues(DDMForm ddmForm) {
-		String bundleSymbolicName = _configurationModel.getBundleSymbolicName();
-
 		ResourceBundleLoader resourceBundleLoader =
 			_resourceBundleLoaderProvider.getResourceBundleLoader(
-				bundleSymbolicName);
+				_configurationModel.getBundleSymbolicName());
 
 		Locale locale = getLocale();
 

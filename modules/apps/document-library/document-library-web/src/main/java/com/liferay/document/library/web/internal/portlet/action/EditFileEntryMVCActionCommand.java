@@ -395,16 +395,15 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 			String uniqueFileName = DLUtil.getUniqueFileName(
 				tempFileEntry.getGroupId(), folderId, originalSelectedFileName);
 
-			String mimeType = tempFileEntry.getMimeType();
 			InputStream inputStream = tempFileEntry.getContentStream();
-			long size = tempFileEntry.getSize();
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				DLFileEntry.class.getName(), actionRequest);
 
 			FileEntry fileEntry = _dlAppService.addFileEntry(
-				repositoryId, folderId, uniqueFileName, mimeType,
-				uniqueFileName, description, changeLog, inputStream, size,
+				repositoryId, folderId, uniqueFileName,
+				tempFileEntry.getMimeType(), uniqueFileName, description,
+				changeLog, inputStream, tempFileEntry.getSize(),
 				serviceContext);
 
 			_assetDisplayPageEntryFormProcessor.process(
@@ -962,10 +961,10 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 						DLPortletInstanceSettings.getInstance(
 							themeDisplay.getLayout(), portletDisplay.getId());
 
-					String[] mimeTypes =
-						dlPortletInstanceSettings.getMimeTypes();
+					int count = Arrays.binarySearch(
+						dlPortletInstanceSettings.getMimeTypes(), contentType);
 
-					if (Arrays.binarySearch(mimeTypes, contentType) < 0) {
+					if (count < 0) {
 						throw new FileMimeTypeException(contentType);
 					}
 				}

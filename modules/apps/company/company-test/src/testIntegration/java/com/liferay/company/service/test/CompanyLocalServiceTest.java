@@ -212,9 +212,8 @@ public class CompanyLocalServiceTest {
 
 		Company company = addCompany();
 
-		long companyId = company.getCompanyId();
-
-		long userId = UserLocalServiceUtil.getDefaultUserId(companyId);
+		long userId = UserLocalServiceUtil.getDefaultUserId(
+			company.getCompanyId());
 
 		Group companyGroup = company.getGroup();
 
@@ -282,9 +281,6 @@ public class CompanyLocalServiceTest {
 		LayoutSetPrototype layoutSetPrototype = addLayoutSetPrototype(
 			companyId, userId, RandomTestUtil.randomString());
 
-		final long layoutSetPrototypeId =
-			layoutSetPrototype.getLayoutSetPrototypeId();
-
 		TransactionInvokerUtil.invoke(
 			_transactionConfig,
 			new Callable<Void>() {
@@ -292,7 +288,8 @@ public class CompanyLocalServiceTest {
 				@Override
 				public Void call() throws Exception {
 					SitesUtil.updateLayoutSetPrototypesLinks(
-						group, layoutSetPrototypeId, 0, true, false);
+						group, layoutSetPrototype.getLayoutSetPrototypeId(), 0,
+						true, false);
 
 					return null;
 				}

@@ -48,10 +48,8 @@ public class DocumentHTMLProcessor {
 
 			tempFile = FileUtil.createTempFile();
 
-			long userId = PrincipalThreadLocal.getUserId();
-
 			String imageRequestToken = ImageRequestTokenUtil.createToken(
-				userId);
+				PrincipalThreadLocal.getUserId());
 
 			while (scanner.hasNext()) {
 				String token = scanner.next();

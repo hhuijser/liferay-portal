@@ -106,9 +106,8 @@ public class GCloudVisionImageAssetAutoTagProvider
 	}
 
 	private boolean _isSupportedFormat(FileEntry fileEntry) {
-		String extension = fileEntry.getExtension();
-
-		return _supportedFormats.contains(StringUtil.toUpperCase(extension));
+		return _supportedFormats.contains(
+			StringUtil.toUpperCase(fileEntry.getExtension()));
 	}
 
 	private boolean _isTemporary(FileEntry fileEntry) {

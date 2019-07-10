@@ -360,9 +360,7 @@ public class DLFileEntryTrashHandlerTest
 	protected String getUniqueTitle(BaseModel<?> baseModel) {
 		DLFileEntry dlFileEntry = (DLFileEntry)baseModel;
 
-		String title = dlFileEntry.getTitle();
-
-		return _trashHelper.getOriginalTitle(title);
+		return _trashHelper.getOriginalTitle(dlFileEntry.getTitle());
 	}
 
 	@Override

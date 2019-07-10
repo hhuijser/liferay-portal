@@ -108,12 +108,10 @@ public class AMImageDLPluggableContentDataHandler
 			PortletDataContext portletDataContext, FileEntry fileEntry)
 		throws IOException, PortalException {
 
-		FileVersion fileVersion = fileEntry.getFileVersion();
-
 		Stream<AdaptiveMedia<AMImageProcessor>> adaptiveMediaStream =
 			_amImageFinder.getAdaptiveMediaStream(
 				amImageQueryBuilder -> amImageQueryBuilder.forFileVersion(
-					fileVersion
+					fileEntry.getFileVersion()
 				).done());
 
 		List<AdaptiveMedia<AMImageProcessor>> adaptiveMedias =
@@ -155,11 +153,9 @@ public class AMImageDLPluggableContentDataHandler
 		AMImageConfigurationEntry amImageConfigurationEntry) {
 
 		try {
-			FileVersion fileVersion = fileEntry.getFileVersion();
-
 			return _amImageFinder.getAdaptiveMediaStream(
 				amImageQueryBuilder -> amImageQueryBuilder.forFileVersion(
-					fileVersion
+					fileEntry.getFileVersion()
 				).forConfiguration(
 					amImageConfigurationEntry.getUUID()
 				).done());

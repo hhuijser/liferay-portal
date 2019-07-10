@@ -26,7 +26,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -230,14 +229,13 @@ public class AssetRSSUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Layout layout = themeDisplay.getLayout();
-
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		StringBundler sb = new StringBundler(6);
 
 		String layoutFriendlyURL = GetterUtil.getString(
-			_portal.getLayoutFriendlyURL(layout, themeDisplay));
+			_portal.getLayoutFriendlyURL(
+				themeDisplay.getLayout(), themeDisplay));
 
 		if (!layoutFriendlyURL.startsWith(Http.HTTP_WITH_SLASH) &&
 			!layoutFriendlyURL.startsWith(Http.HTTPS_WITH_SLASH)) {

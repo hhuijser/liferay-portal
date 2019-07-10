@@ -133,18 +133,14 @@ public class BookmarksFolderServiceTest {
 		BookmarksEntry entry = BookmarksTestUtil.addEntry(
 			folder.getFolderId(), true, serviceContext);
 
-		long companyId = entry.getCompanyId();
-
 		BookmarksFolder entryFolder = entry.getFolder();
-
-		long groupId = entryFolder.getGroupId();
 
 		long folderId = entry.getFolderId();
 
 		String keywords = "test";
 
 		SearchContext searchContext = BookmarksTestUtil.getSearchContext(
-			companyId, groupId, folderId, keywords);
+			entry.getCompanyId(), entryFolder.getGroupId(), folderId, keywords);
 
 		Indexer<BookmarksEntry> indexer = IndexerRegistryUtil.getIndexer(
 			BookmarksEntry.class);

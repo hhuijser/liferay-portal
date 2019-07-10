@@ -69,7 +69,6 @@ public class DLAppServiceWhenSearchingFileEntriesTest
 		String fileName = RandomTestUtil.randomString();
 		String description = StringPool.BLANK;
 		String changeLog = StringPool.BLANK;
-		byte[] bytes = CONTENT.getBytes();
 
 		String[] assetTagNames = {"hello", "world"};
 
@@ -87,7 +86,7 @@ public class DLAppServiceWhenSearchingFileEntriesTest
 		fileEntry = DLAppServiceUtil.updateFileEntry(
 			fileEntry.getFileEntryId(), fileName, ContentTypes.TEXT_PLAIN,
 			fileName, description, changeLog, DLVersionNumberIncrease.MINOR,
-			bytes, serviceContext);
+			CONTENT.getBytes(), serviceContext);
 
 		DLAppServiceTestUtil.search(fileEntry, "hello", true);
 		DLAppServiceTestUtil.search(fileEntry, "world", true);

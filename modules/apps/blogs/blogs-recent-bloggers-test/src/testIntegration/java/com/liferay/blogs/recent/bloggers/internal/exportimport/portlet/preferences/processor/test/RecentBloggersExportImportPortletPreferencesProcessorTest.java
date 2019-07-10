@@ -123,10 +123,9 @@ public class RecentBloggersExportImportPortletPreferencesProcessorTest {
 			PortletPreferencesFactoryUtil.getStrictPortletSetup(
 				_layout, RecentBloggersPortletKeys.RECENT_BLOGGERS);
 
-		long organizationId = _organization.getOrganizationId();
-
 		portletPreferences.setValue(
-			"organizationId", String.valueOf(organizationId));
+			"organizationId",
+			String.valueOf(_organization.getOrganizationId()));
 
 		portletPreferences.store();
 

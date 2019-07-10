@@ -218,9 +218,7 @@ public class ExtRepositoryFileEntryAdapter
 			return null;
 		}
 
-		String checkedOutBy = _extRepositoryFileEntry.getCheckedOutBy();
-
-		User user = getUser(checkedOutBy);
+		User user = getUser(_extRepositoryFileEntry.getCheckedOutBy());
 
 		long userId = 0;
 		String userName = null;

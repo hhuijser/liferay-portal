@@ -22,7 +22,6 @@ import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.document.library.kernel.service.DLFolderLocalService;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestDataConstants;
@@ -45,13 +44,11 @@ public class DLFileEntryUADTestUtil {
 			DLFolderLocalService dlFolderLocalService, long userId)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		DLFolder dlFolder = dlFolderLocalService.addFolder(
 			userId, TestPropsValues.getGroupId(), TestPropsValues.getGroupId(),
 			false, 0L, RandomTestUtil.randomString(),
-			RandomTestUtil.randomString(), false, serviceContext);
+			RandomTestUtil.randomString(), false,
+			ServiceContextTestUtil.getServiceContext());
 
 		return addDLFileEntry(
 			dlAppLocalService, dlFileEntryLocalService, dlFolder.getFolderId(),
@@ -64,9 +61,6 @@ public class DLFileEntryUADTestUtil {
 			long userId)
 		throws Exception {
 
-		ServiceContext serviceContext =
-			ServiceContextTestUtil.getServiceContext();
-
 		byte[] bytes = TestDataConstants.TEST_BYTE_ARRAY;
 
 		InputStream is = new ByteArrayInputStream(bytes);
@@ -75,7 +69,7 @@ public class DLFileEntryUADTestUtil {
 			userId, TestPropsValues.getGroupId(), dlFolderId,
 			RandomTestUtil.randomString(), ContentTypes.TEXT_PLAIN,
 			RandomTestUtil.randomString(), StringPool.BLANK, StringPool.BLANK,
-			is, bytes.length, serviceContext);
+			is, bytes.length, ServiceContextTestUtil.getServiceContext());
 
 		return dlFileEntryLocalService.getFileEntry(fileEntry.getFileEntryId());
 	}

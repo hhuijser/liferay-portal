@@ -92,15 +92,12 @@ public class UpgradeSchemaTest {
 		CalendarBooking calendarBooking =
 			CalendarBookingTestUtil.addRegularCalendarBooking(_calendar);
 
-		long recurringCalendarBookingId =
-			calendarBooking.getRecurringCalendarBookingId();
-
 		dropColumnRecurringCalendarBookingId();
 
 		_upgradeProcess.upgrade();
 
 		assertRecurringCalendarBookingIdValue(
-			calendarBooking, recurringCalendarBookingId);
+			calendarBooking, calendarBooking.getRecurringCalendarBookingId());
 	}
 
 	protected void assertDoesNotHaveColumn(String columnName) throws Exception {

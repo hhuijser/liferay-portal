@@ -81,14 +81,11 @@ public class CTDefinitionRegistryUtil {
 
 		CTDefinition<?, ?> ctDefinition = _getCTDefinition(classNameId);
 
-		Function versionEntityByVersionEntityIdFunction =
-			ctDefinition.getVersionEntityByVersionEntityIdFunction();
-
 		Function versionEntitySiteNameFunction =
 			ctDefinition.getVersionEntitySiteNameFunction();
 
 		return (String)versionEntitySiteNameFunction.compose(
-			versionEntityByVersionEntityIdFunction
+			ctDefinition.getVersionEntityByVersionEntityIdFunction()
 		).apply(
 			classPK
 		);
@@ -98,14 +95,11 @@ public class CTDefinitionRegistryUtil {
 	public static String getVersionEntityTitle(long classNameId, long classPK) {
 		CTDefinition<?, ?> ctDefinition = _getCTDefinition(classNameId);
 
-		Function versionEntityByVersionEntityIdFunction =
-			ctDefinition.getVersionEntityByVersionEntityIdFunction();
-
 		Function versionEntityTitleFunction =
 			ctDefinition.getVersionEntityTitleFunction();
 
 		return (String)versionEntityTitleFunction.compose(
-			versionEntityByVersionEntityIdFunction
+			ctDefinition.getVersionEntityByVersionEntityIdFunction()
 		).apply(
 			classPK
 		);
@@ -117,14 +111,11 @@ public class CTDefinitionRegistryUtil {
 
 		CTDefinition<?, ?> ctDefinition = _getCTDefinition(classNameId);
 
-		Function versionEntityByVersionEntityIdFunction =
-			ctDefinition.getVersionEntityByVersionEntityIdFunction();
-
 		Function versionEntityVersionFunction =
 			ctDefinition.getVersionEntityVersionFunction();
 
 		return (Serializable)versionEntityVersionFunction.compose(
-			versionEntityByVersionEntityIdFunction
+			ctDefinition.getVersionEntityByVersionEntityIdFunction()
 		).apply(
 			classPK
 		);

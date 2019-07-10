@@ -14,11 +14,8 @@
 
 package com.liferay.calendar.internal.notification;
 
-import com.liferay.calendar.model.CalendarNotificationTemplate;
 import com.liferay.calendar.notification.NotificationField;
 import com.liferay.calendar.notification.NotificationTemplateContext;
-import com.liferay.calendar.notification.NotificationTemplateType;
-import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.notification.NotificationUtil;
 import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -39,20 +36,14 @@ public class NotificationTemplateRenderer {
 			NotificationField notificationField)
 		throws Exception {
 
-		CalendarNotificationTemplate calendarNotificationTemplate =
-			notificationTemplateContext.getCalendarNotificationTemplate();
-
-		NotificationType notificationType =
-			notificationTemplateContext.getNotificationType();
-		NotificationTemplateType notificationTemplateType =
-			notificationTemplateContext.getNotificationTemplateType();
-
 		String defaultTemplate = NotificationUtil.getDefaultTemplate(
-			notificationType, notificationTemplateType, notificationField);
+			notificationTemplateContext.getNotificationType(),
+			notificationTemplateContext.getNotificationTemplateType(),
+			notificationField);
 
 		String notificationTemplate = BeanPropertiesUtil.getString(
-			calendarNotificationTemplate, notificationField.toString(),
-			defaultTemplate);
+			notificationTemplateContext.getCalendarNotificationTemplate(),
+			notificationField.toString(), defaultTemplate);
 
 		return replaceTokens(notificationTemplate, notificationTemplateContext);
 	}

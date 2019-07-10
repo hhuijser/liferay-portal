@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.portlet.PortletIdCodec;
 import com.liferay.portal.kernel.security.auth.AuthTokenUtil;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -330,16 +329,13 @@ public class DefaultAssetDisplayPageFriendlyURLResolver
 		}
 
 		if (journalArticle == null) {
-			PermissionChecker permissionChecker =
-				PermissionThreadLocal.getPermissionChecker();
-
 			journalArticle =
 				_journalArticleLocalService.getLatestArticleByUrlTitle(
 					groupId, normalizedUrlTitle,
 					WorkflowConstants.STATUS_PENDING);
 
 			if (!WorkflowPermissionUtil.hasPermission(
-					permissionChecker, groupId,
+					PermissionThreadLocal.getPermissionChecker(), groupId,
 					"com.liferay.journal.model.JournalArticle",
 					journalArticle.getId(), ActionKeys.VIEW)) {
 

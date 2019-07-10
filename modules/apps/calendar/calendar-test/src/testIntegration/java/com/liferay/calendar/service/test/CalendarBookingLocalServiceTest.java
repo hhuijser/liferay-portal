@@ -131,8 +131,6 @@ public class CalendarBookingLocalServiceTest {
 
 	@Test
 	public void testAddCalendarBooking() throws Exception {
-		Locale siteDefault = LocaleUtil.getSiteDefault();
-
 		ServiceContext serviceContext = createServiceContext();
 
 		Calendar calendar = CalendarTestUtil.addCalendar(_user, serviceContext);
@@ -145,7 +143,7 @@ public class CalendarBookingLocalServiceTest {
 				serviceContext);
 
 		Assert.assertEquals(
-			LocaleUtil.toLanguageId(siteDefault),
+			LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 			LocalizationUtil.getDefaultLanguageId(calendarBooking.getTitle()));
 	}
 
@@ -533,9 +531,8 @@ public class CalendarBookingLocalServiceTest {
 				_user, calendar, startTime, startTime + (Time.HOUR * 10),
 				recurrence, serviceContext);
 
-		long calendarBookingId = calendarBooking.getCalendarBookingId();
-
-		assertCalendarBookingInstancesCount(calendarBookingId, 1);
+		assertCalendarBookingInstancesCount(
+			calendarBooking.getCalendarBookingId(), 1);
 	}
 
 	@Test

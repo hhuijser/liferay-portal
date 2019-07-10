@@ -366,8 +366,6 @@ public class EditAssetListDisplayContext {
 			return _availableSegmentsEntries;
 		}
 
-		long[] selectedSegmentsEntryIds = getSelectedSegmentsEntryIds();
-
 		List<SegmentsEntry> segmentsEntries =
 			SegmentsEntryServiceUtil.getSegmentsEntries(
 				_themeDisplay.getScopeGroupId(), true, QueryUtil.ALL_POS,
@@ -377,7 +375,8 @@ public class EditAssetListDisplayContext {
 
 		_availableSegmentsEntries = segmentsEntryStream.filter(
 			segmentsEntry -> !ArrayUtil.contains(
-				selectedSegmentsEntryIds, segmentsEntry.getSegmentsEntryId())
+				getSelectedSegmentsEntryIds(),
+				segmentsEntry.getSegmentsEntryId())
 		).collect(
 			Collectors.toList()
 		);

@@ -75,10 +75,8 @@ public class BeanPortletInvokerPortlet implements InvokerPortlet {
 			for (BeanMethod beanMethod : entry.getValue()) {
 				Method method = beanMethod.getMethod();
 
-				Class<?> declaringClass = method.getDeclaringClass();
-
 				if (ClassUtil.isSubclass(
-						declaringClass,
+						method.getDeclaringClass(),
 						"javax.portlet.faces.GenericFacesPortlet")) {
 
 					facesPortlet = true;
@@ -297,12 +295,10 @@ public class BeanPortletInvokerPortlet implements InvokerPortlet {
 		else if (methodType == MethodType.SERVE_RESOURCE) {
 			ResourceRequest resourceRequest = (ResourceRequest)args[0];
 
-			String resourceID = resourceRequest.getResourceID();
-
 			String beanMethodResourceID = beanMethod.getResourceID();
 
 			if (Validator.isNull(beanMethodResourceID) ||
-				beanMethodResourceID.equals(resourceID)) {
+				beanMethodResourceID.equals(resourceRequest.getResourceID())) {
 
 				ResourceResponse resourceResponse = (ResourceResponse)args[1];
 

@@ -487,18 +487,16 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			_extRepository.getExtRepositoryFileVersionDescriptor(
 				extRepositoryFileVersionKey);
 
-		String extRepositoryFileEntryKey =
-			extRepositoryFileVersionDescriptor.getExtRepositoryFileEntryKey();
-
-		String version = extRepositoryFileVersionDescriptor.getVersion();
-
 		ExtRepositoryFileEntry extRepositoryFileEntry =
 			_extRepository.getExtRepositoryObject(
-				ExtRepositoryObjectType.FILE, extRepositoryFileEntryKey);
+				ExtRepositoryObjectType.FILE,
+				extRepositoryFileVersionDescriptor.
+					getExtRepositoryFileEntryKey());
 
 		ExtRepositoryFileVersion extRepositoryFileVersion =
 			_extRepository.getExtRepositoryFileVersion(
-				extRepositoryFileEntry, version);
+				extRepositoryFileEntry,
+				extRepositoryFileVersionDescriptor.getVersion());
 
 		if (extRepositoryFileVersion == null) {
 			return null;
@@ -1211,9 +1209,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	protected boolean isCheckedOut(
 		ExtRepositoryFileEntry extRepositoryFileEntry) {
 
-		String checkedOutBy = extRepositoryFileEntry.getCheckedOutBy();
-
-		if (Validator.isNull(checkedOutBy)) {
+		if (Validator.isNull(extRepositoryFileEntry.getCheckedOutBy())) {
 			return false;
 		}
 

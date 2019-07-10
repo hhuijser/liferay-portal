@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.portlet.PortletPreferencesFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -87,11 +86,9 @@ public class BlogImagesManagementToolbarDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (BlogsImagesFileEntryPermission.contains(
-				permissionChecker, fileEntry, ActionKeys.DELETE)) {
+				themeDisplay.getPermissionChecker(), fileEntry,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteImages");
 		}

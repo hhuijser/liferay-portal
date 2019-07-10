@@ -552,10 +552,8 @@ public class WebDAVOSXTest extends BaseWebDAVTestCase {
 			DLFileEntryType finalFileEntryType =
 				finalDLFileEntryModel.getDLFileEntryType();
 
-			List<DDMStructure> ddmStructures =
-				finalFileEntryType.getDDMStructures();
-
-			Assert.assertTrue(ListUtil.isNotEmpty(ddmStructures));
+			Assert.assertTrue(
+				ListUtil.isNotEmpty(finalFileEntryType.getDDMStructures()));
 
 			Assert.assertEquals(
 				initialDLFileEntryType.getFileEntryTypeId(),

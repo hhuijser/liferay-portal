@@ -182,16 +182,13 @@ public class UploadGoogleDriveDocumentBackgroundTaskExecutor
 			MediaHttpUploader mediaHttpUploader =
 				driveFilesCreate.getMediaHttpUploader();
 
-			long backgroundTaskId =
-				BackgroundTaskThreadLocal.getBackgroundTaskId();
-
 			mediaHttpUploader.setProgressListener(
 				curMediaHttpUploader -> {
 					Message message = new Message();
 
 					message.put(
 						BackgroundTaskConstants.BACKGROUND_TASK_ID,
-						backgroundTaskId);
+						BackgroundTaskThreadLocal.getBackgroundTaskId());
 
 					message.put(
 						"uploadState", curMediaHttpUploader.getUploadState());

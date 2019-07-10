@@ -153,8 +153,6 @@ public class LiferaySyncCapability
 		DLSyncEvent dlSyncEvent = _dlSyncEventLocalService.addDLSyncEvent(
 			event, type, typePK);
 
-		final long modifiedTime = dlSyncEvent.getModifiedTime();
-
 		TransactionCommitCallbackUtil.registerCallback(
 			new Callable<Void>() {
 
@@ -165,7 +163,7 @@ public class LiferaySyncCapability
 					Map<String, Object> values = new HashMap<>(4);
 
 					values.put("event", event);
-					values.put("modifiedTime", modifiedTime);
+					values.put("modifiedTime", dlSyncEvent.getModifiedTime());
 					values.put("type", type);
 					values.put("typePK", typePK);
 

@@ -117,8 +117,6 @@ public class BlogsEntryStagedModelDataHandlerTest
 		BlogsEntry importedEntry = (BlogsEntry)getStagedModel(
 			entry.getUuid(), liveGroup);
 
-		long coverImageFileEntryId = importedEntry.getCoverImageFileEntryId();
-
 		initExport();
 
 		BlogsEntry updatedEntry = _updateBlogsEntry(entry);
@@ -138,7 +136,7 @@ public class BlogsEntryStagedModelDataHandlerTest
 			updatedEntry.getUuid(), liveGroup);
 
 		Assert.assertEquals(
-			coverImageFileEntryId,
+			importedEntry.getCoverImageFileEntryId(),
 			importedUpdatedEntry.getCoverImageFileEntryId());
 	}
 
@@ -193,8 +191,6 @@ public class BlogsEntryStagedModelDataHandlerTest
 		BlogsEntry importedEntry = (BlogsEntry)getStagedModel(
 			entry.getUuid(), liveGroup);
 
-		long smallImageFileEntryId = importedEntry.getSmallImageFileEntryId();
-
 		initExport();
 
 		BlogsEntry updatedEntry = _updateBlogsEntry(entry);
@@ -214,7 +210,7 @@ public class BlogsEntryStagedModelDataHandlerTest
 			updatedEntry.getUuid(), liveGroup);
 
 		Assert.assertEquals(
-			smallImageFileEntryId,
+			importedEntry.getSmallImageFileEntryId(),
 			importedUpdatedEntry.getSmallImageFileEntryId());
 	}
 
@@ -237,12 +233,10 @@ public class BlogsEntryStagedModelDataHandlerTest
 			ServiceContextTestUtil.getServiceContext(
 				stagingGroup.getGroupId(), TestPropsValues.getUserId());
 
-		InputStream inputStream = getInputStream();
-
 		String mimeType = MimeTypesUtil.getContentType(_IMAGE_TITLE);
 
 		ImageSelector imageSelector = new ImageSelector(
-			FileUtil.getBytes(inputStream), _IMAGE_TITLE, mimeType,
+			FileUtil.getBytes(getInputStream()), _IMAGE_TITLE, mimeType,
 			_IMAGE_CROP_REGION);
 
 		return addBlogsEntry(imageSelector, null, serviceContext);
@@ -253,12 +247,10 @@ public class BlogsEntryStagedModelDataHandlerTest
 			ServiceContextTestUtil.getServiceContext(
 				stagingGroup.getGroupId(), TestPropsValues.getUserId());
 
-		InputStream inputStream = getInputStream();
-
 		String mimeType = MimeTypesUtil.getContentType(_IMAGE_TITLE);
 
 		ImageSelector imageSelector = new ImageSelector(
-			FileUtil.getBytes(inputStream), _IMAGE_TITLE, mimeType,
+			FileUtil.getBytes(getInputStream()), _IMAGE_TITLE, mimeType,
 			StringPool.BLANK);
 
 		return addBlogsEntry(null, imageSelector, serviceContext);

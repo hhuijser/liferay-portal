@@ -18,8 +18,6 @@ import com.liferay.tld.formatter.TLDFormatter;
 import com.liferay.tld.formatter.TLDFormatterArgs;
 import com.liferay.tld.formatter.TLDFormatterInvoker;
 
-import java.util.Set;
-
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.Task;
@@ -37,10 +35,9 @@ public class FormatTLDTask extends Task {
 			TLDFormatter tldFormatter = TLDFormatterInvoker.invoke(
 				project.getBaseDir(), _tldFormatterArgs);
 
-			Set<String> modifiedFileNames = tldFormatter.getModifiedFileNames();
-
 			project.addIdReference(
-				TLDFormatterArgs.OUTPUT_KEY_MODIFIED_FILES, modifiedFileNames);
+				TLDFormatterArgs.OUTPUT_KEY_MODIFIED_FILES,
+				tldFormatter.getModifiedFileNames());
 		}
 		catch (Exception e) {
 			throw new BuildException(e);

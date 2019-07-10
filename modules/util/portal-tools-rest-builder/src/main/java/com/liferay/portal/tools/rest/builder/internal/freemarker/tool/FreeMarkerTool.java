@@ -201,9 +201,9 @@ public class FreeMarkerTool {
 
 			sb.append(StringUtil.upperCaseFirstLetter(schemaName));
 
-			String methodName = javaMethodSignature.getMethodName();
+			if (!Objects.equals(
+					javaMethodSignature.getMethodName(), sb.toString())) {
 
-			if (!Objects.equals(methodName, sb.toString())) {
 				continue;
 			}
 

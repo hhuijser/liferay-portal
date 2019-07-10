@@ -14,7 +14,6 @@
 
 package com.liferay.portal.tools.data.partitioning.sql.builder.postgresql.exporter;
 
-import com.liferay.portal.tools.data.partitioning.sql.builder.exporter.DataPartitioningExporter;
 import com.liferay.portal.tools.data.partitioning.sql.builder.exporter.DataPartitioningExporterFactory;
 
 import org.junit.Assert;
@@ -29,13 +28,12 @@ public class DataPartitioningExporterFactoryTest {
 	public void testGetDataPartitioningExporterReturnsPostgreSQLProvider()
 		throws Exception {
 
-		DataPartitioningExporter dataPartitioningExporter =
-			DataPartitioningExporterFactory.getDataPartitioningExporter();
-
 		Class<PostgreSQLDataPartitioningExporter> clazz =
 			PostgreSQLDataPartitioningExporter.class;
 
-		Assert.assertTrue(clazz.isInstance(dataPartitioningExporter));
+		Assert.assertTrue(
+			clazz.isInstance(
+				DataPartitioningExporterFactory.getDataPartitioningExporter()));
 	}
 
 }

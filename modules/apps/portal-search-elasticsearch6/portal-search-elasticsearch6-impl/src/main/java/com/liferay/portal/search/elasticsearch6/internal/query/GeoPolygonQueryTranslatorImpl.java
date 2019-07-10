@@ -43,7 +43,7 @@ public class GeoPolygonQueryTranslatorImpl
 		Set<GeoLocationPoint> geoLocationPoints =
 			geoPolygonQuery.getGeoLocationPoints();
 
-		Stream<GeoPoint> stream = geoLocationPoints.stream();
+		Stream<GeoLocationPoint> stream = geoLocationPoints.stream();
 
 		List<GeoPoint> geoPoints = stream.map(
 			GeoLocationPointTranslator::translate

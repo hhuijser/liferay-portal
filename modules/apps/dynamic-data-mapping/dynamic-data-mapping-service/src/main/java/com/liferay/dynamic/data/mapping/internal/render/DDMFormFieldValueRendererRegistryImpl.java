@@ -129,11 +129,9 @@ public class DDMFormFieldValueRendererRegistryImpl
 
 			_bundleContext.ungetService(serviceReference);
 
-			String supportedDDMFormFieldType =
-				ddmFormFieldValueRenderer.getSupportedDDMFormFieldType();
-
 			List<DDMFormFieldValueRenderer> ddmFormFieldValueRenderers =
-				_ddmFormFieldValueRenderersMap.get(supportedDDMFormFieldType);
+				_ddmFormFieldValueRenderersMap.get(
+					ddmFormFieldValueRenderer.getSupportedDDMFormFieldType());
 
 			if (ddmFormFieldValueRenderers == null) {
 				return;

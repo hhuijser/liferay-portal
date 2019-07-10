@@ -107,9 +107,8 @@ public class DDMStructureStagedModelDataHandlerTest
 
 	@Test
 	public void testImportStructureToGlobalSite() throws Exception {
-		long companyId = stagingGroup.getCompanyId();
-
-		Company company = CompanyLocalServiceUtil.getCompany(companyId);
+		Company company = CompanyLocalServiceUtil.getCompany(
+			stagingGroup.getCompanyId());
 
 		Group companyGroup = company.getGroup();
 
@@ -533,12 +532,9 @@ public class DDMStructureStagedModelDataHandlerTest
 		DDMDataProviderInstanceLink dataProviderInstanceLink =
 			dataProviderInstanceLinks.get(0);
 
-		long dataProviderInstanceId =
-			dataProviderInstanceLink.getDataProviderInstanceId();
-
 		DDMDataProviderInstance dataProviderInstance =
 			DDMDataProviderInstanceLocalServiceUtil.getDataProviderInstance(
-				dataProviderInstanceId);
+				dataProviderInstanceLink.getDataProviderInstanceId());
 
 		DDMDataProviderInstanceLink importedDataProviderInstanceLink =
 			importedDataProviderInstanceLinks.get(0);

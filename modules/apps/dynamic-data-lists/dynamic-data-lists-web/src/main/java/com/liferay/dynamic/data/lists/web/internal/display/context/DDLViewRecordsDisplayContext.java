@@ -337,11 +337,9 @@ public class DDLViewRecordsDisplayContext {
 	}
 
 	public SearchContainer<?> getSearch() throws PortalException {
-		String displayStyle = getDisplayStyle();
-
 		PortletURL portletURL = getPortletURL();
 
-		portletURL.setParameter("displayStyle", displayStyle);
+		portletURL.setParameter("displayStyle", getDisplayStyle());
 
 		List<String> headerNames = new ArrayList<>();
 

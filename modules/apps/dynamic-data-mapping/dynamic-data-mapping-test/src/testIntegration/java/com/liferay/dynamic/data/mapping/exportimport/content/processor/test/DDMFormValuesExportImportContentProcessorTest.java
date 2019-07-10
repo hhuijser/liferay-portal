@@ -289,8 +289,6 @@ public class DDMFormValuesExportImportContentProcessorTest {
 
 		nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
-		long resourcePrimKey = _journalArticle.getResourcePrimKey();
-
 		JournalArticle newJournalArticle = JournalTestUtil.addArticle(
 			TestPropsValues.getUserId(), _liveGroup.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
@@ -299,7 +297,9 @@ public class DDMFormValuesExportImportContentProcessorTest {
 
 		_journalArticleLocalService.updateJournalArticle(newJournalArticle);
 
-		classPKs.put(resourcePrimKey, newJournalArticle.getResourcePrimKey());
+		classPKs.put(
+			_journalArticle.getResourcePrimKey(),
+			newJournalArticle.getResourcePrimKey());
 
 		_exportImportContentProcessor.replaceImportContentReferences(
 			_portletDataContextImport, _fileEntry, exportDDMFormValues);
@@ -439,9 +439,7 @@ public class DDMFormValuesExportImportContentProcessorTest {
 		long classNameId = ClassNameLocalServiceUtil.getClassNameId(
 			JournalArticle.class);
 
-		DDMForm ddmForm = _formInstance.getDDMForm();
-
-		structure.setDDMForm(ddmForm);
+		structure.setDDMForm(_formInstance.getDDMForm());
 
 		structure.setClassNameId(classNameId);
 

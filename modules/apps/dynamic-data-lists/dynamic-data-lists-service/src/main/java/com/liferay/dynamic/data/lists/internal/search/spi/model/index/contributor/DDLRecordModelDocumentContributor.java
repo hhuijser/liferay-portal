@@ -17,7 +17,6 @@ package com.liferay.dynamic.data.lists.internal.search.spi.model.index.contribut
 import com.liferay.dynamic.data.lists.model.DDLRecord;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.dynamic.data.lists.model.DDLRecordVersion;
-import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.util.DDMIndexer;
 import com.liferay.petra.string.StringBundler;
@@ -66,13 +65,12 @@ public class DDLRecordModelDocumentContributor
 			document.addKeyword("recordSetId", ddlRecordSet.getRecordSetId());
 			document.addKeyword("recordSetScope", ddlRecordSet.getScope());
 
-			DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
-
 			DDMFormValues ddmFormValues = ddlRecordVersion.getDDMFormValues();
 
 			addContent(ddlRecordVersion, ddmFormValues, document);
 
-			ddmIndexer.addAttributes(document, ddmStructure, ddmFormValues);
+			ddmIndexer.addAttributes(
+				document, ddlRecordSet.getDDMStructure(), ddmFormValues);
 		}
 		catch (Exception e) {
 			if (_log.isDebugEnabled()) {

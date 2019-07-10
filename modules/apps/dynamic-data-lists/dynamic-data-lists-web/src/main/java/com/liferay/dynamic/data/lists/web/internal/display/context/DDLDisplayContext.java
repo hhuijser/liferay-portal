@@ -438,11 +438,9 @@ public class DDLDisplayContext {
 	}
 
 	public SearchContainer<?> getSearch() {
-		String displayStyle = getDisplayStyle();
-
 		PortletURL portletURL = getPortletURL();
 
-		portletURL.setParameter("displayStyle", displayStyle);
+		portletURL.setParameter("displayStyle", getDisplayStyle());
 
 		RecordSetSearch recordSetSearch = new RecordSetSearch(
 			_renderRequest, portletURL);

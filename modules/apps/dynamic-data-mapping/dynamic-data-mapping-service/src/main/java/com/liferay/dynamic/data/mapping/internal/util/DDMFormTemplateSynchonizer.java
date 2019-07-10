@@ -180,10 +180,9 @@ public class DDMFormTemplateSynchonizer {
 		while (itr.hasNext()) {
 			DDMFormField templateDDMFormField = itr.next();
 
-			String dataType = templateDDMFormField.getDataType();
 			String name = templateDDMFormField.getName();
 
-			if (Validator.isNotNull(dataType) &&
+			if (Validator.isNotNull(templateDDMFormField.getDataType()) &&
 				!structureDDMFormFieldsMap.containsKey(name)) {
 
 				itr.remove();

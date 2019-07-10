@@ -259,9 +259,9 @@ public class DDMFormBuilderContextFactoryHelper {
 			return (LocalizedValue)propertyValue;
 		}
 
-		String dataType = ddmFormFieldTypeSetting.getDataType();
+		if (Objects.equals(
+				ddmFormFieldTypeSetting.getDataType(), "ddm-options")) {
 
-		if (Objects.equals(dataType, "ddm-options")) {
 			return doCreateDDMFormFieldValue(
 				(DDMFormFieldOptions)propertyValue, availableLocales);
 		}

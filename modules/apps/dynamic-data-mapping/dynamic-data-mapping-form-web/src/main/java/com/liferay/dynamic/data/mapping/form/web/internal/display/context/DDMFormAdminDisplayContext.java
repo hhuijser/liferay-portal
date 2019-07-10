@@ -805,11 +805,9 @@ public class DDMFormAdminDisplayContext {
 	}
 
 	public SearchContainer<?> getSearch() {
-		String displayStyle = getDisplayStyle();
-
 		PortletURL portletURL = getPortletURL();
 
-		portletURL.setParameter("displayStyle", displayStyle);
+		portletURL.setParameter("displayStyle", getDisplayStyle());
 
 		FormInstanceSearch formInstanceSearch = new FormInstanceSearch(
 			renderRequest, portletURL);

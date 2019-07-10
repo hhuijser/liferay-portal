@@ -155,12 +155,10 @@ public abstract class BaseDDMFormFieldTypesDynamicInclude
 
 		ScriptData scriptData = new ScriptData();
 
-		List<DDMFormFieldType> ddmFormFieldTypes =
-			ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes();
-
 		Map<String, String> values = new HashMap<>();
 
-		Set<String> fieldTypesModules = getFieldTypesModules(ddmFormFieldTypes);
+		Set<String> fieldTypesModules = getFieldTypesModules(
+			ddmFormFieldTypeServicesTracker.getDDMFormFieldTypes());
 
 		Stream<String> stream = fieldTypesModules.stream();
 

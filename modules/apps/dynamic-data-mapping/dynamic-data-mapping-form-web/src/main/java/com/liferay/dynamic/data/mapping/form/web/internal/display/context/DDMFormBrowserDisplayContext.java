@@ -124,11 +124,9 @@ public class DDMFormBrowserDisplayContext {
 			return _formInstanceSearch;
 		}
 
-		String displayStyle = getDisplayStyle();
-
 		PortletURL portletURL = getPortletURL();
 
-		portletURL.setParameter("displayStyle", displayStyle);
+		portletURL.setParameter("displayStyle", getDisplayStyle());
 
 		FormInstanceSearch formInstanceSearch = new FormInstanceSearch(
 			_renderRequest, portletURL);
@@ -138,9 +136,7 @@ public class DDMFormBrowserDisplayContext {
 		OrderByComparator<DDMFormInstance> orderByComparator =
 			_getDDMFormInstanceOrderByComparator(orderByType);
 
-		String orderByCol = getOrderByCol();
-
-		formInstanceSearch.setOrderByCol(orderByCol);
+		formInstanceSearch.setOrderByCol(getOrderByCol());
 
 		formInstanceSearch.setOrderByComparator(orderByComparator);
 		formInstanceSearch.setOrderByType(orderByType);

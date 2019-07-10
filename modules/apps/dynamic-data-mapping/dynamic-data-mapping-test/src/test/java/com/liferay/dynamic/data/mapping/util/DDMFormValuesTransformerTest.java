@@ -150,9 +150,8 @@ public class DDMFormValuesTransformerTest extends BaseDDMTestCase {
 
 		Value value = ddmFormFieldValue.getValue();
 
-		Locale defaultLocale = value.getDefaultLocale();
-
-		Assert.assertEquals(expectedValue, value.getString(defaultLocale));
+		Assert.assertEquals(
+			expectedValue, value.getString(value.getDefaultLocale()));
 	}
 
 	private static class DDMFormFieldValuePrefixAppender

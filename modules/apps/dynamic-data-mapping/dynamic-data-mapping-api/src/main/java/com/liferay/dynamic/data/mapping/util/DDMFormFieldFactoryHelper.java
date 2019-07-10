@@ -76,9 +76,7 @@ public class DDMFormFieldFactoryHelper {
 				value = getPropertyValue(value);
 			}
 
-			String key = entry.getKey();
-
-			ddmFormField.setProperty(key, value);
+			ddmFormField.setProperty(entry.getKey(), value);
 		}
 
 		ddmFormField.setDataType(getDDMFormFieldDataType());

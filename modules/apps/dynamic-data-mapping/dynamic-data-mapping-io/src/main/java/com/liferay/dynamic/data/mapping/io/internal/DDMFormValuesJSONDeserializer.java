@@ -71,13 +71,11 @@ public class DDMFormValuesJSONDeserializer
 		DDMFormValues ddmFormValues = null;
 
 		try {
-			String content =
-				ddmFormValuesDeserializerDeserializeRequest.getContent();
-
 			DDMForm ddmForm =
 				ddmFormValuesDeserializerDeserializeRequest.getDDMForm();
 
-			JSONObject jsonObject = _jsonFactory.createJSONObject(content);
+			JSONObject jsonObject = _jsonFactory.createJSONObject(
+				ddmFormValuesDeserializerDeserializeRequest.getContent());
 
 			ddmFormValues = new DDMFormValues(ddmForm);
 

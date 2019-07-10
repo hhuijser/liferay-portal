@@ -310,11 +310,9 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 	}
 
 	public SearchContainer<?> getSearch() {
-		String displayStyle = getDisplayStyle();
-
 		PortletURL portletURL = getPortletURL();
 
-		portletURL.setParameter("displayStyle", displayStyle);
+		portletURL.setParameter("displayStyle", getDisplayStyle());
 
 		FormInstanceRecordSearch formInstanceRecordSearch =
 			new FormInstanceRecordSearch(

@@ -74,14 +74,11 @@ public class DDMFormInstanceRecordStagingModelListener
 					ExportImportClassedModelUtil.getClassName(
 						ddmFormInstanceRecord));
 
-			int[] exportableStatuses =
-				stagedModelDataHandler.getExportableStatuses();
-
 			DDMFormInstanceRecordVersion formInstanceRecordVersion =
 				ddmFormInstanceRecord.getFormInstanceRecordVersion();
 
 			if (!ArrayUtil.contains(
-					exportableStatuses,
+					stagedModelDataHandler.getExportableStatuses(),
 					formInstanceRecordVersion.getStatus())) {
 
 				return true;

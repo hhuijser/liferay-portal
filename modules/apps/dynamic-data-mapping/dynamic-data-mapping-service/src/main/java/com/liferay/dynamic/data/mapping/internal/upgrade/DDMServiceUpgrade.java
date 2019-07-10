@@ -84,14 +84,8 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 	public void register(Registry registry) {
 		DDMFormSerializer ddmFormSerializer = getDDMFormSerializer();
 
-		DDMFormLayoutSerializer ddmFormLayoutSerializer =
-			getDDMFormLayoutSerializer();
-
 		DDMFormDeserializer ddmFormJSONDeserializer =
 			getDDMFormJSONDeserializer();
-
-		DDMFormDeserializer ddmFormXSDDeserializer =
-			getDDMFormXSDDeserializer();
 
 		DDMFormValuesSerializer ddmFormValuesSerializer =
 			getDDMFormValuesSerializer();
@@ -108,7 +102,7 @@ public class DDMServiceUpgrade implements UpgradeStepRegistrator {
 			new com.liferay.dynamic.data.mapping.internal.upgrade.v1_0_0.
 				UpgradeDynamicDataMapping(
 					_assetEntryLocalService, _ddm, ddmFormJSONDeserializer,
-					ddmFormXSDDeserializer, ddmFormLayoutSerializer,
+					getDDMFormXSDDeserializer(), getDDMFormLayoutSerializer(),
 					ddmFormSerializer, ddmFormValuesDeserializer,
 					ddmFormValuesSerializer, _dlFileEntryLocalService,
 					_dlFileVersionLocalService, _dlFolderLocalService,

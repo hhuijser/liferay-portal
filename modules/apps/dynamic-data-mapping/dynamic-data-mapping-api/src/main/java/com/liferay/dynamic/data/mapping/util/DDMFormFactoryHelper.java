@@ -108,9 +108,7 @@ public class DDMFormFactoryHelper {
 
 	protected Set<Locale> getAvailableLocales() {
 		if (Validator.isNull(_ddmForm.availableLanguageIds())) {
-			Locale defaultLocale = getDefaultLocale();
-
-			return SetUtil.fromArray(new Locale[] {defaultLocale});
+			return SetUtil.fromArray(new Locale[] {getDefaultLocale()});
 		}
 
 		Set<Locale> availableLocales = new HashSet<>();

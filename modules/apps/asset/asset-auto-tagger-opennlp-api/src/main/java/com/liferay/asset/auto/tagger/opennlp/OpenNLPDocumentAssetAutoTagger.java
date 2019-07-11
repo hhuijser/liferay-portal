@@ -12,29 +12,28 @@
  * details.
  */
 
-package com.liferay.asset.auto.tagger.google.cloud.natural.language.api;
+package com.liferay.asset.auto.tagger.opennlp;
 
 import java.util.Collection;
 import java.util.Locale;
 
 /**
- * Models a Google Cloud Natural Language Document Asset Auto Tagger.
+ * Models a OpenNLP Document Asset Auto Tagger.
  *
  * @author Cristina González
  * @review
  * @deprecated As of Mueller (7.2.x)
  */
 @Deprecated
-public interface GCloudNaturalLanguageDocumentAssetAutoTagger {
+public interface OpenNLPDocumentAssetAutoTagger {
 
 	/**
-	 * Returns a list of tag names from Google Cloud Natural Language
-	 * Classification API from the configuration, the text and its mimetype.
+	 * Returns a list of tag names from the OpenNLP API.
 	 *
 	 * @param  companyId the company ID
 	 * @param  content the text to be tagged.
-	 * @param  locale the text's locale
-	 * @param  mimeType the text mimeType.
+	 * @param  locale the text's locale.
+	 * @param  mimeType the mime type of the text.
 	 * @return a list of tag names.
 	 * @review
 	 */
@@ -43,12 +42,10 @@ public interface GCloudNaturalLanguageDocumentAssetAutoTagger {
 		throws Exception;
 
 	/**
-	 * Returns a list of tag names from Google Cloud Natural Language
-	 * Classification API from the configuration, the text and its mimetype.
+	 * Returns a list of tag names from the OpenNLP API.
 	 *
-	 * @param  companyId the company ID
 	 * @param  content the text to be tagged.
-	 * @param  mimeType the text mimeType.
+	 * @param  mimeType the mime type of the text.
 	 * @return a list of tag names.
 	 * @review
 	 */

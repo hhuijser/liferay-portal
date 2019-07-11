@@ -184,9 +184,7 @@ public abstract class BaseDDMFormDeserializerTestCase extends BaseDDMTestCase {
 	}
 
 	protected void testDefaultLocale(DDMForm ddmForm) {
-		Locale defaultLocale = ddmForm.getDefaultLocale();
-
-		Assert.assertEquals(LocaleUtil.US, defaultLocale);
+		Assert.assertEquals(LocaleUtil.US, ddmForm.getDefaultLocale());
 	}
 
 	protected void testDocumentLibraryDDMFormField(DDMFormField ddmFormField) {

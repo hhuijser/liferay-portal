@@ -168,11 +168,8 @@ public class DDMFormInstanceRecordStagedModelRepository
 				Property formInstanceIdProperty = PropertyFactoryUtil.forName(
 					"formInstanceId");
 
-				DynamicQuery formInstanceDynamicQuery =
-					getFormInstanceDynamicQuery();
-
 				dynamicQuery.add(
-					formInstanceIdProperty.in(formInstanceDynamicQuery));
+					formInstanceIdProperty.in(getFormInstanceDynamicQuery()));
 			});
 
 		return exportActionableDynamicQuery;

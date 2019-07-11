@@ -139,12 +139,10 @@ public class DDMFormInstanceRecordLocalServiceImpl
 
 		// Asset
 
-		Locale locale = serviceContext.getLocale();
-
 		updateAsset(
 			userId, ddmFormInstanceRecord, ddmFormInstanceRecordVersion,
 			serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(), locale,
+			serviceContext.getAssetTagNames(), serviceContext.getLocale(),
 			serviceContext.getAssetPriority());
 
 		if (serviceContext.getWorkflowAction() ==

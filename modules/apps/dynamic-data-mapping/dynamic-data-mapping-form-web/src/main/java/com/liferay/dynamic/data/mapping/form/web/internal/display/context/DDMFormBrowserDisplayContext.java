@@ -138,9 +138,7 @@ public class DDMFormBrowserDisplayContext {
 		OrderByComparator<DDMFormInstance> orderByComparator =
 			_getDDMFormInstanceOrderByComparator(orderByType);
 
-		String orderByCol = getOrderByCol();
-
-		formInstanceSearch.setOrderByCol(orderByCol);
+		formInstanceSearch.setOrderByCol(getOrderByCol());
 
 		formInstanceSearch.setOrderByComparator(orderByComparator);
 		formInstanceSearch.setOrderByType(orderByType);

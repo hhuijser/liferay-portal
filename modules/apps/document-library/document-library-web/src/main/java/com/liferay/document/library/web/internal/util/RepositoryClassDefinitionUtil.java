@@ -28,9 +28,8 @@ public class RepositoryClassDefinitionUtil {
 	public static final String getRepositoryClassDefinitionId(
 		RepositoryClassDefinition repositoryClassDefinition) {
 
-		String className = repositoryClassDefinition.getClassName();
-
-		Matcher matcher = _pattern.matcher(className);
+		Matcher matcher = _pattern.matcher(
+			repositoryClassDefinition.getClassName());
 
 		return matcher.replaceAll(StringPool.DASH);
 	}

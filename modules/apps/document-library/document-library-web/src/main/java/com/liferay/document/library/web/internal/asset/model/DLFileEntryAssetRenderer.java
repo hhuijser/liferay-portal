@@ -333,9 +333,9 @@ public class DLFileEntryAssetRenderer
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		long groupId = _fileEntry.getGroupId();
+		if (!_hasViewInContextGroupLayout(
+				themeDisplay, _fileEntry.getGroupId())) {
 
-		if (!_hasViewInContextGroupLayout(themeDisplay, groupId)) {
 			return null;
 		}
 
@@ -408,10 +408,8 @@ public class DLFileEntryAssetRenderer
 
 	@Override
 	public boolean isCategorizable(long groupId) {
-		long classPK = getClassPK();
-
 		DLFileEntry dlFileEntry = _dlFileEntryLocalService.fetchDLFileEntry(
-			classPK);
+			getClassPK());
 
 		if ((dlFileEntry == null) ||
 			(dlFileEntry.getRepositoryId() != groupId)) {

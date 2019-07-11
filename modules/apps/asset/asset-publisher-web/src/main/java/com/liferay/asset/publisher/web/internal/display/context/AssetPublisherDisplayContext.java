@@ -1341,9 +1341,7 @@ public class AssetPublisherDisplayContext {
 	}
 
 	public boolean isPaginationTypeNone() {
-		String paginationType = getPaginationType();
-
-		if (Objects.equals(paginationType, PAGINATION_TYPE_NONE)) {
+		if (Objects.equals(getPaginationType(), PAGINATION_TYPE_NONE)) {
 			return true;
 		}
 

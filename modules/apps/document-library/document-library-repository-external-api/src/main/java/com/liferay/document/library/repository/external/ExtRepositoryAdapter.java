@@ -1211,9 +1211,7 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 	protected boolean isCheckedOut(
 		ExtRepositoryFileEntry extRepositoryFileEntry) {
 
-		String checkedOutBy = extRepositoryFileEntry.getCheckedOutBy();
-
-		if (Validator.isNull(checkedOutBy)) {
+		if (Validator.isNull(extRepositoryFileEntry.getCheckedOutBy())) {
 			return false;
 		}
 

@@ -962,10 +962,10 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 						DLPortletInstanceSettings.getInstance(
 							themeDisplay.getLayout(), portletDisplay.getId());
 
-					String[] mimeTypes =
-						dlPortletInstanceSettings.getMimeTypes();
+					int count = Arrays.binarySearch(
+						dlPortletInstanceSettings.getMimeTypes(), contentType);
 
-					if (Arrays.binarySearch(mimeTypes, contentType) < 0) {
+					if (count < 0) {
 						throw new FileMimeTypeException(contentType);
 					}
 				}

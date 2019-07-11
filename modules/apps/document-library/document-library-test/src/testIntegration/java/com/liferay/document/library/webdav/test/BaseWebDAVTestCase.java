@@ -128,10 +128,7 @@ public class BaseWebDAVTestCase {
 		}
 
 		for (Map.Entry<String, String> entry : headers.entrySet()) {
-			String key = entry.getKey();
-			String value = entry.getValue();
-
-			mockHttpServletRequest.addHeader(key, value);
+			mockHttpServletRequest.addHeader(entry.getKey(), entry.getValue());
 		}
 
 		try {

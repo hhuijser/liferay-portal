@@ -518,11 +518,9 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 		LiferayPortletResponse liferayPortletResponse, AssetEntry assetEntry,
 		boolean viewInContext) {
 
-		AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
-
 		return getAssetViewURL(
-			liferayPortletRequest, liferayPortletResponse, assetRenderer,
-			assetEntry, viewInContext);
+			liferayPortletRequest, liferayPortletResponse,
+			assetEntry.getAssetRenderer(), assetEntry, viewInContext);
 	}
 
 	@Override

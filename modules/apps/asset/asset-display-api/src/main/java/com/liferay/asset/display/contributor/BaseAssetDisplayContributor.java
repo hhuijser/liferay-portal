@@ -91,9 +91,8 @@ public abstract class BaseAssetDisplayContributor<T>
 		AssetRenderer<T> assetRenderer = assetRendererFactory.getAssetRenderer(
 			assetEntry.getClassPK());
 
-		T assetObject = assetRenderer.getAssetObject();
-
-		return _getParameterMap(assetEntry, assetObject, locale);
+		return _getParameterMap(
+			assetEntry, assetRenderer.getAssetObject(), locale);
 	}
 
 	@Override

@@ -112,10 +112,7 @@ public class CommentManagerJSONWS extends BaseServiceImpl {
 			getUserId(), groupId, className, classPK,
 			createServiceContextFunction());
 
-		DiscussionComment rootDiscussionComment =
-			discussion.getRootDiscussionComment();
-
-		return getComments(rootDiscussionComment, start, end);
+		return getComments(discussion.getRootDiscussionComment(), start, end);
 	}
 
 	public int getCommentsCount(long groupId, String className, long classPK)

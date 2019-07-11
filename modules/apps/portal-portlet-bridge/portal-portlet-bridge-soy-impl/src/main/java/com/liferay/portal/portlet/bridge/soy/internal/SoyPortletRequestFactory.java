@@ -84,12 +84,11 @@ public class SoyPortletRequestFactory {
 		PortletConfig portletConfig = PortletConfigFactoryUtil.create(
 			_portlet, servletContext);
 
-		PortletContext portletContext = portletConfig.getPortletContext();
-
 		LiferayActionRequest liferayActionRequest = ActionRequestFactory.create(
-			httpServletRequest, _portlet, invokerPortlet, portletContext,
-			resourceRequest.getWindowState(), resourceRequest.getPortletMode(),
-			portletPreferences, themeDisplay.getPlid());
+			httpServletRequest, _portlet, invokerPortlet,
+			portletConfig.getPortletContext(), resourceRequest.getWindowState(),
+			resourceRequest.getPortletMode(), portletPreferences,
+			themeDisplay.getPlid());
 
 		liferayActionRequest.setPortletRequestDispatcherRequest(
 			httpServletRequest);

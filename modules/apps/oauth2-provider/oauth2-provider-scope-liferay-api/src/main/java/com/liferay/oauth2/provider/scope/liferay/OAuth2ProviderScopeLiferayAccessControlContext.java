@@ -20,8 +20,6 @@ import com.liferay.portal.kernel.security.auth.verifier.AuthVerifierResult;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Validator;
 
-import java.util.Map;
-
 /**
  * @author Carlos Sierra Andrés
  */
@@ -38,9 +36,8 @@ public class OAuth2ProviderScopeLiferayAccessControlContext {
 			AuthVerifierResult.State.SUCCESS.equals(
 				authVerifierResult.getState())) {
 
-			Map<String, Object> settings = authVerifierResult.getSettings();
-
-			String authType = MapUtil.getString(settings, "auth.type");
+			String authType = MapUtil.getString(
+				authVerifierResult.getSettings(), "auth.type");
 
 			if (Validator.isNotNull(authType) &&
 				authType.equals(

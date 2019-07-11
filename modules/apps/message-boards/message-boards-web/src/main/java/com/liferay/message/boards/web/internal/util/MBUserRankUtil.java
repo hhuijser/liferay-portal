@@ -107,11 +107,10 @@ public class MBUserRankUtil {
 		if (entityType.equals("organization-role") ||
 			entityType.equals("site-role")) {
 
-			long groupId = statsUser.getGroupId();
 			Role role = RoleLocalServiceUtil.getRole(companyId, entityValue);
 
 			if (UserGroupRoleLocalServiceUtil.hasUserGroupRole(
-					userId, groupId, role.getRoleId(), true)) {
+					userId, statsUser.getGroupId(), role.getRoleId(), true)) {
 
 				return true;
 			}

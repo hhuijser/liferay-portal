@@ -20,7 +20,6 @@ import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
@@ -171,10 +170,8 @@ public class BaseHttpHandlerImpl implements HttpHandler {
 	protected String getBody(HttpExchange httpExchange) throws IOException {
 		StringBuffer sb = new StringBuffer();
 
-		InputStream requestBody = httpExchange.getRequestBody();
-
 		BufferedReader bufferedReader = new BufferedReader(
-			new InputStreamReader(requestBody));
+			new InputStreamReader(httpExchange.getRequestBody()));
 
 		String line = null;
 

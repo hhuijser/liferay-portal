@@ -225,12 +225,11 @@ public class LayoutSetPrototypeStagedModelDataHandler
 			"layout_set_prototypes", "page-templates");
 
 		for (Layout layout : layouts) {
-			String layoutPrototypeUuid = layout.getLayoutPrototypeUuid();
-
 			LayoutPrototype layoutPrototype =
 				_layoutPrototypeLocalService.
 					getLayoutPrototypeByUuidAndCompanyId(
-						layoutPrototypeUuid, portletDataContext.getCompanyId());
+						layout.getLayoutPrototypeUuid(),
+						portletDataContext.getCompanyId());
 
 			portletDataContext.addReferenceElement(
 				layout, layoutSetPrototypeElement, layoutPrototype,

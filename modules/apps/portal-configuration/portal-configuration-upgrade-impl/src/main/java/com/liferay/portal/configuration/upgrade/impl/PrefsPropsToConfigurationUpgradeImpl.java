@@ -74,14 +74,13 @@ public class PrefsPropsToConfigurationUpgradeImpl
 					continue;
 				}
 
-				PrefsPropsValueType prefsPropsValueType =
-					prefsPropsToConfigurationUpgradeItem.
-						getPrefsPropsValueType();
-
 				properties.put(
 					prefsPropsToConfigurationUpgradeItem.
 						getConfigurationMethodName(),
-					_getTypedValue(value, prefsPropsValueType));
+					_getTypedValue(
+						value,
+						prefsPropsToConfigurationUpgradeItem.
+							getPrefsPropsValueType()));
 
 				portletPreferences.reset(prefsPropsName);
 			}

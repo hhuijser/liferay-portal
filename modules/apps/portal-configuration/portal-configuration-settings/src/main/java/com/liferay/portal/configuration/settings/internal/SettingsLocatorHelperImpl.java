@@ -381,12 +381,10 @@ public class SettingsLocatorHelperImpl implements SettingsLocatorHelper {
 				new ConfigurationBeanManagedService(
 					context, configurationBeanClass,
 					configurationBean -> {
-						ClassLoader classLoader =
-							configurationBeanClass.getClassLoader();
-
 						LocationVariableResolver locationVariableResolver =
 							new LocationVariableResolver(
-								new ClassLoaderResourceManager(classLoader),
+								new ClassLoaderResourceManager(
+									configurationBeanClass.getClassLoader()),
 								SettingsLocatorHelperImpl.this);
 
 						_configurationBeanSettings.put(
@@ -442,11 +440,10 @@ public class SettingsLocatorHelperImpl implements SettingsLocatorHelper {
 			Class<?> configurationBeanClass =
 				configurationBeanDeclaration.getConfigurationBeanClass();
 
-			ClassLoader classLoader = configurationBeanClass.getClassLoader();
-
 			LocationVariableResolver locationVariableResolver =
 				new LocationVariableResolver(
-					new ClassLoaderResourceManager(classLoader),
+					new ClassLoaderResourceManager(
+						configurationBeanClass.getClassLoader()),
 					SettingsLocatorHelperImpl.this);
 
 			ScopedConfigurationManager scopedConfigurationManager =

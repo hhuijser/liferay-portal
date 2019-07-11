@@ -122,10 +122,7 @@ public class StagedLayoutSetStagedModelDataHandler
 			portletDataContext.isPrivateLayout());
 
 		for (Layout layout : layoutSetLayouts) {
-			String sourcePrototypeLayoutUuid =
-				layout.getSourcePrototypeLayoutUuid();
-
-			if (Validator.isNull(sourcePrototypeLayoutUuid)) {
+			if (Validator.isNull(layout.getSourcePrototypeLayoutUuid())) {
 				continue;
 			}
 

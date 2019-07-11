@@ -95,10 +95,9 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 
 		K key = getKey(element);
 		V value = getValue(element);
-		int timeToLive = element.getTimeToLive();
 
 		_aggregatedPortalCacheListener.notifyEntryEvicted(
-			_portalCache, key, value, timeToLive);
+			_portalCache, key, value, element.getTimeToLive());
 	}
 
 	@Override
@@ -115,10 +114,9 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 
 		K key = getKey(element);
 		V value = getValue(element);
-		int timeToLive = element.getTimeToLive();
 
 		_aggregatedPortalCacheListener.notifyEntryExpired(
-			_portalCache, key, value, timeToLive);
+			_portalCache, key, value, element.getTimeToLive());
 	}
 
 	@Override
@@ -137,10 +135,9 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 
 		K key = getKey(element);
 		V value = getValue(element);
-		int timeToLive = element.getTimeToLive();
 
 		_aggregatedPortalCacheListener.notifyEntryPut(
-			_portalCache, key, value, timeToLive);
+			_portalCache, key, value, element.getTimeToLive());
 	}
 
 	@Override
@@ -159,10 +156,9 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 
 		K key = getKey(element);
 		V value = getValue(element);
-		int timeToLive = element.getTimeToLive();
 
 		_aggregatedPortalCacheListener.notifyEntryRemoved(
-			_portalCache, key, value, timeToLive);
+			_portalCache, key, value, element.getTimeToLive());
 	}
 
 	@Override
@@ -181,10 +177,9 @@ public class PortalCacheCacheEventListener<K extends Serializable, V>
 
 		K key = getKey(element);
 		V value = getValue(element);
-		int timeToLive = element.getTimeToLive();
 
 		_aggregatedPortalCacheListener.notifyEntryUpdated(
-			_portalCache, key, value, timeToLive);
+			_portalCache, key, value, element.getTimeToLive());
 	}
 
 	@Override

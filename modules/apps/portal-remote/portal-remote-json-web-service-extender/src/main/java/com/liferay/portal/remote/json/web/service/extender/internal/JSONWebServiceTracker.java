@@ -44,10 +44,8 @@ public class JSONWebServiceTracker
 	public void activate(ComponentContext componentContext) {
 		_componentContext = componentContext;
 
-		BundleContext bundleContext = componentContext.getBundleContext();
-
 		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext,
+			componentContext.getBundleContext(),
 			StringBundler.concat(
 				"(&(json.web.service.context.name=*)(json.web.service.context.",
 				"path=*)(!(objectClass=", AopService.class.getName(), ")))"),

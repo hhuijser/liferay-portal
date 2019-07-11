@@ -83,7 +83,6 @@ import java.util.Locale;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletRequest;
-import javax.portlet.PortletSession;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -505,9 +504,8 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 
 			// Clear cached portlet responses
 
-			PortletSession portletSession = actionRequest.getPortletSession();
-
-			InvokerPortletUtil.clearResponses(portletSession);
+			InvokerPortletUtil.clearResponses(
+				actionRequest.getPortletSession());
 
 			updateLanguageId = true;
 		}

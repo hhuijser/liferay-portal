@@ -107,12 +107,8 @@ public class UADRegistry {
 	}
 
 	public Collection<UADAnonymizer> getNonreviewableUADAnonymizers() {
-		Collection<UADAnonymizer> uadAnonymizers = getUADAnonymizers();
-
-		Stream<UADDisplay> uadDisplayStream = getUADDisplayStream();
-
 		return _getNonreviewableUADAnonymizers(
-			uadAnonymizers, uadDisplayStream);
+			getUADAnonymizers(), getUADDisplayStream());
 	}
 
 	public Stream<UADAnonymizer> getNonreviewableUADAnonymizerStream() {

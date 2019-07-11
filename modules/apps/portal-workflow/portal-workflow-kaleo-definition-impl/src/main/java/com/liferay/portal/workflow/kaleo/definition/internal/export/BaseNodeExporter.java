@@ -378,9 +378,7 @@ public abstract class BaseNodeExporter implements NodeExporter {
 					timerElement, "description", timer.getDescription());
 			}
 
-			DelayDuration delayDuration = timer.getDelayDuration();
-
-			addDelayDuration(timerElement, "delay", delayDuration);
+			addDelayDuration(timerElement, "delay", timer.getDelayDuration());
 
 			DelayDuration recurrenceDelayDuration = timer.getRecurrence();
 

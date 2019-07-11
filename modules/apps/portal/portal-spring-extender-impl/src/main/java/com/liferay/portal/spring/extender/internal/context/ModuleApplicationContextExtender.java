@@ -119,12 +119,10 @@ public class ModuleApplicationContextExtender
 			BundleContext bundleContext =
 				ModuleApplicationContextExtender.this._bundleContext;
 
-			Bundle bundle = bundleContext.getBundle();
-
 			_component.setImplementation(
 				new ModuleApplicationContextRegistrator(
 					_configurableApplicationContextConfigurator, _bundle,
-					bundle));
+					bundleContext.getBundle()));
 
 			BundleWiring bundleWiring = _bundle.adapt(BundleWiring.class);
 

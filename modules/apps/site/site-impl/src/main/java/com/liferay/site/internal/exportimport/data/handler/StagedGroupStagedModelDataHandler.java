@@ -421,11 +421,9 @@ public class StagedGroupStagedModelDataHandler
 
 		// Export portlets
 
-		Map<String, String[]> parameterMap =
-			portletDataContext.getParameterMap();
-
 		boolean permissions = MapUtil.getBoolean(
-			parameterMap, PortletDataHandlerKeys.PERMISSIONS);
+			portletDataContext.getParameterMap(),
+			PortletDataHandlerKeys.PERMISSIONS);
 
 		List<Layout> layouts = _layoutLocalService.getLayouts(
 			group.getGroupId(), portletDataContext.isPrivateLayout());
@@ -493,11 +491,9 @@ public class StagedGroupStagedModelDataHandler
 			(Map<Long, Layout>)portletDataContext.getNewPrimaryKeysMap(
 				Layout.class + ".layout");
 
-		Map<String, String[]> parameterMap =
-			portletDataContext.getParameterMap();
-
 		boolean permissions = MapUtil.getBoolean(
-			parameterMap, PortletDataHandlerKeys.PERMISSIONS);
+			portletDataContext.getParameterMap(),
+			PortletDataHandlerKeys.PERMISSIONS);
 
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();

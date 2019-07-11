@@ -111,9 +111,7 @@ public class PortletDisplayTemplateExportCapability implements Capability {
 			return 0;
 		}
 
-		String className = templateHandler.getClassName();
-
-		return _portal.getClassNameId(className);
+		return _portal.getClassNameId(templateHandler.getClassName());
 	}
 
 	private final Portal _portal;

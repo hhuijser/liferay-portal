@@ -220,10 +220,8 @@ public abstract class StateAwareResponseImpl
 			return;
 		}
 
-		com.liferay.portal.kernel.xml.QName qName =
-			publicRenderParameter.getQName();
-
-		String key = PortletQNameUtil.getPublicRenderParameterName(qName);
+		String key = PortletQNameUtil.getPublicRenderParameterName(
+			publicRenderParameter.getQName());
 
 		_publicRenderParameters.remove(key);
 	}

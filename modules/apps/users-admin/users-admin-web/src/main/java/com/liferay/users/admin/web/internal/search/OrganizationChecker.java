@@ -17,7 +17,6 @@ package com.liferay.users.admin.web.internal.search;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.permission.OrganizationPermissionUtil;
 
@@ -37,11 +36,9 @@ public class OrganizationChecker extends EmptyOnClickRowChecker {
 		Organization organization = (Organization)obj;
 
 		try {
-			PermissionChecker permissionChecker =
-				PermissionThreadLocal.getPermissionChecker();
-
 			if (!OrganizationPermissionUtil.contains(
-					permissionChecker, organization, ActionKeys.DELETE)) {
+					PermissionThreadLocal.getPermissionChecker(), organization,
+					ActionKeys.DELETE)) {
 
 				return true;
 			}

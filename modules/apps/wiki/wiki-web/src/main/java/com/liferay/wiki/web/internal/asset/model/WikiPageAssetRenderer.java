@@ -303,9 +303,7 @@ public class WikiPageAssetRenderer
 			(ThemeDisplay)liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		long groupId = _page.getGroupId();
-
-		if (!_hasViewInContextGroupLayout(groupId, themeDisplay)) {
+		if (!_hasViewInContextGroupLayout(_page.getGroupId(), themeDisplay)) {
 			return null;
 		}
 

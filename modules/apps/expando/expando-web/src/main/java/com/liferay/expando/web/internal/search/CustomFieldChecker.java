@@ -19,7 +19,6 @@ import com.liferay.expando.kernel.service.ExpandoColumnLocalServiceUtil;
 import com.liferay.expando.kernel.service.permission.ExpandoColumnPermissionUtil;
 import com.liferay.portal.kernel.dao.search.EmptyOnClickRowChecker;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -68,11 +67,9 @@ public class CustomFieldChecker extends EmptyOnClickRowChecker {
 			ExpandoColumnLocalServiceUtil.getDefaultTableColumn(
 				_companyId, _modelResource, (String)obj);
 
-		PermissionChecker permissionChecker =
-			PermissionThreadLocal.getPermissionChecker();
-
 		if (!ExpandoColumnPermissionUtil.contains(
-				permissionChecker, expandoColumn, ActionKeys.DELETE)) {
+				PermissionThreadLocal.getPermissionChecker(), expandoColumn,
+				ActionKeys.DELETE)) {
 
 			return true;
 		}

@@ -422,11 +422,10 @@ public class JournalTransformer {
 
 	protected TemplateResource getErrorTemplateResource(String langType) {
 		try {
-			long companyId = CompanyThreadLocal.getCompanyId();
-
 			JournalServiceConfiguration journalServiceConfiguration =
 				ConfigurationProviderUtil.getCompanyConfiguration(
-					JournalServiceConfiguration.class, companyId);
+					JournalServiceConfiguration.class,
+					CompanyThreadLocal.getCompanyId());
 
 			String template = StringPool.BLANK;
 

@@ -229,11 +229,9 @@ public class StagingImpl implements Staging {
 					ExportImportClassedModelUtil.getClassName(
 						stagedGroupedModel));
 
-			int[] exportableStatuses =
-				stagedModelDataHandler.getExportableStatuses();
-
 			if (!ArrayUtil.contains(
-					exportableStatuses, workflowedModel.getStatus())) {
+					stagedModelDataHandler.getExportableStatuses(),
+					workflowedModel.getStatus())) {
 
 				removeModelFromChangesetCollection(model);
 
@@ -2172,14 +2170,12 @@ public class StagingImpl implements Staging {
 		LayoutRevision layoutRevision = LayoutStagingUtil.getLayoutRevision(
 			layout);
 
-		if (layoutRevision != null) {
-			long layoutSetBranchId = layoutRevision.getLayoutSetBranchId();
+		if ((layoutRevision != null) &&
+			isLayoutRevisionIncomplete(
+				layout.getPlid(), layoutRevision,
+				layoutRevision.getLayoutSetBranchId())) {
 
-			if (isLayoutRevisionIncomplete(
-					layout.getPlid(), layoutRevision, layoutSetBranchId)) {
-
-				return true;
-			}
+			return true;
 		}
 
 		return false;
@@ -2295,10 +2291,8 @@ public class StagingImpl implements Staging {
 							if (stagedModel instanceof TypedModel) {
 								TypedModel typedModel = (TypedModel)stagedModel;
 
-								String className = typedModel.getClassName();
-
 								if (Objects.equals(
-										className,
+										typedModel.getClassName(),
 										stagedModelType.
 											getReferrerClassName())) {
 

@@ -53,7 +53,6 @@ import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.service.http.GroupServiceHttp;
@@ -279,11 +278,9 @@ public class ExportImportChangesetMVCActionCommandImpl
 					stagingGroup = scopeGroup.getParentGroup();
 				}
 
-				UnicodeProperties typeSettingsProperties =
-					stagingGroup.getTypeSettingsProperties();
-
 				HttpPrincipal httpPrincipal = new HttpPrincipal(
-					_stagingURLHelper.buildRemoteURL(typeSettingsProperties),
+					_stagingURLHelper.buildRemoteURL(
+						stagingGroup.getTypeSettingsProperties()),
 					user.getLogin(), user.getPassword(),
 					user.isPasswordEncrypted());
 

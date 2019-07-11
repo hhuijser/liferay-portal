@@ -42,9 +42,7 @@ public class AnnotationLocator {
 		Class<?> clazz = null;
 
 		while ((clazz = queue.poll()) != null) {
-			Annotation[] annotations = clazz.getAnnotations();
-
-			_mergeAnnotations(annotations, indexMap);
+			_mergeAnnotations(clazz.getAnnotations(), indexMap);
 
 			_queueSuperTypes(queue, clazz);
 		}
@@ -74,9 +72,7 @@ public class AnnotationLocator {
 				Method specificMethod = clazz.getDeclaredMethod(
 					method.getName(), method.getParameterTypes());
 
-				Annotation[] annotations = specificMethod.getAnnotations();
-
-				_mergeAnnotations(annotations, indexMap);
+				_mergeAnnotations(specificMethod.getAnnotations(), indexMap);
 			}
 			catch (Exception e) {
 			}
@@ -87,9 +83,7 @@ public class AnnotationLocator {
 
 				clazz.getMethod(method.getName(), method.getParameterTypes());
 
-				Annotation[] annotations = clazz.getAnnotations();
-
-				_mergeAnnotations(annotations, indexMap);
+				_mergeAnnotations(clazz.getAnnotations(), indexMap);
 			}
 			catch (Exception e) {
 			}

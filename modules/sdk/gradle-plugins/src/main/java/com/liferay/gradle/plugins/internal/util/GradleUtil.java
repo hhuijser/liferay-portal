@@ -135,10 +135,9 @@ public class GradleUtil extends com.liferay.gradle.util.GradleUtil {
 		Map<String, String> stringMap = new HashMap<>();
 
 		for (Map.Entry<String, ?> entry : map.entrySet()) {
-			String key = entry.getKey();
 			String value = toString(entry.getValue());
 
-			stringMap.put(key, value);
+			stringMap.put(entry.getKey(), value);
 		}
 
 		return stringMap;

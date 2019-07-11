@@ -234,9 +234,8 @@ public class SchemaUtils {
 			newSchemaName, metadataSchema.getDoc(),
 			metadataSchema.getNamespace(), metadataSchema.isError());
 
-		List<Schema.Field> fields = metadataSchema.getFields();
-
-		List<Schema.Field> copyFieldList = _cloneFieldsAndResetPosition(fields);
+		List<Schema.Field> copyFieldList = _cloneFieldsAndResetPosition(
+			metadataSchema.getFields());
 
 		copyFieldList.addAll(insertPoint, moreFields);
 

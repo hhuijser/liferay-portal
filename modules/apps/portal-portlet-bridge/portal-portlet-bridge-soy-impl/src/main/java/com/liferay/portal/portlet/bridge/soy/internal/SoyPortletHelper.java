@@ -94,19 +94,15 @@ public class SoyPortletHelper {
 			String portletWrapperId, Template template)
 		throws Exception {
 
-		Set<String> mvcRenderCommandNames = getMVCRenderCommandNames();
-
 		String mvcRenderCommandNamesString = _jsonSerializer.serialize(
-			mvcRenderCommandNames);
+			getMVCRenderCommandNames());
 
 		template.remove("element");
 
 		String contextString = _jsonSerializer.serializeDeep(template);
 
-		List<Map<String, Object>> friendlyURLRoutes = getFriendlyURLRoutes();
-
 		String friendlyURLRoutesString = _jsonSerializer.serializeDeep(
-			friendlyURLRoutes);
+			getFriendlyURLRoutes());
 
 		return StringUtil.replace(
 			_routerJavaScriptTPL,

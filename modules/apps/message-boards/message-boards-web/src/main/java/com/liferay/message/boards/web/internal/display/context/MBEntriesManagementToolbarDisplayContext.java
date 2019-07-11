@@ -137,11 +137,9 @@ public class MBEntriesManagementToolbarDisplayContext {
 
 		List<String> availableActionDropdownItems = new ArrayList<>();
 
-		PermissionChecker permissionChecker =
-			_themeDisplay.getPermissionChecker();
-
 		if (MBCategoryPermission.contains(
-				permissionChecker, category, ActionKeys.DELETE)) {
+				_themeDisplay.getPermissionChecker(), category,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteEntries");
 		}

@@ -421,11 +421,11 @@ public class EditorPortlet extends AdminPortlet {
 
 		boolean requiresPubsub = features.containsKey("pubsub-2");
 
-		jsonObject.put("requiresPubsub", requiresPubsub);
-
-		boolean scrolling = modulePrefs.getScrolling();
-
-		jsonObject.put("scrolling", scrolling);
+		jsonObject.put(
+			"requiresPubsub", requiresPubsub
+		).put(
+			"scrolling", modulePrefs.getScrolling()
+		);
 
 		String ownerId = ShindigUtil.getOwnerId(themeDisplay.getLayout());
 		String portalURL = PortalUtil.getPortalURL(themeDisplay);

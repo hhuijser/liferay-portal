@@ -76,11 +76,11 @@ public class UpgradeLayoutPrototype extends UpgradeProcess {
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			for (LayoutPrototype layoutPrototype : layoutPrototypes) {
-				long companyId = layoutPrototype.getCompanyId();
 				Date createDate = layoutPrototype.getCreateDate();
 				String nameXML = layoutPrototype.getName();
 
-				Company company = _companyLocalService.getCompany(companyId);
+				Company company = _companyLocalService.getCompany(
+					layoutPrototype.getCompanyId());
 
 				Map<Locale, String> nameMap =
 					LocalizationUtil.getLocalizationMap(nameXML);

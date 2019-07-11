@@ -53,11 +53,9 @@ public class FragmentRendererPortalInstanceLifecycleListener
 
 	@Override
 	public void portalInstanceRegistered(Company company) throws Exception {
-		long companyId = company.getCompanyId();
-
 		OAuth2Application oAuth2Application =
 			_oAuth2ApplicationLocalService.fetchOAuth2Application(
-				companyId, _clientId);
+				company.getCompanyId(), _clientId);
 
 		if (oAuth2Application != null) {
 			return;

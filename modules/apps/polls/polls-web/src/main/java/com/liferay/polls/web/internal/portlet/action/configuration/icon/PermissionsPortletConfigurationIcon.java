@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.configuration.icon.BasePortletConfigurationIcon;
 import com.liferay.portal.kernel.portlet.configuration.icon.PortletConfigurationIcon;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.security.PermissionsURLTag;
@@ -88,11 +87,8 @@ public class PermissionsPortletConfigurationIcon
 			return false;
 		}
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		return PollsPermission.contains(
-			permissionChecker, themeDisplay.getScopeGroup(),
+			themeDisplay.getPermissionChecker(), themeDisplay.getScopeGroup(),
 			ActionKeys.PERMISSIONS);
 	}
 

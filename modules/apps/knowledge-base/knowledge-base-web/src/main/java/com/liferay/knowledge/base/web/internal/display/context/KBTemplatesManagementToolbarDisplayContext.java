@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -94,11 +93,9 @@ public class KBTemplatesManagementToolbarDisplayContext {
 
 		List<String> availableActionDropdownItems = new ArrayList<>();
 
-		PermissionChecker permissionChecker =
-			_themeDisplay.getPermissionChecker();
-
 		if (KBTemplatePermission.contains(
-				permissionChecker, kbTemplate, ActionKeys.DELETE)) {
+				_themeDisplay.getPermissionChecker(), kbTemplate,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteKBTemplates");
 		}

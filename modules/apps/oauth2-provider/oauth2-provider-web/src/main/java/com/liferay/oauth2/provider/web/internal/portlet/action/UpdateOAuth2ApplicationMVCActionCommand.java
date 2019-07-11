@@ -169,16 +169,14 @@ public class UpdateOAuth2ApplicationMVCActionCommand
 					_oAuth2ApplicationService.getOAuth2Application(
 						oAuth2ApplicationId);
 
-				long iconFileEntryId = oAuth2Application.getIconFileEntryId();
-				long oAuth2ApplicationScopeAliasesId =
-					oAuth2Application.getOAuth2ApplicationScopeAliasesId();
-
 				_oAuth2ApplicationService.updateOAuth2Application(
 					oAuth2ApplicationId, allowedGrantTypesList,
 					clientCredentialUserId, clientId, clientProfile.id(),
 					clientSecret, description, featuresList, homePageURL,
-					iconFileEntryId, name, privacyPolicyURL, redirectURIsList,
-					oAuth2ApplicationScopeAliasesId, serviceContext);
+					oAuth2Application.getIconFileEntryId(), name,
+					privacyPolicyURL, redirectURIsList,
+					oAuth2Application.getOAuth2ApplicationScopeAliasesId(),
+					serviceContext);
 
 				long fileEntryId = ParamUtil.getLong(request, "fileEntryId");
 

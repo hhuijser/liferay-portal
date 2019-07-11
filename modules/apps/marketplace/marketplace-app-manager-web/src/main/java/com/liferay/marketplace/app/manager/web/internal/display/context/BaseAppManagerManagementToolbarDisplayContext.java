@@ -39,8 +39,6 @@ import javax.portlet.PortletURL;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.osgi.framework.Bundle;
-
 /**
  * @author Pei-Jung Lan
  */
@@ -68,10 +66,9 @@ public abstract class BaseAppManagerManagementToolbarDisplayContext
 	public List<DropdownItem> getCategoryDropdownItems() {
 		List<App> apps = AppLocalServiceUtil.getApps(
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-		List<Bundle> bundles = BundleManagerUtil.getBundles();
 
 		String[] categories = MarketplaceAppManagerUtil.getCategories(
-			apps, bundles);
+			apps, BundleManagerUtil.getBundles());
 
 		Map<String, String> categoriesMap = new LinkedHashMap<>();
 

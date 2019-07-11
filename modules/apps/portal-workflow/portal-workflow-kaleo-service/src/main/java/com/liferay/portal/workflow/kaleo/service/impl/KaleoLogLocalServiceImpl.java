@@ -250,11 +250,9 @@ public class KaleoLogLocalServiceImpl extends KaleoLogLocalServiceBaseImpl {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		KaleoInstanceToken kaleoInstanceToken =
-			kaleoTaskInstanceToken.getKaleoInstanceToken();
-
 		KaleoLog kaleoLog = createKaleoLog(
-			kaleoInstanceToken, LogType.TASK_UPDATE, serviceContext);
+			kaleoTaskInstanceToken.getKaleoInstanceToken(), LogType.TASK_UPDATE,
+			serviceContext);
 
 		List<KaleoTaskAssignmentInstance> kaleoTaskAssignmentInstances =
 			kaleoTaskInstanceToken.getKaleoTaskAssignmentInstances();

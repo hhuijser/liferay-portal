@@ -433,10 +433,9 @@ public class KaleoTaskInstanceTokenFinderImpl
 	protected String getAssigneeClassName(
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
-		String assigneeClassName =
-			kaleoTaskInstanceTokenQuery.getAssigneeClassName();
+		if (Validator.isNull(
+				kaleoTaskInstanceTokenQuery.getAssigneeClassName())) {
 
-		if (Validator.isNull(assigneeClassName)) {
 			return StringPool.BLANK;
 		}
 

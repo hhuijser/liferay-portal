@@ -142,10 +142,9 @@ public class AndroidPushNotificationsSender implements PushNotificationsSender {
 
 			String canonicalRegistrationId =
 				result.getCanonicalRegistrationId();
-			String messageId = result.getMessageId();
 
 			if (Validator.isNotNull(canonicalRegistrationId) &&
-				Validator.isNotNull(messageId)) {
+				Validator.isNotNull(result.getMessageId())) {
 
 				try {
 					_pushNotificationsDeviceLocalService.updateToken(

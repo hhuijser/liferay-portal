@@ -159,9 +159,7 @@ public class RevertWorkflowDefinitionMVCActionCommand
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Locale locale = themeDisplay.getLocale();
-
-		DateFormat dateFormat = _getDateFormat(locale);
+		DateFormat dateFormat = _getDateFormat(themeDisplay.getLocale());
 
 		Date workflowDefinitionModifiedDate = GetterUtil.getDate(
 			actionRequest.getAttribute(

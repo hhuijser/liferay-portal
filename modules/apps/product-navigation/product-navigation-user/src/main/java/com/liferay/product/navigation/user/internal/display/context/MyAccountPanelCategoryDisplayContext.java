@@ -74,9 +74,7 @@ public class MyAccountPanelCategoryDisplayContext {
 	public String getMySiteGroupURL(boolean privateLayout)
 		throws PortalException {
 
-		Group mySiteGroup = getMySiteGroup();
-
-		return getMySiteGroupURL(mySiteGroup, privateLayout);
+		return getMySiteGroupURL(getMySiteGroup(), privateLayout);
 	}
 
 	public boolean isMySiteGroupActive(boolean privateLayout)

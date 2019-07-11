@@ -53,12 +53,10 @@ public class MonitoringMessagingConfigurator {
 	protected void activate(ComponentContext componentContext) {
 		_bundleContext = componentContext.getBundleContext();
 
-		Dictionary<String, Object> properties =
-			componentContext.getProperties();
-
 		MonitoringConfiguration monitoringConfiguration =
 			ConfigurableUtil.createConfigurable(
-				MonitoringConfiguration.class, properties);
+				MonitoringConfiguration.class,
+				componentContext.getProperties());
 
 		DestinationConfiguration destinationConfiguration =
 			new DestinationConfiguration(

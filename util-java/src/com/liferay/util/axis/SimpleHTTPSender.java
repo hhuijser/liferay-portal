@@ -117,12 +117,12 @@ public class SimpleHTTPSender extends HTTPSender {
 
 		inputStream = new UnsyncBufferedInputStream(inputStream, 8192);
 
-		String contentType = urlConnection.getContentType();
 		String contentLocation = urlConnection.getHeaderField(
 			"Content-Location");
 
 		Message message = new Message(
-			inputStream, false, contentType, contentLocation);
+			inputStream, false, urlConnection.getContentType(),
+			contentLocation);
 
 		message.setMessageType(Message.RESPONSE);
 

@@ -47,7 +47,6 @@ import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.EventRequest;
 import javax.portlet.EventResponse;
-import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
 import javax.portlet.PortletPreferences;
@@ -246,10 +245,8 @@ public class MVCPortlet extends LiferayPortlet {
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		PortletConfig portletConfig = getPortletConfig();
-
 		PortalUtil.invokeTaglibDiscussionPagination(
-			portletConfig, resourceRequest, resourceResponse);
+			getPortletConfig(), resourceRequest, resourceResponse);
 	}
 
 	@Override

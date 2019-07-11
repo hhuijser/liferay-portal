@@ -62,9 +62,7 @@ public class ExtResourceSet extends AbstractFileResourceSet {
 	public String[] list(String path) {
 		checkPath(path);
 
-		String webAppMount = getWebAppMount();
-
-		if (!path.equals(webAppMount)) {
+		if (!path.equals(getWebAppMount())) {
 			return EMPTY_STRING_ARRAY;
 		}
 

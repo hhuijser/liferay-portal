@@ -163,9 +163,7 @@ public class PortletSessionListenerManager
 
 				Class<?> clazz = httpSessionListener.getClass();
 
-				ClassLoader classLoader = clazz.getClassLoader();
-
-				currentThread.setContextClassLoader(classLoader);
+				currentThread.setContextClassLoader(clazz.getClassLoader());
 
 				httpSessionListener.sessionCreated(httpSessionEvent);
 			}

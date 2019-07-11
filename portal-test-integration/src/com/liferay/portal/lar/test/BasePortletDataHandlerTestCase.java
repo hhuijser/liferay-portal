@@ -328,12 +328,10 @@ public abstract class BasePortletDataHandlerTestCase {
 
 		portletDataHandler.prepareManifestSummary(portletDataContext);
 
-		ManifestSummary manifestSummary =
-			portletDataContext.getManifestSummary();
-
 		Assert.assertEquals(
 			getExportModelCount(),
-			portletDataHandler.getExportModelCount(manifestSummary));
+			portletDataHandler.getExportModelCount(
+				portletDataContext.getManifestSummary()));
 	}
 
 	@Test

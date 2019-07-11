@@ -103,12 +103,12 @@ public class DDMStructureClassType implements ClassType {
 			}
 
 			LocalizedValue label = ddmFormField.getLabel();
-			String name = ddmFormField.getName();
 
 			classTypeFields.add(
 				new ClassTypeField(
 					label.getString(LocaleUtil.fromLanguageId(_languageId)),
-					name, type, ddmStructure.getStructureId()));
+					ddmFormField.getName(), type,
+					ddmStructure.getStructureId()));
 		}
 
 		return classTypeFields;

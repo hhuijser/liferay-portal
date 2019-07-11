@@ -50,9 +50,8 @@ public class DefaultThreadLocalBinder implements ThreadLocalBinder {
 
 			ThreadLocal<Object> threadLocal =
 				(ThreadLocal<Object>)entry.getKey();
-			Object value = entry.getValue();
 
-			threadLocal.set(value);
+			threadLocal.set(entry.getValue());
 		}
 	}
 

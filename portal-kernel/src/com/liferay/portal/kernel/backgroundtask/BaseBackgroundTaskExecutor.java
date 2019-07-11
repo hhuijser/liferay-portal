@@ -22,10 +22,7 @@ import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 
-import java.io.Serializable;
-
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * @author Michael C. Han
@@ -71,10 +68,8 @@ public abstract class BaseBackgroundTaskExecutor
 	}
 
 	protected Locale getLocale(BackgroundTask backgroundTask) {
-		Map<String, Serializable> taskContextMap =
-			backgroundTask.getTaskContextMap();
-
-		long userId = MapUtil.getLong(taskContextMap, "userId");
+		long userId = MapUtil.getLong(
+			backgroundTask.getTaskContextMap(), "userId");
 
 		if (userId > 0) {
 			try {

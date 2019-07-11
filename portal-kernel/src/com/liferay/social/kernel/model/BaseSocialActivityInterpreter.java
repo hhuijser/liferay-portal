@@ -165,11 +165,9 @@ public abstract class BaseSocialActivityInterpreter
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (!hasPermissions(
-				permissionChecker, activity, ActionKeys.VIEW, serviceContext)) {
+				themeDisplay.getPermissionChecker(), activity, ActionKeys.VIEW,
+				serviceContext)) {
 
 			return null;
 		}

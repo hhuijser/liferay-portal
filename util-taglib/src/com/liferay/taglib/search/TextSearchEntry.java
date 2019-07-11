@@ -80,11 +80,10 @@ public class TextSearchEntry extends SearchEntry {
 
 			if (_data != null) {
 				for (Map.Entry<String, Object> entry : _data.entrySet()) {
-					String key = entry.getKey();
 					String value = String.valueOf(entry.getValue());
 
 					sb.append(" data-");
-					sb.append(key);
+					sb.append(entry.getKey());
 					sb.append("=\"");
 					sb.append(value);
 					sb.append("\"");

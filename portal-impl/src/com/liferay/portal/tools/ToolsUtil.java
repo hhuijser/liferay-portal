@@ -66,7 +66,7 @@ import org.dom4j.io.SAXReader;
  * @author Miguel Pastor
  * @author Cody Hoag
  * @author James Hinkey
- * @author Hugo Huijser
+ * @author Hugoo Huijser
  */
 public class ToolsUtil {
 

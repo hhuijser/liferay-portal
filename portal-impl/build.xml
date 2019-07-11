@@ -751,59 +751,39 @@ Please run the following command from ${source.formatter.modules.dir.absolute.pa
 		</if>
 
 		<if>
-			<or>
-				<istrue value="${format.current.branch}" />
-				<istrue value="${format.latest.author}" />
-				<istrue value="${format.local.changes}" />
-			</or>
+			<and>
+				<not>
+					<or>
+						<isset property="skip.npm" />
+						<isset property="source.file.extensions" />
+						<isset property="source.files" />
+					</or>
+				</not>
+			</and>
 			<then>
-				<echo>This target does not format .es.js files. Please run the following command from ${source.formatter.modules.dir.absolute.path} to do so:</echo>
-
 				<if>
 					<matches pattern="yarn" string="${source.formatter.js.task}" />
 					<then>
-						<echo>../gradlew -b util.gradle ${source.formatter.js.task}</echo>
+						<gradle-execute dir="${project.dir}/modules" task="${source.formatter.js.task}">
+							<arg value="--build-file=${project.dir}/modules/util.gradle" />
+						</gradle-execute>
 					</then>
-					<else>
-						<echo>../gradlew ${source.formatter.js.task}</echo>
-					</else>
+					<elseif>
+						<resourcecount count="0" when="greater">
+							<fileset
+								dir="${project.dir}/modules"
+								excludes="**/.gradle/,**/bin/,**/build/,**/classes/,**/node_modules/,**/tmp/"
+								includes="**/package.json"
+							>
+								<contains text="&quot;${source.formatter.js.script}&quot;:" />
+							</fileset>
+						</resourcecount>
+						<then>
+							<gradle-execute dir="${project.dir}/modules" task="${source.formatter.js.task}" />
+						</then>
+					</elseif>
 				</if>
 			</then>
-			<elseif>
-				<and>
-					<not>
-						<or>
-							<isset property="skip.npm" />
-							<isset property="source.file.extensions" />
-							<isset property="source.files" />
-						</or>
-					</not>
-				</and>
-				<then>
-					<if>
-						<matches pattern="yarn" string="${source.formatter.js.task}" />
-						<then>
-							<gradle-execute dir="${project.dir}/modules" task="${source.formatter.js.task}">
-								<arg value="--build-file=${project.dir}/modules/util.gradle" />
-							</gradle-execute>
-						</then>
-						<elseif>
-							<resourcecount count="0" when="greater">
-								<fileset
-									dir="${project.dir}/modules"
-									excludes="**/.gradle/,**/bin/,**/build/,**/classes/,**/node_modules/,**/tmp/"
-									includes="**/package.json"
-								>
-									<contains text="&quot;${source.formatter.js.script}&quot;:" />
-								</fileset>
-							</resourcecount>
-							<then>
-								<gradle-execute dir="${project.dir}/modules" task="${source.formatter.js.task}" />
-							</then>
-						</elseif>
-					</if>
-				</then>
-			</elseif>
 		</if>
 	</target>
 

@@ -287,9 +287,10 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 		Class<?> type, Class<?>[] genericTypes, boolean returnType) {
 
 		if (type.isArray()) {
-			Class<?> componentType = type.getComponentType();
+			String typeName = _formatType(
+				type.getComponentType(), genericTypes, returnType);
 
-			return _formatType(componentType, genericTypes, returnType) + "[]";
+			return typeName + "[]";
 		}
 
 		if (type.isPrimitive()) {

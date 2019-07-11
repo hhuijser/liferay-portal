@@ -370,9 +370,7 @@ public class UserGroupLocalServiceImpl extends UserGroupLocalServiceBaseImpl {
 
 		// Group
 
-		Group group = userGroup.getGroup();
-
-		groupLocalService.deleteGroup(group);
+		groupLocalService.deleteGroup(userGroup.getGroup());
 
 		// User group roles
 

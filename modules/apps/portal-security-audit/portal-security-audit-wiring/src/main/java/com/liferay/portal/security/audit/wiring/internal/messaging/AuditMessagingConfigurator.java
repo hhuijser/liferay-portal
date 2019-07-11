@@ -53,12 +53,9 @@ public class AuditMessagingConfigurator {
 	protected void activate(ComponentContext componentContext) {
 		_bundleContext = componentContext.getBundleContext();
 
-		Dictionary<String, Object> properties =
-			componentContext.getProperties();
-
 		AuditConfiguration auditConfiguration =
 			ConfigurableUtil.createConfigurable(
-				AuditConfiguration.class, properties);
+				AuditConfiguration.class, componentContext.getProperties());
 
 		DestinationConfiguration destinationConfiguration =
 			new DestinationConfiguration(

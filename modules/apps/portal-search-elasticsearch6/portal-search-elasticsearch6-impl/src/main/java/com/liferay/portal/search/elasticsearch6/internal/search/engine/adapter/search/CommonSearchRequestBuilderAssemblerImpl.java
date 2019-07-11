@@ -148,10 +148,8 @@ public class CommonSearchRequestBuilderAssemblerImpl
 		QueryBuilder combinedQueryBuilder = combine(
 			queryBuilder, legacyQueryBuilder);
 
-		List<ComplexQueryPart> complexQueryParts =
-			baseSearchRequest.getComplexQueryParts();
-
-		return combine(combinedQueryBuilder, complexQueryParts);
+		return combine(
+			combinedQueryBuilder, baseSearchRequest.getComplexQueryParts());
 	}
 
 	protected void setAggregations(

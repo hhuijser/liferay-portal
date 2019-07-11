@@ -14,13 +14,11 @@
 
 package com.liferay.portal.search.elasticsearch6.internal.search.engine.adapter.document;
 
-import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.query.QueryTranslator;
 import com.liferay.portal.search.elasticsearch6.internal.connection.ElasticsearchClientResolver;
 import com.liferay.portal.search.engine.adapter.document.DeleteByQueryDocumentRequest;
 import com.liferay.portal.search.engine.adapter.document.DeleteByQueryDocumentResponse;
 
-import org.elasticsearch.client.Client;
 import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.reindex.BulkByScrollResponse;
@@ -58,14 +56,12 @@ public class DeleteByQueryDocumentRequestExecutorImpl
 	protected DeleteByQueryRequestBuilder createDeleteByQueryRequestBuilder(
 		DeleteByQueryDocumentRequest deleteByQueryDocumentRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		DeleteByQueryRequestBuilder deleteByQueryRequestBuilder =
-			DeleteByQueryAction.INSTANCE.newRequestBuilder(client);
+			DeleteByQueryAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
-		Query query = deleteByQueryDocumentRequest.getQuery();
-
-		QueryBuilder queryBuilder = _queryTranslator.translate(query, null);
+		QueryBuilder queryBuilder = _queryTranslator.translate(
+			deleteByQueryDocumentRequest.getQuery(), null);
 
 		deleteByQueryRequestBuilder.filter(queryBuilder);
 

@@ -154,9 +154,7 @@ public class IndexerSearcherImpl<T extends BaseModel<?>>
 			fullQuery.setPreBooleanFilter(preBooleanFilter);
 		}
 
-		QueryConfig queryConfig = searchContext.getQueryConfig();
-
-		fullQuery.setQueryConfig(queryConfig);
+		fullQuery.setQueryConfig(searchContext.getQueryConfig());
 
 		return _indexSearcherHelper.search(searchContext, fullQuery);
 	}

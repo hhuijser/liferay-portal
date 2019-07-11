@@ -152,11 +152,8 @@ public class SuggestionsPortletDisplayBuilder {
 	private String _buildSearchURL(
 		KeywordsSuggestionHolder keywordsSuggestionHolder) {
 
-		List<String> suggestedKeywords =
-			keywordsSuggestionHolder.getSuggestedKeywords();
-
 		String parameterValue = StringUtil.merge(
-			suggestedKeywords, StringPool.SPACE);
+			keywordsSuggestionHolder.getSuggestedKeywords(), StringPool.SPACE);
 
 		return _http.setParameter(
 			_searchURL, _keywordsParameterName, parameterValue);

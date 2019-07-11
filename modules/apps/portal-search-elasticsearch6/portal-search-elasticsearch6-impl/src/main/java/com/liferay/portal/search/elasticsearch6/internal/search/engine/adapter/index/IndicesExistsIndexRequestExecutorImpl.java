@@ -21,7 +21,6 @@ import com.liferay.portal.search.engine.adapter.index.IndicesExistsIndexResponse
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsAction;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsRequestBuilder;
 import org.elasticsearch.action.admin.indices.exists.indices.IndicesExistsResponse;
-import org.elasticsearch.client.Client;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -49,10 +48,9 @@ public class IndicesExistsIndexRequestExecutorImpl
 	protected IndicesExistsRequestBuilder createIndicesExistsRequestBuilder(
 		IndicesExistsIndexRequest indicesExistsIndexRequest) {
 
-		Client client = _elasticsearchClientResolver.getClient();
-
 		IndicesExistsRequestBuilder indicesExistsRequestBuilder =
-			IndicesExistsAction.INSTANCE.newRequestBuilder(client);
+			IndicesExistsAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		indicesExistsRequestBuilder.setIndices(
 			indicesExistsIndexRequest.getIndexNames());

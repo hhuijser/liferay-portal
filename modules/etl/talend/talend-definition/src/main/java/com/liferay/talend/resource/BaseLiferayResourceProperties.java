@@ -78,11 +78,9 @@ public abstract class BaseLiferayResourceProperties
 			return validationResultMutable;
 		}
 
-		LiferaySourceOrSinkRuntime liferaySourceOrSinkRuntime =
-			validatedSoSSandboxRuntime.getLiferaySourceOrSinkRuntime();
-
 		return doAfterEndpoint(
-			liferaySourceOrSinkRuntime, validationResultMutable);
+			validatedSoSSandboxRuntime.getLiferaySourceOrSinkRuntime(),
+			validationResultMutable);
 	}
 
 	public URI getEndpointURI() {

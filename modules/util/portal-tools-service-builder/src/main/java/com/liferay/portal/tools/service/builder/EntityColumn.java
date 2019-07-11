@@ -127,9 +127,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 
 		EntityColumn entityColumn = (EntityColumn)obj;
 
-		String name = entityColumn.getName();
-
-		if (_name.equals(name)) {
+		if (_name.equals(entityColumn.getName())) {
 			return true;
 		}
 

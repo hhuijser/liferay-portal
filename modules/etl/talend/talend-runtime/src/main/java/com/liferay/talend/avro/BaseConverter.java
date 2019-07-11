@@ -93,9 +93,8 @@ public abstract class BaseConverter<DatumT, AvroT>
 				avroConverters[i] = new StringTimestampConverter(datePattern);
 			}
 			else {
-				Schema.Type type = fieldSchema.getType();
-
-				avroConverters[i] = _converterRegistry.get(type);
+				avroConverters[i] = _converterRegistry.get(
+					fieldSchema.getType());
 			}
 		}
 	}

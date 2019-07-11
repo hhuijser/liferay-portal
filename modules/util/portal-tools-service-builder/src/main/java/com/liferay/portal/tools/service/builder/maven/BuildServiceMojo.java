@@ -21,7 +21,6 @@ import com.liferay.portal.tools.service.builder.ServiceBuilderInvoker;
 import java.io.File;
 
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -43,12 +42,9 @@ public class BuildServiceMojo extends AbstractMojo {
 			ServiceBuilder serviceBuilder = ServiceBuilderInvoker.invoke(
 				baseDir, _serviceBuilderArgs);
 
-			Set<String> modifiedFileNames =
-				serviceBuilder.getModifiedFileNames();
-
 			pluginContext.put(
 				ServiceBuilderArgs.OUTPUT_KEY_MODIFIED_FILES,
-				modifiedFileNames);
+				serviceBuilder.getModifiedFileNames());
 		}
 		catch (Exception e) {
 			throw new MojoExecutionException(e.getMessage(), e);

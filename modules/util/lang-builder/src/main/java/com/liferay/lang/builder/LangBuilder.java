@@ -530,9 +530,7 @@ public class LangBuilder {
 		for (LangBuilderCategory langBuilderCategory :
 				LangBuilderCategory.values()) {
 
-			String prefix = langBuilderCategory.getPrefix();
-
-			if (Validator.isNotNull(prefix) &&
+			if (Validator.isNotNull(langBuilderCategory.getPrefix()) &&
 				key.startsWith(langBuilderCategory.getPrefix())) {
 
 				return langBuilderCategory;

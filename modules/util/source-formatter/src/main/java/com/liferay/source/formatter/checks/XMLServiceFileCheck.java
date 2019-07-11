@@ -170,11 +170,9 @@ public class XMLServiceFileCheck extends BaseFileCheck {
 	private String _getTablesContent(String fileName, String absolutePath)
 		throws IOException {
 
-		List<String> pluginsInsideModulesDirectoryNames =
-			getPluginsInsideModulesDirectoryNames();
-
 		if (isPortalSource() &&
-			!isModulesFile(absolutePath, pluginsInsideModulesDirectoryNames)) {
+			!isModulesFile(
+				absolutePath, getPluginsInsideModulesDirectoryNames())) {
 
 			return _getPortalTablesContent();
 		}

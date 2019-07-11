@@ -2474,10 +2474,9 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 					ModuleVersionSelector moduleVersionSelector =
 						dependencyResolveDetails.getRequested();
 
-					String group = moduleVersionSelector.getGroup();
-					String name = moduleVersionSelector.getName();
-
-					String target = _getEasyConfDependencyTarget(group, name);
+					String target = _getEasyConfDependencyTarget(
+						moduleVersionSelector.getGroup(),
+						moduleVersionSelector.getName());
 
 					if (Validator.isNotNull(target) &&
 						GradleUtil.hasDependency(

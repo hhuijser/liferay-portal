@@ -72,10 +72,8 @@ public class WSDDBuilder {
 		if (!serverConfigFile.exists()) {
 			Class<?> clazz = getClass();
 
-			ClassLoader classLoader = clazz.getClassLoader();
-
 			String serverConfigContent = StringUtil.read(
-				classLoader,
+				clazz.getClassLoader(),
 				"com/liferay/portal/tools/wsdd/builder/dependencies" +
 					"/server-config.wsdd");
 

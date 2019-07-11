@@ -162,11 +162,8 @@ public class CentralGitSubrepository {
 		String gitSubrepositoryMergedCommit = _gitrepoProperties.getProperty(
 			"commit", "");
 
-		String gitSubrepositoryUpstreamCommit =
-			getGitSubrepositoryUpstreamCommit();
-
 		if (gitSubrepositoryMergedCommit.equals(
-				gitSubrepositoryUpstreamCommit)) {
+				getGitSubrepositoryUpstreamCommit())) {
 
 			return true;
 		}
@@ -233,11 +230,8 @@ public class CentralGitSubrepository {
 	}
 
 	private String _getMergePullRequestURL() throws IOException {
-		String gitSubrepositoryUpstreamCommit =
-			getGitSubrepositoryUpstreamCommit();
-
 		String path = JenkinsResultsParserUtil.combine(
-			"commits/", gitSubrepositoryUpstreamCommit, "/statuses");
+			"commits/", getGitSubrepositoryUpstreamCommit(), "/statuses");
 
 		String url = JenkinsResultsParserUtil.getGitHubApiUrl(
 			_gitSubrepositoryName, _gitSubrepositoryUsername, path);

@@ -24,7 +24,6 @@ import com.liferay.portal.search.engine.adapter.search.CountSearchResponse;
 import org.elasticsearch.action.search.SearchAction;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
-import org.elasticsearch.client.Client;
 import org.elasticsearch.search.SearchHits;
 
 import org.osgi.service.component.annotations.Component;
@@ -39,10 +38,9 @@ public class CountSearchRequestExecutorImpl
 
 	@Override
 	public CountSearchResponse execute(CountSearchRequest countSearchRequest) {
-		Client client = _elasticsearchClientResolver.getClient();
-
 		SearchRequestBuilder searchRequestBuilder =
-			SearchAction.INSTANCE.newRequestBuilder(client);
+			SearchAction.INSTANCE.newRequestBuilder(
+				_elasticsearchClientResolver.getClient());
 
 		_commonSearchRequestBuilderAssembler.assemble(
 			searchRequestBuilder, countSearchRequest);

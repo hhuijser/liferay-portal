@@ -28,8 +28,6 @@ import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.template.soy.SoyTemplateResource;
 import com.liferay.portal.template.soy.SoyTemplateResourceFactory;
 
-import java.io.Reader;
-
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -81,10 +79,9 @@ public class SoyTestHelper {
 		SoyFileSet.Builder builder = SoyFileSet.builder();
 
 		for (TemplateResource templateResource : templateResources) {
-			Reader reader = templateResource.getReader();
-
 			builder.add(
-				CharStreams.toString(reader), templateResource.getTemplateId());
+				CharStreams.toString(templateResource.getReader()),
+				templateResource.getTemplateId());
 		}
 
 		return builder.build();

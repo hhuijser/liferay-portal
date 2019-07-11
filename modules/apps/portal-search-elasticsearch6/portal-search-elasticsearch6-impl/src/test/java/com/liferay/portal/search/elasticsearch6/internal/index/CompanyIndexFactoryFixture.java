@@ -20,8 +20,6 @@ import com.liferay.portal.search.elasticsearch6.internal.connection.Elasticsearc
 import com.liferay.portal.search.elasticsearch6.internal.connection.IndexName;
 import com.liferay.portal.search.index.IndexNameBuilder;
 
-import org.elasticsearch.client.AdminClient;
-
 /**
  * @author Adam Brandizzi
  */
@@ -37,10 +35,9 @@ public class CompanyIndexFactoryFixture {
 	public void createIndices() throws Exception {
 		CompanyIndexFactory companyIndexFactory = getCompanyIndexFactory();
 
-		AdminClient adminClient = _elasticsearchFixture.getAdminClient();
-
 		companyIndexFactory.createIndices(
-			adminClient, RandomTestUtil.randomLong());
+			_elasticsearchFixture.getAdminClient(),
+			RandomTestUtil.randomLong());
 	}
 
 	public CompanyIndexFactory getCompanyIndexFactory() {

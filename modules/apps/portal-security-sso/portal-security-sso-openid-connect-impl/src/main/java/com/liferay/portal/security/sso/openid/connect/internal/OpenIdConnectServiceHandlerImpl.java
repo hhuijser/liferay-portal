@@ -33,7 +33,6 @@ import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWeb
 
 import com.nimbusds.jose.JOSEException;
 import com.nimbusds.jose.proc.BadJOSEException;
-import com.nimbusds.oauth2.sdk.AuthorizationCode;
 import com.nimbusds.oauth2.sdk.AuthorizationCodeGrant;
 import com.nimbusds.oauth2.sdk.AuthorizationGrant;
 import com.nimbusds.oauth2.sdk.ErrorObject;
@@ -361,11 +360,9 @@ public class OpenIdConnectServiceHandlerImpl
 			OpenIdConnectSessionImpl openIdConnectSessionImpl =
 				(OpenIdConnectSessionImpl)openIdConnectSessionObject;
 
-			String openIdProviderName =
-				openIdConnectSessionImpl.getOpenIdProviderName();
-
 			if (Validator.isNull(expectedProviderName) ||
-				expectedProviderName.equals(openIdProviderName)) {
+				expectedProviderName.equals(
+					openIdConnectSessionImpl.getOpenIdProviderName())) {
 
 				return openIdConnectSessionImpl;
 			}
@@ -467,11 +464,8 @@ public class OpenIdConnectServiceHandlerImpl
 			Nonce nonce)
 		throws OpenIdConnectServiceException.TokenException {
 
-		AuthorizationCode authorizationCode =
-			authenticationSuccessResponse.getAuthorizationCode();
-
 		AuthorizationGrant authorizationCodeGrant = new AuthorizationCodeGrant(
-			authorizationCode, redirectURI);
+			authenticationSuccessResponse.getAuthorizationCode(), redirectURI);
 
 		return requestTokens(
 			oidcClientInformation, oidcProviderMetadata, nonce,

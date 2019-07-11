@@ -56,9 +56,7 @@ public class AssetVocabularySettingsExportHelper
 
 		JSONObject settingsMetadataJSONObject = _jsonFactory.createJSONObject();
 
-		String settings = getSettings();
-
-		if (Validator.isNotNull(settings)) {
+		if (Validator.isNotNull(getSettings())) {
 			String[] classNameIdsAndClassTypePKs = ArrayUtil.append(
 				getRequiredClassNameIdsAndClassTypePKs(),
 				getClassNameIdsAndClassTypePKs());

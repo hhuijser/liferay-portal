@@ -333,11 +333,10 @@ public class BaseCmisSearchQueryBuilder implements CMISSearchQueryBuilder {
 				return;
 			}
 
-			String field = queryTerm.getField();
 			String value = queryTerm.getValue();
 
 			value = CMISParameterValueUtil.formatParameterValue(
-				field, value, false, queryConfig);
+				queryTerm.getField(), value, false, queryConfig);
 
 			CMISContainsValueExpression cmisContainsValueExpression =
 				new CMISContainsValueExpression(value);

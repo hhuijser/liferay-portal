@@ -82,9 +82,8 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 				assetEntry.getClassPK());
 		}
 
-		T assetObject = assetRenderer.getAssetObject();
-
-		return _getParameterMap(assetEntry, assetObject, locale);
+		return _getParameterMap(
+			assetEntry, assetRenderer.getAssetObject(), locale);
 	}
 
 	@Override

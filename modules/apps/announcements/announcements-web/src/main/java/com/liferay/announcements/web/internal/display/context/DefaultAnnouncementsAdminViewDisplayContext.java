@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
-import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.service.permission.PortalPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -80,11 +79,9 @@ public class DefaultAnnouncementsAdminViewDisplayContext
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (PortalPermissionUtil.contains(
-				permissionChecker, ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
+				themeDisplay.getPermissionChecker(),
+				ActionKeys.ADD_GENERAL_ANNOUNCEMENTS)) {
 
 			distributionScopes.put("general", "0,0");
 		}

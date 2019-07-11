@@ -94,11 +94,9 @@ public class BlogEntriesDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		PermissionChecker permissionChecker =
-			themeDisplay.getPermissionChecker();
-
 		if (BlogsEntryPermission.contains(
-				permissionChecker, blogsEntry, ActionKeys.DELETE)) {
+				themeDisplay.getPermissionChecker(), blogsEntry,
+				ActionKeys.DELETE)) {
 
 			availableActionDropdownItems.add("deleteEntries");
 		}

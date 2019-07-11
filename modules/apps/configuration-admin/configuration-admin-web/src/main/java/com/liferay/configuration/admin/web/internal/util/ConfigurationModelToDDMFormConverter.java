@@ -280,9 +280,7 @@ public class ConfigurationModelToDDMFormConverter {
 	}
 
 	protected void setDDMFormFieldDisplayStyle(DDMFormField ddmFormField) {
-		String dataType = ddmFormField.getDataType();
-
-		if (Objects.equals(dataType, FieldConstants.STRING)) {
+		if (Objects.equals(ddmFormField.getDataType(), FieldConstants.STRING)) {
 			ddmFormField.setProperty("displayStyle", "multiline");
 		}
 	}

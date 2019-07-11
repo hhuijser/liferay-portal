@@ -33,10 +33,9 @@ public class AspectJUtil {
 
 		if (ServerDetector.isWebSphere()) {
 			Class<?> declaringType = methodSignature.getDeclaringType();
-			String name = methodSignature.getName();
-			Class<?>[] parameterTypes = methodSignature.getParameterTypes();
 
-			method = declaringType.getMethod(name, parameterTypes);
+			method = declaringType.getMethod(
+				methodSignature.getName(), methodSignature.getParameterTypes());
 		}
 		else {
 			method = methodSignature.getMethod();

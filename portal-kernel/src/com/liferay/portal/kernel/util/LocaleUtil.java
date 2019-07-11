@@ -376,10 +376,8 @@ public class LocaleUtil {
 			language = StringUtil.toUpperCase(language);
 		}
 
-		String country = locale.getCountry();
-
 		return _getDisplayName(
-			language, StringUtil.toUpperCase(country), locale,
+			language, StringUtil.toUpperCase(locale.getCountry()), locale,
 			duplicateLanguages);
 	}
 

@@ -62,9 +62,7 @@ public class SerializableSessionAttributeListener
 		if (_requiresSerializable) {
 			HttpSession session = httpSessionBindingEvent.getSession();
 
-			String name = httpSessionBindingEvent.getName();
-
-			session.removeAttribute(name);
+			session.removeAttribute(httpSessionBindingEvent.getName());
 		}
 	}
 

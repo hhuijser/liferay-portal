@@ -163,11 +163,9 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 		// Asset
 
-		Locale locale = serviceContext.getLocale();
-
 		updateAsset(
 			userId, record, recordVersion, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(), locale,
+			serviceContext.getAssetTagNames(), serviceContext.getLocale(),
 			serviceContext.getAssetPriority());
 
 		// Workflow
@@ -949,10 +947,8 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 			storageEngine.update(
 				recordVersion.getDDMStorageId(), ddmFormValues, serviceContext);
 
-			String version = recordVersion.getVersion();
-
 			updateRecordVersion(
-				user, recordVersion, version, displayIndex,
+				user, recordVersion, recordVersion.getVersion(), displayIndex,
 				recordVersion.getStatus(), serviceContext);
 		}
 
@@ -1201,11 +1197,9 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 		// Asset
 
-		Locale locale = serviceContext.getLocale();
-
 		updateAsset(
 			userId, record, recordVersion, serviceContext.getAssetCategoryIds(),
-			serviceContext.getAssetTagNames(), locale,
+			serviceContext.getAssetTagNames(), serviceContext.getLocale(),
 			serviceContext.getAssetPriority());
 
 		return record;

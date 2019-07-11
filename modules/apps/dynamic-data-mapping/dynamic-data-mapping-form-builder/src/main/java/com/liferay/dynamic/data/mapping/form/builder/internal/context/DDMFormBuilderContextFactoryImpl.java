@@ -23,11 +23,7 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
 import com.liferay.portal.kernel.json.JSONFactory;
 
-import java.util.Locale;
 import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -49,19 +45,16 @@ public class DDMFormBuilderContextFactoryImpl
 			Optional.ofNullable(
 				ddmFormBuilderContextRequest.getProperty(
 					"ddmStructureVersion"));
-		HttpServletRequest httpServletRequest =
-			ddmFormBuilderContextRequest.getHttpServletRequest();
-		HttpServletResponse httpServletResponse =
-			ddmFormBuilderContextRequest.getHttpServletResponse();
-		Locale locale = ddmFormBuilderContextRequest.getLocale();
-		boolean readOnly = ddmFormBuilderContextRequest.getReadOnly();
 
 		DDMFormBuilderContextFactoryHelper ddmFormBuilderContextFactoryHelper =
 			new DDMFormBuilderContextFactoryHelper(
 				ddmStructureOptional, ddmStructureVersionOptional,
 				_ddmFormFieldTypeServicesTracker,
-				_ddmFormTemplateContextFactory, httpServletRequest,
-				httpServletResponse, _jsonFactory, locale, readOnly);
+				_ddmFormTemplateContextFactory,
+				ddmFormBuilderContextRequest.getHttpServletRequest(),
+				ddmFormBuilderContextRequest.getHttpServletResponse(),
+				_jsonFactory, ddmFormBuilderContextRequest.getLocale(),
+				ddmFormBuilderContextRequest.getReadOnly());
 
 		DDMFormBuilderContextResponse ddmFormBuilderContextResponse =
 			new DDMFormBuilderContextResponse();

@@ -195,9 +195,8 @@ public class DDLImpl implements DDL {
 		for (DDMFormField ddmFormField : ddmFormFields) {
 			String name = ddmFormField.getName();
 
-			String dataType = ddmFormField.getDataType();
-
-			JSONObject jsonObject = JSONUtil.put("dataType", dataType);
+			JSONObject jsonObject = JSONUtil.put(
+				"dataType", ddmFormField.getDataType());
 
 			boolean readOnly = ddmFormField.isReadOnly();
 
@@ -209,19 +208,13 @@ public class DDLImpl implements DDL {
 				"label", label.getString(locale)
 			).put(
 				"name", name
-			);
-
-			boolean required = ddmFormField.isRequired();
-
-			jsonObject.put(
-				"required", required
+			).put(
+				"required", ddmFormField.isRequired()
 			).put(
 				"sortable", true
+			).put(
+				"type", ddmFormField.getType()
 			);
-
-			String type = ddmFormField.getType();
-
-			jsonObject.put("type", type);
 
 			jsonArray.put(jsonObject);
 		}

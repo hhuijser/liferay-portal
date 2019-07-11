@@ -2155,10 +2155,9 @@ public class DDMStructureLocalServiceImpl
 		for (DDMDataProviderInstanceLink dataProviderInstanceLink :
 				dataProviderInstanceLinks) {
 
-			long dataProviderInstanceId =
-				dataProviderInstanceLink.getDataProviderInstanceId();
+			if (dataProviderInstanceIds.remove(
+					dataProviderInstanceLink.getDataProviderInstanceId())) {
 
-			if (dataProviderInstanceIds.remove(dataProviderInstanceId)) {
 				continue;
 			}
 
@@ -2262,13 +2261,12 @@ public class DDMStructureLocalServiceImpl
 		}
 
 		if (!LanguageUtil.isAvailableLocale(contentDefaultLocale)) {
-			Long companyId = CompanyThreadLocal.getCompanyId();
-
 			LocaleException le = new LocaleException(
 				LocaleException.TYPE_CONTENT,
 				StringBundler.concat(
 					"The locale ", contentDefaultLocale,
-					" is not available in company ", companyId));
+					" is not available in company ",
+					CompanyThreadLocal.getCompanyId()));
 
 			le.setSourceAvailableLocales(
 				Collections.singleton(contentDefaultLocale));

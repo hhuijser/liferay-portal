@@ -64,9 +64,7 @@ public class ItemSelectorUploadViewDisplayContext {
 	}
 
 	public String getNamespace() {
-		String portletId = _uploadItemSelectorCriterion.getPortletId();
-
-		if (Validator.isNotNull(portletId)) {
+		if (Validator.isNotNull(_uploadItemSelectorCriterion.getPortletId())) {
 			return PortalUtil.getPortletNamespace(
 				_uploadItemSelectorCriterion.getPortletId());
 		}

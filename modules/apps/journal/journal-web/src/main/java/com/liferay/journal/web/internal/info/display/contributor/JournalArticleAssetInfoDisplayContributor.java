@@ -17,7 +17,6 @@ package com.liferay.journal.web.internal.info.display.contributor;
 import com.liferay.asset.info.display.contributor.BaseAssetInfoDisplayContributor;
 import com.liferay.asset.info.display.contributor.util.ContentAccessor;
 import com.liferay.dynamic.data.mapping.info.display.field.DDMFormValuesInfoDisplayFieldProvider;
-import com.liferay.dynamic.data.mapping.kernel.DDMFormValues;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
@@ -107,12 +106,12 @@ public class JournalArticleAssetInfoDisplayContributor
 		journalArticleDDMFormValuesReader.setJournalConverter(journalConverter);
 
 		try {
-			DDMFormValues ddmFormValues =
-				journalArticleDDMFormValuesReader.getDDMFormValues();
-
 			classTypeValues.putAll(
 				ddmFormValuesInfoDisplayFieldProvider.
-					getInfoDisplayFieldsValues(article, ddmFormValues, locale));
+					getInfoDisplayFieldsValues(
+						article,
+						journalArticleDDMFormValuesReader.getDDMFormValues(),
+						locale));
 
 			DDMStructure ddmStructure = article.getDDMStructure();
 

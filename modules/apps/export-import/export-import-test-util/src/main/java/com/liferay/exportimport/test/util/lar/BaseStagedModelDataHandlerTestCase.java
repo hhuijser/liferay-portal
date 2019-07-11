@@ -300,9 +300,8 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 		StagedModelDataHandlerUtil.importStagedModel(
 			portletDataContext, exportedStagedModel);
 
-		String uuid = exportedStagedModel.getUuid();
-
-		StagedModel importedModel = getStagedModel(uuid, liveGroup);
+		StagedModel importedModel = getStagedModel(
+			exportedStagedModel.getUuid(), liveGroup);
 
 		Assert.assertNotNull(importedModel);
 	}

@@ -401,10 +401,8 @@ public class LayoutReferencesExportImportContentProcessor
 					continue;
 				}
 
-				long groupId = group.getGroupId();
-
 				Layout layout = _layoutLocalService.fetchLayoutByFriendlyURL(
-					groupId, privateLayout, url);
+					group.getGroupId(), privateLayout, url);
 
 				if (layout != null) {
 					Element entityElement =

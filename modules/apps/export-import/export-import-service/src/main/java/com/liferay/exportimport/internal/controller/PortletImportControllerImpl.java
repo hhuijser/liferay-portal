@@ -188,9 +188,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 		try {
 			Document document = SAXReaderUtil.read(xml);
 
-			Element rootElement = document.getRootElement();
-
-			portletDataContext.setImportDataRootElement(rootElement);
+			portletDataContext.setImportDataRootElement(
+				document.getRootElement());
 
 			Element linksElement = portletDataContext.getImportDataGroupElement(
 				StagedAssetLink.class);
@@ -290,10 +289,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 				_portletDataContextFactory.clonePortletDataContext(
 					portletDataContext));
 
-			Map<String, Serializable> settingsMap =
-				exportImportConfiguration.getSettingsMap();
-
-			long userId = MapUtil.getLong(settingsMap, "userId");
+			long userId = MapUtil.getLong(
+				exportImportConfiguration.getSettingsMap(), "userId");
 
 			doImportPortletInfo(portletDataContext, userId);
 
@@ -1375,11 +1372,10 @@ public class PortletImportControllerImpl implements PortletImportController {
 		while (enu.hasMoreElements()) {
 			String name = enu.nextElement();
 
-			String scopeLayoutUuid = portletDataContext.getScopeLayoutUuid();
 			String scopeType = portletDataContext.getScopeType();
 
 			if (!ArrayUtil.contains(dataPortletPreferences, name) ||
-				(Validator.isNull(scopeLayoutUuid) &&
+				(Validator.isNull(portletDataContext.getScopeLayoutUuid()) &&
 				 scopeType.equals("company"))) {
 
 				String[] values = jxPortletPreferences.getValues(name, null);
@@ -1425,11 +1421,9 @@ public class PortletImportControllerImpl implements PortletImportController {
 			headerElement.attributeValue("build-number"));
 
 		if (importBuildNumber < ReleaseInfo.RELEASE_7_0_0_BUILD_NUMBER) {
-			int buildNumber = ReleaseInfo.getBuildNumber();
-
 			throw new LayoutImportException(
 				LayoutImportException.TYPE_WRONG_BUILD_NUMBER,
-				new Object[] {importBuildNumber, buildNumber});
+				new Object[] {importBuildNumber, ReleaseInfo.getBuildNumber()});
 		}
 
 		BiPredicate<Version, Version> majorVersionBiPredicate =

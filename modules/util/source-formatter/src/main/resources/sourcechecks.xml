@@ -437,7 +437,7 @@
 		<check name="XMLIndentationCheck" />
 	</source-processor>
 	<source-processor name="TSSourceProcessor">
-		<check name="WhitespaceCheck" />
+		<check name="TSWhitespaceCheck" />
 	</source-processor>
 	<source-processor name="XMLSourceProcessor">
 		<check name="XMLBuildFileCheck" />

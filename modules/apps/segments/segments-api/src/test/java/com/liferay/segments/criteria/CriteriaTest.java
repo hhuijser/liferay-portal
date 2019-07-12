@@ -12,10 +12,9 @@
  * details.
  */
 
-package com.liferay.segments.api.criteria;
+package com.liferay.segments.criteria;
 
 import com.liferay.petra.string.StringBundler;
-import com.liferay.segments.criteria.Criteria;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

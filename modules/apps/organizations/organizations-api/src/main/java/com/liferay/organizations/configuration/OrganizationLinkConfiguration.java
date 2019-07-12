@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.organizations.api.configuration;
+package com.liferay.organizations.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "users")
 @Meta.OCD(
-	id = "com.liferay.organizations.api.configuration.OrganizationLinkConfiguration",
+	id = "com.liferay.organizations.configuration.OrganizationLinkConfiguration",
 	localization = "content/Language",
 	name = "organization-link-configuration-name"
 )

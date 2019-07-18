@@ -233,6 +233,9 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingModifierCheck">
 			<message key="modifier.missing" value="Missing modifier for ''{0}''" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.MissingGenericCheck">
+			<message key="generic.missing" value="Missing generic for ''{0}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingOverrideCheck">
 			<property name="enabled" value="false" />
 			<message key="override.missing" value="Missing @Override" />

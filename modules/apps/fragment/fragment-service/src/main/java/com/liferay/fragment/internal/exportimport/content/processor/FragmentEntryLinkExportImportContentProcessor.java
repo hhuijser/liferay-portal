@@ -477,7 +477,7 @@ public class FragmentEntryLinkExportImportContentProcessor
 
 		Iterator<String> editableKeysIterator = editableJSONObject.keys();
 
-		Set<String> editableKeys = new HashSet();
+		Set<String> editableKeys = new HashSet<>();
 
 		editableKeysIterator.forEachRemaining(editableKeys::add);
 

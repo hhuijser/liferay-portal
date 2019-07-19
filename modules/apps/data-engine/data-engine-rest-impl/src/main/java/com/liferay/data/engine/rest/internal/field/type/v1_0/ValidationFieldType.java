@@ -64,7 +64,7 @@ public class ValidationFieldType extends BaseFieldType {
 	private Map<String, String> _getValue(
 		SPIDataDefinitionField spiDataDefinitionField) {
 
-		Map<String, String> value = new HashMap();
+		Map<String, String> value = new HashMap<>();
 
 		try {
 			JSONObject jsonObject = JSONFactoryUtil.createJSONObject(

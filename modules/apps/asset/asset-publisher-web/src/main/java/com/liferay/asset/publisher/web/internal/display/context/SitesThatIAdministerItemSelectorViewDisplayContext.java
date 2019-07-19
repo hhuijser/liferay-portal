@@ -86,7 +86,7 @@ public class SitesThatIAdministerItemSelectorViewDisplayContext
 	private List<Group> _filterGroups(
 		List<Group> groups, PermissionChecker permissionChecker) {
 
-		List<Group> filteredGroups = new ArrayList();
+		List<Group> filteredGroups = new ArrayList<>();
 
 		for (Group group : groups) {
 			if (permissionChecker.isGroupAdmin(group.getGroupId())) {

@@ -119,7 +119,7 @@ public class AssetTagsDisplayContext {
 		long[] mergeTagIds = StringUtil.split(
 			ParamUtil.getString(_renderRequest, "mergeTagIds"), 0L);
 
-		List<String> mergeTagNames = new ArrayList();
+		List<String> mergeTagNames = new ArrayList<>();
 
 		for (long mergeTagId : mergeTagIds) {
 			AssetTag tag = AssetTagLocalServiceUtil.fetchAssetTag(mergeTagId);

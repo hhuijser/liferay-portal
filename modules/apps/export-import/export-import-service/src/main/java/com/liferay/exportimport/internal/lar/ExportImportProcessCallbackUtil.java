@@ -110,6 +110,6 @@ public class ExportImportProcessCallbackUtil {
 		ExportImportProcessCallbackUtil.class);
 
 	private static final Map<String, List<List<Callable<?>>>>
-		_callbackListListMap = new ConcurrentHashMap();
+		_callbackListListMap = new ConcurrentHashMap<>();
 
 }

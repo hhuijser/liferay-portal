@@ -49,7 +49,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
-import org.junit.Assume;
 import org.junit.Test;
 
 /**
@@ -59,8 +58,6 @@ public class ReleaseVersionsTest {
 
 	@Test
 	public void testReleaseVersions() throws IOException {
-		Assume.assumeTrue(Validator.isNull(System.getenv("JENKINS_HOME")));
-
 		List<String> portalDirNames = ListUtil.toList(
 			System.getProperty("user.dir"));
 

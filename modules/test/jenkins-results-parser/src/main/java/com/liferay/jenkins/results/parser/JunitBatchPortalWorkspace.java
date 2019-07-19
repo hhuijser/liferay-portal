@@ -43,6 +43,9 @@ public class JunitBatchPortalWorkspace extends BatchPortalWorkspace {
 		properties.put(
 			"release.versions.test.other.dir",
 			String.valueOf(otherPortalWorkspaceGitRepository.getDirectory()));
+		properties.put(
+			"release.versions.test.other.dir.names",
+			String.valueOf(otherPortalWorkspaceGitRepository.getDirectory()));
 
 		PortalWorkspaceGitRepository primaryPortalWorkspaceGitRepository =
 			getPrimaryPortalWorkspaceGitRepository();

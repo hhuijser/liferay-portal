@@ -298,6 +298,36 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testMissingDiamondOperator() throws Exception {
+		test("MissingDiamondOperator.testjava",
+			new String[] {
+				"Missing diamond operator '<>' for 'ArrayList'",
+				"Missing types '<String, String>' for using diamond operator '<>' with anonymous inner classes for 'ArrayList'",
+				"Missing diamond operator '<>' for 'ConcurrentHashMap'",
+				"Missing diamond operator '<>' for 'ConcurrentSkipListMap'",
+				"Missing diamond operator '<>' for 'ConcurrentSkipListSet'",
+				"Missing diamond operator '<>' for 'CopyOnWriteArraySet'",
+				"Missing types '<Position, String>' for using diamond operator '<>' with anonymous inner classes for 'EnumMap'",
+				"Missing diamond operator '<>' for 'HashMap'",
+				"Missing types '<String, String>' for using diamond operator '<>' with anonymous inner classes for 'HashMap'",
+				"Missing diamond operator '<>' for 'HashSet'",
+				"Missing diamond operator '<>' for 'Hashtable'",
+				"Missing diamond operator '<>' for 'IdentityHashMap'",
+				"Missing diamond operator '<>' for 'LinkedHashMap'",
+				"Missing diamond operator '<>' for 'LinkedHashSet'",
+				"Missing diamond operator '<>' for 'LinkedList'",
+				"Missing diamond operator '<>' for 'Stack'",
+				"Missing diamond operator '<>' for 'TreeMap'",
+				"Missing diamond operator '<>' for 'TreeSet'",
+				"Missing diamond operator '<>' for 'Vector'"
+			},
+			new Integer[] {
+				45, 47, 53, 55, 57, 59, 61, 68, 70, 76, 78, 80, 83, 85, 87, 89,
+				91, 93, 95
+			});
+	}
+
+	@Test
 	public void testMissingSerialVersionUID() throws Exception {
 		test(
 			"MissingSerialVersionUID.testjava",

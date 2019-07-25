@@ -1,0 +1,124 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.source.formatter.dependencies;
+
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.IdentityHashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.Stack;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.Vector;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArraySet;
+
+/**
+ * @author Alan Huang
+ */
+public class MissingDiamondOperator {
+
+	public void method() {
+		List<String> arrayList1 = new ArrayList();
+
+		List<String, String> arrayList2 = new ArrayList() {
+			{
+				add("a", "b");
+			}
+		};
+
+		Map<String, String> concurrentHashMap = new ConcurrentHashMap();
+
+		Map<String, String> concurrentSkipListMap = new ConcurrentSkipListMap();
+
+		Set<String> concurrentSkipListSet = new ConcurrentSkipListSet();
+
+		Set<String> copyOnWriteArraySet = new CopyOnWriteArraySet();
+
+		EnumMap<Position, String> enumMap = new EnumMap(Position.class) {
+			{
+				put(Position.BOTTOM, "BOTTOM");
+				put(Position.TOP, "TOP");
+			}
+		};
+
+		Map<String, String> hashMap1 = new HashMap();
+
+		Map<String, String> hashMap2 = new HashMap() {
+			{
+				put("a", "b");
+			}
+		};
+
+		Set<String> hashSet = new HashSet();
+
+		Dictionary<String, Object> hashtable = new Hashtable();
+
+		Map<Object, Map<String, Object>> identityHashMap =
+			new IdentityHashMap();
+
+		Map<String, String> linkedHashMap = new LinkedHashMap();
+
+		Set<String> linkedHashSet = new LinkedHashSet();
+
+		List<String> linkedList = new LinkedList();
+
+		Stack<String> stack = new Stack();
+
+		Map<String, String> treeMap = new TreeMap();
+
+		Set<String> treeSet = new TreeSet();
+
+		Vector<String> vector = new Vector();
+
+		System.out.println(arrayList1.size());
+		System.out.println(arrayList2.size());
+		System.out.println(concurrentHashMap.size());
+		System.out.println(concurrentSkipListMap.size());
+		System.out.println(concurrentSkipListSet.size());
+		System.out.println(copyOnWriteArraySet.size());
+		System.out.println(enumMap.size());
+		System.out.println(hashMap1.size());
+		System.out.println(hashMap2.size());
+		System.out.println(hashSet.size());
+		System.out.println(hashtable.size());
+		System.out.println(identityHashMap.size());
+		System.out.println(linkedHashMap.size());
+		System.out.println(linkedHashSet.size());
+		System.out.println(linkedList.size());
+		System.out.println(stack.size());
+		System.out.println(treeMap.size());
+		System.out.println(treeSet.size());
+		System.out.println(vector.size());
+	}
+
+	public enum Position {
+
+		BOTTOM, TOP
+
+	}
+
+}

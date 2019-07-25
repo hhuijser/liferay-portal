@@ -223,6 +223,10 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingAuthorCheck">
 			<message key="author.missing" value="Missing author" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.MissingDiamondOperatorCheck">
+			<message key="diamond.operator.missing" value="Missing diamond operator ''&lt;&gt;'' for ''{0}''" />
+			<message key="diamond.operator.types.missing" value="Missing types ''{0}'' for using diamond operator ''&lt;&gt;'' with anonymous inner classes for ''{1}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.MissingEmptyLineCheck">
 			<message key="empty.line.missing.after.method.call" value="There should be an empty line after line ''{0}''" />
 			<message key="empty.line.missing.after.variable.definition" value="There should be an empty line after variable definition of type ''{0}''" />

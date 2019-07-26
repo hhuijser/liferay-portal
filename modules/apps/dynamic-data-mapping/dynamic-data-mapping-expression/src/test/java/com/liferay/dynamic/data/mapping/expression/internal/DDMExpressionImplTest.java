@@ -130,7 +130,7 @@ public class DDMExpressionImplTest extends PowerMockito {
 		DDMExpressionImpl<BigDecimal> ddmExpression = createDDMExpression(
 			"a - b");
 
-		Set<String> variables = new HashSet() {
+		Set<String> variables = new HashSet<String>() {
 			{
 				add("a");
 				add("b");

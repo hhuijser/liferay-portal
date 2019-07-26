@@ -129,7 +129,7 @@ public class ConfigurationEntryRetrieverImpl
 		}
 
 		Set<ConfigurationCategorySectionDisplay> configurationCategorySections =
-			new TreeSet(new ConfigurationCategorySectionDisplayComparator());
+			new TreeSet<>(new ConfigurationCategorySectionDisplayComparator());
 
 		configurationCategorySections.addAll(
 			configurationCategorySectionDisplaysMap.values());
@@ -142,7 +142,7 @@ public class ConfigurationEntryRetrieverImpl
 		String configurationCategory, String languageId,
 		ExtendedObjectClassDefinition.Scope scope, Serializable scopePK) {
 
-		Set<ConfigurationEntry> configurationEntries = new TreeSet(
+		Set<ConfigurationEntry> configurationEntries = new TreeSet<>(
 			getConfigurationEntryComparator());
 
 		Locale locale = LocaleUtil.fromLanguageId(languageId);

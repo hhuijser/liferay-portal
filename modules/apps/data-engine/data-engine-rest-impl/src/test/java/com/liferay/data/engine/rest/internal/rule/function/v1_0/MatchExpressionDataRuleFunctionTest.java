@@ -32,7 +32,7 @@ public class MatchExpressionDataRuleFunctionTest {
 
 	@Test
 	public void testInvalidMatch() {
-		Map<String, Object> dataDefinitionRuleParameters = new HashMap() {
+		Map<String, Object> dataDefinitionRuleParameters = new HashMap<String, Object>() {
 			{
 				put(_EXPRESSION, "\\S+@\\S+\\.\\S+");
 			}
@@ -56,7 +56,7 @@ public class MatchExpressionDataRuleFunctionTest {
 
 	@Test
 	public void testInvalidRegex() {
-		Map<String, Object> dataDefinitionRuleParameters = new HashMap() {
+		Map<String, Object> dataDefinitionRuleParameters = new HashMap<String, Object>() {
 			{
 				put(_EXPRESSION, "\\\\\\\\S+[@\\\\S+\\\\.\\\\S+");
 			}
@@ -80,7 +80,7 @@ public class MatchExpressionDataRuleFunctionTest {
 
 	@Test
 	public void testValidMatch() {
-		Map<String, Object> dataDefinitionRuleParameters = new HashMap() {
+		Map<String, Object> dataDefinitionRuleParameters = new HashMap<String, Object>() {
 			{
 				put(_EXPRESSION, "\\S+@\\S+\\.\\S+");
 			}

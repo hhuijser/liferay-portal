@@ -598,7 +598,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 			ddmDataProviderResponse.getOutputOptional(
 				"list output", List.class);
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("5", "Rio de Janeiro"));
 				add(new KeyValuePair("6", "São Paulo"));
@@ -664,7 +664,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 			ddmDataProviderResponse.getOutputOptional(
 				"list output", List.class);
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("1", "Pernambuco"));
 				add(new KeyValuePair("2", "Paraiba"));
@@ -822,7 +822,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 			name.capture(), value.capture()
 		);
 
-		List<String> names = new ArrayList() {
+		List<String> names = new ArrayList<String>() {
 			{
 				add("country");
 				add("start");
@@ -832,7 +832,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 
 		Assert.assertEquals(names, name.getAllValues());
 
-		List<String> values = new ArrayList() {
+		List<String> values = new ArrayList<String>() {
 			{
 				add("brazil");
 				add("1");

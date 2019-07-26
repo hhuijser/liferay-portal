@@ -106,7 +106,7 @@ public class WorkflowDefinitionsDataProviderTest extends PowerMockito {
 
 		Assert.assertTrue(optional.isPresent());
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("no-workflow", "No Workflow"));
 				add(new KeyValuePair("definition1@1", "Definition 1"));
@@ -137,7 +137,7 @@ public class WorkflowDefinitionsDataProviderTest extends PowerMockito {
 
 		Assert.assertTrue(optional.isPresent());
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("no-workflow", "No Workflow"));
 			}

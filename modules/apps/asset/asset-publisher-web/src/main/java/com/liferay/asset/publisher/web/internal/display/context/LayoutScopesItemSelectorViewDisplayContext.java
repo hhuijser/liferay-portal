@@ -92,7 +92,7 @@ public class LayoutScopesItemSelectorViewDisplayContext
 			return groups;
 		}
 
-		List<Group> filteredGroups = new ArrayList();
+		List<Group> filteredGroups = new ArrayList<>();
 
 		for (Group group : groups) {
 			if (!group.isLayout()) {

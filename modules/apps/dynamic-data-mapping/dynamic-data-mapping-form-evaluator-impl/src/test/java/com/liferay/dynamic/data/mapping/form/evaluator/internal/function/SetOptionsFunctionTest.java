@@ -111,7 +111,7 @@ public class SetOptionsFunctionTest extends PowerMockito {
 
 		Assert.assertTrue(properties.containsKey("options"));
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("value1", "label1"));
 				add(new KeyValuePair("value2", "label2"));

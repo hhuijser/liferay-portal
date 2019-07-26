@@ -84,17 +84,17 @@ public class MissingDiamondOperatorCheck extends BaseCheck {
 						typeArgumentDetailAST, true, DetailASTUtil.ALL_TYPES);
 
 				for (DetailAST argumentDetailAST : typeArgumentDetailASTList) {
-					if (argumentDetailAST.getChildCount() == 0) {
-						variableTypeName =
-							variableTypeName + argumentDetailAST.getText();
+					if (argumentDetailAST.getChildCount() != 0) {
+						continue;
+					}
 
-						if (StringUtil.equals(
-								argumentDetailAST.getText(),
-								StringPool.COMMA)) {
+					variableTypeName =
+						variableTypeName + argumentDetailAST.getText();
 
-							variableTypeName =
-								variableTypeName + StringPool.SPACE;
-						}
+					if (StringUtil.equals(
+							argumentDetailAST.getText(), StringPool.COMMA)) {
+
+						variableTypeName = variableTypeName + StringPool.SPACE;
 					}
 				}
 

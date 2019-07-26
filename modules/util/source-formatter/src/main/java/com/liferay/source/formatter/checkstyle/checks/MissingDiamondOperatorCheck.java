@@ -14,11 +14,15 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.util.List;
 
 /**
  * @author Alan Huang
@@ -33,10 +37,6 @@ public class MissingDiamondOperatorCheck extends BaseCheck {
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
 		DetailAST typeDetailAST = detailAST.findFirstToken(TokenTypes.TYPE);
-
-		if (typeDetailAST == null) {
-			return;
-		}
 
 		DetailAST typeArgumentDetailAST = typeDetailAST.findFirstToken(
 			TokenTypes.TYPE_ARGUMENTS);
@@ -73,15 +73,34 @@ public class MissingDiamondOperatorCheck extends BaseCheck {
 
 		DetailAST siblingDetailAST = identDetailAST.getNextSibling();
 
-		String types = DetailASTUtil.getTypeName(detailAST, true);
-
 		if (siblingDetailAST.getType() != TokenTypes.TYPE_ARGUMENTS) {
 			if (leteralNewDetailAST.findFirstToken(TokenTypes.OBJBLOCK) !=
 					null) {
 
+				String variableTypeName = "";
+
+				List<DetailAST> typeArgumentDetailASTList =
+					DetailASTUtil.getAllChildTokens(
+						typeArgumentDetailAST, true, DetailASTUtil.ALL_TYPES);
+
+				for (DetailAST argumentDetailAST : typeArgumentDetailASTList) {
+					if (argumentDetailAST.getChildCount() == 0) {
+						variableTypeName =
+							variableTypeName + argumentDetailAST.getText();
+
+						if (StringUtil.equals(
+								argumentDetailAST.getText(),
+								StringPool.COMMA)) {
+
+							variableTypeName =
+								variableTypeName + StringPool.SPACE;
+						}
+					}
+				}
+
 				log(
 					detailAST, _MSG_MISSING_DIAMOND_TYPES_OPERATOR,
-					types.substring(types.indexOf("<")),
+					variableTypeName.substring(variableTypeName.indexOf("<")),
 					identDetailAST.getText());
 			}
 			else {

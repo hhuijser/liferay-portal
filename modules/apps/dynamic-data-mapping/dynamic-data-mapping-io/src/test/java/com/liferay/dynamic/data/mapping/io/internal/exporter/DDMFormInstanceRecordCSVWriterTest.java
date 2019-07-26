@@ -34,40 +34,42 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 	@Test
 	public void testWrite() throws Exception {
-		Map<String, String> ddmFormFieldsLabel = new LinkedHashMap<String, String>() {
-			{
-				put("field1", "Field 1");
-				put("field2", "Field 2");
-				put("field3", "Field 3");
-				put("field4", "Field 4");
-			}
-		};
+		Map<String, String> ddmFormFieldsLabel =
+			new LinkedHashMap<String, String>() {
+				{
+					put("field1", "Field 1");
+					put("field2", "Field 2");
+					put("field3", "Field 3");
+					put("field4", "Field 4");
+				}
+			};
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
-			{
-				Map<String, String> map1 = new HashMap<String, String>() {
-					{
-						put("field1", "2");
-						put("field2", "esta é uma 'string'");
-						put("field3", "false");
-						put("field4", "11.7");
-					}
-				};
+		List<Map<String, String>> ddmFormFieldValues =
+			new ArrayList<Map<String, String>>() {
+				{
+					Map<String, String> map1 = new HashMap<String, String>() {
+						{
+							put("field1", "2");
+							put("field2", "esta é uma 'string'");
+							put("field3", "false");
+							put("field4", "11.7");
+						}
+					};
 
-				add(map1);
+					add(map1);
 
-				Map<String, String> map2 = new HashMap<String, String>() {
-					{
-						put("field1", "1");
-						put("field2", "esta é uma 'string'");
-						put("field3", "");
-						put("field4", "10");
-					}
-				};
+					Map<String, String> map2 = new HashMap<String, String>() {
+						{
+							put("field1", "1");
+							put("field2", "esta é uma 'string'");
+							put("field3", "");
+							put("field4", "10");
+						}
+					};
 
-				add(map2);
-			}
-		};
+					add(map2);
+				}
+			};
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(
@@ -98,29 +100,30 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		DDMFormInstanceRecordCSVWriter ddmFormInstanceRecordCSVWriter =
 			new DDMFormInstanceRecordCSVWriter();
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
-			{
-				Map<String, String> map1 = new HashMap<String, String>() {
-					{
-						put("field1", "value1");
-						put("field2", "false");
-						put("field3", "134.5");
-					}
-				};
+		List<Map<String, String>> ddmFormFieldValues =
+			new ArrayList<Map<String, String>>() {
+				{
+					Map<String, String> map1 = new HashMap<String, String>() {
+						{
+							put("field1", "value1");
+							put("field2", "false");
+							put("field3", "134.5");
+						}
+					};
 
-				add(map1);
+					add(map1);
 
-				Map<String, String> map2 = new HashMap<String, String>() {
-					{
-						put("field1", "");
-						put("field2", "true");
-						put("field3", "45");
-					}
-				};
+					Map<String, String> map2 = new HashMap<String, String>() {
+						{
+							put("field1", "");
+							put("field2", "true");
+							put("field3", "45");
+						}
+					};
 
-				add(map2);
-			}
-		};
+					add(map2);
+				}
+			};
 
 		StringBundler sb = new StringBundler(2);
 

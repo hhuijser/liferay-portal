@@ -16,7 +16,6 @@ package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -73,41 +72,41 @@ public class MissingDiamondOperatorCheck extends BaseCheck {
 
 		DetailAST siblingDetailAST = identDetailAST.getNextSibling();
 
-		if (siblingDetailAST.getType() != TokenTypes.TYPE_ARGUMENTS) {
-			if (leteralNewDetailAST.findFirstToken(TokenTypes.OBJBLOCK) !=
-					null) {
+		if (siblingDetailAST.getType() == TokenTypes.TYPE_ARGUMENTS) {
+			return;
+		}
 
-				String variableTypeName = "";
+		if (leteralNewDetailAST.findFirstToken(TokenTypes.OBJBLOCK) != null) {
+			String typeName = StringPool.BLANK;
+			String variableTypeName = StringPool.BLANK;
 
-				List<DetailAST> typeArgumentDetailASTList =
-					DetailASTUtil.getAllChildTokens(
-						typeArgumentDetailAST, true, DetailASTUtil.ALL_TYPES);
+			List<DetailAST> typeArgumentDetailASTList =
+				DetailASTUtil.getAllChildTokens(
+					typeArgumentDetailAST, true, DetailASTUtil.ALL_TYPES);
 
-				for (DetailAST argumentDetailAST : typeArgumentDetailASTList) {
-					if (argumentDetailAST.getChildCount() != 0) {
-						continue;
-					}
-
-					variableTypeName =
-						variableTypeName + argumentDetailAST.getText();
-
-					if (StringUtil.equals(
-							argumentDetailAST.getText(), StringPool.COMMA)) {
-
-						variableTypeName = variableTypeName + StringPool.SPACE;
-					}
+			for (DetailAST argumentDetailAST : typeArgumentDetailASTList) {
+				if (argumentDetailAST.getChildCount() != 0) {
+					continue;
 				}
 
-				log(
-					detailAST, _MSG_MISSING_DIAMOND_TYPES_OPERATOR,
-					variableTypeName.substring(variableTypeName.indexOf("<")),
-					identDetailAST.getText());
+				typeName = argumentDetailAST.getText();
+
+				if (typeName.equals(StringPool.COMMA)) {
+					typeName = typeName + StringPool.SPACE;
+				}
+
+				variableTypeName = variableTypeName + typeName;
 			}
-			else {
-				log(
-					detailAST, _MSG_MISSING_DIAMOND_OPERATOR,
-					identDetailAST.getText());
-			}
+
+			log(
+				detailAST, _MSG_MISSING_DIAMOND_TYPES_OPERATOR,
+				variableTypeName.substring(variableTypeName.indexOf("<")),
+				identDetailAST.getText());
+		}
+		else {
+			log(
+				detailAST, _MSG_MISSING_DIAMOND_OPERATOR,
+				identDetailAST.getText());
 		}
 	}
 

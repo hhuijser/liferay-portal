@@ -189,7 +189,7 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 
 		Assert.assertTrue(outputParameterNamesOptional.isPresent());
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("Country Id", "Country Id"));
 				add(new KeyValuePair("Country Name", "Country Name"));
@@ -306,7 +306,7 @@ public class DDMDataProviderInstanceOutputParametersDataProviderTest
 
 		Assert.assertTrue(outputParameterNamesOptional.isPresent());
 
-		List<KeyValuePair> keyValuePairs = new ArrayList();
+		List<KeyValuePair> keyValuePairs = new ArrayList<>();
 
 		Assert.assertEquals(
 			keyValuePairs.toString(), keyValuePairs,

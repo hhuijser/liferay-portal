@@ -101,7 +101,7 @@ public class DDMDataProviderInstancesDataProviderTest extends PowerMockito {
 
 		Assert.assertTrue(optional.isPresent());
 
-		List<KeyValuePair> keyValuePairs = new ArrayList() {
+		List<KeyValuePair> keyValuePairs = new ArrayList<KeyValuePair>() {
 			{
 				add(new KeyValuePair("1", "Data Provider Instance 1"));
 				add(new KeyValuePair("2", "Data Provider Instance 2"));

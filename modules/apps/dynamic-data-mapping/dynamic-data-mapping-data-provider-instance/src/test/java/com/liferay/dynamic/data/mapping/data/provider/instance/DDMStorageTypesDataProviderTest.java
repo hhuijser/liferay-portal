@@ -57,7 +57,7 @@ public class DDMStorageTypesDataProviderTest extends PowerMockito {
 
 	@Test
 	public void testMultipleStorageAdapter() throws Exception {
-		Set<String> expectedSet = new TreeSet() {
+		Set<String> expectedSet = new TreeSet<String>() {
 			{
 				add("json");
 				add("txt");
@@ -70,7 +70,7 @@ public class DDMStorageTypesDataProviderTest extends PowerMockito {
 
 	@Test
 	public void testSingleStorageAdapter() throws Exception {
-		Set<String> expectedSet = new TreeSet() {
+		Set<String> expectedSet = new TreeSet<String>() {
 			{
 				add("json");
 			}

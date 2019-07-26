@@ -54,7 +54,7 @@ public class DropdownMenuTag extends BaseClayTag {
 		Map<String, Object> context = getContext();
 
 		if (Validator.isNotNull(context.get("buttonLabel"))) {
-			Map<String, String> button = new HashMap();
+			Map<String, String> button = new HashMap<>();
 
 			button.put("label", (String)context.get("buttonLabel"));
 			button.put("style", (String)context.get("buttonStyle"));

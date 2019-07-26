@@ -73,7 +73,7 @@ public class ParentSitesItemSelectorViewDisplayContext
 	}
 
 	private List<Group> _filterParentSitesGroups(List<Group> groups) {
-		List<Group> filteredGroups = new ArrayList();
+		List<Group> filteredGroups = new ArrayList<>();
 
 		for (Group group : groups) {
 			if (SitesUtil.isContentSharingWithChildrenEnabled(group)) {

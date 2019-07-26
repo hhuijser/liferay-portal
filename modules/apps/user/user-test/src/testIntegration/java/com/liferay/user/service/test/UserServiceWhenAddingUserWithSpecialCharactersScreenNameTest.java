@@ -118,6 +118,6 @@ public class UserServiceWhenAddingUserWithSpecialCharactersScreenNameTest {
 	private ScreenNameValidator _screenNameValidator;
 
 	@DeleteAfterTestRun
-	private final List<User> _users = new ArrayList();
+	private final List<User> _users = new ArrayList<>();
 
 }

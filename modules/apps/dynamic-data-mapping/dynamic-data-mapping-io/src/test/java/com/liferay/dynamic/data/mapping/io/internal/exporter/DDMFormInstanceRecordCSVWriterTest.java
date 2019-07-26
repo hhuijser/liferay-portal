@@ -34,7 +34,7 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 	@Test
 	public void testWrite() throws Exception {
-		Map<String, String> ddmFormFieldsLabel = new LinkedHashMap() {
+		Map<String, String> ddmFormFieldsLabel = new LinkedHashMap<String, String>() {
 			{
 				put("field1", "Field 1");
 				put("field2", "Field 2");
@@ -43,9 +43,9 @@ public class DDMFormInstanceRecordCSVWriterTest {
 			}
 		};
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList() {
+		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
 			{
-				Map<String, String> map1 = new HashMap() {
+				Map<String, String> map1 = new HashMap<String, String>() {
 					{
 						put("field1", "2");
 						put("field2", "esta é uma 'string'");
@@ -56,7 +56,7 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 				add(map1);
 
-				Map<String, String> map2 = new HashMap() {
+				Map<String, String> map2 = new HashMap<String, String>() {
 					{
 						put("field1", "1");
 						put("field2", "esta é uma 'string'");
@@ -98,9 +98,9 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		DDMFormInstanceRecordCSVWriter ddmFormInstanceRecordCSVWriter =
 			new DDMFormInstanceRecordCSVWriter();
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList() {
+		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
 			{
-				Map<String, String> map1 = new HashMap() {
+				Map<String, String> map1 = new HashMap<String, String>() {
 					{
 						put("field1", "value1");
 						put("field2", "false");
@@ -110,7 +110,7 @@ public class DDMFormInstanceRecordCSVWriterTest {
 
 				add(map1);
 
-				Map<String, String> map2 = new HashMap() {
+				Map<String, String> map2 = new HashMap<String, String>() {
 					{
 						put("field1", "");
 						put("field2", "true");
@@ -138,7 +138,7 @@ public class DDMFormInstanceRecordCSVWriterTest {
 		DDMFormInstanceRecordCSVWriter ddmFormInstanceRecordCSVWriter =
 			new DDMFormInstanceRecordCSVWriter();
 
-		List<String> values = new ArrayList() {
+		List<String> values = new ArrayList<String>() {
 			{
 				add("value1");
 				add("2");

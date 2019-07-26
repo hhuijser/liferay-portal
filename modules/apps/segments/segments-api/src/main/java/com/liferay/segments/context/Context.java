@@ -65,6 +65,6 @@ public class Context {
 		_map.put(key, value);
 	}
 
-	private final Map<String, Serializable> _map = new HashMap();
+	private final Map<String, Serializable> _map = new HashMap<>();
 
 }

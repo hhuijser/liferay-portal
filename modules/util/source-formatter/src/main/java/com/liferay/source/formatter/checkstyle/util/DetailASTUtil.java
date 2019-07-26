@@ -304,7 +304,8 @@ public class DetailASTUtil {
 		sb.append(CharPool.LESS_THAN);
 
 		List<DetailAST> typeArgumentDetailASTList = getAllChildTokens(
-			typeArgumentsDetailAST, false, TokenTypes.TYPE_ARGUMENT);
+			typeArgumentsDetailAST, includeTypeArguments,
+			TokenTypes.TYPE_ARGUMENT);
 
 		for (DetailAST typeArgumentDetailAST : typeArgumentDetailASTList) {
 			FullIdent typeArgumenIdent = FullIdent.createFullIdentBelow(

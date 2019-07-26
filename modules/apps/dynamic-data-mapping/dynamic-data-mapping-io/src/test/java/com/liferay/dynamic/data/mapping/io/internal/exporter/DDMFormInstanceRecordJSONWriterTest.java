@@ -40,29 +40,30 @@ public class DDMFormInstanceRecordJSONWriterTest {
 
 		ddmFormInstanceRecordJSONWriter.jsonFactory = new JSONFactoryImpl();
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
-			{
-				Map<String, String> map1 = new HashMap<String, String>() {
-					{
-						put("field1", "2");
-						put("field2", "false");
-						put("field3", "11.7");
-					}
-				};
+		List<Map<String, String>> ddmFormFieldValues =
+			new ArrayList<Map<String, String>>() {
+				{
+					Map<String, String> map1 = new HashMap<String, String>() {
+						{
+							put("field1", "2");
+							put("field2", "false");
+							put("field3", "11.7");
+						}
+					};
 
-				add(map1);
+					add(map1);
 
-				Map<String, String> map2 = new HashMap<String, String>() {
-					{
-						put("field1", "1");
-						put("field2", "");
-						put("field3", "10");
-					}
-				};
+					Map<String, String> map2 = new HashMap<String, String>() {
+						{
+							put("field1", "1");
+							put("field2", "");
+							put("field3", "10");
+						}
+					};
 
-				add(map2);
-			}
-		};
+					add(map2);
+				}
+			};
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(

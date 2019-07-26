@@ -197,25 +197,26 @@ public class DDMFormInstanceRecordXLSWriterTest extends PowerMockito {
 	public void testWrite() throws Exception {
 		Map<String, String> ddmFormFieldsLabel = Collections.emptyMap();
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
-			{
-				Map<String, String> map1 = new HashMap<String, String>() {
-					{
-						put("field1", "2");
-					}
-				};
+		List<Map<String, String>> ddmFormFieldValues =
+			new ArrayList<Map<String, String>>() {
+				{
+					Map<String, String> map1 = new HashMap<String, String>() {
+						{
+							put("field1", "2");
+						}
+					};
 
-				add(map1);
+					add(map1);
 
-				Map<String, String> map2 = new HashMap<String, String>() {
-					{
-						put("field1", "1");
-					}
-				};
+					Map<String, String> map2 = new HashMap<String, String>() {
+						{
+							put("field1", "1");
+						}
+					};
 
-				add(map2);
-			}
-		};
+					add(map2);
+				}
+			};
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(

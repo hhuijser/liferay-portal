@@ -124,19 +124,21 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 
 		Element element = mock(Element.class);
 
-		Map<String, String> ddmFormFieldsLabel = new LinkedHashMap<String, String>() {
-			{
-				put("field1", "Field 1");
-				put("field2", "Field 2");
-			}
-		};
+		Map<String, String> ddmFormFieldsLabel =
+			new LinkedHashMap<String, String>() {
+				{
+					put("field1", "Field 1");
+					put("field2", "Field 2");
+				}
+			};
 
-		Map<String, String> ddmFormFieldsValue = new LinkedHashMap<String, String>() {
-			{
-				put("field1", "Value 1");
-				put("field2", "Value 2");
-			}
-		};
+		Map<String, String> ddmFormFieldsValue =
+			new LinkedHashMap<String, String>() {
+				{
+					put("field1", "Value 1");
+					put("field2", "Value 2");
+				}
+			};
 
 		Mockito.doCallRealMethod(
 		).when(
@@ -176,40 +178,42 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 		DDMFormInstanceRecordXMLWriter ddmFormInstanceRecordXMLWriter = mock(
 			DDMFormInstanceRecordXMLWriter.class);
 
-		Map<String, String> ddmFormFieldsLabel = new LinkedHashMap<String, String>() {
-			{
-				put("field1", "Field 1");
-				put("field2", "Field 2");
-				put("field3", "Field 3");
-				put("field4", "Field 4");
-			}
-		};
+		Map<String, String> ddmFormFieldsLabel =
+			new LinkedHashMap<String, String>() {
+				{
+					put("field1", "Field 1");
+					put("field2", "Field 2");
+					put("field3", "Field 3");
+					put("field4", "Field 4");
+				}
+			};
 
-		List<Map<String, String>> ddmFormFieldValues = new ArrayList<Map<String, String>>() {
-			{
-				Map<String, String> map1 = new HashMap<String, String>() {
-					{
-						put("field1", "2");
-						put("field2", "esta é uma 'string'");
-						put("field3", "false");
-						put("field4", "11.7");
-					}
-				};
+		List<Map<String, String>> ddmFormFieldValues =
+			new ArrayList<Map<String, String>>() {
+				{
+					Map<String, String> map1 = new HashMap<String, String>() {
+						{
+							put("field1", "2");
+							put("field2", "esta é uma 'string'");
+							put("field3", "false");
+							put("field4", "11.7");
+						}
+					};
 
-				add(map1);
+					add(map1);
 
-				Map<String, String> map2 = new HashMap<String, String>() {
-					{
-						put("field1", "1");
-						put("field2", "esta é uma 'string'");
-						put("field3", "");
-						put("field4", "10");
-					}
-				};
+					Map<String, String> map2 = new HashMap<String, String>() {
+						{
+							put("field1", "1");
+							put("field2", "esta é uma 'string'");
+							put("field3", "");
+							put("field4", "10");
+						}
+					};
 
-				add(map2);
-			}
-		};
+					add(map2);
+				}
+			};
 
 		DDMFormInstanceRecordWriterRequest.Builder builder =
 			DDMFormInstanceRecordWriterRequest.Builder.newBuilder(

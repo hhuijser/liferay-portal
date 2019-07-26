@@ -676,7 +676,8 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 		ddmFormInstanceRecordExporter.ddmFormInstanceVersionLocalService =
 			_ddmFormInstanceVersionLocalService;
 
-		List<DDMFormInstanceVersion> ddmFormInstanceVersions = new ArrayList<>();
+		List<DDMFormInstanceVersion> ddmFormInstanceVersions =
+			new ArrayList<>();
 
 		DDMFormInstanceVersion ddmFormInstanceVersion = mock(
 			DDMFormInstanceVersion.class);

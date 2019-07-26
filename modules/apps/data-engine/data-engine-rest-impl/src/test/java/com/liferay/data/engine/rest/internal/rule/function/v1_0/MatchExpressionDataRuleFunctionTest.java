@@ -32,11 +32,12 @@ public class MatchExpressionDataRuleFunctionTest {
 
 	@Test
 	public void testInvalidMatch() {
-		Map<String, Object> dataDefinitionRuleParameters = new HashMap<String, Object>() {
-			{
-				put(_EXPRESSION, "\\S+@\\S+\\.\\S+");
-			}
-		};
+		Map<String, Object> dataDefinitionRuleParameters =
+			new HashMap<String, Object>() {
+				{
+					put(_EXPRESSION, "\\S+@\\S+\\.\\S+");
+				}
+			};
 
 		_dataRecord.setDataRecordValues(
 			new HashMap() {
@@ -56,11 +57,12 @@ public class MatchExpressionDataRuleFunctionTest {
 
 	@Test
 	public void testInvalidRegex() {
-		Map<String, Object> dataDefinitionRuleParameters = new HashMap<String, Object>() {
-			{
-				put(_EXPRESSION, "\\\\\\\\S+[@\\\\S+\\\\.\\\\S+");
-			}
-		};
+		Map<String, Object> dataDefinitionRuleParameters =
+			new HashMap<String, Object>() {
+				{
+					put(_EXPRESSION, "\\\\\\\\S+[@\\\\S+\\\\.\\\\S+");
+				}
+			};
 
 		_dataRecord.setDataRecordValues(
 			new HashMap() {
@@ -80,11 +82,12 @@ public class MatchExpressionDataRuleFunctionTest {
 
 	@Test
 	public void testValidMatch() {
-		Map<String, Object> dataDefinitionRuleParameters = new HashMap<String, Object>() {
-			{
-				put(_EXPRESSION, "\\S+@\\S+\\.\\S+");
-			}
-		};
+		Map<String, Object> dataDefinitionRuleParameters =
+			new HashMap<String, Object>() {
+				{
+					put(_EXPRESSION, "\\S+@\\S+\\.\\S+");
+				}
+			};
 
 		_dataRecord.setDataRecordValues(
 			new HashMap() {

@@ -75,7 +75,7 @@ public class MultipartBodyTest {
 			Collections.singletonMap(
 				"key",
 				JSONUtil.put(
-					"string", "Hello"
+					"string", "Helllo"
 				).put(
 					"number", 42
 				).put(
@@ -133,7 +133,7 @@ public class MultipartBodyTest {
 			Collections.singletonMap(
 				"key",
 				JSONUtil.put(
-					"string", "Hello"
+					"string", "Helllo"
 				).put(
 					"number", 42
 				).put(
@@ -166,7 +166,7 @@ public class MultipartBodyTest {
 			Collections.singletonMap(
 				"key",
 				JSONUtil.put(
-					"string", "Hello"
+					"string", "Helllo"
 				).put(
 					"number", 42
 				).put(

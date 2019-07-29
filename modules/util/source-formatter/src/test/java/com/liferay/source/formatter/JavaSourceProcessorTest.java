@@ -302,17 +302,17 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("MissingDiamondOperator.testjava",
 			new String[] {
 				"Missing diamond operator '<>' for 'ArrayList'",
-				"Missing types '<String, String>' for using diamond operator" +
-					" '<>' with anonymous inner classes for 'ArrayList'",
+				"Missing diamond operator types '<String, String>' for " +
+					"'ArrayList' with anonymous inner classes",
 				"Missing diamond operator '<>' for 'ConcurrentHashMap'",
 				"Missing diamond operator '<>' for 'ConcurrentSkipListMap'",
 				"Missing diamond operator '<>' for 'ConcurrentSkipListSet'",
 				"Missing diamond operator '<>' for 'CopyOnWriteArraySet'",
-				"Missing types '<Position, String>' for using diamond " +
-					"operator '<>' with anonymous inner classes for 'EnumMap'",
+				"Missing diamond operator types '<Position, String>' for " +
+					"'EnumMap' with anonymous inner classes",
 				"Missing diamond operator '<>' for 'HashMap'",
-				"Missing types '<String, String>' for using diamond operator" +
-					" '<>' with anonymous inner classes for 'HashMap'",
+				"Missing diamond operator types '<String, String>' for " +
+					"'HashMap' with anonymous inner classes",
 				"Missing diamond operator '<>' for 'HashSet'",
 				"Missing diamond operator '<>' for 'Hashtable'",
 				"Missing diamond operator '<>' for 'IdentityHashMap'",
@@ -323,13 +323,12 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 				"Missing diamond operator '<>' for 'TreeMap'",
 				"Missing diamond operator '<>' for 'TreeSet'",
 				"Missing diamond operator '<>' for 'Vector'",
-				"Missing types '<Map<String, String>>' for using diamond " +
-					"operator '<>' with anonymous inner classes for " +
-						"'ArrayList'",
-				"Missing types '<String, String>' for using diamond operator" +
-					" '<>' with anonymous inner classes for 'HashMap'",
-				"Missing types '<String, String>' for using diamond operator" +
-					" '<>' with anonymous inner classes for 'HashMap'"
+				"Missing diamond operator types '<Map<String, String>>' for " +
+					"'ArrayList' with anonymous inner classes",
+				"Missing diamond operator types '<String, String>' for " +
+					"'HashMap' with anonymous inner classes",
+				"Missing diamond operator types '<String, String>' for " +
+					"'HashMap' with anonymous inner classes"
 			},
 			new Integer[] {
 				45, 47, 53, 55, 57, 59, 61, 68, 70, 76, 78, 80, 83, 85, 87, 89,

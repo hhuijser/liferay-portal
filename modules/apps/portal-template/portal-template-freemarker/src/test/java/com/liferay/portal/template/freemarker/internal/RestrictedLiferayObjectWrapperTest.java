@@ -201,8 +201,8 @@ public class RestrictedLiferayObjectWrapperTest extends BaseObjectWrapperTest {
 			LogRecord logRecord = logRecords.get(0);
 
 			Assert.assertEquals(
-				"\"" + methodName + "\" does not match format " +
-					"\"className#methodName\"",
+				"\"" + methodName +
+					"\" does not match format \"className#methodName\"",
 				logRecord.getMessage());
 		}
 	}
@@ -277,10 +277,14 @@ public class RestrictedLiferayObjectWrapperTest extends BaseObjectWrapperTest {
 		catch (TemplateModelException tme) {
 			Assert.assertSame(InvalidPropertyException.class, tme.getClass());
 
-			Assert.assertEquals(
-				"Denied access to method or field " + key + " of " +
-					TestLiferayMethodObject.class.toString(),
-				tme.getMessage());
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("Denied access to method or field ");
+			sb.append(key);
+			sb.append(" of ");
+			sb.append(TestLiferayMethodObject.class.toString());
+
+			Assert.assertEquals(sb.toString(), tme.getMessage());
 		}
 	}
 

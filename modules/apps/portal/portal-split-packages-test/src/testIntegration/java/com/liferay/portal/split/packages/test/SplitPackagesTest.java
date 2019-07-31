@@ -155,10 +155,16 @@ public class SplitPackagesTest {
 				hasSplitPackages = true;
 			}
 
-			Assert.assertFalse(
-				"Detected split packages " + duplicateExportPackage + " in " +
-					previousBundle + " and " + currentBundle,
-				hasSplitPackages);
+			StringBundler sb = new StringBundler(6);
+
+			sb.append("Detected split packages ");
+			sb.append(duplicateExportPackage);
+			sb.append(" in ");
+			sb.append(previousBundle);
+			sb.append(" and ");
+			sb.append(currentBundle);
+
+			Assert.assertFalse(sb.toString(), hasSplitPackages);
 		}
 	}
 

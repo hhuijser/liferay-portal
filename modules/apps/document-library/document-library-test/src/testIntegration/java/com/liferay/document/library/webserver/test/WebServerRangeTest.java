@@ -16,6 +16,7 @@ package com.liferay.document.library.webserver.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -196,18 +197,22 @@ public class WebServerRangeTest extends BaseWebServerTestCase {
 			parentFolder.getFolderId(), fileName, ContentTypes.TEXT_PLAIN,
 			_SAMPLE_DATA.getBytes(), serviceContext);
 
-		String path =
-			fileEntry.getGroupId() + "/" + fileEntry.getFolderId() + "/" +
-				fileEntry.getTitle();
-
 		Map<String, String> headers = new HashMap<>();
 
 		if (Validator.isNotNull(rangeHeader)) {
 			headers.put(HttpHeaders.RANGE, rangeHeader);
 		}
 
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(fileEntry.getGroupId());
+		sb.append("/");
+		sb.append(fileEntry.getFolderId());
+		sb.append("/");
+		sb.append(fileEntry.getTitle());
+
 		MockHttpServletResponse mockHttpServletResponse = service(
-			Method.GET, path, headers, null, null, null);
+			Method.GET, sb.toString(), headers, null, null, null);
 
 		int status = mockHttpServletResponse.getStatus();
 

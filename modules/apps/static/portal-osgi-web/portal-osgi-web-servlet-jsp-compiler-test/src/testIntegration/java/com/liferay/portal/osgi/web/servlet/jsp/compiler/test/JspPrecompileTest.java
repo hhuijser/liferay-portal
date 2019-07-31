@@ -389,10 +389,15 @@ public class JspPrecompileTest {
 		try (InputStream inputStream = url.openStream()) {
 			String content = StringUtil.read(inputStream);
 
-			Assert.assertTrue(
-				"Content {" + content + "} does not contain expected message " +
-					"{" + expectedMessage + "}",
-				content.contains(expectedMessage));
+			sb = new StringBundler(5);
+
+			sb.append("Content {");
+			sb.append(content);
+			sb.append("} does not contain expected message {");
+			sb.append(expectedMessage);
+			sb.append("}");
+
+			Assert.assertTrue(sb.toString(), content.contains(expectedMessage));
 		}
 	}
 

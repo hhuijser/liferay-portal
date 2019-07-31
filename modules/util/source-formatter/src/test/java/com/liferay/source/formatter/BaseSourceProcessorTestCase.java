@@ -122,8 +122,15 @@ public abstract class BaseSourceProcessorTestCase {
 			extension = extension.substring(4);
 		}
 
-		String fullFileName =
-			_DIR_NAME + StringPool.SLASH + fileName + "." + originalExtension;
+		StringBundler sb = new StringBundler(5);
+
+		sb.append(_DIR_NAME);
+		sb.append(StringPool.SLASH);
+		sb.append(fileName);
+		sb.append(".");
+		sb.append(originalExtension);
+
+		String fullFileName = sb.toString();
 
 		URL url = classLoader.getResource(fullFileName);
 
@@ -193,8 +200,15 @@ public abstract class BaseSourceProcessorTestCase {
 			String actualFormattedContent = FileUtil.read(
 				new File(modifiedFileNames.get(0)));
 
-			String expectedFileName =
-				_DIR_NAME + "/expected/" + fileName + "." + originalExtension;
+			sb.setIndex(0);
+
+			sb.append(_DIR_NAME);
+			sb.append("/expected/");
+			sb.append(fileName);
+			sb.append(".");
+			sb.append(originalExtension);
+
+			String expectedFileName = sb.toString();
 
 			URL expectedURL = classLoader.getResource(expectedFileName);
 

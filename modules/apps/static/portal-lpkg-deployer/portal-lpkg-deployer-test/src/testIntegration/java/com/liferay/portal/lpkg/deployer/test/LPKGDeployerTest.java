@@ -98,9 +98,14 @@ public class LPKGDeployerTest {
 					}
 
 					if (!fileName.endsWith(".lpkg")) {
-						Assert.fail(
-							"Unexpected file " + filePath + " in " +
-								lpkgDeployerDirString);
+						StringBundler sb = new StringBundler(4);
+
+						sb.append("Unexpected file ");
+						sb.append(filePath);
+						sb.append(" in ");
+						sb.append(lpkgDeployerDirString);
+
+						Assert.fail(sb.toString());
 					}
 
 					lpkgFiles.add(filePath.toFile());
@@ -149,10 +154,14 @@ public class LPKGDeployerTest {
 			List<Bundle> expectedAppBundles = new ArrayList<>(
 				deployedLPKGBundles.get(lpkgBundle));
 
-			Assert.assertNotNull(
-				"Registered LPKG bundles " + deployedLPKGBundles.keySet() +
-					" do not contain " + lpkgBundle,
-				expectedAppBundles);
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("Registered LPKG bundles ");
+			sb.append(deployedLPKGBundles.keySet());
+			sb.append(" do not contain ");
+			sb.append(lpkgBundle);
+
+			Assert.assertNotNull(sb.toString(), expectedAppBundles);
 
 			Collections.sort(expectedAppBundles);
 
@@ -175,10 +184,14 @@ public class LPKGDeployerTest {
 							lpkgDeployerDirString + StringPool.SLASH +
 								lpkgFile.getName());
 
-						String location =
-							name + "?lpkgPath=" +
-								lpkgLocationMethod.invoke(null, file) +
-									"&protocol=lpkg&static=true";
+						sb.setIndex(0);
+
+						sb.append(name);
+						sb.append("?lpkgPath=");
+						sb.append(lpkgLocationMethod.invoke(null, file));
+						sb.append("&protocol=lpkg&static=true");
+
+						String location = sb.toString();
 
 						Bundle bundle = bundleContext.getBundle(location);
 
@@ -261,7 +274,7 @@ public class LPKGDeployerTest {
 						Files.delete(tempFilePath);
 					}
 
-					StringBundler sb = new StringBundler(13);
+					sb = new StringBundler(13);
 
 					sb.append("webbundle:/");
 					sb.append(URLCodec.encodeURL(lpkgBundle.getSymbolicName()));
@@ -282,21 +295,32 @@ public class LPKGDeployerTest {
 
 					location = sb.toString();
 
+					sb = new StringBundler(4);
+
+					sb.append("Missing WAR bundle for wrapper bundle ");
+					sb.append(bundle);
+					sb.append(" with expected location ");
+					sb.append(location);
+
 					Assert.assertNotNull(
-						"Missing WAR bundle for wrapper bundle " + bundle +
-							" with expected location " + location,
-						bundleContext.getBundle(location));
+						sb.toString(), bundleContext.getBundle(location));
 				}
 			}
 
 			if (!symbolicName.equals("static")) {
 				Collections.sort(actualAppBundles);
 
+				sb = new StringBundler(6);
+
+				sb.append("LPKG bundle ");
+				sb.append(lpkgBundle);
+				sb.append(" expects app bundles ");
+				sb.append(expectedAppBundles);
+				sb.append(" but has actual app bundles ");
+				sb.append(actualAppBundles);
+
 				Assert.assertEquals(
-					"LPKG bundle " + lpkgBundle + " expects app bundles " +
-						expectedAppBundles + " but has actual app bundles " +
-							actualAppBundles,
-					expectedAppBundles, actualAppBundles);
+					sb.toString(), expectedAppBundles, actualAppBundles);
 			}
 		}
 	}

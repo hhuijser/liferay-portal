@@ -17,6 +17,7 @@ package com.liferay.friendly.url.servlet.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -109,9 +110,14 @@ public class FriendlyURLServletTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Filter filter = registry.getFilter(
-			"(&(servlet.type=friendly-url)(servlet.init.private=false)" +
-				"(objectClass=" + Servlet.class.getName() + "))");
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("(&(servlet.type=friendly-url)(servlet.init.private=false)");
+		sb.append("(objectClass=");
+		sb.append(Servlet.class.getName());
+		sb.append("))");
+
+		Filter filter = registry.getFilter(sb.toString());
 
 		_serviceTracker = registry.trackServices(filter);
 

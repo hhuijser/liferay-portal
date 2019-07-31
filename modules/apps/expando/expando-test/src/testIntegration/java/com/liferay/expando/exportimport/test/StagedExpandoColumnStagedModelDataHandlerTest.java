@@ -24,6 +24,7 @@ import com.liferay.expando.kernel.service.ExpandoTableLocalServiceUtil;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepository;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepositoryRegistryUtil;
 import com.liferay.exportimport.test.util.lar.BaseStagedModelDataHandlerTestCase;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.StagedModel;
@@ -101,9 +102,14 @@ public class StagedExpandoColumnStagedModelDataHandlerTest
 			return stagedExpandoColumns.get(0);
 		}
 
-		throw new PortalException(
-			"Unable to find StagedExpandoColumn with uuid: " + uuid +
-				", companyId: " + group.getCompanyId());
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("Unable to find StagedExpandoColumn with uuid: ");
+		sb.append(uuid);
+		sb.append(", companyId: ");
+		sb.append(group.getCompanyId());
+
+		throw new PortalException(sb.toString());
 	}
 
 	@Override

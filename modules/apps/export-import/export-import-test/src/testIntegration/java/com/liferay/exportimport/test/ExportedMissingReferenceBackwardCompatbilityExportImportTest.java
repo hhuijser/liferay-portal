@@ -26,6 +26,7 @@ import com.liferay.exportimport.kernel.lifecycle.ExportImportLifecycleListener;
 import com.liferay.exportimport.test.util.constants.DummyFolderPortletKeys;
 import com.liferay.exportimport.test.util.exportimport.data.handler.DummyFolderWithMissingDummyPortletDataHandler;
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.xml.Attribute;
@@ -191,10 +192,15 @@ public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 
 			int lastIndexOfPeriod = larFileName.lastIndexOf(CharPool.PERIOD);
 
-			File file = new File(
-				FileUtil.getPath(larFilePath) + File.separator +
-					larFileName.substring(0, lastIndexOfPeriod) + "-original" +
-						larFileName.substring(lastIndexOfPeriod));
+			StringBundler sb = new StringBundler(5);
+
+			sb.append(FileUtil.getPath(larFilePath));
+			sb.append(File.separator);
+			sb.append(larFileName.substring(0, lastIndexOfPeriod));
+			sb.append("-original");
+			sb.append(larFileName.substring(lastIndexOfPeriod));
+
+			File file = new File(sb.toString());
 
 			FileUtil.move(larFile, file);
 

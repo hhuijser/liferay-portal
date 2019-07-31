@@ -16,6 +16,7 @@ package com.liferay.portal.store.s3.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.store.Store;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.test.util.ConfigurationTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
@@ -60,10 +61,15 @@ public class S3StoreTest extends BaseStoreTestCase {
 
 		String s3StoreClassName = "com.liferay.portal.store.s3.S3Store";
 
-		Assume.assumeTrue(
-			"Property \"" + PropsKeys.DL_STORE_IMPL + "\" is not set to \"" +
-				s3StoreClassName + "\"",
-			dlStoreImpl.equals(s3StoreClassName));
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("Property \"");
+		sb.append(PropsKeys.DL_STORE_IMPL);
+		sb.append("\" is not set to \"");
+		sb.append(s3StoreClassName);
+		sb.append("\"");
+
+		Assume.assumeTrue(sb.toString(), dlStoreImpl.equals(s3StoreClassName));
 	}
 
 	@BeforeClass

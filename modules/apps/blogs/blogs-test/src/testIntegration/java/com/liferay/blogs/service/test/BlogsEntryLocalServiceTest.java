@@ -530,30 +530,65 @@ public class BlogsEntryLocalServiceTest {
 		BlogsEntry[] entries = BlogsEntryLocalServiceUtil.getEntriesPrevAndNext(
 			secondEntry.getEntryId());
 
-		Assert.assertNotNull(
-			"The previous entry relative to entry " + secondEntry.getEntryId() +
-				" should be " + firstEntry.getEntryId() + " but is null",
-			entries[0]);
-		Assert.assertNotNull(
-			"The current entry relative to entry " + secondEntry.getEntryId() +
-				" should be " + secondEntry.getEntryId() + " but is null",
-			entries[1]);
-		Assert.assertNotNull(
-			"The next entry relative to entry " + secondEntry.getEntryId() +
-				" should be " + thirdEntry.getEntryId() + " but is null",
-			entries[2]);
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("The previous entry relative to entry ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(firstEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[0]);
+
+		sb.setIndex(0);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[1]);
+
+		sb.setIndex(0);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(thirdEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[2]);
+
+		sb = new StringBundler(4);
+
+		sb.append("The previous entry relative to entry ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(firstEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The previous entry relative to entry " + secondEntry.getEntryId() +
-				" should be " + firstEntry.getEntryId(),
-			entries[0].getEntryId(), firstEntry.getEntryId());
+			sb.toString(), entries[0].getEntryId(), firstEntry.getEntryId());
+
+		sb.setIndex(0);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(secondEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The current entry relative to entry " + secondEntry.getEntryId() +
-				" should be " + secondEntry.getEntryId(),
-			entries[1].getEntryId(), secondEntry.getEntryId());
+			sb.toString(), entries[1].getEntryId(), secondEntry.getEntryId());
+
+		sb.setIndex(0);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(secondEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(thirdEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The next entry relative to entry " + secondEntry.getEntryId() +
-				" should be " + thirdEntry.getEntryId(),
-			entries[2].getEntryId(), thirdEntry.getEntryId());
+			sb.toString(), entries[2].getEntryId(), thirdEntry.getEntryId());
 	}
 
 	@Test
@@ -569,31 +604,65 @@ public class BlogsEntryLocalServiceTest {
 		BlogsEntry[] entries = BlogsEntryLocalServiceUtil.getEntriesPrevAndNext(
 			currentEntry.getEntryId());
 
-		Assert.assertNotNull(
-			"The previous entry relative to entry " +
-				currentEntry.getEntryId() + " should be " +
-					previousEntry.getEntryId() + " but is null",
-			entries[0]);
-		Assert.assertNotNull(
-			"The current entry relative to entry " + currentEntry.getEntryId() +
-				" should be " + currentEntry.getEntryId() + " but is null",
-			entries[1]);
-		Assert.assertNotNull(
-			"The next entry relative to entry " + currentEntry.getEntryId() +
-				" should be " + nextEntry.getEntryId() + " but is null",
-			entries[2]);
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("The previous entry relative to entry ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[0]);
+
+		sb.setIndex(0);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[1]);
+
+		sb.setIndex(0);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[2]);
+
+		sb = new StringBundler(4);
+
+		sb.append("The previous entry relative to entry");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(previousEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The previous entry relative to entry" + currentEntry.getEntryId() +
-				" should be " + previousEntry.getEntryId(),
-			entries[0].getEntryId(), previousEntry.getEntryId());
+			sb.toString(), entries[0].getEntryId(), previousEntry.getEntryId());
+
+		sb.setIndex(0);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(currentEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The current entry relative to entry " + currentEntry.getEntryId() +
-				" should be " + currentEntry.getEntryId(),
-			entries[1].getEntryId(), currentEntry.getEntryId());
+			sb.toString(), entries[1].getEntryId(), currentEntry.getEntryId());
+
+		sb.setIndex(0);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(nextEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The next entry relative to entry " + currentEntry.getEntryId() +
-				" should be " + nextEntry.getEntryId(),
-			entries[2].getEntryId(), nextEntry.getEntryId());
+			sb.toString(), entries[2].getEntryId(), nextEntry.getEntryId());
 	}
 
 	@Test
@@ -609,26 +678,53 @@ public class BlogsEntryLocalServiceTest {
 		BlogsEntry[] entries = BlogsEntryLocalServiceUtil.getEntriesPrevAndNext(
 			nextEntry.getEntryId());
 
-		Assert.assertNull(
-			"The next entry relative to entry " + nextEntry.getEntryId() +
-				" should be null",
-			entries[2]);
-		Assert.assertNotNull(
-			"The current entry relative to entry " + nextEntry.getEntryId() +
-				" should be " + nextEntry.getEntryId() + " but is null",
-			entries[1]);
-		Assert.assertNotNull(
-			"The previous entry relative to entry " + nextEntry.getEntryId() +
-				" should be " + currentEntry.getEntryId() + " but is null",
-			entries[0]);
+		StringBundler sb = new StringBundler(3);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" should be null");
+
+		Assert.assertNull(sb.toString(), entries[2]);
+
+		sb = new StringBundler(5);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[1]);
+
+		sb.setIndex(0);
+
+		sb.append("The previous entry relative to entry ");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[0]);
+
+		sb = new StringBundler(4);
+
+		sb.append("The previous entry relative to entry ");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(currentEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The previous entry relative to entry " + nextEntry.getEntryId() +
-				" should be " + currentEntry.getEntryId(),
-			entries[0].getEntryId(), currentEntry.getEntryId());
+			sb.toString(), entries[0].getEntryId(), currentEntry.getEntryId());
+
+		sb.setIndex(0);
+
+		sb.append("The current entry relative to entry");
+		sb.append(nextEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(nextEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The current entry relative to entry" + nextEntry.getEntryId() +
-				" should be " + nextEntry.getEntryId(),
-			entries[1].getEntryId(), nextEntry.getEntryId());
+			sb.toString(), entries[1].getEntryId(), nextEntry.getEntryId());
 	}
 
 	@Test
@@ -644,28 +740,53 @@ public class BlogsEntryLocalServiceTest {
 		BlogsEntry[] entries = BlogsEntryLocalServiceUtil.getEntriesPrevAndNext(
 			previousEntry.getEntryId());
 
-		Assert.assertNull(
-			"The previous entry relative to entry " +
-				previousEntry.getEntryId() + " should be null",
-			entries[0]);
-		Assert.assertNotNull(
-			"The current entry relative to entry " +
-				previousEntry.getEntryId() + " should be " +
-					previousEntry.getEntryId() + " but is null",
-			entries[1]);
-		Assert.assertNotNull(
-			"The next entry relative to entry " + previousEntry.getEntryId() +
-				" should be " + currentEntry.getEntryId() + " but is null",
-			entries[2]);
+		StringBundler sb = new StringBundler(3);
+
+		sb.append("The previous entry relative to entry ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" should be null");
+
+		Assert.assertNull(sb.toString(), entries[0]);
+
+		sb = new StringBundler(5);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[1]);
+
+		sb.setIndex(0);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(currentEntry.getEntryId());
+		sb.append(" but is null");
+
+		Assert.assertNotNull(sb.toString(), entries[2]);
+
+		sb = new StringBundler(4);
+
+		sb.append("The current entry relative to entry ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(previousEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The current entry relative to entry " +
-				previousEntry.getEntryId() + " should be " +
-					previousEntry.getEntryId(),
-			entries[1].getEntryId(), previousEntry.getEntryId());
+			sb.toString(), entries[1].getEntryId(), previousEntry.getEntryId());
+
+		sb.setIndex(0);
+
+		sb.append("The next entry relative to entry ");
+		sb.append(previousEntry.getEntryId());
+		sb.append(" should be ");
+		sb.append(currentEntry.getEntryId());
+
 		Assert.assertEquals(
-			"The next entry relative to entry " + previousEntry.getEntryId() +
-				" should be " + currentEntry.getEntryId(),
-			entries[2].getEntryId(), currentEntry.getEntryId());
+			sb.toString(), entries[2].getEntryId(), currentEntry.getEntryId());
 	}
 
 	@Test
@@ -787,10 +908,17 @@ public class BlogsEntryLocalServiceTest {
 			Assert.assertEquals(
 				"Entry " + groupsEntry.getEntryId() + " is not in trash",
 				WorkflowConstants.STATUS_IN_TRASH, groupsEntry.getStatus());
+
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("Entry belongs to company ");
+			sb.append(groupsEntry.getCompanyId());
+			sb.append(" but should belong to company ");
+			sb.append(_user.getCompanyId());
+
 			Assert.assertEquals(
-				"Entry belongs to company " + groupsEntry.getCompanyId() +
-					" but should belong to company " + _user.getCompanyId(),
-				_user.getCompanyId(), groupsEntry.getCompanyId());
+				sb.toString(), _user.getCompanyId(),
+				groupsEntry.getCompanyId());
 		}
 	}
 

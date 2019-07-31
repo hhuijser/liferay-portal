@@ -61,11 +61,15 @@ public class BaseWebDAVTestCase {
 
 		WebDAVServlet webDAVServlet = new WebDAVServlet();
 
-		String requestURI =
-			_CONTEXT_PATH + _SERVLET_PATH + _PATH_INFO_PREFACE + path;
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(_CONTEXT_PATH);
+		sb.append(_SERVLET_PATH);
+		sb.append(_PATH_INFO_PREFACE);
+		sb.append(path);
 
 		MockHttpServletRequest mockHttpServletRequest =
-			new MockHttpServletRequest(method, requestURI);
+			new MockHttpServletRequest(method, sb.toString());
 
 		mockHttpServletRequest.setContextPath(_CONTEXT_PATH);
 		mockHttpServletRequest.setServletPath(_SERVLET_PATH);
@@ -104,10 +108,16 @@ public class BaseWebDAVTestCase {
 					testName = StringUtil.removeSubstrings(
 						testName, "WebDAV", "Test");
 
-					headers.put(
-						"X-Litmus",
-						testName + ": (" + stackTraceElement.getMethodName() +
-							":" + stackTraceElement.getLineNumber() + ")");
+					sb = new StringBundler(6);
+
+					sb.append(testName);
+					sb.append(": (");
+					sb.append(stackTraceElement.getMethodName());
+					sb.append(":");
+					sb.append(stackTraceElement.getLineNumber());
+					sb.append(")");
+
+					headers.put("X-Litmus", sb.toString());
 
 					break;
 				}
@@ -330,8 +340,8 @@ public class BaseWebDAVTestCase {
 
 	private static final String _LOCK_XML;
 
-	private static final String _PATH_INFO_PREFACE =
-		_GROUP_FRIENDLY_URL + "/document_library/" + _FOLDER_NAME + "/";
+	private static final String _PATH_INFO_PREFACE = StringBundler.concat(
+		_GROUP_FRIENDLY_URL, "/document_library/", _FOLDER_NAME, "/");
 
 	private static final String _PROPFIND_XML;
 

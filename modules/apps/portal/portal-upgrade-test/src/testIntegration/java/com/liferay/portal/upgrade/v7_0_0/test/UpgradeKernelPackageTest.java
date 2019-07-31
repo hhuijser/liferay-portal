@@ -192,10 +192,15 @@ public class UpgradeKernelPackageTest extends UpgradeKernelPackage {
 			_insertData(3, "", _PREFIX_POSTFIX_CLASS_NAME_OLD);
 			_insertData(4, "", "NOT_CLASS_NAME_OLD");
 
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("select textData, id from UpgradeKernelPackageTest ");
+			sb.append("where textData like '%");
+			sb.append(_CLASS_NAME_OLD);
+			sb.append("%'");
+
 			upgradeLongTextTable(
-				"textData", "id",
-				"select textData, id from UpgradeKernelPackageTest where " +
-					"textData like '%" + _CLASS_NAME_OLD + "%'",
+				"textData", "id", sb.toString(),
 				"update UpgradeKernelPackageTest set textData = ? where id = ?",
 				_TEST_CLASS_NAMES[0]);
 

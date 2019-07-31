@@ -241,10 +241,15 @@ public class MBMessageServiceTest {
 			}
 		}
 
-		Assert.assertTrue(
-			"Only " + successCount + " out of " + _users.length +
-				" threads added messages successfully",
-			successCount == _users.length);
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("Only ");
+		sb.append(successCount);
+		sb.append(" out of ");
+		sb.append(_users.length);
+		sb.append(" threads added messages successfully");
+
+		Assert.assertTrue(sb.toString(), successCount == _users.length);
 	}
 
 	@Test(expected = PrincipalException.MustHavePermission.class)

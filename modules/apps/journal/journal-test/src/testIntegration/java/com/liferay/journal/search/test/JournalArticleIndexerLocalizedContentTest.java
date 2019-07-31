@@ -21,6 +21,7 @@ import com.liferay.journal.test.util.search.JournalArticleBlueprint;
 import com.liferay.journal.test.util.search.JournalArticleContent;
 import com.liferay.journal.test.util.search.JournalArticleSearchFixture;
 import com.liferay.journal.test.util.search.JournalArticleTitle;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.search.Document;
@@ -141,11 +142,14 @@ public class JournalArticleIndexerLocalizedContentTest {
 
 					locales.forEach(
 						locale -> {
-							String mapKey =
-								"localized_title_" + locale.getLanguage() +
-									"_" + locale.getCountry();
+							StringBundler sb = new StringBundler(4);
 
-							put(mapKey, originalTitle);
+							sb.append("localized_title_");
+							sb.append(locale.getLanguage());
+							sb.append("_");
+							sb.append(locale.getCountry());
+
+							put(sb.toString(), originalTitle);
 						});
 
 					put("localized_title_hu_HU", translatedTitle);
@@ -233,11 +237,14 @@ public class JournalArticleIndexerLocalizedContentTest {
 
 					locales.forEach(
 						locale -> {
-							String mapKey =
-								"localized_title_" + locale.getLanguage() +
-									"_" + locale.getCountry();
+							StringBundler sb = new StringBundler(4);
 
-							put(mapKey, originalTitle);
+							sb.append("localized_title_");
+							sb.append(locale.getLanguage());
+							sb.append("_");
+							sb.append(locale.getCountry());
+
+							put(sb.toString(), originalTitle);
 						});
 
 					put("localized_title_pt_BR", translatedTitle);
@@ -307,11 +314,14 @@ public class JournalArticleIndexerLocalizedContentTest {
 
 					locales.forEach(
 						locale -> {
-							String mapKey =
-								"localized_title_" + locale.getLanguage() +
-									"_" + locale.getCountry();
+							StringBundler sb = new StringBundler(4);
 
-							put(mapKey, title);
+							sb.append("localized_title_");
+							sb.append(locale.getLanguage());
+							sb.append("_");
+							sb.append(locale.getCountry());
+
+							put(sb.toString(), title);
 						});
 				}
 			});

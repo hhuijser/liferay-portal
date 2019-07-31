@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.test.util;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.comment.CommentManagerUtil;
 import com.liferay.portal.kernel.model.BaseModel;
@@ -625,9 +626,23 @@ public abstract class BaseSearchTestCase {
 		String keyword6 = getSearchKeywords() + 6;
 		String keyword7 = getSearchKeywords() + 7;
 
-		String combinedKeywords =
-			keyword1 + " " + keyword2 + " " + keyword3 + " " + keyword4 + " " +
-				keyword5 + " " + keyword6 + " " + keyword7;
+		StringBundler sb = new StringBundler(13);
+
+		sb.append(keyword1);
+		sb.append(" ");
+		sb.append(keyword2);
+		sb.append(" ");
+		sb.append(keyword3);
+		sb.append(" ");
+		sb.append(keyword4);
+		sb.append(" ");
+		sb.append(keyword5);
+		sb.append(" ");
+		sb.append(keyword6);
+		sb.append(" ");
+		sb.append(keyword7);
+
+		String combinedKeywords = sb.toString();
 
 		searchContext.setKeywords(combinedKeywords);
 
@@ -646,44 +661,92 @@ public abstract class BaseSearchTestCase {
 		searchContext = SearchContextTestUtil.getSearchContext(
 			group.getGroupId());
 
-		searchContext.setKeywords("\"" + keyword1 + " " + keyword2 + "\"");
+		sb = new StringBundler(5);
+
+		sb.append("\"");
+		sb.append(keyword1);
+		sb.append(" ");
+		sb.append(keyword2);
+		sb.append("\"");
+
+		searchContext.setKeywords(sb.toString());
 
 		assertBaseModelsCount(initialBaseModelsSearchCount + 1, searchContext);
 
 		searchContext = SearchContextTestUtil.getSearchContext(
 			group.getGroupId());
 
-		searchContext.setKeywords("\"" + keyword2 + " " + keyword1 + "\"");
+		sb.setIndex(0);
+
+		sb.append("\"");
+		sb.append(keyword2);
+		sb.append(" ");
+		sb.append(keyword1);
+		sb.append("\"");
+
+		searchContext.setKeywords(sb.toString());
 
 		assertBaseModelsCount(initialBaseModelsSearchCount, searchContext);
 
 		searchContext = SearchContextTestUtil.getSearchContext(
 			group.getGroupId());
 
-		searchContext.setKeywords("\"" + keyword2 + " " + keyword4 + "\"");
+		sb.setIndex(0);
+
+		sb.append("\"");
+		sb.append(keyword2);
+		sb.append(" ");
+		sb.append(keyword4);
+		sb.append("\"");
+
+		searchContext.setKeywords(sb.toString());
 
 		assertBaseModelsCount(initialBaseModelsSearchCount, searchContext);
 
 		searchContext = SearchContextTestUtil.getSearchContext(
 			group.getGroupId());
 
-		searchContext.setKeywords(
-			keyword1 + " \"" + keyword2 + " " + keyword3 + "\"");
+		sb = new StringBundler(6);
+
+		sb.append(keyword1);
+		sb.append(" \"");
+		sb.append(keyword2);
+		sb.append(" ");
+		sb.append(keyword3);
+		sb.append("\"");
+
+		searchContext.setKeywords(sb.toString());
 
 		assertBaseModelsCount(initialBaseModelsSearchCount + 1, searchContext);
 
 		searchContext = SearchContextTestUtil.getSearchContext(
 			group.getGroupId());
 
-		searchContext.setKeywords(
-			RandomTestUtil.randomString() + " \"" + keyword2 + " " + keyword3 +
-				"\" " + keyword5);
+		sb = new StringBundler(7);
+
+		sb.append(RandomTestUtil.randomString());
+		sb.append(" \"");
+		sb.append(keyword2);
+		sb.append(" ");
+		sb.append(keyword3);
+		sb.append("\" ");
+		sb.append(keyword5);
+
+		searchContext.setKeywords(sb.toString());
 
 		assertBaseModelsCount(initialBaseModelsSearchCount + 1, searchContext);
 
-		searchContext.setKeywords(
-			RandomTestUtil.randomString() + " \"" + keyword2 + " " + keyword5 +
-				"\" " + RandomTestUtil.randomString());
+		sb.setIndex(0);
+
+		sb.append(RandomTestUtil.randomString());
+		sb.append(" \"");
+		sb.append(keyword2);
+		sb.append(" ");
+		sb.append(keyword5);
+		sb.append("\" ");
+		sb.append(RandomTestUtil.randomString());
+
+		searchContext.setKeywords(sb.toString());
 
 		assertBaseModelsCount(initialBaseModelsSearchCount, searchContext);
 	}

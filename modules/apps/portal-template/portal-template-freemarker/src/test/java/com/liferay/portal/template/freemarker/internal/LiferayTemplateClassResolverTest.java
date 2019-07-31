@@ -14,6 +14,7 @@
 
 package com.liferay.portal.template.freemarker.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.template.freemarker.configuration.FreeMarkerEngineConfiguration;
@@ -147,10 +148,13 @@ public class LiferayTemplateClassResolverTest {
 			Assert.fail();
 		}
 		catch (TemplateException te) {
-			Assert.assertEquals(
-				"Instantiating " + className + " is not allowed in the " +
-					"template for security reasons",
-				te.getMessage());
+			StringBundler sb = new StringBundler(3);
+
+			sb.append("Instantiating ");
+			sb.append(className);
+			sb.append(" is not allowed in the template for security reasons");
+
+			Assert.assertEquals(sb.toString(), te.getMessage());
 		}
 	}
 

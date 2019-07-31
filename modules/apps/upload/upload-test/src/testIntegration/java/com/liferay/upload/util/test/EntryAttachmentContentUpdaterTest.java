@@ -132,12 +132,14 @@ public class EntryAttachmentContentUpdaterTest {
 		String fileEntryURL = PortletFileRepositoryUtil.getPortletFileEntryURL(
 			null, newFileEntry, StringPool.BLANK);
 
-		String expectedContent =
-			"<p>Sample Text</p><a href=\"www.liferay.com\">" +
-				"<img alt=\"A big image\" class=\"image-big\" src=\"" +
-					fileEntryURL + "\" /></a>";
+		StringBundler sb = new StringBundler(4);
 
-		_assertEquals(_parseHtml(expectedContent), _parseHtml(content));
+		sb.append("<p>Sample Text</p><a href=\"www.liferay.com\">");
+		sb.append("<img alt=\"A big image\" class=\"image-big\" src=\"");
+		sb.append(fileEntryURL);
+		sb.append("\" /></a>");
+
+		_assertEquals(_parseHtml(sb.toString()), _parseHtml(content));
 	}
 
 	@Test

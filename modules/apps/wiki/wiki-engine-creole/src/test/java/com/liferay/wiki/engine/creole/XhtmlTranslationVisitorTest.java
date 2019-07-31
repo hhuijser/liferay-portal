@@ -267,26 +267,50 @@ public class XhtmlTranslationVisitorTest {
 
 	@Test
 	public void testParseCorrectlyNoWikiBlockWithBraces() {
+		StringBundler sb = new StringBundler(7);
+
+		sb.append("<pre>{");
+		sb.append(_NEW_LINE);
+		sb.append("foo");
+		sb.append(_NEW_LINE);
+		sb.append("}");
+		sb.append(_NEW_LINE);
+		sb.append("</pre>");
+
 		Assert.assertEquals(
-			"<pre>{" + _NEW_LINE + "foo" + _NEW_LINE + "}" + _NEW_LINE +
-				"</pre>",
-			toUnix(translate("nowikiblock-7.creole")));
+			sb.toString(), toUnix(translate("nowikiblock-7.creole")));
 	}
 
 	@Test
 	public void testParseCorrectlyNoWikiBlockWithMultipleAndText() {
+		StringBundler sb = new StringBundler(7);
+
+		sb.append("<pre>public interface Foo {");
+		sb.append(_NEW_LINE);
+		sb.append("void foo();");
+		sb.append(_NEW_LINE);
+		sb.append("}");
+		sb.append(_NEW_LINE);
+		sb.append("</pre><p>Outside preserve </p>");
+
 		Assert.assertEquals(
-			"<pre>public interface Foo {" + _NEW_LINE + "void foo();" +
-				_NEW_LINE + "}" + _NEW_LINE + "</pre><p>Outside preserve </p>",
-			toUnix(translate("nowikiblock-9.creole")));
+			sb.toString(), toUnix(translate("nowikiblock-9.creole")));
 	}
 
 	@Test
 	public void testParseCorrectlyNoWikiBlockWithMultipleBraces() {
+		StringBundler sb = new StringBundler(7);
+
+		sb.append("<pre>public interface Foo {");
+		sb.append(_NEW_LINE);
+		sb.append("void foo();");
+		sb.append(_NEW_LINE);
+		sb.append("}");
+		sb.append(_NEW_LINE);
+		sb.append("</pre>");
+
 		Assert.assertEquals(
-			"<pre>public interface Foo {" + _NEW_LINE + "void foo();" +
-				_NEW_LINE + "}" + _NEW_LINE + "</pre>",
-			toUnix(translate("nowikiblock-8.creole")));
+			sb.toString(), toUnix(translate("nowikiblock-8.creole")));
 	}
 
 	@Test

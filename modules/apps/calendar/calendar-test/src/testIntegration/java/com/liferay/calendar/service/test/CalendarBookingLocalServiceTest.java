@@ -35,6 +35,7 @@ import com.liferay.calendar.test.util.RecurrenceTestUtil;
 import com.liferay.calendar.util.JCalendarUtil;
 import com.liferay.calendar.util.RecurrenceUtil;
 import com.liferay.calendar.workflow.CalendarBookingWorkflowConstants;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.EntityCacheUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -189,12 +190,14 @@ public class CalendarBookingLocalServiceTest {
 
 		CalendarBookingLocalServiceUtil.checkCalendarBookings();
 
-		String mailMessageSubject =
-			"Calendar: Event Reminder for " + StringPool.QUOTE +
-				calendarBooking.getTitle(LocaleUtil.getSiteDefault()) +
-					StringPool.QUOTE;
+		StringBundler sb = new StringBundler(4);
 
-		assertMailSubjectCount(mailMessageSubject, 2);
+		sb.append("Calendar: Event Reminder for ");
+		sb.append(StringPool.QUOTE);
+		sb.append(calendarBooking.getTitle(LocaleUtil.getSiteDefault()));
+		sb.append(StringPool.QUOTE);
+
+		assertMailSubjectCount(sb.toString(), 2);
 	}
 
 	@Test
@@ -590,12 +593,14 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertNotNull(calendarBooking);
 
-		String mailMessageSubject =
-			"Calendar: Event Update for " + StringPool.QUOTE +
-				calendarBooking.getTitle(LocaleUtil.getSiteDefault()) +
-					StringPool.QUOTE;
+		StringBundler sb = new StringBundler(4);
 
-		assertMailSubjectCount(mailMessageSubject, 1);
+		sb.append("Calendar: Event Update for ");
+		sb.append(StringPool.QUOTE);
+		sb.append(calendarBooking.getTitle(LocaleUtil.getSiteDefault()));
+		sb.append(StringPool.QUOTE);
+
+		assertMailSubjectCount(sb.toString(), 1);
 
 		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
 			_invitingUser.getUserId(), calendarBooking, 2, true);
@@ -608,12 +613,14 @@ public class CalendarBookingLocalServiceTest {
 
 		Assert.assertNotNull(calendarBooking);
 
-		mailMessageSubject =
-			"Calendar: Event Deletion for " + StringPool.QUOTE +
-				calendarBooking.getTitle(LocaleUtil.getSiteDefault()) +
-					StringPool.QUOTE;
+		sb.setIndex(0);
 
-		assertMailSubjectCount(mailMessageSubject, 2);
+		sb.append("Calendar: Event Deletion for ");
+		sb.append(StringPool.QUOTE);
+		sb.append(calendarBooking.getTitle(LocaleUtil.getSiteDefault()));
+		sb.append(StringPool.QUOTE);
+
+		assertMailSubjectCount(sb.toString(), 2);
 
 		CalendarBookingLocalServiceUtil.deleteCalendarBookingInstance(
 			_user.getUserId(), calendarBooking, 0, false);
@@ -1128,12 +1135,14 @@ public class CalendarBookingLocalServiceTest {
 				invitingCalendar, invitedCalendar,
 				WorkflowConstants.ACTION_PUBLISH);
 
-		String mailMessageSubject =
-			"Calendar: Event Notification for " + StringPool.QUOTE +
-				calendarBooking.getTitle(LocaleUtil.getSiteDefault()) +
-					StringPool.QUOTE;
+		StringBundler sb = new StringBundler(4);
 
-		assertMailSubjectCount(mailMessageSubject, 1);
+		sb.append("Calendar: Event Notification for ");
+		sb.append(StringPool.QUOTE);
+		sb.append(calendarBooking.getTitle(LocaleUtil.getSiteDefault()));
+		sb.append(StringPool.QUOTE);
+
+		assertMailSubjectCount(sb.toString(), 1);
 	}
 
 	@Test
@@ -1344,10 +1353,14 @@ public class CalendarBookingLocalServiceTest {
 				invitingCalendar, invitedCalendar,
 				WorkflowConstants.ACTION_PUBLISH);
 
-		String mailMessageSubject =
-			"Calendar: Event Notification for " + StringPool.QUOTE +
-				calendarBooking.getTitle(LocaleUtil.getSiteDefault()) +
-					StringPool.QUOTE;
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("Calendar: Event Notification for ");
+		sb.append(StringPool.QUOTE);
+		sb.append(calendarBooking.getTitle(LocaleUtil.getSiteDefault()));
+		sb.append(StringPool.QUOTE);
+
+		String mailMessageSubject = sb.toString();
 
 		assertMailSubjectCount(mailMessageSubject, 0);
 
@@ -1850,12 +1863,14 @@ public class CalendarBookingLocalServiceTest {
 
 		CalendarBookingLocalServiceUtil.checkCalendarBookings();
 
-		String mailMessageSubject =
-			"Calendar: Event Reminder for " + StringPool.QUOTE +
-				calendarBooking.getTitle(LocaleUtil.getSiteDefault()) +
-					StringPool.QUOTE;
+		StringBundler sb = new StringBundler(4);
 
-		assertMailSubjectCount(mailMessageSubject, 1);
+		sb.append("Calendar: Event Reminder for ");
+		sb.append(StringPool.QUOTE);
+		sb.append(calendarBooking.getTitle(LocaleUtil.getSiteDefault()));
+		sb.append(StringPool.QUOTE);
+
+		assertMailSubjectCount(sb.toString(), 1);
 	}
 
 	@Test

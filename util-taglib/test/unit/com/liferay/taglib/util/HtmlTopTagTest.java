@@ -194,9 +194,14 @@ public class HtmlTopTagTest {
 		String dataSennaTrackAttributeName = "data-senna-track";
 
 		if (expectedDataSennaTrackValue != null) {
-			String dataSennaTrackAttribute =
-				dataSennaTrackAttributeName + "=\"" +
-					expectedDataSennaTrackValue + "\"";
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(dataSennaTrackAttributeName);
+			sb.append("=\"");
+			sb.append(expectedDataSennaTrackValue);
+			sb.append("\"");
+
+			String dataSennaTrackAttribute = sb.toString();
 
 			String dataSennaTrackAttributeRegex =
 				elementBeginRegex + dataSennaTrackAttribute + "[\\s>]";

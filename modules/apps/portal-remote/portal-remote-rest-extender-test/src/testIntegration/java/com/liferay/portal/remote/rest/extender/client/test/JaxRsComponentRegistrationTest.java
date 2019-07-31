@@ -16,6 +16,7 @@ package com.liferay.portal.remote.rest.extender.client.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.osgi.util.ServiceTrackerFactory;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -112,12 +113,16 @@ public class JaxRsComponentRegistrationTest {
 			_serviceRegistration = _bundleContext.registerService(
 				Application.class, new Greeter(), properties);
 
+			StringBundler sb = new StringBundler(5);
+
+			sb.append("(&(objectClass=");
+			sb.append(Bus.class.getName());
+			sb.append(")(");
+			sb.append(HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_PATH);
+			sb.append("=/rest-test))");
+
 			ServiceTracker<Bus, Bus> serviceTracker =
-				ServiceTrackerFactory.open(
-					_bundleContext,
-					"(&(objectClass=" + Bus.class.getName() + ")(" +
-						HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_PATH +
-							"=/rest-test))");
+				ServiceTrackerFactory.open(_bundleContext, sb.toString());
 
 			Bus bus = serviceTracker.waitForService(10000L);
 

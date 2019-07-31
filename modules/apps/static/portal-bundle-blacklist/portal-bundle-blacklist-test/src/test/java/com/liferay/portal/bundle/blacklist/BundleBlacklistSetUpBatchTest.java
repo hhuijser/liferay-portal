@@ -42,19 +42,27 @@ public class BundleBlacklistSetUpBatchTest {
 		Assert.assertNotNull(
 			"Missing system property \"cfg.name\"", blacklistCfgName);
 
-		try (OutputStream outputStream = new FileOutputStream(
-				liferayHome + "/osgi/portal/" + _JAR_BUNDLE_SYMBOLIC_NAME +
-					".jar")) {
+		StringBundler sb = new StringBundler(4);
 
+		sb.append(liferayHome);
+		sb.append("/osgi/portal/");
+		sb.append(_JAR_BUNDLE_SYMBOLIC_NAME);
+		sb.append(".jar");
+
+		try (OutputStream outputStream = new FileOutputStream(sb.toString())) {
 			StreamUtil.transfer(
 				LPKGTestUtil.createJAR(_JAR_BUNDLE_SYMBOLIC_NAME),
 				outputStream);
 		}
 
-		try (OutputStream outputStream = new FileOutputStream(
-				liferayHome + "/osgi/war/" + _WAR_BUNDLE_SYMBOLIC_NAME +
-					".war")) {
+		sb.setIndex(0);
 
+		sb.append(liferayHome);
+		sb.append("/osgi/war/");
+		sb.append(_WAR_BUNDLE_SYMBOLIC_NAME);
+		sb.append(".war");
+
+		try (OutputStream outputStream = new FileOutputStream(sb.toString())) {
 			StreamUtil.transfer(
 				LPKGTestUtil.createWAR(_WAR_BUNDLE_SYMBOLIC_NAME),
 				outputStream);

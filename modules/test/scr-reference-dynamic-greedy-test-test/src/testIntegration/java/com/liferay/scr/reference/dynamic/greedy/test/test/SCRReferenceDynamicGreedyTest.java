@@ -15,6 +15,7 @@
 package com.liferay.scr.reference.dynamic.greedy.test.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.test.rule.Inject;
@@ -140,14 +141,17 @@ public class SCRReferenceDynamicGreedyTest {
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(Object.class, _SERVICE_1, properties);
 
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("(&(objectClass=");
+		sb.append(DynamicGreedyComponent.class.getName());
+		sb.append(")(reference.cardinality=");
+		sb.append(referenceCardinality);
+		sb.append("))");
+
 		ServiceTracker<DynamicGreedyComponent, DynamicGreedyComponent>
 			serviceTracker = new ServiceTracker<>(
-				bundleContext,
-				bundleContext.createFilter(
-					"(&(objectClass=" + DynamicGreedyComponent.class.getName() +
-						")(reference.cardinality=" + referenceCardinality +
-							"))"),
-				null);
+				bundleContext, bundleContext.createFilter(sb.toString()), null);
 
 		serviceTracker.open();
 
@@ -216,13 +220,17 @@ public class SCRReferenceDynamicGreedyTest {
 		ServiceRegistration<?> serviceRegistration =
 			bundleContext.registerService(String.class, _SERVICE_1, properties);
 
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("(&(objectClass=");
+		sb.append(DynamicGreedyComponent.class.getName());
+		sb.append(")(field.option=");
+		sb.append(fieldOption);
+		sb.append("))");
+
 		ServiceTracker<DynamicGreedyComponent, DynamicGreedyComponent>
 			serviceTracker = new ServiceTracker<>(
-				bundleContext,
-				bundleContext.createFilter(
-					"(&(objectClass=" + DynamicGreedyComponent.class.getName() +
-						")(field.option=" + fieldOption + "))"),
-				null);
+				bundleContext, bundleContext.createFilter(sb.toString()), null);
 
 		serviceTracker.open();
 

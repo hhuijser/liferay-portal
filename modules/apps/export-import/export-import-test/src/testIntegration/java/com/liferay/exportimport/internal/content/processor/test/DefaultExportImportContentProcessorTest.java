@@ -643,11 +643,16 @@ public class DefaultExportImportContentProcessorTest {
 		content = _exportImportContentProcessor.replaceImportContentReferences(
 			_portletDataContextImport, _referrerStagedModel, content);
 
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("The imported content should contain the friendly URL of ");
+		sb.append("the external group (\"");
+		sb.append(_externalGroup.getFriendlyURL());
+		sb.append("\"), but it does not:\n");
+		sb.append(content);
+
 		Assert.assertTrue(
-			"The imported content should contain the friendly URL of the " +
-				"external group (\"" + _externalGroup.getFriendlyURL() +
-					"\"), but it does not:\n" + content,
-			content.contains(_externalGroup.getFriendlyURL()));
+			sb.toString(), content.contains(_externalGroup.getFriendlyURL()));
 
 		Assert.assertFalse(
 			"The imported content should not contain any @ variables, but it " +
@@ -1167,9 +1172,13 @@ public class DefaultExportImportContentProcessorTest {
 		String parameters1 = timestampParameter + "&width=100&height=100";
 		String parameters2 = "width=100&" + timestampParameter + "&height=100";
 		String parameters3 = "width=100&height=100&" + timestampParameter;
-		String parameters4 =
-			timestampParameter + "?" + timestampParameter +
-				"&width=100&height=100";
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(timestampParameter);
+		sb.append("?");
+		sb.append(timestampParameter);
+		sb.append("&width=100&height=100");
 
 		List<String> outURLs = new ArrayList<>();
 
@@ -1193,7 +1202,7 @@ public class DefaultExportImportContentProcessorTest {
 			outURLs.add(
 				StringUtil.replace(
 					url, new String[] {"[$TIMESTAMP$]", "[$TIMESTAMP_ONLY$]"},
-					new String[] {StringPool.BLANK, "?" + parameters4}));
+					new String[] {StringPool.BLANK, "?" + sb.toString()}));
 		}
 
 		return StringUtil.merge(outURLs, StringPool.NEW_LINE);

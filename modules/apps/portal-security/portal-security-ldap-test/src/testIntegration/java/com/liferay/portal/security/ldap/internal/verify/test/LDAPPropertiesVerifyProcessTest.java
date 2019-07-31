@@ -15,6 +15,7 @@
 package com.liferay.portal.security.ldap.internal.verify.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
@@ -331,12 +332,16 @@ public class LDAPPropertiesVerifyProcessTest extends BaseVerifyProcessTestCase {
 	@Override
 	protected VerifyProcess getVerifyProcess() {
 		try {
+			StringBundler sb = new StringBundler(4);
+
+			sb.append("(&(objectClass=");
+			sb.append(VerifyProcess.class.getName());
+			sb.append(")(verify.process.name=");
+			sb.append("com.liferay.portal.security.ldap))");
+
 			ServiceReference<?>[] serviceReferences =
 				_bundleContext.getAllServiceReferences(
-					VerifyProcess.class.getName(),
-					"(&(objectClass=" + VerifyProcess.class.getName() +
-						")(verify.process.name=" +
-							"com.liferay.portal.security.ldap))");
+					VerifyProcess.class.getName(), sb.toString());
 
 			if (ArrayUtil.isEmpty(serviceReferences)) {
 				throw new IllegalStateException("Unable to get verify process");

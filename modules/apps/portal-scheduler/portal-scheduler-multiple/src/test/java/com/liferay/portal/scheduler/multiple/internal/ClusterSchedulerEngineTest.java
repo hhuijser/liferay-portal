@@ -14,6 +14,7 @@
 
 package com.liferay.portal.scheduler.multiple.internal;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.cluster.ClusterEventListener;
 import com.liferay.portal.kernel.cluster.ClusterExecutor;
@@ -2363,7 +2364,14 @@ public class ClusterSchedulerEngineTest {
 		private String _getFullName(
 			String jobName, String groupName, StorageType storageType) {
 
-			return groupName + StringPool.PERIOD + jobName + storageType;
+			StringBundler sb = new StringBundler(4);
+
+			sb.append(groupName);
+			sb.append(StringPool.PERIOD);
+			sb.append(jobName);
+			sb.append(storageType);
+
+			return sb.toString();
 		}
 
 		private final Map<String, SchedulerResponse> _defaultJobs =

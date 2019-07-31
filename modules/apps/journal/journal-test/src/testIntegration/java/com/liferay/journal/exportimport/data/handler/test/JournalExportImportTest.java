@@ -54,6 +54,7 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.reflect.ReflectionUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -250,14 +251,18 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 			},
 			StringPool.SLASH);
 
-		String newContent =
-			"<![CDATA[<img data-fileentryid=\"" + dlFileEntry.getFileEntryId() +
-				"\" src=\"" + dlFileEntryUrl + "\" />]]>";
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("<![CDATA[<img data-fileentryid=\"");
+		sb.append(dlFileEntry.getFileEntryId());
+		sb.append("\" src=\"");
+		sb.append(dlFileEntryUrl);
+		sb.append("\" />]]>");
 
 		journalArticle = JournalArticleLocalServiceUtil.updateContent(
 			journalArticle.getGroupId(), journalArticle.getArticleId(),
 			journalArticle.getVersion(),
-			content.replaceAll("<\\!\\[CDATA\\[.+?\\]\\]>", newContent));
+			content.replaceAll("<\\!\\[CDATA\\[.+?\\]\\]>", sb.toString()));
 
 		Map<String, String[]> parameterMap =
 			ExportImportConfigurationParameterMapFactoryUtil.buildParameterMap(

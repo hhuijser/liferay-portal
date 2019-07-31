@@ -22,6 +22,7 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
@@ -97,18 +98,18 @@ public class AMImageContentTransformerTest {
 				fileEntry, fileEntry.getFileVersion(), null, StringPool.BLANK,
 				false, false));
 
-		String regex =
-			"<picture data-fileentryid=\".+\">" +
-				"<source media=\"\\(max-width:.+px\\)\" srcset=\".+\" \\/>" +
-					"<source media=\"\\(max-width:.+px\\) and " +
-						"\\(min-width:.+px\\)\" srcset=\".+\" \\/>" +
-							"<img data-fileentryid=\".+\" src=\".+\" \\/>" +
-								"<\\/picture>";
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("<picture data-fileentryid=\".+\">");
+		sb.append("<source media=\"\\(max-width:.+px\\)\" srcset=\".+\" \\/>");
+		sb.append("<source media=\"\\(max-width:.+px\\) and ");
+		sb.append("\\(min-width:.+px\\)\" srcset=\".+\" \\/>");
+		sb.append("<img data-fileentryid=\".+\" src=\".+\" \\/><\\/picture>");
 
 		String transformedHTML = _contentTransformerHandler.transform(
 			ContentTransformerContentTypes.HTML, rawHTML);
 
-		Assert.assertTrue(transformedHTML.matches(regex));
+		Assert.assertTrue(transformedHTML.matches(sb.toString()));
 	}
 
 	private FileEntry _addImageFileEntry(ServiceContext serviceContext)

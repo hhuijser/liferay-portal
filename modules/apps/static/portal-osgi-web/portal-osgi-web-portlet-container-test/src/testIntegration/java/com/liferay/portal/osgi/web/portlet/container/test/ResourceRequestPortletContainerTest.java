@@ -15,6 +15,7 @@
 package com.liferay.portal.osgi.web.portlet.container.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.HashMapDictionary;
@@ -74,10 +75,12 @@ public class ResourceRequestPortletContainerTest
 
 		String layoutURL = layout.getRegularURL(httpServletRequest);
 
-		String url =
-			layoutURL + "?p_p_id=" +
-				URLCodec.encodeURL("'\"><script>alert(1)</script>") +
-					"&p_p_lifecycle=2&";
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(layoutURL);
+		sb.append("?p_p_id=");
+		sb.append(URLCodec.encodeURL("'\"><script>alert(1)</script>"));
+		sb.append("&p_p_lifecycle=2&");
 
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
@@ -85,7 +88,7 @@ public class ResourceRequestPortletContainerTest
 					Level.WARN)) {
 
 			PortletContainerTestUtil.Response response =
-				PortletContainerTestUtil.request(url);
+				PortletContainerTestUtil.request(sb.toString());
 
 			List<LoggingEvent> loggingEvents =
 				captureAppender.getLoggingEvents();
@@ -101,11 +104,14 @@ public class ResourceRequestPortletContainerTest
 
 			loggingEvent = loggingEvents.get(1);
 
-			Assert.assertEquals(
-				"User 0 is not allowed to serve resource for " + layoutURL +
-					" on '\"><script>alert(1)</script>: Invalid portlet ID " +
-						"'\"><script>alert(1)</script>",
-				loggingEvent.getMessage());
+			sb.setIndex(0);
+
+			sb.append("User 0 is not allowed to serve resource for ");
+			sb.append(layoutURL);
+			sb.append(" on '\"><script>alert(1)</script>: Invalid portlet ID ");
+			sb.append("'\"><script>alert(1)</script>");
+
+			Assert.assertEquals(sb.toString(), loggingEvent.getMessage());
 
 			Assert.assertEquals(403, response.getCode());
 		}

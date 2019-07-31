@@ -82,9 +82,14 @@ public class UserODataRetrieverCustomFieldsTest {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Filter filter = registry.getFilter(
-			"(&(model.class.name=com.liferay.portal.kernel.model.User)" +
-				"(objectClass=" + ODataRetriever.class.getName() + "))");
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("(&(model.class.name=com.liferay.portal.kernel.model.User)");
+		sb.append("(objectClass=");
+		sb.append(ODataRetriever.class.getName());
+		sb.append("))");
+
+		Filter filter = registry.getFilter(sb.toString());
 
 		_serviceTracker = registry.trackServices(filter);
 
@@ -425,7 +430,7 @@ public class UserODataRetrieverCustomFieldsTest {
 	}
 
 	private String _encodeName(ExpandoColumn expandoColumn) {
-		return com.liferay.petra.string.StringBundler.concat(
+		return StringBundler.concat(
 			StringPool.UNDERLINE, expandoColumn.getColumnId(),
 			StringPool.UNDERLINE,
 			Normalizer.normalizeIdentifier(expandoColumn.getName()));

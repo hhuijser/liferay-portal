@@ -17,6 +17,7 @@ package com.liferay.document.library.repository.cmis.search;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.repository.search.internal.LuceneRepositorySearchQueryTermBuilder;
 import com.liferay.document.library.repository.search.internal.RepositorySearchQueryBuilderImpl;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.model.RepositoryEntry;
 import com.liferay.portal.kernel.repository.search.RepositorySearchQueryBuilder;
 import com.liferay.portal.kernel.repository.search.RepositorySearchQueryTermBuilder;
@@ -237,10 +238,14 @@ public class BaseCmisSearchQueryBuilderTest {
 	public void testFolderQuery() throws Exception {
 		String folderQuery = buildFolderQuery(false);
 
-		assertQueryEquals(
-			"((IN_FOLDER('" + _MAPPED_ID + "') AND (cmis:name = 'test' OR " +
-				"cmis:createdBy = 'test')) OR CONTAINS('test'))",
-			folderQuery);
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("((IN_FOLDER('");
+		sb.append(_MAPPED_ID);
+		sb.append("') AND (cmis:name = 'test' OR cmis:createdBy = 'test')) ");
+		sb.append("OR CONTAINS('test'))");
+
+		assertQueryEquals(sb.toString(), folderQuery);
 	}
 
 	@Test
@@ -315,10 +320,14 @@ public class BaseCmisSearchQueryBuilderTest {
 	public void testSubfolderQuery() throws Exception {
 		String folderQuery = buildFolderQuery(true);
 
-		assertQueryEquals(
-			"((IN_TREE('" + _MAPPED_ID + "') AND (cmis:name = 'test' OR " +
-				"cmis:createdBy = 'test')) OR CONTAINS('test'))",
-			folderQuery);
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("((IN_TREE('");
+		sb.append(_MAPPED_ID);
+		sb.append("') AND (cmis:name = 'test' OR cmis:createdBy = 'test')) ");
+		sb.append("OR CONTAINS('test'))");
+
+		assertQueryEquals(sb.toString(), folderQuery);
 	}
 
 	@Test

@@ -580,14 +580,27 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 			}
 		}
 
+		StringBundler sb = new StringBundler(5);
+
+		sb.append("Could not find expected max-width of '");
+		sb.append(expectedMaxWidth);
+		sb.append("' in '");
+		sb.append(sourceJSONObject.toString());
+		sb.append("'");
+
 		Assert.assertTrue(
-			"Could not find expected max-width of '" + expectedMaxWidth +
-				"' in '" + sourceJSONObject.toString() + "'",
-			(expectedMaxWidth == 0) || assertedMaxWidth);
+			sb.toString(), (expectedMaxWidth == 0) || assertedMaxWidth);
+
+		sb.setIndex(0);
+
+		sb.append("Could not find expected min-width of '");
+		sb.append(expectedMinWidth);
+		sb.append("' in '");
+		sb.append(sourceJSONObject.toString());
+		sb.append("'");
+
 		Assert.assertTrue(
-			"Could not find expected min-width of '" + expectedMinWidth +
-				"' in '" + sourceJSONObject.toString() + "'",
-			(expectedMinWidth == 0) || assertedMinWidth);
+			sb.toString(), (expectedMinWidth == 0) || assertedMinWidth);
 	}
 
 	private void _assertHDSrcSource(
@@ -627,10 +640,17 @@ public class FileEntryAMImageURLItemSelectorReturnTypeResolverTest {
 
 		Matcher matcher = _pattern.matcher(srcSource);
 
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("/o/adaptive-media/image/");
+		sb.append(fileEntryId);
+		sb.append("/");
+		sb.append(configurationEntryUuid);
+		sb.append("/");
+		sb.append(title);
+
 		Assert.assertEquals(
-			"/o/adaptive-media/image/" + fileEntryId + "/" +
-				configurationEntryUuid + "/" + title,
-			matcher.replaceFirst(StringPool.BLANK));
+			sb.toString(), matcher.replaceFirst(StringPool.BLANK));
 	}
 
 	private byte[] _getImageBytes() throws Exception {

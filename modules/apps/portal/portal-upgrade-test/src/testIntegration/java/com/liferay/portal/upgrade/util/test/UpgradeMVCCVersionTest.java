@@ -81,8 +81,8 @@ public class UpgradeMVCCVersionTest extends UpgradeMVCCVersion {
 
 	private void _createTable(String tableName) throws Exception {
 		runSQL(
-			"create table " + tableName + "(id LONG not null primary key, " +
-				"userId LONG)");
+			"create table " + tableName +
+				"(id LONG not null primary key, userId LONG)");
 	}
 
 	private void _dropTable(String tableName) throws Exception {

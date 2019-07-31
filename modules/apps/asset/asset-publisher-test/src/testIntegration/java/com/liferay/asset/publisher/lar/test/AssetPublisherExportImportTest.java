@@ -1242,10 +1242,15 @@ public class AssetPublisherExportImportTest
 			expectedGroupId = importedGroup.getGroupId();
 		}
 
+		StringBundler sb = new StringBundler(4);
+
+		sb.append("Vocabulary ");
+		sb.append(importedAssetVocabularyId);
+		sb.append(" does not belong to group ");
+		sb.append(expectedGroupId);
+
 		Assert.assertEquals(
-			"Vocabulary " + importedAssetVocabularyId +
-				" does not belong to group " + expectedGroupId,
-			expectedGroupId, importedVocabulary.getGroupId());
+			sb.toString(), expectedGroupId, importedVocabulary.getGroupId());
 
 		AssetVocabularyLocalServiceUtil.deleteAssetVocabulary(assetVocabulary);
 	}

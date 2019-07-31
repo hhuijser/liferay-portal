@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.test.util.mappings;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -94,9 +95,16 @@ public abstract class BaseSubstringFieldQueryBuilderTestCase
 
 		assertSearchNoHits(StringPool.BACK_SLASH);
 
-		assertSearchNoHits(
-			StringPool.STAR + StringPool.SPACE + StringPool.AMPERSAND +
-				StringPool.DASH + StringPool.SPACE + StringPool.EXCLAMATION);
+		StringBundler sb = new StringBundler(6);
+
+		sb.append(StringPool.STAR);
+		sb.append(StringPool.SPACE);
+		sb.append(StringPool.AMPERSAND);
+		sb.append(StringPool.DASH);
+		sb.append(StringPool.SPACE);
+		sb.append(StringPool.EXCLAMATION);
+
+		assertSearchNoHits(sb.toString());
 
 		assertSearchNoHits("AND");
 		assertSearchNoHits("NOT");

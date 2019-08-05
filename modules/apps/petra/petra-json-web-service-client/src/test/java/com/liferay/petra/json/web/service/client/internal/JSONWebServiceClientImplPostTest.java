@@ -33,7 +33,7 @@ import org.junit.Test;
  * @author Igor Beslic
  */
 public class JSONWebServiceClientImplPostTest
-	extends JSONWebServiceClientBaseTest {
+	extends BaseJSONWebServiceClientTestCase {
 
 	@Before
 	public void setUp() throws Exception {

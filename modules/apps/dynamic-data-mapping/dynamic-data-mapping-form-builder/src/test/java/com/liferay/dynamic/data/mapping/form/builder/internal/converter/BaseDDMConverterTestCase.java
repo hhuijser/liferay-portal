@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * @author Marcellus Tavares
  */
-public class BaseDDMConverterTest {
+public abstract class BaseDDMConverterTestCase {
 
 	protected <T> T deserialize(
 		String serializedDDMFormRules, Class<T> targetType) {

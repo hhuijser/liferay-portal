@@ -40,7 +40,8 @@ import org.junit.Test;
 /**
  * @author Tina Tian
  */
-public class RestrictedLiferayObjectWrapperTest extends BaseObjectWrapperTest {
+public class RestrictedLiferayObjectWrapperTest
+	extends BaseObjectWrapperTestCase {
 
 	@ClassRule
 	public static final CodeCoverageAssertor codeCoverageAssertor =

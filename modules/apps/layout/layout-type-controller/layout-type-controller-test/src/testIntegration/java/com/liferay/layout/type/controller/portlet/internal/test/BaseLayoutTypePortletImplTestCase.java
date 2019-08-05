@@ -36,7 +36,7 @@ import org.junit.Before;
 /**
  * @author Manuel de la Peña
  */
-public class LayoutTypePortletImplBaseTest {
+public abstract class BaseLayoutTypePortletImplTestCase {
 
 	@Before
 	public void setUp() throws Exception {

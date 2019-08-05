@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * @author Igor Beslic
  */
-public class JSONWebServiceClientBaseTest {
+public abstract class BaseJSONWebServiceClientTestCase {
 
 	protected Map<String, Object> getBaseProperties() {
 		Map<String, Object> properties = new HashMap<String, Object>();

@@ -50,7 +50,7 @@ import org.w3c.dom.Node;
 /**
  * @author Xiangyue Cai
  */
-public class LiferayObjectWrapperTest extends BaseObjectWrapperTest {
+public class LiferayObjectWrapperTest extends BaseObjectWrapperTestCase {
 
 	@ClassRule
 	@Rule

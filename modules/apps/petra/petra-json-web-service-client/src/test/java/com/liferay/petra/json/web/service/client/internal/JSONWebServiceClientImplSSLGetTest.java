@@ -31,7 +31,7 @@ import org.junit.Test;
  * @author Igor Beslic
  */
 public class JSONWebServiceClientImplSSLGetTest
-	extends JSONWebServiceClientBaseTest {
+	extends BaseJSONWebServiceClientTestCase {
 
 	@Test
 	public void test200OKOnGetIfTLS11() throws Exception {

@@ -22,7 +22,8 @@ import org.junit.Test;
 /**
  * @author Igor Beslic
  */
-public class JSONWebServiceClientImplTest extends JSONWebServiceClientBaseTest {
+public class JSONWebServiceClientImplTest
+	extends BaseJSONWebServiceClientTestCase {
 
 	@Test
 	public void testActivateForBasicProxy() throws Exception {

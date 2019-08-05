@@ -59,7 +59,7 @@ import org.skyscreamer.jsonassert.JSONAssert;
 @PrepareForTest(ServiceContextThreadLocal.class)
 @RunWith(PowerMockRunner.class)
 public class DDMFormRuleToDDMFormRuleModelConverterTest
-	extends BaseDDMConverterTest {
+	extends BaseDDMConverterTestCase {
 
 	@Before
 	public void setUp() throws Exception {

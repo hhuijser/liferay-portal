@@ -36,7 +36,7 @@ import org.junit.Assert;
 /**
  * @author Tina Tian
  */
-public class BaseObjectWrapperTest {
+public abstract class BaseObjectWrapperTestCase {
 
 	protected <T, R> void assertTemplateModel(
 			String expectResult, UnsafeFunction<T, R, Exception> unsafeFunction,

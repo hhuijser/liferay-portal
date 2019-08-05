@@ -41,7 +41,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 public class LayoutTypePortletImplEmbeddedPortletsTest
-	extends LayoutTypePortletImplBaseTest {
+	extends BaseLayoutTypePortletImplTestCase {
 
 	@ClassRule
 	@Rule

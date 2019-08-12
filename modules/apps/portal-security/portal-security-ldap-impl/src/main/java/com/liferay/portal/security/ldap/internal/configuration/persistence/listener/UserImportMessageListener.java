@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.ldap.internal.messaging;
+package com.liferay.portal.security.ldap.internal.configuration.persistence.listener;
 
 import com.liferay.portal.configuration.metatype.bnd.util.ConfigurableUtil;
 import com.liferay.portal.configuration.persistence.listener.ConfigurationModelListener;

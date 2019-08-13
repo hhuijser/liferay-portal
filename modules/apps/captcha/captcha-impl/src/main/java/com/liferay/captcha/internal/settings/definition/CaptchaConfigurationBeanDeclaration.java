@@ -12,22 +12,23 @@
  * details.
  */
 
-package com.liferay.chat.internal.configuration;
+package com.liferay.captcha.internal.settings.definition;
 
+import com.liferay.captcha.configuration.CaptchaConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Peter Fellwock
+ * @author Pei-Jung Lan
  */
-@Component(enabled = false, service = ConfigurationBeanDeclaration.class)
-public class ChatGroupServiceConfigurationBeanDeclaration
+@Component(service = ConfigurationBeanDeclaration.class)
+public class CaptchaConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return ChatGroupServiceConfiguration.class;
+		return CaptchaConfiguration.class;
 	}
 
 }

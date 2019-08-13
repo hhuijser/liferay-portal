@@ -12,22 +12,22 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.internal.configuration;
+package com.liferay.chat.internal.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Adolfo Pérez
+ * @author Peter Fellwock
  */
-@Component(service = ConfigurationBeanDeclaration.class)
-public class AMImageCompanyConfigurationBeanDeclaration
+@Component(enabled = false, service = ConfigurationBeanDeclaration.class)
+public class ChatGroupServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return AMImageCompanyConfiguration.class;
+		return ChatGroupServiceConfiguration.class;
 	}
 
 }

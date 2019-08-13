@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.blogs.web.internal.configuration.definition;
+package com.liferay.blogs.web.internal.settings.definition;
 
-import com.liferay.blogs.configuration.BlogsGroupServiceConfiguration;
+import com.liferay.blogs.web.internal.configuration.BlogsPortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Sergio González
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class BlogsGroupServiceConfigurationBeanDeclaration
+public class BlogsPortletInstanceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return BlogsGroupServiceConfiguration.class;
+		return BlogsPortletInstanceConfiguration.class;
 	}
 
 }

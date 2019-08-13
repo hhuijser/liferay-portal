@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.announcements.web.internal.configuration.definition;
+package com.liferay.announcements.web.internal.settings.definition;
 
 import com.liferay.announcements.web.internal.configuration.AnnouncementsPortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.categories.internal.permission;
+package com.liferay.asset.categories.internal.security.permission;
 
 import com.liferay.asset.kernel.model.AssetVocabulary;
 import com.liferay.asset.kernel.service.AssetVocabularyLocalService;

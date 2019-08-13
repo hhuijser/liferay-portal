@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.bookmarks.internal.service.permission;
+package com.liferay.bookmarks.internal.security.permission;
 
 import com.liferay.bookmarks.model.BookmarksFolder;
 import com.liferay.bookmarks.service.BookmarksFolderLocalService;

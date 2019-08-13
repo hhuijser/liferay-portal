@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.internal.service.permission;
+package com.liferay.blogs.internal.security.permission;
 
 import com.liferay.blogs.model.BlogsEntry;
 import com.liferay.blogs.service.BlogsEntryLocalService;

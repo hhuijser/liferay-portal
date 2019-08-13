@@ -12,22 +12,23 @@
  * details.
  */
 
-package com.liferay.chat.internal.configuration;
+package com.liferay.announcements.web.internal.settings.definition;
 
+import com.liferay.announcements.web.internal.configuration.AnnouncementsPortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Peter Fellwock
+ * @author Roberto Díaz
  */
-@Component(enabled = false, service = ConfigurationBeanDeclaration.class)
-public class ChatGroupServiceConfigurationBeanDeclaration
+@Component(service = ConfigurationBeanDeclaration.class)
+public class AnnouncementsPortletInstanceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return ChatGroupServiceConfiguration.class;
+		return AnnouncementsPortletInstanceConfiguration.class;
 	}
 
 }

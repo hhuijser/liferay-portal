@@ -12,22 +12,23 @@
  * details.
  */
 
-package com.liferay.adaptive.media.image.internal.configuration;
+package com.liferay.captcha.internal.settings.definition;
 
+import com.liferay.captcha.configuration.CaptchaConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Adolfo Pérez
+ * @author Pei-Jung Lan
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class AMImageCompanyConfigurationBeanDeclaration
+public class CaptchaConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return AMImageCompanyConfiguration.class;
+		return CaptchaConfiguration.class;
 	}
 
 }

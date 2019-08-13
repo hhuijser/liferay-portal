@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.configuration.definition;
+package com.liferay.asset.auto.tagger.internal.settings.definition;
 
-import com.liferay.asset.publisher.web.internal.configuration.AssetPublisherWebConfiguration;
+import com.liferay.asset.auto.tagger.internal.configuration.AssetAutoTaggerCompanyConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Juergen Kappler
+ * @author Alejandro Tardín
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class AssetPublisherWebConfigurationBeanDeclaration
+public class AssetAutoTaggerCompanyConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
-	public Class<?> getConfigurationBeanClass() {
-		return AssetPublisherWebConfiguration.class;
+	public Class getConfigurationBeanClass() {
+		return AssetAutoTaggerCompanyConfiguration.class;
 	}
 
 }

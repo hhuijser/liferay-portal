@@ -12,23 +12,24 @@
  * details.
  */
 
-package com.liferay.asset.auto.tagger.opennlp.internal.configuration.declaration;
+package com.liferay.asset.auto.tagger.google.cloud.natural.language.internal.settings.definition;
 
-import com.liferay.asset.auto.tagger.opennlp.internal.configuration.OpenNLPDocumentAssetAutoTaggerCompanyConfiguration;
+import com.liferay.asset.auto.tagger.google.cloud.natural.language.internal.configuration.GCloudNaturalLanguageAssetAutoTaggerCompanyConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Cristina González
+ * @author Alicia García
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class OpenNLPDocumentAssetAutoTaggerCompanyConfigurationBeanDeclaration
-	implements ConfigurationBeanDeclaration {
+public class
+	GCloudNaturalLanguageAssetAutoTaggerCompanyConfigurationBeanDeclaration
+		implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class getConfigurationBeanClass() {
-		return OpenNLPDocumentAssetAutoTaggerCompanyConfiguration.class;
+		return GCloudNaturalLanguageAssetAutoTaggerCompanyConfiguration.class;
 	}
 
 }

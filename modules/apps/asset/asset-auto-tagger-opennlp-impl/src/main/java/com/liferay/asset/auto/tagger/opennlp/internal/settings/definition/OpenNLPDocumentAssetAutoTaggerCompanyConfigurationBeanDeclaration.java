@@ -12,24 +12,23 @@
  * details.
  */
 
-package com.liferay.asset.categories.navigation.web.internal.configuration.definition;
+package com.liferay.asset.auto.tagger.opennlp.internal.settings.definition;
 
-import com.liferay.asset.categories.navigation.web.internal.configuration.AssetCategoriesNavigationPortletInstanceConfiguration;
+import com.liferay.asset.auto.tagger.opennlp.internal.configuration.OpenNLPDocumentAssetAutoTaggerCompanyConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Juergen Kappler
+ * @author Cristina González
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class
-	AssetCategoriesNavigationPortletInstanceConfigurationBeanDeclaration
-		implements ConfigurationBeanDeclaration {
+public class OpenNLPDocumentAssetAutoTaggerCompanyConfigurationBeanDeclaration
+	implements ConfigurationBeanDeclaration {
 
 	@Override
-	public Class<?> getConfigurationBeanClass() {
-		return AssetCategoriesNavigationPortletInstanceConfiguration.class;
+	public Class getConfigurationBeanClass() {
+		return OpenNLPDocumentAssetAutoTaggerCompanyConfiguration.class;
 	}
 
 }

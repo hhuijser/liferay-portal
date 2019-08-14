@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.document.library.internal.definition;
+package com.liferay.document.library.file.rank.internal.settings.definition;
 
-import com.liferay.document.library.configuration.DLConfiguration;
+import com.liferay.document.library.file.rank.internal.configuration.DLFileRankServiceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Drew Brokke
+ * @author Alejandro Tardín
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class DLConfigurationBeanDeclaration
+public class DLFileRankServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return DLConfiguration.class;
+		return DLFileRankServiceConfiguration.class;
 	}
 
 }

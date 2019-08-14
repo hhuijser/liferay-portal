@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.web.internal.configuration.definition;
+package com.liferay.fragment.web.internal.settings.definition;
 
 import com.liferay.fragment.web.internal.configuration.FragmentPortletConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;

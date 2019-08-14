@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.data.engine.rest.internal.security.permission;
+package com.liferay.data.engine.rest.internal.security.permission.resource;
 
 import com.liferay.data.engine.rest.internal.constants.DataDefinitionConstants;
 import com.liferay.data.engine.rest.internal.constants.DataRecordCollectionConstants;

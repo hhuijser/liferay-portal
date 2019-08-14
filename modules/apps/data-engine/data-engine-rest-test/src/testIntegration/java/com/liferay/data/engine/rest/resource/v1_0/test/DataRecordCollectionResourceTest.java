@@ -123,13 +123,13 @@ public class DataRecordCollectionResourceTest
 	protected DataRecordCollection randomIrrelevantDataRecordCollection()
 		throws Exception {
 
-		DataRecordCollection randomIrrelevantDataRecordCollection =
+		DataRecordCollection randommIrrelevantDataRecordCollection =
 			super.randomIrrelevantDataRecordCollection();
 
-		randomIrrelevantDataRecordCollection.setDataDefinitionId(
+		randommIrrelevantDataRecordCollection.setDataDefinitionId(
 			_irrelevantDDMStructure.getStructureId());
 
-		return randomIrrelevantDataRecordCollection;
+		return randommIrrelevantDataRecordCollection;
 	}
 
 	@Override

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.comment.web.internal.configuration.definition;
+package com.liferay.comment.web.internal.settings.definition;
 
 import com.liferay.comment.configuration.CommentGroupServiceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.service.permission;
+package com.liferay.journal.security.permission;
 
 import com.liferay.journal.constants.JournalConstants;
 import com.liferay.portal.kernel.exception.PortalException;

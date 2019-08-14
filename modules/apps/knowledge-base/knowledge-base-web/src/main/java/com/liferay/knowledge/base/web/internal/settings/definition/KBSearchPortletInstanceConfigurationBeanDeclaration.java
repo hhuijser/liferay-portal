@@ -12,9 +12,9 @@
  * details.
  */
 
-package com.liferay.knowledge.base.configuration.definition;
+package com.liferay.knowledge.base.web.internal.settings.definition;
 
-import com.liferay.knowledge.base.configuration.KBGroupServiceConfiguration;
+import com.liferay.knowledge.base.web.internal.configuration.KBSearchPortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 
 import org.osgi.service.component.annotations.Component;
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Roberto Díaz
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class KBGroupServiceConfigurationBeanDeclaration
+public class KBSearchPortletInstanceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return KBGroupServiceConfiguration.class;
+		return KBSearchPortletInstanceConfiguration.class;
 	}
 
 }

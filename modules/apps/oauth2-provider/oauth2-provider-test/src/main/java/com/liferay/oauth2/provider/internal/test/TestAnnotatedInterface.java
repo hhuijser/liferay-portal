@@ -12,33 +12,34 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.test.internal;
+package com.liferay.oauth2.provider.internal.test;
 
-import java.util.Collections;
-import java.util.Set;
+import com.liferay.oauth2.provider.scope.RequiresNoScope;
+import com.liferay.oauth2.provider.scope.RequiresScope;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.core.Application;
+import javax.ws.rs.Path;
 
 /**
- * @author Víctor Galán
+ * @author Carlos Sierra Andrés
  */
-public class TestPreviewURLApplication extends Application {
-
-	public TestPreviewURLApplication(String previewURL) {
-		_previewURL = previewURL;
-	}
+public interface TestAnnotatedInterface {
 
 	@GET
-	public String getPreviewURL() {
-		return _previewURL;
-	}
+	@RequestScopeRead
+	public String getString();
 
-	@Override
-	public Set<Object> getSingletons() {
-		return Collections.<Object>singleton(this);
-	}
+	@GET
+	@Path("/no-scope")
+	@RequiresNoScope
+	public String getStringNoScope();
 
-	private final String _previewURL;
+	@RequiresScope("everything.read")
+	@Retention(RetentionPolicy.RUNTIME)
+	public static @interface RequestScopeRead {
+	}
 
 }

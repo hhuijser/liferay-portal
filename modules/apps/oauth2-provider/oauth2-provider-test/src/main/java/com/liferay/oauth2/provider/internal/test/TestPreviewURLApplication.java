@@ -12,33 +12,33 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.test.internal;
+package com.liferay.oauth2.provider.internal.test;
 
 import java.util.Collections;
 import java.util.Set;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.core.Application;
 
 /**
- * @author Carlos Sierra Andrés
+ * @author Víctor Galán
  */
-public class TestApplication extends Application {
+public class TestPreviewURLApplication extends Application {
+
+	public TestPreviewURLApplication(String previewURL) {
+		_previewURL = previewURL;
+	}
+
+	@GET
+	public String getPreviewURL() {
+		return _previewURL;
+	}
 
 	@Override
 	public Set<Object> getSingletons() {
 		return Collections.<Object>singleton(this);
 	}
 
-	@GET
-	public String getString() {
-		return "get";
-	}
-
-	@POST
-	public String post(String post) {
-		return "post";
-	}
+	private final String _previewURL;
 
 }

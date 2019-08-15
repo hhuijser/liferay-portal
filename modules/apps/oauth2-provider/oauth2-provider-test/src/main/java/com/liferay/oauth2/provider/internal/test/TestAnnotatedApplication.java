@@ -12,32 +12,25 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.test.internal;
+package com.liferay.oauth2.provider.internal.test;
 
-import com.liferay.oauth2.provider.test.internal.annotation.CUSTOM;
+import com.liferay.oauth2.provider.scope.RequiresNoScope;
+import com.liferay.oauth2.provider.scope.RequiresScope;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
 import java.util.Collections;
 import java.util.Set;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.POST;
+import javax.ws.rs.Path;
 import javax.ws.rs.core.Application;
 
 /**
  * @author Carlos Sierra Andrés
  */
-public class TestHeadHandlingApplication extends Application {
-
-	@CUSTOM
-	public String getCustomString() {
-		return "custom";
-	}
-
-	@HEAD
-	public String getHeadString() {
-		return "head";
-	}
+public class TestAnnotatedApplication extends Application {
 
 	@Override
 	public Set<Object> getSingletons() {
@@ -45,13 +38,21 @@ public class TestHeadHandlingApplication extends Application {
 	}
 
 	@GET
+	@RequestScopeRead
 	public String getString() {
-		return "get";
+		return "everything.read";
 	}
 
-	@POST
-	public String post(String post) {
-		return "post";
+	@GET
+	@Path("/no-scope")
+	@RequiresNoScope
+	public String getStringNoScope() {
+		return "no-scope";
+	}
+
+	@RequiresScope("everything.read")
+	@Retention(RetentionPolicy.RUNTIME)
+	public static @interface RequestScopeRead {
 	}
 
 }

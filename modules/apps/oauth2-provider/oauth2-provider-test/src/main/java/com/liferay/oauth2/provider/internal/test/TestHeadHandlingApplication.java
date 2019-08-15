@@ -12,34 +12,46 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.test.internal;
+package com.liferay.oauth2.provider.internal.test;
 
-import com.liferay.oauth2.provider.scope.RequiresNoScope;
-import com.liferay.oauth2.provider.scope.RequiresScope;
+import com.liferay.oauth2.provider.internal.test.annotation.CUSTOM;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
+import java.util.Collections;
+import java.util.Set;
 
 import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import javax.ws.rs.HEAD;
+import javax.ws.rs.POST;
+import javax.ws.rs.core.Application;
 
 /**
  * @author Carlos Sierra Andrés
  */
-public interface TestAnnotatedInterface {
+public class TestHeadHandlingApplication extends Application {
+
+	@CUSTOM
+	public String getCustomString() {
+		return "custom";
+	}
+
+	@HEAD
+	public String getHeadString() {
+		return "head";
+	}
+
+	@Override
+	public Set<Object> getSingletons() {
+		return Collections.<Object>singleton(this);
+	}
 
 	@GET
-	@RequestScopeRead
-	public String getString();
+	public String getString() {
+		return "get";
+	}
 
-	@GET
-	@Path("/no-scope")
-	@RequiresNoScope
-	public String getStringNoScope();
-
-	@RequiresScope("everything.read")
-	@Retention(RetentionPolicy.RUNTIME)
-	public static @interface RequestScopeRead {
+	@POST
+	public String post(String post) {
+		return "post";
 	}
 
 }

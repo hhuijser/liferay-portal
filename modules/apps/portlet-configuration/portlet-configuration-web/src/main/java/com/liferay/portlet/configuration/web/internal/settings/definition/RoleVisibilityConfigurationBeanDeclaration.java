@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portlet.configuration.web.internal.configuration.definition;
+package com.liferay.portlet.configuration.web.internal.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 import com.liferay.portlet.configuration.web.internal.configuration.RoleVisibilityConfiguration;

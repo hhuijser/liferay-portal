@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.nested.portlets.web.internal.configuration.definition;
+package com.liferay.nested.portlets.web.internal.settings.definition;
 
 import com.liferay.nested.portlets.web.internal.configuration.NestedPortletsPortletInstanceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.organizations.service.internal.constants;
+package com.liferay.organizations.internal.constants;
 
 /**
  * @author Drew Brokke

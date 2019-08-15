@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.portal.security.sso.cas.internal.module.configuration.definition;
+package com.liferay.portal.security.sso.ntlm.internal.module.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.portal.security.sso.cas.configuration.CASConfiguration;
+import com.liferay.portal.security.sso.ntlm.configuration.NtlmConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Mika Koivisto
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class CASCompanyServiceConfigurationBeanDeclaration
+public class NtlmCompanyServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return CASConfiguration.class;
+		return NtlmConfiguration.class;
 	}
 
 }

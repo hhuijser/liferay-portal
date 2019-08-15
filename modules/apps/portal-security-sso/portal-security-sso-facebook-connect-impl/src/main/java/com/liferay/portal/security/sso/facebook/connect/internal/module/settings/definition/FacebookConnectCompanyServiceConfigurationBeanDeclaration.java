@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.portal.security.sso.opensso.internal.module.configuration.definition;
+package com.liferay.portal.security.sso.facebook.connect.internal.module.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.portal.security.sso.opensso.configuration.OpenSSOConfiguration;
+import com.liferay.portal.security.sso.facebook.connect.configuration.FacebookConnectConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Mika Koivisto
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class OpenSSOCompanyServiceConfigurationBeanDeclaration
+public class FacebookConnectCompanyServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return OpenSSOConfiguration.class;
+		return FacebookConnectConfiguration.class;
 	}
 
 }

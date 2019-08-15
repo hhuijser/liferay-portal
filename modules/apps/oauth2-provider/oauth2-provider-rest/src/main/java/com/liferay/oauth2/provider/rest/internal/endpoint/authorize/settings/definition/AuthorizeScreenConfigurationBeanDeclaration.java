@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.oauth2.provider.rest.internal.endpoint.authorize.configuration.definition;
+package com.liferay.oauth2.provider.rest.internal.endpoint.authorize.settings.definition;
 
 import com.liferay.oauth2.provider.rest.internal.endpoint.authorize.configuration.AuthorizeScreenConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;

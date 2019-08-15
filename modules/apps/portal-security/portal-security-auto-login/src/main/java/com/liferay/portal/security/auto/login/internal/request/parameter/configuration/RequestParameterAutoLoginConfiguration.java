@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.auto.login.basic.auth.header.configuration;
+package com.liferay.portal.security.auto.login.internal.request.parameter.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,11 +23,11 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "api-authentication")
 @Meta.OCD(
-	id = "com.liferay.portal.security.auto.login.basic.auth.header.configuration.BasicAuthHeaderAutoLoginConfiguration",
+	id = "com.liferay.portal.security.auto.login.internal.request.parameter.configuration.RequestParameterAutoLoginConfiguration",
 	localization = "content/Language",
-	name = "basic-auth-header-auto-login-configuration-name"
+	name = "request-parameter-auto-login-configuration-name"
 )
-public interface BasicAuthHeaderAutoLoginConfiguration {
+public interface RequestParameterAutoLoginConfiguration {
 
 	@Meta.AD(deflt = "false", name = "enabled", required = false)
 	public boolean enabled();

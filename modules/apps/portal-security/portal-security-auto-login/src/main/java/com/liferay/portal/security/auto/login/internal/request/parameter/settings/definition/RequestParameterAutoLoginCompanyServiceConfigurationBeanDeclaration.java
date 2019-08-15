@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.portal.security.auto.login.request.header.settings.definition;
+package com.liferay.portal.security.auto.login.internal.request.parameter.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.portal.security.auto.login.request.header.configuration.RequestHeaderAutoLoginConfiguration;
+import com.liferay.portal.security.auto.login.internal.request.parameter.configuration.RequestParameterAutoLoginConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Mika Koivisto
+ * @author Tomas Polesovsky
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class RequestHeaderAutoLoginCompanyServiceConfigurationBeanDeclaration
+public class RequestParameterAutoLoginCompanyServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return RequestHeaderAutoLoginConfiguration.class;
+		return RequestParameterAutoLoginConfiguration.class;
 	}
 
 }

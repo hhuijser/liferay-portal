@@ -12,29 +12,23 @@
  * details.
  */
 
-package com.liferay.portal.security.auto.login.request.parameter.configuration.definition;
+package com.liferay.portal.security.auto.login.internal.basic.auth.header.settings.definition;
 
-import com.liferay.portal.kernel.settings.definition.ConfigurationPidMapping;
-import com.liferay.portal.security.auto.login.internal.request.parameter.constants.RequestParameterAutoLoginConstants;
-import com.liferay.portal.security.auto.login.request.parameter.configuration.RequestParameterAutoLoginConfiguration;
+import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
+import com.liferay.portal.security.auto.login.internal.basic.auth.header.configuration.BasicAuthHeaderAutoLoginConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Tomas Polesovsky
  */
-@Component(service = ConfigurationPidMapping.class)
-public class RequestParameterAutoLoginCompanyServiceConfigurationPidMapping
-	implements ConfigurationPidMapping {
+@Component(service = ConfigurationBeanDeclaration.class)
+public class BasicAuthHeaderAutoLoginCompanyServiceConfigurationBeanDeclaration
+	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return RequestParameterAutoLoginConfiguration.class;
-	}
-
-	@Override
-	public String getConfigurationPid() {
-		return RequestParameterAutoLoginConstants.SERVICE_NAME;
+		return BasicAuthHeaderAutoLoginConfiguration.class;
 	}
 
 }

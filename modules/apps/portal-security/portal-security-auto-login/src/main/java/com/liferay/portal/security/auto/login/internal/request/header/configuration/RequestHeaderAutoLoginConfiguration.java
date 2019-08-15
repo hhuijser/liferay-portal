@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.auto.login.request.parameter.configuration;
+package com.liferay.portal.security.auto.login.internal.request.header.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,13 +23,25 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "api-authentication")
 @Meta.OCD(
-	id = "com.liferay.portal.security.auto.login.request.parameter.configuration.RequestParameterAutoLoginConfiguration",
+	id = "com.liferay.portal.security.auto.login.internal.request.header.configuration.RequestHeaderAutoLoginConfiguration",
 	localization = "content/Language",
-	name = "request-parameter-auto-login-configuration-name"
+	name = "request-header-auto-login-configuration-name"
 )
-public interface RequestParameterAutoLoginConfiguration {
+public interface RequestHeaderAutoLoginConfiguration {
 
 	@Meta.AD(deflt = "false", name = "enabled", required = false)
 	public boolean enabled();
+
+	@Meta.AD(
+		deflt = "false", description = "import-from-ldap-help",
+		name = "import-from-ldap", required = false
+	)
+	public boolean importFromLDAP();
+
+	@Meta.AD(
+		deflt = "255.255.255.255", description = "auth-hosts-allowed-help",
+		name = "auth-hosts-allowed", required = false
+	)
+	public String authHostsAllowed();
 
 }

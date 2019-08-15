@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.test.internal.util;
+package com.liferay.portal.search.internal.test.util;
 
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.kernel.search.filter.DateRangeTermFilter;

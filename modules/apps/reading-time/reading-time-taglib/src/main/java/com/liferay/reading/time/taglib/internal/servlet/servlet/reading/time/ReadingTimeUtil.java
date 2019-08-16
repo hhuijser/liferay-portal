@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.reading.time.taglib.servlet.internal.servlet.reading.time;
+package com.liferay.reading.time.taglib.internal.servlet.servlet.reading.time;
 
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMap;
 import com.liferay.osgi.service.tracker.collections.map.ServiceTrackerMapFactory;

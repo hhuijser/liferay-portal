@@ -22,7 +22,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.reading.time.message.ReadingTimeMessageProvider;
 import com.liferay.reading.time.model.ReadingTimeEntry;
 import com.liferay.reading.time.service.ReadingTimeEntryLocalServiceUtil;
-import com.liferay.reading.time.taglib.servlet.internal.servlet.reading.time.ReadingTimeUtil;
+import com.liferay.reading.time.taglib.internal.servlet.servlet.reading.time.ReadingTimeUtil;
 import com.liferay.taglib.util.AttributesTagSupport;
 
 import java.io.IOException;

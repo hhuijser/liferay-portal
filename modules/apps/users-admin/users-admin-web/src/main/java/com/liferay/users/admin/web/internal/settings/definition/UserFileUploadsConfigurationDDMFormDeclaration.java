@@ -12,23 +12,27 @@
  * details.
  */
 
-package com.liferay.users.admin.web.internal.configuration.definition;
+package com.liferay.users.admin.web.internal.settings.definition;
 
-import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.users.admin.configuration.UserFileUploadsConfiguration;
+import com.liferay.configuration.admin.definition.ConfigurationDDMFormDeclaration;
+import com.liferay.users.admin.configuration.definition.UserFileUploadsConfigurationForm;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Drew Brokke
+ * @author Pei-Jung Lan
  */
-@Component(service = ConfigurationBeanDeclaration.class)
-public class UserFileUploadsConfigurationBeanDeclaration
-	implements ConfigurationBeanDeclaration {
+@Component(
+	immediate = true,
+	property = "configurationPid=com.liferay.users.admin.configuration.UserFileUploadsConfiguration",
+	service = ConfigurationDDMFormDeclaration.class
+)
+public class UserFileUploadsConfigurationDDMFormDeclaration
+	implements ConfigurationDDMFormDeclaration {
 
 	@Override
-	public Class<?> getConfigurationBeanClass() {
-		return UserFileUploadsConfiguration.class;
+	public Class<?> getDDMFormClass() {
+		return UserFileUploadsConfigurationForm.class;
 	}
 
 }

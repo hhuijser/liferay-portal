@@ -49,7 +49,6 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -57,7 +56,6 @@ import org.junit.runner.RunWith;
 /**
  * @generated
  */
-@Ignore
 @RunWith(Arquillian.class)
 public class AttachmentPersistenceTest {
 

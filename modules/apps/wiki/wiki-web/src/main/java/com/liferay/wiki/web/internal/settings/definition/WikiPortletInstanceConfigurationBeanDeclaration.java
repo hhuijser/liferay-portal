@@ -12,10 +12,10 @@
  * details.
  */
 
-package com.liferay.wiki.internal.configuration.definition;
+package com.liferay.wiki.web.internal.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.wiki.configuration.WikiGroupServiceConfiguration;
+import com.liferay.wiki.web.internal.configuration.WikiPortletInstanceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -23,12 +23,12 @@ import org.osgi.service.component.annotations.Component;
  * @author Iván Zaera
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class WikiGroupServiceConfigurationBeanDeclaration
+public class WikiPortletInstanceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return WikiGroupServiceConfiguration.class;
+		return WikiPortletInstanceConfiguration.class;
 	}
 
 }

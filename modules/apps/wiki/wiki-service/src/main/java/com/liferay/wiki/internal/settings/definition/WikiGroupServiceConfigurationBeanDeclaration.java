@@ -12,23 +12,23 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal.configuration.definition;
+package com.liferay.wiki.internal.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
-import com.liferay.wiki.configuration.WikiFileUploadConfiguration;
+import com.liferay.wiki.configuration.WikiGroupServiceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Roberto Díaz
+ * @author Iván Zaera
  */
 @Component(service = ConfigurationBeanDeclaration.class)
-public class WikiFileUploadsConfigurationBeanDeclaration
+public class WikiGroupServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
 	@Override
 	public Class<?> getConfigurationBeanClass() {
-		return WikiFileUploadConfiguration.class;
+		return WikiGroupServiceConfiguration.class;
 	}
 
 }

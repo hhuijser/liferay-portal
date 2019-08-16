@@ -21,9 +21,9 @@ import com.liferay.sync.SyncServicesUnavailableException;
 import com.liferay.sync.constants.SyncDeviceConstants;
 import com.liferay.sync.exception.SyncDeviceActiveException;
 import com.liferay.sync.exception.SyncDeviceWipeException;
+import com.liferay.sync.internal.configuration.SyncServiceConfigurationValues;
 import com.liferay.sync.service.SyncDeviceLocalServiceUtil;
 import com.liferay.sync.service.configuration.SyncServiceConfigurationKeys;
-import com.liferay.sync.service.internal.configuration.SyncServiceConfigurationValues;
 
 import org.osgi.annotation.versioning.ProviderType;
 

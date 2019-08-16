@@ -25,9 +25,9 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.util.PortletKeys;
+import com.liferay.sync.internal.configuration.SyncServiceConfigurationValues;
 import com.liferay.sync.model.SyncDLFileVersionDiff;
 import com.liferay.sync.service.base.SyncDLFileVersionDiffLocalServiceBaseImpl;
-import com.liferay.sync.service.internal.configuration.SyncServiceConfigurationValues;
 
 import java.io.File;
 

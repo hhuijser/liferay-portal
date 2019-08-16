@@ -79,6 +79,7 @@ import com.liferay.portal.theme.ThemeDisplayFactory;
 import com.liferay.sync.constants.SyncConstants;
 import com.liferay.sync.constants.SyncDLObjectConstants;
 import com.liferay.sync.constants.SyncDeviceConstants;
+import com.liferay.sync.internal.configuration.SyncServiceConfigurationValues;
 import com.liferay.sync.internal.util.JSONWebServiceActionParametersMap;
 import com.liferay.sync.internal.util.SyncContext;
 import com.liferay.sync.internal.util.SyncDLObjectUpdate;
@@ -88,7 +89,6 @@ import com.liferay.sync.model.SyncDevice;
 import com.liferay.sync.service.SyncDLFileVersionDiffLocalService;
 import com.liferay.sync.service.base.SyncDLObjectServiceBaseImpl;
 import com.liferay.sync.service.configuration.SyncServiceConfigurationKeys;
-import com.liferay.sync.service.internal.configuration.SyncServiceConfigurationValues;
 import com.liferay.sync.util.SyncHelper;
 import com.liferay.sync.util.comparator.SyncDLObjectModifiedTimeComparator;
 

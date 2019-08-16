@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.rss.web.internal.configuration.definition;
+package com.liferay.rss.web.internal.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
 import com.liferay.rss.web.internal.configuration.RSSPortletInstanceConfiguration;

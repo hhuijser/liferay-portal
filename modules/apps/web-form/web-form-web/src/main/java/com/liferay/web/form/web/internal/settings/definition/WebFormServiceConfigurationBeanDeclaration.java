@@ -15,6 +15,7 @@
 package com.liferay.web.form.web.internal.settings.definition;
 
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;
+import com.liferay.web.form.web.internal.configuration.WebFormServiceConfiguration;
 
 import org.osgi.service.component.annotations.Component;
 

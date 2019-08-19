@@ -37,7 +37,7 @@ import com.liferay.trash.test.util.WhenIsIndexableBaseModel;
 import com.liferay.trash.test.util.WhenIsUpdatableBaseModel;
 import com.liferay.wiki.model.WikiNode;
 import com.liferay.wiki.model.WikiPage;
-import com.liferay.wiki.util.test.WikiPageTrashHandlerTestUtil;
+import com.liferay.wiki.test.util.WikiPageTrashHandlerTestUtil;
 
 import org.junit.Before;
 import org.junit.ClassRule;

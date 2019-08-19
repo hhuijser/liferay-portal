@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.util.test;
+package com.liferay.wiki.test.util;
 
 import com.liferay.portal.kernel.model.BaseModel;
 import com.liferay.portal.kernel.model.ClassedModel;

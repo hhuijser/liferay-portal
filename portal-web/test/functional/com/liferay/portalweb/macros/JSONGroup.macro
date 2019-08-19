@@ -54,6 +54,8 @@ definition {
 
 		echo("## * Group Name: ${groupName}");
 
+		echo("## * Curl: ${curl}");
+
 		var groupId = JSONCurlUtil.post("${curl}", "$['groupId']");
 	}
 

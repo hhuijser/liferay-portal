@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.mapping.configuration.definition;
+package com.liferay.dynamic.data.mapping.settings.definition;
 
 import com.liferay.dynamic.data.mapping.configuration.DDMGroupServiceConfiguration;
 import com.liferay.portal.kernel.settings.definition.ConfigurationBeanDeclaration;

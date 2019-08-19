@@ -1,0 +1,4 @@
+Bundle-Name: Liferay Wiki Test Utilities
+Bundle-SymbolicName: com.liferay.wiki.test.util
+Bundle-Version: 1.0.0
+Export-Package: com.liferay.wiki.test.util

@@ -16,6 +16,8 @@ definition {
 				panel = "Site Administration",
 				portlet = "Blogs");
 
+			// Blogs.addEntry()
+
 			Blogs.addEntry(
 				entryContent = "Blogs Entry1 Content",
 				entryTitle = "Blogs Entry1 Title");

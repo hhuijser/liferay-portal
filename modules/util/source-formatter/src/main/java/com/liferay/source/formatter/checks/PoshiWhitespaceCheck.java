@@ -122,6 +122,8 @@ public class PoshiWhitespaceCheck extends WhitespaceCheck {
 				line = formatIncorrectSyntax(line, "for \\([^:]*[^:\"'\\s](:)");
 				line = formatIncorrectSyntax(line, "for \\([^:]*:([^:\"'\\s])");
 
+				line = line.replaceAll("(?m)^(\t*//)\\s*(.*)", "$1 $2");
+
 				sb.append(line);
 
 				sb.append("\n");

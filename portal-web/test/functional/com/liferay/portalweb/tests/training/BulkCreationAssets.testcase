@@ -213,6 +213,7 @@ String namePrefix = "TestRole";
 String namePostfix = "";
 
 // Regular roles set this to 1, site roles set to 2, organization role set to 3.
+
 int roleType = 3;
 
 //

@@ -217,7 +217,6 @@ definition {
 		var searchTerms = "banana,red apple,blue.berry!,fruit,sweet";
 
 		// Workaround for LPS-98622
-
 		// var searchTerms = "banana,red apple,blue.berry!,&quot;xigua&quot;,fruit,sweet";
 
 		for (var searchTerm : list "${searchTerms}") {

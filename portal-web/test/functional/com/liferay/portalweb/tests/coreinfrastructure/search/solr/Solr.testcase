@@ -111,7 +111,6 @@ definition {
 		property test.name.skip.portal.instance = "Solr#SolrWithSolrCloudSmokeTest";
 
 		// LRQA-44617
-
 		// <execute macro="Solr#viewSolrwithSolrCloudEnabledInConsole" />
 
 		Solr.viewLiferayCloudDashboard(cloudCollectionName = "liferay");

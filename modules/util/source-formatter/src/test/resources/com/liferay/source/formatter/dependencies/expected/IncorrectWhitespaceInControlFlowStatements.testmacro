@@ -3,6 +3,7 @@ definition {
 	macro TestControlFlowStatementsFormat {
 
 		// if statement
+
 		if ((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
 			("${check}" == "true") &&
 			("${check}" == "true")) {
@@ -11,6 +12,7 @@ definition {
 		}
 
 		// if else statement
+
 		if ("${check}" == "true") {
 			Alert.viewSuccessMessage();
 		}
@@ -52,6 +54,7 @@ definition {
 		}
 
 		// while statement
+
 		while (!("${i}" == "${propertyNumber}")) {
 			var i = MathUtil.sum("${i}", "1");
 		}
@@ -61,6 +64,7 @@ definition {
 		}
 
 		// for statement
+
 		for (var row : table "${rawTable}") {
 			TableEcho.echoTwoVars(
 				v0 = "${row[0]}",
@@ -74,6 +78,7 @@ definition {
 		}
 
 		// task statement
+
 		task ("Task1") {
 			echo("## Task1");
 		}
@@ -86,7 +91,9 @@ definition {
 	macro TestControlFlowStatementsFormatInMultilineComment {
 
 		/*
+
 		// if tatement
+
 		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
 			("${check}" == "true") &&
 			("${check}" == "true")){
@@ -95,6 +102,7 @@ definition {
 		}
 
 		// else if tatement
+
 		if("${check}" == "true"){
 			Alert.viewSuccessMessage();
 		}
@@ -135,6 +143,7 @@ definition {
 		}
 
 		// while tatement
+
 		while(!("${i}" == "${propertyNumber}")){
 			var i = MathUtil.sum("${i}", "1");
 		}
@@ -145,6 +154,7 @@ definition {
 		}
 
 		// for tatement
+
 		for(var row:table "${rawTable}"){
 			TableEcho.echoTwoVars(
 				v0 = "${row[0]}",
@@ -159,6 +169,7 @@ definition {
 		}
 
 		// task tatement
+
 		task("Task1"){
 			echo("## Task1");
 		}
@@ -174,7 +185,9 @@ definition {
 
 		var wikiPageContent = '''
 <pre>
+
 		// if tatement
+
 		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
 			("${check}" == "true") &&
 			("${check}" == "true")){
@@ -183,6 +196,7 @@ definition {
 		}
 
 		// else if tatement
+
 		if("${check}" == "true"){
 			Alert.viewSuccessMessage();
 		}
@@ -223,6 +237,7 @@ definition {
 		}
 
 		// while tatement
+
 		while(!("${i}" == "${propertyNumber}")){
 			var i = MathUtil.sum("${i}", "1");
 		}
@@ -233,6 +248,7 @@ definition {
 		}
 
 		// for tatement
+
 		for(var row:table "${rawTable}"){
 			TableEcho.echoTwoVars(
 				v0 = "${row[0]}",
@@ -247,6 +263,7 @@ definition {
 		}
 
 		// task tatement
+
 		task("Task1"){
 			echo("## Task1");
 		}

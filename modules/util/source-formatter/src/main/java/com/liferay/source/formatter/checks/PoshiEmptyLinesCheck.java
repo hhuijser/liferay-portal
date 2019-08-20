@@ -26,6 +26,9 @@ public class PoshiEmptyLinesCheck extends BaseFileCheck {
 		content = content.replaceAll(
 			"(?<!\n)(\n\t(?!else|if)\\w+ \\{)", "\n$1");
 
+		content = content.replaceAll("(((\n|^)\t*//.*)+)\n*", "$1\n\n");
+		content = content.replaceAll("(\n\t*(?!//).*\n)\n*(\t*//.*)", "$1\n$2");
+
 		content = content.replaceFirst("(definition \\{\n)(?!\n)", "$1\n");
 		content = content.replaceFirst("(?<!\n)(\n\\})$", "\n$1");
 		content = content.replaceFirst(

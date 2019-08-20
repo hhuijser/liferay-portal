@@ -12,14 +12,13 @@
  * details.
  */
 
-package com.liferay.segments.internal.xtream.configurator;
+package com.liferay.asset.display.page.internal.xstream.configurator;
 
+import com.liferay.asset.display.page.model.AssetDisplayPageEntry;
 import com.liferay.exportimport.kernel.xstream.XStreamAlias;
 import com.liferay.exportimport.kernel.xstream.XStreamConverter;
 import com.liferay.exportimport.kernel.xstream.XStreamType;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.segments.model.impl.SegmentsEntryImpl;
-import com.liferay.segments.model.impl.SegmentsExperienceImpl;
 import com.liferay.xstream.configurator.XStreamConfigurator;
 
 import java.util.List;
@@ -28,10 +27,11 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Eduardo García
+ * @author Pavel Savinov
  */
 @Component(immediate = true, service = XStreamConfigurator.class)
-public class SegmentsXStreamConfigurator implements XStreamConfigurator {
+public class AssetDisplayPageXStreamConfigurator
+	implements XStreamConfigurator {
 
 	@Override
 	public List<XStreamType> getAllowedXStreamTypes() {
@@ -51,8 +51,8 @@ public class SegmentsXStreamConfigurator implements XStreamConfigurator {
 	@Activate
 	protected void activate() {
 		_xStreamAliases = new XStreamAlias[] {
-			new XStreamAlias(SegmentsEntryImpl.class, "SegmentsEntry"),
-			new XStreamAlias(SegmentsExperienceImpl.class, "SegmentsExperience")
+			new XStreamAlias(
+				AssetDisplayPageEntry.class, "AssetDisplayPageEntry")
 		};
 	}
 

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.tags.selector.web.internal.update;
+package com.liferay.asset.tags.selector.web.internal.upgrade;
 
 import com.liferay.portal.kernel.upgrade.DummyUpgradeStep;
 import com.liferay.portal.upgrade.registry.UpgradeStepRegistrator;

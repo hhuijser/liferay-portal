@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.list.internal.exportimport.xstream.configurator;
+package com.liferay.asset.list.internal.xstream.configurator;
 
 import com.liferay.asset.list.model.impl.AssetListEntryImpl;
 import com.liferay.exportimport.kernel.xstream.XStreamAlias;

@@ -59,12 +59,31 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 			return javaTerm.getContent();
 		}
 
+		List<String> implementedClassNames =
+			javaClass.getImplementedClassNames();
+
 		_checkPackageName(
 			fileName, absolutePath, packageName, javaClass.getName(),
-			javaClass.getImplementedClassNames());
+			implementedClassNames);
 
 		if (isModulesFile(absolutePath) && !isModulesApp(absolutePath, true)) {
 			_checkModulePackageName(fileName, packageName);
+		}
+
+		List<String> expectedInternalImplementsDataEntries = getAttributeValues(
+			_EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY, absolutePath);
+
+		for (String expectedInternalImplementsDataEntry :
+				expectedInternalImplementsDataEntries) {
+
+			String[] array = StringUtil.split(
+				expectedInternalImplementsDataEntry, CharPool.COLON);
+
+			if (array.length == 2) {
+				_checkPackagePath(
+					fileName, implementedClassNames, array[0], packageName,
+					array[1], true);
+			}
 		}
 
 		return javaTerm.getContent();
@@ -239,8 +258,39 @@ public class JavaPackagePathCheck extends BaseJavaTermCheck {
 		}
 	}
 
+	private void _checkPackagePath(
+		String fileName, List<String> implementedClassNames,
+		String implementedClassName, String packageName,
+		String expectedPackageName, boolean internal) {
+
+		if (!implementedClassNames.contains(implementedClassName)) {
+			return;
+		}
+
+		if (!packageName.endsWith(expectedPackageName)) {
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Package for class implementing '", implementedClassName,
+					"' should end with '", expectedPackageName, "'"));
+		}
+
+		if (internal && !packageName.contains(".internal.") &&
+			!packageName.endsWith(".internal")) {
+
+			addMessage(
+				fileName,
+				StringBundler.concat(
+					"Class implementing '", implementedClassName,
+					"' should be in 'internal' package"));
+		}
+	}
+
 	private static final String _ALLOWED_INTERNAL_PACKAGE_DIR_NAMES_KEY =
 		"allowedInternalPackageDirNames";
+
+	private static final String _EXPECTED_INTERNAL_IMPLEMENTS_DATA_KEY =
+		"expectedInternalImplementsData";
 
 	private static final Pattern _internalPackagePattern = Pattern.compile(
 		"\\.(impl|internal)(\\.|\\Z)");

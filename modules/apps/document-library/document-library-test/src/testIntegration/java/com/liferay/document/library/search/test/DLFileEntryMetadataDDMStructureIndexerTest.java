@@ -128,7 +128,7 @@ public class DLFileEntryMetadataDDMStructureIndexerTest
 	}
 
 	@Inject(
-		filter = "background.task.executor.class.name=com.liferay.dynamic.data.mapping.background.task.DDMStructureIndexerBackgroundTaskExecutor"
+		filter = "background.task.executor.class.name=com.liferay.dynamic.data.mapping.internal.background.task.DDMStructureIndexerBackgroundTaskExecutor"
 	)
 	protected BackgroundTaskExecutor backgroundTaskExecutor;
 

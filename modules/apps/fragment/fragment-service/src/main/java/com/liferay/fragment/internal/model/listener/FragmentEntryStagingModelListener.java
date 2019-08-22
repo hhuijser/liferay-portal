@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.model.listener;
+package com.liferay.fragment.internal.model.listener;
 
 import com.liferay.fragment.model.FragmentEntry;
 import com.liferay.portal.kernel.exception.ModelListenerException;

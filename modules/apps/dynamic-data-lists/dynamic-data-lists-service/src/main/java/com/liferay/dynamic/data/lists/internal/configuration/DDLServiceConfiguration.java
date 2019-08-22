@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.dynamic.data.lists.configuration;
+package com.liferay.dynamic.data.lists.internal.configuration;
 
 import aQute.bnd.annotation.metatype.Meta;
 
@@ -23,7 +23,7 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
  */
 @ExtendedObjectClassDefinition(category = "dynamic-data-lists")
 @Meta.OCD(
-	id = "com.liferay.dynamic.data.lists.configuration.DDLServiceConfiguration",
+	id = "com.liferay.dynamic.data.lists.internal.configuration.DDLServiceConfiguration",
 	localization = "content/Language", name = "ddl-service-configuration-name"
 )
 public interface DDLServiceConfiguration {

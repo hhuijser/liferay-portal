@@ -14,7 +14,7 @@
 
 package com.liferay.dynamic.data.lists.internal.instance.lifecycle;
 
-import com.liferay.dynamic.data.lists.configuration.DDLServiceConfiguration;
+import com.liferay.dynamic.data.lists.internal.configuration.DDLServiceConfiguration;
 import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.util.DefaultDDMStructureHelper;
@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Michael C. Han
  */
 @Component(
-	configurationPid = "com.liferay.dynamic.data.lists.configuration.DDLServiceConfiguration",
+	configurationPid = "com.liferay.dynamic.data.lists.internal.configuration.DDLServiceConfiguration",
 	immediate = true, service = PortalInstanceLifecycleListener.class
 )
 public class AddDefaultDDLStructuresPortalInstanceLifecycleListener

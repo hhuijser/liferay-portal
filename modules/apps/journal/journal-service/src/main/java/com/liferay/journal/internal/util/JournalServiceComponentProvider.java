@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.journal.service.util;
+package com.liferay.journal.internal.util;
 
 import com.liferay.journal.configuration.JournalGroupServiceConfiguration;
 

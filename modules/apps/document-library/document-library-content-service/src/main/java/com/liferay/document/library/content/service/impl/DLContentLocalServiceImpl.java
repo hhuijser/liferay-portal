@@ -17,7 +17,7 @@ package com.liferay.document.library.content.service.impl;
 import com.liferay.document.library.content.exception.NoSuchContentException;
 import com.liferay.document.library.content.model.DLContent;
 import com.liferay.document.library.content.service.base.DLContentLocalServiceBaseImpl;
-import com.liferay.document.library.content.service.util.comparator.DLContentVersionComparator;
+import com.liferay.document.library.content.util.comparator.DLContentVersionComparator;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.jdbc.OutputBlob;

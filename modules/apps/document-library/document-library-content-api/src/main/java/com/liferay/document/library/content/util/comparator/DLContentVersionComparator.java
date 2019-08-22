@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.content.service.util.comparator;
+package com.liferay.document.library.content.util.comparator;
 
 import com.liferay.document.library.content.model.DLContent;
 import com.liferay.portal.kernel.util.OrderByComparator;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledge.base.service.util;
+package com.liferay.knowledge.base.internal.util;
 
 import com.liferay.knowledge.base.constants.KBActionKeys;
 import com.liferay.knowledge.base.model.KBArticle;

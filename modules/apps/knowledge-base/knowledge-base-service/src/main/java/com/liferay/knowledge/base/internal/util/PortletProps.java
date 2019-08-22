@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledge.base.service.util;
+package com.liferay.knowledge.base.internal.util;
 
 import com.liferay.portal.kernel.configuration.Configuration;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;

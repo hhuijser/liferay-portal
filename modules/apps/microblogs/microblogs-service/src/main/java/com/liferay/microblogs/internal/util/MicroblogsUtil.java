@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.microblogs.util;
+package com.liferay.microblogs.internal.util;
 
 import com.liferay.microblogs.constants.MicroblogsPortletKeys;
 import com.liferay.microblogs.model.MicroblogsEntry;

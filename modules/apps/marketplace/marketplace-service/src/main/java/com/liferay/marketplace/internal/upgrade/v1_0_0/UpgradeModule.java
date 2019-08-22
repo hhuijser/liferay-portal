@@ -14,7 +14,7 @@
 
 package com.liferay.marketplace.internal.upgrade.v1_0_0;
 
-import com.liferay.marketplace.util.ContextUtil;
+import com.liferay.marketplace.internal.util.ContextUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;

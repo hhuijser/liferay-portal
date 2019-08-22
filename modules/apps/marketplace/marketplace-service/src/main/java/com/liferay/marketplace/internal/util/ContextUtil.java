@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.marketplace.util;
+package com.liferay.marketplace.internal.util;
 
 import com.liferay.petra.string.StringPool;
 

@@ -10,4 +10,5 @@ Export-Package:\
 	com.liferay.sync.service,\
 	com.liferay.sync.service.configuration,\
 	com.liferay.sync.service.persistence,\
-	com.liferay.sync.util
+	com.liferay.sync.util,\
+	com.liferay.sync.util.comparator

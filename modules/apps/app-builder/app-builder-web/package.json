@@ -1,10 +1,10 @@
 {
 	"dependencies": {
-		"@clayui/button": "^3.0.0-milestone.2",
+		"@clayui/button": "3.0.0-milestone.2",
 		"@clayui/checkbox": "^3.0.0-milestone.1",
 		"@clayui/data-provider": "3.0.0-milestone.2",
 		"@clayui/drop-down": "3.0.0-milestone.2",
-		"@clayui/form": "^3.0.0-milestone.2",
+		"@clayui/form": "3.0.0-milestone.2",
 		"@clayui/icon": "3.0.0-milestone.2",
 		"@clayui/label": "3.0.0-milestone.2",
 		"@clayui/link": "3.0.0-milestone.2",
@@ -12,11 +12,11 @@
 		"@clayui/navigation-bar": "3.0.0-milestone.2",
 		"@clayui/pagination": "3.0.0-milestone.2",
 		"@clayui/table": "3.0.0-milestone.2",
-		"classnames": "^2.2.6",
-		"frontend-js-react-web": "^2.0.0",
+		"classnames": "2.2.6",
+		"frontend-js-react-web": "*",
 		"lodash.omit": "^4.5.0",
 		"moment": "^2.24.0",
-		"prop-types": "^15.7.2",
+		"prop-types": "15.7.2",
 		"react": "16.9.0",
 		"react-router-dom": "^5.0.1"
 	},

@@ -41,6 +41,7 @@ public class MethodNamingCheck extends BaseCheck {
 		String methodName = _getMethodName(detailAST);
 
 		_checkDoMethodName(detailAST, methodName);
+		_checkMethodName(detailAST, methodName);
 		_checkNonMethodName(detailAST, methodName);
 	}
 
@@ -79,6 +80,14 @@ public class MethodNamingCheck extends BaseCheck {
 		log(detailAST, _MSG_RENAME_METHOD, methodName, noDoName);
 	}
 
+	private void _checkMethodName(DetailAST detailAST, String methodName) {
+		for (String[] array : _RENAME_METHOD_STRINGS) {
+			if (methodName.startsWith(array[0])) {
+				log(detailAST, _MSG_RENAME_METHOD, methodName, array[1]);
+			}
+		}
+	}
+
 	private void _checkNonMethodName(DetailAST detailAST, String methodName) {
 		Matcher matcher = _nonMethodNamePattern.matcher(methodName);
 
@@ -113,6 +122,10 @@ public class MethodNamingCheck extends BaseCheck {
 	}
 
 	private static final String _MSG_RENAME_METHOD = "method.rename";
+
+	private static final String[][] _RENAME_METHOD_STRINGS = {
+		{"_getFileContent", "_read"}
+	};
 
 	private static final Pattern _doMethodNamePattern = Pattern.compile(
 		"^_do([A-Z])(.*)$");

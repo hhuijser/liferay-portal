@@ -366,6 +366,14 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testRenameMethod() throws Exception {
+		test(
+			"RenameMethod.testjava",
+			"Rename method '_getFileContents' to '_read'",
+			30);
+	}
+
+	@Test
 	public void testSecureRandomNumberGeneration() throws Exception {
 		test(
 			"SecureRandomNumberGeneration.testjava",

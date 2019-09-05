@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.security.PermissionsURLTag;
 
@@ -238,22 +239,30 @@ public class DisplayPageActionDropdownItemsProvider {
 						_layoutPageTemplateEntry.getClassNameId(),
 						_layoutPageTemplateEntry.getClassTypeId());
 
-			if ((defaultLayoutPageTemplateEntry != null) &&
-				(defaultLayoutPageTemplateEntry.
-					getLayoutPageTemplateEntryId() !=
-						_layoutPageTemplateEntry.
-							getLayoutPageTemplateEntryId())) {
+			if (defaultLayoutPageTemplateEntry != null) {
+				long defaultLayoutPageTemplateEntryId =
+					defaultLayoutPageTemplateEntry.
+						getLayoutPageTemplateEntryId();
+				long layoutPageTemplateEntryId =
+					_layoutPageTemplateEntry.getLayoutPageTemplateEntryId();
 
-				message = LanguageUtil.format(
-					_httpServletRequest,
-					"do-you-want-to-replace-x-for-x-as-the-default-display-" +
-						"page-template",
-					new String[] {
-						_layoutPageTemplateEntry.getName(),
-						defaultLayoutPageTemplateEntry.getName()
-					});
+				if (defaultLayoutPageTemplateEntryId !=
+						layoutPageTemplateEntryId) {
+
+					message = LanguageUtil.format(
+						_httpServletRequest,
+						"do-you-want-to-replace-x-for-x-as-the-default-" +
+							"display-page-template",
+						new String[] {
+							_layoutPageTemplateEntry.getName(),
+							defaultLayoutPageTemplateEntry.getName()
+						});
+				}
 			}
-			else if (_layoutPageTemplateEntry.isDefaultTemplate()) {
+
+			if (Validator.isNull(message) &&
+				_layoutPageTemplateEntry.isDefaultTemplate()) {
+
 				message = LanguageUtil.get(
 					_httpServletRequest, "unmark-default-confirmation");
 			}

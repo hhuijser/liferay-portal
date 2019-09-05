@@ -204,11 +204,14 @@ public class VelocityManager extends BaseTemplateManager {
 				VelocityEngine.RESOURCE_MANAGER_CLASS,
 				LiferayResourceManager.class.getName());
 
+			int resourceModificationCheckInterval =
+				_velocityEngineConfiguration.
+					resourceModificationCheckInterval();
+
 			extendedProperties.setProperty(
 				"liferay." + VelocityEngine.RESOURCE_MANAGER_CLASS +
 					".resourceModificationCheckInterval",
-				_velocityEngineConfiguration.
-					resourceModificationCheckInterval() + "");
+				resourceModificationCheckInterval + "");
 
 			extendedProperties.setProperty(
 				VelocityTemplateResourceLoader.class.getName(),

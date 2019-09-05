@@ -197,10 +197,12 @@ public class PortletPreferencesLocalServiceConcurrentTest {
 				FutureTask<PortletPreferences> futureTask = new FutureTask<>(
 					callable);
 
-				Thread thread = new Thread(
-					futureTask,
+				String className =
 					PortletPreferencesLocalServiceConcurrentTest.class.
-						getName() + "-concurrent-getPreferences-" + i);
+						getName();
+
+				Thread thread = new Thread(
+					futureTask, className + "-concurrent-getPreferences-" + i);
 
 				thread.start();
 

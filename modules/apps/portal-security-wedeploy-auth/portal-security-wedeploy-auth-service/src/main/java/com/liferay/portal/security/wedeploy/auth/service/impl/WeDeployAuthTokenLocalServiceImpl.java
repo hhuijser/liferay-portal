@@ -60,10 +60,10 @@ public class WeDeployAuthTokenLocalServiceImpl
 
 		Date date = weDeployAuthToken.getCreateDate();
 
-		long expirationTime =
-			date.getTime() +
-				_weDeployAuthWebConfiguration.
-					authorizationTokenExpirationTime();
+		long authorizationTokenExpirationTime =
+			_weDeployAuthWebConfiguration.authorizationTokenExpirationTime();
+
+		long expirationTime = date.getTime() + authorizationTokenExpirationTime;
 
 		if (System.currentTimeMillis() > expirationTime) {
 			throw new WeDeployAuthTokenExpiredException();

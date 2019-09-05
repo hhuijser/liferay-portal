@@ -156,12 +156,16 @@ public class TensorFlowImageAssetAutoTagProvider
 	private List<String> _label(
 		byte[] imageBytes, String mimeType, float confidenceThreshold) {
 
+		int maximumNumberOfRelaunches =
+			_tensorFlowImageAssetAutoTagProviderProcessConfiguration.
+				maximumNumberOfRelaunches();
+		long maximumNumberOfRelaunchesTimeout =
+			_tensorFlowImageAssetAutoTagProviderProcessConfiguration.
+				maximumNumberOfRelaunchesTimeout();
+
 		float[] labelProbabilities = _tensorflowProcessHolder.execute(
 			new GetLabelProbabilitiesProcessCallable(imageBytes, mimeType),
-			_tensorFlowImageAssetAutoTagProviderProcessConfiguration.
-				maximumNumberOfRelaunches(),
-			_tensorFlowImageAssetAutoTagProviderProcessConfiguration.
-				maximumNumberOfRelaunchesTimeout() * 1000);
+			maximumNumberOfRelaunches, maximumNumberOfRelaunchesTimeout * 1000);
 
 		Stream<Integer> stream = _getBestIndexesStream(
 			labelProbabilities, confidenceThreshold);

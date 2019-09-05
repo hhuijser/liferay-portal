@@ -423,10 +423,15 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 			for (LayoutPageTemplateEntry existingLayoutPageTemplateEntry :
 					layoutPageTemplateEntries) {
 
-				if ((existingLayoutPageTemplateEntry.
-						getLayoutPageTemplateEntryId() !=
-							importedLayoutPageTemplateEntry.
-								getLayoutPageTemplateEntryId()) &&
+				long existingLayoutPageTemplateEntryId =
+					existingLayoutPageTemplateEntry.
+						getLayoutPageTemplateEntryId();
+				long importedLayoutPageTemplateEntryId =
+					importedLayoutPageTemplateEntry.
+						getLayoutPageTemplateEntryId();
+
+				if ((existingLayoutPageTemplateEntryId !=
+						importedLayoutPageTemplateEntryId) &&
 					(existingLayoutPageTemplateEntry.getCompanyId() ==
 						importedLayoutPageTemplateEntry.getCompanyId())) {
 

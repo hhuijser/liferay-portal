@@ -372,11 +372,14 @@ public class SiteNavigationMenuDisplayContext {
 	}
 
 	public boolean isSiteNavigationMenuSelected() {
-		if ((_siteNavigationMenuPortletInstanceConfiguration.
-				siteNavigationMenuId() > 0) &&
-			(_siteNavigationMenuPortletInstanceConfiguration.
-				siteNavigationMenuType() == -1)) {
+		long siteNavigationMenuId =
+			_siteNavigationMenuPortletInstanceConfiguration.
+				siteNavigationMenuId();
+		int siteNavigationMenuType =
+			_siteNavigationMenuPortletInstanceConfiguration.
+				siteNavigationMenuType();
 
+		if ((siteNavigationMenuId > 0) && (siteNavigationMenuType == -1)) {
 			return true;
 		}
 

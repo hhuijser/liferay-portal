@@ -86,18 +86,17 @@ public class DefaultIndexerRequestBufferOverflowHandler
 			ConfigurableUtil.createConfigurable(
 				IndexerRegistryConfiguration.class, properties);
 
-		if ((indexerRegistryConfiguration.
-				minimumBufferAvailabilityPercentage() > 1) ||
-			(indexerRegistryConfiguration.
-				minimumBufferAvailabilityPercentage() < 0.1)) {
+		float minimumBufferAvailabilityPercentage =
+			indexerRegistryConfiguration.minimumBufferAvailabilityPercentage();
+
+		if ((minimumBufferAvailabilityPercentage > 1) ||
+			(minimumBufferAvailabilityPercentage < 0.1)) {
 
 			if (_log.isWarnEnabled()) {
 				StringBundler sb = new StringBundler(4);
 
 				sb.append("Invalid minimum buffer availability percentage: ");
-				sb.append(
-					indexerRegistryConfiguration.
-						minimumBufferAvailabilityPercentage());
+				sb.append(minimumBufferAvailabilityPercentage);
 				sb.append(", using default value");
 				sb.append(_DEFAULT_MINIMUM_BUFFER_AVAILABILITY_PERCENTAGE);
 
@@ -106,7 +105,7 @@ public class DefaultIndexerRequestBufferOverflowHandler
 		}
 
 		_minimumBufferAvailabilityPercentage =
-			indexerRegistryConfiguration.minimumBufferAvailabilityPercentage();
+			minimumBufferAvailabilityPercentage;
 	}
 
 	@Reference

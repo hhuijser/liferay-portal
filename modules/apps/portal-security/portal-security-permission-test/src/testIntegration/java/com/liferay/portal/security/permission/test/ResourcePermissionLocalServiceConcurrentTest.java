@@ -224,10 +224,13 @@ public class ResourcePermissionLocalServiceConcurrentTest {
 				FutureTask<ResourcePermission> futureTask = new FutureTask<>(
 					callable);
 
+				String className =
+					ResourcePermissionLocalServiceConcurrentTest.class.
+						getName();
+
 				Thread thread = new Thread(
 					futureTask,
-					ResourcePermissionLocalServiceConcurrentTest.class.
-						getName() + "-concurrent-addResourcePermission-" + i);
+					className + "-concurrent-addResourcePermission-" + i);
 
 				thread.start();
 

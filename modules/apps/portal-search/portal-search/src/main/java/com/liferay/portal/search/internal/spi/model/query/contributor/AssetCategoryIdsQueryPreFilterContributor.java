@@ -12,45 +12,40 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.query;
+package com.liferay.portal.search.internal.spi.model.query.contributor;
 
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.search.spi.model.query.contributor.ModelPreFilterContributor;
-import com.liferay.portal.search.spi.model.registrar.ModelSearchSettings;
+import com.liferay.portal.kernel.search.filter.TermsFilter;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.search.spi.model.query.contributor.QueryPreFilterContributor;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Michael C. Han
  */
-@Component(
-	immediate = true, property = "indexer.class.name=ALL",
-	service = ModelPreFilterContributor.class
-)
-public class StagingModelPreFilterContributor
-	implements ModelPreFilterContributor {
+@Component(immediate = true, service = QueryPreFilterContributor.class)
+public class AssetCategoryIdsQueryPreFilterContributor
+	implements QueryPreFilterContributor {
 
 	@Override
 	public void contribute(
-		BooleanFilter booleanFilter, ModelSearchSettings modelSearchSettings,
-		SearchContext searchContext) {
+		BooleanFilter fullQueryBooleanFilter, SearchContext searchContext) {
 
-		if (!modelSearchSettings.isStagingAware()) {
+		long[] assetCategoryIds = searchContext.getAssetCategoryIds();
+
+		if (ArrayUtil.isEmpty(assetCategoryIds)) {
 			return;
 		}
 
-		if (!searchContext.isIncludeLiveGroups() &&
-			searchContext.isIncludeStagingGroups()) {
+		TermsFilter termsFilter = new TermsFilter(Field.ASSET_CATEGORY_IDS);
 
-			booleanFilter.addRequiredTerm(Field.STAGING_GROUP, true);
-		}
-		else if (searchContext.isIncludeLiveGroups() &&
-				 !searchContext.isIncludeStagingGroups()) {
+		termsFilter.addValues(ArrayUtil.toStringArray(assetCategoryIds));
 
-			booleanFilter.addRequiredTerm(Field.STAGING_GROUP, false);
-		}
+		fullQueryBooleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 	}
 
 }

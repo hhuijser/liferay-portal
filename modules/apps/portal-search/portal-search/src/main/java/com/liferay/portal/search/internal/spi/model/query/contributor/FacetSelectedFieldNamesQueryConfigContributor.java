@@ -12,21 +12,31 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.query;
+package com.liferay.portal.search.internal.spi.model.query.contributor;
 
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
+import com.liferay.portal.kernel.search.facet.Facet;
+import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.search.spi.model.query.contributor.QueryConfigContributor;
 import com.liferay.portal.search.spi.model.query.contributor.helper.QueryConfigContributorHelper;
+
+import java.util.Map;
+import java.util.Set;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = QueryConfigContributor.class)
-public class DefaultHighlightFieldNamesQueryConfigContributor
+@Component(
+	immediate = true,
+	property = "service.ranking:Integer=" + (DefaultSelectedFieldNamesQueryConfigContributor.RANKING - 1),
+	service = QueryConfigContributor.class
+)
+public class FacetSelectedFieldNamesQueryConfigContributor
 	implements QueryConfigContributor {
 
 	@Override
@@ -36,12 +46,25 @@ public class DefaultHighlightFieldNamesQueryConfigContributor
 
 		QueryConfig queryConfig = searchContext.getQueryConfig();
 
-		queryConfig.addHighlightFieldNames(Field.ASSET_CATEGORY_TITLES);
+		String[] selectedFieldNames = queryConfig.getSelectedFieldNames();
 
-		if (queryConfig.isHighlightEnabled()) {
-			queryConfig.addHighlightFieldNames(
-				Field.CONTENT, Field.DESCRIPTION, Field.TITLE);
+		if (ArrayUtil.isEmpty(selectedFieldNames) ||
+			((selectedFieldNames.length == 1) &&
+			 selectedFieldNames[0].equals(Field.ANY))) {
+
+			return;
 		}
+
+		Set<String> selectedFieldNameSet = SetUtil.fromArray(
+			selectedFieldNames);
+
+		Map<String, Facet> facets = searchContext.getFacets();
+
+		selectedFieldNameSet.addAll(facets.keySet());
+
+		selectedFieldNames = selectedFieldNameSet.toArray(new String[0]);
+
+		queryConfig.setSelectedFieldNames(selectedFieldNames);
 	}
 
 }

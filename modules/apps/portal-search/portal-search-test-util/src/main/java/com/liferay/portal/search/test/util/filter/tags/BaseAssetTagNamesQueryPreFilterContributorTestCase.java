@@ -17,7 +17,7 @@ package com.liferay.portal.search.test.util.filter.tags;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.search.internal.contributor.query.AssetTagNamesQueryPreFilterContributor;
+import com.liferay.portal.search.internal.spi.model.query.contributor.AssetTagNamesQueryPreFilterContributor;
 import com.liferay.portal.search.spi.model.query.contributor.QueryPreFilterContributor;
 import com.liferay.portal.search.test.util.indexing.BaseIndexingTestCase;
 import com.liferay.portal.search.test.util.indexing.DocumentCreationHelpers;

@@ -12,13 +12,14 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.query;
+package com.liferay.portal.search.internal.spi.model.query.contributor;
 
+import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.search.filter.TermsFilter;
+import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.search.spi.model.query.contributor.QueryPreFilterContributor;
 
 import org.osgi.service.component.annotations.Component;
@@ -27,20 +28,25 @@ import org.osgi.service.component.annotations.Component;
  * @author Michael C. Han
  */
 @Component(immediate = true, service = QueryPreFilterContributor.class)
-public class LayoutQueryPreFilterContributor
+public class AssetTagNamesQueryPreFilterContributor
 	implements QueryPreFilterContributor {
 
 	@Override
 	public void contribute(
 		BooleanFilter fullQueryBooleanFilter, SearchContext searchContext) {
 
-		String layoutUuid = GetterUtil.getString(
-			searchContext.getAttribute(Field.LAYOUT_UUID));
+		String[] assetTagNames = searchContext.getAssetTagNames();
 
-		if (Validator.isNotNull(layoutUuid)) {
-			fullQueryBooleanFilter.addRequiredTerm(
-				Field.LAYOUT_UUID, layoutUuid);
+		if (ArrayUtil.isEmpty(assetTagNames)) {
+			return;
 		}
+
+		TermsFilter termsFilter = new TermsFilter(
+			Field.ASSET_TAG_NAMES + ".raw");
+
+		termsFilter.addValues(assetTagNames);
+
+		fullQueryBooleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 	}
 
 }

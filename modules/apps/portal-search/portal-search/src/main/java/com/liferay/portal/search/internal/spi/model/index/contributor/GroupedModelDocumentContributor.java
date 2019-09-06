@@ -12,20 +12,14 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.document;
+package com.liferay.portal.search.internal.spi.model.index.contributor;
 
 import com.liferay.portal.kernel.model.BaseModel;
-import com.liferay.portal.kernel.model.Group;
+import com.liferay.portal.kernel.model.GroupedModel;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.DocumentContributor;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.Indexer;
-import com.liferay.portal.kernel.search.IndexerRegistry;
 import com.liferay.portal.kernel.service.GroupLocalService;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.Validator;
-
-import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -34,52 +28,28 @@ import org.osgi.service.component.annotations.Reference;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true, property = "service.ranking:Integer=-10000",
+	immediate = true, property = "service.ranking:Integer=10000",
 	service = DocumentContributor.class
 )
-public class StagingDocumentContributor implements DocumentContributor {
+public class GroupedModelDocumentContributor implements DocumentContributor {
 
 	@Override
 	public void contribute(Document document, BaseModel baseModel) {
-		String className = document.get(Field.ENTRY_CLASS_NAME);
-
-		if (Validator.isNull(className)) {
+		if (!(baseModel instanceof GroupedModel)) {
 			return;
 		}
 
-		Indexer indexer = indexerRegistry.getIndexer(className);
+		GroupedModel groupedModel = (GroupedModel)baseModel;
 
-		if (!indexer.isStagingAware()) {
-			return;
-		}
+		document.addKeyword(
+			Field.GROUP_ID,
+			GroupUtil.getSiteGroupId(
+				groupLocalService, groupedModel.getGroupId()));
 
-		Map<String, Field> fields = document.getFields();
-
-		Field groupIdField = fields.get(Field.GROUP_ID);
-
-		if (groupIdField == null) {
-			return;
-		}
-
-		long groupId = GetterUtil.getLong(groupIdField.getValue());
-
-		document.addKeyword(Field.STAGING_GROUP, isStagingGroup(groupId));
-	}
-
-	protected boolean isStagingGroup(long groupId) {
-		Group group = GroupUtil.fetchSiteGroup(groupLocalService, groupId);
-
-		if (group == null) {
-			return false;
-		}
-
-		return group.isStagingGroup();
+		document.addKeyword(Field.SCOPE_GROUP_ID, groupedModel.getGroupId());
 	}
 
 	@Reference
 	protected GroupLocalService groupLocalService;
-
-	@Reference
-	protected IndexerRegistry indexerRegistry;
 
 }

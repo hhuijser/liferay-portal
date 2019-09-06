@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.query;
+package com.liferay.portal.search.internal.spi.model.query.contributor;
 
+import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -28,23 +29,27 @@ import org.osgi.service.component.annotations.Component;
  * @author Michael C. Han
  */
 @Component(immediate = true, service = QueryPreFilterContributor.class)
-public class AssetTagNamesQueryPreFilterContributor
+public class FolderIdQueryPreFilterContributor
 	implements QueryPreFilterContributor {
 
 	@Override
 	public void contribute(
 		BooleanFilter fullQueryBooleanFilter, SearchContext searchContext) {
 
-		String[] assetTagNames = searchContext.getAssetTagNames();
+		long[] folderIds = searchContext.getFolderIds();
 
-		if (ArrayUtil.isEmpty(assetTagNames)) {
+		if (ArrayUtil.isNotEmpty(folderIds)) {
+			folderIds = ArrayUtil.remove(
+				folderIds, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+		}
+
+		if (ArrayUtil.isEmpty(folderIds)) {
 			return;
 		}
 
-		TermsFilter termsFilter = new TermsFilter(
-			Field.ASSET_TAG_NAMES + ".raw");
+		TermsFilter termsFilter = new TermsFilter(Field.TREE_PATH);
 
-		termsFilter.addValues(assetTagNames);
+		termsFilter.addValues(ArrayUtil.toStringArray(folderIds));
 
 		fullQueryBooleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 	}

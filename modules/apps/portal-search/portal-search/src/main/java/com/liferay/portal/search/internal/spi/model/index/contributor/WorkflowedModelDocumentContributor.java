@@ -12,33 +12,31 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.query;
+package com.liferay.portal.search.internal.spi.model.index.contributor;
 
+import com.liferay.portal.kernel.model.BaseModel;
+import com.liferay.portal.kernel.model.WorkflowedModel;
+import com.liferay.portal.kernel.search.Document;
+import com.liferay.portal.kernel.search.DocumentContributor;
 import com.liferay.portal.kernel.search.Field;
-import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.search.spi.model.query.contributor.QueryPreFilterContributor;
 
 import org.osgi.service.component.annotations.Component;
 
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = QueryPreFilterContributor.class)
-public class UserIdQueryPreFilterContributor
-	implements QueryPreFilterContributor {
+@Component(immediate = true, service = DocumentContributor.class)
+public class WorkflowedModelDocumentContributor implements DocumentContributor {
 
 	@Override
-	public void contribute(
-		BooleanFilter fullQueryBooleanFilter, SearchContext searchContext) {
-
-		long userId = GetterUtil.getLong(
-			searchContext.getAttribute(Field.USER_ID));
-
-		if (userId > 0) {
-			fullQueryBooleanFilter.addRequiredTerm(Field.USER_ID, userId);
+	public void contribute(Document document, BaseModel baseModel) {
+		if (!(baseModel instanceof WorkflowedModel)) {
+			return;
 		}
+
+		WorkflowedModel workflowedModel = (WorkflowedModel)baseModel;
+
+		document.addKeyword(Field.STATUS, workflowedModel.getStatus());
 	}
 
 }

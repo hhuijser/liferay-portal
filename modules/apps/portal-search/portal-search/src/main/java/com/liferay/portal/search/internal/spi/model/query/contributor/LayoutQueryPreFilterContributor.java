@@ -12,15 +12,13 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.query;
+package com.liferay.portal.search.internal.spi.model.query.contributor;
 
-import com.liferay.document.library.kernel.model.DLFolderConstants;
-import com.liferay.portal.kernel.search.BooleanClauseOccur;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
-import com.liferay.portal.kernel.search.filter.TermsFilter;
-import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.search.spi.model.query.contributor.QueryPreFilterContributor;
 
 import org.osgi.service.component.annotations.Component;
@@ -29,29 +27,20 @@ import org.osgi.service.component.annotations.Component;
  * @author Michael C. Han
  */
 @Component(immediate = true, service = QueryPreFilterContributor.class)
-public class FolderIdQueryPreFilterContributor
+public class LayoutQueryPreFilterContributor
 	implements QueryPreFilterContributor {
 
 	@Override
 	public void contribute(
 		BooleanFilter fullQueryBooleanFilter, SearchContext searchContext) {
 
-		long[] folderIds = searchContext.getFolderIds();
+		String layoutUuid = GetterUtil.getString(
+			searchContext.getAttribute(Field.LAYOUT_UUID));
 
-		if (ArrayUtil.isNotEmpty(folderIds)) {
-			folderIds = ArrayUtil.remove(
-				folderIds, DLFolderConstants.DEFAULT_PARENT_FOLDER_ID);
+		if (Validator.isNotNull(layoutUuid)) {
+			fullQueryBooleanFilter.addRequiredTerm(
+				Field.LAYOUT_UUID, layoutUuid);
 		}
-
-		if (ArrayUtil.isEmpty(folderIds)) {
-			return;
-		}
-
-		TermsFilter termsFilter = new TermsFilter(Field.TREE_PATH);
-
-		termsFilter.addValues(ArrayUtil.toStringArray(folderIds));
-
-		fullQueryBooleanFilter.add(termsFilter, BooleanClauseOccur.MUST);
 	}
 
 }

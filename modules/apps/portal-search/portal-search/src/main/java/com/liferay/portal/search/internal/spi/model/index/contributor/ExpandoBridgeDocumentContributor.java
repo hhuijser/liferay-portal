@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.search.internal.contributor.document;
+package com.liferay.portal.search.internal.spi.model.index.contributor;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeIndexer;

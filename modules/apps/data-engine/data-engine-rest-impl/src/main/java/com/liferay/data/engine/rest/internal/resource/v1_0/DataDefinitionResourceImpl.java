@@ -14,6 +14,7 @@
 
 package com.liferay.data.engine.rest.internal.resource.v1_0;
 
+import com.liferay.data.engine.field.type.FieldType;
 import com.liferay.data.engine.field.type.FieldTypeTracker;
 import com.liferay.data.engine.field.type.util.LocalizedValueUtil;
 import com.liferay.data.engine.rest.dto.v1_0.DataDefinition;
@@ -22,6 +23,7 @@ import com.liferay.data.engine.rest.dto.v1_0.DataRecordCollection;
 import com.liferay.data.engine.rest.internal.constants.DataActionKeys;
 import com.liferay.data.engine.rest.internal.constants.DataDefinitionConstants;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataDefinitionUtil;
+import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataLayoutUtil;
 import com.liferay.data.engine.rest.internal.dto.v1_0.util.DataRecordCollectionUtil;
 import com.liferay.data.engine.rest.internal.model.InternalDataDefinition;
 import com.liferay.data.engine.rest.internal.model.InternalDataRecordCollection;
@@ -30,6 +32,9 @@ import com.liferay.data.engine.rest.internal.resource.common.CommonDataRecordCol
 import com.liferay.data.engine.rest.internal.resource.v1_0.util.DataEnginePermissionUtil;
 import com.liferay.data.engine.rest.resource.v1_0.DataDefinitionResource;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
+import com.liferay.dynamic.data.mapping.form.field.type.DDMFormFieldTypeServicesTracker;
+import com.liferay.dynamic.data.mapping.form.renderer.DDMFormTemplateContextFactory;
+import com.liferay.dynamic.data.mapping.form.values.factory.DDMFormValuesFactory;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.model.DDMStructureConstants;
 import com.liferay.dynamic.data.mapping.model.DDMStructureVersion;
@@ -38,6 +43,9 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureVersionLocalService;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureCreateDateComparator;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureModifiedDateComparator;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureNameComparator;
+import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
+import com.liferay.portal.kernel.json.JSONArray;
+import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
@@ -63,7 +71,9 @@ import com.liferay.portal.vulcan.resource.EntityModelResource;
 import com.liferay.portal.vulcan.util.SearchUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.validation.ValidationException;
 
@@ -115,6 +125,31 @@ public class DataDefinitionResourceImpl
 		return DataDefinitionUtil.toDataDefinition(
 			_ddmStructureLocalService.getStructure(dataDefinitionId),
 			_fieldTypeTracker);
+	}
+
+	@Override
+	public String getDataDefinitionDataDefinitionFieldFieldType()
+		throws Exception {
+
+		Collection<FieldType> fieldTypes = _fieldTypeTracker.getFieldTypes();
+
+		JSONArray jsonArray = _jsonFactory.createJSONArray();
+
+		Stream<FieldType> stream = fieldTypes.stream();
+
+		stream.map(
+			fieldType -> DataLayoutUtil.getFieldTypeMetadataJSONObject(
+				contextAcceptLanguage, _ddmFormFieldTypeServicesTracker,
+				_ddmFormTemplateContextFactory, _ddmFormValuesFactory,
+				fieldType, _fieldTypeTracker, contextHttpServletRequest,
+				_npmResolver)
+		).filter(
+			jsonObject -> !jsonObject.getBoolean("system")
+		).forEach(
+			jsonArray::put
+		);
+
+		return jsonArray.toJSONString();
 	}
 
 	@Override
@@ -383,6 +418,15 @@ public class DataDefinitionResourceImpl
 	private DDLRecordSetLocalService _ddlRecordSetLocalService;
 
 	@Reference
+	private DDMFormFieldTypeServicesTracker _ddmFormFieldTypeServicesTracker;
+
+	@Reference
+	private DDMFormTemplateContextFactory _ddmFormTemplateContextFactory;
+
+	@Reference
+	private DDMFormValuesFactory _ddmFormValuesFactory;
+
+	@Reference
 	private DDMStructureLocalService _ddmStructureLocalService;
 
 	@Reference
@@ -394,8 +438,14 @@ public class DataDefinitionResourceImpl
 	@Reference
 	private GroupLocalService _groupLocalService;
 
+	@Reference
+	private JSONFactory _jsonFactory;
+
 	private ModelResourcePermission<InternalDataDefinition>
 		_modelResourcePermission;
+
+	@Reference
+	private NPMResolver _npmResolver;
 
 	@Reference
 	private Portal _portal;

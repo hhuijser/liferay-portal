@@ -12,8 +12,9 @@
  * details.
  */
 
-package com.liferay.calendar.internal.search.spi.model.result.contributor;
+package com.liferay.document.library.internal.search.spi.model.query.contributor;
 
+import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.filter.BooleanFilter;
 import com.liferay.portal.search.spi.model.query.contributor.ModelPreFilterContributor;
@@ -23,14 +24,14 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Bryan Engler
+ * @author Michael C. Han
  */
 @Component(
 	immediate = true,
-	property = "indexer.class.name=com.liferay.calendar.model.CalendarBooking",
+	property = "indexer.class.name=com.liferay.document.library.kernel.model.DLFolder",
 	service = ModelPreFilterContributor.class
 )
-public class CalendarBookingModelPreFilterContributor
+public class DLFolderModelPreFilterContributor
 	implements ModelPreFilterContributor {
 
 	@Override
@@ -38,8 +39,13 @@ public class CalendarBookingModelPreFilterContributor
 		BooleanFilter booleanFilter, ModelSearchSettings modelSearchSettings,
 		SearchContext searchContext) {
 
+		addHiddenFilter(booleanFilter);
 		addWorkflowStatusFilter(
 			booleanFilter, modelSearchSettings, searchContext);
+	}
+
+	protected void addHiddenFilter(BooleanFilter booleanFilter) {
+		booleanFilter.addRequiredTerm(Field.HIDDEN, false);
 	}
 
 	protected void addWorkflowStatusFilter(

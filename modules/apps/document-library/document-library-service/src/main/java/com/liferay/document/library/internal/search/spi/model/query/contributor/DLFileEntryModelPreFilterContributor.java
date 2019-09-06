@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.internal.search.spi.model.result.contributor;
+package com.liferay.document.library.internal.search.spi.model.query.contributor;
 
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.dynamic.data.mapping.kernel.DDMStructure;

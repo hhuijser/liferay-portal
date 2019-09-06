@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<definition>
+	<element name="test">
+		<attribute name="hello world" />
+	</element>
+</definition>

@@ -34,4 +34,9 @@ public class XMLSourceProcessorTest extends BaseSourceProcessorTestCase {
 		test("IncorrectTabs3.testaction");
 	}
 
+	@Test
+	public void testIncorrectXMLStyling() throws Exception {
+		test("IncorrectXMLStyling.testxml");
+	}
+
 }

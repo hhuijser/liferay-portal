@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/">
+<wsdl:definitions targetNamespace="http://schemas.microsoft.com/sharepoint/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
 	<wsdl:types>
 		<s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/">
 			<s:import namespace="http://www.w3.org/2001/XMLSchema" />
@@ -8,14 +8,14 @@
 			<s:element name="GetList">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -28,15 +28,15 @@
 			<s:element name="GetListAndView">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="viewName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="viewName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListAndViewResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListAndViewResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListAndViewResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -49,7 +49,7 @@
 			<s:element name="DeleteList">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="1" name="listName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
@@ -59,16 +59,16 @@
 			<s:element name="AddList">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
-						<s:element minOccurs="1" maxOccurs="1" name="templateID" type="s:int" />
+						<s:element maxOccurs="1" minOccurs="1" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="description" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="1" name="templateID" type="s:int" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="AddListResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="AddListResult">
+						<s:element maxOccurs="1" minOccurs="0" name="AddListResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -81,17 +81,17 @@
 			<s:element name="AddListFromFeature">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
-						<s:element minOccurs="1" maxOccurs="1" name="featureID" type="s1:guid" />
-						<s:element minOccurs="1" maxOccurs="1" name="templateID" type="s:int" />
+						<s:element maxOccurs="1" minOccurs="1" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="description" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="1" name="featureID" type="s1:guid" />
+						<s:element maxOccurs="1" minOccurs="1" name="templateID" type="s:int" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="AddListFromFeatureResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="AddListFromFeatureResult">
+						<s:element maxOccurs="1" minOccurs="0" name="AddListFromFeatureResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -104,43 +104,43 @@
 			<s:element name="UpdateList">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="listProperties">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listProperties">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="newFields">
+						<s:element maxOccurs="1" minOccurs="0" name="newFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="updateFields">
+						<s:element maxOccurs="1" minOccurs="0" name="updateFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="deleteFields">
+						<s:element maxOccurs="1" minOccurs="0" name="deleteFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="listVersion" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listVersion" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="UpdateListResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="UpdateListResult">
+						<s:element maxOccurs="1" minOccurs="0" name="UpdateListResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -156,7 +156,7 @@
 			<s:element name="GetListCollectionResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListCollectionResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListCollectionResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -169,38 +169,38 @@
 			<s:element name="GetListItems">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="viewName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="query">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="viewName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="query">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="viewFields">
+						<s:element maxOccurs="1" minOccurs="0" name="viewFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="rowLimit" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="queryOptions">
+						<s:element maxOccurs="1" minOccurs="0" name="rowLimit" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="queryOptions">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="webID" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="webID" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListItemsResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListItemsResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListItemsResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -213,16 +213,16 @@
 			<s:element name="GetListItemChanges">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="viewFields">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="viewFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="since" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contains">
+						<s:element maxOccurs="1" minOccurs="0" name="since" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contains">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -235,7 +235,7 @@
 			<s:element name="GetListItemChangesResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListItemChangesResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListItemChangesResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -248,39 +248,39 @@
 			<s:element name="GetListItemChangesWithKnowledge">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="viewName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="query">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="viewName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="query">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="viewFields">
+						<s:element maxOccurs="1" minOccurs="0" name="viewFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="rowLimit" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="queryOptions">
+						<s:element maxOccurs="1" minOccurs="0" name="rowLimit" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="queryOptions">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="syncScope" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="knowledge">
+						<s:element maxOccurs="1" minOccurs="0" name="syncScope" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="knowledge">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="contains">
+						<s:element maxOccurs="1" minOccurs="0" name="contains">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -293,7 +293,7 @@
 			<s:element name="GetListItemChangesWithKnowledgeResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListItemChangesWithKnowledgeResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListItemChangesWithKnowledgeResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -306,32 +306,32 @@
 			<s:element name="GetListItemChangesSinceToken">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="viewName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="query">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="viewName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="query">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="viewFields">
+						<s:element maxOccurs="1" minOccurs="0" name="viewFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="rowLimit" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="queryOptions">
+						<s:element maxOccurs="1" minOccurs="0" name="rowLimit" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="queryOptions">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="changeToken" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contains">
+						<s:element maxOccurs="1" minOccurs="0" name="changeToken" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contains">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -344,7 +344,7 @@
 			<s:element name="GetListItemChangesSinceTokenResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListItemChangesSinceTokenResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListItemChangesSinceTokenResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -371,7 +371,7 @@
 			<s:element name="UpdateListItemsResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="UpdateListItemsResult">
+						<s:element maxOccurs="1" minOccurs="0" name="UpdateListItemsResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -392,8 +392,8 @@
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="syncScope" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="knowledge">
+						<s:element maxOccurs="1" minOccurs="0" name="syncScope" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="knowledge">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -406,7 +406,7 @@
 			<s:element name="UpdateListItemsWithKnowledgeResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="UpdateListItemsWithKnowledgeResult">
+						<s:element maxOccurs="1" minOccurs="0" name="UpdateListItemsWithKnowledgeResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -419,15 +419,15 @@
 			<s:element name="AddDiscussionBoardItem">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="message" type="s:base64Binary" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="message" type="s:base64Binary" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="AddDiscussionBoardItemResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="AddDiscussionBoardItemResult">
+						<s:element maxOccurs="1" minOccurs="0" name="AddDiscussionBoardItemResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -440,16 +440,16 @@
 			<s:element name="AddWikiPage">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="strListName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="listRelPageUrl" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="wikiContent" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="strListName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listRelPageUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="wikiContent" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="AddWikiPageResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="AddWikiPageResult">
+						<s:element maxOccurs="1" minOccurs="0" name="AddWikiPageResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -462,16 +462,16 @@
 			<s:element name="GetVersionCollection">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="strlistID" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="strlistItemID" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="strFieldName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="strlistID" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="strlistItemID" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="strFieldName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetVersionCollectionResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetVersionCollectionResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetVersionCollectionResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -484,32 +484,32 @@
 			<s:element name="AddAttachment">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="listItemID" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="attachment" type="s:base64Binary" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listItemID" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="attachment" type="s:base64Binary" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="AddAttachmentResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="AddAttachmentResult" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="AddAttachmentResult" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetAttachmentCollection">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="listItemID" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listItemID" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetAttachmentCollectionResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetAttachmentCollectionResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetAttachmentCollectionResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -522,9 +522,9 @@
 			<s:element name="DeleteAttachment">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="listItemID" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="url" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listItemID" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="url" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
@@ -534,61 +534,61 @@
 			<s:element name="CheckOutFile">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="pageUrl" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="checkoutToLocal" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="lastmodified" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="pageUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="checkoutToLocal" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="lastmodified" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="CheckOutFileResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="CheckOutFileResult" type="s:boolean" />
+						<s:element maxOccurs="1" minOccurs="1" name="CheckOutFileResult" type="s:boolean" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="UndoCheckOut">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="pageUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="pageUrl" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="UndoCheckOutResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="UndoCheckOutResult" type="s:boolean" />
+						<s:element maxOccurs="1" minOccurs="1" name="UndoCheckOutResult" type="s:boolean" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="CheckInFile">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="pageUrl" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="comment" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="CheckinType" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="pageUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="comment" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="CheckinType" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="CheckInFileResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="CheckInFileResult" type="s:boolean" />
+						<s:element maxOccurs="1" minOccurs="1" name="CheckInFileResult" type="s:boolean" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListContentTypes">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListContentTypesResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListContentTypesResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListContentTypesResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -601,17 +601,17 @@
 			<s:element name="GetListContentTypesAndProperties">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="propertyPrefix" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="includeWebProperties" type="s:boolean" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="propertyPrefix" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="includeWebProperties" type="s:boolean" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListContentTypesAndPropertiesResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListContentTypesAndPropertiesResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListContentTypesAndPropertiesResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -624,15 +624,15 @@
 			<s:element name="GetListContentType">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetListContentTypeResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetListContentTypeResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetListContentTypeResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -645,75 +645,75 @@
 			<s:element name="CreateContentType">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="displayName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="parentType" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="fields">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="displayName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="parentType" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeProperties">
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeProperties">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="addToView" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="addToView" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="CreateContentTypeResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="CreateContentTypeResult" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="CreateContentTypeResult" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="UpdateContentType">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeProperties">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeProperties">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="newFields">
+						<s:element maxOccurs="1" minOccurs="0" name="newFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="updateFields">
+						<s:element maxOccurs="1" minOccurs="0" name="updateFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="deleteFields">
+						<s:element maxOccurs="1" minOccurs="0" name="deleteFields">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
 								</s:sequence>
 							</s:complexType>
 						</s:element>
-						<s:element minOccurs="0" maxOccurs="1" name="addToView" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="addToView" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="UpdateContentTypeResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="UpdateContentTypeResult">
+						<s:element maxOccurs="1" minOccurs="0" name="UpdateContentTypeResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -726,15 +726,15 @@
 			<s:element name="DeleteContentType">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="DeleteContentTypeResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="DeleteContentTypeResult">
+						<s:element maxOccurs="1" minOccurs="0" name="DeleteContentTypeResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -747,9 +747,9 @@
 			<s:element name="UpdateContentTypeXmlDocument">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="newDocument">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="newDocument">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -762,7 +762,7 @@
 			<s:element name="UpdateContentTypeXmlDocumentResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="UpdateContentTypeXmlDocumentResult">
+						<s:element maxOccurs="1" minOccurs="0" name="UpdateContentTypeXmlDocumentResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -775,8 +775,8 @@
 			<s:element name="UpdateContentTypesXmlDocument">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="newDocument">
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="newDocument">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -789,7 +789,7 @@
 			<s:element name="UpdateContentTypesXmlDocumentResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="UpdateContentTypesXmlDocumentResult">
+						<s:element maxOccurs="1" minOccurs="0" name="UpdateContentTypesXmlDocumentResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -802,16 +802,16 @@
 			<s:element name="DeleteContentTypeXmlDocument">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="documentUri" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="documentUri" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="DeleteContentTypeXmlDocumentResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="DeleteContentTypeXmlDocumentResult">
+						<s:element maxOccurs="1" minOccurs="0" name="DeleteContentTypeXmlDocumentResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -824,16 +824,16 @@
 			<s:element name="ApplyContentTypeToList">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="webUrl" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="contentTypeId" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="listName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="webUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="contentTypeId" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="listName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="ApplyContentTypeToListResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="ApplyContentTypeToListResult">
+						<s:element maxOccurs="1" minOccurs="0" name="ApplyContentTypeToListResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -853,196 +853,196 @@
 		</s:schema>
 	</wsdl:types>
 	<wsdl:message name="GetListSoapIn">
-		<wsdl:part name="parameters" element="tns:GetList" />
+		<wsdl:part element="tns:GetList" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListResponse" />
+		<wsdl:part element="tns:GetListResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListAndViewSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListAndView" />
+		<wsdl:part element="tns:GetListAndView" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListAndViewSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListAndViewResponse" />
+		<wsdl:part element="tns:GetListAndViewResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteListSoapIn">
-		<wsdl:part name="parameters" element="tns:DeleteList" />
+		<wsdl:part element="tns:DeleteList" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteListSoapOut">
-		<wsdl:part name="parameters" element="tns:DeleteListResponse" />
+		<wsdl:part element="tns:DeleteListResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddListSoapIn">
-		<wsdl:part name="parameters" element="tns:AddList" />
+		<wsdl:part element="tns:AddList" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddListSoapOut">
-		<wsdl:part name="parameters" element="tns:AddListResponse" />
+		<wsdl:part element="tns:AddListResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddListFromFeatureSoapIn">
-		<wsdl:part name="parameters" element="tns:AddListFromFeature" />
+		<wsdl:part element="tns:AddListFromFeature" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddListFromFeatureSoapOut">
-		<wsdl:part name="parameters" element="tns:AddListFromFeatureResponse" />
+		<wsdl:part element="tns:AddListFromFeatureResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateListSoapIn">
-		<wsdl:part name="parameters" element="tns:UpdateList" />
+		<wsdl:part element="tns:UpdateList" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateListSoapOut">
-		<wsdl:part name="parameters" element="tns:UpdateListResponse" />
+		<wsdl:part element="tns:UpdateListResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListCollectionSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListCollection" />
+		<wsdl:part element="tns:GetListCollection" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListCollectionSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListCollectionResponse" />
+		<wsdl:part element="tns:GetListCollectionResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemsSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListItems" />
+		<wsdl:part element="tns:GetListItems" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemsSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListItemsResponse" />
+		<wsdl:part element="tns:GetListItemsResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemChangesSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListItemChanges" />
+		<wsdl:part element="tns:GetListItemChanges" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemChangesSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListItemChangesResponse" />
+		<wsdl:part element="tns:GetListItemChangesResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemChangesWithKnowledgeSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListItemChangesWithKnowledge" />
+		<wsdl:part element="tns:GetListItemChangesWithKnowledge" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemChangesWithKnowledgeSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListItemChangesWithKnowledgeResponse" />
+		<wsdl:part element="tns:GetListItemChangesWithKnowledgeResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemChangesSinceTokenSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListItemChangesSinceToken" />
+		<wsdl:part element="tns:GetListItemChangesSinceToken" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListItemChangesSinceTokenSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListItemChangesSinceTokenResponse" />
+		<wsdl:part element="tns:GetListItemChangesSinceTokenResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateListItemsSoapIn">
-		<wsdl:part name="parameters" element="tns:UpdateListItems" />
+		<wsdl:part element="tns:UpdateListItems" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateListItemsSoapOut">
-		<wsdl:part name="parameters" element="tns:UpdateListItemsResponse" />
+		<wsdl:part element="tns:UpdateListItemsResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateListItemsWithKnowledgeSoapIn">
-		<wsdl:part name="parameters" element="tns:UpdateListItemsWithKnowledge" />
+		<wsdl:part element="tns:UpdateListItemsWithKnowledge" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateListItemsWithKnowledgeSoapOut">
-		<wsdl:part name="parameters" element="tns:UpdateListItemsWithKnowledgeResponse" />
+		<wsdl:part element="tns:UpdateListItemsWithKnowledgeResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddDiscussionBoardItemSoapIn">
-		<wsdl:part name="parameters" element="tns:AddDiscussionBoardItem" />
+		<wsdl:part element="tns:AddDiscussionBoardItem" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddDiscussionBoardItemSoapOut">
-		<wsdl:part name="parameters" element="tns:AddDiscussionBoardItemResponse" />
+		<wsdl:part element="tns:AddDiscussionBoardItemResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddWikiPageSoapIn">
-		<wsdl:part name="parameters" element="tns:AddWikiPage" />
+		<wsdl:part element="tns:AddWikiPage" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddWikiPageSoapOut">
-		<wsdl:part name="parameters" element="tns:AddWikiPageResponse" />
+		<wsdl:part element="tns:AddWikiPageResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetVersionCollectionSoapIn">
-		<wsdl:part name="parameters" element="tns:GetVersionCollection" />
+		<wsdl:part element="tns:GetVersionCollection" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetVersionCollectionSoapOut">
-		<wsdl:part name="parameters" element="tns:GetVersionCollectionResponse" />
+		<wsdl:part element="tns:GetVersionCollectionResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddAttachmentSoapIn">
-		<wsdl:part name="parameters" element="tns:AddAttachment" />
+		<wsdl:part element="tns:AddAttachment" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="AddAttachmentSoapOut">
-		<wsdl:part name="parameters" element="tns:AddAttachmentResponse" />
+		<wsdl:part element="tns:AddAttachmentResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetAttachmentCollectionSoapIn">
-		<wsdl:part name="parameters" element="tns:GetAttachmentCollection" />
+		<wsdl:part element="tns:GetAttachmentCollection" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetAttachmentCollectionSoapOut">
-		<wsdl:part name="parameters" element="tns:GetAttachmentCollectionResponse" />
+		<wsdl:part element="tns:GetAttachmentCollectionResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteAttachmentSoapIn">
-		<wsdl:part name="parameters" element="tns:DeleteAttachment" />
+		<wsdl:part element="tns:DeleteAttachment" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteAttachmentSoapOut">
-		<wsdl:part name="parameters" element="tns:DeleteAttachmentResponse" />
+		<wsdl:part element="tns:DeleteAttachmentResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CheckOutFileSoapIn">
-		<wsdl:part name="parameters" element="tns:CheckOutFile" />
+		<wsdl:part element="tns:CheckOutFile" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CheckOutFileSoapOut">
-		<wsdl:part name="parameters" element="tns:CheckOutFileResponse" />
+		<wsdl:part element="tns:CheckOutFileResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UndoCheckOutSoapIn">
-		<wsdl:part name="parameters" element="tns:UndoCheckOut" />
+		<wsdl:part element="tns:UndoCheckOut" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UndoCheckOutSoapOut">
-		<wsdl:part name="parameters" element="tns:UndoCheckOutResponse" />
+		<wsdl:part element="tns:UndoCheckOutResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CheckInFileSoapIn">
-		<wsdl:part name="parameters" element="tns:CheckInFile" />
+		<wsdl:part element="tns:CheckInFile" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CheckInFileSoapOut">
-		<wsdl:part name="parameters" element="tns:CheckInFileResponse" />
+		<wsdl:part element="tns:CheckInFileResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListContentTypesSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListContentTypes" />
+		<wsdl:part element="tns:GetListContentTypes" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListContentTypesSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListContentTypesResponse" />
+		<wsdl:part element="tns:GetListContentTypesResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListContentTypesAndPropertiesSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListContentTypesAndProperties" />
+		<wsdl:part element="tns:GetListContentTypesAndProperties" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListContentTypesAndPropertiesSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListContentTypesAndPropertiesResponse" />
+		<wsdl:part element="tns:GetListContentTypesAndPropertiesResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListContentTypeSoapIn">
-		<wsdl:part name="parameters" element="tns:GetListContentType" />
+		<wsdl:part element="tns:GetListContentType" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetListContentTypeSoapOut">
-		<wsdl:part name="parameters" element="tns:GetListContentTypeResponse" />
+		<wsdl:part element="tns:GetListContentTypeResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CreateContentTypeSoapIn">
-		<wsdl:part name="parameters" element="tns:CreateContentType" />
+		<wsdl:part element="tns:CreateContentType" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CreateContentTypeSoapOut">
-		<wsdl:part name="parameters" element="tns:CreateContentTypeResponse" />
+		<wsdl:part element="tns:CreateContentTypeResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateContentTypeSoapIn">
-		<wsdl:part name="parameters" element="tns:UpdateContentType" />
+		<wsdl:part element="tns:UpdateContentType" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateContentTypeSoapOut">
-		<wsdl:part name="parameters" element="tns:UpdateContentTypeResponse" />
+		<wsdl:part element="tns:UpdateContentTypeResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteContentTypeSoapIn">
-		<wsdl:part name="parameters" element="tns:DeleteContentType" />
+		<wsdl:part element="tns:DeleteContentType" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteContentTypeSoapOut">
-		<wsdl:part name="parameters" element="tns:DeleteContentTypeResponse" />
+		<wsdl:part element="tns:DeleteContentTypeResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateContentTypeXmlDocumentSoapIn">
-		<wsdl:part name="parameters" element="tns:UpdateContentTypeXmlDocument" />
+		<wsdl:part element="tns:UpdateContentTypeXmlDocument" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateContentTypeXmlDocumentSoapOut">
-		<wsdl:part name="parameters" element="tns:UpdateContentTypeXmlDocumentResponse" />
+		<wsdl:part element="tns:UpdateContentTypeXmlDocumentResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateContentTypesXmlDocumentSoapIn">
-		<wsdl:part name="parameters" element="tns:UpdateContentTypesXmlDocument" />
+		<wsdl:part element="tns:UpdateContentTypesXmlDocument" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="UpdateContentTypesXmlDocumentSoapOut">
-		<wsdl:part name="parameters" element="tns:UpdateContentTypesXmlDocumentResponse" />
+		<wsdl:part element="tns:UpdateContentTypesXmlDocumentResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteContentTypeXmlDocumentSoapIn">
-		<wsdl:part name="parameters" element="tns:DeleteContentTypeXmlDocument" />
+		<wsdl:part element="tns:DeleteContentTypeXmlDocument" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteContentTypeXmlDocumentSoapOut">
-		<wsdl:part name="parameters" element="tns:DeleteContentTypeXmlDocumentResponse" />
+		<wsdl:part element="tns:DeleteContentTypeXmlDocumentResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="ApplyContentTypeToListSoapIn">
-		<wsdl:part name="parameters" element="tns:ApplyContentTypeToList" />
+		<wsdl:part element="tns:ApplyContentTypeToList" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="ApplyContentTypeToListSoapOut">
-		<wsdl:part name="parameters" element="tns:ApplyContentTypeToListResponse" />
+		<wsdl:part element="tns:ApplyContentTypeToListResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:portType name="ListsSoap">
 		<wsdl:operation name="GetList">
@@ -1757,10 +1757,10 @@
 		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="Lists">
-		<wsdl:port name="ListsSoap" binding="tns:ListsSoap">
+		<wsdl:port binding="tns:ListsSoap" name="ListsSoap">
 			<soap:address location="http://192.168.97.74/_vti_bin/Lists.asmx" />
 		</wsdl:port>
-		<wsdl:port name="ListsSoap12" binding="tns:ListsSoap12">
+		<wsdl:port binding="tns:ListsSoap12" name="ListsSoap12">
 			<soap12:address location="http://192.168.97.74/_vti_bin/Lists.asmx" />
 		</wsdl:port>
 	</wsdl:service>

@@ -1,34 +1,34 @@
 <?xml version="1.0"?>
 
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:s0="urn:Microsoft.Search" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://microsoft.com/webservices/SharePoint/QueryService" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://microsoft.com/webservices/SharePoint/QueryService">
+<wsdl:definitions targetNamespace="http://microsoft.com/webservices/SharePoint/QueryService" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="urn:Microsoft.Search" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://microsoft.com/webservices/SharePoint/QueryService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
 	<wsdl:documentation>Microsoft SharePoint Foundation 2010 Search Query Web Service</wsdl:documentation>
 	<wsdl:types>
 		<s:schema elementFormDefault="qualified" targetNamespace="urn:Microsoft.Search">
 			<s:element name="Query">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="queryXml" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="queryXml" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="QueryResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="QueryResult" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="QueryResult" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="Registration">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="registrationXml" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="registrationXml" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="RegistrationResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="RegistrationResult" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="RegistrationResult" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
@@ -38,7 +38,7 @@
 			<s:element name="StatusResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="StatusResult" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="StatusResult" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
@@ -47,14 +47,14 @@
 			<s:element name="QueryEx">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="queryXml" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="queryXml" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="QueryExResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="QueryExResult">
+						<s:element maxOccurs="1" minOccurs="0" name="QueryExResult">
 							<s:complexType>
 								<s:sequence>
 									<s:element ref="s:schema" />
@@ -68,28 +68,28 @@
 		</s:schema>
 	</wsdl:types>
 	<wsdl:message name="QuerySoapIn">
-		<wsdl:part name="parameters" element="s0:Query" />
+		<wsdl:part element="s0:Query" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="QuerySoapOut">
-		<wsdl:part name="parameters" element="s0:QueryResponse" />
+		<wsdl:part element="s0:QueryResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="QueryExSoapIn">
-		<wsdl:part name="parameters" element="tns:QueryEx" />
+		<wsdl:part element="tns:QueryEx" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="QueryExSoapOut">
-		<wsdl:part name="parameters" element="tns:QueryExResponse" />
+		<wsdl:part element="tns:QueryExResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="RegistrationSoapIn">
-		<wsdl:part name="parameters" element="s0:Registration" />
+		<wsdl:part element="s0:Registration" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="RegistrationSoapOut">
-		<wsdl:part name="parameters" element="s0:RegistrationResponse" />
+		<wsdl:part element="s0:RegistrationResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="StatusSoapIn">
-		<wsdl:part name="parameters" element="s0:Status" />
+		<wsdl:part element="s0:Status" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="StatusSoapOut">
-		<wsdl:part name="parameters" element="s0:StatusResponse" />
+		<wsdl:part element="s0:StatusResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:portType name="QueryServiceSoap">
 		<wsdl:operation name="Query">
@@ -189,10 +189,10 @@
 	</wsdl:binding>
 	<wsdl:service name="QueryService">
 		<wsdl:documentation>Microsoft SharePoint Foundation 2010 Search Query Web Service</wsdl:documentation>
-		<wsdl:port name="QueryServiceSoap" binding="tns:QueryServiceSoap">
+		<wsdl:port binding="tns:QueryServiceSoap" name="QueryServiceSoap">
 			<soap:address location="http://liferay-20jf4ic/_vti_bin/spsearch.asmx" />
 		</wsdl:port>
-		<wsdl:port name="QueryServiceSoap12" binding="tns:QueryServiceSoap12">
+		<wsdl:port binding="tns:QueryServiceSoap12" name="QueryServiceSoap12">
 			<soap12:address location="http://liferay-20jf4ic/_vti_bin/spsearch.asmx" />
 		</wsdl:port>
 	</wsdl:service>

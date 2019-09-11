@@ -1,33 +1,33 @@
 <?xml version="1.0"?>
 
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/">
+<wsdl:definitions targetNamespace="http://schemas.microsoft.com/sharepoint/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
 	<wsdl:types>
 		<s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/">
 			<s:import namespace="http://microsoft.com/wsdl/types/" />
 			<s:element name="CopyIntoItemsLocal">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="SourceUrl" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="DestinationUrls" type="tns:DestinationUrlCollection" />
+						<s:element maxOccurs="1" minOccurs="0" name="SourceUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="DestinationUrls" type="tns:DestinationUrlCollection" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:complexType name="DestinationUrlCollection">
 				<s:sequence>
-					<s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+					<s:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="s:string" />
 				</s:sequence>
 			</s:complexType>
 			<s:element name="CopyIntoItemsLocalResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="CopyIntoItemsLocalResult" type="s:unsignedInt" />
-						<s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:CopyResultCollection" />
+						<s:element maxOccurs="1" minOccurs="1" name="CopyIntoItemsLocalResult" type="s:unsignedInt" />
+						<s:element maxOccurs="1" minOccurs="0" name="Results" type="tns:CopyResultCollection" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:complexType name="CopyResultCollection">
 				<s:sequence>
-					<s:element minOccurs="0" maxOccurs="unbounded" name="CopyResult" nillable="true" type="tns:CopyResult" />
+					<s:element maxOccurs="unbounded" minOccurs="0" name="CopyResult" nillable="true" type="tns:CopyResult" />
 				</s:sequence>
 			</s:complexType>
 			<s:complexType name="CopyResult">
@@ -49,16 +49,16 @@
 			<s:element name="CopyIntoItems">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="SourceUrl" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="DestinationUrls" type="tns:DestinationUrlCollection" />
-						<s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:FieldInformationCollection" />
-						<s:element minOccurs="0" maxOccurs="1" name="Stream" type="s:base64Binary" />
+						<s:element maxOccurs="1" minOccurs="0" name="SourceUrl" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="DestinationUrls" type="tns:DestinationUrlCollection" />
+						<s:element maxOccurs="1" minOccurs="0" name="Fields" type="tns:FieldInformationCollection" />
+						<s:element maxOccurs="1" minOccurs="0" name="Stream" type="s:base64Binary" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:complexType name="FieldInformationCollection">
 				<s:sequence>
-					<s:element minOccurs="0" maxOccurs="unbounded" name="FieldInformation" nillable="true" type="tns:FieldInformation" />
+					<s:element maxOccurs="unbounded" minOccurs="0" name="FieldInformation" nillable="true" type="tns:FieldInformation" />
 				</s:sequence>
 			</s:complexType>
 			<s:complexType name="FieldInformation">
@@ -101,24 +101,24 @@
 			<s:element name="CopyIntoItemsResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="CopyIntoItemsResult" type="s:unsignedInt" />
-						<s:element minOccurs="0" maxOccurs="1" name="Results" type="tns:CopyResultCollection" />
+						<s:element maxOccurs="1" minOccurs="1" name="CopyIntoItemsResult" type="s:unsignedInt" />
+						<s:element maxOccurs="1" minOccurs="0" name="Results" type="tns:CopyResultCollection" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetItem">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="Url" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="Url" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetItemResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="1" maxOccurs="1" name="GetItemResult" type="s:unsignedInt" />
-						<s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:FieldInformationCollection" />
-						<s:element minOccurs="0" maxOccurs="1" name="Stream" type="s:base64Binary" />
+						<s:element maxOccurs="1" minOccurs="1" name="GetItemResult" type="s:unsignedInt" />
+						<s:element maxOccurs="1" minOccurs="0" name="Fields" type="tns:FieldInformationCollection" />
+						<s:element maxOccurs="1" minOccurs="0" name="Stream" type="s:base64Binary" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
@@ -132,22 +132,22 @@
 		</s:schema>
 	</wsdl:types>
 	<wsdl:message name="CopyIntoItemsLocalSoapIn">
-		<wsdl:part name="parameters" element="tns:CopyIntoItemsLocal" />
+		<wsdl:part element="tns:CopyIntoItemsLocal" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CopyIntoItemsLocalSoapOut">
-		<wsdl:part name="parameters" element="tns:CopyIntoItemsLocalResponse" />
+		<wsdl:part element="tns:CopyIntoItemsLocalResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CopyIntoItemsSoapIn">
-		<wsdl:part name="parameters" element="tns:CopyIntoItems" />
+		<wsdl:part element="tns:CopyIntoItems" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="CopyIntoItemsSoapOut">
-		<wsdl:part name="parameters" element="tns:CopyIntoItemsResponse" />
+		<wsdl:part element="tns:CopyIntoItemsResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetItemSoapIn">
-		<wsdl:part name="parameters" element="tns:GetItem" />
+		<wsdl:part element="tns:GetItem" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetItemSoapOut">
-		<wsdl:part name="parameters" element="tns:GetItemResponse" />
+		<wsdl:part element="tns:GetItemResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:portType name="CopySoap">
 		<wsdl:operation name="CopyIntoItemsLocal">
@@ -224,10 +224,10 @@
 		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="Copy">
-		<wsdl:port name="CopySoap" binding="tns:CopySoap">
+		<wsdl:port binding="tns:CopySoap" name="CopySoap">
 			<soap:address location="http://liferay-20jf4ic/sites/CMISProducer/_vti_bin/copy.asmx" />
 		</wsdl:port>
-		<wsdl:port name="CopySoap12" binding="tns:CopySoap12">
+		<wsdl:port binding="tns:CopySoap12" name="CopySoap12">
 			<soap12:address location="http://liferay-20jf4ic/sites/CMISProducer/_vti_bin/copy.asmx" />
 		</wsdl:port>
 	</wsdl:service>

@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 
-<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/">
+<wsdl:definitions targetNamespace="http://schemas.microsoft.com/sharepoint/soap/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://schemas.microsoft.com/sharepoint/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
 	<wsdl:types>
 		<s:schema elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/sharepoint/soap/">
 			<s:import namespace="http://www.w3.org/2001/XMLSchema" />
 			<s:element name="GetVersions">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="GetVersionsResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="GetVersionsResult">
+						<s:element maxOccurs="1" minOccurs="0" name="GetVersionsResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -27,15 +27,15 @@
 			<s:element name="RestoreVersion">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="fileVersion" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileVersion" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="RestoreVersionResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="RestoreVersionResult">
+						<s:element maxOccurs="1" minOccurs="0" name="RestoreVersionResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -48,15 +48,15 @@
 			<s:element name="DeleteVersion">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
-						<s:element minOccurs="0" maxOccurs="1" name="fileVersion" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileVersion" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="DeleteVersionResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="DeleteVersionResult">
+						<s:element maxOccurs="1" minOccurs="0" name="DeleteVersionResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -69,14 +69,14 @@
 			<s:element name="DeleteAllVersions">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="fileName" type="s:string" />
+						<s:element maxOccurs="1" minOccurs="0" name="fileName" type="s:string" />
 					</s:sequence>
 				</s:complexType>
 			</s:element>
 			<s:element name="DeleteAllVersionsResponse">
 				<s:complexType>
 					<s:sequence>
-						<s:element minOccurs="0" maxOccurs="1" name="DeleteAllVersionsResult">
+						<s:element maxOccurs="1" minOccurs="0" name="DeleteAllVersionsResult">
 							<s:complexType mixed="true">
 								<s:sequence>
 									<s:any/>
@@ -89,28 +89,28 @@
 		</s:schema>
 	</wsdl:types>
 	<wsdl:message name="GetVersionsSoapIn">
-		<wsdl:part name="parameters" element="tns:GetVersions" />
+		<wsdl:part element="tns:GetVersions" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="GetVersionsSoapOut">
-		<wsdl:part name="parameters" element="tns:GetVersionsResponse" />
+		<wsdl:part element="tns:GetVersionsResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="RestoreVersionSoapIn">
-		<wsdl:part name="parameters" element="tns:RestoreVersion" />
+		<wsdl:part element="tns:RestoreVersion" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="RestoreVersionSoapOut">
-		<wsdl:part name="parameters" element="tns:RestoreVersionResponse" />
+		<wsdl:part element="tns:RestoreVersionResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteVersionSoapIn">
-		<wsdl:part name="parameters" element="tns:DeleteVersion" />
+		<wsdl:part element="tns:DeleteVersion" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteVersionSoapOut">
-		<wsdl:part name="parameters" element="tns:DeleteVersionResponse" />
+		<wsdl:part element="tns:DeleteVersionResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteAllVersionsSoapIn">
-		<wsdl:part name="parameters" element="tns:DeleteAllVersions" />
+		<wsdl:part element="tns:DeleteAllVersions" name="parameters" />
 	</wsdl:message>
 	<wsdl:message name="DeleteAllVersionsSoapOut">
-		<wsdl:part name="parameters" element="tns:DeleteAllVersionsResponse" />
+		<wsdl:part element="tns:DeleteAllVersionsResponse" name="parameters" />
 	</wsdl:message>
 	<wsdl:portType name="VersionsSoap">
 		<wsdl:operation name="GetVersions">
@@ -209,10 +209,10 @@
 		</wsdl:operation>
 	</wsdl:binding>
 	<wsdl:service name="Versions">
-		<wsdl:port name="VersionsSoap" binding="tns:VersionsSoap">
+		<wsdl:port binding="tns:VersionsSoap" name="VersionsSoap">
 			<soap:address location="http://localhost/_vti_bin/Versions.asmx" />
 		</wsdl:port>
-		<wsdl:port name="VersionsSoap12" binding="tns:VersionsSoap12">
+		<wsdl:port binding="tns:VersionsSoap12" name="VersionsSoap12">
 			<soap12:address location="http://localhost/_vti_bin/Versions.asmx" />
 		</wsdl:port>
 	</wsdl:service>

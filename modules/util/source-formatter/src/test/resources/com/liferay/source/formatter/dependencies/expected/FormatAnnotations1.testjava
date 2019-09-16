@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Component;
 	},
 	service = Portlet.class
 )
-public class FormatAnnotations {
+public class FormatAnnotations1 {
 
 	@JSON
 	@JSONWebService(mode = JSONWebServiceMode.IGNORE)

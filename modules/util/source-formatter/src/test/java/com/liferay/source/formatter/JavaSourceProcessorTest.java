@@ -105,7 +105,7 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 
 	@Test
 	public void testFormatAnnotations() throws Exception {
-		test("FormatAnnotations.testjava");
+		test("FormatAnnotations1.testjava");
 	}
 
 	@Test

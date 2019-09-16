@@ -297,8 +297,13 @@ public class JavaComponentAnnotationsCheck extends JavaAnnotationsCheck {
 				"\"javax.portlet.init-param.config-template=") &&
 			!newProperties.contains("javax.portlet.portlet-mode=")) {
 
-			newProperties +=
-				", \"javax.portlet.portlet-mode=text/html;config\"";
+			newProperties = StringUtil.trimTrailing(newProperties);
+
+			if (!newProperties.endsWith(StringPool.COMMA)) {
+				newProperties += StringPool.COMMA;
+			}
+
+			newProperties += "\"javax.portlet.portlet-mode=text/html;config\"";
 		}
 
 		return StringUtil.replace(annotation, properties, newProperties);

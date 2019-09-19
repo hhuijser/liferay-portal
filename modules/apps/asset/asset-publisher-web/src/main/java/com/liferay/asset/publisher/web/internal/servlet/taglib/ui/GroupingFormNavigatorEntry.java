@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
 import com.liferay.asset.publisher.web.internal.util.AssetPublisherCustomizer;
@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 
 import javax.servlet.ServletContext;
-import javax.servlet.http.HttpServletRequest;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -36,28 +35,30 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=600",
+	property = "form.navigator.entry.order:Integer=50",
 	service = FormNavigatorEntry.class
 )
-public class SelectionStyleFormNavigatorEntry
+public class GroupingFormNavigatorEntry
 	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
 	public String getCategoryKey() {
-		return AssetPublisherConstants.CATEGORY_KEY_ASSET_SELECTION;
+		return AssetPublisherConstants.CATEGORY_KEY_DISPLAY_SETTINGS;
 	}
 
 	@Override
 	public String getKey() {
-		return "asset-selection";
+		return "grouping";
 	}
 
 	@Override
 	public boolean isVisible(User user, Object object) {
+		if (!isDynamicAssetSelection()) {
+			return false;
+		}
+
 		ServiceContext serviceContext =
 			ServiceContextThreadLocal.getServiceContext();
-
-		HttpServletRequest httpServletRequest = serviceContext.getRequest();
 
 		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 
@@ -67,16 +68,15 @@ public class SelectionStyleFormNavigatorEntry
 			themeDisplay.getCompanyId(), portletDisplay.getPortletResource());
 
 		AssetPublisherCustomizer assetPublisherCustomizer =
-			_assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
+			assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
 				portlet.getRootPortletId());
 
-		if (assetPublisherCustomizer.isSelectionStyleEnabled(
-				httpServletRequest)) {
-
+		if (assetPublisherCustomizer == null) {
 			return true;
 		}
 
-		return false;
+		return assetPublisherCustomizer.isOrderingAndGroupingEnabled(
+			serviceContext.getRequest());
 	}
 
 	@Override
@@ -90,11 +90,11 @@ public class SelectionStyleFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/selection_style.jsp";
+		return "/configuration/grouping.jsp";
 	}
 
 	@Reference
-	private AssetPublisherCustomizerRegistry _assetPublisherCustomizerRegistry;
+	protected AssetPublisherCustomizerRegistry assetPublisherCustomizerRegistry;
 
 	@Reference
 	private PortletLocalService _portletLocalService;

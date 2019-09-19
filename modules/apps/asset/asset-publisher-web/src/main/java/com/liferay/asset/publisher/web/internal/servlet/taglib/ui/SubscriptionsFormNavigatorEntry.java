@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
@@ -26,20 +26,20 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=200",
+	property = "form.navigator.entry.order:Integer=100",
 	service = FormNavigatorEntry.class
 )
-public class DisplaySettingsFormNavigatorEntry
+public class SubscriptionsFormNavigatorEntry
 	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
 	public String getCategoryKey() {
-		return AssetPublisherConstants.CATEGORY_KEY_DISPLAY_SETTINGS;
+		return AssetPublisherConstants.CATEGORY_KEY_SUBSCRIPTIONS;
 	}
 
 	@Override
 	public String getKey() {
-		return "display-settings";
+		return "subscriptions";
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class DisplaySettingsFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/display_settings.jsp";
+		return "/configuration/subscriptions.jsp";
 	}
 
 }

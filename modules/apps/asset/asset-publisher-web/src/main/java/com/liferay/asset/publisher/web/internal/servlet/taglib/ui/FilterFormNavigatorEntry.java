@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
 import com.liferay.portal.kernel.model.User;
@@ -27,10 +27,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=500",
+	property = "form.navigator.entry.order:Integer=400",
 	service = FormNavigatorEntry.class
 )
-public class SourceFormNavigatorEntry
+public class FilterFormNavigatorEntry
 	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
@@ -40,12 +40,16 @@ public class SourceFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "source";
+		return "filter";
 	}
 
 	@Override
 	public boolean isVisible(User user, Object object) {
-		return isDynamicAssetSelection();
+		if (isDynamicAssetSelection()) {
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
@@ -59,7 +63,7 @@ public class SourceFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/source.jsp";
+		return "/configuration/filter.jsp";
 	}
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;

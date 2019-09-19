@@ -12,11 +12,14 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
+
+import java.util.Locale;
 
 import javax.servlet.ServletContext;
 
@@ -24,13 +27,13 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Eudaldo Alonso
+ * @author Pavel Savinov
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=400",
+	property = "form.navigator.entry.order:Integer=100",
 	service = FormNavigatorEntry.class
 )
-public class FilterFormNavigatorEntry
+public class CreateAssetListFormNavigatorEntry
 	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
@@ -40,12 +43,17 @@ public class FilterFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "filter";
+		return "create-asset-list";
+	}
+
+	@Override
+	public String getLabel(Locale locale) {
+		return StringPool.BLANK;
 	}
 
 	@Override
 	public boolean isVisible(User user, Object object) {
-		if (isDynamicAssetSelection()) {
+		if (isDynamicAssetSelection() || isManualSelection()) {
 			return true;
 		}
 
@@ -63,7 +71,7 @@ public class FilterFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/filter.jsp";
+		return "/configuration/create_asset_list.jsp";
 	}
 
 }

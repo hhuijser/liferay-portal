@@ -12,13 +12,19 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
+import com.liferay.asset.publisher.web.internal.util.AssetPublisherCustomizer;
+import com.liferay.asset.publisher.web.internal.util.AssetPublisherCustomizerRegistry;
+import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.PortletLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
-
-import java.util.Objects;
+import com.liferay.portal.kernel.theme.PortletDisplay;
+import com.liferay.portal.kernel.theme.ThemeDisplay;
 
 import javax.servlet.ServletContext;
 
@@ -29,10 +35,10 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=300",
+	property = "form.navigator.entry.order:Integer=200",
 	service = FormNavigatorEntry.class
 )
-public class AssetListProviderFormNavigatorEntry
+public class OrderingFormNavigatorEntry
 	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
@@ -42,16 +48,35 @@ public class AssetListProviderFormNavigatorEntry
 
 	@Override
 	public String getKey() {
-		return "select-content-set-provider";
+		return "ordering";
 	}
 
 	@Override
 	public boolean isVisible(User user, Object object) {
-		if (_isAssetListProviderSelection()) {
+		if (!isDynamicAssetSelection()) {
+			return false;
+		}
+
+		ServiceContext serviceContext =
+			ServiceContextThreadLocal.getServiceContext();
+
+		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
+		Portlet portlet = _portletLocalService.getPortletById(
+			themeDisplay.getCompanyId(), portletDisplay.getPortletResource());
+
+		AssetPublisherCustomizer assetPublisherCustomizer =
+			assetPublisherCustomizerRegistry.getAssetPublisherCustomizer(
+				portlet.getRootPortletId());
+
+		if (assetPublisherCustomizer == null) {
 			return true;
 		}
 
-		return false;
+		return assetPublisherCustomizer.isOrderingAndGroupingEnabled(
+			serviceContext.getRequest());
 	}
 
 	@Override
@@ -65,15 +90,13 @@ public class AssetListProviderFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/asset_list_provider.jsp";
+		return "/configuration/ordering.jsp";
 	}
 
-	private boolean _isAssetListProviderSelection() {
-		if (Objects.equals(getSelectionStyle(), "asset-list-provider")) {
-			return true;
-		}
+	@Reference
+	protected AssetPublisherCustomizerRegistry assetPublisherCustomizerRegistry;
 
-		return false;
-	}
+	@Reference
+	private PortletLocalService _portletLocalService;
 
 }

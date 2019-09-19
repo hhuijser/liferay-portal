@@ -12,17 +12,10 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
-import com.liferay.asset.publisher.constants.AssetPublisherPortletKeys;
-import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.portlet.PortletIdCodec;
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
-import com.liferay.portal.kernel.theme.PortletDisplay;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
 
 import javax.servlet.ServletContext;
 
@@ -30,50 +23,23 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Eudaldo Alonso
+ * @author Pavel Savinov
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=400",
+	property = "form.navigator.entry.order:Integer=150",
 	service = FormNavigatorEntry.class
 )
-public class ScopeFormNavigatorEntry
+public class SetAndEnableFormNavigatorEntry
 	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
 	public String getCategoryKey() {
-		return AssetPublisherConstants.CATEGORY_KEY_ASSET_SELECTION;
+		return AssetPublisherConstants.CATEGORY_KEY_DISPLAY_SETTINGS;
 	}
 
 	@Override
 	public String getKey() {
-		return "scope";
-	}
-
-	@Override
-	public boolean isVisible(User user, Object object) {
-		if (!isManualSelection() && !isDynamicAssetSelection()) {
-			return false;
-		}
-
-		if (isManualSelection()) {
-			return true;
-		}
-
-		ServiceContext serviceContext =
-			ServiceContextThreadLocal.getServiceContext();
-
-		ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		String rootPortletId = PortletIdCodec.decodePortletName(
-			portletDisplay.getPortletName());
-
-		if (rootPortletId.equals(AssetPublisherPortletKeys.RELATED_ASSETS)) {
-			return false;
-		}
-
-		return true;
+		return "set-and-enable";
 	}
 
 	@Override
@@ -87,7 +53,7 @@ public class ScopeFormNavigatorEntry
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/scope.jsp";
+		return "/configuration/set_enable.jsp";
 	}
 
 }

@@ -12,12 +12,11 @@
  * details.
  */
 
-package com.liferay.asset.publisher.web.internal.server.taglib.ui;
+package com.liferay.asset.publisher.web.internal.servlet.taglib.ui;
 
 import com.liferay.asset.publisher.constants.AssetPublisherConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.servlet.taglib.ui.FormNavigatorEntry;
-import com.liferay.portal.kernel.util.Portal;
 
 import javax.servlet.ServletContext;
 
@@ -28,32 +27,29 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eudaldo Alonso
  */
 @Component(
-	property = "form.navigator.entry.order:Integer=200",
+	property = "form.navigator.entry.order:Integer=300",
 	service = FormNavigatorEntry.class
 )
-public class RSSFormNavigatorEntry extends BaseConfigurationFormNavigatorEntry {
+public class AssetEntriesFormNavigatorEntry
+	extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
 	public String getCategoryKey() {
-		return AssetPublisherConstants.CATEGORY_KEY_SUBSCRIPTIONS;
+		return AssetPublisherConstants.CATEGORY_KEY_ASSET_SELECTION;
 	}
 
 	@Override
 	public String getKey() {
-		return "rss";
+		return "asset-entries";
 	}
 
 	@Override
-	public boolean isVisible(User user, Object formModelBean) {
-		if (!_portal.isRSSFeedsEnabled()) {
-			return false;
+	public boolean isVisible(User user, Object object) {
+		if (isManualSelection()) {
+			return true;
 		}
 
-		if (!isDynamicAssetSelection()) {
-			return false;
-		}
-
-		return true;
+		return false;
 	}
 
 	@Override
@@ -67,10 +63,7 @@ public class RSSFormNavigatorEntry extends BaseConfigurationFormNavigatorEntry {
 
 	@Override
 	protected String getJspPath() {
-		return "/configuration/rss.jsp";
+		return "/configuration/asset_entries.jsp";
 	}
-
-	@Reference
-	private Portal _portal;
 
 }

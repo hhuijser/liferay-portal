@@ -28,6 +28,7 @@ import com.liferay.user.associated.data.constants.UserAssociatedDataPortletKeys;
 import com.liferay.user.associated.data.display.UADDisplay;
 import com.liferay.user.associated.data.web.internal.constants.UADConstants;
 import com.liferay.user.associated.data.web.internal.constants.UADWebKeys;
+import com.liferay.user.associated.data.web.internal.dao.search.UADHierarchyResultRowSplitter;
 import com.liferay.user.associated.data.web.internal.display.ScopeDisplay;
 import com.liferay.user.associated.data.web.internal.display.UADApplicationSummaryDisplay;
 import com.liferay.user.associated.data.web.internal.display.UADEntity;
@@ -35,7 +36,6 @@ import com.liferay.user.associated.data.web.internal.display.UADHierarchyDisplay
 import com.liferay.user.associated.data.web.internal.display.UADInfoPanelDisplay;
 import com.liferay.user.associated.data.web.internal.display.ViewUADEntitiesDisplay;
 import com.liferay.user.associated.data.web.internal.registry.UADRegistry;
-import com.liferay.user.associated.data.web.internal.search.UADHierarchyResultRowSplitter;
 import com.liferay.user.associated.data.web.internal.util.GroupUtil;
 import com.liferay.user.associated.data.web.internal.util.SelectedUserHelper;
 import com.liferay.user.associated.data.web.internal.util.UADApplicationSummaryHelper;

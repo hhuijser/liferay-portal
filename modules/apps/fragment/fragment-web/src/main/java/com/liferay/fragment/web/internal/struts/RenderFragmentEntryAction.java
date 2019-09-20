@@ -50,7 +50,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/portal/fragment/render_fragment_entry",
 	service = StrutsAction.class
 )
-public class RenderFragmentEntryStrutsAction implements StrutsAction {
+public class RenderFragmentEntryAction implements StrutsAction {
 
 	@Override
 	public String execute(

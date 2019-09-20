@@ -65,7 +65,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/portal/comment/discussion/edit",
 	service = StrutsAction.class
 )
-public class EditDiscussionStrutsAction implements StrutsAction {
+public class EditDiscussionAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -74,7 +74,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		throws Exception {
 
 		AuthTokenUtil.checkCSRFToken(
-			httpServletRequest, EditDiscussionStrutsAction.class.getName());
+			httpServletRequest, EditDiscussionAction.class.getName());
 
 		String namespace = ParamUtil.getString(httpServletRequest, "namespace");
 

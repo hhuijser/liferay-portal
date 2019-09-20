@@ -61,7 +61,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
  * @author Pavel Savinov
  */
 @RunWith(Arquillian.class)
-public class RenderFragmentEntryStrutsActionTest {
+public class RenderFragmentEntryActionTest {
 
 	@ClassRule
 	@Rule
@@ -124,7 +124,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		_setUpEnvironment(
 			mockHttpServletRequest, mockHttpServletResponse, _groupUser);
 
-		_renderFragmentEntryStrutsAction.execute(
+		_renderFragmentEntryAction.execute(
 			mockHttpServletRequest, pipingServletResponse);
 
 		URL renderedUrl = _bundle.getEntry(
@@ -153,7 +153,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		mockHttpServletRequest.setParameter(
 			"groupId", String.valueOf(_group.getGroupId()));
 
-		_renderFragmentEntryStrutsAction.execute(
+		_renderFragmentEntryAction.execute(
 			mockHttpServletRequest, mockHttpServletResponse);
 	}
 
@@ -201,7 +201,7 @@ public class RenderFragmentEntryStrutsActionTest {
 	@DeleteAfterTestRun
 	private User _guestUser;
 
-	@Inject(filter = "component.name=*.RenderFragmentEntryStrutsAction")
-	private StrutsAction _renderFragmentEntryStrutsAction;
+	@Inject(filter = "component.name=*.RenderFragmentEntryAction")
+	private StrutsAction _renderFragmentEntryAction;
 
 }

@@ -6167,7 +6167,7 @@ public class PortalImpl implements Portal {
 			ResourceResponse resourceResponse)
 		throws IOException, PortletException {
 
-		if (_getCommentsStrutsAction == null) {
+		if (_getCommentsAction == null) {
 			_log.error(
 				"Unable to find a Struts Action component with property " +
 					"\"path=/portal/comment/discussion/get_comments\"");
@@ -6176,7 +6176,7 @@ public class PortalImpl implements Portal {
 		}
 
 		try {
-			_getCommentsStrutsAction.execute(
+			_getCommentsAction.execute(
 				getHttpServletRequest(resourceRequest),
 				getHttpServletResponse(resourceResponse));
 		}
@@ -8880,8 +8880,8 @@ public class PortalImpl implements Portal {
 	private final String _computerName;
 	private String[] _customSqlKeys;
 	private String[] _customSqlValues;
-	private volatile StrutsAction _editDiscussionStrutsAction;
-	private volatile StrutsAction _getCommentsStrutsAction;
+	private volatile StrutsAction _editDiscussionAction;
+	private volatile StrutsAction _getCommentsAction;
 	private final String _pathContext;
 	private final String _pathFriendlyURLPrivateGroup;
 	private final String _pathFriendlyURLPrivateUser;
@@ -9003,12 +9003,12 @@ public class PortalImpl implements Portal {
 			StrutsAction strutsAction = registry.getService(serviceReference);
 
 			if (Objects.equals(path, "/portal/comment/discussion/edit")) {
-				_editDiscussionStrutsAction = strutsAction;
+				_editDiscussionAction = strutsAction;
 			}
 			else if (Objects.equals(
 						path, "/portal/comment/discussion/get_comments")) {
 
-				_getCommentsStrutsAction = strutsAction;
+				_getCommentsAction = strutsAction;
 			}
 
 			return strutsAction;
@@ -9035,12 +9035,12 @@ public class PortalImpl implements Portal {
 				serviceReference.getProperty("path"));
 
 			if (Objects.equals(path, "/portal/comment/discussion/edit")) {
-				_editDiscussionStrutsAction = null;
+				_editDiscussionAction = null;
 			}
 			else if (Objects.equals(
 						path, "/portal/comment/discussion/get_comments")) {
 
-				_getCommentsStrutsAction = null;
+				_getCommentsAction = null;
 			}
 
 			registry.ungetService(serviceReference);

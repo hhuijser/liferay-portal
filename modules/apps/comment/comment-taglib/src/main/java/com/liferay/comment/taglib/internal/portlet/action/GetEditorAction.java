@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.comment.taglib.internal.struts;
+package com.liferay.comment.taglib.internal.portlet.action;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.struts.StrutsAction;
@@ -29,13 +29,13 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Adolfo Pérez
+ * @author Alejandro Tardín
  */
 @Component(
-	immediate = true, property = "path=/portal/comment/discussion/get_comments",
+	immediate = true, property = "path=/portal/comment/discussion/get_editor",
 	service = StrutsAction.class
 )
-public class GetCommentsAction implements StrutsAction {
+public class GetEditorAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -52,29 +52,28 @@ public class GetCommentsAction implements StrutsAction {
 		namespacedHttpServletRequest.setAttribute(
 			"aui:form:portletNamespace", namespace);
 
-		String className = ParamUtil.getString(
-			namespacedHttpServletRequest, "className");
+		String contents = ParamUtil.getString(
+			namespacedHttpServletRequest, "contents");
 
 		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:className", className);
+			"liferay-comment:editor:contents", contents);
 
-		long classPK = ParamUtil.getLong(
-			namespacedHttpServletRequest, "classPK");
-
-		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:classPK", String.valueOf(classPK));
-
-		boolean hideControls = ParamUtil.getBoolean(
-			namespacedHttpServletRequest, "hideControls");
+		String name = ParamUtil.getString(namespacedHttpServletRequest, "name");
 
 		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:hideControls",
-			String.valueOf(hideControls));
+			"liferay-comment:editor:name", name);
 
-		int index = ParamUtil.getInteger(namespacedHttpServletRequest, "index");
+		String onChangeMethod = ParamUtil.getString(
+			namespacedHttpServletRequest, "onChangeMethod");
 
 		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:index", String.valueOf(index));
+			"liferay-comment:editor:onChangeMethod", onChangeMethod);
+
+		String placeholder = ParamUtil.getString(
+			namespacedHttpServletRequest, "placeholder");
+
+		namespacedHttpServletRequest.setAttribute(
+			"liferay-comment:editor:placeholder", placeholder);
 
 		String portletId = ParamUtil.getString(
 			namespacedHttpServletRequest, "portletId");
@@ -82,34 +81,9 @@ public class GetCommentsAction implements StrutsAction {
 		namespacedHttpServletRequest.setAttribute(
 			WebKeys.PORTLET_ID, portletId);
 
-		String randomNamespace = ParamUtil.getString(
-			namespacedHttpServletRequest, "randomNamespace");
-
-		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:randomNamespace", randomNamespace);
-
-		boolean ratingsEnabled = ParamUtil.getBoolean(
-			namespacedHttpServletRequest, "ratingsEnabled");
-
-		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:ratingsEnabled",
-			String.valueOf(ratingsEnabled));
-
-		int rootIndexPage = ParamUtil.getInteger(
-			namespacedHttpServletRequest, "rootIndexPage");
-
-		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:rootIndexPage",
-			String.valueOf(rootIndexPage));
-
-		long userId = ParamUtil.getLong(namespacedHttpServletRequest, "userId");
-
-		namespacedHttpServletRequest.setAttribute(
-			"liferay-comment:discussion:userId", String.valueOf(userId));
-
 		RequestDispatcher requestDispatcher =
 			_servletContext.getRequestDispatcher(
-				"/discussion/page_resources.jsp");
+				"/discussion/editor_resource.jsp");
 
 		requestDispatcher.include(
 			namespacedHttpServletRequest, httpServletResponse);

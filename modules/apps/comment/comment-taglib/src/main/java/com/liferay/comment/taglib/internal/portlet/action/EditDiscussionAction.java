@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.comment.taglib.internal.struts;
+package com.liferay.comment.taglib.internal.portlet.action;
 
 import com.liferay.asset.kernel.model.AssetEntry;
 import com.liferay.asset.kernel.service.AssetEntryLocalService;

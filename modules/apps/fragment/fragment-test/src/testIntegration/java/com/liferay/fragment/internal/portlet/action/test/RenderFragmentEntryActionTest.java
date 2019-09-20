@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.internal.struts.test;
+package com.liferay.fragment.internal.portlet.action.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.events.EventsProcessorUtil;

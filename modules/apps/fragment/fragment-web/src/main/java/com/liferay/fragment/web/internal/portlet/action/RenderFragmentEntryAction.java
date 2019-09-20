@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.fragment.web.internal.struts;
+package com.liferay.fragment.web.internal.portlet.action;
 
 import com.liferay.fragment.constants.FragmentActionKeys;
 import com.liferay.fragment.constants.FragmentConstants;

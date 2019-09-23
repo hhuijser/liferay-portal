@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.wiki.web.internal.portlet.action;
+package com.liferay.wiki.web.internal.struts;
 
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.struts.StrutsAction;

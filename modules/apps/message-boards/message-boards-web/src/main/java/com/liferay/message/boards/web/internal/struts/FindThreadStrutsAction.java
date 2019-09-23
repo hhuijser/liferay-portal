@@ -12,13 +12,14 @@
  * details.
  */
 
-package com.liferay.message.boards.web.internal.portlet.action;
+package com.liferay.message.boards.web.internal.struts;
 
 import com.liferay.message.boards.constants.MBPortletKeys;
-import com.liferay.message.boards.model.MBMessage;
-import com.liferay.message.boards.service.MBMessageLocalService;
+import com.liferay.message.boards.model.MBThread;
+import com.liferay.message.boards.service.MBThreadLocalService;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.struts.StrutsAction;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.struts.FindStrutsAction;
 
 import javax.portlet.PortletURL;
@@ -35,28 +36,42 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
 		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
-		"path=/message_boards/find_message"
+		"path=/message_boards/find_thread"
 	},
 	service = StrutsAction.class
 )
-public class FindMessageStrutsAction extends FindStrutsAction {
+public class FindThreadStrutsAction extends FindStrutsAction {
 
 	@Override
 	public long getGroupId(long primaryKey) throws Exception {
-		MBMessage message = _mbMessageLocalService.getMessage(primaryKey);
+		MBThread thread = _mbThreadLocalService.getThread(primaryKey);
 
-		return message.getGroupId();
+		return thread.getGroupId();
 	}
 
 	@Override
 	public String getPrimaryKeyParameterName() {
-		return "messageId";
+		return "threadId";
+	}
+
+	@Override
+	public PortletURL processPortletURL(
+			HttpServletRequest httpServletRequest, PortletURL portletURL)
+		throws Exception {
+
+		long threadId = ParamUtil.getLong(
+			httpServletRequest, getPrimaryKeyParameterName());
+
+		MBThread thread = _mbThreadLocalService.getThread(threadId);
+
+		portletURL.setParameter(
+			"messageId", String.valueOf(thread.getRootMessageId()));
+
+		return portletURL;
 	}
 
 	@Override
 	public void setPrimaryKeyParameter(PortletURL portletURL, long primaryKey) {
-		portletURL.setParameter(
-			getPrimaryKeyParameterName(), String.valueOf(primaryKey));
 	}
 
 	@Override
@@ -74,10 +89,10 @@ public class FindMessageStrutsAction extends FindStrutsAction {
 	}
 
 	@Reference
-	private MBMessageLocalService _mbMessageLocalService;
+	private MBThreadLocalService _mbThreadLocalService;
 
 	@Reference(
-		target = "(model.class.name=com.liferay.message.boards.model.MBMessage)"
+		target = "(model.class.name=com.liferay.message.boards.model.MBThread)"
 	)
 	private PortletLayoutFinder _portletPageFinder;
 

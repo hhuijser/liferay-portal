@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.portlet.action;
+package com.liferay.document.library.web.internal.struts;
 
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;

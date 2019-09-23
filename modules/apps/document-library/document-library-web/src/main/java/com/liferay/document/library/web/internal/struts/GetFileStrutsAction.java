@@ -14,6 +14,7 @@
 
 package com.liferay.document.library.web.internal.struts;
 
+import com.liferay.document.library.web.internal.portlet.action.GetFileActionHelper;
 import com.liferay.portal.kernel.struts.StrutsAction;
 
 import javax.servlet.http.HttpServletRequest;

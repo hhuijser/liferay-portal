@@ -72,7 +72,7 @@ public class GoogleLoginErrorMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(
 				new PrincipalException.MustBeEnabled(
 					themeDisplay.getCompanyId(),
-					GoogleLoginAction.class.getName()));
+					GoogleLoginStrutsAction.class.getName()));
 		}
 
 		String error = ParamUtil.getString(renderRequest, "error");

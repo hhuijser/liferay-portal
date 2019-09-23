@@ -55,7 +55,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/portal/google_login",
 	service = StrutsAction.class
 )
-public class GoogleLoginAction implements StrutsAction {
+public class GoogleLoginStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -214,7 +214,7 @@ public class GoogleLoginAction implements StrutsAction {
 		"/portal/google_login?cmd=token";
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		GoogleLoginAction.class);
+		GoogleLoginStrutsAction.class);
 
 	private static final List<String> _scopesLogin = Arrays.asList(
 		"email", "profile");

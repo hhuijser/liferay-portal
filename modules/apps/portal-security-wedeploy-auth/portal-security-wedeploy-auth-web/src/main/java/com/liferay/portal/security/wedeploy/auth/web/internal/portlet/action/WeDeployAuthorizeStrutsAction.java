@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true, property = "path=/portal/wedeploy/authorize",
 	service = StrutsAction.class
 )
-public class WeDeployAuthorizeAction implements StrutsAction {
+public class WeDeployAuthorizeStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

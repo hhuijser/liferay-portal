@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = "path=/bookmarks/open_entry", service = StrutsAction.class
 )
-public class OpenEntryAction implements StrutsAction {
+public class OpenEntryStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

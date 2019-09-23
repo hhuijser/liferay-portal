@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = StrutsAction.class
 )
-public class FindRecentPostsAction implements StrutsAction {
+public class FindRecentPostsStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

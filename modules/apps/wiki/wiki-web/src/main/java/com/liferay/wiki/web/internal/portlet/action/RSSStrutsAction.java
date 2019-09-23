@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jorge Ferrer
  */
 @Component(property = "path=/wiki/rss", service = StrutsAction.class)
-public class RSSAction implements StrutsAction {
+public class RSSStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/portal/wedeploy/access_token",
 	service = StrutsAction.class
 )
-public class WeDeployAccessTokenAction implements StrutsAction {
+public class WeDeployAccessTokenStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -119,7 +119,7 @@ public class WeDeployAccessTokenAction implements StrutsAction {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		WeDeployAccessTokenAction.class);
+		WeDeployAccessTokenStrutsAction.class);
 
 	@Reference
 	private WeDeployAuthTokenLocalService _weDeployAuthTokenLocalService;

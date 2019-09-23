@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/blogs/find_entry",
 	service = StrutsAction.class
 )
-public class FindEntryAction extends FindStrutsAction {
+public class FindEntryStrutsAction extends FindStrutsAction {
 
 	@Override
 	public long getGroupId(long primaryKey) throws Exception {

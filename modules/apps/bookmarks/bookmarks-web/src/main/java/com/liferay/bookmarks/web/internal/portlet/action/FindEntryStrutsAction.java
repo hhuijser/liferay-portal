@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = "path=/bookmarks/find_entry", service = StrutsAction.class
 )
-public class FindEntryAction implements StrutsAction {
+public class FindEntryStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

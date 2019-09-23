@@ -72,7 +72,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/knowledge_base/find_kb_article",
 	service = StrutsAction.class
 )
-public class FindKBArticleAction implements StrutsAction {
+public class FindKBArticleStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

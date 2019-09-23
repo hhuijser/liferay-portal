@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
 	immediate = true, property = "path=/portal/wedeploy/user",
 	service = StrutsAction.class
 )
-public class WeDeployUserInfoAction implements StrutsAction {
+public class WeDeployUserInfoStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -95,7 +95,7 @@ public class WeDeployUserInfoAction implements StrutsAction {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		WeDeployUserInfoAction.class);
+		WeDeployUserInfoStrutsAction.class);
 
 	@Reference
 	private UserLocalService _userLocalService;

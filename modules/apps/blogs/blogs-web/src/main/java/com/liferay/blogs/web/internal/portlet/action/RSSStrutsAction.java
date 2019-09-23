@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	immediate = true, property = "path=/blogs/rss", service = StrutsAction.class
 )
-public class RSSAction implements StrutsAction {
+public class RSSStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

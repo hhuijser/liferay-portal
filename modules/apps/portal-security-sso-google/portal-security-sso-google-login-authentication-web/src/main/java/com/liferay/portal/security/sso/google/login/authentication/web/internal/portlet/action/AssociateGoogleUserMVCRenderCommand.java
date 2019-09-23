@@ -61,7 +61,7 @@ public class AssociateGoogleUserMVCRenderCommand implements MVCRenderCommand {
 			throw new PortletException(
 				new PrincipalException.MustBeEnabled(
 					themeDisplay.getCompanyId(),
-					GoogleLoginAction.class.getName()));
+					GoogleLoginStrutsAction.class.getName()));
 		}
 
 		long googleIncompleteUserId = ParamUtil.getLong(

@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = "path=/wiki/get_page_attachment", service = StrutsAction.class
 )
-public class GetPageAttachmentAction implements StrutsAction {
+public class GetPageAttachmentStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -142,7 +142,7 @@ public class GetPageAttachmentAction implements StrutsAction {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		GetPageAttachmentAction.class);
+		GetPageAttachmentStrutsAction.class);
 
 	@Reference
 	private Portal _portal;

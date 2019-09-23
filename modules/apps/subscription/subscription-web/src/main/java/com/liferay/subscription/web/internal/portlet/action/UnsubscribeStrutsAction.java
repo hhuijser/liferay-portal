@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true, property = "path=/portal/unsubscribe",
 	service = StrutsAction.class
 )
-public class UnsubscribeAction implements StrutsAction {
+public class UnsubscribeStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(

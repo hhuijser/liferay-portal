@@ -113,7 +113,7 @@ import org.osgi.service.component.annotations.Reference;
 	},
 	service = StrutsAction.class
 )
-public class FacebookConnectAction implements StrutsAction {
+public class FacebookConnectStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -143,7 +143,7 @@ public class FacebookConnectAction implements StrutsAction {
 		if (!stateNonce.equals(nonce)) {
 			throw new PrincipalException.MustHaveValidCSRFToken(
 				_portal.getUserId(httpServletRequest),
-				FacebookConnectAction.class.getName());
+				FacebookConnectStrutsAction.class.getName());
 		}
 
 		if (!Validator.isBlank(
@@ -473,7 +473,7 @@ public class FacebookConnectAction implements StrutsAction {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		FacebookConnectAction.class);
+		FacebookConnectStrutsAction.class);
 
 	@Reference
 	private CompanyLocalService _companyLocalService;

@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.sso.google.GoogleAuthorization;
 import com.liferay.portal.security.sso.google.exception.StrangersNotAllowedException;
+import com.liferay.portal.security.sso.google.login.authentication.web.internal.struts.GoogleLoginStrutsAction;
 
 import java.util.HashMap;
 import java.util.Map;

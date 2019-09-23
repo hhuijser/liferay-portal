@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.web.internal.portlet.action;
+package com.liferay.blogs.web.internal.struts;
 
 import com.liferay.blogs.constants.BlogsPortletKeys;
 import com.liferay.blogs.model.BlogsEntry;

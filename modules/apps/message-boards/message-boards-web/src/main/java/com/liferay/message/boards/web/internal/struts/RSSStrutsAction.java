@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.message.boards.web.internal.portlet.action;
+package com.liferay.message.boards.web.internal.struts;
 
 import com.liferay.message.boards.service.MBMessageService;
 import com.liferay.message.boards.settings.MBGroupServiceSettings;

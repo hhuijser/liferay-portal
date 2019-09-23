@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.knowledge.base.web.internal.portlet.action;
+package com.liferay.knowledge.base.web.internal.struts;
 
 import com.liferay.knowledge.base.constants.KBActionKeys;
 import com.liferay.knowledge.base.constants.KBFolderConstants;

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.security.sso.google.GoogleAuthorization;
+import com.liferay.portal.security.sso.google.login.authentication.web.internal.struts.GoogleLoginStrutsAction;
 
 import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;

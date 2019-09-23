@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.wedeploy.auth.web.internal.portlet.action;
+package com.liferay.portal.security.wedeploy.auth.web.internal.struts;
 
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;

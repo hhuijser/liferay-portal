@@ -12,18 +12,15 @@
  * details.
  */
 
-package com.liferay.message.boards.web.internal.portlet.action;
+package com.liferay.bookmarks.web.internal.struts;
 
-import com.liferay.message.boards.constants.MBPortletKeys;
-import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
+import com.liferay.bookmarks.exception.NoSuchEntryException;
+import com.liferay.bookmarks.model.BookmarksEntry;
+import com.liferay.bookmarks.service.BookmarksEntryService;
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-
-import javax.portlet.PortletMode;
-import javax.portlet.PortletRequest;
-import javax.portlet.PortletURL;
-import javax.portlet.WindowState;
+import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,14 +32,9 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
-		"path=/message_boards/find_recent_posts"
-	},
-	service = StrutsAction.class
+	property = "path=/bookmarks/open_entry", service = StrutsAction.class
 )
-public class FindRecentPostsStrutsAction implements StrutsAction {
+public class OpenEntryStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -51,18 +43,23 @@ public class FindRecentPostsStrutsAction implements StrutsAction {
 		throws Exception {
 
 		try {
-			long plid = ParamUtil.getLong(httpServletRequest, "p_l_id");
+			long entryId = ParamUtil.getLong(httpServletRequest, "entryId");
 
-			PortletURL portletURL = PortletURLFactoryUtil.create(
-				httpServletRequest, MBPortletKeys.MESSAGE_BOARDS, plid,
-				PortletRequest.RENDER_PHASE);
+			BookmarksEntry entry = _bookmarksEntryService.getEntry(entryId);
 
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/message_boards/view_recent_posts");
-			portletURL.setPortletMode(PortletMode.VIEW);
-			portletURL.setWindowState(WindowState.NORMAL);
+			if (entry.isInTrash()) {
+				int status = ParamUtil.getInteger(
+					httpServletRequest, "status",
+					WorkflowConstants.STATUS_APPROVED);
 
-			httpServletResponse.sendRedirect(portletURL.toString());
+				if (status != WorkflowConstants.STATUS_IN_TRASH) {
+					throw new NoSuchEntryException("{entryId=" + entryId + "}");
+				}
+			}
+
+			entry = _bookmarksEntryService.openEntry(entry);
+
+			httpServletResponse.sendRedirect(entry.getUrl());
 
 			return null;
 		}
@@ -72,6 +69,9 @@ public class FindRecentPostsStrutsAction implements StrutsAction {
 			return null;
 		}
 	}
+
+	@Reference
+	private BookmarksEntryService _bookmarksEntryService;
 
 	@Reference
 	private Portal _portal;

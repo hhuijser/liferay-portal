@@ -12,15 +12,18 @@
  * details.
  */
 
-package com.liferay.bookmarks.web.internal.portlet.action;
+package com.liferay.message.boards.web.internal.struts;
 
-import com.liferay.bookmarks.exception.NoSuchEntryException;
-import com.liferay.bookmarks.model.BookmarksEntry;
-import com.liferay.bookmarks.service.BookmarksEntryService;
+import com.liferay.message.boards.constants.MBPortletKeys;
+import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.kernel.workflow.WorkflowConstants;
+
+import javax.portlet.PortletMode;
+import javax.portlet.PortletRequest;
+import javax.portlet.PortletURL;
+import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,9 +35,14 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	property = "path=/bookmarks/open_entry", service = StrutsAction.class
+	property = {
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
+		"path=/message_boards/find_recent_posts"
+	},
+	service = StrutsAction.class
 )
-public class OpenEntryStrutsAction implements StrutsAction {
+public class FindRecentPostsStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -43,23 +51,18 @@ public class OpenEntryStrutsAction implements StrutsAction {
 		throws Exception {
 
 		try {
-			long entryId = ParamUtil.getLong(httpServletRequest, "entryId");
+			long plid = ParamUtil.getLong(httpServletRequest, "p_l_id");
 
-			BookmarksEntry entry = _bookmarksEntryService.getEntry(entryId);
+			PortletURL portletURL = PortletURLFactoryUtil.create(
+				httpServletRequest, MBPortletKeys.MESSAGE_BOARDS, plid,
+				PortletRequest.RENDER_PHASE);
 
-			if (entry.isInTrash()) {
-				int status = ParamUtil.getInteger(
-					httpServletRequest, "status",
-					WorkflowConstants.STATUS_APPROVED);
+			portletURL.setParameter(
+				"mvcRenderCommandName", "/message_boards/view_recent_posts");
+			portletURL.setPortletMode(PortletMode.VIEW);
+			portletURL.setWindowState(WindowState.NORMAL);
 
-				if (status != WorkflowConstants.STATUS_IN_TRASH) {
-					throw new NoSuchEntryException("{entryId=" + entryId + "}");
-				}
-			}
-
-			entry = _bookmarksEntryService.openEntry(entry);
-
-			httpServletResponse.sendRedirect(entry.getUrl());
+			httpServletResponse.sendRedirect(portletURL.toString());
 
 			return null;
 		}
@@ -69,9 +72,6 @@ public class OpenEntryStrutsAction implements StrutsAction {
 			return null;
 		}
 	}
-
-	@Reference
-	private BookmarksEntryService _bookmarksEntryService;
 
 	@Reference
 	private Portal _portal;

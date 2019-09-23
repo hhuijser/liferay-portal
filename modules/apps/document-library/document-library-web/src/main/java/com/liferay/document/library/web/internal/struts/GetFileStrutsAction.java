@@ -12,12 +12,9 @@
  * details.
  */
 
-package com.liferay.bookmarks.web.internal.portlet.action;
+package com.liferay.document.library.web.internal.struts;
 
 import com.liferay.portal.kernel.struts.StrutsAction;
-import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.WebKeys;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,13 +22,16 @@ import javax.servlet.http.HttpServletResponse;
 import org.osgi.service.component.annotations.Component;
 
 /**
- * @author Juan Fernández
- * @author Sergio González
+ * @author Brian Wing Shun Chan
+ * @author Jorge Ferrer
+ * @author Charles May
+ * @author Bruno Farache
  */
 @Component(
-	property = "path=/bookmarks/find_entry", service = StrutsAction.class
+	immediate = true, property = "path=/document_library/get_file",
+	service = StrutsAction.class
 )
-public class FindEntryStrutsAction implements StrutsAction {
+public class GetFileStrutsAction implements StrutsAction {
 
 	@Override
 	public String execute(
@@ -39,17 +39,13 @@ public class FindEntryStrutsAction implements StrutsAction {
 			HttpServletResponse httpServletResponse)
 		throws Exception {
 
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
-		long entryId = ParamUtil.getLong(httpServletRequest, "entryId");
-
-		httpServletResponse.sendRedirect(
-			themeDisplay.getPathMain() + "/bookmarks/open_entry?entryId=" +
-				entryId);
+		_getFileActionHelper.processRequest(
+			httpServletRequest, httpServletResponse);
 
 		return null;
 	}
+
+	private final GetFileActionHelper _getFileActionHelper =
+		new GetFileActionHelper();
 
 }

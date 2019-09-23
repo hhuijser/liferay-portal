@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.blogs.web.internal.portlet.action;
+package com.liferay.blogs.web.internal.struts;
 
 import com.liferay.blogs.configuration.BlogsGroupServiceOverriddenConfiguration;
 import com.liferay.blogs.constants.BlogsConstants;

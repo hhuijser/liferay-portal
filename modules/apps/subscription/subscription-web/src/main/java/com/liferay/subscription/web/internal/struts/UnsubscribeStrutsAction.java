@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.subscription.web.internal.portlet.action;
+package com.liferay.subscription.web.internal.struts;
 
 import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;

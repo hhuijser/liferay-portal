@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.login.authentication.facebook.connect.web.internal.portlet.action;
+package com.liferay.login.authentication.facebook.connect.web.internal.struts;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.security.sso.google.login.authentication.web.internal.portlet.action;
+package com.liferay.portal.security.sso.google.login.authentication.web.internal.struts;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;

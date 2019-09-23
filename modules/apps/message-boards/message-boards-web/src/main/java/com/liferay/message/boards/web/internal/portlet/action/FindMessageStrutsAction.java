@@ -12,11 +12,12 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.portlet.action;
+package com.liferay.message.boards.web.internal.portlet.action;
 
-import com.liferay.document.library.kernel.service.DLAppLocalService;
+import com.liferay.message.boards.constants.MBPortletKeys;
+import com.liferay.message.boards.model.MBMessage;
+import com.liferay.message.boards.service.MBMessageLocalService;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
-import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.struts.FindStrutsAction;
 
@@ -28,25 +29,28 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Juan Fernández
- * @author Ryan Park
+ * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true, property = "path=/document_library/find_file_entry",
+	property = {
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
+		"path=/message_boards/find_message"
+	},
 	service = StrutsAction.class
 )
-public class FindFileEntryAction extends FindStrutsAction {
+public class FindMessageStrutsAction extends FindStrutsAction {
 
 	@Override
 	public long getGroupId(long primaryKey) throws Exception {
-		FileEntry fileEntry = _dlAppLocalService.getFileEntry(primaryKey);
+		MBMessage message = _mbMessageLocalService.getMessage(primaryKey);
 
-		return fileEntry.getGroupId();
+		return message.getGroupId();
 	}
 
 	@Override
 	public String getPrimaryKeyParameterName() {
-		return "fileEntryId";
+		return "messageId";
 	}
 
 	@Override
@@ -61,7 +65,7 @@ public class FindFileEntryAction extends FindStrutsAction {
 		PortletURL portletURL) {
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/document_library/view_file_entry");
+			"mvcRenderCommandName", "/message_boards/view_message");
 	}
 
 	@Override
@@ -70,10 +74,10 @@ public class FindFileEntryAction extends FindStrutsAction {
 	}
 
 	@Reference
-	private DLAppLocalService _dlAppLocalService;
+	private MBMessageLocalService _mbMessageLocalService;
 
 	@Reference(
-		target = "(model.class.name=com.liferay.portal.kernel.repository.model.FileEntry)"
+		target = "(model.class.name=com.liferay.message.boards.model.MBMessage)"
 	)
 	private PortletLayoutFinder _portletPageFinder;
 

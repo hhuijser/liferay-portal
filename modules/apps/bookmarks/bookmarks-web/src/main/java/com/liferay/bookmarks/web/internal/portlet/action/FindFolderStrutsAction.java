@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	property = "path=/bookmarks/find_folder", service = StrutsAction.class
 )
-public class FindFolderAction extends FindStrutsAction {
+public class FindFolderStrutsAction extends FindStrutsAction {
 
 	@Override
 	protected void addRequiredParameters(

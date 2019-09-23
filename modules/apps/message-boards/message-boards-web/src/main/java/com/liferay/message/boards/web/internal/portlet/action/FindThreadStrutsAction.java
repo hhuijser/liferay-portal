@@ -15,10 +15,11 @@
 package com.liferay.message.boards.web.internal.portlet.action;
 
 import com.liferay.message.boards.constants.MBPortletKeys;
-import com.liferay.message.boards.model.MBCategory;
-import com.liferay.message.boards.service.MBCategoryLocalService;
+import com.liferay.message.boards.model.MBThread;
+import com.liferay.message.boards.service.MBThreadLocalService;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.struts.StrutsAction;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.struts.FindStrutsAction;
 
 import javax.portlet.PortletURL;
@@ -35,28 +36,42 @@ import org.osgi.service.component.annotations.Reference;
 	property = {
 		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
 		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
-		"path=/message_boards/find_category"
+		"path=/message_boards/find_thread"
 	},
 	service = StrutsAction.class
 )
-public class FindCategoryAction extends FindStrutsAction {
+public class FindThreadStrutsAction extends FindStrutsAction {
 
 	@Override
 	public long getGroupId(long primaryKey) throws Exception {
-		MBCategory category = _mbCategoryLocalService.getCategory(primaryKey);
+		MBThread thread = _mbThreadLocalService.getThread(primaryKey);
 
-		return category.getGroupId();
+		return thread.getGroupId();
 	}
 
 	@Override
 	public String getPrimaryKeyParameterName() {
-		return "mbCategoryId";
+		return "threadId";
+	}
+
+	@Override
+	public PortletURL processPortletURL(
+			HttpServletRequest httpServletRequest, PortletURL portletURL)
+		throws Exception {
+
+		long threadId = ParamUtil.getLong(
+			httpServletRequest, getPrimaryKeyParameterName());
+
+		MBThread thread = _mbThreadLocalService.getThread(threadId);
+
+		portletURL.setParameter(
+			"messageId", String.valueOf(thread.getRootMessageId()));
+
+		return portletURL;
 	}
 
 	@Override
 	public void setPrimaryKeyParameter(PortletURL portletURL, long primaryKey) {
-		portletURL.setParameter(
-			getPrimaryKeyParameterName(), String.valueOf(primaryKey));
 	}
 
 	@Override
@@ -65,7 +80,7 @@ public class FindCategoryAction extends FindStrutsAction {
 		PortletURL portletURL) {
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_category");
+			"mvcRenderCommandName", "/message_boards/view_message");
 	}
 
 	@Override
@@ -74,10 +89,10 @@ public class FindCategoryAction extends FindStrutsAction {
 	}
 
 	@Reference
-	private MBCategoryLocalService _mbCategoryLocalService;
+	private MBThreadLocalService _mbThreadLocalService;
 
 	@Reference(
-		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
+		target = "(model.class.name=com.liferay.message.boards.model.MBThread)"
 	)
 	private PortletLayoutFinder _portletPageFinder;
 

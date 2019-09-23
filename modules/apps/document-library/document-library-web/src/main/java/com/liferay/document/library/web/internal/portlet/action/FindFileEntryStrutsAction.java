@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.message.boards.web.internal.portlet.action;
+package com.liferay.document.library.web.internal.portlet.action;
 
-import com.liferay.message.boards.constants.MBPortletKeys;
-import com.liferay.message.boards.model.MBThread;
-import com.liferay.message.boards.service.MBThreadLocalService;
+import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
+import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.struts.StrutsAction;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.struts.FindStrutsAction;
 
 import javax.portlet.PortletURL;
@@ -30,48 +28,31 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Brian Wing Shun Chan
+ * @author Juan Fernández
+ * @author Ryan Park
  */
 @Component(
-	property = {
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
-		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
-		"path=/message_boards/find_thread"
-	},
+	immediate = true, property = "path=/document_library/find_file_entry",
 	service = StrutsAction.class
 )
-public class FindThreadAction extends FindStrutsAction {
+public class FindFileEntryStrutsAction extends FindStrutsAction {
 
 	@Override
 	public long getGroupId(long primaryKey) throws Exception {
-		MBThread thread = _mbThreadLocalService.getThread(primaryKey);
+		FileEntry fileEntry = _dlAppLocalService.getFileEntry(primaryKey);
 
-		return thread.getGroupId();
+		return fileEntry.getGroupId();
 	}
 
 	@Override
 	public String getPrimaryKeyParameterName() {
-		return "threadId";
-	}
-
-	@Override
-	public PortletURL processPortletURL(
-			HttpServletRequest httpServletRequest, PortletURL portletURL)
-		throws Exception {
-
-		long threadId = ParamUtil.getLong(
-			httpServletRequest, getPrimaryKeyParameterName());
-
-		MBThread thread = _mbThreadLocalService.getThread(threadId);
-
-		portletURL.setParameter(
-			"messageId", String.valueOf(thread.getRootMessageId()));
-
-		return portletURL;
+		return "fileEntryId";
 	}
 
 	@Override
 	public void setPrimaryKeyParameter(PortletURL portletURL, long primaryKey) {
+		portletURL.setParameter(
+			getPrimaryKeyParameterName(), String.valueOf(primaryKey));
 	}
 
 	@Override
@@ -80,7 +61,7 @@ public class FindThreadAction extends FindStrutsAction {
 		PortletURL portletURL) {
 
 		portletURL.setParameter(
-			"mvcRenderCommandName", "/message_boards/view_message");
+			"mvcRenderCommandName", "/document_library/view_file_entry");
 	}
 
 	@Override
@@ -89,10 +70,10 @@ public class FindThreadAction extends FindStrutsAction {
 	}
 
 	@Reference
-	private MBThreadLocalService _mbThreadLocalService;
+	private DLAppLocalService _dlAppLocalService;
 
 	@Reference(
-		target = "(model.class.name=com.liferay.message.boards.model.MBThread)"
+		target = "(model.class.name=com.liferay.portal.kernel.repository.model.FileEntry)"
 	)
 	private PortletLayoutFinder _portletPageFinder;
 

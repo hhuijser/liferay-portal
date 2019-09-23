@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.document.library.web.internal.portlet.action;
+package com.liferay.message.boards.web.internal.portlet.action;
 
-import com.liferay.document.library.constants.DLPortletKeys;
-import com.liferay.document.library.kernel.model.DLFolderConstants;
-import com.liferay.document.library.kernel.service.DLAppLocalService;
-import com.liferay.portal.kernel.portlet.PortletIdCodec;
+import com.liferay.message.boards.constants.MBPortletKeys;
+import com.liferay.message.boards.model.MBCategory;
+import com.liferay.message.boards.service.MBCategoryLocalService;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
-import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.struts.StrutsAction;
 import com.liferay.portal.struts.FindStrutsAction;
 
@@ -34,38 +32,31 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true,
 	property = {
-		"path=/document_library/find_folder",
-		"path=/image_gallery_display/find_folder"
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS,
+		"javax.portlet.name=" + MBPortletKeys.MESSAGE_BOARDS_ADMIN,
+		"path=/message_boards/find_category"
 	},
 	service = StrutsAction.class
 )
-public class FindFolderAction extends FindStrutsAction {
+public class FindCategoryStrutsAction extends FindStrutsAction {
 
 	@Override
 	public long getGroupId(long primaryKey) throws Exception {
-		Folder folder = _dlAppLocalService.getFolder(primaryKey);
+		MBCategory category = _mbCategoryLocalService.getCategory(primaryKey);
 
-		return folder.getRepositoryId();
+		return category.getGroupId();
 	}
 
 	@Override
 	public String getPrimaryKeyParameterName() {
-		return "folderId";
+		return "mbCategoryId";
 	}
 
 	@Override
-	public void setPrimaryKeyParameter(PortletURL portletURL, long primaryKey)
-		throws Exception {
-
-		if (primaryKey != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			Folder folder = _dlAppLocalService.getFolder(primaryKey);
-
-			primaryKey = folder.getFolderId();
-		}
-
-		portletURL.setParameter("folderId", String.valueOf(primaryKey));
+	public void setPrimaryKeyParameter(PortletURL portletURL, long primaryKey) {
+		portletURL.setParameter(
+			getPrimaryKeyParameterName(), String.valueOf(primaryKey));
 	}
 
 	@Override
@@ -73,16 +64,8 @@ public class FindFolderAction extends FindStrutsAction {
 		HttpServletRequest httpServletRequest, String portletId,
 		PortletURL portletURL) {
 
-		String rootPortletId = PortletIdCodec.decodePortletName(portletId);
-
-		if (rootPortletId.equals(DLPortletKeys.MEDIA_GALLERY_DISPLAY)) {
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/image_gallery_display/view");
-		}
-		else {
-			portletURL.setParameter(
-				"mvcRenderCommandName", "/document_library/view_folder");
-		}
+		portletURL.setParameter(
+			"mvcRenderCommandName", "/message_boards/view_category");
 	}
 
 	@Override
@@ -91,10 +74,10 @@ public class FindFolderAction extends FindStrutsAction {
 	}
 
 	@Reference
-	private DLAppLocalService _dlAppLocalService;
+	private MBCategoryLocalService _mbCategoryLocalService;
 
 	@Reference(
-		target = "(model.class.name=com.liferay.portal.kernel.repository.model.Folder)"
+		target = "(model.class.name=com.liferay.message.boards.model.MBCategory)"
 	)
 	private PortletLayoutFinder _portletPageFinder;
 

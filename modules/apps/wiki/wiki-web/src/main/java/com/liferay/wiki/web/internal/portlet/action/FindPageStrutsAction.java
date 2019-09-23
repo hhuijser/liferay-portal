@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Samuel Kong
  */
 @Component(property = "path=/wiki/find_page", service = StrutsAction.class)
-public class FindPageAction extends FindStrutsAction {
+public class FindPageStrutsAction extends FindStrutsAction {
 
 	@Override
 	protected void addRequiredParameters(

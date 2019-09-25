@@ -7859,13 +7859,13 @@ public class PortalImpl implements Portal {
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();
 
+			if (getScopeGroupId(layout, portletId) != scopeGroupId) {
+				continue;
+			}
+
 			List<Portlet> portletsInLayout = layoutTypePortlet.getAllPortlets();
 
 			for (Portlet portlet : portletsInLayout) {
-				if (getScopeGroupId(layout, portletId) != scopeGroupId) {
-					continue;
-				}
-
 				String portletIdInLayout = portlet.getPortletId();
 
 				if (portletIdInLayout.equals(portletId)) {

@@ -48,7 +48,7 @@ public class AlloyMVCCheckstyleUtil {
 			return null;
 		}
 
-		String s = absolutePath.replace(_SRC_DIR, _TMP_DIR);
+		String s = StringUtil.replace(absolutePath, _SRC_DIR, _TMP_DIR);
 
 		File javaFile = new File(s.substring(0, s.lastIndexOf(".")) + ".java");
 
@@ -68,7 +68,7 @@ public class AlloyMVCCheckstyleUtil {
 			return fileName;
 		}
 
-		String s = fileName.replace(_TMP_DIR, _SRC_DIR);
+		String s = StringUtil.replace(fileName, _TMP_DIR, _SRC_DIR);
 
 		return s.substring(0, s.lastIndexOf(".")) + ".jspf";
 	}

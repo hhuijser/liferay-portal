@@ -563,12 +563,13 @@ public class ContentPageEditorDisplayContext {
 				SoyContextFactoryUtil.createSoyContext();
 
 			String languageIcon = StringUtil.toLowerCase(
-				languageId.replace(StringPool.UNDERLINE, StringPool.DASH));
+				StringUtil.replace(
+					languageId, StringPool.UNDERLINE, StringPool.DASH));
 
 			languageSoyContext.put("languageIcon", languageIcon);
 
-			String languageLabel = languageId.replace(
-				StringPool.UNDERLINE, StringPool.DASH);
+			String languageLabel = StringUtil.replace(
+				languageId, StringPool.UNDERLINE, StringPool.DASH);
 
 			languageSoyContext.put("languageLabel", languageLabel);
 

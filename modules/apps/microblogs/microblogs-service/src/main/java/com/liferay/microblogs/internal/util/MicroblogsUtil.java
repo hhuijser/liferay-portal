@@ -211,8 +211,8 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String screenName = matcher.group();
 
-			screenName = screenName.replace("[@", StringPool.BLANK);
-			screenName = screenName.replace("]", StringPool.BLANK);
+			screenName = StringUtil.replace(screenName, "[@", StringPool.BLANK);
+			screenName = StringUtil.replace(screenName, "]", StringPool.BLANK);
 
 			screenNames.add(screenName);
 		}
@@ -411,11 +411,11 @@ public class MicroblogsUtil {
 
 				sb.append("<a href=\"");
 
-				String assetTagScreenName = result.replace(
-					"[@", StringPool.BLANK);
+				String assetTagScreenName = StringUtil.replace(
+					result, "[@", StringPool.BLANK);
 
-				assetTagScreenName = assetTagScreenName.replace(
-					"]", StringPool.BLANK);
+				assetTagScreenName = StringUtil.replace(
+					assetTagScreenName, "]", StringPool.BLANK);
 
 				ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 

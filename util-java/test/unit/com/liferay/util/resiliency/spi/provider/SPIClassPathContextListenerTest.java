@@ -441,8 +441,8 @@ public class SPIClassPathContextListenerTest {
 			Map<String, URL> resources, File jarFile, String className)
 		throws MalformedURLException {
 
-		String resourceName = className.replace(
-			CharPool.PERIOD, CharPool.SLASH);
+		String resourceName = StringUtil.replace(
+			className, CharPool.PERIOD, CharPool.SLASH);
 
 		resourceName = resourceName.concat(".class");
 

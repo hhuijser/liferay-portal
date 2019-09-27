@@ -430,7 +430,7 @@ public class AlloyControllerInvokerManager {
 	}
 
 	protected String getClassBinaryName(String className) {
-		return className.replace('.', '/');
+		return StringUtil.replace(className, '.', '/');
 	}
 
 	protected class NoClassNecessaryException extends Exception {

@@ -165,7 +165,7 @@ public class DLDirectoryNameAndFileNameTest {
 			String name = sb.toString();
 
 			Assert.assertEquals(
-				name.replace(blacklistChar, StringPool.UNDERLINE),
+				StringUtil.replace(name, blacklistChar, StringPool.UNDERLINE),
 				DLValidatorUtil.fixName(name));
 
 			sb.append(".txt");
@@ -173,7 +173,7 @@ public class DLDirectoryNameAndFileNameTest {
 			name = sb.toString();
 
 			Assert.assertEquals(
-				name.replace(blacklistChar, StringPool.UNDERLINE),
+				StringUtil.replace(name, blacklistChar, StringPool.UNDERLINE),
 				DLValidatorUtil.fixName(name));
 		}
 	}

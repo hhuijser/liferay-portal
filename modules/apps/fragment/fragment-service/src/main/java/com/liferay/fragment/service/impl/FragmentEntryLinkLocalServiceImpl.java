@@ -674,7 +674,7 @@ public class FragmentEntryLinkLocalServiceImpl
 					StringPool.BLANK, false, false);
 			}
 
-			html = html.replace(matcher.group(), fileEntryURL);
+			html = StringUtil.replace(html, matcher.group(), fileEntryURL);
 		}
 
 		return html;

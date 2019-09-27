@@ -134,7 +134,7 @@ public class FileUtil {
 		String s = new String(
 			Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 
-		return s.replace("\r\n", "\n");
+		return StringUtil.replace(s, "\r\n", "\n");
 	}
 
 	public static void write(File file, String content) throws Exception {

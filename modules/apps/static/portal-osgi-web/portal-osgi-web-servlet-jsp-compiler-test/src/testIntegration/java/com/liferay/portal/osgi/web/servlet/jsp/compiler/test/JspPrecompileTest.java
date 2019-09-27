@@ -149,15 +149,15 @@ public class JspPrecompileTest {
 
 	@Test
 	public void testPrecompiledJsp() throws Exception {
-		String packagePathString = _JSP_PACKAGE_NAME.replace(
-			CharPool.PERIOD, CharPool.SLASH);
+		String packagePathString = StringUtil.replace(
+			_JSP_PACKAGE_NAME, CharPool.PERIOD, CharPool.SLASH);
 
 		Path packagePath = _workDirPath.resolve(packagePathString);
 
 		Files.createDirectories(packagePath);
 
-		String jspClassName = _PRECOMPILE_JSP_FILE_NAME.replace(
-			CharPool.PERIOD, CharPool.UNDERLINE);
+		String jspClassName = StringUtil.replace(
+			_PRECOMPILE_JSP_FILE_NAME, CharPool.PERIOD, CharPool.UNDERLINE);
 
 		Path jspClassPath = packagePath.resolve(jspClassName.concat(".class"));
 

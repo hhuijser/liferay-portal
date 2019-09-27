@@ -5268,7 +5268,7 @@ public class ServiceBuilder {
 
 		String version = path.toString();
 
-		version = version.replace('_', '.');
+		version = StringUtil.replace(version, '_', '.');
 		version = version.substring(1);
 
 		return Version.getInstance(version);

@@ -600,8 +600,8 @@ public class JSONServiceAction extends JSONAction {
 				return fieldDescriptor;
 			}
 
-			dimensions = dimensions.replace(
-				StringPool.CLOSE_BRACKET, StringPool.BLANK);
+			dimensions = StringUtil.replace(
+				dimensions, StringPool.CLOSE_BRACKET, StringPool.BLANK);
 
 			if (fieldDescriptor.equals("boolean")) {
 				fieldDescriptor = "Z";

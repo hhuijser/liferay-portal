@@ -371,8 +371,8 @@ public class LibraryReferenceTest {
 					String dirPathString = dirPath.toString();
 
 					if (File.separatorChar != CharPool.SLASH) {
-						dirPathString = dirPathString.replace(
-							File.separatorChar, CharPool.SLASH);
+						dirPathString = StringUtil.replace(
+							dirPathString, File.separatorChar, CharPool.SLASH);
 					}
 
 					dirPathString += CharPool.SLASH;
@@ -395,8 +395,8 @@ public class LibraryReferenceTest {
 
 					if (pathString.endsWith(".jar")) {
 						if (File.separatorChar != CharPool.SLASH) {
-							pathString = pathString.replace(
-								File.separatorChar, CharPool.SLASH);
+							pathString = StringUtil.replace(
+								pathString, File.separatorChar, CharPool.SLASH);
 						}
 
 						_libJars.add(pathString);

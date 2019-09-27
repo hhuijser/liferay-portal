@@ -717,7 +717,8 @@ public class DataLayoutTaglibUtil {
 			String dataDefinitionJSON = ddmStructure.getDefinition();
 
 			JSONObject jsonObject = _jsonFactory.createJSONObject(
-				dataDefinitionJSON.replace("defaultValue", "predefinedValue"));
+				StringUtil.replace(
+					dataDefinitionJSON, "defaultValue", "predefinedValue"));
 
 			jsonObject = jsonObject.put(
 				"availableLanguageIds",

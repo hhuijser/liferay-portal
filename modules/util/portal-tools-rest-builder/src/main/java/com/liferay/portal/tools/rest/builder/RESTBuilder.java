@@ -321,7 +321,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/jaxrs/application/");
 
@@ -353,7 +353,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/resource/");
 		sb.append(escapedVersion);
@@ -383,7 +383,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/resource/");
 		sb.append(escapedVersion);
@@ -411,7 +411,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/json/BaseJSONParser.java");
 
@@ -437,7 +437,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/dto/");
 		sb.append(escapedVersion);
@@ -467,7 +467,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/constant/");
 		sb.append(escapedVersion);
@@ -495,7 +495,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/http/HttpInvoker.java");
 
@@ -519,7 +519,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/pagination/Page.java");
 
@@ -543,7 +543,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/pagination/Pagination.java");
 
@@ -569,7 +569,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/resource/");
 		sb.append(escapedVersion);
@@ -599,7 +599,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/serdes/");
 		sb.append(escapedVersion);
@@ -627,7 +627,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/client/function/UnsafeSupplier.java");
 
@@ -653,7 +653,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/dto/");
 		sb.append(escapedVersion);
@@ -682,7 +682,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/constant/");
 		sb.append(escapedVersion);
@@ -710,7 +710,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/graphql/mutation/");
 		sb.append(escapedVersion);
@@ -737,7 +737,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/graphql/query/");
 		sb.append(escapedVersion);
@@ -764,7 +764,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/graphql/servlet/");
 		sb.append(escapedVersion);
@@ -791,7 +791,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/resource/");
 		sb.append(escapedVersion);
@@ -841,7 +841,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/resource/");
 		sb.append(escapedVersion);
@@ -871,7 +871,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/internal/resource/");
 		sb.append(escapedVersion);
@@ -905,7 +905,7 @@ public class RESTBuilder {
 
 		String apiPackagePath = _configYAML.getApiPackagePath();
 
-		sb.append(apiPackagePath.replace('.', '/'));
+		sb.append(StringUtil.replace(apiPackagePath, '.', '/'));
 
 		sb.append("/resource/");
 		sb.append(escapedVersion);
@@ -982,7 +982,9 @@ public class RESTBuilder {
 		String oldSub = sb.toString();
 
 		String newSub =
-			oldSub + oldSub.replace("application/json", "application/xml");
+			oldSub +
+				StringUtil.replace(
+					oldSub, "application/json", "application/xml");
 
 		return StringUtil.replaceFirst(s, oldSub, newSub, index);
 	}
@@ -1271,11 +1273,11 @@ public class RESTBuilder {
 
 						s = sb.toString();
 
-						String newPathLine = pathLine.replace(
-							"{" + parameterName + "}",
+						String newPathLine = StringUtil.replace(
+							pathLine, "{" + parameterName + "}",
 							"{" + newParameterName + "}");
 
-						s = s.replace(pathLine, newPathLine);
+						s = StringUtil.replace(s, pathLine, newPathLine);
 					}
 				}
 			}
@@ -1348,19 +1350,20 @@ public class RESTBuilder {
 
 						s = sb.toString();
 
-						String newPathLine = pathLine.replace(
-							"{" + parameterName + "}",
+						String newPathLine = StringUtil.replace(
+							pathLine, "{" + parameterName + "}",
 							"{" + newParameterName + "}");
 
-						s = s.replace(pathLine, newPathLine);
+						s = StringUtil.replace(s, pathLine, newPathLine);
 					}
 				}
 			}
 
-			String newPathLine = pathLine.replace(
-				"{" + selParameterName + "}", "{" + newParameterName + "}");
+			String newPathLine = StringUtil.replace(
+				pathLine, "{" + selParameterName + "}",
+				"{" + newParameterName + "}");
 
-			s = s.replace(pathLine, newPathLine);
+			s = StringUtil.replace(s, pathLine, newPathLine);
 		}
 
 		return s;

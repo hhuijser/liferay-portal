@@ -979,14 +979,12 @@ public class RESTBuilder {
 			line = s.substring(x, s.indexOf("\n", x));
 		}
 
-		String oldSub = sb.toString();
+		String jsonSub = sb.toString();
 
-		String newSub =
-			oldSub +
-				StringUtil.replace(
-					oldSub, "application/json", "application/xml");
+		String xmlSub = StringUtil.replace(
+			jsonSub, "application/json", "application/xml");
 
-		return StringUtil.replaceFirst(s, oldSub, newSub, index);
+		return StringUtil.replaceFirst(s, jsonSub, jsonSub + xmlSub, index);
 	}
 
 	private String _fixOpenAPIContentApplicationXML(String s) {

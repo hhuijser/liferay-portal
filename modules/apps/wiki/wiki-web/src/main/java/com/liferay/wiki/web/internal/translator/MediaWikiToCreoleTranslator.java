@@ -293,8 +293,7 @@ public class MediaWikiToCreoleTranslator extends BaseTranslator {
 		while (matcher.find()) {
 			String link = matcher.group(1);
 
-			link = StringUtil.replace(
-				link, StringPool.UNDERLINE, StringPool.SPACE);
+			link = StringUtil.replace(link, CharPool.UNDERLINE, CharPool.SPACE);
 
 			sb.replace(matcher.start(1), matcher.end(1), link);
 		}

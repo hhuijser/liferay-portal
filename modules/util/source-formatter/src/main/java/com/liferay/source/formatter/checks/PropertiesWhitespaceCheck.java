@@ -48,7 +48,7 @@ public class PropertiesWhitespaceCheck extends WhitespaceCheck {
 
 				if (line.startsWith(StringPool.TAB)) {
 					line = StringUtil.replace(
-						line, StringPool.TAB, StringPool.FOUR_SPACES);
+						line, CharPool.TAB, StringPool.FOUR_SPACES);
 				}
 
 				if (line.contains(" \t")) {

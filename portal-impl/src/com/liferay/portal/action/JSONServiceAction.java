@@ -14,6 +14,7 @@
 
 package com.liferay.portal.action;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
@@ -601,7 +602,7 @@ public class JSONServiceAction extends JSONAction {
 			}
 
 			dimensions = StringUtil.replace(
-				dimensions, StringPool.CLOSE_BRACKET, StringPool.BLANK);
+				dimensions, CharPool.CLOSE_BRACKET, StringPool.BLANK);
 
 			if (fieldDescriptor.equals("boolean")) {
 				fieldDescriptor = "Z";

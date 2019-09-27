@@ -114,7 +114,7 @@ public class FreeMarkerTool {
 
 		fieldName = StringUtil.replace(fieldName, ' ', '_');
 		fieldName = StringUtil.replace(fieldName, '-', '_');
-		fieldName = StringUtil.replace(fieldName, ".", "");
+		fieldName = StringUtil.replace(fieldName, '.', "");
 
 		return StringUtil.toUpperCase(fieldName);
 	}

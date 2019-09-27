@@ -1122,7 +1122,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		if (_log.isDebugEnabled()) {
 			String s = sb.toString();
 
-			s = StringUtil.replace(s, ",", "\n");
+			s = StringUtil.replace(s, ',', '\n');
 
 			_log.debug(
 				"The portal's system bundle is exporting the following " +

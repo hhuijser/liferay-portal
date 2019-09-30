@@ -20,6 +20,7 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.osgi.web.servlet.jsp.compiler.internal.util.ClassPathUtil;
 
 import java.io.File;
@@ -84,8 +85,8 @@ public class JspJavaFileObjectResolver implements JavaFileObjectResolver {
 				_jspBundleWiring.listResources(
 					packagePath, "*.class", options)));
 
-		String packageName = packagePath.replace(
-			CharPool.SLASH, CharPool.PERIOD);
+		String packageName = StringUtil.replace(
+			packagePath, CharPool.SLASH, CharPool.PERIOD);
 
 		for (Map.Entry<BundleWiring, Set<String>> entry :
 				_bundleWiringPackageNames.entrySet()) {
@@ -124,7 +125,8 @@ public class JspJavaFileObjectResolver implements JavaFileObjectResolver {
 		classResourceName = classResourceName.substring(
 			0, classResourceName.length() - 6);
 
-		return classResourceName.replace(CharPool.SLASH, CharPool.PERIOD);
+		return StringUtil.replace(
+			classResourceName, CharPool.SLASH, CharPool.PERIOD);
 	}
 
 	protected JavaFileObject getJavaFileObject(
@@ -174,7 +176,7 @@ public class JspJavaFileObjectResolver implements JavaFileObjectResolver {
 		Map<String, List<URL>> extraPackageMap = _serviceTracker.getService();
 
 		if (extraPackageMap != null) {
-			urls = extraPackageMap.get(path.replace('/', '.'));
+			urls = extraPackageMap.get(StringUtil.replace(path, '/', '.'));
 		}
 
 		if ((urls == null) || urls.isEmpty()) {

@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.dao.orm.SessionFactory;
 import com.liferay.portal.kernel.service.persistence.UserPersistence;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.TransactionalTestRule;
@@ -1064,15 +1065,15 @@ public class SQLNullTest {
 	}
 
 	protected String transformHypersonicSQL(String sql) {
-		return sql.replace("NULL", "CAST_TEXT(NULL)");
+		return StringUtil.replace(sql, "NULL", "CAST_TEXT(NULL)");
 	}
 
 	protected String transformPostgreSQL(String sql) {
-		return sql.replace("?", "CAST(? AS VARCHAR)");
+		return StringUtil.replace(sql, "?", "CAST(? AS VARCHAR)");
 	}
 
 	protected String transformSybaseSQL(String sql) {
-		return sql.replace("?", "CONVERT(VARCHAR, ?)");
+		return StringUtil.replace(sql, "?", "CONVERT(VARCHAR, ?)");
 	}
 
 	private static final String _SQL_EQUALS_NULL =

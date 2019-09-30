@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.ServletContextClassLoaderPool;
 import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.osgi.web.servlet.context.helper.definition.WebResourceCollectionDefinition;
 import com.liferay.portal.servlet.delegate.ServletContextDelegate;
@@ -117,7 +118,8 @@ public class CustomServletContextHelper
 		if (PropsValues.WORK_DIR_OVERRIDE_ENABLED &&
 			(name.endsWith(".css") || name.endsWith(".js"))) {
 
-			String overrideName = name.replace("/META-INF/resources", "");
+			String overrideName = StringUtil.replace(
+				name, "/META-INF/resources", "");
 
 			File file = new File(_overrideDirName, overrideName);
 

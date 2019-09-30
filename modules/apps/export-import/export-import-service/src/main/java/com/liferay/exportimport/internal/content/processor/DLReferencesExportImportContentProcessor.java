@@ -151,8 +151,9 @@ public class DLReferencesExportImportContentProcessor
 		String dlReference = content.substring(beginPos, endPos);
 
 		while (dlReference.contains(StringPool.AMPERSAND_ENCODED)) {
-			dlReference = dlReference.replace(
-				StringPool.AMPERSAND_ENCODED, StringPool.AMPERSAND);
+			dlReference = StringUtil.replace(
+				dlReference, StringPool.AMPERSAND_ENCODED,
+				StringPool.AMPERSAND);
 		}
 
 		if (!legacyURL) {

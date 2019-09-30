@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.odata.entity.CollectionEntityField;
 import com.liferay.portal.odata.entity.ComplexEntityField;
 import com.liferay.portal.odata.entity.DateTimeEntityField;
@@ -60,8 +61,8 @@ public class DocumentEntityModel implements EntityModel {
 				mimeType -> {
 					String encodingFormat = String.valueOf(mimeType);
 
-					return encodingFormat.replace(
-						StringPool.SLASH, StringPool.UNDERLINE);
+					return StringUtil.replace(
+						encodingFormat, StringPool.SLASH, StringPool.UNDERLINE);
 				}),
 			new IntegerEntityField("creatorId", locale -> Field.USER_ID),
 			new IntegerEntityField(

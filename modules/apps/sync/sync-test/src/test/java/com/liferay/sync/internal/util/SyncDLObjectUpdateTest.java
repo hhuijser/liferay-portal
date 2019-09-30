@@ -20,6 +20,7 @@ import com.liferay.portal.json.JSONFactoryImpl;
 import com.liferay.portal.kernel.configuration.ConfigurationFactoryUtil;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.portlet.PortletClassLoaderUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.sync.model.SyncDLObject;
 import com.liferay.sync.model.impl.SyncDLObjectImpl;
 
@@ -71,8 +72,9 @@ public class SyncDLObjectUpdateTest {
 		String actualJSON = syncDLObjectUpdate.toString();
 
 		Assert.assertEquals(
-			expectedJSON.replace(StringPool.SPACE, StringPool.BLANK),
-			actualJSON.replace(StringPool.SPACE, StringPool.BLANK));
+			StringUtil.replace(
+				expectedJSON, StringPool.SPACE, StringPool.BLANK),
+			StringUtil.replace(actualJSON, StringPool.SPACE, StringPool.BLANK));
 	}
 
 }

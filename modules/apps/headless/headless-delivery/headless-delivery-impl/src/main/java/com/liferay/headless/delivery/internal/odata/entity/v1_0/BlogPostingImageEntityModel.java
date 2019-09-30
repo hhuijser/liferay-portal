@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.util.LocaleUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.odata.entity.EntityField;
 import com.liferay.portal.odata.entity.EntityModel;
 import com.liferay.portal.odata.entity.IdEntityField;
@@ -41,8 +42,8 @@ public class BlogPostingImageEntityModel implements EntityModel {
 				mimeType -> {
 					String encodingFormat = String.valueOf(mimeType);
 
-					return encodingFormat.replace(
-						StringPool.SLASH, StringPool.UNDERLINE);
+					return StringUtil.replace(
+						encodingFormat, StringPool.SLASH, StringPool.UNDERLINE);
 				}),
 			new IntegerEntityField(
 				"sizeInBytes", locale -> Field.getSortableFieldName("size")),

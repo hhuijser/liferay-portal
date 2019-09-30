@@ -111,7 +111,7 @@ public abstract class BaseTranslator {
 			String hash = entry.getKey();
 			String protectedMarkup = entry.getValue();
 
-			content = content.replace(hash, protectedMarkup);
+			content = StringUtil.replace(content, hash, protectedMarkup);
 		}
 
 		return content;

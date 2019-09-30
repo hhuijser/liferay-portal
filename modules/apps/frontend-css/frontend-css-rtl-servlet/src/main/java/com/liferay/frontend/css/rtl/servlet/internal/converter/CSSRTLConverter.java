@@ -31,6 +31,8 @@ import com.helger.css.reader.errorhandler.DoNothingCSSParseErrorHandler;
 import com.helger.css.writer.CSSWriter;
 import com.helger.css.writer.CSSWriterSettings;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -390,10 +392,10 @@ public class CSSRTLConverter {
 
 	private String _reverse(String s) {
 		if (s.contains("right")) {
-			return s.replace("right", "left");
+			return StringUtil.replace(s, "right", "left");
 		}
 		else if (s.contains("left")) {
-			return s.replace("left", "right");
+			return StringUtil.replace(s, "left", "right");
 		}
 
 		return s;
@@ -431,10 +433,10 @@ public class CSSRTLConverter {
 			value = _reverse(value);
 
 			if (value.contains("rtl")) {
-				value = value.replace("rtl", "ltr");
+				value = StringUtil.replace(value, "rtl", "ltr");
 			}
 			else if (value.contains("ltr")) {
-				value = value.replace("ltr", "rtl");
+				value = StringUtil.replace(value, "ltr", "rtl");
 			}
 
 			cssExpressionMemberTermSimple.setValue(value);

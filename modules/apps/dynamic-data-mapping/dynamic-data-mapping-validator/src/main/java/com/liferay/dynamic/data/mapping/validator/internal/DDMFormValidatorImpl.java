@@ -297,8 +297,8 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 
 				for (Locale locale : locales) {
 					_ddmExpressionFactory.createBooleanDDMExpression(
-						value.replace(
-							"{parameter}",
+						StringUtil.replace(
+							value, "{parameter}",
 							parameterLocalizedValue.getString(locale)));
 				}
 			}

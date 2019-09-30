@@ -55,8 +55,8 @@ public class PluginPackageProperties {
 		contextPath = StringUtil.replace(
 			contextPath, CharPool.BACK_SLASH, CharPool.SLASH);
 
-		propertiesString = propertiesString.replace(
-			"${context.path}", contextPath);
+		propertiesString = StringUtil.replace(
+			propertiesString, "${context.path}", contextPath);
 
 		PropertiesUtil.load(_properties, propertiesString);
 	}

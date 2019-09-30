@@ -503,7 +503,8 @@ public class WabProcessor {
 				_bundleVersion = sb.toString();
 			}
 			else {
-				_bundleVersion = "0.0.0." + _bundleVersion.replace(".", "_");
+				_bundleVersion =
+					"0.0.0." + StringUtil.replace(_bundleVersion, ".", "_");
 			}
 		}
 

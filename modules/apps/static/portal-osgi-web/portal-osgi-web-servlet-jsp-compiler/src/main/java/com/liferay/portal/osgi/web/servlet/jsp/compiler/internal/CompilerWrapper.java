@@ -19,6 +19,7 @@ import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.URLUtil;
 import com.liferay.portal.util.PropsValues;
 
@@ -123,8 +124,8 @@ public class CompilerWrapper extends Compiler {
 	}
 
 	private URL _getClassURL(String className) {
-		String classNamePath = className.replace(
-			CharPool.PERIOD, File.separatorChar);
+		String classNamePath = StringUtil.replace(
+			className, CharPool.PERIOD, File.separatorChar);
 
 		classNamePath = classNamePath.concat(".class");
 

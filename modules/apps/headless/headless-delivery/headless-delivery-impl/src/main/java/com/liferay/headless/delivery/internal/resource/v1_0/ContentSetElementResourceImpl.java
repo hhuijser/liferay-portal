@@ -24,6 +24,7 @@ import com.liferay.headless.delivery.dto.v1_0.converter.DefaultDTOConverterConte
 import com.liferay.headless.delivery.internal.dto.v1_0.converter.DTOConverterRegistry;
 import com.liferay.headless.delivery.resource.v1_0.ContentSetElementResource;
 import com.liferay.portal.kernel.util.CamelCaseUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.vulcan.pagination.Page;
 import com.liferay.portal.vulcan.pagination.Pagination;
 import com.liferay.segments.context.Context;
@@ -93,7 +94,8 @@ public class ContentSetElementResourceImpl
 			String value = contextHttpServletRequest.getHeader(key);
 
 			if (key.equals("accept-language")) {
-				context.put(Context.LANGUAGE_ID, value.replace("-", "_"));
+				context.put(
+					Context.LANGUAGE_ID, StringUtil.replace(value, "-", "_"));
 			}
 			else if (key.equals("host")) {
 				context.put(Context.URL, value);
@@ -106,7 +108,9 @@ public class ContentSetElementResourceImpl
 			}
 			else if (key.startsWith("x-")) {
 				context.put(
-					CamelCaseUtil.toCamelCase(key.replace("x-", "")), value);
+					CamelCaseUtil.toCamelCase(
+						StringUtil.replace(key, "x-", "")),
+					value);
 			}
 			else {
 				context.put(key, value);

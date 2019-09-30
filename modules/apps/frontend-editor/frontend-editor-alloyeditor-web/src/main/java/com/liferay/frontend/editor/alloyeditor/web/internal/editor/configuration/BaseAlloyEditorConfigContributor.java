@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.Map;
 
@@ -58,7 +59,8 @@ public abstract class BaseAlloyEditorConfigContributor
 			inputEditorTaglibAttributes);
 
 		jsonObject.put(
-			"contentsLanguage", contentsLanguageId.replace("iw_", "he_")
+			"contentsLanguage",
+			StringUtil.replace(contentsLanguageId, "iw_", "he_")
 		).put(
 			"disableNativeSpellChecker", Boolean.FALSE
 		).put(
@@ -73,7 +75,7 @@ public abstract class BaseAlloyEditorConfigContributor
 		String languageId = getLanguageId(themeDisplay);
 
 		jsonObject.put(
-			"language", languageId.replace("iw_", "he_")
+			"language", StringUtil.replace(languageId, "iw_", "he_")
 		).put(
 			"removePlugins",
 			"contextmenu,elementspath,floatingspace,image,link,liststyle," +

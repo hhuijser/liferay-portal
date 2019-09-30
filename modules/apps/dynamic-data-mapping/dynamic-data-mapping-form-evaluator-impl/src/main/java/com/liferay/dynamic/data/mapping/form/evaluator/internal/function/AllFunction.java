@@ -21,6 +21,7 @@ import com.liferay.dynamic.data.mapping.expression.DDMExpressionFactory;
 import com.liferay.dynamic.data.mapping.expression.DDMExpressionFunction;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.stream.Stream;
 
@@ -68,7 +69,8 @@ public class AllFunction
 	}
 
 	protected boolean accept(String expression, Object value) {
-		expression = expression.replace("#value#", String.valueOf(value));
+		expression = StringUtil.replace(
+			expression, "#value#", String.valueOf(value));
 
 		try {
 			CreateExpressionRequest createExpressionRequest =

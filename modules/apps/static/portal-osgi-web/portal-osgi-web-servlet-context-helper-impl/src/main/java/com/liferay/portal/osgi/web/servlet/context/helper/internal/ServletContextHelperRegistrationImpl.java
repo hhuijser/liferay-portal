@@ -550,8 +550,8 @@ public class ServletContextHelperRegistrationImpl
 						String className = classResource.substring(
 							0, classResource.length() - 6);
 
-						className = className.replace(
-							CharPool.SLASH, CharPool.PERIOD);
+						className = StringUtil.replace(
+							className, CharPool.SLASH, CharPool.PERIOD);
 
 						return classLoader.loadClass(className);
 					}));

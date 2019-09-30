@@ -55,7 +55,7 @@ public class LiferayOAuthStoreProvider implements Provider<OAuthStore> {
 
 	private String _convertFromOpenSsl(String key) {
 		key = key.replaceAll(_OPEN_SSL_A_Z, StringPool.BLANK);
-		key = key.replace(StringPool.NEW_LINE, StringPool.BLANK);
+		key = StringUtil.replace(key, StringPool.NEW_LINE, StringPool.BLANK);
 
 		return key;
 	}

@@ -38,6 +38,7 @@ import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CalendarUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.workflow.kaleo.model.KaleoTaskInstanceToken;
 import com.liferay.portal.workflow.kaleo.model.impl.KaleoTaskInstanceTokenModelImpl;
@@ -307,8 +308,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sb.append(orderByField);
 			}
 
-			sql = sql.replace(
-				"DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId",
+			sql = StringUtil.replace(
+				sql, "DISTINCT KaleoTaskInstanceToken.kaleoTaskInstanceTokenId",
 				sb.toString());
 		}
 

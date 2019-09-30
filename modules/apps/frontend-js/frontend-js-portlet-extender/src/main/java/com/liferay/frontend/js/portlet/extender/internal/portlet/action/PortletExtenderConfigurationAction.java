@@ -157,10 +157,10 @@ public class PortletExtenderConfigurationAction
 						value.getDefaultLocale());
 
 					if (ddmFormFieldType.equals(DDMFormFieldType.SELECT)) {
-						stringValue = stringValue.replace(
-							"[\"", StringPool.BLANK);
-						stringValue = stringValue.replace(
-							"\"]", StringPool.BLANK);
+						stringValue = StringUtil.replace(
+							stringValue, "[\"", StringPool.BLANK);
+						stringValue = StringUtil.replace(
+							stringValue, "\"]", StringPool.BLANK);
 					}
 
 					return stringValue;

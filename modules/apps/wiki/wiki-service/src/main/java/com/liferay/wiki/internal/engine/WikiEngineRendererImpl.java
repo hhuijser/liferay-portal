@@ -206,7 +206,7 @@ public class WikiEngineRendererImpl implements WikiEngineRenderer {
 				String encodedTitle = URLCodec.encodeURL(
 					HtmlUtil.unescape(matcher.group(1)));
 
-				replacement = url.replace("$1", encodedTitle);
+				replacement = StringUtil.replace(url, "$1", encodedTitle);
 			}
 			else {
 				replacement = url;

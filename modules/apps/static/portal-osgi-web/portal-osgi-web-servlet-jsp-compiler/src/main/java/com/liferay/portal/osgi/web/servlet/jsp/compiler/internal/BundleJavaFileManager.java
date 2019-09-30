@@ -19,6 +19,7 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 
@@ -104,8 +105,8 @@ public class BundleJavaFileManager
 			_log.info(sb.toString());
 		}
 
-		String packagePath = packageName.replace(
-			CharPool.PERIOD, CharPool.SLASH);
+		String packagePath = StringUtil.replace(
+			packageName, CharPool.PERIOD, CharPool.SLASH);
 
 		if (!packageName.startsWith("java.") &&
 			(location == StandardLocation.CLASS_PATH)) {

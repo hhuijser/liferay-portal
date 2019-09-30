@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletURL;
 import com.liferay.portal.kernel.portlet.PortletURLFactoryUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.user.associated.data.anonymizer.UADAnonymizer;
 import com.liferay.user.associated.data.constants.UserAssociatedDataPortletKeys;
@@ -158,7 +159,8 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 
 		for (String key : parameterMap.keySet()) {
 			if (key.startsWith("uadRegistryKey__")) {
-				entityTypes.add(key.replace("uadRegistryKey__", ""));
+				entityTypes.add(
+					StringUtil.replace(key, "uadRegistryKey__", ""));
 			}
 		}
 

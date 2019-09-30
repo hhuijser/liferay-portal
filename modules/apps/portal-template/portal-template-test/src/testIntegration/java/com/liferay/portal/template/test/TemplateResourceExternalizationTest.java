@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.test.ConsoleTestUtil;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.template.CacheTemplateResource;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -260,7 +261,7 @@ public class TemplateResourceExternalizationTest {
 
 		String resourcePath = clazz.getName();
 
-		resourcePath = resourcePath.replace('.', '/') + ".class";
+		resourcePath = StringUtil.replace(resourcePath, '.', '/') + ".class";
 
 		URL url = classLoader.getResource(resourcePath);
 

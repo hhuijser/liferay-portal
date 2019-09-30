@@ -14,6 +14,7 @@
 
 package com.liferay.portal.json;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONSerializer;
@@ -69,7 +70,7 @@ public class JSONSerializerTest {
 
 		String json = jsonSerializer.serialize(hits);
 
-		json = StringUtil.replace(json, StringPool.SPACE, StringPool.BLANK);
+		json = StringUtil.replace(json, CharPool.SPACE, StringPool.BLANK);
 
 		Assert.assertTrue(json, json.contains("\"docs\":[]"));
 		Assert.assertFalse(json, json.contains("\"query\""));

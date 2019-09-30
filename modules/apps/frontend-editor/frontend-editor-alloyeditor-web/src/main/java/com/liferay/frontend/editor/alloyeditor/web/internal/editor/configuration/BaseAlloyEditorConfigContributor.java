@@ -53,14 +53,11 @@ public abstract class BaseAlloyEditorConfigContributor
 			"contentsLangDirection",
 			HtmlUtil.escapeJS(
 				getContentsLanguageDir(inputEditorTaglibAttributes))
-		);
-
-		String contentsLanguageId = getContentsLanguageId(
-			inputEditorTaglibAttributes);
-
-		jsonObject.put(
+		).put(
 			"contentsLanguage",
-			StringUtil.replace(contentsLanguageId, "iw_", "he_")
+			StringUtil.replace(
+				getContentsLanguageId(inputEditorTaglibAttributes), "iw_",
+				"he_")
 		).put(
 			"disableNativeSpellChecker", Boolean.FALSE
 		).put(
@@ -70,12 +67,9 @@ public abstract class BaseAlloyEditorConfigContributor
 					"ae_tabletools,ae_uicore"
 		).put(
 			"imageScaleResize", "scale"
-		);
-
-		String languageId = getLanguageId(themeDisplay);
-
-		jsonObject.put(
-			"language", StringUtil.replace(languageId, "iw_", "he_")
+		).put(
+			"language",
+			StringUtil.replace(getLanguageId(themeDisplay), "iw_", "he_")
 		).put(
 			"removePlugins",
 			"contextmenu,elementspath,floatingspace,image,link,liststyle," +

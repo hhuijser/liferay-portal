@@ -67,7 +67,7 @@ public class BaseCKEditorConfigContributor extends BaseEditorConfigContributor {
 			inputEditorTaglibAttributes);
 
 		contentsLanguageId = StringUtil.replace(contentsLanguageId, "iw", "he");
-		contentsLanguageId = StringUtil.replace(contentsLanguageId, "_", "-");
+		contentsLanguageId = StringUtil.replace(contentsLanguageId, '_', '-');
 
 		jsonObject.put(
 			"contentsLanguage", contentsLanguageId
@@ -78,7 +78,7 @@ public class BaseCKEditorConfigContributor extends BaseEditorConfigContributor {
 		String languageId = getLanguageId(themeDisplay);
 
 		languageId = StringUtil.replace(languageId, "iw", "he");
-		languageId = StringUtil.replace(languageId, "_", "-");
+		languageId = StringUtil.replace(languageId, '_', '-');
 
 		jsonObject.put("language", languageId);
 

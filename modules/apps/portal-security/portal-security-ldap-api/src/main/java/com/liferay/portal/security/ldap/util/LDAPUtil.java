@@ -46,7 +46,7 @@ public class LDAPUtil {
 				StringPool.BACK_SLASH);
 
 			attribute = StringUtil.replace(
-				attribute, StringPool.BACK_SLASH, escapedSingleBackSlash);
+				attribute, CharPool.BACK_SLASH, escapedSingleBackSlash);
 		}
 		else {
 			attribute = StringEscapeUtils.escapeJava(attribute);

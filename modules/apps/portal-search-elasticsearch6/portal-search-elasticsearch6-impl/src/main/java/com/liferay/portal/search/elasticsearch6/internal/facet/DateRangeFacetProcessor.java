@@ -14,6 +14,7 @@
 
 package com.liferay.portal.search.elasticsearch6.internal.facet;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -68,9 +69,9 @@ public class DateRangeFacetProcessor
 			String range = rangeJSONObject.getString("range");
 
 			range = StringUtil.replace(
-				range, StringPool.OPEN_BRACKET, StringPool.BLANK);
+				range, CharPool.OPEN_BRACKET, StringPool.BLANK);
 			range = StringUtil.replace(
-				range, StringPool.CLOSE_BRACKET, StringPool.BLANK);
+				range, CharPool.CLOSE_BRACKET, StringPool.BLANK);
 
 			String[] rangeParts = range.split(StringPool.SPACE);
 

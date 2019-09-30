@@ -564,12 +564,12 @@ public class ContentPageEditorDisplayContext {
 
 			String languageIcon = StringUtil.toLowerCase(
 				StringUtil.replace(
-					languageId, StringPool.UNDERLINE, StringPool.DASH));
+					languageId, CharPool.UNDERLINE, CharPool.DASH));
 
 			languageSoyContext.put("languageIcon", languageIcon);
 
 			String languageLabel = StringUtil.replace(
-				languageId, StringPool.UNDERLINE, StringPool.DASH);
+				languageId, CharPool.UNDERLINE, CharPool.DASH);
 
 			languageSoyContext.put("languageLabel", languageLabel);
 

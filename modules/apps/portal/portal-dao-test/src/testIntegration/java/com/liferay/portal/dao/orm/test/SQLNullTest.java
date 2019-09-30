@@ -1069,11 +1069,11 @@ public class SQLNullTest {
 	}
 
 	protected String transformPostgreSQL(String sql) {
-		return StringUtil.replace(sql, "?", "CAST(? AS VARCHAR)");
+		return StringUtil.replace(sql, '?', "CAST(? AS VARCHAR)");
 	}
 
 	protected String transformSybaseSQL(String sql) {
-		return StringUtil.replace(sql, "?", "CONVERT(VARCHAR, ?)");
+		return StringUtil.replace(sql, '?', "CONVERT(VARCHAR, ?)");
 	}
 
 	private static final String _SQL_EQUALS_NULL =

@@ -149,7 +149,7 @@ public class CXFEndpointPublisher {
 
 			String contextName = contextPath.substring(1);
 
-			contextName = StringUtil.replace(contextName, "/", ".");
+			contextName = StringUtil.replace(contextName, '/', '.');
 
 			properties.put(
 				HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_NAME,

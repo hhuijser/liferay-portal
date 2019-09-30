@@ -95,7 +95,7 @@ public class ContentSetElementResourceImpl
 
 			if (key.equals("accept-language")) {
 				context.put(
-					Context.LANGUAGE_ID, StringUtil.replace(value, "-", "_"));
+					Context.LANGUAGE_ID, StringUtil.replace(value, '-', '_'));
 			}
 			else if (key.equals("host")) {
 				context.put(Context.URL, value);

@@ -14,6 +14,7 @@
 
 package com.liferay.headless.delivery.internal.odata.entity.v1_0;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Field;
@@ -62,7 +63,7 @@ public class DocumentEntityModel implements EntityModel {
 					String encodingFormat = String.valueOf(mimeType);
 
 					return StringUtil.replace(
-						encodingFormat, StringPool.SLASH, StringPool.UNDERLINE);
+						encodingFormat, CharPool.SLASH, CharPool.UNDERLINE);
 				}),
 			new IntegerEntityField("creatorId", locale -> Field.USER_ID),
 			new IntegerEntityField(

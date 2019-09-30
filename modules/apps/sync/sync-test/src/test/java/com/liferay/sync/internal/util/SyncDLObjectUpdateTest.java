@@ -14,6 +14,7 @@
 
 package com.liferay.sync.internal.util;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.configuration.ConfigurationFactoryImpl;
 import com.liferay.portal.json.JSONFactoryImpl;
@@ -72,9 +73,8 @@ public class SyncDLObjectUpdateTest {
 		String actualJSON = syncDLObjectUpdate.toString();
 
 		Assert.assertEquals(
-			StringUtil.replace(
-				expectedJSON, StringPool.SPACE, StringPool.BLANK),
-			StringUtil.replace(actualJSON, StringPool.SPACE, StringPool.BLANK));
+			StringUtil.replace(expectedJSON, CharPool.SPACE, StringPool.BLANK),
+			StringUtil.replace(actualJSON, CharPool.SPACE, StringPool.BLANK));
 	}
 
 }

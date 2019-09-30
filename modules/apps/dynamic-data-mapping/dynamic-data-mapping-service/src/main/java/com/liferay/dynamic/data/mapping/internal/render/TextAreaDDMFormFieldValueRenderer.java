@@ -16,7 +16,7 @@ package com.liferay.dynamic.data.mapping.internal.render;
 
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldType;
 import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
-import com.liferay.petra.string.StringPool;
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class TextAreaDDMFormFieldValueRenderer
 
 		String valueRendered = super.render(ddmFormFieldValues, locale);
 
-		return StringUtil.replace(valueRendered, StringPool.NEW_LINE, "<br>");
+		return StringUtil.replace(valueRendered, CharPool.NEW_LINE, "<br>");
 	}
 
 }

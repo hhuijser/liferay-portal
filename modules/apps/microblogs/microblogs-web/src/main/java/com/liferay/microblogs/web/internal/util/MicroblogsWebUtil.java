@@ -136,7 +136,7 @@ public class MicroblogsWebUtil {
 			String screenName = matcher.group();
 
 			screenName = StringUtil.replace(screenName, "[@", StringPool.BLANK);
-			screenName = StringUtil.replace(screenName, "]", StringPool.BLANK);
+			screenName = StringUtil.replace(screenName, ']', StringPool.BLANK);
 
 			screenNames.add(screenName);
 		}
@@ -236,7 +236,7 @@ public class MicroblogsWebUtil {
 					result, "[@", StringPool.BLANK);
 
 				assetTagScreenName = StringUtil.replace(
-					assetTagScreenName, "]", StringPool.BLANK);
+					assetTagScreenName, ']', StringPool.BLANK);
 
 				ThemeDisplay themeDisplay = serviceContext.getThemeDisplay();
 

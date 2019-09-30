@@ -14,6 +14,8 @@
 
 package com.liferay.portal.kernel.io;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import java.io.File;
 import java.io.Serializable;
 
@@ -75,7 +77,8 @@ public class PathHolder implements Serializable {
 			_toString = _pathString;
 		}
 		else {
-			_toString = _pathString.replace(_separatorChar, File.separatorChar);
+			_toString = StringUtil.replace(
+				_pathString, _separatorChar, File.separatorChar);
 		}
 
 		return _toString;

@@ -170,7 +170,7 @@ public class LanguageResources {
 
 	public void setConfig(String config) {
 		_configNames = StringUtil.split(
-			config.replace(CharPool.PERIOD, CharPool.SLASH));
+			StringUtil.replace(config, CharPool.PERIOD, CharPool.SLASH));
 	}
 
 	private static Locale _getSuperLocale(Locale locale) {

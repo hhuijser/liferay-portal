@@ -16,6 +16,7 @@ package com.liferay.portal.aspectj;
 
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.util.StreamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -111,7 +112,7 @@ public class URLWeavingAdapter extends WeavingAdaptor {
 
 		String resourcePath = aspectClass.getName();
 
-		resourcePath = resourcePath.replace('.', '/') + ".class";
+		resourcePath = StringUtil.replace(resourcePath, '.', '/') + ".class";
 
 		ByteArrayInputStream byteArrayInputStream = null;
 

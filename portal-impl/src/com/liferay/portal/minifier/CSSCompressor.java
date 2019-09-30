@@ -296,8 +296,8 @@ public class CSSCompressor {
 		while (css.indexOf(_BACKSLASH_9) > -1) {
 			preservedTokens.add(_BACKSLASH_9);
 
-			css = css.replace(
-				_BACKSLASH_9,
+			css = StringUtil.replace(
+				css, _BACKSLASH_9,
 				"___YUICSSMIN_PRESERVED_TOKEN_" + (preservedTokens.size() - 1) +
 					"___");
 		}
@@ -366,7 +366,8 @@ public class CSSCompressor {
 					0) {
 
 				for (int i = 0; i < comments.size(); i++) {
-					token = token.replace(
+					token = StringUtil.replace(
+						token,
 						"___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_" + i + "___",
 						comments.get(i));
 				}
@@ -483,8 +484,8 @@ public class CSSCompressor {
 			if (comment.startsWith("!")) {
 				preservedTokens.add(comment);
 
-				css = css.replace(
-					placeholder,
+				css = StringUtil.replace(
+					css, placeholder,
 					"___YUICSSMIN_PRESERVED_TOKEN_" +
 						(preservedTokens.size() - 1) + "___");
 
@@ -494,8 +495,8 @@ public class CSSCompressor {
 			if (comment.endsWith("\\")) {
 				preservedTokens.add("\\");
 
-				css = css.replace(
-					placeholder,
+				css = StringUtil.replace(
+					css, placeholder,
 					"___YUICSSMIN_PRESERVED_TOKEN_" +
 						(preservedTokens.size() - 1) + "___");
 
@@ -503,8 +504,8 @@ public class CSSCompressor {
 
 				preservedTokens.add("");
 
-				css = css.replace(
-					"___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_" + i + "___",
+				css = StringUtil.replace(
+					css, "___YUICSSMIN_PRESERVE_CANDIDATE_COMMENT_" + i + "___",
 					"___YUICSSMIN_PRESERVED_TOKEN_" +
 						(preservedTokens.size() - 1) + "___");
 
@@ -517,14 +518,14 @@ public class CSSCompressor {
 				if ((startIndex > 2) && (css.charAt(startIndex - 3) == '>')) {
 					preservedTokens.add("");
 
-					css = css.replace(
-						placeholder,
+					css = StringUtil.replace(
+						css, placeholder,
 						"___YUICSSMIN_PRESERVED_TOKEN_" +
 							(preservedTokens.size() - 1) + "___");
 				}
 			}
 
-			css = css.replace("/*" + placeholder + "*/", "");
+			css = StringUtil.replace(css, "/*" + placeholder + "*/", "");
 		}
 
 		return css;
@@ -643,8 +644,9 @@ public class CSSCompressor {
 		for (int i = 0; i < preservedTokens.size(); i++) {
 			String preservedToken = preservedTokens.get(i);
 
-			css = css.replace(
-				"___YUICSSMIN_PRESERVED_TOKEN_" + i + "___", preservedToken);
+			css = StringUtil.replace(
+				css, "___YUICSSMIN_PRESERVED_TOKEN_" + i + "___",
+				preservedToken);
 		}
 
 		return css;

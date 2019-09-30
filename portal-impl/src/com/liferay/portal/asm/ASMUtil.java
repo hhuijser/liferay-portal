@@ -15,6 +15,7 @@
 package com.liferay.portal.asm;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 
@@ -127,7 +128,7 @@ public class ASMUtil {
 
 		String name = clazz.getName();
 
-		name = name.replace(CharPool.PERIOD, CharPool.SLASH);
+		name = StringUtil.replace(name, CharPool.PERIOD, CharPool.SLASH);
 
 		ClassReader classReader = null;
 

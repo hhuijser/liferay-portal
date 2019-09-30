@@ -80,10 +80,12 @@ public class MethodParameter {
 		}
 		else if (c == 'L') {
 			className = className.substring(1, className.length() - 1);
-			className = className.replace(CharPool.SLASH, CharPool.PERIOD);
+			className = StringUtil.replace(
+				className, CharPool.SLASH, CharPool.PERIOD);
 		}
 		else if (c == '[') {
-			className = className.replace(CharPool.SLASH, CharPool.PERIOD);
+			className = StringUtil.replace(
+				className, CharPool.SLASH, CharPool.PERIOD);
 		}
 		else {
 			throw new IllegalArgumentException(

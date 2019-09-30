@@ -677,8 +677,8 @@ public class Validator {
 			return false;
 		}
 
-		String normalizedPath = path.replace(
-			CharPool.BACK_SLASH, CharPool.SLASH);
+		String normalizedPath = StringUtil.replace(
+			path, CharPool.BACK_SLASH, CharPool.SLASH);
 
 		if (normalizedPath.startsWith(
 				StringPool.DOUBLE_PERIOD.concat(StringPool.SLASH))) {

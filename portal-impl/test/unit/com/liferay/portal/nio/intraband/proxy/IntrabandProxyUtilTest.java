@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.ProxyUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.SystemProperties;
 import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.test.aspects.ReflectionUtilAdvice;
@@ -2449,7 +2450,7 @@ public class IntrabandProxyUtilTest {
 
 		String name = clazz.getName();
 
-		name = name.replace(CharPool.PERIOD, CharPool.SLASH);
+		name = StringUtil.replace(name, CharPool.PERIOD, CharPool.SLASH);
 
 		return _loadClass(
 			classLoader.getResourceAsStream(name.concat(".class")));

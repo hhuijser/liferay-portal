@@ -15,6 +15,7 @@
 package com.liferay.portal.split.packages;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 
@@ -170,7 +171,8 @@ public class SplitPackagesTest {
 							String relativePathString = relativePath.toString();
 
 							packageNames.add(
-								relativePathString.replace('/', '.'));
+								StringUtil.replace(
+									relativePathString, '/', '.'));
 						}
 					}
 

@@ -401,7 +401,8 @@ public class CacheFilter extends BasePortalFilter {
 				return;
 			}
 
-			key = key.replace(StringUtil.toUpperCase(pAuth), "VALID");
+			key = StringUtil.replace(
+				key, StringUtil.toUpperCase(pAuth), "VALID");
 		}
 
 		long companyId = PortalInstances.getCompanyId(httpServletRequest);

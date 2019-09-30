@@ -19,6 +19,7 @@ import com.liferay.petra.concurrent.ConcurrentReferenceValueHashMap;
 import com.liferay.petra.memory.FinalizeManager;
 import com.liferay.petra.reflect.ReflectionUtil;
 import com.liferay.portal.kernel.bean.ConstantsBeanFactory;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.ref.Reference;
 import java.lang.reflect.Field;
@@ -176,7 +177,7 @@ public class ConstantsBeanFactoryImpl implements ConstantsBeanFactory {
 	protected static String getClassBinaryName(Class<?> clazz) {
 		String className = clazz.getName();
 
-		return className.replace('.', '/');
+		return StringUtil.replace(className, '.', '/');
 	}
 
 	protected static ConcurrentMap<Class<?>, Object> constantsBeans =

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.search.HitsImpl;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.util.LocalizationUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.util.LocalizationImpl;
 
 import org.junit.Assert;
@@ -68,7 +69,7 @@ public class JSONSerializerTest {
 
 		String json = jsonSerializer.serialize(hits);
 
-		json = json.replace(StringPool.SPACE, StringPool.BLANK);
+		json = StringUtil.replace(json, StringPool.SPACE, StringPool.BLANK);
 
 		Assert.assertTrue(json, json.contains("\"docs\":[]"));
 		Assert.assertFalse(json, json.contains("\"query\""));

@@ -2282,7 +2282,7 @@ public class StringUtil {
 
 		s = replace(s, "\r\n", StringPool.NEW_LINE);
 
-		s = s.replace(CharPool.RETURN, CharPool.NEW_LINE);
+		s = replace(s, CharPool.RETURN, CharPool.NEW_LINE);
 
 		return s.trim();
 	}

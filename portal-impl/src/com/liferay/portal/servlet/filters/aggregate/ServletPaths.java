@@ -134,7 +134,8 @@ public class ServletPaths {
 
 			path = downPathObject.toString();
 
-			path = path.replace(CharPool.BACK_SLASH, CharPool.SLASH);
+			path = StringUtil.replace(
+				path, CharPool.BACK_SLASH, CharPool.SLASH);
 		}
 		else {
 			path = _resourcePath.concat(path);

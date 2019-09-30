@@ -140,7 +140,8 @@ public class DBBuilder {
 				String fileName = fileNamePath.toString();
 
 				_generateSQLFile(
-					sqlDir, fileName.replace(".sql", StringPool.BLANK));
+					sqlDir,
+					StringUtil.replace(fileName, ".sql", StringPool.BLANK));
 			}
 		}
 	}

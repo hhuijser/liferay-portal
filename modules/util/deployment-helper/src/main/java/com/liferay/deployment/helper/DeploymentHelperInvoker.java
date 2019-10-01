@@ -14,6 +14,8 @@
 
 package com.liferay.deployment.helper;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import java.io.File;
 
 /**
@@ -38,7 +40,7 @@ public class DeploymentHelperInvoker {
 
 		fileName = file.getAbsolutePath();
 
-		return fileName.replace('\\', '/');
+		return StringUtil.replace(fileName, '\\', '/');
 	}
 
 	private static String _getAbsolutePaths(File baseDir, String fileNames) {

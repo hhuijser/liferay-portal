@@ -87,7 +87,8 @@ public class JSONIndentationCheck extends BaseFileCheck {
 
 		String expectedTab = new String(new char[expectedTabCount]);
 
-		return expectedTab.replace("\0", "\t") + StringUtil.trimLeading(line);
+		return StringUtil.replace(expectedTab, "\0", "\t") +
+			StringUtil.trimLeading(line);
 	}
 
 }

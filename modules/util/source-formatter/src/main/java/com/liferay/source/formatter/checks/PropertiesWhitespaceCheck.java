@@ -47,11 +47,13 @@ public class PropertiesWhitespaceCheck extends WhitespaceCheck {
 				lineNumber++;
 
 				if (line.startsWith(StringPool.TAB)) {
-					line = line.replace(StringPool.TAB, StringPool.FOUR_SPACES);
+					line = StringUtil.replace(
+						line, StringPool.TAB, StringPool.FOUR_SPACES);
 				}
 
 				if (line.contains(" \t")) {
-					line = line.replace(" \t", " " + StringPool.FOUR_SPACES);
+					line = StringUtil.replace(
+						line, " \t", " " + StringPool.FOUR_SPACES);
 				}
 
 				sb.append(line);

@@ -14,6 +14,7 @@
 
 package com.liferay.portal.tools.rest.builder.internal.freemarker;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.rest.builder.internal.util.FileUtil;
 
 import freemarker.cache.ClassTemplateLoader;
@@ -66,7 +67,7 @@ public class FreeMarker {
 			content = FileUtil.read(copyrightFile) + "\n\n" + content;
 		}
 
-		return content.replace("\r\n", "\n");
+		return StringUtil.replace(content, "\r\n", "\n");
 	}
 
 	private static final Configuration _configuration = new Configuration(

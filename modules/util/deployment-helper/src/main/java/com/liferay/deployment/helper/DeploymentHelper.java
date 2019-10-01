@@ -14,6 +14,8 @@
 
 package com.liferay.deployment.helper;
 
+import com.liferay.portal.kernel.util.StringUtil;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -177,8 +179,10 @@ public class DeploymentHelper {
 
 		String content = new String(bytes);
 
-		content = content.replace("${deployment.files}", deploymentFileNames);
-		content = content.replace("${deployment.path}", deploymentPath);
+		content = StringUtil.replace(
+			content, "${deployment.files}", deploymentFileNames);
+		content = StringUtil.replace(
+			content, "${deployment.path}", deploymentPath);
 
 		return new ByteSource(
 			"WEB-INF/web.xml", content.getBytes(StandardCharsets.UTF_8));

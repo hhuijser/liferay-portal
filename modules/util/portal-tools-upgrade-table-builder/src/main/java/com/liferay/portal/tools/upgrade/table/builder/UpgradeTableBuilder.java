@@ -125,12 +125,12 @@ public class UpgradeTableBuilder {
 	private void _buildUpgradeTable(Path path) throws IOException {
 		String pathString = path.toString();
 
-		pathString = pathString.replace('\\', '/');
+		pathString = StringUtil.replace(pathString, '\\', '/');
 
 		String upgradeFileVersion = pathString.replaceFirst(
 			".*/upgrade/v(.+)/util.*", "$1");
 
-		upgradeFileVersion = upgradeFileVersion.replace('_', '.');
+		upgradeFileVersion = StringUtil.replace(upgradeFileVersion, '_', '.');
 
 		if (upgradeFileVersion.contains("to")) {
 			upgradeFileVersion = upgradeFileVersion.replaceFirst(
@@ -276,14 +276,14 @@ public class UpgradeTableBuilder {
 
 		content = content.substring(x, y + 1);
 
-		content = content.replace("\t", "");
-		content = content.replace("{ \"", "{\"");
-		content = content.replace("new Integer(Types.", "Types.");
-		content = content.replace(") }", "}");
-		content = content.replace(" }", "}");
+		content = StringUtil.replace(content, "\t", "");
+		content = StringUtil.replace(content, "{ \"", "{\"");
+		content = StringUtil.replace(content, "new Integer(Types.", "Types.");
+		content = StringUtil.replace(content, ") }", "}");
+		content = StringUtil.replace(content, " }", "}");
 
 		while (content.contains("\n\n")) {
-			content = content.replace("\n\n", "\n");
+			content = StringUtil.replace(content, "\n\n", "\n");
 		}
 
 		StringBuilder sb = new StringBuilder();
@@ -466,7 +466,7 @@ public class UpgradeTableBuilder {
 	private String _read(Path path) throws IOException {
 		String s = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
 
-		return s.replace("\r\n", "\n");
+		return StringUtil.replace(s, "\r\n", "\n");
 	}
 
 	private static final String _AUTHOR = "Brian Wing Shun Chan";

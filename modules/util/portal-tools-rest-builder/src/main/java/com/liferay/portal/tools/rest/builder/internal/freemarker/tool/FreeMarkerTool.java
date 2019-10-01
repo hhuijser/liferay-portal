@@ -126,14 +126,14 @@ public class FreeMarkerTool {
 
 		String arguments = OpenAPIParserUtil.getArguments(javaMethodParameters);
 
-		arguments = arguments.replace(
-			"filter",
+		arguments = StringUtil.replace(
+			arguments, "filter",
 			"_filterBiFunction.apply(" + schemaVarName +
 				"Resource, filterString)");
-		arguments = arguments.replace(
-			"pageSize,page", "Pagination.of(page, pageSize)");
-		arguments = arguments.replace(
-			"sorts",
+		arguments = StringUtil.replace(
+			arguments, "pageSize,page", "Pagination.of(page, pageSize)");
+		arguments = StringUtil.replace(
+			arguments, "sorts",
 			"_sortsBiFunction.apply(" + schemaVarName +
 				"Resource, sortsString)");
 
@@ -199,16 +199,16 @@ public class FreeMarkerTool {
 		String parameters = GraphQLOpenAPIParser.getParameters(
 			javaMethodParameters, operation, annotation);
 
-		parameters = parameters.replace(
-			"com.liferay.portal.kernel.search.filter.Filter filter",
+		parameters = StringUtil.replace(
+			parameters, "com.liferay.portal.kernel.search.filter.Filter filter",
 			"String filterString");
 
-		parameters = parameters.replace(
-			"com.liferay.portal.kernel.search.Sort[] sorts",
+		parameters = StringUtil.replace(
+			parameters, "com.liferay.portal.kernel.search.Sort[] sorts",
 			"String sortsString");
 
-		parameters = parameters.replace(
-			"Long siteId",
+		parameters = StringUtil.replace(
+			parameters, "Long siteId",
 			"Long siteId, @GraphQLName(\"siteKey\") String siteKey");
 
 		return parameters;
@@ -870,7 +870,7 @@ public class FreeMarkerTool {
 
 		String returnType = StringUtil.toLowerCase(
 			javaMethodSignature.getReturnType());
-		String schemaName = parameterName.replace("Id", "");
+		String schemaName = StringUtil.replace(parameterName, "Id", "");
 
 		if (propertyName.equals(parameterName) &&
 			returnType.endsWith(StringUtil.toLowerCase(schemaName))) {

@@ -730,10 +730,11 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 	}
 
 	private String _normalizePattern(String originalPattern) {
-		String pattern = originalPattern.replace(
-			CharPool.SLASH, File.separatorChar);
+		String pattern = StringUtil.replace(
+			originalPattern, CharPool.SLASH, File.separatorChar);
 
-		pattern = pattern.replace(CharPool.BACK_SLASH, File.separatorChar);
+		pattern = StringUtil.replace(
+			pattern, CharPool.BACK_SLASH, File.separatorChar);
 
 		if (pattern.endsWith(File.separator)) {
 			pattern += SelectorUtils.DEEP_TREE_MATCH;

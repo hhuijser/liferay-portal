@@ -917,15 +917,15 @@ public class DDMFormPagesTemplateContextFactoryTest extends PowerMockito {
 	}
 
 	protected DDMFormEvaluator getDDMFormEvaluator() throws Exception {
-		DDMExpressionFactoryImpl ddmExpressionFactory =
+		DDMExpressionFactoryImpl ddmExpressionFactoryImpl =
 			new DDMExpressionFactoryImpl();
 
 		DDMFormEvaluator ddmFormEvaluator = new DDMFormEvaluatorImpl();
 
 		field(
-			DDMFormEvaluatorImpl.class, "ddmExpressionFactory"
+			DDMFormEvaluatorImpl.class, "ddmExpressionFactoryImpl"
 		).set(
-			ddmFormEvaluator, ddmExpressionFactory
+			ddmFormEvaluator, ddmExpressionFactoryImpl
 		);
 
 		field(
@@ -953,7 +953,7 @@ public class DDMFormPagesTemplateContextFactoryTest extends PowerMockito {
 		field(
 			DDMExpressionFactoryImpl.class, "ddmExpressionFunctionTracker"
 		).set(
-			ddmExpressionFactory, ddmExpressionFunctionTracker
+			ddmExpressionFactoryImpl, ddmExpressionFunctionTracker
 		);
 
 		return ddmFormEvaluator;

@@ -219,8 +219,8 @@ public class FooService {
 		return sb.toString();
 	}
 
-	public static String use1(FooDataImpl fooData) {
-		return "using #1: " + fooData.toString();
+	public static String use1(FooDataImpl fooDataImpl) {
+		return "using #1: " + fooDataImpl.toString();
 	}
 
 	public static String use2(FooData fooData) {

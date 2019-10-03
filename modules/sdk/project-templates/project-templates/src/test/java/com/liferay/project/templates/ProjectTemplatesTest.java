@@ -2529,6 +2529,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testBuildTemplateServiceBuilderTargetPlatformEnabled70()
 		throws Exception {
@@ -2574,6 +2575,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testBuildTemplateServiceBuilderTargetPlatformEnabled71()
 		throws Exception {
@@ -2619,6 +2621,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void testBuildTemplateServiceBuilderTargetPlatformEnabled72()
 		throws Exception {

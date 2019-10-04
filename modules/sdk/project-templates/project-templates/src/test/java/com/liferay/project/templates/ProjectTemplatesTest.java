@@ -3815,9 +3815,11 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			gradleAntBndVersion = matcher.group(1);
 		}
 
-		File mavenProjectDir = _buildTemplateWithMaven(template, name, name, "-DclassName=foo");
+		File mavenProjectDir = _buildTemplateWithMaven(
+			template, name, name, "-DclassName=foo");
 
-		String mavenResult = _executeMaven(mavenProjectDir, MAVEN_GOAL_PACKAGE);
+		String mavenResult = _executeMaven(
+			mavenProjectDir, "--debug", MAVEN_GOAL_PACKAGE);
 
 		matcher = _antBndPluginVersionPattern.matcher(mavenResult);
 
@@ -3828,8 +3830,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		}
 
 		Assert.assertEquals(
-			"com.liferay.ant.bnd versions do not match",
-			gradleAntBndVersion, mavenAntBndVersion);
+			"com.liferay.ant.bnd versions do not match", gradleAntBndVersion,
+			mavenAntBndVersion);
 	}
 
 	@Test

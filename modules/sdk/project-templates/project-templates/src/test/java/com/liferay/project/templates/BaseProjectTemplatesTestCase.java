@@ -368,7 +368,12 @@ public interface BaseProjectTemplatesTestCase {
 			arguments.add("-Dhttp.proxyPort=" + httpProxyPort);
 		}
 
-		arguments.add("--stacktrace");
+		if (debug) {
+			arguments.add("--debug");
+		}
+		else {
+			arguments.add("--stacktrace");
+		}
 
 		for (String taskPath : taskPaths) {
 			arguments.add(taskPath);
@@ -380,7 +385,6 @@ public interface BaseProjectTemplatesTestCase {
 
 		if (debug) {
 			gradleRunner.forwardStdOutput(stringWriter);
-			gradleRunner.withDebug(true);
 		}
 
 		gradleRunner.withArguments(arguments);

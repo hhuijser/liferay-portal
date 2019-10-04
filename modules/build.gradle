@@ -114,6 +114,7 @@ gradle.beforeProject {
 		dependencyManagement {
 			imports {
 				mavenBom "com.liferay:commons-bom:1.0.0"
+				mavenBom "com.liferay:liferay-portal-bom:1.0.0"
 			}
 		}
 

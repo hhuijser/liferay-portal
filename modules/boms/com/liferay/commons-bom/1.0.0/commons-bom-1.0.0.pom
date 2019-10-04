@@ -11,41 +11,6 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<artifactId>com.liferay.portal.kernel</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>5.0.0</version>
-			</dependency>
-			<dependency>
-				<artifactId>com.liferay.portal.impl</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>5.0.0</version>
-			</dependency>
-			<dependency>
-				<artifactId>com.liferay.util.taglib</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>5.0.0</version>
-			</dependency>
-			<dependency>
-				<artifactId>com.liferay.util.java</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>5.0.0</version>
-			</dependency>
-			<dependency>
-				<artifactId>com.liferay.portal.test</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>7.0.0</version>
-			</dependency>
-			<dependency>
-				<artifactId>com.liferay.portal.test.integration</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>7.0.0</version>
-			</dependency>
-			<dependency>
-				<artifactId>com.liferay.util.bridges</artifactId>
-				<groupId>com.liferay.portal</groupId>
-				<version>7.0.0</version>
-			</dependency>
-			<dependency>
 				<artifactId>biz.aQute.bnd.annotation</artifactId>
 				<groupId>biz.aQute.bnd</groupId>
 				<version>4.2.0</version>

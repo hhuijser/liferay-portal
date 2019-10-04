@@ -1,0 +1,50 @@
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.liferay</groupId>
+	<artifactId>liferay-portal-bom</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<artifactId>com.liferay.portal.kernel</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>5.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<artifactId>com.liferay.portal.impl</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>5.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<artifactId>com.liferay.util.taglib</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>5.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<artifactId>com.liferay.util.java</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>5.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<artifactId>com.liferay.portal.test</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>7.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<artifactId>com.liferay.portal.test.integration</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>7.0.0-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<artifactId>com.liferay.util.bridges</artifactId>
+				<groupId>com.liferay.portal</groupId>
+				<version>7.0.0-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

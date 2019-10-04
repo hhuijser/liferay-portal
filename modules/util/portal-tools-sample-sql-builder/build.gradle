@@ -24,7 +24,7 @@ classes {
 }
 
 dependencies {
-	compile group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
+	compile group: "com.liferay.portal", name: "com.liferay.util.java"
 	compile group: "javax.portlet", name: "portlet-api", transitive: false, version: "3.0.1"
 	compile project(":apps:asset:asset-entry-rel-service")
 	compile project(":apps:asset:asset-tag-stats-service")
@@ -48,8 +48,8 @@ dependencies {
 	compile project(":apps:wiki:wiki-service")
 
 	compileOnly group: "com.liferay", name: "org.freemarker", version: "2.3.23.LIFERAY-PATCHED-4"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly project(":core:petra:petra-reflect")
 	compileOnly project(":core:petra:petra-string")
 

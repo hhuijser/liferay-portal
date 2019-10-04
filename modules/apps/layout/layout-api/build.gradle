@@ -1,5 +1,5 @@
 dependencies {
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly project(":apps:fragment:fragment-api")
 	compileOnly project(":core:petra:petra-function")
 	compileOnly project(":core:petra:petra-string")

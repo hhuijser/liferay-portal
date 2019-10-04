@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:document-library:document-library-file-rank-api")
 	testIntegrationCompile project(":apps:document-library:document-library-test-util")
 	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")

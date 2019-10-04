@@ -1,6 +1,6 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile group: "org.jsoup", name: "jsoup", version: "1.10.2"
 	testIntegrationCompile project(":apps:asset:asset-api")
 	testIntegrationCompile project(":apps:asset:asset-test-util")

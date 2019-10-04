@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:asset:asset-test-util")
 	testIntegrationCompile project(":apps:bookmarks:bookmarks-api")
 	testIntegrationCompile project(":apps:bookmarks:bookmarks-test-util")

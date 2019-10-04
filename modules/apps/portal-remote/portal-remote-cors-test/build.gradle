@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile group: "javax.ws.rs", name: "javax.ws.rs-api", version: "2.1"
 	testIntegrationCompile group: "org.osgi", name: "org.osgi.service.cm", version: "1.5.0"
 	testIntegrationCompile group: "org.osgi", name: "osgi.core", version: "6.0.0"

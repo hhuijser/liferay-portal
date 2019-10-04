@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:adaptive-media:adaptive-media-api");
 	testIntegrationCompile project(":apps:adaptive-media:adaptive-media-image-api");
 	testIntegrationCompile project(":apps:blogs:blogs-api")

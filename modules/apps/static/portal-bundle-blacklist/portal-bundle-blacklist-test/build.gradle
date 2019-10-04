@@ -1,5 +1,5 @@
 dependencies {
-	testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testCompile group: "org.osgi", name: "osgi.core", version: "6.0.0"
 	testCompile project(":apps:static:portal-lpkg-deployer:portal-lpkg-deployer-test-util")
 	testCompile project(":core:petra:petra-lang")

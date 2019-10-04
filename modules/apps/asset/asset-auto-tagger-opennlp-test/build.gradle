@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:asset:asset-auto-tagger-api")
 	testIntegrationCompile project(":apps:blogs:blogs-api")
 	testIntegrationCompile project(":apps:journal:journal-api")

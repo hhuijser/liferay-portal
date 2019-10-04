@@ -1,5 +1,5 @@
 dependencies {
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
 	compileOnly group: "junit", name: "junit", version: "4.12"
 	compileOnly project(":apps:portal-cache:portal-cache-api")
@@ -7,7 +7,7 @@ dependencies {
 	compileOnly project(":core:petra:petra-string")
 	compileOnly project(":core:registry-api")
 
-	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
+	testCompile group: "com.liferay.portal", name: "com.liferay.portal.impl"
 	testCompile group: "org.aspectj", name: "aspectjweaver", version: "1.8.9"
 	testCompile project(":core:petra:petra-concurrent")
 	testCompile project(":core:petra:petra-memory")

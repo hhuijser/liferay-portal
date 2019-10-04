@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:marketplace:marketplace-api")
 	testIntegrationCompile project(":apps:marketplace:marketplace-service")
 	testIntegrationCompile project(":test:arquillian-extension-junit-bridge")

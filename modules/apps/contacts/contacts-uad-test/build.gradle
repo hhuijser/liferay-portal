@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:contacts:contacts-api")
 	testIntegrationCompile project(":apps:contacts:contacts-uad")
 	testIntegrationCompile project(":apps:user-associated-data:user-associated-data-api")

@@ -68,8 +68,8 @@ dependencies {
 
 	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.9"
 	compileOnly group: "com.ibm.icu", name: "icu4j", version: "61.1"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "commons-collections", name: "commons-collections", version: "3.2.2"
 	compileOnly group: "org.codehaus.woodstox", name: "stax2-api", version: "3.1.4"
 	compileOnly group: "org.codehaus.woodstox", name: "woodstox-core-asl", version: "4.4.1"
@@ -90,7 +90,7 @@ dependencies {
 	elasticsearchPlugins ext: "zip", group: "com.liferay", name: "org.elasticsearch.plugin.analysis.stempel", version: elasticsearchVersion
 
 	testCompile group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "4.2.0"
-	testCompile group: "com.liferay.portal", name: "com.liferay.util.java", version: "default"
+	testCompile group: "com.liferay.portal", name: "com.liferay.util.java"
 	testCompile group: "commons-configuration", name: "commons-configuration", version: "1.10"
 	testCompile group: "javax.portlet", name: "portlet-api", version: "3.0.1"
 	testCompile group: "log4j", name: "log4j", version: "1.2.17"

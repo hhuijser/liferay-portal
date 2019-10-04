@@ -22,8 +22,8 @@ dependencies {
 	compileInclude group: "org.antlr", name: "antlr", version: "3.0.1"
 	compileInclude group: "org.antlr", name: "stringtemplate", version: "3.0"
 
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
 	compileOnly group: "javax.portlet", name: "portlet-api", version: "3.0.1"
 	compileOnly group: "org.apache.felix", name: "org.apache.felix.http.servlet-api", version: "1.1.2"

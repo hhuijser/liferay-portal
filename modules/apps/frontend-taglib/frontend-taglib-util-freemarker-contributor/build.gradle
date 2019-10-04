@@ -1,4 +1,4 @@
 dependencies {
-	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib", version: "default"
+	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib"
 	compileOnly project(":core:petra:petra-lang")
 }

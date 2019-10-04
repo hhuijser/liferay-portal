@@ -1,6 +1,6 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl", version: "default"
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:layout:layout-test-util")
 	testIntegrationCompile project(":apps:portal-configuration:portal-configuration-test-util")
 	testIntegrationCompile project(":apps:portal:portal-upgrade-api")

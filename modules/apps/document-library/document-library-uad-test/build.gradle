@@ -1,5 +1,5 @@
 dependencies {
-	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "default"
+	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	testIntegrationCompile project(":apps:document-library:document-library-api")
 	testIntegrationCompile project(":apps:document-library:document-library-uad")
 	testIntegrationCompile project(":apps:message-boards:message-boards-api")

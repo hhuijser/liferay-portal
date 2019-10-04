@@ -103,6 +103,20 @@ gradle.beforeProject {
 	configure(project) {
 		apply plugin: "com.liferay.defaults.plugin"
 
+		apply plugin: "io.spring.dependency-management"
+
+		repositories {
+			maven {
+				url rootProject.file("boms").toURI()
+			}
+		}
+
+		dependencyManagement {
+			imports {
+				mavenBom "com.liferay:commons-bom:1.0.0"
+			}
+		}
+
 		task printProjectPath
 
 		afterEvaluate {

@@ -1,7 +1,7 @@
 dependencies {
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.impl"
 	testIntegrationCompile group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	testIntegrationCompile group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	testIntegrationCompile group: "org.osgi", name: "osgi.core"
 	testIntegrationCompile group: "org.springframework", name: "spring-tx", version: "4.3.22.RELEASE"
 	testIntegrationCompile project(":apps:view-count:view-count-api")
 	testIntegrationCompile project(":core:petra:petra-concurrent")

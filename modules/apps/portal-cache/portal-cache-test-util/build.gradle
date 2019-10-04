@@ -1,6 +1,6 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
+	compileOnly group: "commons-lang", name: "commons-lang"
 	compileOnly group: "junit", name: "junit", version: "4.12"
 	compileOnly project(":apps:portal-cache:portal-cache-api")
 	compileOnly project(":core:petra:petra-lang")

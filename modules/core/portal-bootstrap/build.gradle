@@ -77,15 +77,15 @@ copySystemPackagesExtraLibs {
 }
 
 dependencies {
-	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "4.2.0"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.9"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.9"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.9.3"
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind"
 	compileOnly group: "com.liferay", name: "org.eclipse.osgi", version: "3.13.0.LIFERAY-PATCHED-8"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.impl"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	compileOnly group: "org.apache.felix", name: "org.apache.felix.http.servlet-api", version: "1.1.2"
-	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly group: "org.apache.felix", name: "org.apache.felix.http.servlet-api"
+	compileOnly group: "org.osgi", name: "osgi.core"
 	compileOnly group: "org.springframework", name: "spring-beans", version: "4.1.9.RELEASE"
 	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
 	compileOnly group: "org.springframework", name: "spring-core", version: "4.1.9.RELEASE"

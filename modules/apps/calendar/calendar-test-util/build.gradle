@@ -3,7 +3,7 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.test"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.test.integration"
 	compileOnly group: "log4j", name: "log4j", version: "1.2.17"
-	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly group: "org.osgi", name: "osgi.core"
 	compileOnly project(":apps:calendar:calendar-api")
 	compileOnly project(":apps:portal:portal-upgrade-api")
 	compileOnly project(":core:petra:petra-string")

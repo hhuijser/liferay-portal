@@ -3,7 +3,7 @@ dependencies {
 	compileInclude group: "com.zaxxer", name: "HikariCP", version: "2.4.1"
 
 	compileOnly fileTree(dir: "third-party", include: "*.jar")
-	compileOnly group: "org.slf4j", name: "slf4j-api", version: "1.7.26"
+	compileOnly group: "org.slf4j", name: "slf4j-api"
 }
 
 liferayOSGi {

@@ -6,7 +6,7 @@ clean {
 
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	compileOnly group: "org.apache.ant", name: "ant", transitive: false, version: "1.9.14"
+	compileOnly group: "org.apache.ant", name: "ant", transitive: false
 	compileOnly project(":core:petra:petra-process")
 }
 

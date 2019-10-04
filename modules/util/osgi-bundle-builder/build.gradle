@@ -4,7 +4,7 @@ dependencies {
 	compileInclude group: "com.liferay", name: "com.liferay.ant.bnd", version: "3.2.2"
 	compileInclude group: "org.slf4j", name: "slf4j-simple", version: "1.6.6"
 
-	compileOnly group: "org.slf4j", name: "slf4j-api", version: "1.7.26"
+	compileOnly group: "org.slf4j", name: "slf4j-api"
 }
 
 liferayOSGi {

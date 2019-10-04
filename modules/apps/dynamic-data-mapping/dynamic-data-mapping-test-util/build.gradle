@@ -3,9 +3,9 @@ dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.test"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.test.integration"
-	compileOnly group: "commons-lang", name: "commons-lang", version: "2.6"
-	compileOnly group: "org.apache.felix", name: "org.apache.felix.http.servlet-api", version: "1.1.2"
-	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly group: "commons-lang", name: "commons-lang"
+	compileOnly group: "org.apache.felix", name: "org.apache.felix.http.servlet-api"
+	compileOnly group: "org.osgi", name: "osgi.core"
 	compileOnly project(":apps:asset:asset-api")
 	compileOnly project(":apps:asset:asset-test-util")
 	compileOnly project(":apps:dynamic-data-mapping:dynamic-data-mapping-api")

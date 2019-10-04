@@ -1,6 +1,6 @@
 dependencies {
-	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "4.2.0"
+	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	compileOnly group: "org.jsoup", name: "jsoup", version: "1.10.2"
+	compileOnly group: "org.jsoup", name: "jsoup"
 	compileOnly project(":apps:fragment:fragment-api")
 }

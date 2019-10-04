@@ -5,11 +5,11 @@ dependencies {
 	compileInclude group: "org.apache.httpcomponents", name: "httpcore-nio", version: "4.4.6"
 	compileInclude project(":apps:petra:petra-json-web-service-client")
 
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations", version: "2.9.9"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core", version: "2.9.9"
-	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.9.3"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-annotations"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-core"
+	compileOnly group: "com.fasterxml.jackson.core", name: "jackson-databind"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	compileOnly group: "org.slf4j", name: "slf4j-api", version: "1.7.26"
+	compileOnly group: "org.slf4j", name: "slf4j-api"
 	compileOnly project(":apps:analytics:analytics-api")
 	compileOnly project(":apps:analytics:analytics-data-binding-impl")
 

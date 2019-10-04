@@ -1,7 +1,7 @@
 dependencies {
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
-	compileOnly group: "org.osgi", name: "org.osgi.service.log", version: "1.4.0"
-	compileOnly group: "org.osgi", name: "osgi.core", version: "6.0.0"
+	compileOnly group: "org.osgi", name: "org.osgi.service.log"
+	compileOnly group: "org.osgi", name: "osgi.core"
 	compileOnly project(":apps:petra:petra-log4j")
 	compileOnly project(":core:petra:petra-string")
 }

@@ -46,7 +46,8 @@ public class UserGroupGroupRoleLocalServiceImpl
 			if (userGroupGroupRole == null) {
 				userGroupGroupRole = userGroupGroupRolePersistence.create(pk);
 
-				userGroupGroupRolePersistence.update(userGroupGroupRole);
+				userGroupGroupRole = userGroupGroupRolePersistence.update(
+					userGroupGroupRole);
 			}
 		}
 	}
@@ -65,7 +66,8 @@ public class UserGroupGroupRoleLocalServiceImpl
 			if (userGroupGroupRole == null) {
 				userGroupGroupRole = userGroupGroupRolePersistence.create(pk);
 
-				userGroupGroupRolePersistence.update(userGroupGroupRole);
+				userGroupGroupRole = userGroupGroupRolePersistence.update(
+					userGroupGroupRole);
 			}
 		}
 	}

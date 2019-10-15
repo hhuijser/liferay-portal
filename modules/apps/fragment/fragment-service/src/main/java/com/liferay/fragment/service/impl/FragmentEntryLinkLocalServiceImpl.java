@@ -209,9 +209,7 @@ public class FragmentEntryLinkLocalServiceImpl
 		fragmentEntryLink.setLastPropagationDate(
 			serviceContext.getCreateDate(new Date()));
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	/**
@@ -425,9 +423,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setPosition(position);
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	/**
@@ -518,9 +514,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setPosition(position);
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	@Override
@@ -549,9 +543,7 @@ public class FragmentEntryLinkLocalServiceImpl
 				fragmentEntryLink.getClassPK());
 		}
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	@Override
@@ -600,7 +592,8 @@ public class FragmentEntryLinkLocalServiceImpl
 
 			fragmentEntryLink.setEditableValues(entry.getValue());
 
-			fragmentEntryLinkPersistence.update(fragmentEntryLink);
+			fragmentEntryLink = fragmentEntryLinkPersistence.update(
+				fragmentEntryLink);
 		}
 
 		if (fragmentEntryLink != null) {
@@ -639,7 +632,8 @@ public class FragmentEntryLinkLocalServiceImpl
 				fragmentEntryLink.getClassNameId(),
 				fragmentEntryLink.getClassPK());
 
-			fragmentEntryLinkPersistence.update(fragmentEntryLink);
+			fragmentEntryLink = fragmentEntryLinkPersistence.update(
+				fragmentEntryLink);
 		}
 	}
 

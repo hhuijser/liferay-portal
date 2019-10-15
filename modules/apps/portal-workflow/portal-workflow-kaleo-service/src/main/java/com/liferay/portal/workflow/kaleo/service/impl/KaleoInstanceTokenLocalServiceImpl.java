@@ -110,9 +110,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 
 		kaleoInstanceToken.setCompleted(false);
 
-		kaleoInstanceTokenPersistence.update(kaleoInstanceToken);
-
-		return kaleoInstanceToken;
+		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken);
 	}
 
 	@Override
@@ -147,9 +145,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstanceToken.setCompleted(true);
 		kaleoInstanceToken.setCompletionDate(new Date());
 
-		kaleoInstanceTokenPersistence.update(kaleoInstanceToken);
-
-		return kaleoInstanceToken;
+		return kaleoInstanceTokenPersistence.update(kaleoInstanceToken);
 	}
 
 	@Override
@@ -254,7 +250,7 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstance.setRootKaleoInstanceTokenId(
 			kaleoInstanceToken.getKaleoInstanceTokenId());
 
-		kaleoInstancePersistence.update(kaleoInstance);
+		kaleoInstance = kaleoInstancePersistence.update(kaleoInstance);
 
 		return kaleoInstanceToken;
 	}

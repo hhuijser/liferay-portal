@@ -245,7 +245,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		page.setStatusDate(serviceContext.getModifiedDate(now));
 		page.setExpandoBridgeAttributes(serviceContext);
 
-		wikiPagePersistence.update(page);
+		page = wikiPagePersistence.update(page);
 
 		// Resources
 
@@ -621,7 +621,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			else {
 				childPage.setParentTitle(StringPool.BLANK);
 
-				wikiPagePersistence.update(childPage);
+				childPage = wikiPagePersistence.update(childPage);
 			}
 		}
 
@@ -637,7 +637,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			else {
 				redirectorPage.setRedirectTitle(StringPool.BLANK);
 
-				wikiPagePersistence.update(redirectorPage);
+				redirectorPage = wikiPagePersistence.update(redirectorPage);
 			}
 		}
 
@@ -1757,12 +1757,12 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			pageVersion.setTitle(trashTitle);
 			pageVersion.setStatus(WorkflowConstants.STATUS_IN_TRASH);
 
-			wikiPagePersistence.update(pageVersion);
+			pageVersion = wikiPagePersistence.update(pageVersion);
 		}
 
 		pageResource.setTitle(trashTitle);
 
-		wikiPageResourcePersistence.update(pageResource);
+		pageResource = wikiPageResourcePersistence.update(pageResource);
 
 		page.setTitle(trashTitle);
 
@@ -1898,7 +1898,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 						curPage.getNodeId(), title, newTitle,
 						curPage.getContent()));
 
-				wikiPagePersistence.update(curPage);
+				curPage = wikiPagePersistence.update(curPage);
 			}
 
 			content = wikiPageRenameContentProcessor.processContent(
@@ -2078,7 +2078,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		node.setLastPostDate(lastPostDate);
 
 		try {
-			wikiNodePersistence.update(node);
+			node = wikiNodePersistence.update(node);
 		}
 		catch (SystemException se) {
 			if (_log.isWarnEnabled()) {
@@ -2303,7 +2303,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 				if (!curPage.equals(page)) {
 					curPage.setHead(false);
 
-					wikiPagePersistence.update(curPage);
+					curPage = wikiPagePersistence.update(curPage);
 				}
 			}
 		}
@@ -2318,7 +2318,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 				if (!curPage.equals(page)) {
 					curPage.setHead(true);
 
-					wikiPagePersistence.update(curPage);
+					curPage = wikiPagePersistence.update(curPage);
 
 					break;
 				}
@@ -2619,7 +2619,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			page.setTitle(originalTitle);
 		}
 
-		wikiPageResourcePersistence.update(pageResource);
+		pageResource = wikiPageResourcePersistence.update(pageResource);
 
 		page.setParentTitle(newParentTitle);
 
@@ -2655,7 +2655,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 			versionPage.setStatus(versionPageOldStatus);
 
-			wikiPagePersistence.update(versionPage);
+			versionPage = wikiPagePersistence.update(versionPage);
 
 			// Trash
 
@@ -2772,7 +2772,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 			pageResource.setTitle(trashTitle);
 
-			wikiPageResourcePersistence.update(pageResource);
+			pageResource = wikiPageResourcePersistence.update(pageResource);
 
 			page.setTitle(trashTitle);
 
@@ -2901,7 +2901,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		pageResource.setNodeId(newNodeId);
 		pageResource.setTitle(originalTitle);
 
-		wikiPageResourcePersistence.update(pageResource);
+		pageResource = wikiPageResourcePersistence.update(pageResource);
 
 		page.setNodeId(newNodeId);
 		page.setTitle(originalTitle);
@@ -2961,7 +2961,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 			trashArticleVersion.setStatus(trashVersion.getStatus());
 
-			wikiPagePersistence.update(trashArticleVersion);
+			trashArticleVersion = wikiPagePersistence.update(
+				trashArticleVersion);
 		}
 
 		_trashEntryLocalService.deleteEntry(
@@ -3216,7 +3217,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		pageResource.setTitle(newTitle);
 
-		wikiPageResourcePersistence.update(pageResource);
+		pageResource = wikiPageResourcePersistence.update(pageResource);
 
 		// Create stub page at the old location
 
@@ -3258,7 +3259,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		for (WikiPage childPage : childPages) {
 			childPage.setParentTitle(newTitle);
 
-			wikiPagePersistence.update(childPage);
+			childPage = wikiPagePersistence.update(childPage);
 		}
 
 		// Redirect pages
@@ -3268,7 +3269,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		for (WikiPage redirectorPage : redirectorPages) {
 			redirectorPage.setRedirectTitle(newTitle);
 
-			wikiPagePersistence.update(redirectorPage);
+			redirectorPage = wikiPagePersistence.update(redirectorPage);
 		}
 
 		// Asset

@@ -428,9 +428,7 @@ public class DDMFormInstanceLocalServiceImpl
 		ddmFormInstanceVersion.setStatusByUserName(user.getFullName());
 		ddmFormInstanceVersion.setStatusDate(ddmFormInstance.getModifiedDate());
 
-		ddmFormInstanceVersionPersistence.update(ddmFormInstanceVersion);
-
-		return ddmFormInstanceVersion;
+		return ddmFormInstanceVersionPersistence.update(ddmFormInstanceVersion);
 	}
 
 	protected DDMFormInstance doUpdateFormInstance(
@@ -618,7 +616,8 @@ public class DDMFormInstanceLocalServiceImpl
 		ddmFormInstanceVersion.setStatusByUserName(user.getFullName());
 		ddmFormInstanceVersion.setStatusDate(ddmFormInstance.getModifiedDate());
 
-		ddmFormInstanceVersionPersistence.update(ddmFormInstanceVersion);
+		ddmFormInstanceVersion = ddmFormInstanceVersionPersistence.update(
+			ddmFormInstanceVersion);
 	}
 
 	protected void updateWorkflowDefinitionLink(

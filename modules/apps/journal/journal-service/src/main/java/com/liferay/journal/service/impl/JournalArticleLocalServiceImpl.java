@@ -790,7 +790,7 @@ public class JournalArticleLocalServiceImpl
 		article.setStatusDate(serviceContext.getModifiedDate(new Date()));
 		article.setExpandoBridgeAttributes(serviceContext);
 
-		journalArticlePersistence.update(article);
+		article = journalArticlePersistence.update(article);
 
 		// Article localization
 
@@ -1138,7 +1138,7 @@ public class JournalArticleLocalServiceImpl
 		ExpandoBridgeUtil.copyExpandoBridgeAttributes(
 			oldArticle.getExpandoBridge(), newArticle.getExpandoBridge());
 
-		journalArticlePersistence.update(newArticle);
+		newArticle = journalArticlePersistence.update(newArticle);
 
 		// Article localization
 
@@ -4255,12 +4255,13 @@ public class JournalArticleLocalServiceImpl
 			articleVersion.setArticleId(trashArticleId);
 			articleVersion.setStatus(WorkflowConstants.STATUS_IN_TRASH);
 
-			journalArticlePersistence.update(articleVersion);
+			articleVersion = journalArticlePersistence.update(articleVersion);
 		}
 
 		articleResource.setArticleId(trashArticleId);
 
-		journalArticleResourcePersistence.update(articleResource);
+		articleResource = journalArticleResourcePersistence.update(
+			articleResource);
 
 		article.setArticleId(trashArticleId);
 
@@ -4450,7 +4451,8 @@ public class JournalArticleLocalServiceImpl
 
 		articleResource.setArticleId(trashArticleId);
 
-		journalArticleResourcePersistence.update(articleResource);
+		articleResource = journalArticleResourcePersistence.update(
+			articleResource);
 
 		TrashEntry trashEntry = trashEntryLocalService.getEntry(
 			JournalArticle.class.getName(), article.getResourcePrimKey());
@@ -4481,7 +4483,8 @@ public class JournalArticleLocalServiceImpl
 				visible = true;
 			}
 
-			journalArticlePersistence.update(trashArticleVersion);
+			trashArticleVersion = journalArticlePersistence.update(
+				trashArticleVersion);
 		}
 
 		trashEntryLocalService.deleteEntry(
@@ -6381,7 +6384,7 @@ public class JournalArticleLocalServiceImpl
 			article.getExpandoBridge(), article.getExpandoBridge(),
 			serviceContext);
 
-		journalArticlePersistence.update(article);
+		article = journalArticlePersistence.update(article);
 
 		// Asset
 
@@ -8923,7 +8926,7 @@ public class JournalArticleLocalServiceImpl
 			if (!curArticleUrlTitle.equals(urlTitle)) {
 				article.setUrlTitle(urlTitle);
 
-				journalArticlePersistence.update(article);
+				article = journalArticlePersistence.update(article);
 			}
 		}
 	}

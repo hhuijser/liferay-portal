@@ -202,7 +202,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setStatus(WorkflowConstants.STATUS_DRAFT);
 		kbArticle.setExpandoBridgeAttributes(serviceContext);
 
-		kbArticlePersistence.update(kbArticle);
+		kbArticle = kbArticlePersistence.update(kbArticle);
 
 		// Resources
 
@@ -1014,7 +1014,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			curKBArticle.setKbFolderId(kbFolderId);
 			curKBArticle.setPriority(priority);
 
-			kbArticlePersistence.update(curKBArticle);
+			curKBArticle = kbArticlePersistence.update(curKBArticle);
 		}
 
 		if (kbArticle.getKbFolderId() != kbFolderId) {
@@ -1030,7 +1030,8 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 				for (KBArticle kbArticleVersion : kbArticleVersions) {
 					kbArticleVersion.setKbFolderId(kbFolderId);
 
-					kbArticlePersistence.update(kbArticleVersion);
+					kbArticleVersion = kbArticlePersistence.update(
+						kbArticleVersion);
 				}
 			}
 		}
@@ -1183,12 +1184,12 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setSourceURL(sourceURL);
 		kbArticle.setExpandoBridgeAttributes(serviceContext);
 
-		kbArticlePersistence.update(kbArticle);
+		kbArticle = kbArticlePersistence.update(kbArticle);
 
 		if (oldKBArticle.isApproved()) {
 			oldKBArticle.setLatest(false);
 
-			kbArticlePersistence.update(oldKBArticle);
+			oldKBArticle = kbArticlePersistence.update(oldKBArticle);
 		}
 
 		// Asset
@@ -1286,7 +1287,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		for (KBArticle kbArticle : kbArticleVersions) {
 			kbArticle.setPriority(priority);
 
-			kbArticlePersistence.update(kbArticle);
+			kbArticle = kbArticlePersistence.update(kbArticle);
 		}
 	}
 
@@ -1319,7 +1320,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setStatusByUserName(user.getFullName());
 		kbArticle.setStatusDate(serviceContext.getModifiedDate(now));
 
-		kbArticlePersistence.update(kbArticle);
+		kbArticle = kbArticlePersistence.update(kbArticle);
 
 		if (status != WorkflowConstants.STATUS_APPROVED) {
 			return kbArticle;
@@ -1331,7 +1332,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 
 			oldKBArticle.setMain(false);
 
-			kbArticlePersistence.update(oldKBArticle);
+			oldKBArticle = kbArticlePersistence.update(oldKBArticle);
 		}
 
 		// Asset
@@ -1405,7 +1406,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setModifiedDate(kbArticle.getModifiedDate());
 		kbArticle.setViewCount(viewCount);
 
-		kbArticlePersistence.update(kbArticle);
+		kbArticle = kbArticlePersistence.update(kbArticle);
 
 		if (kbArticle.isApproved() || kbArticle.isFirstVersion()) {
 			return;
@@ -1417,7 +1418,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 		kbArticle.setModifiedDate(kbArticle.getModifiedDate());
 		kbArticle.setViewCount(viewCount);
 
-		kbArticlePersistence.update(kbArticle);
+		kbArticle = kbArticlePersistence.update(kbArticle);
 	}
 
 	protected void addKBArticleAttachment(
@@ -1920,7 +1921,7 @@ public class KBArticleLocalServiceImpl extends KBArticleLocalServiceBaseImpl {
 			for (KBArticle kbArticle2 : kbArticles2) {
 				kbArticle2.setRootResourcePrimKey(rootResourcePrimKey);
 
-				kbArticlePersistence.update(kbArticle2);
+				kbArticle2 = kbArticlePersistence.update(kbArticle2);
 			}
 		}
 

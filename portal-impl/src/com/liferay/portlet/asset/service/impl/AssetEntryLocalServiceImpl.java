@@ -472,7 +472,7 @@ public class AssetEntryLocalServiceImpl extends AssetEntryLocalServiceBaseImpl {
 		entry.setModifiedDate(entry.getModifiedDate());
 		entry.setViewCount(entry.getViewCount() + increment);
 
-		assetEntryPersistence.update(entry);
+		entry = assetEntryPersistence.update(entry);
 	}
 
 	@Override

@@ -732,7 +732,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 					childMessage.setParentMessageId(
 						MBMessageConstants.DEFAULT_PARENT_MESSAGE_ID);
 
-					mbMessagePersistence.update(childMessage);
+					childMessage = mbMessagePersistence.update(childMessage);
 
 					List<MBMessage> repliesMessages =
 						mbMessagePersistence.findByThreadReplies(
@@ -742,7 +742,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 						repliesMessage.setRootMessageId(
 							childMessage.getMessageId());
 
-						mbMessagePersistence.update(repliesMessage);
+						repliesMessage = mbMessagePersistence.update(
+							repliesMessage);
 					}
 
 					thread.setRootMessageId(childMessage.getMessageId());
@@ -766,7 +767,8 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 						childMessage.setParentMessageId(
 							message.getParentMessageId());
 
-						mbMessagePersistence.update(childMessage);
+						childMessage = mbMessagePersistence.update(
+							childMessage);
 					}
 
 					Indexer<MBMessage> indexer =
@@ -1840,7 +1842,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		message.setStatusByUserName(user.getFullName());
 		message.setStatusDate(modifiedDate);
 
-		mbMessagePersistence.update(message);
+		message = mbMessagePersistence.update(message);
 
 		// Thread
 
@@ -1931,7 +1933,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		for (MBMessage message : messages) {
 			message.setUserName(userName);
 
-			mbMessagePersistence.update(message);
+			message = mbMessagePersistence.update(message);
 		}
 	}
 
@@ -2511,7 +2513,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 			if (message.getPriority() != priority) {
 				message.setPriority(priority);
 
-				mbMessagePersistence.update(message);
+				message = mbMessagePersistence.update(message);
 			}
 		}
 	}
@@ -2760,7 +2762,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 
 		message.setExpandoBridgeAttributes(serviceContext);
 
-		mbMessagePersistence.update(message);
+		message = mbMessagePersistence.update(message);
 
 		// Statistics
 

@@ -85,7 +85,7 @@ public class AssetListEntryLocalServiceImpl
 
 		assetListEntry.setModifiedDate(new Date());
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		// Asset list segments entry rel
 
@@ -150,7 +150,7 @@ public class AssetListEntryLocalServiceImpl
 		assetListEntry.setTitle(title);
 		assetListEntry.setType(type);
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		// Resources
 
@@ -220,7 +220,7 @@ public class AssetListEntryLocalServiceImpl
 
 		assetListEntry.setModifiedDate(new Date());
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		// Asset list segments entry rel
 
@@ -273,7 +273,7 @@ public class AssetListEntryLocalServiceImpl
 
 		assetListEntry.setModifiedDate(new Date());
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		// Asset list segments entry rel
 
@@ -318,7 +318,7 @@ public class AssetListEntryLocalServiceImpl
 
 		assetListEntry.setModifiedDate(new Date());
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		// Asset list segments entry rel
 
@@ -340,7 +340,7 @@ public class AssetListEntryLocalServiceImpl
 
 		assetListEntry.setModifiedDate(new Date());
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		// Asset list segments entry rel
 
@@ -395,7 +395,7 @@ public class AssetListEntryLocalServiceImpl
 
 		assetListEntry.setModifiedDate(new Date());
 
-		assetListEntryPersistence.update(assetListEntry);
+		assetListEntry = assetListEntryPersistence.update(assetListEntry);
 
 		_assetListEntrySegmentsEntryRelLocalService.
 			updateAssetListEntrySegmentsEntryRelTypeSettings(

@@ -123,9 +123,10 @@ public class FriendlyURLEntryLocalServiceImpl
 
 		friendlyURLEntryMapping.setFriendlyURLEntryId(friendlyURLEntryId);
 
-		friendlyURLEntryMappingPersistence.update(friendlyURLEntryMapping);
+		friendlyURLEntryMapping = friendlyURLEntryMappingPersistence.update(
+			friendlyURLEntryMapping);
 
-		friendlyURLEntryPersistence.update(friendlyURLEntry);
+		friendlyURLEntry = friendlyURLEntryPersistence.update(friendlyURLEntry);
 
 		_updateFriendlyURLEntryLocalizations(
 			friendlyURLEntry, classNameId, classPK, urlTitleMap);
@@ -181,8 +182,9 @@ public class FriendlyURLEntryLocalServiceImpl
 				friendlyURLEntryMapping.setFriendlyURLEntryId(
 					friendlyURLEntry.getFriendlyURLEntryId());
 
-				friendlyURLEntryMappingPersistence.update(
-					friendlyURLEntryMapping);
+				friendlyURLEntryMapping =
+					friendlyURLEntryMappingPersistence.update(
+						friendlyURLEntryMapping);
 			}
 		}
 
@@ -383,7 +385,8 @@ public class FriendlyURLEntryLocalServiceImpl
 		friendlyURLEntryMapping.setFriendlyURLEntryId(
 			friendlyURLEntry.getFriendlyURLEntryId());
 
-		friendlyURLEntryMappingPersistence.update(friendlyURLEntryMapping);
+		friendlyURLEntryMapping = friendlyURLEntryMappingPersistence.update(
+			friendlyURLEntryMapping);
 	}
 
 	@Override
@@ -402,7 +405,7 @@ public class FriendlyURLEntryLocalServiceImpl
 		friendlyURLEntry.setClassPK(classPK);
 		friendlyURLEntry.setDefaultLanguageId(defaultLanguageId);
 
-		friendlyURLEntryPersistence.update(friendlyURLEntry);
+		friendlyURLEntry = friendlyURLEntryPersistence.update(friendlyURLEntry);
 
 		_updateFriendlyURLEntryLocalizations(
 			friendlyURLEntry, classNameId, classPK, urlTitleMap);

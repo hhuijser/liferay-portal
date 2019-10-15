@@ -370,9 +370,7 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 					new Date(now.getTime() + expirationTime));
 			}
 
-			lockPersistence.update(lock);
-
-			return lock;
+			return lockPersistence.update(lock);
 		}
 		finally {
 			if (lockListener != null) {

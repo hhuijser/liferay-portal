@@ -80,7 +80,7 @@ public class DLFileShortcutLocalServiceImpl
 		fileShortcut.setStatusByUserName(user.getFullName());
 		fileShortcut.setStatusDate(new Date());
 
-		dlFileShortcutPersistence.update(fileShortcut);
+		fileShortcut = dlFileShortcutPersistence.update(fileShortcut);
 
 		// Resources
 
@@ -388,7 +388,7 @@ public class DLFileShortcutLocalServiceImpl
 		fileShortcut.setToFileEntryId(toFileEntryId);
 		fileShortcut.setTreePath(fileShortcut.buildTreePath());
 
-		dlFileShortcutPersistence.update(fileShortcut);
+		fileShortcut = dlFileShortcutPersistence.update(fileShortcut);
 
 		// Folder
 
@@ -419,7 +419,7 @@ public class DLFileShortcutLocalServiceImpl
 		for (DLFileShortcut fileShortcut : fileShortcuts) {
 			fileShortcut.setToFileEntryId(newToFileEntryId);
 
-			dlFileShortcutPersistence.update(fileShortcut);
+			fileShortcut = dlFileShortcutPersistence.update(fileShortcut);
 		}
 	}
 
@@ -431,7 +431,7 @@ public class DLFileShortcutLocalServiceImpl
 		for (DLFileShortcut fileShortcut : fileShortcuts) {
 			fileShortcut.setActive(active);
 
-			dlFileShortcutPersistence.update(fileShortcut);
+			fileShortcut = dlFileShortcutPersistence.update(fileShortcut);
 		}
 	}
 

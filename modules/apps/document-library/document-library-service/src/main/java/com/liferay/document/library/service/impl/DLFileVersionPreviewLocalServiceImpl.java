@@ -47,7 +47,8 @@ public class DLFileVersionPreviewLocalServiceImpl
 		dlFileVersionPreview.setFileVersionId(fileVersionId);
 		dlFileVersionPreview.setPreviewStatus(previewStatus);
 
-		dlFileVersionPreviewPersistence.update(dlFileVersionPreview);
+		dlFileVersionPreview = dlFileVersionPreviewPersistence.update(
+			dlFileVersionPreview);
 	}
 
 	@Override
@@ -122,7 +123,8 @@ public class DLFileVersionPreviewLocalServiceImpl
 
 		dlFileVersionPreview.setPreviewStatus(previewStatus);
 
-		dlFileVersionPreviewPersistence.update(dlFileVersionPreview);
+		dlFileVersionPreview = dlFileVersionPreviewPersistence.update(
+			dlFileVersionPreview);
 	}
 
 }

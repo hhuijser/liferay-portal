@@ -132,8 +132,9 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 			curAssetListEntryAssetEntryRel.setPosition(
 				curAssetListEntryAssetEntryRel.getPosition() - 1);
 
-			assetListEntryAssetEntryRelPersistence.update(
-				curAssetListEntryAssetEntryRel);
+			curAssetListEntryAssetEntryRel =
+				assetListEntryAssetEntryRelPersistence.update(
+					curAssetListEntryAssetEntryRel);
 		}
 
 		return assetListEntryAssetEntryRel;
@@ -214,13 +215,15 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 
 		assetListEntryAssetEntryRel.setPosition(-1);
 
-		assetListEntryAssetEntryRelPersistence.update(
-			assetListEntryAssetEntryRel);
+		assetListEntryAssetEntryRel =
+			assetListEntryAssetEntryRelPersistence.update(
+				assetListEntryAssetEntryRel);
 
 		swapAssetListEntryAssetEntryRel.setPosition(-2);
 
-		assetListEntryAssetEntryRelPersistence.update(
-			swapAssetListEntryAssetEntryRel);
+		swapAssetListEntryAssetEntryRel =
+			assetListEntryAssetEntryRelPersistence.update(
+				swapAssetListEntryAssetEntryRel);
 
 		TransactionCommitCallbackUtil.registerCallback(
 			() -> {
@@ -257,10 +260,8 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 		assetListEntryAssetEntryRel.setSegmentsEntryId(segmentsEntryId);
 		assetListEntryAssetEntryRel.setPosition(position);
 
-		assetListEntryAssetEntryRelPersistence.update(
+		return assetListEntryAssetEntryRelPersistence.update(
 			assetListEntryAssetEntryRel);
-
-		return assetListEntryAssetEntryRel;
 	}
 
 	private List<AssetListEntryAssetEntryRel> _getAssetListEntryAssetEntryRels(

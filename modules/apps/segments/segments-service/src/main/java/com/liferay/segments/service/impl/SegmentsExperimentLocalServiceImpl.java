@@ -125,7 +125,8 @@ public class SegmentsExperimentLocalServiceImpl
 
 		segmentsExperiment.setStatus(status);
 
-		segmentsExperimentPersistence.update(segmentsExperiment);
+		segmentsExperiment = segmentsExperimentPersistence.update(
+			segmentsExperiment);
 
 		// Resources
 
@@ -474,7 +475,8 @@ public class SegmentsExperimentLocalServiceImpl
 		segmentsExperiment.setModifiedDate(new Date());
 		segmentsExperiment.setStatus(status);
 
-		segmentsExperimentPersistence.update(segmentsExperiment);
+		segmentsExperiment = segmentsExperimentPersistence.update(
+			segmentsExperiment);
 
 		sendNotificationEvent(segmentsExperiment);
 

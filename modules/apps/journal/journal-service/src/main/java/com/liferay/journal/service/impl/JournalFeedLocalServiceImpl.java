@@ -120,7 +120,7 @@ public class JournalFeedLocalServiceImpl
 
 		feed.setExpandoBridgeAttributes(serviceContext);
 
-		journalFeedPersistence.update(feed);
+		feed = journalFeedPersistence.update(feed);
 
 		// DDM Structure Link
 
@@ -370,7 +370,7 @@ public class JournalFeedLocalServiceImpl
 
 		feed.setExpandoBridgeAttributes(serviceContext);
 
-		journalFeedPersistence.update(feed);
+		feed = journalFeedPersistence.update(feed);
 
 		//DDM Structure Link
 

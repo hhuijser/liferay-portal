@@ -93,9 +93,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 		siteNavigationMenuItem.setTypeSettings(typeSettings);
 		siteNavigationMenuItem.setOrder(order);
 
-		siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
-
-		return siteNavigationMenuItem;
+		return siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
 	}
 
 	@Override
@@ -147,8 +145,9 @@ public class SiteNavigationMenuItemLocalServiceImpl
 					siteNavigationMenuItems.size() +
 						siteNavigationMenuItem.getOrder());
 
-				siteNavigationMenuItemPersistence.update(
-					siblingSiteNavigationMenuItem);
+				siblingSiteNavigationMenuItem =
+					siteNavigationMenuItemPersistence.update(
+						siblingSiteNavigationMenuItem);
 			}
 		}
 
@@ -161,8 +160,9 @@ public class SiteNavigationMenuItemLocalServiceImpl
 			childSiteNavigationMenuItem.setOrder(
 				siteNavigationMenuItem.getOrder() + i);
 
-			siteNavigationMenuItemPersistence.update(
-				childSiteNavigationMenuItem);
+			childSiteNavigationMenuItem =
+				siteNavigationMenuItemPersistence.update(
+					childSiteNavigationMenuItem);
 		}
 
 		return siteNavigationMenuItemLocalService.deleteSiteNavigationMenuItem(
@@ -242,7 +242,8 @@ public class SiteNavigationMenuItemLocalServiceImpl
 			parentSiteNavigationMenuItemId);
 		siteNavigationMenuItem.setOrder(order);
 
-		siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
+		siteNavigationMenuItem = siteNavigationMenuItemPersistence.update(
+			siteNavigationMenuItem);
 
 		// Child site navigation menu item
 
@@ -265,7 +266,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 
 			child.setOrder(newOrder++);
 
-			siteNavigationMenuItemPersistence.update(child);
+			child = siteNavigationMenuItemPersistence.update(child);
 		}
 
 		if (parentSiteNavigationMenuItemId !=
@@ -283,7 +284,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 
 				oldChild.setOrder(oldChild.getOrder() - 1);
 
-				siteNavigationMenuItemPersistence.update(oldChild);
+				oldChild = siteNavigationMenuItemPersistence.update(oldChild);
 			}
 		}
 
@@ -347,9 +348,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 		siteNavigationMenuItem.setName(name);
 		siteNavigationMenuItem.setTypeSettings(typeSettings);
 
-		siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
-
-		return siteNavigationMenuItem;
+		return siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
 	}
 
 	protected void validate(

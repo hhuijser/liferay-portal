@@ -4236,7 +4236,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		contact.setEmailAddress(user.getEmailAddress());
 
-		contactPersistence.update(contact);
+		contact = contactPersistence.update(contact);
 
 		return user;
 	}
@@ -4287,7 +4287,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			contact.setEmailAddress(user.getEmailAddress());
 
-			contactPersistence.update(contact);
+			contact = contactPersistence.update(contact);
 		}
 
 		return user;
@@ -4598,7 +4598,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		contact.setJobTitle(jobTitle);
 
-		contactPersistence.update(contact);
+		contact = contactPersistence.update(contact);
 
 		return user;
 	}
@@ -5040,7 +5040,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		group.setFriendlyURL(
 			FriendlyURLNormalizerUtil.normalize(StringPool.SLASH + screenName));
 
-		groupPersistence.update(group);
+		group = groupPersistence.update(group);
 
 		return user;
 	}
@@ -5435,7 +5435,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 			contact.setEmailAddress(user.getEmailAddress());
 
-			contactPersistence.update(contact);
+			contact = contactPersistence.update(contact);
 		}
 
 		user.setEmailAddressVerified(true);
@@ -5863,7 +5863,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			else {
 				user.setDigest(StringPool.BLANK);
 
-				userPersistence.update(user);
+				user = userPersistence.update(user);
 
 				throw new PasswordExpiredException();
 			}

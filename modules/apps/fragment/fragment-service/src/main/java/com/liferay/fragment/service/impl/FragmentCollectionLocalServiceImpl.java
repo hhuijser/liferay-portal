@@ -102,9 +102,7 @@ public class FragmentCollectionLocalServiceImpl
 		fragmentCollection.setName(name);
 		fragmentCollection.setDescription(description);
 
-		fragmentCollectionPersistence.update(fragmentCollection);
-
-		return fragmentCollection;
+		return fragmentCollectionPersistence.update(fragmentCollection);
 	}
 
 	@Override
@@ -246,9 +244,7 @@ public class FragmentCollectionLocalServiceImpl
 		fragmentCollection.setName(name);
 		fragmentCollection.setDescription(description);
 
-		fragmentCollectionPersistence.update(fragmentCollection);
-
-		return fragmentCollection;
+		return fragmentCollectionPersistence.update(fragmentCollection);
 	}
 
 	protected void validate(String name) throws PortalException {

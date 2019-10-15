@@ -123,7 +123,7 @@ public class SegmentsEntryLocalServiceImpl
 
 		segmentsEntry.setType(type);
 
-		segmentsEntryPersistence.update(segmentsEntry);
+		segmentsEntry = segmentsEntryPersistence.update(segmentsEntry);
 
 		// Resources
 

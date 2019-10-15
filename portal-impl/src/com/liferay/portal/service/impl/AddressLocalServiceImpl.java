@@ -75,9 +75,7 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		address.setMailing(mailing);
 		address.setPrimary(primary);
 
-		addressPersistence.update(address);
-
-		return address;
+		return addressPersistence.update(address);
 	}
 
 	@Override
@@ -149,9 +147,7 @@ public class AddressLocalServiceImpl extends AddressLocalServiceBaseImpl {
 		address.setMailing(mailing);
 		address.setPrimary(primary);
 
-		addressPersistence.update(address);
-
-		return address;
+		return addressPersistence.update(address);
 	}
 
 	protected void validate(

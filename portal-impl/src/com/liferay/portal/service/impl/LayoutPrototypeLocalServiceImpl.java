@@ -78,7 +78,7 @@ public class LayoutPrototypeLocalServiceImpl
 		layoutPrototype.setDescriptionMap(descriptionMap);
 		layoutPrototype.setActive(active);
 
-		layoutPrototypePersistence.update(layoutPrototype);
+		layoutPrototype = layoutPrototypePersistence.update(layoutPrototype);
 
 		// Resources
 
@@ -289,7 +289,7 @@ public class LayoutPrototypeLocalServiceImpl
 		layoutPrototype.setDescriptionMap(descriptionMap);
 		layoutPrototype.setActive(active);
 
-		layoutPrototypePersistence.update(layoutPrototype);
+		layoutPrototype = layoutPrototypePersistence.update(layoutPrototype);
 
 		// Layout
 
@@ -299,7 +299,7 @@ public class LayoutPrototypeLocalServiceImpl
 
 		layout.setNameMap(nameMap);
 
-		layoutPersistence.update(layout);
+		layout = layoutPersistence.update(layout);
 
 		return layoutPrototype;
 	}

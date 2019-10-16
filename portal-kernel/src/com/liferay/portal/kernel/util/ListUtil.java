@@ -201,7 +201,7 @@ public class ListUtil {
 		return list;
 	}
 
-	public static <E> List<E> fromArray(E[] array) {
+	public static <E> List<E> fromArray(E... array) {
 		if (ArrayUtil.isEmpty(array)) {
 			return new ArrayList<>();
 		}
@@ -528,7 +528,8 @@ public class ListUtil {
 	}
 
 	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #fromArray(E[])}
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #fromArray(E...)}
 	 */
 	@Deprecated
 	public static <E> List<E> toList(E[] array) {

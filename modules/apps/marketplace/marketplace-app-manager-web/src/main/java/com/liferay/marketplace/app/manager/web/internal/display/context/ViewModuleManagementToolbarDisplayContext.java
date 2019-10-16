@@ -164,7 +164,7 @@ public class ViewModuleManagementToolbarDisplayContext
 					"(&(component.id=*)(service.bundleid=" +
 						bundle.getBundleId() + "))");
 
-			serviceReferences = ListUtil.toList(serviceReferenceArray);
+			serviceReferences = ListUtil.fromArray(serviceReferenceArray);
 
 			serviceReferences = ListUtil.sort(
 				serviceReferences,

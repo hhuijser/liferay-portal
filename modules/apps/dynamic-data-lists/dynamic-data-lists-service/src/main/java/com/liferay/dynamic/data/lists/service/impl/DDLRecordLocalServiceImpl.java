@@ -1493,7 +1493,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		else if (value instanceof Serializable[]) {
 			Serializable[] values = (Serializable[])value;
 
-			serializableValues = ListUtil.toList(values);
+			serializableValues = ListUtil.fromArray(values);
 		}
 		else if (value instanceof boolean[]) {
 			boolean[] values = (boolean[])value;

@@ -118,7 +118,7 @@ public class RoleLocalServiceTest {
 
 		typeSettingsProperties = _group.getTypeSettingsProperties();
 
-		List<Long> defaultSiteRoleIds = ListUtil.toList(
+		List<Long> defaultSiteRoleIds = ListUtil.fromArray(
 			StringUtil.split(
 				typeSettingsProperties.getProperty("defaultSiteRoleIds"), 0L));
 

@@ -1962,7 +1962,7 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		if (groupIds != null) {
 			long[] oldGroupIds = user.getGroupIds();
 
-			removeGroupIds = ListUtil.toList(oldGroupIds);
+			removeGroupIds = ListUtil.fromArray(oldGroupIds);
 
 			groupIds = checkGroups(userId, groupIds);
 
@@ -1990,7 +1990,7 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		if (organizationIds != null) {
 			long[] oldOrganizationIds = user.getOrganizationIds();
 
-			removeOrganizationIds = ListUtil.toList(oldOrganizationIds);
+			removeOrganizationIds = ListUtil.fromArray(oldOrganizationIds);
 
 			organizationIds = checkOrganizations(userId, organizationIds);
 
@@ -2021,7 +2021,7 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		if (roleIds != null) {
 			long[] oldRoleIds = user.getRoleIds();
 
-			removeRoleIds = ListUtil.toList(oldRoleIds);
+			removeRoleIds = ListUtil.fromArray(oldRoleIds);
 
 			roleIds = checkRoles(userId, roleIds);
 
@@ -2116,7 +2116,7 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		if (userGroupIds != null) {
 			long[] oldUserGroupIds = user.getUserGroupIds();
 
-			removeUserGroupIds = ListUtil.toList(oldUserGroupIds);
+			removeUserGroupIds = ListUtil.fromArray(oldUserGroupIds);
 
 			userGroupIds = checkUserGroupIds(userId, userGroupIds);
 

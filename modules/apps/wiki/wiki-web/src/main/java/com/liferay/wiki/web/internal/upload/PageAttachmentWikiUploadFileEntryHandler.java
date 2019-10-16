@@ -138,7 +138,7 @@ public class PageAttachmentWikiUploadFileEntryHandler
 			throw new WikiAttachmentSizeException();
 		}
 
-		List<String> wikiAttachmentMimeTypes = ListUtil.toList(
+		List<String> wikiAttachmentMimeTypes = ListUtil.fromArray(
 			_wikiFileUploadConfiguration.attachmentMimeTypes());
 
 		if (ArrayUtil.isEmpty(mimeTypes) &&

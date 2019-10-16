@@ -316,7 +316,7 @@ public class SearchContainerTag<R> extends ParamAndPropertyAncestorTagImpl {
 	}
 
 	public void setHeaderNames(String headerNames) {
-		_headerNames = ListUtil.toList(StringUtil.split(headerNames));
+		_headerNames = ListUtil.fromArray(StringUtil.split(headerNames));
 	}
 
 	public void setId(String id) {

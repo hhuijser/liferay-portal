@@ -675,7 +675,7 @@ public abstract class BaseSourceCheck implements SourceCheck {
 	}
 
 	protected String stripQuotes(String s, char... delimeters) {
-		List<Character> delimetersList = ListUtil.toList(delimeters);
+		List<Character> delimetersList = ListUtil.fromArray(delimeters);
 
 		char delimeter = CharPool.SPACE;
 		boolean insideQuotes = false;

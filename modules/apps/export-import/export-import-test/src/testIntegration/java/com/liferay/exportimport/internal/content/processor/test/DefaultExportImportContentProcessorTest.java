@@ -963,7 +963,7 @@ public class DefaultExportImportContentProcessorTest {
 			return content;
 		}
 
-		List<String> urls = ListUtil.toList(StringUtil.splitLines(content));
+		List<String> urls = ListUtil.fromArray(StringUtil.splitLines(content));
 
 		List<String> outURLs = new ArrayList<>();
 
@@ -1163,7 +1163,7 @@ public class DefaultExportImportContentProcessorTest {
 	}
 
 	protected String replaceTimestampParameters(String content) {
-		List<String> urls = ListUtil.toList(StringUtil.splitLines(content));
+		List<String> urls = ListUtil.fromArray(StringUtil.splitLines(content));
 
 		String timestampParameter = "t=123456789";
 

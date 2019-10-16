@@ -548,7 +548,8 @@ public class IMAPMailbox extends BaseMailbox {
 			String translation = StringUtil.toLowerCase(
 				LanguageUtil.get(locale, type));
 
-			words.addAll(ListUtil.toList(translation.split(StringPool.SPACE)));
+			words.addAll(
+				ListUtil.fromArray(translation.split(StringPool.SPACE)));
 		}
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(

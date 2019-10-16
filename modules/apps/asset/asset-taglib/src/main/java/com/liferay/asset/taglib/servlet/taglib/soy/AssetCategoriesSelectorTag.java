@@ -62,7 +62,7 @@ public class AssetCategoriesSelectorTag extends ComponentRendererTag {
 
 		try {
 			putValue("eventName", getEventName());
-			putValue("groupIds", ListUtil.toList(getGroupIds()));
+			putValue("groupIds", ListUtil.fromArray(getGroupIds()));
 			putValue(
 				"id", _getNamespace() + _getId() + "assetCategoriesSelector");
 			putValue("inputName", _getInputName());

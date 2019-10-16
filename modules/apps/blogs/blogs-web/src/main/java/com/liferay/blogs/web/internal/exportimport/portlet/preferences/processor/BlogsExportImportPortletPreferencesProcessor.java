@@ -50,13 +50,13 @@ public class BlogsExportImportPortletPreferencesProcessor
 
 	@Override
 	public List<Capability> getExportCapabilities() {
-		return ListUtil.toList(
+		return ListUtil.fromArray(
 			new Capability[] {_blogsPortletDisplayTemplateExportCapability});
 	}
 
 	@Override
 	public List<Capability> getImportCapabilities() {
-		return ListUtil.toList(
+		return ListUtil.fromArray(
 			new Capability[] {_blogsPortletDisplayTemplateImportCapability});
 	}
 

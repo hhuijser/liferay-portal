@@ -36,7 +36,7 @@ public class SAPEntryImpl extends SAPEntryBaseImpl {
 		String[] allowedServiceSignatures = StringUtil.split(
 			getAllowedServiceSignatures(), StringPool.NEW_LINE);
 
-		return ListUtil.toList(allowedServiceSignatures);
+		return ListUtil.fromArray(allowedServiceSignatures);
 	}
 
 	@Override

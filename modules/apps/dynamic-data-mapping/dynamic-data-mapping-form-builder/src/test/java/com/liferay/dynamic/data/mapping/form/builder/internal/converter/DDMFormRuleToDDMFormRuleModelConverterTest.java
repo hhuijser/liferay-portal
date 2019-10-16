@@ -336,7 +336,7 @@ public class DDMFormRuleToDDMFormRuleModelConverterTest
 				com.liferay.dynamic.data.mapping.model.DDMFormRule[].class);
 
 		List<DDMFormRule> actualDDMFormRules = _ddmFormRuleConverter.convert(
-			ListUtil.toList(ddmFormRules));
+			ListUtil.fromArray(ddmFormRules));
 
 		JSONAssert.assertEquals(
 			read(toFileName), serialize(actualDDMFormRules), false);

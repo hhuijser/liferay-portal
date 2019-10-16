@@ -625,14 +625,14 @@ public class UpgradeDynamicDataMappingTest extends PowerMockito {
 		Map<String, List<String>> actualTextData = dataMap.get("Text");
 
 		assertEquals(
-			ListUtil.toList(new String[] {"Joe Bloggs"}),
+			ListUtil.fromArray(new String[] {"Joe Bloggs"}),
 			actualTextData.get("en_US"));
 
 		Map<String, List<String>> actualFieldsDisplayData = dataMap.get(
 			"_fieldsDisplay");
 
 		assertEquals(
-			ListUtil.toList(new String[] {fieldsDisplay}),
+			ListUtil.fromArray(new String[] {fieldsDisplay}),
 			actualFieldsDisplayData.get("en_US"));
 	}
 
@@ -661,18 +661,18 @@ public class UpgradeDynamicDataMappingTest extends PowerMockito {
 		Map<String, List<String>> actualTextData = dataMap.get("Text");
 
 		assertEquals(
-			ListUtil.toList(new String[] {"A", "B", "C"}),
+			ListUtil.fromArray(new String[] {"A", "B", "C"}),
 			actualTextData.get("en_US"));
 
 		assertEquals(
-			ListUtil.toList(new String[] {"D", "E", "F"}),
+			ListUtil.fromArray(new String[] {"D", "E", "F"}),
 			actualTextData.get("pt_BR"));
 
 		Map<String, List<String>> actualFieldsDisplayData = dataMap.get(
 			"_fieldsDisplay");
 
 		assertEquals(
-			ListUtil.toList(new String[] {fieldsDisplay}),
+			ListUtil.fromArray(new String[] {fieldsDisplay}),
 			actualFieldsDisplayData.get("en_US"));
 	}
 

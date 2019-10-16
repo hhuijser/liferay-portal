@@ -161,7 +161,7 @@ public class DDMFormValuesUtil {
 		return TransformUtil.transform(
 			contentFields,
 			contentField -> _toDDMFormFieldValue(
-				ListUtil.toList(contentField.getNestedContentFields()),
+				ListUtil.fromArray(contentField.getNestedContentFields()),
 				ddmFormField, dlAppService, groupId, journalArticleService,
 				layoutLocalService, locale,
 				DDMValueUtil.toDDMValue(

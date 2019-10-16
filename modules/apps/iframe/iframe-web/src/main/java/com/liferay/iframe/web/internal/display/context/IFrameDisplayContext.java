@@ -96,7 +96,7 @@ public class IFrameDisplayContext {
 	public List<KeyValuePair> getHiddenVariableKVPs() {
 		List<KeyValuePair> hiddenVariableKVPs = new ArrayList<>();
 
-		List<String> hiddenVariables = ListUtil.toList(
+		List<String> hiddenVariables = ListUtil.fromArray(
 			StringUtil.split(getHiddenVariables(), CharPool.SEMICOLON));
 
 		hiddenVariables.addAll(getIFrameVariables());

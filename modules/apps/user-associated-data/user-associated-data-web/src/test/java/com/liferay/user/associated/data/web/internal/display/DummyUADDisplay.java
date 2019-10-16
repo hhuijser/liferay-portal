@@ -56,7 +56,7 @@ public abstract class DummyUADDisplay<T extends UserAssociatedEntity>
 
 		Map<String, Object> fieldValues = new HashMap<>();
 
-		List<String> fieldNamesList = ListUtil.toList(fieldNames);
+		List<String> fieldNamesList = ListUtil.fromArray(fieldNames);
 
 		if (fieldNamesList.indexOf("uuid") != -1) {
 			fieldValues.put("uuid", t.getUuid());

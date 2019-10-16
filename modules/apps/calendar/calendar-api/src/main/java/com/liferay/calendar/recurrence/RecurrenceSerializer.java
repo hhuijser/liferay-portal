@@ -98,7 +98,7 @@ public class RecurrenceSerializer {
 
 			recurrence.setPositionalWeekdays(positionalWeekdays);
 
-			recurrence.setMonths(ListUtil.toList(rRule.getByMonth()));
+			recurrence.setMonths(ListUtil.fromArray(rRule.getByMonth()));
 
 			return recurrence;
 		}

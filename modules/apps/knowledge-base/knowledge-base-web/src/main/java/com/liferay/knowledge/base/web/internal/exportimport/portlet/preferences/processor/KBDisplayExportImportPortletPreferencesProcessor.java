@@ -62,7 +62,7 @@ public class KBDisplayExportImportPortletPreferencesProcessor
 
 	@Override
 	public List<Capability> getImportCapabilities() {
-		return ListUtil.toList(new Capability[] {_capability});
+		return ListUtil.fromArray(new Capability[] {_capability});
 	}
 
 	@Override

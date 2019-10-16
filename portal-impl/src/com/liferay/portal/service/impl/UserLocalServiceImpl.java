@@ -6473,7 +6473,8 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			return;
 		}
 
-		List<Long> oldGroupIds = ListUtil.toList(getGroupPrimaryKeys(userId));
+		List<Long> oldGroupIds = ListUtil.fromArray(
+			getGroupPrimaryKeys(userId));
 
 		for (long newGroupId : newGroupIds) {
 			oldGroupIds.remove(newGroupId);
@@ -6502,7 +6503,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 			return;
 		}
 
-		List<Long> oldOrganizationIds = ListUtil.toList(
+		List<Long> oldOrganizationIds = ListUtil.fromArray(
 			getOrganizationPrimaryKeys(userId));
 
 		for (long newOrganizationId : newOrganizationIds) {

@@ -463,9 +463,9 @@ public class ServiceComponentLocalServiceImpl
 
 		List<String> modifiedTableNames = new ArrayList<>();
 
-		List<String> previousTablesSQLParts = ListUtil.toList(
+		List<String> previousTablesSQLParts = ListUtil.fromArray(
 			StringUtil.split(previousTablesSQL, StringPool.SEMICOLON));
-		List<String> tablesSQLParts = ListUtil.toList(
+		List<String> tablesSQLParts = ListUtil.fromArray(
 			StringUtil.split(tablesSQL, StringPool.SEMICOLON));
 
 		tablesSQLParts.removeAll(previousTablesSQLParts);

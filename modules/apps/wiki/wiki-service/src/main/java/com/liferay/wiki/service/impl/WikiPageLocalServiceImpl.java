@@ -314,7 +314,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			String mimeType)
 		throws PortalException {
 
-		List<String> wikiAttachmentMimeTypes = ListUtil.toList(
+		List<String> wikiAttachmentMimeTypes = ListUtil.fromArray(
 			_wikiFileUploadConfiguration.attachmentMimeTypes());
 
 		if (ListUtil.isNull(wikiAttachmentMimeTypes) ||

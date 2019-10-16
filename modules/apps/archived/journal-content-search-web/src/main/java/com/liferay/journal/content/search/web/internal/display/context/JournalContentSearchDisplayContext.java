@@ -150,7 +150,7 @@ public class JournalContentSearchDisplayContext {
 			_searchContainer.getStart(), _searchContainer.getEnd());
 
 		_searchContainer.setTotal(hits.getLength());
-		_searchContainer.setResults(ListUtil.toList(hits.getDocs()));
+		_searchContainer.setResults(ListUtil.fromArray(hits.getDocs()));
 
 		return _searchContainer;
 	}

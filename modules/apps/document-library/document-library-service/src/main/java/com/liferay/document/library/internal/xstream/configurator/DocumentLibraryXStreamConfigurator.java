@@ -47,12 +47,12 @@ public class DocumentLibraryXStreamConfigurator implements XStreamConfigurator {
 
 	@Override
 	public List<XStreamAlias> getXStreamAliases() {
-		return ListUtil.toList(_xStreamAliases);
+		return ListUtil.fromArray(_xStreamAliases);
 	}
 
 	@Override
 	public List<XStreamConverter> getXStreamConverters() {
-		return ListUtil.toList(_xStreamConverters);
+		return ListUtil.fromArray(_xStreamConverters);
 	}
 
 	@Activate

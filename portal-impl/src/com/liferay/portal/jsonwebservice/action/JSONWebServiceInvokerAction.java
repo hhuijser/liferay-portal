@@ -321,7 +321,7 @@ public class JSONWebServiceInvokerAction implements JSONWebServiceAction {
 		Class<?> componentType = clazz.getComponentType();
 
 		if (!componentType.isPrimitive()) {
-			return ListUtil.toList((Object[])object);
+			return ListUtil.fromArray((Object[])object);
 		}
 
 		List<Object> list = new ArrayList<>();

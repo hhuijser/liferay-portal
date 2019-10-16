@@ -128,7 +128,7 @@ public class PortalInstancesLocalServiceImpl
 		try {
 			long[] initializedCompanyIds = _portal.getCompanyIds();
 
-			List<Long> removeableCompanyIds = ListUtil.toList(
+			List<Long> removeableCompanyIds = ListUtil.fromArray(
 				initializedCompanyIds);
 
 			List<Company> companies = _companyLocalService.getCompanies();

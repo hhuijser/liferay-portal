@@ -118,7 +118,7 @@ public class DDMFormRuleDeserializer {
 		DDMFormRuleCondition[] ruleConditions = jsonDeserializer.deserialize(
 			conditionsJSONArray.toJSONString(), DDMFormRuleCondition[].class);
 
-		return ListUtil.toList(ruleConditions);
+		return ListUtil.fromArray(ruleConditions);
 	}
 
 	protected Class<? extends DDMFormRuleAction> getDDMFormRuleActionClass(

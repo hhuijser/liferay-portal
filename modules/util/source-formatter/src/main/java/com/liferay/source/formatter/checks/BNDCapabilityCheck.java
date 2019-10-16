@@ -164,7 +164,7 @@ public class BNDCapabilityCheck extends BaseFileCheck {
 			while (matcher.find()) {
 				String conditions = matcher.group(1);
 
-				List<String> conditionsList = ListUtil.toList(
+				List<String> conditionsList = ListUtil.fromArray(
 					StringUtil.split(
 						conditions.substring(1, conditions.length() - 1),
 						")("));
@@ -210,7 +210,7 @@ public class BNDCapabilityCheck extends BaseFileCheck {
 
 		String resourceBundleAggregates = matcher.group(1);
 
-		List<String> resourceBundleAggregatesList = ListUtil.toList(
+		List<String> resourceBundleAggregatesList = ListUtil.fromArray(
 			StringUtil.split(resourceBundleAggregates));
 
 		Collections.sort(resourceBundleAggregatesList);

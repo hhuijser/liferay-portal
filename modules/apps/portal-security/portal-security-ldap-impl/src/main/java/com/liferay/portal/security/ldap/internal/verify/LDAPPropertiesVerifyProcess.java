@@ -330,7 +330,7 @@ public class LDAPPropertiesVerifyProcess extends VerifyProcess {
 					_log.info(
 						StringBundler.concat(
 							"Removing LDAP server IDs ",
-							ListUtil.toList(ldapServerIds), " for company ",
+							ListUtil.fromArray(ldapServerIds), " for company ",
 							companyId));
 				}
 

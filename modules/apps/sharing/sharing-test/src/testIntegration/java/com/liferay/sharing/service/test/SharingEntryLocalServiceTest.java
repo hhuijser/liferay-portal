@@ -1190,7 +1190,7 @@ public class SharingEntryLocalServiceTest {
 
 		_sharingEntryLocalService.updateSharingEntry(
 			_fromUser.getUserId(), sharingEntry.getSharingEntryId(),
-			ListUtil.toList((SharingEntryAction[])null), true, null,
+			ListUtil.fromArray((SharingEntryAction[])null), true, null,
 			serviceContext);
 	}
 

@@ -155,7 +155,7 @@ public class PortalImplGetSitesTest {
 
 		long[] groupIds = _getSharedContentSiteGroupIds();
 
-		Set<Long> set = new HashSet<>(ListUtil.toList(groupIds));
+		Set<Long> set = new HashSet<>(ListUtil.fromArray(groupIds));
 
 		Assert.assertFalse(set.size() < groupIds.length);
 	}

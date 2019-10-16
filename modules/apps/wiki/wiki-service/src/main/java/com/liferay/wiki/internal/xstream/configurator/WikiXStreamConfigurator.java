@@ -40,7 +40,7 @@ public class WikiXStreamConfigurator implements XStreamConfigurator {
 
 	@Override
 	public List<XStreamAlias> getXStreamAliases() {
-		return ListUtil.toList(_xStreamAliases);
+		return ListUtil.fromArray(_xStreamAliases);
 	}
 
 	@Override

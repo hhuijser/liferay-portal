@@ -386,7 +386,7 @@ public class PluginsEnvironmentBuilder {
 				"portal-dependency-jars",
 				properties.getProperty("portal.dependency.jars")));
 
-		return ListUtil.toList(dependencyJars);
+		return ListUtil.fromArray(dependencyJars);
 	}
 
 	protected List<String> getRequiredDeploymentContextsJars(
@@ -556,7 +556,8 @@ public class PluginsEnvironmentBuilder {
 			for (String dirName : new String[] {"global", "portal"}) {
 				File file = new File(libDirPath + "/../ext-lib/" + dirName);
 
-				List<String> jars = ListUtil.toList(file.list(filenameFilter));
+				List<String> jars = ListUtil.fromArray(
+					file.list(filenameFilter));
 
 				if (dirName.equals("global")) {
 					extGlobalJars.addAll(ListUtil.sort(jars));
@@ -566,7 +567,7 @@ public class PluginsEnvironmentBuilder {
 					String[] fileNames = dir.list(filenameFilter);
 
 					globalJars.addAll(
-						ListUtil.sort(ListUtil.toList(fileNames)));
+						ListUtil.sort(ListUtil.fromArray(fileNames)));
 
 					globalJars.removeAll(extGlobalJars);
 				}
@@ -578,7 +579,7 @@ public class PluginsEnvironmentBuilder {
 					String[] fileNames = dir.list(filenameFilter);
 
 					portalJars.addAll(
-						ListUtil.sort(ListUtil.toList(fileNames)));
+						ListUtil.sort(ListUtil.fromArray(fileNames)));
 
 					portalJars.removeAll(extPortalJars);
 				}
@@ -601,7 +602,7 @@ public class PluginsEnvironmentBuilder {
 		List<String> customJars = null;
 
 		if (customJarsArray != null) {
-			customJars = ListUtil.toList(customJarsArray);
+			customJars = ListUtil.fromArray(customJarsArray);
 
 			for (String jar : portalJars) {
 				customJars.remove(jar);

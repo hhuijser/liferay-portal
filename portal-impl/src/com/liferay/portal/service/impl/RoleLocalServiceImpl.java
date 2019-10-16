@@ -455,7 +455,7 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 				UnicodeProperties typeSettingsProperties =
 					group.getTypeSettingsProperties();
 
-				List<Long> defaultSiteRoleIds = ListUtil.toList(
+				List<Long> defaultSiteRoleIds = ListUtil.fromArray(
 					StringUtil.split(
 						typeSettingsProperties.getProperty(
 							"defaultSiteRoleIds"),

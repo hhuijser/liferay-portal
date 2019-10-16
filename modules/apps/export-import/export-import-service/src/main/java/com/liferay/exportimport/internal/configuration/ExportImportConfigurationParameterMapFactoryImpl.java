@@ -527,7 +527,7 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 		PortletDataHandler portletDataHandler =
 			dataSiteLevelPortlet.getPortletDataHandlerInstance();
 
-		List<StagedModelType> stagedModelTypes = ListUtil.toList(
+		List<StagedModelType> stagedModelTypes = ListUtil.fromArray(
 			portletDataHandler.getDeletionSystemEventStagedModelTypes());
 
 		if (ListUtil.isEmpty(stagedModelTypes)) {
@@ -537,7 +537,7 @@ public class ExportImportConfigurationParameterMapFactoryImpl
 		String[] parameterStagedModelTypes = parameterMap.get(
 			"stagedModelTypes");
 
-		List<String> parameterStagedModelTypesList = ListUtil.toList(
+		List<String> parameterStagedModelTypesList = ListUtil.fromArray(
 			parameterStagedModelTypes);
 
 		for (StagedModelType stagedModelType : stagedModelTypes) {

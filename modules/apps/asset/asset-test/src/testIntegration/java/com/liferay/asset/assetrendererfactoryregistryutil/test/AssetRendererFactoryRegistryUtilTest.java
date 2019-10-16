@@ -110,7 +110,7 @@ public class AssetRendererFactoryRegistryUtilTest {
 		long[] classNameIds = AssetRendererFactoryRegistryUtil.getClassNameIds(
 			1);
 
-		List<Long> classNameIdsList = ListUtil.toList(classNameIds);
+		List<Long> classNameIdsList = ListUtil.fromArray(classNameIds);
 
 		Assert.assertTrue(
 			classNameIdsList.toString(),
@@ -122,7 +122,7 @@ public class AssetRendererFactoryRegistryUtilTest {
 		long[] classNameIds = AssetRendererFactoryRegistryUtil.getClassNameIds(
 			1, true);
 
-		List<Long> classNameIdsList = ListUtil.toList(classNameIds);
+		List<Long> classNameIdsList = ListUtil.fromArray(classNameIds);
 
 		Assert.assertTrue(
 			classNameIdsList.toString(),
@@ -134,7 +134,7 @@ public class AssetRendererFactoryRegistryUtilTest {
 		long[] classNameIds = AssetRendererFactoryRegistryUtil.getClassNameIds(
 			1, false);
 
-		List<Long> classNameIdsList = ListUtil.toList(classNameIds);
+		List<Long> classNameIdsList = ListUtil.fromArray(classNameIds);
 
 		Assert.assertTrue(
 			classNameIdsList.toString(),

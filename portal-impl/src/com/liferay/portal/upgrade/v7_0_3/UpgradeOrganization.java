@@ -34,7 +34,7 @@ public class UpgradeOrganization extends UpgradeProcess {
 	}
 
 	protected List<String> getOrganizationTypes() {
-		List<String> organizationsTypes = ListUtil.toList(
+		List<String> organizationsTypes = ListUtil.fromArray(
 			PropsUtil.getArray("organizations.types"));
 
 		if (ListUtil.isEmpty(organizationsTypes)) {

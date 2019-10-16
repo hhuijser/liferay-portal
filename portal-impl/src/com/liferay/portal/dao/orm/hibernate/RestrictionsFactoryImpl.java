@@ -148,7 +148,7 @@ public class RestrictionsFactoryImpl implements RestrictionsFactory {
 
 	@Override
 	public Criterion in(String propertyName, Object[] values) {
-		return in(propertyName, ListUtil.toList(values));
+		return in(propertyName, ListUtil.fromArray(values));
 	}
 
 	@Override

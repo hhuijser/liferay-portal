@@ -428,7 +428,7 @@ public class ContentPageLayoutEditorDisplayContext
 		SegmentsExperiment segmentsExperiment =
 			segmentsExperimentOptional.get();
 
-		List<Integer> lockedStatusValuesList = ListUtil.toList(
+		List<Integer> lockedStatusValuesList = ListUtil.fromArray(
 			SegmentsExperimentConstants.Status.getLockedStatusValues());
 
 		return lockedStatusValuesList.contains(segmentsExperiment.getStatus());

@@ -188,7 +188,7 @@ public abstract class BaseWikiAttachmentImageEditorConfigContributor
 		WikiFileUploadConfiguration wikiFileUploadConfiguration =
 			getWikiFileUploadConfiguration();
 
-		List<String> wikiAttachmentMimeTypes = ListUtil.toList(
+		List<String> wikiAttachmentMimeTypes = ListUtil.fromArray(
 			wikiFileUploadConfiguration.attachmentMimeTypes());
 
 		if (wikiAttachmentMimeTypes.contains(StringPool.STAR)) {

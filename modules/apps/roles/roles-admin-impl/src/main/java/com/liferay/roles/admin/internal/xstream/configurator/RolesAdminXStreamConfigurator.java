@@ -35,12 +35,12 @@ public class RolesAdminXStreamConfigurator implements XStreamConfigurator {
 
 	@Override
 	public List<XStreamType> getAllowedXStreamTypes() {
-		return ListUtil.toList(_xStreamTypes);
+		return ListUtil.fromArray(_xStreamTypes);
 	}
 
 	@Override
 	public List<XStreamAlias> getXStreamAliases() {
-		return ListUtil.toList(_xStreamAliases);
+		return ListUtil.fromArray(_xStreamAliases);
 	}
 
 	@Override

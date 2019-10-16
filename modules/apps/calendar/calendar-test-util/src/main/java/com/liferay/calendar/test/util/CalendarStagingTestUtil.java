@@ -102,7 +102,7 @@ public class CalendarStagingTestUtil {
 		List<String> portletIds = null;
 
 		if (enableCalendarStaging) {
-			portletIds = ListUtil.toList(CalendarPortletKeys.CALENDAR);
+			portletIds = ListUtil.fromValue(CalendarPortletKeys.CALENDAR);
 		}
 
 		Map<String, String[]> parameters =

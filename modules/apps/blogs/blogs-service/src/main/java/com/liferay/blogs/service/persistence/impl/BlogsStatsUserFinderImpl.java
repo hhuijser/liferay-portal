@@ -57,7 +57,7 @@ public class BlogsStatsUserFinderImpl
 
 	@Override
 	public int countByOrganizationId(long organizationId) {
-		return countByOrganizationIds(ListUtil.toList(organizationId));
+		return countByOrganizationIds(ListUtil.fromValue(organizationId));
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public class BlogsStatsUserFinderImpl
 		OrderByComparator<BlogsStatsUser> obc) {
 
 		return findByOrganizationIds(
-			ListUtil.toList(organizationId), start, end, obc);
+			ListUtil.fromValue(organizationId), start, end, obc);
 	}
 
 	@Override

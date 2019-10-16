@@ -225,7 +225,7 @@ public class FolderStagedModelDataHandlerTest
 		DLFolderLocalServiceUtil.updateDLFolder(dlFolder);
 
 		DLFileEntryTypeLocalServiceUtil.updateFolderFileEntryTypes(
-			dlFolder, ListUtil.toList(dlFileEntryType.getFileEntryTypeId()),
+			dlFolder, ListUtil.fromValue(dlFileEntryType.getFileEntryTypeId()),
 			dlFileEntryType.getFileEntryTypeId(), serviceContext);
 
 		return folder;

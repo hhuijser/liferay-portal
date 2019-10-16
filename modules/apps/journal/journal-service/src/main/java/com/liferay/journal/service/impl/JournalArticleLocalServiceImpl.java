@@ -3679,7 +3679,7 @@ public class JournalArticleLocalServiceImpl
 			WorkflowConstants.STATUS_ANY);
 
 		return journalArticleFinder.countByG_F(
-			groupId, ListUtil.toList(folderId), queryDefinition);
+			groupId, ListUtil.fromValue(folderId), queryDefinition);
 	}
 
 	/**
@@ -4596,7 +4596,7 @@ public class JournalArticleLocalServiceImpl
 		long groupId, long folderId, int status, int start, int end) {
 
 		return search(
-			groupId, ListUtil.toList(folderId),
+			groupId, ListUtil.fromValue(folderId),
 			LocaleUtil.getMostRelevantLocale(), status, start, end);
 	}
 
@@ -5098,7 +5098,7 @@ public class JournalArticleLocalServiceImpl
 	 */
 	@Override
 	public int searchCount(long groupId, long folderId, int status) {
-		return searchCount(groupId, ListUtil.toList(folderId), status);
+		return searchCount(groupId, ListUtil.fromValue(folderId), status);
 	}
 
 	/**

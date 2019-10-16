@@ -65,7 +65,7 @@ public class PhoneStagedModelDataHandler
 	public List<Phone> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return ListUtil.toList(
+		return ListUtil.fromValue(
 			_phoneLocalService.fetchPhoneByUuidAndCompanyId(uuid, companyId));
 	}
 

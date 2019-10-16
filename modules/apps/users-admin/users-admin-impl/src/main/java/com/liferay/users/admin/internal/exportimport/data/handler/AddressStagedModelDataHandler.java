@@ -78,7 +78,7 @@ public class AddressStagedModelDataHandler
 	public List<Address> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return ListUtil.toList(
+		return ListUtil.fromValue(
 			_addressLocalService.fetchAddressByUuidAndCompanyId(
 				uuid, companyId));
 	}

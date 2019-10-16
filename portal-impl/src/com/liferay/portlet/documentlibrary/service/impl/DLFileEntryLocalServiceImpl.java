@@ -1228,7 +1228,8 @@ public class DLFileEntryLocalServiceImpl
 	@Override
 	public int getFileEntriesCount(long groupId, long folderId, int status) {
 		return dlFileEntryFinder.countByG_F(
-			groupId, ListUtil.toList(folderId), new QueryDefinition<>(status));
+			groupId, ListUtil.fromValue(folderId),
+			new QueryDefinition<>(status));
 	}
 
 	@Override

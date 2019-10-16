@@ -266,7 +266,7 @@ public class DDMFormValuesJSONSerializerTest extends BaseDDMTestCase {
 	protected List<DDMFormFieldValue> createSeparatorNestedDDMFormFieldValues(
 		int index, String instanceId) {
 
-		return ListUtil.toList(
+		return ListUtil.fromValue(
 			createTextBoxDDMFormFieldValue(index, instanceId));
 	}
 

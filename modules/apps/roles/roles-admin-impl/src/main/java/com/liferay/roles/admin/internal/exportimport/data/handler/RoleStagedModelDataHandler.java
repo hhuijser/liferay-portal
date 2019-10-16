@@ -82,7 +82,7 @@ public class RoleStagedModelDataHandler
 	public List<Role> fetchStagedModelsByUuidAndCompanyId(
 		String uuid, long companyId) {
 
-		return ListUtil.toList(
+		return ListUtil.fromValue(
 			_roleLocalService.fetchRoleByUuidAndCompanyId(uuid, companyId));
 	}
 

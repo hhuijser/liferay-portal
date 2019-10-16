@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -50,6 +49,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -548,8 +548,7 @@ public class IMAPMailbox extends BaseMailbox {
 			String translation = StringUtil.toLowerCase(
 				LanguageUtil.get(locale, type));
 
-			words.addAll(
-				ListUtil.fromArray(translation.split(StringPool.SPACE)));
+			Collections.addAll(words, translation.split(StringPool.SPACE));
 		}
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(

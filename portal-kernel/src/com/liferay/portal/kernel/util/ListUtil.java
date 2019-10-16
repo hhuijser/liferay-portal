@@ -342,6 +342,10 @@ public class ListUtil {
 		return fromArray(StringUtil.split(s, delimiter));
 	}
 
+	public static <E> List<E> fromValue(E value) {
+		return new ArrayList<>(Arrays.asList(value));
+	}
+
 	public static boolean isEmpty(List<?> list) {
 		if ((list == null) || list.isEmpty()) {
 			return true;
@@ -523,6 +527,10 @@ public class ListUtil {
 		return list;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #fromValue(E)}
+	 */
+	@Deprecated
 	public static <E> List<E> toList(E value) {
 		return new ArrayList<>(Arrays.asList(value));
 	}

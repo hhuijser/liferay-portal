@@ -50,6 +50,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -548,8 +549,7 @@ public class IMAPMailbox extends BaseMailbox {
 			String translation = StringUtil.toLowerCase(
 				LanguageUtil.get(locale, type));
 
-			words.addAll(
-				ListUtil.fromArray(translation.split(StringPool.SPACE)));
+			Collections.addAll(words, translation.split(StringPool.SPACE));
 		}
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(

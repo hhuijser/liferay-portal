@@ -136,8 +136,8 @@ public class GroupSegmentsFieldCustomizer extends BaseSegmentsFieldCustomizer {
 	private static final Log _log = LogFactoryUtil.getLog(
 		GroupSegmentsFieldCustomizer.class);
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"groupIds"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"groupIds");
 
 	@Reference
 	private GroupLocalService _groupLocalService;

@@ -59,7 +59,7 @@ public class SampleSegmentsFieldCustomizer implements SegmentsFieldCustomizer {
 		return LanguageUtil.get(resourceBundle, "sample-field-label");
 	}
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"sample"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"sample");
 
 }

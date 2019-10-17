@@ -136,8 +136,8 @@ public class RoleSegmentsFieldCustomizer extends BaseSegmentsFieldCustomizer {
 	private static final Log _log = LogFactoryUtil.getLog(
 		RoleSegmentsFieldCustomizer.class);
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"roleIds"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"roleIds");
 
 	@Reference
 	private Portal _portal;

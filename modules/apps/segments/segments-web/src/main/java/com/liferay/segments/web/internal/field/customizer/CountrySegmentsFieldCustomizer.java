@@ -69,8 +69,8 @@ public class CountrySegmentsFieldCustomizer
 		);
 	}
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"country"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"country");
 
 	@Reference
 	private CountryService _countryService;

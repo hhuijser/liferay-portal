@@ -128,8 +128,8 @@ public class UserGroupSegmentsFieldCustomizer
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserGroupSegmentsFieldCustomizer.class);
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"userGroupIds"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"userGroupIds");
 
 	@Reference
 	private Portal _portal;

@@ -69,7 +69,7 @@ public class LanguageSegmentsFieldCustomizer
 		);
 	}
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"languageId"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"languageId");
 
 }

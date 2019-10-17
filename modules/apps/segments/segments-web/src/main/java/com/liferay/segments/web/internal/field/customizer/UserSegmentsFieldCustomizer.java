@@ -122,8 +122,8 @@ public class UserSegmentsFieldCustomizer extends BaseSegmentsFieldCustomizer {
 	private static final Log _log = LogFactoryUtil.getLog(
 		UserSegmentsFieldCustomizer.class);
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"userId"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"userId");
 
 	@Reference
 	private Portal _portal;

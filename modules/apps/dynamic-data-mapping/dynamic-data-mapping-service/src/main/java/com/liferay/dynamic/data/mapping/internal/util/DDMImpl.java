@@ -931,8 +931,8 @@ public class DDMImpl implements DDM {
 			(String)serviceContext.getAttribute(
 				fieldNamespace + FIELDS_DISPLAY_NAME));
 
-		List<String> privateFieldNames = ListUtil.fromArray(
-			new String[] {FIELDS_DISPLAY_NAME});
+		List<String> privateFieldNames = ListUtil.fromValue(
+			FIELDS_DISPLAY_NAME);
 
 		List<String> fieldNames = new ArrayList<>();
 

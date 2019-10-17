@@ -89,8 +89,8 @@ public class RegionSegmentsFieldCustomizer extends BaseSegmentsFieldCustomizer {
 		}
 	}
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"region"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"region");
 
 	@Reference
 	private CountryService _countryService;

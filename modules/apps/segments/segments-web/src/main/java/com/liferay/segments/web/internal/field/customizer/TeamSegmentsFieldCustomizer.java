@@ -126,8 +126,8 @@ public class TeamSegmentsFieldCustomizer extends BaseSegmentsFieldCustomizer {
 	private static final Log _log = LogFactoryUtil.getLog(
 		TeamSegmentsFieldCustomizer.class);
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"teamIds"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"teamIds");
 
 	@Reference
 	private Portal _portal;

@@ -138,8 +138,8 @@ public class AssetTagSegmentsFieldCustomizer
 	private static final Log _log = LogFactoryUtil.getLog(
 		AssetTagSegmentsFieldCustomizer.class);
 
-	private static final List<String> _fieldNames = ListUtil.fromArray(
-		new String[] {"assetTagIds"});
+	private static final List<String> _fieldNames = ListUtil.fromValue(
+		"assetTagIds");
 
 	@Reference
 	private AssetTagLocalService _assetTagLocalService;

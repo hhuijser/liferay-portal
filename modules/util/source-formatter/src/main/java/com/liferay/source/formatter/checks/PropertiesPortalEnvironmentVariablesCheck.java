@@ -136,6 +136,10 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 				trimmedLine = StringUtil.trim(trimmedLine);
 			}
 
+			if (line.matches(StringPool.FOUR_SPACES + " +.*")) {
+				continue;
+			}
+
 			int pos = trimmedLine.indexOf(StringPool.EQUAL);
 
 			if (pos == -1) {

@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.MultiSessionMessages;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -85,9 +86,11 @@ public class AddSimpleLayoutMVCActionCommand
 		String name = ParamUtil.getString(actionRequest, "name");
 		String type = ParamUtil.getString(actionRequest, "type");
 
-		Map<Locale, String> nameMap = new HashMap<>();
-
-		nameMap.put(LocaleUtil.getSiteDefault(), name);
+		Map<Locale, String> nameMap = HashMapBuilder.types(
+			Locale.class, String.class
+		).put(
+			LocaleUtil.getSiteDefault(), name
+		).build();
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			Layout.class.getName(), actionRequest);

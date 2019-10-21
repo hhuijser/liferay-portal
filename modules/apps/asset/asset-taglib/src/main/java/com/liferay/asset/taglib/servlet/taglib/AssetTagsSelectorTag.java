@@ -25,6 +25,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -34,7 +35,6 @@ import com.liferay.taglib.aui.AUIUtil;
 import com.liferay.taglib.util.IncludeTag;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -228,24 +228,34 @@ public class AssetTagsSelectorTag extends IncludeTag {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, Object> context = new HashMap<>();
-
-		context.put("addCallback", _getNamespace() + _addCallback);
-		context.put("eventName", getEventName());
-		context.put("groupIds", getGroupIds());
-		context.put("inputName", _getInputName());
-		context.put("portletURL", getPortletURL());
-		context.put("removeCallback", _getNamespace() + _removeCallback);
+		Map<String, Object> context = HashMapBuilder.types(
+			String.class, Object.class
+		).put(
+			"addCallback", _getNamespace() + _addCallback
+		).put(
+			"eventName", getEventName()
+		).put(
+			"groupIds", getGroupIds()
+		).put(
+			"inputName", _getInputName()
+		).put(
+			"portletURL", getPortletURL()
+		).put(
+			"removeCallback", _getNamespace() + _removeCallback
+		).build();
 
 		List<String> tagNames = StringUtil.split(getTagNames());
 
 		List<Map<String, String>> selectedItems = new ArrayList<>();
 
 		for (String tagName : tagNames) {
-			Map<String, String> item = new HashMap<>();
-
-			item.put("label", tagName);
-			item.put("value", tagName);
+			Map<String, String> item = HashMapBuilder.types(
+				String.class, String.class
+			).put(
+				"label", tagName
+			).put(
+				"value", tagName
+			).build();
 
 			selectedItems.add(item);
 		}

@@ -27,11 +27,11 @@ import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -93,9 +93,11 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 
 		if (moveToTrash && !trashedModels.isEmpty()) {
-			Map<String, Object> data = new HashMap<>();
-
-			data.put("trashedModels", trashedModels);
+			Map<String, Object> data = HashMapBuilder.types(
+				String.class, Object.class
+			).put(
+				"trashedModels", trashedModels
+			).build();
 
 			addDeleteSuccessData(actionRequest, data);
 		}

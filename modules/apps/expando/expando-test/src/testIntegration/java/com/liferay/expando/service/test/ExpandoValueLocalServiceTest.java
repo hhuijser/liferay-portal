@@ -28,6 +28,7 @@ import com.liferay.expando.kernel.service.ExpandoValueLocalServiceUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -36,7 +37,6 @@ import com.liferay.portlet.expando.util.test.ExpandoTestUtil;
 import java.io.Serializable;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -77,10 +77,13 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> dataMap = new HashMap<>();
-
-		dataMap.put(_enLocale, new String[] {"one", "two", "three"});
-		dataMap.put(_ptLocale, new String[] {"um", "dois", "tres"});
+		Map<Locale, String[]> dataMap = HashMapBuilder.types(
+			Locale.class, String[].class
+		).put(
+			_enLocale, new String[] {"one", "two", "three"}
+		).put(
+			_ptLocale, new String[] {"um", "dois", "tres"}
+		).build();
 
 		ExpandoValue value = ExpandoTestUtil.addValue(
 			_expandoTable, column, dataMap);
@@ -107,10 +110,13 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> dataMap = new HashMap<>();
-
-		dataMap.put(_enLocale, "Test");
-		dataMap.put(_ptLocale, "Teste");
+		Map<Locale, String> dataMap = HashMapBuilder.types(
+			Locale.class, String.class
+		).put(
+			_enLocale, "Test"
+		).put(
+			_ptLocale, "Teste"
+		).build();
 
 		ExpandoValue value = ExpandoTestUtil.addValue(
 			_expandoTable, column, dataMap);
@@ -147,10 +153,13 @@ public class ExpandoValueLocalServiceTest {
 		ExpandoColumn column = ExpandoTestUtil.addColumn(
 			_expandoTable, "Test Column", ExpandoColumnConstants.STRING);
 
-		Map<Locale, String> dataMap = new HashMap<>();
-
-		dataMap.put(_enLocale, "one");
-		dataMap.put(_ptLocale, "um");
+		Map<Locale, String> dataMap = HashMapBuilder.types(
+			Locale.class, String.class
+		).put(
+			_enLocale, "one"
+		).put(
+			_ptLocale, "um"
+		).build();
 
 		try {
 			ExpandoTestUtil.addValue(
@@ -201,9 +210,11 @@ public class ExpandoValueLocalServiceTest {
 
 	@Test
 	public void testGetDefaultColumnValue() throws Exception {
-		Map<Locale, String> defaultData = new HashMap<>();
-
-		defaultData.put(_enLocale, "Test");
+		Map<Locale, String> defaultData = HashMapBuilder.types(
+			Locale.class, String.class
+		).put(
+			_enLocale, "Test"
+		).build();
 
 		ExpandoColumn column = ExpandoTestUtil.addColumn(
 			_expandoTable, "Test Column",
@@ -223,10 +234,13 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> dataMap = new HashMap<>();
-
-		dataMap.put(_enLocale, "one");
-		dataMap.put(_ptLocale, "um");
+		Map<Locale, String> dataMap = HashMapBuilder.types(
+			Locale.class, String.class
+		).put(
+			_enLocale, "one"
+		).put(
+			_ptLocale, "um"
+		).build();
 
 		ExpandoValue value = ExpandoTestUtil.addValue(
 			_expandoTable, column, dataMap, _ptLocale);
@@ -252,10 +266,13 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> dataMap = new HashMap<>();
-
-		dataMap.put(_enLocale, new String[] {"Hello, Joe", "Hi, Joe"});
-		dataMap.put(_ptLocale, new String[] {"Ola, Joao", "Oi, Joao"});
+		Map<Locale, String[]> dataMap = HashMapBuilder.types(
+			Locale.class, String[].class
+		).put(
+			_enLocale, new String[] {"Hello, Joe", "Hi, Joe"}
+		).put(
+			_ptLocale, new String[] {"Ola, Joao", "Oi, Joao"}
+		).build();
 
 		long classPK = CounterLocalServiceUtil.increment();
 

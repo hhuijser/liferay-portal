@@ -25,13 +25,13 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.model.impl.LayoutTypeControllerImpl;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceRegistration;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -130,9 +130,11 @@ public class LayoutImplTest {
 
 			_layout.setType(type);
 
-			Map<String, Object> properties = new HashMap<>();
-
-			properties.put("layout.type", type);
+			Map<String, Object> properties = HashMapBuilder.types(
+				String.class, Object.class
+			).put(
+				"layout.type", type
+			).build();
 
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
@@ -182,9 +184,11 @@ public class LayoutImplTest {
 
 			_layout.setType(layoutTypeValue);
 
-			Map<String, Object> properties = new HashMap<>();
-
-			properties.put("layout.type", layoutTypeValue);
+			Map<String, Object> properties = HashMapBuilder.types(
+				String.class, Object.class
+			).put(
+				"layout.type", layoutTypeValue
+			).build();
 
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
@@ -212,9 +216,11 @@ public class LayoutImplTest {
 			LayoutTypeController layoutTypeController =
 				new LayoutTypeControllerImpl(type);
 
-			Map<String, Object> properties = new HashMap<>();
-
-			properties.put("layout.type", type);
+			Map<String, Object> properties = HashMapBuilder.types(
+				String.class, Object.class
+			).put(
+				"layout.type", type
+			).build();
 
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(
@@ -253,9 +259,11 @@ public class LayoutImplTest {
 
 			_layout.setType(type);
 
-			Map<String, Object> properties = new HashMap<>();
-
-			properties.put("layout.type", type);
+			Map<String, Object> properties = HashMapBuilder.types(
+				String.class, Object.class
+			).put(
+				"layout.type", type
+			).build();
 
 			ServiceRegistration<LayoutTypeController> serviceRegistration =
 				registry.registerService(

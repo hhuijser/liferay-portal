@@ -31,10 +31,10 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -109,9 +109,11 @@ public class EditFileShortcutMVCActionCommand extends BaseMVCActionCommand {
 
 			trashedModels.add((TrashedModel)fileShortcut.getModel());
 
-			Map<String, Object> data = new HashMap<>();
-
-			data.put("trashedModels", trashedModels);
+			Map<String, Object> data = HashMapBuilder.types(
+				String.class, Object.class
+			).put(
+				"trashedModels", trashedModels
+			).build();
 
 			addDeleteSuccessData(actionRequest, data);
 		}

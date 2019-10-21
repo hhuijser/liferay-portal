@@ -34,6 +34,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.KeyValuePair;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -118,9 +119,11 @@ public class DDMFormFieldTemplateContextFactory {
 	protected Map<String, Object> createDDMFormFieldTemplateContext(
 		DDMFormField ddmFormField, String ddmFormFieldParameterName) {
 
-		Map<String, Object> ddmFormFieldTemplateContext = new HashMap<>();
-
-		ddmFormFieldTemplateContext.put("type", ddmFormField.getType());
+		Map<String, Object> ddmFormFieldTemplateContext = HashMapBuilder.types(
+			String.class, Object.class
+		).put(
+			"type", ddmFormField.getType()
+		).build();
 
 		setDDMFormFieldTemplateContextFieldName(
 			ddmFormFieldTemplateContext, ddmFormField.getName());
@@ -259,11 +262,13 @@ public class DDMFormFieldTemplateContextFactory {
 		List<Map<String, String>> list = new ArrayList<>();
 
 		for (KeyValuePair keyValuePair : keyValuePairs) {
-			Map<String, String> option = new HashMap<>();
-
-			option.put("label", keyValuePair.getValue());
-
-			option.put("value", keyValuePair.getKey());
+			Map<String, String> option = HashMapBuilder.types(
+				String.class, String.class
+			).put(
+				"label", keyValuePair.getValue()
+			).put(
+				"value", keyValuePair.getKey()
+			).build();
 
 			list.add(option);
 		}
@@ -583,14 +588,16 @@ public class DDMFormFieldTemplateContextFactory {
 				parameterLocalizedValue.getString(_locale));
 		}
 
-		Map<String, Object> validation = new HashMap<>();
-
-		validation.put(
+		Map<String, Object> validation = HashMapBuilder.types(
+			String.class, Object.class
+		).put(
 			"dataType",
 			GetterUtil.getString(
 				changedProperties.get("validationDataType"),
-				MapUtil.getString(changedProperties, "dataType")));
-		validation.put("errorMessage", errorMessage);
+				MapUtil.getString(changedProperties, "dataType"))
+		).put(
+			"errorMessage", errorMessage
+		).build();
 
 		DDMFormFieldValidationExpression ddmFormFieldValidationExpression =
 			ddmFormFieldValidation.getDDMFormFieldValidationExpression();

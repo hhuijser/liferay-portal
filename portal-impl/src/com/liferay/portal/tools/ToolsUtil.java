@@ -712,9 +712,9 @@ public class ToolsUtil {
 
 		Pattern pattern1 = Pattern.compile(
 			StringBundler.concat(
-				"\n(.*)",
+				"\n(.*)(",
 				StringUtil.replace(packagePath, CharPool.PERIOD, "\\.\\s*"),
-				"\\.\\s*([A-Z]\\w+)\\W"));
+				"\\.\\s*)([A-Z]\\w+)\\W"));
 
 		outerLoop:
 		while (true) {
@@ -729,7 +729,7 @@ public class ToolsUtil {
 					continue;
 				}
 
-				String className = matcher1.group(2);
+				String className = matcher1.group(3);
 
 				Pattern pattern2 = Pattern.compile(
 					"import [\\w.]+\\." + className + ";");
@@ -741,7 +741,7 @@ public class ToolsUtil {
 				}
 
 				afterImportsContent = StringUtil.replaceFirst(
-					afterImportsContent, packagePath + ".", StringPool.BLANK,
+					afterImportsContent, matcher1.group(2), StringPool.BLANK,
 					matcher1.start());
 
 				continue outerLoop;

@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.portlet.PortletProvider;
 import com.liferay.portal.kernel.portlet.PortletProviderUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -37,7 +38,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.aui.AUIUtil;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -67,10 +67,11 @@ public class AssetTagsSelectorTag extends ComponentRendererTag {
 			List<String> tagNames = StringUtil.split(_getTagNames());
 
 			for (String tagName : tagNames) {
-				Map<String, String> item = new HashMap<>();
-
-				item.put("label", tagName);
-				item.put("value", tagName);
+				Map<String, String> item = HashMapBuilder.put(
+					"label", tagName
+				).put(
+					"value", tagName
+				).build();
 
 				selectedItems.add(item);
 			}

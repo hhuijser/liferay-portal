@@ -122,7 +122,8 @@ public abstract class BaseFieldType implements FieldType {
 
 		Map<String, Object> context = HashMapBuilder.put(
 			"dir",
-			LanguageUtil.get(httpServletRequest, LanguageConstants.KEY_DIR)
+			(Object)LanguageUtil.get(
+				httpServletRequest, LanguageConstants.KEY_DIR)
 		).put(
 			"fieldName", spiDataDefinitionField.getName()
 		).put(

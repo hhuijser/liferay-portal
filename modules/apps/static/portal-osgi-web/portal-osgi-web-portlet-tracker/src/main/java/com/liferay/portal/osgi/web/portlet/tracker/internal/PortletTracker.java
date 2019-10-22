@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -883,11 +884,10 @@ public class PortletTracker
 		ServiceReference<Portlet> serviceReference,
 		com.liferay.portal.kernel.model.Portlet portletModel) {
 
-		Map<String, Set<String>> portletModes = new HashMap<>();
-
-		portletModes.put(
+		Map<String, Set<String>> portletModes = HashMapBuilder.put(
 			ContentTypes.TEXT_HTML,
-			SetUtil.fromArray(new String[] {toLowerCase(PortletMode.VIEW)}));
+			SetUtil.fromArray(new String[] {toLowerCase(PortletMode.VIEW)})
+		).build();
 
 		List<String> portletModesStrings = StringPlus.asList(
 			serviceReference.getProperty("javax.portlet.portlet-mode"));
@@ -1121,9 +1121,7 @@ public class PortletTracker
 		ServiceReference<Portlet> serviceReference,
 		com.liferay.portal.kernel.model.Portlet portletModel) {
 
-		Map<String, Set<String>> windowStates = new HashMap<>();
-
-		windowStates.put(
+		Map<String, Set<String>> windowStates = HashMapBuilder.put(
 			ContentTypes.TEXT_HTML,
 			SetUtil.fromArray(
 				new String[] {
@@ -1132,7 +1130,8 @@ public class PortletTracker
 					toLowerCase(WindowState.MAXIMIZED),
 					toLowerCase(WindowState.MINIMIZED),
 					toLowerCase(WindowState.NORMAL)
-				}));
+				})
+		).build();
 
 		List<String> windowStatesStrings = StringPlus.asList(
 			serviceReference.getProperty("javax.portlet.window-state"));

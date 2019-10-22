@@ -23,9 +23,9 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -51,11 +51,10 @@ public class KeyValueDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
-		Map<String, Object> parameters = new HashMap<>();
-
-		parameters.put(
+		Map<String, Object> parameters = HashMapBuilder.put(
 			"autoFocus",
-			GetterUtil.getBoolean(ddmFormField.getProperty("autoFocus")));
+			GetterUtil.getBoolean(ddmFormField.getProperty("autoFocus"))
+		).build();
 
 		LocalizedValue placeholder = (LocalizedValue)ddmFormField.getProperty(
 			"placeholder");
@@ -64,14 +63,13 @@ public class KeyValueDDMFormFieldTemplateContextContributor
 
 		parameters.put("placeholder", getValueString(placeholder, locale));
 
-		Map<String, String> stringsMap = new HashMap<>();
-
-		stringsMap.put(
+		Map<String, String> stringsMap = HashMapBuilder.put(
 			"keyLabel",
 			LanguageUtil.get(
 				getDisplayLocale(
 					ddmFormFieldRenderingContext.getHttpServletRequest()),
-				"field-name"));
+				"field-name")
+		).build();
 
 		parameters.put("strings", stringsMap);
 

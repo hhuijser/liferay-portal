@@ -62,6 +62,7 @@ import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -267,10 +268,11 @@ public class EditAssetListDisplayContext {
 				List<Map<String, String>> selectedItems = new ArrayList<>();
 
 				for (String tagName : tagNames) {
-					Map<String, String> item = new HashMap<>();
-
-					item.put("label", tagName);
-					item.put("value", tagName);
+					Map<String, String> item = HashMapBuilder.put(
+						"label", tagName
+					).put(
+						"value", tagName
+					).build();
 
 					selectedItems.add(item);
 				}
@@ -640,12 +642,13 @@ public class EditAssetListDisplayContext {
 			assetBrowserURL.setWindowState(LiferayWindowState.POP_UP);
 
 			if (!curRendererFactory.isSupportsClassTypes()) {
-				Map<String, Object> data = new HashMap<>();
-
-				data.put("destroyOnHide", true);
-				data.put(
-					"groupid", String.valueOf(_themeDisplay.getScopeGroupId()));
-				data.put("href", assetBrowserURL.toString());
+				Map<String, Object> data = HashMapBuilder.put(
+					"destroyOnHide", true
+				).put(
+					"groupid", String.valueOf(_themeDisplay.getScopeGroupId())
+				).put(
+					"href", assetBrowserURL.toString()
+				).build();
 
 				String type = curRendererFactory.getTypeName(
 					_themeDisplay.getLocale());
@@ -671,11 +674,11 @@ public class EditAssetListDisplayContext {
 					_themeDisplay.getLocale());
 
 			for (ClassType assetAvailableClassType : assetAvailableClassTypes) {
-				Map<String, Object> data = new HashMap<>();
-
-				data.put("destroyOnHide", true);
-				data.put(
-					"groupid", String.valueOf(_themeDisplay.getScopeGroupId()));
+				Map<String, Object> data = HashMapBuilder.put(
+					"destroyOnHide", true
+				).put(
+					"groupid", String.valueOf(_themeDisplay.getScopeGroupId())
+				).build();
 
 				assetBrowserURL.setParameter(
 					"subtypeSelectionId",

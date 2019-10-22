@@ -153,7 +153,8 @@ public class AccountUserRetrieverImpl implements AccountUserRetriever {
 		searchContext.setAndSearch(andSearch);
 
 		Map<String, Serializable> attributes = HashMapBuilder.put(
-			"accountEntryIds", new long[] {accountEntry.getAccountEntryId()}
+			"accountEntryIds",
+			(Serializable)new long[] {accountEntry.getAccountEntryId()}
 		).put(
 			"city", keywords
 		).put(

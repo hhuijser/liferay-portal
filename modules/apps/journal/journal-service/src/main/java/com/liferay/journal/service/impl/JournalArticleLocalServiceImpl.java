@@ -139,6 +139,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.GroupSubscriptionCheckSubscriptionSender;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.ListUtil;
@@ -9104,11 +9105,9 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
-		Map<Locale, String> defaultFriendlyURLMap = new HashMap<>();
-
-		defaultFriendlyURLMap.put(defaultLocale, titleMap.get(defaultLocale));
-
-		return defaultFriendlyURLMap;
+		return HashMapBuilder.put(
+			defaultLocale, titleMap.get(defaultLocale)
+		).build();
 	}
 
 	private void _deleteDDMStructurePredefinedValues(

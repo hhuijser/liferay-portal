@@ -15,11 +15,11 @@
 package com.liferay.petra.encryptor;
 
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PropsKeys;
 
 import java.security.Key;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -33,10 +33,11 @@ public class EncryptorTest {
 
 	@Test
 	public void testKeySerialization() throws Exception {
-		Map<String, Object> properties = new HashMap<>();
-
-		properties.put(PropsKeys.COMPANY_ENCRYPTION_ALGORITHM, "AES");
-		properties.put(PropsKeys.COMPANY_ENCRYPTION_KEY_SIZE, "128");
+		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
+			PropsKeys.COMPANY_ENCRYPTION_ALGORITHM, "AES"
+		).put(
+			PropsKeys.COMPANY_ENCRYPTION_KEY_SIZE, "128"
+		).build();
 
 		PropsTestUtil.setProps(properties);
 

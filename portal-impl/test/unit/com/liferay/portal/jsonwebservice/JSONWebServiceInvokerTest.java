@@ -247,9 +247,9 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 
 		params.clear();
 
-		Map<String, Object> fooObj = new HashMap<>();
-
-		fooObj.put("name", "Jane Doe");
+		Map<String, Object> fooObj = HashMapBuilder.<String, Object>put(
+			"name", "Jane Doe"
+		).build();
 
 		params.put("fooData", fooObj);
 

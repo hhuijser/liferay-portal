@@ -666,11 +666,14 @@ public class AssetCategoryLocalServiceImpl
 
 		SearchContext searchContext = new SearchContext();
 
-		Map<String, Serializable> attributes = new HashMap<>();
-
-		attributes.put(Field.ASSET_PARENT_CATEGORY_IDS, parentCategoryIds);
-		attributes.put(Field.ASSET_VOCABULARY_IDS, vocabularyIds);
-		attributes.put(Field.TITLE, title);
+		Map<String, Serializable> attributes =
+			HashMapBuilder.<String, Serializable>put(
+				Field.ASSET_PARENT_CATEGORY_IDS, parentCategoryIds
+			).put(
+				Field.ASSET_VOCABULARY_IDS, vocabularyIds
+			).put(
+				Field.TITLE, title
+			).build();
 
 		searchContext.setAttributes(attributes);
 

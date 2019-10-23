@@ -57,7 +57,6 @@ import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -287,10 +286,11 @@ public class WabProcessorTest {
 
 			Parameters requirements = domain.getRequireCapability();
 
-			Map<String, Object> arguments = new HashMap<>();
-
-			arguments.put("osgi.extender", "osgi.cdi");
-			arguments.put("version", new Version(1));
+			Map<String, Object> arguments = HashMapBuilder.<String, Object>put(
+				"osgi.extender", "osgi.cdi"
+			).put(
+				"version", new Version(1)
+			).build();
 
 			for (Attrs attrs : requirements.values()) {
 				String filterString = attrs.get("filter:");
@@ -373,10 +373,11 @@ public class WabProcessorTest {
 
 			Parameters requirements = domain.getRequireCapability();
 
-			Map<String, Object> arguments = new HashMap<>();
-
-			arguments.put("osgi.extender", "osgi.cdi");
-			arguments.put("version", new Version(1));
+			Map<String, Object> arguments = HashMapBuilder.<String, Object>put(
+				"osgi.extender", "osgi.cdi"
+			).put(
+				"version", new Version(1)
+			).build();
 
 			Map.Entry<String, Attrs> entry = findRequirement(
 				requirements, "osgi.extender", arguments);
@@ -468,10 +469,11 @@ public class WabProcessorTest {
 
 			Parameters requirements = domain.getRequireCapability();
 
-			Map<String, Object> arguments = new HashMap<>();
-
-			arguments.put("osgi.extender", "osgi.cdi");
-			arguments.put("version", new Version(1));
+			Map<String, Object> arguments = HashMapBuilder.<String, Object>put(
+				"osgi.extender", "osgi.cdi"
+			).put(
+				"version", new Version(1)
+			).build();
 
 			Map.Entry<String, Attrs> entry = findRequirement(
 				requirements, "osgi.extender", arguments);

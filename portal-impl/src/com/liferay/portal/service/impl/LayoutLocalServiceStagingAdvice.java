@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntry;
 import com.liferay.portal.kernel.systemevent.SystemEventHierarchyEntryThreadLocal;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -710,10 +711,9 @@ public class LayoutLocalServiceStagingAdvice implements BeanFactoryAware {
 				if (Arrays.equals(
 						parameterTypes, _UPDATE_LAYOUT_PARAMETER_TYPES)) {
 
-					friendlyURLMap = new HashMap<>();
-
-					friendlyURLMap.put(
-						LocaleUtil.getSiteDefault(), (String)arguments[11]);
+					friendlyURLMap = HashMapBuilder.put(
+						LocaleUtil.getSiteDefault(), (String)arguments[11]
+					).build();
 				}
 				else {
 					friendlyURLMap = (Map<Locale, String>)arguments[11];

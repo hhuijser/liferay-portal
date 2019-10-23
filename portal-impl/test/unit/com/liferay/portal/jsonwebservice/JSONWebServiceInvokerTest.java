@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -646,9 +647,9 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 		params.put("longs", new long[] {1, 2, 3});
 		params.put("ints", new int[] {1, 2});
 
-		Map<String, Integer> map2 = new HashMap<>();
-
-		map2.put("key", Integer.valueOf(122));
+		Map<String, Integer> map2 = HashMapBuilder.put(
+			"key", Integer.valueOf(122)
+		).build();
 
 		params.put("map", map2);
 
@@ -676,9 +677,9 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 			"longArrays",
 			new long[][] {new long[] {1, 2, 3}, new long[] {8, 9}});
 
-		Map<String, String[]> names = new HashMap<>();
-
-		names.put("p1", new String[] {"one", "two"});
+		Map<String, String[]> names = HashMapBuilder.put(
+			"p1", new String[] {"one", "two"}
+		).build();
 
 		params.put("mapNames", names);
 

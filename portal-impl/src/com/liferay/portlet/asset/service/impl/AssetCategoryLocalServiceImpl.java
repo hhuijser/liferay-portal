@@ -47,6 +47,7 @@ import com.liferay.portal.kernel.service.permission.ModelPermissions;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -163,9 +164,9 @@ public class AssetCategoryLocalServiceImpl
 
 		titleMap.put(locale, title);
 
-		Map<Locale, String> descriptionMap = new HashMap<>();
-
-		descriptionMap.put(locale, StringPool.BLANK);
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
+			locale, StringPool.BLANK
+		).build();
 
 		return assetCategoryLocalService.addCategory(
 			userId, groupId, AssetCategoryConstants.DEFAULT_PARENT_CATEGORY_ID,

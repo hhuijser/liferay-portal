@@ -64,19 +64,13 @@ public class PropertiesDocBuilder {
 
 		File propertiesFile = new File(propertiesFileName);
 
-		Map<String, Object> context = new HashMap<>();
-
 		String title = GetterUtil.getString(arguments.get("properties.title"));
-
-		context.put("pageTitle", title);
 
 		int pos = propertiesFileName.lastIndexOf(StringPool.SLASH);
 
 		if (pos != -1) {
 			propertiesFileName = propertiesFileName.substring(pos + 1);
 		}
-
-		context.put("propertiesFileName", propertiesFileName);
 
 		List<PropertiesSection> propertiesSections = getPropertiesSections(
 			propertiesFile);
@@ -85,10 +79,13 @@ public class PropertiesDocBuilder {
 			return;
 		}
 
-		context.put("sections", propertiesSections);
-
 		boolean toc = GetterUtil.getBoolean(arguments.get("properties.toc"));
 
+		Map<String, Object> context = new HashMap<>();
+
+		context.put("pageTitle", title);
+		context.put("propertiesFileName", propertiesFileName);
+		context.put("sections", propertiesSections);
 		context.put("toc", toc);
 
 		try {

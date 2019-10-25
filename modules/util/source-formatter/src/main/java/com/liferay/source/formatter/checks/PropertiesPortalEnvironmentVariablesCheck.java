@@ -160,7 +160,7 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 
 		while (matcher.find()) {
 			String sameProperties = content.substring(
-				matcher.start(1), matcher.end() - 1);
+				matcher.start(1), matcher.end());
 
 			if (sameProperties.startsWith(
 					StringPool.FOUR_SPACES + "include-and-override")) {

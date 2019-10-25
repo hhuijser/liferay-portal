@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -51,6 +52,8 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 
 			return content;
 		}
+
+		content = _sortSameProperties(content);
 
 		return _formatPortalProperties(content);
 	}
@@ -152,6 +155,37 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 		return environmentVariables;
 	}
 
+	private String _sortSameProperties(String content) {
+		Matcher matcher = _samePropertyNamesPattern.matcher(content);
+
+		while (matcher.find()) {
+			String sameProperties = content.substring(
+				matcher.start(1), matcher.end() - 1);
+
+			String[] lines = sameProperties.split("\n");
+
+			Arrays.sort(lines);
+
+			StringBundler sb = new StringBundler();
+
+			for (String line : lines) {
+				sb.append(line);
+				sb.append("\n");
+			}
+
+			String newContent = sb.toString();
+
+			if (newContent.endsWith("\n")) {
+				newContent = newContent.substring(0, newContent.length() - 1);
+			}
+
+			return StringUtil.replaceFirst(
+				content, sameProperties, newContent, matcher.start());
+		}
+
+		return content;
+	}
+
 	private static final String _ENV_OVERRIDE_PREFIX = "LIFERAY_";
 
 	private static final Map<Character, String> _charPoolChars =
@@ -177,5 +211,7 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 
 	private static final Pattern _pattern = Pattern.compile(
 		"\n((    #( .*)?\n)*)((    ( |#?\\w).*\n)+)");
+	private static final Pattern _samePropertyNamesPattern = Pattern.compile(
+		"\n(    )#?([^=]+=).*(\n\\1#?\\2.*)+");
 
 }

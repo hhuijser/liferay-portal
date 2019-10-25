@@ -185,8 +185,10 @@ public class PropertiesPortalEnvironmentVariablesCheck extends BaseFileCheck {
 				newContent = newContent.substring(0, newContent.length() - 1);
 			}
 
-			return StringUtil.replaceFirst(
-				content, sameProperties, newContent, matcher.start());
+			if (!sameProperties.equals(newContent)) {
+				return StringUtil.replaceFirst(
+					content, sameProperties, newContent, matcher.start());
+			}
 		}
 
 		return content;

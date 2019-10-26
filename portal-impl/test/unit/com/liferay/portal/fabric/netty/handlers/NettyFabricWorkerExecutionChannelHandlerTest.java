@@ -82,7 +82,6 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -449,16 +448,23 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path runtimePath3 = Paths.get("runtimePath3");
 		Path mappedRuntimePath3 = Paths.get("mappedRuntimePath3");
 
-		final Map<Path, Path> mergedPaths = new HashMap<>();
-
-		mergedPaths.put(bootstrapPath1, mappedBootstrapPath1);
-		mergedPaths.put(bootstrapPath2, mappedBootstrapPath2);
-		mergedPaths.put(bootstrapPath3, mappedBootstrapPath3);
-		mergedPaths.put(inputPath1, mappedInputPath1);
-		mergedPaths.put(inputPath2, mappedInputPath2);
-		mergedPaths.put(runtimePath1, mappedRuntimePath1);
-		mergedPaths.put(runtimePath2, mappedRuntimePath2);
-		mergedPaths.put(runtimePath3, mappedRuntimePath3);
+		final Map<Path, Path> mergedPaths = HashMapBuilder.put(
+			bootstrapPath1, mappedBootstrapPath1
+		).put(
+			bootstrapPath2, mappedBootstrapPath2
+		).put(
+			bootstrapPath3, mappedBootstrapPath3
+		).put(
+			inputPath1, mappedInputPath1
+		).put(
+			inputPath2, mappedInputPath2
+		).put(
+			runtimePath1, mappedRuntimePath1
+		).put(
+			runtimePath2, mappedRuntimePath2
+		).put(
+			runtimePath3, mappedRuntimePath3
+		).build();
 
 		NettyFabricWorkerExecutionChannelHandler
 			nettyFabricWorkerExecutionChannelHandler =
@@ -544,9 +550,9 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path bootstrapPath1 = Paths.get("bootstrapPath1");
 		Path mappedBootstrapPath1 = Paths.get("mappedBootstrapPath1");
 
-		final Map<Path, Path> mergedPaths = new HashMap<>();
-
-		mergedPaths.put(bootstrapPath1, mappedBootstrapPath1);
+		final Map<Path, Path> mergedPaths = HashMapBuilder.put(
+			bootstrapPath1, mappedBootstrapPath1
+		).build();
 
 		NettyFabricWorkerExecutionChannelHandler
 			nettyFabricWorkerExecutionChannelHandler =
@@ -675,9 +681,9 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path inputPath1 = Paths.get("inputPaths1");
 		Path mappedInputPath1 = Paths.get("mappedInputPath1");
 
-		final Map<Path, Path> mergedPaths = new HashMap<>();
-
-		mergedPaths.put(inputPath1, mappedInputPath1);
+		final Map<Path, Path> mergedPaths = HashMapBuilder.put(
+			inputPath1, mappedInputPath1
+		).build();
 
 		NettyFabricWorkerExecutionChannelHandler
 			nettyFabricWorkerExecutionChannelHandler =
@@ -752,10 +758,11 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path runtimePath3 = Paths.get("runtimePath3");
 		Path mappedRuntimePath3 = Paths.get("mappedRuntimePath3");
 
-		final Map<Path, Path> mergedPaths = new HashMap<>();
-
-		mergedPaths.put(runtimePath1, mappedRuntimePath1);
-		mergedPaths.put(runtimePath3, mappedRuntimePath3);
+		final Map<Path, Path> mergedPaths = HashMapBuilder.put(
+			runtimePath1, mappedRuntimePath1
+		).put(
+			runtimePath3, mappedRuntimePath3
+		).build();
 
 		NettyFabricWorkerExecutionChannelHandler
 			nettyFabricWorkerExecutionChannelHandler =

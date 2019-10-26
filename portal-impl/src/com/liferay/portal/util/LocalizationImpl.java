@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
 import com.liferay.portal.kernel.settings.LocalizedValuesMap;
 import com.liferay.portal.kernel.settings.Settings;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Localization;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -534,14 +535,14 @@ public class LocalizationImpl implements Localization {
 			return null;
 		}
 
-		Map<Locale, String> map = new HashMap<>();
-
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
 		String defaultValue = _getLocalization(
 			bundleName, defaultLocale, classLoader, key, key);
 
-		map.put(defaultLocale, defaultValue);
+		Map<Locale, String> map = HashMapBuilder.put(
+			defaultLocale, defaultValue
+		).build();
 
 		Set<Locale> locales = null;
 

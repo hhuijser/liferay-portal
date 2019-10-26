@@ -101,10 +101,11 @@ public class EditSegmentsEntryDisplayContext {
 			return _data;
 		}
 
-		_data = new HashMap<>();
-
-		_data.put("context", getContext());
-		_data.put("props", getProps());
+		_data = HashMapBuilder.<String, Object>put(
+			"context", getContext()
+		).put(
+			"props", getProps()
+		).build();
 
 		return _data;
 	}

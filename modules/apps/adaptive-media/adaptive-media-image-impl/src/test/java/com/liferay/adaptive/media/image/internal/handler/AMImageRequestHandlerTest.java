@@ -352,11 +352,13 @@ public class AMImageRequestHandlerTest {
 
 		String uuid = "testUuid" + Math.random();
 
-		final Map<String, String> properties = new HashMap<>();
-
-		properties.put("configuration-uuid", uuid);
-		properties.put("max-height", String.valueOf(height));
-		properties.put("max-width", String.valueOf(width));
+		final Map<String, String> properties = HashMapBuilder.put(
+			"configuration-uuid", uuid
+		).put(
+			"max-height", String.valueOf(height)
+		).put(
+			"max-width", String.valueOf(width)
+		).build();
 
 		AMImageConfigurationEntryImpl amImageConfigurationEntryImpl =
 			new AMImageConfigurationEntryImpl(uuid, uuid, properties);

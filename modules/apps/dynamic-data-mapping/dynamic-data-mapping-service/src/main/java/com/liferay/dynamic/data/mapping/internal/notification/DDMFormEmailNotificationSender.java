@@ -426,14 +426,13 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = new HashMap<>();
-
-		params.put(
+		return HashMapBuilder.put(
 			portletNamespace.concat("mvcPath"),
-			new String[] {"/admin/view_form_instance_records.jsp"});
-		params.put(
+			new String[] {"/admin/view_form_instance_records.jsp"}
+		).put(
 			portletNamespace.concat("formInstanceId"),
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())});
+			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
+		).build();
 
 		return _portal.getSiteAdminURL(
 			themeDisplay, DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,
@@ -449,19 +448,18 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = new HashMap<>();
-
-		params.put(
+		return HashMapBuilder.put(
 			portletNamespace.concat("mvcPath"),
-			new String[] {"/admin/view_form_instance_record.jsp"});
-		params.put(
+			new String[] {"/admin/view_form_instance_record.jsp"}
+		).put(
 			portletNamespace.concat("formInstanceRecordId"),
 			new String[] {
 				String.valueOf(ddmFormInstanceRecord.getFormInstanceRecordId())
-			});
-		params.put(
+			}
+		).put(
 			portletNamespace.concat("formInstanceId"),
-			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())});
+			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
+		).build();
 
 		return _portal.getSiteAdminURL(
 			themeDisplay, DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN,

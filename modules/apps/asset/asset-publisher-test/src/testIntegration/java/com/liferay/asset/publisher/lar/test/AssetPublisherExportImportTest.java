@@ -133,10 +133,10 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testAnyDLFileEntryType() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long dlFileEntryClassNameId = PortalUtil.getClassNameId(
 			DLFileEntry.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -165,10 +165,10 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testAnyJournalStructure() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -232,9 +232,9 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testChildLayoutScopeIds() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		Group childGroup = GroupTestUtil.addGroup(group.getGroupId());
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"scopeIds",
@@ -261,9 +261,9 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testDisplayStyle() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		String displayStyle = RandomTestUtil.randomString();
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put("displayStyle", new String[] {displayStyle});
 
@@ -377,10 +377,10 @@ public class AssetPublisherExportImportTest
 
 		expectedAssetEntries.add(getAssetEntry(journalArticle));
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -426,10 +426,10 @@ public class AssetPublisherExportImportTest
 	public void testDynamicExportImportOtherClassNameFiltering()
 		throws Exception {
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long dlFileEntryClassNameId = PortalUtil.getClassNameId(
 			DLFileEntry.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -502,12 +502,12 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testGlobalScopeId() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		Company company = CompanyLocalServiceUtil.getCompany(
 			layout.getCompanyId());
 
 		Group companyGroup = company.getGroup();
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"scopeIds",
@@ -528,9 +528,9 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testLayoutScopeId() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		GroupTestUtil.addGroup(TestPropsValues.getUserId(), layout);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"scopeIds",
@@ -551,9 +551,9 @@ public class AssetPublisherExportImportTest
 
 	@Test
 	public void testLegacyLayoutScopeId() throws Exception {
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		GroupTestUtil.addGroup(TestPropsValues.getUserId(), layout);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"scopeIds",
@@ -596,10 +596,10 @@ public class AssetPublisherExportImportTest
 			importedGroup.getGroupId(), importedDDMStructure.getStructureId(),
 			serviceContext);
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long dlFileEntryClassNameId = PortalUtil.getClassNameId(
 			DLFileEntry.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -653,10 +653,10 @@ public class AssetPublisherExportImportTest
 			importedGroup.getGroupId(), JournalArticle.class.getName(), 0,
 			ddmStructure.getDDMForm(), LocaleUtil.getDefault(), serviceContext);
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -739,10 +739,10 @@ public class AssetPublisherExportImportTest
 			importedGroup.getGroupId(), importedDDMStructure2.getStructureId(),
 			serviceContext);
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long dlFileEntryClassNameId = PortalUtil.getClassNameId(
 			DLFileEntry.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -795,10 +795,10 @@ public class AssetPublisherExportImportTest
 			ddmStructure1.getDDMForm(), LocaleUtil.getDefault(),
 			serviceContext);
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		long journalArticleClassNameId = PortalUtil.getClassNameId(
 			JournalArticle.class);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"anyAssetType",
@@ -835,11 +835,11 @@ public class AssetPublisherExportImportTest
 
 		GroupTestUtil.addGroup(TestPropsValues.getUserId(), secondLayout);
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		GroupTestUtil.addGroup(TestPropsValues.getUserId(), layout);
 
 		Group companyGroup = company.getGroup();
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"scopeIds",
@@ -884,9 +884,9 @@ public class AssetPublisherExportImportTest
 
 		GroupTestUtil.addGroup(TestPropsValues.getUserId(), secondLayout);
 
-		Map<String, String[]> preferenceMap = new HashMap<>();
-
 		GroupTestUtil.addGroup(TestPropsValues.getUserId(), layout);
+
+		Map<String, String[]> preferenceMap = new HashMap<>();
 
 		preferenceMap.put(
 			"scopeIds",

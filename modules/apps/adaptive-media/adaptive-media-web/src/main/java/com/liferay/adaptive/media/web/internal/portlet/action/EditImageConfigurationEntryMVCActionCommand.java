@@ -68,7 +68,6 @@ public class EditImageConfigurationEntryMVCActionCommand
 		String name = ParamUtil.getString(actionRequest, "name");
 		String description = ParamUtil.getString(actionRequest, "description");
 		String uuid = ParamUtil.getString(actionRequest, "uuid");
-
 		String maxHeight = ParamUtil.getString(actionRequest, "maxHeight");
 		String maxWidth = ParamUtil.getString(actionRequest, "maxWidth");
 

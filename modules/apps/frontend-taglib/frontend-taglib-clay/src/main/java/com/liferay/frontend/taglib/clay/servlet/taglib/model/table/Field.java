@@ -80,7 +80,6 @@ public class Field {
 		).put(
 			"contentRendererMap", _contentRendererMap
 		).build();
-
 		map.putAll(_customProperties);
 		map.put("fieldName", _fieldName);
 		map.put("fieldsMap", _fieldsMap);

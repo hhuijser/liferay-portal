@@ -81,7 +81,6 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 		long groupId = ParamUtil.getLong(actionRequest, "groupId");
 		boolean privateLayout = ParamUtil.getBoolean(
 			actionRequest, "privateLayout");
-
 		String name = ParamUtil.getString(actionRequest, "name");
 
 		Map<Locale, String> nameMap = HashMapBuilder.put(

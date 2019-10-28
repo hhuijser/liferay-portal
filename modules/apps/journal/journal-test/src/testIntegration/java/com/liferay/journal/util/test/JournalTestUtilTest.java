@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.test.util.CompanyTestUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.xml.Document;
@@ -49,6 +48,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.lang.reflect.Method;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -196,11 +196,10 @@ public class JournalTestUtilTest {
 
 	@Test
 	public void testAddDynamicContent() throws Exception {
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.BRAZIL, "Joe Bloggs"
-		).put(
-			LocaleUtil.US, "Joe Bloggs"
-		).build();
+		Map<Locale, String> contents = new HashMap<>();
+
+		contents.put(LocaleUtil.BRAZIL, "Joe Bloggs");
+		contents.put(LocaleUtil.US, "Joe Bloggs");
 
 		String xml = DDMStructureTestUtil.getSampleStructuredContent(
 			contents, LanguageUtil.getLanguageId(LocaleUtil.US));
@@ -289,9 +288,9 @@ public class JournalTestUtilTest {
 		JournalArticle article = JournalTestUtil.addArticle(
 			_group.getGroupId(), "Test Article", "This is a test article.");
 
-		Map<Locale, String> contents = HashMapBuilder.put(
-			LocaleUtil.US, "This is an updated test article."
-		).build();
+		Map<Locale, String> contents = new HashMap<>();
+
+		contents.put(LocaleUtil.US, "This is an updated test article.");
 
 		String defaultLanguageId = LanguageUtil.getLanguageId(
 			LocaleUtil.getSiteDefault());

@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -56,6 +55,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -602,11 +602,10 @@ public class AMImageEntryLocalServiceTest {
 			long companyId, String uuid, int maxHeight, int maxWidth)
 		throws IOException, PortalException {
 
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", String.valueOf(maxHeight)
-		).put(
-			"max-width", String.valueOf(maxWidth)
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-height", String.valueOf(maxHeight));
+		properties.put("max-width", String.valueOf(maxWidth));
 
 		return _amImageConfigurationHelper.addAMImageConfigurationEntry(
 			companyId, RandomTestUtil.randomString(),

@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -237,9 +236,9 @@ public class FriendlyURLServletTest {
 
 		nameMap.put(locale, "careers");
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
-			locale, "/careers"
-		).build();
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
+
+		friendlyURLMap.put(locale, "/careers");
 
 		Layout careerLayout = LayoutTestUtil.addLayout(
 			groupId, false, nameMap, friendlyURLMap);

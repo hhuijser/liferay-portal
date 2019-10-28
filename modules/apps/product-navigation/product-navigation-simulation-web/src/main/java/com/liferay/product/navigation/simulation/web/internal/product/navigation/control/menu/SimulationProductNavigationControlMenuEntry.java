@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.portlet.PortletURLFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Html;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -216,9 +215,9 @@ public class SimulationProductNavigationControlMenuEntry
 
 	private void _processBodyBottomTagBody(PageContext pageContext) {
 		try {
-			Map<String, String> values = HashMapBuilder.put(
-				"portletNamespace", _portletNamespace
-			).build();
+			Map<String, String> values = new HashMap<>();
+
+			values.put("portletNamespace", _portletNamespace);
 
 			MessageTag messageTag = new MessageTag();
 

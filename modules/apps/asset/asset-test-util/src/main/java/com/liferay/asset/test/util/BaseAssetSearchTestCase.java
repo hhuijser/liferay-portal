@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -58,6 +57,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -1002,11 +1002,10 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> titleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), defaultTitles[i]
-			).put(
-				LocaleUtil.FRANCE, frenchTitles[i]
-			).build();
+			Map<Locale, String> titleMap = new HashMap<>();
+
+			titleMap.put(LocaleUtil.getDefault(), defaultTitles[i]);
+			titleMap.put(LocaleUtil.FRANCE, frenchTitles[i]);
 
 			titleMaps.add(titleMap);
 		}
@@ -1022,9 +1021,9 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> orderedTitleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultOrderedTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), defaultOrderedTitles[i]
-			).build();
+			Map<Locale, String> titleMap = new HashMap<>();
+
+			titleMap.put(LocaleUtil.getDefault(), defaultOrderedTitles[i]);
 
 			String orderedTitle = frenchOrderedTitles[i];
 
@@ -1059,11 +1058,10 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> titleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), defaultTitles[i]
-			).put(
-				LocaleUtil.FRANCE, frenchTitles[i]
-			).build();
+			Map<Locale, String> titleMap = new HashMap<>();
+
+			titleMap.put(LocaleUtil.getDefault(), defaultTitles[i]);
+			titleMap.put(LocaleUtil.FRANCE, frenchTitles[i]);
 
 			titleMaps.add(titleMap);
 		}
@@ -1079,9 +1077,9 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> orderedTitleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultOrderedTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), defaultOrderedTitles[i]
-			).build();
+			Map<Locale, String> titleMap = new HashMap<>();
+
+			titleMap.put(LocaleUtil.getDefault(), defaultOrderedTitles[i]);
 
 			String orderedTitle = frenchOrderedTitles[i];
 

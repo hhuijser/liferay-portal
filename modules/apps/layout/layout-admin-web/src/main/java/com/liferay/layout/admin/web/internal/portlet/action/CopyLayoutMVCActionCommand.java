@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.upload.UploadPortletRequest;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -83,9 +82,9 @@ public class CopyLayoutMVCActionCommand extends BaseMVCActionCommand {
 			actionRequest, "privateLayout");
 		String name = ParamUtil.getString(actionRequest, "name");
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			themeDisplay.getLocale(), name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(themeDisplay.getLocale(), name);
 
 		if (!Objects.equals(
 				themeDisplay.getLocale(), LocaleUtil.getSiteDefault())) {

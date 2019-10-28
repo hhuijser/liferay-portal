@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.model.LayoutSetPrototype;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -38,6 +37,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.Serializable;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -113,29 +113,31 @@ public class LARImporter extends BaseImporter {
 	}
 
 	protected Map<String, String[]> getParameterMap() {
-		Map<String, String[]> parameters = HashMapBuilder.put(
+		Map<String, String[]> parameters = new HashMap<>();
+
+		parameters.put(
 			PortletDataHandlerKeys.DELETE_MISSING_LAYOUTS,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameters.put(
 			PortletDataHandlerKeys.DELETE_PORTLET_DATA,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameters.put(
 			PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_LINK_ENABLED,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameters.put(
 			PortletDataHandlerKeys.LAYOUT_SET_PROTOTYPE_SETTINGS,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameters.put(
 			PortletDataHandlerKeys.LAYOUT_SET_SETTINGS,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameters.put(
 			PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE,
 			new String[] {
 				PortletDataHandlerKeys.LAYOUTS_IMPORT_MODE_MERGE_BY_LAYOUT_UUID
-			}
-		).put(
-			PortletDataHandlerKeys.LOGO, new String[] {Boolean.TRUE.toString()}
-		).build();
+			});
+		parameters.put(
+			PortletDataHandlerKeys.LOGO,
+			new String[] {Boolean.TRUE.toString()});
 
 		if (!targetClassName.equals(LayoutSetPrototype.class.getName())) {
 			parameters.put(

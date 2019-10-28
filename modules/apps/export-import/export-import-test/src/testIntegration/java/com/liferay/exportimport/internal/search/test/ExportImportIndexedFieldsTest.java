@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.search.test.util.FieldValuesAssert;
 import com.liferay.portal.search.test.util.IndexedFieldsFixture;
@@ -142,48 +141,48 @@ public class ExportImportIndexedFieldsTest {
 	private Map<String, String> _expectedFieldValues(
 		ExportImportConfiguration exportImportConfiguration) {
 
-		Map<String, String> map = HashMapBuilder.put(
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
 			Field.COMPANY_ID,
-			String.valueOf(exportImportConfiguration.getCompanyId())
-		).put(
-			Field.DESCRIPTION, exportImportConfiguration.getDescription()
-		).put(
-			Field.ENTRY_CLASS_NAME, ExportImportConfiguration.class.getName()
-		).put(
+			String.valueOf(exportImportConfiguration.getCompanyId()));
+		map.put(Field.DESCRIPTION, exportImportConfiguration.getDescription());
+		map.put(
+			Field.ENTRY_CLASS_NAME, ExportImportConfiguration.class.getName());
+		map.put(
 			Field.ENTRY_CLASS_PK,
 			String.valueOf(
-				exportImportConfiguration.getExportImportConfigurationId())
-		).put(
+				exportImportConfiguration.getExportImportConfigurationId()));
+		map.put(
 			Field.GROUP_ID,
-			String.valueOf(exportImportConfiguration.getGroupId())
-		).put(
-			Field.NAME, exportImportConfiguration.getName()
-		).put(
+			String.valueOf(exportImportConfiguration.getGroupId()));
+		map.put(Field.NAME, exportImportConfiguration.getName());
+		map.put(
 			Field.SCOPE_GROUP_ID,
-			String.valueOf(exportImportConfiguration.getGroupId())
-		).put(
-			Field.STAGING_GROUP, String.valueOf(_group.isStagingGroup())
-		).put(
-			Field.STATUS, String.valueOf(exportImportConfiguration.getStatus())
-		).put(
-			Field.TYPE, String.valueOf(exportImportConfiguration.getType())
-		).put(
-			Field.USER_ID, String.valueOf(exportImportConfiguration.getUserId())
-		).put(
+			String.valueOf(exportImportConfiguration.getGroupId()));
+		map.put(Field.STAGING_GROUP, String.valueOf(_group.isStagingGroup()));
+		map.put(
+			Field.STATUS,
+			String.valueOf(exportImportConfiguration.getStatus()));
+		map.put(
+			Field.TYPE, String.valueOf(exportImportConfiguration.getType()));
+		map.put(
+			Field.USER_ID,
+			String.valueOf(exportImportConfiguration.getUserId()));
+		map.put(
 			Field.USER_NAME,
-			StringUtil.lowerCase(exportImportConfiguration.getUserName())
-		).put(
+			StringUtil.lowerCase(exportImportConfiguration.getUserName()));
+		map.put(
 			"exportImportConfigurationId",
 			String.valueOf(
-				exportImportConfiguration.getExportImportConfigurationId())
-		).put(
+				exportImportConfiguration.getExportImportConfigurationId()));
+		map.put(
 			"exportImportConfigurationId_sortable",
 			String.valueOf(
-				exportImportConfiguration.getExportImportConfigurationId())
-		).put(
+				exportImportConfiguration.getExportImportConfigurationId()));
+		map.put(
 			"name_sortable",
-			StringUtil.lowerCase(exportImportConfiguration.getName())
-		).build();
+			StringUtil.lowerCase(exportImportConfiguration.getName()));
 
 		Map<String, Serializable> setttingMap =
 			exportImportConfiguration.getSettingsMap();

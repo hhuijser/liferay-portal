@@ -78,7 +78,6 @@ import com.liferay.portal.kernel.util.Digester;
 import com.liferay.portal.kernel.util.DigesterUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LongWrapper;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -269,9 +268,10 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		boolean importCurPortletData = getImportPortletData(
 			companyId, portletId, parameterMap, portletDataElement);
 
-		Map<String, Boolean> importPortletControlsMap = HashMapBuilder.put(
-			PortletDataHandlerKeys.PORTLET_DATA, importCurPortletData
-		).build();
+		Map<String, Boolean> importPortletControlsMap = new HashMap<>();
+
+		importPortletControlsMap.put(
+			PortletDataHandlerKeys.PORTLET_DATA, importCurPortletData);
 
 		importPortletControlsMap.putAll(
 			getImportPortletSetupControlsMap(
@@ -1469,17 +1469,20 @@ public class ExportImportHelperImpl implements ExportImportHelper {
 		boolean portletArchivedSetups, boolean portletConfiguration,
 		boolean portletSetup, boolean portletUserPreferences) {
 
-		return HashMapBuilder.put(
+		Map<String, Boolean> portletSetupControlsMap = new HashMap<>();
+
+		portletSetupControlsMap.put(
 			PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS,
-			portletArchivedSetups
-		).put(
-			PortletDataHandlerKeys.PORTLET_CONFIGURATION, portletConfiguration
-		).put(
-			PortletDataHandlerKeys.PORTLET_SETUP, portletSetup
-		).put(
+			portletArchivedSetups);
+		portletSetupControlsMap.put(
+			PortletDataHandlerKeys.PORTLET_CONFIGURATION, portletConfiguration);
+		portletSetupControlsMap.put(
+			PortletDataHandlerKeys.PORTLET_SETUP, portletSetup);
+		portletSetupControlsMap.put(
 			PortletDataHandlerKeys.PORTLET_USER_PREFERENCES,
-			portletUserPreferences
-		).build();
+			portletUserPreferences);
+
+		return portletSetupControlsMap;
 	}
 
 	private Map<String, Boolean> _createRootPortletSetupControlsMap(

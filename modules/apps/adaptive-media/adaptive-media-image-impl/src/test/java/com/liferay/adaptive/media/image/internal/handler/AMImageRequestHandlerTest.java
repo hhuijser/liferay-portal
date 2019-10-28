@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.InputStream;
 
@@ -384,9 +383,10 @@ public class AMImageRequestHandlerTest {
 			"pathInfo"
 		);
 
-		Map<String, String> pathProperties = HashMapBuilder.put(
-			"configuration-uuid", amImageConfigurationEntry.getUUID()
-		).build();
+		Map<String, String> pathProperties = new HashMap<>();
+
+		pathProperties.put(
+			"configuration-uuid", amImageConfigurationEntry.getUUID());
 
 		Mockito.when(
 			_pathInterpreter.interpretPath(httpServletRequest.getPathInfo())

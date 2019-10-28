@@ -34,11 +34,11 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.service.test.ServiceTestUtil;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -118,14 +118,15 @@ public abstract class BasePrototypePropagationTestCase {
 			String columnId)
 		throws Exception {
 
-		Map<String, String[]> parameterMap = HashMapBuilder.put(
-			"articleId", new String[] {journalArticle.getArticleId()}
-		).put(
+		Map<String, String[]> parameterMap = new HashMap<>();
+
+		parameterMap.put(
+			"articleId", new String[] {journalArticle.getArticleId()});
+		parameterMap.put(
 			"groupId",
-			new String[] {String.valueOf(journalArticle.getGroupId())}
-		).put(
-			"showAvailableLocales", new String[] {Boolean.TRUE.toString()}
-		).build();
+			new String[] {String.valueOf(journalArticle.getGroupId())});
+		parameterMap.put(
+			"showAvailableLocales", new String[] {Boolean.TRUE.toString()});
 
 		return LayoutTestUtil.addPortletToLayout(
 			userId, layout, JournalContentPortletKeys.JOURNAL_CONTENT, columnId,
@@ -214,11 +215,11 @@ public abstract class BasePrototypePropagationTestCase {
 
 		MergeLayoutPrototypesThreadLocal.clearMergeComplete();
 
-		Map<String, String> portletPreferencesMap = HashMapBuilder.put(
-			"articleId", StringPool.BLANK
-		).put(
-			"showAvailableLocales", Boolean.FALSE.toString()
-		).build();
+		Map<String, String> portletPreferencesMap = new HashMap<>();
+
+		portletPreferencesMap.put("articleId", StringPool.BLANK);
+		portletPreferencesMap.put(
+			"showAvailableLocales", Boolean.FALSE.toString());
 
 		if (globalScope) {
 			portletPreferencesMap.put("groupId", String.valueOf(globalGroupId));

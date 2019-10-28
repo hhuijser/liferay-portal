@@ -67,7 +67,6 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -203,12 +202,13 @@ public class AssetPublisherExportImportTest
 		AssetCategory assetCategory = AssetTestUtil.addCategory(
 			group.getGroupId(), assetVocabulary.getVocabularyId());
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"queryName0", new String[] {"assetCategories"}
-		).put(
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put("queryName0", new String[] {"assetCategories"});
+
+		preferenceMap.put(
 			"queryValues0",
-			new String[] {String.valueOf(assetCategory.getCategoryId())}
-		).build();
+			new String[] {String.valueOf(assetCategory.getCategoryId())});
 
 		PortletPreferences portletPreferences = getImportedPortletPreferences(
 			preferenceMap);
@@ -297,14 +297,13 @@ public class AssetPublisherExportImportTest
 		List<AssetEntry> expectedAssetEntries = addAssetEntries(
 			group, 2, new ArrayList<AssetEntry>(), serviceContext);
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"queryContains0", new String[] {"true"}
-		).put(
-			"queryName0", new String[] {"assetCategories"}
-		).put(
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put("queryContains0", new String[] {"true"});
+		preferenceMap.put("queryName0", new String[] {"assetCategories"});
+		preferenceMap.put(
 			"queryValues0",
-			new String[] {String.valueOf(assetCategory.getCategoryId())}
-		).build();
+			new String[] {String.valueOf(assetCategory.getCategoryId())});
 
 		testDynamicExportImport(preferenceMap, expectedAssetEntries, true);
 	}
@@ -321,11 +320,11 @@ public class AssetPublisherExportImportTest
 		List<AssetEntry> expectedAssetEntries = addAssetEntries(
 			group, 2, new ArrayList<AssetEntry>(), serviceContext);
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"queryContains0", new String[] {Boolean.TRUE.toString()}
-		).put(
-			"queryValues0", new String[] {assetTag.getName()}
-		).build();
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put(
+			"queryContains0", new String[] {Boolean.TRUE.toString()});
+		preferenceMap.put("queryValues0", new String[] {assetTag.getName()});
 
 		testDynamicExportImport(preferenceMap, expectedAssetEntries, true);
 	}
@@ -358,10 +357,11 @@ public class AssetPublisherExportImportTest
 		expectedAssetEntries = addAssetEntries(
 			group, 1, expectedAssetEntries, serviceContext);
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put(
 			"assetVocabularyId",
-			new String[] {String.valueOf(assetVocabulary.getVocabularyId())}
-		).build();
+			new String[] {String.valueOf(assetVocabulary.getVocabularyId())});
 
 		testDynamicExportImport(preferenceMap, expectedAssetEntries, true);
 	}
@@ -399,13 +399,14 @@ public class AssetPublisherExportImportTest
 	public void testDynamicExportImportLayoutFiltering() throws Exception {
 		List<AssetEntry> expectedAssetEntries = new ArrayList<>();
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> titleMap = new HashMap<>();
 
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString(100)
-		).build();
+		titleMap.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
+
+		Map<Locale, String> contentMap = new HashMap<>();
+
+		contentMap.put(
+			LocaleUtil.getDefault(), RandomTestUtil.randomString(100));
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			group.getGroupId(), JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
@@ -415,9 +416,10 @@ public class AssetPublisherExportImportTest
 
 		expectedAssetEntries.add(getAssetEntry(journalArticle));
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"showOnlyLayoutAssets", new String[] {Boolean.TRUE.toString()}
-		).build();
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put(
+			"showOnlyLayoutAssets", new String[] {Boolean.TRUE.toString()});
 
 		testDynamicExportImport(preferenceMap, expectedAssetEntries, true);
 	}
@@ -1046,19 +1048,22 @@ public class AssetPublisherExportImportTest
 
 	@Override
 	protected Map<String, String[]> getExportParameterMap() throws Exception {
-		return HashMapBuilder.put(
+		Map<String, String[]> parameterMap = new HashMap<>();
+
+		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_CONFIGURATION,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_DATA,
-			new String[] {Boolean.TRUE.toString()}
-		).put(
+			new String[] {Boolean.TRUE.toString()});
+		parameterMap.put(
 			PortletDataHandlerKeys.PORTLET_SETUP_ALL,
-			new String[] {Boolean.TRUE.toString()}
-		).build();
+			new String[] {Boolean.TRUE.toString()});
+
+		return parameterMap;
 	}
 
 	protected long[] getGroupIdsFromScopeIds(String[] scopeIds, Layout layout)
@@ -1167,11 +1172,10 @@ public class AssetPublisherExportImportTest
 			scopeIds = ArrayUtil.append(scopeIds, scopeId);
 		}
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
-			"assetEntryXml", getAssetEntriesXmls(assetEntries)
-		).put(
-			"scopeIds", scopeIds
-		).build();
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put("assetEntryXml", getAssetEntriesXmls(assetEntries));
+		preferenceMap.put("scopeIds", scopeIds);
 
 		PortletPreferences importedPortletPreferences =
 			getImportedPortletPreferences(preferenceMap);
@@ -1208,10 +1212,11 @@ public class AssetPublisherExportImportTest
 				RandomTestUtil.randomString(),
 				ServiceContextTestUtil.getServiceContext(groupId));
 
-		Map<String, String[]> preferenceMap = HashMapBuilder.put(
+		Map<String, String[]> preferenceMap = new HashMap<>();
+
+		preferenceMap.put(
 			"assetVocabularyId",
-			new String[] {String.valueOf(assetVocabulary.getVocabularyId())}
-		).build();
+			new String[] {String.valueOf(assetVocabulary.getVocabularyId())});
 
 		PortletPreferences portletPreferences = getImportedPortletPreferences(
 			preferenceMap);

@@ -27,10 +27,10 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -57,13 +57,13 @@ public class DLFileEntryTypeUADTestUtil {
 
 		ddmForm.addDDMFormField(ddmFormField);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Structure Name"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Structure Description"
-		).build();
+		nameMap.put(LocaleUtil.US, "Test Structure Name");
+
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(LocaleUtil.US, "Test Structure Description");
 
 		long classNameId = portal.getClassNameId(
 			"com.liferay.dynamic.data.lists.model.DDLRecordSet");

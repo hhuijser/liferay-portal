@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -40,6 +39,7 @@ import java.io.InputStream;
 import java.lang.reflect.Constructor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -100,11 +100,10 @@ public class ConfigurationModelIndexerTest {
 
 	@Test
 	public void testLocalizedAttributes() throws Exception {
-		Map<String, String> extensionAttributes = HashMapBuilder.put(
-			"factoryInstanceLabelAttribute", "companyId"
-		).put(
-			"scope", Scope.COMPANY.toString()
-		).build();
+		Map<String, String> extensionAttributes = new HashMap<>();
+
+		extensionAttributes.put("factoryInstanceLabelAttribute", "companyId");
+		extensionAttributes.put("scope", Scope.COMPANY.toString());
 
 		ExtendedAttributeDefinition[] extendedAttributeDefinitions = {
 			new SimpleExtendedAttributeDefinition(
@@ -152,11 +151,10 @@ public class ConfigurationModelIndexerTest {
 			configurationAdmin -> configurationAdmin.createFactoryConfiguration(
 				_PID, StringPool.QUESTION));
 
-		Map<String, String> extensionAttributes = HashMapBuilder.put(
-			"factoryInstanceLabelAttribute", "companyId"
-		).put(
-			"scope", Scope.COMPANY.toString()
-		).build();
+		Map<String, String> extensionAttributes = new HashMap<>();
+
+		extensionAttributes.put("factoryInstanceLabelAttribute", "companyId");
+		extensionAttributes.put("scope", Scope.COMPANY.toString());
 
 		ExtendedObjectClassDefinition extendedObjectClassDefinition =
 			new SimpleExtendedObjectClassDefinition(

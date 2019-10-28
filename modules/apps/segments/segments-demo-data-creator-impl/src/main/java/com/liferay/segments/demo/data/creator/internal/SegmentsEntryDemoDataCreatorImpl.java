@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -39,6 +38,7 @@ import com.liferay.segments.service.SegmentsEntryRelLocalService;
 import java.io.IOException;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -151,9 +151,11 @@ public class SegmentsEntryDemoDataCreatorImpl
 		String description = StringUtil.read(
 			clazz.getClassLoader(), descriptionPath, false);
 
-		return HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), description
-		).build();
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(LocaleUtil.getSiteDefault(), description);
+
+		return descriptionMap;
 	}
 
 	private Map<Locale, String> _getNameMap(int index) throws IOException {
@@ -165,9 +167,11 @@ public class SegmentsEntryDemoDataCreatorImpl
 
 		String name = StringUtil.read(clazz.getClassLoader(), namePath, false);
 
-		return HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), name);
+
+		return nameMap;
 	}
 
 	private int _getNextIndex() {

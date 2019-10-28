@@ -18,7 +18,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.metatype.annotations.ExtendedAttributeDefinition;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.reflect.Method;
@@ -119,18 +118,20 @@ public class AnnotationsExtendedAttributeDefinition
 				method.getAnnotation(ExtendedAttributeDefinition.class);
 
 			if (extendedAttributeDefinition != null) {
-				Map<String, String> map = HashMapBuilder.put(
+				Map<String, String> map = new HashMap<>();
+
+				map.put(
 					"description-arguments",
 					StringUtil.merge(
-						extendedAttributeDefinition.descriptionArguments())
-				).put(
+						extendedAttributeDefinition.descriptionArguments()));
+				map.put(
 					"name-arguments",
 					StringUtil.merge(
-						extendedAttributeDefinition.nameArguments())
-				).put(
+						extendedAttributeDefinition.nameArguments()));
+				map.put(
 					"required-input",
-					String.valueOf(extendedAttributeDefinition.requiredInput())
-				).build();
+					String.valueOf(
+						extendedAttributeDefinition.requiredInput()));
 
 				_extensionAttributes.put(
 					ExtendedAttributeDefinition.XML_NAMESPACE, map);

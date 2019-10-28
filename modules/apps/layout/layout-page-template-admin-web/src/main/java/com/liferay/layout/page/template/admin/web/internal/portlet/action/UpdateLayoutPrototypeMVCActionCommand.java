@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.service.LayoutPrototypeService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
@@ -68,9 +67,9 @@ public class UpdateLayoutPrototypeMVCActionCommand
 
 			String name = ParamUtil.getString(actionRequest, "name");
 
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				actionRequest.getLocale(), name
-			).build();
+			Map<Locale, String> nameMap = new HashMap<>();
+
+			nameMap.put(actionRequest.getLocale(), name);
 
 			ServiceContext serviceContext = ServiceContextFactory.getInstance(
 				LayoutPrototype.class.getName(), actionRequest);

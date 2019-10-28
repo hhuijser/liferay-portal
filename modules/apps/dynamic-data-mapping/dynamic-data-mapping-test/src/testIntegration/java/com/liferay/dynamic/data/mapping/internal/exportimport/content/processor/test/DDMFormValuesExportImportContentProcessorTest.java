@@ -66,7 +66,6 @@ import com.liferay.portal.kernel.test.util.TestDataConstants;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -261,9 +260,9 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			(Map<Long, Long>)_portletDataContextImport.getNewPrimaryKeysMap(
 				JournalArticle.class);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
 		long resourcePrimKey = _journalArticle.getResourcePrimKey();
 
@@ -317,13 +316,13 @@ public class DDMFormValuesExportImportContentProcessorTest {
 		_ddmStructure = DDMStructureTestUtil.addStructure(
 			group.getGroupId(), DLFileEntryMetadata.class.getName());
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
+		nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
+
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
 		DDMForm journalDDMForm = new DDMForm();
 
@@ -427,9 +426,9 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			_stagingGroup.getGroupId(), structure.getStructureId(),
 			classNameId);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
 		StringBundler sb = new StringBundler(16);
 
@@ -464,9 +463,9 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			ServiceContextTestUtil.getServiceContext(
 				_stagingGroup.getGroupId(), TestPropsValues.getUserId());
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
 		_journalArticle = JournalTestUtil.addArticle(
 			TestPropsValues.getUserId(), _stagingGroup.getGroupId(),

@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -42,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
@@ -197,9 +197,9 @@ public class PortletDataContextFactoryImpl
 		Map<String, String[]> parameterMap = Collections.emptyMap();
 
 		if (range != null) {
-			parameterMap = HashMapBuilder.put(
-				ExportImportDateUtil.RANGE, new String[] {range}
-			).build();
+			parameterMap = new HashMap<>();
+
+			parameterMap.put(ExportImportDateUtil.RANGE, new String[] {range});
 		}
 
 		portletDataContext.setParameterMap(parameterMap);

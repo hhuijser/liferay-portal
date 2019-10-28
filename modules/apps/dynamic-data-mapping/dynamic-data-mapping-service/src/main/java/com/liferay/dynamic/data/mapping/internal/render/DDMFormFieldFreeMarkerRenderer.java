@@ -505,8 +505,6 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 		DDMFormField parentDDMFormField, boolean showEmptyFieldLabel,
 		Locale locale) {
 
-		Map<String, Object> freeMarkerContext = new HashMap<>();
-
 		Map<String, Object> fieldContext = getFieldContext(
 			httpServletRequest, httpServletResponse, portletNamespace,
 			namespace, ddmFormField, locale);
@@ -518,6 +516,8 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 				httpServletRequest, httpServletResponse, portletNamespace,
 				namespace, parentDDMFormField, locale);
 		}
+
+		Map<String, Object> freeMarkerContext = new HashMap<>();
 
 		freeMarkerContext.put(
 			"ddmPortletId", DDMPortletKeys.DYNAMIC_DATA_MAPPING);

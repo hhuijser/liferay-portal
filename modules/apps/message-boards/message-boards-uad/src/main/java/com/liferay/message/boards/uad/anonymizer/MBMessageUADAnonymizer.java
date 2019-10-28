@@ -33,7 +33,7 @@ public class MBMessageUADAnonymizer extends BaseMBMessageUADAnonymizer {
 
 	@Override
 	public Map<Class, String> getExceptionMessageMap(Locale locale) {
-		return HashMapBuilder.<Class, String>put(
+		return HashMapBuilder.put(
 			RequiredMessageException.class,
 			LanguageUtil.get(
 				ResourceBundleUtil.getBundle(

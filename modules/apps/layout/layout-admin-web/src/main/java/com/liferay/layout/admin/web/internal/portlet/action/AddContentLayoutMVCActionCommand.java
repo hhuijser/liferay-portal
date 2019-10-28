@@ -80,7 +80,6 @@ public class AddContentLayoutMVCActionCommand
 			actionRequest, "privateLayout");
 		long parentLayoutId = ParamUtil.getLong(
 			actionRequest, "parentLayoutId");
-
 		String name = ParamUtil.getString(actionRequest, "name");
 
 		Map<Locale, String> nameMap = HashMapBuilder.put(

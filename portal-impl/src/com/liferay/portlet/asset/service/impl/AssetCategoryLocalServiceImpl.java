@@ -158,9 +158,9 @@ public class AssetCategoryLocalServiceImpl
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Locale locale = LocaleUtil.getSiteDefault();
-
 		Map<Locale, String> titleMap = new HashMap<>();
+
+		Locale locale = LocaleUtil.getSiteDefault();
 
 		titleMap.put(locale, title);
 

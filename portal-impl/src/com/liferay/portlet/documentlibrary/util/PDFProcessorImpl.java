@@ -42,7 +42,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.ServerDetector;
@@ -61,6 +60,7 @@ import java.io.InputStream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -924,11 +924,13 @@ public class PDFProcessorImpl
 
 			int scaledWidth = (int)Math.round(heightFactor * width);
 
-			return HashMapBuilder.put(
-				"height", scaledHeight
-			).put(
-				"width", scaledWidth
-			).build();
+			Map<String, Integer> scaledDimensions = new HashMap<>();
+
+			scaledDimensions.put("height", scaledHeight);
+
+			scaledDimensions.put("width", scaledWidth);
+
+			return scaledDimensions;
 		}
 	}
 

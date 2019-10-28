@@ -44,6 +44,7 @@ import com.liferay.users.admin.test.util.search.UserSearchFixture;
 
 import java.io.Serializable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -105,12 +106,10 @@ public class UserGroupIndexerIndexedFieldsTest {
 			UserGroup.class, ExpandoColumnConstants.INDEX_TYPE_KEYWORD,
 			expandoColumnObs, expandoColumnName);
 
-		Map<String, Serializable> expandoValues =
-			HashMapBuilder.<String, Serializable>put(
-				expandoColumnName, "Software Developer"
-			).put(
-				expandoColumnObs, "Software Engineer"
-			).build();
+		Map<String, Serializable> expandoValues = new HashMap<>();
+
+		expandoValues.put(expandoColumnName, "Software Developer");
+		expandoValues.put(expandoColumnObs, "Software Engineer");
 
 		UserGroup userGroup = userGroupFixture.createUserGroup(expandoValues);
 

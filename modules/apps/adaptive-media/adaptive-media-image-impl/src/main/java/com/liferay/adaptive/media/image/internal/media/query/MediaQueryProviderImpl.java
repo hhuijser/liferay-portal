@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.repository.model.FileEntry;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.net.URI;
 
@@ -39,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -119,13 +119,15 @@ public class MediaQueryProviderImpl implements MediaQueryProvider {
 		Optional<Integer> heightOptional = _getHeight(
 			amImageConfigurationEntry);
 
-		Map<String, String> properties = HashMapBuilder.put(
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
-			String.valueOf(widthOptional.orElse(0))
-		).put(
+			String.valueOf(widthOptional.orElse(0)));
+
+		properties.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
-			String.valueOf(heightOptional.orElse(0))
-		).build();
+			String.valueOf(heightOptional.orElse(0)));
 
 		return new AMImage(
 			() -> null, AMImageAttributeMapping.fromProperties(properties),

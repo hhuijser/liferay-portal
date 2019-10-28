@@ -23,7 +23,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.HashMap;
@@ -65,13 +64,14 @@ public class KeyValueDDMFormFieldTemplateContextContributor
 
 		parameters.put("placeholder", getValueString(placeholder, locale));
 
-		Map<String, String> stringsMap = HashMapBuilder.put(
+		Map<String, String> stringsMap = new HashMap<>();
+
+		stringsMap.put(
 			"keyLabel",
 			LanguageUtil.get(
 				getDisplayLocale(
 					ddmFormFieldRenderingContext.getHttpServletRequest()),
-				"field-name")
-		).build();
+				"field-name"));
 
 		parameters.put("strings", stringsMap);
 

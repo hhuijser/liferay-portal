@@ -17,10 +17,10 @@ package com.liferay.asset.display.page.item.selector.web.internal.servlet.taglib
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.VerticalCard;
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.RenderRequest;
@@ -43,15 +43,16 @@ public class LayoutPageTemplateEntryVerticalCard implements VerticalCard {
 
 	@Override
 	public Map<String, String> getData() {
-		return HashMapBuilder.put(
+		Map<String, String> data = new HashMap<>();
+
+		data.put(
 			"id",
 			String.valueOf(
-				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId())
-		).put(
-			"name", _layoutPageTemplateEntry.getName()
-		).put(
-			"type", "asset-display-page"
-		).build();
+				_layoutPageTemplateEntry.getLayoutPageTemplateEntryId()));
+		data.put("name", _layoutPageTemplateEntry.getName());
+		data.put("type", "asset-display-page");
+
+		return data;
 	}
 
 	@Override

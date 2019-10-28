@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -186,22 +185,24 @@ public class AnnotationsExtendedObjectClassDefinition
 				ExtendedObjectClassDefinition.class);
 
 		if (extendedObjectClassDefinition != null) {
-			Map<String, String> attributes = HashMapBuilder.put(
-				"category", extendedObjectClassDefinition.category()
-			).put(
+			Map<String, String> attributes = new HashMap<>();
+
+			attributes.put(
+				"category", extendedObjectClassDefinition.category());
+			attributes.put(
 				"description-arguments",
 				StringUtil.merge(
-					extendedObjectClassDefinition.descriptionArguments())
-			).put(
+					extendedObjectClassDefinition.descriptionArguments()));
+			attributes.put(
 				"factoryInstanceLabelAttribute",
-				extendedObjectClassDefinition.factoryInstanceLabelAttribute()
-			).put(
+				extendedObjectClassDefinition.factoryInstanceLabelAttribute());
+			attributes.put(
 				"generateUI",
-				Boolean.toString(extendedObjectClassDefinition.generateUI())
-			).put(
+				Boolean.toString(extendedObjectClassDefinition.generateUI()));
+			attributes.put(
 				"name-arguments",
-				StringUtil.merge(extendedObjectClassDefinition.nameArguments())
-			).build();
+				StringUtil.merge(
+					extendedObjectClassDefinition.nameArguments()));
 
 			ExtendedObjectClassDefinition.Scope scope =
 				extendedObjectClassDefinition.scope();

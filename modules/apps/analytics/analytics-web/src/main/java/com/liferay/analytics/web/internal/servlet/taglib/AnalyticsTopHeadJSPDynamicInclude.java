@@ -27,13 +27,13 @@ import com.liferay.portal.kernel.servlet.taglib.BaseJSPDynamicInclude;
 import com.liferay.portal.kernel.servlet.taglib.DynamicInclude;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 
 import java.io.IOException;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -64,13 +64,14 @@ public class AnalyticsTopHeadJSPDynamicInclude extends BaseJSPDynamicInclude {
 			return;
 		}
 
-		Map<String, String> analyticsClientConfig = HashMapBuilder.put(
+		Map<String, String> analyticsClientConfig = new HashMap<>();
+
+		analyticsClientConfig.put(
 			"dataSourceId",
-			_getLiferayAnalyticsDataSourceId(themeDisplay.getCompany())
-		).put(
+			_getLiferayAnalyticsDataSourceId(themeDisplay.getCompany()));
+		analyticsClientConfig.put(
 			"endpointUrl",
-			_getLiferayAnalyticsEndpointURL(themeDisplay.getCompany())
-		).build();
+			_getLiferayAnalyticsEndpointURL(themeDisplay.getCompany()));
 
 		httpServletRequest.setAttribute(
 			AnalyticsWebKeys.ANALYTICS_CLIENT_CONFIG,

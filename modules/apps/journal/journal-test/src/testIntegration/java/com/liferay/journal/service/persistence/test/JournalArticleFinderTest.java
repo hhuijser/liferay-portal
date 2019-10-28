@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -55,6 +54,7 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -327,11 +327,10 @@ public class JournalArticleFinderTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.FRANCE, "Localized Article"
-		).put(
-			LocaleUtil.US, "Localized Article"
-		).build();
+		Map<Locale, String> titleMap = new HashMap<>();
+
+		titleMap.put(LocaleUtil.FRANCE, "Localized Article");
+		titleMap.put(LocaleUtil.US, "Localized Article");
 
 		JournalTestUtil.addArticle(
 			_group.getGroupId(), _folder.getFolderId(),

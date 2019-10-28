@@ -66,7 +66,6 @@ import com.liferay.portal.kernel.test.util.UserTestUtil;
 import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.TransactionConfig;
 import com.liferay.portal.kernel.transaction.TransactionInvokerUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -750,9 +749,9 @@ public class CompanyLocalServiceTest {
 			long companyId, long userId, String name)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getDefault(), name);
 
 		return LayoutSetPrototypeLocalServiceUtil.addLayoutSetPrototype(
 			userId, companyId, nameMap, new HashMap<Locale, String>(), true,

@@ -60,7 +60,6 @@ import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -1152,33 +1151,35 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 			createDDMExpressionFunctionMap()
 		throws Exception {
 
-		return HashMapBuilder.put(
-			"all", createAllFunction()
-		).put(
-			"belongsTo", createBelongsToRoleFunction()
-		).put(
-			"between", new BetweenFunctionFactory()
-		).put(
-			"calculate", new CalculateFunctionFactory()
-		).put(
-			"contains", new ContainsFunctionFactory()
-		).put(
-			"getValue", new GetValueFunctionFactory()
-		).put(
-			"jumpPage", new JumpPageFunctionFactory()
-		).put(
-			"setEnabled", new SetEnabledFunctionFactory()
-		).put(
-			"setInvalid", new SetInvalidFunctionFactory()
-		).put(
-			"setRequired", new SetRequiredFunctionFactory()
-		).put(
-			"setValue", new SetValueFunctionFactory()
-		).put(
-			"setVisible", new SetVisibleFunctionFactory()
-		).put(
-			"sum", new SumFunctionFactory()
-		).build();
+		Map<String, DDMExpressionFunctionFactory>
+			ddmExpressionFunctionFactoryMap = new HashMap<>();
+
+		ddmExpressionFunctionFactoryMap.put("all", createAllFunction());
+		ddmExpressionFunctionFactoryMap.put(
+			"belongsTo", createBelongsToRoleFunction());
+		ddmExpressionFunctionFactoryMap.put(
+			"between", new BetweenFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"calculate", new CalculateFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"contains", new ContainsFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"getValue", new GetValueFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"jumpPage", new JumpPageFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"setEnabled", new SetEnabledFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"setInvalid", new SetInvalidFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"setRequired", new SetRequiredFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"setValue", new SetValueFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put(
+			"setVisible", new SetVisibleFunctionFactory());
+		ddmExpressionFunctionFactoryMap.put("sum", new SumFunctionFactory());
+
+		return ddmExpressionFunctionFactoryMap;
 	}
 
 	protected DDMFormField createDDMFormField(

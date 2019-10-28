@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -94,11 +93,12 @@ public class OptionsDDMFormFieldContextHelper {
 	}
 
 	protected Map<String, String> createOption(String label, String value) {
-		return HashMapBuilder.put(
-			"label", label
-		).put(
-			"value", value
-		).build();
+		Map<String, String> map = new HashMap<>();
+
+		map.put("label", label);
+		map.put("value", value);
+
+		return map;
 	}
 
 	protected List<Object> createOptions(JSONArray jsonArray) {

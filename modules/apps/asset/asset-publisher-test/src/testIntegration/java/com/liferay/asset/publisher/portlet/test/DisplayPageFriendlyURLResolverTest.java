@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -113,13 +112,13 @@ public class DisplayPageFriendlyURLResolverTest {
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.US, "Test Journal Article"
-		).build();
+		Map<Locale, String> titleMap = new HashMap<>();
 
-		Map<Locale, String> contentMap = HashMapBuilder.put(
-			LocaleUtil.US, "This test content is in English."
-		).build();
+		titleMap.put(LocaleUtil.US, "Test Journal Article");
+
+		Map<Locale, String> contentMap = new HashMap<>();
+
+		contentMap.put(LocaleUtil.US, "This test content is in English.");
 
 		_article = JournalTestUtil.addArticle(
 			_group.getGroupId(),

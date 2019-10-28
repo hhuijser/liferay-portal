@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.LocalizationUtil;
 import com.liferay.portal.kernel.workflow.WorkflowDefinition;
@@ -200,9 +199,9 @@ public class DefaultPortalKaleoManager
 				continue;
 			}
 
-			Map<Locale, String> descriptionMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), entry.getValue()
-			).build();
+			Map<Locale, String> descriptionMap = new HashMap<>();
+
+			descriptionMap.put(LocaleUtil.getDefault(), entry.getValue());
 
 			roleLocalService.addRole(
 				defaultUser.getUserId(), null, 0, name, null, descriptionMap,

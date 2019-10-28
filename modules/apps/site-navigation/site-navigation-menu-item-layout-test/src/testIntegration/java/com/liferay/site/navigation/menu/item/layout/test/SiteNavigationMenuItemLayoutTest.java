@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
@@ -75,9 +74,9 @@ public class SiteNavigationMenuItemLayoutTest {
 			TestPropsValues.getUserId(), _group.getGroupId(), "Auto Menu",
 			SiteNavigationConstants.TYPE_DEFAULT, true, serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), "welcome");
 
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
@@ -105,9 +104,9 @@ public class SiteNavigationMenuItemLayoutTest {
 			TestPropsValues.getUserId(), _group.getGroupId(), "Primary Menu",
 			SiteNavigationConstants.TYPE_PRIMARY, true, serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), "welcome");
 
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
@@ -142,9 +141,9 @@ public class SiteNavigationMenuItemLayoutTest {
 				"Primary Menu", SiteNavigationConstants.TYPE_PRIMARY, true,
 				serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), "welcome");
 
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 
@@ -180,9 +179,9 @@ public class SiteNavigationMenuItemLayoutTest {
 				"Primary Menu", SiteNavigationConstants.TYPE_PRIMARY, true,
 				serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "welcome"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), "welcome");
 
 		UnicodeProperties typeSettingsProperties = new UnicodeProperties();
 

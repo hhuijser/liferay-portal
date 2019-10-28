@@ -28,7 +28,6 @@ import aQute.lib.filter.Filter;
 import com.liferay.portal.kernel.deploy.auto.context.AutoDeploymentContext;
 import com.liferay.portal.kernel.security.xml.SecureXMLFactoryProviderUtil;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.xml.Document;
@@ -118,11 +117,10 @@ public class WabProcessorTest {
 			Assert.assertEquals(resources.toString(), 1244, resources.size());
 		}
 
-		Map<String, String[]> parameters = HashMapBuilder.put(
-			"Bundle-Version", new String[] {"7.0.0.8"}
-		).put(
-			"Web-ContextPath", new String[] {"/classic-theme"}
-		).build();
+		Map<String, String[]> parameters = new HashMap<>();
+
+		parameters.put("Bundle-Version", new String[] {"7.0.0.8"});
+		parameters.put("Web-ContextPath", new String[] {"/classic-theme"});
 
 		WabProcessor wabProcessor = new TestWabProcessor(file, parameters);
 

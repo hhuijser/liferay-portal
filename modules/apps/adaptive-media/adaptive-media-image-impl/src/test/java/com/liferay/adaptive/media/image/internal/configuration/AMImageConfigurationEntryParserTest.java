@@ -15,11 +15,11 @@
 package com.liferay.adaptive.media.image.internal.configuration;
 
 import com.liferay.adaptive.media.image.configuration.AMImageConfigurationEntry;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.URLCodec;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -184,9 +184,9 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetConfigurationStringWithMaxHeight() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-height", "100");
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
@@ -202,11 +202,10 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetConfigurationStringWithMaxHeightAndMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "200"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-height", "100");
+		properties.put("max-width", "200");
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
@@ -223,9 +222,9 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetConfigurationStringWithMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-width", "200"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-width", "200");
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
@@ -255,9 +254,9 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetDisabledConfigurationStringWithMaxHeight() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-height", "100");
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
@@ -274,11 +273,10 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetDisabledConfigurationStringWithMaxHeightAndMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-height", "100"
-		).put(
-			"max-width", "200"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-height", "100");
+		properties.put("max-width", "200");
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(
@@ -295,9 +293,9 @@ public class AMImageConfigurationEntryParserTest extends PowerMockito {
 
 	@Test
 	public void testGetDisabledConfigurationStringWithMaxWidth() {
-		Map<String, String> properties = HashMapBuilder.put(
-			"max-width", "200"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-width", "200");
 
 		AMImageConfigurationEntry amImageConfigurationEntry =
 			new AMImageConfigurationEntryImpl(

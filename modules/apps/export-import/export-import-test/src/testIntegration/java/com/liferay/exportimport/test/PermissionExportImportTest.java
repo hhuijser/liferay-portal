@@ -37,7 +37,6 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.xml.Element;
@@ -52,6 +51,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -128,9 +128,9 @@ public class PermissionExportImportTest {
 			Group exportGroup, Role role, String exportResourcePrimKey)
 		throws Exception {
 
-		Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
-			role.getRoleId(), _ACTION_IDS
-		).build();
+		Map<Long, String[]> roleIdsToActionIds = new HashMap<>();
+
+		roleIdsToActionIds.put(role.getRoleId(), _ACTION_IDS);
 
 		ResourcePermissionServiceUtil.setIndividualResourcePermissions(
 			exportGroup.getGroupId(), TestPropsValues.getCompanyId(),

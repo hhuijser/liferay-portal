@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -75,13 +74,11 @@ public class LayoutFriendlyURLServiceTest {
 		nameMap.put(LocaleUtil.SPAIN, name);
 		nameMap.put(LocaleUtil.US, name);
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
-			LocaleUtil.GERMANY, "/germanurl"
-		).put(
-			LocaleUtil.SPAIN, "/spanishurl"
-		).put(
-			LocaleUtil.US, "/englishurl"
-		).build();
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
+
+		friendlyURLMap.put(LocaleUtil.GERMANY, "/germanurl");
+		friendlyURLMap.put(LocaleUtil.SPAIN, "/spanishurl");
+		friendlyURLMap.put(LocaleUtil.US, "/englishurl");
 
 		Layout layout = LayoutTestUtil.addLayout(
 			_group.getGroupId(), false, nameMap, friendlyURLMap);
@@ -121,11 +118,10 @@ public class LayoutFriendlyURLServiceTest {
 		nameMap.put(LocaleUtil.SPAIN, name);
 		nameMap.put(LocaleUtil.US, name);
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
-			LocaleUtil.SPAIN, "/spanishurl"
-		).put(
-			LocaleUtil.US, "/englishurl"
-		).build();
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
+
+		friendlyURLMap.put(LocaleUtil.SPAIN, "/spanishurl");
+		friendlyURLMap.put(LocaleUtil.US, "/englishurl");
 
 		Layout layout = LayoutTestUtil.addLayout(
 			_group.getGroupId(), false, nameMap, friendlyURLMap);

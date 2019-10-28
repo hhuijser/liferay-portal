@@ -52,7 +52,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.Inject;
@@ -304,9 +303,9 @@ public class DDMStructureStagedModelDataHandlerTest
 
 		// Data provider instance
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), "Data provider"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getSiteDefault(), "Data provider");
 
 		DDMFormValues ddmFormValues = getDDMDataProviderInstanceFormValues();
 

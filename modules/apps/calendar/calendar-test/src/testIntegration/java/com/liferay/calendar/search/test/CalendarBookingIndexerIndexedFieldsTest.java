@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -40,6 +39,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -104,10 +104,11 @@ public class CalendarBookingIndexerIndexedFieldsTest
 				}
 			});
 
-		Map<String, String> map = HashMapBuilder.put(
+		Map<String, String> map = new HashMap<>();
+
+		map.put(
 			Field.CLASS_NAME_ID,
-			String.valueOf(portal.getClassNameId(Calendar.class))
-		).build();
+			String.valueOf(portal.getClassNameId(Calendar.class)));
 
 		indexedFieldsFixture.populatePriority("0.0", map);
 

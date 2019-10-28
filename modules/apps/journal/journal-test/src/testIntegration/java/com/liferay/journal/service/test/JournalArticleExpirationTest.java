@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -45,6 +44,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -94,13 +94,14 @@ public class JournalArticleExpirationTest {
 	protected JournalArticle addArticle(long groupId, boolean approved)
 		throws Exception {
 
-		Map<Locale, String> titleMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
+		Map<Locale, String> titleMap = new HashMap<>();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), RandomTestUtil.randomString()
-		).build();
+		titleMap.put(LocaleUtil.getDefault(), RandomTestUtil.randomString());
+
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(
+			LocaleUtil.getDefault(), RandomTestUtil.randomString());
 
 		String content = DDMStructureTestUtil.getSampleStructuredContent();
 

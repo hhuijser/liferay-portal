@@ -45,7 +45,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.SearchContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -119,18 +118,18 @@ public class DDLRecordSearchTest {
 
 		DDMFormValues ddmFormValues = createDDMFormValues(LocaleUtil.US);
 
-		Map<Locale, String> values = HashMapBuilder.put(
-			LocaleUtil.US, "Joe Bloggs"
-		).build();
+		Map<Locale, String> values = new HashMap<>();
+
+		values.put(LocaleUtil.US, "Joe Bloggs");
 
 		DDMFormFieldValue nameDDMFormFieldValue =
 			createLocalizedDDMFormFieldValue("name", values);
 
 		ddmFormValues.addDDMFormFieldValue(nameDDMFormFieldValue);
 
-		values = HashMapBuilder.put(
-			LocaleUtil.US, "Simple description"
-		).build();
+		values = new HashMap<>();
+
+		values.put(LocaleUtil.US, "Simple description");
 
 		DDMFormFieldValue descriptionDDMFormFieldValue =
 			createLocalizedDDMFormFieldValue("description", values);
@@ -231,11 +230,10 @@ public class DDLRecordSearchTest {
 		DDMFormValues ddmFormValues = DDMFormValuesTestUtil.createDDMFormValues(
 			ddmForm);
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.JAPAN, "単純なテキスト"
-		).put(
-			LocaleUtil.US, "simple text"
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.JAPAN, "単純なテキスト");
+		nameMap.put(LocaleUtil.US, "simple text");
 
 		DDMFormFieldValue nameDDMFormFieldValue =
 			createLocalizedDDMFormFieldValue("name", nameMap);
@@ -392,21 +390,21 @@ public class DDLRecordSearchTest {
 	}
 
 	protected void addRecord(String name) throws Exception {
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.US, name);
 
 		addRecord(nameMap);
 	}
 
 	protected void addRecord(String name, String description) throws Exception {
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.US, name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			LocaleUtil.US, description
-		).build();
+		nameMap.put(LocaleUtil.US, name);
+
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(LocaleUtil.US, description);
 
 		addRecord(nameMap, descriptionMap);
 	}

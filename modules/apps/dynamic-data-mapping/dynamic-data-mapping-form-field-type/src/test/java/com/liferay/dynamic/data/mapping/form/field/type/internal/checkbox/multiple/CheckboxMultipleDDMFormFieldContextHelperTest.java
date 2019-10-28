@@ -17,10 +17,10 @@ package com.liferay.dynamic.data.mapping.form.field.type.internal.checkbox.multi
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldOptions;
 import com.liferay.dynamic.data.mapping.render.DDMFormFieldRenderingContext;
 import com.liferay.portal.json.JSONFactoryImpl;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -60,11 +60,12 @@ public class CheckboxMultipleDDMFormFieldContextHelperTest {
 	}
 
 	protected Map<String, String> createOption(String label, String value) {
-		return HashMapBuilder.put(
-			"label", label
-		).put(
-			"value", value
-		).build();
+		Map<String, String> option = new HashMap<>();
+
+		option.put("label", label);
+		option.put("value", value);
+
+		return option;
 	}
 
 	protected List<Object> getActualOptions(

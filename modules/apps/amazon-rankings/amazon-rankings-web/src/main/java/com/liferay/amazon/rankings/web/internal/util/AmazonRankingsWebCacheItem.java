@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Time;
@@ -35,6 +34,7 @@ import java.text.DateFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,25 +72,20 @@ public class AmazonRankingsWebCacheItem implements WebCacheItem {
 	}
 
 	protected AmazonRankings doConvert(String key) throws Exception {
-		Map<String, String> parameters = HashMapBuilder.put(
-			"AssociateTag", _amazonRankingsConfiguration.amazonAssociateTag()
-		).put(
-			"AWSAccessKeyId", _amazonRankingsConfiguration.amazonAccessKeyId()
-		).put(
-			"IdType", "ISBN"
-		).put(
-			"ItemId", _isbn
-		).put(
-			"Operation", "ItemLookup"
-		).put(
-			"ResponseGroup", "Images,ItemAttributes,Offers,SalesRank"
-		).put(
-			"SearchIndex", "Books"
-		).put(
-			"Service", "AWSECommerceService"
-		).put(
-			"Timestamp", AmazonRankingsUtil.getTimestamp()
-		).build();
+		Map<String, String> parameters = new HashMap<>();
+
+		parameters.put(
+			"AssociateTag", _amazonRankingsConfiguration.amazonAssociateTag());
+		parameters.put(
+			"AWSAccessKeyId", _amazonRankingsConfiguration.amazonAccessKeyId());
+		parameters.put("IdType", "ISBN");
+		parameters.put("ItemId", _isbn);
+		parameters.put("Operation", "ItemLookup");
+		parameters.put(
+			"ResponseGroup", "Images,ItemAttributes,Offers,SalesRank");
+		parameters.put("SearchIndex", "Books");
+		parameters.put("Service", "AWSECommerceService");
+		parameters.put("Timestamp", AmazonRankingsUtil.getTimestamp());
 
 		String urlWithSignature =
 			AmazonSignedRequestsUtil.generateUrlWithSignature(

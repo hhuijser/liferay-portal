@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.InputStream;
 
@@ -133,11 +132,13 @@ public class AMImageSerializerImplTest {
 
 	@Test
 	public void testSerialize() throws Exception {
-		Map<String, String> properties = HashMapBuilder.put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200"
-		).put(
-			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300"
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put(
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(), "200");
+
+		properties.put(
+			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(), "300");
 
 		AdaptiveMedia<AMImageProcessor> adaptiveMedia = new AMImage(
 			() -> null, AMImageAttributeMapping.fromProperties(properties),

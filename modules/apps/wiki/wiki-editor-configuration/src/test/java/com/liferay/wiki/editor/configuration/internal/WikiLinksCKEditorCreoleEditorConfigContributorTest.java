@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.PortletURLWrapper;
 import com.liferay.portal.kernel.portlet.RequestBackedPortletURLFactory;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -187,11 +186,11 @@ public class WikiLinksCKEditorCreoleEditorConfigContributorTest
 	protected void populateInputEditorWikiPageAttributes(
 		long wikiPageResourcePrimKey, long nodeId) {
 
-		Map<String, String> fileBrowserParamsMap = HashMapBuilder.put(
-			"nodeId", String.valueOf(nodeId)
-		).put(
-			"wikiPageResourcePrimKey", String.valueOf(wikiPageResourcePrimKey)
-		).build();
+		Map<String, String> fileBrowserParamsMap = new HashMap<>();
+
+		fileBrowserParamsMap.put("nodeId", String.valueOf(nodeId));
+		fileBrowserParamsMap.put(
+			"wikiPageResourcePrimKey", String.valueOf(wikiPageResourcePrimKey));
 
 		_inputEditorTaglibAttributes.put(
 			"liferay-ui:input-editor:fileBrowserParams", fileBrowserParamsMap);

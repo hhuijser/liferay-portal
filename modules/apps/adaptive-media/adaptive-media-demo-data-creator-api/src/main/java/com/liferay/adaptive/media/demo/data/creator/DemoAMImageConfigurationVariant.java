@@ -14,8 +14,7 @@
 
 package com.liferay.adaptive.media.demo.data.creator;
 
-import com.liferay.portal.kernel.util.HashMapBuilder;
-
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -38,11 +37,12 @@ public enum DemoAMImageConfigurationVariant {
 	}
 
 	public Map<String, String> getProperties() {
-		return HashMapBuilder.put(
-			"max-height", String.valueOf(_maxHeight)
-		).put(
-			"max-width", String.valueOf(_maxWidth)
-		).build();
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put("max-height", String.valueOf(_maxHeight));
+		properties.put("max-width", String.valueOf(_maxWidth));
+
+		return properties;
 	}
 
 	public String getUuid() {

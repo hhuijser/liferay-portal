@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.site.demo.data.creator.SiteDemoDataCreator;
@@ -56,9 +55,9 @@ public class SiteDemoDataCreatorImpl implements SiteDemoDataCreator {
 
 		User user = company.getDefaultUser();
 
-		Map<Locale, String> nameMap = HashMapBuilder.put(
-			LocaleUtil.getDefault(), name
-		).build();
+		Map<Locale, String> nameMap = new HashMap<>();
+
+		nameMap.put(LocaleUtil.getDefault(), name);
 
 		Map<Locale, String> descriptionMap = new HashMap<>();
 		int type = GroupConstants.TYPE_SITE_OPEN;

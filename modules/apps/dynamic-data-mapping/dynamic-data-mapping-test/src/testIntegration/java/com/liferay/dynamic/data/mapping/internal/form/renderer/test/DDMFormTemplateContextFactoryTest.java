@@ -23,7 +23,6 @@ import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleThreadLocal;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -33,6 +32,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.lang.reflect.Method;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -275,11 +275,10 @@ public class DDMFormTemplateContextFactoryTest {
 			_ddmFormTemplateContextFactory.create(
 				DDMFormTestUtil.createDDMForm(), ddmFormRenderingContext);
 
-		Map<String, String> expectedStringsMap = HashMapBuilder.put(
-			"next", "Next"
-		).put(
-			"previous", "Previous"
-		).build();
+		Map<String, String> expectedStringsMap = new HashMap<>();
+
+		expectedStringsMap.put("next", "Next");
+		expectedStringsMap.put("previous", "Previous");
 
 		Assert.assertEquals(expectedStringsMap, templateContext.get("strings"));
 	}

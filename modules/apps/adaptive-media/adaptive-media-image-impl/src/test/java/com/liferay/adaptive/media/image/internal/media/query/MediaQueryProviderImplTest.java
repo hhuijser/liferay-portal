@@ -34,11 +34,11 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.net.URI;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -731,13 +731,15 @@ public class MediaQueryProviderImplTest {
 			String url)
 		throws Exception {
 
-		Map<String, String> properties = HashMapBuilder.put(
+		Map<String, String> properties = new HashMap<>();
+
+		properties.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
-			String.valueOf(height)
-		).put(
+			String.valueOf(height));
+
+		properties.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
-			String.valueOf(width)
-		).build();
+			String.valueOf(width));
 
 		AMAttribute amAttribute = AMAttribute.getConfigurationUuidAMAttribute();
 
@@ -767,11 +769,12 @@ public class MediaQueryProviderImplTest {
 
 				@Override
 				public Map<String, String> getProperties() {
-					return HashMapBuilder.put(
-						"max-height", String.valueOf(height)
-					).put(
-						"max-width", String.valueOf(width)
-					).build();
+					Map<String, String> properties = new HashMap<>();
+
+					properties.put("max-height", String.valueOf(height));
+					properties.put("max-width", String.valueOf(width));
+
+					return properties;
 				}
 
 				@Override

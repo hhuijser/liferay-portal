@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.service.test.ServiceTestUtil;
@@ -53,6 +52,7 @@ import com.liferay.segments.service.SegmentsExperimentLocalService;
 import com.liferay.segments.service.SegmentsExperimentRelLocalService;
 import com.liferay.segments.test.util.SegmentsTestUtil;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -497,11 +497,12 @@ public class SegmentsExperimentLocalServiceTest {
 
 		double confidenceLevel = 0.95;
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.30
-		).build();
+		Map<Long, Double> segmentsExperienceIdSplitMap = new HashMap<>();
+
+		segmentsExperienceIdSplitMap.put(
+			segmentsExperiment.getSegmentsExperienceId(), 0.70);
+		segmentsExperienceIdSplitMap.put(
+			variantSegmentsExperience.getSegmentsExperienceId(), 0.30);
 
 		segmentsExperiment =
 			_segmentsExperimentLocalService.runSegmentsExperiment(
@@ -553,11 +554,12 @@ public class SegmentsExperimentLocalServiceTest {
 
 		double confidenceLevel = 1.2;
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.30
-		).build();
+		Map<Long, Double> segmentsExperienceIdSplitMap = new HashMap<>();
+
+		segmentsExperienceIdSplitMap.put(
+			segmentsExperiment.getSegmentsExperienceId(), 0.70);
+		segmentsExperienceIdSplitMap.put(
+			variantSegmentsExperience.getSegmentsExperienceId(), 0.30);
 
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), confidenceLevel,
@@ -581,11 +583,12 @@ public class SegmentsExperimentLocalServiceTest {
 
 		double confidenceLevel = 0.95;
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.40
-		).build();
+		Map<Long, Double> segmentsExperienceIdSplitMap = new HashMap<>();
+
+		segmentsExperienceIdSplitMap.put(
+			segmentsExperiment.getSegmentsExperienceId(), 0.70);
+		segmentsExperienceIdSplitMap.put(
+			variantSegmentsExperience.getSegmentsExperienceId(), 0.40);
 
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), confidenceLevel,
@@ -613,11 +616,12 @@ public class SegmentsExperimentLocalServiceTest {
 
 		double confidenceLevel = 0.95;
 
-		Map<Long, Double> segmentsExperienceIdSplitMap = HashMapBuilder.put(
-			segmentsExperiment.getSegmentsExperienceId(), 0.70
-		).put(
-			variantSegmentsExperience.getSegmentsExperienceId(), 0.30
-		).build();
+		Map<Long, Double> segmentsExperienceIdSplitMap = new HashMap<>();
+
+		segmentsExperienceIdSplitMap.put(
+			segmentsExperiment.getSegmentsExperienceId(), 0.70);
+		segmentsExperienceIdSplitMap.put(
+			variantSegmentsExperience.getSegmentsExperienceId(), 0.30);
 
 		_segmentsExperimentLocalService.runSegmentsExperiment(
 			segmentsExperiment.getSegmentsExperimentId(), confidenceLevel,

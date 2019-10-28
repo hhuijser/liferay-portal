@@ -96,7 +96,6 @@ import com.liferay.portal.kernel.transaction.TransactionInvokerUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -189,11 +188,14 @@ public class LayoutStagedModelDataHandler
 	public Map<String, String> getReferenceAttributes(
 		PortletDataContext portletDataContext, Layout layout) {
 
-		return HashMapBuilder.put(
-			"layout-id", String.valueOf(layout.getLayoutId())
-		).put(
-			"private-layout", String.valueOf(layout.isPrivateLayout())
-		).build();
+		Map<String, String> referenceAttributes = new HashMap<>();
+
+		referenceAttributes.put(
+			"layout-id", String.valueOf(layout.getLayoutId()));
+		referenceAttributes.put(
+			"private-layout", String.valueOf(layout.isPrivateLayout()));
+
+		return referenceAttributes;
 	}
 
 	@Override

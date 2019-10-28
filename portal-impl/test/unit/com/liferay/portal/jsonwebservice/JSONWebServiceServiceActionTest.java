@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.test.FinalizeManagerUtil;
 import com.liferay.portal.kernel.test.GCUtil;
 import com.liferay.portal.kernel.upload.FileItem;
 import com.liferay.portal.kernel.util.FileUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -34,6 +33,7 @@ import com.liferay.portal.util.PortalImpl;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -151,9 +151,10 @@ public class JSONWebServiceServiceActionTest
 	public void testMultipartRequest() throws Exception {
 		registerActionClass(FooService.class);
 
-		Map<String, FileItem[]> fileParams = HashMapBuilder.put(
-			"fileName", new FileItem[] {createLiferayFileItem("aaa")}
-		).build();
+		Map<String, FileItem[]> fileParams = new HashMap<>();
+
+		fileParams.put(
+			"fileName", new FileItem[] {createLiferayFileItem("aaa")});
 
 		HttpServletRequest httpServletRequest = new UploadServletRequestImpl(
 			createHttpRequest("/foo/add-file"), fileParams, null) {
@@ -180,14 +181,16 @@ public class JSONWebServiceServiceActionTest
 	public void testMultipartRequestFilesUpload() throws Exception {
 		registerActionClass(FooService.class);
 
-		Map<String, FileItem[]> fileParams = HashMapBuilder.put(
-			"firstFile", new FileItem[] {createLiferayFileItem("aaa")}
-		).put(
+		Map<String, FileItem[]> fileParams = new HashMap<>();
+
+		fileParams.put(
+			"firstFile", new FileItem[] {createLiferayFileItem("aaa")});
+
+		fileParams.put(
 			"otherFiles",
 			new FileItem[] {
 				createLiferayFileItem("bbb"), createLiferayFileItem("ccc")
-			}
-		).build();
+			});
 
 		HttpServletRequest httpServletRequest = new UploadServletRequestImpl(
 			createHttpRequest("/foo/upload-files"), fileParams, null);

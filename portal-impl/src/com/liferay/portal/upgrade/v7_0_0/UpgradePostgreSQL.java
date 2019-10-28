@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
 import com.liferay.portal.kernel.upgrade.UpgradeException;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LoggingTimer;
 
 import java.sql.PreparedStatement;
@@ -44,9 +43,9 @@ public class UpgradePostgreSQL extends UpgradeProcess {
 			return;
 		}
 
-		Map<String, String> oidColumnNames = HashMapBuilder.put(
-			"DLContent", "data_"
-		).build();
+		Map<String, String> oidColumnNames = new HashMap<>();
+
+		oidColumnNames.put("DLContent", "data_");
 
 		updatePostgreSQLRules(oidColumnNames);
 	}

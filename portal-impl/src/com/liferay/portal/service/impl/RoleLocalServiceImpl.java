@@ -61,7 +61,6 @@ import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -309,9 +308,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					StringUtil.replace(name, CharPool.SPACE, CharPool.PERIOD) +
 						".description";
 
-			Map<Locale, String> descriptionMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), PropsUtil.get(key)
-			).build();
+			Map<Locale, String> descriptionMap = new HashMap<>();
+
+			descriptionMap.put(LocaleUtil.getDefault(), PropsUtil.get(key));
 
 			int type = RoleConstants.TYPE_REGULAR;
 
@@ -329,9 +328,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					StringUtil.replace(name, CharPool.SPACE, CharPool.PERIOD) +
 						".description";
 
-			Map<Locale, String> descriptionMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), PropsUtil.get(key)
-			).build();
+			Map<Locale, String> descriptionMap = new HashMap<>();
+
+			descriptionMap.put(LocaleUtil.getDefault(), PropsUtil.get(key));
 
 			int type = RoleConstants.TYPE_ORGANIZATION;
 
@@ -348,9 +347,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					StringUtil.replace(name, CharPool.SPACE, CharPool.PERIOD) +
 						".description";
 
-			Map<Locale, String> descriptionMap = HashMapBuilder.put(
-				LocaleUtil.getDefault(), PropsUtil.get(key)
-			).build();
+			Map<Locale, String> descriptionMap = new HashMap<>();
+
+			descriptionMap.put(LocaleUtil.getDefault(), PropsUtil.get(key));
 
 			int type = RoleConstants.TYPE_SITE;
 

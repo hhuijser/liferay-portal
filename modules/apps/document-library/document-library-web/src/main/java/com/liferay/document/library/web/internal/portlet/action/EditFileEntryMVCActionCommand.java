@@ -81,7 +81,6 @@ import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.KeyValuePair;
-import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -610,9 +609,12 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 		fileEntry = _dlTrashService.moveFileEntryToTrash(fileEntryId);
 
+		List<TrashedModel> trashedModels = new ArrayList<>();
+
+		trashedModels.add((TrashedModel)fileEntry.getModel());
+
 		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"trashedModels",
-			ListUtil.fromArray((TrashedModel)fileEntry.getModel())
+			"trashedModels", trashedModels
 		).build();
 
 		addDeleteSuccessData(actionRequest, data);

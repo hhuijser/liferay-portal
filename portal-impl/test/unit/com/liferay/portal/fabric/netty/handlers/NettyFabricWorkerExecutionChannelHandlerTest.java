@@ -579,7 +579,6 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 			StringBundler.concat(
 				bootstrapPath1, File.pathSeparator, bootstrapPath2,
 				File.pathSeparator, bootstrapPath3));
-
 		builder.setRuntimeClassPath(StringPool.BLANK);
 
 		ProcessConfig processConfig = builder.build();

@@ -18,7 +18,6 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 
 import com.liferay.portal.kernel.util.CamelCaseUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.StringUtil_IW;
 import com.liferay.portal.kernel.util.TextFormatter;
@@ -56,6 +55,7 @@ import java.security.CodeSource;
 import java.security.ProtectionDomain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -129,9 +129,9 @@ public class RESTBuilder {
 	}
 
 	public void build() throws Exception {
-		Map<String, Object> context = HashMapBuilder.<String, Object>put(
-			"configYAML", _configYAML
-		).build();
+		Map<String, Object> context = new HashMap<>();
+
+		context.put("configYAML", _configYAML);
 
 		FreeMarkerTool freeMarkerTool = FreeMarkerTool.getInstance();
 

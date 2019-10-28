@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.resiliency.spi.remote.SystemPropertiesProcessCa
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.servlet.ServletContextPool;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -309,10 +308,9 @@ public class SPIDefinitionLocalServiceImpl
 		UnicodeProperties typeSettingsProperties =
 			spiDefinition.getTypeSettingsProperties();
 
-		Map<String, Serializable> taskContextMap =
-			HashMapBuilder.<String, Serializable>put(
-				"spiDefinitionId", spiDefinitionId
-			).build();
+		Map<String, Serializable> taskContextMap = new HashMap<>();
+
+		taskContextMap.put("spiDefinitionId", spiDefinitionId);
 
 		StringBundler sb = new StringBundler(4);
 
@@ -399,10 +397,9 @@ public class SPIDefinitionLocalServiceImpl
 		SPIDefinition spiDefinition = spiDefinitionPersistence.findByPrimaryKey(
 			spiDefinitionId);
 
-		Map<String, Serializable> taskContextMap =
-			HashMapBuilder.<String, Serializable>put(
-				"spiDefinitionId", spiDefinitionId
-			).build();
+		Map<String, Serializable> taskContextMap = new HashMap<>();
+
+		taskContextMap.put("spiDefinitionId", spiDefinitionId);
 
 		StringBundler sb = new StringBundler(4);
 

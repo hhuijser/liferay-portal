@@ -31,7 +31,6 @@ import com.liferay.portal.kernel.service.LayoutLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -66,6 +65,7 @@ import java.net.URLDecoder;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -485,11 +485,12 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 
 		keyStoreManager = new FileSystemKeyStoreManagerImpl();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put(
 			"saml.keystore.path",
 			"classpath:/com/liferay/saml/opensaml/integration/internal" +
-				"/credential/dependencies/keystore.jks"
-		).build();
+				"/credential/dependencies/keystore.jks");
 
 		keyStoreManager.activate(properties);
 

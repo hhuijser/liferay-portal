@@ -14,9 +14,9 @@
 
 package com.liferay.portal.search.tuning.synonyms.web.internal.display.context;
 
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.portlet.RenderRequest;
@@ -86,16 +86,14 @@ public class EditSynonymSetsDisplayBuilder {
 	private void _setData(
 		EditSynonymSetsDisplayContext editSynonymSetsDisplayContext) {
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			"formName", _renderResponse.getNamespace() + _getFormName()
-		).put(
-			"inputName", _renderResponse.getNamespace() + _getInputName()
-		).put(
+		Map<String, Object> data = new HashMap<>();
+
+		data.put("formName", _renderResponse.getNamespace() + _getFormName());
+		data.put("inputName", _renderResponse.getNamespace() + _getInputName());
+		data.put(
 			"originalInputName",
-			_renderResponse.getNamespace() + _getOriginalInputName()
-		).put(
-			"synonymSets", _getSynonymSets()
-		).build();
+			_renderResponse.getNamespace() + _getOriginalInputName());
+		data.put("synonymSets", _getSynonymSets());
 
 		editSynonymSetsDisplayContext.setData(data);
 	}

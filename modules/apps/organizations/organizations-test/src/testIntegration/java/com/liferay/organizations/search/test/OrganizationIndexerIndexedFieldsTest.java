@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.search.test.util.ExpandoTableSearchFixture;
 import com.liferay.portal.search.test.util.FieldValuesAssert;
@@ -109,12 +108,10 @@ public class OrganizationIndexerIndexedFieldsTest {
 			Organization.class, ExpandoColumnConstants.INDEX_TYPE_KEYWORD,
 			expandoColumnObs, expandoColumnName);
 
-		Map<String, Serializable> expandoValues =
-			HashMapBuilder.<String, Serializable>put(
-				expandoColumnName, "Software Developer"
-			).put(
-				expandoColumnObs, "Software Engineer"
-			).build();
+		Map<String, Serializable> expandoValues = new HashMap<>();
+
+		expandoValues.put(expandoColumnName, "Software Developer");
+		expandoValues.put(expandoColumnObs, "Software Engineer");
 
 		Organization organization = organizationFixture.createOrganization(
 			"My Organization", expandoValues);

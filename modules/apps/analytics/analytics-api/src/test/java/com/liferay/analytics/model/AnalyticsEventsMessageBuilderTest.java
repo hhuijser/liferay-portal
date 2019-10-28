@@ -14,8 +14,6 @@
 
 package com.liferay.analytics.model;
 
-import com.liferay.portal.kernel.util.HashMapBuilder;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,13 +36,11 @@ public class AnalyticsEventsMessageBuilderTest {
 		String expectedApplicationId = randomString();
 		String expectedEventId = randomString();
 
-		Map<String, String> expectedProperties = HashMapBuilder.put(
-			randomString(), randomString()
-		).put(
-			randomString(), randomString()
-		).put(
-			randomString(), randomString()
-		).build();
+		Map<String, String> expectedProperties = new HashMap<>();
+
+		expectedProperties.put(randomString(), randomString());
+		expectedProperties.put(randomString(), randomString());
+		expectedProperties.put(randomString(), randomString());
 
 		AnalyticsEventsMessage.Event actualEvent = createEvent(
 			expectedApplicationId, expectedEventId, expectedProperties);
@@ -69,9 +65,9 @@ public class AnalyticsEventsMessageBuilderTest {
 		String expectedApplicationId = randomString();
 		String expectedEventId = randomString();
 
-		Map<String, String> expectedProperties = HashMapBuilder.put(
-			randomString(), randomString()
-		).build();
+		Map<String, String> expectedProperties = new HashMap<>();
+
+		expectedProperties.put(randomString(), randomString());
 
 		expectedEvents.add(
 			createEvent(
@@ -155,15 +151,14 @@ public class AnalyticsEventsMessageBuilderTest {
 	protected Map<String, String> createContext(
 		long instanceId, String languageId, String url, long userId) {
 
-		return HashMapBuilder.put(
-			"instanceId", String.valueOf(instanceId)
-		).put(
-			"languageId", languageId
-		).put(
-			"url", url
-		).put(
-			"userId", String.valueOf(userId)
-		).build();
+		Map<String, String> context = new HashMap<>();
+
+		context.put("instanceId", String.valueOf(instanceId));
+		context.put("languageId", languageId);
+		context.put("url", url);
+		context.put("userId", String.valueOf(userId));
+
+		return context;
 	}
 
 	protected AnalyticsEventsMessage.Event createEvent(

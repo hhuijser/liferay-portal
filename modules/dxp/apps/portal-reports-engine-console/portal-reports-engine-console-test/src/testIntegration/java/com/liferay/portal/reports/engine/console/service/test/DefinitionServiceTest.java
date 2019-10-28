@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.reports.engine.console.model.Definition;
 import com.liferay.portal.reports.engine.console.service.DefinitionLocalServiceUtil;
@@ -44,6 +43,7 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.io.InputStream;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -169,9 +169,9 @@ public class DefinitionServiceTest {
 		serviceContext.setModelPermissions(modelPermissions);
 
 		for (int i = 0; i < 5; i++) {
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.US, RandomTestUtil.randomString()
-			).build();
+			Map<Locale, String> nameMap = new HashMap<>();
+
+			nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
 			try (InputStream inputStream =
 					DefinitionServiceTest.class.getResourceAsStream(
@@ -190,9 +190,9 @@ public class DefinitionServiceTest {
 		serviceContext.setModelPermissions(modelPermissions);
 
 		for (int i = 0; i < 5; i++) {
-			Map<Locale, String> nameMap = HashMapBuilder.put(
-				LocaleUtil.US, RandomTestUtil.randomString()
-			).build();
+			Map<Locale, String> nameMap = new HashMap<>();
+
+			nameMap.put(LocaleUtil.US, RandomTestUtil.randomString());
 
 			try (InputStream inputStream =
 					DefinitionServiceTest.class.getResourceAsStream(

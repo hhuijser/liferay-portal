@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
 import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.service.ReleaseLocalServiceUtil;
 import com.liferay.portal.kernel.service.ResourceActionLocalServiceUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.kernel.util.Time;
 import com.liferay.portal.kernel.version.Version;
@@ -52,6 +51,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.time.StopWatch;
@@ -292,13 +292,11 @@ public class DBUpgrader {
 		ServiceRegistrar<Release> serviceRegistrar =
 			registry.getServiceRegistrar(Release.class);
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"build.date", release.getBuildDate()
-		).put(
-			"build.number", release.getBuildNumber()
-		).put(
-			"servlet.context.name", release.getServletContextName()
-		).build();
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put("build.date", release.getBuildDate());
+		properties.put("build.number", release.getBuildNumber());
+		properties.put("servlet.context.name", release.getServletContextName());
 
 		serviceRegistrar.registerService(Release.class, release, properties);
 	}
@@ -429,13 +427,11 @@ public class DBUpgrader {
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"module.service.lifecycle", moduleServiceLifecycle
-		).put(
-			"service.vendor", ReleaseInfo.getVendor()
-		).put(
-			"service.version", ReleaseInfo.getVersion()
-		).build();
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put("module.service.lifecycle", moduleServiceLifecycle);
+		properties.put("service.vendor", ReleaseInfo.getVendor());
+		properties.put("service.version", ReleaseInfo.getVersion());
 
 		registry.registerService(
 			ModuleServiceLifecycle.class,

@@ -16,7 +16,6 @@ package com.liferay.portal.tools.propertiesdoc;
 
 import com.liferay.portal.freemarker.FreeMarkerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ReleaseInfo;
 import com.liferay.portal.tools.ArgumentsUtil;
 
@@ -26,6 +25,7 @@ import java.io.IOException;
 import java.io.Writer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,11 +80,10 @@ public class PropertiesDocIndexBuilder {
 			return;
 		}
 
-		Map<String, Object> context = HashMapBuilder.<String, Object>put(
-			"propertiesHTMLFileNames", propertiesHTMLFileNames
-		).put(
-			"releaseInfoVersion", ReleaseInfo.getVersion()
-		).build();
+		Map<String, Object> context = new HashMap<>();
+
+		context.put("propertiesHTMLFileNames", propertiesHTMLFileNames);
+		context.put("releaseInfoVersion", ReleaseInfo.getVersion());
 
 		try {
 			String indexHTMLFileName = propertiesDirName + "/index.html";

@@ -16,7 +16,6 @@ package com.liferay.portal.kernel.internal.security.permission.resource;
 
 import com.liferay.portal.kernel.security.permission.resource.PortletResourcePermission;
 import com.liferay.portal.kernel.security.permission.resource.definition.PortletResourcePermissionDefinition;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceReference;
@@ -24,6 +23,7 @@ import com.liferay.registry.ServiceRegistration;
 import com.liferay.registry.ServiceTracker;
 import com.liferay.registry.ServiceTrackerCustomizer;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -71,10 +71,11 @@ public class PortletResourcePermissionDefinitionTracker {
 					portletResourcePermissionDefinition.
 						getPortletResourcePermissionLogics());
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
+			Map<String, Object> properties = new HashMap<>();
+
+			properties.put(
 				"resource.name",
-				portletResourcePermissionDefinition.getResourceName()
-			).build();
+				portletResourcePermissionDefinition.getResourceName());
 
 			Object serviceRanking = serviceReference.getProperty(
 				"service.ranking");

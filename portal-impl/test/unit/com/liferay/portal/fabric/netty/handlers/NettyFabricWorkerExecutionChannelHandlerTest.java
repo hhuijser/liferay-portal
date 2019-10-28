@@ -54,7 +54,6 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.test.rule.AdviseWith;
 import com.liferay.portal.test.rule.AspectJNewEnvTestRule;
 
@@ -1009,11 +1008,10 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		Path inputPath2 = FileServerTestUtil.createEmptyFile(
 			Paths.get("inputPath2"));
 
-		Map<Path, Path> inputPaths = HashMapBuilder.put(
-			inputPath1, inputPath1
-		).put(
-			inputPath2, inputPath2
-		).build();
+		Map<Path, Path> inputPaths = new HashMap<>();
+
+		inputPaths.put(inputPath1, inputPath1);
+		inputPaths.put(inputPath2, inputPath2);
 
 		PostFabricWorkerFinishFutureListener
 			postFabricWorkerFinishFutureListener =
@@ -1082,11 +1080,10 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 		inputPath2 = FileServerTestUtil.createEmptyFile(
 			Paths.get("inputPath2"));
 
-		inputPaths = HashMapBuilder.put(
-			inputPath1, inputPath1
-		).put(
-			inputPath2, inputPath2
-		).build();
+		inputPaths = new HashMap<>();
+
+		inputPaths.put(inputPath1, inputPath1);
+		inputPaths.put(inputPath2, inputPath2);
 
 		postFabricWorkerFinishFutureListener =
 			nettyFabricWorkerExecutionChannelHandler.

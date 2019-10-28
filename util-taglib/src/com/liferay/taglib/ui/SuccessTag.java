@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.servlet.MultiSessionMessages;
 import com.liferay.portal.kernel.servlet.SessionMessages;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -29,6 +28,7 @@ import com.liferay.taglib.aui.ScriptTag;
 import com.liferay.taglib.util.IncludeTag;
 import com.liferay.taglib.util.TagResourceBundleUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -131,11 +131,10 @@ public class SuccessTag extends IncludeTag implements BodyTag {
 			message = LanguageUtil.get(resourceBundle, message);
 		}
 
-		Map<String, String> values = HashMapBuilder.put(
-			"pathThemeImages", themeDisplay.getPathThemeImages()
-		).put(
-			"title", LanguageUtil.get(resourceBundle, "success-colon")
-		).build();
+		Map<String, String> values = new HashMap<>();
+
+		values.put("pathThemeImages", themeDisplay.getPathThemeImages());
+		values.put("title", LanguageUtil.get(resourceBundle, "success-colon"));
 
 		if (_embed) {
 			values.put("message", HtmlUtil.escape(message));

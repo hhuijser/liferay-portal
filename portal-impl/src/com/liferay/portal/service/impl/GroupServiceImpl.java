@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.service.permission.PortletPermissionUtil;
 import com.liferay.portal.kernel.service.permission.RolePermissionUtil;
 import com.liferay.portal.kernel.service.permission.UserPermissionUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -64,6 +63,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -1105,9 +1105,11 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 	}
 
 	protected Map<Locale, String> getLocalizationMap(String value) {
-		return HashMapBuilder.put(
-			LocaleUtil.getDefault(), value
-		).build();
+		Map<Locale, String> map = new HashMap<>();
+
+		map.put(LocaleUtil.getDefault(), value);
+
+		return map;
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

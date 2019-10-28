@@ -20,7 +20,6 @@ import com.liferay.petra.process.ProcessException;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.fabric.ReturnProcessCallable;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.util.SerializableUtil;
 
 import java.nio.file.Path;
@@ -28,6 +27,7 @@ import java.nio.file.Paths;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -133,11 +133,10 @@ public class NettyFabricWorkerConfigTest {
 		ProcessCallable<String> processCallable = new ReturnProcessCallable<>(
 			"Test ProcessCallable");
 
-		Map<Path, Path> inputPathMap = HashMapBuilder.put(
-			Paths.get("path1"), Paths.get("path2")
-		).put(
-			Paths.get("path3"), Paths.get("path4")
-		).build();
+		Map<Path, Path> inputPathMap = new HashMap<>();
+
+		inputPathMap.put(Paths.get("path1"), Paths.get("path2"));
+		inputPathMap.put(Paths.get("path3"), Paths.get("path4"));
 
 		NettyFabricWorkerConfig<String> copyNettyFabricWorkerConfig =
 			(NettyFabricWorkerConfig<String>)SerializableUtil.deserialize(

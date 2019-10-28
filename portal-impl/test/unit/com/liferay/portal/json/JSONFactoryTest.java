@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.json.JSONSerializer;
 import com.liferay.portal.kernel.test.AssertUtils;
 import com.liferay.portal.kernel.test.CaptureHandler;
 import com.liferay.portal.kernel.test.JDKLoggerTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.util.HashMap;
@@ -82,9 +81,9 @@ public class JSONFactoryTest {
 
 	@Test
 	public void testDeserializeLongArrayToIntegerArray() {
-		Map<String, long[]> map = HashMapBuilder.put(
-			"key", new long[] {1L, 2L, 3L, 4L, 5L}
-		).build();
+		Map<String, long[]> map = new HashMap<>();
+
+		map.put("key", new long[] {1L, 2L, 3L, 4L, 5L});
 
 		String json = JSONFactoryUtil.serialize(map);
 

@@ -39,7 +39,6 @@ import com.liferay.portal.kernel.servlet.filters.invoker.InvokerFilter;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -78,6 +77,7 @@ import java.nio.file.Paths;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -1503,45 +1503,41 @@ public class BaseDeployer implements AutoDeployer, Deployer {
 			return null;
 		}
 
-		return HashMapBuilder.put(
-			"author", wrapCDATA(pluginPackage.getAuthor())
-		).put(
-			"change_log", wrapCDATA(pluginPackage.getChangeLog())
-		).put(
-			"licenses", getPluginPackageLicensesXml(pluginPackage.getLicenses())
-		).put(
+		Map<String, String> filterMap = new HashMap<>();
+
+		filterMap.put("author", wrapCDATA(pluginPackage.getAuthor()));
+		filterMap.put("change_log", wrapCDATA(pluginPackage.getChangeLog()));
+		filterMap.put(
+			"licenses",
+			getPluginPackageLicensesXml(pluginPackage.getLicenses()));
+		filterMap.put(
 			"liferay_versions",
 			getPluginPackageLiferayVersionsXml(
-				pluginPackage.getLiferayVersions())
-		).put(
-			"long_description", wrapCDATA(pluginPackage.getLongDescription())
-		).put(
-			"module_artifact_id", pluginPackage.getArtifactId()
-		).put(
-			"module_group_id", pluginPackage.getGroupId()
-		).put(
-			"module_version", pluginPackage.getVersion()
-		).put(
-			"page_url", pluginPackage.getPageURL()
-		).put(
-			"plugin_name", wrapCDATA(pluginPackage.getName())
-		).put(
-			"plugin_type", pluginType
-		).put(
+				pluginPackage.getLiferayVersions()));
+		filterMap.put(
+			"long_description", wrapCDATA(pluginPackage.getLongDescription()));
+		filterMap.put("module_artifact_id", pluginPackage.getArtifactId());
+		filterMap.put("module_group_id", pluginPackage.getGroupId());
+		filterMap.put("module_version", pluginPackage.getVersion());
+		filterMap.put("page_url", pluginPackage.getPageURL());
+		filterMap.put("plugin_name", wrapCDATA(pluginPackage.getName()));
+		filterMap.put("plugin_type", pluginType);
+		filterMap.put(
 			"plugin_type_name",
-			TextFormatter.format(pluginType, TextFormatter.J)
-		).put(
+			TextFormatter.format(pluginType, TextFormatter.J));
+		filterMap.put(
 			"recommended_deployment_context",
-			pluginPackage.getRecommendedDeploymentContext()
-		).put(
+			pluginPackage.getRecommendedDeploymentContext());
+		filterMap.put(
 			"required_deployment_contexts",
 			getPluginPackageRequiredDeploymentContextsXml(
-				pluginPackage.getRequiredDeploymentContexts())
-		).put(
-			"short_description", wrapCDATA(pluginPackage.getShortDescription())
-		).put(
-			"tags", getPluginPackageTagsXml(pluginPackage.getTags())
-		).build();
+				pluginPackage.getRequiredDeploymentContexts()));
+		filterMap.put(
+			"short_description",
+			wrapCDATA(pluginPackage.getShortDescription()));
+		filterMap.put("tags", getPluginPackageTagsXml(pluginPackage.getTags()));
+
+		return filterMap;
 	}
 
 	public String getPluginType() {

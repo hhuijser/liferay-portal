@@ -15,7 +15,6 @@
 package com.liferay.portlet;
 
 import com.liferay.portal.kernel.portlet.Route;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.util.HttpImpl;
 import com.liferay.portlet.internal.RouteImpl;
@@ -37,11 +36,10 @@ public class RouteImplTest {
 
 		httpUtil.setHttp(new HttpImpl());
 
-		Map<String, String> parameters = HashMapBuilder.put(
-			"action", "view"
-		).put(
-			"id", "bob"
-		).build();
+		Map<String, String> parameters = new HashMap<>();
+
+		parameters.put("action", "view");
+		parameters.put("id", "bob");
 
 		Map<String, String> originalParameters = new HashMap<>(parameters);
 

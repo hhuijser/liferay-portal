@@ -95,7 +95,6 @@ import com.liferay.portal.kernel.url.ServletContextURLContainer;
 import com.liferay.portal.kernel.util.CacheResourceBundleLoader;
 import com.liferay.portal.kernel.util.ClassResourceBundleLoader;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.InstanceFactory;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropertiesUtil;
@@ -1154,10 +1153,9 @@ public class HookHotDeployListener
 				ResourceBundle resourceBundle = new LiferayResourceBundle(
 					inputStream, StringPool.UTF8);
 
-				Map<String, Object> properties =
-					HashMapBuilder.<String, Object>put(
-						"language.id", LocaleUtil.toLanguageId(locale)
-					).build();
+				Map<String, Object> properties = new HashMap<>();
+
+				properties.put("language.id", LocaleUtil.toLanguageId(locale));
 
 				registerService(
 					servletContextName, languagePropertiesLocation,

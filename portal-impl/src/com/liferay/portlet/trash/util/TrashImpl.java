@@ -41,7 +41,6 @@ import com.liferay.portal.kernel.trash.TrashRenderer;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -66,6 +65,7 @@ import java.text.Format;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -143,11 +143,10 @@ public class TrashImpl implements Trash {
 		ActionRequest actionRequest, List<TrashedModel> trashedModels,
 		String cmd) {
 
-		Map<String, Object> data = HashMapBuilder.<String, Object>put(
-			Constants.CMD, new String[] {cmd}
-		).put(
-			"trashedModels", trashedModels
-		).build();
+		Map<String, Object> data = new HashMap<>();
+
+		data.put(Constants.CMD, new String[] {cmd});
+		data.put("trashedModels", trashedModels);
 
 		SessionMessages.add(
 			actionRequest,

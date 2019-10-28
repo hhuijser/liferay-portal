@@ -63,7 +63,6 @@ import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
@@ -1073,13 +1072,12 @@ public class DLImpl implements DL {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<String, Serializable> workflowContext =
-			HashMapBuilder.<String, Serializable>put(
-				WorkflowConstants.CONTEXT_URL,
-				getEntryURL(dlFileVersion, serviceContext)
-			).put(
-				"event", syncEventType
-			).build();
+		Map<String, Serializable> workflowContext = new HashMap<>();
+
+		workflowContext.put(
+			WorkflowConstants.CONTEXT_URL,
+			getEntryURL(dlFileVersion, serviceContext));
+		workflowContext.put("event", syncEventType);
 
 		WorkflowHandlerRegistryUtil.startWorkflowInstance(
 			dlFileVersion.getCompanyId(), dlFileVersion.getGroupId(), userId,

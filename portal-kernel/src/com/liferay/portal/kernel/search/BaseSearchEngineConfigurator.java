@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.search.messaging.BaseSearchEngineMessageListene
 import com.liferay.portal.kernel.search.messaging.SearchReaderMessageListener;
 import com.liferay.portal.kernel.search.messaging.SearchWriterMessageListener;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalRunMode;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.PropsUtil;
@@ -45,6 +44,7 @@ import com.liferay.registry.dependency.ServiceDependencyListener;
 import com.liferay.registry.dependency.ServiceDependencyManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -452,9 +452,9 @@ public abstract class BaseSearchEngineConfigurator
 	private void _registerSearchEngineDestination(
 		String searchEngineId, Destination destination) {
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"destination.name", destination.getName()
-		).build();
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put("destination.name", destination.getName());
 
 		Registry registry = RegistryUtil.getRegistry();
 

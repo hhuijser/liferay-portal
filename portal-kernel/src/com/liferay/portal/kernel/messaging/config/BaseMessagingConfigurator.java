@@ -24,7 +24,6 @@ import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.MessageBusEventListener;
 import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.servlet.ServletContextClassLoaderPool;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.registry.Filter;
 import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
@@ -298,10 +297,9 @@ public abstract class BaseMessagingConfigurator
 
 					@Override
 					public void dependenciesFulfilled() {
-						Map<String, Object> properties =
-							HashMapBuilder.<String, Object>put(
-								"destination.name", destinationName
-							).build();
+						Map<String, Object> properties = new HashMap<>();
+
+						properties.put("destination.name", destinationName);
 
 						for (DestinationEventListener destinationEventListener :
 								entry.getValue()) {
@@ -347,9 +345,9 @@ public abstract class BaseMessagingConfigurator
 			Destination.class);
 
 		for (Destination destination : _destinations) {
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"destination.name", destination.getName()
-			).build();
+			Map<String, Object> properties = new HashMap<>();
+
+			properties.put("destination.name", destination.getName());
 
 			_destinationServiceRegistrar.registerService(
 				Destination.class, destination, properties);
@@ -406,11 +404,12 @@ public abstract class BaseMessagingConfigurator
 		public void dependenciesFulfilled() {
 			ClassLoader operatingClassLoader = getOperatingClassloader();
 
-			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"destination.name", _destinationName
-			).put(
-				"message.listener.operating.class.loader", operatingClassLoader
-			).build();
+			Map<String, Object> properties = new HashMap<>();
+
+			properties.put("destination.name", _destinationName);
+			properties.put(
+				"message.listener.operating.class.loader",
+				operatingClassLoader);
 
 			for (MessageListener messageListener : _messageListeners) {
 				_messageListenerServiceRegistrar.registerService(

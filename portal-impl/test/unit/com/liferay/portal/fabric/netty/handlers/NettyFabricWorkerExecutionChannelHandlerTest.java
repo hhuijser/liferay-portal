@@ -451,11 +451,11 @@ public class NettyFabricWorkerExecutionChannelHandlerTest {
 
 		final Map<Path, Path> mergedPaths = new HashMap<>();
 
+		mergedPaths.put(inputPath1, mappedInputPath1);
+		mergedPaths.put(inputPath2, mappedInputPath2);
 		mergedPaths.put(bootstrapPath1, mappedBootstrapPath1);
 		mergedPaths.put(bootstrapPath2, mappedBootstrapPath2);
 		mergedPaths.put(bootstrapPath3, mappedBootstrapPath3);
-		mergedPaths.put(inputPath1, mappedInputPath1);
-		mergedPaths.put(inputPath2, mappedInputPath2);
 		mergedPaths.put(runtimePath1, mappedRuntimePath1);
 		mergedPaths.put(runtimePath2, mappedRuntimePath2);
 		mergedPaths.put(runtimePath3, mappedRuntimePath3);

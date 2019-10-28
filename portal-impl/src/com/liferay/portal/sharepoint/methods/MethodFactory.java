@@ -36,9 +36,9 @@ public class MethodFactory {
 	}
 
 	private MethodFactory() {
-		Method method = (Method)InstancePool.get(_CHECKOUT_METHOD_IMPL);
-
 		_methods = new HashMap<>();
+
+		Method method = (Method)InstancePool.get(_CHECKOUT_METHOD_IMPL);
 
 		_methods.put(method.getMethodName(), method);
 

@@ -86,6 +86,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.Constants;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
@@ -516,9 +517,9 @@ public class ContentPageEditorDisplayContext {
 				Collections.emptyMap(), themeDisplay,
 				RequestBackedPortletURLFactoryUtil.create(request));
 
-		Map<String, Object> configurations = new HashMap<>();
-
-		configurations.put("comment", commentEditorConfiguration.getData());
+		Map<String, Object> configurations = HashMapBuilder.<String, Object>put(
+			"comment", commentEditorConfiguration.getData()
+		).build();
 
 		EditorConfiguration richTextEditorConfiguration =
 			EditorConfigurationFactoryUtil.getEditorConfiguration(

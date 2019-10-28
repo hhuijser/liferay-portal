@@ -38,7 +38,6 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -224,18 +223,17 @@ public class InputAssetLinksDisplayContext {
 					_getSelectorEntries(assetRendererFactory));
 			}
 			else {
-				Map<String, Object> selectorEntry =
-					HashMapBuilder.<String, Object>put(
-						"data", _getSelectorEntryData(assetRendererFactory)
-					).put(
-						"iconCssClass",
-						_getSelectorEntryIconCssClass(assetRendererFactory)
-					).put(
-						"id", _getSelectorEntryId(assetRendererFactory)
-					).put(
-						"message",
-						_getSelectorEntryMessage(assetRendererFactory)
-					).build();
+				Map<String, Object> selectorEntry = new HashMap<>();
+
+				selectorEntry.put(
+					"data", _getSelectorEntryData(assetRendererFactory));
+				selectorEntry.put(
+					"iconCssClass",
+					_getSelectorEntryIconCssClass(assetRendererFactory));
+				selectorEntry.put(
+					"id", _getSelectorEntryId(assetRendererFactory));
+				selectorEntry.put(
+					"message", _getSelectorEntryMessage(assetRendererFactory));
 
 				selectorEntries.add(selectorEntry);
 			}
@@ -374,18 +372,16 @@ public class InputAssetLinksDisplayContext {
 		List<Map<String, Object>> selectorEntries = new ArrayList<>();
 
 		for (ClassType classType : classTypes) {
-			Map<String, Object> selectorEntry =
-				HashMapBuilder.<String, Object>put(
-					"data",
-					_getSelectorEntryData(assetRendererFactory, classType)
-				).put(
-					"iconCssClass",
-					_getSelectorEntryIconCssClass(assetRendererFactory)
-				).put(
-					"id", _getSelectorEntryId(assetRendererFactory, classType)
-				).put(
-					"message", _getSelectorEntryMessage(classType)
-				).build();
+			Map<String, Object> selectorEntry = new HashMap<>();
+
+			selectorEntry.put(
+				"data", _getSelectorEntryData(assetRendererFactory, classType));
+			selectorEntry.put(
+				"iconCssClass",
+				_getSelectorEntryIconCssClass(assetRendererFactory));
+			selectorEntry.put(
+				"id", _getSelectorEntryId(assetRendererFactory, classType));
+			selectorEntry.put("message", _getSelectorEntryMessage(classType));
 
 			selectorEntries.add(selectorEntry);
 		}

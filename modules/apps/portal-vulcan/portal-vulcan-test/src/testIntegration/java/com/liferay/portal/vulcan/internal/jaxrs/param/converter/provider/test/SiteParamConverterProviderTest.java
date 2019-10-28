@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.test.log.CaptureAppender;
@@ -36,6 +35,7 @@ import com.liferay.registry.ServiceRegistration;
 import java.io.FileNotFoundException;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -69,15 +69,13 @@ public class SiteParamConverterProviderTest {
 	public void setUp() {
 		Registry registry = RegistryUtil.getRegistry();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"liferay.auth.verifier", true
-		).put(
-			"liferay.oauth2", false
-		).put(
-			"osgi.jaxrs.application.base", "/test-vulcan"
-		).put(
-			"osgi.jaxrs.extension.select", "(osgi.jaxrs.name=Liferay.Vulcan)"
-		).build();
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put("liferay.auth.verifier", true);
+		properties.put("liferay.oauth2", false);
+		properties.put("osgi.jaxrs.application.base", "/test-vulcan");
+		properties.put(
+			"osgi.jaxrs.extension.select", "(osgi.jaxrs.name=Liferay.Vulcan)");
 
 		_serviceRegistration = registry.registerService(
 			Application.class,

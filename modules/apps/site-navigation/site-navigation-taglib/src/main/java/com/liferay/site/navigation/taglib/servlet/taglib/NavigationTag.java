@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.portletdisplaytemplate.PortletDisplayTemplateManagerUtil;
 import com.liferay.portal.kernel.theme.NavItem;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portlet.display.template.PortletDisplayTemplate;
@@ -32,6 +31,7 @@ import com.liferay.site.navigation.taglib.internal.servlet.ServletContextUtil;
 import com.liferay.site.navigation.taglib.internal.util.NavItemUtil;
 import com.liferay.taglib.util.IncludeTag;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -115,19 +115,14 @@ public class NavigationTag extends IncludeTag {
 		HttpServletResponse httpServletResponse =
 			(HttpServletResponse)pageContext.getResponse();
 
-		Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-			"branchNavItems", branchNavItems
-		).put(
-			"displayDepth", _displayDepth
-		).put(
-			"includedLayouts", _includedLayouts
-		).put(
-			"preview", _preview
-		).put(
-			"rootLayoutLevel", _rootLayoutLevel
-		).put(
-			"rootLayoutType", _rootLayoutType
-		).build();
+		Map<String, Object> contextObjects = new HashMap<>();
+
+		contextObjects.put("branchNavItems", branchNavItems);
+		contextObjects.put("displayDepth", _displayDepth);
+		contextObjects.put("includedLayouts", _includedLayouts);
+		contextObjects.put("preview", _preview);
+		contextObjects.put("rootLayoutLevel", _rootLayoutLevel);
+		contextObjects.put("rootLayoutType", _rootLayoutType);
 
 		String result = portletDisplayTemplate.renderDDMTemplate(
 			request, httpServletResponse, portletDisplayDDMTemplate, navItems,

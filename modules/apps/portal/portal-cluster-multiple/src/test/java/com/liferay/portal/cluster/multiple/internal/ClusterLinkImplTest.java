@@ -24,12 +24,12 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PropsKeys;
 
 import java.io.Serializable;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -264,15 +264,17 @@ public class ClusterLinkImplTest extends BaseClusterTestCase {
 				"test-channel-properties-transport-" + i);
 		}
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put(
 			PropsKeys.CLUSTER_LINK_CHANNEL_LOGIC_NAME_TRANSPORT,
-			new Properties()
-		).put(
-			PropsKeys.CLUSTER_LINK_CHANNEL_NAME_TRANSPORT, channelNameProperties
-		).put(
+			new Properties());
+		properties.put(
+			PropsKeys.CLUSTER_LINK_CHANNEL_NAME_TRANSPORT,
+			channelNameProperties);
+		properties.put(
 			PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_TRANSPORT,
-			channelPropertiesProperties
-		).build();
+			channelPropertiesProperties);
 
 		clusterLinkImpl.setProps(PropsTestUtil.setProps(properties));
 

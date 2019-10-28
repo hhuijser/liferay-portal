@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.IntegerWrapper;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -42,6 +41,7 @@ import com.liferay.portal.util.PropsValues;
 import java.security.Principal;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -401,9 +401,9 @@ public class JAASTest {
 			AppConfigurationEntry[] appConfigurationEntries =
 				new AppConfigurationEntry[1];
 
-			Map<String, Object> options = HashMapBuilder.<String, Object>put(
-				"debug", Boolean.TRUE
-			).build();
+			Map<String, Object> options = new HashMap<>();
+
+			options.put("debug", Boolean.TRUE);
 
 			appConfigurationEntries[0] = new AppConfigurationEntry(
 				"com.liferay.portal.kernel.security.jaas.PortalLoginModule",

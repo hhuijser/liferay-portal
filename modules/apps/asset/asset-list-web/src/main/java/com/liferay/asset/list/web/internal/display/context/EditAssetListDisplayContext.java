@@ -642,13 +642,12 @@ public class EditAssetListDisplayContext {
 			assetBrowserURL.setWindowState(LiferayWindowState.POP_UP);
 
 			if (!curRendererFactory.isSupportsClassTypes()) {
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"destroyOnHide", true
-				).put(
-					"groupid", String.valueOf(_themeDisplay.getScopeGroupId())
-				).put(
-					"href", assetBrowserURL.toString()
-				).build();
+				Map<String, Object> data = new HashMap<>();
+
+				data.put("destroyOnHide", true);
+				data.put(
+					"groupid", String.valueOf(_themeDisplay.getScopeGroupId()));
+				data.put("href", assetBrowserURL.toString());
 
 				String type = curRendererFactory.getTypeName(
 					_themeDisplay.getLocale());
@@ -674,11 +673,11 @@ public class EditAssetListDisplayContext {
 					_themeDisplay.getLocale());
 
 			for (ClassType assetAvailableClassType : assetAvailableClassTypes) {
-				Map<String, Object> data = HashMapBuilder.<String, Object>put(
-					"destroyOnHide", true
-				).put(
-					"groupid", String.valueOf(_themeDisplay.getScopeGroupId())
-				).build();
+				Map<String, Object> data = new HashMap<>();
+
+				data.put("destroyOnHide", true);
+				data.put(
+					"groupid", String.valueOf(_themeDisplay.getScopeGroupId()));
 
 				assetBrowserURL.setParameter(
 					"subtypeSelectionId",

@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.HashMap;
@@ -49,9 +48,11 @@ public class ValidationDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
-		return HashMapBuilder.<String, Object>put(
-			"value", getValue(ddmFormFieldRenderingContext)
-		).build();
+		Map<String, Object> parameters = new HashMap<>();
+
+		parameters.put("value", getValue(ddmFormFieldRenderingContext));
+
+		return parameters;
 	}
 
 	protected Map<String, Object> getValue(

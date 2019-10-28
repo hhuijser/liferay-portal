@@ -73,7 +73,6 @@ import com.liferay.portal.kernel.test.util.TestDataConstants;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.ContentTypes;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -162,10 +161,10 @@ public class DLFileEntryLocalServiceTest {
 			long fileEntryTypeId = populateServiceContextFileEntryType(
 				serviceContext);
 
-			Map<String, Serializable> expandoBridgeAttributes =
-				HashMapBuilder.<String, Serializable>put(
-					"ExpandoAttributeName", "ExpandoAttributeValue"
-				).build();
+			Map<String, Serializable> expandoBridgeAttributes = new HashMap<>();
+
+			expandoBridgeAttributes.put(
+				"ExpandoAttributeName", "ExpandoAttributeValue");
 
 			serviceContext.setExpandoBridgeAttributes(expandoBridgeAttributes);
 

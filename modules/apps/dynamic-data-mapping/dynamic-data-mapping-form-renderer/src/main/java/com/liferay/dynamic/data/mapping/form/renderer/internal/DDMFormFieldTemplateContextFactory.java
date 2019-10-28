@@ -119,10 +119,9 @@ public class DDMFormFieldTemplateContextFactory {
 	protected Map<String, Object> createDDMFormFieldTemplateContext(
 		DDMFormField ddmFormField, String ddmFormFieldParameterName) {
 
-		Map<String, Object> ddmFormFieldTemplateContext =
-			HashMapBuilder.<String, Object>put(
-				"type", ddmFormField.getType()
-			).build();
+		Map<String, Object> ddmFormFieldTemplateContext = new HashMap<>();
+
+		ddmFormFieldTemplateContext.put("type", ddmFormField.getType());
 
 		setDDMFormFieldTemplateContextFieldName(
 			ddmFormFieldTemplateContext, ddmFormField.getName());
@@ -585,14 +584,14 @@ public class DDMFormFieldTemplateContextFactory {
 				parameterLocalizedValue.getString(_locale));
 		}
 
-		Map<String, Object> validation = HashMapBuilder.<String, Object>put(
+		Map<String, Object> validation = new HashMap<>();
+
+		validation.put(
 			"dataType",
 			GetterUtil.getString(
 				changedProperties.get("validationDataType"),
-				MapUtil.getString(changedProperties, "dataType"))
-		).put(
-			"errorMessage", errorMessage
-		).build();
+				MapUtil.getString(changedProperties, "dataType")));
+		validation.put("errorMessage", errorMessage);
 
 		DDMFormFieldValidationExpression ddmFormFieldValidationExpression =
 			ddmFormFieldValidation.getDDMFormFieldValidationExpression();

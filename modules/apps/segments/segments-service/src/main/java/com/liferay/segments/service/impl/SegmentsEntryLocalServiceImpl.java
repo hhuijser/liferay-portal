@@ -36,7 +36,6 @@ import com.liferay.portal.kernel.systemevent.SystemEvent;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.GroupThreadLocal;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -54,6 +53,7 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -360,10 +360,9 @@ public class SegmentsEntryLocalServiceImpl
 		queryConfig.setHighlightEnabled(false);
 		queryConfig.setScoreEnabled(false);
 
-		Map<String, Serializable> attributes =
-			HashMapBuilder.<String, Serializable>put(
-				Field.NAME, keywords
-			).build();
+		Map<String, Serializable> attributes = new HashMap<>();
+
+		attributes.put(Field.NAME, keywords);
 
 		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 

@@ -18,7 +18,6 @@ import com.liferay.petra.salesforce.client.BaseSalesforceClientImpl;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import com.sforce.soap.partner.PartnerConnection;
 import com.sforce.ws.ConnectionException;
@@ -26,6 +25,7 @@ import com.sforce.ws.ConnectorConfig;
 
 import java.net.URL;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.cometd.bayeux.Channel;
@@ -142,10 +142,11 @@ public class SalesforceStreamingClientImpl
 
 			ConnectorConfig connectorConfig = partnerConnection.getConfig();
 
-			Map<String, Object> options = HashMapBuilder.<String, Object>put(
+			Map<String, Object> options = new HashMap<>();
+
+			options.put(
 				ClientTransport.MAX_NETWORK_DELAY_OPTION,
-				_transportTimeout * 6000
-			).build();
+				_transportTimeout * 6000);
 
 			_httpClient.start();
 

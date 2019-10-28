@@ -47,7 +47,6 @@ import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -69,6 +68,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -297,11 +297,10 @@ public class WikiPageLocalServiceTest {
 
 			Assert.assertEquals("ParentPage1", childPage.getParentTitle());
 
-			Map<String, Serializable> workflowContext =
-				HashMapBuilder.<String, Serializable>put(
-					WorkflowConstants.CONTEXT_COMMAND,
-					serviceContext.getCommand()
-				).build();
+			Map<String, Serializable> workflowContext = new HashMap<>();
+
+			workflowContext.put(
+				WorkflowConstants.CONTEXT_COMMAND, serviceContext.getCommand());
 
 			WikiPageLocalServiceUtil.updateStatus(
 				TestPropsValues.getUserId(), pendingChildPage,

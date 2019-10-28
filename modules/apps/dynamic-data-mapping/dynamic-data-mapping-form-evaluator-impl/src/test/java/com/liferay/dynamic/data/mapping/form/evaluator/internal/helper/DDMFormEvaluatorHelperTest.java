@@ -45,6 +45,7 @@ import com.liferay.dynamic.data.mapping.model.DDMFormFieldValidation;
 import com.liferay.dynamic.data.mapping.model.DDMFormFieldValidationExpression;
 import com.liferay.dynamic.data.mapping.model.DDMFormRule;
 import com.liferay.dynamic.data.mapping.model.UnlocalizedValue;
+import com.liferay.dynamic.data.mapping.storage.DDMFormFieldValue;
 import com.liferay.dynamic.data.mapping.storage.DDMFormValues;
 import com.liferay.dynamic.data.mapping.storage.FieldConstants;
 import com.liferay.dynamic.data.mapping.test.util.DDMFormTestUtil;
@@ -70,6 +71,7 @@ import com.liferay.registry.RegistryUtil;
 
 import java.math.BigDecimal;
 
+import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
@@ -412,6 +414,21 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 		ddmFormValues.addDDMFormFieldValue(
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("false")));
+
+		Map<String, DDMFormFieldValueAccessor<?>> ddmFormFieldValueAccessorMap =
+			HashMapBuilder.<String, DDMFormFieldValueAccessor<?>>put(
+				"checkbox",
+				new DefaultDDMFormFieldValueAccessor() {
+
+					@Override
+					public boolean isEmpty(
+						DDMFormFieldValue ddmFormFieldValue, Locale locale) {
+
+						return true;
+					}
+
+				}
+			).build();
 
 		DDMFormEvaluatorEvaluateResponse ddmFormEvaluatorEvaluateResponse =
 			doEvaluate(ddmForm, ddmFormValues);

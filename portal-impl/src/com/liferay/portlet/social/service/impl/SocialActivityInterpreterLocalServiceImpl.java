@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.util.PropsValues;
@@ -81,9 +80,10 @@ public class SocialActivityInterpreterLocalServiceImpl
 		SocialActivityInterpreterImpl socialActivityInterpreterImpl =
 			(SocialActivityInterpreterImpl)activityInterpreter;
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"javax.portlet.name", socialActivityInterpreterImpl.getPortletId()
-		).build();
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put(
+			"javax.portlet.name", socialActivityInterpreterImpl.getPortletId());
 
 		ServiceRegistration<SocialActivityInterpreter> serviceRegistration =
 			registry.registerService(

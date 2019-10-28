@@ -18,7 +18,6 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.freemarker.FreeMarkerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -34,6 +33,7 @@ import java.io.Writer;
 import java.nio.charset.Charset;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -81,15 +81,12 @@ public class PropertiesDocBuilder {
 
 		boolean toc = GetterUtil.getBoolean(arguments.get("properties.toc"));
 
-		Map<String, Object> context = HashMapBuilder.<String, Object>put(
-			"pageTitle", title
-		).put(
-			"propertiesFileName", propertiesFileName
-		).put(
-			"sections", propertiesSections
-		).put(
-			"toc", toc
-		).build();
+		Map<String, Object> context = new HashMap<>();
+
+		context.put("pageTitle", title);
+		context.put("propertiesFileName", propertiesFileName);
+		context.put("sections", propertiesSections);
+		context.put("toc", toc);
 
 		try {
 			StringBundler sb = new StringBundler(4);

@@ -20,9 +20,9 @@ import com.liferay.dynamic.data.mapping.model.DDMFormField;
 import com.liferay.dynamic.data.mapping.render.DDMFormFieldRenderingContext;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
@@ -46,10 +46,12 @@ public class OptionsDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
-		Map<String, Object> parameters = HashMapBuilder.<String, Object>put(
+		Map<String, Object> parameters = new HashMap<>();
+
+		parameters.put(
 			"allowEmptyOptions",
-			GetterUtil.getBoolean(ddmFormField.getProperty("allowEmptyOptions"))
-		).build();
+			GetterUtil.getBoolean(
+				ddmFormField.getProperty("allowEmptyOptions")));
 
 		DDMForm ddmForm = ddmFormField.getDDMForm();
 

@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.portlet.bridges.mvc.MVCCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCCommandCache;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 import com.liferay.portal.kernel.template.Template;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -142,14 +141,13 @@ public class SoyPortletHelper {
 			List<Route> routes = router.getRoutes();
 
 			for (Route route : routes) {
-				Map<String, Object> mapping =
-					HashMapBuilder.<String, Object>put(
-						"implicitParameters", route.getImplicitParameters()
-					).put(
-						"overriddenParameters", route.getOverriddenParameters()
-					).put(
-						"pattern", route.getPattern()
-					).build();
+				Map<String, Object> mapping = new HashMap<>();
+
+				mapping.put(
+					"implicitParameters", route.getImplicitParameters());
+				mapping.put(
+					"overriddenParameters", route.getOverriddenParameters());
+				mapping.put("pattern", route.getPattern());
 
 				routesMapping.add(mapping);
 			}

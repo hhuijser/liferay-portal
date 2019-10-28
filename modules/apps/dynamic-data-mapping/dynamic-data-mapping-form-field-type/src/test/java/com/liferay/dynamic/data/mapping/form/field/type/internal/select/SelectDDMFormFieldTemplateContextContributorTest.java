@@ -116,10 +116,9 @@ public class SelectDDMFormFieldTemplateContextContributorTest
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext =
 			new DDMFormFieldRenderingContext();
 
-		Map<String, Object> changedProperties =
-			HashMapBuilder.<String, Object>put(
-				"multiple", true
-			).build();
+		Map<String, Object> changedProperties = new HashMap<>();
+
+		changedProperties.put("multiple", true);
 
 		ddmFormFieldRenderingContext.setProperty(
 			"changedProperties", changedProperties);

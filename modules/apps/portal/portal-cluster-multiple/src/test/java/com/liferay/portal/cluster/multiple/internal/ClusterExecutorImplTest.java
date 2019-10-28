@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.cluster.FutureClusterResponses;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.test.rule.NewEnvTestRule;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.MethodKey;
@@ -38,6 +37,7 @@ import com.liferay.portal.kernel.util.PropsKeys;
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -374,13 +374,14 @@ public class ClusterExecutorImplTest extends BaseClusterTestCase {
 	protected ClusterExecutorImpl getClusterExecutorImpl() {
 		ClusterExecutorImpl clusterExecutorImpl = new ClusterExecutorImpl();
 
-		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
+		Map<String, Object> properties = new HashMap<>();
+
+		properties.put(
 			PropsKeys.CLUSTER_LINK_CHANNEL_NAME_CONTROL,
-			"test-channel-name-control"
-		).put(
+			"test-channel-name-control");
+		properties.put(
 			PropsKeys.CLUSTER_LINK_CHANNEL_PROPERTIES_CONTROL,
-			"test-channel-properties-control"
-		).build();
+			"test-channel-properties-control");
 
 		clusterExecutorImpl.setProps(PropsTestUtil.setProps(properties));
 

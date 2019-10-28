@@ -7184,26 +7184,17 @@ public class JournalArticleLocalServiceImpl
 
 		searchContext.setAndSearch(andSearch);
 
-		Map<String, Serializable> attributes =
-			HashMapBuilder.<String, Serializable>put(
-				Field.ARTICLE_ID, articleId
-			).put(
-				Field.CLASS_NAME_ID, classNameId
-			).put(
-				Field.CONTENT, content
-			).put(
-				Field.DESCRIPTION, description
-			).put(
-				Field.STATUS, status
-			).put(
-				Field.TITLE, title
-			).put(
-				"ddmStructureKey", ddmStructureKey
-			).put(
-				"ddmTemplateKey", ddmTemplateKey
-			).put(
-				"params", params
-			).build();
+		Map<String, Serializable> attributes = new HashMap<>();
+
+		attributes.put(Field.ARTICLE_ID, articleId);
+		attributes.put(Field.CLASS_NAME_ID, classNameId);
+		attributes.put(Field.CONTENT, content);
+		attributes.put(Field.DESCRIPTION, description);
+		attributes.put(Field.STATUS, status);
+		attributes.put(Field.TITLE, title);
+		attributes.put("ddmStructureKey", ddmStructureKey);
+		attributes.put("ddmTemplateKey", ddmTemplateKey);
+		attributes.put("params", params);
 
 		searchContext.setAttributes(attributes);
 

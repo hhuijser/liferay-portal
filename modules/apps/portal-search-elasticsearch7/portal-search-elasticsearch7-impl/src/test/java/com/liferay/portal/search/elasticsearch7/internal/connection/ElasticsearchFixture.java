@@ -15,7 +15,6 @@
 package com.liferay.portal.search.elasticsearch7.internal.connection;
 
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Props;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.SystemProperties;
@@ -30,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -243,13 +243,11 @@ public class ElasticsearchFixture implements ElasticsearchClientResolver {
 	protected Map<String, Object> createElasticsearchConfigurationProperties(
 		Map<String, Object> elasticsearchConfigurationProperties) {
 
-		Map<String, Object> map = HashMapBuilder.<String, Object>put(
-			"configurationPid", ElasticsearchConfiguration.class.getName()
-		).put(
-			"httpCORSAllowOrigin", "*"
-		).put(
-			"logExceptionsOnly", false
-		).build();
+		Map<String, Object> map = new HashMap<>();
+
+		map.put("configurationPid", ElasticsearchConfiguration.class.getName());
+		map.put("httpCORSAllowOrigin", "*");
+		map.put("logExceptionsOnly", false);
 
 		map.putAll(elasticsearchConfigurationProperties);
 

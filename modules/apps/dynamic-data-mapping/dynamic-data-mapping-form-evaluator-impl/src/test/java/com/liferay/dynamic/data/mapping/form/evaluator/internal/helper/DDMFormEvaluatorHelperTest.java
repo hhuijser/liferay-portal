@@ -71,6 +71,7 @@ import com.liferay.registry.RegistryUtil;
 
 import java.math.BigDecimal;
 
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -416,19 +417,20 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 				"field0_instanceId", "field0", new UnlocalizedValue("false")));
 
 		Map<String, DDMFormFieldValueAccessor<?>> ddmFormFieldValueAccessorMap =
-			HashMapBuilder.<String, DDMFormFieldValueAccessor<?>>put(
-				"checkbox",
-				new DefaultDDMFormFieldValueAccessor() {
+			new HashMap<>();
 
-					@Override
-					public boolean isEmpty(
-						DDMFormFieldValue ddmFormFieldValue, Locale locale) {
+		ddmFormFieldValueAccessorMap.put(
+			"checkbox",
+			new DefaultDDMFormFieldValueAccessor() {
 
-						return true;
-					}
+				@Override
+				public boolean isEmpty(
+					DDMFormFieldValue ddmFormFieldValue, Locale locale) {
 
+					return true;
 				}
-			).build();
+
+			});
 
 		DDMFormEvaluatorEvaluateResponse ddmFormEvaluatorEvaluateResponse =
 			doEvaluate(ddmForm, ddmFormValues);
@@ -1192,13 +1194,17 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 	protected Map<String, DDMFormFieldValueAccessor<?>>
 		createDDMFormFieldValueAccessorMap() {
 
-		return HashMapBuilder.<String, DDMFormFieldValueAccessor<?>>put(
-			"checkbox", new CheckboxDDMFormFieldValueAccessor()
-		).put(
-			"numeric", new NumericDDMFormFieldValueAccessor()
-		).put(
-			"text", new DefaultDDMFormFieldValueAccessor()
-		).build();
+		Map<String, DDMFormFieldValueAccessor<?>> ddmFormFieldValueAccessorMap =
+			new HashMap<>();
+
+		ddmFormFieldValueAccessorMap.put(
+			"checkbox", new CheckboxDDMFormFieldValueAccessor());
+		ddmFormFieldValueAccessorMap.put(
+			"numeric", new NumericDDMFormFieldValueAccessor());
+		ddmFormFieldValueAccessorMap.put(
+			"text", new DefaultDDMFormFieldValueAccessor());
+
+		return ddmFormFieldValueAccessorMap;
 	}
 
 	protected DDMFormEvaluatorEvaluateResponse doEvaluate(

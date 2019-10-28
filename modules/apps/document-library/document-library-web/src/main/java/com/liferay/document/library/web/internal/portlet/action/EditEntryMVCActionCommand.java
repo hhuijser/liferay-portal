@@ -46,7 +46,6 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.servlet.ServletResponseConstants;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.Constants;
-import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -54,6 +53,7 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.trash.service.TrashEntryService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -252,9 +252,9 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 				fileEntry, moveToTrash, trashedModels));
 
 		if (moveToTrash && !trashedModels.isEmpty()) {
-			Map<String, Object> data = HashMapBuilder.<String, Object>put(
-				"trashedModels", trashedModels
-			).build();
+			Map<String, Object> data = new HashMap<>();
+
+			data.put("trashedModels", trashedModels);
 
 			addDeleteSuccessData(actionRequest, data);
 		}

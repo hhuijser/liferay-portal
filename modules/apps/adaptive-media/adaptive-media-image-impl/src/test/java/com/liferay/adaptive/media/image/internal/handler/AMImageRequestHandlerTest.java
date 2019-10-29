@@ -299,39 +299,35 @@ public class AMImageRequestHandlerTest {
 		AMAttribute<Object, String> configurationUuidAMAttribute =
 			AMAttribute.getConfigurationUuidAMAttribute();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			configurationUuidAMAttribute.getName(),
-			amImageConfigurationEntry.getUUID()
-		).build();
-
 		AMAttribute<Object, String> fileNameAMAttribute =
 			AMAttribute.getFileNameAMAttribute();
-
-		properties.put(
-			fileNameAMAttribute.getName(), fileVersion.getFileName());
 
 		AMAttribute<Object, String> contentTypeAMAttribute =
 			AMAttribute.getContentTypeAMAttribute();
 
-		properties.put(
-			contentTypeAMAttribute.getName(), fileVersion.getMimeType());
-
 		AMAttribute<Object, Long> contentLengthAMAttribute =
 			AMAttribute.getContentLengthAMAttribute();
-
-		properties.put(
-			contentLengthAMAttribute.getName(),
-			String.valueOf(fileVersion.getSize()));
 
 		Map<String, String> configurationEntryProperties =
 			amImageConfigurationEntry.getProperties();
 
-		properties.put(
+		Map<String, String> properties = HashMapBuilder.put(
+			configurationUuidAMAttribute.getName(),
+			amImageConfigurationEntry.getUUID()
+		).put(
+			fileNameAMAttribute.getName(), fileVersion.getFileName()
+		).put(
+			contentTypeAMAttribute.getName(), fileVersion.getMimeType()
+		).put(
+			contentLengthAMAttribute.getName(),
+			String.valueOf(fileVersion.getSize())
+		).put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
-			configurationEntryProperties.get("max-width"));
-		properties.put(
+			configurationEntryProperties.get("max-width")
+		).put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
-			configurationEntryProperties.get("max-height"));
+			configurationEntryProperties.get("max-height")
+		).build();
 
 		return new AMImage(
 			() -> {

@@ -90,22 +90,20 @@ public class AMImageRequestHandler
 		AMAttribute<Object, String> fileNameAMAttribute =
 			AMAttribute.getFileNameAMAttribute();
 
-		Map<String, String> properties = HashMapBuilder.put(
-			fileNameAMAttribute.getName(), fileVersion.getFileName()
-		).build();
-
 		AMAttribute<Object, String> contentTypeAMAttribute =
 			AMAttribute.getContentTypeAMAttribute();
-
-		properties.put(
-			contentTypeAMAttribute.getName(), fileVersion.getMimeType());
 
 		AMAttribute<Object, Long> contentLengthAMAttribute =
 			AMAttribute.getContentLengthAMAttribute();
 
-		properties.put(
+		Map<String, String> properties = HashMapBuilder.put(
+			fileNameAMAttribute.getName(), fileVersion.getFileName()
+		).put(
+			contentTypeAMAttribute.getName(), fileVersion.getMimeType()
+		).put(
 			contentLengthAMAttribute.getName(),
-			String.valueOf(fileVersion.getSize()));
+			String.valueOf(fileVersion.getSize())
+		).build();
 
 		return new AMImage(
 			() -> {

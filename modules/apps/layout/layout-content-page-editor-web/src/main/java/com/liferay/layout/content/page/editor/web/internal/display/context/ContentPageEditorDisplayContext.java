@@ -517,18 +517,12 @@ public class ContentPageEditorDisplayContext {
 				Collections.emptyMap(), themeDisplay,
 				RequestBackedPortletURLFactoryUtil.create(request));
 
-		Map<String, Object> configurations = HashMapBuilder.<String, Object>put(
-			"comment", commentEditorConfiguration.getData()
-		).build();
-
 		EditorConfiguration richTextEditorConfiguration =
 			EditorConfigurationFactoryUtil.getEditorConfiguration(
 				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
 				"fragmenEntryLinkRichTextEditor", StringPool.BLANK,
 				Collections.emptyMap(), themeDisplay,
 				RequestBackedPortletURLFactoryUtil.create(request));
-
-		configurations.put("rich-text", richTextEditorConfiguration.getData());
 
 		EditorConfiguration editorConfiguration =
 			EditorConfigurationFactoryUtil.getEditorConfiguration(
@@ -537,7 +531,13 @@ public class ContentPageEditorDisplayContext {
 				Collections.emptyMap(), themeDisplay,
 				RequestBackedPortletURLFactoryUtil.create(request));
 
-		configurations.put("text", editorConfiguration.getData());
+		Map<String, Object> configurations = HashMapBuilder.<String, Object>put(
+			"comment", commentEditorConfiguration.getData()
+		).put(
+			"rich-text", richTextEditorConfiguration.getData()
+		).put(
+			"text", editorConfiguration.getData()
+		).build();
 
 		_defaultConfigurations = configurations;
 

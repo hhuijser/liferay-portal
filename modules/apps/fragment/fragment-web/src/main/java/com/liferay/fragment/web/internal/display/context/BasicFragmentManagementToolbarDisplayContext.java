@@ -124,11 +124,6 @@ public class BasicFragmentManagementToolbarDisplayContext
 		copyFragmentEntryURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 
-		Map<String, Object> componentContext =
-			HashMapBuilder.<String, Object>put(
-				"copyFragmentEntryURL", copyFragmentEntryURL.toString()
-			).build();
-
 		PortletURL deleteFragmentEntriesURL =
 			liferayPortletResponse.createActionURL();
 
@@ -137,22 +132,14 @@ public class BasicFragmentManagementToolbarDisplayContext
 		deleteFragmentEntriesURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 
-		componentContext.put(
-			"deleteFragmentEntriesURL", deleteFragmentEntriesURL.toString());
-
 		ResourceURL exportFragmentEntriesURL =
 			liferayPortletResponse.createResourceURL();
 
 		exportFragmentEntriesURL.setResourceID(
 			"/fragment/export_fragment_entries");
 
-		componentContext.put(
-			"exportFragmentEntriesURL", exportFragmentEntriesURL.toString());
-
 		long fragmentCollectionId = ParamUtil.getLong(
 			liferayPortletRequest, "fragmentCollectionId");
-
-		componentContext.put("fragmentCollectionId", fragmentCollectionId);
 
 		PortletURL moveFragmentEntryURL =
 			liferayPortletResponse.createActionURL();
@@ -162,9 +149,6 @@ public class BasicFragmentManagementToolbarDisplayContext
 		moveFragmentEntryURL.setParameter(
 			"redirect", themeDisplay.getURLCurrent());
 
-		componentContext.put(
-			"moveFragmentEntryURL", moveFragmentEntryURL.toString());
-
 		PortletURL selectFragmentCollectionURL =
 			liferayPortletResponse.createActionURL();
 
@@ -172,9 +156,21 @@ public class BasicFragmentManagementToolbarDisplayContext
 			"mvcRenderCommandName", "/fragment/select_fragment_collection");
 		selectFragmentCollectionURL.setWindowState(LiferayWindowState.POP_UP);
 
-		componentContext.put(
-			"selectFragmentCollectionURL",
-			selectFragmentCollectionURL.toString());
+		Map<String, Object> componentContext =
+			HashMapBuilder.<String, Object>put(
+				"copyFragmentEntryURL", copyFragmentEntryURL.toString()
+			).put(
+				"deleteFragmentEntriesURL", deleteFragmentEntriesURL.toString()
+			).put(
+				"exportFragmentEntriesURL", exportFragmentEntriesURL.toString()
+			).put(
+				"fragmentCollectionId", fragmentCollectionId
+			).put(
+				"moveFragmentEntryURL", moveFragmentEntryURL.toString()
+			).put(
+				"selectFragmentCollectionURL",
+				selectFragmentCollectionURL.toString()
+			).build();
 
 		return componentContext;
 	}

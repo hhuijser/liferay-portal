@@ -4468,6 +4468,7 @@ public class ServiceBuilder {
 
 		TemplateHashModel staticModels = beansWrapper.getStaticModels();
 
+		//context.put("system", staticModels.get("java.lang.System"));
 		Map<String, Object> context = HashMapBuilder.<String, Object>put(
 			"apiPackagePath", _apiPackagePath
 		).put(
@@ -4492,11 +4493,11 @@ public class ServiceBuilder {
 			"serviceBuilder", this
 		).put(
 			"stringUtil", StringUtil_IW.getInstance()
+		).put(
+			"textFormatter", staticModels.get(TextFormatter.class.getName())
+		).put(
+			"validator", Validator_IW.getInstance()
 		).build();
-		//context.put("system", staticModels.get("java.lang.System"));
-		context.put(
-			"textFormatter", staticModels.get(TextFormatter.class.getName()));
-		context.put("validator", Validator_IW.getInstance());
 
 		return context;
 	}

@@ -102,7 +102,7 @@ public class PublishFormInstanceMVCActionCommand
 		DDMStructureVersion latestDDMStructureVersion =
 			ddmStructure.getLatestStructureVersion();
 
-		ddmFormInstance = _formInstanceService.updateFormInstance(
+		ddmFormInstance = _ddmFormInstanceService.updateFormInstance(
 			ddmFormInstance.getFormInstanceId(), ddmFormInstance.getNameMap(),
 			ddmFormInstance.getDescriptionMap(),
 			latestDDMStructureVersion.getDDMForm(),
@@ -118,9 +118,9 @@ public class PublishFormInstanceMVCActionCommand
 
 	@Reference(unbind = "-")
 	protected void setDDMFormInstanceService(
-		DDMFormInstanceService formInstanceService) {
+		DDMFormInstanceService ddmFormInstanceService) {
 
-		_formInstanceService = formInstanceService;
+		_ddmFormInstanceService = ddmFormInstanceService;
 	}
 
 	@Reference(unbind = "-")
@@ -193,8 +193,8 @@ public class PublishFormInstanceMVCActionCommand
 		return ddmFormInstanceSettings.published();
 	}
 
+	private DDMFormInstanceService _ddmFormInstanceService;
 	private DDMFormValuesQueryFactory _ddmFormValuesQueryFactory;
-	private DDMFormInstanceService _formInstanceService;
 
 	@Reference
 	private Portal _portal;

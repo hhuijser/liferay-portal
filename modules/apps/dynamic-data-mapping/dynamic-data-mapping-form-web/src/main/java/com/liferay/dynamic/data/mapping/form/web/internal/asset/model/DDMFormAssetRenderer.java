@@ -53,30 +53,31 @@ public class DDMFormAssetRenderer
 	extends BaseJSPAssetRenderer<DDMFormInstanceRecord> {
 
 	public DDMFormAssetRenderer(
-		DDMFormInstanceRecord formInstanceRecord,
-		DDMFormInstanceRecordVersion formInstanceRecordVersion,
+		DDMFormInstanceRecord ddmFormInstanceRecord,
+		DDMFormInstanceRecordVersion ddmFormInstanceRecordVersion,
 		DDMFormInstanceRecordLocalService ddmFormInstanceRecordLocalService,
-		DDMFormInstanceVersionLocalService formInstanceVersionLocalService,
+		DDMFormInstanceVersionLocalService ddmFormInstanceVersionLocalService,
 		DDMFormRenderer ddmFormRenderer,
 		DDMFormValuesFactory ddmFormValuesFactory,
 		DDMFormValuesMerger ddmFormValuesMerger,
 		ModelResourcePermission<DDMFormInstance>
 			ddmFormInstanceModelResourcePermission) {
 
-		_formInstanceRecord = formInstanceRecord;
-		_formInstanceRecordVersion = formInstanceRecordVersion;
+		_ddmFormInstanceRecord = ddmFormInstanceRecord;
+		_ddmFormInstanceRecordVersion = ddmFormInstanceRecordVersion;
 		_ddmFormInstanceRecordLocalService = ddmFormInstanceRecordLocalService;
-		_ddmFormInstanceVersionLocalService = formInstanceVersionLocalService;
+		_ddmFormInstanceVersionLocalService =
+			ddmFormInstanceVersionLocalService;
 		_ddmFormRenderer = ddmFormRenderer;
 		_ddmFormValuesFactory = ddmFormValuesFactory;
 		_ddmFormValuesMerger = ddmFormValuesMerger;
 		_ddmFormInstanceModelResourcePermission =
 			ddmFormInstanceModelResourcePermission;
 
-		DDMFormInstance formInstance = null;
+		DDMFormInstance ddmFormInstance = null;
 
 		try {
-			formInstance = _formInstanceRecordVersion.getFormInstance();
+			ddmFormInstance = _ddmFormInstanceRecordVersion.getFormInstance();
 		}
 		catch (Exception e) {
 			if (_log.isWarnEnabled()) {
@@ -84,12 +85,12 @@ public class DDMFormAssetRenderer
 			}
 		}
 
-		_formInstance = formInstance;
+		_ddmFormInstance = ddmFormInstance;
 	}
 
 	@Override
 	public DDMFormInstanceRecord getAssetObject() {
-		return _formInstanceRecord;
+		return _ddmFormInstanceRecord;
 	}
 
 	@Override
@@ -101,7 +102,7 @@ public class DDMFormAssetRenderer
 
 	@Override
 	public String[] getAvailableLanguageIds() {
-		return _formInstance.getAvailableLanguageIds();
+		return _ddmFormInstance.getAvailableLanguageIds();
 	}
 
 	@Override
@@ -111,12 +112,12 @@ public class DDMFormAssetRenderer
 
 	@Override
 	public long getClassPK() {
-		return _formInstanceRecord.getFormInstanceRecordId();
+		return _ddmFormInstanceRecord.getFormInstanceRecordId();
 	}
 
 	@Override
 	public long getGroupId() {
-		return _formInstanceRecord.getGroupId();
+		return _ddmFormInstanceRecord.getGroupId();
 	}
 
 	@Override
@@ -134,7 +135,7 @@ public class DDMFormAssetRenderer
 
 	@Override
 	public int getStatus() {
-		return _formInstanceRecordVersion.getStatus();
+		return _ddmFormInstanceRecordVersion.getStatus();
 	}
 
 	@Override
@@ -147,7 +148,7 @@ public class DDMFormAssetRenderer
 	@Override
 	public String getTitle(Locale locale) {
 		return LanguageUtil.format(
-			locale, "form-record-for-form-x", _formInstance.getName(locale),
+			locale, "form-record-for-form-x", _ddmFormInstance.getName(locale),
 			false);
 	}
 
@@ -163,24 +164,24 @@ public class DDMFormAssetRenderer
 
 	@Override
 	public long getUserId() {
-		return _formInstanceRecord.getUserId();
+		return _ddmFormInstanceRecord.getUserId();
 	}
 
 	@Override
 	public String getUserName() {
-		return _formInstanceRecord.getUserName();
+		return _ddmFormInstanceRecord.getUserName();
 	}
 
 	@Override
 	public String getUuid() {
-		return _formInstanceRecord.getUuid();
+		return _ddmFormInstanceRecord.getUuid();
 	}
 
 	@Override
 	public boolean hasViewPermission(PermissionChecker permissionChecker) {
 		try {
 			return _ddmFormInstanceModelResourcePermission.contains(
-				permissionChecker, _formInstance, ActionKeys.VIEW);
+				permissionChecker, _ddmFormInstance, ActionKeys.VIEW);
 		}
 		catch (PortalException pe) {
 			_log.error(pe, pe);
@@ -197,7 +198,7 @@ public class DDMFormAssetRenderer
 
 		httpServletRequest.setAttribute(
 			DDMFormWebKeys.DYNAMIC_DATA_MAPPING_FORM_INSTANCE_RECORD,
-			_formInstanceRecord);
+			_ddmFormInstanceRecord);
 
 		DDMFormViewFormInstanceRecordDisplayContext
 			ddmFormViewFormInstanceRecordDisplayContext =
@@ -217,17 +218,17 @@ public class DDMFormAssetRenderer
 	private static final Log _log = LogFactoryUtil.getLog(
 		DDMFormAssetRenderer.class);
 
+	private final DDMFormInstance _ddmFormInstance;
 	private final ModelResourcePermission<DDMFormInstance>
 		_ddmFormInstanceModelResourcePermission;
+	private final DDMFormInstanceRecord _ddmFormInstanceRecord;
 	private final DDMFormInstanceRecordLocalService
 		_ddmFormInstanceRecordLocalService;
+	private final DDMFormInstanceRecordVersion _ddmFormInstanceRecordVersion;
 	private final DDMFormInstanceVersionLocalService
 		_ddmFormInstanceVersionLocalService;
 	private final DDMFormRenderer _ddmFormRenderer;
 	private final DDMFormValuesFactory _ddmFormValuesFactory;
 	private final DDMFormValuesMerger _ddmFormValuesMerger;
-	private final DDMFormInstance _formInstance;
-	private final DDMFormInstanceRecord _formInstanceRecord;
-	private final DDMFormInstanceRecordVersion _formInstanceRecordVersion;
 
 }

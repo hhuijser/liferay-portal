@@ -66,15 +66,15 @@ public class MailServiceUtil {
 	}
 
 	public static MailService getService() {
-		if (_service == null) {
-			_service = (MailService)PortalBeanLocatorUtil.locate(
+		if (_mailService == null) {
+			_mailService = (MailService)PortalBeanLocatorUtil.locate(
 				MailService.class.getName());
 
 			ReferenceRegistry.registerReference(
-				MailServiceUtil.class, "_service");
+				MailServiceUtil.class, "_mailService");
 		}
 
-		return _service;
+		return _mailService;
 	}
 
 	public static Session getSession() {
@@ -103,12 +103,13 @@ public class MailServiceUtil {
 		getService().updatePassword(companyId, userId, password);
 	}
 
-	public void setService(MailService service) {
-		_service = service;
+	public void setService(MailService mailService) {
+		_mailService = mailService;
 
-		ReferenceRegistry.registerReference(MailServiceUtil.class, "_service");
+		ReferenceRegistry.registerReference(
+			MailServiceUtil.class, "_mailService");
 	}
 
-	private static MailService _service;
+	private static MailService _mailService;
 
 }

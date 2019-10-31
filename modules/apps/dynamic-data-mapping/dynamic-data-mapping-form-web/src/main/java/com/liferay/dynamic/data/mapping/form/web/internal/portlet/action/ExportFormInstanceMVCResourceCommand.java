@@ -96,7 +96,7 @@ public class ExportFormInstanceMVCResourceCommand
 				_ddmFormInstanceRecordExporter.export(
 					ddmFormInstanceRecordExporterRequest);
 
-		DDMFormInstance formInstance = _formInstanceService.getFormInstance(
+		DDMFormInstance formInstance = _ddmFormInstanceService.getFormInstance(
 			formInstanceId);
 
 		String fileName =
@@ -118,6 +118,9 @@ public class ExportFormInstanceMVCResourceCommand
 	@Reference
 	private DDMFormInstanceRecordExporter _ddmFormInstanceRecordExporter;
 
+	@Reference
+	private DDMFormInstanceService _ddmFormInstanceService;
+
 	@Reference(
 		cardinality = ReferenceCardinality.OPTIONAL,
 		policy = ReferencePolicy.DYNAMIC,
@@ -126,8 +129,5 @@ public class ExportFormInstanceMVCResourceCommand
 	)
 	private volatile DDMFormWebConfigurationActivator
 		_ddmFormWebConfigurationActivator;
-
-	@Reference
-	private DDMFormInstanceService _formInstanceService;
 
 }

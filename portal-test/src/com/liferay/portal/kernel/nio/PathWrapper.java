@@ -135,19 +135,19 @@ public class PathWrapper implements Path {
 
 	@Override
 	public WatchKey register(
-			WatchService watcherService, WatchEvent.Kind<?>... kinds)
+			WatchService watchService, WatchEvent.Kind<?>... kinds)
 		throws IOException {
 
-		return _path.register(watcherService, kinds);
+		return _path.register(watchService, kinds);
 	}
 
 	@Override
 	public WatchKey register(
-			WatchService watcherService, WatchEvent.Kind<?>[] kinds,
+			WatchService watchService, WatchEvent.Kind<?>[] kinds,
 			WatchEvent.Modifier... modifiers)
 		throws IOException {
 
-		return _path.register(watcherService, kinds, modifiers);
+		return _path.register(watchService, kinds, modifiers);
 	}
 
 	@Override

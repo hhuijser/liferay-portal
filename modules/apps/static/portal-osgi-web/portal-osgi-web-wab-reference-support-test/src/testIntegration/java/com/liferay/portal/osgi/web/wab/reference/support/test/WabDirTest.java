@@ -64,7 +64,7 @@ public class WabDirTest {
 
 	@Test
 	public void testHandlerServiceIsAvailable() throws Exception {
-		Assert.assertNotNull(_handlerService);
+		Assert.assertNotNull(_urlStreamHandlerService);
 	}
 
 	@Test
@@ -154,10 +154,10 @@ public class WabDirTest {
 
 		serviceTracker.open();
 
-		_handlerService = serviceTracker.getService();
+		_urlStreamHandlerService = serviceTracker.getService();
 	}
 
 	private BundleContext _bundleContext;
-	private URLStreamHandlerService _handlerService;
+	private URLStreamHandlerService _urlStreamHandlerService;
 
 }

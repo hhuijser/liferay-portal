@@ -103,7 +103,7 @@ public class AddSegmentsExperienceMVCActionCommand
 
 		String layoutData = SegmentsExperienceUtil.copyLayoutData(
 			classNameId, classPK, themeDisplay.getScopeGroupId(),
-			_layoutPageTemplateStructureService, baseSegmentsExperienceId,
+			_layoutPageTemplateStructureLocalService, baseSegmentsExperienceId,
 			segmentsExperience.getSegmentsExperienceId());
 
 		_populateLayoutDataJSONObject(jsonObject, layoutData);
@@ -264,7 +264,7 @@ public class AddSegmentsExperienceMVCActionCommand
 			SegmentsExperienceUtil.copySegmentsExperienceData(
 				draftLayout.getClassNameId(), draftLayout.getPlid(),
 				_fragmentEntryLinkLocalService, groupId,
-				_layoutPageTemplateStructureService, _portletLocalService,
+				_layoutPageTemplateStructureLocalService, _portletLocalService,
 				_portletPreferencesLocalService, baseSegmentsExperienceId,
 				segmentsExperience.getSegmentsExperienceId());
 		}
@@ -354,7 +354,7 @@ public class AddSegmentsExperienceMVCActionCommand
 
 	@Reference
 	private LayoutPageTemplateStructureLocalService
-		_layoutPageTemplateStructureService;
+		_layoutPageTemplateStructureLocalService;
 
 	@Reference
 	private Portal _portal;

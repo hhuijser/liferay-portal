@@ -189,30 +189,30 @@ public class DDMFormAdminDisplayContextTest extends PowerMockito {
 	protected DDMFormInstanceService mockDDMFormInstanceService()
 		throws PortalException {
 
-		DDMFormInstanceService formInstanceService = mock(
+		DDMFormInstanceService ddmFormInstanceService = mock(
 			DDMFormInstanceService.class);
 
-		DDMFormInstance sharedFormInstance = mockDDMFormInstance(
+		DDMFormInstance sharedDDMFormInstance = mockDDMFormInstance(
 			_SHARED_FORM_INSTANCE_ID, false);
 
 		when(
-			formInstanceService.fetchFormInstance(
+			ddmFormInstanceService.fetchFormInstance(
 				Matchers.eq(_SHARED_FORM_INSTANCE_ID))
 		).thenReturn(
-			sharedFormInstance
+			sharedDDMFormInstance
 		);
 
-		DDMFormInstance restrictedFormInstance = mockDDMFormInstance(
+		DDMFormInstance restrictedDDMFormInstance = mockDDMFormInstance(
 			_RESTRICTED_FORM_INSTANCE_ID, true);
 
 		when(
-			formInstanceService.fetchFormInstance(
+			ddmFormInstanceService.fetchFormInstance(
 				Matchers.eq(_RESTRICTED_FORM_INSTANCE_ID))
 		).thenReturn(
-			restrictedFormInstance
+			restrictedDDMFormInstance
 		);
 
-		return formInstanceService;
+		return ddmFormInstanceService;
 	}
 
 	protected DDMFormInstanceSettings mockDDMFormInstanceSettings(

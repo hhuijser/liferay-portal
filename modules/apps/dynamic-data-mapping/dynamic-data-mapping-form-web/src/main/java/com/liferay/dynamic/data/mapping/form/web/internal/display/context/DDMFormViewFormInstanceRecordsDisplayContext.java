@@ -73,16 +73,16 @@ public class DDMFormViewFormInstanceRecordsDisplayContext {
 
 	public DDMFormViewFormInstanceRecordsDisplayContext(
 			RenderRequest renderRequest, RenderResponse renderResponse,
-			DDMFormInstance formInstance,
-			DDMFormInstanceRecordLocalService formInstanceRecordLocalService,
-			DDMFormFieldTypeServicesTracker formFieldTypeServicesTracker)
+			DDMFormInstance ddmFormInstance,
+			DDMFormInstanceRecordLocalService ddmFormInstanceRecordLocalService,
+			DDMFormFieldTypeServicesTracker ddmFormFieldTypeServicesTracker)
 		throws PortalException {
 
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
-		_ddmFormInstance = formInstance;
-		_ddmFormInstanceRecordLocalService = formInstanceRecordLocalService;
-		_ddmFormFieldTypeServicesTracker = formFieldTypeServicesTracker;
+		_ddmFormInstance = ddmFormInstance;
+		_ddmFormInstanceRecordLocalService = ddmFormInstanceRecordLocalService;
+		_ddmFormFieldTypeServicesTracker = ddmFormFieldTypeServicesTracker;
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

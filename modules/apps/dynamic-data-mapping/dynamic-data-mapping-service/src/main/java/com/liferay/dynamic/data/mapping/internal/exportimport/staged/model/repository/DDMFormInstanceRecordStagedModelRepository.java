@@ -84,16 +84,16 @@ public class DDMFormInstanceRecordStagedModelRepository
 			serviceContext.setUuid(ddmFormInstanceRecord.getUuid());
 		}
 
-		DDMFormInstanceRecord importedFormInstanceRecord =
+		DDMFormInstanceRecord importedDDMFormInstanceRecord =
 			_ddmFormInstanceRecordLocalService.addFormInstanceRecord(
 				userId, ddmFormInstanceRecord.getGroupId(),
 				ddmFormInstanceRecord.getFormInstanceId(), ddmFormValues,
 				serviceContext);
 
 		updateVersions(
-			importedFormInstanceRecord, ddmFormInstanceRecord.getVersion());
+			importedDDMFormInstanceRecord, ddmFormInstanceRecord.getVersion());
 
-		return importedFormInstanceRecord;
+		return importedDDMFormInstanceRecord;
 	}
 
 	@Override
@@ -215,15 +215,15 @@ public class DDMFormInstanceRecordStagedModelRepository
 
 		serviceContext.setAttribute("validateDDMFormValues", Boolean.FALSE);
 
-		DDMFormInstanceRecord importedFormInstanceRecord =
+		DDMFormInstanceRecord importedDDMFormInstanceRecord =
 			_ddmFormInstanceRecordLocalService.updateFormInstanceRecord(
 				userId, ddmFormInstanceRecord.getFormInstanceRecordId(), false,
 				ddmFormValues, serviceContext);
 
 		updateVersions(
-			importedFormInstanceRecord, ddmFormInstanceRecord.getVersion());
+			importedDDMFormInstanceRecord, ddmFormInstanceRecord.getVersion());
 
-		return importedFormInstanceRecord;
+		return importedDDMFormInstanceRecord;
 	}
 
 	protected DynamicQuery getFormInstanceDynamicQuery() {
@@ -279,25 +279,28 @@ public class DDMFormInstanceRecordStagedModelRepository
 	}
 
 	protected void updateVersions(
-			DDMFormInstanceRecord importedFormInstanceRecord, String version)
+			DDMFormInstanceRecord importedDDMFormInstanceRecord, String version)
 		throws PortalException {
 
-		if (Objects.equals(importedFormInstanceRecord.getVersion(), version)) {
+		if (Objects.equals(
+				importedDDMFormInstanceRecord.getVersion(), version)) {
+
 			return;
 		}
 
-		DDMFormInstanceRecordVersion importedFormInstanceRecordVersion =
-			importedFormInstanceRecord.getFormInstanceRecordVersion();
+		DDMFormInstanceRecordVersion importedDDMFormInstanceRecordVersion =
+			importedDDMFormInstanceRecord.getFormInstanceRecordVersion();
 
-		importedFormInstanceRecordVersion.setVersion(version);
+		importedDDMFormInstanceRecordVersion.setVersion(version);
 
-		_ddmFormInstanceVersionLocalService.updateDDMFormInstanceRecordVersion(
-			importedFormInstanceRecordVersion);
+		_ddmFormInstanceRecordVersionLocalService.
+			updateDDMFormInstanceRecordVersion(
+				importedDDMFormInstanceRecordVersion);
 
-		importedFormInstanceRecord.setVersion(version);
+		importedDDMFormInstanceRecord.setVersion(version);
 
 		_ddmFormInstanceRecordLocalService.updateDDMFormInstanceRecord(
-			importedFormInstanceRecord);
+			importedDDMFormInstanceRecord);
 	}
 
 	@Reference
@@ -306,6 +309,6 @@ public class DDMFormInstanceRecordStagedModelRepository
 
 	@Reference
 	private DDMFormInstanceRecordVersionLocalService
-		_ddmFormInstanceVersionLocalService;
+		_ddmFormInstanceRecordVersionLocalService;
 
 }

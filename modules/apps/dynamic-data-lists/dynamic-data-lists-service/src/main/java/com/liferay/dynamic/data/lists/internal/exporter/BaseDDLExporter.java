@@ -231,11 +231,11 @@ public abstract class BaseDDLExporter implements DDLExporter {
 	protected List<DDMStructureVersion> getStructureVersions(long recordSetId)
 		throws Exception {
 
-		DDLRecordSetVersionService recordSetVersionService =
+		DDLRecordSetVersionService ddlRecordSetVersionService =
 			getDDLRecordSetVersionService();
 
 		List<DDLRecordSetVersion> recordSetVersions =
-			recordSetVersionService.getRecordSetVersions(
+			ddlRecordSetVersionService.getRecordSetVersions(
 				recordSetId, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 
 		List<DDMStructureVersion> ddmStructureVersions = new ArrayList<>();

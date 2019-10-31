@@ -164,7 +164,7 @@ public class BookmarksFolderLocalServiceImpl
 
 		// Entries
 
-		_blogsEntryLocalService.deleteEntries(
+		_bookmarksEntryLocalService.deleteEntries(
 			folder.getGroupId(), folder.getFolderId(), includeTrashedEntries);
 
 		// Asset
@@ -523,7 +523,7 @@ public class BookmarksFolderLocalServiceImpl
 						long parentPrimaryKey, String treePath)
 					throws PortalException {
 
-					_blogsEntryLocalService.setTreePaths(
+					_bookmarksEntryLocalService.setTreePaths(
 						parentPrimaryKey, treePath, false);
 				}
 
@@ -990,7 +990,7 @@ public class BookmarksFolderLocalServiceImpl
 	}
 
 	@Reference
-	private BookmarksEntryLocalService _blogsEntryLocalService;
+	private BookmarksEntryLocalService _bookmarksEntryLocalService;
 
 	@Reference
 	private SubscriptionLocalService _subscriptionLocalService;

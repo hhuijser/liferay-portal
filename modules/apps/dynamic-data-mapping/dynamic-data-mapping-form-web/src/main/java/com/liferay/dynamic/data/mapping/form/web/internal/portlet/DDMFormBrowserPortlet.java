@@ -57,7 +57,7 @@ public class DDMFormBrowserPortlet extends MVCPortlet {
 
 		DDMFormBrowserDisplayContext ddlFormBrowserDisplayContext =
 			new DDMFormBrowserDisplayContext(
-				_formInstanceService, renderRequest, renderResponse);
+				_ddmFormInstanceService, renderRequest, renderResponse);
 
 		renderRequest.setAttribute(
 			WebKeys.PORTLET_DISPLAY_CONTEXT, ddlFormBrowserDisplayContext);
@@ -67,17 +67,17 @@ public class DDMFormBrowserPortlet extends MVCPortlet {
 
 	@Reference
 	protected void setDDMFormInstanceService(
-		DDMFormInstanceService formInstanceService) {
+		DDMFormInstanceService ddmFormInstanceService) {
 
-		_formInstanceService = formInstanceService;
+		_ddmFormInstanceService = ddmFormInstanceService;
 	}
 
 	protected void unsetDDMFormInstanceService(
-		DDMFormInstanceService formInstanceService) {
+		DDMFormInstanceService ddmFormInstanceService) {
 
-		_formInstanceService = null;
+		_ddmFormInstanceService = null;
 	}
 
-	private DDMFormInstanceService _formInstanceService;
+	private DDMFormInstanceService _ddmFormInstanceService;
 
 }

@@ -132,9 +132,9 @@ public class KaleoFormsServiceUpgrade implements UpgradeStepRegistrator {
 
 	@Reference(unbind = "-")
 	public void setDDMTemplateVersionLocalService(
-		DDMTemplateVersionLocalService ddmTemplateLocalService) {
+		DDMTemplateVersionLocalService ddmTemplateVersionLocalService) {
 
-		_ddmTemplateVersionLocalService = ddmTemplateLocalService;
+		_ddmTemplateVersionLocalService = ddmTemplateVersionLocalService;
 	}
 
 	@Reference(unbind = "-")

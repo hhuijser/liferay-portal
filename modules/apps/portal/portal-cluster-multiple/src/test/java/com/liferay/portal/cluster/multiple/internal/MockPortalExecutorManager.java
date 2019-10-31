@@ -42,7 +42,7 @@ public class MockPortalExecutorManager implements PortalExecutorManager {
 
 	@Override
 	public NoticeableExecutorService registerPortalExecutor(
-		String name, NoticeableExecutorService threadPoolExecutor) {
+		String name, NoticeableExecutorService noticeableExecutorService) {
 
 		return null;
 	}

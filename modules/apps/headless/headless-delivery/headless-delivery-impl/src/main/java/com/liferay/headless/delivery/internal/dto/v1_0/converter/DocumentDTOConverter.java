@@ -77,7 +77,7 @@ public class DocumentDTOConverter implements DTOConverter {
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
-		User user = _userService.getUserById(fileEntry.getUserId());
+		User user = _userLocalService.getUserById(fileEntry.getUserId());
 
 		return new Document() {
 			{
@@ -216,6 +216,6 @@ public class DocumentDTOConverter implements DTOConverter {
 	private RatingsStatsLocalService _ratingsStatsLocalService;
 
 	@Reference
-	private UserLocalService _userService;
+	private UserLocalService _userLocalService;
 
 }

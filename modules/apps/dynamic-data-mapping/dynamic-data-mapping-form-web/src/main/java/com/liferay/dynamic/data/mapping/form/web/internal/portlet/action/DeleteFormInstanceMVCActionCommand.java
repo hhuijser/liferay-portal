@@ -46,7 +46,7 @@ public class DeleteFormInstanceMVCActionCommand
 	protected void doDeleteFormInstance(long formInstanceId)
 		throws PortalException {
 
-		_formInstanceService.deleteFormInstance(formInstanceId);
+		_ddmFormInstanceService.deleteFormInstance(formInstanceId);
 	}
 
 	@Override
@@ -75,9 +75,9 @@ public class DeleteFormInstanceMVCActionCommand
 
 	@Reference(unbind = "-")
 	protected void setDDMFormInstanceService(
-		DDMFormInstanceService formInstanceService) {
+		DDMFormInstanceService ddmFormInstanceService) {
 
-		_formInstanceService = formInstanceService;
+		_ddmFormInstanceService = ddmFormInstanceService;
 	}
 
 	@Reference(unbind = "-")
@@ -87,7 +87,7 @@ public class DeleteFormInstanceMVCActionCommand
 		_ddmStructureService = ddmStructureService;
 	}
 
+	private DDMFormInstanceService _ddmFormInstanceService;
 	private DDMStructureService _ddmStructureService;
-	private DDMFormInstanceService _formInstanceService;
 
 }

@@ -48,10 +48,10 @@ import javax.servlet.http.HttpServletRequest;
 public class DDMFormBrowserDisplayContext {
 
 	public DDMFormBrowserDisplayContext(
-		DDMFormInstanceService formInstanceService, RenderRequest renderRequest,
-		RenderResponse renderResponse) {
+		DDMFormInstanceService ddmFormInstanceService,
+		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		_formInstanceService = formInstanceService;
+		_ddmFormInstanceService = ddmFormInstanceService;
 		_renderRequest = renderRequest;
 		_renderResponse = renderResponse;
 
@@ -150,7 +150,7 @@ public class DDMFormBrowserDisplayContext {
 			formInstanceSearch.setEmptyResultsMessage("there-are-no-forms");
 		}
 
-		List<DDMFormInstance> results = _formInstanceService.search(
+		List<DDMFormInstance> results = _ddmFormInstanceService.search(
 			_formWebRequestHelper.getCompanyId(),
 			_formWebRequestHelper.getScopeGroupId(), getKeywords(),
 			formInstanceSearch.getStart(), formInstanceSearch.getEnd(),
@@ -292,7 +292,7 @@ public class DDMFormBrowserDisplayContext {
 			return _formInstanceSearchTotal;
 		}
 
-		_formInstanceSearchTotal = _formInstanceService.searchCount(
+		_formInstanceSearchTotal = _ddmFormInstanceService.searchCount(
 			_formWebRequestHelper.getCompanyId(),
 			_formWebRequestHelper.getScopeGroupId(), getKeywords());
 
@@ -355,11 +355,11 @@ public class DDMFormBrowserDisplayContext {
 		return new DDMFormInstanceModifiedDateComparator(orderByAsc);
 	}
 
+	private final DDMFormInstanceService _ddmFormInstanceService;
 	private String _displayStyle;
 	private String _eventName;
 	private FormInstanceSearch _formInstanceSearch;
 	private Integer _formInstanceSearchTotal;
-	private final DDMFormInstanceService _formInstanceService;
 	private final DDMFormWebRequestHelper _formWebRequestHelper;
 	private final HttpServletRequest _httpServletRequest;
 	private String _keywords;

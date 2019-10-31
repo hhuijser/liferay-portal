@@ -50,11 +50,11 @@ public class DLFileEntryMetadataDDMStructureFixture {
 	public DLFileEntryMetadataDDMStructureFixture(
 		DLFixture dlFixture, DLAppLocalService dlAppLocalService,
 		DDMStructureLocalService ddmStructureLocalService,
-		DLFileEntryTypeLocalService dlFileEntryTypeService) {
+		DLFileEntryTypeLocalService dlFileEntryTypeLocalService) {
 
 		_dlFixture = dlFixture;
 		_ddmStructureLocalService = ddmStructureLocalService;
-		_dlFileEntryTypeLocalService = dlFileEntryTypeService;
+		_dlFileEntryTypeLocalService = dlFileEntryTypeLocalService;
 
 		_fileEntrySearchFixture = new FileEntrySearchFixture(dlAppLocalService);
 

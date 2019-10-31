@@ -1663,7 +1663,7 @@ public class CalendarPortlet extends MVCPortlet {
 			new CalendarDisplayContext(
 				renderRequest, renderResponse, _groupLocalService,
 				_calendarBookingLocalService, _calendarBookingService,
-				_calendarLocalService, _calendarResourceLocalServiceService,
+				_calendarLocalService, _calendarResourceLocalService,
 				_calendarService);
 
 		renderRequest.setAttribute(
@@ -1800,7 +1800,7 @@ public class CalendarPortlet extends MVCPortlet {
 		_calendarNotificationTemplateService;
 
 	@Reference
-	private CalendarResourceLocalService _calendarResourceLocalServiceService;
+	private CalendarResourceLocalService _calendarResourceLocalService;
 
 	@Reference
 	private CalendarResourceService _calendarResourceService;

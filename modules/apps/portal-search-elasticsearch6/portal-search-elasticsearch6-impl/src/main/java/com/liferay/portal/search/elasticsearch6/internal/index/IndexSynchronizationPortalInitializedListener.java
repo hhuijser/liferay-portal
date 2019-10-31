@@ -39,7 +39,7 @@ public class IndexSynchronizationPortalInitializedListener {
 	public void activate() {
 		_indexSynchronizer.synchronizeIndexes();
 
-		_activated = true;
+		_activate = true;
 	}
 
 	@Reference(
@@ -50,7 +50,7 @@ public class IndexSynchronizationPortalInitializedListener {
 	public void addIndexDefinition(
 		IndexDefinition indexDefinition, Map<String, Object> properties) {
 
-		if (_activated) {
+		if (_activate) {
 			_indexSynchronizer.synchronizeIndexDefinition(
 				new IndexDefinitionData(indexDefinition, properties));
 		}
@@ -62,7 +62,7 @@ public class IndexSynchronizationPortalInitializedListener {
 		policyOption = ReferencePolicyOption.GREEDY
 	)
 	public void addIndexRegistrar(IndexRegistrar indexRegistrar) {
-		if (_activated) {
+		if (_activate) {
 			_indexSynchronizer.synchronizeIndexRegistrar(indexRegistrar);
 		}
 	}
@@ -91,7 +91,7 @@ public class IndexSynchronizationPortalInitializedListener {
 	private static final Log _log = LogFactoryUtil.getLog(
 		IndexSynchronizationPortalInitializedListener.class);
 
-	private boolean _activated;
+	private boolean _activate;
 	private IndexSynchronizer _indexSynchronizer;
 
 }

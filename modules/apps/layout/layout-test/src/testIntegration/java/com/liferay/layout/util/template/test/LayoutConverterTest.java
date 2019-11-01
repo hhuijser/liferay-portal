@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TreeMapBuilder;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.test.rule.Inject;
@@ -483,28 +484,25 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertThreeColumnsMultiplePortlets() throws Exception {
-		Map portletIdsMap = new TreeMap();
-
-		portletIdsMap.put(
+		Map<String, String[]> portletIdsMap = TreeMapBuilder.put(
 			"column-1",
 			new String[] {
 				"com_liferay_hello_velocity_web_portlet_HelloVelocityPortlet",
 				"com_liferay_chart_sample_web_portlet_ChartSamplePortlet"
-			});
-
-		portletIdsMap.put(
+			}
+		).put(
 			"column-2",
 			new String[] {
 				"com_liferay_hello_world_web_portlet_HelloWorldPortlet",
 				"hello_soy_portlet"
-			});
-
-		portletIdsMap.put(
+			}
+		).put(
 			"column-3",
 			new String[] {
 				"com_liferay_clay_sample_web_portlet_ClaySamplePortlet",
 				"com_liferay_clay_sample_web_portlet_ClaySamplePortlet"
-			});
+			}
+		).build();
 
 		_testConvert("3_columns", Collections.singletonList(portletIdsMap));
 	}
@@ -516,21 +514,19 @@ public class LayoutConverterTest {
 
 	@Test
 	public void testConvertThreeColumnsSinglePortlet() throws Exception {
-		Map portletIdsMap = new TreeMap();
-
-		portletIdsMap.put(
+		Map<String, String[]> portletIdsMap = TreeMapBuilder.put(
 			"column-1",
 			new String[] {
 				"com_liferay_hello_velocity_web_portlet_HelloVelocityPortlet"
-			});
-
-		portletIdsMap.put(
+			}
+		).put(
 			"column-2",
 			new String[] {
 				"com_liferay_hello_world_web_portlet_HelloWorldPortlet"
-			});
-
-		portletIdsMap.put("column-3", new String[] {"hello_soy_portlet"});
+			}
+		).put(
+			"column-3", new String[] {"hello_soy_portlet"}
+		).build();
 
 		_testConvert("3_columns", Collections.singletonList(portletIdsMap));
 	}

@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TreeMapBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.modules.util.GradleDependency;
 import com.liferay.portal.modules.util.ModulesStructureTestUtil;
@@ -49,7 +50,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.SortedSet;
-import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -1313,8 +1313,6 @@ public class ModulesStructureTest {
 
 		Path dirPath = path.getParent();
 
-		Map<String, Boolean> allowedConfigurationsMap = new TreeMap<>();
-
 		boolean hasSrcMainDir = Files.exists(dirPath.resolve("src/main"));
 		boolean hasSrcTestDir = Files.exists(dirPath.resolve("src/test"));
 		boolean hasSrcTestIntegrationDir = Files.exists(
@@ -1334,17 +1332,21 @@ public class ModulesStructureTest {
 			mainConfigurationsAllowed = true;
 		}
 
-		allowedConfigurationsMap.put("compile", mainConfigurationsAllowed);
-		allowedConfigurationsMap.put("compileOnly", mainConfigurationsAllowed);
-		allowedConfigurationsMap.put("provided", mainConfigurationsAllowed);
-
-		allowedConfigurationsMap.put("testCompile", hasSrcTestDir);
-		allowedConfigurationsMap.put("testRuntime", hasSrcTestDir);
-
-		allowedConfigurationsMap.put(
-			"testIntegrationCompile", hasSrcTestIntegrationDir);
-		allowedConfigurationsMap.put(
-			"testIntegrationRuntime", hasSrcTestIntegrationDir);
+		Map<String, Boolean> allowedConfigurationsMap = TreeMapBuilder.put(
+			"compile", mainConfigurationsAllowed
+		).put(
+			"compileOnly", mainConfigurationsAllowed
+		).put(
+			"provided", mainConfigurationsAllowed
+		).put(
+			"testCompile", hasSrcTestDir
+		).put(
+			"testRuntime", hasSrcTestDir
+		).put(
+			"testIntegrationCompile", hasSrcTestIntegrationDir
+		).put(
+			"testIntegrationRuntime", hasSrcTestIntegrationDir
+		).build();
 
 		for (GradleDependency gradleDependency : gradleDependencies) {
 			StringBundler sb = new StringBundler(9);

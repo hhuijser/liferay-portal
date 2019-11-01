@@ -18,6 +18,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.petra.xml.DocUtil;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TreeMapBuilder;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -45,7 +46,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 import org.apache.tools.ant.DirectoryScanner;
 
@@ -793,10 +793,9 @@ public class JavadocBuilder {
 
 		Element rootElement = document.getRootElement();
 
-		Map<Integer, String> commentsMap = new TreeMap<>();
-
-		commentsMap.put(
-			javaClass.getLineNumber(), _getJavaClassComment(rootElement));
+		Map<Integer, String> commentsMap = TreeMapBuilder.put(
+			javaClass.getLineNumber(), _getJavaClassComment(rootElement)
+		).build();
 
 		Map<String, Element> methodElementsMap = new HashMap<>();
 

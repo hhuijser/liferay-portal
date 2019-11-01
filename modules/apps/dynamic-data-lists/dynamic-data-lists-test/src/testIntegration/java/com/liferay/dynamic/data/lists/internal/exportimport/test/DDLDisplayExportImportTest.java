@@ -84,11 +84,10 @@ public class DDLDisplayExportImportTest
 
 		DDLRecordSet recordSet = record.getRecordSet();
 
-		Map<String, String[]> preferenceMap =
-			HashMapBuilder.<String, String[]>put(
-				"recordSetId",
-				new String[] {String.valueOf(recordSet.getRecordSetId())}
-			).build();
+		Map<String, String[]> preferenceMap = HashMapBuilder.put(
+			"recordSetId",
+			new String[] {String.valueOf(recordSet.getRecordSetId())}
+		).build();
 
 		PortletPreferences importedPortletPreferences =
 			getImportedPortletPreferences(preferenceMap);

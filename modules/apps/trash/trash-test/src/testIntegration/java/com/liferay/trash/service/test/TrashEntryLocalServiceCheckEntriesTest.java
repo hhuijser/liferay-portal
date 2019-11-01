@@ -284,7 +284,7 @@ public class TrashEntryLocalServiceCheckEntriesTest {
 
 		Layout layout = LayoutTestUtil.addLayout(group);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), String.valueOf(layout.getPlid())
 		).build();
 

@@ -102,10 +102,9 @@ public class LayoutPrototypeLocalServiceImpl
 		if (GetterUtil.getBoolean(
 				serviceContext.getAttribute("addDefaultLayout"), true)) {
 
-			Map<Locale, String> friendlyURLMap =
-				HashMapBuilder.<Locale, String>put(
-					LocaleUtil.getSiteDefault(), "/layout"
-				).build();
+			Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
+				LocaleUtil.getSiteDefault(), "/layout"
+			).build();
 
 			layoutLocalService.addLayout(
 				userId, group.getGroupId(), true,

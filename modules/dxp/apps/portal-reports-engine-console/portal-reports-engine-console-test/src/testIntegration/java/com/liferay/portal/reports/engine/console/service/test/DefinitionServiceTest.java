@@ -169,7 +169,7 @@ public class DefinitionServiceTest {
 		serviceContext.setModelPermissions(modelPermissions);
 
 		for (int i = 0; i < 5; i++) {
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.US, RandomTestUtil.randomString()
 			).build();
 
@@ -190,7 +190,7 @@ public class DefinitionServiceTest {
 		serviceContext.setModelPermissions(modelPermissions);
 
 		for (int i = 0; i < 5; i++) {
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.US, RandomTestUtil.randomString()
 			).build();
 

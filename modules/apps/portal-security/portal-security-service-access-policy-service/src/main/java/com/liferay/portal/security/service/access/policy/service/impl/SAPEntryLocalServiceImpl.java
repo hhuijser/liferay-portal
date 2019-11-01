@@ -124,7 +124,7 @@ public class SAPEntryLocalServiceImpl extends SAPEntryLocalServiceBaseImpl {
 			companyId, RoleConstants.GUEST);
 
 		if (systemDefaultSAPEntry == null) {
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(),
 				_sapConfiguration.systemDefaultSAPEntryDescription()
 			).build();
@@ -143,7 +143,7 @@ public class SAPEntryLocalServiceImpl extends SAPEntryLocalServiceBaseImpl {
 		}
 
 		if (systemUserPasswordSAPEntry == null) {
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(),
 				_sapConfiguration.systemUserPasswordSAPEntryDescription()
 			).build();

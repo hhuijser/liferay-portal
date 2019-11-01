@@ -236,7 +236,7 @@ public class LayoutTestUtil {
 	public static LayoutPrototype addLayoutPrototype(String name)
 		throws Exception {
 
-		HashMap<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		HashMap<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), name
 		).build();
 
@@ -249,7 +249,7 @@ public class LayoutTestUtil {
 	public static LayoutSetPrototype addLayoutSetPrototype(String name)
 		throws Exception {
 
-		HashMap<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		HashMap<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), name
 		).build();
 

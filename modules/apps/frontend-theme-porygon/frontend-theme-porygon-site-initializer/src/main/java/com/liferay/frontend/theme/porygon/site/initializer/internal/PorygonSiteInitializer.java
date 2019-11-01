@@ -208,7 +208,7 @@ public class PorygonSiteInitializer implements SiteInitializer {
 			String fileName = FileUtil.stripExtension(
 				FileUtil.getShortFileName(url.getPath()));
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), fileName
 			).build();
 
@@ -462,11 +462,11 @@ public class PorygonSiteInitializer implements SiteInitializer {
 
 		Locale siteDefaultLocale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			siteDefaultLocale, "Porygon Entry"
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			siteDefaultLocale, "Porygon Entry"
 		).build();
 
@@ -514,7 +514,7 @@ public class PorygonSiteInitializer implements SiteInitializer {
 			String ddmTemplateName = StringUtil.upperCaseFirstLetter(
 				StringUtil.replace(ddmTemplateKey, '_', ' '));
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), ddmTemplateName
 			).build();
 
@@ -562,7 +562,7 @@ public class PorygonSiteInitializer implements SiteInitializer {
 					StringUtil.replace(
 						fileName, CharPool.UNDERLINE, CharPool.SPACE)));
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), articleName
 			).build();
 
@@ -586,7 +586,7 @@ public class PorygonSiteInitializer implements SiteInitializer {
 	private Layout _addLayout(String name, ServiceContext serviceContext)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), name
 		).build();
 

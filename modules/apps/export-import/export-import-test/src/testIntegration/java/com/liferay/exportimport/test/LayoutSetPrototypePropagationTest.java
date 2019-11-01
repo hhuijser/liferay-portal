@@ -327,10 +327,9 @@ public class LayoutSetPrototypePropagationTest
 			_layoutSetPrototypeLayout = LayoutTestUtil.addLayout(
 				_layoutSetPrototypeGroup, true, layoutPrototype, true);
 
-			Map<String, String[]> preferenceMap =
-				HashMapBuilder.<String, String[]>put(
-					"bulletStyle", new String[] {"Dots"}
-				).build();
+			Map<String, String[]> preferenceMap = HashMapBuilder.put(
+				"bulletStyle", new String[] {"Dots"}
+			).build();
 
 			String testPortletId1 = LayoutTestUtil.addPortletToLayout(
 				TestPropsValues.getUserId(), _layoutSetPrototypeLayout,

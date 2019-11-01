@@ -80,7 +80,7 @@ public class PortalImplLocalizedFriendlyURLTest {
 				LocaleUtil.CANADA_FRENCH, LocaleUtil.SPAIN, LocaleUtil.US),
 			LocaleUtil.US);
 
-		_nameMap = HashMapBuilder.<Locale, String>put(
+		_nameMap = HashMapBuilder.put(
 			LocaleUtil.CANADA_FRENCH, "Accueil"
 		).put(
 			LocaleUtil.SPAIN, "Inicio"
@@ -88,7 +88,7 @@ public class PortalImplLocalizedFriendlyURLTest {
 			LocaleUtil.US, "Home"
 		).build();
 
-		_friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		_friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.CANADA_FRENCH, "/accueil"
 		).put(
 			LocaleUtil.SPAIN, "/inicio"

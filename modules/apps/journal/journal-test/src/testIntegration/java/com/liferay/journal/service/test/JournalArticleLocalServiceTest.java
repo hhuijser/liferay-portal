@@ -342,7 +342,7 @@ public class JournalArticleLocalServiceTest {
 			TemplateConstants.LANG_TYPE_VM,
 			JournalTestUtil.getSampleTemplateXSL(), LocaleUtil.US);
 
-		Map<Locale, String> values = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> values = HashMapBuilder.put(
 			LocaleUtil.BRAZIL, "Valor Predefinido"
 		).put(
 			LocaleUtil.FRENCH, "Valeur Prédéfinie"
@@ -358,7 +358,7 @@ public class JournalArticleLocalServiceTest {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.US, title
 		).build();
 

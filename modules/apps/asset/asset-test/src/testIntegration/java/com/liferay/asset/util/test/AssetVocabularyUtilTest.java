@@ -58,7 +58,7 @@ public class AssetVocabularyUtilTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			_LOCALE, _TITLE
 		).build();
 

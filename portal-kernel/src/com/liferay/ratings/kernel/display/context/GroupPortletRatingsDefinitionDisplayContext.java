@@ -91,10 +91,9 @@ public class GroupPortletRatingsDefinitionDisplayContext {
 				ratingsType = RatingsType.parse(groupRatingsTypeString);
 			}
 
-			Map<String, RatingsType> ratingsTypeMap =
-				HashMapBuilder.<String, RatingsType>put(
-					className, ratingsType
-				).build();
+			Map<String, RatingsType> ratingsTypeMap = HashMapBuilder.put(
+				className, ratingsType
+			).build();
 
 			_groupRatingsTypeMaps.put(portletId, ratingsTypeMap);
 		}

@@ -238,12 +238,11 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 
 	@Test
 	public void testCreateWithParameterForOneRole() throws Exception {
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
-					RoleConstants.GUEST,
-				new String[] {ActionKeys.VIEW}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
+				RoleConstants.GUEST,
+			new String[] {ActionKeys.VIEW}
+		).build();
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -270,16 +269,15 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 
 		String className = RandomTestUtil.randomString();
 
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
-					RoleConstants.GUEST,
-				new String[] {ActionKeys.VIEW}
-			).put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX + className +
-					RoleConstants.GUEST,
-				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
+				RoleConstants.GUEST,
+			new String[] {ActionKeys.VIEW}
+		).put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX + className +
+				RoleConstants.GUEST,
+			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
+		).build();
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -302,16 +300,15 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 
 	@Test
 	public void testCreateWithParameterForTwoRoles() throws Exception {
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
-					RoleConstants.GUEST,
-				new String[] {ActionKeys.VIEW}
-			).put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
-					RoleConstants.SITE_MEMBER,
-				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
+				RoleConstants.GUEST,
+			new String[] {ActionKeys.VIEW}
+		).put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
+				RoleConstants.SITE_MEMBER,
+			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
+		).build();
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -342,24 +339,23 @@ public class ModelPermissionsFactoryTest extends PowerMockito {
 
 		String className = RandomTestUtil.randomString();
 
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
-					RoleConstants.GUEST,
-				new String[] {ActionKeys.VIEW}
-			).put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
-					RoleConstants.SITE_MEMBER,
-				new String[] {ActionKeys.VIEW}
-			).put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX + className +
-					RoleConstants.ORGANIZATION_USER,
-				new String[] {ActionKeys.DELETE, ActionKeys.VIEW}
-			).put(
-				ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX + className +
-					RoleConstants.POWER_USER,
-				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
+				RoleConstants.GUEST,
+			new String[] {ActionKeys.VIEW}
+		).put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX +
+				RoleConstants.SITE_MEMBER,
+			new String[] {ActionKeys.VIEW}
+		).put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX + className +
+				RoleConstants.ORGANIZATION_USER,
+			new String[] {ActionKeys.DELETE, ActionKeys.VIEW}
+		).put(
+			ModelPermissionsFactory.MODEL_PERMISSIONS_PREFIX + className +
+				RoleConstants.POWER_USER,
+			new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
+		).build();
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();

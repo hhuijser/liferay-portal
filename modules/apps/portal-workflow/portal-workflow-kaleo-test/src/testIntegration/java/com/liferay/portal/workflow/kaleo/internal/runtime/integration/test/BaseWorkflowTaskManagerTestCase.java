@@ -321,14 +321,13 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 				group.getGroupId(), ddmStructure.getStructureId(),
 				PortalUtil.getClassNameId(JournalArticle.class));
 
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()
 			).build();
 
-			Map<Locale, String> descriptionMap =
-				HashMapBuilder.<Locale, String>put(
-					LocaleUtil.getDefault(), RandomTestUtil.randomString()
-				).build();
+			Map<Locale, String> descriptionMap = HashMapBuilder.put(
+				LocaleUtil.getDefault(), RandomTestUtil.randomString()
+			).build();
 
 			String content = DDMStructureTestUtil.getSampleStructuredContent();
 
@@ -398,7 +397,7 @@ public abstract class BaseWorkflowTaskManagerTestCase {
 		DDMStructure ddmStructure = ddmStructureTestHelper.addStructure(
 			ddmForm, StorageType.JSON.toString());
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 

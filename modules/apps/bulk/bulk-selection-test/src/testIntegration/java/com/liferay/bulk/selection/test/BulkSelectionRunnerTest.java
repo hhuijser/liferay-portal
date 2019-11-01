@@ -64,10 +64,9 @@ public class BulkSelectionRunnerTest {
 
 	@Test
 	public void testRunsABulkSelectionAction() throws Exception {
-		HashMap<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				"integers", new String[] {"1", "2", "3", "4"}
-			).build();
+		HashMap<String, String[]> parameterMap = HashMapBuilder.put(
+			"integers", new String[] {"1", "2", "3", "4"}
+		).build();
 
 		HashMap<String, Serializable> inputMap =
 			HashMapBuilder.<String, Serializable>put(

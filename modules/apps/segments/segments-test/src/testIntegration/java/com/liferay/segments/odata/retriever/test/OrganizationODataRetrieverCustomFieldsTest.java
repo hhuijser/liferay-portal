@@ -264,7 +264,7 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 
 		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
 
-		Map<Locale, String> columnValueMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> columnValueMap = HashMapBuilder.put(
 			esLocale, RandomTestUtil.randomString()
 		).put(
 			LocaleUtil.getDefault(), RandomTestUtil.randomString()
@@ -307,7 +307,7 @@ public class OrganizationODataRetrieverCustomFieldsTest {
 
 		Locale esLocale = LocaleUtil.fromLanguageId("es_ES");
 
-		Map<Locale, String> columnValueMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> columnValueMap = HashMapBuilder.put(
 			esLocale, "Hola Mundo!"
 		).put(
 			LocaleUtil.getDefault(), "Hello World!"

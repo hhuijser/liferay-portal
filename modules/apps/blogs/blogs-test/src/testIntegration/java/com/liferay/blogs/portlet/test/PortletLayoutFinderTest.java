@@ -175,10 +175,9 @@ public class PortletLayoutFinderTest {
 			LayoutTestUtil.addPortletToLayout(_blogLayout, portletId);
 		}
 
-		Map<String, String[]> preferenceMap =
-			HashMapBuilder.<String, String[]>put(
-				"assetLinkBehavior", new String[] {"viewInPortlet"}
-			).build();
+		Map<String, String[]> preferenceMap = HashMapBuilder.put(
+			"assetLinkBehavior", new String[] {"viewInPortlet"}
+		).build();
 
 		_testPortletId = PortletIdCodec.encode(
 			"com_liferay_hello_world_web_portlet_HelloWorldPortlet");

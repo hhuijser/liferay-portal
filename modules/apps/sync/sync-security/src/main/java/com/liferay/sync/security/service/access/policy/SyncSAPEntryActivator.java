@@ -75,7 +75,7 @@ public class SyncSAPEntryActivator {
 			boolean defaultSAPEntry = GetterUtil.getBoolean(
 				sapEntryObjectArray[2]);
 
-			Map<Locale, String> map = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> map = HashMapBuilder.put(
 				LocaleUtil.getDefault(), name
 			).build();
 

@@ -1002,7 +1002,7 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> titleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(), defaultTitles[i]
 			).put(
 				LocaleUtil.FRANCE, frenchTitles[i]
@@ -1022,7 +1022,7 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> orderedTitleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultOrderedTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(), defaultOrderedTitles[i]
 			).build();
 
@@ -1059,7 +1059,7 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> titleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(), defaultTitles[i]
 			).put(
 				LocaleUtil.FRANCE, frenchTitles[i]
@@ -1079,7 +1079,7 @@ public abstract class BaseAssetSearchTestCase {
 		List<Map<Locale, String>> orderedTitleMaps = new ArrayList<>();
 
 		for (int i = 0; i < defaultOrderedTitles.length; i++) {
-			Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> titleMap = HashMapBuilder.put(
 				LocaleUtil.getDefault(), defaultOrderedTitles[i]
 			).build();
 

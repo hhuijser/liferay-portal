@@ -197,7 +197,7 @@ public class PortletDataContextFactoryImpl
 		Map<String, String[]> parameterMap = Collections.emptyMap();
 
 		if (range != null) {
-			parameterMap = HashMapBuilder.<String, String[]>put(
+			parameterMap = HashMapBuilder.put(
 				ExportImportDateUtil.RANGE, new String[] {range}
 			).build();
 		}

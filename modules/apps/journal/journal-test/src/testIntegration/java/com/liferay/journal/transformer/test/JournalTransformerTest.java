@@ -158,7 +158,7 @@ public class JournalTransformerTest {
 	public void testLocaleTransformerListener() throws Exception {
 		Map<String, String> tokens = getTokens();
 
-		Map<Locale, String> contents = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contents = HashMapBuilder.put(
 			LocaleUtil.BRAZIL, "Joao da Silva"
 		).put(
 			LocaleUtil.US, "Joe Bloggs"
@@ -197,7 +197,7 @@ public class JournalTransformerTest {
 
 		Map<String, String> tokens = getTokens();
 
-		Map<Locale, String> contents = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contents = HashMapBuilder.put(
 			LocaleUtil.US, "Joe Bloggs"
 		).build();
 

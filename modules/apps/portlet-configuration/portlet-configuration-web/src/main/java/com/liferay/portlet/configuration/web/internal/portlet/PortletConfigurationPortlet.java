@@ -775,10 +775,9 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 			if (!scopeLayout.hasScopeGroup()) {
 				String name = String.valueOf(scopeLayout.getPlid());
 
-				Map<Locale, String> nameMap =
-					HashMapBuilder.<Locale, String>put(
-						LocaleUtil.getDefault(), name
-					).build();
+				Map<Locale, String> nameMap = HashMapBuilder.put(
+					LocaleUtil.getDefault(), name
+				).build();
 
 				_groupLocalService.addGroup(
 					themeDisplay.getUserId(),

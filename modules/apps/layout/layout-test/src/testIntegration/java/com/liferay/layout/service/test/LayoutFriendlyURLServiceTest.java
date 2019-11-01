@@ -68,7 +68,7 @@ public class LayoutFriendlyURLServiceTest {
 
 		String name = RandomTestUtil.randomString();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, name
 		).put(
 			LocaleUtil.SPAIN, name
@@ -76,7 +76,7 @@ public class LayoutFriendlyURLServiceTest {
 			LocaleUtil.US, name
 		).build();
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "/germanurl"
 		).put(
 			LocaleUtil.SPAIN, "/spanishurl"
@@ -117,13 +117,13 @@ public class LayoutFriendlyURLServiceTest {
 
 		String name = RandomTestUtil.randomString();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.SPAIN, name
 		).put(
 			LocaleUtil.US, name
 		).build();
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.SPAIN, "/spanishurl"
 		).put(
 			LocaleUtil.US, "/englishurl"

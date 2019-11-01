@@ -95,7 +95,7 @@ public class PortalImplCanonicalURLTest {
 	public void setUp() throws Exception {
 		_group = GroupTestUtil.addGroup();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "Zuhause1"
 		).put(
 			LocaleUtil.SPAIN, "Casa1"
@@ -103,7 +103,7 @@ public class PortalImplCanonicalURLTest {
 			LocaleUtil.US, "Home1"
 		).build();
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "/zuhause1"
 		).put(
 			LocaleUtil.SPAIN, "/casa1"
@@ -114,7 +114,7 @@ public class PortalImplCanonicalURLTest {
 		_layout1 = LayoutTestUtil.addLayout(
 			_group.getGroupId(), false, nameMap, friendlyURLMap);
 
-		nameMap = HashMapBuilder.<Locale, String>put(
+		nameMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "Zuhause2"
 		).put(
 			LocaleUtil.SPAIN, "Casa2"
@@ -122,7 +122,7 @@ public class PortalImplCanonicalURLTest {
 			LocaleUtil.US, "Home2"
 		).build();
 
-		friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "/zuhause2"
 		).put(
 			LocaleUtil.SPAIN, "/casa2"

@@ -107,7 +107,7 @@ public class DDMStructureTestUtil {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			defaultLocale, "Test Structure"
 		).build();
 
@@ -284,7 +284,7 @@ public class DDMStructureTestUtil {
 	public static String getSampleStructuredContent(
 		String name, String keywords) {
 
-		Map<Locale, String> contents = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contents = HashMapBuilder.put(
 			LocaleUtil.US, keywords
 		).build();
 

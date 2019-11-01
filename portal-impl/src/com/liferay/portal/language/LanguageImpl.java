@@ -1713,7 +1713,7 @@ public class LanguageImpl implements Language, Serializable {
 			new LinkedHashMap<>();
 
 		HashMap<String, Locale> groupLanguageCodeLocalesMap =
-			HashMapBuilder.<String, Locale>put(
+			HashMapBuilder.put(
 				defaultLocale.getLanguage(), defaultLocale
 			).build();
 

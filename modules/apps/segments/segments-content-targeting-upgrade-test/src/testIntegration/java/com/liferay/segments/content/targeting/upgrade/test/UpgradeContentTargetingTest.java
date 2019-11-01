@@ -477,7 +477,7 @@ public class UpgradeContentTargetingTest {
 
 		long contentTargetingUserSegmentId = -1L;
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			PortalUtil.getSiteDefaultLocale(_group),
 			RandomTestUtil.randomString()
 		).build();

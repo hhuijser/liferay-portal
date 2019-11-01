@@ -74,7 +74,7 @@ public class MembershipPolicyTestUtil {
 	public static Group addGroup() throws Exception {
 		String name = RandomTestUtil.randomString();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), name
 		).build();
 

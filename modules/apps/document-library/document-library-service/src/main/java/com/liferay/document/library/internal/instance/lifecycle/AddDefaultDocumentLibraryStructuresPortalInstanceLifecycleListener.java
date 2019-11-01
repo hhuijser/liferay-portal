@@ -124,15 +124,13 @@ public class AddDefaultDocumentLibraryStructuresPortalInstanceLifecycleListener
 				}
 			}
 			else {
-				Map<Locale, String> nameMap =
-					HashMapBuilder.<Locale, String>put(
-						locale, name
-					).build();
+				Map<Locale, String> nameMap = HashMapBuilder.put(
+					locale, name
+				).build();
 
-				Map<Locale, String> descriptionMap =
-					HashMapBuilder.<Locale, String>put(
-						locale, name
-					).build();
+				Map<Locale, String> descriptionMap = HashMapBuilder.put(
+					locale, name
+				).build();
 
 				DDMFormLayout ddmFormLayout = _ddm.getDefaultDDMFormLayout(
 					ddmForm);

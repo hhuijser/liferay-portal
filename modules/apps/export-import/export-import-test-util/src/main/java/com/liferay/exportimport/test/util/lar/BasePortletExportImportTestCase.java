@@ -574,13 +574,12 @@ public abstract class BasePortletExportImportTestCase
 			PortletDisplayTemplateManager.DISPLAY_STYLE_PREFIX +
 				ddmTemplate.getTemplateKey();
 
-		Map<String, String[]> preferenceMap =
-			HashMapBuilder.<String, String[]>put(
-				"displayStyle", new String[] {displayStyle}
-			).put(
-				"displayStyleGroupId",
-				new String[] {String.valueOf(ddmTemplate.getGroupId())}
-			).build();
+		Map<String, String[]> preferenceMap = HashMapBuilder.put(
+			"displayStyle", new String[] {displayStyle}
+		).put(
+			"displayStyleGroupId",
+			new String[] {String.valueOf(ddmTemplate.getGroupId())}
+		).build();
 
 		if (scopeType.equals("layout")) {
 			preferenceMap.put(

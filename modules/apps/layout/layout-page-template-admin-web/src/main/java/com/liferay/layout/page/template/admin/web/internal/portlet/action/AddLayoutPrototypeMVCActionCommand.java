@@ -77,7 +77,7 @@ public class AddLayoutPrototypeMVCActionCommand extends BaseMVCActionCommand {
 
 		String name = ParamUtil.getString(actionRequest, "name");
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			themeDisplay.getSiteDefaultLocale(), name
 		).build();
 

@@ -284,7 +284,7 @@ public class ItemSelectorImpl implements ItemSelector {
 			sb.setIndex(sb.index() - 1);
 		}
 
-		Map<String, String[]> parameters = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> parameters = HashMapBuilder.put(
 			PARAMETER_CRITERIA, new String[] {sb.toString()}
 		).put(
 			PARAMETER_ITEM_SELECTED_EVENT_NAME,

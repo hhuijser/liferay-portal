@@ -309,10 +309,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					StringUtil.replace(name, CharPool.SPACE, CharPool.PERIOD) +
 						".description";
 
-			Map<Locale, String> descriptionMap =
-				HashMapBuilder.<Locale, String>put(
-					LocaleUtil.getDefault(), PropsUtil.get(key)
-				).build();
+			Map<Locale, String> descriptionMap = HashMapBuilder.put(
+				LocaleUtil.getDefault(), PropsUtil.get(key)
+			).build();
 
 			int type = RoleConstants.TYPE_REGULAR;
 
@@ -330,10 +329,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					StringUtil.replace(name, CharPool.SPACE, CharPool.PERIOD) +
 						".description";
 
-			Map<Locale, String> descriptionMap =
-				HashMapBuilder.<Locale, String>put(
-					LocaleUtil.getDefault(), PropsUtil.get(key)
-				).build();
+			Map<Locale, String> descriptionMap = HashMapBuilder.put(
+				LocaleUtil.getDefault(), PropsUtil.get(key)
+			).build();
 
 			int type = RoleConstants.TYPE_ORGANIZATION;
 
@@ -350,10 +348,9 @@ public class RoleLocalServiceImpl extends RoleLocalServiceBaseImpl {
 					StringUtil.replace(name, CharPool.SPACE, CharPool.PERIOD) +
 						".description";
 
-			Map<Locale, String> descriptionMap =
-				HashMapBuilder.<Locale, String>put(
-					LocaleUtil.getDefault(), PropsUtil.get(key)
-				).build();
+			Map<Locale, String> descriptionMap = HashMapBuilder.put(
+				LocaleUtil.getDefault(), PropsUtil.get(key)
+			).build();
 
 			int type = RoleConstants.TYPE_SITE;
 

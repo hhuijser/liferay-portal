@@ -297,12 +297,11 @@ public class HttpImplTest {
 
 	@Test
 	public void testParameterMapFromString() {
-		Map<String, String[]> expectedParameterMap =
-			HashMapBuilder.<String, String[]>put(
-				"key1", new String[] {"value1", "value2"}
-			).put(
-				"key2", new String[] {"value3"}
-			).build();
+		Map<String, String[]> expectedParameterMap = HashMapBuilder.put(
+			"key1", new String[] {"value1", "value2"}
+		).put(
+			"key2", new String[] {"value3"}
+		).build();
 
 		StringBundler sb = new StringBundler(12);
 

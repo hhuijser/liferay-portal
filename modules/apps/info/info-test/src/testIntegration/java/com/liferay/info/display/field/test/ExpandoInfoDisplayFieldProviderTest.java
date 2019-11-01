@@ -127,7 +127,7 @@ public class ExpandoInfoDisplayFieldProviderTest {
 			_expandoTable, "test-localized-string-array",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> values = HashMapBuilder.<Locale, String[]>put(
+		Map<Locale, String[]> values = HashMapBuilder.put(
 			LocaleUtil.ENGLISH, new String[] {"en-value-1", "en-value-2"}
 		).put(
 			LocaleUtil.FRENCH, new String[] {"fr-value-1", "fr-value-2"}
@@ -174,7 +174,7 @@ public class ExpandoInfoDisplayFieldProviderTest {
 			_expandoTable, "test-localized-string",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> values = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> values = HashMapBuilder.put(
 			LocaleUtil.ENGLISH, "en-value-1"
 		).put(
 			LocaleUtil.FRENCH, "fr-value-1"

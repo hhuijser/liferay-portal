@@ -302,7 +302,7 @@ public class StagingLocalizationTest {
 	}
 
 	private Map<Locale, String> _prepareNameMap() {
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.GERMANY, StringPool.BLANK
 		).put(
 			LocaleUtil.SPAIN, null

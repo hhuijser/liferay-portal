@@ -66,7 +66,7 @@ public class DDLRecordSetTestHelper {
 	public DDLRecordSet addRecordSet(DDMStructure ddmStructure, int scope)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 
@@ -92,7 +92,7 @@ public class DDLRecordSetTestHelper {
 			long recordSetId, DDMStructure ddmStructure)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 

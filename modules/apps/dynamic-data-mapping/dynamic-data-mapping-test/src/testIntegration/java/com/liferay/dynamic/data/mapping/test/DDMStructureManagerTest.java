@@ -259,11 +259,11 @@ public class DDMStructureManagerTest {
 	public void testUpdateStructure() throws Exception {
 		DDMStructure expectedStructure = addStructure();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, "Structure Name Modified"
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.US, "Structure Description Modified"
 		).build();
 
@@ -309,11 +309,11 @@ public class DDMStructureManagerTest {
 	}
 
 	protected DDMStructure addStructure() throws Exception {
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, "Test Structure Name"
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.US, "Test Structure Description"
 		).build();
 

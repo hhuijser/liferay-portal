@@ -117,7 +117,7 @@ public class AddDefaultSharedFormLayoutPortalInstanceLifecycleListener
 	protected Group addFormsGroup(long companyId) throws PortalException {
 		long defaultUserId = _userLocalService.getDefaultUserId(companyId);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), GroupConstants.FORMS
 		).build();
 

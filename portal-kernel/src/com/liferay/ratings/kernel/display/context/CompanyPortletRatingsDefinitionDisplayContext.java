@@ -98,10 +98,9 @@ public class CompanyPortletRatingsDefinitionDisplayContext {
 				companyPortletPreferences, httpServletRequest, propertyKey,
 				ratingsType.getValue());
 
-			Map<String, RatingsType> ratingsTypeMap =
-				HashMapBuilder.<String, RatingsType>put(
-					className, RatingsType.parse(companyRatingsTypeString)
-				).build();
+			Map<String, RatingsType> ratingsTypeMap = HashMapBuilder.put(
+				className, RatingsType.parse(companyRatingsTypeString)
+			).build();
 
 			_companyRatingsTypeMaps.put(portletId, ratingsTypeMap);
 		}

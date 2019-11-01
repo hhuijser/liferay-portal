@@ -151,7 +151,7 @@ public class SegmentsEntryDemoDataCreatorImpl
 		String description = StringUtil.read(
 			clazz.getClassLoader(), descriptionPath, false);
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), description
 		).build();
 	}
@@ -165,7 +165,7 @@ public class SegmentsEntryDemoDataCreatorImpl
 
 		String name = StringUtil.read(clazz.getClassLoader(), namePath, false);
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), name
 		).build();
 	}

@@ -2551,16 +2551,15 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar calendar = CalendarTestUtil.addCalendar(_user, serviceContext);
 
-		Map<Locale, String> oldDescriptionMap =
-			HashMapBuilder.<Locale, String>put(
-				LocaleUtil.BRAZIL, RandomTestUtil.randomString()
-			).put(
-				LocaleUtil.GERMANY, RandomTestUtil.randomString()
-			).put(
-				LocaleUtil.SPAIN, RandomTestUtil.randomString()
-			).put(
-				LocaleUtil.US, RandomTestUtil.randomString()
-			).build();
+		Map<Locale, String> oldDescriptionMap = HashMapBuilder.put(
+			LocaleUtil.BRAZIL, RandomTestUtil.randomString()
+		).put(
+			LocaleUtil.GERMANY, RandomTestUtil.randomString()
+		).put(
+			LocaleUtil.SPAIN, RandomTestUtil.randomString()
+		).put(
+			LocaleUtil.US, RandomTestUtil.randomString()
+		).build();
 
 		long startTime = System.currentTimeMillis();
 
@@ -2571,14 +2570,13 @@ public class CalendarBookingLocalServiceTest {
 					oldDescriptionMap, startTime, startTime + (Time.HOUR * 10),
 					serviceContext);
 
-		Map<Locale, String> newDescriptionMap =
-			HashMapBuilder.<Locale, String>put(
-				LocaleUtil.GERMANY, ""
-			).put(
-				LocaleUtil.SPAIN, RandomTestUtil.randomString()
-			).put(
-				LocaleUtil.US, oldDescriptionMap.get(LocaleUtil.US)
-			).build();
+		Map<Locale, String> newDescriptionMap = HashMapBuilder.put(
+			LocaleUtil.GERMANY, ""
+		).put(
+			LocaleUtil.SPAIN, RandomTestUtil.randomString()
+		).put(
+			LocaleUtil.US, oldDescriptionMap.get(LocaleUtil.US)
+		).build();
 
 		calendarBooking = CalendarBookingLocalServiceUtil.updateCalendarBooking(
 			_user.getUserId(), calendarBooking.getCalendarBookingId(),
@@ -2615,7 +2613,7 @@ public class CalendarBookingLocalServiceTest {
 
 		Calendar calendar = CalendarTestUtil.addCalendar(_user, serviceContext);
 
-		Map<Locale, String> oldTitleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> oldTitleMap = HashMapBuilder.put(
 			LocaleUtil.BRAZIL, RandomTestUtil.randomString()
 		).put(
 			LocaleUtil.GERMANY, RandomTestUtil.randomString()
@@ -2634,7 +2632,7 @@ public class CalendarBookingLocalServiceTest {
 					RandomTestUtil.randomLocaleStringMap(), startTime,
 					startTime + (Time.HOUR * 10), serviceContext);
 
-		Map<Locale, String> newTitleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> newTitleMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, ""
 		).put(
 			LocaleUtil.SPAIN, RandomTestUtil.randomString()
@@ -2953,7 +2951,7 @@ public class CalendarBookingLocalServiceTest {
 			_user.getUserId(), invitedCalendarBooking,
 			WorkflowConstants.STATUS_APPROVED, serviceContext);
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 

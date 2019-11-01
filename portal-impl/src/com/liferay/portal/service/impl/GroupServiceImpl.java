@@ -1105,7 +1105,7 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 	}
 
 	protected Map<Locale, String> getLocalizationMap(String value) {
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getDefault(), value
 		).build();
 	}

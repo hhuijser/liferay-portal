@@ -152,7 +152,7 @@ public class DDLRecordSetServiceTest {
 		DDMStructure ddmStructure = _ddmStructureTestHelper.addStructure(
 			ddmStructureDDMForm, StorageType.JSON.toString());
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 
@@ -228,7 +228,7 @@ public class DDLRecordSetServiceTest {
 		DDMStructure ddmStructure = _ddmStructureTestHelper.addStructure(
 			ddmStructureDDMForm, StorageType.JSON.toString());
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 

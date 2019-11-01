@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -273,16 +274,16 @@ public class InviteMembersPortlet extends MVCPortlet {
 			long companyId, long groupId, String keywords, int start, int end)
 		throws Exception {
 
-		LinkedHashMap<String, Object> usersParams = new LinkedHashMap<>();
-
-		usersParams.put(
-			"usersInvited",
-			new CustomSQLParam(
-				_customSQL.get(
-					getClass(),
-					"com.liferay.portal.service.persistence.UserFinder." +
-						"filterByUsersGroupsGroupId"),
-				groupId));
+		LinkedHashMap<String, Object> usersParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersInvited",
+				new CustomSQLParam(
+					_customSQL.get(
+						getClass(),
+						"com.liferay.portal.service.persistence.UserFinder." +
+							"filterByUsersGroupsGroupId"),
+					groupId)
+			).build();
 
 		return _userLocalService.search(
 			companyId, keywords, WorkflowConstants.STATUS_APPROVED, usersParams,
@@ -293,16 +294,16 @@ public class InviteMembersPortlet extends MVCPortlet {
 			long companyId, long groupId, String keywords)
 		throws Exception {
 
-		LinkedHashMap<String, Object> usersParams = new LinkedHashMap<>();
-
-		usersParams.put(
-			"usersInvited",
-			new CustomSQLParam(
-				_customSQL.get(
-					getClass(),
-					"com.liferay.portal.service.persistence.UserFinder." +
-						"filterByUsersGroupsGroupId"),
-				groupId));
+		LinkedHashMap<String, Object> usersParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersInvited",
+				new CustomSQLParam(
+					_customSQL.get(
+						getClass(),
+						"com.liferay.portal.service.persistence.UserFinder." +
+							"filterByUsersGroupsGroupId"),
+					groupId)
+			).build();
 
 		return _userLocalService.searchCount(
 			companyId, keywords, WorkflowConstants.STATUS_APPROVED,

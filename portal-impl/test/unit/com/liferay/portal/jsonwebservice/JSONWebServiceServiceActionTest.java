@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.test.GCUtil;
 import com.liferay.portal.kernel.upload.FileItem;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -100,11 +101,11 @@ public class JSONWebServiceServiceActionTest
 	public void testInvokerNullCall() throws Exception {
 		registerActionClass(FooService.class);
 
-		Map<String, Object> map = new LinkedHashMap<>();
-
 		Map<String, Object> params = new LinkedHashMap<>();
 
-		map.put("/foo/null-return", params);
+		Map<String, Object> map = LinkedHashMapBuilder.<String, Object>put(
+			"/foo/null-return", params
+		).build();
 
 		String json = toJSON(map);
 
@@ -124,11 +125,11 @@ public class JSONWebServiceServiceActionTest
 	public void testInvokerSimpleCall() throws Exception {
 		registerActionClass(FooService.class);
 
-		Map<String, Object> map = new LinkedHashMap<>();
-
 		Map<String, Object> params = new LinkedHashMap<>();
 
-		map.put("/foo/hello-world", params);
+		Map<String, Object> map = LinkedHashMapBuilder.<String, Object>put(
+			"/foo/hello-world", params
+		).build();
 
 		params.put("userId", 173);
 		params.put("worldName", "Jupiter");
@@ -276,11 +277,11 @@ public class JSONWebServiceServiceActionTest
 
 		registerActionClass(FooService.class, contextName);
 
-		Map<String, Object> map = new LinkedHashMap<>();
-
 		Map<String, Object> params = new LinkedHashMap<>();
 
-		map.put(query, params);
+		Map<String, Object> map = LinkedHashMapBuilder.<String, Object>put(
+			query, params
+		).build();
 
 		params.put("userId", 173);
 		params.put("worldName", "Jupiter");

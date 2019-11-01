@@ -24,6 +24,7 @@ import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 
@@ -162,9 +163,9 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 
 		Map<String, Object> map = new LinkedHashMap<>();
 
-		Map<String, Object> params = new LinkedHashMap<>();
-
-		params.put("+fooData", null);
+		Map<String, Object> params = LinkedHashMapBuilder.<String, Object>put(
+			"+fooData", null
+		).build();
 
 		map.put("/foo/use1", params);
 

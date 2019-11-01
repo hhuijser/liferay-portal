@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionMapping;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceActionsManagerUtil;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceNaming;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.MethodParameter;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.ReleaseInfo;
@@ -85,14 +86,20 @@ public class JSONWebServiceDiscoverAction implements JSONWebServiceAction {
 
 	@Override
 	public Object invoke() throws Exception {
-		Map<String, Object> resultsMap = new LinkedHashMap<>();
-
-		resultsMap.put("contextName", _contextName);
-		resultsMap.put("basePath", _basePath);
-		resultsMap.put("baseURL", _baseURL);
-		resultsMap.put("services", _buildJsonWebServiceActionMappingMaps());
-		resultsMap.put("types", _buildTypes());
-		resultsMap.put("version", ReleaseInfo.getVersion());
+		Map<String, Object> resultsMap =
+			LinkedHashMapBuilder.<String, Object>put(
+				"contextName", _contextName
+			).put(
+				"basePath", _basePath
+			).put(
+				"baseURL", _baseURL
+			).put(
+				"services", _buildJsonWebServiceActionMappingMaps()
+			).put(
+				"types", _buildTypes()
+			).put(
+				"version", ReleaseInfo.getVersion()
+			).build();
 
 		return new DiscoveryContent(resultsMap);
 	}

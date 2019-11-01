@@ -61,6 +61,7 @@ import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizer;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortletKeys;
@@ -1261,9 +1262,10 @@ public class GroupServiceTest {
 
 		Assert.assertTrue(_group.isRoot());
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("site", Boolean.TRUE);
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"site", Boolean.TRUE
+			).build();
 
 		List<Long> excludedGroupIds = new ArrayList<>();
 

@@ -16,6 +16,7 @@ package com.liferay.vldap.server.internal.directory.ldap;
 
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Organization;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
 import java.util.LinkedHashMap;
 
@@ -35,9 +36,10 @@ public class OrganizationDirectory extends Directory {
 		addAttribute("objectclass", "top");
 		addAttribute("ou", organization.getName());
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersOrgs", organization.getOrganizationId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", organization.getOrganizationId()
+			).build();
 
 		addMemberAttributes(top, company, params);
 

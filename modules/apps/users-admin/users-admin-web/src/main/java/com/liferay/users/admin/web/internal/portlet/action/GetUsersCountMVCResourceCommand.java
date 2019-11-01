@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCResourceCommand;
 import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -74,9 +75,10 @@ public class GetUsersCountMVCResourceCommand implements MVCResourceCommand {
 		int count = 0;
 
 		for (long organizationId : organizationIds) {
-			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-			params.put("usersOrgs", organizationId);
+			LinkedHashMap<String, Object> params =
+				LinkedHashMapBuilder.<String, Object>put(
+					"usersOrgs", organizationId
+				).build();
 
 			count += _userLocalService.searchCount(
 				companyId, null, status, params);
@@ -119,9 +121,10 @@ public class GetUsersCountMVCResourceCommand implements MVCResourceCommand {
 		int count = 0;
 
 		for (long userGroupId : userGroupIds) {
-			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-			params.put("usersUserGroups", userGroupId);
+			LinkedHashMap<String, Object> params =
+				LinkedHashMapBuilder.<String, Object>put(
+					"usersUserGroups", userGroupId
+				).build();
 
 			count += _userLocalService.searchCount(
 				companyId, null, status, params);

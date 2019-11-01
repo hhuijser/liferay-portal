@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.service.persistence.OrganizationFinder;
 import com.liferay.portal.kernel.service.persistence.OrganizationUtil;
 import com.liferay.portal.kernel.service.persistence.UserUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -204,9 +205,10 @@ public class OrganizationFinderImpl
 
 	@Override
 	public int countO_ByO_U(long organizationId, long userId) {
-		LinkedHashMap<String, Object> params1 = new LinkedHashMap<>();
-
-		params1.put("usersOrgs", userId);
+		LinkedHashMap<String, Object> params1 =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", userId
+			).build();
 
 		Session session = null;
 

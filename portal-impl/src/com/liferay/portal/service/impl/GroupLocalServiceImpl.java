@@ -106,6 +106,7 @@ import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.GroupThreadLocal;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
@@ -2155,9 +2156,10 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		if (inherit) {
 			User user = userPersistence.findByPrimaryKey(userId);
 
-			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-			groupParams.put("usersGroups", Long.valueOf(userId));
+			LinkedHashMap<String, Object> groupParams =
+				LinkedHashMapBuilder.<String, Object>put(
+					"usersGroups", Long.valueOf(userId)
+				).build();
 
 			return search(
 				user.getCompanyId(), null, null, groupParams, start, end);
@@ -2280,11 +2282,14 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 		if (userBag == null) {
 			User user = userPersistence.findByPrimaryKey(userId);
 
-			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-			groupParams.put("inherit", Boolean.TRUE);
-			groupParams.put("site", Boolean.TRUE);
-			groupParams.put("usersGroups", userId);
+			LinkedHashMap<String, Object> groupParams =
+				LinkedHashMapBuilder.<String, Object>put(
+					"inherit", Boolean.TRUE
+				).put(
+					"site", Boolean.TRUE
+				).put(
+					"usersGroups", userId
+				).build();
 
 			return groupFinder.findByCompanyId(
 				user.getCompanyId(), groupParams, QueryUtil.ALL_POS,

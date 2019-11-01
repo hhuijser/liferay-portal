@@ -19,10 +19,10 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.kernel.util.WebKeys;
 
-import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -59,16 +59,19 @@ public class EmailConfigurationUtil {
 		String reportName = LanguageUtil.get(
 			resourceBundle, "the-name-of-the-report");
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put("[$FROM_ADDRESS$]", fromAddress);
-		definitionTerms.put("[$FROM_NAME$]", fromName);
-
-		definitionTerms.put("[$TO_ADDRESS$]", toAddress);
-		definitionTerms.put("[$TO_NAME$]", toName);
-
-		definitionTerms.put("[$PAGE_URL$]", pageURL);
-		definitionTerms.put("[$REPORT_NAME$]", reportName);
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+			"[$FROM_ADDRESS$]", fromAddress
+		).put(
+			"[$FROM_NAME$]", fromName
+		).put(
+			"[$TO_ADDRESS$]", toAddress
+		).put(
+			"[$TO_NAME$]", toName
+		).put(
+			"[$PAGE_URL$]", pageURL
+		).put(
+			"[$REPORT_NAME$]", reportName
+		).build();
 
 		Company company = themeDisplay.getCompany();
 

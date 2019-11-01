@@ -16,6 +16,7 @@ package com.liferay.portal.jsonwebservice;
 
 import com.liferay.portal.jsonwebservice.action.JSONWebServiceInvokerAction;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebServiceAction;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -46,10 +47,12 @@ public class JSONWebServiceInvokerInnerTest extends BaseJSONWebServiceTestCase {
 
 		Map<String, Object> pParams = new LinkedHashMap<>();
 
-		Map<String, Object> xxx2Params = new LinkedHashMap<>();
-
-		xxx2Params.put("@userId", "$p.page");
-		xxx2Params.put("worldName", "star");
+		Map<String, Object> xxx2Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "star"
+			).build();
 
 		pParams.put("data.$XXX2 = /foo/hello-world", xxx2Params);
 
@@ -68,17 +71,21 @@ public class JSONWebServiceInvokerInnerTest extends BaseJSONWebServiceTestCase {
 
 		Map<String, Object> pParams = new LinkedHashMap<>();
 
-		Map<String, Object> xxx1Params = new LinkedHashMap<>();
-
-		xxx1Params.put("@userId", "$p.page");
-		xxx1Params.put("worldName", "galaxy");
+		Map<String, Object> xxx1Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "galaxy"
+			).build();
 
 		pParams.put("$XXX1 = /foo/hello-world", xxx1Params);
 
-		Map<String, Object> xxx2Params = new LinkedHashMap<>();
-
-		xxx2Params.put("@userId", "$p.page");
-		xxx2Params.put("worldName", "star");
+		Map<String, Object> xxx2Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "star"
+			).build();
 
 		pParams.put("data.$XXX2 = /foo/hello-world", xxx2Params);
 
@@ -97,24 +104,30 @@ public class JSONWebServiceInvokerInnerTest extends BaseJSONWebServiceTestCase {
 
 		Map<String, Object> pParams = new LinkedHashMap<>();
 
-		Map<String, Object> xxx1Params = new LinkedHashMap<>();
-
-		xxx1Params.put("@userId", "$p.page");
-		xxx1Params.put("worldName", "galaxy");
+		Map<String, Object> xxx1Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "galaxy"
+			).build();
 
 		pParams.put("$XXX1 = /foo/hello-world", xxx1Params);
 
-		Map<String, Object> xxx2Params = new LinkedHashMap<>();
-
-		xxx2Params.put("@userId", "$p.page");
-		xxx2Params.put("worldName", "star");
+		Map<String, Object> xxx2Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "star"
+			).build();
 
 		pParams.put("data.$XXX2 = /foo/hello-world", xxx2Params);
 
-		Map<String, Object> xxx3Params = new LinkedHashMap<>();
-
-		xxx3Params.put("@userId", "$p.page");
-		xxx3Params.put("worldName", "pulsar");
+		Map<String, Object> xxx3Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "pulsar"
+			).build();
 
 		pParams.put("list.$XXX3 = /foo/hello-world", xxx3Params);
 
@@ -134,24 +147,30 @@ public class JSONWebServiceInvokerInnerTest extends BaseJSONWebServiceTestCase {
 
 		Map<String, Object> pParams = new LinkedHashMap<>();
 
-		Map<String, Object> xxx1Params = new LinkedHashMap<>();
-
-		xxx1Params.put("@userId", "$p.page");
-		xxx1Params.put("worldName", "galaxy");
+		Map<String, Object> xxx1Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "galaxy"
+			).build();
 
 		pParams.put("$XXX1 = /foo/hello-world", xxx1Params);
 
-		Map<String, Object> xxx2Params = new LinkedHashMap<>();
-
-		xxx2Params.put("@userId", "$p.page");
-		xxx2Params.put("worldName", "star");
+		Map<String, Object> xxx2Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.page"
+			).put(
+				"worldName", "star"
+			).build();
 
 		pParams.put("data.$XXX2 = /foo/hello-world", xxx2Params);
 
-		Map<String, Object> xxx3Params = new LinkedHashMap<>();
-
-		xxx3Params.put("@userId", "$p.list.id");
-		xxx3Params.put("worldName", "pulsar");
+		Map<String, Object> xxx3Params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"@userId", "$p.list.id"
+			).put(
+				"worldName", "pulsar"
+			).build();
 
 		pParams.put("list.$XXX3 = /foo/hello-world", xxx3Params);
 

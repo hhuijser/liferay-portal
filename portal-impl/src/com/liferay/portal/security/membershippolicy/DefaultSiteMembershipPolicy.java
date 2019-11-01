@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.security.membershippolicy.BaseSiteMembershipPol
 import com.liferay.portal.kernel.security.membershippolicy.MembershipPolicyException;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 
@@ -161,13 +162,15 @@ public class DefaultSiteMembershipPolicy extends BaseSiteMembershipPolicy {
 
 		parentGroups.add(group);
 
-		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-		groupParams.put("groupsTree", parentGroups);
-		groupParams.put(
-			"membershipRestriction",
-			GroupConstants.MEMBERSHIP_RESTRICTION_TO_PARENT_SITE_MEMBERS);
-		groupParams.put("site", Boolean.TRUE);
+		LinkedHashMap<String, Object> groupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"groupsTree", parentGroups
+			).put(
+				"membershipRestriction",
+				GroupConstants.MEMBERSHIP_RESTRICTION_TO_PARENT_SITE_MEMBERS
+			).put(
+				"site", Boolean.TRUE
+			).build();
 
 		List<Group> childrenGroups = GroupLocalServiceUtil.search(
 			group.getCompanyId(), null, StringPool.BLANK, groupParams,

@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.service.persistence.GroupUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -206,21 +207,25 @@ public class GroupFinderImpl
 
 	@Override
 	public int countByG_U(long groupId, long userId, boolean inherit) {
-		LinkedHashMap<String, Object> params1 = new LinkedHashMap<>();
+		LinkedHashMap<String, Object> params1 =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersGroups", userId
+			).build();
 
-		params1.put("usersGroups", userId);
+		LinkedHashMap<String, Object> params2 =
+			LinkedHashMapBuilder.<String, Object>put(
+				"groupOrg", userId
+			).build();
 
-		LinkedHashMap<String, Object> params2 = new LinkedHashMap<>();
+		LinkedHashMap<String, Object> params3 =
+			LinkedHashMapBuilder.<String, Object>put(
+				"groupsOrgs", userId
+			).build();
 
-		params2.put("groupOrg", userId);
-
-		LinkedHashMap<String, Object> params3 = new LinkedHashMap<>();
-
-		params3.put("groupsOrgs", userId);
-
-		LinkedHashMap<String, Object> params4 = new LinkedHashMap<>();
-
-		params4.put("groupsUserGroups", userId);
+		LinkedHashMap<String, Object> params4 =
+			LinkedHashMapBuilder.<String, Object>put(
+				"groupsUserGroups", userId
+			).build();
 
 		Session session = null;
 

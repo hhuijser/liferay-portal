@@ -50,6 +50,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -129,17 +130,15 @@ public abstract class BasePortletExportImportTestCase
 
 		Assert.assertNotNull(importedStagedModel);
 
-		Map<String, String[]> exportParameterMap = new LinkedHashMap<>();
-
-		exportParameterMap.put(
+		Map<String, String[]> exportParameterMap = LinkedHashMapBuilder.put(
 			PortletDataHandlerKeys.DELETIONS,
-			new String[] {Boolean.TRUE.toString()});
+			new String[] {Boolean.TRUE.toString()}
+		).build();
 
-		Map<String, String[]> importParameterMap = new LinkedHashMap<>();
-
-		importParameterMap.put(
+		Map<String, String[]> importParameterMap = LinkedHashMapBuilder.put(
 			PortletDataHandlerKeys.DELETIONS,
-			new String[] {Boolean.TRUE.toString()});
+			new String[] {Boolean.TRUE.toString()}
+		).build();
 
 		exportImportPortlet(
 			getPortletId(), exportParameterMap, importParameterMap);

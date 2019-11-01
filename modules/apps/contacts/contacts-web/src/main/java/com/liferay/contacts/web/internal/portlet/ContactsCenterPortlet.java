@@ -76,6 +76,7 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -875,9 +876,10 @@ public class ContactsCenterPortlet extends MVCPortlet {
 			}
 		}
 		else {
-			LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-			params.put("inherit", Boolean.TRUE);
+			LinkedHashMap<String, Object> params =
+				LinkedHashMapBuilder.<String, Object>put(
+					"inherit", Boolean.TRUE
+				).build();
 
 			Group group = themeDisplay.getScopeGroup();
 			Layout layout = themeDisplay.getLayout();

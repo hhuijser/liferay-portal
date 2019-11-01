@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.RoleTestUtil;
 import com.liferay.portal.kernel.test.util.UserGroupTestUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.service.persistence.constants.UserGroupFinderConstants;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
@@ -78,13 +79,13 @@ public class UserGroupLocalServiceTest {
 	public void testDatabaseSearchWithInvalidParamKey() {
 		String keywords = null;
 
-		LinkedHashMap<String, Object> userGroupParams = new LinkedHashMap<>();
-
-		userGroupParams.put(
-			UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
-			Long.valueOf(_role.getRoleId()));
-
-		userGroupParams.put("invalidParamKey", "invalidParamValue");
+		LinkedHashMap<String, Object> userGroupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
+				Long.valueOf(_role.getRoleId())
+			).put(
+				"invalidParamKey", "invalidParamValue"
+			).build();
 
 		List<UserGroup> userGroups = _search(keywords, userGroupParams);
 
@@ -95,11 +96,11 @@ public class UserGroupLocalServiceTest {
 	public void testSearchRoleUserGroups() {
 		String keywords = null;
 
-		LinkedHashMap<String, Object> userGroupParams = new LinkedHashMap<>();
-
-		userGroupParams.put(
-			UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
-			Long.valueOf(_role.getRoleId()));
+		LinkedHashMap<String, Object> userGroupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
+				Long.valueOf(_role.getRoleId())
+			).build();
 
 		List<UserGroup> userGroups = _search(keywords, userGroupParams);
 
@@ -110,11 +111,11 @@ public class UserGroupLocalServiceTest {
 	public void testSearchRoleUserGroupsWithKeywords() {
 		String keywords = _userGroup2.getName();
 
-		LinkedHashMap<String, Object> userGroupParams = new LinkedHashMap<>();
-
-		userGroupParams.put(
-			UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
-			Long.valueOf(_role.getRoleId()));
+		LinkedHashMap<String, Object> userGroupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_ROLES,
+				Long.valueOf(_role.getRoleId())
+			).build();
 
 		List<UserGroup> userGroups = _search(keywords, userGroupParams);
 

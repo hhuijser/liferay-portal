@@ -19,10 +19,10 @@ import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.util.PropsValues;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.portlet.PortletRequest;
@@ -39,31 +39,31 @@ public class MBMailUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$CATEGORY_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-category-in-which-the-message-has-been-posted"));
-		definitionTerms.put(
+				"the-category-in-which-the-message-has-been-posted")
+		).put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-id-associated-with-the-message-board"));
-		definitionTerms.put(
+				"the-company-id-associated-with-the-message-board")
+		).put(
 			"[$COMPANY_MX$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-mx-associated-with-the-message-board"));
-		definitionTerms.put(
+				"the-company-mx-associated-with-the-message-board")
+		).put(
 			"[$COMPANY_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-name-associated-with-the-message-board"));
-		definitionTerms.put(
-			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress));
-		definitionTerms.put("[$FROM_NAME$]", HtmlUtil.escape(emailFromName));
+				"the-company-name-associated-with-the-message-board")
+		).put(
+			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress)
+		).put(
+			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
+		).build();
 
 		if (PropsValues.POP_SERVER_NOTIFICATIONS_ENABLED) {
 			definitionTerms.put(
@@ -132,23 +132,22 @@ public class MBMailUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-id-associated-with-the-message-board"));
-		definitionTerms.put(
+				"the-company-id-associated-with-the-message-board")
+		).put(
 			"[$COMPANY_MX$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-mx-associated-with-the-message-board"));
-		definitionTerms.put(
+				"the-company-mx-associated-with-the-message-board")
+		).put(
 			"[$COMPANY_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-name-associated-with-the-message-board"));
+				"the-company-name-associated-with-the-message-board")
+		).build();
 
 		if (PropsValues.POP_SERVER_NOTIFICATIONS_ENABLED) {
 			definitionTerms.put(

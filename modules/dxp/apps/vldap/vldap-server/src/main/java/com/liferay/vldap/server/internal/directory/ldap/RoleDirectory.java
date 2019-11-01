@@ -16,6 +16,7 @@ package com.liferay.vldap.server.internal.directory.ldap;
 
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Role;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
 import java.util.LinkedHashMap;
 
@@ -34,9 +35,10 @@ public class RoleDirectory extends Directory {
 	}
 
 	public void addRoleMembers(String top, Company company, long roleId) {
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersRoles", roleId);
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersRoles", roleId
+			).build();
 
 		addMemberAttributes(top, company, params);
 	}

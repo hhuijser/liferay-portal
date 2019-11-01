@@ -48,6 +48,7 @@ import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -83,7 +84,6 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -435,10 +435,9 @@ public class WabProcessor {
 
 		// Class path order is critical
 
-		Map<String, File> classPath = new LinkedHashMap<>();
-
-		classPath.put(
-			"WEB-INF/classes", new File(_pluginDir, "WEB-INF/classes"));
+		Map<String, File> classPath = LinkedHashMapBuilder.<String, File>put(
+			"WEB-INF/classes", new File(_pluginDir, "WEB-INF/classes")
+		).build();
 
 		appendProperty(analyzer, Constants.BUNDLE_CLASSPATH, "WEB-INF/classes");
 

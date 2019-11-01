@@ -37,6 +37,7 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -44,7 +45,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -158,25 +158,24 @@ public class BookmarksUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$BOOKMARKS_ENTRY_USER_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-user-who-added-the-bookmark-entry"));
-		definitionTerms.put(
+				"the-user-who-added-the-bookmark-entry")
+		).put(
 			"[$BOOKMARKS_ENTRY_STATUS_BY_USER_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-user-who-updated-the-bookmark-entry"));
-		definitionTerms.put(
+				"the-user-who-updated-the-bookmark-entry")
+		).put(
 			"[$BOOKMARKS_ENTRY_URL$]",
-			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-bookmark-entry-url"));
-		definitionTerms.put(
-			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress));
-		definitionTerms.put("[$FROM_NAME$]", HtmlUtil.escape(emailFromName));
+			LanguageUtil.get(themeDisplay.getLocale(), "the-bookmark-entry-url")
+		).put(
+			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress)
+		).put(
+			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
+		).build();
 
 		Company company = themeDisplay.getCompany();
 

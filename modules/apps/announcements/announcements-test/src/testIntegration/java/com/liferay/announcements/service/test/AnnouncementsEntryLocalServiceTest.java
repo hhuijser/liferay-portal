@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
@@ -250,11 +251,11 @@ public class AnnouncementsEntryLocalServiceTest {
 			_user.getUserId(), entry2.getEntryId(),
 			AnnouncementsFlagConstants.HIDDEN);
 
-		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<>();
-
-		scopes.put(
-			_portal.getClassNameId(Group.class.getName()),
-			new long[] {group.getGroupId()});
+		LinkedHashMap<Long, long[]> scopes =
+			LinkedHashMapBuilder.<Long, long[]>put(
+				_portal.getClassNameId(Group.class.getName()),
+				new long[] {group.getGroupId()}
+			).build();
 
 		List<AnnouncementsEntry> hiddenEntries =
 			_announcementsEntryLocalService.getEntries(

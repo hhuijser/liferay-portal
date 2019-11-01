@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserGroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.comparator.GroupNameComparator;
 import com.liferay.portal.test.rule.Inject;
@@ -92,14 +93,15 @@ public class GroupFinderTest {
 			_arbitraryResourceAction.getName(),
 			String.valueOf(_group.getGroupId()), ResourceConstants.SCOPE_GROUP);
 
-		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-		groupParams.put(
-			"rolePermissions",
-			new RolePermissions(
-				_resourcePermission.getName(), ResourceConstants.SCOPE_GROUP,
-				_arbitraryResourceAction.getActionId(),
-				_resourcePermission.getRoleId()));
+		LinkedHashMap<String, Object> groupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"rolePermissions",
+				new RolePermissions(
+					_resourcePermission.getName(),
+					ResourceConstants.SCOPE_GROUP,
+					_arbitraryResourceAction.getActionId(),
+					_resourcePermission.getRoleId())
+			).build();
 
 		List<Group> groups = _groupFinder.findByC_C_PG_N_D(
 			TestPropsValues.getCompanyId(),
@@ -129,10 +131,12 @@ public class GroupFinderTest {
 		_groupLocalService.addUserGroupGroup(
 			_userGroup.getUserGroupId(), group.getGroupId());
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("inherit", true);
-		params.put("usersGroups", _user.getUserId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"inherit", true
+			).put(
+				"usersGroups", _user.getUserId()
+			).build();
 
 		List<Group> groups = _groupFinder.findByC_C_PG_N_D(
 			_organization.getCompanyId(), null,
@@ -144,11 +148,14 @@ public class GroupFinderTest {
 
 	@Test
 	public void testFindByCompanyId() throws Exception {
-		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-		groupParams.put("inherit", Boolean.TRUE);
-		groupParams.put("site", Boolean.TRUE);
-		groupParams.put("usersGroups", TestPropsValues.getUserId());
+		LinkedHashMap<String, Object> groupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"inherit", Boolean.TRUE
+			).put(
+				"site", Boolean.TRUE
+			).put(
+				"usersGroups", TestPropsValues.getUserId()
+			).build();
 
 		List<Group> groups = _groupFinder.findByCompanyId(
 			TestPropsValues.getCompanyId(), groupParams, QueryUtil.ALL_POS,
@@ -168,11 +175,14 @@ public class GroupFinderTest {
 
 		_userGroupLocalService.addUserUserGroup(_user.getUserId(), _userGroup);
 
-		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-		groupParams.put("inherit", Boolean.TRUE);
-		groupParams.put("site", Boolean.TRUE);
-		groupParams.put("usersGroups", _user.getUserId());
+		LinkedHashMap<String, Object> groupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"inherit", Boolean.TRUE
+			).put(
+				"site", Boolean.TRUE
+			).put(
+				"usersGroups", _user.getUserId()
+			).build();
 
 		List<Group> groups = _groupFinder.findByCompanyId(
 			TestPropsValues.getCompanyId(), groupParams, QueryUtil.ALL_POS,

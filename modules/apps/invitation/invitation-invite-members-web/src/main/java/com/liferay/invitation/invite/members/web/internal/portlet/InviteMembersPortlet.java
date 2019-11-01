@@ -273,7 +273,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			long companyId, long groupId, String keywords, int start, int end)
 		throws Exception {
 
-		LinkedHashMap usersParams = new LinkedHashMap();
+		LinkedHashMap<String, Object> usersParams = new LinkedHashMap<>();
 
 		usersParams.put(
 			"usersInvited",
@@ -293,7 +293,7 @@ public class InviteMembersPortlet extends MVCPortlet {
 			long companyId, long groupId, String keywords)
 		throws Exception {
 
-		LinkedHashMap usersParams = new LinkedHashMap();
+		LinkedHashMap<String, Object> usersParams = new LinkedHashMap<>();
 
 		usersParams.put(
 			"usersInvited",

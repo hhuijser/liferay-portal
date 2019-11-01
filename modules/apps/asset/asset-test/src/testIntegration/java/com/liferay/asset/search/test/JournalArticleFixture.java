@@ -43,11 +43,11 @@ public class JournalArticleFixture {
 	public JournalArticle addJournalArticle(ServiceContext serviceContext)
 		throws Exception {
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 

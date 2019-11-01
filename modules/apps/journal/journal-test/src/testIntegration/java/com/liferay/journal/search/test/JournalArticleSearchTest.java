@@ -146,7 +146,7 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 
 		String keywords = "keywords";
 
-		Map<Locale, String> keywordsMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> keywordsMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), keywords
 		).put(
 			LocaleUtil.GERMANY, keywords
@@ -627,7 +627,7 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 				fieldValues.length);
 
 			for (String fieldValue : fieldValues) {
-				Map<Locale, String> map = HashMapBuilder.<Locale, String>put(
+				Map<Locale, String> map = HashMapBuilder.put(
 					LocaleUtil.US, fieldValue
 				).build();
 

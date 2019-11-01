@@ -639,19 +639,19 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			locale, name
 		).build();
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			locale, title
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			locale, description
 		).build();
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), friendlyURL
 		).build();
 

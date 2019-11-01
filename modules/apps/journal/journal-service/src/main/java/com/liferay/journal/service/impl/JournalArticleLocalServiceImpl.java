@@ -8764,7 +8764,7 @@ public class JournalArticleLocalServiceImpl
 			}
 		}
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			defaultLocale, titleMap.get(defaultLocale)
 		).build();
 	}

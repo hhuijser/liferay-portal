@@ -56,7 +56,7 @@ public class SiteDemoDataCreatorImpl implements SiteDemoDataCreator {
 
 		User user = company.getDefaultUser();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), name
 		).build();
 

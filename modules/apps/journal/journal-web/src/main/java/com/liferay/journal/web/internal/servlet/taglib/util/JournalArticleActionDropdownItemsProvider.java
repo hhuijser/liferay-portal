@@ -585,7 +585,7 @@ public class JournalArticleActionDropdownItemsProvider {
 			JournalUtil.getPreviewPlid(_article, _themeDisplay),
 			JournalPortletKeys.JOURNAL, PortletRequest.RENDER_PHASE);
 
-		Map<String, String[]> parameters = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> parameters = HashMapBuilder.put(
 			"articleId", new String[] {_article.getArticleId()}
 		).put(
 			"groupId", new String[] {String.valueOf(_article.getGroupId())}

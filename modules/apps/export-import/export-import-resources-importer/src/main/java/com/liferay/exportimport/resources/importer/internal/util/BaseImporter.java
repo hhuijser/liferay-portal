@@ -171,7 +171,7 @@ public abstract class BaseImporter implements Importer {
 	public Map<Locale, String> getTargetValueMap() {
 		Locale locale = LocaleUtil.getDefault();
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			locale, targetValue
 		).build();
 	}
@@ -303,7 +303,7 @@ public abstract class BaseImporter implements Importer {
 	}
 
 	protected Map<Locale, String> getMap(Locale locale, String value) {
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			locale, value
 		).build();
 	}

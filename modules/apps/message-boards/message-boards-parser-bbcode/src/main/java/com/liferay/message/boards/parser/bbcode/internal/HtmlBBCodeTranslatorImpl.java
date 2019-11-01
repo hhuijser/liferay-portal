@@ -94,7 +94,7 @@ public class HtmlBBCodeTranslatorImpl implements BBCodeTranslator {
 			emoticon[0] = sb.toString();
 		}
 
-		_excludeNewLineTypes = HashMapBuilder.<String, Integer>put(
+		_excludeNewLineTypes = HashMapBuilder.put(
 			"*", BBCodeParser.TYPE_TAG_START_END
 		).put(
 			"li", BBCodeParser.TYPE_TAG_START_END

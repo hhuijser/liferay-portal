@@ -599,14 +599,13 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 	protected Map<String, String[]> getBaseParameterMap(long groupId, long plid)
 		throws Exception {
 
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				PortletDataHandlerKeys.PERMISSIONS,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
-				new String[] {Boolean.FALSE.toString()}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			PortletDataHandlerKeys.PERMISSIONS,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+			new String[] {Boolean.FALSE.toString()}
+		).build();
 
 		addParameter(parameterMap, "doAsGroupId", String.valueOf(groupId));
 		addParameter(parameterMap, "feeds", true);

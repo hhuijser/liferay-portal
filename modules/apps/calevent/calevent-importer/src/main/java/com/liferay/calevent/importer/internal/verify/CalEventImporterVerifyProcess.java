@@ -694,7 +694,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 					serviceContext.getCompanyId(), userId);
 			}
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), userName
 			).build();
 
@@ -732,7 +732,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			userId = userIds[0];
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), group.getDescriptiveName()
 		).build();
 

@@ -993,7 +993,7 @@ public class GroupServiceTest {
 
 		Assert.assertFalse(layout.hasScopeGroup());
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), layout.getName(LocaleUtil.getDefault())
 		).build();
 
@@ -1217,7 +1217,7 @@ public class GroupServiceTest {
 	private Group _addScopeGroup(Group group) throws Exception {
 		Layout scopeLayout = LayoutTestUtil.addLayout(group);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), RandomTestUtil.randomString()
 		).build();
 

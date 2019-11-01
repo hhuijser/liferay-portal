@@ -118,7 +118,7 @@ public class PollsQuestionLocalServiceTest {
 	}
 
 	protected Map<Locale, String> createLocalizedMap(String localizedValue) {
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.US, localizedValue
 		).build();
 	}

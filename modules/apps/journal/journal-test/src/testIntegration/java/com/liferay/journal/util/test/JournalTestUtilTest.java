@@ -196,7 +196,7 @@ public class JournalTestUtilTest {
 
 	@Test
 	public void testAddDynamicContent() throws Exception {
-		Map<Locale, String> contents = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contents = HashMapBuilder.put(
 			LocaleUtil.BRAZIL, "Joe Bloggs"
 		).put(
 			LocaleUtil.US, "Joe Bloggs"
@@ -289,7 +289,7 @@ public class JournalTestUtilTest {
 		JournalArticle article = JournalTestUtil.addArticle(
 			_group.getGroupId(), "Test Article", "This is a test article.");
 
-		Map<Locale, String> contents = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contents = HashMapBuilder.put(
 			LocaleUtil.US, "This is an updated test article."
 		).build();
 

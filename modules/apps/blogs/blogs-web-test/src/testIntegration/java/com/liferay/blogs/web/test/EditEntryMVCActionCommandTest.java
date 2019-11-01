@@ -177,7 +177,7 @@ public class EditEntryMVCActionCommandTest {
 
 		@Override
 		public Map<String, String[]> getParameterMap() {
-			return HashMapBuilder.<String, String[]>put(
+			return HashMapBuilder.put(
 				"entryId", new String[] {String.valueOf(_entryId)}
 			).build();
 		}

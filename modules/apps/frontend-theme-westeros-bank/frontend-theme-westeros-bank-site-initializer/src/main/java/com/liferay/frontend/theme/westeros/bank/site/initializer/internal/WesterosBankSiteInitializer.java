@@ -473,7 +473,7 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 		Random random = new Random();
 
 		for (String layoutName : layoutNames) {
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), layoutName
 			).build();
 
@@ -510,7 +510,7 @@ public class WesterosBankSiteInitializer implements SiteInitializer {
 			ServiceContext serviceContext)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), name
 		).build();
 

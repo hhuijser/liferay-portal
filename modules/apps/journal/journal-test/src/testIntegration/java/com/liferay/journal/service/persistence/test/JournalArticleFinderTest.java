@@ -327,7 +327,7 @@ public class JournalArticleFinderTest {
 			ServiceContextTestUtil.getServiceContext(
 				_group.getGroupId(), TestPropsValues.getUserId());
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.FRANCE, "Localized Article"
 		).put(
 			LocaleUtil.US, "Localized Article"

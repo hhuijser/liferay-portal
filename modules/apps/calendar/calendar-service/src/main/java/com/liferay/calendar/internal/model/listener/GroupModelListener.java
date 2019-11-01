@@ -50,7 +50,7 @@ public class GroupModelListener extends BaseModelListener<Group> {
 				return;
 			}
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), group.getDescriptiveName()
 			).build();
 

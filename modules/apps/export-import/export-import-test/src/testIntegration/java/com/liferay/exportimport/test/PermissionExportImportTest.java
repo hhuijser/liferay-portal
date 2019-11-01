@@ -128,10 +128,9 @@ public class PermissionExportImportTest {
 			Group exportGroup, Role role, String exportResourcePrimKey)
 		throws Exception {
 
-		Map<Long, String[]> roleIdsToActionIds =
-			HashMapBuilder.<Long, String[]>put(
-				role.getRoleId(), _ACTION_IDS
-			).build();
+		Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
+			role.getRoleId(), _ACTION_IDS
+		).build();
 
 		ResourcePermissionServiceUtil.setIndividualResourcePermissions(
 			exportGroup.getGroupId(), TestPropsValues.getCompanyId(),

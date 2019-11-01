@@ -194,7 +194,7 @@ public class EntryServiceTest {
 				EntryServiceTest.class.getResourceAsStream(
 					"dependencies/" + _TEMPLATE_NAME + ".jrxml")) {
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.US, RandomTestUtil.randomString()
 			).build();
 

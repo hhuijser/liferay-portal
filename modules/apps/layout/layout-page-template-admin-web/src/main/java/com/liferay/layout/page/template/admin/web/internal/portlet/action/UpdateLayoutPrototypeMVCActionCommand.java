@@ -68,7 +68,7 @@ public class UpdateLayoutPrototypeMVCActionCommand
 
 			String name = ParamUtil.getString(actionRequest, "name");
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				actionRequest.getLocale(), name
 			).build();
 

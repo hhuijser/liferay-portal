@@ -110,11 +110,11 @@ public class SegmentsTestUtil {
 			ServiceContext serviceContext)
 		throws PortalException {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), name
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), description
 		).build();
 

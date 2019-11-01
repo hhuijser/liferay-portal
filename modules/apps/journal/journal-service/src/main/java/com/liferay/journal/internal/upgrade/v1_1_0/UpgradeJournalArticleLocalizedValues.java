@@ -171,7 +171,7 @@ public class UpgradeJournalArticleLocalizedValues extends UpgradeProcess {
 			return LocalizationUtil.getLocalizationMap(value);
 		}
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.fromLanguageId(defaultLanguageId), value
 		).build();
 	}

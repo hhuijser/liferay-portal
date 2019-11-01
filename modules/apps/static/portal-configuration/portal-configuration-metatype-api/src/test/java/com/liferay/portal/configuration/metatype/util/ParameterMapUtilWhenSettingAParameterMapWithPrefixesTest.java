@@ -34,16 +34,15 @@ public class ParameterMapUtilWhenSettingAParameterMapWithPrefixesTest {
 		ParameterMapUtilTestUtil.TestBean testBean =
 			ParameterMapUtilTestUtil.getTestBean();
 
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				"prefix--testBoolean1--", new String[] {"false"}
-			).put(
-				"prefix--testString1--",
-				new String[] {ParameterMapUtilTestUtil.PARAMETER_MAP_STRING}
-			).put(
-				"prefix--testStringArray1--",
-				ParameterMapUtilTestUtil.PARAMETER_MAP_STRING_ARRAY
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			"prefix--testBoolean1--", new String[] {"false"}
+		).put(
+			"prefix--testString1--",
+			new String[] {ParameterMapUtilTestUtil.PARAMETER_MAP_STRING}
+		).put(
+			"prefix--testStringArray1--",
+			ParameterMapUtilTestUtil.PARAMETER_MAP_STRING_ARRAY
+		).build();
 
 		_testBean = ParameterMapUtil.setParameterMap(
 			ParameterMapUtilTestUtil.TestBean.class, testBean, parameterMap,

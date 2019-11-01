@@ -57,11 +57,11 @@ public class DLFileEntryTypeUADTestUtil {
 
 		ddmForm.addDDMFormField(ddmFormField);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, "Test Structure Name"
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.US, "Test Structure Description"
 		).build();
 

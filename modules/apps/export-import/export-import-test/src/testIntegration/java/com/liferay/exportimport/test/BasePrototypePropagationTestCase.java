@@ -118,15 +118,14 @@ public abstract class BasePrototypePropagationTestCase {
 			String columnId)
 		throws Exception {
 
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				"articleId", new String[] {journalArticle.getArticleId()}
-			).put(
-				"groupId",
-				new String[] {String.valueOf(journalArticle.getGroupId())}
-			).put(
-				"showAvailableLocales", new String[] {Boolean.TRUE.toString()}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			"articleId", new String[] {journalArticle.getArticleId()}
+		).put(
+			"groupId",
+			new String[] {String.valueOf(journalArticle.getGroupId())}
+		).put(
+			"showAvailableLocales", new String[] {Boolean.TRUE.toString()}
+		).build();
 
 		return LayoutTestUtil.addPortletToLayout(
 			userId, layout, JournalContentPortletKeys.JOURNAL_CONTENT, columnId,

@@ -384,10 +384,9 @@ public class LocalizationImplTest {
 
 	@Test
 	public void testUpdateLocalization() {
-		Map<Locale, String> localizationMap =
-			HashMapBuilder.<Locale, String>put(
-				LocaleUtil.US, _ENGLISH_HELLO
-			).build();
+		Map<Locale, String> localizationMap = HashMapBuilder.put(
+			LocaleUtil.US, _ENGLISH_HELLO
+		).build();
 
 		StringBundler sb = new StringBundler(10);
 
@@ -419,12 +418,11 @@ public class LocalizationImplTest {
 		String englishValue = "foo&bar";
 		String spanishValue = "bar&foo";
 
-		Map<Locale, String> localizationMap =
-			HashMapBuilder.<Locale, String>put(
-				LocaleUtil.SPAIN, spanishValue
-			).put(
-				LocaleUtil.US, englishValue
-			).build();
+		Map<Locale, String> localizationMap = HashMapBuilder.put(
+			LocaleUtil.SPAIN, spanishValue
+		).put(
+			LocaleUtil.US, englishValue
+		).build();
 
 		String xml = LocalizationUtil.updateLocalization(
 			localizationMap, _xml, "static-content", "en_US");

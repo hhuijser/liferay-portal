@@ -200,10 +200,9 @@ public class DefaultPortalKaleoManager
 				continue;
 			}
 
-			Map<Locale, String> descriptionMap =
-				HashMapBuilder.<Locale, String>put(
-					LocaleUtil.getDefault(), entry.getValue()
-				).build();
+			Map<Locale, String> descriptionMap = HashMapBuilder.put(
+				LocaleUtil.getDefault(), entry.getValue()
+			).build();
 
 			roleLocalService.addRole(
 				defaultUser.getUserId(), null, 0, name, null, descriptionMap,

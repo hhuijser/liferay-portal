@@ -186,10 +186,9 @@ public class SourceServiceTest {
 			serviceContext.setModelPermissions(modelPermissions);
 
 			for (int i = 0; i < 5; i++) {
-				Map<Locale, String> nameMap =
-					HashMapBuilder.<Locale, String>put(
-						LocaleUtil.US, RandomTestUtil.randomString()
-					).build();
+				Map<Locale, String> nameMap = HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build();
 
 				SourceLocalServiceUtil.addSource(
 					TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
@@ -203,10 +202,9 @@ public class SourceServiceTest {
 			serviceContext.setModelPermissions(modelPermissions);
 
 			for (int i = 0; i < 5; i++) {
-				Map<Locale, String> nameMap =
-					HashMapBuilder.<Locale, String>put(
-						LocaleUtil.US, RandomTestUtil.randomString()
-					).build();
+				Map<Locale, String> nameMap = HashMapBuilder.put(
+					LocaleUtil.US, RandomTestUtil.randomString()
+				).build();
 
 				SourceLocalServiceUtil.addSource(
 					TestPropsValues.getUserId(), _group.getGroupId(), nameMap,

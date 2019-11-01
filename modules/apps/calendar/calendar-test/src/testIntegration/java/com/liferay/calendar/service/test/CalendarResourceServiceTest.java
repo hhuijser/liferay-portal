@@ -116,7 +116,7 @@ public class CalendarResourceServiceTest {
 			RandomTestUtil.randomString() + StringPool.SPACE +
 				RandomTestUtil.randomString();
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), name
 		).build();
 	}

@@ -41,7 +41,7 @@ import java.util.Map;
 public class DDMStructureTestHelper {
 
 	public static Map<Locale, String> getDefaultLocaleMap(String value) {
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), value
 		).build();
 	}

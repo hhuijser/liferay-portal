@@ -108,7 +108,7 @@ public class AddDataProviderMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	protected Map<Locale, String> getLocalizedMap(Locale locale, String value) {
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			locale, value
 		).build();
 	}

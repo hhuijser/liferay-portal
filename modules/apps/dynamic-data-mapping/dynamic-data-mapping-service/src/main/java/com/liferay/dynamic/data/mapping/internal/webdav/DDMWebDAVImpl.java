@@ -80,7 +80,7 @@ public class DDMWebDAVImpl implements DDMWebDAV {
 
 			DDMFormLayout ddmFormLayout = _ddm.getDefaultDDMFormLayout(ddmForm);
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				ddmForm.getDefaultLocale(), pathArray[3]
 			).build();
 

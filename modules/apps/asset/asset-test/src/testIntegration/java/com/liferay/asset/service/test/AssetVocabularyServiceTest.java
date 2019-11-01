@@ -324,7 +324,7 @@ public class AssetVocabularyServiceTest {
 
 		String title = RandomTestUtil.randomString();
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.SPAIN, title + "_ES"
 		).put(
 			LocaleUtil.US, title + "_US"
@@ -332,7 +332,7 @@ public class AssetVocabularyServiceTest {
 
 		String description = RandomTestUtil.randomString();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.SPAIN, description + "_ES"
 		).put(
 			LocaleUtil.US, description + "_US"

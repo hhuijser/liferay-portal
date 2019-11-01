@@ -188,7 +188,7 @@ public class JournalArticleAtomCollectionProvider
 
 		Locale locale = LocaleUtil.getDefault();
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			locale, title
 		).build();
 

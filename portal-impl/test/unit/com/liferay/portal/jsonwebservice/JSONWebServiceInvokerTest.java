@@ -647,7 +647,7 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 		params.put("longs", new long[] {1, 2, 3});
 		params.put("ints", new int[] {1, 2});
 
-		Map<String, Integer> map2 = HashMapBuilder.<String, Integer>put(
+		Map<String, Integer> map2 = HashMapBuilder.put(
 			"key", Integer.valueOf(122)
 		).build();
 
@@ -677,7 +677,7 @@ public class JSONWebServiceInvokerTest extends BaseJSONWebServiceTestCase {
 			"longArrays",
 			new long[][] {new long[] {1, 2, 3}, new long[] {8, 9}});
 
-		Map<String, String[]> names = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> names = HashMapBuilder.put(
 			"p1", new String[] {"one", "two"}
 		).build();
 

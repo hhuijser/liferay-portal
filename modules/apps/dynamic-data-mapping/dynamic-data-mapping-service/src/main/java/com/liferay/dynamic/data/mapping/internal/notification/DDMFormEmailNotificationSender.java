@@ -424,7 +424,7 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> params = HashMapBuilder.put(
 			portletNamespace.concat("mvcPath"),
 			new String[] {"/admin/view_form_instance_records.jsp"}
 		).put(
@@ -446,7 +446,7 @@ public class DDMFormEmailNotificationSender {
 		String portletNamespace = _portal.getPortletNamespace(
 			DDMPortletKeys.DYNAMIC_DATA_MAPPING_FORM_ADMIN);
 
-		Map<String, String[]> params = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> params = HashMapBuilder.put(
 			portletNamespace.concat("mvcPath"),
 			new String[] {"/admin/view_form_instance_record.jsp"}
 		).put(

@@ -246,38 +246,37 @@ public class ServicePreAction extends Action {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
-		Map<String, String[]> parameterMap =
-			HashMapBuilder.<String, String[]>put(
-				PortletDataHandlerKeys.PERMISSIONS,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_CONFIGURATION,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_DATA,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_DATA_ALL,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_SETUP_ALL,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL,
-				new String[] {Boolean.TRUE.toString()}
-			).put(
-				PortletDataHandlerKeys.THEME_REFERENCE,
-				new String[] {Boolean.TRUE.toString()}
-			).build();
+		Map<String, String[]> parameterMap = HashMapBuilder.put(
+			PortletDataHandlerKeys.PERMISSIONS,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_CONFIGURATION,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_DATA,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_DATA_ALL,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_SETUP_ALL,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL,
+			new String[] {Boolean.TRUE.toString()}
+		).put(
+			PortletDataHandlerKeys.THEME_REFERENCE,
+			new String[] {Boolean.TRUE.toString()}
+		).build();
 
 		Map<String, Serializable> importLayoutSettingsMap =
 			ExportImportConfigurationSettingsMapFactoryUtil.

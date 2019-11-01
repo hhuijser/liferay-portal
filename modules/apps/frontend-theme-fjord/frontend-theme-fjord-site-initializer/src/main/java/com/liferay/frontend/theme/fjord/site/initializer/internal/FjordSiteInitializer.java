@@ -303,7 +303,7 @@ public class FjordSiteInitializer implements SiteInitializer {
 			layoutPageTemplateEntry.getLayoutPageTemplateEntryId(), name,
 			fragmentEntryIds, StringPool.BLANK, serviceContext);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), name
 		).build();
 

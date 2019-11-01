@@ -345,7 +345,7 @@ public class JournalIndexerTest {
 
 		assertSearchCount(0, _group.getGroupId(), searchContext2);
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "Titel"
 		).put(
 			LocaleUtil.SPAIN, "Titulo"
@@ -353,7 +353,7 @@ public class JournalIndexerTest {
 			LocaleUtil.US, "Title"
 		).build();
 
-		Map<Locale, String> contentMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contentMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "Liferay Architektur Ansatz"
 		).put(
 			LocaleUtil.SPAIN, "Liferay Arquitectura Aproximacion"
@@ -405,7 +405,7 @@ public class JournalIndexerTest {
 
 		assertSearchCount(0, _group.getGroupId(), searchContext2);
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "Titel"
 		).put(
 			LocaleUtil.SPAIN, "Titulo"
@@ -413,7 +413,7 @@ public class JournalIndexerTest {
 			LocaleUtil.US, "Title"
 		).build();
 
-		Map<Locale, String> contentMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contentMap = HashMapBuilder.put(
 			LocaleUtil.GERMANY, "Liferay Architektur Ansatz"
 		).put(
 			LocaleUtil.SPAIN, "Liferay Arquitectura Aproximacion"

@@ -928,7 +928,7 @@ public class DDMStructureLocalServiceTest extends BaseDDMServiceTestCase {
 	protected DDMDataProviderInstance createDDMDataProviderInstance()
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), StringUtil.randomString()
 		).build();
 

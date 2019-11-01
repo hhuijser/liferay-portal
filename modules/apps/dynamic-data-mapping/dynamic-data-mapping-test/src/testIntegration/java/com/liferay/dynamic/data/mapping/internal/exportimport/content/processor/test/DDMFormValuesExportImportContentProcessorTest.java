@@ -415,7 +415,7 @@ public class DDMFormValuesExportImportContentProcessorTest {
 			_stagingGroup.getGroupId(), structure.getStructureId(),
 			classNameId);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, RandomTestUtil.randomString()
 		).build();
 

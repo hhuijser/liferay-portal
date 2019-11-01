@@ -219,7 +219,7 @@ public class ExportedMissingReferenceExportImportTest
 
 	@Override
 	protected Map<String, String[]> getExportParameterMap() throws Exception {
-		return HashMapBuilder.<String, String[]>put(
+		return HashMapBuilder.put(
 			PortletDataHandlerKeys.PORTLET_CONFIGURATION,
 			new String[] {Boolean.TRUE.toString()}
 		).put(

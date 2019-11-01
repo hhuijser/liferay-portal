@@ -104,13 +104,12 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 			Role userRole = RoleLocalServiceUtil.getRole(
 				expandoColumn.getCompanyId(), RoleConstants.USER);
 
-			Map<Long, String[]> roleIdsToActionIds =
-				HashMapBuilder.<Long, String[]>put(
-					guestRole.getRoleId(), new String[] {ActionKeys.VIEW}
-				).put(
-					userRole.getRoleId(),
-					new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
-				).build();
+			Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
+				guestRole.getRoleId(), new String[] {ActionKeys.VIEW}
+			).put(
+				userRole.getRoleId(),
+				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
+			).build();
 
 			ResourcePermissionLocalServiceUtil.setResourcePermissions(
 				expandoColumn.getCompanyId(), ExpandoColumn.class.getName(),

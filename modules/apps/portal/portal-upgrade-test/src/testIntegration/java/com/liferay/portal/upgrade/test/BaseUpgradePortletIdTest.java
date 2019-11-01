@@ -190,10 +190,9 @@ public class BaseUpgradePortletIdTest extends BaseUpgradePortletId {
 		Role role = _roleLocalService.getRole(
 			TestPropsValues.getCompanyId(), RoleConstants.USER);
 
-		Map<Long, String[]> roleIdsToActionIds =
-			HashMapBuilder.<Long, String[]>put(
-				role.getRoleId(), new String[] {ActionKeys.CONFIGURATION}
-			).build();
+		Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
+			role.getRoleId(), new String[] {ActionKeys.CONFIGURATION}
+		).build();
 
 		Portlet portlet = null;
 		String[][] renamePortletIdsArray = new String[_PORTLET_IDS.length][2];

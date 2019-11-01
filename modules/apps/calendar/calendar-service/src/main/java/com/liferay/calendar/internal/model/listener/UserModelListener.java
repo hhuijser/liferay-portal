@@ -57,7 +57,7 @@ public class UserModelListener extends BaseModelListener<User> {
 				return;
 			}
 
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), user.getFullName()
 			).build();
 

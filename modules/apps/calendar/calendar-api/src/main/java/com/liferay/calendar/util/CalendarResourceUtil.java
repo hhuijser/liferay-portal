@@ -88,7 +88,7 @@ public class CalendarResourceUtil {
 			userId = userIds[0];
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), group.getDescriptiveName()
 		).build();
 
@@ -134,7 +134,7 @@ public class CalendarResourceUtil {
 				serviceContext.getCompanyId(), userId);
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), userName
 		).build();
 

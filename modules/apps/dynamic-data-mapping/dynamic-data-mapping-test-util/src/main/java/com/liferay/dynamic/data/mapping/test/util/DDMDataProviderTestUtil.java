@@ -113,7 +113,7 @@ public class DDMDataProviderTestUtil {
 			}
 		}
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), "Data provider"
 		).build();
 

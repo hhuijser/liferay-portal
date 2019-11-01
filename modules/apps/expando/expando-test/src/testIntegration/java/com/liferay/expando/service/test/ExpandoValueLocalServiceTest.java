@@ -77,7 +77,7 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> dataMap = HashMapBuilder.<Locale, String[]>put(
+		Map<Locale, String[]> dataMap = HashMapBuilder.put(
 			_enLocale, new String[] {"one", "two", "three"}
 		).put(
 			_ptLocale, new String[] {"um", "dois", "tres"}
@@ -108,7 +108,7 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> dataMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> dataMap = HashMapBuilder.put(
 			_enLocale, "Test"
 		).put(
 			_ptLocale, "Teste"
@@ -149,7 +149,7 @@ public class ExpandoValueLocalServiceTest {
 		ExpandoColumn column = ExpandoTestUtil.addColumn(
 			_expandoTable, "Test Column", ExpandoColumnConstants.STRING);
 
-		Map<Locale, String> dataMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> dataMap = HashMapBuilder.put(
 			_enLocale, "one"
 		).put(
 			_ptLocale, "um"
@@ -204,7 +204,7 @@ public class ExpandoValueLocalServiceTest {
 
 	@Test
 	public void testGetDefaultColumnValue() throws Exception {
-		Map<Locale, String> defaultData = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> defaultData = HashMapBuilder.put(
 			_enLocale, "Test"
 		).build();
 
@@ -226,7 +226,7 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_LOCALIZED);
 
-		Map<Locale, String> dataMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> dataMap = HashMapBuilder.put(
 			_enLocale, "one"
 		).put(
 			_ptLocale, "um"
@@ -256,7 +256,7 @@ public class ExpandoValueLocalServiceTest {
 			_expandoTable, "Test Column",
 			ExpandoColumnConstants.STRING_ARRAY_LOCALIZED);
 
-		Map<Locale, String[]> dataMap = HashMapBuilder.<Locale, String[]>put(
+		Map<Locale, String[]> dataMap = HashMapBuilder.put(
 			_enLocale, new String[] {"Hello, Joe", "Hi, Joe"}
 		).put(
 			_ptLocale, new String[] {"Ola, Joao", "Oi, Joao"}

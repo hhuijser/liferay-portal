@@ -113,11 +113,11 @@ public class DisplayPageFriendlyURLResolverTest {
 			layout.getGroupId(), layout.isPrivateLayout(), layout.getLayoutId(),
 			layout.getTypeSettings());
 
-		Map<Locale, String> titleMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> titleMap = HashMapBuilder.put(
 			LocaleUtil.US, "Test Journal Article"
 		).build();
 
-		Map<Locale, String> contentMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> contentMap = HashMapBuilder.put(
 			LocaleUtil.US, "This test content is in English."
 		).build();
 

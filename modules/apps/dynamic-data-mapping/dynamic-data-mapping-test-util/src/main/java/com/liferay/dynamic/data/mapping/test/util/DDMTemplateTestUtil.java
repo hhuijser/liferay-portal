@@ -124,7 +124,7 @@ public class DDMTemplateTestUtil {
 			String script, Locale defaultLocale)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			defaultLocale, "Test Template"
 		).build();
 

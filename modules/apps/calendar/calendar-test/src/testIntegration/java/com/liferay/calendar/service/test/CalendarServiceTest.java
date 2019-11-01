@@ -118,7 +118,7 @@ public class CalendarServiceTest {
 				PortalUtil.getClassNameId(Group.class), group.getGroupId());
 
 		if (calendarResource == null) {
-			Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+			Map<Locale, String> nameMap = HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), group.getDescriptiveName()
 			).build();
 

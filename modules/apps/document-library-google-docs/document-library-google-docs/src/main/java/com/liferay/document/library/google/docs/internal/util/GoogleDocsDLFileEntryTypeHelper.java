@@ -145,7 +145,7 @@ public class GoogleDocsDLFileEntryTypeHelper {
 		long defaultUserId = _userLocalService.getDefaultUserId(
 			_company.getCompanyId());
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), GoogleDocsConstants.DL_FILE_ENTRY_TYPE_NAME
 		).build();
 

@@ -117,7 +117,7 @@ public class WabProcessorTest {
 			Assert.assertEquals(resources.toString(), 1244, resources.size());
 		}
 
-		Map<String, String[]> parameters = HashMapBuilder.<String, String[]>put(
+		Map<String, String[]> parameters = HashMapBuilder.put(
 			"Bundle-Version", new String[] {"7.0.0.8"}
 		).put(
 			"Web-ContextPath", new String[] {"/classic-theme"}

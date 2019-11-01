@@ -119,7 +119,7 @@ public class DDLRecordSearchTest {
 
 		DDMFormValues ddmFormValues = createDDMFormValues(LocaleUtil.US);
 
-		Map<Locale, String> values = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> values = HashMapBuilder.put(
 			LocaleUtil.US, "Joe Bloggs"
 		).build();
 
@@ -128,7 +128,7 @@ public class DDLRecordSearchTest {
 
 		ddmFormValues.addDDMFormFieldValue(nameDDMFormFieldValue);
 
-		values = HashMapBuilder.<Locale, String>put(
+		values = HashMapBuilder.put(
 			LocaleUtil.US, "Simple description"
 		).build();
 
@@ -231,7 +231,7 @@ public class DDLRecordSearchTest {
 		DDMFormValues ddmFormValues = DDMFormValuesTestUtil.createDDMFormValues(
 			ddmForm);
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.JAPAN, "単純なテキスト"
 		).put(
 			LocaleUtil.US, "simple text"
@@ -392,7 +392,7 @@ public class DDLRecordSearchTest {
 	}
 
 	protected void addRecord(String name) throws Exception {
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, name
 		).build();
 
@@ -400,11 +400,11 @@ public class DDLRecordSearchTest {
 	}
 
 	protected void addRecord(String name, String description) throws Exception {
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, name
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.US, description
 		).build();
 

@@ -109,13 +109,10 @@ public class DDMFormDisplayExportImportTest
 		DDMFormInstance ddmFormInstance =
 			ddmFormInstanceRecord.getFormInstance();
 
-		Map<String, String[]> preferenceMap =
-			HashMapBuilder.<String, String[]>put(
-				"formInstanceId",
-				new String[] {
-					String.valueOf(ddmFormInstance.getFormInstanceId())
-				}
-			).build();
+		Map<String, String[]> preferenceMap = HashMapBuilder.put(
+			"formInstanceId",
+			new String[] {String.valueOf(ddmFormInstance.getFormInstanceId())}
+		).build();
 
 		PortletPreferences importedPortletPreferences =
 			getImportedPortletPreferences(preferenceMap);

@@ -540,7 +540,7 @@ public class LocalizationImpl implements Localization {
 		String defaultValue = _getLocalization(
 			bundleName, defaultLocale, classLoader, key, key);
 
-		Map<Locale, String> map = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> map = HashMapBuilder.put(
 			defaultLocale, defaultValue
 		).build();
 

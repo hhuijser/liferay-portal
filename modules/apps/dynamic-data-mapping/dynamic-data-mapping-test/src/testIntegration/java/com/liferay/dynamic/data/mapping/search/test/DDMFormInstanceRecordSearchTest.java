@@ -244,11 +244,11 @@ public class DDMFormInstanceRecordSearchTest {
 	protected void addDDMFormInstanceRecord(String name, String description)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, name
 		).build();
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> descriptionMap = HashMapBuilder.put(
 			LocaleUtil.US, description
 		).build();
 

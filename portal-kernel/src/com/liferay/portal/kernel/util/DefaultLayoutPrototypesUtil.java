@@ -54,7 +54,7 @@ public class DefaultLayoutPrototypesUtil {
 			nameMap.put(locale, LanguageUtil.get(locale, nameKey));
 		}
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), friendlyURL
 		).build();
 

@@ -710,7 +710,7 @@ public class LayoutLocalServiceStagingAdvice implements BeanFactoryAware {
 				if (Arrays.equals(
 						parameterTypes, _UPDATE_LAYOUT_PARAMETER_TYPES)) {
 
-					friendlyURLMap = HashMapBuilder.<Locale, String>put(
+					friendlyURLMap = HashMapBuilder.put(
 						LocaleUtil.getSiteDefault(), (String)arguments[11]
 					).build();
 				}

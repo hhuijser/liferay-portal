@@ -146,7 +146,7 @@ public class JournalArticleDemoDataCreatorImpl
 		String description = StringUtil.read(
 			clazz.getClassLoader(), descriptionPath, false);
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), description
 		).build();
 	}
@@ -193,7 +193,7 @@ public class JournalArticleDemoDataCreatorImpl
 		String title = StringUtil.read(
 			clazz.getClassLoader(), titlePath, false);
 
-		return HashMapBuilder.<Locale, String>put(
+		return HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), title
 		).build();
 	}

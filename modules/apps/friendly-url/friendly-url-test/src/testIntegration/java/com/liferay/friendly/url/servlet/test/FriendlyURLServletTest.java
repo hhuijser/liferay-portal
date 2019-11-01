@@ -232,11 +232,11 @@ public class FriendlyURLServletTest {
 
 		Locale locale = LocaleUtil.getSiteDefault();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			locale, "careers"
 		).build();
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			locale, "/careers"
 		).build();
 

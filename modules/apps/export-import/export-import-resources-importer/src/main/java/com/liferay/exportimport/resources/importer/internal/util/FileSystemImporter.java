@@ -1045,7 +1045,7 @@ public class FileSystemImporter extends BaseImporter {
 			friendlyURL = StringPool.SLASH + friendlyURL;
 		}
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), friendlyURL
 		).build();
 

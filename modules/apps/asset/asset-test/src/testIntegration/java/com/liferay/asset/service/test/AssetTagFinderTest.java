@@ -70,7 +70,7 @@ public class AssetTagFinderTest {
 
 		String name = RandomTestUtil.randomString();
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.getDefault(), name
 		).build();
 

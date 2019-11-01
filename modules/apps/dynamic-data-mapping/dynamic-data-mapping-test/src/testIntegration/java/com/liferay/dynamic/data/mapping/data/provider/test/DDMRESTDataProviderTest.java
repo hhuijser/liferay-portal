@@ -485,7 +485,7 @@ public class DDMRESTDataProviderTest {
 			boolean addGuestViewPermission)
 		throws Exception {
 
-		Map<Locale, String> nameMap = HashMapBuilder.<Locale, String>put(
+		Map<Locale, String> nameMap = HashMapBuilder.put(
 			LocaleUtil.US, "Test"
 		).build();
 

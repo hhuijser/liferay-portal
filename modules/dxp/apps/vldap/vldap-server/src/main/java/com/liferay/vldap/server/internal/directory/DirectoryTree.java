@@ -31,6 +31,7 @@ import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.service.RoleLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserLocalServiceUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.comparator.UserScreenNameComparator;
@@ -265,9 +266,10 @@ public class DirectoryTree {
 				_communityBuilder, top, company, community);
 		}
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersGroups", community.getGroupId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersGroups", community.getGroupId()
+			).build();
 
 		return getSearchBase(
 			top, sizeLimit, params, identifiers, null, company);
@@ -325,9 +327,10 @@ public class DirectoryTree {
 				_organizationBuilder, top, company, organization);
 		}
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersOrgs", organization.getOrganizationId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", organization.getOrganizationId()
+			).build();
 
 		return getSearchBase(
 			top, sizeLimit, params, identifiers, organization, company);
@@ -363,9 +366,10 @@ public class DirectoryTree {
 				company, role);
 		}
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersRoles", role.getRoleId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersRoles", role.getRoleId()
+			).build();
 
 		return getSearchBase(
 			top, sizeLimit, params, identifiers, null, company);
@@ -461,9 +465,10 @@ public class DirectoryTree {
 				_userGroupBuilder, top, company, userGroup);
 		}
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersUserGroups", userGroup.getUserGroupId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersUserGroups", userGroup.getUserGroupId()
+			).build();
 
 		return getSearchBase(
 			top, sizeLimit, params, identifiers, null, company);

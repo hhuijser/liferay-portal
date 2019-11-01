@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.service.GroupServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -111,9 +112,10 @@ public class GroupSelectorTag extends IncludeTag {
 			String keywords = ParamUtil.getString(
 				httpServletRequest, "keywords");
 
-			LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-			groupParams.put("site", Boolean.TRUE);
+			LinkedHashMap<String, Object> groupParams =
+				LinkedHashMapBuilder.<String, Object>put(
+					"site", Boolean.TRUE
+				).build();
 
 			List<Group> groups = GroupServiceUtil.search(
 				themeDisplay.getCompanyId(), _CLASS_NAME_IDS, keywords,

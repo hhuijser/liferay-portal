@@ -17,12 +17,12 @@ package com.liferay.portal.kernel.portlet;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ObjectValuePair;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.Validator;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -54,12 +54,13 @@ public class DefaultFriendlyURLMapper extends BaseFriendlyURLMapper {
 
 		defaultIgnoredParameters.add("p_p_id");
 
-		defaultReservedParameters = new LinkedHashMap<>();
-
-		defaultReservedParameters.put("p_p_lifecycle", "0");
-		defaultReservedParameters.put(
-			"p_p_state", WindowState.NORMAL.toString());
-		defaultReservedParameters.put("p_p_mode", PortletMode.VIEW.toString());
+		defaultReservedParameters = LinkedHashMapBuilder.put(
+			"p_p_lifecycle", "0"
+		).put(
+			"p_p_state", WindowState.NORMAL.toString()
+		).put(
+			"p_p_mode", PortletMode.VIEW.toString()
+		).build();
 	}
 
 	/**

@@ -81,6 +81,7 @@ import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -501,9 +502,10 @@ public class ServicePreAction extends Action {
 	private LayoutComposite _getDefaultUserSitesLayoutComposite(final User user)
 		throws PortalException {
 
-		final LinkedHashMap<String, Object> groupParams = new LinkedHashMap<>();
-
-		groupParams.put("usersGroups", Long.valueOf(user.getUserId()));
+		final LinkedHashMap<String, Object> groupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersGroups", Long.valueOf(user.getUserId())
+			).build();
 
 		int count = GroupLocalServiceUtil.searchCount(
 			user.getCompanyId(), null, null, groupParams);

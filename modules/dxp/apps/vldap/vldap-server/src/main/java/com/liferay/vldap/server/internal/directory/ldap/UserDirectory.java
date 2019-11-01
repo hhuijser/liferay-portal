@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.UserGroup;
 import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.ImageServiceUtil;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.Time;
@@ -111,9 +112,10 @@ public class UserDirectory extends Directory {
 		long groupClassNameId = PortalUtil.getClassNameId(
 			Group.class.getName());
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersGroups", user.getUserId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersGroups", user.getUserId()
+			).build();
 
 		List<Group> groups = GroupLocalServiceUtil.search(
 			user.getCompanyId(), new long[] {groupClassNameId}, null, null,

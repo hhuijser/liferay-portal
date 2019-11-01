@@ -42,12 +42,12 @@ import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.subscription.service.SubscriptionLocalServiceUtil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -162,33 +162,33 @@ public class JournalUtil {
 				themeDisplay.getLocale(), "the-address-of-the-email-sender");
 		}
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$ARTICLE_CONTENT]",
-			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content")
+		).put(
 			"[$ARTICLE_DIFFS$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
 				"the-web-content-compared-with-the-previous-version-web-" +
-					"content"));
-		definitionTerms.put(
+					"content")
+		).put(
 			"[$ARTICLE_ID$]",
-			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content-id"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content-id")
+		).put(
 			"[$ARTICLE_TITLE$]",
-			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-web-content-title"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content-title")
+		).put(
 			"[$ARTICLE_URL$]",
-			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content-url"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content-url")
+		).put(
 			"[$ARTICLE_VERSION$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-web-content-version"));
-		definitionTerms.put("[$FROM_ADDRESS$]", fromAddress);
-		definitionTerms.put("[$FROM_NAME$]", fromName);
+				themeDisplay.getLocale(), "the-web-content-version")
+		).put(
+			"[$FROM_ADDRESS$]", fromAddress
+		).put(
+			"[$FROM_NAME$]", fromName
+		).build();
 
 		Company company = themeDisplay.getCompany();
 

@@ -66,6 +66,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.HttpUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PrefsPropsUtil;
@@ -89,7 +90,6 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -320,49 +320,49 @@ public class DLImpl implements DL {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-id-associated-with-the-document"));
-		definitionTerms.put(
+				"the-company-id-associated-with-the-document")
+		).put(
 			"[$COMPANY_MX$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-mx-associated-with-the-document"));
-		definitionTerms.put(
+				"the-company-mx-associated-with-the-document")
+		).put(
 			"[$COMPANY_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-name-associated-with-the-document"));
-		definitionTerms.put(
+				"the-company-name-associated-with-the-document")
+		).put(
 			"[$DOCUMENT_TITLE$]",
-			LanguageUtil.get(themeDisplay.getLocale(), "the-document-title"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-document-title")
+		).put(
 			"[$DOCUMENT_TYPE$]",
-			LanguageUtil.get(themeDisplay.getLocale(), "the-document-type"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-document-type")
+		).put(
 			"[$DOCUMENT_URL$]",
-			LanguageUtil.get(themeDisplay.getLocale(), "the-document-url"));
-		definitionTerms.put(
+			LanguageUtil.get(themeDisplay.getLocale(), "the-document-url")
+		).put(
 			"[$DOCUMENT_USER_ADDRESS$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-email-address-of-the-user-who-added-the-document"));
-		definitionTerms.put(
+				"the-email-address-of-the-user-who-added-the-document")
+		).put(
 			"[$DOCUMENT_USER_NAME$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-user-who-added-the-document"));
-		definitionTerms.put(
+				themeDisplay.getLocale(), "the-user-who-added-the-document")
+		).put(
 			"[$FOLDER_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-folder-in-which-the-document-has-been-added"));
-		definitionTerms.put(
-			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress));
-		definitionTerms.put("[$FROM_NAME$]", HtmlUtil.escape(emailFromName));
+				"the-folder-in-which-the-document-has-been-added")
+		).put(
+			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress)
+		).put(
+			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
+		).build();
 
 		Company company = themeDisplay.getCompany();
 
@@ -399,36 +399,35 @@ public class DLImpl implements DL {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-id-associated-with-the-document"));
-		definitionTerms.put(
+				"the-company-id-associated-with-the-document")
+		).put(
 			"[$COMPANY_MX$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-mx-associated-with-the-document"));
-		definitionTerms.put(
+				"the-company-mx-associated-with-the-document")
+		).put(
 			"[$COMPANY_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-company-name-associated-with-the-document"));
-		definitionTerms.put(
+				"the-company-name-associated-with-the-document")
+		).put(
 			"[$DOCUMENT_STATUS_BY_USER_NAME$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-user-who-updated-the-document"));
-		definitionTerms.put(
+				themeDisplay.getLocale(), "the-user-who-updated-the-document")
+		).put(
 			"[$DOCUMENT_USER_ADDRESS$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-email-address-of-the-user-who-added-the-document"));
-		definitionTerms.put(
+				"the-email-address-of-the-user-who-added-the-document")
+		).put(
 			"[$DOCUMENT_USER_NAME$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-user-who-added-the-document"));
+				themeDisplay.getLocale(), "the-user-who-added-the-document")
+		).build();
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 

@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.FastDateFormatFactory;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.comparator.UserScreenNameComparator;
 import com.liferay.vldap.server.internal.BaseVLDAPTestCase;
@@ -363,9 +364,10 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 			_users
 		);
 
-		LinkedHashMap<String, Object> usersRolesParams = new LinkedHashMap<>();
-
-		usersRolesParams.put("usersRoles", PRIMARY_KEY);
+		LinkedHashMap<String, Object> usersRolesParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersRoles", PRIMARY_KEY
+			).build();
 
 		when(
 			userLocalService.search(
@@ -378,9 +380,10 @@ public class UserBuilderFilterConstraintsTest extends BaseVLDAPTestCase {
 			Arrays.asList(_hasRoleUser)
 		);
 
-		LinkedHashMap<String, Object> usersOrgsParams = new LinkedHashMap<>();
-
-		usersOrgsParams.put("usersOrgs", PRIMARY_KEY);
+		LinkedHashMap<String, Object> usersOrgsParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", PRIMARY_KEY
+			).build();
 
 		when(
 			userLocalService.search(

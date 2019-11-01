@@ -43,6 +43,7 @@ import com.liferay.portal.kernel.test.util.OrganizationTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
@@ -917,10 +918,9 @@ public class OrganizationLocalServiceTest {
 			organization.getOrganizationId(), new long[] {_user.getUserId()});
 
 		LinkedHashMap<String, Object> organizationParams =
-			new LinkedHashMap<>();
-
-		organizationParams.put(
-			"organizationsTree", _user.getOrganizations(true));
+			LinkedHashMapBuilder.<String, Object>put(
+				"organizationsTree", _user.getOrganizations(true)
+			).build();
 
 		BaseModelSearchResult<Organization> baseModelSearchResult =
 			OrganizationLocalServiceUtil.searchOrganizations(

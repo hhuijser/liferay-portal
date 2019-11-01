@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.rule.Sync;
 import com.liferay.portal.kernel.test.rule.SynchronousDestinationTestRule;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.users.admin.test.util.search.OrganizationBlueprint;
@@ -95,9 +96,9 @@ public class AssetTagNamesOrganizationSearchTest {
 		throws Exception {
 
 		LinkedHashMap<String, Object> organizationParams =
-			new LinkedHashMap<>();
-
-		organizationParams.put("expandoAttributes", keywords);
+			LinkedHashMapBuilder.<String, Object>put(
+				"expandoAttributes", keywords
+			).build();
 
 		Sort sort = SortFactoryUtil.getSort(Organization.class, "name", "desc");
 

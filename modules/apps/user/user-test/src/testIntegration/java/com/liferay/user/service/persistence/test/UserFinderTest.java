@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.test.util.RoleTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
 import com.liferay.portal.kernel.test.util.UserGroupTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.comparator.UserFirstNameComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.rule.Inject;
@@ -111,15 +112,15 @@ public class UserFinderTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_inheritedUserGroupsParams = new LinkedHashMap<>();
-
-		_inheritedUserGroupsParams.put("inherit", Boolean.TRUE);
-		_inheritedUserGroupsParams.put(
+		_inheritedUserGroupsParams = LinkedHashMapBuilder.<String, Object>put(
+			"inherit", Boolean.TRUE
+		).put(
 			"usersGroups",
 			new Long[] {
 				_group.getGroupId(), _organization.getGroupId(),
 				_userGroup.getGroupId()
-			});
+			}
+		).build();
 
 		_inheritedUserGroupsExpectedCount = _userFinder.countByKeywords(
 			TestPropsValues.getCompanyId(), null,
@@ -127,10 +128,11 @@ public class UserFinderTest {
 
 		_roleId = RoleTestUtil.addRegularRole(_group.getGroupId());
 
-		_inheritedUserRolesParams = new LinkedHashMap<>();
-
-		_inheritedUserRolesParams.put("inherit", Boolean.TRUE);
-		_inheritedUserRolesParams.put("usersRoles", _roleId);
+		_inheritedUserRolesParams = LinkedHashMapBuilder.<String, Object>put(
+			"inherit", Boolean.TRUE
+		).put(
+			"usersRoles", _roleId
+		).build();
 	}
 
 	@After
@@ -230,9 +232,10 @@ public class UserFinderTest {
 
 	@Test
 	public void testFindByKeywordsGroupUsers() throws Exception {
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersGroups", _group.getGroupId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersGroups", _group.getGroupId()
+			).build();
 
 		List<User> users = _userFinder.findByKeywords(
 			TestPropsValues.getCompanyId(), null,
@@ -244,9 +247,10 @@ public class UserFinderTest {
 
 	@Test
 	public void testFindByKeywordsOrganizationUsers() throws Exception {
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersOrgs", _organization.getOrganizationId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", _organization.getOrganizationId()
+			).build();
 
 		List<User> users = _userFinder.findByKeywords(
 			TestPropsValues.getCompanyId(), null,
@@ -258,9 +262,10 @@ public class UserFinderTest {
 
 	@Test
 	public void testFindByKeywordsUserGroupUsers() throws Exception {
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersUserGroups", _userGroup.getUserGroupId());
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersUserGroups", _userGroup.getUserGroupId()
+			).build();
 
 		List<User> users = _userFinder.findByKeywords(
 			TestPropsValues.getCompanyId(), null,

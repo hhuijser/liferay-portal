@@ -20,6 +20,7 @@ import com.liferay.portal.kernel.model.Organization;
 import com.liferay.portal.kernel.model.OrganizationConstants;
 import com.liferay.portal.kernel.service.OrganizationLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
@@ -128,11 +129,11 @@ public class OrganizationsDisplayContext {
 			(OrganizationSearchTerms)organizationSearch.getSearchTerms();
 
 		LinkedHashMap<String, Object> organizationParams =
-			new LinkedHashMap<>();
-
-		organizationParams.put("groupOrganization", Long.valueOf(getGroupId()));
-		organizationParams.put(
-			"organizationsGroups", Long.valueOf(getGroupId()));
+			LinkedHashMapBuilder.<String, Object>put(
+				"groupOrganization", Long.valueOf(getGroupId())
+			).put(
+				"organizationsGroups", Long.valueOf(getGroupId())
+			).build();
 
 		int organizationsCount = OrganizationLocalServiceUtil.searchCount(
 			themeDisplay.getCompanyId(),

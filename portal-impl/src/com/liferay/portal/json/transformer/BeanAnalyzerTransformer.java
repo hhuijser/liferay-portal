@@ -14,8 +14,9 @@
 
 package com.liferay.portal.json.transformer;
 
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
+
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -49,9 +50,9 @@ public class BeanAnalyzerTransformer extends TypeJsonVisitor {
 	protected void onSerializableProperty(
 		String propertyName, PropertyDescriptor propertyDescriptor) {
 
-		Map<String, String> properties = new LinkedHashMap<>();
-
-		properties.put("name", propertyName);
+		Map<String, String> properties = LinkedHashMapBuilder.put(
+			"name", propertyName
+		).build();
 
 		Class<?> propertyClass = propertyDescriptor.getType();
 

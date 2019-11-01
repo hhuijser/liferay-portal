@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.model.Team;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -171,9 +172,10 @@ public class TeamLocalServiceImpl extends TeamLocalServiceBaseImpl {
 
 	@Override
 	public List<Team> getUserTeams(long userId, long groupId) {
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
-
-		params.put("usersTeams", userId);
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersTeams", userId
+			).build();
 
 		return search(
 			groupId, null, null, params, QueryUtil.ALL_POS, QueryUtil.ALL_POS,

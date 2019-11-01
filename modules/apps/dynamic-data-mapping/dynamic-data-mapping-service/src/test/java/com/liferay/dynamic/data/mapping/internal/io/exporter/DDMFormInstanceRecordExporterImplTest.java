@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Html;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -56,7 +57,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -576,14 +576,15 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 			ListUtil.fromArray(ddmStructureVersion)
 		);
 
-		Map<String, DDMFormField> ddmFormFields = new LinkedHashMap<>();
-
 		DDMFormField ddmFormField1 = new DDMFormField("field1", "text");
-
 		DDMFormField ddmFormField2 = new DDMFormField("field2", "text");
 
-		ddmFormFields.put("field1", ddmFormField1);
-		ddmFormFields.put("field2", ddmFormField2);
+		Map<String, DDMFormField> ddmFormFields =
+			LinkedHashMapBuilder.<String, DDMFormField>put(
+				"field1", ddmFormField1
+			).put(
+				"field2", ddmFormField2
+			).build();
 
 		when(
 			ddmFormInstanceRecordExporterImpl.getNontransientDDMFormFieldsMap(

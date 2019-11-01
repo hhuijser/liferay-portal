@@ -35,6 +35,7 @@ import com.liferay.portal.kernel.template.TemplateVariableGroup;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.JavaConstants;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortletKeys;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -51,7 +52,6 @@ import java.lang.reflect.InvocationHandler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -261,9 +261,6 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 	public Map<String, TemplateVariableGroup> getTemplateVariableGroups(
 		String language) {
 
-		Map<String, TemplateVariableGroup> templateVariableGroups =
-			new LinkedHashMap<>();
-
 		TemplateVariableGroup fieldsTemplateVariableGroup =
 			new TemplateVariableGroup("fields");
 
@@ -273,7 +270,10 @@ public class PortletDisplayTemplateImpl implements PortletDisplayTemplate {
 		fieldsTemplateVariableGroup.addVariable(
 			"entry", null, PortletDisplayTemplateConstants.ENTRY);
 
-		templateVariableGroups.put("fields", fieldsTemplateVariableGroup);
+		Map<String, TemplateVariableGroup> templateVariableGroups =
+			LinkedHashMapBuilder.<String, TemplateVariableGroup>put(
+				"fields", fieldsTemplateVariableGroup
+			).build();
 
 		TemplateVariableGroup generalVariablesTemplateVariableGroup =
 			new TemplateVariableGroup("general-variables");

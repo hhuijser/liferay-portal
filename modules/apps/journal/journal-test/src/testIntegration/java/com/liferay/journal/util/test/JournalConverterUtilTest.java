@@ -46,6 +46,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -62,7 +63,6 @@ import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -652,20 +652,19 @@ public class JournalConverterUtilTest {
 	}
 
 	protected Map<String, Layout> getLayoutsMap() throws Exception {
-		Map<String, Layout> layouts = new LinkedHashMap<>();
-
 		User user = TestPropsValues.getUser();
 
-		layouts.put(_PRIVATE_LAYOUT, LayoutTestUtil.addLayout(_group, true));
-		layouts.put(
+		return LinkedHashMapBuilder.<String, Layout>put(
+			_PRIVATE_LAYOUT, LayoutTestUtil.addLayout(_group, true)
+		).put(
 			_PRIVATE_USER_LAYOUT,
-			LayoutTestUtil.addLayout(user.getGroupId(), true));
-		layouts.put(_PUBLIC_LAYOUT, LayoutTestUtil.addLayout(_group, false));
-		layouts.put(
+			LayoutTestUtil.addLayout(user.getGroupId(), true)
+		).put(
+			_PUBLIC_LAYOUT, LayoutTestUtil.addLayout(_group, false)
+		).put(
 			_PUBLIC_USER_LAYOUT,
-			LayoutTestUtil.addLayout(user.getGroupId(), false));
-
-		return layouts;
+			LayoutTestUtil.addLayout(user.getGroupId(), false)
+		).build();
 	}
 
 	protected Field getLinkToLayoutField(

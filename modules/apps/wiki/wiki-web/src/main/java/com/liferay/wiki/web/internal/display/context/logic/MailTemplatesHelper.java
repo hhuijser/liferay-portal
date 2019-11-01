@@ -18,12 +18,12 @@ import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.HtmlUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ResourceBundleUtil;
 import com.liferay.portal.language.LanguageResources;
 import com.liferay.wiki.configuration.WikiGroupServiceOverriddenConfiguration;
 import com.liferay.wiki.web.internal.display.context.util.WikiRequestHelper;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -40,111 +40,102 @@ public class MailTemplatesHelper {
 	}
 
 	public Map<String, String> getEmailFromDefinitionTerms() {
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
 		ResourceBundle resourceBundle = getResourceBundle();
 
-		definitionTerms.put(
+		return LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
-				resourceBundle, "the-company-id-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-company-id-associated-with-the-wiki")
+		).put(
 			"[$COMPANY_MX$]",
 			LanguageUtil.get(
-				resourceBundle, "the-company-mx-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-company-mx-associated-with-the-wiki")
+		).put(
 			"[$COMPANY_NAME$]",
 			LanguageUtil.get(
-				resourceBundle, "the-company-name-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-company-name-associated-with-the-wiki")
+		).put(
 			"[$PAGE_USER_ADDRESS$]",
 			LanguageUtil.get(
 				resourceBundle,
-				"the-email-address-of-the-user-who-added-the-page"));
-		definitionTerms.put(
+				"the-email-address-of-the-user-who-added-the-page")
+		).put(
 			"[$PAGE_USER_NAME$]",
-			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page"));
-
-		definitionTerms.put(
+			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page")
+		).put(
 			"[$PORTLET_NAME$]",
-			HtmlUtil.escape(_wikiRequestHelper.getPortletTitle()));
-
-		definitionTerms.put(
+			HtmlUtil.escape(_wikiRequestHelper.getPortletTitle())
+		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(
-				resourceBundle, "the-site-name-associated-with-the-wiki"));
-
-		return definitionTerms;
+				resourceBundle, "the-site-name-associated-with-the-wiki")
+		).build();
 	}
 
 	public Map<String, String> getEmailNotificationDefinitionTerms() {
-		Map<String, String> definitionTerms = new LinkedHashMap<>();
-
 		ResourceBundle resourceBundle = getResourceBundle();
 
-		definitionTerms.put(
+		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
-				resourceBundle, "the-company-id-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-company-id-associated-with-the-wiki")
+		).put(
 			"[$COMPANY_MX$]",
 			LanguageUtil.get(
-				resourceBundle, "the-company-mx-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-company-mx-associated-with-the-wiki")
+		).put(
 			"[$COMPANY_NAME$]",
 			LanguageUtil.get(
-				resourceBundle, "the-company-name-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-company-name-associated-with-the-wiki")
+		).put(
 			"[$DIFFS_URL$]",
 			LanguageUtil.get(
 				resourceBundle,
 				"the-url-of-the-page-comparing-this-page-content-with-the-" +
-					"previous-version"));
-
-		definitionTerms.put(
+					"previous-version")
+		).put(
 			"[$FROM_ADDRESS$]",
 			HtmlUtil.escape(
-				_wikiGroupServiceOverriddenConfiguration.emailFromAddress()));
-		definitionTerms.put(
+				_wikiGroupServiceOverriddenConfiguration.emailFromAddress())
+		).put(
 			"[$FROM_NAME$]",
 			HtmlUtil.escape(
-				_wikiGroupServiceOverriddenConfiguration.emailFromName()));
-		definitionTerms.put(
+				_wikiGroupServiceOverriddenConfiguration.emailFromName())
+		).put(
 			"[$NODE_NAME$]",
 			LanguageUtil.get(
-				resourceBundle, "the-node-in-which-the-page-was-added"));
-		definitionTerms.put(
+				resourceBundle, "the-node-in-which-the-page-was-added")
+		).put(
 			"[$PAGE_CONTENT$]",
-			LanguageUtil.get(resourceBundle, "the-page-content"));
-		definitionTerms.put(
+			LanguageUtil.get(resourceBundle, "the-page-content")
+		).put(
 			"[$PAGE_DATE_UPDATE$]",
-			LanguageUtil.get(resourceBundle, "the-date-of-the-modifications"));
-		definitionTerms.put(
+			LanguageUtil.get(resourceBundle, "the-date-of-the-modifications")
+		).put(
 			"[$PAGE_DIFFS$]",
 			LanguageUtil.get(
 				resourceBundle,
 				"the-page-content-compared-with-the-previous-version-page-" +
-					"content"));
-		definitionTerms.put(
-			"[$PAGE_ID$]", LanguageUtil.get(resourceBundle, "the-page-id"));
-		definitionTerms.put(
+					"content")
+		).put(
+			"[$PAGE_ID$]", LanguageUtil.get(resourceBundle, "the-page-id")
+		).put(
 			"[$PAGE_SUMMARY$]",
 			LanguageUtil.get(
-				resourceBundle,
-				"the-summary-of-the-page-or-the-modifications"));
-		definitionTerms.put(
-			"[$PAGE_TITLE$]",
-			LanguageUtil.get(resourceBundle, "the-page-title"));
-		definitionTerms.put(
-			"[$PAGE_URL$]", LanguageUtil.get(resourceBundle, "the-page-url"));
-		definitionTerms.put(
+				resourceBundle, "the-summary-of-the-page-or-the-modifications")
+		).put(
+			"[$PAGE_TITLE$]", LanguageUtil.get(resourceBundle, "the-page-title")
+		).put(
+			"[$PAGE_URL$]", LanguageUtil.get(resourceBundle, "the-page-url")
+		).put(
 			"[$PAGE_USER_ADDRESS$]",
 			LanguageUtil.get(
 				resourceBundle,
-				"the-email-address-of-the-user-who-added-the-page"));
-		definitionTerms.put(
+				"the-email-address-of-the-user-who-added-the-page")
+		).put(
 			"[$PAGE_USER_NAME$]",
-			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page"));
+			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page")
+		).build();
 
 		Company company = _wikiRequestHelper.getCompany();
 

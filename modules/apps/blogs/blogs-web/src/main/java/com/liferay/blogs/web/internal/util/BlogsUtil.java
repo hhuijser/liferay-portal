@@ -70,7 +70,7 @@ public class BlogsUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$BLOGS_ENTRY_CONTENT$]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-blog-entry-content")
 		).put(
@@ -161,8 +161,6 @@ public class BlogsUtil {
 			LanguageUtil.get(
 				themeDisplay.getLocale(), "the-url-to-unsubscribe-the-user")
 		).build();
-
-		return definitionTerms;
 	}
 
 	public static Map<String, String> getEmailFromDefinitionTerms(
@@ -174,7 +172,7 @@ public class BlogsUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$BLOGS_ENTRY_USER_ADDRESS$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
@@ -206,8 +204,6 @@ public class BlogsUtil {
 				themeDisplay.getLocale(),
 				"the-site-name-associated-with-the-blog")
 		).build();
-
-		return definitionTerms;
 	}
 
 	public static OrderByComparator<BlogsEntry> getOrderByComparator(

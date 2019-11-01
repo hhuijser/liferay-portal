@@ -162,7 +162,7 @@ public class BookmarksUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$BOOKMARKS_ENTRY_USER_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
@@ -192,8 +192,6 @@ public class BookmarksUtil {
 			LanguageUtil.get(
 				themeDisplay.getLocale(), "the-name-of-the-email-recipient")
 		).build();
-
-		return definitionTerms;
 	}
 
 	public static List<Object> getEntries(Hits hits) {

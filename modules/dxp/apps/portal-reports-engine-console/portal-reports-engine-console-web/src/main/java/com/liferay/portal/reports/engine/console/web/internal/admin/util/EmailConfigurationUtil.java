@@ -63,7 +63,7 @@ public class EmailConfigurationUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$FROM_ADDRESS$]", fromAddress
 		).put(
 			"[$FROM_NAME$]", fromName
@@ -80,8 +80,6 @@ public class EmailConfigurationUtil {
 		).put(
 			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
 		).build();
-
-		return definitionTerms;
 	}
 
 	public static ResourceBundle getResourceBundle(Locale locale) {

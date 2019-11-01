@@ -77,7 +77,7 @@ public class MailTemplatesHelper {
 
 		Company company = _wikiRequestHelper.getCompany();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
 				resourceBundle, "the-company-id-associated-with-the-wiki")
@@ -153,8 +153,6 @@ public class MailTemplatesHelper {
 			"[$TO_NAME$]",
 			LanguageUtil.get(resourceBundle, "the-name-of-the-email-recipient")
 		).build();
-
-		return definitionTerms;
 	}
 
 	protected ResourceBundle getResourceBundle() {

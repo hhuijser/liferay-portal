@@ -166,7 +166,7 @@ public class JournalUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$ARTICLE_CONTENT]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content")
 		).put(
@@ -201,8 +201,6 @@ public class JournalUtil {
 		).put(
 			"[$TO_NAME$]", toName
 		).build();
-
-		return definitionTerms;
 	}
 
 	public static long getPreviewPlid(

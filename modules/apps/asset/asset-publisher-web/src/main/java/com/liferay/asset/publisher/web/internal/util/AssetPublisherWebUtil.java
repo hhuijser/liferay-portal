@@ -324,7 +324,7 @@ public class AssetPublisherWebUtil {
 
 		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
-		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
+		return LinkedHashMapBuilder.put(
 			"[$ASSET_ENTRIES$]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-list-of-assets")
 		).put(
@@ -370,8 +370,6 @@ public class AssetPublisherWebUtil {
 			LanguageUtil.get(
 				themeDisplay.getLocale(), "the-name-of-the-email-recipient")
 		).build();
-
-		return definitionTerms;
 	}
 
 	public String getEmailFromAddress(

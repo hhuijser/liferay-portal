@@ -18,8 +18,8 @@ import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.search.facet.Facet;
 import com.liferay.portal.kernel.search.facet.config.FacetConfiguration;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.solr.client.solrj.SolrQuery;
@@ -38,13 +38,11 @@ public class DefaultFacetProcessor implements FacetProcessor<SolrQuery> {
 
 	@Override
 	public Map<String, JSONObject> processFacet(Facet facet) {
-		Map<String, JSONObject> map = new LinkedHashMap<>();
-
 		String name = FacetUtil.getAggregationName(facet);
 
-		map.put(name, getFacetParameters(facet));
-
-		return map;
+		return LinkedHashMapBuilder.<String, JSONObject>put(
+			name, getFacetParameters(facet)
+		).build();
 	}
 
 	protected void applyFrequencyThreshold(

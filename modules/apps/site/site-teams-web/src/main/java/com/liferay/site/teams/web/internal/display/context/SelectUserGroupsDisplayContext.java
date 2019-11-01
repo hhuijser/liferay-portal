@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.service.GroupLocalServiceUtil;
 import com.liferay.portal.kernel.service.TeamLocalServiceUtil;
 import com.liferay.portal.kernel.service.UserGroupLocalServiceUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.OrderByComparator;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.Validator;
@@ -198,17 +199,17 @@ public class SelectUserGroupsDisplayContext {
 		UserGroupDisplayTerms searchTerms =
 			(UserGroupDisplayTerms)userGroupSearchContainer.getSearchTerms();
 
-		LinkedHashMap<String, Object> userGroupParams = new LinkedHashMap<>();
-
 		Group group = GroupLocalServiceUtil.fetchGroup(team.getGroupId());
 
 		if (group != null) {
 			group = StagingUtil.getLiveGroup(group.getGroupId());
 		}
 
-		userGroupParams.put(
-			UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_GROUPS,
-			Long.valueOf(group.getGroupId()));
+		LinkedHashMap<String, Object> userGroupParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				UserGroupFinderConstants.PARAM_KEY_USER_GROUPS_GROUPS,
+				Long.valueOf(group.getGroupId())
+			).build();
 
 		int userGroupsCount = UserGroupLocalServiceUtil.searchCount(
 			themeDisplay.getCompanyId(), searchTerms.getKeywords(),

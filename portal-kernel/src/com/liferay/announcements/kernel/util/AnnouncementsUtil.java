@@ -42,6 +42,7 @@ import com.liferay.portal.kernel.service.permission.UserGroupPermissionUtil;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
@@ -63,11 +64,12 @@ public class AnnouncementsUtil {
 
 		long userId = user.getUserId();
 
-		LinkedHashMap<Long, long[]> scopes = new LinkedHashMap<>();
-
 		// General announcements
 
-		scopes.put(0L, new long[] {0});
+		LinkedHashMap<Long, long[]> scopes =
+			LinkedHashMapBuilder.<Long, long[]>put(
+				0L, new long[] {0}
+			).build();
 
 		// Personal announcements
 

@@ -75,6 +75,8 @@ public class MailTemplatesHelper {
 	public Map<String, String> getEmailNotificationDefinitionTerms() {
 		ResourceBundle resourceBundle = getResourceBundle();
 
+		Company company = _wikiRequestHelper.getCompany();
+
 		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
@@ -135,26 +137,22 @@ public class MailTemplatesHelper {
 		).put(
 			"[$PAGE_USER_NAME$]",
 			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page")
-		).build();
-
-		Company company = _wikiRequestHelper.getCompany();
-
-		definitionTerms.put("[$PORTAL_URL$]", company.getVirtualHostname());
-
-		definitionTerms.put(
-			"[$PORTLET_NAME$]", _wikiRequestHelper.getPortletTitle());
-		definitionTerms.put(
+		).put(
+			"[$PORTAL_URL$]", company.getVirtualHostname()
+		).put(
+			"[$PORTLET_NAME$]", _wikiRequestHelper.getPortletTitle()
+		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(
-				resourceBundle, "the-site-name-associated-with-the-wiki"));
-		definitionTerms.put(
+				resourceBundle, "the-site-name-associated-with-the-wiki")
+		).put(
 			"[$TO_ADDRESS$]",
 			LanguageUtil.get(
-				resourceBundle, "the-address-of-the-email-recipient"));
-		definitionTerms.put(
+				resourceBundle, "the-address-of-the-email-recipient")
+		).put(
 			"[$TO_NAME$]",
-			LanguageUtil.get(
-				resourceBundle, "the-name-of-the-email-recipient"));
+			LanguageUtil.get(resourceBundle, "the-name-of-the-email-recipient")
+		).build();
 
 		return definitionTerms;
 	}

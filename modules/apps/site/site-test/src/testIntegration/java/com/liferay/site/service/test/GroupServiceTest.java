@@ -1262,11 +1262,6 @@ public class GroupServiceTest {
 
 		Assert.assertTrue(_group.isRoot());
 
-		LinkedHashMap<String, Object> params =
-			LinkedHashMapBuilder.<String, Object>put(
-				"site", Boolean.TRUE
-			).build();
-
 		List<Long> excludedGroupIds = new ArrayList<>();
 
 		excludedGroupIds.add(_group.getGroupId());
@@ -1281,7 +1276,12 @@ public class GroupServiceTest {
 			excludedGroupIds.add(stagingGroup.getGroupId());
 		}
 
-		params.put("excludedGroupIds", excludedGroupIds);
+		LinkedHashMap<String, Object> params =
+			LinkedHashMapBuilder.<String, Object>put(
+				"site", Boolean.TRUE
+			).put(
+				"excludedGroupIds", excludedGroupIds
+			).build();
 
 		List<Group> selectableGroups = _groupService.search(
 			_group.getCompanyId(), null, StringPool.BLANK, params,

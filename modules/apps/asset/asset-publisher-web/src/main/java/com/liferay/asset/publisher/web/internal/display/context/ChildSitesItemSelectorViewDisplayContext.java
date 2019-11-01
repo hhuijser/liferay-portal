@@ -105,17 +105,8 @@ public class ChildSitesItemSelectorViewDisplayContext
 			return _groupParams;
 		}
 
-		_groupParams = LinkedHashMapBuilder.<String, Object>put(
-			"active", Boolean.TRUE
-		).build();
-
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
-
-		_groupParams.put(
-			"groupsTree", ListUtil.fromArray(themeDisplay.getSiteGroup()));
-
-		_groupParams.put("site", Boolean.TRUE);
 
 		List<Long> excludedGroupIds = new ArrayList<>();
 
@@ -128,7 +119,15 @@ public class ChildSitesItemSelectorViewDisplayContext
 			excludedGroupIds.add(themeDisplay.getSiteGroupId());
 		}
 
-		_groupParams.put("excludedGroupIds", excludedGroupIds);
+		_groupParams = LinkedHashMapBuilder.<String, Object>put(
+			"active", Boolean.TRUE
+		).put(
+			"groupsTree", ListUtil.fromArray(themeDisplay.getSiteGroup())
+		).put(
+			"site", Boolean.TRUE
+		).put(
+			"excludedGroupIds", excludedGroupIds
+		).build();
 
 		return _groupParams;
 	}

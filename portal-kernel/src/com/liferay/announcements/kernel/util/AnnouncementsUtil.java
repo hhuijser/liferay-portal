@@ -66,14 +66,14 @@ public class AnnouncementsUtil {
 
 		// General announcements
 
+		// Personal announcements
+
 		LinkedHashMap<Long, long[]> scopes =
 			LinkedHashMapBuilder.<Long, long[]>put(
 				0L, new long[] {0}
+			).put(
+				_USER_CLASS_NAME_ID, new long[] {userId}
 			).build();
-
-		// Personal announcements
-
-		scopes.put(_USER_CLASS_NAME_ID, new long[] {userId});
 
 		// Organization announcements
 

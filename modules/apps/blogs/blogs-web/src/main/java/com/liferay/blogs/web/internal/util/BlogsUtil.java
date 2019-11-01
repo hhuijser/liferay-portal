@@ -66,6 +66,10 @@ public class BlogsUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		Company company = themeDisplay.getCompany();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$BLOGS_ENTRY_CONTENT$]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-blog-entry-content")
@@ -135,35 +139,28 @@ public class BlogsUtil {
 			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress)
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
-		).build();
-
-		Company company = themeDisplay.getCompany();
-
-		definitionTerms.put("[$PORTAL_URL$]", company.getVirtualHostname());
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		definitionTerms.put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle()));
-
-		definitionTerms.put(
+		).put(
+			"[$PORTAL_URL$]", company.getVirtualHostname()
+		).put(
+			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-site-name-associated-with-the-blog"));
-		definitionTerms.put(
+				"the-site-name-associated-with-the-blog")
+		).put(
 			"[$TO_ADDRESS$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(),
-				"the-address-of-the-email-recipient"));
-		definitionTerms.put(
+				themeDisplay.getLocale(), "the-address-of-the-email-recipient")
+		).put(
 			"[$TO_NAME$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-name-of-the-email-recipient"));
-		definitionTerms.put(
+				themeDisplay.getLocale(), "the-name-of-the-email-recipient")
+		).put(
 			"[$UNSUBSCRIBE_URL$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-url-to-unsubscribe-the-user"));
+				themeDisplay.getLocale(), "the-url-to-unsubscribe-the-user")
+		).build();
 
 		return definitionTerms;
 	}
@@ -174,6 +171,8 @@ public class BlogsUtil {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
 
 		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$BLOGS_ENTRY_USER_ADDRESS$]",
@@ -199,18 +198,14 @@ public class BlogsUtil {
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
 				"the-company-name-associated-with-the-blog")
-		).build();
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		definitionTerms.put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle()));
-
-		definitionTerms.put(
+		).put(
+			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(
 				themeDisplay.getLocale(),
-				"the-site-name-associated-with-the-blog"));
+				"the-site-name-associated-with-the-blog")
+		).build();
 
 		return definitionTerms;
 	}

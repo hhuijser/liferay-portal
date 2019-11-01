@@ -198,18 +198,18 @@ public class SelectUsersDisplayContext {
 		UserSearchTerms searchTerms =
 			(UserSearchTerms)userSearchContainer.getSearchTerms();
 
-		LinkedHashMap<String, Object> userParams =
-			LinkedHashMapBuilder.<String, Object>put(
-				"inherit", Boolean.TRUE
-			).build();
-
 		Group group = GroupLocalServiceUtil.fetchGroup(team.getGroupId());
 
 		if (group != null) {
 			group = StagingUtil.getLiveGroup(group.getGroupId());
 		}
 
-		userParams.put("usersGroups", group.getGroupId());
+		LinkedHashMap<String, Object> userParams =
+			LinkedHashMapBuilder.<String, Object>put(
+				"inherit", Boolean.TRUE
+			).put(
+				"usersGroups", group.getGroupId()
+			).build();
 
 		int usersCount = UserLocalServiceUtil.searchCount(
 			themeDisplay.getCompanyId(), searchTerms.getKeywords(),

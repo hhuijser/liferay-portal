@@ -158,6 +158,10 @@ public class BookmarksUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
+		Company company = themeDisplay.getCompany();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$BOOKMARKS_ENTRY_USER_NAME$]",
 			LanguageUtil.get(
@@ -175,26 +179,19 @@ public class BookmarksUtil {
 			"[$FROM_ADDRESS$]", HtmlUtil.escape(emailFromAddress)
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
-		).build();
-
-		Company company = themeDisplay.getCompany();
-
-		definitionTerms.put("[$PORTAL_URL$]", company.getVirtualHostname());
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		definitionTerms.put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle()));
-
-		definitionTerms.put(
+		).put(
+			"[$PORTAL_URL$]", company.getVirtualHostname()
+		).put(
+			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+		).put(
 			"[$TO_ADDRESS$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(),
-				"the-address-of-the-email-recipient"));
-		definitionTerms.put(
+				themeDisplay.getLocale(), "the-address-of-the-email-recipient")
+		).put(
 			"[$TO_NAME$]",
 			LanguageUtil.get(
-				themeDisplay.getLocale(), "the-name-of-the-email-recipient"));
+				themeDisplay.getLocale(), "the-name-of-the-email-recipient")
+		).build();
 
 		return definitionTerms;
 	}

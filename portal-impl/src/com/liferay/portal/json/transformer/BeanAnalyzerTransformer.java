@@ -50,13 +50,13 @@ public class BeanAnalyzerTransformer extends TypeJsonVisitor {
 	protected void onSerializableProperty(
 		String propertyName, PropertyDescriptor propertyDescriptor) {
 
-		Map<String, String> properties = LinkedHashMapBuilder.put(
-			"name", propertyName
-		).build();
-
 		Class<?> propertyClass = propertyDescriptor.getType();
 
-		properties.put("type", getTypeName(propertyClass));
+		Map<String, String> properties = LinkedHashMapBuilder.put(
+			"name", propertyName
+		).put(
+			"type", getTypeName(propertyClass)
+		).build();
 
 		_propertiesList.add(properties);
 	}

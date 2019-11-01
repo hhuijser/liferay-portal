@@ -59,6 +59,10 @@ public class EmailConfigurationUtil {
 		String reportName = LanguageUtil.get(
 			resourceBundle, "the-name-of-the-report");
 
+		Company company = themeDisplay.getCompany();
+
+		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
+
 		Map<String, String> definitionTerms = LinkedHashMapBuilder.put(
 			"[$FROM_ADDRESS$]", fromAddress
 		).put(
@@ -71,16 +75,11 @@ public class EmailConfigurationUtil {
 			"[$PAGE_URL$]", pageURL
 		).put(
 			"[$REPORT_NAME$]", reportName
+		).put(
+			"[$PORTAL_URL$]", company.getVirtualHostname()
+		).put(
+			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
 		).build();
-
-		Company company = themeDisplay.getCompany();
-
-		definitionTerms.put("[$PORTAL_URL$]", company.getVirtualHostname());
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		definitionTerms.put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle()));
 
 		return definitionTerms;
 	}

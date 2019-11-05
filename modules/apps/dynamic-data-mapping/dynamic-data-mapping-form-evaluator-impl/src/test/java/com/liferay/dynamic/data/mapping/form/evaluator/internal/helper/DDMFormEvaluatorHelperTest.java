@@ -420,21 +420,6 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 			DDMFormValuesTestUtil.createDDMFormFieldValue(
 				"field0_instanceId", "field0", new UnlocalizedValue("false")));
 
-		Map<String, DDMFormFieldValueAccessor<?>> ddmFormFieldValueAccessorMap =
-			HashMapBuilder.<String, DDMFormFieldValueAccessor<?>>put(
-				"checkbox",
-				new DefaultDDMFormFieldValueAccessor() {
-
-					@Override
-					public boolean isEmpty(
-						DDMFormFieldValue ddmFormFieldValue, Locale locale) {
-
-						return true;
-					}
-
-				}
-			).build();
-
 		DDMFormEvaluatorEvaluateResponse ddmFormEvaluatorEvaluateResponse =
 			doEvaluate(ddmForm, ddmFormValues);
 

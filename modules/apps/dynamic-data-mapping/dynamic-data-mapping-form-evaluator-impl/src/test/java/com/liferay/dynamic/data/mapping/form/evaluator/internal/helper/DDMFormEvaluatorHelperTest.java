@@ -62,6 +62,7 @@ import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.test.ReflectionTestUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PortalUtil;
@@ -72,7 +73,6 @@ import com.liferay.registry.RegistryUtil;
 
 import java.math.BigDecimal;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -421,20 +421,19 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 				"field0_instanceId", "field0", new UnlocalizedValue("false")));
 
 		Map<String, DDMFormFieldValueAccessor<?>> ddmFormFieldValueAccessorMap =
-			new HashMap<>();
+			HashMapBuilder.<String, DDMFormFieldValueAccessor<?>>put(
+				"checkbox",
+				new DefaultDDMFormFieldValueAccessor() {
 
-		ddmFormFieldValueAccessorMap.put(
-			"checkbox",
-			new DefaultDDMFormFieldValueAccessor() {
+					@Override
+					public boolean isEmpty(
+						DDMFormFieldValue ddmFormFieldValue, Locale locale) {
 
-				@Override
-				public boolean isEmpty(
-					DDMFormFieldValue ddmFormFieldValue, Locale locale) {
+						return true;
+					}
 
-					return true;
 				}
-
-			});
+			).build();
 
 		DDMFormEvaluatorEvaluateResponse ddmFormEvaluatorEvaluateResponse =
 			doEvaluate(ddmForm, ddmFormValues);
@@ -1235,35 +1234,33 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 			createDDMExpressionFunctionMap()
 		throws Exception {
 
-		Map<String, DDMExpressionFunctionFactory>
-			ddmExpressionFunctionFactoryMap = new HashMap<>();
-
-		ddmExpressionFunctionFactoryMap.put("all", createAllFunction());
-		ddmExpressionFunctionFactoryMap.put(
-			"belongsTo", createBelongsToRoleFunction());
-		ddmExpressionFunctionFactoryMap.put(
-			"between", new BetweenFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"calculate", new CalculateFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"contains", new ContainsFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"getValue", new GetValueFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"jumpPage", new JumpPageFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"setEnabled", new SetEnabledFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"setInvalid", new SetInvalidFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"setRequired", new SetRequiredFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"setValue", new SetValueFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put(
-			"setVisible", new SetVisibleFunctionFactory());
-		ddmExpressionFunctionFactoryMap.put("sum", new SumFunctionFactory());
-
-		return ddmExpressionFunctionFactoryMap;
+		return HashMapBuilder.<String, DDMExpressionFunctionFactory>put(
+			"all", createAllFunction()
+		).put(
+			"belongsTo", createBelongsToRoleFunction()
+		).put(
+			"between", new BetweenFunctionFactory()
+		).put(
+			"calculate", new CalculateFunctionFactory()
+		).put(
+			"contains", new ContainsFunctionFactory()
+		).put(
+			"getValue", new GetValueFunctionFactory()
+		).put(
+			"jumpPage", new JumpPageFunctionFactory()
+		).put(
+			"setEnabled", new SetEnabledFunctionFactory()
+		).put(
+			"setInvalid", new SetInvalidFunctionFactory()
+		).put(
+			"setRequired", new SetRequiredFunctionFactory()
+		).put(
+			"setValue", new SetValueFunctionFactory()
+		).put(
+			"setVisible", new SetVisibleFunctionFactory()
+		).put(
+			"sum", new SumFunctionFactory()
+		).build();
 	}
 
 	protected DDMFormField createDDMFormField(
@@ -1279,17 +1276,13 @@ public class DDMFormEvaluatorHelperTest extends PowerMockito {
 	protected Map<String, DDMFormFieldValueAccessor<?>>
 		createDDMFormFieldValueAccessorMap() {
 
-		Map<String, DDMFormFieldValueAccessor<?>> ddmFormFieldValueAccessorMap =
-			new HashMap<>();
-
-		ddmFormFieldValueAccessorMap.put(
-			"checkbox", new CheckboxDDMFormFieldValueAccessor());
-		ddmFormFieldValueAccessorMap.put(
-			"numeric", new NumericDDMFormFieldValueAccessor());
-		ddmFormFieldValueAccessorMap.put(
-			"text", new DefaultDDMFormFieldValueAccessor());
-
-		return ddmFormFieldValueAccessorMap;
+		return HashMapBuilder.<String, DDMFormFieldValueAccessor<?>>put(
+			"checkbox", new CheckboxDDMFormFieldValueAccessor()
+		).put(
+			"numeric", new NumericDDMFormFieldValueAccessor()
+		).put(
+			"text", new DefaultDDMFormFieldValueAccessor()
+		).build();
 	}
 
 	protected DDMFormEvaluatorEvaluateResponse doEvaluate(

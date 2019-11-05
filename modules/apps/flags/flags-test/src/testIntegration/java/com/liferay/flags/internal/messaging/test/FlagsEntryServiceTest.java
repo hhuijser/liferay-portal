@@ -26,6 +26,7 @@ import com.liferay.portal.kernel.messaging.MessageListener;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.HtmlEscapableObject;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -34,7 +35,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicReference;
@@ -90,13 +90,13 @@ public class FlagsEntryServiceTest {
 
 		_registerDestination(mockSubscriptionSenderMessageListener);
 
-		Map<String, String> contentAttributes = new HashMap<>();
-
-		contentAttributes.put(
-			"[$CONTENT_TITLE$]", "<img src=x onerror=alert(1)>");
-		contentAttributes.put(
-			"[$CONTENT_URL$]", "<img src=x onerror=alert(2)>");
-		contentAttributes.put("[$REASON$]", "<img src=x onerror=alert(3)>");
+		Map<String, String> contentAttributes = HashMapBuilder.put(
+			"[$CONTENT_TITLE$]", "<img src=x onerror=alert(1)>"
+		).put(
+			"[$CONTENT_URL$]", "<img src=x onerror=alert(2)>"
+		).put(
+			"[$REASON$]", "<img src=x onerror=alert(3)>"
+		).build();
 
 		_flagsEntryService.addEntry(
 			RandomTestUtil.randomString(), 0L,

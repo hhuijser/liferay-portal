@@ -15,11 +15,11 @@
 package com.liferay.segments.asah.connector.internal.client.model.util;
 
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.segments.asah.connector.internal.client.model.DXPVariantSettings;
 import com.liferay.segments.asah.connector.internal.client.model.ExperimentSettings;
 import com.liferay.segments.model.SegmentsExperiment;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,10 +40,9 @@ public class ExperimentSettingsUtilTest {
 	public void testToExperimentSettings() {
 		double confidenceLevel = RandomTestUtil.randomDouble();
 
-		Map<String, Double> segmentsExperienceKeySplitMap = new HashMap<>();
-
-		segmentsExperienceKeySplitMap.put(
-			RandomTestUtil.randomString(), RandomTestUtil.randomDouble());
+		Map<String, Double> segmentsExperienceKeySplitMap = HashMapBuilder.put(
+			RandomTestUtil.randomString(), RandomTestUtil.randomDouble()
+		).build();
 
 		SegmentsExperiment segmentsExperiment = Mockito.mock(
 			SegmentsExperiment.class);

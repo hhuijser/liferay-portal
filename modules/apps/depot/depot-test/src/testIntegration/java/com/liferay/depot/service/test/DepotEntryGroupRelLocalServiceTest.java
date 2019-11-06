@@ -30,8 +30,6 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.Locale;
-
 import org.junit.Assert;
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -52,10 +50,10 @@ public class DepotEntryGroupRelLocalServiceTest {
 	@Test
 	public void testDeleteGroup() throws Exception {
 		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
-			HashMapBuilder.<Locale, String>put(
+			HashMapBuilder.put(
 				LocaleUtil.getDefault(), StringUtil.randomString()
 			).build(),
-			HashMapBuilder.<Locale, String>put(
+			HashMapBuilder.put(
 				LocaleUtil.getDefault(), StringUtil.randomString()
 			).build(),
 			ServiceContextTestUtil.getServiceContext());
@@ -63,10 +61,10 @@ public class DepotEntryGroupRelLocalServiceTest {
 		Group group = _groupLocalService.addGroup(
 			TestPropsValues.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			null, 0, 0,
-			HashMapBuilder.<Locale, String>put(
+			HashMapBuilder.put(
 				LocaleUtil.getDefault(), StringUtil.randomString()
 			).build(),
-			HashMapBuilder.<Locale, String>put(
+			HashMapBuilder.put(
 				LocaleUtil.getDefault(), StringUtil.randomString()
 			).build(),
 			GroupConstants.TYPE_SITE_OPEN, true,

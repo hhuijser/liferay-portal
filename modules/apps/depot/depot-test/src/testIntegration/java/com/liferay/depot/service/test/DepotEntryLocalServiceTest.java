@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -108,16 +109,12 @@ public class DepotEntryLocalServiceTest {
 
 		_depotEntryLocalService.updateDepotEntry(
 			depotEntry.getDepotEntryId(),
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newName");
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newDescription");
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newName"
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newDescription"
+			).build(),
 			formTypeSettingsProperties,
 			ServiceContextTestUtil.getServiceContext());
 
@@ -146,18 +143,16 @@ public class DepotEntryLocalServiceTest {
 
 		_depotEntryLocalService.updateDepotEntry(
 			depotEntry.getDepotEntryId(),
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newName");
-					put(LocaleUtil.fromLanguageId("es_ES"), "nuevoNombre");
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newDescription");
-					put(LocaleUtil.fromLanguageId("es_ES"), "nuevaDescripcion");
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newName"
+			).put(
+				LocaleUtil.fromLanguageId("es_ES"), "nuevoNombre"
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newDescription"
+			).put(
+				LocaleUtil.fromLanguageId("es_ES"), "nuevaDescripcion"
+			).build(),
 			formTypeSettingsProperties,
 			ServiceContextTestUtil.getServiceContext());
 
@@ -180,16 +175,12 @@ public class DepotEntryLocalServiceTest {
 
 		_depotEntryLocalService.updateDepotEntry(
 			depotEntry.getDepotEntryId(),
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newName");
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newDescription");
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newName"
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newDescription"
+			).build(),
 			formTypeSettingsProperties,
 			ServiceContextTestUtil.getServiceContext());
 
@@ -220,11 +211,9 @@ public class DepotEntryLocalServiceTest {
 
 		_depotEntryLocalService.updateDepotEntry(
 			depotEntry.getDepotEntryId(),
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newName");
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newName"
+			).build(),
 			new HashMap<>(), formTypeSettingsProperties,
 			ServiceContextTestUtil.getServiceContext());
 
@@ -263,18 +252,16 @@ public class DepotEntryLocalServiceTest {
 
 		_depotEntryLocalService.updateDepotEntry(
 			depotEntry.getDepotEntryId(),
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newName");
-					put(LocaleUtil.fromLanguageId("es_ES"), "nuevoNombre");
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), "newDescription");
-					put(LocaleUtil.fromLanguageId("es_ES"), "descripcion");
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newName"
+			).put(
+				LocaleUtil.fromLanguageId("es_ES"), "nuevoNombre"
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), "newDescription"
+			).put(
+				LocaleUtil.fromLanguageId("es_ES"), "descripcion"
+			).build(),
 			formTypeSettingsProperties,
 			ServiceContextTestUtil.getServiceContext());
 	}
@@ -283,16 +270,12 @@ public class DepotEntryLocalServiceTest {
 		throws Exception {
 
 		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), name);
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), description);
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), name
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), description
+			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
 		_depotEntries.add(depotEntry);

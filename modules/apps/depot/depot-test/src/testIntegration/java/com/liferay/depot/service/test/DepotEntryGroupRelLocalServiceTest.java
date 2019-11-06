@@ -24,12 +24,12 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.util.ServiceContextTestUtil;
 import com.liferay.portal.kernel.test.util.TestPropsValues;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.util.HashMap;
 import java.util.Locale;
 
 import org.junit.Assert;
@@ -52,31 +52,23 @@ public class DepotEntryGroupRelLocalServiceTest {
 	@Test
 	public void testDeleteGroup() throws Exception {
 		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), StringUtil.randomString());
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), StringUtil.randomString());
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), StringUtil.randomString()
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), StringUtil.randomString()
+			).build(),
 			ServiceContextTestUtil.getServiceContext());
 
 		Group group = _groupLocalService.addGroup(
 			TestPropsValues.getUserId(), GroupConstants.DEFAULT_PARENT_GROUP_ID,
 			null, 0, 0,
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), StringUtil.randomString());
-				}
-			},
-			new HashMap<Locale, String>() {
-				{
-					put(LocaleUtil.getDefault(), StringUtil.randomString());
-				}
-			},
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), StringUtil.randomString()
+			).build(),
+			HashMapBuilder.<Locale, String>put(
+				LocaleUtil.getDefault(), StringUtil.randomString()
+			).build(),
 			GroupConstants.TYPE_SITE_OPEN, true,
 			GroupConstants.DEFAULT_MEMBERSHIP_RESTRICTION, null, true, true,
 			ServiceContextTestUtil.getServiceContext());

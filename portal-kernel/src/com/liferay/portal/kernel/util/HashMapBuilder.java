@@ -14,14 +14,12 @@
 
 package com.liferay.portal.kernel.util;
 
-import com.liferay.petra.function.UnsafeSupplier;
-
 import java.util.HashMap;
 
 /**
  * @author Hugo Huijser
  */
-public class HashMapBuilder<K, V> {
+public class HashMapBuilder<K, V> extends BaseMapBuilder {
 
 	public static <K, V> HashMapWrapper<K, V> put(
 		K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {

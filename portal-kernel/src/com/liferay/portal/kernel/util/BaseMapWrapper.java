@@ -14,8 +14,6 @@
 
 package com.liferay.portal.kernel.util;
 
-import com.liferay.petra.function.UnsafeSupplier;
-
 import java.util.Map;
 
 /**
@@ -24,25 +22,8 @@ import java.util.Map;
 public abstract class BaseMapWrapper<K, V> {
 
 	protected void doPut(
-		K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-		try {
-			V value = valueUnsafeSupplier.get();
-
-			if (value != null) {
-				Map<K, V> map = getMap();
-
-				map.put(key, value);
-			}
-		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-
-	protected void doPut(
-		UnsafeSupplier<K, Exception> keyUnsafeSupplier,
-		UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
+		BaseMapBuilder.UnsafeSupplier<K, Exception> keyUnsafeSupplier,
+		BaseMapBuilder.UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
 		try {
 			K key = keyUnsafeSupplier.get();
@@ -60,12 +41,31 @@ public abstract class BaseMapWrapper<K, V> {
 	}
 
 	protected void doPut(
-		UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
+		BaseMapBuilder.UnsafeSupplier<K, Exception> keyUnsafeSupplier,
+		V value) {
 
 		try {
 			K key = keyUnsafeSupplier.get();
 
 			if (key != null) {
+				Map<K, V> map = getMap();
+
+				map.put(key, value);
+			}
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected void doPut(
+		K key,
+		BaseMapBuilder.UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
+
+		try {
+			V value = valueUnsafeSupplier.get();
+
+			if (value != null) {
 				Map<K, V> map = getMap();
 
 				map.put(key, value);

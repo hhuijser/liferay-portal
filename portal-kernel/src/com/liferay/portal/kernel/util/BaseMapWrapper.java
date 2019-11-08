@@ -14,6 +14,7 @@
 
 package com.liferay.portal.kernel.util;
 
+import java.util.Collection;
 import java.util.Map;
 
 /**
@@ -51,6 +52,26 @@ public abstract class BaseMapWrapper<K, V> {
 				Map<K, V> map = getMap();
 
 				map.put(key, value);
+			}
+		}
+		catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	protected void doPut(
+		Collection<? extends K> keyCollection,
+		BaseMapBuilder.UnsafeFunction<K, V, Exception> unsafeFunction) {
+
+		try {
+			for (K key : keyCollection) {
+				V value = unsafeFunction.apply(key);
+
+				if (value != null) {
+					Map<K, V> map = getMap();
+
+					map.put(key, value);
+				}
 			}
 		}
 		catch (Exception e) {

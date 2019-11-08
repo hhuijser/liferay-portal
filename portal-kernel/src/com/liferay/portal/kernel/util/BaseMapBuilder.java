@@ -20,6 +20,13 @@ package com.liferay.portal.kernel.util;
 public class BaseMapBuilder {
 
 	@FunctionalInterface
+	public interface UnsafeFunction<T, R, E extends Throwable> {
+
+		public R apply(T t) throws E;
+
+	}
+
+	@FunctionalInterface
 	public interface UnsafeSupplier<T, E extends Throwable> {
 
 		public T get() throws E;

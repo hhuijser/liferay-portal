@@ -83,20 +83,17 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		String instanceId = StringUtil.randomString();
 
-		Map<String, Object> changedProperties =
-			HashMapBuilder.<String, Object>put(
-				"readOnly", readOnly
-			).put(
-				"visible", true
-			).build();
-
 		Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
 			ddmFormFieldsPropertyChanges =
 				HashMapBuilder.
 					<DDMFormEvaluatorFieldContextKey, Map<String, Object>>put(
 						new DDMFormEvaluatorFieldContextKey(
 							"Field1", instanceId),
-						changedProperties
+						HashMapBuilder.<String, Object>put(
+							"readOnly", readOnly
+						).put(
+							"visible", true
+						).build()
 					).build();
 
 		// Dynamic data mapping form values
@@ -148,20 +145,17 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		String instanceId = StringUtil.randomString();
 
-		Map<String, Object> changedProperties =
-			HashMapBuilder.<String, Object>put(
-				"readOnly", readOnly
-			).put(
-				"visible", true
-			).build();
-
 		Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
 			ddmFormFieldsPropertyChanges =
 				HashMapBuilder.
 					<DDMFormEvaluatorFieldContextKey, Map<String, Object>>put(
 						new DDMFormEvaluatorFieldContextKey(
 							"Field1", instanceId),
-						changedProperties
+						HashMapBuilder.<String, Object>put(
+							"readOnly", readOnly
+						).put(
+							"visible", true
+						).build()
 					).build();
 
 		// Dynamic data mapping form values
@@ -220,22 +214,19 @@ public class DDMFormFieldTemplateContextFactoryTest {
 
 		String instanceId = StringUtil.randomString();
 
-		Map<String, Object> changedProperties =
-			HashMapBuilder.<String, Object>put(
-				"required", true
-			).put(
-				"valid", true
-			).put(
-				"visible", true
-			).build();
-
 		Map<DDMFormEvaluatorFieldContextKey, Map<String, Object>>
 			ddmFormFieldsPropertyChanges =
 				HashMapBuilder.
 					<DDMFormEvaluatorFieldContextKey, Map<String, Object>>put(
 						new DDMFormEvaluatorFieldContextKey(
 							"Field1", instanceId),
-						changedProperties
+						HashMapBuilder.<String, Object>put(
+							"required", true
+						).put(
+							"valid", true
+						).put(
+							"visible", true
+						).build()
 					).build();
 
 		// Dynamic data mapping form values

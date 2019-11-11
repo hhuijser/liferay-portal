@@ -103,20 +103,19 @@ public class DDMFormBuilderContextFactoryHelper {
 	}
 
 	protected Map<String, Object> createEmptyStateContext() {
-		Map<String, Object> successPage = HashMapBuilder.<String, Object>put(
-			"body", StringPool.BLANK
-		).put(
-			"enabled", Boolean.FALSE
-		).put(
-			"title", StringPool.BLANK
-		).build();
-
 		return HashMapBuilder.<String, Object>put(
 			"pages", new ArrayList<>()
 		).put(
 			"rules", new ArrayList<>()
 		).put(
-			"successPage", successPage
+			"successPage",
+			HashMapBuilder.<String, Object>put(
+				"body", StringPool.BLANK
+			).put(
+				"enabled", Boolean.FALSE
+			).put(
+				"title", StringPool.BLANK
+			).build()
 		).build();
 	}
 
@@ -354,14 +353,6 @@ public class DDMFormBuilderContextFactoryHelper {
 		DDMFormSuccessPageSettings ddmFormSuccessPageSettings =
 			ddmForm.getDDMFormSuccessPageSettings();
 
-		Map<String, Object> successPage = HashMapBuilder.<String, Object>put(
-			"body", toMap(ddmFormSuccessPageSettings.getBody())
-		).put(
-			"enabled", ddmFormSuccessPageSettings.isEnabled()
-		).put(
-			"title", toMap(ddmFormSuccessPageSettings.getTitle())
-		).build();
-
 		return HashMapBuilder.<String, Object>put(
 			"pages", formContext.get("pages")
 		).put(
@@ -369,7 +360,14 @@ public class DDMFormBuilderContextFactoryHelper {
 		).put(
 			"rules", new ArrayList<>()
 		).put(
-			"successPageSettings", successPage
+			"successPageSettings",
+			HashMapBuilder.<String, Object>put(
+				"body", toMap(ddmFormSuccessPageSettings.getBody())
+			).put(
+				"enabled", ddmFormSuccessPageSettings.isEnabled()
+			).put(
+				"title", toMap(ddmFormSuccessPageSettings.getTitle())
+			).build()
 		).build();
 	}
 

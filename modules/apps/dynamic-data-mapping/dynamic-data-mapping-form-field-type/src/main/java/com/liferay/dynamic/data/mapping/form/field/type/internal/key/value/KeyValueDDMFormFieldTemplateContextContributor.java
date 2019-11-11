@@ -56,26 +56,24 @@ public class KeyValueDDMFormFieldTemplateContextContributor
 
 		Locale locale = ddmFormFieldRenderingContext.getLocale();
 
-		Map<String, String> stringsMap = HashMapBuilder.put(
-			"keyLabel",
-			LanguageUtil.get(
-				getDisplayLocale(
-					ddmFormFieldRenderingContext.getHttpServletRequest()),
-				"field-name")
-		).build();
-
-		LocalizedValue tooltip = (LocalizedValue)ddmFormField.getProperty(
-			"tooltip");
-
 		return HashMapBuilder.<String, Object>put(
 			"autoFocus",
 			GetterUtil.getBoolean(ddmFormField.getProperty("autoFocus"))
 		).put(
 			"placeholder", getValueString(placeholder, locale)
 		).put(
-			"strings", stringsMap
+			"strings",
+			HashMapBuilder.put(
+				"keyLabel",
+				LanguageUtil.get(
+					getDisplayLocale(
+						ddmFormFieldRenderingContext.getHttpServletRequest()),
+					"field-name")
+			).build()
 		).put(
-			"tooltip", getValueString(tooltip, locale)
+			"tooltip",
+			getValueString(
+				(LocalizedValue)ddmFormField.getProperty("tooltip"), locale)
 		).build();
 	}
 

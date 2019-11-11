@@ -18,6 +18,7 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.calendar.model.CalendarResource;
 import com.liferay.calendar.service.CalendarResourceLocalServiceUtil;
 import com.liferay.calendar.service.CalendarResourceServiceUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
@@ -112,12 +113,11 @@ public class CalendarResourceServiceTest {
 	}
 
 	protected Map<Locale, String> createNameMap() {
-		String name =
-			RandomTestUtil.randomString() + StringPool.SPACE +
-				RandomTestUtil.randomString();
-
 		return HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), name
+			LocaleUtil.getSiteDefault(),
+			StringBundler.concat(
+				RandomTestUtil.randomString(), StringPool.SPACE,
+				RandomTestUtil.randomString())
 		).build();
 	}
 

@@ -23,6 +23,7 @@ import com.liferay.calendar.notification.NotificationTemplateContext;
 import com.liferay.calendar.notification.NotificationTemplateType;
 import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -47,7 +48,6 @@ import java.io.Serializable;
 import java.text.Format;
 
 import java.util.Map;
-import java.util.ResourceBundle;
 import java.util.TimeZone;
 
 import javax.portlet.WindowState;
@@ -101,44 +101,37 @@ public class NotificationTemplateContextFactory {
 
 		String userTimezoneDisplayName = _getUserTimezoneDisplayName(user);
 
-		String endTime =
-			userDateTimeFormat.format(calendarBooking.getEndTime()) +
-				StringPool.SPACE + userTimezoneDisplayName;
-
 		Group group = _groupLocalService.getGroup(
 			user.getCompanyId(), GroupConstants.GUEST);
 
-		String portalURL = _getPortalURL(
-			group.getCompanyId(), group.getGroupId());
-
-		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
-			user.getLocale(), "com.liferay.calendar.web");
-
-		String startTime =
-			userDateTimeFormat.format(calendarBooking.getStartTime()) +
-				StringPool.SPACE + userTimezoneDisplayName;
-
-		String calendarBookingURL = _getCalendarBookingURL(
-			user, calendarBooking.getCalendarBookingId());
-
 		Map<String, Serializable> attributes =
 			HashMapBuilder.<String, Serializable>put(
-				"endTime", endTime
+				"endTime",
+				StringBundler.concat(
+					userDateTimeFormat.format(calendarBooking.getEndTime()),
+					StringPool.SPACE, userTimezoneDisplayName)
 			).put(
 				"location", calendarBooking.getLocation()
 			).put(
-				"portalURL", portalURL
+				"portalURL",
+				_getPortalURL(group.getCompanyId(), group.getGroupId())
 			).put(
 				"portletName",
 				LanguageUtil.get(
-					resourceBundle,
+					ResourceBundleUtil.getBundle(
+						user.getLocale(), "com.liferay.calendar.web"),
 					"javax.portlet.title.".concat(CalendarPortletKeys.CALENDAR))
 			).put(
-				"startTime", startTime
+				"startTime",
+				StringBundler.concat(
+					userDateTimeFormat.format(calendarBooking.getStartTime()),
+					StringPool.SPACE, userTimezoneDisplayName)
 			).put(
 				"title", calendarBooking.getTitle(user.getLocale())
 			).put(
-				"url", calendarBookingURL
+				"url",
+				_getCalendarBookingURL(
+					user, calendarBooking.getCalendarBookingId())
 			).build();
 
 		notificationTemplateContext.setAttributes(attributes);

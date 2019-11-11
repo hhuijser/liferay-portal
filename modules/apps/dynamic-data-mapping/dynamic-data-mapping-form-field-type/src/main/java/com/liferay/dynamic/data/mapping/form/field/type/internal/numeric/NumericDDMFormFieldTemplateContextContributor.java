@@ -58,13 +58,6 @@ public class NumericDDMFormFieldTemplateContextContributor
 
 		Locale locale = ddmFormFieldRenderingContext.getLocale();
 
-		String predefinedValue = getValueString(
-			ddmFormField.getPredefinedValue(), locale,
-			ddmFormFieldRenderingContext);
-
-		LocalizedValue tooltip = (LocalizedValue)ddmFormField.getProperty(
-			"tooltip");
-
 		Map<String, Object> parameters = HashMapBuilder.<String, Object>put(
 			"dataType", getDataType(ddmFormField, ddmFormFieldRenderingContext)
 		).put(
@@ -73,12 +66,17 @@ public class NumericDDMFormFieldTemplateContextContributor
 		).put(
 			"predefinedValue",
 			getFormattedValue(
-				ddmFormFieldRenderingContext, locale, predefinedValue)
+				ddmFormFieldRenderingContext, locale,
+				getValueString(
+					ddmFormField.getPredefinedValue(), locale,
+					ddmFormFieldRenderingContext))
 		).put(
 			"symbols", getSymbolsMap(locale)
 		).put(
 			"tooltip",
-			getValueString(tooltip, locale, ddmFormFieldRenderingContext)
+			getValueString(
+				(LocalizedValue)ddmFormField.getProperty("tooltip"), locale,
+				ddmFormFieldRenderingContext)
 		).build();
 
 		String value = HtmlUtil.extractText(

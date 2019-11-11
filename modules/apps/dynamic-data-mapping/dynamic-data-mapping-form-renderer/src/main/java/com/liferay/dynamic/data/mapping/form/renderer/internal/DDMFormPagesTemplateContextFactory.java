@@ -192,9 +192,6 @@ public class DDMFormPagesTemplateContextFactory {
 
 		LocalizedValue title = ddmFormLayoutPage.getTitle();
 
-		boolean showRequiredFieldsWarning = isShowRequiredFieldsWarning(
-			ddmFormLayoutPage.getDDMFormLayoutRows());
-
 		return HashMapBuilder.<String, Object>put(
 			"description",
 			getValue(_ddmFormRenderingContext, description.getString(_locale))
@@ -210,7 +207,9 @@ public class DDMFormPagesTemplateContextFactory {
 			"rows",
 			createRowsTemplateContext(ddmFormLayoutPage.getDDMFormLayoutRows())
 		).put(
-			"showRequiredFieldsWarning", showRequiredFieldsWarning
+			"showRequiredFieldsWarning",
+			isShowRequiredFieldsWarning(
+				ddmFormLayoutPage.getDDMFormLayoutRows())
 		).put(
 			"title",
 			getValue(_ddmFormRenderingContext, title.getString(_locale))

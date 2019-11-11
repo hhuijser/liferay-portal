@@ -111,14 +111,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray(true, true, true);
-		List<Serializable> ptValues = ListUtil.fromArray(false, false, false);
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray(true, true, true)
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray(false, false, false)
 			).build();
 
 		Field booleanField = new Field(
@@ -255,14 +252,12 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		Serializable date1 = getDateFieldValue(0, 1, 2013, _enLocale);
-		Serializable date2 = getDateFieldValue(0, 2, 2013, _enLocale);
-
-		List<Serializable> enValues = ListUtil.fromArray(date1, date2);
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale,
+				ListUtil.fromArray(
+					getDateFieldValue(0, 1, 2013, _enLocale),
+					getDateFieldValue(0, 2, 2013, _enLocale))
 			).build();
 
 		Serializable date3 = getDateFieldValue(0, 3, 2013, _enLocale);
@@ -296,15 +291,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray(1.1, 1.2, 1.3);
-
-		List<Serializable> ptValues = ListUtil.fromArray(2.1, 2.2, 2.3);
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray(1.1, 1.2, 1.3)
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray(2.1, 2.2, 2.3)
 			).build();
 
 		Field decimalField = new Field(
@@ -359,17 +350,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		String file2Value = getDocLibraryFieldValue(file2);
 
-		List<Serializable> enValues = ListUtil.fromArray(
-			file1Value, file2Value);
-
-		List<Serializable> ptValues = ListUtil.fromArray(
-			file1Value, file2Value);
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray(file1Value, file2Value)
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray(file1Value, file2Value)
 			).build();
 
 		Field documentLibraryField = new Field(
@@ -396,15 +381,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray(1, 2, 3);
-
-		List<Serializable> ptValues = ListUtil.fromArray(3, 4, 5);
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray(1, 2, 3)
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray(3, 4, 5)
 			).build();
 
 		Field integerField = new Field(
@@ -432,17 +413,15 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray(
-			"{\"layoutId\":\"1\",\"privateLayout\":false}");
-
-		List<Serializable> ptValues = ListUtil.fromArray(
-			"{\"layoutId\":\"2\",\"privateLayout\":true}");
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale,
+				ListUtil.fromArray(
+					"{\"layoutId\":\"1\",\"privateLayout\":false}")
 			).put(
-				_ptLocale, ptValues
+				_ptLocale,
+				ListUtil.fromArray(
+					"{\"layoutId\":\"2\",\"privateLayout\":true}")
 			).build();
 
 		Field linkToPageField = new Field(
@@ -468,15 +447,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray(1, 1.5F, 2);
-
-		List<Serializable> ptValues = ListUtil.fromArray(3, 3.5F, 4);
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray(1, 1.5F, 2)
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray(3, 3.5F, 4)
 			).build();
 
 		Field numberField = new Field(
@@ -503,15 +478,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray("value 1", "value 2");
-
-		List<Serializable> ptValues = ListUtil.fromArray("value 2", "value 3");
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray("value 1", "value 2")
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray("value 2", "value 3")
 			).build();
 
 		Field radioField = new Field(
@@ -538,17 +509,12 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray(
-			"[\"value 1\",\"value 2\"]", "[\"value 3\"]");
-
-		List<Serializable> ptValues = ListUtil.fromArray(
-			"[\"value 2\"]", "[\"value 3\"]");
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale,
+				ListUtil.fromArray("[\"value 1\",\"value 2\"]", "[\"value 3\"]")
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray("[\"value 2\"]", "[\"value 3\"]")
 			).build();
 
 		Field selectField = new Field(
@@ -575,15 +541,11 @@ public class StorageAdapterTest extends BaseDDMServiceTestCase {
 
 		Fields fields = new Fields();
 
-		List<Serializable> enValues = ListUtil.fromArray("one", "two", "three");
-
-		List<Serializable> ptValues = ListUtil.fromArray("um", "dois", "tres");
-
 		Map<Locale, List<Serializable>> dataMap =
 			HashMapBuilder.<Locale, List<Serializable>>put(
-				_enLocale, enValues
+				_enLocale, ListUtil.fromArray("one", "two", "three")
 			).put(
-				_ptLocale, ptValues
+				_ptLocale, ListUtil.fromArray("um", "dois", "tres")
 			).build();
 
 		Field textField = new Field(

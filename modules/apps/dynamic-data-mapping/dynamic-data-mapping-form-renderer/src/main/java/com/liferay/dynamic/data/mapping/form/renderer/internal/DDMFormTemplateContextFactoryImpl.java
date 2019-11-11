@@ -119,9 +119,6 @@ public class DDMFormTemplateContextFactoryImpl
 			locale = LocaleThreadLocal.getSiteDefaultLocale();
 		}
 
-		List<Object> pages = getPages(
-			ddmForm, ddmFormLayout, ddmFormRenderingContext);
-
 		Map<String, Object> templateContext =
 			HashMapBuilder.<String, Object>put(
 				"containerId", containerId
@@ -134,7 +131,8 @@ public class DDMFormTemplateContextFactoryImpl
 			).put(
 				"groupId", ddmFormRenderingContext.getGroupId()
 			).put(
-				"pages", pages
+				"pages",
+				getPages(ddmForm, ddmFormLayout, ddmFormRenderingContext)
 			).put(
 				"paginationMode", ddmFormLayout.getPaginationMode()
 			).put(

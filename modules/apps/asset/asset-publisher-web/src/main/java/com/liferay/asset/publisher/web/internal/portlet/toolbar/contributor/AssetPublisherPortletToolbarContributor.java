@@ -187,13 +187,12 @@ public class AssetPublisherPortletToolbarContributor
 
 		String message = assetPublisherAddItemHolder.getModelResource();
 
-		String title = LanguageUtil.format(
-			themeDisplay.getLocale(), "new-x", message, false);
-
 		Map<String, Object> data = HashMapBuilder.<String, Object>put(
 			"id", HtmlUtil.escape(portletDisplay.getNamespace()) + "editAsset"
 		).put(
-			"title", title
+			"title",
+			LanguageUtil.format(
+				themeDisplay.getLocale(), "new-x", message, false)
 		).build();
 
 		urlMenuItem.setData(data);

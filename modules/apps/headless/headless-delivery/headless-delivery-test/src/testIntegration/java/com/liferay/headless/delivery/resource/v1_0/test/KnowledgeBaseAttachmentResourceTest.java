@@ -89,10 +89,13 @@ public class KnowledgeBaseAttachmentResourceTest
 
 	@Override
 	protected Map<String, File> getMultipartFiles() throws Exception {
-		String randomString = RandomTestUtil.randomString();
-
 		return HashMapBuilder.<String, File>put(
-			"file", FileUtil.createTempFile(randomString.getBytes())
+			"file",
+			() -> {
+				String randomString = RandomTestUtil.randomString();
+
+				return FileUtil.createTempFile(randomString.getBytes());
+			}
 		).build();
 	}
 

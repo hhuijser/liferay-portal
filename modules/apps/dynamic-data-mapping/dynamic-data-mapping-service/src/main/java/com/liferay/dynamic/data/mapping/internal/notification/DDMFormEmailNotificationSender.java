@@ -337,14 +337,17 @@ public class DDMFormEmailNotificationSender {
 		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap,
 		Locale locale) {
 
-		LocalizedValue title = ddmFormLayoutPage.getTitle();
-
 		return HashMapBuilder.<String, Object>put(
 			"fields",
 			getFields(
 				getFieldNames(ddmFormLayoutPage), ddmFormFieldValuesMap, locale)
 		).put(
-			"title", title.getString(locale)
+			"title",
+			() -> {
+				LocalizedValue title = ddmFormLayoutPage.getTitle();
+
+				return title.getString(locale);
+			}
 		).build();
 	}
 

@@ -76,11 +76,14 @@ public class SocialRequestInterpreterLocalServiceImpl
 
 		Registry registry = RegistryUtil.getRegistry();
 
-		SocialRequestInterpreterImpl socialRequestInterpreterImpl =
-			(SocialRequestInterpreterImpl)requestInterpreter;
-
 		Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-			"javax.portlet.name", socialRequestInterpreterImpl.getPortletId()
+			"javax.portlet.name",
+			() -> {
+				SocialRequestInterpreterImpl socialRequestInterpreterImpl =
+					(SocialRequestInterpreterImpl)requestInterpreter;
+
+				return socialRequestInterpreterImpl.getPortletId();
+			}
 		).build();
 
 		ServiceRegistration<SocialRequestInterpreter> serviceRegistration =

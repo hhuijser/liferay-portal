@@ -66,10 +66,6 @@ public class BlogsUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Company company = themeDisplay.getCompany();
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		return LinkedHashMapBuilder.put(
 			"[$BLOGS_ENTRY_CONTENT$]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-blog-entry-content")
@@ -140,9 +136,20 @@ public class BlogsUtil {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]", company.getVirtualHostname()
+			"[$PORTAL_URL$]",
+			() -> {
+				Company company = themeDisplay.getCompany();
+
+				return company.getVirtualHostname();
+			}
 		).put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+			"[$PORTLET_NAME$]",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				return HtmlUtil.escape(portletDisplay.getTitle());
+			}
 		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(
@@ -170,8 +177,6 @@ public class BlogsUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		return LinkedHashMapBuilder.put(
 			"[$BLOGS_ENTRY_USER_ADDRESS$]",
 			LanguageUtil.get(
@@ -197,7 +202,13 @@ public class BlogsUtil {
 				themeDisplay.getLocale(),
 				"the-company-name-associated-with-the-blog")
 		).put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+			"[$PORTLET_NAME$]",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				return HtmlUtil.escape(portletDisplay.getTitle());
+			}
 		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(

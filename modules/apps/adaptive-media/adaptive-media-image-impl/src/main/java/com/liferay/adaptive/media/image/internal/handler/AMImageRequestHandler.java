@@ -87,20 +87,30 @@ public class AMImageRequestHandler
 			FileVersion fileVersion)
 		throws PortalException {
 
-		AMAttribute<Object, Long> contentLengthAMAttribute =
-			AMAttribute.getContentLengthAMAttribute();
-		AMAttribute<Object, String> contentTypeAMAttribute =
-			AMAttribute.getContentTypeAMAttribute();
-		AMAttribute<Object, String> fileNameAMAttribute =
-			AMAttribute.getFileNameAMAttribute();
-
 		Map<String, String> properties = HashMapBuilder.put(
-			contentLengthAMAttribute.getName(),
+			() -> {
+				AMAttribute<Object, Long> contentLengthAMAttribute =
+					AMAttribute.getContentLengthAMAttribute();
+
+				return contentLengthAMAttribute.getName();
+			},
 			String.valueOf(fileVersion.getSize())
 		).put(
-			contentTypeAMAttribute.getName(), fileVersion.getMimeType()
+			() -> {
+				AMAttribute<Object, String> contentTypeAMAttribute =
+					AMAttribute.getContentTypeAMAttribute();
+
+				return contentTypeAMAttribute.getName();
+			},
+			fileVersion.getMimeType()
 		).put(
-			fileNameAMAttribute.getName(), fileVersion.getFileName()
+			() -> {
+				AMAttribute<Object, String> fileNameAMAttribute =
+					AMAttribute.getFileNameAMAttribute();
+
+				return fileNameAMAttribute.getName();
+			},
+			fileVersion.getFileName()
 		).build();
 
 		return new AMImage(

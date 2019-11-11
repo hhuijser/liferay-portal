@@ -62,20 +62,23 @@ public abstract class BaseDDMFormMVCResourceCommand
 			DDMFormInstance formInstance)
 		throws Exception {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)resourceRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
 		Map<String, Object> response = HashMapBuilder.<String, Object>put(
 			"ddmStructureId", formInstance.getStructureId()
 		).put(
 			"formInstanceId", formInstance.getFormInstanceId()
 		).put(
 			"modifiedDate",
-			formatDate(
-				formInstance.getModifiedDate(), user.getLocale(),
-				user.getTimeZoneId())
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)resourceRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				User user = themeDisplay.getUser();
+
+				return formatDate(
+					formInstance.getModifiedDate(), user.getLocale(),
+					user.getTimeZoneId());
+			}
 		).build();
 
 		JSONSerializer jsonSerializer = jsonFactory.createJSONSerializer();

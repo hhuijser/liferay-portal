@@ -171,13 +171,15 @@ public class WorkflowTaskManagerImplTest
 
 		DLFileEntryType fileEntryType = addFileEntryType();
 
-		DLFileEntryType basicFileEntryType = getBasicFileEntryType();
-
 		Map<String, String> dlFileEntryTypeMap = HashMapBuilder.put(
 			String.valueOf(fileEntryType.getFileEntryTypeId()),
 			"Single Approver@1"
 		).put(
-			String.valueOf(basicFileEntryType.getFileEntryTypeId()),
+			() -> {
+				DLFileEntryType basicFileEntryType = getBasicFileEntryType();
+
+				return String.valueOf(basicFileEntryType.getFileEntryTypeId());
+			},
 			StringPool.BLANK
 		).build();
 

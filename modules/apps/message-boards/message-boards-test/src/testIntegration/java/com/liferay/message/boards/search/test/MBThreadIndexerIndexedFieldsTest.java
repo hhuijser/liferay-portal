@@ -142,8 +142,6 @@ public class MBThreadIndexerIndexedFieldsTest {
 			MBThread mbThread, MBMessage mbMessage)
 		throws Exception {
 
-		Date lastPostDate = mbThread.getLastPostDate();
-
 		Map<String, String> map = HashMapBuilder.put(
 			Field.COMPANY_ID, String.valueOf(mbThread.getCompanyId())
 		).put(
@@ -165,7 +163,12 @@ public class MBThreadIndexerIndexedFieldsTest {
 		).put(
 			"discussion", "false"
 		).put(
-			"lastPostDate", String.valueOf(lastPostDate.getTime())
+			"lastPostDate",
+			() -> {
+				Date lastPostDate = mbThread.getLastPostDate();
+
+				return String.valueOf(lastPostDate.getTime());
+			}
 		).put(
 			"participantUserIds",
 			String.valueOf(_getValues(mbThread.getParticipantUserIds()))

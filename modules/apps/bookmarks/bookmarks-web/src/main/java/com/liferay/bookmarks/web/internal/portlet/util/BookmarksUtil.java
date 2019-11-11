@@ -158,10 +158,6 @@ public class BookmarksUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Company company = themeDisplay.getCompany();
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		return LinkedHashMapBuilder.put(
 			"[$BOOKMARKS_ENTRY_USER_NAME$]",
 			LanguageUtil.get(
@@ -180,9 +176,20 @@ public class BookmarksUtil {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]", company.getVirtualHostname()
+			"[$PORTAL_URL$]",
+			() -> {
+				Company company = themeDisplay.getCompany();
+
+				return company.getVirtualHostname();
+			}
 		).put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+			"[$PORTLET_NAME$]",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				return HtmlUtil.escape(portletDisplay.getTitle());
+			}
 		).put(
 			"[$TO_ADDRESS$]",
 			LanguageUtil.get(

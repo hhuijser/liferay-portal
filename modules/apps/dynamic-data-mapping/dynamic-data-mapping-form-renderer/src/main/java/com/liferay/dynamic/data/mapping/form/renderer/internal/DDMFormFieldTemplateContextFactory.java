@@ -240,10 +240,13 @@ public class DDMFormFieldTemplateContextFactory {
 		Map<String, LocalizedValue> options = ddmFormFieldOptions.getOptions();
 
 		for (Map.Entry<String, LocalizedValue> entry : options.entrySet()) {
-			LocalizedValue localizedValue = entry.getValue();
-
 			Map<String, String> option = HashMapBuilder.put(
-				"label", localizedValue.getString(_locale)
+				"label",
+				() -> {
+					LocalizedValue localizedValue = entry.getValue();
+
+					return localizedValue.getString(_locale);
+				}
 			).put(
 				"value", entry.getKey()
 			).build();
@@ -575,9 +578,6 @@ public class DDMFormFieldTemplateContextFactory {
 				parameterLocalizedValue.getString(_locale));
 		}
 
-		DDMFormFieldValidationExpression ddmFormFieldValidationExpression =
-			ddmFormFieldValidation.getDDMFormFieldValidationExpression();
-
 		Map<String, Object> validation = HashMapBuilder.<String, Object>put(
 			"dataType",
 			GetterUtil.getString(
@@ -587,17 +587,24 @@ public class DDMFormFieldTemplateContextFactory {
 			"errorMessage", errorMessage
 		).put(
 			"expression",
-			new HashMap() {
-				{
-					put(
-						"name",
-						GetterUtil.getString(
-							ddmFormFieldValidationExpression.getName()));
-					put(
-						"value",
-						GetterUtil.getString(
-							ddmFormFieldValidationExpression.getValue()));
-				}
+			() -> {
+				DDMFormFieldValidationExpression
+					ddmFormFieldValidationExpression =
+						ddmFormFieldValidation.
+							getDDMFormFieldValidationExpression();
+
+				return new HashMap() {
+					{
+						put(
+							"name",
+							GetterUtil.getString(
+								ddmFormFieldValidationExpression.getName()));
+						put(
+							"value",
+							GetterUtil.getString(
+								ddmFormFieldValidationExpression.getValue()));
+					}
+				};
 			}
 		).put(
 			"fieldName",

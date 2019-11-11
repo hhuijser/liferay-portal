@@ -300,14 +300,17 @@ public class SegmentsExperimentDisplayContext {
 	}
 
 	private Map<String, Object> _getPage() {
-		Layout layout = _themeDisplay.getLayout();
-
 		return HashMapBuilder.<String, Object>put(
 			"classNameId", PortalUtil.getClassNameId(Layout.class.getName())
 		).put(
 			"classPK", _themeDisplay.getPlid()
 		).put(
-			"type", layout.getType()
+			"type",
+			() -> {
+				Layout layout = _themeDisplay.getLayout();
+
+				return layout.getType();
+			}
 		).build();
 	}
 

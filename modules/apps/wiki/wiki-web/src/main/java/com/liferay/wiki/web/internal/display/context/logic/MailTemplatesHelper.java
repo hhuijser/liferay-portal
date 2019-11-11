@@ -75,8 +75,6 @@ public class MailTemplatesHelper {
 	public Map<String, String> getEmailNotificationDefinitionTerms() {
 		ResourceBundle resourceBundle = getResourceBundle();
 
-		Company company = _wikiRequestHelper.getCompany();
-
 		return LinkedHashMapBuilder.put(
 			"[$COMPANY_ID$]",
 			LanguageUtil.get(
@@ -138,7 +136,12 @@ public class MailTemplatesHelper {
 			"[$PAGE_USER_NAME$]",
 			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page")
 		).put(
-			"[$PORTAL_URL$]", company.getVirtualHostname()
+			"[$PORTAL_URL$]",
+			() -> {
+				Company company = _wikiRequestHelper.getCompany();
+
+				return company.getVirtualHostname();
+			}
 		).put(
 			"[$PORTLET_NAME$]", _wikiRequestHelper.getPortletTitle()
 		).put(

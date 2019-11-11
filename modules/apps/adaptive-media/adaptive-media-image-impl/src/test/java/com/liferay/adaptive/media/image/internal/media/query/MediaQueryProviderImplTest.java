@@ -731,8 +731,6 @@ public class MediaQueryProviderImplTest {
 			String url)
 		throws Exception {
 
-		AMAttribute amAttribute = AMAttribute.getConfigurationUuidAMAttribute();
-
 		Map<String, String> properties = HashMapBuilder.put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
 			String.valueOf(height)
@@ -740,7 +738,13 @@ public class MediaQueryProviderImplTest {
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
 			String.valueOf(width)
 		).put(
-			amAttribute.getName(), amImageConfigurationEntryUuid
+			() -> {
+				AMAttribute amAttribute =
+					AMAttribute.getConfigurationUuidAMAttribute();
+
+				return amAttribute.getName();
+			},
+			amImageConfigurationEntryUuid
 		).build();
 
 		return new AMImage(

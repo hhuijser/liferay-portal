@@ -298,25 +298,39 @@ public class AMImageRequestHandlerTest {
 
 		Map<String, String> configurationEntryProperties =
 			amImageConfigurationEntry.getProperties();
-		AMAttribute<Object, String> configurationUuidAMAttribute =
-			AMAttribute.getConfigurationUuidAMAttribute();
-		AMAttribute<Object, Long> contentLengthAMAttribute =
-			AMAttribute.getContentLengthAMAttribute();
-		AMAttribute<Object, String> contentTypeAMAttribute =
-			AMAttribute.getContentTypeAMAttribute();
-		AMAttribute<Object, String> fileNameAMAttribute =
-			AMAttribute.getFileNameAMAttribute();
 
 		Map<String, String> properties = HashMapBuilder.put(
-			configurationUuidAMAttribute.getName(),
+			() -> {
+				AMAttribute<Object, String> configurationUuidAMAttribute =
+					AMAttribute.getConfigurationUuidAMAttribute();
+
+				return configurationUuidAMAttribute.getName();
+			},
 			amImageConfigurationEntry.getUUID()
 		).put(
-			contentLengthAMAttribute.getName(),
+			() -> {
+				AMAttribute<Object, Long> contentLengthAMAttribute =
+					AMAttribute.getContentLengthAMAttribute();
+
+				return contentLengthAMAttribute.getName();
+			},
 			String.valueOf(fileVersion.getSize())
 		).put(
-			contentTypeAMAttribute.getName(), fileVersion.getMimeType()
+			() -> {
+				AMAttribute<Object, String> contentTypeAMAttribute =
+					AMAttribute.getContentTypeAMAttribute();
+
+				return contentTypeAMAttribute.getName();
+			},
+			fileVersion.getMimeType()
 		).put(
-			fileNameAMAttribute.getName(), fileVersion.getFileName()
+			() -> {
+				AMAttribute<Object, String> fileNameAMAttribute =
+					AMAttribute.getFileNameAMAttribute();
+
+				return fileNameAMAttribute.getName();
+			},
+			fileVersion.getFileName()
 		).put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),
 			configurationEntryProperties.get("max-height")

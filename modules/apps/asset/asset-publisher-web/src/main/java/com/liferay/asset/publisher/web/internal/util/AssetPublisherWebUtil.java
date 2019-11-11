@@ -320,10 +320,6 @@ public class AssetPublisherWebUtil {
 		ThemeDisplay themeDisplay = (ThemeDisplay)portletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Company company = themeDisplay.getCompany();
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		return LinkedHashMapBuilder.put(
 			"[$ASSET_ENTRIES$]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-list-of-assets")
@@ -347,7 +343,12 @@ public class AssetPublisherWebUtil {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]", company.getVirtualHostname()
+			"[$PORTAL_URL$]",
+			() -> {
+				Company company = themeDisplay.getCompany();
+
+				return company.getVirtualHostname();
+			}
 		).put(
 			"[$PORTLET_NAME$]",
 			HtmlUtil.escape(
@@ -355,7 +356,13 @@ public class AssetPublisherWebUtil {
 					AssetPublisherPortletKeys.ASSET_PUBLISHER,
 					themeDisplay.getLocale()))
 		).put(
-			"[$PORTLET_TITLE$]", HtmlUtil.escape(portletDisplay.getTitle())
+			"[$PORTLET_TITLE$]",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				return HtmlUtil.escape(portletDisplay.getTitle());
+			}
 		).put(
 			"[$SITE_NAME$]",
 			LanguageUtil.get(

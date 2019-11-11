@@ -175,12 +175,15 @@ public class FlagsTag extends IncludeTag {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		Company company = themeDisplay.getCompany();
-
 		Map<String, Object> props = HashMapBuilder.<String, Object>put(
 			"baseData", _getDataJSONObject(themeDisplay)
 		).put(
-			"companyName", company.getName()
+			"companyName",
+			() -> {
+				Company company = themeDisplay.getCompany();
+
+				return company.getName();
+			}
 		).put(
 			"disabled", !_enabled
 		).put(

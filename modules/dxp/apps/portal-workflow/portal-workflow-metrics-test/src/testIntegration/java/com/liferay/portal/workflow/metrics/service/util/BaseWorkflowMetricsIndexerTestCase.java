@@ -472,14 +472,16 @@ public abstract class BaseWorkflowMetricsIndexerTestCase
 	private Map<String, Serializable> _createWorkflowContext()
 		throws PortalException {
 
-		BlogsEntry blogsEntry = addBlogsEntry();
-
 		return HashMapBuilder.<String, Serializable>put(
 			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME,
 			BlogsEntry.class.getName()
 		).put(
 			WorkflowConstants.CONTEXT_ENTRY_CLASS_PK,
-			String.valueOf(blogsEntry.getEntryId())
+			() -> {
+				BlogsEntry blogsEntry = addBlogsEntry();
+
+				return String.valueOf(blogsEntry.getEntryId());
+			}
 		).build();
 	}
 

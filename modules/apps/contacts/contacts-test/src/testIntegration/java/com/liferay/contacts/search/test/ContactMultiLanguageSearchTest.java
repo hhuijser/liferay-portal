@@ -82,10 +82,13 @@ public class ContactMultiLanguageSearchTest {
 
 		String keywords = "你好";
 
-		Contact contact = contactFixture.addContact(keywords);
-
 		Map<String, String> map = HashMapBuilder.put(
-			_PREFIX, contact.getFullName()
+			_PREFIX,
+			() -> {
+				Contact contact = contactFixture.addContact(keywords);
+
+				return contact.getFullName();
+			}
 		).build();
 
 		assertFieldValues(_PREFIX, locale, map, keywords);
@@ -116,10 +119,13 @@ public class ContactMultiLanguageSearchTest {
 
 		String keywords = "東京";
 
-		Contact contact = contactFixture.addContact(keywords);
-
 		Map<String, String> map = HashMapBuilder.put(
-			_PREFIX, contact.getFullName()
+			_PREFIX,
+			() -> {
+				Contact contact = contactFixture.addContact(keywords);
+
+				return contact.getFullName();
+			}
 		).build();
 
 		assertFieldValues(_PREFIX, locale, map, keywords);

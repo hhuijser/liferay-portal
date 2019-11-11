@@ -162,10 +162,6 @@ public class JournalUtil {
 				themeDisplay.getLocale(), "the-address-of-the-email-sender");
 		}
 
-		Company company = themeDisplay.getCompany();
-
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
 		return LinkedHashMapBuilder.put(
 			"[$ARTICLE_CONTENT]",
 			LanguageUtil.get(themeDisplay.getLocale(), "the-web-content")
@@ -193,9 +189,20 @@ public class JournalUtil {
 		).put(
 			"[$FROM_NAME$]", fromName
 		).put(
-			"[$PORTAL_URL$]", company.getVirtualHostname()
+			"[$PORTAL_URL$]",
+			() -> {
+				Company company = themeDisplay.getCompany();
+
+				return company.getVirtualHostname();
+			}
 		).put(
-			"[$PORTLET_NAME$]", HtmlUtil.escape(portletDisplay.getTitle())
+			"[$PORTLET_NAME$]",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				return HtmlUtil.escape(portletDisplay.getTitle());
+			}
 		).put(
 			"[$TO_ADDRESS$]", toAddress
 		).put(

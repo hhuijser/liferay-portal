@@ -103,13 +103,16 @@ public class BlogEntriesDisplayContext {
 	}
 
 	public Map<String, Object> getComponentContext() throws PortalException {
-		ThemeDisplay themeDisplay =
-			(ThemeDisplay)_httpServletRequest.getAttribute(
-				WebKeys.THEME_DISPLAY);
-
 		return HashMapBuilder.<String, Object>put(
 			"trashEnabled",
-			_trashHelper.isTrashEnabled(themeDisplay.getScopeGroupId())
+			() -> {
+				ThemeDisplay themeDisplay =
+					(ThemeDisplay)_httpServletRequest.getAttribute(
+						WebKeys.THEME_DISPLAY);
+
+				return _trashHelper.isTrashEnabled(
+					themeDisplay.getScopeGroupId());
+			}
 		).build();
 	}
 

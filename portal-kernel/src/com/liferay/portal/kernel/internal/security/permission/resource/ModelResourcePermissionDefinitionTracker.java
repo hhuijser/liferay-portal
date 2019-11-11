@@ -90,11 +90,14 @@ public class ModelResourcePermissionDefinitionTracker {
 			ModelResourcePermission<?> modelResourcePermission = _create(
 				modelResourcePermissionDefinition);
 
-			Class<?> modelClass =
-				modelResourcePermissionDefinition.getModelClass();
-
 			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
-				"model.class.name", modelClass.getName()
+				"model.class.name",
+				() -> {
+					Class<?> modelClass =
+						modelResourcePermissionDefinition.getModelClass();
+
+					return modelClass.getName();
+				}
 			).build();
 
 			Object serviceRanking = serviceReference.getProperty(

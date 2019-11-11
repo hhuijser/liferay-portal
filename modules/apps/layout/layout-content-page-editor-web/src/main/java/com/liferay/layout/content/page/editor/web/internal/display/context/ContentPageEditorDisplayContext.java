@@ -516,33 +516,45 @@ public class ContentPageEditorDisplayContext {
 			return _defaultConfigurations;
 		}
 
-		EditorConfiguration commentEditorConfiguration =
-			EditorConfigurationFactoryUtil.getEditorConfiguration(
-				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-				"pageEditorCommentEditor", StringPool.BLANK,
-				Collections.emptyMap(), themeDisplay,
-				RequestBackedPortletURLFactoryUtil.create(request));
-
-		EditorConfiguration richTextEditorConfiguration =
-			EditorConfigurationFactoryUtil.getEditorConfiguration(
-				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-				"fragmenEntryLinkRichTextEditor", StringPool.BLANK,
-				Collections.emptyMap(), themeDisplay,
-				RequestBackedPortletURLFactoryUtil.create(request));
-
-		EditorConfiguration editorConfiguration =
-			EditorConfigurationFactoryUtil.getEditorConfiguration(
-				ContentPageEditorPortletKeys.CONTENT_PAGE_EDITOR_PORTLET,
-				"fragmenEntryLinkEditor", StringPool.BLANK,
-				Collections.emptyMap(), themeDisplay,
-				RequestBackedPortletURLFactoryUtil.create(request));
-
 		Map<String, Object> configurations = HashMapBuilder.<String, Object>put(
-			"comment", commentEditorConfiguration.getData()
+			"comment",
+			() -> {
+				EditorConfiguration commentEditorConfiguration =
+					EditorConfigurationFactoryUtil.getEditorConfiguration(
+						ContentPageEditorPortletKeys.
+							CONTENT_PAGE_EDITOR_PORTLET,
+						"pageEditorCommentEditor", StringPool.BLANK,
+						Collections.emptyMap(), themeDisplay,
+						RequestBackedPortletURLFactoryUtil.create(request));
+
+				return commentEditorConfiguration.getData();
+			}
 		).put(
-			"rich-text", richTextEditorConfiguration.getData()
+			"rich-text",
+			() -> {
+				EditorConfiguration richTextEditorConfiguration =
+					EditorConfigurationFactoryUtil.getEditorConfiguration(
+						ContentPageEditorPortletKeys.
+							CONTENT_PAGE_EDITOR_PORTLET,
+						"fragmenEntryLinkRichTextEditor", StringPool.BLANK,
+						Collections.emptyMap(), themeDisplay,
+						RequestBackedPortletURLFactoryUtil.create(request));
+
+				return richTextEditorConfiguration.getData();
+			}
 		).put(
-			"text", editorConfiguration.getData()
+			"text",
+			() -> {
+				EditorConfiguration editorConfiguration =
+					EditorConfigurationFactoryUtil.getEditorConfiguration(
+						ContentPageEditorPortletKeys.
+							CONTENT_PAGE_EDITOR_PORTLET,
+						"fragmenEntryLinkEditor", StringPool.BLANK,
+						Collections.emptyMap(), themeDisplay,
+						RequestBackedPortletURLFactoryUtil.create(request));
+
+				return editorConfiguration.getData();
+			}
 		).build();
 
 		_defaultConfigurations = configurations;

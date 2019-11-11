@@ -197,8 +197,6 @@ public class UserIndexerIndexedFieldsTest {
 	private Map<String, String> _expectedValues(User user) throws Exception {
 		String groupId = String.valueOf(user.getGroupIds()[0]);
 
-		long[] organizationIds = user.getOrganizationIds();
-
 		Map<String, String> map = HashMapBuilder.put(
 			Field.COMPANY_ID, String.valueOf(user.getCompanyId())
 		).put(
@@ -232,7 +230,12 @@ public class UserIndexerIndexedFieldsTest {
 		).put(
 			"lastName_sortable", StringUtil.toLowerCase(user.getLastName())
 		).put(
-			"organizationCount", String.valueOf(organizationIds.length)
+			"organizationCount",
+			() -> {
+				long[] organizationIds = user.getOrganizationIds();
+
+				return String.valueOf(organizationIds.length);
+			}
 		).put(
 			"roleIds", _getValues(user.getRoleIds())
 		).put(

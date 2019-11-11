@@ -98,16 +98,21 @@ public abstract class BaseGadgetPortlet extends MVCPortlet {
 				expandoTable.getTableId(), columnName,
 				ExpandoColumnConstants.STRING);
 
-			Role guestRole = RoleLocalServiceUtil.getRole(
-				expandoColumn.getCompanyId(), RoleConstants.GUEST);
-
-			Role userRole = RoleLocalServiceUtil.getRole(
-				expandoColumn.getCompanyId(), RoleConstants.USER);
-
 			Map<Long, String[]> roleIdsToActionIds = HashMapBuilder.put(
-				guestRole.getRoleId(), new String[] {ActionKeys.VIEW}
+				() -> {
+					Role guestRole = RoleLocalServiceUtil.getRole(
+						expandoColumn.getCompanyId(), RoleConstants.GUEST);
+
+					return guestRole.getRoleId();
+				},
+				new String[] {ActionKeys.VIEW}
 			).put(
-				userRole.getRoleId(),
+				() -> {
+					Role userRole = RoleLocalServiceUtil.getRole(
+						expandoColumn.getCompanyId(), RoleConstants.USER);
+
+					return userRole.getRoleId();
+				},
 				new String[] {ActionKeys.UPDATE, ActionKeys.VIEW}
 			).build();
 

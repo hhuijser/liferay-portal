@@ -114,16 +114,20 @@ public class DLBreadcrumbUtil {
 		portletURL.setParameter(
 			"mvcRenderCommandName", "/document_library/view");
 
-		PortletDisplay portletDisplay = themeDisplay.getPortletDisplay();
-
-		DLPortletInstanceSettings dlPortletInstanceSettings =
-			DLPortletInstanceSettings.getInstance(
-				themeDisplay.getLayout(), portletDisplay.getId());
-
 		Map<String, Object> data = HashMapBuilder.<String, Object>put(
 			"direction-right", Boolean.TRUE.toString()
 		).put(
-			"folder-id", dlPortletInstanceSettings.getRootFolderId()
+			"folder-id",
+			() -> {
+				PortletDisplay portletDisplay =
+					themeDisplay.getPortletDisplay();
+
+				DLPortletInstanceSettings dlPortletInstanceSettings =
+					DLPortletInstanceSettings.getInstance(
+						themeDisplay.getLayout(), portletDisplay.getId());
+
+				return dlPortletInstanceSettings.getRootFolderId();
+			}
 		).build();
 
 		PortalUtil.addPortletBreadcrumbEntry(

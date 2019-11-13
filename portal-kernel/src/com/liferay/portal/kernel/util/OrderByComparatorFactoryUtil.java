@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.bean.BeanPropertiesUtil;
 import com.liferay.portal.kernel.model.BaseModel;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -179,18 +178,23 @@ public class OrderByComparatorFactoryUtil {
 		private static final String _ORDER_BY_DESC = " DESC";
 
 		private static final Map<Class<?>, Object> _primitiveObjects =
-			new HashMap<Class<?>, Object>() {
-				{
-					put(boolean.class, Boolean.TRUE);
-					put(byte.class, Byte.valueOf("0"));
-					put(char.class, Character.valueOf('0'));
-					put(double.class, Double.valueOf(0));
-					put(float.class, Float.valueOf(0));
-					put(int.class, Integer.valueOf(0));
-					put(long.class, Long.valueOf(0));
-					put(short.class, Short.valueOf("0"));
-				}
-			};
+			HashMapBuilder.<Class<?>, Object>put(
+				boolean.class, Boolean.TRUE
+			).put(
+				byte.class, Byte.valueOf("0")
+			).put(
+				char.class, Character.valueOf('0')
+			).put(
+				double.class, Double.valueOf(0)
+			).put(
+				float.class, Float.valueOf(0)
+			).put(
+				int.class, Integer.valueOf(0)
+			).put(
+				long.class, Long.valueOf(0)
+			).put(
+				short.class, Short.valueOf("0")
+			).build();
 
 		private final Object[] _columns;
 		private final String _tableName;

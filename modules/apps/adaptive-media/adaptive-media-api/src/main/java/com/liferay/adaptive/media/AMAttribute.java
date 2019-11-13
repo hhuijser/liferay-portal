@@ -15,8 +15,8 @@
 package com.liferay.adaptive.media;
 
 import com.liferay.adaptive.media.util.AMAttributeConverterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -167,20 +167,16 @@ public final class AMAttribute<T, V> {
 		new AMAttribute<>("file-name", value -> value, String::compareTo);
 
 	private static final Map<String, AMAttribute<?, ?>> _allowedAMAttributes =
-		new HashMap<String, AMAttribute<?, ?>>() {
-			{
-				put(
-					_AM_ATTRIBUTE_CONFIGURATION_UUID.getName(),
-					_AM_ATTRIBUTE_CONFIGURATION_UUID);
-				put(
-					_AM_ATTRIBUTE_CONTENT_LENGTH.getName(),
-					_AM_ATTRIBUTE_CONTENT_LENGTH);
-				put(
-					_AM_ATTRIBUTE_CONTENT_TYPE.getName(),
-					_AM_ATTRIBUTE_CONTENT_TYPE);
-				put(_AM_ATTRIBUTE_FILE_NAME.getName(), _AM_ATTRIBUTE_FILE_NAME);
-			}
-		};
+		HashMapBuilder.<String, AMAttribute<?, ?>>put(
+			_AM_ATTRIBUTE_CONFIGURATION_UUID.getName(),
+			_AM_ATTRIBUTE_CONFIGURATION_UUID
+		).put(
+			_AM_ATTRIBUTE_CONTENT_LENGTH.getName(), _AM_ATTRIBUTE_CONTENT_LENGTH
+		).put(
+			_AM_ATTRIBUTE_CONTENT_TYPE.getName(), _AM_ATTRIBUTE_CONTENT_TYPE
+		).put(
+			_AM_ATTRIBUTE_FILE_NAME.getName(), _AM_ATTRIBUTE_FILE_NAME
+		).build();
 
 	private final AMDistanceComparator<V> _amDistanceComparator;
 	private final Function<String, V> _converterFunction;

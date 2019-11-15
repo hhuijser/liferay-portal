@@ -23,7 +23,11 @@ ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_
 
 int assetEntryOrder = searchContainer.getStart() + row.getPos();
 
-boolean last = (assetEntryOrder == (searchContainer.getTotal() - 1));
+boolean last = false;
+
+if (assetEntryOrder == (searchContainer.getTotal() - 1)) {
+	last = true;
+}
 %>
 
 <c:choose>

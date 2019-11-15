@@ -64,7 +64,11 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 SearchContainer kbObjectSearchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, null, "there-are-no-entries");
 
-boolean kbFolderView = (resourceClassNameId == kbFolderClassNameId);
+boolean kbFolderView = false;
+
+if (resourceClassNameId == kbFolderClassNameId) {
+	kbFolderView = true;
+}
 
 if (kbFolderView) {
 	kbObjectSearchContainer.setTotal(KBFolderServiceUtil.getKBFoldersCount(scopeGroupId, parentResourcePrimKey));

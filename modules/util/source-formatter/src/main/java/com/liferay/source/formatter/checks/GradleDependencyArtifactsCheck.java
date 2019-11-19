@@ -77,6 +77,8 @@ public class GradleDependencyArtifactsCheck extends BaseFileCheck {
 		String absolutePath, String content,
 		List<String> enforceVersionArtifacts) {
 
+		boolean relengSkipUpdateFileVersionsFile =
+			_isRelengSkipUpdateFileVersionsFile(absolutePath);
 		boolean testModule = _isTestModule(absolutePath);
 		boolean testUtilModule = _isTestUtilModule(absolutePath);
 
@@ -84,7 +86,8 @@ public class GradleDependencyArtifactsCheck extends BaseFileCheck {
 			String[] artifactParts = StringUtil.split(
 				artifact, StringPool.COLON);
 
-			if ((testModule || testUtilModule) &&
+			if ((testModule || testUtilModule ||
+				 relengSkipUpdateFileVersionsFile) &&
 				Objects.equals(artifactParts[0], "com.liferay.portal")) {
 
 				continue;
@@ -278,6 +281,26 @@ public class GradleDependencyArtifactsCheck extends BaseFileCheck {
 
 			File file = new File(
 				absolutePath.substring(0, x + 1) + ".lfrbuild-master-only");
+
+			if (file.exists()) {
+				return true;
+			}
+		}
+	}
+
+	private boolean _isRelengSkipUpdateFileVersionsFile(String absolutePath) {
+		int x = absolutePath.length();
+
+		while (true) {
+			x = absolutePath.lastIndexOf(StringPool.SLASH, x - 1);
+
+			if (x == -1) {
+				return false;
+			}
+
+			File file = new File(
+				absolutePath.substring(0, x + 1) +
+					".lfrbuild-releng-skip-update-file-versions");
 
 			if (file.exists()) {
 				return true;

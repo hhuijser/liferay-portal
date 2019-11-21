@@ -2501,7 +2501,7 @@ public class IntrabandProxyUtilTest {
 		).put(
 			char.class, (char)0
 		).put(
-			Date.class, null
+			Date.class, (Object)null
 		).put(
 			double.class, (double)0
 		).put(
@@ -2511,13 +2511,13 @@ public class IntrabandProxyUtilTest {
 		).put(
 			long.class, (long)0
 		).put(
-			Object.class, null
+			Object.class, (Object)null
 		).put(
 			short.class, (short)0
 		).put(
-			String.class, null
+			String.class, (Object)null
 		).put(
-			void.class, null
+			void.class, (Object)null
 		).build();
 	private static final Method _getVisibleMethodsMethod;
 	private static final Map<Class<?>, Object> _sampleValueMap =
@@ -2544,7 +2544,7 @@ public class IntrabandProxyUtilTest {
 		).put(
 			String.class, "Hello"
 		).put(
-			void.class, null
+			void.class, (Object)null
 		).build();
 	private static final Type[] _types = {
 		Type.BOOLEAN_TYPE, Type.BYTE_TYPE, Type.CHAR_TYPE, Type.DOUBLE_TYPE,

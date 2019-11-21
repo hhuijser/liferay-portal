@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<suppressions>
+	<checkstyle>
+		<suppress checks="FullyQualifiedNameCheck" files="modules/apps/message-boards/message-boards-web/src/main/resources/META-INF/resources/message_boards/asset/abstract\.jsp" />
+		<suppress checks="FullyQualifiedNameCheck" files="modules/apps/message-boards/message-boards-web/src/main/resources/META-INF/resources/message_boards/view_thread_message\.jsp" />
+	</checkstyle>
+</suppressions>

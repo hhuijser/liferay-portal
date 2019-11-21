@@ -289,38 +289,37 @@ public class NodeExtension {
 		_useNpm = useNpm;
 	}
 
-	private static final Map<String, String> _npmVersions =
-		HashMapBuilder.<String, String>put(
-			"5.5.0", "3.3.12"
-		).put(
-			"5.6.0", "3.6.0"
-		).put(
-			"5.7.0", "3.6.0"
-		).put(
-			"5.7.1", "3.6.0"
-		).put(
-			"5.8.0", "3.7.3"
-		).put(
-			"5.9.0", "3.7.3"
-		).put(
-			"5.9.1", "3.7.3"
-		).put(
-			"5.10.0", "3.8.3"
-		).put(
-			"5.10.1", "3.8.3"
-		).put(
-			"5.11.0", "3.8.6"
-		).put(
-			"5.11.1", "3.8.6"
-		).put(
-			"5.12.0", "3.8.6"
-		).put(
-			"6.0.0", "3.8.6"
-		).put(
-			"6.1.0", "3.8.6"
-		).put(
-			"6.2.0", "3.8.9"
-		).build();
+	private static final Map<String, String> _npmVersions = HashMapBuilder.put(
+		"5.5.0", "3.3.12"
+	).put(
+		"5.6.0", "3.6.0"
+	).put(
+		"5.7.0", "3.6.0"
+	).put(
+		"5.7.1", "3.6.0"
+	).put(
+		"5.8.0", "3.7.3"
+	).put(
+		"5.9.0", "3.7.3"
+	).put(
+		"5.9.1", "3.7.3"
+	).put(
+		"5.10.0", "3.8.3"
+	).put(
+		"5.10.1", "3.8.3"
+	).put(
+		"5.11.0", "3.8.6"
+	).put(
+		"5.11.1", "3.8.6"
+	).put(
+		"5.12.0", "3.8.6"
+	).put(
+		"6.0.0", "3.8.6"
+	).put(
+		"6.1.0", "3.8.6"
+	).put(
+		"6.2.0", "3.8.9"
+	).build();
 
 	private boolean _download;
 	private boolean _global;

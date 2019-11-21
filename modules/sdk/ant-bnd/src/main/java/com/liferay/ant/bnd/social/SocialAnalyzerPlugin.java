@@ -141,19 +141,18 @@ public class SocialAnalyzerPlugin implements AnalyzerPlugin {
 
 	private static final DocumentBuilderFactory _documentBuilderFactory =
 		DocumentBuilderFactory.newInstance();
-	private static final Map<String, String> _publicIds =
-		HashMapBuilder.<String, String>put(
-			"-//Liferay//DTD Social 6.1.0//EN",
-			"com/liferay/portal/definitions/liferay-social_6_1_0.dtd"
-		).put(
-			"-//Liferay//DTD Social 6.2.0//EN",
-			"com/liferay/portal/definitions/liferay-social_6_2_0.dtd"
-		).put(
-			"-//Liferay//DTD Social 7.0.0//EN",
-			"com/liferay/portal/definitions/liferay-social_7_0_0.dtd"
-		).put(
-			"-//Liferay//DTD Social 7.1.0//EN",
-			"com/liferay/portal/definitions/liferay-social_7_1_0.dtd"
-		).build();
+	private static final Map<String, String> _publicIds = HashMapBuilder.put(
+		"-//Liferay//DTD Social 6.1.0//EN",
+		"com/liferay/portal/definitions/liferay-social_6_1_0.dtd"
+	).put(
+		"-//Liferay//DTD Social 6.2.0//EN",
+		"com/liferay/portal/definitions/liferay-social_6_2_0.dtd"
+	).put(
+		"-//Liferay//DTD Social 7.0.0//EN",
+		"com/liferay/portal/definitions/liferay-social_7_0_0.dtd"
+	).put(
+		"-//Liferay//DTD Social 7.1.0//EN",
+		"com/liferay/portal/definitions/liferay-social_7_1_0.dtd"
+	).build();
 
 }

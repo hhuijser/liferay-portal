@@ -283,7 +283,7 @@ public class PortalGitWorkingDirectory extends GitWorkingDirectory {
 		}
 
 		private static Map<Integer, String[]> _markerFileNames =
-			HashMapBuilder.<Integer, String[]>put(
+			HashMapBuilder.put(
 				0, new String[] {".lfrbuild-release-src", ".gitrepo"}
 			).put(
 				1, new String[] {"app.bnd"}

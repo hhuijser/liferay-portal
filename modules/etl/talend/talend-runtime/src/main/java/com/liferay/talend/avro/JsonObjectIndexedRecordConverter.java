@@ -14,13 +14,13 @@
 
 package com.liferay.talend.avro;
 
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.talend.avro.exception.ConverterException;
 import com.liferay.talend.common.json.JsonFinder;
 
 import java.math.BigDecimal;
 
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.json.JsonNumber;
@@ -237,16 +237,19 @@ public class JsonObjectIndexedRecordConverter {
 		JsonObjectIndexedRecordConverter.class);
 
 	private static final Map<Schema.Type, AvroConverter> _converterRegistry =
-		new HashMap<Schema.Type, AvroConverter>() {
-			{
-				put(Schema.Type.BOOLEAN, new StringBooleanConverter());
-				put(Schema.Type.DOUBLE, new StringDoubleConverter());
-				put(Schema.Type.FLOAT, new StringFloatConverter());
-				put(Schema.Type.INT, new StringIntConverter());
-				put(Schema.Type.LONG, new StringLongConverter());
-				put(Schema.Type.STRING, new StringStringConverter());
-			}
-		};
+		HashMapBuilder.<Schema.Type, AvroConverter>put(
+			Schema.Type.BOOLEAN, new StringBooleanConverter()
+		).put(
+			Schema.Type.DOUBLE, new StringDoubleConverter()
+		).put(
+			Schema.Type.FLOAT, new StringFloatConverter()
+		).put(
+			Schema.Type.INT, new StringIntConverter()
+		).put(
+			Schema.Type.LONG, new StringLongConverter()
+		).put(
+			Schema.Type.STRING, new StringStringConverter()
+		).build();
 	private static final JsonFinder _jsonFinder = new JsonFinder();
 
 	private final Schema _schema;

@@ -15,6 +15,7 @@
 package com.liferay.portal.tools.db.upgrade.client;
 
 import com.liferay.gogo.shell.client.GogoShellClient;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.tools.db.upgrade.client.util.Properties;
 import com.liferay.portal.tools.db.upgrade.client.util.TeePrintStream;
 
@@ -37,7 +38,6 @@ import java.security.ProtectionDomain;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -711,28 +711,35 @@ public class UpgradeClient {
 	private static final String _JAVA_HOME = System.getenv("JAVA_HOME");
 
 	private static final Map<String, AppServer> _appServers =
-		new LinkedHashMap<String, AppServer>() {
-			{
-				put("jboss", AppServer.getJBossEAPAppServer());
-				put("tcserver", AppServer.getTCServerAppServer());
-				put("tomcat", AppServer.getTomcatAppServer());
-				put("weblogic", AppServer.getWebLogicAppServer());
-				put("websphere", AppServer.getWebSphereAppServer());
-				put("wildfly", AppServer.getWildFlyAppServer());
-			}
-		};
+		LinkedHashMapBuilder.<String, AppServer>put(
+			"jboss", AppServer.getJBossEAPAppServer()
+		).put(
+			"tcserver", AppServer.getTCServerAppServer()
+		).put(
+			"tomcat", AppServer.getTomcatAppServer()
+		).put(
+			"weblogic", AppServer.getWebLogicAppServer()
+		).put(
+			"websphere", AppServer.getWebSphereAppServer()
+		).put(
+			"wildfly", AppServer.getWildFlyAppServer()
+		).build();
 	private static final Map<String, Database> _databases =
-		new LinkedHashMap<String, Database>() {
-			{
-				put("db2", Database.getDB2Database());
-				put("mariadb", Database.getMariaDBDatabase());
-				put("mysql", Database.getMySQLDatabase());
-				put("oracle", Database.getOracleDataSource());
-				put("postgresql", Database.getPostgreSQLDatabase());
-				put("sqlserver", Database.getSQLServerDatabase());
-				put("sybase", Database.getSybaseDatabase());
-			}
-		};
+		LinkedHashMapBuilder.<String, Database>put(
+			"db2", Database.getDB2Database()
+		).put(
+			"mariadb", Database.getMariaDBDatabase()
+		).put(
+			"mysql", Database.getMySQLDatabase()
+		).put(
+			"oracle", Database.getOracleDataSource()
+		).put(
+			"postgresql", Database.getPostgreSQLDatabase()
+		).put(
+			"sqlserver", Database.getSQLServerDatabase()
+		).put(
+			"sybase", Database.getSybaseDatabase()
+		).build();
 	private static File _jarDir;
 
 	static {

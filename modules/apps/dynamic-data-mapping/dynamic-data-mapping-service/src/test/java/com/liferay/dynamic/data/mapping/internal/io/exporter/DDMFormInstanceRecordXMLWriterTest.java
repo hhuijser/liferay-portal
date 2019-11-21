@@ -18,6 +18,7 @@ import com.liferay.dynamic.data.mapping.io.exporter.DDMFormInstanceRecordWriterR
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.PropsKeys;
 import com.liferay.portal.kernel.xml.Document;
 import com.liferay.portal.kernel.xml.Element;
@@ -25,7 +26,6 @@ import com.liferay.portal.kernel.xml.SAXReader;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -125,20 +125,18 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 		Element element = mock(Element.class);
 
 		Map<String, String> ddmFormFieldsLabel =
-			new LinkedHashMap<String, String>() {
-				{
-					put("field1", "Field 1");
-					put("field2", "Field 2");
-				}
-			};
+			LinkedHashMapBuilder.<String, String>put(
+				"field1", "Field 1"
+			).put(
+				"field2", "Field 2"
+			).build();
 
 		Map<String, String> ddmFormFieldsValue =
-			new LinkedHashMap<String, String>() {
-				{
-					put("field1", "Value 1");
-					put("field2", "Value 2");
-				}
-			};
+			LinkedHashMapBuilder.<String, String>put(
+				"field1", "Value 1"
+			).put(
+				"field2", "Value 2"
+			).build();
 
 		Mockito.doCallRealMethod(
 		).when(
@@ -179,14 +177,15 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 			DDMFormInstanceRecordXMLWriter.class);
 
 		Map<String, String> ddmFormFieldsLabel =
-			new LinkedHashMap<String, String>() {
-				{
-					put("field1", "Field 1");
-					put("field2", "Field 2");
-					put("field3", "Field 3");
-					put("field4", "Field 4");
-				}
-			};
+			LinkedHashMapBuilder.<String, String>put(
+				"field1", "Field 1"
+			).put(
+				"field2", "Field 2"
+			).put(
+				"field3", "Field 3"
+			).put(
+				"field4", "Field 4"
+			).build();
 
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {

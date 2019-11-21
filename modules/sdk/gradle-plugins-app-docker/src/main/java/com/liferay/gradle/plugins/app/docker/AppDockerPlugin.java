@@ -21,13 +21,13 @@ import com.bmuschko.gradle.docker.tasks.image.DockerTagImage;
 
 import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.Validator;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import groovy.lang.Closure;
 
 import java.io.File;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -409,12 +409,12 @@ public class AppDockerPlugin implements Plugin<Project> {
 	}
 
 	private static final Map<String, Object> _fixCrLfArgs =
-		new HashMap<String, Object>() {
-			{
-				put("eof", FixCrLfFilter.AddAsisRemove.newInstance("remove"));
-				put("eol", FixCrLfFilter.CrLf.newInstance("lf"));
-				put("fixlast", false);
-			}
-		};
+		HashMapBuilder.<String, Object>put(
+			"eof", FixCrLfFilter.AddAsisRemove.newInstance("remove")
+		).put(
+			"eol", FixCrLfFilter.CrLf.newInstance("lf")
+		).put(
+			"fixlast", false
+		).build();
 
 }

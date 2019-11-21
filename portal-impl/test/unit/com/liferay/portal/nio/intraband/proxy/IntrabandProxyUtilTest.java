@@ -45,6 +45,7 @@ import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 import com.liferay.portal.kernel.test.rule.NewEnv;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.MethodHandler;
 import com.liferay.portal.kernel.util.ProxyUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -78,7 +79,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -2474,55 +2474,78 @@ public class IntrabandProxyUtilTest {
 	}
 
 	private static final Map<Class<?>, Class<?>> _autoboxingMap =
-		new HashMap<Class<?>, Class<?>>() {
-			{
-				put(boolean.class, Boolean.class);
-				put(byte.class, Number.class);
-				put(char.class, Character.class);
-				put(double.class, Number.class);
-				put(float.class, Number.class);
-				put(int.class, Number.class);
-				put(long.class, Number.class);
-				put(short.class, Number.class);
-			}
-		};
+		HashMapBuilder.<Class<?>, Class<?>>put(
+			boolean.class, Boolean.class
+		).put(
+			byte.class, Number.class
+		).put(
+			char.class, Character.class
+		).put(
+			double.class, Number.class
+		).put(
+			float.class, Number.class
+		).put(
+			int.class, Number.class
+		).put(
+			long.class, Number.class
+		).put(
+			short.class, Number.class
+		).build();
 	private static final ClassLoader _classLoader =
 		IntrabandProxyUtilTest.class.getClassLoader();
 	private static final Map<Class<?>, Object> _defaultValueMap =
-		new HashMap<Class<?>, Object>() {
-			{
-				put(boolean.class, Boolean.FALSE);
-				put(byte.class, (byte)0);
-				put(char.class, (char)0);
-				put(Date.class, null);
-				put(double.class, (double)0);
-				put(float.class, (float)0);
-				put(int.class, 0);
-				put(long.class, (long)0);
-				put(Object.class, null);
-				put(short.class, (short)0);
-				put(String.class, null);
-				put(void.class, null);
-			}
-		};
+		HashMapBuilder.<Class<?>, Object>put(
+			boolean.class, Boolean.FALSE
+		).put(
+			byte.class, (byte)0
+		).put(
+			char.class, (char)0
+		).put(
+			Date.class, null
+		).put(
+			double.class, (double)0
+		).put(
+			float.class, (float)0
+		).put(
+			int.class, 0
+		).put(
+			long.class, (long)0
+		).put(
+			Object.class, null
+		).put(
+			short.class, (short)0
+		).put(
+			String.class, null
+		).put(
+			void.class, null
+		).build();
 	private static final Method _getVisibleMethodsMethod;
 	private static final Map<Class<?>, Object> _sampleValueMap =
-		new HashMap<Class<?>, Object>() {
-			{
-				put(boolean.class, Boolean.TRUE);
-				put(byte.class, (byte)11);
-				put(char.class, 'X');
-				put(Date.class, new Date());
-				put(double.class, 12.345);
-				put(float.class, 5.325F);
-				put(int.class, 127);
-				put(long.class, (long)82465);
-				put(Object.class, new Locale("en"));
-				put(short.class, (short)-35);
-				put(String.class, "Hello");
-				put(void.class, null);
-			}
-		};
+		HashMapBuilder.<Class<?>, Object>put(
+			boolean.class, Boolean.TRUE
+		).put(
+			byte.class, (byte)11
+		).put(
+			char.class, 'X'
+		).put(
+			Date.class, new Date()
+		).put(
+			double.class, 12.345
+		).put(
+			float.class, 5.325F
+		).put(
+			int.class, 127
+		).put(
+			long.class, (long)82465
+		).put(
+			Object.class, new Locale("en")
+		).put(
+			short.class, (short)-35
+		).put(
+			String.class, "Hello"
+		).put(
+			void.class, null
+		).build();
 	private static final Type[] _types = {
 		Type.BOOLEAN_TYPE, Type.BYTE_TYPE, Type.CHAR_TYPE, Type.DOUBLE_TYPE,
 		Type.FLOAT_TYPE, Type.INT_TYPE, Type.LONG_TYPE, Type.SHORT_TYPE,

@@ -19,6 +19,7 @@ import com.liferay.gradle.util.GradleUtil;
 import com.liferay.gradle.util.OSDetector;
 import com.liferay.gradle.util.Validator;
 import com.liferay.gradle.util.copy.ReplaceLeadingPathAction;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -579,13 +580,13 @@ public class PatchTask extends DefaultTask {
 		"http://repo.maven.apache.org/maven2/";
 
 	private static final Map<String, Object> _fixCrLfArgs =
-		new HashMap<String, Object>() {
-			{
-				put("eof", FixCrLfFilter.AddAsisRemove.newInstance("remove"));
-				put("eol", FixCrLfFilter.CrLf.newInstance("lf"));
-				put("fixlast", false);
-			}
-		};
+		HashMapBuilder.<String, Object>put(
+			"eof", FixCrLfFilter.AddAsisRemove.newInstance("remove")
+		).put(
+			"eol", FixCrLfFilter.CrLf.newInstance("lf")
+		).put(
+			"fixlast", false
+		).build();
 
 	private final List<Object> _args = new ArrayList<>();
 	private boolean _copyOriginalLibClasses = true;

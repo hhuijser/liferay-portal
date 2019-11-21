@@ -19,12 +19,12 @@ import com.liferay.gradle.plugins.node.internal.util.GradleUtil;
 import com.liferay.gradle.plugins.node.internal.util.NodePluginUtil;
 import com.liferay.gradle.util.OSDetector;
 import com.liferay.gradle.util.Validator;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
@@ -290,25 +290,37 @@ public class NodeExtension {
 	}
 
 	private static final Map<String, String> _npmVersions =
-		new HashMap<String, String>() {
-			{
-				put("5.5.0", "3.3.12");
-				put("5.6.0", "3.6.0");
-				put("5.7.0", "3.6.0");
-				put("5.7.1", "3.6.0");
-				put("5.8.0", "3.7.3");
-				put("5.9.0", "3.7.3");
-				put("5.9.1", "3.7.3");
-				put("5.10.0", "3.8.3");
-				put("5.10.1", "3.8.3");
-				put("5.11.0", "3.8.6");
-				put("5.11.1", "3.8.6");
-				put("5.12.0", "3.8.6");
-				put("6.0.0", "3.8.6");
-				put("6.1.0", "3.8.6");
-				put("6.2.0", "3.8.9");
-			}
-		};
+		HashMapBuilder.<String, String>put(
+			"5.5.0", "3.3.12"
+		).put(
+			"5.6.0", "3.6.0"
+		).put(
+			"5.7.0", "3.6.0"
+		).put(
+			"5.7.1", "3.6.0"
+		).put(
+			"5.8.0", "3.7.3"
+		).put(
+			"5.9.0", "3.7.3"
+		).put(
+			"5.9.1", "3.7.3"
+		).put(
+			"5.10.0", "3.8.3"
+		).put(
+			"5.10.1", "3.8.3"
+		).put(
+			"5.11.0", "3.8.6"
+		).put(
+			"5.11.1", "3.8.6"
+		).put(
+			"5.12.0", "3.8.6"
+		).put(
+			"6.0.0", "3.8.6"
+		).put(
+			"6.1.0", "3.8.6"
+		).put(
+			"6.2.0", "3.8.9"
+		).build();
 
 	private boolean _download;
 	private boolean _global;

@@ -14,6 +14,8 @@
 
 package com.liferay.jenkins.results.parser;
 
+import com.liferay.portal.kernel.util.HashMapBuilder;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -26,7 +28,6 @@ import java.nio.file.attribute.BasicFileAttributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -282,16 +283,15 @@ public class PortalGitWorkingDirectory extends GitWorkingDirectory {
 		}
 
 		private static Map<Integer, String[]> _markerFileNames =
-			new HashMap<Integer, String[]>() {
-				{
-					put(0, new String[] {".lfrbuild-release-src", ".gitrepo"});
-					put(1, new String[] {"app.bnd"});
-					put(2, new String[] {"bnd.bnd"});
-					put(
-						3,
-						new String[] {"build.gradle", "build.xml", "pom.xml"});
-				}
-			};
+			HashMapBuilder.<Integer, String[]>put(
+				0, new String[] {".lfrbuild-release-src", ".gitrepo"}
+			).put(
+				1, new String[] {"app.bnd"}
+			).put(
+				2, new String[] {"bnd.bnd"}
+			).put(
+				3, new String[] {"build.gradle", "build.xml", "pom.xml"}
+			).build();
 
 		private final File _file;
 		private final int _priority;

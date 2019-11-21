@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.DateFormatFactory;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.text.DateFormat;
@@ -179,15 +180,17 @@ public class DateRangeFactory {
 	};
 
 	private static final Map<String, String> _rangeMap =
-		new LinkedHashMap<String, String>() {
-			{
-				put("past-hour", "[past-hour TO *]");
-				put("past-24-hours", "[past-24-hours TO *]");
-				put("past-week", "[past-week TO *]");
-				put("past-month", "[past-month TO *]");
-				put("past-year", "[past-year TO *]");
-			}
-		};
+		LinkedHashMapBuilder.<String, String>put(
+			"past-hour", "[past-hour TO *]"
+		).put(
+			"past-24-hours", "[past-24-hours TO *]"
+		).put(
+			"past-week", "[past-week TO *]"
+		).put(
+			"past-month", "[past-month TO *]"
+		).put(
+			"past-year", "[past-year TO *]"
+		).build();
 
 	private final DateFormatFactory _dateFormatFactory;
 

@@ -22,23 +22,27 @@
 taglib uri="http://liferay.com/tld/aui" prefix="aui" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.dao.search.SearchContainer" %><%@
+page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
+page import="com.liferay.portal.kernel.search.Document" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.search.web.internal.result.display.context.SearchResultFieldDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.result.display.context.SearchResultSummaryDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.search.results.portlet.SearchResultsPortletDisplayContext" %>
 
+<%@ page import="java.util.Objects" %>
+
 <portlet:defineObjects />
 
 <%
-SearchResultsPortletDisplayContext searchResultsPortletDisplayContext = (SearchResultsPortletDisplayContext)java.util.Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
+SearchResultsPortletDisplayContext searchResultsPortletDisplayContext = (SearchResultsPortletDisplayContext)Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
 
 if (searchResultsPortletDisplayContext.isRenderNothing()) {
 	return;
 }
 
-com.liferay.portal.kernel.dao.search.SearchContainer<com.liferay.portal.kernel.search.Document> searchContainer1 = searchResultsPortletDisplayContext.getSearchContainer();
+SearchContainer<Document> searchContainer1 = searchResultsPortletDisplayContext.getSearchContainer();
 %>
 
 <style>
@@ -86,7 +90,7 @@ com.liferay.portal.kernel.dao.search.SearchContainer<com.liferay.portal.kernel.s
 	>
 
 		<%
-		SearchResultSummaryDisplayContext searchResultSummaryDisplayContext = java.util.Objects.requireNonNull(searchResultsPortletDisplayContext.getSearchResultSummaryDisplayContext(document));
+		SearchResultSummaryDisplayContext searchResultSummaryDisplayContext = Objects.requireNonNull(searchResultsPortletDisplayContext.getSearchResultSummaryDisplayContext(document));
 		%>
 
 		<c:choose>

@@ -25,10 +25,12 @@ page import="com.liferay.portal.search.web.internal.suggestions.portlet.Suggesti
 page import="com.liferay.portal.search.web.internal.suggestions.portlet.SuggestionsPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
 
+<%@ page import="java.util.Optional" %>
+
 <portlet:defineObjects />
 
 <%
-SuggestionsPortletPreferences suggestionsPortletPreferences = new SuggestionsPortletPreferencesImpl(java.util.Optional.ofNullable(portletPreferences));
+SuggestionsPortletPreferences suggestionsPortletPreferences = new SuggestionsPortletPreferencesImpl(Optional.ofNullable(portletPreferences));
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

@@ -28,10 +28,12 @@ page import="com.liferay.portal.search.web.internal.sort.portlet.SortPortletPref
 page import="com.liferay.portal.search.web.internal.sort.portlet.SortPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
 
+<%@ page import="java.util.Optional" %>
+
 <portlet:defineObjects />
 
 <%
-SortPortletPreferences sortPortletPreferences = new SortPortletPreferencesImpl(java.util.Optional.ofNullable(portletPreferences));
+SortPortletPreferences sortPortletPreferences = new SortPortletPreferencesImpl(Optional.ofNullable(portletPreferences));
 
 JSONArray fieldsJSONArray = sortPortletPreferences.getFieldsJSONArray();
 %>

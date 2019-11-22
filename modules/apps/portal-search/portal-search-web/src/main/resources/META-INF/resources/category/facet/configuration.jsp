@@ -25,10 +25,12 @@ page import="com.liferay.portal.search.web.internal.category.facet.portlet.Categ
 page import="com.liferay.portal.search.web.internal.category.facet.portlet.CategoryFacetPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
 
+<%@ page import="java.util.Optional" %>
+
 <portlet:defineObjects />
 
 <%
-CategoryFacetPortletPreferences categoryFacetPortletPreferences = new CategoryFacetPortletPreferencesImpl(java.util.Optional.ofNullable(portletPreferences));
+CategoryFacetPortletPreferences categoryFacetPortletPreferences = new CategoryFacetPortletPreferencesImpl(Optional.ofNullable(portletPreferences));
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

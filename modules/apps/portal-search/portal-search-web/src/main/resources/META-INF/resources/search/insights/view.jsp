@@ -25,10 +25,12 @@ page import="com.liferay.portal.kernel.util.Validator" %><%@
 page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.search.web.internal.search.insights.display.context.SearchInsightsDisplayContext" %>
 
+<%@ page import="java.util.Objects" %>
+
 <portlet:defineObjects />
 
 <%
-SearchInsightsDisplayContext searchInsightsDisplayContext = (SearchInsightsDisplayContext)java.util.Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
+SearchInsightsDisplayContext searchInsightsDisplayContext = (SearchInsightsDisplayContext)Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
 %>
 
 <style>

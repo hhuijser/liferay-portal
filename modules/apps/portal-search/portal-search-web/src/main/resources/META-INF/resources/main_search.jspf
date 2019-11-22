@@ -53,25 +53,25 @@ Hits hits = searchDisplayContext.getHits();
 			>
 
 				<%
-				com.liferay.portal.search.web.internal.result.display.builder.SearchResultSummaryDisplayBuilder searchResultSummaryDisplayBuilder = new com.liferay.portal.search.web.internal.result.display.builder.SearchResultSummaryDisplayBuilder();
+				SearchResultSummaryDisplayBuilder searchResultSummaryDisplayBuilder = new SearchResultSummaryDisplayBuilder();
 
-				searchResultSummaryDisplayBuilder.setAssetEntryLocalService(com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil.getService());
+				searchResultSummaryDisplayBuilder.setAssetEntryLocalService(AssetEntryLocalServiceUtil.getService());
 				searchResultSummaryDisplayBuilder.setCurrentURL(currentURL);
 				searchResultSummaryDisplayBuilder.setDocument(document);
-				searchResultSummaryDisplayBuilder.setFastDateFormatFactory(com.liferay.portal.kernel.util.FastDateFormatFactoryUtil.getFastDateFormatFactory());
+				searchResultSummaryDisplayBuilder.setFastDateFormatFactory(FastDateFormatFactoryUtil.getFastDateFormatFactory());
 				searchResultSummaryDisplayBuilder.setHighlightEnabled(searchDisplayContext.isHighlightEnabled());
-				searchResultSummaryDisplayBuilder.setLanguage(com.liferay.portal.kernel.language.LanguageUtil.getLanguage());
+				searchResultSummaryDisplayBuilder.setLanguage(LanguageUtil.getLanguage());
 				searchResultSummaryDisplayBuilder.setLocale(locale);
 				searchResultSummaryDisplayBuilder.setPortletURLFactory(searchDisplayContext.getPortletURLFactory());
 				searchResultSummaryDisplayBuilder.setRenderRequest(renderRequest);
 				searchResultSummaryDisplayBuilder.setRenderResponse(renderResponse);
 				searchResultSummaryDisplayBuilder.setRequest(request);
-				searchResultSummaryDisplayBuilder.setResourceActions(com.liferay.portal.kernel.security.permission.ResourceActionsUtil.getResourceActions());
+				searchResultSummaryDisplayBuilder.setResourceActions(ResourceActionsUtil.getResourceActions());
 				searchResultSummaryDisplayBuilder.setSearchResultPreferences(searchDisplayContext.getSearchResultPreferences());
 				searchResultSummaryDisplayBuilder.setSummaryBuilderFactory(searchDisplayContext.getSummaryBuilderFactory());
 				searchResultSummaryDisplayBuilder.setThemeDisplay(themeDisplay);
 
-				com.liferay.portal.search.web.internal.result.display.context.SearchResultSummaryDisplayContext searchResultSummaryDisplayContext = searchResultSummaryDisplayBuilder.build();
+				SearchResultSummaryDisplayContext searchResultSummaryDisplayContext = searchResultSummaryDisplayBuilder.build();
 				%>
 
 				<c:if test="<%= searchResultSummaryDisplayContext != null %>">

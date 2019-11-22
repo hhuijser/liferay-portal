@@ -54,7 +54,7 @@ FolderSearchFacetDisplayContext folderSearchFacetDisplayContext = folderSearchFa
 						</li>
 
 						<%
-						java.util.List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts = folderSearchFacetDisplayContext.getFolderSearchFacetTermDisplayContexts();
+						List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts = folderSearchFacetDisplayContext.getFolderSearchFacetTermDisplayContexts();
 
 						for (FolderSearchFacetTermDisplayContext folderSearchFacetTermDisplayContext : folderSearchFacetTermDisplayContexts) {
 						%>

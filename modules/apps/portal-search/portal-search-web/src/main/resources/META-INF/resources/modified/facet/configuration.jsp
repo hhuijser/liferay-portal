@@ -29,10 +29,12 @@ page import="com.liferay.portal.search.web.internal.modified.facet.portlet.Modif
 page import="com.liferay.portal.search.web.internal.modified.facet.portlet.ModifiedFacetPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
 
+<%@ page import="java.util.Optional" %>
+
 <portlet:defineObjects />
 
 <%
-ModifiedFacetPortletPreferences modifiedFacetPortletPreferences = new ModifiedFacetPortletPreferencesImpl(java.util.Optional.ofNullable(portletPreferences));
+ModifiedFacetPortletPreferences modifiedFacetPortletPreferences = new ModifiedFacetPortletPreferencesImpl(Optional.ofNullable(portletPreferences));
 
 JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray();
 %>

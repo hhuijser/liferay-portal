@@ -22,12 +22,15 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.search.web.internal.search.insights.portlet.SearchInsightsPortletPreferences" %><%@
+page import="com.liferay.portal.search.web.internal.search.insights.portlet.SearchInsightsPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
+
+<%@ page import="java.util.Optional" %>
 
 <portlet:defineObjects />
 
 <%
-SearchInsightsPortletPreferences searchInsightsPortletPreferences = new com.liferay.portal.search.web.internal.search.insights.portlet.SearchInsightsPortletPreferencesImpl(java.util.Optional.ofNullable(portletPreferences));
+SearchInsightsPortletPreferences searchInsightsPortletPreferences = new SearchInsightsPortletPreferencesImpl(Optional.ofNullable(portletPreferences));
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

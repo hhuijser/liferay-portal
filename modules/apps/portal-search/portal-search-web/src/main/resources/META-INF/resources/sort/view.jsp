@@ -26,10 +26,12 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 page import="com.liferay.portal.search.web.internal.sort.display.context.SortDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.sort.display.context.SortTermDisplayContext" %>
 
+<%@ page import="java.util.Objects" %>
+
 <liferay-theme:defineObjects />
 
 <%
-SortDisplayContext sortDisplayContext = (SortDisplayContext)java.util.Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
+SortDisplayContext sortDisplayContext = (SortDisplayContext)Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
 %>
 
 <c:choose>

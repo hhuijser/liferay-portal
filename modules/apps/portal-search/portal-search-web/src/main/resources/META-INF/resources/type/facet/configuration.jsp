@@ -24,7 +24,10 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
 <%@ page import="com.liferay.portal.kernel.util.Constants" %><%@
 page import="com.liferay.portal.search.web.internal.type.facet.portlet.TypeFacetPortletPreferences" %><%@
+page import="com.liferay.portal.search.web.internal.type.facet.portlet.TypeFacetPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
+
+<%@ page import="java.util.Optional" %>
 
 <liferay-frontend:defineObjects />
 
@@ -33,7 +36,7 @@ page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUt
 <portlet:defineObjects />
 
 <%
-TypeFacetPortletPreferences typeFacetPortletPreferences = new com.liferay.portal.search.web.internal.type.facet.portlet.TypeFacetPortletPreferencesImpl(java.util.Optional.of(portletPreferences));
+TypeFacetPortletPreferences typeFacetPortletPreferences = new TypeFacetPortletPreferencesImpl(Optional.of(portletPreferences));
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

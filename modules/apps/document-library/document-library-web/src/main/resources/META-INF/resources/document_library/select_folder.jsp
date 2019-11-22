@@ -112,10 +112,10 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 					fileEntriesCount = DLAppServiceUtil.getFoldersFileEntriesCount(curFolder.getRepositoryId(), Arrays.asList(curFolder.getFolderId()), WorkflowConstants.STATUS_APPROVED);
 					foldersCount = DLAppServiceUtil.getFoldersCount(curFolder.getRepositoryId(), curFolder.getFolderId());
 				}
-				catch (com.liferay.portal.kernel.repository.RepositoryException re) {
+				catch (RepositoryException re) {
 					rowURL = null;
 				}
-				catch (com.liferay.portal.kernel.security.auth.PrincipalException pe) {
+				catch (PrincipalException pe) {
 					rowURL = null;
 				}
 				%>

@@ -32,7 +32,8 @@ page import="com.liferay.portal.search.web.internal.custom.filter.portlet.action
 page import="com.liferay.portal.search.web.internal.custom.filter.portlet.action.QueryTypeEntry" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
 
-<%@ page import="java.util.Objects" %>
+<%@ page import="java.util.Objects" %><%@
+page import="java.util.Optional" %>
 
 <liferay-frontend:defineObjects />
 
@@ -41,9 +42,9 @@ page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUt
 <portlet:defineObjects />
 
 <%
-ConfigurationDisplayContext configurationDisplayContext = (ConfigurationDisplayContext)java.util.Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
+ConfigurationDisplayContext configurationDisplayContext = (ConfigurationDisplayContext)Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
 
-CustomFilterPortletPreferences customFilterPortletPreferences = new CustomFilterPortletPreferencesImpl(java.util.Optional.of(portletPreferences));
+CustomFilterPortletPreferences customFilterPortletPreferences = new CustomFilterPortletPreferencesImpl(Optional.of(portletPreferences));
 
 QueryTypeEntriesHolder queryTypeEntriesHolder = configurationDisplayContext.getQueryTypeEntriesHolder();
 OccurEntriesHolder occurEntriesHolder = configurationDisplayContext.getOccurEntriesHolder();

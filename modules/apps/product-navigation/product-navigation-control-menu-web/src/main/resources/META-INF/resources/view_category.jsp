@@ -171,7 +171,7 @@ if (!categories.isEmpty() || !portlets.isEmpty()) {
 								</li>
 
 								<%
-								List<PortletItem> portletItems = PortletItemLocalServiceUtil.getPortletItems(themeDisplay.getScopeGroupId(), portlet.getPortletId(), com.liferay.portal.kernel.model.PortletPreferences.class.getName());
+								List<PortletItem> portletItems = PortletItemLocalServiceUtil.getPortletItems(themeDisplay.getScopeGroupId(), portlet.getPortletId(), PortletPreferences.class.getName());
 								%>
 
 								<c:if test="<%= ListUtil.isNotEmpty(portletItems) %>">

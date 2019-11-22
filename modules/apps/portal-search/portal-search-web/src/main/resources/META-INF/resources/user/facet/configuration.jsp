@@ -26,6 +26,8 @@ page import="com.liferay.portal.search.web.internal.user.facet.portlet.UserFacet
 page import="com.liferay.portal.search.web.internal.user.facet.portlet.UserFacetPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUtil" %>
 
+<%@ page import="java.util.Optional" %>
+
 <liferay-frontend:defineObjects />
 
 <liferay-theme:defineObjects />
@@ -33,7 +35,7 @@ page import="com.liferay.portal.search.web.internal.util.PortletPreferencesJspUt
 <portlet:defineObjects />
 
 <%
-UserFacetPortletPreferences userFacetPortletPreferences = new UserFacetPortletPreferencesImpl(java.util.Optional.of(portletPreferences));
+UserFacetPortletPreferences userFacetPortletPreferences = new UserFacetPortletPreferencesImpl(Optional.of(portletPreferences));
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

@@ -17,7 +17,7 @@
 <%@ include file="/html/common/themes/init.jsp" %>
 
 <%
-com.liferay.petra.string.StringBundler bodyBottomSB = OutputTag.getDataSB(request, WebKeys.PAGE_BODY_BOTTOM);
+StringBundler bodyBottomSB = OutputTag.getDataSB(request, WebKeys.PAGE_BODY_BOTTOM);
 
 if (bodyBottomSB != null) {
 	bodyBottomSB.writeTo(out);

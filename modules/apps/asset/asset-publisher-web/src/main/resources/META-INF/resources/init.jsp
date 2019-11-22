@@ -61,6 +61,7 @@ page import="com.liferay.asset.util.AssetPublisherAddItemHolder" %><%@
 page import="com.liferay.asset.util.comparator.AssetRendererFactoryTypeNameComparator" %><%@
 page import="com.liferay.document.library.kernel.document.conversion.DocumentConversionUtil" %><%@
 page import="com.liferay.dynamic.data.mapping.model.DDMStructure" %><%@
+page import="com.liferay.dynamic.data.mapping.storage.Field" %><%@
 page import="com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem" %><%@
 page import="com.liferay.info.list.provider.InfoListProvider" %><%@
 page import="com.liferay.item.selector.ItemSelector" %><%@

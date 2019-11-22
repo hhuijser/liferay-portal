@@ -29,6 +29,8 @@ page import="com.liferay.portal.search.similar.results.web.internal.portlet.Simi
 page import="com.liferay.portal.search.similar.results.web.internal.portlet.SimilarResultsPortletPreferencesImpl" %><%@
 page import="com.liferay.portal.search.similar.results.web.internal.util.PortletPreferencesJspUtil" %>
 
+<%@ page import="java.util.Optional" %>
+
 <portlet:defineObjects />
 
 <%
@@ -36,7 +38,7 @@ SimilarResultsDisplayContext similarResultsDisplayContext = new SimilarResultsDi
 
 SimilarResultsPortletInstanceConfiguration similarResultsPortletInstanceConfiguration = similarResultsDisplayContext.getSimilarResultsPortletInstanceConfiguration();
 
-SimilarResultsPortletPreferences similarResultsPortletPreferences = new SimilarResultsPortletPreferencesImpl(java.util.Optional.ofNullable(portletPreferences));
+SimilarResultsPortletPreferences similarResultsPortletPreferences = new SimilarResultsPortletPreferencesImpl(Optional.ofNullable(portletPreferences));
 %>
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />

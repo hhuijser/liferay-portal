@@ -23,8 +23,10 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 page import="com.liferay.portal.search.web.internal.suggestions.display.context.SuggestionDisplayContext" %><%@
 page import="com.liferay.portal.search.web.internal.suggestions.display.context.SuggestionsPortletDisplayContext" %>
 
+<%@ page import="java.util.Objects" %>
+
 <%
-SuggestionsPortletDisplayContext suggestionsPortletDisplayContext = (SuggestionsPortletDisplayContext)java.util.Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
+SuggestionsPortletDisplayContext suggestionsPortletDisplayContext = (SuggestionsPortletDisplayContext)Objects.requireNonNull(request.getAttribute(WebKeys.PORTLET_DISPLAY_CONTEXT));
 %>
 
 <div class="search-suggested-spelling">

@@ -15,11 +15,11 @@
 package com.liferay.portal.search.tuning.rankings.web.internal.index;
 
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.search.document.Document;
 import com.liferay.portal.search.document.DocumentBuilderFactory;
 
 import java.util.Collection;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -70,14 +70,11 @@ public class RankingToDocumentTranslatorImpl
 		Stream<Ranking.Pin> stream = pins.stream();
 
 		return stream.map(
-			pin -> new LinkedHashMap<String, String>() {
-				{
-					put(
-						RankingFields.POSITION,
-						String.valueOf(pin.getPosition()));
-					put(RankingFields.UID, pin.getId());
-				}
-			}
+			pin -> LinkedHashMapBuilder.<String, String>put(
+				RankingFields.POSITION, String.valueOf(pin.getPosition())
+			).put(
+				RankingFields.UID, pin.getId()
+			).build()
 		).collect(
 			Collectors.toList()
 		);

@@ -17,6 +17,7 @@ package com.liferay.portal.search.test.util.stats;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Stats;
 import com.liferay.portal.kernel.search.StatsResults;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.search.internal.stats.StatsRequestBuilderFactoryImpl;
 import com.liferay.portal.search.internal.stats.StatsResponseBuilderImpl;
 import com.liferay.portal.search.stats.StatsRequest;
@@ -27,7 +28,6 @@ import com.liferay.portal.search.stats.StatsResponseBuilder;
 import com.liferay.portal.search.test.util.indexing.BaseIndexingTestCase;
 import com.liferay.portal.search.test.util.indexing.DocumentCreationHelpers;
 
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -251,41 +251,50 @@ public abstract class BaseStatisticsTestCase extends BaseIndexingTestCase {
 
 	protected static String toString(StatsResponse statsResponse) {
 		return String.valueOf(
-			new LinkedHashMap<String, Object>() {
-				{
-					put("cardinality", statsResponse.getCardinality());
-					put("count", statsResponse.getCount());
-					put("field", statsResponse.getField());
-					put("max", statsResponse.getMax());
-					put("mean", statsResponse.getMean());
-					put("min", statsResponse.getMin());
-					put("missing", statsResponse.getMissing());
-					put(
-						"standardDeviation",
-						statsResponse.getStandardDeviation());
-					put("sum", statsResponse.getSum());
-					put("sumOfSquares", statsResponse.getSumOfSquares());
-				}
-			});
+			LinkedHashMapBuilder.<String, Object>put(
+				"cardinality", statsResponse.getCardinality()
+			).put(
+				"count", statsResponse.getCount()
+			).put(
+				"field", statsResponse.getField()
+			).put(
+				"max", statsResponse.getMax()
+			).put(
+				"mean", statsResponse.getMean()
+			).put(
+				"min", statsResponse.getMin()
+			).put(
+				"missing", statsResponse.getMissing()
+			).put(
+				"standardDeviation", statsResponse.getStandardDeviation()
+			).put(
+				"sum", statsResponse.getSum()
+			).put(
+				"sumOfSquares", statsResponse.getSumOfSquares()
+			).build());
 	}
 
 	protected static String toString(StatsResults statsResults) {
 		return String.valueOf(
-			new LinkedHashMap<String, Object>() {
-				{
-					put("count", statsResults.getCount());
-					put("field", statsResults.getField());
-					put("max", statsResults.getMax());
-					put("mean", statsResults.getMean());
-					put("min", statsResults.getMin());
-					put("missing", statsResults.getMissing());
-					put(
-						"standardDeviation",
-						statsResults.getStandardDeviation());
-					put("sum", statsResults.getSum());
-					put("sumOfSquares", statsResults.getSumOfSquares());
-				}
-			});
+			LinkedHashMapBuilder.<String, Object>put(
+				"count", statsResults.getCount()
+			).put(
+				"field", statsResults.getField()
+			).put(
+				"max", statsResults.getMax()
+			).put(
+				"mean", statsResults.getMean()
+			).put(
+				"min", statsResults.getMin()
+			).put(
+				"missing", statsResults.getMissing()
+			).put(
+				"standardDeviation", statsResults.getStandardDeviation()
+			).put(
+				"sum", statsResults.getSum()
+			).put(
+				"sumOfSquares", statsResults.getSumOfSquares()
+			).build());
 	}
 
 	protected void addDocuments(int count) throws Exception {

@@ -39,6 +39,7 @@ import com.liferay.portal.kernel.repository.RepositoryException;
 import com.liferay.portal.kernel.search.Query;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -63,7 +64,6 @@ import java.io.InputStream;
 import java.net.URL;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -1067,22 +1067,18 @@ public class SharepointWSRepository
 	private static final Map
 		<ExtRepositoryObjectType<?>, SharepointConnection.ObjectTypeFilter>
 			_objectTypeFilters =
-				new HashMap
+				HashMapBuilder.
 					<ExtRepositoryObjectType<?>,
-					 SharepointConnection.ObjectTypeFilter>() {
-
-					{
-						put(
-							ExtRepositoryObjectType.FILE,
-							SharepointConnection.ObjectTypeFilter.FILES);
-						put(
-							ExtRepositoryObjectType.FOLDER,
-							SharepointConnection.ObjectTypeFilter.FOLDERS);
-						put(
-							ExtRepositoryObjectType.OBJECT,
-							SharepointConnection.ObjectTypeFilter.ALL);
-					}
-				};
+					 SharepointConnection.ObjectTypeFilter>put(
+						ExtRepositoryObjectType.FILE,
+						SharepointConnection.ObjectTypeFilter.FILES
+					).put(
+						ExtRepositoryObjectType.FOLDER,
+						SharepointConnection.ObjectTypeFilter.FOLDERS
+					).put(
+						ExtRepositoryObjectType.OBJECT,
+						SharepointConnection.ObjectTypeFilter.ALL
+					).build();
 
 	private ConnectionCache<SharepointConnection> _connectionCache;
 	private CredentialsProvider _credentialsProvider;

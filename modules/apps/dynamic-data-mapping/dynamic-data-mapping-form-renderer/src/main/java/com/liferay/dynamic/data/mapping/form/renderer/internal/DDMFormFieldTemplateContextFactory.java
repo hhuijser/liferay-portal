@@ -593,18 +593,15 @@ public class DDMFormFieldTemplateContextFactory {
 						ddmFormFieldValidation.
 							getDDMFormFieldValidationExpression();
 
-				return new HashMap() {
-					{
-						put(
-							"name",
-							GetterUtil.getString(
-								ddmFormFieldValidationExpression.getName()));
-						put(
-							"value",
-							GetterUtil.getString(
-								ddmFormFieldValidationExpression.getValue()));
-					}
-				};
+				return HashMapBuilder.<String, String>put(
+					"name",
+					GetterUtil.getString(
+						ddmFormFieldValidationExpression.getName())
+				).put(
+					"value",
+					GetterUtil.getString(
+						ddmFormFieldValidationExpression.getValue())
+				).build();
 			}
 		).put(
 			"fieldName",

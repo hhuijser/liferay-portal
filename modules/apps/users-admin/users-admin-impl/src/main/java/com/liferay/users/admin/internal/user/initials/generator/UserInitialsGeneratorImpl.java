@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.language.LanguageConstants;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.users.admin.kernel.util.UserInitialsGenerator;
@@ -92,13 +93,13 @@ public class UserInitialsGeneratorImpl implements UserInitialsGenerator {
 	};
 
 	private static final Map<String, Integer> _userNameIndexes =
-		new HashMap<String, Integer>(3) {
-			{
-				put(LanguageConstants.VALUE_FIRST_NAME, 0);
-				put(LanguageConstants.VALUE_LAST_NAME, 2);
-				put(LanguageConstants.VALUE_MIDDLE_NAME, 1);
-			}
-		};
+		HashMapBuilder.<String, Integer>put(
+			LanguageConstants.VALUE_FIRST_NAME, 0
+		).put(
+			LanguageConstants.VALUE_LAST_NAME, 2
+		).put(
+			LanguageConstants.VALUE_MIDDLE_NAME, 1
+		).build();
 
 	private final Map<Locale, String[]> _userInitialsFieldNamesMap =
 		new HashMap<>();

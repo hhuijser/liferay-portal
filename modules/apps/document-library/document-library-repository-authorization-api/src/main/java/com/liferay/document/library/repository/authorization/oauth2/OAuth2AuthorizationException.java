@@ -15,8 +15,8 @@
 package com.liferay.document.library.repository.authorization.oauth2;
 
 import com.liferay.document.library.repository.authorization.capability.AuthorizationException;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -151,34 +151,28 @@ public class OAuth2AuthorizationException extends AuthorizationException {
 
 	private static final Map
 		<String, Function<String, OAuth2AuthorizationException>> _functions =
-			new HashMap<String, Function<String, OAuth2AuthorizationException>>(
-				7) {
-
-				{
-					put(
-						"access_denied",
-						OAuth2AuthorizationException.AccessDenied::new);
-					put(
-						"invalid_request",
-						OAuth2AuthorizationException.InvalidRequest::new);
-					put(
-						"invalid_scope",
-						OAuth2AuthorizationException.InvalidScope::new);
-					put(
-						"server_error",
-						OAuth2AuthorizationException.ServerError::new);
-					put(
-						"temporarily_unavailable",
-						OAuth2AuthorizationException.TemporarilyUnavailable::
-							new);
-					put(
-						"unauthorized_client",
-						OAuth2AuthorizationException.UnauthorizedClient::new);
-					put(
-						"unsupported_response_type",
-						OAuth2AuthorizationException.UnsupportedResponseType::
-							new);
-				}
-			};
+			HashMapBuilder.
+				<String, Function<String, OAuth2AuthorizationException>>put(
+					"access_denied",
+					OAuth2AuthorizationException.AccessDenied::new
+				).put(
+					"invalid_request",
+					OAuth2AuthorizationException.InvalidRequest::new
+				).put(
+					"invalid_scope",
+					OAuth2AuthorizationException.InvalidScope::new
+				).put(
+					"server_error",
+					OAuth2AuthorizationException.ServerError::new
+				).put(
+					"temporarily_unavailable",
+					OAuth2AuthorizationException.TemporarilyUnavailable::new
+				).put(
+					"unauthorized_client",
+					OAuth2AuthorizationException.UnauthorizedClient::new
+				).put(
+					"unsupported_response_type",
+					OAuth2AuthorizationException.UnsupportedResponseType::new
+				).build();
 
 }

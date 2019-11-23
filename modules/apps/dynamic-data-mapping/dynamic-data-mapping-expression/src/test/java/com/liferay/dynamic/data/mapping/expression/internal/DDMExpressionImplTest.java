@@ -24,6 +24,7 @@ import com.liferay.dynamic.data.mapping.expression.internal.functions.MaxFunctio
 import com.liferay.dynamic.data.mapping.expression.internal.functions.MultiplyFunction;
 import com.liferay.dynamic.data.mapping.expression.internal.functions.SquareFunction;
 import com.liferay.dynamic.data.mapping.expression.internal.functions.ZeroFunction;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -275,13 +276,13 @@ public class DDMExpressionImplTest extends PowerMockito {
 				public Map<String, DDMExpressionFunction>
 					getDDMExpressionFunctions(Set<String> functionNames) {
 
-					return new HashMap() {
-						{
-							put("abs", new AbsFunction());
-							put("add", new AddFunction());
-							put("square", new SquareFunction());
-						}
-					};
+					return HashMapBuilder.<String, DDMExpressionFunction>put(
+						"abs", new AbsFunction()
+					).put(
+						"add", new AddFunction()
+					).put(
+						"square", new SquareFunction()
+					).build();
 				}
 
 				@Override

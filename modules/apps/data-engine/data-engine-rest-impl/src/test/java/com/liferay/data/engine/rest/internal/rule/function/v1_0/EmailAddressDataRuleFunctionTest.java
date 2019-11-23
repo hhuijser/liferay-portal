@@ -77,7 +77,7 @@ public class EmailAddressDataRuleFunctionTest {
 	public void testNullEmailAddress() {
 		_dataRecord.setDataRecordValues(
 			HashMapBuilder.<String, Object>put(
-				"fieldName", null
+				"fieldName", (Object)null
 			).build());
 
 		DataRuleFunctionResult dataRuleFunctionResult =

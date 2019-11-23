@@ -280,22 +280,21 @@ public class DQLQueryBuilder {
 		}
 	}
 
-	private static final Map<String, String> _dqlFields =
-		HashMapBuilder.<String, String>put(
-			Field.CREATE_DATE, Constants.R_CREATION_DATE
-		).put(
-			Field.MODIFIED_DATE, Constants.R_MODIFY_DATE
-		).put(
-			Field.NAME, Constants.OBJECT_NAME
-		).put(
-			Field.TITLE, Constants.OBJECT_NAME
-		).put(
-			Field.USER_NAME, Constants.R_CREATOR_NAME
-		).put(
-			"modifiedDate", Constants.R_MODIFY_DATE
-		).put(
-			"size_", Constants.R_CONTENT_SIZE
-		).build();
+	private static final Map<String, String> _dqlFields = HashMapBuilder.put(
+		Field.CREATE_DATE, Constants.R_CREATION_DATE
+	).put(
+		Field.MODIFIED_DATE, Constants.R_MODIFY_DATE
+	).put(
+		Field.NAME, Constants.OBJECT_NAME
+	).put(
+		Field.TITLE, Constants.OBJECT_NAME
+	).put(
+		Field.USER_NAME, Constants.R_CREATOR_NAME
+	).put(
+		"modifiedDate", Constants.R_MODIFY_DATE
+	).put(
+		"size_", Constants.R_CONTENT_SIZE
+	).build();
 	private static final Set<String> _supportedFields = new HashSet<String>() {
 		{
 			add(Field.CREATE_DATE);

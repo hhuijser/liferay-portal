@@ -162,7 +162,7 @@ public class NodeWorkflowMetricsIndexerTest
 
 		assertReindex(
 			_nodeWorkflowMetricsIndexer,
-			LinkedHashMapBuilder.<String, Integer>put(
+			LinkedHashMapBuilder.put(
 				"workflow-metrics-nodes", 4
 			).put(
 				"workflow-metrics-sla-task-results", 2

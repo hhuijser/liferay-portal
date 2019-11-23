@@ -124,19 +124,17 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 
 		Element element = mock(Element.class);
 
-		Map<String, String> ddmFormFieldsLabel =
-			LinkedHashMapBuilder.<String, String>put(
-				"field1", "Field 1"
-			).put(
-				"field2", "Field 2"
-			).build();
+		Map<String, String> ddmFormFieldsLabel = LinkedHashMapBuilder.put(
+			"field1", "Field 1"
+		).put(
+			"field2", "Field 2"
+		).build();
 
-		Map<String, String> ddmFormFieldsValue =
-			LinkedHashMapBuilder.<String, String>put(
-				"field1", "Value 1"
-			).put(
-				"field2", "Value 2"
-			).build();
+		Map<String, String> ddmFormFieldsValue = LinkedHashMapBuilder.put(
+			"field1", "Value 1"
+		).put(
+			"field2", "Value 2"
+		).build();
 
 		Mockito.doCallRealMethod(
 		).when(
@@ -176,16 +174,15 @@ public class DDMFormInstanceRecordXMLWriterTest extends PowerMockito {
 		DDMFormInstanceRecordXMLWriter ddmFormInstanceRecordXMLWriter = mock(
 			DDMFormInstanceRecordXMLWriter.class);
 
-		Map<String, String> ddmFormFieldsLabel =
-			LinkedHashMapBuilder.<String, String>put(
-				"field1", "Field 1"
-			).put(
-				"field2", "Field 2"
-			).put(
-				"field3", "Field 3"
-			).put(
-				"field4", "Field 4"
-			).build();
+		Map<String, String> ddmFormFieldsLabel = LinkedHashMapBuilder.put(
+			"field1", "Field 1"
+		).put(
+			"field2", "Field 2"
+		).put(
+			"field3", "Field 3"
+		).put(
+			"field4", "Field 4"
+		).build();
 
 		List<Map<String, String>> ddmFormFieldValues =
 			new ArrayList<Map<String, String>>() {

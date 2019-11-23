@@ -1439,7 +1439,7 @@ public class WabProcessor {
 	private static final Pattern _versionMavenPattern = Pattern.compile(
 		"(\\d{1,9})(\\.(\\d{1,9})(\\.(\\d{1,9})(-([-_\\da-zA-Z]+))?)?)?");
 	private static final Map<String, String> _xsds =
-		ConcurrentHashMapBuilder.<String, String>put(
+		ConcurrentHashMapBuilder.put(
 			"aop", "http://www.springframework.org/schema/aop"
 		).put(
 			"beans", "http://www.springframework.org/schema/beans"

@@ -23,11 +23,11 @@ import com.liferay.document.library.repository.external.ExtRepositoryModel;
 import com.liferay.document.library.repository.external.ExtRepositoryObject;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.util.FileUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.util.Date;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -141,23 +141,21 @@ public abstract class DocumentumObject
 	}
 
 	private static final Map<ExtRepositoryPermission, Integer> _permits =
-		new HashMap<ExtRepositoryPermission, Integer>() {
-			{
-				put(ExtRepositoryPermission.ACCESS, Constants.DF_PERMIT_BROWSE);
-				put(
-					ExtRepositoryPermission.ADD_DOCUMENT,
-					Constants.DF_PERMIT_WRITE);
-				put(
-					ExtRepositoryPermission.ADD_FOLDER,
-					Constants.DF_PERMIT_WRITE);
-				put(
-					ExtRepositoryPermission.ADD_SUBFOLDER,
-					Constants.DF_PERMIT_WRITE);
-				put(ExtRepositoryPermission.DELETE, Constants.DF_PERMIT_DELETE);
-				put(ExtRepositoryPermission.UPDATE, Constants.DF_PERMIT_WRITE);
-				put(ExtRepositoryPermission.VIEW, Constants.DF_PERMIT_READ);
-			}
-		};
+		HashMapBuilder.<ExtRepositoryPermission, Integer>put(
+			ExtRepositoryPermission.ACCESS, Constants.DF_PERMIT_BROWSE
+		).put(
+			ExtRepositoryPermission.ADD_DOCUMENT, Constants.DF_PERMIT_WRITE
+		).put(
+			ExtRepositoryPermission.ADD_FOLDER, Constants.DF_PERMIT_WRITE
+		).put(
+			ExtRepositoryPermission.ADD_SUBFOLDER, Constants.DF_PERMIT_WRITE
+		).put(
+			ExtRepositoryPermission.DELETE, Constants.DF_PERMIT_DELETE
+		).put(
+			ExtRepositoryPermission.UPDATE, Constants.DF_PERMIT_WRITE
+		).put(
+			ExtRepositoryPermission.VIEW, Constants.DF_PERMIT_READ
+		).build();
 	private static final Set<ExtRepositoryPermission>
 		_unsupportedExtRepositoryPermissions = EnumSet.of(
 			ExtRepositoryPermission.ADD_DISCUSSION,

@@ -34,6 +34,7 @@ import com.liferay.portal.kernel.search.TermQuery;
 import com.liferay.portal.kernel.search.TermRangeQuery;
 import com.liferay.portal.kernel.search.WildcardQuery;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.sharepoint.connector.SharepointConnection;
@@ -71,7 +72,6 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -663,17 +663,21 @@ public class SharepointQueryBuilder {
 	private static final LiferayQueryExplainer _liferayQueryExplainer =
 		new LiferayQueryExplainer();
 	private static final Map<String, String> _sharepointFields =
-		new HashMap<String, String>() {
-			{
-				put(Field.CREATE_DATE, SharepointField.CREATE_DATE);
-				put(Field.FOLDER_ID, SharepointField.FOLDER_PATH);
-				put(Field.MODIFIED_DATE, SharepointField.MODIFIED_DATE);
-				put(Field.NAME, SharepointField.NAME);
-				put(Field.TITLE, SharepointField.NAME);
-				put(Field.USER_ID, SharepointField.MODIFIED_BY);
-				put(Field.USER_NAME, SharepointField.MODIFIED_BY);
-			}
-		};
+		HashMapBuilder.<String, String>put(
+			Field.CREATE_DATE, SharepointField.CREATE_DATE
+		).put(
+			Field.FOLDER_ID, SharepointField.FOLDER_PATH
+		).put(
+			Field.MODIFIED_DATE, SharepointField.MODIFIED_DATE
+		).put(
+			Field.NAME, SharepointField.NAME
+		).put(
+			Field.TITLE, SharepointField.NAME
+		).put(
+			Field.USER_ID, SharepointField.MODIFIED_BY
+		).put(
+			Field.USER_NAME, SharepointField.MODIFIED_BY
+		).build();
 	private static final Set<String> _supportedFields = new HashSet<>(
 		Arrays.asList(
 			Field.CREATE_DATE, Field.FOLDER_ID, Field.MODIFIED_DATE, Field.NAME,

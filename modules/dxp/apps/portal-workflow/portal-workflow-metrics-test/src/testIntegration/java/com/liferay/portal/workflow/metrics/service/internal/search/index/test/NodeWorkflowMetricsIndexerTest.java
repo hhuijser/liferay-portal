@@ -18,6 +18,7 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.test.rule.AggregateTestRule;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.workflow.kaleo.definition.NodeType;
@@ -30,7 +31,6 @@ import com.liferay.portal.workflow.kaleo.model.KaleoTask;
 import com.liferay.portal.workflow.metrics.service.util.BaseWorkflowMetricsIndexerTestCase;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 
 import org.junit.ClassRule;
 import org.junit.Rule;
@@ -162,13 +162,13 @@ public class NodeWorkflowMetricsIndexerTest
 
 		assertReindex(
 			_nodeWorkflowMetricsIndexer,
-			new LinkedHashMap<String, Integer>() {
-				{
-					put("workflow-metrics-nodes", 4);
-					put("workflow-metrics-sla-task-results", 2);
-					put("workflow-metrics-tokens", 2);
-				}
-			},
+			LinkedHashMapBuilder.<String, Integer>put(
+				"workflow-metrics-nodes", 4
+			).put(
+				"workflow-metrics-sla-task-results", 2
+			).put(
+				"workflow-metrics-tokens", 2
+			).build(),
 			new String[] {
 				"WorkflowMetricsNodeType", "WorkflowMetricsSLATaskResultType",
 				"WorkflowMetricsTokenType"

@@ -44,6 +44,7 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.plugin.PluginPackage;
 import com.liferay.portal.kernel.servlet.PortalClassLoaderFilter;
 import com.liferay.portal.kernel.servlet.PortalClassLoaderServlet;
+import com.liferay.portal.kernel.util.ConcurrentHashMapBuilder;
 import com.liferay.portal.kernel.util.FastDateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
@@ -89,7 +90,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.Attributes;
 import java.util.jar.Manifest;
 import java.util.regex.Matcher;
@@ -1439,37 +1439,48 @@ public class WabProcessor {
 	private static final Pattern _versionMavenPattern = Pattern.compile(
 		"(\\d{1,9})(\\.(\\d{1,9})(\\.(\\d{1,9})(-([-_\\da-zA-Z]+))?)?)?");
 	private static final Map<String, String> _xsds =
-		new ConcurrentHashMap<String, String>() {
-			{
-				put("aop", "http://www.springframework.org/schema/aop");
-				put("beans", "http://www.springframework.org/schema/beans");
-				put("blueprint", "http://www.osgi.org/xmlns/blueprint/v1.0.0");
-				put("cdi-beans", "http://xmlns.jcp.org/xml/ns/javaee");
-				put("context", "http://www.springframework.org/schema/context");
-				put(
-					"gemini-blueprint",
-					"http://www.eclipse.org/gemini/blueprint/schema/blueprint");
-				put("j2ee", "http://java.sun.com/xml/ns/j2ee");
-				put("javaee", "http://java.sun.com/xml/ns/javaee");
-				put("jee", "http://www.springframework.org/schema/jee");
-				put("jms", "http://www.springframework.org/schema/jms");
-				put("lang", "http://www.springframework.org/schema/lang");
-				put("osgi", "http://www.springframework.org/schema/osgi");
-				put(
-					"osgi-compendium",
-					"http://www.springframework.org/schema/osgi-compendium");
-				put(
-					"portlet2",
-					"http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd");
-				put("tool", "http://www.springframework.org/schema/tool");
-				put("tx", "http://www.springframework.org/schema/tx");
-				put("util", "http://www.springframework.org/schema/util");
-				put(
-					"webflow-config",
-					"http://www.springframework.org/schema/webflow-config");
-				put("xsl", "http://www.w3.org/1999/XSL/Transform");
-			}
-		};
+		ConcurrentHashMapBuilder.<String, String>put(
+			"aop", "http://www.springframework.org/schema/aop"
+		).put(
+			"beans", "http://www.springframework.org/schema/beans"
+		).put(
+			"blueprint", "http://www.osgi.org/xmlns/blueprint/v1.0.0"
+		).put(
+			"cdi-beans", "http://xmlns.jcp.org/xml/ns/javaee"
+		).put(
+			"context", "http://www.springframework.org/schema/context"
+		).put(
+			"gemini-blueprint",
+			"http://www.eclipse.org/gemini/blueprint/schema/blueprint"
+		).put(
+			"j2ee", "http://java.sun.com/xml/ns/j2ee"
+		).put(
+			"javaee", "http://java.sun.com/xml/ns/javaee"
+		).put(
+			"jee", "http://www.springframework.org/schema/jee"
+		).put(
+			"jms", "http://www.springframework.org/schema/jms"
+		).put(
+			"lang", "http://www.springframework.org/schema/lang"
+		).put(
+			"osgi", "http://www.springframework.org/schema/osgi"
+		).put(
+			"osgi-compendium",
+			"http://www.springframework.org/schema/osgi-compendium"
+		).put(
+			"portlet2", "http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+		).put(
+			"tool", "http://www.springframework.org/schema/tool"
+		).put(
+			"tx", "http://www.springframework.org/schema/tx"
+		).put(
+			"util", "http://www.springframework.org/schema/util"
+		).put(
+			"webflow-config",
+			"http://www.springframework.org/schema/webflow-config"
+		).put(
+			"xsl", "http://www.w3.org/1999/XSL/Transform"
+		).build();
 
 	private String _bundleVersion;
 	private String _context;

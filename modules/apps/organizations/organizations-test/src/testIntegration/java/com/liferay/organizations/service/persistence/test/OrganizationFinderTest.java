@@ -28,11 +28,10 @@ import com.liferay.portal.kernel.test.rule.DeleteAfterTestRun;
 import com.liferay.portal.kernel.test.util.GroupTestUtil;
 import com.liferay.portal.kernel.test.util.OrganizationTestUtil;
 import com.liferay.portal.kernel.test.util.UserTestUtil;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.TransactionalTestRule;
-
-import java.util.LinkedHashMap;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -75,12 +74,11 @@ public class OrganizationFinderTest {
 			_user.getCompanyId(),
 			OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
 			StringPool.NOT_EQUAL, null, null, null, null,
-			new LinkedHashMap<String, Object>() {
-				{
-					put("usersOrgs", _user.getUserId());
-					put("groupOrganization", _group.getGroupId());
-				}
-			});
+			LinkedHashMapBuilder.<String, Object>put(
+				"usersOrgs", _user.getUserId()
+			).put(
+				"groupOrganization", _group.getGroupId()
+			).build());
 
 		Assert.assertEquals(1, count1);
 
@@ -88,12 +86,11 @@ public class OrganizationFinderTest {
 			_user.getCompanyId(),
 			OrganizationConstants.ANY_PARENT_ORGANIZATION_ID,
 			StringPool.NOT_EQUAL, null, null, null, null,
-			new LinkedHashMap<String, Object>() {
-				{
-					put("groupOrganization", _group.getGroupId());
-					put("usersOrgs", _user.getUserId());
-				}
-			});
+			LinkedHashMapBuilder.<String, Object>put(
+				"groupOrganization", _group.getGroupId()
+			).put(
+				"usersOrgs", _user.getUserId()
+			).build());
 
 		Assert.assertEquals(count1, count2);
 	}

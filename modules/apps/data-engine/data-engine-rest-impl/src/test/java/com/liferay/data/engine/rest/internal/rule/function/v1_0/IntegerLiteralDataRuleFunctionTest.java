@@ -47,7 +47,7 @@ public class IntegerLiteralDataRuleFunctionTest {
 	public void testNullInteger() {
 		_dataRecord.setDataRecordValues(
 			HashMapBuilder.<String, Object>put(
-				"fieldName", null
+				"fieldName", (Object)null
 			).build());
 
 		DataRuleFunctionResult dataRuleFunctionResult =

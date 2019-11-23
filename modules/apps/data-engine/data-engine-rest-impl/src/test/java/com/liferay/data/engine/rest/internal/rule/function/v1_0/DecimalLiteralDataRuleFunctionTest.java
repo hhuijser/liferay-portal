@@ -47,7 +47,7 @@ public class DecimalLiteralDataRuleFunctionTest {
 	public void testNullDecimal() {
 		_dataRecord.setDataRecordValues(
 			HashMapBuilder.<String, Object>put(
-				"fieldName", null
+				"fieldName", (Object)null
 			).build());
 
 		DataRuleFunctionResult dataRuleFunctionResult =

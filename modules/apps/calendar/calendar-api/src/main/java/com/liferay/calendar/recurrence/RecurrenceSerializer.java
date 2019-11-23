@@ -27,6 +27,7 @@ import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.CalendarFactoryUtil;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -34,7 +35,6 @@ import java.text.ParseException;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TimeZone;
@@ -222,16 +222,21 @@ public class RecurrenceSerializer {
 		RecurrenceSerializer.class);
 
 	private static final Map<Weekday, com.google.ical.values.Weekday>
-		_weekdaysMap = new HashMap<Weekday, com.google.ical.values.Weekday>() {
-			{
-				put(Weekday.FRIDAY, com.google.ical.values.Weekday.FR);
-				put(Weekday.MONDAY, com.google.ical.values.Weekday.MO);
-				put(Weekday.SATURDAY, com.google.ical.values.Weekday.SA);
-				put(Weekday.SUNDAY, com.google.ical.values.Weekday.SU);
-				put(Weekday.THURSDAY, com.google.ical.values.Weekday.TH);
-				put(Weekday.TUESDAY, com.google.ical.values.Weekday.TU);
-				put(Weekday.WEDNESDAY, com.google.ical.values.Weekday.WE);
-			}
-		};
+		_weekdaysMap =
+			HashMapBuilder.<Weekday, com.google.ical.values.Weekday>put(
+				Weekday.FRIDAY, com.google.ical.values.Weekday.FR
+			).put(
+				Weekday.MONDAY, com.google.ical.values.Weekday.MO
+			).put(
+				Weekday.SATURDAY, com.google.ical.values.Weekday.SA
+			).put(
+				Weekday.SUNDAY, com.google.ical.values.Weekday.SU
+			).put(
+				Weekday.THURSDAY, com.google.ical.values.Weekday.TH
+			).put(
+				Weekday.TUESDAY, com.google.ical.values.Weekday.TU
+			).put(
+				Weekday.WEDNESDAY, com.google.ical.values.Weekday.WE
+			).build();
 
 }

@@ -16,11 +16,11 @@ package com.liferay.portal.search.elasticsearch7.internal.test.util.microcontain
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.module.framework.ModuleServiceLifecycle;
+import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -232,12 +232,11 @@ public class MicrocontainerImpl implements Microcontainer {
 	}
 
 	private Map<String, Collection<Object>> _createComponentsMap() {
-		return new LinkedHashMap<String, Collection<Object>>() {
-			{
-				put(StringPool.BLANK, new HashSet<>());
-				put(ModuleServiceLifecycle.PORTAL_INITIALIZED, new HashSet<>());
-			}
-		};
+		return LinkedHashMapBuilder.<String, Collection<Object>>put(
+			StringPool.BLANK, new HashSet<>()
+		).put(
+			ModuleServiceLifecycle.PORTAL_INITIALIZED, new HashSet<>()
+		).build();
 	}
 
 	private final Map<String, Collection<Object>> _componentsMap =

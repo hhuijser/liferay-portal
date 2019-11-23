@@ -25,12 +25,12 @@ import com.liferay.portal.kernel.repository.capabilities.BulkOperationCapability
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.Folder;
 import com.liferay.portal.kernel.repository.model.RepositoryModelOperation;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.repository.capabilities.util.DLFileEntryServiceAdapter;
 import com.liferay.portal.repository.capabilities.util.DLFolderServiceAdapter;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFileEntry;
 import com.liferay.portal.repository.liferayrepository.model.LiferayFolder;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -95,12 +95,11 @@ public class LiferayBulkOperationCapability implements BulkOperationCapability {
 	}
 
 	private static final Map<Class<? extends Field<?>>, String> _fieldNames =
-		new HashMap<Class<? extends Field<?>>, String>() {
-			{
-				put(Field.CreateDate.class, "createDate");
-				put(Field.FolderId.class, "folderId");
-			}
-		};
+		HashMapBuilder.<Class<? extends Field<?>>, String>put(
+			Field.CreateDate.class, "createDate"
+		).put(
+			Field.FolderId.class, "folderId"
+		).build();
 
 	private final DLFileEntryServiceAdapter _dlFileEntryServiceAdapter;
 	private final DLFolderServiceAdapter _dlFolderServiceAdapter;

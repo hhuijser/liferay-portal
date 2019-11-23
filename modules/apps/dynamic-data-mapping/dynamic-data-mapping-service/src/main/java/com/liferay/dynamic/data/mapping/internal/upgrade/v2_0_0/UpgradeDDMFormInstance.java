@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ResourceActionLocalService;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalService;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
+import com.liferay.portal.kernel.util.ConcurrentHashMapBuilder;
 import com.liferay.portal.kernel.util.MapUtil;
 import com.liferay.portal.kernel.uuid.PortalUUIDUtil;
 import com.liferay.portal.kernel.workflow.WorkflowConstants;
@@ -44,7 +45,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -459,18 +459,23 @@ public class UpgradeDDMFormInstance extends UpgradeProcess {
 		"com.liferay.dynamic.data.lists.model.DDLRecordSet";
 
 	private static final Map<String, String> _resourceActionIdsMap =
-		new ConcurrentHashMap<String, String>() {
-			{
-				put("ADD_DATA_PROVIDER_INSTANCE", "ADD_DATA_PROVIDER_INSTANCE");
-				put("ADD_RECORD", "ADD_FORM_INSTANCE_RECORD");
-				put("ADD_RECORD_SET", "ADD_FORM_INSTANCE");
-				put("ADD_STRUCTURE", "ADD_STRUCTURE");
-				put("DELETE", "DELETE");
-				put("PERMISSIONS", "PERMISSIONS");
-				put("UPDATE", "UPDATE");
-				put("VIEW", "VIEW");
-			}
-		};
+		ConcurrentHashMapBuilder.<String, String>put(
+			"ADD_DATA_PROVIDER_INSTANCE", "ADD_DATA_PROVIDER_INSTANCE"
+		).put(
+			"ADD_RECORD", "ADD_FORM_INSTANCE_RECORD"
+		).put(
+			"ADD_RECORD_SET", "ADD_FORM_INSTANCE"
+		).put(
+			"ADD_STRUCTURE", "ADD_STRUCTURE"
+		).put(
+			"DELETE", "DELETE"
+		).put(
+			"PERMISSIONS", "PERMISSIONS"
+		).put(
+			"UPDATE", "UPDATE"
+		).put(
+			"VIEW", "VIEW"
+		).build();
 
 	private final ClassNameLocalService _classNameLocalService;
 	private final CounterLocalService _counterLocalService;

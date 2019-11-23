@@ -93,7 +93,7 @@ public class UserInitialsGeneratorImpl implements UserInitialsGenerator {
 	};
 
 	private static final Map<String, Integer> _userNameIndexes =
-		HashMapBuilder.<String, Integer>put(
+		HashMapBuilder.put(
 			LanguageConstants.VALUE_FIRST_NAME, 0
 		).put(
 			LanguageConstants.VALUE_LAST_NAME, 2

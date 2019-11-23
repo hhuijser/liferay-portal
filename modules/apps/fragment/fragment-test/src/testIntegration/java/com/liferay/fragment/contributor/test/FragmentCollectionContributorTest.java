@@ -165,7 +165,7 @@ public class FragmentCollectionContributorTest {
 
 		@Override
 		public Map<Locale, String> getNames() {
-			return HashMapBuilder.<Locale, String>put(
+			return HashMapBuilder.put(
 				LocaleUtil.getSiteDefault(), getName()
 			).build();
 		}

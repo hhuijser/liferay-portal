@@ -180,7 +180,7 @@ public class DateRangeFactory {
 	};
 
 	private static final Map<String, String> _rangeMap =
-		LinkedHashMapBuilder.<String, String>put(
+		LinkedHashMapBuilder.put(
 			"past-hour", "[past-hour TO *]"
 		).put(
 			"past-24-hours", "[past-24-hours TO *]"

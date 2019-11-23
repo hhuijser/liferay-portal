@@ -663,7 +663,7 @@ public class SharepointQueryBuilder {
 	private static final LiferayQueryExplainer _liferayQueryExplainer =
 		new LiferayQueryExplainer();
 	private static final Map<String, String> _sharepointFields =
-		HashMapBuilder.<String, String>put(
+		HashMapBuilder.put(
 			Field.CREATE_DATE, SharepointField.CREATE_DATE
 		).put(
 			Field.FOLDER_ID, SharepointField.FOLDER_PATH

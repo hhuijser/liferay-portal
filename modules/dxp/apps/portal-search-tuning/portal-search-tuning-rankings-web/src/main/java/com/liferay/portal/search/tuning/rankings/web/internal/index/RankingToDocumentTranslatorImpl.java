@@ -70,7 +70,7 @@ public class RankingToDocumentTranslatorImpl
 		Stream<Ranking.Pin> stream = pins.stream();
 
 		return stream.map(
-			pin -> LinkedHashMapBuilder.<String, String>put(
+			pin -> LinkedHashMapBuilder.put(
 				RankingFields.POSITION, String.valueOf(pin.getPosition())
 			).put(
 				RankingFields.UID, pin.getId()

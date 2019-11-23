@@ -459,7 +459,7 @@ public class UpgradeDDMFormInstance extends UpgradeProcess {
 		"com.liferay.dynamic.data.lists.model.DDLRecordSet";
 
 	private static final Map<String, String> _resourceActionIdsMap =
-		ConcurrentHashMapBuilder.<String, String>put(
+		ConcurrentHashMapBuilder.put(
 			"ADD_DATA_PROVIDER_INSTANCE", "ADD_DATA_PROVIDER_INSTANCE"
 		).put(
 			"ADD_RECORD", "ADD_FORM_INSTANCE_RECORD"

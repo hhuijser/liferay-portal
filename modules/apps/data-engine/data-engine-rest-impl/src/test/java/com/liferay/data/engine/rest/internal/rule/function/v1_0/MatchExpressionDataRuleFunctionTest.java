@@ -20,7 +20,6 @@ import com.liferay.data.engine.rule.function.DataRuleFunction;
 import com.liferay.data.engine.rule.function.DataRuleFunctionResult;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Assert;
@@ -39,11 +38,9 @@ public class MatchExpressionDataRuleFunctionTest {
 			).build();
 
 		_dataRecord.setDataRecordValues(
-			new HashMap() {
-				{
-					put("fieldName", "test@liferay");
-				}
-			});
+			HashMapBuilder.<String, Object>put(
+				"fieldName", "test@liferay"
+			).build());
 
 		DataRuleFunctionResult dataRuleFunctionResult =
 			DataRuleFunctionTestUtil.validateDataRuleFunction(
@@ -62,11 +59,9 @@ public class MatchExpressionDataRuleFunctionTest {
 			).build();
 
 		_dataRecord.setDataRecordValues(
-			new HashMap() {
-				{
-					put("fieldName", "test@liferay");
-				}
-			});
+			HashMapBuilder.<String, Object>put(
+				"fieldName", "test@liferay"
+			).build());
 
 		DataRuleFunctionResult dataRuleFunctionResult =
 			DataRuleFunctionTestUtil.validateDataRuleFunction(
@@ -85,11 +80,9 @@ public class MatchExpressionDataRuleFunctionTest {
 			).build();
 
 		_dataRecord.setDataRecordValues(
-			new HashMap() {
-				{
-					put("fieldName", "test@liferay.com");
-				}
-			});
+			HashMapBuilder.<String, Object>put(
+				"fieldName", "test@liferay.com"
+			).build());
 
 		DataRuleFunctionResult dataRuleFunctionResult =
 			DataRuleFunctionTestUtil.validateDataRuleFunction(

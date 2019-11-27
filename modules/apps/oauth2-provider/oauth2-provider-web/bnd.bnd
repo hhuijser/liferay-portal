@@ -8,3 +8,8 @@ Provide-Capability:\
 		service.ranking="1"
 Web-ContextPath: /oauth2-provider-web
 -dsannotations-options: inherit
+Provide-Capability:\
+	osgi.extender;\
+		osgi.extender="jsp.taglib";\
+		uri="http://liferay.com/tld/mytest";\
+		version:Version="${Bundle-Version}"

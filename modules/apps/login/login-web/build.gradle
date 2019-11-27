@@ -19,6 +19,7 @@ dependencies {
 	compileOnly project(":apps:frontend-taglib:frontend-taglib")
 	compileOnly project(":apps:petra:petra-content")
 	compileOnly project(":apps:portal:portal-upgrade-api")
+	compileOnly project(":apps:oauth2-provider:oauth2-provider-web")
 	compileOnly project(":core:osgi-service-tracker-collections")
 	compileOnly project(":core:petra:petra-lang")
 	compileOnly project(":core:petra:petra-string")

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<taglib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns="http://java.sun.com/xml/ns/javaee"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+		version="2.1">
+	<display-name>Test util</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>mytest</short-name>
+	<uri>http://liferay.com/tld/mytest</uri>
+	<tag-file>
+		<name>test</name>
+		<path>/META-INF/tags/mytest/test.tag</path>
+	</tag-file>
+</taglib>

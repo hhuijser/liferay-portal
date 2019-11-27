@@ -30,6 +30,10 @@
 		%>
 
 		<liferay-ui:message arguments="<%= signedInAs %>" key="you-are-signed-in-as-x" translateArguments="<%= false %>" />
+		<mytest:test>
+			wrap content
+		</mytest:test>
+
 	</c:when>
 	<c:otherwise>
 

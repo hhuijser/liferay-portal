@@ -224,12 +224,10 @@ portletDisplay.setWebDAVEnabled(portlet.getWebDAVStorageInstance() != null);
 
 if (portlet.isActive() && portlet.isReady() && supportsMimeType && (invokerPortlet != null)) {
 	try {
-		if (!PortalUtil.isSkipPortletContentRendering(group, layoutTypePortlet, portletDisplay, portletDisplay.getPortletName())) {
-			if (invokerPortlet.isHeaderPortlet()) {
-				invokerPortlet.renderHeaders(liferayHeaderRequest, liferayHeaderResponse);
+		if (!PortalUtil.isSkipPortletContentRendering(group, layoutTypePortlet, portletDisplay, portletDisplay.getPortletName()) && invokerPortlet.isHeaderPortlet()) {
+			invokerPortlet.renderHeaders(liferayHeaderRequest, liferayHeaderResponse);
 
-				liferayHeaderResponse.writeToHead();
-			}
+			liferayHeaderResponse.writeToHead();
 		}
 
 		liferayHeaderResponse.transferHeaders(bufferCacheServletResponse);

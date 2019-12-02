@@ -43,10 +43,8 @@ if (categoryId > 0) {
 	mailingList = MBMailingListLocalServiceUtil.fetchCategoryMailingList(scopeGroupId, categoryId);
 }
 
-if ((category == null) && (mailingList == null)) {
-	if (parentCategoryId > 0) {
-		mailingList = MBMailingListLocalServiceUtil.fetchCategoryMailingList(scopeGroupId, parentCategoryId);
-	}
+if ((category == null) && (mailingList == null) && (parentCategoryId > 0)) {
+	mailingList = MBMailingListLocalServiceUtil.fetchCategoryMailingList(scopeGroupId, parentCategoryId);
 }
 
 if (category != null) {

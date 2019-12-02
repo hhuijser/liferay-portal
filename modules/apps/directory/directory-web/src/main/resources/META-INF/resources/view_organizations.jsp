@@ -92,22 +92,20 @@ boolean showSearch = ParamUtil.getBoolean(request, "showSearch", true);
 			organizationParams.put("organizationsGroups", Long.valueOf(themeDisplay.getScopeGroupId()));
 		}
 
-		if (Validator.isNotNull(searchTerms.getKeywords()) || searchTerms.isAdvancedSearch()) {
-			if (parentOrganizationId != OrganizationConstants.ANY_PARENT_ORGANIZATION_ID) {
-				List<Long> excludedOrganizationIds = new ArrayList<Long>();
+		if ((Validator.isNotNull(searchTerms.getKeywords()) || searchTerms.isAdvancedSearch()) && (parentOrganizationId != OrganizationConstants.ANY_PARENT_ORGANIZATION_ID)) {
+			List<Long> excludedOrganizationIds = new ArrayList<Long>();
 
-				excludedOrganizationIds.add(parentOrganizationId);
+			excludedOrganizationIds.add(parentOrganizationId);
 
-				organizationParams.put("excludedOrganizationIds", excludedOrganizationIds);
+			organizationParams.put("excludedOrganizationIds", excludedOrganizationIds);
 
-				Organization parentOrganization = OrganizationLocalServiceUtil.getOrganization(parentOrganizationId);
+			Organization parentOrganization = OrganizationLocalServiceUtil.getOrganization(parentOrganizationId);
 
-				List<Organization> organizations = new ArrayList<Organization>();
+			List<Organization> organizations = new ArrayList<Organization>();
 
-				organizations.add(parentOrganization);
+			organizations.add(parentOrganization);
 
-				organizationParams.put("organizationsTree", organizations);
-			}
+			organizationParams.put("organizationsTree", organizations);
 		}
 		%>
 

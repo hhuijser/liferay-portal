@@ -104,13 +104,11 @@ String focusField = (String)request.getAttribute("liferay-ui:error:focusField");
 
 Set<Locale> errorLocales = new HashSet<Locale>();
 
-if ((exception != null) && fieldName.equals(focusField)) {
-	if (exception instanceof LocalizedException) {
-		LocalizedException le = (LocalizedException)exception;
+if ((exception != null) && fieldName.equals(focusField) && (exception instanceof LocalizedException)) {
+	LocalizedException le = (LocalizedException)exception;
 
-		Map<Locale, Exception> localizedExceptionsMap = le.getLocalizedExceptionsMap();
+	Map<Locale, Exception> localizedExceptionsMap = le.getLocalizedExceptionsMap();
 
-		errorLocales = localizedExceptionsMap.keySet();
-	}
+	errorLocales = localizedExceptionsMap.keySet();
 }
 %>

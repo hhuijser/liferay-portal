@@ -180,10 +180,8 @@ request.setAttribute("view.jsp-viewCategory", Boolean.TRUE.toString());
 					boolean showAddMessageButton = MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.ADD_MESSAGE);
 					boolean showPermissionsButton = MBResourcePermission.contains(permissionChecker, scopeGroupId, ActionKeys.PERMISSIONS);
 
-					if (showAddMessageButton && !themeDisplay.isSignedIn()) {
-						if (!allowAnonymousPosting) {
-							showAddMessageButton = false;
-						}
+					if (showAddMessageButton && !themeDisplay.isSignedIn() && !allowAnonymousPosting) {
+						showAddMessageButton = false;
 					}
 					%>
 

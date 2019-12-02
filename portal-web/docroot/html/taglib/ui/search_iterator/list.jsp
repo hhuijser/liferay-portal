@@ -28,12 +28,10 @@ if (end > total) {
 	end = total;
 }
 
-if (rowChecker != null) {
-	if (headerNames != null) {
-		headerNames.add(0, rowChecker.getAllRowsCheckBox(request));
+if ((rowChecker != null) && (headerNames != null)) {
+	headerNames.add(0, rowChecker.getAllRowsCheckBox(request));
 
-		normalizedHeaderNames.add(0, "rowChecker");
-	}
+	normalizedHeaderNames.add(0, "rowChecker");
 }
 
 String url = StringPool.BLANK;

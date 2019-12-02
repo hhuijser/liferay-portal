@@ -119,5 +119,8 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.IfStatementCheck">
 			<message key="if.statements.combine" value="Combine if-statements" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.InstanceofOrderCheck">
+			<message key="instanceof.order" value="''{0}'' should come before ''{1}''" />
+		</module>
 	</module>
 </module>

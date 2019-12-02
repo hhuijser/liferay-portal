@@ -20,8 +20,8 @@
 page import="com.liferay.blogs.web.internal.display.context.BlogEntriesItemSelectorManagementToolbarDisplayContext" %><%@
 page import="com.liferay.blogs.web.internal.servlet.taglib.clay.BlogsEntryItemSelectorVerticalCard" %><%@
 page import="com.liferay.item.selector.criteria.InfoItemItemSelectorReturnType" %><%@
-page import="com.liferay.portal.kernel.json.JSONFactoryUtil" %><%@
-page import="com.liferay.portal.kernel.json.JSONObject" %>
+page import="com.liferay.portal.kernel.json.JSONObject" %><%@
+page import="com.liferay.portal.kernel.json.JSONUtil" %>
 
 <%@ page import="java.util.Objects" %>
 

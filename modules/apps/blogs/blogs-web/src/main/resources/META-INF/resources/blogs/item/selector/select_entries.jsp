@@ -42,12 +42,15 @@ BlogEntriesItemSelectorDisplayContext blogEntriesItemSelectorDisplayContext = (B
 
 			Map<String, Object> data = new HashMap<>();
 
-			JSONObject entryJSONObject = JSONFactoryUtil.createJSONObject();
-
-			entryJSONObject.put("className", BlogsEntry.class.getName());
-			entryJSONObject.put("classNameId", PortalUtil.getClassNameId(BlogsEntry.class.getName()));
-			entryJSONObject.put("classPK", entry.getEntryId());
-			entryJSONObject.put("title", BlogsEntryUtil.getDisplayTitle(resourceBundle, entry));
+			JSONObject entryJSONObject = JSONUtil.put(
+				"className", BlogsEntry.class.getName()
+			).put(
+				"classNameId", PortalUtil.getClassNameId(BlogsEntry.class.getName())
+			).put(
+				"classPK", entry.getEntryId()
+			).put(
+				"title", BlogsEntryUtil.getDisplayTitle(resourceBundle, entry)
+			);
 
 			data.put("value", entryJSONObject.toString());
 

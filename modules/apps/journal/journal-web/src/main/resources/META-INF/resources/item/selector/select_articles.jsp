@@ -62,11 +62,13 @@ JournalArticleItemSelectorViewDisplayContext journalArticleItemSelectorViewDispl
 
 					Map<String, Object> data = new HashMap<>();
 
-					JSONObject articleJSONObject = JSONFactoryUtil.createJSONObject();
-
-					articleJSONObject.put("className", JournalArticle.class.getName());
-					articleJSONObject.put("classNameId", PortalUtil.getClassNameId(JournalArticle.class.getName()));
-					articleJSONObject.put("classPK", curArticle.getResourcePrimKey());
+					JSONObject articleJSONObject = JSONUtil.put(
+						"className", JournalArticle.class.getName()
+					).put(
+						"classNameId", PortalUtil.getClassNameId(JournalArticle.class.getName())
+					).put(
+						"classPK", curArticle.getResourcePrimKey()
+					);
 
 					String title = curArticle.getTitle(locale);
 

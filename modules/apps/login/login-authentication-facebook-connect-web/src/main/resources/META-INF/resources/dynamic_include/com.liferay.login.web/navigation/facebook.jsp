@@ -35,10 +35,11 @@ facebookAuthURL = HttpUtil.addParameter(facebookAuthURL, "client_id", facebookAp
 facebookAuthURL = HttpUtil.addParameter(facebookAuthURL, "redirect_uri", facebookAuthRedirectURL);
 facebookAuthURL = HttpUtil.addParameter(facebookAuthURL, "scope", "email");
 
-JSONObject stateJSONObject = JSONFactoryUtil.createJSONObject();
-
-stateJSONObject.put("redirect", loginRedirectURL);
-stateJSONObject.put("stateNonce", nonce);
+JSONObject stateJSONObject = JSONUtil.put(
+	"redirect", loginRedirectURL
+).put(
+	"stateNonce", nonce
+);
 
 facebookAuthURL = HttpUtil.addParameter(facebookAuthURL, "state", stateJSONObject.toString());
 

@@ -26,64 +26,44 @@ public class TreeMapBuilder<K, V> extends BaseMapBuilder {
 		Collection<? extends K> inputCollection,
 		UnsafeFunction<K, V, Exception> unsafeFunction) {
 
-		return new TreeMapWrapper<>(inputCollection, unsafeFunction);
+		TreeMapWrapper<K, V> treeMapWrapper = new TreeMapWrapper<>();
+
+		return treeMapWrapper.put(inputCollection, unsafeFunction);
 	}
 
 	public static <K, V> TreeMapWrapper<K, V> put(
 		K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new TreeMapWrapper<>(key, valueUnsafeSupplier);
+		TreeMapWrapper<K, V> treeMapWrapper = new TreeMapWrapper<>();
+
+		return treeMapWrapper.put(key, valueUnsafeSupplier);
 	}
 
 	public static <K, V> TreeMapWrapper<K, V> put(K key, V value) {
-		return new TreeMapWrapper<>(key, value);
+		TreeMapWrapper<K, V> treeMapWrapper = new TreeMapWrapper<>();
+
+		return treeMapWrapper.put(key, value);
 	}
 
 	public static <K, V> TreeMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier,
 		UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new TreeMapWrapper<>(keyUnsafeSupplier, valueUnsafeSupplier);
+		TreeMapWrapper<K, V> treeMapWrapper = new TreeMapWrapper<>();
+
+		return treeMapWrapper.put(keyUnsafeSupplier, valueUnsafeSupplier);
 	}
 
 	public static <K, V> TreeMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
 
-		return new TreeMapWrapper<>(keyUnsafeSupplier, value);
+		TreeMapWrapper<K, V> treeMapWrapper = new TreeMapWrapper<>();
+
+		return treeMapWrapper.put(keyUnsafeSupplier, value);
 	}
 
 	public static final class TreeMapWrapper<K, V>
 		extends BaseMapWrapper<K, V> {
-
-		public TreeMapWrapper(
-			Collection<? extends K> inputCollection,
-			UnsafeFunction<K, V, Exception> unsafeFunction) {
-
-			doPut(inputCollection, unsafeFunction);
-		}
-
-		public TreeMapWrapper(
-			K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(key, valueUnsafeSupplier);
-		}
-
-		public TreeMapWrapper(K key, V value) {
-			_treeMap.put(key, value);
-		}
-
-		public TreeMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier,
-			UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(keyUnsafeSupplier, valueUnsafeSupplier);
-		}
-
-		public TreeMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
-
-			doPut(keyUnsafeSupplier, value);
-		}
 
 		public TreeMap<K, V> build() {
 			return _treeMap;

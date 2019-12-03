@@ -26,65 +26,49 @@ public class LinkedHashMapBuilder<K, V> extends BaseMapBuilder {
 		Collection<? extends K> inputCollection,
 		UnsafeFunction<K, V, Exception> unsafeFunction) {
 
-		return new LinkedHashMapWrapper<>(inputCollection, unsafeFunction);
+		LinkedHashMapWrapper<K, V> linkedHashMapWrapper =
+			new LinkedHashMapWrapper<>();
+
+		return linkedHashMapWrapper.put(inputCollection, unsafeFunction);
 	}
 
 	public static <K, V> LinkedHashMapWrapper<K, V> put(
 		K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new LinkedHashMapWrapper<>(key, valueUnsafeSupplier);
+		LinkedHashMapWrapper<K, V> linkedHashMapWrapper =
+			new LinkedHashMapWrapper<>();
+
+		return linkedHashMapWrapper.put(key, valueUnsafeSupplier);
 	}
 
 	public static <K, V> LinkedHashMapWrapper<K, V> put(K key, V value) {
-		return new LinkedHashMapWrapper<>(key, value);
+		LinkedHashMapWrapper<K, V> linkedHashMapWrapper =
+			new LinkedHashMapWrapper<>();
+
+		return linkedHashMapWrapper.put(key, value);
 	}
 
 	public static <K, V> LinkedHashMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier,
 		UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new LinkedHashMapWrapper<>(
-			keyUnsafeSupplier, valueUnsafeSupplier);
+		LinkedHashMapWrapper<K, V> linkedHashMapWrapper =
+			new LinkedHashMapWrapper<>();
+
+		return linkedHashMapWrapper.put(keyUnsafeSupplier, valueUnsafeSupplier);
 	}
 
 	public static <K, V> LinkedHashMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
 
-		return new LinkedHashMapWrapper<>(keyUnsafeSupplier, value);
+		LinkedHashMapWrapper<K, V> linkedHashMapWrapper =
+			new LinkedHashMapWrapper<>();
+
+		return linkedHashMapWrapper.put(keyUnsafeSupplier, value);
 	}
 
 	public static final class LinkedHashMapWrapper<K, V>
 		extends BaseMapWrapper<K, V> {
-
-		public LinkedHashMapWrapper(
-			Collection<? extends K> inputCollection,
-			UnsafeFunction<K, V, Exception> unsafeFunction) {
-
-			doPut(inputCollection, unsafeFunction);
-		}
-
-		public LinkedHashMapWrapper(
-			K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(key, valueUnsafeSupplier);
-		}
-
-		public LinkedHashMapWrapper(K key, V value) {
-			_linkedHashMap.put(key, value);
-		}
-
-		public LinkedHashMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier,
-			UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(keyUnsafeSupplier, valueUnsafeSupplier);
-		}
-
-		public LinkedHashMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
-
-			doPut(keyUnsafeSupplier, value);
-		}
 
 		public LinkedHashMap<K, V> build() {
 			return _linkedHashMap;

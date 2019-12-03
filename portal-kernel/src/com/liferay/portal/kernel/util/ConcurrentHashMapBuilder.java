@@ -26,65 +26,50 @@ public class ConcurrentHashMapBuilder<K, V> extends BaseMapBuilder {
 		Collection<? extends K> inputCollection,
 		UnsafeFunction<K, V, Exception> unsafeFunction) {
 
-		return new ConcurrentHashMapWrapper<>(inputCollection, unsafeFunction);
+		ConcurrentHashMapWrapper<K, V> concurrentHashMapWrapper =
+			new ConcurrentHashMapWrapper<>();
+
+		return concurrentHashMapWrapper.put(inputCollection, unsafeFunction);
 	}
 
 	public static <K, V> ConcurrentHashMapWrapper<K, V> put(
 		K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new ConcurrentHashMapWrapper<>(key, valueUnsafeSupplier);
+		ConcurrentHashMapWrapper<K, V> concurrentHashMapWrapper =
+			new ConcurrentHashMapWrapper<>();
+
+		return concurrentHashMapWrapper.put(key, valueUnsafeSupplier);
 	}
 
 	public static <K, V> ConcurrentHashMapWrapper<K, V> put(K key, V value) {
-		return new ConcurrentHashMapWrapper<>(key, value);
+		ConcurrentHashMapWrapper<K, V> concurrentHashMapWrapper =
+			new ConcurrentHashMapWrapper<>();
+
+		return concurrentHashMapWrapper.put(key, value);
 	}
 
 	public static <K, V> ConcurrentHashMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier,
 		UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new ConcurrentHashMapWrapper<>(
+		ConcurrentHashMapWrapper<K, V> concurrentHashMapWrapper =
+			new ConcurrentHashMapWrapper<>();
+
+		return concurrentHashMapWrapper.put(
 			keyUnsafeSupplier, valueUnsafeSupplier);
 	}
 
 	public static <K, V> ConcurrentHashMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
 
-		return new ConcurrentHashMapWrapper<>(keyUnsafeSupplier, value);
+		ConcurrentHashMapWrapper<K, V> concurrentHashMapWrapper =
+			new ConcurrentHashMapWrapper<>();
+
+		return concurrentHashMapWrapper.put(keyUnsafeSupplier, value);
 	}
 
 	public static final class ConcurrentHashMapWrapper<K, V>
 		extends BaseMapWrapper<K, V> {
-
-		public ConcurrentHashMapWrapper(
-			Collection<? extends K> inputCollection,
-			UnsafeFunction<K, V, Exception> unsafeFunction) {
-
-			doPut(inputCollection, unsafeFunction);
-		}
-
-		public ConcurrentHashMapWrapper(
-			K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(key, valueUnsafeSupplier);
-		}
-
-		public ConcurrentHashMapWrapper(K key, V value) {
-			_concurrentHashMap.put(key, value);
-		}
-
-		public ConcurrentHashMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier,
-			UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(keyUnsafeSupplier, valueUnsafeSupplier);
-		}
-
-		public ConcurrentHashMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
-
-			doPut(keyUnsafeSupplier, value);
-		}
 
 		public ConcurrentHashMap<K, V> build() {
 			return _concurrentHashMap;

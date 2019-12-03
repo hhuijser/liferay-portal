@@ -26,64 +26,44 @@ public class HashMapBuilder<K, V> extends BaseMapBuilder {
 		Collection<? extends K> inputCollection,
 		UnsafeFunction<K, V, Exception> unsafeFunction) {
 
-		return new HashMapWrapper<>(inputCollection, unsafeFunction);
+		HashMapWrapper<K, V> hashMapWrapper = new HashMapWrapper<>();
+
+		return hashMapWrapper.put(inputCollection, unsafeFunction);
 	}
 
 	public static <K, V> HashMapWrapper<K, V> put(
 		K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new HashMapWrapper<>(key, valueUnsafeSupplier);
+		HashMapWrapper<K, V> hashMapWrapper = new HashMapWrapper<>();
+
+		return hashMapWrapper.put(key, valueUnsafeSupplier);
 	}
 
 	public static <K, V> HashMapWrapper<K, V> put(K key, V value) {
-		return new HashMapWrapper<>(key, value);
+		HashMapWrapper<K, V> hashMapWrapper = new HashMapWrapper<>();
+
+		return hashMapWrapper.put(key, value);
 	}
 
 	public static <K, V> HashMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier,
 		UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
 
-		return new HashMapWrapper<>(keyUnsafeSupplier, valueUnsafeSupplier);
+		HashMapWrapper<K, V> hashMapWrapper = new HashMapWrapper<>();
+
+		return hashMapWrapper.put(keyUnsafeSupplier, valueUnsafeSupplier);
 	}
 
 	public static <K, V> HashMapWrapper<K, V> put(
 		UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
 
-		return new HashMapWrapper<>(keyUnsafeSupplier, value);
+		HashMapWrapper<K, V> hashMapWrapper = new HashMapWrapper<>();
+
+		return hashMapWrapper.put(keyUnsafeSupplier, value);
 	}
 
 	public static final class HashMapWrapper<K, V>
 		extends BaseMapWrapper<K, V> {
-
-		public HashMapWrapper(
-			Collection<? extends K> inputCollection,
-			UnsafeFunction<K, V, Exception> unsafeFunction) {
-
-			doPut(inputCollection, unsafeFunction);
-		}
-
-		public HashMapWrapper(
-			K key, UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(key, valueUnsafeSupplier);
-		}
-
-		public HashMapWrapper(K key, V value) {
-			_hashMap.put(key, value);
-		}
-
-		public HashMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier,
-			UnsafeSupplier<V, Exception> valueUnsafeSupplier) {
-
-			doPut(keyUnsafeSupplier, valueUnsafeSupplier);
-		}
-
-		public HashMapWrapper(
-			UnsafeSupplier<K, Exception> keyUnsafeSupplier, V value) {
-
-			doPut(keyUnsafeSupplier, value);
-		}
 
 		public HashMap<K, V> build() {
 			return _hashMap;

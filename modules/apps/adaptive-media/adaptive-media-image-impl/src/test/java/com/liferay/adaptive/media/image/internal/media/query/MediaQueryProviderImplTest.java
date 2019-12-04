@@ -738,12 +738,7 @@ public class MediaQueryProviderImplTest {
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_WIDTH.getName(),
 			String.valueOf(width)
 		).put(
-			() -> {
-				AMAttribute amAttribute =
-					AMAttribute.getConfigurationUuidAMAttribute();
-
-				return amAttribute.getName();
-			},
+			AMAttribute.getConfigurationUuidAMAttribute()::getName,
 			amImageConfigurationEntryUuid
 		).build();
 

@@ -40,7 +40,6 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
@@ -363,12 +362,7 @@ public class DLImpl implements DL {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]",
-			() -> {
-				Company company = themeDisplay.getCompany();
-
-				return company.getVirtualHostname();
-			}
+			"[$PORTAL_URL$]", themeDisplay.getCompany()::getVirtualHostname
 		).put(
 			"[$PORTLET_NAME$]",
 			() -> {

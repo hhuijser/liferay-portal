@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
@@ -178,12 +177,7 @@ public class FlagsTag extends IncludeTag {
 		Map<String, Object> props = HashMapBuilder.<String, Object>put(
 			"baseData", _getDataJSONObject(themeDisplay)
 		).put(
-			"companyName",
-			() -> {
-				Company company = themeDisplay.getCompany();
-
-				return company.getName();
-			}
+			"companyName", themeDisplay.getCompany()::getName
 		).put(
 			"disabled", !_enabled
 		).put(

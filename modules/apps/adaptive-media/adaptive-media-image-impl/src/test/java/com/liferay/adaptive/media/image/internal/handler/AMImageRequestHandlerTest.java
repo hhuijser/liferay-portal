@@ -300,36 +300,16 @@ public class AMImageRequestHandlerTest {
 			amImageConfigurationEntry.getProperties();
 
 		Map<String, String> properties = HashMapBuilder.put(
-			() -> {
-				AMAttribute<Object, String> configurationUuidAMAttribute =
-					AMAttribute.getConfigurationUuidAMAttribute();
-
-				return configurationUuidAMAttribute.getName();
-			},
+			AMAttribute.getConfigurationUuidAMAttribute()::getName,
 			amImageConfigurationEntry.getUUID()
 		).put(
-			() -> {
-				AMAttribute<Object, Long> contentLengthAMAttribute =
-					AMAttribute.getContentLengthAMAttribute();
-
-				return contentLengthAMAttribute.getName();
-			},
+			AMAttribute.getContentLengthAMAttribute()::getName,
 			String.valueOf(fileVersion.getSize())
 		).put(
-			() -> {
-				AMAttribute<Object, String> contentTypeAMAttribute =
-					AMAttribute.getContentTypeAMAttribute();
-
-				return contentTypeAMAttribute.getName();
-			},
+			AMAttribute.getContentTypeAMAttribute()::getName,
 			fileVersion.getMimeType()
 		).put(
-			() -> {
-				AMAttribute<Object, String> fileNameAMAttribute =
-					AMAttribute.getFileNameAMAttribute();
-
-				return fileNameAMAttribute.getName();
-			},
+			AMAttribute.getFileNameAMAttribute()::getName,
 			fileVersion.getFileName()
 		).put(
 			AMImageAttribute.AM_IMAGE_ATTRIBUTE_HEIGHT.getName(),

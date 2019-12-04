@@ -309,12 +309,7 @@ public class SegmentsExperimentDisplayContext {
 		).put(
 			"classPK", _themeDisplay.getPlid()
 		).put(
-			"type",
-			() -> {
-				Layout layout = _themeDisplay.getLayout();
-
-				return layout.getType();
-			}
+			"type", _themeDisplay.getLayout()::getType
 		).build();
 	}
 

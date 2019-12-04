@@ -15,7 +15,6 @@
 package com.liferay.wiki.web.internal.display.context.logic;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.util.AggregateResourceBundle;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.LinkedHashMapBuilder;
@@ -137,11 +136,7 @@ public class MailTemplatesHelper {
 			LanguageUtil.get(resourceBundle, "the-user-who-added-the-page")
 		).put(
 			"[$PORTAL_URL$]",
-			() -> {
-				Company company = _wikiRequestHelper.getCompany();
-
-				return company.getVirtualHostname();
-			}
+			_wikiRequestHelper.getCompany()::getVirtualHostname
 		).put(
 			"[$PORTLET_NAME$]", _wikiRequestHelper.getPortletTitle()
 		).put(

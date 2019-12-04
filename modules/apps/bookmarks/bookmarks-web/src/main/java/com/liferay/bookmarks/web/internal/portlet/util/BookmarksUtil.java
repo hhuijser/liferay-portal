@@ -27,7 +27,6 @@ import com.liferay.bookmarks.util.comparator.EntryURLComparator;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.portlet.LiferayWindowState;
 import com.liferay.portal.kernel.search.Document;
 import com.liferay.portal.kernel.search.Field;
@@ -175,12 +174,7 @@ public class BookmarksUtil {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]",
-			() -> {
-				Company company = themeDisplay.getCompany();
-
-				return company.getVirtualHostname();
-			}
+			"[$PORTAL_URL$]", themeDisplay.getCompany()::getVirtualHostname
 		).put(
 			"[$PORTLET_NAME$]",
 			() -> {

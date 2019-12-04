@@ -88,28 +88,13 @@ public class AMImageRequestHandler
 		throws PortalException {
 
 		Map<String, String> properties = HashMapBuilder.put(
-			() -> {
-				AMAttribute<Object, Long> contentLengthAMAttribute =
-					AMAttribute.getContentLengthAMAttribute();
-
-				return contentLengthAMAttribute.getName();
-			},
+			AMAttribute.getContentLengthAMAttribute()::getName,
 			String.valueOf(fileVersion.getSize())
 		).put(
-			() -> {
-				AMAttribute<Object, String> contentTypeAMAttribute =
-					AMAttribute.getContentTypeAMAttribute();
-
-				return contentTypeAMAttribute.getName();
-			},
+			AMAttribute.getContentTypeAMAttribute()::getName,
 			fileVersion.getMimeType()
 		).put(
-			() -> {
-				AMAttribute<Object, String> fileNameAMAttribute =
-					AMAttribute.getFileNameAMAttribute();
-
-				return fileNameAMAttribute.getName();
-			},
+			AMAttribute.getFileNameAMAttribute()::getName,
 			fileVersion.getFileName()
 		).build();
 

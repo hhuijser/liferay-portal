@@ -15,7 +15,6 @@
 package com.liferay.portal.reports.engine.console.web.internal.admin.util;
 
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.HtmlUtil;
@@ -62,12 +61,7 @@ public class EmailConfigurationUtil {
 			"[$REPORT_NAME$]",
 			LanguageUtil.get(resourceBundle, "the-name-of-the-report")
 		).put(
-			"[$PORTAL_URL$]",
-			() -> {
-				Company company = themeDisplay.getCompany();
-
-				return company.getVirtualHostname();
-			}
+			"[$PORTAL_URL$]", themeDisplay.getCompany()::getVirtualHostname
 		).put(
 			"[$PORTLET_NAME$]",
 			() -> {

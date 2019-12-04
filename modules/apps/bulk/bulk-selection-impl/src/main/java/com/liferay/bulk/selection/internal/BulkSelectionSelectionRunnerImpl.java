@@ -16,7 +16,6 @@ package com.liferay.bulk.selection.internal;
 
 import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.bulk.selection.BulkSelectionAction;
-import com.liferay.bulk.selection.BulkSelectionFactory;
 import com.liferay.bulk.selection.BulkSelectionRunner;
 import com.liferay.bulk.selection.internal.constants.BulkSelectionBackgroundTaskConstants;
 import com.liferay.portal.background.task.constants.BackgroundTaskContextMapConstants;
@@ -89,13 +88,7 @@ public class BulkSelectionSelectionRunnerImpl implements BulkSelectionRunner {
 			).put(
 				BulkSelectionBackgroundTaskConstants.
 					BULK_SELECTION_FACTORY_CLASS_NAME,
-				() -> {
-					Class<? extends BulkSelectionFactory>
-						bulkSelectionFactoryClass =
-							bulkSelection.getBulkSelectionFactoryClass();
-
-					return bulkSelectionFactoryClass.getName();
-				}
+				bulkSelection.getBulkSelectionFactoryClass()::getName
 			).put(
 				BulkSelectionBackgroundTaskConstants.
 					BULK_SELECTION_PARAMETER_MAP,

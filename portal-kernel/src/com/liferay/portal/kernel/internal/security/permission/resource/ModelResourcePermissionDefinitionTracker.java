@@ -92,12 +92,7 @@ public class ModelResourcePermissionDefinitionTracker {
 
 			Map<String, Object> properties = HashMapBuilder.<String, Object>put(
 				"model.class.name",
-				() -> {
-					Class<?> modelClass =
-						modelResourcePermissionDefinition.getModelClass();
-
-					return modelClass.getName();
-				}
+				modelResourcePermissionDefinition.getModelClass()::getName
 			).build();
 
 			Object serviceRanking = serviceReference.getProperty(

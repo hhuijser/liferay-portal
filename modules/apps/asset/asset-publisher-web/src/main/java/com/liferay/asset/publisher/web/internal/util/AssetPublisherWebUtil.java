@@ -32,7 +32,6 @@ import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutTypePortletConstants;
@@ -343,12 +342,7 @@ public class AssetPublisherWebUtil {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]",
-			() -> {
-				Company company = themeDisplay.getCompany();
-
-				return company.getVirtualHostname();
-			}
+			"[$PORTAL_URL$]", themeDisplay.getCompany()::getVirtualHostname
 		).put(
 			"[$PORTLET_NAME$]",
 			HtmlUtil.escape(

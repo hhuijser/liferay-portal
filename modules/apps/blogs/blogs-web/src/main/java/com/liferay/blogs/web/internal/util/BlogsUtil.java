@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.dao.search.SearchContainerResults;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
-import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.ModelHintsUtil;
 import com.liferay.portal.kernel.theme.PortletDisplay;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -136,12 +135,7 @@ public class BlogsUtil {
 		).put(
 			"[$FROM_NAME$]", HtmlUtil.escape(emailFromName)
 		).put(
-			"[$PORTAL_URL$]",
-			() -> {
-				Company company = themeDisplay.getCompany();
-
-				return company.getVirtualHostname();
-			}
+			"[$PORTAL_URL$]", themeDisplay.getCompany()::getVirtualHostname
 		).put(
 			"[$PORTLET_NAME$]",
 			() -> {

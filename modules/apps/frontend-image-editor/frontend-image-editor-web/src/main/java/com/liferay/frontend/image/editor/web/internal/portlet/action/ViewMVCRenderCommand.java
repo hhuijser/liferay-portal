@@ -39,8 +39,6 @@ import java.util.ResourceBundle;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
-import javax.servlet.ServletContext;
-
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -185,12 +183,8 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 						imageEditorCapability.getLabel(themeDisplay.getLocale())
 					).put(
 						"modulePath",
-						() -> {
-							ServletContext servletContext =
-								imageEditorCapability.getServletContext();
-
-							return servletContext.getContextPath();
-						}
+						imageEditorCapability.getServletContext()::
+							getContextPath
 					).put(
 						"variant",
 						GetterUtil.getString(

@@ -108,17 +108,6 @@ public class ChildSitesItemSelectorViewDisplayContext
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		List<Long> excludedGroupIds = new ArrayList<>();
-
-		Group group = themeDisplay.getSiteGroup();
-
-		if (group.isStagingGroup()) {
-			excludedGroupIds.add(group.getLiveGroupId());
-		}
-		else {
-			excludedGroupIds.add(themeDisplay.getSiteGroupId());
-		}
-
 		_groupParams = LinkedHashMapBuilder.<String, Object>put(
 			"active", Boolean.TRUE
 		).put(
@@ -126,7 +115,21 @@ public class ChildSitesItemSelectorViewDisplayContext
 		).put(
 			"site", Boolean.TRUE
 		).put(
-			"excludedGroupIds", excludedGroupIds
+			"excludedGroupIds",
+			() -> {
+				List<Long> excludedGroupIds = new ArrayList<>();
+
+				Group group = themeDisplay.getSiteGroup();
+
+				if (group.isStagingGroup()) {
+					excludedGroupIds.add(group.getLiveGroupId());
+				}
+				else {
+					excludedGroupIds.add(themeDisplay.getSiteGroupId());
+				}
+
+				return excludedGroupIds;
+			}
 		).build();
 
 		return _groupParams;

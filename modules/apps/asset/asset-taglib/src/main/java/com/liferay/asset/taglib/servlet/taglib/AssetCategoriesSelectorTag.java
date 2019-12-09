@@ -306,21 +306,28 @@ public class AssetCategoriesSelectorTag extends IncludeTag {
 		for (int i = 0; i < vocabularies.size(); i++) {
 			AssetVocabulary vocabulary = vocabularies.get(i);
 
-			String vocabularyGroupName = StringPool.BLANK;
-
-			if (vocabulary.getGroupId() != themeDisplay.getSiteGroupId()) {
-				Group vocabularyGroup = GroupLocalServiceUtil.getGroup(
-					vocabulary.getGroupId());
-
-				vocabularyGroupName = vocabularyGroup.getDescriptiveName(
-					themeDisplay.getLocale());
-			}
-
 			String selectedCategoryIds = categoryIdsTitles.get(i)[0];
 
 			Map<String, Object> vocabularyMap =
 				HashMapBuilder.<String, Object>put(
-					"group", vocabularyGroupName
+					"group",
+					() -> {
+						String vocabularyGroupName = StringPool.BLANK;
+
+						if (vocabulary.getGroupId() !=
+								themeDisplay.getSiteGroupId()) {
+
+							Group vocabularyGroup =
+								GroupLocalServiceUtil.getGroup(
+									vocabulary.getGroupId());
+
+							vocabularyGroupName =
+								vocabularyGroup.getDescriptiveName(
+									themeDisplay.getLocale());
+						}
+
+						return vocabularyGroupName;
+					}
 				).put(
 					"id", vocabulary.getVocabularyId()
 				).put(

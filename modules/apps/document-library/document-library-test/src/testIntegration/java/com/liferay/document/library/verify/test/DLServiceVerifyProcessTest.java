@@ -472,34 +472,38 @@ public class DLServiceVerifyProcessTest extends BaseVerifyProcessTestCase {
 	protected Map<String, DDMFormValues> getDDMFormValuesMap(
 		String ddmStructureKey, Locale currentLocale) {
 
-		Set<Locale> availableLocales = DDMFormTestUtil.createAvailableLocales(
-			currentLocale);
-
-		DDMForm ddmForm = new DDMForm();
-
-		ddmForm.setAvailableLocales(availableLocales);
-		ddmForm.setDefaultLocale(currentLocale);
-
-		DDMFormField ddmFormField = new DDMFormField("date_an", "ddm-date");
-
-		ddmFormField.setDataType("date");
-
-		ddmForm.addDDMFormField(ddmFormField);
-
-		DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
-
-		ddmFormValues.setAvailableLocales(availableLocales);
-		ddmFormValues.setDefaultLocale(currentLocale);
-
-		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
-
-		ddmFormFieldValue.setName("date_an");
-		ddmFormFieldValue.setValue(new UnlocalizedValue(""));
-
-		ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
-
 		return HashMapBuilder.<String, DDMFormValues>put(
-			ddmStructureKey, ddmFormValues
+			ddmStructureKey,
+			() -> {
+				Set<Locale> availableLocales =
+					DDMFormTestUtil.createAvailableLocales(currentLocale);
+
+				DDMForm ddmForm = new DDMForm();
+
+				ddmForm.setAvailableLocales(availableLocales);
+				ddmForm.setDefaultLocale(currentLocale);
+
+				DDMFormField ddmFormField = new DDMFormField(
+					"date_an", "ddm-date");
+
+				ddmFormField.setDataType("date");
+
+				ddmForm.addDDMFormField(ddmFormField);
+
+				DDMFormValues ddmFormValues = new DDMFormValues(ddmForm);
+
+				ddmFormValues.setAvailableLocales(availableLocales);
+				ddmFormValues.setDefaultLocale(currentLocale);
+
+				DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
+
+				ddmFormFieldValue.setName("date_an");
+				ddmFormFieldValue.setValue(new UnlocalizedValue(""));
+
+				ddmFormValues.addDDMFormFieldValue(ddmFormFieldValue);
+
+				return ddmFormValues;
+			}
 		).build();
 	}
 

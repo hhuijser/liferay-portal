@@ -90,14 +90,17 @@ public class DepotAdminManagementToolbarDisplayContext
 	}
 
 	public Map<String, Object> getComponentContext() throws PortalException {
-		PortletURL deleteDepotEntries =
-			liferayPortletResponse.createActionURL();
-
-		deleteDepotEntries.setParameter(
-			ActionRequest.ACTION_NAME, "/depot_entry/delete");
-
 		return HashMapBuilder.<String, Object>put(
-			"deleteDepotEntriesURL", deleteDepotEntries.toString()
+			"deleteDepotEntriesURL",
+			() -> {
+				PortletURL deleteDepotEntries =
+					liferayPortletResponse.createActionURL();
+
+				deleteDepotEntries.setParameter(
+					ActionRequest.ACTION_NAME, "/depot_entry/delete");
+
+				return deleteDepotEntries.toString();
+			}
 		).build();
 	}
 

@@ -69,7 +69,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author Michael C. Han
+ * @author MMichael C. Han
  */
 @RunWith(Arquillian.class)
 public class DLFileEntryMetadataLocalServiceTest {

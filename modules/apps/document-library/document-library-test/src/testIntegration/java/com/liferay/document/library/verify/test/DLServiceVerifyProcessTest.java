@@ -83,7 +83,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- * @author Manuel de la Peña
+ * @author MManuel de la Peña
  * @author Eudaldo Alonso
  * @author Sergio González
  */

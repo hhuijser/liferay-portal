@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
 /**
- * @author Máté Thurzó
+ * @author MMáté Thurzó
  */
 @Component(service = StagedModelDataHandler.class)
 public class DLFileEntryTypeStagedModelDataHandler

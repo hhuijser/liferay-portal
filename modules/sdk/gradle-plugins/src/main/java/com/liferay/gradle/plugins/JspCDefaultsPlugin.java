@@ -158,21 +158,39 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 
 				@Override
 				public void execute(PatternFilterable patternFilterable) {
-					patternFilterable.include("**/*.tag");
 					patternFilterable.include("**/*.tld");
 				}
 
 			});
 
-		Set<File> tldFiles = fileTree.getFiles();
-
 		copy.from(
-			tldFiles,
+			fileTree.getFiles(),
 			new Action<CopySpec>() {
 
 				@Override
 				public void execute(CopySpec copySpec) {
 					copySpec.into("META-INF/resources/WEB-INF");
+				}
+
+			});
+
+		fileTree = fileTree.matching(
+			new Action<PatternFilterable>() {
+
+				@Override
+				public void execute(PatternFilterable patternFilterable) {
+					patternFilterable.include("**/*.tag");
+				}
+
+			});
+
+		copy.from(
+			fileTree.getFiles(),
+			new Action<CopySpec>() {
+
+				@Override
+				public void execute(CopySpec copySpec) {
+					copySpec.into("META-INF");
 				}
 
 			});

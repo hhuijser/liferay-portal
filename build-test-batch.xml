@@ -4529,30 +4529,26 @@ log.sanitizer.enabled=false</echo>
 	<target name="modules-compile-jdk8">
 		<run-batch-test>
 			<test-action>
-				<if>
-					<not>
-						<isset property="modules.test.class.group" />
-					</not>
-					<then>
-						<gradle-execute dir="modules" outputproperty="modules.project.paths" task="printProjectPath">
-							<arg value="--quiet" />
-							<arg value="-Dbuild.exclude.dirs=private/apps/osb-lcs,third-party" />
-						</gradle-execute>
 
-						<loadresource property="modules.test.class.group">
-							<filterchain>
-								<linecontainsregexp>
-									<regexp pattern="^:" />
-								</linecontainsregexp>
+				<!-- Start -->
 
-								<suffixlines suffix=":assemble " />
+				<gradle-execute dir="modules" outputproperty="modules.project.paths" task="printProjectPath">
+					<arg value="--quiet" />
+					<arg value="-Dbuild.exclude.dirs=private/apps/osb-lcs,third-party" />
+				</gradle-execute>
 
-								<striplinebreaks />
-							</filterchain>
-							<propertyresource name="modules.project.paths" />
-						</loadresource>
-					</then>
-				</if>
+				<loadresource property="modules.test.class.group">
+					<filterchain>
+						<linecontainsregexp>
+							<regexp pattern="^:" />
+						</linecontainsregexp>
+
+						<suffixlines suffix=":assemble " />
+
+						<striplinebreaks />
+					</filterchain>
+					<propertyresource name="modules.project.paths" />
+				</loadresource>
 
 				<loadresource property="modules.compile.task.groups">
 					<filterchain>
@@ -4575,6 +4571,9 @@ log.sanitizer.enabled=false</echo>
 						</gradle-execute>
 					</sequential>
 				</for>
+
+				<!-- End -->
+
 			</test-action>
 
 			<test-set-up>

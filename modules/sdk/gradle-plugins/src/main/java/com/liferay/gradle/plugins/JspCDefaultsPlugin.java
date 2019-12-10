@@ -158,6 +158,7 @@ public class JspCDefaultsPlugin extends BaseDefaultsPlugin<JspCPlugin> {
 
 				@Override
 				public void execute(PatternFilterable patternFilterable) {
+					patternFilterable.include("**/*.tag");
 					patternFilterable.include("**/*.tld");
 				}
 

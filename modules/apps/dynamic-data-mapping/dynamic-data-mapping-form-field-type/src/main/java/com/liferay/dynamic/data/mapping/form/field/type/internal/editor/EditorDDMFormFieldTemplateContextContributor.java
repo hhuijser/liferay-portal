@@ -49,14 +49,12 @@ public class EditorDDMFormFieldTemplateContextContributor
 				LocalizedValue placeholder =
 					(LocalizedValue)ddmFormField.getProperty("placeholder");
 
-				String placeholderString = StringPool.BLANK;
-
 				if (placeholder != null) {
-					placeholderString = placeholder.getString(
+					return placeholder.getString(
 						ddmFormFieldRenderingContext.getLocale());
 				}
 
-				return placeholderString;
+				return StringPool.BLANK;
 			}
 		).build();
 	}

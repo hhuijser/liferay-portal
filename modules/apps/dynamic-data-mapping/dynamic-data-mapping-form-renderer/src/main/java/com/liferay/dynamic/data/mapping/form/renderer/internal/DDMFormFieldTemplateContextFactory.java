@@ -599,17 +599,15 @@ public class DDMFormFieldTemplateContextFactory {
 		).put(
 			"parameter",
 			() -> {
-				String parameter = StringPool.BLANK;
-
 				LocalizedValue parameterLocalizedValue =
 					ddmFormFieldValidation.getParameterLocalizedValue();
 
 				if (parameterLocalizedValue != null) {
-					parameter = GetterUtil.getString(
+					return GetterUtil.getString(
 						parameterLocalizedValue.getString(_locale));
 				}
 
-				return parameter;
+				return StringPool.BLANK;
 			}
 		).build();
 

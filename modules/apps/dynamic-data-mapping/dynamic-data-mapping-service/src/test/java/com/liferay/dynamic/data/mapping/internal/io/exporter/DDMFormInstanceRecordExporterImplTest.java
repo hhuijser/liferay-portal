@@ -289,27 +289,35 @@ public class DDMFormInstanceRecordExporterImplTest extends PowerMockito {
 			"Autor"
 		);
 
-		DDMFormField ddmFormField1 = new DDMFormField("field1", "text");
-
 		LocalizedValue localizedValue1 = new LocalizedValue();
 
 		localizedValue1.addString(locale, "Campo 1");
-
-		ddmFormField1.setLabel(localizedValue1);
-
-		DDMFormField ddmFormField2 = new DDMFormField("field2", "text");
 
 		LocalizedValue localizedValue2 = new LocalizedValue();
 
 		localizedValue2.addString(locale, "Campo 2");
 
-		ddmFormField2.setLabel(localizedValue2);
-
 		Map<String, DDMFormField> ddmFormFieldMap =
 			HashMapBuilder.<String, DDMFormField>put(
-				"field1", ddmFormField1
+				"field1",
+				() -> {
+					DDMFormField ddmFormField1 = new DDMFormField(
+						"field1", "text");
+
+					ddmFormField1.setLabel(localizedValue1);
+
+					return ddmFormField1;
+				}
 			).put(
-				"field2", ddmFormField2
+				"field2",
+				() -> {
+					DDMFormField ddmFormField2 = new DDMFormField(
+						"field2", "text");
+
+					ddmFormField2.setLabel(localizedValue2);
+
+					return ddmFormField2;
+				}
 			).build();
 
 		Map<String, String> ddmFormFieldsLabel =

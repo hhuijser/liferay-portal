@@ -101,12 +101,6 @@ public class DDMFormTemplateContextFactoryImpl
 			DDMFormRenderingContext ddmFormRenderingContext)
 		throws PortalException {
 
-		String containerId = ddmFormRenderingContext.getContainerId();
-
-		if (Validator.isNull(containerId)) {
-			containerId = StringUtil.randomId();
-		}
-
 		setDDMFormFieldsEvaluableProperty(ddmForm);
 
 		Locale locale = ddmFormRenderingContext.getLocale();
@@ -117,7 +111,17 @@ public class DDMFormTemplateContextFactoryImpl
 
 		Map<String, Object> templateContext =
 			HashMapBuilder.<String, Object>put(
-				"containerId", containerId
+				"containerId",
+				() -> {
+					String containerId =
+						ddmFormRenderingContext.getContainerId();
+
+					if (Validator.isNull(containerId)) {
+						containerId = StringUtil.randomId();
+					}
+
+					return containerId;
+				}
 			).put(
 				"currentPage",
 				ParamUtil.getString(

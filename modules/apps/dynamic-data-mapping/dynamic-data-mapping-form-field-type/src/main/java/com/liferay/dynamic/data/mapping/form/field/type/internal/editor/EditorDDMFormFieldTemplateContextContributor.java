@@ -43,18 +43,21 @@ public class EditorDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
-		LocalizedValue placeholder = (LocalizedValue)ddmFormField.getProperty(
-			"placeholder");
-
-		String placeholderString = StringPool.BLANK;
-
-		if (placeholder != null) {
-			placeholderString = placeholder.getString(
-				ddmFormFieldRenderingContext.getLocale());
-		}
-
 		return HashMapBuilder.<String, Object>put(
-			"placeholder", placeholderString
+			"placeholder",
+			() -> {
+				LocalizedValue placeholder =
+					(LocalizedValue)ddmFormField.getProperty("placeholder");
+
+				String placeholderString = StringPool.BLANK;
+
+				if (placeholder != null) {
+					placeholderString = placeholder.getString(
+						ddmFormFieldRenderingContext.getLocale());
+				}
+
+				return placeholderString;
+			}
 		).build();
 	}
 

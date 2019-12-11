@@ -104,18 +104,22 @@ public class TextDDMFormFieldTemplateContextContributor
 				ddmFormField, ddmFormFieldRenderingContext);
 
 		for (String optionValue : ddmFormFieldOptions.getOptionsValues()) {
-			LocalizedValue optionLabel = ddmFormFieldOptions.getOptionLabels(
-				optionValue);
-
-			String optionLabelString = optionLabel.getString(
-				ddmFormFieldRenderingContext.getLocale());
-
-			if (ddmFormFieldRenderingContext.isViewMode()) {
-				optionLabelString = HtmlUtil.extractText(optionLabelString);
-			}
-
 			Map<String, String> optionMap = HashMapBuilder.put(
-				"label", optionLabelString
+				"label",
+				() -> {
+					LocalizedValue optionLabel =
+						ddmFormFieldOptions.getOptionLabels(optionValue);
+
+					String optionLabelString = optionLabel.getString(
+						ddmFormFieldRenderingContext.getLocale());
+
+					if (ddmFormFieldRenderingContext.isViewMode()) {
+						optionLabelString = HtmlUtil.extractText(
+							optionLabelString);
+					}
+
+					return optionLabelString;
+				}
 			).put(
 				"value", optionValue
 			).build();

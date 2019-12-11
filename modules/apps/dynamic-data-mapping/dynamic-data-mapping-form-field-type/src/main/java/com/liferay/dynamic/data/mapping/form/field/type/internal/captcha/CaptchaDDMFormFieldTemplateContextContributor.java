@@ -55,17 +55,21 @@ public class CaptchaDDMFormFieldTemplateContextContributor
 		DDMFormField ddmFormField,
 		DDMFormFieldRenderingContext ddmFormFieldRenderingContext) {
 
-		String html = StringPool.BLANK;
-
-		try {
-			html = renderCaptchaTag(ddmFormField, ddmFormFieldRenderingContext);
-		}
-		catch (Exception e) {
-			_log.error(e, e);
-		}
-
 		return HashMapBuilder.<String, Object>put(
-			"html", _soyHTMLSanitizer.sanitize(html)
+			"html",
+			() -> {
+				String html = StringPool.BLANK;
+
+				try {
+					html = renderCaptchaTag(
+						ddmFormField, ddmFormFieldRenderingContext);
+				}
+				catch (Exception e) {
+					_log.error(e, e);
+				}
+
+				return _soyHTMLSanitizer.sanitize(html);
+			}
 		).build();
 	}
 

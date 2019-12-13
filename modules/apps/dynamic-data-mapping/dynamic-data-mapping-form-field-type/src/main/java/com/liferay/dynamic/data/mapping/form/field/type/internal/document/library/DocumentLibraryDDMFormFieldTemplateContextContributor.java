@@ -108,7 +108,7 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributor
 
 		Map<String, String> stringsMap = HashMapBuilder.put(
 			"select",
-			LanguageUtil.get(getResourceBundle(displayLocale), "select")
+			LanguageUtil.get(getResourceBundle(displayLocale), "select", true)
 		).build();
 
 		parameters.put("strings", stringsMap);

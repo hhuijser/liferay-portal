@@ -943,6 +943,13 @@ public class LanguageImpl implements Language, Serializable {
 		return get(resourceBundle, key, key);
 	}
 
+	@Override
+	public String get(
+		ResourceBundle resourceBundle, String key, boolean print) {
+
+		return get(resourceBundle, key, key, print);
+	}
+
 	/**
 	 * Returns the key's translation from the resource bundle.
 	 *
@@ -1661,6 +1668,47 @@ public class LanguageImpl implements Language, Serializable {
 
 		CookieKeys.addCookie(
 			httpServletRequest, httpServletResponse, languageIdCookie);
+	}
+
+	protected String get(
+		ResourceBundle resourceBundle, String key, String defaultValue,
+		boolean print) {
+
+		if (print) {
+			System.out.println("AAAAAAAAAAAAAAAAAAAA");
+		}
+
+		String value = _get(resourceBundle, key);
+
+		if (print) {
+			if (value == null) {
+				System.out.println("VALUE == NULL");
+			}
+			else {
+				System.out.println("VALUE != NULL");
+			}
+
+			if (defaultValue == null) {
+				System.out.println("DEFAULTVALUE == NULL");
+			}
+			else {
+				System.out.println("DEFAULTVALUE != NULL");
+			}
+		}
+
+		if (value != null) {
+			if (print) {
+				System.out.println("BBBBBBBBBBBBBBBBBBBBB");
+			}
+
+			return value;
+		}
+
+		if (print) {
+			System.out.println("CCCCCCCCCCCCCCCCCCCCCCCC");
+		}
+
+		return defaultValue;
 	}
 
 	private static CompanyLocalesBag _getCompanyLocalesBag() {

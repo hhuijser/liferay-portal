@@ -114,6 +114,8 @@ public interface Language {
 
 	public String get(ResourceBundle resourceBundle, String key);
 
+	public String get(ResourceBundle resourceBundle, String key, boolean print);
+
 	public String get(
 		ResourceBundle resourceBundle, String key, String defaultValue);
 

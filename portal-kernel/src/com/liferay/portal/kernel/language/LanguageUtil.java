@@ -198,6 +198,12 @@ public class LanguageUtil {
 	}
 
 	public static String get(
+		ResourceBundle resourceBundle, String key, boolean print) {
+
+		return getLanguage().get(resourceBundle, key, print);
+	}
+
+	public static String get(
 		ResourceBundle resourceBundle, String key, String defaultValue) {
 
 		return getLanguage().get(resourceBundle, key, defaultValue);

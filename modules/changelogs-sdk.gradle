@@ -10,8 +10,6 @@ buildscript {
 	}
 }
 
-File changelogPropertiesFile = file("sdk/" + projectName + "/CHANGELOG.properties")
-
 task buildChangelogs
 task recordCommits
 
@@ -23,6 +21,8 @@ buildChangelogs {
 
 	doLast {
 		assert project.properties["projectName"] : "Please provide a value for the '-PprojectName' property"
+
+		File changelogPropertiesFile = file("sdk/" + projectName + "/CHANGELOG.properties")
 
 		changelogPropertiesFile.getText("UTF-8").eachLine {
 			String recordCommitLine ->
@@ -116,6 +116,8 @@ recordCommits {
 				}
 			}
 		}
+
+		File changelogPropertiesFile = file("sdk/" + projectName + "/CHANGELOG.properties")
 
 		changelogPropertiesFile.text = recordCommitIDs.collect {
 			VersionNumber versionNumber, String commitId ->

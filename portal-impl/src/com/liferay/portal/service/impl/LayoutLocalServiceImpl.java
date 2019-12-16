@@ -649,9 +649,9 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		titleMap.put(locale, title);
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			locale, description
-		).build();
+		Map<Locale, String> descriptionMap = new HashMap<>();
+
+		descriptionMap.put(locale, description);
 
 		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
 			LocaleUtil.getSiteDefault(), friendlyURL

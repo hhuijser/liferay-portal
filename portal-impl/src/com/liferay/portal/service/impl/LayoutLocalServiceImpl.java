@@ -649,13 +649,13 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		titleMap.put(locale, title);
 
-		Map<Locale, String> descriptionMap = HashMapBuilder.put(
-			locale, description
-		).build();
+		Map<Locale, String> descriptionMap = new HashMap<>();
 
-		Map<Locale, String> friendlyURLMap = HashMapBuilder.put(
-			LocaleUtil.getSiteDefault(), friendlyURL
-		).build();
+		descriptionMap.put(locale, description);
+
+		Map<Locale, String> friendlyURLMap = new HashMap<>();
+
+		friendlyURLMap.put(LocaleUtil.getSiteDefault(), friendlyURL);
 
 		return addLayout(
 			userId, groupId, privateLayout, parentLayoutId, nameMap, titleMap,

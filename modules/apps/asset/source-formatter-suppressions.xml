@@ -2,6 +2,7 @@
 
 <suppressions>
 	<checkstyle>
+		<suppress checks="BuilderCheck" files="modules/apps/asset/asset-taglib/src/main/java/com/liferay/asset/taglib/servlet/taglib/AssetTagsSelectorTag\.java" />
 		<suppress checks="PersistenceCallCheck" files="modules/apps/asset/asset-publisher-web/src/main/java/com/liferay/asset/publisher/web/internal/display/context/AssetPublisherDisplayContext\.java" />
 	</checkstyle>
 	<source-check>

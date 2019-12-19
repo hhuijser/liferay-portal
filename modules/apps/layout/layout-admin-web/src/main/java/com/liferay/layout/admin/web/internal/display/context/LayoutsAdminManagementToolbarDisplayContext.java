@@ -48,19 +48,34 @@ public class LayoutsAdminManagementToolbarDisplayContext
 	extends SearchContainerManagementToolbarDisplayContext {
 
 	public LayoutsAdminManagementToolbarDisplayContext(
+			HttpServletRequest httpServletRequest,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse,
-			HttpServletRequest httpServletRequest,
 			LayoutsAdminDisplayContext layoutsAdminDisplayContext)
 		throws PortalException {
 
 		super(
-			liferayPortletRequest, liferayPortletResponse, httpServletRequest,
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
 			layoutsAdminDisplayContext.getLayoutsSearchContainer());
 
 		_layoutsAdminDisplayContext = layoutsAdminDisplayContext;
 		_themeDisplay = (ThemeDisplay)httpServletRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #LayoutsAdminManagementToolbarDisplayContext(HttpServletRequest, LiferayPortletRequest, LiferayPortletResponse, LayoutsAdminDisplayContext)}
+	 */
+	@Deprecated
+	public LayoutsAdminManagementToolbarDisplayContext(
+		LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse,
+		HttpServletRequest httpServletRequest,
+		LayoutsAdminDisplayContext layoutsAdminDisplayContext) {
+
+		this(
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
+			layoutsAdminDisplayContext);
 	}
 
 	@Override

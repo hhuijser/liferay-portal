@@ -29,16 +29,32 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 	extends SearchContainerManagementToolbarDisplayContext {
 
 	public JournalArticleItemSelectorViewManagementToolbarDisplayContext(
+			HttpServletRequest httpServletRequest,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse,
-			HttpServletRequest httpServletRequest,
 			JournalArticleItemSelectorViewDisplayContext
 				journalArticleItemSelectorViewDisplayContext)
 		throws PortletException {
 
 		super(
-			liferayPortletRequest, liferayPortletResponse, httpServletRequest,
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
 			journalArticleItemSelectorViewDisplayContext.getSearchContainer());
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #JournalArticleItemSelectorViewManagementToolbarDisplayContext(HttpServletRequest, LiferayPortletRequest, LiferayPortletResponse, JournalArticleItemSelectorViewDisplayContext)}
+	 */
+	@Deprecated
+	public JournalArticleItemSelectorViewManagementToolbarDisplayContext(
+		LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse,
+		HttpServletRequest httpServletRequest,
+		JournalArticleItemSelectorViewDisplayContext
+			journalArticleItemSelectorViewDisplayContext) {
+
+		this(
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
+			journalArticleItemSelectorViewDisplayContext);
 	}
 
 	@Override

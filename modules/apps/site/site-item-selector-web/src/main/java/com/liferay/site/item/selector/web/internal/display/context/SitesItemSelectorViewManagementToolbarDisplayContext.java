@@ -31,19 +31,35 @@ public class SitesItemSelectorViewManagementToolbarDisplayContext
 	extends SearchContainerManagementToolbarDisplayContext {
 
 	public SitesItemSelectorViewManagementToolbarDisplayContext(
+			HttpServletRequest httpServletRequest,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse,
-			HttpServletRequest httpServletRequest,
 			SitesItemSelectorViewDisplayContext
 				sitesItemSelectorViewDisplayContext)
 		throws Exception {
 
 		super(
-			liferayPortletRequest, liferayPortletResponse, httpServletRequest,
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
 			sitesItemSelectorViewDisplayContext.getGroupSearch());
 
 		_sitesItemSelectorViewDisplayContext =
 			sitesItemSelectorViewDisplayContext;
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #SitesItemSelectorViewManagementToolbarDisplayContext(HttpServletRequest, LiferayPortletRequest, LiferayPortletResponse, SitesItemSelectorViewDisplayContext)}
+	 */
+	@Deprecated
+	public SitesItemSelectorViewManagementToolbarDisplayContext(
+		LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse,
+		HttpServletRequest httpServletRequest,
+		SitesItemSelectorViewDisplayContext
+			sitesItemSelectorViewDisplayContext) {
+
+		this(
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
+			sitesItemSelectorViewDisplayContext);
 	}
 
 	@Override

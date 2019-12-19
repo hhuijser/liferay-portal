@@ -31,15 +31,30 @@ public class JournalArticleCommentsManagementToolbarDisplayContext
 	extends JournalManagementToolbarDisplayContext {
 
 	public JournalArticleCommentsManagementToolbarDisplayContext(
+			HttpServletRequest httpServletRequest,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse,
-			HttpServletRequest httpServletRequest,
 			JournalDisplayContext journalDisplayContext,
 			TrashHelper trashHelper)
 		throws PortalException {
 
 		super(
-			liferayPortletRequest, liferayPortletResponse, httpServletRequest,
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
+			journalDisplayContext, trashHelper);
+	}
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #JournalArticleCommentsManagementToolbarDisplayContext(HttpServletRequest, LiferayPortletRequest, LiferayPortletResponse, JournalDisplayContext, TrashHelper)}
+	 */
+	@Deprecated
+	public JournalArticleCommentsManagementToolbarDisplayContext(
+		LiferayPortletRequest liferayPortletRequest,
+		LiferayPortletResponse liferayPortletResponse,
+		HttpServletRequest httpServletRequest,
+		JournalDisplayContext journalDisplayContext, TrashHelper trashHelper) {
+
+		this(
+			httpServletRequest, liferayPortletRequest, liferayPortletResponse,
 			journalDisplayContext, trashHelper);
 	}
 

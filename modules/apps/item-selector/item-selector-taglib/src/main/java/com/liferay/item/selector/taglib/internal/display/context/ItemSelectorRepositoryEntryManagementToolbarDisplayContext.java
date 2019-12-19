@@ -47,6 +47,7 @@ public class ItemSelectorRepositoryEntryManagementToolbarDisplayContext {
 		LiferayPortletResponse liferayPortletResponse) {
 
 		_httpServletRequest = httpServletRequest;
+
 		_liferayPortletRequest = liferayPortletRequest;
 		_liferayPortletResponse = liferayPortletResponse;
 

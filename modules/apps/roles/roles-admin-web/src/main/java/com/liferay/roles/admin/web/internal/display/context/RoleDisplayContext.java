@@ -275,37 +275,51 @@ public class RoleDisplayContext {
 
 		Role role = RoleServiceUtil.fetchRole(roleId);
 
-		PortletURL assignMembersURL = _renderResponse.createRenderURL();
-
-		assignMembersURL.setParameter("mvcPath", "/edit_role_assignments.jsp");
-		assignMembersURL.setParameter("tabs1", "assignees");
-		assignMembersURL.setParameter("redirect", backURL);
-		assignMembersURL.setParameter(
-			"roleId", String.valueOf(role.getRoleId()));
-
-		PortletURL definePermissionsURL = _renderResponse.createRenderURL();
-
-		definePermissionsURL.setParameter(
-			"mvcPath", "/edit_role_permissions.jsp");
-		definePermissionsURL.setParameter("tabs1", "define-permissions");
-		definePermissionsURL.setParameter("redirect", backURL);
-		definePermissionsURL.setParameter(Constants.CMD, Constants.VIEW);
-		definePermissionsURL.setParameter(
-			"roleId", String.valueOf(role.getRoleId()));
-
-		PortletURL editRoleURL = _renderResponse.createRenderURL();
-
-		editRoleURL.setParameter("mvcPath", "/edit_role.jsp");
-		editRoleURL.setParameter("tabs1", "details");
-		editRoleURL.setParameter("redirect", backURL);
-		editRoleURL.setParameter("roleId", String.valueOf(role.getRoleId()));
-
 		return HashMapBuilder.put(
-			"assignees", assignMembersURL.toString()
+			"assignees",
+			() -> {
+				PortletURL assignMembersURL = _renderResponse.createRenderURL();
+
+				assignMembersURL.setParameter(
+					"mvcPath", "/edit_role_assignments.jsp");
+				assignMembersURL.setParameter("tabs1", "assignees");
+				assignMembersURL.setParameter("redirect", backURL);
+				assignMembersURL.setParameter(
+					"roleId", String.valueOf(role.getRoleId()));
+
+				return assignMembersURL.toString();
+			}
 		).put(
-			"define-permissions", definePermissionsURL.toString()
+			"define-permissions",
+			() -> {
+				PortletURL definePermissionsURL =
+					_renderResponse.createRenderURL();
+
+				definePermissionsURL.setParameter(
+					"mvcPath", "/edit_role_permissions.jsp");
+				definePermissionsURL.setParameter(
+					"tabs1", "define-permissions");
+				definePermissionsURL.setParameter("redirect", backURL);
+				definePermissionsURL.setParameter(
+					Constants.CMD, Constants.VIEW);
+				definePermissionsURL.setParameter(
+					"roleId", String.valueOf(role.getRoleId()));
+
+				return definePermissionsURL.toString();
+			}
 		).put(
-			"details", editRoleURL.toString()
+			"details",
+			() -> {
+				PortletURL editRoleURL = _renderResponse.createRenderURL();
+
+				editRoleURL.setParameter("mvcPath", "/edit_role.jsp");
+				editRoleURL.setParameter("tabs1", "details");
+				editRoleURL.setParameter("redirect", backURL);
+				editRoleURL.setParameter(
+					"roleId", String.valueOf(role.getRoleId()));
+
+				return editRoleURL.toString();
+			}
 		).build();
 	}
 

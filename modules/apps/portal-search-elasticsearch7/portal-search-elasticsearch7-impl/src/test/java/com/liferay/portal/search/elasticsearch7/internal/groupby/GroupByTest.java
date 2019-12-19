@@ -154,22 +154,28 @@ public class GroupByTest extends BaseGroupByTestCase {
 		indexDuplicates("three", 3);
 		indexDuplicates("two", 2);
 
-		List<String> groupFieldOrderedResults = new ArrayList<>();
-
-		groupFieldOrderedResults.add("three|3|3");
-		groupFieldOrderedResults.add("two|2|2");
-
-		List<String> sortFieldOrderedResults = new ArrayList<>();
-
-		sortFieldOrderedResults.add("1|2|2");
-		sortFieldOrderedResults.add("2|2|2");
-		sortFieldOrderedResults.add("3|1|1");
-
 		Map<String, List<String>> orderedResultsMap =
 			HashMapBuilder.<String, List<String>>put(
-				GROUP_FIELD, groupFieldOrderedResults
+				GROUP_FIELD,
+				() -> {
+					List<String> groupFieldOrderedResults = new ArrayList<>();
+
+					groupFieldOrderedResults.add("three|3|3");
+					groupFieldOrderedResults.add("two|2|2");
+
+					return groupFieldOrderedResults;
+				}
 			).put(
-				SORT_FIELD, sortFieldOrderedResults
+				SORT_FIELD,
+				() -> {
+					List<String> sortFieldOrderedResults = new ArrayList<>();
+
+					sortFieldOrderedResults.add("1|2|2");
+					sortFieldOrderedResults.add("2|2|2");
+					sortFieldOrderedResults.add("3|1|1");
+
+					return sortFieldOrderedResults;
+				}
 			).build();
 
 		assertSearch(

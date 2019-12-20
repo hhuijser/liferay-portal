@@ -42,7 +42,11 @@ public class JournalArticleItemSelectorViewManagementToolbarDisplayContext
 	}
 
 	/**
-	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #JournalArticleItemSelectorViewManagementToolbarDisplayContext(HttpServletRequest, LiferayPortletRequest, LiferayPortletResponse, JournalArticleItemSelectorViewDisplayContext)}
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #JournalArticleItemSelectorViewManagementToolbarDisplayContext(
+	 *             HttpServletRequest, LiferayPortletRequest,
+	 *             LiferayPortletResponse,
+	 *             JournalArticleItemSelectorViewDisplayContext)}
 	 */
 	@Deprecated
 	public JournalArticleItemSelectorViewManagementToolbarDisplayContext(

@@ -102,7 +102,7 @@ public class LiferaySourceOrSink implements OASSource, SourceOrSink {
 	}
 
 	/**
-	 * @return JsonObject
+	 * @return     JsonObject
 	 * @deprecated As of Athanasius (7.3.x), see {@link
 	 *             #getOASJsonObject(String)}
 	 */

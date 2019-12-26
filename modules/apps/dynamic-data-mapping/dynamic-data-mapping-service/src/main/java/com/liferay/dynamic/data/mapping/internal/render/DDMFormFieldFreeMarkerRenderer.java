@@ -314,11 +314,11 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 
 		String name = ddmFormField.getName();
 
-		String fieldDisplayValue = getFieldsDisplayValue(
+		String fieldsDisplayValue = getFieldsDisplayValue(
 			httpServletRequest, httpServletResponse, fields);
 
 		String[] fieldsDisplayValues = getFieldsDisplayValues(
-			fieldDisplayValue);
+			fieldsDisplayValue);
 
 		boolean fieldDisplayable = ArrayUtil.contains(
 			fieldsDisplayValues, name);
@@ -351,7 +351,7 @@ public class DDMFormFieldFreeMarkerRenderer implements DDMFormFieldRenderer {
 
 			if (fieldDisplayable) {
 				fieldNamespace = getFieldNamespace(
-					fieldDisplayValue, ddmFieldsCounter, offset);
+					fieldsDisplayValue, ddmFieldsCounter, offset);
 			}
 
 			fieldStructure.put("fieldNamespace", fieldNamespace);

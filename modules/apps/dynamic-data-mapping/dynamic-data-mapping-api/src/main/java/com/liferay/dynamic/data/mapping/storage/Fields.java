@@ -60,14 +60,14 @@ public class Fields implements Iterable<Field>, Serializable {
 			return Objects.equals(_fieldsMap, fields._fieldsMap);
 		}
 
-		List<Field> fieldList1 = getFieldsList(includePrivateFields);
-		List<Field> fieldList2 = fields.getFieldsList(includePrivateFields);
+		List<Field> fieldsList1 = getFieldsList(includePrivateFields);
+		List<Field> fieldsList2 = fields.getFieldsList(includePrivateFields);
 
-		if (fieldList1.size() != fieldList2.size()) {
+		if (fieldsList1.size() != fieldsList2.size()) {
 			return false;
 		}
 
-		if (fieldList1.containsAll(fieldList2)) {
+		if (fieldsList1.containsAll(fieldsList2)) {
 			return true;
 		}
 

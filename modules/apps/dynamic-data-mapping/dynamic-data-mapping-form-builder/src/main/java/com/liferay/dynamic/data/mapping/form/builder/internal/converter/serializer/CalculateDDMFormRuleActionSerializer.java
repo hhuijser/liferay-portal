@@ -43,13 +43,13 @@ public class CalculateDDMFormRuleActionSerializer
 
 		DDMForm ddmForm = ddmFormRuleSerializerContext.getAttribute("form");
 
-		Map<String, DDMFormField> ddmFormFieldMap = ddmForm.getDDMFormFieldsMap(
-			true);
+		Map<String, DDMFormField> ddmFormFieldsMap =
+			ddmForm.getDDMFormFieldsMap(true);
 
 		String expression = removeBrackets(
 			_calculateDDMFormRuleAction.getExpression());
 
-		Set<String> keySet = ddmFormFieldMap.keySet();
+		Set<String> keySet = ddmFormFieldsMap.keySet();
 
 		Stream<String> ddmFormFieldStream = keySet.stream();
 

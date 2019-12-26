@@ -195,15 +195,15 @@ public class DDMFormJSONSerializer implements DDMFormSerializer {
 	protected JSONArray optionsToJSONArray(
 		DDMFormFieldOptions ddmFormFieldOptions) {
 
-		Set<String> optionValues = ddmFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
 
-		if (optionValues.isEmpty()) {
+		if (optionsValues.isEmpty()) {
 			return null;
 		}
 
 		JSONArray jsonArray = _jsonFactory.createJSONArray();
 
-		for (String optionValue : optionValues) {
+		for (String optionValue : optionsValues) {
 			JSONObject jsonObject = _jsonFactory.createJSONObject();
 
 			jsonObject.put(

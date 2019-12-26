@@ -147,10 +147,10 @@ public class DDMStructureImplTest extends BaseDDMTestCase {
 
 		DDMForm ddmForm2 = structure.getDDMForm();
 
-		Map<String, DDMFormField> ddmForm2FieldsMap =
+		Map<String, DDMFormField> ddmFormFieldsMap =
 			ddmForm2.getDDMFormFieldsMap(false);
 
-		Assert.assertFalse(ddmForm2FieldsMap.containsKey("field2"));
+		Assert.assertFalse(ddmFormFieldsMap.containsKey("field2"));
 	}
 
 	@Test

@@ -82,9 +82,9 @@ public class SelectDDMFormFieldValueValidator
 					ddmFormField.getName()));
 		}
 
-		Set<String> optionValues = ddmFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
 
-		if (optionValues.isEmpty()) {
+		if (optionsValues.isEmpty()) {
 			throw new DDMFormFieldValueValidationException(
 				"Options must contain at least one alternative");
 		}
@@ -92,7 +92,7 @@ public class SelectDDMFormFieldValueValidator
 		Map<Locale, String> selectedValues = value.getValues();
 
 		for (String selectedValue : selectedValues.values()) {
-			validateSelectedValue(ddmFormField, optionValues, selectedValue);
+			validateSelectedValue(ddmFormField, optionsValues, selectedValue);
 		}
 	}
 

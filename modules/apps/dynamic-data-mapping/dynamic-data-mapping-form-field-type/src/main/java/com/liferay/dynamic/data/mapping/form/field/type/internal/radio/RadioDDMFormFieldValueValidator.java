@@ -51,9 +51,9 @@ public class RadioDDMFormFieldValueValidator
 					ddmFormField.getName()));
 		}
 
-		Set<String> optionValues = ddmFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
 
-		if (optionValues.isEmpty()) {
+		if (optionsValues.isEmpty()) {
 			throw new DDMFormFieldValueValidationException(
 				"Options must contain at least one alternative");
 		}
@@ -62,7 +62,7 @@ public class RadioDDMFormFieldValueValidator
 
 		for (String selectedValue : selectedValues.values()) {
 			if (Validator.isNotNull(selectedValue) &&
-				!optionValues.contains(selectedValue)) {
+				!optionsValues.contains(selectedValue)) {
 
 				throw new DDMFormFieldValueValidationException(
 					String.format(

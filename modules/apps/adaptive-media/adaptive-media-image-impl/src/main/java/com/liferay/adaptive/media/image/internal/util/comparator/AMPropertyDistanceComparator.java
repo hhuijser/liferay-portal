@@ -47,20 +47,20 @@ public class AMPropertyDistanceComparator
 
 			Object requestedValue = entry.getValue();
 
-			Optional<?> value1Optional = adaptiveMedia1.getValueOptional(
+			Optional<?> valueOptional1 = adaptiveMedia1.getValueOptional(
 				amAttribute);
 
-			Optional<Long> value1DistanceOptional = value1Optional.map(
+			Optional<Long> valueDistanceOptional1 = valueOptional1.map(
 				value1 -> amAttribute.distance(value1, requestedValue));
 
-			Optional<?> value2Optional = adaptiveMedia2.getValueOptional(
+			Optional<?> valueOptional2 = adaptiveMedia2.getValueOptional(
 				amAttribute);
 
-			Optional<Long> value2DistanceOptional = value2Optional.map(
+			Optional<Long> valueDistanceOptional2 = valueOptional2.map(
 				value2 -> amAttribute.distance(value2, requestedValue));
 
-			Optional<Long> resultOptional = value1DistanceOptional.flatMap(
-				value1 -> value2DistanceOptional.map(
+			Optional<Long> resultOptional = valueDistanceOptional1.flatMap(
+				value1 -> valueDistanceOptional2.map(
 					value2 -> value1 - value2));
 
 			long result = resultOptional.orElse(0L);

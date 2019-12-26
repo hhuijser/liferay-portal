@@ -129,9 +129,9 @@ public abstract class BaseDDLExporter implements DDLExporter {
 
 	protected DDMFormFieldRenderedValue getDDMFormFieldRenderedValue(
 		int scope, DDMFormField ddmFormField,
-		Map<String, List<DDMFormFieldValue>> ddmFormFieldValueMap) {
+		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap) {
 
-		List<DDMFormFieldValue> ddmForFieldValues = ddmFormFieldValueMap.get(
+		List<DDMFormFieldValue> ddmForFieldValues = ddmFormFieldValuesMap.get(
 			ddmFormField.getName());
 
 		String valueString = StringPool.BLANK;
@@ -205,18 +205,18 @@ public abstract class BaseDDLExporter implements DDLExporter {
 			DDMFormValues ddmFormValues)
 		throws Exception {
 
-		Map<String, List<DDMFormFieldValue>> ddmFormFieldValueMap =
+		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
 
 		Stream<DDMFormField> ddmFormFieldStream = ddmFormFields.stream();
 
 		ddmFormFieldStream = ddmFormFieldStream.filter(
-			ddmFormField -> ddmFormFieldValueMap.containsKey(
+			ddmFormField -> ddmFormFieldValuesMap.containsKey(
 				ddmFormField.getName()));
 
 		Stream<DDMFormFieldRenderedValue> valueStream = ddmFormFieldStream.map(
 			ddmFormField -> getDDMFormFieldRenderedValue(
-				scope, ddmFormField, ddmFormFieldValueMap));
+				scope, ddmFormField, ddmFormFieldValuesMap));
 
 		return valueStream.collect(
 			Collectors.toMap(

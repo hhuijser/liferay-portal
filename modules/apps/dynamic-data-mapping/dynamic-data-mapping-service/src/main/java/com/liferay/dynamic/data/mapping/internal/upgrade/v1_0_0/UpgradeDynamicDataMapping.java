@@ -621,10 +621,10 @@ public class UpgradeDynamicDataMapping extends UpgradeProcess {
 
 		Map<String, String> ddmFormFieldNamesMap = new HashMap<>();
 
-		Map<String, DDMFormField> ddmFormFieldMap = ddmForm.getDDMFormFieldsMap(
-			true);
+		Map<String, DDMFormField> ddmFormFieldsMap =
+			ddmForm.getDDMFormFieldsMap(true);
 
-		for (DDMFormField ddmFormField : ddmFormFieldMap.values()) {
+		for (DDMFormField ddmFormField : ddmFormFieldsMap.values()) {
 			String oldName = (String)ddmFormField.getProperty("oldName");
 
 			if (oldName == null) {

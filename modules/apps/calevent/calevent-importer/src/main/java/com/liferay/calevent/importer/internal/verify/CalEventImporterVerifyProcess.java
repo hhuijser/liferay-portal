@@ -582,13 +582,13 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 		Calendar untilJCalendar = tzsRecurrence.getUntil();
 
-		int ocurrence = tzsRecurrence.getOccurrence();
+		int occurrence = tzsRecurrence.getOccurrence();
 
 		if (untilJCalendar != null) {
 			recurrence.setUntilJCalendar(untilJCalendar);
 		}
-		else if (ocurrence > 0) {
-			recurrence.setCount(ocurrence);
+		else if (occurrence > 0) {
+			recurrence.setCount(occurrence);
 		}
 
 		return RecurrenceSerializer.serialize(recurrence);

@@ -231,9 +231,10 @@ public abstract class BaseDDMFormDeserializerTestCase extends BaseDDMTestCase {
 		DDMFormFieldOptions selectDDMFormFieldOptions =
 			selectDDMFormField.getDDMFormFieldOptions();
 
-		Set<String> optionValues = selectDDMFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues =
+			selectDDMFormFieldOptions.getOptionsValues();
 
-		Assert.assertEquals(optionValues.toString(), 3, optionValues.size());
+		Assert.assertEquals(optionsValues.toString(), 3, optionsValues.size());
 	}
 
 	protected void testRadioDDMFormField(DDMFormField ddmFormField) {

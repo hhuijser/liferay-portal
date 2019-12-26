@@ -121,10 +121,10 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 				ddmForm, SetUtil.fromArray(new Locale[] {LocaleUtil.US}),
 				LocaleUtil.US);
 
-		Map<String, List<DDMFormFieldValue>> ddmFormFieldValueMap =
+		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
 
-		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValueMap.get(
+		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"dataSourceType");
 
 		DDMFormFieldValue dataSourceTypeFormFieldValue = ddmFormFieldValues.get(
@@ -147,7 +147,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 				ddmFormEvaluatorEvaluateResponse.
 					getDDMFormFieldsPropertyChanges();
 
-		ddmFormFieldValues = ddmFormFieldValueMap.get(
+		ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"ddmDataProviderInstanceId");
 
 		DDMFormFieldValue ddmDataProviderInstanceIdFormFieldValue =
@@ -166,7 +166,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 			(Boolean)ddmDataProviderInstanceIdFieldPropertyChanges.get(
 				"required"));
 
-		ddmFormFieldValues = ddmFormFieldValueMap.get(
+		ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"ddmDataProviderInstanceOutput");
 
 		DDMFormFieldValue ddmDataProviderInstanceOutputFormFieldValue =
@@ -186,7 +186,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 			(Boolean)ddmDataProviderInstanceOutputFieldPropertyChanges.get(
 				"required"));
 
-		ddmFormFieldValues = ddmFormFieldValueMap.get("options");
+		ddmFormFieldValues = ddmFormFieldValuesMap.get("options");
 
 		DDMFormFieldValue optionsDDMFormFieldValue = ddmFormFieldValues.get(0);
 
@@ -219,10 +219,10 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 				ddmForm, SetUtil.fromArray(new Locale[] {LocaleUtil.US}),
 				LocaleUtil.US);
 
-		Map<String, List<DDMFormFieldValue>> ddmFormFieldValueMap =
+		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
 
-		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValueMap.get(
+		List<DDMFormFieldValue> ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"dataSourceType");
 
 		DDMFormFieldValue dataSourceTypeFormFieldValue = ddmFormFieldValues.get(
@@ -231,7 +231,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 		dataSourceTypeFormFieldValue.setValue(
 			new UnlocalizedValue("data-provider"));
 
-		ddmFormFieldValues = ddmFormFieldValueMap.get(
+		ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"ddmDataProviderInstanceId");
 
 		DDMFormFieldValue ddmDataProviderInstanceIdFormFieldValue =
@@ -255,7 +255,7 @@ public class DDMFormFieldTypeSettingsEvaluatorTest {
 		DDMFormEvaluatorEvaluateResponse ddmFormEvaluatorEvaluateResponse =
 			_ddmFormEvaluator.evaluate(builder.build());
 
-		ddmFormFieldValues = ddmFormFieldValueMap.get(
+		ddmFormFieldValues = ddmFormFieldValuesMap.get(
 			"ddmDataProviderInstanceOutput");
 
 		DDMFormFieldValue ddmDataProviderInstanceOutputFormFieldValue =

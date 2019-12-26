@@ -177,12 +177,12 @@ public class DDMRESTDataProviderSettingsTest {
 		DDMFormFieldOptions ddmFormFieldOptions =
 			inputParameterTypeDDMFormField.getDDMFormFieldOptions();
 
-		Set<String> optionValues = ddmFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
 
 		Assert.assertTrue(
-			optionValues.toString(), optionValues.contains("text"));
+			optionsValues.toString(), optionsValues.contains("text"));
 		Assert.assertTrue(
-			optionValues.toString(), optionValues.contains("number"));
+			optionsValues.toString(), optionsValues.contains("number"));
 
 		// Required
 
@@ -264,12 +264,12 @@ public class DDMRESTDataProviderSettingsTest {
 		DDMFormFieldOptions ddmFormFieldOptions =
 			outputParameterTypeDDMFormField.getDDMFormFieldOptions();
 
-		Set<String> optionValues = ddmFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
 
 		Assert.assertTrue(
-			optionValues.toString(), optionValues.contains("text"));
+			optionsValues.toString(), optionsValues.contains("text"));
 		Assert.assertTrue(
-			optionValues.toString(), optionValues.contains("number"));
+			optionsValues.toString(), optionsValues.contains("number"));
 	}
 
 	protected void assertPagination(DDMFormField ddmFormField) {

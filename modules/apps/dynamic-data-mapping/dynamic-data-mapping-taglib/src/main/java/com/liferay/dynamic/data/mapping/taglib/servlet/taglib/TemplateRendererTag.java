@@ -82,22 +82,22 @@ public class TemplateRendererTag extends BaseTemplateRendererTag {
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 		super.setAttributes(httpServletRequest);
 
-		long displaStyleGroupId = getDisplayStyleGroupId();
+		long displayStyleGroupId = getDisplayStyleGroupId();
 
-		if (displaStyleGroupId == 0) {
+		if (displayStyleGroupId == 0) {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);
 
-			displaStyleGroupId = themeDisplay.getScopeGroupId();
+			displayStyleGroupId = themeDisplay.getScopeGroupId();
 
 			setNamespacedAttribute(
-				httpServletRequest, "displayStyleGroupId", displaStyleGroupId);
+				httpServletRequest, "displayStyleGroupId", displayStyleGroupId);
 		}
 
 		_portletDisplayDDMTemplate =
 			PortletDisplayTemplateUtil.getPortletDisplayTemplateDDMTemplate(
-				displaStyleGroupId, PortalUtil.getClassNameId(getClassName()),
+				displayStyleGroupId, PortalUtil.getClassNameId(getClassName()),
 				getDisplayStyle(), true);
 
 		setNamespacedAttribute(

@@ -42,14 +42,14 @@ public class GridDDMFormFieldValueRequestParameterRetriever
 
 		JSONObject jsonObject = jsonFactory.createJSONObject();
 
-		Map<String, String[]> parametersMap =
+		Map<String, String[]> parameterMap =
 			httpServletRequest.getParameterMap();
 
-		if (!parametersMap.containsKey(ddmFormFieldParameterName)) {
+		if (!parameterMap.containsKey(ddmFormFieldParameterName)) {
 			return jsonObject.toString();
 		}
 
-		String[] parameterValues = parametersMap.get(ddmFormFieldParameterName);
+		String[] parameterValues = parameterMap.get(ddmFormFieldParameterName);
 
 		for (String value : parameterValues) {
 			if (!value.isEmpty()) {

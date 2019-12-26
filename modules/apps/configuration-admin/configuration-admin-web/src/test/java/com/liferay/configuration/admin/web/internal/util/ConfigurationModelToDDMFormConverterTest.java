@@ -269,12 +269,12 @@ public class ConfigurationModelToDDMFormConverterTest extends Mockito {
 
 		Assert.assertEquals(_enLocale, ddmFormFieldOptions.getDefaultLocale());
 
-		Set<String> optionValues = ddmFormFieldOptions.getOptionsValues();
+		Set<String> optionsValues = ddmFormFieldOptions.getOptionsValues();
 
 		Assert.assertTrue(
-			optionValues.toString(), optionValues.contains("Value 1"));
+			optionsValues.toString(), optionsValues.contains("Value 1"));
 		Assert.assertTrue(
-			optionValues.toString(), optionValues.contains("Value 2"));
+			optionsValues.toString(), optionsValues.contains("Value 2"));
 
 		LocalizedValue value1Labels = ddmFormFieldOptions.getOptionLabels(
 			"Value 1");

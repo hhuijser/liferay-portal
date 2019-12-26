@@ -69,10 +69,10 @@ public class DDMFormValuesInfoDisplayFieldProviderImpl<T extends GroupedModel>
 
 		Map<String, Object> infoDisplayFieldValues = new HashMap<>();
 
-		Map<String, List<DDMFormFieldValue>> ddmFormFieldsValuesMap =
+		Map<String, List<DDMFormFieldValue>> ddmFormFieldValuesMap =
 			ddmFormValues.getDDMFormFieldValuesMap();
 
-		if (MapUtil.isEmpty(ddmFormFieldsValuesMap)) {
+		if (MapUtil.isEmpty(ddmFormFieldValuesMap)) {
 			return infoDisplayFieldValues;
 		}
 
@@ -82,7 +82,7 @@ public class DDMFormValuesInfoDisplayFieldProviderImpl<T extends GroupedModel>
 			true);
 
 		for (Map.Entry<String, List<DDMFormFieldValue>> entry :
-				ddmFormFieldsValuesMap.entrySet()) {
+				ddmFormFieldValuesMap.entrySet()) {
 
 			DDMFormField ddmFormField = ddmFormFields.get(entry.getKey());
 
@@ -176,11 +176,11 @@ public class DDMFormValuesInfoDisplayFieldProviderImpl<T extends GroupedModel>
 			Map<String, Object> classTypeValues, Locale locale)
 		throws PortalException {
 
-		Map<String, List<DDMFormFieldValue>> nestedDDMFormFieldsValuesMap =
+		Map<String, List<DDMFormFieldValue>> nestedDDMFormFieldValuesMap =
 			ddmFormFieldValue.getNestedDDMFormFieldValuesMap();
 
 		for (Map.Entry<String, List<DDMFormFieldValue>> entry :
-				nestedDDMFormFieldsValuesMap.entrySet()) {
+				nestedDDMFormFieldValuesMap.entrySet()) {
 
 			List<DDMFormFieldValue> ddmFormFieldValues = entry.getValue();
 

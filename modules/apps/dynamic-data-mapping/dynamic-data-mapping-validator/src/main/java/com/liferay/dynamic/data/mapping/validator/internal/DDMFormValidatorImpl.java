@@ -180,13 +180,13 @@ public class DDMFormValidatorImpl implements DDMFormValidator {
 		DDMFormFieldOptions ddmFormFieldOptions =
 			ddmFormField.getDDMFormFieldOptions();
 
-		Set<String> optionValues = Collections.emptySet();
+		Set<String> optionsValues = Collections.emptySet();
 
 		if (ddmFormFieldOptions != null) {
-			optionValues = ddmFormFieldOptions.getOptionsValues();
+			optionsValues = ddmFormFieldOptions.getOptionsValues();
 		}
 
-		if (optionValues.isEmpty()) {
+		if (optionsValues.isEmpty()) {
 			throw new MustSetOptionsForField(ddmFormField.getName());
 		}
 

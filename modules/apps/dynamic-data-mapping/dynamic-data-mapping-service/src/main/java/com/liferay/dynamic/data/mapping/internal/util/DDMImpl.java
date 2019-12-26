@@ -589,9 +589,9 @@ public class DDMImpl implements DDM {
 
 		DDMForm ddmFormCopy = new DDMForm(ddmForm);
 
-		Locale defautLocale = ddmForm.getDefaultLocale();
+		Locale defaultLocale = ddmForm.getDefaultLocale();
 
-		if (defautLocale.equals(newDefaultLocale)) {
+		if (defaultLocale.equals(newDefaultLocale)) {
 			return ddmFormCopy;
 		}
 

@@ -39,10 +39,10 @@ public class BundleComparator implements Comparator<Bundle> {
 
 	@Override
 	public int compare(Bundle bundle1, Bundle bundle2) {
-		String bundle1Name = getBundleName(bundle1);
-		String bundle2Name = getBundleName(bundle2);
+		String bundleName1 = getBundleName(bundle1);
+		String bundleName2 = getBundleName(bundle2);
 
-		int value = bundle1Name.compareTo(bundle2Name);
+		int value = bundleName1.compareTo(bundleName2);
 
 		if (_ascending) {
 			return value;

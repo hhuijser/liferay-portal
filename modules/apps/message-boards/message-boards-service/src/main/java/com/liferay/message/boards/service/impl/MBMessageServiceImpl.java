@@ -198,9 +198,9 @@ public class MBMessageServiceImpl extends MBMessageServiceBaseImpl {
 
 		boolean preview = ParamUtil.getBoolean(serviceContext, "preview");
 
-		int workFlowAction = serviceContext.getWorkflowAction();
+		int workflowAction = serviceContext.getWorkflowAction();
 
-		if ((workFlowAction == WorkflowConstants.STATUS_DRAFT) && !preview &&
+		if ((workflowAction == WorkflowConstants.STATUS_DRAFT) && !preview &&
 			!serviceContext.isSignedIn()) {
 
 			_messageModelResourcePermission.check(

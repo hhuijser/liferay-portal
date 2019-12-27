@@ -142,18 +142,18 @@ public class MapDisplayTag extends IncludeTag {
 	}
 
 	private String _getMapProviderKey() {
-		String mapProdiverKey = _mapProviderKey;
+		String mapProviderKey = _mapProviderKey;
 
-		if (Validator.isNull(mapProdiverKey)) {
+		if (Validator.isNull(mapProviderKey)) {
 			ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-			mapProdiverKey = MapProviderHelperUtil.getMapProviderKey(
+			mapProviderKey = MapProviderHelperUtil.getMapProviderKey(
 				ServletContextUtil.getGroupLocalService(),
 				themeDisplay.getCompanyId(), themeDisplay.getSiteGroupId());
 		}
 
-		return mapProdiverKey;
+		return mapProviderKey;
 	}
 
 	private static final String _PAGE = "/map_display/page.jsp";

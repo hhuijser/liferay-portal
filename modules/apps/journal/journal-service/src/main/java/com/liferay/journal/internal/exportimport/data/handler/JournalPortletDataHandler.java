@@ -279,11 +279,11 @@ public class JournalPortletDataHandler extends BasePortletDataHandler {
 			// Export DDM structure default values
 
 			ActionableDynamicQuery
-				ddmStructureDefaultValueActionableDynamicQuery =
+				ddmStructureDefaultValuesActionableDynamicQuery =
 					getDDMStructureDefaultValuesActionableDynamicQuery(
 						portletDataContext);
 
-			ddmStructureDefaultValueActionableDynamicQuery.performActions();
+			ddmStructureDefaultValuesActionableDynamicQuery.performActions();
 		}
 
 		if (portletDataContext.getBooleanParameter(NAMESPACE, "templates")) {

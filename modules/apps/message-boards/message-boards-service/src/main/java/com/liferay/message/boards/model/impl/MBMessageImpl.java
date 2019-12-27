@@ -136,10 +136,10 @@ public class MBMessageImpl extends MBMessageBaseImpl {
 			PortletFileRepositoryUtil.fetchPortletRepository(
 				getGroupId(), MBConstants.SERVICE_NAME);
 
-		long threadAttachmetsFolderId = getThreadAttachmentsFolderId();
+		long threadAttachmentsFolderId = getThreadAttachmentsFolderId();
 
 		if ((repository == null) ||
-			(threadAttachmetsFolderId ==
+			(threadAttachmentsFolderId ==
 				DLFolderConstants.DEFAULT_PARENT_FOLDER_ID)) {
 
 			return DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
@@ -147,7 +147,7 @@ public class MBMessageImpl extends MBMessageBaseImpl {
 
 		try {
 			Folder folder = PortletFileRepositoryUtil.getPortletFolder(
-				repository.getRepositoryId(), threadAttachmetsFolderId,
+				repository.getRepositoryId(), threadAttachmentsFolderId,
 				String.valueOf(getMessageId()));
 
 			_attachmentsFolderId = folder.getFolderId();

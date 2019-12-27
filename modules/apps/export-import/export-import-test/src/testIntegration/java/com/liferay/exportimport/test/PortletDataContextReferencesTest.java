@@ -405,14 +405,14 @@ public class PortletDataContextReferencesTest {
 			missingReferenceElements.toString(), 1,
 			missingReferenceElements.size());
 
-		List<Element> referencesElements =
+		List<Element> referenceElements =
 			_portletDataContext.getReferenceElements(
 				_bookmarksEntry, BookmarksFolder.class);
 
 		Assert.assertEquals(
-			referencesElements.toString(), 1, referencesElements.size());
+			referenceElements.toString(), 1, referenceElements.size());
 
-		for (Element referenceElement : referencesElements) {
+		for (Element referenceElement : referenceElements) {
 			Assert.assertTrue(
 				GetterUtil.getBoolean(
 					referenceElement.attributeValue("missing")));

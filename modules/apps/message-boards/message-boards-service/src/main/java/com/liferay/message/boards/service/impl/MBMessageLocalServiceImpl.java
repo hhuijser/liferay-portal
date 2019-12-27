@@ -1323,19 +1323,19 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 				message.getThreadId(), status, comparator);
 		}
 
-		int dicussionMessagesCount = 0;
+		int discussionMessagesCount = 0;
 
 		if (message.isDiscussion() &&
 			(PropsValues.DISCUSSION_MAX_COMMENTS > 0)) {
 
-			dicussionMessagesCount = getDiscussionMessagesCount(
+			discussionMessagesCount = getDiscussionMessagesCount(
 				message.getClassName(), message.getClassPK(),
 				WorkflowConstants.STATUS_APPROVED);
 		}
 
 		return new MBMessageDisplayImpl(
 			message, parentMessage, messages, category, thread,
-			dicussionMessagesCount);
+			discussionMessagesCount);
 	}
 
 	@Override

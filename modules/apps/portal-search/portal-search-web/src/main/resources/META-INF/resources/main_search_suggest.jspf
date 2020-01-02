@@ -47,7 +47,7 @@
 		</ul>
 	</c:if>
 
-	<c:if test="<%= searchDisplayContext.isQuerySuggestionsEnabled() && ArrayUtil.isNotEmpty(hits.getQuerySuggestions()) %>">
+	<c:if test="<%= searchDisplayContext.isQuerySuggestionEnabled() && ArrayUtil.isNotEmpty(hits.getQuerySuggestions()) %>">
 		<ul class="list-inline related-queries">
 			<li class="label label-default">
 				<liferay-ui:message key="related-queries" />:

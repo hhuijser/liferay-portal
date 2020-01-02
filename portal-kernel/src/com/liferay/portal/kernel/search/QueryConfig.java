@@ -313,6 +313,11 @@ public class QueryConfig implements Serializable {
 			querySuggestionEnabled);
 	}
 
+	public void setQuerySuggestionMax(int querySuggestionMax) {
+		_attributes.put(
+			PropsKeys.INDEX_SEARCH_QUERY_SUGGESTION_MAX, querySuggestionMax);
+	}
+
 	public void setQuerySuggestionScoresThreshold(
 		int querySuggestionScoresThreshold) {
 
@@ -321,9 +326,13 @@ public class QueryConfig implements Serializable {
 			querySuggestionScoresThreshold);
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #setQuerySuggestionMax(String)}
+	 */
+	@Deprecated
 	public void setQuerySuggestionsMax(int querySuggestionMax) {
-		_attributes.put(
-			PropsKeys.INDEX_SEARCH_QUERY_SUGGESTION_MAX, querySuggestionMax);
+		setQuerySuggestionMax(querySuggestionMax);
 	}
 
 	public void setScoreEnabled(boolean scoreEnabled) {

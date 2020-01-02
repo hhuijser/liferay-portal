@@ -228,10 +228,10 @@ public class SearchDisplayContext {
 			_searchResultPreferences.isHighlightEnabled());
 		_queryConfig.setQueryIndexingEnabled(isQueryIndexingEnabled());
 		_queryConfig.setQueryIndexingThreshold(getQueryIndexingThreshold());
-		_queryConfig.setQuerySuggestionEnabled(isQuerySuggestionsEnabled());
+		_queryConfig.setQuerySuggestionEnabled(isQuerySuggestionEnabled());
 		_queryConfig.setQuerySuggestionScoresThreshold(
 			getQuerySuggestionsDisplayThreshold());
-		_queryConfig.setQuerySuggestionsMax(getQuerySuggestionsMax());
+		_queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 
 		return _queryConfig;
 	}
@@ -275,21 +275,21 @@ public class SearchDisplayContext {
 		return _querySuggestionsDisplayThreshold;
 	}
 
-	public int getQuerySuggestionsMax() {
-		if (_querySuggestionsMax != null) {
-			return _querySuggestionsMax;
+	public int getQuerySuggestionMax() {
+		if (_querySuggestionMax != null) {
+			return _querySuggestionMax;
 		}
 
-		_querySuggestionsMax = GetterUtil.getInteger(
-			_portletPreferences.getValue("querySuggestionsMax", null),
+		_querySuggestionMax = GetterUtil.getInteger(
+			_portletPreferences.getValue("querySuggestionMax", null),
 			_indexSearchPropsValues.getQuerySuggestionMax());
 
-		if (_querySuggestionsMax <= 0) {
-			_querySuggestionsMax =
+		if (_querySuggestionMax <= 0) {
+			_querySuggestionMax =
 				_indexSearchPropsValues.getQuerySuggestionMax();
 		}
 
-		return _querySuggestionsMax;
+		return _querySuggestionMax;
 	}
 
 	public String[] getQueryTerms() {
@@ -439,16 +439,16 @@ public class SearchDisplayContext {
 		return _queryIndexingEnabled;
 	}
 
-	public boolean isQuerySuggestionsEnabled() {
-		if (_querySuggestionsEnabled != null) {
-			return _querySuggestionsEnabled;
+	public boolean isQuerySuggestionEnabled() {
+		if (_querySuggestionEnabled != null) {
+			return _querySuggestionEnabled;
 		}
 
-		_querySuggestionsEnabled = GetterUtil.getBoolean(
-			_portletPreferences.getValue("querySuggestionsEnabled", null),
+		_querySuggestionEnabled = GetterUtil.getBoolean(
+			_portletPreferences.getValue("querySuggestionEnabled", null),
 			_indexSearchPropsValues.isQuerySuggestionEnabled());
 
-		return _querySuggestionsEnabled;
+		return _querySuggestionEnabled;
 	}
 
 	public boolean isSearchScopePreferenceEverythingAvailable() {
@@ -535,10 +535,10 @@ public class SearchDisplayContext {
 		queryConfig.setHighlightEnabled(isHighlightEnabled());
 		queryConfig.setQueryIndexingEnabled(isQueryIndexingEnabled());
 		queryConfig.setQueryIndexingThreshold(getQueryIndexingThreshold());
-		queryConfig.setQuerySuggestionEnabled(isQuerySuggestionsEnabled());
+		queryConfig.setQuerySuggestionEnabled(isQuerySuggestionEnabled());
 		queryConfig.setQuerySuggestionScoresThreshold(
 			getQuerySuggestionsDisplayThreshold());
-		queryConfig.setQuerySuggestionsMax(getQuerySuggestionsMax());
+		queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 
 		addEnabledSearchFacets(searchSettings.getSearchRequestBuilder());
 
@@ -638,8 +638,8 @@ public class SearchDisplayContext {
 	private Integer _queryIndexingThreshold;
 	private final String _queryString;
 	private Integer _querySuggestionsDisplayThreshold;
-	private Boolean _querySuggestionsEnabled;
-	private Integer _querySuggestionsMax;
+	private Boolean _querySuggestionEnabled;
+	private Integer _querySuggestionMax;
 	private final RenderRequest _renderRequest;
 	private String _searchConfiguration;
 	private final SearchContainer<Document> _searchContainer;

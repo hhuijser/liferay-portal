@@ -73,7 +73,7 @@ public class SuggestionsPortletSharedSearchContributor
 		queryConfig.setQuerySuggestionScoresThreshold(
 			suggestionsPortletPreferences.
 				getRelatedQueriesSuggestionsDisplayThreshold());
-		queryConfig.setQuerySuggestionsMax(
+		queryConfig.setQuerySuggestionMax(
 			suggestionsPortletPreferences.getRelatedQueriesSuggestionsMax());
 	}
 

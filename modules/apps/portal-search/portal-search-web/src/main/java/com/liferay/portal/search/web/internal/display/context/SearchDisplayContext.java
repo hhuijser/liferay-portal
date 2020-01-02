@@ -230,7 +230,7 @@ public class SearchDisplayContext {
 		_queryConfig.setQueryIndexingThreshold(getQueryIndexingThreshold());
 		_queryConfig.setQuerySuggestionEnabled(isQuerySuggestionEnabled());
 		_queryConfig.setQuerySuggestionScoresThreshold(
-			getQuerySuggestionsDisplayThreshold());
+			getQuerySuggestionDisplayThreshold());
 		_queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 
 		return _queryConfig;
@@ -257,22 +257,22 @@ public class SearchDisplayContext {
 		return _queryString;
 	}
 
-	public int getQuerySuggestionsDisplayThreshold() {
-		if (_querySuggestionsDisplayThreshold != null) {
-			return _querySuggestionsDisplayThreshold;
+	public int getQuerySuggestionDisplayThreshold() {
+		if (_querySuggestionDisplayThreshold != null) {
+			return _querySuggestionDisplayThreshold;
 		}
 
-		_querySuggestionsDisplayThreshold = GetterUtil.getInteger(
+		_querySuggestionDisplayThreshold = GetterUtil.getInteger(
 			_portletPreferences.getValue(
-				"querySuggestionsDisplayThreshold", null),
+				"querySuggestionDisplayThreshold", null),
 			_indexSearchPropsValues.getQuerySuggestionScoresThreshold());
 
-		if (_querySuggestionsDisplayThreshold < 0) {
-			_querySuggestionsDisplayThreshold =
+		if (_querySuggestionDisplayThreshold < 0) {
+			_querySuggestionDisplayThreshold =
 				_indexSearchPropsValues.getQuerySuggestionScoresThreshold();
 		}
 
-		return _querySuggestionsDisplayThreshold;
+		return _querySuggestionDisplayThreshold;
 	}
 
 	public int getQuerySuggestionMax() {
@@ -537,7 +537,7 @@ public class SearchDisplayContext {
 		queryConfig.setQueryIndexingThreshold(getQueryIndexingThreshold());
 		queryConfig.setQuerySuggestionEnabled(isQuerySuggestionEnabled());
 		queryConfig.setQuerySuggestionScoresThreshold(
-			getQuerySuggestionsDisplayThreshold());
+			getQuerySuggestionDisplayThreshold());
 		queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 
 		addEnabledSearchFacets(searchSettings.getSearchRequestBuilder());
@@ -637,7 +637,7 @@ public class SearchDisplayContext {
 	private Boolean _queryIndexingEnabled;
 	private Integer _queryIndexingThreshold;
 	private final String _queryString;
-	private Integer _querySuggestionsDisplayThreshold;
+	private Integer _querySuggestionDisplayThreshold;
 	private Boolean _querySuggestionEnabled;
 	private Integer _querySuggestionMax;
 	private final RenderRequest _renderRequest;

@@ -51,9 +51,9 @@ SuggestionsPortletPreferences suggestionsPortletPreferences = new SuggestionsPor
 
 			<hr />
 
-			<aui:input helpMessage="query-suggestions-enabled-help" id="relatedSuggestionsEnabled" label="display-related-queries" name="<%= PortletPreferencesJspUtil.getInputName(SuggestionsPortletPreferences.PREFERENCE_KEY_RELATED_QUERIES_SUGGESTIONS_ENABLED) %>" type="checkbox" value="<%= suggestionsPortletPreferences.isRelatedQueriesSuggestionsEnabled() %>" />
+			<aui:input helpMessage="query-suggestion-enabled-help" id="relatedSuggestionsEnabled" label="display-related-queries" name="<%= PortletPreferencesJspUtil.getInputName(SuggestionsPortletPreferences.PREFERENCE_KEY_RELATED_QUERIES_SUGGESTIONS_ENABLED) %>" type="checkbox" value="<%= suggestionsPortletPreferences.isRelatedQueriesSuggestionsEnabled() %>" />
 
-			<aui:input helpMessage="query-suggestions-display-threshold-help" label="threshold-for-displaying-related-queries" name="<%= PortletPreferencesJspUtil.getInputName(SuggestionsPortletPreferences.PREFERENCE_KEY_RELATED_QUERIES_SUGGESTIONS_DISPLAY_THRESHOLD) %>" size="10" type="text" value="<%= suggestionsPortletPreferences.getRelatedQueriesSuggestionsDisplayThreshold() %>" />
+			<aui:input helpMessage="query-suggestion-display-threshold-help" label="threshold-for-displaying-related-queries" name="<%= PortletPreferencesJspUtil.getInputName(SuggestionsPortletPreferences.PREFERENCE_KEY_RELATED_QUERIES_SUGGESTIONS_DISPLAY_THRESHOLD) %>" size="10" type="text" value="<%= suggestionsPortletPreferences.getRelatedQueriesSuggestionsDisplayThreshold() %>" />
 
 			<aui:input label="maximum-number-of-related-queries" name="<%= PortletPreferencesJspUtil.getInputName(SuggestionsPortletPreferences.PREFERENCE_KEY_RELATED_QUERIES_SUGGESTIONS_MAX) %>" size="10" type="text" value="<%= suggestionsPortletPreferences.getRelatedQueriesSuggestionsMax() %>" />
 

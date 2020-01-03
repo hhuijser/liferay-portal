@@ -28,7 +28,7 @@
 	</liferay-ui:toggle-area>
 </div>
 
-<aui:input helpMessage="query-suggestions-enabled-help" id="querySuggestionEnabled" label="display-related-queries" name="preferences--querySuggestionEnabled--" type="checkbox" value="<%= searchDisplayContext.isQuerySuggestionEnabled() %>" />
+<aui:input helpMessage="query-suggestion-enabled-help" id="querySuggestionEnabled" label="display-related-queries" name="preferences--querySuggestionEnabled--" type="checkbox" value="<%= searchDisplayContext.isQuerySuggestionEnabled() %>" />
 
 <div class="options-container <%= !searchDisplayContext.isQuerySuggestionEnabled() ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />querySuggestionOptionsContainer">
 	<liferay-ui:toggle-area
@@ -40,7 +40,7 @@
 	>
 		<aui:input disabled="<%= !searchDisplayContext.isQuerySuggestionEnabled() %>" label="maximum-number-of-related-queries" name="preferences--querySuggestionMax--" size="10" type="text" value="<%= searchDisplayContext.getQuerySuggestionMax() %>" />
 
-		<aui:input disabled="<%= !searchDisplayContext.isQuerySuggestionEnabled() %>" helpMessage="query-suggestions-display-threshold-help" label="threshold-for-displaying-related-queries" name="preferences--querySuggestionDisplayThreshold--" size="10" type="text" value="<%= searchDisplayContext.getQuerySuggestionDisplayThreshold() %>" />
+		<aui:input disabled="<%= !searchDisplayContext.isQuerySuggestionEnabled() %>" helpMessage="query-suggestion-display-threshold-help" label="threshold-for-displaying-related-queries" name="preferences--querySuggestionDisplayThreshold--" size="10" type="text" value="<%= searchDisplayContext.getQuerySuggestionDisplayThreshold() %>" />
 	</liferay-ui:toggle-area>
 </div>
 

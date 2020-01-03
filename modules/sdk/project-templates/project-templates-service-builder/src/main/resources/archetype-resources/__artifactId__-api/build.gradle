@@ -3,6 +3,10 @@ dependencies {
 #if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")})
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "@biz.aQute.bnd.version@"
 #end
+#if (${liferayVersion.startsWith("7.2")})
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
+#end
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 #if (${liferayVersion.startsWith("7.2")})
 	compileOnly group: "org.osgi", name: "org.osgi.annotation.versioning"
@@ -18,6 +22,8 @@ dependencies {
 #elseif (${liferayVersion.startsWith("7.1")})
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
 #elseif (${liferayVersion.startsWith("7.2")})
+	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
+	compileOnly group: "com.liferay", name: "com.liferay.petra.string", version: "3.0.0"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.4.0"
 #end
 #if (${liferayVersion.startsWith("7.2")})

@@ -5,6 +5,7 @@ dependencies {
 #if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")})
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "@biz.aQute.bnd.version@"
 #end
+	compileOnly group: "com.liferay", name: "com.liferay.petra.io"
 #if (${liferayVersion.startsWith("7.2")})
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
 #end
@@ -29,7 +30,12 @@ dependencies {
 #if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")})
 	compileOnly group: "biz.aQute.bnd", name: "biz.aQute.bnd.annotation", version: "@biz.aQute.bnd.version@"
 #end
-#if (${liferayVersion.startsWith("7.2")})
+#if (${liferayVersion.startsWith("7.0")})
+	compileOnly group: "com.liferay", name: "com.liferay.petra.io", version: "1.0.0"
+#elseif (${liferayVersion.startsWith("7.1")})
+	compileOnly group: "com.liferay", name: "com.liferay.petra.io", version: "2.0.0"
+#elseif (${liferayVersion.startsWith("7.2")})
+	compileOnly group: "com.liferay", name: "com.liferay.petra.io", version: "3.0.0"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.lang", version: "3.0.0"
 #end
 #if (${liferayVersion.startsWith("7.1")})

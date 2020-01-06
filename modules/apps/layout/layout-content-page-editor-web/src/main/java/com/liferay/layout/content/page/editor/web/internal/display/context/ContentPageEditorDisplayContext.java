@@ -154,7 +154,7 @@ public class ContentPageEditorDisplayContext {
 		List<ContentPageEditorSidebarPanel> contentPageEditorSidebarPanels,
 		FragmentRendererController fragmentRendererController) {
 
-		request = httpServletRequest;
+		this.httpServletRequest = httpServletRequest;
 		_renderResponse = renderResponse;
 		_commentManager = commentManager;
 		_contentPageEditorSidebarPanels = contentPageEditorSidebarPanels;
@@ -192,14 +192,14 @@ public class ContentPageEditorDisplayContext {
 		}
 
 		PortletURL deleteLayoutURL = PortalUtil.getControlPanelPortletURL(
-			request, LayoutAdminPortletKeys.GROUP_PAGES,
+			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 			PortletRequest.ACTION_PHASE);
 
 		deleteLayoutURL.setParameter(
 			ActionRequest.ACTION_NAME, "/layout/delete_layout");
 
 		PortletURL redirectURL = PortalUtil.getControlPanelPortletURL(
-			request, LayoutAdminPortletKeys.GROUP_PAGES,
+			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 			PortletRequest.RENDER_PHASE);
 
 		redirectURL.setParameter("selPlid", String.valueOf(layout.getPlid()));
@@ -460,7 +460,7 @@ public class ContentPageEditorDisplayContext {
 		).put(
 			"pageContents",
 			ContentUtil.getPageContentsJSONArray(
-				themeDisplay.getPlid(), request)
+				themeDisplay.getPlid(), httpServletRequest)
 		).put(
 			"pageType", String.valueOf(_getPageType())
 		).put(
@@ -572,7 +572,7 @@ public class ContentPageEditorDisplayContext {
 		}
 
 		_groupId = ParamUtil.getLong(
-			request, "groupId", themeDisplay.getScopeGroupId());
+			httpServletRequest, "groupId", themeDisplay.getScopeGroupId());
 
 		return _groupId;
 	}
@@ -632,8 +632,8 @@ public class ContentPageEditorDisplayContext {
 		return _sidebarPanelSoyContexts;
 	}
 
+	protected final HttpServletRequest httpServletRequest;
 	protected final InfoDisplayContributorTracker infoDisplayContributorTracker;
-	protected final HttpServletRequest request;
 	protected final ThemeDisplay themeDisplay;
 
 	private List<String> _getAllowedFragmentEntryKeys() {
@@ -745,7 +745,8 @@ public class ContentPageEditorDisplayContext {
 							CONTENT_PAGE_EDITOR_PORTLET,
 						"pageEditorCommentEditor", StringPool.BLANK,
 						Collections.emptyMap(), themeDisplay,
-						RequestBackedPortletURLFactoryUtil.create(request));
+						RequestBackedPortletURLFactoryUtil.create(
+							httpServletRequest));
 
 				return commentEditorConfiguration.getData();
 			}
@@ -758,7 +759,8 @@ public class ContentPageEditorDisplayContext {
 							CONTENT_PAGE_EDITOR_PORTLET,
 						"fragmenEntryLinkRichTextEditor", StringPool.BLANK,
 						Collections.emptyMap(), themeDisplay,
-						RequestBackedPortletURLFactoryUtil.create(request));
+						RequestBackedPortletURLFactoryUtil.create(
+							httpServletRequest));
 
 				return richTextEditorConfiguration.getData();
 			}
@@ -771,7 +773,8 @@ public class ContentPageEditorDisplayContext {
 							CONTENT_PAGE_EDITOR_PORTLET,
 						"fragmenEntryLinkEditor", StringPool.BLANK,
 						Collections.emptyMap(), themeDisplay,
-						RequestBackedPortletURLFactoryUtil.create(request));
+						RequestBackedPortletURLFactoryUtil.create(
+							httpServletRequest));
 
 				return editorConfiguration.getData();
 			}
@@ -794,7 +797,7 @@ public class ContentPageEditorDisplayContext {
 			_fragmentRendererTracker.getFragmentRenderers();
 
 		for (FragmentRenderer fragmentRenderer : fragmentRenderers) {
-			if (!fragmentRenderer.isSelectable(request)) {
+			if (!fragmentRenderer.isSelectable(httpServletRequest)) {
 				continue;
 			}
 
@@ -808,7 +811,8 @@ public class ContentPageEditorDisplayContext {
 			dynamicFragmentSoyContext.put(
 				"fragmentEntryKey", fragmentRenderer.getKey()
 			).put(
-				"imagePreviewURL", fragmentRenderer.getImagePreviewURL(request)
+				"imagePreviewURL",
+				fragmentRenderer.getImagePreviewURL(httpServletRequest)
 			).put(
 				"name", fragmentRenderer.getLabel(themeDisplay.getLocale())
 			);
@@ -1013,7 +1017,7 @@ public class ContentPageEditorDisplayContext {
 
 		for (Comment rootComment : rootComments) {
 			JSONObject commentJSONObject = CommentUtil.getCommentJSONObject(
-				rootComment, request);
+				rootComment, httpServletRequest);
 
 			List<Comment> childComments = _commentManager.getChildComments(
 				rootComment.getCommentId(), WorkflowConstants.STATUS_APPROVED,
@@ -1024,7 +1028,8 @@ public class ContentPageEditorDisplayContext {
 
 			for (Comment childComment : childComments) {
 				childCommentsJSONArray.put(
-					CommentUtil.getCommentJSONObject(childComment, request));
+					CommentUtil.getCommentJSONObject(
+						childComment, httpServletRequest));
 			}
 
 			commentJSONObject.put("children", childCommentsJSONArray);
@@ -1092,7 +1097,7 @@ public class ContentPageEditorDisplayContext {
 					segmentsExperienceIds);
 
 				String content = _fragmentRendererController.render(
-					fragmentRendererContext, request,
+					fragmentRendererContext, httpServletRequest,
 					PortalUtil.getHttpServletResponse(_renderResponse));
 
 				JSONObject editableValuesJSONObject =
@@ -1102,11 +1107,11 @@ public class ContentPageEditorDisplayContext {
 				boolean error = false;
 
 				if (SessionErrors.contains(
-						request, "fragmentEntryContentInvalid")) {
+						httpServletRequest, "fragmentEntryContentInvalid")) {
 
 					error = true;
 
-					SessionErrors.clear(request);
+					SessionErrors.clear(httpServletRequest);
 				}
 
 				soyContext.put(
@@ -1122,8 +1127,8 @@ public class ContentPageEditorDisplayContext {
 
 				FragmentEntryLinkItemSelectorUtil.
 					addFragmentEntryLinkFieldsSelectorURL(
-						_itemSelector, request, liferayPortletResponse,
-						configurationJSONObject);
+						_itemSelector, httpServletRequest,
+						liferayPortletResponse, configurationJSONObject);
 
 				soyContext.put(
 					"configuration", configurationJSONObject
@@ -1262,7 +1267,7 @@ public class ContentPageEditorDisplayContext {
 			new InfoItemItemSelectorReturnType());
 
 		PortletURL infoItemSelectorURL = _itemSelector.getItemSelectorURL(
-			RequestBackedPortletURLFactoryUtil.create(request),
+			RequestBackedPortletURLFactoryUtil.create(httpServletRequest),
 			_renderResponse.getNamespace() + "selectInfoItem",
 			itemSelectorCriterion);
 
@@ -1275,7 +1280,7 @@ public class ContentPageEditorDisplayContext {
 
 	private String _getItemSelectorURL() {
 		PortletURL itemSelectorURL = _itemSelector.getItemSelectorURL(
-			RequestBackedPortletURLFactoryUtil.create(request),
+			RequestBackedPortletURLFactoryUtil.create(httpServletRequest),
 			_renderResponse.getNamespace() + "selectImage",
 			_getImageItemSelectorCriterion(), _getURLItemSelectorCriterion());
 
@@ -1302,7 +1307,7 @@ public class ContentPageEditorDisplayContext {
 
 	private String _getLookAndFeelURL() {
 		PortletURL lookAndFeelURL = PortalUtil.getControlPanelPortletURL(
-			request, LayoutAdminPortletKeys.GROUP_PAGES,
+			httpServletRequest, LayoutAdminPortletKeys.GROUP_PAGES,
 			PortletRequest.RENDER_PHASE);
 
 		lookAndFeelURL.setParameter(
@@ -1444,7 +1449,7 @@ public class ContentPageEditorDisplayContext {
 			}
 
 			PortletConfig portletConfig = PortletConfigFactoryUtil.create(
-				portlet, request.getServletContext());
+				portlet, httpServletRequest.getServletContext());
 
 			ResourceBundle portletResourceBundle =
 				portletConfig.getResourceBundle(themeDisplay.getLocale());
@@ -1457,7 +1462,7 @@ public class ContentPageEditorDisplayContext {
 			}
 		}
 
-		return LanguageUtil.get(request, portletCategory.getName());
+		return LanguageUtil.get(httpServletRequest, portletCategory.getName());
 	}
 
 	private String _getPortletId(String content) {
@@ -1484,7 +1489,7 @@ public class ContentPageEditorDisplayContext {
 
 		Stream<String> stream = portletIds.stream();
 
-		HttpSession session = request.getSession();
+		HttpSession session = httpServletRequest.getSession();
 
 		ServletContext servletContext = session.getServletContext();
 
@@ -1563,12 +1568,12 @@ public class ContentPageEditorDisplayContext {
 			return _redirect;
 		}
 
-		_redirect = ParamUtil.getString(request, "redirect");
+		_redirect = ParamUtil.getString(httpServletRequest, "redirect");
 
 		if (Validator.isNull(_redirect)) {
 			_redirect = PortalUtil.escapeRedirect(
 				ParamUtil.getString(
-					PortalUtil.getOriginalServletRequest(request),
+					PortalUtil.getOriginalServletRequest(httpServletRequest),
 					"p_l_back_url", themeDisplay.getURLCurrent()));
 		}
 

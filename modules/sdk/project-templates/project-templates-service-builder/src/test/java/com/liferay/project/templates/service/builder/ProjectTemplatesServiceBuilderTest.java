@@ -124,6 +124,7 @@ public class ProjectTemplatesServiceBuilderTest
 		testContains(
 			gradleProjectDir, name + "-service/build.gradle",
 			"biz.aQute.bnd.annotation\", version: \"4.3.0",
+			"com.liferay.petra.io\", version: \"1.0.0",
 			"com.liferay.portal.spring.extender\", version: \"2.0.0",
 			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.6.0");
 
@@ -161,6 +162,7 @@ public class ProjectTemplatesServiceBuilderTest
 		testContains(
 			gradleProjectDir, name + "-service/build.gradle",
 			"biz.aQute.bnd.annotation\", version: \"4.3.0",
+			"com.liferay.petra.io\", version: \"2.0.0",
 			"com.liferay.portal.spring.extender.api\", version: \"3.0.0",
 			DEPENDENCY_PORTAL_KERNEL + ", version: \"3.0.0");
 
@@ -195,6 +197,7 @@ public class ProjectTemplatesServiceBuilderTest
 			"org.osgi.annotation.versioning\", version: \"1.1.0");
 		testContains(
 			gradleProjectDir, name + "-service/build.gradle",
+			"com.liferay.petra.io\", version: \"3.0.0",
 			"com.liferay.petra.lang\", version: \"3.0.0\"",
 			"com.liferay.petra.string\", version: \"3.0.0\"",
 			"com.liferay.portal.aop.api\", version: \"1.0.0\"",
@@ -209,8 +212,7 @@ public class ProjectTemplatesServiceBuilderTest
 
 		testNotContains(
 			gradleProjectDir, name + "-api/build.gradle",
-			"biz.aQute.bnd.annotation", "com.liferay.petra.lang",
-			"com.liferay.petra.string");
+			"biz.aQute.bnd.annotation");
 		testNotContains(
 			gradleProjectDir, name + "-service/build.gradle",
 			"biz.aQute.bnd.annotation", "com.liferay.portal.spring.extender");
@@ -236,8 +238,7 @@ public class ProjectTemplatesServiceBuilderTest
 			"--liferay-version", "7.2.1", "--dependency-injector", "spring");
 
 		testNotContains(
-			gradleProjectDir, name + "-api/build.gradle", "biz.aQute.bnd",
-			"com.liferay.petra.lang", "com.liferay.petra.string");
+			gradleProjectDir, name + "-api/build.gradle", "biz.aQute.bnd");
 		testNotContains(
 			gradleProjectDir, name + "-service/build.gradle", "biz.aQute.bnd");
 
@@ -247,6 +248,7 @@ public class ProjectTemplatesServiceBuilderTest
 			"org.osgi.annotation.versioning\", version: \"1.1.0");
 		testContains(
 			gradleProjectDir, name + "-service/build.gradle",
+			"com.liferay.petra.io\", version: \"3.0.0",
 			"com.liferay.petra.lang\", version: \"3.0.0\"",
 			"com.liferay.petra.string\", version: \"3.0.0\"",
 			"com.liferay.portal.aop.api\", version: \"1.0.0\"",

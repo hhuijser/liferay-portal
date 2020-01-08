@@ -126,7 +126,7 @@ public class ProjectTemplatesServiceBuilderTest
 			"biz.aQute.bnd.annotation\", version: \"4.3.0",
 			"com.liferay.petra.io\", version: \"1.0.0",
 			"com.liferay.portal.spring.extender\", version: \"2.0.0",
-			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.6.0");
+			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.42.0");
 
 		testNotContains(
 			gradleProjectDir, name + "-api/build.gradle",
@@ -568,7 +568,7 @@ public class ProjectTemplatesServiceBuilderTest
 			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.0.0");
 		testContains(
 			gradleProjectDir, name + "-service/build.gradle",
-			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.6.0");
+			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.42.0");
 
 		File mavenProjectDir = buildTemplateWithMaven(
 			temporaryFolder, "service-builder", name, "com.test", mavenExecutor,

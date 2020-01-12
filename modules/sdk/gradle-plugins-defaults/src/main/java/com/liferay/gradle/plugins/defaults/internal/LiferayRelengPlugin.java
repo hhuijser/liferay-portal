@@ -1085,8 +1085,8 @@ public class LiferayRelengPlugin implements Plugin<Project> {
 
 					return true;
 				}
-				catch (IOException ioe) {
-					throw new UncheckedIOException(ioe);
+				catch (IOException ioException) {
+					throw new UncheckedIOException(ioException);
 				}
 			}
 		}

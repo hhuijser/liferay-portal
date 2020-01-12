@@ -78,7 +78,7 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 				userLocalService.getDefaultUserId(shardedModel.getCompanyId()),
 				analyticsMessageJSON.getBytes(Charset.defaultCharset()));
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isInfoEnabled()) {
 				_log.info(
 					"Unable to add analytics message " + jsonObject.toString());
@@ -108,8 +108,8 @@ public abstract class BaseEntityModelListener<T extends BaseModel<T>>
 
 			addAnalyticsMessage(true, "update", getAttributeNames(), model);
 		}
-		catch (Exception e) {
-			throw new ModelListenerException(e);
+		catch (Exception exception) {
+			throw new ModelListenerException(exception);
 		}
 	}
 

@@ -201,8 +201,8 @@ public class BaseIntrabandTest {
 
 				Assert.fail();
 			}
-			catch (ExecutionException ee) {
-				Throwable throwable = ee.getCause();
+			catch (ExecutionException executionException) {
+				Throwable throwable = executionException.getCause();
 
 				Assert.assertSame(
 					NullPointerException.class, throwable.getClass());
@@ -228,7 +228,7 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (ClosedIntrabandException cie) {
+		catch (ClosedIntrabandException closedIntrabandException) {
 		}
 
 		// Register after close
@@ -1221,9 +1221,10 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
+		catch (NullPointerException nullPointerException) {
 			Assert.assertEquals(
-				"Registration reference is null", npe.getMessage());
+				"Registration reference is null",
+				nullPointerException.getMessage());
 		}
 
 		// Registration reference is invalid
@@ -1239,9 +1240,10 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
-				"Registration reference is invalid", iae.getMessage());
+				"Registration reference is invalid",
+				illegalArgumentException.getMessage());
 		}
 
 		// Datagram is null
@@ -1389,9 +1391,10 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
+		catch (NullPointerException nullPointerException) {
 			Assert.assertEquals(
-				"Registration reference is null", npe.getMessage());
+				"Registration reference is null",
+				nullPointerException.getMessage());
 		}
 
 		// Registration reference is invalid
@@ -1406,9 +1409,10 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
-				"Registration reference is invalid", iae.getMessage());
+				"Registration reference is invalid",
+				illegalArgumentException.getMessage());
 		}
 
 		// Datagram is null
@@ -1448,9 +1452,10 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
+		catch (NullPointerException nullPointerException) {
 			Assert.assertEquals(
-				"Registration reference is null", npe.getMessage());
+				"Registration reference is null",
+				nullPointerException.getMessage());
 		}
 
 		// Registration reference is invalid
@@ -1465,9 +1470,10 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
-				"Registration reference is invalid", iae.getMessage());
+				"Registration reference is invalid",
+				illegalArgumentException.getMessage());
 		}
 
 		// Datagram is null
@@ -1505,8 +1511,9 @@ public class BaseIntrabandTest {
 
 			Assert.fail();
 		}
-		catch (TimeoutException te) {
-			Assert.assertEquals("Result waiting timeout", te.getMessage());
+		catch (TimeoutException timeoutException) {
+			Assert.assertEquals(
+				"Result waiting timeout", timeoutException.getMessage());
 		}
 
 		Datagram datagram = _mockIntraband.getDatagram();

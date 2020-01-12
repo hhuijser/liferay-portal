@@ -122,8 +122,8 @@ public class LiferayResourceProperties extends ComponentPropertiesImpl {
 				return liferayOASSource.getValidationResult();
 			}
 		}
-		catch (Exception e) {
-			message = e.getMessage();
+		catch (Exception exception) {
+			message = exception.getMessage();
 		}
 
 		return new ValidationResult(ValidationResult.Result.ERROR, message);
@@ -246,8 +246,9 @@ public class LiferayResourceProperties extends ComponentPropertiesImpl {
 
 				_updateSchemas(oasSource);
 			}
-			catch (TalendRuntimeException tre) {
-				_logger.error("Unable to generate schema", tre);
+			catch (TalendRuntimeException talendRuntimeException) {
+				_logger.error(
+					"Unable to generate schema", talendRuntimeException);
 
 				return new ValidationResult(
 					ValidationResult.Result.ERROR,

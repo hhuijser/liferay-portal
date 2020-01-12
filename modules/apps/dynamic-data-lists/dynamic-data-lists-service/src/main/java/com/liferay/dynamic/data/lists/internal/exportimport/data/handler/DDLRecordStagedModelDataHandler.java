@@ -264,8 +264,8 @@ public class DDLRecordStagedModelDataHandler
 		try {
 			status = record.getStatus();
 		}
-		catch (Exception e) {
-			throw new PortletDataException(e);
+		catch (Exception exception) {
+			throw new PortletDataException(exception);
 		}
 
 		if (!portletDataContext.isInitialPublication() &&

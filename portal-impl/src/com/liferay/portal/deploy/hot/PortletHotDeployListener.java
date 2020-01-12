@@ -182,8 +182,8 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				}
 			}
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		String servletContextName = servletContext.getServletContextName();
@@ -495,7 +495,7 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 				ConfigurationFactoryUtil.getConfiguration(
 					classLoader, "portlet");
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Unable to read portlet.properties");
 			}
@@ -537,7 +537,7 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 
 				context.unbind(_JNDI_JDBC_LIFERAY_POOL);
 			}
-			catch (NamingException ne) {
+			catch (NamingException namingException) {
 			}
 
 			try {
@@ -548,11 +548,11 @@ public class PortletHotDeployListener extends BaseHotDeployListener {
 			catch (NamingException ne) {
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to dynamically unbind the Liferay data source: " +
-						e.getMessage());
+						exception.getMessage());
 			}
 		}
 	}

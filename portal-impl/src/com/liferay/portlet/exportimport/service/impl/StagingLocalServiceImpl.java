@@ -161,11 +161,11 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		try {
 			PortletFileRepositoryUtil.deletePortletFolder(stagingRequestId);
 		}
-		catch (NoSuchFolderException nsfe) {
+		catch (NoSuchFolderException noSuchFolderException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to clean up staging request " + stagingRequestId,
-					nsfe);
+					noSuchFolderException);
 			}
 		}
 		finally {
@@ -534,9 +534,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			return missingReferences;
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			ExportImportIOException eiioe = new ExportImportIOException(
-				StagingLocalServiceImpl.class.getName(), ioe);
+				StagingLocalServiceImpl.class.getName(), ioException);
 
 			eiioe.setStagingRequestId(stagingRequestId);
 			eiioe.setType(ExportImportIOException.PUBLISH_STAGING_REQUEST);
@@ -623,12 +623,12 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 					WorkflowConstants.STATUS_APPROVED, serviceContext);
 			}
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to create master branch for " +
 						(privateLayout ? "private" : "public") + " layouts",
-					pe);
+					portalException);
 			}
 		}
 	}
@@ -764,17 +764,19 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		try {
 			GroupServiceHttp.disableStaging(httpPrincipal, remoteGroupId);
 		}
-		catch (NoSuchGroupException nsge) {
+		catch (NoSuchGroupException noSuchGroupException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Remote live group was already deleted", nsge);
+				_log.warn(
+					"Remote live group was already deleted",
+					noSuchGroupException);
 			}
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(pe, pe);
+				_log.debug(principalException, principalException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -784,24 +786,24 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			throw ree;
 		}
-		catch (RemoteAuthException rae) {
+		catch (RemoteAuthException remoteAuthException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(rae, rae);
+				_log.debug(remoteAuthException, remoteAuthException);
 			}
 
-			rae.setURL(remoteURL);
+			remoteAuthException.setURL(remoteURL);
 
-			throw rae;
+			throw remoteAuthException;
 		}
-		catch (SystemException se) {
+		catch (SystemException systemException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(se, se);
+				_log.debug(systemException, systemException);
 			}
 
 			if (!forceDisable) {
@@ -826,12 +828,12 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 		try {
 			GroupServiceHttp.enableStaging(httpPrincipal, remoteGroupId);
 		}
-		catch (NoSuchGroupException nsge) {
+		catch (NoSuchGroupException noSuchGroupException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(nsge, nsge);
+				_log.debug(noSuchGroupException, noSuchGroupException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -841,12 +843,12 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			throw ree;
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(pe, pe);
+				_log.debug(principalException, principalException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -856,24 +858,24 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			throw ree;
 		}
-		catch (RemoteAuthException rae) {
+		catch (RemoteAuthException remoteAuthException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(rae, rae);
+				_log.debug(remoteAuthException, remoteAuthException);
 			}
 
-			rae.setURL(httpPrincipal.getUrl());
+			remoteAuthException.setURL(httpPrincipal.getUrl());
 
-			throw rae;
+			throw remoteAuthException;
 		}
-		catch (SystemException se) {
+		catch (SystemException systemException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(se, se);
+				_log.debug(systemException, systemException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -912,12 +914,12 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 				folder.getGroupId(), folder.getFolderId(),
 				getAssembledFileName(stagingRequestId));
 		}
-		catch (NoSuchFileEntryException nsfee) {
+		catch (NoSuchFileEntryException noSuchFileEntryException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(nsfee, nsfee);
+				_log.debug(noSuchFileEntryException, noSuchFileEntryException);
 			}
 
 			return null;
@@ -994,9 +996,9 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			return stagingRequestFileEntry;
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			ExportImportIOException eiioe = new ExportImportIOException(
-				StagingLocalServiceImpl.class.getName(), ioe);
+				StagingLocalServiceImpl.class.getName(), ioException);
 
 			eiioe.setStagingRequestId(stagingRequestId);
 			eiioe.setType(
@@ -1109,12 +1111,12 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 			GroupServiceHttp.updateStagedPortlets(
 				httpPrincipal, remoteGroupId, stagedPortletIds);
 		}
-		catch (NoSuchGroupException nsge) {
+		catch (NoSuchGroupException noSuchGroupException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(nsge, nsge);
+				_log.debug(noSuchGroupException, noSuchGroupException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -1124,12 +1126,12 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			throw ree;
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(pe, pe);
+				_log.debug(principalException, principalException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -1139,24 +1141,24 @@ public class StagingLocalServiceImpl extends StagingLocalServiceBaseImpl {
 
 			throw ree;
 		}
-		catch (RemoteAuthException rae) {
+		catch (RemoteAuthException remoteAuthException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(rae, rae);
+				_log.debug(remoteAuthException, remoteAuthException);
 			}
 
-			rae.setURL(remoteURL);
+			remoteAuthException.setURL(remoteURL);
 
-			throw rae;
+			throw remoteAuthException;
 		}
-		catch (SystemException se) {
+		catch (SystemException systemException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(se, se);
+				_log.debug(systemException, systemException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(

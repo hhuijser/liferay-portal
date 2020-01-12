@@ -99,21 +99,21 @@ public class TestExecutorRunnable implements Runnable {
 				objectOutputStream.flush();
 			}
 		}
-		catch (EOFException eofe) {
+		catch (EOFException eofException) {
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			try {
 				_bundle.uninstall();
 			}
-			catch (BundleException be) {
-				e.addSuppressed(be);
+			catch (BundleException bundleException) {
+				exception.addSuppressed(bundleException);
 			}
 
 			_logger.log(
 				Level.SEVERE,
 				"Unable to report back to client. Uninstalled test bundle " +
 					"and abort test.",
-				e);
+				exception);
 		}
 	}
 
@@ -352,7 +352,7 @@ public class TestExecutorRunnable implements Runnable {
 			objectOutputStream.writeObject(
 				RunNotifierCommand.testFailure(description, t));
 		}
-		catch (NotSerializableException nse) {
+		catch (NotSerializableException notSerializableException) {
 			objectOutputStream.reset();
 
 			Class<? extends Throwable> clazz = t.getClass();
@@ -362,10 +362,11 @@ public class TestExecutorRunnable implements Runnable {
 
 			serializableException.setStackTrace(t.getStackTrace());
 
-			nse.initCause(serializableException);
+			notSerializableException.initCause(serializableException);
 
 			objectOutputStream.writeObject(
-				RunNotifierCommand.testFailure(description, nse));
+				RunNotifierCommand.testFailure(
+					description, notSerializableException));
 		}
 	}
 

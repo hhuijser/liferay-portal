@@ -94,8 +94,8 @@ public class LinksToLayoutsExportImportContentProcessor
 
 			return configuration.validateLayoutReferences();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return true;
@@ -144,7 +144,7 @@ public class LinksToLayoutsExportImportContentProcessor
 					stagedModel, entityElement, layout,
 					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isDebugEnabled() || _log.isWarnEnabled()) {
 					String message = StringBundler.concat(
 						"Unable to get layout with ID ", layoutId, " in group ",
@@ -153,7 +153,7 @@ public class LinksToLayoutsExportImportContentProcessor
 					if (_log.isDebugEnabled()) {
 						ExportImportContentProcessorException eicpe =
 							new ExportImportContentProcessorException(
-								message, e);
+								message, exception);
 
 						_log.debug(message, eicpe);
 					}

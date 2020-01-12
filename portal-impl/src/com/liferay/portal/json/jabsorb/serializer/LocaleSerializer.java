@@ -68,8 +68,9 @@ public class LocaleSerializer extends AbstractSerializer {
 
 				jsonObject.put("javaClass", javaClass.getName());
 			}
-			catch (Exception e) {
-				throw new MarshallException("Unable to put javaClass", e);
+			catch (Exception exception) {
+				throw new MarshallException(
+					"Unable to put javaClass", exception);
 			}
 		}
 
@@ -134,7 +135,7 @@ public class LocaleSerializer extends AbstractSerializer {
 		try {
 			country = localeJSONObject.getString("country");
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		String language = null;
@@ -185,8 +186,8 @@ public class LocaleSerializer extends AbstractSerializer {
 		try {
 			javaClassName = jsonObject.getString("javaClass");
 		}
-		catch (Exception e) {
-			throw new UnmarshallException("Unable to get javaClass", e);
+		catch (Exception exception) {
+			throw new UnmarshallException("Unable to get javaClass", exception);
 		}
 
 		if (javaClassName == null) {

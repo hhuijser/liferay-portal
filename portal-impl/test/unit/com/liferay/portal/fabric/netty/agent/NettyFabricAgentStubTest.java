@@ -68,8 +68,9 @@ public class NettyFabricAgentStubTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
-			Assert.assertEquals("Channel is null", npe.getMessage());
+		catch (NullPointerException nullPointerException) {
+			Assert.assertEquals(
+				"Channel is null", nullPointerException.getMessage());
 		}
 
 		try {
@@ -363,8 +364,8 @@ public class NettyFabricAgentStubTest {
 
 				Assert.fail();
 			}
-			catch (ExecutionException ee) {
-				Assert.assertSame(throwable, ee.getCause());
+			catch (ExecutionException executionException) {
+				Assert.assertSame(throwable, executionException.getCause());
 			}
 
 			Collection<? extends FabricWorker<?>> fabricWorkers =
@@ -401,8 +402,8 @@ public class NettyFabricAgentStubTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Throwable throwable = ee.getCause();
+		catch (ExecutionException executionException) {
+			Throwable throwable = executionException.getCause();
 
 			Assert.assertSame(InterruptedException.class, throwable.getClass());
 		}
@@ -432,8 +433,8 @@ public class NettyFabricAgentStubTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Throwable throwable = ee.getCause();
+		catch (ExecutionException executionException) {
+			Throwable throwable = executionException.getCause();
 
 			Assert.assertSame(TimeoutException.class, throwable.getClass());
 		}

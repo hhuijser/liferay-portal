@@ -347,9 +347,10 @@ public class SPIAgentResponseTest {
 
 			Assert.fail();
 		}
-		catch (PortalResiliencyException pre) {
-			Assert.assertEquals("SPI exception", pre.getMessage());
-			Assert.assertSame(exception, pre.getCause());
+		catch (PortalResiliencyException portalResiliencyException) {
+			Assert.assertEquals(
+				"SPI exception", portalResiliencyException.getMessage());
+			Assert.assertSame(exception, portalResiliencyException.getCause());
 		}
 
 		// Not a portal resiliency response

@@ -43,14 +43,14 @@ public abstract class BaseViewMVCRenderCommand implements MVCRenderCommand {
 				WebKeys.MESSAGE_BOARDS_CATEGORY, category);
 		}
 		catch (BannedUserException | NoSuchCategoryException |
-			   PrincipalException e) {
+			   PrincipalException exception) {
 
-			SessionErrors.add(renderRequest, e.getClass());
+			SessionErrors.add(renderRequest, exception.getClass());
 
 			return "/message_boards/error.jsp";
 		}
-		catch (RuntimeException re) {
-			throw re;
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

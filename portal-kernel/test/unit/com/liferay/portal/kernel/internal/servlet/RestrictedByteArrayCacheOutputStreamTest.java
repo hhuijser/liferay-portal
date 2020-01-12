@@ -177,12 +177,12 @@ public class RestrictedByteArrayCacheOutputStreamTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Initial cache size ", cacheCapacity,
 					" is larger than cache capacity ", cacheCapacity / 2),
-				iae.getMessage());
+				illegalArgumentException.getMessage());
 		}
 	}
 
@@ -286,8 +286,9 @@ public class RestrictedByteArrayCacheOutputStreamTest {
 
 			Assert.fail();
 		}
-		catch (IllegalStateException ise) {
-			Assert.assertEquals("Cache overflowed", ise.getMessage());
+		catch (IllegalStateException illegalStateException) {
+			Assert.assertEquals(
+				"Cache overflowed", illegalStateException.getMessage());
 		}
 
 		try {

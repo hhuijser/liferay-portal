@@ -702,12 +702,12 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 			try {
 				layout = layoutLocalService.getLayout(plid);
 			}
-			catch (NoSuchLayoutException nsle) {
+			catch (NoSuchLayoutException noSuchLayoutException) {
 
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(nsle, nsle);
+					_log.debug(noSuchLayoutException, noSuchLayoutException);
 				}
 
 				continue;
@@ -881,12 +881,12 @@ public class LayoutServiceImpl extends LayoutServiceBaseImpl {
 					filteredLayoutReferences.add(layoutReference);
 				}
 			}
-			catch (PortalException pe) {
+			catch (PortalException portalException) {
 
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(pe, pe);
+					_log.debug(portalException, portalException);
 				}
 			}
 		}

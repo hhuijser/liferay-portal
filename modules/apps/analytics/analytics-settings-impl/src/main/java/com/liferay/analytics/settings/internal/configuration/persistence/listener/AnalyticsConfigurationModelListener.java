@@ -229,8 +229,8 @@ public class AnalyticsConfigurationModelListener
 			_deleteSAPEntry(companyId);
 			_disableAuthVerifier();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 	}
 
@@ -249,8 +249,8 @@ public class AnalyticsConfigurationModelListener
 			_addSAPEntry(companyId);
 			_enableAuthVerifier();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 	}
 
@@ -363,7 +363,7 @@ public class AnalyticsConfigurationModelListener
 
 				groups.add(group);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Unable to get group " + groupId);
 				}
@@ -393,7 +393,7 @@ public class AnalyticsConfigurationModelListener
 
 				organizations.add(organization);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Unable to get organization " + organizationId);
 				}
@@ -452,7 +452,7 @@ public class AnalyticsConfigurationModelListener
 
 				userGroups.add(userGroup);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isInfoEnabled()) {
 					_log.info("Unable to get user group " + userGroupId);
 				}

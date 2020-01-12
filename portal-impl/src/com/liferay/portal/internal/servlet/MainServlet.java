@@ -167,8 +167,8 @@ public class MainServlet extends HttpServlet {
 		try {
 			_destroyPortlets(portlets);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		if (_log.isDebugEnabled()) {
@@ -236,7 +236,7 @@ public class MainServlet extends HttpServlet {
 		try {
 			PatcherUtil.verifyPatchLevels();
 		}
-		catch (PatchInconsistencyException pie) {
+		catch (PatchInconsistencyException patchInconsistencyException) {
 			if (!PropsValues.VERIFY_PATCH_LEVELS_DISABLED) {
 				_log.error(
 					"Stopping the server due to the inconsistent patch levels");
@@ -246,7 +246,7 @@ public class MainServlet extends HttpServlet {
 						"Set the property \"verify.patch.levels.disabled\" " +
 							"to override stopping the server due to the " +
 								"inconsistent patch levels",
-						pie);
+						patchInconsistencyException);
 				}
 
 				System.exit(0);
@@ -296,8 +296,8 @@ public class MainServlet extends HttpServlet {
 
 			startupAction.run(null);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 
 			System.out.println(
 				"Stopping the server due to unexpected startup errors");
@@ -509,14 +509,14 @@ public class MainServlet extends HttpServlet {
 				return;
 			}
 		}
-		catch (Exception e) {
-			if (e instanceof NoSuchLayoutException) {
+		catch (Exception exception) {
+			if (exception instanceof NoSuchLayoutException) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(e, e);
+					_log.debug(exception, exception);
 				}
 			}
 			else {
-				_log.error(e, e);
+				_log.error(exception, exception);
 			}
 		}
 
@@ -682,8 +682,8 @@ public class MainServlet extends HttpServlet {
 				PropsValues.APPLICATION_SHUTDOWN_EVENTS,
 				new String[] {String.valueOf(companyId)});
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 	}
 
@@ -716,7 +716,7 @@ public class MainServlet extends HttpServlet {
 			httpServletRequest = new EncryptedServletRequest(
 				httpServletRequest, company.getKeyObj());
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return httpServletRequest;
@@ -752,8 +752,8 @@ public class MainServlet extends HttpServlet {
 
 			return _initModuleConfig();
 		}
-		catch (Exception e) {
-			throw new ServletException(e);
+		catch (Exception exception) {
+			throw new ServletException(exception);
 		}
 	}
 
@@ -810,8 +810,8 @@ public class MainServlet extends HttpServlet {
 						servletContext.setAttribute(
 							WebKeys.PLUGIN_LAYOUT_TEMPLATES, layoutTemplates);
 					}
-					catch (Exception e) {
-						_log.error(e, e);
+					catch (Exception exception) {
+						_log.error(exception, exception);
 					}
 				}
 
@@ -1132,8 +1132,8 @@ public class MainServlet extends HttpServlet {
 				PropsValues.SERVLET_SERVICE_EVENTS_PRE, httpServletRequest,
 				httpServletResponse);
 		}
-		catch (Exception e) {
-			Throwable cause = e.getCause();
+		catch (Exception exception) {
+			Throwable cause = exception.getCause();
 
 			if (cause instanceof NoSuchLayoutException) {
 				PortalUtil.sendError(
@@ -1149,15 +1149,17 @@ public class MainServlet extends HttpServlet {
 				return true;
 			}
 
-			_log.error(e, e);
+			_log.error(exception, exception);
 
-			httpServletRequest.setAttribute(PageContext.EXCEPTION, e);
+			httpServletRequest.setAttribute(PageContext.EXCEPTION, exception);
 
 			StrutsUtil.forward(
 				PropsValues.SERVLET_SERVICE_EVENTS_PRE_ERROR_PAGE,
 				getServletContext(), httpServletRequest, httpServletResponse);
 
-			if (e == httpServletRequest.getAttribute(PageContext.EXCEPTION)) {
+			if (exception == httpServletRequest.getAttribute(
+					PageContext.EXCEPTION)) {
+
 				httpServletRequest.removeAttribute(PageContext.EXCEPTION);
 				httpServletRequest.removeAttribute(
 					RequestDispatcher.ERROR_EXCEPTION);
@@ -1235,7 +1237,7 @@ public class MainServlet extends HttpServlet {
 
 				redirect = HttpUtil.addParameter(redirect, "p_l_id", plid);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 

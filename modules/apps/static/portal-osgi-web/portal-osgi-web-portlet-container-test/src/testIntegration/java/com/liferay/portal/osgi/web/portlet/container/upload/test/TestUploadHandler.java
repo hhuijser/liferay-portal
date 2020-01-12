@@ -100,12 +100,12 @@ public class TestUploadHandler {
 			JSONPortletResponseUtil.writeJSON(
 				portletRequest, portletResponse, jsonObject);
 		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
+		catch (IOException ioException) {
+			throw new SystemException(ioException);
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			_handleUploadException(
-				portletRequest, portletResponse, pe, jsonObject);
+				portletRequest, portletResponse, portalException, jsonObject);
 		}
 	}
 
@@ -166,8 +166,8 @@ public class TestUploadHandler {
 				return imageJSONObject;
 			}
 		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
+		catch (IOException ioException) {
+			throw new SystemException(ioException);
 		}
 	}
 
@@ -252,8 +252,8 @@ public class TestUploadHandler {
 			JSONPortletResponseUtil.writeJSON(
 				portletRequest, portletResponse, jsonObject);
 		}
-		catch (IOException ioe) {
-			throw new SystemException(ioe);
+		catch (IOException ioException) {
+			throw new SystemException(ioException);
 		}
 	}
 

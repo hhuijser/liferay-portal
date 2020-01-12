@@ -34,9 +34,10 @@ public class ClamAntivirusScannerImpl extends BaseFileAntivirusScanner {
 		try {
 			exitValue = _execute("clamdscan", file);
 		}
-		catch (InterruptedException | IOException e) {
+		catch (InterruptedException | IOException exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to successfully execute clamdscan", e);
+				_log.debug(
+					"Unable to successfully execute clamdscan", exception);
 			}
 
 			exitValue = -1;

@@ -126,8 +126,8 @@ public class ProcessUtilTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Throwable throwable = ee.getCause();
+		catch (ExecutionException executionException) {
+			Throwable throwable = executionException.getCause();
 
 			Assert.assertSame(
 				TerminationProcessException.class, throwable.getClass());
@@ -155,8 +155,8 @@ public class ProcessUtilTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Throwable throwable = ee.getCause();
+		catch (ExecutionException executionException) {
+			Throwable throwable = executionException.getCause();
 
 			Assert.assertEquals(ProcessException.class, throwable.getClass());
 			Assert.assertEquals(
@@ -200,7 +200,7 @@ public class ProcessUtilTest {
 
 			Assert.fail();
 		}
-		catch (TimeoutException te) {
+		catch (TimeoutException timeoutException) {
 		}
 
 		future.cancel(true);
@@ -291,8 +291,8 @@ public class ProcessUtilTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Throwable throwable = ee.getCause();
+		catch (ExecutionException executionException) {
+			Throwable throwable = executionException.getCause();
 
 			Assert.assertSame(ProcessException.class, throwable.getClass());
 			Assert.assertEquals(
@@ -311,8 +311,9 @@ public class ProcessUtilTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
-			Assert.assertEquals("Output processor is null", npe.getMessage());
+		catch (NullPointerException nullPointerException) {
+			Assert.assertEquals(
+				"Output processor is null", nullPointerException.getMessage());
 		}
 
 		try {
@@ -331,8 +332,8 @@ public class ProcessUtilTest {
 
 			Assert.fail();
 		}
-		catch (ProcessException pe) {
-			Throwable throwable = pe.getCause();
+		catch (ProcessException processException) {
+			Throwable throwable = processException.getCause();
 
 			Assert.assertSame(IOException.class, throwable.getClass());
 		}

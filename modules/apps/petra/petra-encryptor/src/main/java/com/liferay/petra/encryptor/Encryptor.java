@@ -97,8 +97,8 @@ public class Encryptor {
 				return cipher.doFinal(encryptedBytes);
 			}
 		}
-		catch (Exception e) {
-			throw new EncryptorException(e);
+		catch (Exception exception) {
+			throw new EncryptorException(exception);
 		}
 	}
 
@@ -112,8 +112,8 @@ public class Encryptor {
 
 			return new String(decryptedBytes, ENCODING);
 		}
-		catch (Exception e) {
-			throw new EncryptorException(e);
+		catch (Exception exception) {
+			throw new EncryptorException(exception);
 		}
 	}
 
@@ -165,8 +165,8 @@ public class Encryptor {
 				return cipher.doFinal(plainBytes);
 			}
 		}
-		catch (Exception e) {
-			throw new EncryptorException(e);
+		catch (Exception exception) {
+			throw new EncryptorException(exception);
 		}
 	}
 
@@ -178,8 +178,8 @@ public class Encryptor {
 
 			return encryptUnencoded(key, decryptedBytes);
 		}
-		catch (Exception e) {
-			throw new EncryptorException(e);
+		catch (Exception exception) {
+			throw new EncryptorException(exception);
 		}
 	}
 
@@ -195,8 +195,8 @@ public class Encryptor {
 
 			return keyGenerator.generateKey();
 		}
-		catch (Exception e) {
-			throw new EncryptorException(e);
+		catch (Exception exception) {
+			throw new EncryptorException(exception);
 		}
 	}
 

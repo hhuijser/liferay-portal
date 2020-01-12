@@ -456,7 +456,7 @@ public class DLImpl implements DL {
 			try {
 				entries.add(DLAppLocalServiceUtil.getFileEntry(fileEntryId));
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Documents and Media search index is stale and " +
@@ -879,7 +879,7 @@ public class DLImpl implements DL {
 				uniqueFileName = FileUtil.appendParentheticalSuffix(
 					fileName, String.valueOf(i));
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				break;
 			}
 		}

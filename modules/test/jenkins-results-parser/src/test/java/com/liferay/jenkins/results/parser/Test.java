@@ -192,10 +192,10 @@ public class Test {
 
 			testSamples.put(sampleKey, testSample);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			deleteFile(sampleDir);
 
-			throw ioe;
+			throw ioException;
 		}
 	}
 
@@ -250,11 +250,11 @@ public class Test {
 		try {
 			document = saxReader.read(new StringReader(xml));
 		}
-		catch (DocumentException de) {
+		catch (DocumentException documentException) {
 			DocumentException newDE = new DocumentException(
-				de.getMessage() + "\n" + xml);
+				documentException.getMessage() + "\n" + xml);
 
-			newDE.setStackTrace(de.getStackTrace());
+			newDE.setStackTrace(documentException.getStackTrace());
 
 			throw newDE;
 		}

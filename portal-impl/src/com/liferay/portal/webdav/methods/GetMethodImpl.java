@@ -51,8 +51,8 @@ public class GetMethodImpl implements Method {
 			try {
 				is = resource.getContentAsStream();
 			}
-			catch (Exception e) {
-				_log.error(e.getMessage());
+			catch (Exception exception) {
+				_log.error(exception.getMessage());
 			}
 
 			if (is != null) {

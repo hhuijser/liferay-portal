@@ -118,9 +118,9 @@ public class OpenIdConnectFilter extends BaseFilter {
 			}
 		}
 		catch (StrangersNotAllowedException |
-			   UserEmailAddressException.MustNotUseCompanyMx e) {
+			   UserEmailAddressException.MustNotUseCompanyMx exception) {
 
-			Class<?> clazz = e.getClass();
+			Class<?> clazz = exception.getClass();
 
 			httpSession.removeAttribute(
 				OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION);

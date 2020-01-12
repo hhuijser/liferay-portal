@@ -54,8 +54,8 @@ public class FinalizeManagerUtil {
 					}
 				}
 			}
-			catch (ReflectiveOperationException roe) {
-				ReflectionUtil.throwException(roe);
+			catch (ReflectiveOperationException reflectiveOperationException) {
+				ReflectionUtil.throwException(reflectiveOperationException);
 			}
 		}
 	}

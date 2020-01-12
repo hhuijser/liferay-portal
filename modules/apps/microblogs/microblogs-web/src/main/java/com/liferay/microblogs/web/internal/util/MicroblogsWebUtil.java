@@ -179,7 +179,7 @@ public class MicroblogsWebUtil {
 				try {
 					portletURL.setWindowState(LiferayWindowState.NORMAL);
 				}
-				catch (WindowStateException wse) {
+				catch (WindowStateException windowStateException) {
 				}
 			}
 			else {
@@ -258,9 +258,9 @@ public class MicroblogsWebUtil {
 
 				content = StringUtil.replace(content, result, userLink);
 			}
-			catch (NoSuchUserException nsue) {
+			catch (NoSuchUserException noSuchUserException) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(nsue, nsue);
+					_log.debug(noSuchUserException, noSuchUserException);
 				}
 			}
 		}

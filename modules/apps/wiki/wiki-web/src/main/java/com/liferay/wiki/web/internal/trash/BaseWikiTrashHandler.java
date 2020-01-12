@@ -52,7 +52,7 @@ public abstract class BaseWikiTrashHandler extends BaseTrashHandler {
 		try {
 			page = WikiPageLocalServiceUtil.getPage(classPK);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			page = WikiPageLocalServiceUtil.fetchWikiPage(classPK);
 		}
 

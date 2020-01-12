@@ -75,8 +75,9 @@ public class LiferayTemplateClassResolverTest {
 
 			Assert.fail();
 		}
-		catch (TemplateException te) {
-			ClassNotFoundException cnfe = (ClassNotFoundException)te.getCause();
+		catch (TemplateException templateException) {
+			ClassNotFoundException cnfe =
+				(ClassNotFoundException)templateException.getCause();
 
 			Assert.assertEquals("invalidClass", cnfe.getMessage());
 		}
@@ -146,12 +147,12 @@ public class LiferayTemplateClassResolverTest {
 
 			Assert.fail();
 		}
-		catch (TemplateException te) {
+		catch (TemplateException templateException) {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Instantiating ", className, " is not allowed in the ",
 					"template for security reasons"),
-				te.getMessage());
+				templateException.getMessage());
 		}
 	}
 

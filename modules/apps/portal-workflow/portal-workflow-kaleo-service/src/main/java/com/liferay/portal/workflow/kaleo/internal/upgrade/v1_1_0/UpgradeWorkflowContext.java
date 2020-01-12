@@ -186,8 +186,9 @@ public class UpgradeWorkflowContext extends UpgradeProcess {
 				companyId = portletPreferencesIdsJSONObject.getLong(
 					"companyId");
 			}
-			catch (Exception e) {
-				throw new UnmarshallException("companyId is undefined", e);
+			catch (Exception exception) {
+				throw new UnmarshallException(
+					"companyId is undefined", exception);
 			}
 
 			long ownerId = 0;

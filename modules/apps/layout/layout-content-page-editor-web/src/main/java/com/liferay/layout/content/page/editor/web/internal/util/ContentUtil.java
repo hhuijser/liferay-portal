@@ -127,7 +127,7 @@ public class ContentUtil {
 					_getPageContentJSONObject(
 						layoutClassedModelUsage, httpServletRequest));
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
@@ -136,7 +136,7 @@ public class ContentUtil {
 							layoutClassedModelUsage.getClassPK(),
 							" and class name ID ",
 							layoutClassedModelUsage.getClassNameId()),
-						e);
+						exception);
 				}
 			}
 
@@ -229,12 +229,12 @@ public class ContentUtil {
 			editableValuesJSONObject = JSONFactoryUtil.createJSONObject(
 				fragmentEntryLink.getEditableValues());
 		}
-		catch (JSONException jsone) {
+		catch (JSONException jsonException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to create JSON object from " +
 						fragmentEntryLink.getEditableValues(),
-					jsone);
+					jsonException);
 			}
 
 			return Collections.emptySet();
@@ -372,13 +372,13 @@ public class ContentUtil {
 
 			return infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					StringBundler.concat(
 						"Unable to get info display object provider for class ",
 						"name ID ", classNameId, " with primary key ", classPK),
-					pe);
+					portalException);
 			}
 		}
 

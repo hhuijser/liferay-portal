@@ -44,7 +44,7 @@ public class BrowserLauncher implements Runnable {
 				try {
 					launchBrowser();
 				}
-				catch (Exception e2) {
+				catch (Exception exception) {
 				}
 			}
 		}

@@ -3114,7 +3114,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 					argumentsElement.appendChild(text);
 				}
-				catch (XPathExpressionException xpee) {
+				catch (XPathExpressionException xPathExpressionException) {
 				}
 			});
 	}
@@ -3283,8 +3283,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			_buildTemplateWithGradle(
 				template, "Foo", "--liferay-version", "7.2.1");
 		}
-		catch (IllegalArgumentException iae) {
-			String exception = iae.getMessage();
+		catch (IllegalArgumentException illegalArgumentException) {
+			String exception = illegalArgumentException.getMessage();
 
 			Assert.assertTrue(
 				exception.contains("See LPS-97950 for full details"));

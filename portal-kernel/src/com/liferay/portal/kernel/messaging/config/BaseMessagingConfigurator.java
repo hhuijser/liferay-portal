@@ -224,7 +224,7 @@ public abstract class BaseMessagingConfigurator
 
 					continue;
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 				}
 
 				try {

@@ -135,8 +135,8 @@ public class JournalArticleDDMStructureIndexer implements DDMStructureIndexer {
 							indexer.getClassName(),
 							article.getResourcePrimKey());
 					}
-					catch (Exception e) {
-						throw new PortalException(e);
+					catch (Exception exception) {
+						throw new PortalException(exception);
 					}
 				});
 
@@ -158,8 +158,8 @@ public class JournalArticleDDMStructureIndexer implements DDMStructureIndexer {
 
 			return journalServiceConfiguration.indexAllArticleVersionsEnabled();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return false;

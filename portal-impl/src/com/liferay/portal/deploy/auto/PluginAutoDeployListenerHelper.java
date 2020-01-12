@@ -111,8 +111,8 @@ public class PluginAutoDeployListenerHelper {
 
 			return true;
 		}
-		catch (IOException ioe) {
-			throw new AutoDeployException(ioe);
+		catch (IOException ioException) {
+			throw new AutoDeployException(ioException);
 		}
 		finally {
 			if (zipFile != null) {

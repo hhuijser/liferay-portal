@@ -91,7 +91,7 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 
 			return build(className, classPK);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return buildTemporarilyUnavailable();
 		}
 	}
@@ -491,12 +491,12 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 		try {
 			return assetRendererFactory.getAssetRenderer(classPK);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			throw new IllegalStateException(
 				StringBundler.concat(
 					"Unable to get asset renderer for class ", className,
 					" with primary key ", classPK),
-				e);
+				exception);
 		}
 	}
 
@@ -533,7 +533,7 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 		try {
 			fileEntry = DLAppLocalServiceUtil.getFileEntry(fileEntryId);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Documents and Media search index is stale and contains " +
@@ -670,9 +670,10 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 		try {
 			return dateFormat.parse(dateStringFieldValue);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			throw new IllegalArgumentException(
-				"Unable to parse date string: " + dateStringFieldValue, e);
+				"Unable to parse date string: " + dateStringFieldValue,
+				exception);
 		}
 	}
 

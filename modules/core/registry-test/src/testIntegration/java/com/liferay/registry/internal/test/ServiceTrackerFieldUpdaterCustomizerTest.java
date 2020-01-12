@@ -83,8 +83,10 @@ public class ServiceTrackerFieldUpdaterCustomizerTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
-			Assert.assertEquals(field + " is not volatile", iae.getMessage());
+		catch (IllegalArgumentException illegalArgumentException) {
+			Assert.assertEquals(
+				field + " is not volatile",
+				illegalArgumentException.getMessage());
 		}
 	}
 

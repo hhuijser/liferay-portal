@@ -359,8 +359,8 @@ public class DDMFormInstanceRecordLocalServiceImpl
 			return new BaseModelSearchResult<>(
 				getFormInstanceRecords(hits), hits.getLength());
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 	}
 
@@ -659,12 +659,14 @@ public class DDMFormInstanceRecordLocalServiceImpl
 			try {
 				formInstanceRecords.add(getFormInstanceRecord(recordId));
 			}
-			catch (NoSuchFormInstanceRecordException nsfire) {
+			catch (NoSuchFormInstanceRecordException
+						noSuchFormInstanceRecordException) {
+
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"DDM form instance record index is stale and" +
 							"contains record " + recordId,
-						nsfire);
+						noSuchFormInstanceRecordException);
 				}
 
 				long companyId = GetterUtil.getLong(

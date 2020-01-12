@@ -65,9 +65,10 @@ public class NettyFabricAgentRegistrationChannelHandlerTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
+		catch (NullPointerException nullPointerException) {
 			Assert.assertEquals(
-				"Fabric agent registry is null", npe.getMessage());
+				"Fabric agent registry is null",
+				nullPointerException.getMessage());
 		}
 
 		try {

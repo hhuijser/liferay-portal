@@ -79,12 +79,12 @@ public class MyOrganizationsPortlet extends UsersAdminPortlet {
 						ActionKeys.ADD_ORGANIZATION);
 				}
 			}
-			catch (PrincipalException pe) {
+			catch (PrincipalException principalException) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(pe, pe);
+					_log.debug(principalException, principalException);
 				}
 
-				SessionErrors.add(renderRequest, pe.getClass());
+				SessionErrors.add(renderRequest, principalException.getClass());
 
 				path = "/error.jsp";
 			}

@@ -441,7 +441,7 @@ public class EditAssetListDisplayContext {
 
 			return portletURL.toString();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return null;
@@ -949,7 +949,7 @@ public class EditAssetListDisplayContext {
 
 			return portletURL.toString();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return null;

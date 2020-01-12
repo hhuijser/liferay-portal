@@ -88,12 +88,14 @@ public class TempFileEntriesMessageListener extends BaseMessageListener {
 			localRepository = _repositoryProvider.getLocalRepository(
 				repository.getRepositoryId());
 		}
-		catch (PortalException | UndeployedExternalRepositoryException e) {
+		catch (PortalException | UndeployedExternalRepositoryException
+					exception) {
+
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to get implementation for repository " +
 						repository.getRepositoryId(),
-					e);
+					exception);
 			}
 
 			return;

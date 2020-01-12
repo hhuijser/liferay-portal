@@ -49,13 +49,13 @@ public class ViewMVCRenderCommand implements MVCRenderCommand {
 		try {
 			portlet = ActionUtil.getPortlet(renderRequest);
 		}
-		catch (PrincipalException pe) {
-			SessionErrors.add(renderRequest, pe.getClass());
+		catch (PrincipalException principalException) {
+			SessionErrors.add(renderRequest, principalException.getClass());
 
 			return "/error.jsp";
 		}
-		catch (Exception e) {
-			throw new PortletException(e);
+		catch (Exception exception) {
+			throw new PortletException(exception);
 		}
 
 		try {

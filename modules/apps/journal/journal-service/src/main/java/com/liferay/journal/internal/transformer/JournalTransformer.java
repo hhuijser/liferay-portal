@@ -467,7 +467,7 @@ public class JournalTransformer {
 
 			return new StringTemplateResource(langType, template);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return null;

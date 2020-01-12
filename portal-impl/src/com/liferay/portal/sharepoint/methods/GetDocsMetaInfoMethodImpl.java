@@ -56,8 +56,8 @@ public class GetDocsMetaInfoMethodImpl extends BaseMethodImpl {
 			documentListTree.addChild(
 				storage.getDocumentTree(sharepointRequest));
 		}
-		catch (Exception e1) {
-			if (e1 instanceof NoSuchFileEntryException) {
+		catch (Exception exception) {
+			if (exception instanceof NoSuchFileEntryException) {
 				try {
 					documentListTree.addChild(
 						storage.getFolderTree(sharepointRequest));

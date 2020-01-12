@@ -140,8 +140,8 @@ public abstract class BasePanelApp implements PanelApp {
 			return controlPanelEntry.hasAccessPermission(
 				permissionChecker, group, getPortlet());
 		}
-		catch (PortalException | RuntimeException e) {
-			throw e;
+		catch (PortalException | RuntimeException exception) {
+			throw exception;
 		}
 		catch (Exception e) {
 			throw new PortalException(e);

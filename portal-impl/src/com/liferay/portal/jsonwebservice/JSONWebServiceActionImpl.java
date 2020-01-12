@@ -193,7 +193,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 			outputObject = TypeConverterManager.convertType(
 				inputObject, targetType);
 		}
-		catch (TypeConversionException tce) {
+		catch (TypeConversionException typeConversionException) {
 			if (inputObject instanceof Map) {
 				try {
 					if (targetType.isInterface()) {
@@ -208,7 +208,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 						try {
 							targetType = classLoader.loadClass(modelClassName);
 						}
-						catch (ClassNotFoundException cnfe) {
+						catch (ClassNotFoundException classNotFoundException) {
 							Class<?> actionClass =
 								_jsonWebServiceActionConfig.getActionClass();
 
@@ -227,12 +227,12 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 
 					return outputObject;
 				}
-				catch (Exception e) {
-					throw new TypeConversionException(e);
+				catch (Exception exception) {
+					throw new TypeConversionException(exception);
 				}
 			}
 
-			throw tce;
+			throw typeConversionException;
 		}
 
 		return outputObject;
@@ -344,7 +344,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 			try {
 				parameterValue = _convertType(value, parameterType);
 			}
-			catch (Exception e1) {
+			catch (Exception exception) {
 				if (value instanceof Map) {
 					try {
 						parameterValue = _createDefaultParameterValue(
@@ -352,7 +352,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 					}
 					catch (Exception e2) {
 						ClassCastException cce = new ClassCastException(
-							e1.getMessage());
+							exception.getMessage());
 
 						cce.addSuppressed(e2);
 
@@ -369,7 +369,7 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 					valueString = valueString.trim();
 
 					if (!valueString.startsWith(StringPool.OPEN_CURLY_BRACE)) {
-						throw new ClassCastException(e1.getMessage());
+						throw new ClassCastException(exception.getMessage());
 					}
 
 					parameterValue = JSONFactoryUtil.looseDeserialize(
@@ -469,13 +469,13 @@ public class JSONWebServiceActionImpl implements JSONWebServiceAction {
 					parameterValue, innerParameter.getName(),
 					innerParameter.getValue());
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						StringBundler.concat(
 							"Unable to set inner parameter ", parameterName,
 							".", innerParameter.getName()),
-						e);
+						exception);
 				}
 			}
 		}

@@ -74,7 +74,7 @@ public class AnnotationLocator {
 
 				_mergeAnnotations(specificMethod.getAnnotations(), indexMap);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 
 			try {
@@ -158,7 +158,7 @@ public class AnnotationLocator {
 					return annotation;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 
 			try {

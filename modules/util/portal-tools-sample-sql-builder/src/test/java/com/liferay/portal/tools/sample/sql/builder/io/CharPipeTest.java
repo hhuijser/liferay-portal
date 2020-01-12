@@ -55,7 +55,7 @@ public class CharPipeTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		try {
@@ -274,7 +274,7 @@ public class CharPipeTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		try {
@@ -588,7 +588,7 @@ public class CharPipeTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		Writer writer = charPipe.getWriter();
@@ -859,7 +859,7 @@ public class CharPipeTest {
 					_failed = true;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (!_close) {
 					_failed = true;
 				}
@@ -909,7 +909,7 @@ public class CharPipeTest {
 					_failed = true;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (!_expectException) {
 					_failed = true;
 				}

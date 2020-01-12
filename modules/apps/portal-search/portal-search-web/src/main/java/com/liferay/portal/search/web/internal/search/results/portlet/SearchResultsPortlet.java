@@ -220,14 +220,14 @@ public class SearchResultsPortlet extends MVCPortlet {
 			return doBuildSummaries(
 				portletSharedSearchResponse, renderRequest, renderResponse);
 		}
-		catch (PortletException pe) {
-			throw pe;
+		catch (PortletException portletException) {
+			throw portletException;
 		}
-		catch (RuntimeException re) {
-			throw re;
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
 		}
-		catch (Exception e) {
-			throw new PortletException(e);
+		catch (Exception exception) {
+			throw new PortletException(exception);
 		}
 	}
 

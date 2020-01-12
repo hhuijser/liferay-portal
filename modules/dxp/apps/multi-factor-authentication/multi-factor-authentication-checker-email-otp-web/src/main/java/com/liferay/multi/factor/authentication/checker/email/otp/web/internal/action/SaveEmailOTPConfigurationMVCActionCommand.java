@@ -97,9 +97,11 @@ public class SaveEmailOTPConfigurationMVCActionCommand
 			ConfigurationProviderUtil.saveCompanyConfiguration(
 				EmailOTPConfiguration.class, companyId, properties);
 		}
-		catch (ConfigurationException ce) {
+		catch (ConfigurationException configurationException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to save Email OTP Configuration", ce);
+				_log.warn(
+					"Unable to save Email OTP Configuration",
+					configurationException);
 			}
 		}
 	}

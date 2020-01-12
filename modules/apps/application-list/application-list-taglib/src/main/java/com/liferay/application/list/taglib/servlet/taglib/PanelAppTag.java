@@ -60,8 +60,8 @@ public class PanelAppTag extends BasePanelTag {
 					return EVAL_PAGE;
 				}
 			}
-			catch (IOException ioe) {
-				_log.error("Unable to include panel app", ioe);
+			catch (IOException ioException) {
+				_log.error("Unable to include panel app", ioException);
 			}
 		}
 
@@ -210,8 +210,8 @@ public class PanelAppTag extends BasePanelTag {
 			try {
 				portletURL = _panelApp.getPortletURL(httpServletRequest);
 			}
-			catch (PortalException pe) {
-				_log.error("Unable to get portlet URL", pe);
+			catch (PortalException portalException) {
+				_log.error("Unable to get portlet URL", portalException);
 			}
 
 			_url = portletURL.toString();

@@ -86,7 +86,7 @@ public class StagingGroupHelperTest {
 		try {
 			GroupLocalServiceUtil.deleteGroup(_localLiveGroup.getGroupId());
 		}
-		catch (NoSuchGroupException nsge) {
+		catch (NoSuchGroupException noSuchGroupException) {
 		}
 
 		try {

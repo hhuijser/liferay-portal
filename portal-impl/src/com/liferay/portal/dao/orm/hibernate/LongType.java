@@ -99,7 +99,7 @@ public class LongType implements CompositeUserType, Serializable {
 		try {
 			value = StandardBasicTypes.LONG.nullSafeGet(rs, names[0], session);
 		}
-		catch (SQLException sqle1) {
+		catch (SQLException sqlException) {
 
 			// Some JDBC drivers do not know how to convert a VARCHAR column
 			// with a blank entry into a BIGINT
@@ -111,7 +111,7 @@ public class LongType implements CompositeUserType, Serializable {
 							rs, names[0], session)));
 			}
 			catch (SQLException sqle2) {
-				throw sqle1;
+				throw sqlException;
 			}
 		}
 

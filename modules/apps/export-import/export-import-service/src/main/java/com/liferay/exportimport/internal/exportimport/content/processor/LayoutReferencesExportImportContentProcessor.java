@@ -505,8 +505,8 @@ public class LayoutReferencesExportImportContentProcessor
 					stagedModel, entityElement, layout,
 					PortletDataContext.REFERENCE_TYPE_DEPENDENCY, true);
 			}
-			catch (Exception e) {
-				if ((e instanceof NoSuchLayoutException) &&
+			catch (Exception exception) {
+				if ((exception instanceof NoSuchLayoutException) &&
 					!_exportImportServiceConfiguration.
 						validateLayoutReferences()) {
 
@@ -524,7 +524,7 @@ public class LayoutReferencesExportImportContentProcessor
 
 				ExportImportContentProcessorException eicpe =
 					new ExportImportContentProcessorException(
-						exceptionSB.toString(), e);
+						exceptionSB.toString(), exception);
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(exceptionSB.toString(), eicpe);
@@ -942,12 +942,12 @@ public class LayoutReferencesExportImportContentProcessor
 				_layoutLocalService.getFriendlyURLLayout(
 					urlGroup.getGroupId(), privateLayout, url);
 			}
-			catch (NoSuchLayoutException nsle) {
+			catch (NoSuchLayoutException noSuchLayoutException) {
 				ExportImportContentValidationException eicve =
 					new ExportImportContentValidationException(
 						LayoutReferencesExportImportContentProcessor.class.
 							getName(),
-						nsle);
+						noSuchLayoutException);
 
 				eicve.setLayoutURL(url);
 				eicve.setType(
@@ -979,8 +979,8 @@ public class LayoutReferencesExportImportContentProcessor
 				return sb.toString();
 			}
 		}
-		catch (Exception e) {
-			throw new PortalException(e);
+		catch (Exception exception) {
+			throw new PortalException(exception);
 		}
 
 		return portalURL;

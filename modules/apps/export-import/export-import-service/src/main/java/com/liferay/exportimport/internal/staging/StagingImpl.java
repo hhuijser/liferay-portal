@@ -1645,7 +1645,7 @@ public class StagingImpl implements Staging {
 					stagingGroup = group.getStagingGroup();
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 
@@ -1762,8 +1762,8 @@ public class StagingImpl implements Staging {
 
 			return remoteSiteURL.toString();
 		}
-		catch (MalformedURLException murle) {
-			throw new PortalException(murle);
+		catch (MalformedURLException malformedURLException) {
+			throw new PortalException(malformedURLException);
 		}
 	}
 
@@ -1925,9 +1925,9 @@ public class StagingImpl implements Staging {
 					return true;
 				}
 			}
-			catch (PortalException pe) {
+			catch (PortalException portalException) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Company group does not exist", pe);
+					_log.warn("Company group does not exist", portalException);
 				}
 			}
 
@@ -2002,13 +2002,13 @@ public class StagingImpl implements Staging {
 			return LayoutServiceHttp.hasPortletId(
 				httpPrincipal, plid, portletId);
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
 						"Unable to determine if remote layout ", plid,
 						" contains portlet ", portletId),
-					pe);
+					portalException);
 			}
 		}
 
@@ -3172,12 +3172,12 @@ public class StagingImpl implements Staging {
 				}
 			}
 		}
-		catch (NoSuchGroupException nsge) {
+		catch (NoSuchGroupException noSuchGroupException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(nsge, nsge);
+				_log.debug(noSuchGroupException, noSuchGroupException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -3187,12 +3187,12 @@ public class StagingImpl implements Staging {
 
 			throw ree;
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(pe, pe);
+				_log.debug(principalException, principalException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
@@ -3202,28 +3202,29 @@ public class StagingImpl implements Staging {
 
 			throw ree;
 		}
-		catch (RemoteAuthException rae) {
+		catch (RemoteAuthException remoteAuthException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(rae, rae);
+				_log.debug(remoteAuthException, remoteAuthException);
 			}
 
-			rae.setURL(remoteURL);
+			remoteAuthException.setURL(remoteURL);
 
-			throw rae;
+			throw remoteAuthException;
 		}
-		catch (SystemException se) {
+		catch (SystemException systemException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(se, se);
+				_log.debug(systemException, systemException);
 			}
 
 			RemoteExportException ree = new RemoteExportException(
-				RemoteExportException.BAD_CONNECTION, se.getMessage());
+				RemoteExportException.BAD_CONNECTION,
+				systemException.getMessage());
 
 			ree.setURL(remoteURL);
 
@@ -3340,12 +3341,13 @@ public class StagingImpl implements Staging {
 
 			return masterLayoutBranch.getLayoutBranchId();
 		}
-		catch (NoSuchLayoutBranchException nslbe) {
+		catch (NoSuchLayoutBranchException noSuchLayoutBranchException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(nslbe, nslbe);
+				_log.debug(
+					noSuchLayoutBranchException, noSuchLayoutBranchException);
 			}
 		}
 
@@ -3391,12 +3393,14 @@ public class StagingImpl implements Staging {
 
 				layoutBranchId = layoutBranch.getLayoutBranchId();
 			}
-			catch (NoSuchLayoutBranchException nslbe) {
+			catch (NoSuchLayoutBranchException noSuchLayoutBranchException) {
 
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(nslbe, nslbe);
+					_log.debug(
+						noSuchLayoutBranchException,
+						noSuchLayoutBranchException);
 				}
 			}
 		}
@@ -3411,12 +3415,15 @@ public class StagingImpl implements Staging {
 					return layoutRevision.getLayoutRevisionId();
 				}
 			}
-			catch (NoSuchLayoutRevisionException nslre) {
+			catch (NoSuchLayoutRevisionException
+						noSuchLayoutRevisionException) {
 
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(nslre, nslre);
+					_log.debug(
+						noSuchLayoutRevisionException,
+						noSuchLayoutRevisionException);
 				}
 			}
 		}
@@ -3696,7 +3703,7 @@ public class StagingImpl implements Staging {
 					recentLayoutRevision);
 			}
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					StringBundler.concat(
@@ -3704,7 +3711,7 @@ public class StagingImpl implements Staging {
 						"with layout set branch ", layoutSetBranchId,
 						" and PLID ", plid, " and layout branch ",
 						layoutBranchId),
-					pe);
+					portalException);
 			}
 		}
 

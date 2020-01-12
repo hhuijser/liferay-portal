@@ -365,12 +365,12 @@ public class SourceFormatter {
 			try {
 				future.get();
 			}
-			catch (ExecutionException ee) {
+			catch (ExecutionException executionException) {
 				if (ee1 == null) {
-					ee1 = ee;
+					ee1 = executionException;
 				}
 				else {
-					ee1.addSuppressed(ee);
+					ee1.addSuppressed(executionException);
 				}
 			}
 		}
@@ -1031,7 +1031,7 @@ public class SourceFormatter {
 						break;
 					}
 				}
-				catch (InterruptedException ie) {
+				catch (InterruptedException interruptedException) {
 				}
 			}
 		}

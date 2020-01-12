@@ -39,8 +39,8 @@ public abstract class BaseRSSMVCResourceCommand implements MVCResourceCommand {
 					getRSS(resourceRequest, resourceResponse),
 					ContentTypes.TEXT_XML_UTF8);
 			}
-			catch (Exception e) {
-				throw new PortletException(e);
+			catch (Exception exception) {
+				throw new PortletException(exception);
 			}
 		}
 		else {

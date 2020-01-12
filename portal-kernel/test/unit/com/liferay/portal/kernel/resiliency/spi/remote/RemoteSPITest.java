@@ -201,8 +201,8 @@ public class RemoteSPITest {
 
 			Assert.fail();
 		}
-		catch (ProcessException pe) {
-			Throwable throwable = pe.getCause();
+		catch (ProcessException processException) {
+			Throwable throwable = processException.getCause();
 
 			Assert.assertSame(ExportException.class, throwable.getClass());
 		}
@@ -269,8 +269,9 @@ public class RemoteSPITest {
 
 			Assert.fail();
 		}
-		catch (RemoteException re) {
-			Assert.assertSame(NoSuchObjectException.class, re.getClass());
+		catch (RemoteException remoteException) {
+			Assert.assertSame(
+				NoSuchObjectException.class, remoteException.getClass());
 		}
 
 		CountDownLatch countDownLatch = _mockRemoteSPI.countDownLatch;
@@ -353,8 +354,8 @@ public class RemoteSPITest {
 
 			Assert.fail();
 		}
-		catch (ProcessException pe) {
-			Throwable throwable = pe.getCause();
+		catch (ProcessException processException) {
+			Throwable throwable = processException.getCause();
 
 			Assert.assertSame(InterruptedException.class, throwable.getClass());
 		}
@@ -929,7 +930,7 @@ public class RemoteSPITest {
 					return Datagram.createResponseDatagram(
 						datagram, serializer.toByteBuffer());
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 					throw new RuntimeException();
 				}
 			}
@@ -943,7 +944,7 @@ public class RemoteSPITest {
 		try {
 			UnicastRemoteObject.unexportObject(_mockRemoteSPI, true);
 		}
-		catch (NoSuchObjectException nsoe) {
+		catch (NoSuchObjectException noSuchObjectException) {
 		}
 	}
 

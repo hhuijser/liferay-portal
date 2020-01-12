@@ -128,7 +128,7 @@ public class JavaMapBuilderGenericsCheck extends BaseJavaTermCheck {
 			try {
 				return Class.forName(importName);
 			}
-			catch (ClassNotFoundException cnfe) {
+			catch (ClassNotFoundException classNotFoundException) {
 			}
 		}
 

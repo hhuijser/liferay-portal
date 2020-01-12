@@ -169,9 +169,9 @@ public class DLFolderTrashHandler extends DLBaseTrashHandler {
 		try {
 			return getDLFolder(classPK);
 		}
-		catch (PortalException | UnsupportedCapabilityException e) {
+		catch (PortalException | UnsupportedCapabilityException exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 
 			return null;

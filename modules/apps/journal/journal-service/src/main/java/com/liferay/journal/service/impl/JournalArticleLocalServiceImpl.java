@@ -364,7 +364,7 @@ public class JournalArticleLocalServiceImpl
 		try {
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		boolean validate = !ExportImportThreadLocal.isImportInProcess();
@@ -391,11 +391,15 @@ public class JournalArticleLocalServiceImpl
 					groupId, ddmStructureKey, ddmTemplateKey, layoutUuid,
 					smallImage, smallImageURL, smallImageBytes, 0, content);
 			}
-			catch (ExportImportContentValidationException eicve) {
-				eicve.setStagedModelClassName(JournalArticle.class.getName());
-				eicve.setStagedModelPrimaryKeyObj(articleId);
+			catch (ExportImportContentValidationException
+						exportImportContentValidationException) {
 
-				throw eicve;
+				exportImportContentValidationException.setStagedModelClassName(
+					JournalArticle.class.getName());
+				exportImportContentValidationException.
+					setStagedModelPrimaryKeyObj(articleId);
+
+				throw exportImportContentValidationException;
 			}
 		}
 
@@ -733,7 +737,7 @@ public class JournalArticleLocalServiceImpl
 		try {
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		String articleId = String.valueOf(counterLocalService.increment());
@@ -3826,7 +3830,7 @@ public class JournalArticleLocalServiceImpl
 				article.getDefaultLanguageId(), 0, portletRequestModel,
 				themeDisplay, true);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return false;
 		}
 
@@ -4734,8 +4738,8 @@ public class JournalArticleLocalServiceImpl
 
 			return indexer.search(searchContext);
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 	}
 
@@ -5455,7 +5459,7 @@ public class JournalArticleLocalServiceImpl
 		try {
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		JournalArticle latestArticle = getLatestArticle(
@@ -5544,11 +5548,15 @@ public class JournalArticleLocalServiceImpl
 					smallImage, smallImageURL, smallImageBytes,
 					latestArticle.getSmallImageId(), content);
 			}
-			catch (ExportImportContentValidationException eicve) {
-				eicve.setStagedModelClassName(JournalArticle.class.getName());
-				eicve.setStagedModelPrimaryKeyObj(articleId);
+			catch (ExportImportContentValidationException
+						exportImportContentValidationException) {
 
-				throw eicve;
+				exportImportContentValidationException.setStagedModelClassName(
+					JournalArticle.class.getName());
+				exportImportContentValidationException.
+					setStagedModelPrimaryKeyObj(articleId);
+
+				throw exportImportContentValidationException;
 			}
 		}
 
@@ -6047,7 +6055,7 @@ public class JournalArticleLocalServiceImpl
 		try {
 			smallImageBytes = FileUtil.getBytes(smallImageFile);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		JournalArticle article = getArticle(groupId, articleId);
@@ -7314,8 +7322,8 @@ public class JournalArticleLocalServiceImpl
 
 			return createFieldsValuesMap(rootElement, defaultLocale);
 		}
-		catch (DocumentException de) {
-			throw new SystemException(de);
+		catch (DocumentException documentException) {
+			throw new SystemException(documentException);
 		}
 	}
 
@@ -7402,8 +7410,8 @@ public class JournalArticleLocalServiceImpl
 
 			content = XMLUtil.formatXML(document);
 		}
-		catch (DocumentException de) {
-			_log.error(de, de);
+		catch (DocumentException documentException) {
+			_log.error(documentException, documentException);
 		}
 
 		return content;
@@ -7418,8 +7426,8 @@ public class JournalArticleLocalServiceImpl
 
 			return journalServiceConfiguration.checkInterval() * Time.MINUTE;
 		}
-		catch (PortalException pe) {
-			throw new RuntimeException(pe);
+		catch (PortalException portalException) {
+			throw new RuntimeException(portalException);
 		}
 	}
 
@@ -7789,8 +7797,8 @@ public class JournalArticleLocalServiceImpl
 			defaultArticleURL = _portal.getControlPanelFullURL(
 				article.getGroupId(), portletId, null);
 		}
-		catch (PortalException pe) {
-			_log.error(pe, pe);
+		catch (PortalException portalException) {
+			_log.error(portalException, portalException);
 		}
 
 		LiferayPortletRequest liferayPortletRequest =
@@ -7812,8 +7820,8 @@ public class JournalArticleLocalServiceImpl
 			return assetRenderer.getURLViewInContext(
 				liferayPortletRequest, null, defaultArticleURL);
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return StringPool.BLANK;
@@ -7861,8 +7869,8 @@ public class JournalArticleLocalServiceImpl
 
 			return journalServiceConfiguration.indexAllArticleVersionsEnabled();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return false;
@@ -8083,7 +8091,7 @@ public class JournalArticleLocalServiceImpl
 				LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()),
 				portletRequestModel, serviceContext.getThemeDisplay());
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		subscriptionSender.setContextAttribute(

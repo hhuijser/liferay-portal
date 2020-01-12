@@ -53,8 +53,9 @@ public class NettyFabricWorkerConfigTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
-			Assert.assertEquals("Process config is null", npe.getMessage());
+		catch (NullPointerException nullPointerException) {
+			Assert.assertEquals(
+				"Process config is null", nullPointerException.getMessage());
 		}
 
 		ProcessConfig.Builder builder = new ProcessConfig.Builder();

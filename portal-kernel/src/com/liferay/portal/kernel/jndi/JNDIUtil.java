@@ -45,7 +45,7 @@ public class JNDIUtil {
 		try {
 			obj = context.lookup(location);
 		}
-		catch (NamingException ne1) {
+		catch (NamingException namingException) {
 
 			// java:comp/env/ObjectName to ObjectName
 
@@ -55,7 +55,7 @@ public class JNDIUtil {
 						location, "java:comp/env/", "");
 
 					if (_log.isDebugEnabled()) {
-						_log.debug(ne1.getMessage());
+						_log.debug(namingException.getMessage());
 						_log.debug("Attempt " + newLocation);
 					}
 
@@ -85,7 +85,7 @@ public class JNDIUtil {
 						location, "java:", "");
 
 					if (_log.isDebugEnabled()) {
-						_log.debug(ne1.getMessage());
+						_log.debug(namingException.getMessage());
 						_log.debug("Attempt " + newLocation);
 					}
 
@@ -114,7 +114,7 @@ public class JNDIUtil {
 					String newLocation = "java:" + location;
 
 					if (_log.isDebugEnabled()) {
-						_log.debug(ne1.getMessage());
+						_log.debug(namingException.getMessage());
 						_log.debug("Attempt " + newLocation);
 					}
 

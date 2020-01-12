@@ -123,7 +123,7 @@ public class JSassCompiler implements SassCompiler {
 				try {
 					write(new File(sourceMapFileName), output.getSourceMap());
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 					System.out.println("Unable to create source map");
 				}
 			}

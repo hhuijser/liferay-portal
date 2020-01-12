@@ -197,7 +197,7 @@ public class NettyFabricClient implements FabricClient {
 						_nettyFabricClientConfig.getExecutionTimeout(),
 						TimeUnit.MILLISECONDS);
 				}
-				catch (TimeoutException te) {
+				catch (TimeoutException timeoutException) {
 					fabricWorker.write(_runtimeHaltProcessCallable);
 
 					noticeableFuture.get(

@@ -69,7 +69,7 @@ public class JarUtil {
 								newURLString));
 					}
 				}
-				catch (UnknownHostException uhe) {
+				catch (UnknownHostException unknownHostException) {
 					if (_log.isDebugEnabled()) {
 						_log.debug("Unable to resolve \"mirrors\"");
 					}

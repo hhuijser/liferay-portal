@@ -120,7 +120,7 @@ public abstract class CMISModel {
 					getCompanyId(), createdBy);
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		if (user == null) {

@@ -73,8 +73,8 @@ public class SplitThreadMVCActionCommand extends BaseMVCActionCommand {
 		try {
 			splitThread(actionRequest, actionResponse);
 		}
-		catch (PrincipalException | RequiredMessageException e) {
-			SessionErrors.add(actionRequest, e.getClass());
+		catch (PrincipalException | RequiredMessageException exception) {
+			SessionErrors.add(actionRequest, exception.getClass());
 
 			actionResponse.setRenderParameter(
 				"mvcPath", "/message_boards/error.jsp");

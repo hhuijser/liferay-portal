@@ -111,8 +111,8 @@ public abstract class BasePersonalMenuEntry implements PersonalMenuEntry {
 				permissionChecker,
 				PortletLocalServiceUtil.getPortletById(getPortletId()));
 		}
-		catch (PortalException | RuntimeException e) {
-			throw e;
+		catch (PortalException | RuntimeException exception) {
+			throw exception;
 		}
 		catch (Exception e) {
 			throw new PortalException(e);

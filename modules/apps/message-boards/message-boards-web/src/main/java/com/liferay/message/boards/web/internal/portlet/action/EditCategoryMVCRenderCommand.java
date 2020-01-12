@@ -66,13 +66,13 @@ public class EditCategoryMVCRenderCommand implements MVCRenderCommand {
 			renderRequest.setAttribute(
 				WebKeys.MESSAGE_BOARDS_CATEGORY, category);
 		}
-		catch (NoSuchCategoryException | PrincipalException e) {
-			SessionErrors.add(renderRequest, e.getClass());
+		catch (NoSuchCategoryException | PrincipalException exception) {
+			SessionErrors.add(renderRequest, exception.getClass());
 
 			return "/message_boards/error.jsp";
 		}
-		catch (RuntimeException re) {
-			throw re;
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

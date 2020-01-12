@@ -66,7 +66,7 @@ public class LinkbackConsumerImpl implements LinkbackConsumer {
 				return;
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		try {

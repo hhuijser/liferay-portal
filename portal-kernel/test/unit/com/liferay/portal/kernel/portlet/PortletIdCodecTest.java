@@ -54,9 +54,10 @@ public class PortletIdCodecTest {
 
 			Assert.fail();
 		}
-		catch (InvalidParameterException ipe) {
+		catch (InvalidParameterException invalidParameterException) {
 			Assert.assertEquals(
-				"User ID and instance ID are null", ipe.getMessage());
+				"User ID and instance ID are null",
+				invalidParameterException.getMessage());
 		}
 
 		// Test 2
@@ -315,11 +316,11 @@ public class PortletIdCodecTest {
 
 			Assert.fail();
 		}
-		catch (InvalidParameterException ipe) {
+		catch (InvalidParameterException invalidParameterException) {
 			Assert.assertEquals(
 				"The portlet name \"" + encodedPortletId +
 					"\" must not contain the keyword _INSTANCE_",
-				ipe.getMessage());
+				invalidParameterException.getMessage());
 		}
 
 		// Test 3

@@ -78,8 +78,9 @@ public class MBExportImportPortletPreferencesProcessor
 		try {
 			portletDataContext.addPortletPermissions(MBConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(MBPortletKeys.MESSAGE_BOARDS);
 			pde.setType(PortletDataException.EXPORT_PORTLET_PERMISSIONS);
@@ -177,8 +178,9 @@ public class MBExportImportPortletPreferencesProcessor
 			portletDataContext.importPortletPermissions(
 				MBConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(MBPortletKeys.MESSAGE_BOARDS);
 			pde.setType(PortletDataException.IMPORT_PORTLET_PERMISSIONS);

@@ -91,13 +91,14 @@ public class EmailOTPPortalSettingsConfigurationScreenContributor
 				ConfigurationProviderUtil.getCompanyConfiguration(
 					EmailOTPConfiguration.class, themeDisplay.getCompanyId());
 		}
-		catch (ConfigurationException ce) {
+		catch (ConfigurationException configurationException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
-					"Unable to load email one-time password configuration", ce);
+					"Unable to load email one-time password configuration",
+					configurationException);
 			}
 
-			throw new IllegalStateException(ce);
+			throw new IllegalStateException(configurationException);
 		}
 
 		httpServletRequest.setAttribute(

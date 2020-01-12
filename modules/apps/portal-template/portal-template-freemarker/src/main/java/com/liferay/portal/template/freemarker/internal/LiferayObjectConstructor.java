@@ -48,7 +48,7 @@ public class LiferayObjectConstructor implements TemplateMethodModelEx {
 			clazz = Class.forName(
 				className, true, currentThread.getContextClassLoader());
 		}
-		catch (Exception e1) {
+		catch (Exception exception) {
 			try {
 				clazz = Class.forName(
 					className, true, PortalClassLoaderUtil.getClassLoader());

@@ -33,7 +33,7 @@ public class SharepointConnectionInfoTest {
 
 			Assert.fail("IllegalArgumentException not thrown for site path /");
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		try {

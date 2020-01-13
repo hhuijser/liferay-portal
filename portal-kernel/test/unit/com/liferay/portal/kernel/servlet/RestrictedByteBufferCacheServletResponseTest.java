@@ -146,8 +146,9 @@ public class RestrictedByteBufferCacheServletResponseTest {
 
 			Assert.fail();
 		}
-		catch (IllegalStateException ise) {
-			Assert.assertEquals("Cache overflowed", ise.getMessage());
+		catch (IllegalStateException illegalStateException) {
+			Assert.assertEquals(
+				"Cache overflowed", illegalStateException.getMessage());
 		}
 
 		Assert.assertTrue(
@@ -193,7 +194,7 @@ public class RestrictedByteBufferCacheServletResponseTest {
 		try {
 			restrictedByteBufferCacheServletResponse.getOutputStream();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 		}
 	}
 
@@ -236,7 +237,7 @@ public class RestrictedByteBufferCacheServletResponseTest {
 		try {
 			restrictedByteBufferCacheServletResponse.getWriter();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 		}
 	}
 
@@ -346,7 +347,7 @@ public class RestrictedByteBufferCacheServletResponseTest {
 
 			Assert.fail();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 		}
 	}
 
@@ -407,7 +408,7 @@ public class RestrictedByteBufferCacheServletResponseTest {
 
 			Assert.fail();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 		}
 
 		// Setting a larger buffer size causes overflow with a failure in

@@ -52,8 +52,8 @@ public abstract class BaseOutputProcessorTestCase {
 
 			Assert.fail();
 		}
-		catch (ProcessException pe) {
-			Assert.assertSame(ioException, pe.getCause());
+		catch (ProcessException processException) {
+			Assert.assertSame(ioException, processException.getCause());
 		}
 
 		try {

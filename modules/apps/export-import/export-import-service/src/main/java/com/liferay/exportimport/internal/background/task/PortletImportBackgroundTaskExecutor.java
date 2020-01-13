@@ -89,9 +89,10 @@ public class PortletImportBackgroundTaskExecutor
 					transactionConfig,
 					new PortletImportCallable(exportImportConfiguration, file));
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				ExportImportIOException eiioe = new ExportImportIOException(
-					LayoutImportBackgroundTaskExecutor.class.getName(), ioe);
+					LayoutImportBackgroundTaskExecutor.class.getName(),
+					ioException);
 
 				if (Validator.isNotNull(attachmentsFileEntry.getFileName())) {
 					eiioe.setFileName(attachmentsFileEntry.getFileName());

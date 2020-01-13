@@ -71,7 +71,7 @@ public class OrganizationUserChecker extends EmptyOnClickRowChecker {
 				return true;
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return super.isDisabled(obj);
@@ -90,8 +90,8 @@ public class OrganizationUserChecker extends EmptyOnClickRowChecker {
 
 			name += Organization.class.getSimpleName();
 		}
-		catch (Exception e1) {
-			if (e1 instanceof NoSuchOrganizationException) {
+		catch (Exception exception) {
+			if (exception instanceof NoSuchOrganizationException) {
 				try {
 					long userId = GetterUtil.getLong(value);
 

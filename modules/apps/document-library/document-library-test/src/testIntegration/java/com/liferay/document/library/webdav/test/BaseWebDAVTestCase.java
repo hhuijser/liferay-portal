@@ -76,7 +76,7 @@ public class BaseWebDAVTestCase {
 			mockHttpServletRequest.setRemoteUser(
 				String.valueOf(TestPropsValues.getUserId()));
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			Assert.fail("User ID cannot be initialized");
 		}
 

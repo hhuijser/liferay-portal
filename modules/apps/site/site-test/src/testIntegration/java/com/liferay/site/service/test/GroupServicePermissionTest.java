@@ -218,7 +218,7 @@ public class GroupServicePermissionTest {
 				"The user should not be able to add top level sites",
 				group == null);
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 		}
 
 		try {
@@ -292,7 +292,7 @@ public class GroupServicePermissionTest {
 				"The user should not be able to update this site",
 				hasManageSite1);
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 			Assert.assertFalse(
 				"The user should be able to update this site", hasManageSite1);
 		}

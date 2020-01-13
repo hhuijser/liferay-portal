@@ -60,7 +60,7 @@ public class UnsyncStringReaderTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		try {

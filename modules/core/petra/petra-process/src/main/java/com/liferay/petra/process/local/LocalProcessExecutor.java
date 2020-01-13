@@ -118,8 +118,8 @@ public class LocalProcessExecutor implements ProcessExecutor {
 			return new LocalProcessChannel<>(
 				noticeableFuture, objectOutputStream, asyncBroker);
 		}
-		catch (IOException ioe) {
-			throw new ProcessException(ioe);
+		catch (IOException ioException) {
+			throw new ProcessException(ioException);
 		}
 	}
 
@@ -202,7 +202,7 @@ public class LocalProcessExecutor implements ProcessExecutor {
 
 						break;
 					}
-					catch (StreamCorruptedException sce) {
+					catch (StreamCorruptedException streamCorruptedException) {
 
 						// Collecting bad header as log information
 
@@ -219,11 +219,12 @@ public class LocalProcessExecutor implements ProcessExecutor {
 					try {
 						obj = objectInputStream.readObject();
 					}
-					catch (WriteAbortedException wae) {
+					catch (WriteAbortedException writeAbortedException) {
 						_processLogConsumer.accept(
 							new LocalProcessLog(
 								ProcessLog.Level.WARN,
-								"Caught a write aborted exception", wae));
+								"Caught a write aborted exception",
+								writeAbortedException));
 
 						continue;
 					}
@@ -288,9 +289,9 @@ public class LocalProcessExecutor implements ProcessExecutor {
 				throw new ProcessException(
 					"Corrupted object input stream", sce);
 			}
-			catch (EOFException eofe) {
+			catch (EOFException eofException) {
 				throw new ProcessException(
-					"Subprocess piping back ended prematurely", eofe);
+					"Subprocess piping back ended prematurely", eofException);
 			}
 			catch (Throwable t) {
 				_processLogConsumer.accept(
@@ -307,11 +308,12 @@ public class LocalProcessExecutor implements ProcessExecutor {
 						throw new TerminationProcessException(exitCode);
 					}
 				}
-				catch (InterruptedException ie) {
+				catch (InterruptedException interruptedException) {
 					_process.destroy();
 
 					throw new ProcessException(
-						"Forcibly killed subprocess on interruption", ie);
+						"Forcibly killed subprocess on interruption",
+						interruptedException);
 				}
 
 				AsyncBrokerThreadLocal.removeAsyncBroker();

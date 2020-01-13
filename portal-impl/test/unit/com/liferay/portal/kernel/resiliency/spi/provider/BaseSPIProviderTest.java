@@ -110,13 +110,13 @@ public class BaseSPIProviderTest {
 			try {
 				_testSPIProvider.createSPI(_spiConfiguration);
 			}
-			catch (PortalResiliencyException pre) {
+			catch (PortalResiliencyException portalResiliencyException) {
 				Assert.assertEquals(
 					"SPI synchronous queue waiting timeout. Forcibly " +
 						"cancelled SPI process launch.",
-					pre.getMessage());
+					portalResiliencyException.getMessage());
 
-				Assert.assertNull(pre.getCause());
+				Assert.assertNull(portalResiliencyException.getCause());
 			}
 
 			// Sucess
@@ -243,8 +243,8 @@ public class BaseSPIProviderTest {
 					new ObjectOutputStream(new DummyOutputStream()),
 					new AsyncBroker<Long, Serializable>());
 			}
-			catch (IOException ioe) {
-				throw new RuntimeException(ioe);
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
 		}
 

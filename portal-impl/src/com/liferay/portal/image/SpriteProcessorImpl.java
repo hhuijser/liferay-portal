@@ -200,13 +200,13 @@ public class SpriteProcessorImpl implements SpriteProcessor {
 					spriteProperties.setProperty(key, value);
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to process " + imageURL, e);
+					_log.warn("Unable to process " + imageURL, exception);
 				}
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(e, e);
+					_log.debug(exception, exception);
 				}
 			}
 		}

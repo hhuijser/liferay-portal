@@ -42,7 +42,7 @@ public class JavadocUtil {
 			try {
 				return classLoader.loadClass(className);
 			}
-			catch (ClassNotFoundException cnfe) {
+			catch (ClassNotFoundException classNotFoundException) {
 			}
 		}
 

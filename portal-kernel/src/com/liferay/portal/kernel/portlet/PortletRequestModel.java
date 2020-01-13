@@ -792,9 +792,9 @@ public class PortletRequestModel implements Serializable {
 			_applicationScopeSessionAttributes = portletSession.getAttributeMap(
 				PortletSession.APPLICATION_SCOPE);
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(ise.getMessage());
+				_log.warn(illegalStateException.getMessage());
 			}
 		}
 	}
@@ -810,9 +810,9 @@ public class PortletRequestModel implements Serializable {
 
 				_actionURL = actionURL.toString();
 			}
-			catch (IllegalStateException ise) {
+			catch (IllegalStateException illegalStateException) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(ise.getMessage());
+					_log.warn(illegalStateException.getMessage());
 				}
 			}
 
@@ -826,7 +826,7 @@ public class PortletRequestModel implements Serializable {
 
 					_renderURLExclusive = renderURL.toString();
 				}
-				catch (WindowStateException wse) {
+				catch (WindowStateException windowStateException) {
 				}
 
 				try {

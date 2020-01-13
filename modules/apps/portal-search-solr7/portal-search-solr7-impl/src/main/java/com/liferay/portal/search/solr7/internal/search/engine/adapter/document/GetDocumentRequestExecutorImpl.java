@@ -79,14 +79,14 @@ public class GetDocumentRequestExecutorImpl
 
 			return getDocumentResponse;
 		}
-		catch (Exception e) {
-			if (e instanceof SolrException) {
-				SolrException se = (SolrException)e;
+		catch (Exception exception) {
+			if (exception instanceof SolrException) {
+				SolrException se = (SolrException)exception;
 
 				throw se;
 			}
 
-			throw new RuntimeException(e);
+			throw new RuntimeException(exception);
 		}
 	}
 

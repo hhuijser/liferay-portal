@@ -55,7 +55,7 @@ public class NoticeableFutureConverterTest {
 
 			Assert.fail();
 		}
-		catch (CancellationException ce) {
+		catch (CancellationException cancellationException) {
 		}
 
 		try {
@@ -87,7 +87,7 @@ public class NoticeableFutureConverterTest {
 
 			Assert.fail();
 		}
-		catch (CancellationException ce) {
+		catch (CancellationException cancellationException) {
 		}
 
 		try {
@@ -133,8 +133,8 @@ public class NoticeableFutureConverterTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Assert.assertSame(exception, ee.getCause());
+		catch (ExecutionException executionException) {
+			Assert.assertSame(exception, executionException.getCause());
 		}
 
 		try {
@@ -187,8 +187,8 @@ public class NoticeableFutureConverterTest {
 
 			Assert.fail();
 		}
-		catch (ExecutionException ee) {
-			Assert.assertSame(exception, ee.getCause());
+		catch (ExecutionException executionException) {
+			Assert.assertSame(exception, executionException.getCause());
 		}
 
 		try {
@@ -233,7 +233,7 @@ public class NoticeableFutureConverterTest {
 
 			Assert.fail();
 		}
-		catch (InterruptedException ie) {
+		catch (InterruptedException interruptedException) {
 		}
 
 		Assert.assertFalse(currentThread.isInterrupted());
@@ -261,7 +261,7 @@ public class NoticeableFutureConverterTest {
 
 			Assert.fail();
 		}
-		catch (TimeoutException te) {
+		catch (TimeoutException timeoutException) {
 		}
 	}
 

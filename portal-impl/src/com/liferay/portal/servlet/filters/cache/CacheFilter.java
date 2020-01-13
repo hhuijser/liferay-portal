@@ -217,14 +217,14 @@ public class CacheFilter extends BasePortalFilter {
 				privateLayout = false;
 			}
 		}
-		catch (NoSuchLayoutException nsle) {
+		catch (NoSuchLayoutException noSuchLayoutException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(nsle, nsle);
+				_log.warn(noSuchLayoutException, noSuchLayoutException);
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to get friendly URL group", e);
+				_log.warn("Unable to get friendly URL group", exception);
 			}
 
 			return 0;
@@ -309,7 +309,7 @@ public class CacheFilter extends BasePortalFilter {
 
 			return layoutTypePortlet.isCacheable();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return false;
 		}
 	}
@@ -386,12 +386,12 @@ public class CacheFilter extends BasePortalFilter {
 				AuthTokenUtil.checkCSRFToken(
 					httpServletRequest, CacheFilter.class.getName());
 			}
-			catch (PortalException pe) {
+			catch (PortalException portalException) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"Request is not cacheable " + key +
 							", invalid token received",
-						pe);
+						portalException);
 				}
 
 				processFilter(

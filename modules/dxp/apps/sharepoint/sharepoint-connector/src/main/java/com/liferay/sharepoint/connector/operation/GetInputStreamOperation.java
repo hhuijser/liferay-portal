@@ -91,9 +91,9 @@ public class GetInputStreamOperation extends BaseOperation {
 				try {
 					bytes = FileUtil.getBytes(inputStream);
 				}
-				catch (IOException ioe) {
+				catch (IOException ioException) {
 					throw new SharepointException(
-						"Unable to read input stream", ioe);
+						"Unable to read input stream", ioException);
 				}
 
 				return new ByteArrayInputStream(bytes);

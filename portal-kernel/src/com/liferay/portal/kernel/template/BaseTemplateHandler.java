@@ -91,7 +91,7 @@ public abstract class BaseTemplateHandler implements TemplateHandler {
 			content = StringUtil.read(
 				clazz.getClassLoader(), getTemplatesHelpPath(language));
 		}
-		catch (IOException ioe1) {
+		catch (IOException ioException) {
 			try {
 				content = StringUtil.read(
 					PortalClassLoaderUtil.getClassLoader(),

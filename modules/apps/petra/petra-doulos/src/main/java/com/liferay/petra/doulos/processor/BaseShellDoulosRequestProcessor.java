@@ -66,8 +66,8 @@ public abstract class BaseShellDoulosRequestProcessor
 
 				Thread.sleep(getThreadDestroyInterval());
 			}
-			catch (InterruptedException ie) {
-				_log.error(ie, ie);
+			catch (InterruptedException interruptedException) {
+				_log.error(interruptedException, interruptedException);
 			}
 		}
 
@@ -307,11 +307,11 @@ public abstract class BaseShellDoulosRequestProcessor
 					try {
 						Thread.sleep(getThreadExecuteInterval());
 					}
-					catch (InterruptedException ie) {
+					catch (InterruptedException interruptedException) {
 						_log.error(
 							"Terminating background thread due to unexpected " +
 								"interruption",
-							ie);
+							interruptedException);
 
 						break;
 					}
@@ -328,8 +328,8 @@ public abstract class BaseShellDoulosRequestProcessor
 
 					execute(shellStatus);
 				}
-				catch (Exception e) {
-					_log.error(e, e);
+				catch (Exception exception) {
+					_log.error(exception, exception);
 				}
 			}
 

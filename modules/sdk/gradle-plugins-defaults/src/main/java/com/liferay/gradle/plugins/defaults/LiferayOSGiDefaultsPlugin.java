@@ -956,11 +956,11 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 					try {
 						file = FileUtil.get(project, artifactJspcURL);
 					}
-					catch (Exception e) {
-						String message = e.getMessage();
+					catch (Exception exception) {
+						String message = exception.getMessage();
 
 						if (!message.equals("HTTP Authorization failure")) {
-							throw e;
+							throw exception;
 						}
 
 						int start = artifactJspcURL.lastIndexOf('/');
@@ -1278,8 +1278,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				try {
 					FileUtils.deleteDirectory(compileIncludeSourcesDir);
 				}
-				catch (IOException ioe) {
-					throw new UncheckedIOException(ioe);
+				catch (IOException ioException) {
+					throw new UncheckedIOException(ioException);
 				}
 
 				_copyCompileIncludeSources(project, compileIncludeSourcesDir);
@@ -1779,8 +1779,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 					_applyVersionOverrideJson(project, fileName);
 				}
 			}
-			catch (IOException ioe) {
-				throw new UncheckedIOException(ioe);
+			catch (IOException ioException) {
+				throw new UncheckedIOException(ioException);
 			}
 		}
 
@@ -2296,8 +2296,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 								file = FileUtil.findFile(
 									taglibDependencyDir, fileName);
 							}
-							catch (IOException ioe) {
-								throw new UncheckedIOException(ioe);
+							catch (IOException ioException) {
+								throw new UncheckedIOException(ioException);
 							}
 
 							if (file == null) {
@@ -2825,8 +2825,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				"com/liferay/gradle/plugins/defaults/dependencies" +
 					"/standard-rules.xml");
 		}
-		catch (IOException ioe) {
-			throw new UncheckedIOException(ioe);
+		catch (IOException ioException) {
+			throw new UncheckedIOException(ioException);
 		}
 
 		pmdExtension.setRuleSetConfig(textResourceFactory.fromString(ruleSet));
@@ -2943,8 +2943,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 				try {
 					_execute(task.getProject());
 				}
-				catch (IOException ioe) {
-					throw new UncheckedIOException(ioe);
+				catch (IOException ioException) {
+					throw new UncheckedIOException(ioException);
 				}
 			}
 
@@ -3156,9 +3156,9 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		try {
 			remoteServices = _hasRemoteServices(buildWSDDTask);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			throw new GradleException(
-				"Unable to read " + buildWSDDTask.getInputFile(), e);
+				"Unable to read " + buildWSDDTask.getInputFile(), exception);
 		}
 
 		if (!remoteServices) {
@@ -4032,7 +4032,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			try {
 				project.copy(copySpecAction);
 			}
-			catch (RuntimeException re) {
+			catch (RuntimeException runtimeException) {
 				if (logger.isInfoEnabled()) {
 					logger.info("Unable to copy {}", file);
 				}
@@ -4155,8 +4155,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 
 			return Long.valueOf(lastModified);
 		}
-		catch (IOException ioe) {
-			throw new UncheckedIOException(ioe);
+		catch (IOException ioException) {
+			throw new UncheckedIOException(ioException);
 		}
 	}
 
@@ -4348,7 +4348,7 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		try {
 			return Version.parseVersion(String.valueOf(version));
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			return null;
 		}
 	}
@@ -4525,12 +4525,12 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 		try {
 			lastModifiedTime = _getArtifactLastModifiedTime(project);
 		}
-		catch (ResolveException re) {
+		catch (ResolveException resolveException) {
 			if (logger.isInfoEnabled()) {
 				logger.info(
 					"Unable to get artifact last modified time for " + project +
 						", a new snapshot will be published",
-					re);
+					resolveException);
 			}
 
 			return true;
@@ -4729,8 +4729,8 @@ public class LiferayOSGiDefaultsPlugin implements Plugin<Project> {
 			_saveVersions(
 				project.getProjectDir(), versions, versionOverrideFile);
 		}
-		catch (IOException ioe) {
-			throw new UncheckedIOException(ioe);
+		catch (IOException ioException) {
+			throw new UncheckedIOException(ioException);
 		}
 
 		// Reload Bundle-Version in case it is changed, so the project

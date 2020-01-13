@@ -121,15 +121,15 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 					portletDataContext),
 				new TransientValue<T>(stagedModel));
 		}
-		catch (PortletDataException pde) {
+		catch (PortletDataException portletDataException) {
 			ExportImportLifecycleManagerUtil.fireExportImportLifecycleEvent(
 				ExportImportLifecycleConstants.EVENT_STAGED_MODEL_EXPORT_FAILED,
 				getProcessFlag(), portletDataContext.getExportImportProcessId(),
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext),
-				new TransientValue<T>(stagedModel), pde);
+				new TransientValue<T>(stagedModel), portletDataException);
 
-			throw pde;
+			throw portletDataException;
 		}
 		catch (Throwable t) {
 			ExportImportLifecycleManagerUtil.fireExportImportLifecycleEvent(
@@ -220,16 +220,16 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 						return stagedModel;
 					}
 				}
-				catch (PortalException pe) {
+				catch (PortalException portalException) {
 					if (_log.isDebugEnabled()) {
-						_log.debug(pe, pe);
+						_log.debug(portalException, portalException);
 					}
 				}
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 			else if (_log.isWarnEnabled()) {
 				_log.warn(
@@ -278,12 +278,12 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 		try {
 			doImportMissingReference(portletDataContext, referenceElement);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (!StringUtil.equalsIgnoreCase(
 					referenceElement.attributeValue("type"),
 					PortletDataContext.REFERENCE_TYPE_DEPENDENCY_DISPOSABLE)) {
 
-				throw e;
+				throw exception;
 			}
 		}
 	}
@@ -298,11 +298,11 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			doImportMissingReference(
 				portletDataContext, uuid, groupId, classPK);
 		}
-		catch (PortletDataException pde) {
-			throw pde;
+		catch (PortletDataException portletDataException) {
+			throw portletDataException;
 		}
-		catch (Exception e) {
-			throw new PortletDataException(e);
+		catch (Exception exception) {
+			throw new PortletDataException(exception);
 		}
 	}
 
@@ -376,15 +376,15 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 					portletDataContext),
 				new TransientValue<T>(stagedModel));
 		}
-		catch (PortletDataException pde) {
+		catch (PortletDataException portletDataException) {
 			ExportImportLifecycleManagerUtil.fireExportImportLifecycleEvent(
 				ExportImportLifecycleConstants.EVENT_STAGED_MODEL_IMPORT_FAILED,
 				getProcessFlag(), portletDataContext.getExportImportProcessId(),
 				PortletDataContextFactoryUtil.clonePortletDataContext(
 					portletDataContext),
-				new TransientValue<T>(stagedModel), pde);
+				new TransientValue<T>(stagedModel), portletDataException);
 
-			throw pde;
+			throw portletDataException;
 		}
 		catch (Throwable t) {
 			ExportImportLifecycleManagerUtil.fireExportImportLifecycleEvent(
@@ -429,11 +429,11 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 				doRestoreStagedModel(portletDataContext, stagedModel);
 			}
 		}
-		catch (PortletDataException pde) {
-			throw pde;
+		catch (PortletDataException portletDataException) {
+			throw portletDataException;
 		}
-		catch (Exception e) {
-			PortletDataException pde = new PortletDataException(e);
+		catch (Exception exception) {
+			PortletDataException pde = new PortletDataException(exception);
 
 			pde.setStagedModelDisplayName(getDisplayName(stagedModel));
 			pde.setStagedModelClassName(stagedModel.getModelClassName());
@@ -464,7 +464,7 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 		try {
 			return validateMissingReference(uuid, groupId);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return false;
 		}
 	}

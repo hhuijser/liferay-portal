@@ -177,7 +177,7 @@ public class LayoutRevisionImpl extends LayoutRevisionBaseImpl {
 
 				return theme.getSetting(key);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 

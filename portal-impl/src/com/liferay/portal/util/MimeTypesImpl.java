@@ -85,8 +85,8 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 			read(url.openStream(), _extensionsMap);
 			read(customMimeTypesUrl.openStream(), _customExtensionsMap);
 		}
-		catch (Exception e) {
-			_log.error("Unable to populate extensions map", e);
+		catch (Exception exception) {
+			_log.error("Unable to populate extensions map", exception);
 		}
 	}
 
@@ -104,9 +104,9 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 		try (InputStream is = TikaInputStream.get(file)) {
 			return getContentType(is, fileName);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(ioe, ioe);
+				_log.warn(ioException, ioException);
 			}
 		}
 
@@ -153,8 +153,8 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 				contentType = ContentTypes.APPLICATION_OCTET_STREAM;
 			}
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 
 			contentType = ContentTypes.APPLICATION_OCTET_STREAM;
 		}
@@ -190,8 +190,8 @@ public class MimeTypesImpl implements MimeTypes, MimeTypesReaderMetKeys {
 				_log.debug("Retrieved invalid content type " + contentType);
 			}
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return ContentTypes.APPLICATION_OCTET_STREAM;

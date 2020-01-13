@@ -146,7 +146,7 @@ public class UnsyncBufferedInputStreamTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		try {
@@ -205,7 +205,7 @@ public class UnsyncBufferedInputStreamTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		try {
@@ -288,7 +288,7 @@ public class UnsyncBufferedInputStreamTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		// Shuffle

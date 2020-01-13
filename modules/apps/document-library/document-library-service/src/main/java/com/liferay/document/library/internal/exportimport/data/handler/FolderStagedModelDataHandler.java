@@ -133,11 +133,11 @@ public class FolderStagedModelDataHandler
 		try {
 			doRestoreStagedModel(portletDataContext, stagedModel);
 		}
-		catch (PortletDataException pde) {
-			throw pde;
+		catch (PortletDataException portletDataException) {
+			throw portletDataException;
 		}
-		catch (Exception e) {
-			throw new PortletDataException(e);
+		catch (Exception exception) {
+			throw new PortletDataException(exception);
 		}
 	}
 

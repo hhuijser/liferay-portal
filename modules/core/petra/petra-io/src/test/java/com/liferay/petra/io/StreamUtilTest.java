@@ -70,10 +70,10 @@ public class StreamUtilTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
-			Assert.assertSame(ioException1, ioe);
+		catch (IOException ioException) {
+			Assert.assertSame(ioException1, ioException);
 
-			Throwable[] throwables = ioe.getSuppressed();
+			Throwable[] throwables = ioException.getSuppressed();
 
 			Assert.assertEquals(
 				Arrays.toString(throwables), 1, throwables.length);
@@ -327,8 +327,9 @@ public class StreamUtilTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
-			Assert.assertEquals("Input stream is null", npe.getMessage());
+		catch (NullPointerException nullPointerException) {
+			Assert.assertEquals(
+				"Input stream is null", nullPointerException.getMessage());
 		}
 
 		try {

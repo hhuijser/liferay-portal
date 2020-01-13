@@ -75,7 +75,7 @@ public class LuceneRepositorySearchQueryTermBuilder
 			try {
 				query = queryParser.parse(value);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				query = queryParser.parse(KeywordsUtil.escape(value));
 			}
 

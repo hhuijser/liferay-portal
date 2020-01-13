@@ -49,8 +49,8 @@ public class TestPropertiesUtil {
 
 			_properties.load(is);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		try (InputStream is = TestPropertiesUtil.class.getResourceAsStream(

@@ -48,8 +48,8 @@ public class HibernateUnexpectedRowCountAspect {
 				"batchUpdateSQL = " + _batchUpdateSQLField.get(batchingBatcher),
 				runtimeException);
 		}
-		catch (ReflectiveOperationException roe) {
-			runtimeException.addSuppressed(roe);
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			runtimeException.addSuppressed(reflectiveOperationException);
 		}
 	}
 

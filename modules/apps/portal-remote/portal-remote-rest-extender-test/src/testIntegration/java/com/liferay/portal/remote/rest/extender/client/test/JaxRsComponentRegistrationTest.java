@@ -198,7 +198,7 @@ public class JaxRsComponentRegistrationTest {
 		try {
 			_serviceRegistration.unregister();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		try {

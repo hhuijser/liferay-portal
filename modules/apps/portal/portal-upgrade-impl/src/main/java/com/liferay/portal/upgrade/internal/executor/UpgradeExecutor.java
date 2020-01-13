@@ -220,10 +220,10 @@ public class UpgradeExecutor {
 					buildNumber = upgradeInfo.getBuildNumber();
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				state = ReleaseConstants.STATE_UPGRADE_FAILURE;
 
-				ReflectionUtil.throwException(e);
+				ReflectionUtil.throwException(exception);
 			}
 			finally {
 				Release release = _releaseLocalService.fetchRelease(

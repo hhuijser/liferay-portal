@@ -105,12 +105,12 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			try {
 				metadataXmlInputStream = _metadataUtil.getMetadata(metadataUrl);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				throw new SamlIdpSpConnectionMetadataUrlException(
 					StringBundler.concat(
 						"Unable to get metadata from ", metadataUrl, ": ",
-						e.getMessage()),
-					e);
+						exception.getMessage()),
+					exception);
 			}
 		}
 
@@ -185,12 +185,12 @@ public class SamlIdpSpConnectionLocalServiceImpl
 		try {
 			metadataXmlInputStream = _metadataUtil.getMetadata(metadataUrl);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			throw new SamlIdpSpConnectionMetadataUrlException(
 				StringBundler.concat(
 					"Unable to get metadata from ", metadataUrl, ": ",
-					e.getMessage()),
-				e);
+					exception.getMessage()),
+				exception);
 		}
 
 		String metadataXml = StringPool.BLANK;
@@ -263,12 +263,12 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			try {
 				metadataXmlInputStream = _metadataUtil.getMetadata(metadataUrl);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				throw new SamlIdpSpConnectionMetadataUrlException(
 					StringBundler.concat(
 						"Unable to get metadata from ", metadataUrl, ": ",
-						e.getMessage()),
-					e);
+						exception.getMessage()),
+					exception);
 			}
 		}
 
@@ -303,8 +303,8 @@ public class SamlIdpSpConnectionLocalServiceImpl
 			metadataXml = _metadataUtil.parseMetadataXml(
 				metadataXmlInputStream, samlSpEntityId);
 		}
-		catch (Exception e) {
-			throw new SamlIdpSpConnectionMetadataXmlException(e);
+		catch (Exception exception) {
+			throw new SamlIdpSpConnectionMetadataXmlException(exception);
 		}
 
 		if (Validator.isNull(metadataXml)) {

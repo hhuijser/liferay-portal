@@ -237,8 +237,8 @@ public class MailboxUtilTest {
 
 			Assert.fail();
 		}
-		catch (MailboxException me) {
-			Assert.assertSame(iOException, me.getCause());
+		catch (MailboxException mailboxException) {
+			Assert.assertSame(iOException, mailboxException.getCause());
 		}
 	}
 

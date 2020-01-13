@@ -76,8 +76,8 @@ public class EditFileShortcutMVCActionCommand extends BaseMVCActionCommand {
 				_deleteFileShortcut(actionRequest, true);
 			}
 		}
-		catch (NoSuchFileShortcutException | PrincipalException e) {
-			SessionErrors.add(actionRequest, e.getClass());
+		catch (NoSuchFileShortcutException | PrincipalException exception) {
+			SessionErrors.add(actionRequest, exception.getClass());
 
 			actionResponse.setRenderParameter(
 				"mvcPath", "/document_library/error.jsp");

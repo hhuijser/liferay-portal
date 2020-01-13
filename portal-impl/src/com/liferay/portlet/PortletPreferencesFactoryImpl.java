@@ -125,8 +125,8 @@ public class PortletPreferencesFactoryImpl
 				}
 			}
 		}
-		catch (XMLStreamException xmlse) {
-			throw new SystemException(xmlse);
+		catch (XMLStreamException xmlStreamException) {
+			throw new SystemException(xmlStreamException);
 		}
 		finally {
 			if (xmlEventReader != null) {
@@ -304,8 +304,8 @@ public class PortletPreferencesFactoryImpl
 				userId = GetterUtil.getLong(
 					Encryptor.decrypt(company.getKeyObj(), doAsUserId), userId);
 			}
-			catch (EncryptorException ee) {
-				_log.error("Unable to decrypt user ID", ee);
+			catch (EncryptorException encryptorException) {
+				_log.error("Unable to decrypt user ID", encryptorException);
 			}
 		}
 

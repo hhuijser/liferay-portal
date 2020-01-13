@@ -121,8 +121,8 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		try {
 			DirectServletRegistryUtil.clearServlets();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		try {
@@ -187,8 +187,8 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 		try {
 			Class.forName(SystemProperties.class.getName());
 		}
-		catch (ClassNotFoundException cnfe) {
-			throw new RuntimeException(cnfe);
+		catch (ClassNotFoundException classNotFoundException) {
+			throw new RuntimeException(classNotFoundException);
 		}
 
 		FieldInterceptionHelperUtil.initialize();
@@ -234,8 +234,8 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 			try {
 				Files.createDirectories(tempDirPath);
 			}
-			catch (IOException ioe) {
-				_log.error("Unable to create " + tempDirPath, ioe);
+			catch (IOException ioException) {
+				_log.error("Unable to create " + tempDirPath, ioException);
 			}
 		}
 
@@ -251,8 +251,8 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 				PortalApplicationContext.PARENT_APPLICATION_CONTEXT,
 				_arrayApplicationContext);
 		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
 		}
 
 		ClassLoader portalClassLoader = PortalClassLoaderUtil.getClassLoader();
@@ -376,8 +376,8 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 
 			filteredPropertyDescriptorsCache.clear();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 	}
 
@@ -397,8 +397,8 @@ public class PortalContextLoaderListener extends ContextLoaderListener {
 
 				closeable.close();
 			}
-			catch (IOException ioe) {
-				_log.error(ioe, ioe);
+			catch (IOException ioException) {
+				_log.error(ioException, ioException);
 			}
 		}
 	}

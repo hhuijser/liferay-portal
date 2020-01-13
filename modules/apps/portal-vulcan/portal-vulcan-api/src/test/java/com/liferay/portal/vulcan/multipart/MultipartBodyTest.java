@@ -178,8 +178,9 @@ public class MultipartBodyTest {
 
 			throw new AssertionError();
 		}
-		catch (Exception e) {
-			assertThat(e, is(instanceOf(UnrecognizedPropertyException.class)));
+		catch (Exception exception) {
+			assertThat(
+				exception, is(instanceOf(UnrecognizedPropertyException.class)));
 		}
 	}
 

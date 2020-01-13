@@ -106,16 +106,16 @@ public class Netlogon {
 
 			return null;
 		}
-		catch (NoSuchAlgorithmException nsae) {
+		catch (NoSuchAlgorithmException noSuchAlgorithmException) {
 			throw new NtlmLogonException(
 				"Unable to authenticate due to invalid encryption algorithm",
-				nsae);
+				noSuchAlgorithmException);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new NtlmLogonException(
 				"Unable to authenticate due to communication failure with " +
 					"server",
-				ioe);
+				ioException);
 		}
 		finally {
 			try {
@@ -123,8 +123,9 @@ public class Netlogon {
 					netlogonConnection.disconnect();
 				}
 			}
-			catch (Exception e) {
-				_log.error("Unable to disconnect Netlogon connection", e);
+			catch (Exception exception) {
+				_log.error(
+					"Unable to disconnect Netlogon connection", exception);
 			}
 		}
 	}

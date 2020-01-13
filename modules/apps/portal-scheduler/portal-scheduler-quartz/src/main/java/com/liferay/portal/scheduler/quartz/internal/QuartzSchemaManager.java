@@ -52,9 +52,9 @@ public class QuartzSchemaManager {
 				return;
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isInfoEnabled()) {
-				_log.info(e, e);
+				_log.info(exception, exception);
 			}
 		}
 
@@ -92,10 +92,10 @@ public class QuartzSchemaManager {
 
 			con.commit();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			con.rollback();
 
-			throw e;
+			throw exception;
 		}
 		finally {
 			con.setAutoCommit(autoCommit);

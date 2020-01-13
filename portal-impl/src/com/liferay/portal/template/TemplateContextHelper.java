@@ -334,8 +334,8 @@ public class TemplateContextHelper {
 
 					contextObjects.put("navItems", navItems);
 				}
-				catch (PortalException pe) {
-					_log.error(pe, pe);
+				catch (PortalException portalException) {
+					_log.error(portalException, portalException);
 				}
 			}
 
@@ -408,8 +408,8 @@ public class TemplateContextHelper {
 				"auditMessageFactoryUtil",
 				AuditMessageFactoryUtil.getAuditMessageFactory());
 		}
-		catch (SecurityException se) {
-			_log.error(se, se);
+		catch (SecurityException securityException) {
+			_log.error(securityException, securityException);
 		}
 
 		// Audit router util
@@ -833,8 +833,8 @@ public class TemplateContextHelper {
 				"dateFormats",
 				FastDateFormatFactoryUtil.getFastDateFormatFactory());
 		}
-		catch (SecurityException se) {
-			_log.error(se, se);
+		catch (SecurityException securityException) {
+			_log.error(securityException, securityException);
 		}
 
 		try {

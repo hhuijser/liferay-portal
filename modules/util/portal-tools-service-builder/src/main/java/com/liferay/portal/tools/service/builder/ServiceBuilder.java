@@ -950,8 +950,8 @@ public class ServiceBuilder {
 				_deleteSpringLegacyXml();
 			}
 		}
-		catch (FileNotFoundException fnfe) {
-			System.out.println(fnfe.getMessage());
+		catch (FileNotFoundException fileNotFoundException) {
+			System.out.println(fileNotFoundException.getMessage());
 		}
 	}
 
@@ -1164,12 +1164,12 @@ public class ServiceBuilder {
 				refContent = StringUtil.read(
 					classLoader, refPackageDirName + "/service.xml");
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				throw new ServiceBuilderException(
 					StringBundler.concat(
 						"Unable to find ", refEntity, " in ",
 						ListUtil.toString(_entities, Entity.NAME_ACCESSOR)),
-					ioe);
+					ioException);
 			}
 
 			_write(refFile, refContent);
@@ -1214,7 +1214,7 @@ public class ServiceBuilder {
 
 			return getEntity(name);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return null;
 		}
 	}
@@ -1227,7 +1227,7 @@ public class ServiceBuilder {
 
 			return getEntity(name);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return null;
 		}
 	}
@@ -6285,7 +6285,7 @@ public class ServiceBuilder {
 
 					referenceEntities.add(entity);
 				}
-				catch (RuntimeException re) {
+				catch (RuntimeException runtimeException) {
 					unresolvedReferenceEntityNames.add(referenceEntityName);
 				}
 			}

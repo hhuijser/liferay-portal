@@ -2178,8 +2178,8 @@ public class StringUtil {
 		try (InputStream inputStream = clazz.getResourceAsStream(name)) {
 			return read(inputStream);
 		}
-		catch (IOException ioe) {
-			return ReflectionUtil.throwException(ioe);
+		catch (IOException ioException) {
+			return ReflectionUtil.throwException(ioException);
 		}
 	}
 

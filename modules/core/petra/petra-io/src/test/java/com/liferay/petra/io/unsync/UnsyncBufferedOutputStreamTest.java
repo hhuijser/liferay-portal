@@ -126,8 +126,9 @@ public class UnsyncBufferedOutputStreamTest extends BaseOutputStreamTestCase {
 		try {
 			new UnsyncBufferedOutputStream(byteArrayOutputStream, 0);
 		}
-		catch (IllegalArgumentException iae) {
-			Assert.assertEquals("Size is less than 1", iae.getMessage());
+		catch (IllegalArgumentException illegalArgumentException) {
+			Assert.assertEquals(
+				"Size is less than 1", illegalArgumentException.getMessage());
 		}
 
 		try {

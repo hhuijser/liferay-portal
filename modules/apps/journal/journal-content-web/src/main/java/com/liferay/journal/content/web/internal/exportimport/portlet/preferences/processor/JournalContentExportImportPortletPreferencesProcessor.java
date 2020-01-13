@@ -97,8 +97,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.addPortletPermissions(
 				JournalConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(PortletDataException.EXPORT_PORTLET_PERMISSIONS);
@@ -236,8 +237,8 @@ public class JournalContentExportImportPortletPreferencesProcessor
 					portletDataContext, article, ddmTemplate,
 					PortletDataContext.REFERENCE_TYPE_STRONG);
 			}
-			catch (PortalException | ReadOnlyException e) {
-				PortletDataException pde = new PortletDataException(e);
+			catch (PortalException | ReadOnlyException exception) {
+				PortletDataException pde = new PortletDataException(exception);
 
 				pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 				pde.setType(PortletDataException.EXPORT_REFERENCED_TEMPLATE);
@@ -261,8 +262,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.importPortletPermissions(
 				JournalConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(PortletDataException.IMPORT_PORTLET_PERMISSIONS);
@@ -394,8 +396,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 
 			throw pde;
 		}
-		catch (ReadOnlyException roe) {
-			PortletDataException pde = new PortletDataException(roe);
+		catch (ReadOnlyException readOnlyException) {
+			PortletDataException pde = new PortletDataException(
+				readOnlyException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(PortletDataException.UPDATE_PORTLET_PREFERENCES);

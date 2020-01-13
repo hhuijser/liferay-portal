@@ -39,7 +39,7 @@ public class OutputBlobTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		try {
@@ -71,7 +71,7 @@ public class OutputBlobTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 	}
 
@@ -87,7 +87,7 @@ public class OutputBlobTest {
 
 			Assert.fail();
 		}
-		catch (SQLException sqle) {
+		catch (SQLException sqlException) {
 		}
 
 		// pos - 1 > _length
@@ -146,7 +146,7 @@ public class OutputBlobTest {
 
 			Assert.fail();
 		}
-		catch (SQLException sqle) {
+		catch (SQLException sqlException) {
 		}
 
 		// length < 0
@@ -194,7 +194,7 @@ public class OutputBlobTest {
 
 			Assert.fail();
 		}
-		catch (UnsupportedOperationException uoe) {
+		catch (UnsupportedOperationException unsupportedOperationException) {
 		}
 
 		try {

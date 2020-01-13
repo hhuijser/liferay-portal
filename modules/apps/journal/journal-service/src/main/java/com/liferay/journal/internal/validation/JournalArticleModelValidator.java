@@ -271,13 +271,13 @@ public class JournalArticleModelValidator
 		try {
 			SAXReaderUtil.read(content);
 		}
-		catch (DocumentException de) {
+		catch (DocumentException documentException) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Invalid content:\n" + content);
 			}
 
 			throw new ArticleContentException(
-				"Unable to read content with an XML parser", de);
+				"Unable to read content with an XML parser", documentException);
 		}
 	}
 
@@ -373,7 +373,7 @@ public class JournalArticleModelValidator
 				try {
 					smallImageFile = FileUtil.createTempFile(smallImageBytes);
 				}
-				catch (IOException ioe) {
+				catch (IOException ioException) {
 					smallImageBytes = null;
 				}
 			}
@@ -395,12 +395,12 @@ public class JournalArticleModelValidator
 				smallImage, smallImageURL, smallImageFile, smallImageBytes,
 				serviceContext);
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			ModelValidationResults.FailureBuilder failureBuilder =
 				ModelValidationResults.failure();
 
 			return failureBuilder.exceptionFailure(
-				pe.getMessage(), pe
+				portalException.getMessage(), portalException
 			).getResults();
 		}
 
@@ -410,15 +410,20 @@ public class JournalArticleModelValidator
 				article.getLayoutUuid(), smallImage, smallImageURL,
 				smallImageBytes, article.getSmallImageId(), content);
 		}
-		catch (ExportImportContentValidationException eicve) {
-			eicve.setStagedModelClassName(JournalArticle.class.getName());
-			eicve.setStagedModelPrimaryKeyObj(article.getArticleId());
+		catch (ExportImportContentValidationException
+					exportImportContentValidationException) {
+
+			exportImportContentValidationException.setStagedModelClassName(
+				JournalArticle.class.getName());
+			exportImportContentValidationException.setStagedModelPrimaryKeyObj(
+				article.getArticleId());
 
 			ModelValidationResults.FailureBuilder failureBuilder =
 				ModelValidationResults.failure();
 
 			return failureBuilder.exceptionFailure(
-				eicve.getMessage(), eicve
+				exportImportContentValidationException.getMessage(),
+				exportImportContentValidationException
 			).getResults();
 		}
 		catch (PortalException pe) {

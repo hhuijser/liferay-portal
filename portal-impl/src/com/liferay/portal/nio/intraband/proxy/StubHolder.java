@@ -56,9 +56,10 @@ public class StubHolder<T> {
 			try {
 				startupFinished = future.get();
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
-					_log.warn("Unable to detect SPI's startup status", e);
+					_log.warn(
+						"Unable to detect SPI's startup status", exception);
 				}
 			}
 

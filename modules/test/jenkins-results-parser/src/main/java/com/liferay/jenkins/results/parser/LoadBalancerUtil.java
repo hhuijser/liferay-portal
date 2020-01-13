@@ -167,7 +167,7 @@ public class LoadBalancerUtil {
 					invokedBatchSize = Integer.parseInt(
 						properties.getProperty("invoked.job.batch.size"));
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 					invokedBatchSize = 1;
 				}
 
@@ -325,8 +325,8 @@ public class LoadBalancerUtil {
 		try {
 			executorService.awaitTermination(10, TimeUnit.SECONDS);
 		}
-		catch (InterruptedException ie) {
-			throw new RuntimeException(ie);
+		catch (InterruptedException interruptedException) {
+			throw new RuntimeException(interruptedException);
 		}
 
 		List<JenkinsMaster> unavailableJenkinsMasters = new ArrayList<>(

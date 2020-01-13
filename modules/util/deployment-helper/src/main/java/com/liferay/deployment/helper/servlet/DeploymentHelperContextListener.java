@@ -116,12 +116,12 @@ public class DeploymentHelperContextListener implements ServletContextListener {
 						"Successfully copied ", deploymentFileName, " to ",
 						file.getAbsolutePath()));
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				servletContext.log(
 					StringBundler.concat(
 						"Unable to process ", deploymentFileName, ":\n",
-						e.getMessage()),
-					e);
+						exception.getMessage()),
+					exception);
 			}
 		}
 
@@ -163,8 +163,8 @@ public class DeploymentHelperContextListener implements ServletContextListener {
 					outputStream.flush();
 				}
 			}
-			catch (Exception e) {
-				servletContext.log(e.getMessage(), e);
+			catch (Exception exception) {
+				servletContext.log(exception.getMessage(), exception);
 			}
 
 			try {

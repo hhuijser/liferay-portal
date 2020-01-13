@@ -179,7 +179,9 @@ public class FileHelperUtil {
 
 								return FileVisitResult.CONTINUE;
 							}
-							catch (AtomicMoveNotSupportedException amnse) {
+							catch (AtomicMoveNotSupportedException
+										atomicMoveNotSupportedException) {
+
 								atomicMove.set(false);
 							}
 						}
@@ -248,10 +250,10 @@ public class FileHelperUtil {
 				_log.debug(sb.toString());
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			delete(destPath);
 
-			throw ioe;
+			throw ioException;
 		}
 
 		return destPath;
@@ -341,10 +343,10 @@ public class FileHelperUtil {
 				_log.debug(sb.toString());
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			Files.delete(zipPath);
 
-			throw ioe;
+			throw ioException;
 		}
 
 		return zipPath;

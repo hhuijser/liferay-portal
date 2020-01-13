@@ -98,7 +98,7 @@ public class MailingListMessageListener extends BaseMessageListener {
 					folder.setFlags(
 						messages, new Flags(Flags.Flag.DELETED), true);
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 				}
 
 				try {
@@ -112,7 +112,7 @@ public class MailingListMessageListener extends BaseMessageListener {
 				try {
 					store.close();
 				}
-				catch (MessagingException me) {
+				catch (MessagingException messagingException) {
 				}
 			}
 		}
@@ -266,9 +266,9 @@ public class MailingListMessageListener extends BaseMessageListener {
 
 				try (InputStream inputStream = inputStreamOVP.getValue()) {
 				}
-				catch (IOException ioe) {
+				catch (IOException ioException) {
 					if (_log.isWarnEnabled()) {
-						_log.warn(ioe, ioe);
+						_log.warn(ioException, ioException);
 					}
 				}
 			}

@@ -45,8 +45,8 @@ public abstract class ExtRepositoryModelAdapter<T>
 		try {
 			return (T)super.clone();
 		}
-		catch (CloneNotSupportedException cnse) {
-			throw new RuntimeException(cnse);
+		catch (CloneNotSupportedException cloneNotSupportedException) {
+			throw new RuntimeException(cloneNotSupportedException);
 		}
 	}
 
@@ -140,7 +140,7 @@ public abstract class ExtRepositoryModelAdapter<T>
 		try {
 			return user.getUserUuid();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return StringPool.BLANK;
@@ -258,7 +258,7 @@ public abstract class ExtRepositoryModelAdapter<T>
 						getCompanyId(), liferayLogin);
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 

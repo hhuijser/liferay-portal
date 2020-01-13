@@ -53,13 +53,13 @@ public class EditEntryMVCRenderCommand implements MVCRenderCommand {
 			renderRequest.setAttribute(
 				AnnouncementsWebKeys.ANNOUNCEMENTS_ENTRY, entry);
 		}
-		catch (NoSuchEntryException | PrincipalException e) {
-			SessionErrors.add(renderRequest, e.getClass());
+		catch (NoSuchEntryException | PrincipalException exception) {
+			SessionErrors.add(renderRequest, exception.getClass());
 
 			return "/announcements/error.jsp";
 		}
-		catch (RuntimeException re) {
-			throw re;
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
 		}
 		catch (Exception e) {
 			throw new PortletException(e);

@@ -134,7 +134,7 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			Assert.fail();
 		}
-		catch (LARTypeException larte) {
+		catch (LARTypeException larTypeException) {
 		}
 		finally {
 			importedGroup = originalImportedGroup;
@@ -178,7 +178,7 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			Assert.fail();
 		}
-		catch (LARTypeException larte) {
+		catch (LARTypeException larTypeException) {
 		}
 
 		// Import a layout prototype to a layout set pototype
@@ -236,7 +236,7 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			Assert.fail();
 		}
-		catch (LARTypeException larte) {
+		catch (LARTypeException larTypeException) {
 		}
 
 		// Import a layout set to a layout set prototype
@@ -281,7 +281,7 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 				Assert.fail();
 			}
-			catch (LARTypeException larte) {
+			catch (LARTypeException larTypeException) {
 			}
 
 			// Import a layout set prototype to a layout prototyope
@@ -468,7 +468,7 @@ public class LayoutExportImportTest extends BaseExportImportTestCase {
 
 			Assert.assertFalse(expectFailure);
 		}
-		catch (LocaleException le) {
+		catch (LocaleException localeException) {
 			Assert.assertTrue(expectFailure);
 		}
 	}

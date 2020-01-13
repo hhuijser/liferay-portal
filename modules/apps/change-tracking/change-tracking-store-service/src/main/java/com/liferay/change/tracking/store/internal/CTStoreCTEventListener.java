@@ -89,8 +89,8 @@ public class CTStoreCTEventListener implements CTEventListener {
 						ctsContent.getPath(), ctsContent.getVersion());
 				}
 			}
-			catch (PortalException pe) {
-				throw new CTEventException(pe);
+			catch (PortalException portalException) {
+				throw new CTEventException(portalException);
 			}
 		}
 

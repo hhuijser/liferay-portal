@@ -629,7 +629,7 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 					resourcePortlet = PortletLocalServiceUtil.getPortletById(
 						themeDisplay.getCompanyId(), portletResource);
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 				}
 
 				if (resourcePortlet != null) {
@@ -1069,8 +1069,9 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 			return RoleLocalServiceUtil.hasUserRole(
 				_remoteUserId, companyId, role, true);
 		}
-		catch (Exception e) {
-			_log.error("Unable to check if a user is in role " + role, e);
+		catch (Exception exception) {
+			_log.error(
+				"Unable to check if a user is in role " + role, exception);
 		}
 
 		return _httpServletRequest.isUserInRole(role);

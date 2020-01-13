@@ -79,7 +79,7 @@ public class ArchetyperArchetypeArtifactManager
 					break;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 
@@ -88,7 +88,7 @@ public class ArchetyperArchetypeArtifactManager
 				archetypeFile = ProjectTemplatesUtil.getArchetypeFile(
 					artifactId);
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 			}
 		}
 
@@ -108,8 +108,8 @@ public class ArchetyperArchetypeArtifactManager
 
 			return new URLClassLoader(new URL[] {uri.toURL()}, null);
 		}
-		catch (MalformedURLException murle) {
-			throw new UnknownArchetype(murle);
+		catch (MalformedURLException malformedURLException) {
+			throw new UnknownArchetype(malformedURLException);
 		}
 	}
 

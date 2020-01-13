@@ -145,8 +145,8 @@ public class UnsyncBufferedWriterTest extends BaseWriterTestCase {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
-			Assert.assertEquals("Writer is null", ioe.getMessage());
+		catch (IOException ioException) {
+			Assert.assertEquals("Writer is null", ioException.getMessage());
 		}
 
 		try {
@@ -205,8 +205,9 @@ public class UnsyncBufferedWriterTest extends BaseWriterTestCase {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
-			Assert.assertEquals("Size is less than 1", iae.getMessage());
+		catch (IllegalArgumentException illegalArgumentException) {
+			Assert.assertEquals(
+				"Size is less than 1", illegalArgumentException.getMessage());
 		}
 	}
 

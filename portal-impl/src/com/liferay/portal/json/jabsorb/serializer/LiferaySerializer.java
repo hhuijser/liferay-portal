@@ -54,7 +54,7 @@ public class LiferaySerializer extends AbstractSerializer {
 		try {
 			constructor = clazz.getConstructor();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		if (Serializable.class.isAssignableFrom(clazz) &&
@@ -97,8 +97,9 @@ public class LiferaySerializer extends AbstractSerializer {
 					jsonObject.put("contextName", contextName);
 				}
 			}
-			catch (Exception e) {
-				throw new MarshallException("Unable to put javaClass", e);
+			catch (Exception exception) {
+				throw new MarshallException(
+					"Unable to put javaClass", exception);
 			}
 		}
 
@@ -193,8 +194,8 @@ public class LiferaySerializer extends AbstractSerializer {
 		try {
 			javaClassName = jsonObject.getString("javaClass");
 		}
-		catch (Exception e) {
-			throw new UnmarshallException("Unable to get javaClass", e);
+		catch (Exception exception) {
+			throw new UnmarshallException("Unable to get javaClass", exception);
 		}
 
 		if (javaClassName == null) {
@@ -287,8 +288,8 @@ public class LiferaySerializer extends AbstractSerializer {
 		try {
 			javaClassName = jsonObject.getString("javaClass");
 		}
-		catch (Exception e) {
-			throw new UnmarshallException("Unable to get javaClass", e);
+		catch (Exception exception) {
+			throw new UnmarshallException("Unable to get javaClass", exception);
 		}
 
 		if (javaClassName == null) {

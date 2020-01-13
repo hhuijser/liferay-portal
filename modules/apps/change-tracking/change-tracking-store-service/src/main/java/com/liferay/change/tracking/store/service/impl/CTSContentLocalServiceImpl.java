@@ -209,10 +209,11 @@ public class CTSContentLocalServiceImpl extends CTSContentLocalServiceBaseImpl {
 			try {
 				return new OutputBlob(inputStream, fileChannel.size());
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
-						"Unable to detect file size from file channel", ioe);
+						"Unable to detect file size from file channel",
+						ioException);
 				}
 			}
 		}

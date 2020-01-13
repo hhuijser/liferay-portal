@@ -220,10 +220,10 @@ public abstract class BaseCORSClientTestCase {
 
 				_autoCloseables.add(configuration::delete);
 			}
-			catch (IOException ioe) {
-				throw new RuntimeException(ioe);
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
-			catch (InterruptedException ie) {
+			catch (InterruptedException interruptedException) {
 				try {
 					configuration.delete();
 				}
@@ -231,7 +231,7 @@ public abstract class BaseCORSClientTestCase {
 					throw new RuntimeException(ioe);
 				}
 
-				throw new RuntimeException(ie);
+				throw new RuntimeException(interruptedException);
 			}
 			finally {
 				_bundleContext.ungetService(serviceReference);

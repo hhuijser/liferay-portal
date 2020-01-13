@@ -81,7 +81,7 @@ public class ComponentExecutorFactoryBundleActivator
 		try {
 			_serviceRegistration.unregister();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 
 			// Concurrent unregister, no need to do anything.
 

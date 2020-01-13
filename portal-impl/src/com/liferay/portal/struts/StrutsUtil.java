@@ -63,14 +63,14 @@ public class StrutsUtil {
 				requestDispatcher.forward(
 					httpServletRequest, httpServletResponse);
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				if (_log.isWarnEnabled()) {
-					_log.warn(ioe, ioe);
+					_log.warn(ioException, ioException);
 				}
 			}
-			catch (ServletException se1) {
+			catch (ServletException servletException) {
 				httpServletRequest.setAttribute(
-					PageContext.EXCEPTION, se1.getRootCause());
+					PageContext.EXCEPTION, servletException.getRootCause());
 
 				String errorPath = TEXT_HTML_DIR + "/common/error.jsp";
 

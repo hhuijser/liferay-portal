@@ -58,9 +58,11 @@ public class TrashedModelDocumentContributor implements DocumentContributor {
 		try {
 			trashEntry = trashedModel.getTrashEntry();
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to get trash entry for " + trashedModel, pe);
+				_log.debug(
+					"Unable to get trash entry for " + trashedModel,
+					portalException);
 			}
 		}
 

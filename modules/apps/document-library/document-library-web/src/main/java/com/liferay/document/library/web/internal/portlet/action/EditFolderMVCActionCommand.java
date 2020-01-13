@@ -114,8 +114,8 @@ public class EditFolderMVCActionCommand extends BaseMVCActionCommand {
 					actionRequest, portletResource + "requestProcessed");
 			}
 		}
-		catch (NoSuchFolderException | PrincipalException e) {
-			SessionErrors.add(actionRequest, e.getClass());
+		catch (NoSuchFolderException | PrincipalException exception) {
+			SessionErrors.add(actionRequest, exception.getClass());
 
 			actionResponse.setRenderParameter(
 				"mvcPath", "/document_library/error.jsp");

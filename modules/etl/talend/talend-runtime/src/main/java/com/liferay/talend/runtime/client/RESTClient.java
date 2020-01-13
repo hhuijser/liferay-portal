@@ -307,7 +307,7 @@ public class RESTClient {
 		try {
 			return new URI(_getTarget());
 		}
-		catch (URISyntaxException urise) {
+		catch (URISyntaxException uriSyntaxException) {
 			_logger.error(
 				"Unable to parse {} as a URI reference", _getTarget());
 		}
@@ -356,10 +356,10 @@ public class RESTClient {
 
 				currentResponse = builder.get();
 			}
-			catch (URISyntaxException urise) {
+			catch (URISyntaxException uriSyntaxException) {
 				throw new ConnectionClientException(
 					"Unable to redirect to location " + location,
-					response.getStatus(), urise);
+					response.getStatus(), uriSyntaxException);
 			}
 		}
 

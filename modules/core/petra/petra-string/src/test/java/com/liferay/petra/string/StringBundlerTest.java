@@ -598,7 +598,7 @@ public class StringBundlerTest {
 
 			Assert.fail();
 		}
-		catch (ArrayIndexOutOfBoundsException aioobe) {
+		catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
 		}
 
 		// New index equals current index
@@ -671,9 +671,10 @@ public class StringBundlerTest {
 
 			Assert.fail();
 		}
-		catch (ArrayIndexOutOfBoundsException aioobe) {
+		catch (ArrayIndexOutOfBoundsException arrayIndexOutOfBoundsException) {
 			Assert.assertEquals(
-				"Array index out of range: -1", aioobe.getMessage());
+				"Array index out of range: -1",
+				arrayIndexOutOfBoundsException.getMessage());
 		}
 
 		try {

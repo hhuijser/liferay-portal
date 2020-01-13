@@ -209,9 +209,9 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			}
 		}
 		catch (NoSuchMessageException | PrincipalException |
-			   RequiredMessageException e) {
+			   RequiredMessageException exception) {
 
-			SessionErrors.add(actionRequest, e.getClass());
+			SessionErrors.add(actionRequest, exception.getClass());
 
 			actionResponse.setRenderParameter(
 				"mvcPath", "/message_boards/error.jsp");
@@ -260,8 +260,8 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			return _configurationProvider.getSystemConfiguration(
 				CaptchaConfiguration.class);
 		}
-		catch (Exception e) {
-			throw new CaptchaConfigurationException(e);
+		catch (Exception exception) {
+			throw new CaptchaConfigurationException(exception);
 		}
 	}
 
@@ -530,9 +530,9 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 
 				try (InputStream inputStream = inputStreamOVP.getValue()) {
 				}
-				catch (IOException ioe) {
+				catch (IOException ioException) {
 					if (_log.isWarnEnabled()) {
-						_log.warn(ioe, ioe);
+						_log.warn(ioException, ioException);
 					}
 				}
 			}

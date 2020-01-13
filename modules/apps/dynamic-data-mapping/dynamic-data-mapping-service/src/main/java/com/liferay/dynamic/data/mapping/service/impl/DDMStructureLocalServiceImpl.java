@@ -1736,7 +1736,7 @@ public class DDMStructureLocalServiceImpl
 
 				return getDDMDataProviderInstanceIds(jsonArray);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 
@@ -1963,23 +1963,25 @@ public class DDMStructureLocalServiceImpl
 				validate(parentDDMForm, ddmForm);
 			}
 		}
-		catch (DDMFormValidationException ddmfve) {
-			throw ddmfve;
+		catch (DDMFormValidationException ddmFormValidationException) {
+			throw ddmFormValidationException;
 		}
-		catch (LocaleException le) {
-			throw le;
+		catch (LocaleException localeException) {
+			throw localeException;
 		}
-		catch (StructureDuplicateElementException sdee) {
-			throw sdee;
+		catch (StructureDuplicateElementException
+					structureDuplicateElementException) {
+
+			throw structureDuplicateElementException;
 		}
-		catch (StructureNameException sne) {
-			throw sne;
+		catch (StructureNameException structureNameException) {
+			throw structureNameException;
 		}
-		catch (StructureDefinitionException sde) {
-			throw sde;
+		catch (StructureDefinitionException structureDefinitionException) {
+			throw structureDefinitionException;
 		}
-		catch (Exception e) {
-			throw new StructureDefinitionException(e);
+		catch (Exception exception) {
+			throw new StructureDefinitionException(exception);
 		}
 	}
 

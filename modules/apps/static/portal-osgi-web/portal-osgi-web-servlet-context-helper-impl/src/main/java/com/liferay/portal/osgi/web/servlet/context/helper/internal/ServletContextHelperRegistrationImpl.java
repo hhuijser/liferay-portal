@@ -108,10 +108,10 @@ public class ServletContextHelperRegistrationImpl
 			try {
 				webXMLDefinition = webXMLDefinitionLoader.loadWebXML();
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				webXMLDefinition = new WebXMLDefinition();
 
-				webXMLDefinition.setException(e);
+				webXMLDefinition.setException(exception);
 			}
 
 			_webXMLDefinition = webXMLDefinition;
@@ -148,7 +148,7 @@ public class ServletContextHelperRegistrationImpl
 		try {
 			_servletContextRegistration.unregister();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 
 			// Ignore since the service has been unregistered
 
@@ -269,8 +269,8 @@ public class ServletContextHelperRegistrationImpl
 					mBeanServer.unregisterMBean(objectName);
 				}
 			}
-			catch (JMException jme) {
-				_log.error(jme, jme);
+			catch (JMException jmException) {
+				_log.error(jmException, jmException);
 			}
 		}
 	}
@@ -492,7 +492,7 @@ public class ServletContextHelperRegistrationImpl
 
 				properties.load(inputStream);
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 			}
 
 			if (_bundle.getLastModified() == GetterUtil.getLong(
@@ -507,7 +507,7 @@ public class ServletContextHelperRegistrationImpl
 					try {
 						classes.add(classLoader.loadClass(className));
 					}
-					catch (ClassNotFoundException cnfe) {
+					catch (ClassNotFoundException classNotFoundException) {
 						failed = true;
 
 						break;
@@ -561,7 +561,7 @@ public class ServletContextHelperRegistrationImpl
 			try {
 				classes.add(future.get());
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 

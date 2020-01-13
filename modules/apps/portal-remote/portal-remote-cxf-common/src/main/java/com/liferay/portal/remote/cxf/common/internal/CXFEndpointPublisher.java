@@ -275,7 +275,7 @@ public class CXFEndpointPublisher {
 			try {
 				_busServiceRegistration.unregister();
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				if (_log.isWarnEnabled()) {
 					_log.warn(
 						"Unable to unregister CXF bus service registration " +
@@ -370,8 +370,8 @@ public class CXFEndpointPublisher {
 
 					chain.doFilter(servletRequest, servletResponse);
 				}
-				catch (Exception e) {
-					throw new ServletException(e);
+				catch (Exception exception) {
+					throw new ServletException(exception);
 				}
 				finally {
 					AccessControlThreadLocal.setRemoteAccess(remoteAccess);

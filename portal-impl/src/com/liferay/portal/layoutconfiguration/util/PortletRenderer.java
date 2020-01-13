@@ -211,8 +211,8 @@ public class PortletRenderer {
 
 			return bufferCacheServletResponse.getStringBundler();
 		}
-		catch (IOException ioe) {
-			throw new PortletContainerException(ioe);
+		catch (IOException ioException) {
+			throw new PortletContainerException(ioException);
 		}
 		finally {
 			httpServletRequest.setAttribute(

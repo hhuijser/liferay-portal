@@ -159,12 +159,12 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
 				StringBundler.concat(
 					"Field ", fields[0], " is expected to be of type ",
 					Object.class, " and not static"),
-				iae.getMessage());
+				illegalArgumentException.getMessage());
 		}
 
 		try {
@@ -261,12 +261,12 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
 				"The @Id annotated method " +
 					TestExtractMethodsClass1.class.getMethod("getId") +
 						" must not be static",
-				iae.getMessage());
+				illegalArgumentException.getMessage());
 		}
 
 		try {
@@ -607,8 +607,8 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (RuntimeException re) {
-			Throwable throwable = re.getCause();
+		catch (RuntimeException runtimeException) {
+			Throwable throwable = runtimeException.getCause();
 
 			throwable = throwable.getCause();
 
@@ -780,8 +780,9 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
-			Assert.assertEquals("Target locator is null", npe.getMessage());
+		catch (NullPointerException nullPointerException) {
+			Assert.assertEquals(
+				"Target locator is null", nullPointerException.getMessage());
 		}
 
 		TestGenerateTargetLocator testGenerateTargetLocator =
@@ -866,8 +867,9 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (NullPointerException npe) {
-			Assert.assertEquals("Id is null", npe.getMessage());
+		catch (NullPointerException nullPointerException) {
+			Assert.assertEquals(
+				"Id is null", nullPointerException.getMessage());
 		}
 
 		try {
@@ -1092,8 +1094,8 @@ public class IntrabandProxyUtilTest {
 			try {
 				return deserializer.readObject();
 			}
-			catch (ClassNotFoundException cnfe) {
-				throw new RuntimeException(cnfe);
+			catch (ClassNotFoundException classNotFoundException) {
+				throw new RuntimeException(classNotFoundException);
 			}
 		}
 	}
@@ -2083,8 +2085,8 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (RuntimeException re) {
-			Throwable throwable = re.getCause();
+		catch (RuntimeException runtimeException) {
+			Throwable throwable = runtimeException.getCause();
 
 			Assert.assertSame(
 				InvocationTargetException.class, throwable.getClass());
@@ -2109,9 +2111,10 @@ public class IntrabandProxyUtilTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 			Assert.assertEquals(
-				Id.class + " is an annotation", iae.getMessage());
+				Id.class + " is an annotation",
+				illegalArgumentException.getMessage());
 		}
 
 		try {
@@ -2463,8 +2466,8 @@ public class IntrabandProxyUtilTest {
 		try {
 			classReader = new ClassReader(is);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		ClassNode classNode = new ClassNode();

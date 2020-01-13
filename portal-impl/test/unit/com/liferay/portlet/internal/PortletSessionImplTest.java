@@ -161,7 +161,7 @@ public class PortletSessionImplTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		try {
@@ -278,7 +278,7 @@ public class PortletSessionImplTest {
 
 			Assert.fail();
 		}
-		catch (IllegalStateException ise) {
+		catch (IllegalStateException illegalStateException) {
 		}
 
 		try {
@@ -397,7 +397,7 @@ public class PortletSessionImplTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		portletSessionImpl.removeAttribute(_KEY_1);
@@ -515,7 +515,7 @@ public class PortletSessionImplTest {
 
 			Assert.fail();
 		}
-		catch (IllegalArgumentException iae) {
+		catch (IllegalArgumentException illegalArgumentException) {
 		}
 
 		String key7 = "key7";

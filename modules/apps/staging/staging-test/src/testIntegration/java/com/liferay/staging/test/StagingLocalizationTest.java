@@ -280,7 +280,7 @@ public class StagingLocalizationTest {
 			try {
 				StagingLocalServiceUtil.disableStaging(group, serviceContext);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 
 			try {

@@ -169,11 +169,11 @@ public class LiferayResourceManager extends ResourceManagerImpl {
 
 				return true;
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				ParseErrorException pee = new ParseErrorException(
 					"Unable to parse Velocity template");
 
-				pee.addSuppressed(e);
+				pee.addSuppressed(exception);
 
 				throw pee;
 			}

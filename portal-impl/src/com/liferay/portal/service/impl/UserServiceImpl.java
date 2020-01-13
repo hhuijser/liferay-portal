@@ -490,9 +490,11 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		try {
 			creatorUserId = getGuestOrUserId();
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to get guest or current user ID", pe);
+				_log.warn(
+					"Unable to get guest or current user ID",
+					principalException);
 			}
 		}
 
@@ -1658,9 +1660,11 @@ public class UserServiceImpl extends UserServiceBaseImpl {
 		try {
 			creatorUserId = getGuestOrUserId();
 		}
-		catch (PrincipalException pe) {
+		catch (PrincipalException principalException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn("Unable to get guest or current user ID", pe);
+				_log.warn(
+					"Unable to get guest or current user ID",
+					principalException);
 			}
 		}
 

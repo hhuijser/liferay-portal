@@ -130,8 +130,8 @@ public class DDLPortlet extends MVCPortlet {
 				_log.debug(e, e);
 			}
 		}
-		catch (PortalException pe) {
-			SessionErrors.add(renderRequest, pe.getClass());
+		catch (PortalException portalException) {
+			SessionErrors.add(renderRequest, portalException.getClass());
 		}
 
 		super.render(renderRequest, renderResponse);

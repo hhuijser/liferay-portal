@@ -119,8 +119,9 @@ public class EditFileEntryTypeMVCActionCommand extends BaseMVCActionCommand {
 
 			SessionErrors.add(actionRequest, e.getClass());
 		}
-		catch (RequiredFileEntryTypeException rfete) {
-			SessionErrors.add(actionRequest, rfete.getClass());
+		catch (RequiredFileEntryTypeException requiredFileEntryTypeException) {
+			SessionErrors.add(
+				actionRequest, requiredFileEntryTypeException.getClass());
 
 			actionResponse.setRenderParameter("navigation", "file_entry_types");
 		}

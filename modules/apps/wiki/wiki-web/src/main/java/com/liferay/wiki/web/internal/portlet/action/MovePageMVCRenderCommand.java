@@ -70,8 +70,8 @@ public class MovePageMVCRenderCommand implements MVCRenderCommand {
 
 			return "/wiki/error.jsp";
 		}
-		catch (Exception e) {
-			throw new PortletException(e);
+		catch (Exception exception) {
+			throw new PortletException(exception);
 		}
 
 		return "/wiki/move_page.jsp";

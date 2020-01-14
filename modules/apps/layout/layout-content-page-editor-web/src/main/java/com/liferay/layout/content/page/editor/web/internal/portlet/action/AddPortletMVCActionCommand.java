@@ -217,9 +217,9 @@ public class AddPortletMVCActionCommand extends BaseMVCActionCommand {
 
 			SessionMessages.add(actionRequest, "fragmentEntryLinkAdded");
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(pe, pe);
+				_log.warn(portalException, portalException);
 			}
 
 			String errorMessage = "an-unexpected-error-occurred";

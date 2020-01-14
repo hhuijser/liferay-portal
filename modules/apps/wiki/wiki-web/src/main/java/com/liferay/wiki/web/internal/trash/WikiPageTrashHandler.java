@@ -146,7 +146,7 @@ public class WikiPageTrashHandler extends BaseWikiTrashHandler {
 					return parentPage;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 

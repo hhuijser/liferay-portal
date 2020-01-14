@@ -233,14 +233,14 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 		catch (AssetCategoryException | AssetTagException e) {
 			SessionErrors.add(actionRequest, e.getClass(), e);
 		}
-		catch (Exception e) {
-			Throwable cause = e.getCause();
+		catch (Exception exception) {
+			Throwable cause = exception.getCause();
 
 			if (cause instanceof SanitizerException) {
 				SessionErrors.add(actionRequest, SanitizerException.class);
 			}
 			else {
-				throw e;
+				throw exception;
 			}
 		}
 		catch (Throwable t) {
@@ -260,8 +260,8 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			return _configurationProvider.getSystemConfiguration(
 				CaptchaConfiguration.class);
 		}
-		catch (Exception e) {
-			throw new CaptchaConfigurationException(e);
+		catch (Exception exception) {
+			throw new CaptchaConfigurationException(exception);
 		}
 	}
 
@@ -530,9 +530,9 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 
 				try (InputStream inputStream = inputStreamOVP.getValue()) {
 				}
-				catch (IOException ioe) {
+				catch (IOException ioException) {
 					if (_log.isWarnEnabled()) {
-						_log.warn(ioe, ioe);
+						_log.warn(ioException, ioException);
 					}
 				}
 			}

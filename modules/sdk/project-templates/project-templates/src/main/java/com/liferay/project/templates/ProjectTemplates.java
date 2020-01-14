@@ -269,8 +269,8 @@ public class ProjectTemplates {
 				new ProjectTemplates(projectTemplatesArgs);
 			}
 		}
-		catch (ParameterException pe) {
-			System.err.println(pe.getMessage());
+		catch (ParameterException parameterException) {
+			System.err.println(parameterException.getMessage());
 
 			_printHelp(jCommander, projectTemplatesArgs);
 		}
@@ -572,7 +572,7 @@ public class ProjectTemplates {
 				method = clazz.getMethod(
 					methodName, new Class<?>[] {String.class});
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				return false;
 			}
 
@@ -594,8 +594,8 @@ public class ProjectTemplates {
 			try {
 				statement.execute();
 			}
-			catch (Exception e) {
-				throw new RuntimeException(e);
+			catch (Exception exception) {
+				throw new RuntimeException(exception);
 			}
 		}
 	}

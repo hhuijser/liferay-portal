@@ -684,9 +684,9 @@ public class DLFileEntryLocalServiceImpl
 				dlFileEntry.getCompanyId(), dlFileEntry.getDataRepositoryId(),
 				dlFileEntry.getName());
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
-				_log.warn(e, e);
+				_log.warn(exception, exception);
 			}
 		}
 
@@ -1709,12 +1709,12 @@ public class DLFileEntryLocalServiceImpl
 				ImageToolUtil.getBytes(
 					thumbnailRenderedImage, largeImage.getType()));
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new ImageSizeException(
 				StringBundler.concat(
 					"Unable to update small image with smallImageId ",
 					smallImageId, ", largeImageId ", largeImageId),
-				ioe);
+				ioException);
 		}
 	}
 
@@ -2196,12 +2196,14 @@ public class DLFileEntryLocalServiceImpl
 
 			return fileEntryTypeId;
 		}
-		catch (InvalidFileEntryTypeException ifete) {
+		catch (InvalidFileEntryTypeException invalidFileEntryTypeException) {
 
 			// LPS-52675
 
 			if (_log.isDebugEnabled()) {
-				_log.debug(ifete, ifete);
+				_log.debug(
+					invalidFileEntryTypeException,
+					invalidFileEntryTypeException);
 			}
 
 			return DLFileEntryTypeLocalServiceImpl.getDefaultFileEntryTypeId(
@@ -2417,8 +2419,8 @@ public class DLFileEntryLocalServiceImpl
 				try {
 					cancelCheckOut(userId, fileEntryId);
 				}
-				catch (Exception e2) {
-					_log.error(e2, e2);
+				catch (Exception exception) {
+					_log.error(exception, exception);
 				}
 			}
 

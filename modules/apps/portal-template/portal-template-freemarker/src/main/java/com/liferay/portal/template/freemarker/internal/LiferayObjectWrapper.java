@@ -78,8 +78,8 @@ public class LiferayObjectWrapper extends DefaultObjectWrapper {
 
 				});
 		}
-		catch (Exception e) {
-			ReflectionUtil.throwException(e);
+		catch (Exception exception) {
+			ReflectionUtil.throwException(exception);
 		}
 	}
 

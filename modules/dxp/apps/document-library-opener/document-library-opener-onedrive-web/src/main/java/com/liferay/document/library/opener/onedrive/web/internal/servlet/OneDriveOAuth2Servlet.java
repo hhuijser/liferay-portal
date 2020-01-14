@@ -120,12 +120,12 @@ public class OneDriveOAuth2Servlet extends HttpServlet {
 
 				httpServletResponse.sendRedirect(oAuth2State.getFailureURL());
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (Exception exception) {
+				_log.error(exception, exception);
 
 				OAuth2StateUtil.cleanUp(httpServletRequest);
 
-				SessionErrors.add(httpServletRequest, e.getClass());
+				SessionErrors.add(httpServletRequest, exception.getClass());
 
 				httpServletResponse.sendRedirect(oAuth2State.getFailureURL());
 			}

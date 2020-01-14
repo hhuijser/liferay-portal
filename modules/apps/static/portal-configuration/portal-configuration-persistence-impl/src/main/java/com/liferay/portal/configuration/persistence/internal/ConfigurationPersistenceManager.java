@@ -273,8 +273,8 @@ public class ConfigurationPersistenceManager
 
 			preparedStatement.executeUpdate();
 		}
-		catch (SQLException sqle) {
-			throw new IOException(sqle);
+		catch (SQLException sqlException) {
+			throw new IOException(sqlException);
 		}
 	}
 
@@ -295,8 +295,8 @@ public class ConfigurationPersistenceManager
 
 			return _emptyDictionary;
 		}
-		catch (SQLException sqle) {
-			return ReflectionUtil.throwException(sqle);
+		catch (SQLException sqlException) {
+			return ReflectionUtil.throwException(sqlException);
 		}
 	}
 
@@ -398,8 +398,8 @@ public class ConfigurationPersistenceManager
 
 			connection.commit();
 		}
-		catch (SQLException sqle) {
-			ReflectionUtil.throwException(sqle);
+		catch (SQLException sqlException) {
+			ReflectionUtil.throwException(sqlException);
 		}
 	}
 

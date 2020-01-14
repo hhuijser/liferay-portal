@@ -143,8 +143,8 @@ public abstract class BasePanelApp implements PanelApp {
 		catch (PortalException | RuntimeException e) {
 			throw e;
 		}
-		catch (Exception e) {
-			throw new PortalException(e);
+		catch (Exception exception) {
+			throw new PortalException(exception);
 		}
 	}
 

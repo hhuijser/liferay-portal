@@ -71,9 +71,9 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 		try {
 			fileEntry = DLAppServiceUtil.getFileEntry(entryId);
 		}
-		catch (Exception e1) {
-			if (e1 instanceof NoSuchFileEntryException ||
-				e1 instanceof NoSuchRepositoryEntryException) {
+		catch (Exception exception) {
+			if (exception instanceof NoSuchFileEntryException ||
+				exception instanceof NoSuchRepositoryEntryException) {
 
 				try {
 					fileShortcut = DLAppServiceUtil.getFileShortcut(entryId);

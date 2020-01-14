@@ -86,8 +86,9 @@ public class WikiExportImportPortletPreferencesProcessor
 			portletDataContext.addPortletPermissions(
 				WikiConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(WikiPortletKeys.WIKI);
 			pde.setType(PortletDataException.EXPORT_PORTLET_PERMISSIONS);
@@ -120,8 +121,9 @@ public class WikiExportImportPortletPreferencesProcessor
 
 			pageActionableDynamicQuery.performActions();
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(WikiPortletKeys.WIKI);
 			pde.setType(PortletDataException.EXPORT_PORTLET_DATA);
@@ -165,8 +167,9 @@ public class WikiExportImportPortletPreferencesProcessor
 			portletDataContext.importPortletPermissions(
 				WikiConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(WikiPortletKeys.WIKI);
 			pde.setType(PortletDataException.IMPORT_PORTLET_PERMISSIONS);

@@ -180,8 +180,8 @@ public class RolesAdminPortlet extends MVCPortlet {
 		try {
 			_roleService.deleteRole(roleId);
 		}
-		catch (ModelListenerException mle) {
-			throw (Exception)mle.getCause();
+		catch (ModelListenerException modelListenerException) {
+			throw (Exception)modelListenerException.getCause();
 		}
 	}
 
@@ -197,8 +197,8 @@ public class RolesAdminPortlet extends MVCPortlet {
 				_roleService.deleteRole(roleId);
 			}
 		}
-		catch (ModelListenerException mle) {
-			throw (Exception)mle.getCause();
+		catch (ModelListenerException modelListenerException) {
+			throw (Exception)modelListenerException.getCause();
 		}
 	}
 

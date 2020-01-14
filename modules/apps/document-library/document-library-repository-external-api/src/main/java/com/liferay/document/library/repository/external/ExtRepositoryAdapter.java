@@ -565,8 +565,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 				extRepositoryObjectAdapters, start, end,
 				(OrderByComparator<Object>)obc);
 		}
-		catch (Exception e) {
-			throw new RepositoryException(e);
+		catch (Exception exception) {
+			throw new RepositoryException(exception);
 		}
 	}
 
@@ -602,8 +602,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 			return _extRepository.getExtRepositoryObjectsCount(
 				ExtRepositoryObjectType.OBJECT, extRepositoryFolderKey);
 		}
-		catch (PortalException pe) {
-			throw new SystemException(pe);
+		catch (PortalException portalException) {
+			throw new SystemException(portalException);
 		}
 	}
 
@@ -872,7 +872,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 
 					needsCheckIn = true;
 				}
-				catch (UnsupportedOperationException uoe) {
+				catch (UnsupportedOperationException
+							unsupportedOperationException) {
 				}
 			}
 
@@ -888,7 +889,8 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 					_extRepository.checkInExtRepositoryFileEntry(
 						extRepositoryFileEntryKey, true, changeLog);
 				}
-				catch (UnsupportedOperationException uoe) {
+				catch (UnsupportedOperationException
+							unsupportedOperationException) {
 				}
 			}
 		}
@@ -1196,9 +1198,10 @@ public class ExtRepositoryAdapter extends BaseRepositoryImpl {
 		try {
 			return userLocalService.getDefaultUser(getCompanyId());
 		}
-		catch (PortalException pe) {
+		catch (PortalException portalException) {
 			_log.error(
-				"Unable to get default user for company " + getCompanyId(), pe);
+				"Unable to get default user for company " + getCompanyId(),
+				portalException);
 
 			return null;
 		}

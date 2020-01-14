@@ -82,8 +82,9 @@ public class BookmarksExportImportPortletPreferencesProcessor
 			portletDataContext.addPortletPermissions(
 				BookmarksConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(BookmarksPortletKeys.BOOKMARKS);
 			pde.setType(PortletDataException.EXPORT_PORTLET_PERMISSIONS);
@@ -122,8 +123,9 @@ public class BookmarksExportImportPortletPreferencesProcessor
 				entryActionableDynamicQuery.performActions();
 			}
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(BookmarksPortletKeys.BOOKMARKS);
 			pde.setType(PortletDataException.EXPORT_PORTLET_DATA);
@@ -164,8 +166,9 @@ public class BookmarksExportImportPortletPreferencesProcessor
 			portletDataContext.importPortletPermissions(
 				BookmarksConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(BookmarksPortletKeys.BOOKMARKS);
 			pde.setType(PortletDataException.IMPORT_PORTLET_PERMISSIONS);
@@ -228,9 +231,10 @@ public class BookmarksExportImportPortletPreferencesProcessor
 			portletPreferences.setValue(
 				"rootFolderId", String.valueOf(rootFolderId));
 		}
-		catch (ReadOnlyException roe) {
+		catch (ReadOnlyException readOnlyException) {
 			throw new PortletDataException(
-				"Unable to update preference \"rootFolderId\"", roe);
+				"Unable to update preference \"rootFolderId\"",
+				readOnlyException);
 		}
 
 		return portletPreferences;

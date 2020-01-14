@@ -161,7 +161,7 @@ public class FileWatcher implements Closeable {
 		try {
 			_watchService.close();
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		_notificationsExecutorService.shutdown();

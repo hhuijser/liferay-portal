@@ -101,8 +101,8 @@ public abstract class BaseBuildRunner<T extends BuildData, S extends Workspace>
 							buildJSONObject.getString("url") + "api/json")));
 			}
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		return _previousBuildJSONObjects;
@@ -215,8 +215,8 @@ public abstract class BaseBuildRunner<T extends BuildData, S extends Workspace>
 					envMapJSONObject.getString("JOB_NAME"),
 					envMapJSONObject.getString("HOSTNAME"));
 			}
-			catch (IOException ioe) {
-				throw new RuntimeException(ioe);
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
 		}
 	}

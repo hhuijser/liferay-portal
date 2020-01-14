@@ -174,8 +174,9 @@ public class RepositoryServiceImpl extends RepositoryServiceBaseImpl {
 					ActionKeys.VIEW);
 			}
 		}
-		catch (NoSuchRepositoryException nsre) {
-			throw new InvalidRepositoryIdException(nsre.getMessage());
+		catch (NoSuchRepositoryException noSuchRepositoryException) {
+			throw new InvalidRepositoryIdException(
+				noSuchRepositoryException.getMessage());
 		}
 	}
 

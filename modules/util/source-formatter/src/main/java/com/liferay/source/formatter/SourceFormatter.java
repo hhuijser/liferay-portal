@@ -265,19 +265,19 @@ public class SourceFormatter {
 
 			sourceFormatter.format();
 		}
-		catch (Exception e) {
-			if (e instanceof GitException) {
-				System.out.println(e.getMessage());
+		catch (Exception exception) {
+			if (exception instanceof GitException) {
+				System.out.println(exception.getMessage());
 			}
 			else {
 				CheckstyleException checkstyleException =
-					_getNestedCheckstyleException(e);
+					_getNestedCheckstyleException(exception);
 
 				if (checkstyleException != null) {
 					checkstyleException.printStackTrace();
 				}
 				else {
-					e.printStackTrace();
+					exception.printStackTrace();
 				}
 			}
 
@@ -365,12 +365,12 @@ public class SourceFormatter {
 			try {
 				future.get();
 			}
-			catch (ExecutionException ee) {
+			catch (ExecutionException executionException) {
 				if (ee1 == null) {
-					ee1 = ee;
+					ee1 = executionException;
 				}
 				else {
-					ee1.addSuppressed(ee);
+					ee1.addSuppressed(executionException);
 				}
 			}
 		}
@@ -1031,7 +1031,7 @@ public class SourceFormatter {
 						break;
 					}
 				}
-				catch (InterruptedException ie) {
+				catch (InterruptedException interruptedException) {
 				}
 			}
 		}

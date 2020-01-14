@@ -51,12 +51,12 @@ public class InstancePool {
 
 			_instances.put(className, instance);
 		}
-		catch (Exception e1) {
+		catch (Exception exception) {
 			if (logErrors && _log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to load " + className +
 						" with the portal class loader",
-					e1);
+					exception);
 			}
 
 			Thread currentThread = Thread.currentThread();

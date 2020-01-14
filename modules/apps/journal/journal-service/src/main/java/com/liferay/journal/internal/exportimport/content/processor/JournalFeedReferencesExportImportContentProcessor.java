@@ -109,12 +109,12 @@ public class JournalFeedReferencesExportImportContentProcessor
 				journalFeed = _journalFeedLocalService.getFeed(groupId, feedId);
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 			else if (_log.isWarnEnabled()) {
-				_log.warn(e.getMessage());
+				_log.warn(exception.getMessage());
 			}
 		}
 
@@ -168,8 +168,8 @@ public class JournalFeedReferencesExportImportContentProcessor
 
 			return configuration.validateJournalFeedReferences();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return true;
@@ -253,7 +253,7 @@ public class JournalFeedReferencesExportImportContentProcessor
 
 				sb.replace(beginPos, endPos, exportedReferenceSB.toString());
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				StringBundler exceptionSB = new StringBundler(6);
 
 				exceptionSB.append("Unable to process journal feed ");
@@ -265,7 +265,7 @@ public class JournalFeedReferencesExportImportContentProcessor
 
 				ExportImportContentProcessorException eicpe =
 					new ExportImportContentProcessorException(
-						exceptionSB.toString(), e);
+						exceptionSB.toString(), exception);
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(exceptionSB.toString(), eicpe);
@@ -327,7 +327,7 @@ public class JournalFeedReferencesExportImportContentProcessor
 					portletDataContext, stagedModel, JournalFeed.class,
 					classPK);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				StringBundler exceptionSB = new StringBundler(6);
 
 				exceptionSB.append("Unable to process journal feed ");
@@ -339,7 +339,7 @@ public class JournalFeedReferencesExportImportContentProcessor
 
 				ExportImportContentProcessorException eicpe =
 					new ExportImportContentProcessorException(
-						exceptionSB.toString(), e);
+						exceptionSB.toString(), exception);
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(exceptionSB.toString(), eicpe);
@@ -362,12 +362,12 @@ public class JournalFeedReferencesExportImportContentProcessor
 				importedJournalFeed = _journalFeedLocalService.getFeed(
 					journalFeedId);
 			}
-			catch (PortalException pe) {
+			catch (PortalException portalException) {
 				if (_log.isDebugEnabled()) {
-					_log.debug(pe, pe);
+					_log.debug(portalException, portalException);
 				}
 				else if (_log.isWarnEnabled()) {
-					_log.warn(pe.getMessage());
+					_log.warn(portalException.getMessage());
 				}
 
 				continue;

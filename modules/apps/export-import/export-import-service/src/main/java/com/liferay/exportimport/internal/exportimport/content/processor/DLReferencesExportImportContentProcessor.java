@@ -279,12 +279,12 @@ public class DLReferencesExportImportContentProcessor
 				}
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 			else if (_log.isWarnEnabled()) {
-				_log.warn(e.getMessage());
+				_log.warn(exception.getMessage());
 			}
 		}
 
@@ -308,8 +308,8 @@ public class DLReferencesExportImportContentProcessor
 
 			return configuration.validateFileEntryReferences();
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 
 		return true;
@@ -420,7 +420,7 @@ public class DLReferencesExportImportContentProcessor
 
 				deleteTimestampParameters(sb, deleteTimestampParametersOffset);
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				StringBundler exceptionSB = new StringBundler(6);
 
 				exceptionSB.append("Unable to process file entry ");
@@ -432,7 +432,7 @@ public class DLReferencesExportImportContentProcessor
 
 				ExportImportContentProcessorException eicpe =
 					new ExportImportContentProcessorException(
-						exceptionSB.toString(), e);
+						exceptionSB.toString(), exception);
 
 				if (_log.isDebugEnabled()) {
 					_log.debug(exceptionSB.toString(), eicpe);
@@ -487,7 +487,7 @@ public class DLReferencesExportImportContentProcessor
 						portletDataContext, stagedModel, DLFileEntry.class,
 						classPK);
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 					StringBundler exceptionSB = new StringBundler(6);
 
 					exceptionSB.append("Unable to process file entry ");
@@ -499,7 +499,7 @@ public class DLReferencesExportImportContentProcessor
 
 					ExportImportContentProcessorException eicpe =
 						new ExportImportContentProcessorException(
-							exceptionSB.toString(), e);
+							exceptionSB.toString(), exception);
 
 					if (_log.isDebugEnabled()) {
 						_log.debug(exceptionSB.toString(), eicpe);
@@ -526,12 +526,12 @@ public class DLReferencesExportImportContentProcessor
 					importedFileEntry = _dlAppLocalService.getFileEntry(
 						fileEntryId);
 				}
-				catch (PortalException pe) {
+				catch (PortalException portalException) {
 					if (_log.isDebugEnabled()) {
-						_log.debug(pe, pe);
+						_log.debug(portalException, portalException);
 					}
 					else if (_log.isWarnEnabled()) {
-						_log.warn(pe.getMessage());
+						_log.warn(portalException.getMessage());
 					}
 
 					if (content.startsWith("[#dl-reference=", endPos)) {

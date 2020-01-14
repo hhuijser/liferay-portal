@@ -80,8 +80,8 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 			kbArticle = KBArticleServiceUtil.getLatestKBArticle(
 				entryId, WorkflowConstants.STATUS_ANY);
 		}
-		catch (Exception e) {
-			if (e instanceof NoSuchArticleException) {
+		catch (Exception exception) {
+			if (exception instanceof NoSuchArticleException) {
 				try {
 					kbFolder = KBFolderServiceUtil.getKBFolder(entryId);
 				}
@@ -108,7 +108,7 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 					showInput = true;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 		else {
@@ -121,7 +121,7 @@ public class EntriesChecker extends EmptyOnClickRowChecker {
 					showInput = true;
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 

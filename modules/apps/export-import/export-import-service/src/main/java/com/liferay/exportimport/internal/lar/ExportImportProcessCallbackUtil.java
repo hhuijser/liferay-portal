@@ -75,10 +75,10 @@ public class ExportImportProcessCallbackUtil {
 			try {
 				callable.call();
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 				ExportImportRuntimeException eire =
 					new ExportImportRuntimeException(
-						e.getLocalizedMessage(), e);
+						exception.getLocalizedMessage(), exception);
 
 				Class<?> clazz = callable.getClass();
 

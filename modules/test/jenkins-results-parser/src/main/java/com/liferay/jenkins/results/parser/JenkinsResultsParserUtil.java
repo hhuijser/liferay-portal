@@ -178,12 +178,12 @@ public class JenkinsResultsParserUtil {
 				}
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			if (targetFile.exists()) {
 				delete(targetFile);
 			}
 
-			throw ioe;
+			throw ioException;
 		}
 	}
 
@@ -358,7 +358,7 @@ public class JenkinsResultsParserUtil {
 
 				break;
 			}
-			catch (IllegalThreadStateException itse) {
+			catch (IllegalThreadStateException illegalThreadStateException) {
 				duration = System.currentTimeMillis() - start;
 
 				if (duration >= timeout) {
@@ -445,10 +445,10 @@ public class JenkinsResultsParserUtil {
 					String.valueOf(httpURLConnection.getResponseCode()), " ",
 					httpURLConnection.getResponseMessage()));
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			System.out.println("Unable to execute Jenkins script");
 
-			ioe.printStackTrace();
+			ioException.printStackTrace();
 		}
 	}
 
@@ -633,7 +633,7 @@ public class JenkinsResultsParserUtil {
 		try {
 			url = decode(axisBuildURL);
 		}
-		catch (UnsupportedEncodingException uee) {
+		catch (UnsupportedEncodingException unsupportedEncodingException) {
 			throw new RuntimeException("Unable to encode " + axisBuildURL);
 		}
 
@@ -658,8 +658,8 @@ public class JenkinsResultsParserUtil {
 		try {
 			buildProperties = getBuildProperties();
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		return new File(buildProperties.getProperty("base.repository.dir"));
@@ -706,7 +706,7 @@ public class JenkinsResultsParserUtil {
 				}
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new RuntimeException();
 		}
 
@@ -786,7 +786,7 @@ public class JenkinsResultsParserUtil {
 		try {
 			return read(cachedTextFile);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			return null;
 		}
 	}
@@ -797,8 +797,9 @@ public class JenkinsResultsParserUtil {
 		try {
 			canonicalFile = file.getCanonicalFile();
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get canonical file", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to get canonical file", ioException);
 		}
 
 		return _getCanonicalPath(canonicalFile);
@@ -898,13 +899,13 @@ public class JenkinsResultsParserUtil {
 						return distPortalBundlesBuildURL;
 					}
 				}
-				catch (IOException ioe) {
-					System.out.println("WARNING: " + ioe.getMessage());
+				catch (IOException ioException) {
+					System.out.println("WARNING: " + ioException.getMessage());
 				}
 			}
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		return null;
@@ -953,7 +954,7 @@ public class JenkinsResultsParserUtil {
 				jsonObject.getInt("limit"), jsonObject.getInt("remaining"),
 				jsonObject.getLong("reset"));
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			System.out.println("Unable to get GitHub API rate limit");
 		}
 
@@ -987,8 +988,8 @@ public class JenkinsResultsParserUtil {
 
 			return Lists.newArrayList(gitHubCacheHostnames.split(","));
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 	}
 
@@ -1035,7 +1036,7 @@ public class JenkinsResultsParserUtil {
 
 			return inetAddress.getHostAddress();
 		}
-		catch (UnknownHostException uhe) {
+		catch (UnknownHostException unknownHostException) {
 			return "127.0.0.1";
 		}
 	}
@@ -1046,7 +1047,7 @@ public class JenkinsResultsParserUtil {
 
 			return inetAddress.getHostName();
 		}
-		catch (UnknownHostException uhe) {
+		catch (UnknownHostException unknownHostException) {
 			return defaultHostName;
 		}
 	}
@@ -1219,8 +1220,9 @@ public class JenkinsResultsParserUtil {
 		try {
 			buildProperties = getBuildProperties();
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get build properties", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to get build properties", ioException);
 		}
 
 		File localLiferayJenkinsEEBuildPropertiesFile = new File(
@@ -1316,7 +1318,7 @@ public class JenkinsResultsParserUtil {
 
 			return jsonObject.getString("mostAvailableMasterURL");
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			Properties buildProperties = null;
 
 			try {
@@ -1374,8 +1376,9 @@ public class JenkinsResultsParserUtil {
 
 			return filePath.replace(getCanonicalPath(relativeToFile) + "/", "");
 		}
-		catch (RuntimeException re) {
-			throw new RuntimeException("Unable to get relative path", re);
+		catch (RuntimeException runtimeException) {
+			throw new RuntimeException(
+				"Unable to get relative path", runtimeException);
 		}
 	}
 
@@ -1802,7 +1805,7 @@ public class JenkinsResultsParserUtil {
 
 			return inetAddress.isReachable(5000);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			System.out.println("Unable to reach " + hostname);
 
 			return false;
@@ -1815,7 +1818,7 @@ public class JenkinsResultsParserUtil {
 
 			return true;
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			System.out.println(
 				combine(
 					"Unable to reach ", hostname, ":", String.valueOf(port)));
@@ -2033,8 +2036,9 @@ public class JenkinsResultsParserUtil {
 
 			cacheFile.deleteOnExit();
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to save to cache file", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to save to cache file", ioException);
 		}
 	}
 
@@ -2056,8 +2060,8 @@ public class JenkinsResultsParserUtil {
 		try {
 			Thread.sleep(duration);
 		}
-		catch (InterruptedException ie) {
-			throw new RuntimeException(ie);
+		catch (InterruptedException interruptedException) {
+			throw new RuntimeException(interruptedException);
 		}
 	}
 
@@ -2114,8 +2118,8 @@ public class JenkinsResultsParserUtil {
 
 			FileUtils.copyURLToFile(url, file);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 	}
 
@@ -2478,11 +2482,11 @@ public class JenkinsResultsParserUtil {
 									limit, remaining, reset),
 								"\n    ", url));
 					}
-					catch (Exception e) {
+					catch (Exception exception) {
 						System.out.println(
 							"Unable to parse GitHub API rate limit headers");
 
-						e.printStackTrace();
+						exception.printStackTrace();
 					}
 				}
 
@@ -2522,8 +2526,8 @@ public class JenkinsResultsParserUtil {
 
 				return sb.toString();
 			}
-			catch (IOException ioe) {
-				if ((ioe instanceof UnknownHostException) &&
+			catch (IOException ioException) {
+				if ((ioException instanceof UnknownHostException) &&
 					url.matches("http://test-\\d+-\\d+/.*")) {
 
 					return toString(
@@ -2537,7 +2541,7 @@ public class JenkinsResultsParserUtil {
 				retryCount++;
 
 				if ((maxRetries >= 0) && (retryCount >= maxRetries)) {
-					throw ioe;
+					throw ioException;
 				}
 
 				System.out.println(
@@ -2678,11 +2682,11 @@ public class JenkinsResultsParserUtil {
 				fileOutputStream,
 				"Generated by com.liferay.jenkins.results.parser");
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			System.out.println(
 				"Unable to write properties file " + propertiesFile);
 
-			ioe.printStackTrace();
+			ioException.printStackTrace();
 		}
 
 		if (verbose) {
@@ -2693,9 +2697,10 @@ public class JenkinsResultsParserUtil {
 			try {
 				System.out.println(read(propertiesFile));
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				throw new RuntimeException(
-					"Unable to read properties file " + propertiesFile, ioe);
+					"Unable to read properties file " + propertiesFile,
+					ioException);
 			}
 		}
 	}
@@ -2870,8 +2875,9 @@ public class JenkinsResultsParserUtil {
 
 			return Pattern.compile(sb.toString(), Pattern.DOTALL);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to load build properties", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to load build properties", ioException);
 		}
 	}
 
@@ -2885,8 +2891,8 @@ public class JenkinsResultsParserUtil {
 				return distPortalBundlesURL;
 			}
 		}
-		catch (IOException ioe) {
-			System.out.println("WARNING: " + ioe.getMessage());
+		catch (IOException ioException) {
+			System.out.println("WARNING: " + ioException.getMessage());
 		}
 
 		return combine(
@@ -2902,8 +2908,8 @@ public class JenkinsResultsParserUtil {
 				return distPortalJobURL;
 			}
 		}
-		catch (IOException ioe) {
-			System.out.println("WARNING: " + ioe.getMessage());
+		catch (IOException ioException) {
+			System.out.println("WARNING: " + ioException.getMessage());
 		}
 
 		return combine(
@@ -2982,11 +2988,11 @@ public class JenkinsResultsParserUtil {
 				properties.load(new FileInputStream(propertiesFile));
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new RuntimeException(
 				"Unable to load properties file " +
 					basePropertiesFile.getPath(),
-				ioe);
+				ioException);
 		}
 
 		for (String propertyName : properties.stringPropertyNames()) {
@@ -3057,8 +3063,9 @@ public class JenkinsResultsParserUtil {
 		try {
 			properties = getBuildProperties();
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get build properties", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to get build properties", ioException);
 		}
 
 		_redactTokens.clear();

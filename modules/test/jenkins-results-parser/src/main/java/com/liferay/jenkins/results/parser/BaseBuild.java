@@ -72,9 +72,9 @@ public abstract class BaseBuild implements Build {
 				url = JenkinsResultsParserUtil.getLocalURL(
 					JenkinsResultsParserUtil.decode(url));
 			}
-			catch (UnsupportedEncodingException uee) {
+			catch (UnsupportedEncodingException unsupportedEncodingException) {
 				throw new IllegalArgumentException(
-					"Unable to decode " + url, uee);
+					"Unable to decode " + url, unsupportedEncodingException);
 			}
 
 			if (!hasBuildURL(url)) {
@@ -145,9 +145,9 @@ public abstract class BaseBuild implements Build {
 				String.valueOf(System.currentTimeMillis()),
 				getArchivePath() + "/archive-marker");
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to to write archive-marker file", ioe);
+				"Unable to to write archive-marker file", ioException);
 		}
 
 		archiveConsoleLog();
@@ -240,9 +240,9 @@ public abstract class BaseBuild implements Build {
 			try {
 				buildProperties = JenkinsResultsParserUtil.getBuildProperties();
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				throw new RuntimeException(
-					"Unable to get build.properties", ioe);
+					"Unable to get build.properties", ioException);
 			}
 
 			TopLevelBuild topLevelBuild = getTopLevelBuild();
@@ -322,8 +322,9 @@ public abstract class BaseBuild implements Build {
 					getBuildURL() + "api/json"),
 				false);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get build JSON object", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to get build JSON object", ioException);
 		}
 	}
 
@@ -353,9 +354,10 @@ public abstract class BaseBuild implements Build {
 		catch (MalformedURLException | URISyntaxException e) {
 			throw new RuntimeException("Unable to encode build URL", e);
 		}
-		catch (UnsupportedEncodingException uee) {
+		catch (UnsupportedEncodingException unsupportedEncodingException) {
 			throw new RuntimeException(
-				"Unable to decode job URL " + jobURL, uee);
+				"Unable to decode job URL " + jobURL,
+				unsupportedEncodingException);
 		}
 	}
 
@@ -637,9 +639,9 @@ public abstract class BaseBuild implements Build {
 				JenkinsResultsParserUtil.getBuildProperty(
 					"jenkins.authentication.token"));
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to get Jenkins authentication token", ioe);
+				"Unable to get Jenkins authentication token", ioException);
 		}
 
 		for (Map.Entry<String, String> parameter : parameters.entrySet()) {
@@ -1087,9 +1089,9 @@ public abstract class BaseBuild implements Build {
 					getBuildURL() + "testReport/api/json"),
 				false);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new RuntimeException(
-				"Unable to get test report JSON object", ioe);
+				"Unable to get test report JSON object", ioException);
 		}
 	}
 
@@ -1204,8 +1206,9 @@ public abstract class BaseBuild implements Build {
 		try {
 			buildURL = JenkinsResultsParserUtil.decode(buildURL);
 		}
-		catch (UnsupportedEncodingException uee) {
-			throw new RuntimeException("Unable to decode " + buildURL, uee);
+		catch (UnsupportedEncodingException unsupportedEncodingException) {
+			throw new RuntimeException(
+				"Unable to decode " + buildURL, unsupportedEncodingException);
 		}
 
 		buildURL = JenkinsResultsParserUtil.getLocalURL(buildURL);
@@ -1222,12 +1225,12 @@ public abstract class BaseBuild implements Build {
 					return true;
 				}
 			}
-			catch (MalformedURLException murle) {
+			catch (MalformedURLException malformedURLException) {
 				throw new RuntimeException(
 					JenkinsResultsParserUtil.combine(
 						"Unable to compare urls ", buildURL, " and ",
 						thisBuildURL),
-					murle);
+					malformedURLException);
 			}
 		}
 
@@ -1346,8 +1349,8 @@ public abstract class BaseBuild implements Build {
 			JenkinsResultsParserUtil.toString(
 				JenkinsResultsParserUtil.getLocalURL(invocationURL));
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		System.out.println(getReinvokedMessage());
@@ -1542,8 +1545,8 @@ public abstract class BaseBuild implements Build {
 					}
 				}
 			}
-			catch (IOException ioe) {
-				throw new RuntimeException(ioe);
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
 		}
 	}
@@ -1912,8 +1915,9 @@ public abstract class BaseBuild implements Build {
 		try {
 			content = Dom4JUtil.format(gitHubMessage, false);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to format github message", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to format github message", ioException);
 		}
 
 		for (String highPriorityContentToken : _TOKENS_HIGH_PRIORITY_CONTENT) {
@@ -1976,9 +1980,9 @@ public abstract class BaseBuild implements Build {
 					startPropertiesTempMapJSONObject.toString(4),
 					getArchivePath() + "/start.properties.json");
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				throw new RuntimeException(
-					"Unable to create start.properties.json", ioe);
+					"Unable to create start.properties.json", ioException);
 			}
 		}
 
@@ -1992,9 +1996,9 @@ public abstract class BaseBuild implements Build {
 					stopPropertiesTempMapJSONObject.toString(4),
 					getArchivePath() + "/stop.properties.json");
 			}
-			catch (IOException ioe) {
+			catch (IOException ioException) {
 				throw new RuntimeException(
-					"Unable to create stop.properties.json", ioe);
+					"Unable to create stop.properties.json", ioException);
 			}
 		}
 	}
@@ -2035,10 +2039,10 @@ public abstract class BaseBuild implements Build {
 				JenkinsResultsParserUtil.getLocalURL(urlString), false, 0, 0,
 				0);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			if (required) {
 				throw new RuntimeException(
-					"Unable to download sample " + urlString, ioe);
+					"Unable to download sample " + urlString, ioException);
 			}
 
 			return;
@@ -2047,8 +2051,8 @@ public abstract class BaseBuild implements Build {
 		try {
 			writeArchiveFile(content, path + "/" + urlSuffix);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to write file", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException("Unable to write file", ioException);
 		}
 	}
 
@@ -2131,8 +2135,8 @@ public abstract class BaseBuild implements Build {
 		try {
 			return JenkinsResultsParserUtil.toJSONObject(sb.toString(), false);
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get build JSON", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException("Unable to get build JSON", ioException);
 		}
 	}
 
@@ -2510,8 +2514,8 @@ public abstract class BaseBuild implements Build {
 						getJobURL(), "/api/json?tree=actions[",
 						"parameterDefinitions[name,type,value]]")));
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get build JSON", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException("Unable to get build JSON", ioException);
 		}
 
 		JSONArray actionsJSONArray = jsonObject.getJSONArray("actions");
@@ -2704,9 +2708,11 @@ public abstract class BaseBuild implements Build {
 						stopWatchRecordConsoleReadCursor);
 				}
 			}
-			catch (StringIndexOutOfBoundsException sioobe) {
+			catch (StringIndexOutOfBoundsException
+						stringIndexOutOfBoundsException) {
+
 				if (retries == 2) {
-					throw sioobe;
+					throw stringIndexOutOfBoundsException;
 				}
 
 				System.out.println(
@@ -2735,9 +2741,9 @@ public abstract class BaseBuild implements Build {
 					timestamp = stopWatchTimestampSimpleDateFormat.parse(
 						matcher.group("timestamp"));
 				}
-				catch (ParseException pe) {
+				catch (ParseException parseException) {
 					throw new RuntimeException(
-						"Unable to parse timestamp in " + line, pe);
+						"Unable to parse timestamp in " + line, parseException);
 				}
 
 				String stopWatchName = matcher.group("name");
@@ -2796,7 +2802,7 @@ public abstract class BaseBuild implements Build {
 				JenkinsResultsParserUtil.getLocalURL(tempMapURL), false, 0, 0,
 				0);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 		}
 
 		if ((tempMapJSONObject == null) ||
@@ -2999,9 +3005,9 @@ public abstract class BaseBuild implements Build {
 		try {
 			buildURL = JenkinsResultsParserUtil.decode(buildURL);
 		}
-		catch (UnsupportedEncodingException uee) {
+		catch (UnsupportedEncodingException unsupportedEncodingException) {
 			throw new IllegalArgumentException(
-				"Unable to decode " + buildURL, uee);
+				"Unable to decode " + buildURL, unsupportedEncodingException);
 		}
 
 		Build parentBuild = getParentBuild();
@@ -3019,7 +3025,7 @@ public abstract class BaseBuild implements Build {
 					!archiveMarkerContent.isEmpty();
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			fromArchive = false;
 		}
 
@@ -3063,9 +3069,10 @@ public abstract class BaseBuild implements Build {
 			try {
 				invocationURL = JenkinsResultsParserUtil.decode(invocationURL);
 			}
-			catch (UnsupportedEncodingException uee) {
+			catch (UnsupportedEncodingException unsupportedEncodingException) {
 				throw new IllegalArgumentException(
-					"Unable to decode " + invocationURL, uee);
+					"Unable to decode " + invocationURL,
+					unsupportedEncodingException);
 			}
 
 			Matcher invocationURLMatcher = invocationURLPattern.matcher(
@@ -3091,8 +3098,8 @@ public abstract class BaseBuild implements Build {
 			try {
 				JenkinsResultsParserUtil.toString(invocationURL, false);
 			}
-			catch (IOException ioe) {
-				throw new RuntimeException(ioe);
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
 		}
 	}
@@ -3153,8 +3160,9 @@ public abstract class BaseBuild implements Build {
 		try {
 			buildProperties = JenkinsResultsParserUtil.getBuildProperties();
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException("Unable to get build properties", ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(
+				"Unable to get build properties", ioException);
 		}
 
 		return JenkinsResultsParserUtil.toDateString(
@@ -3354,8 +3362,8 @@ public abstract class BaseBuild implements Build {
 					jobURL, "/api/json?tree=actions[parameterDefinitions[",
 					"defaultParameterValue[value],name]]"));
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		JSONArray actionsJSONArray = jobJSONObject.getJSONArray("actions");

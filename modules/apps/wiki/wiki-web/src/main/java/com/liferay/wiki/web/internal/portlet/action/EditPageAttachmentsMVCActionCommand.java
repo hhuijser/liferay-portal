@@ -163,7 +163,7 @@ public class EditPageAttachmentsMVCActionCommand extends BaseMVCActionCommand {
 
 			jsonObject.put("deleted", Boolean.TRUE);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			jsonObject.put("deleted", Boolean.FALSE);
 
 			String errorMessage = themeDisplay.translate(
@@ -240,9 +240,9 @@ public class EditPageAttachmentsMVCActionCommand extends BaseMVCActionCommand {
 
 			actionResponse.setRenderParameter("mvcPath", "/wiki/error.jsp");
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			handleUploadException(
-				portletConfig, actionRequest, actionResponse, cmd, e);
+				portletConfig, actionRequest, actionResponse, cmd, exception);
 		}
 	}
 

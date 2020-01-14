@@ -59,8 +59,8 @@ public class DLPortletToolbarContributorHelper {
 
 			rootFolderId = dlPortletInstanceSettings.getRootFolderId();
 		}
-		catch (PortalException pe) {
-			_log.error(pe, pe);
+		catch (PortalException portalException) {
+			_log.error(portalException, portalException);
 		}
 
 		if (rootFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
@@ -77,8 +77,8 @@ public class DLPortletToolbarContributorHelper {
 
 				folder = null;
 			}
-			catch (PortalException pe) {
-				_log.error(pe, pe);
+			catch (PortalException portalException) {
+				_log.error(portalException, portalException);
 			}
 		}
 

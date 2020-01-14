@@ -109,7 +109,7 @@ public abstract class BaseModelUADDisplay<T extends BaseModel>
 
 			return (boolean)method.invoke(t);
 		}
-		catch (NoSuchMethodException nsme) {
+		catch (NoSuchMethodException noSuchMethodException) {
 			return false;
 		}
 	}

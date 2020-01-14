@@ -87,8 +87,8 @@ public class LiferayWriter
 		try {
 			_liferaySink.doDeleteRequest(_endpointUrl);
 		}
-		catch (Exception e) {
-			_indexedRecordJsonObjectConverter.reject(indexedRecord, e);
+		catch (Exception exception) {
+			_indexedRecordJsonObjectConverter.reject(indexedRecord, exception);
 
 			return;
 		}
@@ -104,8 +104,8 @@ public class LiferayWriter
 				_endpointUrl,
 				_indexedRecordJsonObjectConverter.toJsonObject(indexedRecord));
 		}
-		catch (Exception e) {
-			_indexedRecordJsonObjectConverter.reject(indexedRecord, e);
+		catch (Exception exception) {
+			_indexedRecordJsonObjectConverter.reject(indexedRecord, exception);
 
 			return;
 		}
@@ -122,8 +122,8 @@ public class LiferayWriter
 				_endpointUrl,
 				_indexedRecordJsonObjectConverter.toJsonObject(indexedRecord));
 		}
-		catch (Exception e) {
-			_indexedRecordJsonObjectConverter.reject(indexedRecord, e);
+		catch (Exception exception) {
+			_indexedRecordJsonObjectConverter.reject(indexedRecord, exception);
 
 			return;
 		}

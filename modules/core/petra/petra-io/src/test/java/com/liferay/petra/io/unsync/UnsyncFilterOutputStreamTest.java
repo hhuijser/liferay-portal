@@ -131,8 +131,8 @@ public class UnsyncFilterOutputStreamTest {
 
 			Assert.fail();
 		}
-		catch (IOException ioe) {
-			Assert.assertSame(flushException, ioe);
+		catch (IOException ioException) {
+			Assert.assertSame(flushException, ioException);
 
 			Throwable[] throwables = flushException.getSuppressed();
 

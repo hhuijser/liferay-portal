@@ -253,10 +253,10 @@ public class ConfigurationProviderImpl implements ConfigurationProvider {
 				configuration.delete();
 			}
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new ConfigurationException(
 				"Unable to delete factory configuration " + scopedFactoryPid,
-				ioe);
+				ioException);
 		}
 	}
 
@@ -322,9 +322,9 @@ public class ConfigurationProviderImpl implements ConfigurationProvider {
 
 			configuration.update(properties);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new ConfigurationException(
-				"Unable to save configuration " + pid, ioe);
+				"Unable to save configuration " + pid, ioException);
 		}
 	}
 
@@ -348,10 +348,10 @@ public class ConfigurationProviderImpl implements ConfigurationProvider {
 
 			configuration.update(properties);
 		}
-		catch (IOException ioe) {
+		catch (IOException ioException) {
 			throw new ConfigurationException(
 				"Unable to save factory configuration " + scopedFactoryPid,
-				ioe);
+				ioException);
 		}
 	}
 

@@ -175,8 +175,8 @@ public class AntUtil {
 							line = bufferedReader.readLine();
 						}
 					}
-					catch (IOException ioe) {
-						ioe.printStackTrace();
+					catch (IOException ioException) {
+						ioException.printStackTrace();
 					}
 				}
 

@@ -91,8 +91,8 @@ public class SalesforceStreamingClientImpl
 		try {
 			_httpClient.stop();
 		}
-		catch (Exception e) {
-			_log.error("Unable to stop http client", e);
+		catch (Exception exception) {
+			_log.error("Unable to stop http client", exception);
 		}
 	}
 
@@ -176,8 +176,8 @@ public class SalesforceStreamingClientImpl
 			subscribeClientSessionChannel.addListener(
 				new SalesforceMessageListener());
 		}
-		catch (Exception e) {
-			_log.error(e.getMessage(), e);
+		catch (Exception exception) {
+			_log.error(exception.getMessage(), exception);
 		}
 	}
 

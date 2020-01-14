@@ -110,7 +110,7 @@ public class LayoutAssetRenderer extends BaseJSPAssetRenderer<Layout> {
 
 			return PortalUtil.getLayoutFriendlyURL(layout, themeDisplay);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			return StringPool.BLANK;
 		}
 	}

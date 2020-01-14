@@ -121,8 +121,8 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 			try {
 				_settingsProperties.load(super.getSettings());
 			}
-			catch (IOException ioe) {
-				_log.error(ioe, ioe);
+			catch (IOException ioException) {
+				_log.error(ioException, ioException);
 			}
 		}
 
@@ -161,7 +161,7 @@ public class LayoutSetBranchImpl extends LayoutSetBranchBaseImpl {
 
 			controlPanel = group.isControlPanel();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		if (controlPanel) {

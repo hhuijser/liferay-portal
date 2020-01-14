@@ -893,8 +893,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 					MessageBusUtil.unregisterMessageListener(
 						destinationName, curMessageListener);
 				}
-				catch (Exception e) {
-					log.error(e, e);
+				catch (Exception exception) {
+					log.error(exception, exception);
 				}
 
 				break;
@@ -928,8 +928,8 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 					destinationName, null, 0);
 			}
 		}
-		catch (Exception e) {
-			log.error(e, e);
+		catch (Exception exception) {
+			log.error(exception, exception);
 		}
 	}
 

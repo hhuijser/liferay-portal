@@ -511,8 +511,9 @@ public class AMImageConfigurationHelperImpl
 
 			return amImageConfigurationEntries.stream();
 		}
-		catch (SettingsException se) {
-			throw new AMRuntimeException.InvalidConfiguration(se);
+		catch (SettingsException settingsException) {
+			throw new AMRuntimeException.InvalidConfiguration(
+				settingsException);
 		}
 	}
 

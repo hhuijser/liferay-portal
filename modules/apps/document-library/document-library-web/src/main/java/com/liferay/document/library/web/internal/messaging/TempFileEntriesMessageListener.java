@@ -111,12 +111,12 @@ public class TempFileEntriesMessageListener extends BaseMessageListener {
 					deleteExpiredTemporaryFileEntries();
 			}
 		}
-		catch (Exception pe) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to delete expired temporary file entries in " +
 						"repository " + repository.getRepositoryId(),
-					pe);
+					exception);
 			}
 		}
 	}

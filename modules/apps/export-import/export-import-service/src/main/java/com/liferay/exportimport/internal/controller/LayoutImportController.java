@@ -431,12 +431,15 @@ public class LayoutImportController implements ImportController {
 							getLayoutPrototypeByUuidAndCompanyId(
 								layoutPrototypeUuid, companyId);
 				}
-				catch (NoSuchLayoutPrototypeException nslpe) {
+				catch (NoSuchLayoutPrototypeException
+							noSuchLayoutPrototypeException) {
 
 					// LPS-52675
 
 					if (_log.isDebugEnabled()) {
-						_log.debug(nslpe, nslpe);
+						_log.debug(
+							noSuchLayoutPrototypeException,
+							noSuchLayoutPrototypeException);
 					}
 				}
 			}
@@ -481,12 +484,15 @@ public class LayoutImportController implements ImportController {
 							getLayoutSetPrototypeByUuidAndCompanyId(
 								importedLayoutSetPrototypeUuid, companyId);
 				}
-				catch (NoSuchLayoutSetPrototypeException nslspe) {
+				catch (NoSuchLayoutSetPrototypeException
+							noSuchLayoutSetPrototypeException) {
 
 					// LPS-52675
 
 					if (_log.isDebugEnabled()) {
-						_log.debug(nslspe, nslspe);
+						_log.debug(
+							noSuchLayoutSetPrototypeException,
+							noSuchLayoutSetPrototypeException);
 					}
 				}
 			}
@@ -999,9 +1005,9 @@ public class LayoutImportController implements ImportController {
 
 			rootElement = document.getRootElement();
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			throw new LARFileException(
-				LARFileException.TYPE_INVALID_MANIFEST, e);
+				LARFileException.TYPE_INVALID_MANIFEST, exception);
 		}
 
 		// Bundle compatibility
@@ -1213,12 +1219,15 @@ public class LayoutImportController implements ImportController {
 					getLayoutSetPrototypeByUuidAndCompanyId(
 						layoutSetPrototypeUuid, companyId);
 			}
-			catch (NoSuchLayoutSetPrototypeException nslspe) {
+			catch (NoSuchLayoutSetPrototypeException
+						noSuchLayoutSetPrototypeException) {
 
 				// LPS-52675
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(nslspe, nslspe);
+					_log.debug(
+						noSuchLayoutSetPrototypeException,
+						noSuchLayoutSetPrototypeException);
 				}
 
 				String layoutSetPrototypeName = headerElement.attributeValue(

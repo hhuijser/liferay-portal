@@ -48,8 +48,8 @@ public class JspC extends org.apache.jasper.JspC {
 				return;
 			}
 		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
 		}
 
 		JspC jspC = new JspC();
@@ -59,8 +59,8 @@ public class JspC extends org.apache.jasper.JspC {
 
 			jspC.execute();
 		}
-		catch (Exception e1) {
-			e1.printStackTrace();
+		catch (Exception exception) {
+			exception.printStackTrace();
 
 			try {
 				Field noDieLevelField =
@@ -76,7 +76,7 @@ public class JspC extends org.apache.jasper.JspC {
 				}
 			}
 			catch (Exception e2) {
-				e2.addSuppressed(e1);
+				e2.addSuppressed(exception);
 
 				throw new RuntimeException(e2);
 			}
@@ -94,8 +94,8 @@ public class JspC extends org.apache.jasper.JspC {
 
 			pages = (List<String>)pagesField.get(this);
 		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
 		}
 
 		_pages = pages;

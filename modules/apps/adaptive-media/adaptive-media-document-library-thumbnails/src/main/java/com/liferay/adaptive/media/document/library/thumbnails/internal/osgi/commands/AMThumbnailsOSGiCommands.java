@@ -103,8 +103,8 @@ public class AMThumbnailsOSGiCommands {
 
 				total += companyTotal;
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (Exception exception) {
+				_log.error(exception, exception);
 			}
 		}
 
@@ -140,8 +140,8 @@ public class AMThumbnailsOSGiCommands {
 					}
 				}
 			}
-			catch (Exception e) {
-				_log.error(e, e);
+			catch (Exception exception) {
+				_log.error(exception, exception);
 			}
 		}
 	}
@@ -186,8 +186,8 @@ public class AMThumbnailsOSGiCommands {
 					}
 				}
 			}
-			catch (PortalException pe) {
-				_log.error(pe, pe);
+			catch (PortalException portalException) {
+				_log.error(portalException, portalException);
 			}
 		}
 	}
@@ -229,8 +229,8 @@ public class AMThumbnailsOSGiCommands {
 
 			return fileVersion;
 		}
-		catch (PortalException pe) {
-			_log.error(pe, pe);
+		catch (PortalException portalException) {
+			_log.error(portalException, portalException);
 
 			return null;
 		}

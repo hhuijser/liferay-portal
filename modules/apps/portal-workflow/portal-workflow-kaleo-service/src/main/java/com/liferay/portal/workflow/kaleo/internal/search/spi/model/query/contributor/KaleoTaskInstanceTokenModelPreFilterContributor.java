@@ -461,9 +461,9 @@ public class KaleoTaskInstanceTokenModelPreFilterContributor
 				Collectors.toList()
 			);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 		}
 
@@ -513,9 +513,9 @@ public class KaleoTaskInstanceTokenModelPreFilterContributor
 					siteMemberRole.getRoleId(), groupId, roleIdGroupIdsMap);
 			}
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 		}
 	}

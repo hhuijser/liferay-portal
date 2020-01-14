@@ -234,11 +234,11 @@ public class EtcdUtil {
 		try {
 			return new EtcdClient(new URI(url));
 		}
-		catch (URISyntaxException urise) {
+		catch (URISyntaxException uriSyntaxException) {
 			throw new RuntimeException(
 				JenkinsResultsParserUtil.combine(
 					"Unable to create an etcd client for ", url),
-				urise);
+				uriSyntaxException);
 		}
 	}
 

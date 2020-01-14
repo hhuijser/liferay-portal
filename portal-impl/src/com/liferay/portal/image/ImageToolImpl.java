@@ -152,8 +152,8 @@ public class ImageToolImpl implements ImageTool {
 				};
 			}
 		}
-		catch (Exception e) {
-			_log.error(e, e);
+		catch (Exception exception) {
+			_log.error(exception, exception);
 		}
 		finally {
 			_fileImpl.delete(inputFile);
@@ -379,10 +379,10 @@ public class ImageToolImpl implements ImageTool {
 
 			_defaultCompanyLogo = getImage(inputStream);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			_log.error(
 				"Unable to configure the default company logo: " +
-					e.getMessage());
+					exception.getMessage());
 		}
 
 		return _defaultCompanyLogo;
@@ -406,10 +406,10 @@ public class ImageToolImpl implements ImageTool {
 
 			_defaultOrganizationLogo = getImage(is);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			_log.error(
 				"Unable to configure the default organization logo: " +
-					e.getMessage());
+					exception.getMessage());
 		}
 
 		return _defaultOrganizationLogo;
@@ -433,9 +433,10 @@ public class ImageToolImpl implements ImageTool {
 
 			_defaultSpacer = getImage(inputStream);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			_log.error(
-				"Unable to configure the default spacer: " + e.getMessage());
+				"Unable to configure the default spacer: " +
+					exception.getMessage());
 		}
 
 		return _defaultSpacer;
@@ -459,10 +460,10 @@ public class ImageToolImpl implements ImageTool {
 
 			_defaultUserFemalePortrait = getImage(is);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			_log.error(
 				"Unable to configure the default user female portrait: " +
-					e.getMessage());
+					exception.getMessage());
 		}
 
 		return _defaultUserFemalePortrait;
@@ -486,10 +487,10 @@ public class ImageToolImpl implements ImageTool {
 
 			_defaultUserMalePortrait = getImage(is);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			_log.error(
 				"Unable to configure the default user male portrait: " +
-					e.getMessage());
+					exception.getMessage());
 		}
 
 		return _defaultUserMalePortrait;
@@ -513,10 +514,10 @@ public class ImageToolImpl implements ImageTool {
 
 			_defaultUserPortrait = getImage(is);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			_log.error(
 				"Unable to configure the default user portrait: " +
-					e.getMessage());
+					exception.getMessage());
 		}
 
 		return _defaultUserPortrait;
@@ -642,7 +643,7 @@ public class ImageToolImpl implements ImageTool {
 
 					renderedImage = imageReader.read(0);
 				}
-				catch (IOException ioe) {
+				catch (IOException ioException) {
 					continue;
 				}
 

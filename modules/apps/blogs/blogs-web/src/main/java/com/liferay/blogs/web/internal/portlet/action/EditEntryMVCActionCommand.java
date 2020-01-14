@@ -294,8 +294,8 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 				_blogsEntryService.deleteEntry(entry.getEntryId());
 			}
 		}
-		catch (PortalException pe) {
-			ReflectionUtil.throwException(pe);
+		catch (PortalException portalException) {
+			ReflectionUtil.throwException(portalException);
 		}
 	}
 

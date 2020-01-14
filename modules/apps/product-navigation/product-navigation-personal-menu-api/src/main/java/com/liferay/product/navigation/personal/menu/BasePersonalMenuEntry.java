@@ -114,8 +114,8 @@ public abstract class BasePersonalMenuEntry implements PersonalMenuEntry {
 		catch (PortalException | RuntimeException e) {
 			throw e;
 		}
-		catch (Exception e) {
-			throw new PortalException(e);
+		catch (Exception exception) {
+			throw new PortalException(exception);
 		}
 	}
 

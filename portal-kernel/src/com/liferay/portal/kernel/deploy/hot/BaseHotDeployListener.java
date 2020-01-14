@@ -51,8 +51,8 @@ public abstract class BaseHotDeployListener implements HotDeployListener {
 
 			return (String)servletContextNameMethod.invoke(null);
 		}
-		catch (Exception e1) {
-			e = e1;
+		catch (Exception exception) {
+			e = exception;
 		}
 
 		try {
@@ -64,7 +64,7 @@ public abstract class BaseHotDeployListener implements HotDeployListener {
 
 			return clpServletContextName.toString();
 		}
-		catch (Exception e2) {
+		catch (Exception exception) {
 		}
 
 		throw e;

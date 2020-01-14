@@ -90,20 +90,20 @@ public class OpenIdConnectMetadataFactoryImpl
 
 			refreshClientMetadata(_oidcProviderMetadata);
 		}
-		catch (ParseException pe) {
+		catch (ParseException parseException) {
 			throw new OpenIdConnectServiceException.ProviderException(
 				StringBundler.concat(
 					"Invalid subject types ", StringUtil.merge(subjectTypes),
 					"for OpenId Connect provider ", _providerName, ": ",
-					pe.getMessage()),
-				pe);
+					parseException.getMessage()),
+				parseException);
 		}
-		catch (URISyntaxException urise) {
+		catch (URISyntaxException uriSyntaxException) {
 			throw new OpenIdConnectServiceException.ProviderException(
 				StringBundler.concat(
 					"Invalid URLs for OpenId Connect provider ", _providerName,
-					": ", urise.getMessage()),
-				urise);
+					": ", uriSyntaxException.getMessage()),
+				uriSyntaxException);
 		}
 	}
 

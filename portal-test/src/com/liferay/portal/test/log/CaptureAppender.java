@@ -45,8 +45,8 @@ public class CaptureAppender extends AppenderSkeleton implements Closeable {
 		try {
 			_parentField.set(_logger, null);
 		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
 		}
 	}
 
@@ -61,8 +61,8 @@ public class CaptureAppender extends AppenderSkeleton implements Closeable {
 		try {
 			_parentField.set(_logger, _parentCategory);
 		}
-		catch (Exception e) {
-			throw new RuntimeException(e);
+		catch (Exception exception) {
+			throw new RuntimeException(exception);
 		}
 	}
 

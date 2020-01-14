@@ -85,9 +85,9 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 				clusterReceiver, _bindInetAddress,
 				_clusterExecutorConfiguration, _classLoaders);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			throw new SystemException(
-				"Unable to create JGroupsClusterChannel", e);
+				"Unable to create JGroupsClusterChannel", exception);
 		}
 	}
 
@@ -183,14 +183,14 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 
 			_bindNetworkInterface = bindInfo.getNetworkInterface();
 		}
-		catch (IOException e) {
+		catch (IOException ioException) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to detect bind address for JGroups, using " +
 						"loopback");
 
 				if (_log.isDebugEnabled()) {
-					_log.debug(e, e);
+					_log.debug(ioException, ioException);
 				}
 			}
 

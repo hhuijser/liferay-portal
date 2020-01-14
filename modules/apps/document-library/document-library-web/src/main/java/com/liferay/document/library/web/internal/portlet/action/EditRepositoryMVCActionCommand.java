@@ -82,10 +82,11 @@ public class EditRepositoryMVCActionCommand extends BaseMVCActionCommand {
 			actionResponse.setRenderParameter(
 				"mvcPath", "/document_library/error.jsp");
 		}
-		catch (InvalidRepositoryException ire) {
-			_log.error(ire, ire);
+		catch (InvalidRepositoryException invalidRepositoryException) {
+			_log.error(invalidRepositoryException, invalidRepositoryException);
 
-			SessionErrors.add(actionRequest, ire.getClass());
+			SessionErrors.add(
+				actionRequest, invalidRepositoryException.getClass());
 		}
 		catch (DuplicateFolderNameException | DuplicateRepositoryNameException |
 			   FolderNameException | RepositoryNameException e) {

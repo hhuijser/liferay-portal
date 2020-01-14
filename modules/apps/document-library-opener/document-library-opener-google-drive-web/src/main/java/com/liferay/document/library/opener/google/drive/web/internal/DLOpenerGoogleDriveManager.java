@@ -144,8 +144,8 @@ public class DLOpenerGoogleDriveManager
 					DLOpenerGoogleDriveConstants.GOOGLE_DRIVE_REFERENCE_TYPE,
 					fileEntry);
 		}
-		catch (IOException ioe) {
-			throw new PortalException(ioe);
+		catch (IOException ioException) {
+			throw new PortalException(ioException);
 		}
 	}
 

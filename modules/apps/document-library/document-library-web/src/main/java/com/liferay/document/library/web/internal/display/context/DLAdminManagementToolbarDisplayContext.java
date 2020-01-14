@@ -627,8 +627,8 @@ public class DLAdminManagementToolbarDisplayContext {
 
 			return false;
 		}
-		catch (PortalException pe) {
-			throw new SystemException(pe);
+		catch (PortalException portalException) {
+			throw new SystemException(portalException);
 		}
 	}
 
@@ -904,8 +904,8 @@ public class DLAdminManagementToolbarDisplayContext {
 		catch (PortalException | RuntimeException e) {
 			throw e;
 		}
-		catch (Exception e) {
-			throw new PortalException(e);
+		catch (Exception exception) {
+			throw new PortalException(exception);
 		}
 	}
 

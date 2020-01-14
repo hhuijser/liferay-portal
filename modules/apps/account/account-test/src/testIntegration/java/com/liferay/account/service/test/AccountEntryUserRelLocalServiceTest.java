@@ -152,8 +152,8 @@ public class AccountEntryUserRelLocalServiceTest {
 
 			Assert.fail();
 		}
-		catch (NoSuchEntryException nsee) {
-			String message = nsee.getMessage();
+		catch (NoSuchEntryException noSuchEntryException) {
+			String message = noSuchEntryException.getMessage();
 
 			Assert.assertTrue(
 				message.contains(

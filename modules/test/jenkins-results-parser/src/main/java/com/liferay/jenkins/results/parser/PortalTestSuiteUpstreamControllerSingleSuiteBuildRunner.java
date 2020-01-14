@@ -94,8 +94,8 @@ public class PortalTestSuiteUpstreamControllerSingleSuiteBuildRunner
 			jenkinsAuthenticationToken = buildProperties.getProperty(
 				"jenkins.authentication.token");
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		sb.append("token=");
@@ -138,8 +138,8 @@ public class PortalTestSuiteUpstreamControllerSingleSuiteBuildRunner
 		try {
 			JenkinsResultsParserUtil.toString(sb.toString());
 		}
-		catch (IOException ioe) {
-			throw new RuntimeException(ioe);
+		catch (IOException ioException) {
+			throw new RuntimeException(ioException);
 		}
 
 		sb = new StringBuilder();
@@ -322,8 +322,8 @@ public class PortalTestSuiteUpstreamControllerSingleSuiteBuildRunner
 					envMapJSONObject.getString("JOB_NAME"),
 					envMapJSONObject.getString("HOSTNAME"));
 			}
-			catch (IOException ioe) {
-				throw new RuntimeException(ioe);
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
 			}
 		}
 

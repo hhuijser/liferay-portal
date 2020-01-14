@@ -97,8 +97,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.addPortletPermissions(
 				JournalConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(PortletDataException.EXPORT_PORTLET_PERMISSIONS);
@@ -261,8 +262,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 			portletDataContext.importPortletPermissions(
 				JournalConstants.RESOURCE_NAME);
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(PortletDataException.IMPORT_PORTLET_PERMISSIONS);
@@ -385,8 +387,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 				portletPreferences.setValue("ddmTemplateKey", ddmTemplateKey);
 			}
 		}
-		catch (PortalException pe) {
-			PortletDataException pde = new PortletDataException(pe);
+		catch (PortalException portalException) {
+			PortletDataException pde = new PortletDataException(
+				portalException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(
@@ -394,8 +397,9 @@ public class JournalContentExportImportPortletPreferencesProcessor
 
 			throw pde;
 		}
-		catch (ReadOnlyException roe) {
-			PortletDataException pde = new PortletDataException(roe);
+		catch (ReadOnlyException readOnlyException) {
+			PortletDataException pde = new PortletDataException(
+				readOnlyException);
 
 			pde.setPortletId(JournalContentPortletKeys.JOURNAL_CONTENT);
 			pde.setType(PortletDataException.UPDATE_PORTLET_PREFERENCES);

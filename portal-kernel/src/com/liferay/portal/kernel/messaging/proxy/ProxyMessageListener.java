@@ -60,8 +60,8 @@ public class ProxyMessageListener implements MessageListener {
 				proxyResponse.setResult(result);
 			}
 		}
-		catch (Exception e) {
-			proxyResponse.setException(e);
+		catch (Exception exception) {
+			proxyResponse.setException(exception);
 		}
 		finally {
 			String responseDestinationName =

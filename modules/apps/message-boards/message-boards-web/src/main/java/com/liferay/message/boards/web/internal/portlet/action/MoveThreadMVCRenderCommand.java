@@ -58,11 +58,11 @@ public class MoveThreadMVCRenderCommand implements MVCRenderCommand {
 
 			return "/message_boards/error.jsp";
 		}
-		catch (RuntimeException re) {
-			throw re;
+		catch (RuntimeException runtimeException) {
+			throw runtimeException;
 		}
-		catch (Exception e) {
-			throw new PortletException(e);
+		catch (Exception exception) {
+			throw new PortletException(exception);
 		}
 
 		return "/message_boards/move_thread.jsp";

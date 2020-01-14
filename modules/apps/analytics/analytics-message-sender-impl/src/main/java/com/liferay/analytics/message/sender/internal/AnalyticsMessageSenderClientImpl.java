@@ -119,7 +119,7 @@ public class AnalyticsMessageSenderClientImpl
 		try {
 			_companyService.updatePreferences(companyId, unicodeProperties);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to remove analytics preferences for company " +
@@ -131,7 +131,7 @@ public class AnalyticsMessageSenderClientImpl
 			_configurationProvider.deleteCompanyConfiguration(
 				AnalyticsConfiguration.class, companyId);
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isWarnEnabled()) {
 				_log.warn(
 					"Unable to remove analytics configuration for company " +

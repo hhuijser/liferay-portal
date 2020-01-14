@@ -61,8 +61,8 @@ public class EditRepositoryMVCRenderCommand implements MVCRenderCommand {
 
 			return "/document_library/error.jsp";
 		}
-		catch (PortalException pe) {
-			throw new PortletException(pe);
+		catch (PortalException portalException) {
+			throw new PortletException(portalException);
 		}
 	}
 

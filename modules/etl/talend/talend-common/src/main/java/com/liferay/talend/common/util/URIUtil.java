@@ -152,10 +152,10 @@ public class URIUtil {
 		try {
 			return new URI(StringUtil.removeQuotes(href));
 		}
-		catch (URISyntaxException urise) {
+		catch (URISyntaxException uriSyntaxException) {
 			_logger.error("Unable to convert URL to URI: " + href);
 
-			throw new RuntimeException(urise);
+			throw new RuntimeException(uriSyntaxException);
 		}
 	}
 

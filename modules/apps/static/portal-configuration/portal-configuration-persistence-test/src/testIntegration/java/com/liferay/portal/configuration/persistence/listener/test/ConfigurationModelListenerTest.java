@@ -150,8 +150,10 @@ public class ConfigurationModelListenerTest {
 
 			Assert.fail();
 		}
-		catch (ConfigurationModelListenerException cmle) {
-			Assert.assertSame(cmle1, cmle);
+		catch (ConfigurationModelListenerException
+					configurationModelListenerException) {
+
+			Assert.assertSame(cmle1, configurationModelListenerException);
 			Assert.assertTrue(_hasPid(pid));
 		}
 	}
@@ -200,8 +202,10 @@ public class ConfigurationModelListenerTest {
 
 			Assert.fail();
 		}
-		catch (ConfigurationModelListenerException cmle) {
-			Assert.assertSame(cmle1, cmle);
+		catch (ConfigurationModelListenerException
+					configurationModelListenerException) {
+
+			Assert.assertSame(cmle1, configurationModelListenerException);
 
 			_configuration = _getConfiguration(pid);
 

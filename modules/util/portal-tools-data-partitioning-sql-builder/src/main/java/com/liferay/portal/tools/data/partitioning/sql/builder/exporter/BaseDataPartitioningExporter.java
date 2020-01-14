@@ -62,8 +62,8 @@ public abstract class BaseDataPartitioningExporter
 		try {
 			exportProcess.export(exportContext);
 		}
-		catch (IOException ioe) {
-			_logger.error("Unable to export", ioe);
+		catch (IOException ioException) {
+			_logger.error("Unable to export", ioException);
 		}
 	}
 
@@ -204,9 +204,10 @@ public abstract class BaseDataPartitioningExporter
 				tableNames.add(resultSet.getString(getTableNameFieldName()));
 			}
 		}
-		catch (SQLException sqle) {
+		catch (SQLException sqlException) {
 			_logger.error(
-				"Unable to get table names using SQL query: " + sql, sqle);
+				"Unable to get table names using SQL query: " + sql,
+				sqlException);
 		}
 
 		return tableNames;

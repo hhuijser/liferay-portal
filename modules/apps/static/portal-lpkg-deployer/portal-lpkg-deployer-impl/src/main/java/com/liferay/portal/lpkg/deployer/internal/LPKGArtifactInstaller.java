@@ -106,11 +106,11 @@ public class LPKGArtifactInstaller implements ArtifactInstaller {
 			try {
 				bundle.start();
 			}
-			catch (BundleException be) {
+			catch (BundleException bundleException) {
 				_log.error(
 					StringBundler.concat(
 						"Unable to start ", bundle, " for ", file),
-					be);
+					bundleException);
 			}
 		}
 	}
@@ -160,12 +160,12 @@ public class LPKGArtifactInstaller implements ArtifactInstaller {
 
 			return properties;
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 			if (_log.isDebugEnabled()) {
 				_log.debug(
 					"Unable to read liferay-marketplace.properties from " +
 						file.getName(),
-					e);
+					exception);
 			}
 		}
 

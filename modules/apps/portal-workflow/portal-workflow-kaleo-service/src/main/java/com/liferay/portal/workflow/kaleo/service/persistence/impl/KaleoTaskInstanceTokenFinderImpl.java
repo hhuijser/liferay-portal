@@ -102,8 +102,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			return 0;
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -141,8 +141,8 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 			return kaleoTaskInstanceTokens;
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);

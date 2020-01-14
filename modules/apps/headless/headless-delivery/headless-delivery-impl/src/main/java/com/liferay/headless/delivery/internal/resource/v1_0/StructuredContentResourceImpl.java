@@ -583,12 +583,12 @@ public class StructuredContentResourceImpl
 			return _ddmStructureService.getStructure(
 				structuredContent.getContentStructureId());
 		}
-		catch (PrincipalException.MustHavePermission mhp) {
+		catch (PrincipalException.MustHavePermission principalException) {
 			throw new ForbiddenException(
 				"You do not have permission to create a structured content " +
 					"using the content structure ID " +
 						structuredContent.getContentStructureId(),
-				mhp);
+				principalException);
 		}
 	}
 
@@ -636,12 +636,12 @@ public class StructuredContentResourceImpl
 		try {
 			return ddmStructure.getDDMFormField(name);
 		}
-		catch (Exception sfe) {
+		catch (Exception exception) {
 			throw new BadRequestException(
 				StringBundler.concat(
 					"Unable to get content field value for \"", name,
 					"\" for content structure ", ddmStructure.getStructureId()),
-				sfe);
+				exception);
 		}
 	}
 
@@ -902,9 +902,13 @@ public class StructuredContentResourceImpl
 		try {
 			_ddmFormValuesValidator.validate(ddmFormValues);
 		}
-		catch (DDMFormValuesValidationException ddmfvve) {
+		catch (DDMFormValuesValidationException
+					ddmFormValuesValidationException) {
+
 			throw new BadRequestException(
-				"Validation error: " + ddmfvve.getMessage(), ddmfvve);
+				"Validation error: " +
+					ddmFormValuesValidationException.getMessage(),
+				ddmFormValuesValidationException);
 		}
 	}
 

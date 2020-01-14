@@ -565,7 +565,7 @@ public class AnnotationLocatorTest {
 					}
 				}
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 	}
@@ -604,7 +604,7 @@ public class AnnotationLocatorTest {
 					method.getName() + "()@" + clazz.getName(),
 					expectedMethodValue, methodAnnotation.value());
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 
@@ -638,7 +638,7 @@ public class AnnotationLocatorTest {
 					method.getName() + "()@" + clazz.getName(),
 					expectedMixValue, mixAnnotation.value());
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 
@@ -672,7 +672,7 @@ public class AnnotationLocatorTest {
 					method.getName() + "()@" + clazz.getName(),
 					expectedTypeValue, typeAnnotation.value());
 			}
-			catch (Exception e) {
+			catch (Exception exception) {
 			}
 		}
 	}

@@ -203,8 +203,8 @@ public class URLCodecTest {
 
 			Assert.fail(encodedURLString);
 		}
-		catch (IllegalArgumentException iae) {
-			String message = iae.getMessage();
+		catch (IllegalArgumentException illegalArgumentException) {
+			String message = illegalArgumentException.getMessage();
 
 			if (invalidHexChar) {
 				Assert.assertTrue(

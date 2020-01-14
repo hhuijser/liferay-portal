@@ -65,9 +65,11 @@ public class InetAddressUtil {
 			return defaultNoticeableFuture.get(
 				_DNS_SECURITY_ADDRESS_TIMEOUT_SECONDS, TimeUnit.SECONDS);
 		}
-		catch (ExecutionException | InterruptedException | TimeoutException e) {
+		catch (ExecutionException | InterruptedException | TimeoutException
+					exception) {
+
 			if (_log.isDebugEnabled()) {
-				_log.debug(e, e);
+				_log.debug(exception, exception);
 			}
 
 			throw new UnknownHostException(

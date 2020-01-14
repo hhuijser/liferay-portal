@@ -130,9 +130,9 @@ public class InstrumentationAgent {
 					_instrumentation.redefineClasses(
 						classDefinitions.toArray(new ClassDefinition[0]));
 				}
-				catch (Exception e) {
+				catch (Exception exception) {
 					throw new RuntimeException(
-						"Unable to uninstrument classes", e);
+						"Unable to uninstrument classes", exception);
 				}
 			}
 		}

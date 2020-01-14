@@ -140,7 +140,7 @@ public class DepotAdminManagementToolbarDisplayContext
 				}
 			};
 		}
-		catch (Exception e) {
+		catch (Exception exception) {
 		}
 
 		return null;

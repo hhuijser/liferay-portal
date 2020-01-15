@@ -16,10 +16,15 @@ package com.liferay.source.formatter;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.portal.tools.java.parser.JavaParser;
+import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleLogger;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.FileUtil;
 
 import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 import com.puppycrawl.tools.checkstyle.api.Configuration;
@@ -32,6 +37,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -104,15 +111,85 @@ public class JavaSourceProcessor extends BaseSourceProcessor {
 
 		_ungeneratedFiles.clear();
 
+		List<String> fileNames = new ArrayList<>();
+
 		for (SourceFormatterMessage sourceFormatterMessage :
 				_sourceFormatterMessages) {
 
-			String fileName = sourceFormatterMessage.getFileName();
+			try {
+				String fileName = sourceFormatterMessage.getFileName();
 
-			processMessage(fileName, sourceFormatterMessage);
+				File file = new File(fileName);
 
-			printError(fileName, sourceFormatterMessage.toString());
+				String content = FileUtil.read(file);
+
+				String s = sourceFormatterMessage.getMessage();
+
+				String[] parts = StringUtil.split(s, "-");
+
+				if (parts.length != 4) {
+					processMessage(fileName, sourceFormatterMessage);
+
+					printError(fileName, sourceFormatterMessage.toString());
+
+					continue;
+				}
+
+				int startLineNumber = GetterUtil.getInteger(parts[0]);
+				int endLineNumber = GetterUtil.getInteger(parts[1]);
+				String varName = parts[2];
+				String newVarName = parts[3];
+				//String ln = parts[4];
+
+				if (true) {
+					//continue;
+				}
+
+				if (fileNames.contains(fileName)) {
+					//continue;
+				}
+
+				int start = SourceUtil.getLineStartPos(
+					content, startLineNumber);
+				int end = SourceUtil.getLineStartPos(
+					content, endLineNumber + 1);
+
+				String match = content.substring(start, end);
+
+				String replacement = _getReplacement(
+					match, varName, newVarName);
+
+				//String replacement =
+				//String replacement = matcher.replaceAll("$1" + newVarName + "$2");
+
+				String newContent = StringUtil.replaceFirst(
+					content, match, replacement, start - 1);
+
+				FileUtil.write(file, newContent);
+
+				System.out.println("Writing: " + fileName);
+
+				fileNames.add(fileName);
+			}
+			catch (Exception exception) {
+			}
 		}
+	}
+
+	private String _getReplacement(String s, String var, String newVar) {
+		Pattern pattern = Pattern.compile("(\\W)" + var + "(\\W)");
+
+		Matcher matcher = pattern.matcher(s);
+
+		while (matcher.find()) {
+			if (!ToolsUtil.isInsideQuotes(s, matcher.start(2) - 1)) {
+				return _getReplacement(
+					StringUtil.replaceFirst(s, var, newVar, matcher.start()),
+					var, newVar);
+			}
+		}
+
+		return s;
 	}
 
 	@Override

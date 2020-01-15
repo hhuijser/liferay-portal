@@ -54,7 +54,7 @@ public class ArquillianCheck extends BaseCheck {
 
 		File xmlFile = new File(
 			absolutePath.substring(0, pos) +
-				"/testIntegration/resources/arquilllian.xml");
+				"/testIntegration/resources/arquillian.xml");
 
 		if (!xmlFile.exists()) {
 			log(detailAST, _MSG_INVALID_IMPORT);

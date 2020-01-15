@@ -95,8 +95,8 @@ public class AddFormInstanceRecordMVCActionCommand
 		try {
 			validateCaptcha(actionRequest, ddmFormInstance);
 		}
-		catch (CaptchaException ce) {
-			SessionErrors.add(actionRequest, ce.getClass());
+		catch (CaptchaException captchaException) {
+			SessionErrors.add(actionRequest, captchaException.getClass());
 
 			return;
 		}

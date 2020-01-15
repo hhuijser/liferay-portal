@@ -91,8 +91,8 @@ public class SelectDDMFormFieldValueAccessor
 
 			return sb.toString();
 		}
-		catch (JSONException jsone) {
-			_log.error("Unable to parse JSON array", jsone);
+		catch (JSONException jsonException) {
+			_log.error("Unable to parse JSON array", jsonException);
 
 			return StringPool.BLANK;
 		}
@@ -102,9 +102,9 @@ public class SelectDDMFormFieldValueAccessor
 		try {
 			return jsonFactory.createJSONArray(json);
 		}
-		catch (JSONException jsone) {
+		catch (JSONException jsonException) {
 			if (_log.isDebugEnabled()) {
-				_log.debug("Unable to parse JSON array", jsone);
+				_log.debug("Unable to parse JSON array", jsonException);
 			}
 
 			return jsonFactory.createJSONArray();

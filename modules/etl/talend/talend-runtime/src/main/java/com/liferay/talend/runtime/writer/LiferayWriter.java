@@ -87,8 +87,8 @@ public class LiferayWriter
 		try {
 			_liferaySink.doDeleteRequest(_endpointUrl);
 		}
-		catch (Exception e) {
-			_indexedRecordJsonObjectConverter.reject(indexedRecord, e);
+		catch (Exception exception) {
+			_indexedRecordJsonObjectConverter.reject(indexedRecord, exception);
 
 			return;
 		}
@@ -104,8 +104,8 @@ public class LiferayWriter
 				_endpointUrl,
 				_indexedRecordJsonObjectConverter.toJsonObject(indexedRecord));
 		}
-		catch (Exception e) {
-			_indexedRecordJsonObjectConverter.reject(indexedRecord, e);
+		catch (Exception exception) {
+			_indexedRecordJsonObjectConverter.reject(indexedRecord, exception);
 
 			return;
 		}
@@ -122,8 +122,8 @@ public class LiferayWriter
 				_endpointUrl,
 				_indexedRecordJsonObjectConverter.toJsonObject(indexedRecord));
 		}
-		catch (Exception e) {
-			_indexedRecordJsonObjectConverter.reject(indexedRecord, e);
+		catch (Exception exception) {
+			_indexedRecordJsonObjectConverter.reject(indexedRecord, exception);
 
 			return;
 		}
@@ -199,11 +199,11 @@ public class LiferayWriter
 			return true;
 		}
 
-		IllegalArgumentException iae = new IllegalArgumentException(
-			"Indexed record is null");
+		IllegalArgumentException illegalArgumentException =
+			new IllegalArgumentException("Indexed record is null");
 
 		if (object != null) {
-			iae = new IllegalArgumentException(
+			illegalArgumentException = new IllegalArgumentException(
 				String.format(
 					"Expected record instance of %s but actual instance " +
 						"passed was %s",
@@ -211,11 +211,11 @@ public class LiferayWriter
 		}
 
 		if (_dieOnError) {
-			throw new IOException(iae);
+			throw new IOException(illegalArgumentException);
 		}
 
 		if (_logger.isWarnEnabled()) {
-			_logger.warn("Unable to process record", iae);
+			_logger.warn("Unable to process record", illegalArgumentException);
 		}
 
 		return false;

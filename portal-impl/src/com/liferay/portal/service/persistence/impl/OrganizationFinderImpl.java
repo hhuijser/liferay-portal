@@ -149,8 +149,8 @@ public class OrganizationFinderImpl
 
 			return countO_ByOrganizationId(session, organizationId, params1);
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -314,8 +314,8 @@ public class OrganizationFinderImpl
 
 			return count;
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -372,8 +372,8 @@ public class OrganizationFinderImpl
 
 			return count;
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -428,8 +428,8 @@ public class OrganizationFinderImpl
 
 			return q.list(true);
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -468,8 +468,8 @@ public class OrganizationFinderImpl
 
 			return (List<Long>)QueryUtil.list(q, getDialect(), 0, size);
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -628,8 +628,8 @@ public class OrganizationFinderImpl
 
 			return organizations;
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);
@@ -703,8 +703,8 @@ public class OrganizationFinderImpl
 
 			return models;
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
 		}
 		finally {
 			closeSession(session);

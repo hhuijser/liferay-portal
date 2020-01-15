@@ -627,8 +627,8 @@ public class DLAdminManagementToolbarDisplayContext {
 
 			return false;
 		}
-		catch (PortalException pe) {
-			throw new SystemException(pe);
+		catch (PortalException portalException) {
+			throw new SystemException(portalException);
 		}
 	}
 
@@ -901,11 +901,11 @@ public class DLAdminManagementToolbarDisplayContext {
 				_themeDisplay.getCompanyId(), _themeDisplay.getScopeGroupId(),
 				folderId, fileEntryTypeId);
 		}
-		catch (PortalException | RuntimeException e) {
-			throw e;
+		catch (PortalException | RuntimeException exception) {
+			throw exception;
 		}
-		catch (Exception e) {
-			throw new PortalException(e);
+		catch (Exception exception) {
+			throw new PortalException(exception);
 		}
 	}
 

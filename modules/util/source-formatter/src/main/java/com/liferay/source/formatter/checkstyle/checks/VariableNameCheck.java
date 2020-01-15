@@ -124,6 +124,42 @@ public class VariableNameCheck extends BaseCheck {
 		}
 	}
 
+	protected String getExpectedVariableName(String typeName) {
+		if (StringUtil.isUpperCase(typeName) || typeName.matches("[A-Z]+s")) {
+			return StringUtil.toLowerCase(typeName);
+		}
+
+		if (typeName.startsWith("IDf")) {
+			return StringUtil.replaceFirst(typeName, "IDf", "idf");
+		}
+
+		if (typeName.startsWith("OSGi")) {
+			return StringUtil.replaceFirst(typeName, "OSGi", "osgi");
+		}
+
+		for (int i = 0; i < typeName.length(); i++) {
+			char c = typeName.charAt(i);
+
+			if (!Character.isLowerCase(c)) {
+				continue;
+			}
+
+			if (i == 0) {
+				return typeName;
+			}
+
+			if (i == 1) {
+				return StringUtil.toLowerCase(typeName.substring(0, 1)) +
+					typeName.substring(1);
+			}
+
+			return StringUtil.toLowerCase(typeName.substring(0, i - 1)) +
+				typeName.substring(i - 1);
+		}
+
+		return StringUtil.toLowerCase(typeName);
+	}
+
 	private void _checkCaps(DetailAST detailAST, String name) {
 		for (String[] array : _ALL_CAPS_STRINGS) {
 			String s = array[1];
@@ -168,7 +204,7 @@ public class VariableNameCheck extends BaseCheck {
 		String absolutePath = getAbsolutePath();
 
 		if (absolutePath.endsWith("ExceptionMapper.java")) {
-			String expectedName = _getExpectedVariableName(typeName);
+			String expectedName = getExpectedVariableName(typeName);
 
 			if (!name.equals(expectedName)) {
 				log(detailAST, _MSG_RENAME_VARIABLE, name, expectedName);
@@ -279,7 +315,7 @@ public class VariableNameCheck extends BaseCheck {
 
 			log(
 				detailAST, _MSG_INCORRECT_ENDING_VARIABLE, typeName,
-				_getExpectedVariableName(typeName));
+				getExpectedVariableName(typeName));
 		}
 	}
 
@@ -317,7 +353,7 @@ public class VariableNameCheck extends BaseCheck {
 		String trimmedTypeName = StringUtil.replaceLast(
 			typeName, typeNameTrailingDigits, StringPool.BLANK);
 
-		String expectedName = _getExpectedVariableName(trimmedTypeName);
+		String expectedName = getExpectedVariableName(trimmedTypeName);
 
 		if (StringUtil.equals(trimmedName, expectedName)) {
 			return;
@@ -452,47 +488,11 @@ public class VariableNameCheck extends BaseCheck {
 		return Arrays.equals(chars1, chars2);
 	}
 
-	private String _getExpectedVariableName(String typeName) {
-		if (StringUtil.isUpperCase(typeName) || typeName.matches("[A-Z]+s")) {
-			return StringUtil.toLowerCase(typeName);
-		}
-
-		if (typeName.startsWith("IDf")) {
-			return StringUtil.replaceFirst(typeName, "IDf", "idf");
-		}
-
-		if (typeName.startsWith("OSGi")) {
-			return StringUtil.replaceFirst(typeName, "OSGi", "osgi");
-		}
-
-		for (int i = 0; i < typeName.length(); i++) {
-			char c = typeName.charAt(i);
-
-			if (!Character.isLowerCase(c)) {
-				continue;
-			}
-
-			if (i == 0) {
-				return typeName;
-			}
-
-			if (i == 1) {
-				return StringUtil.toLowerCase(typeName.substring(0, 1)) +
-					typeName.substring(1);
-			}
-
-			return StringUtil.toLowerCase(typeName.substring(0, i - 1)) +
-				typeName.substring(i - 1);
-		}
-
-		return StringUtil.toLowerCase(typeName);
-	}
-
 	private String _getExpectedVariableName(
 		String typeName, String leadingUnderline, String trailingDigits) {
 
 		return StringBundler.concat(
-			leadingUnderline, _getExpectedVariableName(typeName),
+			leadingUnderline, getExpectedVariableName(typeName),
 			trailingDigits);
 	}
 

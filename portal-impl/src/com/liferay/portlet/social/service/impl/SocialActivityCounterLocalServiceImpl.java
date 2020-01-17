@@ -124,7 +124,8 @@ public class SocialActivityCounterLocalServiceImpl
 					activityCounter.getStartPeriod() + periodLength - 1);
 			}
 
-			socialActivityCounterPersistence.update(activityCounter);
+			activityCounter = socialActivityCounterPersistence.update(
+				activityCounter);
 		}
 
 		activityCounter = socialActivityCounterPersistence.fetchByG_C_C_N_O_E(
@@ -165,9 +166,7 @@ public class SocialActivityCounterLocalServiceImpl
 			SocialActivityCounterConstants.END_PERIOD_UNDEFINED);
 		activityCounter.setActive(true);
 
-		socialActivityCounterPersistence.update(activityCounter);
-
-		return activityCounter;
+		return socialActivityCounterPersistence.update(activityCounter);
 	}
 
 	/**
@@ -1032,7 +1031,8 @@ public class SocialActivityCounterLocalServiceImpl
 			activityCounter.getTotalValue() +
 				activityCounterDefinition.getIncrement());
 
-		socialActivityCounterPersistence.update(activityCounter);
+		activityCounter = socialActivityCounterPersistence.update(
+			activityCounter);
 
 		socialActivityCounterPersistence.clearCache(activityCounter);
 	}

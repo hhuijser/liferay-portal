@@ -70,7 +70,7 @@ public class TransactionInvokerUtilTest {
 
 					className.setValue(classNameValue);
 
-					_classNamePersistence.update(className);
+					className = _classNamePersistence.update(className);
 
 					return null;
 				});
@@ -100,7 +100,7 @@ public class TransactionInvokerUtilTest {
 
 					className.setValue(PwdGenerator.getPassword());
 
-					_classNamePersistence.update(className);
+					className = _classNamePersistence.update(className);
 
 					throw exception;
 				});

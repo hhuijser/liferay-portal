@@ -68,7 +68,7 @@ public class DispatchTriggerLocalServiceImpl
 		dispatchTrigger.setType(type);
 		dispatchTrigger.setTypeSettingsProperties(typeSettingsProperties);
 
-		dispatchTriggerPersistence.update(dispatchTrigger);
+		dispatchTrigger = dispatchTriggerPersistence.update(dispatchTrigger);
 
 		resourceLocalService.addResources(
 			user.getCompanyId(), 0, user.getUserId(),

@@ -181,7 +181,7 @@ public class MDRActionLocalServiceImpl extends MDRActionLocalServiceBaseImpl {
 		action.setType(type);
 		action.setTypeSettings(typeSettings);
 
-		mdrActionPersistence.update(action);
+		action = mdrActionPersistence.update(action);
 
 		MDRRuleGroupInstance ruleGroupInstance =
 			mdrRuleGroupInstancePersistence.findByPrimaryKey(

@@ -100,7 +100,8 @@ public class SyncDLObjectLocalServiceImpl
 					approvedSyncDLObject.setLockUserId(lockUserId);
 					approvedSyncDLObject.setLockUserName(lockUserName);
 
-					syncDLObjectPersistence.update(approvedSyncDLObject);
+					approvedSyncDLObject = syncDLObjectPersistence.update(
+						approvedSyncDLObject);
 				}
 			}
 		}

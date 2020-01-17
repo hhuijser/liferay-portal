@@ -747,7 +747,8 @@ public class PersistenceNestedSetsTreeManagerTest {
 				_nestedSetsTreeEntryPersistence.remove(nestedSetsTreeEntry);
 			}
 			else {
-				_nestedSetsTreeEntryPersistence.update(nestedSetsTreeEntry);
+				nestedSetsTreeEntry = _nestedSetsTreeEntryPersistence.update(
+					nestedSetsTreeEntry);
 			}
 		}
 

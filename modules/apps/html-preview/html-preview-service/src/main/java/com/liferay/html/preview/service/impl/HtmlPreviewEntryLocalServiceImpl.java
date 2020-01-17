@@ -77,9 +77,7 @@ public class HtmlPreviewEntryLocalServiceImpl
 			htmlPreviewEntry.setFileEntryId(fileEntry.getFileEntryId());
 		}
 
-		htmlPreviewEntryPersistence.update(htmlPreviewEntry);
-
-		return htmlPreviewEntry;
+		return htmlPreviewEntryPersistence.update(htmlPreviewEntry);
 	}
 
 	@Override
@@ -127,9 +125,7 @@ public class HtmlPreviewEntryLocalServiceImpl
 			htmlPreviewEntry.setFileEntryId(fileEntry.getFileEntryId());
 		}
 
-		htmlPreviewEntryPersistence.update(htmlPreviewEntry);
-
-		return htmlPreviewEntry;
+		return htmlPreviewEntryPersistence.update(htmlPreviewEntry);
 	}
 
 	private FileEntry _getFileEntry(

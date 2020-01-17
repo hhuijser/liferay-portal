@@ -78,9 +78,7 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 
 		dlContent.setSize(bytes.length);
 
-		dlContentPersistence.update(dlContent);
-
-		return dlContent;
+		return dlContentPersistence.update(dlContent);
 	}
 
 	@Override
@@ -137,7 +135,7 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 
 			dlContent.setSize(size);
 
-			dlContentPersistence.update(dlContent);
+			dlContent = dlContentPersistence.update(dlContent);
 		}
 		catch (IOException ioe) {
 			if (_log.isWarnEnabled()) {

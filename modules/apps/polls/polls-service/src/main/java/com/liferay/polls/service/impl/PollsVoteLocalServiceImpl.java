@@ -113,9 +113,7 @@ public class PollsVoteLocalServiceImpl extends PollsVoteLocalServiceBaseImpl {
 		vote.setChoiceId(choiceId);
 		vote.setVoteDate(serviceContext.getCreateDate(now));
 
-		pollsVotePersistence.update(vote);
-
-		return vote;
+		return pollsVotePersistence.update(vote);
 	}
 
 	@Override

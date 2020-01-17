@@ -155,7 +155,7 @@ public class StatusLocalServiceImpl extends StatusLocalServiceBaseImpl {
 		}
 
 		try {
-			statusPersistence.update(status);
+			status = statusPersistence.update(status);
 		}
 		catch (SystemException se) {
 			if (_log.isWarnEnabled()) {

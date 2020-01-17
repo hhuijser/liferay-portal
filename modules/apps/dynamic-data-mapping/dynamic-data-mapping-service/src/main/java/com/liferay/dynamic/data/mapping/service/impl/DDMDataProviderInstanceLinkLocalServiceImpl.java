@@ -47,9 +47,8 @@ public class DDMDataProviderInstanceLinkLocalServiceImpl
 			dataProviderInstanceId);
 		dataProviderInstanceLink.setStructureId(structureId);
 
-		ddmDataProviderInstanceLinkPersistence.update(dataProviderInstanceLink);
-
-		return dataProviderInstanceLink;
+		return ddmDataProviderInstanceLinkPersistence.update(
+			dataProviderInstanceLink);
 	}
 
 	@Override

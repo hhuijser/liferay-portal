@@ -87,7 +87,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 			StringUtil.extractFirst(fileName, StringPool.PERIOD));
 		definition.setReportParameters(reportParameters);
 
-		definitionPersistence.update(definition);
+		definition = definitionPersistence.update(definition);
 
 		// Resources
 
@@ -207,7 +207,7 @@ public class DefinitionLocalServiceImpl extends DefinitionLocalServiceBaseImpl {
 
 		definition.setReportParameters(reportParameters);
 
-		definitionPersistence.update(definition);
+		definition = definitionPersistence.update(definition);
 
 		// Resources
 

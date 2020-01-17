@@ -64,9 +64,7 @@ public class MBDiscussionLocalServiceImpl
 		discussion.setClassPK(classPK);
 		discussion.setThreadId(threadId);
 
-		mbDiscussionPersistence.update(discussion);
-
-		return discussion;
+		return mbDiscussionPersistence.update(discussion);
 	}
 
 	@Override

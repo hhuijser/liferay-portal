@@ -68,7 +68,7 @@ public class CTProcessLocalServiceImpl extends CTProcessLocalServiceBaseImpl {
 
 		ctCollection.setStatus(WorkflowConstants.STATUS_PENDING);
 
-		ctCollectionPersistence.update(ctCollection);
+		ctCollection = ctCollectionPersistence.update(ctCollection);
 
 		for (CTPreferences ctPreferences :
 				_ctPreferencesPersistence.findByCollectionId(ctCollectionId)) {

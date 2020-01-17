@@ -114,7 +114,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		category.setDisplayStyle(displayStyle);
 		category.setExpandoBridgeAttributes(serviceContext);
 
-		mbCategoryPersistence.update(category);
+		category = mbCategoryPersistence.update(category);
 
 		// Resources
 
@@ -806,7 +806,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 		category.setExpandoBridgeAttributes(serviceContext);
 
-		mbCategoryPersistence.update(category);
+		category = mbCategoryPersistence.update(category);
 
 		// Mailing list
 
@@ -893,9 +893,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		category.setStatusByUserName(user.getFullName());
 		category.setStatusDate(new Date());
 
-		mbCategoryPersistence.update(category);
-
-		return category;
+		return mbCategoryPersistence.update(category);
 	}
 
 	@Override
@@ -1086,7 +1084,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 				category.setStatus(WorkflowConstants.STATUS_IN_TRASH);
 
-				mbCategoryPersistence.update(category);
+				category = mbCategoryPersistence.update(category);
 
 				// Trash
 
@@ -1176,7 +1174,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 
 				category.setStatus(oldStatus);
 
-				mbCategoryPersistence.update(category);
+				category = mbCategoryPersistence.update(category);
 
 				// Categories and threads
 

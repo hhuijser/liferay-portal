@@ -62,9 +62,7 @@ public class SegmentsEntryRelLocalServiceImpl
 		segmentsEntryRel.setClassNameId(classNameId);
 		segmentsEntryRel.setClassPK(classPK);
 
-		segmentsEntryRelPersistence.update(segmentsEntryRel);
-
-		return segmentsEntryRel;
+		return segmentsEntryRelPersistence.update(segmentsEntryRel);
 	}
 
 	@Override

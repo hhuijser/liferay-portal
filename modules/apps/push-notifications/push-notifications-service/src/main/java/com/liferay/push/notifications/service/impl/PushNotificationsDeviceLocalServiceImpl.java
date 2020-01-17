@@ -70,9 +70,8 @@ public class PushNotificationsDeviceLocalServiceImpl
 		pushNotificationsDevice.setPlatform(platform);
 		pushNotificationsDevice.setToken(token);
 
-		pushNotificationsDevicePersistence.update(pushNotificationsDevice);
-
-		return pushNotificationsDevice;
+		return pushNotificationsDevicePersistence.update(
+			pushNotificationsDevice);
 	}
 
 	@Override

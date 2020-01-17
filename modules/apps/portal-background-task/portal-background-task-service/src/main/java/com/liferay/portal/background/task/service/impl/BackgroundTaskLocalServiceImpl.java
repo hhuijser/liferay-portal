@@ -205,9 +205,7 @@ public class BackgroundTaskLocalServiceImpl
 			backgroundTask.setStatusMessage(statusMessage);
 		}
 
-		backgroundTaskPersistence.update(backgroundTask);
-
-		return backgroundTask;
+		return backgroundTaskPersistence.update(backgroundTask);
 	}
 
 	@Clusterable(onMaster = true)
@@ -261,7 +259,8 @@ public class BackgroundTaskLocalServiceImpl
 				backgroundTask.setCompleted(true);
 				backgroundTask.setStatus(BackgroundTaskConstants.STATUS_FAILED);
 
-				backgroundTaskPersistence.update(backgroundTask);
+				backgroundTask = backgroundTaskPersistence.update(
+					backgroundTask);
 			}
 
 			cleanUpBackgroundTask(
@@ -734,7 +733,7 @@ public class BackgroundTaskLocalServiceImpl
 
 		backgroundTask.setStatus(BackgroundTaskConstants.STATUS_NEW);
 
-		backgroundTaskPersistence.update(backgroundTask);
+		backgroundTask = backgroundTaskPersistence.update(backgroundTask);
 
 		TransactionCommitCallbackUtil.registerCallback(
 			new Callable<Void>() {

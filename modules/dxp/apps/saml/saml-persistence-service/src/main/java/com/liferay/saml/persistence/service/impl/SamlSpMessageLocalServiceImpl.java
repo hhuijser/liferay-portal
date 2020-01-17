@@ -51,9 +51,7 @@ public class SamlSpMessageLocalServiceImpl
 		samlSpMessage.setSamlIdpResponseKey(samlIdpResponseKey);
 		samlSpMessage.setExpirationDate(expirationDate);
 
-		samlSpMessagePersistence.update(samlSpMessage);
-
-		return samlSpMessage;
+		return samlSpMessagePersistence.update(samlSpMessage);
 	}
 
 	@Override

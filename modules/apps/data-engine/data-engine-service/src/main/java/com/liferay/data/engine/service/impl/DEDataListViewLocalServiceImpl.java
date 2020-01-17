@@ -68,9 +68,7 @@ public class DEDataListViewLocalServiceImpl
 		deDataListView.setNameMap(name);
 		deDataListView.setSortField(sortField);
 
-		deDataListViewPersistence.update(deDataListView);
-
-		return deDataListView;
+		return deDataListViewPersistence.update(deDataListView);
 	}
 
 	@Override

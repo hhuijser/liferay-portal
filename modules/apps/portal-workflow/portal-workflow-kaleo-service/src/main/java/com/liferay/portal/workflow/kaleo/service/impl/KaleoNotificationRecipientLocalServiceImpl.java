@@ -79,10 +79,8 @@ public class KaleoNotificationRecipientLocalServiceImpl
 
 		setRecipient(kaleoNotificationRecipient, recipient, serviceContext);
 
-		kaleoNotificationRecipientPersistence.update(
+		return kaleoNotificationRecipientPersistence.update(
 			kaleoNotificationRecipient);
-
-		return kaleoNotificationRecipient;
 	}
 
 	@Override

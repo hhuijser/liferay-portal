@@ -84,7 +84,7 @@ public class KBFolderLocalServiceImpl extends KBFolderLocalServiceBaseImpl {
 		kbFolder.setDescription(description);
 		kbFolder.setExpandoBridgeAttributes(serviceContext);
 
-		kbFolderPersistence.update(kbFolder);
+		kbFolder = kbFolderPersistence.update(kbFolder);
 
 		// Resources
 

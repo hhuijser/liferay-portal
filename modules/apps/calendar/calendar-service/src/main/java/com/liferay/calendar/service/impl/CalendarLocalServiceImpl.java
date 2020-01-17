@@ -104,7 +104,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setEnableComments(enableComments);
 		calendar.setEnableRatings(enableRatings);
 
-		calendarPersistence.update(calendar);
+		calendar = calendarPersistence.update(calendar);
 
 		// Resources
 
@@ -307,7 +307,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 
 		calendar.setDefaultCalendar(defaultCalendar);
 
-		calendarPersistence.update(calendar);
+		calendar = calendarPersistence.update(calendar);
 
 		updateDefaultCalendar(calendar);
 	}
@@ -355,7 +355,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setEnableComments(enableComments);
 		calendar.setEnableRatings(enableRatings);
 
-		calendarPersistence.update(calendar);
+		calendar = calendarPersistence.update(calendar);
 
 		// Calendar
 
@@ -378,9 +378,7 @@ public class CalendarLocalServiceImpl extends CalendarLocalServiceBaseImpl {
 		calendar.setModifiedDate(serviceContext.getModifiedDate(null));
 		calendar.setColor(color);
 
-		calendarPersistence.update(calendar);
-
-		return calendar;
+		return calendarPersistence.update(calendar);
 	}
 
 	protected void updateDefaultCalendar(Calendar calendar)

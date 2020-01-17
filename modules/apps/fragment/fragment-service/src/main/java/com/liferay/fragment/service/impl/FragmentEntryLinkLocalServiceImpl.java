@@ -437,7 +437,8 @@ public class FragmentEntryLinkLocalServiceImpl
 
 			fragmentEntryLink.setEditableValues(entry.getValue());
 
-			fragmentEntryLinkPersistence.update(fragmentEntryLink);
+			fragmentEntryLink = fragmentEntryLinkPersistence.update(
+				fragmentEntryLink);
 		}
 
 		if (fragmentEntryLink != null) {

@@ -78,7 +78,7 @@ public class ExpandoColumnLocalServiceImpl
 		column.setType(type);
 		column.setDefaultData(value.getData());
 
-		expandoColumnPersistence.update(column);
+		column = expandoColumnPersistence.update(column);
 
 		// Resources
 

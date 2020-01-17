@@ -187,7 +187,7 @@ public class VirtualHostLocalServiceImpl
 
 			first = false;
 
-			virtualHostPersistence.update(virtualHost);
+			virtualHost = virtualHostPersistence.update(virtualHost);
 		}
 
 		Iterator<VirtualHost> itr = virtualHosts.iterator();

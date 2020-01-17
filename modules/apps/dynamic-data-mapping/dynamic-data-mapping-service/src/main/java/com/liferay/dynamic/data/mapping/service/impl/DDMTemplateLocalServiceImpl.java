@@ -253,7 +253,7 @@ public class DDMTemplateLocalServiceImpl
 		template.setSmallImageId(counterLocalService.increment());
 		template.setSmallImageURL(smallImageURL);
 
-		ddmTemplatePersistence.update(template);
+		template = ddmTemplatePersistence.update(template);
 
 		// Resources
 
@@ -1500,7 +1500,7 @@ public class DDMTemplateLocalServiceImpl
 			user, template, version, serviceContext);
 
 		if (ddmTemplateVersion.isApproved()) {
-			ddmTemplatePersistence.update(template);
+			template = ddmTemplatePersistence.update(template);
 		}
 
 		return template;

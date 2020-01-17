@@ -128,8 +128,9 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 		workflowMetricsSLADefinition.setStatus(
 			WorkflowConstants.STATUS_APPROVED);
 
-		workflowMetricsSLADefinitionPersistence.update(
-			workflowMetricsSLADefinition);
+		workflowMetricsSLADefinition =
+			workflowMetricsSLADefinitionPersistence.update(
+				workflowMetricsSLADefinition);
 
 		addWorkflowMetricsSLADefinitionVersion(
 			user, workflowMetricsSLADefinition);
@@ -148,8 +149,9 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 
 		workflowMetricsSLADefinition.setActive(false);
 
-		workflowMetricsSLADefinitionPersistence.update(
-			workflowMetricsSLADefinition);
+		workflowMetricsSLADefinition =
+			workflowMetricsSLADefinitionPersistence.update(
+				workflowMetricsSLADefinition);
 
 		User user = userLocalService.getUser(serviceContext.getGuestOrUserId());
 
@@ -276,8 +278,9 @@ public class WorkflowMetricsSLADefinitionLocalServiceImpl
 		workflowMetricsSLADefinition.setStatusDate(
 			serviceContext.getModifiedDate(now));
 
-		workflowMetricsSLADefinitionPersistence.update(
-			workflowMetricsSLADefinition);
+		workflowMetricsSLADefinition =
+			workflowMetricsSLADefinitionPersistence.update(
+				workflowMetricsSLADefinition);
 
 		addWorkflowMetricsSLADefinitionVersion(
 			user, workflowMetricsSLADefinition);

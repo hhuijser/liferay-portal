@@ -72,7 +72,7 @@ public class WeDeployAuthAppLocalServiceImpl
 
 		weDeployAuthApp.setClientSecret(clientSecret);
 
-		weDeployAuthAppPersistence.update(weDeployAuthApp);
+		weDeployAuthApp = weDeployAuthAppPersistence.update(weDeployAuthApp);
 
 		// Resources
 

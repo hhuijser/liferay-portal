@@ -121,7 +121,7 @@ public class SPIDefinitionLocalServiceImpl
 		spiDefinition.setStatus(SPIAdminConstants.STATUS_STOPPED);
 		spiDefinition.setExpandoBridgeAttributes(serviceContext);
 
-		spiDefinitionPersistence.update(spiDefinition);
+		spiDefinition = spiDefinitionPersistence.update(spiDefinition);
 
 		// Resources
 
@@ -281,7 +281,7 @@ public class SPIDefinitionLocalServiceImpl
 			spiDefinition.setStatus(SPIAdminConstants.STATUS_STARTED);
 			spiDefinition.setStatusMessage(null);
 
-			spiDefinitionPersistence.update(spiDefinition);
+			spiDefinition = spiDefinitionPersistence.update(spiDefinition);
 
 			SPIDefinitionMonitorUtil.register(spiDefinition);
 		}

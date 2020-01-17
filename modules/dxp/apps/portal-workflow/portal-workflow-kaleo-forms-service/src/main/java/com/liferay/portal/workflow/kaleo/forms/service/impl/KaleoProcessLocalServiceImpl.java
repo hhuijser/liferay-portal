@@ -115,7 +115,7 @@ public class KaleoProcessLocalServiceImpl
 		kaleoProcess.setWorkflowDefinitionName(workflowDefinitionName);
 		kaleoProcess.setWorkflowDefinitionVersion(workflowDefinitionVersion);
 
-		kaleoProcessPersistence.update(kaleoProcess);
+		kaleoProcess = kaleoProcessPersistence.update(kaleoProcess);
 
 		// Resources
 
@@ -316,7 +316,7 @@ public class KaleoProcessLocalServiceImpl
 		kaleoProcess.setWorkflowDefinitionName(workflowDefinitionName);
 		kaleoProcess.setWorkflowDefinitionVersion(workflowDefinitionVersion);
 
-		kaleoProcessPersistence.update(kaleoProcess);
+		kaleoProcess = kaleoProcessPersistence.update(kaleoProcess);
 
 		// Kaleo process links
 

@@ -76,8 +76,9 @@ public class LayoutPageTemplateCollectionLocalServiceImpl
 		layoutPageTemplateCollection.setName(name);
 		layoutPageTemplateCollection.setDescription(description);
 
-		layoutPageTemplateCollectionPersistence.update(
-			layoutPageTemplateCollection);
+		layoutPageTemplateCollection =
+			layoutPageTemplateCollectionPersistence.update(
+				layoutPageTemplateCollection);
 
 		// Resources
 

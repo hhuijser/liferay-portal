@@ -132,7 +132,7 @@ public class AssetCategoryLocalServiceImpl
 		category.setDescriptionMap(descriptionMap);
 		category.setVocabularyId(vocabularyId);
 
-		assetCategoryPersistence.update(category);
+		category = assetCategoryPersistence.update(category);
 
 		// Resources
 

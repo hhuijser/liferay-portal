@@ -78,7 +78,7 @@ public class MBMessageUtil {
 		if (message.isAnswer() != answer) {
 			message.setAnswer(answer);
 
-			mbMessagePersistence.update(message);
+			message = mbMessagePersistence.update(message);
 		}
 
 		if (cascade) {

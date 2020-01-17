@@ -331,7 +331,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		entry.setStatusDate(serviceContext.getModifiedDate(null));
 		entry.setExpandoBridgeAttributes(serviceContext);
 
-		blogsEntryPersistence.update(entry);
+		entry = blogsEntryPersistence.update(entry);
 
 		// Resources
 
@@ -395,7 +395,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		entry.setSmallImageFileEntryId(smallImageFileEntryId);
 		entry.setSmallImageURL(smallImageURL);
 
-		blogsEntryPersistence.update(entry);
+		entry = blogsEntryPersistence.update(entry);
 
 		// Workflow
 
@@ -967,7 +967,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		if (oldStatus == WorkflowConstants.STATUS_PENDING) {
 			entry.setStatus(WorkflowConstants.STATUS_DRAFT);
 
-			blogsEntryPersistence.update(entry);
+			entry = blogsEntryPersistence.update(entry);
 		}
 
 		entry = updateStatus(
@@ -1205,7 +1205,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 
 		entry.setExpandoBridgeAttributes(serviceContext);
 
-		blogsEntryPersistence.update(entry);
+		entry = blogsEntryPersistence.update(entry);
 
 		// Asset
 
@@ -1277,7 +1277,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 		entry.setSmallImageFileEntryId(smallImageFileEntryId);
 		entry.setSmallImageURL(smallImageURL);
 
-		blogsEntryPersistence.update(entry);
+		entry = blogsEntryPersistence.update(entry);
 
 		// Workflow
 
@@ -2188,7 +2188,7 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 
 			entry.setTrackbacks(StringPool.BLANK);
 
-			blogsEntryPersistence.update(entry);
+			entry = blogsEntryPersistence.update(entry);
 		}
 
 		Set<String> oldTrackbacks = SetUtil.fromArray(

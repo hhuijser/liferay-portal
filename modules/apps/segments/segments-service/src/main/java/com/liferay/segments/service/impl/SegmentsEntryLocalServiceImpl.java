@@ -135,7 +135,7 @@ public class SegmentsEntryLocalServiceImpl
 		segmentsEntry.setSource(getSource(criteria, source));
 		segmentsEntry.setType(type);
 
-		segmentsEntryPersistence.update(segmentsEntry);
+		segmentsEntry = segmentsEntryPersistence.update(segmentsEntry);
 
 		// Resources
 

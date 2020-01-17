@@ -232,7 +232,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		page.setStatusDate(serviceContext.getModifiedDate(now));
 		page.setExpandoBridgeAttributes(serviceContext);
 
-		wikiPagePersistence.update(page);
+		page = wikiPagePersistence.update(page);
 
 		// Resources
 
@@ -2184,7 +2184,7 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 				if (!curPage.equals(page)) {
 					curPage.setHead(false);
 
-					wikiPagePersistence.update(curPage);
+					curPage = wikiPagePersistence.update(curPage);
 				}
 			}
 		}

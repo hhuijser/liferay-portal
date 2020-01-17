@@ -65,7 +65,8 @@ public class SegmentsEntryRoleLocalServiceImpl
 		segmentsEntryRole.setSegmentsEntryId(segmentsEntryId);
 		segmentsEntryRole.setRoleId(roleId);
 
-		segmentsEntryRolePersistence.update(segmentsEntryRole);
+		segmentsEntryRole = segmentsEntryRolePersistence.update(
+			segmentsEntryRole);
 
 		// Indexer
 

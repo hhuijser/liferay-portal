@@ -95,7 +95,8 @@ public class DDMDataProviderInstanceLocalServiceImpl
 		dataProviderInstance.setDefinition(serialize(ddmFormValues));
 		dataProviderInstance.setType(type);
 
-		ddmDataProviderInstancePersistence.update(dataProviderInstance);
+		dataProviderInstance = ddmDataProviderInstancePersistence.update(
+			dataProviderInstance);
 
 		// Resources
 

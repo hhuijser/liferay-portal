@@ -92,7 +92,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setRemoteMessageId(remoteMessageId);
 		message.setContentType(removeBoundaryMarker(contentType));
 
-		messagePersistence.update(message);
+		message = messagePersistence.update(message);
 
 		// Indexer
 
@@ -331,7 +331,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setSize(getSize(messageId, body));
 		message.setRemoteMessageId(remoteMessageId);
 
-		messagePersistence.update(message);
+		message = messagePersistence.update(message);
 
 		// Indexer
 

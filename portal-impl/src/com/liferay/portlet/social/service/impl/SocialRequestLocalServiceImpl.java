@@ -404,7 +404,7 @@ public class SocialRequestLocalServiceImpl
 		request.setModifiedDate(System.currentTimeMillis());
 		request.setStatus(status);
 
-		socialRequestPersistence.update(request);
+		request = socialRequestPersistence.update(request);
 
 		if (status == SocialRequestConstants.STATUS_CONFIRM) {
 			socialRequestInterpreterLocalService.processConfirmation(

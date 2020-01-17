@@ -289,7 +289,7 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 								lock.setKey(key);
 								lock.setOwner(updatedOwner);
 
-								lockPersistence.update(lock);
+								lock = lockPersistence.update(lock);
 
 								lock.setNew(true);
 							}
@@ -301,7 +301,7 @@ public class LockLocalServiceImpl extends LockLocalServiceBaseImpl {
 								lock.setKey(key);
 								lock.setOwner(updatedOwner);
 
-								lockPersistence.update(lock);
+								lock = lockPersistence.update(lock);
 
 								lock.setNew(true);
 							}

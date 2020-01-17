@@ -121,7 +121,7 @@ public class OAuthApplicationLocalServiceImpl
 		oAuthApplication.setCallbackURI(callbackURI);
 		oAuthApplication.setWebsiteURL(websiteURL);
 
-		oAuthApplicationPersistence.update(oAuthApplication);
+		oAuthApplication = oAuthApplicationPersistence.update(oAuthApplication);
 
 		// Resources
 
@@ -280,7 +280,8 @@ public class OAuthApplicationLocalServiceImpl
 
 			oAuthApplication.setLogoId(logoId);
 
-			oAuthApplicationPersistence.update(oAuthApplication);
+			oAuthApplication = oAuthApplicationPersistence.update(
+				oAuthApplication);
 		}
 
 		imageLocalService.updateImage(logoId, inputStream);

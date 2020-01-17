@@ -592,10 +592,8 @@ public class DDMFormInstanceRecordLocalServiceImpl
 		ddmFormInstanceRecordVersion.setStatusDate(
 			ddmFormInstanceRecord.getModifiedDate());
 
-		ddmFormInstanceRecordVersionPersistence.update(
+		return ddmFormInstanceRecordVersionPersistence.update(
 			ddmFormInstanceRecordVersion);
-
-		return ddmFormInstanceRecordVersion;
 	}
 
 	protected long createDDMContent(

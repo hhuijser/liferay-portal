@@ -253,9 +253,7 @@ public class LayoutSetPrototypeLocalServiceImpl
 
 		layoutSetPrototype.setSettingsProperties(settingsProperties);
 
-		layoutSetPrototypePersistence.update(layoutSetPrototype);
-
-		return layoutSetPrototype;
+		return layoutSetPrototypePersistence.update(layoutSetPrototype);
 	}
 
 	@Override

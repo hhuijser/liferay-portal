@@ -86,9 +86,7 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 
 		layoutSet = initLayoutSet(layoutSet);
 
-		layoutSetPersistence.update(layoutSet);
-
-		return layoutSet;
+		return layoutSetPersistence.update(layoutSet);
 	}
 
 	@Override
@@ -451,9 +449,7 @@ public class LayoutSetLocalServiceImpl extends LayoutSetLocalServiceBaseImpl {
 
 			layoutSet.setSettingsProperties(settingsProperties);
 
-			layoutSetPersistence.update(layoutSet);
-
-			return layoutSet;
+			return layoutSetPersistence.update(layoutSet);
 		}
 
 		layoutSetBranch.setModifiedDate(new Date());

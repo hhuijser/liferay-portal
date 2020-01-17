@@ -49,10 +49,8 @@ public class SharepointOAuth2TokenEntryLocalServiceImpl
 			sharepointOAuth2TokenEntry.setExpirationDate(expirationDate);
 			sharepointOAuth2TokenEntry.setRefreshToken(refreshToken);
 
-			sharepointOAuth2TokenEntryPersistence.update(
+			return sharepointOAuth2TokenEntryPersistence.update(
 				sharepointOAuth2TokenEntry);
-
-			return sharepointOAuth2TokenEntry;
 		}
 
 		long sharepointOAuth2TokenEntryId = counterLocalService.increment();

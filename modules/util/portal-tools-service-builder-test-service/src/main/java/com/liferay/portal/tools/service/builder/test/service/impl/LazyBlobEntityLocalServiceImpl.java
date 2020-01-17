@@ -47,9 +47,7 @@ public class LazyBlobEntityLocalServiceImpl
 		lazyBlobEntity.setBlob1(outputBlob);
 		lazyBlobEntity.setBlob2(outputBlob);
 
-		lazyBlobEntityPersistence.update(lazyBlobEntity);
-
-		return lazyBlobEntity;
+		return lazyBlobEntityPersistence.update(lazyBlobEntity);
 	}
 
 }

@@ -306,9 +306,7 @@ public class DDMDataProviderInstanceLocalServiceImpl
 		dataProviderInstance.setDescriptionMap(descriptionMap);
 		dataProviderInstance.setDefinition(serialize(ddmFormValues));
 
-		ddmDataProviderInstancePersistence.update(dataProviderInstance);
-
-		return dataProviderInstance;
+		return ddmDataProviderInstancePersistence.update(dataProviderInstance);
 	}
 
 	protected void addDataProviderInstanceResources(

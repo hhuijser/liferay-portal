@@ -912,9 +912,7 @@ public class JournalArticleLocalServiceImpl
 
 		article.setResourcePrimKey(resourcePrimKey);
 
-		journalArticlePersistence.update(article);
-
-		return article;
+		return journalArticlePersistence.update(article);
 	}
 
 	/**
@@ -4179,9 +4177,7 @@ public class JournalArticleLocalServiceImpl
 			article.setContent(content);
 		}
 
-		journalArticlePersistence.update(article);
-
-		return article;
+		return journalArticlePersistence.update(article);
 	}
 
 	/**
@@ -6022,9 +6018,7 @@ public class JournalArticleLocalServiceImpl
 
 		article.setUrlTitle(urlTitle);
 
-		journalArticlePersistence.update(article);
-
-		return article;
+		return journalArticlePersistence.update(article);
 	}
 
 	@Override
@@ -6262,9 +6256,7 @@ public class JournalArticleLocalServiceImpl
 
 		article.setContent(content);
 
-		journalArticlePersistence.update(article);
-
-		return article;
+		return journalArticlePersistence.update(article);
 	}
 
 	/**
@@ -6378,9 +6370,7 @@ public class JournalArticleLocalServiceImpl
 
 		article.setContent(content);
 
-		journalArticlePersistence.update(article);
-
-		return article;
+		return journalArticlePersistence.update(article);
 	}
 
 	/**

@@ -893,9 +893,7 @@ public class MBCategoryLocalServiceImpl extends MBCategoryLocalServiceBaseImpl {
 		category.setStatusByUserName(user.getFullName());
 		category.setStatusDate(new Date());
 
-		mbCategoryPersistence.update(category);
-
-		return category;
+		return mbCategoryPersistence.update(category);
 	}
 
 	@Override

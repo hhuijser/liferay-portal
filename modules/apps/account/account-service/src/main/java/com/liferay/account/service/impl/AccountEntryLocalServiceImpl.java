@@ -225,9 +225,7 @@ public class AccountEntryLocalServiceImpl
 
 		accountEntry.setStatus(status);
 
-		accountEntryPersistence.update(accountEntry);
-
-		return accountEntry;
+		return accountEntryPersistence.update(accountEntry);
 	}
 
 	@Override

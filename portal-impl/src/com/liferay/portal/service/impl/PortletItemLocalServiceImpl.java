@@ -56,9 +56,7 @@ public class PortletItemLocalServiceImpl
 		portletItem.setPortletId(portletId);
 		portletItem.setClassNameId(classNameId);
 
-		portletItemPersistence.update(portletItem);
-
-		return portletItem;
+		return portletItemPersistence.update(portletItem);
 	}
 
 	@Override

@@ -264,9 +264,7 @@ public class MDRRuleGroupInstanceLocalServiceImpl
 
 		ruleGroupInstance.setPriority(priority);
 
-		mdrRuleGroupInstancePersistence.update(ruleGroupInstance);
-
-		return ruleGroupInstance;
+		return mdrRuleGroupInstancePersistence.update(ruleGroupInstance);
 	}
 
 	protected void validate(long classNameId, long classPK, long ruleGroupId)

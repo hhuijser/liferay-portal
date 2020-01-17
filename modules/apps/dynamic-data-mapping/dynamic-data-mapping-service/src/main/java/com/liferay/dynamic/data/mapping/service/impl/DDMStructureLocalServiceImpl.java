@@ -1517,9 +1517,7 @@ public class DDMStructureLocalServiceImpl
 		structureVersion.setStatusByUserName(user.getFullName());
 		structureVersion.setStatusDate(structure.getModifiedDate());
 
-		ddmStructureVersionPersistence.update(structureVersion);
-
-		return structureVersion;
+		return ddmStructureVersionPersistence.update(structureVersion);
 	}
 
 	protected Set<Long> deleteStructures(List<DDMStructure> structures)

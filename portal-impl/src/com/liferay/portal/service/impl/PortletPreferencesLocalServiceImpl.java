@@ -641,9 +641,7 @@ public class PortletPreferencesLocalServiceImpl
 
 		portletPreferences.setPreferences(xml);
 
-		portletPreferencesPersistence.update(portletPreferences);
-
-		return portletPreferences;
+		return portletPreferencesPersistence.update(portletPreferences);
 	}
 
 	private boolean _exists(long plid, long companyId, String portletId) {

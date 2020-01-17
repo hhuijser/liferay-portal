@@ -205,9 +205,7 @@ public class BackgroundTaskLocalServiceImpl
 			backgroundTask.setStatusMessage(statusMessage);
 		}
 
-		backgroundTaskPersistence.update(backgroundTask);
-
-		return backgroundTask;
+		return backgroundTaskPersistence.update(backgroundTask);
 	}
 
 	@Clusterable(onMaster = true)

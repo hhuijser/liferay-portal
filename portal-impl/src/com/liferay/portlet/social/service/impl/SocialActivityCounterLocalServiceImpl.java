@@ -165,9 +165,7 @@ public class SocialActivityCounterLocalServiceImpl
 			SocialActivityCounterConstants.END_PERIOD_UNDEFINED);
 		activityCounter.setActive(true);
 
-		socialActivityCounterPersistence.update(activityCounter);
-
-		return activityCounter;
+		return socialActivityCounterPersistence.update(activityCounter);
 	}
 
 	/**

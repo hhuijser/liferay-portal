@@ -69,9 +69,7 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 			release.setTestString(ReleaseConstants.TEST_STRING);
 		}
 
-		releasePersistence.update(release);
-
-		return release;
+		return releasePersistence.update(release);
 	}
 
 	@Override
@@ -103,9 +101,7 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 			release.setTestString(ReleaseConstants.TEST_STRING);
 		}
 
-		releasePersistence.update(release);
-
-		return release;
+		return releasePersistence.update(release);
 	}
 
 	/**
@@ -169,9 +165,7 @@ public class ReleaseLocalServiceImpl extends ReleaseLocalServiceBaseImpl {
 		release.setBuildDate(buildDate);
 		release.setVerified(verified);
 
-		releasePersistence.update(release);
-
-		return release;
+		return releasePersistence.update(release);
 	}
 
 	@Override

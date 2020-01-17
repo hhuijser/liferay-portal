@@ -145,9 +145,7 @@ public class KaleoProcessLinkLocalServiceImpl
 
 		kaleoProcessLink.setKaleoProcessId(kaleoProcessId);
 
-		kaleoProcessLinkPersistence.update(kaleoProcessLink);
-
-		return kaleoProcessLink;
+		return kaleoProcessLinkPersistence.update(kaleoProcessLink);
 	}
 
 	/**

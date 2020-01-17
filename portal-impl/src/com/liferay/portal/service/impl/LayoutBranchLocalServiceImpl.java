@@ -204,9 +204,7 @@ public class LayoutBranchLocalServiceImpl
 		layoutBranch.setName(name);
 		layoutBranch.setDescription(description);
 
-		layoutBranchPersistence.update(layoutBranch);
-
-		return layoutBranch;
+		return layoutBranchPersistence.update(layoutBranch);
 	}
 
 	protected void validate(

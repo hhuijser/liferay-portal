@@ -125,9 +125,7 @@ public class FragmentEntryLinkLocalServiceImpl
 		fragmentEntryLink.setLastPropagationDate(
 			serviceContext.getCreateDate(new Date()));
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	@Override
@@ -321,9 +319,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setPosition(position);
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	@Override
@@ -363,9 +359,7 @@ public class FragmentEntryLinkLocalServiceImpl
 
 		fragmentEntryLink.setPosition(position);
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	@Override
@@ -394,9 +388,7 @@ public class FragmentEntryLinkLocalServiceImpl
 				fragmentEntryLink.getClassPK());
 		}
 
-		fragmentEntryLinkPersistence.update(fragmentEntryLink);
-
-		return fragmentEntryLink;
+		return fragmentEntryLinkPersistence.update(fragmentEntryLink);
 	}
 
 	@Override

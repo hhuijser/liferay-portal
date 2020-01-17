@@ -355,9 +355,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 
 		assetLink.setWeight(weight);
 
-		assetLinkPersistence.update(assetLink);
-
-		return assetLink;
+		return assetLinkPersistence.update(assetLink);
 	}
 
 	/**

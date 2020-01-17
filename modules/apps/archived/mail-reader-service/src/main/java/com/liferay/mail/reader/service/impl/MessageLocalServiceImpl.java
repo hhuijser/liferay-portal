@@ -283,9 +283,7 @@ public class MessageLocalServiceImpl extends MessageLocalServiceBaseImpl {
 		message.setFlags(flags);
 		message.setSize(getSize(messageId, body));
 
-		messagePersistence.update(message);
-
-		return message;
+		return messagePersistence.update(message);
 	}
 
 	@Override

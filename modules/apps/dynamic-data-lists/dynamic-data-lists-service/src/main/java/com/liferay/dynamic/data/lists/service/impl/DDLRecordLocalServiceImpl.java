@@ -931,9 +931,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 		recordVersion.setStatusByUserName(user.getFullName());
 		recordVersion.setStatusDate(record.getModifiedDate());
 
-		ddlRecordVersionPersistence.update(recordVersion);
-
-		return recordVersion;
+		return ddlRecordVersionPersistence.update(recordVersion);
 	}
 
 	protected void deleteAssetEntry(long recordId) throws PortalException {

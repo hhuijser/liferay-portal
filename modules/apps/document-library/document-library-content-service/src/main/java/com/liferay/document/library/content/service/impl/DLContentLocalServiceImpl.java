@@ -78,9 +78,7 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 
 		dlContent.setSize(bytes.length);
 
-		dlContentPersistence.update(dlContent);
-
-		return dlContent;
+		return dlContentPersistence.update(dlContent);
 	}
 
 	@Override

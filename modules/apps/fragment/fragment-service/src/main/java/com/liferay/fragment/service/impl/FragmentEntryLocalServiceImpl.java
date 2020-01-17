@@ -361,9 +361,7 @@ public class FragmentEntryLocalServiceImpl
 		fragmentEntry.setModifiedDate(new Date());
 		fragmentEntry.setPreviewFileEntryId(previewFileEntryId);
 
-		fragmentEntryPersistence.update(fragmentEntry);
-
-		return fragmentEntry;
+		return fragmentEntryPersistence.update(fragmentEntry);
 	}
 
 	@Override

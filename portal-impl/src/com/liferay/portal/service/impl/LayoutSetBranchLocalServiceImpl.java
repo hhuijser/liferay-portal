@@ -477,9 +477,7 @@ public class LayoutSetBranchLocalServiceImpl
 		layoutSetBranch.setName(name);
 		layoutSetBranch.setDescription(description);
 
-		layoutSetBranchPersistence.update(layoutSetBranch);
-
-		return layoutSetBranch;
+		return layoutSetBranchPersistence.update(layoutSetBranch);
 	}
 
 	protected String getLayoutBranchName(

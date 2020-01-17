@@ -93,9 +93,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 		siteNavigationMenuItem.setTypeSettings(typeSettings);
 		siteNavigationMenuItem.setOrder(order);
 
-		siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
-
-		return siteNavigationMenuItem;
+		return siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
 	}
 
 	@Override
@@ -347,9 +345,7 @@ public class SiteNavigationMenuItemLocalServiceImpl
 		siteNavigationMenuItem.setName(name);
 		siteNavigationMenuItem.setTypeSettings(typeSettings);
 
-		siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
-
-		return siteNavigationMenuItem;
+		return siteNavigationMenuItemPersistence.update(siteNavigationMenuItem);
 	}
 
 	protected void validate(

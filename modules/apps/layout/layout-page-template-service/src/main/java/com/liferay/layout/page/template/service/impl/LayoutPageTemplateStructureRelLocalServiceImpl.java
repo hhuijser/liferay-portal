@@ -71,10 +71,8 @@ public class LayoutPageTemplateStructureRelLocalServiceImpl
 			segmentsExperienceId);
 		layoutPageTemplateStructureRel.setData(data);
 
-		layoutPageTemplateStructureRelPersistence.update(
+		return layoutPageTemplateStructureRelPersistence.update(
 			layoutPageTemplateStructureRel);
-
-		return layoutPageTemplateStructureRel;
 	}
 
 	@Override
@@ -148,10 +146,8 @@ public class LayoutPageTemplateStructureRelLocalServiceImpl
 		layoutPageTemplateStructureRel.setModifiedDate(new Date());
 		layoutPageTemplateStructureRel.setData(data);
 
-		layoutPageTemplateStructureRelPersistence.update(
+		return layoutPageTemplateStructureRelPersistence.update(
 			layoutPageTemplateStructureRel);
-
-		return layoutPageTemplateStructureRel;
 	}
 
 	@Reference

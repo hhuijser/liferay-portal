@@ -66,9 +66,7 @@ public class WorkflowInstanceLinkLocalServiceImpl
 		workflowInstanceLink.setClassPK(classPK);
 		workflowInstanceLink.setWorkflowInstanceId(workflowInstanceId);
 
-		workflowInstanceLinkPersistence.update(workflowInstanceLink);
-
-		return workflowInstanceLink;
+		return workflowInstanceLinkPersistence.update(workflowInstanceLink);
 	}
 
 	@Override

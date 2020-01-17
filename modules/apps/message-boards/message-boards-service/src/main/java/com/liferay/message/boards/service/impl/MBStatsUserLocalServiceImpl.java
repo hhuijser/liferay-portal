@@ -267,9 +267,7 @@ public class MBStatsUserLocalServiceImpl
 			statsUser.setLastPostDate(lastPostDate);
 		}
 
-		mbStatsUserPersistence.update(statsUser);
-
-		return statsUser;
+		return mbStatsUserPersistence.update(statsUser);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

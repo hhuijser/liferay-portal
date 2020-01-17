@@ -94,9 +94,7 @@ public class SocialRequestLocalServiceImpl
 		request.setReceiverUserId(receiverUserId);
 		request.setStatus(SocialRequestConstants.STATUS_PENDING);
 
-		socialRequestPersistence.update(request);
-
-		return request;
+		return socialRequestPersistence.update(request);
 	}
 
 	/**

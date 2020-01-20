@@ -453,6 +453,7 @@ public class InvokerFilterHelper {
 				serviceReference.getProperty("after-filter"));
 			String beforeFilter = GetterUtil.getString(
 				serviceReference.getProperty("before-filter"));
+
 			String servletContextName = GetterUtil.getString(
 				serviceReference.getProperty("servlet-context-name"));
 

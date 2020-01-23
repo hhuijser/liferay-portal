@@ -115,14 +115,13 @@ if (Validator.isNotNull(replyTo) && !replyTo.startsWith(PortalUtil.getPortalURL(
 
 							<%
 							for (String paramName : oAuth2Parameters.keySet()) {
-								if (paramName.equals("reply_to")) {
-									continue;
-								}
+								if (!paramName.equals("reply_to")) {
 							%>
 
-								<aui:input name="<%= HtmlUtil.escapeAttribute(paramName) %>" type="hidden" useNamespace="<%= false %>" value="<%= oAuth2Parameters.get(paramName) %>" />
+									<aui:input name="<%= HtmlUtil.escapeAttribute(paramName) %>" type="hidden" useNamespace="<%= false %>" value="<%= oAuth2Parameters.get(paramName) %>" />
 
 							<%
+								}
 							}
 							%>
 

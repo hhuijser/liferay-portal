@@ -103,14 +103,13 @@ String dueDateWrapperCssClass = dueDateControlGroupCssClass + StringPool.SPACE +
 						for (User curUser : users) {
 							long curUserId = curUser.getUserId();
 
-							if (curUserId == user.getUserId()) {
-								continue;
-							}
+							if (curUserId != user.getUserId()) {
 						%>
 
-							<aui:option label="<%= HtmlUtil.escape(curUser.getFullName()) %>" selected="<%= assigneeUserId == curUserId %>" value="<%= curUserId %>" />
+								<aui:option label="<%= HtmlUtil.escape(curUser.getFullName()) %>" selected="<%= assigneeUserId == curUserId %>" value="<%= curUserId %>" />
 
 						<%
+							}
 						}
 						%>
 

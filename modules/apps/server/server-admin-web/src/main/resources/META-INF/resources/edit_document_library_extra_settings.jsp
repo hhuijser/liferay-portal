@@ -84,14 +84,13 @@ if (!dlFileEntries.isEmpty()) {
 
 					<%
 					for (int curType : ExpandoColumnConstants.TYPES) {
-						if ((curType == ExpandoColumnConstants.BOOLEAN_ARRAY) || (curType == ExpandoColumnConstants.DATE_ARRAY)) {
-							continue;
-						}
+						if ((curType != ExpandoColumnConstants.BOOLEAN_ARRAY) && (curType != ExpandoColumnConstants.DATE_ARRAY)) {
 					%>
 
-						<aui:option label="<%= ExpandoColumnConstants.getTypeLabel(curType) %>" value="<%= curType %>" />
+							<aui:option label="<%= ExpandoColumnConstants.getTypeLabel(curType) %>" value="<%= curType %>" />
 
 					<%
+						}
 					}
 					%>
 

@@ -65,15 +65,14 @@ UADInfoPanelDisplay uadInfoPanelDisplay = (UADInfoPanelDisplay)request.getAttrib
 					displayValues = new TreeMap<>(displayValues);
 
 					for (Map.Entry<String, Object> entry : displayValues.entrySet()) {
-						if (identifierFieldName.equals(entry.getKey())) {
-							continue;
-						}
+						if (!identifierFieldName.equals(entry.getKey())) {
 					%>
 
-						<dt class="sidebar-dt"><%= entry.getKey() %></dt>
-						<dd class="sidebar-dd"><%= SafeDisplayValueUtil.get(entry.getValue()) %></dd>
+							<dt class="sidebar-dt"><%= entry.getKey() %></dt>
+							<dd class="sidebar-dd"><%= SafeDisplayValueUtil.get(entry.getValue()) %></dd>
 
 					<%
+						}
 					}
 					%>
 

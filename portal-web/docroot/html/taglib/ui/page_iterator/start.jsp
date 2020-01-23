@@ -231,18 +231,17 @@ if (forcePost && (portletURL != null)) {
 
 									<%
 									for (int curDelta : PropsValues.SEARCH_CONTAINER_PAGE_DELTA_VALUES) {
-										if (curDelta > SearchContainer.MAX_DELTA) {
-											continue;
-										}
+										if (curDelta <= SearchContainer.MAX_DELTA) {
 									%>
 
-										<liferay-ui:icon
-											message="<%= String.valueOf(curDelta) %>"
-											onClick='<%= forcePost ? _getOnClick(namespace, deltaParam, curDelta) : "" %>'
-											url='<%= HtmlUtil.escapeJS(deltaURL + "&" + namespace + deltaParam + "=" + curDelta + urlAnchor) %>'
-										/>
+											<liferay-ui:icon
+												message="<%= String.valueOf(curDelta) %>"
+												onClick='<%= forcePost ? _getOnClick(namespace, deltaParam, curDelta) : "" %>'
+												url='<%= HtmlUtil.escapeJS(deltaURL + "&" + namespace + deltaParam + "=" + curDelta + urlAnchor) %>'
+											/>
 
 									<%
+										}
 									}
 									%>
 

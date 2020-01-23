@@ -47,14 +47,13 @@ Collections.sort(activityCounterNames, new SocialActivityCounterNameComparator(l
 
 		<%
 		for (String activityCounterName : activityCounterNames) {
-			if (activityCounterName.equals(SocialActivityCounterConstants.NAME_CONTRIBUTION) || activityCounterName.equals(SocialActivityCounterConstants.NAME_PARTICIPATION)) {
-				continue;
-			}
+			if (!activityCounterName.equals(SocialActivityCounterConstants.NAME_CONTRIBUTION) && !activityCounterName.equals(SocialActivityCounterConstants.NAME_PARTICIPATION)) {
 		%>
 
-			<aui:option label='<%= "user.statistics." + activityCounterName %>' selected="<%= activityCounterName.equals(displayActivityCounterName) %>" value="<%= activityCounterName %>" />
+				<aui:option label='<%= "user.statistics." + activityCounterName %>' selected="<%= activityCounterName.equals(displayActivityCounterName) %>" value="<%= activityCounterName %>" />
 
 		<%
+			}
 		}
 		%>
 

@@ -107,7 +107,31 @@ public class ProjectTemplates {
 									FileUtil.getManifestProperty(
 										path.toFile(), "Bundle-Description");
 
-								templates.put(templateName, bundleDescription);
+								if (bundleDescription != null) {
+									URI uri = path.toUri();
+
+									URL url = uri.toURL();
+
+									URL[] urls = {url};
+
+									try (URLClassLoader classLoader =
+											new URLClassLoader(urls)) {
+
+										String resourcePath =
+											"META-INF/maven" +
+												"/archetype-metadata.xml";
+
+										URL resourceURL =
+											classLoader.getResource(
+												resourcePath);
+
+										if (resourceURL != null) {
+											templates.put(
+												templateName,
+												bundleDescription);
+										}
+									}
+								}
 							}
 						}
 						catch (IOException ioException) {

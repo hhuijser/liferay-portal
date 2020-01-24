@@ -235,22 +235,31 @@ public class ProjectTemplatesUtil {
 	public static String getTemplateName(String name) {
 		String projectTemplatesString = "project.templates.";
 
-		int projectTemplatesEndIndex =
-			name.indexOf(projectTemplatesString) +
-				projectTemplatesString.length();
+		try {
+			if (name.contains(projectTemplatesString)) {
+				int projectTemplatesEndIndex =
+					name.indexOf(projectTemplatesString) +
+						projectTemplatesString.length();
 
-		int dashIndex = name.indexOf("-");
+				int dashIndex = name.indexOf("-");
 
-		if (dashIndex < 0) {
-			dashIndex = name.length();
+				if (dashIndex < 0) {
+					dashIndex = name.length();
+				}
+
+				String templateName = name.substring(
+					projectTemplatesEndIndex, dashIndex);
+
+				templateName = templateName.replace('.', '-');
+
+				return templateName;
+			}
+
+			return name;
 		}
-
-		String templateName = name.substring(
-			projectTemplatesEndIndex, dashIndex);
-
-		templateName = templateName.replace('.', '-');
-
-		return templateName;
+		catch (Throwable th) {
+			return name;
+		}
 	}
 
 	private static final Map<String, File> _archetypeFiles = new HashMap<>();

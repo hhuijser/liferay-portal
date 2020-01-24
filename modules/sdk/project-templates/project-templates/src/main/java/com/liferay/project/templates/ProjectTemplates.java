@@ -111,34 +111,16 @@ public class ProjectTemplates {
 										path.toFile(), "Bundle-Description");
 
 								if (bundleDescription != null) {
-									try (ZipFile templateFile = new ZipFile(
+									try (ZipFile zipFile = new ZipFile(
 											path.toFile())) {
 
-										Enumeration<? extends ZipEntry>
-											entries = templateFile.entries();
+										ZipEntry zipEntry = zipFile.getEntry(
+											_ARCHETYPE_METADATA_XML);
 
-										String expectedName =
-											"META-INF/maven" +
-												"/archetype-metadata.xml";
-
-										while (entries.hasMoreElements()) {
-											ZipEntry entry =
-												entries.nextElement();
-
-											if (entry.isDirectory()) {
-												continue;
-											}
-
-											if (Objects.equals(
-													entry.getName(),
-													expectedName)) {
-
-												templates.put(
-													templateName,
-													bundleDescription);
-
-												break;
-											}
+										if (Objects.nonNull(zipEntry)) {
+											templates.put(
+												templateName,
+												bundleDescription);
 										}
 									}
 								}
@@ -644,6 +626,9 @@ public class ProjectTemplates {
 			}
 		}
 	}
+
+	private static final String _ARCHETYPE_METADATA_XML =
+		"META-INF/maven/archetype-metadata.xml";
 
 	private static final Set<PosixFilePermission> _wrapperPosixFilePermissions =
 		PosixFilePermissions.fromString("rwxrwxr--");

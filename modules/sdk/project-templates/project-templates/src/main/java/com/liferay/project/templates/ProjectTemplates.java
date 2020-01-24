@@ -53,6 +53,7 @@ import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.ServiceLoader;
 import java.util.Set;
 import java.util.TreeMap;
@@ -61,6 +62,8 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import org.apache.maven.archetype.ArchetypeGenerationResult;
 
@@ -108,27 +111,34 @@ public class ProjectTemplates {
 										path.toFile(), "Bundle-Description");
 
 								if (bundleDescription != null) {
-									URI uri = path.toUri();
+									try (ZipFile templateFile = new ZipFile(
+											path.toFile())) {
 
-									URL url = uri.toURL();
+										Enumeration<? extends ZipEntry>
+											entries = templateFile.entries();
 
-									URL[] urls = {url};
-
-									try (URLClassLoader classLoader =
-											new URLClassLoader(urls)) {
-
-										String resourcePath =
+										String expectedName =
 											"META-INF/maven" +
 												"/archetype-metadata.xml";
 
-										URL resourceURL =
-											classLoader.getResource(
-												resourcePath);
+										while (entries.hasMoreElements()) {
+											ZipEntry entry =
+												entries.nextElement();
 
-										if (resourceURL != null) {
-											templates.put(
-												templateName,
-												bundleDescription);
+											if (entry.isDirectory()) {
+												continue;
+											}
+
+											if (Objects.equals(
+													entry.getName(),
+													expectedName)) {
+
+												templates.put(
+													templateName,
+													bundleDescription);
+
+												break;
+											}
 										}
 									}
 								}

@@ -211,7 +211,7 @@ public class MicroblogsUtil {
 		while (matcher.find()) {
 			String screenName = matcher.group();
 
-			screenName = StringUtil.replace(screenName, "[@", StringPool.BLANK);
+			screenName = StringUtil.removeSubstring(screenName, "[@");
 			screenName = StringUtil.replace(screenName, ']', StringPool.BLANK);
 
 			screenNames.add(screenName);
@@ -411,8 +411,8 @@ public class MicroblogsUtil {
 
 				sb.append("<a href=\"");
 
-				String assetTagScreenName = StringUtil.replace(
-					result, "[@", StringPool.BLANK);
+				String assetTagScreenName = StringUtil.removeSubstring(
+					result, "[@");
 
 				assetTagScreenName = StringUtil.replace(
 					assetTagScreenName, ']', StringPool.BLANK);

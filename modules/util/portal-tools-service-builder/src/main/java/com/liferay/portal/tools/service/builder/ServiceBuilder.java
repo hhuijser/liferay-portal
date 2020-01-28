@@ -2595,11 +2595,10 @@ public class ServiceBuilder {
 		if (finderImplFile.exists()) {
 			String content = _read(finderImplFile);
 
-			content = StringUtil.replace(
+			content = StringUtil.removeSubstring(
 				content,
 				"import com.liferay.portal.service.persistence.impl." +
-					"BasePersistenceImpl;\n",
-				"");
+					"BasePersistenceImpl;\n");
 
 			content = StringUtil.replace(
 				content, "BasePersistenceImpl<" + entity.getName() + ">",

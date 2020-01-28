@@ -118,52 +118,49 @@ public class DependencyManagementTask extends DefaultTask {
 
 				@Override
 				public void execute(Dependency dependency) {
-					if (configuration.isCanBeResolved()) {
-						Set<File> files = configuration.files(dependency);
+					if (!configuration.isCanBeResolved()) {
+						return;
+					}
 
-						for (File file : files) {
-							try {
-								XmlSlurper xmlSlurper = new XmlSlurper();
+					Set<File> files = configuration.files(dependency);
 
-								GPathResult gPathResult = xmlSlurper.parse(
-									file);
+					for (File file : files) {
+						try {
+							XmlSlurper xmlSlurper = new XmlSlurper();
 
-								gPathResult =
-									(GPathResult)gPathResult.getProperty(
-										"dependencyManagement");
+							GPathResult gPathResult = xmlSlurper.parse(file);
 
-								gPathResult =
-									(GPathResult)gPathResult.getProperty(
-										"dependencies");
+							gPathResult = (GPathResult)gPathResult.getProperty(
+								"dependencyManagement");
 
-								gPathResult =
-									(GPathResult)gPathResult.getProperty(
-										"dependency");
+							gPathResult = (GPathResult)gPathResult.getProperty(
+								"dependencies");
 
-								Iterator<?> iterator = gPathResult.iterator();
+							gPathResult = (GPathResult)gPathResult.getProperty(
+								"dependency");
 
-								while (iterator.hasNext()) {
-									gPathResult = (GPathResult)iterator.next();
+							Iterator<?> iterator = gPathResult.iterator();
 
-									String artifactId = String.valueOf(
-										gPathResult.getProperty("artifactId"));
-									String groupId = String.valueOf(
-										gPathResult.getProperty("groupId"));
-									String version = String.valueOf(
-										gPathResult.getProperty("version"));
+							while (iterator.hasNext()) {
+								gPathResult = (GPathResult)iterator.next();
 
-									dependencies.add(
-										groupId + ':' + artifactId + ':' +
-											version);
-								}
+								String artifactId = String.valueOf(
+									gPathResult.getProperty("artifactId"));
+								String groupId = String.valueOf(
+									gPathResult.getProperty("groupId"));
+								String version = String.valueOf(
+									gPathResult.getProperty("version"));
+
+								dependencies.add(
+									groupId + ':' + artifactId + ':' + version);
 							}
-							catch (Exception exception) {
-								Logger logger = project.getLogger();
+						}
+						catch (Exception exception) {
+							Logger logger = project.getLogger();
 
-								if (logger.isWarnEnabled()) {
-									logger.warn(
-										"Unable to parse BOM from {}", file);
-								}
+							if (logger.isWarnEnabled()) {
+								logger.warn(
+									"Unable to parse BOM from {}", file);
 							}
 						}
 					}

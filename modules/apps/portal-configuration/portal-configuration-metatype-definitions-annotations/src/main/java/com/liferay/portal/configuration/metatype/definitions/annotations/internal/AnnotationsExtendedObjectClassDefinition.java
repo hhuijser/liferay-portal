@@ -186,32 +186,34 @@ public class AnnotationsExtendedObjectClassDefinition
 			configurationBeanClass.getAnnotation(
 				ExtendedObjectClassDefinition.class);
 
-		if (extendedObjectClassDefinition != null) {
-			Map<String, String> attributes = HashMapBuilder.put(
-				"category", extendedObjectClassDefinition.category()
-			).put(
-				"description-arguments",
-				StringUtil.merge(
-					extendedObjectClassDefinition.descriptionArguments())
-			).put(
-				"factoryInstanceLabelAttribute",
-				extendedObjectClassDefinition.factoryInstanceLabelAttribute()
-			).put(
-				"generateUI",
-				Boolean.toString(extendedObjectClassDefinition.generateUI())
-			).put(
-				"name-arguments",
-				StringUtil.merge(extendedObjectClassDefinition.nameArguments())
-			).build();
-
-			ExtendedObjectClassDefinition.Scope scope =
-				extendedObjectClassDefinition.scope();
-
-			attributes.put("scope", scope.toString());
-
-			_extensionAttributes.put(
-				ExtendedObjectClassDefinition.XML_NAMESPACE, attributes);
+		if (extendedObjectClassDefinition == null) {
+			return;
 		}
+
+		Map<String, String> attributes = HashMapBuilder.put(
+			"category", extendedObjectClassDefinition.category()
+		).put(
+			"description-arguments",
+			StringUtil.merge(
+				extendedObjectClassDefinition.descriptionArguments())
+		).put(
+			"factoryInstanceLabelAttribute",
+			extendedObjectClassDefinition.factoryInstanceLabelAttribute()
+		).put(
+			"generateUI",
+			Boolean.toString(extendedObjectClassDefinition.generateUI())
+		).put(
+			"name-arguments",
+			StringUtil.merge(extendedObjectClassDefinition.nameArguments())
+		).build();
+
+		ExtendedObjectClassDefinition.Scope scope =
+			extendedObjectClassDefinition.scope();
+
+		attributes.put("scope", scope.toString());
+
+		_extensionAttributes.put(
+			ExtendedObjectClassDefinition.XML_NAMESPACE, attributes);
 	}
 
 	private static Log _log = LogFactoryUtil.getLog(

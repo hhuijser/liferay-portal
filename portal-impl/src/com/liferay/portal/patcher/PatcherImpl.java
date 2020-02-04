@@ -200,35 +200,36 @@ public class PatcherImpl implements Patcher {
 
 		Arrays.sort(portalImplJARPatches);
 
-		if (!Arrays.equals(portalImplJARPatches, kernelJARPatches)) {
-			_log.error("Inconsistent patch level detected");
+		if (Arrays.equals(portalImplJARPatches, kernelJARPatches)) {
+			return;
+		}
 
-			if (_log.isWarnEnabled()) {
-				if (ArrayUtil.isEmpty(portalImplJARPatches)) {
-					_log.warn(
-						"There are no patches installed on portal-impl.jar");
-				}
-				else {
-					_log.warn(
-						"Patch level on portal-impl.jar: " +
-							Arrays.toString(portalImplJARPatches));
-				}
+		_log.error("Inconsistent patch level detected");
 
-				if (ArrayUtil.isEmpty(kernelJARPatches)) {
-					_log.warn(
-						"There are no patches installed on portal-kernel.jar");
-				}
-				else {
-					_log.warn(
-						"Patch level on portal-kernel.jar: " +
-							Arrays.toString(kernelJARPatches));
-				}
+		if (_log.isWarnEnabled()) {
+			if (ArrayUtil.isEmpty(portalImplJARPatches)) {
+				_log.warn("There are no patches installed on portal-impl.jar");
+			}
+			else {
+				_log.warn(
+					"Patch level on portal-impl.jar: " +
+						Arrays.toString(portalImplJARPatches));
 			}
 
-			_inconsistentPatchLevels = true;
-
-			throw new PatchInconsistencyException();
+			if (ArrayUtil.isEmpty(kernelJARPatches)) {
+				_log.warn(
+					"There are no patches installed on portal-kernel.jar");
+			}
+			else {
+				_log.warn(
+					"Patch level on portal-kernel.jar: " +
+						Arrays.toString(kernelJARPatches));
+			}
 		}
+
+		_inconsistentPatchLevels = true;
+
+		throw new PatchInconsistencyException();
 	}
 
 	private String[] _getInstalledPatches(Properties properties) {

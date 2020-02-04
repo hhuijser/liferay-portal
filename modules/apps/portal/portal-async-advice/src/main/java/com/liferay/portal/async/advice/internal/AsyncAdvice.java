@@ -90,32 +90,34 @@ public class AsyncAdvice extends ChainableMethodAdvice {
 		String[] targetClassNamesToDestinationNames =
 			_asyncAdviceConfiguration.targetClassNamesToDestinationNames();
 
-		if (targetClassNamesToDestinationNames != null) {
-			Map<String, String> destinationNames = new HashMap<>();
+		if (targetClassNamesToDestinationNames == null) {
+			return;
+		}
 
-			for (String targetClassNameToDestinationName :
-					targetClassNamesToDestinationNames) {
+		Map<String, String> destinationNames = new HashMap<>();
 
-				int index = targetClassNameToDestinationName.indexOf(
-					CharPool.EQUAL);
+		for (String targetClassNameToDestinationName :
+				targetClassNamesToDestinationNames) {
 
-				if (index <= 0) {
-					if (_log.isWarnEnabled()) {
-						_log.warn(
-							"Invalid target class name to destination name \"" +
-								targetClassNameToDestinationName + "\"");
-					}
-				}
-				else {
-					destinationNames.put(
-						targetClassNameToDestinationName.substring(0, index),
-						targetClassNameToDestinationName.substring(index + 1));
+			int index = targetClassNameToDestinationName.indexOf(
+				CharPool.EQUAL);
+
+			if (index <= 0) {
+				if (_log.isWarnEnabled()) {
+					_log.warn(
+						"Invalid target class name to destination name \"" +
+							targetClassNameToDestinationName + "\"");
 				}
 			}
-
-			if (!destinationNames.isEmpty()) {
-				_destinationNames = destinationNames;
+			else {
+				destinationNames.put(
+					targetClassNameToDestinationName.substring(0, index),
+					targetClassNameToDestinationName.substring(index + 1));
 			}
+		}
+
+		if (!destinationNames.isEmpty()) {
+			_destinationNames = destinationNames;
 		}
 	}
 

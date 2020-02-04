@@ -2258,30 +2258,31 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 	}
 
 	private void _validate(long smallImageFileEntryId) throws PortalException {
-		if (smallImageFileEntryId != 0) {
-			FileEntry fileEntry = _portletFileRepository.getPortletFileEntry(
-				smallImageFileEntryId);
+		if (smallImageFileEntryId == 0) {
+			return;
+		}
 
-			boolean validSmallImageExtension = false;
+		FileEntry fileEntry = _portletFileRepository.getPortletFileEntry(
+			smallImageFileEntryId);
 
-			for (String imageExtension :
-					_blogsFileUploadsConfiguration.imageExtensions()) {
+		boolean validSmallImageExtension = false;
 
-				if (StringPool.STAR.equals(imageExtension) ||
-					imageExtension.equals(
-						StringPool.PERIOD + fileEntry.getExtension())) {
+		for (String imageExtension :
+				_blogsFileUploadsConfiguration.imageExtensions()) {
 
-					validSmallImageExtension = true;
+			if (StringPool.STAR.equals(imageExtension) ||
+				imageExtension.equals(
+					StringPool.PERIOD + fileEntry.getExtension())) {
 
-					break;
-				}
+				validSmallImageExtension = true;
+
+				break;
 			}
+		}
 
-			if (!validSmallImageExtension) {
-				throw new EntrySmallImageNameException(
-					"Invalid small image for file entry " +
-						smallImageFileEntryId);
-			}
+		if (!validSmallImageExtension) {
+			throw new EntrySmallImageNameException(
+				"Invalid small image for file entry " + smallImageFileEntryId);
 		}
 	}
 

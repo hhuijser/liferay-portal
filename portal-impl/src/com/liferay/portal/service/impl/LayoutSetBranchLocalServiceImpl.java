@@ -547,29 +547,30 @@ public class LayoutSetBranchLocalServiceImpl
 			}
 		}
 
-		if (master) {
-			try {
-				LayoutSetBranch masterLayoutSetBranch =
-					layoutSetBranchPersistence.findByG_P_M_First(
-						groupId, privateLayout, true, null);
+		if (!master) {
+			return;
+		}
 
-				if (layoutSetBranchId !=
-						masterLayoutSetBranch.getLayoutSetBranchId()) {
+		try {
+			LayoutSetBranch masterLayoutSetBranch =
+				layoutSetBranchPersistence.findByG_P_M_First(
+					groupId, privateLayout, true, null);
 
-					throw new LayoutSetBranchNameException(
-						LayoutSetBranchNameException.MASTER);
-				}
+			if (layoutSetBranchId !=
+					masterLayoutSetBranch.getLayoutSetBranchId()) {
+
+				throw new LayoutSetBranchNameException(
+					LayoutSetBranchNameException.MASTER);
 			}
-			catch (NoSuchLayoutSetBranchException
-						noSuchLayoutSetBranchException) {
+		}
+		catch (NoSuchLayoutSetBranchException noSuchLayoutSetBranchException) {
 
-				// LPS-52675
+			// LPS-52675
 
-				if (_log.isDebugEnabled()) {
-					_log.debug(
-						noSuchLayoutSetBranchException,
-						noSuchLayoutSetBranchException);
-				}
+			if (_log.isDebugEnabled()) {
+				_log.debug(
+					noSuchLayoutSetBranchException,
+					noSuchLayoutSetBranchException);
 			}
 		}
 	}

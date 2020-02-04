@@ -593,31 +593,33 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 
 		// If layout is moved, the new first layout must be valid
 
-		if (layout.getParentLayoutId() ==
+		if (layout.getParentLayoutId() !=
 				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID) {
 
-			List<Layout> layouts = layoutPersistence.findByG_P_P(
-				groupId, privateLayout,
-				LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0, 2);
+			return;
+		}
 
-			// You can only reach this point if there are more than two layouts
-			// at the root level because of the descendant check
+		List<Layout> layouts = layoutPersistence.findByG_P_P(
+			groupId, privateLayout, LayoutConstants.DEFAULT_PARENT_LAYOUT_ID, 0,
+			2);
 
-			Layout firstLayout = layouts.get(0);
+		// You can only reach this point if there are more than two layouts
+		// at the root level because of the descendant check
 
-			long firstLayoutId = firstLayout.getLayoutId();
+		Layout firstLayout = layouts.get(0);
 
-			if (firstLayoutId == layoutId) {
-				Layout secondLayout = layouts.get(1);
+		long firstLayoutId = firstLayout.getLayoutId();
 
-				LayoutType layoutType = secondLayout.getLayoutType();
+		if (firstLayoutId == layoutId) {
+			Layout secondLayout = layouts.get(1);
 
-				if (Validator.isNull(secondLayout.getType()) ||
-					!layoutType.isFirstPageable()) {
+			LayoutType layoutType = secondLayout.getLayoutType();
 
-					throw new LayoutParentLayoutIdException(
-						LayoutParentLayoutIdException.FIRST_LAYOUT_TYPE);
-				}
+			if (Validator.isNull(secondLayout.getType()) ||
+				!layoutType.isFirstPageable()) {
+
+				throw new LayoutParentLayoutIdException(
+					LayoutParentLayoutIdException.FIRST_LAYOUT_TYPE);
 			}
 		}
 	}

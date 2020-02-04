@@ -393,33 +393,35 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 					_startedAppServersReentrantLock.unlock();
 				}
 
-				if (started) {
-					Logger logger = startTestableTomcatTask.getLogger();
+				if (!started) {
+					return;
+				}
 
+				Logger logger = startTestableTomcatTask.getLogger();
+
+				if (logger.isDebugEnabled()) {
+					logger.debug(
+						"Application server {} is already started", binDir);
+				}
+
+				Project project = startTestableTomcatTask.getProject();
+
+				Gradle gradle = project.getGradle();
+
+				StartParameter startParameter = gradle.getStartParameter();
+
+				if (startParameter.isParallelProjectExecutionEnabled()) {
 					if (logger.isDebugEnabled()) {
 						logger.debug(
-							"Application server {} is already started", binDir);
+							"Waiting for application server {} to be " +
+								"reachable",
+							binDir);
 					}
 
-					Project project = startTestableTomcatTask.getProject();
-
-					Gradle gradle = project.getGradle();
-
-					StartParameter startParameter = gradle.getStartParameter();
-
-					if (startParameter.isParallelProjectExecutionEnabled()) {
-						if (logger.isDebugEnabled()) {
-							logger.debug(
-								"Waiting for application server {} to be " +
-									"reachable",
-								binDir);
-						}
-
-						startTestableTomcatTask.waitForReachable();
-					}
-
-					throw new StopExecutionException();
+					startTestableTomcatTask.waitForReachable();
 				}
+
+				throw new StopExecutionException();
 			}
 
 		};

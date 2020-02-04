@@ -210,43 +210,45 @@ public class EhcachePortalCacheManager<K extends Serializable, V>
 			new PortalCacheManagerEventListener(
 				aggregatedPortalCacheManagerListener));
 
-		if (GetterUtil.getBoolean(
+		if (!GetterUtil.getBoolean(
 				props.get(
 					PropsKeys.EHCACHE_PORTAL_CACHE_MANAGER_JMX_ENABLED))) {
 
-			_mBeanServerServiceTracker =
-				new ServiceTracker<MBeanServer, ManagementService>(
-					bundleContext, MBeanServer.class, null) {
-
-					@Override
-					public ManagementService addingService(
-						ServiceReference<MBeanServer> serviceReference) {
-
-						MBeanServer mBeanServer = bundleContext.getService(
-							serviceReference);
-
-						ManagementService managementService =
-							new ManagementService(_cacheManager, mBeanServer);
-
-						managementService.init();
-
-						return managementService;
-					}
-
-					@Override
-					public void removedService(
-						ServiceReference<MBeanServer> serviceReference,
-						ManagementService managementService) {
-
-						managementService.dispose();
-
-						bundleContext.ungetService(serviceReference);
-					}
-
-				};
-
-			_mBeanServerServiceTracker.open();
+			return;
 		}
+
+		_mBeanServerServiceTracker =
+			new ServiceTracker<MBeanServer, ManagementService>(
+				bundleContext, MBeanServer.class, null) {
+
+				@Override
+				public ManagementService addingService(
+					ServiceReference<MBeanServer> serviceReference) {
+
+					MBeanServer mBeanServer = bundleContext.getService(
+						serviceReference);
+
+					ManagementService managementService = new ManagementService(
+						_cacheManager, mBeanServer);
+
+					managementService.init();
+
+					return managementService;
+				}
+
+				@Override
+				public void removedService(
+					ServiceReference<MBeanServer> serviceReference,
+					ManagementService managementService) {
+
+					managementService.dispose();
+
+					bundleContext.ungetService(serviceReference);
+				}
+
+			};
+
+		_mBeanServerServiceTracker.open();
 	}
 
 	protected void reconfigEhcache(Configuration configuration) {

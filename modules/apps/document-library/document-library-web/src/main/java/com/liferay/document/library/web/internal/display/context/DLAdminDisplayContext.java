@@ -339,34 +339,32 @@ public class DLAdminDisplayContext {
 		_rootFolderId = _dlPortletInstanceSettings.getRootFolderId();
 		_rootFolderName = StringPool.BLANK;
 
-		if (_rootFolderId != DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
-			try {
-				Folder rootFolder = DLAppLocalServiceUtil.getFolder(
-					_rootFolderId);
+		if (_rootFolderId == DLFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
+			return;
+		}
 
-				_rootFolderName = rootFolder.getName();
+		try {
+			Folder rootFolder = DLAppLocalServiceUtil.getFolder(_rootFolderId);
 
-				if (rootFolder.getGroupId() !=
-						_themeDisplay.getScopeGroupId()) {
+			_rootFolderName = rootFolder.getName();
 
-					_rootFolderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
-					_rootFolderName = StringPool.BLANK;
-				}
-			}
-			catch (NoSuchFolderException noSuchFolderException) {
+			if (rootFolder.getGroupId() != _themeDisplay.getScopeGroupId()) {
 				_rootFolderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
+				_rootFolderName = StringPool.BLANK;
+			}
+		}
+		catch (NoSuchFolderException noSuchFolderException) {
+			_rootFolderId = DLFolderConstants.DEFAULT_PARENT_FOLDER_ID;
 
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						StringBundler.concat(
-							"Could not find folder {folderId=", _rootFolderId,
-							"}"),
-						noSuchFolderException);
-				}
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					StringBundler.concat(
+						"Could not find folder {folderId=", _rootFolderId, "}"),
+					noSuchFolderException);
 			}
-			catch (PortalException portalException) {
-				throw new SystemException(portalException);
-			}
+		}
+		catch (PortalException portalException) {
+			throw new SystemException(portalException);
 		}
 	}
 

@@ -588,32 +588,33 @@ public class PortletBagFactory {
 			List<ServiceRegistration<?>> serviceRegistrations)
 		throws Exception {
 
-		if (Validator.isNotNull(portlet.getPreferencesValidator())) {
-			PreferencesValidator preferencesValidatorInstance = _newInstance(
-				PreferencesValidator.class, portlet.getPreferencesValidator());
-
-			try {
-				if (PropsValues.PREFERENCE_VALIDATE_ON_STARTUP) {
-					preferencesValidatorInstance.validate(
-						PortletPreferencesFactoryUtil.fromDefaultXML(
-							portlet.getDefaultPreferences()));
-				}
-			}
-			catch (Exception exception) {
-				if (_log.isWarnEnabled()) {
-					_log.warn(
-						"Portlet with the name " + portlet.getPortletId() +
-							" does not have valid default preferences");
-				}
-			}
-
-			ServiceRegistration<?> serviceRegistration =
-				registry.registerService(
-					PreferencesValidator.class, preferencesValidatorInstance,
-					properties);
-
-			serviceRegistrations.add(serviceRegistration);
+		if (Validator.isNull(portlet.getPreferencesValidator())) {
+			return;
 		}
+
+		PreferencesValidator preferencesValidatorInstance = _newInstance(
+			PreferencesValidator.class, portlet.getPreferencesValidator());
+
+		try {
+			if (PropsValues.PREFERENCE_VALIDATE_ON_STARTUP) {
+				preferencesValidatorInstance.validate(
+					PortletPreferencesFactoryUtil.fromDefaultXML(
+						portlet.getDefaultPreferences()));
+			}
+		}
+		catch (Exception exception) {
+			if (_log.isWarnEnabled()) {
+				_log.warn(
+					"Portlet with the name " + portlet.getPortletId() +
+						" does not have valid default preferences");
+			}
+		}
+
+		ServiceRegistration<?> serviceRegistration = registry.registerService(
+			PreferencesValidator.class, preferencesValidatorInstance,
+			properties);
+
+		serviceRegistrations.add(serviceRegistration);
 	}
 
 	private void _registerSchedulerEventMessageListeners(

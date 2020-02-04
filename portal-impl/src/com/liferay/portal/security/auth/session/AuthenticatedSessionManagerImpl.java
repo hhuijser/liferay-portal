@@ -288,34 +288,35 @@ public class AuthenticatedSessionManagerImpl
 				secure);
 		}
 
-		if (PropsValues.AUTH_USER_UUID_STORE_ENABLED) {
-			String userUUID = userIdString.concat(
-				StringPool.PERIOD
-			).concat(
-				String.valueOf(System.nanoTime())
-			);
-
-			Cookie userUUIDCookie = new Cookie(
-				CookieKeys.USER_UUID,
-				Encryptor.encrypt(company.getKeyObj(), userUUID));
-
-			userUUIDCookie.setPath(StringPool.SLASH);
-
-			session.setAttribute(CookieKeys.USER_UUID, userUUID);
-
-			if (rememberMe) {
-				userUUIDCookie.setMaxAge(loginMaxAge);
-			}
-			else {
-				userUUIDCookie.setMaxAge(-1);
-			}
-
-			CookieKeys.addCookie(
-				httpServletRequest, httpServletResponse, userUUIDCookie,
-				secure);
-
-			AuthenticatedUserUUIDStoreUtil.register(userUUID);
+		if (!PropsValues.AUTH_USER_UUID_STORE_ENABLED) {
+			return;
 		}
+
+		String userUUID = userIdString.concat(
+			StringPool.PERIOD
+		).concat(
+			String.valueOf(System.nanoTime())
+		);
+
+		Cookie userUUIDCookie = new Cookie(
+			CookieKeys.USER_UUID,
+			Encryptor.encrypt(company.getKeyObj(), userUUID));
+
+		userUUIDCookie.setPath(StringPool.SLASH);
+
+		session.setAttribute(CookieKeys.USER_UUID, userUUID);
+
+		if (rememberMe) {
+			userUUIDCookie.setMaxAge(loginMaxAge);
+		}
+		else {
+			userUUIDCookie.setMaxAge(-1);
+		}
+
+		CookieKeys.addCookie(
+			httpServletRequest, httpServletResponse, userUUIDCookie, secure);
+
+		AuthenticatedUserUUIDStoreUtil.register(userUUID);
 	}
 
 	@Override

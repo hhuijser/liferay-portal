@@ -822,33 +822,34 @@ public class PDFProcessorImpl
 			}
 		}
 
-		if (_log.isInfoEnabled()) {
-			long fileVersionId = fileVersion.getFileVersionId();
-			int previewFileCount = getPreviewFileCount(fileVersion);
-			long time = stopWatch.getTime();
+		if (!_log.isInfoEnabled()) {
+			return;
+		}
 
-			if (generateThumbnail && generatePreview) {
+		long fileVersionId = fileVersion.getFileVersionId();
+		int previewFileCount = getPreviewFileCount(fileVersion);
+		long time = stopWatch.getTime();
+
+		if (generateThumbnail && generatePreview) {
+			_log.info(
+				StringBundler.concat(
+					"PDFBox generated a thumbnail and ", previewFileCount,
+					" preview pages for ", fileVersionId, " in ", time, " ms"));
+		}
+		else {
+			if (generateThumbnail) {
 				_log.info(
 					StringBundler.concat(
-						"PDFBox generated a thumbnail and ", previewFileCount,
+						"PDFBox generated a thumbnail for ", fileVersionId,
+						" in ", time, " ms"));
+			}
+
+			if (generatePreview) {
+				_log.info(
+					StringBundler.concat(
+						"PDFBox generated ", previewFileCount,
 						" preview pages for ", fileVersionId, " in ", time,
 						" ms"));
-			}
-			else {
-				if (generateThumbnail) {
-					_log.info(
-						StringBundler.concat(
-							"PDFBox generated a thumbnail for ", fileVersionId,
-							" in ", time, " ms"));
-				}
-
-				if (generatePreview) {
-					_log.info(
-						StringBundler.concat(
-							"PDFBox generated ", previewFileCount,
-							" preview pages for ", fileVersionId, " in ", time,
-							" ms"));
-				}
 			}
 		}
 	}

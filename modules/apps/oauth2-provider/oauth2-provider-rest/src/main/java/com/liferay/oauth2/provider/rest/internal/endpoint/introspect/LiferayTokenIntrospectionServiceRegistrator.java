@@ -48,31 +48,31 @@ public class LiferayTokenIntrospectionServiceRegistrator {
 		boolean enabled = MapUtil.getBoolean(
 			properties, "oauth2.allow.token.introspection.endpoint", true);
 
-		if (enabled) {
-			boolean canSupportPublicClients = MapUtil.getBoolean(
-				properties,
-				"oauth2.allow.token.introspection.endpoint.public.clients",
-				true);
-
-			LiferayTokenIntrospectionService liferayTokenIntrospectionService =
-				new LiferayTokenIntrospectionService(
-					_liferayOAuthDataProvider, canSupportPublicClients);
-
-			Dictionary<String, Object> liferayTokenIntrospectionProperties =
-				new Hashtable<>();
-
-			liferayTokenIntrospectionProperties.put(
-				"osgi.jaxrs.application.select",
-				"(osgi.jaxrs.name=Liferay.OAuth2.Application)");
-			liferayTokenIntrospectionProperties.put(
-				"osgi.jaxrs.name", "Liferay.Token.Introspection.Service");
-			liferayTokenIntrospectionProperties.put(
-				"osgi.jaxrs.resource", true);
-
-			_serviceRegistration = bundleContext.registerService(
-				Object.class, liferayTokenIntrospectionService,
-				liferayTokenIntrospectionProperties);
+		if (!enabled) {
+			return;
 		}
+
+		boolean canSupportPublicClients = MapUtil.getBoolean(
+			properties,
+			"oauth2.allow.token.introspection.endpoint.public.clients", true);
+
+		LiferayTokenIntrospectionService liferayTokenIntrospectionService =
+			new LiferayTokenIntrospectionService(
+				_liferayOAuthDataProvider, canSupportPublicClients);
+
+		Dictionary<String, Object> liferayTokenIntrospectionProperties =
+			new Hashtable<>();
+
+		liferayTokenIntrospectionProperties.put(
+			"osgi.jaxrs.application.select",
+			"(osgi.jaxrs.name=Liferay.OAuth2.Application)");
+		liferayTokenIntrospectionProperties.put(
+			"osgi.jaxrs.name", "Liferay.Token.Introspection.Service");
+		liferayTokenIntrospectionProperties.put("osgi.jaxrs.resource", true);
+
+		_serviceRegistration = bundleContext.registerService(
+			Object.class, liferayTokenIntrospectionService,
+			liferayTokenIntrospectionProperties);
 	}
 
 	@Deactivate

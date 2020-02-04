@@ -156,38 +156,40 @@ public abstract class PortletResponseImpl implements LiferayPortletResponse {
 			throw new IllegalArgumentException();
 		}
 
-		if (StringUtil.equalsIgnoreCase(
+		if (!StringUtil.equalsIgnoreCase(
 				key, MimeResponse.MARKUP_HEAD_ELEMENT)) {
 
-			if ((element != null) &&
-				StringUtil.equalsIgnoreCase(element.getNodeName(), "script") &&
-				!element.hasChildNodes()) {
+			return;
+		}
 
-				// LPS-77798
+		if ((element != null) &&
+			StringUtil.equalsIgnoreCase(element.getNodeName(), "script") &&
+			!element.hasChildNodes()) {
 
-				element = (Element)element.cloneNode(true);
+			// LPS-77798
 
-				element.appendChild(_document.createTextNode(StringPool.SPACE));
+			element = (Element)element.cloneNode(true);
+
+			element.appendChild(_document.createTextNode(StringPool.SPACE));
+		}
+
+		List<Element> values = _markupHeadElements.get(key);
+
+		if (values == null) {
+			if (element != null) {
+				values = new ArrayList<>();
+
+				values.add(element);
+
+				_markupHeadElements.put(key, values);
 			}
-
-			List<Element> values = _markupHeadElements.get(key);
-
-			if (values == null) {
-				if (element != null) {
-					values = new ArrayList<>();
-
-					values.add(element);
-
-					_markupHeadElements.put(key, values);
-				}
+		}
+		else {
+			if (element == null) {
+				_markupHeadElements.remove(key);
 			}
 			else {
-				if (element == null) {
-					_markupHeadElements.remove(key);
-				}
-				else {
-					values.add(element);
-				}
+				values.add(element);
 			}
 		}
 	}

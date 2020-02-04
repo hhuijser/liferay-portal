@@ -233,51 +233,52 @@ public class AssetListEntryStagedModelDataHandler
 			AssetListEntry assetListEntry)
 		throws Exception {
 
-		if (assetListEntry.getType() ==
+		if (assetListEntry.getType() !=
 				AssetListEntryTypeConstants.TYPE_MANUAL) {
 
-			List<AssetListEntryAssetEntryRel> assetListEntryAssetEntryRels =
-				_assetListEntryAssetEntryRelLocalService.
-					getAssetListEntryAssetEntryRels(
-						assetListEntry.getAssetListEntryId(), QueryUtil.ALL_POS,
-						QueryUtil.ALL_POS);
+			return;
+		}
 
-			Stream<AssetListEntryAssetEntryRel> stream =
-				assetListEntryAssetEntryRels.stream();
+		List<AssetListEntryAssetEntryRel> assetListEntryAssetEntryRels =
+			_assetListEntryAssetEntryRelLocalService.
+				getAssetListEntryAssetEntryRels(
+					assetListEntry.getAssetListEntryId(), QueryUtil.ALL_POS,
+					QueryUtil.ALL_POS);
 
-			List<AssetEntry> assetEntries = stream.map(
-				assetListEntryAssetEntryRel ->
-					_assetEntryLocalService.fetchEntry(
-						assetListEntryAssetEntryRel.getAssetEntryId())
-			).collect(
-				Collectors.toList()
-			);
+		Stream<AssetListEntryAssetEntryRel> stream =
+			assetListEntryAssetEntryRels.stream();
 
-			for (AssetEntry assetEntry : assetEntries) {
-				AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
+		List<AssetEntry> assetEntries = stream.map(
+			assetListEntryAssetEntryRel -> _assetEntryLocalService.fetchEntry(
+				assetListEntryAssetEntryRel.getAssetEntryId())
+		).collect(
+			Collectors.toList()
+		);
 
-				if ((assetRenderer == null) ||
-					!(assetRenderer.getAssetObject() instanceof StagedModel)) {
+		for (AssetEntry assetEntry : assetEntries) {
+			AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
 
-					continue;
-				}
+			if ((assetRenderer == null) ||
+				!(assetRenderer.getAssetObject() instanceof StagedModel)) {
 
-				AssetRendererFactory assetRendererFactory =
-					assetRenderer.getAssetRendererFactory();
-
-				if ((assetRendererFactory != null) &&
-					ExportImportThreadLocal.isStagingInProcess() &&
-					!_stagingGroupHelper.isStagedPortlet(
-						assetEntry.getGroupId(),
-						assetRendererFactory.getPortletId())) {
-
-					continue;
-				}
-
-				StagedModelDataHandlerUtil.exportReferenceStagedModel(
-					portletDataContext, portletDataContext.getPortletId(),
-					(StagedModel)assetRenderer.getAssetObject());
+				continue;
 			}
+
+			AssetRendererFactory assetRendererFactory =
+				assetRenderer.getAssetRendererFactory();
+
+			if ((assetRendererFactory != null) &&
+				ExportImportThreadLocal.isStagingInProcess() &&
+				!_stagingGroupHelper.isStagedPortlet(
+					assetEntry.getGroupId(),
+					assetRendererFactory.getPortletId())) {
+
+				continue;
+			}
+
+			StagedModelDataHandlerUtil.exportReferenceStagedModel(
+				portletDataContext, portletDataContext.getPortletId(),
+				(StagedModel)assetRenderer.getAssetObject());
 		}
 	}
 

@@ -106,29 +106,31 @@ public class MBMessageModelDocumentContributor
 
 		document.addKeyword("threadId", mbMessage.getThreadId());
 
-		if (mbMessage.isDiscussion()) {
-			List<RelatedEntryIndexer> relatedEntryIndexers =
-				RelatedEntryIndexerRegistryUtil.getRelatedEntryIndexers(
-					mbMessage.getClassName());
+		if (!mbMessage.isDiscussion()) {
+			return;
+		}
 
-			if (relatedEntryIndexers != null) {
-				for (RelatedEntryIndexer relatedEntryIndexer :
-						relatedEntryIndexers) {
+		List<RelatedEntryIndexer> relatedEntryIndexers =
+			RelatedEntryIndexerRegistryUtil.getRelatedEntryIndexers(
+				mbMessage.getClassName());
 
-					Comment comment = commentManager.fetchComment(
-						mbMessage.getMessageId());
+		if (relatedEntryIndexers != null) {
+			for (RelatedEntryIndexer relatedEntryIndexer :
+					relatedEntryIndexers) {
 
-					if (comment != null) {
-						try {
-							relatedEntryIndexer.addRelatedEntryFields(
-								document, comment);
-						}
-						catch (Exception exception) {
-							throw new SystemException(exception);
-						}
+				Comment comment = commentManager.fetchComment(
+					mbMessage.getMessageId());
 
-						document.addKeyword(Field.RELATED_ENTRY, true);
+				if (comment != null) {
+					try {
+						relatedEntryIndexer.addRelatedEntryFields(
+							document, comment);
 					}
+					catch (Exception exception) {
+						throw new SystemException(exception);
+					}
+
+					document.addKeyword(Field.RELATED_ENTRY, true);
 				}
 			}
 		}

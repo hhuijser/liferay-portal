@@ -67,31 +67,33 @@ public class UnsubscribeHooks {
 
 		InternetAddress[] toAddresses = mailMessage.getTo();
 
-		if (toAddresses.length > 0) {
-			InternetAddress toAddress = toAddresses[0];
+		if (toAddresses.length == 0) {
+			return;
+		}
 
-			User user = _userLocalService.fetchUserByEmailAddress(
-				_subscriptionSender.getCompanyId(), toAddress.getAddress());
+		InternetAddress toAddress = toAddresses[0];
 
-			if (user == null) {
-				return;
+		User user = _userLocalService.fetchUserByEmailAddress(
+			_subscriptionSender.getCompanyId(), toAddress.getAddress());
+
+		if (user == null) {
+			return;
+		}
+
+		Ticket ticket = _userTicketMap.get(user.getUserId());
+
+		if (ticket != null) {
+			try {
+				String unsubscribeURL = _getUnsubscribeURL(user, ticket);
+
+				_addUnsubscribeHeader(mailMessage, unsubscribeURL);
+				_addUnsubscribeLink(mailMessage, unsubscribeURL);
 			}
-
-			Ticket ticket = _userTicketMap.get(user.getUserId());
-
-			if (ticket != null) {
-				try {
-					String unsubscribeURL = _getUnsubscribeURL(user, ticket);
-
-					_addUnsubscribeHeader(mailMessage, unsubscribeURL);
-					_addUnsubscribeLink(mailMessage, unsubscribeURL);
-				}
-				catch (IOException ioException) {
-					throw new RuntimeException(ioException);
-				}
-				finally {
-					_userTicketMap.remove(user.getUserId());
-				}
+			catch (IOException ioException) {
+				throw new RuntimeException(ioException);
+			}
+			finally {
+				_userTicketMap.remove(user.getUserId());
 			}
 		}
 	}

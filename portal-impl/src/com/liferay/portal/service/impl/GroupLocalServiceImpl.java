@@ -1271,32 +1271,34 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 
 		int stagingGroupCount = group.getRemoteStagingGroupCount();
 
-		if (stagingGroupCount > 0) {
-			stagingGroupCount = stagingGroupCount - 1;
+		if (stagingGroupCount == 0) {
+			return;
+		}
 
-			group.setRemoteStagingGroupCount(stagingGroupCount);
+		stagingGroupCount = stagingGroupCount - 1;
 
-			if (stagingGroupCount == 0) {
-				UnicodeProperties typeSettingsProperties =
-					group.getTypeSettingsProperties();
+		group.setRemoteStagingGroupCount(stagingGroupCount);
 
-				List<String> keys = new ArrayList<>();
+		if (stagingGroupCount == 0) {
+			UnicodeProperties typeSettingsProperties =
+				group.getTypeSettingsProperties();
 
-				for (String key : typeSettingsProperties.keySet()) {
-					if (key.startsWith(StagingConstants.STAGED_PORTLET)) {
-						keys.add(key);
-					}
+			List<String> keys = new ArrayList<>();
+
+			for (String key : typeSettingsProperties.keySet()) {
+				if (key.startsWith(StagingConstants.STAGED_PORTLET)) {
+					keys.add(key);
 				}
-
-				for (String key : keys) {
-					typeSettingsProperties.remove(key);
-				}
-
-				group.setTypeSettingsProperties(typeSettingsProperties);
 			}
 
-			groupPersistence.update(group);
+			for (String key : keys) {
+				typeSettingsProperties.remove(key);
+			}
+
+			group.setTypeSettingsProperties(typeSettingsProperties);
 		}
+
+		groupPersistence.update(group);
 	}
 
 	@Override

@@ -352,33 +352,35 @@ public class AccountEntryLocalServiceImpl
 			searchContext.setKeywords(keywords);
 		}
 
-		if (MapUtil.isNotEmpty(params)) {
-			long[] accountUserIds = (long[])params.get("accountUserIds");
-
-			if (ArrayUtil.isNotEmpty(accountUserIds)) {
-				searchContext.setAttribute("accountUserIds", accountUserIds);
-			}
-
-			String[] domains = (String[])params.get("domains");
-
-			if (ArrayUtil.isNotEmpty(domains)) {
-				searchContext.setAttribute("domains", domains);
-			}
-
-			long parentAccountEntryId = GetterUtil.getLong(
-				params.get("parentAccountEntryId"),
-				AccountConstants.ACCOUNT_ENTRY_ID_ANY);
-
-			if (parentAccountEntryId != AccountConstants.ACCOUNT_ENTRY_ID_ANY) {
-				searchContext.setAttribute(
-					"parentAccountEntryId", parentAccountEntryId);
-			}
-
-			int status = GetterUtil.getInteger(
-				params.get("status"), WorkflowConstants.STATUS_APPROVED);
-
-			searchContext.setAttribute("status", status);
+		if (MapUtil.isEmpty(params)) {
+			return;
 		}
+
+		long[] accountUserIds = (long[])params.get("accountUserIds");
+
+		if (ArrayUtil.isNotEmpty(accountUserIds)) {
+			searchContext.setAttribute("accountUserIds", accountUserIds);
+		}
+
+		String[] domains = (String[])params.get("domains");
+
+		if (ArrayUtil.isNotEmpty(domains)) {
+			searchContext.setAttribute("domains", domains);
+		}
+
+		long parentAccountEntryId = GetterUtil.getLong(
+			params.get("parentAccountEntryId"),
+			AccountConstants.ACCOUNT_ENTRY_ID_ANY);
+
+		if (parentAccountEntryId != AccountConstants.ACCOUNT_ENTRY_ID_ANY) {
+			searchContext.setAttribute(
+				"parentAccountEntryId", parentAccountEntryId);
+		}
+
+		int status = GetterUtil.getInteger(
+			params.get("status"), WorkflowConstants.STATUS_APPROVED);
+
+		searchContext.setAttribute("status", status);
 	}
 
 	private String[] _validateDomains(String[] domains) throws PortalException {

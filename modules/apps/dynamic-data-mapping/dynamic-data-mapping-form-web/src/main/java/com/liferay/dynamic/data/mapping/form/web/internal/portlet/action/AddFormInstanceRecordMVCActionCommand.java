@@ -128,33 +128,35 @@ public class AddFormInstanceRecordMVCActionCommand
 				ddmFormValues, serviceContext);
 		}
 
-		if (SessionErrors.isEmpty(actionRequest)) {
-			DDMFormInstanceSettings formInstanceSettings =
-				ddmFormInstance.getSettingsModel();
+		if (!SessionErrors.isEmpty(actionRequest)) {
+			return;
+		}
 
-			String redirectURL = formInstanceSettings.redirectURL();
+		DDMFormInstanceSettings formInstanceSettings =
+			ddmFormInstance.getSettingsModel();
 
-			if (Validator.isNotNull(redirectURL)) {
-				portletSession.setAttribute(
-					DDMFormWebKeys.DYNAMIC_DATA_MAPPING_FORM_INSTANCE_ID,
-					formInstanceId);
-				portletSession.setAttribute(DDMFormWebKeys.GROUP_ID, groupId);
+		String redirectURL = formInstanceSettings.redirectURL();
 
-				sendRedirect(actionRequest, actionResponse, redirectURL);
-			}
-			else {
-				DDMFormSuccessPageSettings ddmFormSuccessPageSettings =
-					ddmForm.getDDMFormSuccessPageSettings();
+		if (Validator.isNotNull(redirectURL)) {
+			portletSession.setAttribute(
+				DDMFormWebKeys.DYNAMIC_DATA_MAPPING_FORM_INSTANCE_ID,
+				formInstanceId);
+			portletSession.setAttribute(DDMFormWebKeys.GROUP_ID, groupId);
 
-				if (ddmFormSuccessPageSettings.isEnabled()) {
-					String portletId = _portal.getPortletId(actionRequest);
+			sendRedirect(actionRequest, actionResponse, redirectURL);
+		}
+		else {
+			DDMFormSuccessPageSettings ddmFormSuccessPageSettings =
+				ddmForm.getDDMFormSuccessPageSettings();
 
-					SessionMessages.add(
-						actionRequest,
-						portletId.concat(
-							SessionMessages.
-								KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE));
-				}
+			if (ddmFormSuccessPageSettings.isEnabled()) {
+				String portletId = _portal.getPortletId(actionRequest);
+
+				SessionMessages.add(
+					actionRequest,
+					portletId.concat(
+						SessionMessages.
+							KEY_SUFFIX_HIDE_DEFAULT_SUCCESS_MESSAGE));
 			}
 		}
 	}

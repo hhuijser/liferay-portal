@@ -413,8 +413,7 @@ public class TestIntegrationPlugin implements Plugin<Project> {
 				if (startParameter.isParallelProjectExecutionEnabled()) {
 					if (logger.isDebugEnabled()) {
 						logger.debug(
-							"Waiting for application server {} to be " +
-								"reachable",
+							"Waiting for application server {} to be reachable",
 							binDir);
 					}
 

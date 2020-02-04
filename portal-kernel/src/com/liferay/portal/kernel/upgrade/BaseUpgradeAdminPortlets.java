@@ -113,9 +113,8 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 
 						runSQL(
 							StringBundler.concat(
-								"update ResourcePermission set actionIds ",
-								"= ", actionIds,
-								" where resourcePermissionId = ",
+								"update ResourcePermission set actionIds = ",
+								actionIds, " where resourcePermissionId = ",
 								resourcePermissionId));
 
 						resourcePermissionId = increment(

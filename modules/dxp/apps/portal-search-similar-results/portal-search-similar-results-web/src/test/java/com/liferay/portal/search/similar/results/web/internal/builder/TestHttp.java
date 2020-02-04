@@ -175,34 +175,36 @@ public class TestHttp {
 		String[] parameters = StringUtil.split(queryString, CharPool.AMPERSAND);
 
 		for (String parameter : parameters) {
-			if (parameter.length() > 0) {
-				String[] kvp = StringUtil.split(parameter, CharPool.EQUAL);
+			if (parameter.length() == 0) {
+				continue;
+			}
 
-				if (kvp.length == 0) {
+			String[] kvp = StringUtil.split(parameter, CharPool.EQUAL);
+
+			if (kvp.length == 0) {
+				continue;
+			}
+
+			String key = kvp[0];
+
+			String value = StringPool.BLANK;
+
+			if (kvp.length > 1) {
+				try {
+					value = decodeURL(kvp[1]);
+				}
+				catch (IllegalArgumentException illegalArgumentException) {
 					continue;
 				}
+			}
 
-				String key = kvp[0];
+			String[] values = parameterMap.get(key);
 
-				String value = StringPool.BLANK;
-
-				if (kvp.length > 1) {
-					try {
-						value = decodeURL(kvp[1]);
-					}
-					catch (IllegalArgumentException illegalArgumentException) {
-						continue;
-					}
-				}
-
-				String[] values = parameterMap.get(key);
-
-				if (values == null) {
-					parameterMap.put(key, new String[] {value});
-				}
-				else {
-					parameterMap.put(key, ArrayUtil.append(values, value));
-				}
+			if (values == null) {
+				parameterMap.put(key, new String[] {value});
+			}
+			else {
+				parameterMap.put(key, ArrayUtil.append(values, value));
 			}
 		}
 

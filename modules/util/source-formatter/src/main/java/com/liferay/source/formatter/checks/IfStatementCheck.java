@@ -98,32 +98,34 @@ public abstract class IfStatementCheck extends BaseFileCheck {
 
 				String s = ifClause.substring(x + 1, y);
 
-				if (getLevel(s) == 0) {
-					char nextChar = ifClause.charAt(y + 1);
-
-					if ((previousChar == CharPool.OPEN_PARENTHESIS) &&
-						(nextChar == CharPool.CLOSE_PARENTHESIS)) {
-
-						addMessage(
-							fileName, "Redundant parentheses",
-							"parentheses.markdown", lineNumber);
-
-						return;
-					}
-
-					if (((nextChar == CharPool.CLOSE_PARENTHESIS) ||
-						 (nextChar == CharPool.SPACE)) &&
-						_hasRedundantParentheses(s)) {
-
-						addMessage(
-							fileName, "Redundant parentheses",
-							"parentheses.markdown", lineNumber);
-
-						return;
-					}
-
-					break;
+				if (getLevel(s) != 0) {
+					continue;
 				}
+
+				char nextChar = ifClause.charAt(y + 1);
+
+				if ((previousChar == CharPool.OPEN_PARENTHESIS) &&
+					(nextChar == CharPool.CLOSE_PARENTHESIS)) {
+
+					addMessage(
+						fileName, "Redundant parentheses",
+						"parentheses.markdown", lineNumber);
+
+					return;
+				}
+
+				if (((nextChar == CharPool.CLOSE_PARENTHESIS) ||
+					 (nextChar == CharPool.SPACE)) &&
+					_hasRedundantParentheses(s)) {
+
+					addMessage(
+						fileName, "Redundant parentheses",
+						"parentheses.markdown", lineNumber);
+
+					return;
+				}
+
+				break;
 			}
 		}
 	}

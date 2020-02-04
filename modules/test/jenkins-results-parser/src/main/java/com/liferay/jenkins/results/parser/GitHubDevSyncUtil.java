@@ -406,33 +406,34 @@ public class GitHubDevSyncUtil {
 
 			String lastBlock = matcher.group(2);
 
-			if (lastBlock.matches("\\d+")) {
-				branchCount++;
+			if (!lastBlock.matches("\\d+")) {
+				continue;
+			}
 
-				long remoteGitBranchTimestamp = Long.parseLong(lastBlock);
+			branchCount++;
 
-				long branchAge = timestamp - remoteGitBranchTimestamp;
+			long remoteGitBranchTimestamp = Long.parseLong(lastBlock);
 
-				if (branchAge > _MILLIS_BRANCH_EXPIRATION) {
-					String gitRepositoryBaseRemoteGitBranchName =
-						remoteGitBranchName.replaceAll("(.*)-\\d+", "$1");
+			long branchAge = timestamp - remoteGitBranchTimestamp;
 
-					RemoteGitBranch gitRepositoryBaseRemoteGitBranch =
-						remoteGitBranches.get(
-							gitRepositoryBaseRemoteGitBranchName);
+			if (branchAge > _MILLIS_BRANCH_EXPIRATION) {
+				String gitRepositoryBaseRemoteGitBranchName =
+					remoteGitBranchName.replaceAll("(.*)-\\d+", "$1");
 
-					if (gitRepositoryBaseRemoteGitBranch != null) {
-						expiredRemoteGitBranches.add(
-							gitRepositoryBaseRemoteGitBranch);
-					}
+				RemoteGitBranch gitRepositoryBaseRemoteGitBranch =
+					remoteGitBranches.get(gitRepositoryBaseRemoteGitBranchName);
 
-					expiredRemoteGitBranches.add(remoteGitBranch);
-
-					deleteCount++;
+				if (gitRepositoryBaseRemoteGitBranch != null) {
+					expiredRemoteGitBranches.add(
+						gitRepositoryBaseRemoteGitBranch);
 				}
-				else {
-					oldestBranchAge = Math.max(oldestBranchAge, branchAge);
-				}
+
+				expiredRemoteGitBranches.add(remoteGitBranch);
+
+				deleteCount++;
+			}
+			else {
+				oldestBranchAge = Math.max(oldestBranchAge, branchAge);
 			}
 		}
 

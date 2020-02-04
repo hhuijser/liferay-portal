@@ -313,40 +313,41 @@ public class FindKBArticleStrutsAction implements StrutsAction {
 					}
 				}
 
-				if (rootPortletId.equals(
+				if (!rootPortletId.equals(
 						KBPortletKeys.KNOWLEDGE_BASE_ARTICLE)) {
 
-					PortletPreferences portletPreferences =
-						PortletPreferencesFactoryUtil.getPortletSetup(
-							layout, portlet.getPortletId(), StringPool.BLANK);
+					continue;
+				}
 
-					long resourcePrimKey = GetterUtil.getLong(
-						portletPreferences.getValue("resourcePrimKey", null));
+				PortletPreferences portletPreferences =
+					PortletPreferencesFactoryUtil.getPortletSetup(
+						layout, portlet.getPortletId(), StringPool.BLANK);
 
-					KBArticle selKBArticle =
-						_kbArticleLocalService.fetchLatestKBArticle(
-							resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
+				long resourcePrimKey = GetterUtil.getLong(
+					portletPreferences.getValue("resourcePrimKey", null));
 
-					if (selKBArticle == null) {
-						continue;
-					}
+				KBArticle selKBArticle =
+					_kbArticleLocalService.fetchLatestKBArticle(
+						resourcePrimKey, WorkflowConstants.STATUS_APPROVED);
 
-					long rootResourcePrimKey =
-						kbArticle.getRootResourcePrimKey();
-					long selRootResourcePrimKey =
-						selKBArticle.getRootResourcePrimKey();
+				if (selKBArticle == null) {
+					continue;
+				}
 
-					if (rootResourcePrimKey == selRootResourcePrimKey) {
-						return getKBArticleURL(
-							layout.getPlid(), portlet.getPortletId(), kbArticle,
-							httpServletRequest);
-					}
+				long rootResourcePrimKey = kbArticle.getRootResourcePrimKey();
+				long selRootResourcePrimKey =
+					selKBArticle.getRootResourcePrimKey();
 
-					if (firstMatchPortletURL == null) {
-						firstMatchPortletURL = getKBArticleURL(
-							layout.getPlid(), portlet.getPortletId(), kbArticle,
-							httpServletRequest);
-					}
+				if (rootResourcePrimKey == selRootResourcePrimKey) {
+					return getKBArticleURL(
+						layout.getPlid(), portlet.getPortletId(), kbArticle,
+						httpServletRequest);
+				}
+
+				if (firstMatchPortletURL == null) {
+					firstMatchPortletURL = getKBArticleURL(
+						layout.getPlid(), portlet.getPortletId(), kbArticle,
+						httpServletRequest);
 				}
 			}
 		}

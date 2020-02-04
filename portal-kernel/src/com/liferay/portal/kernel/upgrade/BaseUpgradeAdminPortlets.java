@@ -102,35 +102,37 @@ public abstract class BaseUpgradeAdminPortlets extends UpgradeProcess {
 					while (rs.next()) {
 						long actionIds = rs.getLong("actionIds");
 
-						if ((actionIds & bitwiseValue) != 0) {
-							actionIds = actionIds & ~bitwiseValue;
-
-							long resourcePermissionId = rs.getLong(
-								"resourcePermissionId");
-
-							runSQL(
-								StringBundler.concat(
-									"update ResourcePermission set actionIds ",
-									"= ", actionIds,
-									" where resourcePermissionId = ",
-									resourcePermissionId));
-
-							resourcePermissionId = increment(
-								ResourcePermission.class.getName());
-
-							long companyId = rs.getLong("companyId");
-							int scope = rs.getInt("scope");
-							String primKey = rs.getString("primKey");
-							long roleId = rs.getLong("roleId");
-
-							actionIds = rs.getLong("actionIds");
-
-							actionIds |= bitwiseValue;
-
-							addResourcePermission(
-								resourcePermissionId, companyId, portletTo,
-								scope, primKey, roleId, actionIds);
+						if ((actionIds & bitwiseValue) == 0) {
+							continue;
 						}
+
+						actionIds = actionIds & ~bitwiseValue;
+
+						long resourcePermissionId = rs.getLong(
+							"resourcePermissionId");
+
+						runSQL(
+							StringBundler.concat(
+								"update ResourcePermission set actionIds ",
+								"= ", actionIds,
+								" where resourcePermissionId = ",
+								resourcePermissionId));
+
+						resourcePermissionId = increment(
+							ResourcePermission.class.getName());
+
+						long companyId = rs.getLong("companyId");
+						int scope = rs.getInt("scope");
+						String primKey = rs.getString("primKey");
+						long roleId = rs.getLong("roleId");
+
+						actionIds = rs.getLong("actionIds");
+
+						actionIds |= bitwiseValue;
+
+						addResourcePermission(
+							resourcePermissionId, companyId, portletTo, scope,
+							primKey, roleId, actionIds);
 					}
 				}
 			}

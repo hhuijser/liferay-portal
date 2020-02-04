@@ -66,34 +66,34 @@ public class XMLTestUtil {
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
 
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element childElement = (Element)node;
+			if (node.getNodeType() != Node.ELEMENT_NODE) {
+				continue;
+			}
 
-				boolean ignoreNode = false;
+			Element childElement = (Element)node;
 
-				NodeList childNodeList = childElement.getChildNodes();
+			boolean ignoreNode = false;
 
-				for (int j = 0; j < childNodeList.getLength(); j++) {
-					Node childNode = childNodeList.item(j);
+			NodeList childNodeList = childElement.getChildNodes();
 
-					if (childNode.getNodeType() == Node.TEXT_NODE) {
-						Text text = (Text)childNode;
+			for (int j = 0; j < childNodeList.getLength(); j++) {
+				Node childNode = childNodeList.item(j);
 
-						String textContent = text.getTextContent();
+				if (childNode.getNodeType() == Node.TEXT_NODE) {
+					Text text = (Text)childNode;
 
-						if (textContent.contains(
-								"Ignore Dependency Comparison")) {
+					String textContent = text.getTextContent();
 
-							ignoreNode = true;
+					if (textContent.contains("Ignore Dependency Comparison")) {
+						ignoreNode = true;
 
-							break;
-						}
+						break;
 					}
 				}
+			}
 
-				if (!ignoreNode) {
-					elements.add(childElement);
-				}
+			if (!ignoreNode) {
+				elements.add(childElement);
 			}
 		}
 

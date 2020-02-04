@@ -104,31 +104,33 @@ public class SegmentsExperienceUtil {
 				SegmentsExperiencePortletUtil.getSegmentsExperienceId(
 					portletPreferences.getPortletId());
 
-			if (segmentsExperienceId == sourceSegmentsExperienceId) {
-				String newPortletId =
-					SegmentsExperiencePortletUtil.setSegmentsExperienceId(
-						portletPreferences.getPortletId(),
-						targetSegmentsExperienceId);
+			if (segmentsExperienceId != sourceSegmentsExperienceId) {
+				continue;
+			}
 
-				PortletPreferences existingPortletPreferences =
-					portletPreferencesLocalService.fetchPortletPreferences(
-						portletPreferences.getOwnerId(),
-						portletPreferences.getOwnerType(), plid, newPortletId);
+			String newPortletId =
+				SegmentsExperiencePortletUtil.setSegmentsExperienceId(
+					portletPreferences.getPortletId(),
+					targetSegmentsExperienceId);
 
-				if (existingPortletPreferences == null) {
-					portletPreferencesLocalService.addPortletPreferences(
-						portletPreferences.getCompanyId(),
-						portletPreferences.getOwnerId(),
-						portletPreferences.getOwnerType(), plid, newPortletId,
-						portlet, portletPreferences.getPreferences());
-				}
-				else {
-					existingPortletPreferences.setPreferences(
-						portletPreferences.getPreferences());
+			PortletPreferences existingPortletPreferences =
+				portletPreferencesLocalService.fetchPortletPreferences(
+					portletPreferences.getOwnerId(),
+					portletPreferences.getOwnerType(), plid, newPortletId);
 
-					portletPreferencesLocalService.updatePortletPreferences(
-						existingPortletPreferences);
-				}
+			if (existingPortletPreferences == null) {
+				portletPreferencesLocalService.addPortletPreferences(
+					portletPreferences.getCompanyId(),
+					portletPreferences.getOwnerId(),
+					portletPreferences.getOwnerType(), plid, newPortletId,
+					portlet, portletPreferences.getPreferences());
+			}
+			else {
+				existingPortletPreferences.setPreferences(
+					portletPreferences.getPreferences());
+
+				portletPreferencesLocalService.updatePortletPreferences(
+					existingPortletPreferences);
 			}
 		}
 	}

@@ -125,33 +125,33 @@ public class SourceFormatterUtil {
 			String encodedFileName = SourceUtil.getAbsolutePath(fileName);
 
 			for (String includeRegex : includeRegexList) {
-				if (encodedFileName.matches(includeRegex)) {
-					for (String excludeRegex : excludeRegexList) {
-						if (encodedFileName.matches(excludeRegex)) {
-							continue outerLoop;
-						}
+				if (!encodedFileName.matches(includeRegex)) {
+					continue;
+				}
+
+				for (String excludeRegex : excludeRegexList) {
+					if (encodedFileName.matches(excludeRegex)) {
+						continue outerLoop;
 					}
+				}
 
-					for (Map.Entry<String, List<String>> entry :
-							excludeRegexMap.entrySet()) {
+				for (Map.Entry<String, List<String>> entry :
+						excludeRegexMap.entrySet()) {
 
-						String propertiesFileLocation = entry.getKey();
+					String propertiesFileLocation = entry.getKey();
 
-						if (encodedFileName.startsWith(
-								propertiesFileLocation)) {
-
-							for (String excludeRegex : entry.getValue()) {
-								if (encodedFileName.matches(excludeRegex)) {
-									continue outerLoop;
-								}
+					if (encodedFileName.startsWith(propertiesFileLocation)) {
+						for (String excludeRegex : entry.getValue()) {
+							if (encodedFileName.matches(excludeRegex)) {
+								continue outerLoop;
 							}
 						}
 					}
-
-					fileNames.add(fileName);
-
-					continue outerLoop;
 				}
+
+				fileNames.add(fileName);
+
+				continue outerLoop;
 			}
 		}
 

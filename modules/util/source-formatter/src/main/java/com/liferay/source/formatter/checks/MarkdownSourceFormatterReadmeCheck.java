@@ -502,7 +502,7 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 			headerName, new File(documentationDir, markdownFileName),
 			checkInfoMap.values(), documentationChecksDir, true, true);
 
-		sb.append("- ### Categories:\n");
+		sb.append("- ### By Category:\n");
 
 		for (String category : _getCategories(checkInfoMap)) {
 			headerName = category + " Checks";
@@ -521,7 +521,7 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 
 		sb.append("\n");
 
-		sb.append("- ### File Extensions:\n");
+		sb.append("- ### By File Extensions:\n");
 
 		for (String sourceProcessorName :
 				_getSourceProcessorNames(checkInfoMap)) {

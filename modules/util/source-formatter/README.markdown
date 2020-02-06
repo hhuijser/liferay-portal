@@ -4,14 +4,14 @@
 
 - ### [All Checks](src/main/resources/documentation/all_checks.markdown#all-checks)
 
-- ### Categories:
+- ### By Category:
    * [Bug Prevention](src/main/resources/documentation/bug_prevention_checks.markdown#bug-prevention-checks)
    * [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks)
    * [Naming Conventions](src/main/resources/documentation/naming_conventions_checks.markdown#naming-conventions-checks)
    * [Performance](src/main/resources/documentation/performance_checks.markdown#performance-checks)
    * [Styling](src/main/resources/documentation/styling_checks.markdown#styling-checks)
 
-- ### File Extensions:
+- ### By File Extensions:
    * [.action, .function, .jrxml, .macro, .pom, .testcase, .toggle, .wsdl, .xml or .xsd](src/main/resources/documentation/xml_source_processor_checks.markdown#checks-for-action-function-jrxml-macro-pom-testcase-toggle-wsdl-xml-or-xsd)
    * [.bnd](src/main/resources/documentation/bnd_source_processor_checks.markdown#checks-for-bnd)
    * [.bndrun](src/main/resources/documentation/bnd_run_source_processor_checks.markdown#checks-for-bndrun)

@@ -13,11 +13,11 @@ AssertEqualsCheck | Miscellaneous | .java | |
 AttributeOrderCheck | Miscellaneous | .java | |
 [AvoidNestedBlocksCheck](https://checkstyle.sourceforge.io/config_blocks.html#AvoidNestedBlocks) | Miscellaneous | .java, .jsp, .jspf, .tag, .tpl or .vm | Finds nested blocks (blocks that are used freely in the code). |
 [AvoidStarImportCheck](https://checkstyle.sourceforge.io/config_imports.html#AvoidStarImport) | Miscellaneous | .java | Checks that there are no import statements that use the * notation. |
-[BNDBundleActivatorCheck](checks/bnd_bundle_activator_check#bndbundleactivatorcheck) | Miscellaneous | .bnd | |
+[BNDBundleActivatorCheck](checks/bnd_bundle_activator_check.markdown#bndbundleactivatorcheck) | Miscellaneous | .bnd | |
 BNDBundleCheck | Miscellaneous | .bnd | |
-[BNDBundleInformationCheck](checks/bnd_bundle_information_check#bndbundleinformationcheck) | Miscellaneous | .bnd | |
+[BNDBundleInformationCheck](checks/bnd_bundle_information_check.markdown#bndbundleinformationcheck) | Miscellaneous | .bnd | |
 BNDCapabilityCheck | Miscellaneous | .bnd | |
-[BNDDefinitionKeysCheck](checks/bnd_definition_keys_check#bnddefinitionkeyscheck) | Miscellaneous | .bnd | |
+[BNDDefinitionKeysCheck](checks/bnd_definition_keys_check.markdown#bnddefinitionkeyscheck) | Miscellaneous | .bnd | |
 BNDDeprecatedAppBNDsCheck | Miscellaneous | .bnd | |
 [BNDDirectoryNameCheck](checks/bnd_directory_name_check.markdown#bnddirectorynamecheck) | Miscellaneous | .bnd | |
 [BNDExportsCheck](checks/bnd_exports_check.markdown#bndexportscheck) | Miscellaneous | .bnd | |

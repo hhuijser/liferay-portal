@@ -1,6 +1,6 @@
 # Source Formatter
 
-### [All Checks](src/main/resources/documentation/all_checks.markdown)
+### [All Checks](src/main/resources/documentation/all_checks.markdown#all-checks)
 
 ## Categories:
 - [Bug Prevention](src/main/resources/documentation/bug_prevention_checks.markdown)

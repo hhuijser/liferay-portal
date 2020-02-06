@@ -250,7 +250,9 @@ public class MarkdownSourceFormatterReadmeCheck extends BaseFileCheck {
 					documentationChecksDir, markdownFileName);
 
 				if (markdownFile.exists()) {
-					link = _DOCUMENTATION_CHECKS_DIR_NAME + markdownFileName;
+					link = StringBundler.concat(
+						_DOCUMENTATION_CHECKS_DIR_NAME, markdownFileName, "#",
+						StringUtil.toLowerCase(checkName));
 				}
 			}
 

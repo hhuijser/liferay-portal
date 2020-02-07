@@ -16,7 +16,7 @@
 
 <%@ include file="/html/taglib/ui/toggle_area/init.jsp" %>
 
-<div style="float: <%= align %>">
+<div style="float: <%= align %>;">
 	<liferay-ui:toggle
 		defaultShowContent="<%= defaultShowContent %>"
 		hideImage="<%= hideImage %>"

@@ -112,7 +112,7 @@ public class JournalDDMStructuresManagementToolbarDisplayContext
 		return CreationMenuBuilder.addPrimaryDropdownItem(
 			dropdownItem -> {
 				ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
-						WebKeys.THEME_DISPLAY);
+					WebKeys.THEME_DISPLAY);
 
 				dropdownItem.setHref(
 					liferayPortletResponse.createRenderURL(), "mvcPath",

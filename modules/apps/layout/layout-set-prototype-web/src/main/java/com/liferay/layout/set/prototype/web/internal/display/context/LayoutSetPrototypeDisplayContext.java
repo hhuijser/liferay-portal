@@ -110,7 +110,7 @@ public class LayoutSetPrototypeDisplayContext {
 		addLayoutSetPrototypeRenderURL.setParameter(
 			"redirect", PortalUtil.getCurrentURL(_httpServletRequest));
 
-		return new CreationMenuBuilder.addPrimaryDropdownItem(
+		return CreationMenuBuilder.addPrimaryDropdownItem(
 			dropdownItem -> {
 				dropdownItem.setHref(addLayoutSetPrototypeRenderURL.toString());
 				dropdownItem.setLabel(

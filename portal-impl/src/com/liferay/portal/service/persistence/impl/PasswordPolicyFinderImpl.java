@@ -89,17 +89,17 @@ public class PasswordPolicyFinderImpl
 					new long[] {0}, null);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(name);
 			qPos.add(name);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -143,18 +143,18 @@ public class PasswordPolicyFinderImpl
 					new long[] {0}, null);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("PasswordPolicy", PasswordPolicyImpl.class);
+			sqlQuery.addEntity("PasswordPolicy", PasswordPolicyImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(name);
 			qPos.add(name);
 
 			return (List<PasswordPolicy>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

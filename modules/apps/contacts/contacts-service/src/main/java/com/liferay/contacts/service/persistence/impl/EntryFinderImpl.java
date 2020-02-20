@@ -168,17 +168,17 @@ public class EntryFinderImpl
 				emailAddresses);
 			sql = _customSQL.replaceAndOperator(sql, false);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(userId);
 			qPos.add(fullNames, 2);
 			qPos.add(emailAddresses, 2);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -219,17 +219,18 @@ public class EntryFinderImpl
 				emailAddresses);
 			sql = _customSQL.replaceAndOperator(sql, false);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Contacts_Entry", EntryImpl.class);
+			sqlQuery.addEntity("Contacts_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(userId);
 			qPos.add(fullNames, 2);
 			qPos.add(emailAddresses, 2);
 
-			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Entry>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

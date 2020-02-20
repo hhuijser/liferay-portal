@@ -242,15 +242,15 @@ public class CalendarBookingFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_FUTURE_REMINDERS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("CalendarBooking", CalendarBookingImpl.class);
+			sqlQuery.addEntity("CalendarBooking", CalendarBookingImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(startTime);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -371,11 +371,11 @@ public class CalendarBookingFinderImpl
 				sql, "LOWER(location)", StringPool.LIKE, true, locations);
 			sql = _customSQL.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(groupIds);
@@ -410,7 +410,7 @@ public class CalendarBookingFinderImpl
 				qPos.add(statuses);
 			}
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -490,11 +490,11 @@ public class CalendarBookingFinderImpl
 
 			sql = StringUtil.replace(sql, "[$ORDER_BY$]", sb.toString());
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("CalendarBooking", CalendarBookingImpl.class);
+			sqlQuery.addEntity("CalendarBooking", CalendarBookingImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 
@@ -533,7 +533,7 @@ public class CalendarBookingFinderImpl
 			}
 
 			return (List<CalendarBooking>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

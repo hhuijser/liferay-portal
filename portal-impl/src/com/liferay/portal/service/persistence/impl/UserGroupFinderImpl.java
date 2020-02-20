@@ -242,11 +242,11 @@ public class UserGroupFinderImpl
 					null, null, new long[] {0}, null);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, params);
 
@@ -254,7 +254,7 @@ public class UserGroupFinderImpl
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -330,11 +330,11 @@ public class UserGroupFinderImpl
 					null, null, new long[] {0}, null);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("UserGroup", UserGroupImpl.class);
+			sqlQuery.addEntity("UserGroup", UserGroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, params);
 
@@ -342,7 +342,8 @@ public class UserGroupFinderImpl
 			qPos.add(names, 2);
 			qPos.add(descriptions, 2);
 
-			return (List<UserGroup>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<UserGroup>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

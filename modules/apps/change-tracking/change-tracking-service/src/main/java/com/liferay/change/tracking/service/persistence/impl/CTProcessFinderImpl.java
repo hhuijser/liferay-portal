@@ -94,11 +94,11 @@ public class CTProcessFinderImpl
 
 			sql = _customSQL.replaceOrderBy(sql, orderByComparator);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("CTProcess", CTProcessImpl.class);
+			sqlQuery.addEntity("CTProcess", CTProcessImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 
@@ -116,7 +116,8 @@ public class CTProcessFinderImpl
 				qPos.add(descriptions, 2);
 			}
 
-			return (List<CTProcess>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<CTProcess>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

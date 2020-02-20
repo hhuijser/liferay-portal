@@ -52,16 +52,16 @@ public class AssetCategoryPropertyFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G_K);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(key);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -97,11 +97,11 @@ public class AssetCategoryPropertyFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_G_K);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("categoryPropertyValue", Type.STRING);
+			sqlQuery.addScalar("categoryPropertyValue", Type.STRING);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(key);
@@ -109,7 +109,7 @@ public class AssetCategoryPropertyFinderImpl
 			List<AssetCategoryProperty> categoryProperties = new ArrayList<>();
 
 			Iterator<String> itr = (Iterator<String>)QueryUtil.iterate(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 
 			while (itr.hasNext()) {
 				String value = itr.next();

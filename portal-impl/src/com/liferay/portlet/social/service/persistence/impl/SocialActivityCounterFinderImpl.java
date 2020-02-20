@@ -75,11 +75,11 @@ public class SocialActivityCounterFinderImpl
 
 			sql = StringUtil.replace(sql, "[$NAME$]", getNames(names));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(PortalUtil.getClassNameId(User.class.getName()));
@@ -89,7 +89,7 @@ public class SocialActivityCounterFinderImpl
 			qPos.add(SocialCounterPeriodUtil.getPeriodLength());
 			qPos.add(SocialCounterPeriodUtil.getActivityDay());
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -146,9 +146,9 @@ public class SocialActivityCounterFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_AC_BY_G_N_S_E_1);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(name);
@@ -159,7 +159,7 @@ public class SocialActivityCounterFinderImpl
 
 			activityCounters = new ArrayList<>();
 
-			Iterator<Object[]> itr = q.iterate();
+			Iterator<Object[]> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Object[] array = itr.next();
@@ -207,9 +207,9 @@ public class SocialActivityCounterFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_AC_BY_G_N_S_E_2);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(counterName);
@@ -220,7 +220,7 @@ public class SocialActivityCounterFinderImpl
 
 			List<SocialActivityCounter> activityCounters = new ArrayList<>();
 
-			Iterator<Object[]> itr = q.iterate();
+			Iterator<Object[]> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Object[] array = itr.next();
@@ -265,12 +265,12 @@ public class SocialActivityCounterFinderImpl
 				sql, new String[] {"[$CLASS_PK$]", "[$NAME$]"},
 				new String[] {StringUtil.merge(userIds), getNames(names)});
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity(
+			sqlQuery.addEntity(
 				"SocialActivityCounter", SocialActivityCounterImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(PortalUtil.getClassNameId(User.class.getName()));
@@ -278,7 +278,7 @@ public class SocialActivityCounterFinderImpl
 			setNames(qPos, names);
 
 			return (List<SocialActivityCounter>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -305,11 +305,11 @@ public class SocialActivityCounterFinderImpl
 
 			sql = StringUtil.replace(sql, "[$NAME$]", getNames(names));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("classPK", Type.LONG);
+			sqlQuery.addScalar("classPK", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(PortalUtil.getClassNameId(User.class.getName()));
@@ -318,7 +318,8 @@ public class SocialActivityCounterFinderImpl
 
 			qPos.add(SocialCounterPeriodUtil.getStartPeriod());
 
-			return (List<Long>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Long>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

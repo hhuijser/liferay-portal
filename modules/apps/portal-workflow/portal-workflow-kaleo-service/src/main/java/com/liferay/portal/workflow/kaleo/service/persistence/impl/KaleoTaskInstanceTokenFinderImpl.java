@@ -89,10 +89,10 @@ public class KaleoTaskInstanceTokenFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = buildKaleoTaskInstanceTokenQuerySQL(
+			SQLQuery sqlQuery = buildKaleoTaskInstanceTokenQuerySQL(
 				kaleoTaskInstanceTokenQuery, true, session);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -121,14 +121,14 @@ public class KaleoTaskInstanceTokenFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = buildKaleoTaskInstanceTokenQuerySQL(
+			SQLQuery sqlQuery = buildKaleoTaskInstanceTokenQuerySQL(
 				kaleoTaskInstanceTokenQuery, false, session);
 
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				new ArrayList<>();
 
 			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
-				q, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
+				sqlQuery, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
 				kaleoTaskInstanceTokenQuery.getEnd());
 
 			while (itr.hasNext()) {
@@ -315,16 +315,16 @@ public class KaleoTaskInstanceTokenFinderImpl
 				sb.toString());
 		}
 
-		SQLQuery q = session.createSynchronizedSQLQuery(sql);
+		SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
 		if (count) {
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 		}
 		else {
-			q.addScalar("KaleoTaskInstanceTokenId", Type.LONG);
+			sqlQuery.addScalar("KaleoTaskInstanceTokenId", Type.LONG);
 		}
 
-		QueryPos qPos = QueryPos.getInstance(q);
+		QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 		qPos.add(kaleoTaskInstanceTokenQuery.getCompanyId());
 
@@ -339,7 +339,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		setAssetTitle(qPos, kaleoTaskInstanceTokenQuery);
 
-		return q;
+		return sqlQuery;
 	}
 
 	protected String getAssetPrimaryKey(

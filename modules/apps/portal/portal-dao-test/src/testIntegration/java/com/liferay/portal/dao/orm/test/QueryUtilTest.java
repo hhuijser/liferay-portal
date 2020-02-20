@@ -248,10 +248,11 @@ public class QueryUtilTest {
 		try {
 			session = _sessionFactory.openSession();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(_SQL_SELECT);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(_SQL_SELECT);
 
 			List<Object[]> result = (List<Object[]>)QueryUtil.list(
-				q, _sessionFactory.getDialect(), start, end, unmodifiable);
+				sqlQuery, _sessionFactory.getDialect(), start, end,
+				unmodifiable);
 
 			Assert.assertNotNull(result);
 			Assert.assertEquals(result.toString(), expectedSize, result.size());
@@ -334,10 +335,10 @@ public class QueryUtilTest {
 				sql += " ORDER BY type ".concat(order);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
 			List<Object[]> result = (List<Object[]>)QueryUtil.list(
-				q, _sessionFactory.getDialect(), start, end, true);
+				sqlQuery, _sessionFactory.getDialect(), start, end, true);
 
 			Assert.assertEquals(result.toString(), size, result.size());
 

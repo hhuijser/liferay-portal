@@ -135,11 +135,12 @@ public class KBFolderFinderImpl
 			sb.append(sql);
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sb.toString());
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
+				sb.toString());
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(parentResourcePrimKey);
@@ -150,7 +151,7 @@ public class KBFolderFinderImpl
 
 			int count = 0;
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Long l = itr.next();
@@ -230,16 +231,16 @@ public class KBFolderFinderImpl
 
 			sql = _customSQL.replaceOrderBy(sql, orderByComparator);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("modelId", Type.LONG);
-			q.addScalar("modelFolder", Type.LONG);
-			q.addScalar("modifiedDate", Type.DATE);
-			q.addScalar("priority", Type.DOUBLE);
-			q.addScalar("title", Type.STRING);
-			q.addScalar("viewCount", Type.INTEGER);
+			sqlQuery.addScalar("modelId", Type.LONG);
+			sqlQuery.addScalar("modelFolder", Type.LONG);
+			sqlQuery.addScalar("modifiedDate", Type.DATE);
+			sqlQuery.addScalar("priority", Type.DOUBLE);
+			sqlQuery.addScalar("title", Type.STRING);
+			sqlQuery.addScalar("viewCount", Type.INTEGER);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if (orderByViewCount) {
 				long classNameId = _classNameLocalService.getClassNameId(
@@ -263,7 +264,7 @@ public class KBFolderFinderImpl
 			List<Object> models = new ArrayList<>();
 
 			Iterator<Object[]> itr = (Iterator<Object[]>)QueryUtil.iterate(
-				q, getDialect(), queryDefinition.getStart(),
+				sqlQuery, getDialect(), queryDefinition.getStart(),
 				queryDefinition.getEnd());
 
 			while (itr.hasNext()) {

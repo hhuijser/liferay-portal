@@ -168,11 +168,11 @@ public class GroupFinderImpl
 				sql = StringUtil.removeSubstring(sql, "[$ACTIVE$]");
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(parentGroupId);
@@ -182,7 +182,7 @@ public class GroupFinderImpl
 				qPos.add(active);
 			}
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -347,15 +347,15 @@ public class GroupFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_ACTIVE_GROUPS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("groupId", Type.LONG);
+			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(userId);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -449,11 +449,11 @@ public class GroupFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("groupId", Type.LONG);
+			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, params1);
 
@@ -474,7 +474,7 @@ public class GroupFinderImpl
 			}
 
 			List<Long> groupIds = (List<Long>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 
 			List<Group> groups = new ArrayList<>(groupIds.size());
 
@@ -516,11 +516,11 @@ public class GroupFinderImpl
 				sql = StringUtil.removeSubstring(sql, "[$ACTIVE$]");
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Group_", GroupImpl.class);
+			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(parentGroupId);
@@ -530,7 +530,7 @@ public class GroupFinderImpl
 				qPos.add(active);
 			}
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -558,11 +558,11 @@ public class GroupFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_LIVE_GROUPS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Group_", GroupImpl.class);
+			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -581,15 +581,15 @@ public class GroupFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_SYSTEM);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Group_", GroupImpl.class);
+			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -614,11 +614,11 @@ public class GroupFinderImpl
 				sql = StringUtil.removeSubstring(sql, "(groupId > ?) AND");
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("groupId", Type.LONG);
+			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if (previousGroupId > 0) {
 				qPos.add(previousGroupId);
@@ -627,7 +627,7 @@ public class GroupFinderImpl
 			qPos.add(companyId);
 			qPos.add(parentGroupId);
 
-			return (List<Long>)QueryUtil.list(q, getDialect(), 0, size);
+			return (List<Long>)QueryUtil.list(sqlQuery, getDialect(), 0, size);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -650,16 +650,16 @@ public class GroupFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_C_GK);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Group_", GroupImpl.class);
+			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(groupKey);
 
-			List<Group> groups = q.list();
+			List<Group> groups = sqlQuery.list();
 
 			if (!groups.isEmpty()) {
 				return groups.get(0);
@@ -695,11 +695,11 @@ public class GroupFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Group_", GroupImpl.class);
+			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(liveGroupId);
 			qPos.add(StringUtil.quote(typeSettings, StringPool.PERCENT));
@@ -707,7 +707,7 @@ public class GroupFinderImpl
 			qPos.add(remoteStagingGroupCount);
 
 			return (List<Group>)QueryUtil.list(
-				q, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				sqlQuery, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -836,11 +836,11 @@ public class GroupFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("groupId", Type.LONG);
+			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, params1);
 
@@ -873,7 +873,7 @@ public class GroupFinderImpl
 			}
 
 			List<Long> groupIds = (List<Long>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 
 			List<Group> groups = new ArrayList<>(groupIds.size());
 
@@ -901,17 +901,17 @@ public class GroupFinderImpl
 
 		sql = replaceJoinAndWhere(sql, params);
 
-		SQLQuery q = session.createSynchronizedSQLQuery(sql);
+		SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-		q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+		sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-		QueryPos qPos = QueryPos.getInstance(q);
+		QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 		setJoin(qPos, params);
 
 		qPos.add(groupId);
 
-		Iterator<Long> itr = q.iterate();
+		Iterator<Long> itr = sqlQuery.iterate();
 
 		if (itr.hasNext()) {
 			Long count = itr.next();
@@ -951,11 +951,11 @@ public class GroupFinderImpl
 		sql = replaceJoinAndWhere(sql, params);
 		sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-		SQLQuery q = session.createSynchronizedSQLQuery(sql);
+		SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-		q.addScalar("groupId", Type.LONG);
+		sqlQuery.addScalar("groupId", Type.LONG);
 
-		QueryPos qPos = QueryPos.getInstance(q);
+		QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 		setJoin(qPos, params);
 
@@ -964,7 +964,7 @@ public class GroupFinderImpl
 		qPos.add(names, 2);
 		qPos.add(descriptions, 2);
 
-		return q.list(true);
+		return sqlQuery.list(true);
 	}
 
 	protected String getJoin(Map<String, Object> params) {

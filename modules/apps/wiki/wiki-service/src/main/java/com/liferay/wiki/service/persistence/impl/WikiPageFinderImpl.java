@@ -209,15 +209,15 @@ public class WikiPageFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_RESOURCE_PRIM_KEY);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("WikiPage", WikiPageImpl.class);
+			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(resourcePrimKey);
 
-			List<WikiPage> pages = q.list();
+			List<WikiPage> pages = sqlQuery.list();
 
 			if (!pages.isEmpty()) {
 				return pages.get(0);
@@ -276,15 +276,15 @@ public class WikiPageFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_NO_ASSETS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("WikiPage", WikiPageImpl.class);
+			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(_portal.getClassNameId(WikiPage.class));
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -328,11 +328,11 @@ public class WikiPageFinderImpl
 					groupId);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(nodeId);
@@ -340,7 +340,7 @@ public class WikiPageFinderImpl
 			qPos.add(true);
 			qPos.add(WorkflowConstants.STATUS_APPROVED);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -386,11 +386,11 @@ public class WikiPageFinderImpl
 					groupId);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(nodeId);
@@ -398,7 +398,7 @@ public class WikiPageFinderImpl
 			qPos.add(true);
 			qPos.add(WorkflowConstants.STATUS_APPROVED);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -436,11 +436,11 @@ public class WikiPageFinderImpl
 					groupId);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(nodeId);
@@ -456,7 +456,7 @@ public class WikiPageFinderImpl
 
 			qPos.add(queryDefinition.getStatus());
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -502,11 +502,11 @@ public class WikiPageFinderImpl
 					groupId);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("WikiPage", WikiPageImpl.class);
+			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(nodeId);
@@ -514,7 +514,8 @@ public class WikiPageFinderImpl
 			qPos.add(true);
 			qPos.add(WorkflowConstants.STATUS_APPROVED);
 
-			return (List<WikiPage>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<WikiPage>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -550,11 +551,11 @@ public class WikiPageFinderImpl
 					groupId);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("WikiPage", WikiPageImpl.class);
+			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(nodeId);
@@ -562,7 +563,8 @@ public class WikiPageFinderImpl
 			qPos.add(true);
 			qPos.add(WorkflowConstants.STATUS_APPROVED);
 
-			return (List<WikiPage>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<WikiPage>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -593,11 +595,11 @@ public class WikiPageFinderImpl
 			sql = _customSQL.replaceOrderBy(
 				sql, queryDefinition.getOrderByComparator("WikiPage"));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("WikiPage", WikiPageImpl.class);
+			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(nodeId);
@@ -614,7 +616,7 @@ public class WikiPageFinderImpl
 			qPos.add(queryDefinition.getStatus());
 
 			return (List<WikiPage>)QueryUtil.list(
-				q, getDialect(), queryDefinition.getStart(),
+				sqlQuery, getDialect(), queryDefinition.getStart(),
 				queryDefinition.getEnd());
 		}
 		catch (Exception exception) {

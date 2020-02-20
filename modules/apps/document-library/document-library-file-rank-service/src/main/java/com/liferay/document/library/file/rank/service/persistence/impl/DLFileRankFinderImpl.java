@@ -51,16 +51,16 @@ public class DLFileRankFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_STALE_RANKS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("groupId", Type.LONG);
-			q.addScalar("userId", Type.LONG);
+			sqlQuery.addScalar("groupId", Type.LONG);
+			sqlQuery.addScalar("userId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(count);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -79,15 +79,15 @@ public class DLFileRankFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_FOLDER_ID);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("DLFileRank", DLFileRankImpl.class);
+			sqlQuery.addEntity("DLFileRank", DLFileRankImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(folderId);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

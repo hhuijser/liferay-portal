@@ -63,11 +63,11 @@ public class AssetLinkFinderImpl
 				sql, "[$CREATE_DATE_COMPARATOR$]",
 				_getCreateDateComparator(startDate, endDate));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("AssetLink", AssetLinkImpl.class);
+			sqlQuery.addEntity("AssetLink", AssetLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(groupId);
@@ -80,7 +80,8 @@ public class AssetLinkFinderImpl
 				qPos.add(endDate);
 			}
 
-			return (List<AssetLink>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<AssetLink>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -99,21 +100,21 @@ public class AssetLinkFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_C_C);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("AssetLink", AssetLinkImpl.class);
+			sqlQuery.addEntity("AssetLink", AssetLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
-
-			qPos.add(classNameId);
-
-			qPos.add(classPK);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(classNameId);
 
 			qPos.add(classPK);
 
-			return q.list();
+			qPos.add(classNameId);
+
+			qPos.add(classPK);
+
+			return sqlQuery.list();
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

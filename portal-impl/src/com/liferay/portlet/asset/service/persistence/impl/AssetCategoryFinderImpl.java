@@ -72,18 +72,18 @@ public class AssetCategoryFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G_C_N);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(classNameId);
 			qPos.add(name);
 			qPos.add(name);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -114,11 +114,11 @@ public class AssetCategoryFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G_N_P);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, categoryProperties);
 
@@ -126,7 +126,7 @@ public class AssetCategoryFinderImpl
 			qPos.add(name);
 			qPos.add(name);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -189,16 +189,16 @@ public class AssetCategoryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_G_N);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("AssetCategory", AssetCategoryImpl.class);
+			sqlQuery.addEntity("AssetCategory", AssetCategoryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(name);
 
-			List<AssetCategory> categories = q.list();
+			List<AssetCategory> categories = sqlQuery.list();
 
 			if (!categories.isEmpty()) {
 				return categories.get(0);
@@ -252,11 +252,11 @@ public class AssetCategoryFinderImpl
 			sql = StringUtil.replace(
 				sql, "[$JOIN$]", getJoin(categoryProperties));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("AssetCategory", AssetCategoryImpl.class);
+			sqlQuery.addEntity("AssetCategory", AssetCategoryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, categoryProperties);
 
@@ -265,7 +265,7 @@ public class AssetCategoryFinderImpl
 			qPos.add(name);
 
 			return (List<AssetCategory>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -291,16 +291,16 @@ public class AssetCategoryFinderImpl
 					"AssetCategory.categoryId");
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(classNameId);
 			qPos.add(classPK);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -337,17 +337,17 @@ public class AssetCategoryFinderImpl
 					"AssetCategory.categoryId");
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("AssetCategory", AssetCategoryImpl.class);
+			sqlQuery.addEntity("AssetCategory", AssetCategoryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(classNameId);
 			qPos.add(classPK);
 
 			return (List<AssetCategory>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

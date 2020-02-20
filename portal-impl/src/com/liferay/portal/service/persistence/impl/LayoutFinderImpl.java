@@ -58,11 +58,11 @@ public class LayoutFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_NULL_FRIENDLY_URL);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Layout", LayoutImpl.class);
+			sqlQuery.addEntity("Layout", LayoutImpl.class);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -87,15 +87,15 @@ public class LayoutFinderImpl
 			sql = InlineSQLHelperUtil.replacePermissionCheck(
 				sql, Layout.class.getName(), "Layout.plid", groupId);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Layout", LayoutImpl.class);
+			sqlQuery.addEntity("Layout", LayoutImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -114,16 +114,16 @@ public class LayoutFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_SCOPE_GROUP);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Layout", LayoutImpl.class);
+			sqlQuery.addEntity("Layout", LayoutImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(privateLayout);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -149,12 +149,12 @@ public class LayoutFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_C_P_P);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("layoutPlid", Type.LONG);
-			q.addScalar("preferencesPortletId", Type.STRING);
+			sqlQuery.addScalar("layoutPlid", Type.LONG);
+			sqlQuery.addScalar("preferencesPortletId", Type.STRING);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(portletId);
@@ -163,7 +163,7 @@ public class LayoutFinderImpl
 
 			List<LayoutReference> layoutReferences = new ArrayList<>();
 
-			Iterator<Object[]> itr = q.iterate();
+			Iterator<Object[]> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Object[] array = itr.next();

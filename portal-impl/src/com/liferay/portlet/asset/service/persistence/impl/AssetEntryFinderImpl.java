@@ -70,9 +70,9 @@ public class AssetEntryFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = buildAssetQuerySQL(entryQuery, true, session);
+			SQLQuery sqlQuery = buildAssetQuerySQL(entryQuery, true, session);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -99,10 +99,11 @@ public class AssetEntryFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = buildAssetQuerySQL(entryQuery, false, session);
+			SQLQuery sqlQuery = buildAssetQuerySQL(entryQuery, false, session);
 
 			return (List<AssetEntry>)QueryUtil.list(
-				q, getDialect(), entryQuery.getStart(), entryQuery.getEnd());
+				sqlQuery, getDialect(), entryQuery.getStart(),
+				entryQuery.getEnd());
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -121,16 +122,16 @@ public class AssetEntryFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_PRIORITY_BY_C_C);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("priority", Type.DOUBLE);
+			sqlQuery.addScalar("priority", Type.DOUBLE);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(classNameId);
 			qPos.add(classPK);
 
-			Iterator<Double> itr = q.iterate();
+			Iterator<Double> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Double priority = itr.next();
@@ -535,16 +536,16 @@ public class AssetEntryFinderImpl
 
 		String sql = sb.toString();
 
-		SQLQuery q = session.createSynchronizedSQLQuery(sql);
+		SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
 		if (count) {
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 		}
 		else {
-			q.addEntity("AssetEntry", AssetEntryImpl.class);
+			sqlQuery.addEntity("AssetEntry", AssetEntryImpl.class);
 		}
 
-		QueryPos qPos = QueryPos.getInstance(q);
+		QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 		if (entryQuery.getLinkedAssetEntryId() > 0) {
 			qPos.add(entryQuery.getLinkedAssetEntryId());
@@ -600,7 +601,7 @@ public class AssetEntryFinderImpl
 		qPos.add(entryQuery.getGroupIds());
 		qPos.add(entryQuery.getClassNameIds());
 
-		return q;
+		return sqlQuery;
 	}
 
 	protected void buildClassTypeIdsSQL(long[] classTypeIds, StringBundler sb) {

@@ -42,11 +42,11 @@ public class ServiceComponentFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_MAX_BUILD_NUMBER);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("ServiceComponent", ServiceComponentImpl.class);
+			sqlQuery.addEntity("ServiceComponent", ServiceComponentImpl.class);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

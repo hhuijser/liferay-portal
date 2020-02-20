@@ -64,18 +64,19 @@ public class StatusFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_MODIFIED_DATE);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			addScalars(q);
+			addScalars(sqlQuery);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(_classNameLocalService.getClassNameId(User.class));
 			qPos.add(companyId);
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
+			return toObjectArray(
+				QueryUtil.list(sqlQuery, getDialect(), start, end));
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -96,11 +97,11 @@ public class StatusFinderImpl
 
 			String sql = getFindBySocialRelationTypes_SQL(types);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			addScalars(q);
+			addScalars(sqlQuery);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(_classNameLocalService.getClassNameId(User.class));
 			qPos.add(userId);
@@ -113,7 +114,8 @@ public class StatusFinderImpl
 			qPos.add(userId);
 			qPos.add(modifiedDate);
 
-			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
+			return toObjectArray(
+				QueryUtil.list(sqlQuery, getDialect(), start, end));
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -135,11 +137,11 @@ public class StatusFinderImpl
 
 			String sql = getFindByUsersGroups_SQL(groupNames);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			addScalars(q);
+			addScalars(sqlQuery);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(_classNameLocalService.getClassNameId(User.class));
 			qPos.add(CompanyThreadLocal.getCompanyId());
@@ -152,7 +154,8 @@ public class StatusFinderImpl
 
 			qPos.add(modifiedDate);
 
-			return toObjectArray(QueryUtil.list(q, getDialect(), start, end));
+			return toObjectArray(
+				QueryUtil.list(sqlQuery, getDialect(), start, end));
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

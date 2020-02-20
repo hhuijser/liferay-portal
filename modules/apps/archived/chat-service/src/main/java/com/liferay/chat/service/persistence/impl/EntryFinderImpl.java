@@ -58,16 +58,17 @@ public class EntryFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_EMPTY_CONTENT);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Chat_Entry", EntryImpl.class);
+			sqlQuery.addEntity("Chat_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(fromUserId);
 			qPos.add(toUserId);
 
-			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Entry>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -92,11 +93,11 @@ public class EntryFinderImpl
 				sql = StringUtil.replace(sql, _FLAG_SQL, _CREATE_DATE_SQL);
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Chat_Entry", EntryImpl.class);
+			sqlQuery.addEntity("Chat_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(userId);
 			qPos.add(userId);
@@ -108,7 +109,8 @@ public class EntryFinderImpl
 				qPos.add(EntryConstants.FLAG_UNREAD);
 			}
 
-			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Entry>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -127,15 +129,16 @@ public class EntryFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_OLD);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Chat_Entry", EntryImpl.class);
+			sqlQuery.addEntity("Chat_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(createDate);
 
-			return (List<Entry>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Entry>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

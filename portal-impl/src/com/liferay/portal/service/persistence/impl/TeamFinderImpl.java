@@ -122,11 +122,11 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 			sql = StringUtil.replace(sql, "[$JOIN$]", getJoin(params));
 			sql = StringUtil.replace(sql, "[$WHERE$]", getWhere(params));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, params);
 
@@ -136,7 +136,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 			qPos.add(description);
 			qPos.add(description);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -169,17 +169,18 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Team", TeamImpl.class);
+			sqlQuery.addEntity("Team", TeamImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(userId);
 			qPos.add(userId);
 
-			return (List<Team>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Team>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -213,11 +214,11 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 			sql = StringUtil.replace(sql, "[$WHERE$]", getWhere(params));
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Team", TeamImpl.class);
+			sqlQuery.addEntity("Team", TeamImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			setJoin(qPos, params);
 
@@ -227,7 +228,8 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 			qPos.add(description);
 			qPos.add(description);
 
-			return (List<Team>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<Team>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

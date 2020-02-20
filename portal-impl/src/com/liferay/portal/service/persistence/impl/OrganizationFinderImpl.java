@@ -266,11 +266,11 @@ public class OrganizationFinderImpl
 
 			sql = CustomSQLUtil.replaceAndOperator(sql, andOperator);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if (doUnion) {
 				qPos.add(groupOrganization);
@@ -303,7 +303,7 @@ public class OrganizationFinderImpl
 
 			int count = 0;
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Long l = itr.next();
@@ -341,11 +341,12 @@ public class OrganizationFinderImpl
 			sb.append(getUsersSQL(COUNT_U_BY_C_S_O, queryDefinition));
 			sb.append(StringPool.CLOSE_PARENTHESIS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sb.toString());
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
+				sb.toString());
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(parentOrganizationId);
@@ -361,7 +362,7 @@ public class OrganizationFinderImpl
 
 			int count = 0;
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Long l = itr.next();
@@ -419,15 +420,15 @@ public class OrganizationFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_O_BY_NO_ASSETS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("Organization_", OrganizationImpl.class);
+			sqlQuery.addEntity("Organization_", OrganizationImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(PortalUtil.getClassNameId(Organization.class.getName()));
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -454,11 +455,11 @@ public class OrganizationFinderImpl
 					sql, "(organizationId > ?) AND");
 			}
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("organizationId", Type.LONG);
+			sqlQuery.addScalar("organizationId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if (previousOrganizationId > 0) {
 				qPos.add(previousOrganizationId);
@@ -467,7 +468,7 @@ public class OrganizationFinderImpl
 			qPos.add(companyId);
 			qPos.add(parentOrganizationId);
 
-			return (List<Long>)QueryUtil.list(q, getDialect(), 0, size);
+			return (List<Long>)QueryUtil.list(sqlQuery, getDialect(), 0, size);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -578,11 +579,11 @@ public class OrganizationFinderImpl
 		try {
 			session = openSession();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("orgId", Type.LONG);
+			sqlQuery.addScalar("orgId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if (doUnion) {
 				qPos.add(groupOrganization);
@@ -616,7 +617,7 @@ public class OrganizationFinderImpl
 			List<Organization> organizations = new ArrayList<>();
 
 			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 
 			while (itr.hasNext()) {
 				Long organizationId = itr.next();
@@ -658,12 +659,12 @@ public class OrganizationFinderImpl
 			String sql = CustomSQLUtil.replaceOrderBy(
 				sb.toString(), queryDefinition.getOrderByComparator());
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("organizationId", Type.LONG);
-			q.addScalar("userId", Type.LONG);
+			sqlQuery.addScalar("organizationId", Type.LONG);
+			sqlQuery.addScalar("userId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(parentOrganizationId);
@@ -680,7 +681,7 @@ public class OrganizationFinderImpl
 			List<Object> models = new ArrayList<>();
 
 			Iterator<Object[]> itr = (Iterator<Object[]>)QueryUtil.iterate(
-				q, getDialect(), queryDefinition.getStart(),
+				sqlQuery, getDialect(), queryDefinition.getStart(),
 				queryDefinition.getEnd());
 
 			while (itr.hasNext()) {
@@ -721,17 +722,17 @@ public class OrganizationFinderImpl
 		sql = StringUtil.replace(sql, "[$JOIN$]", getJoin(params));
 		sql = StringUtil.replace(sql, "[$WHERE$]", getWhere(params));
 
-		SQLQuery q = session.createSynchronizedSQLQuery(sql);
+		SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-		q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+		sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-		QueryPos qPos = QueryPos.getInstance(q);
+		QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 		setJoin(qPos, params);
 
 		qPos.add(organizationId);
 
-		Iterator<Long> itr = q.iterate();
+		Iterator<Long> itr = sqlQuery.iterate();
 
 		if (itr.hasNext()) {
 			Long count = itr.next();

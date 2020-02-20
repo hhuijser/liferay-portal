@@ -98,10 +98,10 @@ public class DB2DialectTest {
 		try {
 			session = _sessionFactory.openSession();
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
 			List<?> result = QueryUtil.list(
-				q, _sessionFactory.getDialect(), start, end);
+				sqlQuery, _sessionFactory.getDialect(), start, end);
 
 			Assert.assertNotNull(result);
 			Assert.assertEquals(

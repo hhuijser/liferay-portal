@@ -47,17 +47,17 @@ public class AppBuilderAppFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_S_T);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("appBuilderAppId", Type.LONG);
+			sqlQuery.addScalar("appBuilderAppId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(status);
 			qPos.add(type);
 
 			return (List<Long>)QueryUtil.list(
-				q, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				sqlQuery, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

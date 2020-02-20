@@ -47,16 +47,16 @@ public class UserGroupRoleFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_GROUP_ROLE_TYPE);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("UserGroupRole", UserGroupRoleImpl.class);
+			sqlQuery.addEntity("UserGroupRole", UserGroupRoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(roleType);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -77,16 +77,16 @@ public class UserGroupRoleFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_USER_USER_GROUP_GROUP_ROLE);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("UserGroupRole", UserGroupRoleImpl.class);
+			sqlQuery.addEntity("UserGroupRole", UserGroupRoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(userId);
 			qPos.add(groupId);
 
-			return q.list(true);
+			return sqlQuery.list(true);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

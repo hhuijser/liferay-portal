@@ -60,11 +60,11 @@ public class AssetTagFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G_N);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 
@@ -72,7 +72,7 @@ public class AssetTagFinderImpl
 
 			qPos.add(lowerCaseName);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -101,11 +101,11 @@ public class AssetTagFinderImpl
 
 			String sql = CustomSQLUtil.get(COUNT_BY_G_C_N);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(classNameId);
@@ -115,7 +115,7 @@ public class AssetTagFinderImpl
 			qPos.add(lowerCaseName);
 			qPos.add(lowerCaseName);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -149,11 +149,11 @@ public class AssetTagFinderImpl
 
 			sql = CustomSQLUtil.replaceOrderBy(sql, obc);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("AssetTag", AssetTagImpl.class);
+			sqlQuery.addEntity("AssetTag", AssetTagImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(classNameId);
@@ -163,7 +163,8 @@ public class AssetTagFinderImpl
 			qPos.add(lowerCaseName);
 			qPos.add(lowerCaseName);
 
-			return (List<AssetTag>)QueryUtil.list(q, getDialect(), start, end);
+			return (List<AssetTag>)QueryUtil.list(
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
@@ -185,9 +186,9 @@ public class AssetTagFinderImpl
 
 			String sql = CustomSQLUtil.get(FIND_BY_G_N_S_E);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(groupId);
 			qPos.add(name);
@@ -198,7 +199,7 @@ public class AssetTagFinderImpl
 
 			List<AssetTag> assetTags = new ArrayList<>();
 
-			Iterator<Object[]> itr = q.iterate();
+			Iterator<Object[]> itr = sqlQuery.iterate();
 
 			while (itr.hasNext()) {
 				Object[] array = itr.next();

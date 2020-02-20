@@ -103,11 +103,11 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replaceLast(sql, "AND", StringPool.BLANK);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
 				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
@@ -133,7 +133,7 @@ public class TasksEntryFinderImpl
 
 			qPos.add(statuses);
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -201,11 +201,11 @@ public class TasksEntryFinderImpl
 
 			sql = StringUtil.replaceLast(sql, "AND", StringPool.BLANK);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("TMS_TasksEntry", TasksEntryImpl.class);
+			sqlQuery.addEntity("TMS_TasksEntry", TasksEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
 				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
@@ -232,7 +232,7 @@ public class TasksEntryFinderImpl
 			qPos.add(statuses);
 
 			return (List<TasksEntry>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

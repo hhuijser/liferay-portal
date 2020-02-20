@@ -73,17 +73,17 @@ public class BlogsStatsUserFinderImpl
 				sql, "[$ORGANIZATION_ID$]",
 				getOrganizationIds(organizationIds));
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar(COUNT_COLUMN_NAME, Type.LONG);
+			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			for (Long organizationId : organizationIds) {
 				qPos.add(organizationId);
 			}
 
-			Iterator<Long> itr = q.iterate();
+			Iterator<Long> itr = sqlQuery.iterate();
 
 			if (itr.hasNext()) {
 				Long count = itr.next();
@@ -114,12 +114,12 @@ public class BlogsStatsUserFinderImpl
 
 			String sql = _customSQL.get(getClass(), FIND_BY_GROUP_IDS);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addScalar("userId", Type.LONG);
-			q.addScalar("lastPostDate", Type.TIMESTAMP);
+			sqlQuery.addScalar("userId", Type.LONG);
+			sqlQuery.addScalar("lastPostDate", Type.TIMESTAMP);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			qPos.add(companyId);
 			qPos.add(groupId);
@@ -129,7 +129,7 @@ public class BlogsStatsUserFinderImpl
 			List<BlogsStatsUser> statsUsers = new ArrayList<>();
 
 			Iterator<Object[]> itr = (Iterator<Object[]>)QueryUtil.iterate(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 
 			while (itr.hasNext()) {
 				Object[] array = itr.next();
@@ -183,18 +183,18 @@ public class BlogsStatsUserFinderImpl
 				getOrganizationIds(organizationIds));
 			sql = _customSQL.replaceOrderBy(sql, obc);
 
-			SQLQuery q = session.createSynchronizedSQLQuery(sql);
+			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			q.addEntity("BlogsStatsUser", BlogsStatsUserImpl.class);
+			sqlQuery.addEntity("BlogsStatsUser", BlogsStatsUserImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(q);
+			QueryPos qPos = QueryPos.getInstance(sqlQuery);
 
 			for (Long organizationId : organizationIds) {
 				qPos.add(organizationId);
 			}
 
 			return (List<BlogsStatsUser>)QueryUtil.list(
-				q, getDialect(), start, end);
+				sqlQuery, getDialect(), start, end);
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);

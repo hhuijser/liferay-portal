@@ -103,16 +103,16 @@ public class BlogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			for (Long organizationId : organizationIds) {
-				qPos.add(organizationId);
+				queryPos.add(organizationId);
 			}
 
-			qPos.add(displayDate_TS);
+			queryPos.add(displayDate_TS);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -162,16 +162,16 @@ public class BlogsEntryFinderImpl
 
 			sqlQuery.addEntity("BlogsEntry", BlogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupId);
-			qPos.add(groupId);
-			qPos.add(groupId);
-			qPos.add(displayDate);
+			queryPos.add(companyId);
+			queryPos.add(groupId);
+			queryPos.add(groupId);
+			queryPos.add(groupId);
+			queryPos.add(displayDate);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<BlogsEntry>)QueryUtil.list(
@@ -230,16 +230,16 @@ public class BlogsEntryFinderImpl
 
 			sqlQuery.addEntity("BlogsEntry", BlogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			for (Long organizationId : organizationIds) {
-				qPos.add(organizationId);
+				queryPos.add(organizationId);
 			}
 
-			qPos.add(displayDate_TS);
+			queryPos.add(displayDate_TS);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<BlogsEntry>)QueryUtil.list(

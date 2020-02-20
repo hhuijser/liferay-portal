@@ -72,13 +72,13 @@ public class DDLRecordFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(recordSetId);
+			queryPos.add(recordSetId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -118,14 +118,14 @@ public class DDLRecordFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(scope);
-			qPos.add(companyId);
+			queryPos.add(scope);
+			queryPos.add(companyId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -170,13 +170,13 @@ public class DDLRecordFinderImpl
 
 			sqlQuery.addEntity("DDLRecord", DDLRecordImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(recordSetId);
+			queryPos.add(recordSetId);
 
 			return (List<DDLRecord>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -212,14 +212,14 @@ public class DDLRecordFinderImpl
 
 			sqlQuery.addEntity("DDLRecord", DDLRecordImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(scope);
-			qPos.add(companyId);
+			queryPos.add(scope);
+			queryPos.add(companyId);
 
 			return (List<DDLRecord>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -256,14 +256,14 @@ public class DDLRecordFinderImpl
 			sqlQuery.addScalar("minRecordId", Type.LONG);
 			sqlQuery.addScalar("maxRecordId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(scope);
-			qPos.add(companyId);
+			queryPos.add(scope);
+			queryPos.add(companyId);
 
 			Object[] array = (Object[])sqlQuery.iterateNext();
 
@@ -307,16 +307,16 @@ public class DDLRecordFinderImpl
 
 			sqlQuery.addEntity("DDLRecord", DDLRecordImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(scope);
-			qPos.add(companyId);
-			qPos.add(minRecordId);
-			qPos.add(maxRecordId);
+			queryPos.add(scope);
+			queryPos.add(companyId);
+			queryPos.add(minRecordId);
+			queryPos.add(maxRecordId);
 
 			return sqlQuery.list();
 		}

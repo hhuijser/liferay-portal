@@ -229,16 +229,16 @@ public class DDMDataProviderInstanceFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -298,16 +298,16 @@ public class DDMDataProviderInstanceFinderImpl
 			sqlQuery.addEntity(
 				"DDMDataProviderInstance", DDMDataProviderInstanceImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<DDMDataProviderInstance>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

@@ -30,12 +30,12 @@ public class CustomSQLParam {
 		return _sql;
 	}
 
-	public void process(QueryPos qPos) {
+	public void process(QueryPos queryPos) {
 		if (_value instanceof Long) {
 			Long valueLong = (Long)_value;
 
 			if (valueLong != null) {
-				qPos.add(valueLong);
+				queryPos.add(valueLong);
 			}
 		}
 		else if (_value instanceof Long[]) {
@@ -43,7 +43,7 @@ public class CustomSQLParam {
 
 			for (Long l : valueArray) {
 				if (l != null) {
-					qPos.add(l);
+					queryPos.add(l);
 				}
 			}
 		}
@@ -51,7 +51,7 @@ public class CustomSQLParam {
 			String valueString = (String)_value;
 
 			if (Validator.isNotNull(valueString)) {
-				qPos.add(valueString);
+				queryPos.add(valueString);
 			}
 		}
 		else if (_value instanceof String[]) {
@@ -59,7 +59,7 @@ public class CustomSQLParam {
 
 			for (String s : valueArray) {
 				if (Validator.isNotNull(s)) {
-					qPos.add(s);
+					queryPos.add(s);
 				}
 			}
 		}

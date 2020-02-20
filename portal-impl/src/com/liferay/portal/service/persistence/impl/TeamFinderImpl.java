@@ -126,15 +126,15 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, params);
+			setJoin(queryPos, params);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(name);
-			qPos.add(description);
-			qPos.add(description);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(name);
+			queryPos.add(description);
+			queryPos.add(description);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -173,11 +173,11 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 			sqlQuery.addEntity("Team", TeamImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			return (List<Team>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -218,15 +218,15 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 
 			sqlQuery.addEntity("Team", TeamImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, params);
+			setJoin(queryPos, params);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(name);
-			qPos.add(description);
-			qPos.add(description);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(name);
+			queryPos.add(description);
+			queryPos.add(description);
 
 			return (List<Team>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -319,7 +319,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 	}
 
 	protected void setJoin(
-		QueryPos qPos, LinkedHashMap<String, Object> params) {
+		QueryPos queryPos, LinkedHashMap<String, Object> params) {
 
 		if (params == null) {
 			return;
@@ -332,7 +332,7 @@ public class TeamFinderImpl extends TeamFinderBaseImpl implements TeamFinder {
 				Long valueLong = (Long)value;
 
 				if (Validator.isNotNull(valueLong)) {
-					qPos.add(valueLong);
+					queryPos.add(valueLong);
 				}
 			}
 		}

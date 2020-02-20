@@ -172,14 +172,14 @@ public class GroupFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(parentGroupId);
-			qPos.add(site);
+			queryPos.add(companyId);
+			queryPos.add(parentGroupId);
+			queryPos.add(site);
 
 			if (active != null) {
-				qPos.add(active);
+				queryPos.add(active);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -351,9 +351,9 @@ public class GroupFinderImpl
 
 			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			return sqlQuery.list(true);
 		}
@@ -453,24 +453,24 @@ public class GroupFinderImpl
 
 			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, params1);
+			setJoin(queryPos, params1);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (doUnion) {
-				setJoin(qPos, params2);
+				setJoin(queryPos, params2);
 
-				qPos.add(companyId);
+				queryPos.add(companyId);
 
-				setJoin(qPos, params3);
+				setJoin(queryPos, params3);
 
-				qPos.add(companyId);
+				queryPos.add(companyId);
 
-				setJoin(qPos, params4);
+				setJoin(queryPos, params4);
 
-				qPos.add(companyId);
+				queryPos.add(companyId);
 			}
 
 			List<Long> groupIds = (List<Long>)QueryUtil.list(
@@ -520,14 +520,14 @@ public class GroupFinderImpl
 
 			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(parentGroupId);
-			qPos.add(site);
+			queryPos.add(companyId);
+			queryPos.add(parentGroupId);
+			queryPos.add(site);
 
 			if (active != null) {
-				qPos.add(active);
+				queryPos.add(active);
 			}
 
 			return sqlQuery.list(true);
@@ -585,9 +585,9 @@ public class GroupFinderImpl
 
 			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			return sqlQuery.list(true);
 		}
@@ -618,14 +618,14 @@ public class GroupFinderImpl
 
 			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (previousGroupId > 0) {
-				qPos.add(previousGroupId);
+				queryPos.add(previousGroupId);
 			}
 
-			qPos.add(companyId);
-			qPos.add(parentGroupId);
+			queryPos.add(companyId);
+			queryPos.add(parentGroupId);
 
 			return (List<Long>)QueryUtil.list(sqlQuery, getDialect(), 0, size);
 		}
@@ -654,10 +654,10 @@ public class GroupFinderImpl
 
 			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupKey);
+			queryPos.add(companyId);
+			queryPos.add(groupKey);
 
 			List<Group> groups = sqlQuery.list();
 
@@ -699,12 +699,12 @@ public class GroupFinderImpl
 
 			sqlQuery.addEntity("Group_", GroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(liveGroupId);
-			qPos.add(StringUtil.quote(typeSettings, StringPool.PERCENT));
-			qPos.add(site);
-			qPos.add(remoteStagingGroupCount);
+			queryPos.add(liveGroupId);
+			queryPos.add(StringUtil.quote(typeSettings, StringPool.PERCENT));
+			queryPos.add(site);
+			queryPos.add(remoteStagingGroupCount);
 
 			return (List<Group>)QueryUtil.list(
 				sqlQuery, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
@@ -840,36 +840,36 @@ public class GroupFinderImpl
 
 			sqlQuery.addScalar("groupId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, params1);
+			setJoin(queryPos, params1);
 
-			qPos.add(companyId);
-			qPos.add(parentGroupId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(companyId);
+			queryPos.add(parentGroupId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			if (doUnion) {
-				setJoin(qPos, params2);
+				setJoin(queryPos, params2);
 
-				qPos.add(companyId);
-				qPos.add(parentGroupId);
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(companyId);
+				queryPos.add(parentGroupId);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 
-				setJoin(qPos, params3);
+				setJoin(queryPos, params3);
 
-				qPos.add(companyId);
-				qPos.add(parentGroupId);
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(companyId);
+				queryPos.add(parentGroupId);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 
-				setJoin(qPos, params4);
+				setJoin(queryPos, params4);
 
-				qPos.add(companyId);
-				qPos.add(parentGroupId);
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(companyId);
+				queryPos.add(parentGroupId);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 			}
 
 			List<Long> groupIds = (List<Long>)QueryUtil.list(
@@ -905,11 +905,11 @@ public class GroupFinderImpl
 
 		sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-		QueryPos qPos = QueryPos.getInstance(sqlQuery);
+		QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-		setJoin(qPos, params);
+		setJoin(queryPos, params);
 
-		qPos.add(groupId);
+		queryPos.add(groupId);
 
 		Iterator<Long> itr = sqlQuery.iterate();
 
@@ -955,14 +955,14 @@ public class GroupFinderImpl
 
 		sqlQuery.addScalar("groupId", Type.LONG);
 
-		QueryPos qPos = QueryPos.getInstance(sqlQuery);
+		QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-		setJoin(qPos, params);
+		setJoin(queryPos, params);
 
-		qPos.add(companyId);
-		qPos.add(parentGroupId);
-		qPos.add(names, 2);
-		qPos.add(descriptions, 2);
+		queryPos.add(companyId);
+		queryPos.add(parentGroupId);
+		queryPos.add(names, 2);
+		queryPos.add(descriptions, 2);
 
 		return sqlQuery.list(true);
 	}
@@ -1117,7 +1117,7 @@ public class GroupFinderImpl
 		return sql;
 	}
 
-	protected void setJoin(QueryPos qPos, Map<String, Object> params)
+	protected void setJoin(QueryPos queryPos, Map<String, Object> params)
 		throws Exception {
 
 		if (params == null) {
@@ -1132,15 +1132,15 @@ public class GroupFinderImpl
 
 				Boolean value = (Boolean)entry.getValue();
 
-				qPos.add(value);
+				queryPos.add(value);
 			}
 			else if (key.equals("classNameIds")) {
 				if (entry.getValue() instanceof Long) {
-					qPos.add((long)entry.getValue());
+					queryPos.add((long)entry.getValue());
 				}
 				else {
 					for (long classNameId : (long[])entry.getValue()) {
-						qPos.add(classNameId);
+						queryPos.add(classNameId);
 					}
 				}
 			}
@@ -1149,7 +1149,7 @@ public class GroupFinderImpl
 
 				if (!excludedGroupIds.isEmpty()) {
 					for (long excludedGroupId : excludedGroupIds) {
-						qPos.add(excludedGroupId);
+						queryPos.add(excludedGroupId);
 					}
 				}
 			}
@@ -1166,7 +1166,7 @@ public class GroupFinderImpl
 						sb.append(StringPool.SLASH);
 						sb.append(StringPool.PERCENT);
 
-						qPos.add(sb.toString());
+						queryPos.add(sb.toString());
 					}
 				}
 			}
@@ -1181,17 +1181,17 @@ public class GroupFinderImpl
 						rolePermissions.getName(),
 						rolePermissions.getActionId());
 
-				qPos.add(rolePermissions.getName());
-				qPos.add(rolePermissions.getScope());
-				qPos.add(rolePermissions.getRoleId());
+				queryPos.add(rolePermissions.getName());
+				queryPos.add(rolePermissions.getScope());
+				queryPos.add(rolePermissions.getRoleId());
 
-				qPos.add(resourceAction.getBitwiseValue());
+				queryPos.add(resourceAction.getBitwiseValue());
 			}
 			else if (key.equals("types")) {
 				List<Integer> values = (List<Integer>)entry.getValue();
 
 				for (Integer value : values) {
-					qPos.add(value);
+					queryPos.add(value);
 				}
 			}
 			else if (key.equals("userGroupRole")) {
@@ -1200,8 +1200,8 @@ public class GroupFinderImpl
 				Long userId = values.get(0);
 				Long roleId = values.get(1);
 
-				qPos.add(userId);
-				qPos.add(roleId);
+				queryPos.add(userId);
+				queryPos.add(roleId);
 			}
 			else {
 				Object value = entry.getValue();
@@ -1210,21 +1210,21 @@ public class GroupFinderImpl
 					Integer valueInteger = (Integer)value;
 
 					if (valueInteger != null) {
-						qPos.add(valueInteger);
+						queryPos.add(valueInteger);
 					}
 				}
 				else if (value instanceof Long) {
 					Long valueLong = (Long)value;
 
 					if (Validator.isNotNull(valueLong)) {
-						qPos.add(valueLong);
+						queryPos.add(valueLong);
 					}
 				}
 				else if (value instanceof String) {
 					String valueString = (String)value;
 
 					if (Validator.isNotNull(valueString)) {
-						qPos.add(valueString);
+						queryPos.add(valueString);
 					}
 				}
 			}

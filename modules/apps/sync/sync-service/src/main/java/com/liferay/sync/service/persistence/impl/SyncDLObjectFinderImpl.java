@@ -77,10 +77,10 @@ public class SyncDLObjectFinderImpl
 
 			sqlQuery.addScalar("primKey", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(CompanyThreadLocal.getCompanyId());
-			qPos.add(ResourceConstants.SCOPE_INDIVIDUAL);
+			queryPos.add(CompanyThreadLocal.getCompanyId());
+			queryPos.add(ResourceConstants.SCOPE_INDIVIDUAL);
 
 			return (List<Long>)sqlQuery.list();
 		}
@@ -127,20 +127,20 @@ public class SyncDLObjectFinderImpl
 
 			sqlQuery.addEntity("SyncDLObject", SyncDLObjectImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (modifiedTime > 0) {
-				qPos.add(modifiedTime);
+				queryPos.add(modifiedTime);
 			}
 
-			qPos.add(repositoryId);
+			queryPos.add(repositoryId);
 
 			if (parentFolderId != 0) {
-				qPos.add("%/" + parentFolderId + "/%");
+				queryPos.add("%/" + parentFolderId + "/%");
 			}
 
 			if (type != null) {
-				qPos.add(type);
+				queryPos.add(type);
 			}
 
 			return (List<SyncDLObject>)QueryUtil.list(

@@ -89,11 +89,11 @@ public class AssetVocabularyFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -140,11 +140,11 @@ public class AssetVocabularyFinderImpl
 
 			sqlQuery.addEntity("AssetVocabulary", AssetVocabularyImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			return (List<AssetVocabulary>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

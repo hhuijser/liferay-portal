@@ -494,12 +494,12 @@ public class ResourcePermissionLocalServiceImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(resourceActionBitwiseValue);
-			qPos.add(resourceActionBitwiseValue);
-			qPos.add(resourceName);
-			qPos.add(scope);
+			queryPos.add(resourceActionBitwiseValue);
+			queryPos.add(resourceActionBitwiseValue);
+			queryPos.add(resourceName);
+			queryPos.add(scope);
 
 			sqlQuery.executeUpdate();
 
@@ -515,11 +515,11 @@ public class ResourcePermissionLocalServiceImpl
 			sqlQuery.addScalar("primKey", Type.STRING);
 			sqlQuery.addScalar("roleId", Type.LONG);
 
-			qPos = QueryPos.getInstance(sqlQuery);
+			queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(resourceName);
-			qPos.add(scope);
-			qPos.add(roleName);
+			queryPos.add(resourceName);
+			queryPos.add(scope);
+			queryPos.add(roleName);
 
 			List<Object[]> resourcePermissionArrays = sqlQuery.list(true);
 

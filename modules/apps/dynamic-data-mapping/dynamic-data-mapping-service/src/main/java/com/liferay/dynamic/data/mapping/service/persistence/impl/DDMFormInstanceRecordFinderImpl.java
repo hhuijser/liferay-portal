@@ -66,13 +66,13 @@ public class DDMFormInstanceRecordFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(ddmFormInstanceId);
+			queryPos.add(ddmFormInstanceId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -118,13 +118,13 @@ public class DDMFormInstanceRecordFinderImpl
 			sqlQuery.addEntity(
 				"DDMFormInstanceRecord", DDMFormInstanceRecordImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(ddmFormInstanceId);
+			queryPos.add(ddmFormInstanceId);
 
 			return (List<DDMFormInstanceRecord>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

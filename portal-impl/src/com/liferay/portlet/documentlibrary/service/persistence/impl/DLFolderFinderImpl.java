@@ -214,9 +214,9 @@ public class DLFolderFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(
+			queryPos.add(
 				PortalUtil.getClassNameId(DLFolderConstants.getClassName()));
 
 			sqlQuery.addEntity("DLFolder", DLFolderImpl.class);
@@ -242,11 +242,11 @@ public class DLFolderFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(
+			queryPos.add(
 				CustomSQLUtil.keywords(treePath, WildcardMode.TRAILING)[0]);
-			qPos.add(classNameId);
+			queryPos.add(classNameId);
 
 			sqlQuery.addEntity("DLFolder", DLFolderImpl.class);
 
@@ -324,43 +324,43 @@ public class DLFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (!showHiddenMountFolders || !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
 			if (!showHiddenMountFolders && !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if ((queryDefinition.getOwnerUserId() > 0) &&
 				queryDefinition.isIncludeOwner()) {
 
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(folderId);
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
-			qPos.add(groupId);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			int count = 0;
@@ -432,44 +432,44 @@ public class DLFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (!showHiddenMountFolders || !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
 			if (!showHiddenMountFolders && !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if ((queryDefinition.getOwnerUserId() > 0) &&
 				queryDefinition.isIncludeOwner()) {
 
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(folderId);
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
-			qPos.add(fileEntryTypeId);
-			qPos.add(groupId);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(fileEntryTypeId);
+			queryPos.add(groupId);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			int count = 0;
@@ -513,11 +513,11 @@ public class DLFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -573,23 +573,23 @@ public class DLFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
-			qPos.add(groupId);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			int count = 0;
@@ -685,43 +685,43 @@ public class DLFolderFinderImpl
 			sqlQuery.addScalar("fileShortcutId", Type.LONG);
 			sqlQuery.addScalar("modelFolder", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (!showHiddenMountFolders || !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
 			if (!showHiddenMountFolders && !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if ((queryDefinition.getOwnerUserId() > 0) &&
 				queryDefinition.isIncludeOwner()) {
 
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(folderId);
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
-			qPos.add(groupId);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			List<Object> models = new ArrayList<>();
@@ -837,44 +837,44 @@ public class DLFolderFinderImpl
 			sqlQuery.addScalar("fileShortcutId", Type.LONG);
 			sqlQuery.addScalar("modelFolder", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (!showHiddenMountFolders || !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
 			if (!showHiddenMountFolders && !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if ((queryDefinition.getOwnerUserId() > 0) &&
 				queryDefinition.isIncludeOwner()) {
 
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(folderId);
-			qPos.add(fileEntryTypeId);
+			queryPos.add(folderId);
+			queryPos.add(fileEntryTypeId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
-			qPos.add(groupId);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			List<Object> models = new ArrayList<>();
@@ -979,47 +979,47 @@ public class DLFolderFinderImpl
 			sqlQuery.addScalar("fileShortcutId", Type.LONG);
 			sqlQuery.addScalar("modelFolder", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (!showHiddenMountFolders || !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
 			if (!showHiddenMountFolders && !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			for (int i = 0; i < 2; i++) {
-				qPos.add(groupId);
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(groupId);
+				queryPos.add(queryDefinition.getStatus());
 
 				if ((queryDefinition.getOwnerUserId() > 0) &&
 					queryDefinition.isIncludeOwner()) {
 
-					qPos.add(queryDefinition.getOwnerUserId());
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(queryDefinition.getOwnerUserId());
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 
-				qPos.add(folderId);
+				queryPos.add(folderId);
 
 				if (mimeTypes != null) {
-					qPos.add(mimeTypes);
+					queryPos.add(mimeTypes);
 				}
 			}
 
 			for (int i = 0; i < 2; i++) {
-				qPos.add(groupId);
-				qPos.add(true);
-				qPos.add(queryDefinition.getStatus());
-				qPos.add(folderId);
+				queryPos.add(groupId);
+				queryPos.add(true);
+				queryPos.add(queryDefinition.getStatus());
+				queryPos.add(folderId);
 
 				if (mimeTypes != null) {
-					qPos.add(mimeTypes);
+					queryPos.add(mimeTypes);
 				}
 			}
 
@@ -1125,49 +1125,49 @@ public class DLFolderFinderImpl
 			sqlQuery.addScalar("fileShortcutId", Type.LONG);
 			sqlQuery.addScalar("modelFolder", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (!showHiddenMountFolders || !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
 			if (!showHiddenMountFolders && !includeMountFolders) {
-				qPos.add(false);
+				queryPos.add(false);
 			}
 
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			for (int i = 0; i < 2; i++) {
-				qPos.add(groupId);
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(groupId);
+				queryPos.add(queryDefinition.getStatus());
 
 				if ((queryDefinition.getOwnerUserId() > 0) &&
 					queryDefinition.isIncludeOwner()) {
 
-					qPos.add(queryDefinition.getOwnerUserId());
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(queryDefinition.getOwnerUserId());
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 
-				qPos.add(folderId);
+				queryPos.add(folderId);
 
 				if (mimeTypes != null) {
-					qPos.add(mimeTypes);
+					queryPos.add(mimeTypes);
 				}
 
-				qPos.add(fileEntryTypeId);
+				queryPos.add(fileEntryTypeId);
 			}
 
 			for (int i = 0; i < 2; i++) {
-				qPos.add(groupId);
-				qPos.add(true);
-				qPos.add(queryDefinition.getStatus());
-				qPos.add(folderId);
+				queryPos.add(groupId);
+				queryPos.add(true);
+				queryPos.add(queryDefinition.getStatus());
+				queryPos.add(folderId);
 
 				if (mimeTypes != null) {
-					qPos.add(mimeTypes);
+					queryPos.add(mimeTypes);
 				}
 			}
 
@@ -1253,15 +1253,15 @@ public class DLFolderFinderImpl
 			sqlQuery.addScalar("title", Type.STRING);
 			sqlQuery.addScalar("fileShortcutId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
-			qPos.add(groupId);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(folderId);
 
 			List<Object> models = new ArrayList<>();
 

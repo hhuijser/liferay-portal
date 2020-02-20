@@ -784,17 +784,17 @@ public class DDMTemplateFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(structureClassNameId);
+			queryPos.add(classNameId);
+			queryPos.add(structureClassNameId);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -870,31 +870,31 @@ public class DDMTemplateFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
 			if (classNameIds != null) {
-				qPos.add(classNameIds);
+				queryPos.add(classNameIds);
 			}
 
 			if (classPKs != null) {
-				qPos.add(classPKs);
+				queryPos.add(classPKs);
 			}
 
-			qPos.add(resourceClassNameId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(types, 2);
-			qPos.add(modes, 2);
-			qPos.add(languages, 2);
+			queryPos.add(resourceClassNameId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(types, 2);
+			queryPos.add(modes, 2);
+			queryPos.add(languages, 2);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -950,17 +950,17 @@ public class DDMTemplateFinderImpl
 
 			sqlQuery.addEntity("DDMTemplate", DDMTemplateImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(structureClassNameId);
+			queryPos.add(classNameId);
+			queryPos.add(structureClassNameId);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			return (List<DDMTemplate>)QueryUtil.list(
@@ -1033,31 +1033,31 @@ public class DDMTemplateFinderImpl
 
 			sqlQuery.addEntity("DDMTemplate", DDMTemplateImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
 			if (classNameIds != null) {
-				qPos.add(classNameIds);
+				queryPos.add(classNameIds);
 			}
 
 			if (classPKs != null) {
-				qPos.add(classPKs);
+				queryPos.add(classPKs);
 			}
 
-			qPos.add(resourceClassNameId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(types, 2);
-			qPos.add(modes, 2);
-			qPos.add(languages, 2);
+			queryPos.add(resourceClassNameId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(types, 2);
+			queryPos.add(modes, 2);
+			queryPos.add(languages, 2);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			return (List<DDMTemplate>)QueryUtil.list(

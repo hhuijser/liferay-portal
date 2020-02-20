@@ -140,14 +140,14 @@ public class KBFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(parentResourcePrimKey);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(groupId);
-			qPos.add(parentResourcePrimKey);
+			queryPos.add(groupId);
+			queryPos.add(parentResourcePrimKey);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(parentResourcePrimKey);
 
 			int count = 0;
 
@@ -240,26 +240,26 @@ public class KBFolderFinderImpl
 			sqlQuery.addScalar("title", Type.STRING);
 			sqlQuery.addScalar("viewCount", Type.INTEGER);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (orderByViewCount) {
 				long classNameId = _classNameLocalService.getClassNameId(
 					KBArticle.class);
 
-				qPos.add(classNameId);
-				qPos.add(groupId);
-				qPos.add(parentResourcePrimKey);
-				qPos.add(true);
-				qPos.add(queryDefinition.getStatus());
-				qPos.add(classNameId);
+				queryPos.add(classNameId);
+				queryPos.add(groupId);
+				queryPos.add(parentResourcePrimKey);
+				queryPos.add(true);
+				queryPos.add(queryDefinition.getStatus());
+				queryPos.add(classNameId);
 			}
 
-			qPos.add(groupId);
-			qPos.add(parentResourcePrimKey);
-			qPos.add(true);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(groupId);
-			qPos.add(parentResourcePrimKey);
+			queryPos.add(groupId);
+			queryPos.add(parentResourcePrimKey);
+			queryPos.add(true);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(parentResourcePrimKey);
 
 			List<Object> models = new ArrayList<>();
 

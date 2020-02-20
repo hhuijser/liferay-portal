@@ -87,10 +87,10 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(createDate_TS);
-			qPos.add(threadId);
+			queryPos.add(createDate_TS);
+			queryPos.add(threadId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -218,16 +218,16 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addEntity(MBMessageImpl.TABLE_NAME, MBMessageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(threadId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(threadId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
@@ -301,16 +301,16 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -372,14 +372,14 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(anonymous);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(anonymous);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -459,18 +459,18 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
-			qPos.add(modifiedDate);
+			queryPos.add(modifiedDate);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -536,16 +536,16 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar("threadId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			return (List<Long>)QueryUtil.list(
@@ -598,14 +598,14 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar("threadId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(anonymous);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(anonymous);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			return (List<Long>)QueryUtil.list(
@@ -677,18 +677,18 @@ public class MBMessageFinderImpl
 
 			sqlQuery.addScalar("threadId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
-			qPos.add(modifiedDate);
+			queryPos.add(modifiedDate);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			return (List<Long>)QueryUtil.list(

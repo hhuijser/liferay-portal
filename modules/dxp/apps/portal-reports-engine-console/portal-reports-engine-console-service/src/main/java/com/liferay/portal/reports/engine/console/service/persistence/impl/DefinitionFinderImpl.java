@@ -145,19 +145,19 @@ public class DefinitionFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (sourceId > 0) {
-				qPos.add(sourceId);
+				queryPos.add(sourceId);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(reportNames, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(reportNames, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -239,19 +239,19 @@ public class DefinitionFinderImpl
 
 			sqlQuery.addEntity("Reports_Definition", DefinitionImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (sourceId > 0) {
-				qPos.add(sourceId);
+				queryPos.add(sourceId);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(reportNames, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(reportNames, 2);
 
 			return (List<Definition>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

@@ -51,10 +51,10 @@ public class AppBuilderAppFinderImpl
 
 			sqlQuery.addScalar("appBuilderAppId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(status);
-			qPos.add(type);
+			queryPos.add(status);
+			queryPos.add(type);
 
 			return (List<Long>)QueryUtil.list(
 				sqlQuery, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);

@@ -53,9 +53,9 @@ public class AssetEntryUsageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(assetEntryId);
+			queryPos.add(assetEntryId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 

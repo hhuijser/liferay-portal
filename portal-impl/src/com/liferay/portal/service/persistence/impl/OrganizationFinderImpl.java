@@ -270,36 +270,36 @@ public class OrganizationFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (doUnion) {
-				qPos.add(groupOrganization);
+				queryPos.add(groupOrganization);
 			}
 
-			setJoin(qPos, params);
+			setJoin(queryPos, params);
 
-			qPos.add(companyId);
-			qPos.add(parentOrganizationId);
+			queryPos.add(companyId);
+			queryPos.add(parentOrganizationId);
 
 			if (Validator.isNotNull(type)) {
-				qPos.add(type);
+				queryPos.add(type);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(streets, 6);
+			queryPos.add(names, 2);
+			queryPos.add(streets, 6);
 
 			if (regionId != null) {
-				qPos.add(regionId);
-				qPos.add(regionId);
+				queryPos.add(regionId);
+				queryPos.add(regionId);
 			}
 
 			if (countryId != null) {
-				qPos.add(countryId);
-				qPos.add(countryId);
+				queryPos.add(countryId);
+				queryPos.add(countryId);
 			}
 
-			qPos.add(cities, 2);
-			qPos.add(zips, 2);
+			queryPos.add(cities, 2);
+			queryPos.add(zips, 2);
 
 			int count = 0;
 
@@ -346,19 +346,19 @@ public class OrganizationFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(parentOrganizationId);
-			qPos.add(companyId);
+			queryPos.add(companyId);
+			queryPos.add(parentOrganizationId);
+			queryPos.add(companyId);
 
 			int status = queryDefinition.getStatus();
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(parentOrganizationId);
+			queryPos.add(parentOrganizationId);
 
 			int count = 0;
 
@@ -424,9 +424,10 @@ public class OrganizationFinderImpl
 
 			sqlQuery.addEntity("Organization_", OrganizationImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(PortalUtil.getClassNameId(Organization.class.getName()));
+			queryPos.add(
+				PortalUtil.getClassNameId(Organization.class.getName()));
 
 			return sqlQuery.list(true);
 		}
@@ -459,14 +460,14 @@ public class OrganizationFinderImpl
 
 			sqlQuery.addScalar("organizationId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (previousOrganizationId > 0) {
-				qPos.add(previousOrganizationId);
+				queryPos.add(previousOrganizationId);
 			}
 
-			qPos.add(companyId);
-			qPos.add(parentOrganizationId);
+			queryPos.add(companyId);
+			queryPos.add(parentOrganizationId);
 
 			return (List<Long>)QueryUtil.list(sqlQuery, getDialect(), 0, size);
 		}
@@ -583,36 +584,36 @@ public class OrganizationFinderImpl
 
 			sqlQuery.addScalar("orgId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (doUnion) {
-				qPos.add(groupOrganization);
+				queryPos.add(groupOrganization);
 			}
 
-			setJoin(qPos, params);
+			setJoin(queryPos, params);
 
-			qPos.add(companyId);
-			qPos.add(parentOrganizationId);
+			queryPos.add(companyId);
+			queryPos.add(parentOrganizationId);
 
 			if (Validator.isNotNull(type)) {
-				qPos.add(type);
+				queryPos.add(type);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(streets, 6);
+			queryPos.add(names, 2);
+			queryPos.add(streets, 6);
 
 			if (regionId != null) {
-				qPos.add(regionId);
-				qPos.add(regionId);
+				queryPos.add(regionId);
+				queryPos.add(regionId);
 			}
 
 			if (countryId != null) {
-				qPos.add(countryId);
-				qPos.add(countryId);
+				queryPos.add(countryId);
+				queryPos.add(countryId);
 			}
 
-			qPos.add(cities, 2);
-			qPos.add(zips, 2);
+			queryPos.add(cities, 2);
+			queryPos.add(zips, 2);
 
 			List<Organization> organizations = new ArrayList<>();
 
@@ -664,19 +665,19 @@ public class OrganizationFinderImpl
 			sqlQuery.addScalar("organizationId", Type.LONG);
 			sqlQuery.addScalar("userId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(parentOrganizationId);
-			qPos.add(companyId);
+			queryPos.add(companyId);
+			queryPos.add(parentOrganizationId);
+			queryPos.add(companyId);
 
 			int status = queryDefinition.getStatus();
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
-			qPos.add(parentOrganizationId);
+			queryPos.add(parentOrganizationId);
 
 			List<Object> models = new ArrayList<>();
 
@@ -726,11 +727,11 @@ public class OrganizationFinderImpl
 
 		sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-		QueryPos qPos = QueryPos.getInstance(sqlQuery);
+		QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-		setJoin(qPos, params);
+		setJoin(queryPos, params);
 
-		qPos.add(organizationId);
+		queryPos.add(organizationId);
 
 		Iterator<Long> itr = sqlQuery.iterate();
 
@@ -953,7 +954,7 @@ public class OrganizationFinderImpl
 	}
 
 	protected void setJoin(
-		QueryPos qPos, LinkedHashMap<String, Object> params) {
+		QueryPos queryPos, LinkedHashMap<String, Object> params) {
 
 		if (params == null) {
 			return;
@@ -995,7 +996,7 @@ public class OrganizationFinderImpl
 							sb.append(StringPool.PERCENT);
 						}
 
-						qPos.add(sb.toString());
+						queryPos.add(sb.toString());
 					}
 				}
 			}
@@ -1003,7 +1004,7 @@ public class OrganizationFinderImpl
 				Long valueLong = (Long)value;
 
 				if (Validator.isNotNull(valueLong)) {
-					qPos.add(valueLong);
+					queryPos.add(valueLong);
 				}
 			}
 			else if (value instanceof Long[]) {
@@ -1011,7 +1012,7 @@ public class OrganizationFinderImpl
 
 				for (Long element : valueArray) {
 					if (Validator.isNotNull(element)) {
-						qPos.add(element);
+						queryPos.add(element);
 					}
 				}
 			}
@@ -1020,7 +1021,7 @@ public class OrganizationFinderImpl
 
 				for (Long[] valueArray : valueDoubleArray) {
 					for (Long valueLong : valueArray) {
-						qPos.add(valueLong);
+						queryPos.add(valueLong);
 					}
 				}
 			}
@@ -1028,7 +1029,7 @@ public class OrganizationFinderImpl
 				String valueString = (String)value;
 
 				if (Validator.isNotNull(valueString)) {
-					qPos.add(valueString);
+					queryPos.add(valueString);
 				}
 			}
 		}

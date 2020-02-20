@@ -103,15 +103,15 @@ public class PortletPreferencesFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (ownerId != -1) {
-				qPos.add(ownerId);
+				queryPos.add(ownerId);
 			}
 
-			qPos.add(ownerType);
-			qPos.add(portletId);
-			qPos.add(portletId.concat("%_INSTANCE_%"));
+			queryPos.add(ownerType);
+			queryPos.add(portletId);
+			queryPos.add(portletId.concat("%_INSTANCE_%"));
 
 			int count = 0;
 
@@ -171,20 +171,20 @@ public class PortletPreferencesFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (ownerId != -1) {
-				qPos.add(ownerId);
+				queryPos.add(ownerId);
 			}
 
-			qPos.add(ownerType);
-			qPos.add(portletId);
+			queryPos.add(ownerType);
+			queryPos.add(portletId);
 
 			if (plid != -1) {
-				qPos.add(plid);
+				queryPos.add(plid);
 			}
 			else {
-				qPos.add(portletId.concat("%_INSTANCE_%"));
+				queryPos.add(portletId.concat("%_INSTANCE_%"));
 			}
 
 			int count = 0;
@@ -230,9 +230,9 @@ public class PortletPreferencesFinderImpl
 			sqlQuery.addEntity(
 				"PortletPreferences", PortletPreferencesImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(portletId);
+			queryPos.add(portletId);
 
 			return sqlQuery.list(true);
 		}
@@ -284,15 +284,15 @@ public class PortletPreferencesFinderImpl
 				sqlQuery.addEntity(
 					"PortletPreferences", PortletPreferencesImpl.class);
 
-				QueryPos qPos = QueryPos.getInstance(sqlQuery);
+				QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-				qPos.add(companyId);
-				qPos.add(groupId);
-				qPos.add(ownerId);
-				qPos.add(ownerType);
-				qPos.add(portletId);
-				qPos.add(portletId.concat("_INSTANCE_%"));
-				qPos.add(privateLayout);
+				queryPos.add(companyId);
+				queryPos.add(groupId);
+				queryPos.add(ownerId);
+				queryPos.add(ownerType);
+				queryPos.add(portletId);
+				queryPos.add(portletId.concat("_INSTANCE_%"));
+				queryPos.add(privateLayout);
 
 				list = sqlQuery.list(true);
 

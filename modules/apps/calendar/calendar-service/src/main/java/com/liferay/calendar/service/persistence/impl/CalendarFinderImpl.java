@@ -280,17 +280,17 @@ public class CalendarFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupIds);
+			queryPos.add(companyId);
+			queryPos.add(groupIds);
 
 			if (ArrayUtil.isNotEmpty(calendarResourceIds)) {
-				qPos.add(calendarResourceIds);
+				queryPos.add(calendarResourceIds);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -361,17 +361,17 @@ public class CalendarFinderImpl
 
 			sqlQuery.addEntity("Calendar", CalendarImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupIds);
+			queryPos.add(companyId);
+			queryPos.add(groupIds);
 
 			if (ArrayUtil.isNotEmpty(calendarResourceIds)) {
-				qPos.add(calendarResourceIds);
+				queryPos.add(calendarResourceIds);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<Calendar>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

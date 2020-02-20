@@ -406,18 +406,18 @@ public class DDMStructureFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -479,23 +479,23 @@ public class DDMStructureFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(storageType);
-			qPos.add(storageType);
-			qPos.add(type);
+			queryPos.add(classNameId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(storageType);
+			queryPos.add(storageType);
+			queryPos.add(type);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -551,18 +551,18 @@ public class DDMStructureFinderImpl
 
 			sqlQuery.addEntity("DDMStructure", DDMStructureImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<DDMStructure>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -619,23 +619,23 @@ public class DDMStructureFinderImpl
 
 			sqlQuery.addEntity("DDMStructure", DDMStructureImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(storageType);
-			qPos.add(storageType);
-			qPos.add(type);
+			queryPos.add(classNameId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(storageType);
+			queryPos.add(storageType);
+			queryPos.add(type);
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			return (List<DDMStructure>)QueryUtil.list(

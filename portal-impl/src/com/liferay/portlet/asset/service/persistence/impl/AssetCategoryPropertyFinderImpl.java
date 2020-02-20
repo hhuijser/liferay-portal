@@ -56,10 +56,10 @@ public class AssetCategoryPropertyFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(key);
+			queryPos.add(groupId);
+			queryPos.add(key);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -101,10 +101,10 @@ public class AssetCategoryPropertyFinderImpl
 
 			sqlQuery.addScalar("categoryPropertyValue", Type.STRING);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(key);
+			queryPos.add(groupId);
+			queryPos.add(key);
 
 			List<AssetCategoryProperty> categoryProperties = new ArrayList<>();
 

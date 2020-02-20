@@ -105,9 +105,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -142,9 +142,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -179,9 +179,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(organizationId);
+			queryPos.add(organizationId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -216,9 +216,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(organizationId);
+			queryPos.add(organizationId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -253,9 +253,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -290,10 +290,10 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(type);
+			queryPos.add(userId);
+			queryPos.add(type);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -328,11 +328,11 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -368,10 +368,10 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			int count = 0;
 
@@ -408,9 +408,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -447,9 +447,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -477,9 +477,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -507,9 +507,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(organizationId);
+			queryPos.add(organizationId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -537,9 +537,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(organizationId);
+			queryPos.add(organizationId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -567,9 +567,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -597,10 +597,10 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(type);
+			queryPos.add(userId);
+			queryPos.add(type);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -628,11 +628,11 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -661,10 +661,10 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addScalar("activityId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			List<SocialActivity> socialActivities = new ArrayList<>();
 
@@ -705,9 +705,9 @@ public class SocialActivityFinderImpl
 
 			sqlQuery.addEntity("SocialActivity", SocialActivityImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			return (List<SocialActivity>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

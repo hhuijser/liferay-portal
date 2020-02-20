@@ -126,10 +126,10 @@ public class AssetEntryFinderImpl
 
 			sqlQuery.addScalar("priority", Type.DOUBLE);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
 
 			Iterator<Double> itr = sqlQuery.iterate();
 
@@ -545,61 +545,62 @@ public class AssetEntryFinderImpl
 			sqlQuery.addEntity("AssetEntry", AssetEntryImpl.class);
 		}
 
-		QueryPos qPos = QueryPos.getInstance(sqlQuery);
+		QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 		if (entryQuery.getLinkedAssetEntryId() > 0) {
-			qPos.add(entryQuery.getLinkedAssetEntryId());
-			qPos.add(entryQuery.getLinkedAssetEntryId());
-			qPos.add(entryQuery.getLinkedAssetEntryId());
-			qPos.add(entryQuery.getLinkedAssetEntryId());
-			qPos.add(entryQuery.getLinkedAssetEntryId());
+			queryPos.add(entryQuery.getLinkedAssetEntryId());
+			queryPos.add(entryQuery.getLinkedAssetEntryId());
+			queryPos.add(entryQuery.getLinkedAssetEntryId());
+			queryPos.add(entryQuery.getLinkedAssetEntryId());
+			queryPos.add(entryQuery.getLinkedAssetEntryId());
 		}
 
 		if (entryQuery.isListable() != null) {
-			qPos.add(entryQuery.isListable());
+			queryPos.add(entryQuery.isListable());
 		}
 
 		if (entryQuery.isVisible() != null) {
-			qPos.add(entryQuery.isVisible());
+			queryPos.add(entryQuery.isVisible());
 		}
 
 		if (Validator.isNotNull(entryQuery.getKeywords())) {
-			qPos.add(
+			queryPos.add(
 				StringUtil.quote(entryQuery.getKeywords(), StringPool.PERCENT));
-			qPos.add(
+			queryPos.add(
 				StringUtil.quote(entryQuery.getKeywords(), StringPool.PERCENT));
-			qPos.add(
+			queryPos.add(
 				StringUtil.quote(entryQuery.getKeywords(), StringPool.PERCENT));
 		}
 		else {
 			if (Validator.isNotNull(entryQuery.getUserName())) {
-				qPos.add(
+				queryPos.add(
 					StringUtil.quote(
 						entryQuery.getUserName(), StringPool.PERCENT));
 			}
 
 			if (Validator.isNotNull(entryQuery.getTitle())) {
-				qPos.add(
+				queryPos.add(
 					StringUtil.quote(
 						entryQuery.getTitle(), StringPool.PERCENT));
 			}
 
 			if (Validator.isNotNull(entryQuery.getDescription())) {
-				qPos.add(
+				queryPos.add(
 					StringUtil.quote(
 						entryQuery.getDescription(), StringPool.PERCENT));
 			}
 		}
 
 		if (layout != null) {
-			qPos.add(layout.getUuid());
+			queryPos.add(layout.getUuid());
 		}
 
 		setDates(
-			qPos, entryQuery.getPublishDate(), entryQuery.getExpirationDate());
+			queryPos, entryQuery.getPublishDate(),
+			entryQuery.getExpirationDate());
 
-		qPos.add(entryQuery.getGroupIds());
-		qPos.add(entryQuery.getClassNameIds());
+		queryPos.add(entryQuery.getGroupIds());
+		queryPos.add(entryQuery.getClassNameIds());
 
 		return sqlQuery;
 	}
@@ -814,19 +815,19 @@ public class AssetEntryFinderImpl
 	}
 
 	protected void setDates(
-		QueryPos qPos, Date publishDate, Date expirationDate) {
+		QueryPos queryPos, Date publishDate, Date expirationDate) {
 
 		if (publishDate != null) {
 			Timestamp publishDate_TS = CalendarUtil.getTimestamp(publishDate);
 
-			qPos.add(publishDate_TS);
+			queryPos.add(publishDate_TS);
 		}
 
 		if (expirationDate != null) {
 			Timestamp expirationDate_TS = CalendarUtil.getTimestamp(
 				expirationDate);
 
-			qPos.add(expirationDate_TS);
+			queryPos.add(expirationDate_TS);
 		}
 	}
 

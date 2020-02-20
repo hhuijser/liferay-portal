@@ -115,17 +115,17 @@ public class JournalFeedFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(feedIds, 2);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(feedIds, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -221,17 +221,17 @@ public class JournalFeedFinderImpl
 
 			sqlQuery.addEntity("JournalFeed", JournalFeedImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(feedIds, 2);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(feedIds, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<JournalFeed>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

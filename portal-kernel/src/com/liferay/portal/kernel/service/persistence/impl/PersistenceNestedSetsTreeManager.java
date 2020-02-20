@@ -72,11 +72,11 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
 				sb.toString());
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(nestedSetsTreeNodeScopeId);
-			qPos.add(nestedSetsTreeNodeLeft);
-			qPos.add(nestedSetsTreeNodeRight);
+			queryPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(nestedSetsTreeNodeLeft);
+			queryPos.add(nestedSetsTreeNodeRight);
 
 			Number number = (Number)sqlQuery.uniqueResult();
 
@@ -115,11 +115,11 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
 				sb.toString());
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(nestedSetsTreeNodeScopeId);
-			qPos.add(nestedSetsTreeNodeLeft);
-			qPos.add(nestedSetsTreeNodeRight);
+			queryPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(nestedSetsTreeNodeLeft);
+			queryPos.add(nestedSetsTreeNodeRight);
 
 			Number number = (Number)sqlQuery.uniqueResult();
 
@@ -162,11 +162,11 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 
 			sqlQuery.addEntity(_entityName, _entityImplClass);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(nestedSetsTreeNodeScopeId);
-			qPos.add(nestedSetsTreeNodeLeft);
-			qPos.add(nestedSetsTreeNodeRight);
+			queryPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(nestedSetsTreeNodeLeft);
+			queryPos.add(nestedSetsTreeNodeRight);
 
 			return (List<T>)QueryUtil.list(
 				sqlQuery, _basePersistenceImpl.getDialect(), QueryUtil.ALL_POS,
@@ -209,11 +209,11 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 
 			sqlQuery.addEntity(_entityName, _entityImplClass);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(nestedSetsTreeNodeScopeId);
-			qPos.add(nestedSetsTreeNodeLeft);
-			qPos.add(nestedSetsTreeNodeRight);
+			queryPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(nestedSetsTreeNodeLeft);
+			queryPos.add(nestedSetsTreeNodeRight);
 
 			return (List<T>)QueryUtil.list(
 				sqlQuery, _basePersistenceImpl.getDialect(), QueryUtil.ALL_POS,
@@ -313,12 +313,12 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
 				sb.toString());
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(delta);
-			qPos.add(nestedSetsTreeNodeScopeId);
-			qPos.add(start);
-			qPos.add(end);
+			queryPos.add(delta);
+			queryPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(start);
+			queryPos.add(end);
 
 			sqlQuery.executeUpdate();
 		}
@@ -380,11 +380,11 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(
 				sb.toString());
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(delta);
-			qPos.add(nestedSetsTreeNodeScopeId);
-			qPos.add(limit);
+			queryPos.add(delta);
+			queryPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(limit);
 
 			sqlQuery.executeUpdate();
 		}
@@ -436,9 +436,9 @@ public class PersistenceNestedSetsTreeManager<T extends NestedSetsTreeNodeModel>
 
 			sqlQuery.addScalar("maxNestedSetsTreeNodeRight", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(nestedSetsTreeNodeScopeId);
+			queryPos.add(nestedSetsTreeNodeScopeId);
 
 			Iterator<Long> iterator = (Iterator<Long>)QueryUtil.iterate(
 				sqlQuery, _basePersistenceImpl.getDialect(), QueryUtil.ALL_POS,

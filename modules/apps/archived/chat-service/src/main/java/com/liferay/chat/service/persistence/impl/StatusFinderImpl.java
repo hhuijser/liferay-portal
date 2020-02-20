@@ -68,12 +68,12 @@ public class StatusFinderImpl
 
 			addScalars(sqlQuery);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_classNameLocalService.getClassNameId(User.class));
-			qPos.add(companyId);
-			qPos.add(userId);
-			qPos.add(modifiedDate);
+			queryPos.add(_classNameLocalService.getClassNameId(User.class));
+			queryPos.add(companyId);
+			queryPos.add(userId);
+			queryPos.add(modifiedDate);
 
 			return toObjectArray(
 				QueryUtil.list(sqlQuery, getDialect(), start, end));
@@ -101,18 +101,18 @@ public class StatusFinderImpl
 
 			addScalars(sqlQuery);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_classNameLocalService.getClassNameId(User.class));
-			qPos.add(userId);
+			queryPos.add(_classNameLocalService.getClassNameId(User.class));
+			queryPos.add(userId);
 
 			if (types.length > 0) {
-				qPos.add(types);
+				queryPos.add(types);
 			}
 
-			qPos.add(CompanyThreadLocal.getCompanyId());
-			qPos.add(userId);
-			qPos.add(modifiedDate);
+			queryPos.add(CompanyThreadLocal.getCompanyId());
+			queryPos.add(userId);
+			queryPos.add(modifiedDate);
 
 			return toObjectArray(
 				QueryUtil.list(sqlQuery, getDialect(), start, end));
@@ -141,18 +141,18 @@ public class StatusFinderImpl
 
 			addScalars(sqlQuery);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_classNameLocalService.getClassNameId(User.class));
-			qPos.add(CompanyThreadLocal.getCompanyId());
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(_classNameLocalService.getClassNameId(User.class));
+			queryPos.add(CompanyThreadLocal.getCompanyId());
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			if (groupNames.length > 0) {
-				qPos.add(groupNames);
+				queryPos.add(groupNames);
 			}
 
-			qPos.add(modifiedDate);
+			queryPos.add(modifiedDate);
 
 			return toObjectArray(
 				QueryUtil.list(sqlQuery, getDialect(), start, end));

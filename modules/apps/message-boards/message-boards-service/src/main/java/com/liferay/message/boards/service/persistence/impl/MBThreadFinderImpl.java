@@ -114,13 +114,13 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -182,13 +182,13 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -238,14 +238,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(anonymous);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(anonymous);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -306,14 +306,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(anonymous);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(anonymous);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -366,17 +366,17 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(lastPostDate);
+			queryPos.add(groupId);
+			queryPos.add(lastPostDate);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -434,11 +434,11 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(categoryId);
-			qPos.add(WorkflowConstants.STATUS_ANY);
+			queryPos.add(groupId);
+			queryPos.add(categoryId);
+			queryPos.add(WorkflowConstants.STATUS_ANY);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -505,11 +505,11 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(categoryId);
-			qPos.add(WorkflowConstants.STATUS_ANY);
+			queryPos.add(groupId);
+			queryPos.add(categoryId);
+			queryPos.add(WorkflowConstants.STATUS_ANY);
 
 			return (List<MBThread>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -556,13 +556,13 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(
@@ -616,13 +616,13 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(
@@ -664,14 +664,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(anonymous);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(anonymous);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(
@@ -703,14 +703,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(MBThread.class.getName()));
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(_portal.getClassNameId(MBThread.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(
@@ -756,14 +756,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
-			qPos.add(anonymous);
+			queryPos.add(groupId);
+			queryPos.add(userId);
+			queryPos.add(anonymous);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(
@@ -807,17 +807,17 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(lastPostDate);
+			queryPos.add(groupId);
+			queryPos.add(lastPostDate);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(
@@ -876,17 +876,17 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(categoryId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(categoryId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
@@ -926,14 +926,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(MBThread.class.getName()));
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(_portal.getClassNameId(MBThread.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -992,14 +992,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(MBThread.class.getName()));
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(_portal.getClassNameId(MBThread.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -1067,17 +1067,17 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(categoryId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(categoryId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
@@ -1129,14 +1129,14 @@ public class MBThreadFinderImpl
 
 			sqlQuery.addEntity("MBThread", MBThreadImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(MBThread.class.getName()));
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(_portal.getClassNameId(MBThread.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<MBThread>)QueryUtil.list(

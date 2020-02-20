@@ -56,10 +56,10 @@ public class UserGroupGroupRoleFinderImpl
 			sqlQuery.addEntity(
 				"UserGroupGroupRole", UserGroupGroupRoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(roleType);
+			queryPos.add(groupId);
+			queryPos.add(roleType);
 
 			return sqlQuery.list(true);
 		}
@@ -87,9 +87,9 @@ public class UserGroupGroupRoleFinderImpl
 			sqlQuery.addEntity(
 				"UserGroupGroupRole", UserGroupGroupRoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			return sqlQuery.list(true);
 		}
@@ -120,10 +120,10 @@ public class UserGroupGroupRoleFinderImpl
 			sqlQuery.addEntity(
 				"UserGroupGroupRole", UserGroupGroupRoleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(userId);
+			queryPos.add(groupId);
+			queryPos.add(userId);
 
 			return sqlQuery.list(true);
 		}

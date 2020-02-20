@@ -58,11 +58,11 @@ public class KBArticleFinderImpl
 
 			query.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(query);
+			QueryPos queryPos = QueryPos.getInstance(query);
 
-			qPos.add(groupId);
-			qPos.add(kbArticleUrlTitle);
-			qPos.add(kbFolderUrlTitle);
+			queryPos.add(groupId);
+			queryPos.add(kbArticleUrlTitle);
+			queryPos.add(kbFolderUrlTitle);
 
 			Iterator<Long> itr = query.iterate();
 
@@ -100,11 +100,11 @@ public class KBArticleFinderImpl
 
 			query.addEntity(KBArticleImpl.TABLE_NAME, KBArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(query);
+			QueryPos queryPos = QueryPos.getInstance(query);
 
-			qPos.add(groupId);
-			qPos.add(kbArticleUrlTitle);
-			qPos.add(kbFolderUrlTitle);
+			queryPos.add(groupId);
+			queryPos.add(kbArticleUrlTitle);
+			queryPos.add(kbFolderUrlTitle);
 
 			return (List)QueryUtil.list(query, getDialect(), start, end);
 		}

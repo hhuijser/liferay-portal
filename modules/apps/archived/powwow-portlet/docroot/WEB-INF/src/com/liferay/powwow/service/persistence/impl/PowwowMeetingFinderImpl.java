@@ -72,11 +72,11 @@ public class PowwowMeetingFinderImpl
 				return 0;
 			}
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(user.getUserId());
-			qPos.add(user.getUserId());
-			qPos.add(user.getEmailAddress());
+			queryPos.add(user.getUserId());
+			queryPos.add(user.getUserId());
+			queryPos.add(user.getEmailAddress());
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -132,11 +132,11 @@ public class PowwowMeetingFinderImpl
 				return Collections.emptyList();
 			}
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(user.getUserId());
-			qPos.add(user.getUserId());
-			qPos.add(user.getEmailAddress());
+			queryPos.add(user.getUserId());
+			queryPos.add(user.getUserId());
+			queryPos.add(user.getEmailAddress());
 
 			return (List<PowwowMeeting>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

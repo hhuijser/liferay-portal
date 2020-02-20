@@ -61,12 +61,12 @@ public class SharingEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			if (classNameId > 0) {
-				qPos.add(classNameId);
+				queryPos.add(classNameId);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -111,12 +111,12 @@ public class SharingEntryFinderImpl
 
 			sqlQuery.addEntity("SharingEntry", SharingEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
+			queryPos.add(userId);
 
 			if (classNameId > 0) {
-				qPos.add(classNameId);
+				queryPos.add(classNameId);
 			}
 
 			return (List<SharingEntry>)QueryUtil.list(

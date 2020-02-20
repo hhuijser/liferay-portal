@@ -62,10 +62,10 @@ public class EntryFinderImpl
 
 			sqlQuery.addEntity("Chat_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(fromUserId);
-			qPos.add(toUserId);
+			queryPos.add(fromUserId);
+			queryPos.add(toUserId);
 
 			return (List<Entry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -97,16 +97,16 @@ public class EntryFinderImpl
 
 			sqlQuery.addEntity("Chat_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(userId);
 
 			if (createDate > 0) {
-				qPos.add(createDate);
+				queryPos.add(createDate);
 			}
 			else {
-				qPos.add(EntryConstants.FLAG_UNREAD);
+				queryPos.add(EntryConstants.FLAG_UNREAD);
 			}
 
 			return (List<Entry>)QueryUtil.list(
@@ -133,9 +133,9 @@ public class EntryFinderImpl
 
 			sqlQuery.addEntity("Chat_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(createDate);
+			queryPos.add(createDate);
 
 			return (List<Entry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

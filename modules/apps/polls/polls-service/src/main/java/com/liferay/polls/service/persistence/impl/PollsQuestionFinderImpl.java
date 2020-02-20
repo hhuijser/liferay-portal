@@ -153,16 +153,16 @@ public class PollsQuestionFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -221,16 +221,16 @@ public class PollsQuestionFinderImpl
 
 			sqlQuery.addEntity("PollsQuestion", PollsQuestionImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupIds != null) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<PollsQuestion>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

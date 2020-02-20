@@ -70,10 +70,10 @@ public class FragmentEntryLinkFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(fragmentEntryId);
+			queryPos.add(groupId);
+			queryPos.add(fragmentEntryId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -110,11 +110,11 @@ public class FragmentEntryLinkFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(fragmentEntryId);
-			qPos.add(classNameId);
+			queryPos.add(groupId);
+			queryPos.add(fragmentEntryId);
+			queryPos.add(classNameId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -152,12 +152,12 @@ public class FragmentEntryLinkFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(fragmentEntryId);
-			qPos.add(classNameId);
-			qPos.add(layoutPageTemplateEntryType);
+			queryPos.add(groupId);
+			queryPos.add(fragmentEntryId);
+			queryPos.add(classNameId);
+			queryPos.add(layoutPageTemplateEntryType);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -198,10 +198,10 @@ public class FragmentEntryLinkFinderImpl
 			sqlQuery.addEntity(
 				"FragmentEntryLink", FragmentEntryLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(fragmentEntryId);
+			queryPos.add(groupId);
+			queryPos.add(fragmentEntryId);
 
 			return (List<FragmentEntryLink>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -233,11 +233,11 @@ public class FragmentEntryLinkFinderImpl
 			sqlQuery.addEntity(
 				"FragmentEntryLink", FragmentEntryLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(fragmentEntryId);
-			qPos.add(classNameId);
+			queryPos.add(groupId);
+			queryPos.add(fragmentEntryId);
+			queryPos.add(classNameId);
 
 			return (List<FragmentEntryLink>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -270,12 +270,12 @@ public class FragmentEntryLinkFinderImpl
 			sqlQuery.addEntity(
 				"FragmentEntryLink", FragmentEntryLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(fragmentEntryId);
-			qPos.add(classNameId);
-			qPos.add(layoutPageTemplateEntryType);
+			queryPos.add(groupId);
+			queryPos.add(fragmentEntryId);
+			queryPos.add(classNameId);
+			queryPos.add(layoutPageTemplateEntryType);
 
 			return (List<FragmentEntryLink>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

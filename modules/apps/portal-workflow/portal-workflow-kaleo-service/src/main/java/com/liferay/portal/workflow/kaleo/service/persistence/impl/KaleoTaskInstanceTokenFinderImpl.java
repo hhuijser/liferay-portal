@@ -324,20 +324,20 @@ public class KaleoTaskInstanceTokenFinderImpl
 			sqlQuery.addScalar("KaleoTaskInstanceTokenId", Type.LONG);
 		}
 
-		QueryPos qPos = QueryPos.getInstance(sqlQuery);
+		QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-		qPos.add(kaleoTaskInstanceTokenQuery.getCompanyId());
+		queryPos.add(kaleoTaskInstanceTokenQuery.getCompanyId());
 
-		setAssigneeClassName(qPos, kaleoTaskInstanceTokenQuery);
-		setCompleted(qPos, kaleoTaskInstanceTokenQuery);
+		setAssigneeClassName(queryPos, kaleoTaskInstanceTokenQuery);
+		setCompleted(queryPos, kaleoTaskInstanceTokenQuery);
 
-		setAssetPrimaryKey(qPos, kaleoTaskInstanceTokenQuery);
-		setAssetType(qPos, kaleoTaskInstanceTokenQuery);
-		setDueDateGT(qPos, kaleoTaskInstanceTokenQuery);
-		setDueDateLT(qPos, kaleoTaskInstanceTokenQuery);
-		setTaskNames(qPos, kaleoTaskInstanceTokenQuery);
+		setAssetPrimaryKey(queryPos, kaleoTaskInstanceTokenQuery);
+		setAssetType(queryPos, kaleoTaskInstanceTokenQuery);
+		setDueDateGT(queryPos, kaleoTaskInstanceTokenQuery);
+		setDueDateLT(queryPos, kaleoTaskInstanceTokenQuery);
+		setTaskNames(queryPos, kaleoTaskInstanceTokenQuery);
 
-		setAssetTitle(qPos, kaleoTaskInstanceTokenQuery);
+		setAssetTitle(queryPos, kaleoTaskInstanceTokenQuery);
 
 		return sqlQuery;
 	}
@@ -827,7 +827,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 	}
 
 	protected void setAssetPrimaryKey(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		Long[] assetPrimaryKeys =
@@ -837,11 +837,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return;
 		}
 
-		qPos.add(assetPrimaryKeys);
+		queryPos.add(assetPrimaryKeys);
 	}
 
 	protected void setAssetTitle(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		String assetTitle = kaleoTaskInstanceTokenQuery.getAssetTitle();
@@ -852,11 +852,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		String[] assetTitles = _customSQL.keywords(assetTitle, false);
 
-		qPos.add(assetTitles);
+		queryPos.add(assetTitles);
 	}
 
 	protected void setAssetType(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		String[] assetTypes = kaleoTaskInstanceTokenQuery.getAssetTypes();
@@ -867,11 +867,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		assetTypes = _customSQL.keywords(assetTypes, false);
 
-		qPos.add(assetTypes);
+		queryPos.add(assetTypes);
 	}
 
 	protected void setAssigneeClassName(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		String assigneeClassName =
@@ -881,11 +881,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return;
 		}
 
-		qPos.add(assigneeClassName);
+		queryPos.add(assigneeClassName);
 	}
 
 	protected void setCompleted(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		Boolean completed = kaleoTaskInstanceTokenQuery.isCompleted();
@@ -894,11 +894,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return;
 		}
 
-		qPos.add(completed);
+		queryPos.add(completed);
 	}
 
 	protected void setDueDateGT(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		Date dueDateGT = kaleoTaskInstanceTokenQuery.getDueDateGT();
@@ -909,11 +909,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		Timestamp dueDateGT_TS = CalendarUtil.getTimestamp(dueDateGT);
 
-		qPos.add(dueDateGT_TS);
+		queryPos.add(dueDateGT_TS);
 	}
 
 	protected void setDueDateLT(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		Date dueDateLT = kaleoTaskInstanceTokenQuery.getDueDateLT();
@@ -924,11 +924,11 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		Timestamp dueDateLT_TS = CalendarUtil.getTimestamp(dueDateLT);
 
-		qPos.add(dueDateLT_TS);
+		queryPos.add(dueDateLT_TS);
 	}
 
 	protected void setTaskNames(
-		QueryPos qPos,
+		QueryPos queryPos,
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery) {
 
 		String[] taskNames = kaleoTaskInstanceTokenQuery.getTaskNames();
@@ -951,7 +951,7 @@ public class KaleoTaskInstanceTokenFinderImpl
 			return;
 		}
 
-		qPos.add(taskNames);
+		queryPos.add(taskNames);
 	}
 
 	protected static final String FIRST_DUE_DATE_GT =

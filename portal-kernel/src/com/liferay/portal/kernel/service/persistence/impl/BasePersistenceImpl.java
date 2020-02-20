@@ -278,10 +278,10 @@ public class BasePersistenceImpl<T extends BaseModel<T>>
 			Query q = session.createQuery(sql);
 
 			if (_modelPKType == ModelPKType.STRING) {
-				QueryPos qPos = QueryPos.getInstance(q);
+				QueryPos queryPos = QueryPos.getInstance(q);
 
 				for (Serializable primaryKey : uncachedPrimaryKeys) {
-					qPos.add(primaryKey);
+					queryPos.add(primaryKey);
 				}
 			}
 

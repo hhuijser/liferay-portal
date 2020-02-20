@@ -91,9 +91,9 @@ public class LayoutFinderImpl
 
 			sqlQuery.addEntity("Layout", LayoutImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			return sqlQuery.list(true);
 		}
@@ -118,10 +118,10 @@ public class LayoutFinderImpl
 
 			sqlQuery.addEntity("Layout", LayoutImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(privateLayout);
+			queryPos.add(groupId);
+			queryPos.add(privateLayout);
 
 			return sqlQuery.list(true);
 		}
@@ -154,12 +154,12 @@ public class LayoutFinderImpl
 			sqlQuery.addScalar("layoutPlid", Type.LONG);
 			sqlQuery.addScalar("preferencesPortletId", Type.STRING);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(portletId);
-			qPos.add(portletId.concat("_INSTANCE_%"));
-			qPos.add(preferences);
+			queryPos.add(companyId);
+			queryPos.add(portletId);
+			queryPos.add(portletId.concat("_INSTANCE_%"));
+			queryPos.add(preferences);
 
 			List<LayoutReference> layoutReferences = new ArrayList<>();
 

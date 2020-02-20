@@ -69,11 +69,11 @@ public class SegmentsExperimentFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(segmentsExperienceId);
-			qPos.add(classNameId);
-			qPos.add(classPK);
+			queryPos.add(segmentsExperienceId);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -118,11 +118,11 @@ public class SegmentsExperimentFinderImpl
 			sqlQuery.addEntity(
 				"SegmentsExperiment", SegmentsExperimentImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(segmentsExperienceId);
-			qPos.add(classNameId);
-			qPos.add(classPK);
+			queryPos.add(segmentsExperienceId);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
 
 			return (List<SegmentsExperiment>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

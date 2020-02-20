@@ -64,13 +64,13 @@ public class AssetTagFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			String lowerCaseName = StringUtil.toLowerCase(name);
 
-			qPos.add(lowerCaseName);
+			queryPos.add(lowerCaseName);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -105,15 +105,15 @@ public class AssetTagFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(classNameId);
+			queryPos.add(groupId);
+			queryPos.add(classNameId);
 
 			String lowerCaseName = StringUtil.toLowerCase(name);
 
-			qPos.add(lowerCaseName);
-			qPos.add(lowerCaseName);
+			queryPos.add(lowerCaseName);
+			queryPos.add(lowerCaseName);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -153,15 +153,15 @@ public class AssetTagFinderImpl
 
 			sqlQuery.addEntity("AssetTag", AssetTagImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(classNameId);
+			queryPos.add(groupId);
+			queryPos.add(classNameId);
 
 			String lowerCaseName = StringUtil.toLowerCase(name);
 
-			qPos.add(lowerCaseName);
-			qPos.add(lowerCaseName);
+			queryPos.add(lowerCaseName);
+			queryPos.add(lowerCaseName);
 
 			return (List<AssetTag>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -188,14 +188,14 @@ public class AssetTagFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(startPeriod);
-			qPos.add(endPeriod);
-			qPos.add(periodLength);
-			qPos.add(endPeriod);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(startPeriod);
+			queryPos.add(endPeriod);
+			queryPos.add(periodLength);
+			queryPos.add(endPeriod);
 
 			List<AssetTag> assetTags = new ArrayList<>();
 

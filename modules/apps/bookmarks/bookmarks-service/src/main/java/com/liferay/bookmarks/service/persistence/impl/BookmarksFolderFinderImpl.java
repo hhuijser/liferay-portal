@@ -111,9 +111,9 @@ public class BookmarksFolderFinderImpl
 
 			sqlQuery.addEntity("BookmarksFolder", BookmarksFolderImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(BookmarksFolder.class));
+			queryPos.add(_portal.getClassNameId(BookmarksFolder.class));
 
 			return sqlQuery.list(true);
 		}
@@ -189,20 +189,20 @@ public class BookmarksFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(folderId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
-			qPos.add(groupId);
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(folderId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			int count = 0;
@@ -286,20 +286,20 @@ public class BookmarksFolderFinderImpl
 			sqlQuery.addScalar("modelName", Type.STRING);
 			sqlQuery.addScalar("modelFolder", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(folderId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
-			qPos.add(groupId);
-			qPos.add(folderId);
+			queryPos.add(groupId);
+			queryPos.add(folderId);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			List<Object> models = new ArrayList<>();

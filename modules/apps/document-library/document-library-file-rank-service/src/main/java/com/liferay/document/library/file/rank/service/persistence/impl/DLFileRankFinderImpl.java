@@ -56,9 +56,9 @@ public class DLFileRankFinderImpl
 			sqlQuery.addScalar("groupId", Type.LONG);
 			sqlQuery.addScalar("userId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(count);
+			queryPos.add(count);
 
 			return sqlQuery.list(true);
 		}
@@ -83,9 +83,9 @@ public class DLFileRankFinderImpl
 
 			sqlQuery.addEntity("DLFileRank", DLFileRankImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(folderId);
+			queryPos.add(folderId);
 
 			return sqlQuery.list(true);
 		}

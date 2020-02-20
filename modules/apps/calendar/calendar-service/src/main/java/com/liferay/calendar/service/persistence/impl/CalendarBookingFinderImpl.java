@@ -246,9 +246,9 @@ public class CalendarBookingFinderImpl
 
 			sqlQuery.addEntity("CalendarBooking", CalendarBookingImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(startTime);
+			queryPos.add(startTime);
 
 			return sqlQuery.list(true);
 		}
@@ -375,39 +375,39 @@ public class CalendarBookingFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupIds);
+			queryPos.add(companyId);
+			queryPos.add(groupIds);
 
 			if (ArrayUtil.isNotEmpty(calendarIds)) {
-				qPos.add(calendarIds);
+				queryPos.add(calendarIds);
 			}
 
 			if (ArrayUtil.isNotEmpty(calendarResourceIds)) {
-				qPos.add(calendarResourceIds);
+				queryPos.add(calendarResourceIds);
 			}
 
 			if (parentCalendarBookingId >= 0) {
-				qPos.add(parentCalendarBookingId);
+				queryPos.add(parentCalendarBookingId);
 			}
 
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(locations, 2);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(endTime);
-			qPos.add(startTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(locations, 2);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
+			queryPos.add(endTime);
+			queryPos.add(startTime);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
 
 			if (ArrayUtil.isNotEmpty(statuses)) {
-				qPos.add(statuses);
+				queryPos.add(statuses);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -494,42 +494,42 @@ public class CalendarBookingFinderImpl
 
 			sqlQuery.addEntity("CalendarBooking", CalendarBookingImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (ArrayUtil.isNotEmpty(groupIds)) {
-				qPos.add(groupIds);
+				queryPos.add(groupIds);
 			}
 
 			if (ArrayUtil.isNotEmpty(calendarIds)) {
-				qPos.add(calendarIds);
+				queryPos.add(calendarIds);
 			}
 
 			if (ArrayUtil.isNotEmpty(calendarResourceIds)) {
-				qPos.add(calendarResourceIds);
+				queryPos.add(calendarResourceIds);
 			}
 
 			if (parentCalendarBookingId >= 0) {
-				qPos.add(parentCalendarBookingId);
+				queryPos.add(parentCalendarBookingId);
 			}
 
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(locations, 2);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
-			qPos.add(endTime);
-			qPos.add(startTime);
-			qPos.add(startTime);
-			qPos.add(endTime);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(locations, 2);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
+			queryPos.add(endTime);
+			queryPos.add(startTime);
+			queryPos.add(startTime);
+			queryPos.add(endTime);
 
 			if (ArrayUtil.isNotEmpty(statuses)) {
-				qPos.add(statuses);
+				queryPos.add(statuses);
 			}
 
 			return (List<CalendarBooking>)QueryUtil.list(

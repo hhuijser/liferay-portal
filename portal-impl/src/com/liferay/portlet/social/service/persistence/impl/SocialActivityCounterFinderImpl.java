@@ -79,15 +79,15 @@ public class SocialActivityCounterFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(PortalUtil.getClassNameId(User.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(PortalUtil.getClassNameId(User.class.getName()));
 
-			setNames(qPos, names);
+			setNames(queryPos, names);
 
-			qPos.add(SocialCounterPeriodUtil.getPeriodLength());
-			qPos.add(SocialCounterPeriodUtil.getActivityDay());
+			queryPos.add(SocialCounterPeriodUtil.getPeriodLength());
+			queryPos.add(SocialCounterPeriodUtil.getActivityDay());
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -148,14 +148,14 @@ public class SocialActivityCounterFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(startPeriod);
-			qPos.add(endPeriod);
-			qPos.add(periodLength);
-			qPos.add(endPeriod);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(startPeriod);
+			queryPos.add(endPeriod);
+			queryPos.add(periodLength);
+			queryPos.add(endPeriod);
 
 			activityCounters = new ArrayList<>();
 
@@ -209,14 +209,14 @@ public class SocialActivityCounterFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(counterName);
-			qPos.add(startPeriod);
-			qPos.add(endPeriod);
-			qPos.add(periodLength);
-			qPos.add(endPeriod);
+			queryPos.add(groupId);
+			queryPos.add(counterName);
+			queryPos.add(startPeriod);
+			queryPos.add(endPeriod);
+			queryPos.add(periodLength);
+			queryPos.add(endPeriod);
 
 			List<SocialActivityCounter> activityCounters = new ArrayList<>();
 
@@ -270,12 +270,12 @@ public class SocialActivityCounterFinderImpl
 			sqlQuery.addEntity(
 				"SocialActivityCounter", SocialActivityCounterImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(PortalUtil.getClassNameId(User.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(PortalUtil.getClassNameId(User.class.getName()));
 
-			setNames(qPos, names);
+			setNames(queryPos, names);
 
 			return (List<SocialActivityCounter>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -309,14 +309,14 @@ public class SocialActivityCounterFinderImpl
 
 			sqlQuery.addScalar("classPK", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(PortalUtil.getClassNameId(User.class.getName()));
+			queryPos.add(groupId);
+			queryPos.add(PortalUtil.getClassNameId(User.class.getName()));
 
-			setNames(qPos, names);
+			setNames(queryPos, names);
 
-			qPos.add(SocialCounterPeriodUtil.getStartPeriod());
+			queryPos.add(SocialCounterPeriodUtil.getStartPeriod());
 
 			return (List<Long>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -347,10 +347,10 @@ public class SocialActivityCounterFinderImpl
 		return sb.toString();
 	}
 
-	protected void setNames(QueryPos qPos, String[] names) {
+	protected void setNames(QueryPos queryPos, String[] names) {
 		if (ArrayUtil.isNotEmpty(names)) {
 			for (String name : names) {
-				qPos.add(name);
+				queryPos.add(name);
 			}
 		}
 	}

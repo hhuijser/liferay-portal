@@ -264,10 +264,10 @@ public class DLFileEntryFinderImpl
 			sqlQuery.addEntity(
 				DLFileEntryImpl.TABLE_NAME, DLFileEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(companyId);
+			queryPos.add(queryDefinition.getStatus());
 
 			return (List<DLFileEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -310,13 +310,13 @@ public class DLFileEntryFinderImpl
 			sqlQuery.addEntity(
 				DLFileEntryImpl.TABLE_NAME, DLFileEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(ddmStructureIds);
+			queryPos.add(ddmStructureIds);
 
 			return (List<DLFileEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -350,9 +350,9 @@ public class DLFileEntryFinderImpl
 			sqlQuery.addEntity(
 				DLFileEntryImpl.TABLE_NAME, DLFileEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(
+			queryPos.add(
 				PortalUtil.getClassNameId(DLFileEntryConstants.getClassName()));
 
 			return sqlQuery.list(true);
@@ -436,11 +436,11 @@ public class DLFileEntryFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(
+			queryPos.add(
 				CustomSQLUtil.keywords(treePath, WildcardMode.TRAILING)[0]);
-			qPos.add(classNameId);
+			queryPos.add(classNameId);
 
 			sqlQuery.addEntity(
 				DLFileEntryImpl.TABLE_NAME, DLFileEntryImpl.class);
@@ -528,14 +528,14 @@ public class DLFileEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			for (Long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -585,27 +585,27 @@ public class DLFileEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (userId > 0) {
-				qPos.add(userId);
-				qPos.add(userId);
+				queryPos.add(userId);
+				queryPos.add(userId);
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			for (Long repositoryId : repositoryIds) {
-				qPos.add(repositoryId);
+				queryPos.add(repositoryId);
 			}
 
 			for (Long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -659,27 +659,27 @@ public class DLFileEntryFinderImpl
 			sqlQuery.addEntity(
 				DLFileEntryImpl.TABLE_NAME, DLFileEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (userId > 0) {
-				qPos.add(userId);
-				qPos.add(userId);
+				queryPos.add(userId);
+				queryPos.add(userId);
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			for (Long repositoryId : repositoryIds) {
-				qPos.add(repositoryId);
+				queryPos.add(repositoryId);
 			}
 
 			for (Long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			if (mimeTypes != null) {
-				qPos.add(mimeTypes);
+				queryPos.add(mimeTypes);
 			}
 
 			return (List<DLFileEntry>)QueryUtil.list(

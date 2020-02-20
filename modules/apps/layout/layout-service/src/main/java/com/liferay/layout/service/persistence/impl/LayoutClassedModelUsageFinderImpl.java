@@ -51,10 +51,10 @@ public class LayoutClassedModelUsageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 

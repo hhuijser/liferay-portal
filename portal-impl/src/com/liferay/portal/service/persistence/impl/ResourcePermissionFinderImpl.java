@@ -86,10 +86,10 @@ public class ResourcePermissionFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(roleId);
-			qPos.add(scopes);
+			queryPos.add(roleId);
+			queryPos.add(scopes);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -153,15 +153,15 @@ public class ResourcePermissionFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
-			qPos.add(scope);
-			qPos.add(primKey);
-			qPos.add(roleIds);
-			qPos.add(actionId);
-			qPos.add(actionId);
+			queryPos.add(companyId);
+			queryPos.add(name);
+			queryPos.add(scope);
+			queryPos.add(primKey);
+			queryPos.add(roleIds);
+			queryPos.add(actionId);
+			queryPos.add(actionId);
 
 			count = (Long)sqlQuery.uniqueResult();
 		}
@@ -205,12 +205,12 @@ public class ResourcePermissionFinderImpl
 			sqlQuery.addEntity(
 				"ResourcePermission", ResourcePermissionImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
-			qPos.add(primKey);
-			qPos.add(String.valueOf(groupId));
+			queryPos.add(companyId);
+			queryPos.add(name);
+			queryPos.add(primKey);
+			queryPos.add(String.valueOf(groupId));
 
 			return (List<ResourcePermission>)QueryUtil.list(
 				sqlQuery, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);
@@ -241,10 +241,10 @@ public class ResourcePermissionFinderImpl
 			sqlQuery.addEntity(
 				"ResourcePermission", ResourcePermissionImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(roleId);
-			qPos.add(scopes);
+			queryPos.add(roleId);
+			queryPos.add(scopes);
 
 			return (List<ResourcePermission>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

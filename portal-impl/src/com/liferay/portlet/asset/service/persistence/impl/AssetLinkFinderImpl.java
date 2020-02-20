@@ -67,17 +67,17 @@ public class AssetLinkFinderImpl
 
 			sqlQuery.addEntity("AssetLink", AssetLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(groupId);
+			queryPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (startDate != null) {
-				qPos.add(startDate);
+				queryPos.add(startDate);
 			}
 
 			if (endDate != null) {
-				qPos.add(endDate);
+				queryPos.add(endDate);
 			}
 
 			return (List<AssetLink>)QueryUtil.list(
@@ -104,15 +104,15 @@ public class AssetLinkFinderImpl
 
 			sqlQuery.addEntity("AssetLink", AssetLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
+			queryPos.add(classNameId);
 
-			qPos.add(classPK);
+			queryPos.add(classPK);
 
-			qPos.add(classNameId);
+			queryPos.add(classNameId);
 
-			qPos.add(classPK);
+			queryPos.add(classPK);
 
 			return sqlQuery.list();
 		}

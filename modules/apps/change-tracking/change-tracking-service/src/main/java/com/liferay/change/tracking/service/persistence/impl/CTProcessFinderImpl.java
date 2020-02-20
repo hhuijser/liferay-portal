@@ -98,22 +98,22 @@ public class CTProcessFinderImpl
 
 			sqlQuery.addEntity("CTProcess", CTProcessImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (status != WorkflowConstants.STATUS_ANY) {
-				qPos.add(status);
+				queryPos.add(status);
 			}
 
 			if (!keywordsEmpty) {
-				qPos.add(names, 2);
+				queryPos.add(names, 2);
 
-				qPos.add(descriptions, 2);
+				queryPos.add(descriptions, 2);
 			}
 
 			return (List<CTProcess>)QueryUtil.list(

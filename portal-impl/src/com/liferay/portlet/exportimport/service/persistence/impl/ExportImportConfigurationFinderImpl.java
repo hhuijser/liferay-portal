@@ -270,16 +270,16 @@ public class ExportImportConfigurationFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(type);
+			queryPos.add(companyId);
+			queryPos.add(groupId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(type);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -343,16 +343,16 @@ public class ExportImportConfigurationFinderImpl
 				"ExportImportConfiguration",
 				ExportImportConfigurationImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupId);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(type);
+			queryPos.add(companyId);
+			queryPos.add(groupId);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(type);
 
 			if (queryDefinition.getStatus() != WorkflowConstants.STATUS_ANY) {
-				qPos.add(queryDefinition.getStatus());
+				queryPos.add(queryDefinition.getStatus());
 			}
 
 			return (List<ExportImportConfiguration>)QueryUtil.list(

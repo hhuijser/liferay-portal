@@ -125,9 +125,9 @@ public class JournalFolderFinderImpl
 			sqlQuery.addEntity(
 				JournalFolderImpl.TABLE_NAME, JournalFolderImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(JournalFolder.class));
+			queryPos.add(_portal.getClassNameId(JournalFolder.class));
 
 			return sqlQuery.list(true);
 		}
@@ -167,26 +167,26 @@ public class JournalFolderFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (folderId >= 0) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			if (folderId >= 0) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			int count = 0;
@@ -245,26 +245,26 @@ public class JournalFolderFinderImpl
 			sqlQuery.addScalar("articleId", Type.STRING);
 			sqlQuery.addScalar("version", Type.DOUBLE);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (folderId >= 0) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			if (folderId >= 0) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			List<Object> models = new ArrayList<>();
@@ -340,29 +340,29 @@ public class JournalFolderFinderImpl
 			sqlQuery.addScalar("articleId", Type.STRING);
 			sqlQuery.addScalar("version", Type.DOUBLE);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (folderId >= 0) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
-				qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+				queryPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			if (folderId >= 0) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(LocaleUtil.toLanguageId(locale));
+			queryPos.add(LocaleUtil.toLanguageId(locale));
 
 			List<Object> models = new ArrayList<>();
 

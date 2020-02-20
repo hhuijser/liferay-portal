@@ -247,14 +247,14 @@ public class DDLRecordSetFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (ddmStructureId > 0) {
-				qPos.add(ddmStructureId);
+				queryPos.add(ddmStructureId);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -318,20 +318,20 @@ public class DDLRecordSetFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (scope != DDLRecordSetConstants.SCOPE_ANY) {
-				qPos.add(scope);
+				queryPos.add(scope);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -397,20 +397,20 @@ public class DDLRecordSetFinderImpl
 
 			sqlQuery.addEntity("DDLRecordSet", DDLRecordSetImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (scope != DDLRecordSetConstants.SCOPE_ANY) {
-				qPos.add(scope);
+				queryPos.add(scope);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<DDLRecordSet>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

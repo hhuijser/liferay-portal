@@ -76,12 +76,12 @@ public class AssetCategoryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(classNameId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(groupId);
+			queryPos.add(classNameId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -118,13 +118,13 @@ public class AssetCategoryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, categoryProperties);
+			setJoin(queryPos, categoryProperties);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -193,10 +193,10 @@ public class AssetCategoryFinderImpl
 
 			sqlQuery.addEntity("AssetCategory", AssetCategoryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(name);
+			queryPos.add(groupId);
+			queryPos.add(name);
 
 			List<AssetCategory> categories = sqlQuery.list();
 
@@ -256,13 +256,13 @@ public class AssetCategoryFinderImpl
 
 			sqlQuery.addEntity("AssetCategory", AssetCategoryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setJoin(qPos, categoryProperties);
+			setJoin(queryPos, categoryProperties);
 
-			qPos.add(groupId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(groupId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			return (List<AssetCategory>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -295,10 +295,10 @@ public class AssetCategoryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -341,10 +341,10 @@ public class AssetCategoryFinderImpl
 
 			sqlQuery.addEntity("AssetCategory", AssetCategoryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
 
 			return (List<AssetCategory>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -380,7 +380,7 @@ public class AssetCategoryFinderImpl
 		return sb.toString();
 	}
 
-	protected void setJoin(QueryPos qPos, String[] categoryProperties) {
+	protected void setJoin(QueryPos queryPos, String[] categoryProperties) {
 		for (String categoryProperty : categoryProperties) {
 			String[] categoryPropertyArray = StringUtil.split(
 				categoryProperty,
@@ -403,8 +403,8 @@ public class AssetCategoryFinderImpl
 				value = GetterUtil.getString(categoryPropertyArray[1]);
 			}
 
-			qPos.add(key);
-			qPos.add(value);
+			queryPos.add(key);
+			queryPos.add(value);
 		}
 	}
 

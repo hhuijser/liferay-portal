@@ -110,11 +110,11 @@ public class MDRRuleGroupFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setGroupIds(qPos, groupId, params);
+			setGroupIds(queryPos, groupId, params);
 
-			qPos.add(names, 2);
+			queryPos.add(names, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -223,11 +223,11 @@ public class MDRRuleGroupFinderImpl
 
 			sqlQuery.addEntity("MDRRuleGroup", MDRRuleGroupImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setGroupIds(qPos, groupId, params);
+			setGroupIds(queryPos, groupId, params);
 
-			qPos.add(names, 2);
+			queryPos.add(names, 2);
 
 			return (List<MDRRuleGroup>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -251,23 +251,23 @@ public class MDRRuleGroupFinderImpl
 	}
 
 	protected void setGroupIds(
-			QueryPos qPos, long groupId, Map<String, Object> params)
+			QueryPos queryPos, long groupId, Map<String, Object> params)
 		throws PortalException {
 
 		Boolean includeGlobalScope = (Boolean)params.get("includeGlobalScope");
 
 		if ((includeGlobalScope != null) && includeGlobalScope) {
-			qPos.add(groupId);
+			queryPos.add(groupId);
 
 			Group group = _groupLocalService.getGroup(groupId);
 
 			Group companyGroup = _groupLocalService.getCompanyGroup(
 				group.getCompanyId());
 
-			qPos.add(companyGroup.getGroupId());
+			queryPos.add(companyGroup.getGroupId());
 		}
 		else {
-			qPos.add(groupId);
+			queryPos.add(groupId);
 		}
 	}
 

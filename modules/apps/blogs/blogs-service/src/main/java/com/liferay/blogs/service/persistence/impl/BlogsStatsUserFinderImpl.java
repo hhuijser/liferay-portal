@@ -77,10 +77,10 @@ public class BlogsStatsUserFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			for (Long organizationId : organizationIds) {
-				qPos.add(organizationId);
+				queryPos.add(organizationId);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -119,12 +119,12 @@ public class BlogsStatsUserFinderImpl
 			sqlQuery.addScalar("userId", Type.LONG);
 			sqlQuery.addScalar("lastPostDate", Type.TIMESTAMP);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(groupId);
-			qPos.add(groupId);
-			qPos.add(groupId);
+			queryPos.add(companyId);
+			queryPos.add(groupId);
+			queryPos.add(groupId);
+			queryPos.add(groupId);
 
 			List<BlogsStatsUser> statsUsers = new ArrayList<>();
 
@@ -187,10 +187,10 @@ public class BlogsStatsUserFinderImpl
 
 			sqlQuery.addEntity("BlogsStatsUser", BlogsStatsUserImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			for (Long organizationId : organizationIds) {
-				qPos.add(organizationId);
+				queryPos.add(organizationId);
 			}
 
 			return (List<BlogsStatsUser>)QueryUtil.list(

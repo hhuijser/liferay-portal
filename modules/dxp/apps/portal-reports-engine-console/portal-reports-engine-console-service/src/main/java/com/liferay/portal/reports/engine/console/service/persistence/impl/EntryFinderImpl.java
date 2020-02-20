@@ -144,22 +144,22 @@ public class EntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (createDateGT != null) {
-				qPos.add(createDateGT);
+				queryPos.add(createDateGT);
 			}
 
 			if (createDateLT != null) {
-				qPos.add(createDateLT);
+				queryPos.add(createDateLT);
 			}
 
-			qPos.add(definitionNames, 2);
-			qPos.add(userNames, 2);
+			queryPos.add(definitionNames, 2);
+			queryPos.add(userNames, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -237,22 +237,22 @@ public class EntryFinderImpl
 
 			sqlQuery.addEntity("Reports_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (createDateGT != null) {
-				qPos.add(createDateGT);
+				queryPos.add(createDateGT);
 			}
 
 			if (createDateLT != null) {
-				qPos.add(createDateLT);
+				queryPos.add(createDateLT);
 			}
 
-			qPos.add(definitionNames, 2);
-			qPos.add(userNames, 2);
+			queryPos.add(definitionNames, 2);
+			queryPos.add(userNames, 2);
 
 			return (List<Entry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

@@ -571,11 +571,11 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(queryDefinition.getStatus());
-			qPos.add(expirationDateLT_TS);
+			queryPos.add(classNameId);
+			queryPos.add(queryDefinition.getStatus());
+			queryPos.add(expirationDateLT_TS);
 
 			return sqlQuery.list(true);
 		}
@@ -639,9 +639,9 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addEntity("JournalArticle", JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(JournalArticle.class));
+			queryPos.add(_portal.getClassNameId(JournalArticle.class));
 
 			return sqlQuery.list(true);
 		}
@@ -666,9 +666,9 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addEntity("JournalArticle", JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(ResourceConstants.SCOPE_INDIVIDUAL);
+			queryPos.add(ResourceConstants.SCOPE_INDIVIDUAL);
 
 			return sqlQuery.list(true);
 		}
@@ -699,11 +699,11 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(reviewDateGT_TS);
-			qPos.add(reviewDateLT_TS);
+			queryPos.add(classNameId);
+			queryPos.add(reviewDateGT_TS);
+			queryPos.add(reviewDateLT_TS);
 
 			return sqlQuery.list(true);
 		}
@@ -733,10 +733,10 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(resourcePrimKey);
-			qPos.add(displayDate_TS);
+			queryPos.add(resourcePrimKey);
+			queryPos.add(displayDate_TS);
 
 			List<JournalArticle> articles = sqlQuery.list();
 
@@ -922,13 +922,13 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			for (Long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -974,10 +974,10 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(status);
+			queryPos.add(groupId);
+			queryPos.add(status);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -1034,15 +1034,15 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(ddmStructureKeys);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(classNameId);
+			queryPos.add(ddmStructureKeys);
+			queryPos.add(queryDefinition.getStatus());
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -1099,24 +1099,24 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(classNameId);
+			queryPos.add(groupId);
+			queryPos.add(classNameId);
 
 			for (long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -1231,44 +1231,44 @@ public class JournalArticleFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			for (long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(classNameId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (!isNullArray(ddmStructureKeys)) {
-				qPos.add(ddmStructureKeys, 2);
+				queryPos.add(ddmStructureKeys, 2);
 			}
 
 			if (!isNullArray(ddmTemplateKeys)) {
-				qPos.add(ddmTemplateKeys, 2);
+				queryPos.add(ddmTemplateKeys, 2);
 			}
 
-			qPos.add(articleIds, 2);
+			queryPos.add(articleIds, 2);
 
 			if ((version != null) && (version > 0)) {
-				qPos.add(version);
+				queryPos.add(version);
 			}
 
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(contents, 2);
-			qPos.add(displayDateGT_TS);
-			qPos.add(displayDateGT_TS);
-			qPos.add(displayDateLT_TS);
-			qPos.add(displayDateLT_TS);
-			qPos.add(reviewDate_TS);
-			qPos.add(reviewDate_TS);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(contents, 2);
+			queryPos.add(displayDateGT_TS);
+			queryPos.add(displayDateGT_TS);
+			queryPos.add(displayDateLT_TS);
+			queryPos.add(displayDateLT_TS);
+			queryPos.add(reviewDate_TS);
+			queryPos.add(reviewDate_TS);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -1323,13 +1323,13 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			for (Long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			return (List<JournalArticle>)QueryUtil.list(
@@ -1371,10 +1371,10 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(status);
+			queryPos.add(groupId);
+			queryPos.add(status);
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -1415,11 +1415,11 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(LocaleUtil.toLanguageId(locale));
-			qPos.add(groupId);
-			qPos.add(status);
+			queryPos.add(LocaleUtil.toLanguageId(locale));
+			queryPos.add(groupId);
+			queryPos.add(status);
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -1466,15 +1466,15 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(LocaleUtil.toLanguageId(locale));
+			queryPos.add(LocaleUtil.toLanguageId(locale));
 
-			qPos.add(groupId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(groupId);
+			queryPos.add(queryDefinition.getStatus());
 
 			for (Long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			return (List<JournalArticle>)QueryUtil.list(
@@ -1528,15 +1528,15 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(ddmStructureKeys);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(classNameId);
+			queryPos.add(ddmStructureKeys);
+			queryPos.add(queryDefinition.getStatus());
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -1588,24 +1588,24 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(classNameId);
+			queryPos.add(groupId);
+			queryPos.add(classNameId);
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
 			for (long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -1658,17 +1658,17 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(LocaleUtil.toLanguageId(locale));
+			queryPos.add(LocaleUtil.toLanguageId(locale));
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(ddmStructureKeys);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(classNameId);
+			queryPos.add(ddmStructureKeys);
+			queryPos.add(queryDefinition.getStatus());
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -1721,25 +1721,25 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(LocaleUtil.toLanguageId(locale));
-			qPos.add(groupId);
-			qPos.add(classNameId);
+			queryPos.add(LocaleUtil.toLanguageId(locale));
+			queryPos.add(groupId);
+			queryPos.add(classNameId);
 
 			for (long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
@@ -1859,47 +1859,47 @@ public class JournalArticleFinderImpl
 			sqlQuery.addEntity(
 				JournalArticleImpl.TABLE_NAME, JournalArticleImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			for (long folderId : folderIds) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(classNameId);
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(classNameId);
+			queryPos.add(queryDefinition.getStatus());
 
 			if (!isNullArray(ddmStructureKeys)) {
-				qPos.add(ddmStructureKeys, 2);
+				queryPos.add(ddmStructureKeys, 2);
 			}
 
 			if (!isNullArray(ddmTemplateKeys)) {
-				qPos.add(ddmTemplateKeys, 2);
+				queryPos.add(ddmTemplateKeys, 2);
 			}
 
-			qPos.add(articleIds, 2);
+			queryPos.add(articleIds, 2);
 
 			if ((version != null) && (version > 0)) {
-				qPos.add(version);
+				queryPos.add(version);
 			}
 
-			qPos.add(contents, 2);
-			qPos.add(titles, 2);
-			qPos.add(descriptions, 2);
-			qPos.add(displayDateGT_TS);
-			qPos.add(displayDateGT_TS);
-			qPos.add(displayDateLT_TS);
-			qPos.add(displayDateLT_TS);
-			qPos.add(reviewDate_TS);
-			qPos.add(reviewDate_TS);
+			queryPos.add(contents, 2);
+			queryPos.add(titles, 2);
+			queryPos.add(descriptions, 2);
+			queryPos.add(displayDateGT_TS);
+			queryPos.add(displayDateGT_TS);
+			queryPos.add(displayDateLT_TS);
+			queryPos.add(displayDateLT_TS);
+			queryPos.add(reviewDate_TS);
+			queryPos.add(reviewDate_TS);
 
 			return (List<JournalArticle>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),

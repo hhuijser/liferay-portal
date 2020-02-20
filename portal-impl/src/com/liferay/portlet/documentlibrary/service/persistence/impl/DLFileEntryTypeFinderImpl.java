@@ -231,17 +231,17 @@ public class DLFileEntryTypeFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (includeBasicFileEntryType) {
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 			}
 
-			qPos.add(companyId);
-			qPos.add(groupIds);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(companyId);
+			queryPos.add(groupIds);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			int countValue = 0;
 
@@ -314,22 +314,22 @@ public class DLFileEntryTypeFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (includeBasicFileEntryType) {
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 			}
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (!inherited) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(groupIds);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(groupIds);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			int countValue = 0;
 
@@ -396,17 +396,17 @@ public class DLFileEntryTypeFinderImpl
 
 			sqlQuery.addEntity("DLFileEntryType", DLFileEntryTypeImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (includeBasicFileEntryType) {
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 			}
 
-			qPos.add(companyId);
-			qPos.add(groupIds);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(companyId);
+			queryPos.add(groupIds);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<DLFileEntryType>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -468,22 +468,22 @@ public class DLFileEntryTypeFinderImpl
 
 			sqlQuery.addEntity("DLFileEntryType", DLFileEntryTypeImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (includeBasicFileEntryType) {
-				qPos.add(names, 2);
-				qPos.add(descriptions, 2);
+				queryPos.add(names, 2);
+				queryPos.add(descriptions, 2);
 			}
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			if (!inherited) {
-				qPos.add(folderId);
+				queryPos.add(folderId);
 			}
 
-			qPos.add(groupIds);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(groupIds);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<DLFileEntryType>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

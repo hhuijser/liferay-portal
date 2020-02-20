@@ -92,28 +92,28 @@ public class AnnouncementsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
-			setClassPKs(qPos, classNameId, classPKs);
+			setClassPKs(queryPos, classNameId, classPKs);
 
 			setDates(
-				qPos, displayDateMonth, displayDateDay, displayDateYear,
+				queryPos, displayDateMonth, displayDateDay, displayDateYear,
 				displayDateHour, displayDateMinute, expirationDateMonth,
 				expirationDateDay, expirationDateYear, expirationDateHour,
 				expirationDateMinute);
 
-			qPos.add(alert);
+			queryPos.add(alert);
 
 			if (flagValue != AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -162,28 +162,28 @@ public class AnnouncementsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
-			setClassPKs(qPos, scopes);
+			setClassPKs(queryPos, scopes);
 
 			setDates(
-				qPos, displayDateMonth, displayDateDay, displayDateYear,
+				queryPos, displayDateMonth, displayDateDay, displayDateYear,
 				displayDateHour, displayDateMinute, expirationDateMonth,
 				expirationDateDay, expirationDateYear, expirationDateHour,
 				expirationDateMinute);
 
-			qPos.add(alert);
+			queryPos.add(alert);
 
 			if (flagValue != AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
 			Iterator<Long> itr = sqlQuery.iterate();
@@ -225,10 +225,10 @@ public class AnnouncementsEntryFinderImpl
 			sqlQuery.addEntity(
 				"AnnouncementsEntry", AnnouncementsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(displayDateGT_TS);
-			qPos.add(displayDateLT_TS);
+			queryPos.add(displayDateGT_TS);
+			queryPos.add(displayDateLT_TS);
 
 			return sqlQuery.list(true);
 		}
@@ -269,28 +269,28 @@ public class AnnouncementsEntryFinderImpl
 			sqlQuery.addEntity(
 				"AnnouncementsEntry", AnnouncementsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			setClassPKs(qPos, classNameId, classPKs);
+			setClassPKs(queryPos, classNameId, classPKs);
 
 			if (flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
 			setDates(
-				qPos, displayDateMonth, displayDateDay, displayDateYear,
+				queryPos, displayDateMonth, displayDateDay, displayDateYear,
 				displayDateHour, displayDateMinute, expirationDateMonth,
 				expirationDateDay, expirationDateYear, expirationDateHour,
 				expirationDateMinute);
 
-			qPos.add(alert);
+			queryPos.add(alert);
 
 			if (flagValue != AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
 			return (List<AnnouncementsEntry>)QueryUtil.list(
@@ -332,28 +332,28 @@ public class AnnouncementsEntryFinderImpl
 			sqlQuery.addEntity(
 				"AnnouncementsEntry", AnnouncementsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (flagValue == AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
-			qPos.add(companyId);
+			queryPos.add(companyId);
 
-			setClassPKs(qPos, scopes);
+			setClassPKs(queryPos, scopes);
 
 			setDates(
-				qPos, displayDateMonth, displayDateDay, displayDateYear,
+				queryPos, displayDateMonth, displayDateDay, displayDateYear,
 				displayDateHour, displayDateMinute, expirationDateMonth,
 				expirationDateDay, expirationDateYear, expirationDateHour,
 				expirationDateMinute);
 
-			qPos.add(alert);
+			queryPos.add(alert);
 
 			if (flagValue != AnnouncementsFlagConstants.NOT_HIDDEN) {
-				qPos.add(userId);
-				qPos.add(AnnouncementsFlagConstants.HIDDEN);
+				queryPos.add(userId);
+				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
 			return (List<AnnouncementsEntry>)QueryUtil.list(
@@ -413,7 +413,7 @@ public class AnnouncementsEntryFinderImpl
 	}
 
 	protected void setClassPKs(
-		QueryPos qPos, LinkedHashMap<Long, long[]> scopes) {
+		QueryPos queryPos, LinkedHashMap<Long, long[]> scopes) {
 
 		if (scopes == null) {
 			return;
@@ -423,22 +423,22 @@ public class AnnouncementsEntryFinderImpl
 			Long classNameId = entry.getKey();
 			long[] classPKs = entry.getValue();
 
-			setClassPKs(qPos, classNameId.longValue(), classPKs);
+			setClassPKs(queryPos, classNameId.longValue(), classPKs);
 		}
 	}
 
 	protected void setClassPKs(
-		QueryPos qPos, long classNameId, long[] classPKs) {
+		QueryPos queryPos, long classNameId, long[] classPKs) {
 
-		qPos.add(classNameId);
+		queryPos.add(classNameId);
 
 		for (long classPK : classPKs) {
-			qPos.add(classPK);
+			queryPos.add(classPK);
 		}
 	}
 
 	protected void setDates(
-		QueryPos qPos, int displayDateMonth, int displayDateDay,
+		QueryPos queryPos, int displayDateMonth, int displayDateDay,
 		int displayDateYear, int displayDateHour, int displayDateMinute,
 		int expirationDateMonth, int expirationDateDay, int expirationDateYear,
 		int expirationDateHour, int expirationDateMinute) {
@@ -487,10 +487,10 @@ public class AnnouncementsEntryFinderImpl
 
 		Timestamp expirationDateTS = CalendarUtil.getTimestamp(expirationDate);
 
-		qPos.add(displayDateTS);
-		qPos.add(displayDateTS);
-		qPos.add(expirationDateTS);
-		qPos.add(expirationDateTS);
+		queryPos.add(displayDateTS);
+		queryPos.add(displayDateTS);
+		queryPos.add(expirationDateTS);
+		queryPos.add(expirationDateTS);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

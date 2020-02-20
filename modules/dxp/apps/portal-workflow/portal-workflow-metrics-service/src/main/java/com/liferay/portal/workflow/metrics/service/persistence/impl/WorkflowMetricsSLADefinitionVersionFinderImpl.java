@@ -66,16 +66,16 @@ public class WorkflowMetricsSLADefinitionVersionFinderImpl
 				"WorkflowMetricsSLADefinitionVersion",
 				WorkflowMetricsSLADefinitionVersionImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(createDate);
+			queryPos.add(companyId);
+			queryPos.add(createDate);
 
 			if (processId != null) {
-				qPos.add(processId);
+				queryPos.add(processId);
 			}
 
-			qPos.add(status);
+			queryPos.add(status);
 
 			return (List<WorkflowMetricsSLADefinitionVersion>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

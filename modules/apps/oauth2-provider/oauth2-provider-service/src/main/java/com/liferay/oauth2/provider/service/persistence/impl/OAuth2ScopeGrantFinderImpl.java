@@ -57,16 +57,16 @@ public class OAuth2ScopeGrantFinderImpl
 
 			SQLQuery sqlQuery = session.createSynchronizedSQLQuery(sql);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			sqlQuery.addEntity("OAuth2ScopeGrant", OAuth2ScopeGrantImpl.class);
 			sqlQuery.addEntity(
 				"OAuth2Authorization", OAuth2AuthorizationImpl.class);
 
-			qPos.add(companyId);
-			qPos.add(applicationName);
-			qPos.add(bundleSymbolicName);
-			qPos.add(accessTokenContent.hashCode());
+			queryPos.add(companyId);
+			queryPos.add(applicationName);
+			queryPos.add(bundleSymbolicName);
+			queryPos.add(accessTokenContent.hashCode());
 
 			List<Object[]> rows = (List<Object[]>)QueryUtil.list(
 				sqlQuery, getDialect(), QueryUtil.ALL_POS, QueryUtil.ALL_POS);

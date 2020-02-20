@@ -114,15 +114,15 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(SocialRelationConstants.TYPE_UNI_ENEMY);
-			qPos.add(userId);
-			qPos.add(userId);
-			qPos.add(MicroblogsEntryConstants.TYPE_REPLY);
+			queryPos.add(companyId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(SocialRelationConstants.TYPE_UNI_ENEMY);
+			queryPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -157,12 +157,12 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(microblogsEntryUserId);
-			qPos.add(MicroblogsEntryConstants.TYPE_REPLY);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(microblogsEntryUserId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -199,14 +199,14 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(assetTagName);
-			qPos.add(userId);
-			qPos.add(assetTagName);
+			queryPos.add(companyId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(assetTagName);
+			queryPos.add(userId);
+			queryPos.add(assetTagName);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -243,11 +243,11 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(creatorClassNameId);
-			qPos.add(assetTagName);
+			queryPos.add(companyId);
+			queryPos.add(creatorClassNameId);
+			queryPos.add(assetTagName);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -284,12 +284,12 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(type);
-			qPos.add(microblogsEntryUserId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(type);
+			queryPos.add(microblogsEntryUserId);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -329,12 +329,12 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(creatorClassNameId);
-			qPos.add(creatorClassPK);
-			qPos.add(assetTagName);
+			queryPos.add(companyId);
+			queryPos.add(creatorClassNameId);
+			queryPos.add(creatorClassPK);
+			queryPos.add(assetTagName);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -371,15 +371,15 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addScalar("microblogsEntryId", Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(SocialRelationConstants.TYPE_UNI_ENEMY);
-			qPos.add(userId);
-			qPos.add(userId);
-			qPos.add(MicroblogsEntryConstants.TYPE_REPLY);
+			queryPos.add(companyId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(SocialRelationConstants.TYPE_UNI_ENEMY);
+			queryPos.add(userId);
+			queryPos.add(userId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
 			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
 				sqlQuery, getDialect(), start, end);
@@ -417,12 +417,12 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(microblogsEntryUserId);
-			qPos.add(MicroblogsEntryConstants.TYPE_REPLY);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(microblogsEntryUserId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -450,14 +450,14 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(assetTagName);
-			qPos.add(userId);
-			qPos.add(assetTagName);
+			queryPos.add(companyId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(assetTagName);
+			queryPos.add(userId);
+			queryPos.add(assetTagName);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -486,11 +486,11 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(creatorClassNameId);
-			qPos.add(assetTagName);
+			queryPos.add(companyId);
+			queryPos.add(creatorClassNameId);
+			queryPos.add(assetTagName);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -518,12 +518,12 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
-			qPos.add(userId);
-			qPos.add(type);
-			qPos.add(microblogsEntryUserId);
+			queryPos.add(MicroblogsEntryConstants.TYPE_EVERYONE);
+			queryPos.add(userId);
+			queryPos.add(type);
+			queryPos.add(microblogsEntryUserId);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -554,12 +554,12 @@ public class MicroblogsEntryFinderImpl
 
 			sqlQuery.addEntity("MicroblogsEntry", MicroblogsEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(creatorClassNameId);
-			qPos.add(creatorClassPK);
-			qPos.add(assetTagName);
+			queryPos.add(companyId);
+			queryPos.add(creatorClassNameId);
+			queryPos.add(creatorClassPK);
+			queryPos.add(assetTagName);
 
 			return (List<MicroblogsEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

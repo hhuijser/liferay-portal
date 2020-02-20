@@ -66,18 +66,18 @@ public class BackgroundTaskFinderImpl
 
 			sqlQuery.addEntity("BackgroundTask", BackgroundTaskImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			for (long groupId : groupIds) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			for (String taskExecutorClassName : taskExecutorClassNames) {
-				qPos.add(taskExecutorClassName);
+				queryPos.add(taskExecutorClassName);
 			}
 
 			if (completed != null) {
-				qPos.add(completed.booleanValue());
+				queryPos.add(completed.booleanValue());
 			}
 
 			return (List<BackgroundTask>)QueryUtil.list(

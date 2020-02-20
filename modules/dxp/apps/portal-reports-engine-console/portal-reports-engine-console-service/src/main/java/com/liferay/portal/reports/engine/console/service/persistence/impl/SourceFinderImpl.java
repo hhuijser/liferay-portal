@@ -125,14 +125,14 @@ public class SourceFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(driverUrls, 2);
+			queryPos.add(names, 2);
+			queryPos.add(driverUrls, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -200,14 +200,14 @@ public class SourceFinderImpl
 
 			sqlQuery.addEntity("Reports_Source", SourceImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
-			qPos.add(names, 2);
-			qPos.add(driverUrls, 2);
+			queryPos.add(names, 2);
+			queryPos.add(driverUrls, 2);
 
 			return (List<Source>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

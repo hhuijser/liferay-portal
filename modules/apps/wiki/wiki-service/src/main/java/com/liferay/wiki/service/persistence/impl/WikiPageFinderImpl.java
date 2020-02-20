@@ -213,9 +213,9 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(resourcePrimKey);
+			queryPos.add(resourcePrimKey);
 
 			List<WikiPage> pages = sqlQuery.list();
 
@@ -280,9 +280,9 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(_portal.getClassNameId(WikiPage.class));
+			queryPos.add(_portal.getClassNameId(WikiPage.class));
 
 			return sqlQuery.list(true);
 		}
@@ -332,13 +332,13 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(nodeId);
-			qPos.add(createDate);
-			qPos.add(true);
-			qPos.add(WorkflowConstants.STATUS_APPROVED);
+			queryPos.add(groupId);
+			queryPos.add(nodeId);
+			queryPos.add(createDate);
+			queryPos.add(true);
+			queryPos.add(WorkflowConstants.STATUS_APPROVED);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -390,13 +390,13 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(nodeId);
-			qPos.add(modifiedDate);
-			qPos.add(true);
-			qPos.add(WorkflowConstants.STATUS_APPROVED);
+			queryPos.add(groupId);
+			queryPos.add(nodeId);
+			queryPos.add(modifiedDate);
+			queryPos.add(true);
+			queryPos.add(WorkflowConstants.STATUS_APPROVED);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -440,21 +440,21 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(nodeId);
-			qPos.add(head);
+			queryPos.add(groupId);
+			queryPos.add(nodeId);
+			queryPos.add(head);
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -506,13 +506,13 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(nodeId);
-			qPos.add(createDate);
-			qPos.add(true);
-			qPos.add(WorkflowConstants.STATUS_APPROVED);
+			queryPos.add(groupId);
+			queryPos.add(nodeId);
+			queryPos.add(createDate);
+			queryPos.add(true);
+			queryPos.add(WorkflowConstants.STATUS_APPROVED);
 
 			return (List<WikiPage>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -555,13 +555,13 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(nodeId);
-			qPos.add(modifiedDate);
-			qPos.add(true);
-			qPos.add(WorkflowConstants.STATUS_APPROVED);
+			queryPos.add(groupId);
+			queryPos.add(nodeId);
+			queryPos.add(modifiedDate);
+			queryPos.add(true);
+			queryPos.add(WorkflowConstants.STATUS_APPROVED);
 
 			return (List<WikiPage>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);
@@ -599,21 +599,21 @@ public class WikiPageFinderImpl
 
 			sqlQuery.addEntity("WikiPage", WikiPageImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(groupId);
-			qPos.add(nodeId);
-			qPos.add(head);
+			queryPos.add(groupId);
+			queryPos.add(nodeId);
+			queryPos.add(head);
 
 			if (queryDefinition.getOwnerUserId() > 0) {
-				qPos.add(queryDefinition.getOwnerUserId());
+				queryPos.add(queryDefinition.getOwnerUserId());
 
 				if (queryDefinition.isIncludeOwner()) {
-					qPos.add(WorkflowConstants.STATUS_IN_TRASH);
+					queryPos.add(WorkflowConstants.STATUS_IN_TRASH);
 				}
 			}
 
-			qPos.add(queryDefinition.getStatus());
+			queryPos.add(queryDefinition.getStatus());
 
 			return (List<WikiPage>)QueryUtil.list(
 				sqlQuery, getDialect(), queryDefinition.getStart(),

@@ -117,12 +117,12 @@ public class DDMStructureLinkFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -175,12 +175,12 @@ public class DDMStructureLinkFinderImpl
 
 			sqlQuery.addEntity("DDMStructureLink", DDMStructureLinkImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(classNameId);
-			qPos.add(classPK);
-			qPos.add(names, 2);
-			qPos.add(descriptions, 2);
+			queryPos.add(classNameId);
+			queryPos.add(classPK);
+			queryPos.add(names, 2);
+			queryPos.add(descriptions, 2);
 
 			return (List<DDMStructureLink>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

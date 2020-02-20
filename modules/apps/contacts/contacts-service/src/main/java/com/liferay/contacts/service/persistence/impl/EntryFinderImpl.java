@@ -172,11 +172,11 @@ public class EntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(fullNames, 2);
-			qPos.add(emailAddresses, 2);
+			queryPos.add(userId);
+			queryPos.add(fullNames, 2);
+			queryPos.add(emailAddresses, 2);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -223,11 +223,11 @@ public class EntryFinderImpl
 
 			sqlQuery.addEntity("Contacts_Entry", EntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(userId);
-			qPos.add(fullNames, 2);
-			qPos.add(emailAddresses, 2);
+			queryPos.add(userId);
+			queryPos.add(fullNames, 2);
+			queryPos.add(emailAddresses, 2);
 
 			return (List<Entry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

@@ -107,31 +107,32 @@ public class TasksEntryFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
-				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
-				qPos.add(assetTagIds);
-				qPos.add(notAssetTagIds);
+				queryPos.add(
+					PortalUtil.getClassNameId(TasksEntry.class.getName()));
+				queryPos.add(assetTagIds);
+				queryPos.add(notAssetTagIds);
 			}
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (priority > 0) {
-				qPos.add(priority);
+				queryPos.add(priority);
 			}
 
 			if (assigneeUserId > 0) {
-				qPos.add(assigneeUserId);
+				queryPos.add(assigneeUserId);
 			}
 
-			qPos.add(statuses);
+			queryPos.add(statuses);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -205,31 +206,32 @@ public class TasksEntryFinderImpl
 
 			sqlQuery.addEntity("TMS_TasksEntry", TasksEntryImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
 			if ((assetTagIds.length > 0) || (notAssetTagIds.length > 0)) {
-				qPos.add(PortalUtil.getClassNameId(TasksEntry.class.getName()));
-				qPos.add(assetTagIds);
-				qPos.add(notAssetTagIds);
+				queryPos.add(
+					PortalUtil.getClassNameId(TasksEntry.class.getName()));
+				queryPos.add(assetTagIds);
+				queryPos.add(notAssetTagIds);
 			}
 
 			if (groupId > 0) {
-				qPos.add(groupId);
+				queryPos.add(groupId);
 			}
 
 			if (userId > 0) {
-				qPos.add(userId);
+				queryPos.add(userId);
 			}
 
 			if (priority > 0) {
-				qPos.add(priority);
+				queryPos.add(priority);
 			}
 
 			if (assigneeUserId > 0) {
-				qPos.add(assigneeUserId);
+				queryPos.add(assigneeUserId);
 			}
 
-			qPos.add(statuses);
+			queryPos.add(statuses);
 
 			return (List<TasksEntry>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

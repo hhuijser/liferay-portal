@@ -93,11 +93,11 @@ public class PasswordPolicyFinderImpl
 
 			sqlQuery.addScalar(COUNT_COLUMN_NAME, Type.LONG);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(companyId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			Iterator<Long> itr = sqlQuery.iterate();
 
@@ -147,11 +147,11 @@ public class PasswordPolicyFinderImpl
 
 			sqlQuery.addEntity("PasswordPolicy", PasswordPolicyImpl.class);
 
-			QueryPos qPos = QueryPos.getInstance(sqlQuery);
+			QueryPos queryPos = QueryPos.getInstance(sqlQuery);
 
-			qPos.add(companyId);
-			qPos.add(name);
-			qPos.add(name);
+			queryPos.add(companyId);
+			queryPos.add(name);
+			queryPos.add(name);
 
 			return (List<PasswordPolicy>)QueryUtil.list(
 				sqlQuery, getDialect(), start, end);

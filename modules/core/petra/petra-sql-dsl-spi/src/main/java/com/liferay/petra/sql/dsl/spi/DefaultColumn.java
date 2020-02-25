@@ -40,8 +40,8 @@ public class DefaultColumn<T extends BaseTable<T>, C>
 		_javaType = Objects.requireNonNull(javaType);
 		_sqlType = sqlType;
 
-		if ((flags & PRIMARY_FLAG) != 0) {
-			flags |= NULLITY_FLAG;
+		if ((flags & FLAG_PRIMARY) != 0) {
+			flags |= FLAG_NULLITY;
 		}
 
 		_flags = flags;

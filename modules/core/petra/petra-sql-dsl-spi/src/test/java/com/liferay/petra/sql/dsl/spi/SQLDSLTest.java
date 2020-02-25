@@ -1355,14 +1355,14 @@ public class SQLDSLTest {
 		public static final MainExampleTable INSTANCE = new MainExampleTable();
 
 		public final Column<MainExampleTable, Clob> description = createColumn(
-			"description", Clob.class, Types.CLOB, Column.DEFAULT_FLAGS);
+			"description", Clob.class, Types.CLOB, Column.FLAG_DEFAULT);
 		public final Column<MainExampleTable, Integer> flag = createColumn(
-			"flag", Integer.class, Types.INTEGER, Column.DEFAULT_FLAGS);
+			"flag", Integer.class, Types.INTEGER, Column.FLAG_DEFAULT);
 		public final Column<MainExampleTable, Long> mainExampleId =
 			createColumn(
-				"mainExampleId", Long.class, Types.BIGINT, Column.PRIMARY_FLAG);
+				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
 		public final Column<MainExampleTable, String> name = createColumn(
-			"name", String.class, Types.VARCHAR, Column.DEFAULT_FLAGS);
+			"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 
 		private MainExampleTable() {
 			super("MainExample", MainExampleTable::new);
@@ -1378,13 +1378,13 @@ public class SQLDSLTest {
 
 		public final Column<ReferenceExampleTable, Long> mainExampleId =
 			createColumn(
-				"mainExampleId", Long.class, Types.BIGINT, Column.PRIMARY_FLAG);
+				"mainExampleId", Long.class, Types.BIGINT, Column.FLAG_PRIMARY);
 		public final Column<ReferenceExampleTable, String> name = createColumn(
-			"name", String.class, Types.VARCHAR, Column.DEFAULT_FLAGS);
+			"name", String.class, Types.VARCHAR, Column.FLAG_DEFAULT);
 		public final Column<ReferenceExampleTable, Long> referenceExampleId =
 			createColumn(
 				"referenceExampleId", Long.class, Types.BIGINT,
-				Column.DEFAULT_FLAGS);
+				Column.FLAG_DEFAULT);
 
 		private ReferenceExampleTable() {
 			super("ReferenceExample", ReferenceExampleTable::new);

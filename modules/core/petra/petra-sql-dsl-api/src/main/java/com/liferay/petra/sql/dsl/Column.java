@@ -22,11 +22,11 @@ import com.liferay.petra.sql.dsl.expression.Expression;
  */
 public interface Column<T extends Table<T>, C> extends Expression<C> {
 
-	public static int DEFAULT_FLAGS = 0;
+	public static int FLAG_DEFAULT = 0;
 
-	public static int NULLITY_FLAG = 1;
+	public static int FLAG_NULLITY = 1;
 
-	public static int PRIMARY_FLAG = 2;
+	public static int FLAG_PRIMARY = 2;
 
 	@Override
 	public ColumnAlias<T, C> as(String name);
@@ -42,7 +42,7 @@ public interface Column<T extends Table<T>, C> extends Expression<C> {
 	public T getTable();
 
 	public default boolean isNullAllowed() {
-		if ((getFlags() & NULLITY_FLAG) == 0) {
+		if ((getFlags() & FLAG_NULLITY) == 0) {
 			return true;
 		}
 
@@ -50,7 +50,7 @@ public interface Column<T extends Table<T>, C> extends Expression<C> {
 	}
 
 	public default boolean isPrimaryKey() {
-		if ((getFlags() & PRIMARY_FLAG) == 0) {
+		if ((getFlags() & FLAG_PRIMARY) == 0) {
 			return false;
 		}
 

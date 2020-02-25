@@ -751,7 +751,7 @@ public class SQLDSLTest {
 				IllegalArgumentException.class, exception.getClass());
 
 			Assert.assertEquals(
-				"OrderByExpressions is empty", exception.getMessage());
+				"Order by expressions is empty", exception.getMessage());
 		}
 
 		OrderByExpression orderByExpression =

@@ -2,7 +2,7 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-JSLodashDependencyCheck | Miscellaneous | |
-JSStylingCheck | Miscellaneous | |
-JSWhitespaceCheck | Miscellaneous | |
-LanguageKeysCheck | Miscellaneous | |
+JSLodashDependencyCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+JSStylingCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+JSWhitespaceCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+LanguageKeysCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |

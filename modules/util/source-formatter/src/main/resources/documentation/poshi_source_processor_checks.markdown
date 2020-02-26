@@ -2,10 +2,10 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-PoshiAnnotationsOrderCheck | Miscellaneous | |
-PoshiCommandsOrderCheck | Miscellaneous | |
-PoshiEmptyLinesCheck | Miscellaneous | |
-PoshiIndentationCheck | Miscellaneous | |
-PoshiParametersOrderCheck | Miscellaneous | |
-PoshiStylingCheck | Miscellaneous | |
-PoshiWhitespaceCheck | Miscellaneous | |
+PoshiAnnotationsOrderCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+PoshiCommandsOrderCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+PoshiEmptyLinesCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+PoshiIndentationCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+PoshiParametersOrderCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+PoshiStylingCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+PoshiWhitespaceCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |

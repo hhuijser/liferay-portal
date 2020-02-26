@@ -2,6 +2,6 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-HTMLEmptyLinesCheck | Miscellaneous | |
-HTMLWhitespaceCheck | Miscellaneous | |
-XMLTagAttributesCheck | Miscellaneous | |
+HTMLEmptyLinesCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+HTMLWhitespaceCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+XMLTagAttributesCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |

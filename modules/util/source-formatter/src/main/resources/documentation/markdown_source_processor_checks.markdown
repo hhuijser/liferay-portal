@@ -2,8 +2,8 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-MarkdownFileExtensionCheck | Miscellaneous | |
-MarkdownSourceFormatterDocumentationCheck | Miscellaneous | |
-MarkdownSourceFormatterReadmeCheck | Miscellaneous | |
-MarkdownStylingCheck | Miscellaneous | |
-MarkdownWhitespaceCheck | Miscellaneous | |
+MarkdownFileExtensionCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+MarkdownSourceFormatterDocumentationCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+MarkdownSourceFormatterReadmeCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+MarkdownStylingCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+MarkdownWhitespaceCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |

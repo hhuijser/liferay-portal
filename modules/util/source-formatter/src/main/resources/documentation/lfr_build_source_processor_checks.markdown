@@ -2,5 +2,5 @@
 
 Check | Category | Description
 ----- | -------- | -----------
-LFRBuildContentCheck | Miscellaneous | |
-LFRBuildReadmeCheck | Miscellaneous | |
+LFRBuildContentCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |
+LFRBuildReadmeCheck | [Miscellaneous](src/main/resources/documentation/miscellaneous_checks.markdown#miscellaneous-checks) | |

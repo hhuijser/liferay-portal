@@ -31,6 +31,13 @@ public class InitialCapacityCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		DetailAST modifiersDetailAST = detailAST.findFirstToken(
+			TokenTypes.MODIFIERS);
+
+		if (modifiersDetailAST.branchContains(TokenTypes.FINAL)) {
+			return;
+		}
+
 		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
 
 		if (assignDetailAST == null) {

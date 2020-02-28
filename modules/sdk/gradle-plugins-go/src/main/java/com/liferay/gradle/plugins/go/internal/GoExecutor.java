@@ -239,7 +239,7 @@ public class GoExecutor {
 	}
 
 	private List<String> _getWindowsArgs() {
-		List<String> windowsArgs = new ArrayList<>(2);
+		List<String> windowsArgs = new ArrayList<>();
 
 		windowsArgs.add("/c");
 

@@ -196,7 +196,7 @@ public class DDMTemplateServiceTest extends BaseDDMServiceTestCase {
 		DDMStructure structure = addStructure(
 			_recordSetClassNameId, StringUtil.randomString());
 
-		List<DDMTemplate> newTemplates = new ArrayList<>(3);
+		List<DDMTemplate> newTemplates = new ArrayList<>();
 
 		DDMTemplate template = addFormTemplate(
 			structure.getStructureId(), StringUtil.randomString(),

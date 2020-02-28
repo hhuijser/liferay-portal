@@ -507,7 +507,7 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		throws FileNotFoundException, PortalException {
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
-			new ArrayList<>(1);
+			new ArrayList<>();
 
 		InputStream inputStream = new FileInputStream(file);
 

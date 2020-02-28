@@ -262,7 +262,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 			articleSearchContainer.setResults(results);
 		}
 		else if (isSearch()) {
-			List<Long> folderIds = new ArrayList<>(1);
+			List<Long> folderIds = new ArrayList<>();
 
 			if (_getFolderId() !=
 					JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID) {

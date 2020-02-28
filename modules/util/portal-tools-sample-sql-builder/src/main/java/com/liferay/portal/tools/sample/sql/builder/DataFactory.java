@@ -1458,7 +1458,7 @@ public class DataFactory {
 		newAssetPublisherPortletPreferencesModels(long plid) {
 
 		List<PortletPreferencesModel> portletPreferencesModels =
-			new ArrayList<>(3);
+			new ArrayList<>();
 
 		portletPreferencesModels.add(
 			newPortletPreferencesModel(
@@ -1696,7 +1696,7 @@ public class DataFactory {
 		long plid) {
 
 		List<PortletPreferencesModel> portletPreferencesModels =
-			new ArrayList<>(3);
+			new ArrayList<>();
 
 		portletPreferencesModels.add(
 			newPortletPreferencesModel(
@@ -2520,7 +2520,7 @@ public class DataFactory {
 	}
 
 	public List<LayoutSetModel> newLayoutSetModels(long groupId) {
-		List<LayoutSetModel> layoutSetModels = new ArrayList<>(2);
+		List<LayoutSetModel> layoutSetModels = new ArrayList<>();
 
 		layoutSetModels.add(newLayoutSetModel(groupId, true));
 		layoutSetModels.add(newLayoutSetModel(groupId, false));
@@ -2961,7 +2961,7 @@ public class DataFactory {
 		DDMStructureModel ddmStructureModel) {
 
 		List<ResourcePermissionModel> resourcePermissionModels =
-			new ArrayList<>(3);
+			new ArrayList<>();
 
 		String name = _getResourcePermissionModelName(
 			DDMStructure.class.getName(),
@@ -2986,7 +2986,7 @@ public class DataFactory {
 		DDMTemplateModel ddmTemplateModel) {
 
 		List<ResourcePermissionModel> resourcePermissionModels =
-			new ArrayList<>(3);
+			new ArrayList<>();
 
 		String name = _getResourcePermissionModelName(
 			DDMTemplate.class.getName(),
@@ -4144,7 +4144,7 @@ public class DataFactory {
 		String name, String primKey, long ownerId) {
 
 		List<ResourcePermissionModel> resourcePermissionModels =
-			new ArrayList<>(3);
+			new ArrayList<>();
 
 		resourcePermissionModels.add(
 			newResourcePermissionModel(

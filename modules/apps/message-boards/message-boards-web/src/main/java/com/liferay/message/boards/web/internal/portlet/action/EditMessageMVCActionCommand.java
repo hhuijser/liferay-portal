@@ -385,7 +385,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			MBGroupServiceSettings.getInstance(themeDisplay.getSiteGroupId());
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
-			new ArrayList<>(5);
+			new ArrayList<>();
 
 		try {
 			List<FileEntry> tempFileEntries = _populateInputStreamOVPs(

@@ -72,7 +72,7 @@ public class AopCacheManagerTest {
 
 	@Test
 	public void testConcurrentRegistrationAndInvocations() throws Exception {
-		List<Callable<Void>> callables = new ArrayList<>(1000);
+		List<Callable<Void>> callables = new ArrayList<>();
 
 		for (int i = 0; i < 1000; i++) {
 			ClassLoader classLoader =

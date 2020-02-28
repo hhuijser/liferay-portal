@@ -267,7 +267,7 @@ public class DLOpenerOneDriveManager {
 			long userId, FileEntry fileEntry, Locale locale)
 		throws PortalException {
 
-		Map<String, Serializable> taskContextMap = new HashMap<>(3);
+		Map<String, Serializable> taskContextMap = new HashMap<>();
 
 		taskContextMap.put(
 			BackgroundTaskContextMapConstants.DELETE_ON_SUCCESS, true);

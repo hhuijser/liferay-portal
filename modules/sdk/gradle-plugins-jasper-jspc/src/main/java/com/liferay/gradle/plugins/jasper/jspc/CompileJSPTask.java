@@ -79,7 +79,7 @@ public class CompileJSPTask extends JavaExec {
 
 		args.put("dir", getWebAppDir());
 
-		List<String> excludes = new ArrayList<>(2);
+		List<String> excludes = new ArrayList<>();
 
 		excludes.add("**/custom_jsps/**/*");
 		excludes.add("**/dependencies/**/*");

@@ -105,7 +105,7 @@ public class MBTestUtil {
 		String fileName, Class<?> clazz, String keywords) {
 
 		List<ObjectValuePair<String, InputStream>> inputStreamOVPs =
-			new ArrayList<>(1);
+			new ArrayList<>();
 
 		InputStream inputStream = clazz.getResourceAsStream(
 			"dependencies/" + fileName);

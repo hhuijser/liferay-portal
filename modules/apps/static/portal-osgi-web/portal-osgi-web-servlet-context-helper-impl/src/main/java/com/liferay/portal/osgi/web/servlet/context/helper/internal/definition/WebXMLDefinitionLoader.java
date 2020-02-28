@@ -273,7 +273,7 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 
 			EnumMap<Order.Path, String[]> routes = _order.getRoutes();
 
-			List<String> beforeNames = new ArrayList<>(2);
+			List<String> beforeNames = new ArrayList<>();
 
 			if (_beforeName != null) {
 				beforeNames.add(_beforeName);
@@ -288,7 +288,7 @@ public class WebXMLDefinitionLoader extends DefaultHandler {
 					Order.Path.BEFORE, beforeNames.toArray(new String[0]));
 			}
 
-			List<String> afterNames = new ArrayList<>(2);
+			List<String> afterNames = new ArrayList<>();
 
 			if (_afterName != null) {
 				afterNames.add(_afterName);

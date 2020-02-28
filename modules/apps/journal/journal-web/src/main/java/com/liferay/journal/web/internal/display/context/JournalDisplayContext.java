@@ -1212,7 +1212,7 @@ public class JournalDisplayContext {
 			articleSearchContainer.setResults(results);
 		}
 		else if (isSearch()) {
-			List<Long> folderIds = new ArrayList<>(1);
+			List<Long> folderIds = new ArrayList<>();
 
 			if (getFolderId() !=
 					JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
@@ -1436,7 +1436,7 @@ public class JournalDisplayContext {
 		articleVersionsSearchContainer.setOrderByComparator(orderByComparator);
 		articleVersionsSearchContainer.setOrderByType(getOrderByType());
 
-		List<Long> folderIds = new ArrayList<>(1);
+		List<Long> folderIds = new ArrayList<>();
 
 		if (getFolderId() != JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 			folderIds.add(getFolderId());

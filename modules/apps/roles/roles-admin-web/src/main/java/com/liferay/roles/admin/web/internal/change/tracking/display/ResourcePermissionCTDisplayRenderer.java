@@ -91,7 +91,7 @@ public class ResourcePermissionCTDisplayRenderer
 			Locale locale, ResourcePermission resourcePermission)
 		throws PortalException {
 
-		List<String> arguments = new ArrayList<>(4);
+		List<String> arguments = new ArrayList<>();
 
 		Role role = _roleLocalService.getRole(resourcePermission.getRoleId());
 

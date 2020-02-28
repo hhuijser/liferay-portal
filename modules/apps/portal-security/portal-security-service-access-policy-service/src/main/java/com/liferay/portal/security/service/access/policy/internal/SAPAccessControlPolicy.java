@@ -166,7 +166,7 @@ public class SAPAccessControlPolicy extends BaseAccessControlPolicy {
 	}
 
 	protected List<String> getSystemServiceAccessPolicyNames(long companyId) {
-		List<String> systemServiceAccessPolicyNames = new ArrayList<>(2);
+		List<String> systemServiceAccessPolicyNames = new ArrayList<>();
 
 		SAPConfiguration sapConfiguration = null;
 

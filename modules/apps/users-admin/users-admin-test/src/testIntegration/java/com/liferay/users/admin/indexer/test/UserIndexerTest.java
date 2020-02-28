@@ -709,7 +709,7 @@ public class UserIndexerTest {
 	protected Hits search(List<Role> roles) throws Exception {
 		SearchContext searchContext = getSearchContext();
 
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>(1);
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		if (roles.size() == 1) {
 			Role role = roles.get(0);

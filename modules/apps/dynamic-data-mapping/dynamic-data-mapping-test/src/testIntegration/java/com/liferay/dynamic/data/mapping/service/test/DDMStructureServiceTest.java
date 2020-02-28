@@ -189,7 +189,7 @@ public class DDMStructureServiceTest extends BaseDDMServiceTestCase {
 		String name = StringUtil.randomString();
 		String description = StringUtil.randomString();
 
-		List<DDMStructure> expectedStructures = new ArrayList<>(3);
+		List<DDMStructure> expectedStructures = new ArrayList<>();
 
 		expectedStructures.add(addStructure(_classNameId, name, description));
 		expectedStructures.add(

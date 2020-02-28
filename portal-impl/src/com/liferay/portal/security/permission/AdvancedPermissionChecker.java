@@ -691,7 +691,7 @@ public class AdvancedPermissionChecker extends BasePermissionChecker {
 
 		// Individual
 
-		List<Resource> resources = new ArrayList<>(4);
+		List<Resource> resources = new ArrayList<>();
 
 		Resource individualResource = ResourceLocalServiceUtil.getResource(
 			companyId, name, ResourceConstants.SCOPE_INDIVIDUAL, primKey);

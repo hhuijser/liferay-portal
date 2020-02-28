@@ -53,7 +53,7 @@ public class DirectDeployTask extends BasePortalToolsTask {
 
 	@Override
 	public List<String> getArgs() {
-		List<String> args = new ArrayList<>(3);
+		List<String> args = new ArrayList<>();
 
 		File appServerLibPortalDir = _getAppServerLibPortalDir();
 

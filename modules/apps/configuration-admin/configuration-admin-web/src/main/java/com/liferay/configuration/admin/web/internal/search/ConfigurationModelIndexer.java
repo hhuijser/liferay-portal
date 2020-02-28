@@ -318,7 +318,7 @@ public class ConfigurationModelIndexer extends BaseIndexer<ConfigurationModel> {
 				nameValues.toArray(new String[0]));
 		}
 
-		List<TranslationHelper> translationHelpers = new ArrayList<>(3);
+		List<TranslationHelper> translationHelpers = new ArrayList<>();
 
 		ConfigurationCategory configurationCategory =
 			_configurationEntryRetriever.getConfigurationCategory(

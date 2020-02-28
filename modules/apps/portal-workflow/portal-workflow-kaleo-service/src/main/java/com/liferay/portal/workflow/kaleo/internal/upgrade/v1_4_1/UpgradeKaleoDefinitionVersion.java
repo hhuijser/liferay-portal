@@ -239,7 +239,7 @@ public class UpgradeKaleoDefinitionVersion extends UpgradeProcess {
 		sb2.append("content, version, startKaleoNodeId, status) values (?, ");
 		sb2.append("?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )");
 
-		List<PreparedStatement> preparedStatements = new ArrayList<>(17);
+		List<PreparedStatement> preparedStatements = new ArrayList<>();
 
 		try (LoggingTimer loggingTimer = new LoggingTimer();
 			PreparedStatement ps1 = connection.prepareStatement(sb1.toString());

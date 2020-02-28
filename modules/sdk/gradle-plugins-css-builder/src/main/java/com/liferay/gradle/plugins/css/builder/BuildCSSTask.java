@@ -118,7 +118,7 @@ public class BuildCSSTask extends JavaExec {
 				dirName += "/";
 			}
 
-			List<String> includes = new ArrayList<>(2);
+			List<String> includes = new ArrayList<>();
 
 			includes.add(dirName + "**/*.css");
 			includes.add(dirName + "**/*.scss");

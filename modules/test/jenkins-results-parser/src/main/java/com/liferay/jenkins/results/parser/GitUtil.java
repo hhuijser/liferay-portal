@@ -161,7 +161,7 @@ public class GitUtil {
 		List<RemoteGitRef> remoteGitRefs = null;
 
 		if (remoteURL.contains(_HOSTNAME_GITHUB_CACHE_PROXY)) {
-			List<String> usedGitHubDevNodeHostnames = new ArrayList<>(3);
+			List<String> usedGitHubDevNodeHostnames = new ArrayList<>();
 
 			while ((usedGitHubDevNodeHostnames.size() < 3) &&
 				   ((remoteGitRefs == null) || remoteGitRefs.isEmpty())) {

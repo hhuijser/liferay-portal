@@ -135,7 +135,7 @@ public class SchemaBuilder {
 	}
 
 	private static Schema _getDeleteSchema() {
-		List<Schema.Field> schemaFields = new ArrayList<>(1);
+		List<Schema.Field> schemaFields = new ArrayList<>();
 
 		Schema.Field designField = new Schema.Field(
 			"_id", AvroUtils._long(), null, (Object)null);

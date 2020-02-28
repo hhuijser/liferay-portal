@@ -94,7 +94,7 @@ public class AopServiceManagerConcurrencyTest {
 
 	@Test
 	public void testConcurrentRegistrations() throws Exception {
-		List<Callable<Void>> callables = new ArrayList<>(1000);
+		List<Callable<Void>> callables = new ArrayList<>();
 
 		for (int i = 0; i < 1000; i++) {
 			int nameSuffix = i % 10;

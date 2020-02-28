@@ -448,7 +448,7 @@ public class AssigneeUserResourceImpl
 	}
 
 	private Set<Long> _getUserIds(String keywords, Long[] roleIds) {
-		LinkedHashMap<String, Object> params = new LinkedHashMap<>(1);
+		LinkedHashMap<String, Object> params = new LinkedHashMap<>();
 
 		if (ArrayUtil.isNotEmpty(roleIds)) {
 			params.put("usersRoles", roleIds);

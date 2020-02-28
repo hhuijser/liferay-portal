@@ -139,7 +139,7 @@ public class AssetEntryServiceTest {
 
 	@Test
 	public void testGetEntriesOrderByRatingsAndViewCount() throws Exception {
-		List<AssetEntry> expectedAssetEntries = new ArrayList<>(4);
+		List<AssetEntry> expectedAssetEntries = new ArrayList<>();
 
 		long classNameId = ClassNameLocalServiceUtil.getClassNameId(
 			AssetEntry.class);
@@ -262,7 +262,7 @@ public class AssetEntryServiceTest {
 		AssetEntry assetEntry4 = AssetTestUtil.addAssetEntry(
 			_group.getGroupId(), dayBeforeYesterday);
 
-		List<AssetEntry> assetEntries = new ArrayList<>(4);
+		List<AssetEntry> assetEntries = new ArrayList<>();
 
 		assetEntries.add(assetEntry3);
 		assetEntries.add(assetEntry1);

@@ -84,7 +84,7 @@ public class PortletContainerUtil {
 		}
 
 		if (layout.isTypePortlet()) {
-			List<LayoutTypePortlet> layoutTypePortlets = new ArrayList<>(1);
+			List<LayoutTypePortlet> layoutTypePortlets = new ArrayList<>();
 
 			LayoutTypePortlet layoutTypePortlet =
 				(LayoutTypePortlet)layout.getLayoutType();

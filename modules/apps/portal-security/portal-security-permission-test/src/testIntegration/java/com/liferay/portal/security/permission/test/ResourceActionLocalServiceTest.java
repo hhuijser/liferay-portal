@@ -47,7 +47,7 @@ public class ResourceActionLocalServiceTest {
 
 	@Before
 	public void setUp() {
-		List<String> actionIds = new ArrayList<>(3);
+		List<String> actionIds = new ArrayList<>();
 
 		actionIds.add(ActionKeys.VIEW);
 		actionIds.add(_ACTION_ID_1);
@@ -76,7 +76,7 @@ public class ResourceActionLocalServiceTest {
 
 	@Test(expected = SystemException.class)
 	public void testAddMoreThan64Actions() {
-		List<String> actionIds = new ArrayList<>(65);
+		List<String> actionIds = new ArrayList<>();
 
 		actionIds.add(ActionKeys.VIEW);
 

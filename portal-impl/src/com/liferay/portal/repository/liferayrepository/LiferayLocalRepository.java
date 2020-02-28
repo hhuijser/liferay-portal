@@ -274,7 +274,7 @@ public class LiferayLocalRepository
 			OrderByComparator<FileEntry> obc)
 		throws PortalException {
 
-		List<Long> folderIds = new ArrayList<>(1);
+		List<Long> folderIds = new ArrayList<>();
 
 		folderIds.add(folderId);
 
@@ -336,7 +336,7 @@ public class LiferayLocalRepository
 			long folderId, String[] mimeTypes, int status)
 		throws PortalException {
 
-		List<Long> folderIds = new ArrayList<>(1);
+		List<Long> folderIds = new ArrayList<>();
 
 		folderIds.add(folderId);
 

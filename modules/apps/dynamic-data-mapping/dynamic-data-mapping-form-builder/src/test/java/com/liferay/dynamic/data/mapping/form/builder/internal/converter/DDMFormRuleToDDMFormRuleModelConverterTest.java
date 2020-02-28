@@ -369,7 +369,7 @@ public class DDMFormRuleToDDMFormRuleModelConverterTest
 
 		matcher.find();
 
-		List<String> callFunctionParameters = new ArrayList<>(3);
+		List<String> callFunctionParameters = new ArrayList<>();
 
 		callFunctionParameters.add(matcher.group(1));
 		callFunctionParameters.add(matcher.group(2));

@@ -41,7 +41,7 @@ public class DefaultStatsTranslator implements StatsTranslator {
 	public void populateRequest(
 		SolrQuery solrQuery, StatsRequest statsRequest) {
 
-		List<String> solrStats = new ArrayList<>(9);
+		List<String> solrStats = new ArrayList<>();
 
 		if (statsRequest.isCardinality()) {
 			solrStats.add("cardinality");

@@ -273,7 +273,7 @@ public class PublishNodeModuleTask extends ExecutePackageManagerTask {
 	}
 
 	private void _createNpmrcFile(File npmrcFile) throws IOException {
-		List<String> npmrcContents = new ArrayList<>(2);
+		List<String> npmrcContents = new ArrayList<>();
 
 		npmrcContents.add("_auth = " + _getNpmAuth());
 		npmrcContents.add("email = " + getNpmEmailAddress());

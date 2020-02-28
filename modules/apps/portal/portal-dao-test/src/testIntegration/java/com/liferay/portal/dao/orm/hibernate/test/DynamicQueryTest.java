@@ -81,7 +81,7 @@ public class DynamicQueryTest {
 	public void testInRestrictionCriterion() {
 		DynamicQuery dynamicQuery = _classNameLocalService.dynamicQuery();
 
-		List<Long> values = new ArrayList<>(2);
+		List<Long> values = new ArrayList<>();
 
 		ClassName className1 = _allClassNames.get(1);
 		ClassName className2 = _allClassNames.get(2);

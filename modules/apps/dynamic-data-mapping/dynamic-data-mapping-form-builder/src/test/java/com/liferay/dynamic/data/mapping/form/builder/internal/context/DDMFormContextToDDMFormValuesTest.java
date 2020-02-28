@@ -115,7 +115,7 @@ public class DDMFormContextToDDMFormValuesTest extends PowerMockito {
 			DDMFormTestUtil.createTextDDMFormField(
 				"TextField2", true, false, false));
 
-		List<DDMFormFieldValue> ddmFormFieldValues1 = new ArrayList<>(2);
+		List<DDMFormFieldValue> ddmFormFieldValues1 = new ArrayList<>();
 
 		LocalizedValue value1 = new LocalizedValue();
 

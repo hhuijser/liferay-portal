@@ -352,7 +352,7 @@ public class GitHubDevSyncUtil {
 		String cacheBranchName, GitWorkingDirectory gitWorkingDirectory,
 		Map<String, RemoteGitBranch> remoteGitBranches) {
 
-		List<RemoteGitBranch> cacheRemoteGitBranches = new ArrayList<>(2);
+		List<RemoteGitBranch> cacheRemoteGitBranches = new ArrayList<>();
 
 		for (Map.Entry<String, RemoteGitBranch> entry :
 				remoteGitBranches.entrySet()) {

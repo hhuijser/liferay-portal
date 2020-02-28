@@ -52,7 +52,7 @@ public class SyncDLObjectUpdateTest {
 
 	@Test
 	public void testToString() {
-		List<SyncDLObject> syncDLObjects = new ArrayList<>(3);
+		List<SyncDLObject> syncDLObjects = new ArrayList<>();
 
 		SyncDLObject syncDLObject = new SyncDLObjectImpl();
 

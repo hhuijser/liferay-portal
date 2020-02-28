@@ -201,7 +201,7 @@ public class SolrQuerySuggester implements QuerySuggester {
 	protected String[] getFilterQueries(
 		SearchContext searchContext, String type) {
 
-		List<String> filterQueries = new ArrayList<>(4);
+		List<String> filterQueries = new ArrayList<>();
 
 		String companyIdFilterQuery = getFilterQuery(
 			Field.COMPANY_ID, searchContext.getCompanyId());

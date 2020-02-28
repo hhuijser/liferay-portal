@@ -265,6 +265,17 @@ public class JavaSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testInitialCapacity() throws Exception {
+		test(
+			"InitialCapacity.testjava",
+			new String[] {
+				"Do not initialize capacity with the numeric literal for type 'ArrayList'",
+				"Do not initialize capacity with the numeric literal for type 'HashMap'"
+			},
+			new Integer[] {34, 38});
+	}
+
+	@Test
 	public void testJavaParameterAnnotations() throws Exception {
 		test("JavaParameterAnnotations.testjava");
 	}

@@ -4,12 +4,12 @@
 />
 
 /**
- * Returns the number of ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}.
+ * Returns the number of ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}.
  *
 <#list entityColumns as entityColumn>
  * @param ${entityColumn.name} the ${entityColumn.humanName}
 </#list>
- * @return the number of matching ${entity.humanNames}
+ * @return the number of matching ${entity.pluralHumanName}
  */
 @Override
 public int countBy${entityFinder.name}(
@@ -133,16 +133,16 @@ public int countBy${entityFinder.name}(
 
 <#if entityFinder.hasArrayableOperator() && !entityFinder.hasArrayablePagination()>
 	/**
-	 * Returns the number of ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns the number of ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @return the number of matching ${entity.humanNames}
+	 * @return the number of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public int countBy${entityFinder.name}(
@@ -290,16 +290,16 @@ public int countBy${entityFinder.name}(
 
 <#if entityFinder.hasArrayableOperator() && entityFinder.hasArrayablePagination()>
 	/**
-	 * Returns the number of ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns the number of ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @return the number of matching ${entity.humanNames}
+	 * @return the number of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public int countBy${entityFinder.name}(
@@ -519,12 +519,12 @@ public int countBy${entityFinder.name}(
 
 <#if entity.isPermissionCheckEnabled(entityFinder)>
 	/**
-	 * Returns the number of ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
+	 * Returns the number of ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
 	 *
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @return the number of matching ${entity.humanNames} that the user has permission to view
+	 * @return the number of matching ${entity.pluralHumanName} that the user has permission to view
 	 */
 	@Override
 	public int filterCountBy${entityFinder.name}(
@@ -632,16 +632,16 @@ public int countBy${entityFinder.name}(
 
 	<#if entityFinder.hasArrayableOperator()>
 		/**
-		 * Returns the number of ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
+		 * Returns the number of ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
 		 *
 		<#list entityColumns as entityColumn>
 			<#if entityColumn.hasArrayableOperator()>
-		 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+		 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 			<#else>
 		 * @param ${entityColumn.name} the ${entityColumn.humanName}
 			</#if>
 		</#list>
-		 * @return the number of matching ${entity.humanNames} that the user has permission to view
+		 * @return the number of matching ${entity.pluralHumanName} that the user has permission to view
 		 */
 		@Override
 		public int filterCountBy${entityFinder.name}(

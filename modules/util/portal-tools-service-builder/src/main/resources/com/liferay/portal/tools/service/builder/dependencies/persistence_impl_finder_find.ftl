@@ -83,12 +83,12 @@ that may or may not be enforced with a unique index at the database level. Case
 
 <#if entityFinder.isCollection() && !entityFinder.isUnique()>
 	/**
-	 * Returns all the ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}.
+	 * Returns all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}.
 	 *
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @return the matching ${entity.humanNames}
+	 * @return the matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -112,7 +112,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns a range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}.
+	 * Returns a range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -121,9 +121,9 @@ that may or may not be enforced with a unique index at the database level. Case
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-	 * @return the range of matching ${entity.humanNames}
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+	 * @return the range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -143,7 +143,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}.
+	 * Returns an ordered range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -152,10 +152,10 @@ that may or may not be enforced with a unique index at the database level. Case
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching ${entity.humanNames}
+	 * @return the ordered range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -175,7 +175,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}.
+	 * Returns an ordered range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -184,11 +184,11 @@ that may or may not be enforced with a unique index at the database level. Case
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching ${entity.humanNames}
+	 * @return the ordered range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -487,7 +487,7 @@ that may or may not be enforced with a unique index at the database level. Case
 
 	<#if !entityFinder.hasEntityColumn(entity.PKVarName)>
 		/**
-		 * Returns the ${entity.humanNames} before and after the current ${entity.humanName} in the ordered set where ${entityFinder.getHumanConditions(false)}.
+		 * Returns the ${entity.pluralHumanName} before and after the current ${entity.humanName} in the ordered set where ${entityFinder.getHumanConditions(false)}.
 		 *
 		 * @param ${entity.PKVarName} the primary key of the current ${entity.humanName}
 		<#list entityColumns as entityColumn>
@@ -593,12 +593,12 @@ that may or may not be enforced with a unique index at the database level. Case
 
 	<#if entity.isPermissionCheckEnabled(entityFinder)>
 		/**
-		 * Returns all the ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
+		 * Returns all the ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
 		 *
 		<#list entityColumns as entityColumn>
 		 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#list>
-		 * @return the matching ${entity.humanNames} that the user has permission to view
+		 * @return the matching ${entity.pluralHumanName} that the user has permission to view
 		 */
 		@Override
 		public List<${entity.name}> filterFindBy${entityFinder.name}(
@@ -622,7 +622,7 @@ that may or may not be enforced with a unique index at the database level. Case
 		}
 
 		/**
-		 * Returns a range of all the ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
+		 * Returns a range of all the ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
 		 *
 		 * <p>
 		 * <#include "range_comment.ftl">
@@ -631,9 +631,9 @@ that may or may not be enforced with a unique index at the database level. Case
 		<#list entityColumns as entityColumn>
 		 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#list>
-		 * @param start the lower bound of the range of ${entity.humanNames}
-		 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-		 * @return the range of matching ${entity.humanNames} that the user has permission to view
+		 * @param start the lower bound of the range of ${entity.pluralHumanName}
+		 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+		 * @return the range of matching ${entity.pluralHumanName} that the user has permission to view
 		 */
 		@Override
 		public List<${entity.name}> filterFindBy${entityFinder.name}(
@@ -653,7 +653,7 @@ that may or may not be enforced with a unique index at the database level. Case
 		}
 
 		/**
-		 * Returns an ordered range of all the ${entity.humanNames} that the user has permissions to view where ${entityFinder.getHumanConditions(false)}.
+		 * Returns an ordered range of all the ${entity.pluralHumanName} that the user has permissions to view where ${entityFinder.getHumanConditions(false)}.
 		 *
 		 * <p>
 		 * <#include "range_comment.ftl">
@@ -662,10 +662,10 @@ that may or may not be enforced with a unique index at the database level. Case
 		<#list entityColumns as entityColumn>
 		 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#list>
-		 * @param start the lower bound of the range of ${entity.humanNames}
-		 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+		 * @param start the lower bound of the range of ${entity.pluralHumanName}
+		 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 		 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-		 * @return the ordered range of matching ${entity.humanNames} that the user has permission to view
+		 * @return the ordered range of matching ${entity.pluralHumanName} that the user has permission to view
 		 */
 		@Override
 		public List<${entity.name}> filterFindBy${entityFinder.name}(
@@ -799,7 +799,7 @@ that may or may not be enforced with a unique index at the database level. Case
 
 		<#if !entityFinder.hasEntityColumn(entity.PKVarName)>
 			/**
-			 * Returns the ${entity.humanNames} before and after the current ${entity.humanName} in the ordered set of ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
+			 * Returns the ${entity.pluralHumanName} before and after the current ${entity.humanName} in the ordered set of ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(false)}.
 			 *
 			 * @param ${entity.PKVarName} the primary key of the current ${entity.humanName}
 			<#list entityColumns as entityColumn>
@@ -1055,16 +1055,16 @@ that may or may not be enforced with a unique index at the database level. Case
 
 		<#if entityFinder.hasArrayableOperator()>
 			/**
-			 * Returns all the ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
+			 * Returns all the ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
 			 *
 			<#list entityColumns as entityColumn>
 				<#if entityColumn.hasArrayableOperator()>
-			 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+			 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 				<#else>
 			 * @param ${entityColumn.name} the ${entityColumn.humanName}
 				</#if>
 			</#list>
-			 * @return the matching ${entity.humanNames} that the user has permission to view
+			 * @return the matching ${entity.pluralHumanName} that the user has permission to view
 			 */
 			@Override
 			public List<${entity.name}> filterFindBy${entityFinder.name}(
@@ -1096,7 +1096,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			}
 
 			/**
-			 * Returns a range of all the ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
+			 * Returns a range of all the ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
 			 *
 			 * <p>
 			 * <#include "range_comment.ftl">
@@ -1104,14 +1104,14 @@ that may or may not be enforced with a unique index at the database level. Case
 			 *
 			<#list entityColumns as entityColumn>
 				<#if entityColumn.hasArrayableOperator()>
-			 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+			 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 				<#else>
 			 * @param ${entityColumn.name} the ${entityColumn.humanName}
 				</#if>
 			</#list>
-			 * @param start the lower bound of the range of ${entity.humanNames}
-			 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-			 * @return the range of matching ${entity.humanNames} that the user has permission to view
+			 * @param start the lower bound of the range of ${entity.pluralHumanName}
+			 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+			 * @return the range of matching ${entity.pluralHumanName} that the user has permission to view
 			 */
 			@Override
 			public List<${entity.name}> filterFindBy${entityFinder.name}(
@@ -1139,7 +1139,7 @@ that may or may not be enforced with a unique index at the database level. Case
 			}
 
 			/**
-			 * Returns an ordered range of all the ${entity.humanNames} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
+			 * Returns an ordered range of all the ${entity.pluralHumanName} that the user has permission to view where ${entityFinder.getHumanConditions(true)}.
 			 *
 			 * <p>
 			 * <#include "range_comment.ftl">
@@ -1147,15 +1147,15 @@ that may or may not be enforced with a unique index at the database level. Case
 			 *
 			<#list entityColumns as entityColumn>
 				<#if entityColumn.hasArrayableOperator()>
-			 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+			 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 				<#else>
 			 * @param ${entityColumn.name} the ${entityColumn.humanName}
 				</#if>
 			</#list>
-			 * @param start the lower bound of the range of ${entity.humanNames}
-			 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+			 * @param start the lower bound of the range of ${entity.pluralHumanName}
+			 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 			 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-			 * @return the ordered range of matching ${entity.humanNames} that the user has permission to view
+			 * @return the ordered range of matching ${entity.pluralHumanName} that the user has permission to view
 			 */
 			@Override
 			public List<${entity.name}> filterFindBy${entityFinder.name}(
@@ -1364,7 +1364,7 @@ that may or may not be enforced with a unique index at the database level. Case
 
 <#if entityFinder.isCollection() && entityFinder.hasArrayableOperator() && !entityFinder.hasArrayablePagination()>
 	/**
-	 * Returns all the ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1372,12 +1372,12 @@ that may or may not be enforced with a unique index at the database level. Case
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @return the matching ${entity.humanNames}
+	 * @return the matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1409,7 +1409,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns a range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns a range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1417,14 +1417,14 @@ that may or may not be enforced with a unique index at the database level. Case
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-	 * @return the range of matching ${entity.humanNames}
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+	 * @return the range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1452,7 +1452,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns an ordered range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1460,15 +1460,15 @@ that may or may not be enforced with a unique index at the database level. Case
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching ${entity.humanNames}
+	 * @return the ordered range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1496,7 +1496,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}, optionally using the finder cache.
+	 * Returns an ordered range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}, optionally using the finder cache.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1505,11 +1505,11 @@ that may or may not be enforced with a unique index at the database level. Case
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching ${entity.humanNames}
+	 * @return the ordered range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1724,7 +1724,7 @@ that may or may not be enforced with a unique index at the database level. Case
 
 <#if entityFinder.isCollection() && entityFinder.hasArrayableOperator() && entityFinder.hasArrayablePagination()>
 	/**
-	 * Returns all the ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1732,12 +1732,12 @@ that may or may not be enforced with a unique index at the database level. Case
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @return the matching ${entity.humanNames}
+	 * @return the matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1769,7 +1769,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns a range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns a range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1777,14 +1777,14 @@ that may or may not be enforced with a unique index at the database level. Case
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-	 * @return the range of matching ${entity.humanNames}
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+	 * @return the range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1812,7 +1812,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(true)}.
+	 * Returns an ordered range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(true)}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1820,15 +1820,15 @@ that may or may not be enforced with a unique index at the database level. Case
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.pluralHumanName}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of matching ${entity.humanNames}
+	 * @return the ordered range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(
@@ -1856,7 +1856,7 @@ that may or may not be enforced with a unique index at the database level. Case
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames} where ${entityFinder.getHumanConditions(false)}, optionally using the finder cache.
+	 * Returns an ordered range of all the ${entity.pluralHumanName} where ${entityFinder.getHumanConditions(false)}, optionally using the finder cache.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
@@ -1865,11 +1865,11 @@ that may or may not be enforced with a unique index at the database level. Case
 	<#list entityColumns as entityColumn>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 	</#list>
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of matching ${entity.humanNames}
+	 * @return the ordered range of matching ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findBy${entityFinder.name}(

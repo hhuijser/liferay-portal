@@ -297,9 +297,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Caches the ${entity.humanNames} in the entity cache if it is enabled.
+	 * Caches the ${entity.pluralHumanName} in the entity cache if it is enabled.
 	 *
-	 * @param ${entity.varNames} the ${entity.humanNames}
+	 * @param ${entity.varNames} the ${entity.pluralHumanName}
 	 */
 	@Override
 	public void cacheResult(List<${entity.name}> ${entity.varNames}) {
@@ -322,7 +322,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Clears the cache for all ${entity.humanNames}.
+	 * Clears the cache for all ${entity.pluralHumanName}.
 	 *
 	 * <p>
 	 * The <code>com.liferay.portal.kernel.dao.orm.EntityCache</code> and <code>com.liferay.portal.kernel.dao.orm.FinderCache</code> are both cleared by this method.
@@ -1229,9 +1229,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	</#if>
 
 	/**
-	 * Returns all the ${entity.humanNames}.
+	 * Returns all the ${entity.pluralHumanName}.
 	 *
-	 * @return the ${entity.humanNames}
+	 * @return the ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findAll() {
@@ -1239,15 +1239,15 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Returns a range of all the ${entity.humanNames}.
+	 * Returns a range of all the ${entity.pluralHumanName}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-	 * @return the range of ${entity.humanNames}
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+	 * @return the range of ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findAll(int start, int end) {
@@ -1255,16 +1255,16 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames}.
+	 * Returns an ordered range of all the ${entity.pluralHumanName}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-	 * @return the ordered range of ${entity.humanNames}
+	 * @return the ordered range of ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findAll(int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
@@ -1272,17 +1272,17 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Returns an ordered range of all the ${entity.humanNames}.
+	 * Returns an ordered range of all the ${entity.pluralHumanName}.
 	 *
 	 * <p>
 	 * <#include "range_comment.ftl">
 	 * </p>
 	 *
-	 * @param start the lower bound of the range of ${entity.humanNames}
-	 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+	 * @param start the lower bound of the range of ${entity.pluralHumanName}
+	 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the ordered range of ${entity.humanNames}
+	 * @return the ordered range of ${entity.pluralHumanName}
 	 */
 	@Override
 	public List<${entity.name}> findAll(int start, int end, OrderByComparator<${entity.name}> orderByComparator, boolean useFinderCache) {
@@ -1360,7 +1360,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Removes all the ${entity.humanNames} from the database.
+	 * Removes all the ${entity.pluralHumanName} from the database.
 	 *
 	 */
 	@Override
@@ -1371,9 +1371,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	/**
-	 * Returns the number of ${entity.humanNames}.
+	 * Returns the number of ${entity.pluralHumanName}.
 	 *
-	 * @return the number of ${entity.humanNames}
+	 * @return the number of ${entity.pluralHumanName}
 	 */
 	@Override
 	public int countAll() {
@@ -1431,10 +1431,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			<#assign referenceEntity = serviceBuilder.getEntity(entityColumn.entityName) />
 
 			/**
-			 * Returns the primaryKeys of ${referenceEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns the primaryKeys of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
-			 * @return long[] of the primaryKeys of ${referenceEntity.humanNames} associated with the ${entity.humanName}
+			 * @return long[] of the primaryKeys of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}
 			 */
 			@Override
 			public long[] get${referenceEntity.name}PrimaryKeys(${entity.PKClassName} pk) {
@@ -1448,7 +1448,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Returns all the ${entity.humanName} associated with the ${referenceEntity.humanName}.
 				 *
 				 * @param pk the primary key of the ${referenceEntity.humanName}
-				 * @return the ${entity.humanNames} associated with the ${referenceEntity.humanName}
+				 * @return the ${entity.pluralHumanName} associated with the ${referenceEntity.humanName}
 				 */
 				@Override
 				public List<${entity.name}> get${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} pk) {
@@ -1463,9 +1463,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * </p>
 				 *
 				 * @param pk the primary key of the ${referenceEntity.humanName}
-				 * @param start the lower bound of the range of ${referenceEntity.humanNames}
-				 * @param end the upper bound of the range of ${referenceEntity.humanNames} (not inclusive)
-				 * @return the range of ${entity.humanNames} associated with the ${referenceEntity.humanName}
+				 * @param start the lower bound of the range of ${referenceEntity.pluralHumanName}
+				 * @param end the upper bound of the range of ${referenceEntity.pluralHumanName} (not inclusive)
+				 * @return the range of ${entity.pluralHumanName} associated with the ${referenceEntity.humanName}
 				 */
 				@Override
 				public List<${entity.name}> get${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} pk, int start, int end) {
@@ -1480,10 +1480,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * </p>
 				 *
 				 * @param pk the primary key of the ${referenceEntity.humanName}
-				 * @param start the lower bound of the range of ${referenceEntity.humanNames}
-				 * @param end the upper bound of the range of ${referenceEntity.humanNames} (not inclusive)
+				 * @param start the lower bound of the range of ${referenceEntity.pluralHumanName}
+				 * @param end the upper bound of the range of ${referenceEntity.pluralHumanName} (not inclusive)
 				 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-				 * @return the ordered range of ${entity.humanNames} associated with the ${referenceEntity.humanName}
+				 * @return the ordered range of ${entity.pluralHumanName} associated with the ${referenceEntity.humanName}
 				 */
 				@Override
 				public List<${entity.name}> get${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} pk, int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
@@ -1491,10 +1491,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 			<#else>
 				/**
-				 * Returns all the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
+				 * Returns all the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @return the ${referenceEntity.humanNames} associated with the ${entity.humanName}
+				 * @return the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}
 				 */
 				@Override
 				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.pluralName}(${entity.PKClassName} pk) {
@@ -1502,16 +1502,16 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Returns a range of all the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
+				 * Returns a range of all the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
 				 *
 				 * <p>
 				 * <#include "range_comment.ftl">
 				 * </p>
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param start the lower bound of the range of ${entity.humanNames}
-				 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-				 * @return the range of ${referenceEntity.humanNames} associated with the ${entity.humanName}
+				 * @param start the lower bound of the range of ${entity.pluralHumanName}
+				 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+				 * @return the range of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}
 				 */
 				@Override
 				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.pluralName}(${entity.PKClassName} pk, int start, int end) {
@@ -1519,17 +1519,17 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Returns an ordered range of all the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
+				 * Returns an ordered range of all the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
 				 *
 				 * <p>
 				 * <#include "range_comment.ftl">
 				 * </p>
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param start the lower bound of the range of ${entity.humanNames}
-				 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+				 * @param start the lower bound of the range of ${entity.pluralHumanName}
+				 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 				 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-				 * @return the ordered range of ${referenceEntity.humanNames} associated with the ${entity.humanName}
+				 * @return the ordered range of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}
 				 */
 				@Override
 				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.pluralName}(${entity.PKClassName} pk, int start, int end, OrderByComparator<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> orderByComparator) {
@@ -1538,10 +1538,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			</#if>
 
 			/**
-			 * Returns the number of ${referenceEntity.humanNames} associated with the ${entity.humanName}.
+			 * Returns the number of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
 			 *
 			 * @param pk the primary key of the ${entity.humanName}
-			 * @return the number of ${referenceEntity.humanNames} associated with the ${entity.humanName}
+			 * @return the number of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}
 			 */
 			@Override
 			public int get${referenceEntity.pluralName}Size(${entity.PKClassName} pk) {
@@ -1563,10 +1563,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			}
 
 			/**
-			 * Returns <code>true</code> if the ${entity.humanName} has any ${referenceEntity.humanNames} associated with it.
+			 * Returns <code>true</code> if the ${entity.humanName} has any ${referenceEntity.pluralHumanName} associated with it.
 			 *
-			 * @param pk the primary key of the ${entity.humanName} to check for associations with ${referenceEntity.humanNames}
-			 * @return <code>true</code> if the ${entity.humanName} has any ${referenceEntity.humanNames} associated with it; <code>false</code> otherwise
+			 * @param pk the primary key of the ${entity.humanName} to check for associations with ${referenceEntity.pluralHumanName}
+			 * @return <code>true</code> if the ${entity.humanName} has any ${referenceEntity.pluralHumanName} associated with it; <code>false</code> otherwise
 			 */
 			@Override
 			public boolean contains${referenceEntity.pluralName}(${entity.PKClassName} pk) {
@@ -1618,10 +1618,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames}
+				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
 				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
@@ -1640,10 +1640,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames}
+				 * @param ${referenceEntity.varNames} the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
 				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
@@ -1651,9 +1651,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Clears all associations between the ${entity.humanName} and its ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Clears all associations between the ${entity.humanName} and its ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
-				 * @param pk the primary key of the ${entity.humanName} to clear the associated ${referenceEntity.humanNames} from
+				 * @param pk the primary key of the ${entity.humanName} to clear the associated ${referenceEntity.pluralHumanName} from
 				 */
 				@Override
 				public void clear${referenceEntity.pluralName}(${entity.PKClassName} pk) {
@@ -1683,10 +1683,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames}
+				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
 				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
@@ -1694,10 +1694,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.humanNames}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames}
+				 * @param ${referenceEntity.varNames} the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
 				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
@@ -1705,10 +1705,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Sets the ${referenceEntity.humanNames} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Sets the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames} to be associated with the ${entity.humanName}
+				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.pluralHumanName} to be associated with the ${entity.humanName}
 				 */
 				@Override
 				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
@@ -1738,10 +1738,10 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				}
 
 				/**
-				 * Sets the ${referenceEntity.humanNames} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
+				 * Sets the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames} to be associated with the ${entity.humanName}
+				 * @param ${referenceEntity.varNames} the ${referenceEntity.pluralHumanName} to be associated with the ${entity.humanName}
 				 */
 				@Override
 				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
@@ -1997,7 +1997,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 		}
 
 		/**
-		 * Rebuilds the ${entity.humanNames} tree for the scope using the modified pre-order tree traversal algorithm.
+		 * Rebuilds the ${entity.pluralHumanName} tree for the scope using the modified pre-order tree traversal algorithm.
 		 *
 		 * <p>
 		 * Only call this method if the tree has become stale through operations other than normal CRUD. Under normal circumstances the tree is automatically rebuilt whenver necessary.

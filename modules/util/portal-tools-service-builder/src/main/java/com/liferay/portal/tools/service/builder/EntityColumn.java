@@ -207,10 +207,6 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		return _humanName;
 	}
 
-	public String getHumanNames() {
-		return TextFormatter.formatPlural(getHumanName());
-	}
-
 	public String getIdParam() {
 		return _idParam;
 	}
@@ -237,6 +233,10 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 
 	public String getName() {
 		return _name;
+	}
+
+	public String getPluralHumanName() {
+		return TextFormatter.formatPlural(getHumanName());
 	}
 
 	public String getPluralName() {

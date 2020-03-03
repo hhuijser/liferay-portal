@@ -760,11 +760,11 @@ import org.osgi.service.component.annotations.Reference;
 		<#if entity.hasUuid() && entity.hasEntityColumn("companyId") && !entity.versionEntity??>
 			<#if entity.hasEntityColumn("groupId") && !stringUtil.equals(entity.name, "Group")>
 				/**
-				 * Returns all the ${entity.humanNames} matching the UUID and company.
+				 * Returns all the ${entity.pluralHumanName} matching the UUID and company.
 				 *
-				 * @param uuid the UUID of the ${entity.humanNames}
+				 * @param uuid the UUID of the ${entity.pluralHumanName}
 				 * @param companyId the primary key of the company
-				 * @return the matching ${entity.humanNames}, or an empty list if no matches were found
+				 * @return the matching ${entity.pluralHumanName}, or an empty list if no matches were found
 				 */
 				@Override
 				public List<${entity.name}> get${entity.pluralName}ByUuidAndCompanyId(String uuid, long companyId) {
@@ -772,14 +772,14 @@ import org.osgi.service.component.annotations.Reference;
 				}
 
 				/**
-				 * Returns a range of ${entity.humanNames} matching the UUID and company.
+				 * Returns a range of ${entity.pluralHumanName} matching the UUID and company.
 				 *
-				 * @param uuid the UUID of the ${entity.humanNames}
+				 * @param uuid the UUID of the ${entity.pluralHumanName}
 				 * @param companyId the primary key of the company
-				 * @param start the lower bound of the range of ${entity.humanNames}
-				 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
+				 * @param start the lower bound of the range of ${entity.pluralHumanName}
+				 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
 				 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
-				 * @return the range of matching ${entity.humanNames}, or an empty list if no matches were found
+				 * @return the range of matching ${entity.pluralHumanName}, or an empty list if no matches were found
 				 */
 				@Override
 				public List<${entity.name}> get${entity.pluralName}ByUuidAndCompanyId(String uuid, long companyId, int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
@@ -851,15 +851,15 @@ import org.osgi.service.component.annotations.Reference;
 		</#if>
 
 		/**
-		 * Returns a range of all the ${entity.humanNames}.
+		 * Returns a range of all the ${entity.pluralHumanName}.
 		 *
 		 * <p>
 		 * <#include "range_comment.ftl">
 		 * </p>
 		 *
-		 * @param start the lower bound of the range of ${entity.humanNames}
-		 * @param end the upper bound of the range of ${entity.humanNames} (not inclusive)
-		 * @return the range of ${entity.humanNames}
+		 * @param start the lower bound of the range of ${entity.pluralHumanName}
+		 * @param end the upper bound of the range of ${entity.pluralHumanName} (not inclusive)
+		 * @return the range of ${entity.pluralHumanName}
 		 */
 		@Override
 		public List<${entity.name}> get${entity.pluralName}(int start, int end) {
@@ -867,9 +867,9 @@ import org.osgi.service.component.annotations.Reference;
 		}
 
 		/**
-		 * Returns the number of ${entity.humanNames}.
+		 * Returns the number of ${entity.pluralHumanName}.
 		 *
-		 * @return the number of ${entity.humanNames}
+		 * @return the number of ${entity.pluralHumanName}
 		 */
 		@Override
 		public int get${entity.pluralName}Count() {
@@ -1014,10 +1014,10 @@ import org.osgi.service.component.annotations.Reference;
 				}
 
 				/**
-				 * Returns the ${referenceEntity.PKVarName}s of the ${referenceEntity.humanNames} associated with the ${entity.humanName}.
+				 * Returns the ${referenceEntity.PKVarName}s of the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}.
 				 *
 				 * @param ${entity.PKVarName} the ${entity.PKVarName} of the ${entity.humanName}
-				 * @return long[] the ${referenceEntity.PKVarName}s of ${referenceEntity.humanNames} associated with the ${entity.humanName}
+				 * @return long[] the ${referenceEntity.PKVarName}s of ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}
 				 */
 				@Override
 				public long[] get${referenceEntity.name}PrimaryKeys(${entity.PKClassName} ${entity.PKVarName}) {

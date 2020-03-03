@@ -344,10 +344,6 @@ public class Entity implements Comparable<Entity> {
 		return _humanName;
 	}
 
-	public String getHumanNames() {
-		return TextFormatter.formatPlural(_humanName);
-	}
-
 	public Entity getLocalizedEntity() {
 		return _localizedEntity;
 	}
@@ -596,6 +592,10 @@ public class Entity implements Comparable<Entity> {
 		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return entityColumn.getPluralName();
+	}
+
+	public String getPluralHumanName() {
+		return TextFormatter.formatPlural(_humanName);
 	}
 
 	public String getPluralName() {

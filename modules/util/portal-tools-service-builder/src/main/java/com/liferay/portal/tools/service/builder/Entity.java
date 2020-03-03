@@ -447,10 +447,6 @@ public class Entity implements Comparable<Entity> {
 		return _name;
 	}
 
-	public String getNames() {
-		return TextFormatter.formatPlural(_name);
-	}
-
 	public Set getOverrideColumnNames() {
 		Set<String> overrideColumnName = new HashSet<>();
 
@@ -599,7 +595,11 @@ public class Entity implements Comparable<Entity> {
 
 		EntityColumn entityColumn = _getPKEntityColumn();
 
-		return entityColumn.getNames();
+		return entityColumn.getPluralName();
+	}
+
+	public String getPluralName() {
+		return TextFormatter.formatPlural(_name);
 	}
 
 	public String getPortletShortName() {

@@ -1451,8 +1451,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @return the ${entity.humanNames} associated with the ${referenceEntity.humanName}
 				 */
 				@Override
-				public List<${entity.name}> get${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} pk) {
-					return get${referenceEntity.name}${entity.names}(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				public List<${entity.name}> get${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} pk) {
+					return get${referenceEntity.name}${entity.pluralName}(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 				}
 
 				/**
@@ -1468,8 +1468,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @return the range of ${entity.humanNames} associated with the ${referenceEntity.humanName}
 				 */
 				@Override
-				public List<${entity.name}> get${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} pk, int start, int end) {
-					return get${referenceEntity.name}${entity.names}(pk, start, end, null);
+				public List<${entity.name}> get${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} pk, int start, int end) {
+					return get${referenceEntity.name}${entity.pluralName}(pk, start, end, null);
 				}
 
 				/**
@@ -1486,7 +1486,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @return the ordered range of ${entity.humanNames} associated with the ${referenceEntity.humanName}
 				 */
 				@Override
-				public List<${entity.name}> get${referenceEntity.name}${entity.names}(${referenceEntity.PKClassName} pk, int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
+				public List<${entity.name}> get${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} pk, int start, int end, OrderByComparator<${entity.name}> orderByComparator) {
 					return ${entity.varName}To${referenceEntity.name}TableMapper.getLeftBaseModels(pk, start, end, orderByComparator);
 				}
 			<#else>
@@ -1497,8 +1497,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @return the ${referenceEntity.humanNames} associated with the ${entity.humanName}
 				 */
 				@Override
-				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.names}(${entity.PKClassName} pk) {
-					return get${referenceEntity.names}(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.pluralName}(${entity.PKClassName} pk) {
+					return get${referenceEntity.pluralName}(pk, QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 				}
 
 				/**
@@ -1514,8 +1514,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @return the range of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 				 */
 				@Override
-				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.names}(${entity.PKClassName} pk, int start, int end) {
-					return get${referenceEntity.names}(pk, start, end, null);
+				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.pluralName}(${entity.PKClassName} pk, int start, int end) {
+					return get${referenceEntity.pluralName}(pk, start, end, null);
 				}
 
 				/**
@@ -1532,7 +1532,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @return the ordered range of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 				 */
 				@Override
-				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.names}(${entity.PKClassName} pk, int start, int end, OrderByComparator<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> orderByComparator) {
+				public List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> get${referenceEntity.pluralName}(${entity.PKClassName} pk, int start, int end, OrderByComparator<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> orderByComparator) {
 					return ${entity.varName}To${referenceEntity.name}TableMapper.getRightBaseModels(pk, start, end, orderByComparator);
 				}
 			</#if>
@@ -1544,7 +1544,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			 * @return the number of ${referenceEntity.humanNames} associated with the ${entity.humanName}
 			 */
 			@Override
-			public int get${referenceEntity.names}Size(${entity.PKClassName} pk) {
+			public int get${referenceEntity.pluralName}Size(${entity.PKClassName} pk) {
 				long[] pks = ${entity.varName}To${referenceEntity.name}TableMapper.getRightPrimaryKeys(pk);
 
 				return pks.length;
@@ -1569,8 +1569,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			 * @return <code>true</code> if the ${entity.humanName} has any ${referenceEntity.humanNames} associated with it; <code>false</code> otherwise
 			 */
 			@Override
-			public boolean contains${referenceEntity.names}(${entity.PKClassName} pk) {
-				if (get${referenceEntity.names}Size(pk)> 0) {
+			public boolean contains${referenceEntity.pluralName}(${entity.PKClassName} pk) {
+				if (get${referenceEntity.pluralName}Size(pk)> 0) {
 					return true;
 				}
 				else {
@@ -1624,7 +1624,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void add${referenceEntity.names}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
+				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
 					long companyId = 0;
 
 					${entity.name} ${entity.varName} = fetchByPrimaryKey(pk);
@@ -1646,8 +1646,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void add${referenceEntity.names}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
-					add${referenceEntity.names}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
+					add${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
@@ -1656,7 +1656,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param pk the primary key of the ${entity.humanName} to clear the associated ${referenceEntity.humanNames} from
 				 */
 				@Override
-				public void clear${referenceEntity.names}(${entity.PKClassName} pk) {
+				public void clear${referenceEntity.pluralName}(${entity.PKClassName} pk) {
 					${entity.varName}To${referenceEntity.name}TableMapper.deleteLeftPrimaryKeyTableMappings(pk);
 				}
 
@@ -1689,7 +1689,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void remove${referenceEntity.names}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
+				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
 					${entity.varName}To${referenceEntity.name}TableMapper.deleteTableMappings(pk, ${referenceEntity.varName}PKs);
 				}
 
@@ -1700,8 +1700,8 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames}
 				 */
 				@Override
-				public void remove${referenceEntity.names}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
-					remove${referenceEntity.names}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
+					remove${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
@@ -1711,7 +1711,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param ${referenceEntity.varName}PKs the primary keys of the ${referenceEntity.humanNames} to be associated with the ${entity.humanName}
 				 */
 				@Override
-				public void set${referenceEntity.names}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
+				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, ${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs) {
 					Set<Long> new${referenceEntity.name}PKsSet = SetUtil.fromArray(${referenceEntity.varName}PKs);
 					Set<Long> old${referenceEntity.name}PKsSet = SetUtil.fromArray(${entity.varName}To${referenceEntity.name}TableMapper.getRightPrimaryKeys(pk));
 
@@ -1744,7 +1744,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * @param ${referenceEntity.varNames} the ${referenceEntity.humanNames} to be associated with the ${entity.humanName}
 				 */
 				@Override
-				public void set${referenceEntity.names}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
+				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
 					try {
 						${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs = new ${referenceEntity.PKClassName}[${referenceEntity.varNames}.size()];
 
@@ -1754,7 +1754,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 							${referenceEntity.varName}PKs[i] = ${referenceEntity.varName}.getPrimaryKey();
 						}
 
-						set${referenceEntity.names}(pk, ${referenceEntity.varName}PKs);
+						set${referenceEntity.pluralName}(pk, ${referenceEntity.varName}PKs);
 					}
 					catch (Exception exception) {
 						throw processException(exception);
@@ -2078,9 +2078,9 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 			queryPos.add(${scopeEntityColumn.name});
 			queryPos.add(parent${pkEntityColumn.methodName});
 
-			List<Long> ${pkEntityColumn.names} = selectSQLQuery.list();
+			List<Long> ${pkEntityColumn.pluralName} = selectSQLQuery.list();
 
-			for (long ${pkEntityColumn.name} : ${pkEntityColumn.names}) {
+			for (long ${pkEntityColumn.name} : ${pkEntityColumn.pluralName}) {
 				right${pkEntityColumn.methodName} = rebuildTree(session, selectSQLQuery, updateSQLQuery, ${scopeEntityColumn.name}, ${pkEntityColumn.name}, right${pkEntityColumn.methodName});
 			}
 
@@ -2519,7 +2519,7 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	<#list entityColumns as entityColumn>
 		<#if _arrayable && entityColumn.hasArrayableOperator()>
 			<#if stringUtil.equals(entityColumn.type, "String")>
-				for (String ${entityColumn.name} : ${entityColumn.names}) {
+				for (String ${entityColumn.name} : ${entityColumn.pluralName}) {
 					if (${entityColumn.name} != null && !${entityColumn.name}.isEmpty()) {
 						queryPos.add(${entityColumn.name});
 					}

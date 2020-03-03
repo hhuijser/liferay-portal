@@ -107,7 +107,7 @@ public class EntityFinder {
 		return _name;
 	}
 
-	public String getNames() {
+	public String getPluralName() {
 		return TextFormatter.formatPlural(_name);
 	}
 

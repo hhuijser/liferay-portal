@@ -577,7 +577,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 
 		@Override
 		public String[] getAvailableLanguageIds() {
-			List<${localizedEntity.name}> ${localizedEntity.varNames} = ${entity.name}LocalServiceUtil.get${localizedEntity.names}(getPrimaryKey());
+			List<${localizedEntity.name}> ${localizedEntity.varNames} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
 
 			String[] availableLanguageIds = new String[${localizedEntity.varNames}.size()];
 
@@ -628,7 +628,7 @@ public class ${entity.name}ModelImpl extends BaseModelImpl<${entity.name}> imple
 			public Map<String, String> getLanguageIdTo${entityColumn.methodName}Map() {
 				Map<String, String> languageIdTo${entityColumn.methodName}Map = new HashMap<String, String>();
 
-				List<${localizedEntity.name}> ${localizedEntity.varNames} = ${entity.name}LocalServiceUtil.get${localizedEntity.names}(getPrimaryKey());
+				List<${localizedEntity.name}> ${localizedEntity.varNames} = ${entity.name}LocalServiceUtil.get${localizedEntity.pluralName}(getPrimaryKey());
 
 				for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.varNames}) {
 					languageIdTo${entityColumn.methodName}Map.put(${localizedEntity.varName}.getLanguageId(), ${localizedEntity.varName}.get${entityColumn.methodName}());

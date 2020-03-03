@@ -137,7 +137,7 @@ public int countBy${entityFinder.name}(
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.names} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
@@ -149,7 +149,7 @@ public int countBy${entityFinder.name}(
 
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-			${entityColumn.type}[] ${entityColumn.names}
+			${entityColumn.type}[] ${entityColumn.pluralName}
 		<#else>
 			${entityColumn.type} ${entityColumn.name}
 		</#if>
@@ -162,30 +162,30 @@ public int countBy${entityFinder.name}(
 	) {
 		<#list entityColumns as entityColumn>
 			<#if entityColumn.hasArrayableOperator()>
-				if (${entityColumn.names} == null) {
-					${entityColumn.names} = new ${entityColumn.type}[0];
+				if (${entityColumn.pluralName} == null) {
+					${entityColumn.pluralName} = new ${entityColumn.type}[0];
 				}
-				else if (${entityColumn.names}.length > 1) {
+				else if (${entityColumn.pluralName}.length > 1) {
 					<#if stringUtil.equals(entityColumn.type, "String") && entityColumn.isConvertNull()>
-						for (int i = 0; i < ${entityColumn.names}.length; i++) {
-							${entityColumn.names}[i] = Objects.toString(${entityColumn.names}[i], "");
+						for (int i = 0; i < ${entityColumn.pluralName}.length; i++) {
+							${entityColumn.pluralName}[i] = Objects.toString(${entityColumn.pluralName}[i], "");
 						}
 					</#if>
 
 					<#if serviceBuilder.isVersionGTE_7_2_0()>
-						${entityColumn.names} = ArrayUtil.sortedUnique(${entityColumn.names});
+						${entityColumn.pluralName} = ArrayUtil.sortedUnique(${entityColumn.pluralName});
 					<#else>
-						${entityColumn.names} =
+						${entityColumn.pluralName} =
 							<#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isConvertNull()>
-								ArrayUtil.distinct(${entityColumn.names}, NULL_SAFE_STRING_COMPARATOR);
+								ArrayUtil.distinct(${entityColumn.pluralName}, NULL_SAFE_STRING_COMPARATOR);
 							<#else>
-								ArrayUtil.unique(${entityColumn.names});
+								ArrayUtil.unique(${entityColumn.pluralName});
 							</#if>
 
 						<#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isConvertNull()>
-							Arrays.sort(${entityColumn.names}, NULL_SAFE_STRING_COMPARATOR);
+							Arrays.sort(${entityColumn.pluralName}, NULL_SAFE_STRING_COMPARATOR);
 						<#else>
-							Arrays.sort(${entityColumn.names});
+							Arrays.sort(${entityColumn.pluralName});
 						</#if>
 					</#if>
 				}
@@ -205,7 +205,7 @@ public int countBy${entityFinder.name}(
 				finderArgs = new Object[] {
 					<#list entityColumns as entityColumn>
 						<#if entityColumn.hasArrayableOperator()>
-								StringUtil.merge(${entityColumn.names})
+								StringUtil.merge(${entityColumn.pluralName})
 						<#elseif stringUtil.equals(entityColumn.type, "Date")>
 								_getTime(${entityColumn.name})
 						<#else>
@@ -224,7 +224,7 @@ public int countBy${entityFinder.name}(
 			Object[] finderArgs = new Object[] {
 				<#list entityColumns as entityColumn>
 					<#if entityColumn.hasArrayableOperator()>
-							StringUtil.merge(${entityColumn.names})
+							StringUtil.merge(${entityColumn.pluralName})
 					<#elseif stringUtil.equals(entityColumn.type, "Date")>
 							_getTime(${entityColumn.name})
 					<#else>
@@ -294,7 +294,7 @@ public int countBy${entityFinder.name}(
 	 *
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-	 * @param ${entityColumn.names} the ${entityColumn.humanNames}
+	 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
 		<#else>
 	 * @param ${entityColumn.name} the ${entityColumn.humanName}
 		</#if>
@@ -306,7 +306,7 @@ public int countBy${entityFinder.name}(
 
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-			${entityColumn.type}[] ${entityColumn.names}
+			${entityColumn.type}[] ${entityColumn.pluralName}
 		<#else>
 			${entityColumn.type} ${entityColumn.name}
 		</#if>
@@ -319,30 +319,30 @@ public int countBy${entityFinder.name}(
 	) {
 		<#list entityColumns as entityColumn>
 			<#if entityColumn.hasArrayableOperator()>
-				if (${entityColumn.names} == null) {
-					${entityColumn.names} = new ${entityColumn.type}[0];
+				if (${entityColumn.pluralName} == null) {
+					${entityColumn.pluralName} = new ${entityColumn.type}[0];
 				}
-				else if (${entityColumn.names}.length > 1) {
+				else if (${entityColumn.pluralName}.length > 1) {
 					<#if stringUtil.equals(entityColumn.type, "String") && entityColumn.isConvertNull()>
-						for (int i = 0; i < ${entityColumn.names}.length; i++) {
-							${entityColumn.names}[i] = Objects.toString(${entityColumn.names}[i], "");
+						for (int i = 0; i < ${entityColumn.pluralName}.length; i++) {
+							${entityColumn.pluralName}[i] = Objects.toString(${entityColumn.pluralName}[i], "");
 						}
 					</#if>
 
 					<#if serviceBuilder.isVersionGTE_7_2_0()>
-						${entityColumn.names} = ArrayUtil.sortedUnique(${entityColumn.names});
+						${entityColumn.pluralName} = ArrayUtil.sortedUnique(${entityColumn.pluralName});
 					<#else>
-						${entityColumn.names} =
+						${entityColumn.pluralName} =
 							<#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isConvertNull()>
-								ArrayUtil.distinct(${entityColumn.names}, NULL_SAFE_STRING_COMPARATOR);
+								ArrayUtil.distinct(${entityColumn.pluralName}, NULL_SAFE_STRING_COMPARATOR);
 							<#else>
-								ArrayUtil.unique(${entityColumn.names});
+								ArrayUtil.unique(${entityColumn.pluralName});
 							</#if>
 
 						<#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isConvertNull()>
-							Arrays.sort(${entityColumn.names}, NULL_SAFE_STRING_COMPARATOR);
+							Arrays.sort(${entityColumn.pluralName}, NULL_SAFE_STRING_COMPARATOR);
 						<#else>
-							Arrays.sort(${entityColumn.names});
+							Arrays.sort(${entityColumn.pluralName});
 						</#if>
 					</#if>
 				}
@@ -362,7 +362,7 @@ public int countBy${entityFinder.name}(
 				finderArgs = new Object[] {
 					<#list entityColumns as entityColumn>
 						<#if entityColumn.hasArrayableOperator()>
-							StringUtil.merge(${entityColumn.names})
+							StringUtil.merge(${entityColumn.pluralName})
 						<#else>
 							${entityColumn.name}
 						</#if>
@@ -379,7 +379,7 @@ public int countBy${entityFinder.name}(
 			Object[] finderArgs = new Object[] {
 				<#list entityColumns as entityColumn>
 					<#if entityColumn.hasArrayableOperator()>
-						StringUtil.merge(${entityColumn.names})
+						StringUtil.merge(${entityColumn.pluralName})
 					<#else>
 						${entityColumn.name}
 					</#if>
@@ -396,7 +396,7 @@ public int countBy${entityFinder.name}(
 		if (count == null) {
 			try {
 				if ((databaseInMaxParameters > 0) && (<#list entityFinderArrayableColsList as arrayablefinderCol>
-							(${arrayablefinderCol.names}.length > databaseInMaxParameters)
+							(${arrayablefinderCol.pluralName}.length > databaseInMaxParameters)
 
 							<#if arrayablefinderCol_has_next>
 								||
@@ -405,18 +405,18 @@ public int countBy${entityFinder.name}(
 						count = Long.valueOf(0);
 
 						<#list entityFinderArrayableColsList as arrayablefinderCol>
-							${arrayablefinderCol.type}[][] ${arrayablefinderCol.names}Pages = (${arrayablefinderCol.type}[][])ArrayUtil.split(${arrayablefinderCol.names}, databaseInMaxParameters);
+							${arrayablefinderCol.type}[][] ${arrayablefinderCol.pluralName}Pages = (${arrayablefinderCol.type}[][])ArrayUtil.split(${arrayablefinderCol.pluralName}, databaseInMaxParameters);
 						</#list>
 
 						<#list entityFinderArrayableColsList as arrayablefinderCol>
-							for (${arrayablefinderCol.type}[] ${arrayablefinderCol.names}Page : ${arrayablefinderCol.names}Pages) {
+							for (${arrayablefinderCol.type}[] ${arrayablefinderCol.pluralName}Page : ${arrayablefinderCol.pluralName}Pages) {
 						</#list>
 
 							count += Long.valueOf(_countBy${entityFinder.name}(
 
 							<#list entityColumns as entityColumn>
 								<#if entityColumn.hasArrayableOperator()>
-									${entityColumn.names}Page
+									${entityColumn.pluralName}Page
 								<#else>
 									${entityColumn.name}
 								</#if>
@@ -435,7 +435,7 @@ public int countBy${entityFinder.name}(
 
 						<#list entityColumns as entityColumn>
 							<#if entityColumn.hasArrayableOperator()>
-								${entityColumn.names}
+								${entityColumn.pluralName}
 							<#else>
 								${entityColumn.name}
 							</#if>
@@ -474,7 +474,7 @@ public int countBy${entityFinder.name}(
 
 	<#list entityColumns as entityColumn>
 		<#if entityColumn.hasArrayableOperator()>
-			${entityColumn.type}[] ${entityColumn.names}
+			${entityColumn.type}[] ${entityColumn.pluralName}
 		<#else>
 			${entityColumn.type} ${entityColumn.name}
 		</#if>
@@ -636,7 +636,7 @@ public int countBy${entityFinder.name}(
 		 *
 		<#list entityColumns as entityColumn>
 			<#if entityColumn.hasArrayableOperator()>
-		 * @param ${entityColumn.names} the ${entityColumn.humanNames}
+		 * @param ${entityColumn.pluralName} the ${entityColumn.humanNames}
 			<#else>
 		 * @param ${entityColumn.name} the ${entityColumn.humanName}
 			</#if>
@@ -648,7 +648,7 @@ public int countBy${entityFinder.name}(
 
 		<#list entityColumns as entityColumn>
 			<#if entityColumn.hasArrayableOperator()>
-				${entityColumn.type}[] ${entityColumn.names}
+				${entityColumn.type}[] ${entityColumn.pluralName}
 			<#else>
 				${entityColumn.type} ${entityColumn.name}
 			</#if>
@@ -677,7 +677,7 @@ public int countBy${entityFinder.name}(
 
 				<#list entityColumns as entityColumn>
 					<#if entityColumn.hasArrayableOperator()>
-						${entityColumn.names}
+						${entityColumn.pluralName}
 					<#else>
 						${entityColumn.name}
 					</#if>
@@ -692,30 +692,30 @@ public int countBy${entityFinder.name}(
 
 			<#list entityColumns as entityColumn>
 				<#if entityColumn.hasArrayableOperator()>
-					if (${entityColumn.names} == null) {
-						${entityColumn.names} = new ${entityColumn.type}[0];
+					if (${entityColumn.pluralName} == null) {
+						${entityColumn.pluralName} = new ${entityColumn.type}[0];
 					}
-					else if (${entityColumn.names}.length > 1) {
+					else if (${entityColumn.pluralName}.length > 1) {
 						<#if stringUtil.equals(entityColumn.type, "String") && entityColumn.isConvertNull()>
-							for (int i = 0; i < ${entityColumn.names}.length; i++) {
-								${entityColumn.names}[i] = Objects.toString(${entityColumn.names}[i], "");
+							for (int i = 0; i < ${entityColumn.pluralName}.length; i++) {
+								${entityColumn.pluralName}[i] = Objects.toString(${entityColumn.pluralName}[i], "");
 							}
 						</#if>
 
 						<#if serviceBuilder.isVersionGTE_7_2_0()>
-							${entityColumn.names} = ArrayUtil.sortedUnique(${entityColumn.names});
+							${entityColumn.pluralName} = ArrayUtil.sortedUnique(${entityColumn.pluralName});
 						<#else>
-							${entityColumn.names} =
+							${entityColumn.pluralName} =
 								<#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isConvertNull()>
-									ArrayUtil.distinct(${entityColumn.names}, NULL_SAFE_STRING_COMPARATOR);
+									ArrayUtil.distinct(${entityColumn.pluralName}, NULL_SAFE_STRING_COMPARATOR);
 								<#else>
-									ArrayUtil.unique(${entityColumn.names});
+									ArrayUtil.unique(${entityColumn.pluralName});
 								</#if>
 
 							<#if stringUtil.equals(entityColumn.type, "String") && !entityColumn.isConvertNull()>
-								Arrays.sort(${entityColumn.names}, NULL_SAFE_STRING_COMPARATOR);
+								Arrays.sort(${entityColumn.pluralName}, NULL_SAFE_STRING_COMPARATOR);
 							<#else>
-								Arrays.sort(${entityColumn.names});
+								Arrays.sort(${entityColumn.pluralName});
 							</#if>
 						</#if>
 					}

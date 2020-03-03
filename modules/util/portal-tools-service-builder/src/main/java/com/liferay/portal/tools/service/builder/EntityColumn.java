@@ -239,7 +239,7 @@ public class EntityColumn implements Cloneable, Comparable<EntityColumn> {
 		return _name;
 	}
 
-	public String getNames() {
+	public String getPluralName() {
 		return TextFormatter.formatPlural(_name);
 	}
 

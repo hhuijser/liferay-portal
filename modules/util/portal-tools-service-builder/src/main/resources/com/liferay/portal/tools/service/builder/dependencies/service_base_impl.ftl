@@ -949,8 +949,8 @@ import org.osgi.service.component.annotations.Reference;
 				</#list>
 				 */
 				@Override
-				public void add${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, List<${entity.name}> ${entity.varNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${referenceEntity.varName}Persistence.add${entity.pluralName}(${referenceEntity.PKVarName}, ${entity.varNames});
+				public void add${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, List<${entity.name}> ${entity.pluralVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.add${entity.pluralName}(${referenceEntity.PKVarName}, ${entity.pluralVarName});
 				}
 
 				<#assign serviceBaseExceptions = serviceBuilder.getServiceBaseExceptions(methods, "clear" + referenceEntity.name + entity.pluralName, [referenceEntity.PKClassName], []) />
@@ -1009,8 +1009,8 @@ import org.osgi.service.component.annotations.Reference;
 				</#list>
 				 */
 				@Override
-				public void delete${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, List<${entity.name}> ${entity.varNames}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
-					${referenceEntity.varName}Persistence.remove${entity.pluralName}(${referenceEntity.PKVarName}, ${entity.varNames});
+				public void delete${referenceEntity.name}${entity.pluralName}(${referenceEntity.PKClassName} ${referenceEntity.PKVarName}, List<${entity.name}> ${entity.pluralVarName}) <#if (serviceBaseExceptions?size gt 0)>throws ${stringUtil.merge(serviceBaseExceptions)} </#if>{
+					${referenceEntity.varName}Persistence.remove${entity.pluralName}(${referenceEntity.PKVarName}, ${entity.pluralVarName});
 				}
 
 				/**
@@ -1222,7 +1222,7 @@ import org.osgi.service.component.annotations.Reference;
 				}
 			</#list>
 
-			List<${localizedEntity.name}> ${localizedEntity.varNames} = new ArrayList<${localizedEntity.name}>(localizedValuesMap.size());
+			List<${localizedEntity.name}> ${localizedEntity.pluralVarName} = new ArrayList<${localizedEntity.name}>(localizedValuesMap.size());
 
 			for (${localizedEntity.name} ${localizedEntity.varName} : ${localizedEntity.varName}Persistence.findBy${pkEntityColumn.methodName}(${entityVarName}.get${pkEntityColumn.methodName}())) {
 				String[] localizedValues = localizedValuesMap.remove(${localizedEntity.varName}.getLanguageId());
@@ -1249,7 +1249,7 @@ import org.osgi.service.component.annotations.Reference;
 						${localizedEntity.varName}.set${entityColumn.methodName}(localizedValues[${entityColumn?index}]);
 					</#list>
 
-					${localizedEntity.varNames}.add(${localizedEntity.varName}Persistence.update(${localizedEntity.varName}));
+					${localizedEntity.pluralVarName}.add(${localizedEntity.varName}Persistence.update(${localizedEntity.varName}));
 				}
 			}
 
@@ -1283,10 +1283,10 @@ import org.osgi.service.component.annotations.Reference;
 					${localizedEntity.varName}.set${entityColumn.methodName}(localizedValues[${entityColumn?index}]);
 				</#list>
 
-				${localizedEntity.varNames}.add(${localizedEntity.varName}Persistence.update(${localizedEntity.varName}));
+				${localizedEntity.pluralVarName}.add(${localizedEntity.varName}Persistence.update(${localizedEntity.varName}));
 			}
 
-			return ${localizedEntity.varNames};
+			return ${localizedEntity.pluralVarName};
 		}
 
 		private ${localizedEntity.name} _update${localizedEntity.name}(
@@ -2063,11 +2063,11 @@ import org.osgi.service.component.annotations.Reference;
 					published${localizedEntity.name}Map.put(published${localizedEntity.name}.getLanguageId(), published${localizedEntity.name});
 				}
 
-				List<${localizedVersionEntity.name}> ${localizedVersionEntity.varNames} = ${localizedVersionEntity.varName}Persistence.findBy${pkEntityMethod}_Version(draft${entity.name}.getHeadId(), version);
+				List<${localizedVersionEntity.name}> ${localizedVersionEntity.pluralVarName} = ${localizedVersionEntity.varName}Persistence.findBy${pkEntityMethod}_Version(draft${entity.name}.getHeadId(), version);
 
-				long ${localizedVersionEntity.varName}BatchCounter = counterLocalService.increment(${localizedVersionEntity.name}.class.getName(), ${localizedVersionEntity.varNames}.size()) - ${localizedVersionEntity.varNames}.size();
+				long ${localizedVersionEntity.varName}BatchCounter = counterLocalService.increment(${localizedVersionEntity.name}.class.getName(), ${localizedVersionEntity.pluralVarName}.size()) - ${localizedVersionEntity.pluralVarName}.size();
 
-				for (${localizedVersionEntity.name} ${localizedVersionEntity.varName} : ${localizedVersionEntity.varNames}) {
+				for (${localizedVersionEntity.name} ${localizedVersionEntity.varName} : ${localizedVersionEntity.pluralVarName}) {
 					${localizedEntity.name} draft${localizedEntity.name} = ${localizedEntity.varName}Persistence.create(++${localizedVersionEntity.varName}BatchCounter);
 
 					long headId = draft${localizedEntity.name}.getPrimaryKey();

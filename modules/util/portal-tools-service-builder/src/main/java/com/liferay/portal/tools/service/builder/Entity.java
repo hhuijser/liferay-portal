@@ -602,6 +602,10 @@ public class Entity implements Comparable<Entity> {
 		return TextFormatter.formatPlural(_name);
 	}
 
+	public String getPluralVarName() {
+		return TextFormatter.formatPlural(getVarName());
+	}
+
 	public String getPortletShortName() {
 		return _portletShortName;
 	}
@@ -765,10 +769,6 @@ public class Entity implements Comparable<Entity> {
 
 	public String getVarName() {
 		return TextFormatter.format(_name, TextFormatter.I);
-	}
-
-	public String getVarNames() {
-		return TextFormatter.formatPlural(getVarName());
 	}
 
 	public Entity getVersionedEntity() {

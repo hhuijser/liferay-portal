@@ -299,11 +299,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	/**
 	 * Caches the ${entity.pluralHumanName} in the entity cache if it is enabled.
 	 *
-	 * @param ${entity.varNames} the ${entity.pluralHumanName}
+	 * @param ${entity.pluralVarName} the ${entity.pluralHumanName}
 	 */
 	@Override
-	public void cacheResult(List<${entity.name}> ${entity.varNames}) {
-		for (${entity.name} ${entity.varName} : ${entity.varNames}) {
+	public void cacheResult(List<${entity.name}> ${entity.pluralVarName}) {
+		for (${entity.name} ${entity.varName} : ${entity.pluralVarName}) {
 			<#if entity.isChangeTrackingEnabled()>
 				if (${entity.varName}.getCtCollectionId() != 0) {
 					${entity.varName}.resetOriginalValues();
@@ -357,11 +357,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 	}
 
 	@Override
-	public void clearCache(List<${entity.name}> ${entity.varNames}) {
+	public void clearCache(List<${entity.name}> ${entity.pluralVarName}) {
 		${finderCache}.clearCache(FINDER_CLASS_NAME_LIST_WITH_PAGINATION);
 		${finderCache}.clearCache(FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION);
 
-		for (${entity.name} ${entity.varName} : ${entity.varNames}) {
+		for (${entity.name} ${entity.varName} : ${entity.pluralVarName}) {
 			${entityCache}.removeResult(${entityCacheEnabled}, ${entity.name}Impl.class, ${entity.varName}.getPrimaryKey());
 
 			<#if entity.uniqueEntityFinders?size &gt; 0>
@@ -1643,11 +1643,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Adds an association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varNames} the ${referenceEntity.pluralHumanName}
+				 * @param ${referenceEntity.pluralVarName} the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
-				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
-					add${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void add${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVarName}) {
+					add${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.pluralVarName}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
@@ -1697,11 +1697,11 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Removes the association between the ${entity.humanName} and the ${referenceEntity.pluralHumanName}. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varNames} the ${referenceEntity.pluralHumanName}
+				 * @param ${referenceEntity.pluralVarName} the ${referenceEntity.pluralHumanName}
 				 */
 				@Override
-				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
-					remove${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.varNames}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
+				public void remove${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVarName}) {
+					remove${referenceEntity.pluralName}(pk, ListUtil.toLongArray(${referenceEntity.pluralVarName}, ${referenceEntity.apiPackagePath}.model.${referenceEntity.name}.${textFormatter.format(textFormatter.format(referenceEntity.getPKVarName(), 7), 0)}_ACCESSOR));
 				}
 
 				/**
@@ -1741,15 +1741,15 @@ public class ${entity.name}PersistenceImpl extends BasePersistenceImpl<${entity.
 				 * Sets the ${referenceEntity.pluralHumanName} associated with the ${entity.humanName}, removing and adding associations as necessary. Also notifies the appropriate model listeners and clears the mapping table finder cache.
 				 *
 				 * @param pk the primary key of the ${entity.humanName}
-				 * @param ${referenceEntity.varNames} the ${referenceEntity.pluralHumanName} to be associated with the ${entity.humanName}
+				 * @param ${referenceEntity.pluralVarName} the ${referenceEntity.pluralHumanName} to be associated with the ${entity.humanName}
 				 */
 				@Override
-				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.varNames}) {
+				public void set${referenceEntity.pluralName}(${entity.PKClassName} pk, List<${referenceEntity.apiPackagePath}.model.${referenceEntity.name}> ${referenceEntity.pluralVarName}) {
 					try {
-						${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs = new ${referenceEntity.PKClassName}[${referenceEntity.varNames}.size()];
+						${referenceEntity.PKClassName}[] ${referenceEntity.varName}PKs = new ${referenceEntity.PKClassName}[${referenceEntity.pluralVarName}.size()];
 
-						for (int i = 0; i < ${referenceEntity.varNames}.size(); i++) {
-							${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName} = ${referenceEntity.varNames}.get(i);
+						for (int i = 0; i < ${referenceEntity.pluralVarName}.size(); i++) {
+							${referenceEntity.apiPackagePath}.model.${referenceEntity.name} ${referenceEntity.varName} = ${referenceEntity.pluralVarName}.get(i);
 
 							${referenceEntity.varName}PKs[i] = ${referenceEntity.varName}.getPrimaryKey();
 						}

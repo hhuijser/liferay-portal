@@ -584,7 +584,15 @@ public class Entity implements Comparable<Entity> {
 		return entityColumn.getName();
 	}
 
-	public String getPKVarNames() {
+	public String getPluralHumanName() {
+		return TextFormatter.formatPlural(_humanName);
+	}
+
+	public String getPluralName() {
+		return TextFormatter.formatPlural(_name);
+	}
+
+	public String getPluralPKVarName() {
 		if (hasCompoundPK()) {
 			return getVarName() + "PKs";
 		}
@@ -592,14 +600,6 @@ public class Entity implements Comparable<Entity> {
 		EntityColumn entityColumn = _getPKEntityColumn();
 
 		return entityColumn.getPluralName();
-	}
-
-	public String getPluralHumanName() {
-		return TextFormatter.formatPlural(_humanName);
-	}
-
-	public String getPluralName() {
-		return TextFormatter.formatPlural(_name);
 	}
 
 	public String getPluralVarName() {

@@ -90,9 +90,8 @@ The name value specifies the name of the entity.
 >
 
 <!--
-The plural-name value specifies the plural form of the name to use when
-generating documentation for this entity. If none is specified, one will be
-generated from the name.
+The plural-name value specifies the plural form of the name. If none is
+specified, one will be generated from the name.
 -->
 <!ATTLIST entity
 	plural-name CDATA #IMPLIED

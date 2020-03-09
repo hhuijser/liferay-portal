@@ -55,26 +55,26 @@ public class SettingsLocatorHelperUtil {
 		return _settingsLocatorHelpers.get(0);
 	}
 
-	public Settings getConfigurationBeanSettings(String settingsId) {
+	public static Settings getConfigurationBeanSettings(String settingsId) {
 		return getSettingsLocatorHelper().getConfigurationBeanSettings(
 			settingsId);
 	}
 
-	public Settings getGroupPortletPreferencesSettings(
+	public static Settings getGroupPortletPreferencesSettings(
 		long groupId, String settingsId, Settings parentSettings) {
 
 		return getSettingsLocatorHelper().getGroupPortletPreferencesSettings(
 			groupId, settingsId, parentSettings);
 	}
 
-	public Settings getPortalPreferencesSettings(
+	public static Settings getPortalPreferencesSettings(
 		long companyId, Settings parentSettings) {
 
 		return getSettingsLocatorHelper().getPortalPreferencesSettings(
 			companyId, parentSettings);
 	}
 
-	public Settings getPortletInstancePortletPreferencesSettings(
+	public static Settings getPortletInstancePortletPreferencesSettings(
 		long companyId, long plid, String portletId, Settings parentSettings) {
 
 		return getSettingsLocatorHelper().
@@ -82,7 +82,7 @@ public class SettingsLocatorHelperUtil {
 				companyId, plid, portletId, parentSettings);
 	}
 
-	public Settings getServerSettings(String settingsId) {
+	public static Settings getServerSettings(String settingsId) {
 		return getSettingsLocatorHelper().getServerSettings(settingsId);
 	}
 

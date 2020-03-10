@@ -14,7 +14,12 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.GitException;
+
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +31,12 @@ public class JavaStylingCheck extends BaseStylingCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+			String fileName, String absolutePath, String content)
+		throws Exception {
+
+		if (fileName.endsWith("ToolsUtil.java")) {
+			addMessage(fileName, _getCurrentBranchName());
+		}
 
 		if (content.contains("$\n */")) {
 			content = StringUtil.replace(content, "$\n */", "$\n *\n */");
@@ -133,6 +143,38 @@ public class JavaStylingCheck extends BaseStylingCheck {
 			"(@author +)Zsolt Szab.", "$1Zsolt Szab\u00f3");
 
 		return content;
+	}
+
+	private String _getCurrentBranchName() throws Exception {
+		UnsyncBufferedReader unsyncBufferedReader = _getGitCommandReader(
+			"git rev-parse --abbrev-ref HEAD");
+
+		return unsyncBufferedReader.readLine();
+	}
+
+	private UnsyncBufferedReader _getGitCommandReader(String gitCommand)
+		throws Exception {
+
+		Runtime runtime = Runtime.getRuntime();
+
+		Process process = null;
+
+		try {
+			process = runtime.exec(gitCommand);
+		}
+		catch (IOException ioException) {
+			String errorMessage = ioException.getMessage();
+
+			if (errorMessage.contains("Cannot run program")) {
+				throw new GitException(
+					"Add Git to your PATH system variable first");
+			}
+
+			throw ioException;
+		}
+
+		return new UnsyncBufferedReader(
+			new InputStreamReader(process.getInputStream()));
 	}
 
 	private static final Pattern _incorrectJavadocPattern = Pattern.compile(

@@ -15,7 +15,7 @@
 package com.liferay.portal.kernel.nio.intraband.nonblocking;
 
 import com.liferay.portal.kernel.nio.intraband.BaseIntraband;
-import com.liferay.portal.kernel.nio.intraband.BaseIntrabandHelper;
+import com.liferay.portal.kernel.nio.intraband.BaseIntrabandUtil;
 import com.liferay.portal.kernel.nio.intraband.ChannelContext;
 import com.liferay.portal.kernel.nio.intraband.ClosedIntrabandException;
 import com.liferay.portal.kernel.nio.intraband.CompletionHandler;
@@ -245,7 +245,7 @@ public class SelectorIntrabandTest {
 			DatagramHelper.setSequenceId(requestDatagram, sequenceId);
 			DatagramHelper.setTimeout(requestDatagram, 10000);
 
-			BaseIntrabandHelper.addResponseWaitingDatagram(
+			BaseIntrabandUtil.addResponseWaitingDatagram(
 				_selectorIntraband, requestDatagram);
 
 			DatagramHelper.writeTo(
@@ -316,7 +316,7 @@ public class SelectorIntrabandTest {
 			DatagramHelper.setSequenceId(requestDatagram, sequenceId);
 			DatagramHelper.setTimeout(requestDatagram, 10000);
 
-			BaseIntrabandHelper.addResponseWaitingDatagram(
+			BaseIntrabandUtil.addResponseWaitingDatagram(
 				_selectorIntraband, requestDatagram);
 
 			DatagramHelper.writeTo(
@@ -348,7 +348,7 @@ public class SelectorIntrabandTest {
 			DatagramHelper.setSequenceId(requestDatagram, sequenceId);
 			DatagramHelper.setTimeout(requestDatagram, 10000);
 
-			BaseIntrabandHelper.addResponseWaitingDatagram(
+			BaseIntrabandUtil.addResponseWaitingDatagram(
 				_selectorIntraband, requestDatagram);
 
 			Jdk14LogImplAdvice.reset();
@@ -386,7 +386,7 @@ public class SelectorIntrabandTest {
 			DatagramHelper.setSequenceId(requestDatagram, sequenceId);
 			DatagramHelper.setTimeout(requestDatagram, 10000);
 
-			BaseIntrabandHelper.addResponseWaitingDatagram(
+			BaseIntrabandUtil.addResponseWaitingDatagram(
 				_selectorIntraband, requestDatagram);
 
 			Jdk14LogImplAdvice.reset();

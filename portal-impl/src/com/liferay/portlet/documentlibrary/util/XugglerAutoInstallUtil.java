@@ -54,11 +54,8 @@ import java.util.regex.Pattern;
 
 /**
  * @author Shuyang Zhou
- * @deprecated As of Athanasius (7.3.x), replaced by {@link
- *             XugglerAutoInstallUtil}
  */
-@Deprecated
-public class XugglerAutoInstallHelper {
+public class XugglerAutoInstallUtil {
 
 	public static void installNativeLibraries() throws ProcessException {
 		if (_isNativeLibraryInstalled()) {
@@ -265,7 +262,7 @@ public class XugglerAutoInstallHelper {
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(
-		XugglerAutoInstallHelper.class);
+		XugglerAutoInstallUtil.class);
 
 	private static final Pattern _pattern = Pattern.compile(
 		"(.*)-\\d+-\\d+(\\.jar)");

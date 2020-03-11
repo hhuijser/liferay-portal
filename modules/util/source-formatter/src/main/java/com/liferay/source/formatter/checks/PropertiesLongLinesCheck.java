@@ -115,7 +115,7 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 			return mergedCommentLines;
 		}
 
-		int x = mergedCommentLines.indexOf(" ");
+		int x = mergedCommentLines.indexOf(" ", 6);
 
 		if (x == -1) {
 			return mergedCommentLines;

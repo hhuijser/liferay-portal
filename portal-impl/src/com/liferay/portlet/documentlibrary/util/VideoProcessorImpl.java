@@ -684,7 +684,7 @@ public class VideoProcessorImpl
 
 		@Override
 		public String call() throws ProcessException {
-			XugglerAutoInstallHelper.installNativeLibraries();
+			XugglerAutoInstallUtil.installNativeLibraries();
 
 			Properties systemProperties = System.getProperties();
 
@@ -755,7 +755,7 @@ public class VideoProcessorImpl
 
 		@Override
 		public String call() throws ProcessException {
-			XugglerAutoInstallHelper.installNativeLibraries();
+			XugglerAutoInstallUtil.installNativeLibraries();
 
 			Class<?> clazz = getClass();
 

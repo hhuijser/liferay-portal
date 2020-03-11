@@ -55,18 +55,18 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 			}
 		}
 
-		Matcher matcher = _multiLineCommentsPattern.matcher(content);
+		Matcher matcher = _commentsPattern.matcher(content);
 
 		while (matcher.find()) {
 			String match = matcher.group();
 
-			String mergedCommentLines = match.replace("\n    #", "");
+			String comment = StringUtil.removeSubstring(match, "\n    #");
 
-			String spiltCommentLines = _splitCommentLines(mergedCommentLines);
+			comment = _splitComment(comment);
 
-			if (!StringUtil.equals(match, spiltCommentLines)) {
+			if (!StringUtil.equals(match, comment)) {
 				return StringUtil.replaceFirst(
-					content, match, spiltCommentLines, matcher.start());
+					content, match, comment, matcher.start());
 			}
 		}
 
@@ -110,30 +110,33 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 		}
 	}
 
-	private String _splitCommentLines(String mergedCommentLines) {
-		if (mergedCommentLines.length() <= getMaxLineLength()) {
-			return mergedCommentLines;
+	private String _splitComment(String comment) {
+		if (comment.length() <= getMaxLineLength()) {
+			return comment;
 		}
 
-		int x = mergedCommentLines.indexOf(" ", 6);
+		int x = comment.indexOf(" ", 6);
 
 		if (x == -1) {
-			return mergedCommentLines;
+			return comment;
 		}
 
-		if (x > 80) {
-			return mergedCommentLines.substring(0, x) + "\n" +
-				_splitCommentLines(
-					"    # " + mergedCommentLines.substring(x + 1));
+		String s = "";
+
+		if (x > getMaxLineLength()) {
+			s = "    # " + comment.substring(x + 1);
+
+			return comment.substring(0, x) + "\n" + _splitComment(s);
 		}
 
-		x = mergedCommentLines.lastIndexOf(" ", getMaxLineLength());
+		x = comment.lastIndexOf(" ", getMaxLineLength());
 
-		return mergedCommentLines.substring(0, x) + "\n" +
-			_splitCommentLines("    # " + mergedCommentLines.substring(x + 1));
+		s = "    # " + comment.substring(x + 1);
+
+		return comment.substring(0, x) + "\n" + _splitComment(s);
 	}
 
-	private static final Pattern _multiLineCommentsPattern = Pattern.compile(
+	private static final Pattern _commentsPattern = Pattern.compile(
 		"(    (?!# Env: )# (?! ).+)(\n    # (?! ).+)+");
 
 }

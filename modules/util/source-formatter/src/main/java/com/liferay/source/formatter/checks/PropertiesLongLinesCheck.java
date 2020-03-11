@@ -137,6 +137,6 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 	}
 
 	private static final Pattern _commentsPattern = Pattern.compile(
-		"(    (?!# Env: )# (?! ).+)(\n    # (?! ).+)+");
+		"(    (?!# Env: )# (?! ).+)(\n    # (?! ).+)*");
 
 }

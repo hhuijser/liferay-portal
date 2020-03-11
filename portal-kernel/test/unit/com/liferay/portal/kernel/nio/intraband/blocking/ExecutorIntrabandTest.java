@@ -18,7 +18,7 @@ import com.liferay.portal.kernel.nio.intraband.BaseIntraband;
 import com.liferay.portal.kernel.nio.intraband.ChannelContext;
 import com.liferay.portal.kernel.nio.intraband.CompletionHandler;
 import com.liferay.portal.kernel.nio.intraband.Datagram;
-import com.liferay.portal.kernel.nio.intraband.DatagramHelper;
+import com.liferay.portal.kernel.nio.intraband.DatagramUtil;
 import com.liferay.portal.kernel.nio.intraband.IntrabandTestUtil;
 import com.liferay.portal.kernel.nio.intraband.RecordCompletionHandler;
 import com.liferay.portal.kernel.nio.intraband.blocking.ExecutorIntraband.ReadingCallable;
@@ -573,12 +573,12 @@ public class ExecutorIntrabandTest {
 		sendingQueue.put(datagram2);
 
 		Assert.assertTrue(
-			DatagramHelper.readFrom(
-				DatagramHelper.createReceiveDatagram(), sourceChannel));
+			DatagramUtil.readFrom(
+				DatagramUtil.createReceiveDatagram(), sourceChannel));
 
 		Assert.assertTrue(
-			DatagramHelper.readFrom(
-				DatagramHelper.createReceiveDatagram(), sourceChannel));
+			DatagramUtil.readFrom(
+				DatagramUtil.createReceiveDatagram(), sourceChannel));
 
 		// Interrupt on blocking take
 

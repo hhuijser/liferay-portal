@@ -95,9 +95,9 @@ public class IntrabandTestUtil {
 			ScatteringByteChannel scatteringByteChannel)
 		throws IOException {
 
-		Datagram datagram = DatagramHelper.createReceiveDatagram();
+		Datagram datagram = DatagramUtil.createReceiveDatagram();
 
-		while (!DatagramHelper.readFrom(datagram, scatteringByteChannel));
+		while (!DatagramUtil.readFrom(datagram, scatteringByteChannel));
 
 		return datagram;
 	}

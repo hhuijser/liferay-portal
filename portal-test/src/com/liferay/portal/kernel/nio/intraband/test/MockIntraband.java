@@ -17,7 +17,7 @@ package com.liferay.portal.kernel.nio.intraband.test;
 import com.liferay.portal.kernel.nio.intraband.BaseIntraband;
 import com.liferay.portal.kernel.nio.intraband.CompletionHandler;
 import com.liferay.portal.kernel.nio.intraband.Datagram;
-import com.liferay.portal.kernel.nio.intraband.DatagramHelper;
+import com.liferay.portal.kernel.nio.intraband.DatagramUtil;
 import com.liferay.portal.kernel.nio.intraband.RegistrationReference;
 
 import java.io.IOException;
@@ -75,7 +75,7 @@ public class MockIntraband extends BaseIntraband {
 		_datagram = datagram;
 
 		CompletionHandler<?> completionHandler =
-			DatagramHelper.getCompletionHandler(datagram);
+			DatagramUtil.getCompletionHandler(datagram);
 
 		if (completionHandler == null) {
 			return;

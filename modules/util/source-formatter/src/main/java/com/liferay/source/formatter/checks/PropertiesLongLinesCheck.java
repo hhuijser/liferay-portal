@@ -21,6 +21,9 @@ import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * @author Hugo Huijser
  */
@@ -49,6 +52,21 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 				lineNumber++;
 
 				_checkMaxLineLength(line, fileName, lineNumber);
+			}
+		}
+
+		Matcher matcher = _multiLineCommentsPattern.matcher(content);
+
+		while (matcher.find()) {
+			String match = matcher.group();
+
+			String mergedCommentLines = match.replace("\n    #", "");
+
+			String spiltCommentLines = _splitCommentLines(mergedCommentLines);
+
+			if (!StringUtil.equals(match, spiltCommentLines)) {
+				return StringUtil.replaceFirst(
+					content, match, spiltCommentLines, matcher.start());
 			}
 		}
 
@@ -91,5 +109,31 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 			addMessage(fileName, "> " + getMaxLineLength(), lineNumber);
 		}
 	}
+
+	private String _splitCommentLines(String mergedCommentLines) {
+		if (mergedCommentLines.length() <= getMaxLineLength()) {
+			return mergedCommentLines;
+		}
+
+		int x = mergedCommentLines.indexOf(" ");
+
+		if (x == -1) {
+			return mergedCommentLines;
+		}
+
+		if (x > 80) {
+			return mergedCommentLines.substring(0, x) + "\n" +
+				_splitCommentLines(
+					"    # " + mergedCommentLines.substring(x + 1));
+		}
+
+		x = mergedCommentLines.lastIndexOf(" ", getMaxLineLength());
+
+		return mergedCommentLines.substring(0, x) + "\n" +
+			_splitCommentLines("    # " + mergedCommentLines.substring(x + 1));
+	}
+
+	private static final Pattern _multiLineCommentsPattern = Pattern.compile(
+		"(    # .+)(\n    # .+)+");
 
 }

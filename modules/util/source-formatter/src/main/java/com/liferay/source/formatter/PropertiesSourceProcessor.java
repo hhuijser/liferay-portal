@@ -43,6 +43,8 @@ public class PropertiesSourceProcessor extends BaseSourceProcessor {
 		};
 	}
 
-	private static final String[] _INCLUDES = {"**/*.properties"};
+	private static final String[] _INCLUDES = {
+		"**/*.properties", "**/*.prettierignore"
+	};
 
 }

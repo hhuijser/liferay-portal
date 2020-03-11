@@ -14,12 +14,13 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
-import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
+import com.liferay.petra.string.CharPool;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.IOException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -38,58 +39,56 @@ public class PropertiesLongLinesCheck extends BaseFileCheck {
 			return content;
 		}
 
-		try (UnsyncBufferedReader unsyncBufferedReader =
-				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+		Matcher matcher = _commentsPattern.matcher(content);
 
-			int lineNumber = 0;
+		while (matcher.find()) {
+			String match = matcher.group();
 
-			String line = null;
+			String comment = StringUtil.removeSubstring(match, "\n    #");
 
-			while ((line = unsyncBufferedReader.readLine()) != null) {
-				lineNumber++;
+			comment = _splitComment(comment);
 
-				_checkMaxLineLength(line, fileName, lineNumber);
+			if (!StringUtil.equals(match, comment)) {
+				return StringUtil.replaceFirst(
+					content, match, comment, matcher.start());
 			}
 		}
 
 		return content;
 	}
 
-	private void _checkMaxLineLength(
-		String line, String fileName, int lineNumber) {
-
-		String trimmedLine = StringUtil.trimLeading(line);
-
-		if (!trimmedLine.startsWith("# ")) {
-			return;
+	private String _splitComment(String comment) {
+		if (comment.length() <= getMaxLineLength()) {
+			return comment;
 		}
 
-		if (trimmedLine.matches("# Env: \\w*")) {
-			return;
+		int x = -1;
+
+		if (comment.startsWith("    # See http:")) {
+			x = comment.indexOf(CharPool.SPACE, 10);
+		}
+		else {
+			x = comment.indexOf(CharPool.SPACE, 6);
 		}
 
-		int lineLength = getLineLength(line);
-
-		if (lineLength <= getMaxLineLength()) {
-			return;
+		if (x == -1) {
+			return comment;
 		}
 
-		int x = line.indexOf("# ");
-		int y = line.lastIndexOf(StringPool.SPACE, getMaxLineLength());
+		if (x > getMaxLineLength()) {
+			String s = "    # " + comment.substring(x + 1);
 
-		if ((x + 1) == y) {
-			return;
+			return comment.substring(0, x) + "\n" + _splitComment(s);
 		}
 
-		int z = line.indexOf(StringPool.SPACE, getMaxLineLength() + 1);
+		x = comment.lastIndexOf(CharPool.SPACE, getMaxLineLength());
 
-		if (z == -1) {
-			z = lineLength;
-		}
+		String s = "    # " + comment.substring(x + 1);
 
-		if ((z - y + x + 2) <= getMaxLineLength()) {
-			addMessage(fileName, "> " + getMaxLineLength(), lineNumber);
-		}
+		return comment.substring(0, x) + "\n" + _splitComment(s);
 	}
+
+	private static final Pattern _commentsPattern = Pattern.compile(
+		"(    (?!# Env: )# (?! ).+)(\n    # (?! ).+)*");
 
 }

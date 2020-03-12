@@ -99,10 +99,6 @@ public class JSONCurlUtil {
 		return _getParsedResponse(request, jsonPath);
 	}
 
-	protected Request getRequest(String requestString, String requestMethod) {
-		return new Request(requestString, requestMethod);
-	}
-
 	private static String _getParsedResponse(Request request, String jsonPath)
 		throws IOException, TimeoutException {
 

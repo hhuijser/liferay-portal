@@ -15,7 +15,6 @@
 package com.liferay.knowledge.base.internal.upgrade.v1_3_3;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.FriendlyURLNormalizerUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -54,47 +53,35 @@ public class UpgradeKBFolder extends UpgradeProcess {
 	private String _findUniqueUrlTitle(Connection con, String urlTitle)
 		throws SQLException {
 
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			ps = con.prepareStatement(
-				"select count(*) from KBFolder where KBFolder.urlTitle like ?");
+		try (PreparedStatement ps = con.prepareStatement(
+				"select count(*) from KBFolder where KBFolder.urlTitle like " +
+					"?")) {
 
 			ps.setString(1, urlTitle + "%");
 
-			rs = ps.executeQuery();
+			try (ResultSet rs = ps.executeQuery()) {
+				if (!rs.next()) {
+					return urlTitle;
+				}
 
-			if (!rs.next()) {
-				return urlTitle;
+				int kbFolderCount = rs.getInt(1);
+
+				if (kbFolderCount == 0) {
+					return urlTitle;
+				}
+
+				return null;
 			}
-
-			int kbFolderCount = rs.getInt(1);
-
-			if (kbFolderCount == 0) {
-				return urlTitle;
-			}
-
-			return null;
-		}
-		finally {
-			DataAccess.cleanUp(ps);
-			DataAccess.cleanUp(rs);
 		}
 	}
 
 	private Map<Long, String> _getInitialUrlTitles(Connection con)
 		throws SQLException {
 
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			ps = con.prepareStatement(
+		try (PreparedStatement ps = con.prepareStatement(
 				"select kbFolderId, name from KBFolder where " +
 					"(KBFolder.urlTitle is null) or (KBFolder.urlTitle = '')");
-
-			rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery()) {
 
 			Map<Long, String> urlTitles = new HashMap<>();
 
@@ -108,10 +95,6 @@ public class UpgradeKBFolder extends UpgradeProcess {
 			}
 
 			return urlTitles;
-		}
-		finally {
-			DataAccess.cleanUp(ps);
-			DataAccess.cleanUp(rs);
 		}
 	}
 
@@ -144,20 +127,14 @@ public class UpgradeKBFolder extends UpgradeProcess {
 			Connection con, long kbFolderId, String urlTitle)
 		throws SQLException {
 
-		PreparedStatement ps = null;
-
-		try {
-			ps = con.prepareStatement(
+		try (PreparedStatement ps = con.prepareStatement(
 				"update KBFolder set KBFolder.urlTitle = ? where " +
-					"KBFolder.kbFolderId = ?");
+					"KBFolder.kbFolderId = ?")) {
 
 			ps.setString(1, urlTitle);
 			ps.setLong(2, kbFolderId);
 
 			ps.execute();
-		}
-		finally {
-			DataAccess.cleanUp(ps);
 		}
 	}
 

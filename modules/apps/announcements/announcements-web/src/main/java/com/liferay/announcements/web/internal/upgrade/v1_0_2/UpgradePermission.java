@@ -16,7 +16,6 @@ package com.liferay.announcements.web.internal.upgrade.v1_0_2;
 
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ResourceAction;
@@ -66,31 +65,26 @@ public class UpgradePermission extends UpgradeProcess {
 
 		_resourcePermissions.add(key);
 
-		PreparedStatement ps = null;
+		long resourcePermissionId = increment(
+			ResourcePermission.class.getName());
 
-		try {
-			long resourcePermissionId = increment(
-				ResourcePermission.class.getName());
+		long actionBitwiseValue =
+			_BITWISE_VALUE_VIEW | _BITWISE_VALUE_ACCESS_IN_CONTROL_PANEL;
 
-			long actionBitwiseValue =
-				_BITWISE_VALUE_VIEW | _BITWISE_VALUE_ACCESS_IN_CONTROL_PANEL;
+		String name =
+			"com_liferay_announcements_web_portlet_AnnouncementsAdminPortlet";
+		long ownerId = 0;
 
-			String name =
-				"com_liferay_announcements_web_portlet_" +
-					"AnnouncementsAdminPortlet";
-			long ownerId = 0;
+		StringBundler sb = new StringBundler(4);
 
-			StringBundler sb = new StringBundler(4);
+		sb.append("insert into ResourcePermission (mvccVersion, ");
+		sb.append("resourcePermissionId, companyId, name, scope, primKey, ");
+		sb.append("primKeyId, roleId, ownerId, actionIds, viewActionId) ");
+		sb.append("values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-			sb.append("insert into ResourcePermission (mvccVersion, ");
-			sb.append("resourcePermissionId, companyId, name, scope, ");
-			sb.append("primKey, primKeyId, roleId, ownerId, actionIds, ");
-			sb.append("viewActionId) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+		String sql = sb.toString();
 
-			String sql = sb.toString();
-
-			ps = connection.prepareStatement(sql);
-
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setLong(1, 0);
 			ps.setLong(2, resourcePermissionId);
 			ps.setLong(3, companyId);
@@ -110,27 +104,20 @@ public class UpgradePermission extends UpgradeProcess {
 				_log.warn("Unable to add resource permission", exception);
 			}
 		}
-		finally {
-			DataAccess.cleanUp(ps);
-		}
 	}
 
 	protected void addResourceAction(String actionId, long bitwiseValue) {
-		PreparedStatement ps = null;
+		long resourceActionId = increment(ResourceAction.class.getName());
 
-		try {
-			long resourceActionId = increment(ResourceAction.class.getName());
+		StringBundler sb = new StringBundler(3);
 
-			StringBundler sb = new StringBundler(3);
+		sb.append("insert into ResourceAction (mvccVersion, ");
+		sb.append("resourceActionId, name, actionId, bitwiseValue) values ");
+		sb.append("(?, ?, ?, ?, ?)");
 
-			sb.append("insert into ResourceAction (mvccVersion, ");
-			sb.append("resourceActionId, name, actionId, bitwiseValue) ");
-			sb.append("values (?, ?, ?, ?, ?)");
+		String sql = sb.toString();
 
-			String sql = sb.toString();
-
-			ps = connection.prepareStatement(sql);
-
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setLong(1, 0);
 			ps.setLong(2, resourceActionId);
 			ps.setString(
@@ -146,9 +133,6 @@ public class UpgradePermission extends UpgradeProcess {
 			if (_log.isWarnEnabled()) {
 				_log.warn("Unable to add resource action", exception);
 			}
-		}
-		finally {
-			DataAccess.cleanUp(ps);
 		}
 	}
 

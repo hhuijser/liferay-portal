@@ -16,7 +16,6 @@ package com.liferay.knowledge.base.internal.upgrade.v1_3_4;
 
 import com.liferay.knowledge.base.constants.KBActionKeys;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 import java.sql.PreparedStatement;
@@ -44,29 +43,22 @@ public class UpgradeResourceAction extends UpgradeProcess {
 	}
 
 	private boolean _hasViewFeedbackResourceAction() throws SQLException {
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			ps = connection.prepareStatement(
-				"select count(*) from ResourceAction where actionId = ?");
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select count(*) from ResourceAction where actionId = ?")) {
 
 			ps.setString(1, _ACTION_ID_VIEW_KB_FEEDBACK);
 
-			rs = ps.executeQuery();
+			try (ResultSet rs = ps.executeQuery()) {
+				if (rs.next()) {
+					if (rs.getInt(1) > 0) {
+						return true;
+					}
 
-			if (rs.next()) {
-				if (rs.getInt(1) > 0) {
-					return true;
+					return false;
 				}
 
 				return false;
 			}
-
-			return false;
-		}
-		finally {
-			DataAccess.cleanUp(ps, rs);
 		}
 	}
 

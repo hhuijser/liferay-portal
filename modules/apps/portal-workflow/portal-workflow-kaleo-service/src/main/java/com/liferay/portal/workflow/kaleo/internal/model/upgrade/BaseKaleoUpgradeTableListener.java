@@ -39,19 +39,12 @@ public class BaseKaleoUpgradeTableListener extends BaseUpgradeTableListener {
 
 		Map<Long, Long> keyValueMap = new HashMap<>();
 
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-
-		try {
-			con = DataAccess.getConnection();
-
-			ps = con.prepareStatement(
+		try (Connection con = DataAccess.getConnection();
+			PreparedStatement ps = con.prepareStatement(
 				StringBundler.concat(
 					"select ", keyColumnName, ", ", valueColumnName, " from ",
 					tableName));
-
-			rs = ps.executeQuery();
+			ResultSet rs = ps.executeQuery()) {
 
 			while (rs.next()) {
 				long key = rs.getLong(keyColumnName);
@@ -69,9 +62,6 @@ public class BaseKaleoUpgradeTableListener extends BaseUpgradeTableListener {
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
-		}
-		finally {
-			DataAccess.cleanUp(con, ps, rs);
 		}
 
 		return keyValueMap;

@@ -20,7 +20,6 @@ import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeCon
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.util.LayoutPageTemplateStructureHelperUtil;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.dao.jdbc.DataAccess;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -157,11 +156,7 @@ public class UpgradeLayoutPageTemplateStructure extends UpgradeProcess {
 
 		String sql = sb.toString();
 
-		PreparedStatement ps = null;
-
-		try {
-			ps = connection.prepareStatement(sql);
-
+		try (PreparedStatement ps = connection.prepareStatement(sql)) {
 			ps.setString(1, PortalUUIDUtil.generate());
 			ps.setLong(2, increment());
 			ps.setLong(3, groupId);
@@ -180,9 +175,6 @@ public class UpgradeLayoutPageTemplateStructure extends UpgradeProcess {
 			if (_log.isDebugEnabled()) {
 				_log.debug(exception, exception);
 			}
-		}
-		finally {
-			DataAccess.cleanUp(ps);
 		}
 	}
 

@@ -696,12 +696,10 @@ public class CustomSQLImpl implements CustomSQL {
 
 		_portal.initCustomSQL();
 
-		Connection con = DataAccess.getConnection();
-
 		String functionIsNull = _portal.getCustomSQLFunctionIsNull();
 		String functionIsNotNull = _portal.getCustomSQLFunctionIsNotNull();
 
-		try {
+		try (Connection con = DataAccess.getConnection()) {
 			if (Validator.isNotNull(functionIsNull) &&
 				Validator.isNotNull(functionIsNotNull)) {
 
@@ -798,9 +796,6 @@ public class CustomSQLImpl implements CustomSQL {
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
-		}
-		finally {
-			DataAccess.cleanUp(con);
 		}
 
 		_bundleContext.addBundleListener(_synchronousBundleListener);

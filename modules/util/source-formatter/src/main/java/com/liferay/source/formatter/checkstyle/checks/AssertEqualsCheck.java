@@ -14,10 +14,12 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.debug.SFDebugHelper;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -26,11 +28,54 @@ public class AssertEqualsCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
-		return new int[] {TokenTypes.METHOD_DEF};
+		return new int[] {TokenTypes.METHOD_DEF, TokenTypes.LITERAL_FINALLY};
 	}
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if (detailAST.getType() == TokenTypes.LITERAL_FINALLY) {
+			DetailAST slistDetailAST = detailAST.findFirstToken(
+				TokenTypes.SLIST);
+
+			List<DetailAST> exprDetailASTList = getAllChildTokens(
+				slistDetailAST, false, TokenTypes.EXPR);
+
+			for (DetailAST exprDetailAST : exprDetailASTList) {
+				DetailAST firstChildDetailAST = exprDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.METHOD_CALL) {
+					continue;
+				}
+
+				firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+				if (firstChildDetailAST.getType() != TokenTypes.DOT) {
+					continue;
+				}
+
+				DetailAST lastChildDetailAST =
+					firstChildDetailAST.getLastChild();
+
+				if (Objects.equals(lastChildDetailAST.getText(), "close")) {
+					//log(lastChildDetailAST, "CLOSE");
+				}
+				else if (Objects.equals(lastChildDetailAST.getText(), "cleanUp")) {
+					firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+					if (Objects.equals(firstChildDetailAST.getText(), "DataAccess")) {
+						log(firstChildDetailAST, "CLEANUP");
+					}
+				}
+			}
+		}
+
+		List<DetailAST> list = getMethodCalls(
+			detailAST, "DataAccess", "cleanUp");
+
+		for (DetailAST da : list) {
+			//log(da, "cleanUp");
+		}
+
 		List<DetailAST> methodCallDetailASTList = getMethodCalls(
 			detailAST, "Assert", "assertEquals");
 

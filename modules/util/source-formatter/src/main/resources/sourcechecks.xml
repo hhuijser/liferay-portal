@@ -343,7 +343,9 @@
 			<description name="Checks that the method `BasePersistenceImpl.fetchByPrimaryKey` is overridden, when using `FinderPath`" />
 		</check>
 		<check name="JavaFinderImplCustomSQLCheck" />
-		<check name="JavaHelperUtilCheck" />
+		<check name="JavaHelperUtilCheck">
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JavaIllegalImportsCheck">
 			<property name="enforceJavaUtilFunctionImports" value="true" />
 		</check>

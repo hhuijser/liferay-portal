@@ -411,6 +411,43 @@ public interface BaseProjectTemplatesTestCase {
 		return projectDir;
 	}
 
+	public default File newBuildWorkspace(
+			TemporaryFolder temporaryFolder, String buildType, String name, String liferayVersion, MavenExecutor mavenExecutor)
+		throws Exception {
+
+		File workspaceDir;
+
+		if (buildType.equals("gradle")) {
+			if (liferayVersion.equals("7.0.6")) {
+				workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+
+				enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
+			}
+			else if (liferayVersion.equals("7.1.3")) {
+				workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+
+				enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
+			}
+			else if (liferayVersion.equals("7.2.1")) {
+				workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+
+				enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
+			}
+			else {
+				workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+
+				enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
+			}
+		}
+		else {
+			String groupId = "com.test";
+
+			workspaceDir = buildMavenWorkspace(temporaryFolder, groupId, liferayVersion, mavenExecutor, name, "-Dpackage=com.test");
+		}
+
+		return workspaceDir;
+	}
+
 	public default File buildTemplateWithGradle(
 			File destinationDir, String template, String name, String... args)
 		throws Exception {
@@ -517,11 +554,20 @@ public interface BaseProjectTemplatesTestCase {
 
 		String name = "test-workspace";
 
-		File destinationDir = temporaryFolder.newFolder("workspace" + name);
+		File destinationDir = temporaryFolder.newFolder("gradleWorkspace" + name);
 
 		return buildTemplateWithGradle(
 			destinationDir, WorkspaceUtil.WORKSPACE, name, "--liferay-version",
 			liferayVersion);
+	}
+
+	public default File buildMavenWorkspace(
+			TemporaryFolder temporaryFolder, String groupId , String liferayVersion, MavenExecutor mavenExecutor, String name, String... args)
+		throws Exception {
+
+		File destinationDir = temporaryFolder.newFolder("mavenWorkspace");
+
+		return buildTemplateWithMaven(destinationDir, destinationDir, "workspace", name, groupId, mavenExecutor, args);
 	}
 
 	public default void editXml(File xmlFile, Consumer<Document> consumer)

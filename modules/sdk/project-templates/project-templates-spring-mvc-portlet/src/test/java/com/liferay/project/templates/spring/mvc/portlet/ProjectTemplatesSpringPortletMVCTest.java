@@ -51,16 +51,16 @@ public class ProjectTemplatesSpringPortletMVCTest
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
 			new Object[][] {
-				{"springportletmvc", "embedded", "jsp", "7.0"},
-				{"springportletmvc", "embedded", "jsp", "7.1"},
-				{"springportletmvc", "embedded", "jsp", "7.2"},
-				{"springportletmvc", "embedded", "jsp", "7.3"},
-				{"portletmvc4spring", "embedded", "jsp", "7.1"},
-				{"portletmvc4spring", "embedded", "jsp", "7.2"},
-				{"portletmvc4spring", "embedded", "jsp", "7.3"},
-				{"portletmvc4spring", "embedded", "thymeleaf", "7.1"},
-				{"portletmvc4spring", "embedded", "thymeleaf", "7.2"},
-				{"portletmvc4spring", "embedded", "thymeleaf", "7.3"}
+				{"springportletmvc", "embedded", "jsp", "7.0.6"},
+				{"springportletmvc", "embedded", "jsp", "7.1.3"},
+				{"springportletmvc", "embedded", "jsp", "7.2.1"},
+				{"springportletmvc", "embedded", "jsp", "7.3.0"},
+				{"portletmvc4spring", "embedded", "jsp", "7.1.3"},
+				{"portletmvc4spring", "embedded", "jsp", "7.2.1"},
+				{"portletmvc4spring", "embedded", "jsp", "7.3.0"},
+				{"portletmvc4spring", "embedded", "thymeleaf", "7.1.3"},
+				{"portletmvc4spring", "embedded", "thymeleaf", "7.2.1"},
+				{"portletmvc4spring", "embedded", "thymeleaf", "7.3.0"}
 			});
 	}
 
@@ -92,9 +92,12 @@ public class ProjectTemplatesSpringPortletMVCTest
 
 	@Test
 	public void testSpringPortletMVC() throws Exception {
-		File gradleProjectDir = _buildSpringMVCTemplate(
-			"gradle", _framework, _frameworkDependencies, _viewType,
-			_liferayVersion);
+
+		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+
+		File gradleWorkspaceWarsDir = new File(gradleWorkspaceDir, "wars");
+
+		File gradleProjectDir = _buildSpringMVCTemplate(gradleWorkspaceWarsDir, "gradle", _framework, _frameworkDependencies, _viewType, _liferayVersion);
 
 		testNotContains(
 			gradleProjectDir, "src/main/webapp/WEB-INF/web.xml", "false");
@@ -198,19 +201,28 @@ public class ProjectTemplatesSpringPortletMVCTest
 				"src/main/java/com/test/spring4/ServletContextFactory.java");
 		}
 
-		File mavenProjectDir = _buildSpringMVCTemplate(
-			"maven", _framework, _frameworkDependencies, _viewType,
-			_liferayVersion);
+		File mavenWorkspaceDir = newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
 
-		buildProjects(
-			_gradleDistribution, mavenExecutor, gradleProjectDir,
-			mavenProjectDir);
+		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
+
+		File mavenProjectDir = _buildSpringMVCTemplate(mavenWarsDir, "maven", _framework, _frameworkDependencies, _viewType, _liferayVersion);
+
+		if (isBuildProjects()) {
+
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
+
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir, ":wars:sampleSpringMVCPortlet" + GRADLE_TASK_PATH_BUILD);
+			}
+
 	}
 
 	@Rule
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private File _buildSpringMVCTemplate(
+	private File _buildSpringMVCTemplate(File destinationDir,
 			String buildType, String framework, String frameworkDependencies,
 			String viewType, String liferayVersion)
 		throws Exception {
@@ -229,20 +241,11 @@ public class ProjectTemplatesSpringPortletMVCTest
 				"-DviewType=" + viewType, "-DliferayVersion=" + liferayVersion);
 		}
 
-		return _buildTemplateWithGradle(
+		return buildTemplateWithGradle(destinationDir,
 			template, name, "--package-name", "com.test", "--class-name",
 			"Sample", "--framework", framework, "--framework-dependencies",
 			frameworkDependencies, "--view-type", viewType, "--liferay-version",
 			liferayVersion);
-	}
-
-	private File _buildTemplateWithGradle(
-			String template, String name, String... args)
-		throws Exception {
-
-		File destinationDir = temporaryFolder.newFolder("gradle");
-
-		return buildTemplateWithGradle(destinationDir, template, name, args);
 	}
 
 	private static URI _gradleDistribution;

@@ -273,9 +273,9 @@ public class SingleLogoutProfileIntegrationTest extends BaseSamlTestCase {
 	public void testSendSpLogoutRequestValidSpSession() throws Exception {
 		SamlSpSession samlSpSession = new SamlSpSessionImpl();
 
+		samlSpSession.setSamlIdpEntityId(IDP_ENTITY_ID);
 		samlSpSession.setNameIdFormat(NameID.EMAIL);
 		samlSpSession.setNameIdValue("test@liferay.com");
-		samlSpSession.setSamlIdpEntityId(IDP_ENTITY_ID);
 
 		when(
 			_samlSpSessionLocalService.fetchSamlSpSessionByJSessionId(

@@ -165,6 +165,15 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 							content, previousMatch, match, y);
 					}
 				}
+				else if (setterObjectName.compareTo(previousSetterObjectName) <
+							0) {
+
+					content = StringUtil.replaceFirst(
+						content, match, previousMatch, matcher2.start());
+
+					return StringUtil.replaceFirst(
+						content, previousMatch, match, matcher2.start());
+				}
 
 				previousMatch = match;
 				previousSetterObjectName = setterObjectName;

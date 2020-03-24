@@ -17,7 +17,7 @@ package com.liferay.layout.page.template.admin.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.layout.page.template.admin.web.internal.configuration.util.ExportImportLayoutPageTemplateConfigurationUtil;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplateEntryPermission;
 import com.liferay.layout.page.template.constants.LayoutPageTemplateActionKeys;
@@ -67,34 +67,27 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 
 	@Override
 	public List<DropdownItem> getActionDropdownItems() {
-		return new DropdownItemList() {
-			{
-				add(
-					dropdownItem -> {
-						dropdownItem.putData(
-							"action", "deleteLayoutPageTemplateEntries");
-						dropdownItem.setIcon("times-circle");
-						dropdownItem.setLabel(
-							LanguageUtil.get(request, "delete"));
-						dropdownItem.setQuickAction(true);
-					});
-
-				if (ExportImportLayoutPageTemplateConfigurationUtil.enabled()) {
-					add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "exportLayoutPageTemplateEntries");
-							dropdownItem.putData(
-								"exportLayoutPageTemplateEntryURL",
-								_getExportLayoutPageTemplateEntryURL());
-							dropdownItem.setIcon("download");
-							dropdownItem.setLabel(
-								LanguageUtil.get(request, "export"));
-							dropdownItem.setQuickAction(true);
-						});
-				}
+		return DropdownItemListBuilder.add(
+			dropdownItem -> {
+				dropdownItem.putData(
+					"action", "deleteLayoutPageTemplateEntries");
+				dropdownItem.setIcon("times-circle");
+				dropdownItem.setLabel(LanguageUtil.get(request, "delete"));
+				dropdownItem.setQuickAction(true);
 			}
-		};
+		).add(
+			ExportImportLayoutPageTemplateConfigurationUtil::enabled,
+			dropdownItem -> {
+				dropdownItem.putData(
+					"action", "exportLayoutPageTemplateEntries");
+				dropdownItem.putData(
+					"exportLayoutPageTemplateEntryURL",
+					_getExportLayoutPageTemplateEntryURL());
+				dropdownItem.setIcon("download");
+				dropdownItem.setLabel(LanguageUtil.get(request, "export"));
+				dropdownItem.setQuickAction(true);
+			}
+		).build();
 	}
 
 	public String getAvailableActions(

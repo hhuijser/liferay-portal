@@ -16,7 +16,7 @@ package com.liferay.layout.page.template.admin.web.internal.servlet.taglib.util;
 
 import com.liferay.exportimport.constants.ExportImportPortletKeys;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -63,43 +63,37 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (LayoutPrototypePermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPrototype.getLayoutPrototypeId(),
-						ActionKeys.UPDATE)) {
+		boolean hasExportImportLayoutsPermission = GroupPermissionUtil.contains(
+			_themeDisplay.getPermissionChecker(), _layoutPrototype.getGroup(),
+			ActionKeys.EXPORT_IMPORT_LAYOUTS);
+		boolean hasUpdatePermission = LayoutPrototypePermissionUtil.contains(
+			_themeDisplay.getPermissionChecker(),
+			_layoutPrototype.getLayoutPrototypeId(), ActionKeys.UPDATE);
 
-					add(_getEditLayoutPrototypeActionUnsafeConsumer());
-					add(_getConfigureLayoutPrototypeActionUnsafeConsumer());
-				}
-
-				if (LayoutPrototypePermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPrototype.getLayoutPrototypeId(),
-						ActionKeys.PERMISSIONS)) {
-
-					add(_getPermissionsLayoutPrototypeActionUnsafeConsumer());
-				}
-
-				if (GroupPermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPrototype.getGroup(),
-						ActionKeys.EXPORT_IMPORT_LAYOUTS)) {
-
-					add(_getExportLayoutPrototypeActionUnsafeConsumer());
-					add(_getImportLayoutPrototypeActionUnsafeConsumer());
-				}
-
-				if (LayoutPrototypePermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPrototype.getLayoutPrototypeId(),
-						ActionKeys.DELETE)) {
-
-					add(_getDeleteLayoutPrototypeActionUnsafeConsumer());
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() -> hasUpdatePermission,
+			_getEditLayoutPrototypeActionUnsafeConsumer()
+		).add(
+			() -> hasUpdatePermission,
+			_getConfigureLayoutPrototypeActionUnsafeConsumer()
+		).add(
+			() -> LayoutPrototypePermissionUtil.contains(
+				_themeDisplay.getPermissionChecker(),
+				_layoutPrototype.getLayoutPrototypeId(),
+				ActionKeys.PERMISSIONS),
+			_getPermissionsLayoutPrototypeActionUnsafeConsumer()
+		).add(
+			() -> hasExportImportLayoutsPermission,
+			_getExportLayoutPrototypeActionUnsafeConsumer()
+		).add(
+			() -> hasExportImportLayoutsPermission,
+			_getImportLayoutPrototypeActionUnsafeConsumer()
+		).add(
+			() -> LayoutPrototypePermissionUtil.contains(
+				_themeDisplay.getPermissionChecker(),
+				_layoutPrototype.getLayoutPrototypeId(), ActionKeys.DELETE),
+			_getDeleteLayoutPrototypeActionUnsafeConsumer()
+		).build();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>

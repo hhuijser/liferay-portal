@@ -15,7 +15,7 @@
 package com.liferay.layout.page.template.admin.web.internal.servlet.taglib.util;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
@@ -86,58 +86,50 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (LayoutPageTemplateEntryPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPageTemplateEntry, ActionKeys.UPDATE)) {
+		boolean hasUpdatePermission =
+			LayoutPageTemplateEntryPermission.contains(
+				_themeDisplay.getPermissionChecker(), _layoutPageTemplateEntry,
+				ActionKeys.UPDATE);
 
-					add(_getEditLayoutPageTemplateEntryActionUnsafeConsumer());
-
-					add(
-						_getUpdateLayoutPageTemplateEntryPreviewActionUnsafeConsumer());
-
-					if (_layoutPageTemplateEntry.getPreviewFileEntryId() > 0) {
-						add(
-							_getDeleteLayoutPageTemplateEntryPreviewActionUnsafeConsumer());
-					}
-
-					add(
-						_getRenameLayoutPageTemplateEntryActionUnsafeConsumer());
-
-					if (_layoutPageTemplateEntry.getLayoutPrototypeId() > 0) {
-						add(_getConfigureLayoutPrototypeActionUnsafeConsumer());
-					}
-					else {
-						add(
-							_getConfigureLayoutPageTemplateEntryActionUnsafeConsumer());
-					}
-				}
-
-				if (ExportImportLayoutPageTemplateConfigurationUtil.enabled() &&
-					(_layoutPageTemplateEntry.getLayoutPrototypeId() == 0)) {
-
-					add(
-						_getExportLayoutPageTemplateEntryActionUnsafeConsumer());
-				}
-
-				if (LayoutPageTemplateEntryPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPageTemplateEntry, ActionKeys.PERMISSIONS)) {
-
-					add(
-						_getPermissionsLayoutPageTemplateEntryActionUnsafeConsumer());
-				}
-
-				if (LayoutPageTemplateEntryPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_layoutPageTemplateEntry, ActionKeys.DELETE)) {
-
-					add(
-						_getDeleteLayoutPageTemplateEntryActionUnsafeConsumer());
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() -> hasUpdatePermission,
+			_getEditLayoutPageTemplateEntryActionUnsafeConsumer()
+		).add(
+			() -> hasUpdatePermission,
+			_getUpdateLayoutPageTemplateEntryPreviewActionUnsafeConsumer()
+		).add(
+			() ->
+				hasUpdatePermission &&
+				(_layoutPageTemplateEntry.getPreviewFileEntryId() > 0),
+			_getDeleteLayoutPageTemplateEntryPreviewActionUnsafeConsumer()
+		).add(
+			() -> hasUpdatePermission,
+			_getRenameLayoutPageTemplateEntryActionUnsafeConsumer()
+		).add(
+			() ->
+				hasUpdatePermission &&
+				(_layoutPageTemplateEntry.getLayoutPrototypeId() > 0),
+			_getConfigureLayoutPrototypeActionUnsafeConsumer()
+		).add(
+			() ->
+				hasUpdatePermission &&
+				(_layoutPageTemplateEntry.getLayoutPrototypeId() <= 0),
+			_getConfigureLayoutPageTemplateEntryActionUnsafeConsumer()
+		).add(
+			ExportImportLayoutPageTemplateConfigurationUtil::enabled &&
+			(_layoutPageTemplateEntry.getLayoutPrototypeId() == 0),
+			_getExportLayoutPageTemplateEntryActionUnsafeConsumer()
+		).add(
+			() -> LayoutPageTemplateEntryPermission.contains(
+				_themeDisplay.getPermissionChecker(), _layoutPageTemplateEntry,
+				ActionKeys.PERMISSIONS),
+			_getPermissionsLayoutPageTemplateEntryActionUnsafeConsumer()
+		).add(
+			() -> LayoutPageTemplateEntryPermission.contains(
+				_themeDisplay.getPermissionChecker(), _layoutPageTemplateEntry,
+				ActionKeys.DELETE),
+			_getDeleteLayoutPageTemplateEntryActionUnsafeConsumer()
+		).build();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>

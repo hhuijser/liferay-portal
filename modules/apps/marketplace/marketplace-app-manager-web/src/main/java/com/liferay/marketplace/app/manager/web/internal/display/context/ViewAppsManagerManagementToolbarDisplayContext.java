@@ -17,7 +17,7 @@ package com.liferay.marketplace.app.manager.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.marketplace.app.manager.web.internal.constants.BundleStateConstants;
 import com.liferay.marketplace.app.manager.web.internal.util.AppDisplay;
 import com.liferay.marketplace.app.manager.web.internal.util.AppDisplayFactoryUtil;
@@ -85,54 +85,44 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 	}
 
 	public List<LabelItem> getFilterLabelItems() {
-		return new LabelItemList() {
-			{
-				String category = getCategory();
+		String category = getCategory();
+		String state = getState();
 
-				if (!category.equals("all-categories")) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = getPortletURL();
+		return LabelItemListBuilder.add(
+			() -> !category.equals("all-categories"),
+			labelItem -> {
+				PortletURL removeLabelURL = getPortletURL();
 
-							removeLabelURL.setParameter(
-								"category", (String)null);
+				removeLabelURL.setParameter("category", (String)null);
 
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-							labelItem.setCloseable(true);
+				labelItem.setCloseable(true);
 
-							String label = String.format(
-								"%s: %s", LanguageUtil.get(request, "category"),
-								LanguageUtil.get(request, category));
+				String label = String.format(
+					"%s: %s", LanguageUtil.get(request, "category"),
+					LanguageUtil.get(request, category));
 
-							labelItem.setLabel(label);
-						});
-				}
-
-				String state = getState();
-
-				if (!state.equals("all-statuses")) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = getPortletURL();
-
-							removeLabelURL.setParameter("state", (String)null);
-
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
-
-							labelItem.setCloseable(true);
-
-							String label = String.format(
-								"%s: %s", LanguageUtil.get(request, "state"),
-								LanguageUtil.get(request, state));
-
-							labelItem.setLabel(label);
-						});
-				}
+				labelItem.setLabel(label);
 			}
-		};
+		).add(
+			() -> !state.equals("all-statuses"),
+			labelItem -> {
+				PortletURL removeLabelURL = getPortletURL();
+
+				removeLabelURL.setParameter("state", (String)null);
+
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+
+				labelItem.setCloseable(true);
+
+				String label = String.format(
+					"%s: %s", LanguageUtil.get(request, "state"),
+					LanguageUtil.get(request, state));
+
+				labelItem.setLabel(label);
+			}
+		).build();
 	}
 
 	@Override

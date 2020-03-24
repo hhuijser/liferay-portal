@@ -21,7 +21,7 @@ import com.liferay.fragment.web.internal.configuration.FragmentPortletConfigurat
 import com.liferay.fragment.web.internal.constants.FragmentWebKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
@@ -69,27 +69,30 @@ public class BasicFragmentCompositionActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
-		return new DropdownItemList() {
-			{
-				if (FragmentPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getScopeGroupId(),
-						FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES)) {
+		boolean hasManageFragmentEntriesPermission =
+			FragmentPermission.contains(
+				_themeDisplay.getPermissionChecker(),
+				_themeDisplay.getScopeGroupId(),
+				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES);
 
-					add(_getRenameFragmentCompositionActionUnsafeConsumer());
-					add(_getMoveFragmentCompositionActionUnsafeConsumer());
-					add(
-						_getUpdateFragmentCompositionPreviewActionUnsafeConsumer());
-
-					if (_fragmentComposition.getPreviewFileEntryId() > 0) {
-						add(
-							_getDeleteFragmentCompositionPreviewActionUnsafeConsumer());
-					}
-
-					add(_getDeleteFragmentCompositionActionUnsafeConsumer());
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() -> hasManageFragmentEntriesPermission,
+			_getRenameFragmentCompositionActionUnsafeConsumer()
+		).add(
+			() -> hasManageFragmentEntriesPermission,
+			_getMoveFragmentCompositionActionUnsafeConsumer()
+		).add(
+			() -> hasManageFragmentEntriesPermission,
+			_getUpdateFragmentCompositionPreviewActionUnsafeConsumer()
+		).add(
+			() ->
+				hasManageFragmentEntriesPermission &&
+				(_fragmentComposition.getPreviewFileEntryId() > 0),
+			_getDeleteFragmentCompositionPreviewActionUnsafeConsumer()
+		).add(
+			() -> hasManageFragmentEntriesPermission,
+			_getDeleteFragmentCompositionActionUnsafeConsumer()
+		).build();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>

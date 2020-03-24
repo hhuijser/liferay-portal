@@ -71,7 +71,7 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 			javaTerm.getContent(), fileContent, importNames);
 
 		return _formatSetterMethodCalls(
-			javaTermContent, fileContent, importNames);
+			javaTermContent, fileContent, importNames, absolutePath);
 	}
 
 	@Override
@@ -109,7 +109,8 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 	}
 
 	private String _formatSetterMethodCalls(
-		String content, String fileContent, List<String> importNames) {
+		String content, String fileContent, List<String> importNames,
+		String absolutePath) {
 
 		Matcher matcher1 = _setterCallsPattern.matcher(content);
 
@@ -124,7 +125,17 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 
 			Matcher matcher2 = _setterCallPattern.matcher(setterCallsCodeBlock);
 
+			List<String> allowedNonorderedSetterMethodTypes =
+				getAttributeValues(
+					_ALLOWED_NONORDERED_SETTER_METHOD_TYPES, absolutePath);
+
 			while (matcher2.find()) {
+				if (allowedNonorderedSetterMethodTypes.contains(
+						variableTypeName)) {
+
+					continue;
+				}
+
 				String match = matcher2.group();
 				String setterObjectName = TextFormatter.format(
 					matcher2.group(2), TextFormatter.I);
@@ -338,6 +349,9 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 			}
 		}
 	}
+
+	private static final String _ALLOWED_NONORDERED_SETTER_METHOD_TYPES =
+		"allowedNonorderedSetterMethodTypes";
 
 	private static final String[] _SKIP_DIR_NAMES = {
 		".git", ".gradle", ".idea", ".m2", ".settings", "bin", "build",

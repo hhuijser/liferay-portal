@@ -15,7 +15,7 @@
 package com.liferay.layout.page.template.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
@@ -64,49 +64,41 @@ public class LayoutPageTemplatesAdminDisplayContext {
 		StagingGroupHelper stagingGroupHelper =
 			StagingGroupHelperUtil.getStagingGroupHelper();
 
-		return new NavigationItemList() {
-			{
-				if (!(stagingGroupHelper.isLocalLiveGroup(group) ||
-					  stagingGroupHelper.isRemoteLiveGroup(group))) {
+		boolean localLiveGroup = stagingGroupHelper.isLocalLiveGroup(group);
+		boolean removeLiveGroup = stagingGroupHelper.isRemoteLiveGroup(group);
 
-					add(
-						navigationItem -> {
-							navigationItem.setActive(
-								Objects.equals(getTabs1(), "master-layouts"));
-							navigationItem.setHref(
-								getPortletURL(), "tabs1", "master-layouts");
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "masters"));
-						});
-
-					add(
-						navigationItem -> {
-							navigationItem.setActive(
-								Objects.equals(getTabs1(), "page-templates"));
-							navigationItem.setHref(
-								getPortletURL(), "tabs1", "page-templates");
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "page-templates"));
-						});
-
-					add(
-						navigationItem -> {
-							navigationItem.setActive(
-								Objects.equals(
-									getTabs1(), "display-page-templates"));
-							navigationItem.setHref(
-								getPortletURL(), "tabs1",
-								"display-page-templates");
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									"display-page-templates"));
-						});
-				}
+		return NavigationItemListBuilder.add(
+			() -> !(localLiveGroup || removeLiveGroup),
+			navigationItem -> {
+				navigationItem.setActive(
+					Objects.equals(getTabs1(), "master-layouts"));
+				navigationItem.setHref(
+					getPortletURL(), "tabs1", "master-layouts");
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "masters"));
 			}
-		};
+		).add(
+			() -> !(localLiveGroup || removeLiveGroup),
+			navigationItem -> {
+				navigationItem.setActive(
+					Objects.equals(getTabs1(), "page-templates"));
+				navigationItem.setHref(
+					getPortletURL(), "tabs1", "page-templates");
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "page-templates"));
+			}
+		).add(
+			() -> !(localLiveGroup || removeLiveGroup),
+			navigationItem -> {
+				navigationItem.setActive(
+					Objects.equals(getTabs1(), "display-page-templates"));
+				navigationItem.setHref(
+					getPortletURL(), "tabs1", "display-page-templates");
+				navigationItem.setLabel(
+					LanguageUtil.get(
+						_httpServletRequest, "display-page-templates"));
+			}
+		).build();
 	}
 
 	public PortletURL getPortletURL() {

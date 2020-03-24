@@ -16,7 +16,7 @@ package com.liferay.layout.type.controller.display.page.internal.display.context
 
 import com.liferay.asset.display.page.constants.AssetDisplayPageWebKeys;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.info.display.contributor.InfoDisplayObjectProvider;
 import com.liferay.info.display.url.provider.InfoEditURLProvider;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -58,62 +58,49 @@ public class EditDisplayPageMenuDisplayContext {
 	}
 
 	public List<DropdownItem> getDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (_infoEditURLProvider != null) {
-					String editURL = _infoEditURLProvider.getURL(
-						_infoDisplayObjectProvider.getDisplayObject(),
-						_httpServletRequest);
+		String editURL = _infoEditURLProvider.getURL(
+			_infoDisplayObjectProvider.getDisplayObject(), _httpServletRequest);
 
-					if (Validator.isNotNull(editURL)) {
-						add(
-							dropdownItem -> {
-								dropdownItem.setHref(editURL);
-								dropdownItem.setLabel(
-									LanguageUtil.format(
-										_httpServletRequest, "edit-x",
-										_infoDisplayObjectProvider.getTitle(
-											_themeDisplay.getLocale())));
-							});
-					}
-				}
-
-				if (LayoutPermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getLayout(), ActionKeys.UPDATE)) {
-
-					ResourceBundle resourceBundle =
-						ResourceBundleUtil.getBundle(
-							"content.Language", _themeDisplay.getLocale(),
-							getClass());
-
-					add(
-						dropdownItem -> {
-							Layout draftLayout =
-								LayoutLocalServiceUtil.fetchLayout(
-									PortalUtil.getClassNameId(Layout.class),
-									_themeDisplay.getPlid());
-
-							String editLayoutURL = PortalUtil.getLayoutFullURL(
-								draftLayout, _themeDisplay);
-
-							editLayoutURL = HttpUtil.setParameter(
-								editLayoutURL, "p_l_back_url",
-								_themeDisplay.getURLCurrent());
-
-							editLayoutURL = HttpUtil.setParameter(
-								editLayoutURL, "p_l_mode", Constants.EDIT);
-
-							dropdownItem.setHref(editLayoutURL);
-
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									resourceBundle,
-									"edit-display-page-template"));
-						});
-				}
+		return DropdownItemListBuilder.add(
+			() ->
+				(_infoEditURLProvider != null) && Validator.isNotNull(editURL),
+			dropdownItem -> {
+				dropdownItem.setHref(editURL);
+				dropdownItem.setLabel(
+					LanguageUtil.format(
+						_httpServletRequest, "edit-x",
+						_infoDisplayObjectProvider.getTitle(
+							_themeDisplay.getLocale())));
 			}
-		};
+		).add(
+			() -> LayoutPermissionUtil.contains(
+				_themeDisplay.getPermissionChecker(), _themeDisplay.getLayout(),
+				ActionKeys.UPDATE),
+			dropdownItem -> {
+				Layout draftLayout = LayoutLocalServiceUtil.fetchLayout(
+					PortalUtil.getClassNameId(Layout.class),
+					_themeDisplay.getPlid());
+
+				String editLayoutURL = PortalUtil.getLayoutFullURL(
+					draftLayout, _themeDisplay);
+
+				editLayoutURL = HttpUtil.setParameter(
+					editLayoutURL, "p_l_back_url",
+					_themeDisplay.getURLCurrent());
+
+				editLayoutURL = HttpUtil.setParameter(
+					editLayoutURL, "p_l_mode", Constants.EDIT);
+
+				dropdownItem.setHref(editLayoutURL);
+
+				ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
+					"content.Language", _themeDisplay.getLocale(), getClass());
+
+				dropdownItem.setLabel(
+					LanguageUtil.get(
+						resourceBundle, "edit-display-page-template"));
+			}
+		).build();
 	}
 
 	private final HttpServletRequest _httpServletRequest;

@@ -20,7 +20,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.layout.page.template.admin.web.internal.security.permission.resource.LayoutPageTemplatePermission;
 import com.liferay.layout.page.template.constants.LayoutPageTemplateActionKeys;
 import com.liferay.petra.string.StringPool;
@@ -122,52 +122,35 @@ public class LayoutPrototypeManagementToolbarDisplayContext
 	public List<LabelItem> getFilterLabelItems() {
 		Boolean active = _layoutPrototypeDisplayContext.getActive();
 
-		return new LabelItemList() {
-			{
-				if (active != null) {
-					if (active) {
-						add(
-							labelItem -> {
-								PortletURL removeLabelURL =
-									PortletURLUtil.clone(
-										currentURLObj, liferayPortletResponse);
+		return LabelItemListBuilder.add(
+			() -> (active != null) && active,
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
 
-								removeLabelURL.setParameter(
-									"navigation", (String)null);
+				removeLabelURL.setParameter("navigation", (String)null);
 
-								labelItem.putData(
-									"removeLabelURL",
-									removeLabelURL.toString());
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-								labelItem.setCloseable(true);
+				labelItem.setCloseable(true);
 
-								labelItem.setLabel(
-									LanguageUtil.get(request, "active"));
-							});
-					}
-					else {
-						add(
-							labelItem -> {
-								PortletURL removeLabelURL =
-									PortletURLUtil.clone(
-										currentURLObj, liferayPortletResponse);
-
-								removeLabelURL.setParameter(
-									"navigation", (String)null);
-
-								labelItem.putData(
-									"removeLabelURL",
-									removeLabelURL.toString());
-
-								labelItem.setCloseable(true);
-
-								labelItem.setLabel(
-									LanguageUtil.get(request, "inactive"));
-							});
-					}
-				}
+				labelItem.setLabel(LanguageUtil.get(request, "active"));
 			}
-		};
+		).add(
+			() -> (active != null) && !active,
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
+
+				removeLabelURL.setParameter("navigation", (String)null);
+
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+
+				labelItem.setCloseable(true);
+
+				labelItem.setLabel(LanguageUtil.get(request, "inactive"));
+			}
+		).build();
 	}
 
 	@Override

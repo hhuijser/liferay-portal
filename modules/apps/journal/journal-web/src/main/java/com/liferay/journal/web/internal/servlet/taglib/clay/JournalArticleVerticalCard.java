@@ -18,7 +18,7 @@ import com.liferay.asset.display.page.portlet.AssetDisplayPageFriendlyURLProvide
 import com.liferay.frontend.taglib.clay.servlet.taglib.soy.BaseVerticalCard;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.web.internal.constants.JournalWebConstants;
 import com.liferay.journal.web.internal.security.permission.resource.JournalArticlePermission;
@@ -150,17 +150,12 @@ public class JournalArticleVerticalCard extends BaseVerticalCard {
 
 	@Override
 	public List<LabelItem> getLabels() {
-		return new LabelItemList() {
-			{
-				if (!_article.isApproved() && _article.hasApprovedVersion()) {
-					add(
-						labelItem -> labelItem.setStatus(
-							WorkflowConstants.STATUS_APPROVED));
-				}
-
-				add(labelItem -> labelItem.setStatus(_article.getStatus()));
-			}
-		};
+		return LabelItemListBuilder.add(
+			() -> !_article.isApproved() && _article.hasApprovedVersion(),
+			labelItem -> labelItem.setStatus(WorkflowConstants.STATUS_APPROVED)
+		).add(
+			labelItem -> labelItem.setStatus(_article.getStatus())
+		).build();
 	}
 
 	@Override

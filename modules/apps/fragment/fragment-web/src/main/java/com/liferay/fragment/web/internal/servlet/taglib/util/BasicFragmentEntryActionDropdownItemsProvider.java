@@ -112,13 +112,7 @@ public class BasicFragmentEntryActionDropdownItemsProvider {
 								_getViewFragmentEntryUsagesActionUnsafeConsumer());
 						}
 
-						if (FragmentPermission.contains(
-								_themeDisplay.getPermissionChecker(),
-								_themeDisplay.getScopeGroupId(),
-								FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES)) {
-
-							add(_getDeleteFragmentEntryActionUnsafeConsumer());
-						}
+						add(_getDeleteFragmentEntryActionUnsafeConsumer());
 					}
 				}
 			}

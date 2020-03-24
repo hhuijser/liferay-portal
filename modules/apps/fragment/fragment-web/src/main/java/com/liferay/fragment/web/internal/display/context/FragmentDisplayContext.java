@@ -27,7 +27,6 @@ import com.liferay.fragment.web.internal.constants.FragmentWebKeys;
 import com.liferay.fragment.web.internal.security.permission.resource.FragmentPermission;
 import com.liferay.fragment.web.internal.util.FragmentPortletUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
@@ -131,38 +130,33 @@ public class FragmentDisplayContext {
 	}
 
 	public List<DropdownItem> getCollectionsDropdownItems() {
-		return new DropdownItemList() {
-			{
-				add(
-					dropdownItem -> {
-						dropdownItem.putData("action", "exportCollections");
-						dropdownItem.setLabel(
-							LanguageUtil.get(_httpServletRequest, "export"));
-					});
+		boolean hasManageFragmentEntriesPermission =
+			FragmentPermission.contains(
+				_themeDisplay.getPermissionChecker(),
+				_themeDisplay.getScopeGroupId(),
+				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES);
 
-				if (FragmentPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getScopeGroupId(),
-						FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES)) {
-
-					add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "openImportView");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "import"));
-						});
-
-					add(
-						dropdownItem -> {
-							dropdownItem.putData("action", "deleteCollections");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "delete"));
-						});
-				}
+		return DropdownItemListBuilder.add(
+			dropdownItem -> {
+				dropdownItem.putData("action", "exportCollections");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "export"));
 			}
-		};
+		).add(
+			() -> hasManageFragmentEntriesPermission,
+			dropdownItem -> {
+				dropdownItem.putData("action", "openImportView");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "import"));
+			}
+		).add(
+			() -> hasManageFragmentEntriesPermission,
+			dropdownItem -> {
+				dropdownItem.putData("action", "deleteCollections");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "delete"));
+			}
+		).build();
 	}
 
 	public SearchContainer getContributedFragmentEntriesSearchContainer() {

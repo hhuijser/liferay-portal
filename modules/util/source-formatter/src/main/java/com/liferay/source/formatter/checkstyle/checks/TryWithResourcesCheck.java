@@ -63,6 +63,21 @@ public class TryWithResourcesCheck extends BaseCheck {
 						cleanUpVariableName, "DataAccess.cleanUp");
 				}
 			}
+
+			String closeVariableName = _getCloseVariableName(
+				methodCallDetailAST, literalFinallyDetailAST);
+
+			if (closeVariableName == null) {
+				continue;
+			}
+
+			if ((closeVariableName != null) &&
+				_useTryWithResources(closeVariableName, literalTryDetailAST)) {
+
+				log(
+					methodCallDetailAST, _MSG_USE_TRY_WITH_RESOURCES,
+					closeVariableName, closeVariableName + ".close");
+			}
 		}
 	}
 
@@ -104,6 +119,87 @@ public class TryWithResourcesCheck extends BaseCheck {
 		}
 
 		return variableNames;
+	}
+
+	private String _getCloseVariableName(
+		DetailAST methodCallDetailAST, DetailAST literalFinallyDetailAST) {
+
+		DetailAST dotDetailAST = methodCallDetailAST.getFirstChild();
+
+		if (dotDetailAST.getType() != TokenTypes.DOT) {
+			return null;
+		}
+
+		DetailAST lastChildDetailAST = dotDetailAST.getLastChild();
+
+		if (!Objects.equals(lastChildDetailAST.getText(), "close")) {
+			return null;
+		}
+
+		DetailAST firstChildDetailAST = dotDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.IDENT) {
+			return null;
+		}
+
+		DetailAST parentDetailAST = methodCallDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.EXPR) {
+			return null;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.SLIST) {
+			return null;
+		}
+
+		String variableName = firstChildDetailAST.getText();
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (equals(parentDetailAST, literalFinallyDetailAST)) {
+			return variableName;
+		}
+
+		if (parentDetailAST.getType() != TokenTypes.LITERAL_IF) {
+			return null;
+		}
+
+		DetailAST exprDetailAST = parentDetailAST.findFirstToken(
+			TokenTypes.EXPR);
+
+		firstChildDetailAST = exprDetailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() != TokenTypes.NOT_EQUAL) {
+			return null;
+		}
+
+		lastChildDetailAST = firstChildDetailAST.getLastChild();
+
+		if (lastChildDetailAST.getType() != TokenTypes.LITERAL_NULL) {
+			return null;
+		}
+
+		firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+		if (!variableName.equals(firstChildDetailAST.getText())) {
+			return null;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.SLIST) {
+			return null;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (equals(parentDetailAST, literalFinallyDetailAST)) {
+			return variableName;
+		}
+
+		return null;
 	}
 
 	private boolean _useTryWithResources(

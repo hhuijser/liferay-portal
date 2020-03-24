@@ -23,7 +23,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchCon
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.ItemSelectorCriterion;
 import com.liferay.item.selector.criteria.FileEntryItemSelectorReturnType;
@@ -72,39 +72,33 @@ public class FragmentCollectionResourcesManagementToolbarDisplayContext
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
-		return new DropdownItemList() {
-			{
-				if (FragmentPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getScopeGroupId(),
-						FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES)) {
+		return DropdownItemListBuilder.add(
+			() -> FragmentPermission.contains(
+				_themeDisplay.getPermissionChecker(),
+				_themeDisplay.getScopeGroupId(),
+				FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES),
+			dropdownItem -> {
+				dropdownItem.putData(
+					"action", "deleteSelectedFragmentCollectionResources");
 
-					PortletURL deleteFragmentCollectionResourcesURL =
-						liferayPortletResponse.createActionURL();
+				PortletURL deleteFragmentCollectionResourcesURL =
+					liferayPortletResponse.createActionURL();
 
-					deleteFragmentCollectionResourcesURL.setParameter(
-						ActionRequest.ACTION_NAME,
-						"/fragment/delete_fragment_collection_resources");
-					deleteFragmentCollectionResourcesURL.setParameter(
-						"redirect", _themeDisplay.getURLCurrent());
+				deleteFragmentCollectionResourcesURL.setParameter(
+					ActionRequest.ACTION_NAME,
+					"/fragment/delete_fragment_collection_resources");
+				deleteFragmentCollectionResourcesURL.setParameter(
+					"redirect", _themeDisplay.getURLCurrent());
 
-					add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action",
-								"deleteSelectedFragmentCollectionResources");
-							dropdownItem.putData(
-								"deleteFragmentCollectionResourcesURL",
-								deleteFragmentCollectionResourcesURL.
-									toString());
-							dropdownItem.setIcon("times-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(request, "delete"));
-							dropdownItem.setQuickAction(true);
-						});
-				}
+				dropdownItem.putData(
+					"deleteFragmentCollectionResourcesURL",
+					deleteFragmentCollectionResourcesURL.toString());
+
+				dropdownItem.setIcon("times-circle");
+				dropdownItem.setLabel(LanguageUtil.get(request, "delete"));
+				dropdownItem.setQuickAction(true);
 			}
-		};
+		).build();
 	}
 
 	@Override

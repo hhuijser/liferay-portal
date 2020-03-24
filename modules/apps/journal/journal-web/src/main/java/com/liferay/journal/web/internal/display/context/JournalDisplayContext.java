@@ -21,7 +21,6 @@ import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalServiceUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.journal.configuration.JournalServiceConfiguration;
 import com.liferay.journal.constants.JournalPortletKeys;
@@ -654,61 +653,46 @@ public class JournalDisplayContext {
 	}
 
 	public List<NavigationItem> getNavigationBarItems(String currentItem) {
-		return new NavigationItemList() {
-			{
-				add(
-					navigationItem -> {
-						navigationItem.setActive(
-							currentItem.equals("web-content"));
-						navigationItem.setHref(
-							_liferayPortletResponse.createRenderURL());
-						navigationItem.setLabel(
-							LanguageUtil.get(
-								_httpServletRequest, "web-content"));
-					});
+		Group group = _themeDisplay.getScopeGroup();
 
-				Group group = _themeDisplay.getScopeGroup();
-
-				if (!group.isLayout()) {
-					add(
-						navigationItem -> {
-							navigationItem.setActive(
-								currentItem.equals("structures"));
-							navigationItem.setHref(
-								_liferayPortletResponse.createRenderURL(),
-								"mvcPath", "/view_ddm_structures.jsp");
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "structures"));
-						});
-
-					add(
-						navigationItem -> {
-							navigationItem.setActive(
-								currentItem.equals("templates"));
-							navigationItem.setHref(
-								_liferayPortletResponse.createRenderURL(),
-								"mvcPath", "/view_ddm_templates.jsp");
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "templates"));
-						});
-				}
-
-				if (_journalWebConfiguration.showFeeds() &&
-					PortalUtil.isRSSFeedsEnabled()) {
-
-					add(
-						navigationItem -> {
-							navigationItem.setActive(
-								currentItem.equals("feeds"));
-							navigationItem.setHref(_getFeedsURL());
-							navigationItem.setLabel(
-								LanguageUtil.get(_httpServletRequest, "feeds"));
-						});
-				}
+		return NavigationItemListBuilder.add(
+			navigationItem -> {
+				navigationItem.setActive(currentItem.equals("web-content"));
+				navigationItem.setHref(
+					_liferayPortletResponse.createRenderURL());
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "web-content"));
 			}
-		};
+		).add(
+			() -> !group.isLayout(),
+			navigationItem -> {
+				navigationItem.setActive(currentItem.equals("structures"));
+				navigationItem.setHref(
+					_liferayPortletResponse.createRenderURL(), "mvcPath",
+					"/view_ddm_structures.jsp");
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "structures"));
+			}
+		).add(
+			() -> !group.isLayout(),
+			navigationItem -> {
+				navigationItem.setActive(currentItem.equals("templates"));
+				navigationItem.setHref(
+					_liferayPortletResponse.createRenderURL(), "mvcPath",
+					"/view_ddm_templates.jsp");
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "templates"));
+			}
+		).add(
+			_journalWebConfiguration::showFeeds &&
+			PortalUtil.isRSSFeedsEnabled(),
+			navigationItem -> {
+				navigationItem.setActive(currentItem.equals("feeds"));
+				navigationItem.setHref(_getFeedsURL());
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "feeds"));
+			}
+		).build();
 	}
 
 	public String getOrderByCol() {

@@ -14,9 +14,11 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
@@ -28,6 +30,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -48,6 +51,14 @@ public class TryWithResourcesCheck extends BaseCheck {
 
 		if (literalFinallyDetailAST != null) {
 			_checkFinallyStatement(detailAST, literalFinallyDetailAST);
+		}
+
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() ==
+				TokenTypes.RESOURCE_SPECIFICATION) {
+
+			_populateCloseableTypeNames(firstChildDetailAST);
 		}
 	}
 
@@ -90,7 +101,10 @@ public class TryWithResourcesCheck extends BaseCheck {
 				continue;
 			}
 
-			List<String> closeableTypeNames = _getCloseableTypeNames();
+			Tuple closeableTypeNamesTuple = _getCloseableTypeNamesTuple();
+
+			List<String> closeableTypeNames =
+				(List<String>)closeableTypeNamesTuple.getObject(0);
 
 			if (closeableTypeNames.contains(
 					getTypeName(typeDetailAST, false))) {
@@ -142,23 +156,26 @@ public class TryWithResourcesCheck extends BaseCheck {
 		return variableNames;
 	}
 
-	private synchronized List<String> _getCloseableTypeNames() {
-		if (_closeableTypeNames != null) {
-			return _closeableTypeNames;
+	private synchronized Tuple _getCloseableTypeNamesTuple() {
+		if (_closeableTypeNamesTuple != null) {
+			return _closeableTypeNamesTuple;
 		}
 
-		_closeableTypeNames = new ArrayList<>();
+		List<String> closeableTypeNames = new ArrayList<>();
+		File closeableTypeNamesFile = null;
 
 		try {
 			String content = null;
 
 			File file = SourceFormatterUtil.getFile(
 				getBaseDirName(),
-				"modules/util/source-formatter/src/main/resources/" +
-					"dependencies/closeable-type-names.txt",
+				"modules/util/source-formatter/src/main/resources" +
+					"/dependencies/closeable-type-names.txt",
 				ToolsUtil.PORTAL_MAX_DIR_LEVEL);
 
 			if (file.exists()) {
+				closeableTypeNamesFile = file;
+
 				content = FileUtil.read(file);
 			}
 			else {
@@ -171,13 +188,15 @@ public class TryWithResourcesCheck extends BaseCheck {
 						"dependencies/closeable-type-names.txt"));
 			}
 
-			_closeableTypeNames = ListUtil.fromString(
-				content, StringPool.COMMA);
+			closeableTypeNames = ListUtil.fromString(content, StringPool.COMMA);
 		}
 		catch (IOException ioException) {
 		}
 
-		return _closeableTypeNames;
+		_closeableTypeNamesTuple = new Tuple(
+			closeableTypeNames, closeableTypeNamesFile);
+
+		return _closeableTypeNamesTuple;
 	}
 
 	private String _getCloseVariableName(
@@ -261,6 +280,68 @@ public class TryWithResourcesCheck extends BaseCheck {
 		return null;
 	}
 
+	private void _populateCloseableTypeNames(
+		DetailAST resourceSpecificationDetailAST) {
+
+		Tuple closeableTypeNamesTuple = _getCloseableTypeNamesTuple();
+
+		File closeableTypeNamesFile = (File)closeableTypeNamesTuple.getObject(
+			1);
+
+		if (closeableTypeNamesFile == null) {
+			return;
+		}
+
+		DetailAST resourcesDetailAST =
+			resourceSpecificationDetailAST.findFirstToken(TokenTypes.RESOURCES);
+
+		if (resourcesDetailAST == null) {
+			return;
+		}
+
+		List<String> closeableTypeNames =
+			(List<String>)closeableTypeNamesTuple.getObject(0);
+
+		List<DetailAST> resourceDetailASTList = getAllChildTokens(
+			resourcesDetailAST, false, TokenTypes.RESOURCE);
+
+		for (DetailAST resourceDetailAST : resourceDetailASTList) {
+			DetailAST typeDetailAST = resourceDetailAST.findFirstToken(
+				TokenTypes.TYPE);
+
+			if (typeDetailAST == null) {
+				continue;
+			}
+
+			String typeName = getTypeName(typeDetailAST, false);
+
+			if (closeableTypeNames.contains(typeName)) {
+				continue;
+			}
+
+			closeableTypeNames.add(typeName);
+
+			Collections.sort(closeableTypeNames);
+
+			try {
+				FileUtil.write(
+					closeableTypeNamesFile,
+					ListUtil.toString(
+						closeableTypeNames, StringPool.BLANK,
+						StringPool.COMMA));
+
+				System.out.println(
+					StringBundler.concat(
+						"Added '", typeName,
+						"' to 'closeable-type-names.txt'"));
+
+				_closeableTypeNamesTuple = null;
+			}
+			catch (IOException ioException) {
+			}
+		}
+	}
+
 	private boolean _useTryWithResources(
 		String variableName, DetailAST literalTryDetailAST) {
 
@@ -313,6 +394,6 @@ public class TryWithResourcesCheck extends BaseCheck {
 	private static final String _MSG_USE_TRY_WITH_RESOURCES =
 		"try.with.resources.use";
 
-	private List<String> _closeableTypeNames;
+	private Tuple _closeableTypeNamesTuple;
 
 }

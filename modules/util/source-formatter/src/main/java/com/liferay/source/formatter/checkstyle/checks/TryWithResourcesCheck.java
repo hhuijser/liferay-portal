@@ -161,22 +161,17 @@ public class TryWithResourcesCheck extends BaseCheck {
 			return _closeableTypeNamesTuple;
 		}
 
-		List<String> closeableTypeNames = new ArrayList<>();
-		File closeableTypeNamesFile = null;
+		File closeableTypeNamesFile = SourceFormatterUtil.getFile(
+			getBaseDirName(),
+			"modules/util/source-formatter/src/main/resources/dependencies" +
+				"/closeable-type-names.txt",
+			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+		String content = null;
 
 		try {
-			String content = null;
-
-			File file = SourceFormatterUtil.getFile(
-				getBaseDirName(),
-				"modules/util/source-formatter/src/main/resources" +
-					"/dependencies/closeable-type-names.txt",
-				ToolsUtil.PORTAL_MAX_DIR_LEVEL);
-
-			if (file.exists()) {
-				closeableTypeNamesFile = file;
-
-				content = FileUtil.read(file);
+			if (closeableTypeNamesFile != null) {
+				content = FileUtil.read(closeableTypeNamesFile);
 			}
 			else {
 				Class<?> clazz = getClass();
@@ -187,14 +182,13 @@ public class TryWithResourcesCheck extends BaseCheck {
 					classLoader.getResourceAsStream(
 						"dependencies/closeable-type-names.txt"));
 			}
-
-			closeableTypeNames = ListUtil.fromString(content, StringPool.COMMA);
 		}
-		catch (IOException ioException) {
+		catch (Exception exception) {
 		}
 
 		_closeableTypeNamesTuple = new Tuple(
-			closeableTypeNames, closeableTypeNamesFile);
+			ListUtil.fromString(content, StringPool.COMMA),
+			closeableTypeNamesFile);
 
 		return _closeableTypeNamesTuple;
 	}

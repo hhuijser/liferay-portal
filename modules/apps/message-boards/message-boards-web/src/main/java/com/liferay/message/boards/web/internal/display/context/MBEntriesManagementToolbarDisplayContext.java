@@ -16,10 +16,9 @@ package com.liferay.message.boards.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.message.boards.constants.MBCategoryConstants;
 import com.liferay.message.boards.constants.MBPortletKeys;
 import com.liferay.message.boards.model.MBCategory;
@@ -233,60 +232,44 @@ public class MBEntriesManagementToolbarDisplayContext {
 	}
 
 	public List<DropdownItem> getFilterDropdownItems() {
-		return new DropdownItemList() {
-			{
-				addGroup(
-					dropdownGroupItem -> {
-						dropdownGroupItem.setDropdownItems(
-							_getFilterNavigationDropdownItems());
-						dropdownGroupItem.setLabel(
-							LanguageUtil.get(
-								_httpServletRequest, "filter-by-navigation"));
-					});
-
-				String entriesNavigation = _getEntriesNavigation();
-
-				if (!entriesNavigation.equals("all")) {
-					addGroup(
-						dropdownGroupItem -> {
-							dropdownGroupItem.setDropdownItems(
-								_getOrderByDropdownItems());
-							dropdownGroupItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "order-by"));
-						});
-				}
+		return DropdownItemListBuilder.addGroup(
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(
+					_getFilterNavigationDropdownItems());
+				dropdownGroupItem.setLabel(
+					LanguageUtil.get(
+						_httpServletRequest, "filter-by-navigation"));
 			}
-		};
+		).addGroup(
+			() -> Objects.equals(_getEntriesNavigation(), "all"),
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(_getOrderByDropdownItems());
+				dropdownGroupItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "order-by"));
+			}
+		).build();
 	}
 
 	public List<LabelItem> getFilterLabelItems() {
-		return new LabelItemList() {
-			{
-				String entriesNavigation = _getEntriesNavigation();
+		String entriesNavigation = _getEntriesNavigation();
 
-				if (entriesNavigation.equals("threads") ||
-					entriesNavigation.equals("categories")) {
+		return LabelItemListBuilder.add(
+			() ->
+				entriesNavigation.equals("threads") ||
+				entriesNavigation.equals("categories"),
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					_currentURLObj, _liferayPortletResponse);
 
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								_currentURLObj, _liferayPortletResponse);
+				removeLabelURL.setParameter("entriesNavigation", (String)null);
 
-							removeLabelURL.setParameter(
-								"entriesNavigation", (String)null);
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
-
-							labelItem.setCloseable(true);
-							labelItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, entriesNavigation));
-						});
-				}
+				labelItem.setCloseable(true);
+				labelItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, entriesNavigation));
 			}
-		};
+		).build();
 	}
 
 	public String getOrderByCol() {

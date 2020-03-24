@@ -465,10 +465,9 @@ public class BatchEngineImportTaskExecutorTest
 	private byte[] _compressContent(byte[] content, String contentType)
 		throws Exception {
 
-		ByteArrayOutputStream byteArrayOutputStream =
-			new ByteArrayOutputStream();
-
-		try (ZipOutputStream zipOutputStream = new ZipOutputStream(
+		try (ByteArrayOutputStream byteArrayOutputStream =
+				new ByteArrayOutputStream();
+			ZipOutputStream zipOutputStream = new ZipOutputStream(
 				byteArrayOutputStream)) {
 
 			ZipEntry zipEntry = new ZipEntry(
@@ -477,13 +476,8 @@ public class BatchEngineImportTaskExecutorTest
 			zipOutputStream.putNextEntry(zipEntry);
 
 			zipOutputStream.write(content, 0, content.length);
-		}
 
-		try {
 			return byteArrayOutputStream.toByteArray();
-		}
-		finally {
-			byteArrayOutputStream.close();
 		}
 	}
 
@@ -830,18 +824,14 @@ public class BatchEngineImportTaskExecutorTest
 	}
 
 	private byte[] _toContent(XSSFWorkbook xssfWorkbook) throws Exception {
-		ByteArrayOutputStream byteArrayOutputStream =
-			new ByteArrayOutputStream();
+		try (ByteArrayOutputStream byteArrayOutputStream =
+				new ByteArrayOutputStream()) {
 
-		xssfWorkbook.write(byteArrayOutputStream);
+			xssfWorkbook.write(byteArrayOutputStream);
 
-		xssfWorkbook.close();
+			xssfWorkbook.close();
 
-		try {
 			return _compressContent(byteArrayOutputStream.toByteArray(), "XLS");
-		}
-		finally {
-			byteArrayOutputStream.close();
 		}
 	}
 

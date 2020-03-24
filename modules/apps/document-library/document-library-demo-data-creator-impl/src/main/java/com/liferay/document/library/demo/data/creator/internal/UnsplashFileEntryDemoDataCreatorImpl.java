@@ -96,11 +96,7 @@ public class UnsplashFileEntryDemoDataCreatorImpl
 	private byte[] _getBytes() throws IOException, PortalException {
 		URL url = _getNextUrl();
 
-		InputStream inputStream = null;
-
-		try {
-			inputStream = url.openStream();
-
+		try (InputStream inputStream = url.openStream()) {
 			return FileUtil.getBytes(inputStream);
 		}
 		catch (IOException ioException) {
@@ -116,11 +112,6 @@ public class UnsplashFileEntryDemoDataCreatorImpl
 			}
 			catch (Exception exception) {
 				throw new PortalException(exception);
-			}
-		}
-		finally {
-			if (inputStream != null) {
-				inputStream.close();
 			}
 		}
 	}

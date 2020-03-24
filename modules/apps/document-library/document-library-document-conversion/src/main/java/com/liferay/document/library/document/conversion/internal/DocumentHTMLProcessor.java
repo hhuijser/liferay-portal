@@ -37,13 +37,9 @@ public class DocumentHTMLProcessor {
 
 		InputStream processedInputStream = null;
 
-		Scanner scanner = null;
-
 		String replacement = "";
 
-		try {
-			scanner = new Scanner(inputStream);
-
+		try (Scanner scanner = new Scanner(inputStream)) {
 			scanner.useDelimiter(">");
 
 			tempFile = FileUtil.createTempFile();
@@ -81,9 +77,6 @@ public class DocumentHTMLProcessor {
 		}
 		catch (Exception exception) {
 			_log.error(exception, exception);
-		}
-		finally {
-			scanner.close();
 		}
 
 		return processedInputStream;

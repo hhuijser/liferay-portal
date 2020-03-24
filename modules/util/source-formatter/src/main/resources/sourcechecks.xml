@@ -362,7 +362,9 @@
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaReleaseInfoCheck" />
-		<check name="JavaServiceObjectCheck" />
+		<check name="JavaServiceObjectCheck">
+			<property name="allowedNonorderedSetterMethodTypes" value="PreparedStatement" />
+		</check>
 		<check name="JavaServiceTrackerFactoryCheck" />
 		<check name="JavaServiceUtilCheck">
 			<category name="Bug Prevention" />

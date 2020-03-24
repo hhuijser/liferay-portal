@@ -14,8 +14,18 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.util.FileUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
+
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.io.File;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,12 +77,23 @@ public class TryWithResourcesCheck extends BaseCheck {
 			String closeVariableName = _getCloseVariableName(
 				methodCallDetailAST, literalFinallyDetailAST);
 
-			if (closeVariableName == null) {
+			if ((closeVariableName == null) ||
+				!_useTryWithResources(closeVariableName, literalTryDetailAST)) {
+
 				continue;
 			}
 
-			if ((closeVariableName != null) &&
-				_useTryWithResources(closeVariableName, literalTryDetailAST)) {
+			DetailAST typeDetailAST = getVariableTypeDetailAST(
+				literalTryDetailAST, closeVariableName, false);
+
+			if (typeDetailAST == null) {
+				continue;
+			}
+
+			List<String> closeableTypeNames = _getCloseableTypeNames();
+
+			if (closeableTypeNames.contains(
+					getTypeName(typeDetailAST, false))) {
 
 				log(
 					methodCallDetailAST, _MSG_USE_TRY_WITH_RESOURCES,
@@ -119,6 +140,44 @@ public class TryWithResourcesCheck extends BaseCheck {
 		}
 
 		return variableNames;
+	}
+
+	private synchronized List<String> _getCloseableTypeNames() {
+		if (_closeableTypeNames != null) {
+			return _closeableTypeNames;
+		}
+
+		_closeableTypeNames = new ArrayList<>();
+
+		try {
+			String content = null;
+
+			File file = SourceFormatterUtil.getFile(
+				getBaseDirName(),
+				"modules/util/source-formatter/src/main/resources/" +
+					"dependencies/closeable-type-names.txt",
+				ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+			if (file.exists()) {
+				content = FileUtil.read(file);
+			}
+			else {
+				Class<?> clazz = getClass();
+
+				ClassLoader classLoader = clazz.getClassLoader();
+
+				content = StringUtil.read(
+					classLoader.getResourceAsStream(
+						"dependencies/closeable-type-names.txt"));
+			}
+
+			_closeableTypeNames = ListUtil.fromString(
+				content, StringPool.COMMA);
+		}
+		catch (IOException ioException) {
+		}
+
+		return _closeableTypeNames;
 	}
 
 	private String _getCloseVariableName(
@@ -253,5 +312,7 @@ public class TryWithResourcesCheck extends BaseCheck {
 
 	private static final String _MSG_USE_TRY_WITH_RESOURCES =
 		"try.with.resources.use";
+
+	private List<String> _closeableTypeNames;
 
 }

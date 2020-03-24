@@ -16,7 +16,7 @@ package com.liferay.journal.web.internal.servlet.taglib.util;
 
 import com.liferay.dynamic.data.mapping.model.DDMTemplate;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.journal.web.internal.security.permission.resource.DDMTemplatePermission;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
@@ -56,22 +56,18 @@ public class JournalDDMTemplateActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (DDMTemplatePermission.contains(
-						_themeDisplay.getPermissionChecker(), _ddmTemplate,
-						ActionKeys.UPDATE)) {
-
-					add(_getEditDDMTemplateActionUnsafeConsumer());
-				}
-
-				if (DDMTemplatePermission.contains(
-						_themeDisplay.getPermissionChecker(), _ddmTemplate,
-						ActionKeys.PERMISSIONS)) {
-
-					add(_getPermissionsDDMTemplateActionUnsafeConsumer());
-				}
-
+		return DropdownItemListBuilder.add(
+			() -> DDMTemplatePermission.contains(
+				_themeDisplay.getPermissionChecker(), _ddmTemplate,
+				ActionKeys.UPDATE),
+			_getEditDDMTemplateActionUnsafeConsumer()
+		).add(
+			() -> DDMTemplatePermission.contains(
+				_themeDisplay.getPermissionChecker(), _ddmTemplate,
+				ActionKeys.PERMISSIONS),
+			_getPermissionsDDMTemplateActionUnsafeConsumer()
+		).add(
+			() -> {
 				Group scopeGroup = _themeDisplay.getScopeGroup();
 
 				if ((!scopeGroup.hasLocalOrRemoteStagingGroup() ||
@@ -82,17 +78,18 @@ public class JournalDDMTemplateActionDropdownItemsProvider {
 						_ddmTemplate.getClassNameId(),
 						_ddmTemplate.getResourceClassNameId())) {
 
-					add(_getCopyDDMTemplateActionUnsafeConsumer());
+					return true;
 				}
 
-				if (DDMTemplatePermission.contains(
-						_themeDisplay.getPermissionChecker(), _ddmTemplate,
-						ActionKeys.DELETE)) {
-
-					add(_getDeleteDDMTemplateActionUnsafeConsumer());
-				}
-			}
-		};
+				return false;
+			},
+			_getCopyDDMTemplateActionUnsafeConsumer()
+		).add(
+			() -> DDMTemplatePermission.contains(
+				_themeDisplay.getPermissionChecker(), _ddmTemplate,
+				ActionKeys.DELETE),
+			_getDeleteDDMTemplateActionUnsafeConsumer()
+		).build();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>

@@ -21,7 +21,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalFolder;
 import com.liferay.journal.model.JournalFolderConstants;
@@ -262,131 +262,104 @@ public class JournalManagementToolbarDisplayContext
 
 	@Override
 	public List<DropdownItem> getFilterDropdownItems() {
-		return new DropdownItemList() {
-			{
-				addGroup(
-					dropdownGroupItem -> {
-						dropdownGroupItem.setDropdownItems(
-							getFilterNavigationDropdownItems());
-						dropdownGroupItem.setLabel(
-							getFilterNavigationDropdownItemsLabel());
-					});
-
-				addGroup(
-					dropdownGroupItem -> {
-						dropdownGroupItem.setDropdownItems(
-							_getFilterStatusDropdownItems());
-						dropdownGroupItem.setLabel(
-							LanguageUtil.get(request, "filter-by-status"));
-					});
-
-				if (!_journalDisplayContext.isNavigationRecent()) {
-					addGroup(
-						dropdownGroupItem -> {
-							dropdownGroupItem.setDropdownItems(
-								getOrderByDropdownItems());
-							dropdownGroupItem.setLabel(
-								getOrderByDropdownItemsLabel());
-						});
-				}
+		return DropdownItemListBuilder.addGroup(
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(
+					getFilterNavigationDropdownItems());
+				dropdownGroupItem.setLabel(
+					getFilterNavigationDropdownItemsLabel());
 			}
-		};
+		).addGroup(
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(
+					_getFilterStatusDropdownItems());
+				dropdownGroupItem.setLabel(
+					LanguageUtil.get(request, "filter-by-status"));
+			}
+		).addGroup(
+			() -> !_journalDisplayContext.isNavigationRecent(),
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(getOrderByDropdownItems());
+				dropdownGroupItem.setLabel(getOrderByDropdownItemsLabel());
+			}
+		).build();
 	}
 
 	@Override
 	public List<LabelItem> getFilterLabelItems() {
-		return new LabelItemList() {
-			{
-				if (_journalDisplayContext.isNavigationMine()) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								currentURLObj, liferayPortletResponse);
+		int status = _journalDisplayContext.getStatus();
 
-							removeLabelURL.setParameter(
-								"navigation", (String)null);
+		return LabelItemListBuilder.add(
+			_journalDisplayContext::isNavigationMine,
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
 
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
+				removeLabelURL.setParameter("navigation", (String)null);
 
-							labelItem.setCloseable(true);
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-							ThemeDisplay themeDisplay =
-								(ThemeDisplay)request.getAttribute(
-									WebKeys.THEME_DISPLAY);
+				labelItem.setCloseable(true);
 
-							User user = themeDisplay.getUser();
+				ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
+					WebKeys.THEME_DISPLAY);
 
-							labelItem.setLabel(
-								LanguageUtil.get(request, "owner") + ": " +
-									user.getFullName());
-						});
-				}
+				User user = themeDisplay.getUser();
 
-				if (_journalDisplayContext.isNavigationRecent()) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								currentURLObj, liferayPortletResponse);
-
-							removeLabelURL.setParameter(
-								"navigation", (String)null);
-
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
-
-							labelItem.setCloseable(true);
-
-							labelItem.setLabel(
-								LanguageUtil.get(request, "recent"));
-						});
-				}
-
-				if (_journalDisplayContext.isNavigationStructure()) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								currentURLObj, liferayPortletResponse);
-
-							removeLabelURL.setParameter(
-								"navigation", (String)null);
-
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
-
-							labelItem.setCloseable(true);
-
-							String ddmStructureName =
-								_journalDisplayContext.getDDMStructureName();
-
-							labelItem.setLabel(
-								LanguageUtil.get(request, "structures") + ": " +
-									ddmStructureName);
-						});
-				}
-
-				int status = _journalDisplayContext.getStatus();
-
-				if (status != _journalDisplayContext.getDefaultStatus()) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								currentURLObj, liferayPortletResponse);
-
-							removeLabelURL.setParameter("status", (String)null);
-
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
-
-							labelItem.setCloseable(true);
-
-							labelItem.setLabel(
-								LanguageUtil.get(request, "status") + ": " +
-									_getStatusLabel(status));
-						});
-				}
+				labelItem.setLabel(
+					LanguageUtil.get(request, "owner") + ": " +
+						user.getFullName());
 			}
-		};
+		).add(
+			_journalDisplayContext::isNavigationRecent,
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
+
+				removeLabelURL.setParameter("navigation", (String)null);
+
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+
+				labelItem.setCloseable(true);
+
+				labelItem.setLabel(LanguageUtil.get(request, "recent"));
+			}
+		).add(
+			_journalDisplayContext::isNavigationStructure,
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
+
+				removeLabelURL.setParameter("navigation", (String)null);
+
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+
+				labelItem.setCloseable(true);
+
+				String ddmStructureName =
+					_journalDisplayContext.getDDMStructureName();
+
+				labelItem.setLabel(
+					LanguageUtil.get(request, "structures") + ": " +
+						ddmStructureName);
+			}
+		).add(
+			() -> status != _journalDisplayContext.getDefaultStatus(),
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
+
+				removeLabelURL.setParameter("status", (String)null);
+
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
+
+				labelItem.setCloseable(true);
+
+				labelItem.setLabel(
+					LanguageUtil.get(request, "status") + ": " +
+						_getStatusLabel(status));
+			}
+		).build();
 	}
 
 	@Override

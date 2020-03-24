@@ -25,6 +25,7 @@ import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerRegistryUtil;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.journal.constants.JournalPortletKeys;
 import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.service.JournalArticleLocalServiceUtil;
@@ -101,177 +102,133 @@ public class JournalArticleActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.UPDATE)) {
+		String[] availableLanguageIds = _article.getAvailableLanguageIds();
+		boolean hasDeletePermission = JournalArticlePermission.contains(
+			_themeDisplay.getPermissionChecker(), _article, ActionKeys.DELETE);
+		boolean hasUpdatePermission = JournalArticlePermission.contains(
+			_themeDisplay.getPermissionChecker(), _article, ActionKeys.UPDATE);
+		boolean hasViewPermission = JournalArticlePermission.contains(
+			_themeDisplay.getPermissionChecker(), _article, ActionKeys.VIEW);
+		boolean trashEnabled = _trashHelper.isTrashEnabled(
+			_themeDisplay.getScopeGroupId());
+		UnsafeConsumer<DropdownItem, Exception> previewContentArticleAction =
+			_getPreviewArticleActionUnsafeConsumer();
+		UnsafeConsumer<DropdownItem, Exception> viewContentArticleAction =
+			_getViewContentArticleActionUnsafeConsumer();
 
-					add(_getEditArticleActionUnsafeConsumer());
-					add(_getMoveArticleActionUnsafeConsumer());
-				}
-
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.PERMISSIONS)) {
-
-					add(_getPermissionsArticleActionUnsafeConsumer());
-				}
-
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.VIEW)) {
-
-					if (JournalArticlePermission.contains(
-							_themeDisplay.getPermissionChecker(), _article,
-							ActionKeys.SUBSCRIBE)) {
-
-						add(_getSubscribeArticleActionUnsafeConsumer());
-					}
-
-					UnsafeConsumer<DropdownItem, Exception>
-						viewContentArticleAction =
-							_getViewContentArticleActionUnsafeConsumer();
-
-					if (viewContentArticleAction != null) {
-						add(viewContentArticleAction);
-					}
-
-					UnsafeConsumer<DropdownItem, Exception>
-						previewContentArticleAction =
-							_getPreviewArticleActionUnsafeConsumer();
-
-					if (previewContentArticleAction != null) {
-						add(previewContentArticleAction);
-					}
-
-					if (JournalArticlePermission.contains(
-							_themeDisplay.getPermissionChecker(), _article,
-							ActionKeys.UPDATE)) {
-
-						add(_getViewHistoryArticleActionUnsafeConsumer());
-					}
-
-					String[] availableLanguageIds =
-						_article.getAvailableLanguageIds();
-
-					if (availableLanguageIds.length > 1) {
-						add(
-							_getDeleteArticleTranslationsActionUnsafeConsumer());
-					}
-				}
-
-				add(_getViewUsagesArticleActionUnsafeConsumer());
-
-				if (JournalFolderPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getScopeGroupId(), _article.getFolderId(),
-						ActionKeys.ADD_ARTICLE)) {
-
-					add(_getCopyArticleActionUnsafeConsumer());
-				}
-
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.EXPIRE) &&
-					_article.hasApprovedVersion()) {
-
-					add(
-						_getExpireArticleActionConsumer(
-							_article.getArticleId()));
-				}
-
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.DELETE)) {
-
-					if (_trashHelper.isTrashEnabled(
-							_themeDisplay.getScopeGroupId())) {
-
-						add(_getMoveToTrashArticleActionUnsafeConsumer());
-					}
-					else {
-						add(_getDeleteArticleAction(_article.getArticleId()));
-					}
-				}
-
+		return DropdownItemListBuilder.add(
+			() -> hasUpdatePermission, _getEditArticleActionUnsafeConsumer()
+		).add(
+			() -> hasUpdatePermission, _getMoveArticleActionUnsafeConsumer()
+		).add(
+			() -> JournalArticlePermission.contains(
+				_themeDisplay.getPermissionChecker(), _article,
+				ActionKeys.PERMISSIONS),
+			_getPermissionsArticleActionUnsafeConsumer()
+		).add(
+			() ->
+				hasViewPermission &&
+				JournalArticlePermission.contains(
+					_themeDisplay.getPermissionChecker(), _article,
+					ActionKeys.SUBSCRIBE),
+			_getSubscribeArticleActionUnsafeConsumer()
+		).add(
+			() -> hasViewPermission && (viewContentArticleAction != null),
+			viewContentArticleAction
+		).add(
+			() -> hasViewPermission && (previewContentArticleAction != null),
+			previewContentArticleAction
+		).add(
+			() -> hasViewPermission && hasUpdatePermission,
+			_getViewHistoryArticleActionUnsafeConsumer()
+		).add(
+			() -> hasViewPermission && (availableLanguageIds.length > 1),
+			_getDeleteArticleTranslationsActionUnsafeConsumer()
+		).add(
+			_getViewUsagesArticleActionUnsafeConsumer()
+		).add(
+			() -> JournalFolderPermission.contains(
+				_themeDisplay.getPermissionChecker(),
+				_themeDisplay.getScopeGroupId(), _article.getFolderId(),
+				ActionKeys.ADD_ARTICLE),
+			_getCopyArticleActionUnsafeConsumer()
+		).add(
+			() ->
+				JournalArticlePermission.contains(
+					_themeDisplay.getPermissionChecker(), _article,
+					ActionKeys.EXPIRE) &&
+				_article.hasApprovedVersion(),
+			_getExpireArticleActionConsumer(_article.getArticleId())
+		).add(
+			() -> hasDeletePermission && trashEnabled,
+			_getMoveToTrashArticleActionUnsafeConsumer()
+		).add(
+			() -> hasDeletePermission && !trashEnabled,
+			_getDeleteArticleAction(_article.getArticleId())
+		).add(
+			() -> {
 				Group group = _themeDisplay.getScopeGroup();
 
 				if (_isShowPublishArticleAction() && !group.isLayout()) {
-					add(_getPublishToLiveArticleActionUnsafeConsumer());
+					return true;
 				}
-			}
-		};
+
+				return false;
+			},
+			_getPublishToLiveArticleActionUnsafeConsumer()
+		).build();
 	}
 
 	public List<DropdownItem> getArticleHistoryActionDropdownItems()
 		throws Exception {
 
-		return new DropdownItemList() {
-			{
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.VIEW)) {
+		UnsafeConsumer<DropdownItem, Exception> previewContentArticleAction =
+			_getPreviewArticleActionUnsafeConsumer();
 
-					UnsafeConsumer<DropdownItem, Exception>
-						previewContentArticleAction =
-							_getPreviewArticleActionUnsafeConsumer();
+		String articleId =
+			_article.getArticleId() + JournalPortlet.VERSION_SEPARATOR +
+				_article.getVersion();
 
-					if (previewContentArticleAction != null) {
-						add(previewContentArticleAction);
-					}
-				}
-
-				if (JournalFolderPermission.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getScopeGroupId(), _article.getFolderId(),
-						ActionKeys.ADD_ARTICLE)) {
-
-					add(_getAutoCopyArticleActionUnsafeConsumer());
-				}
-
-				String articleId =
-					_article.getArticleId() + JournalPortlet.VERSION_SEPARATOR +
-						_article.getVersion();
-
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.EXPIRE) &&
-					(_article.getStatus() ==
-						WorkflowConstants.STATUS_APPROVED)) {
-
-					add(
-						_getExpireArticleActionConsumer(
-							articleId, _themeDisplay.getURLCurrent()));
-				}
-
-				add(_getCompareArticleVersionsActionUnsafeConsumer());
-
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.DELETE)) {
-
-					add(
-						_getDeleteArticleAction(
-							articleId, _themeDisplay.getURLCurrent()));
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() ->
+				JournalArticlePermission.contains(
+					_themeDisplay.getPermissionChecker(), _article,
+					ActionKeys.VIEW) &&
+				(previewContentArticleAction != null),
+			previewContentArticleAction
+		).add(
+			() -> JournalFolderPermission.contains(
+				_themeDisplay.getPermissionChecker(),
+				_themeDisplay.getScopeGroupId(), _article.getFolderId(),
+				ActionKeys.ADD_ARTICLE),
+			_getAutoCopyArticleActionUnsafeConsumer()
+		).add(
+			() ->
+				JournalArticlePermission.contains(
+					_themeDisplay.getPermissionChecker(), _article,
+					ActionKeys.EXPIRE) &&
+				(_article.getStatus() == WorkflowConstants.STATUS_APPROVED),
+			_getExpireArticleActionConsumer(
+				articleId, _themeDisplay.getURLCurrent())
+		).add(
+			_getCompareArticleVersionsActionUnsafeConsumer()
+		).add(
+			() -> JournalArticlePermission.contains(
+				_themeDisplay.getPermissionChecker(), _article,
+				ActionKeys.DELETE),
+			_getDeleteArticleAction(articleId, _themeDisplay.getURLCurrent())
+		).build();
 	}
 
 	public List<DropdownItem> getArticleVersionActionDropdownItems()
 		throws Exception {
 
-		DropdownItemList dropdownItems = new DropdownItemList() {
-			{
-				if (JournalArticlePermission.contains(
-						_themeDisplay.getPermissionChecker(), _article,
-						ActionKeys.UPDATE)) {
-
-					add(_getEditArticleActionUnsafeConsumer());
-				}
-			}
-		};
+		DropdownItemList dropdownItems = DropdownItemListBuilder.add(
+			() -> JournalArticlePermission.contains(
+				_themeDisplay.getPermissionChecker(), _article,
+				ActionKeys.UPDATE),
+			_getEditArticleActionUnsafeConsumer()
+		).build();
 
 		dropdownItems.addAll(getArticleHistoryActionDropdownItems());
 

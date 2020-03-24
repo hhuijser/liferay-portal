@@ -498,6 +498,9 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.TransactionalTestRuleCheck">
 			<message key="import.invalid" value="Avoid using import TransactionalTestRule in *StagedModelDataHandlerTest, see LPS-68908" />
 		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.TryWithResourcesCheck">
+			<message key="try.with.resources.use" value="Use Try-With-Resources statement to declare ''{0}'' instead of closing the resource in the ''finally'' statement using ''{1}''" />
+		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">
 			<message key="assign.unnecessary" value="No need to assign call to variable ''{0}'', because ''{0}'' is not used after the call" />
 		</module>

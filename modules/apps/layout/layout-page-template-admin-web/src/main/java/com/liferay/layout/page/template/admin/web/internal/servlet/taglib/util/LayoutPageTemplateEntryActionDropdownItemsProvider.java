@@ -116,8 +116,9 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 				(_layoutPageTemplateEntry.getLayoutPrototypeId() <= 0),
 			_getConfigureLayoutPageTemplateEntryActionUnsafeConsumer()
 		).add(
-			ExportImportLayoutPageTemplateConfigurationUtil::enabled &&
-			(_layoutPageTemplateEntry.getLayoutPrototypeId() == 0),
+			() ->
+				ExportImportLayoutPageTemplateConfigurationUtil.enabled() &&
+				(_layoutPageTemplateEntry.getLayoutPrototypeId() == 0),
 			_getExportLayoutPageTemplateEntryActionUnsafeConsumer()
 		).add(
 			() -> LayoutPageTemplateEntryPermission.contains(

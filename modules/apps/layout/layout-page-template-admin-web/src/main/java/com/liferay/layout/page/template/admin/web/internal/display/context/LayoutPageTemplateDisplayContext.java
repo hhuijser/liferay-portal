@@ -86,10 +86,11 @@ public class LayoutPageTemplateDisplayContext {
 					LanguageUtil.get(_httpServletRequest, "delete"));
 			}
 		).add(
-			ExportImportLayoutPageTemplateConfigurationUtil::enabled &&
-			LayoutPageTemplateCollectionPermission.contains(
-				_themeDisplay.getPermissionChecker(),
-				getLayoutPageTemplateCollectionId(), ActionKeys.UPDATE),
+			() ->
+				ExportImportLayoutPageTemplateConfigurationUtil.enabled() &&
+				LayoutPageTemplateCollectionPermission.contains(
+					_themeDisplay.getPermissionChecker(),
+					getLayoutPageTemplateCollectionId(), ActionKeys.UPDATE),
 			dropdownItem -> {
 				dropdownItem.putData("action", "importEntries");
 				dropdownItem.setLabel(

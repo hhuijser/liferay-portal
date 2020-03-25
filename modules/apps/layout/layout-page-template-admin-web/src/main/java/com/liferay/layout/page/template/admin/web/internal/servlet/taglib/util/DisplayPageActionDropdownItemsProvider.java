@@ -108,12 +108,13 @@ public class DisplayPageActionDropdownItemsProvider {
 				ActionKeys.PERMISSIONS),
 			_getPermissionsDisplayPageActionUnsafeConsumer()
 		).add(
-			_layoutPageTemplateEntry::isApproved &&
-			Objects.equals(
-				_layoutPageTemplateEntry.getType(),
-				LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE) &&
-			(_layoutPageTemplateEntry.getClassNameId() > 0) &&
-			hasUpdatePermission,
+			() ->
+				_layoutPageTemplateEntry.isApproved() &&
+				Objects.equals(
+					_layoutPageTemplateEntry.getType(),
+					LayoutPageTemplateEntryTypeConstants.TYPE_DISPLAY_PAGE) &&
+				(_layoutPageTemplateEntry.getClassNameId() > 0) &&
+				hasUpdatePermission,
 			_getMarkAsDefaultDisplayPageActionUnsafeConsumer()
 		).add(
 			() -> LayoutPageTemplateEntryPermission.contains(

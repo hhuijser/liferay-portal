@@ -272,17 +272,10 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 
 		Clazz clazz = null;
 
-		try {
-			InputStream inputStream = resource.openInputStream();
-
+		try (InputStream inputStream = resource.openInputStream()) {
 			clazz = new Clazz(analyzer, fqnToPath, resource);
 
-			try {
-				clazz.parseClassFile();
-			}
-			finally {
-				inputStream.close();
-			}
+			clazz.parseClassFile();
 		}
 		catch (Throwable e) {
 			return;

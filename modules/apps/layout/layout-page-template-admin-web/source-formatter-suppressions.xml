@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<suppressions>
+	<source-check>
+		<suppress checks="JavaStylingCheck" files="src/main/java/com/liferay/layout/page/template/admin/web/internal/display/context/LayoutPageTemplateDisplayContext\.java" />
+		<suppress checks="JavaStylingCheck" files="src/main/java/com/liferay/layout/page/template/admin/web/internal/servlet/taglib/util/DisplayPageActionDropdownItemsProvider\.java" />
+		<suppress checks="JavaStylingCheck" files="src/main/java/com/liferay/layout/page/template/admin/web/internal/servlet/taglib/util/LayoutPageTemplateEntryActionDropdownItemsProvider\.java" />
+	</source-check>
+</suppressions>

@@ -5,6 +5,10 @@
 		<suppress checks="JSONNamingCheck" files="gradle-plugins/src/main/java/com/liferay/gradle/plugins/LiferayThemePlugin\.java" />
 		<suppress checks="MethodNamingCheck" files="gradle-plugins-maven-plugin-builder/src/main/java/com/liferay/gradle/plugins/maven/plugin/builder/tasks/WriteMavenSettingsTask\.java" />
 		<suppress checks="OperatorOperandCheck" files="project-templates/project-templates/src/test/java/com/liferay/project/templates/ProjectTemplateFilesTest\.java" />
+		<suppress checks="TryWithResourcesCheck" files="ant-beanshell/.*" />
+		<suppress checks="TryWithResourcesCheck" files="ant-gradle/.*" />
+		<suppress checks="TryWithResourcesCheck" files="ant-mirrors-get/.*" />
+		<suppress checks="TryWithResourcesCheck" files="ant-sync-dir/.*" />
 	</checkstyle>
 	<source-check>
 		<suppress checks="BNDBundleInformationCheck" files="gradle-plugins-target-platform/src/gradleTest/.*" />

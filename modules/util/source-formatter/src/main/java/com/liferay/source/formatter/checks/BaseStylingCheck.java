@@ -104,7 +104,7 @@ public abstract class BaseStylingCheck extends BaseFileCheck {
 	private String _fixLambdaStatement(String content) {
 		Matcher matcher = _lambdaPattern.matcher(content);
 
-		return matcher.replaceAll("$1::$2");
+		return matcher.replaceAll("$1::$2$3$4");
 	}
 
 	private String _fixRedundantArrayInitialization(String content) {
@@ -306,7 +306,7 @@ public abstract class BaseStylingCheck extends BaseFileCheck {
 	private static final Pattern _booleanPattern = Pattern.compile(
 		"\\((\\!)?(\\w+)\\s+(==|!=)\\s+(false|true)\\)");
 	private static final Pattern _lambdaPattern = Pattern.compile(
-		"\\(\\)\\s+->\\s+(\\w+)\\.(\\w+)\\(\\)");
+		"\\(\\)\\s+->\\s+(\\w+)\\.(\\w+)\\(\\)(\\s*)(,|\\))");
 	private static final Pattern _objectsEqualsPattern = Pattern.compile(
 		"\\WObjects\\.equals\\(");
 	private static final Pattern _redundantArrayInitializationPattern =

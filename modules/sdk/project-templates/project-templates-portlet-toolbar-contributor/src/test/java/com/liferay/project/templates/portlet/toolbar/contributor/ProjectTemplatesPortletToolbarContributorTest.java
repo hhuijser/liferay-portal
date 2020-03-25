@@ -1,0 +1,138 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.project.templates.portlet.toolbar.contributor;
+
+import java.io.File;
+import java.net.URI;
+import java.util.Arrays;
+import java.util.Properties;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
+/**
+ * @author Lawrence Lee
+ */
+@RunWith(Parameterized.class)
+public class ProjectTemplatesPortletToolbarContributorTest implements BaseProjectTemplatesTestCase{
+	@ClassRule
+	public static final MavenExecutor mavenExecutor = new MavenExecutor();
+
+	@Parameterized.Parameters(
+			name = "Testcase-{index}: testing {0}"
+		)
+		public static Iterable<Object[]> data() {
+			return Arrays.asList(
+				new Object[][] {
+					{"7.0.6"},
+					{"7.1.3"},
+					{"7.2.1"},
+					{"7.3.0"}
+				});
+		}
+
+
+		public ProjectTemplatesPortletToolbarContributorTest(
+				String liferayVersion) {
+
+				_liferayVersion = liferayVersion;
+			}
+
+	private final String _liferayVersion;
+
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+		String gradleDistribution = System.getProperty("gradle.distribution");
+
+		if (Validator.isNull(gradleDistribution)) {
+			Properties properties = FileTestUtil.readProperties(
+				"gradle-wrapper/gradle/wrapper/gradle-wrapper.properties");
+
+			gradleDistribution = properties.getProperty("distributionUrl");
+		}
+
+		Assert.assertTrue(gradleDistribution.contains(GRADLE_WRAPPER_VERSION));
+
+		_gradleDistribution = URI.create(gradleDistribution);
+	}
+
+	@Test
+	public void testBuildTemplatePortletToolbarContributor() throws Exception {
+		String template = "portlet-toolbar-contributor";
+		String name = "toolbartest";
+		String packageName = "blade.test";
+
+		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+
+		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+
+		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--liferay-version", _liferayVersion, "--package-name", packageName);
+
+		testExists(gradleProjectDir, "bnd.bnd");
+
+		testContains(
+			gradleProjectDir, "build.gradle",
+			DEPENDENCY_PORTAL_KERNEL);
+		testContains(
+				gradleProjectDir,
+				"src/main/java/blade/test/portlet/toolbar/contributor" +
+					"/ToolbartestPortletToolbarContributor.java",
+				"public class ToolbartestPortletToolbarContributor",
+				"implements PortletToolbarContributor");
+
+
+		testNotContains(
+			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+
+
+		File mavenWorkspaceDir =
+				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+
+			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+
+			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=Toolbartest", "-Dpackage=" + packageName, "-DliferayVersion=" + _liferayVersion);
+
+			if (!_liferayVersion.equals("7.0.6")) {
+				testContains(
+					mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
+			}
+
+			if (isBuildProjects()) {
+				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+				File mavenOutputDir = new File(mavenProjectDir, "target");
+
+				buildProjects(
+					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:" + name + GRADLE_TASK_PATH_BUILD);
+			}
+
+	}
+
+	@Rule
+	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+	private static URI _gradleDistribution;
+}

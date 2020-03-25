@@ -1,0 +1,153 @@
+/**
+ * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+ *
+ * This library is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Lesser General Public License as published by the Free
+ * Software Foundation; either version 2.1 of the License, or (at your option)
+ * any later version.
+ *
+ * This library is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
+ * details.
+ */
+
+package com.liferay.project.templates.api;
+
+import java.io.File;
+import java.net.URI;
+import java.util.Properties;
+
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
+import aQute.bnd.header.Parameters;
+import aQute.bnd.osgi.Domain;
+
+/**
+ * @author Lawrence Lee
+ */
+public class ProjectTemplatesApiTest
+	implements BaseProjectTemplatesTestCase {
+
+	@ClassRule
+	public static final MavenExecutor mavenExecutor = new MavenExecutor();
+
+	@BeforeClass
+	public static void setUpClass() throws Exception {
+		String gradleDistribution = System.getProperty("gradle.distribution");
+
+		if (Validator.isNull(gradleDistribution)) {
+			Properties properties = FileTestUtil.readProperties(
+				"gradle-wrapper/gradle/wrapper/gradle-wrapper.properties");
+
+			gradleDistribution = properties.getProperty("distributionUrl");
+		}
+
+		Assert.assertTrue(gradleDistribution.contains(GRADLE_WRAPPER_VERSION));
+
+		_gradleDistribution = URI.create(gradleDistribution);
+	}
+
+	@Test
+	public void testBuildTemplateApi() throws Exception {
+		String liferayVersion = "7.3.0";
+		String template = "api";
+		String name = "foo";
+
+		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+
+		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+
+		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name);
+
+		testExists(gradleProjectDir, "bnd.bnd");
+
+		testContains(
+			gradleProjectDir, "build.gradle",
+			BaseProjectTemplatesTestCase.DEPENDENCY_OSGI_CORE);
+		testContains(
+			gradleProjectDir, "src/main/java/foo/api/Foo.java",
+			"public interface Foo");
+		testContains(
+			gradleProjectDir, "src/main/resources/foo/api/packageinfo",
+			"1.0.0");
+
+		testNotContains(
+			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+
+
+		File mavenWorkspaceDir =
+			newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+
+		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=Foo", "-Dpackage=foo");
+
+		if (isBuildProjects()) {
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
+
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:foo" + GRADLE_TASK_PATH_BUILD);
+
+			File jarFile = testExists(
+				gradleProjectDir, "build/libs/foo-1.0.0.jar");
+
+			Domain domain = Domain.domain(jarFile);
+
+			Parameters parameters = domain.getExportPackage();
+
+			Assert.assertNotNull(parameters);
+
+			Assert.assertNotNull(
+				parameters.toString(), parameters.get("foo.api"));
+		}
+	}
+
+	@Test
+	public void testBuildTemplateApiContainsCorrectAuthor() throws Exception {
+		String author = "Test Author";
+		String liferayVersion = "7.3.0";
+		String template = "api";
+		String name = "author-test";
+
+		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+
+		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+
+		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--author", author);
+
+		testContains(
+			gradleProjectDir, "src/main/java/author/test/api/AuthorTest.java",
+			"@author " + author);
+
+		File mavenWorkspaceDir =
+			newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+
+		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-Dauthor=" + author, "-DclassName=AuthorTest",
+				"-Dpackage=author.test");
+
+		testContains(
+			mavenProjectDir, "src/main/java/author/test/api/AuthorTest.java",
+			"@author " + author);
+	}
+
+
+	@Rule
+	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
+	private static URI _gradleDistribution;
+}

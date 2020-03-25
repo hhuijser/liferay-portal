@@ -109,7 +109,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 			gradleProjectDir,
 			"src/main/java/com/test/controller/UserController.java");
 
-		if (_liferayVersion.equals("7.0")) {
+		if (_liferayVersion.equals("7.0.6")) {
 			testContains(
 				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
 				"liferay-display_7_0_0.dtd");
@@ -122,7 +122,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 				gradleProjectDir, "src/main/webapp/WEB-INF/web.xml",
 				"version=\"3.0\" xmlns=\"http://java.sun.com/xml/ns/javaee");
 		}
-		else if (_liferayVersion.equals("7.1")) {
+		else if (_liferayVersion.equals("7.1.3")) {
 			testContains(
 				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
 				"liferay-display_7_1_0.dtd");
@@ -135,7 +135,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 				gradleProjectDir, "src/main/webapp/WEB-INF/web.xml",
 				"version=\"3.1\" xmlns=\"http://xmlns.jcp.org/xml/ns/javaee\"");
 		}
-		else if (_liferayVersion.equals("7.2")) {
+		else if (_liferayVersion.equals("7.2.1")) {
 			testContains(
 				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
 				"liferay-display_7_2_0.dtd");
@@ -147,7 +147,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 				gradleProjectDir, "src/main/webapp/WEB-INF/web.xml",
 				"version=\"3.1\" xmlns=\"http://xmlns.jcp.org/xml/ns/javaee\"");
 		}
-		else if (_liferayVersion.equals("7.3")) {
+		else if (_liferayVersion.startsWith("7.3")) {
 			testContains(
 				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
 				"liferay-display_7_3_0.dtd");
@@ -234,7 +234,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 			String groupId = "com.test";
 
 			return buildTemplateWithMaven(
-				temporaryFolder, template, name, groupId, mavenExecutor,
+				destinationDir, destinationDir, template, name, groupId, mavenExecutor,
 				"-Dpackage=com.test", "-DclassName=Sample",
 				"-Dframework=" + framework,
 				"-DframeworkDependencies=" + frameworkDependencies,

@@ -15,10 +15,9 @@
 package com.liferay.notifications.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.UserNotificationEvent;
@@ -55,41 +54,33 @@ public class NotificationsManagementToolbarDisplayContext {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
-		return new DropdownItemList() {
-			{
-				if (!_isActionRequired()) {
-					add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "markNotificationsAsRead");
-							dropdownItem.setIcon("envelope-open");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "mark-as-read"));
-							dropdownItem.setQuickAction(true);
-						});
-					add(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "markNotificationsAsUnread");
-							dropdownItem.setIcon("envelope-closed");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "mark-as-unread"));
-							dropdownItem.setQuickAction(true);
-						});
-				}
-
-				add(
-					dropdownItem -> {
-						dropdownItem.putData("action", "deleteNotifications");
-						dropdownItem.setIcon("times-circle");
-						dropdownItem.setLabel(
-							LanguageUtil.get(_httpServletRequest, "delete"));
-						dropdownItem.setQuickAction(true);
-					});
+		return DropdownItemListBuilder.add(
+			() -> !_isActionRequired(),
+			dropdownItem -> {
+				dropdownItem.putData("action", "markNotificationsAsRead");
+				dropdownItem.setIcon("envelope-open");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "mark-as-read"));
+				dropdownItem.setQuickAction(true);
 			}
-		};
+		).add(
+			() -> !_isActionRequired(),
+			dropdownItem -> {
+				dropdownItem.putData("action", "markNotificationsAsUnread");
+				dropdownItem.setIcon("envelope-closed");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "mark-as-unread"));
+				dropdownItem.setQuickAction(true);
+			}
+		).add(
+			dropdownItem -> {
+				dropdownItem.putData("action", "deleteNotifications");
+				dropdownItem.setIcon("times-circle");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "delete"));
+				dropdownItem.setQuickAction(true);
+			}
+		).build();
 	}
 
 	public List<String> getAvailableActions(
@@ -130,56 +121,42 @@ public class NotificationsManagementToolbarDisplayContext {
 	}
 
 	public List<DropdownItem> getFilterDropdownItems() {
-		return new DropdownItemList() {
-			{
-				if (!_isActionRequired()) {
-					addGroup(
-						dropdownGroupItem -> {
-							dropdownGroupItem.setDropdownItems(
-								_getFilterNavigationDropdownItems());
-							dropdownGroupItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest,
-									"filter-by-navigation"));
-						});
-				}
-
-				addGroup(
-					dropdownGroupItem -> {
-						dropdownGroupItem.setDropdownItems(
-							_getOrderByDropdownItems());
-						dropdownGroupItem.setLabel(
-							LanguageUtil.get(_httpServletRequest, "order-by"));
-					});
+		return DropdownItemListBuilder.addGroup(
+			() -> !_isActionRequired(),
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(
+					_getFilterNavigationDropdownItems());
+				dropdownGroupItem.setLabel(
+					LanguageUtil.get(
+						_httpServletRequest, "filter-by-navigation"));
 			}
-		};
+		).addGroup(
+			dropdownGroupItem -> {
+				dropdownGroupItem.setDropdownItems(_getOrderByDropdownItems());
+				dropdownGroupItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "order-by"));
+			}
+		).build();
 	}
 
 	public List<LabelItem> getFilterLabelItems() {
-		return new LabelItemList() {
-			{
-				String navigation = _getNavigation();
+		String navigation = _getNavigation();
 
-				if (navigation.equals("read") || navigation.equals("unread")) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								_currentURLObj, _liferayPortletResponse);
+		return LabelItemListBuilder.add(
+			() -> navigation.equals("read") || navigation.equals("unread"),
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					_currentURLObj, _liferayPortletResponse);
 
-							removeLabelURL.setParameter(
-								"navigation", (String)null);
+				removeLabelURL.setParameter("navigation", (String)null);
 
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-							labelItem.setCloseable(true);
-							labelItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, navigation));
-						});
-				}
+				labelItem.setCloseable(true);
+				labelItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, navigation));
 			}
-		};
+		).build();
 	}
 
 	public String getOrderByType() {

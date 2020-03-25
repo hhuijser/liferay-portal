@@ -15,7 +15,6 @@
 package com.liferay.password.policies.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.NavigationItemListBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -93,52 +92,40 @@ public class PasswordPolicyDisplayContext {
 		portletURL.setParameter(
 			"passwordPolicyId", String.valueOf(_passwordPolicyId));
 
-		List<NavigationItem> navigationItems = new NavigationItemList() {
-			{
-				if ((_passwordPolicyId == 0) ||
-					_hasPermission(ActionKeys.UPDATE)) {
+		List<NavigationItem> navigationItems = NavigationItemListBuilder.add(
+			() -> (_passwordPolicyId == 0) || _hasPermission(ActionKeys.UPDATE),
+			navigationItem -> {
+				navigationItem.setActive(tabs1.equals("details"));
 
-					add(
-						navigationItem -> {
-							navigationItem.setActive(tabs1.equals("details"));
+				PortletURL detailsURL = PortletURLUtil.clone(
+					portletURL, _renderResponse);
 
-							PortletURL detailsURL = PortletURLUtil.clone(
-								portletURL, _renderResponse);
+				detailsURL.setParameter("mvcPath", "/edit_password_policy.jsp");
+				detailsURL.setParameter("tabs1", "details");
 
-							detailsURL.setParameter(
-								"mvcPath", "/edit_password_policy.jsp");
-							detailsURL.setParameter("tabs1", "details");
+				navigationItem.setHref(detailsURL.toString());
 
-							navigationItem.setHref(detailsURL.toString());
-
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "details"));
-						});
-				}
-
-				if (_hasPermission(ActionKeys.ASSIGN_MEMBERS)) {
-					add(
-						navigationItem -> {
-							navigationItem.setActive(tabs1.equals("assignees"));
-
-							PortletURL assigneesURL = PortletURLUtil.clone(
-								portletURL, _renderResponse);
-
-							assigneesURL.setParameter(
-								"mvcPath",
-								"/edit_password_policy_assignments.jsp");
-							assigneesURL.setParameter("tabs1", "assignees");
-
-							navigationItem.setHref(assigneesURL.toString());
-
-							navigationItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "assignees"));
-						});
-				}
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "details"));
 			}
-		};
+		).add(
+			() -> _hasPermission(ActionKeys.ASSIGN_MEMBERS),
+			navigationItem -> {
+				navigationItem.setActive(tabs1.equals("assignees"));
+
+				PortletURL assigneesURL = PortletURLUtil.clone(
+					portletURL, _renderResponse);
+
+				assigneesURL.setParameter(
+					"mvcPath", "/edit_password_policy_assignments.jsp");
+				assigneesURL.setParameter("tabs1", "assignees");
+
+				navigationItem.setHref(assigneesURL.toString());
+
+				navigationItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "assignees"));
+			}
+		).build();
 
 		if (navigationItems.isEmpty()) {
 			return null;

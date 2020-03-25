@@ -15,7 +15,6 @@
 package com.liferay.user.groups.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.ViewTypeItemList;
@@ -71,21 +70,16 @@ public class EditUserGroupAssignmentsManagementToolbarDisplayContext {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() {
-		return new DropdownItemList() {
-			{
-				if (_hasAddUserGroupPermission()) {
-					add(
-						dropdownItem -> {
-							dropdownItem.setHref("javascript:;");
-							dropdownItem.setIcon("minus-circle");
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									_httpServletRequest, "remove"));
-							dropdownItem.setQuickAction(true);
-						});
-				}
+		return DropdownItemListBuilder.add(
+			() -> _hasAddUserGroupPermission(),
+			dropdownItem -> {
+				dropdownItem.setHref("javascript:;");
+				dropdownItem.setIcon("minus-circle");
+				dropdownItem.setLabel(
+					LanguageUtil.get(_httpServletRequest, "remove"));
+				dropdownItem.setQuickAction(true);
 			}
-		};
+		).build();
 	}
 
 	public String getClearResultsURL() {

@@ -15,7 +15,7 @@
 package com.liferay.trash.web.internal.servlet.taglib.util;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -52,17 +52,13 @@ public class TrashViewContentActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (_trashHandler.isMovable(_classPK)) {
-					add(_getMoveActionDropdownItem());
-				}
-
-				if (_trashHandler.isDeletable(_classPK)) {
-					add(_getDeleteActionDropdownItem());
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() -> _trashHandler.isMovable(_classPK),
+			_getMoveActionDropdownItem()
+		).add(
+			() -> _trashHandler.isDeletable(_classPK),
+			_getDeleteActionDropdownItem()
+		).build();
 	}
 
 	private DropdownItem _getDeleteActionDropdownItem() {

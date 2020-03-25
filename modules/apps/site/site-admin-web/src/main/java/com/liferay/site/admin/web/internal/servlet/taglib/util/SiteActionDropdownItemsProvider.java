@@ -15,7 +15,7 @@
 package com.liferay.site.admin.web.internal.servlet.taglib.util;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -65,62 +65,46 @@ public class SiteActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				boolean hasUpdatePermission = GroupPermissionUtil.contains(
-					_themeDisplay.getPermissionChecker(), _group,
-					ActionKeys.UPDATE);
+		int count = GroupLocalServiceUtil.getGroupsCount(
+			_themeDisplay.getCompanyId(), _group.getGroupId(), true);
+		boolean hasUpdatePermission = GroupPermissionUtil.contains(
+			_themeDisplay.getPermissionChecker(), _group, ActionKeys.UPDATE);
 
-				if (hasUpdatePermission) {
-					int count = GroupLocalServiceUtil.getGroupsCount(
-						_themeDisplay.getCompanyId(), _group.getGroupId(),
-						true);
-
-					if (count > 0) {
-						add(_getViewChildSitesActionUnsafeConsumer());
-					}
-
-					if (_siteAdminDisplayContext.hasAddChildSitePermission(
-							_group)) {
-
-						add(_getAddChildSiteActionUnsafeConsumer());
-					}
-
-					add(_getViewSiteSettingsActionUnsafeConsumer());
-				}
-
-				if (_group.isActive() &&
-					(_group.getPublicLayoutsPageCount() > 0)) {
-
-					add(_getViewSitePublicPagesActionUnsafeConsumer());
-				}
-
-				if (_group.isActive() &&
-					(_group.getPrivateLayoutsPageCount() > 0)) {
-
-					add(_getViewSitePrivatePagesActionUnsafeConsumer());
-				}
-
-				if (_hasEditAssignmentsPermission()) {
-					add(_getLeaveSiteActionUnsafeConsumer());
-				}
-
-				if (hasUpdatePermission) {
-					if (_group.isActive() && !_group.isCompany() &&
-						!_group.isGuest()) {
-
-						add(_getDeactivateSiteActionUnsafeConsumer());
-					}
-					else if (!_group.isActive() && !_group.isCompany()) {
-						add(_getActivateSiteActionUnsafeConsumer());
-					}
-				}
-
-				if (_hasDeleteGroupPermission()) {
-					add(_getDeleteSiteActionUnsafeConsumer());
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() -> hasUpdatePermission && (count > 0),
+			_getViewChildSitesActionUnsafeConsumer()
+		).add(
+			() ->
+				hasUpdatePermission &&
+				_siteAdminDisplayContext.hasAddChildSitePermission(_group),
+			_getAddChildSiteActionUnsafeConsumer()
+		).add(
+			() -> hasUpdatePermission,
+			_getViewSiteSettingsActionUnsafeConsumer()
+		).add(
+			() -> _group.isActive() && (_group.getPublicLayoutsPageCount() > 0),
+			_getViewSitePublicPagesActionUnsafeConsumer()
+		).add(
+			() ->
+				_group.isActive() && (_group.getPrivateLayoutsPageCount() > 0),
+			_getViewSitePrivatePagesActionUnsafeConsumer()
+		).add(
+			() -> _hasEditAssignmentsPermission(),
+			_getLeaveSiteActionUnsafeConsumer()
+		).add(
+			() ->
+				hasUpdatePermission && _group.isActive() &&
+				!_group.isCompany() && !_group.isGuest(),
+			_getDeactivateSiteActionUnsafeConsumer()
+		).add(
+			() ->
+				hasUpdatePermission && !_group.isActive() &&
+				!_group.isCompany(),
+			_getActivateSiteActionUnsafeConsumer()
+		).add(
+			() -> _hasDeleteGroupPermission(),
+			_getDeleteSiteActionUnsafeConsumer()
+		).build();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>

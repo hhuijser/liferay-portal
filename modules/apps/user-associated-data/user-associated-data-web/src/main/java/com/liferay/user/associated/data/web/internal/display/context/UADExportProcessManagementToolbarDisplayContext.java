@@ -18,7 +18,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.BaseManag
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
@@ -85,32 +85,26 @@ public class UADExportProcessManagementToolbarDisplayContext
 	}
 
 	public List<LabelItem> getFilterLabelItems() {
-		return new LabelItemList() {
-			{
-				String navigation = getNavigation();
+		String navigation = getNavigation();
 
-				if (!navigation.equals("all")) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = getPortletURL();
+		return LabelItemListBuilder.add(
+			() -> !navigation.equals("all"),
+			labelItem -> {
+				PortletURL removeLabelURL = getPortletURL();
 
-							removeLabelURL.setParameter(
-								"navigation", (String)null);
+				removeLabelURL.setParameter("navigation", (String)null);
 
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-							labelItem.setCloseable(true);
+				labelItem.setCloseable(true);
 
-							String label = String.format(
-								"%s: %s", LanguageUtil.get(request, "status"),
-								LanguageUtil.get(request, navigation));
+				String label = String.format(
+					"%s: %s", LanguageUtil.get(request, "status"),
+					LanguageUtil.get(request, navigation));
 
-							labelItem.setLabel(label);
-						});
-				}
+				labelItem.setLabel(label);
 			}
-		};
+		).build();
 	}
 
 	@Override

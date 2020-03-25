@@ -21,7 +21,7 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.LabelItemListBuilder;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Role;
@@ -230,27 +230,21 @@ public class UserGroupsManagementToolbarDisplayContext
 
 		Role role = _userGroupsDisplayContext.getRole();
 
-		return new LabelItemList() {
-			{
-				if (role != null) {
-					add(
-						labelItem -> {
-							PortletURL removeLabelURL = PortletURLUtil.clone(
-								currentURLObj, liferayPortletResponse);
+		return LabelItemListBuilder.add(
+			() -> role != null,
+			labelItem -> {
+				PortletURL removeLabelURL = PortletURLUtil.clone(
+					currentURLObj, liferayPortletResponse);
 
-							removeLabelURL.setParameter("roleId", "0");
+				removeLabelURL.setParameter("roleId", "0");
 
-							labelItem.putData(
-								"removeLabelURL", removeLabelURL.toString());
+				labelItem.putData("removeLabelURL", removeLabelURL.toString());
 
-							labelItem.setCloseable(true);
+				labelItem.setCloseable(true);
 
-							labelItem.setLabel(
-								role.getTitle(themeDisplay.getLocale()));
-						});
-				}
+				labelItem.setLabel(role.getTitle(themeDisplay.getLocale()));
 			}
-		};
+		).build();
 	}
 
 	@Override

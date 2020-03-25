@@ -15,7 +15,7 @@
 package com.liferay.site.memberships.web.internal.servlet.taglib.util;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
-import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -58,31 +58,26 @@ public class UserActionDropdownItemsProvider {
 	}
 
 	public List<DropdownItem> getActionDropdownItems() throws Exception {
-		return new DropdownItemList() {
-			{
-				if (GroupPermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getSiteGroupIdOrLiveGroupId(),
-						ActionKeys.ASSIGN_USER_ROLES)) {
-
-					add(_getAssignRolesActionUnsafeConsumer());
-				}
-
-				if (GroupPermissionUtil.contains(
-						_themeDisplay.getPermissionChecker(),
-						_themeDisplay.getSiteGroupIdOrLiveGroupId(),
-						ActionKeys.ASSIGN_MEMBERS) &&
-					!SiteMembershipPolicyUtil.isMembershipProtected(
-						_themeDisplay.getPermissionChecker(), _user.getUserId(),
-						_themeDisplay.getSiteGroupIdOrLiveGroupId()) &&
-					!SiteMembershipPolicyUtil.isMembershipRequired(
-						_user.getUserId(),
-						_themeDisplay.getSiteGroupIdOrLiveGroupId())) {
-
-					add(_getDeleteGroupUsersActionUnsafeConsumer());
-				}
-			}
-		};
+		return DropdownItemListBuilder.add(
+			() -> GroupPermissionUtil.contains(
+				_themeDisplay.getPermissionChecker(),
+				_themeDisplay.getSiteGroupIdOrLiveGroupId(),
+				ActionKeys.ASSIGN_USER_ROLES),
+			_getAssignRolesActionUnsafeConsumer()
+		).add(
+			() ->
+				GroupPermissionUtil.contains(
+					_themeDisplay.getPermissionChecker(),
+					_themeDisplay.getSiteGroupIdOrLiveGroupId(),
+					ActionKeys.ASSIGN_MEMBERS) &&
+				!SiteMembershipPolicyUtil.isMembershipProtected(
+					_themeDisplay.getPermissionChecker(), _user.getUserId(),
+					_themeDisplay.getSiteGroupIdOrLiveGroupId()) &&
+				!SiteMembershipPolicyUtil.isMembershipRequired(
+					_user.getUserId(),
+					_themeDisplay.getSiteGroupIdOrLiveGroupId()),
+			_getDeleteGroupUsersActionUnsafeConsumer()
+		).build();
 	}
 
 	private UnsafeConsumer<DropdownItem, Exception>

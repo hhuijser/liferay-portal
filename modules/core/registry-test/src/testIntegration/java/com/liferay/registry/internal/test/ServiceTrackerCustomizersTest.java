@@ -46,14 +46,14 @@ public class ServiceTrackerCustomizersTest {
 
 	@Test
 	public void testServiceWrapper() {
-		ServiceTrackerMap
-			<String, ServiceTrackerCustomizers.ServiceWrapper<TrackedOne>>
-				serviceTrackerMap =
-					ServiceTrackerCollections.openSingleValueMap(
-						TrackedOne.class, "target",
-						ServiceTrackerCustomizers.<TrackedOne>serviceWrapper());
+		try (ServiceTrackerMap
+				<String, ServiceTrackerCustomizers.ServiceWrapper<TrackedOne>>
+					serviceTrackerMap =
+						ServiceTrackerCollections.openSingleValueMap(
+							TrackedOne.class, "target",
+							ServiceTrackerCustomizers.
+								<TrackedOne>serviceWrapper())) {
 
-		try {
 			Map<String, Object> properties = new Hashtable<>();
 
 			properties.put("property", "aProperty");
@@ -83,9 +83,6 @@ public class ServiceTrackerCustomizersTest {
 				"aTarget", serviceWrapperProperties.get("target"));
 
 			serviceRegistration.unregister();
-		}
-		finally {
-			serviceTrackerMap.close();
 		}
 	}
 

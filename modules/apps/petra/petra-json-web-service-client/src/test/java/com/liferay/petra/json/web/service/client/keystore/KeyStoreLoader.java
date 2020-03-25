@@ -45,24 +45,16 @@ public class KeyStoreLoader {
 		throws CertificateException, IOException, KeyStoreException,
 			   NoSuchAlgorithmException {
 
-		InputStream inputStream = null;
+		Class<?> clazz = KeyStoreLoader.class;
 
-		try {
-			Class<?> clazz = KeyStoreLoader.class;
-
-			inputStream = clazz.getResourceAsStream(
-				"dependencies/" + keyStoreFileName);
+		try (InputStream inputStream = clazz.getResourceAsStream(
+				"dependencies/" + keyStoreFileName)) {
 
 			KeyStore keyStore = KeyStore.getInstance("jks");
 
 			keyStore.load(inputStream, keyStorePassword.toCharArray());
 
 			return keyStore;
-		}
-		finally {
-			if (inputStream != null) {
-				inputStream.close();
-			}
 		}
 	}
 

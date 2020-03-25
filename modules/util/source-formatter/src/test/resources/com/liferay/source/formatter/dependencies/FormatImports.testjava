@@ -14,12 +14,12 @@
 
 package com.liferay.source.formatter.dependencies;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Map;
+import com.liferay.petra.string.StringBundler;
 
 /**
  * @author Hugo Huijser

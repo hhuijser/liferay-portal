@@ -14,16 +14,20 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
+import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
@@ -107,7 +111,7 @@ public class TryWithResourcesCheck extends BaseCheck {
 				(List<String>)closeableTypeNamesTuple.getObject(0);
 
 			if (closeableTypeNames.contains(
-					getTypeName(typeDetailAST, false))) {
+					_getFullyQualifiedTypeName(typeDetailAST, true))) {
 
 				log(
 					methodCallDetailAST, _MSG_USE_TRY_WITH_RESOURCES,
@@ -274,6 +278,45 @@ public class TryWithResourcesCheck extends BaseCheck {
 		return null;
 	}
 
+	private String _getFullyQualifiedTypeName(
+		DetailAST typeDetailAST, boolean checkPackage) {
+
+		String typeName = getTypeName(typeDetailAST, false);
+
+		if (typeName.contains(StringPool.PERIOD) &&
+			Character.isLowerCase(typeName.charAt(0))) {
+
+			return typeName;
+		}
+
+		List<String> importNames = getImportNames(typeDetailAST);
+
+		for (String importName : importNames) {
+			int x = importName.lastIndexOf(CharPool.PERIOD);
+
+			String className = importName.substring(x + 1);
+
+			if (typeName.equals(className)) {
+				return importName;
+			}
+
+			if (typeName.startsWith(className + ".")) {
+				return StringUtil.replaceLast(importName, className, typeName);
+			}
+		}
+
+		if (!checkPackage) {
+			return null;
+		}
+
+		FileContents fileContents = getFileContents();
+
+		FileText fileText = fileContents.getText();
+
+		return JavaSourceUtil.getPackageName((String)fileText.getFullText()) +
+			StringPool.PERIOD + typeName;
+	}
+
 	private void _populateCloseableTypeNames(
 		DetailAST resourceSpecificationDetailAST) {
 
@@ -307,9 +350,9 @@ public class TryWithResourcesCheck extends BaseCheck {
 				continue;
 			}
 
-			String typeName = getTypeName(typeDetailAST, false);
+			String typeName = _getFullyQualifiedTypeName(typeDetailAST, false);
 
-			if (closeableTypeNames.contains(typeName)) {
+			if ((typeName == null) || closeableTypeNames.contains(typeName)) {
 				continue;
 			}
 

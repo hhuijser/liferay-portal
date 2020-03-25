@@ -684,8 +684,9 @@ public class JournalDisplayContext {
 					LanguageUtil.get(_httpServletRequest, "templates"));
 			}
 		).add(
-			_journalWebConfiguration::showFeeds &&
-			PortalUtil.isRSSFeedsEnabled(),
+			() ->
+				_journalWebConfiguration.showFeeds() &&
+				PortalUtil.isRSSFeedsEnabled(),
 			navigationItem -> {
 				navigationItem.setActive(currentItem.equals("feeds"));
 				navigationItem.setHref(_getFeedsURL());

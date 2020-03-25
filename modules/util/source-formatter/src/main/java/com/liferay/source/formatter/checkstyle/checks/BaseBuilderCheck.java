@@ -179,25 +179,41 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 				continue;
 			}
 
+			if (!ArrayUtil.contains(
+					builderInformation.getMethodNames(),
+					firstChildDetailAST.getText())) {
+
+				return;
+			}
+
 			if (isSupportsNestedMethodCalls()) {
 				parentDetailAST = getParentWithTokenType(
 					methodCallDetailAST, TokenTypes.DO_WHILE, TokenTypes.LAMBDA,
-					TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_WHILE);
+					TokenTypes.LITERAL_FOR, TokenTypes.LITERAL_TRY,
+					TokenTypes.LITERAL_WHILE);
 
 				if ((parentDetailAST != null) &&
 					(detailAST.getLineNo() <= parentDetailAST.getLineNo())) {
 
 					return;
 				}
+
+				parentDetailAST = getParentWithTokenType(
+					methodCallDetailAST, TokenTypes.LITERAL_ELSE);
+
+				if ((parentDetailAST != null) &&
+					(detailAST.getLineNo() <= parentDetailAST.getLineNo())) {
+
+					firstChildDetailAST = parentDetailAST.getFirstChild();
+
+					if (firstChildDetailAST.getType() ==
+							TokenTypes.LITERAL_IF) {
+
+						return;
+					}
+				}
 			}
 			else if (!equals(parentDetailAST.getParent(), detailAST)) {
-				return;
-			}
-
-			if (!ArrayUtil.contains(
-					builderInformation.getMethodNames(),
-					firstChildDetailAST.getText())) {
-
 				return;
 			}
 

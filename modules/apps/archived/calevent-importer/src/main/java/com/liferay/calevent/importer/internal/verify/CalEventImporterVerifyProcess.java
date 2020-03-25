@@ -576,8 +576,8 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 			}
 		}
 
-		recurrence.setInterval(interval);
 		recurrence.setFrequency(frequency);
+		recurrence.setInterval(interval);
 		recurrence.setPositionalWeekdays(positionalWeekdays);
 
 		Calendar untilJCalendar = tzsRecurrence.getUntil();

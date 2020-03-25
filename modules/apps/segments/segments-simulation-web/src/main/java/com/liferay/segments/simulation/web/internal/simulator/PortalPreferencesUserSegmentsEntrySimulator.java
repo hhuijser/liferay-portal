@@ -49,12 +49,12 @@ public class PortalPreferencesUserSegmentsEntrySimulator
 					_portletPreferencesFactory.getPortalPreferences(
 						userId, true);
 
-				portalPreferences.setValues(
-					SegmentsPortletKeys.SEGMENTS_SIMULATION,
-					"simulatedSegmentsEntryIds", null);
 				portalPreferences.setValue(
 					SegmentsPortletKeys.SEGMENTS_SIMULATION, "simulationActive",
 					Boolean.FALSE.toString());
+				portalPreferences.setValues(
+					SegmentsPortletKeys.SEGMENTS_SIMULATION,
+					"simulatedSegmentsEntryIds", null);
 
 				break;
 			}
@@ -109,13 +109,13 @@ public class PortalPreferencesUserSegmentsEntrySimulator
 					_portletPreferencesFactory.getPortalPreferences(
 						userId, true);
 
+				portalPreferences.setValue(
+					SegmentsPortletKeys.SEGMENTS_SIMULATION, "simulationActive",
+					Boolean.TRUE.toString());
 				portalPreferences.setValues(
 					SegmentsPortletKeys.SEGMENTS_SIMULATION,
 					"simulatedSegmentsEntryIds",
 					ArrayUtil.toStringArray(segmentsEntryIds));
-				portalPreferences.setValue(
-					SegmentsPortletKeys.SEGMENTS_SIMULATION, "simulationActive",
-					Boolean.TRUE.toString());
 
 				break;
 			}

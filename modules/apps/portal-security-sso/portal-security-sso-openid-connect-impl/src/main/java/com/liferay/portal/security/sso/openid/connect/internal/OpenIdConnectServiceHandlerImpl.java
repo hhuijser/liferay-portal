@@ -610,8 +610,8 @@ public class OpenIdConnectServiceHandlerImpl
 		long loginTime) {
 
 		openIdConnectSessionImpl.setAccessToken(tokens.getAccessToken());
-		openIdConnectSessionImpl.setRefreshToken(tokens.getRefreshToken());
 		openIdConnectSessionImpl.setLoginTime(loginTime);
+		openIdConnectSessionImpl.setRefreshToken(tokens.getRefreshToken());
 	}
 
 	protected void validateState(State requestedState, State state)

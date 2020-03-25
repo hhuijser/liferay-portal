@@ -114,9 +114,9 @@ public class SingleIndexToMultipleIndexImporterImpl
 	protected List<Document> getDocuments(RankingIndexName singleIndexName) {
 		SearchSearchRequest searchSearchRequest = new SearchSearchRequest();
 
+		searchSearchRequest.setFetchSource(true);
 		searchSearchRequest.setIndexNames(singleIndexName.getIndexName());
 		searchSearchRequest.setQuery(_queries.matchAll());
-		searchSearchRequest.setFetchSource(true);
 
 		SearchSearchResponse searchSearchResponse =
 			_searchEngineAdapter.execute(searchSearchRequest);

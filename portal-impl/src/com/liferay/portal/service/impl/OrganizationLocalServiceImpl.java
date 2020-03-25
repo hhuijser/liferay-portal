@@ -1890,15 +1890,15 @@ public class OrganizationLocalServiceImpl
 		long oldParentOrganizationId = organization.getParentOrganizationId();
 		String oldName = organization.getName();
 
-		organization.setParentOrganizationId(parentOrganizationId);
-		organization.setTreePath(organization.buildTreePath());
+		organization.setComments(comments);
+		organization.setCountryId(countryId);
 		organization.setName(name);
-		organization.setType(type);
+		organization.setParentOrganizationId(parentOrganizationId);
 		organization.setRecursable(true);
 		organization.setRegionId(regionId);
-		organization.setCountryId(countryId);
 		organization.setStatusId(statusId);
-		organization.setComments(comments);
+		organization.setTreePath(organization.buildTreePath());
+		organization.setType(type);
 
 		PortalUtil.updateImageId(
 			organization, hasLogo, logoBytes, "logoId",

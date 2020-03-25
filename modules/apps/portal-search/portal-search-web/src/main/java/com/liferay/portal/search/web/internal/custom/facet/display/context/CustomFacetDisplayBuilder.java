@@ -146,11 +146,11 @@ public class CustomFacetDisplayBuilder {
 		CustomFacetTermDisplayContext customFacetTermDisplayContext =
 			new CustomFacetTermDisplayContext();
 
+		customFacetTermDisplayContext.setFieldName(term);
 		customFacetTermDisplayContext.setFrequency(
 			termCollector.getFrequency());
 		customFacetTermDisplayContext.setFrequencyVisible(_frequenciesVisible);
 		customFacetTermDisplayContext.setSelected(isSelected(term));
-		customFacetTermDisplayContext.setFieldName(term);
 
 		return customFacetTermDisplayContext;
 	}
@@ -202,10 +202,10 @@ public class CustomFacetDisplayBuilder {
 		CustomFacetTermDisplayContext customFacetTermDisplayContext =
 			new CustomFacetTermDisplayContext();
 
+		customFacetTermDisplayContext.setFieldName(_parameterValues.get(0));
 		customFacetTermDisplayContext.setFrequency(0);
 		customFacetTermDisplayContext.setFrequencyVisible(_frequenciesVisible);
 		customFacetTermDisplayContext.setSelected(true);
-		customFacetTermDisplayContext.setFieldName(_parameterValues.get(0));
 
 		return Collections.singletonList(customFacetTermDisplayContext);
 	}

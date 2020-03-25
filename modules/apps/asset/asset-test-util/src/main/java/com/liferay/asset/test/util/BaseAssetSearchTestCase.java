@@ -1361,13 +1361,13 @@ public abstract class BaseAssetSearchTestCase {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(groups[0].getGroupId());
 
-		serviceContext.setAssetTagNames(_assetTagsNames1);
 		serviceContext.setAssetCategoryIds(_assetCategoryIds1);
+		serviceContext.setAssetTagNames(_assetTagsNames1);
 
 		addBaseModels(groups, getSearchKeywords(), serviceContext);
 
-		serviceContext.setAssetTagNames(_assetTagsNames2);
 		serviceContext.setAssetCategoryIds(_assetCategoryIds2);
+		serviceContext.setAssetTagNames(_assetTagsNames2);
 
 		addBaseModels(groups, getSearchKeywords(), serviceContext);
 

@@ -145,8 +145,8 @@ public class LocalPluginPackageRepository {
 
 			pluginPackage = new PluginPackageImpl(moduleId);
 
-			pluginPackage.setName(deploymentContext);
 			pluginPackage.setContext(deploymentContext);
+			pluginPackage.setName(deploymentContext);
 		}
 
 		registerPluginPackageInstallation(pluginPackage);

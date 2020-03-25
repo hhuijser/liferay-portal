@@ -184,8 +184,8 @@ public class JournalContentTest {
 		themeDisplay.setRequest(httpServletRequest);
 		themeDisplay.setResponse(new MockHttpServletResponse());
 		themeDisplay.setScopeGroupId(TestPropsValues.getGroupId());
-		themeDisplay.setUser(TestPropsValues.getUser());
 		themeDisplay.setTimeZone(TimeZoneUtil.getDefault());
+		themeDisplay.setUser(TestPropsValues.getUser());
 
 		httpServletRequest.setAttribute(WebKeys.THEME_DISPLAY, themeDisplay);
 

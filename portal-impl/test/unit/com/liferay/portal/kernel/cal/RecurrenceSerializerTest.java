@@ -186,8 +186,8 @@ public class RecurrenceSerializerTest extends RecurrenceSerializer {
 		Recurrence recurrence = getRecurrence(
 			_recurrenceCalendar, Recurrence.YEARLY);
 
-		recurrence.setByMonth(new int[] {0});
 		recurrence.setByDay(_firstMondayDayAndPositions);
+		recurrence.setByMonth(new int[] {0});
 
 		Assert.assertEquals("0 4 3 ? 1 MON#0 2010/1", toCronText(recurrence));
 
@@ -201,8 +201,8 @@ public class RecurrenceSerializerTest extends RecurrenceSerializer {
 		Recurrence recurrence = getRecurrence(
 			_recurrenceCalendar, Recurrence.YEARLY);
 
-		recurrence.setByMonth(new int[] {0});
 		recurrence.setByDay(_lastMondayDayAndPositions);
+		recurrence.setByMonth(new int[] {0});
 
 		Assert.assertEquals("0 4 3 ? 1 MONL 2010/1", toCronText(recurrence));
 

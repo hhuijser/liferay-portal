@@ -823,8 +823,8 @@ public class PortletExportControllerImpl implements PortletExportController {
 			}
 		}
 
-		portletDataContext.setScopeType(scopeType);
 		portletDataContext.setScopeLayoutUuid(scopeLayoutUuid);
+		portletDataContext.setScopeType(scopeType);
 
 		Document document = SAXReaderUtil.createDocument();
 

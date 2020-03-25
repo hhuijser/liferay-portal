@@ -81,15 +81,15 @@ public class FooService {
 		if (id == 7) {
 			FooDataImpl fooDataImpl = (FooDataImpl)fooData;
 
-			fooDataImpl.setName("James Bond");
 			fooDataImpl.setHeight(173);
+			fooDataImpl.setName("James Bond");
 			fooDataImpl.setValue("licensed");
 		}
 		else if (id == -13) {
 			FooDataImpl fooDataImpl = (FooDataImpl)fooData;
 
-			fooDataImpl.setName("Dr. Evil");
 			fooDataImpl.setHeight(59);
+			fooDataImpl.setName("Dr. Evil");
 			fooDataImpl.setValue("fun");
 		}
 

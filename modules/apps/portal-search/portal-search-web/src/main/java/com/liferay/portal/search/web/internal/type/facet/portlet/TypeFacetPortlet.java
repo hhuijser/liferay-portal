@@ -121,10 +121,10 @@ public class TypeFacetPortlet extends MVCPortlet {
 			getAssetTypesClassNames(typeFacetPortletPreferences, themeDisplay));
 
 		assetEntriesSearchFacetDisplayBuilder.setFacet(facet);
-		assetEntriesSearchFacetDisplayBuilder.setFrequencyThreshold(
-			assetEntriesFacetConfiguration.getFrequencyThreshold());
 		assetEntriesSearchFacetDisplayBuilder.setFrequenciesVisible(
 			typeFacetPortletPreferences.isFrequenciesVisible());
+		assetEntriesSearchFacetDisplayBuilder.setFrequencyThreshold(
+			assetEntriesFacetConfiguration.getFrequencyThreshold());
 		assetEntriesSearchFacetDisplayBuilder.setLocale(
 			themeDisplay.getLocale());
 

@@ -362,10 +362,10 @@ public class LayoutLocalServiceHelper implements IdentifiableOSGiService {
 					new LayoutFriendlyURLException(
 						LayoutFriendlyURLException.DUPLICATE);
 
-				layoutFriendlyURLException.setDuplicateClassPK(
-					layout.getPlid());
 				layoutFriendlyURLException.setDuplicateClassName(
 					Layout.class.getName());
+				layoutFriendlyURLException.setDuplicateClassPK(
+					layout.getPlid());
 
 				throw layoutFriendlyURLException;
 			}

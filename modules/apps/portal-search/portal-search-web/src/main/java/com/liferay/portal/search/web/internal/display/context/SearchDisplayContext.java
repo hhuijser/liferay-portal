@@ -229,9 +229,9 @@ public class SearchDisplayContext {
 		_queryConfig.setQueryIndexingEnabled(isQueryIndexingEnabled());
 		_queryConfig.setQueryIndexingThreshold(getQueryIndexingThreshold());
 		_queryConfig.setQuerySuggestionEnabled(isQuerySuggestionEnabled());
+		_queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 		_queryConfig.setQuerySuggestionScoresThreshold(
 			getQuerySuggestionDisplayThreshold());
-		_queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 
 		return _queryConfig;
 	}
@@ -536,9 +536,9 @@ public class SearchDisplayContext {
 		queryConfig.setQueryIndexingEnabled(isQueryIndexingEnabled());
 		queryConfig.setQueryIndexingThreshold(getQueryIndexingThreshold());
 		queryConfig.setQuerySuggestionEnabled(isQuerySuggestionEnabled());
+		queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 		queryConfig.setQuerySuggestionScoresThreshold(
 			getQuerySuggestionDisplayThreshold());
-		queryConfig.setQuerySuggestionMax(getQuerySuggestionMax());
 
 		addEnabledSearchFacets(searchSettings.getSearchRequestBuilder());
 

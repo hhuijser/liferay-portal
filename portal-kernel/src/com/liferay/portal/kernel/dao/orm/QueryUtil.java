@@ -78,8 +78,8 @@ public class QueryUtil {
 		}
 
 		if (dialect.supportsLimit()) {
-			query.setMaxResults(end - start);
 			query.setFirstResult(start);
+			query.setMaxResults(end - start);
 
 			return query.list(unmodifiable);
 		}

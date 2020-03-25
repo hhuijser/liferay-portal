@@ -126,9 +126,9 @@ public class IndexerSearcherImpl<T extends BaseModel<?>>
 
 		queryConfig.setHighlightEnabled(false);
 		queryConfig.setHitsProcessingEnabled(false);
-		queryConfig.setScoreEnabled(false);
 		queryConfig.setQueryIndexingEnabled(false);
 		queryConfig.setQuerySuggestionEnabled(false);
+		queryConfig.setScoreEnabled(false);
 
 		searchContext.setSearchEngineId(
 			_modelSearchSettings.getSearchEngineId());

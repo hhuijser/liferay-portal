@@ -28,22 +28,22 @@ public class FileEntrySoap implements Serializable {
 	public static FileEntrySoap toSoapModel(FileEntry model) {
 		FileEntrySoap soapModel = new FileEntrySoap();
 
-		soapModel.setUuid(model.getUuid());
-		soapModel.setFileEntryId(model.getFileEntryId());
-		soapModel.setGroupId(model.getGroupId());
 		soapModel.setCompanyId(model.getCompanyId());
-		soapModel.setUserId(model.getUserId());
-		soapModel.setUserName(model.getUserName());
 		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setDescription(model.getDescription());
+		soapModel.setExtension(model.getExtension());
+		soapModel.setFileEntryId(model.getFileEntryId());
+		soapModel.setFolderId(model.getFolderId());
+		soapModel.setGroupId(model.getGroupId());
+		soapModel.setMimeType(model.getMimeType());
 		soapModel.setModifiedDate(model.getModifiedDate());
 		soapModel.setRepositoryId(model.getRepositoryId());
-		soapModel.setFolderId(model.getFolderId());
-		soapModel.setExtension(model.getExtension());
-		soapModel.setMimeType(model.getMimeType());
-		soapModel.setTitle(model.getTitle());
-		soapModel.setDescription(model.getDescription());
-		soapModel.setVersion(model.getVersion());
 		soapModel.setSize(model.getSize());
+		soapModel.setTitle(model.getTitle());
+		soapModel.setUserId(model.getUserId());
+		soapModel.setUserName(model.getUserName());
+		soapModel.setUuid(model.getUuid());
+		soapModel.setVersion(model.getVersion());
 
 		return soapModel;
 	}

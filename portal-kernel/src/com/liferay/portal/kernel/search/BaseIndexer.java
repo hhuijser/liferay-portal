@@ -618,9 +618,9 @@ public abstract class BaseIndexer<T> implements Indexer<T> {
 
 		queryConfig.setHighlightEnabled(false);
 		queryConfig.setHitsProcessingEnabled(false);
-		queryConfig.setScoreEnabled(false);
 		queryConfig.setQueryIndexingEnabled(false);
 		queryConfig.setQuerySuggestionEnabled(false);
+		queryConfig.setScoreEnabled(false);
 
 		searchContext.setSearchEngineId(getSearchEngineId());
 

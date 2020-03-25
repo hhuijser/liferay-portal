@@ -185,8 +185,8 @@ public class DocumentLibraryDDMFormFieldTemplateContextContributorTest
 	}
 
 	protected void setUpFileEntry() {
-		_fileEntry.setUuid("0000-1111");
 		_fileEntry.setGroupId(12345);
+		_fileEntry.setUuid("0000-1111");
 
 		PowerMockito.when(
 			_fileEntry.getTitle()

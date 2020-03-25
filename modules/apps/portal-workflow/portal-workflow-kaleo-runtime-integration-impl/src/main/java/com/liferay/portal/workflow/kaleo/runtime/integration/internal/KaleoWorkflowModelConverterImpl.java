@@ -269,10 +269,10 @@ public class KaleoWorkflowModelConverterImpl
 
 		DefaultWorkflowTask defaultWorkflowTask = new DefaultWorkflowTask();
 
-		defaultWorkflowTask.setCreateDate(
-			kaleoTaskInstanceToken.getCreateDate());
 		defaultWorkflowTask.setCompletionDate(
 			kaleoTaskInstanceToken.getCompletionDate());
+		defaultWorkflowTask.setCreateDate(
+			kaleoTaskInstanceToken.getCreateDate());
 
 		KaleoTask kaleoTask = kaleoTaskInstanceToken.getKaleoTask();
 

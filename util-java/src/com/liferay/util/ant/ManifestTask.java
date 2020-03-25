@@ -36,8 +36,8 @@ public class ManifestTask {
 		org.apache.tools.ant.taskdefs.ManifestTask manifest =
 			new org.apache.tools.ant.taskdefs.ManifestTask();
 
-		manifest.setProject(AntUtil.getProject());
 		manifest.setFile(file);
+		manifest.setProject(AntUtil.getProject());
 
 		for (Manifest.Attribute attribute : attributes) {
 			manifest.addConfiguredAttribute(attribute);

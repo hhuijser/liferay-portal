@@ -64,13 +64,13 @@ public class MetadataVersioningPolicyTest {
 	public void testMinorVersionWhenDescriptionChanges() {
 		DLFileVersionImpl previousDLFileVersionImpl = new DLFileVersionImpl();
 
-		previousDLFileVersionImpl.setTitle(StringUtil.randomString());
 		previousDLFileVersionImpl.setDescription(StringUtil.randomString(5));
+		previousDLFileVersionImpl.setTitle(StringUtil.randomString());
 
 		DLFileVersionImpl nextDLFileVersionImpl = new DLFileVersionImpl();
 
-		nextDLFileVersionImpl.setTitle(previousDLFileVersionImpl.getTitle());
 		nextDLFileVersionImpl.setDescription(StringUtil.randomString(6));
+		nextDLFileVersionImpl.setTitle(previousDLFileVersionImpl.getTitle());
 
 		Optional<DLVersionNumberIncrease> dlVersionNumberIncreaseOptional =
 			_versioningPolicy.computeDLVersionNumberIncrease(
@@ -86,16 +86,16 @@ public class MetadataVersioningPolicyTest {
 	public void testMinorVersionWhenFileEntryTypeChanges() {
 		DLFileVersionImpl previousDLFileVersionImpl = new DLFileVersionImpl();
 
-		previousDLFileVersionImpl.setTitle(StringUtil.randomString());
 		previousDLFileVersionImpl.setDescription(StringUtil.randomString(5));
 		previousDLFileVersionImpl.setFileEntryTypeId(RandomUtil.nextInt(10));
+		previousDLFileVersionImpl.setTitle(StringUtil.randomString());
 
 		DLFileVersionImpl nextDLFileVersionImpl = new DLFileVersionImpl();
 
-		nextDLFileVersionImpl.setTitle(previousDLFileVersionImpl.getTitle());
 		nextDLFileVersionImpl.setDescription(StringUtil.randomString(6));
 		nextDLFileVersionImpl.setFileEntryTypeId(
 			previousDLFileVersionImpl.getFileEntryTypeId() + 1);
+		nextDLFileVersionImpl.setTitle(previousDLFileVersionImpl.getTitle());
 
 		Optional<DLVersionNumberIncrease> dlVersionNumberIncreaseOptional =
 			_versioningPolicy.computeDLVersionNumberIncrease(

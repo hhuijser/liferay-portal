@@ -60,9 +60,9 @@ public class DDMFormFactoryHelper {
 			new com.liferay.dynamic.data.mapping.model.DDMForm();
 
 		ddmForm.setAvailableLocales(_availableLocales);
-		ddmForm.setDefaultLocale(_defaultLocale);
 		ddmForm.setDDMFormFields(getDDMFormFields());
 		ddmForm.setDDMFormRules(getDDMFormRules());
+		ddmForm.setDefaultLocale(_defaultLocale);
 
 		return ddmForm;
 	}

@@ -62,11 +62,11 @@ public class SortDisplayBuilder {
 		SortDisplayContext sortDisplayContext = new SortDisplayContext();
 
 		sortDisplayContext.setDisplayStyleGroupId(getDisplayStyleGroupId());
-		sortDisplayContext.setSortPortletInstanceConfiguration(
-			_sortPortletInstanceConfiguration);
 		sortDisplayContext.setParameterName(_parameterName);
 		sortDisplayContext.setParameterValue(getParameterValue());
 		sortDisplayContext.setRenderNothing(isRenderNothing());
+		sortDisplayContext.setSortPortletInstanceConfiguration(
+			_sortPortletInstanceConfiguration);
 		sortDisplayContext.setSortTermDisplayContexts(
 			buildTermDisplayContexts());
 
@@ -103,11 +103,11 @@ public class SortDisplayBuilder {
 		SortTermDisplayContext sortTermDisplayContext =
 			new SortTermDisplayContext();
 
+		sortTermDisplayContext.setField(field);
 		sortTermDisplayContext.setLabel(label);
 		sortTermDisplayContext.setLanguageLabel(
 			_language.get(
 				_portal.getHttpServletRequest(_renderRequest), label));
-		sortTermDisplayContext.setField(field);
 		sortTermDisplayContext.setSelected(_selectedFields.contains(field));
 
 		return sortTermDisplayContext;

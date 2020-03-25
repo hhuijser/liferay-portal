@@ -2070,9 +2070,9 @@ public class MBMessageLocalServiceImpl extends MBMessageLocalServiceBaseImpl {
 		SubscriptionSender subscriptionSender =
 			new MBDiscussionSubcriptionSender(commentGroupServiceConfiguration);
 
-		subscriptionSender.setCompanyId(message.getCompanyId());
 		subscriptionSender.setClassName(MBDiscussion.class.getName());
 		subscriptionSender.setClassPK(mbDiscussion.getDiscussionId());
+		subscriptionSender.setCompanyId(message.getCompanyId());
 		subscriptionSender.setContextAttribute(
 			"[$COMMENTS_BODY$]", message.getBody(message.isFormatBBCode()),
 			false);

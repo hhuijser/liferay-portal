@@ -148,12 +148,12 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			PortletDataException portletDataException =
 				new PortletDataException(t.getMessage(), t);
 
-			portletDataException.setStagedModelDisplayName(
-				getDisplayName(stagedModel));
 			portletDataException.setStagedModelClassName(
 				stagedModel.getModelClassName());
 			portletDataException.setStagedModelClassPK(
 				GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
+			portletDataException.setStagedModelDisplayName(
+				getDisplayName(stagedModel));
 
 			if (t instanceof NoSuchModelException) {
 				portletDataException.setType(
@@ -407,12 +407,12 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			PortletDataException portletDataException =
 				new PortletDataException(t.getMessage(), t);
 
-			portletDataException.setStagedModelDisplayName(
-				getDisplayName(stagedModel));
 			portletDataException.setStagedModelClassName(
 				stagedModel.getModelClassName());
 			portletDataException.setStagedModelClassPK(
 				GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
+			portletDataException.setStagedModelDisplayName(
+				getDisplayName(stagedModel));
 
 			if (t instanceof NoSuchModelException) {
 				portletDataException.setType(
@@ -444,12 +444,12 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 			PortletDataException portletDataException =
 				new PortletDataException(exception);
 
-			portletDataException.setStagedModelDisplayName(
-				getDisplayName(stagedModel));
 			portletDataException.setStagedModelClassName(
 				stagedModel.getModelClassName());
 			portletDataException.setStagedModelClassPK(
 				GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
+			portletDataException.setStagedModelDisplayName(
+				getDisplayName(stagedModel));
 
 			throw portletDataException;
 		}
@@ -887,12 +887,12 @@ public abstract class BaseStagedModelDataHandler<T extends StagedModel>
 					new PortletDataException(
 						PortletDataException.STATUS_IN_TRASH);
 
-				portletDataException.setStagedModelDisplayName(
-					getDisplayName(stagedModel));
 				portletDataException.setStagedModelClassName(
 					stagedModel.getModelClassName());
 				portletDataException.setStagedModelClassPK(
 					GetterUtil.getString(stagedModel.getPrimaryKeyObj()));
+				portletDataException.setStagedModelDisplayName(
+					getDisplayName(stagedModel));
 
 				throw portletDataException;
 			}

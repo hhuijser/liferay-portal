@@ -69,8 +69,8 @@ public class BaseWebDAVTestCase {
 			new MockHttpServletRequest(method, requestURI);
 
 		mockHttpServletRequest.setContextPath(_CONTEXT_PATH);
-		mockHttpServletRequest.setServletPath(_SERVLET_PATH);
 		mockHttpServletRequest.setPathInfo(_PATH_INFO_PREFACE + path);
+		mockHttpServletRequest.setServletPath(_SERVLET_PATH);
 
 		try {
 			mockHttpServletRequest.setRemoteUser(

@@ -82,17 +82,17 @@ public class SocialRequestLocalServiceImpl
 			request = socialRequestPersistence.create(requestId);
 		}
 
-		request.setGroupId(groupId);
-		request.setCompanyId(user.getCompanyId());
-		request.setUserId(user.getUserId());
-		request.setCreateDate(now);
-		request.setModifiedDate(now);
 		request.setClassNameId(classNameId);
 		request.setClassPK(classPK);
-		request.setType(type);
+		request.setCompanyId(user.getCompanyId());
+		request.setCreateDate(now);
 		request.setExtraData(extraData);
+		request.setGroupId(groupId);
+		request.setModifiedDate(now);
 		request.setReceiverUserId(receiverUserId);
 		request.setStatus(SocialRequestConstants.STATUS_PENDING);
+		request.setType(type);
+		request.setUserId(user.getUserId());
 
 		return socialRequestPersistence.update(request);
 	}

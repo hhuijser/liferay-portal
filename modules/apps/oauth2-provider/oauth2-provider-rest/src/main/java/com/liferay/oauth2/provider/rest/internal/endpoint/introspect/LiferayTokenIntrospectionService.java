@@ -177,8 +177,8 @@ public class LiferayTokenIntrospectionService extends AbstractTokenService {
 		UserSubject userSubject = serverAccessToken.getSubject();
 
 		if (userSubject != null) {
-			tokenIntrospection.setUsername(userSubject.getLogin());
 			tokenIntrospection.setSub(userSubject.getId());
+			tokenIntrospection.setUsername(userSubject.getLogin());
 		}
 
 		tokenIntrospection.setTokenType(serverAccessToken.getTokenType());

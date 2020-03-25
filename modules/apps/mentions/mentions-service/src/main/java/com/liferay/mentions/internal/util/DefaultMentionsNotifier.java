@@ -80,8 +80,6 @@ public class DefaultMentionsNotifier implements MentionsNotifier {
 
 		SubscriptionSender subscriptionSender = new SubscriptionSender();
 
-		subscriptionSender.setLocalizedBodyMap(
-			LocalizationUtil.getMap(bodyLocalizedValuesMap));
 		subscriptionSender.setClassName(className);
 		subscriptionSender.setClassPK(classPK);
 		subscriptionSender.setCompanyId(user.getCompanyId());
@@ -94,17 +92,19 @@ public class DefaultMentionsNotifier implements MentionsNotifier {
 		subscriptionSender.setEntryURL(contentURL);
 		subscriptionSender.setFrom(fromAddress, fromName);
 		subscriptionSender.setHtmlFormat(true);
+		subscriptionSender.setLocalizedBodyMap(
+			LocalizationUtil.getMap(bodyLocalizedValuesMap));
 		subscriptionSender.setLocalizedContextAttributeWithFunction(
 			"[$ASSET_ENTRY_NAME$]",
 			locale -> getAssetEntryName(className, locale));
+		subscriptionSender.setLocalizedSubjectMap(
+			LocalizationUtil.getMap(subjectLocalizedValuesMap));
 		subscriptionSender.setMailId("mb_discussion", classPK);
 		subscriptionSender.setNotificationType(
 			MentionsConstants.NOTIFICATION_TYPE_MENTION);
 		subscriptionSender.setPortletId(MentionsPortletKeys.MENTIONS);
 		subscriptionSender.setScopeGroupId(groupId);
 		subscriptionSender.setServiceContext(serviceContext);
-		subscriptionSender.setLocalizedSubjectMap(
-			LocalizationUtil.getMap(subjectLocalizedValuesMap));
 
 		for (String mentionedUserScreenName : mentionedUsersScreenNames) {
 			User mentionedUser = _userLocalService.fetchUserByScreenName(

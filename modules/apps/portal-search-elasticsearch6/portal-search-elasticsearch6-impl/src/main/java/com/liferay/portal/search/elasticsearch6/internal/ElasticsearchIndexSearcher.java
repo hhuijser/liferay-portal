@@ -296,11 +296,11 @@ public class ElasticsearchIndexSearcher extends BaseIndexSearcher {
 			queryConfig.getHighlightFieldNames());
 		searchSearchRequest.setHighlightFragmentSize(
 			queryConfig.getHighlightFragmentSize());
+		searchSearchRequest.setHighlightRequireFieldMatch(
+			queryConfig.isHighlightRequireFieldMatch());
 		searchSearchRequest.setHighlightSnippetSize(
 			queryConfig.getHighlightSnippetSize());
 		searchSearchRequest.setLocale(queryConfig.getLocale());
-		searchSearchRequest.setHighlightRequireFieldMatch(
-			queryConfig.isHighlightRequireFieldMatch());
 
 		boolean luceneSyntax = GetterUtil.getBoolean(
 			searchContext.getAttribute(

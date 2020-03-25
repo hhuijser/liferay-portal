@@ -78,7 +78,7 @@ public class BlogImagesDisplayContext {
 				themeDisplay.getScopeGroupId(),
 				attachmentsFolder.getFolderId());
 
-			searchContainer.setTotal(total);
+			searchContainer.setResults(results);
 
 			results = PortletFileRepositoryUtil.getPortletFileEntries(
 				themeDisplay.getScopeGroupId(), attachmentsFolder.getFolderId(),
@@ -86,7 +86,7 @@ public class BlogImagesDisplayContext {
 				searchContainer.getEnd(),
 				searchContainer.getOrderByComparator());
 
-			searchContainer.setResults(results);
+			searchContainer.setTotal(total);
 		}
 		else {
 			SearchContext searchContext = SearchContextFactory.getInstance(

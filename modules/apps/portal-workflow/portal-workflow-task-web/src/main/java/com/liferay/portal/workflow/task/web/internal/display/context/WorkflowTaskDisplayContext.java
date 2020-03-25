@@ -447,8 +447,8 @@ public class WorkflowTaskDisplayContext {
 		viewDiffsPortletURL.setParameter("redirect", getCurrentURL());
 		viewDiffsPortletURL.setParameter(
 			"hideControls", Boolean.TRUE.toString());
-		viewDiffsPortletURL.setWindowState(LiferayWindowState.POP_UP);
 		viewDiffsPortletURL.setPortletMode(PortletMode.VIEW);
+		viewDiffsPortletURL.setWindowState(LiferayWindowState.POP_UP);
 
 		sb.append(HtmlUtil.escapeJS(viewDiffsPortletURL.toString()));
 

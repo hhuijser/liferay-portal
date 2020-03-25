@@ -285,8 +285,8 @@ public class SearchEngineAdapterTest {
 		IndexDocumentRequest indexDocumentRequest = new IndexDocumentRequest(
 			getIndexName(), documentBuilder.build());
 
-		indexDocumentRequest.setType("LiferayDocumentType");
 		indexDocumentRequest.setRefresh(refresh);
+		indexDocumentRequest.setType("LiferayDocumentType");
 
 		return indexDocumentRequest;
 	}

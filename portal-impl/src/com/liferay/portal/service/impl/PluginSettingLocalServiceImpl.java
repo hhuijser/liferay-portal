@@ -46,8 +46,8 @@ public class PluginSettingLocalServiceImpl
 	public PluginSetting getDefaultPluginSetting() {
 		PluginSettingImpl pluginSettingImpl = new PluginSettingImpl();
 
-		pluginSettingImpl.setRoles(StringPool.BLANK);
 		pluginSettingImpl.setActive(true);
+		pluginSettingImpl.setRoles(StringPool.BLANK);
 
 		return pluginSettingImpl;
 	}

@@ -67,8 +67,8 @@ public class SearchContextTestUtil {
 
 		searchContext.setAttributes(attributes);
 		searchContext.setCompanyId(TestPropsValues.getCompanyId());
-		searchContext.setKeywords(keywords);
 		searchContext.setGroupIds(groupIds);
+		searchContext.setKeywords(keywords);
 		searchContext.setLocale(locale);
 		searchContext.setUserId(userId);
 

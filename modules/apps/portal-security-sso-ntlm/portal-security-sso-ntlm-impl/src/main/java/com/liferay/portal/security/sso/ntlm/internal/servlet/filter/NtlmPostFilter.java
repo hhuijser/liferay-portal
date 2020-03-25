@@ -119,9 +119,9 @@ public class NtlmPostFilter extends BaseFilter {
 				httpServletResponse.setHeader(
 					HttpHeaders.WWW_AUTHENTICATE, "NTLM " + authorization);
 
+				httpServletResponse.setContentLength(0);
 				httpServletResponse.setStatus(
 					HttpServletResponse.SC_UNAUTHORIZED);
-				httpServletResponse.setContentLength(0);
 
 				httpServletResponse.flushBuffer();
 

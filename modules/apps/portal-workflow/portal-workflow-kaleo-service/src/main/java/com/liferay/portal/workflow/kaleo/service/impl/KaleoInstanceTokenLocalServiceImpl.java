@@ -306,8 +306,8 @@ public class KaleoInstanceTokenLocalServiceImpl
 		kaleoInstanceTokenQuery.setAssetDescription(assetDescription);
 		kaleoInstanceTokenQuery.setAssetTitle(assetTitle);
 		kaleoInstanceTokenQuery.setClassName(assetClassName);
-		kaleoInstanceTokenQuery.setCurrentKaleoNodeName(currentKaleoNodeName);
 		kaleoInstanceTokenQuery.setCompleted(completed);
+		kaleoInstanceTokenQuery.setCurrentKaleoNodeName(currentKaleoNodeName);
 		kaleoInstanceTokenQuery.setKaleoDefinitionName(kaleoDefinitionName);
 		kaleoInstanceTokenQuery.setUserId(userId);
 

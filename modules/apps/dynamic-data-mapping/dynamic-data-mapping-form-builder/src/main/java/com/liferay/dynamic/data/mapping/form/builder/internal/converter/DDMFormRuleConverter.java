@@ -281,10 +281,10 @@ public class DDMFormRuleConverter {
 
 		conditionExpression.accept(conditionExpressionVisitor);
 
-		spiDDMFormRule.setSPIDDMFormRuleConditions(
-			conditionExpressionVisitor.getSPIDDMFormRuleConditions());
 		spiDDMFormRule.setLogicalOperator(
 			conditionExpressionVisitor.getLogicalOperator());
+		spiDDMFormRule.setSPIDDMFormRuleConditions(
+			conditionExpressionVisitor.getSPIDDMFormRuleConditions());
 	}
 
 	@Reference

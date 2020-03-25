@@ -376,8 +376,8 @@ public class DDMFormValuesToPropertiesConverterTest extends Mockito {
 
 		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
 
-		ddmFormFieldValue.setName(name);
 		ddmFormFieldValue.setInstanceId(StringUtil.randomString());
+		ddmFormFieldValue.setName(name);
 
 		Value value = new LocalizedValue(locale);
 

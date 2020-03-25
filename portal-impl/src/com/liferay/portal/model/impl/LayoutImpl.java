@@ -1480,8 +1480,8 @@ public class LayoutImpl extends LayoutBaseImpl {
 					PortletRequest.ACTION_PHASE);
 
 				try {
-					portletURL.setWindowState(WindowState.NORMAL);
 					portletURL.setPortletMode(PortletMode.VIEW);
+					portletURL.setWindowState(WindowState.NORMAL);
 				}
 				catch (PortletException portletException) {
 					throw new SystemException(portletException);

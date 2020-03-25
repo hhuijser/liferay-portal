@@ -88,8 +88,8 @@ public class UpgradeUserNotificationEvent extends UpgradeProcess {
 					}
 				}
 
-				userNotificationEvent.setType(type);
 				userNotificationEvent.setPayload(payloadJSONObject.toString());
+				userNotificationEvent.setType(type);
 
 				_userNotificationEventLocalService.updateUserNotificationEvent(
 					userNotificationEvent);

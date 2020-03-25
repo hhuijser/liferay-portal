@@ -50,8 +50,8 @@ public class ManagementToolbarsDisplayContext {
 		).add(
 			dropdownItem -> {
 				dropdownItem.setHref("#delete");
-				dropdownItem.setLabel("Delete");
 				dropdownItem.setIcon("trash");
+				dropdownItem.setLabel("Delete");
 				dropdownItem.setQuickAction(true);
 			}
 		).build();

@@ -153,11 +153,11 @@ public class DefaultSearchResultPermissionFilter
 		}
 
 		hits.setDocs(docs.toArray(new Document[0]));
+		hits.setLength(hits.getLength() - excludeDocs.size());
 		hits.setScores(ArrayUtil.toFloatArray(scores));
 		hits.setSearchTime(
 			(float)(System.currentTimeMillis() - hits.getStart()) /
 				Time.SECOND);
-		hits.setLength(hits.getLength() - excludeDocs.size());
 	}
 
 	protected Hits getHits(SearchContext searchContext) {
@@ -445,8 +445,8 @@ public class DefaultSearchResultPermissionFilter
 
 		protected void updateHits(Hits hits, int size, long startTime) {
 			hits.setDocs(documents.toArray(new Document[0]));
-			hits.setScores(ArrayUtil.toFloatArray(scores));
 			hits.setLength(size);
+			hits.setScores(ArrayUtil.toFloatArray(scores));
 			hits.setSearchTime(
 				(float)(System.currentTimeMillis() - startTime) / Time.SECOND);
 		}

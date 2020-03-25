@@ -146,19 +146,19 @@ public class ViewChartMVCResourceCommand extends BaseMVCResourceCommand {
 				new Color(255, 0, 0, 128)));
 
 		meterPlot.setDialBackgroundPaint(Color.white);
-		meterPlot.setDialShape(DialShape.PIE);
 		meterPlot.setDialOutlinePaint(Color.gray);
+		meterPlot.setDialShape(DialShape.PIE);
+		meterPlot.setMeterAngle(180);
+		meterPlot.setNeedlePaint(Color.darkGray);
+		meterPlot.setRange(new Range(0.0D, 100D));
 		meterPlot.setTickLabelFont(new Font(null, Font.PLAIN, 10));
 		meterPlot.setTickLabelPaint(Color.darkGray);
 		meterPlot.setTickLabelsVisible(true);
 		meterPlot.setTickPaint(Color.lightGray);
 		meterPlot.setTickSize(5D);
-		meterPlot.setMeterAngle(180);
-		meterPlot.setNeedlePaint(Color.darkGray);
-		meterPlot.setRange(new Range(0.0D, 100D));
+		meterPlot.setUnits("%");
 		meterPlot.setValueFont(new Font(null, Font.PLAIN, 10));
 		meterPlot.setValuePaint(Color.black);
-		meterPlot.setUnits("%");
 
 		return meterPlot;
 	}

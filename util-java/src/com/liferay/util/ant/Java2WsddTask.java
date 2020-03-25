@@ -99,16 +99,16 @@ public class Java2WsddTask {
 		mapping.setNamespace(namespace);
 		mapping.setPackage(mappingPackage);
 
-		java2Wsdl.setProject(project);
 		java2Wsdl.setClassName(className);
+		java2Wsdl.setProject(project);
 
 		if (Validator.isNotNull(classPath)) {
 			java2Wsdl.setClasspath(new Path(project, classPath));
 		}
 
-		java2Wsdl.setOutput(new File(wsdlFileName));
 		java2Wsdl.setLocation(location);
 		java2Wsdl.setNamespace(namespace);
+		java2Wsdl.setOutput(new File(wsdlFileName));
 		java2Wsdl.addMapping(mapping);
 
 		java2Wsdl.execute();
@@ -117,11 +117,11 @@ public class Java2WsddTask {
 
 		Wsdl2javaAntTask wsdl2Java = new Wsdl2javaAntTask();
 
-		wsdl2Java.setProject(project);
-		wsdl2Java.setURL(wsdlFileName);
 		wsdl2Java.setOutput(tempDir);
+		wsdl2Java.setProject(project);
 		wsdl2Java.setServerSide(true);
 		wsdl2Java.setTestCase(false);
+		wsdl2Java.setURL(wsdlFileName);
 		wsdl2Java.setVerbose(false);
 
 		wsdl2Java.execute();

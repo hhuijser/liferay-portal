@@ -1132,93 +1132,93 @@ public class WabProcessor {
 	}
 
 	protected File transformToOSGiBundle(Jar jar) throws IOException {
-		Builder analyzer = new Builder();
+		try (Builder analyzer = new Builder()) {
+			analyzer.setBase(_pluginDir);
+			analyzer.setJar(jar);
+			analyzer.setProperty("-jsp", "*.jsp,*.jspf");
+			analyzer.setProperty("Web-ContextPath", getWebContextPath());
 
-		analyzer.setBase(_pluginDir);
-		analyzer.setJar(jar);
-		analyzer.setProperty("-jsp", "*.jsp,*.jspf");
-		analyzer.setProperty("Web-ContextPath", getWebContextPath());
+			List<Object> disabledPlugins = new ArrayList<>();
+			Properties properties = PropsUtil.getProperties(
+				"module.framework.web.generator.bnd.plugin.enabled[", true);
 
-		List<Object> disabledPlugins = new ArrayList<>();
-		Properties properties = PropsUtil.getProperties(
-			"module.framework.web.generator.bnd.plugin.enabled[", true);
+			Set<Object> plugins = analyzer.getPlugins();
 
-		Set<Object> plugins = analyzer.getPlugins();
+			for (Object plugin : plugins) {
+				if (plugin instanceof DSAnnotations ||
+					plugin instanceof ServiceComponent) {
 
-		for (Object plugin : plugins) {
-			if (plugin instanceof DSAnnotations ||
-				plugin instanceof ServiceComponent) {
+					disabledPlugins.add(plugin);
 
-				disabledPlugins.add(plugin);
+					continue;
+				}
 
-				continue;
+				Class<?> clazz = plugin.getClass();
+
+				String name = clazz.getName() + "]";
+
+				if (!GetterUtil.getBoolean(
+						properties.getProperty(name), true)) {
+
+					disabledPlugins.add(plugin);
+				}
 			}
 
-			Class<?> clazz = plugin.getClass();
+			plugins.removeAll(disabledPlugins);
 
-			String name = clazz.getName() + "]";
+			plugins.add(new JspAnalyzerPlugin());
 
-			if (!GetterUtil.getBoolean(properties.getProperty(name), true)) {
-				disabledPlugins.add(plugin);
+			Properties pluginPackageProperties = getPluginPackageProperties();
+
+			if (pluginPackageProperties.containsKey("portal-dependency-jars") &&
+				_log.isWarnEnabled()) {
+
+				_log.warn(
+					"The property \"portal-dependency-jars\" is deprecated. " +
+						"Specified JARs may not be included in the class " +
+							"path.");
 			}
-		}
 
-		plugins.removeAll(disabledPlugins);
+			processBundleVersion(analyzer);
+			processBundleClasspath(analyzer, pluginPackageProperties);
+			processBundleSymbolicName(analyzer);
+			processExtraHeaders(analyzer);
+			processPluginPackagePropertiesExportImportPackages(
+				pluginPackageProperties);
 
-		plugins.add(new JspAnalyzerPlugin());
+			processBundleManifestVersion(analyzer);
 
-		Properties pluginPackageProperties = getPluginPackageProperties();
+			processLiferayPortletXML();
+			processWebXML("WEB-INF/web.xml");
+			processWebXML("WEB-INF/liferay-web.xml");
 
-		if (pluginPackageProperties.containsKey("portal-dependency-jars") &&
-			_log.isWarnEnabled()) {
+			processDeclarativeReferences(analyzer);
 
-			_log.warn(
-				"The property \"portal-dependency-jars\" is deprecated. " +
-					"Specified JARs may not be included in the class path.");
-		}
+			processExtraRequirements();
 
-		processBundleVersion(analyzer);
-		processBundleClasspath(analyzer, pluginPackageProperties);
-		processBundleSymbolicName(analyzer);
-		processExtraHeaders(analyzer);
-		processPluginPackagePropertiesExportImportPackages(
-			pluginPackageProperties);
+			processPackageNames(analyzer);
 
-		processBundleManifestVersion(analyzer);
+			processRequiredDeploymentContexts(analyzer);
 
-		processLiferayPortletXML();
-		processWebXML("WEB-INF/web.xml");
-		processWebXML("WEB-INF/liferay-web.xml");
+			_processExcludedJSPs(analyzer);
 
-		processDeclarativeReferences(analyzer);
+			analyzer.setProperties(pluginPackageProperties);
 
-		processExtraRequirements();
+			processBeans(analyzer);
 
-		processPackageNames(analyzer);
+			try {
+				jar = analyzer.build();
 
-		processRequiredDeploymentContexts(analyzer);
+				File outputFile = analyzer.getOutputFile(null);
 
-		_processExcludedJSPs(analyzer);
+				jar.write(outputFile);
 
-		analyzer.setProperties(pluginPackageProperties);
-
-		processBeans(analyzer);
-
-		try {
-			jar = analyzer.build();
-
-			File outputFile = analyzer.getOutputFile(null);
-
-			jar.write(outputFile);
-
-			return outputFile;
-		}
-		catch (Exception exception) {
-			throw new IOException(
-				"Unable to calculate the manifest", exception);
-		}
-		finally {
-			analyzer.close();
+				return outputFile;
+			}
+			catch (Exception exception) {
+				throw new IOException(
+					"Unable to calculate the manifest", exception);
+			}
 		}
 	}
 

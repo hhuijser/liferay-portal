@@ -459,19 +459,11 @@ public class FileSystemImporter extends BaseImporter {
 		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			InputStream inputStream = null;
-
-			try {
-				inputStream = new BufferedInputStream(
-					new FileInputStream(file));
+			try (InputStream inputStream = new BufferedInputStream(
+					new FileInputStream(file))) {
 
 				addDDMStructures(
 					parentDDMStructureKey, file.getName(), inputStream);
-			}
-			finally {
-				if (inputStream != null) {
-					inputStream.close();
-				}
 			}
 		}
 	}
@@ -658,18 +650,10 @@ public class FileSystemImporter extends BaseImporter {
 		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			InputStream inputStream = null;
-
-			try {
-				inputStream = new BufferedInputStream(
-					new FileInputStream(file));
+			try (InputStream inputStream = new BufferedInputStream(
+					new FileInputStream(file))) {
 
 				addDDMTemplates(ddmStructureKey, file.getName(), inputStream);
-			}
-			finally {
-				if (inputStream != null) {
-					inputStream.close();
-				}
 			}
 		}
 	}
@@ -776,18 +760,11 @@ public class FileSystemImporter extends BaseImporter {
 	protected void addDLFileEntry(long parentFolderId, File file)
 		throws Exception {
 
-		InputStream inputStream = null;
-
-		try {
-			inputStream = new BufferedInputStream(new FileInputStream(file));
+		try (InputStream inputStream = new BufferedInputStream(
+				new FileInputStream(file))) {
 
 			addDLFileEntry(
 				parentFolderId, file.getName(), inputStream, file.length());
-		}
-		finally {
-			if (inputStream != null) {
-				inputStream.close();
-			}
 		}
 	}
 
@@ -904,20 +881,12 @@ public class FileSystemImporter extends BaseImporter {
 		File[] files = listFiles(dir);
 
 		for (File file : files) {
-			InputStream inputStream = null;
-
-			try {
-				inputStream = new BufferedInputStream(
-					new FileInputStream(file));
+			try (InputStream inputStream = new BufferedInputStream(
+					new FileInputStream(file))) {
 
 				addJournalArticles(
 					ddmStructureKey, ddmTemplateKey, file.getName(), folderId,
 					inputStream);
-			}
-			finally {
-				if (inputStream != null) {
-					inputStream.close();
-				}
 			}
 		}
 	}
@@ -1572,19 +1541,14 @@ public class FileSystemImporter extends BaseImporter {
 	}
 
 	protected JSONObject getJSONObject(String fileName) throws Exception {
-		InputStream inputStream = getInputStream(fileName);
-
-		if (inputStream == null) {
-			return null;
-		}
-
 		String json = null;
 
-		try {
+		try (InputStream inputStream = getInputStream(fileName)) {
+			if (inputStream == null) {
+				return null;
+			}
+
 			json = StringUtil.read(inputStream);
-		}
-		finally {
-			inputStream.close();
 		}
 
 		json = StringUtil.replace(

@@ -50,23 +50,37 @@ renderResponse.setTitle(definition.getName(locale));
 		</c:when>
 	</c:choose>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:row cssClass="lfr-asset-column lfr-asset-column-details">
-				<aui:col width="<%= 50 %>">
-					<aui:field-wrapper label="requested-report-id">
+			<aui:row
+				cssClass="lfr-asset-column lfr-asset-column-details"
+			>
+				<aui:col
+					width="<%= 50 %>"
+				>
+					<aui:field-wrapper
+						label="requested-report-id"
+					>
 						<%= entry.getEntryId() %>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="definition-name">
+					<aui:field-wrapper
+						label="definition-name"
+					>
 						<%= HtmlUtil.escape(definition.getName(locale)) %>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="description">
+					<aui:field-wrapper
+						label="description"
+					>
 						<%= HtmlUtil.escape(definition.getDescription(locale)) %>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="data-source-name">
+					<aui:field-wrapper
+						label="data-source-name"
+					>
 
 						<%
 						Source source = SourceLocalServiceUtil.fetchSource(definition.getSourceId());
@@ -76,9 +90,13 @@ renderResponse.setTitle(definition.getName(locale));
 					</aui:field-wrapper>
 				</aui:col>
 
-				<aui:col width="<%= 50 %>">
+				<aui:col
+					width="<%= 50 %>"
+				>
 					<c:if test="<%= entry.isScheduleRequest() %>">
-						<aui:field-wrapper label="is-schedule-request">
+						<aui:field-wrapper
+							label="is-schedule-request"
+						>
 
 							<%
 							StringBundler sb = new StringBundler((entry.getEndDate() != null) ? 18 : 12);
@@ -111,15 +129,21 @@ renderResponse.setTitle(definition.getName(locale));
 						</aui:field-wrapper>
 					</c:if>
 
-					<aui:field-wrapper label="requested-by">
+					<aui:field-wrapper
+						label="requested-by"
+					>
 						<%= HtmlUtil.escape(entry.getUserName()) %>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="requested-date">
+					<aui:field-wrapper
+						label="requested-date"
+					>
 						<%= entry.getCreateDate() %>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="completion-date">
+					<aui:field-wrapper
+						label="completion-date"
+					>
 						<%= entry.getModifiedDate() %>
 					</aui:field-wrapper>
 				</aui:col>
@@ -132,7 +156,11 @@ renderResponse.setTitle(definition.getName(locale));
 		%>
 
 		<c:if test="<%= reportParameters.length > 0 %>">
-			<aui:fieldset collapsible="<%= true %>" cssClass="options-group" label="report-parameters">
+			<aui:fieldset
+				collapsible="<%= true %>"
+				cssClass="options-group"
+				label="report-parameters"
+			>
 				<table class="table table-autofit table-list">
 					<thead>
 						<tr>
@@ -170,7 +198,11 @@ renderResponse.setTitle(definition.getName(locale));
 			</aui:fieldset>
 		</c:if>
 
-		<aui:fieldset collapsible="<%= true %>" cssClass="options-group" label="attachments">
+		<aui:fieldset
+			collapsible="<%= true %>"
+			cssClass="options-group"
+			label="attachments"
+		>
 
 			<%
 			List<String> headerNames = new ArrayList<String>();

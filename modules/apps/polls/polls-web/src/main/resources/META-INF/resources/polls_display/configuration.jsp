@@ -32,9 +32,21 @@ if (scopeGroupId != themeDisplay.getCompanyGroupId()) {
 
 <liferay-portlet:renderURL portletConfiguration="<%= true %>" var="configurationRenderURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<div class="portlet-configuration-body-content">
 		<div class="container-fluid-1280">
@@ -42,17 +54,28 @@ if (scopeGroupId != themeDisplay.getCompanyGroupId()) {
 
 			<c:choose>
 				<c:when test="<%= !questions.isEmpty() %>">
-					<aui:fieldset-group markupView="lexicon">
+					<aui:fieldset-group
+						markupView="lexicon"
+					>
 						<aui:fieldset>
-							<aui:select label="title" name="preferences--questionId--">
-								<aui:option value="" />
+							<aui:select
+								label="title"
+								name="preferences--questionId--"
+							>
+								<aui:option
+									value=""
+								/>
 
 								<%
 								for (PollsQuestion question : questions) {
 									question = question.toEscapedModel();
 								%>
 
-									<aui:option label="<%= question.getTitle(locale) %>" selected="<%= questionId == question.getQuestionId() %>" value="<%= question.getQuestionId() %>" />
+									<aui:option
+										label="<%= question.getTitle(locale) %>"
+										selected="<%= questionId == question.getQuestionId() %>"
+										value="<%= question.getQuestionId() %>"
+									/>
 
 								<%
 								}
@@ -72,7 +95,12 @@ if (scopeGroupId != themeDisplay.getCompanyGroupId()) {
 	</div>
 
 	<aui:button-row>
-		<aui:button disabled="<%= questions.isEmpty() %>" type="submit" />
-		<aui:button type="cancel" />
+		<aui:button
+			disabled="<%= questions.isEmpty() %>"
+			type="submit"
+		/>
+		<aui:button
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

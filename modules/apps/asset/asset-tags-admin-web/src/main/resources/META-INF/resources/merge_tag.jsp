@@ -41,8 +41,16 @@ renderResponse.setTitle(LanguageUtil.get(request, "merge-tags"));
 	name="fm"
 	onSubmit="event.preventDefault();"
 >
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="groupId" type="hidden" value="<%= scopeGroupId %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="groupId"
+		type="hidden"
+		value="<%= scopeGroupId %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -58,13 +66,19 @@ renderResponse.setTitle(LanguageUtil.get(request, "merge-tags"));
 					/>
 				</div>
 
-				<aui:select cssClass="target-tag" label="into-this-tag" name="targetTagName">
+				<aui:select
+					cssClass="target-tag"
+					label="into-this-tag"
+					name="targetTagName"
+				>
 
 					<%
 					for (String tagName : assetTagsDisplayContext.getMergeTagNames()) {
 					%>
 
-						<aui:option label="<%= tagName %>" />
+						<aui:option
+							label="<%= tagName %>"
+						/>
 
 					<%
 					}
@@ -76,13 +90,20 @@ renderResponse.setTitle(LanguageUtil.get(request, "merge-tags"));
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	var targetTagNameSelect = document.getElementById(
 		'<portlet:namespace />targetTagName'
 	);

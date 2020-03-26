@@ -26,7 +26,11 @@ LayoutPortletsManagementToolbarDisplayContext layoutPortletsManagementToolbarDis
 	displayContext="<%= layoutPortletsManagementToolbarDisplayContext %>"
 />
 
-<aui:form action="" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action=""
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= layoutPortletsDisplayContext.getSearchContainer() %>"
 	>

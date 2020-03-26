@@ -40,8 +40,16 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -78,9 +86,15 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 					</liferay-frontend:fieldset>
 				</div>
 
-				<aui:input name="displayActivityCounterNameIndexes" type="hidden" value="<%= StringUtil.merge(displayActivityCounterNameIndexes) %>" />
+				<aui:input
+					name="displayActivityCounterNameIndexes"
+					type="hidden"
+					value="<%= StringUtil.merge(displayActivityCounterNameIndexes) %>"
+				/>
 
-				<aui:script use="liferay-auto-fields">
+				<aui:script
+					use="liferay-auto-fields"
+				>
 					new Liferay.AutoFields({
 						contentBox: '#<portlet:namespace />displayActivityCounterNames > fieldset',
 						fieldIndexes: '<portlet:namespace/>displayActivityCounterNameIndexes',
@@ -96,8 +110,12 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

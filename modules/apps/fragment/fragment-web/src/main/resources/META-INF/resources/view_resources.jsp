@@ -34,12 +34,24 @@ FragmentCollectionResourcesManagementToolbarDisplayContext fragmentCollectionRes
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= addFragmentCollectionResourceURL %>" name="fragmentCollectionResourceFm">
-	<aui:input name="fragmentCollectionId" type="hidden" value="<%= String.valueOf(fragmentDisplayContext.getFragmentCollectionId()) %>" />
-	<aui:input name="fileEntryId" type="hidden" />
+<aui:form
+	action="<%= addFragmentCollectionResourceURL %>"
+	name="fragmentCollectionResourceFm"
+>
+	<aui:input
+		name="fragmentCollectionId"
+		type="hidden"
+		value="<%= String.valueOf(fragmentDisplayContext.getFragmentCollectionId()) %>"
+	/>
+	<aui:input
+		name="fileEntryId"
+		type="hidden"
+	/>
 </aui:form>
 
-<aui:form name="fm">
+<aui:form
+	name="fm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= fragmentCollectionResourcesDisplayContext.getSearchContainer() %>"
 	>

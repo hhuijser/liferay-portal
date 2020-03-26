@@ -41,7 +41,12 @@ SearchContainer<DDMStructure> structureSearch = ddmDisplayContext.getStructureSe
 	sortingURL="<%= ddmDisplayContext.getSortingURL() %>"
 />
 
-<aui:form action="<%= ddmDisplayContext.getSelectStructureSearchActionURL() %>" cssClass="container-fluid-1280" method="post" name="selectStructureFm">
+<aui:form
+	action="<%= ddmDisplayContext.getSelectStructureSearchActionURL() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectStructureFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= structureSearch %>"
 	>
@@ -75,7 +80,11 @@ SearchContainer<DDMStructure> structureSearch = ddmDisplayContext.getStructureSe
 						data.put("name", structure.getName(locale));
 						%>
 
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data="<%= data %>"
+							href="javascript:;"
+						>
 							<%= HtmlUtil.escape(structure.getUnambiguousName(structureSearch.getResults(), themeDisplay.getScopeGroupId(), locale)) %>
 						</aui:a>
 					</c:when>

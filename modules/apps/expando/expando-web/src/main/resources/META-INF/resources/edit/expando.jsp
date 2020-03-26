@@ -127,12 +127,32 @@ else {
 <liferay-frontend:edit-form
 	action="<%= editExpandoURL %>"
 >
-	<aui:input name="redirect" type="hidden" value="<%= portletURL %>" />
-	<aui:input name="columnId" type="hidden" value="<%= columnId %>" />
-	<aui:input name="modelResource" type="hidden" value="<%= modelResource %>" />
-	<aui:input name="type" type="hidden" value="<%= type %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= portletURL %>"
+	/>
+	<aui:input
+		name="columnId"
+		type="hidden"
+		value="<%= columnId %>"
+	/>
+	<aui:input
+		name="modelResource"
+		type="hidden"
+		value="<%= modelResource %>"
+	/>
+	<aui:input
+		name="type"
+		type="hidden"
+		value="<%= type %>"
+	/>
 
-	<aui:input name="Property--display-type--" type="hidden" value="<%= propertyDisplayType %>" />
+	<aui:input
+		name="Property--display-type--"
+		type="hidden"
+		value="<%= propertyDisplayType %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<h2 class="sheet-title">
@@ -140,15 +160,32 @@ else {
 		</h2>
 
 		<liferay-frontend:fieldset-group>
-			<aui:field-wrapper cssClass="form-group lfr-input-text-container">
+			<aui:field-wrapper
+				cssClass="form-group lfr-input-text-container"
+			>
 				<c:choose>
 					<c:when test="<%= expandoColumn != null %>">
-						<aui:input name="name" type="hidden" value="<%= expandoColumn.getName() %>" />
+						<aui:input
+							name="name"
+							type="hidden"
+							value="<%= expandoColumn.getName() %>"
+						/>
 
-						<aui:input label="field-name" name="key" type="resource" value="<%= expandoColumn.getName() %>" />
+						<aui:input
+							label="field-name"
+							name="key"
+							type="resource"
+							value="<%= expandoColumn.getName() %>"
+						/>
 					</c:when>
 					<c:otherwise>
-						<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" label="field-name" maxlength='<%= ModelHintsUtil.getMaxLength(ExpandoColumn.class.getName(), "name") %>' name="name" required="<%= true %>" />
+						<aui:input
+							autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+							label="field-name"
+							maxlength='<%= ModelHintsUtil.getMaxLength(ExpandoColumn.class.getName(), "name") %>'
+							name="name"
+							required="<%= true %>"
+						/>
 					</c:otherwise>
 				</c:choose>
 
@@ -164,8 +201,13 @@ else {
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

@@ -75,10 +75,18 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 	viewTypeItems="<%= selectRoleManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl container-form-lg" method="post" name="selectSiteRoleFm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-lg"
+	method="post"
+	name="selectSiteRoleFm"
+>
 	<c:choose>
 		<c:when test="<%= step == 1 %>">
-			<aui:input name="groupId" type="hidden" />
+			<aui:input
+				name="groupId"
+				type="hidden"
+			/>
 
 			<div class="alert alert-info">
 				<liferay-ui:message key="please-select-a-site-to-which-you-will-assign-a-site-role" />
@@ -117,7 +125,11 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 						data.put("groupid", group.getGroupId());
 						%>
 
-						<aui:button cssClass="group-selector-button" data="<%= data %>" value="choose" />
+						<aui:button
+							cssClass="group-selector-button"
+							data="<%= data %>"
+							value="choose"
+						/>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
 
@@ -126,7 +138,9 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 				/>
 			</liferay-ui:search-container>
 
-			<aui:script require="metal-dom/src/dom as dom">
+			<aui:script
+				require="metal-dom/src/dom as dom"
+			>
 				var form = document.<portlet:namespace />selectSiteRoleFm;
 
 				dom.delegate(form, 'click', '.group-selector-button', function(event) {
@@ -153,8 +167,16 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 			portletURL.setParameter("groupId", String.valueOf(groupId));
 			%>
 
-			<aui:input name="step" type="hidden" value="<%= step %>" />
-			<aui:input name="groupId" type="hidden" value="<%= String.valueOf(groupId) %>" />
+			<aui:input
+				name="step"
+				type="hidden"
+				value="<%= step %>"
+			/>
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= String.valueOf(groupId) %>"
+			/>
 
 			<c:if test="<%= selUser != null %>">
 
@@ -221,7 +243,12 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 							}
 							%>
 
-							<aui:button cssClass="selector-button" data="<%= data %>" disabled="<%= disabled %>" value="choose" />
+							<aui:button
+								cssClass="selector-button"
+								data="<%= data %>"
+								disabled="<%= disabled %>"
+								value="choose"
+							/>
 						</c:if>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
@@ -231,7 +258,9 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 				/>
 			</liferay-ui:search-container>
 
-			<aui:script use="aui-base">
+			<aui:script
+				use="aui-base"
+			>
 				var Util = Liferay.Util;
 
 				var openingLiferay = Util.getOpener().Liferay;

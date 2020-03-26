@@ -99,12 +99,34 @@ PortletURL portletURL = editUserGroupAssignmentsManagementToolbarDisplayContext.
 	viewTypeItems="<%= editUserGroupAssignmentsManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="userGroupId" type="hidden" value="<%= userGroup.getUserGroupId() %>" />
-	<aui:input name="deleteUserGroupIds" type="hidden" />
-	<aui:input name="addUserIds" type="hidden" />
-	<aui:input name="removeUserIds" type="hidden" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="userGroupId"
+		type="hidden"
+		value="<%= userGroup.getUserGroupId() %>"
+	/>
+	<aui:input
+		name="deleteUserGroupIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="addUserIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="removeUserIds"
+		type="hidden"
+	/>
 
 	<div id="breadcrumb">
 		<liferay-ui:breadcrumb
@@ -142,7 +164,9 @@ PortletURL portletURL = editUserGroupAssignmentsManagementToolbarDisplayContext.
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var form = document.<portlet:namespace />fm;
 
 	<portlet:renderURL var="selectUsersURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">

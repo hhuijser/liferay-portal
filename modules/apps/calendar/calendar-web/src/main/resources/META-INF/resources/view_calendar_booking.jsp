@@ -47,13 +47,22 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 			title="<%= calendarBooking.getTitle(locale) %>"
 		/>
 
-		<aui:fieldset markupView="lexicon">
+		<aui:fieldset
+			markupView="lexicon"
+		>
 			<dl class="property-list">
 				<dt>
 					<liferay-ui:message key="status" />:
 				</dt>
 				<dd>
-					<aui:workflow-status markupView="lexicon" model="<%= CalendarBooking.class %>" showHelpMessage="<%= false %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= calendarBooking.getStatus() %>" />
+					<aui:workflow-status
+						markupView="lexicon"
+						model="<%= CalendarBooking.class %>"
+						showHelpMessage="<%= false %>"
+						showIcon="<%= false %>"
+						showLabel="<%= false %>"
+						status="<%= calendarBooking.getStatus() %>"
+					/>
 				</dd>
 				<dt>
 					<liferay-ui:message key="starts" />:
@@ -174,7 +183,9 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		<c:if test="<%= Validator.isNotNull(calendarBooking.getRecurrence()) %>">
 			<%@ include file="/calendar_booking_recurrence_language_keys.jspf" %>
 
-			<aui:script use="liferay-calendar-recurrence-util">
+			<aui:script
+				use="liferay-calendar-recurrence-util"
+			>
 				var summaryNode = A.one('#<portlet:namespace />recurrenceSummary');
 
 				var endValue = 'never';
@@ -244,13 +255,40 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 		<liferay-util:dynamic-include key="com.liferay.calendar.web#/view_calendar_booking.jsp#post" />
 	</div>
 
-	<aui:form action="<%= invokeTransitionURL %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-		<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBooking.getCalendarBookingId() %>" />
-		<aui:input name="startTime" type="hidden" value="<%= calendarBooking.getStartTime() %>" />
-		<aui:input name="status" type="hidden" />
-		<aui:input name="updateInstance" type="hidden" value="false" />
-		<aui:input name="allFollowing" type="hidden" value="false" />
+	<aui:form
+		action="<%= invokeTransitionURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
+		<aui:input
+			name="calendarBookingId"
+			type="hidden"
+			value="<%= calendarBooking.getCalendarBookingId() %>"
+		/>
+		<aui:input
+			name="startTime"
+			type="hidden"
+			value="<%= calendarBooking.getStartTime() %>"
+		/>
+		<aui:input
+			name="status"
+			type="hidden"
+		/>
+		<aui:input
+			name="updateInstance"
+			type="hidden"
+			value="false"
+		/>
+		<aui:input
+			name="allFollowing"
+			type="hidden"
+			value="false"
+		/>
 
 		<aui:button-row>
 
@@ -261,15 +299,24 @@ AssetEntry layoutAssetEntry = AssetEntryLocalServiceUtil.getEntry(CalendarBookin
 
 			<c:if test="<%= hasManageBookingsPermission && !hasWorkflowInstanceLink %>">
 				<c:if test="<%= calendarBooking.getStatus() != WorkflowConstants.STATUS_APPROVED %>">
-					<aui:button onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + WorkflowConstants.STATUS_APPROVED + ");" %>' value="accept" />
+					<aui:button
+						onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + WorkflowConstants.STATUS_APPROVED + ");" %>'
+						value="accept"
+					/>
 				</c:if>
 
 				<c:if test="<%= calendarBooking.getStatus() != CalendarBookingWorkflowConstants.STATUS_MAYBE %>">
-					<aui:button onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + CalendarBookingWorkflowConstants.STATUS_MAYBE + ");" %>' value="maybe" />
+					<aui:button
+						onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + CalendarBookingWorkflowConstants.STATUS_MAYBE + ");" %>'
+						value="maybe"
+					/>
 				</c:if>
 
 				<c:if test="<%= calendarBooking.getStatus() != WorkflowConstants.STATUS_DENIED %>">
-					<aui:button onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + WorkflowConstants.STATUS_DENIED + ");" %>' value="decline" />
+					<aui:button
+						onClick='<%= renderResponse.getNamespace() + "invokeTransition(" + WorkflowConstants.STATUS_DENIED + ");" %>'
+						value="decline"
+					/>
 				</c:if>
 			</c:if>
 		</aui:button-row>

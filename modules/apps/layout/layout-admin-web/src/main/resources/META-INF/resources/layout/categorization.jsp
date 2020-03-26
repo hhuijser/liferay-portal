@@ -25,7 +25,10 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 	value="categorization"
 />
 
-<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= selLayout %>"
+	model="<%= Layout.class %>"
+/>
 
 <liferay-asset:asset-categories-error />
 

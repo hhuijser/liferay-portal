@@ -20,7 +20,12 @@
 AssetListEntry assetListEntry = assetPublisherDisplayContext.fetchAssetListEntry();
 %>
 
-<aui:input id="assetListEntryId" name="preferences--assetListEntryId--" type="hidden" value="<%= (assetListEntry != null) ? assetListEntry.getAssetListEntryId() : StringPool.BLANK %>" />
+<aui:input
+	id="assetListEntryId"
+	name="preferences--assetListEntryId--"
+	type="hidden"
+	value="<%= (assetListEntry != null) ? assetListEntry.getAssetListEntryId() : StringPool.BLANK %>"
+/>
 
 <div class="form-group input-text-wrapper text-default" id="<portlet:namespace />assetListTitle">
 	<c:choose>
@@ -34,12 +39,21 @@ AssetListEntry assetListEntry = assetPublisherDisplayContext.fetchAssetListEntry
 </div>
 
 <div class="button-row">
-	<aui:button cssClass="mr-2" name="selectAssetListButton" value="select" />
+	<aui:button
+		cssClass="mr-2"
+		name="selectAssetListButton"
+		value="select"
+	/>
 
-	<aui:button name="clearAssetListButton" value="clear" />
+	<aui:button
+		name="clearAssetListButton"
+		value="clear"
+	/>
 </div>
 
-<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var assetListEntryId = document.getElementById(
 		'<portlet:namespace />assetListEntryId'
 	);

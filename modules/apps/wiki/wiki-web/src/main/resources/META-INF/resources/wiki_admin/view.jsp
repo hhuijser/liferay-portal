@@ -126,9 +126,20 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 
 		<liferay-ui:error exception="<%= RequiredNodeException.class %>" message="the-last-main-node-is-required-and-cannot-be-deleted" />
 
-		<aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="fm">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+		<aui:form
+			action="<%= wikiURLHelper.getSearchURL() %>"
+			method="get"
+			name="fm"
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+			/>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-ui:search-container
 				id="wikiNodes"
@@ -167,7 +178,9 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 								colspan="<%= 2 %>"
 							>
 								<p class="h5">
-									<aui:a href="<%= rowURL.toString() %>">
+									<aui:a
+										href="<%= rowURL.toString() %>"
+									>
 										<%= HtmlUtil.escape(node.getName()) %>
 									</aui:a>
 								</p>

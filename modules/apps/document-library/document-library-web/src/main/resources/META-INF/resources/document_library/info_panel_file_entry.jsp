@@ -46,9 +46,17 @@ long assetClassPK = DLAssetHelperUtil.getAssetClassPK(fileEntry, fileVersion);
 		/>
 	</c:if>
 
-	<aui:model-context bean="<%= fileVersion %>" model="<%= DLFileVersion.class %>" />
+	<aui:model-context
+		bean="<%= fileVersion %>"
+		model="<%= DLFileVersion.class %>"
+	/>
 
-	<aui:workflow-status model="<%= DLFileEntry.class %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= fileVersion.getStatus() %>" />
+	<aui:workflow-status
+		model="<%= DLFileEntry.class %>"
+		showIcon="<%= false %>"
+		showLabel="<%= false %>"
+		status="<%= fileVersion.getStatus() %>"
+	/>
 </div>
 
 <div class="sidebar-body">

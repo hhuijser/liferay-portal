@@ -71,7 +71,9 @@ boolean skipEditorLoading = GetterUtil.getBoolean((String)request.getAttribute(T
 name = HtmlUtil.escapeJS(name);
 %>
 
-<aui:script use="aui-node-base">
+<aui:script
+	use="aui-node-base"
+>
 	var browseUrls = {
 		file: 'filebrowserBrowseUrl',
 		image: 'filebrowserImageBrowseUrl',

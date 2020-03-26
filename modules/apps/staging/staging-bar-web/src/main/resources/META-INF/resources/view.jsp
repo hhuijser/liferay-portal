@@ -62,12 +62,20 @@ if (liveLayout != null) {
 								<c:choose>
 									<c:when test="<%= !remoteSiteURL.isEmpty() %>">
 										<a class="nav-link" href="<%= HtmlUtil.escape(remoteSiteURL) %>" value="go-to-remote-live">
-											<aui:icon image="home" label="go-to-remote-live" markupView="lexicon" />
+											<aui:icon
+												image="home"
+												label="go-to-remote-live"
+												markupView="lexicon"
+											/>
 										</a>
 									</c:when>
 									<c:when test="<%= SessionErrors.contains(renderRequest, AuthException.class) %>">
 										<a class="nav-link" value="go-to-remote-live">
-											<aui:icon image="home" label="go-to-remote-live" markupView="lexicon" />
+											<aui:icon
+												image="home"
+												label="go-to-remote-live"
+												markupView="lexicon"
+											/>
 										</a>
 
 										<liferay-ui:icon
@@ -79,7 +87,11 @@ if (liveLayout != null) {
 									</c:when>
 									<c:when test="<%= SessionErrors.contains(renderRequest, RemoteExportException.class) %>">
 										<a class="nav-link" value="go-to-remote-live">
-											<aui:icon image="home" label="go-to-remote-live" markupView="lexicon" />
+											<aui:icon
+												image="home"
+												label="go-to-remote-live"
+												markupView="lexicon"
+											/>
 										</a>
 
 										<liferay-ui:icon
@@ -91,7 +103,11 @@ if (liveLayout != null) {
 									</c:when>
 									<c:otherwise>
 										<a class="nav-link" value="go-to-remote-live">
-											<aui:icon image="home" label="go-to-remote-live" markupView="lexicon" />
+											<aui:icon
+												image="home"
+												label="go-to-remote-live"
+												markupView="lexicon"
+											/>
 										</a>
 
 										<liferay-ui:icon
@@ -163,13 +179,19 @@ if (liveLayout != null) {
 											</div>
 
 											<div class="col staging-alert-container" id="<portlet:namespace />layoutRevisionStatus">
-												<aui:model-context bean="<%= layoutRevision %>" model="<%= LayoutRevision.class %>" />
+												<aui:model-context
+													bean="<%= layoutRevision %>"
+													model="<%= LayoutRevision.class %>"
+												/>
 
 												<liferay-util:include page="/view_layout_revision_status.jsp" servletContext="<%= application %>" />
 											</div>
 
 											<div class="col" id="<portlet:namespace />layoutRevisionDetails">
-												<aui:model-context bean="<%= layoutRevision %>" model="<%= LayoutRevision.class %>" />
+												<aui:model-context
+													bean="<%= layoutRevision %>"
+													model="<%= LayoutRevision.class %>"
+												/>
 
 												<liferay-util:include page="/view_layout_revision_details.jsp" servletContext="<%= application %>" />
 											</div>
@@ -215,7 +237,9 @@ if (liveLayout != null) {
 	</c:if>
 
 	<c:if test="<%= !branchingEnabled %>">
-		<aui:script use="liferay-staging">
+		<aui:script
+			use="liferay-staging"
+		>
 			Liferay.StagingBar.init({
 				namespace: '<portlet:namespace />',
 				portletId: '<%= portletDisplay.getId() %>',
@@ -223,7 +247,9 @@ if (liveLayout != null) {
 		</aui:script>
 	</c:if>
 
-	<aui:script use="aui-base">
+	<aui:script
+		use="aui-base"
+	>
 		var staging = document.querySelector('.staging');
 
 		if (staging) {

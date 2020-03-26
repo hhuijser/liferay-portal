@@ -61,7 +61,10 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 						<div class="autofit-col autofit-col-expand">
 							<div class="text-truncate">
 								<liferay-util:whitespace-remover>
-									<aui:a cssClass="username" href="<%= ((messageUser != null) && messageUser.isActive()) ? messageUser.getDisplayURL(themeDisplay) : null %>">
+									<aui:a
+										cssClass="username"
+										href="<%= ((messageUser != null) && messageUser.isActive()) ? messageUser.getDisplayURL(themeDisplay) : null %>"
+									>
 										<c:choose>
 											<c:when test="<%= discussionComment.getUserId() == user.getUserId() %>">
 												<%= HtmlUtil.escape(discussionComment.getUserName()) %> (<liferay-ui:message key="you" />)
@@ -155,9 +158,17 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 									WorkflowableComment workflowableComment = (WorkflowableComment)discussionComment;
 									%>
 
-									<aui:model-context bean="<%= workflowableComment %>" model="<%= workflowableComment.getModelClass() %>" />
+									<aui:model-context
+										bean="<%= workflowableComment %>"
+										model="<%= workflowableComment.getModelClass() %>"
+									/>
 
-									<aui:workflow-status model="<%= CommentConstants.getDiscussionClass() %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= workflowableComment.getStatus() %>" />
+									<aui:workflow-status
+										model="<%= CommentConstants.getDiscussionClass() %>"
+										showIcon="<%= false %>"
+										showLabel="<%= false %>"
+										status="<%= workflowableComment.getStatus() %>"
+									/>
 								</c:if>
 							</div>
 						</div>
@@ -195,8 +206,16 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 				<div id="<%= randomNamespace %>messageScroll<%= discussionComment.getCommentId() %>">
 					<a id="<%= randomNamespace %>message_<%= discussionComment.getCommentId() %>" name="<%= randomNamespace %>message_<%= discussionComment.getCommentId() %>"></a>
 
-					<aui:input name='<%= "commentId" + index %>' type="hidden" value="<%= discussionComment.getCommentId() %>" />
-					<aui:input name='<%= "parentCommentId" + index %>' type="hidden" value="<%= discussionComment.getCommentId() %>" />
+					<aui:input
+						name='<%= "commentId" + index %>'
+						type="hidden"
+						value="<%= discussionComment.getCommentId() %>"
+					/>
+					<aui:input
+						name='<%= "parentCommentId" + index %>'
+						type="hidden"
+						value="<%= discussionComment.getCommentId() %>"
+					/>
 				</div>
 
 				<div class="lfr-discussion-message">
@@ -209,13 +228,22 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 							<div class="editor-wrapper"></div>
 
 							<aui:button-row>
-								<aui:button cssClass="btn-comment btn-primary btn-sm" name='<%= "editReplyButton" + index %>' onClick='<%= randomNamespace + "updateMessage(" + index + ");" %>' value="<%= commentTreeDisplayContext.getPublishButtonLabel(locale) %>" />
+								<aui:button
+									cssClass="btn-comment btn-primary btn-sm"
+									name='<%= "editReplyButton" + index %>'
+									onClick='<%= randomNamespace + "updateMessage(" + index + ");" %>'
+									value="<%= commentTreeDisplayContext.getPublishButtonLabel(locale) %>"
+								/>
 
 								<%
 								String taglibCancel = randomNamespace + "showEl('" + namespace + "discussionMessage" + index + "');" + randomNamespace + "hideEditor('" + randomNamespace + "editReplyBody" + index + "', '" + namespace + "editForm" + index + "');";
 								%>
 
-								<aui:button cssClass="btn-comment btn-primary btn-sm" onClick="<%= taglibCancel %>" type="cancel" />
+								<aui:button
+									cssClass="btn-comment btn-primary btn-sm"
+									onClick="<%= taglibCancel %>"
+									type="cancel"
+								/>
 							</aui:button-row>
 
 							<aui:script>
@@ -279,13 +307,23 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 						<div class="editor-wrapper"></div>
 
 						<aui:button-row>
-							<aui:button cssClass="btn-comment btn-primary btn-sm" disabled="<%= true %>" id='<%= "postReplyButton" + index %>' onClick='<%= randomNamespace + "postReply(" + index + ");" %>' value='<%= themeDisplay.isSignedIn() ? "reply" : "reply-as" %>' />
+							<aui:button
+								cssClass="btn-comment btn-primary btn-sm"
+								disabled="<%= true %>"
+								id='<%= "postReplyButton" + index %>'
+								onClick='<%= randomNamespace + "postReply(" + index + ");" %>'
+								value='<%= themeDisplay.isSignedIn() ? "reply" : "reply-as" %>'
+							/>
 
 							<%
 							String taglibCancel = randomNamespace + "hideEditor('" + randomNamespace + "postReplyBody" + index + "', '" + namespace + "postReplyForm" + index + "')";
 							%>
 
-							<aui:button cssClass="btn-comment btn-sm" onClick="<%= taglibCancel %>" type="cancel" />
+							<aui:button
+								cssClass="btn-comment btn-sm"
+								onClick="<%= taglibCancel %>"
+								type="cancel"
+							/>
 						</aui:button-row>
 
 						<aui:script>

@@ -81,13 +81,41 @@ if (referer.startsWith(themeDisplay.getPathMain() + "/portal/update_password") &
 				</div>
 			</c:when>
 			<c:otherwise>
-				<aui:form action='<%= themeDisplay.getPathMain() + "/portal/update_password" %>' method="post" name="fm">
-					<aui:input name="p_l_id" type="hidden" value="<%= layout.getPlid() %>" />
-					<aui:input name="p_auth" type="hidden" value="<%= AuthTokenUtil.getToken(request) %>" />
-					<aui:input name="doAsUserId" type="hidden" value="<%= themeDisplay.getDoAsUserId() %>" />
-					<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-					<aui:input name="<%= WebKeys.REFERER %>" type="hidden" value="<%= referer %>" />
-					<aui:input name="ticketKey" type="hidden" value="<%= ticketKey %>" />
+				<aui:form
+					action='<%= themeDisplay.getPathMain() + "/portal/update_password" %>'
+					method="post"
+					name="fm"
+				>
+					<aui:input
+						name="p_l_id"
+						type="hidden"
+						value="<%= layout.getPlid() %>"
+					/>
+					<aui:input
+						name="p_auth"
+						type="hidden"
+						value="<%= AuthTokenUtil.getToken(request) %>"
+					/>
+					<aui:input
+						name="doAsUserId"
+						type="hidden"
+						value="<%= themeDisplay.getDoAsUserId() %>"
+					/>
+					<aui:input
+						name="<%= Constants.CMD %>"
+						type="hidden"
+						value="<%= Constants.UPDATE %>"
+					/>
+					<aui:input
+						name="<%= WebKeys.REFERER %>"
+						type="hidden"
+						value="<%= referer %>"
+					/>
+					<aui:input
+						name="ticketKey"
+						type="hidden"
+						value="<%= ticketKey %>"
+					/>
 
 					<c:if test="<%= !SessionErrors.isEmpty(request) %>">
 						<div class="alert alert-danger">
@@ -177,21 +205,42 @@ if (referer.startsWith(themeDisplay.getPathMain() + "/portal/update_password") &
 					</c:if>
 
 					<aui:fieldset>
-						<aui:input autoFocus="<%= true %>" class="lfr-input-text-container" label="password" name="password1" showRequiredLabel="<%= false %>" type="password">
-							<aui:validator name="required" />
+						<aui:input
+							autoFocus="<%= true %>"
+							class="lfr-input-text-container"
+							label="password"
+							name="password1"
+							showRequiredLabel="<%= false %>"
+							type="password"
+						>
+							<aui:validator
+								name="required"
+							/>
 						</aui:input>
 
-						<aui:input class="lfr-input-text-container" label="enter-again" name="password2" showRequiredLabel="<%= false %>" type="password">
-							<aui:validator name="equalTo">
+						<aui:input
+							class="lfr-input-text-container"
+							label="enter-again"
+							name="password2"
+							showRequiredLabel="<%= false %>"
+							type="password"
+						>
+							<aui:validator
+								name="equalTo"
+							>
 								'#<portlet:namespace />password1'
 							</aui:validator>
 
-							<aui:validator name="required" />
+							<aui:validator
+								name="required"
+							/>
 						</aui:input>
 					</aui:fieldset>
 
 					<aui:button-row>
-						<aui:button type="submit" />
+						<aui:button
+							type="submit"
+						/>
 					</aui:button-row>
 				</aui:form>
 			</c:otherwise>

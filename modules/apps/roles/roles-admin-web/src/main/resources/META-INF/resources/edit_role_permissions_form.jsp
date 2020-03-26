@@ -56,14 +56,43 @@ if (Validator.isNotNull(portletResource)) {
 	<portlet:param name="mvcPath" value="/edit_role_permissions_form.jsp" />
 </portlet:actionURL>
 
-<aui:form action="<%= editRolePermissionsURL %>" method="post" name="fm">
-	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
-	<aui:input name="redirect" type="hidden" />
-	<aui:input name="roleId" type="hidden" value="<%= role.getRoleId() %>" />
-	<aui:input name="portletResource" type="hidden" value="<%= portletResource %>" />
-	<aui:input name="modelResources" type="hidden" value='<%= (modelResources == null) ? "" : StringUtil.merge(modelResources) %>' />
-	<aui:input name="selectedTargets" type="hidden" />
-	<aui:input name="unselectedTargets" type="hidden" />
+<aui:form
+	action="<%= editRolePermissionsURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs3"
+		type="hidden"
+		value="<%= tabs3 %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+	/>
+	<aui:input
+		name="roleId"
+		type="hidden"
+		value="<%= role.getRoleId() %>"
+	/>
+	<aui:input
+		name="portletResource"
+		type="hidden"
+		value="<%= portletResource %>"
+	/>
+	<aui:input
+		name="modelResources"
+		type="hidden"
+		value='<%= (modelResources == null) ? "" : StringUtil.merge(modelResources) %>'
+	/>
+	<aui:input
+		name="selectedTargets"
+		type="hidden"
+	/>
+	<aui:input
+		name="unselectedTargets"
+		type="hidden"
+	/>
 
 	<div class="sheet sheet-lg">
 		<div class="sheet-header">
@@ -210,7 +239,11 @@ if (Validator.isNotNull(portletResource)) {
 					searchContainer.setTotal(relatedPortletResources.size());
 					%>
 
-					<aui:input name="relatedPortletResources" type="hidden" value="<%= StringUtil.merge(relatedPortletResources) %>" />
+					<aui:input
+						name="relatedPortletResources"
+						type="hidden"
+						value="<%= StringUtil.merge(relatedPortletResources) %>"
+					/>
 
 					<liferay-ui:search-iterator
 						paginate="<%= false %>"
@@ -221,7 +254,11 @@ if (Validator.isNotNull(portletResource)) {
 		</c:if>
 
 		<div class="sheet-footer">
-			<aui:button cssClass="btn-primary" onClick='<%= liferayPortletResponse.getNamespace() + "updateActions();" %>' value="save" />
+			<aui:button
+				cssClass="btn-primary"
+				onClick='<%= liferayPortletResponse.getNamespace() + "updateActions();" %>'
+				value="save"
+			/>
 		</div>
 	</div>
 </aui:form>

@@ -50,7 +50,12 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 	sortingURL="<%= selectOrganizationManagementToolbarDisplayContext.getSortingURL() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="selectOrganizationFm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectOrganizationFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= searchContainer %>"
 		var="organizationSearchContainer"
@@ -123,7 +128,12 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 					}
 					%>
 
-					<aui:button cssClass="selector-button" data="<%= data %>" disabled="<%= disabled %>" value="choose" />
+					<aui:button
+						cssClass="selector-button"
+						data="<%= data %>"
+						disabled="<%= disabled %>"
+						value="choose"
+					/>
 				</c:if>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
@@ -134,7 +144,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "organizations"));
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var Util = Liferay.Util;
 
 	var openingLiferay = Util.getOpener().Liferay;

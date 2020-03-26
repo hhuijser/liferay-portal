@@ -70,13 +70,42 @@ renderResponse.setTitle((structure == null) ? LanguageUtil.get(request, "new-ele
 		/>
 	</div>
 
-	<aui:form action="<%= saveStructureURL %>" cssClass="ddm-form-builder-form" method="post" name="editForm">
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
-		<aui:input name="structureId" type="hidden" value="<%= structureId %>" />
-		<aui:input name="structureKey" type="hidden" value="<%= structureKey %>" />
-		<aui:input name="serializedFormBuilderContext" type="hidden" value="<%= serializedFormBuilderContext %>" />
-		<aui:input name="serializedSettingsContext" type="hidden" value="" />
+	<aui:form
+		action="<%= saveStructureURL %>"
+		cssClass="ddm-form-builder-form"
+		method="post"
+		name="editForm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="groupId"
+			type="hidden"
+			value="<%= groupId %>"
+		/>
+		<aui:input
+			name="structureId"
+			type="hidden"
+			value="<%= structureId %>"
+		/>
+		<aui:input
+			name="structureKey"
+			type="hidden"
+			value="<%= structureKey %>"
+		/>
+		<aui:input
+			name="serializedFormBuilderContext"
+			type="hidden"
+			value="<%= serializedFormBuilderContext %>"
+		/>
+		<aui:input
+			name="serializedSettingsContext"
+			type="hidden"
+			value=""
+		/>
 
 		<%@ include file="/admin/exceptions.jspf" %>
 
@@ -94,7 +123,10 @@ renderResponse.setTitle((structure == null) ? LanguageUtil.get(request, "new-ele
 					/>
 				</h1>
 
-				<aui:input name="name" type="hidden" />
+				<aui:input
+					name="name"
+					type="hidden"
+				/>
 
 				<h5>
 					<liferay-ui:input-editor
@@ -108,7 +140,10 @@ renderResponse.setTitle((structure == null) ? LanguageUtil.get(request, "new-ele
 					/>
 				</h5>
 
-				<aui:input name="description" type="hidden" />
+				<aui:input
+					name="description"
+					type="hidden"
+				/>
 			</div>
 		</div>
 

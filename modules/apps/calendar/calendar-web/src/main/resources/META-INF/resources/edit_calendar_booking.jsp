@@ -205,7 +205,9 @@ while (manageableCalendarsIterator.hasNext()) {
 }
 %>
 
-<aui:script use="liferay-calendar-container,liferay-calendar-remote-services,liferay-component">
+<aui:script
+	use="liferay-calendar-container,liferay-calendar-remote-services,liferay-component"
+>
 	Liferay.component('<portlet:namespace />calendarContainer', function() {
 		var calendarContainer = new Liferay.CalendarContainer({
 			groupCalendarResourceId: <%= groupCalendarResource.getCalendarResourceId() %>,
@@ -259,22 +261,59 @@ while (manageableCalendarsIterator.hasNext()) {
 
 <liferay-portlet:actionURL name="updateFormCalendarBooking" var="updateFormCalendarBookingURL" />
 
-<aui:form action="<%= updateFormCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
-	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_booking.jsp" />
+<aui:form
+	action="<%= updateFormCalendarBookingURL %>"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/edit_calendar_booking.jsp"
+	/>
 
 	<liferay-portlet:renderURL var="redirectURL">
 		<liferay-portlet:param name="mvcPath" value="/edit_calendar_booking.jsp" />
 		<liferay-portlet:param name="calendarBookingId" value="<%= String.valueOf(calendarBookingId) %>" />
 	</liferay-portlet:renderURL>
 
-	<aui:input name="redirect" type="hidden" value="<%= calendarDisplayContext.getEditCalendarBookingRedirectURL(request, redirectURL) %>" />
-	<aui:input name="calendarBookingId" type="hidden" value="<%= calendarBookingId %>" />
-	<aui:input name="instanceIndex" type="hidden" value="<%= instanceIndex %>" />
-	<aui:input name="childCalendarIds" type="hidden" />
-	<aui:input name="reinvitableCalendarIds" type="hidden" />
-	<aui:input name="allFollowing" type="hidden" />
-	<aui:input name="updateCalendarBookingInstance" type="hidden" />
-	<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= calendarDisplayContext.getEditCalendarBookingRedirectURL(request, redirectURL) %>"
+	/>
+	<aui:input
+		name="calendarBookingId"
+		type="hidden"
+		value="<%= calendarBookingId %>"
+	/>
+	<aui:input
+		name="instanceIndex"
+		type="hidden"
+		value="<%= instanceIndex %>"
+	/>
+	<aui:input
+		name="childCalendarIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="reinvitableCalendarIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="allFollowing"
+		type="hidden"
+	/>
+	<aui:input
+		name="updateCalendarBookingInstance"
+		type="hidden"
+	/>
+	<aui:input
+		name="workflowAction"
+		type="hidden"
+		value="<%= WorkflowConstants.ACTION_PUBLISH %>"
+	/>
 
 	<div class="lfr-form-content">
 		<div class="sheet sheet-lg">
@@ -285,31 +324,67 @@ while (manageableCalendarsIterator.hasNext()) {
 
 			<liferay-asset:asset-tags-error />
 
-			<aui:model-context bean="<%= calendarBooking %>" model="<%= CalendarBooking.class %>" />
+			<aui:model-context
+				bean="<%= calendarBooking %>"
+				model="<%= CalendarBooking.class %>"
+			/>
 
-			<aui:fieldset markupView="lexicon">
-				<aui:input defaultLanguageId="<%= themeDisplay.getLanguageId() %>" name="title" />
+			<aui:fieldset
+				markupView="lexicon"
+			>
+				<aui:input
+					defaultLanguageId="<%= themeDisplay.getLanguageId() %>"
+					name="title"
+				/>
 
 				<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />startDateContainer">
-					<aui:input ignoreRequestValue="<%= true %>" label="starts" name="startTime" timeFormat="<%= timeFormat %>" value="<%= startTimeJCalendar %>" />
+					<aui:input
+						ignoreRequestValue="<%= true %>"
+						label="starts"
+						name="startTime"
+						timeFormat="<%= timeFormat %>"
+						value="<%= startTimeJCalendar %>"
+					/>
 				</div>
 
 				<div class="<%= allDay ? "allday-class-active" : "" %>" id="<portlet:namespace />endDateContainer">
-					<aui:input ignoreRequestValue="<%= true %>" label="ends" name="endTime" timeFormat="<%= timeFormat %>" value="<%= endTimeJCalendar %>" />
+					<aui:input
+						ignoreRequestValue="<%= true %>"
+						label="ends"
+						name="endTime"
+						timeFormat="<%= timeFormat %>"
+						value="<%= endTimeJCalendar %>"
+					/>
 				</div>
 
-				<aui:input checked="<%= allDay %>" name="allDay" />
+				<aui:input
+					checked="<%= allDay %>"
+					name="allDay"
+				/>
 
-				<aui:field-wrapper cssClass="calendar-portlet-recurrence-container" inlineField="<%= true %>" label="">
-					<aui:input checked="<%= recurring %>" name="repeat" type="checkbox" />
+				<aui:field-wrapper
+					cssClass="calendar-portlet-recurrence-container"
+					inlineField="<%= true %>"
+					label=""
+				>
+					<aui:input
+						checked="<%= recurring %>"
+						name="repeat"
+						type="checkbox"
+					/>
 
 					<a class="calendar-portlet-recurrence-summary" href="javascript:;" id="<portlet:namespace />summary"></a>
 				</aui:field-wrapper>
 
-				<aui:input defaultLanguageId="<%= themeDisplay.getLanguageId() %>" name="description" />
+				<aui:input
+					defaultLanguageId="<%= themeDisplay.getLanguageId() %>"
+					name="description"
+				/>
 			</aui:fieldset>
 
-			<aui:fieldset markupView="lexicon">
+			<aui:fieldset
+				markupView="lexicon"
+			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"
 					id="calendarBookingDetailsPanelContainer"
@@ -324,7 +399,10 @@ while (manageableCalendarsIterator.hasNext()) {
 						persistState="<%= true %>"
 						title="details"
 					>
-						<aui:select label="calendar" name="calendarId">
+						<aui:select
+							label="calendar"
+							name="calendarId"
+						>
 
 							<%
 							for (Calendar curCalendar : manageableCalendars) {
@@ -350,7 +428,9 @@ while (manageableCalendarsIterator.hasNext()) {
 
 						</aui:select>
 
-						<aui:input name="location" />
+						<aui:input
+							name="location"
+						/>
 
 						<liferay-expando:custom-attributes-available
 							className="<%= CalendarBooking.class.getName() %>"
@@ -364,7 +444,9 @@ while (manageableCalendarsIterator.hasNext()) {
 						</liferay-expando:custom-attributes-available>
 
 						<c:if test="<%= calendarBooking == null %>">
-							<aui:field-wrapper label="permissions">
+							<aui:field-wrapper
+								label="permissions"
+							>
 								<liferay-ui:input-permissions
 									modelName="<%= CalendarBooking.class.getName() %>"
 								/>
@@ -382,13 +464,23 @@ while (manageableCalendarsIterator.hasNext()) {
 						title="invitations"
 					>
 						<c:if test="<%= invitable %>">
-							<aui:input inputCssClass="calendar-portlet-invite-resources-input" label="" name="inviteResource" placeholder="add-people-sites-rooms" type="text" />
+							<aui:input
+								inputCssClass="calendar-portlet-invite-resources-input"
+								label=""
+								name="inviteResource"
+								placeholder="add-people-sites-rooms"
+								type="text"
+							/>
 
 							<div class="separator"><!-- --></div>
 						</c:if>
 
-						<aui:row cssClass="calendar-booking-invitations">
-							<aui:col width="<%= (calendarBooking != null) ? 25 : 33 %>">
+						<aui:row
+							cssClass="calendar-booking-invitations"
+						>
+							<aui:col
+								width="<%= (calendarBooking != null) ? 25 : 33 %>"
+							>
 								<label class="field-label">
 									<liferay-ui:message key="pending[calendar]" /> (<span id="<portlet:namespace />pendingCounter"><%= pendingCalendarsJSONArray.length() %></span>)
 								</label>
@@ -396,7 +488,9 @@ while (manageableCalendarsIterator.hasNext()) {
 								<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListPending"></div>
 							</aui:col>
 
-							<aui:col width="<%= (calendarBooking != null) ? 25 : 33 %>">
+							<aui:col
+								width="<%= (calendarBooking != null) ? 25 : 33 %>"
+							>
 								<label class="field-label">
 									<liferay-ui:message key="accepted" /> (<span id="<portlet:namespace />acceptedCounter"><%= acceptedCalendarsJSONArray.length() %></span>)
 								</label>
@@ -404,7 +498,9 @@ while (manageableCalendarsIterator.hasNext()) {
 								<div class="calendar-portlet-calendar-list" id="<portlet:namespace />calendarListAccepted"></div>
 							</aui:col>
 
-							<aui:col width="<%= (calendarBooking != null) ? 25 : 33 %>">
+							<aui:col
+								width="<%= (calendarBooking != null) ? 25 : 33 %>"
+							>
 								<label class="field-label">
 									<liferay-ui:message key="declined" /> (<span id="<portlet:namespace />declinedCounter"><%= declinedCalendarsJSONArray.length() %></span>)
 								</label>
@@ -413,7 +509,9 @@ while (manageableCalendarsIterator.hasNext()) {
 							</aui:col>
 
 							<c:if test="<%= calendarBooking != null %>">
-								<aui:col width="<%= 25 %>">
+								<aui:col
+									width="<%= 25 %>"
+								>
 									<label class="field-label">
 										<liferay-ui:message key="maybe" /> (<span id="<portlet:namespace />maybeCounter"><%= maybeCalendarsJSONArray.length() %></span>)
 									</label>
@@ -422,7 +520,9 @@ while (manageableCalendarsIterator.hasNext()) {
 								</aui:col>
 							</c:if>
 
-							<aui:col width="<%= 100 %>">
+							<aui:col
+								width="<%= 100 %>"
+							>
 								<div class="calendar-portlet-list-header toggler-header-collapsed" id="<portlet:namespace />checkAvailability">
 									<span class="calendar-portlet-list-arrow"></span>
 
@@ -501,7 +601,9 @@ while (manageableCalendarsIterator.hasNext()) {
 		</div>
 	</div>
 
-	<aui:button-row cssClass="d-block">
+	<aui:button-row
+		cssClass="d-block"
+	>
 		<div class="alert alert-info <%= (hasWorkflowDefinitionLink && approved) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />approvalProcessAlert">
 			<liferay-ui:message arguments="<%= ResourceActionsUtil.getModelResource(locale, CalendarBooking.class.getName()) %>" key="this-x-is-approved.-publishing-these-changes-will-cause-it-to-be-unpublished-and-go-through-the-approval-process-again" translateArguments="<%= false %>" />
 		</div>
@@ -514,9 +616,19 @@ while (manageableCalendarsIterator.hasNext()) {
 		}
 		%>
 
-		<aui:button cssClass="ml-0" name="publishButton" type="submit" value="<%= publishButtonLabel %>" />
+		<aui:button
+			cssClass="ml-0"
+			name="publishButton"
+			type="submit"
+			value="<%= publishButtonLabel %>"
+		/>
 
-		<aui:button name="saveButton" primary="<%= false %>" type="submit" value="save-as-draft" />
+		<aui:button
+			name="saveButton"
+			primary="<%= false %>"
+			type="submit"
+			value="save-as-draft"
+		/>
 
 		<c:if test="<%= (calendarBooking != null) && CalendarBookingPermission.contains(themeDisplay.getPermissionChecker(), calendarBooking, ActionKeys.PERMISSIONS) %>">
 			<liferay-security:permissionsURL
@@ -528,7 +640,10 @@ while (manageableCalendarsIterator.hasNext()) {
 				var="permissionsCalendarBookingURL"
 			/>
 
-			<aui:button href="<%= permissionsCalendarBookingURL %>" value="permissions" />
+			<aui:button
+				href="<%= permissionsCalendarBookingURL %>"
+				value="permissions"
+			/>
 		</c:if>
 	</aui:button-row>
 </aui:form>
@@ -611,7 +726,9 @@ while (manageableCalendarsIterator.hasNext()) {
 	</c:if>
 </aui:script>
 
-<aui:script use="json,liferay-calendar-date-picker-sanitizer,liferay-calendar-interval-selector,liferay-calendar-interval-selector-scheduler-event-link,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-reminders,liferay-calendar-simple-menu,liferay-calendar-util">
+<aui:script
+	use="json,liferay-calendar-date-picker-sanitizer,liferay-calendar-interval-selector,liferay-calendar-interval-selector-scheduler-event-link,liferay-calendar-list,liferay-calendar-recurrence-util,liferay-calendar-reminders,liferay-calendar-simple-menu,liferay-calendar-util"
+>
 	var calendarContainer = Liferay.component(
 		'<portlet:namespace />calendarContainer'
 	);

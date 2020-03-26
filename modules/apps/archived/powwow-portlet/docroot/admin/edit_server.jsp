@@ -31,17 +31,40 @@ renderResponse.setTitle((powwowServer != null) ? powwowServer.getName() : Langua
 
 <liferay-portlet:actionURL name="updatePowwowServer" var="editURL" />
 
-<aui:form action="<%= editURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="powwowServerId" type="hidden" value="<%= String.valueOf(powwowServerId) %>" />
+<aui:form
+	action="<%= editURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="powwowServerId"
+		type="hidden"
+		value="<%= String.valueOf(powwowServerId) %>"
+	/>
 
-	<aui:model-context bean="<%= powwowServer %>" model="<%= PowwowServer.class %>" />
+	<aui:model-context
+		bean="<%= powwowServer %>"
+		model="<%= PowwowServer.class %>"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input name="name" />
+			<aui:input
+				name="name"
+			/>
 
-			<aui:select label="provider-type" name="providerType">
+			<aui:select
+				label="provider-type"
+				name="providerType"
+			>
 
 				<%
 				String defaultProviderType = StringPool.BLANK;
@@ -66,22 +89,40 @@ renderResponse.setTitle((powwowServer != null) ? powwowServer.getName() : Langua
 
 			</aui:select>
 
-			<aui:input cssClass="optional-field" label="api-url" name="url" />
+			<aui:input
+				cssClass="optional-field"
+				label="api-url"
+				name="url"
+			/>
 
-			<aui:input cssClass="optional-field" label="api-key" name="apiKey" />
+			<aui:input
+				cssClass="optional-field"
+				label="api-key"
+				name="apiKey"
+			/>
 
-			<aui:input cssClass="optional-field" name="secret" />
+			<aui:input
+				cssClass="optional-field"
+				name="secret"
+			/>
 		</aui:fieldset>
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button onClick="<%= redirect %>" type="cancel" />
+		<aui:button
+			onClick="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	function showProviderTypeFields() {
 		A.all('.optional-field').get('parentNode').hide();
 

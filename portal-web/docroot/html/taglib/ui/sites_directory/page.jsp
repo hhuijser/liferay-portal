@@ -133,7 +133,9 @@
 													colspan="<%= 2 %>"
 												>
 													<h5>
-														<aui:a href="<%= (childGroup.getGroupId() != scopeGroupId) ? childGroup.getDisplayURL(themeDisplay) : null %>">
+														<aui:a
+															href="<%= (childGroup.getGroupId() != scopeGroupId) ? childGroup.getDisplayURL(themeDisplay) : null %>"
+														>
 															<%= childGroup.getDescriptiveName(locale) %>
 														</aui:a>
 													</h5>

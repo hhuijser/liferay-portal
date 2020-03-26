@@ -44,7 +44,12 @@ if (translation == null) {
 	<c:otherwise>
 		<portlet:actionURL var="portletURL" />
 
-		<aui:form accept-charset="UTF-8" action="<%= portletURL %>" method="post" name="fm">
+		<aui:form
+			accept-charset="UTF-8"
+			action="<%= portletURL %>"
+			method="post"
+			name="fm"
+		>
 			<liferay-ui:error exception="<%= MicrosoftTranslatorException.class %>">
 
 				<%
@@ -59,9 +64,20 @@ if (translation == null) {
 			</c:if>
 
 			<aui:fieldset>
-				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" cssClass="lfr-textarea-container" label="" name="text" type="textarea" value="<%= translation.getFromText() %>" wrap="soft" />
+				<aui:input
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+					cssClass="lfr-textarea-container"
+					label=""
+					name="text"
+					type="textarea"
+					value="<%= translation.getFromText() %>"
+					wrap="soft"
+				/>
 
-				<aui:select label="language-from" name="fromLanguageId">
+				<aui:select
+					label="language-from"
+					name="fromLanguageId"
+				>
 
 					<%
 					for (Map.Entry<String, String> entry : languageIdsMap.entrySet()) {
@@ -69,7 +85,11 @@ if (translation == null) {
 						String languageName = entry.getValue();
 					%>
 
-						<aui:option label="<%= languageName %>" selected="<%= languageId.equals(translation.getFromLanguageId()) %>" value="<%= languageId %>" />
+						<aui:option
+							label="<%= languageName %>"
+							selected="<%= languageId.equals(translation.getFromLanguageId()) %>"
+							value="<%= languageId %>"
+						/>
 
 					<%
 					}
@@ -77,7 +97,10 @@ if (translation == null) {
 
 				</aui:select>
 
-				<aui:select label="language-to" name="toLanguageId">
+				<aui:select
+					label="language-to"
+					name="toLanguageId"
+				>
 
 					<%
 					for (Map.Entry<String, String> entry : languageIdsMap.entrySet()) {
@@ -85,7 +108,11 @@ if (translation == null) {
 						String languageName = entry.getValue();
 					%>
 
-						<aui:option label="<%= languageName %>" selected="<%= languageId.equals(translation.getToLanguageId()) %>" value="<%= languageId %>" />
+						<aui:option
+							label="<%= languageName %>"
+							selected="<%= languageId.equals(translation.getToLanguageId()) %>"
+							value="<%= languageId %>"
+						/>
 
 					<%
 					}
@@ -95,7 +122,10 @@ if (translation == null) {
 			</aui:fieldset>
 
 			<aui:button-row>
-				<aui:button type="submit" value="translate" />
+				<aui:button
+					type="submit"
+					value="translate"
+				/>
 			</aui:button-row>
 		</aui:form>
 	</c:otherwise>

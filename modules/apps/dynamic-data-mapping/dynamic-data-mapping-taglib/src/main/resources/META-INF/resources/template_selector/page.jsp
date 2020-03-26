@@ -27,11 +27,24 @@ Group ddmTemplateGroup = GroupLocalServiceUtil.getGroup(ddmTemplateGroupId);
 
 <div class="autofit-row autofit-row-center">
 	<div class="autofit-col inline-item-before">
-		<aui:input id="displayStyleGroupId" name="preferences--displayStyleGroupId--" type="hidden" value="<%= String.valueOf(displayStyleGroupId) %>" />
+		<aui:input
+			id="displayStyleGroupId"
+			name="preferences--displayStyleGroupId--"
+			type="hidden"
+			value="<%= String.valueOf(displayStyleGroupId) %>"
+		/>
 
-		<aui:select id="displayStyle" inlineField="<%= true %>" label="<%= HtmlUtil.escape(label) %>" name="preferences--displayStyle--">
+		<aui:select
+			id="displayStyle"
+			inlineField="<%= true %>"
+			label="<%= HtmlUtil.escape(label) %>"
+			name="preferences--displayStyle--"
+		>
 			<c:if test="<%= showEmptyOption %>">
-				<aui:option label="default" selected="<%= Validator.isNull(displayStyle) %>" />
+				<aui:option
+					label="default"
+					selected="<%= Validator.isNull(displayStyle) %>"
+				/>
 			</c:if>
 
 			<c:if test="<%= (displayStyles != null) && !displayStyles.isEmpty() %>">
@@ -41,7 +54,10 @@ Group ddmTemplateGroup = GroupLocalServiceUtil.getGroup(ddmTemplateGroupId);
 					for (String curDisplayStyle : displayStyles) {
 					%>
 
-						<aui:option label="<%= HtmlUtil.escape(curDisplayStyle) %>" selected="<%= displayStyle.equals(curDisplayStyle) %>" />
+						<aui:option
+							label="<%= HtmlUtil.escape(curDisplayStyle) %>"
+							selected="<%= displayStyle.equals(curDisplayStyle) %>"
+						/>
 
 					<%
 					}
@@ -61,7 +77,12 @@ Group ddmTemplateGroup = GroupLocalServiceUtil.getGroup(ddmTemplateGroupId);
 						data.put("displaystylegroupid", curDDMTemplate.getGroupId());
 			%>
 
-				<aui:option data="<%= data %>" label="<%= HtmlUtil.escape(curDDMTemplate.getName(locale)) %>" selected="<%= (portletDisplayDDMTemplate != null) && (curDDMTemplate.getTemplateId() == portletDisplayDDMTemplate.getTemplateId()) %>" value="<%= PortletDisplayTemplate.DISPLAY_STYLE_PREFIX + HtmlUtil.escape(curDDMTemplate.getTemplateKey()) %>" />
+				<aui:option
+					data="<%= data %>"
+					label="<%= HtmlUtil.escape(curDDMTemplate.getName(locale)) %>"
+					selected="<%= (portletDisplayDDMTemplate != null) && (curDDMTemplate.getTemplateId() == portletDisplayDDMTemplate.getTemplateId()) %>"
+					value="<%= PortletDisplayTemplate.DISPLAY_STYLE_PREFIX + HtmlUtil.escape(curDDMTemplate.getTemplateKey()) %>"
+				/>
 
 			<%
 			}
@@ -88,7 +109,9 @@ Group ddmTemplateGroup = GroupLocalServiceUtil.getGroup(ddmTemplateGroupId);
 	<portlet:param name="showHeader" value="<%= Boolean.FALSE.toString() %>" />
 </liferay-portlet:renderURL>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var selectDDMTemplateLink = document.getElementById(
 		'<portlet:namespace />selectDDMTemplate'
 	);

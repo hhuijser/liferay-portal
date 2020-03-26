@@ -60,20 +60,46 @@ if (ratingsType == null) {
 			<portlet:param name="redirect" value="<%= viewKBArticleURL.toString() %>" />
 		</liferay-portlet:actionURL>
 
-		<aui:form action="<%= updateKBCommentURL %>" method="post" name="suggestionFm">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBArticle.class) %>" />
-			<aui:input name="classPK" type="hidden" value="<%= kbArticle.getResourcePrimKey() %>" />
+		<aui:form
+			action="<%= updateKBCommentURL %>"
+			method="post"
+			name="suggestionFm"
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+				value="<%= Constants.ADD %>"
+			/>
+			<aui:input
+				name="classNameId"
+				type="hidden"
+				value="<%= PortalUtil.getClassNameId(KBArticle.class) %>"
+			/>
+			<aui:input
+				name="classPK"
+				type="hidden"
+				value="<%= kbArticle.getResourcePrimKey() %>"
+			/>
 
 			<liferay-ui:error exception="<%= KBCommentContentException.class %>" message="please-enter-valid-content" />
 
-			<aui:model-context model="<%= KBComment.class %>" />
+			<aui:model-context
+				model="<%= KBComment.class %>"
+			/>
 
 			<aui:fieldset>
-				<aui:input label="" name="content" />
+				<aui:input
+					label=""
+					name="content"
+				/>
 
-				<aui:button-row cssClass="kb-submit-buttons">
-					<aui:button type="submit" value="submit" />
+				<aui:button-row
+					cssClass="kb-submit-buttons"
+				>
+					<aui:button
+						type="submit"
+						value="submit"
+					/>
 				</aui:button-row>
 			</aui:fieldset>
 		</aui:form>

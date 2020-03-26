@@ -50,7 +50,9 @@ for (String previewFileURL : previewFileURLs) {
 
 <c:choose>
 	<c:when test="<%= supportedAudio %>">
-		<aui:script use="aui-audio">
+		<aui:script
+			use="aui-audio"
+		>
 			var playing = false;
 
 			var audio = new A.Audio({
@@ -104,7 +106,9 @@ for (String previewFileURL : previewFileURLs) {
 		</aui:script>
 	</c:when>
 	<c:when test="<%= supportedVideo %>">
-		<aui:script use="aui-base,aui-video">
+		<aui:script
+			use="aui-base,aui-video"
+		>
 			var playing = false;
 
 			var video = new A.Video({

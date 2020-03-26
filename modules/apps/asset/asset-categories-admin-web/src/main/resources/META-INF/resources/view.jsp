@@ -33,7 +33,11 @@ AssetVocabulariesManagementToolbarDisplayContext assetVocabulariesManagementTool
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteVocabularyURL %>" cssClass="container-fluid container-fluid-max-xl" name="fm">
+<aui:form
+	action="<%= deleteVocabularyURL %>"
+	cssClass="container-fluid container-fluid-max-xl"
+	name="fm"
+>
 	<liferay-site-navigation:breadcrumb
 		breadcrumbEntries="<%= AssetCategoryUtil.getAssetVocabulariesBreadcrumbEntries(request) %>"
 	/>

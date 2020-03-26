@@ -35,7 +35,10 @@ portletDisplay.setURLBack(redirect);
 renderResponse.setTitle(kaleoDefinitionVersion.getTitle(locale));
 %>
 
-<aui:model-context bean="<%= kaleoDefinitionVersion %>" model="<%= KaleoDefinitionVersion.class %>" />
+<aui:model-context
+	bean="<%= kaleoDefinitionVersion %>"
+	model="<%= KaleoDefinitionVersion.class %>"
+/>
 
 <liferay-frontend:info-bar>
 	<div class="container-fluid-1280">
@@ -71,13 +74,21 @@ renderResponse.setTitle(kaleoDefinitionVersion.getTitle(locale));
 	</div>
 </liferay-frontend:info-bar>
 
-<aui:input name="content" type="hidden" value="<%= content %>" />
+<aui:input
+	name="content"
+	type="hidden"
+	value="<%= content %>"
+/>
 
 <div class="card-horizontal main-content-card">
 	<div class="card-row-padded">
-		<aui:fieldset cssClass="workflow-definition-content">
+		<aui:fieldset
+			cssClass="workflow-definition-content"
+		>
 			<aui:col>
-				<aui:field-wrapper label="title">
+				<aui:field-wrapper
+					label="title"
+				>
 					<liferay-ui:input-localized
 						disabled="<%= true %>"
 						name="title"
@@ -86,7 +97,10 @@ renderResponse.setTitle(kaleoDefinitionVersion.getTitle(locale));
 				</aui:field-wrapper>
 			</aui:col>
 
-			<aui:col cssClass="workflow-definition-content-source-wrapper" id="contentSourceWrapper">
+			<aui:col
+				cssClass="workflow-definition-content-source-wrapper"
+				id="contentSourceWrapper"
+			>
 				<div class="workflow-definition-content-source" id="<portlet:namespace />contentEditor"></div>
 			</aui:col>
 		</aui:fieldset>
@@ -101,14 +115,21 @@ renderResponse.setTitle(kaleoDefinitionVersion.getTitle(locale));
 						<portlet:param name="draftVersion" value="<%= kaleoDefinitionVersion.getVersion() %>" />
 					</liferay-portlet:renderURL>
 
-					<aui:button cssClass="btn-lg" href="<%= editURL %>" primary="<%= true %>" value="edit" />
+					<aui:button
+						cssClass="btn-lg"
+						href="<%= editURL %>"
+						primary="<%= true %>"
+						value="edit"
+					/>
 				</aui:button-row>
 			</c:when>
 		</c:choose>
 	</div>
 </div>
 
-<aui:script use="aui-ace-editor,liferay-xml-formatter">
+<aui:script
+	use="aui-ace-editor,liferay-xml-formatter"
+>
 	var STR_VALUE = 'value';
 
 	var contentEditor = new A.AceEditor({

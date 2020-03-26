@@ -170,7 +170,9 @@ embeddedPlayerURL.setParameter("mvcPath", "/image_gallery_display/embedded_playe
 embeddedPlayerURL.setWindowState(LiferayWindowState.POP_UP);
 %>
 
-<aui:script use="aui-image-viewer,aui-image-viewer-media">
+<aui:script
+	use="aui-image-viewer,aui-image-viewer-media"
+>
 	var viewportRegion = A.getDoc().get('viewportRegion');
 
 	var maxHeight = viewportRegion.height;

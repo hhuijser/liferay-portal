@@ -32,9 +32,20 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 <liferay-util:include page="/uad_data_navigation_bar.jsp" servletContext="<%= application %>" />
 
 <div class="container-fluid container-fluid-max-xl container-form-lg">
-	<aui:form method="post" name="nonreviewableUADDataForm">
-		<aui:input name="p_u_i_d" type="hidden" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+	<aui:form
+		method="post"
+		name="nonreviewableUADDataForm"
+	>
+		<aui:input
+			name="p_u_i_d"
+			type="hidden"
+			value="<%= String.valueOf(selectedUser.getUserId()) %>"
+		/>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
 
 		<div class="sheet sheet-lg">
 			<div class="sheet-header">
@@ -60,7 +71,13 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 					<div class="autofit-col">
 						<portlet:actionURL name="/anonymize_nonreviewable_uad_data" var="anonymizeURL" />
 
-						<aui:button cssClass="btn-sm" disabled="<%= totalReviewableUADEntitiesCount == 0 %>" onClick='<%= renderResponse.getNamespace() + "confirmAction('nonreviewableUADDataForm', '" + anonymizeURL.toString() + "', '" + UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-anonymize-the-users-personal-data") + "')" %>' primary="true" value="anonymize" />
+						<aui:button
+							cssClass="btn-sm"
+							disabled="<%= totalReviewableUADEntitiesCount == 0 %>"
+							onClick='<%= renderResponse.getNamespace() + "confirmAction('nonreviewableUADDataForm', '" + anonymizeURL.toString() + "', '" + UnicodeLanguageUtil.get(request, "are-you-sure-you-want-to-anonymize-the-users-personal-data") + "')" %>'
+							primary="true"
+							value="anonymize"
+						/>
 					</div>
 				</div>
 			</div>

@@ -27,6 +27,8 @@ boolean scroll = GetterUtil.getBoolean(request.getAttribute("liferay-ui:icon-men
 	</c:if>
 </div>
 
-<aui:script use="liferay-menu">
+<aui:script
+	use="liferay-menu"
+>
 	Liferay.Menu.handleFocus('#<%= id %>menu');
 </aui:script>

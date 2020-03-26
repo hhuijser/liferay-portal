@@ -57,7 +57,12 @@ SearchContainer userSearchContainer = selectOrganizationUsersManagementToolbarDi
 	viewTypeItems="<%= selectOrganizationUsersManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="fm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="users"
 		searchContainer="<%= userSearchContainer %>"
@@ -128,7 +133,9 @@ SearchContainer userSearchContainer = selectOrganizationUsersManagementToolbarDi
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get('<portlet:namespace />users');
 
 	searchContainer.on('rowToggled', function(event) {

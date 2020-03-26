@@ -63,8 +63,14 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 		showParentGroups="<%= false %>"
 	/>
 
-	<aui:form method="get" name="fm">
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
+	<aui:form
+		method="get"
+		name="fm"
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			searchContainer="<%= entriesSearchContainer %>"
@@ -104,12 +110,19 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 							colspan="<%= 2 %>"
 						>
 							<h2 class="h5">
-								<aui:a href="<%= rowURL.toString() %>">
+								<aui:a
+									href="<%= rowURL.toString() %>"
+								>
 									<%= curCategory.getName() %>
 								</aui:a>
 
 								<c:if test='<%= Objects.equals(curCategory.getDisplayStyle(), "question") %>'>
-									<aui:icon cssClass="icon-monospaced" image="question-circle" markupView="lexicon" message="question" />
+									<aui:icon
+										cssClass="icon-monospaced"
+										image="question-circle"
+										markupView="lexicon"
+										message="question"
+									/>
 								</c:if>
 							</h2>
 
@@ -175,7 +188,9 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 							colspan="<%= 2 %>"
 						>
 							<h2 class="h5">
-								<aui:a href="<%= rowURL.toString() %>">
+								<aui:a
+									href="<%= rowURL.toString() %>"
+								>
 									<c:if test="<%= message != null %>">
 										<c:choose>
 											<c:when test="<%= !MBThreadFlagLocalServiceUtil.hasThreadFlag(themeDisplay.getUserId(), thread) %>">
@@ -197,7 +212,12 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 								</c:if>
 
 								<c:if test="<%= thread.isQuestion() %>">
-									<aui:icon cssClass="icon-monospaced" image="question-circle" markupView="lexicon" message="question" />
+									<aui:icon
+										cssClass="icon-monospaced"
+										image="question-circle"
+										markupView="lexicon"
+										message="question"
+									/>
 								</c:if>
 							</h2>
 
@@ -273,10 +293,20 @@ MBCategoryDisplay categoryDisplay = new MBCategoryDisplay(scopeGroupId, category
 							</c:if>
 
 							<div>
-								<aui:workflow-status bean="<%= message %>" markupView="lexicon" model="<%= MBMessage.class %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= message.getStatus() %>" />
+								<aui:workflow-status
+									bean="<%= message %>"
+									markupView="lexicon"
+									model="<%= MBMessage.class %>"
+									showIcon="<%= false %>"
+									showLabel="<%= false %>"
+									status="<%= message.getStatus() %>"
+								/>
 
 								<c:if test="<%= thread.isLocked() %>">
-									<aui:icon image="lock" markupView="lexicon" />
+									<aui:icon
+										image="lock"
+										markupView="lexicon"
+									/>
 
 									<liferay-ui:message key="locked" />
 								</c:if>

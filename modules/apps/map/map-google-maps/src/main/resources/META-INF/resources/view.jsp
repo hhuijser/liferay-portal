@@ -53,7 +53,9 @@ name = namespace + name;
 	<script src="<%= apiURL %>" type="text/javascript"></script>
 </liferay-util:html-top>
 
-<aui:script require="<%= bootstrapRequire %>">
+<aui:script
+	require="<%= bootstrapRequire %>"
+>
 	var MapControls = Liferay.MapBase.CONTROLS;
 
 	var mapConfig = {

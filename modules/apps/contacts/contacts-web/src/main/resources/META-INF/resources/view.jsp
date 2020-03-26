@@ -73,7 +73,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 <c:choose>
 	<c:when test="<%= userPublicPage && (contactsCount <= 0) %>">
 		<aui:row>
-			<aui:col cssClass="contacts-center-home" width="<%= 100 %>">
+			<aui:col
+				cssClass="contacts-center-home"
+				width="<%= 100 %>"
+			>
 				<h3 class="header-title">
 					<liferay-ui:message arguments="<%= new Object[] {HtmlUtil.escape(scopeGroup.getDescriptiveName(locale)), String.valueOf(contactsCount)} %>" key='<%= userPublicPage ? "x-has-no-connections" : "x-has-no-contacts" %>' translateArguments="<%= false %>" />
 				</h3>
@@ -81,33 +84,87 @@ portletURL.setWindowState(WindowState.NORMAL);
 		</aui:row>
 	</c:when>
 	<c:otherwise>
-		<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
-			<aui:input name="redirect" type="hidden" value="" />
-			<aui:input name="userIds" type="hidden" value="" />
-			<aui:input name="type" type="hidden" value="" />
+		<aui:form
+			action="<%= portletURL.toString() %>"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+				value=""
+			/>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value=""
+			/>
+			<aui:input
+				name="userIds"
+				type="hidden"
+				value=""
+			/>
+			<aui:input
+				name="type"
+				type="hidden"
+				value=""
+			/>
 
 			<aui:row>
-				<aui:col cssClass="toolbar" width="<%= 100 %>">
+				<aui:col
+					cssClass="toolbar"
+					width="<%= 100 %>"
+				>
 					<div class="filter-container">
 						<aui:row>
-							<aui:col cssClass="contact-group-filter form-inline">
-								<aui:input cssClass="mr-2" label="" name="checkAll" type="checkbox" />
+							<aui:col
+								cssClass="contact-group-filter form-inline"
+							>
+								<aui:input
+									cssClass="mr-2"
+									label=""
+									name="checkAll"
+									type="checkbox"
+								/>
 
 								<c:if test="<%= !userPublicPage %>">
-									<aui:select cssClass="contact-group-filter-select" inlineField="<%= true %>" label="" name="filterBy" value="<%= filterBy %>">
-										<aui:option label="all" value="<%= ContactsConstants.FILTER_BY_DEFAULT %>" />
+									<aui:select
+										cssClass="contact-group-filter-select"
+										inlineField="<%= true %>"
+										label=""
+										name="filterBy"
+										value="<%= filterBy %>"
+									>
+										<aui:option
+											label="all"
+											value="<%= ContactsConstants.FILTER_BY_DEFAULT %>"
+										/>
 
 										<c:if test="<%= showOnlySiteMembers %>">
-											<aui:option label="administrators" value="<%= ContactsConstants.FILTER_BY_ADMINS %>" />
+											<aui:option
+												label="administrators"
+												value="<%= ContactsConstants.FILTER_BY_ADMINS %>"
+											/>
 										</c:if>
 
-										<aui:option label="connections" value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>" />
-										<aui:option label="following" value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>" />
+										<aui:option
+											label="connections"
+											value="<%= ContactsConstants.FILTER_BY_TYPE_BI_CONNECTION %>"
+										/>
+										<aui:option
+											label="following"
+											value="<%= ContactsConstants.FILTER_BY_TYPE_UNI_FOLLOWER %>"
+										/>
 
 										<c:if test="<%= !showOnlySiteMembers %>">
-											<aui:option label="followers" value="<%= ContactsConstants.FILTER_BY_FOLLOWERS %>" />
-											<aui:option label="my-contacts" value="<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>" />
+											<aui:option
+												label="followers"
+												value="<%= ContactsConstants.FILTER_BY_FOLLOWERS %>"
+											/>
+											<aui:option
+												label="my-contacts"
+												value="<%= ContactsConstants.FILTER_BY_TYPE_MY_CONTACTS %>"
+											/>
 
 											<%
 											List<Group> groups = user.getGroups();
@@ -120,7 +177,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 													String filterByGroupId = ContactsConstants.FILTER_BY_GROUP + curGroup.getGroupId();
 												%>
 
-													<aui:option label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" value="<%= filterByGroupId %>" />
+													<aui:option
+														label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>"
+														value="<%= filterByGroupId %>"
+													/>
 
 												<%
 												}
@@ -135,14 +195,24 @@ portletURL.setWindowState(WindowState.NORMAL);
 					</div>
 
 					<c:if test="<%= !showOnlySiteMembers && !userPublicPage %>">
-						<aui:button cssClass="add-contact" id="addContact" value="add-contact" />
+						<aui:button
+							cssClass="add-contact"
+							id="addContact"
+							value="add-contact"
+						/>
 					</c:if>
 				</aui:col>
 			</aui:row>
 		</aui:form>
 
-		<aui:row cssClass="contacts-result-container lfr-app-column-view">
-			<aui:col cssClass="contacts-list" first="<%= true %>" width="<%= 30 %>">
+		<aui:row
+			cssClass="contacts-result-container lfr-app-column-view"
+		>
+			<aui:col
+				cssClass="contacts-list"
+				first="<%= true %>"
+				width="<%= 30 %>"
+			>
 				<div class="toggle-user">
 					<liferay-ui:icon
 						icon="angle-left"
@@ -151,7 +221,15 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<div class="contacts-search lfr-search-column search-bar">
-					<aui:input cssClass="search-input" id="name" label="" name="name" size="30" type="text" value="<%= HtmlUtil.escape(name) %>" />
+					<aui:input
+						cssClass="search-input"
+						id="name"
+						label=""
+						name="name"
+						size="30"
+						type="text"
+						value="<%= HtmlUtil.escape(name) %>"
+					/>
 
 					<liferay-ui:icon
 						icon="search"
@@ -160,7 +238,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</div>
 
 				<aui:row>
-					<aui:col cssClass='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>' width="<%= 100 %>">
+					<aui:col
+						cssClass='<%= userPublicPage ? "contacts-result personal-contact-list" : "contacts-result" %>'
+						width="<%= 100 %>"
+					>
 
 						<%
 						String lastNameAnchor = StringPool.SPACE;
@@ -301,7 +382,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 				</aui:row>
 			</aui:col>
 
-			<aui:col cssClass="contacts-container" width="<%= 70 %>">
+			<aui:col
+				cssClass="contacts-container"
+				width="<%= 70 %>"
+			>
 				<div id="<portlet:namespace />userToolbarButtons"><!-- --></div>
 
 				<div class="hide" id="<portlet:namespace />contactCenterToolbarButtons">
@@ -322,7 +406,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 						</c:when>
 						<c:otherwise>
 							<aui:row>
-								<aui:col cssClass="contacts-center-home" width="<%= 100 %>">
+								<aui:col
+									cssClass="contacts-center-home"
+									width="<%= 100 %>"
+								>
 									<c:choose>
 										<c:when test="<%= !showOnlySiteMembers %>">
 											<liferay-ui:header
@@ -358,7 +445,10 @@ portletURL.setWindowState(WindowState.NORMAL);
 									%>
 
 									<aui:row>
-										<aui:col cssClass="connections contacts-count" width="<%= 100 %>">
+										<aui:col
+											cssClass="connections contacts-count"
+											width="<%= 100 %>"
+										>
 											<c:choose>
 												<c:when test="<%= showOnlySiteMembers %>">
 													<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(connectionUsersCount) %>" key='<%= (connectionUsersCount == 1) ? "you-have-one-connection-in-this-site" : "you-have-x-connections-in-this-site" %>' translateArguments="<%= false %>" /></a>
@@ -371,14 +461,20 @@ portletURL.setWindowState(WindowState.NORMAL);
 									</aui:row>
 
 									<aui:row>
-										<aui:col cssClass="contacts-count followings" width="<%= 100 %>">
+										<aui:col
+											cssClass="contacts-count followings"
+											width="<%= 100 %>"
+										>
 											<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followingUsersCount) %>" key='<%= showOnlySiteMembers ? "you-are-following-x-people-in-this-site" : "you-are-following-x-people" %>' translateArguments="<%= false %>" /></a>
 										</aui:col>
 									</aui:row>
 
 									<c:if test="<%= !showOnlySiteMembers %>">
 										<aui:row>
-											<aui:col cssClass="contacts-count followers" width="<%= 100 %>">
+											<aui:col
+												cssClass="contacts-count followers"
+												width="<%= 100 %>"
+											>
 												<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(followerUsersCount) %>" key='<%= (followerUsersCount == 1) ? "you-have-one-follower" : "you-have-x-followers" %>' translateArguments="<%= false %>" /></a>
 											</aui:col>
 										</aui:row>
@@ -388,21 +484,30 @@ portletURL.setWindowState(WindowState.NORMAL);
 										%>
 
 										<aui:row>
-											<aui:col cssClass="contacts contacts-count" width="<%= 100 %>">
+											<aui:col
+												cssClass="contacts contacts-count"
+												width="<%= 100 %>"
+											>
 												<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(myContactsCount) %>" key='<%= (myContactsCount == 1) ? "view-one-contact" : "view-my-x-contacts" %>' translateArguments="<%= false %>" /></a>
 											</aui:col>
 										</aui:row>
 									</c:if>
 
 									<aui:row>
-										<aui:col cssClass="all contacts-count" width="<%= 100 %>">
+										<aui:col
+											cssClass="all contacts-count"
+											width="<%= 100 %>"
+										>
 											<a href="javascript:;"><liferay-ui:message arguments="<%= String.valueOf(allUsersCount) %>" key='<%= (allUsersCount == 1) ? "view-one-user" : "view-all-x-users" %>' translateArguments="<%= false %>" /></a>
 										</aui:col>
 									</aui:row>
 
 									<c:if test="<%= !showOnlySiteMembers && (connectionUsersCount <= 0) && (followingUsersCount <= 0) %>">
 										<aui:row>
-											<aui:col cssClass="contacts-center-introduction" width="<%= 100 %>">
+											<aui:col
+												cssClass="contacts-center-introduction"
+												width="<%= 100 %>"
+											>
 												<liferay-ui:message key="contacts-center-lets-you-search-view-and-establish-social-relations-with-other-users" />
 											</aui:col>
 										</aui:row>
@@ -417,7 +522,9 @@ portletURL.setWindowState(WindowState.NORMAL);
 			</aui:col>
 		</aui:row>
 
-		<aui:script use="aui-loading-mask-deprecated,datatype-number,liferay-contacts-center">
+		<aui:script
+			use="aui-loading-mask-deprecated,datatype-number,liferay-contacts-center"
+		>
 			var searchInput = A.one('.contacts-portlet #<portlet:namespace />name');
 
 			Liferay.component('contactsCenter', function() {

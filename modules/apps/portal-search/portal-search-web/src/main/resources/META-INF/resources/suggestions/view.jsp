@@ -39,7 +39,9 @@ SuggestionsPortletDisplayContext suggestionsPortletDisplayContext = (Suggestions
 				SuggestionDisplayContext suggestionDisplayContext = suggestionsPortletDisplayContext.getSpellCheckSuggestion();
 				%>
 
-				<aui:a href="<%= suggestionDisplayContext.getURL() %>">
+				<aui:a
+					href="<%= suggestionDisplayContext.getURL() %>"
+				>
 					<%= suggestionDisplayContext.getSuggestedKeywordsFormatted() %>
 				</aui:a>
 			</li>
@@ -57,7 +59,9 @@ SuggestionsPortletDisplayContext suggestionsPortletDisplayContext = (Suggestions
 			%>
 
 				<li>
-					<aui:a href="<%= suggestionDisplayContext.getURL() %>">
+					<aui:a
+						href="<%= suggestionDisplayContext.getURL() %>"
+					>
 						<%= suggestionDisplayContext.getSuggestedKeywordsFormatted() %>
 					</aui:a>
 				</li>

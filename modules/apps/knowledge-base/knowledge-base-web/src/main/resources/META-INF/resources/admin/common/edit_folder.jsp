@@ -42,30 +42,71 @@ renderResponse.setTitle((kbFolder == null) ? LanguageUtil.get(resourceBundle, "n
 <liferay-portlet:actionURL name="updateKBFolder" var="updateKBFolderURL" />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= updateKBFolderURL %>" method="post" name="fm">
-		<aui:input name="mvcPath" type="hidden" value="/admin/common/edit_folder.jsp" />
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (kbFolder == null) ? Constants.ADD : Constants.UPDATE %>" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="kbFolderId" type="hidden" value="<%= String.valueOf(kbFolderId) %>" />
-		<aui:input name="parentResourceClassNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBFolderConstants.getClassName()) %>" />
-		<aui:input name="parentResourcePrimKey" type="hidden" value="<%= parentResourcePrimKey %>" />
+	<aui:form
+		action="<%= updateKBFolderURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="mvcPath"
+			type="hidden"
+			value="/admin/common/edit_folder.jsp"
+		/>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= (kbFolder == null) ? Constants.ADD : Constants.UPDATE %>"
+		/>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="kbFolderId"
+			type="hidden"
+			value="<%= String.valueOf(kbFolderId) %>"
+		/>
+		<aui:input
+			name="parentResourceClassNameId"
+			type="hidden"
+			value="<%= PortalUtil.getClassNameId(KBFolderConstants.getClassName()) %>"
+		/>
+		<aui:input
+			name="parentResourcePrimKey"
+			type="hidden"
+			value="<%= parentResourcePrimKey %>"
+		/>
 
 		<liferay-ui:error exception="<%= DuplicateKBFolderNameException.class %>" message="please-enter-a-unique-folder-name" />
 		<liferay-ui:error exception="<%= InvalidKBFolderNameException.class %>" message="please-enter-a-valid-folder-name" />
 
-		<aui:model-context bean="<%= kbFolder %>" model="<%= KBFolder.class %>" />
+		<aui:model-context
+			bean="<%= kbFolder %>"
+			model="<%= KBFolder.class %>"
+		/>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
-				<aui:input name="name" />
+				<aui:input
+					name="name"
+				/>
 
-				<aui:input name="description" />
+				<aui:input
+					name="description"
+				/>
 			</aui:fieldset>
 
 			<liferay-expando:custom-attributes-available
 				className="<%= KBFolder.class.getName() %>"
 			>
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="custom-fields"
+				>
 					<liferay-expando:custom-attribute-list
 						className="<%= KBFolder.class.getName() %>"
 						classPK="<%= (kbFolder != null) ? kbFolder.getKbFolderId() : 0 %>"
@@ -76,7 +117,11 @@ renderResponse.setTitle((kbFolder == null) ? LanguageUtil.get(resourceBundle, "n
 			</liferay-expando:custom-attributes-available>
 
 			<c:if test="<%= kbFolder == null %>">
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="permissions"
+				>
 					<aui:field-wrapper>
 						<liferay-ui:input-permissions
 							modelName="<%= KBFolder.class.getName() %>"
@@ -87,9 +132,15 @@ renderResponse.setTitle((kbFolder == null) ? LanguageUtil.get(resourceBundle, "n
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" value="save" />
+			<aui:button
+				type="submit"
+				value="save"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

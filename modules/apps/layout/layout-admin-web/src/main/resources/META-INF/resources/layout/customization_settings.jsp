@@ -61,7 +61,10 @@ if (selLayout != null) {
 	value="customization-settings"
 />
 
-<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= selLayout %>"
+	model="<%= Layout.class %>"
+/>
 
 <c:choose>
 	<c:when test="<%= prototypeGroup %>">
@@ -70,7 +73,13 @@ if (selLayout != null) {
 		</div>
 	</c:when>
 	<c:otherwise>
-		<aui:input checked="<%= selLayout.isCustomizable() %>" helpMessage="customizable-help" label="customizable" name='<%= "TypeSettingsProperties--" + LayoutConstants.CUSTOMIZABLE_LAYOUT + "--" %>' type="toggle-switch" />
+		<aui:input
+			checked="<%= selLayout.isCustomizable() %>"
+			helpMessage="customizable-help"
+			label="customizable"
+			name='<%= "TypeSettingsProperties--" + LayoutConstants.CUSTOMIZABLE_LAYOUT + "--" %>'
+			type="toggle-switch"
+		/>
 
 		<div class="customization-settings" id="<portlet:namespace />customizationSettingsOptions">
 

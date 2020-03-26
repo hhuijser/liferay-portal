@@ -41,9 +41,14 @@
 
 		<%= ddmFormFieldRenderer.render(ddmFormField, ddmFormFieldRenderingContext) %>
 
-		<aui:input name="<%= HtmlUtil.getAUICompatibleId(ddmFormValuesInputName) %>" type="hidden" />
+		<aui:input
+			name="<%= HtmlUtil.getAUICompatibleId(ddmFormValuesInputName) %>"
+			type="hidden"
+		/>
 
-		<aui:script use="liferay-ddm-form">
+		<aui:script
+			use="liferay-ddm-form"
+		>
 			Liferay.component(
 				'<portlet:namespace /><%= HtmlUtil.escapeJS(fieldsNamespace) %>ddmForm',
 				function() {

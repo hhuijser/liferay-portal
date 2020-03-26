@@ -96,18 +96,46 @@ else {
 
 <portlet:actionURL name="/document_library/upload_multiple_file_entries" var="uploadMultipleFileEntriesURL" />
 
-<aui:form action="<%= uploadMultipleFileEntriesURL %>" method="post" name="fm2" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "updateMultipleFiles();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD_MULTIPLE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="portletResource" type="hidden" value='<%= ParamUtil.getString(request, "portletResource") %>' />
-	<aui:input name="repositoryId" type="hidden" value="<%= String.valueOf(repositoryId) %>" />
-	<aui:input name="folderId" type="hidden" value="<%= String.valueOf(folderId) %>" />
+<aui:form
+	action="<%= uploadMultipleFileEntriesURL %>"
+	method="post"
+	name="fm2"
+	onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "updateMultipleFiles();" %>'
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.ADD_MULTIPLE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="portletResource"
+		type="hidden"
+		value='<%= ParamUtil.getString(request, "portletResource") %>'
+	/>
+	<aui:input
+		name="repositoryId"
+		type="hidden"
+		value="<%= String.valueOf(repositoryId) %>"
+	/>
+	<aui:input
+		name="folderId"
+		type="hidden"
+		value="<%= String.valueOf(folderId) %>"
+	/>
 
 	<div class="alert alert-info hide no-files-selected-info" id="<portlet:namespace />metadataExplanationContainer">
 		<liferay-ui:message key="select-documents-from-the-left-to-add-them-to-the-documents-and-media" />
 	</div>
 
-	<aui:model-context bean="<%= fileVersion %>" model="<%= DLFileVersion.class %>" />
+	<aui:model-context
+		bean="<%= fileVersion %>"
+		model="<%= DLFileVersion.class %>"
+	/>
 
 	<liferay-ui:panel-container
 		extended="<%= false %>"
@@ -120,7 +148,9 @@ else {
 		</div>
 
 		<c:if test="<%= (folder == null) || folder.isSupportsMetadata() %>">
-			<aui:input name="description" />
+			<aui:input
+				name="description"
+			/>
 
 			<c:if test="<%= !fileEntryTypes.isEmpty() %>">
 				<liferay-ui:panel
@@ -130,8 +160,16 @@ else {
 					persistState="<%= true %>"
 					title="document-type"
 				>
-					<aui:input name="fileEntryTypeId" type="hidden" value="<%= (fileEntryTypeId > 0) ? fileEntryTypeId : 0 %>" />
-					<aui:input name="defaultLanguageId" type="hidden" value="<%= themeDisplay.getLanguageId() %>" />
+					<aui:input
+						name="fileEntryTypeId"
+						type="hidden"
+						value="<%= (fileEntryTypeId > 0) ? fileEntryTypeId : 0 %>"
+					/>
+					<aui:input
+						name="defaultLanguageId"
+						type="hidden"
+						value="<%= themeDisplay.getLanguageId() %>"
+					/>
 
 					<div class="document-type-selector" id="<portlet:namespace />documentTypeSelector">
 						<liferay-ui:icon-menu
@@ -187,7 +225,11 @@ else {
 								}
 					%>
 
-								<aui:input name="ddmFormFieldNamespace" type="hidden" value="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>" />
+								<aui:input
+									name="ddmFormFieldNamespace"
+									type="hidden"
+									value="<%= String.valueOf(ddmStructure.getPrimaryKey()) %>"
+								/>
 
 								<div class="document-type-fields">
 									<liferay-ddm:html
@@ -211,7 +253,10 @@ else {
 					}
 					%>
 
-					<aui:script position="inline" require="metal-dom/src/all/dom as dom">
+					<aui:script
+						position="inline"
+						require="metal-dom/src/all/dom as dom"
+					>
 						var documentTypeMenuList = document.querySelector(
 							'#<portlet:namespace/>documentTypeSelector .lfr-menu-list'
 						);
@@ -362,5 +407,8 @@ else {
 
 	<span id="<portlet:namespace />selectedFileNameContainer"></span>
 
-	<aui:button type="submit" value="<%= dlEditFileEntryDisplayContext.getPublishButtonLabel() %>" />
+	<aui:button
+		type="submit"
+		value="<%= dlEditFileEntryDisplayContext.getPublishButtonLabel() %>"
+	/>
 </aui:form>

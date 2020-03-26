@@ -46,9 +46,22 @@ renderResponse.setTitle(LanguageUtil.format(request, "reply-membership-request-f
 	<portlet:param name="membershipRequestId" value="<%= String.valueOf(membershipRequest.getMembershipRequestId()) %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= replyMembershipRequestURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="membershipRequestId" type="hidden" value="<%= membershipRequest.getMembershipRequestId() %>" />
+<aui:form
+	action="<%= replyMembershipRequestURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="membershipRequestId"
+		type="hidden"
+		value="<%= membershipRequest.getMembershipRequestId() %>"
+	/>
 
 	<liferay-ui:error exception="<%= DuplicateGroupException.class %>" message="please-enter-a-unique-name" />
 	<liferay-ui:error exception="<%= GroupKeyException.class %>" message="please-enter-a-valid-name" />
@@ -57,9 +70,14 @@ renderResponse.setTitle(LanguageUtil.format(request, "reply-membership-request-f
 	<liferay-ui:error exception="<%= RequiredGroupException.MustNotDeleteGroupThatHasChild.class %>" message="you-cannot-delete-sites-that-have-subsites" />
 	<liferay-ui:error exception="<%= RequiredGroupException.MustNotDeleteSystemGroup.class %>" message="the-site-cannot-be-deleted-or-deactivated-because-it-is-a-required-system-site" />
 
-	<aui:model-context bean="<%= membershipRequest %>" model="<%= MembershipRequest.class %>" />
+	<aui:model-context
+		bean="<%= membershipRequest %>"
+		model="<%= MembershipRequest.class %>"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
 
 			<%
@@ -78,22 +96,48 @@ renderResponse.setTitle(LanguageUtil.format(request, "reply-membership-request-f
 				userId="<%= membershipRequest.getUserId() %>"
 			/>
 
-			<aui:input name="userName" type="resource" value="<%= userName %>" />
+			<aui:input
+				name="userName"
+				type="resource"
+				value="<%= userName %>"
+			/>
 
-			<aui:input name="userComments" readonly="<%= true %>" type="textarea" value="<%= membershipRequest.getComments() %>" />
+			<aui:input
+				name="userComments"
+				readonly="<%= true %>"
+				type="textarea"
+				value="<%= membershipRequest.getComments() %>"
+			/>
 
-			<aui:select autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" label="status" name="statusId">
-				<aui:option label="approve" value="<%= MembershipRequestConstants.STATUS_APPROVED %>" />
-				<aui:option label="deny" value="<%= MembershipRequestConstants.STATUS_DENIED %>" />
+			<aui:select
+				autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+				label="status"
+				name="statusId"
+			>
+				<aui:option
+					label="approve"
+					value="<%= MembershipRequestConstants.STATUS_APPROVED %>"
+				/>
+				<aui:option
+					label="deny"
+					value="<%= MembershipRequestConstants.STATUS_DENIED %>"
+				/>
 			</aui:select>
 
-			<aui:input name="replyComments" />
+			<aui:input
+				name="replyComments"
+			/>
 		</aui:fieldset>
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

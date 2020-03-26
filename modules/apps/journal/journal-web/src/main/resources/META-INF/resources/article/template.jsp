@@ -25,7 +25,11 @@ DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 DDMTemplate ddmTemplate = journalEditArticleDisplayContext.getDDMTemplate();
 %>
 
-<aui:input name="ddmTemplateKey" type="hidden" value="<%= (ddmTemplate != null) ? ddmTemplate.getTemplateKey() : StringPool.BLANK %>" />
+<aui:input
+	name="ddmTemplateKey"
+	type="hidden"
+	value="<%= (ddmTemplate != null) ? ddmTemplate.getTemplateKey() : StringPool.BLANK %>"
+/>
 
 <c:choose>
 	<c:when test="<%= ListUtil.isNotEmpty(ddmStructure.getTemplates()) %>">
@@ -49,14 +53,23 @@ DDMTemplate ddmTemplate = journalEditArticleDisplayContext.getDDMTemplate();
 		</div>
 
 		<div class="form-group">
-			<aui:button id="selectDDMTemplate" value="select" />
+			<aui:button
+				id="selectDDMTemplate"
+				value="select"
+			/>
 
 			<c:if test="<%= (ddmTemplate != null) && DDMTemplatePermission.contains(permissionChecker, ddmTemplate, ActionKeys.UPDATE) %>">
-				<aui:button id="editDDMTemplate" value="edit" />
+				<aui:button
+					id="editDDMTemplate"
+					value="edit"
+				/>
 			</c:if>
 
 			<c:if test="<%= ddmTemplate != null %>">
-				<aui:button id="clearDDMTemplate" value="clear" />
+				<aui:button
+					id="clearDDMTemplate"
+					value="clear"
+				/>
 			</c:if>
 		</div>
 	</c:when>

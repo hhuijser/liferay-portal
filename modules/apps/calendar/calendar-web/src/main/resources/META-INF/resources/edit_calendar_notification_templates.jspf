@@ -39,52 +39,125 @@ String notificationTemplateSubject = BeanPropertiesUtil.getString(calendarNotifi
 	title="<%= calendarName %>"
 />
 
-<aui:nav-bar cssClass="container-fluid-1280" markupView="lexicon">
-	<aui:nav cssClass="navbar-nav">
+<aui:nav-bar
+	cssClass="container-fluid-1280"
+	markupView="lexicon"
+>
+	<aui:nav
+		cssClass="navbar-nav"
+	>
 
 		<%
 		navigationURL.setParameter("tabs3", "invite-email");
 		%>
 
-		<aui:nav-item href="<%= navigationURL.toString() %>" label="invite-email" selected='<%= tabs3.equals("invite-email") %>' />
+		<aui:nav-item
+			href="<%= navigationURL.toString() %>"
+			label="invite-email"
+			selected='<%= tabs3.equals("invite-email") %>'
+		/>
 
 		<%
 		navigationURL.setParameter("tabs3", "reminder-email");
 		%>
 
-		<aui:nav-item href="<%= navigationURL.toString() %>" label="reminder-email" selected='<%= tabs3.equals("reminder-email") %>' />
+		<aui:nav-item
+			href="<%= navigationURL.toString() %>"
+			label="reminder-email"
+			selected='<%= tabs3.equals("reminder-email") %>'
+		/>
 	</aui:nav>
 </aui:nav-bar>
 
 <liferay-portlet:actionURL name="updateCalendarNotificationTemplate" var="updateCalendarNotificationTemplateURL" />
 
-<aui:form action="<%= updateCalendarNotificationTemplateURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarNotificationTemplate();" %>'>
-	<aui:input name="mvcPath" type="hidden" value="/edit_calendar.jsp" />
-	<aui:input name="calendarNotificationTemplateId" type="hidden" value="<%= calendarNotificationTemplateId %>" />
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="tabs3" type="hidden" value="<%= tabs3 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="calendarId" type="hidden" value="<%= String.valueOf(calendar.getCalendarId()) %>" />
-	<aui:input name="calendarResourceId" type="hidden" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
-	<aui:input name="notificationType" type="hidden" value="<%= notificationType.getValue() %>" />
-	<aui:input name="notificationTemplateType" type="hidden" value="<%= notificationTemplateType.getValue() %>" />
+<aui:form
+	action="<%= updateCalendarNotificationTemplateURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarNotificationTemplate();" %>'
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/edit_calendar.jsp"
+	/>
+	<aui:input
+		name="calendarNotificationTemplateId"
+		type="hidden"
+		value="<%= calendarNotificationTemplateId %>"
+	/>
+	<aui:input
+		name="tabs2"
+		type="hidden"
+		value="<%= tabs2 %>"
+	/>
+	<aui:input
+		name="tabs3"
+		type="hidden"
+		value="<%= tabs3 %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="calendarId"
+		type="hidden"
+		value="<%= String.valueOf(calendar.getCalendarId()) %>"
+	/>
+	<aui:input
+		name="calendarResourceId"
+		type="hidden"
+		value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>"
+	/>
+	<aui:input
+		name="notificationType"
+		type="hidden"
+		value="<%= notificationType.getValue() %>"
+	/>
+	<aui:input
+		name="notificationTemplateType"
+		type="hidden"
+		value="<%= notificationTemplateType.getValue() %>"
+	/>
 
-	<aui:model-context bean="<%= calendarNotificationTemplate %>" model="<%= CalendarNotificationTemplate.class %>" />
+	<aui:model-context
+		bean="<%= calendarNotificationTemplate %>"
+		model="<%= CalendarNotificationTemplate.class %>"
+	/>
 
 	<aui:fieldset>
-		<aui:input name="fromName" value="<%= fromName %>" />
+		<aui:input
+			name="fromName"
+			value="<%= fromName %>"
+		/>
 
-		<aui:input name="fromAddress" value="<%= fromAddress %>" />
+		<aui:input
+			name="fromAddress"
+			value="<%= fromAddress %>"
+		/>
 
-		<aui:input name="subject" value="<%= notificationTemplateSubject %>" />
+		<aui:input
+			name="subject"
+			value="<%= notificationTemplateSubject %>"
+		/>
 
-		<aui:field-wrapper label="body">
+		<aui:field-wrapper
+			label="body"
+		>
 			<liferay-ui:input-editor
 				contents="<%= notificationTemplateBody %>"
 				editorImpl="ckeditor"
 			/>
 
-			<aui:input name="body" type="hidden" value="<%= notificationTemplateBody %>" />
+			<aui:input
+				name="body"
+				type="hidden"
+				value="<%= notificationTemplateBody %>"
+			/>
 		</aui:field-wrapper>
 	</aui:fieldset>
 
@@ -180,9 +253,14 @@ String notificationTemplateSubject = BeanPropertiesUtil.getString(calendarNotifi
 	</div>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 

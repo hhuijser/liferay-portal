@@ -30,7 +30,9 @@ List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticleVersions(scopeGrou
 %>
 
 <aui:row>
-	<aui:col width="<%= 100 %>">
+	<aui:col
+		width="<%= 100 %>"
+	>
 		<ul class="sidebar-block tabular-list-group-unstyled">
 
 			<%
@@ -117,7 +119,9 @@ List<KBArticle> kbArticles = KBArticleServiceUtil.getKBArticleVersions(scopeGrou
 	<portlet:param name="resourcePrimKey" value="<%= String.valueOf(kbArticle.getResourcePrimKey()) %>" />
 </portlet:renderURL>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	dom.delegate(document.body, 'click', '.compare-to-link > a', function(event) {
 		var currentTarget = event.delegateTarget;
 

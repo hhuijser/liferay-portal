@@ -33,7 +33,10 @@ data.put("qa-id", "customizations");
 				<liferay-ui:message key="customization-options" />
 
 				<button aria-label="<%= LanguageUtil.get(request, "close") %>" class="close" id="<%= portletNamespace %>closeCustomizationOptions" type="button">
-					<aui:icon image="times" markupView="lexicon" />
+					<aui:icon
+						image="times"
+						markupView="lexicon"
+					/>
 				</button>
 			</div>
 
@@ -68,18 +71,40 @@ data.put("qa-id", "customizations");
 
 				<c:if test="<%= hasUpdateLayoutPermission %>">
 					<li class="control-menu-nav-item mb-0">
-						<aui:input id='<%= portletNamespace + "manageCustomization" %>' inlineField="<%= true %>" label="<%= StringPool.BLANK %>" labelOff='<%= LanguageUtil.get(resourceBundle, "hide-customizable-zones") %>' labelOn='<%= LanguageUtil.get(resourceBundle, "view-customizable-zones") %>' name="manageCustomization" type="toggle-switch" useNamespace="<%= false %>" wrappedField="<%= true %>" />
+						<aui:input
+							id='<%= portletNamespace + "manageCustomization" %>'
+							inlineField="<%= true %>"
+							label="<%= StringPool.BLANK %>"
+							labelOff='<%= LanguageUtil.get(resourceBundle, "hide-customizable-zones") %>'
+							labelOn='<%= LanguageUtil.get(resourceBundle, "view-customizable-zones") %>'
+							name="manageCustomization"
+							type="toggle-switch"
+							useNamespace="<%= false %>"
+							wrappedField="<%= true %>"
+						/>
 
 						<div class="hide layout-customizable-controls-container" id="<%= portletNamespace %>layoutCustomizableControls">
 							<div class="layout-customizable-controls">
 								<span title="<liferay-ui:message key="customizable-help" />">
-									<aui:input cssClass="layout-customizable-checkbox" helpMessage="customizable-help" id="TypeSettingsProperties--[COLUMN_ID]-customizable--" label="" labelOff="not-customizable" labelOn="customizable" name="TypeSettingsProperties--[COLUMN_ID]-customizable--" type="toggle-switch" useNamespace="<%= false %>" />
+									<aui:input
+										cssClass="layout-customizable-checkbox"
+										helpMessage="customizable-help"
+										id="TypeSettingsProperties--[COLUMN_ID]-customizable--"
+										label=""
+										labelOff="not-customizable"
+										labelOn="customizable"
+										name="TypeSettingsProperties--[COLUMN_ID]-customizable--"
+										type="toggle-switch"
+										useNamespace="<%= false %>"
+									/>
 								</span>
 							</div>
 						</div>
 					</li>
 
-					<aui:script use="liferay-layout-customization-settings">
+					<aui:script
+						use="liferay-layout-customization-settings"
+					>
 						var layoutCustomizationSettings = new Liferay.LayoutCustomizationSettings({
 							namespace: '<%= portletNamespace %>',
 						});
@@ -138,7 +163,11 @@ data.put("qa-id", "customizations");
 				</li>
 				<li class="control-menu-nav-item d-block d-md-none mb-0 mt-3">
 					<div class="btn-group dropdown flex-nowrap">
-						<aui:a cssClass="btn btn-primary text-white" href="<%= toggleCustomizationViewURL %>" label="<%= toggleCustomizedViewMessage %>" />
+						<aui:a
+							cssClass="btn btn-primary text-white"
+							href="<%= toggleCustomizationViewURL %>"
+							label="<%= toggleCustomizedViewMessage %>"
+						/>
 
 						<c:if test="<%= layoutTypePortlet.isCustomizedView() %>">
 							<button aria-expanded="false" class="btn btn-primary dropdown-toggle flex-grow-0 h-auto" data-toggle="dropdown" type="button">
@@ -149,14 +178,20 @@ data.put("qa-id", "customizations");
 
 							<ul class="dropdown-menu" role="menu">
 								<li>
-									<aui:a cssClass="dropdown-item" href="<%= resetCustomizationsViewURLString %>" label="reset-my-customizations" />
+									<aui:a
+										cssClass="dropdown-item"
+										href="<%= resetCustomizationsViewURLString %>"
+										label="reset-my-customizations"
+									/>
 								</li>
 							</ul>
 						</c:if>
 					</div>
 				</li>
 
-				<aui:script require="metal-dom/src/dom as dom">
+				<aui:script
+					require="metal-dom/src/dom as dom"
+				>
 					var closeCustomizationOptions = document.getElementById(
 						'<%= portletNamespace %>closeCustomizationOptions'
 					);

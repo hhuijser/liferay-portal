@@ -121,14 +121,47 @@ if (portletTitleBasedNavigation) {
 		<portlet:param name="mvcRenderCommandName" value="/message_boards/edit_message" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= editMessageURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit="event.preventDefault();">
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="messageId" type="hidden" value="<%= messageId %>" />
-		<aui:input name="mbCategoryId" type="hidden" value="<%= categoryId %>" />
-		<aui:input name="threadId" type="hidden" value="<%= threadId %>" />
-		<aui:input name="parentMessageId" type="hidden" value="<%= parentMessageId %>" />
-		<aui:input name="workflowAction" type="hidden" value="<%= String.valueOf(WorkflowConstants.ACTION_SAVE_DRAFT) %>" />
+	<aui:form
+		action="<%= editMessageURL %>"
+		enctype="multipart/form-data"
+		method="post"
+		name="fm"
+		onSubmit="event.preventDefault();"
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="messageId"
+			type="hidden"
+			value="<%= messageId %>"
+		/>
+		<aui:input
+			name="mbCategoryId"
+			type="hidden"
+			value="<%= categoryId %>"
+		/>
+		<aui:input
+			name="threadId"
+			type="hidden"
+			value="<%= threadId %>"
+		/>
+		<aui:input
+			name="parentMessageId"
+			type="hidden"
+			value="<%= parentMessageId %>"
+		/>
+		<aui:input
+			name="workflowAction"
+			type="hidden"
+			value="<%= String.valueOf(WorkflowConstants.ACTION_SAVE_DRAFT) %>"
+		/>
 
 		<liferay-ui:error exception="<%= AntivirusScannerException.class %>">
 
@@ -175,7 +208,9 @@ if (portletTitleBasedNavigation) {
 
 		<liferay-asset:asset-tags-error />
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 				<c:if test="<%= curParentMessage != null %>">
 					<div class="reply-to-message">
@@ -196,11 +231,21 @@ if (portletTitleBasedNavigation) {
 					</div>
 				</c:if>
 
-				<aui:model-context bean="<%= message %>" model="<%= MBMessage.class %>" />
+				<aui:model-context
+					bean="<%= message %>"
+					model="<%= MBMessage.class %>"
+				/>
 
-				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="subject" value="<%= subject %>" />
+				<aui:input
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+					name="subject"
+					value="<%= subject %>"
+				/>
 
-				<aui:field-wrapper cssClass="message-content" label="body">
+				<aui:field-wrapper
+					cssClass="message-content"
+					label="body"
+				>
 					<c:choose>
 						<c:when test='<%= ((messageId != 0) && message.isFormatBBCode()) || ((messageId == 0) && messageFormat.equals("bbcode")) %>'>
 							<%@ include file="/message_boards/bbcode_editor.jspf" %>
@@ -210,14 +255,21 @@ if (portletTitleBasedNavigation) {
 						</c:otherwise>
 					</c:choose>
 
-					<aui:input name="body" type="hidden" />
+					<aui:input
+						name="body"
+						type="hidden"
+					/>
 				</aui:field-wrapper>
 			</aui:fieldset>
 
 			<liferay-expando:custom-attributes-available
 				className="<%= MBMessage.class.getName() %>"
 			>
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="custom-fields"
+				>
 					<liferay-expando:custom-attribute-list
 						className="<%= MBMessage.class.getName() %>"
 						classPK="<%= messageId %>"
@@ -228,7 +280,11 @@ if (portletTitleBasedNavigation) {
 			</liferay-expando:custom-attributes-available>
 
 			<c:if test="<%= MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.ADD_FILE) %>">
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="attachments">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="attachments"
+				>
 					<liferay-util:include page="/message_boards/edit_message_attachment.jsp" servletContext="<%= application %>" />
 
 					<div class="<%= (existingAttachmentsFileEntries.size() == 0) ? "hide" : StringPool.BLANK %>" id="<portlet:namespace />fileAttachments">
@@ -301,7 +357,11 @@ if (portletTitleBasedNavigation) {
 			</c:if>
 
 			<c:if test="<%= curParentMessage == null %>">
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="categorization">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="categorization"
+				>
 					<liferay-asset:asset-categories-selector
 						className="<%= MBMessage.class.getName() %>"
 						classPK="<%= (message != null) ? message.getMessageId() : 0 %>"
@@ -314,14 +374,22 @@ if (portletTitleBasedNavigation) {
 				</aui:fieldset>
 			</c:if>
 
-			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="related-assets">
+			<aui:fieldset
+				collapsed="<%= true %>"
+				collapsible="<%= true %>"
+				label="related-assets"
+			>
 				<liferay-asset:input-asset-links
 					className="<%= MBMessage.class.getName() %>"
 					classPK="<%= (message != null) ? message.getMessageId() : 0 %>"
 				/>
 			</aui:fieldset>
 
-			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="more-settings">
+			<aui:fieldset
+				collapsed="<%= true %>"
+				collapsible="<%= true %>"
+				label="more-settings"
+			>
 				<c:if test="<%= curParentMessage == null %>">
 
 					<%
@@ -347,15 +415,32 @@ if (portletTitleBasedNavigation) {
 					}
 					%>
 
-					<aui:input disabled="<%= disabled %>" helpMessage="message-boards-message-question-help" label="mark-as-a-question" name="question" type="checkbox" value="<%= question %>" />
+					<aui:input
+						disabled="<%= disabled %>"
+						helpMessage="message-boards-message-question-help"
+						label="mark-as-a-question"
+						name="question"
+						type="checkbox"
+						value="<%= question %>"
+					/>
 				</c:if>
 
 				<c:if test="<%= (message == null) && themeDisplay.isSignedIn() && allowAnonymousPosting %>">
-					<aui:input helpMessage="message-boards-message-anonymous-help" name="anonymous" type="checkbox" />
+					<aui:input
+						helpMessage="message-boards-message-anonymous-help"
+						name="anonymous"
+						type="checkbox"
+					/>
 				</c:if>
 
 				<c:if test="<%= (message == null) && themeDisplay.isSignedIn() && !SubscriptionLocalServiceUtil.isSubscribed(themeDisplay.getCompanyId(), user.getUserId(), MBThread.class.getName(), threadId) && !SubscriptionLocalServiceUtil.isSubscribed(themeDisplay.getCompanyId(), user.getUserId(), MBCategory.class.getName(), categoryId) %>">
-					<aui:input helpMessage="message-boards-message-subscribe-me-help" label="subscribe-me" name="subscribe" type='<%= (mbGroupServiceSettings.isEmailMessageAddedEnabled() || mbGroupServiceSettings.isEmailMessageUpdatedEnabled()) ? "checkbox" : "hidden" %>' value="<%= subscribeByDefault %>" />
+					<aui:input
+						helpMessage="message-boards-message-subscribe-me-help"
+						label="subscribe-me"
+						name="subscribe"
+						type='<%= (mbGroupServiceSettings.isEmailMessageAddedEnabled() || mbGroupServiceSettings.isEmailMessageUpdatedEnabled()) ? "checkbox" : "hidden" %>'
+						value="<%= subscribeByDefault %>"
+					/>
 				</c:if>
 
 				<c:if test="<%= (priorities.length > 0) && MBCategoryPermission.contains(permissionChecker, scopeGroupId, categoryId, ActionKeys.UPDATE_THREAD_PRIORITY) %>">
@@ -364,8 +449,12 @@ if (portletTitleBasedNavigation) {
 					double threadPriority = BeanParamUtil.getDouble(message, request, "priority");
 					%>
 
-					<aui:select name="priority">
-						<aui:option value="" />
+					<aui:select
+						name="priority"
+					>
+						<aui:option
+							value=""
+						/>
 
 						<%
 						for (int i = 0; i < priorities.length; i++) {
@@ -378,7 +467,11 @@ if (portletTitleBasedNavigation) {
 								if (priorityValue > 0) {
 						%>
 
-									<aui:option label="<%= HtmlUtil.escape(priorityName) %>" selected="<%= threadPriority == priorityValue %>" value="<%= priorityValue %>" />
+									<aui:option
+										label="<%= HtmlUtil.escape(priorityName) %>"
+										selected="<%= threadPriority == priorityValue %>"
+										value="<%= priorityValue %>"
+									/>
 
 						<%
 								}
@@ -392,12 +485,21 @@ if (portletTitleBasedNavigation) {
 				</c:if>
 
 				<c:if test="<%= PropsValues.MESSAGE_BOARDS_PINGBACK_ENABLED %>">
-					<aui:input helpMessage="to-allow-pingbacks,-please-also-ensure-the-entry's-guest-view-permission-is-enabled" label="allow-pingbacks" name="allowPingbacks" value="<%= allowPingbacks %>" />
+					<aui:input
+						helpMessage="to-allow-pingbacks,-please-also-ensure-the-entry's-guest-view-permission-is-enabled"
+						label="allow-pingbacks"
+						name="allowPingbacks"
+						value="<%= allowPingbacks %>"
+					/>
 				</c:if>
 			</aui:fieldset>
 
 			<c:if test="<%= message == null %>">
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="permissions"
+				>
 					<liferay-ui:input-permissions
 						modelName="<%= MBMessage.class.getName() %>"
 					/>
@@ -449,18 +551,31 @@ if (portletTitleBasedNavigation) {
 				</div>
 			</c:if>
 
-			<aui:button disabled="<%= pending %>" name="publishButton" type="submit" value="<%= publishButtonLabel %>" />
+			<aui:button
+				disabled="<%= pending %>"
+				name="publishButton"
+				type="submit"
+				value="<%= publishButtonLabel %>"
+			/>
 
 			<c:if test="<%= themeDisplay.isSignedIn() %>">
-				<aui:button name="saveButton" value="<%= saveButtonLabel %>" />
+				<aui:button
+					name="saveButton"
+					value="<%= saveButtonLabel %>"
+				/>
 			</c:if>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>
 
-<aui:script require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'>
+<aui:script
+	require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'
+>
 	new MBPortlet.default({
 		constants: {
 			ACTION_PUBLISH: '<%= WorkflowConstants.ACTION_PUBLISH %>',

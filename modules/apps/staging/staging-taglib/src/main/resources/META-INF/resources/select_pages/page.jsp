@@ -16,23 +16,39 @@
 
 <%@ include file="/select_pages/init.jsp" %>
 
-<aui:input name="layoutIds" type="hidden" value="<%= ExportImportHelperUtil.getSelectedLayoutsJSON(selectPagesGroupId, selectPagesPrivateLayout, selectedLayoutIds) %>" />
+<aui:input
+	name="layoutIds"
+	type="hidden"
+	value="<%= ExportImportHelperUtil.getSelectedLayoutsJSON(selectPagesGroupId, selectPagesPrivateLayout, selectedLayoutIds) %>"
+/>
 
-<aui:fieldset cssClass="options-group" id="pages-fieldset" markupView="lexicon">
+<aui:fieldset
+	cssClass="options-group"
+	id="pages-fieldset"
+	markupView="lexicon"
+>
 	<div class="sheet-section">
 		<h3 class="sheet-subtitle"><liferay-ui:message key="pages" /></h3>
 
 		<ul class="flex-container layout-selector" id="<portlet:namespace />pages">
 			<c:if test="<%= !disableInputs || LayoutStagingUtil.isBranchingLayoutSet(selectPagesGroup, selectPagesPrivateLayout) %>">
 				<li class="layout-selector-options">
-					<aui:fieldset label="pages-options">
+					<aui:fieldset
+						label="pages-options"
+					>
 						<c:if test="<%= !disableInputs %>">
 							<c:choose>
 								<c:when test="<%= selectPagesPrivateLayout %>">
-									<aui:button id="changeToPublicLayoutsButton" value="change-to-public-pages" />
+									<aui:button
+										id="changeToPublicLayoutsButton"
+										value="change-to-public-pages"
+									/>
 								</c:when>
 								<c:otherwise>
-									<aui:button id="changeToPrivateLayoutsButton" value="change-to-private-pages" />
+									<aui:button
+										id="changeToPrivateLayoutsButton"
+										value="change-to-private-pages"
+									/>
 								</c:otherwise>
 							</c:choose>
 						</c:if>
@@ -54,7 +70,11 @@
 							}
 							%>
 
-							<aui:select disabled="<%= disableInputs %>" label="site-pages-variation" name="layoutSetBranchId">
+							<aui:select
+								disabled="<%= disableInputs %>"
+								label="site-pages-variation"
+								name="layoutSetBranchId"
+							>
 
 								<%
 								for (LayoutSetBranch layoutSetBranch : layoutSetBranches) {
@@ -67,7 +87,12 @@
 									}
 								%>
 
-									<aui:option label="<%= HtmlUtil.escape(layoutSetBranch.getName()) %>" localizeLabel="<%= translateLayoutSetBranchName %>" selected="<%= selected %>" value="<%= layoutSetBranch.getLayoutSetBranchId() %>" />
+									<aui:option
+										label="<%= HtmlUtil.escape(layoutSetBranch.getName()) %>"
+										localizeLabel="<%= translateLayoutSetBranchName %>"
+										selected="<%= selected %>"
+										value="<%= layoutSetBranch.getLayoutSetBranchId() %>"
+									/>
 
 								<%
 								}
@@ -80,7 +105,9 @@
 			</c:if>
 
 			<li class="layout-selector-options">
-				<aui:fieldset label='<%= "pages-to-" + action %>'>
+				<aui:fieldset
+					label='<%= "pages-to-" + action %>'
+				>
 
 					<%
 					long selPlid = ParamUtil.getLong(request, "selPlid", LayoutConstants.DEFAULT_PLID);
@@ -139,7 +166,9 @@
 				</aui:fieldset>
 			</li>
 			<li class="layout-selector-options">
-				<aui:fieldset label="look-and-feel">
+				<aui:fieldset
+					label="look-and-feel"
+				>
 					<liferay-staging:checkbox
 						checked="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.THEME_REFERENCE, ParamUtil.getBoolean(request, PortletDataHandlerKeys.THEME_REFERENCE, true)) %>"
 						disabled="<%= disableInputs %>"
@@ -185,7 +214,9 @@
 		<c:if test="<%= action.equals(Constants.PUBLISH) %>">
 			<ul class="deletions flex-container layout-selector" id="<portlet:namespace />pagedeletions">
 				<li class="layout-selector-options">
-					<aui:fieldset label="page-deletions">
+					<aui:fieldset
+						label="page-deletions"
+					>
 
 						<%
 						DateRange dateRange = null;

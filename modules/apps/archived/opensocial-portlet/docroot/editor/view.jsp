@@ -28,7 +28,9 @@
 
 			<div id="<portlet:namespace />editor"></div>
 
-			<aui:script use="opensocial-editor">
+			<aui:script
+				use="opensocial-editor"
+			>
 				new Liferay.OpenSocial.Editor(
 					{
 						baseRenderURL: '<%= PortletURLFactoryUtil.create(request, portletDisplay.getId(), themeDisplay.getPlid(), PortletRequest.RENDER_PHASE) %>',

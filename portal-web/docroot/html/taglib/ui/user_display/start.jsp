@@ -24,7 +24,9 @@
 	}
 	%>
 
-	<aui:a href="<%= url %>">
+	<aui:a
+		href="<%= url %>"
+	>
 		<liferay-ui:user-portrait
 			imageCssClass="<%= imageCssClass %>"
 			user="<%= userDisplay %>"

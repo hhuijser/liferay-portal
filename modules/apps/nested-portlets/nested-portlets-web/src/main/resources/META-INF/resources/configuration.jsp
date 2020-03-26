@@ -25,9 +25,21 @@
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
-	<aui:input name="oldLayoutTemplateId" type="hidden" value="<%= nestedPortletsDisplayContext.getLayoutTemplateId() %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
+	<aui:input
+		name="oldLayoutTemplateId"
+		type="hidden"
+		value="<%= nestedPortletsDisplayContext.getLayoutTemplateId() %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -47,7 +59,13 @@
 						<div class="col-6 col-md-3 col-sm-4">
 							<div class="radio radio-card radio-top-left">
 								<label>
-									<aui:input checked="<%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) %>" label="" name="preferences--layoutTemplateId--" type="radio" value="<%= layoutTemplate.getLayoutTemplateId() %>" />
+									<aui:input
+										checked="<%= layoutTemplateId.equals(layoutTemplate.getLayoutTemplateId()) %>"
+										label=""
+										name="preferences--layoutTemplateId--"
+										type="radio"
+										value="<%= layoutTemplate.getLayoutTemplateId() %>"
+									/>
 
 									<div class="card">
 										<div class="aspect-ratio aspect-ratio-bg-cover" style="background-image: url('<%= layoutTemplate.getStaticResourcePath() + HtmlUtil.escapeAttribute(layoutTemplate.getThumbnailPath()) %>');">
@@ -73,8 +91,12 @@
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

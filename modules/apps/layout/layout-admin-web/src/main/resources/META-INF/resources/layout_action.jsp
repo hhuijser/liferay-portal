@@ -97,7 +97,9 @@ Layout curLayout = (Layout)row.getObject();
 	</c:if>
 </liferay-ui:icon-menu>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	var addLayoutPrototypeActionOptionQueryClickHandler = dom.delegate(
 		document.body,
 		'click',

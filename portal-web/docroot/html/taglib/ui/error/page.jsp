@@ -29,7 +29,10 @@ String rowBreak = (String)request.getAttribute("liferay-ui:error:rowBreak");
 	<c:when test="<%= embed %>">
 		<div class="alert alert-dismissible alert-<%= alertStyle %>" role="alert">
 			<button aria-label="<%= LanguageUtil.get(request, "close") %>" class="close" data-dismiss="liferay-alert" type="button">
-				<aui:icon image="times" markupView="lexicon" />
+				<aui:icon
+					image="times"
+					markupView="lexicon"
+				/>
 
 				<span class="sr-only"><%= LanguageUtil.get(request, "close") %></span>
 			</button>
@@ -46,7 +49,9 @@ String rowBreak = (String)request.getAttribute("liferay-ui:error:rowBreak");
 		<%= rowBreak %>
 	</c:when>
 	<c:otherwise>
-		<aui:script require="metal-dom/src/all/dom as dom,clay-alert/src/ClayToast as ClayToast">
+		<aui:script
+			require="metal-dom/src/all/dom as dom,clay-alert/src/ClayToast as ClayToast"
+		>
 			let alertContainer = document.getElementById('alertContainer');
 
 			if (!alertContainer) {

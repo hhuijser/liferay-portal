@@ -107,7 +107,10 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 
 		<c:if test="<%= (mdrRuleGroupsCount > 0) || searchTerms.isSearch() %>">
 			<li>
-				<aui:form action="<%= portletURL.toString() %>" name="searchFm">
+				<aui:form
+					action="<%= portletURL.toString() %>"
+					name="searchFm"
+				>
 					<liferay-ui:input-search
 						markupView="lexicon"
 					/>
@@ -130,10 +133,26 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 	<portlet:param name="mvcRenderCommandName" value="/mobile_device_rules/edit_rule_group" />
 </portlet:actionURL>
 
-<aui:form action="<%= editRuleGroupURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="ruleGroupIds" type="hidden" />
+<aui:form
+	action="<%= editRuleGroupURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.DELETE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="ruleGroupIds"
+		type="hidden"
+	/>
 
 	<liferay-ui:search-container
 		id="deviceFamilies"

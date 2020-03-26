@@ -20,14 +20,23 @@
 	displayContext="<%= new AssetBrowserManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, assetBrowserDisplayContext) %>"
 />
 
-<aui:form action="<%= assetBrowserDisplayContext.getPortletURL() %>" cssClass="container-fluid-1280" method="post" name="selectAssetFm">
+<aui:form
+	action="<%= assetBrowserDisplayContext.getPortletURL() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectAssetFm"
+>
 	<c:if test="<%= assetBrowserDisplayContext.isMultipleSelection() %>">
 		<liferay-site-navigation:breadcrumb
 			breadcrumbEntries="<%= assetBrowserDisplayContext.getPortletBreadcrumbEntries() %>"
 		/>
 	</c:if>
 
-	<aui:input name="typeSelection" type="hidden" value="<%= assetBrowserDisplayContext.getTypeSelection() %>" />
+	<aui:input
+		name="typeSelection"
+		type="hidden"
+		value="<%= assetBrowserDisplayContext.getTypeSelection() %>"
+	/>
 
 	<liferay-ui:search-container
 		id="selectAssetEntries"
@@ -94,7 +103,11 @@
 						<h5>
 							<c:choose>
 								<c:when test="<%= (assetEntry.getEntryId() != assetBrowserDisplayContext.getRefererAssetEntryId()) && !assetBrowserDisplayContext.isMultipleSelection() %>">
-									<aui:a cssClass="<%= cssClass %>" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="<%= cssClass %>"
+										data="<%= data %>"
+										href="javascript:;"
+									>
 										<%= HtmlUtil.escape(assetRenderer.getTitle(locale)) %>
 									</aui:a>
 								</c:when>
@@ -112,7 +125,12 @@
 
 						<c:if test="<%= assetBrowserDisplayContext.isShowAssetEntryStatus() %>">
 							<span class="text-default">
-								<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= assetRenderer.getStatus() %>" />
+								<aui:workflow-status
+									markupView="lexicon"
+									showIcon="<%= false %>"
+									showLabel="<%= false %>"
+									status="<%= assetRenderer.getStatus() %>"
+								/>
 							</span>
 						</c:if>
 					</liferay-ui:search-container-column-text>
@@ -136,7 +154,11 @@
 					>
 						<c:choose>
 							<c:when test="<%= (assetEntry.getEntryId() != assetBrowserDisplayContext.getRefererAssetEntryId()) && !assetBrowserDisplayContext.isMultipleSelection() %>">
-								<aui:a cssClass="<%= cssClass %>" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="<%= cssClass %>"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= HtmlUtil.escape(assetRenderer.getTitle(locale)) %>
 								</aui:a>
 							</c:when>
@@ -194,7 +216,9 @@
 
 <c:choose>
 	<c:when test="<%= assetBrowserDisplayContext.isMultipleSelection() %>">
-		<aui:script use="liferay-search-container">
+		<aui:script
+			use="liferay-search-container"
+		>
 			var searchContainer = Liferay.SearchContainer.get(
 				'<portlet:namespace />selectAssetEntries'
 			);
@@ -236,7 +260,9 @@
 		</aui:script>
 	</c:when>
 	<c:otherwise>
-		<aui:script require="metal-dom/src/all/dom as dom">
+		<aui:script
+			require="metal-dom/src/all/dom as dom"
+		>
 			var delegateHandler = dom.delegate(
 				document.querySelector('#<portlet:namespace/>selectAssetFm'),
 				'click',

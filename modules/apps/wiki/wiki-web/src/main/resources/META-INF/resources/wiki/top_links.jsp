@@ -53,7 +53,9 @@ if (portletTitleBasedNavigation) {
 
 <c:if test="<%= !print %>">
 	<c:if test="<%= wikiVisualizationHelper.isNodeNavigationVisible() %>">
-		<aui:nav cssClass="nav-tabs">
+		<aui:nav
+			cssClass="nav-tabs"
+		>
 
 			<%
 			for (WikiNode curNode : nodes) {
@@ -66,7 +68,11 @@ if (portletTitleBasedNavigation) {
 				PortletURL viewPageURL = wikiURLHelper.getViewFrontPagePageURL(curNode);
 			%>
 
-				<aui:nav-item cssClass="<%= cssClass %>" href="<%= viewPageURL.toString() %>" label="<%= HtmlUtil.escape(curNode.getName()) %>" />
+				<aui:nav-item
+					cssClass="<%= cssClass %>"
+					href="<%= viewPageURL.toString() %>"
+					label="<%= HtmlUtil.escape(curNode.getName()) %>"
+				/>
 
 			<%
 			}

@@ -55,8 +55,16 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error key="unparsableDate" message="unparsable-date" />
@@ -81,7 +89,9 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 				collapsible="<%= true %>"
 				label="advanced-configuration"
 			>
-				<aui:fieldset id='<%= renderResponse.getNamespace() + "rangesId" %>'>
+				<aui:fieldset
+					id='<%= renderResponse.getNamespace() + "rangesId" %>'
+				>
 
 					<%
 					int[] rangesIndexes = new int[rangesJSONArray.length()];
@@ -94,9 +104,21 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 
 						<div class="lfr-form-row lfr-form-row-inline range-form-row">
 							<div class="row-fields">
-								<aui:input cssClass="label-input" label="label" name='<%= "label_" + i %>' required="<%= true %>" value='<%= jsonObject.getString("label") %>' />
+								<aui:input
+									cssClass="label-input"
+									label="label"
+									name='<%= "label_" + i %>'
+									required="<%= true %>"
+									value='<%= jsonObject.getString("label") %>'
+								/>
 
-								<aui:input cssClass="range-input" label="range" name='<%= "range_" + i %>' required="<%= true %>" value='<%= jsonObject.getString("range") %>' />
+								<aui:input
+									cssClass="range-input"
+									label="range"
+									name='<%= "range_" + i %>'
+									required="<%= true %>"
+									value='<%= jsonObject.getString("range") %>'
+								/>
 							</div>
 						</div>
 
@@ -104,22 +126,38 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 					}
 					%>
 
-					<aui:input cssClass="ranges-input" name="<%= PortletPreferencesJspUtil.getInputName(ModifiedFacetPortletPreferences.PREFERENCE_KEY_RANGES) %>" type="hidden" value="<%= modifiedFacetPortletPreferences.getRangesString() %>" />
+					<aui:input
+						cssClass="ranges-input"
+						name="<%= PortletPreferencesJspUtil.getInputName(ModifiedFacetPortletPreferences.PREFERENCE_KEY_RANGES) %>"
+						type="hidden"
+						value="<%= modifiedFacetPortletPreferences.getRangesString() %>"
+					/>
 
-					<aui:input name="rangesIndexes" type="hidden" value="<%= StringUtil.merge(rangesIndexes) %>" />
+					<aui:input
+						name="rangesIndexes"
+						type="hidden"
+						value="<%= StringUtil.merge(rangesIndexes) %>"
+					/>
 				</aui:fieldset>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button cssClass="btn-lg" type="submit" />
+		<aui:button
+			cssClass="btn-lg"
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 
-<aui:script use="liferay-auto-fields">
+<aui:script
+	use="liferay-auto-fields"
+>
 	new Liferay.AutoFields({
 		contentBox: 'fieldset#<portlet:namespace />rangesId',
 		fieldIndexes: '<portlet:namespace />rangesIndexes',
@@ -127,7 +165,9 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 	}).render();
 </aui:script>
 
-<aui:script use="liferay-search-modified-facet-configuration">
+<aui:script
+	use="liferay-search-modified-facet-configuration"
+>
 	new Liferay.Search.ModifiedFacetConfiguration(
 		A.one(document.<portlet:namespace />fm)
 	);

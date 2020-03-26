@@ -30,7 +30,11 @@ String displayStyle = ParamUtil.getString(request, "displayStyle", displayStyleD
 	<portlet:param name="mvcPath" value="/view_resources.jsp" />
 </portlet:resourceURL>
 
-<aui:form action="<%= updateContentListURL %>" name="addContentForm" onSubmit="event.preventDefault();">
+<aui:form
+	action="<%= updateContentListURL %>"
+	name="addContentForm"
+	onSubmit="event.preventDefault();"
+>
 	<div class="input-group search-bar">
 		<input aria-label="<%= LanguageUtil.get(request, "search") %>" class="form-control" id="<portlet:namespace />searchContent" name="<portlet:namespace />searchContent" placeholder="<%= LanguageUtil.get(request, "search") + StringPool.TRIPLE_PERIOD %>" type="text" />
 
@@ -47,7 +51,9 @@ String displayStyle = ParamUtil.getString(request, "displayStyle", displayStyleD
 	</div>
 </aui:form>
 
-<aui:script use="liferay-product-navigation-control-menu-add-content">
+<aui:script
+	use="liferay-product-navigation-control-menu-add-content"
+>
 	var ControlMenu = Liferay.ControlMenu;
 
 	var addContentCollapse = A.one('#<portlet:namespace />addContentCollapse');

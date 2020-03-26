@@ -43,7 +43,11 @@ request.setAttribute("view_layout_set_branches.jsp-currentLayoutSetBranchId", St
 		</liferay-portlet:renderURL>
 
 		<aui:button-row>
-			<aui:button href="<%= addLayoutSetBranchURL %>" name="addBranchButton" value="add-site-pages-variation" />
+			<aui:button
+				href="<%= addLayoutSetBranchURL %>"
+				name="addBranchButton"
+				value="add-site-pages-variation"
+			/>
 		</aui:button-row>
 	</c:if>
 
@@ -99,7 +103,9 @@ request.setAttribute("view_layout_set_branches.jsp-currentLayoutSetBranchId", St
 	</div>
 </div>
 
-<aui:script use="liferay-staging-branch">
+<aui:script
+	use="liferay-staging-branch"
+>
 	Liferay.StagingBar.init({
 		namespace: '<portlet:namespace />',
 		portletId: '<%= portletDisplay.getId() %>',

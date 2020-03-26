@@ -25,14 +25,35 @@ WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 <liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="updateWorkflowTask" var="updateURL" />
 
 <div class="task-action">
-	<aui:form action="<%= updateURL %>" method="post" name="updateFm">
+	<aui:form
+		action="<%= updateURL %>"
+		method="post"
+		name="updateFm"
+	>
 		<div class="modal-body task-action-content">
 			<div class="modal-item-last">
-				<aui:input name="workflowTaskId" type="hidden" value="<%= String.valueOf(workflowTask.getWorkflowTaskId()) %>" />
+				<aui:input
+					name="workflowTaskId"
+					type="hidden"
+					value="<%= String.valueOf(workflowTask.getWorkflowTaskId()) %>"
+				/>
 
-				<aui:input bean="<%= workflowTask %>" ignoreRequestValue="<%= true %>" model="<%= WorkflowTask.class %>" name="dueDate" required="<%= true %>" />
+				<aui:input
+					bean="<%= workflowTask %>"
+					ignoreRequestValue="<%= true %>"
+					model="<%= WorkflowTask.class %>"
+					name="dueDate"
+					required="<%= true %>"
+				/>
 
-				<aui:input cols="55" cssClass="task-content-comment" name="comment" placeholder="comment" rows="1" type="textarea" />
+				<aui:input
+					cols="55"
+					cssClass="task-content-comment"
+					name="comment"
+					placeholder="comment"
+					rows="1"
+					type="textarea"
+				/>
 			</div>
 		</div>
 
@@ -40,11 +61,18 @@ WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 			<div class="modal-item-last">
 				<div class="btn-group">
 					<div class="btn-group-item">
-						<aui:button name="close" type="cancel" />
+						<aui:button
+							name="close"
+							type="cancel"
+						/>
 					</div>
 
 					<div class="btn-group-item">
-						<aui:button name="done" primary="<%= true %>" value="done" />
+						<aui:button
+							name="done"
+							primary="<%= true %>"
+							value="done"
+						/>
 					</div>
 				</div>
 			</div>
@@ -52,7 +80,9 @@ WorkflowTask workflowTask = workflowTaskDisplayContext.getWorkflowTask();
 	</aui:form>
 </div>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var maxLength = Liferay.AUI.getDateFormat().replace(/%[mdY]/gm, '').length + 8;
 
 	A.all('#<portlet:namespace />dueDate').set('maxLength', maxLength);

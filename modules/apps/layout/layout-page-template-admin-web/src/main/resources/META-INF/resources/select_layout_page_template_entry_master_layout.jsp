@@ -58,7 +58,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-master-page"));
 	</div>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal" sandbox="<%= true %>">
+<aui:script
+	require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal"
+	sandbox="<%= true %>"
+>
 	var addPageTemplateClickHandler = dom.delegate(
 		document.body,
 		'click',

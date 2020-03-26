@@ -50,16 +50,32 @@ SegmentsContextVocabularyConfigurationDisplayContext segmentsContextVocabularyCo
 
 		<div class="col-md-9">
 			<div class="sheet sheet-lg">
-				<aui:form action="<%= segmentsContextVocabularyConfigurationDisplayContext.getActionURL() %>" method="post" name="fm">
-					<aui:input name="factoryPid" type="hidden" value="<%= segmentsContextVocabularyConfigurationDisplayContext.getFactoryPid() %>" />
-					<aui:input name="pid" type="hidden" value="<%= segmentsContextVocabularyConfigurationDisplayContext.getPid() %>" />
+				<aui:form
+					action="<%= segmentsContextVocabularyConfigurationDisplayContext.getActionURL() %>"
+					method="post"
+					name="fm"
+				>
+					<aui:input
+						name="factoryPid"
+						type="hidden"
+						value="<%= segmentsContextVocabularyConfigurationDisplayContext.getFactoryPid() %>"
+					/>
+					<aui:input
+						name="pid"
+						type="hidden"
+						value="<%= segmentsContextVocabularyConfigurationDisplayContext.getPid() %>"
+					/>
 
 					<h2>
 						<%= HtmlUtil.escape(segmentsContextVocabularyConfigurationDisplayContext.getTitle()) %>
 					</h2>
 
 					<c:if test="<%= Validator.isBlank(segmentsContextVocabularyConfigurationDisplayContext.getPid()) %>">
-						<aui:alert closeable="<%= false %>" id="errorAlert" type="info">
+						<aui:alert
+							closeable="<%= false %>"
+							id="errorAlert"
+							type="info"
+						>
 							<liferay-ui:message key="this-configuration-is-not-saved-yet" />
 						</aui:alert>
 					</c:if>
@@ -75,13 +91,23 @@ SegmentsContextVocabularyConfigurationDisplayContext segmentsContextVocabularyCo
 					</c:if>
 
 					<div class="form-group">
-						<aui:select inlineField="<%= true %>" label="segments-context-vocabulary-configuration-entity-field-name" name="entityField" required="<%= true %>" wrapperCssClass="m-0">
+						<aui:select
+							inlineField="<%= true %>"
+							label="segments-context-vocabulary-configuration-entity-field-name"
+							name="entityField"
+							required="<%= true %>"
+							wrapperCssClass="m-0"
+						>
 
 							<%
 							for (ConfigurationFieldOptionsProvider.Option option : segmentsContextVocabularyConfigurationDisplayContext.getEntityFieldOptions()) {
 							%>
 
-								<aui:option label="<%= option.getLabel(locale) %>" selected="<%= Objects.equals(segmentsContextVocabularyConfigurationDisplayContext.getEntityField(), option.getValue()) %>" value="<%= option.getValue() %>" />
+								<aui:option
+									label="<%= option.getLabel(locale) %>"
+									selected="<%= Objects.equals(segmentsContextVocabularyConfigurationDisplayContext.getEntityField(), option.getValue()) %>"
+									value="<%= option.getValue() %>"
+								/>
 
 							<%
 							}
@@ -93,13 +119,23 @@ SegmentsContextVocabularyConfigurationDisplayContext segmentsContextVocabularyCo
 					</div>
 
 					<div class="form-group">
-						<aui:select inlineField="<%= true %>" label="segments-context-vocabulary-configuration-asset-vocabulary-name" name="assetVocabulary" required="<%= true %>" wrapperCssClass="m-0">
+						<aui:select
+							inlineField="<%= true %>"
+							label="segments-context-vocabulary-configuration-asset-vocabulary-name"
+							name="assetVocabulary"
+							required="<%= true %>"
+							wrapperCssClass="m-0"
+						>
 
 							<%
 							for (ConfigurationFieldOptionsProvider.Option option : segmentsContextVocabularyConfigurationDisplayContext.getAssetVocabularyOptions()) {
 							%>
 
-								<aui:option label="<%= option.getLabel(locale) %>" selected="<%= Objects.equals(segmentsContextVocabularyConfigurationDisplayContext.getAssetVocabulary(), option.getValue()) %>" value="<%= option.getValue() %>" />
+								<aui:option
+									label="<%= option.getLabel(locale) %>"
+									selected="<%= Objects.equals(segmentsContextVocabularyConfigurationDisplayContext.getAssetVocabulary(), option.getValue()) %>"
+									value="<%= option.getValue() %>"
+								/>
 
 							<%
 							}
@@ -113,14 +149,26 @@ SegmentsContextVocabularyConfigurationDisplayContext segmentsContextVocabularyCo
 					<aui:button-row>
 						<c:choose>
 							<c:when test="<%= !Validator.isBlank(segmentsContextVocabularyConfigurationDisplayContext.getPid()) %>">
-								<aui:button name="update" type="submit" value="update" />
+								<aui:button
+									name="update"
+									type="submit"
+									value="update"
+								/>
 							</c:when>
 							<c:otherwise>
-								<aui:button name="save" type="submit" value="save" />
+								<aui:button
+									name="save"
+									type="submit"
+									value="save"
+								/>
 							</c:otherwise>
 						</c:choose>
 
-						<aui:button href="<%= String.valueOf(segmentsContextVocabularyConfigurationDisplayContext.getRedirect()) %>" name="cancel" type="cancel" />
+						<aui:button
+							href="<%= String.valueOf(segmentsContextVocabularyConfigurationDisplayContext.getRedirect()) %>"
+							name="cancel"
+							type="cancel"
+						/>
 					</aui:button-row>
 				</aui:form>
 			</div>

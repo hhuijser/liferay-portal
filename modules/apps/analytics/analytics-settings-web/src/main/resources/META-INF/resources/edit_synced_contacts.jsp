@@ -40,8 +40,16 @@ Set<String> syncedUserGroupIds = SetUtil.fromArray(analyticsConfiguration.synced
 		</span>
 	</h2>
 
-	<aui:form action="<%= editSyncedContactsURL %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+	<aui:form
+		action="<%= editSyncedContactsURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
 
 		<fieldset <%= connected ? "" : "disabled" %>>
 			<label class="control-label">
@@ -159,7 +167,11 @@ Set<String> syncedUserGroupIds = SetUtil.fromArray(analyticsConfiguration.synced
 		<fieldset>
 
 		<aui:button-row>
-			<aui:button disabled="<%= !connected %>" type="submit" value="save" />
+			<aui:button
+				disabled="<%= !connected %>"
+				type="submit"
+				value="save"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

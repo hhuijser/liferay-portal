@@ -76,7 +76,11 @@ portletURL.setParameter("tabs1", "service-provider-connections");
 	</portlet:renderURL>
 
 	<aui:button-row>
-		<aui:button href="<%= addServiceProviderURL %>" label="add-service-provider" value="add-service-provider" />
+		<aui:button
+			href="<%= addServiceProviderURL %>"
+			label="add-service-provider"
+			value="add-service-provider"
+		/>
 	</aui:button-row>
 
 	<liferay-ui:search-iterator />

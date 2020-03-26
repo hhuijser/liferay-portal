@@ -26,9 +26,19 @@ PortletURL portletURL = renderResponse.createRenderURL();
 portletURL.setParameter("tabs1", tabs1);
 %>
 
-<aui:form action="<%= portletURL.toString() %>">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.SEARCH %>" />
-	<aui:input name="tabs1" type="hidden" value="<%= HtmlUtil.escapeAttribute(tabs1) %>" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.SEARCH %>"
+	/>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= HtmlUtil.escapeAttribute(tabs1) %>"
+	/>
 
 	<liferay-ui:tabs
 		names="dns-lookup,whois"

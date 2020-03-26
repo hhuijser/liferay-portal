@@ -71,17 +71,56 @@ renderResponse.setTitle(role.getTitle(locale));
 	viewTypeItems="<%= editRoleAssignmentsManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl container-form-view" method="post" name="fm">
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="tabs3" type="hidden" value="current" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="roleId" type="hidden" value="<%= role.getRoleId() %>" />
-	<aui:input name="addUserIds" type="hidden" />
-	<aui:input name="removeUserIds" type="hidden" />
-	<aui:input name="addGroupIds" type="hidden" />
-	<aui:input name="removeGroupIds" type="hidden" />
-	<aui:input name="addSegmentsEntryIds" type="hidden" />
-	<aui:input name="removeSegmentsEntryIds" type="hidden" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-view"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs2"
+		type="hidden"
+		value="<%= tabs2 %>"
+	/>
+	<aui:input
+		name="tabs3"
+		type="hidden"
+		value="current"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="roleId"
+		type="hidden"
+		value="<%= role.getRoleId() %>"
+	/>
+	<aui:input
+		name="addUserIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="removeUserIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="addGroupIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="removeGroupIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="addSegmentsEntryIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="removeSegmentsEntryIds"
+		type="hidden"
+	/>
 
 	<%
 	request.setAttribute("edit_role_assignments.jsp-displayStyle", displayStyle);
@@ -112,7 +151,9 @@ renderResponse.setTitle(role.getTitle(locale));
 	<portlet:param name="tabs1" value="assignees" />
 </portlet:actionURL>
 
-<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var form = document.<portlet:namespace />fm;
 
 	var addAssignees = function(event) {

@@ -38,7 +38,12 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 	viewTypeItems="<%= selectRoleManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl container-form-lg" method="post" name="selectRegularRoleFm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-lg"
+	method="post"
+	name="selectRegularRoleFm"
+>
 	<liferay-ui:search-container
 		headerNames="name"
 		searchContainer="<%= roleSearchContainer %>"
@@ -72,7 +77,12 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 					boolean disabled = ArrayUtil.contains(roleIds, role.getRoleId());
 					%>
 
-					<aui:button cssClass="selector-button" data="<%= data %>" disabled="<%= disabled %>" value="choose" />
+					<aui:button
+						cssClass="selector-button"
+						data="<%= data %>"
+						disabled="<%= disabled %>"
+						value="choose"
+					/>
 				</c:if>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
@@ -83,7 +93,9 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var Util = Liferay.Util;
 
 	var openingLiferay = Util.getOpener().Liferay;

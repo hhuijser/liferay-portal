@@ -24,14 +24,29 @@ String redirect = ParamUtil.getString(renderRequest, "redirect");
 	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="<%= OpenIdConnectWebKeys.OPEN_ID_CONNECT_REQUEST_ACTION_NAME %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= openIdConnectURL %>" method="post" name="fm">
-	<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= openIdConnectURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="saveLastPath"
+		type="hidden"
+		value="<%= false %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<liferay-ui:error key="MustNotUseCompanyMx" message="the-email-address-associated-with-your-openid-connect-account-cannot-be-used-to-register-a-new-user-because-its-email-domain-is-reserved" />
 	<liferay-ui:error key="StrangersNotAllowedException" message="only-known-users-are-allowed-to-sign-in-using-openid-connect" />
 
-	<aui:select label="openid-connect-provider-name" name="<%= OpenIdConnectWebKeys.OPEN_ID_CONNECT_PROVIDER_NAME %>">
+	<aui:select
+		label="openid-connect-provider-name"
+		name="<%= OpenIdConnectWebKeys.OPEN_ID_CONNECT_PROVIDER_NAME %>"
+	>
 
 		<%
 		Collection<String> openIdConnectProviderNames = (Collection<String>)request.getAttribute(OpenIdConnectWebKeys.OPEN_ID_CONNECT_PROVIDER_NAMES);
@@ -39,7 +54,10 @@ String redirect = ParamUtil.getString(renderRequest, "redirect");
 		for (String openIdConnectProviderName : openIdConnectProviderNames) {
 		%>
 
-			<aui:option label="<%= HtmlUtil.escape(openIdConnectProviderName) %>" value="<%= HtmlUtil.escapeAttribute(openIdConnectProviderName) %>" />
+			<aui:option
+				label="<%= HtmlUtil.escape(openIdConnectProviderName) %>"
+				value="<%= HtmlUtil.escapeAttribute(openIdConnectProviderName) %>"
+			/>
 
 		<%
 		}
@@ -55,7 +73,10 @@ String redirect = ParamUtil.getString(renderRequest, "redirect");
 
 	<aui:fieldset>
 		<aui:button-row>
-			<aui:button type="submit" value="sign-in" />
+			<aui:button
+				type="submit"
+				value="sign-in"
+			/>
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

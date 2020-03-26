@@ -50,7 +50,11 @@ SearchContainer<DDMTemplate> templateSearch = ddmDisplayContext.getTemplateSearc
 	sortingURL="<%= ddmDisplayContext.getSortingURL() %>"
 />
 
-<aui:form action="<%= ddmDisplayContext.getSelectTemplateSearchActionURL() %>" method="post" name="selectTemplateFm">
+<aui:form
+	action="<%= ddmDisplayContext.getSelectTemplateSearchActionURL() %>"
+	method="post"
+	name="selectTemplateFm"
+>
 	<div class="container-fluid-1280">
 		<liferay-ui:search-container
 			searchContainer="<%= templateSearch %>"
@@ -87,7 +91,11 @@ SearchContainer<DDMTemplate> templateSearch = ddmDisplayContext.getTemplateSearc
 							data.put("name", template.getName(locale));
 							%>
 
-							<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="selector-button"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<%= HtmlUtil.escape(template.getName(locale)) %>
 							</aui:a>
 						</c:when>

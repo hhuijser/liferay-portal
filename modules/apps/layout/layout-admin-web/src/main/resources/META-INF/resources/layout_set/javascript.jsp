@@ -27,4 +27,11 @@ UnicodeProperties layoutSetTypeSettings = selLayoutSet.getSettingsProperties();
 	value="javascript"
 />
 
-<aui:input label="paste-javascript-code-that-is-executed-at-the-bottom-of-every-page" name="TypeSettingsProperties--javascript--" placeholder="javascript" type="textarea" value='<%= layoutSetTypeSettings.getProperty("javascript") %>' wrap="soft" />
+<aui:input
+	label="paste-javascript-code-that-is-executed-at-the-bottom-of-every-page"
+	name="TypeSettingsProperties--javascript--"
+	placeholder="javascript"
+	type="textarea"
+	value='<%= layoutSetTypeSettings.getProperty("javascript") %>'
+	wrap="soft"
+/>

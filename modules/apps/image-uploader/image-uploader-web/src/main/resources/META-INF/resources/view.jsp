@@ -56,14 +56,46 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 			<portlet:param name="maxFileSize" value="<%= String.valueOf(maxFileSize) %>" />
 		</portlet:actionURL>
 
-		<aui:form action="<%= uploadImageURL %>" enctype="multipart/form-data" method="post" name="fm">
-			<aui:input name="cropRegion" type="hidden" />
-			<aui:input name="currentLogoURL" type="hidden" value="<%= currentImageURL %>" />
-			<aui:input name="preserveRatio" type="hidden" value="<%= String.valueOf(preserveRatio) %>" />
-			<aui:input name="previewURL" type="hidden" value="<%= previewURL %>" />
-			<aui:input name="randomNamespace" type="hidden" value="<%= randomNamespace %>" />
-			<aui:input name="tempImageFileName" type="hidden" value="<%= tempImageFileName %>" />
-			<aui:input name="imageUploaded" type="hidden" value='<%= SessionMessages.contains(renderRequest, "imageUploaded") %>' />
+		<aui:form
+			action="<%= uploadImageURL %>"
+			enctype="multipart/form-data"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="cropRegion"
+				type="hidden"
+			/>
+			<aui:input
+				name="currentLogoURL"
+				type="hidden"
+				value="<%= currentImageURL %>"
+			/>
+			<aui:input
+				name="preserveRatio"
+				type="hidden"
+				value="<%= String.valueOf(preserveRatio) %>"
+			/>
+			<aui:input
+				name="previewURL"
+				type="hidden"
+				value="<%= previewURL %>"
+			/>
+			<aui:input
+				name="randomNamespace"
+				type="hidden"
+				value="<%= randomNamespace %>"
+			/>
+			<aui:input
+				name="tempImageFileName"
+				type="hidden"
+				value="<%= tempImageFileName %>"
+			/>
+			<aui:input
+				name="imageUploaded"
+				type="hidden"
+				value='<%= SessionMessages.contains(renderRequest, "imageUploaded") %>'
+			/>
 
 			<div class="dialog-body">
 				<div class="container-fluid-1280">
@@ -87,8 +119,12 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 						<liferay-ui:message arguments="<%= LanguageUtil.formatStorageSize(maxFileSize, locale) %>" key="request-is-larger-than-x-and-could-not-be-processed" translateArguments="<%= false %>" />
 					</liferay-ui:error>
 
-					<aui:fieldset-group markupView="lexicon">
-						<aui:fieldset cssClass="lfr-portrait-editor">
+					<aui:fieldset-group
+						markupView="lexicon"
+					>
+						<aui:fieldset
+							cssClass="lfr-portrait-editor"
+						>
 							<h4 class="text-default">
 								<liferay-ui:message arguments="<%= LanguageUtil.formatStorageSize(maxFileSize, locale) %>" key="upload-images-no-larger-than-x" />
 							</h4>
@@ -106,8 +142,16 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 							<div class="button-holder">
 								<label class="btn btn-secondary" for="<portlet:namespace />fileName" id="<portlet:namespace />uploadImage" tabindex="0"><liferay-ui:message key="select" /></label>
 
-								<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>" cssClass="hide" label="" name="fileName" type="file">
-									<aui:validator name="acceptFiles">
+								<aui:input
+									autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>"
+									cssClass="hide"
+									label=""
+									name="fileName"
+									type="file"
+								>
+									<aui:validator
+										name="acceptFiles"
+									>
 										'<%= StringUtil.merge(dlConfiguration.fileExtensions()) %>'
 									</aui:validator>
 								</aui:input>
@@ -118,9 +162,17 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 			</div>
 
 			<aui:button-row>
-				<aui:button name="submitButton" type="submit" value="done" />
+				<aui:button
+					name="submitButton"
+					type="submit"
+					value="done"
+				/>
 
-				<aui:button onClick="window.close();" type="cancel" value="cancel" />
+				<aui:button
+					onClick="window.close();"
+					type="cancel"
+					value="cancel"
+				/>
 			</aui:button-row>
 		</aui:form>
 
@@ -142,7 +194,9 @@ String randomNamespace = ParamUtil.getString(request, "randomNamespace");
 			})();
 		</script>
 
-		<aui:script use="liferay-logo-editor">
+		<aui:script
+			use="liferay-logo-editor"
+		>
 			<portlet:actionURL name="/image_uploader/view" var="addTempImageURL">
 				<portlet:param name="mvcRenderCommandName" value="/image_uploader/view" />
 				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.ADD_TEMP %>" />

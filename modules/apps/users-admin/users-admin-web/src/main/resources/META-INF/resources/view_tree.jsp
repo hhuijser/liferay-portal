@@ -93,15 +93,47 @@ if (organization != null) {
 			viewTypeItems="<%= viewTreeManagementToolbarDisplayContext.getViewTypeItems() %>"
 		/>
 
-		<aui:form cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "search();" %>'>
-			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="toolbarItem" type="hidden" value="<%= toolbarItem %>" />
-			<aui:input name="redirect" type="hidden" value="<%= viewTreeManagementToolbarDisplayContext.getPortletURL().toString() %>" />
-			<aui:input name="onErrorRedirect" type="hidden" value="<%= currentURL %>" />
-			<aui:input name="deleteOrganizationIds" type="hidden" />
-			<aui:input name="deleteUserIds" type="hidden" />
-			<aui:input name="removeOrganizationIds" type="hidden" />
-			<aui:input name="removeUserIds" type="hidden" />
+		<aui:form
+			cssClass="container-fluid-1280"
+			method="post"
+			name="fm"
+			onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "search();" %>'
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+			/>
+			<aui:input
+				name="toolbarItem"
+				type="hidden"
+				value="<%= toolbarItem %>"
+			/>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= viewTreeManagementToolbarDisplayContext.getPortletURL().toString() %>"
+			/>
+			<aui:input
+				name="onErrorRedirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+			<aui:input
+				name="deleteOrganizationIds"
+				type="hidden"
+			/>
+			<aui:input
+				name="deleteUserIds"
+				type="hidden"
+			/>
+			<aui:input
+				name="removeOrganizationIds"
+				type="hidden"
+			/>
+			<aui:input
+				name="removeUserIds"
+				type="hidden"
+			/>
 
 			<liferay-ui:error exception="<%= RequiredOrganizationException.class %>" message="you-cannot-delete-organizations-that-have-suborganizations-or-users" />
 			<liferay-ui:error exception="<%= RequiredUserException.class %>" message="you-cannot-delete-or-deactivate-yourself" />

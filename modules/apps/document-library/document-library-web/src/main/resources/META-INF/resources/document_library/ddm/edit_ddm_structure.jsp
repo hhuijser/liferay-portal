@@ -50,12 +50,35 @@ renderResponse.setTitle(title);
 <portlet:actionURL name="/document_library/ddm/update_ddm_structure" var="updateDDMStructureURL" />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= (ddmStructure == null) ? addDDMStructureURL : updateDDMStructureURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
-		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
-		<aui:input name="definition" type="hidden" />
-		<aui:input name="status" type="hidden" />
+	<aui:form
+		action="<%= (ddmStructure == null) ? addDDMStructureURL : updateDDMStructureURL %>"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="ddmStructureId"
+			type="hidden"
+			value="<%= ddmStructureId %>"
+		/>
+		<aui:input
+			name="groupId"
+			type="hidden"
+			value="<%= groupId %>"
+		/>
+		<aui:input
+			name="definition"
+			type="hidden"
+		/>
+		<aui:input
+			name="status"
+			type="hidden"
+		/>
 
 		<liferay-ui:error exception="<%= DDMFormLayoutValidationException.class %>" message="please-enter-a-valid-form-layout" />
 
@@ -114,9 +137,14 @@ renderResponse.setTitle(title);
 		<liferay-ui:error exception="<%= StructureDuplicateElementException.class %>" message="please-enter-unique-structure-field-names-(including-field-names-inherited-from-the-parent-structure)" />
 		<liferay-ui:error exception="<%= StructureNameException.class %>" message="please-enter-a-valid-name" />
 
-		<aui:model-context bean="<%= ddmStructure %>" model="<%= com.liferay.dynamic.data.mapping.model.DDMStructure.class %>" />
+		<aui:model-context
+			bean="<%= ddmStructure %>"
+			model="<%= com.liferay.dynamic.data.mapping.model.DDMStructure.class %>"
+		/>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 				<aui:field-wrapper>
 					<c:if test="<%= (ddmStructure != null) && (DDMStorageLinkLocalServiceUtil.getStructureStorageLinksCount(ddmStructure.getPrimaryKey()) > 0) %>">
@@ -132,7 +160,10 @@ renderResponse.setTitle(title);
 					</c:if>
 				</aui:field-wrapper>
 
-				<aui:input autoFocus="<%= windowState.equals(LiferayWindowState.POP_UP) %>" name="name" />
+				<aui:input
+					autoFocus="<%= windowState.equals(LiferayWindowState.POP_UP) %>"
+					name="name"
+				/>
 
 				<liferay-ui:panel-container
 					cssClass="lfr-structure-entry-details-container"
@@ -149,20 +180,49 @@ renderResponse.setTitle(title);
 						persistState="<%= true %>"
 						title='<%= LanguageUtil.get(request, "details") %>'
 					>
-						<aui:row cssClass="lfr-ddm-types-form-column">
-							<aui:input name="storageType" type="hidden" value="<%= StorageType.JSON.getValue() %>" />
+						<aui:row
+							cssClass="lfr-ddm-types-form-column"
+						>
+							<aui:input
+								name="storageType"
+								type="hidden"
+								value="<%= StorageType.JSON.getValue() %>"
+							/>
 						</aui:row>
 
-						<aui:input name="description" />
+						<aui:input
+							name="description"
+						/>
 
-						<aui:field-wrapper label='<%= LanguageUtil.format(request, "parent-x", HtmlUtil.escape(LanguageUtil.get(resourceBundle, "metadata-set")), false) %>'>
-							<aui:input name="parentDDMStructureId" type="hidden" value="<%= dlEditDDMStructureDisplayContext.getParentDDMStructureId() %>" />
+						<aui:field-wrapper
+							label='<%= LanguageUtil.format(request, "parent-x", HtmlUtil.escape(LanguageUtil.get(resourceBundle, "metadata-set")), false) %>'
+						>
+							<aui:input
+								name="parentDDMStructureId"
+								type="hidden"
+								value="<%= dlEditDDMStructureDisplayContext.getParentDDMStructureId() %>"
+							/>
 
-							<aui:input cssClass="lfr-input-text" disabled="<%= true %>" label="" name="parentDDMStructureName" type="text" value="<%= dlEditDDMStructureDisplayContext.getParentDDMStructureName() %>" />
+							<aui:input
+								cssClass="lfr-input-text"
+								disabled="<%= true %>"
+								label=""
+								name="parentDDMStructureName"
+								type="text"
+								value="<%= dlEditDDMStructureDisplayContext.getParentDDMStructureName() %>"
+							/>
 
-							<aui:button onClick='<%= renderResponse.getNamespace() + "openParentDDMStructureSelector();" %>' value="select" />
+							<aui:button
+								onClick='<%= renderResponse.getNamespace() + "openParentDDMStructureSelector();" %>'
+								value="select"
+							/>
 
-							<aui:button disabled="<%= Validator.isNull(dlEditDDMStructureDisplayContext.getParentDDMStructureName()) %>" name="removeParentDDMStructureButton" onClick='<%= renderResponse.getNamespace() + "removeParentDDMStructure();" %>' value="remove" />
+							<aui:button
+								disabled="<%= Validator.isNull(dlEditDDMStructureDisplayContext.getParentDDMStructureName()) %>"
+								name="removeParentDDMStructureButton"
+								onClick='<%= renderResponse.getNamespace() + "removeParentDDMStructure();" %>'
+								value="remove"
+							/>
 						</aui:field-wrapper>
 
 						<c:if test="<%= ddmStructure != null %>">
@@ -170,10 +230,18 @@ renderResponse.setTitle(title);
 								<portlet:param name="structureId" value="<%= String.valueOf(ddmStructure.getStructureId()) %>" />
 							</portlet:resourceURL>
 
-							<aui:input name="url" type="resource" value="<%= getStructureURL.toString() %>" />
+							<aui:input
+								name="url"
+								type="resource"
+								value="<%= getStructureURL.toString() %>"
+							/>
 
 							<c:if test="<%= Validator.isNotNull(refererWebDAVToken) %>">
-								<aui:input name="webDavURL" type="resource" value="<%= ddmStructure.getWebDavURL(themeDisplay, refererWebDAVToken) %>" />
+								<aui:input
+									name="webDavURL"
+									type="resource"
+									value="<%= ddmStructure.getWebDavURL(themeDisplay, refererWebDAVToken) %>"
+								/>
 							</c:if>
 						</c:if>
 					</liferay-ui:panel>
@@ -200,9 +268,16 @@ renderResponse.setTitle(title);
 	</aui:form>
 
 	<aui:button-row>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
+		<aui:button
+			onClick='<%= renderResponse.getNamespace() + "saveDDMStructure();" %>'
+			primary="<%= true %>"
+			value='<%= LanguageUtil.get(request, "save") %>'
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </div>
 

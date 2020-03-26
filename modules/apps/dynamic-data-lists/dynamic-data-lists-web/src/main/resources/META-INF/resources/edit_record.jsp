@@ -101,7 +101,12 @@ else {
 		<div class="sidenav-menu-slider">
 			<div class="sidebar sidebar-default sidenav-menu">
 				<div class="sidebar-header">
-					<aui:icon cssClass="d-inline-block d-sm-none icon-monospaced sidenav-close text-default" image="times" markupView="lexicon" url="javascript:;" />
+					<aui:icon
+						cssClass="d-inline-block d-sm-none icon-monospaced sidenav-close text-default"
+						image="times"
+						markupView="lexicon"
+						url="javascript:;"
+					/>
 				</div>
 
 				<liferay-ui:tabs
@@ -117,9 +122,15 @@ else {
 							</h3>
 
 							<div>
-								<aui:model-context bean="<%= recordVersion %>" model="<%= DDLRecordVersion.class %>" />
+								<aui:model-context
+									bean="<%= recordVersion %>"
+									model="<%= DDLRecordVersion.class %>"
+								/>
 
-								<aui:workflow-status model="<%= DDLRecord.class %>" status="<%= recordVersion.getStatus() %>" />
+								<aui:workflow-status
+									model="<%= DDLRecord.class %>"
+									status="<%= recordVersion.getStatus() %>"
+								/>
 							</div>
 
 							<div>
@@ -152,16 +163,58 @@ else {
 	</c:if>
 
 	<div class="sidenav-content">
-		<aui:form action="<%= (record == null) ? addRecordURL : updateRecordURL %>" cssClass="container-fluid-1280" enctype="multipart/form-data" method="post" name="fm">
-			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-			<aui:input name="portletResource" type="hidden" value="<%= portletResource %>" />
-			<aui:input name="recordId" type="hidden" value="<%= recordId %>" />
-			<aui:input name="groupId" type="hidden" value="<%= recordSet.getGroupId() %>" />
-			<aui:input name="recordSetId" type="hidden" value="<%= recordSetId %>" />
-			<aui:input name="formDDMTemplateId" type="hidden" value="<%= formDDMTemplateId %>" />
-			<aui:input name="defaultLanguageId" type="hidden" value="<%= defaultLanguageId %>" />
-			<aui:input name="languageId" type="hidden" value="<%= languageId %>" />
-			<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
+		<aui:form
+			action="<%= (record == null) ? addRecordURL : updateRecordURL %>"
+			cssClass="container-fluid-1280"
+			enctype="multipart/form-data"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= redirect %>"
+			/>
+			<aui:input
+				name="portletResource"
+				type="hidden"
+				value="<%= portletResource %>"
+			/>
+			<aui:input
+				name="recordId"
+				type="hidden"
+				value="<%= recordId %>"
+			/>
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= recordSet.getGroupId() %>"
+			/>
+			<aui:input
+				name="recordSetId"
+				type="hidden"
+				value="<%= recordSetId %>"
+			/>
+			<aui:input
+				name="formDDMTemplateId"
+				type="hidden"
+				value="<%= formDDMTemplateId %>"
+			/>
+			<aui:input
+				name="defaultLanguageId"
+				type="hidden"
+				value="<%= defaultLanguageId %>"
+			/>
+			<aui:input
+				name="languageId"
+				type="hidden"
+				value="<%= languageId %>"
+			/>
+			<aui:input
+				name="workflowAction"
+				type="hidden"
+				value="<%= WorkflowConstants.ACTION_PUBLISH %>"
+			/>
 
 			<div class="lfr-form-content">
 				<liferay-ui:error exception="<%= DuplicateFileEntryException.class %>" message="a-file-with-that-name-already-exists" />
@@ -198,7 +251,9 @@ else {
 						/>
 					</c:when>
 					<c:otherwise>
-						<aui:fieldset-group markupView="lexicon">
+						<aui:fieldset-group
+							markupView="lexicon"
+						>
 							<aui:fieldset>
 								<liferay-ddm:html
 									classNameId="<%= classNameId %>"
@@ -251,15 +306,31 @@ else {
 				%>
 
 				<c:if test="<%= ddlDisplayContext.isShowSaveRecordButton() %>">
-					<aui:button name="saveButton" onClick='<%= renderResponse.getNamespace() + "setWorkflowAction(true);" %>' primary="<%= false %>" type="submit" value="<%= saveButtonLabel %>" />
+					<aui:button
+						name="saveButton"
+						onClick='<%= renderResponse.getNamespace() + "setWorkflowAction(true);" %>'
+						primary="<%= false %>"
+						type="submit"
+						value="<%= saveButtonLabel %>"
+					/>
 				</c:if>
 
 				<c:if test="<%= ddlDisplayContext.isShowPublishRecordButton() %>">
-					<aui:button disabled="<%= pending %>" name="publishButton" onClick='<%= renderResponse.getNamespace() + "setWorkflowAction(false);" %>' type="submit" value="<%= publishButtonLabel %>" />
+					<aui:button
+						disabled="<%= pending %>"
+						name="publishButton"
+						onClick='<%= renderResponse.getNamespace() + "setWorkflowAction(false);" %>'
+						type="submit"
+						value="<%= publishButtonLabel %>"
+					/>
 				</c:if>
 
 				<c:if test="<%= ddlDisplayContext.isShowCancelButton() %>">
-					<aui:button href="<%= redirect %>" name="cancelButton" type="cancel" />
+					<aui:button
+						href="<%= redirect %>"
+						name="cancelButton"
+						type="cancel"
+					/>
 				</c:if>
 			</aui:button-row>
 		</aui:form>

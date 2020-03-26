@@ -42,10 +42,28 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 <liferay-portlet:actionURL name="updateCalendarResource" var="updateCalendarResourceURL" />
 
-<aui:form action="<%= updateCalendarResourceURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarResource();" %>'>
-	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_resource.jsp" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="calendarResourceId" type="hidden" value="<%= String.valueOf(calendarResourceId) %>" />
+<aui:form
+	action="<%= updateCalendarResourceURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarResource();" %>'
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/edit_calendar_resource.jsp"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="calendarResourceId"
+		type="hidden"
+		value="<%= String.valueOf(calendarResourceId) %>"
+	/>
 
 	<liferay-ui:error exception="<%= CalendarResourceCodeException.class %>" message="please-enter-a-valid-code" />
 	<liferay-ui:error exception="<%= CalendarResourceNameException.class %>" message="please-enter-a-valid-name" />
@@ -55,10 +73,15 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 
 	<liferay-asset:asset-tags-error />
 
-	<aui:model-context bean="<%= calendarResource %>" model="<%= CalendarResource.class %>" />
+	<aui:model-context
+		bean="<%= calendarResource %>"
+		model="<%= CalendarResource.class %>"
+	/>
 
 	<aui:fieldset>
-		<aui:input name="name" />
+		<aui:input
+			name="name"
+		/>
 
 		<liferay-ui:panel-container
 			extended="<%= true %>"
@@ -77,24 +100,39 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 				<c:choose>
 					<c:when test="<%= calendarResource == null %>">
 						<c:if test="<%= !CalendarServiceConfigurationValues.CALENDAR_RESOURCE_FORCE_AUTOGENERATE_CODE %>">
-							<aui:input name="code" />
+							<aui:input
+								name="code"
+							/>
 						</c:if>
 					</c:when>
 					<c:otherwise>
-						<aui:input name="code" type="resource" value="<%= code %>" />
+						<aui:input
+							name="code"
+							type="resource"
+							value="<%= code %>"
+						/>
 					</c:otherwise>
 				</c:choose>
 
-				<aui:input name="description" />
+				<aui:input
+					name="description"
+				/>
 
 				<c:if test="<%= calendars != null %>">
-					<aui:select label="default-calendar" name="defaultCalendarId" value="<%= calendarResource.getDefaultCalendarId() %>">
+					<aui:select
+						label="default-calendar"
+						name="defaultCalendarId"
+						value="<%= calendarResource.getDefaultCalendarId() %>"
+					>
 
 						<%
 						for (Calendar calendar : calendars) {
 						%>
 
-							<aui:option label="<%= HtmlUtil.escapeAttribute(calendar.getName(locale)) %>" value="<%= calendar.getCalendarId() %>" />
+							<aui:option
+								label="<%= HtmlUtil.escapeAttribute(calendar.getName(locale)) %>"
+								value="<%= calendar.getCalendarId() %>"
+							/>
 
 						<%
 						}
@@ -103,7 +141,12 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 					</aui:select>
 				</c:if>
 
-				<aui:input inlineLabel="left" name="active" type="checkbox" value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>" />
+				<aui:input
+					inlineLabel="left"
+					name="active"
+					type="checkbox"
+					value="<%= (calendarResource == null) ? true : calendarResource.isActive() %>"
+				/>
 			</liferay-ui:panel>
 
 			<liferay-ui:panel
@@ -144,9 +187,14 @@ String code = BeanParamUtil.getString(calendarResource, request, "code");
 		</liferay-ui:panel-container>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

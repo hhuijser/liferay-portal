@@ -33,37 +33,86 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.fetchOAuthA
 
 <portlet:actionURL name='<%= (oAuthApplication == null) ? "addOAuthApplication" : "updateOAuthApplication" %>' var="editApplicationURL" />
 
-<aui:form action="<%= editApplicationURL %>" method="post" name="fm">
-	<aui:input name="mvcPath" type="hidden" value="/admin/edit_application.jsp" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
-	<aui:input name="oAuthApplicationId" type="hidden" value="<%= String.valueOf(oAuthApplicationId) %>" />
+<aui:form
+	action="<%= editApplicationURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/admin/edit_application.jsp"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="backURL"
+		type="hidden"
+		value="<%= backURL %>"
+	/>
+	<aui:input
+		name="oAuthApplicationId"
+		type="hidden"
+		value="<%= String.valueOf(oAuthApplicationId) %>"
+	/>
 
 	<liferay-ui:error exception="<%= MalformedURLException.class %>" message="please-enter-a-valid-url" />
 	<liferay-ui:error exception="<%= RequiredFieldException.class %>" message="this-field-is-required" />
 
-	<aui:model-context bean="<%= oAuthApplication %>" model="<%= OAuthApplication.class %>" />
+	<aui:model-context
+		bean="<%= oAuthApplication %>"
+		model="<%= OAuthApplication.class %>"
+	/>
 
 	<aui:fieldset>
-		<aui:input label="application-name" name="name" />
+		<aui:input
+			label="application-name"
+			name="name"
+		/>
 
-		<aui:input name="description" />
+		<aui:input
+			name="description"
+		/>
 
-		<aui:input label="website-url" name="websiteURL" />
+		<aui:input
+			label="website-url"
+			name="websiteURL"
+		/>
 
-		<aui:input label="callback-uri" name="callbackURI" />
+		<aui:input
+			label="callback-uri"
+			name="callbackURI"
+		/>
 
-		<aui:input helpMessage="check-to-allow-multiple-application-instances-per-user" label="share-access-token" name="shareableAccessToken" />
+		<aui:input
+			helpMessage="check-to-allow-multiple-application-instances-per-user"
+			label="share-access-token"
+			name="shareableAccessToken"
+		/>
 
 		<c:if test="<%= oAuthApplication == null %>">
-			<aui:select label="access-type" name="accessType">
-				<aui:option label="<%= OAuthApplicationConstants.LABEL_ACCESS_READ %>" value="<%= OAuthApplicationConstants.ACCESS_READ %>" />
-				<aui:option label="<%= OAuthApplicationConstants.LABEL_ACCESS_WRITE %>" value="<%= OAuthApplicationConstants.ACCESS_WRITE %>" />
+			<aui:select
+				label="access-type"
+				name="accessType"
+			>
+				<aui:option
+					label="<%= OAuthApplicationConstants.LABEL_ACCESS_READ %>"
+					value="<%= OAuthApplicationConstants.ACCESS_READ %>"
+				/>
+				<aui:option
+					label="<%= OAuthApplicationConstants.LABEL_ACCESS_WRITE %>"
+					value="<%= OAuthApplicationConstants.ACCESS_WRITE %>"
+				/>
 			</aui:select>
 		</c:if>
 
 		<c:if test="<%= oAuthApplication != null %>">
-			<aui:field-wrapper label="application-credentials">
+			<aui:field-wrapper
+				label="application-credentials"
+			>
 				<liferay-ui:message key="consumer-key" />:
 
 				<%= oAuthApplication.getConsumerKey() %><br />
@@ -73,7 +122,9 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.fetchOAuthA
 				<%= oAuthApplication.getConsumerSecret() %>
 			</aui:field-wrapper>
 
-			<aui:field-wrapper label="logo">
+			<aui:field-wrapper
+				label="logo"
+			>
 				<portlet:renderURL var="editLogoURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/admin/edit_application_logo.jsp" />
 					<portlet:param name="oAuthApplicationId" value="<%= String.valueOf(oAuthApplicationId) %>" />
@@ -90,9 +141,14 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.fetchOAuthA
 		</c:if>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>

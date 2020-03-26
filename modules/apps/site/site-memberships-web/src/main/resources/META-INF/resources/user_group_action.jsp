@@ -88,7 +88,9 @@ UserGroup userGroup = (UserGroup)row.getObject();
 	</c:if>
 </liferay-ui:icon-menu>
 
-<aui:script require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var assignRolesLink = document.getElementById(
 		'<portlet:namespace /><%= row.getRowId() %>assignRoles'
 	);

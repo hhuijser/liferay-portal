@@ -20,7 +20,12 @@
 OrganizationScreenNavigationDisplayContext organizationScreenNavigationDisplayContext = (OrganizationScreenNavigationDisplayContext)request.getAttribute(UsersAdminWebKeys.ORGANIZATION_SCREEN_NAVIGATION_DISPLAY_CONTEXT);
 %>
 
-<aui:form action="<%= organizationScreenNavigationDisplayContext.getEditOrganizationActionURL() %>" cssClass="portlet-users-admin-edit-organization" method="post" name="fm">
+<aui:form
+	action="<%= organizationScreenNavigationDisplayContext.getEditOrganizationActionURL() %>"
+	cssClass="portlet-users-admin-edit-organization"
+	method="post"
+	name="fm"
+>
 	<div class="sheet sheet-lg">
 		<c:if test="<%= organizationScreenNavigationDisplayContext.isShowTitle() %>">
 			<div class="sheet-header">
@@ -34,9 +39,15 @@ OrganizationScreenNavigationDisplayContext organizationScreenNavigationDisplayCo
 
 		<c:if test="<%= organizationScreenNavigationDisplayContext.isShowControls() %>">
 			<div class="sheet-footer">
-				<aui:button primary="<%= true %>" type="submit" />
+				<aui:button
+					primary="<%= true %>"
+					type="submit"
+				/>
 
-				<aui:button href="<%= organizationScreenNavigationDisplayContext.getBackURL() %>" type="cancel" />
+				<aui:button
+					href="<%= organizationScreenNavigationDisplayContext.getBackURL() %>"
+					type="cancel"
+				/>
 			</div>
 		</c:if>
 	</div>

@@ -143,7 +143,12 @@ Format dateFormatDateTime = FastDateFormatFactoryUtil.getDateTime(locale, timeZo
 </c:if>
 
 <c:if test="<%= !folder && (status != WorkflowConstants.STATUS_ANY) && (status != WorkflowConstants.STATUS_APPROVED) %>">
-	<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= status %>" />
+	<aui:workflow-status
+		markupView="lexicon"
+		showIcon="<%= false %>"
+		showLabel="<%= false %>"
+		status="<%= status %>"
+	/>
 
 	<c:if test="<%= locked %>">
 		<small class="text-default"><liferay-ui:message key="locked" /></small>

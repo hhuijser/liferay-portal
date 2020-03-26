@@ -48,7 +48,10 @@ String value = ParamUtil.getString(request, name);
 	<c:if test="<%= showButton %>">
 		<div class="input-group-btn">
 			<button class="btn btn-secondary" data-qa-id="searchButton" type="submit">
-				<aui:icon image="search" markupView="lexicon" />
+				<aui:icon
+					image="search"
+					markupView="lexicon"
+				/>
 			</button>
 		</div>
 	</c:if>

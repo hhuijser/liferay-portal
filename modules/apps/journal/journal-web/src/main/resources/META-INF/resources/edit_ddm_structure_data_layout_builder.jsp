@@ -39,26 +39,69 @@ if (ddmStructure != null) {
 }
 %>
 
-<aui:form cssClass="edit-article-form" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
-	<aui:input name="ddmStructureId" type="hidden" value="<%= journalEditDDMStructuresDisplayContext.getDDMStructureId() %>" />
-	<aui:input name="definition" type="hidden" />
-	<aui:input name="indexable" type="hidden" value="<%= journalEditDDMStructuresDisplayContext.isStructureFieldIndexableEnable() %>" />
+<aui:form
+	cssClass="edit-article-form"
+	enctype="multipart/form-data"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="groupId"
+		type="hidden"
+		value="<%= groupId %>"
+	/>
+	<aui:input
+		name="ddmStructureId"
+		type="hidden"
+		value="<%= journalEditDDMStructuresDisplayContext.getDDMStructureId() %>"
+	/>
+	<aui:input
+		name="definition"
+		type="hidden"
+	/>
+	<aui:input
+		name="indexable"
+		type="hidden"
+		value="<%= journalEditDDMStructuresDisplayContext.isStructureFieldIndexableEnable() %>"
+	/>
 
-	<aui:model-context bean="<%= ddmStructure %>" model="<%= DDMStructure.class %>" />
+	<aui:model-context
+		bean="<%= ddmStructure %>"
+		model="<%= DDMStructure.class %>"
+	/>
 
 	<nav class="component-tbar subnav-tbar-light tbar tbar-article">
 		<div class="container-fluid container-fluid-max-xl">
 			<ul class="tbar-nav">
 				<li class="tbar-item tbar-item-expand">
-					<aui:input cssClass="form-control-inline" defaultLanguageId="<%= (ddmForm == null) ? LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()): LocaleUtil.toLanguageId(ddmForm.getDefaultLocale()) %>" label="" name="name" placeholder='<%= LanguageUtil.format(request, "untitled-x", "structure") %>' wrapperCssClass="article-content-title mb-0" />
+					<aui:input
+						cssClass="form-control-inline"
+						defaultLanguageId="<%= (ddmForm == null) ? LocaleUtil.toLanguageId(LocaleUtil.getSiteDefault()): LocaleUtil.toLanguageId(ddmForm.getDefaultLocale()) %>"
+						label=""
+						name="name"
+						placeholder='<%= LanguageUtil.format(request, "untitled-x", "structure") %>'
+						wrapperCssClass="article-content-title mb-0"
+					/>
 				</li>
 				<li class="tbar-item">
 					<div class="journal-article-button-row tbar-section text-right">
-						<aui:button cssClass="btn-secondary btn-sm mr-3" href="<%= redirect %>" type="cancel" />
+						<aui:button
+							cssClass="btn-secondary btn-sm mr-3"
+							href="<%= redirect %>"
+							type="cancel"
+						/>
 
-						<aui:button cssClass="btn-sm mr-3" type="submit" value="<%= journalEditDDMStructuresDisplayContext.getSaveButtonLabel() %>" />
+						<aui:button
+							cssClass="btn-sm mr-3"
+							type="submit"
+							value="<%= journalEditDDMStructuresDisplayContext.getSaveButtonLabel() %>"
+						/>
 					</div>
 				</li>
 			</ul>

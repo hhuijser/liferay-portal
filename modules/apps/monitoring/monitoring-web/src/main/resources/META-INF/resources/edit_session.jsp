@@ -36,15 +36,31 @@ renderResponse.setTitle(LanguageUtil.format(request, "session-id-x", sessionId, 
 
 <portlet:actionURL name="/monitoring/edit_session" var="editSessionURL" />
 
-<aui:form action="<%= editSessionURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="sessionId" type="hidden" value="<%= sessionId %>" />
+<aui:form
+	action="<%= editSessionURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="sessionId"
+		type="hidden"
+		value="<%= sessionId %>"
+	/>
 
 	<c:choose>
 		<c:when test="<%= userTracker == null %>">
 			<liferay-ui:message key="session-id-could-not-be-found" />
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</c:when>
 		<c:otherwise>
 
@@ -60,7 +76,9 @@ renderResponse.setTitle(LanguageUtil.format(request, "session-id-x", sessionId, 
 			boolean userSessionAlive = false;
 			%>
 
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"
 					id="monitoringSessionHistoryPanelContainer"
@@ -208,7 +226,10 @@ renderResponse.setTitle(LanguageUtil.format(request, "session-id-x", sessionId, 
 
 			<aui:button-row>
 				<c:if test="<%= userSessionAlive && !session.getId().equals(sessionId) %>">
-					<aui:button type="submit" value="kill-session" />
+					<aui:button
+						type="submit"
+						value="kill-session"
+					/>
 				</c:if>
 			</aui:button-row>
 		</c:otherwise>

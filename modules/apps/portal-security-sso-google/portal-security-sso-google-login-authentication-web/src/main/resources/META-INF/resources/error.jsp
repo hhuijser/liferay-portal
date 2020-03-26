@@ -26,6 +26,9 @@
 	<liferay-ui:error exception="<%= UserEmailAddressException.MustNotUseCompanyMx.class %>" message="this-google-account-cannot-be-used-to-register-a-new-user-because-its-email-domain-is-reserved" />
 
 	<aui:button-row>
-		<aui:button onClick="window.close();" value="close" />
+		<aui:button
+			onClick="window.close();"
+			value="close"
+		/>
 	</aui:button-row>
 </div>

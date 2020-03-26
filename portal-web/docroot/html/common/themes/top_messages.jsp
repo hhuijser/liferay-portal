@@ -61,7 +61,9 @@ if (Validator.isNotNull(jspPath) || Validator.isNotNull(message)) {
 		</div>
 	</div>
 
-	<aui:script use="liferay-notice">
+	<aui:script
+		use="liferay-notice"
+	>
 		var banner = new Liferay.Notice(
 			{
 				animationConfig:

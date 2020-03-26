@@ -27,6 +27,9 @@
 	<liferay-ui:error key="<%= UserEmailAddressException.MustNotUseCompanyMx.class.getSimpleName() %>" message="this-facebook-account-cannot-be-used-to-register-a-new-user-because-its-email-domain-is-reserved" />
 
 	<aui:button-row>
-		<aui:button onClick="window.close();" value="close" />
+		<aui:button
+			onClick="window.close();"
+			value="close"
+		/>
 	</aui:button-row>
 </div>

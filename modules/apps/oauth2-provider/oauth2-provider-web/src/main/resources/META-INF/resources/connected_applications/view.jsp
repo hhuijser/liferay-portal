@@ -36,9 +36,19 @@ int userOAuth2AuthorizationsCount = OAuth2AuthorizationServiceUtil.getUserOAuth2
 />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= currentURLObj %>" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-		<aui:input name="oAuth2AuthorizationIds" type="hidden" />
+	<aui:form
+		action="<%= currentURLObj %>"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
+		<aui:input
+			name="oAuth2AuthorizationIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			emptyResultsMessage="no-connected-applications-were-found"

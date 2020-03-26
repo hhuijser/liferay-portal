@@ -28,8 +28,16 @@
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:tabs
@@ -46,9 +54,19 @@
 			<liferay-ui:section>
 				<liferay-frontend:fieldset-group>
 					<liferay-frontend:fieldset>
-						<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= dlGroupServiceSettings.getEmailFromName() %>" />
+						<aui:input
+							cssClass="lfr-input-text-container"
+							label="name"
+							name="preferences--emailFromName--"
+							value="<%= dlGroupServiceSettings.getEmailFromName() %>"
+						/>
 
-						<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= dlGroupServiceSettings.getEmailFromAddress() %>" />
+						<aui:input
+							cssClass="lfr-input-text-container"
+							label="address"
+							name="preferences--emailFromAddress--"
+							value="<%= dlGroupServiceSettings.getEmailFromAddress() %>"
+						/>
 					</liferay-frontend:fieldset>
 
 					<liferay-frontend:fieldset
@@ -110,8 +128,12 @@
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

@@ -68,8 +68,15 @@ if (!dlFileEntries.isEmpty()) {
 			</div>
 		</c:if>
 
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="keys" type="hidden" value="<%= StringUtil.merge(keys) %>" />
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+		<aui:input
+			name="keys"
+			type="hidden"
+			value="<%= StringUtil.merge(keys) %>"
+		/>
 
 		<%
 		for (String key : keys) {
@@ -80,7 +87,11 @@ if (!dlFileEntries.isEmpty()) {
 
 				<br />
 
-				<aui:select helpMessage="custom-field-type-help" label="type" name='<%= "type_" + key %>'>
+				<aui:select
+					helpMessage="custom-field-type-help"
+					label="type"
+					name='<%= "type_" + key %>'
+				>
 
 					<%
 					for (int curType : ExpandoColumnConstants.TYPES) {
@@ -89,7 +100,10 @@ if (!dlFileEntries.isEmpty()) {
 						}
 					%>
 
-						<aui:option label="<%= ExpandoColumnConstants.getTypeLabel(curType) %>" value="<%= curType %>" />
+						<aui:option
+							label="<%= ExpandoColumnConstants.getTypeLabel(curType) %>"
+							value="<%= curType %>"
+						/>
 
 					<%
 					}
@@ -103,7 +117,10 @@ if (!dlFileEntries.isEmpty()) {
 		%>
 
 		<aui:button-row>
-			<aui:button onClick='<%= "javascript:" + renderResponse.getNamespace() + "convertDocumentLibraryExtraSettings(event)" %>' type="submit" />
+			<aui:button
+				onClick='<%= "javascript:" + renderResponse.getNamespace() + "convertDocumentLibraryExtraSettings(event)" %>'
+				type="submit"
+			/>
 		</aui:button-row>
 	</c:otherwise>
 </c:choose>

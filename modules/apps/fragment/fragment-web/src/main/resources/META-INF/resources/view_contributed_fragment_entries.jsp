@@ -24,7 +24,9 @@ ContributedFragmentManagementToolbarDisplayContext contributedFragmentManagement
 	displayContext="<%= contributedFragmentManagementToolbarDisplayContext %>"
 />
 
-<aui:form name="fm">
+<aui:form
+	name="fm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= fragmentDisplayContext.getContributedFragmentEntriesSearchContainer() %>"
 	>
@@ -53,9 +55,17 @@ ContributedFragmentManagementToolbarDisplayContext contributedFragmentManagement
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:form name="fragmentEntryFm">
-	<aui:input name="fragmentEntryKeys" type="hidden" />
-	<aui:input name="fragmentCollectionId" type="hidden" />
+<aui:form
+	name="fragmentEntryFm"
+>
+	<aui:input
+		name="fragmentEntryKeys"
+		type="hidden"
+	/>
+	<aui:input
+		name="fragmentCollectionId"
+		type="hidden"
+	/>
 </aui:form>
 
 <liferay-frontend:component

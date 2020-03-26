@@ -93,7 +93,9 @@ else {
 }
 %>
 
-<aui:script use="liferay-kaleo-designer-dialogs">
+<aui:script
+	use="liferay-kaleo-designer-dialogs"
+>
 	window.<portlet:namespace/>confirmDeleteDefinition = function(deleteURL) {
 		var message =
 			'<%= LanguageUtil.get(request, "a-deleted-workflow-cannot-be-recovered") %>';

@@ -77,11 +77,32 @@ SearchContainer searchContainer = editPasswordPolicyAssignmentsManagementToolbar
 
 <portlet:actionURL name="editPasswordPolicyAssignments" var="editPasswordPolicyAssignmentsURL" />
 
-<aui:form action="<%= editPasswordPolicyAssignmentsURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="tabs1" type="hidden" value="<%= tabs1 %>" />
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="passwordPolicyId" type="hidden" value="<%= String.valueOf(passwordPolicy.getPasswordPolicyId()) %>" />
+<aui:form
+	action="<%= editPasswordPolicyAssignmentsURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= tabs1 %>"
+	/>
+	<aui:input
+		name="tabs2"
+		type="hidden"
+		value="<%= tabs2 %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="passwordPolicyId"
+		type="hidden"
+		value="<%= String.valueOf(passwordPolicy.getPasswordPolicyId()) %>"
+	/>
 
 	<div id="breadcrumb">
 		<liferay-ui:breadcrumb
@@ -99,14 +120,26 @@ SearchContainer searchContainer = editPasswordPolicyAssignmentsManagementToolbar
 	>
 		<c:choose>
 			<c:when test='<%= tabs2.equals("users") %>'>
-				<aui:input name="addUserIds" type="hidden" />
-				<aui:input name="removeUserIds" type="hidden" />
+				<aui:input
+					name="addUserIds"
+					type="hidden"
+				/>
+				<aui:input
+					name="removeUserIds"
+					type="hidden"
+				/>
 
 				<%@ include file="/user_search_columns.jspf" %>
 			</c:when>
 			<c:when test='<%= tabs2.equals("organizations") %>'>
-				<aui:input name="addOrganizationIds" type="hidden" />
-				<aui:input name="removeOrganizationIds" type="hidden" />
+				<aui:input
+					name="addOrganizationIds"
+					type="hidden"
+				/>
+				<aui:input
+					name="removeOrganizationIds"
+					type="hidden"
+				/>
 
 				<%@ include file="/organization_search_columns.jspf" %>
 			</c:when>
@@ -119,7 +152,9 @@ SearchContainer searchContainer = editPasswordPolicyAssignmentsManagementToolbar
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	<portlet:renderURL var="selectMembersURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 		<portlet:param name="mvcPath" value="/select_members.jsp" />
 		<portlet:param name="tabs1" value="<%= tabs1 %>" />

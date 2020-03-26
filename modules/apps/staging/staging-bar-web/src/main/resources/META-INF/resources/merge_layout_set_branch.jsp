@@ -53,11 +53,31 @@ if (layoutSetBranches.contains(layoutSetBranch)) {
 			<portlet:param name="mvcRenderCommandName" value="viewLayoutSetBranches" />
 		</portlet:actionURL>
 
-		<aui:form action="<%= mergeLayoutSetBranchURL %>" enctype="multipart/form-data" method="post" name="fm4">
-			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-			<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
-			<aui:input name="layoutSetBranchId" type="hidden" value="<%= layoutSetBranchId %>" />
-			<aui:input name="mergeLayoutSetBranchId" type="hidden" />
+		<aui:form
+			action="<%= mergeLayoutSetBranchURL %>"
+			enctype="multipart/form-data"
+			method="post"
+			name="fm4"
+		>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= redirect %>"
+			/>
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= groupId %>"
+			/>
+			<aui:input
+				name="layoutSetBranchId"
+				type="hidden"
+				value="<%= layoutSetBranchId %>"
+			/>
+			<aui:input
+				name="mergeLayoutSetBranchId"
+				type="hidden"
+			/>
 
 			<liferay-ui:search-container
 				id="layoutSetBranchesSearchContainer"

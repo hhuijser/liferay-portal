@@ -38,27 +38,48 @@ renderResponse.setTitle(LanguageUtil.format(request, "copy-x", ddmTemplate.getNa
 	method="post"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
-	<aui:input name="ddmTemplateId" type="hidden" value="<%= ddmTemplateId %>" />
+	<aui:input
+		name="ddmTemplateId"
+		type="hidden"
+		value="<%= ddmTemplateId %>"
+	/>
 
-	<aui:model-context bean="<%= ddmTemplate %>" model="<%= DDMTemplate.class %>" />
+	<aui:model-context
+		bean="<%= ddmTemplate %>"
+		model="<%= DDMTemplate.class %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= TemplateNameException.class %>" message="please-enter-a-valid-name" />
 
 		<liferay-frontend:fieldset-group>
 			<liferay-frontend:fieldset>
-				<aui:input name="name" />
+				<aui:input
+					name="name"
+				/>
 
-				<aui:input name="description" />
+				<aui:input
+					name="description"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" value="copy" />
+		<aui:button
+			type="submit"
+			value="copy"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

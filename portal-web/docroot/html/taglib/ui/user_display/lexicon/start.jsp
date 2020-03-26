@@ -44,7 +44,9 @@
 							}
 							%>
 
-							<aui:a href="<%= showLink ? url : null %>">
+							<aui:a
+								href="<%= showLink ? url : null %>"
+							>
 								<%= (userDisplay != null) ? HtmlUtil.escape(userDisplay.getFullName()) : HtmlUtil.escape(userName) %>
 							</aui:a>
 						</div>

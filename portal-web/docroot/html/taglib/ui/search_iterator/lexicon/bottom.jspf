@@ -49,7 +49,9 @@
 	}
 	%>
 
-	<aui:script use="<%= modules %>">
+	<aui:script
+		use="<%= modules %>"
+	>
 		var plugins = [];
 
 		var rowSelector = '<%= rowHtmlTag %><%= rowCheckerRowSelector %>';

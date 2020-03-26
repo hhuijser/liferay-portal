@@ -28,7 +28,12 @@ String redirect = ParamUtil.getString(request, "redirect");
 	<portlet:param name="validate" value="<%= String.valueOf(Boolean.FALSE) %>" />
 </liferay-portlet:resourceURL>
 
-<aui:form action="<%= importPortletURL %>" cssClass="lfr-export-dialog" method="post" name="fm1">
+<aui:form
+	action="<%= importPortletURL %>"
+	cssClass="lfr-export-dialog"
+	method="post"
+	name="fm1"
+>
 
 	<%
 	FileEntry fileEntry = ExportImportHelperUtil.getTempFileEntry(scopeGroupId, themeDisplay.getUserId(), ExportImportHelper.TEMP_FOLDER_NAME + selPortlet.getPortletId());
@@ -41,7 +46,11 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</div>
 
 	<aui:button-row>
-		<aui:button name="continueButton" type="submit" value="continue" />
+		<aui:button
+			name="continueButton"
+			type="submit"
+			value="continue"
+		/>
 	</aui:button-row>
 
 	<%
@@ -50,7 +59,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 	Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class.getName(), user.getUserId(), TicketConstants.TYPE_IMPERSONATE, null, expirationDate, new ServiceContext());
 	%>
 
-	<aui:script use="liferay-upload">
+	<aui:script
+		use="liferay-upload"
+	>
 		var liferayUpload = new Liferay.Upload({
 			boundingBox: '#<portlet:namespace />fileUpload',
 
@@ -123,7 +134,9 @@ String redirect = ParamUtil.getString(request, "redirect");
 	</aui:script>
 </aui:form>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	var continueButton = document.getElementById(
 		'<portlet:namespace />continueButton'
 	);

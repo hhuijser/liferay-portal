@@ -38,14 +38,18 @@ List<SocialRequest> requests = (List<SocialRequest>)request.getAttribute(SocialR
 		%>
 
 			<aui:row>
-				<aui:col width="<%= 50 %>">
+				<aui:col
+					width="<%= 50 %>"
+				>
 					<liferay-ui:user-display
 						displayStyle="2"
 						userId="<%= socialRequest.getUserId() %>"
 					/>
 				</aui:col>
 
-				<aui:col width="<%= 50 %>">
+				<aui:col
+					width="<%= 50 %>"
+				>
 					<c:choose>
 						<c:when test="<%= requestFeedEntry == null %>">
 							<div class="alert alert-danger">

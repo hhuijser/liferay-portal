@@ -39,12 +39,31 @@ AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
 	method="post"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="assetListEntryId" type="hidden" value="<%= assetListDisplayContext.getAssetListEntryId() %>" />
-	<aui:input name="segmentsEntryId" type="hidden" value="<%= assetListDisplayContext.getSegmentsEntryId() %>" />
-	<aui:input name="type" type="hidden" value="<%= assetListDisplayContext.getAssetListEntryType() %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="assetListEntryId"
+		type="hidden"
+		value="<%= assetListDisplayContext.getAssetListEntryId() %>"
+	/>
+	<aui:input
+		name="segmentsEntryId"
+		type="hidden"
+		value="<%= assetListDisplayContext.getSegmentsEntryId() %>"
+	/>
+	<aui:input
+		name="type"
+		type="hidden"
+		value="<%= assetListDisplayContext.getAssetListEntryType() %>"
+	/>
 
-	<aui:model-context bean="<%= assetListEntry %>" model="<%= AssetListEntry.class %>" />
+	<aui:model-context
+		bean="<%= assetListEntry %>"
+		model="<%= AssetListEntry.class %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<h3 class="sheet-title">
@@ -67,9 +86,15 @@ AssetListEntry assetListEntry = assetListDisplayContext.getAssetListEntry();
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "saveSelectBoxes();" %>' type="submit" />
+		<aui:button
+			onClick='<%= renderResponse.getNamespace() + "saveSelectBoxes();" %>'
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

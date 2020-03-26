@@ -50,7 +50,10 @@ AssignScopesDisplayContext assignScopesDisplayContext = (AssignScopesDisplayCont
 				<portlet:param name="oAuth2ApplicationId" value="<%= String.valueOf(oAuth2Application.getOAuth2ApplicationId()) %>" />
 			</portlet:actionURL>
 
-			<aui:form action="<%= assignScopesURL %>" name="fm">
+			<aui:form
+				action="<%= assignScopesURL %>"
+				name="fm"
+			>
 				<div class="sheet">
 					<ul class="hidden nav nav-underline" id="<portlet:namespace />navScopeTypes" role="tablist">
 						<li class="nav-item">
@@ -76,19 +79,32 @@ AssignScopesDisplayContext assignScopesDisplayContext = (AssignScopesDisplayCont
 					</div>
 
 					<aui:button-row>
-						<aui:button id="save" type="submit" value="save" />
+						<aui:button
+							id="save"
+							type="submit"
+							value="save"
+						/>
 
-						<aui:button href="<%= PortalUtil.escapeRedirect(redirect) %>" type="cancel" />
+						<aui:button
+							href="<%= PortalUtil.escapeRedirect(redirect) %>"
+							type="cancel"
+						/>
 					</aui:button-row>
 				</div>
 
-				<aui:input id="impliedScopeAliases" name="scopeAliases" type="hidden" />
+				<aui:input
+					id="impliedScopeAliases"
+					name="scopeAliases"
+					type="hidden"
+				/>
 			</aui:form>
 		</div>
 	</div>
 </div>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	AUI().use('node', 'aui-modal', function(A) {
 		if (A.all('#<portlet:namespace />navGlobalScopes .panel').size() > 0) {
 			A.one('#<portlet:namespace />navScopeTypes').toggleClass(

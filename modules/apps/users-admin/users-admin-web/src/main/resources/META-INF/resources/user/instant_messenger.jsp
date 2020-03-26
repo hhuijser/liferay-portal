@@ -22,14 +22,23 @@ Contact selContact = (Contact)request.getAttribute("user.selContact");
 
 <c:choose>
 	<c:when test="<%= selContact != null %>">
-		<aui:model-context bean="<%= selContact %>" model="<%= Contact.class %>" />
+		<aui:model-context
+			bean="<%= selContact %>"
+			model="<%= Contact.class %>"
+		/>
 
 		<div class="instant-messenger">
-			<aui:input label="jabber" name="jabberSn" />
+			<aui:input
+				label="jabber"
+				name="jabberSn"
+			/>
 		</div>
 
 		<div class="instant-messenger">
-			<aui:input label="skype" name="skypeSn" />
+			<aui:input
+				label="skype"
+				name="skypeSn"
+			/>
 
 			<c:if test="<%= Validator.isNotNull(selContact.getSkypeSn()) %>">
 				<a href="skype:<%= HtmlUtil.escapeAttribute(selContact.getSkypeSn()) %>?call"><liferay-ui:message escapeAttribute="<%= true %>" key="call-this-user" /></a>

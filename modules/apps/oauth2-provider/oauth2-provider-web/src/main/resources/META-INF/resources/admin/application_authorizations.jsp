@@ -49,9 +49,19 @@ OAuth2AuthorizationsManagementToolbarDisplayContext oAuth2AuthorizationsManageme
 </portlet:actionURL>
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= revokeOAuth2AuthorizationsURL %>" name="fm">
-		<aui:input name="oAuth2ApplicationId" type="hidden" value="<%= oAuth2ApplicationId %>" />
-		<aui:input name="oAuth2AuthorizationIds" type="hidden" />
+	<aui:form
+		action="<%= revokeOAuth2AuthorizationsURL %>"
+		name="fm"
+	>
+		<aui:input
+			name="oAuth2ApplicationId"
+			type="hidden"
+			value="<%= oAuth2ApplicationId %>"
+		/>
+		<aui:input
+			name="oAuth2AuthorizationIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			emptyResultsMessage="no-authorizations-were-found"

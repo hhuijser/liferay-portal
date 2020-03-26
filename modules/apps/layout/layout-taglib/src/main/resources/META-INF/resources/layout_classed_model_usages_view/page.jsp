@@ -81,7 +81,9 @@ LayoutClassedModelUsagesDisplayContext layoutClassedModelUsagesDisplayContext = 
 	</liferay-ui:search-container>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	if (
 		document.querySelector('#<portlet:namespace/>layoutClassedModelUsagesList')
 	) {

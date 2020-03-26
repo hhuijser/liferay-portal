@@ -66,27 +66,64 @@ if (layoutBranch != null) {
 </liferay-util:include>
 
 <div class="container-fluid-1280" data-namespace="<portlet:namespace />" id="<portlet:namespace /><%= (layoutBranch != null) ? "updateBranch" : "addBranch" %>">
-	<aui:model-context bean="<%= layoutBranch %>" model="<%= LayoutBranch.class %>" />
+	<aui:model-context
+		bean="<%= layoutBranch %>"
+		model="<%= LayoutBranch.class %>"
+	/>
 
 	<portlet:actionURL name="editLayoutBranch" var="editLayoutBranchURL">
 		<portlet:param name="mvcRenderCommandName" value="editLayoutBranch" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= editLayoutBranchURL %>" method="post" name="fm3">
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="groupId" type="hidden" value="<%= String.valueOf(scopeGroupId) %>" />
-		<aui:input name="layoutBranchId" type="hidden" value="<%= layoutBranchId %>" />
-		<aui:input name="copyLayoutRevisionId" type="hidden" value="<%= String.valueOf(layoutRevisionId) %>" />
-		<aui:input name="workflowAction" type="hidden" value="<%= String.valueOf(WorkflowConstants.ACTION_SAVE_DRAFT) %>" />
+	<aui:form
+		action="<%= editLayoutBranchURL %>"
+		method="post"
+		name="fm3"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="groupId"
+			type="hidden"
+			value="<%= String.valueOf(scopeGroupId) %>"
+		/>
+		<aui:input
+			name="layoutBranchId"
+			type="hidden"
+			value="<%= layoutBranchId %>"
+		/>
+		<aui:input
+			name="copyLayoutRevisionId"
+			type="hidden"
+			value="<%= String.valueOf(layoutRevisionId) %>"
+		/>
+		<aui:input
+			name="workflowAction"
+			type="hidden"
+			value="<%= String.valueOf(WorkflowConstants.ACTION_SAVE_DRAFT) %>"
+		/>
 
-		<aui:input name="name" />
+		<aui:input
+			name="name"
+		/>
 
-		<aui:input name="description" />
+		<aui:input
+			name="description"
+		/>
 
 		<aui:button-row>
-			<aui:button type="submit" value='<%= (layoutBranch != null) ? "update" : "add" %>' />
+			<aui:button
+				type="submit"
+				value='<%= (layoutBranch != null) ? "update" : "add" %>'
+			/>
 
-			<aui:button href="<%= redirect %>" value="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				value="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

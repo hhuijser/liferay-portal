@@ -34,15 +34,37 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 <c:if test="<%= themeDisplay.isSignedIn() %>">
 	<div class="kb-template-comments">
-		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'>
-			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="kbCommentId" type="hidden" value="<%= kbCommentId %>" />
-			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBTemplate.class) %>" />
-			<aui:input name="classPK" type="hidden" value="<%= kbTemplate.getKbTemplateId() %>" />
+		<aui:form
+			method="post"
+			name="fm"
+			onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+			/>
+			<aui:input
+				name="kbCommentId"
+				type="hidden"
+				value="<%= kbCommentId %>"
+			/>
+			<aui:input
+				name="classNameId"
+				type="hidden"
+				value="<%= PortalUtil.getClassNameId(KBTemplate.class) %>"
+			/>
+			<aui:input
+				name="classPK"
+				type="hidden"
+				value="<%= kbTemplate.getKbTemplateId() %>"
+			/>
 
 			<liferay-ui:error exception="<%= KBCommentContentException.class %>" message="please-enter-valid-content" />
 
-			<aui:model-context bean="<%= kbComment %>" model="<%= KBComment.class %>" />
+			<aui:model-context
+				bean="<%= kbComment %>"
+				model="<%= KBComment.class %>"
+			/>
 
 			<aui:fieldset>
 				<c:if test="<%= themeDisplay.isSignedIn() %>">
@@ -68,18 +90,40 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 								<liferay-util:include page="/admin/template_comment.jsp" servletContext="<%= application %>" />
 							</c:if>
 
-							<aui:input label="" name="content" />
+							<aui:input
+								label=""
+								name="content"
+							/>
 
 							<div class="kb-helpful-inputs">
 								<span class="kb-helpful-text"><liferay-ui:message key="was-this-information-helpful" /></span>
 
-								<aui:input checked="<%= helpful %>" inlineField="<%= true %>" label="yes" name="helpful" type="radio" value="1" />
+								<aui:input
+									checked="<%= helpful %>"
+									inlineField="<%= true %>"
+									label="yes"
+									name="helpful"
+									type="radio"
+									value="1"
+								/>
 
-								<aui:input checked="<%= !helpful %>" inlineField="<%= true %>" label="no" name="helpful" type="radio" value="0" />
+								<aui:input
+									checked="<%= !helpful %>"
+									inlineField="<%= true %>"
+									label="no"
+									name="helpful"
+									type="radio"
+									value="0"
+								/>
 							</div>
 
-							<aui:button-row cssClass="kb-submit-buttons">
-								<aui:button type="submit" value="post" />
+							<aui:button-row
+								cssClass="kb-submit-buttons"
+							>
+								<aui:button
+									type="submit"
+									value="post"
+								/>
 							</aui:button-row>
 						</liferay-ui:panel>
 					</liferay-ui:panel-container>

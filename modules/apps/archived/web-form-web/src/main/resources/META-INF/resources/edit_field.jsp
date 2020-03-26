@@ -62,9 +62,15 @@ boolean ignoreRequestValue = index != formFieldsIndex;
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input name='<%= "_field" + index %>' type="hidden" />
+			<aui:input
+				name='<%= "_field" + index %>'
+				type="hidden"
+			/>
 
-			<aui:field-wrapper cssClass="label-name" label="name">
+			<aui:field-wrapper
+				cssClass="label-name"
+				label="name"
+			>
 				<liferay-ui:input-localized
 					ignoreRequestValue="<%= ignoreRequestValue %>"
 					name='<%= "fieldLabel" + index %>'
@@ -85,13 +91,33 @@ boolean ignoreRequestValue = index != formFieldsIndex;
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:select ignoreRequestValue="<%= ignoreRequestValue %>" label="type" name='<%= "fieldType" + index %>' value="<%= fieldType %>">
-				<aui:option label="text" />
-				<aui:option label="text-box" value="textarea" />
-				<aui:option label="options" />
-				<aui:option label="radio-buttons" value="radio" />
-				<aui:option label="paragraph" />
-				<aui:option label="check-box" value="checkbox" />
+			<aui:select
+				ignoreRequestValue="<%= ignoreRequestValue %>"
+				label="type"
+				name='<%= "fieldType" + index %>'
+				value="<%= fieldType %>"
+			>
+				<aui:option
+					label="text"
+				/>
+				<aui:option
+					label="text-box"
+					value="textarea"
+				/>
+				<aui:option
+					label="options"
+				/>
+				<aui:option
+					label="radio-buttons"
+					value="radio"
+				/>
+				<aui:option
+					label="paragraph"
+				/>
+				<aui:option
+					label="check-box"
+					value="checkbox"
+				/>
 			</aui:select>
 		</c:when>
 		<c:otherwise>
@@ -106,7 +132,14 @@ boolean ignoreRequestValue = index != formFieldsIndex;
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:input cssClass="optional-control" ignoreRequestValue="<%= ignoreRequestValue %>" label="optional" name='<%= "fieldOptional" + index %>' type="checkbox" value="<%= fieldOptional %>" />
+			<aui:input
+				cssClass="optional-control"
+				ignoreRequestValue="<%= ignoreRequestValue %>"
+				label="optional"
+				name='<%= "fieldOptional" + index %>'
+				type="checkbox"
+				value="<%= fieldOptional %>"
+			/>
 		</c:when>
 		<c:otherwise>
 				<dt>
@@ -120,7 +153,11 @@ boolean ignoreRequestValue = index != formFieldsIndex;
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:field-wrapper cssClass='<%= "options" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " hide" : StringPool.BLANK) %>' helpMessage="add-options-separated-by-commas" label="options">
+			<aui:field-wrapper
+				cssClass='<%= "options" + ((Validator.isNull(fieldType) || (!fieldType.equals("options") && !fieldType.equals("radio"))) ? " hide" : StringPool.BLANK) %>'
+				helpMessage="add-options-separated-by-commas"
+				label="options"
+			>
 				<liferay-ui:input-localized
 					ignoreRequestValue="<%= ignoreRequestValue %>"
 					name='<%= "fieldOptions" + index %>'
@@ -140,7 +177,10 @@ boolean ignoreRequestValue = index != formFieldsIndex;
 
 	<c:choose>
 		<c:when test="<%= !fieldsEditingDisabled %>">
-			<aui:field-wrapper cssClass='<%= "paragraph" + ((Validator.isNull(fieldType) || !fieldType.equals("paragraph")) ? " hide" : StringPool.BLANK) %>' label="paragraph">
+			<aui:field-wrapper
+				cssClass='<%= "paragraph" + ((Validator.isNull(fieldType) || !fieldType.equals("paragraph")) ? " hide" : StringPool.BLANK) %>'
+				label="paragraph"
+			>
 				<liferay-ui:input-localized
 					cssClass="lfr-editor-textarea"
 					ignoreRequestValue="<%= ignoreRequestValue %>"
@@ -169,13 +209,35 @@ boolean ignoreRequestValue = index != formFieldsIndex;
 					<aui:a cssClass="validation-link" href="javascript:;"><liferay-ui:message key="validation" /> &raquo;</aui:a>
 
 					<div class="validation-input <%= Validator.isNull(fieldValidationScript) ? "hide" : "" %>">
-						<aui:col width="<%= 50 %>">
-							<aui:input cols="80" cssClass="validation-script" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-script" name='<%= "fieldValidationScript" + index %>' style="width: 95%;" type="textarea" value="<%= fieldValidationScript %>" wrap="off" />
+						<aui:col
+							width="<%= 50 %>"
+						>
+							<aui:input
+								cols="80"
+								cssClass="validation-script"
+								ignoreRequestValue="<%= ignoreRequestValue %>"
+								label="validation-script"
+								name='<%= "fieldValidationScript" + index %>'
+								style="width: 95%;"
+								type="textarea"
+								value="<%= fieldValidationScript %>"
+								wrap="off"
+							/>
 
-							<aui:input cols="80" ignoreRequestValue="<%= ignoreRequestValue %>" label="validation-error-message" name='<%= "fieldValidationErrorMessage" + index %>' size="80" value="<%= fieldValidationErrorMessage %>" wrapperCssClass="lfr-input-text-container" />
+							<aui:input
+								cols="80"
+								ignoreRequestValue="<%= ignoreRequestValue %>"
+								label="validation-error-message"
+								name='<%= "fieldValidationErrorMessage" + index %>'
+								size="80"
+								value="<%= fieldValidationErrorMessage %>"
+								wrapperCssClass="lfr-input-text-container"
+							/>
 						</aui:col>
 
-						<aui:col width="<%= 50 %>">
+						<aui:col
+							width="<%= 50 %>"
+						>
 							<div class="syntax-help">
 								<liferay-util:include page="/script_help.jsp" servletContext="<%= application %>" />
 							</div>

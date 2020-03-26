@@ -34,7 +34,10 @@ String value = (String)request.getAttribute("liferay-frontend:management-bar-fil
 				<liferay-ui:message key="<%= HtmlUtil.escape(value) %>" />
 			</span>
 
-			<aui:icon image="caret-double-l" markupView="lexicon" />
+			<aui:icon
+				image="caret-double-l"
+				markupView="lexicon"
+			/>
 		</a>
 
 		<ul class="dropdown-menu" data-qa-id="filter<%= Validator.isNotNull(label) ? label : StringPool.BLANK %>Values">
@@ -44,7 +47,12 @@ String value = (String)request.getAttribute("liferay-frontend:management-bar-fil
 			%>
 
 				<li class="<%= managementBarFilterItem.isActive() ? "active" : StringPool.BLANK %>">
-					<aui:a cssClass="dropdown-item" href="<%= managementBarFilterItem.getUrl() %>" id="<%= Validator.isNotNull(managementBarFilterItem.getId()) ? managementBarFilterItem.getId() : StringPool.BLANK %>" label="<%= managementBarFilterItem.getLabel() %>" />
+					<aui:a
+						cssClass="dropdown-item"
+						href="<%= managementBarFilterItem.getUrl() %>"
+						id="<%= Validator.isNotNull(managementBarFilterItem.getId()) ? managementBarFilterItem.getId() : StringPool.BLANK %>"
+						label="<%= managementBarFilterItem.getLabel() %>"
+					/>
 				</li>
 
 			<%

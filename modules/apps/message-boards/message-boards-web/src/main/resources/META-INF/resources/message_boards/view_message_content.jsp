@@ -280,7 +280,11 @@ if (portletTitleBasedNavigation) {
 		String taglibReplyToMessageURL = "javascript:" + liferayPortletResponse.getNamespace() + "addReplyToMessage('" + rootMessage.getMessageId() + "', '');";
 		%>
 
-		<aui:button onclick="<%= taglibReplyToMessageURL %>" primary="<%= true %>" value="reply" />
+		<aui:button
+			onclick="<%= taglibReplyToMessageURL %>"
+			primary="<%= true %>"
+			value="reply"
+		/>
 	</c:if>
 
 	<c:if test="<%= !thread.isInTrash() && moreMessagesPagination %>">
@@ -288,14 +292,26 @@ if (portletTitleBasedNavigation) {
 			<a class="btn btn-secondary" href="javascript:;" id="<portlet:namespace />moreMessages"><liferay-ui:message key="more-messages" /></a>
 		</div>
 
-		<aui:form name="fm">
-			<aui:input name="rootIndexPage" type="hidden" value="<%= String.valueOf(rootIndexPage) %>" />
-			<aui:input name="index" type="hidden" value="<%= String.valueOf(index) %>" />
+		<aui:form
+			name="fm"
+		>
+			<aui:input
+				name="rootIndexPage"
+				type="hidden"
+				value="<%= String.valueOf(rootIndexPage) %>"
+			/>
+			<aui:input
+				name="index"
+				type="hidden"
+				value="<%= String.valueOf(index) %>"
+			/>
 		</aui:form>
 	</c:if>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	var moreMessagesButton = document.getElementById(
 		'<portlet:namespace />moreMessages'
 	);

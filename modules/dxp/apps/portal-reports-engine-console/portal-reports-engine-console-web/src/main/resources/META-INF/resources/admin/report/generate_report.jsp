@@ -43,30 +43,54 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 	<portlet:param name="redirect" value="<%= searchRequestsURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= generateReportURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="definitionId" type="hidden" value="<%= definition.getDefinitionId() %>" />
+<aui:form
+	action="<%= generateReportURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="definitionId"
+		type="hidden"
+		value="<%= definition.getDefinitionId() %>"
+	/>
 
 	<portlet:renderURL var="generatedReportsURL">
 		<portlet:param name="mvcPath" value="/admin/report/requested_report_detail.jsp" />
 	</portlet:renderURL>
 
-	<aui:input name="generatedReportsURL" type="hidden" value="<%= generatedReportsURL %>" />
+	<aui:input
+		name="generatedReportsURL"
+		type="hidden"
+		value="<%= generatedReportsURL %>"
+	/>
 
 	<liferay-ui:error exception="<%= DefinitionNameException.class %>" message="please-enter-a-valid-name" />
 	<liferay-ui:error exception="<%= EntryEmailDeliveryException.class %>" message="please-enter-a-valid-email-address" />
 	<liferay-ui:error exception="<%= EntryEmailNotificationsException.class %>" message="please-enter-a-valid-email-address" />
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input name="reportName" value="<%= reportName %>" />
+			<aui:input
+				name="reportName"
+				value="<%= reportName %>"
+			/>
 
-			<aui:select label="report-format" name="format">
+			<aui:select
+				label="report-format"
+				name="format"
+			>
 
 				<%
 				for (ReportFormat reportFormat : ReportFormat.values()) {
 				%>
 
-					<aui:option label="<%= reportFormat.getValue() %>" value="<%= reportFormat.getValue() %>" />
+					<aui:option
+						label="<%= reportFormat.getValue() %>"
+						value="<%= reportFormat.getValue() %>"
+					/>
 
 				<%
 				}
@@ -74,9 +98,17 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 
 			</aui:select>
 
-			<aui:input label="email-notifications" name="emailNotifications" type="text" />
+			<aui:input
+				label="email-notifications"
+				name="emailNotifications"
+				type="text"
+			/>
 
-			<aui:input label="email-recipient" name="emailDelivery" type="text" />
+			<aui:input
+				label="email-recipient"
+				name="emailDelivery"
+				type="text"
+			/>
 		</aui:fieldset>
 
 		<%
@@ -84,7 +116,11 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 		%>
 
 		<c:if test="<%= reportParametersJSONArray.length() > 0 %>">
-			<aui:fieldset collapsible="<%= true %>" cssClass="options-group" label="report-parameters">
+			<aui:fieldset
+				collapsible="<%= true %>"
+				cssClass="options-group"
+				label="report-parameters"
+			>
 
 				<%
 				for (int i = 0; i < reportParametersJSONArray.length(); i++) {
@@ -98,11 +134,15 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 					<aui:row>
 						<c:choose>
 							<c:when test='<%= type.equals("date") %>'>
-								<aui:col width="<%= 20 %>">
+								<aui:col
+									width="<%= 20 %>"
+								>
 									<%= HtmlUtil.escape(key) %>
 								</aui:col>
 
-								<aui:col width="<%= 80 %>">
+								<aui:col
+									width="<%= 80 %>"
+								>
 
 									<%
 									String[] date = value.split("-");
@@ -127,11 +167,15 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 								</aui:col>
 							</c:when>
 							<c:otherwise>
-								<aui:col width="<%= 20 %>">
+								<aui:col
+									width="<%= 20 %>"
+								>
 									<%= HtmlUtil.escape(key) %>
 								</aui:col>
 
-								<aui:col width="<%= 80 %>">
+								<aui:col
+									width="<%= 80 %>"
+								>
 									<span class="field field-text">
 										<input class="form-control" name="<portlet:namespace /><%= "parameterValue" + HtmlUtil.escapeAttribute(key) %>" type="text" value="<%= HtmlUtil.escapeAttribute(value) %>" />
 									</span>
@@ -147,7 +191,11 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 			</aui:fieldset>
 		</c:if>
 
-		<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+		<aui:fieldset
+			collapsed="<%= true %>"
+			collapsible="<%= true %>"
+			label="permissions"
+		>
 			<liferay-ui:input-permissions
 				modelName="<%= Entry.class.getName() %>"
 			/>
@@ -155,8 +203,16 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-report-entry"));
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button cssClass="btn-lg" type="submit" value="generate" />
+		<aui:button
+			cssClass="btn-lg"
+			type="submit"
+			value="generate"
+		/>
 
-		<aui:button cssClass="btn-lg" href="<%= searchDefinitionURL.toString() %>" type="cancel" />
+		<aui:button
+			cssClass="btn-lg"
+			href="<%= searchDefinitionURL.toString() %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

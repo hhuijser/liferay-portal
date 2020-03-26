@@ -61,33 +61,79 @@ if (Validator.isNotNull(editorGadgetURL)) {
 
 <portlet:actionURL name="updateGadget" var="updateGadgetURL" />
 
-<aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
-	<aui:input name="mvcPath" type="hidden" value="/admin/edit_gadget.jsp" />
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
-	<aui:input name="editorGadgetURL" type="hidden" value="<%= editorGadgetURL %>" />
-	<aui:input name="portletCategoryNames" type="hidden" value="<%= portletCategoryNames %>" />
-	<aui:input name="publishGadgetRedirect" type="hidden" value="<%= publishGadgetRedirect %>" />
+<aui:form
+	action="<%= updateGadgetURL %>"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/admin/edit_gadget.jsp"
+	/>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="gadgetId"
+		type="hidden"
+		value="<%= gadgetId %>"
+	/>
+	<aui:input
+		name="editorGadgetURL"
+		type="hidden"
+		value="<%= editorGadgetURL %>"
+	/>
+	<aui:input
+		name="portletCategoryNames"
+		type="hidden"
+		value="<%= portletCategoryNames %>"
+	/>
+	<aui:input
+		name="publishGadgetRedirect"
+		type="hidden"
+		value="<%= publishGadgetRedirect %>"
+	/>
 
 	<liferay-ui:error exception="<%= DuplicateGadgetURLException.class %>" message="url-already-points-to-an-existing-gadget" />
 	<liferay-ui:error exception="<%= GadgetPortletCategoryNamesException.class %>" message="select-at-least-one-category" />
 	<liferay-ui:error exception="<%= GadgetURLException.class %>" message="url-does-not-point-to-a-valid-gadget" />
 
-	<aui:model-context bean="<%= gadget %>" model="<%= Gadget.class %>" />
+	<aui:model-context
+		bean="<%= gadget %>"
+		model="<%= Gadget.class %>"
+	/>
 
 	<div class="container-fluid-1280">
 		<div class="card card-row-padded main-content-card">
 			<aui:fieldset>
 				<c:choose>
 					<c:when test="<%= editorGadget %>">
-						<aui:input name="url" type="resource" value="<%= editorGadgetURL %>" />
+						<aui:input
+							name="url"
+							type="resource"
+							value="<%= editorGadgetURL %>"
+						/>
 					</c:when>
 					<c:when test="<%= gadget != null %>">
-						<aui:input name="url" type="resource" value="<%= gadget.getUrl() %>" />
+						<aui:input
+							name="url"
+							type="resource"
+							value="<%= gadget.getUrl() %>"
+						/>
 					</c:when>
 					<c:otherwise>
-						<aui:input name="url" />
+						<aui:input
+							name="url"
+						/>
 					</c:otherwise>
 				</c:choose>
 
@@ -98,9 +144,14 @@ if (Validator.isNotNull(editorGadgetURL)) {
 		</div>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</div>
 </aui:form>
@@ -113,7 +164,9 @@ if (Validator.isNotNull(editorGadgetURL)) {
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />url);
 </aui:script>
 
-<aui:script use="aui-tree-view">
+<aui:script
+	use="aui-tree-view"
+>
 	var selectedPortletCategoryNamesNode = A.one('#<portlet:namespace />portletCategoryNames');
 
 	var portletCategoryNames = selectedPortletCategoryNamesNode.val();

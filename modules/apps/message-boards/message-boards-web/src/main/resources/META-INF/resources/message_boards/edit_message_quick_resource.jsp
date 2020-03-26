@@ -126,19 +126,67 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 	<div class="card-body message-content" id="<%= liferayPortletResponse.getNamespace() + "addQuickReply" + parentMessageId %>">
 		<portlet:actionURL name="/message_boards/edit_message" var="editMessageURL" />
 
-		<aui:form action="<%= editMessageURL %>" method="post" name='<%= "addQuickReplyFm" + parentMessageId %>' onSubmit='<%= "event.preventDefault(); " %>'>
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-			<aui:input name="messageId" type="hidden" value="<%= 0 %>" />
-			<aui:input name="mbCategoryId" type="hidden" value="<%= categoryId %>" />
-			<aui:input name="threadId" type="hidden" value="<%= threadId %>" />
-			<aui:input name="parentMessageId" type="hidden" value="<%= parentMessageId %>" />
-			<aui:input name="subject" type="hidden" value="<%= subject %>" />
-			<aui:input name="priority" type="hidden" value="<%= priority %>" />
-			<aui:input name="propagatePermissions" type="hidden" value="<%= true %>" />
-			<aui:input name="workflowAction" type="hidden" value="<%= String.valueOf(WorkflowConstants.ACTION_PUBLISH) %>" />
+		<aui:form
+			action="<%= editMessageURL %>"
+			method="post"
+			name='<%= "addQuickReplyFm" + parentMessageId %>'
+			onSubmit='<%= "event.preventDefault(); " %>'
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+				value="<%= Constants.ADD %>"
+			/>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= redirect %>"
+			/>
+			<aui:input
+				name="messageId"
+				type="hidden"
+				value="<%= 0 %>"
+			/>
+			<aui:input
+				name="mbCategoryId"
+				type="hidden"
+				value="<%= categoryId %>"
+			/>
+			<aui:input
+				name="threadId"
+				type="hidden"
+				value="<%= threadId %>"
+			/>
+			<aui:input
+				name="parentMessageId"
+				type="hidden"
+				value="<%= parentMessageId %>"
+			/>
+			<aui:input
+				name="subject"
+				type="hidden"
+				value="<%= subject %>"
+			/>
+			<aui:input
+				name="priority"
+				type="hidden"
+				value="<%= priority %>"
+			/>
+			<aui:input
+				name="propagatePermissions"
+				type="hidden"
+				value="<%= true %>"
+			/>
+			<aui:input
+				name="workflowAction"
+				type="hidden"
+				value="<%= String.valueOf(WorkflowConstants.ACTION_PUBLISH) %>"
+			/>
 
-			<aui:model-context bean="<%= message %>" model="<%= MBMessage.class %>" />
+			<aui:model-context
+				bean="<%= message %>"
+				model="<%= MBMessage.class %>"
+			/>
 
 			<liferay-ui:input-editor
 				allowBrowseDocuments="<%= false %>"
@@ -154,7 +202,10 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 				skipEditorLoading="<%= true %>"
 			/>
 
-			<aui:input name="body" type="hidden" />
+			<aui:input
+				name="body"
+				type="hidden"
+			/>
 
 			<c:if test="<%= captchaConfiguration.messageBoardsEditMessageCaptchaEnabled() %>">
 				<portlet:resourceURL id="/message_boards/captcha" var="captchaURL" />
@@ -164,10 +215,19 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 				/>
 			</c:if>
 
-			<aui:button cssClass="advanced-reply btn btn-link btn-sm" value="advanced-reply" />
+			<aui:button
+				cssClass="advanced-reply btn btn-link btn-sm"
+				value="advanced-reply"
+			/>
 
 			<c:if test="<%= themeDisplay.isSignedIn() && !SubscriptionLocalServiceUtil.isSubscribed(themeDisplay.getCompanyId(), user.getUserId(), MBThread.class.getName(), threadId) && !SubscriptionLocalServiceUtil.isSubscribed(themeDisplay.getCompanyId(), user.getUserId(), MBCategory.class.getName(), categoryId) %>">
-				<aui:input helpMessage="message-boards-message-subscribe-me-help" label="subscribe-me" name="subscribe" type='<%= (mbGroupServiceSettings.isEmailMessageAddedEnabled() || mbGroupServiceSettings.isEmailMessageUpdatedEnabled()) ? "checkbox" : "hidden" %>' value="<%= subscribeByDefault %>" />
+				<aui:input
+					helpMessage="message-boards-message-subscribe-me-help"
+					label="subscribe-me"
+					name="subscribe"
+					type='<%= (mbGroupServiceSettings.isEmailMessageAddedEnabled() || mbGroupServiceSettings.isEmailMessageUpdatedEnabled()) ? "checkbox" : "hidden" %>'
+					value="<%= subscribeByDefault %>"
+				/>
 			</c:if>
 
 			<liferay-expando:custom-attributes-available
@@ -191,13 +251,20 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 				}
 				%>
 
-				<aui:button name='<%= "replyMessageButton" + parentMessageId %>' type="submit" value="<%= publishButtonLabel %>" />
+				<aui:button
+					name='<%= "replyMessageButton" + parentMessageId %>'
+					type="submit"
+					value="<%= publishButtonLabel %>"
+				/>
 
 				<%
 				String taglibCancelReply = "javascript:" + liferayPortletResponse.getNamespace() + "hideReplyMessage('" + parentMessageId + "');";
 				%>
 
-				<aui:button onClick="<%= taglibCancelReply %>" type="cancel" />
+				<aui:button
+					onClick="<%= taglibCancelReply %>"
+					type="cancel"
+				/>
 			</aui:button-row>
 		</aui:form>
 
@@ -210,13 +277,23 @@ boolean showPermanentLink = GetterUtil.getBoolean(request.getAttribute("edit-mes
 			<portlet:param name="priority" value="<%= String.valueOf(message.getPriority()) %>" />
 		</portlet:renderURL>
 
-		<aui:form action="<%= advancedReplyURL %>" cssClass="hide" method="post" name='<%= "advancedReplyFm" + parentMessageId %>'>
-			<aui:input name="body" type="hidden" />
+		<aui:form
+			action="<%= advancedReplyURL %>"
+			cssClass="hide"
+			method="post"
+			name='<%= "advancedReplyFm" + parentMessageId %>'
+		>
+			<aui:input
+				name="body"
+				type="hidden"
+			/>
 		</aui:form>
 	</div>
 </div>
 
-<aui:script require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'>
+<aui:script
+	require='<%= npmResolvedPackageName + "/message_boards/js/MBPortlet.es as MBPortlet" %>'
+>
 	new MBPortlet.default({
 		constants: {
 			ACTION_PUBLISH: '<%= WorkflowConstants.ACTION_PUBLISH %>',

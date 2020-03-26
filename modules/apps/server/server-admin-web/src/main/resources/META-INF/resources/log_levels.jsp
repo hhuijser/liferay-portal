@@ -142,6 +142,10 @@ CreationMenu creationMenu = new CreationMenu() {
 	</liferay-ui:search-container>
 
 	<aui:button-row>
-		<aui:button cssClass="save-server-button" data-cmd="updateLogLevels" value="save" />
+		<aui:button
+			cssClass="save-server-button"
+			data-cmd="updateLogLevels"
+			value="save"
+		/>
 	</aui:button-row>
 </div>

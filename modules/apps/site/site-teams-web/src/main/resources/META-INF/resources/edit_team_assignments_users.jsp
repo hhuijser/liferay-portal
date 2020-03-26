@@ -33,10 +33,27 @@ EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext editSiteTeamAssignme
 
 <portlet:actionURL name="deleteTeamUsers" var="deleteTeamUsersURL" />
 
-<aui:form action="<%= deleteTeamUsersURL %>" cssClass="container-fluid-1280 portlet-site-teams-users" method="post" name="fm">
-	<aui:input name="tabs1" type="hidden" value="<%= editSiteTeamAssignmentsUsersDisplayContext.getTabs1() %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="teamId" type="hidden" value="<%= String.valueOf(editSiteTeamAssignmentsUsersDisplayContext.getTeamId()) %>" />
+<aui:form
+	action="<%= deleteTeamUsersURL %>"
+	cssClass="container-fluid-1280 portlet-site-teams-users"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= editSiteTeamAssignmentsUsersDisplayContext.getTabs1() %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="teamId"
+		type="hidden"
+		value="<%= String.valueOf(editSiteTeamAssignmentsUsersDisplayContext.getTeamId()) %>"
+	/>
 
 	<liferay-ui:search-container
 		id="users"
@@ -130,10 +147,26 @@ EditSiteTeamAssignmentsUsersManagementToolbarDisplayContext editSiteTeamAssignme
 
 <portlet:actionURL name="addTeamUsers" var="addTeamUsersURL" />
 
-<aui:form action="<%= addTeamUsersURL %>" cssClass="hide" name="addTeamUsersFm">
-	<aui:input name="tabs1" type="hidden" value="<%= editSiteTeamAssignmentsUsersDisplayContext.getTabs1() %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="teamId" type="hidden" value="<%= String.valueOf(editSiteTeamAssignmentsUsersDisplayContext.getTeamId()) %>" />
+<aui:form
+	action="<%= addTeamUsersURL %>"
+	cssClass="hide"
+	name="addTeamUsersFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= editSiteTeamAssignmentsUsersDisplayContext.getTabs1() %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+	<aui:input
+		name="teamId"
+		type="hidden"
+		value="<%= String.valueOf(editSiteTeamAssignmentsUsersDisplayContext.getTeamId()) %>"
+	/>
 </aui:form>
 
 <liferay-frontend:component

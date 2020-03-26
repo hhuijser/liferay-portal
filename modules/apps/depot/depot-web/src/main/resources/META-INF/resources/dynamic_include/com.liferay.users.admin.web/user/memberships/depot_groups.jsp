@@ -22,7 +22,11 @@ DepotAdminMembershipsDisplayContext depotAdminMembershipsDisplayContext = (Depot
 currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "asset-libraries");
 %>
 
-<aui:input name="<%= ActionRequest.ACTION_NAME %>" type="hidden" value="/depot/update_memberships" />
+<aui:input
+	name="<%= ActionRequest.ACTION_NAME %>"
+	type="hidden"
+	value="/depot/update_memberships"
+/>
 
 <liferay-ui:error-marker
 	key="<%= WebKeys.ERROR_SECTION %>"
@@ -62,8 +66,14 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "asset-
 	/>
 </liferay-util:buffer>
 
-<aui:input name="addDepotGroupIds" type="hidden" />
-<aui:input name="deleteDepotGroupIds" type="hidden" />
+<aui:input
+	name="addDepotGroupIds"
+	type="hidden"
+/>
+<aui:input
+	name="deleteDepotGroupIds"
+	type="hidden"
+/>
 
 <liferay-ui:search-container
 	compactEmptyResultsMessage="<%= true %>"
@@ -111,7 +121,9 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "asset-
 </liferay-ui:search-container>
 
 <c:if test="<%= depotAdminMembershipsDisplayContext.isSelectable() %>">
-	<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+	<aui:script
+		require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+	>
 		AUI().use('liferay-search-container', function(A) {
 			var AArray = A.Array;
 

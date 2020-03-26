@@ -44,9 +44,20 @@ int totalBannedUsers = MBBanLocalServiceUtil.getBansCount(scopeGroupId);
 />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= portletURL.toString() %>" method="get" name="fm">
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="get"
+		name="fm"
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
 
 		<liferay-ui:search-container
 			emptyResultsMessage="there-are-no-banned-users"
@@ -101,7 +112,9 @@ int totalBannedUsers = MBBanLocalServiceUtil.getBansCount(scopeGroupId);
 
 						<c:choose>
 							<c:when test="<%= (bannedUser != null) && bannedUser.isActive() %>">
-								<aui:a href="<%= bannedUser.getDisplayURL(themeDisplay) %>">
+								<aui:a
+									href="<%= bannedUser.getDisplayURL(themeDisplay) %>"
+								>
 									<%= HtmlUtil.escape(PortalUtil.getUserName(ban.getBanUserId(), StringPool.BLANK)) %>
 								</aui:a>
 							</c:when>

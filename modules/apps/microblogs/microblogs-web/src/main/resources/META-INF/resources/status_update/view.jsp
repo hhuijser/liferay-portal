@@ -57,7 +57,9 @@ Group group = themeDisplay.getScopeGroup();
 	</div>
 </c:if>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	AUI().ready(function() {
 		Liferay.Microblogs.init({
 			microblogsEntriesURL:

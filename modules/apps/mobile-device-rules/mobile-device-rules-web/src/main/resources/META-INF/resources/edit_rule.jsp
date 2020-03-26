@@ -52,19 +52,46 @@ renderResponse.setTitle(title);
 	<portlet:param name="mvcRenderCommandName" value="/mobile_device_rules/edit_rule" />
 </portlet:actionURL>
 
-<aui:form action="<%= editRuleURL %>" cssClass="container-fluid-1280" enctype="multipart/form-data" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (rule == null) ? Constants.ADD : Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="ruleGroupId" type="hidden" value="<%= ruleGroupId %>" />
-	<aui:input name="ruleId" type="hidden" value="<%= ruleId %>" />
+<aui:form
+	action="<%= editRuleURL %>"
+	cssClass="container-fluid-1280"
+	enctype="multipart/form-data"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= (rule == null) ? Constants.ADD : Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="ruleGroupId"
+		type="hidden"
+		value="<%= ruleGroupId %>"
+	/>
+	<aui:input
+		name="ruleId"
+		type="hidden"
+		value="<%= ruleId %>"
+	/>
 
 	<liferay-ui:error exception="<%= NoSuchRuleException.class %>" message="rule-does-not-exist" />
 	<liferay-ui:error exception="<%= NoSuchRuleGroupException.class %>" message="device-family-does-not-exist" />
 	<liferay-ui:error exception="<%= UnknownRuleHandlerException.class %>" message="please-select-a-rule-type" />
 
-	<aui:model-context bean="<%= rule %>" model="<%= MDRRule.class %>" />
+	<aui:model-context
+		bean="<%= rule %>"
+		model="<%= MDRRule.class %>"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
 			<c:if test="<%= rule == null %>">
 				<p class="text-default">
@@ -72,9 +99,15 @@ renderResponse.setTitle(title);
 				</p>
 			</c:if>
 
-			<aui:input name="name" placeholder="name" />
+			<aui:input
+				name="name"
+				placeholder="name"
+			/>
 
-			<aui:input name="description" placeholder="description" />
+			<aui:input
+				name="description"
+				placeholder="description"
+			/>
 
 			<c:choose>
 				<c:when test="<%= ruleHandlerTypes.size() == 1 %>">
@@ -83,16 +116,27 @@ renderResponse.setTitle(title);
 					String ruleHandlerType = ruleHandlerTypes.iterator().next();
 					%>
 
-					<aui:input name="type" type="hidden" value="<%= ruleHandlerType %>" />
+					<aui:input
+						name="type"
+						type="hidden"
+						value="<%= ruleHandlerType %>"
+					/>
 				</c:when>
 				<c:otherwise>
-					<aui:select changesContext="<%= true %>" name="type" showEmptyOption="<%= true %>">
+					<aui:select
+						changesContext="<%= true %>"
+						name="type"
+						showEmptyOption="<%= true %>"
+					>
 
 						<%
 						for (String ruleHandlerType : ruleHandlerTypes) {
 						%>
 
-							<aui:option label="<%= ruleHandlerType %>" selected="<%= type.equals(ruleHandlerType) %>" />
+							<aui:option
+								label="<%= ruleHandlerType %>"
+								selected="<%= type.equals(ruleHandlerType) %>"
+							/>
 
 						<%
 						}
@@ -111,14 +155,21 @@ renderResponse.setTitle(title);
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
-		<aui:button href="<%= redirect %>" value="cancel" />
+		<aui:button
+			type="submit"
+		/>
+		<aui:button
+			href="<%= redirect %>"
+			value="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 
 <portlet:resourceURL id="/mobile_device_rules/edit_rule" var="editorURL" />
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var typeNode = document.getElementById('<portlet:namespace />type');
 	var typeSettingsContainer = document.getElementById(
 		'<portlet:namespace />typeSettings'

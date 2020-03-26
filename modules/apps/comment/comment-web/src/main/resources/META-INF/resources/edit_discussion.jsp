@@ -56,16 +56,46 @@ if (comment instanceof WorkflowableComment) {
 />
 
 <div class="container-fluid-1280">
-	<aui:form action='<%= themeDisplay.getPathMain() + "/portal/comment/discussion/edit" %>' enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveComment();" %>'>
+	<aui:form
+		action='<%= themeDisplay.getPathMain() + "/portal/comment/discussion/edit" %>'
+		enctype="multipart/form-data"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveComment();" %>'
+	>
 		<input name="p_auth" type="hidden" value="<%= AuthTokenUtil.getToken(request) %>" />
 		<input name="namespace" type="hidden" value="<%= renderResponse.getNamespace() %>" />
 
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="commentId" type="hidden" value="<%= commentId %>" />
-		<aui:input name="parentCommentId" type="hidden" value="<%= parentCommentId %>" />
-		<aui:input name="workflowAction" type="hidden" value="<%= String.valueOf(pending ? WorkflowConstants.ACTION_SAVE_DRAFT : WorkflowConstants.ACTION_PUBLISH) %>" />
-		<aui:input name="ajax" type="hidden" value="<%= false %>" />
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= Constants.UPDATE %>"
+		/>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="commentId"
+			type="hidden"
+			value="<%= commentId %>"
+		/>
+		<aui:input
+			name="parentCommentId"
+			type="hidden"
+			value="<%= parentCommentId %>"
+		/>
+		<aui:input
+			name="workflowAction"
+			type="hidden"
+			value="<%= String.valueOf(pending ? WorkflowConstants.ACTION_SAVE_DRAFT : WorkflowConstants.ACTION_PUBLISH) %>"
+		/>
+		<aui:input
+			name="ajax"
+			type="hidden"
+			value="<%= false %>"
+		/>
 
 		<liferay-ui:error exception="<%= CaptchaConfigurationException.class %>" message="a-captcha-error-occurred-please-contact-an-administrator" />
 		<liferay-ui:error exception="<%= CaptchaException.class %>" message="captcha-verification-failed" />
@@ -73,11 +103,17 @@ if (comment instanceof WorkflowableComment) {
 		<liferay-ui:error exception="<%= DiscussionMaxCommentsException.class %>" message="maximum-number-of-comments-has-been-reached" />
 		<liferay-ui:error exception="<%= MessageBodyException.class %>" message="please-enter-a-valid-message" />
 
-		<aui:model-context bean="<%= comment %>" model="<%= comment.getModelClass() %>" />
+		<aui:model-context
+			bean="<%= comment %>"
+			model="<%= comment.getModelClass() %>"
+		/>
 
 		<aui:fieldset>
 			<c:if test="<%= workflowableComment != null %>">
-				<aui:workflow-status model="<%= CommentConstants.getDiscussionClass() %>" status="<%= workflowableComment.getStatus() %>" />
+				<aui:workflow-status
+					model="<%= CommentConstants.getDiscussionClass() %>"
+					status="<%= workflowableComment.getStatus() %>"
+				/>
 			</c:if>
 
 			<liferay-ui:input-editor
@@ -88,7 +124,11 @@ if (comment instanceof WorkflowableComment) {
 				showSource="<%= false %>"
 			/>
 
-			<aui:input name="body" type="hidden" value="<%= comment.getBody() %>" />
+			<aui:input
+				name="body"
+				type="hidden"
+				value="<%= comment.getBody() %>"
+			/>
 		</aui:fieldset>
 
 		<c:if test="<%= parentComment != null %>">
@@ -109,7 +149,9 @@ if (comment instanceof WorkflowableComment) {
 
 		<aui:button-row>
 			<c:if test="<%= (comment == null) || !approved %>">
-				<aui:button type="submit" />
+				<aui:button
+					type="submit"
+				/>
 			</c:if>
 
 			<c:if test="<%= (workflowableComment != null) && approved && WorkflowDefinitionLinkLocalServiceUtil.hasWorkflowDefinitionLink(workflowableComment.getCompanyId(), workflowableComment.getGroupId(), CommentConstants.getDiscussionClassName()) %>">
@@ -118,7 +160,10 @@ if (comment instanceof WorkflowableComment) {
 				</div>
 			</c:if>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

@@ -395,7 +395,12 @@ fragmentsEditorData.put("fragments-editor-item-type", "fragments-editor-mapped-i
 				%>
 
 					<div class="autofit-col component-subtitle export-action">
-						<aui:a cssClass="btn btn-outline-borderless btn-outline-secondary btn-sm" data="<%= data %>" href="<%= exportAssetURL.toString() %>" label='<%= LanguageUtil.format(request, "x-convert-x-to-x", new Object[] {"hide-accessible", title, StringUtil.toUpperCase(HtmlUtil.escape(extension))}, false) %>' />
+						<aui:a
+							cssClass="btn btn-outline-borderless btn-outline-secondary btn-sm"
+							data="<%= data %>"
+							href="<%= exportAssetURL.toString() %>"
+							label='<%= LanguageUtil.format(request, "x-convert-x-to-x", new Object[] {"hide-accessible", title, StringUtil.toUpperCase(HtmlUtil.escape(extension))}, false) %>'
+						/>
 					</div>
 
 				<%

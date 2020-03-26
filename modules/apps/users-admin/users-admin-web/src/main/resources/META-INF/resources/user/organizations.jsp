@@ -65,8 +65,15 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organi
 	/>
 </liferay-util:buffer>
 
-<aui:input name="addOrganizationIds" type="hidden" value="<%= organizationIdsString %>" />
-<aui:input name="deleteOrganizationIds" type="hidden" />
+<aui:input
+	name="addOrganizationIds"
+	type="hidden"
+	value="<%= organizationIdsString %>"
+/>
+<aui:input
+	name="deleteOrganizationIds"
+	type="hidden"
+/>
 
 <liferay-ui:search-container
 	compactEmptyResultsMessage="<%= true %>"
@@ -127,7 +134,9 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organi
 </liferay-ui:search-container>
 
 <c:if test="<%= !portletName.equals(myAccountPortletId) %>">
-	<aui:script use="liferay-search-container">
+	<aui:script
+		use="liferay-search-container"
+	>
 		var AArray = A.Array;
 		var Util = Liferay.Util;
 

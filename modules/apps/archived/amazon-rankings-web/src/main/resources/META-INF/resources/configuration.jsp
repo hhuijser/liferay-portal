@@ -28,9 +28,21 @@ isbnsString = StringUtil.merge(isbns, StringPool.SPACE);
 
 <liferay-portlet:renderURL portletConfiguration="<%= true %>" var="configurationRenderURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<div class="portlet-configuration-body-content">
 		<div class="container-fluid-1280">
@@ -58,12 +70,22 @@ isbnsString = StringUtil.merge(isbns, StringPool.SPACE);
 			</liferay-ui:error>
 
 			<aui:fieldset>
-				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>" cssClass="lfr-textarea-container" label="add-all-isbn-numbers-separated-by-spaces" name="preferences--isbns--" type="textarea" value="<%= isbnsString %>" wrap="soft" />
+				<aui:input
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>"
+					cssClass="lfr-textarea-container"
+					label="add-all-isbn-numbers-separated-by-spaces"
+					name="preferences--isbns--"
+					type="textarea"
+					value="<%= isbnsString %>"
+					wrap="soft"
+				/>
 			</aui:fieldset>
 		</div>
 	</div>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 	</aui:button-row>
 </aui:form>

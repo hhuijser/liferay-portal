@@ -66,14 +66,20 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 			</h2>
 		</div>
 
-		<aui:row cssClass="clay-site-row-spacer">
-			<aui:col span="<%= 12 %>">
+		<aui:row
+			cssClass="clay-site-row-spacer"
+		>
+			<aui:col
+				span="<%= 12 %>"
+			>
 				<h3 class="sheet-subtitle">
 					<liferay-ui:message key="text-and-numbers" />
 				</h3>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createTextAreaURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -93,7 +99,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createInputFieldURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -113,13 +121,17 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 12 %>">
+			<aui:col
+				span="<%= 12 %>"
+			>
 				<h3 class="sheet-subtitle">
 					<liferay-ui:message key="selection" />
 				</h3>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createDropdownURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -139,7 +151,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createCheckboxURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -163,7 +177,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createRadioURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -187,13 +203,17 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 12 %>">
+			<aui:col
+				span="<%= 12 %>"
+			>
 				<h3 class="sheet-subtitle">
 					<liferay-ui:message key="others" />
 				</h3>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createGeolocationURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -215,7 +235,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createDateURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />
@@ -247,7 +269,9 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "new-cus
 				</a>
 			</aui:col>
 
-			<aui:col span="<%= 4 %>">
+			<aui:col
+				span="<%= 4 %>"
+			>
 				<portlet:renderURL var="createBooleanURL">
 					<portlet:param name="mvcPath" value="/edit/expando.jsp" />
 					<portlet:param name="redirect" value="<%= currentURL %>" />

@@ -44,14 +44,40 @@ if (powwowMeeting != null) {
 
 <liferay-portlet:actionURL name="updatePowwowMeeting" var="editPowwowMeetingURL" />
 
-<aui:form action="<%= editPowwowMeetingURL %>" cssClass="edit-meeting" id="fm" method="post" name="fm" onSubmit="event.preventDefault();">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
-	<aui:input name="powwowMeetingId" type="hidden" value="<%= String.valueOf(powwowMeetingId) %>" />
+<aui:form
+	action="<%= editPowwowMeetingURL %>"
+	cssClass="edit-meeting"
+	id="fm"
+	method="post"
+	name="fm"
+	onSubmit="event.preventDefault();"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="backURL"
+		type="hidden"
+		value="<%= backURL %>"
+	/>
+	<aui:input
+		name="powwowMeetingId"
+		type="hidden"
+		value="<%= String.valueOf(powwowMeetingId) %>"
+	/>
 
-	<aui:model-context bean="<%= powwowMeeting %>" model="<%= PowwowMeeting.class %>" />
+	<aui:model-context
+		bean="<%= powwowMeeting %>"
+		model="<%= PowwowMeeting.class %>"
+	/>
 
-	<aui:input autoFocus="<%= true %>" cssClass="meeting-name" name="name" />
+	<aui:input
+		autoFocus="<%= true %>"
+		cssClass="meeting-name"
+		name="name"
+	/>
 
 	<label class="control-label" for="<portlet:namespace />meetingEventDate"><liferay-ui:message key="meeting-date" /></label>
 
@@ -151,7 +177,10 @@ if (powwowMeeting != null) {
 		</span>
 	</div>
 
-	<aui:input cssClass="meeting-description" name="description" />
+	<aui:input
+		cssClass="meeting-description"
+		name="description"
+	/>
 
 	<%
 	List<String> availableLanguageIds = new ArrayList<String>();
@@ -177,14 +206,21 @@ if (powwowMeeting != null) {
 
 	<c:choose>
 		<c:when test="<%= availableLanguageIds.size() > 1 %>">
-			<aui:select label="email-notification-template-language" name="languageId">
+			<aui:select
+				label="email-notification-template-language"
+				name="languageId"
+			>
 
 				<%
 				for (String currentLanguageId : availableLanguageIds) {
 					Locale currentLocale = LocaleUtil.fromLanguageId(currentLanguageId);
 				%>
 
-					<aui:option label="<%= currentLocale.getDisplayName(locale) %>" selected="<%= currentLanguageId.equals(languageId) %>" value="<%= currentLanguageId %>" />
+					<aui:option
+						label="<%= currentLocale.getDisplayName(locale) %>"
+						selected="<%= currentLanguageId.equals(languageId) %>"
+						value="<%= currentLanguageId %>"
+					/>
 
 				<%
 				}
@@ -193,12 +229,22 @@ if (powwowMeeting != null) {
 			</aui:select>
 		</c:when>
 		<c:otherwise>
-			<aui:input name="languageId" type="hidden" value="<%= languageId %>" />
+			<aui:input
+				name="languageId"
+				type="hidden"
+				value="<%= languageId %>"
+			/>
 		</c:otherwise>
 	</c:choose>
 
 	<div class="provider">
-		<aui:select cssClass="provider-type-select" disabled="<%= powwowMeeting != null %>" label="provider" name="providerType" required="<%= true %>">
+		<aui:select
+			cssClass="provider-type-select"
+			disabled="<%= powwowMeeting != null %>"
+			label="provider"
+			name="providerType"
+			required="<%= true %>"
+		>
 
 			<%
 			for (String providerType : PortletPropsValues.POWWOW_PROVIDER_TYPES) {
@@ -234,24 +280,66 @@ if (powwowMeeting != null) {
 	%>
 
 	<div id="<portlet:namespace />optionPassword">
-		<aui:input id="requirePassword" label="require-password" name="requirePassword" onClick='<%= renderResponse.getNamespace() + "toggleRequirePassword(this.checked);" %>' type="checkbox" value="<%= requirePassword %>" />
+		<aui:input
+			id="requirePassword"
+			label="require-password"
+			name="requirePassword"
+			onClick='<%= renderResponse.getNamespace() + "toggleRequirePassword(this.checked);" %>'
+			type="checkbox"
+			value="<%= requirePassword %>"
+		/>
 
 		<div class="password-container <%= requirePassword ? "" : "hide" %>" id="<portlet:namespace />passwordContainer">
-			<aui:input class="form-control" cssClass="meeting-password" id="password" label="" name="password" type="password" value='<%= (password == null) ? "" : password %>' />
+			<aui:input
+				class="form-control"
+				cssClass="meeting-password"
+				id="password"
+				label=""
+				name="password"
+				type="password"
+				value='<%= (password == null) ? "" : password %>'
+			/>
 		</div>
 	</div>
 
-	<aui:input cssClass="optional-field" label="automatically-start-video" name="autoStartVideo" type="checkbox" value="<%= autoStartVideo %>" />
+	<aui:input
+		cssClass="optional-field"
+		label="automatically-start-video"
+		name="autoStartVideo"
+		type="checkbox"
+		value="<%= autoStartVideo %>"
+	/>
 
 	<h3><liferay-ui:message key="participants" /></h3>
 
-	<aui:fieldset cssClass="participants" id="participants">
-		<aui:input name="participantsJSON" type="hidden" />
+	<aui:fieldset
+		cssClass="participants"
+		id="participants"
+	>
+		<aui:input
+			name="participantsJSON"
+			type="hidden"
+		/>
 
 		<div class="row-fields">
-			<aui:input autocomplete="off" cssClass="add-participant" inlineField="<%= true %>" label="" name="powwowParticipantInput" placeholder="add-participant-by-name-or-email-address" type="text" />
+			<aui:input
+				autocomplete="off"
+				cssClass="add-participant"
+				inlineField="<%= true %>"
+				label=""
+				name="powwowParticipantInput"
+				placeholder="add-participant-by-name-or-email-address"
+				type="text"
+			/>
 
-			<aui:input cssClass="add-participant-name hide" inlineField="<%= true %>" label="" name="powwowParticipantName" placeholder="include-a-name-for-notifying-the-user-by-email" type="text" />
+			<aui:input
+				cssClass="add-participant-name hide"
+				inlineField="<%= true %>"
+				label=""
+				name="powwowParticipantName"
+				placeholder="include-a-name-for-notifying-the-user-by-email"
+				type="text"
+			/>
 		</div>
 
 		<label><liferay-ui:message key="participant-list" /></label>
@@ -261,9 +349,15 @@ if (powwowMeeting != null) {
 	</aui:fieldset>
 
 	<aui:button-row>
-		<aui:button name="submit" type="submit" />
+		<aui:button
+			name="submit"
+			type="submit"
+		/>
 
-		<aui:button onClick="<%= redirect %>" type="cancel" />
+		<aui:button
+			onClick="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 
@@ -282,7 +376,9 @@ if (powwowMeeting != null) {
 	);
 </aui:script>
 
-<aui:script use="aui-base,aui-form-validator,aui-io-request,aui-tooltip,autocomplete-filters,autocomplete-highlighters,autocomplete-list,liferay-plugin-meeting-scheduler,liferay-plugin-meeting-util">
+<aui:script
+	use="aui-base,aui-form-validator,aui-io-request,aui-tooltip,autocomplete-filters,autocomplete-highlighters,autocomplete-list,liferay-plugin-meeting-scheduler,liferay-plugin-meeting-util"
+>
 	new A.Tooltip(
 		{
 			cssClass: 'tooltip-help',

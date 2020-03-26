@@ -34,11 +34,28 @@ boolean showBackURL = ParamUtil.getBoolean(request, "showBackURL", true);
 	<portlet:param name="mvcPath" value="/copy_template.jsp" />
 </portlet:actionURL>
 
-<aui:form action="<%= copyTemplateURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= ddmDisplay.getEditTemplateBackURL(liferayPortletRequest, liferayPortletResponse, classNameId, classPK, resourceClassNameId, portletResource) %>" />
+<aui:form
+	action="<%= copyTemplateURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= ddmDisplay.getEditTemplateBackURL(liferayPortletRequest, liferayPortletResponse, classNameId, classPK, resourceClassNameId, portletResource) %>"
+	/>
 
-	<aui:input name="templateId" type="hidden" value="<%= String.valueOf(templateId) %>" />
-	<aui:input name="status" type="hidden" value="<%= templateVersion.getStatus() %>" />
+	<aui:input
+		name="templateId"
+		type="hidden"
+		value="<%= String.valueOf(templateId) %>"
+	/>
+	<aui:input
+		name="status"
+		type="hidden"
+		value="<%= templateVersion.getStatus() %>"
+	/>
 
 	<liferay-ui:error exception="<%= TemplateNameException.class %>" message="please-enter-a-valid-name" />
 
@@ -55,19 +72,34 @@ boolean showBackURL = ParamUtil.getBoolean(request, "showBackURL", true);
 
 	</c:if>
 
-	<aui:model-context bean="<%= template %>" model="<%= DDMTemplate.class %>" />
+	<aui:model-context
+		bean="<%= template %>"
+		model="<%= DDMTemplate.class %>"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input name="name" />
+			<aui:input
+				name="name"
+			/>
 
-			<aui:input name="description" />
+			<aui:input
+				name="description"
+			/>
 		</aui:fieldset>
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" value="copy" />
+		<aui:button
+			type="submit"
+			value="copy"
+		/>
 
-		<aui:button href="<%= ddmDisplay.getEditTemplateBackURL(liferayPortletRequest, liferayPortletResponse, classNameId, classPK, resourceClassNameId, portletResource) %>" type="cancel" />
+		<aui:button
+			href="<%= ddmDisplay.getEditTemplateBackURL(liferayPortletRequest, liferayPortletResponse, classNameId, classPK, resourceClassNameId, portletResource) %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

@@ -25,7 +25,10 @@ Group liveGroup = (Group)request.getAttribute("site.liveGroup");
 	value="categorization"
 />
 
-<aui:model-context bean="<%= liveGroup %>" model="<%= Group.class %>" />
+<aui:model-context
+	bean="<%= liveGroup %>"
+	model="<%= Group.class %>"
+/>
 
 <liferay-asset:asset-categories-error />
 

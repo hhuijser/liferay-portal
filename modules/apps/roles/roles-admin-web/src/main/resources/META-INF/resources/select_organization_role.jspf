@@ -75,10 +75,18 @@ else {
 	viewTypeItems="<%= selectRoleManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl container-form-lg" method="post" name="selectOrganizationRoleFm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-lg"
+	method="post"
+	name="selectOrganizationRoleFm"
+>
 	<c:choose>
 		<c:when test="<%= step == 1 %>">
-			<aui:input name="organizationId" type="hidden" />
+			<aui:input
+				name="organizationId"
+				type="hidden"
+			/>
 
 			<div class="alert alert-info">
 				<liferay-ui:message key="please-select-an-organization-to-which-you-will-assign-an-organization-role" />
@@ -146,7 +154,11 @@ else {
 						data.put("organizationid", organization.getOrganizationId());
 						%>
 
-						<aui:button cssClass="organization-selector-button" data="<%= data %>" value="choose" />
+						<aui:button
+							cssClass="organization-selector-button"
+							data="<%= data %>"
+							value="choose"
+						/>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
 
@@ -155,7 +167,9 @@ else {
 				/>
 			</liferay-ui:search-container>
 
-			<aui:script require="metal-dom/src/dom as dom">
+			<aui:script
+				require="metal-dom/src/dom as dom"
+			>
 				var form = document.<portlet:namespace />selectOrganizationRoleFm;
 
 				dom.delegate(form, 'click', '.organization-selector-button', function(event) {
@@ -175,8 +189,16 @@ else {
 			</aui:script>
 		</c:when>
 		<c:when test="<%= step == 2 %>">
-			<aui:input name="step" type="hidden" value="2" />
-			<aui:input name="organizationId" type="hidden" value="<%= String.valueOf(organizationId) %>" />
+			<aui:input
+				name="step"
+				type="hidden"
+				value="2"
+			/>
+			<aui:input
+				name="organizationId"
+				type="hidden"
+				value="<%= String.valueOf(organizationId) %>"
+			/>
 
 			<%
 			portletURL.setParameter("step", "1");
@@ -240,7 +262,12 @@ else {
 							}
 							%>
 
-							<aui:button cssClass="selector-button" data="<%= data %>" disabled="<%= disabled %>" value="choose" />
+							<aui:button
+								cssClass="selector-button"
+								data="<%= data %>"
+								disabled="<%= disabled %>"
+								value="choose"
+							/>
 						</c:if>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
@@ -253,7 +280,9 @@ else {
 	</c:choose>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var Util = Liferay.Util;
 
 	var openingLiferay = Util.getOpener().Liferay;

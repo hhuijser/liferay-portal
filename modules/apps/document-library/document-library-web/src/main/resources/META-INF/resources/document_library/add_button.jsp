@@ -16,7 +16,9 @@
 
 <%@ include file="/document_library/init.jsp" %>
 
-<aui:script use="aui-base,uploader">
+<aui:script
+	use="aui-base,uploader"
+>
 	if (!A.UA.ios && A.Uploader.TYPE != 'none') {
 		var uploadMultipleDocumentsIcon = A.all(
 			'.upload-multiple-documents:hidden'

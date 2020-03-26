@@ -69,7 +69,11 @@ String keywords = ParamUtil.getString(request, "keywords");
 							<portlet:param name="redirect" value="<%= currentURL %>" />
 						</portlet:renderURL>
 
-						<aui:button href="<%= addNewChannelURL %>" primary="<%= true %>" value="new-property" />
+						<aui:button
+							href="<%= addNewChannelURL %>"
+							primary="<%= true %>"
+							value="new-property"
+						/>
 					</aui:button-row>
 				</div>
 			</div>

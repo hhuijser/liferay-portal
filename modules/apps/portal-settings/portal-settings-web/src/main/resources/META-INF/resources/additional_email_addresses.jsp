@@ -75,7 +75,9 @@
 		<liferay-ui:error exception="<%= EmailAddressException.class %>" message="please-enter-a-valid-email-address" />
 		<liferay-ui:error key="<%= NoSuchListTypeException.class.getName() + className + ListTypeConstants.EMAIL_ADDRESS %>" message="please-select-a-type" />
 
-		<aui:fieldset id='<%= renderResponse.getNamespace() + "additionalEmailAddresses" %>'>
+		<aui:fieldset
+			id='<%= renderResponse.getNamespace() + "additionalEmailAddresses" %>'
+		>
 
 			<%
 			for (int i = 0; i < emailAddressesIndexes.length; i++) {
@@ -84,21 +86,50 @@
 				EmailAddress emailAddress = emailAddresses.get(i);
 			%>
 
-				<aui:model-context bean="<%= emailAddress %>" model="<%= EmailAddress.class %>" />
+				<aui:model-context
+					bean="<%= emailAddress %>"
+					model="<%= EmailAddress.class %>"
+				/>
 
 				<div class="form-group-autofit lfr-form-row">
-					<aui:input name='<%= "emailAddressId" + emailAddressesIndex %>' type="hidden" value="<%= emailAddress.getEmailAddressId() %>" />
+					<aui:input
+						name='<%= "emailAddressId" + emailAddressesIndex %>'
+						type="hidden"
+						value="<%= emailAddress.getEmailAddressId() %>"
+					/>
 
 					<div class="form-group-item">
-						<aui:input cssClass="email-field" fieldParam='<%= "emailAddressAddress" + emailAddressesIndex %>' id='<%= "emailAddressAddress" + emailAddressesIndex %>' inlineField="<%= true %>" label="email-address" name="address" width="150px" />
+						<aui:input
+							cssClass="email-field"
+							fieldParam='<%= "emailAddressAddress" + emailAddressesIndex %>'
+							id='<%= "emailAddressAddress" + emailAddressesIndex %>'
+							inlineField="<%= true %>"
+							label="email-address"
+							name="address"
+							width="150px"
+						/>
 					</div>
 
 					<div class="form-group-item">
-						<aui:select inlineField="<%= true %>" label="type" listType="<%= className + ListTypeConstants.EMAIL_ADDRESS %>" name='<%= "emailAddressTypeId" + emailAddressesIndex %>' />
+						<aui:select
+							inlineField="<%= true %>"
+							label="type"
+							listType="<%= className + ListTypeConstants.EMAIL_ADDRESS %>"
+							name='<%= "emailAddressTypeId" + emailAddressesIndex %>'
+						/>
 					</div>
 
 					<div class="form-group-item form-group-item-label-spacer">
-						<aui:input checked="<%= emailAddress.isPrimary() %>" cssClass="primary-ctrl" id='<%= "emailAddressPrimary" + emailAddressesIndex %>' inlineField="<%= true %>" label="primary" name="emailAddressPrimary" type="radio" value="<%= emailAddressesIndex %>" />
+						<aui:input
+							checked="<%= emailAddress.isPrimary() %>"
+							cssClass="primary-ctrl"
+							id='<%= "emailAddressPrimary" + emailAddressesIndex %>'
+							inlineField="<%= true %>"
+							label="primary"
+							name="emailAddressPrimary"
+							type="radio"
+							value="<%= emailAddressesIndex %>"
+						/>
 					</div>
 				</div>
 
@@ -106,10 +137,16 @@
 			}
 			%>
 
-			<aui:input name="emailAddressesIndexes" type="hidden" value="<%= StringUtil.merge(emailAddressesIndexes) %>" />
+			<aui:input
+				name="emailAddressesIndexes"
+				type="hidden"
+				value="<%= StringUtil.merge(emailAddressesIndexes) %>"
+			/>
 		</aui:fieldset>
 
-		<aui:script use="liferay-auto-fields">
+		<aui:script
+			use="liferay-auto-fields"
+		>
 			new Liferay.AutoFields({
 				contentBox: '#<portlet:namespace />additionalEmailAddresses',
 				fieldIndexes: '<portlet:namespace />emailAddressesIndexes',

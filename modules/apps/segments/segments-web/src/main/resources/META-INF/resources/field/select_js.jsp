@@ -22,7 +22,9 @@ String searchContainerId = ParamUtil.getString(request, "searchContainerId");
 String selectEventName = ParamUtil.getString(request, "selectEventName");
 %>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace /><%= HtmlUtil.escape(searchContainerId) %>'
 	);

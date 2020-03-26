@@ -199,18 +199,30 @@ TasksEntry tasksEntry = TasksEntryLocalServiceUtil.fetchTasksEntry(tasksEntryId)
 					<portlet:param name="status" value="<%= String.valueOf(resolved ? TasksEntryConstants.STATUS_REOPENED : TasksEntryConstants.STATUS_RESOLVED) %>" />
 				</portlet:actionURL>
 
-				<aui:button cssClass="btn-primary" onClick="<%= updateTasksEntryStatusURL %>" value='<%= resolved ? "reopen" : "resolve" %>' />
+				<aui:button
+					cssClass="btn-primary"
+					onClick="<%= updateTasksEntryStatusURL %>"
+					value='<%= resolved ? "reopen" : "resolve" %>'
+				/>
 
 				<portlet:renderURL var="editTasksEntryURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">
 					<portlet:param name="mvcPath" value="/tasks/edit_task.jsp" />
 					<portlet:param name="tasksEntryId" value="<%= String.valueOf(tasksEntry.getTasksEntryId()) %>" />
 				</portlet:renderURL>
 
-				<aui:button onClick="<%= editTasksEntryURL %>" value="edit" />
+				<aui:button
+					onClick="<%= editTasksEntryURL %>"
+					value="edit"
+				/>
 
-				<aui:button name="deleteTasksEntry" value="delete" />
+				<aui:button
+					name="deleteTasksEntry"
+					value="delete"
+				/>
 
-				<aui:script use="aui-io-deprecated">
+				<aui:script
+					use="aui-io-deprecated"
+				>
 					var <portlet:namespace />deleteTasksEntry = document.querySelector('#<portlet:namespace />deleteTasksEntry');
 
 					if (<portlet:namespace />deleteTasksEntry) {

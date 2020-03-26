@@ -47,8 +47,16 @@ else {
 PluginPackage selPluginPackage = selTheme.getPluginPackage();
 %>
 
-<aui:input name="regularThemeId" type="hidden" value="<%= selTheme.getThemeId() %>" />
-<aui:input name="regularColorSchemeId" type="hidden" value="<%= selColorScheme.getColorSchemeId() %>" />
+<aui:input
+	name="regularThemeId"
+	type="hidden"
+	value="<%= selTheme.getThemeId() %>"
+/>
+<aui:input
+	name="regularColorSchemeId"
+	type="hidden"
+	value="<%= selColorScheme.getColorSchemeId() %>"
+/>
 
 <aui:row>
 	<div class="col-6 col-sm-4">
@@ -168,19 +176,35 @@ Map<String, ThemeSetting> configurableSettings = selTheme.getConfigurableSetting
 
 		<c:choose>
 			<c:when test='<%= type.equals("checkbox") %>'>
-				<aui:input label="<%= HtmlUtil.escape(name) %>" name="<%= propertyName %>" type="toggle-switch" value="<%= value %>" />
+				<aui:input
+					label="<%= HtmlUtil.escape(name) %>"
+					name="<%= propertyName %>"
+					type="toggle-switch"
+					value="<%= value %>"
+				/>
 			</c:when>
 			<c:when test='<%= type.equals("text") || type.equals("textarea") %>'>
-				<aui:input label="<%= HtmlUtil.escape(name) %>" name="<%= propertyName %>" type="<%= type %>" value="<%= value %>" />
+				<aui:input
+					label="<%= HtmlUtil.escape(name) %>"
+					name="<%= propertyName %>"
+					type="<%= type %>"
+					value="<%= value %>"
+				/>
 			</c:when>
 			<c:when test='<%= type.equals("select") %>'>
-				<aui:select label="<%= HtmlUtil.escape(name) %>" name="<%= propertyName %>">
+				<aui:select
+					label="<%= HtmlUtil.escape(name) %>"
+					name="<%= propertyName %>"
+				>
 
 					<%
 					for (String option : themeSetting.getOptions()) {
 					%>
 
-						<aui:option label="<%= HtmlUtil.escape(option) %>" selected="<%= option.equals(value) %>" />
+						<aui:option
+							label="<%= HtmlUtil.escape(option) %>"
+							selected="<%= option.equals(value) %>"
+						/>
 
 					<%
 					}
@@ -191,7 +215,9 @@ Map<String, ThemeSetting> configurableSettings = selTheme.getConfigurableSetting
 		</c:choose>
 
 		<c:if test="<%= Validator.isNotNull(themeSetting.getScript()) %>">
-			<aui:script position="inline">
+			<aui:script
+				position="inline"
+			>
 				<%= StringUtil.replace(themeSetting.getScript(), "[@NAMESPACE@]", liferayPortletResponse.getNamespace()) %>;
 			</aui:script>
 		</c:if>
@@ -203,7 +229,9 @@ Map<String, ThemeSetting> configurableSettings = selTheme.getConfigurableSetting
 </c:if>
 
 <c:if test="<%= !colorSchemes.isEmpty() %>">
-	<aui:script use="aui-base,aui-event-key">
+	<aui:script
+		use="aui-base,aui-event-key"
+	>
 		var colorSchemesContainer = A.one(
 			'#<portlet:namespace />colorSchemesContainer'
 		);

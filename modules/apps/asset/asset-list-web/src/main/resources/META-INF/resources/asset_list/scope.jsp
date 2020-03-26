@@ -22,7 +22,11 @@ List<Group> selectedGroups = editAssetListDisplayContext.getSelectedGroups();
 PortletURL portletURL = editAssetListDisplayContext.getPortletURL();
 %>
 
-<aui:input name="TypeSettingsProperties--groupIds--" type="hidden" value="<%= StringUtil.merge(editAssetListDisplayContext.getSelectedGroupIds()) %>" />
+<aui:input
+	name="TypeSettingsProperties--groupIds--"
+	type="hidden"
+	value="<%= StringUtil.merge(editAssetListDisplayContext.getSelectedGroupIds()) %>"
+/>
 
 <liferay-util:buffer
 	var="removeLinkIcon"
@@ -108,7 +112,9 @@ PortletURL portletURL = editAssetListDisplayContext.getPortletURL();
 	/>
 </liferay-ui:icon-menu>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />groupsSearchContainer'
 	);

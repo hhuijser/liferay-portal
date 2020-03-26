@@ -56,7 +56,9 @@
 				<textarea aria-describedby="<portlet:namespace /><%= HtmlUtil.escapeAttribute(id + fieldSuffix) %>_desc" class="form-control language-value <%= cssClass %>" dir="<%= mainLanguageDir %>" <%= disabled ? "disabled=\"disabled\"" : "" %> id="<portlet:namespace /><%= id + HtmlUtil.getAUICompatibleId(fieldSuffix) %>" name="<portlet:namespace /><%= HtmlUtil.escapeAttribute(name + fieldSuffix) %>" <%= Validator.isNotNull(placeholder) ? "placeholder=\"" + LanguageUtil.get(resourceBundle, placeholder) + "\"" : StringPool.BLANK %> <%= InlineUtil.buildDynamicAttributes(dynamicAttributes) %>><%= HtmlUtil.escape(mainLanguageValue) %></textarea>
 
 				<c:if test="<%= autoSize %>">
-					<aui:script use="aui-autosize-deprecated">
+					<aui:script
+						use="aui-autosize-deprecated"
+					>
 						A.one('#<portlet:namespace /><%= id + HtmlUtil.getAUICompatibleId(fieldSuffix) %>').plug(A.Plugin.Autosize);
 					</aui:script>
 				</c:if>
@@ -111,7 +113,14 @@
 			}
 		%>
 
-			<aui:input dir="<%= curLanguageDir %>" disabled="<%= disabled %>" id="<%= HtmlUtil.escapeAttribute(id + StringPool.UNDERLINE + curLanguageId) %>" name="<%= HtmlUtil.escapeAttribute(fieldNamePrefix + name + StringPool.UNDERLINE + curLanguageId + fieldNameSuffix) %>" type="hidden" value="<%= languageValue %>" />
+			<aui:input
+				dir="<%= curLanguageDir %>"
+				disabled="<%= disabled %>"
+				id="<%= HtmlUtil.escapeAttribute(id + StringPool.UNDERLINE + curLanguageId) %>"
+				name="<%= HtmlUtil.escapeAttribute(fieldNamePrefix + name + StringPool.UNDERLINE + curLanguageId + fieldNameSuffix) %>"
+				type="hidden"
+				value="<%= languageValue %>"
+			/>
 
 		<%
 		}
@@ -209,7 +218,9 @@
 <div class="form-text"><%= HtmlUtil.escape(helpMessage) %></div>
 
 <c:if test="<%= Validator.isNotNull(maxLength) %>">
-	<aui:script use="aui-char-counter">
+	<aui:script
+		use="aui-char-counter"
+	>
 		new A.CharCounter(
 			{
 				input: '#<portlet:namespace /><%= id + HtmlUtil.getAUICompatibleId(fieldSuffix) %>',
@@ -232,7 +243,9 @@
 		}
 		%>
 
-		<aui:script use="<%= modules %>">
+		<aui:script
+			use="<%= modules %>"
+		>
 			var defaultLanguageId = '<%= defaultLanguageId %>';
 
 			var available = {};

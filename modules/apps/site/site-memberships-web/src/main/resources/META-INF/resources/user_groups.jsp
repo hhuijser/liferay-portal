@@ -37,10 +37,26 @@ Role role = userGroupsDisplayContext.getRole();
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteGroupUserGroupsURL %>" cssClass="container-fluid-1280 portlet-site-memberships-user-groups" name="fm">
-	<aui:input name="tabs1" type="hidden" value="user-groups" />
-	<aui:input name="navigation" type="hidden" value="<%= userGroupsDisplayContext.getNavigation() %>" />
-	<aui:input name="roleId" type="hidden" value="<%= (role != null) ? role.getRoleId() : 0 %>" />
+<aui:form
+	action="<%= deleteGroupUserGroupsURL %>"
+	cssClass="container-fluid-1280 portlet-site-memberships-user-groups"
+	name="fm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="user-groups"
+	/>
+	<aui:input
+		name="navigation"
+		type="hidden"
+		value="<%= userGroupsDisplayContext.getNavigation() %>"
+	/>
+	<aui:input
+		name="roleId"
+		type="hidden"
+		value="<%= (role != null) ? role.getRoleId() : 0 %>"
+	/>
 
 	<liferay-ui:search-container
 		id="userGroups"
@@ -73,22 +89,52 @@ Role role = userGroupsDisplayContext.getRole();
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= addGroupUserGroupsURL %>" cssClass="hide" name="addGroupUserGroupsFm">
-	<aui:input name="tabs1" type="hidden" value="user-groups" />
+<aui:form
+	action="<%= addGroupUserGroupsURL %>"
+	cssClass="hide"
+	name="addGroupUserGroupsFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="user-groups"
+	/>
 </aui:form>
 
 <portlet:actionURL name="addUserGroupGroupRole" var="addUserGroupGroupRoleURL" />
 
-<aui:form action="<%= addUserGroupGroupRoleURL %>" cssClass="hide" name="addUserGroupGroupRoleFm">
-	<aui:input name="tabs1" type="hidden" value="user-groups" />
-	<aui:input name="userGroupId" type="hidden" />
+<aui:form
+	action="<%= addUserGroupGroupRoleURL %>"
+	cssClass="hide"
+	name="addUserGroupGroupRoleFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="user-groups"
+	/>
+	<aui:input
+		name="userGroupId"
+		type="hidden"
+	/>
 </aui:form>
 
 <portlet:actionURL name="unassignUserGroupGroupRole" var="unassignUserGroupGroupRoleURL" />
 
-<aui:form action="<%= unassignUserGroupGroupRoleURL %>" cssClass="hide" name="unassignUserGroupGroupRoleFm">
-	<aui:input name="tabs1" type="hidden" value="user-groups" />
-	<aui:input name="userGroupId" type="hidden" />
+<aui:form
+	action="<%= unassignUserGroupGroupRoleURL %>"
+	cssClass="hide"
+	name="unassignUserGroupGroupRoleFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="user-groups"
+	/>
+	<aui:input
+		name="userGroupId"
+		type="hidden"
+	/>
 </aui:form>
 
 <liferay-frontend:component

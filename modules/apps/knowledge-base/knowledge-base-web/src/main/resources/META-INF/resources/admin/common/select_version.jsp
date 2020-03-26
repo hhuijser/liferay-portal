@@ -34,7 +34,11 @@ portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 %>
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="selectVersionFm">
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="selectVersionFm"
+	>
 		<liferay-ui:search-container
 			id="articleVersionSearchContainer"
 			iteratorURL="<%= portletURL %>"
@@ -71,7 +75,11 @@ portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 							data.put("targetversion", curTargetVersion);
 							%>
 
-							<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="selector-button"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<%= String.valueOf(curKBArticle.getVersion()) %>
 							</aui:a>
 						</c:when>

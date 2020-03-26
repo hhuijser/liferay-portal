@@ -111,20 +111,77 @@ renderResponse.setTitle((exportImportConfiguration == null) ? LanguageUtil.get(r
 			<portlet:param name="groupId" value="<%= String.valueOf(stagingGroupId) %>" />
 		</portlet:actionURL>
 
-		<aui:form action='<%= updatePublishConfigurationURL + "&etag=0&strip=0" %>' cssClass="lfr-export-dialog" method="post" name="exportPagesFm">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (exportImportConfiguration == null) ? Constants.ADD : Constants.UPDATE %>" />
-			<aui:input name="redirect" type="hidden" value="<%= renderURL.toString() %>" />
-			<aui:input name="exportImportConfigurationId" type="hidden" value="<%= exportImportConfigurationId %>" />
-			<aui:input name="groupId" type="hidden" value="<%= stagingGroupId %>" />
-			<aui:input name="privateLayout" type="hidden" value="<%= privateLayout %>" />
-			<aui:input name="layoutSetBranchName" type="hidden" value="<%= layoutSetBranchName %>" />
-			<aui:input name="lastImportUserName" type="hidden" value="<%= user.getFullName() %>" />
-			<aui:input name="lastImportUserUuid" type="hidden" value="<%= String.valueOf(user.getUserUuid()) %>" />
-			<aui:input name="treeId" type="hidden" value="<%= treeId %>" />
-			<aui:input name="<%= PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL %>" type="hidden" value="<%= true %>" />
-			<aui:input name="<%= PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL %>" type="hidden" value="<%= true %>" />
-			<aui:input name="<%= PortletDataHandlerKeys.PORTLET_SETUP_ALL %>" type="hidden" value="<%= true %>" />
-			<aui:input name="<%= PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL %>" type="hidden" value="<%= true %>" />
+		<aui:form
+			action='<%= updatePublishConfigurationURL + "&etag=0&strip=0" %>'
+			cssClass="lfr-export-dialog"
+			method="post"
+			name="exportPagesFm"
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+				value="<%= (exportImportConfiguration == null) ? Constants.ADD : Constants.UPDATE %>"
+			/>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= renderURL.toString() %>"
+			/>
+			<aui:input
+				name="exportImportConfigurationId"
+				type="hidden"
+				value="<%= exportImportConfigurationId %>"
+			/>
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= stagingGroupId %>"
+			/>
+			<aui:input
+				name="privateLayout"
+				type="hidden"
+				value="<%= privateLayout %>"
+			/>
+			<aui:input
+				name="layoutSetBranchName"
+				type="hidden"
+				value="<%= layoutSetBranchName %>"
+			/>
+			<aui:input
+				name="lastImportUserName"
+				type="hidden"
+				value="<%= user.getFullName() %>"
+			/>
+			<aui:input
+				name="lastImportUserUuid"
+				type="hidden"
+				value="<%= String.valueOf(user.getUserUuid()) %>"
+			/>
+			<aui:input
+				name="treeId"
+				type="hidden"
+				value="<%= treeId %>"
+			/>
+			<aui:input
+				name="<%= PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL %>"
+				type="hidden"
+				value="<%= true %>"
+			/>
+			<aui:input
+				name="<%= PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL %>"
+				type="hidden"
+				value="<%= true %>"
+			/>
+			<aui:input
+				name="<%= PortletDataHandlerKeys.PORTLET_SETUP_ALL %>"
+				type="hidden"
+				value="<%= true %>"
+			/>
+			<aui:input
+				name="<%= PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL %>"
+				type="hidden"
+				value="<%= true %>"
+			/>
 
 			<%@ include file="/error/error_auth_exception.jspf" %>
 
@@ -134,7 +191,9 @@ renderResponse.setTitle((exportImportConfiguration == null) ? LanguageUtil.get(r
 
 			<div id="<portlet:namespace />publishOptions">
 				<div class="export-dialog-tree">
-					<aui:fieldset-group markupView="lexicon">
+					<aui:fieldset-group
+						markupView="lexicon"
+					>
 						<liferay-staging:configuration-header
 							exportImportConfiguration="<%= exportImportConfiguration %>"
 						/>
@@ -170,7 +229,12 @@ renderResponse.setTitle((exportImportConfiguration == null) ? LanguageUtil.get(r
 						/>
 
 						<c:if test="<%= stagingGroup.isStagedRemotely() %>">
-							<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" cssClass="options-group" label="remote-live-connection-settings">
+							<aui:fieldset
+								collapsed="<%= true %>"
+								collapsible="<%= true %>"
+								cssClass="options-group"
+								label="remote-live-connection-settings"
+							>
 								<liferay-staging:remote-options
 									exportImportConfigurationId="<%= exportImportConfigurationId %>"
 									privateLayout="<%= privateLayout %>"
@@ -181,9 +245,15 @@ renderResponse.setTitle((exportImportConfiguration == null) ? LanguageUtil.get(r
 				</div>
 
 				<aui:button-row>
-					<aui:button type="submit" value="save" />
+					<aui:button
+						type="submit"
+						value="save"
+					/>
 
-					<aui:button href="<%= renderURL.toString() %>" type="cancel" />
+					<aui:button
+						href="<%= renderURL.toString() %>"
+						type="cancel"
+					/>
 				</aui:button-row>
 			</div>
 		</aui:form>
@@ -246,7 +316,9 @@ renderResponse.setTitle((exportImportConfiguration == null) ? LanguageUtil.get(r
 	);
 </aui:script>
 
-<aui:script use="liferay-staging-processes-export-import">
+<aui:script
+	use="liferay-staging-processes-export-import"
+>
 	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="publishLayouts" var="publishProcessesURL">
 		<portlet:param name="<%= Constants.CMD %>" value="<%= cmd %>" />
 		<portlet:param name="<%= SearchContainer.DEFAULT_CUR_PARAM %>" value="<%= ParamUtil.getString(request, SearchContainer.DEFAULT_CUR_PARAM) %>" />

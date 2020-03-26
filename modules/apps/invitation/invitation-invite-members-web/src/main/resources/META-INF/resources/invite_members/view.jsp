@@ -29,9 +29,16 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 			<portlet:param name="mvcPath" value="/invite_members/view_invite.jsp" />
 		</portlet:renderURL>
 
-		<aui:a cssClass="btn btn-secondary" href="javascript:;" id="inviteMembersButton" label="invite-members" />
+		<aui:a
+			cssClass="btn btn-secondary"
+			href="javascript:;"
+			id="inviteMembersButton"
+			label="invite-members"
+		/>
 
-		<aui:script position="inline">
+		<aui:script
+			position="inline"
+		>
 			var <portlet:namespace />inviteMembersButton = document.getElementById(
 				'<portlet:namespace />inviteMembersButton'
 			);
@@ -55,7 +62,9 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		</aui:script>
 	</c:when>
 	<c:otherwise>
-		<aui:script require="metal-dom/src/dom">
+		<aui:script
+			require="metal-dom/src/dom"
+		>
 			var dom = metalDomSrcDom.default;
 
 			var portlet = document.getElementById('p_p_id<portlet:namespace />');

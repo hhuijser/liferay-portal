@@ -49,9 +49,20 @@ List<DDMDisplayTabItem> ddmDisplayTabItems = ddmDisplay.getTabItems();
 
 <liferay-util:include page="/management_bar.jsp" servletContext="<%= application %>" />
 
-<aui:form action="<%= ddmDisplayContext.getStructureSearchActionURL() %>" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= ddmDisplayContext.getStructureSearchActionURL() %>" />
-	<aui:input name="deleteStructureIds" type="hidden" />
+<aui:form
+	action="<%= ddmDisplayContext.getStructureSearchActionURL() %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= ddmDisplayContext.getStructureSearchActionURL() %>"
+	/>
+	<aui:input
+		name="deleteStructureIds"
+		type="hidden"
+	/>
 
 	<div class="container-fluid container-fluid-max-xl" id="<portlet:namespace />entriesContainer">
 		<liferay-ui:search-container

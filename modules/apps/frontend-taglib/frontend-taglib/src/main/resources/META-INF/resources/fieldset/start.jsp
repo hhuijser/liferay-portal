@@ -40,9 +40,17 @@ else if (collapsible) {
 			</c:if>
 
 			<c:if test="<%= collapsible %>">
-				<aui:icon cssClass="collapse-icon-closed" image="angle-right" markupView="lexicon" />
+				<aui:icon
+					cssClass="collapse-icon-closed"
+					image="angle-right"
+					markupView="lexicon"
+				/>
 
-				<aui:icon cssClass="collapse-icon-open" image="angle-down" markupView="lexicon" />
+				<aui:icon
+					cssClass="collapse-icon-open"
+					image="angle-down"
+					markupView="lexicon"
+				/>
 			</c:if>
 		</liferay-util:buffer>
 

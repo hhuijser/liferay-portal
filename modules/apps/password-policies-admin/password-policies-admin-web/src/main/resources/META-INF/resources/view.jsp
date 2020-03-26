@@ -64,9 +64,21 @@ PortletURL portletURL = viewPasswordPoliciesManagementToolbarDisplayContext.getP
 	viewTypeItems="<%= viewPasswordPoliciesManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="get" name="fm">
-	<aui:input name="passwordPolicyIds" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="get"
+	name="fm"
+>
+	<aui:input
+		name="passwordPolicyIds"
+		type="hidden"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= portletURL.toString() %>"
+	/>
 
 	<div id="breadcrumb">
 		<liferay-ui:breadcrumb

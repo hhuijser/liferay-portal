@@ -58,15 +58,51 @@ renderResponse.setTitle(headerTitle);
 		<portlet:param name="mvcRenderCommandName" value="/bookmarks/edit_entry" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= editEntryURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>'>
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
-		<aui:input name="portletResource" type="hidden" value='<%= ParamUtil.getString(request, "portletResource") %>' />
-		<aui:input name="referringPortletResource" type="hidden" value="<%= referringPortletResource %>" />
-		<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
-		<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
-		<aui:input name="showFolderSelector" type="hidden" value="<%= showFolderSelector %>" />
+	<aui:form
+		action="<%= editEntryURL %>"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry();" %>'
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="backURL"
+			type="hidden"
+			value="<%= backURL %>"
+		/>
+		<aui:input
+			name="portletResource"
+			type="hidden"
+			value='<%= ParamUtil.getString(request, "portletResource") %>'
+		/>
+		<aui:input
+			name="referringPortletResource"
+			type="hidden"
+			value="<%= referringPortletResource %>"
+		/>
+		<aui:input
+			name="entryId"
+			type="hidden"
+			value="<%= entryId %>"
+		/>
+		<aui:input
+			name="folderId"
+			type="hidden"
+			value="<%= folderId %>"
+		/>
+		<aui:input
+			name="showFolderSelector"
+			type="hidden"
+			value="<%= showFolderSelector %>"
+		/>
 
 		<div class="lfr-form-content">
 			<liferay-ui:error exception="<%= EntryURLException.class %>" message="please-enter-a-valid-url" />
@@ -76,9 +112,14 @@ renderResponse.setTitle(headerTitle);
 
 			<liferay-asset:asset-tags-error />
 
-			<aui:model-context bean="<%= entry %>" model="<%= BookmarksEntry.class %>" />
+			<aui:model-context
+				bean="<%= entry %>"
+				model="<%= BookmarksEntry.class %>"
+			/>
 
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 					<c:if test="<%= showFolderSelector %>">
 
@@ -94,9 +135,17 @@ renderResponse.setTitle(headerTitle);
 						%>
 
 						<div class="form-group">
-							<aui:input label="folder" name="folderName" type="resource" value="<%= folderName %>" />
+							<aui:input
+								label="folder"
+								name="folderName"
+								type="resource"
+								value="<%= folderName %>"
+							/>
 
-							<aui:button name="selectFolderButton" value="select" />
+							<aui:button
+								name="selectFolderButton"
+								value="select"
+							/>
 
 							<aui:script>
 								var <portlet:namespace />selectFolderButton = document.getElementById(
@@ -140,21 +189,37 @@ renderResponse.setTitle(headerTitle);
 							String taglibRemoveFolder = "Liferay.Util.removeEntitySelection('folderId', 'folderName', this, '" + renderResponse.getNamespace() + "');";
 							%>
 
-							<aui:button disabled="<%= folderId <= 0 %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
+							<aui:button
+								disabled="<%= folderId <= 0 %>"
+								name="removeFolderButton"
+								onClick="<%= taglibRemoveFolder %>"
+								value="remove"
+							/>
 						</div>
 					</c:if>
 
-					<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>" name="name" />
+					<aui:input
+						autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>"
+						name="name"
+					/>
 
-					<aui:input name="url" />
+					<aui:input
+						name="url"
+					/>
 
-					<aui:input name="description" />
+					<aui:input
+						name="description"
+					/>
 				</aui:fieldset>
 
 				<liferay-expando:custom-attributes-available
 					className="<%= BookmarksEntry.class.getName() %>"
 				>
-					<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="custom-fields">
+					<aui:fieldset
+						collapsed="<%= true %>"
+						collapsible="<%= true %>"
+						label="custom-fields"
+					>
 						<liferay-expando:custom-attribute-list
 							className="<%= BookmarksEntry.class.getName() %>"
 							classPK="<%= entryId %>"
@@ -164,7 +229,11 @@ renderResponse.setTitle(headerTitle);
 					</aui:fieldset>
 				</liferay-expando:custom-attributes-available>
 
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="categorization">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="categorization"
+				>
 					<liferay-asset:asset-categories-selector
 						className="<%= BookmarksEntry.class.getName() %>"
 						classPK="<%= entryId %>"
@@ -176,7 +245,11 @@ renderResponse.setTitle(headerTitle);
 					/>
 				</aui:fieldset>
 
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="related-assets">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="related-assets"
+				>
 					<liferay-asset:input-asset-links
 						className="<%= BookmarksEntry.class.getName() %>"
 						classPK="<%= entryId %>"
@@ -184,7 +257,11 @@ renderResponse.setTitle(headerTitle);
 				</aui:fieldset>
 
 				<c:if test="<%= entry == null %>">
-					<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+					<aui:fieldset
+						collapsed="<%= true %>"
+						collapsible="<%= true %>"
+						label="permissions"
+					>
 						<liferay-ui:input-permissions
 							modelName="<%= BookmarksEntry.class.getName() %>"
 						/>
@@ -194,9 +271,14 @@ renderResponse.setTitle(headerTitle);
 		</div>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

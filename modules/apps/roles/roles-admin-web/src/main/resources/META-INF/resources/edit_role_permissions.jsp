@@ -65,15 +65,24 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 	<liferay-util:include page="/edit_role_tabs.jsp" servletContext="<%= application %>" />
 </c:if>
 
-<aui:container cssClass="container-fluid container-fluid-max-xl container-form-lg" id="permissionContainer">
+<aui:container
+	cssClass="container-fluid container-fluid-max-xl container-form-lg"
+	id="permissionContainer"
+>
 	<aui:row>
 		<c:if test="<%= !portletName.equals(PortletKeys.SERVER_ADMIN) %>">
-			<aui:col width="<%= 25 %>">
+			<aui:col
+				width="<%= 25 %>"
+			>
 				<%@ include file="/edit_role_permissions_navigation.jspf" %>
 			</aui:col>
 		</c:if>
 
-		<aui:col cssClass="lfr-permission-content-container" id="permissionContentContainer" width="<%= portletName.equals(PortletKeys.SERVER_ADMIN) ? 100 : 75 %>">
+		<aui:col
+			cssClass="lfr-permission-content-container"
+			id="permissionContentContainer"
+			width="<%= portletName.equals(PortletKeys.SERVER_ADMIN) ? 100 : 75 %>"
+		>
 			<c:choose>
 				<c:when test="<%= cmd.equals(Constants.VIEW) %>">
 					<liferay-util:include page="/edit_role_permissions_summary.jsp" servletContext="<%= application %>" />
@@ -81,7 +90,10 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 					<c:if test="<%= portletName.equals(PortletKeys.SERVER_ADMIN) %>">
 						<br />
 
-						<aui:button href="<%= redirect %>" type="cancel" />
+						<aui:button
+							href="<%= redirect %>"
+							type="cancel"
+						/>
 					</c:if>
 				</c:when>
 				<c:otherwise>
@@ -104,7 +116,9 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 	}
 </aui:script>
 
-<aui:script use="aui-loading-mask-deprecated,aui-parse-content,aui-toggler,autocomplete-base,autocomplete-filters,liferay-notification">
+<aui:script
+	use="aui-loading-mask-deprecated,aui-parse-content,aui-toggler,autocomplete-base,autocomplete-filters,liferay-notification"
+>
 	var AParseContent = A.Plugin.ParseContent;
 
 	var permissionNavigationDataContainer = A.one(

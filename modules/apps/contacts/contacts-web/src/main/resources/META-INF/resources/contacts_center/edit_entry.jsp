@@ -32,24 +32,51 @@ if (entryId > 0) {
 
 <liferay-portlet:actionURL name="updateEntry" var="updateEntryURL" windowState="<%= LiferayWindowState.NORMAL.toString() %>" />
 
-<aui:form action="<%= updateEntryURL %>" method="post" name="addEntry" onSubmit="event.preventDefault();">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="entryId" type="hidden" value="<%= entryId %>" />
+<aui:form
+	action="<%= updateEntryURL %>"
+	method="post"
+	name="addEntry"
+	onSubmit="event.preventDefault();"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="entryId"
+		type="hidden"
+		value="<%= entryId %>"
+	/>
 
-	<aui:model-context bean="<%= entry %>" model="<%= Entry.class %>" />
+	<aui:model-context
+		bean="<%= entry %>"
+		model="<%= Entry.class %>"
+	/>
 
-	<aui:input label="name" name="fullName" />
+	<aui:input
+		label="name"
+		name="fullName"
+	/>
 
-	<aui:input name="emailAddress" />
+	<aui:input
+		name="emailAddress"
+	/>
 
-	<aui:input name="comments" />
+	<aui:input
+		name="comments"
+	/>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="datatype-number">
+<aui:script
+	use="datatype-number"
+>
 	Liferay.Util.focusFormField(
 		document.<portlet:namespace />addEntry.<portlet:namespace />fullName
 	);

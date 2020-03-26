@@ -47,8 +47,16 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 			<portlet:param name="mvcPath" value="/account_users_admin/edit_account_user.jsp" />
 		</portlet:renderURL>
 
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="accountEntryId" type="hidden" value="<%= String.valueOf(accountEntryDisplay.getAccountEntryId()) %>" />
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+		<aui:input
+			name="accountEntryId"
+			type="hidden"
+			value="<%= String.valueOf(accountEntryDisplay.getAccountEntryId()) %>"
+		/>
 
 		<h2 class="sheet-title">
 			<%= LanguageUtil.get(request, "information") %>
@@ -60,7 +68,9 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 			</h3>
 
 			<aui:row>
-				<aui:col width="<%= 50 %>">
+				<aui:col
+					width="<%= 50 %>"
+				>
 					<liferay-ui:error exception="<%= UserScreenNameException.MustNotBeDuplicate.class %>" focusField="screenName" message="the-screen-name-you-requested-is-already-taken" />
 					<liferay-ui:error exception="<%= UserScreenNameException.MustNotBeNull.class %>" focusField="screenName" message="the-screen-name-cannot-be-blank" />
 					<liferay-ui:error exception="<%= UserScreenNameException.MustNotBeNumeric.class %>" focusField="screenName" message="the-screen-name-cannot-contain-only-numeric-values" />
@@ -78,7 +88,12 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 						<liferay-ui:message key="<%= usne.screenNameValidator.getDescription(locale) %>" />
 					</liferay-ui:error>
 
-					<aui:input label="screen-name" name="screenName" required="<%= true %>" type="text" />
+					<aui:input
+						label="screen-name"
+						name="screenName"
+						required="<%= true %>"
+						type="text"
+					/>
 
 					<liferay-ui:error exception="<%= UserEmailAddressException.MustNotBeDuplicate.class %>" focusField="emailAddress" message="the-email-address-you-requested-is-already-taken" />
 					<liferay-ui:error exception="<%= UserEmailAddressException.MustNotBeNull.class %>" focusField="emailAddress" message="please-enter-an-email-address" />
@@ -87,14 +102,23 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 					<liferay-ui:error exception="<%= UserEmailAddressException.MustNotUseCompanyMx.class %>" focusField="emailAddress" message="the-email-address-you-requested-is-not-valid-because-its-domain-is-reserved" />
 					<liferay-ui:error exception="<%= UserEmailAddressException.MustValidate.class %>" focusField="emailAddress" message="please-enter-a-valid-email-address" />
 
-					<aui:input label="email-address" name="emailAddress" required="<%= true %>" type="text">
-						<aui:validator name="email" />
+					<aui:input
+						label="email-address"
+						name="emailAddress"
+						required="<%= true %>"
+						type="text"
+					>
+						<aui:validator
+							name="email"
+						/>
 					</aui:input>
 
 					<liferay-ui:user-name-fields />
 				</aui:col>
 
-				<aui:col width="<%= 40 %>">
+				<aui:col
+					width="<%= 40 %>"
+				>
 					<div class="text-center">
 
 						<%
@@ -115,8 +139,13 @@ renderResponse.setTitle(LanguageUtil.format(request, "add-new-user-to-x", accoun
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= backURL %>" type="cancel" />
+		<aui:button
+			href="<%= backURL %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

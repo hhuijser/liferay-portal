@@ -29,8 +29,13 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 		title='<%= LanguageUtil.get(request, "error") %>'
 	/>
 
-	<aui:field-wrapper cssClass="form-group">
-		<aui:input label="domain" name="domain" />
+	<aui:field-wrapper
+		cssClass="form-group"
+	>
+		<aui:input
+			label="domain"
+			name="domain"
+		/>
 
 		<div class="form-text">
 			<liferay-ui:message key="for-multiple-domains,-separate-each-domain-by-a-comma" />
@@ -38,9 +43,15 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 	</aui:field-wrapper>
 
 	<aui:button-row>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "addDomains();" %>' primary="<%= true %>" value="save" />
+		<aui:button
+			onClick='<%= renderResponse.getNamespace() + "addDomains();" %>'
+			primary="<%= true %>"
+			value="save"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</aui:button-row>
 </div>
 

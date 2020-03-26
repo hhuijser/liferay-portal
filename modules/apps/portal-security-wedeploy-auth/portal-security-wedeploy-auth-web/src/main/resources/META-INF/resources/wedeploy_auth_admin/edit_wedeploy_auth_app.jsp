@@ -31,18 +31,36 @@ portletDisplay.setURLBack(redirect);
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.ADD %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
-		<aui:input autoFocus="<%= true %>" name="name" />
+		<aui:input
+			autoFocus="<%= true %>"
+			name="name"
+		/>
 
-		<aui:input name="redirectURI" />
+		<aui:input
+			name="redirectURI"
+		/>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

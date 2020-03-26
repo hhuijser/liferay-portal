@@ -28,7 +28,10 @@ SelectAccountEntryManagementToolbarDisplayContext selectAccountEntryManagementTo
 	displayContext="<%= selectAccountEntryManagementToolbarDisplayContext %>"
 />
 
-<aui:container cssClass="container-fluid container-fluid-max-xl" id="selectAccountEntry">
+<aui:container
+	cssClass="container-fluid container-fluid-max-xl"
+	id="selectAccountEntry"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= accountEntryDisplaySearchContainer %>"
 	>
@@ -57,7 +60,11 @@ SelectAccountEntryManagementToolbarDisplayContext selectAccountEntryManagementTo
 				).build();
 				%>
 
-				<aui:button cssClass="choose-account selector-button" data="<%= data %>" value="choose" />
+				<aui:button
+					cssClass="choose-account selector-button"
+					data="<%= data %>"
+					value="choose"
+				/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 

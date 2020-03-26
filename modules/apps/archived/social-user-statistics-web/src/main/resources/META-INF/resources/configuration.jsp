@@ -39,8 +39,16 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -49,9 +57,19 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 				id="userStatisticsRankingsPanel"
 				label="ranking"
 			>
-				<aui:input label="rank-by-contribution" name="preferences--rankByContribution--" type="checkbox" value="<%= socialUserStatisticsPortletInstanceConfiguration.rankByContribution() %>" />
+				<aui:input
+					label="rank-by-contribution"
+					name="preferences--rankByContribution--"
+					type="checkbox"
+					value="<%= socialUserStatisticsPortletInstanceConfiguration.rankByContribution() %>"
+				/>
 
-				<aui:input label="rank-by-participation" name="preferences--rankByParticipation--" type="checkbox" value="<%= socialUserStatisticsPortletInstanceConfiguration.rankByParticipation() %>" />
+				<aui:input
+					label="rank-by-participation"
+					name="preferences--rankByParticipation--"
+					type="checkbox"
+					value="<%= socialUserStatisticsPortletInstanceConfiguration.rankByParticipation() %>"
+				/>
 			</liferay-frontend:fieldset>
 
 			<liferay-frontend:fieldset
@@ -59,9 +77,19 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 				id="userStatisticsSettingsPanel"
 				label="settings"
 			>
-				<aui:input label="show-header-text" name="preferences--showHeaderText--" type="checkbox" value="<%= socialUserStatisticsPortletInstanceConfiguration.showHeaderText() %>" />
+				<aui:input
+					label="show-header-text"
+					name="preferences--showHeaderText--"
+					type="checkbox"
+					value="<%= socialUserStatisticsPortletInstanceConfiguration.showHeaderText() %>"
+				/>
 
-				<aui:input label="show-totals" name="preferences--showTotals--" type="checkbox" value="<%= socialUserStatisticsPortletInstanceConfiguration.showTotals() %>" />
+				<aui:input
+					label="show-totals"
+					name="preferences--showTotals--"
+					type="checkbox"
+					value="<%= socialUserStatisticsPortletInstanceConfiguration.showTotals() %>"
+				/>
 			</liferay-frontend:fieldset>
 
 			<liferay-frontend:fieldset
@@ -70,7 +98,12 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 				label="counters"
 			>
 				<div id="<portlet:namespace />displayActivityCounterNames">
-					<aui:input label="display-additional-activity-counters" name="preferences--displayAdditionalActivityCounters--" type="checkbox" value="<%= socialUserStatisticsPortletInstanceConfiguration.displayAdditionalActivityCounters() %>" />
+					<aui:input
+						label="display-additional-activity-counters"
+						name="preferences--displayAdditionalActivityCounters--"
+						type="checkbox"
+						value="<%= socialUserStatisticsPortletInstanceConfiguration.displayAdditionalActivityCounters() %>"
+					/>
 
 					<liferay-frontend:fieldset
 						label=""
@@ -99,9 +132,15 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 					</liferay-frontend:fieldset>
 				</div>
 
-				<aui:input name="displayActivityCounterNameIndexes" type="hidden" value="<%= StringUtil.merge(displayActivityCounterNameIndexes) %>" />
+				<aui:input
+					name="displayActivityCounterNameIndexes"
+					type="hidden"
+					value="<%= StringUtil.merge(displayActivityCounterNameIndexes) %>"
+				/>
 
-				<aui:script use="liferay-auto-fields">
+				<aui:script
+					use="liferay-auto-fields"
+				>
 					var autoFields = new Liferay.AutoFields({
 						contentBox: '#<portlet:namespace />displayActivityCounterNames > fieldset',
 						fieldIndexes: '<portlet:namespace/>displayActivityCounterNameIndexes',
@@ -117,8 +156,12 @@ String[] displayActivityCounterNameIndexes = new String[displayActivityCounterNa
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

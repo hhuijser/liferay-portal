@@ -29,8 +29,14 @@ boolean newCustomObject = ParamUtil.getBoolean(request, "newCustomObject");
 
 <div class="app-builder-root">
 	<aui:form>
-		<aui:input name="dataDefinition" type="hidden" />
-		<aui:input name="dataLayout" type="hidden" />
+		<aui:input
+			name="dataDefinition"
+			type="hidden"
+		/>
+		<aui:input
+			name="dataLayout"
+			type="hidden"
+		/>
 
 		<portlet:renderURL var="basePortletURL" />
 

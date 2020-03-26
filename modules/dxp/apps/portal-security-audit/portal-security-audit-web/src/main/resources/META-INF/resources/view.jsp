@@ -19,7 +19,11 @@
 <liferay-portlet:renderURL varImpl="searchURL" />
 
 <div class="container-fluid container-fluid-max-xl container-view">
-	<aui:form action="<%= searchURL %>" method="get" name="fm">
+	<aui:form
+		action="<%= searchURL %>"
+		method="get"
+		name="fm"
+	>
 		<liferay-portlet:renderURLParams varImpl="searchURL" />
 
 		<liferay-portlet:renderURL varImpl="iteratorURL">

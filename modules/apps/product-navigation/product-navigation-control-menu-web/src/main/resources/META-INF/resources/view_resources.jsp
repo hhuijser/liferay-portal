@@ -59,7 +59,12 @@ if (Validator.isNotNull(keywords)) {
 			%>
 
 				<li class="num-item <%= (delta == curDelta) ? "active" : StringPool.BLANK %>">
-					<aui:a cssClass="dropdown-item num-item" data="<%= data %>" href="javascript:;" label="<%= String.valueOf(curDelta) %>" />
+					<aui:a
+						cssClass="dropdown-item num-item"
+						data="<%= data %>"
+						href="javascript:;"
+						label="<%= String.valueOf(curDelta) %>"
+					/>
 				</li>
 
 			<%
@@ -251,7 +256,9 @@ if (Validator.isNotNull(keywords)) {
 	</div>
 </div>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	A.one('#<portlet:namespace />numItemsContainer').delegate(
 		'click',
 		function(event) {

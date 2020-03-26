@@ -27,9 +27,20 @@ KaleoProcessSearch kaleoProcessSearch = kaleoFormsAdminDisplayContext.getKaleoPr
 <liferay-util:include page="/admin/management_bar.jsp" servletContext="<%= application %>" />
 
 <div class="container-fluid-1280" id="<portlet:namespace />formContainer">
-	<aui:form action="<%= kaleoFormsAdminDisplayContext.getSearchActionURL() %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= kaleoFormsAdminDisplayContext.getSearchActionURL() %>" />
-		<aui:input name="kaleoProcessIds" type="hidden" />
+	<aui:form
+		action="<%= kaleoFormsAdminDisplayContext.getSearchActionURL() %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= kaleoFormsAdminDisplayContext.getSearchActionURL() %>"
+		/>
+		<aui:input
+			name="kaleoProcessIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			id="kaleoProcess"

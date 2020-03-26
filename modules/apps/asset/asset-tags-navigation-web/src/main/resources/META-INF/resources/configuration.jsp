@@ -25,8 +25,16 @@
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -49,15 +57,36 @@
 					/>
 				</div>
 
-				<aui:input label="max-num-of-tags" name="preferences--maxAssetTags--" type="text" value="<%= maxAssetTags %>" />
+				<aui:input
+					label="max-num-of-tags"
+					name="preferences--maxAssetTags--"
+					type="text"
+					value="<%= maxAssetTags %>"
+				/>
 
-				<aui:input label="show-unused-tags" name="preferences--showZeroAssetCount--" type="toggle-switch" value="<%= showZeroAssetCount %>" />
+				<aui:input
+					label="show-unused-tags"
+					name="preferences--showZeroAssetCount--"
+					type="toggle-switch"
+					value="<%= showZeroAssetCount %>"
+				/>
 
-				<aui:input name="preferences--showAssetCount--" type="toggle-switch" value="<%= showAssetCount %>" />
+				<aui:input
+					name="preferences--showAssetCount--"
+					type="toggle-switch"
+					value="<%= showAssetCount %>"
+				/>
 
 				<div class="<%= showAssetCount ? "" : "hide" %>" id="<portlet:namespace />assetCountOptions">
-					<aui:select helpMessage="asset-type-asset-count-help" label="asset-type" name="preferences--classNameId--">
-						<aui:option label="any" value="<%= classNameId == 0 %>" />
+					<aui:select
+						helpMessage="asset-type-asset-count-help"
+						label="asset-type"
+						name="preferences--classNameId--"
+					>
+						<aui:option
+							label="any"
+							value="<%= classNameId == 0 %>"
+						/>
 
 						<%
 						List<AssetRendererFactory<?>> assetRendererFactories = ListUtil.sort(AssetRendererFactoryRegistryUtil.getAssetRendererFactories(company.getCompanyId(), true), new AssetRendererFactoryTypeNameComparator(locale));
@@ -65,7 +94,11 @@
 						for (AssetRendererFactory<?> assetRendererFactory : assetRendererFactories) {
 						%>
 
-							<aui:option label="<%= ResourceActionsUtil.getModelResource(locale, assetRendererFactory.getClassName()) %>" selected="<%= classNameId == assetRendererFactory.getClassNameId() %>" value="<%= assetRendererFactory.getClassNameId() %>" />
+							<aui:option
+								label="<%= ResourceActionsUtil.getModelResource(locale, assetRendererFactory.getClassName()) %>"
+								selected="<%= classNameId == assetRendererFactory.getClassNameId() %>"
+								value="<%= assetRendererFactory.getClassNameId() %>"
+							/>
 
 						<%
 						}
@@ -78,9 +111,13 @@
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

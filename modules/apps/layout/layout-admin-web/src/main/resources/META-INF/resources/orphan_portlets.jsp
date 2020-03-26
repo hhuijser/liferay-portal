@@ -40,10 +40,17 @@ renderResponse.setTitle(LanguageUtil.get(request, "orphan-widgets"));
 	<portlet:param name="selPlid" value="<%= String.valueOf(orphanPortletsDisplayContext.getSelPlid()) %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteOrphanPortletsURL %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= deleteOrphanPortletsURL %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<div class="alert alert-warning" role="alert">
 		<span class="alert-indicator">
-			<aui:icon image="warning-full" markupView="lexicon" />
+			<aui:icon
+				image="warning-full"
+				markupView="lexicon"
+			/>
 		</span>
 
 		<strong class="lead"><liferay-ui:message key="warning-colon" /></strong>
@@ -58,7 +65,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "orphan-widgets"));
 		</c:choose>
 
 		<button aria-label="<%= LanguageUtil.get(request, "close") %>" class="close" data-dismiss="liferay-alert" type="button">
-			<aui:icon image="times" markupView="lexicon" />
+			<aui:icon
+				image="times"
+				markupView="lexicon"
+			/>
 		</button>
 	</div>
 

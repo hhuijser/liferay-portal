@@ -51,7 +51,10 @@ String[] searchKeywords = (String[])renderRequest.getAttribute(KBWebKeys.KNOWLED
 			portletURL.setWindowState(WindowState.MAXIMIZED);
 			%>
 
-			<aui:a href="<%= portletURL.toString() %>" label='<%= LanguageUtil.get(request, "search-for-a-similar-article") %>' />
+			<aui:a
+				href="<%= portletURL.toString() %>"
+				label='<%= LanguageUtil.get(request, "search-for-a-similar-article") %>'
+			/>
 		</div>
 	</c:otherwise>
 </c:choose>

@@ -42,12 +42,27 @@ else {
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+	<aui:input
+		name="backURL"
+		type="hidden"
+		value="<%= backURL %>"
+	/>
 
 	<c:if test="<%= redirectEntry != null %>">
-		<aui:input name="redirectEntryId" type="hidden" value="<%= redirectEntry.getRedirectEntryId() %>" />
+		<aui:input
+			name="redirectEntryId"
+			type="hidden"
+			value="<%= redirectEntry.getRedirectEntryId() %>"
+		/>
 	</c:if>
 
 	<liferay-frontend:edit-form-body>
@@ -55,7 +70,12 @@ else {
 		<liferay-ui:error exception="<%= RequiredRedirectEntryDestinationURLException.class %>" focusField="destinationURL" message="the-destination-url-must-be-specified" />
 		<liferay-ui:error exception="<%= RequiredRedirectEntrySourceURLException.class %>" focusField="sourceURL" message="the-source-url-must-be-specified" />
 
-		<aui:field-wrapper cssClass="form-group" label="source-url" name="sourceURL" required="<%= true %>">
+		<aui:field-wrapper
+			cssClass="form-group"
+			label="source-url"
+			name="sourceURL"
+			required="<%= true %>"
+		>
 			<div class="form-text"><%= RedirectUtil.getGroupBaseURL(themeDisplay) %></div>
 
 			<div class="input-group">
@@ -64,29 +84,59 @@ else {
 				</div>
 
 				<div class="input-group-item">
-					<aui:input autoFocus="<%= true %>" label="" name="sourceURL" required="<%= true %>" type="text" value="<%= (redirectEntry != null) ? redirectEntry.getSourceURL() : null %>" />
+					<aui:input
+						autoFocus="<%= true %>"
+						label=""
+						name="sourceURL"
+						required="<%= true %>"
+						type="text"
+						value="<%= (redirectEntry != null) ? redirectEntry.getSourceURL() : null %>"
+					/>
 				</div>
 			</div>
 		</aui:field-wrapper>
 
-		<aui:input name="destinationURL" required="<%= true %>" value="<%= (redirectEntry != null) ? redirectEntry.getDestinationURL() : null %>" />
+		<aui:input
+			name="destinationURL"
+			required="<%= true %>"
+			value="<%= (redirectEntry != null) ? redirectEntry.getDestinationURL() : null %>"
+		/>
 
-		<aui:select label="type" name="permanent">
-			<aui:option selected="<%= (redirectEntry != null) ? redirectEntry.isPermanent() : true %>" value="<%= true %>">
+		<aui:select
+			label="type"
+			name="permanent"
+		>
+			<aui:option
+				selected="<%= (redirectEntry != null) ? redirectEntry.isPermanent() : true %>"
+				value="<%= true %>"
+			>
 				<liferay-ui:message arguments="<%= HttpServletResponse.SC_MOVED_PERMANENTLY %>" key="permanent-x" />
 			</aui:option>
 
-			<aui:option selected="<%= (redirectEntry != null) ? !redirectEntry.isPermanent() : false %>" value="<%= false %>">
+			<aui:option
+				selected="<%= (redirectEntry != null) ? !redirectEntry.isPermanent() : false %>"
+				value="<%= false %>"
+			>
 				<liferay-ui:message arguments="<%= HttpServletResponse.SC_FOUND %>" key="temporary-x" />
 			</aui:option>
 		</aui:select>
 
-		<aui:input helpMessage="the-redirect-will-be-active-until-the-chosen-date.-leave-it-empty-to-avoid-expiration" name="expirationDate" type="date" value="<%= redirectDisplayContext.getExpirationDateinputValue(redirectEntry) %>" />
+		<aui:input
+			helpMessage="the-redirect-will-be-active-until-the-chosen-date.-leave-it-empty-to-avoid-expiration"
+			name="expirationDate"
+			type="date"
+			value="<%= redirectDisplayContext.getExpirationDateinputValue(redirectEntry) %>"
+		/>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

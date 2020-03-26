@@ -36,68 +36,156 @@ long clockSkew = GetterUtil.getLong(request.getAttribute(SamlWebKeys.SAML_CLOCK_
 	<portlet:param name="samlSpIdpConnectionId" value='<%= (samlSpIdpConnection != null) ? String.valueOf(samlSpIdpConnection.getSamlSpIdpConnectionId()) : "" %>' />
 </portlet:actionURL>
 
-<aui:form action="<%= updateIdentityProviderConnectionURL %>" cssClass="container-fluid-1280" enctype="multipart/form-data">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= updateIdentityProviderConnectionURL %>"
+	cssClass="container-fluid-1280"
+	enctype="multipart/form-data"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<liferay-ui:error exception="<%= DuplicateSamlSpIdpConnectionSamlIdpEntityIdException.class %>" message="please-enter-a-unique-identity-provider-entity-id" />
 	<liferay-ui:error exception="<%= SamlSpIdpConnectionMetadataUrlException.class %>" message="please-enter-a-valid-metadata-endpoint-url" />
 	<liferay-ui:error exception="<%= SamlSpIdpConnectionMetadataXmlException.class %>" message="please-enter-a-valid-metadata-xml" />
 	<liferay-ui:error exception="<%= SamlSpIdpConnectionSamlIdpEntityIdException.class %>" message="please-enter-a-valid-identity-provider-entity-id" />
 
-	<aui:model-context bean="<%= samlSpIdpConnection %>" model="<%= SamlSpIdpConnection.class %>" />
+	<aui:model-context
+		bean="<%= samlSpIdpConnection %>"
+		model="<%= SamlSpIdpConnection.class %>"
+	/>
 
 	<liferay-util:dynamic-include key="com.liferay.saml.web#/admin/edit_identity_provider_connection.jsp#pre" />
 
-	<aui:fieldset label="general">
-		<aui:input name="name" required="<%= true %>" />
+	<aui:fieldset
+		label="general"
+	>
+		<aui:input
+			name="name"
+			required="<%= true %>"
+		/>
 
-		<aui:input helpMessage="identity-provider-connection-entity-id-help" label="saml-entity-id" name="samlIdpEntityId" required="<%= true %>" />
+		<aui:input
+			helpMessage="identity-provider-connection-entity-id-help"
+			label="saml-entity-id"
+			name="samlIdpEntityId"
+			required="<%= true %>"
+		/>
 
-		<aui:input name="enabled" />
+		<aui:input
+			name="enabled"
+		/>
 
-		<aui:input helpMessage="saml-sp-clock-skew-description" label="saml-sp-clock-skew" name="clockSkew" value="<%= String.valueOf(clockSkew) %>" />
+		<aui:input
+			helpMessage="saml-sp-clock-skew-description"
+			label="saml-sp-clock-skew"
+			name="clockSkew"
+			value="<%= String.valueOf(clockSkew) %>"
+		/>
 
-		<aui:input helpMessage="force-authn-help" name="forceAuthn" />
+		<aui:input
+			helpMessage="force-authn-help"
+			name="forceAuthn"
+		/>
 
-		<aui:input helpMessage="unknown-users-are-strangers-help" name="unknownUsersAreStrangers" />
+		<aui:input
+			helpMessage="unknown-users-are-strangers-help"
+			name="unknownUsersAreStrangers"
+		/>
 	</aui:fieldset>
 
-	<aui:fieldset helpMessage="identity-provider-metadata-help" label="metadata">
-		<aui:input name="metadataUrl" />
+	<aui:fieldset
+		helpMessage="identity-provider-metadata-help"
+		label="metadata"
+	>
+		<aui:input
+			name="metadataUrl"
+		/>
 
 		<aui:button-row>
-			<aui:button onClick='<%= renderResponse.getNamespace() + "uploadMetadataXml();" %>' value="upload-metadata-xml" />
+			<aui:button
+				onClick='<%= renderResponse.getNamespace() + "uploadMetadataXml();" %>'
+				value="upload-metadata-xml"
+			/>
 		</aui:button-row>
 
 		<div class="hide" id="<portlet:namespace />uploadMetadataXmlForm">
-			<aui:fieldset label="upload-metadata">
-				<aui:input name="metadataXml" type="file" />
+			<aui:fieldset
+				label="upload-metadata"
+			>
+				<aui:input
+					name="metadataXml"
+					type="file"
+				/>
 			</aui:fieldset>
 		</div>
 	</aui:fieldset>
 
-	<aui:fieldset label="name-identifier">
-		<aui:select label="name-identifier-format" name="nameIdFormat">
-			<aui:option label="email-address" value="<%= nameIdTypeValues.getEmail() %>" />
-			<aui:option label="encrypted" value="<%= nameIdTypeValues.getEncrypted() %>" />
-			<aui:option label="entity" value="<%= nameIdTypeValues.getEntity() %>" />
-			<aui:option label="kerberos" value="<%= nameIdTypeValues.getKerberos() %>" />
-			<aui:option label="persistent" value="<%= nameIdTypeValues.getPersistent() %>" />
-			<aui:option label="transient" value="<%= nameIdTypeValues.getTransient() %>" />
-			<aui:option label="unspecified" value="<%= nameIdTypeValues.getUnspecified() %>" />
-			<aui:option label="windows-domain-qualified-name" value="<%= nameIdTypeValues.getWinDomainQualified() %>" />
-			<aui:option label="x509-subject-name" value="<%= nameIdTypeValues.getX509Subject() %>" />
+	<aui:fieldset
+		label="name-identifier"
+	>
+		<aui:select
+			label="name-identifier-format"
+			name="nameIdFormat"
+		>
+			<aui:option
+				label="email-address"
+				value="<%= nameIdTypeValues.getEmail() %>"
+			/>
+			<aui:option
+				label="encrypted"
+				value="<%= nameIdTypeValues.getEncrypted() %>"
+			/>
+			<aui:option
+				label="entity"
+				value="<%= nameIdTypeValues.getEntity() %>"
+			/>
+			<aui:option
+				label="kerberos"
+				value="<%= nameIdTypeValues.getKerberos() %>"
+			/>
+			<aui:option
+				label="persistent"
+				value="<%= nameIdTypeValues.getPersistent() %>"
+			/>
+			<aui:option
+				label="transient"
+				value="<%= nameIdTypeValues.getTransient() %>"
+			/>
+			<aui:option
+				label="unspecified"
+				value="<%= nameIdTypeValues.getUnspecified() %>"
+			/>
+			<aui:option
+				label="windows-domain-qualified-name"
+				value="<%= nameIdTypeValues.getWinDomainQualified() %>"
+			/>
+			<aui:option
+				label="x509-subject-name"
+				value="<%= nameIdTypeValues.getX509Subject() %>"
+			/>
 		</aui:select>
 	</aui:fieldset>
 
-	<aui:fieldset label="attributes">
-		<aui:input helpMessage="attribute-mapping-help" label="attribute-mapping" name="userAttributeMappings" />
+	<aui:fieldset
+		label="attributes"
+	>
+		<aui:input
+			helpMessage="attribute-mapping-help"
+			label="attribute-mapping"
+			name="userAttributeMappings"
+		/>
 	</aui:fieldset>
 
 	<liferay-util:dynamic-include key="com.liferay.saml.web#/admin/edit_identity_provider_connection.jsp#post" />
 
 	<aui:button-row>
-		<aui:button type="submit" value="save" />
+		<aui:button
+			type="submit"
+			value="save"
+		/>
 	</aui:button-row>
 </aui:form>
 

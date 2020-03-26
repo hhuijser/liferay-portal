@@ -43,9 +43,21 @@ portletDisplay.setURLBack(editSynonymSetsDisplayContext.getBackURL());
 	action="<%= editSynonymSetURL %>"
 	name="<%= editSynonymSetsDisplayContext.getFormName() %>"
 >
-	<aui:input name="<%= editSynonymSetsDisplayContext.getInputName() %>" type="hidden" value="" />
-	<aui:input name="redirect" type="hidden" value="<%= editSynonymSetsDisplayContext.getRedirect() %>" />
-	<aui:input name="synonymSetId" type="hidden" value="<%= editSynonymSetsDisplayContext.getSynonymSetId() %>" />
+	<aui:input
+		name="<%= editSynonymSetsDisplayContext.getInputName() %>"
+		type="hidden"
+		value=""
+	/>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= editSynonymSetsDisplayContext.getRedirect() %>"
+	/>
+	<aui:input
+		name="synonymSetId"
+		type="hidden"
+		value="<%= editSynonymSetsDisplayContext.getSynonymSetId() %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<span aria-hidden="true" class="loading-animation"></span>

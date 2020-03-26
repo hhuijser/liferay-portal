@@ -24,7 +24,10 @@ SelectUsersDisplayContext selectUsersDisplayContext = new SelectUsersDisplayCont
 	displayContext="<%= new SelectUsersManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, selectUsersDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280 portlet-site-teams-select-users" name="selectUserFm">
+<aui:form
+	cssClass="container-fluid-1280 portlet-site-teams-select-users"
+	name="selectUserFm"
+>
 	<liferay-ui:search-container
 		id="users"
 		searchContainer="<%= selectUsersDisplayContext.getUserSearchContainer() %>"
@@ -91,7 +94,9 @@ SelectUsersDisplayContext selectUsersDisplayContext = new SelectUsersDisplayCont
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get('<portlet:namespace />users');
 
 	searchContainer.on('rowToggled', function(event) {

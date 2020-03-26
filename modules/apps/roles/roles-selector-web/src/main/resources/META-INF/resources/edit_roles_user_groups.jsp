@@ -26,8 +26,14 @@ long roleId = (Long)request.getAttribute("edit_roles.jsp-roleId");
 PortletURL portletURL = (PortletURL)request.getAttribute("edit_roles.jsp-portletURL");
 %>
 
-<aui:input name="addUserGroupIds" type="hidden" />
-<aui:input name="removeUserGroupIds" type="hidden" />
+<aui:input
+	name="addUserGroupIds"
+	type="hidden"
+/>
+<aui:input
+	name="removeUserGroupIds"
+	type="hidden"
+/>
 
 <liferay-ui:search-container
 	rowChecker="<%= new UserGroupGroupRoleUserGroupChecker(renderResponse, group, role) %>"

@@ -29,7 +29,9 @@
 	</aui:script>
 </c:if>
 
-<aui:script position="inline">
+<aui:script
+	position="inline"
+>
 	<c:choose>
 		<c:when test="<%= themeDisplay.isStatePopUp() %>">
 			Liferay.Util.getTop().Liferay.fire(
@@ -72,7 +74,10 @@
 	}
 </aui:script>
 
-<aui:script require="metal-dom/src/all/dom as dom" sandbox="<%= true %>">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+	sandbox="<%= true %>"
+>
 	var focusInPortletHandler = dom.delegate(
 		document,
 		'focusin',
@@ -92,7 +97,9 @@
 	);
 </aui:script>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	if (A.UA.mobile) {
 		Liferay.Util.addInputCancel();
 	}
@@ -112,7 +119,9 @@ if (layout != null) {
 
 <c:if test="<%= !themeDisplay.isStatePopUp() && !group.isControlPanel() && (layout != null) && (!group.hasStagingGroup() || group.isStagingGroup() || !PropsValues.STAGING_LIVE_GROUP_LOCKING_ENABLED || layoutTypePortlet.isCustomizable()) && (GroupPermissionUtil.contains(permissionChecker, scopeGroupId, ActionKeys.ADD_LAYOUT) || LayoutPermissionUtil.contains(permissionChecker, layout, ActionKeys.UPDATE) || (layoutTypePortlet.isCustomizable() && LayoutPermissionUtil.contains(permissionChecker, layout, ActionKeys.CUSTOMIZE))) %>">
 	<c:if test="<%= layout.isTypePortlet() %>">
-		<aui:script position="inline">
+		<aui:script
+			position="inline"
+		>
 			Liferay.Data.layoutConfig = {
 				container: '#main-content',
 				dropNodes: '.portlet-column',
@@ -138,12 +147,16 @@ if (layout != null) {
 			Liferay.fire('dataLayoutConfigReady');
 		</aui:script>
 
-		<aui:script use="liferay-layout">
+		<aui:script
+			use="liferay-layout"
+		>
 			<%-- aui:script won't accept a null body --%>
 		</aui:script>
 	</c:if>
 
-	<aui:script use="event-move,liferay-navigation">
+	<aui:script
+		use="event-move,liferay-navigation"
+	>
 		var navBlock = A.one(Liferay.Data.NAV_SELECTOR);
 
 		Liferay.once(
@@ -190,7 +203,9 @@ if (layout != null) {
 	</aui:script>
 </c:if>
 
-<aui:script use="liferay-menu,liferay-notice,liferay-poller">
+<aui:script
+	use="liferay-menu,liferay-notice,liferay-poller"
+>
 	new Liferay.Menu();
 
 	var liferayNotices = Liferay.Data.notices;

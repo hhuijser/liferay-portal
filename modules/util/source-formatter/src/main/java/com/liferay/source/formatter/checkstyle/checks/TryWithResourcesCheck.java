@@ -80,8 +80,12 @@ public class TryWithResourcesCheck extends BaseCheck {
 				methodCallDetailAST);
 
 			for (String cleanUpVariableName : cleanUpVariableNames) {
+				DetailAST typeDetailAST = getVariableTypeDetailAST(
+					literalTryDetailAST, cleanUpVariableName, false);
+
 				if (_useTryWithResources(
-						cleanUpVariableName, literalTryDetailAST)) {
+						cleanUpVariableName, typeDetailAST,
+						literalTryDetailAST)) {
 
 					log(
 						methodCallDetailAST, _MSG_USE_TRY_WITH_RESOURCES,
@@ -92,16 +96,16 @@ public class TryWithResourcesCheck extends BaseCheck {
 			String closeVariableName = _getCloseVariableName(
 				methodCallDetailAST, literalFinallyDetailAST);
 
-			if ((closeVariableName == null) ||
-				!_useTryWithResources(closeVariableName, literalTryDetailAST)) {
-
+			if (closeVariableName == null) {
 				continue;
 			}
 
 			DetailAST typeDetailAST = getVariableTypeDetailAST(
 				literalTryDetailAST, closeVariableName, false);
 
-			if (typeDetailAST == null) {
+			if (!_useTryWithResources(
+					closeVariableName, typeDetailAST, literalTryDetailAST)) {
+
 				continue;
 			}
 
@@ -380,10 +384,8 @@ public class TryWithResourcesCheck extends BaseCheck {
 	}
 
 	private boolean _useTryWithResources(
-		String variableName, DetailAST literalTryDetailAST) {
-
-		DetailAST typeDetailAST = getVariableTypeDetailAST(
-			literalTryDetailAST, variableName, false);
+		String variableName, DetailAST typeDetailAST,
+		DetailAST literalTryDetailAST) {
 
 		if (typeDetailAST == null) {
 			return false;

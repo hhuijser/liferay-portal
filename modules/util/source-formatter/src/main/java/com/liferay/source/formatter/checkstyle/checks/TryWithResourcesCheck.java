@@ -399,10 +399,45 @@ public class TryWithResourcesCheck extends BaseCheck {
 
 		int lineNumber = literalTryDetailAST.getLineNo();
 
+		int assignCount = 0;
+
+		DetailAST assignDetailAST = parentDetailAST.findFirstToken(
+			TokenTypes.ASSIGN);
+
+		if (assignDetailAST != null) {
+			DetailAST firstChildDetailAST = assignDetailAST.getFirstChild();
+
+			firstChildDetailAST = firstChildDetailAST.getFirstChild();
+
+			if (firstChildDetailAST.getType() != TokenTypes.LITERAL_NULL) {
+				assignCount++;
+			}
+		}
+
 		List<DetailAST> variableCallerDetailASTList =
 			getVariableCallerDetailASTList(parentDetailAST, variableName);
 
 		for (DetailAST variableCallerDetailAST : variableCallerDetailASTList) {
+			parentDetailAST = variableCallerDetailAST.getParent();
+
+			if (parentDetailAST.getType() == TokenTypes.ASSIGN) {
+				if (assignCount > 0) {
+					return false;
+				}
+
+				DetailAST literalIfDetailAST = getParentWithTokenType(
+					variableCallerDetailAST, TokenTypes.LITERAL_IF);
+
+				if ((literalIfDetailAST != null) &&
+					(literalIfDetailAST.getLineNo() >
+						typeDetailAST.getLineNo())) {
+
+					return false;
+				}
+
+				assignCount++;
+			}
+
 			if (variableCallerDetailAST.getLineNo() > lineNumber) {
 				continue;
 			}

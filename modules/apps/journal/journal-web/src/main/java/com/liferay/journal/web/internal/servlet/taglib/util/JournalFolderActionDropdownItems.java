@@ -329,8 +329,11 @@ public class JournalFolderActionDropdownItems {
 			ActionRequest.ACTION_NAME, "/journal/publish_folder");
 
 		publishFolderURL.setParameter("backURL", _getRedirect());
-		publishFolderURL.setParameter(
-			"folderId", String.valueOf(_folder.getFolderId()));
+
+		if (_folder != null) {
+			publishFolderURL.setParameter(
+				"folderId", String.valueOf(_folder.getFolderId()));
+		}
 
 		return dropdownItem -> {
 			dropdownItem.putData("action", "publishToLive");

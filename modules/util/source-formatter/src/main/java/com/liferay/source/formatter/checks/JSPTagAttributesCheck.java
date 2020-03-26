@@ -64,8 +64,8 @@ public class JSPTagAttributesCheck extends BaseTagAttributesCheck {
 	protected Tag doFormatLineBreaks(Tag tag, String absolutePath) {
 		String tagName = tag.getName();
 
-		if (!tagName.contains(StringPool.COLON) || tagName.startsWith("aui:") ||
-			tagName.startsWith("c:") || tagName.startsWith("portlet:") ||
+		if (!tagName.contains(StringPool.COLON) || tagName.startsWith("c:") ||
+			tagName.startsWith("portlet:") ||
 			ArrayUtil.contains(_SINGLE_LINE_TAG_WHITELIST, tagName)) {
 
 			tag.setMultiLine(false);

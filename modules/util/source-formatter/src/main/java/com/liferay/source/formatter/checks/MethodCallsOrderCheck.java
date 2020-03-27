@@ -49,7 +49,8 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 		}
 
 		return _sortMethodCalls(
-			fileName, fileContent, importNames, javaTerm, absolutePath);
+			fileName, fileContent, importNames, javaTerm.getContent(),
+			absolutePath);
 	}
 
 	private String _getSortedCodeBlock(String codeBlock, String methodCall) {
@@ -309,8 +310,8 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 	}
 
 	private String _sortMethodCalls(
-		String fileName, String content, List<String> importNames,
-		JavaTerm javaTerm, String absolutePath) {
+		String fileName, String fileContent, List<String> importNames,
+		String content, String absolutePath) {
 
 		content = _sortChainedMethodCalls(
 			content, "put", 2, "ConcurrentHashMapBuilder", "HashMapBuilder",
@@ -324,7 +325,7 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 			"JSONObject", "SortedMap", "TreeMap");
 		content = _sortMethodCalls(fileName, content, "setAttribute");
 		content = _sortSetterMethodCalls(
-			javaTerm.getContent(), content, importNames, absolutePath);
+			content, fileContent, importNames, absolutePath);
 
 		return content;
 	}

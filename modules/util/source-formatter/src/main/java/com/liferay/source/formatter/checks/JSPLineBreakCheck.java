@@ -57,7 +57,8 @@ public class JSPLineBreakCheck extends BaseLineBreakCheck {
 				else if (trimmedLine.equals("%>")) {
 					javaSource = false;
 				}
-				else if (trimmedLine.equals("<aui:script>") ||
+				else if (trimmedLine.equals("<aui:script") ||
+						 trimmedLine.equals("<aui:script>") ||
 						 trimmedLine.startsWith("<aui:script ") ||
 						 trimmedLine.equals("<script>") ||
 						 trimmedLine.startsWith("<script ")) {

@@ -466,7 +466,7 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 	private static final Pattern _setterCallPattern = Pattern.compile(
 		"(\\w+)\\.\\s*set([A-Z]\\w*)\\([^;]+;");
 	private static final Pattern _setterCallsPattern = Pattern.compile(
-		"(^[ \t]*\\w+\\.\\s*set[A-Z]\\w*\\([^;]+;\n)+",
+		"(^[ \t]*\\w+\\.\\s*set[A-Z]\\w*\\([^;]+;\n){2,}",
 		Pattern.DOTALL | Pattern.MULTILINE);
 
 	private class PutOrSetParameterNameComparator

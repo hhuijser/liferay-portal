@@ -194,11 +194,11 @@ public class VelocityTaglibImpl implements VelocityTaglib {
 
 		setUp(assetTagsSummaryTag);
 
+		assetTagsSummaryTag.setAssetTagNames(assetTagNames);
 		assetTagsSummaryTag.setClassName(className);
 		assetTagsSummaryTag.setClassPK(classPK);
 		assetTagsSummaryTag.setMessage(message);
 		assetTagsSummaryTag.setPortletURL(portletURL);
-		assetTagsSummaryTag.setAssetTagNames(assetTagNames);
 
 		assetTagsSummaryTag.runTag();
 	}
@@ -371,10 +371,10 @@ public class VelocityTaglibImpl implements VelocityTaglib {
 		setUp(journalArticleTag);
 
 		journalArticleTag.setArticleId(articleId);
+		journalArticleTag.setDDMTemplateKey(ddmTemplateKey);
 		journalArticleTag.setGroupId(groupId);
 		journalArticleTag.setLanguageId(
 			LanguageUtil.getLanguageId(_httpServletRequest));
-		journalArticleTag.setDDMTemplateKey(ddmTemplateKey);
 
 		journalArticleTag.runTag();
 	}

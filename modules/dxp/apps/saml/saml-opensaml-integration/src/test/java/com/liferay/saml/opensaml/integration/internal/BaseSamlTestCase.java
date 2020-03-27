@@ -246,11 +246,11 @@ public abstract class BaseSamlTestCase extends PowerMockito {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest("GET", requestURI);
 
-		mockHttpServletRequest.setQueryString(queryString);
 		mockHttpServletRequest.setContextPath(StringPool.SLASH);
+		mockHttpServletRequest.setQueryString(queryString);
 		mockHttpServletRequest.setSecure(protocol.equals("https"));
-		mockHttpServletRequest.setServerPort(serverPort);
 		mockHttpServletRequest.setServerName(serverName);
+		mockHttpServletRequest.setServerPort(serverPort);
 
 		if (Validator.isNull(queryString)) {
 			return mockHttpServletRequest;

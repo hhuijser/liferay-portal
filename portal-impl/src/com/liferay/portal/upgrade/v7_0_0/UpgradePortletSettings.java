@@ -94,10 +94,10 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 				PortletPreferencesRow portletPreferencesRow =
 					_getPortletPreferencesRow(rs);
 
-				portletPreferencesRow.setPortletPreferencesId(increment());
 				portletPreferencesRow.setOwnerType(
 					PortletKeys.PREFS_OWNER_TYPE_GROUP);
 				portletPreferencesRow.setPortletId(serviceName);
+				portletPreferencesRow.setPortletPreferencesId(increment());
 
 				if (ownerType == PortletKeys.PREFS_OWNER_TYPE_LAYOUT) {
 					long plid = portletPreferencesRow.getPlid();

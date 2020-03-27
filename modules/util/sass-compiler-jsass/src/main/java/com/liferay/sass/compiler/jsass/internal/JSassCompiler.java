@@ -104,10 +104,10 @@ public class JSassCompiler implements SassCompiler {
 
 				File sourceMapFile = new File(sourceMapFileName);
 
+				options.setOmitSourceMapUrl(false);
 				options.setSourceMapContents(false);
 				options.setSourceMapEmbed(false);
 				options.setSourceMapFile(sourceMapFile.toURI());
-				options.setOmitSourceMapUrl(false);
 			}
 
 			Compiler compiler = new Compiler();

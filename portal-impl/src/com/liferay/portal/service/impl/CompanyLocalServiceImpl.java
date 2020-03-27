@@ -185,11 +185,11 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 			DBPartitionUtil.setDefaultCompanyId(company.getCompanyId());
 		}
 
-		company.setWebId(webId);
+		company.setActive(active);
+		company.setMaxUsers(maxUsers);
 		company.setMx(mx);
 		company.setSystem(system);
-		company.setMaxUsers(maxUsers);
-		company.setActive(active);
+		company.setWebId(webId);
 
 		company = companyPersistence.update(company);
 

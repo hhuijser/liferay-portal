@@ -159,8 +159,8 @@ public class ModifiableServletContextAdapter
 
 		filterRegistrationImpl.setClassName(filterClass.getName());
 
-		filterRegistrationImpl.setName(filterName);
 		filterRegistrationImpl.setInstance(filter);
+		filterRegistrationImpl.setName(filterName);
 
 		_filterRegistrationImpls.put(filterName, filterRegistrationImpl);
 
@@ -234,8 +234,8 @@ public class ModifiableServletContextAdapter
 
 		servletRegistrationImpl.setClassName(servetClass.getName());
 
-		servletRegistrationImpl.setName(servletName);
 		servletRegistrationImpl.setInstance(servlet);
+		servletRegistrationImpl.setName(servletName);
 
 		_servletRegistrationImpls.put(servletName, servletRegistrationImpl);
 

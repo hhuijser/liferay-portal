@@ -4853,9 +4853,9 @@ public class GroupLocalServiceImpl extends GroupLocalServiceBaseImpl {
 				new GroupFriendlyURLException(
 					GroupFriendlyURLException.DUPLICATE);
 
-			groupFriendlyURLException.setDuplicateClassPK(group.getGroupId());
 			groupFriendlyURLException.setDuplicateClassName(
 				Group.class.getName());
+			groupFriendlyURLException.setDuplicateClassPK(group.getGroupId());
 
 			throw groupFriendlyURLException;
 		}

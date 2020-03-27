@@ -28,19 +28,19 @@ public class FolderSoap implements Serializable {
 	public static FolderSoap toSoapModel(Folder model) {
 		FolderSoap soapModel = new FolderSoap();
 
-		soapModel.setUuid(model.getUuid());
+		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setCreateDate(model.getCreateDate());
+		soapModel.setDescription(model.getDescription());
 		soapModel.setFolderId(model.getFolderId());
 		soapModel.setGroupId(model.getGroupId());
-		soapModel.setCompanyId(model.getCompanyId());
+		soapModel.setLastPostDate(model.getLastPostDate());
+		soapModel.setModifiedDate(model.getModifiedDate());
+		soapModel.setName(model.getName());
+		soapModel.setParentFolderId(model.getParentFolderId());
+		soapModel.setRepositoryId(model.getRepositoryId());
 		soapModel.setUserId(model.getUserId());
 		soapModel.setUserName(model.getUserName());
-		soapModel.setCreateDate(model.getCreateDate());
-		soapModel.setModifiedDate(model.getModifiedDate());
-		soapModel.setRepositoryId(model.getRepositoryId());
-		soapModel.setParentFolderId(model.getParentFolderId());
-		soapModel.setName(model.getName());
-		soapModel.setDescription(model.getDescription());
-		soapModel.setLastPostDate(model.getLastPostDate());
+		soapModel.setUuid(model.getUuid());
 
 		return soapModel;
 	}

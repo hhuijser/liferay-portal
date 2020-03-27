@@ -50,9 +50,9 @@ public class LockManagerImpl implements LockManager {
 			lockId);
 
 		lock.setCompanyId(companyId);
+		lock.setCreateDate(new Date());
 		lock.setUserId(userId);
 		lock.setUserName(userName);
-		lock.setCreateDate(new Date());
 
 		return new LockImpl(lock);
 	}

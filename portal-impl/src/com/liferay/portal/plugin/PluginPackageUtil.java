@@ -931,16 +931,16 @@ public class PluginPackageUtil {
 		pluginPackage.setRecommendedDeploymentContext(deploymentContext);
 		//pluginPackage.setModifiedDate(null);
 		pluginPackage.setAuthor(author);
-		pluginPackage.setTypes(types);
+		pluginPackage.setChangeLog(changeLog);
 		pluginPackage.setLicenses(licenses);
 		pluginPackage.setLiferayVersions(liferayVersions);
-		pluginPackage.setTags(tags);
-		pluginPackage.setShortDescription(shortDescription);
 		pluginPackage.setLongDescription(longDescription);
-		pluginPackage.setChangeLog(changeLog);
+		pluginPackage.setShortDescription(shortDescription);
+		pluginPackage.setTags(tags);
+		pluginPackage.setTypes(types);
 		//pluginPackage.setScreenshots(null);
-		pluginPackage.setPageURL(pageURL);
 		pluginPackage.setDownloadURL(downloadURL);
+		pluginPackage.setPageURL(pageURL);
 		//pluginPackage.setDeploymentSettings(null);
 		pluginPackage.setRequiredDeploymentContexts(requiredDeploymentContexts);
 
@@ -1114,7 +1114,27 @@ public class PluginPackageUtil {
 			types.add(Plugin.TYPE_LAYOUT_TEMPLATE);
 		}
 
+		pluginPackage.setAuthor(
+			_readText(pluginPackageElement.elementText("author")));
+		pluginPackage.setChangeLog(
+			_readHtml(pluginPackageElement.elementText("change-log")));
+		pluginPackage.setDeploymentSettings(
+			_readProperties(
+				pluginPackageElement.element("deployment-settings"),
+				"setting"));
+		pluginPackage.setDownloadURL(
+			_readText(pluginPackageElement.elementText("download-url")));
+		pluginPackage.setLicenses(
+			_readLicenseList(
+				pluginPackageElement.element("licenses"), "license"));
+		pluginPackage.setLiferayVersions(liferayVersions);
+		pluginPackage.setLongDescription(
+			_readHtml(pluginPackageElement.elementText("long-description")));
+		pluginPackage.setModifiedDate(
+			_readDate(pluginPackageElement.elementText("modified-date")));
 		pluginPackage.setName(_readText(name));
+		pluginPackage.setPageURL(
+			_readText(pluginPackageElement.elementText("page-url")));
 		pluginPackage.setRecommendedDeploymentContext(
 			_readText(
 				pluginPackageElement.elementText(
@@ -1123,33 +1143,13 @@ public class PluginPackageUtil {
 			_readList(
 				pluginPackageElement.element("required-deployment-contexts"),
 				"required-deployment-context"));
-		pluginPackage.setModifiedDate(
-			_readDate(pluginPackageElement.elementText("modified-date")));
-		pluginPackage.setAuthor(
-			_readText(pluginPackageElement.elementText("author")));
-		pluginPackage.setTypes(types);
-		pluginPackage.setLicenses(
-			_readLicenseList(
-				pluginPackageElement.element("licenses"), "license"));
-		pluginPackage.setLiferayVersions(liferayVersions);
-		pluginPackage.setTags(
-			_readList(pluginPackageElement.element("tags"), "tag"));
-		pluginPackage.setShortDescription(
-			_readText(pluginPackageElement.elementText("short-description")));
-		pluginPackage.setLongDescription(
-			_readHtml(pluginPackageElement.elementText("long-description")));
-		pluginPackage.setChangeLog(
-			_readHtml(pluginPackageElement.elementText("change-log")));
 		pluginPackage.setScreenshots(
 			_readScreenshots(pluginPackageElement.element("screenshots")));
-		pluginPackage.setPageURL(
-			_readText(pluginPackageElement.elementText("page-url")));
-		pluginPackage.setDownloadURL(
-			_readText(pluginPackageElement.elementText("download-url")));
-		pluginPackage.setDeploymentSettings(
-			_readProperties(
-				pluginPackageElement.element("deployment-settings"),
-				"setting"));
+		pluginPackage.setShortDescription(
+			_readText(pluginPackageElement.elementText("short-description")));
+		pluginPackage.setTags(
+			_readList(pluginPackageElement.element("tags"), "tag"));
+		pluginPackage.setTypes(types);
 
 		return pluginPackage;
 	}
@@ -1188,10 +1188,10 @@ public class PluginPackageUtil {
 		for (Element screenshotElement : parentElement.elements("screenshot")) {
 			Screenshot screenshot = new Screenshot();
 
-			screenshot.setThumbnailURL(
-				screenshotElement.elementText("thumbnail-url"));
 			screenshot.setLargeImageURL(
 				screenshotElement.elementText("large-image-url"));
+			screenshot.setThumbnailURL(
+				screenshotElement.elementText("thumbnail-url"));
 
 			screenshots.add(screenshot);
 		}

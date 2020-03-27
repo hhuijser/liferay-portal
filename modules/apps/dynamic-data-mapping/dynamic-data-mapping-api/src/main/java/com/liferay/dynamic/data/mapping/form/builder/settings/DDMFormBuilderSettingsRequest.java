@@ -33,11 +33,11 @@ public class DDMFormBuilderSettingsRequest {
 			new DDMFormBuilderSettingsRequest();
 
 		ddmFormBuilderSettingsRequest.setCompanyId(companyId);
-		ddmFormBuilderSettingsRequest.setScopeGroupId(scopeGroupId);
+		ddmFormBuilderSettingsRequest.setDDMForm(ddmForm);
 		ddmFormBuilderSettingsRequest.setFieldSetClassNameId(
 			fieldSetClassNameId);
-		ddmFormBuilderSettingsRequest.setDDMForm(ddmForm);
 		ddmFormBuilderSettingsRequest.setLocale(locale);
+		ddmFormBuilderSettingsRequest.setScopeGroupId(scopeGroupId);
 
 		return ddmFormBuilderSettingsRequest;
 	}

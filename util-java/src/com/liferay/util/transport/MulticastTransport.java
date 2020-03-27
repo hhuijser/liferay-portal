@@ -116,8 +116,8 @@ public class MulticastTransport extends Thread implements Transport {
 	}
 
 	public synchronized void sendMessage(byte[] bytes) throws IOException {
-		_outboundPacket.setData(bytes);
 		_outboundPacket.setAddress(_address);
+		_outboundPacket.setData(bytes);
 		_outboundPacket.setPort(_port);
 
 		_socket.send(_outboundPacket);

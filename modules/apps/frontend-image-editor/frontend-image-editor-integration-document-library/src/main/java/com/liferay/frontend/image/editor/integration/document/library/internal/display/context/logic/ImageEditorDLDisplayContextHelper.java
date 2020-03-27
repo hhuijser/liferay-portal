@@ -98,11 +98,11 @@ public class ImageEditorDLDisplayContextHelper {
 
 		JavaScriptMenuItem javaScriptMenuItem = new JavaScriptMenuItem();
 
+		javaScriptMenuItem.setJavaScript(_getJavaScript());
 		javaScriptMenuItem.setKey("#edit-with-image-editor");
 		javaScriptMenuItem.setLabel(
 			LanguageUtil.get(resourceBundle, "edit-with-image-editor"));
 		javaScriptMenuItem.setOnClick(_getOnclickMethod());
-		javaScriptMenuItem.setJavaScript(_getJavaScript());
 
 		return javaScriptMenuItem;
 	}
@@ -114,11 +114,11 @@ public class ImageEditorDLDisplayContextHelper {
 		JavaScriptToolbarItem javaScriptToolbarItem =
 			new JavaScriptToolbarItem();
 
+		javaScriptToolbarItem.setJavaScript(_getJavaScript());
 		javaScriptToolbarItem.setKey("#edit-with-image-editor");
 		javaScriptToolbarItem.setLabel(
 			LanguageUtil.get(resourceBundle, "edit-with-image-editor"));
 		javaScriptToolbarItem.setOnClick(_getOnclickMethod());
-		javaScriptToolbarItem.setJavaScript(_getJavaScript());
 
 		return javaScriptToolbarItem;
 	}

@@ -370,8 +370,8 @@ public class ResourceLocalServiceImpl extends ResourceLocalServiceBaseImpl {
 
 		resource.setCompanyId(companyId);
 		resource.setName(name);
-		resource.setScope(scope);
 		resource.setPrimKey(primKey);
+		resource.setScope(scope);
 
 		return resource;
 	}

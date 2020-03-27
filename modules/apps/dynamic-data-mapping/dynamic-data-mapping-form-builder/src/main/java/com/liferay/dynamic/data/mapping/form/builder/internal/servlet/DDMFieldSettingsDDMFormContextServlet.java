@@ -102,9 +102,9 @@ public class DDMFieldSettingsDDMFormContextServlet
 
 			ddmFormRenderingContext.setDDMFormValues(ddmFormValues);
 
+			ddmFormRenderingContext.setContainerId("settings");
 			ddmFormRenderingContext.setHttpServletRequest(httpServletRequest);
 			ddmFormRenderingContext.setHttpServletResponse(httpServletResponse);
-			ddmFormRenderingContext.setContainerId("settings");
 			ddmFormRenderingContext.setLocale(locale);
 			ddmFormRenderingContext.setPortletNamespace(portletNamespace);
 			ddmFormRenderingContext.setReturnFullContext(true);

@@ -75,8 +75,8 @@ public class RSSExporterImpl implements RSSExporter {
 	private static void _regexpStrip(
 		com.sun.syndication.feed.synd.SyndFeed syndFeed) {
 
-		syndFeed.setTitle(_regexpStrip(syndFeed.getTitle()));
 		syndFeed.setDescription(_regexpStrip(syndFeed.getDescription()));
+		syndFeed.setTitle(_regexpStrip(syndFeed.getTitle()));
 
 		@SuppressWarnings("unchecked")
 		List<com.sun.syndication.feed.synd.SyndEntry> syndEntries =

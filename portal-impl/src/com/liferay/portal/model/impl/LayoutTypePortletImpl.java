@@ -1583,9 +1583,9 @@ public class LayoutTypePortletImpl
 				PortletPermissionUtil.getPrimaryKey(
 					layout.getPlid(), targetPortletId);
 
+			resourcePermission.setPrimKey(targetPortletPrimaryKey);
 			resourcePermission.setResourcePermissionId(
 				CounterLocalServiceUtil.increment());
-			resourcePermission.setPrimKey(targetPortletPrimaryKey);
 
 			ResourcePermissionLocalServiceUtil.addResourcePermission(
 				resourcePermission);

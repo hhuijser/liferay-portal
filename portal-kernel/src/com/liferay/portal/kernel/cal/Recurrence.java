@@ -225,9 +225,9 @@ public class Recurrence implements Serializable {
 
 			candidate.clear(Calendar.ZONE_OFFSET);
 			candidate.clear(Calendar.DST_OFFSET);
-			candidate.setTimeZone(TimeZoneUtil.getTimeZone(StringPool.UTC));
-			candidate.setMinimalDaysInFirstWeek(4);
 			candidate.setFirstDayOfWeek(dtStart.getFirstDayOfWeek());
+			candidate.setMinimalDaysInFirstWeek(4);
+			candidate.setTimeZone(TimeZoneUtil.getTimeZone(StringPool.UTC));
 		}
 
 		if (frequency == NO_RECURRENCE) {
@@ -368,9 +368,9 @@ public class Recurrence implements Serializable {
 
 		myCurrent.clear(Calendar.ZONE_OFFSET);
 		myCurrent.clear(Calendar.DST_OFFSET);
-		myCurrent.setTimeZone(TimeZoneUtil.getTimeZone(StringPool.UTC));
-		myCurrent.setMinimalDaysInFirstWeek(4);
 		myCurrent.setFirstDayOfWeek(dtStart.getFirstDayOfWeek());
+		myCurrent.setMinimalDaysInFirstWeek(4);
+		myCurrent.setTimeZone(TimeZoneUtil.getTimeZone(StringPool.UTC));
 		myCurrent.set(Calendar.SECOND, 0);
 		myCurrent.set(Calendar.MILLISECOND, 0);
 
@@ -559,8 +559,8 @@ public class Recurrence implements Serializable {
 			dtStart.setTimeZone(TimeZoneUtil.getTimeZone(StringPool.UTC));
 		}
 
-		dtStart.setMinimalDaysInFirstWeek(4);
 		dtStart.setFirstDayOfWeek(oldStart);
+		dtStart.setMinimalDaysInFirstWeek(4);
 		dtStart.set(Calendar.SECOND, 0);
 		dtStart.set(Calendar.MILLISECOND, 0);
 	}

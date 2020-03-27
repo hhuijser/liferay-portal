@@ -1205,8 +1205,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);

@@ -1873,9 +1873,9 @@ public class PortletDataContextImpl implements PortletDataContext {
 		if (classedModel instanceof AuditedModel) {
 			AuditedModel auditedModel = (AuditedModel)classedModel;
 
-			serviceContext.setUserId(getUserId(auditedModel));
 			serviceContext.setCreateDate(auditedModel.getCreateDate());
 			serviceContext.setModifiedDate(auditedModel.getModifiedDate());
+			serviceContext.setUserId(getUserId(auditedModel));
 		}
 
 		// Permissions

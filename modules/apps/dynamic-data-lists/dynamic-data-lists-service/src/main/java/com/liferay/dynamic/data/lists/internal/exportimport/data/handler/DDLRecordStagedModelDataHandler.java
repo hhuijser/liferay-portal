@@ -275,11 +275,11 @@ public class DDLRecordStagedModelDataHandler
 				new PortletDataException(
 					PortletDataException.STATUS_UNAVAILABLE);
 
-			portletDataException.setStagedModelDisplayName(record.getUuid());
 			portletDataException.setStagedModelClassName(
 				record.getModelClassName());
 			portletDataException.setStagedModelClassPK(
 				GetterUtil.getString(record.getRecordId()));
+			portletDataException.setStagedModelDisplayName(record.getUuid());
 
 			throw portletDataException;
 		}

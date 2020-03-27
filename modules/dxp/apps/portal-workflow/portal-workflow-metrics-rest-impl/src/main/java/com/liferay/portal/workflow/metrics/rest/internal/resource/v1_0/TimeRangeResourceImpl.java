@@ -52,11 +52,11 @@ public class TimeRangeResourceImpl extends BaseTimeRangeResourceImpl {
 	private TimeRange _createTimeRange(int id) {
 		TimeRange timeRange = new TimeRange();
 
-		timeRange.setDefaultTimeRange(_isDefault(id));
 		timeRange.setDateEnd(
 			TimeRangeUtil.getEndDate(id, contextUser.getTimeZoneId()));
 		timeRange.setDateStart(
 			TimeRangeUtil.getStartDate(id, contextUser.getTimeZoneId()));
+		timeRange.setDefaultTimeRange(_isDefault(id));
 		timeRange.setId(id);
 		timeRange.setName(_getName(id));
 

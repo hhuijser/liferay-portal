@@ -106,8 +106,8 @@ public class FolderTitleLookupTest {
 
 		Hits hits = new HitsImpl();
 
-		hits.setLength(1);
 		hits.setDocs(new Document[] {document});
+		hits.setLength(1);
 
 		return hits;
 	}

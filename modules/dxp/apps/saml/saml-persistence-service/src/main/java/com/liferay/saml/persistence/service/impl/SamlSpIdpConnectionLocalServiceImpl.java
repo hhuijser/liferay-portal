@@ -91,9 +91,9 @@ public class SamlSpIdpConnectionLocalServiceImpl
 		samlSpIdpConnection.setExpandoBridgeAttributes(serviceContext);
 		samlSpIdpConnection.setForceAuthn(forceAuthn);
 		samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
+		samlSpIdpConnection.setMetadataUpdatedDate(now);
 		samlSpIdpConnection.setUnknownUsersAreStrangers(
 			unknownUsersAreStrangers);
-		samlSpIdpConnection.setMetadataUpdatedDate(now);
 
 		if ((metadataXmlInputStream == null) &&
 			Validator.isNotNull(metadataUrl)) {
@@ -280,9 +280,9 @@ public class SamlSpIdpConnectionLocalServiceImpl
 		samlSpIdpConnection.setExpandoBridgeAttributes(serviceContext);
 		samlSpIdpConnection.setForceAuthn(forceAuthn);
 		samlSpIdpConnection.setLdapImportEnabled(ldapImportEnabled);
+		samlSpIdpConnection.setMetadataUpdatedDate(now);
 		samlSpIdpConnection.setUnknownUsersAreStrangers(
 			unknownUsersAreStrangers);
-		samlSpIdpConnection.setMetadataUpdatedDate(now);
 
 		if (enabled && (metadataXmlInputStream == null) &&
 			Validator.isNotNull(metadataUrl)) {
@@ -346,7 +346,7 @@ public class SamlSpIdpConnectionLocalServiceImpl
 			samlSpIdpConnectionId, samlIdpEntityId, assertionSignatureRequired,
 			clockSkew, enabled, forceAuthn, ldapImportEnabled, metadataUrl,
 			metadataXmlInputStream, name, nameIdFormat, signAuthnRequest,
-			samlSpIdpConnection.getUnknownUsersAreStrangers(),
+			samlSpIdpConnection.isUnknownUsersAreStrangers(),
 			userAttributeMappings, serviceContext);
 	}
 

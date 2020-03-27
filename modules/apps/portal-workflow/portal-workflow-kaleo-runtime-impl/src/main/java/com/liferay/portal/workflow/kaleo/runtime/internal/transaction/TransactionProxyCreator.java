@@ -57,13 +57,13 @@ public class TransactionProxyCreator {
 		TransactionConfig.Builder builder = new TransactionConfig.Builder();
 
 		builder.setIsolation(transactional.isolation());
-		builder.setPropagation(transactional.propagation());
-		builder.setReadOnly(transactional.readOnly());
-		builder.setRollbackForClasses(transactional.rollbackFor());
-		builder.setRollbackForClassNames(transactional.rollbackForClassName());
-		builder.setNoRollbackForClasses(transactional.noRollbackFor());
 		builder.setNoRollbackForClassNames(
 			transactional.noRollbackForClassName());
+		builder.setNoRollbackForClasses(transactional.noRollbackFor());
+		builder.setPropagation(transactional.propagation());
+		builder.setReadOnly(transactional.readOnly());
+		builder.setRollbackForClassNames(transactional.rollbackForClassName());
+		builder.setRollbackForClasses(transactional.rollbackFor());
 		builder.setTimeout(transactional.timeout());
 
 		return builder.build();

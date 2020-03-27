@@ -125,10 +125,10 @@ public class SiteFacetPortlet extends MVCPortlet {
 			() -> getFilteredGroupIdsOptional(portletSharedSearchResponse),
 			scopeSearchFacetDisplayBuilder::setFilteredGroupIds);
 
-		scopeSearchFacetDisplayBuilder.setFrequencyThreshold(
-			siteFacetConfiguration.getFrequencyThreshold());
 		scopeSearchFacetDisplayBuilder.setFrequenciesVisible(
 			siteFacetPortletPreferences.isFrequenciesVisible());
+		scopeSearchFacetDisplayBuilder.setFrequencyThreshold(
+			siteFacetConfiguration.getFrequencyThreshold());
 		scopeSearchFacetDisplayBuilder.setGroupLocalService(groupLocalService);
 		scopeSearchFacetDisplayBuilder.setLanguage(language);
 		scopeSearchFacetDisplayBuilder.setLocale(

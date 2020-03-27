@@ -316,19 +316,14 @@ public class PowwowUtil {
 
 		powwowSubscriptionSender.setFrom(fromAddress, fromName);
 
-		powwowSubscriptionSender.setHtmlFormat(true);
 		powwowSubscriptionSender.setBody(
 			portletPreferences.getValue(
 				"emailBody_" + powwowMeeting.getLanguageId(),
 				ContentUtil.get(
 					PowwowUtil.class.getClassLoader(),
 					PortletPropsValues.POWWOW_INVITATION_EMAIL_BODY)));
-		powwowSubscriptionSender.setSubject(
-			portletPreferences.getValue(
-				"emailSubject_" + powwowMeeting.getLanguageId(),
-				ContentUtil.get(
-					PowwowUtil.class.getClassLoader(),
-					PortletPropsValues.POWWOW_INVITATION_EMAIL_SUBJECT)));
+		powwowSubscriptionSender.setCurrentUserId(powwowMeeting.getUserId());
+		powwowSubscriptionSender.setHtmlFormat(true);
 		powwowSubscriptionSender.setMailId(
 			"powwowMeeting", powwowMeeting.getPowwowMeetingId());
 		powwowSubscriptionSender.setPortletId(
@@ -336,7 +331,12 @@ public class PowwowUtil {
 		powwowSubscriptionSender.setReplyToAddress(fromAddress);
 		powwowSubscriptionSender.setScopeGroupId(powwowMeeting.getGroupId());
 		powwowSubscriptionSender.setServiceContext(serviceContext);
-		powwowSubscriptionSender.setCurrentUserId(powwowMeeting.getUserId());
+		powwowSubscriptionSender.setSubject(
+			portletPreferences.getValue(
+				"emailSubject_" + powwowMeeting.getLanguageId(),
+				ContentUtil.get(
+					PowwowUtil.class.getClassLoader(),
+					PortletPropsValues.POWWOW_INVITATION_EMAIL_SUBJECT)));
 
 		return powwowSubscriptionSender;
 	}

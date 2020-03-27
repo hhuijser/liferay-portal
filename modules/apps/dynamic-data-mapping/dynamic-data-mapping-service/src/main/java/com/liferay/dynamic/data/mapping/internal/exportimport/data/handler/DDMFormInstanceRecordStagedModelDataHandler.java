@@ -251,11 +251,11 @@ public class DDMFormInstanceRecordStagedModelDataHandler
 				new PortletDataException(
 					PortletDataException.STATUS_UNAVAILABLE);
 
-			portletDataException.setStagedModelDisplayName(record.getUuid());
 			portletDataException.setStagedModelClassName(
 				record.getModelClassName());
 			portletDataException.setStagedModelClassPK(
 				GetterUtil.getString(record.getFormInstanceRecordId()));
+			portletDataException.setStagedModelDisplayName(record.getUuid());
 
 			throw portletDataException;
 		}

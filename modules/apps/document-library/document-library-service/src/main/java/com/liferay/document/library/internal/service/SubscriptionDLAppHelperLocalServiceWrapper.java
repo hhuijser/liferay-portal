@@ -197,8 +197,8 @@ public class SubscriptionDLAppHelperLocalServiceWrapper
 			_dlFileEntryTypeLocalService.getDLFileEntryType(
 				dlFileEntry.getFileEntryTypeId());
 
-		subscriptionSender.setClassPK(fileVersion.getFileEntryId());
 		subscriptionSender.setClassName(DLFileEntryConstants.getClassName());
+		subscriptionSender.setClassPK(fileVersion.getFileEntryId());
 		subscriptionSender.setCompanyId(fileVersion.getCompanyId());
 
 		if (folder != null) {

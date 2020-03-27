@@ -82,10 +82,10 @@ public class DummyIndexSearcher implements IndexSearcher {
 		hits.setCollatedSpellCheckResult(StringPool.BLANK);
 		hits.setDocs(new Document[0]);
 		hits.setLength(0);
+		hits.setLength(0);
 		hits.setQuery(new StringQuery(StringPool.BLANK));
 		hits.setQuerySuggestions(new String[0]);
 		hits.setQueryTerms(new String[0]);
-		hits.setLength(0);
 		hits.setScores(new float[0]);
 		hits.setSearchTime(0);
 		hits.setSnippets(new String[0]);

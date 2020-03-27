@@ -52,8 +52,8 @@ public class ETagUtil {
 			HttpHeaders.IF_NONE_MATCH);
 
 		if (eTag.equals(ifNoneMatch)) {
-			httpServletResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
 			httpServletResponse.setContentLength(0);
+			httpServletResponse.setStatus(HttpServletResponse.SC_NOT_MODIFIED);
 
 			return true;
 		}

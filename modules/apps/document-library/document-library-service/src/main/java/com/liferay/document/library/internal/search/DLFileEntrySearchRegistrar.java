@@ -46,10 +46,10 @@ public class DLFileEntrySearchRegistrar {
 					Field.TITLE, Field.UID);
 				modelSearchDefinition.setModelIndexWriteContributor(
 					modelIndexWriterContributor);
-				modelSearchDefinition.setModelVisibilityContributor(
-					modelVisibilityContributor);
 				modelSearchDefinition.setModelSummaryContributor(
 					modelSummaryContributor);
+				modelSearchDefinition.setModelVisibilityContributor(
+					modelVisibilityContributor);
 			});
 	}
 

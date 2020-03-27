@@ -249,13 +249,13 @@ public class TransactionConfig {
 			Builder builder = new Builder();
 
 			builder.setIsolation(isolation);
+			builder.setNoRollbackForClassNames(noRollbackForClassNames);
+			builder.setNoRollbackForClasses(noRollbackForClasses);
 			builder.setPropagation(propagation);
 			builder.setReadOnly(readOnly);
-			builder.setTimeout(timeout);
-			builder.setRollbackForClasses(rollbackForClasses);
 			builder.setRollbackForClassNames(rollbackForClassNames);
-			builder.setNoRollbackForClasses(noRollbackForClasses);
-			builder.setNoRollbackForClassNames(noRollbackForClassNames);
+			builder.setRollbackForClasses(rollbackForClasses);
+			builder.setTimeout(timeout);
 
 			return builder.build();
 		}

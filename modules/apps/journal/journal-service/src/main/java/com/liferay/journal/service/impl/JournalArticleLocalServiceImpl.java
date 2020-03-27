@@ -425,19 +425,19 @@ public class JournalArticleLocalServiceImpl
 
 		String urlTitle = urlTitleMap.get(LocaleUtil.toLanguageId(locale));
 
-		article.setUuid(serviceContext.getUuid());
-		article.setResourcePrimKey(resourcePrimKey);
-		article.setGroupId(groupId);
-		article.setCompanyId(user.getCompanyId());
-		article.setUserId(user.getUserId());
-		article.setUserName(user.getFullName());
-		article.setFolderId(folderId);
+		article.setArticleId(articleId);
 		article.setClassNameId(classNameId);
 		article.setClassPK(classPK);
+		article.setCompanyId(user.getCompanyId());
+		article.setFolderId(folderId);
+		article.setGroupId(groupId);
+		article.setResourcePrimKey(resourcePrimKey);
 		article.setTreePath(article.buildTreePath());
-		article.setArticleId(articleId);
-		article.setVersion(version);
 		article.setUrlTitle(urlTitle);
+		article.setUserId(user.getUserId());
+		article.setUserName(user.getFullName());
+		article.setUuid(serviceContext.getUuid());
+		article.setVersion(version);
 
 		content = format(user, groupId, article, content);
 		content = _replaceTempImages(article, content);
@@ -447,11 +447,11 @@ public class JournalArticleLocalServiceImpl
 		article.setDDMStructureKey(ddmStructureKey);
 		article.setDDMTemplateKey(ddmTemplateKey);
 		article.setDefaultLanguageId(LocaleUtil.toLanguageId(locale));
-		article.setLayoutUuid(layoutUuid);
 		article.setDisplayDate(displayDate);
 		article.setExpirationDate(expirationDate);
-		article.setReviewDate(reviewDate);
 		article.setIndexable(indexable);
+		article.setLayoutUuid(layoutUuid);
+		article.setReviewDate(reviewDate);
 		article.setSmallImage(smallImage);
 		article.setSmallImageId(counterLocalService.increment());
 		article.setSmallImageURL(smallImageURL);
@@ -465,9 +465,9 @@ public class JournalArticleLocalServiceImpl
 			article.setStatus(WorkflowConstants.STATUS_EXPIRED);
 		}
 
+		article.setExpandoBridgeAttributes(serviceContext);
 		article.setStatusByUserId(userId);
 		article.setStatusDate(serviceContext.getModifiedDate(now));
-		article.setExpandoBridgeAttributes(serviceContext);
 
 		article = journalArticlePersistence.update(article);
 

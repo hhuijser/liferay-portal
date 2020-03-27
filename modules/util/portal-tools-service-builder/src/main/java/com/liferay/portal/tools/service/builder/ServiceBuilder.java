@@ -6270,11 +6270,11 @@ public class ServiceBuilder {
 
 				entityColumn = (EntityColumn)entityColumn.clone();
 
-				entityColumn.setCaseSensitive(finderColCaseSensitive);
-				entityColumn.setComparator(finderColComparator);
 				entityColumn.setArrayableOperator(finderColArrayableOperator);
 				entityColumn.setArrayablePagination(
 					finderColArrayablePagination);
+				entityColumn.setCaseSensitive(finderColCaseSensitive);
+				entityColumn.setComparator(finderColComparator);
 
 				entityColumn.validate();
 
@@ -6808,8 +6808,8 @@ public class ServiceBuilder {
 
 		Entity localizedEntity = _parseEntity(newLocalizedEntityElement);
 
-		entity.setLocalizedEntityColumns(localizedEntityColumns);
 		entity.setLocalizedEntity(localizedEntity);
+		entity.setLocalizedEntityColumns(localizedEntityColumns);
 	}
 
 	private void _parseVersionEntity(

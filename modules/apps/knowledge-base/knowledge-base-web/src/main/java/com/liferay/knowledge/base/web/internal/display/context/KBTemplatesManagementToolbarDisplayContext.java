@@ -185,14 +185,14 @@ public class KBTemplatesManagementToolbarDisplayContext {
 		String keywords = _getKeywords();
 
 		if (Validator.isNull(keywords)) {
-			_searchContainer.setTotal(
-				KBTemplateServiceUtil.getGroupKBTemplatesCount(
-					_themeDisplay.getScopeGroupId()));
 			_searchContainer.setResults(
 				KBTemplateServiceUtil.getGroupKBTemplates(
 					_themeDisplay.getScopeGroupId(),
 					_searchContainer.getStart(), _searchContainer.getEnd(),
 					_searchContainer.getOrderByComparator()));
+			_searchContainer.setTotal(
+				KBTemplateServiceUtil.getGroupKBTemplatesCount(
+					_themeDisplay.getScopeGroupId()));
 		}
 		else {
 			KBTemplateSearchDisplay kbTemplateSearchDisplay =

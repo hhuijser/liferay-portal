@@ -75,8 +75,8 @@ public class PMDTest extends AutoBalanceTestCase {
 		FileSet fileSet = new FileSet();
 
 		fileSet.setDir(new File(_PROJECT_DIR));
-		fileSet.setIncludes(_buildProperties.getProperty("pmd.java.includes"));
 		fileSet.setExcludes(_buildProperties.getProperty("pmd.java.excludes"));
+		fileSet.setIncludes(_buildProperties.getProperty("pmd.java.includes"));
 
 		if (isCIMode()) {
 			DirectoryScanner directoryScanner = fileSet.getDirectoryScanner(

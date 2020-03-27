@@ -552,8 +552,8 @@ public class DDLRecordServiceTest {
 	protected DDMFormFieldValue createSeparatorDDMFormFieldValue(String name) {
 		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
 
-		ddmFormFieldValue.setName(name);
 		ddmFormFieldValue.setInstanceId(StringUtil.randomString());
+		ddmFormFieldValue.setName(name);
 
 		return ddmFormFieldValue;
 	}

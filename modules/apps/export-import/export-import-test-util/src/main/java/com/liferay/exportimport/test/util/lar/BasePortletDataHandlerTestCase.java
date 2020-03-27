@@ -200,8 +200,8 @@ public abstract class BasePortletDataHandlerTestCase {
 		portletDataContext.setZipReader(
 			_zipReaderFactory.getZipReader(exportZipWriter.getFile()));
 
-		portletDataContext.setScopeGroupId(cleanGroup.getGroupId());
 		portletDataContext.setGroupId(cleanGroup.getGroupId());
+		portletDataContext.setScopeGroupId(cleanGroup.getGroupId());
 
 		portletDataContext.clearScopedPrimaryKeys();
 

@@ -180,12 +180,12 @@ public class SearchResultsPortlet extends MVCPortlet {
 					getPaginationDeltaParameterName(),
 				renderRequest));
 
-		searchResultsPortletDisplayContext.setSearchResultsSummariesHolder(
-			searchResultsSummariesHolder);
 		searchResultsPortletDisplayContext.
 			setSearchResultSummaryDisplayContexts(
 				searchResultsPortletDisplayContext.
 					translateSearchResultSummaryDisplayContexts(documents));
+		searchResultsPortletDisplayContext.setSearchResultsSummariesHolder(
+			searchResultsSummariesHolder);
 		searchResultsPortletDisplayContext.setTotalHits(
 			searchResponse.getTotalHits());
 

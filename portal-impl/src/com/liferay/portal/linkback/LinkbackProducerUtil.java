@@ -206,8 +206,8 @@ public class LinkbackProducerUtil {
 					HttpHeaders.USER_AGENT, ReleaseInfo.getServerInfo());
 			}
 
-			options.setLocation(targetUri);
 			options.setHead(true);
+			options.setLocation(targetUri);
 
 			HttpUtil.URLtoByteArray(options);
 

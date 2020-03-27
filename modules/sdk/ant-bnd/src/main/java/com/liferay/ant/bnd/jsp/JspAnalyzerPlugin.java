@@ -504,8 +504,8 @@ public class JspAnalyzerPlugin implements AnalyzerPlugin {
 			XMLReader xmlReader = saxParser.getXMLReader();
 
 			xmlReader.setContentHandler(uriFinder);
-			xmlReader.setFeature(_LOAD_EXTERNAL_DTD, false);
 			xmlReader.setEntityResolver(new NullEntityResolver());
+			xmlReader.setFeature(_LOAD_EXTERNAL_DTD, false);
 
 			xmlReader.parse(new InputSource(resource.openInputStream()));
 

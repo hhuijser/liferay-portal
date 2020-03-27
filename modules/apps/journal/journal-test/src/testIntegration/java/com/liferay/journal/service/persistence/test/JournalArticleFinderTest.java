@@ -500,8 +500,8 @@ public class JournalArticleFinderTest {
 
 		// Status any
 
-		queryDefinition.setStatus(WorkflowConstants.STATUS_ANY);
 		queryDefinition.setOwnerUserId(_USER_ID);
+		queryDefinition.setStatus(WorkflowConstants.STATUS_ANY);
 
 		testQueryByG_C(
 			_group.getGroupId(), Collections.<Long>emptyList(),

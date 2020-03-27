@@ -169,8 +169,8 @@ public class FilterRegistrationImpl implements FilterRegistration.Dynamic {
 		public void addURLPattern(int index, String urlPattern) {
 			FilterMappingItem filterMappingItem = new FilterMappingItem();
 
-			filterMappingItem.setUrlPattern(true);
 			filterMappingItem.setItemContent(urlPattern);
+			filterMappingItem.setUrlPattern(true);
 
 			_filterMappingItems.add(index, filterMappingItem);
 		}

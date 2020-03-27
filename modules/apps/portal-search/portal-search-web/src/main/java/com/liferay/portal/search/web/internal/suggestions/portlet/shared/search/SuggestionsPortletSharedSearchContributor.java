@@ -70,11 +70,11 @@ public class SuggestionsPortletSharedSearchContributor
 
 		queryConfig.setQuerySuggestionEnabled(
 			suggestionsPortletPreferences.isRelatedQueriesSuggestionsEnabled());
+		queryConfig.setQuerySuggestionMax(
+			suggestionsPortletPreferences.getRelatedQueriesSuggestionsMax());
 		queryConfig.setQuerySuggestionScoresThreshold(
 			suggestionsPortletPreferences.
 				getRelatedQueriesSuggestionsDisplayThreshold());
-		queryConfig.setQuerySuggestionMax(
-			suggestionsPortletPreferences.getRelatedQueriesSuggestionsMax());
 	}
 
 	protected void setUpSpellCheckSuggestion(

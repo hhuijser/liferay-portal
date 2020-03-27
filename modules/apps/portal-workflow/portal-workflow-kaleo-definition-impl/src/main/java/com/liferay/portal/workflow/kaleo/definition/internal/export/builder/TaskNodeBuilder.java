@@ -65,8 +65,8 @@ public class TaskNodeBuilder
 
 				taskFormReference.setCompanyId(
 					kaleoTaskForm.getFormCompanyId());
-				taskFormReference.setFormUuid(kaleoTaskForm.getFormUuid());
 				taskFormReference.setFormId(kaleoTaskForm.getFormId());
+				taskFormReference.setFormUuid(kaleoTaskForm.getFormUuid());
 				taskFormReference.setGroupId(kaleoTaskForm.getFormGroupId());
 
 				taskForm.setTaskFormReference(taskFormReference);

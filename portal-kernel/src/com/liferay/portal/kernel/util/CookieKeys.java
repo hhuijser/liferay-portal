@@ -112,8 +112,8 @@ public class CookieKeys {
 
 		Cookie cookieSupportCookie = new Cookie(COOKIE_SUPPORT, "true");
 
-		cookieSupportCookie.setPath(StringPool.SLASH);
 		cookieSupportCookie.setMaxAge(MAX_AGE);
+		cookieSupportCookie.setPath(StringPool.SLASH);
 
 		addCookie(httpServletRequest, httpServletResponse, cookieSupportCookie);
 	}

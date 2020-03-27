@@ -195,8 +195,8 @@ public class KBArticleAssetEntriesUtil {
 			return currentURL;
 		}
 
-		portletURL.setWindowState(WindowState.MAXIMIZED);
 		portletURL.setPortletMode(PortletMode.VIEW);
+		portletURL.setWindowState(WindowState.MAXIMIZED);
 
 		portletURL.setParameter("returnToFullPageURL", currentURL);
 

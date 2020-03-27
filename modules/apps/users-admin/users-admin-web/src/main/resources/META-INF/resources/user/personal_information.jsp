@@ -35,7 +35,10 @@ if (selContact != null) {
 String organizationIdsString = ParamUtil.getString(request, "organizationsSearchContainerPrimaryKeys");
 %>
 
-<aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
+<aui:model-context
+	bean="<%= selUser %>"
+	model="<%= User.class %>"
+/>
 
 <div class="row">
 	<div class="col-md-6">
@@ -46,30 +49,71 @@ String organizationIdsString = ParamUtil.getString(request, "organizationsSearch
 	</div>
 
 	<div class="col-md-5">
-		<aui:input disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "jobTitle") %>' name="jobTitle" />
+		<aui:input
+			disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "jobTitle") %>'
+			name="jobTitle"
+		/>
 
 		<c:choose>
 			<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_KERNEL_MODEL_CONTACT_BIRTHDAY) %>">
 				<liferay-ui:error exception="<%= ContactBirthdayException.class %>" message="please-enter-a-valid-date" />
 
-				<aui:input bean="<%= selContact %>" cssClass="modify-link" disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "birthday") %>' model="<%= Contact.class %>" name="birthday" value="<%= birthday %>" />
+				<aui:input
+					bean="<%= selContact %>"
+					cssClass="modify-link"
+					disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "birthday") %>'
+					model="<%= Contact.class %>"
+					name="birthday"
+					value="<%= birthday %>"
+				/>
 			</c:when>
 			<c:otherwise>
-				<aui:input name="birthdayMonth" type="hidden" value="<%= Calendar.JANUARY %>" />
-				<aui:input name="birthdayDay" type="hidden" value="1" />
-				<aui:input name="birthdayYear" type="hidden" value="1970" />
+				<aui:input
+					name="birthdayMonth"
+					type="hidden"
+					value="<%= Calendar.JANUARY %>"
+				/>
+
+				<aui:input
+					name="birthdayDay"
+					type="hidden"
+					value="1"
+				/>
+
+				<aui:input
+					name="birthdayYear"
+					type="hidden"
+					value="1970"
+				/>
 			</c:otherwise>
 		</c:choose>
 
 		<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_KERNEL_MODEL_CONTACT_MALE) %>">
-			<aui:select bean="<%= selContact %>" disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "gender") %>' label="gender" model="<%= Contact.class %>" name="male">
-				<aui:option label="male" value="<%= true %>" />
-				<aui:option label="female" value="<%= false %>" />
+			<aui:select
+				bean="<%= selContact %>"
+				disabled='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "gender") %>'
+				label="gender"
+				model="<%= Contact.class %>"
+				name="male"
+			>
+				<aui:option
+					label="male"
+					value="<%= true %>"
+				/>
+
+				<aui:option
+					label="female"
+					value="<%= false %>"
+				/>
 			</aui:select>
 		</c:if>
 
 		<c:if test="<%= (selUser == null) && Validator.isNotNull(organizationIdsString) %>">
-			<aui:input name="addOrganizationIds" type="hidden" value="<%= organizationIdsString %>" />
+			<aui:input
+				name="addOrganizationIds"
+				type="hidden"
+				value="<%= organizationIdsString %>"
+			/>
 		</c:if>
 
 		<%
@@ -97,7 +141,10 @@ String organizationIdsString = ParamUtil.getString(request, "organizationsSearch
 				String taglibOnClick = renderResponse.getNamespace() + "saveUser('unlock');";
 				%>
 
-				<aui:button onClick="<%= taglibOnClick %>" value="unlock" />
+				<aui:button
+					onClick="<%= taglibOnClick %>"
+					value="unlock"
+				/>
 			</aui:button-row>
 		</c:if>
 	</div>

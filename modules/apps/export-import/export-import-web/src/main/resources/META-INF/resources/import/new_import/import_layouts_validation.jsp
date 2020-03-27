@@ -21,7 +21,11 @@ long groupId = ParamUtil.getLong(request, "groupId");
 boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout");
 %>
 
-<aui:form cssClass="lfr-export-dialog" method="post" name="fm1">
+<aui:form
+	cssClass="lfr-export-dialog"
+	method="post"
+	name="fm1"
+>
 	<div class="lfr-dynamic-uploader">
 		<div class="container-fluid-1280">
 			<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
@@ -33,7 +37,12 @@ boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout");
 	%>
 
 	<aui:button-row>
-		<aui:button cssClass='<%= (fileEntry == null) ? " hide" : StringPool.BLANK %>' name="continueButton" type="submit" value="continue" />
+		<aui:button
+			cssClass='<%= (fileEntry == null) ? " hide" : StringPool.BLANK %>'
+			name="continueButton"
+			type="submit"
+			value="continue"
+		/>
 	</aui:button-row>
 
 	<%
@@ -42,7 +51,9 @@ boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout");
 	Ticket ticket = TicketLocalServiceUtil.addTicket(user.getCompanyId(), User.class.getName(), user.getUserId(), TicketConstants.TYPE_IMPERSONATE, null, expirationDate, new ServiceContext());
 	%>
 
-	<aui:script use="liferay-upload">
+	<aui:script
+		use="liferay-upload"
+	>
 		var liferayUpload = new Liferay.Upload({
 			boundingBox: '#<portlet:namespace />fileUpload',
 
@@ -113,7 +124,9 @@ boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout");
 	</aui:script>
 </aui:form>
 
-<aui:script use="aui-base,aui-io-plugin-deprecated,aui-loading-mask-deprecated,io">
+<aui:script
+	use="aui-base,aui-io-plugin-deprecated,aui-loading-mask-deprecated,io"
+>
 	var form = A.one('#<portlet:namespace />fm1');
 
 	form.on('submit', function(event) {

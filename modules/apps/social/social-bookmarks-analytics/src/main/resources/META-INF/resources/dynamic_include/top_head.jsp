@@ -16,7 +16,9 @@
 
 <%@ include file="/dynamic_include/init.jsp" %>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var onShare = function(data) {
 		if (window.Analytics) {
 			Analytics.send('shared', 'SocialBookmarks', {

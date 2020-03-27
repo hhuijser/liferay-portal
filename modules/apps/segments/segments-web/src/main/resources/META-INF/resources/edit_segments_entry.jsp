@@ -35,13 +35,47 @@ renderResponse.setTitle(editSegmentsEntryDisplayContext.getTitle(locale));
 
 <portlet:actionURL name="updateSegmentsEntry" var="updateSegmentsEntryActionURL" />
 
-<aui:form action="<%= updateSegmentsEntryActionURL %>" method="post" name="editSegmentFm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveSegmentsEntry();" %>'>
-	<aui:input name="redirect" type="hidden" value="<%= editSegmentsEntryDisplayContext.getRedirect() %>" />
-	<aui:input name="segmentsEntryId" type="hidden" value="<%= editSegmentsEntryDisplayContext.getSegmentsEntryId() %>" />
-	<aui:input name="groupId" type="hidden" value="<%= editSegmentsEntryDisplayContext.getGroupId() %>" />
-	<aui:input name="segmentsEntryKey" type="hidden" value="<%= editSegmentsEntryDisplayContext.getSegmentsEntryKey() %>" />
-	<aui:input name="type" type="hidden" value="<%= editSegmentsEntryDisplayContext.getType() %>" />
-	<aui:input name="dynamic" type="hidden" value="<%= true %>" />
+<aui:form
+	action="<%= updateSegmentsEntryActionURL %>"
+	method="post"
+	name="editSegmentFm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveSegmentsEntry();" %>'
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= editSegmentsEntryDisplayContext.getRedirect() %>"
+	/>
+
+	<aui:input
+		name="segmentsEntryId"
+		type="hidden"
+		value="<%= editSegmentsEntryDisplayContext.getSegmentsEntryId() %>"
+	/>
+
+	<aui:input
+		name="groupId"
+		type="hidden"
+		value="<%= editSegmentsEntryDisplayContext.getGroupId() %>"
+	/>
+
+	<aui:input
+		name="segmentsEntryKey"
+		type="hidden"
+		value="<%= editSegmentsEntryDisplayContext.getSegmentsEntryKey() %>"
+	/>
+
+	<aui:input
+		name="type"
+		type="hidden"
+		value="<%= editSegmentsEntryDisplayContext.getType() %>"
+	/>
+
+	<aui:input
+		name="dynamic"
+		type="hidden"
+		value="<%= true %>"
+	/>
 
 	<%
 	String segmentEditRootElementId = renderResponse.getNamespace() + "-segment-edit-root";

@@ -79,7 +79,10 @@
 		<liferay-ui:error key="<%= NoSuchListTypeException.class.getName() + className + ListTypeConstants.ADDRESS %>" message="please-select-a-type" />
 		<liferay-ui:error exception="<%= NoSuchRegionException.class %>" message="please-select-a-region" />
 
-		<aui:fieldset cssClass="addresses" id='<%= renderResponse.getNamespace() + "addresses" %>'>
+		<aui:fieldset
+			cssClass="addresses"
+			id='<%= renderResponse.getNamespace() + "addresses" %>'
+		>
 
 			<%
 			for (int i = 0; i < addressesIndexes.length; i++) {
@@ -91,7 +94,10 @@
 				long regionId = ParamUtil.getLong(request, "addressRegionId" + addressesIndex, address.getRegionId());
 			%>
 
-				<aui:model-context bean="<%= address %>" model="<%= Address.class %>" />
+				<aui:model-context
+					bean="<%= address %>"
+					model="<%= Address.class %>"
+				/>
 
 				<div class="lfr-form-row">
 					<div class="row-fields">
@@ -99,7 +105,9 @@
 					</div>
 				</div>
 
-				<aui:script use="liferay-dynamic-select">
+				<aui:script
+					use="liferay-dynamic-select"
+				>
 					new Liferay.DynamicSelect([
 						{
 							select: '<portlet:namespace />addressCountryId<%= addressesIndex %>',
@@ -123,10 +131,16 @@
 			}
 			%>
 
-			<aui:input name="addressesIndexes" type="hidden" value="<%= StringUtil.merge(addressesIndexes) %>" />
+			<aui:input
+				name="addressesIndexes"
+				type="hidden"
+				value="<%= StringUtil.merge(addressesIndexes) %>"
+			/>
 		</aui:fieldset>
 
-		<aui:script use="liferay-auto-fields,liferay-dynamic-select">
+		<aui:script
+			use="liferay-auto-fields,liferay-dynamic-select"
+		>
 			new Liferay.AutoFields({
 				contentBox: '#<portlet:namespace />addresses',
 				fieldIndexes: '<portlet:namespace />addressesIndexes',

@@ -26,8 +26,17 @@
 	name="fm"
 	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -45,7 +54,11 @@
 					/>
 				</div>
 
-				<aui:input name="preferences--displayCurrentLocale--" type="toggle-switch" value="<%= languagePortletInstanceConfiguration.displayCurrentLocale() %>" />
+				<aui:input
+					name="preferences--displayCurrentLocale--"
+					type="toggle-switch"
+					value="<%= languagePortletInstanceConfiguration.displayCurrentLocale() %>"
+				/>
 			</liferay-frontend:fieldset>
 
 			<liferay-frontend:fieldset
@@ -53,7 +66,10 @@
 				collapsible="<%= true %>"
 				label="languages"
 			>
-				<aui:input name="preferences--languageIds--" type="hidden" />
+				<aui:input
+					name="preferences--languageIds--"
+					type="hidden"
+				/>
 
 				<liferay-ui:input-move-boxes
 					leftBoxName="currentLanguageIds"
@@ -69,9 +85,13 @@
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

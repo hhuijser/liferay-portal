@@ -61,10 +61,32 @@
 				<portlet:param name="mvcRenderCommandName" value="/login/login" />
 			</portlet:actionURL>
 
-			<aui:form action="<%= loginURL %>" autocomplete='<%= PropsValues.COMPANY_SECURITY_LOGIN_FORM_AUTOCOMPLETE ? "on" : "off" %>' cssClass="sign-in-form" method="post" name="<%= formName %>" onSubmit="event.preventDefault();" validateOnBlur="<%= false %>">
-				<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
-				<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-				<aui:input name="doActionAfterLogin" type="hidden" value="<%= portletName.equals(PortletKeys.FAST_LOGIN) ? true : false %>" />
+			<aui:form
+				action="<%= loginURL %>"
+				autocomplete='<%= PropsValues.COMPANY_SECURITY_LOGIN_FORM_AUTOCOMPLETE ? "on" : "off" %>'
+				cssClass="sign-in-form"
+				method="post"
+				name="<%= formName %>"
+				onSubmit="event.preventDefault();"
+				validateOnBlur="<%= false %>"
+			>
+				<aui:input
+					name="saveLastPath"
+					type="hidden"
+					value="<%= false %>"
+				/>
+
+				<aui:input
+					name="redirect"
+					type="hidden"
+					value="<%= redirect %>"
+				/>
+
+				<aui:input
+					name="doActionAfterLogin"
+					type="hidden"
+					value="<%= portletName.equals(PortletKeys.FAST_LOGIN) ? true : false %>"
+				/>
 
 				<div class="inline-alert-container lfr-alert-container"></div>
 
@@ -163,34 +185,62 @@
 					}
 					%>
 
-					<aui:input autoFocus="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) || windowState.equals(WindowState.MAXIMIZED) %>" cssClass="clearable" label="<%= loginLabel %>" name="login" showRequiredLabel="<%= false %>" type="text" value="<%= login %>">
-						<aui:validator name="required" />
+					<aui:input
+						autoFocus="<%= windowState.equals(LiferayWindowState.EXCLUSIVE) || windowState.equals(WindowState.MAXIMIZED) %>"
+						cssClass="clearable"
+						label="<%= loginLabel %>"
+						name="login"
+						showRequiredLabel="<%= false %>"
+						type="text"
+						value="<%= login %>"
+					>
+						<aui:validator
+							name="required"
+						/>
 
 						<c:if test="<%= authType.equals(CompanyConstants.AUTH_TYPE_EA) %>">
-							<aui:validator name="email" />
+							<aui:validator
+								name="email"
+							/>
 						</c:if>
 					</aui:input>
 
-					<aui:input name="password" showRequiredLabel="<%= false %>" type="password" value="<%= password %>">
-						<aui:validator name="required" />
+					<aui:input
+						name="password"
+						showRequiredLabel="<%= false %>"
+						type="password"
+						value="<%= password %>"
+					>
+						<aui:validator
+							name="required"
+						/>
 					</aui:input>
 
 					<span id="<portlet:namespace />passwordCapsLockSpan" style="display: none;"><liferay-ui:message key="caps-lock-is-on" /></span>
 
 					<c:if test="<%= company.isAutoLogin() && !PropsValues.SESSION_DISABLED %>">
-						<aui:input checked="<%= rememberMe %>" name="rememberMe" type="checkbox" />
+						<aui:input
+							checked="<%= rememberMe %>"
+							name="rememberMe"
+							type="checkbox"
+						/>
 					</c:if>
 				</aui:fieldset>
 
 				<aui:button-row>
-					<aui:button type="submit" value="sign-in" />
+					<aui:button
+						type="submit"
+						value="sign-in"
+					/>
 				</aui:button-row>
 			</aui:form>
 
 			<%@ include file="/navigation.jspf" %>
 		</div>
 
-		<aui:script sandbox="<%= true %>">
+		<aui:script
+			sandbox="<%= true %>"
+		>
 			var form = document.getElementById('<portlet:namespace /><%= formName %>');
 
 			if (form) {

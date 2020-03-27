@@ -89,15 +89,60 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 		/>
 	</div>
 
-	<aui:form action="<%= saveFormInstanceURL %>" cssClass="ddm-form-builder-form" enctype="multipart/form-data" method="post" name="editForm">
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="formInstanceId" type="hidden" value="<%= formInstanceId %>" />
-		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
-		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
-		<aui:input name="name" type="hidden" value="<%= ddmFormAdminDisplayContext.getFormLocalizedName() %>" />
-		<aui:input name="description" type="hidden" value="<%= ddmFormAdminDisplayContext.getFormLocalizedDescription() %>" />
-		<aui:input name="serializedFormBuilderContext" type="hidden" value="<%= serializedFormBuilderContext %>" />
-		<aui:input name="serializedSettingsContext" type="hidden" value="" />
+	<aui:form
+		action="<%= saveFormInstanceURL %>"
+		cssClass="ddm-form-builder-form"
+		enctype="multipart/form-data"
+		method="post"
+		name="editForm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+
+		<aui:input
+			name="formInstanceId"
+			type="hidden"
+			value="<%= formInstanceId %>"
+		/>
+
+		<aui:input
+			name="groupId"
+			type="hidden"
+			value="<%= groupId %>"
+		/>
+
+		<aui:input
+			name="ddmStructureId"
+			type="hidden"
+			value="<%= ddmStructureId %>"
+		/>
+
+		<aui:input
+			name="name"
+			type="hidden"
+			value="<%= ddmFormAdminDisplayContext.getFormLocalizedName() %>"
+		/>
+
+		<aui:input
+			name="description"
+			type="hidden"
+			value="<%= ddmFormAdminDisplayContext.getFormLocalizedDescription() %>"
+		/>
+
+		<aui:input
+			name="serializedFormBuilderContext"
+			type="hidden"
+			value="<%= serializedFormBuilderContext %>"
+		/>
+
+		<aui:input
+			name="serializedSettingsContext"
+			type="hidden"
+			value=""
+		/>
 
 		<%@ include file="/admin/exceptions.jspf" %>
 
@@ -256,7 +301,9 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 	}
 </aui:script>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	Liferay.namespace('FormPortlet').destroySettings = function() {
 		var settingsNode = A.one('#<portlet:namespace />settingsModal');
 

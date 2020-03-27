@@ -78,7 +78,9 @@ rowURL.setParameter("fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 %>
 
 <h2 class="h5">
-	<aui:a href="<%= rowURL.toString() %>">
+	<aui:a
+		href="<%= rowURL.toString() %>"
+	>
 		<%= latestFileVersion.getTitle() %>
 	</aui:a>
 </h2>
@@ -104,24 +106,40 @@ rowURL.setParameter("fileEntryId", String.valueOf(fileEntry.getFileEntryId()));
 </c:if>
 
 <span class="file-entry-status">
-	<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= latestFileVersion.getStatus() %>" />
+	<aui:workflow-status
+		showIcon="<%= false %>"
+		showLabel="<%= false %>"
+		status="<%= latestFileVersion.getStatus() %>"
+	/>
 
 	<c:choose>
 		<c:when test="<%= fileShortcut != null %>">
 			<span class="file-icon-color-0 inline-item inline-item-after">
-				<aui:icon image="shortcut" markupView="lexicon" message="shortcut" />
+				<aui:icon
+					image="shortcut"
+					markupView="lexicon"
+					message="shortcut"
+				/>
 			</span>
 		</c:when>
 		<c:when test="<%= fileEntry.hasLock() || fileEntry.isCheckedOut() %>">
 			<span class="file-icon-color-0 inline-item inline-item-after">
-				<aui:icon image="lock" markupView="lexicon" message="locked" />
+				<aui:icon
+					image="lock"
+					markupView="lexicon"
+					message="locked"
+				/>
 			</span>
 		</c:when>
 	</c:choose>
 
 	<c:if test="<%= dlViewFileVersionDisplayContext.isShared() %>">
 		<span class="file-icon-color-0 inline-item inline-item-after lfr-portal-tooltip" title="<%= LanguageUtil.get(request, "shared") %>">
-			<aui:icon image="users" markupView="lexicon" message="shared" />
+			<aui:icon
+				image="users"
+				markupView="lexicon"
+				message="shared"
+			/>
 		</span>
 	</c:if>
 </span>

@@ -41,11 +41,35 @@ renderResponse.setTitle(LanguageUtil.get(request, "create-account"));
 	<portlet:param name="mvcRenderCommandName" value="/login/create_account" />
 </portlet:actionURL>
 
-<aui:form action="<%= createAccountURL %>" method="post" name="fm" validateOnBlur="<%= false %>">
-	<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="openId" type="hidden" value="<%= openId %>" />
+<aui:form
+	action="<%= createAccountURL %>"
+	method="post"
+	name="fm"
+	validateOnBlur="<%= false %>"
+>
+	<aui:input
+		name="saveLastPath"
+		type="hidden"
+		value="<%= false %>"
+	/>
+
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.ADD %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="openId"
+		type="hidden"
+		value="<%= openId %>"
+	/>
 
 	<liferay-ui:error exception="<%= AddressCityException.class %>" message="please-enter-a-valid-city" />
 	<liferay-ui:error exception="<%= AddressStreetException.class %>" message="please-enter-a-valid-street" />
@@ -137,69 +161,136 @@ renderResponse.setTitle(LanguageUtil.get(request, "create-account"));
 		</div>
 	</c:if>
 
-	<aui:model-context model="<%= Contact.class %>" />
+	<aui:model-context
+		model="<%= Contact.class %>"
+	/>
 
-	<aui:fieldset column="<%= true %>">
-		<aui:col width="<%= 50 %>">
+	<aui:fieldset
+		column="<%= true %>"
+	>
+		<aui:col
+			width="<%= 50 %>"
+		>
 
 			<%
 			Boolean autoGenerateScreenName = PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE);
 			%>
 
 			<c:if test="<%= !autoGenerateScreenName %>">
-				<aui:input autoFocus="<%= true %>" model="<%= User.class %>" name="screenName">
+				<aui:input
+					autoFocus="<%= true %>"
+					model="<%= User.class %>"
+					name="screenName"
+				>
 
 					<%
 					ScreenNameValidator screenNameValidator = ScreenNameValidatorFactory.getInstance();
 					%>
 
 					<c:if test="<%= Validator.isNotNull(screenNameValidator.getAUIValidatorJS()) %>">
-						<aui:validator errorMessage="<%= screenNameValidator.getDescription(locale) %>" name="custom">
+						<aui:validator
+							errorMessage="<%= screenNameValidator.getDescription(locale) %>"
+							name="custom"
+						>
 							<%= screenNameValidator.getAUIValidatorJS() %>
 						</aui:validator>
 					</c:if>
 				</aui:input>
 			</c:if>
 
-			<aui:input autoFocus="<%= autoGenerateScreenName %>" model="<%= User.class %>" name="emailAddress">
+			<aui:input
+				autoFocus="<%= autoGenerateScreenName %>"
+				model="<%= User.class %>"
+				name="emailAddress"
+			>
 				<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
-					<aui:validator name="required" />
+					<aui:validator
+						name="required"
+					/>
 				</c:if>
 			</aui:input>
 
 			<liferay-ui:user-name-fields />
 		</aui:col>
 
-		<aui:col width="<%= 50 %>">
+		<aui:col
+			width="<%= 50 %>"
+		>
 			<c:if test="<%= PropsValues.LOGIN_CREATE_ACCOUNT_ALLOW_CUSTOM_PASSWORD %>">
-				<aui:input label="password" name="password1" size="30" type="password" value="">
-					<aui:validator name="required" />
+				<aui:input
+					label="password"
+					name="password1"
+					size="30"
+					type="password"
+					value=""
+				>
+					<aui:validator
+						name="required"
+					/>
 				</aui:input>
 
-				<aui:input label="enter-again" name="password2" size="30" type="password" value="">
-					<aui:validator name="equalTo">
+				<aui:input
+					label="enter-again"
+					name="password2"
+					size="30"
+					type="password"
+					value=""
+				>
+					<aui:validator
+						name="equalTo"
+					>
 						'#<portlet:namespace />password1'
 					</aui:validator>
 
-					<aui:validator name="required" />
+					<aui:validator
+						name="required"
+					/>
 				</aui:input>
 			</c:if>
 
 			<c:choose>
 				<c:when test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_KERNEL_MODEL_CONTACT_BIRTHDAY) %>">
-					<aui:input name="birthday" value="<%= birthdayCalendar %>" />
+					<aui:input
+						name="birthday"
+						value="<%= birthdayCalendar %>"
+					/>
 				</c:when>
 				<c:otherwise>
-					<aui:input name="birthdayMonth" type="hidden" value="<%= Calendar.JANUARY %>" />
-					<aui:input name="birthdayDay" type="hidden" value="1" />
-					<aui:input name="birthdayYear" type="hidden" value="1970" />
+					<aui:input
+						name="birthdayMonth"
+						type="hidden"
+						value="<%= Calendar.JANUARY %>"
+					/>
+
+					<aui:input
+						name="birthdayDay"
+						type="hidden"
+						value="1"
+					/>
+
+					<aui:input
+						name="birthdayYear"
+						type="hidden"
+						value="1970"
+					/>
 				</c:otherwise>
 			</c:choose>
 
 			<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.FIELD_ENABLE_COM_LIFERAY_PORTAL_KERNEL_MODEL_CONTACT_MALE) %>">
-				<aui:select label="gender" name="male">
-					<aui:option label="male" value="1" />
-					<aui:option label="female" selected="<%= !male %>" value="0" />
+				<aui:select
+					label="gender"
+					name="male"
+				>
+					<aui:option
+						label="male"
+						value="1"
+					/>
+
+					<aui:option
+						label="female"
+						selected="<%= !male %>"
+						value="0"
+					/>
 				</aui:select>
 			</c:if>
 
@@ -214,7 +305,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "create-account"));
 	</aui:fieldset>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 	</aui:button-row>
 </aui:form>
 

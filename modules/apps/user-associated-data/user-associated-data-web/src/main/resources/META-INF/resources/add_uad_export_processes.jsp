@@ -33,10 +33,27 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 </portlet:renderURL>
 
 <div class="container-fluid container-fluid-max-xl container-form-lg">
-	<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "exportApplicationData();" %>'>
-		<aui:input name="p_u_i_d" type="hidden" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
-		<aui:input name="redirect" type="hidden" value="<%= viewUADExportProcesses.toString() %>" />
-		<aui:input name="applicationKeys" type="hidden" />
+	<aui:form
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "exportApplicationData();" %>'
+	>
+		<aui:input
+			name="p_u_i_d"
+			type="hidden"
+			value="<%= String.valueOf(selectedUser.getUserId()) %>"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= viewUADExportProcesses.toString() %>"
+		/>
+
+		<aui:input
+			name="applicationKeys"
+			type="hidden"
+		/>
 
 		<div class="sheet sheet-lg">
 			<div class="sheet-section">
@@ -123,9 +140,16 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 			</div>
 
 			<div class="sheet-footer">
-				<aui:button primary="<%= true %>" type="submit" value="export" />
+				<aui:button
+					primary="<%= true %>"
+					type="submit"
+					value="export"
+				/>
 
-				<aui:button href="<%= backURL %>" type="cancel" />
+				<aui:button
+					href="<%= backURL %>"
+					type="cancel"
+				/>
 			</div>
 		</div>
 	</aui:form>

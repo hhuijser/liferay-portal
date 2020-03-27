@@ -71,7 +71,11 @@ SearchContainer searchContainer = editUserGroupAssignmentsManagementToolbarDispl
 	viewTypeItems="<%= editUserGroupAssignmentsManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form cssClass="container-fluid-1280" method="post" name="fm">
+<aui:form
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="selectUsers"
 		searchContainer="<%= searchContainer %>"
@@ -99,7 +103,9 @@ SearchContainer searchContainer = editUserGroupAssignmentsManagementToolbarDispl
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />selectUsers'
 	);

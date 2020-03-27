@@ -26,13 +26,24 @@ String sectionName = StringPool.BLANK;
 %>
 
 <aui:fieldset>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
-	<aui:input label="enabled" name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_USER_ADDED_ENABLED + "--" %>' type="checkbox" value="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.ADMIN_EMAIL_USER_ADDED_ENABLED) %>" />
+	<aui:input
+		label="enabled"
+		name='<%= "settings--" + PropsKeys.ADMIN_EMAIL_USER_ADDED_ENABLED + "--" %>'
+		type="checkbox"
+		value="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.ADMIN_EMAIL_USER_ADDED_ENABLED) %>"
+	/>
 
 	<liferay-ui:error key="emailUserAddedSubject" message="please-enter-a-valid-subject" />
 
-	<aui:field-wrapper label="subject">
+	<aui:field-wrapper
+		label="subject"
+	>
 		<liferay-ui:input-localized
 			fieldPrefix="settings"
 			fieldPrefixSeparator="--"
@@ -65,7 +76,10 @@ String sectionName = StringPool.BLANK;
 		showSubject="<%= false %>"
 	/>
 
-	<aui:fieldset cssClass="definition-of-terms email-user-add terms" label="definition-of-terms">
+	<aui:fieldset
+		cssClass="definition-of-terms email-user-add terms"
+		label="definition-of-terms"
+	>
 		<%@ include file="/email.notifications/definition_of_terms.jspf" %>
 	</aui:fieldset>
 </aui:fieldset>
@@ -75,14 +89,27 @@ String adminEmailUserAddedBody = LocalizationUtil.getLocalizationXmlFromPreferen
 %>
 
 <c:if test="<%= Validator.isNotNull(adminEmailUserAddedBody) %>">
-	<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="legacy-template-no-longer-used" markupView="lexicon">
-		<aui:input checked="<%= false %>" label="discard" name="discardLegacyKey" type="checkbox" value="adminEmailUserAddedBody" />
+	<aui:fieldset
+		collapsed="<%= true %>"
+		collapsible="<%= true %>"
+		label="legacy-template-no-longer-used"
+		markupView="lexicon"
+	>
+		<aui:input
+			checked="<%= false %>"
+			label="discard"
+			name="discardLegacyKey"
+			type="checkbox"
+			value="adminEmailUserAddedBody"
+		/>
 
 		<div class="alert alert-info">
 			<liferay-ui:message key="sending-of-passwords-by-email-is-no-longer-supported-the-template-below-is-not-used-and-can-be-discarded" />
 		</div>
 
-		<aui:field-wrapper label="body-with-password">
+		<aui:field-wrapper
+			label="body-with-password"
+		>
 			<liferay-ui:input-localized
 				fieldPrefix="settings"
 				fieldPrefixSeparator="--"

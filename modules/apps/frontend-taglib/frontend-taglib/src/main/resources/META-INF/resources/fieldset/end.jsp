@@ -21,7 +21,10 @@
 </fieldset>
 
 <c:if test="<%= collapsible %>">
-	<aui:script sandbox="<%= true %>" use="aui-base,liferay-store">
+	<aui:script
+		sandbox="<%= true %>"
+		use="aui-base,liferay-store"
+	>
 		var storeTask = A.debounce(Liferay.Store, 100);
 
 		Liferay.on('liferay.collapse.show', function(event) {

@@ -22,8 +22,14 @@ List<InfoListProvider> infoListProviders = assetPublisherDisplayContext.getAsset
 
 <c:choose>
 	<c:when test="<%= ListUtil.isNotEmpty(infoListProviders) %>">
-		<aui:select label="" name="preferences--infoListProviderClassName--">
-			<aui:option label="none" value="" />
+		<aui:select
+			label=""
+			name="preferences--infoListProviderClassName--"
+		>
+			<aui:option
+				label="none"
+				value=""
+			/>
 
 			<%
 			String infoListProviderClassName = PrefsParamUtil.getString(portletPreferences, request, "infoListProviderClassName", StringPool.BLANK);
@@ -32,7 +38,11 @@ List<InfoListProvider> infoListProviders = assetPublisherDisplayContext.getAsset
 				Class<?> clazz = infoListProvider.getClass();
 			%>
 
-				<aui:option label="<%= infoListProvider.getLabel(themeDisplay.getLocale()) %>" selected="<%= infoListProviderClassName.equals(clazz.getName()) %>" value="<%= clazz.getName() %>" />
+				<aui:option
+					label="<%= infoListProvider.getLabel(themeDisplay.getLocale()) %>"
+					selected="<%= infoListProviderClassName.equals(clazz.getName()) %>"
+					value="<%= clazz.getName() %>"
+				/>
 
 			<%
 			}

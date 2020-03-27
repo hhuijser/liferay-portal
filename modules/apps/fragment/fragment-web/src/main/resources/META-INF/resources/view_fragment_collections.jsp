@@ -24,7 +24,10 @@ FragmentCollectionsDisplayContext fragmentCollectionsDisplayContext = new Fragme
 	displayContext="<%= new FragmentCollectionsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, fragmentCollectionsDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="fm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="fragmentCollections"
 		searchContainer="<%= fragmentCollectionsDisplayContext.getSearchContainer() %>"
@@ -65,7 +68,9 @@ FragmentCollectionsDisplayContext fragmentCollectionsDisplayContext = new Fragme
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />fragmentCollections'
 	);

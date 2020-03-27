@@ -34,7 +34,11 @@ int mergeFailCount = SitesUtil.getMergeFailCount(layoutPrototype);
 
 		<liferay-ui:message arguments="page-template" key="click-reset-to-reset-the-failure-count-and-reenable-propagation" />
 
-		<aui:button id='<%= randomNamespace + "resetButton" %>' useNamespace="<%= false %>" value="reset" />
+		<aui:button
+			id='<%= randomNamespace + "resetButton" %>'
+			useNamespace="<%= false %>"
+			value="reset"
+		/>
 	</span>
 
 	<script>

@@ -62,7 +62,9 @@ KaleoDefinitionVersion kaleoDefinitionVersion = (KaleoDefinitionVersion)row.getO
 	</liferay-ui:icon-menu>
 </c:if>
 
-<aui:script use="liferay-kaleo-designer-utils">
+<aui:script
+	use="liferay-kaleo-designer-utils"
+>
 	var title = '<liferay-ui:message key="preview" />';
 
 	var previewBeforeRevert = A.rbind(

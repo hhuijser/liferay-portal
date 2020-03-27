@@ -26,7 +26,9 @@ PortletURL sharingURL = PortletProviderUtil.getPortletURL(request, SharingEntry.
 sharingURL.setWindowState(LiferayWindowState.POP_UP);
 %>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	function showDialog(uri, title) {
 		Liferay.Util.openWindow({
 			dialog: {

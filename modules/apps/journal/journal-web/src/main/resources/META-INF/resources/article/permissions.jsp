@@ -21,7 +21,10 @@
 	value="permissions"
 />
 
-<aui:model-context bean="<%= journalDisplayContext.getArticle() %>" model="<%= JournalArticle.class %>" />
+<aui:model-context
+	bean="<%= journalDisplayContext.getArticle() %>"
+	model="<%= JournalArticle.class %>"
+/>
 
 <liferay-ui:input-permissions
 	modelName="<%= JournalArticle.class.getName() %>"

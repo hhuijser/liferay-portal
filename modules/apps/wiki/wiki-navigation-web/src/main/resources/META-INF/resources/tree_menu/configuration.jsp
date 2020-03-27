@@ -27,19 +27,31 @@ List<WikiNode> wikiNodes = WikiNodeLocalServiceUtil.getNodes(scopeGroupId);
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
 
 		<liferay-frontend:fieldset>
-			<aui:select label="node" name="preferences--selNodeId--" showEmptyOption="<%= true %>">
+			<aui:select
+				label="node"
+				name="preferences--selNodeId--"
+				showEmptyOption="<%= true %>"
+			>
 
 				<%
 				for (WikiNode wikiNode : wikiNodes) {
 				%>
 
-					<aui:option label="<%= wikiNode.getName() %>" selected="<%= selNodeId == wikiNode.getNodeId() %>" value="<%= wikiNode.getNodeId() %>" />
+					<aui:option
+						label="<%= wikiNode.getName() %>"
+						selected="<%= selNodeId == wikiNode.getNodeId() %>"
+						value="<%= wikiNode.getNodeId() %>"
+					/>
 
 				<%
 				}
@@ -47,14 +59,23 @@ List<WikiNode> wikiNodes = WikiNodeLocalServiceUtil.getNodes(scopeGroupId);
 
 			</aui:select>
 
-			<aui:select name="preferences--depth--">
-				<aui:option label="all" selected="<%= depth == WikiNavigationConstants.DEPTH_ALL %>" value="<%= WikiNavigationConstants.DEPTH_ALL %>" />
+			<aui:select
+				name="preferences--depth--"
+			>
+				<aui:option
+					label="all"
+					selected="<%= depth == WikiNavigationConstants.DEPTH_ALL %>"
+					value="<%= WikiNavigationConstants.DEPTH_ALL %>"
+				/>
 
 				<%
 				for (int i = 1; i < 6; i++) {
 				%>
 
-					<aui:option label="<%= i %>" selected="<%= depth == i %>" />
+					<aui:option
+						label="<%= i %>"
+						selected="<%= depth == i %>"
+					/>
 
 				<%
 				}
@@ -65,8 +86,12 @@ List<WikiNode> wikiNodes = WikiNodeLocalServiceUtil.getNodes(scopeGroupId);
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

@@ -132,7 +132,12 @@ String searchURL = HttpUtil.removeParameter(searchBaseURL.toString(), liferayPor
 				</h4>
 
 				<h5 class="text-default">
-					<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= curPage.getStatus() %>" />
+					<aui:workflow-status
+						markupView="lexicon"
+						showIcon="<%= false %>"
+						showLabel="<%= false %>"
+						status="<%= curPage.getStatus() %>"
+					/>
 				</h5>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
@@ -145,7 +150,9 @@ String searchURL = HttpUtil.removeParameter(searchBaseURL.toString(), liferayPor
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var Util = Liferay.Util;
 
 	var searchContainer = Liferay.SearchContainer.get(

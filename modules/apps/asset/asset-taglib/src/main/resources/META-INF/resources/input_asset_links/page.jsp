@@ -109,9 +109,14 @@
 	</span>
 </c:if>
 
-<aui:input name="assetLinkEntryIds" type="hidden" />
+<aui:input
+	name="assetLinkEntryIds"
+	type="hidden"
+/>
 
-<aui:script use="aui-base,liferay-search-container">
+<aui:script
+	use="aui-base,liferay-search-container"
+>
 	var assetSelectorHandle = A.getBody().delegate(
 		'click',
 		function(event) {
@@ -201,7 +206,9 @@
 	Liferay.on('destroyPortlet', clearAssetSelectorHandle);
 </aui:script>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />assetLinksSearchContainer'
 	);

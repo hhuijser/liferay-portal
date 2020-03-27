@@ -40,7 +40,10 @@ boolean showCSVWarning = StringUtil.equals("enabled-with-warning", csvExport);
 		title='<%= LanguageUtil.get(resourceBundle, "warning") %>'
 	/>
 
-	<aui:select label="file-extension" name="fileExtension">
+	<aui:select
+		label="file-extension"
+		name="fileExtension"
+	>
 		<c:if test="<%= csvExportEnabled %>">
 			<aui:option value="csv">CSV</aui:option>
 		</c:if>

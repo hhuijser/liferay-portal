@@ -101,7 +101,9 @@ PortletURL portletURL = organizationItemSelectorViewDisplayContext.getPortletURL
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />organizations'
 	);

@@ -108,7 +108,9 @@ List<SPIDefinition> spiDefinitions = SPIDefinitionServiceUtil.getSPIDefinitions(
 	<liferay-ui:search-iterator />
 </liferay-ui:search-container>
 
-<aui:script use="liferay-spi-definition">
+<aui:script
+	use="liferay-spi-definition"
+>
 	new Liferay.Portlet.SPIDefinition(
 		{
 			namespace: '<portlet:namespace />',

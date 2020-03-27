@@ -61,8 +61,15 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "userGr
 	/>
 </liferay-util:buffer>
 
-<aui:input name="addUserGroupIds" type="hidden" />
-<aui:input name="deleteUserGroupIds" type="hidden" />
+<aui:input
+	name="addUserGroupIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="deleteUserGroupIds"
+	type="hidden"
+/>
 
 <liferay-ui:search-container
 	compactEmptyResultsMessage="<%= true %>"
@@ -102,7 +109,9 @@ currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "userGr
 </liferay-ui:search-container>
 
 <c:if test="<%= !portletName.equals(myAccountPortletId) %>">
-	<aui:script use="escape,liferay-search-container">
+	<aui:script
+		use="escape,liferay-search-container"
+	>
 		var Util = Liferay.Util;
 
 		var searchContainer = Liferay.SearchContainer.get(

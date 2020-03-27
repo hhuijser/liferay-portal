@@ -23,28 +23,80 @@
 
 <liferay-portlet:actionURL name="updateCalendar" var="updateCalendarURL" />
 
-<aui:form action="<%= updateCalendarURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="mvcPath" type="hidden" value="/edit_calendar.jsp" />
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />
-	<aui:input name="calendarId" type="hidden" value="<%= (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK %>" />
-	<aui:input name="calendarResourceId" type="hidden" value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>" />
+<aui:form
+	action="<%= updateCalendarURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/edit_calendar.jsp"
+	/>
+
+	<aui:input
+		name="tabs2"
+		type="hidden"
+		value="<%= tabs2 %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="backURL"
+		type="hidden"
+		value="<%= backURL %>"
+	/>
+
+	<aui:input
+		name="calendarId"
+		type="hidden"
+		value="<%= (calendar != null) ? String.valueOf(calendar.getCalendarId()) : StringPool.BLANK %>"
+	/>
+
+	<aui:input
+		name="calendarResourceId"
+		type="hidden"
+		value="<%= (calendarResource != null) ? String.valueOf(calendarResource.getCalendarResourceId()) : StringPool.BLANK %>"
+	/>
 
 	<liferay-ui:error exception="<%= CalendarNameException.class %>" message="please-enter-a-valid-name" />
 
-	<aui:model-context bean="<%= calendar %>" model="<%= Calendar.class %>" />
+	<aui:model-context
+		bean="<%= calendar %>"
+		model="<%= Calendar.class %>"
+	/>
 
 	<aui:fieldset>
-		<aui:input name="name" />
+		<aui:input
+			name="name"
+		/>
 
-		<aui:input name="description" />
+		<aui:input
+			name="description"
+		/>
 
-		<aui:input label="time-zone" name="timeZoneId" type="timeZone" value="<%= (calendar != null) ? calendar.getTimeZoneId() : calendarResource.getTimeZoneId() %>" />
+		<aui:input
+			label="time-zone"
+			name="timeZoneId"
+			type="timeZone"
+			value="<%= (calendar != null) ? calendar.getTimeZoneId() : calendarResource.getTimeZoneId() %>"
+		/>
 
-		<aui:input name="color" type="hidden" />
+		<aui:input
+			name="color"
+			type="hidden"
+		/>
 
-		<aui:field-wrapper inlineLabel="left" label="color">
+		<aui:field-wrapper
+			inlineLabel="left"
+			label="color"
+		>
 			<div class="calendar-portlet-colors" id="<portlet:namespace />colorPicker"></div>
 		</aui:field-wrapper>
 
@@ -52,19 +104,30 @@
 			<c:when test="<%= (calendar != null) && calendar.isDefaultCalendar() %>">
 				<input name="<portlet:namespace />defaultCalendar" type="hidden" value="true" />
 
-				<aui:input disabled="<%= true %>" name="defaultCalendar" />
+				<aui:input
+					disabled="<%= true %>"
+					name="defaultCalendar"
+				/>
 			</c:when>
 			<c:otherwise>
-				<aui:input name="defaultCalendar" />
+				<aui:input
+					name="defaultCalendar"
+				/>
 			</c:otherwise>
 		</c:choose>
 
-		<aui:input name="enableComments" />
+		<aui:input
+			name="enableComments"
+		/>
 
-		<aui:input name="enableRatings" />
+		<aui:input
+			name="enableRatings"
+		/>
 
 		<c:if test="<%= calendar == null %>">
-			<aui:field-wrapper label="permissions">
+			<aui:field-wrapper
+				label="permissions"
+			>
 				<liferay-ui:input-permissions
 					modelName="<%= Calendar.class.getName() %>"
 				/>
@@ -72,9 +135,14 @@
 		</c:if>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= backURL %>" type="cancel" />
+			<aui:button
+				href="<%= backURL %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:fieldset>
 </aui:form>
@@ -85,7 +153,9 @@
 	);
 </aui:script>
 
-<aui:script use="liferay-calendar-simple-color-picker">
+<aui:script
+	use="liferay-calendar-simple-color-picker"
+>
 	window.<portlet:namespace />colorPicker = new Liferay.SimpleColorPicker({
 		color:
 			'<%= ColorUtil.toHexString((calendar != null) ? calendar.getColor() : CalendarServiceConfigurationValues.CALENDAR_COLOR_DEFAULT) %>',

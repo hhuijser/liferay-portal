@@ -69,7 +69,9 @@
 
 				<div class="entry-title">
 					<h2>
-						<aui:a href="<%= viewEntryURL %>">
+						<aui:a
+							href="<%= viewEntryURL %>"
+						>
 							<%= HtmlUtil.escape(entry.getTitle()) %>
 						</aui:a>
 					</h2>

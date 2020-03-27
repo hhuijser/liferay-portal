@@ -30,13 +30,26 @@ if (selLayout != null) {
 }
 %>
 
-<aui:input cssClass="layout-description" id="descriptionPanel" label="description" name="TypeSettingsProperties--panelLayoutDescription--" type="textarea" value="<%= description %>" wrap="soft" />
+<aui:input
+	cssClass="layout-description"
+	id="descriptionPanel"
+	label="description"
+	name="TypeSettingsProperties--panelLayoutDescription--"
+	type="textarea"
+	value="<%= description %>"
+	wrap="soft"
+/>
 
 <div class="alert alert-info">
 	<liferay-ui:message key="select-the-applications-that-are-available-in-the-panel" />
 </div>
 
-<aui:input id='<%= HtmlUtil.escapeAttribute(idPrefix) + "panelSelectedPortlets" %>' name="TypeSettingsProperties--panelSelectedPortlets--" type="hidden" value="<%= panelSelectedPortlets %>" />
+<aui:input
+	id='<%= HtmlUtil.escapeAttribute(idPrefix) + "panelSelectedPortlets" %>'
+	name="TypeSettingsProperties--panelSelectedPortlets--"
+	type="hidden"
+	value="<%= panelSelectedPortlets %>"
+/>
 
 <div class="lfr-tree-loading" id="<portlet:namespace /><%= HtmlUtil.escapeAttribute(idPrefix) + "selectPortletsTreeLoading" %>">
 	<span class="icon icon-loading lfr-tree-loading-icon"></span>
@@ -44,7 +57,9 @@ if (selLayout != null) {
 
 <div id="<portlet:namespace /><%= HtmlUtil.escapeAttribute(idPrefix) + "selectPortletsTree" %>" style="margin: 4px;"></div>
 
-<aui:script use="aui-tree-view">
+<aui:script
+	use="aui-tree-view"
+>
 	var panelSelectedPortletsEl = A.one('#<portlet:namespace /><%= HtmlUtil.escapeJS(idPrefix) %>panelSelectedPortlets');
 
 	var selectedPortlets = A.Array.hash(panelSelectedPortletsEl.val().split(','));

@@ -94,7 +94,9 @@ Format format = FastDateFormatFactoryUtil.getSimpleDateFormat(simpleDateFormatPa
 	<input <%= disabled ? "disabled=\"disabled\"" : "" %> id="<%= dateParamId %>" name="<%= namespace + HtmlUtil.escapeAttribute(dateParam) %>" type="hidden" value="<%= dateValue %>" />
 </span>
 
-<aui:script use='<%= "aui-timepicker" + (BrowserSnifferUtil.isMobile(request) ? "-native" : StringPool.BLANK) %>'>
+<aui:script
+	use='<%= "aui-timepicker" + (BrowserSnifferUtil.isMobile(request) ? "-native" : StringPool.BLANK) %>'
+>
 	Liferay.component(
 		'<%= nameId %>TimePicker',
 		function() {

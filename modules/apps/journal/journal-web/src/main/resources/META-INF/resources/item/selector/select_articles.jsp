@@ -284,7 +284,9 @@ JournalArticleItemSelectorViewDisplayContext journalArticleItemSelectorViewDispl
 	</liferay-ui:search-container>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	var selectArticleHandler = dom.delegate(
 		document.querySelector('#<portlet:namespace/>articlesContainer'),
 		'click',

@@ -76,7 +76,9 @@ TrashHandler trashHandler = trashDisplayContext.getTrashHandler();
 									colspan="<%= 2 %>"
 								>
 									<h5>
-										<aui:a href="<%= rowURL.toString() %>">
+										<aui:a
+											href="<%= rowURL.toString() %>"
+										>
 											<%= HtmlUtil.escape(curTrashRenderer.getTitle(locale)) %>
 										</aui:a>
 									</h5>
@@ -119,7 +121,9 @@ TrashHandler trashHandler = trashDisplayContext.getTrashHandler();
 									name="name"
 									truncate="<%= true %>"
 								>
-									<aui:a href="<%= rowURL.toString() %>">
+									<aui:a
+										href="<%= rowURL.toString() %>"
+									>
 										<%= HtmlUtil.escape(curTrashRenderer.getTitle(locale)) %>
 									</aui:a>
 								</liferay-ui:search-container-column-text>
@@ -155,7 +159,9 @@ TrashHandler trashHandler = trashDisplayContext.getTrashHandler();
 		%>
 
 		<div class="container-fluid-1280">
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 					<liferay-asset:asset-display
 						renderer="<%= trashRenderer %>"

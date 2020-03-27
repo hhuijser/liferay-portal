@@ -26,11 +26,24 @@ if (selLayout != null) {
 }
 %>
 
-<aui:input cssClass="lfr-input-text-container" helpMessage="embedded-layout-url-help-message" id="urlEmbedded" label="url" name="TypeSettingsProperties--embeddedLayoutURL--" type="text" value="<%= url %>">
-	<aui:validator errorMessage="please-enter-a-valid-url" name="required" />
+<aui:input
+	cssClass="lfr-input-text-container"
+	helpMessage="embedded-layout-url-help-message"
+	id="urlEmbedded"
+	label="url"
+	name="TypeSettingsProperties--embeddedLayoutURL--"
+	type="text"
+	value="<%= url %>"
+>
+	<aui:validator
+		errorMessage="please-enter-a-valid-url"
+		name="required"
+	/>
 </aui:input>
 
-<aui:script use="liferay-form">
+<aui:script
+	use="liferay-form"
+>
 	var form = Liferay.Form.get('<portlet:namespace />addPageFm');
 
 	if (!form) {

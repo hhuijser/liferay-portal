@@ -25,7 +25,10 @@ Layout selLayout = layoutsAdminDisplayContext.getSelLayout();
 	value="custom-fields"
 />
 
-<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= selLayout %>"
+	model="<%= Layout.class %>"
+/>
 
 <liferay-expando:custom-attribute-list
 	className="<%= Layout.class.getName() %>"

@@ -30,12 +30,32 @@ if (siteNavigationMenuItem != null) {
 }
 %>
 
-<aui:input autoFocus="<%= true %>" label="name" localized="<%= true %>" maxlength='<%= ModelHintsUtil.getMaxLength(SiteNavigationMenuItem.class.getName(), "name") %>' name="name" placeholder="name" type="text" value='<%= SiteNavigationMenuItemUtil.getSiteNavigationMenuItemXML(siteNavigationMenuItem, "name") %>'>
-	<aui:validator name="required" />
+<aui:input
+	autoFocus="<%= true %>"
+	label="name"
+	localized="<%= true %>"
+	maxlength='<%= ModelHintsUtil.getMaxLength(SiteNavigationMenuItem.class.getName(), "name") %>'
+	name="name"
+	placeholder="name"
+	type="text"
+	value='<%= SiteNavigationMenuItemUtil.getSiteNavigationMenuItemXML(siteNavigationMenuItem, "name") %>'
+>
+	<aui:validator
+		name="required"
+	/>
 </aui:input>
 
-<aui:input label="url" name="TypeSettingsProperties--url--" placeholder="http://" value="<%= url %>">
-	<aui:validator name="required" />
+<aui:input
+	label="url"
+	name="TypeSettingsProperties--url--"
+	placeholder="http://"
+	value="<%= url %>"
+>
+	<aui:validator
+		name="required"
+	/>
 
-	<aui:validator name="url" />
+	<aui:validator
+		name="url"
+	/>
 </aui:input>

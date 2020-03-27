@@ -50,8 +50,17 @@ SynonymsDisplayContext synonymsDisplayContext = (SynonymsDisplayContext)request.
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteSynonymSetActionURL %>" cssClass="container-fluid-1280" method="post" name="SynonymSetsEntriesFm">
-	<aui:input name="deletedSynonymSetsString" type="hidden" value="" />
+<aui:form
+	action="<%= deleteSynonymSetActionURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="SynonymSetsEntriesFm"
+>
+	<aui:input
+		name="deletedSynonymSetsString"
+		type="hidden"
+		value=""
+	/>
 
 	<liferay-ui:search-container
 		id="synonymSetsEntries"
@@ -66,7 +75,9 @@ SynonymsDisplayContext synonymsDisplayContext = (SynonymsDisplayContext)request.
 				colspan="<%= 2 %>"
 				cssClass="table-cell-expand table-title"
 			>
-				<aui:a href="<%= synonymSetDisplayContext.getEditRenderURL() %>">
+				<aui:a
+					href="<%= synonymSetDisplayContext.getEditRenderURL() %>"
+				>
 					<%= HtmlUtil.escape(synonymSetDisplayContext.getDisplayedSynonymSet()) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>
@@ -86,7 +97,9 @@ SynonymsDisplayContext synonymsDisplayContext = (SynonymsDisplayContext)request.
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script require='<%= npmResolvedPackageName + "/js/MultipleCheckboxAction.es as MultipleCheckboxAction" %>'>
+<aui:script
+	require='<%= npmResolvedPackageName + "/js/MultipleCheckboxAction.es as MultipleCheckboxAction" %>'
+>
 	new MultipleCheckboxAction.default('<portlet:namespace />');
 </aui:script>
 

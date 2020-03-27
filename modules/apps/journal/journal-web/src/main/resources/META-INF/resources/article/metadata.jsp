@@ -27,7 +27,10 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 	value="metadata"
 />
 
-<aui:model-context bean="<%= article %>" model="<%= JournalArticle.class %>" />
+<aui:model-context
+	bean="<%= article %>"
+	model="<%= JournalArticle.class %>"
+/>
 
 <liferay-asset:asset-categories-error />
 
@@ -73,8 +76,17 @@ DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 	ignoreRequestValue="<%= journalEditArticleDisplayContext.isChangeStructure() %>"
 />
 
-<aui:input cssClass="form-control-sm" label="priority" name="assetPriority" type="text" value="<%= priority %>" wrapperCssClass="mb-3">
-	<aui:validator name="number" />
+<aui:input
+	cssClass="form-control-sm"
+	label="priority"
+	name="assetPriority"
+	type="text"
+	value="<%= priority %>"
+	wrapperCssClass="mb-3"
+>
+	<aui:validator
+		name="number"
+	/>
 
 	<aui:validator name="min">[0]</aui:validator>
 </aui:input>

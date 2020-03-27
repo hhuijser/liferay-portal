@@ -27,9 +27,16 @@ ToolbarItem toolbarItem = (ToolbarItem)request.getAttribute("liferay-ui:toolbar-
 		JavaScriptToolbarItem javaScriptToolbarItem = (JavaScriptToolbarItem)toolbarItem;
 		%>
 
-		<aui:a cssClass="btn btn-secondary" href="javascript:;" onClick="<%= javaScriptToolbarItem.getOnClick() %>">
+		<aui:a
+			cssClass="btn btn-secondary"
+			href="javascript:;"
+			onClick="<%= javaScriptToolbarItem.getOnClick() %>"
+		>
 			<c:if test="<%= Validator.isNotNull(javaScriptToolbarItem.getIcon()) %>">
-				<aui:icon image="<%= javaScriptToolbarItem.getIcon() %>" markupView="lexicon" />
+				<aui:icon
+					image="<%= javaScriptToolbarItem.getIcon() %>"
+					markupView="lexicon"
+				/>
 			</c:if>
 
 			<%= javaScriptToolbarItem.getLabel() %>
@@ -47,9 +54,17 @@ ToolbarItem toolbarItem = (ToolbarItem)request.getAttribute("liferay-ui:toolbar-
 		URLToolbarItem urlToolbarItem = (URLToolbarItem)toolbarItem;
 		%>
 
-		<aui:a cssClass="btn btn-secondary" data="<%= urlToolbarItem.getData() %>" href="<%= urlToolbarItem.getURL() %>" target="<%= urlToolbarItem.getTarget() %>">
+		<aui:a
+			cssClass="btn btn-secondary"
+			data="<%= urlToolbarItem.getData() %>"
+			href="<%= urlToolbarItem.getURL() %>"
+			target="<%= urlToolbarItem.getTarget() %>"
+		>
 			<c:if test="<%= Validator.isNotNull(urlToolbarItem.getIcon()) %>">
-				<aui:icon image="<%= urlToolbarItem.getIcon() %>" markupView="lexicon" />
+				<aui:icon
+					image="<%= urlToolbarItem.getIcon() %>"
+					markupView="lexicon"
+				/>
 			</c:if>
 
 			<%= urlToolbarItem.getLabel() %>

@@ -39,8 +39,17 @@ MembershipRequest membershipRequest = (MembershipRequest)request.getAttribute(We
 	<portlet:param name="groupId" value="<%= String.valueOf(groupId) %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= postMembershipRequestURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= postMembershipRequestURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<c:if test="<%= !layout.isTypeControlPanel() %>">
 		<liferay-ui:header
@@ -53,7 +62,10 @@ MembershipRequest membershipRequest = (MembershipRequest)request.getAttribute(We
 
 	<liferay-ui:error exception="<%= MembershipRequestCommentsException.class %>" message="please-enter-valid-comments" />
 
-	<aui:model-context bean="<%= membershipRequest %>" model="<%= MembershipRequest.class %>" />
+	<aui:model-context
+		bean="<%= membershipRequest %>"
+		model="<%= MembershipRequest.class %>"
+	/>
 
 	<c:if test="<%= Validator.isNotNull(group.getDescription()) %>">
 		<div class="alert alert-info">
@@ -61,15 +73,25 @@ MembershipRequest membershipRequest = (MembershipRequest)request.getAttribute(We
 		</div>
 	</c:if>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="comments" />
+			<aui:input
+				autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+				name="comments"
+			/>
 		</aui:fieldset>
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

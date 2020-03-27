@@ -29,8 +29,17 @@ List groupNames = (List)objArray[8];
 String portletId = (String)objArray[9];
 %>
 
-<aui:input name='<%= "groupIds" + HtmlUtil.escapeAttribute(target) %>' type="hidden" value="<%= StringUtil.merge(groupIdsArray) %>" />
-<aui:input name='<%= "groupNames" + HtmlUtil.escapeAttribute(target) %>' type="hidden" value='<%= StringUtil.merge(groupNames, "@@") %>' />
+<aui:input
+	name='<%= "groupIds" + HtmlUtil.escapeAttribute(target) %>'
+	type="hidden"
+	value="<%= StringUtil.merge(groupIdsArray) %>"
+/>
+
+<aui:input
+	name='<%= "groupNames" + HtmlUtil.escapeAttribute(target) %>'
+	type="hidden"
+	value='<%= StringUtil.merge(groupNames, "@@") %>'
+/>
 
 <div id="<portlet:namespace />groupDiv<%= HtmlUtil.escapeAttribute(target) %>">
 	<span id="<portlet:namespace />groupHTML<%= HtmlUtil.escapeAttribute(target) %>">

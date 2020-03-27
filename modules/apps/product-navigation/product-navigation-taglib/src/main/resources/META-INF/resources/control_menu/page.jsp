@@ -109,7 +109,9 @@ for (ProductNavigationControlMenuCategory productNavigationControlMenuCategory :
 		<liferay-util:dynamic-include key="com.liferay.product.navigation.taglib#/page.jsp#post" />
 	</div>
 
-	<aui:script use="liferay-product-navigation-control-menu">
+	<aui:script
+		use="liferay-product-navigation-control-menu"
+	>
 		Liferay.ControlMenu.init('#<portlet:namespace />controlMenu');
 
 		var sidenavToggles = document.querySelectorAll(

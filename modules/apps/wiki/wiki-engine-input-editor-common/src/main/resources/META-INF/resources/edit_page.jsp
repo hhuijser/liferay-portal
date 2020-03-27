@@ -37,7 +37,10 @@ String content = BeanParamUtil.getString(wikiPage, request, "content");
 		toolbarSet="<%= baseWikiEngine.getToolbarSet() %>"
 	/>
 
-	<aui:input name="content" type="hidden" />
+	<aui:input
+		name="content"
+		type="hidden"
+	/>
 
 	<c:if test="<%= baseWikiEngine.isHelpPageDefined() %>">
 		<div align="right">
@@ -49,7 +52,9 @@ String content = BeanParamUtil.getString(wikiPage, request, "content");
 		String helpPageTitle = baseWikiEngine.getHelpPageTitle(request);
 		%>
 
-		<aui:script use="liferay-util-window">
+		<aui:script
+			use="liferay-util-window"
+		>
 			var helpPageLink = A.one(
 				'#<%= renderResponse.getNamespace() + "toggle_id_wiki_editor_help" %>'
 			);

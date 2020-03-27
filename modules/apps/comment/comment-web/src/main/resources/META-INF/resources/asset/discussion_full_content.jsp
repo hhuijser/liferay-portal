@@ -46,10 +46,16 @@ if (comment instanceof WorkflowableComment) {
 		</td>
 		<td class="lfr-top stretch">
 			<c:if test="<%= (workflowableComment != null) && (workflowableComment.getStatus() != WorkflowConstants.STATUS_APPROVED) %>">
-				<aui:model-context bean="<%= comment %>" model="<%= comment.getModelClass() %>" />
+				<aui:model-context
+					bean="<%= comment %>"
+					model="<%= comment.getModelClass() %>"
+				/>
 
 				<div>
-					<aui:workflow-status model="<%= CommentConstants.getDiscussionClass() %>" status="<%= workflowableComment.getStatus() %>" />
+					<aui:workflow-status
+						model="<%= CommentConstants.getDiscussionClass() %>"
+						status="<%= workflowableComment.getStatus() %>"
+					/>
 				</div>
 			</c:if>
 

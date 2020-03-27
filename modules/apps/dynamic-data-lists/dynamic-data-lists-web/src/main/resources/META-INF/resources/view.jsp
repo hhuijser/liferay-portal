@@ -27,9 +27,21 @@ String displayStyle = ddlDisplayContext.getDisplayStyle();
 <liferay-util:include page="/management_bar.jsp" servletContext="<%= application %>" />
 
 <div class="container-fluid-1280" id="<portlet:namespace />formContainer">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
-		<aui:input name="recordSetIds" type="hidden" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= portletURL.toString() %>"
+		/>
+
+		<aui:input
+			name="recordSetIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			id="ddlRecordSet"

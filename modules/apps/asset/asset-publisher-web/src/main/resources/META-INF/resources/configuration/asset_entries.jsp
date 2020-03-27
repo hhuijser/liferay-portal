@@ -227,7 +227,9 @@ for (long groupId : groupIds) {
 	}
 </script>
 
-<aui:script require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	function selectAssets(assetEntryList) {
 		var assetClassName = '';
 		var assetEntryIds = [];

@@ -66,11 +66,18 @@ else {
 
 		<br /><br />
 
-		<aui:input cssClass="webdav-url-resource" name="webDavURL" type="resource" value="<%= DLURLHelperUtil.getWebDavURL(themeDisplay, folder, null) %>" />
+		<aui:input
+			cssClass="webdav-url-resource"
+			name="webDavURL"
+			type="resource"
+			value="<%= DLURLHelperUtil.getWebDavURL(themeDisplay, folder, null) %>"
+		/>
 	</div>
 </div>
 
-<aui:script use="liferay-util-window">
+<aui:script
+	use="liferay-util-window"
+>
 	var webdavAction = A.one('.<%= randomNamespace %>-webdav-action');
 
 	if (webdavAction) {

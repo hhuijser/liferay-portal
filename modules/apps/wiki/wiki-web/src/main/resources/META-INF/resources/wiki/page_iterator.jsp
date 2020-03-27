@@ -250,7 +250,11 @@ for (int i = 0; i < pages.size(); i++) {
 
 <c:if test='<%= navigation.equals("history") && (pages.size() > 1) %>'>
 	<aui:button-row>
-		<aui:button name="compare" primary="<%= true %>" value="compare-versions" />
+		<aui:button
+			name="compare"
+			primary="<%= true %>"
+			value="compare-versions"
+		/>
 	</aui:button-row>
 </c:if>
 
@@ -265,7 +269,9 @@ for (int i = 0; i < pages.size(); i++) {
 />
 
 <c:if test='<%= navigation.equals("history") %>'>
-	<aui:script require="metal-dom/src/dom as dom">
+	<aui:script
+		require="metal-dom/src/dom as dom"
+	>
 		function <portlet:namespace />initRowsChecked() {
 			var rowIdsNodes = document.querySelectorAll(
 				'input[name=<portlet:namespace />rowIds]'

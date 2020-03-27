@@ -58,7 +58,11 @@ if (accountEntryDisplay != null) {
 		</span>
 	</h3>
 
-	<aui:input name="domains" type="hidden" value="<%= StringUtil.merge(domains) %>" />
+	<aui:input
+		name="domains"
+		type="hidden"
+		value="<%= StringUtil.merge(domains) %>"
+	/>
 
 	<liferay-ui:search-container
 		compactEmptyResultsMessage="<%= true %>"
@@ -93,7 +97,9 @@ if (accountEntryDisplay != null) {
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />accountDomainsSearchContainer'
 	);

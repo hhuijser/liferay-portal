@@ -35,11 +35,21 @@ PortletURL redirectURL = layoutsAdminDisplayContext.getRedirectURL();
 	value="look-and-feel"
 />
 
-<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= selLayout %>"
+	model="<%= Layout.class %>"
+/>
 
-<aui:input name="devices" type="hidden" value="regular" />
+<aui:input
+	name="devices"
+	type="hidden"
+	value="regular"
+/>
 
-<aui:input name="masterLayoutPlid" type="hidden" />
+<aui:input
+	name="masterLayoutPlid"
+	type="hidden"
+/>
 
 <%
 LayoutPageTemplateEntry layoutPageTemplateEntry = LayoutPageTemplateEntryLocalServiceUtil.fetchLayoutPageTemplateEntryByPlid(selLayout.getPlid());
@@ -119,9 +129,23 @@ else {
 <div class="sheet-section <%= (selLayout.getMasterLayoutPlid() <= 0) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />themeContainer">
 	<h3 class="sheet-subtitle"><liferay-ui:message key="theme" /></h3>
 
-	<aui:input checked="<%= selLayout.isInheritLookAndFeel() %>" id="regularInheritLookAndFeel" label="<%= taglibLabel %>" name="regularInheritLookAndFeel" type="radio" value="<%= true %>" />
+	<aui:input
+		checked="<%= selLayout.isInheritLookAndFeel() %>"
+		id="regularInheritLookAndFeel"
+		label="<%= taglibLabel %>"
+		name="regularInheritLookAndFeel"
+		type="radio"
+		value="<%= true %>"
+	/>
 
-	<aui:input checked="<%= !selLayout.isInheritLookAndFeel() %>" id="regularUniqueLookAndFeel" label="define-a-specific-look-and-feel-for-this-page" name="regularInheritLookAndFeel" type="radio" value="<%= false %>" />
+	<aui:input
+		checked="<%= !selLayout.isInheritLookAndFeel() %>"
+		id="regularUniqueLookAndFeel"
+		label="define-a-specific-look-and-feel-for-this-page"
+		name="regularInheritLookAndFeel"
+		type="radio"
+		value="<%= false %>"
+	/>
 
 	<c:if test="<%= !group.isLayoutPrototype() %>">
 		<div class="lfr-inherit-theme-options" id="<portlet:namespace />inheritThemeOptions">
@@ -152,7 +176,9 @@ else {
 </aui:script>
 
 <c:if test="<%= editableMasterLayout %>">
-	<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+	<aui:script
+		require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+	>
 		var changeMasterLayoutButton = document.getElementById(
 			'<portlet:namespace />changeMasterLayoutButton'
 		);

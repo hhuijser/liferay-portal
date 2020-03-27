@@ -46,8 +46,16 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 	</div>
 </div>
 
-<aui:form action="<%= addChannelURL %>" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= addChannelURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<div class="portlet-analytics-settings sheet sheet-lg">
 		<h2 class="autofit-row">
@@ -60,7 +68,13 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 
 		<div class="mb-5 mt-4 radio-buttons">
 			<label class="d-block mb-3">
-				<aui:input checked="<%= true %>" label="combined-property" name="channelType" type="radio" value="combined" />
+				<aui:input
+					checked="<%= true %>"
+					label="combined-property"
+					name="channelType"
+					type="radio"
+					value="combined"
+				/>
 
 				<small class="text-secondary">
 					<liferay-ui:message key="all-selected-sites-will-be-combined-in-to-a-single-property" />
@@ -68,7 +82,12 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 			</label>
 
 			<label class="d-block mb-3">
-				<aui:input label="multiple-properties" name="channelType" type="radio" value="multiple" />
+				<aui:input
+					label="multiple-properties"
+					name="channelType"
+					type="radio"
+					value="multiple"
+				/>
 
 				<small class="text-secondary">
 					<liferay-ui:message key="each-site-selected-will-become-its-own-property" />
@@ -128,15 +147,25 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 
 		<div class="text-right">
 			<aui:button-row>
-				<aui:button href="<%= redirect %>" value="cancel" />
+				<aui:button
+					href="<%= redirect %>"
+					value="cancel"
+				/>
 
-				<aui:button disabled="<%= true %>" id="add-channel-button" type="submit" value="done" />
+				<aui:button
+					disabled="<%= true %>"
+					id="add-channel-button"
+					type="submit"
+					value="done"
+				/>
 			</aui:button-row>
 		</div>
 	</div>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />selectGroups'
 	);

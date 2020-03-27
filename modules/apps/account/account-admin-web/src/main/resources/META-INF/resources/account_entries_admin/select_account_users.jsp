@@ -28,7 +28,9 @@ SelectAccountUsersManagementToolbarDisplayContext selectAccountUsersManagementTo
 	displayContext="<%= selectAccountUsersManagementToolbarDisplayContext %>"
 />
 
-<aui:container cssClass="container-fluid container-fluid-max-xl">
+<aui:container
+	cssClass="container-fluid container-fluid-max-xl"
+>
 	<c:if test='<%= !Objects.equals(selectAccountUsersManagementToolbarDisplayContext.getNavigation(), "all-users") %>'>
 		<clay:alert
 			message='<%= LanguageUtil.get(request, "showing-users-with-valid-domains-only") %>'
@@ -69,7 +71,9 @@ SelectAccountUsersManagementToolbarDisplayContext selectAccountUsersManagementTo
 	</liferay-ui:search-container>
 </aui:container>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />accountUsers'
 	);

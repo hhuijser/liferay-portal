@@ -29,7 +29,10 @@ KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)reque
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </liferay-portlet:actionURL>
 
-<aui:form action="<%= deleteKBCommentsURL %>" name="fm">
+<aui:form
+	action="<%= deleteKBCommentsURL %>"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="kbComments"
 		searchContainer="<%= kbCommentsSearchContainer %>"
@@ -77,7 +80,9 @@ KBCommentResultRowSplitter resultRowSplitter = (KBCommentResultRowSplitter)reque
 						<portlet:param name="redirect" value="<%= currentURL %>" />
 					</liferay-portlet:renderURL>
 
-					<aui:a href="<%= rowURL.toString() %>">
+					<aui:a
+						href="<%= rowURL.toString() %>"
+					>
 						<%= StringUtil.shorten(HtmlUtil.escape(kbComment.getContent()), 100) %>
 					</aui:a>
 				</h2>

@@ -37,7 +37,9 @@ boolean includeCheckBox = ParamUtil.getBoolean(request, "includeCheckBox", true)
 	sortingURL="<%= ddmDisplayContext.getSortingURL() %>"
 />
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteTemplates = function() {
 		if (
 			confirm(

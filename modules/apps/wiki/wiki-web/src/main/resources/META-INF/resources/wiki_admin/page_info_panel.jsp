@@ -144,7 +144,10 @@ if (wikiPageInfoPanelDisplayContext.isSinglePageSelection()) {
 							<liferay-ui:message key="rss" />
 						</dt>
 						<dd class="sidebar-dd">
-							<aui:a href="<%= wikiPageInfoPanelDisplayContext.getPageRSSURL(wikiPage) %>" target="_blank">
+							<aui:a
+								href="<%= wikiPageInfoPanelDisplayContext.getPageRSSURL(wikiPage) %>"
+								target="_blank"
+							>
 								<liferay-ui:message key="feed" />
 							</aui:a>
 						</dd>

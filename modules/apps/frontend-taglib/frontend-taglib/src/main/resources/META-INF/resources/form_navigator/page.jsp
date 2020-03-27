@@ -66,13 +66,21 @@ String tabs1Value = GetterUtil.getString(SessionClicks.get(request, namespace + 
 
 <c:if test="<%= showButtons %>">
 	<div>
-		<aui:button primary="<%= true %>" type="submit" />
+		<aui:button
+			primary="<%= true %>"
+			type="submit"
+		/>
 
-		<aui:button href="<%= backURL %>" type="cancel" />
+		<aui:button
+			href="<%= backURL %>"
+			type="cancel"
+		/>
 	</div>
 </c:if>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	var redirectField = dom.toElement(
 		'input[name="<portlet:namespace />redirect"]'
 	);

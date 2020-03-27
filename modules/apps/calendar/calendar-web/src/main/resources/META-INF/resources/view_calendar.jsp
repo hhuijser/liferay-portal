@@ -27,7 +27,9 @@ JSONArray otherCalendarsJSONArray = CalendarUtil.toCalendarsJSONArray(themeDispl
 boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, "com.liferay.calendar.web_columnOptionsVisible", "true"));
 %>
 
-<aui:script use="liferay-calendar-container,liferay-calendar-remote-services,liferay-component">
+<aui:script
+	use="liferay-calendar-container,liferay-calendar-remote-services,liferay-component"
+>
 	Liferay.component('<portlet:namespace />calendarContainer', function() {
 		var calendarContainer = new Liferay.CalendarContainer({
 			groupCalendarResourceId: <%= groupCalendarResource.getCalendarResourceId() %>,
@@ -81,10 +83,16 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	});
 </aui:script>
 
-<aui:container cssClass="calendar-portlet-column-parent">
+<aui:container
+	cssClass="calendar-portlet-column-parent"
+>
 	<aui:row>
 		<c:if test="<%= !displaySchedulerOnly %>">
-			<aui:col cssClass='<%= "calendar-portlet-column-options " + (columnOptionsVisible ? StringPool.BLANK : "hide") %>' id="columnOptions" span="<%= 3 %>">
+			<aui:col
+				cssClass='<%= "calendar-portlet-column-options " + (columnOptionsVisible ? StringPool.BLANK : "hide") %>'
+				id="columnOptions"
+				span="<%= 3 %>"
+			>
 				<div class="calendar-portlet-mini-calendar" id="<portlet:namespace />miniCalendarContainer"></div>
 
 				<div id="<portlet:namespace />calendarListContainer">
@@ -137,7 +145,11 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 			</aui:col>
 		</c:if>
 
-		<aui:col cssClass="calendar-portlet-column-grid" id="columnGrid" span="<%= (columnOptionsVisible && !displaySchedulerOnly) ? 9 : 12 %>">
+		<aui:col
+			cssClass="calendar-portlet-column-grid"
+			id="columnGrid"
+			span="<%= (columnOptionsVisible && !displaySchedulerOnly) ? 9 : 12 %>"
+		>
 			<c:if test="<%= !displaySchedulerOnly %>">
 				<div class="calendar-portlet-column-toggler" id="<portlet:namespace />columnToggler">
 					<clay:icon
@@ -212,7 +224,9 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	<%@ include file="/view_calendar_menus.jspf" %>
 </c:if>
 
-<aui:script use="liferay-calendar-list,liferay-calendar-util,liferay-scheduler">
+<aui:script
+	use="liferay-calendar-list,liferay-calendar-util,liferay-scheduler"
+>
 	Liferay.CalendarUtil.USER_CLASS_NAME_ID = <%= PortalUtil.getClassNameId(User.class) %>;
 
 	var calendarContainer = Liferay.component(
@@ -353,7 +367,9 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 	});
 </aui:script>
 
-<aui:script use="aui-base,aui-datatype,liferay-calendar-session-listener">
+<aui:script
+	use="aui-base,aui-datatype,liferay-calendar-session-listener"
+>
 	window.<portlet:namespace />refreshSchedulerEventTooltipTitle = function(
 		schedulerEvent
 	) {

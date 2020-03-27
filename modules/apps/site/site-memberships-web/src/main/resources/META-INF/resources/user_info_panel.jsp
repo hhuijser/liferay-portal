@@ -42,7 +42,12 @@ Group group = siteMembershipsDisplayContext.getGroup();
 						<portlet:param name="groupId" value="<%= String.valueOf(group.getGroupId()) %>" />
 					</portlet:renderURL>
 
-					<aui:a cssClass="badge badge-primary badge-sm" href="<%= viewMembershipRequestsURL %>" label="<%= String.valueOf(pendingRequests) %>" title='<%= LanguageUtil.format(request, "there-are-x-membership-requests-pending", String.valueOf(pendingRequests), false) %>' />
+					<aui:a
+						cssClass="badge badge-primary badge-sm"
+						href="<%= viewMembershipRequestsURL %>"
+						label="<%= String.valueOf(pendingRequests) %>"
+						title='<%= LanguageUtil.format(request, "there-are-x-membership-requests-pending", String.valueOf(pendingRequests), false) %>'
+					/>
 				</c:if>
 			</h4>
 

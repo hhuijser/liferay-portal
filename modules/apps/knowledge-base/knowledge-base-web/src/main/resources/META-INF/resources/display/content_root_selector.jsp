@@ -48,10 +48,19 @@ List<KBFolder> kbFolders = KBUtil.getAlternateRootKBFolders(scopeGroupId, kbDisp
 	</liferay-portlet:actionURL>
 
 	<div class="kbarticle-root-selector">
-		<aui:form action="<%= updateRootKBFolderIdURL %>" name="updateRootKBFolderIdFm">
-			<aui:select label="" name="rootKBFolderId">
+		<aui:form
+			action="<%= updateRootKBFolderIdURL %>"
+			name="updateRootKBFolderIdFm"
+		>
+			<aui:select
+				label=""
+				name="rootKBFolderId"
+			>
 				<c:if test="<%= KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, rootKBFolderId, WorkflowConstants.STATUS_APPROVED) > 0 %>">
-					<aui:option selected="<%= currentKBFolderURLTitle.equals(rootKBFolderURLTitle) %>" value="<%= rootKBFolderId %>">
+					<aui:option
+						selected="<%= currentKBFolderURLTitle.equals(rootKBFolderURLTitle) %>"
+						value="<%= rootKBFolderId %>"
+					>
 						<%= HtmlUtil.escape(kbDisplayPortletInstanceConfiguration.contentRootPrefix() + " " + rootKBFolderName) %>
 					</aui:option>
 				</c:if>
@@ -60,7 +69,10 @@ List<KBFolder> kbFolders = KBUtil.getAlternateRootKBFolders(scopeGroupId, kbDisp
 				for (KBFolder kbFolder : kbFolders) {
 				%>
 
-					<aui:option selected="<%= currentKBFolderURLTitle.equals(kbFolder.getUrlTitle()) %>" value="<%= kbFolder.getKbFolderId() %>">
+					<aui:option
+						selected="<%= currentKBFolderURLTitle.equals(kbFolder.getUrlTitle()) %>"
+						value="<%= kbFolder.getKbFolderId() %>"
+					>
 						<%= HtmlUtil.escape(kbDisplayPortletInstanceConfiguration.contentRootPrefix() + " " + kbFolder.getName()) %>
 					</aui:option>
 

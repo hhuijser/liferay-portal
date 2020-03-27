@@ -75,7 +75,11 @@ if (editorOptions != null) {
 >
 	<div class="alloy-editor alloy-editor-placeholder <%= HtmlUtil.escapeAttribute(cssClass) %>" contenteditable="false" data-placeholder="<%= LanguageUtil.get(request, placeholder) %>" data-required="<%= required %>" id="<%= HtmlUtil.escapeAttribute(name) %>" name="<%= HtmlUtil.escapeAttribute(name) %>"></div>
 
-	<aui:icon cssClass="alloy-editor-icon" image="text-editor" markupView="lexicon" />
+	<aui:icon
+		cssClass="alloy-editor-icon"
+		image="text-editor"
+		markupView="lexicon"
+	/>
 </liferay-util:buffer>
 
 <liferay-util:buffer
@@ -95,15 +99,24 @@ if (editorOptions != null) {
 
 			<div class="alloy-editor-switch hide">
 				<button class="btn btn-secondary btn-sm hide lfr-portal-tooltip" data-title="<%= LanguageUtil.get(resourceBundle, "fullscreen") %>" id="<%= HtmlUtil.escapeAttribute(name) %>Fullscreen" type="button">
-					<aui:icon image="expand" markupView="lexicon" />
+					<aui:icon
+						image="expand"
+						markupView="lexicon"
+					/>
 				</button>
 
 				<button class="btn btn-secondary btn-sm hide lfr-portal-tooltip" data-title="<%= LanguageUtil.get(resourceBundle, "dark-theme") %>" id="<%= HtmlUtil.escapeAttribute(name) %>SwitchTheme" type="button">
-					<aui:icon image="moon" markupView="lexicon" />
+					<aui:icon
+						image="moon"
+						markupView="lexicon"
+					/>
 				</button>
 
 				<button class="btn btn-secondary btn-sm editor-view lfr-portal-tooltip" data-title="<%= LanguageUtil.get(resourceBundle, "code-view") %>" id="<%= HtmlUtil.escapeAttribute(name) %>Switch" type="button">
-					<aui:icon image="code" markupView="lexicon" />
+					<aui:icon
+						image="code"
+						markupView="lexicon"
+					/>
 				</button>
 			</div>
 		</c:when>
@@ -139,7 +152,9 @@ if (showSource) {
 name = HtmlUtil.escapeJS(name);
 %>
 
-<aui:script use="<%= modules %>">
+<aui:script
+	use="<%= modules %>"
+>
 	var windowNode = A.getWin();
 
 	<%

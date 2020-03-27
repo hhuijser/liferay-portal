@@ -17,7 +17,11 @@
 <%@ include file="/asset_addon_entry_selector/init.jsp" %>
 
 <div class="lfr-asset-addon-entry-selector" id="<%= namespace + id %>assetAddonEntrySelector">
-	<aui:input name="<%= hiddenInput %>" type="hidden" value='<%= ListUtil.toString(selectedAssetAddonEntries, "key") %>' />
+	<aui:input
+		name="<%= hiddenInput %>"
+		type="hidden"
+		value='<%= ListUtil.toString(selectedAssetAddonEntries, "key") %>'
+	/>
 
 	<ul class="list-inline list-unstyled row selected-entries">
 
@@ -41,7 +45,10 @@
 
 							<div class="autofit-col">
 								<a class="remove-button" href="javascript:;">
-									<aui:icon image="times-circle" markupView="lexicon" />
+									<aui:icon
+										image="times-circle"
+										markupView="lexicon"
+									/>
 								</a>
 							</div>
 						</div>
@@ -56,11 +63,17 @@
 	</ul>
 
 	<div class="button-holder">
-		<aui:button cssClass="select-button" name='<%= id + "selectButton" %>' value="select" />
+		<aui:button
+			cssClass="select-button"
+			name='<%= id + "selectButton" %>'
+			value="select"
+		/>
 	</div>
 </div>
 
-<aui:script use="liferay-asset-addon-entry-selector">
+<aui:script
+	use="liferay-asset-addon-entry-selector"
+>
 	var assetAddonEntries = [];
 
 	<%

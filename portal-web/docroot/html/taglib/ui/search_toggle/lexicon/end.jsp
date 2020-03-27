@@ -20,7 +20,10 @@
 	</div>
 </div>
 
-<aui:script position="inline" use="aui-toggler,event-key">
+<aui:script
+	position="inline"
+	use="aui-toggler,event-key"
+>
 	var Util = Liferay.Util;
 
 	var advancedNode = A.one('#<%= id %>advanced');

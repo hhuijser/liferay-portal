@@ -95,7 +95,9 @@ PortletURL portletURL = roleItemSelectorViewDisplayContext.getPortletURL();
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="aui-parse-content,liferay-search-container">
+<aui:script
+	use="aui-parse-content,liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get('<portlet:namespace />roles');
 
 	searchContainer.on('rowToggled', function(event) {

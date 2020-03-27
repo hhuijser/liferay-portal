@@ -58,17 +58,29 @@ PortletURL portletURL = viewRolesManagementToolbarDisplayContext.getPortletURL()
 	viewTypeItems="<%= viewRolesManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl container-form-view" method="get" name="fm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-view"
+	method="get"
+	name="fm"
+>
 	<liferay-ui:error exception="<%= RequiredRoleException.class %>" message="you-cannot-delete-a-system-role" />
 
-	<aui:input name="deleteRoleIds" type="hidden" />
+	<aui:input
+		name="deleteRoleIds"
+		type="hidden"
+	/>
 
 	<liferay-ui:search-container
 		id="roleSearch"
 		searchContainer="<%= searchContainer %>"
 		var="roleSearchContainer"
 	>
-		<aui:input name="rolesRedirect" type="hidden" value="<%= portletURL.toString() %>" />
+		<aui:input
+			name="rolesRedirect"
+			type="hidden"
+			value="<%= portletURL.toString() %>"
+		/>
 
 		<liferay-ui:search-container-row
 			className="com.liferay.portal.kernel.model.Role"
@@ -99,7 +111,9 @@ PortletURL portletURL = viewRolesManagementToolbarDisplayContext.getPortletURL()
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteRoles = function(deleteRoleIds) {
 		var form = document.<portlet:namespace />fm;
 

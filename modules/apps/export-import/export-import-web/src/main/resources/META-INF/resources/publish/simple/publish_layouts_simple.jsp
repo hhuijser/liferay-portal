@@ -69,10 +69,29 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 	<portlet:param name="quickPublish" value="<%= Boolean.TRUE.toString() %>" />
 </portlet:actionURL>
 
-<aui:form action='<%= confirmedActionURL.toString() + "&etag=0&strip=0" %>' cssClass="lfr-export-dialog" method="post" name="fm2">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= cmd %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="exportImportConfigurationId" type="hidden" value="<%= exportImportConfigurationId %>" />
+<aui:form
+	action='<%= confirmedActionURL.toString() + "&etag=0&strip=0" %>'
+	cssClass="lfr-export-dialog"
+	method="post"
+	name="fm2"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= cmd %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="exportImportConfigurationId"
+		type="hidden"
+		value="<%= exportImportConfigurationId %>"
+	/>
 
 	<%@ include file="/publish/error/error_auth_exception.jspf" %>
 
@@ -100,12 +119,23 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 			</div>
 
 			<ul class="lfr-tree list-unstyled">
-				<aui:fieldset-group markupView="lexicon">
+				<aui:fieldset-group
+					markupView="lexicon"
+				>
 					<aui:fieldset>
-						<aui:input maxlength='<%= ModelHintsUtil.getMaxLength(ExportImportConfiguration.class.getName(), "name") %>' name="name" placeholder="process-name-placeholder" />
+						<aui:input
+							maxlength='<%= ModelHintsUtil.getMaxLength(ExportImportConfiguration.class.getName(), "name") %>'
+							name="name"
+							placeholder="process-name-placeholder"
+						/>
 					</aui:fieldset>
 
-					<aui:fieldset collapsible="<%= true %>" cssClass="options-group" label="changes-since-last-publication" markupView="lexicon">
+					<aui:fieldset
+						collapsible="<%= true %>"
+						cssClass="options-group"
+						label="changes-since-last-publication"
+						markupView="lexicon"
+					>
 						<li class="options portlet-list-simple">
 							<ul class="portlet-list">
 
@@ -179,7 +209,12 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 						</li>
 					</aui:fieldset>
 
-					<aui:fieldset collapsible="<%= true %>" cssClass="options-group" label="pages-to-publish" markupView="lexicon">
+					<aui:fieldset
+						collapsible="<%= true %>"
+						cssClass="options-group"
+						label="pages-to-publish"
+						markupView="lexicon"
+					>
 						<li class="options portlet-list-simple">
 							<ul class="portlet-list">
 
@@ -239,6 +274,9 @@ advancedPublishURL.setParameter("privateLayout", String.valueOf(privateLayout));
 	</div>
 
 	<aui:button-row>
-		<aui:button type="submit" value="<%= LanguageUtil.get(request, publishMessageKey) %>" />
+		<aui:button
+			type="submit"
+			value="<%= LanguageUtil.get(request, publishMessageKey) %>"
+		/>
 	</aui:button-row>
 </aui:form>

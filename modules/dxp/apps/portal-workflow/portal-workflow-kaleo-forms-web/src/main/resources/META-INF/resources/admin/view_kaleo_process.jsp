@@ -61,8 +61,15 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcess.getKaleoPr
 />
 
 <div class="container-fluid-1280" id="<portlet:namespace />formContainer">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="searchContainerForm">
-		<aui:input name="ddlRecordIds" type="hidden" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="searchContainerForm"
+	>
+		<aui:input
+			name="ddlRecordIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			id="<%= kaleoFormsViewRecordsDisplayContext.getSearchContainerId() %>"
@@ -186,7 +193,9 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcess.getKaleoPr
 	);
 </aui:script>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteRecords = function() {
 		if (
 			confirm(

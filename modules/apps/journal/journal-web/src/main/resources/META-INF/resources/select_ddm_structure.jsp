@@ -26,7 +26,11 @@ SearchContainer<DDMStructure> ddmStructureSearch = journalSelectDDMStructureDisp
 	displayContext="<%= new JournalSelectDDMStructureManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, journalSelectDDMStructureDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" method="post" name="selectDDMStructureFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectDDMStructureFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= ddmStructureSearch %>"
 	>
@@ -55,7 +59,11 @@ SearchContainer<DDMStructure> ddmStructureSearch = journalSelectDDMStructureDisp
 						data.put("name", ddmStructure.getName(locale));
 						%>
 
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data="<%= data %>"
+							href="javascript:;"
+						>
 							<%= HtmlUtil.escape(ddmStructure.getUnambiguousName(ddmStructureSearch.getResults(), themeDisplay.getScopeGroupId(), locale)) %>
 						</aui:a>
 					</c:when>

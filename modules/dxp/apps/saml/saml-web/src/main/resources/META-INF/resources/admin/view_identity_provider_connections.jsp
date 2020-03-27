@@ -76,7 +76,11 @@ portletURL.setParameter("tabs1", "identity-provider-connections");
 	</portlet:renderURL>
 
 	<aui:button-row>
-		<aui:button href="<%= addIdentityProviderURL %>" label="add-identity-provider" value="add-identity-provider" />
+		<aui:button
+			href="<%= addIdentityProviderURL %>"
+			label="add-identity-provider"
+			value="add-identity-provider"
+		/>
 	</aui:button-row>
 
 	<liferay-ui:search-iterator />

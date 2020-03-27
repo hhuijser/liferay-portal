@@ -62,10 +62,29 @@ int oAuthServiceCount = 0;
 
 <portlet:actionURL name="updateOAuthConsumers" var="updateOAuthConsumersURL" />
 
-<aui:form action="<%= updateOAuthConsumersURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveOAuthConsumers();" %>'>
-	<aui:input name="mvcPath" type="hidden" value="/admin/edit_oauth_consumers.jsp" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="gadgetKey" type="hidden" value="<%= gadgetKey %>" />
+<aui:form
+	action="<%= updateOAuthConsumersURL %>"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveOAuthConsumers();" %>'
+>
+	<aui:input
+		name="mvcPath"
+		type="hidden"
+		value="/admin/edit_oauth_consumers.jsp"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="gadgetKey"
+		type="hidden"
+		value="<%= gadgetKey %>"
+	/>
 
 	<%
 	for (Map.Entry<String, OAuthService> entry : oAuthServices.entrySet()) {
@@ -84,23 +103,58 @@ int oAuthServiceCount = 0;
 
 		<h3><%= serviceName %></h3>
 
-		<aui:input name="gadgetId" type="hidden" value="<%= gadgetId %>" />
-		<aui:input name="oAuthConsumerId" type="hidden" value="<%= oAuthConsumerId %>" />
-		<aui:input name="serviceName" type="hidden" value="<%= serviceName %>" />
+		<aui:input
+			name="gadgetId"
+			type="hidden"
+			value="<%= gadgetId %>"
+		/>
 
-		<aui:model-context bean="<%= oAuthConsumer %>" model="<%= OAuthConsumer.class %>" />
+		<aui:input
+			name="oAuthConsumerId"
+			type="hidden"
+			value="<%= oAuthConsumerId %>"
+		/>
+
+		<aui:input
+			name="serviceName"
+			type="hidden"
+			value="<%= serviceName %>"
+		/>
+
+		<aui:model-context
+			bean="<%= oAuthConsumer %>"
+			model="<%= OAuthConsumer.class %>"
+		/>
 
 		<aui:fieldset>
-			<aui:select id='<%= "keyType" + oAuthServiceCount %>' name="keyType">
-				<aui:option label="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC.toString() %>" value="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC %>" />
-				<aui:option label="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT.toString() %>" value="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT %>" />
-				<aui:option label="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE.toString() %>" value="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>" />
+			<aui:select
+				id='<%= "keyType" + oAuthServiceCount %>'
+				name="keyType"
+			>
+				<aui:option
+					label="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC.toString() %>"
+					value="<%= OAuthConsumerConstants.KEY_TYPE_HMAC_SYMMETRIC %>"
+				/>
+
+				<aui:option
+					label="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT.toString() %>"
+					value="<%= OAuthConsumerConstants.KEY_TYPE_PLAINTEXT %>"
+				/>
+
+				<aui:option
+					label="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE.toString() %>"
+					value="<%= OAuthConsumerConstants.KEY_TYPE_RSA_PRIVATE %>"
+				/>
 			</aui:select>
 
-			<aui:input name="consumerKey" />
+			<aui:input
+				name="consumerKey"
+			/>
 
 			<div id="<%= "consumerSecretField" + oAuthServiceCount %>">
-				<aui:input name="consumerSecret" />
+				<aui:input
+					name="consumerSecret"
+				/>
 			</div>
 		</aui:fieldset>
 
@@ -110,10 +164,15 @@ int oAuthServiceCount = 0;
 	%>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
 		<c:if test="<%= gadgetId > 0 %>">
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</c:if>
 	</aui:button-row>
 </aui:form>
@@ -126,7 +185,9 @@ int oAuthServiceCount = 0;
 	Liferay.Util.focusFormField(document.<portlet:namespace />fm.<portlet:namespace />keyType);
 </aui:script>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	function <portlet:namespace />renderConsumerSecretRow(rowCount) {
 		var consumerSecretField = A.one('#consumerSecretField' + rowCount);
 

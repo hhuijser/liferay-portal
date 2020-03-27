@@ -78,8 +78,17 @@ long vocabularyId = ParamUtil.getLong(request, "vocabularyId");
 	action="<%= editPropertiesURL %>"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="categoryId" type="hidden" value="<%= categoryId %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="categoryId"
+		type="hidden"
+		value="<%= categoryId %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= CategoryPropertyKeyException.class %>" message="please-enter-a-valid-property-key" />
@@ -100,13 +109,24 @@ long vocabularyId = ParamUtil.getLong(request, "vocabularyId");
 						AssetCategoryProperty categoryProperty = categoryProperties.get(i);
 					%>
 
-						<aui:model-context bean="<%= categoryProperty %>" model="<%= AssetCategoryProperty.class %>" />
+						<aui:model-context
+							bean="<%= categoryProperty %>"
+							model="<%= AssetCategoryProperty.class %>"
+						/>
 
 						<div class="lfr-form-row lfr-form-row-inline">
 							<div class="row-fields">
-								<aui:input fieldParam='<%= "key" + categoryPropertiesIndex %>' id='<%= "key" + categoryPropertiesIndex %>' name="key" />
+								<aui:input
+									fieldParam='<%= "key" + categoryPropertiesIndex %>'
+									id='<%= "key" + categoryPropertiesIndex %>'
+									name="key"
+								/>
 
-								<aui:input fieldParam='<%= "value" + categoryPropertiesIndex %>' id='<%= "value" + categoryPropertiesIndex %>' name="value" />
+								<aui:input
+									fieldParam='<%= "value" + categoryPropertiesIndex %>'
+									id='<%= "value" + categoryPropertiesIndex %>'
+									name="value"
+								/>
 							</div>
 						</div>
 
@@ -116,19 +136,30 @@ long vocabularyId = ParamUtil.getLong(request, "vocabularyId");
 
 				</div>
 
-				<aui:input name="categoryPropertiesIndexes" type="hidden" value="<%= StringUtil.merge(categoryPropertiesIndexes) %>" />
+				<aui:input
+					name="categoryPropertiesIndexes"
+					type="hidden"
+					value="<%= StringUtil.merge(categoryPropertiesIndexes) %>"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 
-<aui:script use="liferay-auto-fields">
+<aui:script
+	use="liferay-auto-fields"
+>
 	var autoFields = new Liferay.AutoFields({
 		contentBox: '#<portlet:namespace />categoryPropertiesId',
 		fieldIndexes: '<portlet:namespace />categoryPropertiesIndexes',

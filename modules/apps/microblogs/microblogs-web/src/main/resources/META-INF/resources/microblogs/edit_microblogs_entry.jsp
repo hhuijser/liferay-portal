@@ -127,26 +127,58 @@ if (comment) {
 
 <portlet:actionURL name="updateMicroblogsEntry" var="updateMicroblogsEntryURL" />
 
-<aui:form action="<%= updateMicroblogsEntryURL %>" cssClass="<%= formCssClass %>" name="<%= formName %>">
+<aui:form
+	action="<%= updateMicroblogsEntryURL %>"
+	cssClass="<%= formCssClass %>"
+	name="<%= formName %>"
+>
 	<portlet:renderURL var="commentsURL" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>">
 		<portlet:param name="mvcPath" value="/microblogs/view_comments.jsp" />
 		<portlet:param name="parentMicroblogsEntryId" value="<%= String.valueOf(microblogsEntryId) %>" />
 	</portlet:renderURL>
 
-	<aui:input name="redirect" type="hidden" value="<%= comment ? commentsURL : redirect %>" />
-	<aui:input name="microblogsEntryId" type="hidden" value="<%= edit ? microblogsEntryId : 0 %>" />
-	<aui:input name="parentMicroblogsEntryId" type="hidden" value="<%= microblogsEntryId %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= comment ? commentsURL : redirect %>"
+	/>
 
-	<aui:model-context bean="<%= microblogsEntry %>" model="<%= MicroblogsEntry.class %>" />
+	<aui:input
+		name="microblogsEntryId"
+		type="hidden"
+		value="<%= edit ? microblogsEntryId : 0 %>"
+	/>
+
+	<aui:input
+		name="parentMicroblogsEntryId"
+		type="hidden"
+		value="<%= microblogsEntryId %>"
+	/>
+
+	<aui:model-context
+		bean="<%= microblogsEntry %>"
+		model="<%= MicroblogsEntry.class %>"
+	/>
 
 	<c:choose>
 		<c:when test="<%= repost %>">
-			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPOST %>" />
+			<aui:input
+				name="type"
+				type="hidden"
+				value="<%= MicroblogsEntryConstants.TYPE_REPOST %>"
+			/>
 
-			<aui:input name="content" type="hidden" />
+			<aui:input
+				name="content"
+				type="hidden"
+			/>
 		</c:when>
 		<c:when test="<%= comment %>">
-			<aui:input name="type" type="hidden" value="<%= MicroblogsEntryConstants.TYPE_REPLY %>" />
+			<aui:input
+				name="type"
+				type="hidden"
+				value="<%= MicroblogsEntryConstants.TYPE_REPLY %>"
+			/>
 		</c:when>
 	</c:choose>
 
@@ -176,7 +208,11 @@ if (comment) {
 			<div class="highlighter-content <%= (comment || edit || repost) ? StringPool.BLANK : "textbox" %>" id="<portlet:namespace />highlighterContent<%= formId %>"></div>
 		</div>
 
-		<aui:input label="" name="content" type="hidden" />
+		<aui:input
+			label=""
+			name="content"
+			type="hidden"
+		/>
 	</c:if>
 
 	<span class="microblogs-countdown-holder">
@@ -194,10 +230,18 @@ if (comment) {
 	%>
 
 	<div class="<%= rowCssClass %>">
-		<aui:button cssClass="float-left microblogs-post" disabled="<%= !repost %>" type="submit" value="post" />
+		<aui:button
+			cssClass="float-left microblogs-post"
+			disabled="<%= !repost %>"
+			type="submit"
+			value="post"
+		/>
 
 		<c:if test="<%= repost %>">
-			<aui:button onClick="Liferay.Microblogs.closePopup();" type="cancel" />
+			<aui:button
+				onClick="Liferay.Microblogs.closePopup();"
+				type="cancel"
+			/>
 		</c:if>
 
 		<c:if test="<%= !comment && !repost %>">
@@ -210,10 +254,27 @@ if (comment) {
 			}
 			%>
 
-			<aui:select inlineLabel="<%= Boolean.TRUE.toString() %>" label="viewable-by" name="socialRelationType" onChange='<%= renderResponse.getNamespace() + "relationTypeOnChange(event);" %>' value="<%= socialRelationType %>">
-				<aui:option label="everyone" value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>" />
-				<aui:option label="connections" value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>" />
-				<aui:option label="followers" value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>" />
+			<aui:select
+				inlineLabel="<%= Boolean.TRUE.toString() %>"
+				label="viewable-by"
+				name="socialRelationType"
+				onChange='<%= renderResponse.getNamespace() + "relationTypeOnChange(event);" %>'
+				value="<%= socialRelationType %>"
+			>
+				<aui:option
+					label="everyone"
+					value="<%= MicroblogsEntryConstants.TYPE_EVERYONE %>"
+				/>
+
+				<aui:option
+					label="connections"
+					value="<%= SocialRelationConstants.TYPE_BI_CONNECTION %>"
+				/>
+
+				<aui:option
+					label="followers"
+					value="<%= SocialRelationConstants.TYPE_UNI_FOLLOWER %>"
+				/>
 			</aui:select>
 		</c:if>
 	</div>
@@ -241,7 +302,9 @@ if (comment) {
 	</aui:script>
 </c:if>
 
-<aui:script use="aui-base,aui-event-input,aui-form-textarea-deprecated,aui-template-deprecated,autocomplete,autocomplete-filters">
+<aui:script
+	use="aui-base,aui-event-input,aui-form-textarea-deprecated,aui-template-deprecated,autocomplete,autocomplete-filters"
+>
 	var MAP_MATCHED_USERS = {
 		screenName: function(str, match) {
 			return '[@' + MAP_USERS[str] + ']';

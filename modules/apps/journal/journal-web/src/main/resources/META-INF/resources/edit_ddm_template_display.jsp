@@ -22,7 +22,11 @@ JournalEditDDMTemplateDisplayContext journalEditDDMTemplateDisplayContext = new 
 JournalDDMTemplateHelper journalDDMTemplateHelper = (JournalDDMTemplateHelper)request.getAttribute(JournalDDMTemplateHelper.class.getName());
 %>
 
-<aui:input name="scriptContent" type="hidden" value="<%= journalEditDDMTemplateDisplayContext.getScript() %>" />
+<aui:input
+	name="scriptContent"
+	type="hidden"
+	value="<%= journalEditDDMTemplateDisplayContext.getScript() %>"
+/>
 
 <div id="templateScriptContainer">
 	<div class="form-group lfr-template-editor-container row">
@@ -117,12 +121,19 @@ JournalDDMTemplateHelper journalDDMTemplateHelper = (JournalDDMTemplateHelper)re
 
 			<div class="lfr-rich-editor" id="<portlet:namespace />richEditor"></div>
 
-			<aui:input label="script-file" name="script" type="file" wrapperCssClass="mt-4" />
+			<aui:input
+				label="script-file"
+				name="script"
+				type="file"
+				wrapperCssClass="mt-4"
+			/>
 		</div>
 	</div>
 </div>
 
-<aui:script use="aui-ace-autocomplete-freemarker,aui-ace-autocomplete-plugin,aui-ace-autocomplete-velocity,aui-toggler,aui-tooltip,autocomplete-base,autocomplete-filters,event-mouseenter,event-outside,liferay-util-window,resize,transition">
+<aui:script
+	use="aui-ace-autocomplete-freemarker,aui-ace-autocomplete-plugin,aui-ace-autocomplete-velocity,aui-toggler,aui-tooltip,autocomplete-base,autocomplete-filters,event-mouseenter,event-outside,liferay-util-window,resize,transition"
+>
 	var ACPlugin = A.Plugin.AceAutoComplete;
 	var Util = Liferay.Util;
 

@@ -20,7 +20,11 @@
 DepotAdminRolesDisplayContext depotAdminRolesDisplayContext = (DepotAdminRolesDisplayContext)request.getAttribute(DepotAdminRolesDisplayContext.class.getName());
 %>
 
-<aui:input name="<%= ActionRequest.ACTION_NAME %>" type="hidden" value="/depot/update_roles" />
+<aui:input
+	name="<%= ActionRequest.ACTION_NAME %>"
+	type="hidden"
+	value="/depot/update_roles"
+/>
 
 <h3 class="autofit-row sheet-subtitle">
 	<span class="autofit-col autofit-col-expand">
@@ -54,10 +58,25 @@ DepotAdminRolesDisplayContext depotAdminRolesDisplayContext = (DepotAdminRolesDi
 	/>
 </liferay-util:buffer>
 
-<aui:input name="addDepotGroupRolesGroupIds" type="hidden" />
-<aui:input name="addDepotGroupRolesRoleIds" type="hidden" />
-<aui:input name="deleteDepotGroupRolesGroupIds" type="hidden" />
-<aui:input name="deleteDepotGroupRolesRoleIds" type="hidden" />
+<aui:input
+	name="addDepotGroupRolesGroupIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="addDepotGroupRolesRoleIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="deleteDepotGroupRolesGroupIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="deleteDepotGroupRolesRoleIds"
+	type="hidden"
+/>
 
 <liferay-ui:search-container
 	compactEmptyResultsMessage="<%= true %>"
@@ -112,7 +131,9 @@ DepotAdminRolesDisplayContext depotAdminRolesDisplayContext = (DepotAdminRolesDi
 </liferay-ui:search-container>
 
 <c:if test="<%= depotAdminRolesDisplayContext.isSelectable() %>">
-	<aui:script use="liferay-search-container">
+	<aui:script
+		use="liferay-search-container"
+	>
 		var Util = Liferay.Util;
 
 		var searchContainer = Liferay.SearchContainer.get(

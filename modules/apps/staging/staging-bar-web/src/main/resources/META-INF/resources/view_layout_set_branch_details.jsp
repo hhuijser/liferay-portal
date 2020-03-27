@@ -32,7 +32,10 @@ String stagingURL = (String)request.getAttribute(StagingProcessesWebKeys.STAGING
 		<a class="dropdown-toggle layout-set-branch-selector staging-variation-selector" data-toggle="liferay-dropdown" href="#1">
 			<liferay-ui:message key="<%= HtmlUtil.escape(layoutSetBranchDisplayContext.getLayoutSetBranchDisplayName(layoutSetBranch)) %>" localizeKey="<%= false %>" />
 
-			<aui:icon image="caret-double-l" markupView="lexicon" />
+			<aui:icon
+				image="caret-double-l"
+				markupView="lexicon"
+			/>
 		</a>
 
 		<ul class="dropdown-menu">

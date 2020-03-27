@@ -51,8 +51,17 @@ entriesChecker.setRememberCheckBoxStateURLRegex("^(?!.*" + liferayPortletRespons
 	<liferay-util:include page="/document_library/search_info.jsp" servletContext="<%= application %>" />
 </c:if>
 
-<aui:input name="repositoryId" type="hidden" value="<%= repositoryId %>" />
-<aui:input name="searchRepositoryId" type="hidden" value="<%= searchRepositoryId %>" />
+<aui:input
+	name="repositoryId"
+	type="hidden"
+	value="<%= repositoryId %>"
+/>
+
+<aui:input
+	name="searchRepositoryId"
+	type="hidden"
+	value="<%= searchRepositoryId %>"
+/>
 
 <liferay-util:buffer
 	var="searchResults"

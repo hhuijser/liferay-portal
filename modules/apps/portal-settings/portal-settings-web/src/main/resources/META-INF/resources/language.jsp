@@ -17,7 +17,11 @@
 <%@ include file="/init.jsp" %>
 
 <aui:fieldset>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
 	<liferay-ui:error exception="<%= LocaleException.class %>">
 
@@ -39,7 +43,10 @@
 		<liferay-ui:message arguments="<%= rle.getMessageArguments() %>" key="<%= rle.getMessageKey() %>" translateArguments="<%= false %>" />
 	</liferay-ui:error>
 
-	<aui:select label="default-language" name="languageId">
+	<aui:select
+		label="default-language"
+		name="languageId"
+	>
 
 		<%
 		User defaultUser = company.getDefaultUser();
@@ -51,7 +58,12 @@
 		for (Locale availableLocale : LanguageUtil.getAvailableLocales()) {
 		%>
 
-			<aui:option label="<%= availableLocale.getDisplayName(locale) %>" lang="<%= LocaleUtil.toW3cLanguageId(availableLocale) %>" selected="<%= Objects.equals(companyLocale.getLanguage(), availableLocale.getLanguage()) && Objects.equals(companyLocale.getCountry(), availableLocale.getCountry()) %>" value="<%= LocaleUtil.toLanguageId(availableLocale) %>" />
+			<aui:option
+				label="<%= availableLocale.getDisplayName(locale) %>"
+				lang="<%= LocaleUtil.toW3cLanguageId(availableLocale) %>"
+				selected="<%= Objects.equals(companyLocale.getLanguage(), availableLocale.getLanguage()) && Objects.equals(companyLocale.getCountry(), availableLocale.getCountry()) %>"
+				value="<%= LocaleUtil.toLanguageId(availableLocale) %>"
+			/>
 
 		<%
 		}
@@ -61,13 +73,20 @@
 
 	<div id="<portlet:namespace />languageWarning"></div>
 
-	<aui:fieldset cssClass="available-languages" label="available-languages">
+	<aui:fieldset
+		cssClass="available-languages"
+		label="available-languages"
+	>
 
 		<%
 		String[] availableLanguageIds = LocaleUtil.toLanguageIds(LanguageUtil.getAvailableLocales());
 		%>
 
-		<aui:input name='<%= "settings--" + PropsKeys.LOCALES + "--" %>' type="hidden" value="<%= StringUtil.merge(availableLanguageIds) %>" />
+		<aui:input
+			name='<%= "settings--" + PropsKeys.LOCALES + "--" %>'
+			type="hidden"
+			value="<%= StringUtil.merge(availableLanguageIds) %>"
+		/>
 
 		<%
 
@@ -108,7 +127,9 @@
 	</aui:fieldset>
 </aui:fieldset>
 
-<aui:script use="aui-alert,aui-base">
+<aui:script
+	use="aui-alert,aui-base"
+>
 	var languageSelectInput = A.one('#<portlet:namespace />languageId');
 
 	if (languageSelectInput) {

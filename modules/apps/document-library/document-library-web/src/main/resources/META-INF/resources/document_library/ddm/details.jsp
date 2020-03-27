@@ -22,7 +22,10 @@ DLFileEntryType fileEntryType = (DLFileEntryType)request.getAttribute(WebKeys.DO
 com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure = (com.liferay.dynamic.data.mapping.model.DDMStructure)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_DYNAMIC_DATA_MAPPING_STRUCTURE);
 %>
 
-<aui:model-context bean="<%= fileEntryType %>" model="<%= DLFileEntryType.class %>" />
+<aui:model-context
+	bean="<%= fileEntryType %>"
+	model="<%= DLFileEntryType.class %>"
+/>
 
 <aui:field-wrapper>
 	<c:if test="<%= (ddmStructure != null) && (ddmStructure.getGroupId() != scopeGroupId) %>">
@@ -32,6 +35,10 @@ com.liferay.dynamic.data.mapping.model.DDMStructure ddmStructure = (com.liferay.
 	</c:if>
 </aui:field-wrapper>
 
-<aui:input name="name" />
+<aui:input
+	name="name"
+/>
 
-<aui:input name="description" />
+<aui:input
+	name="description"
+/>

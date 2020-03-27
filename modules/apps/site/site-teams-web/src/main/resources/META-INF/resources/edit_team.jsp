@@ -44,31 +44,59 @@ renderResponse.setTitle((team == null) ? LanguageUtil.get(request, "new-team") :
 	method="post"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="teamId" type="hidden" value="<%= teamId %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="teamId"
+		type="hidden"
+		value="<%= teamId %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= DuplicateTeamException.class %>" message="please-enter-a-unique-name" />
 		<liferay-ui:error exception="<%= TeamNameException.class %>" message="please-enter-a-valid-name" />
 
-		<aui:model-context bean="<%= team %>" model="<%= Team.class %>" />
+		<aui:model-context
+			bean="<%= team %>"
+			model="<%= Team.class %>"
+		/>
 
 		<liferay-frontend:fieldset-group>
 			<liferay-frontend:fieldset>
 				<c:if test="<%= team != null %>">
-					<aui:input name="teamId" type="resource" value="<%= String.valueOf(team.getTeamId()) %>" />
+					<aui:input
+						name="teamId"
+						type="resource"
+						value="<%= String.valueOf(team.getTeamId()) %>"
+					/>
 				</c:if>
 
-				<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="name" placeholder="name" />
+				<aui:input
+					autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+					name="name"
+					placeholder="name"
+				/>
 
-				<aui:input name="description" placeholder="description" />
+				<aui:input
+					name="description"
+					placeholder="description"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

@@ -34,7 +34,14 @@ DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFil
 >
 	<liferay-ui:section>
 		<div id="<portlet:namespace />formBuilderTab">
-			<aui:translation-manager availableLocales="<%= dlEditFileEntryTypeDisplayContext.getAvailableLocales() %>" changeableDefaultLanguage="<%= dlEditFileEntryTypeDisplayContext.isChangeableDefaultLanguage() %>" defaultLanguageId="<%= dlEditFileEntryTypeDisplayContext.getDefaultLanguageId() %>" id="translationManager" initialize="<%= false %>" readOnly="<%= false %>" />
+			<aui:translation-manager
+				availableLocales="<%= dlEditFileEntryTypeDisplayContext.getAvailableLocales() %>"
+				changeableDefaultLanguage="<%= dlEditFileEntryTypeDisplayContext.isChangeableDefaultLanguage() %>"
+				defaultLanguageId="<%= dlEditFileEntryTypeDisplayContext.getDefaultLanguageId() %>"
+				id="translationManager"
+				initialize="<%= false %>"
+				readOnly="<%= false %>"
+			/>
 
 			<div class="diagram-builder form-builder" id="<portlet:namespace />formBuilder">
 				<div class="diagram-builder-content" id="<portlet:namespace />formBuilderContent">
@@ -77,7 +84,9 @@ DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFil
 	</liferay-ui:section>
 </liferay-ui:tabs>
 
-<aui:script use="aui-ace-editor,aui-datepicker-deprecated,aui-tabview,event-custom-base,json,liferay-portlet-dynamic-data-lists,liferay-portlet-dynamic-data-mapping,liferay-portlet-dynamic-data-mapping-custom-fields,liferay-xml-formatter">
+<aui:script
+	use="aui-ace-editor,aui-datepicker-deprecated,aui-tabview,event-custom-base,json,liferay-portlet-dynamic-data-lists,liferay-portlet-dynamic-data-mapping,liferay-portlet-dynamic-data-mapping-custom-fields,liferay-xml-formatter"
+>
 	var Lang = A.Lang;
 
 	var STR_VALUE = 'value';

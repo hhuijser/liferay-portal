@@ -42,7 +42,9 @@ String wmode = (String)request.getAttribute("liferay-ui:flash:wmode");
 
 <div id="<%= randomNamespace %>flashcontent" style="height: <%= height %>; width: <%= width %>;"></div>
 
-<aui:script use="aui-swf-deprecated">
+<aui:script
+	use="aui-swf-deprecated"
+>
 	new A.SWF(
 		{
 			boundingBox: '#<%= randomNamespace %>flashcontent',

@@ -147,10 +147,15 @@ List<LayoutPageTemplateCollection> layoutPageTemplateCollections = layoutPageTem
 	</div>
 </div>
 
-<aui:form cssClass="hide" name="layoutPageTemplateCollectionsFm">
+<aui:form
+	cssClass="hide"
+	name="layoutPageTemplateCollectionsFm"
+>
 </aui:form>
 
-<aui:script require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var deleteCollections = function() {
 		var layoutPageTemplateCollectionsFm =
 			document.<portlet:namespace />layoutPageTemplateCollectionsFm;

@@ -43,11 +43,17 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 				<span id="<portlet:namespace />contactsToolbar">
 					<div class="lfr-button-column">
 						<div class="lfr-button-column-content">
-							<aui:button-row cssClass="edit-toolbar" id='<%= renderResponse.getNamespace() + "entryToolbar" %>' />
+							<aui:button-row
+								cssClass="edit-toolbar"
+								id='<%= renderResponse.getNamespace() + "entryToolbar" %>'
+							/>
 						</div>
 					</div>
 
-					<aui:script position="inline" use="aui-toolbar">
+					<aui:script
+						position="inline"
+						use="aui-toolbar"
+					>
 						var buttonRow = A.one('#<portlet:namespace />entryToolbar');
 
 						var contactsToolbarChildren = [];
@@ -140,11 +146,17 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 					<c:when test="<%= showDetailView %>">
 						<div class="lfr-button-column">
 							<div class="lfr-button-column-content">
-								<aui:button-row cssClass="edit-toolbar" id='<%= renderResponse.getNamespace() + "userToolbar" %>' />
+								<aui:button-row
+									cssClass="edit-toolbar"
+									id='<%= renderResponse.getNamespace() + "userToolbar" %>'
+								/>
 							</div>
 						</div>
 
-						<aui:script position="inline" use="aui-base,aui-toolbar,liferay-contacts-center">
+						<aui:script
+							position="inline"
+							use="aui-base,aui-toolbar,liferay-contacts-center"
+						>
 							var buttonRow = A.one('#<portlet:namespace />userToolbar');
 
 							var contactsToolbarChildren = [];

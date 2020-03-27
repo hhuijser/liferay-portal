@@ -974,7 +974,9 @@ else {
 }
 %>
 
-<aui:script position='<%= themeDisplay.isIsolated() ? "inline" : "auto" %>'>
+<aui:script
+	position='<%= themeDisplay.isIsolated() ? "inline" : "auto" %>'
+>
 	<c:if test="<%= !layoutTypePortlet.hasStateMax() && !themeDisplay.isStatePopUp() %>">
 		Liferay.Portlet.register('<%= HtmlUtil.escapeJS(portletDisplay.getId()) %>');
 	</c:if>
@@ -1008,7 +1010,10 @@ if (themeDisplay.isStatePopUp()) {
 		Map<String, String> refreshPortletData = (Map<String, String>)SessionMessages.get(liferayRenderRequest, portletId + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
 %>
 
-		<aui:script position="inline" use="aui-base">
+		<aui:script
+			position="inline"
+			use="aui-base"
+		>
 			if (window.parent) {
 				var data = {
 					portletAjaxable: <%= !(((portletResourcePortlet != null) && !portletResourcePortlet.isAjaxable()) || SessionMessages.contains(liferayRenderRequest, portletId + SessionMessages.KEY_SUFFIX_PORTLET_NOT_AJAXABLE)) %>
@@ -1040,7 +1045,9 @@ if (themeDisplay.isStatePopUp()) {
 	if ((closeRedirect = (String)SessionMessages.get(liferayRenderRequest, portletId + SessionMessages.KEY_SUFFIX_CLOSE_REDIRECT)) != null) {
 	%>
 
-		<aui:script use="aui-base">
+		<aui:script
+			use="aui-base"
+		>
 			var dialog = Liferay.Util.getWindow();
 
 			var hideDialogSignature = '<portlet:namespace />hideRefreshDialog|*';
@@ -1084,7 +1091,9 @@ if (themeDisplay.isStatePopUp()) {
 		Map<String, String> refreshPortletData = (Map<String, String>)SessionMessages.get(liferayRenderRequest, portletId + SessionMessages.KEY_SUFFIX_REFRESH_PORTLET_DATA);
 	%>
 
-		<aui:script use="aui-base">
+		<aui:script
+			use="aui-base"
+		>
 			var dialog = Liferay.Util.getWindow();
 
 			var hideDialogSignature = '<portlet:namespace />hideRefreshDialog|*';

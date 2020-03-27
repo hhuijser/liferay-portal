@@ -32,7 +32,10 @@
 				<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 			</portlet:renderURL>
 
-			<aui:button onClick="<%= addURL.toString() %>" value="add-server" />
+			<aui:button
+				onClick="<%= addURL.toString() %>"
+				value="add-server"
+			/>
 		</aui:button-row>
 
 		<liferay-ui:search-container-row

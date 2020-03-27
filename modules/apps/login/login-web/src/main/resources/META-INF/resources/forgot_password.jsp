@@ -37,8 +37,16 @@ renderResponse.setTitle(LanguageUtil.get(request, "forgot-password"));
 </portlet:actionURL>
 
 <div class="login-container">
-	<aui:form action="<%= forgotPasswordURL %>" method="post" name="fm">
-		<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
+	<aui:form
+		action="<%= forgotPasswordURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="saveLastPath"
+			type="hidden"
+			value="<%= false %>"
+		/>
 
 		<liferay-ui:error exception="<%= CaptchaConfigurationException.class %>" message="a-captcha-error-occurred-please-contact-an-administrator" />
 		<liferay-ui:error exception="<%= CaptchaException.class %>" message="captcha-verification-failed" />
@@ -98,18 +106,34 @@ renderResponse.setTitle(LanguageUtil.get(request, "forgot-password"));
 					String loginValue = ParamUtil.getString(request, loginParameter);
 					%>
 
-					<aui:input name="step" type="hidden" value="1" />
+					<aui:input
+						name="step"
+						type="hidden"
+						value="1"
+					/>
 
 					<c:if test="<%= !PropsValues.USERS_REMINDER_QUERIES_ENABLED %>">
 						<portlet:renderURL var="redirectURL">
 							<portlet:param name="mvcRenderCommandName" value="/login/login" />
 						</portlet:renderURL>
 
-						<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
+						<aui:input
+							name="redirect"
+							type="hidden"
+							value="<%= redirectURL %>"
+						/>
 					</c:if>
 
-					<aui:input label="<%= loginLabel %>" name="<%= loginParameter %>" size="30" type="text" value="<%= loginValue %>">
-						<aui:validator name="required" />
+					<aui:input
+						label="<%= loginLabel %>"
+						name="<%= loginParameter %>"
+						size="30"
+						type="text"
+						value="<%= loginValue %>"
+					>
+						<aui:validator
+							name="required"
+						/>
 					</aui:input>
 
 					<c:if test="<%= captchaConfiguration.sendPasswordCaptchaEnabled() %>">
@@ -121,17 +145,28 @@ renderResponse.setTitle(LanguageUtil.get(request, "forgot-password"));
 					</c:if>
 
 					<aui:button-row>
-						<aui:button type="submit" value='<%= PropsValues.USERS_REMINDER_QUERIES_ENABLED ? "next" : "send-new-password" %>' />
+						<aui:button
+							type="submit"
+							value='<%= PropsValues.USERS_REMINDER_QUERIES_ENABLED ? "next" : "send-new-password" %>'
+						/>
 					</aui:button-row>
 				</c:when>
 				<c:when test="<%= (user2 != null) && Validator.isNotNull(user2.getEmailAddress()) %>">
-					<aui:input name="step" type="hidden" value="2" />
+					<aui:input
+						name="step"
+						type="hidden"
+						value="2"
+					/>
 
 					<portlet:renderURL var="redirectURL">
 						<portlet:param name="mvcRenderCommandName" value="/login/login" />
 					</portlet:renderURL>
 
-					<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
+					<aui:input
+						name="redirect"
+						type="hidden"
+						value="<%= redirectURL %>"
+					/>
 
 					<c:if test="<%= Validator.isNotNull(user2.getReminderQueryQuestion()) && Validator.isNotNull(user2.getReminderQueryAnswer()) %>">
 
@@ -153,7 +188,12 @@ renderResponse.setTitle(LanguageUtil.get(request, "forgot-password"));
 							<liferay-ui:message arguments="<%= HtmlUtil.escape(login) %>" key="an-email-will-be-sent-to-x-if-you-can-correctly-answer-the-following-question" translateArguments="<%= false %>" />
 						</div>
 
-						<aui:input autoFocus="<%= true %>" label="<%= HtmlUtil.escape(LanguageUtil.get(request, user2.getReminderQueryQuestion())) %>" name="answer" type="text" />
+						<aui:input
+							autoFocus="<%= true %>"
+							label="<%= HtmlUtil.escape(LanguageUtil.get(request, user2.getReminderQueryQuestion())) %>"
+							name="answer"
+							type="text"
+						/>
 					</c:if>
 
 					<c:choose>
@@ -172,7 +212,10 @@ renderResponse.setTitle(LanguageUtil.get(request, "forgot-password"));
 							</c:if>
 
 							<aui:button-row>
-								<aui:button type="submit" value='<%= company.isSendPasswordResetLink() ? "send-password-reset-link" : "send-new-password" %>' />
+								<aui:button
+									type="submit"
+									value='<%= company.isSendPasswordResetLink() ? "send-password-reset-link" : "send-new-password" %>'
+								/>
 							</aui:button-row>
 						</c:otherwise>
 					</c:choose>

@@ -81,13 +81,21 @@ for (int i = 0; i < categoryKeys.length; i++) {
 
 <c:if test="<%= showButtons %>">
 	<aui:button-row>
-		<aui:button primary="<%= true %>" type="submit" />
+		<aui:button
+			primary="<%= true %>"
+			type="submit"
+		/>
 
-		<aui:button href="<%= backURL %>" type="cancel" />
+		<aui:button
+			href="<%= backURL %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </c:if>
 
-<aui:script require="metal-dom/src/dom">
+<aui:script
+	require="metal-dom/src/dom"
+>
 	var dom = metalDomSrcDom.default;
 
 	var redirectField = dom.toElement('input[name="<portlet:namespace />redirect"]');

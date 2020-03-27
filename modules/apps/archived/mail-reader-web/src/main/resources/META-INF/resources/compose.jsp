@@ -76,24 +76,51 @@ else {
 %>
 
 <form action="<liferay-portlet:actionURL name="sendMessage" />" enctype="multipart/form-data" id="<portlet:namespace />fm" method="post" name="<portlet:namespace />fm">
-	<aui:input name="accountId" type="hidden" value="<%= accountId %>" />
-	<aui:input name="messageId" type="hidden" value="<%= messageId %>" />
-	<aui:input name="attachmentCount" type="hidden" value="0" />
+	<aui:input
+		name="accountId"
+		type="hidden"
+		value="<%= accountId %>"
+	/>
+
+	<aui:input
+		name="messageId"
+		type="hidden"
+		value="<%= messageId %>"
+	/>
+
+	<aui:input
+		name="attachmentCount"
+		type="hidden"
+		value="0"
+	/>
 
 	<aui:fieldset>
 		<div class="row-fluid">
 			<div class="recipient-fields span7">
-				<aui:input name="to" value="<%= to %>" />
+				<aui:input
+					name="to"
+					value="<%= to %>"
+				/>
 
-				<aui:input name="cc" value="<%= cc %>" />
+				<aui:input
+					name="cc"
+					value="<%= cc %>"
+				/>
 
-				<aui:input name="bcc" />
+				<aui:input
+					name="bcc"
+				/>
 
-				<aui:input name="subject" value="<%= subject %>" />
+				<aui:input
+					name="subject"
+					value="<%= subject %>"
+				/>
 			</div>
 
 			<div class="span5">
-				<aui:field-wrapper label="attachments">
+				<aui:field-wrapper
+					label="attachments"
+				>
 					<div class="attachments"></div>
 
 					<div>
@@ -104,7 +131,9 @@ else {
 		</div>
 
 		<div class="body-editor">
-			<aui:field-wrapper label="body">
+			<aui:field-wrapper
+				label="body"
+			>
 				<liferay-ui:input-editor
 					contents="<%= body %>"
 					editorImpl="<%= EDITOR_WYSIWYG_IMPL_KEY %>"
@@ -112,21 +141,38 @@ else {
 					width="100%"
 				/>
 
-				<aui:input name="body" type="hidden" />
+				<aui:input
+					name="body"
+					type="hidden"
+				/>
 			</aui:field-wrapper>
 		</div>
 	</aui:fieldset>
 
 	<aui:button-row>
-		<aui:button cssClass="send-message" data-messageId="<%= messageId %>" value="send" />
+		<aui:button
+			cssClass="send-message"
+			data-messageId="<%= messageId %>"
+			value="send"
+		/>
 
-		<aui:button cssClass="save-draft" data-messageId="<%= messageId %>" value="save" />
+		<aui:button
+			cssClass="save-draft"
+			data-messageId="<%= messageId %>"
+			value="save"
+		/>
 
-		<aui:button cssClass="discard-draft" data-messageId="<%= messageId %>" value="discard" />
+		<aui:button
+			cssClass="discard-draft"
+			data-messageId="<%= messageId %>"
+			value="discard"
+		/>
 	</aui:button-row>
 </form>
 
-<aui:script use="aui-base,aui-io-deprecated,aui-io-upload">
+<aui:script
+	use="aui-base,aui-io-deprecated,aui-io-upload"
+>
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.one('.send-message').on('click', function(event) {

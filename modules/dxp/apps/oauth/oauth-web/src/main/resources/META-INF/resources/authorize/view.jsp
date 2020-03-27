@@ -72,17 +72,41 @@
 				<c:otherwise>
 					<portlet:actionURL name="authorize" var="authorizeURL" />
 
-					<aui:form action="<%= authorizeURL %>" method="post" name="fm">
-						<aui:input name="mvcPath" type="hidden" value="/authorize/view.jsp" />
-						<aui:input name="<%= net.oauth.OAuth.OAUTH_CALLBACK %>" type="hidden" value="<%= oAuthCallback %>" />
-						<aui:input name="<%= net.oauth.OAuth.OAUTH_TOKEN %>" type="hidden" value="<%= oAuthAccessor.getRequestToken() %>" />
+					<aui:form
+						action="<%= authorizeURL %>"
+						method="post"
+						name="fm"
+					>
+						<aui:input
+							name="mvcPath"
+							type="hidden"
+							value="/authorize/view.jsp"
+						/>
+
+						<aui:input
+							name="<%= net.oauth.OAuth.OAUTH_CALLBACK %>"
+							type="hidden"
+							value="<%= oAuthCallback %>"
+						/>
+
+						<aui:input
+							name="<%= net.oauth.OAuth.OAUTH_TOKEN %>"
+							type="hidden"
+							value="<%= oAuthAccessor.getRequestToken() %>"
+						/>
 
 						<aui:row>
-							<aui:col width="<%= (oAuthApplication.getLogoId() != 0) ? 50 : 100 %>">
+							<aui:col
+								width="<%= (oAuthApplication.getLogoId() != 0) ? 50 : 100 %>"
+							>
 								<liferay-ui:message key="the-application-listed-below-is-requesting-access-to-your-account" />
 
 								<h3>
-									<aui:a href="<%= oAuthApplication.getWebsiteURL() %>" label="<%= HtmlUtil.escape(oAuthApplication.getName()) %>" target="_blank" />
+									<aui:a
+										href="<%= oAuthApplication.getWebsiteURL() %>"
+										label="<%= HtmlUtil.escape(oAuthApplication.getName()) %>"
+										target="_blank"
+									/>
 
 									<c:if test="<%= Validator.isNotNull(oAuthApplication.getDescription()) %>">
 										<liferay-ui:icon-help message="<%= HtmlUtil.escape(oAuthApplication.getDescription()) %>" />
@@ -105,20 +129,28 @@
 							</aui:col>
 
 							<c:if test="<%= oAuthApplication.getLogoId() != 0 %>">
-								<aui:col width="<%= 50 %>">
+								<aui:col
+									width="<%= 50 %>"
+								>
 									<img src="<%= HtmlUtil.escape(themeDisplay.getPathImage() + "/logo?img_id=" + oAuthApplication.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(oAuthApplication.getLogoId())) %>" />
 								</aui:col>
 							</c:if>
 						</aui:row>
 
 						<aui:button-row>
-							<aui:button type="submit" value="grant-access" />
+							<aui:button
+								type="submit"
+								value="grant-access"
+							/>
 
 							<%
 							String taglibOnClick = "document.location = '".concat(HtmlUtil.escape(oAuthApplication.getWebsiteURL())).concat("'");
 							%>
 
-							<aui:button onClick="<%= taglibOnClick %>" value="deny-access" />
+							<aui:button
+								onClick="<%= taglibOnClick %>"
+								value="deny-access"
+							/>
 						</aui:button-row>
 					</aui:form>
 				</c:otherwise>

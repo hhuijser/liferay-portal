@@ -24,7 +24,10 @@ SelectUsersDisplayContext selectUsersDisplayContext = new SelectUsersDisplayCont
 	displayContext="<%= new SelectUsersManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, selectUsersDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="selectUser">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="selectUser"
+>
 	<liferay-ui:search-container
 		id="users"
 		searchContainer="<%= selectUsersDisplayContext.getUserSearchContainer() %>"
@@ -49,7 +52,11 @@ SelectUsersDisplayContext selectUsersDisplayContext = new SelectUsersDisplayCont
 				data.put("userid", userRow.getUserId());
 				%>
 
-				<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+				<aui:a
+					cssClass="selector-button"
+					data="<%= data %>"
+					href="javascript:;"
+				>
 					<%= userRow.getScreenName() %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>

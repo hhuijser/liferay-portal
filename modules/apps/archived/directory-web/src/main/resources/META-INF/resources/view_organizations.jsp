@@ -66,7 +66,12 @@ boolean showSearch = ParamUtil.getBoolean(request, "showSearch", true);
 		searchContainer="<%= new OrganizationSearch(renderRequest, portletURL) %>"
 		var="organizationSearchContainer"
 	>
-		<aui:input disabled="<%= true %>" name="organizationsRedirect" type="hidden" value="<%= portletURL.toString() %>" />
+		<aui:input
+			disabled="<%= true %>"
+			name="organizationsRedirect"
+			type="hidden"
+			value="<%= portletURL.toString() %>"
+		/>
 
 		<%
 		OrganizationSearchTerms searchTerms = (OrganizationSearchTerms)organizationSearchContainer.getSearchTerms();

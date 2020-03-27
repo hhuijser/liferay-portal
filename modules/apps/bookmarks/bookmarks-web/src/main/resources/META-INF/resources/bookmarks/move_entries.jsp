@@ -79,10 +79,30 @@ if (portletTitleBasedNavigation) {
 		<portlet:param name="mvcRenderCommandName" value="/bookmarks/move_entry" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= moveEntryURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry(false);" %>'>
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.MOVE %>" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="newFolderId" type="hidden" value="<%= newFolderId %>" />
+	<aui:form
+		action="<%= moveEntryURL %>"
+		enctype="multipart/form-data"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry(false);" %>'
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= Constants.MOVE %>"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+
+		<aui:input
+			name="newFolderId"
+			type="hidden"
+			value="<%= newFolderId %>"
+		/>
 
 		<c:if test="<%= !portletTitleBasedNavigation %>">
 			<liferay-ui:header
@@ -91,7 +111,9 @@ if (portletTitleBasedNavigation) {
 			/>
 		</c:if>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 				<c:if test="<%= !validMoveFolders.isEmpty() %>">
 					<div class="move-list-info">
@@ -164,7 +186,11 @@ if (portletTitleBasedNavigation) {
 					</div>
 				</c:if>
 
-				<aui:input name="rowIdsBookmarksFolder" type="hidden" value="<%= ListUtil.toString(validMoveFolders, BookmarksFolder.FOLDER_ID_ACCESSOR) %>" />
+				<aui:input
+					name="rowIdsBookmarksFolder"
+					type="hidden"
+					value="<%= ListUtil.toString(validMoveFolders, BookmarksFolder.FOLDER_ID_ACCESSOR) %>"
+				/>
 
 				<c:if test="<%= !validMoveEntries.isEmpty() %>">
 					<div class="move-list-info">
@@ -237,7 +263,11 @@ if (portletTitleBasedNavigation) {
 					</div>
 				</c:if>
 
-				<aui:input name="rowIdsBookmarksEntry" type="hidden" value="<%= ListUtil.toString(validMoveEntries, BookmarksEntry.ENTRY_ID_ACCESSOR) %>" />
+				<aui:input
+					name="rowIdsBookmarksEntry"
+					type="hidden"
+					value="<%= ListUtil.toString(validMoveEntries, BookmarksEntry.ENTRY_ID_ACCESSOR) %>"
+				/>
 
 				<%
 				String folderName = StringPool.BLANK;
@@ -255,17 +285,31 @@ if (portletTitleBasedNavigation) {
 				%>
 
 				<div class="form-group">
-					<aui:input label="new-folder" name="folderName" type="resource" value="<%= folderName %>" />
+					<aui:input
+						label="new-folder"
+						name="folderName"
+						type="resource"
+						value="<%= folderName %>"
+					/>
 
-					<aui:button name="selectFolderButton" value="select" />
+					<aui:button
+						name="selectFolderButton"
+						value="select"
+					/>
 				</div>
 			</aui:fieldset>
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" value="move" />
+			<aui:button
+				type="submit"
+				value="move"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

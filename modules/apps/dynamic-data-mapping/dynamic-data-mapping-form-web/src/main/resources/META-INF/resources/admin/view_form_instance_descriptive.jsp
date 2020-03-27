@@ -30,7 +30,10 @@ String href = (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF);
 
 <div class="clamp-container">
 	<h2 class="h5 text-truncate">
-		<aui:a cssClass="form-instance-name" href="<%= href %>">
+		<aui:a
+			cssClass="form-instance-name"
+			href="<%= href %>"
+		>
 			<%= HtmlUtil.escape(ddmFormInstance.getName(locale)) %>
 		</aui:a>
 	</h2>

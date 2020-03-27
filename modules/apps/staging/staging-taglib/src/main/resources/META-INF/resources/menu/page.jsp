@@ -75,9 +75,16 @@ String publishMessage = LanguageUtil.get(request, publishDialogTitle);
 		</c:when>
 		<c:otherwise>
 			<aui:nav-bar>
-				<aui:nav cssClass="navbar-nav">
-					<aui:nav-item dropdown="<%= true %>" label="staging">
-						<aui:nav-item cssClass="<%= cssClass %>">
+				<aui:nav
+					cssClass="navbar-nav"
+				>
+					<aui:nav-item
+						dropdown="<%= true %>"
+						label="staging"
+					>
+						<aui:nav-item
+							cssClass="<%= cssClass %>"
+						>
 							<%@ include file="/menu/staging_actions.jspf" %>
 						</aui:nav-item>
 					</aui:nav-item>

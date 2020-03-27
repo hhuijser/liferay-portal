@@ -32,7 +32,9 @@ List<MenuItem> menuItems = MenuItem.fromWikiNode(selNodeId, depth, viewURL);
 	<c:when test="<%= !menuItems.isEmpty() %>">
 		<%= _buildTreeMenuHTML(menuItems, title, true) %>
 
-		<aui:script use="aui-tree-view">
+		<aui:script
+			use="aui-tree-view"
+		>
 			var wikiPageList = A.one('.wiki-navigation-portlet-tree-menu .tree-menu');
 
 			var treeView = new A.TreeView({

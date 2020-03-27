@@ -32,7 +32,10 @@ if (bodyContent != null) {
 	</c:when>
 	<c:otherwise>
 		<div class="sticker sticker-secondary">
-			<aui:icon image="<%= icon %>" markupView="lexicon" />
+			<aui:icon
+				image="<%= icon %>"
+				markupView="lexicon"
+			/>
 		</div>
 	</c:otherwise>
 </c:choose>

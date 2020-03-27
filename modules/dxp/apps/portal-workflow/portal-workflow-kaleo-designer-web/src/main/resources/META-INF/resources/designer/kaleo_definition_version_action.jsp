@@ -125,18 +125,60 @@ String kaleoNamespace = PortalUtil.getPortletNamespace(KaleoDesignerPortletKeys.
 
 <c:if test="<%= kaleoDefinition != null %>">
 	<div class="hide" id="<%= randomNamespace %>titleInputLocalized">
-		<aui:form name='<%= randomNamespace + "form" %>' portletNamespace="<%= kaleoNamespace %>">
-			<aui:input name="randomNamespace" type="hidden" value="<%= randomNamespace %>" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-			<aui:input name="name" type="hidden" value="<%= PortalUUIDUtil.generate() %>" />
-			<aui:input name="content" type="hidden" value="<%= kaleoDefinition.getContent() %>" />
-			<aui:input name="duplicatedDefinitionTitle" type="hidden" value="<%= kaleoDefinition.getTitle(LanguageUtil.getLanguageId(request)) %>" />
-			<aui:input name="defaultDuplicationTitle" type="hidden" value="<%= duplicateTitle %>" />
-			<aui:input name="duplicatedDefinitionName" type="hidden" value="<%= kaleoDefinition.getName() %>" />
+		<aui:form
+			name='<%= randomNamespace + "form" %>'
+			portletNamespace="<%= kaleoNamespace %>"
+		>
+			<aui:input
+				name="randomNamespace"
+				type="hidden"
+				value="<%= randomNamespace %>"
+			/>
+
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+
+			<aui:input
+				name="name"
+				type="hidden"
+				value="<%= PortalUUIDUtil.generate() %>"
+			/>
+
+			<aui:input
+				name="content"
+				type="hidden"
+				value="<%= kaleoDefinition.getContent() %>"
+			/>
+
+			<aui:input
+				name="duplicatedDefinitionTitle"
+				type="hidden"
+				value="<%= kaleoDefinition.getTitle(LanguageUtil.getLanguageId(request)) %>"
+			/>
+
+			<aui:input
+				name="defaultDuplicationTitle"
+				type="hidden"
+				value="<%= duplicateTitle %>"
+			/>
+
+			<aui:input
+				name="duplicatedDefinitionName"
+				type="hidden"
+				value="<%= kaleoDefinition.getName() %>"
+			/>
 
 			<aui:fieldset>
 				<aui:col>
-					<aui:input label="title" name='<%= randomNamespace + "title" %>' placeholder="<%= duplicateTitle %>" type="text" />
+					<aui:input
+						label="title"
+						name='<%= randomNamespace + "title" %>'
+						placeholder="<%= duplicateTitle %>"
+						type="text"
+					/>
 				</aui:col>
 
 				<aui:col>
@@ -146,7 +188,9 @@ String kaleoNamespace = PortalUtil.getPortletNamespace(KaleoDesignerPortletKeys.
 		</aui:form>
 	</div>
 
-	<aui:script use="liferay-kaleo-designer-dialogs">
+	<aui:script
+		use="liferay-kaleo-designer-dialogs"
+	>
 		var title = '<liferay-ui:message key="duplicate-workflow" />';
 
 		var confirmBeforeDuplicateDialog = A.rbind(

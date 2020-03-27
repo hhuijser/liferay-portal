@@ -38,28 +38,54 @@ renderResponse.setTitle(LanguageUtil.format(request, "copy-x", ddmStructure.getN
 	method="post"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="ddmStructureId" type="hidden" value="<%= String.valueOf(ddmStructure.getStructureId()) %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="ddmStructureId"
+		type="hidden"
+		value="<%= String.valueOf(ddmStructure.getStructureId()) %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= StructureNameException.class %>" message="please-enter-a-valid-name" />
 
-		<aui:model-context bean="<%= ddmStructure %>" model="<%= DDMStructure.class %>" />
+		<aui:model-context
+			bean="<%= ddmStructure %>"
+			model="<%= DDMStructure.class %>"
+		/>
 
 		<liferay-frontend:fieldset-group>
 			<liferay-frontend:fieldset>
-				<aui:input name="name" />
+				<aui:input
+					name="name"
+				/>
 
-				<aui:input name="description" />
+				<aui:input
+					name="description"
+				/>
 
-				<aui:input label="copy-templates" name="copyTemplates" type="checkbox" />
+				<aui:input
+					label="copy-templates"
+					name="copyTemplates"
+					type="checkbox"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" value="copy" />
+		<aui:button
+			type="submit"
+			value="copy"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

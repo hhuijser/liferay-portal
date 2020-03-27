@@ -24,8 +24,14 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 
 <p><liferay-ui:message key="select-the-default-ratings-type-for-the-following-applications" /></p>
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "ratingsSettingsContainer" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<aui:fieldset
+	id='<%= renderResponse.getNamespace() + "ratingsSettingsContainer" %>'
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
 	<%
 	Map<String, Map<String, RatingsType>> companyRatingsTypeMaps = companyPortletRatingsDefinitionDisplayContext.getCompanyRatingsTypeMaps();
@@ -49,13 +55,20 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 			RatingsType ratingsType = ratingsTypeMap.get(className);
 		%>
 
-			<aui:select label="<%= (classNames.size() > 1) ? ResourceActionsUtil.getModelResource(locale, className) : StringPool.BLANK %>" name='<%= "settings--" + propertyKey + "--" %>'>
+			<aui:select
+				label="<%= (classNames.size() > 1) ? ResourceActionsUtil.getModelResource(locale, className) : StringPool.BLANK %>"
+				name='<%= "settings--" + propertyKey + "--" %>'
+			>
 
 				<%
 				for (RatingsType curRatingsType : RatingsType.values()) {
 				%>
 
-					<aui:option label="<%= LanguageUtil.get(request, curRatingsType.getValue()) %>" selected="<%= Objects.equals(ratingsType, curRatingsType) %>" value="<%= curRatingsType.getValue() %>" />
+					<aui:option
+						label="<%= LanguageUtil.get(request, curRatingsType.getValue()) %>"
+						selected="<%= Objects.equals(ratingsType, curRatingsType) %>"
+						value="<%= curRatingsType.getValue() %>"
+					/>
 
 				<%
 				}
@@ -70,7 +83,9 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 
 </aui:fieldset>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var ratingsSettingsContainer = A.one(
 		'#<portlet:namespace />ratingsSettingsContainer'
 	);

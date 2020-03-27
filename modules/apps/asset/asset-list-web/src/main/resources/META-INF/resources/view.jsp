@@ -28,7 +28,11 @@ AssetListManagementToolbarDisplayContext assetListManagementToolbarDisplayContex
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteAssetListEntryURL %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= deleteAssetListEntryURL %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<c:choose>
 		<c:when test="<%= assetListDisplayContext.getAssetListEntriesCount() > 0 %>">
 			<liferay-ui:search-container
@@ -69,7 +73,9 @@ AssetListManagementToolbarDisplayContext assetListManagementToolbarDisplayContex
 						colspan="<%= 2 %>"
 					>
 						<h5>
-							<aui:a href="<%= editURL %>">
+							<aui:a
+								href="<%= editURL %>"
+							>
 								<%= HtmlUtil.escape(assetListEntry.getTitle()) %>
 							</aui:a>
 						</h5>

@@ -46,13 +46,47 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 	<portlet:param name="mvcRenderCommandName" value="/document_library/edit_file_entry_type" />
 </portlet:actionURL>
 
-<aui:form action="<%= editFileEntryTypeURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="fileEntryTypeId" type="hidden" value="<%= fileEntryTypeId %>" />
-	<aui:input name="fileEntryTypeUuid" type="hidden" value="<%= fileEntryTypeUuid %>" />
-	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
-	<aui:input name="definition" type="hidden" />
+<aui:form
+	action="<%= editFileEntryTypeURL %>"
+	cssClass="edit-metadata-type-form"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="fileEntryTypeId"
+		type="hidden"
+		value="<%= fileEntryTypeId %>"
+	/>
+
+	<aui:input
+		name="fileEntryTypeUuid"
+		type="hidden"
+		value="<%= fileEntryTypeUuid %>"
+	/>
+
+	<aui:input
+		name="ddmStructureId"
+		type="hidden"
+		value="<%= ddmStructureId %>"
+	/>
+
+	<aui:input
+		name="definition"
+		type="hidden"
+	/>
 
 	<liferay-ui:error exception="<%= DuplicateFileEntryTypeException.class %>" message="please-enter-a-unique-document-type-name" />
 	<liferay-ui:error exception="<%= NoSuchMetadataSetException.class %>" message="please-enter-a-valid-metadata-set-or-enter-a-metadata-field" />
@@ -61,7 +95,10 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 	<liferay-ui:error exception="<%= StructureDuplicateElementException.class %>" message="please-enter-unique-metadata-field-names-(including-field-names-inherited-from-the-parent)" />
 	<liferay-ui:error exception="<%= StructureNameException.class %>" message="please-enter-a-valid-name" />
 
-	<aui:model-context bean="<%= fileEntryType %>" model="<%= DLFileEntryType.class %>" />
+	<aui:model-context
+		bean="<%= fileEntryType %>"
+		model="<%= DLFileEntryType.class %>"
+	/>
 
 	<nav class="component-tbar subnav-tbar-light tbar tbar-metadata-type">
 		<div class="container-fluid container-fluid-max-xl">
@@ -69,9 +106,16 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 				<li class="tbar-item tbar-item-expand"></li>
 				<li class="tbar-item">
 					<div class="metadata-type-button-row tbar-section text-right">
-						<aui:button cssClass="btn-secondary btn-sm mr-3" href="<%= redirect %>" type="cancel" />
+						<aui:button
+							cssClass="btn-secondary btn-sm mr-3"
+							href="<%= redirect %>"
+							type="cancel"
+						/>
 
-						<aui:button cssClass="btn-sm mr-3" type="submit" />
+						<aui:button
+							cssClass="btn-sm mr-3"
+							type="submit"
+						/>
 					</div>
 				</li>
 			</ul>

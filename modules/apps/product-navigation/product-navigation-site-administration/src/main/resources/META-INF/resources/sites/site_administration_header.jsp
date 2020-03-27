@@ -42,7 +42,9 @@ portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 		/>
 	</div>
 
-	<aui:script sandbox="<%= true %>">
+	<aui:script
+		sandbox="<%= true %>"
+	>
 		var pagesTreeToggle = document.getElementById(
 			'<portlet:namespace />pagesTreeSidenavToggleId'
 		);
@@ -153,7 +155,10 @@ portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 						</c:when>
 						<c:otherwise>
 							<div class="sticker sticker-secondary">
-								<aui:icon image="<%= group.getIconCssClass() %>" markupView="lexicon" />
+								<aui:icon
+									image="<%= group.getIconCssClass() %>"
+									markupView="lexicon"
+								/>
 							</div>
 						</c:otherwise>
 					</c:choose>
@@ -178,9 +183,17 @@ portletURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 				<span class="panel-notifications-count sticker sticker-rounded sticker-sm sticker-top-right sticker-warning"><%= siteAdministrationPanelCategoryDisplayContext.getNotificationsCount() %></span>
 			</c:if>
 
-			<aui:icon cssClass="collapse-icon-closed" image="angle-right" markupView="lexicon" />
+			<aui:icon
+				cssClass="collapse-icon-closed"
+				image="angle-right"
+				markupView="lexicon"
+			/>
 
-			<aui:icon cssClass="collapse-icon-open" image="angle-down" markupView="lexicon" />
+			<aui:icon
+				cssClass="collapse-icon-open"
+				image="angle-down"
+				markupView="lexicon"
+			/>
 		</a>
 	</c:when>
 	<c:when test="<%= siteAdministrationPanelCategoryDisplayContext.isShowSiteSelector() %>">

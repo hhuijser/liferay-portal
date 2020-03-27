@@ -71,8 +71,18 @@ portletURL.setParameter("eventName", eventName);
 					<portlet:param name="fieldsNamespace" value="<%= fieldsNamespace %>" />
 				</portlet:resourceURL>
 
-				<aui:form action="<%= structureFieldURL %>" disabled="<%= !Objects.equals(field.getName(), ddmStructureFieldName) %>" name='<%= field.getName() + "fieldForm" %>' onSubmit="event.preventDefault()">
-					<aui:input disabled="<%= true %>" name="buttonId" type="hidden" value='<%= renderResponse.getNamespace() + "applyButton" + field.getName() %>' />
+				<aui:form
+					action="<%= structureFieldURL %>"
+					disabled="<%= !Objects.equals(field.getName(), ddmStructureFieldName) %>"
+					name='<%= field.getName() + "fieldForm" %>'
+					onSubmit="event.preventDefault()"
+				>
+					<aui:input
+						disabled="<%= true %>"
+						name="buttonId"
+						type="hidden"
+						value='<%= renderResponse.getNamespace() + "applyButton" + field.getName() %>'
+					/>
 
 					<%
 					Field ddmField = new com.liferay.dynamic.data.mapping.storage.Field();
@@ -109,7 +119,13 @@ portletURL.setParameter("eventName", eventName);
 				).build();
 				%>
 
-				<aui:button cssClass="selector-button" data="<%= data %>" disabled="<%= Objects.equals(field.getName(), ddmStructureFieldName) ? false : true %>" id='<%= "applyButton" + field.getName() %>' value="apply" />
+				<aui:button
+					cssClass="selector-button"
+					data="<%= data %>"
+					disabled="<%= Objects.equals(field.getName(), ddmStructureFieldName) ? false : true %>"
+					id='<%= "applyButton" + field.getName() %>'
+					value="apply"
+				/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 
@@ -119,7 +135,9 @@ portletURL.setParameter("eventName", eventName);
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var Util = Liferay.Util;
 
 	var structureFormContainer = A.one(

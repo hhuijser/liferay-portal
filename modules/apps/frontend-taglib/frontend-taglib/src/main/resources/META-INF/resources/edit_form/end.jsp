@@ -17,7 +17,11 @@
 <%@ include file="/edit_form/init.jsp" %>
 
 			<c:if test="<%= (checkboxNames != null) && !checkboxNames.isEmpty() %>">
-				<aui:input name="checkboxNames" type="hidden" value="<%= StringUtil.merge(checkboxNames) %>" />
+				<aui:input
+					name="checkboxNames"
+					type="hidden"
+					value="<%= StringUtil.merge(checkboxNames) %>"
+				/>
 			</c:if>
 
 			<c:if test="<%= Validator.isNotNull(onSubmit) %>">
@@ -34,7 +38,9 @@
 String fullName = namespace + HtmlUtil.escapeJS(name);
 %>
 
-<aui:script use="liferay-form">
+<aui:script
+	use="liferay-form"
+>
 	var config = {
 		id: '<%= fullName %>',
 		validateOnBlur: <%= validateOnBlur %>,

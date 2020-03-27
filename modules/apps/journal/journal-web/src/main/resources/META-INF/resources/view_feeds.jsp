@@ -40,7 +40,12 @@ renderResponse.setTitle(LanguageUtil.get(request, "feeds"));
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteFeedsURL %>" cssClass="container-fluid-1280" method="post" name="fm">
+<aui:form
+	action="<%= deleteFeedsURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="feeds"
 		searchContainer="<%= journalFeedsDisplayContext.getFeedsSearchContainer() %>"
@@ -84,7 +89,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "feeds"));
 						colspan="<%= 2 %>"
 					>
 						<h5>
-							<aui:a href="<%= editURL %>">
+							<aui:a
+								href="<%= editURL %>"
+							>
 								<%= feed.getName() %>
 							</aui:a>
 						</h5>

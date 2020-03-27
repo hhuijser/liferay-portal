@@ -33,7 +33,9 @@
 	sortingURL="<%= ddmDisplayContext.getSortingURL() %>"
 />
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteStructures = function() {
 		if (
 			confirm(

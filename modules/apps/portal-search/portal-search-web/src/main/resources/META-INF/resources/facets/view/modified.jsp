@@ -75,10 +75,25 @@ int index = 0;
 
 	<div class="panel-body">
 		<div class="<%= cssClass %>" data-facetFieldName="<%= HtmlUtil.escapeAttribute(facet.getFieldId()) %>" id="<%= randomNamespace %>facet">
-			<aui:input autocomplete="off" name="<%= HtmlUtil.escapeAttribute(facet.getFieldId()) %>" type="hidden" value="<%= fieldParam %>" />
-			<aui:input autocomplete="off" name='<%= HtmlUtil.escapeAttribute(facet.getFieldId()) + "selection" %>' type="hidden" value="<%= fieldParamSelection %>" />
+			<aui:input
+				autocomplete="off"
+				name="<%= HtmlUtil.escapeAttribute(facet.getFieldId()) %>"
+				type="hidden"
+				value="<%= fieldParam %>"
+			/>
 
-			<aui:field-wrapper cssClass='<%= randomNamespace + "calendar calendar_" %>' label="" name="<%= HtmlUtil.escapeAttribute(facet.getFieldId()) %>">
+			<aui:input
+				autocomplete="off"
+				name='<%= HtmlUtil.escapeAttribute(facet.getFieldId()) + "selection" %>'
+				type="hidden"
+				value="<%= fieldParamSelection %>"
+			/>
+
+			<aui:field-wrapper
+				cssClass='<%= randomNamespace + "calendar calendar_" %>'
+				label=""
+				name="<%= HtmlUtil.escapeAttribute(facet.getFieldId()) %>"
+			>
 				<ul class="list-unstyled modified">
 					<li class="default facet-value">
 
@@ -89,7 +104,10 @@ int index = 0;
 						data.put("value", StringPool.BLANK);
 						%>
 
-						<aui:a cssClass='<%= (Validator.isNull(fieldParamSelection) || fieldParamSelection.equals("0")) ? "facet-term-selected" : "facet-term-unselected" %>' href="javascript:;">
+						<aui:a
+							cssClass='<%= (Validator.isNull(fieldParamSelection) || fieldParamSelection.equals("0")) ? "facet-term-selected" : "facet-term-unselected" %>'
+							href="javascript:;"
+						>
 							<liferay-ui:message key="<%= HtmlUtil.escape(facetConfiguration.getLabel()) %>" />
 						</aui:a>
 					</li>
@@ -119,7 +137,11 @@ int index = 0;
 							data.put("value", HtmlUtil.escape(range));
 							%>
 
-							<aui:a cssClass="<%= rangeCssClass %>" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="<%= rangeCssClass %>"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<liferay-ui:message key="<%= label %>" />
 
 								<%
@@ -155,7 +177,10 @@ int index = 0;
 						}
 						%>
 
-						<aui:a cssClass="<%= customRangeCssClass %>" href="javascript:;">
+						<aui:a
+							cssClass="<%= customRangeCssClass %>"
+							href="javascript:;"
+						>
 							<liferay-ui:message key="custom-range" />&hellip;
 
 							<c:if test="<%= termCollector != null %>">
@@ -183,7 +208,9 @@ int index = 0;
 
 					<div class="<%= !fieldParamSelection.equals(String.valueOf(index + 1)) ? "hide" : StringPool.BLANK %> modified-custom-range" id="<%= randomNamespace %>customRange">
 						<div class="col-md-6" id="<%= randomNamespace %>customRangeFrom">
-							<aui:field-wrapper label="from">
+							<aui:field-wrapper
+								label="from"
+							>
 								<liferay-ui:input-date
 									dayParam='<%= HtmlUtil.escapeJS(facet.getFieldId()) + "dayFrom" %>'
 									dayValue="<%= fromCalendar.get(Calendar.DATE) %>"
@@ -199,7 +226,9 @@ int index = 0;
 						</div>
 
 						<div class="col-md-6" id="<%= randomNamespace %>customRangeTo">
-							<aui:field-wrapper label="to">
+							<aui:field-wrapper
+								label="to"
+							>
 								<liferay-ui:input-date
 									dayParam='<%= HtmlUtil.escapeJS(facet.getFieldId()) + "dayTo" %>'
 									dayValue="<%= toCalendar.get(Calendar.DATE) %>"
@@ -218,7 +247,12 @@ int index = 0;
 						String taglibSearchCustomRange = "window['" + renderResponse.getNamespace() + HtmlUtil.escapeJS(facet.getFieldId()) + "searchCustomRange'](" + (index + 1) + ");";
 						%>
 
-						<aui:button disabled="<%= toCalendar.getTimeInMillis() < fromCalendar.getTimeInMillis() %>" name="searchCustomRangeButton" onClick="<%= taglibSearchCustomRange %>" value="search" />
+						<aui:button
+							disabled="<%= toCalendar.getTimeInMillis() < fromCalendar.getTimeInMillis() %>"
+							name="searchCustomRangeButton"
+							onClick="<%= taglibSearchCustomRange %>"
+							value="search"
+						/>
 					</div>
 				</ul>
 			</aui:field-wrapper>
@@ -309,7 +343,9 @@ int index = 0;
 	}
 </aui:script>
 
-<aui:script use="aui-form-validator">
+<aui:script
+	use="aui-form-validator"
+>
 	var Util = Liferay.Util;
 
 	var customRangeFrom = Liferay.component(

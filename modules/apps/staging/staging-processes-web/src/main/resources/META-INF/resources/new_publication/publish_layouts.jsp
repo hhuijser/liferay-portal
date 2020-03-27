@@ -22,22 +22,102 @@
 	<portlet:param name="mvcRenderCommandName" value="processesList" />
 </portlet:renderURL>
 
-<aui:form action='<%= portletURL.toString() + "&etag=0&strip=0" %>' cssClass="lfr-export-dialog" method="post" name="exportPagesFm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "publishPages();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= cmd %>" />
-	<aui:input name="exportImportConfigurationId" type="hidden" value="<%= exportImportConfigurationId %>" />
-	<aui:input name="originalCmd" type="hidden" value="<%= cmd %>" />
-	<aui:input name="currentURL" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="redirect" type="hidden" value="<%= basePortletURL %>" />
-	<aui:input name="groupId" type="hidden" value="<%= stagingGroupId %>" />
-	<aui:input name="privateLayout" type="hidden" value="<%= privateLayout %>" />
-	<aui:input name="layoutSetBranchName" type="hidden" value="<%= layoutSetBranchName %>" />
-	<aui:input name="lastImportUserName" type="hidden" value="<%= user.getFullName() %>" />
-	<aui:input name="lastImportUserUuid" type="hidden" value="<%= String.valueOf(user.getUserUuid()) %>" />
-	<aui:input name="treeId" type="hidden" value="<%= treeId %>" />
-	<aui:input name="<%= PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL %>" type="hidden" value="<%= true %>" />
-	<aui:input name="<%= PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL %>" type="hidden" value="<%= true %>" />
-	<aui:input name="<%= PortletDataHandlerKeys.PORTLET_SETUP_ALL %>" type="hidden" value="<%= true %>" />
-	<aui:input name="<%= PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL %>" type="hidden" value="<%= true %>" />
+<aui:form
+	action='<%= portletURL.toString() + "&etag=0&strip=0" %>'
+	cssClass="lfr-export-dialog"
+	method="post"
+	name="exportPagesFm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "publishPages();" %>'
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= cmd %>"
+	/>
+
+	<aui:input
+		name="exportImportConfigurationId"
+		type="hidden"
+		value="<%= exportImportConfigurationId %>"
+	/>
+
+	<aui:input
+		name="originalCmd"
+		type="hidden"
+		value="<%= cmd %>"
+	/>
+
+	<aui:input
+		name="currentURL"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= basePortletURL %>"
+	/>
+
+	<aui:input
+		name="groupId"
+		type="hidden"
+		value="<%= stagingGroupId %>"
+	/>
+
+	<aui:input
+		name="privateLayout"
+		type="hidden"
+		value="<%= privateLayout %>"
+	/>
+
+	<aui:input
+		name="layoutSetBranchName"
+		type="hidden"
+		value="<%= layoutSetBranchName %>"
+	/>
+
+	<aui:input
+		name="lastImportUserName"
+		type="hidden"
+		value="<%= user.getFullName() %>"
+	/>
+
+	<aui:input
+		name="lastImportUserUuid"
+		type="hidden"
+		value="<%= String.valueOf(user.getUserUuid()) %>"
+	/>
+
+	<aui:input
+		name="treeId"
+		type="hidden"
+		value="<%= treeId %>"
+	/>
+
+	<aui:input
+		name="<%= PortletDataHandlerKeys.PORTLET_ARCHIVED_SETUPS_ALL %>"
+		type="hidden"
+		value="<%= true %>"
+	/>
+
+	<aui:input
+		name="<%= PortletDataHandlerKeys.PORTLET_CONFIGURATION_ALL %>"
+		type="hidden"
+		value="<%= true %>"
+	/>
+
+	<aui:input
+		name="<%= PortletDataHandlerKeys.PORTLET_SETUP_ALL %>"
+		type="hidden"
+		value="<%= true %>"
+	/>
+
+	<aui:input
+		name="<%= PortletDataHandlerKeys.PORTLET_USER_PREFERENCES_ALL %>"
+		type="hidden"
+		value="<%= true %>"
+	/>
 
 	<liferay-staging:process-error
 		authException="<%= true %>"
@@ -55,19 +135,33 @@
 				localPublishing="<%= localPublishing %>"
 			/>
 
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 					<c:choose>
 						<c:when test="<%= exportImportConfiguration == null %>">
-							<aui:input label="title" maxlength='<%= ModelHintsUtil.getMaxLength(ExportImportConfiguration.class.getName(), "name") %>' name="name" placeholder="process-name-placeholder" />
+							<aui:input
+								label="title"
+								maxlength='<%= ModelHintsUtil.getMaxLength(ExportImportConfiguration.class.getName(), "name") %>'
+								name="name"
+								placeholder="process-name-placeholder"
+							/>
 						</c:when>
 						<c:otherwise>
-							<aui:input label="title" maxlength='<%= ModelHintsUtil.getMaxLength(ExportImportConfiguration.class.getName(), "name") %>' name="name" value="<%= exportImportConfiguration.getName() %>" />
+							<aui:input
+								label="title"
+								maxlength='<%= ModelHintsUtil.getMaxLength(ExportImportConfiguration.class.getName(), "name") %>'
+								name="name"
+								value="<%= exportImportConfiguration.getName() %>"
+							/>
 						</c:otherwise>
 					</c:choose>
 				</aui:fieldset>
 
-				<aui:fieldset cssClass="options-group">
+				<aui:fieldset
+					cssClass="options-group"
+				>
 					<div class="sheet-section">
 						<h3 class="sheet-subtitle"><liferay-ui:message key="date" /></h3>
 
@@ -109,7 +203,11 @@
 				/>
 
 				<c:if test="<%= !localPublishing %>">
-					<aui:fieldset collapsible="<%= true %>" cssClass="options-group" label="remote-live-connection-settings">
+					<aui:fieldset
+						collapsible="<%= true %>"
+						cssClass="options-group"
+						label="remote-live-connection-settings"
+					>
 						<liferay-staging:remote-options
 							disableInputs="<%= configuredPublish %>"
 							exportImportConfigurationId="<%= exportImportConfigurationId %>"
@@ -121,11 +219,22 @@
 		</div>
 
 		<aui:button-row>
-			<aui:button id="addButton" onClick='<%= renderResponse.getNamespace() + "schedulePublishEvent();" %>' value="add-event" />
+			<aui:button
+				id="addButton"
+				onClick='<%= renderResponse.getNamespace() + "schedulePublishEvent();" %>'
+				value="add-event"
+			/>
 
-			<aui:button id="publishButton" type="submit" value="<%= LanguageUtil.get(request, publishMessageKey) %>" />
+			<aui:button
+				id="publishButton"
+				type="submit"
+				value="<%= LanguageUtil.get(request, publishMessageKey) %>"
+			/>
 
-			<aui:button href="<%= basePortletURL %>" type="cancel" />
+			<aui:button
+				href="<%= basePortletURL %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</div>
 </aui:form>
@@ -202,7 +311,9 @@
 	);
 </aui:script>
 
-<aui:script use="liferay-staging-processes-export-import">
+<aui:script
+	use="liferay-staging-processes-export-import"
+>
 	var exportImport = new Liferay.ExportImport({
 		commentsNode: '#<%= PortletDataHandlerKeys.COMMENTS %>',
 		deletionsNode: '#<%= PortletDataHandlerKeys.DELETIONS %>',

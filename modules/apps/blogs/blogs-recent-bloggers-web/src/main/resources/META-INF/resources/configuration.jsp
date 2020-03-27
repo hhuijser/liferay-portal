@@ -37,27 +37,61 @@ if (organizationId > 0) {
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
-	<aui:input name="preferences--organizationId--" type="hidden" value="<%= organizationId %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
+
+	<aui:input
+		name="preferences--organizationId--"
+		type="hidden"
+		value="<%= organizationId %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset>
-			<aui:select name="preferences--selectionMethod--" value="<%= selectionMethod %>">
-				<aui:option label="users" />
-				<aui:option label="scope" />
+			<aui:select
+				name="preferences--selectionMethod--"
+				value="<%= selectionMethod %>"
+			>
+				<aui:option
+					label="users"
+				/>
+
+				<aui:option
+					label="scope"
+				/>
 			</aui:select>
 
 			<div class="form-group" id="<portlet:namespace />UsersSelectionOptions">
-				<aui:input label="organization" name="organizationName" type="resource" value="<%= organizationName %>" />
+				<aui:input
+					label="organization"
+					name="organizationName"
+					type="resource"
+					value="<%= organizationName %>"
+				/>
 
-				<aui:button name="selectOrganizationButton" value="select" />
+				<aui:button
+					name="selectOrganizationButton"
+					value="select"
+				/>
 
 				<%
 				String taglibRemoveFolder = "Liferay.Util.removeEntitySelection('organizationId', 'organizationName', this, '" + renderResponse.getNamespace() + "');";
 				%>
 
-				<aui:button name="removeOrganizationButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
+				<aui:button
+					name="removeOrganizationButton"
+					onClick="<%= taglibRemoveFolder %>"
+					value="remove"
+				/>
 			</div>
 
 			<aui:script>
@@ -140,36 +174,103 @@ if (organizationId > 0) {
 				);
 			</aui:script>
 
-			<aui:select name="preferences--displayStyle--">
-				<aui:option label="user-name-and-image" selected='<%= displayStyle.equals("user-name-and-image") %>' />
-				<aui:option label="user-name" selected='<%= displayStyle.equals("user-name") %>' />
+			<aui:select
+				name="preferences--displayStyle--"
+			>
+				<aui:option
+					label="user-name-and-image"
+					selected='<%= displayStyle.equals("user-name-and-image") %>'
+				/>
+
+				<aui:option
+					label="user-name"
+					selected='<%= displayStyle.equals("user-name") %>'
+				/>
 			</aui:select>
 
-			<aui:select label="maximum-bloggers-to-display" name="preferences--max--" value="<%= max %>">
-				<aui:option label="1" />
-				<aui:option label="2" />
-				<aui:option label="3" />
-				<aui:option label="4" />
-				<aui:option label="5" />
-				<aui:option label="10" />
-				<aui:option label="15" />
-				<aui:option label="20" />
-				<aui:option label="25" />
-				<aui:option label="30" />
-				<aui:option label="40" />
-				<aui:option label="50" />
-				<aui:option label="60" />
-				<aui:option label="70" />
-				<aui:option label="80" />
-				<aui:option label="90" />
-				<aui:option label="100" />
+			<aui:select
+				label="maximum-bloggers-to-display"
+				name="preferences--max--"
+				value="<%= max %>"
+			>
+				<aui:option
+					label="1"
+				/>
+
+				<aui:option
+					label="2"
+				/>
+
+				<aui:option
+					label="3"
+				/>
+
+				<aui:option
+					label="4"
+				/>
+
+				<aui:option
+					label="5"
+				/>
+
+				<aui:option
+					label="10"
+				/>
+
+				<aui:option
+					label="15"
+				/>
+
+				<aui:option
+					label="20"
+				/>
+
+				<aui:option
+					label="25"
+				/>
+
+				<aui:option
+					label="30"
+				/>
+
+				<aui:option
+					label="40"
+				/>
+
+				<aui:option
+					label="50"
+				/>
+
+				<aui:option
+					label="60"
+				/>
+
+				<aui:option
+					label="70"
+				/>
+
+				<aui:option
+					label="80"
+				/>
+
+				<aui:option
+					label="90"
+				/>
+
+				<aui:option
+					label="100"
+				/>
 			</aui:select>
 		</liferay-frontend:fieldset>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

@@ -55,12 +55,32 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 	</p>
 </c:if>
 
-<aui:input checked="<%= inheritLocales %>" id="<%= GroupConstants.TYPE_SETTINGS_KEY_INHERIT_LOCALES %>" label="use-the-default-language-options" name="TypeSettingsProperties--inheritLocales--" readonly="<%= readOnlyLocaleInput %>" type="radio" value="<%= true %>" />
+<aui:input
+	checked="<%= inheritLocales %>"
+	id="<%= GroupConstants.TYPE_SETTINGS_KEY_INHERIT_LOCALES %>"
+	label="use-the-default-language-options"
+	name="TypeSettingsProperties--inheritLocales--"
+	readonly="<%= readOnlyLocaleInput %>"
+	type="radio"
+	value="<%= true %>"
+/>
 
-<aui:input checked="<%= !inheritLocales %>" id="customLocales" label="define-a-custom-default-language-and-additional-available-languages-for-this-site" name="TypeSettingsProperties--inheritLocales--" readonly="<%= readOnlyLocaleInput %>" type="radio" value="<%= false %>" />
+<aui:input
+	checked="<%= !inheritLocales %>"
+	id="customLocales"
+	label="define-a-custom-default-language-and-additional-available-languages-for-this-site"
+	name="TypeSettingsProperties--inheritLocales--"
+	readonly="<%= readOnlyLocaleInput %>"
+	type="radio"
+	value="<%= false %>"
+/>
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "inheritLocalesFieldset" %>'>
-	<aui:fieldset cssClass="default-language">
+<aui:fieldset
+	id='<%= renderResponse.getNamespace() + "inheritLocalesFieldset" %>'
+>
+	<aui:fieldset
+		cssClass="default-language"
+	>
 		<h4 class="text-muted"><liferay-ui:message key="default-language" /></h4>
 
 		<%
@@ -74,7 +94,9 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 		</p>
 	</aui:fieldset>
 
-	<aui:fieldset cssClass="available-languages">
+	<aui:fieldset
+		cssClass="available-languages"
+	>
 		<h4 class="text-muted"><liferay-ui:message key="available-languages" /></h4>
 
 		<p class="text-muted">
@@ -83,7 +105,9 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 	</aui:fieldset>
 </aui:fieldset>
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "customLocalesFieldset" %>'>
+<aui:fieldset
+	id='<%= renderResponse.getNamespace() + "customLocalesFieldset" %>'
+>
 	<liferay-ui:error exception="<%= LocaleException.class %>">
 
 		<%
@@ -104,10 +128,17 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 	Set<Locale> siteAvailableLocales = LanguageUtil.getAvailableLocales(liveGroup.getGroupId());
 	%>
 
-	<aui:fieldset cssClass="default-language">
+	<aui:fieldset
+		cssClass="default-language"
+	>
 		<h4 class="text-default"><liferay-ui:message key="default-language" /></h4>
 
-		<aui:select label="" name="TypeSettingsProperties--languageId--" readonly="<%= readOnlyLocaleInput %>" title="language">
+		<aui:select
+			label=""
+			name="TypeSettingsProperties--languageId--"
+			readonly="<%= readOnlyLocaleInput %>"
+			title="language"
+		>
 
 			<%
 			Locale siteDefaultLocale = PortalUtil.getSiteDefaultLocale(liveGroup.getGroupId());
@@ -115,7 +146,13 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 			for (Locale siteAvailableLocale : siteAvailableLocales) {
 			%>
 
-				<aui:option data-value="<%= LocaleUtil.toLanguageId(siteAvailableLocale) %>" label="<%= siteAvailableLocale.getDisplayName(locale) %>" lang="<%= LocaleUtil.toW3cLanguageId(siteAvailableLocale) %>" selected="<%= siteDefaultLocale.getLanguage().equals(siteAvailableLocale.getLanguage()) && siteDefaultLocale.getCountry().equals(siteAvailableLocale.getCountry()) %>" value="<%= LocaleUtil.toLanguageId(siteAvailableLocale) %>" />
+				<aui:option
+					data-value="<%= LocaleUtil.toLanguageId(siteAvailableLocale) %>"
+					label="<%= siteAvailableLocale.getDisplayName(locale) %>"
+					lang="<%= LocaleUtil.toW3cLanguageId(siteAvailableLocale) %>"
+					selected="<%= siteDefaultLocale.getLanguage().equals(siteAvailableLocale.getLanguage()) && siteDefaultLocale.getCountry().equals(siteAvailableLocale.getCountry()) %>"
+					value="<%= LocaleUtil.toLanguageId(siteAvailableLocale) %>"
+				/>
 
 			<%
 			}
@@ -128,10 +165,16 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 
 	<div id="<portlet:namespace />defaultLanguageSiteNameWarning"></div>
 
-	<aui:fieldset cssClass="available-languages">
+	<aui:fieldset
+		cssClass="available-languages"
+	>
 		<h4 class="text-default"><liferay-ui:message key="available-languages" /></h4>
 
-		<aui:input name='<%= "TypeSettingsProperties--" + PropsKeys.LOCALES + "--" %>' type="hidden" value="<%= StringUtil.merge(LocaleUtil.toLanguageIds(siteAvailableLocales)) %>" />
+		<aui:input
+			name='<%= "TypeSettingsProperties--" + PropsKeys.LOCALES + "--" %>'
+			type="hidden"
+			value="<%= StringUtil.merge(LocaleUtil.toLanguageIds(siteAvailableLocales)) %>"
+		/>
 
 		<%
 
@@ -207,7 +250,9 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 	}
 </script>
 
-<aui:script use="aui-alert,aui-base">
+<aui:script
+	use="aui-alert,aui-base"
+>
 	var languageSelectInput = A.one('#<portlet:namespace />languageId');
 
 	if (languageSelectInput) {

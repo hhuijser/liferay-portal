@@ -53,8 +53,17 @@ JSONArray fieldsJSONArray = sortPortletPreferences.getFieldsJSONArray();
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -90,9 +99,19 @@ JSONArray fieldsJSONArray = sortPortletPreferences.getFieldsJSONArray();
 
 					<div class="field-form-row lfr-form-row lfr-form-row-inline">
 						<div class="row-fields">
-							<aui:input cssClass="label-input" label="label" name='<%= "label_" + i %>' value='<%= jsonObject.getString("label") %>' />
+							<aui:input
+								cssClass="label-input"
+								label="label"
+								name='<%= "label_" + i %>'
+								value='<%= jsonObject.getString("label") %>'
+							/>
 
-							<aui:input cssClass="sort-field-input" label="field" name='<%= "field_" + i %>' value='<%= jsonObject.getString("field") %>' />
+							<aui:input
+								cssClass="sort-field-input"
+								label="field"
+								name='<%= "field_" + i %>'
+								value='<%= jsonObject.getString("field") %>'
+							/>
 						</div>
 					</div>
 
@@ -100,21 +119,37 @@ JSONArray fieldsJSONArray = sortPortletPreferences.getFieldsJSONArray();
 				}
 				%>
 
-				<aui:input cssClass="fields-input" name="<%= PortletPreferencesJspUtil.getInputName(SortPortletPreferences.PREFERENCE_KEY_FIELDS) %>" type="hidden" value="<%= sortPortletPreferences.getFieldsString() %>" />
+				<aui:input
+					cssClass="fields-input"
+					name="<%= PortletPreferencesJspUtil.getInputName(SortPortletPreferences.PREFERENCE_KEY_FIELDS) %>"
+					type="hidden"
+					value="<%= sortPortletPreferences.getFieldsString() %>"
+				/>
 
-				<aui:input name="fieldsIndexes" type="hidden" value="<%= StringUtil.merge(fieldsIndexes) %>" />
+				<aui:input
+					name="fieldsIndexes"
+					type="hidden"
+					value="<%= StringUtil.merge(fieldsIndexes) %>"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button cssClass="btn-lg" type="submit" />
+		<aui:button
+			cssClass="btn-lg"
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 
-<aui:script use="liferay-auto-fields">
+<aui:script
+	use="liferay-auto-fields"
+>
 	var autoFields = new Liferay.AutoFields({
 		contentBox: 'fieldset#<portlet:namespace />fieldsId',
 		fieldIndexes: '<portlet:namespace />fieldsIndexes',
@@ -122,6 +157,8 @@ JSONArray fieldsJSONArray = sortPortletPreferences.getFieldsJSONArray();
 	}).render();
 </aui:script>
 
-<aui:script use="liferay-search-sort-configuration">
+<aui:script
+	use="liferay-search-sort-configuration"
+>
 	new Liferay.Search.SortConfiguration(A.one(document.<portlet:namespace />fm));
 </aui:script>

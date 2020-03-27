@@ -106,7 +106,9 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 							</span>
 
 							<p class="font-weight-bold h5">
-								<aui:a href="<%= editURL %>">
+								<aui:a
+									href="<%= editURL %>"
+								>
 									<%= HtmlUtil.escape(title) %>
 								</aui:a>
 							</p>
@@ -273,7 +275,9 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 							</span>
 
 							<p class="font-weight-bold h5">
-								<aui:a href="<%= rowURL.toString() %>">
+								<aui:a
+									href="<%= rowURL.toString() %>"
+								>
 									<%= HtmlUtil.escape(curFolder.getName()) %>
 								</aui:a>
 							</p>
@@ -285,7 +289,12 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 							</c:if>
 
 							<span class="text-default">
-								<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= curFolder.getStatus() %>" />
+								<aui:workflow-status
+									markupView="lexicon"
+									showIcon="<%= false %>"
+									showLabel="<%= false %>"
+									status="<%= curFolder.getStatus() %>"
+								/>
 							</span>
 						</liferay-ui:search-container-column-text>
 
@@ -394,7 +403,9 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 	module="js/ElementsDefaultEventHandler.es"
 />
 
-<aui:script use="liferay-journal-navigation">
+<aui:script
+	use="liferay-journal-navigation"
+>
 	var journalNavigation = new Liferay.Portlet.JournalNavigation({
 		editEntryUrl: '<portlet:actionURL />',
 		form: {

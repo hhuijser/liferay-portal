@@ -29,10 +29,21 @@ renderResponse.setTitle(LanguageUtil.get(request, "view-form"));
 
 <div class="container-fluid-1280">
 	<c:if test="<%= formInstanceRecordVersion != null %>">
-		<aui:model-context bean="<%= formInstanceRecordVersion %>" model="<%= DDMFormInstanceRecordVersion.class %>" />
+		<aui:model-context
+			bean="<%= formInstanceRecordVersion %>"
+			model="<%= DDMFormInstanceRecordVersion.class %>"
+		/>
 
 		<div class="panel text-center">
-			<aui:workflow-status markupView="lexicon" model="<%= DDMFormInstanceRecord.class %>" showHelpMessage="<%= false %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= formInstanceRecordVersion.getStatus() %>" version="<%= formInstanceRecordVersion.getVersion() %>" />
+			<aui:workflow-status
+				markupView="lexicon"
+				model="<%= DDMFormInstanceRecord.class %>"
+				showHelpMessage="<%= false %>"
+				showIcon="<%= false %>"
+				showLabel="<%= false %>"
+				status="<%= formInstanceRecordVersion.getStatus() %>"
+				version="<%= formInstanceRecordVersion.getVersion() %>"
+			/>
 		</div>
 	</c:if>
 </div>

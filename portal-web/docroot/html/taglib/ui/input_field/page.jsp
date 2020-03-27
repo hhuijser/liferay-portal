@@ -260,10 +260,18 @@ if (hints != null) {
 				%>
 
 				<div class="clearfix">
-					<aui:input id="<%= formName + fieldParam %>" label="<%= dateTogglerCheckboxLabel %>" name="<%= dateTogglerCheckboxName %>" type="checkbox" value="<%= disabled %>" />
+					<aui:input
+						id="<%= formName + fieldParam %>"
+						label="<%= dateTogglerCheckboxLabel %>"
+						name="<%= dateTogglerCheckboxName %>"
+						type="checkbox"
+						value="<%= disabled %>"
+					/>
 				</div>
 
-				<aui:script use="event-base">
+				<aui:script
+					use="event-base"
+				>
 					var checkbox = A.one('#<portlet:namespace /><%= formName + fieldParam %>');
 
 					if (checkbox) {
@@ -531,7 +539,9 @@ if (hints != null) {
 					</c:choose>
 
 					<c:if test="<%= autoSize && !localized %>">
-						<aui:script use="aui-autosize">
+						<aui:script
+							use="aui-autosize"
+						>
 							A.one('#<%= namespace %><%= id %>').plug(
 								A.Plugin.Autosize,
 								{
@@ -552,7 +562,9 @@ if (hints != null) {
 					</aui:script>
 				</c:if>
 
-				<aui:script use="aui-char-counter">
+				<aui:script
+					use="aui-char-counter"
+				>
 					new A.CharCounter(
 						{
 							input: '#<%= namespace %><%= id %>',

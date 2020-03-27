@@ -49,7 +49,10 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 			<span class="autofit-col autofit-col-expand">
 				<span class="d-sm-block dropdown text-right">
 					<a class="dropdown-toggle ml-1 taglib-icon" data-toggle="liferay-dropdown" href="javascript:;">
-						<aui:icon image="ellipsis-v" markupView="lexicon" />
+						<aui:icon
+							image="ellipsis-v"
+							markupView="lexicon"
+						/>
 
 						<span class="sr-only">
 							<liferay-ui:message key="options" />

@@ -51,8 +51,15 @@ renderResponse.setTitle(LanguageUtil.get(request, "form-entries"));
 />
 
 <div class="container-fluid-1280" id="<portlet:namespace />viewEntriesContainer">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="searchContainerForm">
-		<aui:input name="deleteFormInstanceRecordIds" type="hidden" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="searchContainerForm"
+	>
+		<aui:input
+			name="deleteFormInstanceRecordIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			id="<%= ddmFormViewFormInstanceRecordsDisplayContext.getSearchContainerId() %>"
@@ -136,7 +143,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "form-entries"));
 
 <%@ include file="/admin/export_form_instance.jspf" %>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteRecords = function() {
 		if (
 			confirm(

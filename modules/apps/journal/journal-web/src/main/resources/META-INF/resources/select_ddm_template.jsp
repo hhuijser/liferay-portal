@@ -24,7 +24,11 @@ JournalSelectDDMTemplateDisplayContext journalSelectDDMTemplateDisplayContext = 
 	displayContext="<%= new JournalSelectDDMTemplateManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, journalSelectDDMTemplateDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" method="post" name="selectDDMTemplateFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectDDMTemplateFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= journalSelectDDMTemplateDisplayContext.getTemplateSearch() %>"
 	>
@@ -64,7 +68,11 @@ JournalSelectDDMTemplateDisplayContext journalSelectDDMTemplateDisplayContext = 
 								data.put("name", ddmTemplate.getName(locale));
 								%>
 
-								<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="selector-button"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= HtmlUtil.escape(ddmTemplate.getName(locale)) %>
 								</aui:a>
 							</c:when>

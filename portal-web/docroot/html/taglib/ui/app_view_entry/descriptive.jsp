@@ -46,7 +46,11 @@
 			</c:if>
 
 			<c:if test="<%= !folder && (status != WorkflowConstants.STATUS_ANY) && (status != WorkflowConstants.STATUS_APPROVED) %>">
-				<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= status %>" />
+				<aui:workflow-status
+					showIcon="<%= false %>"
+					showLabel="<%= false %>"
+					status="<%= status %>"
+				/>
 			</c:if>
 		</div>
 	</c:if>
@@ -230,6 +234,14 @@
 	<liferay-util:include page="<%= actionJsp %>" servletContext="<%= actionJspServletContext %>" />
 
 	<c:if test="<%= showCheckbox %>">
-		<aui:input cssClass="entry-selector overlay" id="<%= rowCheckerId %>" label="" name="<%= RowChecker.ROW_IDS + rowCheckerName %>" title='<%= LanguageUtil.format(request, "select-x", HtmlUtil.escapeAttribute(shortTitle)) %>' type="checkbox" value="<%= rowCheckerId %>" />
+		<aui:input
+			cssClass="entry-selector overlay"
+			id="<%= rowCheckerId %>"
+			label=""
+			name="<%= RowChecker.ROW_IDS + rowCheckerName %>"
+			title='<%= LanguageUtil.format(request, "select-x", HtmlUtil.escapeAttribute(shortTitle)) %>'
+			type="checkbox"
+			value="<%= rowCheckerId %>"
+		/>
 	</c:if>
 </div>

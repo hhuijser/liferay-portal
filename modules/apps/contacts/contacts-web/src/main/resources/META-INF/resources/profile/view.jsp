@@ -26,7 +26,10 @@
 		%>
 
 		<aui:row>
-			<aui:col cssClass="contacts-container" width="<%= 100 %>">
+			<aui:col
+				cssClass="contacts-container"
+				width="<%= 100 %>"
+			>
 				<liferay-util:include page="/view_user.jsp" servletContext="<%= application %>" />
 			</aui:col>
 		</aui:row>

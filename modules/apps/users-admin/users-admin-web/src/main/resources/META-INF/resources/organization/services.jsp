@@ -102,7 +102,9 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 
 <liferay-ui:error key="<%= NoSuchListTypeException.class.getName() + Organization.class.getName() + ListTypeConstants.ORGANIZATION_SERVICE %>" message="please-select-a-type" />
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "services" %>'>
+<aui:fieldset
+	id='<%= renderResponse.getNamespace() + "services" %>'
+>
 
 	<%
 	Calendar cal = CalendarFactoryUtil.getCalendar();
@@ -127,13 +129,23 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 		}
 	%>
 
-		<aui:model-context bean="<%= orgLabor %>" model="<%= OrgLabor.class %>" />
+		<aui:model-context
+			bean="<%= orgLabor %>"
+			model="<%= OrgLabor.class %>"
+		/>
 
 		<div class="lfr-form-row">
 			<div class="row-fields">
-				<aui:input name='<%= "orgLaborId" + orgLaborsIndex %>' type="hidden" />
+				<aui:input
+					name='<%= "orgLaborId" + orgLaborsIndex %>'
+					type="hidden"
+				/>
 
-				<aui:select label="type" listType="<%= ListTypeConstants.ORGANIZATION_SERVICE %>" name='<%= "orgLaborTypeId" + orgLaborsIndex %>' />
+				<aui:select
+					label="type"
+					listType="<%= ListTypeConstants.ORGANIZATION_SERVICE %>"
+					name='<%= "orgLaborTypeId" + orgLaborsIndex %>'
+				/>
 
 				<%
 				for (int j = 0; j < days.length; j++) {
@@ -146,8 +158,13 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 					<div class="org-labor-entry">
 						<h5 class="org-labor-entry-title"><%= day %></h5>
 
-						<aui:select label="Open" name='<%= paramPrefix + "Open" + orgLaborsIndex %>'>
-							<aui:option value="-1" />
+						<aui:select
+							label="Open"
+							name='<%= paramPrefix + "Open" + orgLaborsIndex %>'
+						>
+							<aui:option
+								value="-1"
+							/>
 
 							<%
 							cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -165,7 +182,11 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 								cal.add(Calendar.MINUTE, 30);
 							%>
 
-								<aui:option label="<%= timeOfDayDisplay %>" selected="<%= open == timeOfDayValue %>" value="<%= timeOfDayValue %>" />
+								<aui:option
+									label="<%= timeOfDayDisplay %>"
+									selected="<%= open == timeOfDayValue %>"
+									value="<%= timeOfDayValue %>"
+								/>
 
 							<%
 							}
@@ -173,8 +194,13 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 
 						</aui:select>
 
-						<aui:select label="close" name='<%= paramPrefix + "Close" + orgLaborsIndex %>'>
-							<aui:option value="-1" />
+						<aui:select
+							label="close"
+							name='<%= paramPrefix + "Close" + orgLaborsIndex %>'
+						>
+							<aui:option
+								value="-1"
+							/>
 
 							<%
 							cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -192,7 +218,11 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 								cal.add(Calendar.MINUTE, 30);
 							%>
 
-								<aui:option label="<%= timeOfDayDisplay %>" selected="<%= close == timeOfDayValue %>" value="<%= timeOfDayValue %>" />
+								<aui:option
+									label="<%= timeOfDayDisplay %>"
+									selected="<%= close == timeOfDayValue %>"
+									value="<%= timeOfDayValue %>"
+								/>
 
 							<%
 							}
@@ -212,10 +242,16 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 	}
 	%>
 
-	<aui:input name="orgLaborsIndexes" type="hidden" value="<%= StringUtil.merge(orgLaborsIndexes) %>" />
+	<aui:input
+		name="orgLaborsIndexes"
+		type="hidden"
+		value="<%= StringUtil.merge(orgLaborsIndexes) %>"
+	/>
 </aui:fieldset>
 
-<aui:script use="liferay-auto-fields">
+<aui:script
+	use="liferay-auto-fields"
+>
 	new Liferay.AutoFields({
 		contentBox: '#<portlet:namespace />services',
 		fieldIndexes: '<portlet:namespace />orgLaborsIndexes',

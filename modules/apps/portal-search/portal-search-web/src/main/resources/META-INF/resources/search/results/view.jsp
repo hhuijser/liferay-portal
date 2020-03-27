@@ -76,7 +76,9 @@ contextObjects.put("searchResultsPortletDisplayContext", searchResultsPortletDis
 			entries="<%= searchResultSummaryDisplayContexts %>"
 		/>
 
-		<aui:form useNamespace="<%= false %>">
+		<aui:form
+			useNamespace="<%= false %>"
+		>
 			<liferay-ui:search-paginator
 				id='<%= renderResponse.getNamespace() + "searchContainerTag" %>'
 				markupView="lexicon"

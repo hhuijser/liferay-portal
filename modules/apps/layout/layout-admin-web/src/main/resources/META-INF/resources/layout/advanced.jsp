@@ -27,7 +27,10 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 	value="advanced"
 />
 
-<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= selLayout %>"
+	model="<%= Layout.class %>"
+/>
 
 <liferay-ui:error exception="<%= ImageTypeException.class %>" message="please-enter-a-file-with-a-valid-file-type" />
 
@@ -44,16 +47,37 @@ Group group = layoutsAdminDisplayContext.getGroup();
 	String queryString = GetterUtil.getString(layoutTypeSettings.getProperty("query-string"));
 	%>
 
-	<aui:input cssClass="propagatable-field" disabled="<%= selLayout.isLayoutPrototypeLinkActive() %>" helpMessage="query-string-help" label="query-string" name="TypeSettingsProperties--query-string--" size="30" type="text" value="<%= queryString %>" />
+	<aui:input
+		cssClass="propagatable-field"
+		disabled="<%= selLayout.isLayoutPrototypeLinkActive() %>"
+		helpMessage="query-string-help"
+		label="query-string"
+		name="TypeSettingsProperties--query-string--"
+		size="30"
+		type="text"
+		value="<%= queryString %>"
+	/>
 </c:if>
 
 <%
 String curTarget = GetterUtil.getString(layoutTypeSettings.getProperty("target"));
 %>
 
-<aui:input cssClass="propagatable-field" disabled="<%= selLayout.isLayoutPrototypeLinkActive() %>" label="target" name="TypeSettingsProperties--target--" size="15" type="text" value="<%= curTarget %>" />
+<aui:input
+	cssClass="propagatable-field"
+	disabled="<%= selLayout.isLayoutPrototypeLinkActive() %>"
+	label="target"
+	name="TypeSettingsProperties--target--"
+	size="15"
+	type="text"
+	value="<%= curTarget %>"
+/>
 
-<aui:field-wrapper helpMessage="this-icon-will-be-shown-in-the-navigation-menu" label="icon" name="iconFileName">
+<aui:field-wrapper
+	helpMessage="this-icon-will-be-shown-in-the-navigation-menu"
+	label="icon"
+	name="iconFileName"
+>
 	<liferay-ui:logo-selector
 		currentLogoURL='<%= (selLayout.getIconImageId() == 0) ? themeDisplay.getPathThemeImages() + "/spacer.png" : themeDisplay.getPathImage() + "/logo?img_id=" + selLayout.getIconImageId() + "&t=" + WebServerServletTokenUtil.getToken(selLayout.getIconImageId()) %>'
 		defaultLogo="<%= selLayout.getIconImageId() == 0 %>"

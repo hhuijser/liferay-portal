@@ -37,7 +37,9 @@ name = namespace + name;
 	<script src="https://npmcdn.com/leaflet@1.2.0/dist/leaflet.js" type="text/javascript"></script>
 </liferay-util:html-top>
 
-<aui:script require="<%= bootstrapRequire %>">
+<aui:script
+	require="<%= bootstrapRequire %>"
+>
 	var MapControls = Liferay.MapBase.CONTROLS;
 
 	var mapConfig = {

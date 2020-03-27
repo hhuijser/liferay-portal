@@ -37,7 +37,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	viewTypeItems="<%= ddlDisplayContext.getViewTypesItems() %>"
 />
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteRecordSets = function() {
 		if (
 			confirm(

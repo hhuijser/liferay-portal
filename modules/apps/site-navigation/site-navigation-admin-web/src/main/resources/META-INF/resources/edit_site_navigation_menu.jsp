@@ -39,7 +39,11 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 				<c:if test="<%= !scopeGroup.isCompany() %>">
 					<li class="nav-item">
 						<button class="btn btn-unstyled nav-link nav-link-monospaced" id="<portlet:namespace />showSiteNavigationMenuSettings" type="button">
-							<aui:icon cssClass="icon-monospaced" image="cog" markupView="lexicon" />
+							<aui:icon
+								cssClass="icon-monospaced"
+								image="cog"
+								markupView="lexicon"
+							/>
 						</button>
 					</li>
 				</c:if>

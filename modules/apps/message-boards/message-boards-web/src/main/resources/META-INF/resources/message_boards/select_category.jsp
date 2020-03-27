@@ -39,7 +39,10 @@ else {
 %>
 
 <div class="container-fluid-1280">
-	<aui:form method="post" name="selectCategoryFm">
+	<aui:form
+		method="post"
+		name="selectCategoryFm"
+	>
 		<liferay-ui:breadcrumb
 			showGuestGroup="<%= false %>"
 			showLayout="<%= false %>"
@@ -117,7 +120,11 @@ else {
 					data.put("name", curCategory.getName());
 					%>
 
-					<aui:button cssClass="selector-button" data="<%= data %>" value="select" />
+					<aui:button
+						cssClass="selector-button"
+						data="<%= data %>"
+						value="select"
+					/>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
@@ -130,7 +137,11 @@ else {
 				data.put("name", categoryName);
 				%>
 
-				<aui:button cssClass="selector-button" data="<%= data %>" value="select-this-category" />
+				<aui:button
+					cssClass="selector-button"
+					data="<%= data %>"
+					value="select-this-category"
+				/>
 			</aui:button-row>
 
 			<liferay-ui:search-iterator

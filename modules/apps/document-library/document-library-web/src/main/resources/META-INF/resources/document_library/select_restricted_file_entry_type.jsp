@@ -36,7 +36,12 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 	%>'
 />
 
-<aui:form action="<%= selectRestrictedFileEntryTypesDisplayContext.getFormActionURL() %>" cssClass="container-fluid-1280" method="post" name="selectFileEntryTypeFm">
+<aui:form
+	action="<%= selectRestrictedFileEntryTypesDisplayContext.getFormActionURL() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectFileEntryTypeFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= selectRestrictedFileEntryTypesDisplayContext.getSearchContainer() %>"
 	>
@@ -68,7 +73,11 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 				data.put("entityname", fileEntryType.getName(locale));
 				%>
 
-				<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />
+				<aui:button
+					cssClass="selector-button"
+					data="<%= data %>"
+					value="choose"
+				/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 

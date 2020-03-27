@@ -86,20 +86,49 @@ long formInstanceId = ddmFormDisplayContext.getFormInstanceId();
 				%>
 
 				<div class="portlet-forms">
-					<aui:form action="<%= addFormInstanceRecordActionURL %>" data-DDMFormInstanceId="<%= formInstanceId %>" data-senna-off="true" method="post" name="fm">
+					<aui:form
+						action="<%= addFormInstanceRecordActionURL %>"
+						data-DDMFormInstanceId="<%= formInstanceId %>"
+						data-senna-off="true"
+						method="post"
+						name="fm"
+					>
 
 						<%
 						String redirectURL = ddmFormDisplayContext.getRedirectURL();
 						%>
 
 						<c:if test="<%= Validator.isNull(redirectURL) %>">
-							<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+							<aui:input
+								name="redirect"
+								type="hidden"
+								value="<%= redirect %>"
+							/>
 						</c:if>
 
-						<aui:input name="groupId" type="hidden" value="<%= formInstance.getGroupId() %>" />
-						<aui:input name="formInstanceId" type="hidden" value="<%= formInstance.getFormInstanceId() %>" />
-						<aui:input name="languageId" type="hidden" value="<%= languageId %>" />
-						<aui:input name="workflowAction" type="hidden" value="<%= WorkflowConstants.ACTION_PUBLISH %>" />
+						<aui:input
+							name="groupId"
+							type="hidden"
+							value="<%= formInstance.getGroupId() %>"
+						/>
+
+						<aui:input
+							name="formInstanceId"
+							type="hidden"
+							value="<%= formInstance.getFormInstanceId() %>"
+						/>
+
+						<aui:input
+							name="languageId"
+							type="hidden"
+							value="<%= languageId %>"
+						/>
+
+						<aui:input
+							name="workflowAction"
+							type="hidden"
+							value="<%= WorkflowConstants.ACTION_PUBLISH %>"
+						/>
 
 						<liferay-ui:error exception="<%= CaptchaException.class %>" message="captcha-verification-failed" />
 						<liferay-ui:error exception="<%= CaptchaTextException.class %>" message="text-verification-failed" />
@@ -172,12 +201,18 @@ long formInstanceId = ddmFormDisplayContext.getFormInstanceId();
 						<div class="container-fluid-1280 ddm-form-builder-app ddm-form-builder-app-not-ready" id="<%= ddmFormDisplayContext.getContainerId() %>container">
 							<%= ddmFormDisplayContext.getDDMFormHTML() %>
 
-							<aui:input name="empty" type="hidden" value="" />
+							<aui:input
+								name="empty"
+								type="hidden"
+								value=""
+							/>
 						</div>
 					</aui:form>
 				</div>
 
-				<aui:script use="aui-base">
+				<aui:script
+					use="aui-base"
+				>
 					var <portlet:namespace />intervalId;
 
 					function <portlet:namespace />clearPortletHandlers(event) {

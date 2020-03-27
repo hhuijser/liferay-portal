@@ -129,9 +129,14 @@
 
 		<%= DDMFormRendererUtil.render(ddmForm, ddmFormFieldRenderingContext) %>
 
-		<aui:input name="<%= HtmlUtil.getAUICompatibleId(ddmFormValuesInputName) %>" type="hidden" />
+		<aui:input
+			name="<%= HtmlUtil.getAUICompatibleId(ddmFormValuesInputName) %>"
+			type="hidden"
+		/>
 
-		<aui:script use="aui-base,liferay-ddm-form">
+		<aui:script
+			use="aui-base,liferay-ddm-form"
+		>
 			var Lang = A.Lang;
 
 			var ddmFormDefinition = <%= DDMUtil.getDDMFormJSONString(ddmForm) %>;

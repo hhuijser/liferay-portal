@@ -35,7 +35,10 @@ if (organization != null) {
 }
 %>
 
-<aui:model-context bean="<%= organization %>" model="<%= Organization.class %>" />
+<aui:model-context
+	bean="<%= organization %>"
+	model="<%= Organization.class %>"
+/>
 
 <div class="row">
 	<div class="col-md-7">
@@ -45,28 +48,46 @@ if (organization != null) {
 			<liferay-ui:message arguments="<%= new String[] {OrganizationConstants.NAME_LABEL, OrganizationConstants.NAME_GENERAL_RESTRICTIONS, OrganizationConstants.NAME_RESERVED_WORDS} %>" key="the-x-cannot-be-x-or-a-reserved-word-such-as-x" />
 		</liferay-ui:error>
 
-		<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="name" />
+		<aui:input
+			autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+			name="name"
+		/>
 
 		<c:choose>
 			<c:when test="<%= PropsValues.FIELD_ENABLE_COM_LIFERAY_PORTAL_KERNEL_MODEL_ORGANIZATION_STATUS %>">
 				<liferay-ui:error key="<%= NoSuchListTypeException.class.getName() + Organization.class.getName() + ListTypeConstants.ORGANIZATION_STATUS %>" message="please-select-a-type" />
 
-				<aui:select label="status" listType="<%= ListTypeConstants.ORGANIZATION_STATUS %>" listTypeFieldName="statusId" name="statusId" showEmptyOption="<%= true %>" />
+				<aui:select
+					label="status"
+					listType="<%= ListTypeConstants.ORGANIZATION_STATUS %>"
+					listTypeFieldName="statusId"
+					name="statusId"
+					showEmptyOption="<%= true %>"
+				/>
 			</c:when>
 			<c:otherwise>
-				<aui:input name="statusId" type="hidden" value="<%= (organization != null) ? organization.getStatusId() : ListTypeConstants.ORGANIZATION_STATUS_DEFAULT %>" />
+				<aui:input
+					name="statusId"
+					type="hidden"
+					value="<%= (organization != null) ? organization.getStatusId() : ListTypeConstants.ORGANIZATION_STATUS_DEFAULT %>"
+				/>
 			</c:otherwise>
 		</c:choose>
 
 		<c:choose>
 			<c:when test="<%= (organization == null) && (organizationsTypes.length > 1) %>">
-				<aui:select name="type">
+				<aui:select
+					name="type"
+				>
 
 					<%
 					for (String curType : organizationsTypes) {
 					%>
 
-						<aui:option label="<%= curType %>" selected="<%= type.equals(curType) %>" />
+						<aui:option
+							label="<%= curType %>"
+							selected="<%= type.equals(curType) %>"
+						/>
 
 					<%
 					}
@@ -75,21 +96,39 @@ if (organization != null) {
 				</aui:select>
 			</c:when>
 			<c:when test="<%= organization == null %>">
-				<aui:input name="type" type="hidden" value="<%= organizationsTypes[0] %>" />
+				<aui:input
+					name="type"
+					type="hidden"
+					value="<%= organizationsTypes[0] %>"
+				/>
 			</c:when>
 			<c:otherwise>
-				<aui:input name="typeLabel" type="resource" value="<%= LanguageUtil.get(request, organization.getType()) %>" />
+				<aui:input
+					name="typeLabel"
+					type="resource"
+					value="<%= LanguageUtil.get(request, organization.getType()) %>"
+				/>
 
-				<aui:input name="type" type="hidden" value="<%= organization.getType() %>" />
+				<aui:input
+					name="type"
+					type="hidden"
+					value="<%= organization.getType() %>"
+				/>
 			</c:otherwise>
 		</c:choose>
 
 		<liferay-ui:error exception="<%= NoSuchCountryException.class %>" message="please-select-a-country" />
 
 		<div class="<%= OrganizationLocalServiceUtil.isCountryEnabled(type) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />countryDiv">
-			<aui:select label="country" name="countryId" />
+			<aui:select
+				label="country"
+				name="countryId"
+			/>
 
-			<aui:select label="region" name="regionId" />
+			<aui:select
+				label="region"
+				name="regionId"
+			/>
 		</div>
 	</div>
 
@@ -118,7 +157,9 @@ if (organization != null) {
 	</div>
 </div>
 
-<aui:script use="liferay-dynamic-select">
+<aui:script
+	use="liferay-dynamic-select"
+>
 	new Liferay.DynamicSelect([
 		{
 			select: '<portlet:namespace />countryId',
@@ -140,7 +181,9 @@ if (organization != null) {
 </aui:script>
 
 <c:if test="<%= organization == null %>">
-	<aui:script sandbox="<%= true %>">
+	<aui:script
+		sandbox="<%= true %>"
+	>
 		var typeSelect = document.getElementById('<portlet:namespace />type');
 
 		if (typeSelect) {

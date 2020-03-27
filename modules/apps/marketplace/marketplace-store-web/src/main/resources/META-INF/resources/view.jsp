@@ -45,11 +45,16 @@ viewURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 	<div class="sign-out">
 		<liferay-portlet:actionURL name="deauthorize" var="deauthorizeURL" />
 
-		<aui:button onClick="<%= deauthorizeURL %>" value="sign-out" />
+		<aui:button
+			onClick="<%= deauthorizeURL %>"
+			value="sign-out"
+		/>
 	</div>
 </c:if>
 
-<aui:script use="liferay-marketplace-messenger">
+<aui:script
+	use="liferay-marketplace-messenger"
+>
 	var frame = document.getElementById('<portlet:namespace />frame');
 
 	Liferay.MarketplaceMessenger.init({

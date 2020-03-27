@@ -25,7 +25,9 @@
 			/>
 		</c:if>
 
-		<aui:script use="aui-base,event-outside">
+		<aui:script
+			use="aui-base,event-outside"
+		>
 			var Util = Liferay.Util;
 
 			var advancedSearchResults = <%= searchResults %>;

@@ -16,14 +16,48 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:fieldset markupView="lexicon">
-	<aui:input checked="<%= assetPublisherDisplayContext.isSelectionStyleDynamic() %>" id="selectionStyleDynamic" label="dynamic" name="preferences--selectionStyle--" onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>' type="radio" value="dynamic" />
+<aui:fieldset
+	markupView="lexicon"
+>
+	<aui:input
+		checked="<%= assetPublisherDisplayContext.isSelectionStyleDynamic() %>"
+		id="selectionStyleDynamic"
+		label="dynamic"
+		name="preferences--selectionStyle--"
+		onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>'
+		type="radio"
+		value="dynamic"
+	/>
 
-	<aui:input checked="<%= assetPublisherDisplayContext.isSelectionStyleManual() %>" id="selectionStyleManual" label="manual" name="preferences--selectionStyle--" onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>' type="radio" value="manual" />
+	<aui:input
+		checked="<%= assetPublisherDisplayContext.isSelectionStyleManual() %>"
+		id="selectionStyleManual"
+		label="manual"
+		name="preferences--selectionStyle--"
+		onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>'
+		type="radio"
+		value="manual"
+	/>
 
-	<aui:input checked="<%= assetPublisherDisplayContext.isSelectionStyleAssetList() %>" id="selectionStyleAssetList" label="content-set" name="preferences--selectionStyle--" onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>' type="radio" value="asset-list" />
+	<aui:input
+		checked="<%= assetPublisherDisplayContext.isSelectionStyleAssetList() %>"
+		id="selectionStyleAssetList"
+		label="content-set"
+		name="preferences--selectionStyle--"
+		onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>'
+		type="radio"
+		value="asset-list"
+	/>
 
-	<aui:input checked="<%= assetPublisherDisplayContext.isSelectionStyleAssetListProvider() %>" id="selectionStyleInfoListProvider" label="content-set-provider" name="preferences--selectionStyle--" onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>' type="radio" value="asset-list-provider" />
+	<aui:input
+		checked="<%= assetPublisherDisplayContext.isSelectionStyleAssetListProvider() %>"
+		id="selectionStyleInfoListProvider"
+		label="content-set-provider"
+		name="preferences--selectionStyle--"
+		onChange='<%= renderResponse.getNamespace() + "chooseSelectionStyle();" %>'
+		type="radio"
+		value="asset-list-provider"
+	/>
 </aui:fieldset>
 
 <script>

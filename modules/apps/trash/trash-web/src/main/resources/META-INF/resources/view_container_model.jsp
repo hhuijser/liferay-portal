@@ -24,7 +24,11 @@ TrashContainerModelDisplayContext trashContainerModelDisplayContext = new TrashC
 	<liferay-ui:message arguments="<%= trashContainerModelDisplayContext.getMissingContainerMessageArguments() %>" key="the-original-x-does-not-exist-anymore" translateArguments="<%= false %>" />
 </div>
 
-<aui:form cssClass="container-fluid-1280" method="post" name="selectContainerFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectContainerFm"
+>
 	<liferay-site-navigation:breadcrumb
 		breadcrumbEntries="<%= trashDisplayContext.getContainerModelBreadcrumbEntries(trashContainerModelDisplayContext.getContainerModelClassName(), trashContainerModelDisplayContext.getContainerModelId(), trashContainerModelDisplayContext.getContainerURL()) %>"
 	/>
@@ -40,7 +44,11 @@ TrashContainerModelDisplayContext trashContainerModelDisplayContext = new TrashC
 		data.put("redirect", trashContainerModelDisplayContext.getRedirect());
 		%>
 
-		<aui:button cssClass="selector-button" data="<%= data %>" value='<%= LanguageUtil.format(request, "choose-this-x", trashContainerModelDisplayContext.getContainerModelName()) %>' />
+		<aui:button
+			cssClass="selector-button"
+			data="<%= data %>"
+			value='<%= LanguageUtil.format(request, "choose-this-x", trashContainerModelDisplayContext.getContainerModelName()) %>'
+		/>
 	</aui:button-row>
 
 	<liferay-ui:search-container
@@ -101,7 +109,11 @@ TrashContainerModelDisplayContext trashContainerModelDisplayContext = new TrashC
 				data.put("redirect", trashContainerModelDisplayContext.getRedirect());
 				%>
 
-				<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />
+				<aui:button
+					cssClass="selector-button"
+					data="<%= data %>"
+					value="choose"
+				/>
 			</liferay-ui:search-container-column-text>
 		</liferay-ui:search-container-row>
 

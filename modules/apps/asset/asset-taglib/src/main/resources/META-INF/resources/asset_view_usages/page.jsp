@@ -81,7 +81,9 @@ AssetEntryUsagesDisplayContext assetEntryUsagesDisplayContext = new AssetEntryUs
 	</liferay-ui:search-container>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	if (document.querySelector('#<portlet:namespace/>assetEntryUsagesList')) {
 		var previewAssetEntryUsagesList = dom.delegate(
 			document.querySelector('#<portlet:namespace/>assetEntryUsagesList'),

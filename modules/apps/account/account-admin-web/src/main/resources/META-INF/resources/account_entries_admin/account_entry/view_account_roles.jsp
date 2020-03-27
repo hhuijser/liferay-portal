@@ -33,9 +33,17 @@ renderResponse.setTitle((accountEntryDisplay == null) ? "" : accountEntryDisplay
 	displayContext="<%= viewAccountRolesManagementToolbarDisplayContext %>"
 />
 
-<aui:container cssClass="container-fluid container-fluid-max-xl">
-	<aui:form method="post" name="fm">
-		<aui:input name="accountRoleIds" type="hidden" />
+<aui:container
+	cssClass="container-fluid container-fluid-max-xl"
+>
+	<aui:form
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="accountRoleIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			searchContainer="<%= accountRoleDisplaySearchContainer %>"

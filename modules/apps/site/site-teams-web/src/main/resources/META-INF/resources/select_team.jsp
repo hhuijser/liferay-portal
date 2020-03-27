@@ -24,7 +24,10 @@ SelectTeamDisplayContext selectTeamDisplayContext = new SelectTeamDisplayContext
 	displayContext="<%= new SelectTeamManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, selectTeamDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="selectTeamFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="selectTeamFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= selectTeamDisplayContext.getTeamSearchContainer() %>"
 	>
@@ -64,7 +67,11 @@ SelectTeamDisplayContext selectTeamDisplayContext = new SelectTeamDisplayContext
 						<h5>
 							<c:choose>
 								<c:when test="<%= !disabled %>">
-									<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="selector-button"
+										data="<%= data %>"
+										href="javascript:;"
+									>
 										<%= HtmlUtil.escape(curTeam.getName()) %>
 									</aui:a>
 								</c:when>
@@ -86,7 +93,11 @@ SelectTeamDisplayContext selectTeamDisplayContext = new SelectTeamDisplayContext
 					>
 						<c:choose>
 							<c:when test="<%= !disabled %>">
-								<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="selector-button"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= HtmlUtil.escape(curTeam.getName()) %>
 								</aui:a>
 							</c:when>

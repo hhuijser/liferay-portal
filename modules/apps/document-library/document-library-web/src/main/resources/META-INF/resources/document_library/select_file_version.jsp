@@ -37,7 +37,11 @@ if ((user.getUserId() == fileEntry.getUserId()) || permissionChecker.isContentRe
 </liferay-portlet:renderURL>
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="selectFileVersionFm">
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="selectFileVersionFm"
+	>
 		<liferay-ui:search-container
 			id="fileVersionSearchContainer"
 			iteratorURL="<%= portletURL %>"
@@ -65,7 +69,11 @@ if ((user.getUserId() == fileEntry.getUserId()) || permissionChecker.isContentRe
 							data.put("targetversion", fileVersion.getFileVersionId());
 							%>
 
-							<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="selector-button"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<%= HtmlUtil.escape(curFileVersion.getTitle()) %>
 							</aui:a>
 						</c:when>

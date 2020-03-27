@@ -71,7 +71,11 @@ if (forcePost && (portletURL != null)) {
 
 	<liferay-util:html-bottom>
 		<form action="<%= HtmlUtil.escapeAttribute(url) %>" id="<%= randomNamespace + namespace %>pageIteratorFm" method="post" name="<%= randomNamespace + namespace %>pageIteratorFm">
-			<aui:input name="<%= curParam %>" type="hidden" />
+			<aui:input
+				name="<%= curParam %>"
+				type="hidden"
+			/>
+
 			<liferay-portlet:renderURLParams portletURL="<%= portletURL %>" />
 		</form>
 	</liferay-util:html-bottom>
@@ -87,7 +91,10 @@ if (forcePost && (portletURL != null)) {
 				<a class="dropdown-toggle page-link" data-toggle="liferay-dropdown" href="javascript:;" role="button"><liferay-ui:message arguments="<%= delta %>" key="x-entries" />
 					<span class="sr-only"><liferay-ui:message key="per-page" /></span>
 
-					<aui:icon image="caret-double-l" markupView="lexicon" />
+					<aui:icon
+						image="caret-double-l"
+						markupView="lexicon"
+					/>
 				</a>
 
 				<ul class="dropdown-menu dropdown-menu-top">
@@ -332,7 +339,9 @@ if (forcePost && (portletURL != null)) {
 </c:if>
 
 <c:if test="<%= pages > initialPages %>">
-	<aui:script require="frontend-js-web/liferay/DynamicInlineScroll.es">
+	<aui:script
+		require="frontend-js-web/liferay/DynamicInlineScroll.es"
+	>
 		new frontendJsWebLiferayDynamicInlineScrollEs.default(
 			{
 				cur: '<%= cur %>',

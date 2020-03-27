@@ -33,7 +33,11 @@ AssetCategoriesManagementToolbarDisplayContext assetCategoriesManagementToolbarD
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteCategoryURL %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= deleteCategoryURL %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-site-navigation:breadcrumb
 		breadcrumbEntries="<%= AssetCategoryUtil.getAssetCategoriesBreadcrumbEntries(assetCategoriesDisplayContext.getVocabulary(), assetCategoriesDisplayContext.getCategory(), request, renderResponse) %>"
 	/>
@@ -156,10 +160,24 @@ AssetCategoriesManagementToolbarDisplayContext assetCategoriesManagementToolbarD
 	<portlet:param name="mvcPath" value="/view_categories.jsp" />
 </portlet:actionURL>
 
-<aui:form action="<%= moveCategoryURL %>" name="moveCategoryFm">
-	<aui:input name="categoryId" type="hidden" />
-	<aui:input name="parentCategoryId" type="hidden" />
-	<aui:input name="vocabularyId" type="hidden" />
+<aui:form
+	action="<%= moveCategoryURL %>"
+	name="moveCategoryFm"
+>
+	<aui:input
+		name="categoryId"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="parentCategoryId"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="vocabularyId"
+		type="hidden"
+	/>
 </aui:form>
 
 <liferay-frontend:component

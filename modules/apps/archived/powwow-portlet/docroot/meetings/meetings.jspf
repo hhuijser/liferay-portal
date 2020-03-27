@@ -37,7 +37,10 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 			<portlet:param name="redirect" value="<%= portletURL.toString() %>" />
 		</portlet:renderURL>
 
-		<aui:button onClick="<%= addPowwowMeetingURL.toString() %>" value="add-meeting" />
+		<aui:button
+			onClick="<%= addPowwowMeetingURL.toString() %>"
+			value="add-meeting"
+		/>
 	</aui:button-row>
 
 	<liferay-ui:tabs

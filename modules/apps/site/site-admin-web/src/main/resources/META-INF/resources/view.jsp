@@ -50,8 +50,15 @@ if (group != null) {
 	<div class="sidenav-content">
 		<portlet:actionURL name="deleteGroups" var="deleteGroupsURL" />
 
-		<aui:form action="<%= deleteGroupsURL %>" name="fm">
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+		<aui:form
+			action="<%= deleteGroupsURL %>"
+			name="fm"
+		>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-site-navigation:breadcrumb
 				breadcrumbEntries="<%= siteAdminDisplayContext.getBreadcrumbEntries() %>"

@@ -27,17 +27,52 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		<portlet:param name="mvcPath" value="/invite_members/view_invite.jsp" />
 	</portlet:renderURL>
 
-	<aui:form action="<%= sendInvitesURL %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
-		<aui:input name="groupId" type="hidden" value="<%= themeDisplay.getScopeGroupId() %>" />
-		<aui:input name="receiverUserIds" type="hidden" value="" />
-		<aui:input name="receiverEmailAddresses" type="hidden" value="" />
-		<aui:input name="invitedRoleId" type="hidden" value="" />
-		<aui:input name="invitedTeamId" type="hidden" value="" />
+	<aui:form
+		action="<%= sendInvitesURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirectURL %>"
+		/>
+
+		<aui:input
+			name="groupId"
+			type="hidden"
+			value="<%= themeDisplay.getScopeGroupId() %>"
+		/>
+
+		<aui:input
+			name="receiverUserIds"
+			type="hidden"
+			value=""
+		/>
+
+		<aui:input
+			name="receiverEmailAddresses"
+			type="hidden"
+			value=""
+		/>
+
+		<aui:input
+			name="invitedRoleId"
+			type="hidden"
+			value=""
+		/>
+
+		<aui:input
+			name="invitedTeamId"
+			type="hidden"
+			value=""
+		/>
 
 		<div class="dialog-body">
 			<div class="container-fluid main-content-body">
-				<aui:fieldset-group markupView="lexicon">
+				<aui:fieldset-group
+					markupView="lexicon"
+				>
 					<aui:fieldset>
 						<label><liferay-ui:message key="find-members" /></label>
 
@@ -51,7 +86,12 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 							/>
 						</small>
 
-						<aui:input id="inviteUserSearch" label="" name="userName" placeholder="search" />
+						<aui:input
+							id="inviteUserSearch"
+							label=""
+							name="userName"
+							placeholder="search"
+						/>
 
 						<div class="search" id="<portlet:namespace />membersList"></div>
 
@@ -60,9 +100,15 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 						<div class="user-invited" id="<portlet:namespace />invitedMembersList"></div>
 
 						<div class="button-holder controls">
-							<aui:input label="invite-by-email" name="emailAddress" />
+							<aui:input
+								label="invite-by-email"
+								name="emailAddress"
+							/>
 
-							<aui:button name="emailButton" value="add-email-address" />
+							<aui:button
+								name="emailButton"
+								value="add-email-address"
+							/>
 						</div>
 
 						<label><liferay-ui:message key="email-addresses-to-send-invite" /></label>
@@ -77,14 +123,22 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 						<c:if test="<%= !roles.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.ASSIGN_USER_ROLES) %>">
 							<div class="invite-to">
-								<aui:select label="invite-to-role" name="roleId">
-									<aui:option value="0" />
+								<aui:select
+									label="invite-to-role"
+									name="roleId"
+								>
+									<aui:option
+										value="0"
+									/>
 
 									<%
 									for (Role role : roles) {
 									%>
 
-										<aui:option label="<%= HtmlUtil.escape(role.getTitle(locale)) %>" value="<%= role.getRoleId() %>" />
+										<aui:option
+											label="<%= HtmlUtil.escape(role.getTitle(locale)) %>"
+											value="<%= role.getRoleId() %>"
+										/>
 
 									<%
 									}
@@ -100,14 +154,22 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 						<c:if test="<%= !teams.isEmpty() && GroupPermissionUtil.contains(permissionChecker, group.getGroupId(), ActionKeys.MANAGE_TEAMS) %>">
 							<div class="invite-to">
-								<aui:select label="invite-to-team" name="teamId">
-									<aui:option value="0" />
+								<aui:select
+									label="invite-to-team"
+									name="teamId"
+								>
+									<aui:option
+										value="0"
+									/>
 
 									<%
 									for (Team team : teams) {
 									%>
 
-										<aui:option label="<%= HtmlUtil.escape(team.getName()) %>" value="<%= team.getTeamId() %>" />
+										<aui:option
+											label="<%= HtmlUtil.escape(team.getName()) %>"
+											value="<%= team.getTeamId() %>"
+										/>
 
 									<%
 									}
@@ -122,14 +184,21 @@ Group group = GroupLocalServiceUtil.getGroup(scopeGroupId);
 		</div>
 
 		<aui:button-row>
-			<aui:button type="submit" value="send-invitations" />
+			<aui:button
+				type="submit"
+				value="send-invitations"
+			/>
 
-			<aui:button type="cancel" />
+			<aui:button
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>
 
-<aui:script use="liferay-portlet-invite-members">
+<aui:script
+	use="liferay-portlet-invite-members"
+>
 	var portletInviteMembers = new Liferay.Portlet.InviteMembers({
 		availableUsersURL: '<portlet:resourceURL id="getAvailableUsers" />',
 		form: {

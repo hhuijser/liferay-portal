@@ -28,7 +28,11 @@ RedirectNotFountEntriesManagementToolbarDisplayContext redirectNotFoundEntriesMa
 	displayContext="<%= redirectNotFoundEntriesManagementToolbarDisplayContext %>"
 />
 
-<aui:form action="<%= redirectNotFoundEntriesSearchContainer.getIteratorURL() %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= redirectNotFoundEntriesSearchContainer.getIteratorURL() %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 
 	<%
 	List<RedirectNotFoundEntry> results = redirectNotFoundEntriesSearchContainer.getResults();
@@ -36,7 +40,11 @@ RedirectNotFountEntriesManagementToolbarDisplayContext redirectNotFoundEntriesMa
 
 	<c:choose>
 		<c:when test="<%= results.size() > 0 %>">
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-ui:search-container
 				id="<%= redirectNotFoundEntriesDisplayContext.getSearchContainerId() %>"
@@ -56,7 +64,10 @@ RedirectNotFountEntriesManagementToolbarDisplayContext redirectNotFoundEntriesMa
 						String url = RedirectUtil.getGroupBaseURL(themeDisplay) + StringPool.SLASH + redirectNotFoundEntry.getUrl();
 						%>
 
-						<aui:a href="<%= HtmlUtil.escapeAttribute(url) %>" target="_blank">
+						<aui:a
+							href="<%= HtmlUtil.escapeAttribute(url) %>"
+							target="_blank"
+						>
 							<%= HtmlUtil.escape(url) %>
 						</aui:a>
 					</liferay-ui:search-container-column-text>

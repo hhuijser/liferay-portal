@@ -27,12 +27,22 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 	<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="saveData" />
 </portlet:actionURL>
 
-<aui:form action="<%= saveDataURL %>" method="post" name="fm">
+<aui:form
+	action="<%= saveDataURL %>"
+	method="post"
+	name="fm"
+>
 	<c:if test="<%= Validator.isNull(successURL) %>">
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
 	</c:if>
 
-	<aui:fieldset label="<%= HtmlUtil.escape(title) %>">
+	<aui:fieldset
+		label="<%= HtmlUtil.escape(title) %>"
+	>
 		<c:if test="<%= Validator.isNotNull(description) %>">
 			<p class="description"><%= StringUtil.replace(HtmlUtil.escape(description), CharPool.NEW_LINE, "<br />") %></p>
 		</c:if>
@@ -84,22 +94,51 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 					<p class="format-paragraph" id="<portlet:namespace /><%= fieldName %>"><%= HtmlUtil.escape(fieldParagraph) %></p>
 				</c:when>
 				<c:when test='<%= fieldType.equals("text") %>'>
-					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" value="<%= HtmlUtil.escape(fieldValue) %>" />
+					<aui:input
+						cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>'
+						label="<%= HtmlUtil.escape(fieldLabel) %>"
+						name="<%= fieldName %>"
+						value="<%= HtmlUtil.escape(fieldValue) %>"
+					/>
 				</c:when>
 				<c:when test='<%= fieldType.equals("textarea") %>'>
-					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="textarea" value="<%= HtmlUtil.escape(fieldValue) %>" wrap="soft" wrapperCssClass="lfr-textarea-container" />
+					<aui:input
+						cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>'
+						label="<%= HtmlUtil.escape(fieldLabel) %>"
+						name="<%= fieldName %>"
+						type="textarea"
+						value="<%= HtmlUtil.escape(fieldValue) %>"
+						wrap="soft"
+						wrapperCssClass="lfr-textarea-container"
+					/>
 				</c:when>
 				<c:when test='<%= fieldType.equals("checkbox") %>'>
-					<aui:input cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>" type="checkbox" value="<%= GetterUtil.getBoolean(fieldValue) %>" />
+					<aui:input
+						cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>'
+						label="<%= HtmlUtil.escape(fieldLabel) %>"
+						name="<%= fieldName %>"
+						type="checkbox"
+						value="<%= GetterUtil.getBoolean(fieldValue) %>"
+					/>
 				</c:when>
 				<c:when test='<%= fieldType.equals("radio") %>'>
-					<aui:field-wrapper cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
+					<aui:field-wrapper
+						cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>'
+						label="<%= HtmlUtil.escape(fieldLabel) %>"
+						name="<%= fieldName %>"
+					>
 
 						<%
 						for (String fieldOptionValue : WebFormUtil.split(fieldOptions)) {
 						%>
 
-							<aui:input checked="<%= fieldValue.equals(fieldOptionValue) %>" label="<%= HtmlUtil.escape(fieldOptionValue) %>" name="<%= fieldName %>" type="radio" value="<%= HtmlUtil.escape(fieldOptionValue) %>" />
+							<aui:input
+								checked="<%= fieldValue.equals(fieldOptionValue) %>"
+								label="<%= HtmlUtil.escape(fieldOptionValue) %>"
+								name="<%= fieldName %>"
+								type="radio"
+								value="<%= HtmlUtil.escape(fieldOptionValue) %>"
+							/>
 
 						<%
 						}
@@ -108,7 +147,11 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 					</aui:field-wrapper>
 				</c:when>
 				<c:when test='<%= fieldType.equals("options") %>'>
-					<aui:select cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>' label="<%= HtmlUtil.escape(fieldLabel) %>" name="<%= fieldName %>">
+					<aui:select
+						cssClass='<%= fieldOptional ? "optional" : StringPool.BLANK %>'
+						label="<%= HtmlUtil.escape(fieldLabel) %>"
+						name="<%= fieldName %>"
+					>
 
 						<%
 						for (String fieldOptionValue : WebFormUtil.split(fieldOptions)) {
@@ -144,11 +187,17 @@ String successURL = portletPreferences.getValue("successURL", StringPool.BLANK);
 			/>
 		</c:if>
 
-		<aui:button onClick="" type="submit" value="send" />
+		<aui:button
+			onClick=""
+			type="submit"
+			value="send"
+		/>
 	</aui:fieldset>
 </aui:form>
 
-<aui:script use="aui-base,selector-css3">
+<aui:script
+	use="aui-base,selector-css3"
+>
 	var keys = [];
 
 	var fieldLabels = {};

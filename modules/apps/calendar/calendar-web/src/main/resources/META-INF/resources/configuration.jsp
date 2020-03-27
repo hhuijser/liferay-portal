@@ -23,7 +23,11 @@
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:tabs
@@ -52,6 +56,8 @@
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

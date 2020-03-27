@@ -19,25 +19,37 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
+import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.dom4j.Element;
+
 /**
  * @author Hugo Huijser
  */
-public class MethodCallsOrderCheck extends BaseFileCheck {
+public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, String content) {
+		String fileName, String absolutePath, JavaTerm javaTerm,
+		String fileContent) {
 
-		return _sortMethodCalls(fileName, content);
+		List<String> importNames = getImportNames(javaTerm);
+
+		if (importNames.isEmpty()) {
+			return javaTerm.getContent();
+		}
+
+		return _sortMethodCalls(
+			fileName, fileContent, importNames, javaTerm, absolutePath);
 	}
 
 	private String _getSortedCodeBlock(String codeBlock, String methodCall) {
@@ -296,7 +308,10 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _sortMethodCalls(String fileName, String content) {
+	private String _sortMethodCalls(
+		String fileName, String content, List<String> importNames,
+		JavaTerm javaTerm, String absolutePath) {
+
 		content = _sortChainedMethodCalls(
 			content, "put", 2, "ConcurrentHashMapBuilder", "HashMapBuilder",
 			"JSONObject", "JSONUtil", "SoyContext", "TreeMapBuilder");
@@ -308,6 +323,8 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 			fileName, content, "put", "ConcurrentHashMap", "HashMap",
 			"JSONObject", "SortedMap", "TreeMap");
 		content = _sortMethodCalls(fileName, content, "setAttribute");
+		content = _sortSetterMethodCalls(
+			javaTerm.getContent(), content, importNames, absolutePath);
 
 		return content;
 	}
@@ -356,6 +373,101 @@ public class MethodCallsOrderCheck extends BaseFileCheck {
 
 		return content;
 	}
+
+	private String _sortSetterMethodCalls(
+		String content, String fileContent, List<String> importNames,
+		String absolutePath) {
+
+		Matcher matcher1 = _setterCallsPattern.matcher(content);
+
+		while (matcher1.find()) {
+			String setterCallsCodeBlock = matcher1.group();
+
+			String packageName = null;
+			String previousMatch = null;
+			String previousSetterObjectName = null;
+			String previousVariableName = null;
+			String variableTypeName = null;
+
+			Matcher matcher2 = _setterCallPattern.matcher(setterCallsCodeBlock);
+
+			List<String> allowedNonorderedSetterMethodTypes =
+				getAttributeValues(
+					_ALLOWED_NONORDERED_SETTER_METHOD_TYPES, absolutePath);
+
+			while (matcher2.find()) {
+				if (allowedNonorderedSetterMethodTypes.contains(
+						variableTypeName)) {
+
+					continue;
+				}
+
+				String match = matcher2.group();
+				String setterObjectName = TextFormatter.format(
+					matcher2.group(2), TextFormatter.I);
+				String variableName = matcher2.group(1);
+
+				if (!variableName.equals(previousVariableName)) {
+					previousMatch = match;
+					previousSetterObjectName = setterObjectName;
+					previousVariableName = variableName;
+
+					variableTypeName = getVariableTypeName(
+						content, fileContent, variableName);
+
+					packageName = getPackageName(variableTypeName, importNames);
+
+					continue;
+				}
+
+				Element serviceXMLElement = getServiceXMLElement(packageName);
+
+				if (serviceXMLElement != null) {
+					int index1 = getColumnIndex(
+						serviceXMLElement, variableTypeName,
+						previousSetterObjectName);
+					int index2 = getColumnIndex(
+						serviceXMLElement, variableTypeName, setterObjectName);
+
+					if ((index2 != -1) && (index1 > index2)) {
+						int x = matcher2.start();
+
+						int y = content.lastIndexOf(previousMatch, x);
+
+						content = StringUtil.replaceFirst(
+							content, match, previousMatch, x);
+
+						return StringUtil.replaceFirst(
+							content, previousMatch, match, y);
+					}
+				}
+				else if (setterObjectName.compareTo(previousSetterObjectName) <
+							0) {
+
+					content = StringUtil.replaceFirst(
+						content, match, previousMatch, matcher2.start());
+
+					return StringUtil.replaceFirst(
+						content, previousMatch, match, matcher2.start());
+				}
+
+				previousMatch = match;
+				previousSetterObjectName = setterObjectName;
+				previousVariableName = variableName;
+			}
+		}
+
+		return content;
+	}
+
+	private static final String _ALLOWED_NONORDERED_SETTER_METHOD_TYPES =
+		"allowedNonorderedSetterMethodTypes";
+
+	private static final Pattern _setterCallPattern = Pattern.compile(
+		"(\\w+)\\.\\s*set([A-Z]\\w*)\\([^;]+;");
+	private static final Pattern _setterCallsPattern = Pattern.compile(
+		"(^[ \t]*\\w+\\.\\s*set[A-Z]\\w*\\([^;]+;\n)+",
+		Pattern.DOTALL | Pattern.MULTILINE);
 
 	private class PutOrSetParameterNameComparator
 		extends NaturalOrderStringComparator {

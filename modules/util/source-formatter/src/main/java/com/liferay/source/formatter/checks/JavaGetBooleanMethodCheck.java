@@ -28,7 +28,7 @@ import org.dom4j.Element;
 /**
  * @author Hugo Huijser
  */
-public class JavaServiceObjectCheck extends BaseServiceObjectCheck {
+public class JavaGetBooleanMethodCheck extends BaseServiceObjectCheck {
 
 	@Override
 	protected String doProcess(

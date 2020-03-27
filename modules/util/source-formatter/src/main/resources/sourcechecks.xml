@@ -299,7 +299,9 @@
 		<check name="JavaTermDividersCheck" />
 		<check name="JavaTermOrderCheck" />
 		<check name="JavaTermStylingCheck" />
-		<check name="MethodCallsOrderCheck" />
+		<check name="MethodCallsOrderCheck">
+			<property name="allowedNonorderedSetterMethodTypes" value="PreparedStatement" />
+		</check>
 		<check name="PrimitiveWrapperInstantiationCheck" />
 		<check name="PrincipalExceptionCheck" />
 		<check name="SessionKeysCheck" />
@@ -362,9 +364,7 @@
 			<property name="enabled" value="false" />
 		</check>
 		<check name="JavaReleaseInfoCheck" />
-		<check name="JavaServiceObjectCheck">
-			<property name="allowedNonorderedSetterMethodTypes" value="PreparedStatement" />
-		</check>
+		<check name="JavaServiceObjectCheck" />
 		<check name="JavaServiceTrackerFactoryCheck" />
 		<check name="JavaServiceUtilCheck">
 			<category name="Bug Prevention" />

@@ -16,6 +16,7 @@ package com.liferay.layout.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.layout.admin.web.internal.configuration.LayoutConverterConfiguration;
@@ -138,45 +139,39 @@ public class LayoutsAdminManagementToolbarDisplayContext
 
 	@Override
 	public CreationMenu getCreationMenu() {
-		return new CreationMenu() {
-			{
-				long firstLayoutPageTemplateCollectionId =
+		long firstLayoutPageTemplateCollectionId =
+			_layoutsAdminDisplayContext.
+				getFirstLayoutPageTemplateCollectionId();
+		long selPlid = _layoutsAdminDisplayContext.getSelPlid();
+
+		return CreationMenuBuilder.addPrimaryDropdownItem(
+			() ->
+				_layoutsAdminDisplayContext.isShowPublicPages() &&
+				(!_layoutsAdminDisplayContext.isPrivateLayout() ||
+				 _layoutsAdminDisplayContext.isFirstColumn() ||
+				 !_layoutsAdminDisplayContext.hasLayouts()),
+			dropdownItem -> {
+				dropdownItem.setHref(
 					_layoutsAdminDisplayContext.
-						getFirstLayoutPageTemplateCollectionId();
-				long selPlid = _layoutsAdminDisplayContext.getSelPlid();
-
-				if (_layoutsAdminDisplayContext.isShowPublicPages() &&
-					(!_layoutsAdminDisplayContext.isPrivateLayout() ||
-					 _layoutsAdminDisplayContext.isFirstColumn() ||
-					 !_layoutsAdminDisplayContext.hasLayouts())) {
-
-					addPrimaryDropdownItem(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								_layoutsAdminDisplayContext.
-									getSelectLayoutPageTemplateEntryURL(
-										firstLayoutPageTemplateCollectionId,
-										selPlid, false));
-							dropdownItem.setLabel(_getLabel(false));
-						});
-				}
-
-				if (_layoutsAdminDisplayContext.isPrivateLayout() ||
-					_layoutsAdminDisplayContext.isFirstColumn() ||
-					!_layoutsAdminDisplayContext.hasLayouts()) {
-
-					addPrimaryDropdownItem(
-						dropdownItem -> {
-							dropdownItem.setHref(
-								_layoutsAdminDisplayContext.
-									getSelectLayoutPageTemplateEntryURL(
-										firstLayoutPageTemplateCollectionId,
-										selPlid, true));
-							dropdownItem.setLabel(_getLabel(true));
-						});
-				}
+						getSelectLayoutPageTemplateEntryURL(
+							firstLayoutPageTemplateCollectionId, selPlid,
+							false));
+				dropdownItem.setLabel(_getLabel(false));
 			}
-		};
+		).addPrimaryDropdownItem(
+			() ->
+				_layoutsAdminDisplayContext.isPrivateLayout() ||
+				_layoutsAdminDisplayContext.isFirstColumn() ||
+				!_layoutsAdminDisplayContext.hasLayouts(),
+			dropdownItem -> {
+				dropdownItem.setHref(
+					_layoutsAdminDisplayContext.
+						getSelectLayoutPageTemplateEntryURL(
+							firstLayoutPageTemplateCollectionId, selPlid,
+							true));
+				dropdownItem.setLabel(_getLabel(true));
+			}
+		).build();
 	}
 
 	@Override

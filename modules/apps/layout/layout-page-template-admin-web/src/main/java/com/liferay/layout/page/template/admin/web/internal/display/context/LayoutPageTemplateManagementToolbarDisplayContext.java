@@ -16,6 +16,7 @@ package com.liferay.layout.page.template.admin.web.internal.display.context;
 
 import com.liferay.frontend.taglib.clay.servlet.taglib.display.context.SearchContainerManagementToolbarDisplayContext;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
+import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenuBuilder;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.layout.page.template.admin.web.internal.configuration.util.ExportImportLayoutPageTemplateConfigurationUtil;
@@ -136,32 +137,26 @@ public class LayoutPageTemplateManagementToolbarDisplayContext
 
 	@Override
 	public CreationMenu getCreationMenu() {
-		return new CreationMenu() {
-			{
-				addPrimaryDropdownItem(
-					dropdownItem -> {
-						dropdownItem.setHref(_getSelectMasterLayoutURL());
-						dropdownItem.setLabel(
-							LanguageUtil.get(request, "content-page-template"));
-					});
-
+		return CreationMenuBuilder.addPrimaryDropdownItem(
+			dropdownItem -> {
+				dropdownItem.setHref(_getSelectMasterLayoutURL());
+				dropdownItem.setLabel(
+					LanguageUtil.get(request, "content-page-template"));
+			}
+		).addPrimaryDropdownItem(
+			() -> {
 				Group scopeGroup = _themeDisplay.getScopeGroup();
 
-				if (!scopeGroup.isLayoutSetPrototype()) {
-					addPrimaryDropdownItem(
-						dropdownItem -> {
-							dropdownItem.putData(
-								"action", "addLayoutPageTemplateEntry");
-							dropdownItem.putData(
-								"addPageTemplateURL",
-								_getAddLayoutPrototypeURL());
-							dropdownItem.setLabel(
-								LanguageUtil.get(
-									request, "widget-page-template"));
-						});
-				}
+				return !scopeGroup.isLayoutSetPrototype();
+			},
+			dropdownItem -> {
+				dropdownItem.putData("action", "addLayoutPageTemplateEntry");
+				dropdownItem.putData(
+					"addPageTemplateURL", _getAddLayoutPrototypeURL());
+				dropdownItem.setLabel(
+					LanguageUtil.get(request, "widget-page-template"));
 			}
-		};
+		).build();
 	}
 
 	@Override

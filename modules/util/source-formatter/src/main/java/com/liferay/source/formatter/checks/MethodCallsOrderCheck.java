@@ -433,20 +433,22 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 						int y = content.lastIndexOf(previousMatch, x);
 
 						content = StringUtil.replaceFirst(
-							content, match, previousMatch, x);
+							content, match, previousMatch,
+							matcher1.start() + x);
 
 						return StringUtil.replaceFirst(
-							content, previousMatch, match, y);
+							content, previousMatch, match,
+							matcher1.start() + y);
 					}
 				}
 				else if (setterObjectName.compareTo(previousSetterObjectName) <
 							0) {
 
 					content = StringUtil.replaceFirst(
-						content, match, previousMatch, matcher2.start());
+						content, match, previousMatch, matcher1.start());
 
 					return StringUtil.replaceFirst(
-						content, previousMatch, match, matcher2.start());
+						content, previousMatch, match, matcher1.start());
 				}
 
 				previousMatch = match;

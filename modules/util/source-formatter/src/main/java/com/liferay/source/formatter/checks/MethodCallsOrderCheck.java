@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.TextFormatter;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
-import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.List;
 import java.util.Objects;
@@ -39,18 +38,16 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, JavaTerm javaTerm,
-		String fileContent) {
+		String fileName, String absolutePath, String content) {
 
-		List<String> importNames = getImportNames(javaTerm);
+		List<String> importNames = getImports(content);
 
 		if (importNames.isEmpty()) {
-			return javaTerm.getContent();
+			return content;
 		}
 
 		return _sortMethodCalls(
-			fileName, fileContent, importNames, javaTerm.getContent(),
-			absolutePath);
+			fileName, content, importNames, content, absolutePath);
 	}
 
 	private String _getSortedCodeBlock(String codeBlock, String methodCall) {

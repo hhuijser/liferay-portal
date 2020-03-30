@@ -16,7 +16,6 @@ package com.liferay.source.formatter.checks;
 
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
-import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.util.List;
 import java.util.Objects;
@@ -32,17 +31,15 @@ public class JavaGetBooleanMethodCheck extends BaseServiceObjectCheck {
 
 	@Override
 	protected String doProcess(
-		String fileName, String absolutePath, JavaTerm javaTerm,
-		String fileContent) {
+		String fileName, String absolutePath, String content) {
 
-		List<String> importNames = getImportNames(javaTerm);
+		List<String> importNames = getImports(content);
 
 		if (importNames.isEmpty()) {
-			return javaTerm.getContent();
+			return content;
 		}
 
-		return _formatGetterMethodCalls(
-			javaTerm.getContent(), fileContent, importNames);
+		return _formatGetterMethodCalls(content, content, importNames);
 	}
 
 	private String _formatGetterMethodCalls(

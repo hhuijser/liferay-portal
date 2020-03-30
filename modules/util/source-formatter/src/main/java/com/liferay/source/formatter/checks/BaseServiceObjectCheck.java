@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checks;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.JavaImportsFormatter;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
@@ -44,16 +46,11 @@ import org.dom4j.Element;
 /**
  * @author Alan Huang
  */
-public abstract class BaseServiceObjectCheck extends BaseJavaTermCheck {
+public abstract class BaseServiceObjectCheck extends BaseFileCheck {
 
 	@Override
 	public boolean isLiferaySourceCheck() {
 		return true;
-	}
-
-	@Override
-	protected String[] getCheckableJavaTermNames() {
-		return new String[] {JAVA_METHOD};
 	}
 
 	protected int getColumnIndex(
@@ -80,6 +77,21 @@ public abstract class BaseServiceObjectCheck extends BaseJavaTermCheck {
 		}
 
 		return -1;
+	}
+
+	protected List<String> getImports(String content) {
+		List<String> imports = new ArrayList<>();
+
+		String[] importLines = StringUtil.splitLines(
+			JavaImportsFormatter.getImports(content));
+
+		for (String importLine : importLines) {
+			if (Validator.isNotNull(importLine)) {
+				imports.add(importLine.substring(7, importLine.length() - 1));
+			}
+		}
+
+		return imports;
 	}
 
 	protected String getPackageName(

@@ -47,7 +47,9 @@ String resource = workflowDefinitionLinkSearchEntry.getResource();
 	<c:otherwise><span><%= resource %></span></c:otherwise>
 </c:choose>
 
-<aui:script require="metal-dom/src/dom">
+<aui:script
+	require="metal-dom/src/dom"
+>
 	var dom = metalDomSrcDom.default;
 
 	var tooltip = document.getElementById('<%= randomNamespace %>tooltip');

@@ -33,19 +33,31 @@ if ((selNodeId == 0) && (wikiNodes.size() == 1)) {
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
 
 		<liferay-frontend:fieldset>
-			<aui:select label="node" name="preferences--selNodeId--" showEmptyOption="<%= true %>">
+			<aui:select
+				label="node"
+				name="preferences--selNodeId--"
+				showEmptyOption="<%= true %>"
+			>
 
 				<%
 				for (WikiNode wikiNode : wikiNodes) {
 				%>
 
-					<aui:option label="<%= wikiNode.getName() %>" selected="<%= selNodeId == wikiNode.getNodeId() %>" value="<%= wikiNode.getNodeId() %>" />
+					<aui:option
+						label="<%= wikiNode.getName() %>"
+						selected="<%= selNodeId == wikiNode.getNodeId() %>"
+						value="<%= wikiNode.getNodeId() %>"
+					/>
 
 				<%
 				}
@@ -59,13 +71,20 @@ if ((selNodeId == 0) && (wikiNodes.size() == 1)) {
 				List<WikiPage> wikiPages = WikiPageServiceUtil.getNodePages(selNodeId, WikiNavigationConstants.MAX_PAGES);
 				%>
 
-				<aui:select label="page" name="preferences--selTitle--" showEmptyOption="<%= true %>">
+				<aui:select
+					label="page"
+					name="preferences--selTitle--"
+					showEmptyOption="<%= true %>"
+				>
 
 					<%
 					for (WikiPage curWikiPage : wikiPages) {
 					%>
 
-						<aui:option label="<%= curWikiPage.getTitle() %>" selected="<%= selTitle.equals(curWikiPage.getTitle()) %>" />
+						<aui:option
+							label="<%= curWikiPage.getTitle() %>"
+							selected="<%= selTitle.equals(curWikiPage.getTitle()) %>"
+						/>
 
 					<%
 					}
@@ -77,8 +96,12 @@ if ((selNodeId == 0) && (wikiNodes.size() == 1)) {
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

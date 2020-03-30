@@ -71,32 +71,95 @@ portletDisplay.setURLBack(redirect);
 	<portlet:param name="mvcPath" value="/polls/edit_question.jsp" />
 </liferay-portlet:actionURL>
 
-<aui:form action="<%= editQuestionURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveQuestion();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="referringPortletResource" type="hidden" value="<%= referringPortletResource %>" />
-	<aui:input name="questionId" type="hidden" value="<%= questionId %>" />
-	<aui:input name="neverExpire" type="hidden" value="<%= neverExpire %>" />
-	<aui:input name="choicesAction" type="hidden" value="" />
-	<aui:input name="choicesCount" type="hidden" value="<%= choicesCount %>" />
-	<aui:input name="choiceName" type="hidden" value="" />
+<aui:form
+	action="<%= editQuestionURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveQuestion();" %>'
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value=""
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="referringPortletResource"
+		type="hidden"
+		value="<%= referringPortletResource %>"
+	/>
+
+	<aui:input
+		name="questionId"
+		type="hidden"
+		value="<%= questionId %>"
+	/>
+
+	<aui:input
+		name="neverExpire"
+		type="hidden"
+		value="<%= neverExpire %>"
+	/>
+
+	<aui:input
+		name="choicesAction"
+		type="hidden"
+		value=""
+	/>
+
+	<aui:input
+		name="choicesCount"
+		type="hidden"
+		value="<%= choicesCount %>"
+	/>
+
+	<aui:input
+		name="choiceName"
+		type="hidden"
+		value=""
+	/>
 
 	<liferay-ui:error exception="<%= QuestionChoiceException.class %>" message="please-enter-valid-choices" />
 	<liferay-ui:error exception="<%= QuestionDescriptionException.class %>" message="please-enter-a-valid-description" />
 	<liferay-ui:error exception="<%= QuestionExpirationDateException.class %>" message="please-enter-a-valid-expiration-date" />
 	<liferay-ui:error exception="<%= QuestionTitleException.class %>" message="please-enter-a-valid-title" />
 
-	<aui:model-context bean="<%= question %>" model="<%= PollsQuestion.class %>" />
+	<aui:model-context
+		bean="<%= question %>"
+		model="<%= PollsQuestion.class %>"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>" name="title" />
+			<aui:input
+				autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) || windowState.equals(LiferayWindowState.POP_UP) %>"
+				name="title"
+			/>
 
-			<aui:input label="polls-question" name="description" />
+			<aui:input
+				label="polls-question"
+				name="description"
+			/>
 
-			<aui:input dateTogglerCheckboxLabel="never-expire" disabled="<%= neverExpire %>" name="expirationDate" />
+			<aui:input
+				dateTogglerCheckboxLabel="never-expire"
+				disabled="<%= neverExpire %>"
+				name="expirationDate"
+			/>
 
-			<aui:field-wrapper cssClass="form-group input-choices-wrapper" label="choices">
+			<aui:field-wrapper
+				cssClass="form-group input-choices-wrapper"
+				label="choices"
+			>
 
 				<%
 				for (int i = 1; i <= choicesCount; i++) {
@@ -125,15 +188,30 @@ portletDisplay.setURLBack(redirect);
 				%>
 
 					<div class="form-group poll-choice-group">
-						<aui:input name="<%= EditQuestionMVCActionCommand.CHOICE_NAME_PREFIX + c %>" type="hidden" value="<%= c %>" />
+						<aui:input
+							name="<%= EditQuestionMVCActionCommand.CHOICE_NAME_PREFIX + c %>"
+							type="hidden"
+							value="<%= c %>"
+						/>
 
 						<div class="poll-choice-input">
-							<aui:input ignoreRequestValue="<%= true %>" label="<%= c + StringPool.PERIOD %>" localized="<%= true %>" name="<%= EditQuestionMVCActionCommand.CHOICE_DESCRIPTION_PREFIX + c %>" type="text" value="<%= value %>" />
+							<aui:input
+								ignoreRequestValue="<%= true %>"
+								label="<%= c + StringPool.PERIOD %>"
+								localized="<%= true %>"
+								name="<%= EditQuestionMVCActionCommand.CHOICE_DESCRIPTION_PREFIX + c %>"
+								type="text"
+								value="<%= value %>"
+							/>
 						</div>
 
 						<c:if test="<%= choicesCount > 2 %>">
 							<div class="delete-poll-choice">
-								<aui:button cssClass="btn-delete" onClick='<%= renderResponse.getNamespace() + "deletePollChoice(" + i + ");" %>' value="delete" />
+								<aui:button
+									cssClass="btn-delete"
+									onClick='<%= renderResponse.getNamespace() + "deletePollChoice(" + i + ");" %>'
+									value="delete"
+								/>
 							</div>
 						</c:if>
 					</div>
@@ -143,13 +221,21 @@ portletDisplay.setURLBack(redirect);
 				%>
 
 				<div class="button-holder">
-					<aui:button cssClass="add-choice" onClick='<%= renderResponse.getNamespace() + "addPollChoice();" %>' value="add-choice" />
+					<aui:button
+						cssClass="add-choice"
+						onClick='<%= renderResponse.getNamespace() + "addPollChoice();" %>'
+						value="add-choice"
+					/>
 				</div>
 			</aui:field-wrapper>
 		</aui:fieldset>
 
 		<c:if test="<%= question == null %>">
-			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+			<aui:fieldset
+				collapsed="<%= true %>"
+				collapsible="<%= true %>"
+				label="permissions"
+			>
 				<liferay-ui:input-permissions
 					modelName="<%= PollsQuestion.class.getName() %>"
 				/>
@@ -158,9 +244,14 @@ portletDisplay.setURLBack(redirect);
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 

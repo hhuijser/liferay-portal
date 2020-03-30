@@ -28,7 +28,11 @@ addPanelURL.setWindowState(LiferayWindowState.EXCLUSIVE);
 
 <li class="control-menu-nav-item">
 	<a aria-label="<%= LanguageUtil.get(request, "add") %>" class="control-menu-icon lfr-portal-tooltip product-menu-toggle sidenav-toggler" data-content="body" data-open-class="open-admin-panel" data-qa-id="add" data-target="#<%= portletNamespace %>addPanelId" data-title="<%= LanguageUtil.get(request, "add") %>" data-toggle="liferay-sidenav" data-type="fixed-push" data-type-mobile="fixed" data-url="<%= addPanelURL.toString() %>" href="javascript:;" id="<%= portletNamespace %>addToggleId">
-		<aui:icon cssClass="icon-monospaced" image="plus" markupView="lexicon" />
+		<aui:icon
+			cssClass="icon-monospaced"
+			image="plus"
+			markupView="lexicon"
+		/>
 	</a>
 </li>
 
@@ -58,7 +62,9 @@ if (Validator.isNotNull(className) && (classPK > 0)) {
 <span <%= AUIUtil.buildData(data) %> class="hide portlet-item"></span>
 
 <c:if test="<%= (assetRenderer != null) && PortletPermissionUtil.contains(permissionChecker, layout, portletId, ActionKeys.ADD_TO_PAGE) %>">
-	<aui:script use="aui-base">
+	<aui:script
+		use="aui-base"
+	>
 		Liferay.fire('AddContent:addPortlet', {
 			node: A.one('.portlet-item'),
 		});

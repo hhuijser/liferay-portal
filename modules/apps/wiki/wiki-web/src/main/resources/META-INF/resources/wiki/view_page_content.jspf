@@ -40,13 +40,19 @@ try {
 						String taglibRemoveRedirect = "location.href = '" + removeRedirectURL + "';";
 						%>
 
-						<aui:button onClick="<%= taglibRemoveRedirect %>" value="remove-redirect" />
+						<aui:button
+							onClick="<%= taglibRemoveRedirect %>"
+							value="remove-redirect"
+						/>
 					</div>
 				</c:if>
 			</c:when>
 			<c:when test="<%= Validator.isNull(formattedContent) && WikiPagePermission.contains(permissionChecker, wikiPage, ActionKeys.UPDATE) %>">
 				<div class="alert alert-info">
-					<aui:a href="<%= editPageURL.toString() %>" label="this-page-is-empty-edit-it-to-add-some-text" />
+					<aui:a
+						href="<%= editPageURL.toString() %>"
+						label="this-page-is-empty-edit-it-to-add-some-text"
+					/>
 				</div>
 			</c:when>
 			<c:otherwise>

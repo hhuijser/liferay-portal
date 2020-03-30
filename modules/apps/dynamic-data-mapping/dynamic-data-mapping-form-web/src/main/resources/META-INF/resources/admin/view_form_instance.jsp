@@ -24,9 +24,21 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 %>
 
 <div class="container-fluid-1280" id="<portlet:namespace />formContainer">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="searchContainerForm">
-		<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
-		<aui:input name="deleteFormInstanceIds" type="hidden" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="searchContainerForm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= portletURL.toString() %>"
+		/>
+
+		<aui:input
+			name="deleteFormInstanceIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			id="<%= ddmFormAdminDisplayContext.getSearchContainerId() %>"
@@ -103,7 +115,9 @@ FormInstancePermissionCheckerHelper formInstancePermissionCheckerHelper = ddmFor
 	</aui:form>
 </div>
 
-<aui:script require='<%= mainRequire + "/admin/js/components/ShareFormPopover/ShareFormPopover.es as ShareFormPopover" %>'>
+<aui:script
+	require='<%= mainRequire + "/admin/js/components/ShareFormPopover/ShareFormPopover.es as ShareFormPopover" %>'
+>
 	var spritemap = themeDisplay.getPathThemeImages() + '/lexicon/icons.svg';
 
 	Liferay.after('<portlet:namespace />copyFormURL', function(data) {

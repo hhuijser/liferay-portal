@@ -31,7 +31,12 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 	<portlet:param name="backURL" value="<%= redirect %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= updateOAuth2ApplicationURL %>" id="oauth2-application-fm" method="post" name="oauth2-application-fm">
+<aui:form
+	action="<%= updateOAuth2ApplicationURL %>"
+	id="oauth2-application-fm"
+	method="post"
+	name="oauth2-application-fm"
+>
 	<div class="container-fluid container-fluid-max-xl container-view">
 		<div class="sheet">
 			<div class="row">
@@ -87,25 +92,58 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 						</c:choose>
 					</liferay-ui:error>
 
-					<aui:model-context bean="<%= oAuth2Application %>" model="<%= OAuth2Application.class %>" />
+					<aui:model-context
+						bean="<%= oAuth2Application %>"
+						model="<%= OAuth2Application.class %>"
+					/>
 
 					<c:if test="<%= oAuth2Application != null %>">
-						<aui:fieldset style="margin-bottom: 1em; border-bottom: 2px solid #F0F0F0;">
+						<aui:fieldset
+							style="margin-bottom: 1em; border-bottom: 2px solid #F0F0F0;"
+						>
 							<div class="pencil-wrapper">
-								<aui:button href="" onClick='<%= renderResponse.getNamespace() + "showEditClientIdModal();" %>' value="edit" />
+								<aui:button
+									href=""
+									onClick='<%= renderResponse.getNamespace() + "showEditClientIdModal();" %>'
+									value="edit"
+								/>
 
-								<aui:input helpMessage="client-id-help" name="clientId" readonly="true" required="<%= true %>" type="text" />
+								<aui:input
+									helpMessage="client-id-help"
+									name="clientId"
+									readonly="true"
+									required="<%= true %>"
+									type="text"
+								/>
 							</div>
 
-							<aui:input name="originalClientId" type="hidden" value="<%= clientId %>" />
+							<aui:input
+								name="originalClientId"
+								type="hidden"
+								value="<%= clientId %>"
+							/>
 
 							<div class="pencil-wrapper">
-								<aui:button href="" onClick='<%= renderResponse.getNamespace() + "showEditClientSecretModal();" %>' value="edit" />
+								<aui:button
+									href=""
+									onClick='<%= renderResponse.getNamespace() + "showEditClientSecretModal();" %>'
+									value="edit"
+								/>
 
-								<aui:input helpMessage="client-secret-help" name="clientSecret" readonly="true" type="password" value="<%= clientSecret %>" />
+								<aui:input
+									helpMessage="client-secret-help"
+									name="clientSecret"
+									readonly="true"
+									type="password"
+									value="<%= clientSecret %>"
+								/>
 							</div>
 
-							<aui:input name="originalClientSecret" type="hidden" value="<%= clientSecret %>" />
+							<aui:input
+								name="originalClientSecret"
+								type="hidden"
+								value="<%= clientSecret %>"
+							/>
 						</aui:fieldset>
 					</c:if>
 				</div>
@@ -151,9 +189,14 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 			<div class="row">
 				<div class="col-lg-12">
 					<aui:button-row>
-						<aui:button type="submit" />
+						<aui:button
+							type="submit"
+						/>
 
-						<aui:button href="<%= portletDisplay.getURLBack() %>" type="cancel" />
+						<aui:button
+							href="<%= portletDisplay.getURLBack() %>"
+							type="cancel"
+						/>
 					</aui:button-row>
 				</div>
 			</div>
@@ -184,10 +227,22 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 				</div>
 			</div>
 
-			<aui:input helpMessage="client-id-help" label="client-id" name="newClientId" onKeyup='<%= renderResponse.getNamespace() + "updatePadlock('clientIdPadlock', this.value, '" + HtmlUtil.escapeJS(clientId) + "')" %>' type="text" value="<%= clientId %>" />
+			<aui:input
+				helpMessage="client-id-help"
+				label="client-id"
+				name="newClientId"
+				onKeyup='<%= renderResponse.getNamespace() + "updatePadlock('clientIdPadlock', this.value, '" + HtmlUtil.escapeJS(clientId) + "')" %>'
+				type="text"
+				value="<%= clientId %>"
+			/>
 
 			<aui:button-row>
-				<aui:button href="" icon="icon-undo" onClick='<%= renderResponse.getNamespace() + "setControlEqualTo('newClientId', 'originalClientId')" %>' value="revert" />
+				<aui:button
+					href=""
+					icon="icon-undo"
+					onClick='<%= renderResponse.getNamespace() + "setControlEqualTo('newClientId', 'originalClientId')" %>'
+					value="revert"
+				/>
 			</aui:button-row>
 		</div>
 	</div>
@@ -214,18 +269,37 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 				</div>
 			</div>
 
-			<aui:input helpMessage="client-secret-id" label="client-secret" name="newClientSecret" onKeyup='<%= renderResponse.getNamespace() + "updatePadlock('clientSecretPadlock', this.value, '" + HtmlUtil.escapeJS(clientSecret) + "')" %>' type="text" value="<%= clientSecret %>" />
+			<aui:input
+				helpMessage="client-secret-id"
+				label="client-secret"
+				name="newClientSecret"
+				onKeyup='<%= renderResponse.getNamespace() + "updatePadlock('clientSecretPadlock', this.value, '" + HtmlUtil.escapeJS(clientSecret) + "')" %>'
+				type="text"
+				value="<%= clientSecret %>"
+			/>
 
 			<aui:button-row>
-				<aui:button href="" icon="icon-plus" onClick='<%= renderResponse.getNamespace() + "generateRandomSecret()" %>' value="generate-new-secret" />
+				<aui:button
+					href=""
+					icon="icon-plus"
+					onClick='<%= renderResponse.getNamespace() + "generateRandomSecret()" %>'
+					value="generate-new-secret"
+				/>
 
-				<aui:button href="" icon="icon-undo" onClick='<%= renderResponse.getNamespace() + "setControlEqualTo('newClientSecret', 'originalClientSecret')" %>' value="revert" />
+				<aui:button
+					href=""
+					icon="icon-undo"
+					onClick='<%= renderResponse.getNamespace() + "setControlEqualTo('newClientSecret', 'originalClientSecret')" %>'
+					value="revert"
+				/>
 			</aui:button-row>
 		</div>
 	</div>
 </div>
 
-<aui:script use="aui-modal,liferay-form,node,node-event-simulate">
+<aui:script
+	use="aui-modal,liferay-form,node,node-event-simulate"
+>
 	<portlet:namespace />generateRandomSecret = function() {
 		Liferay.Util.fetch(
 			'<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/admin/generate_random_secret" />',

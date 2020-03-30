@@ -41,7 +41,10 @@ String currentURL = PortalUtil.getCurrentURL(request);
 			String displayPreferredLanguageURLString = themeDisplay.getPathMain() + "/portal/update_language?p_l_id=" + themeDisplay.getPlid() + "&redirect=" + URLCodec.encodeURL(currentURL) + "&languageId=" + user.getLanguageId() + "&persistState=false&showUserLocaleOptionsMessage=false";
 			%>
 
-			<aui:a cssClass="d-block" href="<%= displayPreferredLanguageURLString %>">
+			<aui:a
+				cssClass="d-block"
+				href="<%= displayPreferredLanguageURLString %>"
+			>
 				<%= LanguageUtil.format(userLocale, "display-the-page-in-x", userLocale.getDisplayName(userLocale)) %>
 			</aui:a>
 		</c:if>
@@ -57,12 +60,17 @@ String currentURL = PortalUtil.getCurrentURL(request);
 		String changePreferredLanguageURLString = themeDisplay.getPathMain() + "/portal/update_language?p_l_id=" + themeDisplay.getPlid() + "&redirect=" + URLCodec.encodeURL(currentURL) + "&languageId=" + themeDisplay.getLanguageId() + "&showUserLocaleOptionsMessage=false";
 		%>
 
-		<aui:a cssClass="d-block" href="<%= changePreferredLanguageURLString %>">
+		<aui:a
+			cssClass="d-block"
+			href="<%= changePreferredLanguageURLString %>"
+		>
 			<%= LanguageUtil.format(locale, "set-x-as-your-preferred-language", locale.getDisplayName(locale)) %>
 		</aui:a>
 	</div>
 
-	<aui:script use="aui-base,liferay-store">
+	<aui:script
+		use="aui-base,liferay-store"
+	>
 		var ignoreUserLocaleOptionsNode = A.one('#ignoreUserLocaleOptions');
 
 		ignoreUserLocaleOptionsNode.on(

@@ -56,14 +56,20 @@ if (portletTitleBasedNavigation) {
 			<c:choose>
 				<c:when test="<%= DLFolderPermission.contains(permissionChecker, scopeGroupId, folderId, ActionKeys.ADD_DOCUMENT) %>">
 					<aui:row>
-						<aui:col width="<%= 50 %>">
-							<aui:form name="fm1">
+						<aui:col
+							width="<%= 50 %>"
+						>
+							<aui:form
+								name="fm1"
+							>
 								<div class="lfr-dynamic-uploader">
 									<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
 								</div>
 							</aui:form>
 
-							<aui:script use="liferay-upload">
+							<aui:script
+								use="liferay-upload"
+							>
 								new Liferay.Upload({
 									boundingBox: '#<portlet:namespace />fileUpload',
 
@@ -97,7 +103,9 @@ if (portletTitleBasedNavigation) {
 							</aui:script>
 						</aui:col>
 
-						<aui:col width="<%= 50 %>">
+						<aui:col
+							width="<%= 50 %>"
+						>
 							<div class="common-file-metadata-container hide selected" id="<portlet:namespace />commonFileMetadataContainer">
 								<liferay-util:include page="/document_library/upload_multiple_file_entries_resources.jsp" servletContext="<%= application %>" />
 							</div>
@@ -108,7 +116,9 @@ if (portletTitleBasedNavigation) {
 							PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "add-multiple-file-entries"), currentURL);
 							%>
 
-							<aui:script use="aui-base,aui-loading-mask-deprecated,node-load">
+							<aui:script
+								use="aui-base,aui-loading-mask-deprecated,node-load"
+							>
 								Liferay.on('tempFileRemoved', function() {
 									Liferay.Util.openToast({
 										message:

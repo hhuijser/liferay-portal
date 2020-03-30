@@ -20,7 +20,10 @@
 User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 %>
 
-<aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
+<aui:model-context
+	bean="<%= selUser %>"
+	model="<%= User.class %>"
+/>
 
 <liferay-ui:error-marker
 	key="<%= WebKeys.ERROR_SECTION %>"

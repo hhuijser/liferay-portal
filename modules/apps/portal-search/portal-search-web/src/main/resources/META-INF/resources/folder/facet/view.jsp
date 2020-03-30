@@ -54,12 +54,31 @@ List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts =
 
 <c:choose>
 	<c:when test="<%= folderSearchFacetDisplayContext.isRenderNothing() %>">
-		<aui:input autocomplete="off" name="<%= HtmlUtil.escapeAttribute(folderSearchFacetDisplayContext.getParameterName()) %>" type="hidden" value="<%= folderSearchFacetDisplayContext.getParameterValue() %>" />
+		<aui:input
+			autocomplete="off"
+			name="<%= HtmlUtil.escapeAttribute(folderSearchFacetDisplayContext.getParameterName()) %>"
+			type="hidden"
+			value="<%= folderSearchFacetDisplayContext.getParameterValue() %>"
+		/>
 	</c:when>
 	<c:otherwise>
-		<aui:form method="post" name="fm">
-			<aui:input autocomplete="off" name="<%= HtmlUtil.escapeAttribute(folderSearchFacetDisplayContext.getParameterName()) %>" type="hidden" value="<%= folderSearchFacetDisplayContext.getParameterValue() %>" />
-			<aui:input cssClass="facet-parameter-name" name="facet-parameter-name" type="hidden" value="<%= folderSearchFacetDisplayContext.getParameterName() %>" />
+		<aui:form
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				autocomplete="off"
+				name="<%= HtmlUtil.escapeAttribute(folderSearchFacetDisplayContext.getParameterName()) %>"
+				type="hidden"
+				value="<%= folderSearchFacetDisplayContext.getParameterValue() %>"
+			/>
+
+			<aui:input
+				cssClass="facet-parameter-name"
+				name="facet-parameter-name"
+				type="hidden"
+				value="<%= folderSearchFacetDisplayContext.getParameterName() %>"
+			/>
 
 			<liferay-ddm:template-renderer
 				className="<%= FolderSearchFacetTermDisplayContext.class.getName() %>"
@@ -128,7 +147,11 @@ List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts =
 						</aui:fieldset>
 
 						<c:if test="<%= !folderSearchFacetDisplayContext.isNothingSelected() %>">
-							<aui:button cssClass="btn-link btn-unstyled facet-clear-btn" onClick="Liferay.Search.FacetUtil.clearSelections(event);" value="clear" />
+							<aui:button
+								cssClass="btn-link btn-unstyled facet-clear-btn"
+								onClick="Liferay.Search.FacetUtil.clearSelections(event);"
+								value="clear"
+							/>
 						</c:if>
 					</liferay-ui:panel>
 				</liferay-ui:panel-container>
@@ -137,7 +160,9 @@ List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts =
 	</c:otherwise>
 </c:choose>
 
-<aui:script use="liferay-search-facet-util">
+<aui:script
+	use="liferay-search-facet-util"
+>
 	Liferay.Search.FacetUtil.enableInputs(
 		document.querySelectorAll('#<portlet:namespace />fm .facet-term')
 	);

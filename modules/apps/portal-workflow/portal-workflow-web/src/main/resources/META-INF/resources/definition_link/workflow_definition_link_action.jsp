@@ -34,7 +34,9 @@ String randomNamespace = (String)row.getParameter("randomNamespace");
 
 <button class="btn btn-secondary btn-sm" id="<%= randomNamespace %>editButton" type="button"><%= LanguageUtil.get(request, "edit") %></button>
 
-<aui:script use="liferay-workflow-web">
+<aui:script
+	use="liferay-workflow-web"
+>
 	var saveWorkflowDefinitionLink = A.rbind(
 		'saveWorkflowDefinitionLink',
 		Liferay.WorkflowWeb,

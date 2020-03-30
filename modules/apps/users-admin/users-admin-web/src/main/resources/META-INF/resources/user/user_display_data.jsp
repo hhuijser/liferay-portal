@@ -20,7 +20,10 @@
 User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 %>
 
-<aui:model-context bean="<%= selUser %>" model="<%= User.class %>" />
+<aui:model-context
+	bean="<%= selUser %>"
+	model="<%= User.class %>"
+/>
 
 <div class="row">
 	<div class="col-md-6">
@@ -82,17 +85,25 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 		<c:if test="<%= !PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) || (selUser != null) %>">
 			<c:choose>
 				<c:when test='<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_SCREEN_NAME_ALWAYS_AUTOGENERATE) || !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "screenName") %>'>
-					<aui:input disabled="<%= true %>" name="screenName" />
+					<aui:input
+						disabled="<%= true %>"
+						name="screenName"
+					/>
 				</c:when>
 				<c:otherwise>
-					<aui:input name="screenName">
+					<aui:input
+						name="screenName"
+					>
 
 						<%
 						ScreenNameValidator screenNameValidator = ScreenNameValidatorFactory.getInstance();
 						%>
 
 						<c:if test="<%= Validator.isNotNull(screenNameValidator.getAUIValidatorJS()) %>">
-							<aui:validator errorMessage="<%= screenNameValidator.getDescription(locale) %>" name="custom">
+							<aui:validator
+								errorMessage="<%= screenNameValidator.getDescription(locale) %>"
+								name="custom"
+							>
 								<%= screenNameValidator.getAUIValidatorJS() %>
 							</aui:validator>
 						</c:if>
@@ -110,7 +121,10 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 
 		<c:choose>
 			<c:when test='<%= !UsersAdminUtil.hasUpdateFieldPermission(permissionChecker, user, selUser, "emailAddress") %>'>
-				<aui:input disabled="<%= true %>" name="emailAddress" />
+				<aui:input
+					disabled="<%= true %>"
+					name="emailAddress"
+				/>
 			</c:when>
 			<c:otherwise>
 
@@ -124,9 +138,15 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 				}
 				%>
 
-				<aui:input bean="<%= displayEmailAddressUser %>" model="<%= User.class %>" name="emailAddress">
+				<aui:input
+					bean="<%= displayEmailAddressUser %>"
+					model="<%= User.class %>"
+					name="emailAddress"
+				>
 					<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED) %>">
-						<aui:validator name="required" />
+						<aui:validator
+							name="required"
+						/>
 					</c:if>
 				</aui:input>
 			</c:otherwise>
@@ -136,7 +156,11 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 			<liferay-ui:error exception="<%= UserIdException.MustNotBeNull.class %>" message="please-enter-a-user-id" />
 			<liferay-ui:error exception="<%= UserIdException.MustNotBeReserved.class %>" message="the-user-id-you-requested-is-reserved" />
 
-			<aui:input name="userId" type="resource" value="<%= String.valueOf(selUser.getUserId()) %>" />
+			<aui:input
+				name="userId"
+				type="resource"
+				value="<%= String.valueOf(selUser.getUserId()) %>"
+			/>
 		</c:if>
 	</div>
 

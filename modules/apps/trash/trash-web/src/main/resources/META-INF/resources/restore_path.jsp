@@ -75,9 +75,32 @@
 
 <portlet:actionURL name="moveEntry" var="selectContainerURL" />
 
-<aui:form action="<%= selectContainerURL.toString() %>" method="post" name="selectContainerForm">
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="className" type="hidden" value="" />
-	<aui:input name="classPK" type="hidden" value="" />
-	<aui:input name="containerModelId" type="hidden" value="" />
+<aui:form
+	action="<%= selectContainerURL.toString() %>"
+	method="post"
+	name="selectContainerForm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="className"
+		type="hidden"
+		value=""
+	/>
+
+	<aui:input
+		name="classPK"
+		type="hidden"
+		value=""
+	/>
+
+	<aui:input
+		name="containerModelId"
+		type="hidden"
+		value=""
+	/>
 </aui:form>

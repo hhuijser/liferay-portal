@@ -31,7 +31,10 @@ portletURL.setParameter("mvcPath", "/document_library/select_group.jsp");
 		selectable="<%= false %>"
 	/>
 
-	<aui:form method="post" name="selectGroupFm">
+	<aui:form
+		method="post"
+		name="selectGroupFm"
+	>
 		<liferay-ui:search-container
 			searchContainer="<%= new GroupSearch(renderRequest, PortletURLUtil.clone(portletURL, liferayPortletResponse)) %>"
 		>
@@ -130,7 +133,11 @@ portletURL.setParameter("mvcPath", "/document_library/select_group.jsp");
 					data.put("groupid", group.getGroupId());
 					%>
 
-					<aui:button cssClass="selector-button" data="<%= data %>" value="select" />
+					<aui:button
+						cssClass="selector-button"
+						data="<%= data %>"
+						value="select"
+					/>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 

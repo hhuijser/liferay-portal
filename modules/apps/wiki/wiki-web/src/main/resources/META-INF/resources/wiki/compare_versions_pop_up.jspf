@@ -14,7 +14,9 @@
  */
 --%>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	dom.delegate(document.body, 'click', '.compare-to-link > a', function(event) {
 		var currentTarget = event.delegateTarget;
 

@@ -38,7 +38,9 @@
 			<p class="font-weight-bold h5">
 				<c:choose>
 					<c:when test="<%= BlogsEntryPermission.contains(permissionChecker, entry, ActionKeys.UPDATE) %>">
-						<aui:a href="<%= rowURL.toString() %>">
+						<aui:a
+							href="<%= rowURL.toString() %>"
+						>
 							<%= BlogsEntryUtil.getDisplayTitle(resourceBundle, entry) %>
 						</aui:a>
 					</c:when>
@@ -49,7 +51,12 @@
 			</p>
 
 			<span class="text-default">
-				<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= entry.getStatus() %>" />
+				<aui:workflow-status
+					markupView="lexicon"
+					showIcon="<%= false %>"
+					showLabel="<%= false %>"
+					status="<%= entry.getStatus() %>"
+				/>
 			</span>
 		</liferay-ui:search-container-column-text>
 

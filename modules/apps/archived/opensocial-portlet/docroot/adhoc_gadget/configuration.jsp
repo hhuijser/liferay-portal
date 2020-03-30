@@ -28,15 +28,32 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="tabs2"
+		type="hidden"
+		value="<%= tabs2 %>"
+	/>
 
 	<liferay-portlet:renderURL portletConfiguration="<%= true %>" var="configurationRenderURL">
 		<portlet:param name="tabs2" value="<%= tabs2 %>" />
 	</liferay-portlet:renderURL>
 
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<%
 	String tabs2Names = "gadget";
@@ -74,16 +91,26 @@ Map<String, OAuthService> oAuthServices = (Map<String, OAuthService>)renderReque
 				<div class="container-fluid-1280">
 					<div class="card card-row-padded main-content-card">
 						<aui:fieldset>
-							<aui:input label="url" name="preferences--url--" type="text" value="<%= url %>" wrapperCssClass="lfr-input-text-container" />
+							<aui:input
+								label="url"
+								name="preferences--url--"
+								type="text"
+								value="<%= url %>"
+								wrapperCssClass="lfr-input-text-container"
+							/>
 						</aui:fieldset>
 					</div>
 				</div>
 			</div>
 
 			<aui:button-row>
-				<aui:button type="submit" />
+				<aui:button
+					type="submit"
+				/>
 
-				<aui:button type="cancel" />
+				<aui:button
+					type="cancel"
+				/>
 			</aui:button-row>
 		</c:when>
 		<c:when test='<%= tabs2.equals("manage-oauth") %>'>

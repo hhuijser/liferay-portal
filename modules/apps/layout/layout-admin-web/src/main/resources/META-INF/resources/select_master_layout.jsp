@@ -24,7 +24,10 @@ SelectLayoutPageTemplateEntryDisplayContext selectLayoutPageTemplateEntryDisplay
 List<LayoutPageTemplateEntry> masterLayoutPageTemplateEntries = selectLayoutPageTemplateEntryDisplayContext.getMasterLayoutPageTemplateEntries();
 %>
 
-<aui:form cssClass="container-fluid-1280 mt-3" name="fm">
+<aui:form
+	cssClass="container-fluid-1280 mt-3"
+	name="fm"
+>
 	<ul class="card-page card-page-equal-height">
 
 		<%
@@ -44,7 +47,9 @@ List<LayoutPageTemplateEntry> masterLayoutPageTemplateEntries = selectLayoutPage
 	</ul>
 </aui:form>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	var delegateHandler = dom.delegate(
 		document.body,
 		'click',

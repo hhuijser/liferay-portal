@@ -16,7 +16,9 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	function handleIframeMessage(event) {
 		if (event.data) {
 			var virtualDocument = document.createElement('html');

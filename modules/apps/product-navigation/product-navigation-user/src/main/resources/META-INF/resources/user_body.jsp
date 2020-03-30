@@ -21,8 +21,14 @@ UserPanelCategory userPanelCategory = (UserPanelCategory)request.getAttribute(Ap
 %>
 
 <c:if test="<%= themeDisplay.isImpersonated() %>">
-	<aui:a cssClass="list-group-heading" href="<%= PortalUtil.getLayoutURL(layout, themeDisplay, false) %>">
-		<aui:icon image="change" markupView="lexicon" />
+	<aui:a
+		cssClass="list-group-heading"
+		href="<%= PortalUtil.getLayoutURL(layout, themeDisplay, false) %>"
+	>
+		<aui:icon
+			image="change"
+			markupView="lexicon"
+		/>
 
 		<liferay-ui:message key="be-yourself-again" /> <span class="impersonation-real-user">(<%= HtmlUtil.escape(realUser.getFullName()) %>)</span>
 	</aui:a>
@@ -48,7 +54,13 @@ UserPanelCategory userPanelCategory = (UserPanelCategory)request.getAttribute(Ap
 		}
 		%>
 
-		<aui:icon cssClass="list-group-heading" image="flag-full" label="<%= changeLanguageMessage %>" markupView="lexicon" url='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsUserLanguageId", doAsUserLanguageId) %>' />
+		<aui:icon
+			cssClass="list-group-heading"
+			image="flag-full"
+			label="<%= changeLanguageMessage %>"
+			markupView="lexicon"
+			url='<%= HttpUtil.setParameter(PortalUtil.getCurrentURL(request), "doAsUserLanguageId", doAsUserLanguageId) %>'
+		/>
 	</c:if>
 </c:if>
 

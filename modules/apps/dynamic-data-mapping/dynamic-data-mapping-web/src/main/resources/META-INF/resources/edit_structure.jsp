@@ -92,16 +92,63 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 %>
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= (structure == null) ? addStructureURL : updateStructureURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'>
-		<aui:input name="redirect" type="hidden" value="<%= ddmDisplay.getViewTemplatesBackURL(liferayPortletRequest, liferayPortletResponse, classPK) %>" />
-		<aui:input name="closeRedirect" type="hidden" value="<%= closeRedirect %>" />
-		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
-		<aui:input name="classNameId" type="hidden" value="<%= String.valueOf(classNameId) %>" />
-		<aui:input name="classPK" type="hidden" value="<%= String.valueOf(classPK) %>" />
-		<aui:input name="scopeClassNameId" type="hidden" value="<%= scopeClassNameId %>" />
-		<aui:input name="definition" type="hidden" />
-		<aui:input name="status" type="hidden" />
-		<aui:input name="saveAndContinue" type="hidden" value="<%= saveAndContinue %>" />
+	<aui:form
+		action="<%= (structure == null) ? addStructureURL : updateStructureURL %>"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= ddmDisplay.getViewTemplatesBackURL(liferayPortletRequest, liferayPortletResponse, classPK) %>"
+		/>
+
+		<aui:input
+			name="closeRedirect"
+			type="hidden"
+			value="<%= closeRedirect %>"
+		/>
+
+		<aui:input
+			name="groupId"
+			type="hidden"
+			value="<%= groupId %>"
+		/>
+
+		<aui:input
+			name="classNameId"
+			type="hidden"
+			value="<%= String.valueOf(classNameId) %>"
+		/>
+
+		<aui:input
+			name="classPK"
+			type="hidden"
+			value="<%= String.valueOf(classPK) %>"
+		/>
+
+		<aui:input
+			name="scopeClassNameId"
+			type="hidden"
+			value="<%= scopeClassNameId %>"
+		/>
+
+		<aui:input
+			name="definition"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="status"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="saveAndContinue"
+			type="hidden"
+			value="<%= saveAndContinue %>"
+		/>
 
 		<liferay-ui:error exception="<%= DDMFormLayoutValidationException.class %>" message="please-enter-a-valid-form-layout" />
 
@@ -197,14 +244,23 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 			</c:choose>
 		</c:if>
 
-		<aui:model-context bean="<%= structure %>" model="<%= DDMStructure.class %>" />
+		<aui:model-context
+			bean="<%= structure %>"
+			model="<%= DDMStructure.class %>"
+		/>
 
 		<c:if test="<%= (structureVersion != null) && ddmDisplay.isVersioningEnabled() %>">
-			<aui:workflow-status model="<%= DDMStructure.class %>" status="<%= structureVersion.getStatus() %>" version="<%= structureVersion.getVersion() %>" />
+			<aui:workflow-status
+				model="<%= DDMStructure.class %>"
+				status="<%= structureVersion.getStatus() %>"
+				version="<%= structureVersion.getVersion() %>"
+			/>
 
 			<div class="structure-history-toolbar" id="<portlet:namespace />structureHistoryToolbar"></div>
 
-			<aui:script use="aui-dialog-iframe-deprecated,aui-toolbar,liferay-util-window">
+			<aui:script
+				use="aui-dialog-iframe-deprecated,aui-toolbar,liferay-util-window"
+			>
 				var toolbarChildren = [
 					<portlet:renderURL var="viewHistoryURL">
 						<portlet:param name="mvcPath" value="/view_structure_history.jsp" />
@@ -231,7 +287,9 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 			</aui:script>
 		</c:if>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 				<aui:field-wrapper>
 					<c:if test="<%= (structure != null) && (DDMStorageLinkLocalServiceUtil.getStructureStorageLinksCount(classPK) > 0) %>">
@@ -253,7 +311,10 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 					</c:if>
 				</aui:field-wrapper>
 
-				<aui:input autoFocus="<%= windowState.equals(LiferayWindowState.POP_UP) %>" name="name" />
+				<aui:input
+					autoFocus="<%= windowState.equals(LiferayWindowState.POP_UP) %>"
+					name="name"
+				/>
 
 				<liferay-ui:panel-container
 					cssClass="lfr-structure-entry-details-container"
@@ -270,18 +331,28 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 						persistState="<%= true %>"
 						title='<%= LanguageUtil.get(request, "details") %>'
 					>
-						<aui:row cssClass="lfr-ddm-types-form-column">
+						<aui:row
+							cssClass="lfr-ddm-types-form-column"
+						>
 							<c:choose>
 								<c:when test="<%= Validator.isNull(storageTypeValue) %>">
-									<aui:col width="<%= 50 %>">
+									<aui:col
+										width="<%= 50 %>"
+									>
 										<aui:field-wrapper>
-											<aui:select disabled="<%= structure != null %>" name="storageType">
+											<aui:select
+												disabled="<%= structure != null %>"
+												name="storageType"
+											>
 
 												<%
 												for (String storageType : ddmDisplayContext.getStorageTypes()) {
 												%>
 
-													<aui:option label="<%= storageType %>" value="<%= storageType %>" />
+													<aui:option
+														label="<%= storageType %>"
+														value="<%= storageType %>"
+													/>
 
 												<%
 												}
@@ -292,25 +363,56 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 									</aui:col>
 								</c:when>
 								<c:otherwise>
-									<aui:input name="storageType" type="hidden" value="<%= storageTypeValue %>" />
+									<aui:input
+										name="storageType"
+										type="hidden"
+										value="<%= storageTypeValue %>"
+									/>
 								</c:otherwise>
 							</c:choose>
 						</aui:row>
 
 						<c:if test="<%= !ddmDisplayContext.autogenerateStructureKey() %>">
-							<aui:input disabled="<%= (structure != null) ? true : false %>" label='<%= LanguageUtil.format(request, "x-key", HtmlUtil.escape(ddmDisplay.getStructureName(locale)), false) %>' name="structureKey" />
+							<aui:input
+								disabled="<%= (structure != null) ? true : false %>"
+								label='<%= LanguageUtil.format(request, "x-key", HtmlUtil.escape(ddmDisplay.getStructureName(locale)), false) %>'
+								name="structureKey"
+							/>
 						</c:if>
 
-						<aui:input name="description" />
+						<aui:input
+							name="description"
+						/>
 
-						<aui:field-wrapper label='<%= LanguageUtil.format(request, "parent-x", HtmlUtil.escape(ddmDisplay.getStructureName(locale)), false) %>'>
-							<aui:input name="parentStructureId" type="hidden" value="<%= parentStructureId %>" />
+						<aui:field-wrapper
+							label='<%= LanguageUtil.format(request, "parent-x", HtmlUtil.escape(ddmDisplay.getStructureName(locale)), false) %>'
+						>
+							<aui:input
+								name="parentStructureId"
+								type="hidden"
+								value="<%= parentStructureId %>"
+							/>
 
-							<aui:input cssClass="lfr-input-text" disabled="<%= true %>" label="" name="parentStructureName" type="text" value="<%= parentStructureName %>" />
+							<aui:input
+								cssClass="lfr-input-text"
+								disabled="<%= true %>"
+								label=""
+								name="parentStructureName"
+								type="text"
+								value="<%= parentStructureName %>"
+							/>
 
-							<aui:button onClick='<%= renderResponse.getNamespace() + "openParentStructureSelector();" %>' value="select" />
+							<aui:button
+								onClick='<%= renderResponse.getNamespace() + "openParentStructureSelector();" %>'
+								value="select"
+							/>
 
-							<aui:button disabled="<%= Validator.isNull(parentStructureName) %>" name="removeParentStructureButton" onClick='<%= renderResponse.getNamespace() + "removeParentStructure();" %>' value="remove" />
+							<aui:button
+								disabled="<%= Validator.isNull(parentStructureName) %>"
+								name="removeParentStructureButton"
+								onClick='<%= renderResponse.getNamespace() + "removeParentStructure();" %>'
+								value="remove"
+							/>
 						</aui:field-wrapper>
 
 						<c:if test="<%= structure != null %>">
@@ -318,10 +420,18 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 								<portlet:param name="structureId" value="<%= String.valueOf(classPK) %>" />
 							</portlet:resourceURL>
 
-							<aui:input name="url" type="resource" value="<%= getStructureURL.toString() %>" />
+							<aui:input
+								name="url"
+								type="resource"
+								value="<%= getStructureURL.toString() %>"
+							/>
 
 							<c:if test="<%= Validator.isNotNull(refererWebDAVToken) %>">
-								<aui:input name="webDavURL" type="resource" value="<%= structure.getWebDavURL(themeDisplay, refererWebDAVToken) %>" />
+								<aui:input
+									name="webDavURL"
+									type="resource"
+									value="<%= structure.getWebDavURL(themeDisplay, refererWebDAVToken) %>"
+								/>
 							</c:if>
 						</c:if>
 					</liferay-ui:panel>
@@ -333,13 +443,23 @@ if (Validator.isNotNull(requestUpdateStructureURL)) {
 	</aui:form>
 
 	<aui:button-row>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "saveStructure(false);" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
+		<aui:button
+			onClick='<%= renderResponse.getNamespace() + "saveStructure(false);" %>'
+			primary="<%= true %>"
+			value='<%= LanguageUtil.get(request, "save") %>'
+		/>
 
 		<c:if test="<%= ddmDisplay.isVersioningEnabled() %>">
-			<aui:button onClick='<%= renderResponse.getNamespace() + "saveStructure(true);" %>' value='<%= LanguageUtil.get(request, "save-draft") %>' />
+			<aui:button
+				onClick='<%= renderResponse.getNamespace() + "saveStructure(true);" %>'
+				value='<%= LanguageUtil.get(request, "save-draft") %>'
+			/>
 		</c:if>
 
-		<aui:button href="<%= PortalUtil.escapeRedirect(ddmDisplay.getViewTemplatesBackURL(liferayPortletRequest, liferayPortletResponse, classPK)) %>" type="cancel" />
+		<aui:button
+			href="<%= PortalUtil.escapeRedirect(ddmDisplay.getViewTemplatesBackURL(liferayPortletRequest, liferayPortletResponse, classPK)) %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </div>
 

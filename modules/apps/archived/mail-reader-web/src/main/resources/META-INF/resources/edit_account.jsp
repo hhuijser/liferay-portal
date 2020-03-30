@@ -24,23 +24,71 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 
 <div class="mail-status"></div>
 
-<aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:fieldset column="<%= true %>" cssClass="span6" label="general">
-		<aui:input name="accountId" type="hidden" value="<%= mailAccount.getAccountId() %>" />
-		<aui:input name="signature" type="hidden" value="<%= mailAccount.getSignature() %>" />
-		<aui:input name="useSignature" type="hidden" value="<%= mailAccount.getUseSignature() %>" />
-		<aui:input name="folderPrefix" type="hidden" value="<%= mailAccount.getFolderPrefix() %>" />
-		<aui:input name="defaultSender" type="hidden" value="<%= mailAccount.getDefaultSender() %>" />
+<aui:form
+	name="dialogFm"
+	onSubmit="event.preventDefault();"
+>
+	<aui:fieldset
+		column="<%= true %>"
+		cssClass="span6"
+		label="general"
+	>
+		<aui:input
+			name="accountId"
+			type="hidden"
+			value="<%= mailAccount.getAccountId() %>"
+		/>
 
-		<aui:input name="personalName" value="<%= mailAccount.getPersonalName() %>" />
+		<aui:input
+			name="signature"
+			type="hidden"
+			value="<%= mailAccount.getSignature() %>"
+		/>
 
-		<aui:input name="password" type="password" />
+		<aui:input
+			name="useSignature"
+			type="hidden"
+			value="<%= mailAccount.getUseSignature() %>"
+		/>
 
-		<aui:input name="savePassword" type="checkbox" value="<%= mailAccount.isSavePassword() %>" />
+		<aui:input
+			name="folderPrefix"
+			type="hidden"
+			value="<%= mailAccount.getFolderPrefix() %>"
+		/>
+
+		<aui:input
+			name="defaultSender"
+			type="hidden"
+			value="<%= mailAccount.getDefaultSender() %>"
+		/>
+
+		<aui:input
+			name="personalName"
+			value="<%= mailAccount.getPersonalName() %>"
+		/>
+
+		<aui:input
+			name="password"
+			type="password"
+		/>
+
+		<aui:input
+			name="savePassword"
+			type="checkbox"
+			value="<%= mailAccount.isSavePassword() %>"
+		/>
 	</aui:fieldset>
 
-	<aui:fieldset column="<%= true %>" cssClass="span6" label="folders">
-		<aui:select label="inbox" name="inboxFolderId">
+	<aui:fieldset
+		column="<%= true %>"
+		cssClass="span6"
+		label="folders"
+	>
+		<aui:select
+			label="inbox"
+			name="inboxFolderId"
+		>
 
 			<%
 			long selectedFolderId = mailAccount.getInboxFolderId();
@@ -49,7 +97,10 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 
-		<aui:select label="sent" name="sentFolderId">
+		<aui:select
+			label="sent"
+			name="sentFolderId"
+		>
 
 			<%
 			long selectedFolderId = mailAccount.getSentFolderId();
@@ -58,7 +109,10 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 
-		<aui:select label="draft" name="draftFolderId">
+		<aui:select
+			label="draft"
+			name="draftFolderId"
+		>
 
 			<%
 			long selectedFolderId = mailAccount.getDraftFolderId();
@@ -67,7 +121,10 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 			<%@ include file="/select_folder.jspf" %>
 		</aui:select>
 
-		<aui:select label="trash" name="trashFolderId">
+		<aui:select
+			label="trash"
+			name="trashFolderId"
+		>
 
 			<%
 			long selectedFolderId = mailAccount.getTrashFolderId();
@@ -78,17 +135,27 @@ Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 	</aui:fieldset>
 
 	<aui:button-row>
-		<aui:button name="updateAccount" type="submit" value="update-account" />
+		<aui:button
+			name="updateAccount"
+			type="submit"
+			value="update-account"
+		/>
 	</aui:button-row>
 
 	<aui:button-row>
-		<aui:button cssClass="delete-account" name="deleteAccount" value="delete-account" />
+		<aui:button
+			cssClass="delete-account"
+			name="deleteAccount"
+			value="delete-account"
+		/>
 
 		<aui:button cssClass="synchronize-account" name="synchronizeAccount" value="synchronize-account" /> <liferay-ui:icon-help message="synchronizing-accounts-with-a-large-number-of-messages-may-take-minutes-to-complete" />
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io-deprecated">
+<aui:script
+	use="aui-io-deprecated"
+>
 	var form = A.one('#<portlet:namespace />dialogFm');
 
 	form.on('submit', function(event) {

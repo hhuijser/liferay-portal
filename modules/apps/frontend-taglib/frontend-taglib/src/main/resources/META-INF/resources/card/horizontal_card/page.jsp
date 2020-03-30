@@ -43,7 +43,11 @@ if ((rowChecker != null) && (resultRow != null)) {
 
 			<div class="autofit-col autofit-col-expand autofit-col-gutters">
 				<p class="card-title text-truncate">
-					<aui:a data="<%= linkData %>" href="<%= url %>" title="<%= HtmlUtil.escapeAttribute(text) %>">
+					<aui:a
+						data="<%= linkData %>"
+						href="<%= url %>"
+						title="<%= HtmlUtil.escapeAttribute(text) %>"
+					>
 						<%= HtmlUtil.escape(text) %>
 					</aui:a>
 				</p>

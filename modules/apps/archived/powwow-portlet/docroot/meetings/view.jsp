@@ -92,25 +92,60 @@ else {
 
 				<%@ include file="/meetings/meeting_body.jspf" %>
 
-				<aui:form name="fm" onSubmit="event.preventDefault();">
-					<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
-					<aui:input name="powwowMeetingId" type="hidden" value="<%= powwowMeetingId %>" />
-					<aui:input name="powwowParticipantId" type="hidden" value="<%= powwowParticipantId %>" />
-					<aui:input name="hash" type="hidden" value="<%= hash %>" />
+				<aui:form
+					name="fm"
+					onSubmit="event.preventDefault();"
+				>
+					<aui:input
+						name="redirect"
+						type="hidden"
+						value="<%= portletURL.toString() %>"
+					/>
 
-					<aui:model-context bean="<%= powwowParticipant %>" model="<%= PowwowParticipant.class %>" />
+					<aui:input
+						name="powwowMeetingId"
+						type="hidden"
+						value="<%= powwowMeetingId %>"
+					/>
+
+					<aui:input
+						name="powwowParticipantId"
+						type="hidden"
+						value="<%= powwowParticipantId %>"
+					/>
+
+					<aui:input
+						name="hash"
+						type="hidden"
+						value="<%= hash %>"
+					/>
+
+					<aui:model-context
+						bean="<%= powwowParticipant %>"
+						model="<%= PowwowParticipant.class %>"
+					/>
 
 					<c:if test="<%= PowwowServiceProviderUtil.isSupportsPresettingParticipantName(powwowMeeting.getProviderType()) %>">
-						<aui:input autoFocus="<%= true %>" label="enter-your-full-name" name="name" />
+						<aui:input
+							autoFocus="<%= true %>"
+							label="enter-your-full-name"
+							name="name"
+						/>
 					</c:if>
 
 					<aui:button-row>
 						<c:choose>
 							<c:when test="<%= powwowMeetingHost && (powwowMeeting.getStatus() == PowwowMeetingConstants.STATUS_SCHEDULED) %>">
-								<aui:button type="submit" value="start-meeting" />
+								<aui:button
+									type="submit"
+									value="start-meeting"
+								/>
 							</c:when>
 							<c:otherwise>
-								<aui:button type="submit" value="join-meeting" />
+								<aui:button
+									type="submit"
+									value="join-meeting"
+								/>
 							</c:otherwise>
 						</c:choose>
 					</aui:button-row>
@@ -119,7 +154,9 @@ else {
 		</c:choose>
 	</div>
 
-	<aui:script use="aui-io-request,aui-loading-mask-deprecated">
+	<aui:script
+		use="aui-io-request,aui-loading-mask-deprecated"
+	>
 		var form = A.one('#<portlet:namespace />fm');
 		var messageContainer = A.one('#<portlet:namespace />messageContainer');
 

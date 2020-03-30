@@ -41,7 +41,10 @@ List<DepotEntryGroupRel> depotEntryGroupRels = depotAdminSitesDisplayContext.get
 		</span>
 	</h3>
 
-	<aui:input name="toGroupId" type="hidden" />
+	<aui:input
+		name="toGroupId"
+		type="hidden"
+	/>
 
 	<liferay-ui:search-container
 		compactEmptyResultsMessage="<%= true %>"
@@ -97,7 +100,9 @@ List<DepotEntryGroupRel> depotEntryGroupRels = depotAdminSitesDisplayContext.get
 		module="js/ConnectedSiteDropdownDefaultEventHandler.es"
 	/>
 
-	<aui:script require="metal-dom/src/all/dom as dom">
+	<aui:script
+		require="metal-dom/src/all/dom as dom"
+	>
 		var addConnectedSiteButton = document.querySelector(
 			'#<portlet:namespace />addConnectedSiteButton'
 		);

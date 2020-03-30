@@ -45,13 +45,24 @@ boolean ldapAuthEnabled = ldapAuthConfiguration.enabled();
 	addServerURL.setParameter("redirect", authenticationURL);
 	%>
 
-	<aui:button href="<%= addServerURL.toString() %>" name="addButton" value="add" />
+	<aui:button
+		href="<%= addServerURL.toString() %>"
+		name="addButton"
+		value="add"
+	/>
 </aui:button-row>
 
 <aui:fieldset>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= LDAPSettingsConstants.CMD_UPDATE_SERVER %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= LDAPSettingsConstants.CMD_UPDATE_SERVER %>"
+	/>
 
-	<aui:input name='<%= "ldap--" + LDAPConstants.AUTH_SERVER_PRIORITY + "--" %>' type="hidden" />
+	<aui:input
+		name='<%= "ldap--" + LDAPConstants.AUTH_SERVER_PRIORITY + "--" %>'
+		type="hidden"
+	/>
 
 	<c:if test="<%= !ldapServerConfigurations.isEmpty() %>">
 		<br /><br />

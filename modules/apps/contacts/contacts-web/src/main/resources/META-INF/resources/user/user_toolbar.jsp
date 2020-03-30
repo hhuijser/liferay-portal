@@ -155,7 +155,9 @@ else if (SocialRelationLocalServiceUtil.hasRelation(themeDisplay.getUserId(), us
 	url="<%= exportURL %>"
 />
 
-<aui:script use="aui-base,aui-io-plugin-deprecated">
+<aui:script
+	use="aui-base,aui-io-plugin-deprecated"
+>
 	var contactAction = A.one('.contacts-portlet .contacts-action');
 
 	if (contactAction) {

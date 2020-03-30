@@ -93,7 +93,9 @@ if (categoryId > 0) {
 }
 %>
 
-<aui:script use="aui-tree-view">
+<aui:script
+	use="aui-tree-view"
+>
 	var treeViews = A.all(
 		'#<%= namespace %>taglibAssetCategoriesNavigationPanel .lfr-asset-category-list-container'
 	);

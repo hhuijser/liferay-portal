@@ -92,11 +92,16 @@ if (Validator.isNotNull(className)) {
 			</label>
 
 			<div class="lfr-tags-selector-content" id="<%= namespace + randomNamespace %>assetCategoriesSelector_<%= vocabulary.getVocabularyId() %>">
-				<aui:input name="<%= hiddenInput + StringPool.UNDERLINE + vocabulary.getVocabularyId() %>" type="hidden" />
+				<aui:input
+					name="<%= hiddenInput + StringPool.UNDERLINE + vocabulary.getVocabularyId() %>"
+					type="hidden"
+				/>
 			</div>
 		</span>
 
-		<aui:script use="liferay-asset-categories-selector">
+		<aui:script
+			use="liferay-asset-categories-selector"
+		>
 			new Liferay.AssetCategoriesSelector(
 				{
 					className: '<%= className %>',
@@ -133,10 +138,15 @@ else {
 %>
 
 	<div class="lfr-tags-selector-content" id="<%= namespace + randomNamespace %>assetCategoriesSelector">
-		<aui:input name="<%= hiddenInput %>" type="hidden" />
+		<aui:input
+			name="<%= hiddenInput %>"
+			type="hidden"
+		/>
 	</div>
 
-	<aui:script use="liferay-asset-categories-selector">
+	<aui:script
+		use="liferay-asset-categories-selector"
+	>
 		new Liferay.AssetCategoriesSelector(
 			{
 				className: '<%= className %>',

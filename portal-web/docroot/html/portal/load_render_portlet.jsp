@@ -33,7 +33,9 @@ String data = JSONFactoryUtil.looseSerializeDeep(parameters);
 	<div id="p_p_id<%= portletDisplay.getNamespace() %>-defaultScreen"></div>
 </div>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var ns = '<%= portletDisplay.getNamespace() %>';
 
 	Liferay.Portlet.addHTML(

@@ -52,9 +52,23 @@ JournalArticle article = journalDisplayContext.getArticle();
 		PortletURL portletURL = journalHistoryDisplayContext.getPortletURL();
 		%>
 
-		<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="fm">
-			<aui:input name="referringPortletResource" type="hidden" value="<%= journalHistoryDisplayContext.getReferringPortletResource() %>" />
-			<aui:input name="groupId" type="hidden" value="<%= String.valueOf(article.getGroupId()) %>" />
+		<aui:form
+			action="<%= portletURL.toString() %>"
+			cssClass="container-fluid-1280"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="referringPortletResource"
+				type="hidden"
+				value="<%= journalHistoryDisplayContext.getReferringPortletResource() %>"
+			/>
+
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= String.valueOf(article.getGroupId()) %>"
+			/>
 
 			<liferay-ui:search-container
 				id="articleVersions"
@@ -102,7 +116,14 @@ JournalArticle article = journalDisplayContext.getArticle();
 								</h5>
 
 								<h6 class="text-default">
-									<aui:workflow-status markupView="lexicon" showHelpMessage="<%= false %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= articleVersion.getStatus() %>" version="<%= String.valueOf(articleVersion.getVersion()) %>" />
+									<aui:workflow-status
+										markupView="lexicon"
+										showHelpMessage="<%= false %>"
+										showIcon="<%= false %>"
+										showLabel="<%= false %>"
+										status="<%= articleVersion.getStatus() %>"
+										version="<%= String.valueOf(articleVersion.getVersion()) %>"
+									/>
 								</h6>
 							</liferay-ui:search-container-column-text>
 

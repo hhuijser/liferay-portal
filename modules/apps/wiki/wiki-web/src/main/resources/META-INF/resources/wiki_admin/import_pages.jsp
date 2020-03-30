@@ -56,14 +56,45 @@ renderResponse.setTitle(LanguageUtil.get(request, "import-pages"));
 <portlet:actionURL name="/wiki/import_pages" var="importPagesURL" />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= importPagesURL %>" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "importPages();" %>'>
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="importProgressId" type="hidden" value="<%= importProgressId %>" />
-		<aui:input name="nodeId" type="hidden" value="<%= nodeId %>" />
-		<aui:input name="importer" type="hidden" value="<%= tabs2 %>" />
+	<aui:form
+		action="<%= importPagesURL %>"
+		enctype="multipart/form-data"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "importPages();" %>'
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+
+		<aui:input
+			name="importProgressId"
+			type="hidden"
+			value="<%= importProgressId %>"
+		/>
+
+		<aui:input
+			name="nodeId"
+			type="hidden"
+			value="<%= nodeId %>"
+		/>
+
+		<aui:input
+			name="importer"
+			type="hidden"
+			value="<%= tabs2 %>"
+		/>
+
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<liferay-ui:tabs
 				names="<%= StringUtil.merge(importers) %>"
 				param="tabs2"
@@ -77,9 +108,15 @@ renderResponse.setTitle(LanguageUtil.get(request, "import-pages"));
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" value="import" />
+			<aui:button
+				type="submit"
+				value="import"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 

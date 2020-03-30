@@ -41,8 +41,17 @@ SegmentsDisplayContext segmentsDisplayContext = (SegmentsDisplayContext)request.
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteSegmentsEntryURL %>" cssClass="container-fluid-1280" method="post" name="fmSegmentsEntries">
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+<aui:form
+	action="<%= deleteSegmentsEntryURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fmSegmentsEntries"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
 
 	<liferay-ui:error exception="<%= RequiredSegmentsEntryException.MustNotDeleteSegmentsEntryReferencedBySegmentsExperiences.class %>" message="the-segment-cannot-be-deleted-because-it-is-required-by-one-or-more-experiences" />
 
@@ -129,7 +138,9 @@ SegmentsDisplayContext segmentsDisplayContext = (SegmentsDisplayContext)request.
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteSegmentsEntries = function() {
 		if (
 			confirm(

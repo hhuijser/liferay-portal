@@ -55,13 +55,25 @@ backURL.setParameter("templateId", String.valueOf(template.getTemplateId()));
 		</c:otherwise>
 	</c:choose>
 
-	<aui:model-context bean="<%= templateVersion %>" model="<%= DDMTemplateVersion.class %>" />
+	<aui:model-context
+		bean="<%= templateVersion %>"
+		model="<%= DDMTemplateVersion.class %>"
+	/>
 
-	<aui:input disabled="<%= true %>" name="name" />
+	<aui:input
+		disabled="<%= true %>"
+		name="name"
+	/>
 
-	<aui:input disabled="<%= true %>" name="language" />
+	<aui:input
+		disabled="<%= true %>"
+		name="language"
+	/>
 
-	<aui:input disabled="<%= true %>" name="description" />
+	<aui:input
+		disabled="<%= true %>"
+		name="description"
+	/>
 
 	<c:choose>
 		<c:when test="<%= template.getType().equals(DDMTemplateConstants.TEMPLATE_TYPE_FORM) %>">
@@ -81,11 +93,19 @@ backURL.setParameter("templateId", String.valueOf(template.getTemplateId()));
 			<%@ include file="/form_builder.jspf" %>
 		</c:when>
 		<c:otherwise>
-			<aui:input cssClass="script" disabled="<%= true %>" name="script" type="textarea" />
+			<aui:input
+				cssClass="script"
+				disabled="<%= true %>"
+				name="script"
+				type="textarea"
+			/>
 		</c:otherwise>
 	</c:choose>
 
 	<aui:button-row>
-		<aui:button href="<%= backURL.toString() %>" type="cancel" />
+		<aui:button
+			href="<%= backURL.toString() %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </div>

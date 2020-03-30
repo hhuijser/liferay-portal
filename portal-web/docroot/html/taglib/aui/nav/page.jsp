@@ -28,7 +28,9 @@
 	<c:if test="<%= collapsible %>">
 		</div>
 
-		<aui:script use="aui-base,event-outside,liferay-menu-toggle">
+		<aui:script
+			use="aui-base,event-outside,liferay-menu-toggle"
+		>
 			var toggleMenu = new Liferay.MenuToggle(
 				{
 					content: '#<%= id %>NavbarCollapse, #<%= id %>NavbarBtn',

@@ -33,10 +33,29 @@ EditSiteTeamAssignmentsUserGroupsManagementToolbarDisplayContext editSiteTeamAss
 
 <portlet:actionURL name="deleteTeamUserGroups" var="deleteTeamUserGroupsURL" />
 
-<aui:form action="<%= deleteTeamUserGroupsURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="tabs1" type="hidden" value="<%= editSiteTeamAssignmentsUserGroupsDisplayContext.getTabs1() %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="teamId" type="hidden" value="<%= String.valueOf(editSiteTeamAssignmentsUserGroupsDisplayContext.getTeamId()) %>" />
+<aui:form
+	action="<%= deleteTeamUserGroupsURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= editSiteTeamAssignmentsUserGroupsDisplayContext.getTabs1() %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="teamId"
+		type="hidden"
+		value="<%= String.valueOf(editSiteTeamAssignmentsUserGroupsDisplayContext.getTeamId()) %>"
+	/>
 
 	<liferay-ui:search-container
 		id="userGroups"
@@ -119,10 +138,28 @@ EditSiteTeamAssignmentsUserGroupsManagementToolbarDisplayContext editSiteTeamAss
 
 <portlet:actionURL name="addTeamUserGroups" var="addTeamUserGroupsURL" />
 
-<aui:form action="<%= addTeamUserGroupsURL %>" cssClass="hide" name="addTeamUserGroupsFm">
-	<aui:input name="tabs1" type="hidden" value="<%= editSiteTeamAssignmentsUserGroupsDisplayContext.getTabs1() %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="teamId" type="hidden" value="<%= String.valueOf(editSiteTeamAssignmentsUserGroupsDisplayContext.getTeamId()) %>" />
+<aui:form
+	action="<%= addTeamUserGroupsURL %>"
+	cssClass="hide"
+	name="addTeamUserGroupsFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= editSiteTeamAssignmentsUserGroupsDisplayContext.getTabs1() %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="teamId"
+		type="hidden"
+		value="<%= String.valueOf(editSiteTeamAssignmentsUserGroupsDisplayContext.getTeamId()) %>"
+	/>
 </aui:form>
 
 <liferay-frontend:component

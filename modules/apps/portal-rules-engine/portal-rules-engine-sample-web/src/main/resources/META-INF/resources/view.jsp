@@ -96,7 +96,10 @@ RulesEngine rulesEngine = (RulesEngine)request.getAttribute(RulesEngine.class.ge
 	</c:when>
 	<c:otherwise>
 		<div class="portlet-msg-info">
-			<aui:a href="<%= themeDisplay.getURLSignIn() %>" label="sign-in-to-your-account" />
+			<aui:a
+				href="<%= themeDisplay.getURLSignIn() %>"
+				label="sign-in-to-your-account"
+			/>
 		</div>
 	</c:otherwise>
 </c:choose>

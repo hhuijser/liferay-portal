@@ -18,9 +18,14 @@
 Hits hits = searchDisplayContext.getHits();
 %>
 
-<aui:row cssClass='<%= "search-layout" + (searchDisplayContext.isShowMenu() ? " menu-column" : StringPool.BLANK) %>'>
+<aui:row
+	cssClass='<%= "search-layout" + (searchDisplayContext.isShowMenu() ? " menu-column" : StringPool.BLANK) %>'
+>
 	<c:if test="<%= searchDisplayContext.isShowMenu() %>">
-		<aui:col id="facetNavigation" span="<%= 3 %>">
+		<aui:col
+			id="facetNavigation"
+			span="<%= 3 %>"
+		>
 
 			<%
 			for (SearchFacet searchFacet : ListUtil.sort(searchDisplayContext.getEnabledSearchFacets(), SearchFacetComparator.INSTANCE)) {
@@ -37,7 +42,11 @@ Hits hits = searchDisplayContext.getHits();
 		</aui:col>
 	</c:if>
 
-	<aui:col cssClass="result" first="<%= !searchDisplayContext.isShowMenu() %>" span="<%= 9 %>">
+	<aui:col
+		cssClass="result"
+		first="<%= !searchDisplayContext.isShowMenu() %>"
+		span="<%= 9 %>"
+	>
 		<%@ include file="/main_search_suggest.jspf" %>
 
 		<liferay-ui:search-container
@@ -97,7 +106,9 @@ Hits hits = searchDisplayContext.getHits();
 	</aui:col>
 </aui:row>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	var facetNavigation = document.getElementById(
 		'<portlet:namespace />facetNavigation'
 	);

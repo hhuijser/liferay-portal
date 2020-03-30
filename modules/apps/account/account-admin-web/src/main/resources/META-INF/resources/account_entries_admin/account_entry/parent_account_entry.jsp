@@ -58,7 +58,11 @@ if (accountEntryDisplay != null) {
 		</span>
 	</h3>
 
-	<aui:input name="parentAccountEntryId" type="hidden" value="<%= (parentAccountEntry != null) ? String.valueOf(parentAccountEntry.getAccountEntryId()) : AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT %>" />
+	<aui:input
+		name="parentAccountEntryId"
+		type="hidden"
+		value="<%= (parentAccountEntry != null) ? String.valueOf(parentAccountEntry.getAccountEntryId()) : AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT %>"
+	/>
 
 	<liferay-ui:search-container
 		compactEmptyResultsMessage="<%= true %>"
@@ -94,7 +98,9 @@ if (accountEntryDisplay != null) {
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />parentAccountEntrySearchContainer'
 	);

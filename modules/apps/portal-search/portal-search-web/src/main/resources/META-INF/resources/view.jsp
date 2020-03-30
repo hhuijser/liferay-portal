@@ -27,11 +27,26 @@ portletURL.setWindowState(WindowState.MAXIMIZED);
 pageContext.setAttribute("portletURL", portletURL);
 %>
 
-<aui:form action="<%= portletURL %>" method="get" name="fm" onSubmit='<%= renderResponse.getNamespace() + "search(); event.preventDefault();" %>'>
+<aui:form
+	action="<%= portletURL %>"
+	method="get"
+	name="fm"
+	onSubmit='<%= renderResponse.getNamespace() + "search(); event.preventDefault();" %>'
+>
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
 
 	<aui:fieldset>
-		<aui:input cssClass="search-input search-portlet-keywords-input" inlineField="<%= true %>" label="" name="keywords" placeholder="search" size="30" title="search" type="text" value="<%= HtmlUtil.escapeAttribute(searchDisplayContext.getKeywords()) %>" />
+		<aui:input
+			cssClass="search-input search-portlet-keywords-input"
+			inlineField="<%= true %>"
+			label=""
+			name="keywords"
+			placeholder="search"
+			size="30"
+			title="search"
+			type="text"
+			value="<%= HtmlUtil.escapeAttribute(searchDisplayContext.getKeywords()) %>"
+		/>
 
 		<%
 		String taglibOnClick = "Liferay.Util.focusFormField('#" + renderResponse.getNamespace() + "keywords');";
@@ -44,20 +59,38 @@ pageContext.setAttribute("portletURL", portletURL);
 
 		<c:choose>
 			<c:when test="<%= searchDisplayContext.isSearchScopePreferenceLetTheUserChoose() %>">
-				<aui:select cssClass="search-select" inlineField="<%= true %>" label="" name="scope" title="scope">
-					<aui:option label="this-site" value="this-site" />
+				<aui:select
+					cssClass="search-select"
+					inlineField="<%= true %>"
+					label=""
+					name="scope"
+					title="scope"
+				>
+					<aui:option
+						label="this-site"
+						value="this-site"
+					/>
 
 					<c:if test="<%= searchDisplayContext.isSearchScopePreferenceEverythingAvailable() %>">
-						<aui:option label="everything" value="everything" />
+						<aui:option
+							label="everything"
+							value="everything"
+						/>
 					</c:if>
 				</aui:select>
 			</c:when>
 			<c:otherwise>
-				<aui:input name="scope" type="hidden" value="<%= searchDisplayContext.getSearchScopeParameterString() %>" />
+				<aui:input
+					name="scope"
+					type="hidden"
+					value="<%= searchDisplayContext.getSearchScopeParameterString() %>"
+				/>
 			</c:otherwise>
 		</c:choose>
 
-		<aui:field-wrapper inlineField="<%= true %>">
+		<aui:field-wrapper
+			inlineField="<%= true %>"
+		>
 			<button class="btn btn-light btn-unstyled" onclick="<%= renderResponse.getNamespace() + "search();" %>" type="submit">
 				<liferay-ui:icon
 					cssClass="icon-monospaced"

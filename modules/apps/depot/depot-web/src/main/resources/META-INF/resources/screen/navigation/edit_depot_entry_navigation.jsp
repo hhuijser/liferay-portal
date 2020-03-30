@@ -40,9 +40,22 @@ renderResponse.setTitle(group.getDescriptiveName(locale));
 
 <portlet:actionURL name="<%= actionCommandName %>" var="actionCommandURL" />
 
-<aui:form action="<%= actionCommandURL %>" method="post" name="fm">
-	<aui:input name="depotEntryId" type="hidden" value="<%= depotEntry.getDepotEntryId() %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+<aui:form
+	action="<%= actionCommandURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="depotEntryId"
+		type="hidden"
+		value="<%= depotEntry.getDepotEntryId() %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
 
 	<div class="sheet sheet-lg">
 		<div class="sheet-header">
@@ -59,9 +72,15 @@ renderResponse.setTitle(group.getDescriptiveName(locale));
 
 		<c:if test="<%= (boolean)request.getAttribute(DepotAdminWebKeys.SHOW_CONTROLS) %>">
 			<div class="sheet-footer">
-				<aui:button primary="<%= true %>" type="submit" />
+				<aui:button
+					primary="<%= true %>"
+					type="submit"
+				/>
 
-				<aui:button href="<%= Validator.isNotNull(backURL) ? backURL : String.valueOf(renderResponse.createRenderURL()) %>" type="cancel" />
+				<aui:button
+					href="<%= Validator.isNotNull(backURL) ? backURL : String.valueOf(renderResponse.createRenderURL()) %>"
+					type="cancel"
+				/>
 			</div>
 		</c:if>
 	</div>

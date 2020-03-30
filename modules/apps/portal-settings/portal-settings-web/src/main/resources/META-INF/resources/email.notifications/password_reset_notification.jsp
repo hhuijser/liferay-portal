@@ -25,7 +25,11 @@ PortletPreferences companyPortletPreferences = PrefsPropsUtil.getPreferences(com
 String sectionName = "password-reset-notification";
 %>
 
-<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+<aui:input
+	name="<%= Constants.CMD %>"
+	type="hidden"
+	value="<%= Constants.UPDATE %>"
+/>
 
 <liferay-ui:error key="emailPasswordResetSubject" message="please-enter-a-valid-subject" />
 <liferay-ui:error key="emailPasswordResetBody" message="please-enter-a-valid-body" />
@@ -38,6 +42,9 @@ String sectionName = "password-reset-notification";
 	showEmailEnabled="<%= false %>"
 />
 
-<aui:fieldset cssClass="definition-of-terms email-verification terms" label="definition-of-terms">
+<aui:fieldset
+	cssClass="definition-of-terms email-verification terms"
+	label="definition-of-terms"
+>
 	<%@ include file="/email.notifications/definition_of_terms.jspf" %>
 </aui:fieldset>

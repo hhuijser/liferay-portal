@@ -21,8 +21,15 @@
 	value="look-and-feel"
 />
 
-<aui:model-context bean="<%= layoutsAdminDisplayContext.getSelLayoutSet() %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= layoutsAdminDisplayContext.getSelLayoutSet() %>"
+	model="<%= Layout.class %>"
+/>
 
-<aui:input name="devices" type="hidden" value="regular" />
+<aui:input
+	name="devices"
+	type="hidden"
+	value="regular"
+/>
 
 <liferay-util:include page="/look_and_feel_themes.jsp" servletContext="<%= application %>" />

@@ -103,7 +103,11 @@ for (long defaultTeamId : defaultTeamIds) {
 </liferay-ui:search-container>
 
 <div class="button-holder">
-	<aui:button cssClass="modify-link" id="selectSiteRoleLink" value="select" />
+	<aui:button
+		cssClass="modify-link"
+		id="selectSiteRoleLink"
+		value="select"
+	/>
 </div>
 
 <h4 class="text-default"><liferay-ui:message key="teams" /> <liferay-ui:icon-help message="default-teams-assignment-help" /></h4>
@@ -142,10 +146,16 @@ for (long defaultTeamId : defaultTeamIds) {
 </liferay-ui:search-container>
 
 <div class="button-holder">
-	<aui:button cssClass="modify-link" id="selectTeamLink" value="select" />
+	<aui:button
+		cssClass="modify-link"
+		id="selectTeamLink"
+		value="select"
+	/>
 </div>
 
-<aui:script use="escape,liferay-search-container">
+<aui:script
+	use="escape,liferay-search-container"
+>
 	var bindModifyLink = function(config) {
 		var searchContainer = config.searchContainer;
 

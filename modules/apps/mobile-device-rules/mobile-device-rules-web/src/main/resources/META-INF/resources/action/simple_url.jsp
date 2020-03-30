@@ -22,12 +22,21 @@ boolean ajax = GetterUtil.getBoolean(request.getParameter("ajax"));
 String url = GetterUtil.getString(typeSettingsProperties.get("url"));
 %>
 
-<aui:input cssClass="lfr-input-text-container" name="url" type="text" value="<%= url %>">
-	<aui:validator name="required" />
+<aui:input
+	cssClass="lfr-input-text-container"
+	name="url"
+	type="text"
+	value="<%= url %>"
+>
+	<aui:validator
+		name="required"
+	/>
 </aui:input>
 
 <c:if test="<%= ajax %>">
-	<aui:script use="liferay-form">
+	<aui:script
+		use="liferay-form"
+	>
 		var form = Liferay.Form.get('<portlet:namespace />fm');
 
 		if (form) {

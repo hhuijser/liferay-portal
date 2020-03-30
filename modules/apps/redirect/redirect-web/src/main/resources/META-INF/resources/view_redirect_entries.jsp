@@ -28,8 +28,16 @@ RedirectManagementToolbarDisplayContext redirectManagementToolbarDisplayContext 
 	displayContext="<%= redirectManagementToolbarDisplayContext %>"
 />
 
-<aui:form action="<%= redirectSearchContainer.getIteratorURL() %>" cssClass="container-fluid-1280" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+<aui:form
+	action="<%= redirectSearchContainer.getIteratorURL() %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
 
 	<liferay-ui:search-container
 		id="<%= redirectDisplayContext.getSearchContainerId() %>"
@@ -54,7 +62,10 @@ RedirectManagementToolbarDisplayContext redirectManagementToolbarDisplayContext 
 				String url = RedirectUtil.getGroupBaseURL(themeDisplay) + StringPool.SLASH + redirectEntry.getSourceURL();
 				%>
 
-				<aui:a href="<%= HtmlUtil.escapeAttribute(url) %>" target="_blank">
+				<aui:a
+					href="<%= HtmlUtil.escapeAttribute(url) %>"
+					target="_blank"
+				>
 					<%= HtmlUtil.escape(url) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>
@@ -63,7 +74,10 @@ RedirectManagementToolbarDisplayContext redirectManagementToolbarDisplayContext 
 				cssClass="table-cell-content"
 				name="destination-url"
 			>
-				<aui:a href="<%= HtmlUtil.escapeAttribute(redirectEntry.getDestinationURL()) %>" target="_blank">
+				<aui:a
+					href="<%= HtmlUtil.escapeAttribute(redirectEntry.getDestinationURL()) %>"
+					target="_blank"
+				>
 					<%= HtmlUtil.escape(redirectEntry.getDestinationURL()) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>

@@ -86,7 +86,11 @@ navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
 />
 
 <div class="container-fluid-1280 main-content-body">
-	<aui:form action="<%= currentURL %>" method="get" name="fm">
+	<aui:form
+		action="<%= currentURL %>"
+		method="get"
+		name="fm"
+	>
 		<div class="user-notifications">
 			<liferay-ui:search-container
 				rowChecker="<%= actionRequired ? null : new UserNotificationEventRowChecker(renderResponse) %>"
@@ -121,7 +125,9 @@ navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
 	</aui:form>
 </div>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteNotifications = function() {
 		var form = document.getElementById('<portlet:namespace />fm');
 
@@ -174,7 +180,9 @@ navigationURL.setParameter(SearchContainer.DEFAULT_CUR_PARAM, "0");
 	});
 </aui:script>
 
-<aui:script use="aui-base,liferay-notice">
+<aui:script
+	use="aui-base,liferay-notice"
+>
 	var form = A.one('#<portlet:namespace />fm');
 
 	form.delegate(

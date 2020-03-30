@@ -33,7 +33,10 @@ if (folder != null) {
 %>
 
 <div class="container-fluid-1280">
-	<aui:form method="post" name="selectFolderFm">
+	<aui:form
+		method="post"
+		name="selectFolderFm"
+	>
 		<liferay-ui:breadcrumb
 			showCurrentGroup="<%= false %>"
 			showGuestGroup="<%= false %>"
@@ -110,7 +113,11 @@ if (folder != null) {
 					).build();
 					%>
 
-					<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />
+					<aui:button
+						cssClass="selector-button"
+						data="<%= data %>"
+						value="choose"
+					/>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>
 
@@ -122,7 +129,10 @@ if (folder != null) {
 						<portlet:param name="parentFolderId" value="<%= String.valueOf(folderId) %>" />
 					</portlet:renderURL>
 
-					<aui:button href="<%= editFolderURL %>" value='<%= (folder == null) ? "add-folder" : "add-subfolder" %>' />
+					<aui:button
+						href="<%= editFolderURL %>"
+						value='<%= (folder == null) ? "add-folder" : "add-subfolder" %>'
+					/>
 				</c:if>
 
 				<%
@@ -133,7 +143,11 @@ if (folder != null) {
 				).build();
 				%>
 
-				<aui:button cssClass="selector-button" data="<%= data %>" value="choose-this-folder" />
+				<aui:button
+					cssClass="selector-button"
+					data="<%= data %>"
+					value="choose-this-folder"
+				/>
 			</aui:button-row>
 
 			<liferay-ui:search-iterator />

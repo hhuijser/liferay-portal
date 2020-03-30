@@ -62,7 +62,9 @@ MBBreadcrumbUtil.addPortletBreadcrumbEntries(message, request, renderResponse);
 	</div>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as domAll">
+<aui:script
+	require="metal-dom/src/all/dom as domAll"
+>
 	Liferay.provide(window, '<portlet:namespace />addReplyToMessage', function(
 		messageId,
 		quote

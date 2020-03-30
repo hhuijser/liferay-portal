@@ -28,7 +28,11 @@ SiteNavigationAdminManagementToolbarDisplayContext siteNavigationAdminManagement
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteSitaNavigationMenuURL %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= deleteSitaNavigationMenuURL %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="siteNavigationMenus"
 		searchContainer="<%= siteNavigationAdminDisplayContext.getSearchContainer() %>"
@@ -77,7 +81,9 @@ SiteNavigationAdminManagementToolbarDisplayContext siteNavigationAdminManagement
 						<h2 class="h5">
 							<c:choose>
 								<c:when test="<%= siteNavigationAdminDisplayContext.hasEditPermission() %>">
-									<aui:a href="<%= editSiteNavigationMenuURL %>">
+									<aui:a
+										href="<%= editSiteNavigationMenuURL %>"
+									>
 										<%= HtmlUtil.escape(siteNavigationMenu.getName()) %>
 									</aui:a>
 								</c:when>
@@ -148,7 +154,10 @@ SiteNavigationAdminManagementToolbarDisplayContext siteNavigationAdminManagement
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal" sandbox="<%= true %>">
+<aui:script
+	require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal"
+	sandbox="<%= true %>"
+>
 	var renameSiteNavigationMenuClickHandler = dom.delegate(
 		document.body,
 		'click',

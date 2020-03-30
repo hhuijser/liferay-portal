@@ -62,7 +62,9 @@ if (wikiPage != null) {
 		<a href="javascript:;" id="view-removed-attachments-link"><liferay-ui:message arguments="<%= deletedAttachmentsCount %>" key='<%= (deletedAttachmentsCount == 1) ? "x-recently-removed-attachment" : "x-recently-removed-attachments" %>' /> &raquo;</a>
 	</div>
 
-	<aui:script use="liferay-util-window">
+	<aui:script
+		use="liferay-util-window"
+	>
 		var viewRemovedAttachmentsLink = A.one('#view-removed-attachments-link');
 
 		viewRemovedAttachmentsLink.on('click', function(event) {
@@ -77,7 +79,11 @@ if (wikiPage != null) {
 
 <c:if test="<%= attachmentsFileEntries != null %>">
 	<c:if test="<%= (templatePage != null) && !attachmentsFileEntries.isEmpty() %>">
-		<aui:input name="copyPageAttachments" type="checkbox" value="<%= copyPageAttachments %>" />
+		<aui:input
+			name="copyPageAttachments"
+			type="checkbox"
+			value="<%= copyPageAttachments %>"
+		/>
 	</c:if>
 
 	<%

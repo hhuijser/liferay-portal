@@ -33,7 +33,10 @@ SelectSegmentsEntryDisplayContext selectSegmentsEntryDisplayContext = (SelectSeg
 	sortingURL="<%= selectSegmentsEntryDisplayContext.getSortingURL() %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="selectSegmentsEntryFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="selectSegmentsEntryFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= selectSegmentsEntryDisplayContext.getSearchContainer() %>"
 	>
@@ -57,7 +60,11 @@ SelectSegmentsEntryDisplayContext selectSegmentsEntryDisplayContext = (SelectSeg
 						data.put("entityname", segmentsEntry.getName(locale));
 						%>
 
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data="<%= data %>"
+							href="javascript:;"
+						>
 							<%= HtmlUtil.escape(segmentsEntry.getName(locale)) %>
 						</aui:a>
 					</c:when>

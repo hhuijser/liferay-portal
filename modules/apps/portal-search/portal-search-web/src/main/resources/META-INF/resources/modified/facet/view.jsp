@@ -57,9 +57,23 @@ contextObjects.put("namespace", renderResponse.getNamespace());
 %>
 
 <c:if test="<%= !modifiedFacetDisplayContext.isRenderNothing() %>">
-	<aui:form method="get" name="fm">
-		<aui:input autocomplete="off" name="inputFacetName" type="hidden" value="modified" />
-		<aui:input cssClass="facet-parameter-name" name="facet-parameter-name" type="hidden" value="<%= HtmlUtil.escapeAttribute(modifiedFacetDisplayContext.getParameterName()) %>" />
+	<aui:form
+		method="get"
+		name="fm"
+	>
+		<aui:input
+			autocomplete="off"
+			name="inputFacetName"
+			type="hidden"
+			value="modified"
+		/>
+
+		<aui:input
+			cssClass="facet-parameter-name"
+			name="facet-parameter-name"
+			type="hidden"
+			value="<%= HtmlUtil.escapeAttribute(modifiedFacetDisplayContext.getParameterName()) %>"
+		/>
 
 		<liferay-ddm:template-renderer
 			className="<%= ModifiedFacetTermDisplayContext.class.getName() %>"
@@ -118,7 +132,9 @@ contextObjects.put("namespace", renderResponse.getNamespace());
 
 						<div class="<%= !modifiedFacetCalendarDisplayContext.isSelected() ? "hide" : StringPool.BLANK %> modified-custom-range" id="<portlet:namespace />customRange">
 							<div class="col-md-6" id="<portlet:namespace />customRangeFrom">
-								<aui:field-wrapper label="from">
+								<aui:field-wrapper
+									label="from"
+								>
 									<liferay-ui:input-date
 										cssClass="modified-facet-custom-range-input-date-from"
 										dayParam="fromDay"
@@ -135,7 +151,9 @@ contextObjects.put("namespace", renderResponse.getNamespace());
 							</div>
 
 							<div class="col-md-6" id="<portlet:namespace />customRangeTo">
-								<aui:field-wrapper label="to">
+								<aui:field-wrapper
+									label="to"
+								>
 									<liferay-ui:input-date
 										cssClass="modified-facet-custom-range-input-date-to"
 										dayParam="toDay"
@@ -151,19 +169,30 @@ contextObjects.put("namespace", renderResponse.getNamespace());
 								</aui:field-wrapper>
 							</div>
 
-							<aui:button cssClass="modified-facet-custom-range-filter-button" disabled="<%= modifiedFacetCalendarDisplayContext.isRangeBackwards() %>" name="searchCustomRangeButton" value="search" />
+							<aui:button
+								cssClass="modified-facet-custom-range-filter-button"
+								disabled="<%= modifiedFacetCalendarDisplayContext.isRangeBackwards() %>"
+								name="searchCustomRangeButton"
+								value="search"
+							/>
 						</div>
 					</ul>
 
 					<c:if test="<%= !modifiedFacetDisplayContext.isNothingSelected() %>">
-						<aui:button cssClass="btn-link btn-unstyled facet-clear-btn" onClick="Liferay.Search.FacetUtil.clearSelections(event);" value="clear" />
+						<aui:button
+							cssClass="btn-link btn-unstyled facet-clear-btn"
+							onClick="Liferay.Search.FacetUtil.clearSelections(event);"
+							value="clear"
+						/>
 					</c:if>
 				</liferay-ui:panel>
 			</liferay-ui:panel-container>
 		</liferay-ddm:template-renderer>
 	</aui:form>
 
-	<aui:script use="liferay-search-modified-facet">
+	<aui:script
+		use="liferay-search-modified-facet"
+	>
 		new Liferay.Search.ModifiedFacetFilter({
 			form: A.one('#<portlet:namespace/>fm'),
 			fromInputDatePicker: Liferay.component(

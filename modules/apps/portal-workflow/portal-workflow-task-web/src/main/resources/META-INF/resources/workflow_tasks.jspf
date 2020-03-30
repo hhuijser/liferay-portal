@@ -57,7 +57,9 @@
 					</h5>
 
 					<h4>
-						<aui:a href="<%= rowURL %>">
+						<aui:a
+							href="<%= rowURL %>"
+						>
 							<%= workflowTaskDisplayContext.getAssetTitle(workflowTask) %>
 						</aui:a>
 					</h4>

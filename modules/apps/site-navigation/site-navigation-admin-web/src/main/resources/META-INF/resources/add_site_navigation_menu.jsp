@@ -30,20 +30,42 @@ renderResponse.setTitle(LanguageUtil.get(request, "add-new-menu"));
 	<portlet:param name="groupId" value="<%= String.valueOf(scopeGroupId) %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= editSitaNavigationMenuURL %>" cssClass="container-fluid-1280" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= editSitaNavigationMenuURL %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
-	<aui:model-context model="<%= SiteNavigationMenu.class %>" />
+	<aui:model-context
+		model="<%= SiteNavigationMenu.class %>"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input autoFocus="<%= true %>" label="name" name="name" placeholder="name" />
+			<aui:input
+				autoFocus="<%= true %>"
+				label="name"
+				name="name"
+				placeholder="name"
+			/>
 		</aui:fieldset>
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

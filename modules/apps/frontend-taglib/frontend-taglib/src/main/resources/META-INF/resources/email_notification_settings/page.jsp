@@ -30,15 +30,24 @@ boolean showEmailEnabled = GetterUtil.getBoolean(request.getAttribute("liferay-f
 boolean showSubject = GetterUtil.getBoolean(request.getAttribute("liferay-frontend:email-notification-settings:showSubject"));
 %>
 
-<aui:fieldset markupView="lexicon">
+<aui:fieldset
+	markupView="lexicon"
+>
 	<c:if test="<%= showEmailEnabled %>">
-		<aui:input label="enabled" name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Enabled" + fieldPrefixSeparator %>' type="checkbox" value="<%= emailEnabled %>" />
+		<aui:input
+			label="enabled"
+			name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Enabled" + fieldPrefixSeparator %>'
+			type="checkbox"
+			value="<%= emailEnabled %>"
+		/>
 	</c:if>
 
 	<c:if test="<%= showSubject %>">
 		<c:choose>
 			<c:when test="<%= Validator.isNotNull(emailSubject) && Validator.isXml(emailSubject) %>">
-				<aui:field-wrapper label="subject">
+				<aui:field-wrapper
+					label="subject"
+				>
 					<liferay-ui:input-localized
 						fieldPrefix="<%= fieldPrefix %>"
 						fieldPrefixSeparator="<%= fieldPrefixSeparator %>"
@@ -48,12 +57,20 @@ boolean showSubject = GetterUtil.getBoolean(request.getAttribute("liferay-fronte
 				</aui:field-wrapper>
 			</c:when>
 			<c:otherwise>
-				<aui:input cssClass="lfr-input-text-container" label="subject" name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Subject" + fieldPrefixSeparator %>' value="<%= emailSubject %>" />
+				<aui:input
+					cssClass="lfr-input-text-container"
+					label="subject"
+					name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Subject" + fieldPrefixSeparator %>'
+					value="<%= emailSubject %>"
+				/>
 			</c:otherwise>
 		</c:choose>
 	</c:if>
 
-	<aui:field-wrapper helpMessage="<%= helpMessage %>" label="<%= bodyLabel %>">
+	<aui:field-wrapper
+		helpMessage="<%= helpMessage %>"
+		label="<%= bodyLabel %>"
+	>
 		<c:choose>
 			<c:when test="<%= Validator.isNotNull(emailBody) && Validator.isXml(emailBody) %>">
 				<liferay-ui:input-localized
@@ -73,14 +90,22 @@ boolean showSubject = GetterUtil.getBoolean(request.getAttribute("liferay-fronte
 					name="<%= emailParam %>"
 				/>
 
-				<aui:input name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Body" + fieldPrefixSeparator %>' type="hidden" />
+				<aui:input
+					name='<%= fieldPrefix + fieldPrefixSeparator + emailParam + "Body" + fieldPrefixSeparator %>'
+					type="hidden"
+				/>
 			</c:otherwise>
 		</c:choose>
 	</aui:field-wrapper>
 </aui:fieldset>
 
 <c:if test="<%= (emailDefinitionTerms != null) && !emailDefinitionTerms.isEmpty() %>">
-	<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="definition-of-terms" markupView="lexicon">
+	<aui:fieldset
+		collapsed="<%= true %>"
+		collapsible="<%= true %>"
+		label="definition-of-terms"
+		markupView="lexicon"
+	>
 		<dl>
 
 			<%

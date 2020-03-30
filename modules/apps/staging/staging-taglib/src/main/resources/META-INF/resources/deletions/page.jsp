@@ -17,7 +17,10 @@
 <%@ include file="/deletions/init.jsp" %>
 
 <c:if test="<%= cmd.equals(Constants.EXPORT) || cmd.equals(Constants.IMPORT) || cmd.equals(Constants.PUBLISH) %>">
-	<aui:fieldset cssClass="options-group" markupView="lexicon">
+	<aui:fieldset
+		cssClass="options-group"
+		markupView="lexicon"
+	>
 		<div class="sheet-section">
 			<h3 class="sheet-subtitle"><liferay-ui:message key="deletions" /></h3>
 

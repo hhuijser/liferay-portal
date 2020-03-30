@@ -150,7 +150,12 @@ if (message.isAnonymous() || thread.isInTrash()) {
 
 					<c:if test="<%= !message.isApproved() %>">
 						<span class="h5 text-default">
-							<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= message.getStatus() %>" />
+							<aui:workflow-status
+								markupView="lexicon"
+								showIcon="<%= false %>"
+								showLabel="<%= false %>"
+								status="<%= message.getStatus() %>"
+							/>
 						</span>
 					</c:if>
 				</c:if>

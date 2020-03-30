@@ -70,12 +70,27 @@ if (tabs1.equals("published")) {
 
 	<span class="badge badge-info" id="<portlet:namespace />workflowDefinitionDisplay"><%= HtmlUtil.escape(workflowDefinitionDisplay) %></span>
 
-	<aui:input name="workflowDefinition" type="hidden" value="<%= workflowDefinition %>">
-		<aui:validator name="required" />
+	<aui:input
+		name="workflowDefinition"
+		type="hidden"
+		value="<%= workflowDefinition %>"
+	>
+		<aui:validator
+			name="required"
+		/>
 	</aui:input>
 
-	<aui:input name="workflowDefinitionName" type="hidden" value="<%= workflowDefinitionName %>" />
-	<aui:input name="workflowDefinitionVersion" type="hidden" value="<%= workflowDefinitionVersion %>" />
+	<aui:input
+		name="workflowDefinitionName"
+		type="hidden"
+		value="<%= workflowDefinitionName %>"
+	/>
+
+	<aui:input
+		name="workflowDefinitionVersion"
+		type="hidden"
+		value="<%= workflowDefinitionVersion %>"
+	/>
 </aui:field-wrapper>
 
 <liferay-portlet:renderURL varImpl="iteratorURL">
@@ -95,7 +110,11 @@ if (tabs1.equals("published")) {
 		<portlet:param name="closeRedirect" value="<%= backURL %>" />
 	</liferay-portlet:renderURL>
 
-	<aui:button onClick='<%= "javascript:" + renderResponse.getNamespace() + "editWorkflow('" + addURL + "');" %>' primary="<%= true %>" value="add-workflow" />
+	<aui:button
+		onClick='<%= "javascript:" + renderResponse.getNamespace() + "editWorkflow('" + addURL + "');" %>'
+		primary="<%= true %>"
+		value="add-workflow"
+	/>
 
 	<div class="separator"><!-- --></div>
 
@@ -107,8 +126,13 @@ if (tabs1.equals("published")) {
 		<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 	</liferay-portlet:renderURL>
 
-	<aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
-		<aui:nav cssClass="kaleo-process-workflow-nav-tabs nav-bar-workflow nav-tabs nav-tabs-default">
+	<aui:nav-bar
+		cssClass="collapse-basic-search"
+		markupView="lexicon"
+	>
+		<aui:nav
+			cssClass="kaleo-process-workflow-nav-tabs nav-bar-workflow nav-tabs nav-tabs-default"
+		>
 			<liferay-portlet:renderURL var="viewPublishedURL">
 				<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
 				<portlet:param name="tabs1" value="published" />
@@ -117,7 +141,11 @@ if (tabs1.equals("published")) {
 				<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:nav-item href="<%= viewPublishedURL %>" label="published" selected='<%= tabs1.equals("published") %>' />
+			<aui:nav-item
+				href="<%= viewPublishedURL %>"
+				label="published"
+				selected='<%= tabs1.equals("published") %>'
+			/>
 
 			<liferay-portlet:renderURL var="viewUnpublishedURL">
 				<portlet:param name="mvcPath" value="/admin/edit_kaleo_process.jsp" />
@@ -127,7 +155,11 @@ if (tabs1.equals("published")) {
 				<portlet:param name="kaleoProcessId" value="<%= String.valueOf(kaleoProcessId) %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:nav-item href="<%= viewUnpublishedURL %>" label="unpublished" selected='<%= tabs1.equals("unpublished") %>' />
+			<aui:nav-item
+				href="<%= viewUnpublishedURL %>"
+				label="unpublished"
+				selected='<%= tabs1.equals("unpublished") %>'
+			/>
 		</aui:nav>
 	</aui:nav-bar>
 

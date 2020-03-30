@@ -58,7 +58,12 @@ backURL.setParameter("templateId", String.valueOf(templateId));
 	</c:otherwise>
 </c:choose>
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="fm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= new TemplateSearch(renderRequest, portletURL) %>"
 		total="<%= DDMTemplateVersionServiceUtil.getTemplateVersionsCount(templateId) %>"

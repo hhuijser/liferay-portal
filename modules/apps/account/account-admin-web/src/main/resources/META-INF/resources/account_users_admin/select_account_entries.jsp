@@ -26,7 +26,9 @@ SelectAccountEntriesManagementToolbarDisplayContext selectAccountEntriesManageme
 	displayContext="<%= selectAccountEntriesManagementToolbarDisplayContext %>"
 />
 
-<aui:container cssClass="container-fluid container-fluid-max-xl">
+<aui:container
+	cssClass="container-fluid container-fluid-max-xl"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= accountEntryDisplaySearchContainer %>"
 	>
@@ -64,7 +66,9 @@ SelectAccountEntriesManagementToolbarDisplayContext selectAccountEntriesManageme
 	</liferay-ui:search-container>
 </aui:container>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />accountEntries'
 	);

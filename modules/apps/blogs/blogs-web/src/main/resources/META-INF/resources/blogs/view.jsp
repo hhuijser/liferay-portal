@@ -39,7 +39,11 @@ portletURL.setParameter("mvcRenderCommandName", "/blogs/view");
 	portletURL="<%= restoreTrashEntriesURL %>"
 />
 
-<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+<aui:input
+	name="redirect"
+	type="hidden"
+	value="<%= currentURL %>"
+/>
 
 <%
 BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortletInstanceConfigurationUtil.getBlogsPortletInstanceConfiguration(themeDisplay);

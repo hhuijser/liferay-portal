@@ -57,7 +57,10 @@ sb.append(npmResolvedPackageName);
 sb.append("/js/modal/openDisplayPageModal.es as openDisplayPageModal");
 %>
 
-<aui:script require="<%= sb.toString() %>" sandbox="<%= true %>">
+<aui:script
+	require="<%= sb.toString() %>"
+	sandbox="<%= true %>"
+>
 	var addDisplayPageClickHandler = dom.delegate(
 		document.body,
 		'click',

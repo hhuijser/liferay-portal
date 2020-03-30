@@ -65,7 +65,9 @@ if (!portletCategories.isEmpty() || !portlets.isEmpty()) {
 		extended="<%= true %>"
 		title="<%= title %>"
 	>
-		<aui:nav cssClass="list-group">
+		<aui:nav
+			cssClass="list-group"
+		>
 
 			<%
 			for (PortletCategory curPortletCategory : portletCategories) {

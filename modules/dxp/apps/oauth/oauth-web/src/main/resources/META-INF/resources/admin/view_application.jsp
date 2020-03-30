@@ -31,26 +31,38 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.getOAuthApp
 />
 
 <aui:row>
-	<aui:col width="<%= (oAuthApplication.getLogoId() != 0) ? 50 : 100 %>">
+	<aui:col
+		width="<%= (oAuthApplication.getLogoId() != 0) ? 50 : 100 %>"
+	>
 		<c:if test="<%= Validator.isNotNull(oAuthApplication.getDescription()) %>">
-			<aui:field-wrapper label="description">
+			<aui:field-wrapper
+				label="description"
+			>
 				<%= HtmlUtil.escape(oAuthApplication.getDescription()) %>
 			</aui:field-wrapper>
 		</c:if>
 
-		<aui:field-wrapper label="access-type">
+		<aui:field-wrapper
+			label="access-type"
+		>
 			<liferay-ui:message key="<%= oAuthApplication.getAccessLevelLabel() %>" />
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="website-url">
+		<aui:field-wrapper
+			label="website-url"
+		>
 			<%= HtmlUtil.escape(oAuthApplication.getWebsiteURL()) %>
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="callback-uri">
+		<aui:field-wrapper
+			label="callback-uri"
+		>
 			<%= HtmlUtil.escape(oAuthApplication.getCallbackURI()) %>
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="share-access-token">
+		<aui:field-wrapper
+			label="share-access-token"
+		>
 			<c:choose>
 				<c:when test="<%= oAuthApplication.isShareableAccessToken() %>">
 					<liferay-ui:icon
@@ -67,7 +79,9 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.getOAuthApp
 			</c:choose>
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="application-credentials">
+		<aui:field-wrapper
+			label="application-credentials"
+		>
 			<liferay-ui:message key="consumer-key" />:
 
 			<%= HtmlUtil.escape(oAuthApplication.getConsumerKey()) %><br />
@@ -77,7 +91,9 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.getOAuthApp
 			<%= HtmlUtil.escape(oAuthApplication.getConsumerSecret()) %>
 		</aui:field-wrapper>
 
-		<aui:field-wrapper label="oauth-request-uris">
+		<aui:field-wrapper
+			label="oauth-request-uris"
+		>
 			<liferay-ui:message key="request-token-uri" />:
 
 			<%= OAuthUtil.getRequestTokenURI() %><br />
@@ -93,7 +109,9 @@ OAuthApplication oAuthApplication = OAuthApplicationLocalServiceUtil.getOAuthApp
 	</aui:col>
 
 	<c:if test="<%= oAuthApplication.getLogoId() != 0 %>">
-		<aui:col width="<%= 50 %>">
+		<aui:col
+			width="<%= 50 %>"
+		>
 			<img src="<%= HtmlUtil.escape(themeDisplay.getPathImage() + "/logo?img_id=" + oAuthApplication.getLogoId() + "&t=" + WebServerServletTokenUtil.getToken(oAuthApplication.getLogoId())) %>" />
 		</aui:col>
 	</c:if>

@@ -28,7 +28,11 @@ AssetTagsManagementToolbarDisplayContext assetTagsManagementToolbarDisplayContex
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteTagURL %>" cssClass="container-fluid container-fluid-max-xl" name="fm">
+<aui:form
+	action="<%= deleteTagURL %>"
+	cssClass="container-fluid container-fluid-max-xl"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="assetTags"
 		searchContainer="<%= assetTagsDisplayContext.getTagsSearchContainer() %>"

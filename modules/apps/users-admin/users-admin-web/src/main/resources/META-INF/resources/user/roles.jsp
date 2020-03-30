@@ -59,12 +59,35 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 	/>
 </liferay-util:buffer>
 
-<aui:input name="addGroupRolesGroupIds" type="hidden" />
-<aui:input name="addGroupRolesRoleIds" type="hidden" />
-<aui:input name="addRoleIds" type="hidden" />
-<aui:input name="deleteGroupRolesGroupIds" type="hidden" />
-<aui:input name="deleteGroupRolesRoleIds" type="hidden" />
-<aui:input name="deleteRoleIds" type="hidden" />
+<aui:input
+	name="addGroupRolesGroupIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="addGroupRolesRoleIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="addRoleIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="deleteGroupRolesGroupIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="deleteGroupRolesRoleIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="deleteRoleIds"
+	type="hidden"
+/>
 
 <div class="sheet-section">
 	<h3 class="autofit-row sheet-subtitle">
@@ -132,7 +155,9 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 	</liferay-ui:search-container>
 
 	<c:if test="<%= !portletName.equals(myAccountPortletId) %>">
-		<aui:script sandbox="<%= true %>">
+		<aui:script
+			sandbox="<%= true %>"
+		>
 			var selectRegularRoleLink = document.getElementById(
 				'<portlet:namespace />selectRegularRoleLink'
 			);
@@ -337,7 +362,9 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 		</liferay-ui:search-container>
 
 		<c:if test="<%= !portletName.equals(myAccountPortletId) %>">
-			<aui:script use="liferay-search-container">
+			<aui:script
+				use="liferay-search-container"
+			>
 				var Util = Liferay.Util;
 
 				var searchContainer = Liferay.SearchContainer.get(
@@ -421,7 +448,9 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 	</c:if>
 
 	<c:if test="<%= !organizations.isEmpty() && !portletName.equals(myAccountPortletId) %>">
-		<aui:script sandbox="<%= true %>">
+		<aui:script
+			sandbox="<%= true %>"
+		>
 			var selectOrganizationRoleLink = document.getElementById(
 				'<portlet:namespace />selectOrganizationRoleLink'
 			);
@@ -570,7 +599,9 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 		</liferay-ui:search-container>
 
 		<c:if test="<%= !portletName.equals(myAccountPortletId) %>">
-			<aui:script use="liferay-search-container">
+			<aui:script
+				use="liferay-search-container"
+			>
 				var Util = Liferay.Util;
 
 				var searchContainer = Liferay.SearchContainer.get(
@@ -895,7 +926,9 @@ String organizationRoleSyncEntitiesEventName = liferayPortletResponse.getNamespa
 			);
 		</aui:script>
 
-		<aui:script use="liferay-search-container">
+		<aui:script
+			use="liferay-search-container"
+		>
 			var Util = Liferay.Util;
 
 			var searchContainer = Liferay.SearchContainer.get(

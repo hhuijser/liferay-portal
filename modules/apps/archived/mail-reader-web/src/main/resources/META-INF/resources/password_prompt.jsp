@@ -23,21 +23,38 @@ long inboxFolderId = ParamUtil.getLong(request, "inboxFolderId");
 
 <div class="mail-status"></div>
 
-<aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:input name="accountId" type="hidden" value="<%= accountId %>" />
+<aui:form
+	name="dialogFm"
+	onSubmit="event.preventDefault();"
+>
+	<aui:input
+		name="accountId"
+		type="hidden"
+		value="<%= accountId %>"
+	/>
 
 	<%
 	Account mailAccount = AccountLocalServiceUtil.getAccount(accountId);
 	%>
 
-	<aui:input label='<%= LanguageUtil.format(request, "please-enter-your-password-for-x", mailAccount.getAddress(), false) %>' name="password" type="password" />
+	<aui:input
+		label='<%= LanguageUtil.format(request, "please-enter-your-password-for-x", mailAccount.getAddress(), false) %>'
+		name="password"
+		type="password"
+	/>
 
 	<aui:button-row>
-		<aui:button name="login" type="submit" value="login" />
+		<aui:button
+			name="login"
+			type="submit"
+			value="login"
+		/>
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io-deprecated">
+<aui:script
+	use="aui-io-deprecated"
+>
 	var form = A.one('#<portlet:namespace />dialogFm');
 
 	A.one('#<portlet:namespace />login').on('click', function(event) {

@@ -38,8 +38,17 @@ if (Validator.isNotNull(portletConfigurationPermissionsDisplayContext.getModelRe
 			selectable="<%= false %>"
 		/>
 
-		<aui:form action="<%= portletConfigurationPermissionsDisplayContext.getUpdateRolePermissionsURL() %>" cssClass="container-fluid-1280" method="post" name="fm">
-			<aui:input name="resourceId" type="hidden" value="<%= resource.getResourceId() %>" />
+		<aui:form
+			action="<%= portletConfigurationPermissionsDisplayContext.getUpdateRolePermissionsURL() %>"
+			cssClass="container-fluid-1280"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="resourceId"
+				type="hidden"
+				value="<%= resource.getResourceId() %>"
+			/>
 
 			<liferay-ui:search-container
 				searchContainer="<%= roleSearchContainer %>"
@@ -170,9 +179,14 @@ if (Validator.isNotNull(portletConfigurationPermissionsDisplayContext.getModelRe
 	</div>
 
 	<aui:button-row>
-		<aui:button name="saveButton" type="submit" />
+		<aui:button
+			name="saveButton"
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</aui:button-row>
 </div>
 

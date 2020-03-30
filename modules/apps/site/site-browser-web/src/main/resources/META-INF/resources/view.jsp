@@ -24,7 +24,12 @@
 	displayContext="<%= new SiteBrowserManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, siteBrowserDisplayContext) %>"
 />
 
-<aui:form action="<%= siteBrowserDisplayContext.getPortletURL() %>" cssClass="container-fluid-1280" method="post" name="selectGroupFm">
+<aui:form
+	action="<%= siteBrowserDisplayContext.getPortletURL() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectGroupFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= siteBrowserDisplayContext.getGroupSearch() %>"
 	>
@@ -59,7 +64,11 @@
 						<h5>
 							<c:choose>
 								<c:when test="<%= siteBrowserDisplayContext.isShowLink(group) %>">
-									<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="selector-button"
+										data="<%= data %>"
+										href="javascript:;"
+									>
 										<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 									</aui:a>
 								</c:when>
@@ -93,7 +102,11 @@
 					>
 						<c:choose>
 							<c:when test="<%= siteBrowserDisplayContext.isShowLink(group) %>">
-								<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="selector-button"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 								</aui:a>
 							</c:when>

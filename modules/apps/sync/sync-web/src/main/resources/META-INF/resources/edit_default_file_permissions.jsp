@@ -117,7 +117,11 @@ if (groupIds.length == 1) {
 					String setPermissions = renderResponse.getNamespace() + "setPermissions('" + setPermissionsURL + "');";
 					%>
 
-					<aui:button disabled="<%= currentPermissions == permissions %>" onClick="<%= setPermissions %>" value="choose" />
+					<aui:button
+						disabled="<%= currentPermissions == permissions %>"
+						onClick="<%= setPermissions %>"
+						value="choose"
+					/>
 				</td>
 			</tr>
 

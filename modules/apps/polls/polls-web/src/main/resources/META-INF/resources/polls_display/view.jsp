@@ -68,16 +68,41 @@ if (question != null) {
 			<portlet:param name="mvcActionCommand" value="/polls_display/vote_question" />
 		</portlet:actionURL>
 
-		<aui:form action="<%= voteQuestionURL %>" method="post" name="fm">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.VOTE %>" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-			<aui:input name="questionId" type="hidden" value="<%= question.getQuestionId() %>" />
-			<aui:input name="successMessage" type="hidden" value='<%= LanguageUtil.get(request, "thank-you-for-your-vote") %>' />
+		<aui:form
+			action="<%= voteQuestionURL %>"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+				value="<%= Constants.VOTE %>"
+			/>
+
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+
+			<aui:input
+				name="questionId"
+				type="hidden"
+				value="<%= question.getQuestionId() %>"
+			/>
+
+			<aui:input
+				name="successMessage"
+				type="hidden"
+				value='<%= LanguageUtil.get(request, "thank-you-for-your-vote") %>'
+			/>
 
 			<liferay-ui:error exception="<%= DuplicateVoteException.class %>" message="you-may-only-vote-once" />
 			<liferay-ui:error exception="<%= NoSuchChoiceException.class %>" message="please-select-an-option" />
 
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 					<h2>
 						<%= StringUtil.replace(question.getDescription(locale), CharPool.NEW_LINE, "<br />") %>
@@ -91,8 +116,15 @@ if (question != null) {
 								choice = choice.toEscapedModel();
 							%>
 
-								<aui:field-wrapper cssClass="radio">
-									<aui:input label='<%= choice.getName() + ". " + choice.getDescription(locale) %>' name="choiceId" type="radio" value="<%= choice.getChoiceId() %>" />
+								<aui:field-wrapper
+									cssClass="radio"
+								>
+									<aui:input
+										label='<%= choice.getName() + ". " + choice.getDescription(locale) %>'
+										name="choiceId"
+										type="radio"
+										value="<%= choice.getChoiceId() %>"
+									/>
 								</aui:field-wrapper>
 
 							<%
@@ -100,7 +132,10 @@ if (question != null) {
 							%>
 
 							<aui:button-row>
-								<aui:button type="submit" value="vote[action]" />
+								<aui:button
+									type="submit"
+									value="vote[action]"
+								/>
 							</aui:button-row>
 						</c:when>
 						<c:otherwise>

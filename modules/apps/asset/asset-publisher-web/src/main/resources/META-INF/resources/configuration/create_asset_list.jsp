@@ -21,12 +21,17 @@ String portletResource = ParamUtil.getString(request, "portletResource");
 %>
 
 <div class="mb-2">
-	<aui:a cssClass="create-content-set-link" href="javascript:;">
+	<aui:a
+		cssClass="create-content-set-link"
+		href="javascript:;"
+	>
 		<liferay-ui:message key="create-a-content-set-from-this-configuration" />
 	</aui:a>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal">
+<aui:script
+	require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal"
+>
 	function handleCreateAssetListLinkClick(event) {
 		event.preventDefault();
 

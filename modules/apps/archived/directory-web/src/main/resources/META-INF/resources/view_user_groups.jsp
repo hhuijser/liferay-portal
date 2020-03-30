@@ -57,7 +57,12 @@ userGroupSearch.setResults(userGroups);
 boolean showSearch = ParamUtil.getBoolean(request, "showSearch", true);
 %>
 
-<aui:input disabled="<%= true %>" name="userGroupsRedirect" type="hidden" value="<%= portletURL.toString() %>" />
+<aui:input
+	disabled="<%= true %>"
+	name="userGroupsRedirect"
+	type="hidden"
+	value="<%= portletURL.toString() %>"
+/>
 
 <liferay-frontend:management-bar>
 	<liferay-frontend:management-bar-buttons>

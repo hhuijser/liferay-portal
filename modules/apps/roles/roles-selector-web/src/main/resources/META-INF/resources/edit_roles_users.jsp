@@ -27,8 +27,15 @@ Organization organization = (Organization)request.getAttribute("edit_roles.jsp-o
 PortletURL portletURL = (PortletURL)request.getAttribute("edit_roles.jsp-portletURL");
 %>
 
-<aui:input name="addUserIds" type="hidden" />
-<aui:input name="removeUserIds" type="hidden" />
+<aui:input
+	name="addUserIds"
+	type="hidden"
+/>
+
+<aui:input
+	name="removeUserIds"
+	type="hidden"
+/>
 
 <liferay-ui:membership-policy-error />
 

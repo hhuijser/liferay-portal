@@ -16,14 +16,42 @@
 
 <%@ include file="/select_asset_display_page/init.jsp" %>
 
-<aui:input id="pagesContainerInput" ignoreRequestValue="<%= true %>" name="layoutUuid" type="hidden" value="<%= selectAssetDisplayPageDisplayContext.getLayoutUuid() %>" />
+<aui:input
+	id="pagesContainerInput"
+	ignoreRequestValue="<%= true %>"
+	name="layoutUuid"
+	type="hidden"
+	value="<%= selectAssetDisplayPageDisplayContext.getLayoutUuid() %>"
+/>
 
-<aui:input id="assetDisplayPageIdInput" ignoreRequestValue="<%= true %>" name="assetDisplayPageId" type="hidden" value="<%= selectAssetDisplayPageDisplayContext.getAssetDisplayPageId() %>" />
+<aui:input
+	id="assetDisplayPageIdInput"
+	ignoreRequestValue="<%= true %>"
+	name="assetDisplayPageId"
+	type="hidden"
+	value="<%= selectAssetDisplayPageDisplayContext.getAssetDisplayPageId() %>"
+/>
 
-<aui:select label="" name="displayPageType" title="display-page-template-type" value="<%= selectAssetDisplayPageDisplayContext.getAssetDisplayPageType() %>">
-	<aui:option label="default-display-page-template" value="<%= AssetDisplayPageConstants.TYPE_DEFAULT %>" />
-	<aui:option label="specific-display-page-template" value="<%= AssetDisplayPageConstants.TYPE_SPECIFIC %>" />
-	<aui:option label="no-display-page-template" value="<%= AssetDisplayPageConstants.TYPE_NONE %>" />
+<aui:select
+	label=""
+	name="displayPageType"
+	title="display-page-template-type"
+	value="<%= selectAssetDisplayPageDisplayContext.getAssetDisplayPageType() %>"
+>
+	<aui:option
+		label="default-display-page-template"
+		value="<%= AssetDisplayPageConstants.TYPE_DEFAULT %>"
+	/>
+
+	<aui:option
+		label="specific-display-page-template"
+		value="<%= AssetDisplayPageConstants.TYPE_SPECIFIC %>"
+	/>
+
+	<aui:option
+		label="no-display-page-template"
+		value="<%= AssetDisplayPageConstants.TYPE_NONE %>"
+	/>
 </aui:select>
 
 <div class="input-group <%= selectAssetDisplayPageDisplayContext.isAssetDisplayPageTypeDefault() ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />defaultDisplayPageNameContainer">
@@ -72,11 +100,16 @@
 	</div>
 
 	<div class="btn-group">
-		<aui:button name="chooseSpecificDisplayPage" value="select" />
+		<aui:button
+			name="chooseSpecificDisplayPage"
+			value="select"
+		/>
 	</div>
 </div>
 
-<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var assetDisplayPageIdInput = document.getElementById(
 		'<portlet:namespace />assetDisplayPageIdInput'
 	);

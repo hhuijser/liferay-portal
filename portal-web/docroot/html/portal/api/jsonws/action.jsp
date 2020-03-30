@@ -299,13 +299,25 @@ String signature = ParamUtil.getString(request, "signature");
 				};
 			</aui:script>
 
-			<aui:form action="<%= jsonWSPath + jsonWebServiceActionMapping.getPath() %>" enctype="<%= enctype %>" method="<%= jsonWebServiceActionMapping.getMethod() %>" name="execute">
+			<aui:form
+				action="<%= jsonWSPath + jsonWebServiceActionMapping.getPath() %>"
+				enctype="<%= enctype %>"
+				method="<%= jsonWebServiceActionMapping.getMethod() %>"
+				name="execute"
+			>
 
 				<%
 				if (PropsValues.JSON_SERVICE_AUTH_TOKEN_ENABLED) {
 				%>
 
-					<aui:input id='<%= "field" + methodParameters.length %>' label="p_auth" name="p_auth" readonly="true" suffix="String" value="<%= AuthTokenUtil.getToken(request) %>" />
+					<aui:input
+						id='<%= "field" + methodParameters.length %>'
+						label="p_auth"
+						name="p_auth"
+						readonly="true"
+						suffix="String"
+						value="<%= AuthTokenUtil.getToken(request) %>"
+					/>
 
 				<%
 				}
@@ -333,17 +345,40 @@ String signature = ParamUtil.getString(request, "signature");
 					if (methodParameterTypeClass.equals(File.class)) {
 				%>
 
-						<aui:input id='<%= "field" + i %>' label="<%= methodParameterName %>" name="<%= methodParameterName %>" suffix="<%= methodParameterTypeClassName %>" type="file" />
+						<aui:input
+							id='<%= "field" + i %>'
+							label="<%= methodParameterName %>"
+							name="<%= methodParameterName %>"
+							suffix="<%= methodParameterTypeClassName %>"
+							type="file"
+						/>
 
 					<%
 					}
 					else if (methodParameterTypeClass.equals(boolean.class) || methodParameterTypeClass.equals(Boolean.class)) {
 					%>
 
-						<aui:field-wrapper label="<%= methodParameterName %>">
-							<aui:input checked="<%= true %>" id='<%= "fieldTrue" + i %>' inlineField="<%= true %>" label="<%= Boolean.TRUE.toString() %>" name="<%= methodParameterName %>" type="radio" value="<%= true %>" />
+						<aui:field-wrapper
+							label="<%= methodParameterName %>"
+						>
+							<aui:input
+								checked="<%= true %>"
+								id='<%= "fieldTrue" + i %>'
+								inlineField="<%= true %>"
+								label="<%= Boolean.TRUE.toString() %>"
+								name="<%= methodParameterName %>"
+								type="radio"
+								value="<%= true %>"
+							/>
 
-							<aui:input id='<%= "fieldFalse" + i %>' inlineField="<%= true %>" label="<%= Boolean.FALSE.toString() %>" name="<%= methodParameterName %>" type="radio" value="<%= false %>" />
+							<aui:input
+								id='<%= "fieldFalse" + i %>'
+								inlineField="<%= true %>"
+								label="<%= Boolean.FALSE.toString() %>"
+								name="<%= methodParameterName %>"
+								type="radio"
+								value="<%= false %>"
+							/>
 
 							<span class="suffix"><%= methodParameterTypeClassName %></span>
 						</aui:field-wrapper>
@@ -358,7 +393,15 @@ String signature = ParamUtil.getString(request, "signature");
 						}
 					%>
 
-						<aui:input id='<%= "field" + i %>' label="<%= methodParameterName %>" name="<%= methodParameterName %>" rows="1" size="<%= size %>" suffix="<%= methodParameterTypeClassName %>" type="textarea" />
+						<aui:input
+							id='<%= "field" + i %>'
+							label="<%= methodParameterName %>"
+							name="<%= methodParameterName %>"
+							rows="1"
+							size="<%= size %>"
+							suffix="<%= methodParameterTypeClassName %>"
+							type="textarea"
+						/>
 
 					<%
 					}
@@ -367,7 +410,13 @@ String signature = ParamUtil.getString(request, "signature");
 						int size = 10;
 					%>
 
-						<aui:input id='<%= "field" + i %>' label="<%= methodParameterName %>" name="<%= objectMethodParameterName %>" size="<%= size %>" suffix="<%= methodParameterTypeClassName %>" />
+						<aui:input
+							id='<%= "field" + i %>'
+							label="<%= methodParameterName %>"
+							name="<%= objectMethodParameterName %>"
+							size="<%= size %>"
+							suffix="<%= methodParameterTypeClassName %>"
+						/>
 
 					<%
 					}
@@ -396,11 +445,16 @@ String signature = ParamUtil.getString(request, "signature");
 				}
 				%>
 
-				<aui:button type="submit" value="invoke" />
+				<aui:button
+					type="submit"
+					value="invoke"
+				/>
 			</aui:form>
 		</div>
 
-		<aui:script use="aui-io,aui-template-deprecated,io-form,querystring-parse">
+		<aui:script
+			use="aui-io,aui-template-deprecated,io-form,querystring-parse"
+		>
 			var REGEX_QUERY_STRING = new RegExp('([^?=&]+)(?:=([^&]*))?', 'g');
 
 			var form = A.one('#execute');

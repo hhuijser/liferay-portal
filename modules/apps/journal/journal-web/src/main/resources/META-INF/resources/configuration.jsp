@@ -33,8 +33,17 @@ String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAd
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<%
 	String tabs1Names = "email-from,web-content-added-email,web-content-moved-from-folder-email,web-content-moved-to-folder-email,web-content-review-email,web-content-updated-email";
@@ -67,9 +76,21 @@ String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAd
 			<liferay-ui:section>
 				<liferay-frontend:fieldset-group>
 					<liferay-frontend:fieldset>
-						<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" type="text" value="<%= emailFromName %>" />
+						<aui:input
+							cssClass="lfr-input-text-container"
+							label="name"
+							name="preferences--emailFromName--"
+							type="text"
+							value="<%= emailFromName %>"
+						/>
 
-						<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" type="text" value="<%= emailFromAddress %>" />
+						<aui:input
+							cssClass="lfr-input-text-container"
+							label="address"
+							name="preferences--emailFromAddress--"
+							type="text"
+							value="<%= emailFromAddress %>"
+						/>
 					</liferay-frontend:fieldset>
 				</liferay-frontend:fieldset-group>
 			</liferay-ui:section>
@@ -179,8 +200,12 @@ String emailFromAddress = ParamUtil.getString(request, "preferences--emailFromAd
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

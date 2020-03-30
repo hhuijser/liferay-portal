@@ -46,9 +46,17 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 						<%= StringUtil.toUpperCase(LanguageUtil.get(request, "scope"), locale) %>
 					</span>
 
-					<aui:icon cssClass="collapse-icon-closed" image="angle-right" markupView="lexicon" />
+					<aui:icon
+						cssClass="collapse-icon-closed"
+						image="angle-right"
+						markupView="lexicon"
+					/>
 
-					<aui:icon cssClass="collapse-icon-open" image="angle-down" markupView="lexicon" />
+					<aui:icon
+						cssClass="collapse-icon-open"
+						image="angle-down"
+						markupView="lexicon"
+					/>
 				</div>
 
 				<div class="collapse panel-collapse show" id="<portlet:namespace />scopePanelBody">
@@ -87,9 +95,17 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 						<%= StringUtil.appendParentheticalSuffix(applicationPanelTitle, firstUADApplicationSummaryDisplay.getCount()) %>
 					</span>
 
-					<aui:icon cssClass="collapse-icon-closed" image="angle-right" markupView="lexicon" />
+					<aui:icon
+						cssClass="collapse-icon-closed"
+						image="angle-right"
+						markupView="lexicon"
+					/>
 
-					<aui:icon cssClass="collapse-icon-open" image="angle-down" markupView="lexicon" />
+					<aui:icon
+						cssClass="collapse-icon-open"
+						image="angle-down"
+						markupView="lexicon"
+					/>
 				</div>
 
 				<div class="collapse panel-collapse show" id="<portlet:namespace />applicationPanelBody">
@@ -129,9 +145,17 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 								<%= StringUtil.toUpperCase(applicationName, locale) %>
 							</span>
 
-							<aui:icon cssClass="collapse-icon-closed" image="angle-right" markupView="lexicon" />
+							<aui:icon
+								cssClass="collapse-icon-closed"
+								image="angle-right"
+								markupView="lexicon"
+							/>
 
-							<aui:icon cssClass="collapse-icon-open" image="angle-down" markupView="lexicon" />
+							<aui:icon
+								cssClass="collapse-icon-open"
+								image="angle-down"
+								markupView="lexicon"
+							/>
 						</div>
 
 						<div class="collapse panel-collapse show" id="<portlet:namespace />entitiesTypePanelBody">
@@ -218,7 +242,9 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 	<portlet:param name="scope" value="<%= scope %>" />
 </portlet:renderURL>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	var baseURL = '<%= reviewUADDataURL %>';
 
 	var clickListeners = [];

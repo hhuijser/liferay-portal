@@ -22,11 +22,34 @@ PortletURL refererURL = renderResponse.createActionURL();
 refererURL.setParameter("updateLayout", "true");
 %>
 
-<aui:form action='<%= themeDisplay.getPathMain() + "/portal/update_layout?p_auth=" + AuthTokenUtil.getToken(request) + "&p_l_id=" + plid + "&p_v_l_s_g_id=" + themeDisplay.getSiteGroupId() %>' method="post" name="addApplicationForm">
-	<aui:input name="doAsUserId" type="hidden" value="<%= themeDisplay.getDoAsUserId() %>" />
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="template" />
-	<aui:input name="<%= WebKeys.REFERER %>" type="hidden" value="<%= refererURL.toString() %>" />
-	<aui:input name="refresh" type="hidden" value="<%= true %>" />
+<aui:form
+	action='<%= themeDisplay.getPathMain() + "/portal/update_layout?p_auth=" + AuthTokenUtil.getToken(request) + "&p_l_id=" + plid + "&p_v_l_s_g_id=" + themeDisplay.getSiteGroupId() %>'
+	method="post"
+	name="addApplicationForm"
+>
+	<aui:input
+		name="doAsUserId"
+		type="hidden"
+		value="<%= themeDisplay.getDoAsUserId() %>"
+	/>
+
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="template"
+	/>
+
+	<aui:input
+		name="<%= WebKeys.REFERER %>"
+		type="hidden"
+		value="<%= refererURL.toString() %>"
+	/>
+
+	<aui:input
+		name="refresh"
+		type="hidden"
+		value="<%= true %>"
+	/>
 
 	<div id="<portlet:namespace />applicationList">
 		<c:if test="<%= layout.isTypePortlet() %>">
@@ -78,10 +101,18 @@ refererURL.setParameter("updateLayout", "true");
 
 				<ul class="list-unstyled mb-0">
 					<li class="my-2">
-						<aui:icon image="live" label="can-be-added-once" markupView="lexicon" />
+						<aui:icon
+							image="live"
+							label="can-be-added-once"
+							markupView="lexicon"
+						/>
 					</li>
 					<li class="my-2">
-						<aui:icon image="grid" label="can-be-added-several-times" markupView="lexicon" />
+						<aui:icon
+							image="grid"
+							label="can-be-added-several-times"
+							markupView="lexicon"
+						/>
 					</li>
 				</ul>
 			</div>
@@ -94,13 +125,19 @@ refererURL.setParameter("updateLayout", "true");
 			%>
 
 			<div class="button-holder">
-				<aui:button href="<%= marketplaceURL.toString() %>" primary="<%= true %>" value="install-more-widgets" />
+				<aui:button
+					href="<%= marketplaceURL.toString() %>"
+					primary="<%= true %>"
+					value="install-more-widgets"
+				/>
 			</div>
 		</c:if>
 	</div>
 </aui:form>
 
-<aui:script use="liferay-product-navigation-control-menu-add-application">
+<aui:script
+	use="liferay-product-navigation-control-menu-add-application"
+>
 	var ControlMenu = Liferay.ControlMenu;
 
 	var addApplicationCollapse = A.one(

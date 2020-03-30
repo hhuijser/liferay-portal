@@ -37,7 +37,10 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 %>
 
 <div class="container-fluid-1280">
-	<aui:form method="post" name="selectFolderFm">
+	<aui:form
+		method="post"
+		name="selectFolderFm"
+	>
 		<liferay-ui:breadcrumb
 			showCurrentGroup="<%= false %>"
 			showGuestGroup="<%= false %>"
@@ -55,7 +58,10 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 					<portlet:param name="ignoreRootFolder" value="<%= Boolean.TRUE.toString() %>" />
 				</portlet:renderURL>
 
-				<aui:button href="<%= editFolderURL %>" value="add-folder" />
+				<aui:button
+					href="<%= editFolderURL %>"
+					value="add-folder"
+				/>
 			</c:if>
 
 			<%
@@ -67,7 +73,11 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 			data.put("foldername", folderName);
 			%>
 
-			<aui:button cssClass="selector-button" data="<%= data %>" value="select-this-folder" />
+			<aui:button
+				cssClass="selector-button"
+				data="<%= data %>"
+				value="select-this-folder"
+			/>
 		</aui:button-row>
 
 		<%
@@ -160,7 +170,11 @@ DLVisualizationHelper dlVisualizationHelper = new DLVisualizationHelper(dlReques
 						data.put("foldername", curFolder.getName());
 						%>
 
-						<aui:button cssClass="selector-button" data="<%= data %>" value="select" />
+						<aui:button
+							cssClass="selector-button"
+							data="<%= data %>"
+							value="select"
+						/>
 					</c:if>
 				</liferay-ui:search-container-column-text>
 			</liferay-ui:search-container-row>

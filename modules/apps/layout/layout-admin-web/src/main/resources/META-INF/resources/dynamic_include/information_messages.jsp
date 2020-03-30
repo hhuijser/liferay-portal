@@ -45,7 +45,10 @@ data.put("qa-id", "info");
 
 			<c:if test="<%= modifiedLayout %>">
 				<div class="modified-layout">
-					<aui:icon image="information-live" markupView="lexicon" />
+					<aui:icon
+						image="information-live"
+						markupView="lexicon"
+					/>
 
 					<span class="message-info">
 						<liferay-ui:message key="this-page-has-been-changed-since-the-last-update-from-the-site-template-excerpt" />
@@ -64,7 +67,12 @@ data.put("qa-id", "info");
 					%>
 
 					<span class="button-info">
-						<aui:button name="submit" onClick="<%= taglibURL %>" type="submit" value='<%= LanguageUtil.get(resourceBundle, "reset-changes") %>' />
+						<aui:button
+							name="submit"
+							onClick="<%= taglibURL %>"
+							type="submit"
+							value='<%= LanguageUtil.get(resourceBundle, "reset-changes") %>'
+						/>
 					</span>
 				</div>
 			</c:if>
@@ -75,7 +83,10 @@ data.put("qa-id", "info");
 
 			<c:if test="<%= linkedLayout %>">
 				<div class="linked-layout">
-					<aui:icon image="information-live" markupView="lexicon" />
+					<aui:icon
+						image="information-live"
+						markupView="lexicon"
+					/>
 
 					<span class="message-info">
 
@@ -101,7 +112,10 @@ data.put("qa-id", "info");
 	</div>
 </li>
 
-<aui:script position="auto" use="aui-popover,event-outside">
+<aui:script
+	position="auto"
+	use="aui-popover,event-outside"
+>
 	var trigger = A.one('#<%= portletNamespace %>infoButton');
 
 	var DOC = A.getDoc();

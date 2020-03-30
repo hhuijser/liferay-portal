@@ -38,13 +38,46 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 		<portlet:param name="mvcRenderCommandName" value="/document_library/edit_file_entry_type" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= editFileEntryTypeURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'>
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="fileEntryTypeId" type="hidden" value="<%= fileEntryTypeId %>" />
-		<aui:input name="fileEntryTypeUuid" type="hidden" value="" />
-		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
-		<aui:input name="definition" type="hidden" />
+	<aui:form
+		action="<%= editFileEntryTypeURL %>"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+
+		<aui:input
+			name="fileEntryTypeId"
+			type="hidden"
+			value="<%= fileEntryTypeId %>"
+		/>
+
+		<aui:input
+			name="fileEntryTypeUuid"
+			type="hidden"
+			value=""
+		/>
+
+		<aui:input
+			name="ddmStructureId"
+			type="hidden"
+			value="<%= ddmStructureId %>"
+		/>
+
+		<aui:input
+			name="definition"
+			type="hidden"
+		/>
 
 		<liferay-ui:error exception="<%= DuplicateFileEntryTypeException.class %>" message="please-enter-a-unique-document-type-name" />
 		<liferay-ui:error exception="<%= NoSuchMetadataSetException.class %>" message="please-enter-a-valid-metadata-set-or-enter-a-metadata-field" />
@@ -53,32 +86,64 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 		<liferay-ui:error exception="<%= StructureDuplicateElementException.class %>" message="please-enter-unique-metadata-field-names-(including-field-names-inherited-from-the-parent)" />
 		<liferay-ui:error exception="<%= StructureNameException.class %>" message="please-enter-a-valid-name" />
 
-		<aui:model-context bean="<%= fileEntryType %>" model="<%= DLFileEntryType.class %>" />
+		<aui:model-context
+			bean="<%= fileEntryType %>"
+			model="<%= DLFileEntryType.class %>"
+		/>
 
-		<aui:fieldset-group cssClass="edit-file-entry-type" markupView="lexicon">
-			<aui:fieldset collapsible="<%= true %>" extended="<%= false %>" id="detailsMetadataFields" persistState="<%= true %>" title="details">
+		<aui:fieldset-group
+			cssClass="edit-file-entry-type"
+			markupView="lexicon"
+		>
+			<aui:fieldset
+				collapsible="<%= true %>"
+				extended="<%= false %>"
+				id="detailsMetadataFields"
+				persistState="<%= true %>"
+				title="details"
+			>
 				<liferay-util:include page="/document_library/ddm/details.jsp" servletContext="<%= application %>" />
 			</aui:fieldset>
 
-			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" id="mainMetadataFields" label="main-metadata-fields">
+			<aui:fieldset
+				collapsed="<%= true %>"
+				collapsible="<%= true %>"
+				id="mainMetadataFields"
+				label="main-metadata-fields"
+			>
 				<liferay-util:include page="/document_library/ddm/ddm_form_builder.jsp" servletContext="<%= application %>" />
 			</aui:fieldset>
 
-			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" id="additionalMetadataFields" label="additional-metadata-fields">
+			<aui:fieldset
+				collapsed="<%= true %>"
+				collapsible="<%= true %>"
+				id="additionalMetadataFields"
+				label="additional-metadata-fields"
+			>
 				<liferay-util:include page="/document_library/ddm/additional_metadata_fields.jsp" servletContext="<%= application %>" />
 			</aui:fieldset>
 
 			<c:if test="<%= fileEntryType == null %>">
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions" markupView="lexicon">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="permissions"
+					markupView="lexicon"
+				>
 					<liferay-util:include page="/document_library/ddm/permissions.jsp" servletContext="<%= application %>" />
 				</aui:fieldset>
 			</c:if>
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

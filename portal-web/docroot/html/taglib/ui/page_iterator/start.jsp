@@ -84,7 +84,11 @@ if (forcePost && (portletURL != null)) {
 %>
 
 	<form action="<%= HtmlUtil.escapeAttribute(url) %>" id="<%= randomNamespace + namespace %>pageIteratorFm" method="post" name="<%= randomNamespace + namespace %>pageIteratorFm">
-		<aui:input name="<%= curParam %>" type="hidden" />
+		<aui:input
+			name="<%= curParam %>"
+			type="hidden"
+		/>
+
 		<liferay-portlet:renderURLParams portletURL="<%= portletURL %>" />
 	</form>
 

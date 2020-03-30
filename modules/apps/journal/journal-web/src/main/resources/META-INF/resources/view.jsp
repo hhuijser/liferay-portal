@@ -81,11 +81,32 @@ if (Validator.isNotNull(title)) {
 			/>
 		</c:if>
 
-		<aui:form action="<%= journalDisplayContext.getPortletURL() %>" method="get" name="fm">
-			<aui:input name="<%= ActionRequest.ACTION_NAME %>" type="hidden" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-			<aui:input name="groupId" type="hidden" value="<%= scopeGroupId %>" />
-			<aui:input name="newFolderId" type="hidden" />
+		<aui:form
+			action="<%= journalDisplayContext.getPortletURL() %>"
+			method="get"
+			name="fm"
+		>
+			<aui:input
+				name="<%= ActionRequest.ACTION_NAME %>"
+				type="hidden"
+			/>
+
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= scopeGroupId %>"
+			/>
+
+			<aui:input
+				name="newFolderId"
+				type="hidden"
+			/>
 
 			<c:choose>
 				<c:when test="<%= !journalDisplayContext.isSearch() %>">

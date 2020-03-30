@@ -24,17 +24,33 @@ Folder folder = FolderLocalServiceUtil.getFolder(folderId);
 
 <div class="mail-status"></div>
 
-<aui:form name="dialogFm" onSubmit="event.preventDefault();">
-	<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
+<aui:form
+	name="dialogFm"
+	onSubmit="event.preventDefault();"
+>
+	<aui:input
+		name="folderId"
+		type="hidden"
+		value="<%= folderId %>"
+	/>
 
-	<aui:input name="displayName" value="<%= folder.getDisplayName() %>" />
+	<aui:input
+		name="displayName"
+		value="<%= folder.getDisplayName() %>"
+	/>
 
 	<aui:button-row>
-		<aui:button name="updateFolder" type="submit" value="update-folder" />
+		<aui:button
+			name="updateFolder"
+			type="submit"
+			value="update-folder"
+		/>
 	</aui:button-row>
 </aui:form>
 
-<aui:script use="aui-io-deprecated">
+<aui:script
+	use="aui-io-deprecated"
+>
 	var A = AUI();
 
 	var form = A.one('#<portlet:namespace />dialogFm');

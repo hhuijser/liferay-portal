@@ -27,8 +27,17 @@
 			method="post"
 			name="fm"
 		>
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-			<aui:input name="portletId" type="hidden" value="<%= portletConfigurationCSSPortletDisplayContext.getPortletResource() %>" />
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+
+			<aui:input
+				name="portletId"
+				type="hidden"
+				value="<%= portletConfigurationCSSPortletDisplayContext.getPortletResource() %>"
+			/>
 
 			<liferay-frontend:edit-form-body>
 				<liferay-frontend:form-navigator
@@ -38,13 +47,19 @@
 			</liferay-frontend:edit-form-body>
 
 			<liferay-frontend:edit-form-footer>
-				<aui:button type="submit" />
+				<aui:button
+					type="submit"
+				/>
 
-				<aui:button type="cancel" />
+				<aui:button
+					type="cancel"
+				/>
 			</liferay-frontend:edit-form-footer>
 		</liferay-frontend:edit-form>
 
-		<aui:script require="metal-dom/src/dom as dom">
+		<aui:script
+			require="metal-dom/src/dom as dom"
+		>
 			dom.delegate(
 				document.getElementById('<portlet:namespace />fm'),
 				'change',

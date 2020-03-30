@@ -22,7 +22,10 @@
 			url="<%= publishRenderURL.toString() %>"
 		/>
 
-		<aui:script position="inline" sandbox="<%= true %>">
+		<aui:script
+			position="inline"
+			sandbox="<%= true %>"
+		>
 			var publishGlobalLink = document.getElementById(
 				'<portlet:namespace /><%= groupId + "publishGlobalLink" %>'
 			);
@@ -143,7 +146,12 @@
 			<liferay-util:buffer
 				var="publishOnControlPanelLink"
 			>
-				<aui:a cssClass='<%= linkCssClass + " publish-link" %>' href="<%= publishRenderURL.toString() %>" id='<%= layoutSetBranchId + "publishLink" %>' label="<%= publishMessage %>" />
+				<aui:a
+					cssClass='<%= linkCssClass + " publish-link" %>'
+					href="<%= publishRenderURL.toString() %>"
+					id='<%= layoutSetBranchId + "publishLink" %>'
+					label="<%= publishMessage %>"
+				/>
 			</liferay-util:buffer>
 
 			<liferay-util:buffer
@@ -156,7 +164,10 @@
 
 					<c:if test="<%= branchingEnabled %>">
 						<button aria-expanded="false" class="btn btn-primary btn-sm d-block d-sm-none dropdown-toggle" data-toggle="dropdown" type="button">
-							<aui:icon image="angle-down" markupView="lexicon" />
+							<aui:icon
+								image="angle-down"
+								markupView="lexicon"
+							/>
 
 							<span class="sr-only">
 								<liferay-ui:message key="toggle-dropdown" />
@@ -219,7 +230,10 @@
 				</c:otherwise>
 			</c:choose>
 
-			<aui:script position="inline" sandbox="<%= true %>">
+			<aui:script
+				position="inline"
+				sandbox="<%= true %>"
+			>
 				var publishLink = document.getElementById(
 					'<%= layoutSetBranchId + "publishLink" %>'
 				);
@@ -288,7 +302,12 @@
 			<liferay-util:buffer
 				var="manageSitePagesVariationsLink"
 			>
-				<aui:a cssClass="manage-layout-set-branches" href="<%= layoutSetBranchesURL %>" id="manageLayoutSetBranches" label="manage-site-pages-variations" />
+				<aui:a
+					cssClass="manage-layout-set-branches"
+					href="<%= layoutSetBranchesURL %>"
+					id="manageLayoutSetBranches"
+					label="manage-site-pages-variations"
+				/>
 			</liferay-util:buffer>
 
 			<c:choose>
@@ -304,7 +323,10 @@
 				</c:otherwise>
 			</c:choose>
 
-			<aui:script position="inline" sandbox="<%= true %>">
+			<aui:script
+				position="inline"
+				sandbox="<%= true %>"
+			>
 				var layoutSetBranchesLink = document.getElementById(
 					'<portlet:namespace />manageLayoutSetBranches'
 				);

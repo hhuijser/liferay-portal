@@ -31,7 +31,9 @@ rowURL.setParameter("folderId", String.valueOf(folder.getFolderId()));
 %>
 
 <h4>
-	<aui:a href="<%= rowURL.toString() %>">
+	<aui:a
+		href="<%= rowURL.toString() %>"
+	>
 		<%= folder.getName() %>
 	</aui:a>
 </h4>

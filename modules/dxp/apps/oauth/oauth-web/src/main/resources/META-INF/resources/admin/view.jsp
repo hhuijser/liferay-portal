@@ -20,7 +20,11 @@
 	<portlet:param name="mvcPath" value="/admin/view.jsp" />
 </liferay-portlet:renderURL>
 
-<aui:form action="<%= searchURL %>" method="get" name="fm">
+<aui:form
+	action="<%= searchURL %>"
+	method="get"
+	name="fm"
+>
 	<liferay-portlet:renderURLParams varImpl="searchURL" />
 
 	<liferay-util:include page="/admin/toolbar.jsp" servletContext="<%= application %>">

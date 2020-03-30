@@ -35,8 +35,17 @@ String url = (String)request.getAttribute("liferay-captcha:captcha:url");
 			url="javascript:;"
 		/>
 
-		<aui:input ignoreRequestValue="<%= true %>" label="text-verification" name="captchaText" size="10" type="text" value="">
-			<aui:validator name="required" />
+		<aui:input
+			ignoreRequestValue="<%= true %>"
+			label="text-verification"
+			name="captchaText"
+			size="10"
+			type="text"
+			value=""
+		>
+			<aui:validator
+				name="required"
+			/>
 		</aui:input>
 	</div>
 

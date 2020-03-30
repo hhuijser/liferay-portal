@@ -24,7 +24,9 @@ DDMDataProviderInstance ddmDataProviderInstance = (DDMDataProviderInstance)row.g
 
 <div class="clamp-container">
 	<h4 class="text-truncate">
-		<aui:a href="<%= (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF) %>">
+		<aui:a
+			href="<%= (String)request.getAttribute(WebKeys.SEARCH_ENTRY_HREF) %>"
+		>
 			<%= HtmlUtil.escape(ddmDataProviderInstance.getName(locale)) %>
 		</aui:a>
 	</h4>

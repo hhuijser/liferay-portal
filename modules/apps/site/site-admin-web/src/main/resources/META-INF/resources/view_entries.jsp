@@ -63,7 +63,11 @@
 					colspan="<%= 2 %>"
 				>
 					<h5>
-						<aui:a href="<%= !curGroup.isCompany() ? viewSubsitesURL : StringPool.BLANK %>" label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" localizeLabel="<%= false %>" />
+						<aui:a
+							href="<%= !curGroup.isCompany() ? viewSubsitesURL : StringPool.BLANK %>"
+							label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>"
+							localizeLabel="<%= false %>"
+						/>
 					</h5>
 
 					<ul class="list-inline">
@@ -115,7 +119,11 @@
 					name="name"
 					orderable="<%= true %>"
 				>
-					<aui:a href="<%= !curGroup.isCompany() ? viewSubsitesURL : StringPool.BLANK %>" label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>" localizeLabel="<%= false %>" />
+					<aui:a
+						href="<%= !curGroup.isCompany() ? viewSubsitesURL : StringPool.BLANK %>"
+						label="<%= HtmlUtil.escape(curGroup.getDescriptiveName(locale)) %>"
+						localizeLabel="<%= false %>"
+					/>
 
 					<c:if test="<%= curGroup.isOrganization() %>">
 

@@ -50,22 +50,57 @@ renderResponse.setTitle(title);
 <portlet:actionURL name="/plugins_admin/edit_plugin" var="editPluginURL" />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= editPluginURL %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="pluginId" type="hidden" value="<%= pluginId %>" />
-		<aui:input name="pluginType" type="hidden" value="<%= pluginType %>" />
+	<aui:form
+		action="<%= editPluginURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:input
+			name="pluginId"
+			type="hidden"
+			value="<%= pluginId %>"
+		/>
+
+		<aui:input
+			name="pluginType"
+			type="hidden"
+			value="<%= pluginType %>"
+		/>
+
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
-				<aui:input name="moduleId" type="resource" value="<%= moduleId %>" />
+				<aui:input
+					name="moduleId"
+					type="resource"
+					value="<%= moduleId %>"
+				/>
 
-				<aui:input name="pluginId" type="resource" value="<%= pluginId %>" />
+				<aui:input
+					name="pluginId"
+					type="resource"
+					value="<%= pluginId %>"
+				/>
 
-				<aui:input name="active" type="checkbox" value="<%= active %>" />
+				<aui:input
+					name="active"
+					type="checkbox"
+					value="<%= active %>"
+				/>
 
 				<c:choose>
 					<c:when test="<%= pluginType.equals(Plugin.TYPE_PORTLET) %>">
-						<aui:field-wrapper helpMessage="edit-plugin-permissions-help" label="permissions">
+						<aui:field-wrapper
+							helpMessage="edit-plugin-permissions-help"
+							label="permissions"
+						>
 
 							<%
 							List resourceActions = ResourceActionsUtil.getResourceActions(portlet.getPortletId(), null);
@@ -216,16 +251,27 @@ renderResponse.setTitle(title);
 						</aui:field-wrapper>
 					</c:when>
 					<c:otherwise>
-						<aui:input cssClass="lfr-textarea-container" helpMessage="enter-one-role-name-per-line-a-user-must-belong-to-one-of-these-roles-in-order-to-add-this-plugin-to-a-page" name="roles" type="textarea" value='<%= StringUtil.merge(rolesArray, "\n") %>' />
+						<aui:input
+							cssClass="lfr-textarea-container"
+							helpMessage="enter-one-role-name-per-line-a-user-must-belong-to-one-of-these-roles-in-order-to-add-this-plugin-to-a-page"
+							name="roles"
+							type="textarea"
+							value='<%= StringUtil.merge(rolesArray, "\n") %>'
+						/>
 					</c:otherwise>
 				</c:choose>
 			</aui:fieldset>
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

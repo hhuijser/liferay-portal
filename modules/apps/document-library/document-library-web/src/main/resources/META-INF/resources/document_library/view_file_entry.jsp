@@ -110,14 +110,47 @@ if (portletTitleBasedNavigation) {
 
 	<portlet:actionURL name="/document_library/edit_file_entry" var="editFileEntry" />
 
-	<aui:form action="<%= editFileEntry %>" method="post" name="fm">
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-		<aui:input name="fileEntryId" type="hidden" value="<%= String.valueOf(fileEntry.getFileEntryId()) %>" />
-		<aui:input name="newFolderId" type="hidden" />
-		<aui:input name="rowIdsDLFileShortcut" type="hidden" />
-		<aui:input name="rowIdsFileEntry" type="hidden" />
-		<aui:input name="rowIdsFolder" type="hidden" />
+	<aui:form
+		action="<%= editFileEntry %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
+
+		<aui:input
+			name="fileEntryId"
+			type="hidden"
+			value="<%= String.valueOf(fileEntry.getFileEntryId()) %>"
+		/>
+
+		<aui:input
+			name="newFolderId"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="rowIdsDLFileShortcut"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="rowIdsFileEntry"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="rowIdsFolder"
+			type="hidden"
+		/>
 	</aui:form>
 
 	<c:if test="<%= !portletTitleBasedNavigation && showHeader && (folder != null) %>">

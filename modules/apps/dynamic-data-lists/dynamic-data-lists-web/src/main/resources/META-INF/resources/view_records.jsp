@@ -55,8 +55,15 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 />
 
 <div class="container-fluid-1280 view-records-container" id="<portlet:namespace />formContainer">
-	<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
-		<aui:input name="recordIds" type="hidden" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="recordIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			id="<%= ddlViewRecordsDisplayContext.getSearchContainerId() %>"
@@ -160,7 +167,9 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 
 <%@ include file="/export_record_set.jspf" %>
 
-<aui:script use="liferay-portlet-dynamic-data-lists">
+<aui:script
+	use="liferay-portlet-dynamic-data-lists"
+>
 	var deleteRecords = function() {
 		if (
 			confirm(

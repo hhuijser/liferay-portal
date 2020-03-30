@@ -23,7 +23,16 @@
 				<c:if test="<%= includeCheckBox %>">
 					<div class="checkbox">
 						<label>
-							<aui:input cssClass="select-all-checkboxes" data-qa-id="selectAllCheckbox" disabled="<%= disabled %>" inline="<%= true %>" label="" name="<%= RowChecker.ALL_ROW_IDS %>" title="select-all" type="checkbox" />
+							<aui:input
+								cssClass="select-all-checkboxes"
+								data-qa-id="selectAllCheckbox"
+								disabled="<%= disabled %>"
+								inline="<%= true %>"
+								label=""
+								name="<%= RowChecker.ALL_ROW_IDS %>"
+								title="select-all"
+								type="checkbox"
+							/>
 						</label>
 					</div>
 				</c:if>
@@ -32,7 +41,10 @@
 					<a class="collapsed management-bar-toggle management-bar-toggle-link" data-toggle="liferay-collapse" href="#<%= namespace %>managementBarCollapse">
 						<span class="management-bar-item-title"><liferay-ui:message key="filter-order" /></span>
 
-						<aui:icon image="caret-double-l" markupView="lexicon" />
+						<aui:icon
+							image="caret-double-l"
+							markupView="lexicon"
+						/>
 					</a>
 				</c:if>
 			</div>
@@ -60,7 +72,16 @@
 					<c:if test="<%= includeCheckBox %>">
 						<div class="checkbox">
 							<label>
-								<aui:input cssClass="select-all-checkboxes" data-qa-id="selectAllCheckbox" disabled="<%= disabled %>" inline="<%= true %>" label="" name="actionsCheckBox" title="select-all" type="checkbox" />
+								<aui:input
+									cssClass="select-all-checkboxes"
+									data-qa-id="selectAllCheckbox"
+									disabled="<%= disabled %>"
+									inline="<%= true %>"
+									label=""
+									name="actionsCheckBox"
+									title="select-all"
+									type="checkbox"
+								/>
 							</label>
 						</div>
 					</c:if>
@@ -87,7 +108,9 @@
 </div>
 
 <c:if test="<%= Validator.isNotNull(actionButtons) || includeCheckBox %>">
-	<aui:script use="liferay-management-bar">
+	<aui:script
+		use="liferay-management-bar"
+	>
 		var managementBar = new Liferay.ManagementBar({
 			namespace: '<%= namespace %>',
 			searchContainerId: '<%= namespace + searchContainerId %>',

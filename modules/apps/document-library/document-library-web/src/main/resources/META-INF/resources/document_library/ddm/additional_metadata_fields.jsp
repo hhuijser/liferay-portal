@@ -42,7 +42,10 @@ if (fileEntryType != null) {
 	/>
 </liferay-util:buffer>
 
-<aui:model-context bean="<%= fileEntryType %>" model="<%= DLFileEntryType.class %>" />
+<aui:model-context
+	bean="<%= fileEntryType %>"
+	model="<%= DLFileEntryType.class %>"
+/>
 
 <liferay-ui:search-container
 	headerNames="name,null"
@@ -122,7 +125,9 @@ if (fileEntryType != null) {
 	}
 </aui:script>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />ddmStructuresSearchContainer'
 	);

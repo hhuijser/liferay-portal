@@ -46,7 +46,9 @@ if (message != null) {
 	</div>
 </c:if>
 
-<aui:script use="liferay-portlet-url,liferay-upload">
+<aui:script
+	use="liferay-portlet-url,liferay-upload"
+>
 	var uploader = new Liferay.Upload({
 		boundingBox: '#<portlet:namespace />fileUpload',
 

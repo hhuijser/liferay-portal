@@ -148,7 +148,12 @@ if (ListUtil.isEmpty(folders) && ListUtil.isEmpty(articles)) {
 			<p class="h5"><liferay-ui:message key="status" /></p>
 
 			<p>
-				<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= article.getStatus() %>" />
+				<aui:workflow-status
+					markupView="lexicon"
+					showIcon="<%= false %>"
+					showLabel="<%= false %>"
+					status="<%= article.getStatus() %>"
+				/>
 			</p>
 
 			<p class="h5"><liferay-ui:message key="title" /></p>

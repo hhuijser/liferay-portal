@@ -107,7 +107,12 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 						<div class="container-fluid">
 							<ul class="tbar-nav">
 								<li class="tbar-item">
-									<aui:icon cssClass="component-action sidenav-close" image="times" markupView="lexicon" url="javascript:;" />
+									<aui:icon
+										cssClass="component-action sidenav-close"
+										image="times"
+										markupView="lexicon"
+										url="javascript:;"
+									/>
 								</li>
 							</ul>
 						</div>
@@ -192,12 +197,39 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 
 	<div class="container-fluid-1280">
 		<div class="sidenav-content">
-			<aui:form method="post" name="fm">
-				<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-				<aui:input name="name" type="hidden" value="<%= name %>" />
-				<aui:input name="version" type="hidden" value="<%= version %>" />
-				<aui:input name="content" type="hidden" value="<%= content %>" />
-				<aui:input name="successMessage" type="hidden" value='<%= active ? LanguageUtil.get(request, "workflow-updated-successfully") : LanguageUtil.get(request, "workflow-published-successfully") %>' />
+			<aui:form
+				method="post"
+				name="fm"
+			>
+				<aui:input
+					name="redirect"
+					type="hidden"
+					value="<%= redirect %>"
+				/>
+
+				<aui:input
+					name="name"
+					type="hidden"
+					value="<%= name %>"
+				/>
+
+				<aui:input
+					name="version"
+					type="hidden"
+					value="<%= version %>"
+				/>
+
+				<aui:input
+					name="content"
+					type="hidden"
+					value="<%= content %>"
+				/>
+
+				<aui:input
+					name="successMessage"
+					type="hidden"
+					value='<%= active ? LanguageUtil.get(request, "workflow-updated-successfully") : LanguageUtil.get(request, "workflow-published-successfully") %>'
+				/>
 
 				<div class="card-horizontal main-content-card">
 					<div class="card-row-padded">
@@ -218,9 +250,13 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 
 						<liferay-ui:error exception="<%= WorkflowException.class %>" message="an-error-occurred-in-the-workflow-engine" />
 
-						<aui:fieldset cssClass="workflow-definition-content">
+						<aui:fieldset
+							cssClass="workflow-definition-content"
+						>
 							<aui:col>
-								<aui:field-wrapper label="title">
+								<aui:field-wrapper
+									label="title"
+								>
 									<liferay-ui:input-localized
 										name="title"
 										placeholder="untitled-workflow"
@@ -229,11 +265,16 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 								</aui:field-wrapper>
 							</aui:col>
 
-							<aui:col cssClass="workflow-definition-upload">
+							<aui:col
+								cssClass="workflow-definition-upload"
+							>
 								<liferay-util:buffer
 									var="importFileMark"
 								>
-									<aui:a href="#" id="uploadLink">
+									<aui:a
+										href="#"
+										id="uploadLink"
+									>
 										<%= StringUtil.toLowerCase(LanguageUtil.get(request, "import-a-file")) %>
 									</aui:a>
 								</liferay-util:buffer>
@@ -243,7 +284,10 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 								<input accept="application/xml" class="workflow-definition-upload-source" id="<portlet:namespace />upload" type="file" />
 							</aui:col>
 
-							<aui:col cssClass="workflow-definition-content-source-wrapper" id="contentSourceWrapper">
+							<aui:col
+								cssClass="workflow-definition-content-source-wrapper"
+								id="contentSourceWrapper"
+							>
 								<div class="workflow-definition-content-source" id="<portlet:namespace />contentEditor"></div>
 							</aui:col>
 						</aui:fieldset>
@@ -257,7 +301,11 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 						String taglibUpdateOnClick = "Liferay.fire('" + liferayPortletResponse.getNamespace() + "publishDefinition');";
 						%>
 
-						<aui:button onClick="<%= taglibUpdateOnClick %>" primary="<%= true %>" value='<%= ((workflowDefinition == null) || !active) ? "publish" : "update" %>' />
+						<aui:button
+							onClick="<%= taglibUpdateOnClick %>"
+							primary="<%= true %>"
+							value='<%= ((workflowDefinition == null) || !active) ? "publish" : "update" %>'
+						/>
 					</c:if>
 
 					<c:if test="<%= (workflowDefinition == null) || !active %>">
@@ -266,7 +314,10 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 						String taglibSaveOnClick = "Liferay.fire('" + liferayPortletResponse.getNamespace() + "saveDefinition');";
 						%>
 
-						<aui:button onClick="<%= taglibSaveOnClick %>" value="save" />
+						<aui:button
+							onClick="<%= taglibSaveOnClick %>"
+							value="save"
+						/>
 					</c:if>
 				</aui:button-row>
 			</aui:form>
@@ -276,17 +327,50 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 
 <div class="hide" id="<%= randomNamespace %>titleInputLocalized">
 	<c:if test="<%= workflowDefinition != null %>">
-		<aui:form name='<%= randomNamespace + "form" %>'>
-			<aui:input name="randomNamespace" type="hidden" value="<%= randomNamespace %>" />
-			<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-			<aui:input name="name" type="hidden" value="<%= PortalUUIDUtil.generate() %>" />
-			<aui:input name="content" type="hidden" value="<%= workflowDefinition.getContent() %>" />
-			<aui:input name="defaultDuplicationTitle" type="hidden" value="<%= duplicateTitle %>" />
-			<aui:input name="duplicatedDefinitionTitle" type="hidden" value="<%= workflowDefinition.getTitle(LanguageUtil.getLanguageId(request)) %>" />
+		<aui:form
+			name='<%= randomNamespace + "form" %>'
+		>
+			<aui:input
+				name="randomNamespace"
+				type="hidden"
+				value="<%= randomNamespace %>"
+			/>
+
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= redirect %>"
+			/>
+
+			<aui:input
+				name="name"
+				type="hidden"
+				value="<%= PortalUUIDUtil.generate() %>"
+			/>
+
+			<aui:input
+				name="content"
+				type="hidden"
+				value="<%= workflowDefinition.getContent() %>"
+			/>
+
+			<aui:input
+				name="defaultDuplicationTitle"
+				type="hidden"
+				value="<%= duplicateTitle %>"
+			/>
+
+			<aui:input
+				name="duplicatedDefinitionTitle"
+				type="hidden"
+				value="<%= workflowDefinition.getTitle(LanguageUtil.getLanguageId(request)) %>"
+			/>
 
 			<aui:fieldset>
 				<aui:col>
-					<aui:field-wrapper label="title">
+					<aui:field-wrapper
+						label="title"
+					>
 						<liferay-ui:input-localized
 							name='<%= randomNamespace + "title" %>'
 							xml="<%= duplicateTitle %>"
@@ -302,7 +386,9 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 	</c:if>
 </div>
 
-<aui:script use="aui-ace-editor,liferay-workflow-web">
+<aui:script
+	use="aui-ace-editor,liferay-workflow-web"
+>
 	var STR_VALUE = 'value';
 
 	var contentEditor = new A.AceEditor({

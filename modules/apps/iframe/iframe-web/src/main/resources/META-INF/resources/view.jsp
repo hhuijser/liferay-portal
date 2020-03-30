@@ -158,7 +158,9 @@
 	</aui:script>
 </c:if>
 
-<aui:script use="aui-autosize-iframe">
+<aui:script
+	use="aui-autosize-iframe"
+>
 	var iframe = A.one('#<portlet:namespace />iframe');
 
 	if (iframe) {

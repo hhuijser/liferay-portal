@@ -28,7 +28,10 @@ ConfigurationCategoryMenuDisplay configurationCategoryMenuDisplay = (Configurati
 	<a aria-controls="<%= id %>" aria-expanded="false" class="menubar-toggler" data-toggle="liferay-collapse" href="#<%= id %>" role="button">
 		<liferay-ui:message key="<%= configurationEntry.getName() %>" />
 
-		<aui:icon image="caret-bottom" markupView="lexicon" />
+		<aui:icon
+			image="caret-bottom"
+			markupView="lexicon"
+		/>
 	</a>
 
 	<div class="collapse menubar-collapse" id="<%= id %>">

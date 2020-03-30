@@ -151,10 +151,27 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 			/>
 		</c:if>
 
-		<aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="fm">
-			<aui:input name="nodeId" type="hidden" value="<%= String.valueOf(node.getNodeId()) %>" />
-			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+		<aui:form
+			action="<%= wikiURLHelper.getSearchURL() %>"
+			method="get"
+			name="fm"
+		>
+			<aui:input
+				name="nodeId"
+				type="hidden"
+				value="<%= String.valueOf(node.getNodeId()) %>"
+			/>
+
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+			/>
+
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-ui:search-container
 				id="wikiPages"
@@ -205,7 +222,9 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 								colspan="<%= 2 %>"
 							>
 								<h2 class="h5">
-									<aui:a href="<%= rowURL.toString() %>">
+									<aui:a
+										href="<%= rowURL.toString() %>"
+									>
 										<%= curPage.getTitle() %>
 									</aui:a>
 								</h2>
@@ -227,7 +246,12 @@ WikiPagesManagementToolbarDisplayContext wikiPagesManagementToolbarDisplayContex
 									</c:choose>
 								</span>
 								<span class="text-default">
-									<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= curPage.getStatus() %>" />
+									<aui:workflow-status
+										markupView="lexicon"
+										showIcon="<%= false %>"
+										showLabel="<%= false %>"
+										status="<%= curPage.getStatus() %>"
+									/>
 								</span>
 							</liferay-ui:search-container-column-text>
 

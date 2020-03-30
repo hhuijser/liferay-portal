@@ -33,7 +33,12 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 	displayContext="<%= new SitesItemSelectorViewManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, siteItemSelectorViewDisplayContext) %>"
 />
 
-<aui:form action="<%= siteItemSelectorViewDisplayContext.getPortletURL() %>" cssClass="container-fluid-1280" method="post" name="selectGroupFm">
+<aui:form
+	action="<%= siteItemSelectorViewDisplayContext.getPortletURL() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectGroupFm"
+>
 	<c:if test="<%= siteItemSelectorViewDisplayContext.isShowChildSitesLink() %>">
 		<div id="breadcrumb">
 			<liferay-ui:breadcrumb
@@ -100,12 +105,19 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 						colspan="<%= 2 %>"
 					>
 						<h5>
-							<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="selector-button"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<%= HtmlUtil.escape(siteItemSelectorViewDisplayContext.getGroupName(group)) %>
 							</aui:a>
 
 							<c:if test="<%= groupItemSelectorCriterion.isAllowNavigation() %>">
-								<aui:a href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>" target="_blank" />
+								<aui:a
+									href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>"
+									target="_blank"
+								/>
 							</c:if>
 						</h5>
 
@@ -115,7 +127,10 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 
 						<c:if test="<%= siteItemSelectorViewDisplayContext.isShowChildSitesLink() %>">
 							<h6>
-								<aui:a cssClass='<%= !childGroups.isEmpty() ? "text-default" : "disabled text-muted" %>' href="<%= childGroupsHREF %>">
+								<aui:a
+									cssClass='<%= !childGroups.isEmpty() ? "text-default" : "disabled text-muted" %>'
+									href="<%= childGroupsHREF %>"
+								>
 									<liferay-ui:message arguments="<%= String.valueOf(childGroups.size()) %>" key="x-child-sites" />
 								</aui:a>
 							</h6>
@@ -157,12 +172,22 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 									</div>
 
 									<div class="autofit-col autofit-col-expand autofit-col-gutters">
-										<aui:a cssClass="card-title selector-button text-truncate" data="<%= data %>" href="javascript:;" title="<%= siteVerticalCard.getSubtitle() %>">
+										<aui:a
+											cssClass="card-title selector-button text-truncate"
+											data="<%= data %>"
+											href="javascript:;"
+											title="<%= siteVerticalCard.getSubtitle() %>"
+										>
 											<%= siteVerticalCard.getTitle() %>
 										</aui:a>
 
 										<c:if test="<%= siteItemSelectorViewDisplayContext.isShowChildSitesLink() %>">
-											<aui:a cssClass='<%= "card-subtitle text-truncate selector-button " + (!childGroups.isEmpty() ? "text-default" : "text-muted") %>' data="<%= linkData %>" href="<%= childGroupsHREF %>" title="<%= siteVerticalCard.getSubtitle() %>">
+											<aui:a
+												cssClass='<%= "card-subtitle text-truncate selector-button " + (!childGroups.isEmpty() ? "text-default" : "text-muted") %>'
+												data="<%= linkData %>"
+												href="<%= childGroupsHREF %>"
+												title="<%= siteVerticalCard.getSubtitle() %>"
+											>
 												<%= siteVerticalCard.getSubtitle() %>
 											</aui:a>
 										</c:if>
@@ -170,7 +195,11 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 
 									<c:if test="<%= groupItemSelectorCriterion.isAllowNavigation() %>">
 										<div class="autofit-col">
-											<aui:a cssClass="btn btn-outline-borderless btn-outline-secondary" href="<%= siteVerticalCard.getHref() %>" target="_blank" />
+											<aui:a
+												cssClass="btn btn-outline-borderless btn-outline-secondary"
+												href="<%= siteVerticalCard.getHref() %>"
+												target="_blank"
+											/>
 										</div>
 									</c:if>
 								</div>
@@ -183,12 +212,19 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 						name="name"
 						truncate="<%= true %>"
 					>
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data="<%= data %>"
+							href="javascript:;"
+						>
 							<%= HtmlUtil.escape(siteItemSelectorViewDisplayContext.getGroupName(group)) %>
 						</aui:a>
 
 						<c:if test="<%= groupItemSelectorCriterion.isAllowNavigation() %>">
-							<aui:a href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>" target="_blank" />
+							<aui:a
+								href="<%= groupURLProvider.getGroupURL(group, liferayPortletRequest) %>"
+								target="_blank"
+							/>
 						</c:if>
 					</liferay-ui:search-container-column-text>
 
@@ -197,7 +233,10 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 							name="child-sites"
 							truncate="<%= true %>"
 						>
-							<aui:a cssClass='<%= !childGroups.isEmpty() ? "text-default" : "disabled text-muted" %>' href="<%= childGroupsHREF %>">
+							<aui:a
+								cssClass='<%= !childGroups.isEmpty() ? "text-default" : "disabled text-muted" %>'
+								href="<%= childGroupsHREF %>"
+							>
 								<liferay-ui:message arguments="<%= String.valueOf(childGroups.size()) %>" key="x-child-sites" />
 							</aui:a>
 						</liferay-ui:search-container-column-text>
@@ -218,7 +257,9 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	Liferay.Util.selectEntityHandler(
 		'#<portlet:namespace />selectGroupFm',
 		'<%= HtmlUtil.escapeJS(siteItemSelectorViewDisplayContext.getItemSelectedEventName()) %>'

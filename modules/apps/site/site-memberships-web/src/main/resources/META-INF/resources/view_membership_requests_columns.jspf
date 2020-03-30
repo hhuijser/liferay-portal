@@ -71,7 +71,9 @@ previewURL.setParameter("membershipRequestId", String.valueOf(membershipRequest.
 			</c:choose>
 
 			<h5>
-				<aui:a href="<%= previewURL.toString() %>">
+				<aui:a
+					href="<%= previewURL.toString() %>"
+				>
 					<%= HtmlUtil.escape(membershipRequestUser.getFullName()) %>
 				</aui:a>
 			</h5>
@@ -97,7 +99,9 @@ previewURL.setParameter("membershipRequestId", String.valueOf(membershipRequest.
 		<liferay-ui:search-container-column-text
 			name="user"
 		>
-			<aui:a href="<%= previewURL.toString() %>">
+			<aui:a
+				href="<%= previewURL.toString() %>"
+			>
 				<%= HtmlUtil.escape(membershipRequestUser.getFullName()) %>
 			</aui:a>
 		</liferay-ui:search-container-column-text>

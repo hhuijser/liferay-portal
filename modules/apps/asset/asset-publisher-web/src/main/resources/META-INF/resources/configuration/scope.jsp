@@ -134,7 +134,9 @@ itemSelectorURL.setParameter("groupId", String.valueOf(layout.getGroupId()));
 itemSelectorURL.setParameter("portletResource", assetPublisherDisplayContext.getPortletResource());
 %>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var form = document.<portlet:namespace />fm;
 
 	var scopeSelect = document.getElementById(

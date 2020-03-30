@@ -33,22 +33,51 @@ MDRRuleGroupInstance ruleGroupInstance = (MDRRuleGroupInstance)renderRequest.get
 	<portlet:param name="mvcRenderCommandName" value="/mobile_device_rules/edit_action" />
 </portlet:actionURL>
 
-<aui:form action="<%= editActionURL %>" enctype="multipart/form-data" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (action == null) ? Constants.ADD : Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="actionId" type="hidden" value="<%= actionId %>" />
-	<aui:input name="ruleGroupInstanceId" type="hidden" value="<%= ruleGroupInstance.getRuleGroupInstanceId() %>" />
+<aui:form
+	action="<%= editActionURL %>"
+	enctype="multipart/form-data"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= (action == null) ? Constants.ADD : Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="actionId"
+		type="hidden"
+		value="<%= actionId %>"
+	/>
+
+	<aui:input
+		name="ruleGroupInstanceId"
+		type="hidden"
+		value="<%= ruleGroupInstance.getRuleGroupInstanceId() %>"
+	/>
 
 	<liferay-ui:error exception="<%= ActionTypeException.class %>" message="please-select-a-valid-action-type" />
 	<liferay-ui:error exception="<%= NoSuchActionException.class %>" message="action-does-not-exist" />
 	<liferay-ui:error exception="<%= NoSuchRuleGroupException.class %>" message="device-family-does-not-exist" />
 	<liferay-ui:error exception="<%= NoSuchRuleGroupInstanceException.class %>" message="device-rule-does-not-exist" />
 
-	<aui:model-context bean="<%= action %>" model="<%= MDRAction.class %>" />
+	<aui:model-context
+		bean="<%= action %>"
+		model="<%= MDRAction.class %>"
+	/>
 
 	<div class="portlet-configuration-body-content">
 		<div class="container-fluid-1280">
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 					<c:if test="<%= action == null %>">
 						<p class="text-default">
@@ -56,17 +85,32 @@ MDRRuleGroupInstance ruleGroupInstance = (MDRRuleGroupInstance)renderRequest.get
 						</p>
 					</c:if>
 
-					<aui:input name="name" placeholder="name" />
+					<aui:input
+						name="name"
+						placeholder="name"
+					/>
 
-					<aui:input name="description" placeholder="description" />
+					<aui:input
+						name="description"
+						placeholder="description"
+					/>
 
-					<aui:select changesContext="<%= true %>" name="type" onChange='<%= renderResponse.getNamespace() + "changeType();" %>' required="<%= true %>" showEmptyOption="<%= true %>">
+					<aui:select
+						changesContext="<%= true %>"
+						name="type"
+						onChange='<%= renderResponse.getNamespace() + "changeType();" %>'
+						required="<%= true %>"
+						showEmptyOption="<%= true %>"
+					>
 
 						<%
 						for (ActionHandler actionHandler : ActionHandlerManagerUtil.getActionHandlers()) {
 						%>
 
-							<aui:option label="<%= actionHandler.getType() %>" selected="<%= type.equals(actionHandler.getType()) %>" />
+							<aui:option
+								label="<%= actionHandler.getType() %>"
+								selected="<%= type.equals(actionHandler.getType()) %>"
+							/>
 
 						<%
 						}
@@ -85,9 +129,14 @@ MDRRuleGroupInstance ruleGroupInstance = (MDRRuleGroupInstance)renderRequest.get
 	</div>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" value="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			value="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 

@@ -71,7 +71,16 @@ else {
 				<c:choose>
 					<c:when test="<%= !workflowEnabled && !layoutRevision.isIncomplete() %>">
 						<span class="staging-bar-control-toggle">
-							<aui:input id="readyToggle" label="<%= StringPool.BLANK %>" labelOff="ready-for-publication" labelOn="ready-for-publication" name="readyToggle" onChange='<%= liferayPortletResponse.getNamespace() + "submitLayoutRevision('" + publishURL + "')" %>' type="toggle-switch" value="<%= false %>" />
+							<aui:input
+								id="readyToggle"
+								label="<%= StringPool.BLANK %>"
+								labelOff="ready-for-publication"
+								labelOn="ready-for-publication"
+								name="readyToggle"
+								onChange='<%= liferayPortletResponse.getNamespace() + "submitLayoutRevision('" + publishURL + "')" %>'
+								type="toggle-switch"
+								value="<%= false %>"
+							/>
 						</span>
 					</c:when>
 					<c:when test="<%= !workflowEnabled || pendingLayoutRevisions.isEmpty() %>">
@@ -102,7 +111,15 @@ else {
 		<li class="control-menu-nav-item">
 			<c:if test="<%= layoutRevision.isHead() %>">
 				<span class="staging-bar-control-toggle">
-					<aui:input disabled="<%= true %>" id="readyToggle" label="<%= StringPool.BLANK %>" labelOn="ready-for-publication" name="readyToggle" type="toggle-switch" value="<%= true %>" />
+					<aui:input
+						disabled="<%= true %>"
+						id="readyToggle"
+						label="<%= StringPool.BLANK %>"
+						labelOn="ready-for-publication"
+						name="readyToggle"
+						type="toggle-switch"
+						value="<%= true %>"
+					/>
 				</span>
 			</c:if>
 
@@ -156,7 +173,11 @@ else {
 	<li class="control-menu-nav-item">
 		<div class="d-none d-sm-block dropdown">
 			<a class="dropdown-toggle taglib-icon" data-toggle="liferay-dropdown" href="javascript:;">
-				<aui:icon cssClass="icon-monospaced" image="ellipsis-v" markupView="lexicon" />
+				<aui:icon
+					cssClass="icon-monospaced"
+					image="ellipsis-v"
+					markupView="lexicon"
+				/>
 
 				<span class="sr-only">
 					<liferay-ui:message key="options" />
@@ -232,7 +253,10 @@ else {
 	<portlet:param name="layoutSetBranchId" value="<%= String.valueOf(layoutSetBranch.getLayoutSetBranchId()) %>" />
 </portlet:renderURL>
 
-<aui:script position="inline" use="liferay-staging-version">
+<aui:script
+	position="inline"
+	use="liferay-staging-version"
+>
 	var stagingBar = Liferay.StagingBar;
 
 	stagingBar.init({

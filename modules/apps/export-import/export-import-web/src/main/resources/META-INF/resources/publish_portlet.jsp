@@ -103,7 +103,9 @@ if (!GroupPermissionUtil.contains(permissionChecker, themeDisplay.getScopeGroup(
 				</c:when>
 			</c:choose>
 
-			<aui:script use="liferay-export-import-export-import">
+			<aui:script
+				use="liferay-export-import-export-import"
+			>
 				<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="publishPortlet" var="publishProcessesURL">
 					<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.PUBLISH %>" />
 					<portlet:param name="<%= SearchContainer.DEFAULT_CUR_PARAM %>" value="<%= ParamUtil.getString(request, SearchContainer.DEFAULT_CUR_PARAM) %>" />

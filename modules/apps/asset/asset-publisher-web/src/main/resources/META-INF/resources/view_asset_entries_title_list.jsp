@@ -83,7 +83,9 @@ AssetEntryResult assetEntryResult = (AssetEntryResult)request.getAttribute("view
 				<h4 class="list-group-title text-truncate">
 					<span class="asset-anchor lfr-asset-anchor" id="<%= assetEntry.getEntryId() %>"></span>
 
-					<aui:a href="<%= assetPublisherHelper.getAssetViewURL(liferayPortletRequest, liferayPortletResponse, assetRenderer, assetEntry, assetPublisherDisplayContext.isAssetLinkBehaviorViewInPortlet()) %>">
+					<aui:a
+						href="<%= assetPublisherHelper.getAssetViewURL(liferayPortletRequest, liferayPortletResponse, assetRenderer, assetEntry, assetPublisherDisplayContext.isAssetLinkBehaviorViewInPortlet()) %>"
+					>
 						<%= HtmlUtil.escape(assetEntry.getTitle(locale)) %>
 					</aui:a>
 				</h4>

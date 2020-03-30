@@ -26,7 +26,9 @@ String alternativeLayoutFriendlyURL = (String)SessionMessages.get(request, "alte
 	<liferay-util:buffer
 		var="redirectedLink"
 	>
-		<aui:a href="<%= PortalUtil.getCurrentCompleteURL(request) %>">
+		<aui:a
+			href="<%= PortalUtil.getCurrentCompleteURL(request) %>"
+		>
 			<%= HtmlUtil.escape(PortalUtil.getCurrentCompleteURL(request)) %>
 		</aui:a>
 	</liferay-util:buffer>
@@ -38,7 +40,9 @@ String alternativeLayoutFriendlyURL = (String)SessionMessages.get(request, "alte
 	<liferay-util:buffer
 		var="originalLink"
 	>
-		<aui:a href="<%= alternativeLayoutFriendlyURL %>">
+		<aui:a
+			href="<%= alternativeLayoutFriendlyURL %>"
+		>
 			<liferay-ui:message key="link" />
 		</aui:a>
 	</liferay-util:buffer>

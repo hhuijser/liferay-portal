@@ -177,7 +177,9 @@ if (parentOrganization != null) {
 	<portlet:param name="organizationId" value="<%= String.valueOf(organizationId) %>" />
 </portlet:renderURL>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	function <portlet:namespace />createURL(href, value, onclick) {
 		return (
 			'<a href="' +

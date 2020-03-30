@@ -72,7 +72,9 @@ clearResultsURL.setParameter("keywords", StringPool.BLANK);
 			selectable="<%= false %>"
 		/>
 
-		<aui:form action="<%= portletURL %>">
+		<aui:form
+			action="<%= portletURL %>"
+		>
 			<liferay-ui:search-container
 				searchContainer="<%= exportImportConfigurationSearchContainer %>"
 			>

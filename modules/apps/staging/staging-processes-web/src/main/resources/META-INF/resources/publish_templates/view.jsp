@@ -66,7 +66,9 @@ StagingProcessesWebPublishTemplatesToolbarDisplayContext stagingProcessesWebPubl
 />
 
 <div class="closed container-fluid-1280 sidenav-container sidenav-right" id="<portlet:namespace />infoPanelId">
-	<aui:form action="<%= portletURL %>">
+	<aui:form
+		action="<%= portletURL %>"
+	>
 		<liferay-ui:search-container
 			searchContainer="<%= stagingProcessesWebPublishTemplatesToolbarDisplayContext.getSearchContainer() %>"
 		>

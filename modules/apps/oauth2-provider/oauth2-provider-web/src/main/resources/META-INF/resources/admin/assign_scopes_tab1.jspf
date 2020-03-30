@@ -70,7 +70,16 @@
 								<div class="autofit-col">
 									<c:choose>
 										<c:when test="<%= assignedScopeAliases.isEmpty() && scopeAliases.isEmpty() %>">
-											<aui:input data="<%= data %>" disabled="<%= true %>" id="<%= id %>" label="" name="<%= id %>" onClick="return false;" title="<%= HtmlUtil.escapeAttribute(scopeAliases.toString()) %>" type="checkbox" />
+											<aui:input
+												data="<%= data %>"
+												disabled="<%= true %>"
+												id="<%= id %>"
+												label=""
+												name="<%= id %>"
+												onClick="return false;"
+												title="<%= HtmlUtil.escapeAttribute(scopeAliases.toString()) %>"
+												type="checkbox"
+											/>
 										</c:when>
 										<c:otherwise>
 
@@ -85,7 +94,17 @@
 											}
 											%>
 
-											<aui:input checked="<%= !assignedScopeAliases.isEmpty() %>" data="<%= data %>" id="<%= id %>" label="" name="scopeAliases" onChange='<%= renderResponse.getNamespace() + "recalculateDependants(this)" %>' title="<%= scopeAliasesString %>" type="checkbox" value="<%= scopeAliasesString %>" />
+											<aui:input
+												checked="<%= !assignedScopeAliases.isEmpty() %>"
+												data="<%= data %>"
+												id="<%= id %>"
+												label=""
+												name="scopeAliases"
+												onChange='<%= renderResponse.getNamespace() + "recalculateDependants(this)" %>'
+												title="<%= scopeAliasesString %>"
+												type="checkbox"
+												value="<%= scopeAliasesString %>"
+											/>
 										</c:otherwise>
 									</c:choose>
 								</div>
@@ -158,14 +177,20 @@
 										<c:choose>
 											<c:when test="<%= !scopeAliases.isEmpty() %>">
 												<span>
-													<aui:a data="<%= data %>" href="#1">
+													<aui:a
+														data="<%= data %>"
+														href="#1"
+													>
 														<liferay-ui:message key="can-be-assigned-via-a-global-scope" />
 													</aui:a>
 												</span>
 											</c:when>
 											<c:otherwise>
 												<span>
-													<aui:a data="<%= data %>" href="#1">
+													<aui:a
+														data="<%= data %>"
+														href="#1"
+													>
 														<liferay-ui:message key="must-be-assigned-via-a-global-scope" />
 													</aui:a>
 												</span>

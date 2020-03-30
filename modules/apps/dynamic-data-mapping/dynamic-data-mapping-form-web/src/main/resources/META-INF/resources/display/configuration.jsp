@@ -36,8 +36,16 @@ DDMFormInstance selFormInstance = DDMFormInstanceServiceUtil.fetchFormInstance(f
 
 <liferay-portlet:renderURL portletConfiguration="<%= true %>" varImpl="configurationRenderURL" />
 
-<aui:form action="<%= configurationRenderURL %>" method="post" name="fm1">
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL.toString() %>" />
+<aui:form
+	action="<%= configurationRenderURL %>"
+	method="post"
+	name="fm1"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL.toString() %>"
+	/>
 
 	<div class="portlet-configuration-body-content">
 		<div class="container-fluid-1280">
@@ -130,14 +138,39 @@ DDMFormInstance selFormInstance = DDMFormInstanceServiceUtil.fetchFormInstance(f
 	</div>
 </aui:form>
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value='<%= configurationRenderURL.toString() + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>' />
-	<aui:input name="preferences--formInstanceId--" type="hidden" value="<%= formInstanceId %>" />
-	<aui:input name="preferences--groupId--" type="hidden" value="<%= scopeGroupId %>" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value='<%= configurationRenderURL.toString() + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>'
+	/>
+
+	<aui:input
+		name="preferences--formInstanceId--"
+		type="hidden"
+		value="<%= formInstanceId %>"
+	/>
+
+	<aui:input
+		name="preferences--groupId--"
+		type="hidden"
+		value="<%= scopeGroupId %>"
+	/>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 	</aui:button-row>
 </aui:form>
 

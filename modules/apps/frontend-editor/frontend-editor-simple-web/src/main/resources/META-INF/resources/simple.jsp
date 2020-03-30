@@ -64,7 +64,9 @@ String containerId = HtmlUtil.escapeAttribute(name) + "Container";
 name = HtmlUtil.escapeJS(name);
 %>
 
-<aui:script use="<%= modules %>">
+<aui:script
+	use="<%= modules %>"
+>
 	var onInputHandle;
 
 	var onInput = function(event) {

@@ -42,9 +42,17 @@ KBTemplatesManagementToolbarDisplayContext kbTemplatesManagementToolbarDisplayCo
 		<portlet:param name="mvcPath" value="/admin/view_templates.jsp" />
 	</liferay-portlet:renderURL>
 
-	<aui:form action="<%= searchURL %>" method="get" name="fm">
+	<aui:form
+		action="<%= searchURL %>"
+		method="get"
+		name="fm"
+	>
 		<liferay-portlet:renderURLParams varImpl="searchURL" />
-		<aui:input name="kbTemplateIds" type="hidden" />
+
+		<aui:input
+			name="kbTemplateIds"
+			type="hidden"
+		/>
 
 		<aui:fieldset>
 			<liferay-ui:search-container
@@ -92,7 +100,9 @@ KBTemplatesManagementToolbarDisplayContext kbTemplatesManagementToolbarDisplayCo
 						</liferay-portlet:renderURL>
 
 						<h2 class="h5">
-							<aui:a href="<%= editURL.toString() %>">
+							<aui:a
+								href="<%= editURL.toString() %>"
+							>
 								<%= HtmlUtil.escape(kbTemplate.getTitle()) %>
 							</aui:a>
 						</h2>

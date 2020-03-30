@@ -38,7 +38,10 @@ DLViewFileVersionDisplayContext dlViewFileVersionDisplayContext = dlDisplayConte
 
 <div class="view">
 	<div class="body-row">
-		<aui:model-context bean="<%= fileVersion %>" model="<%= DLFileVersion.class %>" />
+		<aui:model-context
+			bean="<%= fileVersion %>"
+			model="<%= DLFileVersion.class %>"
+		/>
 
 		<%
 		dlViewFileVersionDisplayContext.renderPreview(request, response);

@@ -31,9 +31,22 @@ Map<String, String> emailDefinitionTerms = EmailConfigurationUtil.getEmailDefini
 
 <liferay-portlet:renderURL portletConfiguration="<%= true %>" var="configurationRenderURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<%
 	String tabs1Names = "email-from,delivery-email,notifications-email";
@@ -53,11 +66,25 @@ Map<String, String> emailDefinitionTerms = EmailConfigurationUtil.getEmailDefini
 
 			<liferay-ui:section>
 				<div class="container-fluid-1280">
-					<aui:fieldset-group markupView="lexicon">
+					<aui:fieldset-group
+						markupView="lexicon"
+					>
 						<aui:fieldset>
-							<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" type="text" value="<%= emailFromName %>" />
+							<aui:input
+								cssClass="lfr-input-text-container"
+								label="name"
+								name="preferences--emailFromName--"
+								type="text"
+								value="<%= emailFromName %>"
+							/>
 
-							<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" type="text" value="<%= emailFromAddress %>" />
+							<aui:input
+								cssClass="lfr-input-text-container"
+								label="address"
+								name="preferences--emailFromAddress--"
+								type="text"
+								value="<%= emailFromAddress %>"
+							/>
 						</aui:fieldset>
 					</aui:fieldset-group>
 				</div>
@@ -65,7 +92,9 @@ Map<String, String> emailDefinitionTerms = EmailConfigurationUtil.getEmailDefini
 
 			<liferay-ui:section>
 				<div class="container-fluid-1280">
-					<aui:fieldset-group markupView="lexicon">
+					<aui:fieldset-group
+						markupView="lexicon"
+					>
 						<liferay-frontend:email-notification-settings
 							emailBodyLocalizedValuesMap="<%= reportsGroupServiceEmailConfiguration.emailDeliveryBody() %>"
 							emailDefinitionTerms="<%= emailDefinitionTerms %>"
@@ -79,7 +108,9 @@ Map<String, String> emailDefinitionTerms = EmailConfigurationUtil.getEmailDefini
 
 			<liferay-ui:section>
 				<div class="container-fluid-1280">
-					<aui:fieldset-group markupView="lexicon">
+					<aui:fieldset-group
+						markupView="lexicon"
+					>
 						<liferay-frontend:email-notification-settings
 							emailBodyLocalizedValuesMap="<%= reportsGroupServiceEmailConfiguration.emailNotificationsBody() %>"
 							emailDefinitionTerms="<%= emailDefinitionTerms %>"
@@ -94,6 +125,9 @@ Map<String, String> emailDefinitionTerms = EmailConfigurationUtil.getEmailDefini
 	</div>
 
 	<aui:button-row>
-		<aui:button cssClass="btn-lg" type="submit" />
+		<aui:button
+			cssClass="btn-lg"
+			type="submit"
+		/>
 	</aui:button-row>
 </aui:form>

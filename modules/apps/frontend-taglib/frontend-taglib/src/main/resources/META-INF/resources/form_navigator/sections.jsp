@@ -112,7 +112,9 @@ List<FormNavigatorEntry<Object>> formNavigatorEntries = (List<FormNavigatorEntry
 		request.setAttribute(FormNavigatorWebKeys.ERROR_TAB, currentTab);
 	%>
 
-		<aui:script sandbox="<%= true %>">
+		<aui:script
+			sandbox="<%= true %>"
+		>
 			var focusField;
 
 			var sectionContent = document.querySelector(

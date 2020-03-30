@@ -70,9 +70,21 @@ if (layout != null) {
 	</c:choose>
 </c:if>
 
-<aui:form action="<%= viewTemplateURL.toString() %>" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= ddmDisplayContext.getTemplateSearchActionURL() %>" />
-	<aui:input name="deleteTemplateIds" type="hidden" />
+<aui:form
+	action="<%= viewTemplateURL.toString() %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= ddmDisplayContext.getTemplateSearchActionURL() %>"
+	/>
+
+	<aui:input
+		name="deleteTemplateIds"
+		type="hidden"
+	/>
 
 	<div class="container-fluid container-fluid-max-xl" id="<portlet:namespace />entriesContainer">
 		<liferay-ui:search-container

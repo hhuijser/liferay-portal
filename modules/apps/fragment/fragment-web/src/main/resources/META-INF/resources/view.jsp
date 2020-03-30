@@ -270,7 +270,10 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 	</div>
 </div>
 
-<aui:form cssClass="hide" name="fragmentCollectionsFm">
+<aui:form
+	cssClass="hide"
+	name="fragmentCollectionsFm"
+>
 </aui:form>
 
 <liferay-frontend:component

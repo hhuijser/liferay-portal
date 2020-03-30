@@ -40,7 +40,10 @@ Long selPlid = (Long)request.getAttribute("liferay-layout:layouts-tree:selPlid")
 String treeId = (String)request.getAttribute("liferay-layout:layouts-tree:treeId");
 %>
 
-<aui:script position="<%= scriptPosition %>" use="<%= modules %>">
+<aui:script
+	position="<%= scriptPosition %>"
+	use="<%= modules %>"
+>
 	var plugins = [];
 
 	<c:if test="<%= selectableTree %>">

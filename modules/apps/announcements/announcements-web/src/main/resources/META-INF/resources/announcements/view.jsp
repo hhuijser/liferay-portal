@@ -38,7 +38,11 @@ portletURL.setParameter("tabs1", announcementsRequestHelper.getTabs1());
 			<portlet:param name="alert" value="<%= String.valueOf(portletName.equals(AnnouncementsPortletKeys.ALERTS)) %>" />
 		</portlet:renderURL>
 
-		<aui:button href="<%= addEntryURL %>" icon="icon-plus" value='<%= portletName.equals(AnnouncementsPortletKeys.ALERTS) ? "add-alert" : "add-announcement" %>' />
+		<aui:button
+			href="<%= addEntryURL %>"
+			icon="icon-plus"
+			value='<%= portletName.equals(AnnouncementsPortletKeys.ALERTS) ? "add-alert" : "add-announcement" %>'
+		/>
 	</div>
 </c:if>
 

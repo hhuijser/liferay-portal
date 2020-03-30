@@ -25,7 +25,10 @@ portletDisplay.setURLBack(selectSiteInitializerDisplayContext.getBackURL());
 renderResponse.setTitle(LanguageUtil.get(request, "select-site-template"));
 %>
 
-<aui:form cssClass="container-fluid-1280" name="fm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= selectSiteInitializerDisplayContext.getSearchContainer() %>"
 	>
@@ -57,7 +60,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-site-template"));
 		<portlet:param name="parentGroupId" value="<%= String.valueOf(selectSiteInitializerDisplayContext.getParentGroupId()) %>" />
 	</portlet:actionURL>
 
-	<aui:script require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal">
+	<aui:script
+		require="metal-dom/src/all/dom as dom,frontend-js-web/liferay/modal/commands/OpenSimpleInputModal.es as openSimpleInputModal"
+	>
 		var addSiteActionOptionQueryClickHandler = dom.delegate(
 			document.body,
 			'click',

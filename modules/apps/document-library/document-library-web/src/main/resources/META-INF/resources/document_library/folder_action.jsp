@@ -138,7 +138,9 @@ FolderActionDisplayContext folderActionDisplayContext = new FolderActionDisplayC
 		</c:if>
 	</liferay-ui:icon-menu>
 
-	<aui:script use="uploader">
+	<aui:script
+		use="uploader"
+	>
 		if (!A.UA.ios && A.Uploader.TYPE != 'none') {
 			var uploadMultipleDocumentsIcon = A.all(
 				'.upload-multiple-documents:hidden'

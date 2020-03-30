@@ -30,7 +30,10 @@ PortletConfigurationTemplatesManagementToolbarDisplayContext portletConfiguratio
 		<portlet:param name="portletResource" value="<%= portletResource %>" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= deleteArchivedSetupsURL %>" name="fm">
+	<aui:form
+		action="<%= deleteArchivedSetupsURL %>"
+		name="fm"
+	>
 		<div class="portlet-configuration-body-content">
 			<clay:management-toolbar
 				displayContext="<%= portletConfigurationTemplatesManagementToolbarDisplayContext %>"
@@ -46,7 +49,10 @@ PortletConfigurationTemplatesManagementToolbarDisplayContext portletConfiguratio
 						<portlet:param name="portletResource" value="<%= portletResource %>" />
 					</portlet:renderURL>
 
-					<aui:button href="<%= addConfigurationTemplateURL %>" value="save-current-configuration-as-template" />
+					<aui:button
+						href="<%= addConfigurationTemplateURL %>"
+						value="save-current-configuration-as-template"
+					/>
 				</div>
 
 				<liferay-ui:search-container
@@ -135,7 +141,9 @@ PortletConfigurationTemplatesManagementToolbarDisplayContext portletConfiguratio
 	</aui:form>
 </div>
 
-<aui:script require='<%= portletConfigurationTemplatesDisplayContext.getModuleName() + "/js/ArchivedSetuptsDropdownDefaultEventHandler.es as ArchivedSetuptsDropdownDefaultEventHandler" %>'>
+<aui:script
+	require='<%= portletConfigurationTemplatesDisplayContext.getModuleName() + "/js/ArchivedSetuptsDropdownDefaultEventHandler.es as ArchivedSetuptsDropdownDefaultEventHandler" %>'
+>
 	Liferay.component(
 		'<%= PortletConfigurationWebKeys.ARCHIVED_SETUPS_DROPDOWN_DEFAULT_EVENT_HANDLER %>',
 		new ArchivedSetuptsDropdownDefaultEventHandler.default({
@@ -148,7 +156,9 @@ PortletConfigurationTemplatesManagementToolbarDisplayContext portletConfiguratio
 	);
 </aui:script>
 
-<aui:script require='<%= portletConfigurationTemplatesDisplayContext.getModuleName() + "/js/ManagementToolbarDefaultEventHandler.es as ManagementToolbarDefaultEventHandler" %>'>
+<aui:script
+	require='<%= portletConfigurationTemplatesDisplayContext.getModuleName() + "/js/ManagementToolbarDefaultEventHandler.es as ManagementToolbarDefaultEventHandler" %>'
+>
 	Liferay.component(
 		'<%= portletConfigurationTemplatesManagementToolbarDisplayContext.getDefaultEventHandler() %>',
 		new ManagementToolbarDefaultEventHandler.default({

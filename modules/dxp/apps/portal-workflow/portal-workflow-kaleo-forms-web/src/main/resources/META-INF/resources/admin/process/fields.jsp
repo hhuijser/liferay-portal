@@ -46,12 +46,28 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 <aui:field-wrapper>
 	<liferay-ui:message key="selected-field-set" />:
 
-	<aui:a cssClass="badge badge-info kaleo-process-preview-definition" data-definition-id="<%= ddmStructureId %>" href="javascript:;" id="ddmStructureDisplay" label="<%= HtmlUtil.escape(ddmStructureName) %>" />
+	<aui:a
+		cssClass="badge badge-info kaleo-process-preview-definition"
+		data-definition-id="<%= ddmStructureId %>"
+		href="javascript:;"
+		id="ddmStructureDisplay"
+		label="<%= HtmlUtil.escape(ddmStructureName) %>"
+	/>
 
-	<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
+	<aui:input
+		name="ddmStructureId"
+		type="hidden"
+		value="<%= ddmStructureId %>"
+	/>
 
-	<aui:input name="ddmStructureName" type="hidden" value="<%= ddmStructureName %>">
-		<aui:validator name="required" />
+	<aui:input
+		name="ddmStructureName"
+		type="hidden"
+		value="<%= ddmStructureName %>"
+	>
+		<aui:validator
+			name="required"
+		/>
 	</aui:input>
 </aui:field-wrapper>
 
@@ -99,7 +115,11 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 		</liferay-portlet:renderURL>
 
 		<aui:button-row>
-			<aui:button onClick='<%= "javascript:" + renderResponse.getNamespace() + "editStructure('" + LanguageUtil.format(request, "new-x", LanguageUtil.get(request, "field-set"), false) + "','" + addURL + "');" %>' primary="<%= true %>" value="add-field-set" />
+			<aui:button
+				onClick='<%= "javascript:" + renderResponse.getNamespace() + "editStructure('" + LanguageUtil.format(request, "new-x", LanguageUtil.get(request, "field-set"), false) + "','" + addURL + "');" %>'
+				primary="<%= true %>"
+				value="add-field-set"
+			/>
 		</aui:button-row>
 	</c:if>
 
@@ -210,7 +230,9 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 	);
 </aui:script>
 
-<aui:script use="liferay-kaleo-forms-components">
+<aui:script
+	use="liferay-kaleo-forms-components"
+>
 	var kaleoDefinitionPreview = new Liferay.KaleoDefinitionPreview({
 		availableDefinitions: <%= availableDefinitionsJSONArray.toString() %>,
 		height: 600,

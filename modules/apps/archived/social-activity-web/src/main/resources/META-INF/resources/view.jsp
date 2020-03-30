@@ -28,17 +28,42 @@
 
 			<portlet:actionURL name="/social_activity/edit_activity_settings" var="editURL" />
 
-			<aui:form action="<%= editURL %>" cssClass="update-socialactivity-form" method="post" name="fm">
-				<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-				<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-				<aui:input id="settingsJSON" name="settingsJSON" type="hidden" />
+			<aui:form
+				action="<%= editURL %>"
+				cssClass="update-socialactivity-form"
+				method="post"
+				name="fm"
+			>
+				<aui:input
+					name="<%= Constants.CMD %>"
+					type="hidden"
+					value="<%= Constants.UPDATE %>"
+				/>
+
+				<aui:input
+					name="redirect"
+					type="hidden"
+					value="<%= currentURL %>"
+				/>
+
+				<aui:input
+					id="settingsJSON"
+					name="settingsJSON"
+					type="hidden"
+				/>
 
 				<h4>
 					<liferay-ui:message key="enable-social-activity-for" />:
 				</h4>
 
-				<aui:row cssClass="social-activity social-activity-settings" id="settings">
-					<aui:col cssClass="social-activity-items" width="<%= 20 %>">
+				<aui:row
+					cssClass="social-activity social-activity-settings"
+					id="settings"
+				>
+					<aui:col
+						cssClass="social-activity-items"
+						width="<%= 20 %>"
+					>
 
 						<%
 						for (Map.Entry<String, Boolean> entry : activitySettingsMap.entrySet()) {
@@ -51,7 +76,15 @@
 
 							<h4 class="social-activity-item" data-modelName="<%= className %>" title="<%= localizedClassName %>">
 								<div class="social-activity-item-content">
-									<aui:input disabled="<%= !SocialActivityPermissionUtil.contains(permissionChecker, themeDisplay.getSiteGroupId(), ActionKeys.CONFIGURATION) %>" inlineField="<%= true %>" label="" name='<%= className + ".enabled" %>' title="enabled" type="checkbox" value="<%= enabled %>" />
+									<aui:input
+										disabled="<%= !SocialActivityPermissionUtil.contains(permissionChecker, themeDisplay.getSiteGroupId(), ActionKeys.CONFIGURATION) %>"
+										inlineField="<%= true %>"
+										label=""
+										name='<%= className + ".enabled" %>'
+										title="enabled"
+										type="checkbox"
+										value="<%= enabled %>"
+									/>
 
 									<a class="settings-label" href="javascript:;"><%= localizedClassName %></a>
 								</div>
@@ -63,7 +96,10 @@
 
 					</aui:col>
 
-					<aui:col cssClass="social-activity-details" width="<%= 80 %>" />
+					<aui:col
+						cssClass="social-activity-details"
+						width="<%= 80 %>"
+					/>
 				</aui:row>
 
 				<%
@@ -78,7 +114,9 @@
 				}
 				%>
 
-				<aui:script use="liferay-social-activity-admin">
+				<aui:script
+					use="liferay-social-activity-admin"
+				>
 					new Liferay.Portlet.SocialActivity.Admin({
 						activityDefinitionLanguageKeys: {
 							<%= StringUtil.merge(activityDefinitionLanguageKeys) %>,

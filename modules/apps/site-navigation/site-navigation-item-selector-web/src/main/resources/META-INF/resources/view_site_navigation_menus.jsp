@@ -26,7 +26,11 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 	displayContext="<%= new SiteNavigationMenuItemSelectorViewManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, siteNavigationMenuItemSelectorViewDisplayContext) %>"
 />
 
-<aui:form action="<%= siteNavigationMenuItemSelectorViewDisplayContext.getPortletURL() %>" cssClass="container-fluid-1280" name="selectSiteNavigationMenuFm">
+<aui:form
+	action="<%= siteNavigationMenuItemSelectorViewDisplayContext.getPortletURL() %>"
+	cssClass="container-fluid-1280"
+	name="selectSiteNavigationMenuFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= siteNavigationMenuItemSelectorViewDisplayContext.getSearchContainer() %>"
 	>
@@ -63,7 +67,11 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 						colspan="<%= 2 %>"
 					>
 						<h4>
-							<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="selector-button"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<%= HtmlUtil.escape(name) %>
 							</aui:a>
 						</h4>
@@ -84,7 +92,11 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 						cssClass="table-cell-content"
 						name="title"
 					>
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data="<%= data %>"
+							href="javascript:;"
+						>
 							<%= HtmlUtil.escape(name) %>
 						</aui:a>
 					</liferay-ui:search-container-column-text>
@@ -109,7 +121,9 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	Liferay.Util.selectEntityHandler(
 		'#<portlet:namespace />selectSiteNavigationMenuFm',
 		'<%= HtmlUtil.escapeJS(siteNavigationMenuItemSelectorViewDisplayContext.getItemSelectedEventName()) %>'

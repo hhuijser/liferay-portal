@@ -46,7 +46,10 @@ boolean showCSVWarning = StringUtil.equals("enabled-with-warning", csvExport);
 		title='<%= LanguageUtil.get(resourceBundle, "info") %>'
 	/>
 
-	<aui:select label="file-extension" name="fileExtension">
+	<aui:select
+		label="file-extension"
+		name="fileExtension"
+	>
 
 		<%
 		Map<String, String> availableExportExtensions = ddmFormAdminDisplayContext.getAvailableExportExtensions();

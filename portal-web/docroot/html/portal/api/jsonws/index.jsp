@@ -39,11 +39,17 @@
 		<div id="content">
 			<div id="main-content">
 				<aui:row>
-					<aui:col cssClass="lfr-api-navigation" width="<%= 25 %>">
+					<aui:col
+						cssClass="lfr-api-navigation"
+						width="<%= 25 %>"
+					>
 						<liferay-util:include page="/html/portal/api/jsonws/actions.jsp" />
 					</aui:col>
 
-					<aui:col cssClass="lfr-api-details" width="<%= 75 %>">
+					<aui:col
+						cssClass="lfr-api-details"
+						width="<%= 75 %>"
+					>
 						<liferay-util:include page="/html/portal/api/jsonws/action.jsp" />
 					</aui:col>
 				</aui:row>

@@ -94,7 +94,10 @@ portletDisplay.setURLBack(backURL);
 											<div class="autofit-col autofit-col-expand">
 												<div class="autofit-section">
 													<span class="alert-indicator">
-														<aui:icon image="check-circle-full" markupView="lexicon" />
+														<aui:icon
+															image="check-circle-full"
+															markupView="lexicon"
+														/>
 													</span>
 
 													<%
@@ -192,7 +195,10 @@ portletDisplay.setURLBack(backURL);
 											<div class="autofit-col autofit-col-expand">
 												<div class="autofit-section">
 													<span class="alert-indicator">
-														<aui:icon image="warning-full" markupView="lexicon" />
+														<aui:icon
+															image="warning-full"
+															markupView="lexicon"
+														/>
 													</span>
 
 													<%
@@ -261,9 +267,17 @@ portletDisplay.setURLBack(backURL);
 			</liferay-portlet:actionURL>
 
 			<tr><td>
-				<aui:button disabled="<%= unresolved %>" href="<%= publishURL %>" primary="true" value="publish" />
+				<aui:button
+					disabled="<%= unresolved %>"
+					href="<%= publishURL %>"
+					primary="true"
+					value="publish"
+				/>
 
-				<aui:button href="<%= backURL %>" type="cancel" />
+				<aui:button
+					href="<%= backURL %>"
+					type="cancel"
+				/>
 			</td></tr>
 		</table>
 	</div>

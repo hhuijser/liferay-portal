@@ -31,11 +31,19 @@ SelectThemeDisplayContext selectThemeDisplayContext = new SelectThemeDisplayCont
 	%>
 
 	<div class="button-holder">
-		<aui:button cssClass="manage-layout-set-branches-link" href="<%= marketplaceURL.toString() %>" id="installMore" value="install-more" />
+		<aui:button
+			cssClass="manage-layout-set-branches-link"
+			href="<%= marketplaceURL.toString() %>"
+			id="installMore"
+			value="install-more"
+		/>
 	</div>
 </c:if>
 
-<aui:form cssClass="container-fluid-1280" name="selectThemeFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="selectThemeFm"
+>
 	<liferay-ui:search-container
 		id="themes"
 		searchContainer="<%= selectThemeDisplayContext.getThemesSearchContainer() %>"
@@ -65,7 +73,11 @@ SelectThemeDisplayContext selectThemeDisplayContext = new SelectThemeDisplayCont
 						colspan="<%= 2 %>"
 					>
 						<h5>
-							<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+							<aui:a
+								cssClass="selector-button"
+								data="<%= data %>"
+								href="javascript:;"
+							>
 								<%= theme.getName() %>
 							</aui:a>
 						</h5>
@@ -94,7 +106,11 @@ SelectThemeDisplayContext selectThemeDisplayContext = new SelectThemeDisplayCont
 						name="name"
 						truncate="<%= true %>"
 					>
-						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+						<aui:a
+							cssClass="selector-button"
+							data="<%= data %>"
+							href="javascript:;"
+						>
 							<%= theme.getName() %>
 						</aui:a>
 					</liferay-ui:search-container-column-text>

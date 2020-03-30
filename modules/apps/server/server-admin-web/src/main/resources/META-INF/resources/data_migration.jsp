@@ -67,7 +67,9 @@ Collection<ConvertProcess> convertProcesses = ConvertProcessUtil.getEnabledConve
 								</div>
 							</c:when>
 							<c:otherwise>
-								<aui:fieldset label='<%= Validator.isNotNull(parameterDescription) ? parameterDescription : "" %>'>
+								<aui:fieldset
+									label='<%= Validator.isNotNull(parameterDescription) ? parameterDescription : "" %>'
+								>
 
 									<%
 									for (String parameterName : parameterNames) {
@@ -76,13 +78,18 @@ Collection<ConvertProcess> convertProcesses = ConvertProcessUtil.getEnabledConve
 											String[] parameterSelectEntries = StringUtil.split(parameterPair[1], CharPool.SEMICOLON);
 									%>
 
-											<aui:select label="<%= parameterPair[0] %>" name="<%= clazz.getName() + StringPool.PERIOD + parameterPair[0] %>">
+											<aui:select
+												label="<%= parameterPair[0] %>"
+												name="<%= clazz.getName() + StringPool.PERIOD + parameterPair[0] %>"
+											>
 
 												<%
 												for (String parameterSelectEntry : parameterSelectEntries) {
 												%>
 
-													<aui:option label="<%= parameterSelectEntry %>" />
+													<aui:option
+														label="<%= parameterSelectEntry %>"
+													/>
 
 												<%
 												}
@@ -107,7 +114,12 @@ Collection<ConvertProcess> convertProcesses = ConvertProcessUtil.getEnabledConve
 											}
 										%>
 
-											<aui:input cssClass="lfr-input-text-container" label="<%= currentParameterName %>" name="<%= clazz.getName() + StringPool.PERIOD + currentParameterName %>" type='<%= (currentParameterType != null) ? currentParameterType : "" %>' />
+											<aui:input
+												cssClass="lfr-input-text-container"
+												label="<%= currentParameterName %>"
+												name="<%= clazz.getName() + StringPool.PERIOD + currentParameterName %>"
+												type='<%= (currentParameterType != null) ? currentParameterType : "" %>'
+											/>
 
 									<%
 										}
@@ -117,7 +129,11 @@ Collection<ConvertProcess> convertProcesses = ConvertProcessUtil.getEnabledConve
 								</aui:fieldset>
 
 								<aui:button-row>
-									<aui:button cssClass="save-server-button" data-cmd='<%= "convertProcess." + clazz.getName() %>' value="execute" />
+									<aui:button
+										cssClass="save-server-button"
+										data-cmd='<%= "convertProcess." + clazz.getName() %>'
+										value="execute"
+									/>
 								</aui:button-row>
 							</c:otherwise>
 						</c:choose>

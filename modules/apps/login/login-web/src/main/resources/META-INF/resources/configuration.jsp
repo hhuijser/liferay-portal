@@ -41,8 +41,17 @@ if (Validator.isNotNull(emailPasswordSentSubject) || Validator.isNotNull(emailPa
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:tabs
@@ -54,20 +63,49 @@ if (Validator.isNotNull(emailPasswordSentSubject) || Validator.isNotNull(emailPa
 
 			<liferay-ui:section>
 				<liferay-frontend:fieldset>
-					<aui:select label="authentication-type" name="preferences--authType--" value="<%= authType %>">
-						<aui:option label="default" value="" />
-						<aui:option label="by-email-address" value="<%= CompanyConstants.AUTH_TYPE_EA %>" />
-						<aui:option label="by-screen-name" value="<%= CompanyConstants.AUTH_TYPE_SN %>" />
-						<aui:option label="by-user-id" value="<%= CompanyConstants.AUTH_TYPE_ID %>" />
+					<aui:select
+						label="authentication-type"
+						name="preferences--authType--"
+						value="<%= authType %>"
+					>
+						<aui:option
+							label="default"
+							value=""
+						/>
+
+						<aui:option
+							label="by-email-address"
+							value="<%= CompanyConstants.AUTH_TYPE_EA %>"
+						/>
+
+						<aui:option
+							label="by-screen-name"
+							value="<%= CompanyConstants.AUTH_TYPE_SN %>"
+						/>
+
+						<aui:option
+							label="by-user-id"
+							value="<%= CompanyConstants.AUTH_TYPE_ID %>"
+						/>
 					</aui:select>
 				</liferay-frontend:fieldset>
 			</liferay-ui:section>
 
 			<liferay-ui:section>
 				<liferay-frontend:fieldset>
-					<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= emailFromName %>" />
+					<aui:input
+						cssClass="lfr-input-text-container"
+						label="name"
+						name="preferences--emailFromName--"
+						value="<%= emailFromName %>"
+					/>
 
-					<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" />
+					<aui:input
+						cssClass="lfr-input-text-container"
+						label="address"
+						name="preferences--emailFromAddress--"
+						value="<%= emailFromAddress %>"
+					/>
 				</liferay-frontend:fieldset>
 			</liferay-ui:section>
 
@@ -79,14 +117,22 @@ if (Validator.isNotNull(emailPasswordSentSubject) || Validator.isNotNull(emailPa
 						label="legacy-template-no-longer-used"
 						markupView="lexicon"
 					>
-						<aui:input checked="<%= false %>" label="discard" name="discardLegacyKey" type="checkbox" value="emailPasswordSentSubject,emailPasswordSentBody" />
+						<aui:input
+							checked="<%= false %>"
+							label="discard"
+							name="discardLegacyKey"
+							type="checkbox"
+							value="emailPasswordSentSubject,emailPasswordSentBody"
+						/>
 
 						<div class="alert alert-info">
 							<liferay-ui:message key="sending-of-passwords-by-email-is-no-longer-supported-the-template-below-is-not-used-and-can-be-discarded" />
 						</div>
 
 						<c:if test="<%= Validator.isNotNull(emailPasswordSentSubject) %>">
-							<aui:field-wrapper label="subject">
+							<aui:field-wrapper
+								label="subject"
+							>
 								<liferay-ui:input-localized
 									fieldPrefix="settings"
 									fieldPrefixSeparator="--"
@@ -98,7 +144,9 @@ if (Validator.isNotNull(emailPasswordSentSubject) || Validator.isNotNull(emailPa
 						</c:if>
 
 						<c:if test="<%= Validator.isNotNull(emailPasswordSentBody) %>">
-							<aui:field-wrapper label="body">
+							<aui:field-wrapper
+								label="body"
+							>
 								<liferay-ui:input-localized
 									fieldPrefix="settings"
 									fieldPrefixSeparator="--"
@@ -132,8 +180,12 @@ if (Validator.isNotNull(emailPasswordSentSubject) || Validator.isNotNull(emailPa
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

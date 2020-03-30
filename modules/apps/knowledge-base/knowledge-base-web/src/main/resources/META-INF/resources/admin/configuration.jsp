@@ -36,7 +36,11 @@ kbGroupServiceConfiguration = ParameterMapUtil.setParameterMap(KBGroupServiceCon
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
 
 	<liferay-ui:error key="emailKBArticleAddedBody" message="please-enter-a-valid-body" />
 	<liferay-ui:error key="emailKBArticleAddedSubject" message="please-enter-a-valid-subject" />
@@ -53,9 +57,19 @@ kbGroupServiceConfiguration = ParameterMapUtil.setParameterMap(KBGroupServiceCon
 			<liferay-ui:section>
 				<liferay-frontend:fieldset-group>
 					<liferay-frontend:fieldset>
-						<aui:input label="name" name="preferences--emailFromName--" value="<%= kbGroupServiceConfiguration.emailFromName() %>" wrapperCssClass="lfr-input-text-container" />
+						<aui:input
+							label="name"
+							name="preferences--emailFromName--"
+							value="<%= kbGroupServiceConfiguration.emailFromName() %>"
+							wrapperCssClass="lfr-input-text-container"
+						/>
 
-						<aui:input label="address" name="preferences--emailFromAddress--" value="<%= kbGroupServiceConfiguration.emailFromAddress() %>" wrapperCssClass="lfr-input-text-container" />
+						<aui:input
+							label="address"
+							name="preferences--emailFromAddress--"
+							value="<%= kbGroupServiceConfiguration.emailFromAddress() %>"
+							wrapperCssClass="lfr-input-text-container"
+						/>
 					</liferay-frontend:fieldset>
 
 					<liferay-frontend:fieldset
@@ -225,9 +239,14 @@ kbGroupServiceConfiguration = ParameterMapUtil.setParameterMap(KBGroupServiceCon
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "save();" %>' value="save" />
+		<aui:button
+			onClick='<%= renderResponse.getNamespace() + "save();" %>'
+			value="save"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

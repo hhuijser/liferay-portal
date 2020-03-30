@@ -20,13 +20,24 @@
 	<portlet:param name="mvcPath" value="/designer/view.jsp" />
 </portlet:renderURL>
 
-<aui:nav-bar cssClass="collapse-basic-search" markupView="lexicon">
-	<aui:nav cssClass="navbar-nav">
-		<aui:nav-item label="workflow-definitions" selected="<%= true %>" />
+<aui:nav-bar
+	cssClass="collapse-basic-search"
+	markupView="lexicon"
+>
+	<aui:nav
+		cssClass="navbar-nav"
+	>
+		<aui:nav-item
+			label="workflow-definitions"
+			selected="<%= true %>"
+		/>
 	</aui:nav>
 
 	<aui:nav-bar-search>
-		<aui:form action="<%= searchURL.toString() %>" name="searchFm">
+		<aui:form
+			action="<%= searchURL.toString() %>"
+			name="searchFm"
+		>
 			<liferay-util:include page="/designer/kaleo_definition_search.jsp" servletContext="<%= application %>" />
 		</aui:form>
 	</aui:nav-bar-search>

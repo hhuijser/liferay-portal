@@ -121,15 +121,54 @@ String navigation = ParamUtil.getString(request, "navigation");
 						<portlet:param name="mvcRenderCommandName" value="/document_library/edit_file_entry" />
 					</liferay-portlet:renderURL>
 
-					<aui:form action="<%= editFileEntryURL.toString() %>" method="get" name="fm2">
-						<aui:input name="<%= Constants.CMD %>" type="hidden" />
-						<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-						<aui:input name="repositoryId" type="hidden" value="<%= repositoryId %>" />
-						<aui:input name="newFolderId" type="hidden" />
-						<aui:input name="folderId" type="hidden" value="<%= folderId %>" />
-						<aui:input name="changeLog" type="hidden" />
-						<aui:input name="versionIncrease" type="hidden" />
-						<aui:input name="selectAll" type="hidden" value="<%= false %>" />
+					<aui:form
+						action="<%= editFileEntryURL.toString() %>"
+						method="get"
+						name="fm2"
+					>
+						<aui:input
+							name="<%= Constants.CMD %>"
+							type="hidden"
+						/>
+
+						<aui:input
+							name="redirect"
+							type="hidden"
+							value="<%= currentURL %>"
+						/>
+
+						<aui:input
+							name="repositoryId"
+							type="hidden"
+							value="<%= repositoryId %>"
+						/>
+
+						<aui:input
+							name="newFolderId"
+							type="hidden"
+						/>
+
+						<aui:input
+							name="folderId"
+							type="hidden"
+							value="<%= folderId %>"
+						/>
+
+						<aui:input
+							name="changeLog"
+							type="hidden"
+						/>
+
+						<aui:input
+							name="versionIncrease"
+							type="hidden"
+						/>
+
+						<aui:input
+							name="selectAll"
+							type="hidden"
+							value="<%= false %>"
+						/>
 
 						<liferay-util:dynamic-include key="com.liferay.document.library.web#/document_library/view.jsp#errors" />
 
@@ -211,7 +250,9 @@ String navigation = ParamUtil.getString(request, "navigation");
 			}
 		</aui:script>
 
-		<aui:script use="liferay-document-library">
+		<aui:script
+			use="liferay-document-library"
+		>
 
 			<%
 			String[] entryColumns = dlPortletInstanceSettingsHelper.getEntryColumns();

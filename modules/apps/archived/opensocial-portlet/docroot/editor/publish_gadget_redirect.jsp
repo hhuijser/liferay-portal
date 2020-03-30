@@ -22,7 +22,9 @@ long gadgetId = ParamUtil.getLong(request, "gadgetId");
 boolean unpublishPermission = ParamUtil.getBoolean(request, "unpublishPermission");
 %>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	Liferay.Util.getOpener().Liferay.fire(
 		'publishGadgetSuccess',
 		{

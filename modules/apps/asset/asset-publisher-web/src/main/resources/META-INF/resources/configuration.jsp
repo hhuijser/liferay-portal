@@ -34,13 +34,43 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 	name="fm"
 	onSubmit="event.preventDefault();"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL.toString() %>" />
-	<aui:input name="groupId" type="hidden" />
-	<aui:input name="typeSelection" type="hidden" />
-	<aui:input name="assetEntryIds" type="hidden" />
-	<aui:input name="assetEntryOrder" type="hidden" value="-1" />
-	<aui:input name="assetEntryType" type="hidden" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL.toString() %>"
+	/>
+
+	<aui:input
+		name="groupId"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="typeSelection"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="assetEntryIds"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="assetEntryOrder"
+		type="hidden"
+		value="-1"
+	/>
+
+	<aui:input
+		name="assetEntryType"
+		type="hidden"
+	/>
 
 	<%
 	request.setAttribute("configuration.jsp-classTypesAssetRendererFactories", classTypesAssetRendererFactories);
@@ -58,9 +88,14 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "saveSelectBoxes();" %>' type="submit" />
+		<aui:button
+			onClick='<%= renderResponse.getNamespace() + "saveSelectBoxes();" %>'
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

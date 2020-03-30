@@ -66,12 +66,16 @@ renderResponse.setTitle(headerTitle);
 %>
 
 <div class="container-fluid-1280">
-	<aui:col cssClass="lfr-asset-column lfr-asset-column-details">
+	<aui:col
+		cssClass="lfr-asset-column lfr-asset-column-details"
+	>
 		<liferay-ui:success key='<%= workflowTaskDisplayContext.getPortletResource() + "requestProcessed" %>' message="your-request-completed-successfully" />
 
 		<liferay-ui:error exception="<%= WorkflowTaskDueDateException.class %>" message="please-enter-a-valid-due-date" />
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 
 				<%
@@ -82,8 +86,12 @@ renderResponse.setTitle(headerTitle);
 					<liferay-util:param name="mvcPath" value="/edit_workflow_task.jsp" />
 				</liferay-util:include>
 
-				<aui:col width="<%= 50 %>">
-					<aui:field-wrapper label="assigned-to">
+				<aui:col
+					width="<%= 50 %>"
+				>
+					<aui:field-wrapper
+						label="assigned-to"
+					>
 						<aui:fieldset>
 							<div class="card-row">
 								<c:choose>
@@ -114,21 +122,29 @@ renderResponse.setTitle(headerTitle);
 						</aui:fieldset>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="state">
+					<aui:field-wrapper
+						label="state"
+					>
 						<aui:fieldset>
 							<%= workflowTaskDisplayContext.getState(workflowTask) %>
 						</aui:fieldset>
 					</aui:field-wrapper>
 				</aui:col>
 
-				<aui:col width="<%= 50 %>">
-					<aui:field-wrapper label="create-date">
+				<aui:col
+					width="<%= 50 %>"
+				>
+					<aui:field-wrapper
+						label="create-date"
+					>
 						<aui:fieldset>
 							<%= workflowTaskDisplayContext.getCreateDate(workflowTask) %>
 						</aui:fieldset>
 					</aui:field-wrapper>
 
-					<aui:field-wrapper label="due-date">
+					<aui:field-wrapper
+						label="due-date"
+					>
 						<aui:fieldset>
 							<%= workflowTaskDisplayContext.getDueDateString(workflowTask) %>
 						</aui:fieldset>
@@ -137,7 +153,9 @@ renderResponse.setTitle(headerTitle);
 
 				<c:if test="<%= Validator.isNotNull(workflowTask.getDescription()) %>">
 					<aui:col>
-						<aui:field-wrapper label="description">
+						<aui:field-wrapper
+							label="description"
+						>
 							<aui:fieldset>
 								<%= workflowTaskDisplayContext.getDescription(workflowTask) %>
 							</aui:fieldset>
@@ -288,7 +306,9 @@ renderResponse.setTitle(headerTitle);
 	</aui:col>
 </div>
 
-<aui:script use="liferay-workflow-tasks">
+<aui:script
+	use="liferay-workflow-tasks"
+>
 	var onTaskClickFn = A.rbind('onTaskClick', Liferay.WorkflowTasks, '');
 
 	Liferay.delegateClick(

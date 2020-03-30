@@ -98,7 +98,9 @@ else {
 <div class="container-fluid-1280">
 	<c:choose>
 		<c:when test="<%= scopeGroup.equals(themeDisplay.getControlPanelGroup()) %>">
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 					<%= assetContent %>
 				</aui:fieldset>

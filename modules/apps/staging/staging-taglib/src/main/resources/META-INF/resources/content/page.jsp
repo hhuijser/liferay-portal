@@ -17,21 +17,38 @@
 <%@ include file="/content/init.jsp" %>
 
 <c:if test="<%= !dataSiteLevelPortlets.isEmpty() %>">
-	<aui:fieldset cssClass="options-group" markupView="lexicon">
+	<aui:fieldset
+		cssClass="options-group"
+		markupView="lexicon"
+	>
 		<div class="sheet-section">
 			<h3 class="sheet-subtitle"><liferay-ui:message key="content" /></h3>
 
 			<ul class="list-unstyled">
 				<li class="tree-item">
-					<aui:input disabled="<%= disableInputs %>" name="<%= PortletDataHandlerKeys.PORTLET_DATA %>" type="hidden" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA, true) %>" />
-					<aui:input disabled="<%= disableInputs %>" name="<%= PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT %>" type="hidden" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT, true) %>" />
+					<aui:input
+						disabled="<%= disableInputs %>"
+						name="<%= PortletDataHandlerKeys.PORTLET_DATA %>"
+						type="hidden"
+						value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA, true) %>"
+					/>
+
+					<aui:input
+						disabled="<%= disableInputs %>"
+						name="<%= PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT %>"
+						type="hidden"
+						value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.PORTLET_DATA_CONTROL_DEFAULT, true) %>"
+					/>
 
 					<ul id="<portlet:namespace />selectContents">
 						<li>
 							<div id="<portlet:namespace />range">
 								<ul class="list-unstyled">
 									<li class="tree-item">
-										<aui:fieldset cssClass="portlet-data-section" label="date-range">
+										<aui:fieldset
+											cssClass="portlet-data-section"
+											label="date-range"
+										>
 											<div class="flex-container">
 
 												<%
@@ -90,7 +107,12 @@
 														symbol="reload"
 													/>
 
-													<aui:a cssClass="modify-link" href="javascript:;" id="rangeLink" method="get">
+													<aui:a
+														cssClass="modify-link"
+														href="javascript:;"
+														id="rangeLink"
+														method="get"
+													>
 														<liferay-ui:message key="refresh-counts" />
 													</aui:a>
 												</div>
@@ -185,16 +207,40 @@
 
 											<ul class="hide list-unstyled" id="<portlet:namespace />rangeLastInputs">
 												<li>
-													<aui:select cssClass="relative-range" disabled="<%= disableInputs %>" label="" name="last">
+													<aui:select
+														cssClass="relative-range"
+														disabled="<%= disableInputs %>"
+														label=""
+														name="last"
+													>
 
 														<%
 														String last = MapUtil.getString(parameterMap, "last");
 														%>
 
-														<aui:option label='<%= LanguageUtil.format(request, "x-hours", "12", false) %>' selected='<%= last.equals("12") %>' value="12" />
-														<aui:option label='<%= LanguageUtil.format(request, "x-hours", "24", false) %>' selected='<%= last.equals("24") %>' value="24" />
-														<aui:option label='<%= LanguageUtil.format(request, "x-hours", "48", false) %>' selected='<%= last.equals("48") %>' value="48" />
-														<aui:option label='<%= LanguageUtil.format(request, "x-days", "7", false) %>' selected='<%= last.equals("168") %>' value="168" />
+														<aui:option
+															label='<%= LanguageUtil.format(request, "x-hours", "12", false) %>'
+															selected='<%= last.equals("12") %>'
+															value="12"
+														/>
+
+														<aui:option
+															label='<%= LanguageUtil.format(request, "x-hours", "24", false) %>'
+															selected='<%= last.equals("24") %>'
+															value="24"
+														/>
+
+														<aui:option
+															label='<%= LanguageUtil.format(request, "x-hours", "48", false) %>'
+															selected='<%= last.equals("48") %>'
+															value="48"
+														/>
+
+														<aui:option
+															label='<%= LanguageUtil.format(request, "x-days", "7", false) %>'
+															selected='<%= last.equals("168") %>'
+															value="168"
+														/>
 													</aui:select>
 												</li>
 											</ul>

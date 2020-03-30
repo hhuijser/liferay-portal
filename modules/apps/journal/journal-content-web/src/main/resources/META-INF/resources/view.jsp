@@ -67,7 +67,11 @@ if (journalContentDisplayContext.isShowArticle()) {
 						<liferay-util:buffer
 							var="selectJournalArticleLink"
 						>
-							<aui:a href="javascript:;" label="select-another" onClick="<%= portletDisplay.getURLConfigurationJS() %>" />
+							<aui:a
+								href="javascript:;"
+								label="select-another"
+								onClick="<%= portletDisplay.getURLConfigurationJS() %>"
+							/>
 						</liferay-util:buffer>
 
 						<div>
@@ -86,7 +90,10 @@ if (journalContentDisplayContext.isShowArticle()) {
 									<liferay-util:buffer
 										var="restoreJournalArticleLink"
 									>
-										<aui:a href="<%= restoreJournalArticleURL %>" label="undo" />
+										<aui:a
+											href="<%= restoreJournalArticleURL %>"
+											label="undo"
+										/>
 									</liferay-util:buffer>
 
 									<liferay-ui:message arguments="<%= new String[] {restoreJournalArticleLink, selectJournalArticleLink} %>" key="do-you-want-to-x-or-x-web-content" />

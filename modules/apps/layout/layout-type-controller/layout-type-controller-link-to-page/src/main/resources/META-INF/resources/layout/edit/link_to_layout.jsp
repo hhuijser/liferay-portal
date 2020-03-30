@@ -16,16 +16,40 @@
 
 <%@ include file="/layout/edit/init.jsp" %>
 
-<aui:input name="TypeSettingsProperties--groupId--" type="hidden" value="<%= (selLayout == null) ? StringPool.BLANK : selLayout.getGroupId() %>" />
-<aui:input name="TypeSettingsProperties--privateLayout--" type="hidden" value="<%= (selLayout == null) ? StringPool.BLANK : selLayout.isPrivateLayout() %>" />
+<aui:input
+	name="TypeSettingsProperties--groupId--"
+	type="hidden"
+	value="<%= (selLayout == null) ? StringPool.BLANK : selLayout.getGroupId() %>"
+/>
+
+<aui:input
+	name="TypeSettingsProperties--privateLayout--"
+	type="hidden"
+	value="<%= (selLayout == null) ? StringPool.BLANK : selLayout.isPrivateLayout() %>"
+/>
 
 <div class="form-group">
-	<aui:input label="link-to-layout" name="linkToLayoutName" type="resource" value="<%= linkToPageLayoutTypeControllerDisplayContext.getLinkToLayoutName() %>" />
-	<aui:input name="linkToLayoutUuid" type="hidden" value="<%= linkToPageLayoutTypeControllerDisplayContext.getLinkToLayoutUuid() %>" />
+	<aui:input
+		label="link-to-layout"
+		name="linkToLayoutName"
+		type="resource"
+		value="<%= linkToPageLayoutTypeControllerDisplayContext.getLinkToLayoutName() %>"
+	/>
 
-	<aui:button name="selectLayoutButton" value="select" />
+	<aui:input
+		name="linkToLayoutUuid"
+		type="hidden"
+		value="<%= linkToPageLayoutTypeControllerDisplayContext.getLinkToLayoutUuid() %>"
+	/>
 
-	<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+	<aui:button
+		name="selectLayoutButton"
+		value="select"
+	/>
+
+	<aui:script
+		require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+	>
 		var selectLayoutButton = document.getElementById('<portlet:namespace />selectLayoutButton');
 
 		if (selectLayoutButton) {

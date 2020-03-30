@@ -62,8 +62,17 @@ portletDisplay.setShowBackIcon(true);
 <liferay-ui:error exception="<%= CTCollectionNameException.class %>" message="the-publication-name-is-too-long" />
 
 <div class="custom-sheet sheet sheet-lg">
-	<aui:form action='<%= actionURL + "&etag=0&strip=0" %>' cssClass="lfr-export-dialog" method="post" name="editChangeListFm">
-		<aui:input name="ctCollectionId" type="hidden" value="<%= ctCollectionId %>" />
+	<aui:form
+		action='<%= actionURL + "&etag=0&strip=0" %>'
+		cssClass="lfr-export-dialog"
+		method="post"
+		name="editChangeListFm"
+	>
+		<aui:input
+			name="ctCollectionId"
+			type="hidden"
+			value="<%= ctCollectionId %>"
+		/>
 
 		<c:if test="<%= revert %>">
 			<p class="sheet-text"><liferay-ui:message key="reverting-creates-a-new-publication-with-the-reverted-changes" /></p>
@@ -74,12 +83,25 @@ portletDisplay.setShowBackIcon(true);
 				</h3>
 		</c:if>
 
-			<aui:input label="name" name="name" placeholder="publication-name-placeholder" value="<%= name %>">
+			<aui:input
+				label="name"
+				name="name"
+				placeholder="publication-name-placeholder"
+				value="<%= name %>"
+			>
 				<aui:validator name="maxLength"><%= ModelHintsUtil.getMaxLength(CTCollection.class.getName(), "name") %></aui:validator>
-				<aui:validator name="required" />
+				<aui:validator
+					name="required"
+				/>
 			</aui:input>
 
-			<aui:input label="description" name="description" placeholder="publication-description-placeholder" type="textarea" value="<%= description %>">
+			<aui:input
+				label="description"
+				name="description"
+				placeholder="publication-description-placeholder"
+				type="textarea"
+				value="<%= description %>"
+			>
 				<aui:validator name="maxLength"><%= ModelHintsUtil.getMaxLength(CTCollection.class.getName(), "description") %></aui:validator>
 			</aui:input>
 
@@ -88,9 +110,16 @@ portletDisplay.setShowBackIcon(true);
 		</c:if>
 
 		<aui:button-row>
-			<aui:button id="saveButton" type="submit" value="<%= LanguageUtil.get(request, saveButtonLabel) %>" />
+			<aui:button
+				id="saveButton"
+				type="submit"
+				value="<%= LanguageUtil.get(request, saveButtonLabel) %>"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

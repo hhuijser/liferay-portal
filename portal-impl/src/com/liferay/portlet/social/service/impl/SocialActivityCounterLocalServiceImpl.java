@@ -927,10 +927,12 @@ public class SocialActivityCounterLocalServiceImpl
 		}
 
 		if (latestPopularityActivityCounter.getStartPeriod() == startPeriod) {
+			int latestPopularityActivityCounterCurrentValue =
+				latestPopularityActivityCounter.getCurrentValue();
+
 			latestContributionActivityCounter.setCurrentValue(
 				latestContributionActivityCounter.getCurrentValue() +
-					(latestPopularityActivityCounter.getCurrentValue() *
-						factor));
+					(latestPopularityActivityCounterCurrentValue * factor));
 		}
 
 		latestContributionActivityCounter.setTotalValue(

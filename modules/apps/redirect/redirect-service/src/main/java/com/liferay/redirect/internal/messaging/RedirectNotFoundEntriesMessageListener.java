@@ -82,10 +82,12 @@ public class RedirectNotFoundEntriesMessageListener
 			ActionableDynamicQuery actionableDynamicQuery =
 				_redirectNotFoundEntryLocalService.getActionableDynamicQuery();
 
+			int redirectNotFoundEntryMaxAge =
+				_ffRedirectConfiguration.redirectNotFoundEntryMaxAge();
+
 			Date thresholdDate = new Date(
 				System.currentTimeMillis() -
-					(_ffRedirectConfiguration.redirectNotFoundEntryMaxAge() *
-						Time.DAY));
+					(redirectNotFoundEntryMaxAge * Time.DAY));
 
 			actionableDynamicQuery.setAddCriteriaMethod(
 				dynamicQuery -> dynamicQuery.add(

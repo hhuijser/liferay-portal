@@ -396,9 +396,11 @@ public class SourceFormatter {
 			(!_sourceFormatterMessages.isEmpty() ||
 			 !_sourceMismatchExceptions.isEmpty())) {
 
-			StringBundler sb = new StringBundler(
-				(_sourceFormatterMessages.size() +
-					_sourceMismatchExceptions.size()) * 4);
+			int size =
+				_sourceFormatterMessages.size() +
+					_sourceMismatchExceptions.size();
+
+			StringBundler sb = new StringBundler(size * 4);
 
 			int index = 1;
 

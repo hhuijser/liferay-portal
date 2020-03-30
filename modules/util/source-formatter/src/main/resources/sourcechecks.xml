@@ -312,6 +312,7 @@
 		<!-- Liferay Source Checks -->
 
 		<check name="JavaAnonymousInnerClassCheck" />
+		<check name="JavaAPIInterfaceCheck" />
 		<check name="JavaAPISignatureCheck">
 			<category name="Bug Prevention" />
 			<description name="Checks that types `HttpServletRequest`, `HttpServletResponse`, `ThemeDisplay`, and `ServiceContext` are not used in API method signatures" />

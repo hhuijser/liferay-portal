@@ -161,8 +161,8 @@ SearchContainer searchContainer = itemSelectorViewDescriptor.getSearchContainer(
 					data: {
 						returnType:
 							'<%= itemSelectorViewDescriptorRendererDisplayContext.getReturnType() %>',
-						value: event.delegateTarget.dataset.value
-					}
+						value: event.delegateTarget.dataset.value,
+					},
 				}
 			);
 		}

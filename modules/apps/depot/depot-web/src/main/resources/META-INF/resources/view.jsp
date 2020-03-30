@@ -30,8 +30,16 @@ DepotAdminManagementToolbarDisplayContext depotAdminManagementToolbarDisplayCont
 	<div class="sidenav-content">
 		<portlet:actionURL name="deleteGroups" var="deleteGroupsURL" />
 
-		<aui:form action="<%= depotAdminDisplayContext.getIteratorURL() %>" cssClass="container-fluid-1280" name="fm">
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+		<aui:form
+			action="<%= depotAdminDisplayContext.getIteratorURL() %>"
+			cssClass="container-fluid-1280"
+			name="fm"
+		>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-ui:search-container
 				id="<%= depotAdminDisplayContext.getSearchContainerId() %>"
@@ -66,7 +74,10 @@ DepotAdminManagementToolbarDisplayContext depotAdminManagementToolbarDisplayCont
 								colspan="<%= 2 %>"
 							>
 								<h5>
-									<aui:a cssClass="selector-button" href="<%= depotAdminDisplayContext.getViewDepotURL(depotEntry) %>">
+									<aui:a
+										cssClass="selector-button"
+										href="<%= depotAdminDisplayContext.getViewDepotURL(depotEntry) %>"
+									>
 										<%= HtmlUtil.escape(depotEntryGroup.getDescriptiveName(locale)) %>
 									</aui:a>
 								</h5>
@@ -97,7 +108,11 @@ DepotAdminManagementToolbarDisplayContext depotAdminManagementToolbarDisplayCont
 								name="name"
 								orderable="<%= true %>"
 							>
-								<aui:a href="<%= depotAdminDisplayContext.getViewDepotURL(depotEntry) %>" label="<%= HtmlUtil.escape(depotEntryGroup.getDescriptiveName(locale)) %>" localizeLabel="<%= false %>" />
+								<aui:a
+									href="<%= depotAdminDisplayContext.getViewDepotURL(depotEntry) %>"
+									label="<%= HtmlUtil.escape(depotEntryGroup.getDescriptiveName(locale)) %>"
+									localizeLabel="<%= false %>"
+								/>
 							</liferay-ui:search-container-column-text>
 
 							<liferay-ui:search-container-column-text>

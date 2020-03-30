@@ -28,7 +28,11 @@ int trashedEntriesCount = GetterUtil.getInteger(request.getAttribute("liferay-tr
 <liferay-util:buffer
 	var="alertMessage"
 >
-	<aui:form action="<%= portletURL %>" cssClass="alert-trash-form" name="undoForm">
+	<aui:form
+		action="<%= portletURL %>"
+		cssClass="alert-trash-form"
+		name="undoForm"
+	>
 		<liferay-util:buffer
 			var="trashLink"
 		>
@@ -39,7 +43,11 @@ int trashedEntriesCount = GetterUtil.getInteger(request.getAttribute("liferay-tr
 
 			<c:choose>
 				<c:when test="<%= themeDisplay.isShowSiteAdministrationIcon() && (trashURL != null) %>">
-					<aui:a cssClass="alert-link" href="<%= trashURL.toString() %>" label="the-recycle-bin" />
+					<aui:a
+						cssClass="alert-link"
+						href="<%= trashURL.toString() %>"
+						label="the-recycle-bin"
+					/>
 				</c:when>
 				<c:otherwise>
 					<liferay-ui:message key="the-recycle-bin" />
@@ -87,10 +95,23 @@ int trashedEntriesCount = GetterUtil.getInteger(request.getAttribute("liferay-tr
 			</c:otherwise>
 		</c:choose>
 
-		<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
-		<aui:input name="restoreTrashEntryIds" type="hidden" value="<%= StringUtil.merge(restoreTrashEntryIds) %>" />
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirectURL %>"
+		/>
 
-		<aui:button cssClass="alert-link btn-link btn-sm btn-unstyled trash-undo-button" type="submit" value="undo" />
+		<aui:input
+			name="restoreTrashEntryIds"
+			type="hidden"
+			value="<%= StringUtil.merge(restoreTrashEntryIds) %>"
+		/>
+
+		<aui:button
+			cssClass="alert-link btn-link btn-sm btn-unstyled trash-undo-button"
+			type="submit"
+			value="undo"
+		/>
 	</aui:form>
 </liferay-util:buffer>
 

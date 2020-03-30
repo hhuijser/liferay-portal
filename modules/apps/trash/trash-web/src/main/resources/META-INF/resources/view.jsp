@@ -47,7 +47,10 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:actionURL>
 
-		<aui:form action="<%= deleteTrashEntriesURL %>" name="fm">
+		<aui:form
+			action="<%= deleteTrashEntriesURL %>"
+			name="fm"
+		>
 			<liferay-ui:error exception="<%= RestoreEntryException.class %>">
 
 				<%
@@ -156,7 +159,9 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 								</h6>
 
 								<h5>
-									<aui:a href="<%= viewContentURLString %>">
+									<aui:a
+										href="<%= viewContentURLString %>"
+									>
 										<%= HtmlUtil.escape(trashRenderer.getTitle(locale)) %>
 									</aui:a>
 								</h5>
@@ -200,7 +205,9 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 								cssClass="table-cell-expand table-cell-minw-200 table-title"
 								name="name"
 							>
-								<aui:a href="<%= viewContentURLString %>">
+								<aui:a
+									href="<%= viewContentURLString %>"
+								>
 									<%= HtmlUtil.escape(trashRenderer.getTitle(locale)) %>
 								</aui:a>
 

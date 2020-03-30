@@ -72,7 +72,10 @@ for (Layout scopeGroupLayout : LayoutLocalServiceUtil.getScopeGroupLayouts(layou
 		<liferay-frontend:edit-form-body>
 			<liferay-frontend:fieldset-group>
 				<liferay-frontend:fieldset>
-					<aui:select label="scope" name="scope">
+					<aui:select
+						label="scope"
+						name="scope"
+					>
 
 						<%
 						for (Group availableGroup : availableGroups) {
@@ -93,14 +96,21 @@ for (Layout scopeGroupLayout : LayoutLocalServiceUtil.getScopeGroupLayouts(layou
 							String value = availableGroupScopeType + "," + availableGroupScopeLayoutUuid;
 						%>
 
-							<aui:option label="<%= HtmlUtil.escape(availableGroup.getDescriptiveName(locale)) %>" selected="<%= (group != null) && (group.getGroupId() == availableGroup.getGroupId()) %>" value="<%= value %>" />
+							<aui:option
+								label="<%= HtmlUtil.escape(availableGroup.getDescriptiveName(locale)) %>"
+								selected="<%= (group != null) && (group.getGroupId() == availableGroup.getGroupId()) %>"
+								value="<%= value %>"
+							/>
 
 						<%
 						}
 						%>
 
 						<c:if test="<%= !layout.hasScopeGroup() %>">
-							<aui:option label='<%= HtmlUtil.escape(layout.getName(locale)) + " (" + LanguageUtil.get(request, "create-new") + ")" %>' value='<%= "layout," + layout.getUuid() %>' />
+							<aui:option
+								label='<%= HtmlUtil.escape(layout.getName(locale)) + " (" + LanguageUtil.get(request, "create-new") + ")" %>'
+								value='<%= "layout," + layout.getUuid() %>'
+							/>
 						</c:if>
 					</aui:select>
 				</liferay-frontend:fieldset>
@@ -108,9 +118,13 @@ for (Layout scopeGroupLayout : LayoutLocalServiceUtil.getScopeGroupLayouts(layou
 		</liferay-frontend:edit-form-body>
 
 		<liferay-frontend:edit-form-footer>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button type="cancel" />
+			<aui:button
+				type="cancel"
+			/>
 		</liferay-frontend:edit-form-footer>
 	</liferay-frontend:edit-form>
 </div>

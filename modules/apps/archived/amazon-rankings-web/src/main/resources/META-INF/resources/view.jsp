@@ -41,7 +41,10 @@
 
 				<tr>
 					<td>
-						<aui:a href='<%= "http://www.amazon.com/exec/obidos/ASIN/" + amazonRankings.getISBN() %>' target="_blank">
+						<aui:a
+							href='<%= "http://www.amazon.com/exec/obidos/ASIN/" + amazonRankings.getISBN() %>'
+							target="_blank"
+						>
 							<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="amazon-rankings" />" src="<%= amazonRankings.getSmallImageURL() %>" />
 						</aui:a>
 					</td>

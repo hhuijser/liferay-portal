@@ -31,7 +31,9 @@
 		<liferay-ui:message key="drag-applications-below-to-nest-them" />
 	</div>
 
-	<aui:script require="metal-dom/src/dom">
+	<aui:script
+		require="metal-dom/src/dom"
+	>
 		var dom = metalDomSrcDom.default;
 
 		var portletWrapper = document.getElementById(

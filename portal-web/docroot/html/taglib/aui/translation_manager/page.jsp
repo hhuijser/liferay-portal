@@ -39,7 +39,11 @@
 			for (Locale curLocale : locales) {
 			%>
 
-				<aui:option label="<%= curLocale.getDisplayName(locale) %>" selected="<%= defaultLanguageId.equals(LocaleUtil.toLanguageId(curLocale)) %>" value="<%= LocaleUtil.toLanguageId(curLocale) %>" />
+				<aui:option
+					label="<%= curLocale.getDisplayName(locale) %>"
+					selected="<%= defaultLanguageId.equals(LocaleUtil.toLanguageId(curLocale)) %>"
+					value="<%= LocaleUtil.toLanguageId(curLocale) %>"
+				/>
 
 			<%
 			}
@@ -102,7 +106,10 @@
 
 								<%= availableLocales[i].getDisplayName(locale) %>
 
-								<aui:icon cssClass="lfr-translation-manager-delete-translation" image="remove" />
+								<aui:icon
+									cssClass="lfr-translation-manager-delete-translation"
+									image="remove"
+								/>
 							</span>
 
 						<%
@@ -132,7 +139,9 @@
 	}
 	%>
 
-	<aui:script use="liferay-translation-manager">
+	<aui:script
+		use="liferay-translation-manager"
+	>
 		var translationManager;
 
 		Liferay.component(

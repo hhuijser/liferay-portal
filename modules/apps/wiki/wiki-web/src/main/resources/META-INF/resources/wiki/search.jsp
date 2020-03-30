@@ -43,10 +43,24 @@ portletURL.setParameter("nodeId", String.valueOf(nodeId));
 portletURL.setParameter("keywords", keywords);
 %>
 
-<aui:form action="<%= wikiURLHelper.getSearchURL() %>" method="get" name="fm">
+<aui:form
+	action="<%= wikiURLHelper.getSearchURL() %>"
+	method="get"
+	name="fm"
+>
 	<liferay-portlet:renderURLParams portletURL="<%= wikiURLHelper.getSearchURL() %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="nodeId" type="hidden" value="<%= nodeId %>" />
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="nodeId"
+		type="hidden"
+		value="<%= nodeId %>"
+	/>
 
 	<liferay-ui:header
 		backURL="<%= redirect %>"

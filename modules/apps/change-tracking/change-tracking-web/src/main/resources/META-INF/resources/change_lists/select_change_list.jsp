@@ -68,7 +68,11 @@ SelectChangeListManagementToolbarDisplayContext selectChangeListManagementToolba
 									</div>
 								</c:when>
 								<c:otherwise>
-									<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="selector-button"
+										data="<%= data %>"
+										href="javascript:;"
+									>
 										<div class="change-list-name">
 											<%= HtmlUtil.escape(ctCollection.getName()) %>
 										</div>

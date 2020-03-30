@@ -30,18 +30,36 @@ renderResponse.setTitle(LanguageUtil.get(request, "add-category"));
 	<portlet:param name="redirect" value="<%= String.valueOf(redirect) %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= addLogCategoryURL %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:fieldset-group markupView="lexicon">
+<aui:form
+	action="<%= addLogCategoryURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
-			<aui:input cssClass="lfr-input-text-container" label="logger-name" name="loggerName" type="text" />
+			<aui:input
+				cssClass="lfr-input-text-container"
+				label="logger-name"
+				name="loggerName"
+				type="text"
+			/>
 
-			<aui:select label="log-level" name="priority">
+			<aui:select
+				label="log-level"
+				name="priority"
+			>
 
 				<%
 				for (int i = 0; i < Levels.ALL_LEVELS.length; i++) {
 				%>
 
-					<aui:option label="<%= Levels.ALL_LEVELS[i] %>" selected="<%= Level.INFO.equals(Levels.ALL_LEVELS[i]) %>" />
+					<aui:option
+						label="<%= Levels.ALL_LEVELS[i] %>"
+						selected="<%= Level.INFO.equals(Levels.ALL_LEVELS[i]) %>"
+					/>
 
 				<%
 				}
@@ -52,8 +70,13 @@ renderResponse.setTitle(LanguageUtil.get(request, "add-category"));
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>

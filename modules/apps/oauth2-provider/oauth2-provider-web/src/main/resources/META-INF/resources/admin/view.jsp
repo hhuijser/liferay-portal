@@ -41,9 +41,21 @@ String displayStyle = oAuth2ApplicationsManagementToolbarDisplayContext.getDispl
 />
 
 <div class="closed container-fluid-1280">
-	<aui:form action="<%= currentURLObj %>" method="get" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-		<aui:input name="oAuth2ApplicationIds" type="hidden" />
+	<aui:form
+		action="<%= currentURLObj %>"
+		method="get"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
+
+		<aui:input
+			name="oAuth2ApplicationIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			emptyResultsMessage="no-applications-were-found"

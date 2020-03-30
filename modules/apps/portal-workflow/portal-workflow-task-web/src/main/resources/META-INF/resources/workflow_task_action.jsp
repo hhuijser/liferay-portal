@@ -119,13 +119,24 @@ redirectURL.setParameter("mvcPath", "/view.jsp");
 	</c:if>
 </liferay-ui:icon-menu>
 
-<aui:form name='<%= randomId + "form" %>'>
+<aui:form
+	name='<%= randomId + "form" %>'
+>
 	<div class="hide" id="<%= randomId %>updateComments">
-		<aui:input cols="55" cssClass="task-content-comment" name="comment" placeholder="comment" rows="1" type="textarea" />
+		<aui:input
+			cols="55"
+			cssClass="task-content-comment"
+			name="comment"
+			placeholder="comment"
+			rows="1"
+			type="textarea"
+		/>
 	</div>
 </aui:form>
 
-<aui:script use="liferay-workflow-tasks">
+<aui:script
+	use="liferay-workflow-tasks"
+>
 	var onTaskClickFn = A.rbind(
 		'onTaskClick',
 		Liferay.WorkflowTasks,

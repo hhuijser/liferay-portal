@@ -80,7 +80,10 @@ List<Address> addresses = AddressServiceUtil.getAddresses(className, classPK);
 				<tr>
 					<td>
 						<div class="sticker sticker-secondary sticker-static">
-							<aui:icon image="picture" markupView="lexicon" />
+							<aui:icon
+								image="picture"
+								markupView="lexicon"
+							/>
 						</div>
 					</td>
 					<td class="table-cell-expand">

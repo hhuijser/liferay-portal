@@ -354,7 +354,9 @@ if (iteratorURL != null) {
 <c:if test="<%= Validator.isNotNull(id) %>">
 	<input id="<%= namespace + id %>PrimaryKeys" name="<%= namespace + id %>PrimaryKeys" type="hidden" value="" />
 
-	<aui:script use="liferay-search-container">
+	<aui:script
+		use="liferay-search-container"
+	>
 		var searchContainer = new Liferay.SearchContainer(
 			{
 				id: '<%= namespace + id %>'

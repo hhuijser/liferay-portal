@@ -53,8 +53,16 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 	showSearch="<%= false %>"
 />
 
-<aui:form cssClass="container-fluid-1280" method="post" name="resultsRankingEntriesFm">
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+<aui:form
+	cssClass="container-fluid-1280"
+	method="post"
+	name="resultsRankingEntriesFm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
 
 	<liferay-ui:search-container
 		id="resultsRankingEntries"
@@ -135,7 +143,9 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var submitForm = function(url) {
 		var searchContainer = document.getElementById(
 			'<portlet:namespace />resultsRankingEntries'

@@ -37,7 +37,9 @@ String currentTab = ParamUtil.getString(request, "currentTab", "forms");
 	viewTypeItems="<%= ddmFormAdminDisplayContext.getViewTypesItems() %>"
 />
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteFormInstances = function() {
 		if (
 			confirm(

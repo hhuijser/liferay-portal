@@ -40,7 +40,11 @@ renderResponse.setTitle(assetTagsDisplayContext.getAssetTitle());
 	method="post"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= AssetTagException.class %>">
@@ -63,20 +67,37 @@ renderResponse.setTitle(assetTagsDisplayContext.getAssetTitle());
 
 		<liferay-ui:error exception="<%= DuplicateTagException.class %>" message="a-tag-with-that-name-already-exists" />
 
-		<aui:model-context bean="<%= assetTagsDisplayContext.getTag() %>" model="<%= AssetTag.class %>" />
+		<aui:model-context
+			bean="<%= assetTagsDisplayContext.getTag() %>"
+			model="<%= AssetTag.class %>"
+		/>
 
 		<liferay-frontend:fieldset-group>
 			<liferay-frontend:fieldset>
-				<aui:input name="tagId" type="hidden" value="<%= assetTagsDisplayContext.getTagId() %>" />
+				<aui:input
+					name="tagId"
+					type="hidden"
+					value="<%= assetTagsDisplayContext.getTagId() %>"
+				/>
 
-				<aui:input autoFocus="<%= true %>" cssClass="tag-name" name="name" placeholder="name" />
+				<aui:input
+					autoFocus="<%= true %>"
+					cssClass="tag-name"
+					name="name"
+					placeholder="name"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

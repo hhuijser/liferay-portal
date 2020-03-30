@@ -18,7 +18,9 @@
 
 </div>
 
-<aui:script use="aui-alert">
+<aui:script
+	use="aui-alert"
+>
 	var alertNode = A.one('#<%= id %>');
 
 	new A.Alert(

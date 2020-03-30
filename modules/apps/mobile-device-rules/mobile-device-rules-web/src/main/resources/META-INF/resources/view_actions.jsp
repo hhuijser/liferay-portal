@@ -64,9 +64,23 @@ MDRActionDisplayContext mdrActionDisplayContext = new MDRActionDisplayContext(re
 PortletURL portletURL = mdrActionDisplayContext.getPortletURL();
 %>
 
-<aui:form action="<%= deleteURL.toString() %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.DELETE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
+<aui:form
+	action="<%= deleteURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.DELETE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= portletURL.toString() %>"
+	/>
 
 	<c:if test="<%= MDRPermission.contains(permissionChecker, groupId, ActionKeys.ADD_RULE_GROUP) %>">
 		<liferay-portlet:renderURL var="addURL">
@@ -76,7 +90,10 @@ PortletURL portletURL = mdrActionDisplayContext.getPortletURL();
 		</liferay-portlet:renderURL>
 
 		<div class="button-holder text-center">
-			<aui:button href="<%= addURL.toString() %>" value="add-action" />
+			<aui:button
+				href="<%= addURL.toString() %>"
+				value="add-action"
+			/>
 		</div>
 	</c:if>
 

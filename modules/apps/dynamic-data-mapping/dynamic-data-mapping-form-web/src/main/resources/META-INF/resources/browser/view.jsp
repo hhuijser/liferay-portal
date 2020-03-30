@@ -35,7 +35,11 @@
 />
 
 <div class="container-fluid-1280" id="<portlet:namespace />formContainer">
-	<aui:form action="<%= String.valueOf(ddmFormBrowserDisplayContext.getPortletURL()) %>" method="post" name="selectDDMFormFm">
+	<aui:form
+		action="<%= String.valueOf(ddmFormBrowserDisplayContext.getPortletURL()) %>"
+		method="post"
+		name="selectDDMFormFm"
+	>
 		<liferay-ui:search-container
 			id="<%= ddmFormBrowserDisplayContext.getSearchContainerId() %>"
 			searchContainer="<%= ddmFormBrowserDisplayContext.getFormInstanceSearch() %>"
@@ -59,7 +63,11 @@
 					name="name"
 					truncate="<%= true %>"
 				>
-					<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+					<aui:a
+						cssClass="selector-button"
+						data="<%= data %>"
+						href="javascript:;"
+					>
 						<%= HtmlUtil.escape(formInstance.getName(locale)) %>
 					</aui:a>
 				</liferay-ui:search-container-column-text>

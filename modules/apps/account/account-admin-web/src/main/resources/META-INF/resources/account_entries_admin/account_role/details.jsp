@@ -42,15 +42,43 @@ if (accountRole != null) {
 	</portlet:renderURL>
 
 	<liferay-frontend:edit-form-body>
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (role == null) ? Constants.ADD : Constants.UPDATE %>" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="accountEntryId" type="hidden" value="<%= String.valueOf(accountEntryId) %>" />
-		<aui:input name="accountRoleId" type="hidden" value="<%= accountRoleId %>" />
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= (role == null) ? Constants.ADD : Constants.UPDATE %>"
+		/>
 
-		<aui:model-context bean="<%= role %>" model="<%= Role.class %>" />
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
 
-		<aui:input helpMessage="title-field-help" name="title" />
-		<aui:input name="description" />
+		<aui:input
+			name="accountEntryId"
+			type="hidden"
+			value="<%= String.valueOf(accountEntryId) %>"
+		/>
+
+		<aui:input
+			name="accountRoleId"
+			type="hidden"
+			value="<%= accountRoleId %>"
+		/>
+
+		<aui:model-context
+			bean="<%= role %>"
+			model="<%= Role.class %>"
+		/>
+
+		<aui:input
+			helpMessage="title-field-help"
+			name="title"
+		/>
+
+		<aui:input
+			name="description"
+		/>
 
 		<liferay-ui:error exception="<%= DuplicateRoleException.class %>" message="please-enter-a-unique-name" />
 
@@ -70,17 +98,34 @@ if (accountRole != null) {
 
 		<c:choose>
 			<c:when test="<%= (role != null) && AccountRoleConstants.isRequiredRole(role) %>">
-				<aui:input disabled="<%= true %>" helpMessage="key-field-help" label="key" name="viewNameField" type="text" value="<%= role.getName() %>" />
-				<aui:input name="name" type="hidden" />
+				<aui:input
+					disabled="<%= true %>"
+					helpMessage="key-field-help"
+					label="key"
+					name="viewNameField"
+					type="text"
+					value="<%= role.getName() %>"
+				/>
+
+				<aui:input
+					name="name"
+					type="hidden"
+				/>
 			</c:when>
 			<c:otherwise>
-				<aui:input helpMessage="key-field-help" label="key" name="name" />
+				<aui:input
+					helpMessage="key-field-help"
+					label="key"
+					name="name"
+				/>
 			</c:otherwise>
 		</c:choose>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
 		<%
 		String backURL = ParamUtil.getString(request, "backURL");
@@ -96,12 +141,17 @@ if (accountRole != null) {
 		}
 		%>
 
-		<aui:button href="<%= backURL %>" type="cancel" />
+		<aui:button
+			href="<%= backURL %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 
 <c:if test="<%= role == null %>">
-	<aui:script require="frontend-js-web/liferay/debounce/debounce.es as debounceModule">
+	<aui:script
+		require="frontend-js-web/liferay/debounce/debounce.es as debounceModule"
+	>
 		var form = document.getElementById('<portlet:namespace />fm');
 
 		if (form) {

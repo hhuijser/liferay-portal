@@ -97,7 +97,10 @@
 			<div class="<%= (disableInputs && showPortletDataInput) ? StringPool.BLANK : "hide " %>" id="<portlet:namespace />content_<%= portlet.getPortletId() %>">
 				<ul class="lfr-tree list-unstyled">
 					<li class="tree-item">
-						<aui:fieldset cssClass="portlet-type-data-section" label="<%= portletTitle %>">
+						<aui:fieldset
+							cssClass="portlet-type-data-section"
+							label="<%= portletTitle %>"
+						>
 
 							<%
 							if (exportControls != null) {
@@ -112,7 +115,9 @@
 									request.setAttribute("render_controls.jsp-portletId", portlet.getPortletId());
 							%>
 
-									<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'>
+									<aui:field-wrapper
+										label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'
+									>
 										<ul class="lfr-tree list-unstyled">
 											<liferay-util:include page="/portlet_list/render_controls.jsp" servletContext="<%= application %>" />
 										</ul>
@@ -131,7 +136,9 @@
 									request.setAttribute("render_controls.jsp-portletId", portlet.getPortletId());
 								%>
 
-									<aui:field-wrapper label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'>
+									<aui:field-wrapper
+										label='<%= ArrayUtil.isNotEmpty(metadataControls) ? "content" : StringPool.BLANK %>'
+									>
 										<ul class="lfr-tree list-unstyled">
 											<liferay-util:include page="/portlet_list/render_controls.jsp" servletContext="<%= application %>" />
 										</ul>
@@ -158,7 +165,9 @@
 										request.setAttribute("render_controls.jsp-portletId", portlet.getPortletId());
 							%>
 
-										<aui:field-wrapper label="content-metadata">
+										<aui:field-wrapper
+											label="content-metadata"
+										>
 											<ul class="lfr-tree list-unstyled">
 												<liferay-util:include page="/portlet_list/render_controls.jsp" servletContext="<%= application %>" />
 											</ul>
@@ -195,7 +204,14 @@
 					%>
 
 					<span <%= !disableInputs ? StringPool.BLANK : "class=\"hide\"" %>>
-						<aui:a cssClass="content-link modify-link" data="<%= data %>" href="javascript:;" id='<%= "contentLink_" + portlet.getPortletId() %>' label="change" method="get" />
+						<aui:a
+							cssClass="content-link modify-link"
+							data="<%= data %>"
+							href="javascript:;"
+							id='<%= "contentLink_" + portlet.getPortletId() %>'
+							label="change"
+							method="get"
+						/>
 					</span>
 				</li>
 			</ul>
@@ -215,19 +231,40 @@
 </ul>
 
 <c:if test="<%= type.equals(Constants.EXPORT) %>">
-	<aui:fieldset cssClass="content-options" label="for-each-of-the-selected-content-types,-export-their">
+	<aui:fieldset
+		cssClass="content-options"
+		label="for-each-of-the-selected-content-types,-export-their"
+	>
 		<span class="selected-labels" id="<portlet:namespace />selectedContentOptions"></span>
 
 		<span <%= !disableInputs ? StringPool.BLANK : "class=\"hide\"" %>>
-			<aui:a cssClass="modify-link" href="javascript:;" id="contentOptionsLink" label="change" method="get" />
+			<aui:a
+				cssClass="modify-link"
+				href="javascript:;"
+				id="contentOptionsLink"
+				label="change"
+				method="get"
+			/>
 		</span>
 
 		<div class="hide" id="<portlet:namespace />contentOptions">
 			<ul class="lfr-tree list-unstyled">
 				<li class="tree-item">
-					<aui:input disabled="<%= disableInputs %>" label="comments" name="<%= PortletDataHandlerKeys.COMMENTS %>" type="checkbox" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.COMMENTS, true) %>" />
+					<aui:input
+						disabled="<%= disableInputs %>"
+						label="comments"
+						name="<%= PortletDataHandlerKeys.COMMENTS %>"
+						type="checkbox"
+						value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.COMMENTS, true) %>"
+					/>
 
-					<aui:input disabled="<%= disableInputs %>" label="ratings" name="<%= PortletDataHandlerKeys.RATINGS %>" type="checkbox" value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.RATINGS, true) %>" />
+					<aui:input
+						disabled="<%= disableInputs %>"
+						label="ratings"
+						name="<%= PortletDataHandlerKeys.RATINGS %>"
+						type="checkbox"
+						value="<%= MapUtil.getBoolean(parameterMap, PortletDataHandlerKeys.RATINGS, true) %>"
+					/>
 				</li>
 			</ul>
 		</div>

@@ -37,13 +37,28 @@ DepotAdminDetailsDisplayContext depotAdminDetailsDisplayContext = (DepotAdminDet
 		collapsible="false"
 		label='<%= LanguageUtil.get(request, "details") %>'
 	>
-		<aui:model-context bean="<%= depotAdminDetailsDisplayContext.getGroup() %>" model="<%= Group.class %>" />
+		<aui:model-context
+			bean="<%= depotAdminDetailsDisplayContext.getGroup() %>"
+			model="<%= Group.class %>"
+		/>
 
-		<aui:input name="assetLibraryId" type="resource" value="<%= String.valueOf(depotAdminDetailsDisplayContext.getDepotEntryId()) %>" />
+		<aui:input
+			name="assetLibraryId"
+			type="resource"
+			value="<%= String.valueOf(depotAdminDetailsDisplayContext.getDepotEntryId()) %>"
+		/>
 
-		<aui:input name="name" placeholder="name" required="<%= true %>" value="<%= depotAdminDetailsDisplayContext.getDepotName(locale) %>" />
+		<aui:input
+			name="name"
+			placeholder="name"
+			required="<%= true %>"
+			value="<%= depotAdminDetailsDisplayContext.getDepotName(locale) %>"
+		/>
 
-		<aui:input name="description" placeholder="description" />
+		<aui:input
+			name="description"
+			placeholder="description"
+		/>
 	</liferay-frontend:fieldset>
 
 	<liferay-frontend:fieldset
@@ -62,7 +77,12 @@ DepotAdminDetailsDisplayContext depotAdminDetailsDisplayContext = (DepotAdminDet
 			%>
 
 				<div class="col-md-6">
-					<aui:input label="<%= depotApplication.getLabel(locale) %>" name='<%= "DepotAppCustomization--" + depotApplication.getPortletId() + "--" %>' type="checkbox" value="<%= depotAdminDetailsDisplayContext.isEnabled(depotApplication.getPortletId()) %>" />
+					<aui:input
+						label="<%= depotApplication.getLabel(locale) %>"
+						name='<%= "DepotAppCustomization--" + depotApplication.getPortletId() + "--" %>'
+						type="checkbox"
+						value="<%= depotAdminDetailsDisplayContext.isEnabled(depotApplication.getPortletId()) %>"
+					/>
 				</div>
 
 			<%

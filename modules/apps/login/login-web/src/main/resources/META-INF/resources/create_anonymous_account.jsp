@@ -25,9 +25,22 @@ renderResponse.setTitle(LanguageUtil.get(request, "anonymous-account"));
 </portlet:actionURL>
 
 <div class="login-container">
-	<aui:form action="<%= createAnonymousAccountURL %>" method="post" name="fm">
-		<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
+	<aui:form
+		action="<%= createAnonymousAccountURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="saveLastPath"
+			type="hidden"
+			value="<%= false %>"
+		/>
+
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= Constants.ADD %>"
+		/>
 
 		<liferay-ui:error exception="<%= CaptchaConfigurationException.class %>" message="a-captcha-error-occurred-please-contact-an-administrator" />
 		<liferay-ui:error exception="<%= CaptchaException.class %>" message="captcha-verification-failed" />
@@ -57,28 +70,48 @@ renderResponse.setTitle(LanguageUtil.get(request, "anonymous-account"));
 		<liferay-ui:error exception="<%= UserEmailAddressException.MustNotUseCompanyMx.class %>" message="the-email-address-you-requested-is-not-valid-because-its-domain-is-reserved" />
 		<liferay-ui:error exception="<%= UserEmailAddressException.MustValidate.class %>" message="please-enter-a-valid-email-address" />
 
-		<aui:fieldset column="<%= true %>">
-			<aui:col width="<%= 50 %>">
-				<aui:input model="<%= User.class %>" name="firstName" />
+		<aui:fieldset
+			column="<%= true %>"
+		>
+			<aui:col
+				width="<%= 50 %>"
+			>
+				<aui:input
+					model="<%= User.class %>"
+					name="firstName"
+				/>
 
 				<%
 				FullNameDefinition fullNameDefinition = FullNameDefinitionFactory.getInstance(locale);
 				%>
 
 				<c:if test='<%= fullNameDefinition.isFieldRequired("last-name") %>'>
-					<aui:input model="<%= User.class %>" name="lastName">
-						<aui:validator name="required" />
+					<aui:input
+						model="<%= User.class %>"
+						name="lastName"
+					>
+						<aui:validator
+							name="required"
+						/>
 					</aui:input>
 				</c:if>
 
-				<aui:input autoFocus="<%= true %>" model="<%= User.class %>" name="emailAddress">
+				<aui:input
+					autoFocus="<%= true %>"
+					model="<%= User.class %>"
+					name="emailAddress"
+				>
 					<c:if test="<%= PrefsPropsUtil.getBoolean(company.getCompanyId(), PropsKeys.USERS_EMAIL_ADDRESS_REQUIRED, PropsValues.USERS_EMAIL_ADDRESS_REQUIRED) %>">
-						<aui:validator name="required" />
+						<aui:validator
+							name="required"
+						/>
 					</c:if>
 				</aui:input>
 			</aui:col>
 
-			<aui:col width="<%= 50 %>">
+			<aui:col
+				width="<%= 50 %>"
+			>
 				<c:if test="<%= captchaConfiguration.createAccountCaptchaEnabled() %>">
 					<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/login/captcha" var="captchaURL" />
 
@@ -90,7 +123,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "anonymous-account"));
 		</aui:fieldset>
 
 		<aui:button-row>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 		</aui:button-row>
 	</aui:form>
 

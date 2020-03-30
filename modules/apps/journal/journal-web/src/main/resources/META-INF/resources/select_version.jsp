@@ -31,7 +31,12 @@ portletURL.setParameter("articleId", articleId);
 portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 %>
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="selectVersionFm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectVersionFm"
+>
 	<liferay-ui:search-container
 		iteratorURL="<%= portletURL %>"
 		total="<%= JournalArticleLocalServiceUtil.getArticlesCount(groupId, articleId) %>"
@@ -65,7 +70,11 @@ portletURL.setParameter("sourceVersion", String.valueOf(sourceVersion));
 				data.put("targetversion", curTargetVersion);
 				%>
 
-				<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+				<aui:a
+					cssClass="selector-button"
+					data="<%= data %>"
+					href="javascript:;"
+				>
 					<%= String.valueOf(curArticle.getVersion()) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>

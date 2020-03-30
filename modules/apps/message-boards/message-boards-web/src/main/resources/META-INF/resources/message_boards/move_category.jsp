@@ -44,14 +44,37 @@ if (portletTitleBasedNavigation) {
 
 	<portlet:actionURL name="/message_boards/move_category" var="moveCategoryURL" />
 
-	<aui:form action="<%= moveCategoryURL %>" method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="mbCategoryId" type="hidden" value="<%= categoryId %>" />
-		<aui:input name="parentCategoryId" type="hidden" value="<%= parentCategoryId %>" />
+	<aui:form
+		action="<%= moveCategoryURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
 
-		<aui:model-context bean="<%= category %>" model="<%= MBCategory.class %>" />
+		<aui:input
+			name="mbCategoryId"
+			type="hidden"
+			value="<%= categoryId %>"
+		/>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:input
+			name="parentCategoryId"
+			type="hidden"
+			value="<%= parentCategoryId %>"
+		/>
+
+		<aui:model-context
+			bean="<%= category %>"
+			model="<%= MBCategory.class %>"
+		/>
+
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 
 				<%
@@ -67,25 +90,48 @@ if (portletTitleBasedNavigation) {
 				%>
 
 				<div class="form-group">
-					<aui:input label="parent-category[message-board]" name="parentCategoryName" type="resource" value="<%= parentCategoryName %>" />
+					<aui:input
+						label="parent-category[message-board]"
+						name="parentCategoryName"
+						type="resource"
+						value="<%= parentCategoryName %>"
+					/>
 
-					<aui:button name="selectCategoryButton" value="select" />
+					<aui:button
+						name="selectCategoryButton"
+						value="select"
+					/>
 
 					<%
 					String taglibRemoveFolder = "Liferay.Util.removeEntitySelection('parentCategoryId', 'parentCategoryName', this, '" + renderResponse.getNamespace() + "');";
 					%>
 
-					<aui:button disabled="<%= parentCategoryId <= 0 %>" name="removeCategoryButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
+					<aui:button
+						disabled="<%= parentCategoryId <= 0 %>"
+						name="removeCategoryButton"
+						onClick="<%= taglibRemoveFolder %>"
+						value="remove"
+					/>
 				</div>
 
-				<aui:input label="merge-with-parent-category" name="mergeWithParentCategory" type="checkbox" />
+				<aui:input
+					label="merge-with-parent-category"
+					name="mergeWithParentCategory"
+					type="checkbox"
+				/>
 			</aui:fieldset>
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" value="move" />
+			<aui:button
+				type="submit"
+				value="move"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

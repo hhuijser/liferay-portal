@@ -24,7 +24,10 @@ SelectOrganizationsDisplayContext selectOrganizationsDisplayContext = new Select
 	displayContext="<%= new SelectOrganizationsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, selectOrganizationsDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="fm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="organizations"
 		searchContainer="<%= selectOrganizationsDisplayContext.getOrganizationSearchContainer() %>"
@@ -52,7 +55,9 @@ SelectOrganizationsDisplayContext selectOrganizationsDisplayContext = new Select
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />organizations'
 	);

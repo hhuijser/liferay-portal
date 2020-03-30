@@ -25,7 +25,12 @@ long[] selectedGroupIds = GetterUtil.getLongValues(request.getAttribute("liferay
 	displayContext="<%= new SiteBrowserManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, siteBrowserDisplayContext) %>"
 />
 
-<aui:form action="<%= siteBrowserDisplayContext.getPortletURL() %>" cssClass="container-fluid-1280" method="post" name="selectGroupFm">
+<aui:form
+	action="<%= siteBrowserDisplayContext.getPortletURL() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectGroupFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= siteBrowserDisplayContext.getSearchContainer() %>"
 	>
@@ -66,7 +71,11 @@ long[] selectedGroupIds = GetterUtil.getLongValues(request.getAttribute("liferay
 									</span>
 								</c:when>
 								<c:otherwise>
-									<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="selector-button"
+										data="<%= data %>"
+										href="javascript:;"
+									>
 										<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 									</aui:a>
 								</c:otherwise>
@@ -102,7 +111,11 @@ long[] selectedGroupIds = GetterUtil.getLongValues(request.getAttribute("liferay
 								</span>
 							</c:when>
 							<c:otherwise>
-								<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="selector-button"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= HtmlUtil.escape(group.getDescriptiveName(locale)) %>
 								</aui:a>
 							</c:otherwise>
@@ -124,7 +137,9 @@ long[] selectedGroupIds = GetterUtil.getLongValues(request.getAttribute("liferay
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	Liferay.Util.selectEntityHandler(
 		'#<portlet:namespace />selectGroupFm',
 		'<%= HtmlUtil.escapeJS(eventName) %>'

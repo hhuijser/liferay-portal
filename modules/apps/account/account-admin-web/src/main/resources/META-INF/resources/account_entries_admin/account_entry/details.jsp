@@ -32,9 +32,23 @@ renderResponse.setTitle((accountEntryDisplay == null) ? LanguageUtil.get(request
 <liferay-frontend:edit-form
 	action="<%= editAccountURL %>"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (accountEntryDisplay == null) ? Constants.ADD : Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="accountEntryId" type="hidden" value='<%= (accountEntryDisplay == null) ? "0" : String.valueOf(accountEntryDisplay.getAccountEntryId()) %>' />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= (accountEntryDisplay == null) ? Constants.ADD : Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="accountEntryId"
+		type="hidden"
+		value='<%= (accountEntryDisplay == null) ? "0" : String.valueOf(accountEntryDisplay.getAccountEntryId()) %>'
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<h2 class="sheet-title">
@@ -51,8 +65,13 @@ renderResponse.setTitle((accountEntryDisplay == null) ? LanguageUtil.get(request
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button href="<%= backURL %>" type="cancel" />
+		<aui:button
+			href="<%= backURL %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

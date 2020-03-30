@@ -36,8 +36,16 @@ long assertionLifetime = GetterUtil.getLong(request.getAttribute(SamlWebKeys.SAM
 	<portlet:param name="samlIdpSpConnectionId" value='<%= (samlIdpSpConnection != null) ? String.valueOf(samlIdpSpConnection.getSamlIdpSpConnectionId()) : "" %>' />
 </portlet:actionURL>
 
-<aui:form action="<%= updateServiceProviderConnectionURL %>" cssClass="container-fluid-1280" enctype="multipart/form-data">
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= updateServiceProviderConnectionURL %>"
+	cssClass="container-fluid-1280"
+	enctype="multipart/form-data"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<liferay-ui:error exception="<%= DuplicateSamlIdpSpConnectionSamlSpEntityIdException.class %>" message="please-enter-a-unique-service-provider-entity-id" />
 	<liferay-ui:error exception="<%= SamlIdpSpConnectionMetadataUrlException.class %>" message="please-enter-a-valid-metadata-endpoint-url" />
@@ -45,66 +53,162 @@ long assertionLifetime = GetterUtil.getLong(request.getAttribute(SamlWebKeys.SAM
 	<liferay-ui:error exception="<%= SamlIdpSpConnectionNameException.class %>" message="please-enter-a-valid-name" />
 	<liferay-ui:error exception="<%= SamlIdpSpConnectionSamlSpEntityIdException.class %>" message="please-enter-a-valid-service-provider-entity-id" />
 
-	<aui:model-context bean="<%= samlIdpSpConnection %>" model="<%= SamlIdpSpConnection.class %>" />
+	<aui:model-context
+		bean="<%= samlIdpSpConnection %>"
+		model="<%= SamlIdpSpConnection.class %>"
+	/>
 
 	<liferay-util:dynamic-include key="com.liferay.saml.web#/admin/edit_service_provider_connection.jsp#pre" />
 
-	<aui:fieldset label="general">
-		<aui:input name="name" required="<%= true %>" />
+	<aui:fieldset
+		label="general"
+	>
+		<aui:input
+			name="name"
+			required="<%= true %>"
+		/>
 
-		<aui:input helpMessage="service-provider-connection-entity-id-help" label="saml-entity-id" name="samlSpEntityId" required="<%= true %>" />
+		<aui:input
+			helpMessage="service-provider-connection-entity-id-help"
+			label="saml-entity-id"
+			name="samlSpEntityId"
+			required="<%= true %>"
+		/>
 
-		<aui:input name="enabled" />
+		<aui:input
+			name="enabled"
+		/>
 
-		<aui:input helpMessage="assertion-lifetime-help" name="assertionLifetime" required="<%= true %>" value="<%= String.valueOf(assertionLifetime) %>" />
+		<aui:input
+			helpMessage="assertion-lifetime-help"
+			name="assertionLifetime"
+			required="<%= true %>"
+			value="<%= String.valueOf(assertionLifetime) %>"
+		/>
 	</aui:fieldset>
 
-	<aui:fieldset label="encryption">
-		<aui:input name="encryptionForced" />
+	<aui:fieldset
+		label="encryption"
+	>
+		<aui:input
+			name="encryptionForced"
+		/>
 	</aui:fieldset>
 
-	<aui:fieldset helpMessage="service-provider-metadata-help" label="metadata">
-		<aui:input name="metadataUrl" />
+	<aui:fieldset
+		helpMessage="service-provider-metadata-help"
+		label="metadata"
+	>
+		<aui:input
+			name="metadataUrl"
+		/>
 
 		<aui:button-row>
-			<aui:button onClick='<%= renderResponse.getNamespace() + "uploadMetadataXml();" %>' value="upload-metadata-xml" />
+			<aui:button
+				onClick='<%= renderResponse.getNamespace() + "uploadMetadataXml();" %>'
+				value="upload-metadata-xml"
+			/>
 		</aui:button-row>
 
 		<div class="hide" id="<portlet:namespace />uploadMetadataXmlForm">
-			<aui:fieldset label="upload-metadata">
-				<aui:input name="metadataXml" type="file" />
+			<aui:fieldset
+				label="upload-metadata"
+			>
+				<aui:input
+					name="metadataXml"
+					type="file"
+				/>
 			</aui:fieldset>
 		</div>
 	</aui:fieldset>
 
-	<aui:fieldset label="name-identifier">
-		<aui:select label="name-identifier-format" name="nameIdFormat">
-			<aui:option label="email-address" value="<%= nameIdTypeValues.getEmail() %>" />
-			<aui:option label="encrypted" value="<%= nameIdTypeValues.getEncrypted() %>" />
-			<aui:option label="entity" value="<%= nameIdTypeValues.getEntity() %>" />
-			<aui:option label="kerberos" value="<%= nameIdTypeValues.getKerberos() %>" />
-			<aui:option label="persistent" value="<%= nameIdTypeValues.getPersistent() %>" />
-			<aui:option label="transient" value="<%= nameIdTypeValues.getTransient() %>" />
-			<aui:option label="unspecified" value="<%= nameIdTypeValues.getUnspecified() %>" />
-			<aui:option label="windows-domain-qualified-name" value="<%= nameIdTypeValues.getWinDomainQualified() %>" />
-			<aui:option label="x509-subject-name" value="<%= nameIdTypeValues.getX509Subject() %>" />
+	<aui:fieldset
+		label="name-identifier"
+	>
+		<aui:select
+			label="name-identifier-format"
+			name="nameIdFormat"
+		>
+			<aui:option
+				label="email-address"
+				value="<%= nameIdTypeValues.getEmail() %>"
+			/>
+
+			<aui:option
+				label="encrypted"
+				value="<%= nameIdTypeValues.getEncrypted() %>"
+			/>
+
+			<aui:option
+				label="entity"
+				value="<%= nameIdTypeValues.getEntity() %>"
+			/>
+
+			<aui:option
+				label="kerberos"
+				value="<%= nameIdTypeValues.getKerberos() %>"
+			/>
+
+			<aui:option
+				label="persistent"
+				value="<%= nameIdTypeValues.getPersistent() %>"
+			/>
+
+			<aui:option
+				label="transient"
+				value="<%= nameIdTypeValues.getTransient() %>"
+			/>
+
+			<aui:option
+				label="unspecified"
+				value="<%= nameIdTypeValues.getUnspecified() %>"
+			/>
+
+			<aui:option
+				label="windows-domain-qualified-name"
+				value="<%= nameIdTypeValues.getWinDomainQualified() %>"
+			/>
+
+			<aui:option
+				label="x509-subject-name"
+				value="<%= nameIdTypeValues.getX509Subject() %>"
+			/>
 		</aui:select>
 
-		<aui:input helpMessage="name-identifier-attribute-name-help" label="name-identifier-attribute-name" name="nameIdAttribute" required="<%= true %>" />
+		<aui:input
+			helpMessage="name-identifier-attribute-name-help"
+			label="name-identifier-attribute-name"
+			name="nameIdAttribute"
+			required="<%= true %>"
+		/>
 	</aui:fieldset>
 
-	<aui:fieldset label="attributes">
-		<aui:input name="attributesEnabled" />
+	<aui:fieldset
+		label="attributes"
+	>
+		<aui:input
+			name="attributesEnabled"
+		/>
 
-		<aui:input helpMessage="attributes-namespace-enabled-help" name="attributesNamespaceEnabled" />
+		<aui:input
+			helpMessage="attributes-namespace-enabled-help"
+			name="attributesNamespaceEnabled"
+		/>
 
-		<aui:input helpMessage="attributes-help" label="attributes" name="attributeNames" />
+		<aui:input
+			helpMessage="attributes-help"
+			label="attributes"
+			name="attributeNames"
+		/>
 	</aui:fieldset>
 
 	<liferay-util:dynamic-include key="com.liferay.saml.web#/admin/edit_service_provider_connection.jsp#post" />
 
 	<aui:button-row>
-		<aui:button type="submit" value="save" />
+		<aui:button
+			type="submit"
+			value="save"
+		/>
 	</aui:button-row>
 </aui:form>
 

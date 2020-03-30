@@ -53,8 +53,17 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 	name="fm"
 	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfigurations();" %>'
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -63,13 +72,20 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 				id="displaySettingsPanel"
 				label="display-settings"
 			>
-				<aui:select label="maximum-items-to-display" name="preferences--pageDelta--" value="<%= announcementsPortletInstanceConfiguration.pageDelta() %>">
+				<aui:select
+					label="maximum-items-to-display"
+					name="preferences--pageDelta--"
+					value="<%= announcementsPortletInstanceConfiguration.pageDelta() %>"
+				>
 
 					<%
 					for (int pageDeltaValue : PropsValues.ANNOUNCEMENTS_ENTRY_PAGE_DELTA_VALUES) {
 					%>
 
-						<aui:option label="<%= pageDeltaValue %>" selected="<%= announcementsDisplayContext.getPageDelta() == pageDeltaValue %>" />
+						<aui:option
+							label="<%= pageDeltaValue %>"
+							selected="<%= announcementsDisplayContext.getPageDelta() == pageDeltaValue %>"
+						/>
 
 					<%
 					}
@@ -83,7 +99,14 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 				id="announcementsDisplayedPanel"
 				label="announcements-displayed"
 			>
-				<aui:input cssClass="customize-announcements-displayed" id="customizeAnnouncementsDisplayed" name="preferences--customizeAnnouncementsDisplayed--" title="customize-announcements-displayed" type="checkbox" value="<%= announcementsDisplayContext.isCustomizeAnnouncementsDisplayed() %>" />
+				<aui:input
+					cssClass="customize-announcements-displayed"
+					id="customizeAnnouncementsDisplayed"
+					name="preferences--customizeAnnouncementsDisplayed--"
+					title="customize-announcements-displayed"
+					type="checkbox"
+					value="<%= announcementsDisplayContext.isCustomizeAnnouncementsDisplayed() %>"
+				/>
 
 				<div class="<%= announcementsDisplayContext.isCustomizeAnnouncementsDisplayed() ? "" : "hide" %>" id="<portlet:namespace />announcementsDisplayed">
 					<div class="alert alert-info">
@@ -118,7 +141,10 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeGroupIds--" type="hidden" />
+								<aui:input
+									name="preferences--selectedScopeGroupIds--"
+									type="hidden"
+								/>
 
 								<div id="<portlet:namespace />scopeGroupIdsBoxes">
 									<liferay-ui:input-move-boxes
@@ -157,7 +183,10 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeOrganizationIds--" type="hidden" />
+								<aui:input
+									name="preferences--selectedScopeOrganizationIds--"
+									type="hidden"
+								/>
 
 								<div id="<portlet:namespace />scopeOrganizationIdsBoxes">
 									<liferay-ui:input-move-boxes
@@ -196,7 +225,10 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeUserGroupIds--" type="hidden" />
+								<aui:input
+									name="preferences--selectedScopeUserGroupIds--"
+									type="hidden"
+								/>
 
 								<div id="<portlet:namespace />scopeUserGroupIdsBoxes">
 									<liferay-ui:input-move-boxes
@@ -235,7 +267,10 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 								}
 								%>
 
-								<aui:input name="preferences--selectedScopeRoleIds--" type="hidden" />
+								<aui:input
+									name="preferences--selectedScopeRoleIds--"
+									type="hidden"
+								/>
 
 								<div id="<portlet:namespace />scopeRoleIdsBoxes">
 									<liferay-ui:input-move-boxes
@@ -257,13 +292,19 @@ announcementsPortletInstanceConfiguration = ParameterMapUtil.setParameterMap(Ann
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 
-<aui:script require="metal-dom/src/dom">
+<aui:script
+	require="metal-dom/src/dom"
+>
 	var dom = metalDomSrcDom.default;
 
 	var form = document.getElementById('<portlet:namespace />fm');

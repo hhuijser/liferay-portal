@@ -40,7 +40,11 @@
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteLayoutSetPrototypesURL %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= deleteLayoutSetPrototypesURL %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= layoutSetPrototypeDisplayContext.getSearchContainer() %>"
 	>
@@ -197,7 +201,9 @@
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteLayoutSetPrototypes = function() {
 		if (
 			confirm(

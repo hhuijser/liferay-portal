@@ -25,24 +25,61 @@ String taglibOnChange = "Liferay.Util.toggleDisabled('#" + renderResponse.getNam
 %>
 
 <aui:fieldset>
-	<aui:input checked="<%= setCustomName %>" helpMessage="set-custom-name-help" label="set-custom-name" name="TypeSettingsProperties--setCustomName--" onChange="<%= taglibOnChange %>" type="checkbox" />
+	<aui:input
+		checked="<%= setCustomName %>"
+		helpMessage="set-custom-name-help"
+		label="set-custom-name"
+		name="TypeSettingsProperties--setCustomName--"
+		onChange="<%= taglibOnChange %>"
+		type="checkbox"
+	/>
 </aui:fieldset>
 
-<aui:input autoFocus="<%= true %>" disabled="<%= !setCustomName %>" label="name" localized="<%= true %>" maxlength='<%= ModelHintsUtil.getMaxLength(SiteNavigationMenuItem.class.getName(), "name") %>' name="name" placeholder="name" type="text" value='<%= SiteNavigationMenuItemUtil.getSiteNavigationMenuItemXML(siteNavigationMenuItem, "name") %>'>
-	<aui:validator name="required" />
+<aui:input
+	autoFocus="<%= true %>"
+	disabled="<%= !setCustomName %>"
+	label="name"
+	localized="<%= true %>"
+	maxlength='<%= ModelHintsUtil.getMaxLength(SiteNavigationMenuItem.class.getName(), "name") %>'
+	name="name"
+	placeholder="name"
+	type="text"
+	value='<%= SiteNavigationMenuItemUtil.getSiteNavigationMenuItemXML(siteNavigationMenuItem, "name") %>'
+>
+	<aui:validator
+		name="required"
+	/>
 </aui:input>
 
-<aui:input id="groupId" name="TypeSettingsProperties--groupId--" type="hidden" value="<%= (selLayout != null) ? selLayout.getGroupId() : StringPool.BLANK %>">
-	<aui:validator name="required" />
+<aui:input
+	id="groupId"
+	name="TypeSettingsProperties--groupId--"
+	type="hidden"
+	value="<%= (selLayout != null) ? selLayout.getGroupId() : StringPool.BLANK %>"
+>
+	<aui:validator
+		name="required"
+	/>
 </aui:input>
 
-<aui:input id="privateLayout" name="TypeSettingsProperties--privateLayout--" type="hidden" value="<%= (selLayout != null) ? selLayout.isPrivateLayout() : StringPool.BLANK %>">
-	<aui:validator name="required" />
+<aui:input
+	id="privateLayout"
+	name="TypeSettingsProperties--privateLayout--"
+	type="hidden"
+	value="<%= (selLayout != null) ? selLayout.isPrivateLayout() : StringPool.BLANK %>"
+>
+	<aui:validator
+		name="required"
+	/>
 </aui:input>
 
 <div class="form-group input-text-wrapper text-default">
 	<div class="d-inline-block" id="<portlet:namespace />layoutItemRemove" role="button">
-		<aui:icon cssClass="icon-monospaced" image="times-circle" markupView="lexicon" />
+		<aui:icon
+			cssClass="icon-monospaced"
+			image="times-circle"
+			markupView="lexicon"
+		/>
 	</div>
 
 	<div class="d-inline-block">
@@ -58,12 +95,22 @@ String taglibOnChange = "Liferay.Util.toggleDisabled('#" + renderResponse.getNam
 		</span>
 	</div>
 
-	<aui:input id="layoutUuid" name="TypeSettingsProperties--layoutUuid--" type="hidden" value="<%= (selLayout != null) ? selLayout.getUuid() : StringPool.BLANK %>">
-		<aui:validator name="required" />
+	<aui:input
+		id="layoutUuid"
+		name="TypeSettingsProperties--layoutUuid--"
+		type="hidden"
+		value="<%= (selLayout != null) ? selLayout.getUuid() : StringPool.BLANK %>"
+	>
+		<aui:validator
+			name="required"
+		/>
 	</aui:input>
 </div>
 
-<aui:button name="chooseLayout" value="choose" />
+<aui:button
+	name="chooseLayout"
+	value="choose"
+/>
 
 <%
 String eventName = renderResponse.getNamespace() + "selectLayout";
@@ -81,7 +128,9 @@ if (selLayout != null) {
 }
 %>
 
-<aui:script use="aui-base,node-event-simulate">
+<aui:script
+	use="aui-base,node-event-simulate"
+>
 	var groupId = A.one('#<portlet:namespace />groupId');
 	var layoutItemRemove = A.one('#<portlet:namespace />layoutItemRemove');
 	var layoutNameInput = A.one('#<portlet:namespace />layoutNameInput');

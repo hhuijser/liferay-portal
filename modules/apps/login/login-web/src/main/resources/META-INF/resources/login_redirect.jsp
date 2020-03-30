@@ -33,19 +33,31 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 				<portlet:param name="emailAddress" value="<%= emailAddress %>" />
 			</portlet:actionURL>
 
-			<aui:form action="<%= updateIncompleteUserURL %>" method="post" name="fm">
+			<aui:form
+				action="<%= updateIncompleteUserURL %>"
+				method="post"
+				name="fm"
+			>
 				<div class="alert alert-success">
 					<liferay-ui:message key="your-comment-has-already-been-posted.-would-you-like-to-create-an-account-with-the-provided-information" />
 				</div>
 
-				<aui:button onClick='<%= renderResponse.getNamespace() + "activateAccount();" %>' value="activate-account" />
+				<aui:button
+					onClick='<%= renderResponse.getNamespace() + "activateAccount();" %>'
+					value="activate-account"
+				/>
 
-				<aui:button onClick='<%= renderResponse.getNamespace() + "closeDialog(window.parent.namespace);" %>' value="cancel" />
+				<aui:button
+					onClick='<%= renderResponse.getNamespace() + "closeDialog(window.parent.namespace);" %>'
+					value="cancel"
+				/>
 			</aui:form>
 		</div>
 	</div>
 
-	<aui:script sandbox="<%= true %>">
+	<aui:script
+		sandbox="<%= true %>"
+	>
 		var showStatusMessage = Liferay.lazyLoad('metal-dom/src/dom', function(
 			dom,
 			type,
@@ -130,7 +142,9 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 	</aui:script>
 </c:if>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	window.<portlet:namespace />closeDialog = function(namespace) {
 		Liferay.fire('closeWindow', {
 			id: namespace + 'signInDialog',

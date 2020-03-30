@@ -199,10 +199,26 @@ BookmarksUtil.addPortletBreadcrumbEntries(folder, request, renderResponse);
 			<portlet:param name="mvcRenderCommandName" value="/bookmarks/edit_entry" />
 		</liferay-portlet:actionURL>
 
-		<aui:form action="<%= editEntryURL.toString() %>" method="get" name="fm">
-			<aui:input name="<%= Constants.CMD %>" type="hidden" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-			<aui:input name="newFolderId" type="hidden" />
+		<aui:form
+			action="<%= editEntryURL.toString() %>"
+			method="get"
+			name="fm"
+		>
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+			/>
+
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+
+			<aui:input
+				name="newFolderId"
+				type="hidden"
+			/>
 
 			<liferay-util:include page="/bookmarks/view_entries.jsp" servletContext="<%= application %>">
 				<liferay-util:param name="searchContainerId" value="entries" />
@@ -225,7 +241,9 @@ else {
 }
 %>
 
-<aui:script use="liferay-bookmarks">
+<aui:script
+	use="liferay-bookmarks"
+>
 	var bookmarks = new Liferay.Portlet.Bookmarks({
 		editEntryUrl: '<portlet:actionURL name="/bookmarks/edit_entry" />',
 		form: {

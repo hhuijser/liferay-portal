@@ -27,13 +27,36 @@ int maxTerms = dataJSONObject.getInt("maxTerms", 10);
 boolean showAssetCount = dataJSONObject.getBoolean("showAssetCount", true);
 %>
 
-<aui:select label="display-style" name='<%= searchFacet.getClassName() + "displayStyleFacet" %>'>
-	<aui:option label="cloud" selected='<%= displayStyle.equals("cloud") %>' />
-	<aui:option label="list" selected='<%= displayStyle.equals("list") %>' />
+<aui:select
+	label="display-style"
+	name='<%= searchFacet.getClassName() + "displayStyleFacet" %>'
+>
+	<aui:option
+		label="cloud"
+		selected='<%= displayStyle.equals("cloud") %>'
+	/>
+
+	<aui:option
+		label="list"
+		selected='<%= displayStyle.equals("list") %>'
+	/>
 </aui:select>
 
-<aui:input label="frequency-threshold" name='<%= searchFacet.getClassName() + "frequencyThreshold" %>' value="<%= frequencyThreshold %>" />
+<aui:input
+	label="frequency-threshold"
+	name='<%= searchFacet.getClassName() + "frequencyThreshold" %>'
+	value="<%= frequencyThreshold %>"
+/>
 
-<aui:input label="max-terms" name='<%= searchFacet.getClassName() + "maxTerms" %>' value="<%= maxTerms %>" />
+<aui:input
+	label="max-terms"
+	name='<%= searchFacet.getClassName() + "maxTerms" %>'
+	value="<%= maxTerms %>"
+/>
 
-<aui:input label="show-asset-count" name='<%= searchFacet.getClassName() + "showAssetCount" %>' type="checkbox" value="<%= showAssetCount %>" />
+<aui:input
+	label="show-asset-count"
+	name='<%= searchFacet.getClassName() + "showAssetCount" %>'
+	type="checkbox"
+	value="<%= showAssetCount %>"
+/>

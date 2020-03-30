@@ -50,13 +50,19 @@ String viewMoreURL = (String)request.getAttribute("liferay-frontend:add-menu:vie
 		%>
 
 		<a <%= AUIUtil.buildData(menuItem.getAnchorData()) %> class="<%= menuItem.getCssClass() %> btn btn-action <%= inline ? StringPool.BLANK : "btn-bottom-right" %> btn-primary lfr-portal-tooltip" data-qa-id="addButton" href="<%= HtmlUtil.escapeAttribute(menuItem.getUrl()) %>" id="<%= namespace + id %>" title="<%= HtmlUtil.escapeAttribute(title) %>">
-			<aui:icon image="plus" markupView="lexicon" />
+			<aui:icon
+				image="plus"
+				markupView="lexicon"
+			/>
 		</a>
 	</c:when>
 	<c:otherwise>
 		<div class="add-menu btn-action-secondary <%= inline ? StringPool.BLANK : "btn-bottom-right" %> dropdown">
 			<button aria-expanded="false" class="btn btn-primary" data-qa-id="addButton" data-toggle="liferay-dropdown" type="button">
-				<aui:icon image="plus" markupView="lexicon" />
+				<aui:icon
+					image="plus"
+					markupView="lexicon"
+				/>
 			</button>
 
 			<ul class="dropdown-menu <%= inline ? "dropdown-menu-right" : "dropdown-menu-left-side-bottom" %>">
@@ -133,7 +139,9 @@ String viewMoreURL = (String)request.getAttribute("liferay-frontend:add-menu:vie
 							</a>
 						</li>
 
-						<aui:script use="liferay-util-window">
+						<aui:script
+							use="liferay-util-window"
+						>
 							var viewMoreAddMenuElements = A.one('#<%= namespace %>viewMoreButton');
 
 							viewMoreAddMenuElements.on('click', function(event) {

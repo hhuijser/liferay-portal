@@ -22,7 +22,11 @@ PortletURL portletURL = reportsEngineDisplayContext.getPortletURL();
 portletURL.setParameter("mvcPath", "/admin/view.jsp");
 %>
 
-<aui:form action="<%= portletURL %>" method="get" name="fm">
+<aui:form
+	action="<%= portletURL %>"
+	method="get"
+	name="fm"
+>
 	<liferay-portlet:renderURLParams varImpl="portletURL" />
 
 	<liferay-ui:search-container

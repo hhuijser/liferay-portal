@@ -26,7 +26,10 @@
 				String taglibSearchCollatedKeywords = renderResponse.getNamespace() + "searchKeywords('" + HtmlUtil.escapeJS(hits.getCollatedSpellCheckResult()) + "')";
 				%>
 
-				<aui:a href="javascript:;" onclick="<%= taglibSearchCollatedKeywords %>">
+				<aui:a
+					href="javascript:;"
+					onclick="<%= taglibSearchCollatedKeywords %>"
+				>
 
 					<%
 					KeywordsSuggestionHolder keywordsSuggestionHolder = new KeywordsSuggestionHolder(hits.getCollatedSpellCheckResult(), searchDisplayContext.getKeywords());
@@ -64,7 +67,10 @@
 						String taglibOnClick = renderResponse.getNamespace() + "searchKeywords('" + HtmlUtil.escapeJS(querySuggestion) + "')";
 						%>
 
-						<aui:a href="javascript:;" onClick="<%= taglibOnClick %>">
+						<aui:a
+							href="javascript:;"
+							onClick="<%= taglibOnClick %>"
+						>
 
 							<%
 							KeywordsSuggestionHolder keywordsSuggestionHolder = new KeywordsSuggestionHolder(querySuggestion, searchDisplayContext.getKeywords());

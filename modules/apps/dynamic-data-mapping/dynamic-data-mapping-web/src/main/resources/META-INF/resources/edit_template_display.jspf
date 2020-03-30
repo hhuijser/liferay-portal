@@ -22,7 +22,11 @@ if (Validator.isNotNull(scriptContent)) {
 }
 %>
 
-<aui:input name="scriptContent" type="hidden" value="<%= script %>" />
+<aui:input
+	name="scriptContent"
+	type="hidden"
+	value="<%= script %>"
+/>
 
 <liferay-ui:panel-container
 	extended="<%= true %>"
@@ -127,11 +131,18 @@ if (Validator.isNotNull(scriptContent)) {
 			</div>
 		</div>
 
-		<aui:input inlineLabel="left" label="script-file" name="script" type="file" />
+		<aui:input
+			inlineLabel="left"
+			label="script-file"
+			name="script"
+			type="file"
+		/>
 	</liferay-ui:panel>
 </liferay-ui:panel-container>
 
-<aui:script use="aui-ace-autocomplete-freemarker,aui-ace-autocomplete-plugin,aui-ace-autocomplete-velocity,aui-toggler,aui-tooltip,autocomplete-base,autocomplete-filters,event-mouseenter,event-outside,liferay-util-window,resize,transition">
+<aui:script
+	use="aui-ace-autocomplete-freemarker,aui-ace-autocomplete-plugin,aui-ace-autocomplete-velocity,aui-toggler,aui-tooltip,autocomplete-base,autocomplete-filters,event-mouseenter,event-outside,liferay-util-window,resize,transition"
+>
 	var ACPlugin = A.Plugin.AceAutoComplete;
 	var AObject = A.Object;
 	var Util = Liferay.Util;

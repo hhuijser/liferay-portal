@@ -25,7 +25,9 @@ String sessionKey = GetterUtil.getString(request.getAttribute("liferay-ui:progre
 
 <div id="<%= id %>Bar"></div>
 
-<aui:script use="liferay-progress">
+<aui:script
+	use="liferay-progress"
+>
 	A.config.win['<%= id %>'] = new Liferay.Progress(
 		{
 			boundingBox: '#<%= id %>Bar',

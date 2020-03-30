@@ -59,7 +59,9 @@ if (userPrefsJSONObject != null) {
 
 <div class="gadgets-gadget-chrome" id="<portlet:namespace />gadget"></div>
 
-<aui:script use="liferay-open-social-gadget">
+<aui:script
+	use="liferay-open-social-gadget"
+>
 	new Liferay.OpenSocial.Gadget(
 		{
 			appId: '<%= gadget.getUrl() %>',

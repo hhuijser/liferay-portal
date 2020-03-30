@@ -69,7 +69,10 @@ LiferayPortletResponse finalLiferayPortletResponse = liferayPortletResponse;
 						<a aria-controls="<%= id %>" aria-expanded="false" class="menubar-toggler" data-toggle="liferay-collapse" href="#<%= id %>" role="button">
 							<%= selectedScreenNavigationEntry.getLabel(locale) %>
 
-							<aui:icon image="caret-bottom" markupView="lexicon" />
+							<aui:icon
+								image="caret-bottom"
+								markupView="lexicon"
+							/>
 						</a>
 
 						<div class="collapse menubar-collapse" id="<%= id %>">

@@ -26,17 +26,38 @@ int totalEntries = GetterUtil.getInteger(request.getAttribute("liferay-trash:emp
 
 <c:if test="<%= totalEntries > 0 %>">
 	<div class="alert alert-info taglib-trash-empty">
-		<aui:form action="<%= portletURL %>" name="emptyForm">
+		<aui:form
+			action="<%= portletURL %>"
+			name="emptyForm"
+		>
 			<c:if test="<%= Validator.isNotNull(infoMessage) %>">
 				<liferay-ui:message key="<%= infoMessage %>" />
 			</c:if>
 
-			<aui:a cssClass="alert-link trash-empty-link" href="javascript:;" id="empty" label="<%= emptyMessage %>" />
+			<aui:a
+				cssClass="alert-link trash-empty-link"
+				href="javascript:;"
+				id="empty"
+				label="<%= emptyMessage %>"
+			/>
 
-			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.EMPTY_TRASH %>" />
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+			<aui:input
+				name="<%= Constants.CMD %>"
+				type="hidden"
+				value="<%= Constants.EMPTY_TRASH %>"
+			/>
 
-			<aui:button cssClass="trash-empty-button" type="submit" value="<%= emptyMessage %>" />
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
+
+			<aui:button
+				cssClass="trash-empty-button"
+				type="submit"
+				value="<%= emptyMessage %>"
+			/>
 		</aui:form>
 	</div>
 </c:if>

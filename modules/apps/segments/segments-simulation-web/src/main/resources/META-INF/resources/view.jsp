@@ -28,7 +28,10 @@ SegmentsSimulationDisplayContext segmentsSimulationDisplayContext = new Segments
 			</p>
 		</c:when>
 		<c:otherwise>
-			<aui:form method="post" name="segmentsSimulationFm">
+			<aui:form
+				method="post"
+				name="segmentsSimulationFm"
+			>
 				<ul class="list-unstyled">
 
 					<%
@@ -58,7 +61,9 @@ SegmentsSimulationDisplayContext segmentsSimulationDisplayContext = new Segments
 				</ul>
 			</aui:form>
 
-			<aui:script use="liferay-portlet-segments-simulation">
+			<aui:script
+				use="liferay-portlet-segments-simulation"
+			>
 				new Liferay.Portlet.SegmentsSimulation({
 					deactivateSimulationUrl:
 						'<%= segmentsSimulationDisplayContext.getDeactivateSimulationURL() %>',

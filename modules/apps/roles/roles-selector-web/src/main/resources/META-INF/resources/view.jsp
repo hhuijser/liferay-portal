@@ -150,11 +150,34 @@ else {
 	showCreationMenu="<%= false %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
-	<aui:input name="tabs1" type="hidden" value="<%= tabs1 %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-	<aui:input name="groupId" type="hidden" value="<%= String.valueOf(group.getGroupId()) %>" />
-	<aui:input name="roleId" type="hidden" value="<%= roleId %>" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="<%= tabs1 %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
+
+	<aui:input
+		name="groupId"
+		type="hidden"
+		value="<%= String.valueOf(group.getGroupId()) %>"
+	/>
+
+	<aui:input
+		name="roleId"
+		type="hidden"
+		value="<%= roleId %>"
+	/>
 
 	<%
 	String methodName = null;
@@ -199,10 +222,16 @@ else {
 			String taglibOnClick = renderResponse.getNamespace() + methodName + "('" + portletURL.toString() + "');";
 			%>
 
-			<aui:button onClick="<%= taglibOnClick %>" primary="<%= true %>" value="update-associations" />
+			<aui:button
+				onClick="<%= taglibOnClick %>"
+				primary="<%= true %>"
+				value="update-associations"
+			/>
 		</c:if>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 

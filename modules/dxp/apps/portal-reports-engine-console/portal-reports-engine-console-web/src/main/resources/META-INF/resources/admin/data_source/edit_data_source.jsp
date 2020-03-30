@@ -39,32 +39,70 @@ renderResponse.setTitle((source != null) ? LanguageUtil.format(request, "edit-x"
 	<portlet:param name="redirect" value="<%= searchSourcesURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= actionURL %>" cssClass="container-fluid-1280" method="post" name="fm">
+<aui:form
+	action="<%= actionURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
 	<liferay-ui:error exception="<%= SourceDriverClassNameException.class %>" message="please-enter-a-valid-data-source-driver" />
 	<liferay-ui:error exception="<%= SourceJDBCConnectionException.class %>" message="could-not-connect-to-the-database.-please-verify-that-the-settings-are-correct" />
 	<liferay-ui:error exception="<%= SourceTypeException.class %>" message="please-enter-a-valid-data-source-type" />
 
-	<aui:model-context bean="<%= source %>" model="<%= Source.class %>" />
+	<aui:model-context
+		bean="<%= source %>"
+		model="<%= Source.class %>"
+	/>
 
-	<aui:input name="sourceId" type="hidden" />
+	<aui:input
+		name="sourceId"
+		type="hidden"
+	/>
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
 			<div class="form-group">
-				<aui:input name="name" required="<%= true %>" />
+				<aui:input
+					name="name"
+					required="<%= true %>"
+				/>
 
-				<aui:input label="jdbc-driver-class-name" name="driverClassName" required="<%= true %>" />
+				<aui:input
+					label="jdbc-driver-class-name"
+					name="driverClassName"
+					required="<%= true %>"
+				/>
 
-				<aui:input label="jdbc-url" name="driverUrl" required="<%= true %>" />
+				<aui:input
+					label="jdbc-url"
+					name="driverUrl"
+					required="<%= true %>"
+				/>
 
-				<aui:input autocomplete="off" label="jdbc-user-name" name="driverUserName" required="<%= true %>" />
+				<aui:input
+					autocomplete="off"
+					label="jdbc-user-name"
+					name="driverUserName"
+					required="<%= true %>"
+				/>
 
-				<aui:input autocomplete="off" label="jdbc-password" name="driverPassword" type="password" />
+				<aui:input
+					autocomplete="off"
+					label="jdbc-password"
+					name="driverPassword"
+					type="password"
+				/>
 			</div>
 		</aui:fieldset>
 
 		<c:if test="<%= source == null %>">
-			<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+			<aui:fieldset
+				collapsed="<%= true %>"
+				collapsible="<%= true %>"
+				label="permissions"
+			>
 				<liferay-ui:input-permissions
 					modelName="<%= Source.class.getName() %>"
 				/>
@@ -73,11 +111,23 @@ renderResponse.setTitle((source != null) ? LanguageUtil.format(request, "edit-x"
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button cssClass="btn-lg" type="submit" />
+		<aui:button
+			cssClass="btn-lg"
+			type="submit"
+		/>
 
-		<aui:button cssClass="btn-lg" name="testDatabaseConnectionButton" onClick='<%= renderResponse.getNamespace() + "testDatabaseConnection();" %>' value="test-database-connection" />
+		<aui:button
+			cssClass="btn-lg"
+			name="testDatabaseConnectionButton"
+			onClick='<%= renderResponse.getNamespace() + "testDatabaseConnection();" %>'
+			value="test-database-connection"
+		/>
 
-		<aui:button cssClass="btn-lg" href="<%= searchSourcesURL %>" type="cancel" />
+		<aui:button
+			cssClass="btn-lg"
+			href="<%= searchSourcesURL %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </aui:form>
 

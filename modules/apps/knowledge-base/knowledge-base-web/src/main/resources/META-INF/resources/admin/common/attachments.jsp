@@ -29,7 +29,10 @@ if (kbArticle != null) {
 %>
 
 <div class="kb-attachments">
-	<aui:input name="removeFileEntryIds" type="hidden" />
+	<aui:input
+		name="removeFileEntryIds"
+		type="hidden"
+	/>
 
 	<div class="lfr-dynamic-uploader">
 		<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
@@ -83,7 +86,9 @@ if (kbArticle != null) {
 	</c:if>
 </div>
 
-<aui:script use="liferay-upload">
+<aui:script
+	use="liferay-upload"
+>
 	new Liferay.Upload({
 		boundingBox: '#<portlet:namespace />fileUpload',
 		deleteFile:

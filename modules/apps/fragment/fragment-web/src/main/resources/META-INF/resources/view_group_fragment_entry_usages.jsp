@@ -45,7 +45,10 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 					<portlet:param name="fragmentEntryId" value="<%= String.valueOf(fragmentEntry.getFragmentEntryId()) %>" />
 				</portlet:actionURL>
 
-				<aui:form action="<%= propagateGroupFragmentEntryChangesURL %>" name="fm">
+				<aui:form
+					action="<%= propagateGroupFragmentEntryChangesURL %>"
+					name="fm"
+				>
 					<liferay-ui:search-container
 						searchContainer="<%= groupFragmentEntryLinkDisplayContext.getSearchContainer() %>"
 					>

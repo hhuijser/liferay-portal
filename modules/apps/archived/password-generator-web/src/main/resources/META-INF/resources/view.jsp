@@ -47,22 +47,46 @@ catch (Exception e) {
 
 <liferay-portlet:renderURL var="generatePasswordUrl" windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>" />
 
-<aui:form action="<%= generatePasswordUrl %>" method="post" name="fm">
+<aui:form
+	action="<%= generatePasswordUrl %>"
+	method="post"
+	name="fm"
+>
 	<aui:fieldset>
-		<aui:field-wrapper label="password-settings">
-			<aui:input name="numbers" type="checkbox" value="<%= numbers %>" />
+		<aui:field-wrapper
+			label="password-settings"
+		>
+			<aui:input
+				name="numbers"
+				type="checkbox"
+				value="<%= numbers %>"
+			/>
 
-			<aui:input name="lowerCaseLetters" type="checkbox" value="<%= lowerCaseLetters %>" />
+			<aui:input
+				name="lowerCaseLetters"
+				type="checkbox"
+				value="<%= lowerCaseLetters %>"
+			/>
 
-			<aui:input name="upperCaseLetters" type="checkbox" value="<%= upperCaseLetters %>" />
+			<aui:input
+				name="upperCaseLetters"
+				type="checkbox"
+				value="<%= upperCaseLetters %>"
+			/>
 
-			<aui:select name="length">
+			<aui:select
+				name="length"
+			>
 
 				<%
 				for (int i = 4; i <= 16; i++) {
 				%>
 
-					<aui:option label="<%= i %>" selected="<%= i == length %>" value="<%= i %>" />
+					<aui:option
+						label="<%= i %>"
+						selected="<%= i == length %>"
+						value="<%= i %>"
+					/>
 
 				<%
 				}
@@ -70,14 +94,23 @@ catch (Exception e) {
 
 			</aui:select>
 
-			<aui:input name="newPassword" type="resource" value="<%= newPassword %>" />
+			<aui:input
+				name="newPassword"
+				type="resource"
+				value="<%= newPassword %>"
+			/>
 		</aui:field-wrapper>
 	</aui:fieldset>
 
-	<aui:button type="submit" value="generate" />
+	<aui:button
+		type="submit"
+		value="generate"
+	/>
 </aui:form>
 
-<aui:script use="aui-parse-content">
+<aui:script
+	use="aui-parse-content"
+>
 	var form = A.one('#<portlet:namespace />fm');
 
 	var parentNode = form.get('parentNode');

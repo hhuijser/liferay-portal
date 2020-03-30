@@ -51,7 +51,10 @@ else {
 	value="details"
 />
 
-<aui:model-context bean="<%= liveGroup %>" model="<%= Group.class %>" />
+<aui:model-context
+	bean="<%= liveGroup %>"
+	model="<%= Group.class %>"
+/>
 
 <liferay-ui:error exception="<%= DuplicateGroupException.class %>" message="please-enter-a-unique-name" />
 <liferay-ui:error exception="<%= GroupInheritContentException.class %>" message="this-site-cannot-inherit-content-from-its-parent-site" />
@@ -78,22 +81,43 @@ else {
 <liferay-ui:error key="resetMergeFailCountAndMerge" message="unable-to-reset-the-failure-counter-and-propagate-the-changes" />
 
 <c:if test="<%= liveGroup != null %>">
-	<aui:input name="siteId" type="resource" value="<%= String.valueOf(liveGroup.getGroupId()) %>" />
+	<aui:input
+		name="siteId"
+		type="resource"
+		value="<%= String.valueOf(liveGroup.getGroupId()) %>"
+	/>
 </c:if>
 
 <c:choose>
 	<c:when test="<%= (liveGroup != null) && liveGroup.isOrganization() %>">
-		<aui:input helpMessage="the-name-of-this-site-cannot-be-edited-because-it-belongs-to-an-organization" name="name" placeholder="name" type="resource" value="<%= liveGroup.getDescriptiveName(locale) %>" />
+		<aui:input
+			helpMessage="the-name-of-this-site-cannot-be-edited-because-it-belongs-to-an-organization"
+			name="name"
+			placeholder="name"
+			type="resource"
+			value="<%= liveGroup.getDescriptiveName(locale) %>"
+		/>
 	</c:when>
 	<c:when test="<%= (liveGroup == null) || (!liveGroup.isCompany() && !PortalUtil.isSystemGroup(liveGroup.getGroupKey())) %>">
-		<aui:input autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>" name="name" placeholder="name" />
+		<aui:input
+			autoFocus="<%= windowState.equals(WindowState.MAXIMIZED) %>"
+			name="name"
+			placeholder="name"
+		/>
 	</c:when>
 </c:choose>
 
-<aui:input name="description" placeholder="description" />
+<aui:input
+	name="description"
+	placeholder="description"
+/>
 
 <c:if test="<%= !group.isCompany() && !group.isGuest() %>">
-	<aui:input name="active" type="toggle-switch" value="<%= group.isActive() %>" />
+	<aui:input
+		name="active"
+		type="toggle-switch"
+		value="<%= group.isActive() %>"
+	/>
 </c:if>
 
 <c:if test="<%= (parentGroupId != GroupConstants.DEFAULT_PARENT_GROUP_ID) && PropsValues.SITES_SHOW_INHERIT_CONTENT_SCOPE_FROM_PARENT_SITE %>">
@@ -108,16 +132,36 @@ else {
 	}
 	%>
 
-	<aui:input disabled="<%= disabled %>" helpMessage='<%= disabled ? "this-site-cannot-inherit-the-content-from-its-parent-site-since-the-parent-site-is-already-inheriting-the-content-from-its-parent" : StringPool.BLANK %>' name="inheritContent" type="toggle-switch" value="<%= value %>" />
+	<aui:input
+		disabled="<%= disabled %>"
+		helpMessage='<%= disabled ? "this-site-cannot-inherit-the-content-from-its-parent-site-since-the-parent-site-is-already-inheriting-the-content-from-its-parent" : StringPool.BLANK %>'
+		name="inheritContent"
+		type="toggle-switch"
+		value="<%= value %>"
+	/>
 </c:if>
 
 <h4 class="text-default"><liferay-ui:message key="membership-options" /></h4>
 
 <c:if test="<%= !group.isCompany() %>">
-	<aui:select label="membership-type" name="type">
-		<aui:option label="open" value="<%= GroupConstants.TYPE_SITE_OPEN %>" />
-		<aui:option label="restricted" value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>" />
-		<aui:option label="private" value="<%= GroupConstants.TYPE_SITE_PRIVATE %>" />
+	<aui:select
+		label="membership-type"
+		name="type"
+	>
+		<aui:option
+			label="open"
+			value="<%= GroupConstants.TYPE_SITE_OPEN %>"
+		/>
+
+		<aui:option
+			label="restricted"
+			value="<%= GroupConstants.TYPE_SITE_RESTRICTED %>"
+		/>
+
+		<aui:option
+			label="private"
+			value="<%= GroupConstants.TYPE_SITE_PRIVATE %>"
+		/>
 	</aui:select>
 
 	<%
@@ -128,7 +172,12 @@ else {
 	}
 	%>
 
-	<aui:input label="allow-manual-membership-management" name="manualMembership" type="toggle-switch" value="<%= manualMembership %>" />
+	<aui:input
+		label="allow-manual-membership-management"
+		name="manualMembership"
+		type="toggle-switch"
+		value="<%= manualMembership %>"
+	/>
 
 	<%
 	List<Group> parentGroups = new ArrayList<Group>();
@@ -190,7 +239,11 @@ else {
 	</liferay-ui:search-container>
 
 	<div class="button-holder">
-		<aui:button cssClass="modify-link" id="selectParentSiteLink" value="select" />
+		<aui:button
+			cssClass="modify-link"
+			id="selectParentSiteLink"
+			value="select"
+		/>
 	</div>
 
 	<div class="<%= parentGroups.isEmpty() ? "membership-restriction-container hide" : "membership-restriction-container" %>" id="<portlet:namespace />membershipRestrictionContainer">
@@ -203,10 +256,17 @@ else {
 		}
 		%>
 
-		<aui:input label="limit-membership-to-members-of-the-parent-site" name="membershipRestriction" type="toggle-switch" value="<%= membershipRestriction %>" />
+		<aui:input
+			label="limit-membership-to-members-of-the-parent-site"
+			name="membershipRestriction"
+			type="toggle-switch"
+			value="<%= membershipRestriction %>"
+		/>
 	</div>
 
-	<aui:script use="liferay-search-container">
+	<aui:script
+		use="liferay-search-container"
+	>
 		A.one('#<portlet:namespace />selectParentSiteLink').on('click', function(
 			event
 		) {

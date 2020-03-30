@@ -24,7 +24,10 @@ LayoutPageTemplateCollectionsDisplayContext layoutPageTemplateCollectionsDisplay
 	displayContext="<%= new LayoutPageTemplateCollectionsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, layoutPageTemplateCollectionsDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="fm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="layoutPageTemplateCollections"
 		searchContainer="<%= layoutPageTemplateCollectionsDisplayContext.getSearchContainer() %>"
@@ -53,7 +56,9 @@ LayoutPageTemplateCollectionsDisplayContext layoutPageTemplateCollectionsDisplay
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />layoutPageTemplateCollections'
 	);

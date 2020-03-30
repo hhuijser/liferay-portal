@@ -51,5 +51,8 @@
 </div>
 
 <aui:button-row>
-	<aui:button type="cancel" value="close" />
+	<aui:button
+		type="cancel"
+		value="close"
+	/>
 </aui:button-row>

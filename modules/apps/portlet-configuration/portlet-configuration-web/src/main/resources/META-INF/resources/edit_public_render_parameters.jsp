@@ -47,9 +47,23 @@ editPublicRenderParameterURL.setParameter("portletResource", portletResource);
 		method="post"
 		name="fm"
 	>
-		<aui:input name="redirect" type="hidden" value="<%= editPublicRenderParameterURL.toString() %>" />
-		<aui:input name="returnToFullPageURL" type="hidden" value="<%= returnToFullPageURL %>" />
-		<aui:input name="portletResource" type="hidden" value="<%= portletResource %>" />
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= editPublicRenderParameterURL.toString() %>"
+		/>
+
+		<aui:input
+			name="returnToFullPageURL"
+			type="hidden"
+			value="<%= returnToFullPageURL %>"
+		/>
+
+		<aui:input
+			name="portletResource"
+			type="hidden"
+			value="<%= portletResource %>"
+		/>
 
 		<liferay-frontend:edit-form-body>
 			<liferay-frontend:fieldset-group>
@@ -79,14 +93,25 @@ editPublicRenderParameterURL.setParameter("portletResource", portletResource);
 							<liferay-ui:search-container-column-text
 								name="ignore"
 							>
-								<aui:input label="" name="<%= publicRenderParameterConfiguration.getIgnoreKey() %>" type="checkbox" value="<%= publicRenderParameterConfiguration.getIgnoreValue() %>" />
+								<aui:input
+									label=""
+									name="<%= publicRenderParameterConfiguration.getIgnoreKey() %>"
+									type="checkbox"
+									value="<%= publicRenderParameterConfiguration.getIgnoreValue() %>"
+								/>
 							</liferay-ui:search-container-column-text>
 
 							<liferay-ui:search-container-column-text
 								name="read-value-from-parameter"
 							>
-								<aui:select label="" name="<%= publicRenderParameterConfiguration.getMappingKey() %>">
-									<aui:option label="<%= HtmlUtil.escape(publicRenderParameterConfiguration.getPublicRenderParameter().getIdentifier()) %>" value="" />
+								<aui:select
+									label=""
+									name="<%= publicRenderParameterConfiguration.getMappingKey() %>"
+								>
+									<aui:option
+										label="<%= HtmlUtil.escape(publicRenderParameterConfiguration.getPublicRenderParameter().getIdentifier()) %>"
+										value=""
+									/>
 
 									<%
 									for (PublicRenderParameter publicRenderParameter : publicRenderParameters) {
@@ -97,7 +122,11 @@ editPublicRenderParameterURL.setParameter("portletResource", portletResource);
 										}
 									%>
 
-										<aui:option label="<%= HtmlUtil.escape(publicRenderParameter.getIdentifier()) %>" selected="<%= publicRenderParameterName.equals(publicRenderParameterConfiguration.getMappingValue()) %>" value="<%= publicRenderParameterName %>" />
+										<aui:option
+											label="<%= HtmlUtil.escape(publicRenderParameter.getIdentifier()) %>"
+											selected="<%= publicRenderParameterName.equals(publicRenderParameterConfiguration.getMappingValue()) %>"
+											value="<%= publicRenderParameterName %>"
+										/>
 
 									<%
 									}
@@ -117,9 +146,13 @@ editPublicRenderParameterURL.setParameter("portletResource", portletResource);
 		</liferay-frontend:edit-form-body>
 
 		<liferay-frontend:edit-form-footer>
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button type="cancel" />
+			<aui:button
+				type="cancel"
+			/>
 		</liferay-frontend:edit-form-footer>
 	</liferay-frontend:edit-form>
 </div>

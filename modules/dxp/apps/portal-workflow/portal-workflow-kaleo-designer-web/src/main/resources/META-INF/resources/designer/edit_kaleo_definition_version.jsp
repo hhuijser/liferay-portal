@@ -82,7 +82,10 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 		%>
 
 		<c:if test="<%= kaleoDefinitionVersion != null %>">
-			<aui:model-context bean="<%= kaleoDefinitionVersion %>" model="<%= KaleoDefinitionVersion.class %>" />
+			<aui:model-context
+				bean="<%= kaleoDefinitionVersion %>"
+				model="<%= KaleoDefinitionVersion.class %>"
+			/>
 
 			<liferay-frontend:info-bar>
 				<div class="container-fluid-1280">
@@ -143,7 +146,12 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 								<div class="container-fluid">
 									<ul class="tbar-nav">
 										<li class="tbar-item">
-											<aui:icon cssClass="component-action sidenav-close" image="times" markupView="lexicon" url="javascript:;" />
+											<aui:icon
+												cssClass="component-action sidenav-close"
+												image="times"
+												markupView="lexicon"
+												url="javascript:;"
+											/>
 										</li>
 									</ul>
 								</div>
@@ -234,20 +242,69 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 
 			<div class="<%= isPreviewBeforeRestoreState ? "" : "container-fluid-1280" %>">
 				<div class="sidenav-content">
-					<aui:form method="post" name="fm" onSubmit="event.preventDefault();">
-						<aui:model-context bean="<%= kaleoDefinitionVersion %>" model="<%= KaleoDefinitionVersion.class %>" />
-						<aui:input name="mvcPath" type="hidden" value="<%= mvcPath %>" />
-						<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-						<aui:input name="closeRedirect" type="hidden" value="<%= closeRedirect %>" />
-						<aui:input name="name" type="hidden" value="<%= name %>" />
-						<aui:input name="content" type="hidden" value="<%= content %>" />
-						<aui:input name="version" type="hidden" value="<%= String.valueOf(version) %>" />
-						<aui:input name="draftVersion" type="hidden" value="<%= draftVersion %>" />
-						<aui:input name="latestDraftVersion" type="hidden" value="<%= latestDraftVersion %>" />
+					<aui:form
+						method="post"
+						name="fm"
+						onSubmit="event.preventDefault();"
+					>
+						<aui:model-context
+							bean="<%= kaleoDefinitionVersion %>"
+							model="<%= KaleoDefinitionVersion.class %>"
+						/>
+
+						<aui:input
+							name="mvcPath"
+							type="hidden"
+							value="<%= mvcPath %>"
+						/>
+
+						<aui:input
+							name="redirect"
+							type="hidden"
+							value="<%= redirect %>"
+						/>
+
+						<aui:input
+							name="closeRedirect"
+							type="hidden"
+							value="<%= closeRedirect %>"
+						/>
+
+						<aui:input
+							name="name"
+							type="hidden"
+							value="<%= name %>"
+						/>
+
+						<aui:input
+							name="content"
+							type="hidden"
+							value="<%= content %>"
+						/>
+
+						<aui:input
+							name="version"
+							type="hidden"
+							value="<%= String.valueOf(version) %>"
+						/>
+
+						<aui:input
+							name="draftVersion"
+							type="hidden"
+							value="<%= draftVersion %>"
+						/>
+
+						<aui:input
+							name="latestDraftVersion"
+							type="hidden"
+							value="<%= latestDraftVersion %>"
+						/>
 
 						<%@ include file="/designer/edit_kaleo_definition_version_exceptions.jspf" %>
 
-						<aui:fieldset-group markupView="lexicon">
+						<aui:fieldset-group
+							markupView="lexicon"
+						>
 							<aui:fieldset>
 								<liferay-ui:input-localized
 									disabled="<%= kaleoDesignerDisplayContext.isDefinitionInputDisabled(isPreviewBeforeRestoreState, kaleoDefinitionVersion, permissionChecker) %>"
@@ -461,7 +518,9 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 									</c:if>
 								</aui:script>
 
-								<aui:script use="liferay-kaleo-designer-dialogs,liferay-kaleo-designer-utils,liferay-portlet-kaleo-designer">
+								<aui:script
+									use="liferay-kaleo-designer-dialogs,liferay-kaleo-designer-utils,liferay-portlet-kaleo-designer"
+								>
 									var MAP_ROLE_TYPES = {
 										organization: 3,
 										regular: 1,
@@ -749,15 +808,25 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 						<c:if test="<%= !isPreviewBeforeRestoreState %>">
 							<aui:button-row>
 								<c:if test="<%= kaleoDesignerDisplayContext.isPublishKaleoDefinitionVersionButtonVisible(permissionChecker, kaleoDefinitionVersion) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDefinitionVersion();" %>' primary="<%= true %>" value="<%= kaleoDesignerDisplayContext.getPublishKaleoDefinitionVersionButtonLabel(kaleoDefinitionVersion) %>" />
+									<aui:button
+										onClick='<%= renderResponse.getNamespace() + "publishKaleoDefinitionVersion();" %>'
+										primary="<%= true %>"
+										value="<%= kaleoDesignerDisplayContext.getPublishKaleoDefinitionVersionButtonLabel(kaleoDefinitionVersion) %>"
+									/>
 								</c:if>
 
 								<c:if test="<%= kaleoDesignerDisplayContext.isSaveKaleoDefinitionVersionButtonVisible(kaleoDefinitionVersion) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "saveKaleoDefinitionVersion();" %>' value="save" />
+									<aui:button
+										onClick='<%= renderResponse.getNamespace() + "saveKaleoDefinitionVersion();" %>'
+										value="save"
+									/>
 								</c:if>
 
 								<c:if test="<%= Validator.isNotNull(closeRedirect) %>">
-									<aui:button onClick='<%= renderResponse.getNamespace() + "closeKaleoDialog();" %>' value="cancel" />
+									<aui:button
+										onClick='<%= renderResponse.getNamespace() + "closeKaleoDialog();" %>'
+										value="cancel"
+									/>
 								</c:if>
 
 								<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>
@@ -774,18 +843,56 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 			</liferay-portlet:actionURL>
 
 			<div class="hide" id="<%= randomNamespace %>titleInputLocalized">
-				<aui:form name='<%= randomNamespace + "form" %>'>
-					<aui:input name="randomNamespace" type="hidden" value="<%= randomNamespace %>" />
-					<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-					<aui:input name="name" type="hidden" value="<%= PortalUUIDUtil.generate() %>" />
-					<aui:input name="content" type="hidden" value="<%= kaleoDefinition.getContent() %>" />
-					<aui:input name="duplicatedDefinitionName" type="hidden" value="<%= kaleoDefinition.getName() %>" />
-					<aui:input name="duplicatedDefinitionTitle" type="hidden" value="<%= HtmlUtil.escape(kaleoDefinition.getTitle(LanguageUtil.getLanguageId(request))) %>" />
-					<aui:input name="defaultDuplicationTitle" type="hidden" value="<%= duplicateTitle %>" />
+				<aui:form
+					name='<%= randomNamespace + "form" %>'
+				>
+					<aui:input
+						name="randomNamespace"
+						type="hidden"
+						value="<%= randomNamespace %>"
+					/>
+
+					<aui:input
+						name="redirect"
+						type="hidden"
+						value="<%= currentURL %>"
+					/>
+
+					<aui:input
+						name="name"
+						type="hidden"
+						value="<%= PortalUUIDUtil.generate() %>"
+					/>
+
+					<aui:input
+						name="content"
+						type="hidden"
+						value="<%= kaleoDefinition.getContent() %>"
+					/>
+
+					<aui:input
+						name="duplicatedDefinitionName"
+						type="hidden"
+						value="<%= kaleoDefinition.getName() %>"
+					/>
+
+					<aui:input
+						name="duplicatedDefinitionTitle"
+						type="hidden"
+						value="<%= HtmlUtil.escape(kaleoDefinition.getTitle(LanguageUtil.getLanguageId(request))) %>"
+					/>
+
+					<aui:input
+						name="defaultDuplicationTitle"
+						type="hidden"
+						value="<%= duplicateTitle %>"
+					/>
 
 					<aui:fieldset>
 						<aui:col>
-							<aui:field-wrapper label="title">
+							<aui:field-wrapper
+								label="title"
+							>
 								<liferay-ui:input-localized
 									name='<%= randomNamespace + "title" %>'
 									placeholder="<%= duplicateTitle %>"
@@ -801,7 +908,9 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 				</aui:form>
 			</div>
 
-			<aui:script use="liferay-kaleo-designer-dialogs">
+			<aui:script
+				use="liferay-kaleo-designer-dialogs"
+			>
 				var duplicateWorkflowTitle = '<liferay-ui:message key="duplicate-workflow" />';
 
 				Liferay.on('<portlet:namespace />duplicateDefinition', function(event) {

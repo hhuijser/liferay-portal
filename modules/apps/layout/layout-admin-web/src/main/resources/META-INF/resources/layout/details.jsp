@@ -32,7 +32,10 @@ String defaultLanguageId = LocaleUtil.toLanguageId(defaultLocale);
 	value="details"
 />
 
-<aui:model-context bean="<%= selLayout %>" model="<%= Layout.class %>" />
+<aui:model-context
+	bean="<%= selLayout %>"
+	model="<%= Layout.class %>"
+/>
 
 <%
 String friendlyURLBase = StringPool.BLANK;
@@ -80,10 +83,18 @@ String friendlyURLBase = StringPool.BLANK;
 <c:choose>
 	<c:when test="<%= !group.isLayoutPrototype() %>">
 		<c:if test="<%= !layoutsAdminDisplayContext.isDraft() && !selLayout.isSystem() %>">
-			<aui:input name="name" />
+			<aui:input
+				name="name"
+			/>
 
 			<div class="form-group">
-				<aui:input helpMessage="hidden-from-navigation-menu-widget-help-message" label="hidden-from-navigation-menu-widget" name="hidden" type="toggle-switch" value="<%= selLayout.isHidden() %>" />
+				<aui:input
+					helpMessage="hidden-from-navigation-menu-widget-help-message"
+					label="hidden-from-navigation-menu-widget"
+					name="hidden"
+					type="toggle-switch"
+					value="<%= selLayout.isHidden() %>"
+				/>
 			</div>
 		</c:if>
 
@@ -101,7 +112,11 @@ String friendlyURLBase = StringPool.BLANK;
 				</div>
 			</c:when>
 			<c:otherwise>
-				<aui:input name="friendlyURL" type="hidden" value="<%= (selLayout != null) ? HttpUtil.decodeURL(selLayout.getFriendlyURL()) : StringPool.BLANK %>" />
+				<aui:input
+					name="friendlyURL"
+					type="hidden"
+					value="<%= (selLayout != null) ? HttpUtil.decodeURL(selLayout.getFriendlyURL()) : StringPool.BLANK %>"
+				/>
 			</c:otherwise>
 		</c:choose>
 
@@ -114,12 +129,28 @@ String friendlyURLBase = StringPool.BLANK;
 			boolean layoutUpdateable = GetterUtil.getBoolean(selLayoutType.getTypeSettingsProperty("layoutUpdateable"), true);
 			%>
 
-			<aui:input disabled="<%= !layoutSetPrototypeUpdateable %>" helpMessage="allow-site-administrators-to-modify-this-page-for-their-site-help" label="allow-site-administrators-to-modify-this-page-for-their-site" name="TypeSettingsProperties--layoutUpdateable--" type="checkbox" value="<%= layoutUpdateable %>" />
+			<aui:input
+				disabled="<%= !layoutSetPrototypeUpdateable %>"
+				helpMessage="allow-site-administrators-to-modify-this-page-for-their-site-help"
+				label="allow-site-administrators-to-modify-this-page-for-their-site"
+				name="TypeSettingsProperties--layoutUpdateable--"
+				type="checkbox"
+				value="<%= layoutUpdateable %>"
+			/>
 		</c:if>
 	</c:when>
 	<c:otherwise>
-		<aui:input name='<%= "name_" + defaultLanguageId %>' type="hidden" value="<%= selLayout.getName(defaultLocale) %>" />
-		<aui:input name="friendlyURL" type="hidden" value="<%= (selLayout != null) ? HttpUtil.decodeURL(selLayout.getFriendlyURL()) : StringPool.BLANK %>" />
+		<aui:input
+			name='<%= "name_" + defaultLanguageId %>'
+			type="hidden"
+			value="<%= selLayout.getName(defaultLocale) %>"
+		/>
+
+		<aui:input
+			name="friendlyURL"
+			type="hidden"
+			value="<%= (selLayout != null) ? HttpUtil.decodeURL(selLayout.getFriendlyURL()) : StringPool.BLANK %>"
+		/>
 	</c:otherwise>
 </c:choose>
 
@@ -129,10 +160,25 @@ String friendlyURLBase = StringPool.BLANK;
 	LayoutPrototype layoutPrototype = LayoutPrototypeLocalServiceUtil.getLayoutPrototypeByUuidAndCompanyId(selLayout.getLayoutPrototypeUuid(), company.getCompanyId());
 	%>
 
-	<aui:input name="applyLayoutPrototype" type="hidden" value="<%= false %>" />
-	<aui:input name="layoutPrototypeUuid" type="hidden" value="<%= selLayout.getLayoutPrototypeUuid() %>" />
+	<aui:input
+		name="applyLayoutPrototype"
+		type="hidden"
+		value="<%= false %>"
+	/>
 
-	<aui:input helpMessage='<%= LanguageUtil.format(request, "if-enabled-this-page-will-inherit-changes-made-to-the-x-page-template", HtmlUtil.escape(layoutPrototype.getName(user.getLocale())), false) %>' label="inherit-changes" name="layoutPrototypeLinkEnabled" type="toggle-switch" value="<%= selLayout.isLayoutPrototypeLinkEnabled() %>" />
+	<aui:input
+		name="layoutPrototypeUuid"
+		type="hidden"
+		value="<%= selLayout.getLayoutPrototypeUuid() %>"
+	/>
+
+	<aui:input
+		helpMessage='<%= LanguageUtil.format(request, "if-enabled-this-page-will-inherit-changes-made-to-the-x-page-template", HtmlUtil.escape(layoutPrototype.getName(user.getLocale())), false) %>'
+		label="inherit-changes"
+		name="layoutPrototypeLinkEnabled"
+		type="toggle-switch"
+		value="<%= selLayout.isLayoutPrototypeLinkEnabled() %>"
+	/>
 
 	<div class="alert alert-warning layout-prototype-info-message <%= selLayout.isLayoutPrototypeLinkActive() ? StringPool.BLANK : "hide" %>">
 		<liferay-ui:message arguments='<%= new String[] {"inherit-changes", "general"} %>' key="some-page-settings-are-unavailable-because-x-is-enabled" translateArguments="<%= true %>" />
@@ -165,7 +211,9 @@ String friendlyURLBase = StringPool.BLANK;
 	</div>
 </c:if>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	Liferay.Util.toggleBoxes(
 		'<portlet:namespace />layoutPrototypeLinkEnabled',
 		'<portlet:namespace />layoutPrototypeMergeAlert'

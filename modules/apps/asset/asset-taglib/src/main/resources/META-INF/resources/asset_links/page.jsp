@@ -37,7 +37,10 @@ List<Tuple> assetLinkEntries = (List<Tuple>)request.getAttribute("liferay-asset:
 			<div class="autofit-col">
 				<div class="sticker sticker-secondary">
 					<span class="inline-item">
-						<aui:icon image="<%= assetRenderer.getIconCssClass() %>" markupView="lexicon" />
+						<aui:icon
+							image="<%= assetRenderer.getIconCssClass() %>"
+							markupView="lexicon"
+						/>
 					</span>
 				</div>
 			</div>
@@ -53,7 +56,11 @@ List<Tuple> assetLinkEntries = (List<Tuple>)request.getAttribute("liferay-asset:
 								</span>
 							</c:when>
 							<c:otherwise>
-								<aui:a cssClass="text-truncate" href="<%= (String)tuple.getObject(1) %>" target='<%= themeDisplay.isStatePopUp() ? "_blank" : "_self" %>'>
+								<aui:a
+									cssClass="text-truncate"
+									href="<%= (String)tuple.getObject(1) %>"
+									target='<%= themeDisplay.isStatePopUp() ? "_blank" : "_self" %>'
+								>
 									<%= HtmlUtil.escape(assetLinkEntry.getTitle(locale)) %>
 								</aui:a>
 							</c:otherwise>

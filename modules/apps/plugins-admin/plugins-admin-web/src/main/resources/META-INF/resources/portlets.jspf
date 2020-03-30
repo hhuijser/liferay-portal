@@ -20,7 +20,10 @@
 	String taglibOnClick = "submitForm(document." + renderResponse.getNamespace() + "fm , '" + marketplaceURL.toString() +"');";
 	%>
 
-	<aui:button onClick="<%= taglibOnClick %>" value="install-more-portlets" />
+	<aui:button
+		onClick="<%= taglibOnClick %>"
+		value="install-more-portlets"
+	/>
 
 	<br /><br />
 </c:if>
@@ -70,7 +73,9 @@ portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, local
 				href="<%= rowURL %>"
 				name="portlet"
 			>
-				<aui:a href="<%= showEditPluginHREF ? rowURL.toString() : null %>">
+				<aui:a
+					href="<%= showEditPluginHREF ? rowURL.toString() : null %>"
+				>
 					<c:choose>
 						<c:when test="<%= Validator.isNotNull(title) %>">
 							<%= title %>

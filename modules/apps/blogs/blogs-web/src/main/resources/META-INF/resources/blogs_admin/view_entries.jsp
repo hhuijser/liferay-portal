@@ -45,11 +45,32 @@ BlogEntriesManagementToolbarDisplayContext blogEntriesManagementToolbarDisplayCo
 />
 
 <div class="container-fluid container-fluid-max-xl main-content-body">
-	<aui:form action="<%= portletURL.toString() %>" method="get" name="fm">
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
-		<aui:input name="deleteEntryIds" type="hidden" />
-		<aui:input name="selectAll" type="hidden" value="<%= false %>" />
+	<aui:form
+		action="<%= portletURL.toString() %>"
+		method="get"
+		name="fm"
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= portletURL.toString() %>"
+		/>
+
+		<aui:input
+			name="deleteEntryIds"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="selectAll"
+			type="hidden"
+			value="<%= false %>"
+		/>
 
 		<c:if test="<%= (assetCategoryId != 0) || Validator.isNotNull(assetTagName) %>">
 			<liferay-asset:categorization-filter

@@ -45,14 +45,19 @@ if (!ignoreRequestValue) {
 %>
 
 <div class="lfr-tags-selector-content" id="<%= namespace + id %>assetTagsSelector">
-	<aui:input name="<%= hiddenInput %>" type="hidden" />
+	<aui:input
+		name="<%= hiddenInput %>"
+		type="hidden"
+	/>
 
 	<c:if test="<%= allowAddEntry %>">
 		<input class="form-control lfr-tag-selector-input" id="<%= id %>assetTagNames" maxlength="<%= ModelHintsConstants.TEXT_MAX_LENGTH %>" size="15" title="<liferay-ui:message key="add-tags" />" type="text" />
 	</c:if>
 </div>
 
-<aui:script use="liferay-asset-tags-selector">
+<aui:script
+	use="liferay-asset-tags-selector"
+>
 	var assetTagsSelector = new Liferay.AssetTagsSelector(
 		{
 			allowAddEntry: <%= allowAddEntry %>,

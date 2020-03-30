@@ -87,6 +87,10 @@ AssetRenderer<?> assetRenderer = (AssetRenderer<?>)request.getAttribute(WebKeys.
 	%>
 
 	<c:if test="<%= PortletPermissionUtil.contains(permissionChecker, layout, portletId, ActionKeys.ADD_TO_PAGE) %>">
-		<aui:button cssClass="add-button-preview" data="<%= data %>" value="add" />
+		<aui:button
+			cssClass="add-button-preview"
+			data="<%= data %>"
+			value="add"
+		/>
 	</c:if>
 </div>

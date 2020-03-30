@@ -68,7 +68,9 @@
 	</c:if>
 </div>
 
-<aui:script use="aui-tooltip">
+<aui:script
+	use="aui-tooltip"
+>
 	new A.Tooltip(
 		{
 			cssClass: 'tooltip-help',

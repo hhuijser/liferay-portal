@@ -43,7 +43,11 @@ portletURL.setParameter("calendarResourceId", String.valueOf(calendarResource.ge
 			<liferay-portlet:param name="calendarResourceId" value="<%= String.valueOf(calendarResource.getCalendarResourceId()) %>" />
 		</liferay-portlet:renderURL>
 
-		<aui:button href="<%= editCalendarURL %>" primary="<%= true %>" value="add-calendar" />
+		<aui:button
+			href="<%= editCalendarURL %>"
+			primary="<%= true %>"
+			value="add-calendar"
+		/>
 	</aui:button-row>
 </c:if>
 
@@ -112,8 +116,16 @@ portletURL.setParameter("calendarResourceId", String.valueOf(calendarResource.ge
 		<liferay-ui:message key="your-request-completed-successfully" />
 	</div>
 
-	<aui:form enctype="multipart/form-data" method="post" name="importFm">
-		<aui:input id="file" name="file" type="file" />
+	<aui:form
+		enctype="multipart/form-data"
+		method="post"
+		name="importFm"
+	>
+		<aui:input
+			id="file"
+			name="file"
+			type="file"
+		/>
 
 		<div class="portlet-msg-help">
 			<liferay-ui:message key="choose-the-file-that-contains-your-events.this-calendar-can-import-event-information-in-ical-format" />
@@ -121,7 +133,9 @@ portletURL.setParameter("calendarResourceId", String.valueOf(calendarResource.ge
 	</aui:form>
 </div>
 
-<aui:script use="io-upload-iframe">
+<aui:script
+	use="io-upload-iframe"
+>
 	var <portlet:namespace />importDialog;
 
 	Liferay.provide(

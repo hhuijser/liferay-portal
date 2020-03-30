@@ -49,7 +49,11 @@ User statusByUser = UserLocalServiceUtil.fetchUser(statusByUserId);
 	<span class="lfr-portal-tooltip" title="<%= HtmlUtil.escape(HtmlUtil.extractText(buffer)) %>">
 </c:if>
 
-<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= status %>" />
+<aui:workflow-status
+	showIcon="<%= false %>"
+	showLabel="<%= false %>"
+	status="<%= status %>"
+/>
 
 <c:if test="<%= statusByUser != null %>">
 	</span>

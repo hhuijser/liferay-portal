@@ -28,7 +28,9 @@
 	</div>
 
 	<c:if test="<%= persistState %>">
-		<aui:script position="auto">
+		<aui:script
+			position="auto"
+		>
 			Liferay.on('liferay.collapse.hidden', function(event) {
 				var panelId = event.panel.getAttribute('id');
 

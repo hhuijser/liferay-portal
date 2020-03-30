@@ -46,7 +46,9 @@
 			</h5>
 
 			<h4>
-				<aui:a href="<%= uploadURL.toString() %>">
+				<aui:a
+					href="<%= uploadURL.toString() %>"
+				>
 					{title}
 				</aui:a>
 			</h4>

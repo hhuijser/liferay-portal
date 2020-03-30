@@ -26,8 +26,17 @@
 	name="fm"
 	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error key="visibleNodesCount" message="please-specify-at-least-one-visible-node" />
@@ -37,15 +46,37 @@
 				collapsible="<%= true %>"
 				label="display-settings"
 			>
-				<aui:input label="show-related-assets" name="preferences--enableRelatedAssets--" type="checkbox" value="<%= wikiPortletInstanceSettingsHelper.isEnableRelatedAssets() %>" />
+				<aui:input
+					label="show-related-assets"
+					name="preferences--enableRelatedAssets--"
+					type="checkbox"
+					value="<%= wikiPortletInstanceSettingsHelper.isEnableRelatedAssets() %>"
+				/>
 
-				<aui:input name="preferences--enablePageRatings--" type="checkbox" value="<%= wikiPortletInstanceSettingsHelper.isEnablePageRatings() %>" />
+				<aui:input
+					name="preferences--enablePageRatings--"
+					type="checkbox"
+					value="<%= wikiPortletInstanceSettingsHelper.isEnablePageRatings() %>"
+				/>
 
-				<aui:input name="preferences--enableComments--" type="checkbox" value="<%= wikiPortletInstanceSettingsHelper.isEnableComments() %>" />
+				<aui:input
+					name="preferences--enableComments--"
+					type="checkbox"
+					value="<%= wikiPortletInstanceSettingsHelper.isEnableComments() %>"
+				/>
 
-				<aui:input label="enable-ratings-for-comments" name="preferences--enableCommentRatings--" type="checkbox" value="<%= wikiPortletInstanceSettingsHelper.isEnableCommentRatings() %>" />
+				<aui:input
+					label="enable-ratings-for-comments"
+					name="preferences--enableCommentRatings--"
+					type="checkbox"
+					value="<%= wikiPortletInstanceSettingsHelper.isEnableCommentRatings() %>"
+				/>
 
-				<aui:input name="preferences--enableHighlighting--" type="checkbox" value="<%= wikiPortletInstanceSettingsHelper.isEnableHighlighting() %>" />
+				<aui:input
+					name="preferences--enableHighlighting--"
+					type="checkbox"
+					value="<%= wikiPortletInstanceSettingsHelper.isEnableHighlighting() %>"
+				/>
 
 				<div class="display-template">
 					<liferay-ddm:template-selector
@@ -62,8 +93,15 @@
 				collapsible="<%= true %>"
 				label="visible-wikis"
 			>
-				<aui:input name="preferences--visibleNodes--" type="hidden" />
-				<aui:input name="preferences--hiddenNodes--" type="hidden" />
+				<aui:input
+					name="preferences--visibleNodes--"
+					type="hidden"
+				/>
+
+				<aui:input
+					name="preferences--hiddenNodes--"
+					type="hidden"
+				/>
 
 				<%
 				Set<String> currentVisibleNodes = new HashSet<String>(wikiPortletInstanceSettingsHelper.getAllNodeNames());
@@ -119,9 +157,13 @@
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

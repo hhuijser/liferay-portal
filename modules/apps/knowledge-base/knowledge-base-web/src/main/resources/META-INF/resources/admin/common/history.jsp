@@ -45,7 +45,10 @@ if (portletTitleBasedNavigation) {
 	/>
 </c:if>
 
-<aui:fieldset cssClass='<%= portletTitleBasedNavigation ? "container-fluid-1280 main-content-card panel" : StringPool.BLANK %>' markupView="lexicon">
+<aui:fieldset
+	cssClass='<%= portletTitleBasedNavigation ? "container-fluid-1280 main-content-card panel" : StringPool.BLANK %>'
+	markupView="lexicon"
+>
 
 	<%
 	RowChecker rowChecker = new RowChecker(renderResponse);
@@ -174,7 +177,11 @@ if (portletTitleBasedNavigation) {
 		</liferay-ui:search-container-row>
 
 		<aui:button-row>
-			<aui:button name="compare" type="submit" value="compare-versions" />
+			<aui:button
+				name="compare"
+				type="submit"
+				value="compare-versions"
+			/>
 		</aui:button-row>
 
 		<liferay-ui:search-iterator
@@ -183,7 +190,9 @@ if (portletTitleBasedNavigation) {
 	</liferay-ui:search-container>
 </aui:fieldset>
 
-<aui:script require="metal-dom/src/dom as dom">
+<aui:script
+	require="metal-dom/src/dom as dom"
+>
 	var compareVersionsButton = document.getElementById(
 		'<portlet:namespace />compare'
 	);

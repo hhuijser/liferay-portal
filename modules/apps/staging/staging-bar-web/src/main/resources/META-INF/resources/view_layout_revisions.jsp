@@ -42,20 +42,33 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 <div class="container-fluid-1280">
 	<c:if test="<%= !rootLayoutRevisions.isEmpty() %>">
 		<c:if test="<%= rootLayoutRevisions.size() > 1 %>">
-			<aui:select cssClass="variation-selector" inlineLabel="left" label="" name="variationsSelector">
+			<aui:select
+				cssClass="variation-selector"
+				inlineLabel="left"
+				label=""
+				name="variationsSelector"
+			>
 
 				<%
 				for (LayoutRevision rootLayoutRevision : rootLayoutRevisions) {
 					LayoutBranch layoutBranch = rootLayoutRevision.getLayoutBranch();
 				%>
 
-					<aui:option label="<%= HtmlUtil.escape(layoutBranchDisplayContext.getLayoutBranchDisplayName(layoutBranch)) %>" localizeLabel="<%= false %>" selected="<%= recentLayoutRevision.getLayoutBranchId() == rootLayoutRevision.getLayoutBranchId() %>" value="<%= rootLayoutRevision.getLayoutRevisionId() %>" />
+					<aui:option
+						label="<%= HtmlUtil.escape(layoutBranchDisplayContext.getLayoutBranchDisplayName(layoutBranch)) %>"
+						localizeLabel="<%= false %>"
+						selected="<%= recentLayoutRevision.getLayoutBranchId() == rootLayoutRevision.getLayoutBranchId() %>"
+						value="<%= rootLayoutRevision.getLayoutRevisionId() %>"
+					/>
 
 				<%
 				}
 				%>
 
-				<aui:option label="all-page-variations" value="all" />
+				<aui:option
+					label="all-page-variations"
+					value="all"
+				/>
 			</aui:select>
 		</c:if>
 
@@ -96,7 +109,10 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 							<liferay-ui:search-container-column-text
 								name="status"
 							>
-								<aui:model-context bean="<%= curLayoutRevision %>" model="<%= LayoutRevision.class %>" />
+								<aui:model-context
+									bean="<%= curLayoutRevision %>"
+									model="<%= LayoutRevision.class %>"
+								/>
 
 								<%
 								int status = curLayoutRevision.getStatus();
@@ -104,10 +120,19 @@ List<LayoutRevision> rootLayoutRevisions = LayoutRevisionLocalServiceUtil.getChi
 
 								<c:choose>
 									<c:when test="<%= curLayoutRevision.isHead() %>">
-										<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= status %>" statusMessage="ready-for-publication" />
+										<aui:workflow-status
+											showIcon="<%= false %>"
+											showLabel="<%= false %>"
+											status="<%= status %>"
+											statusMessage="ready-for-publication"
+										/>
 									</c:when>
 									<c:otherwise>
-										<aui:workflow-status showIcon="<%= false %>" showLabel="<%= false %>" status="<%= status %>" />
+										<aui:workflow-status
+											showIcon="<%= false %>"
+											showLabel="<%= false %>"
+											status="<%= status %>"
+										/>
 									</c:otherwise>
 								</c:choose>
 							</liferay-ui:search-container-column-text>

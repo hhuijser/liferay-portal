@@ -80,16 +80,30 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 </liferay-frontend:info-bar>
 
 <div class="<%= previewBeforeRestore ? "" : "container-fluid-1280" %>" id="container">
-	<aui:model-context bean="<%= workflowDefinition %>" model="<%= WorkflowDefinition.class %>" />
+	<aui:model-context
+		bean="<%= workflowDefinition %>"
+		model="<%= WorkflowDefinition.class %>"
+	/>
 
-	<aui:input name="content" type="hidden" value="<%= content %>" />
+	<aui:input
+		name="content"
+		type="hidden"
+		value="<%= content %>"
+	/>
 
-	<aui:form method="post" name="form">
+	<aui:form
+		method="post"
+		name="form"
+	>
 		<div class="card-horizontal main-content-card">
 			<div class="card-row-padded">
-				<aui:fieldset cssClass="workflow-definition-content">
+				<aui:fieldset
+					cssClass="workflow-definition-content"
+				>
 					<aui:col>
-						<aui:field-wrapper label="title">
+						<aui:field-wrapper
+							label="title"
+						>
 							<liferay-ui:input-localized
 								disabled="<%= true %>"
 								name=" <%= workflowDefinition.getName() %>_title"
@@ -98,7 +112,10 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 						</aui:field-wrapper>
 					</aui:col>
 
-					<aui:col cssClass="workflow-definition-content-source-wrapper" id="contentSourceWrapper">
+					<aui:col
+						cssClass="workflow-definition-content-source-wrapper"
+						id="contentSourceWrapper"
+					>
 						<div class="workflow-definition-content-source" id="<portlet:namespace />contentEditor"></div>
 					</aui:col>
 				</aui:fieldset>
@@ -109,13 +126,19 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 	<c:choose>
 		<c:when test="<%= !previewBeforeRestore %>">
 			<aui:button-row>
-				<aui:button href="<%= editWorkflowDefinitionURL %>" primary="<%= true %>" value="edit" />
+				<aui:button
+					href="<%= editWorkflowDefinitionURL %>"
+					primary="<%= true %>"
+					value="edit"
+				/>
 			</aui:button-row>
 		</c:when>
 	</c:choose>
 </div>
 
-<aui:script use="aui-ace-editor">
+<aui:script
+	use="aui-ace-editor"
+>
 	var contentEditor = new A.AceEditor({
 		boundingBox: '#<portlet:namespace />contentEditor',
 		height: 600,

@@ -56,7 +56,14 @@
 					</h5>
 
 					<h6 class="text-default">
-						<aui:workflow-status markupView="lexicon" showHelpMessage="<%= false %>" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= articleVersion.getStatus() %>" version="<%= String.valueOf(articleVersion.getVersion()) %>" />
+						<aui:workflow-status
+							markupView="lexicon"
+							showHelpMessage="<%= false %>"
+							showIcon="<%= false %>"
+							showLabel="<%= false %>"
+							status="<%= articleVersion.getStatus() %>"
+							version="<%= String.valueOf(articleVersion.getVersion()) %>"
+						/>
 					</h6>
 				</liferay-ui:search-container-column-text>
 

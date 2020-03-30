@@ -36,7 +36,10 @@ DLViewMoreMenuItemsDisplayContext dlViewMoreMenuItemsDisplayContext = new DLView
 	selectable="<%= false %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="addMenuItemFm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="addMenuItemFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= dlViewMoreMenuItemsDisplayContext.getSearchContainer() %>"
 	>
@@ -56,7 +59,11 @@ DLViewMoreMenuItemsDisplayContext dlViewMoreMenuItemsDisplayContext = new DLView
 			<liferay-ui:search-container-column-text
 				name="name"
 			>
-				<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+				<aui:a
+					cssClass="selector-button"
+					data="<%= data %>"
+					href="javascript:;"
+				>
 					<%= HtmlUtil.escape(fileEntryType.getName(locale)) %>
 				</aui:a>
 			</liferay-ui:search-container-column-text>
@@ -78,7 +85,9 @@ DLViewMoreMenuItemsDisplayContext dlViewMoreMenuItemsDisplayContext = new DLView
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var Util = Liferay.Util;
 
 	A.one('#<portlet:namespace />addMenuItemFm').delegate(

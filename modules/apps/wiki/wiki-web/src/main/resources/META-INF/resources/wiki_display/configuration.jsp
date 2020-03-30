@@ -33,8 +33,17 @@ boolean nodeInGroup = false;
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:error exception="<%= NoSuchNodeException.class %>" message="the-node-could-not-be-found" />
@@ -43,8 +52,13 @@ boolean nodeInGroup = false;
 			<liferay-frontend:fieldset>
 				<c:choose>
 					<c:when test="<%= !nodes.isEmpty() %>">
-						<aui:select label="node" name="preferences--nodeId--">
-							<aui:option value="" />
+						<aui:select
+							label="node"
+							name="preferences--nodeId--"
+						>
+							<aui:option
+								value=""
+							/>
 
 							<%
 							for (WikiNode node : nodes) {
@@ -61,7 +75,11 @@ boolean nodeInGroup = false;
 								}
 							%>
 
-								<aui:option label="<%= node.getName() %>" selected="<%= nodeId == node.getNodeId() %>" value="<%= node.getNodeId() %>" />
+								<aui:option
+									label="<%= node.getName() %>"
+									selected="<%= nodeId == node.getNodeId() %>"
+									value="<%= node.getNodeId() %>"
+								/>
 
 							<%
 							}
@@ -79,7 +97,10 @@ boolean nodeInGroup = false;
 				<c:choose>
 					<c:when test="<%= nodeInGroup %>">
 						<div id="<portlet:namespace />pageSelectorContainer">
-							<aui:select label="page" name="preferences--title--">
+							<aui:select
+								label="page"
+								name="preferences--title--"
+							>
 
 								<%
 								int total = WikiPageLocalServiceUtil.getPagesCount(nodeId, true);
@@ -90,7 +111,10 @@ boolean nodeInGroup = false;
 									WikiPage wikiPage = (WikiPage)pages.get(i);
 								%>
 
-									<aui:option label="<%= wikiPage.getTitle() %>" selected="<%= wikiPage.getTitle().equals(title) || (Validator.isNull(title) && wikiPage.getTitle().equals(wikiGroupServiceConfiguration.frontPageName())) %>" />
+									<aui:option
+										label="<%= wikiPage.getTitle() %>"
+										selected="<%= wikiPage.getTitle().equals(title) || (Validator.isNull(title) && wikiPage.getTitle().equals(wikiGroupServiceConfiguration.frontPageName())) %>"
+									/>
 
 								<%
 								}
@@ -100,7 +124,11 @@ boolean nodeInGroup = false;
 						</div>
 					</c:when>
 					<c:otherwise>
-						<aui:input name="preferences--title--" type="hidden" value="<%= wikiGroupServiceConfiguration.frontPageName() %>" />
+						<aui:input
+							name="preferences--title--"
+							type="hidden"
+							value="<%= wikiGroupServiceConfiguration.frontPageName() %>"
+						/>
 					</c:otherwise>
 				</c:choose>
 
@@ -141,8 +169,13 @@ boolean nodeInGroup = false;
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button disabled="<%= nodes.isEmpty() %>" type="submit" />
+		<aui:button
+			disabled="<%= nodes.isEmpty() %>"
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

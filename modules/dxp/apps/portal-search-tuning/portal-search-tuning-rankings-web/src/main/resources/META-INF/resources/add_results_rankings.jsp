@@ -61,17 +61,47 @@ renderResponse.setTitle(LanguageUtil.get(request, "new-ranking"));
 			<liferay-ui:message key="customize-how-users-see-results-for-a-given-search-query" />
 		</div>
 
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.ADD %>" />
-		<aui:input name="resultActionCmd" type="hidden" value="<%= resultActionCmd %>" />
-		<aui:input name="resultActionUid" type="hidden" value="<%= resultActionUid %>" />
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
 
-		<aui:input label="search-query" name="keywords" required="<%= true %>" showRequiredLabel="<%= true %>" />
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="<%= Constants.ADD %>"
+		/>
+
+		<aui:input
+			name="resultActionCmd"
+			type="hidden"
+			value="<%= resultActionCmd %>"
+		/>
+
+		<aui:input
+			name="resultActionUid"
+			type="hidden"
+			value="<%= resultActionUid %>"
+		/>
+
+		<aui:input
+			label="search-query"
+			name="keywords"
+			required="<%= true %>"
+			showRequiredLabel="<%= true %>"
+		/>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" value="customize-results" />
+		<aui:button
+			type="submit"
+			value="customize-results"
+		/>
 
-		<aui:button href="<%= redirect %>" type="cancel" />
+		<aui:button
+			href="<%= redirect %>"
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

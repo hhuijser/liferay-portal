@@ -31,8 +31,17 @@ BlogsPortletInstanceSettingsHelper blogsPortletInstanceSettingsHelper = new Blog
 	method="post"
 	name="fm"
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-frontend:fieldset-group>
@@ -40,13 +49,26 @@ BlogsPortletInstanceSettingsHelper blogsPortletInstanceSettingsHelper = new Blog
 				collapsible="<%= false %>"
 				label="general-settings"
 			>
-				<aui:input name="preferences--enableRatings--" type="checkbox" value="<%= blogsPortletInstanceConfiguration.enableRatings() %>" />
+				<aui:input
+					name="preferences--enableRatings--"
+					type="checkbox"
+					value="<%= blogsPortletInstanceConfiguration.enableRatings() %>"
+				/>
 
 				<c:if test="<%= PropsValues.BLOGS_ENTRY_COMMENTS_ENABLED %>">
-					<aui:input name="preferences--enableComments--" type="checkbox" value="<%= blogsPortletInstanceConfiguration.enableComments() %>" />
+					<aui:input
+						name="preferences--enableComments--"
+						type="checkbox"
+						value="<%= blogsPortletInstanceConfiguration.enableComments() %>"
+					/>
 				</c:if>
 
-				<aui:input label="show-view-count" name="preferences--enableViewCount--" type="checkbox" value="<%= blogsPortletInstanceConfiguration.enableViewCount() %>" />
+				<aui:input
+					label="show-view-count"
+					name="preferences--enableViewCount--"
+					type="checkbox"
+					value="<%= blogsPortletInstanceConfiguration.enableViewCount() %>"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 
@@ -67,13 +89,19 @@ BlogsPortletInstanceSettingsHelper blogsPortletInstanceSettingsHelper = new Blog
 				collapsible="<%= false %>"
 				label="list-view"
 			>
-				<aui:select label="maximum-items-to-display" name="preferences--pageDelta--">
+				<aui:select
+					label="maximum-items-to-display"
+					name="preferences--pageDelta--"
+				>
 
 					<%
 					for (int pageDeltaValue : PropsValues.BLOGS_ENTRY_PAGE_DELTA_VALUES) {
 					%>
 
-						<aui:option label="<%= pageDeltaValue %>" selected="<%= GetterUtil.getInteger(blogsPortletInstanceConfiguration.pageDelta()) == pageDeltaValue %>" />
+						<aui:option
+							label="<%= pageDeltaValue %>"
+							selected="<%= GetterUtil.getInteger(blogsPortletInstanceConfiguration.pageDelta()) == pageDeltaValue %>"
+						/>
 
 					<%
 					}
@@ -107,20 +135,39 @@ BlogsPortletInstanceSettingsHelper blogsPortletInstanceSettingsHelper = new Blog
 				collapsible="<%= false %>"
 				label="detail-view"
 			>
-				<aui:input label="enable-report-inappropriate-content" name="preferences--enableFlags--" type="checkbox" value="<%= blogsPortletInstanceConfiguration.enableFlags() %>" />
+				<aui:input
+					label="enable-report-inappropriate-content"
+					name="preferences--enableFlags--"
+					type="checkbox"
+					value="<%= blogsPortletInstanceConfiguration.enableFlags() %>"
+				/>
 
 				<c:if test="<%= PropsValues.BLOGS_ENTRY_COMMENTS_ENABLED %>">
-					<aui:input label="enable-ratings-for-comments" name="preferences--enableCommentRatings--" type="checkbox" value="<%= blogsPortletInstanceConfiguration.enableCommentRatings() %>" />
+					<aui:input
+						label="enable-ratings-for-comments"
+						name="preferences--enableCommentRatings--"
+						type="checkbox"
+						value="<%= blogsPortletInstanceConfiguration.enableCommentRatings() %>"
+					/>
 				</c:if>
 
-				<aui:input label="show-related-assets" name="preferences--enableRelatedAssets--" type="checkbox" value="<%= blogsPortletInstanceConfiguration.enableRelatedAssets() %>" />
+				<aui:input
+					label="show-related-assets"
+					name="preferences--enableRelatedAssets--"
+					type="checkbox"
+					value="<%= blogsPortletInstanceConfiguration.enableRelatedAssets() %>"
+				/>
 			</liferay-frontend:fieldset>
 		</liferay-frontend:fieldset-group>
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>

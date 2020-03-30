@@ -37,22 +37,46 @@ DDMStructure ddmStructure = recordSet.getDDMStructure();
 
 	<c:if test="<%= editable %>">
 		<div class="lfr-spreadsheet-add-rows-buttons">
-			<aui:select inlineField="<%= true %>" label="more-rows-at-bottom" name="numberOfRecords">
-				<aui:option label="1" />
-				<aui:option label="5" />
-				<aui:option label="10" />
-				<aui:option label="20" />
-				<aui:option label="50" />
+			<aui:select
+				inlineField="<%= true %>"
+				label="more-rows-at-bottom"
+				name="numberOfRecords"
+			>
+				<aui:option
+					label="1"
+				/>
+
+				<aui:option
+					label="5"
+				/>
+
+				<aui:option
+					label="10"
+				/>
+
+				<aui:option
+					label="20"
+				/>
+
+				<aui:option
+					label="50"
+				/>
 			</aui:select>
 
-			<aui:button inlineField="<%= true %>" name="addRecords" value="add" />
+			<aui:button
+				inlineField="<%= true %>"
+				name="addRecords"
+				value="add"
+			/>
 		</div>
 	</c:if>
 </div>
 
 <%@ include file="/custom_spreadsheet_editors.jspf" %>
 
-<aui:script use="liferay-portlet-dynamic-data-lists">
+<aui:script
+	use="liferay-portlet-dynamic-data-lists"
+>
 	var structure = <%= DDMUtil.getDDMFormFieldsJSONArray(ddmStructure, ddmStructure.getDefinition()) %>;
 
 	var columns = Liferay.SpreadSheet.buildDataTableColumns(

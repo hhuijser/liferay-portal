@@ -16,10 +16,16 @@
 
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(icon) %>">
-		<aui:icon cssClass="<%= iconCssClass %>" image="<%= icon %>" markupView="<%= markupView %>" />
+		<aui:icon
+			cssClass="<%= iconCssClass %>"
+			image="<%= icon %>"
+			markupView="<%= markupView %>"
+		/>
 	</c:when>
 	<c:when test="<%= auiImage %>">
-		<aui:icon image="<%= image.substring(_AUI_PATH.length()) %>" />
+		<aui:icon
+			image="<%= image.substring(_AUI_PATH.length()) %>"
+		/>
 	</c:when>
 	<c:otherwise>
 		<c:choose>

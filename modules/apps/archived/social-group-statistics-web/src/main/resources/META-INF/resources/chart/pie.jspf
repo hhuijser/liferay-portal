@@ -33,13 +33,19 @@ DecimalFormat decimalFormat = new DecimalFormat("##.00%");
 %>
 
 <aui:row>
-	<aui:col cssClass="chart-column" width="<%= chartWidth %>">
+	<aui:col
+		cssClass="chart-column"
+		width="<%= chartWidth %>"
+	>
 		<div class="group-statistics-chart">
 			<div id="groupStatisticsChart<%= displayActivityCounterNameIndex %>"></div>
 		</div>
 	</aui:col>
 
-	<aui:col cssClass="info-column" width="<%= 100 - chartWidth %>">
+	<aui:col
+		cssClass="info-column"
+		width="<%= 100 - chartWidth %>"
+	>
 		<div class="group-statistics-info">
 			<strong><liferay-ui:message key="activities-by-area" />:</strong>
 
@@ -83,7 +89,9 @@ DecimalFormat decimalFormat = new DecimalFormat("##.00%");
 	</aui:col>
 </aui:row>
 
-<aui:script use="charts">
+<aui:script
+	use="charts"
+>
 	var categories = [<%= StringUtil.merge(categories) %>];
 	var values = [<%= StringUtil.merge(values) %>];
 

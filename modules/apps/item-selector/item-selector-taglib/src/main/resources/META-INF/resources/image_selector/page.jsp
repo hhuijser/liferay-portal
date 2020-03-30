@@ -40,8 +40,17 @@ if (fileEntryId != 0) {
 %>
 
 <div class="drop-zone <%= (fileEntryId == 0) ? "drop-enabled" : StringPool.BLANK %> <%= !draggableImage.equals("none") ? "draggable-image " + draggableImage : StringPool.BLANK %> taglib-image-selector" id="<%= randomNamespace %>taglibImageSelector">
-	<aui:input name='<%= paramName + "Id" %>' type="hidden" value="<%= fileEntryId %>" />
-	<aui:input name='<%= paramName + "CropRegion" %>' type="hidden" value="<%= cropRegion %>" />
+	<aui:input
+		name='<%= paramName + "Id" %>'
+		type="hidden"
+		value="<%= fileEntryId %>"
+	/>
+
+	<aui:input
+		name='<%= paramName + "CropRegion" %>'
+		type="hidden"
+		value="<%= cropRegion %>"
+	/>
 
 	<div class="image-wrapper">
 		<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="current-image" />" class="current-image <%= Validator.isNull(imageURL) ? "hide" : StringPool.BLANK %>" id="<%= randomNamespace %>image" src="<%= HtmlUtil.escape(Validator.isNotNull(imageURL) ? imageURL : StringPool.BLANK) %>" />
@@ -94,7 +103,11 @@ if (fileEntryId != 0) {
 	/>
 
 	<div class="error-wrapper hide">
-		<aui:alert closeable="<%= true %>" id='<%= randomNamespace + "errorAlert" %>' type="danger">
+		<aui:alert
+			closeable="<%= true %>"
+			id='<%= randomNamespace + "errorAlert" %>'
+			type="danger"
+		>
 			<span class="error-message"></span>
 
 			<c:if test="<%= Validator.isNotNull(itemSelectorEventName) && Validator.isNotNull(itemSelectorURL) %>">
@@ -110,7 +123,12 @@ if (fileEntryId != 0) {
 
 		<p class="progress-data size"></p>
 
-		<aui:button id='<%= randomNamespace + "cancelUpload" %>' primary="<%= true %>" useNamespace="<%= false %>" value="cancel" />
+		<aui:button
+			id='<%= randomNamespace + "cancelUpload" %>'
+			primary="<%= true %>"
+			useNamespace="<%= false %>"
+			value="cancel"
+		/>
 	</div>
 
 	<div class="change-image-controls <%= (fileEntryId != 0) ? StringPool.BLANK : "hide" %>">
@@ -140,7 +158,9 @@ if (!draggableImage.equals("none")) {
 }
 %>
 
-<aui:script use="<%= modules %>">
+<aui:script
+	use="<%= modules %>"
+>
 	var imageSelector = new Liferay.ImageSelector({
 		errorNode: '#<%= randomNamespace + "errorAlert" %>',
 		fileEntryImageNode: '#<%= randomNamespace %>image',

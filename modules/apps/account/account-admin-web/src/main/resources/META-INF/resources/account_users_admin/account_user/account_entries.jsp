@@ -46,9 +46,20 @@ portletDisplay.setURLBack(backURL);
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= editAccountUserAccountEntriesURL %>" method="post" name="fm">
-	<aui:input name="addAccountEntryIds" type="hidden" />
-	<aui:input name="deleteAccountEntryIds" type="hidden" />
+<aui:form
+	action="<%= editAccountUserAccountEntriesURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="addAccountEntryIds"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="deleteAccountEntryIds"
+		type="hidden"
+	/>
 
 	<div class="sheet sheet-lg">
 		<h2 class="sheet-title">
@@ -112,14 +123,21 @@ portletDisplay.setURLBack(backURL);
 		</div>
 
 		<div class="sheet-footer">
-			<aui:button type="submit" />
+			<aui:button
+				type="submit"
+			/>
 
-			<aui:button href="<%= backURL %>" type="cancel" />
+			<aui:button
+				href="<%= backURL %>"
+				type="cancel"
+			/>
 		</div>
 	</div>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var AArray = A.Array;
 	var Util = Liferay.Util;
 

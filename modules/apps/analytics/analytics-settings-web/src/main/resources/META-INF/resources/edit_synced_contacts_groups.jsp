@@ -69,9 +69,22 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 		displayContext="<%= new UserGroupManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, userGroupDisplayContext) %>"
 	/>
 
-	<aui:form action="<%= editSyncedContactsURL %>" method="post" name="fm">
-		<aui:input name="<%= Constants.CMD %>" type="hidden" value="update_synced_groups" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+	<aui:form
+		action="<%= editSyncedContactsURL %>"
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+			value="update_synced_groups"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
 
 		<liferay-ui:search-container
 			id="selectUserGroups"
@@ -98,8 +111,16 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 		</liferay-ui:search-container>
 
 		<aui:button-row>
-			<aui:button type="submit" value="save" />
-			<aui:button href="<%= redirect %>" type="cancel" value="cancel" />
+			<aui:button
+				type="submit"
+				value="save"
+			/>
+
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+				value="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

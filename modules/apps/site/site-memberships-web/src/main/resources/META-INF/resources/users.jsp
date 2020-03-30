@@ -52,11 +52,34 @@ Role role = usersDisplayContext.getRole();
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:actionURL>
 
-		<aui:form action="<%= deleteGroupUsersURL %>" cssClass="portlet-site-memberships-users" method="post" name="fm">
-			<aui:input name="tabs1" type="hidden" value="users" />
-			<aui:input name="navigation" type="hidden" value="<%= usersDisplayContext.getNavigation() %>" />
-			<aui:input name="addUserIds" type="hidden" />
-			<aui:input name="roleId" type="hidden" value="<%= (role != null) ? role.getRoleId() : 0 %>" />
+		<aui:form
+			action="<%= deleteGroupUsersURL %>"
+			cssClass="portlet-site-memberships-users"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="tabs1"
+				type="hidden"
+				value="users"
+			/>
+
+			<aui:input
+				name="navigation"
+				type="hidden"
+				value="<%= usersDisplayContext.getNavigation() %>"
+			/>
+
+			<aui:input
+				name="addUserIds"
+				type="hidden"
+			/>
+
+			<aui:input
+				name="roleId"
+				type="hidden"
+				value="<%= (role != null) ? role.getRoleId() : 0 %>"
+			/>
 
 			<liferay-ui:membership-policy-error />
 
@@ -100,12 +123,29 @@ Role role = usersDisplayContext.getRole();
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= addGroupUsersURL %>" cssClass="hide" method="post" name="addGroupUsersFm">
-	<aui:input name="tabs1" type="hidden" value="users" />
+<aui:form
+	action="<%= addGroupUsersURL %>"
+	cssClass="hide"
+	method="post"
+	name="addGroupUsersFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="users"
+	/>
 </aui:form>
 
-<aui:form cssClass="hide" method="post" name="editUserGroupRoleFm">
-	<aui:input name="tabs1" type="hidden" value="users" />
+<aui:form
+	cssClass="hide"
+	method="post"
+	name="editUserGroupRoleFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="users"
+	/>
 </aui:form>
 
 <liferay-frontend:component

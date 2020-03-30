@@ -130,7 +130,9 @@ if (inlineEdit && Validator.isNotNull(inlineEditSaveURL)) {
 name = HtmlUtil.escapeJS(name);
 %>
 
-<aui:script use="<%= modules %>">
+<aui:script
+	use="<%= modules %>"
+>
 	var UA = A.UA;
 
 	var windowNode = A.getWin();

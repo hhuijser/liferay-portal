@@ -17,7 +17,9 @@
 <c:choose>
 	<c:when test="<%= Validator.isNotNull(rssFeed.getURL()) && (syndFeed != null) %>">
 		<div class="feed <%= last ? "last" : StringPool.BLANK %>">
-			<aui:fieldset-group markupView="lexicon">
+			<aui:fieldset-group
+				markupView="lexicon"
+			>
 				<aui:fieldset>
 
 					<%
@@ -67,7 +69,13 @@
 						SyndEntry syndEntry = rssFeedEntry.getSyndEntry();
 					%>
 
-						<aui:fieldset collapsed="<%= !themeDisplay.isStateMaximized() && (j >= rssPortletInstanceConfiguration.expandedEntriesPerFeed()) %>" collapsible="<%= true %>" cssClass="feed-entry" id='<%= renderResponse.getNamespace() + "feed_" + i + "_panelId_" + j %>' label="<%= HtmlUtil.escape(syndEntry.getTitle()) %>">
+						<aui:fieldset
+							collapsed="<%= !themeDisplay.isStateMaximized() && (j >= rssPortletInstanceConfiguration.expandedEntriesPerFeed()) %>"
+							collapsible="<%= true %>"
+							cssClass="feed-entry"
+							id='<%= renderResponse.getNamespace() + "feed_" + i + "_panelId_" + j %>'
+							label="<%= HtmlUtil.escape(syndEntry.getTitle()) %>"
+						>
 							<div class="feed-entry-content">
 								<c:if test="<%= rssPortletInstanceConfiguration.showFeedItemAuthor() && Validator.isNotNull(syndEntry.getAuthor()) %>">
 									<strong class="feed-entry-author small">

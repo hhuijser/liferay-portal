@@ -16,7 +16,9 @@
 
 <%@ include file="/dynamic_include/init.jsp" %>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var onDestroyPortlet = function() {
 		Liferay.detach('messagePosted', onMessagePosted);
 		Liferay.detach('destroyPortlet', onDestroyPortlet);

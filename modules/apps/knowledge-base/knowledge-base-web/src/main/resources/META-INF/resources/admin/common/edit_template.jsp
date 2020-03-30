@@ -33,21 +33,56 @@ renderResponse.setTitle((kbTemplate == null) ? LanguageUtil.get(request, "new-te
 <liferay-portlet:actionURL name="updateKBTemplate" var="updateKBTemplateURL" />
 
 <div class="container-fluid-1280">
-	<aui:form action="<%= updateKBTemplateURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBTemplate();" %>'>
-		<aui:input name="mvcPath" type="hidden" value='<%= templatePath + "edit_template.jsp" %>' />
-		<aui:input name="<%= Constants.CMD %>" type="hidden" />
-		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
-		<aui:input name="kbTemplateId" type="hidden" value="<%= String.valueOf(kbTemplateId) %>" />
+	<aui:form
+		action="<%= updateKBTemplateURL %>"
+		method="post"
+		name="fm"
+		onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBTemplate();" %>'
+	>
+		<aui:input
+			name="mvcPath"
+			type="hidden"
+			value='<%= templatePath + "edit_template.jsp" %>'
+		/>
+
+		<aui:input
+			name="<%= Constants.CMD %>"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= redirect %>"
+		/>
+
+		<aui:input
+			name="kbTemplateId"
+			type="hidden"
+			value="<%= String.valueOf(kbTemplateId) %>"
+		/>
 
 		<liferay-ui:error exception="<%= KBTemplateContentException.class %>" message="please-enter-valid-content" />
 		<liferay-ui:error exception="<%= KBTemplateTitleException.class %>" message="please-enter-a-valid-title" />
 
-		<aui:model-context bean="<%= kbTemplate %>" model="<%= KBTemplate.class %>" />
+		<aui:model-context
+			bean="<%= kbTemplate %>"
+			model="<%= KBTemplate.class %>"
+		/>
 
-		<aui:fieldset-group markupView="lexicon">
+		<aui:fieldset-group
+			markupView="lexicon"
+		>
 			<aui:fieldset>
 				<h1 class="kb-title">
-					<aui:input autocomplete="off" label='<%= LanguageUtil.get(request, "title") %>' name="title" required="<%= true %>" type="text" value="<%= HtmlUtil.escape(title) %>" />
+					<aui:input
+						autocomplete="off"
+						label='<%= LanguageUtil.get(request, "title") %>'
+						name="title"
+						required="<%= true %>"
+						type="text"
+						value="<%= HtmlUtil.escape(title) %>"
+					/>
 				</h1>
 
 				<liferay-ui:input-editor
@@ -57,11 +92,18 @@ renderResponse.setTitle((kbTemplate == null) ? LanguageUtil.get(request, "new-te
 					placeholder="content"
 				/>
 
-				<aui:input name="content" type="hidden" />
+				<aui:input
+					name="content"
+					type="hidden"
+				/>
 			</aui:fieldset>
 
 			<c:if test="<%= kbTemplate == null %>">
-				<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="permissions">
+				<aui:fieldset
+					collapsed="<%= true %>"
+					collapsible="<%= true %>"
+					label="permissions"
+				>
 					<liferay-ui:input-permissions
 						modelName="<%= KBTemplate.class.getName() %>"
 					/>
@@ -70,9 +112,15 @@ renderResponse.setTitle((kbTemplate == null) ? LanguageUtil.get(request, "new-te
 		</aui:fieldset-group>
 
 		<aui:button-row>
-			<aui:button type="submit" value="publish" />
+			<aui:button
+				type="submit"
+				value="publish"
+			/>
 
-			<aui:button href="<%= redirect %>" type="cancel" />
+			<aui:button
+				href="<%= redirect %>"
+				type="cancel"
+			/>
 		</aui:button-row>
 	</aui:form>
 </div>

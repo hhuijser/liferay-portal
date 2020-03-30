@@ -44,7 +44,9 @@ String rootNodeName = liveGroup.getLayoutRootNodeName(privateLayout, themeDispla
 	/>
 
 	<aui:nav-bar>
-		<aui:nav cssClass="navbar-nav">
+		<aui:nav
+			cssClass="navbar-nav"
+		>
 			<liferay-portlet:renderURL var="exportPagesURL">
 				<portlet:param name="mvcRenderCommandName" value="exportLayouts" />
 				<portlet:param name="<%= Constants.CMD %>" value="<%= Constants.EXPORT %>" />
@@ -55,7 +57,10 @@ String rootNodeName = liveGroup.getLayoutRootNodeName(privateLayout, themeDispla
 				<portlet:param name="rootNodeName" value="<%= rootNodeName %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:nav-item href="<%= exportPagesURL %>" label="export" />
+			<aui:nav-item
+				href="<%= exportPagesURL %>"
+				label="export"
+			/>
 
 			<liferay-portlet:renderURL var="importPagesURL">
 				<portlet:param name="mvcRenderCommandName" value="importLayouts" />
@@ -66,7 +71,10 @@ String rootNodeName = liveGroup.getLayoutRootNodeName(privateLayout, themeDispla
 				<portlet:param name="rootNodeName" value="<%= rootNodeName %>" />
 			</liferay-portlet:renderURL>
 
-			<aui:nav-item href="<%= importPagesURL %>" label="import" />
+			<aui:nav-item
+				href="<%= importPagesURL %>"
+				label="import"
+			/>
 		</aui:nav>
 	</aui:nav-bar>
 </div>

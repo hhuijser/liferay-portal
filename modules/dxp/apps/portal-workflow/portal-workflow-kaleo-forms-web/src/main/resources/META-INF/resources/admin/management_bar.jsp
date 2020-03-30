@@ -31,7 +31,9 @@
 	sortingURL="<%= kaleoFormsAdminDisplayContext.getSortingURL() %>"
 />
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var deleteKaleoProcess = function() {
 		if (
 			confirm(

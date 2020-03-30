@@ -15,7 +15,10 @@
 --%>
 
 <div class="taglib-form-navigator" id="<portlet:namespace />tabsBoundingBox">
-	<aui:input name="modifiedSections" type="hidden" />
+	<aui:input
+		name="modifiedSections"
+		type="hidden"
+	/>
 
 	<div class="form-steps" id="<portlet:namespace />tabs">
 		<liferay-util:buffer
@@ -23,9 +26,15 @@
 		>
 			<c:if test="<%= showButtons %>">
 				<aui:button-row>
-					<aui:button primary="<%= true %>" type="submit" />
+					<aui:button
+						primary="<%= true %>"
+						type="submit"
+					/>
 
-					<aui:button href="<%= backURL %>" type="cancel" />
+					<aui:button
+						href="<%= backURL %>"
+						type="cancel"
+					/>
 				</aui:button-row>
 			</c:if>
 
@@ -174,7 +183,9 @@
 	</div>
 </div>
 
-<aui:script use="anim,aui-event-input,aui-tabview,aui-url,history,io-form,scrollview">
+<aui:script
+	use="anim,aui-event-input,aui-tabview,aui-url,history,io-form,scrollview"
+>
 	var formNode = A.one('#<portlet:namespace /><%= formName %>');
 
 	Liferay.component(

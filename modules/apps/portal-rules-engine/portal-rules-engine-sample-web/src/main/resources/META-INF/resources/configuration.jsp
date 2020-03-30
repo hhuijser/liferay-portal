@@ -25,9 +25,22 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="classNameIds" type="hidden" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="classNameIds"
+		type="hidden"
+	/>
 
 	<liferay-ui:error key="classNameIds" message="please-select-at-least-one-asset" />
 	<liferay-ui:error key="domainName" message="please-enter-a-valid-domain-name" />
@@ -36,9 +49,20 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 
 	<div class="container-fluid-1280">
 		<aui:fieldset>
-			<aui:input name="domainName" value="<%= domainNameValue %>" wrapperCssClass="lfr-input-text-container" />
+			<aui:input
+				name="domainName"
+				value="<%= domainNameValue %>"
+				wrapperCssClass="lfr-input-text-container"
+			/>
 
-			<aui:input name="rules" style="height: 250px; width: 100%;" type="textarea" value="<%= rulesValue %>" wrap="off" wrapperCssClass="lfr-textarea-container" />
+			<aui:input
+				name="rules"
+				style="height: 250px; width: 100%;"
+				type="textarea"
+				value="<%= rulesValue %>"
+				wrap="off"
+				wrapperCssClass="lfr-textarea-container"
+			/>
 
 			<%
 
@@ -67,7 +91,11 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 			}
 			%>
 
-			<aui:input name="userCustomAttributeNames" value="<%= userCustomAttributeNamesValue %>" wrapperCssClass="lfr-input-text-container" />
+			<aui:input
+				name="userCustomAttributeNames"
+				value="<%= userCustomAttributeNamesValue %>"
+				wrapperCssClass="lfr-input-text-container"
+			/>
 
 			<liferay-ui:input-move-boxes
 				leftBoxName="currentClassNameIds"
@@ -79,7 +107,9 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 			/>
 
 			<aui:button-row>
-				<aui:button type="submit" />
+				<aui:button
+					type="submit"
+				/>
 			</aui:button-row>
 		</aui:fieldset>
 	</div>

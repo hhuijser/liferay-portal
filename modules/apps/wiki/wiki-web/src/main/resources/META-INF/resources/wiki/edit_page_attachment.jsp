@@ -28,26 +28,48 @@ DLConfiguration dlConfiguration = ConfigurationProviderUtil.getSystemConfigurati
 </div>
 
 <div class="hide lfr-fallback" id="<portlet:namespace />fallback">
-	<aui:input name="numOfFiles" type="hidden" value="3" />
+	<aui:input
+		name="numOfFiles"
+		type="hidden"
+		value="3"
+	/>
 
 	<%
 	String acceptedExtensions = StringUtil.merge(dlConfiguration.fileExtensions(), StringPool.COMMA_AND_SPACE);
 	%>
 
-	<aui:input label='<%= LanguageUtil.get(request, "file") + " 1" %>' name="file1" type="file">
-		<aui:validator name="acceptFiles">
+	<aui:input
+		label='<%= LanguageUtil.get(request, "file") + " 1" %>'
+		name="file1"
+		type="file"
+	>
+		<aui:validator
+			name="acceptFiles"
+		>
 			'<%= acceptedExtensions %>'
 		</aui:validator>
 	</aui:input>
 
-	<aui:input label='<%= LanguageUtil.get(request, "file") + " 2" %>' name="file2" type="file">
-		<aui:validator name="acceptFiles">
+	<aui:input
+		label='<%= LanguageUtil.get(request, "file") + " 2" %>'
+		name="file2"
+		type="file"
+	>
+		<aui:validator
+			name="acceptFiles"
+		>
 			'<%= acceptedExtensions %>'
 		</aui:validator>
 	</aui:input>
 
-	<aui:input label='<%= LanguageUtil.get(request, "file") + " 3" %>' name="file3" type="file">
-		<aui:validator name="acceptFiles">
+	<aui:input
+		label='<%= LanguageUtil.get(request, "file") + " 3" %>'
+		name="file3"
+		type="file"
+	>
+		<aui:validator
+			name="acceptFiles"
+		>
 			'<%= acceptedExtensions %>'
 		</aui:validator>
 	</aui:input>
@@ -60,7 +82,9 @@ DLConfiguration dlConfiguration = ConfigurationProviderUtil.getSystemConfigurati
 	<portlet:param name="title" value="<%= wikiPage.getTitle() %>" />
 </liferay-portlet:actionURL>
 
-<aui:script use="liferay-portlet-url,liferay-upload">
+<aui:script
+	use="liferay-portlet-url,liferay-upload"
+>
 	var uploader = new Liferay.Upload({
 		boundingBox: '#<portlet:namespace />fileUpload',
 

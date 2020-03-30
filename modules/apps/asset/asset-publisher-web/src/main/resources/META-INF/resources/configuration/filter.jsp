@@ -16,7 +16,10 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:fieldset label="displayed-assets-must-match-these-rules" markupView="lexicon">
+<aui:fieldset
+	label="displayed-assets-must-match-these-rules"
+	markupView="lexicon"
+>
 	<liferay-asset:asset-tags-error />
 
 	<%

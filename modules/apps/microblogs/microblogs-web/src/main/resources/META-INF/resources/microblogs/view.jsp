@@ -166,7 +166,9 @@ portletURL.setParameter("tabs1", tabs1);
 	/>
 </div>
 
-<aui:script use="aui-base,aui-io-deprecated">
+<aui:script
+	use="aui-base,aui-io-deprecated"
+>
 	AUI().ready(function() {
 		Liferay.Microblogs.init({
 			baseActionURL:

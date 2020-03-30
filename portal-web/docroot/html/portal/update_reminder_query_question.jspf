@@ -14,19 +14,28 @@
  */
 --%>
 
-<aui:select autoFocus="<%= true %>" cssClass="reminder-query-question" label="question" name="reminderQueryQuestion">
+<aui:select
+	autoFocus="<%= true %>"
+	cssClass="reminder-query-question"
+	label="question"
+	name="reminderQueryQuestion"
+>
 
 	<%
 	for (String question : user.getReminderQueryQuestions()) {
 	%>
 
-		<aui:option label="<%= question %>" />
+		<aui:option
+			label="<%= question %>"
+		/>
 
 	<%
 	}
 	%>
 
 	<c:if test="<%= PropsValues.USERS_REMINDER_QUERIES_CUSTOM_QUESTION_ENABLED %>">
-		<aui:option label="<%= UsersAdmin.CUSTOM_QUESTION %>" />
+		<aui:option
+			label="<%= UsersAdmin.CUSTOM_QUESTION %>"
+		/>
 	</c:if>
 </aui:select>

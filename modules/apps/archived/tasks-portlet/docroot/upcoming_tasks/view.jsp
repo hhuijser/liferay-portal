@@ -94,7 +94,9 @@
 	</div>
 </div>
 
-<aui:script use="liferay-tasks">
+<aui:script
+	use="liferay-tasks"
+>
 	Liferay.Tasks.initUpcomingTasks(
 		{
 			upcomingTasksListURL: '<portlet:renderURL windowState="<%= LiferayWindowState.EXCLUSIVE.toString() %>"><portlet:param name="mvcPath" value="/upcoming_tasks/view.jsp" /></portlet:renderURL>'

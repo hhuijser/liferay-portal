@@ -17,7 +17,10 @@
 <%@ include file="/html/taglib/ui/form_navigator/init.jsp" %>
 
 <div class="taglib-form-navigator" id="<portlet:namespace />tabsBoundingBox">
-	<aui:input name="modifiedSections" type="hidden" />
+	<aui:input
+		name="modifiedSections"
+		type="hidden"
+	/>
 
 	<c:choose>
 		<c:when test='<%= displayStyle.equals("panel") %>'>
@@ -31,9 +34,15 @@
 			</liferay-ui:panel-container>
 
 			<aui:button-row>
-				<aui:button primary="<%= true %>" type="submit" />
+				<aui:button
+					primary="<%= true %>"
+					type="submit"
+				/>
 
-				<aui:button href="<%= backURL %>" type="cancel" />
+				<aui:button
+					href="<%= backURL %>"
+					type="cancel"
+				/>
 			</aui:button-row>
 		</c:when>
 		<c:otherwise>
@@ -52,9 +61,15 @@
 				>
 					<c:if test="<%= showButtons %>">
 						<aui:button-row>
-							<aui:button primary="<%= true %>" type="submit" />
+							<aui:button
+								primary="<%= true %>"
+								type="submit"
+							/>
 
-							<aui:button href="<%= backURL %>" type="cancel" />
+							<aui:button
+								href="<%= backURL %>"
+								type="cancel"
+							/>
 						</aui:button-row>
 					</c:if>
 
@@ -160,7 +175,10 @@
 
 												<span class="message"><liferay-ui:message key="<%= sectionLabel %>" /></span>
 
-												<aui:icon cssClass="tab-icon" image="long-arrow-right" />
+												<aui:icon
+													cssClass="tab-icon"
+													image="long-arrow-right"
+												/>
 											</c:when>
 											<c:otherwise>
 												<liferay-ui:message key="<%= sectionLabel %>" />
@@ -193,7 +211,9 @@
 				</c:if>
 			</div>
 
-			<aui:script use="anim,aui-event-input,aui-tabview,aui-url,history,io-form,scrollview">
+			<aui:script
+				use="anim,aui-event-input,aui-tabview,aui-url,history,io-form,scrollview"
+			>
 				var formNode = A.one('#<portlet:namespace /><%= formName %>');
 
 				Liferay.component(

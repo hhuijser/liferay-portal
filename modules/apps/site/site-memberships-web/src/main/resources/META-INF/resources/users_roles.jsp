@@ -24,7 +24,10 @@ UserRolesDisplayContext userRolesDisplayContext = new UserRolesDisplayContext(re
 	displayContext="<%= new UserRolesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, userRolesDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280 portlet-site-memberships-assign-roles" name="fm">
+<aui:form
+	cssClass="container-fluid-1280 portlet-site-memberships-assign-roles"
+	name="fm"
+>
 	<liferay-ui:membership-policy-error />
 
 	<liferay-ui:search-container
@@ -51,7 +54,9 @@ UserRolesDisplayContext userRolesDisplayContext = new UserRolesDisplayContext(re
 	</liferay-ui:search-container>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />userGroupRoleRole'
 	);

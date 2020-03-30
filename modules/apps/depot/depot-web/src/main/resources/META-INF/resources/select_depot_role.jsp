@@ -24,7 +24,12 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 	displayContext="<%= (DepotAdminSelectRoleManagementToolbarDisplayContext)request.getAttribute(DepotAdminWebKeys.DEPOT_ADMIN_SELECT_ROLE_MANAGEMENT_TOOLBAL_DISPLAY_CONTEXT) %>"
 />
 
-<aui:form action="<%= depotAdminSelectRoleDisplayContext.getPortletURL() %>" cssClass="container-fluid container-fluid-max-xl container-form-lg" method="post" name="selectDepotRoleFm">
+<aui:form
+	action="<%= depotAdminSelectRoleDisplayContext.getPortletURL() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-lg"
+	method="post"
+	name="selectDepotRoleFm"
+>
 	<c:choose>
 		<c:when test="<%= depotAdminSelectRoleDisplayContext.isStep1() %>">
 
@@ -32,7 +37,10 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 			DepotAdminSelectRoleDisplayContext.Step1 step1 = (DepotAdminSelectRoleDisplayContext.Step1)depotAdminSelectRoleDisplayContext.getStep();
 			%>
 
-			<aui:input name="groupId" type="hidden" />
+			<aui:input
+				name="groupId"
+				type="hidden"
+			/>
 
 			<div class="alert alert-info">
 				<liferay-ui:message key="please-select-an-asset-library-to-which-you-will-assign-an-asset-library-role" />
@@ -59,7 +67,11 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 					/>
 
 					<liferay-ui:search-container-column-text>
-						<aui:button cssClass="group-selector-button" data='<%= Collections.singletonMap("groupid", group.getGroupId()) %>' value="choose" />
+						<aui:button
+							cssClass="group-selector-button"
+							data='<%= Collections.singletonMap("groupid", group.getGroupId()) %>'
+							value="choose"
+						/>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
 
@@ -68,7 +80,9 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 				/>
 			</liferay-ui:search-container>
 
-			<aui:script require="metal-dom/src/dom as dom">
+			<aui:script
+				require="metal-dom/src/dom as dom"
+			>
 				var form = document.<portlet:namespace />selectDepotRoleFm;
 
 				dom.delegate(form, 'click', '.group-selector-button', function(event) {
@@ -109,7 +123,12 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 
 					<liferay-ui:search-container-column-text>
 						<c:if test="<%= step2.isRoleAllowed(role) %>">
-							<aui:button cssClass="selector-button" data="<%= step2.getData(role) %>" disabled="<%= step2.isDisabled(role) %>" value="choose" />
+							<aui:button
+								cssClass="selector-button"
+								data="<%= step2.getData(role) %>"
+								disabled="<%= step2.isDisabled(role) %>"
+								value="choose"
+							/>
 						</c:if>
 					</liferay-ui:search-container-column-text>
 				</liferay-ui:search-container-row>
@@ -119,7 +138,9 @@ DepotAdminSelectRoleDisplayContext depotAdminSelectRoleDisplayContext = (DepotAd
 				/>
 			</liferay-ui:search-container>
 
-			<aui:script use="aui-base">
+			<aui:script
+				use="aui-base"
+			>
 				var Util = Liferay.Util;
 
 				var openingLiferay = Util.getOpener().Liferay;

@@ -37,7 +37,9 @@ String viewCalendarBookingURL = ParamUtil.getString(request, "viewCalendarBookin
 
 <%@ include file="/event_recorder.jspf" %>
 
-<aui:script use="aui-toggler,json,liferay-calendar-list,liferay-scheduler">
+<aui:script
+	use="aui-toggler,json,liferay-calendar-list,liferay-scheduler"
+>
 	var calendarContainer = Liferay.component(
 		'<portlet:namespace />calendarContainer'
 	);

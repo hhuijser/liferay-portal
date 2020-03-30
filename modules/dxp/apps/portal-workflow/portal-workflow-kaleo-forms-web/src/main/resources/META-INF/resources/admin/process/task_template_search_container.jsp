@@ -85,8 +85,14 @@ KaleoTaskFormPair initialStateKaleoTaskFormPair = KaleoFormsUtil.getInitialState
 				var="taskInputBuffer"
 			>
 				<c:if test="<%= taskFormsPair.equals(initialStateKaleoTaskFormPair) %>">
-					<aui:input name="ddmTemplateId" type="hidden" value="<%= Validator.isNull(formName) ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>">
-						<aui:validator name="required" />
+					<aui:input
+						name="ddmTemplateId"
+						type="hidden"
+						value="<%= Validator.isNull(formName) ? StringPool.BLANK : String.valueOf(ddmTemplateId) %>"
+					>
+						<aui:validator
+							name="required"
+						/>
 					</aui:input>
 				</c:if>
 			</liferay-util:buffer>
@@ -109,7 +115,9 @@ KaleoTaskFormPair initialStateKaleoTaskFormPair = KaleoFormsUtil.getInitialState
 	</liferay-ui:search-container>
 </div>
 
-<aui:script use="aui-base,aui-io-request,liferay-util">
+<aui:script
+	use="aui-base,aui-io-request,liferay-util"
+>
 	Liferay.provide(
 		window,
 		'<portlet:namespace />selectFormTemplate',

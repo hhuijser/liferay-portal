@@ -42,7 +42,9 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 
 <p class="text-muted"><liferay-ui:message key="select-the-ratings-type-for-the-following-applications" /></p>
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "ratingsSettingsContainer" %>'>
+<aui:fieldset
+	id='<%= renderResponse.getNamespace() + "ratingsSettingsContainer" %>'
+>
 
 	<%
 	Map<String, Map<String, RatingsType>> groupRatingsTypeMaps = groupPortletRatingsDefinitionDisplayContext.getGroupRatingsTypeMaps();
@@ -70,14 +72,25 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 			RatingsType ratingsType = ratingsTypeMapEntry.getValue();
 		%>
 
-			<aui:select label="<%= (ratingsTypeMapEntries.size() > 1) ? ResourceActionsUtil.getModelResource(locale, className) : StringPool.BLANK %>" name='<%= "RatingsType--" + propertyKey + "--" %>'>
-				<aui:option label='<%= LanguageUtil.format(request, "default-value-x", companyPortletRatingsDefinitionDisplayContext.getRatingsType(portletId, className)) %>' selected="<%= ratingsType == null %>" value="<%= StringPool.BLANK %>" />
+			<aui:select
+				label="<%= (ratingsTypeMapEntries.size() > 1) ? ResourceActionsUtil.getModelResource(locale, className) : StringPool.BLANK %>"
+				name='<%= "RatingsType--" + propertyKey + "--" %>'
+			>
+				<aui:option
+					label='<%= LanguageUtil.format(request, "default-value-x", companyPortletRatingsDefinitionDisplayContext.getRatingsType(portletId, className)) %>'
+					selected="<%= ratingsType == null %>"
+					value="<%= StringPool.BLANK %>"
+				/>
 
 				<%
 				for (RatingsType curRatingsType : RatingsType.values()) {
 				%>
 
-					<aui:option label="<%= LanguageUtil.get(request, curRatingsType.getValue()) %>" selected="<%= Objects.equals(ratingsType, curRatingsType) %>" value="<%= curRatingsType.getValue() %>" />
+					<aui:option
+						label="<%= LanguageUtil.get(request, curRatingsType.getValue()) %>"
+						selected="<%= Objects.equals(ratingsType, curRatingsType) %>"
+						value="<%= curRatingsType.getValue() %>"
+					/>
 
 				<%
 				}
@@ -92,7 +105,9 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 
 </aui:fieldset>
 
-<aui:script use="aui-base">
+<aui:script
+	use="aui-base"
+>
 	var ratingsSettingsContainer = A.one(
 		'#<portlet:namespace />ratingsSettingsContainer'
 	);

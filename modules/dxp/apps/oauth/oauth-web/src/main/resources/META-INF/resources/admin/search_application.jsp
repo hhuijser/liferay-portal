@@ -23,9 +23,19 @@ OAuthApplicationDisplayTerms displayTerms = (OAuthApplicationDisplayTerms)search
 %>
 
 <span class="aui-search-bar lfr-display-terms-search">
-	<aui:input inlineField="<%= true %>" label="" name="<%= displayTerms.NAME %>" size="30" type="text" value="<%= displayTerms.getName() %>" />
+	<aui:input
+		inlineField="<%= true %>"
+		label=""
+		name="<%= displayTerms.NAME %>"
+		size="30"
+		type="text"
+		value="<%= displayTerms.getName() %>"
+	/>
 
-	<aui:button type="submit" value="search" />
+	<aui:button
+		type="submit"
+		value="search"
+	/>
 </span>
 
 <div class="separator"><!-- --></div>

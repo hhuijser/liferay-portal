@@ -24,7 +24,10 @@ SelectUsersDisplayContext selectUsersDisplayContext = (SelectUsersDisplayContext
 	displayContext="<%= new SelectUsersManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, selectUsersDisplayContext) %>"
 />
 
-<aui:form cssClass="container-fluid-1280" name="fm">
+<aui:form
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 	<liferay-ui:search-container
 		id="selectSegmentsEntryUsers"
 		searchContainer="<%= selectUsersDisplayContext.getUserSearchContainer() %>"

@@ -49,7 +49,10 @@ if (privateVirtualHostnames.isEmpty()) {
 	value="site-url"
 />
 
-<aui:model-context bean="<%= liveGroup %>" model="<%= Group.class %>" />
+<aui:model-context
+	bean="<%= liveGroup %>"
+	model="<%= Group.class %>"
+/>
 
 <liferay-ui:error exception="<%= AvailableLocaleException.class %>" message="please-select-a-valid-language-for-each-virtual-host" />
 
@@ -132,10 +135,20 @@ if (privateVirtualHostnames.isEmpty()) {
 		<liferay-ui:message arguments="<%= new Object[] {themeDisplay.getPortalURL() + themeDisplay.getPathFriendlyURLPublic(), themeDisplay.getPortalURL() + themeDisplay.getPathFriendlyURLPrivateGroup()} %>" key="the-friendly-url-is-appended-to-x-for-public-pages-and-x-for-private-pages" translateArguments="<%= false %>" />
 	</p>
 
-	<aui:input label="friendly-url" name="groupFriendlyURL" type="text" value="<%= HttpUtil.decodeURL(liveGroup.getFriendlyURL()) %>" />
+	<aui:input
+		label="friendly-url"
+		name="groupFriendlyURL"
+		type="text"
+		value="<%= HttpUtil.decodeURL(liveGroup.getFriendlyURL()) %>"
+	/>
 
 	<c:if test="<%= liveGroup.hasStagingGroup() %>">
-		<aui:input label="staging-friendly-url" name="stagingFriendlyURL" type="text" value="<%= HttpUtil.decodeURL(stagingGroup.getFriendlyURL()) %>" />
+		<aui:input
+			label="staging-friendly-url"
+			name="stagingFriendlyURL"
+			type="text"
+			value="<%= HttpUtil.decodeURL(stagingGroup.getFriendlyURL()) %>"
+		/>
 	</c:if>
 
 	<p class="text-muted">
@@ -155,17 +168,38 @@ if (privateVirtualHostnames.isEmpty()) {
 
 			<div class="container-fluid lfr-form-row">
 				<div class="row">
-					<aui:input inlineField="<%= true %>" label="public-pages" maxlength="200" name="publicVirtualHostname[]" placeholder="virtual-host" type="text" value="<%= virtualHostname %>" wrapperCssClass="col-sm-6" />
+					<aui:input
+						inlineField="<%= true %>"
+						label="public-pages"
+						maxlength="200"
+						name="publicVirtualHostname[]"
+						placeholder="virtual-host"
+						type="text"
+						value="<%= virtualHostname %>"
+						wrapperCssClass="col-sm-6"
+					/>
 
-					<aui:select inlineField="<%= true %>" label="language" name="publicVirtualHostLanguageId[]" wrapperCssClass="col-sm-6">
-						<aui:option label="default-language" value="" />
+					<aui:select
+						inlineField="<%= true %>"
+						label="language"
+						name="publicVirtualHostLanguageId[]"
+						wrapperCssClass="col-sm-6"
+					>
+						<aui:option
+							label="default-language"
+							value=""
+						/>
 
 						<%
 						for (Locale localeEntry : availableLocales) {
 							String languageId = LocaleUtil.toLanguageId(localeEntry);
 						%>
 
-							<aui:option label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>" selected="<%= languageId.equals(virtualHostLanguageId) %>" value="<%= languageId %>" />
+							<aui:option
+								label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>"
+								selected="<%= languageId.equals(virtualHostLanguageId) %>"
+								value="<%= languageId %>"
+							/>
 
 						<%
 						}
@@ -192,17 +226,38 @@ if (privateVirtualHostnames.isEmpty()) {
 
 			<div class="container-fluid lfr-form-row">
 				<div class="row">
-					<aui:input inlineField="<%= true %>" label="private-pages" maxlength="200" name="privateVirtualHostname[]" placeholder="virtual-host" type="text" value="<%= virtualHostname %>" wrapperCssClass="col-sm-6" />
+					<aui:input
+						inlineField="<%= true %>"
+						label="private-pages"
+						maxlength="200"
+						name="privateVirtualHostname[]"
+						placeholder="virtual-host"
+						type="text"
+						value="<%= virtualHostname %>"
+						wrapperCssClass="col-sm-6"
+					/>
 
-					<aui:select inlineField="<%= true %>" label="language" name="privateVirtualHostLanguageId[]" wrapperCssClass="col-sm-6">
-						<aui:option label="default-language" value="" />
+					<aui:select
+						inlineField="<%= true %>"
+						label="language"
+						name="privateVirtualHostLanguageId[]"
+						wrapperCssClass="col-sm-6"
+					>
+						<aui:option
+							label="default-language"
+							value=""
+						/>
 
 						<%
 						for (Locale localeEntry : availableLocales) {
 							String languageId = LocaleUtil.toLanguageId(localeEntry);
 						%>
 
-							<aui:option label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>" selected="<%= languageId.equals(virtualHostLanguageId) %>" value="<%= languageId %>" />
+							<aui:option
+								label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>"
+								selected="<%= languageId.equals(virtualHostLanguageId) %>"
+								value="<%= languageId %>"
+							/>
 
 						<%
 						}
@@ -243,17 +298,38 @@ if (privateVirtualHostnames.isEmpty()) {
 
 				<div class="container-fluid lfr-form-row">
 					<div class="row">
-						<aui:input inlineField="<%= true %>" label="staging-public-pages" maxlength="200" name="stagingPublicVirtualHostname[]" placeholder="virtual-host" type="text" value="<%= virtualHostname %>" wrapperCssClass="col-sm-6" />
+						<aui:input
+							inlineField="<%= true %>"
+							label="staging-public-pages"
+							maxlength="200"
+							name="stagingPublicVirtualHostname[]"
+							placeholder="virtual-host"
+							type="text"
+							value="<%= virtualHostname %>"
+							wrapperCssClass="col-sm-6"
+						/>
 
-						<aui:select inlineField="<%= true %>" label="language" name="stagingPublicVirtualHostLanguageId[]" wrapperCssClass="col-sm-6">
-							<aui:option label="default-language" value="" />
+						<aui:select
+							inlineField="<%= true %>"
+							label="language"
+							name="stagingPublicVirtualHostLanguageId[]"
+							wrapperCssClass="col-sm-6"
+						>
+							<aui:option
+								label="default-language"
+								value=""
+							/>
 
 							<%
 							for (Locale localeEntry : availableLocales) {
 								String languageId = LocaleUtil.toLanguageId(localeEntry);
 							%>
 
-								<aui:option label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>" selected="<%= languageId.equals(virtualHostLanguageId) %>" value="<%= languageId %>" />
+								<aui:option
+									label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>"
+									selected="<%= languageId.equals(virtualHostLanguageId) %>"
+									value="<%= languageId %>"
+								/>
 
 							<%
 							}
@@ -292,17 +368,38 @@ if (privateVirtualHostnames.isEmpty()) {
 
 				<div class="container-fluid lfr-form-row">
 					<div class="row">
-						<aui:input inlineField="<%= true %>" label="staging-private-pages" maxlength="200" name="stagingPrivateVirtualHostname[]" placeholder="virtual-host" type="text" value="<%= virtualHostname %>" wrapperCssClass="col-sm-6" />
+						<aui:input
+							inlineField="<%= true %>"
+							label="staging-private-pages"
+							maxlength="200"
+							name="stagingPrivateVirtualHostname[]"
+							placeholder="virtual-host"
+							type="text"
+							value="<%= virtualHostname %>"
+							wrapperCssClass="col-sm-6"
+						/>
 
-						<aui:select inlineField="<%= true %>" label="language" name="stagingPrivateVirtualHostLanguageId[]" wrapperCssClass="col-sm-6">
-							<aui:option label="default-language" value="" />
+						<aui:select
+							inlineField="<%= true %>"
+							label="language"
+							name="stagingPrivateVirtualHostLanguageId[]"
+							wrapperCssClass="col-sm-6"
+						>
+							<aui:option
+								label="default-language"
+								value=""
+							/>
 
 							<%
 							for (Locale localeEntry : availableLocales) {
 								String languageId = LocaleUtil.toLanguageId(localeEntry);
 							%>
 
-								<aui:option label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>" selected="<%= languageId.equals(virtualHostLanguageId) %>" value="<%= languageId %>" />
+								<aui:option
+									label="<%= localeEntry.getDisplayName(themeDisplay.getLocale()) %>"
+									selected="<%= languageId.equals(virtualHostLanguageId) %>"
+									value="<%= languageId %>"
+								/>
 
 							<%
 							}
@@ -320,7 +417,9 @@ if (privateVirtualHostnames.isEmpty()) {
 	</c:if>
 </aui:fieldset>
 
-<aui:script use="liferay-auto-fields">
+<aui:script
+	use="liferay-auto-fields"
+>
 	new Liferay.AutoFields({
 		contentBox: '#<portlet:namespace />publicVirtualHostFields',
 		namespace: '<portlet:namespace />',

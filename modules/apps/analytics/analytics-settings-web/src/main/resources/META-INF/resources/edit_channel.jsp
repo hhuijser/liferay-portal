@@ -49,9 +49,22 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 	</div>
 </div>
 
-<aui:form action="<%= editChannelURL %>" method="post" name="fm">
-	<aui:input name="channelId" type="hidden" value="<%= channelId %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action="<%= editChannelURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="channelId"
+		type="hidden"
+		value="<%= channelId %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<div class="portlet-analytics-settings sheet sheet-lg">
 		<h2 class="autofit-row">
@@ -118,9 +131,15 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(resourceBundle, "
 
 		<div class="text-right">
 			<aui:button-row>
-				<aui:button href="<%= redirect %>" value="cancel" />
+				<aui:button
+					href="<%= redirect %>"
+					value="cancel"
+				/>
 
-				<aui:button type="submit" value="done" />
+				<aui:button
+					type="submit"
+					value="done"
+				/>
 			</aui:button-row>
 		</div>
 	</div>

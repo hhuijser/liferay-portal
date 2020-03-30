@@ -103,8 +103,15 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 
 		<liferay-portlet:actionURL name="deleteKBArticlesAndFolders" varImpl="deleteKBArticlesAndFoldersURL" />
 
-		<aui:form action="<%= deleteKBArticlesAndFoldersURL %>" name="fm">
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+		<aui:form
+			action="<%= deleteKBArticlesAndFoldersURL %>"
+			name="fm"
+		>
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-ui:error exception="<%= KBArticlePriorityException.class %>" message='<%= LanguageUtil.format(request, "please-enter-a-priority-that-is-greater-than-x", "0", false) %>' translateMessage="<%= false %>" />
 
@@ -180,7 +187,9 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 								</liferay-portlet:renderURL>
 
 								<h2 class="h5">
-									<aui:a href="<%= rowURL.toString() %>">
+									<aui:a
+										href="<%= rowURL.toString() %>"
+									>
 										<%= HtmlUtil.escape(kbFolder.getName()) %>
 									</aui:a>
 								</h2>
@@ -262,13 +271,20 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 									PortletURL viewURL = kbArticleURLHelper.createViewWithRedirectURL(kbArticle, currentURL);
 									%>
 
-									<aui:a href="<%= viewURL.toString() %>">
+									<aui:a
+										href="<%= viewURL.toString() %>"
+									>
 										<%= HtmlUtil.escape(kbArticle.getTitle()) %>
 									</aui:a>
 								</h2>
 
 								<span class="text-default">
-									<aui:workflow-status markupView="lexicon" showIcon="<%= false %>" showLabel="<%= false %>" status="<%= kbArticle.getStatus() %>" />
+									<aui:workflow-status
+										markupView="lexicon"
+										showIcon="<%= false %>"
+										showLabel="<%= false %>"
+										status="<%= kbArticle.getStatus() %>"
+									/>
 
 									<%
 									int childKBArticlesCount = KBArticleServiceUtil.getKBArticlesCount(scopeGroupId, kbArticle.getResourcePrimKey(), WorkflowConstants.STATUS_ANY);
@@ -283,7 +299,9 @@ if (parentResourcePrimKey != KBFolderConstants.DEFAULT_PARENT_FOLDER_ID) {
 										</liferay-portlet:renderURL>
 
 										<span class="kb-descriptive-details">
-											<aui:a href="<%= childKBArticlesURL.toString() %>">
+											<aui:a
+												href="<%= childKBArticlesURL.toString() %>"
+											>
 												<liferay-ui:message arguments="<%= childKBArticlesCount %>" key="x-child-articles" />
 											</aui:a>
 										</span>

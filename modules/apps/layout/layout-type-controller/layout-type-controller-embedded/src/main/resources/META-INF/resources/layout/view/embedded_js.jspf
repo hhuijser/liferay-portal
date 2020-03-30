@@ -14,7 +14,9 @@
  */
 --%>
 
-<aui:script use="aui-autosize-iframe">
+<aui:script
+	use="aui-autosize-iframe"
+>
 	var iframe = A.one('#embeddedIframe');
 
 	if (iframe) {

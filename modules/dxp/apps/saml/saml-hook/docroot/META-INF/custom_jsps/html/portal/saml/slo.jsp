@@ -96,7 +96,9 @@ JSONArray samlSloRequestInfosJSONArray = samlSloContextJSONObject.getJSONArray("
 	</div>
 </noscript>
 
-<aui:script use="aui-base,aui-io-request-deprecated,aui-template-deprecated">
+<aui:script
+	use="aui-base,aui-io-request-deprecated,aui-template-deprecated"
+>
 	var confirmLogout = function() {
 		return confirm('<liferay-ui:message key="leaving-this-window-might-leave-logout-unfinished" />');
 	};

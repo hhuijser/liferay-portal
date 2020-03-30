@@ -24,7 +24,9 @@ JSONObject dataJSONObject = searchFacet.getData();
 JSONArray rangesJSONArray = dataJSONObject.getJSONArray("ranges");
 %>
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "rangesId" %>'>
+<aui:fieldset
+	id='<%= renderResponse.getNamespace() + "rangesId" %>'
+>
 
 	<%
 	int[] rangesIndexes = new int[rangesJSONArray.length()];
@@ -37,9 +39,17 @@ JSONArray rangesJSONArray = dataJSONObject.getJSONArray("ranges");
 
 		<div class="lfr-form-row lfr-form-row-inline">
 			<div class="row-fields">
-				<aui:input label="label" name='<%= searchFacet.getClassName() + "label_" + i %>' value='<%= jsonObject.getString("label") %>' />
+				<aui:input
+					label="label"
+					name='<%= searchFacet.getClassName() + "label_" + i %>'
+					value='<%= jsonObject.getString("label") %>'
+				/>
 
-				<aui:input label="range" name='<%= searchFacet.getClassName() + "range_" + i %>' value='<%= jsonObject.getString("range") %>' />
+				<aui:input
+					label="range"
+					name='<%= searchFacet.getClassName() + "range_" + i %>'
+					value='<%= jsonObject.getString("range") %>'
+				/>
 			</div>
 		</div>
 
@@ -47,10 +57,16 @@ JSONArray rangesJSONArray = dataJSONObject.getJSONArray("ranges");
 	}
 	%>
 
-	<aui:input name='<%= searchFacet.getClassName() + "rangesIndexes" %>' type="hidden" value="<%= StringUtil.merge(rangesIndexes) %>" />
+	<aui:input
+		name='<%= searchFacet.getClassName() + "rangesIndexes" %>'
+		type="hidden"
+		value="<%= StringUtil.merge(rangesIndexes) %>"
+	/>
 </aui:fieldset>
 
-<aui:script use="liferay-auto-fields">
+<aui:script
+	use="liferay-auto-fields"
+>
 	var autoFields = new Liferay.AutoFields({
 		contentBox: 'fieldset#<portlet:namespace />rangesId',
 		fieldIndexes:

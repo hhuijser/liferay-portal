@@ -34,7 +34,10 @@ List<LayoutRevision> layoutRevisions = LayoutRevisionLocalServiceUtil.getChildLa
 	<a class="dropdown-toggle layout-branch-selector staging-variation-selector" data-toggle="liferay-dropdown" href="#1">
 		<liferay-ui:message key="<%= HtmlUtil.escape(layoutBranchDisplayContext.getLayoutBranchDisplayName(layoutBranch)) %>" localizeKey="<%= false %>" />
 
-		<aui:icon image="caret-double-l" markupView="lexicon" />
+		<aui:icon
+			image="caret-double-l"
+			markupView="lexicon"
+		/>
 	</a>
 
 	<ul class="dropdown-menu">

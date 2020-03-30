@@ -60,9 +60,22 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "view-at
 	showSearch="<%= false %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="fm">
-	<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />
-	<aui:input name="columnIds" type="hidden" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= portletURL.toString() %>"
+	/>
+
+	<aui:input
+		name="columnIds"
+		type="hidden"
+	/>
 
 	<div class="container-fluid container-fluid-max-xl">
 		<liferay-ui:breadcrumb

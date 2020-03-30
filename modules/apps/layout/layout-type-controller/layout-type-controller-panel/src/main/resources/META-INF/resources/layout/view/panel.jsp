@@ -18,7 +18,10 @@
 
 <c:choose>
 	<c:when test="<%= !themeDisplay.isStatePopUp() %>">
-		<aui:container class="lfr-panel-page" id="main-content">
+		<aui:container
+			class="lfr-panel-page"
+			id="main-content"
+		>
 			<aui:row>
 
 				<%
@@ -32,7 +35,10 @@
 				}
 				%>
 
-				<aui:col cssClass="panel-page-menu" width="<%= 20 %>">
+				<aui:col
+					cssClass="panel-page-menu"
+					width="<%= 20 %>"
+				>
 
 					<%
 					PortletCategory portletCategory = (PortletCategory)WebAppPool.get(company.getCompanyId(), WebKeys.PORTLET_CATEGORY);
@@ -61,7 +67,10 @@
 
 				</aui:col>
 
-				<aui:col cssClass="<%= panelBodyCssClass %>" width="<%= 80 %>">
+				<aui:col
+					cssClass="<%= panelBodyCssClass %>"
+					width="<%= 80 %>"
+				>
 					<%@ include file="/layout/view/panel_description.jspf" %>
 				</aui:col>
 			</aui:row>

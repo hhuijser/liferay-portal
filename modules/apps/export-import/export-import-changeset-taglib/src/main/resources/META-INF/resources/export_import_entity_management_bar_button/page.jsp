@@ -42,7 +42,9 @@ scopeGroup = themeDisplay.getScopeGroup();
 	portletURL.setParameter("portletId", portletDisplay.getId());
 	%>
 
-	<aui:script use="liferay-export-import-management-bar-button">
+	<aui:script
+		use="liferay-export-import-management-bar-button"
+	>
 		var exportImportManagementBarButton = new Liferay.ExportImportManagementBarButton(
 			{
 				actionNamespace:

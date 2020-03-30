@@ -57,12 +57,41 @@ BackgroundTask lastCompletedInitialPublicationBackgroundTask = BackgroundTaskMan
 				<portlet:param name="mvcRenderCommandName" value="staging" />
 			</portlet:renderURL>
 
-			<aui:form action="<%= editStagingConfigurationURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGroup();" %>'>
-				<aui:input name="redirect" type="hidden" value="<%= redirectURL %>" />
-				<aui:input name="groupId" type="hidden" value="<%= liveGroupId %>" />
-				<aui:input name="liveGroupId" type="hidden" value="<%= liveGroupId %>" />
-				<aui:input name="stagingGroupId" type="hidden" value="<%= stagingGroupId %>" />
-				<aui:input name="forceDisable" type="hidden" value="<%= false %>" />
+			<aui:form
+				action="<%= editStagingConfigurationURL %>"
+				method="post"
+				name="fm"
+				onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGroup();" %>'
+			>
+				<aui:input
+					name="redirect"
+					type="hidden"
+					value="<%= redirectURL %>"
+				/>
+
+				<aui:input
+					name="groupId"
+					type="hidden"
+					value="<%= liveGroupId %>"
+				/>
+
+				<aui:input
+					name="liveGroupId"
+					type="hidden"
+					value="<%= liveGroupId %>"
+				/>
+
+				<aui:input
+					name="stagingGroupId"
+					type="hidden"
+					value="<%= stagingGroupId %>"
+				/>
+
+				<aui:input
+					name="forceDisable"
+					type="hidden"
+					value="<%= false %>"
+				/>
 
 				<c:if test="<%= !privateLayoutSet.isLayoutSetPrototypeLinkActive() && !publicLayoutSet.isLayoutSetPrototypeLinkActive() %>">
 					<div class="sheet-header">
@@ -89,7 +118,9 @@ BackgroundTask lastCompletedInitialPublicationBackgroundTask = BackgroundTaskMan
 						</div>
 					</div>
 
-					<aui:script require="metal-dom/src/dom as dom">
+					<aui:script
+						require="metal-dom/src/dom as dom"
+					>
 						var pwcWarning = document.getElementById('<portlet:namespace />pwcWarning');
 						var remoteStagingOptions = document.getElementById(
 							'<portlet:namespace />remoteStagingOptions'

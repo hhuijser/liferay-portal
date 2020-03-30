@@ -35,7 +35,9 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 %>
 
 <aui:fieldset>
-	<aui:field-wrapper label="start-date">
+	<aui:field-wrapper
+		label="start-date"
+	>
 		<div class="flex-container">
 			<liferay-ui:input-date
 				cssClass="form-group form-group-inline"
@@ -69,9 +71,26 @@ int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calenda
 		</div>
 	</aui:field-wrapper>
 
-	<aui:field-wrapper label="end-date">
-		<aui:input checked="<%= true %>" id="schedulerNoEndDate" label="no-end-date" name="endDateType" type="radio" value="0" />
-		<aui:input first="<%= true %>" id="schedulerEndBy" label="end-by" name="endDateType" type="radio" value="1" />
+	<aui:field-wrapper
+		label="end-date"
+	>
+		<aui:input
+			checked="<%= true %>"
+			id="schedulerNoEndDate"
+			label="no-end-date"
+			name="endDateType"
+			type="radio"
+			value="0"
+		/>
+
+		<aui:input
+			first="<%= true %>"
+			id="schedulerEndBy"
+			label="end-by"
+			name="endDateType"
+			type="radio"
+			value="1"
+		/>
 
 		<div class="flex-container hide" id="<portlet:namespace />schedulerEndDateType">
 			<liferay-ui:input-date

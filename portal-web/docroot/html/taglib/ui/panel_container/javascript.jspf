@@ -14,7 +14,9 @@
  */
 --%>
 
-<aui:script use="aui-toggler">
+<aui:script
+	use="aui-toggler"
+>
 	var togglerDelegate;
 
 	Liferay.component(

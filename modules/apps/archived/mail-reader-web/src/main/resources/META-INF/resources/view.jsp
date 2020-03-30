@@ -54,7 +54,9 @@ MailManager mailManager = MailManager.getInstance(request);
 		}
 		%>
 
-		<aui:script use="liferay-plugin-mail">
+		<aui:script
+			use="liferay-plugin-mail"
+		>
 			Liferay.Mail.init({
 				initialAccountId: <%= initialAccountId %>,
 				initialFolderId: <%= initialFolderId %>,

@@ -93,7 +93,9 @@ AssetCategory category = (AssetCategory)row.getObject();
 </liferay-ui:icon-menu>
 
 <c:if test="<%= assetCategoriesDisplayContext.hasPermission(category, ActionKeys.UPDATE) %>">
-	<aui:script require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+	<aui:script
+		require="frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+	>
 		var moveCategoryIcon = document.getElementById(
 			'<portlet:namespace /><%= row.getRowId() %>moveCategory'
 		);

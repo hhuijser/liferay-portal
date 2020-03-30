@@ -16,7 +16,10 @@
 
 <%@ include file="/permissions/init.jsp" %>
 
-<aui:fieldset cssClass="options-group" markupView="lexicon">
+<aui:fieldset
+	cssClass="options-group"
+	markupView="lexicon"
+>
 	<div class="sheet-section">
 		<h3 class="sheet-subtitle"><liferay-ui:message key="permissions" /></h3>
 

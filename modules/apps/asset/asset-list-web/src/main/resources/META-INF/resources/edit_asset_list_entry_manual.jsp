@@ -27,10 +27,28 @@
 	method="post"
 	name="fm"
 >
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="assetListEntryId" type="hidden" value="<%= assetListDisplayContext.getAssetListEntryId() %>" />
-	<aui:input name="segmentsEntryId" type="hidden" value="<%= assetListDisplayContext.getSegmentsEntryId() %>" />
-	<aui:input name="assetEntryIds" type="hidden" />
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="assetListEntryId"
+		type="hidden"
+		value="<%= assetListDisplayContext.getAssetListEntryId() %>"
+	/>
+
+	<aui:input
+		name="segmentsEntryId"
+		type="hidden"
+		value="<%= assetListDisplayContext.getSegmentsEntryId() %>"
+	/>
+
+	<aui:input
+		name="assetEntryIds"
+		type="hidden"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<h3 class="sheet-title">
@@ -152,7 +170,9 @@
 	</liferay-frontend:edit-form-body>
 </liferay-frontend:edit-form>
 
-<aui:script require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog">
+<aui:script
+	require="metal-dom/src/dom as dom, frontend-js-web/liferay/ItemSelectorDialog.es as ItemSelectorDialog"
+>
 	var delegateHandler = dom.delegate(
 		document.body,
 		'click',

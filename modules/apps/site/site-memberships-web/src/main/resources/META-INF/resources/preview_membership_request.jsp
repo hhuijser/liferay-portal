@@ -40,7 +40,9 @@ renderResponse.setTitle(userName);
 %>
 
 <div class="container-fluid-1280">
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
 			<h4 class="text-default">
 				<liferay-ui:message arguments="<%= userName %>" key="requested-by-x" />

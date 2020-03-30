@@ -26,7 +26,10 @@ String toolbarItem = ParamUtil.getString(request, "toolbar-item", "view-all");
 	</portlet:renderURL>
 
 	<span class="lfr-toolbar-button view-button <%= toolbarItem.equals("view-all") ? "current" : StringPool.BLANK %>">
-		<aui:a href="<%= viewApplicationsURL %>" label='<%= permissionChecker.isCompanyAdmin() ? "view-all" : "my-applications" %>' />
+		<aui:a
+			href="<%= viewApplicationsURL %>"
+			label='<%= permissionChecker.isCompanyAdmin() ? "view-all" : "my-applications" %>'
+		/>
 	</span>
 
 	<c:if test="<%= OAuthPermission.contains(permissionChecker, OAuthActionKeys.ADD_APPLICATION) %>">
@@ -36,7 +39,10 @@ String toolbarItem = ParamUtil.getString(request, "toolbar-item", "view-all");
 		</portlet:renderURL>
 
 		<span class="lfr-toolbar-button add-button <%= toolbarItem.equals("add") ? "current" : StringPool.BLANK %>">
-			<aui:a href="<%= addApplicationURL %>" label="add" />
+			<aui:a
+				href="<%= addApplicationURL %>"
+				label="add"
+			/>
 		</span>
 	</c:if>
 </div>

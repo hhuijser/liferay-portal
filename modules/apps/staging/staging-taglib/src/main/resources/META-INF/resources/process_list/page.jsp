@@ -20,10 +20,27 @@
 	<portlet:param name="redirect" value="<%= currentURL.toString() %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= deleteBackgroundTasksURL %>" cssClass="<%= processListListViewCss %>" method="get" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL.toString() %>" />
-	<aui:input name="deleteBackgroundTaskIds" type="hidden" />
+<aui:form
+	action="<%= deleteBackgroundTasksURL %>"
+	cssClass="<%= processListListViewCss %>"
+	method="get"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL.toString() %>"
+	/>
+
+	<aui:input
+		name="deleteBackgroundTaskIds"
+		type="hidden"
+	/>
 
 	<liferay-staging:process-error
 		authException="<%= true %>"

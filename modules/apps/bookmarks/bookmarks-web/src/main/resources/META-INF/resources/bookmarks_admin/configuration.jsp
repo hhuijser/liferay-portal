@@ -45,8 +45,17 @@ catch (NoSuchFolderException nsfe) {
 	name="fm"
 	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'
 >
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<liferay-frontend:edit-form-body>
 		<liferay-ui:tabs
@@ -62,9 +71,21 @@ catch (NoSuchFolderException nsfe) {
 			<liferay-ui:error key="rootFolderId" message="please-enter-a-valid-root-folder" />
 
 			<liferay-ui:section>
-				<aui:input name="preferences--rootFolderId--" type="hidden" value="<%= rootFolderId %>" />
-				<aui:input name="preferences--folderColumns--" type="hidden" />
-				<aui:input name="preferences--entryColumns--" type="hidden" />
+				<aui:input
+					name="preferences--rootFolderId--"
+					type="hidden"
+					value="<%= rootFolderId %>"
+				/>
+
+				<aui:input
+					name="preferences--folderColumns--"
+					type="hidden"
+				/>
+
+				<aui:input
+					name="preferences--entryColumns--"
+					type="hidden"
+				/>
 
 				<liferay-frontend:fieldset-group>
 					<liferay-frontend:fieldset
@@ -73,22 +94,46 @@ catch (NoSuchFolderException nsfe) {
 						label="folders-listing"
 					>
 						<div class="form-group">
-							<aui:input label="root-folder" name="rootFolderName" type="resource" value="<%= rootFolderName %>" />
+							<aui:input
+								label="root-folder"
+								name="rootFolderName"
+								type="resource"
+								value="<%= rootFolderName %>"
+							/>
 
-							<aui:button name="selectFolderButton" value="select" />
+							<aui:button
+								name="selectFolderButton"
+								value="select"
+							/>
 
 							<%
 							String taglibRemoveFolder = "Liferay.Util.removeEntitySelection('rootFolderId', 'rootFolderName', this, '" + renderResponse.getNamespace() + "');";
 							%>
 
-							<aui:button disabled="<%= rootFolderId <= 0 %>" name="removeFolderButton" onClick="<%= taglibRemoveFolder %>" value="remove" />
+							<aui:button
+								disabled="<%= rootFolderId <= 0 %>"
+								name="removeFolderButton"
+								onClick="<%= taglibRemoveFolder %>"
+								value="remove"
+							/>
 						</div>
 
-						<aui:input label="show-search" name="preferences--showFoldersSearch--" type="checkbox" value="<%= bookmarksGroupServiceOverriddenConfiguration.showFoldersSearch() %>" />
+						<aui:input
+							label="show-search"
+							name="preferences--showFoldersSearch--"
+							type="checkbox"
+							value="<%= bookmarksGroupServiceOverriddenConfiguration.showFoldersSearch() %>"
+						/>
 
-						<aui:input name="preferences--showSubfolders--" type="checkbox" value="<%= bookmarksGroupServiceOverriddenConfiguration.showSubfolders() %>" />
+						<aui:input
+							name="preferences--showSubfolders--"
+							type="checkbox"
+							value="<%= bookmarksGroupServiceOverriddenConfiguration.showSubfolders() %>"
+						/>
 
-						<aui:field-wrapper label="show-columns">
+						<aui:field-wrapper
+							label="show-columns"
+						>
 
 							<%
 							Set<String> availableFolderColumns = SetUtil.fromArray(StringUtil.split(allFolderColumns));
@@ -133,9 +178,16 @@ catch (NoSuchFolderException nsfe) {
 						id="bookmarksListingPanel"
 						label="bookmarks-listing"
 					>
-						<aui:input label="show-related-assets" name="preferences--enableRelatedAssets--" type="checkbox" value="<%= bookmarksGroupServiceOverriddenConfiguration.enableRelatedAssets() %>" />
+						<aui:input
+							label="show-related-assets"
+							name="preferences--enableRelatedAssets--"
+							type="checkbox"
+							value="<%= bookmarksGroupServiceOverriddenConfiguration.enableRelatedAssets() %>"
+						/>
 
-						<aui:field-wrapper label="show-columns">
+						<aui:field-wrapper
+							label="show-columns"
+						>
 
 							<%
 							Set<String> availableEntryColumns = SetUtil.fromArray(StringUtil.split(allEntryColumns));
@@ -221,9 +273,19 @@ catch (NoSuchFolderException nsfe) {
 			<liferay-ui:section>
 				<liferay-frontend:fieldset-group>
 					<liferay-frontend:fieldset>
-						<aui:input cssClass="lfr-input-text-container" label="name" name="preferences--emailFromName--" value="<%= bookmarksGroupServiceOverriddenConfiguration.emailFromName() %>" />
+						<aui:input
+							cssClass="lfr-input-text-container"
+							label="name"
+							name="preferences--emailFromName--"
+							value="<%= bookmarksGroupServiceOverriddenConfiguration.emailFromName() %>"
+						/>
 
-						<aui:input cssClass="lfr-input-text-container" label="address" name="preferences--emailFromAddress--" value="<%= bookmarksGroupServiceOverriddenConfiguration.emailFromAddress() %>" />
+						<aui:input
+							cssClass="lfr-input-text-container"
+							label="address"
+							name="preferences--emailFromAddress--"
+							value="<%= bookmarksGroupServiceOverriddenConfiguration.emailFromAddress() %>"
+						/>
 					</liferay-frontend:fieldset>
 				</liferay-frontend:fieldset-group>
 			</liferay-ui:section>
@@ -259,9 +321,13 @@ catch (NoSuchFolderException nsfe) {
 	</liferay-frontend:edit-form-body>
 
 	<liferay-frontend:edit-form-footer>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 
-		<aui:button type="cancel" />
+		<aui:button
+			type="cancel"
+		/>
 	</liferay-frontend:edit-form-footer>
 </liferay-frontend:edit-form>
 

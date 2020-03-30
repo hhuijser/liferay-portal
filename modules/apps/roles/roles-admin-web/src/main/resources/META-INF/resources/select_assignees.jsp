@@ -65,11 +65,35 @@ PortletURL portletURL = editRoleAssignmentsManagementToolbarDisplayContext.getPo
 	viewTypeItems="<%= editRoleAssignmentsManagementToolbarDisplayContext.getViewTypeItems() %>"
 />
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid container-fluid-max-xl container-form-lg" method="post" name="fm">
-	<aui:input name="tabs2" type="hidden" value="<%= tabs2 %>" />
-	<aui:input name="tabs3" type="hidden" value="available" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="roleId" type="hidden" value="<%= role.getRoleId() %>" />
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid container-fluid-max-xl container-form-lg"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="tabs2"
+		type="hidden"
+		value="<%= tabs2 %>"
+	/>
+
+	<aui:input
+		name="tabs3"
+		type="hidden"
+		value="available"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="roleId"
+		type="hidden"
+		value="<%= role.getRoleId() %>"
+	/>
 
 	<%
 	request.setAttribute("edit_role_assignments.jsp-displayStyle", displayStyle);
@@ -95,7 +119,9 @@ PortletURL portletURL = editRoleAssignmentsManagementToolbarDisplayContext.getPo
 	</c:choose>
 </aui:form>
 
-<aui:script use="liferay-search-container">
+<aui:script
+	use="liferay-search-container"
+>
 	var searchContainer = Liferay.SearchContainer.get(
 		'<portlet:namespace />assigneesSearch'
 	);

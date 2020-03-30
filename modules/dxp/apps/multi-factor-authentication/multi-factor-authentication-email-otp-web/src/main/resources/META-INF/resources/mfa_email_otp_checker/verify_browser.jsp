@@ -26,17 +26,26 @@ long mfaEmailOTPSetAtTime = (Long)request.getAttribute(MFAEmailOTPWebKeys.MFA_EM
 	</div>
 
 	<aui:button-row>
-		<aui:button id="sendEmailButton" value="send" />
+		<aui:button
+			id="sendEmailButton"
+			value="send"
+		/>
 	</aui:button-row>
 </div>
 
 <div id="<portlet:namespace />messageContainer"></div>
 
 <div id="<portlet:namespace />phaseTwo">
-	<aui:input label="please-enter-the-otp-from-the-email" name="otp" showRequiredLabel="yes" />
+	<aui:input
+		label="please-enter-the-otp-from-the-email"
+		name="otp"
+		showRequiredLabel="yes"
+	/>
 </div>
 
-<aui:script use="aui-base,aui-io-request">
+<aui:script
+	use="aui-base,aui-io-request"
+>
 	<liferay-portlet:resourceURL id="/mfa_email_otp_verify/send_mfa_email_otp" portletName="<%= MFAEmailOTPPortletKeys.MFA_EMAIL_OTP_VERIFY_PORTLET %>" var="sendEmailOTPURL" />
 
 	var configuredResendDuration = <%= mfaEmailOTPConfiguration.resendEmailTimeout() %>;

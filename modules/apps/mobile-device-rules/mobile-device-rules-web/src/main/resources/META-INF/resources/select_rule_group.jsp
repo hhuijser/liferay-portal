@@ -68,7 +68,10 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 			/>
 
 			<li>
-				<aui:form action="<%= portletURL.toString() %>" name="searchFm">
+				<aui:form
+					action="<%= portletURL.toString() %>"
+					name="searchFm"
+				>
 					<liferay-ui:input-search
 						markupView="lexicon"
 					/>
@@ -78,7 +81,12 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 	</liferay-frontend:management-bar>
 </c:if>
 
-<aui:form action="<%= portletURL.toString() %>" cssClass="container-fluid-1280" method="post" name="selectRuleGroupFm">
+<aui:form
+	action="<%= portletURL.toString() %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="selectRuleGroupFm"
+>
 	<liferay-ui:search-container
 		searchContainer="<%= ruleGroupSearch %>"
 	>
@@ -110,7 +118,11 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 						<h5>
 							<c:choose>
 								<c:when test="<%= ruleGroupInstance == null %>">
-									<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+									<aui:a
+										cssClass="selector-button"
+										data="<%= data %>"
+										href="javascript:;"
+									>
 										<%= ruleGroup.getName(locale) %>
 									</aui:a>
 								</c:when>
@@ -148,7 +160,11 @@ ruleGroupSearch.setResults(mdrRuleGroups);
 					>
 						<c:choose>
 							<c:when test="<%= ruleGroupInstance == null %>">
-								<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="selector-button"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= ruleGroup.getName(locale) %>
 								</aui:a>
 							</c:when>

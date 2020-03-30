@@ -14,7 +14,9 @@
  */
 --%>
 
-<aui:script use="liferay-portlet-dynamic-data-lists">
+<aui:script
+	use="liferay-portlet-dynamic-data-lists"
+>
 	var DEFAULTS_FORM_VALIDATOR = A.config.FormValidator;
 
 	DEFAULTS_FORM_VALIDATOR.RULES.requiredFields = function(value) {

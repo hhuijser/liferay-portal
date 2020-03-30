@@ -16,7 +16,10 @@
 
 <%@ include file="/init.jsp" %>
 
-<aui:input name="preferences--metadataFields--" type="hidden" />
+<aui:input
+	name="preferences--metadataFields--"
+	type="hidden"
+/>
 
 <%
 

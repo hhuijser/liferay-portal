@@ -130,7 +130,9 @@ String dropdownMenuComponentId = randomNamespace + "socialBookmarksDropdownMenu"
 		</aui:script>
 	</liferay-util:html-bottom>
 
-	<aui:script sandbox="<%= true %>">
+	<aui:script
+		sandbox="<%= true %>"
+	>
 		Liferay.componentReady('<%= dropdownMenuComponentId %>').then(function(
 			dropdownMenu
 		) {

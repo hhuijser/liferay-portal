@@ -33,10 +33,23 @@ renderResponse.setTitle((accountEntryDisplay == null) ? "" : accountEntryDisplay
 	displayContext="<%= viewAccountOrganizationsManagementToolbarDisplayContext %>"
 />
 
-<aui:container cssClass="container-fluid container-fluid-max-xl">
-	<aui:form method="post" name="fm">
-		<aui:input name="accountEntryId" type="hidden" value="<%= accountEntryDisplay.getAccountEntryId() %>" />
-		<aui:input name="accountOrganizationIds" type="hidden" />
+<aui:container
+	cssClass="container-fluid container-fluid-max-xl"
+>
+	<aui:form
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="accountEntryId"
+			type="hidden"
+			value="<%= accountEntryDisplay.getAccountEntryId() %>"
+		/>
+
+		<aui:input
+			name="accountOrganizationIds"
+			type="hidden"
+		/>
 
 		<liferay-ui:search-container
 			searchContainer="<%= accountOrganizationSearchContainer %>"

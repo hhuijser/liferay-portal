@@ -64,7 +64,9 @@ WorkflowDefinition workflowDefinition = (WorkflowDefinition)row.getObject();
 	</liferay-ui:icon-menu>
 </c:if>
 
-<aui:script use="liferay-workflow-web">
+<aui:script
+	use="liferay-workflow-web"
+>
 	var title =
 		'<liferay-ui:message arguments="<%= new String[] {dateFormatTime.format(workflowDefinition.getModifiedDate()), HtmlUtil.escape(workflowDefinitionDisplayContext.getUserName(workflowDefinition))} %>" key="preview" translateArguments="<%= false %>" />';
 

@@ -44,9 +44,22 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 
 <liferay-portlet:renderURL portletConfiguration="<%= true %>" var="configurationRenderURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
+<aui:form
+	action="<%= configurationActionURL %>"
+	method="post"
+	name="fm"
+>
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.UPDATE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= configurationRenderURL %>"
+	/>
 
 	<div class="portlet-configuration-body-content">
 		<div class="container-fluid-1280">
@@ -70,7 +83,10 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					<aui:fieldset>
 						<liferay-ui:error key="successURLInvalid" message="please-enter-a-valid-url" />
 
-						<aui:field-wrapper cssClass="lfr-input-text-container" label="title">
+						<aui:field-wrapper
+							cssClass="lfr-input-text-container"
+							label="title"
+						>
 							<liferay-ui:input-localized
 								cssClass="lfr-input-text"
 								name="title"
@@ -78,7 +94,10 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 							/>
 						</aui:field-wrapper>
 
-						<aui:field-wrapper cssClass="lfr-textarea-container" label="description">
+						<aui:field-wrapper
+							cssClass="lfr-textarea-container"
+							label="description"
+						>
 							<liferay-ui:input-localized
 								cssClass="lfr-input-text"
 								name="description"
@@ -87,9 +106,18 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 							/>
 						</aui:field-wrapper>
 
-						<aui:input name="preferences--requireCaptcha--" type="checkbox" value="<%= requireCaptcha %>" />
+						<aui:input
+							name="preferences--requireCaptcha--"
+							type="checkbox"
+							value="<%= requireCaptcha %>"
+						/>
 
-						<aui:input label="redirect-url-on-success" name="preferences--successURL--" value="<%= HtmlUtil.toInputSafe(successURL) %>" wrapperCssClass="lfr-input-text-container" />
+						<aui:input
+							label="redirect-url-on-success"
+							name="preferences--successURL--"
+							value="<%= HtmlUtil.toInputSafe(successURL) %>"
+							wrapperCssClass="lfr-input-text-container"
+						/>
 					</aui:fieldset>
 				</liferay-ui:panel>
 
@@ -101,31 +129,74 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					persistState="<%= true %>"
 					title="handling-of-form-data"
 				>
-					<aui:fieldset cssClass="handle-data" label="email">
+					<aui:fieldset
+						cssClass="handle-data"
+						label="email"
+					>
 						<liferay-ui:error key="emailAddressInvalid" message="please-enter-a-valid-email-address" />
 						<liferay-ui:error key="emailAddressRequired" message="please-enter-an-email-address" />
 						<liferay-ui:error key="handlingRequired" message="please-select-an-action-for-the-handling-of-form-data" />
 						<liferay-ui:error key="subjectRequired" message="please-enter-a-subject" />
 
-						<aui:input label="send-as-email" name="preferences--sendAsEmail--" type="checkbox" value="<%= sendAsEmail %>" />
+						<aui:input
+							label="send-as-email"
+							name="preferences--sendAsEmail--"
+							type="checkbox"
+							value="<%= sendAsEmail %>"
+						/>
 
 						<aui:fieldset>
-							<aui:input label="name-from" name="preferences--emailFromName--" value="<%= emailFromName %>" wrapperCssClass="lfr-input-text-container" />
+							<aui:input
+								label="name-from"
+								name="preferences--emailFromName--"
+								value="<%= emailFromName %>"
+								wrapperCssClass="lfr-input-text-container"
+							/>
 
-							<aui:input label="address-from" name="preferences--emailFromAddress--" value="<%= emailFromAddress %>" wrapperCssClass="lfr-input-text-container" />
+							<aui:input
+								label="address-from"
+								name="preferences--emailFromAddress--"
+								value="<%= emailFromAddress %>"
+								wrapperCssClass="lfr-input-text-container"
+							/>
 						</aui:fieldset>
 
-						<aui:input helpMessage="add-email-addresses-separated-by-commas" label="addresses-to" name="preferences--emailAddress--" value="<%= emailAddress %>" wrapperCssClass="lfr-input-text-container" />
+						<aui:input
+							helpMessage="add-email-addresses-separated-by-commas"
+							label="addresses-to"
+							name="preferences--emailAddress--"
+							value="<%= emailAddress %>"
+							wrapperCssClass="lfr-input-text-container"
+						/>
 
-						<aui:input name="preferences--subject--" value="<%= subject %>" wrapperCssClass="lfr-input-text-container" />
+						<aui:input
+							name="preferences--subject--"
+							value="<%= subject %>"
+							wrapperCssClass="lfr-input-text-container"
+						/>
 					</aui:fieldset>
 
-					<aui:fieldset cssClass="handle-data" label="database">
-						<aui:input helpMessage="export-functionality-will-only-be-available-for-data-saved-to-the-database" name="preferences--saveToDatabase--" type="checkbox" value="<%= saveToDatabase %>" />
+					<aui:fieldset
+						cssClass="handle-data"
+						label="database"
+					>
+						<aui:input
+							helpMessage="export-functionality-will-only-be-available-for-data-saved-to-the-database"
+							name="preferences--saveToDatabase--"
+							type="checkbox"
+							value="<%= saveToDatabase %>"
+						/>
 					</aui:fieldset>
 
-					<aui:fieldset cssClass="handle-data" label="file">
-						<aui:input name="preferences--saveToFile--" type="checkbox" value="<%= saveToFile %>" />
+					<aui:fieldset
+						cssClass="handle-data"
+						label="file"
+					>
+						<aui:input
+							name="preferences--saveToFile--"
+							type="checkbox"
+							value="<%= saveToFile %>"
+						/>
 
 						<liferay-ui:message arguments="<%= HtmlUtil.escape(WebFormUtil.getFileName(themeDisplay, portletResource, webFormServiceConfiguration.dataRootDir())) %>" key="form-data-will-be-saved-to-x" />
 					</aui:fieldset>
@@ -139,7 +210,9 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 					persistState="<%= true %>"
 					title="form-fields"
 				>
-					<aui:fieldset cssClass="rows-container webFields">
+					<aui:fieldset
+						cssClass="rows-container webFields"
+					>
 						<c:if test="<%= fieldsEditingDisabled %>">
 							<div class="alert">
 								<liferay-ui:message key="there-is-existing-form-data-please-export-and-delete-it-before-making-changes-to-the-fields" />
@@ -154,7 +227,10 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 								String taglibExport = "submitForm(document.hrefFm, '" + exportURL + "', false);";
 								%>
 
-								<aui:button onClick="<%= taglibExport %>" value="export-data" />
+								<aui:button
+									onClick="<%= taglibExport %>"
+									value="export-data"
+								/>
 
 								<liferay-portlet:actionURL portletName="<%= portletResource %>" var="deleteURL">
 									<portlet:param name="<%= ActionRequest.ACTION_NAME %>" value="deleteData" />
@@ -165,13 +241,20 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 								String taglibDelete = "submitForm(document." + renderResponse.getNamespace() + "fm, '" + deleteURL + "');";
 								%>
 
-								<aui:button onClick="<%= taglibDelete %>" value="delete-data" />
+								<aui:button
+									onClick="<%= taglibDelete %>"
+									value="delete-data"
+								/>
 							</c:if>
 
 							<br /><br />
 						</c:if>
 
-						<aui:input name="updateFields" type="hidden" value="<%= !fieldsEditingDisabled %>" />
+						<aui:input
+							name="updateFields"
+							type="hidden"
+							value="<%= !fieldsEditingDisabled %>"
+						/>
 
 						<%
 						String formFieldsIndexesParam = ParamUtil.getString(renderRequest, "formFieldsIndexes");
@@ -225,12 +308,16 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 	</div>
 
 	<aui:button-row>
-		<aui:button type="submit" />
+		<aui:button
+			type="submit"
+		/>
 	</aui:button-row>
 </aui:form>
 
 <c:if test="<%= !fieldsEditingDisabled %>">
-	<aui:script use="aui-base,liferay-auto-fields">
+	<aui:script
+		use="aui-base,liferay-auto-fields"
+	>
 		var toggleOptions = function(event) {
 			var instance = this;
 

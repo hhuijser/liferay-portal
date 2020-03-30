@@ -40,28 +40,80 @@ long[] groupIds = viewUADEntitiesDisplay.getGroupIds();
 	displayContext="<%= new ViewUADEntitiesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, viewUADEntitiesDisplay) %>"
 />
 
-<aui:form method="post" name="viewUADEntitiesFm">
-	<aui:input name="p_u_i_d" type="hidden" value="<%= String.valueOf(selectedUser.getUserId()) %>" />
-	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-	<aui:input name="groupIds" type="hidden" value='<%= (groupIds != null) ? StringUtil.merge(groupIds) : "" %>' />
-	<aui:input name="parentContainerClass" type="hidden" value="<%= parentContainerClass %>" />
-	<aui:input name="parentContainerId" type="hidden" value="<%= String.valueOf(parentContainerId) %>" />
-	<aui:input name="scope" type="hidden" value="<%= viewUADEntitiesDisplay.getScope() %>" />
+<aui:form
+	method="post"
+	name="viewUADEntitiesFm"
+>
+	<aui:input
+		name="p_u_i_d"
+		type="hidden"
+		value="<%= String.valueOf(selectedUser.getUserId()) %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= currentURL %>"
+	/>
+
+	<aui:input
+		name="groupIds"
+		type="hidden"
+		value='<%= (groupIds != null) ? StringUtil.merge(groupIds) : "" %>'
+	/>
+
+	<aui:input
+		name="parentContainerClass"
+		type="hidden"
+		value="<%= parentContainerClass %>"
+	/>
+
+	<aui:input
+		name="parentContainerId"
+		type="hidden"
+		value="<%= String.valueOf(parentContainerId) %>"
+	/>
+
+	<aui:input
+		name="scope"
+		type="hidden"
+		value="<%= viewUADEntitiesDisplay.getScope() %>"
+	/>
 
 	<c:choose>
 		<c:when test="<%= Objects.equals(viewUADEntitiesDisplay.getApplicationKey(), UADConstants.ALL_APPLICATIONS) %>">
-			<aui:input name="applicationKeys" type="hidden" />
+			<aui:input
+				name="applicationKeys"
+				type="hidden"
+			/>
 		</c:when>
 		<c:otherwise>
-			<aui:input name="applicationKey" type="hidden" value="<%= viewUADEntitiesDisplay.getApplicationKey() %>" />
-			<aui:input name="uadRegistryKey" type="hidden" value="<%= viewUADEntitiesDisplay.getUADRegistryKey() %>" />
+			<aui:input
+				name="applicationKey"
+				type="hidden"
+				value="<%= viewUADEntitiesDisplay.getApplicationKey() %>"
+			/>
+
+			<aui:input
+				name="uadRegistryKey"
+				type="hidden"
+				value="<%= viewUADEntitiesDisplay.getUADRegistryKey() %>"
+			/>
 
 			<%
 			for (Class<?> typeClass : viewUADEntitiesDisplay.getTypeClasses()) {
 			%>
 
-				<aui:input name='<%= "primaryKeys__" + typeClass.getSimpleName() %>' type="hidden" />
-				<aui:input name='<%= "uadRegistryKey__" + typeClass.getSimpleName() %>' type="hidden" value="<%= typeClass.getName() %>" />
+				<aui:input
+					name='<%= "primaryKeys__" + typeClass.getSimpleName() %>'
+					type="hidden"
+				/>
+
+				<aui:input
+					name='<%= "uadRegistryKey__" + typeClass.getSimpleName() %>'
+					type="hidden"
+					value="<%= typeClass.getName() %>"
+				/>
 
 			<%
 			}

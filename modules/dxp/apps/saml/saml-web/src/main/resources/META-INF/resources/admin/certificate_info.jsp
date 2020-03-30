@@ -128,13 +128,26 @@ String introKey = StringPool.BLANK;
 			<portlet:param name="certificateUsage" value="<%= certificateUsage.name() %>" />
 		</portlet:resourceURL>
 
-		<aui:form action="<%= deleteCertificateURL %>">
+		<aui:form
+			action="<%= deleteCertificateURL %>"
+		>
 			<aui:button-row>
-				<aui:button onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + replaceCertificateURL + "');" %>' value="replace-certificate" />
-				<aui:button href="<%= downloadCertificateURL %>" value="download-certificate" />
+				<aui:button
+					onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + replaceCertificateURL + "');" %>'
+					value="replace-certificate"
+				/>
+
+				<aui:button
+					href="<%= downloadCertificateURL %>"
+					value="download-certificate"
+				/>
 
 				<c:if test="<%= certificateUsage == LocalEntityManager.CertificateUsage.ENCRYPTION %>">
-					<aui:button onClick='<%= "return confirm('" + deleteCertificatePrompt + "')" %>' type="submit" value="delete-certificate" />
+					<aui:button
+						onClick='<%= "return confirm('" + deleteCertificatePrompt + "')" %>'
+						type="submit"
+						value="delete-certificate"
+					/>
 				</c:if>
 			</aui:button-row>
 		</aui:form>
@@ -156,13 +169,26 @@ String introKey = StringPool.BLANK;
 			<liferay-ui:message key="certificate-needs-auth" />
 		</div>
 
-		<aui:form action="<%= deleteCertificateURL %>">
+		<aui:form
+			action="<%= deleteCertificateURL %>"
+		>
 			<aui:button-row>
-				<aui:button onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + authCertificateURL + "');" %>' value="auth-certificate" />
-				<aui:button onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + replaceCertificateURL + "');" %>' value="replace-certificate" />
+				<aui:button
+					onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + authCertificateURL + "');" %>'
+					value="auth-certificate"
+				/>
+
+				<aui:button
+					onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + replaceCertificateURL + "');" %>'
+					value="replace-certificate"
+				/>
 
 				<c:if test="<%= certificateUsage == LocalEntityManager.CertificateUsage.ENCRYPTION %>">
-					<aui:button onClick='<%= "return confirm('" + deleteCertificatePrompt + "')" %>' type="submit" value="delete-certificate" />
+					<aui:button
+						onClick='<%= "return confirm('" + deleteCertificatePrompt + "')" %>'
+						type="submit"
+						value="delete-certificate"
+					/>
 				</c:if>
 			</aui:button-row>
 		</aui:form>
@@ -173,7 +199,10 @@ String introKey = StringPool.BLANK;
 		</div>
 
 		<aui:button-row>
-			<aui:button onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + replaceCertificateURL + "');" %>' value="create-certificate" />
+			<aui:button
+				onClick='<%= renderResponse.getNamespace() + "showCertificateDialog('" + replaceCertificateURL + "');" %>'
+				value="create-certificate"
+			/>
 		</aui:button-row>
 	</c:otherwise>
 </c:choose>

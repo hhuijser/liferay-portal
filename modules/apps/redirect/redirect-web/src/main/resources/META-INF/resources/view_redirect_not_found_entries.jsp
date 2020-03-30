@@ -28,7 +28,11 @@ RedirectNotFountEntriesManagementToolbarDisplayContext redirectNotFoundEntriesMa
 	displayContext="<%= redirectNotFoundEntriesManagementToolbarDisplayContext %>"
 />
 
-<aui:form action="<%= redirectNotFoundEntriesSearchContainer.getIteratorURL() %>" cssClass="container-fluid-1280" name="fm">
+<aui:form
+	action="<%= redirectNotFoundEntriesSearchContainer.getIteratorURL() %>"
+	cssClass="container-fluid-1280"
+	name="fm"
+>
 
 	<%
 	List<RedirectNotFoundEntry> results = redirectNotFoundEntriesSearchContainer.getResults();
@@ -36,7 +40,11 @@ RedirectNotFountEntriesManagementToolbarDisplayContext redirectNotFoundEntriesMa
 
 	<c:choose>
 		<c:when test="<%= results.size() > 0 %>">
-			<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
+			<aui:input
+				name="redirect"
+				type="hidden"
+				value="<%= currentURL %>"
+			/>
 
 			<liferay-ui:search-container
 				id="<%= redirectNotFoundEntriesDisplayContext.getSearchContainerId() %>"

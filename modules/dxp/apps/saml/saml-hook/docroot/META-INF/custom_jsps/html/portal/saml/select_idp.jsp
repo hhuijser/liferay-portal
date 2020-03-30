@@ -24,15 +24,31 @@ JSONObject samlSsoLoginContext = (JSONObject)request.getAttribute("SAML_SSO_LOGI
 JSONArray relevantIdpConnectionsJSONArray = samlSsoLoginContext.getJSONArray("relevantIdpConnections");
 %>
 
-<aui:form action='<%= PortalUtil.getPortalURL(request) + "/c/portal/login" %>' method="get" name="fm">
-	<aui:input name="saveLastPath" type="hidden" value="<%= false %>" />
-	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
+<aui:form
+	action='<%= PortalUtil.getPortalURL(request) + "/c/portal/login" %>'
+	method="get"
+	name="fm"
+>
+	<aui:input
+		name="saveLastPath"
+		type="hidden"
+		value="<%= false %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= redirect %>"
+	/>
 
 	<c:choose>
 		<c:when test="<%= relevantIdpConnectionsJSONArray.length() > 0 %>">
 			<p><liferay-ui:message key="please-select-your-identity-provider" /></p>
 
-			<aui:select label="identity-provider" name="idpEntityId">
+			<aui:select
+				label="identity-provider"
+				name="idpEntityId"
+			>
 
 				<%
 				for (int i = 0; i < relevantIdpConnectionsJSONArray.length(); i++) {
@@ -42,7 +58,10 @@ JSONArray relevantIdpConnectionsJSONArray = samlSsoLoginContext.getJSONArray("re
 					String name = relevantIdpConnectionJSONObject.getString("name");
 				%>
 
-					<aui:option label="<%= HtmlUtil.escape(name) %>" value="<%= HtmlUtil.escapeAttribute(entityId) %>" />
+					<aui:option
+						label="<%= HtmlUtil.escape(name) %>"
+						value="<%= HtmlUtil.escapeAttribute(entityId) %>"
+					/>
 
 				<%
 				}
@@ -52,7 +71,10 @@ JSONArray relevantIdpConnectionsJSONArray = samlSsoLoginContext.getJSONArray("re
 
 			<aui:fieldset>
 				<aui:button-row>
-					<aui:button type="submit" value="sign-in" />
+					<aui:button
+						type="submit"
+						value="sign-in"
+					/>
 				</aui:button-row>
 			</aui:fieldset>
 		</c:when>

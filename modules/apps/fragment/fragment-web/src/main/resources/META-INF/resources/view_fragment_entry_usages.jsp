@@ -127,7 +127,10 @@ renderResponse.setTitle(LanguageUtil.format(request, "usages-and-propagation-x",
 					<portlet:param name="redirect" value="<%= currentURL %>" />
 				</portlet:actionURL>
 
-				<aui:form action="<%= propagateFragmentEntryChangesURL %>" name="fm">
+				<aui:form
+					action="<%= propagateFragmentEntryChangesURL %>"
+					name="fm"
+				>
 					<liferay-ui:search-container
 						searchContainer="<%= fragmentEntryLinkDisplayContext.getSearchContainer() %>"
 					>

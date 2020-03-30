@@ -48,9 +48,22 @@ OrganizationsManagementToolbarDisplayContext organizationsManagementToolbarDispl
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:actionURL>
 
-		<aui:form action="<%= deleteGroupOrganizationsURL %>" method="post" name="fm">
-			<aui:input name="tabs1" type="hidden" value="organizations" />
-			<aui:input name="groupId" type="hidden" value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>" />
+		<aui:form
+			action="<%= deleteGroupOrganizationsURL %>"
+			method="post"
+			name="fm"
+		>
+			<aui:input
+				name="tabs1"
+				type="hidden"
+				value="organizations"
+			/>
+
+			<aui:input
+				name="groupId"
+				type="hidden"
+				value="<%= String.valueOf(siteMembershipsDisplayContext.getGroupId()) %>"
+			/>
 
 			<liferay-ui:search-container
 				id="organizations"
@@ -85,8 +98,16 @@ OrganizationsManagementToolbarDisplayContext organizationsManagementToolbarDispl
 	<portlet:param name="redirect" value="<%= currentURL %>" />
 </portlet:actionURL>
 
-<aui:form action="<%= addGroupOrganizationsURL %>" cssClass="hide" name="addGroupOrganizationsFm">
-	<aui:input name="tabs1" type="hidden" value="organizations" />
+<aui:form
+	action="<%= addGroupOrganizationsURL %>"
+	cssClass="hide"
+	name="addGroupOrganizationsFm"
+>
+	<aui:input
+		name="tabs1"
+		type="hidden"
+		value="organizations"
+	/>
 </aui:form>
 
 <liferay-frontend:component

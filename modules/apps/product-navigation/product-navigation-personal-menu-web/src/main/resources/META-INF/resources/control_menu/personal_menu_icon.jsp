@@ -55,7 +55,9 @@
 			String notificationsURL = PersonalApplicationURLUtil.getPersonalApplicationURL(request, PortletProviderUtil.getPortletId(UserNotificationEvent.class.getName(), PortletProvider.Action.VIEW));
 			%>
 
-			<aui:a href="<%= (notificationsURL != null) ? notificationsURL : null %>">
+			<aui:a
+				href="<%= (notificationsURL != null) ? notificationsURL : null %>"
+			>
 				<span class="badge badge-danger panel-notifications-count">
 					<span class="badge-item badge-item-expand"><%= notificationsCount %></span>
 				</span>

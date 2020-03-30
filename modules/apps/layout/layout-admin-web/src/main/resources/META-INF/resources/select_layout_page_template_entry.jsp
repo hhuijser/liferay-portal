@@ -164,7 +164,9 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-template"));
 	</div>
 </div>
 
-<aui:script require="metal-dom/src/all/dom as dom">
+<aui:script
+	require="metal-dom/src/all/dom as dom"
+>
 	var layoutPageTemplateEntries = document.getElementById(
 		'<portlet:namespace />layoutPageTemplateEntries'
 	);

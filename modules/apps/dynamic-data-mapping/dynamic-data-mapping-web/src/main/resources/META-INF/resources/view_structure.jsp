@@ -67,15 +67,27 @@ backURL.setParameter("structureId", String.valueOf(structureVersion.getStructure
 		</c:otherwise>
 	</c:choose>
 
-	<aui:model-context bean="<%= structureVersion %>" model="<%= DDMStructureVersion.class %>" />
+	<aui:model-context
+		bean="<%= structureVersion %>"
+		model="<%= DDMStructureVersion.class %>"
+	/>
 
-	<aui:input disabled="<%= true %>" name="name" />
+	<aui:input
+		disabled="<%= true %>"
+		name="name"
+	/>
 
-	<aui:input disabled="<%= true %>" name="description" />
+	<aui:input
+		disabled="<%= true %>"
+		name="description"
+	/>
 
 	<%@ include file="/form_builder.jspf" %>
 
 	<aui:button-row>
-		<aui:button href="<%= backURL.toString() %>" type="cancel" />
+		<aui:button
+			href="<%= backURL.toString() %>"
+			type="cancel"
+		/>
 	</aui:button-row>
 </div>

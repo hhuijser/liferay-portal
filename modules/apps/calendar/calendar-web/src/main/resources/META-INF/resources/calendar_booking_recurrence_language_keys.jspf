@@ -14,7 +14,9 @@
  */
 --%>
 
-<aui:script use="liferay-util-window">
+<aui:script
+	use="liferay-util-window"
+>
 	Liferay.RecurrenceUtil.INTERVAL_UNITS = {
 		DAILY: 'days',
 		MONTHLY: 'months',

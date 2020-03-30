@@ -141,7 +141,9 @@ SearchContainer searchContainer = assetPublisherDisplayContext.getSearchContaine
 	/>
 </c:if>
 
-<aui:script sandbox="<%= true %>">
+<aui:script
+	sandbox="<%= true %>"
+>
 	var assetEntryId = '<%= assetPublisherDisplayContext.getAssetEntryId() %>';
 
 	if (assetEntryId) {

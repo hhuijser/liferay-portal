@@ -43,21 +43,42 @@ portletDisplay.setURLBack(redirect);
 	<portlet:param name="mvcActionCommand" value="/polls/view_question" />
 </portlet:actionURL>
 
-<aui:form action="<%= viewQuestionActionURL %>" cssClass="container-fluid-1280" method="post" name="fm">
+<aui:form
+	action="<%= viewQuestionActionURL %>"
+	cssClass="container-fluid-1280"
+	method="post"
+	name="fm"
+>
 	<portlet:renderURL var="viewQuestionRenderURL">
 		<portlet:param name="mvcRenderCommandName" value="/polls/view_question" />
 		<portlet:param name="redirect" value="<%= redirect %>" />
 		<portlet:param name="questionId" value="<%= String.valueOf(question.getQuestionId()) %>" />
 	</portlet:renderURL>
 
-	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.VOTE %>" />
-	<aui:input name="redirect" type="hidden" value="<%= viewQuestionRenderURL %>" />
-	<aui:input name="questionId" type="hidden" value="<%= question.getQuestionId() %>" />
+	<aui:input
+		name="<%= Constants.CMD %>"
+		type="hidden"
+		value="<%= Constants.VOTE %>"
+	/>
+
+	<aui:input
+		name="redirect"
+		type="hidden"
+		value="<%= viewQuestionRenderURL %>"
+	/>
+
+	<aui:input
+		name="questionId"
+		type="hidden"
+		value="<%= question.getQuestionId() %>"
+	/>
 
 	<liferay-ui:error exception="<%= DuplicateVoteException.class %>" message="you-may-only-vote-once" />
 	<liferay-ui:error exception="<%= NoSuchChoiceException.class %>" message="please-select-an-option" />
 
-	<aui:fieldset-group markupView="lexicon">
+	<aui:fieldset-group
+		markupView="lexicon"
+	>
 		<aui:fieldset>
 			<h2>
 				<%= StringUtil.replace(question.getDescription(locale), CharPool.NEW_LINE, "<br />") %>
@@ -71,8 +92,15 @@ portletDisplay.setURLBack(redirect);
 						choice = choice.toEscapedModel();
 					%>
 
-						<aui:field-wrapper cssClass="radio">
-							<aui:input label='<%= choice.getName() + ". " + choice.getDescription(locale) %>' name="choiceId" type="radio" value="<%= choice.getChoiceId() %>" />
+						<aui:field-wrapper
+							cssClass="radio"
+						>
+							<aui:input
+								label='<%= choice.getName() + ". " + choice.getDescription(locale) %>'
+								name="choiceId"
+								type="radio"
+								value="<%= choice.getChoiceId() %>"
+							/>
 						</aui:field-wrapper>
 
 					<%
@@ -97,9 +125,15 @@ portletDisplay.setURLBack(redirect);
 					</c:if>
 
 					<aui:button-row>
-						<aui:button type="submit" value="vote[action]" />
+						<aui:button
+							type="submit"
+							value="vote[action]"
+						/>
 
-						<aui:button href="<%= redirect %>" type="cancel" />
+						<aui:button
+							href="<%= redirect %>"
+							type="cancel"
+						/>
 					</aui:button-row>
 
 					<%
@@ -119,7 +153,10 @@ portletDisplay.setURLBack(redirect);
 					<div class="button-holder">
 						<c:choose>
 							<c:when test="<%= !question.isExpired() && !hasVoted && PollsQuestionPermission.contains(permissionChecker, question, ActionKeys.ADD_VOTE) %>">
-								<aui:button href="<%= viewQuestionURL %>" value="back-to-vote" />
+								<aui:button
+									href="<%= viewQuestionURL %>"
+									value="back-to-vote"
+								/>
 							</c:when>
 						</c:choose>
 					</div>

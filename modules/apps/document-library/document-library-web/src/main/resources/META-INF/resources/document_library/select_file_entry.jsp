@@ -46,7 +46,10 @@ dlSearchContainer.setResults(foldersAndFileEntriesAndFileShortcuts);
 %>
 
 <div class="container-fluid-1280">
-	<aui:form method="post" name="selectFileEntryFm">
+	<aui:form
+		method="post"
+		name="selectFileEntryFm"
+	>
 		<liferay-ui:breadcrumb
 			showGuestGroup="<%= false %>"
 			showLayout="<%= false %>"
@@ -86,7 +89,9 @@ dlSearchContainer.setResults(foldersAndFileEntriesAndFileShortcuts);
 						<liferay-ui:search-container-column-text
 							name="name"
 						>
-							<aui:a href="<%= rowURL.toString() %>">
+							<aui:a
+								href="<%= rowURL.toString() %>"
+							>
 								<%= curFolder.getName() %>
 							</aui:a>
 						</liferay-ui:search-container-column-text>
@@ -109,7 +114,11 @@ dlSearchContainer.setResults(foldersAndFileEntriesAndFileShortcuts);
 								data.put("entryname", HtmlUtil.unescape(fileEntry.getTitle()));
 								%>
 
-								<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">
+								<aui:a
+									cssClass="selector-button"
+									data="<%= data %>"
+									href="javascript:;"
+								>
 									<%= fileEntry.getTitle() %>
 								</aui:a>
 

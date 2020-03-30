@@ -61,7 +61,10 @@ if (user2 != null) {
 
 <div class="lfr-button-column" id="<portlet:namespace />buttonColumn">
 	<div class="lfr-button-column-content">
-		<aui:button-row cssClass="btn-group edit-toolbar" id='<%= renderResponse.getNamespace() + "userToolbar" %>' />
+		<aui:button-row
+			cssClass="btn-group edit-toolbar"
+			id='<%= renderResponse.getNamespace() + "userToolbar" %>'
+		/>
 
 		<div class="btn view-more-button">
 			<liferay-ui:icon
@@ -74,7 +77,10 @@ if (user2 != null) {
 	</div>
 </div>
 
-<aui:script position="inline" use="aui-dialog-iframe-deprecated,aui-io-plugin-deprecated,aui-toolbar,liferay-util-window">
+<aui:script
+	position="inline"
+	use="aui-dialog-iframe-deprecated,aui-io-plugin-deprecated,aui-toolbar,liferay-util-window"
+>
 	var buttonRow = A.one('#<portlet:namespace />userToolbar');
 
 	var contactsToolbarChildren = [];

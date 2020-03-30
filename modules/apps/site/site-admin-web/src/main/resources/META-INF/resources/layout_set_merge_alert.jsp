@@ -35,7 +35,11 @@ int mergeFailCount = SitesUtil.getMergeFailCount(layoutSetPrototype);
 		String randomNamespace = PortalUtil.generateRandomKey(request, "portlet_layout_set_prototypes_merge_alert") + StringPool.UNDERLINE;
 		%>
 
-		<aui:button id='<%= randomNamespace + "resetButton" %>' useNamespace="<%= false %>" value="reset-and-propagate" />
+		<aui:button
+			id='<%= randomNamespace + "resetButton" %>'
+			useNamespace="<%= false %>"
+			value="reset-and-propagate"
+		/>
 	</div>
 
 	<script>
@@ -80,7 +84,9 @@ List<Layout> mergeFailFriendlyURLLayouts = SitesUtil.getMergeFailFriendlyURLLayo
 			%>
 
 				<li>
-					<aui:a href="<%= editLayoutsURL.toString() %>">
+					<aui:a
+						href="<%= editLayoutsURL.toString() %>"
+					>
 						<%= HtmlUtil.escape(mergeFailFriendlyURLLayout.getName(locale)) %>
 					</aui:a>
 				</li>

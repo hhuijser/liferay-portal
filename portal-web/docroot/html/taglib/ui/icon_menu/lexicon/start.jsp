@@ -37,7 +37,11 @@ if (Validator.isNull(icon)) {
 	<c:choose>
 		<c:when test="<%= triggerType.equals(\"button\") %>">
 			<button aria-expanded="false" aria-haspopup="true" class="btn btn-monospaced btn-secondary dropdown-toggle <%= triggerCssClass %>" id="<%= id %>" title="<%= message %>" type="button">
-				<aui:icon cssClass="inline-item" image="<%= icon %>" markupView="lexicon" />
+				<aui:icon
+					cssClass="inline-item"
+					image="<%= icon %>"
+					markupView="lexicon"
+				/>
 
 				<c:if test="<%= Validator.isNotNull(triggerLabel) %>">
 					<span class="btn-section"><%= triggerLabel %></span>
@@ -46,12 +50,18 @@ if (Validator.isNull(icon)) {
 		</c:when>
 		<c:otherwise>
 			<a class="direction-<%= direction %> dropdown-toggle icon-monospaced <%= triggerCssClass %>" href="javascript:;" id="<%= id %>" title="<%= message %>">
-				<aui:icon image="<%= icon %>" markupView="lexicon" />
+				<aui:icon
+					image="<%= icon %>"
+					markupView="lexicon"
+				/>
 			</a>
 		</c:otherwise>
 	</c:choose>
 
-	<aui:script position="inline" use="liferay-menu">
+	<aui:script
+		position="inline"
+		use="liferay-menu"
+	>
 		Liferay.Menu.register('<%= id %>');
 	</aui:script>
 

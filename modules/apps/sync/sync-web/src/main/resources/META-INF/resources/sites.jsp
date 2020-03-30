@@ -55,7 +55,10 @@ portletURL.setParameter("delta", String.valueOf(delta));
 			%>
 
 			<li>
-				<aui:form action="<%= searchURL.toString() %>" name="searchFm">
+				<aui:form
+					action="<%= searchURL.toString() %>"
+					name="searchFm"
+				>
 					<liferay-ui:input-search
 						markupView="lexicon"
 						placeholder='<%= LanguageUtil.get(request, "search") %>'
@@ -87,11 +90,30 @@ portletURL.setParameter("delta", String.valueOf(delta));
 </liferay-frontend:management-bar>
 
 <div class="container-fluid-1280">
-	<aui:form method="post" name="fm">
-		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
-		<aui:input name="enabled" type="hidden" />
-		<aui:input name="groupIds" type="hidden" />
-		<aui:input name="permissions" type="hidden" />
+	<aui:form
+		method="post"
+		name="fm"
+	>
+		<aui:input
+			name="redirect"
+			type="hidden"
+			value="<%= currentURL %>"
+		/>
+
+		<aui:input
+			name="enabled"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="groupIds"
+			type="hidden"
+		/>
+
+		<aui:input
+			name="permissions"
+			type="hidden"
+		/>
 
 		<%
 		LinkedHashMap<String, Object> groupParams = new LinkedHashMap<String, Object>();

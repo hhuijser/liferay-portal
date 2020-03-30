@@ -48,9 +48,56 @@ public class OperatorOperandCheck extends BaseCheck {
 	private void _checkOperand(
 		DetailAST operatorDetailAST, DetailAST detailAST, String side) {
 
-		if ((detailAST == null) ||
-			(detailAST.getType() != TokenTypes.METHOD_CALL)) {
+		if (detailAST == null) {
+			return;
+		}
 
+		DetailAST exprDetailAST = getParentWithTokenType(
+			detailAST, TokenTypes.EXPR);
+
+		if (exprDetailAST != null) {
+			DetailAST parentDetailAST = exprDetailAST.getParent();
+
+			if (parentDetailAST.getType() == TokenTypes.LITERAL_WHILE) {
+				return;
+			}
+		}
+
+		if (detailAST.getType() == TokenTypes.LPAREN) {
+			DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+
+			nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+
+			if ((nextSiblingDetailAST.getType() == TokenTypes.RPAREN) &&
+				(detailAST.getLineNo() != nextSiblingDetailAST.getLineNo())) {
+
+				log(
+					detailAST, _MSG_IMPROVE_READABILITY, side,
+					operatorDetailAST.getText());
+			}
+
+			return;
+		}
+
+		if (detailAST.getType() == TokenTypes.RPAREN) {
+			DetailAST previousSiblingDetailAST = detailAST.getPreviousSibling();
+
+			previousSiblingDetailAST =
+				previousSiblingDetailAST.getPreviousSibling();
+
+			if ((previousSiblingDetailAST.getType() == TokenTypes.LPAREN) &&
+				(detailAST.getLineNo() !=
+					previousSiblingDetailAST.getLineNo())) {
+
+				log(
+					detailAST, _MSG_IMPROVE_READABILITY, side,
+					operatorDetailAST.getText());
+			}
+
+			return;
+		}
+
+		if (detailAST.getType() != TokenTypes.METHOD_CALL) {
 			return;
 		}
 

@@ -423,7 +423,6 @@
 			<description name="Checks for exposure of SPI types in API" />
 			<property name="enabled" value="false" />
 		</check>
-		<check name="JavaModuleExtendedObjectClassDefinitionCheck" />
 		<check name="JavaModuleIllegalImportsCheck">
 			<property name="checkRegistryInTestClasses" value="false" />
 		</check>

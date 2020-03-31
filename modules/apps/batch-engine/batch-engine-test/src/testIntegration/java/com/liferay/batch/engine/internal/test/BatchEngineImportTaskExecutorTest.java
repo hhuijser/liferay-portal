@@ -839,8 +839,8 @@ public class BatchEngineImportTaskExecutorTest
 		return StringPool.QUOTE + value + StringPool.QUOTE;
 	}
 
-	private long _toTime(Date date, int index) {
-		return date.getTime() + index * Time.MINUTE;
+	private long _toTime(Date date, int indexx) {
+		return date.getTime() + indexx * Time.MINUTE;
 	}
 
 	private static final String[] _ALTERNATE_FIELD_NAMES = {

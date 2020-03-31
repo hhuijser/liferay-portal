@@ -33,16 +33,6 @@ public class JSONPropertyOrderCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		Matcher matcher = _incorrectLineBreakPattern.matcher(content);
-
-		if (matcher.find()) {
-			addMessage(
-				fileName, "There should be a line break after '}'",
-				getLineNumber(content, matcher.start()));
-
-			return content;
-		}
-
 		return _sortProperties(content);
 	}
 
@@ -118,8 +108,5 @@ public class JSONPropertyOrderCheck extends BaseFileCheck {
 
 		return content;
 	}
-
-	private static final Pattern _incorrectLineBreakPattern = Pattern.compile(
-		"\t[\\}\\]]{2}");
 
 }

@@ -501,7 +501,6 @@
 		<check name="JSPParenthesesCheck" />
 		<check name="JSPRedirectBackURLCheck" />
 		<check name="JSPSessionKeysCheck" />
-		<check name="JSPStringBundlerCheck" />
 		<check name="JSPStylingCheck" />
 		<check name="JSPSubnameCheck" />
 		<check name="JSPTagAttributesCheck" />

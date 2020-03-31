@@ -46,8 +46,7 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 			return content;
 		}
 
-		return _sortMethodCalls(
-			fileName, content, importNames, content, absolutePath);
+		return _sortMethodCalls(fileName, content, importNames, absolutePath);
 	}
 
 	private String _getSortedCodeBlock(String codeBlock, String methodCall) {
@@ -307,8 +306,8 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 	}
 
 	private String _sortMethodCalls(
-		String fileName, String fileContent, List<String> importNames,
-		String content, String absolutePath) {
+		String fileName, String content, List<String> importNames,
+		String absolutePath) {
 
 		content = _sortChainedMethodCalls(
 			content, "put", 2, "ConcurrentHashMapBuilder", "HashMapBuilder",
@@ -321,8 +320,7 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 			fileName, content, "put", "ConcurrentHashMap", "HashMap",
 			"JSONObject", "SortedMap", "TreeMap");
 		content = _sortMethodCalls(fileName, content, "setAttribute");
-		content = _sortSetterMethodCalls(
-			content, fileContent, importNames, absolutePath);
+		content = _sortSetterMethodCalls(content, importNames, absolutePath);
 
 		return content;
 	}
@@ -373,13 +371,17 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 	}
 
 	private String _sortSetterMethodCalls(
-		String content, String fileContent, List<String> importNames,
-		String absolutePath) {
+		String content, List<String> importNames, String absolutePath) {
 
 		Matcher matcher1 = _setterCallsPattern.matcher(content);
 
+		String methodBody = "";
+
 		while (matcher1.find()) {
 			String setterCallsCodeBlock = matcher1.group();
+
+			methodBody = getMethodBody(
+				content, getLineNumber(content, matcher1.start()));
 
 			String packageName = null;
 			String previousMatch = null;
@@ -411,7 +413,7 @@ public class MethodCallsOrderCheck extends BaseServiceObjectCheck {
 					previousVariableName = variableName;
 
 					variableTypeName = getVariableTypeName(
-						content, fileContent, variableName);
+						methodBody, content, variableName);
 
 					packageName = getPackageName(variableTypeName, importNames);
 

@@ -382,6 +382,20 @@ public abstract class BaseSourceCheck implements SourceCheck {
 		return _maxLineLength;
 	}
 
+	protected String getMethodBody(String fileContent, int lineNumber) {
+		Matcher matcher = _methodDefinitionPattern.matcher(fileContent);
+
+		while (matcher.find()) {
+			if ((lineNumber > getLineNumber(fileContent, matcher.start())) &&
+				(lineNumber < getLineNumber(fileContent, matcher.end() - 1))) {
+
+				return matcher.group();
+			}
+		}
+
+		return fileContent;
+	}
+
 	protected String getModulesPropertiesContent(String absolutePath)
 		throws IOException {
 
@@ -759,6 +773,11 @@ public abstract class BaseSourceCheck implements SourceCheck {
 
 	private static final String _MODULES_PROPERTIES_FILE_NAME =
 		"modules/modules.properties";
+
+	private static final Pattern _methodDefinitionPattern = Pattern.compile(
+		"(?<=\n)(\\t+)(private|protected|public)( static)? \\w+? \\w+?\\(.+?" +
+			"\n\\1\\}",
+		Pattern.DOTALL);
 
 	private JSONObject _attributesJSONObject = new JSONObjectImpl();
 	private final Map<String, String> _attributeValueMap =

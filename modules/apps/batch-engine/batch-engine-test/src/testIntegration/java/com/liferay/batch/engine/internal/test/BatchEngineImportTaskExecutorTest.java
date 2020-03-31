@@ -466,16 +466,18 @@ public class BatchEngineImportTaskExecutorTest
 		throws Exception {
 
 		try (ByteArrayOutputStream byteArrayOutputStream =
-				new ByteArrayOutputStream();
-			ZipOutputStream zipOutputStream = new ZipOutputStream(
-				byteArrayOutputStream)) {
+				new ByteArrayOutputStream()) {
 
-			ZipEntry zipEntry = new ZipEntry(
-				"import." + StringUtil.toLowerCase(contentType));
+			try (ZipOutputStream zipOutputStream = new ZipOutputStream(
+					byteArrayOutputStream)) {
 
-			zipOutputStream.putNextEntry(zipEntry);
+				ZipEntry zipEntry = new ZipEntry(
+					"import." + StringUtil.toLowerCase(contentType));
 
-			zipOutputStream.write(content, 0, content.length);
+				zipOutputStream.putNextEntry(zipEntry);
+
+				zipOutputStream.write(content, 0, content.length);
+			}
 
 			return byteArrayOutputStream.toByteArray();
 		}

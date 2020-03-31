@@ -761,16 +761,6 @@ public class LayoutsAdminDisplayContext {
 
 		layoutsSearchContainer.setRowChecker(emptyOnClickRowChecker);
 
-		int layoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
-			getSelGroup(), isPrivateLayout(), getKeywords(),
-			new String[] {
-				LayoutConstants.TYPE_CONTENT, LayoutConstants.TYPE_EMBEDDED,
-				LayoutConstants.TYPE_LINK_TO_LAYOUT,
-				LayoutConstants.TYPE_FULL_PAGE_APPLICATION,
-				LayoutConstants.TYPE_PANEL, LayoutConstants.TYPE_PORTLET,
-				LayoutConstants.TYPE_URL
-			});
-
 		List<Layout> layouts = LayoutLocalServiceUtil.getLayouts(
 			getSelGroupId(), isPrivateLayout(), getKeywords(),
 			new String[] {
@@ -782,6 +772,16 @@ public class LayoutsAdminDisplayContext {
 			},
 			layoutsSearchContainer.getStart(), layoutsSearchContainer.getEnd(),
 			layoutsSearchContainer.getOrderByComparator());
+
+		int layoutsCount = LayoutLocalServiceUtil.getLayoutsCount(
+			getSelGroup(), isPrivateLayout(), getKeywords(),
+			new String[] {
+				LayoutConstants.TYPE_CONTENT, LayoutConstants.TYPE_EMBEDDED,
+				LayoutConstants.TYPE_LINK_TO_LAYOUT,
+				LayoutConstants.TYPE_FULL_PAGE_APPLICATION,
+				LayoutConstants.TYPE_PANEL, LayoutConstants.TYPE_PORTLET,
+				LayoutConstants.TYPE_URL
+			});
 
 		layoutsSearchContainer.setResults(layouts);
 		layoutsSearchContainer.setTotal(layoutsCount);

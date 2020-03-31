@@ -427,8 +427,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 		throws Exception {
 
 		long plid = LayoutConstants.DEFAULT_PLID;
-		String scopeType = StringPool.BLANK;
 		String scopeLayoutUuid = StringPool.BLANK;
+		String scopeType = StringPool.BLANK;
 
 		if (layout != null) {
 			plid = layout.getPlid();
@@ -438,10 +438,10 @@ public class PortletImportControllerImpl implements PortletImportController {
 					PortletPreferencesFactoryUtil.getLayoutPortletSetup(
 						layout, portletDataContext.getPortletId());
 
-				scopeType = GetterUtil.getString(
-					jxPortletPreferences.getValue("lfrScopeType", null));
 				scopeLayoutUuid = GetterUtil.getString(
 					jxPortletPreferences.getValue("lfrScopeLayoutUuid", null));
+				scopeType = GetterUtil.getString(
+					jxPortletPreferences.getValue("lfrScopeType", null));
 
 				portletDataContext.setScopeLayoutUuid(scopeLayoutUuid);
 				portletDataContext.setScopeType(scopeType);

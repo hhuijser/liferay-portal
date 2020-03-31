@@ -123,9 +123,9 @@ public class DDMFormContextToDDMFormValues
 					DDMFormFieldValue ddmFormFieldValue =
 						new DDMFormFieldValue();
 
-					String name = fieldJSONObject.getString("fieldName");
-
 					String instanceId = fieldJSONObject.getString("instanceId");
+
+					String name = fieldJSONObject.getString("fieldName");
 
 					ddmFormFieldValue.setInstanceId(instanceId);
 					ddmFormFieldValue.setName(name);

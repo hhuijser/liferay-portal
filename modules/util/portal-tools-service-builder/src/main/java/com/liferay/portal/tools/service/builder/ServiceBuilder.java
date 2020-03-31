@@ -6809,6 +6809,7 @@ public class ServiceBuilder {
 		Entity localizedEntity = _parseEntity(newLocalizedEntityElement);
 
 		entity.setLocalizedEntity(localizedEntity);
+
 		entity.setLocalizedEntityColumns(localizedEntityColumns);
 	}
 

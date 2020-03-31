@@ -53,8 +53,8 @@ public class SoyMsgBundleBridge extends SoyMsgBundle {
 		for (SoyMsg soyMsg : soyMsgBundle) {
 			SoyMsg.Builder builder = SoyMsg.builder();
 
-			builder.setLocaleString(_languageId);
 			builder.setIsPlrselMsg(false);
+			builder.setLocaleString(_languageId);
 			builder.setParts(_getLocalizedMessageParts(resourceBundle, soyMsg));
 
 			_soyMsgMap.put(soyMsg.getId(), builder.build());

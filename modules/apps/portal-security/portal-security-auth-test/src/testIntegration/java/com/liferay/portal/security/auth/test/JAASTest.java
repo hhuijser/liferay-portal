@@ -238,9 +238,9 @@ public class JAASTest {
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
-		mockHttpServletRequest.setRemoteUser(String.valueOf(_user.getUserId()));
 		mockHttpServletRequest.setAttribute(
 			AbsoluteRedirectsResponse.class.getName(), new Object());
+		mockHttpServletRequest.setRemoteUser(String.valueOf(_user.getUserId()));
 
 		JAASAction preJAASAction = new JAASAction();
 		JAASAction postJAASAction = new JAASAction();

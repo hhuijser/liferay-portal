@@ -41,12 +41,12 @@ public class DDMExpressionFactoryImpl implements DDMExpressionFactory {
 			createExpressionRequest.getDDMExpressionActionHandler());
 		ddmExpressionImpl.setDDMExpressionFieldAccessor(
 			createExpressionRequest.getDDMExpressionFieldAccessor());
+		ddmExpressionImpl.setDDMExpressionFunctionTracker(
+			ddmExpressionFunctionTracker);
 		ddmExpressionImpl.setDDMExpressionObserver(
 			createExpressionRequest.getDDMExpressionObserver());
 		ddmExpressionImpl.setDDMExpressionParameterAccessor(
 			createExpressionRequest.getDDMExpressionParameterAccessor());
-		ddmExpressionImpl.setDDMExpressionFunctionTracker(
-			ddmExpressionFunctionTracker);
 
 		return ddmExpressionImpl;
 	}

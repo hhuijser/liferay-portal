@@ -27,9 +27,9 @@ public class DeleteTask {
 	public static void deleteDirectory(File dir) {
 		Delete delete = new Delete();
 
-		delete.setProject(AntUtil.getProject());
 		delete.setDir(dir);
 		delete.setFailOnError(false);
+		delete.setProject(AntUtil.getProject());
 
 		delete.execute();
 	}
@@ -41,9 +41,9 @@ public class DeleteTask {
 	public static void deleteFile(File file) {
 		Delete delete = new Delete();
 
-		delete.setProject(AntUtil.getProject());
-		delete.setFile(file);
 		delete.setFailOnError(false);
+		delete.setFile(file);
+		delete.setProject(AntUtil.getProject());
 
 		delete.execute();
 	}
@@ -55,14 +55,14 @@ public class DeleteTask {
 	public static void deleteFiles(File dir, String includes, String excludes) {
 		Delete delete = new Delete();
 
-		delete.setProject(AntUtil.getProject());
 		delete.setFailOnError(false);
+		delete.setProject(AntUtil.getProject());
 
 		FileSet fileSet = new FileSet();
 
 		fileSet.setDir(dir);
-		fileSet.setIncludes(includes);
 		fileSet.setExcludes(excludes);
+		fileSet.setIncludes(includes);
 
 		delete.addFileset(fileSet);
 

@@ -1651,8 +1651,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		String trashTitle = _trashHelper.getTrashTitle(trashEntry.getEntryId());
 
 		for (WikiPage pageVersion : pageVersions) {
-			pageVersion.setTitle(trashTitle);
 			pageVersion.setStatus(WorkflowConstants.STATUS_IN_TRASH);
+			pageVersion.setTitle(trashTitle);
 
 			wikiPagePersistence.update(pageVersion);
 		}
@@ -2543,8 +2543,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 			// Version page
 
 			versionPage.setNodeId(newNodeId);
-			versionPage.setTitle(page.getTitle());
 			versionPage.setParentTitle(newParentTitle);
+			versionPage.setTitle(page.getTitle());
 
 			trashVersion = _trashVersionLocalService.fetchVersion(
 				WikiPage.class.getName(), versionPage.getPageId());
@@ -2791,8 +2791,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 
 		for (WikiPage pageVersion : pageVersions) {
 			pageVersion.setNodeId(newNodeId);
-			pageVersion.setTitle(originalTitle);
 			pageVersion.setParentTitle(newParentTitle);
+			pageVersion.setTitle(originalTitle);
 
 			wikiPagePersistence.update(pageVersion);
 		}
@@ -3101,8 +3101,8 @@ public class WikiPageLocalServiceImpl extends WikiPageLocalServiceBaseImpl {
 		}
 
 		for (WikiPage versionPage : versionPages) {
-			versionPage.setTitle(newTitle);
 			versionPage.setRedirectTitle(page.getRedirectTitle());
+			versionPage.setTitle(newTitle);
 
 			versionPage = wikiPagePersistence.update(versionPage);
 

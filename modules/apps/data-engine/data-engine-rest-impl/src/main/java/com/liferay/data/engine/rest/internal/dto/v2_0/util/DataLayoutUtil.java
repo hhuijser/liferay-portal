@@ -99,9 +99,9 @@ public class DataLayoutUtil {
 		DataLayout dataLayout = toDataLayout(
 			ddmStructureLayout.getDDMFormLayout(), spiDDMFormRuleConverter);
 
-		dataLayout.setDateCreated(ddmStructureLayout.getCreateDate());
 		dataLayout.setDataDefinitionId(ddmStructureLayout.getDDMStructureId());
 		dataLayout.setDataLayoutKey(ddmStructureLayout.getStructureLayoutKey());
+		dataLayout.setDateCreated(ddmStructureLayout.getCreateDate());
 		dataLayout.setDateModified(ddmStructureLayout.getModifiedDate());
 		dataLayout.setDescription(
 			LocalizedValueUtil.toStringObjectMap(

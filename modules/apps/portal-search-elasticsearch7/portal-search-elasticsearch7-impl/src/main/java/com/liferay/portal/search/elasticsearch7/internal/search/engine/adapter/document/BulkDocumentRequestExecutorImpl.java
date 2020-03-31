@@ -74,10 +74,10 @@ public class BulkDocumentRequestExecutorImpl
 			bulkDocumentResponse.addBulkDocumentItemResponse(
 				bulkDocumentItemResponse);
 
-			bulkDocumentItemResponse.setId(bulkItemResponse.getId());
-			bulkDocumentItemResponse.setIndex(bulkItemResponse.getIndex());
 			bulkDocumentItemResponse.setFailureMessage(
 				bulkItemResponse.getFailureMessage());
+			bulkDocumentItemResponse.setId(bulkItemResponse.getId());
+			bulkDocumentItemResponse.setIndex(bulkItemResponse.getIndex());
 			bulkDocumentItemResponse.setType(bulkItemResponse.getType());
 			bulkDocumentItemResponse.setVersion(bulkItemResponse.getVersion());
 

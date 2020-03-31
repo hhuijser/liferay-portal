@@ -429,8 +429,8 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 		KaleoTaskInstanceTokenQuery kaleoTaskInstanceTokenQuery =
 			new KaleoTaskInstanceTokenQuery(serviceContext);
 
-		kaleoTaskInstanceTokenQuery.setCompleted(completed);
 		kaleoTaskInstanceTokenQuery.setAssigneeClassName(Role.class.getName());
+		kaleoTaskInstanceTokenQuery.setCompleted(completed);
 
 		kaleoTaskInstanceTokenQuery.setRoleIds(roleIds);
 
@@ -636,9 +636,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			new KaleoTaskInstanceTokenQuery(serviceContext);
 
 		kaleoTaskInstanceTokenQuery.setAndOperator(andOperator);
+		kaleoTaskInstanceTokenQuery.setAssetPrimaryKeys(assetPrimaryKeys);
 		kaleoTaskInstanceTokenQuery.setAssetTitle(assetTitle);
 		kaleoTaskInstanceTokenQuery.setAssetTypes(assetTypes);
-		kaleoTaskInstanceTokenQuery.setAssetPrimaryKeys(assetPrimaryKeys);
 		kaleoTaskInstanceTokenQuery.setAssigneeClassName(assigneeClassName);
 		kaleoTaskInstanceTokenQuery.setAssigneeClassPKs(assigneeClassPKs);
 		kaleoTaskInstanceTokenQuery.setCompleted(completed);
@@ -743,9 +743,9 @@ public class KaleoTaskInstanceTokenLocalServiceImpl
 			new KaleoTaskInstanceTokenQuery(serviceContext);
 
 		kaleoTaskInstanceTokenQuery.setAndOperator(andOperator);
+		kaleoTaskInstanceTokenQuery.setAssetPrimaryKeys(assetPrimaryKeys);
 		kaleoTaskInstanceTokenQuery.setAssetTitle(assetTitle);
 		kaleoTaskInstanceTokenQuery.setAssetTypes(assetTypes);
-		kaleoTaskInstanceTokenQuery.setAssetPrimaryKeys(assetPrimaryKeys);
 		kaleoTaskInstanceTokenQuery.setAssigneeClassName(assigneeClassName);
 		kaleoTaskInstanceTokenQuery.setAssigneeClassPKs(assigneeClassPKs);
 		kaleoTaskInstanceTokenQuery.setCompleted(completed);

@@ -443,8 +443,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 				scopeLayoutUuid = GetterUtil.getString(
 					jxPortletPreferences.getValue("lfrScopeLayoutUuid", null));
 
-				portletDataContext.setScopeType(scopeType);
 				portletDataContext.setScopeLayoutUuid(scopeLayoutUuid);
+				portletDataContext.setScopeType(scopeType);
 			}
 		}
 
@@ -620,8 +620,8 @@ public class PortletImportControllerImpl implements PortletImportController {
 				jxPortletPreferences.store();
 			}
 			finally {
-				portletDataContext.setScopeType(scopeType);
 				portletDataContext.setScopeLayoutUuid(scopeLayoutUuid);
+				portletDataContext.setScopeType(scopeType);
 			}
 		}
 	}

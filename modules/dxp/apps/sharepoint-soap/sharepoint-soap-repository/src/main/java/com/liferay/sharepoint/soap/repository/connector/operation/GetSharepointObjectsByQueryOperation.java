@@ -97,9 +97,9 @@ public final class GetSharepointObjectsByQueryOperation extends BaseOperation {
 		getListItems.setListName(sharepointConnectionInfo.getLibraryName());
 		getListItems.setQuery(getQuery(query));
 		getListItems.setQueryOptions(getQueryOptions(queryOptionsList));
+		getListItems.setRowLimit(SharepointConstants.ROW_LIMIT_DEFAULT);
 		getListItems.setViewFields(getViewFields(queryFieldNames));
 		getListItems.setViewName(SharepointConstants.VIEW_DEFAULT);
-		getListItems.setRowLimit(SharepointConstants.ROW_LIMIT_DEFAULT);
 
 		return getListItemsDocument;
 	}

@@ -28,8 +28,8 @@ public class Order {
 	public static final Order count(boolean ascending) {
 		Order order = new Order(null);
 
-		order.setMetricName(COUNT_METRIC_NAME);
 		order.setAscending(ascending);
+		order.setMetricName(COUNT_METRIC_NAME);
 
 		return order;
 	}
@@ -37,8 +37,8 @@ public class Order {
 	public static final Order key(boolean ascending) {
 		Order order = new Order(null);
 
-		order.setMetricName(KEY_METRIC_NAME);
 		order.setAscending(ascending);
+		order.setMetricName(KEY_METRIC_NAME);
 
 		return order;
 	}

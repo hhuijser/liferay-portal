@@ -43,10 +43,10 @@ public class SerialDestinationPrototype implements DestinationPrototype {
 
 		serialDestination.setDestinationType(
 			destinationConfiguration.getDestinationType());
-		serialDestination.setName(
-			destinationConfiguration.getDestinationName());
 		serialDestination.setMaximumQueueSize(
 			destinationConfiguration.getMaximumQueueSize());
+		serialDestination.setName(
+			destinationConfiguration.getDestinationName());
 		serialDestination.setPermissionCheckerFactory(
 			_permissionCheckerFactory);
 		serialDestination.setPortalExecutorManager(_portalExecutorManager);

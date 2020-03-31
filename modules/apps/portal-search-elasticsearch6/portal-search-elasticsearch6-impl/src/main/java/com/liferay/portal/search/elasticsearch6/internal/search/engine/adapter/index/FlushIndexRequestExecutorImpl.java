@@ -80,8 +80,8 @@ public class FlushIndexRequestExecutorImpl
 			FlushAction.INSTANCE.newRequestBuilder(
 				_elasticsearchClientResolver.getClient());
 
-		flushRequestBuilder.setIndices(flushIndexRequest.getIndexNames());
 		flushRequestBuilder.setForce(flushIndexRequest.isForce());
+		flushRequestBuilder.setIndices(flushIndexRequest.getIndexNames());
 		flushRequestBuilder.setWaitIfOngoing(
 			flushIndexRequest.isWaitIfOngoing());
 

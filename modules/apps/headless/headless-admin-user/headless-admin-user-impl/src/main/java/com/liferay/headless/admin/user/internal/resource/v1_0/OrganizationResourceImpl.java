@@ -674,12 +674,12 @@ public class OrganizationResourceImpl
 					GetterUtil.getLong(emailAddress.getId()));
 
 		serviceBuilderEmailAddress.setAddress(address);
+		serviceBuilderEmailAddress.setPrimary(
+			GetterUtil.getBoolean(emailAddress.getPrimary()));
 		serviceBuilderEmailAddress.setTypeId(
 			_toListTypeId(
 				"email-address", emailAddress.getType(),
 				ListTypeConstants.ORGANIZATION_EMAIL_ADDRESS));
-		serviceBuilderEmailAddress.setPrimary(
-			GetterUtil.getBoolean(emailAddress.getPrimary()));
 
 		return serviceBuilderEmailAddress;
 	}
@@ -697,14 +697,14 @@ public class OrganizationResourceImpl
 		com.liferay.portal.kernel.model.Phone serviceBuilderPhone =
 			_phoneLocalService.createPhone(GetterUtil.getLong(phone.getId()));
 
-		serviceBuilderPhone.setNumber(number);
 		serviceBuilderPhone.setExtension(extension);
+		serviceBuilderPhone.setNumber(number);
+		serviceBuilderPhone.setPrimary(
+			GetterUtil.getBoolean(phone.getPrimary()));
 		serviceBuilderPhone.setTypeId(
 			_toListTypeId(
 				"other", phone.getPhoneType(),
 				ListTypeConstants.ORGANIZATION_PHONE));
-		serviceBuilderPhone.setPrimary(
-			GetterUtil.getBoolean(phone.getPrimary()));
 
 		return serviceBuilderPhone;
 	}

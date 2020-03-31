@@ -445,8 +445,8 @@ public class LayoutsAdminDisplayContext {
 
 		results.add("private-pages");
 
-		layoutsSearchContainer.setTotal(results.size());
 		layoutsSearchContainer.setResults(results);
+		layoutsSearchContainer.setTotal(results.size());
 
 		_layoutsSearchContainer = layoutsSearchContainer;
 
@@ -783,8 +783,8 @@ public class LayoutsAdminDisplayContext {
 			layoutsSearchContainer.getStart(), layoutsSearchContainer.getEnd(),
 			layoutsSearchContainer.getOrderByComparator());
 
-		layoutsSearchContainer.setTotal(layoutsCount);
 		layoutsSearchContainer.setResults(layouts);
+		layoutsSearchContainer.setTotal(layoutsCount);
 
 		_layoutsSearchContainer = layoutsSearchContainer;
 

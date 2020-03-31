@@ -156,11 +156,11 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 			status, themeDisplay.getUserId(), true, searchContainer.getStart(),
 			searchContainer.getEnd(), searchContainer.getOrderByComparator());
 
-		searchContainer.setTotal(
-			MBCategoryServiceUtil.getCategoriesCount(
-				themeDisplay.getScopeGroupId(), _categoryId, queryDefinition));
 		searchContainer.setResults(
 			MBCategoryServiceUtil.getCategories(
+				themeDisplay.getScopeGroupId(), _categoryId, queryDefinition));
+		searchContainer.setTotal(
+			MBCategoryServiceUtil.getCategoriesCount(
 				themeDisplay.getScopeGroupId(), _categoryId, queryDefinition));
 	}
 
@@ -236,39 +236,39 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 				includeAnonymous = true;
 			}
 
-			searchContainer.setTotal(
-				MBThreadServiceUtil.getGroupThreadsCount(
-					themeDisplay.getScopeGroupId(), groupThreadsUserId,
-					calendar.getTime(), includeAnonymous,
-					WorkflowConstants.STATUS_APPROVED));
 			searchContainer.setResults(
 				MBThreadServiceUtil.getGroupThreads(
 					themeDisplay.getScopeGroupId(), groupThreadsUserId,
 					calendar.getTime(), includeAnonymous,
 					WorkflowConstants.STATUS_APPROVED,
 					searchContainer.getStart(), searchContainer.getEnd()));
+			searchContainer.setTotal(
+				MBThreadServiceUtil.getGroupThreadsCount(
+					themeDisplay.getScopeGroupId(), groupThreadsUserId,
+					calendar.getTime(), includeAnonymous,
+					WorkflowConstants.STATUS_APPROVED));
 		}
 		else if (isShowMyPosts()) {
 			searchContainer.setEmptyResultsMessage("you-do-not-have-any-posts");
 
 			if (!themeDisplay.isSignedIn()) {
-				searchContainer.setTotal(0);
 				searchContainer.setResults(Collections.emptyList());
+				searchContainer.setTotal(0);
 
 				return;
 			}
 
 			int status = WorkflowConstants.STATUS_ANY;
 
-			searchContainer.setTotal(
-				MBThreadServiceUtil.getGroupThreadsCount(
-					themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
-					status));
 			searchContainer.setResults(
 				MBThreadServiceUtil.getGroupThreads(
 					themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
 					status, searchContainer.getStart(),
 					searchContainer.getEnd()));
+			searchContainer.setTotal(
+				MBThreadServiceUtil.getGroupThreadsCount(
+					themeDisplay.getScopeGroupId(), themeDisplay.getUserId(),
+					status));
 		}
 		else {
 			int status = WorkflowConstants.STATUS_APPROVED;
@@ -288,12 +288,12 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 				searchContainer.getStart(), searchContainer.getEnd(),
 				searchContainer.getOrderByComparator());
 
-			searchContainer.setTotal(
-				MBThreadServiceUtil.getThreadsCount(
-					themeDisplay.getScopeGroupId(), _categoryId,
-					queryDefinition));
 			searchContainer.setResults(
 				MBThreadServiceUtil.getThreads(
+					themeDisplay.getScopeGroupId(), _categoryId,
+					queryDefinition));
+			searchContainer.setTotal(
+				MBThreadServiceUtil.getThreadsCount(
 					themeDisplay.getScopeGroupId(), _categoryId,
 					queryDefinition));
 		}

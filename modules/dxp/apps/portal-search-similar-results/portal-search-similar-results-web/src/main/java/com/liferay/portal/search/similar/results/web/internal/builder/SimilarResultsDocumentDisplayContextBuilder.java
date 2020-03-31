@@ -378,9 +378,9 @@ public class SimilarResultsDocumentDisplayContextBuilder {
 				}
 			}
 
+			similarResultsDocumentDisplayContext.setIconId("blogs");
 			similarResultsDocumentDisplayContext.setThumbnailURLString(
 				thumbnailURLString);
-			similarResultsDocumentDisplayContext.setIconId("blogs");
 
 			return;
 		}

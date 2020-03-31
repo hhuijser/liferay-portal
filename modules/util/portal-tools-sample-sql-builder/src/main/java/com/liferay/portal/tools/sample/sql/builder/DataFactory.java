@@ -894,46 +894,46 @@ public class DataFactory {
 	public void initCommerceCatalogModel() {
 		_commerceCatalogModel = new CommerceCatalogModelImpl();
 
+		_commerceCatalogModel.setCatalogDefaultLanguageId("en_US");
 		_commerceCatalogModel.setCommerceCatalogId(_counter.get());
+		_commerceCatalogModel.setCommerceCurrencyCode(
+			_commerceCurrencyModel.getCode());
 		_commerceCatalogModel.setCompanyId(_companyId);
-		_commerceCatalogModel.setUserName(_SAMPLE_USER_NAME);
 		_commerceCatalogModel.setCreateDate(new Date());
 		_commerceCatalogModel.setModifiedDate(new Date());
 		_commerceCatalogModel.setName("Master");
-		_commerceCatalogModel.setCommerceCurrencyCode(
-			_commerceCurrencyModel.getCode());
-		_commerceCatalogModel.setCatalogDefaultLanguageId("en_US");
 		_commerceCatalogModel.setSystem(true);
+		_commerceCatalogModel.setUserName(_SAMPLE_USER_NAME);
 	}
 
 	public void initCommerceChannelModel() {
 		_commerceChannelModel = new CommerceChannelModelImpl();
 
 		_commerceChannelModel.setCommerceChannelId(_counter.get());
-		_commerceChannelModel.setCompanyId(_companyId);
-		_commerceChannelModel.setUserId(_sampleUserId);
-		_commerceChannelModel.setUserName(_SAMPLE_USER_NAME);
-		_commerceChannelModel.setCreateDate(new Date());
-		_commerceChannelModel.setModifiedDate(new Date());
-		_commerceChannelModel.setSiteGroupId(1);
-		_commerceChannelModel.setName(_SAMPLE_USER_NAME + " Channel");
-		_commerceChannelModel.setType("site");
-		_commerceChannelModel.setTypeSettings(String.valueOf(_guestGroupId));
 		_commerceChannelModel.setCommerceCurrencyCode(
 			_commerceCurrencyModel.getCode());
+		_commerceChannelModel.setCompanyId(_companyId);
+		_commerceChannelModel.setCreateDate(new Date());
+		_commerceChannelModel.setModifiedDate(new Date());
+		_commerceChannelModel.setName(_SAMPLE_USER_NAME + " Channel");
+		_commerceChannelModel.setSiteGroupId(1);
+		_commerceChannelModel.setType("site");
+		_commerceChannelModel.setTypeSettings(String.valueOf(_guestGroupId));
+		_commerceChannelModel.setUserId(_sampleUserId);
+		_commerceChannelModel.setUserName(_SAMPLE_USER_NAME);
 	}
 
 	public void initCommerceCurrencyModel() {
 		_commerceCurrencyModel = new CommerceCurrencyModelImpl();
 
-		_commerceCurrencyModel.setUuid(SequentialUUID.generate());
+		_commerceCurrencyModel.setCode("USD");
 		_commerceCurrencyModel.setCommerceCurrencyId(_counter.get());
 		_commerceCurrencyModel.setCompanyId(_companyId);
-		_commerceCurrencyModel.setUserId(_sampleUserId);
-		_commerceCurrencyModel.setUserName(_SAMPLE_USER_NAME);
 		_commerceCurrencyModel.setCreateDate(new Date());
 		_commerceCurrencyModel.setModifiedDate(new Date());
-		_commerceCurrencyModel.setCode("USD");
+		_commerceCurrencyModel.setUserId(_sampleUserId);
+		_commerceCurrencyModel.setUserName(_SAMPLE_USER_NAME);
+		_commerceCurrencyModel.setUuid(SequentialUUID.generate());
 
 		String name = StringBundler.concat(
 			"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root available-locales",
@@ -951,13 +951,13 @@ public class DataFactory {
 
 		_commerceCurrencyModel.setFormatPattern(formatPattern);
 
-		_commerceCurrencyModel.setMaxFractionDigits(2);
-		_commerceCurrencyModel.setMinFractionDigits(2);
-		_commerceCurrencyModel.setRoundingMode("HALF_EVEN");
-		_commerceCurrencyModel.setPrimary(true);
-		_commerceCurrencyModel.setPriority(1);
 		_commerceCurrencyModel.setActive(true);
 		_commerceCurrencyModel.setLastPublishDate(new Date());
+		_commerceCurrencyModel.setMaxFractionDigits(2);
+		_commerceCurrencyModel.setMinFractionDigits(2);
+		_commerceCurrencyModel.setPrimary(true);
+		_commerceCurrencyModel.setPriority(1);
+		_commerceCurrencyModel.setRoundingMode("HALF_EVEN");
 	}
 
 	public void initCommerceProductModels() {
@@ -1158,14 +1158,14 @@ public class DataFactory {
 	public void initDLFileEntryTypeModel() {
 		_defaultDLFileEntryTypeModel = new DLFileEntryTypeModelImpl();
 
-		_defaultDLFileEntryTypeModel.setUuid(SequentialUUID.generate());
+		_defaultDLFileEntryTypeModel.setCreateDate(nextFutureDate());
 		_defaultDLFileEntryTypeModel.setFileEntryTypeId(
 			DLFileEntryTypeConstants.FILE_ENTRY_TYPE_ID_BASIC_DOCUMENT);
-		_defaultDLFileEntryTypeModel.setCreateDate(nextFutureDate());
-		_defaultDLFileEntryTypeModel.setModifiedDate(nextFutureDate());
 		_defaultDLFileEntryTypeModel.setFileEntryTypeKey(
 			StringUtil.toUpperCase(
 				DLFileEntryTypeConstants.NAME_BASIC_DOCUMENT));
+		_defaultDLFileEntryTypeModel.setModifiedDate(nextFutureDate());
+		_defaultDLFileEntryTypeModel.setUuid(SequentialUUID.generate());
 
 		StringBundler sb = new StringBundler(4);
 
@@ -1957,16 +1957,16 @@ public class DataFactory {
 		DDMTemplateVersionModelImpl ddmTemplateVersionModelImpl =
 			new DDMTemplateVersionModelImpl();
 
-		ddmTemplateVersionModelImpl.setTemplateVersionId(_counter.get());
-		ddmTemplateVersionModelImpl.setGroupId(ddmTemplateModel.getGroupId());
-		ddmTemplateVersionModelImpl.setCompanyId(_companyId);
-		ddmTemplateVersionModelImpl.setUserId(ddmTemplateModel.getUserId());
-		ddmTemplateVersionModelImpl.setCreateDate(nextFutureDate());
-		ddmTemplateVersionModelImpl.setTemplateId(
-			ddmTemplateModel.getTemplateId());
-		ddmTemplateVersionModelImpl.setClassPK(ddmTemplateModel.getClassPK());
 		ddmTemplateVersionModelImpl.setClassNameId(
 			ddmTemplateModel.getClassNameId());
+		ddmTemplateVersionModelImpl.setClassPK(ddmTemplateModel.getClassPK());
+		ddmTemplateVersionModelImpl.setCompanyId(_companyId);
+		ddmTemplateVersionModelImpl.setCreateDate(nextFutureDate());
+		ddmTemplateVersionModelImpl.setGroupId(ddmTemplateModel.getGroupId());
+		ddmTemplateVersionModelImpl.setTemplateId(
+			ddmTemplateModel.getTemplateId());
+		ddmTemplateVersionModelImpl.setTemplateVersionId(_counter.get());
+		ddmTemplateVersionModelImpl.setUserId(ddmTemplateModel.getUserId());
 		ddmTemplateVersionModelImpl.setVersion(
 			DDMTemplateConstants.VERSION_DEFAULT);
 
@@ -2819,17 +2819,17 @@ public class DataFactory {
 		jxPortletPreferences.setValue("queryAndOperator0", "false");
 		jxPortletPreferences.setValue("queryContains0", "true");
 		jxPortletPreferences.setValue("queryName0", assetPublisherQueryName);
+		jxPortletPreferences.setValue("queryAndOperator1", "false");
+		jxPortletPreferences.setValue("queryContains1", "false");
+		jxPortletPreferences.setValue("queryName1", assetPublisherQueryName);
+		jxPortletPreferences.setValue(
+			"queryValues1", assetPublisherQueryValues[3]);
 		jxPortletPreferences.setValues(
 			"queryValues0",
 			new String[] {
 				assetPublisherQueryValues[0], assetPublisherQueryValues[1],
 				assetPublisherQueryValues[2]
 			});
-		jxPortletPreferences.setValue("queryAndOperator1", "false");
-		jxPortletPreferences.setValue("queryContains1", "false");
-		jxPortletPreferences.setValue("queryName1", assetPublisherQueryName);
-		jxPortletPreferences.setValue(
-			"queryValues1", assetPublisherQueryValues[3]);
 
 		return newPortletPreferencesModel(
 			plid, portletId,
@@ -3591,23 +3591,23 @@ public class DataFactory {
 		CPDefinitionLocalizationModel cpDefinitionLocalizationModel =
 			new CPDefinitionLocalizationModelImpl();
 
-		cpDefinitionLocalizationModel.setCpDefinitionLocalizationId(
-			_counter.get());
 		cpDefinitionLocalizationModel.setCompanyId(_companyId);
 		cpDefinitionLocalizationModel.setCPDefinitionId(cpDefinitionId);
-		cpDefinitionLocalizationModel.setLanguageId("en_US");
-		cpDefinitionLocalizationModel.setName("Definition " + cpDefinitionId);
-		cpDefinitionLocalizationModel.setShortDescription(
-			"Short description for definition " + cpDefinitionId);
+		cpDefinitionLocalizationModel.setCpDefinitionLocalizationId(
+			_counter.get());
 		cpDefinitionLocalizationModel.setDescription(
 			"A longer and more verbose description for definition with ID " +
 				cpDefinitionId);
-		cpDefinitionLocalizationModel.setMetaTitle(
-			"A meta-title for definition " + cpDefinitionId);
+		cpDefinitionLocalizationModel.setLanguageId("en_US");
 		cpDefinitionLocalizationModel.setMetaDescription(
 			"A meta-description for definition " + cpDefinitionId);
 		cpDefinitionLocalizationModel.setMetaKeywords(
 			"Meta-keywords for definition " + cpDefinitionId);
+		cpDefinitionLocalizationModel.setMetaTitle(
+			"A meta-title for definition " + cpDefinitionId);
+		cpDefinitionLocalizationModel.setName("Definition " + cpDefinitionId);
+		cpDefinitionLocalizationModel.setShortDescription(
+			"Short description for definition " + cpDefinitionId);
 
 		return cpDefinitionLocalizationModel;
 	}
@@ -3618,44 +3618,44 @@ public class DataFactory {
 
 		CPDefinitionModel cpDefinitionModel = new CPDefinitionModelImpl();
 
-		cpDefinitionModel.setUuid(SequentialUUID.generate());
-		cpDefinitionModel.setCPDefinitionId(cpDefinitionId);
-		cpDefinitionModel.setGroupId(groupId);
-		cpDefinitionModel.setCompanyId(_companyId);
-		cpDefinitionModel.setUserId(_sampleUserId);
-		cpDefinitionModel.setUserName(_SAMPLE_USER_NAME);
-		cpDefinitionModel.setCreateDate(new Date());
-		cpDefinitionModel.setModifiedDate(new Date());
-		cpDefinitionModel.setCProductId(cProductId);
-		cpDefinitionModel.setCPTaxCategoryId(cpTaxCategoryId);
-		cpDefinitionModel.setProductTypeName("simple");
 		cpDefinitionModel.setAvailableIndividually(true);
-		cpDefinitionModel.setIgnoreSKUCombinations(true);
-		cpDefinitionModel.setShippable(true);
-		cpDefinitionModel.setFreeShipping(false);
-		cpDefinitionModel.setShipSeparately(true);
-		cpDefinitionModel.setShippingExtraPrice(3.0);
-		cpDefinitionModel.setWidth(0);
-		cpDefinitionModel.setHeight(0);
-		cpDefinitionModel.setDepth(0);
-		cpDefinitionModel.setWeight(0);
-		cpDefinitionModel.setTaxExempt(false);
-		cpDefinitionModel.setTelcoOrElectronics(false);
+		cpDefinitionModel.setCProductId(cProductId);
+		cpDefinitionModel.setCompanyId(_companyId);
+		cpDefinitionModel.setCPDefinitionId(cpDefinitionId);
+		cpDefinitionModel.setCPTaxCategoryId(cpTaxCategoryId);
+		cpDefinitionModel.setCreateDate(new Date());
 		cpDefinitionModel.setDDMStructureKey(null);
-		cpDefinitionModel.setPublished(true);
+		cpDefinitionModel.setDepth(0);
 		cpDefinitionModel.setDisplayDate(new Date());
 		cpDefinitionModel.setExpirationDate(null);
+		cpDefinitionModel.setFreeShipping(false);
+		cpDefinitionModel.setGroupId(groupId);
+		cpDefinitionModel.setHeight(0);
+		cpDefinitionModel.setIgnoreSKUCombinations(true);
 		cpDefinitionModel.setLastPublishDate(null);
-		cpDefinitionModel.setSubscriptionEnabled(false);
-		cpDefinitionModel.setSubscriptionLength(0);
-		cpDefinitionModel.setSubscriptionType(null);
-		cpDefinitionModel.setSubscriptionTypeSettings(null);
 		cpDefinitionModel.setMaxSubscriptionCycles(0);
-		cpDefinitionModel.setVersion(version);
+		cpDefinitionModel.setModifiedDate(new Date());
+		cpDefinitionModel.setProductTypeName("simple");
+		cpDefinitionModel.setPublished(true);
+		cpDefinitionModel.setShipSeparately(true);
+		cpDefinitionModel.setShippable(true);
+		cpDefinitionModel.setShippingExtraPrice(3.0);
 		cpDefinitionModel.setStatus(WorkflowConstants.STATUS_APPROVED);
 		cpDefinitionModel.setStatusByUserId(_sampleUserId);
 		cpDefinitionModel.setStatusByUserName(_SAMPLE_USER_NAME);
 		cpDefinitionModel.setStatusDate(new Date());
+		cpDefinitionModel.setSubscriptionEnabled(false);
+		cpDefinitionModel.setSubscriptionLength(0);
+		cpDefinitionModel.setSubscriptionType(null);
+		cpDefinitionModel.setSubscriptionTypeSettings(null);
+		cpDefinitionModel.setTaxExempt(false);
+		cpDefinitionModel.setTelcoOrElectronics(false);
+		cpDefinitionModel.setUserId(_sampleUserId);
+		cpDefinitionModel.setUserName(_SAMPLE_USER_NAME);
+		cpDefinitionModel.setUuid(SequentialUUID.generate());
+		cpDefinitionModel.setVersion(version);
+		cpDefinitionModel.setWeight(0);
+		cpDefinitionModel.setWidth(0);
 
 		return cpDefinitionModel;
 	}
@@ -3675,19 +3675,19 @@ public class DataFactory {
 		CPFriendlyURLEntryModel cpFriendlyURLEntryModel =
 			new CPFriendlyURLEntryModelImpl();
 
-		cpFriendlyURLEntryModel.setUuid(SequentialUUID.generate());
-		cpFriendlyURLEntryModel.setCPFriendlyURLEntryId(_counter.get());
-		cpFriendlyURLEntryModel.setGroupId(groupId);
-		cpFriendlyURLEntryModel.setCompanyId(_companyId);
-		cpFriendlyURLEntryModel.setUserId(_sampleUserId);
-		cpFriendlyURLEntryModel.setUserName(_SAMPLE_USER_NAME);
-		cpFriendlyURLEntryModel.setCreateDate(new Date());
-		cpFriendlyURLEntryModel.setModifiedDate(new Date());
 		cpFriendlyURLEntryModel.setClassNameId(classNameId);
 		cpFriendlyURLEntryModel.setClassPK(classPK);
+		cpFriendlyURLEntryModel.setCompanyId(_companyId);
+		cpFriendlyURLEntryModel.setCPFriendlyURLEntryId(_counter.get());
+		cpFriendlyURLEntryModel.setCreateDate(new Date());
+		cpFriendlyURLEntryModel.setGroupId(groupId);
 		cpFriendlyURLEntryModel.setLanguageId("en_US");
-		cpFriendlyURLEntryModel.setUrlTitle(urlTitle);
 		cpFriendlyURLEntryModel.setMain(true);
+		cpFriendlyURLEntryModel.setModifiedDate(new Date());
+		cpFriendlyURLEntryModel.setUrlTitle(urlTitle);
+		cpFriendlyURLEntryModel.setUserId(_sampleUserId);
+		cpFriendlyURLEntryModel.setUserName(_SAMPLE_USER_NAME);
+		cpFriendlyURLEntryModel.setUuid(SequentialUUID.generate());
 
 		return cpFriendlyURLEntryModel;
 	}
@@ -3697,46 +3697,46 @@ public class DataFactory {
 
 		CPInstanceModel cpInstanceModel = new CPInstanceModelImpl();
 
-		cpInstanceModel.setUuid(SequentialUUID.generate());
-		cpInstanceModel.setCPInstanceId(_counter.get());
-		cpInstanceModel.setGroupId(groupId);
 		cpInstanceModel.setCompanyId(_companyId);
+		cpInstanceModel.setCPDefinitionId(cpDefinitionId);
+		cpInstanceModel.setCPInstanceId(_counter.get());
+		cpInstanceModel.setCPInstanceUuid(SequentialUUID.generate());
+		cpInstanceModel.setCreateDate(new Date());
+		cpInstanceModel.setGroupId(groupId);
+		cpInstanceModel.setModifiedDate(new Date());
 		cpInstanceModel.setUserId(_sampleUserId);
 		cpInstanceModel.setUserName(_SAMPLE_USER_NAME);
-		cpInstanceModel.setCreateDate(new Date());
-		cpInstanceModel.setModifiedDate(new Date());
-		cpInstanceModel.setCPDefinitionId(cpDefinitionId);
-		cpInstanceModel.setCPInstanceUuid(SequentialUUID.generate());
+		cpInstanceModel.setUuid(SequentialUUID.generate());
 
 		String instanceKey = cpDefinitionId + StringPool.POUND + index;
 
-		cpInstanceModel.setSku("SKU" + instanceKey);
 		cpInstanceModel.setGtin("GTIN" + instanceKey);
 		cpInstanceModel.setManufacturerPartNumber("MPN" + instanceKey);
+		cpInstanceModel.setSku("SKU" + instanceKey);
 
-		cpInstanceModel.setPurchasable(true);
-		cpInstanceModel.setJson("[]");
-		cpInstanceModel.setWidth(index * 2 + 1);
-		cpInstanceModel.setHeight(index + 5);
-		cpInstanceModel.setDepth(index);
-		cpInstanceModel.setWeight(index * 3 + 1);
-		cpInstanceModel.setPrice(BigDecimal.valueOf(index + 10.1));
-		cpInstanceModel.setPromoPrice(BigDecimal.valueOf(index + 9.2));
 		cpInstanceModel.setCost(BigDecimal.valueOf(index + 6.4));
-		cpInstanceModel.setPublished(true);
+		cpInstanceModel.setDepth(index);
 		cpInstanceModel.setDisplayDate(new Date());
 		cpInstanceModel.setExpirationDate(null);
+		cpInstanceModel.setHeight(index + 5);
+		cpInstanceModel.setJson("[]");
 		cpInstanceModel.setLastPublishDate(null);
-		cpInstanceModel.setOverrideSubscriptionInfo(false);
-		cpInstanceModel.setSubscriptionEnabled(false);
-		cpInstanceModel.setSubscriptionLength(0);
-		cpInstanceModel.setSubscriptionType(null);
-		cpInstanceModel.setSubscriptionTypeSettings(null);
 		cpInstanceModel.setMaxSubscriptionCycles(0);
+		cpInstanceModel.setOverrideSubscriptionInfo(false);
+		cpInstanceModel.setPrice(BigDecimal.valueOf(index + 10.1));
+		cpInstanceModel.setPromoPrice(BigDecimal.valueOf(index + 9.2));
+		cpInstanceModel.setPublished(true);
+		cpInstanceModel.setPurchasable(true);
 		cpInstanceModel.setStatus(WorkflowConstants.STATUS_APPROVED);
 		cpInstanceModel.setStatusByUserId(_sampleUserId);
 		cpInstanceModel.setStatusByUserName(_SAMPLE_USER_NAME);
 		cpInstanceModel.setStatusDate(new Date());
+		cpInstanceModel.setSubscriptionEnabled(false);
+		cpInstanceModel.setSubscriptionLength(0);
+		cpInstanceModel.setSubscriptionType(null);
+		cpInstanceModel.setSubscriptionTypeSettings(null);
+		cpInstanceModel.setWeight(index * 3 + 1);
+		cpInstanceModel.setWidth(index * 2 + 1);
 
 		return cpInstanceModel;
 	}
@@ -3746,16 +3746,16 @@ public class DataFactory {
 
 		CProductModel cProductModel = new CProductModelImpl();
 
-		cProductModel.setUuid(SequentialUUID.generate());
 		cProductModel.setCProductId(cProductId);
-		cProductModel.setGroupId(groupId);
 		cProductModel.setCompanyId(_companyId);
-		cProductModel.setUserId(_sampleUserId);
-		cProductModel.setUserName(_SAMPLE_USER_NAME);
 		cProductModel.setCreateDate(new Date());
+		cProductModel.setGroupId(groupId);
+		cProductModel.setLatestVersion(_maxCPDefinitionCount);
 		cProductModel.setModifiedDate(new Date());
 		cProductModel.setPublishedCPDefinitionId(publishedCPDefinitionId);
-		cProductModel.setLatestVersion(_maxCPDefinitionCount);
+		cProductModel.setUserId(_sampleUserId);
+		cProductModel.setUserName(_SAMPLE_USER_NAME);
+		cProductModel.setUuid(SequentialUUID.generate());
 
 		return cProductModel;
 	}
@@ -3763,10 +3763,8 @@ public class DataFactory {
 	protected CPTaxCategoryModel newCPTaxCategoryModel(String name) {
 		CPTaxCategoryModel cpTaxCategoryModel = new CPTaxCategoryModelImpl();
 
-		cpTaxCategoryModel.setCPTaxCategoryId(_counter.get());
 		cpTaxCategoryModel.setCompanyId(_companyId);
-		cpTaxCategoryModel.setUserId(_sampleUserId);
-		cpTaxCategoryModel.setUserName(_SAMPLE_USER_NAME);
+		cpTaxCategoryModel.setCPTaxCategoryId(_counter.get());
 		cpTaxCategoryModel.setCreateDate(new Date());
 		cpTaxCategoryModel.setModifiedDate(new Date());
 		cpTaxCategoryModel.setName(
@@ -3774,6 +3772,8 @@ public class DataFactory {
 				"<?xml version=\"1.0\" encoding=\"UTF-8\"?><root ",
 				"available-locales=\"en_US\" default-locale=\"en_US\"><Name ",
 				"language-id=\"en_US\">", name, "</Name></root>"));
+		cpTaxCategoryModel.setUserId(_sampleUserId);
+		cpTaxCategoryModel.setUserName(_SAMPLE_USER_NAME);
 
 		cpTaxCategoryModel.setDescription(null);
 
@@ -4118,12 +4118,12 @@ public class DataFactory {
 
 		ReleaseModelImpl releaseModelImpl = new ReleaseModelImpl();
 
-		releaseModelImpl.setReleaseId(_counter.get());
+		releaseModelImpl.setBuildDate(new Date());
 		releaseModelImpl.setCreateDate(new Date());
 		releaseModelImpl.setModifiedDate(new Date());
-		releaseModelImpl.setServletContextName(servletContextName);
+		releaseModelImpl.setReleaseId(_counter.get());
 		releaseModelImpl.setSchemaVersion(schemaVersion);
-		releaseModelImpl.setBuildDate(new Date());
+		releaseModelImpl.setServletContextName(servletContextName);
 		releaseModelImpl.setVerified(true);
 
 		return releaseModelImpl;

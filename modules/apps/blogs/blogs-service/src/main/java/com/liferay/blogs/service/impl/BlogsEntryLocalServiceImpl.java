@@ -1873,8 +1873,8 @@ public class BlogsEntryLocalServiceImpl extends BlogsEntryLocalServiceBaseImpl {
 			new GroupSubscriptionCheckSubscriptionSender(
 				BlogsConstants.RESOURCE_NAME);
 
-		subscriptionSender.setClassPK(entry.getEntryId());
 		subscriptionSender.setClassName(entry.getModelClassName());
+		subscriptionSender.setClassPK(entry.getEntryId());
 		subscriptionSender.setCompanyId(entry.getCompanyId());
 		subscriptionSender.setContextAttribute(
 			"[$BLOGS_ENTRY_CONTENT$]",

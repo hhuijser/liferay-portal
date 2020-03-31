@@ -183,8 +183,8 @@ public class UserGroupRolesDisplayContext {
 		RoleSearchTerms searchTerms =
 			(RoleSearchTerms)roleSearch.getSearchTerms();
 
-		roleSearch.setRowChecker(new EmptyOnClickRowChecker(_renderResponse));
 		roleSearch.setOrderByCol(_getOrderByCol());
+		roleSearch.setRowChecker(new EmptyOnClickRowChecker(_renderResponse));
 
 		boolean orderByAsc = false;
 

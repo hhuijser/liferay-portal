@@ -26,8 +26,8 @@ public class MkdirTask {
 	public static void mkdir(File dir) {
 		Mkdir mkdir = new Mkdir();
 
-		mkdir.setProject(AntUtil.getProject());
 		mkdir.setDir(dir);
+		mkdir.setProject(AntUtil.getProject());
 
 		mkdir.execute();
 	}

@@ -343,8 +343,8 @@ public class GadgetLocalServiceImpl extends GadgetLocalServiceBaseImpl {
 
 		portletBag = (PortletBag)portletBag.clone();
 
-		portletBag.setPortletName(portletId);
 		portletBag.setPortletInstance(new GadgetPortlet());
+		portletBag.setPortletName(portletId);
 
 		PortletBagPool.put(portletId, portletBag);
 

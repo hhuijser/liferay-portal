@@ -250,17 +250,17 @@ public class MBMailingListLocalServiceImpl
 
 		MailingListRequest mailingListRequest = new MailingListRequest();
 
-		mailingListRequest.setCompanyId(mailingList.getCompanyId());
-		mailingListRequest.setUserId(mailingList.getUserId());
-		mailingListRequest.setGroupId(mailingList.getGroupId());
+		mailingListRequest.setAllowAnonymous(mailingList.isAllowAnonymous());
 		mailingListRequest.setCategoryId(mailingList.getCategoryId());
+		mailingListRequest.setCompanyId(mailingList.getCompanyId());
+		mailingListRequest.setGroupId(mailingList.getGroupId());
+		mailingListRequest.setInPassword(mailingList.getInPassword());
 		mailingListRequest.setInProtocol(mailingList.getInProtocol());
 		mailingListRequest.setInServerName(mailingList.getInServerName());
 		mailingListRequest.setInServerPort(mailingList.getInServerPort());
 		mailingListRequest.setInUseSSL(mailingList.isInUseSSL());
 		mailingListRequest.setInUserName(mailingList.getInUserName());
-		mailingListRequest.setInPassword(mailingList.getInPassword());
-		mailingListRequest.setAllowAnonymous(mailingList.isAllowAnonymous());
+		mailingListRequest.setUserId(mailingList.getUserId());
 
 		SchedulerEngineHelperUtil.schedule(
 			trigger, StorageType.PERSISTED, null,

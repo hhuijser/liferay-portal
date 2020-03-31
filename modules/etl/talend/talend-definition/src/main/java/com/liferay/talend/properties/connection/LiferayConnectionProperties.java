@@ -366,8 +366,8 @@ public class LiferayConnectionProperties extends ComponentPropertiesImpl {
 			Widget horizontalSpace = Widget.widget(
 				new PresentationItem("horizontalSpace"));
 
-			horizontalSpace.setWidgetType(Widget.DEFAULT_WIDGET_TYPE);
 			horizontalSpace.setHidden(true);
+			horizontalSpace.setWidgetType(Widget.DEFAULT_WIDGET_TYPE);
 
 			form.addRow(horizontalSpace);
 		}

@@ -123,8 +123,8 @@ public class FindKBArticleStrutsAction implements StrutsAction {
 		}
 
 		if (maximized) {
-			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 			portletURL.setPortletMode(PortletMode.VIEW);
+			portletURL.setWindowState(LiferayWindowState.MAXIMIZED);
 		}
 
 		httpServletResponse.sendRedirect(portletURL.toString());

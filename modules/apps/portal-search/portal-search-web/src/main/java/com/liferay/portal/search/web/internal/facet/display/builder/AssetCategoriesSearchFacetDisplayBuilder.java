@@ -154,13 +154,13 @@ public class AssetCategoriesSearchFacetDisplayBuilder implements Serializable {
 
 		assetCategoriesSearchFacetTermDisplayContext.setAssetCategoryId(
 			assetCategory.getCategoryId());
+		assetCategoriesSearchFacetTermDisplayContext.setDisplayName(
+			assetCategory.getTitle(_locale));
 		assetCategoriesSearchFacetTermDisplayContext.setFrequency(frequency);
 		assetCategoriesSearchFacetTermDisplayContext.setFrequencyVisible(
 			_frequenciesVisible);
 		assetCategoriesSearchFacetTermDisplayContext.setPopularity(popularity);
 		assetCategoriesSearchFacetTermDisplayContext.setSelected(selected);
-		assetCategoriesSearchFacetTermDisplayContext.setDisplayName(
-			assetCategory.getTitle(_locale));
 
 		return assetCategoriesSearchFacetTermDisplayContext;
 	}

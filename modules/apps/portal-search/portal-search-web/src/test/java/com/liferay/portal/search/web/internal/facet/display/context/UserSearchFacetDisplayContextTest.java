@@ -194,10 +194,10 @@ public class UserSearchFacetDisplayContextTest {
 			new UserSearchFacetDisplayBuilder(getRenderRequest());
 
 		userSearchFacetDisplayBuilder.setFacet(_facet);
-		userSearchFacetDisplayBuilder.setParamValue(paramValue);
 		userSearchFacetDisplayBuilder.setFrequenciesVisible(true);
 		userSearchFacetDisplayBuilder.setFrequencyThreshold(0);
 		userSearchFacetDisplayBuilder.setMaxTerms(0);
+		userSearchFacetDisplayBuilder.setParamValue(paramValue);
 
 		return userSearchFacetDisplayBuilder.build();
 	}

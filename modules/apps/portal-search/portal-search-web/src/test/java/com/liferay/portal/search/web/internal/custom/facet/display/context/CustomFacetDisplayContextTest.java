@@ -191,9 +191,9 @@ public class CustomFacetDisplayContextTest {
 			new CustomFacetDisplayBuilder(httpServletRequest);
 
 		customFacetDisplayBuilder.setFacet(_facet);
+		customFacetDisplayBuilder.setFrequenciesVisible(true);
 		customFacetDisplayBuilder.setParameterName("custom");
 		customFacetDisplayBuilder.setParameterValue(parameterValue);
-		customFacetDisplayBuilder.setFrequenciesVisible(true);
 
 		customFacetDisplayBuilder.setFrequencyThreshold(0);
 		customFacetDisplayBuilder.setMaxTerms(0);

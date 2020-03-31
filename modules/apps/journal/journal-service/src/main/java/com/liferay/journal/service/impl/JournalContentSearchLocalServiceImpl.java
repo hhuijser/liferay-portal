@@ -376,7 +376,7 @@ public class JournalContentSearchLocalServiceImpl
 			_groupId = journalContentSearch.getGroupId();
 			_layoutId = journalContentSearch.getLayoutId();
 			_portletId = journalContentSearch.getPortletId();
-			_privateLayout = journalContentSearch.getPrivateLayout();
+			_privateLayout = journalContentSearch.isPrivateLayout();
 		}
 
 		private JournalContentSearchKey(

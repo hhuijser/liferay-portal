@@ -1205,8 +1205,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);
@@ -1219,8 +1219,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.MEMORY_CLUSTERED);
@@ -1235,8 +1235,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);
@@ -1249,8 +1249,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.MEMORY_CLUSTERED);
@@ -1263,8 +1263,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(true);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(true);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);
@@ -1277,8 +1277,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(true);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(true);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.MEMORY_CLUSTERED);
@@ -1291,8 +1291,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(true);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);
@@ -1305,8 +1305,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(true);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.MEMORY_CLUSTERED);
@@ -1319,8 +1319,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);
@@ -1333,8 +1333,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(true);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.PERSISTED);
@@ -1347,8 +1347,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(false);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.MEMORY_CLUSTERED);
@@ -1361,8 +1361,8 @@ public class ClusterSchedulerEngineTest {
 
 		ClusterInvokeThreadLocal.setEnabled(true);
 
-		PluginContextLifecycleThreadLocal.setInitializing(false);
 		PluginContextLifecycleThreadLocal.setDestroying(false);
+		PluginContextLifecycleThreadLocal.setInitializing(false);
 
 		_clusterSchedulerEngine.setClusterableThreadLocal(
 			StorageType.MEMORY_CLUSTERED);

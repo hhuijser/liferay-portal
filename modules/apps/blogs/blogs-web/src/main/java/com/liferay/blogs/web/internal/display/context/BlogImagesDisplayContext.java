@@ -140,8 +140,8 @@ public class BlogImagesDisplayContext {
 				}
 			}
 
-			searchContainer.setTotal(total);
 			searchContainer.setResults(results);
+			searchContainer.setTotal(total);
 		}
 	}
 

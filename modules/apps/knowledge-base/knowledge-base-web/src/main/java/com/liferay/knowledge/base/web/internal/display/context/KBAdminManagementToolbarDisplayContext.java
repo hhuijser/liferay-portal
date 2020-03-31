@@ -394,28 +394,28 @@ public class KBAdminManagementToolbarDisplayContext {
 			_searchContainer.setTotal(kbArticleSearchDisplay.getTotal());
 		}
 		else if (kbFolderView) {
-			_searchContainer.setTotal(
-				KBFolderServiceUtil.getKBFoldersAndKBArticlesCount(
-					_themeDisplay.getScopeGroupId(), parentResourcePrimKey,
-					WorkflowConstants.STATUS_ANY));
 			_searchContainer.setResults(
 				KBFolderServiceUtil.getKBFoldersAndKBArticles(
 					_themeDisplay.getScopeGroupId(), parentResourcePrimKey,
 					WorkflowConstants.STATUS_ANY, _searchContainer.getStart(),
 					_searchContainer.getEnd(),
 					_searchContainer.getOrderByComparator()));
-		}
-		else {
 			_searchContainer.setTotal(
-				KBArticleServiceUtil.getKBArticlesCount(
+				KBFolderServiceUtil.getKBFoldersAndKBArticlesCount(
 					_themeDisplay.getScopeGroupId(), parentResourcePrimKey,
 					WorkflowConstants.STATUS_ANY));
+		}
+		else {
 			_searchContainer.setResults(
 				KBArticleServiceUtil.getKBArticles(
 					_themeDisplay.getScopeGroupId(), parentResourcePrimKey,
 					WorkflowConstants.STATUS_ANY, _searchContainer.getStart(),
 					_searchContainer.getEnd(),
 					_searchContainer.getOrderByComparator()));
+			_searchContainer.setTotal(
+				KBArticleServiceUtil.getKBArticlesCount(
+					_themeDisplay.getScopeGroupId(), parentResourcePrimKey,
+					WorkflowConstants.STATUS_ANY));
 		}
 
 		_searchContainer.setRowChecker(

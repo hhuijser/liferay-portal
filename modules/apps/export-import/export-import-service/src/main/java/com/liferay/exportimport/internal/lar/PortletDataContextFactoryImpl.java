@@ -65,9 +65,9 @@ public class PortletDataContextFactoryImpl
 		PortletDataContext clonePortletDataContext = new PortletDataContextImpl(
 			_lockManager, false);
 
-		clonePortletDataContext.setCompanyId(portletDataContext.getCompanyId());
 		clonePortletDataContext.setCompanyGroupId(
 			portletDataContext.getCompanyGroupId());
+		clonePortletDataContext.setCompanyId(portletDataContext.getCompanyId());
 		clonePortletDataContext.setDataStrategy(
 			portletDataContext.getDataStrategy());
 		clonePortletDataContext.setEndDate(portletDataContext.getEndDate());
@@ -101,10 +101,10 @@ public class PortletDataContextFactoryImpl
 		clonePortletDataContext.setPortletId(portletDataContext.getPortletId());
 		clonePortletDataContext.setScopeGroupId(
 			portletDataContext.getScopeGroupId());
-		clonePortletDataContext.setSourceCompanyId(
-			portletDataContext.getSourceCompanyId());
 		clonePortletDataContext.setSourceCompanyGroupId(
 			portletDataContext.getSourceCompanyGroupId());
+		clonePortletDataContext.setSourceCompanyId(
+			portletDataContext.getSourceCompanyId());
 		clonePortletDataContext.setSourceGroupId(
 			portletDataContext.getSourceGroupId());
 		clonePortletDataContext.setSourceUserPersonalSiteGroupId(

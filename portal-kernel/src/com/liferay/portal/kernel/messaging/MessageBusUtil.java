@@ -130,8 +130,8 @@ public class MessageBusUtil {
 
 		Message message = new Message();
 
-		message.setResponseDestinationName(responseDestinationName);
 		message.setPayload(payload);
+		message.setResponseDestinationName(responseDestinationName);
 
 		return sendSynchronousMessage(destinationName, message);
 	}
@@ -143,8 +143,8 @@ public class MessageBusUtil {
 
 		Message message = new Message();
 
-		message.setResponseDestinationName(responseDestinationName);
 		message.setPayload(payload);
+		message.setResponseDestinationName(responseDestinationName);
 
 		return sendSynchronousMessage(destinationName, message, timeout);
 	}

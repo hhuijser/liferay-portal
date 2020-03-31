@@ -238,11 +238,11 @@ public class FragmentCollectionContributorTrackerImpl
 				fragmentEntry.getFragmentEntryKey());
 
 		for (FragmentEntryLink fragmentEntryLink : fragmentEntryLinks) {
+			fragmentEntryLink.setConfiguration(
+				fragmentEntry.getConfiguration());
 			fragmentEntryLink.setCss(fragmentEntry.getCss());
 			fragmentEntryLink.setHtml(fragmentEntry.getHtml());
 			fragmentEntryLink.setJs(fragmentEntry.getJs());
-			fragmentEntryLink.setConfiguration(
-				fragmentEntry.getConfiguration());
 
 			_fragmentEntryLinkLocalService.updateFragmentEntryLink(
 				fragmentEntryLink);

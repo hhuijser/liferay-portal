@@ -209,9 +209,9 @@ public class VirtualHostAbsoluteRedirectsFilterTest {
 		}
 
 		_mockHttpServletRequest.setRemoteHost(hostname);
+		_mockHttpServletRequest.setRequestURI("/web/guest");
 		_mockHttpServletRequest.setServerName(hostname);
 		_mockHttpServletRequest.setServerPort(8080);
-		_mockHttpServletRequest.setRequestURI("/web/guest");
 	}
 
 	private static final String _HOSTNAME_DE = "test.de";

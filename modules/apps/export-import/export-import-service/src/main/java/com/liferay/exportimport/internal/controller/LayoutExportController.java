@@ -396,8 +396,8 @@ public class LayoutExportController implements ExportController {
 		portletDataContext.setExportImportProcessId(
 			String.valueOf(
 				exportImportConfiguration.getExportImportConfigurationId()));
-		portletDataContext.setPrivateLayout(privateLayout);
 		portletDataContext.setLayoutIds(layoutIds);
+		portletDataContext.setPrivateLayout(privateLayout);
 
 		return portletDataContext;
 	}

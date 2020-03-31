@@ -294,8 +294,8 @@ public class DLContentLocalServiceImpl extends DLContentLocalServiceBaseImpl {
 			companyId, oldRepositoryId, oldPath);
 
 		for (DLContent dLContent : dlContents) {
-			dLContent.setRepositoryId(newRepositoryId);
 			dLContent.setPath(newPath);
+			dLContent.setRepositoryId(newRepositoryId);
 
 			dlContentPersistence.update(dLContent);
 		}

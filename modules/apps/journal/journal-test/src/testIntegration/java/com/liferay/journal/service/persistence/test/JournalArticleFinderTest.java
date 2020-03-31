@@ -500,8 +500,8 @@ public class JournalArticleFinderTest {
 
 		// Status any
 
-		queryDefinition.setStatus(WorkflowConstants.STATUS_ANY);
 		queryDefinition.setOwnerUserId(_USER_ID);
+		queryDefinition.setStatus(WorkflowConstants.STATUS_ANY);
 
 		testQueryByG_C(
 			_group.getGroupId(), Collections.<Long>emptyList(),
@@ -509,8 +509,8 @@ public class JournalArticleFinderTest {
 
 		// Status in trash
 
-		queryDefinition.setStatus(WorkflowConstants.STATUS_IN_TRASH);
 		queryDefinition.setOwnerUserId(_USER_ID);
+		queryDefinition.setStatus(WorkflowConstants.STATUS_IN_TRASH);
 
 		testQueryByG_C(
 			_group.getGroupId(), Collections.<Long>emptyList(),
@@ -518,8 +518,8 @@ public class JournalArticleFinderTest {
 
 		// Status not in trash
 
-		queryDefinition.setStatus(WorkflowConstants.STATUS_IN_TRASH, true);
 		queryDefinition.setOwnerUserId(_USER_ID);
+		queryDefinition.setStatus(WorkflowConstants.STATUS_IN_TRASH, true);
 
 		testQueryByG_C(
 			_group.getGroupId(), Collections.<Long>emptyList(),

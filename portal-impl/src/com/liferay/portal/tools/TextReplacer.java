@@ -71,8 +71,8 @@ public class TextReplacer {
 				DirectoryScanner directoryScanner = new DirectoryScanner();
 
 				directoryScanner.setBasedir(dir);
-				directoryScanner.setIncludes(StringUtil.split(includes));
 				directoryScanner.setExcludes(StringUtil.split(excludes));
+				directoryScanner.setIncludes(StringUtil.split(includes));
 
 				directoryScanner.scan();
 

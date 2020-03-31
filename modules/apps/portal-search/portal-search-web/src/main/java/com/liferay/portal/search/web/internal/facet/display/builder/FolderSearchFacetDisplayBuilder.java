@@ -67,11 +67,11 @@ public class FolderSearchFacetDisplayBuilder {
 
 		folderSearchFacetDisplayContext.setDisplayStyleGroupId(
 			getDisplayStyleGroupId());
-		folderSearchFacetDisplayContext.setFolderSearchFacetTermDisplayContexts(
-			folderSearchFacetTermDisplayContexts);
 		folderSearchFacetDisplayContext.
 			setFolderFacetPortletInstanceConfiguration(
 				_folderFacetPortletInstanceConfiguration);
+		folderSearchFacetDisplayContext.setFolderSearchFacetTermDisplayContexts(
+			folderSearchFacetTermDisplayContexts);
 		folderSearchFacetDisplayContext.setNothingSelected(isNothingSelected());
 		folderSearchFacetDisplayContext.setParameterName(_parameterName);
 		folderSearchFacetDisplayContext.setParameterValue(

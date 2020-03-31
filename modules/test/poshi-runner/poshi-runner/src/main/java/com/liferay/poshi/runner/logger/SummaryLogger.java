@@ -358,8 +358,8 @@ public final class SummaryLogger {
 	private static LoggerElement _getScreenshotsAfterHeaderLoggerElement() {
 		LoggerElement loggerElement = new LoggerElement();
 
-		loggerElement.setText("After Failure:");
 		loggerElement.setName("h5");
+		loggerElement.setText("After Failure:");
 
 		return loggerElement;
 	}
@@ -410,8 +410,8 @@ public final class SummaryLogger {
 	private static LoggerElement _getScreenshotsBeforeHeaderLoggerElement() {
 		LoggerElement loggerElement = new LoggerElement();
 
-		loggerElement.setText("Before Failure:");
 		loggerElement.setName("h5");
+		loggerElement.setText("Before Failure:");
 
 		return loggerElement;
 	}

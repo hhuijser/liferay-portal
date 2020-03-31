@@ -139,12 +139,12 @@ public class CategoryFacetPortlet extends MVCPortlet {
 				stagingGroup.getGroupId());
 		}
 
-		assetCategoriesSearchFacetDisplayBuilder.setLocale(
-			themeDisplay.getLocale());
 		assetCategoriesSearchFacetDisplayBuilder.
 			setAssetCategoryPermissionChecker(
 				new AssetCategoryPermissionCheckerImpl(
 					themeDisplay.getPermissionChecker()));
+		assetCategoriesSearchFacetDisplayBuilder.setLocale(
+			themeDisplay.getLocale());
 
 		String parameterName =
 			categoryFacetPortletPreferences.getParameterName();

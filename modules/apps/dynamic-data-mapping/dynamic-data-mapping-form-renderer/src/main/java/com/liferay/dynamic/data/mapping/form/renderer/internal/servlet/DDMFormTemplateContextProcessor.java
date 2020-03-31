@@ -161,8 +161,8 @@ public class DDMFormTemplateContextProcessor {
 	protected DDMFormFieldValue getDDMFormFieldValue(JSONObject jsonObject) {
 		DDMFormFieldValue ddmFormFieldValue = new DDMFormFieldValue();
 
-		ddmFormFieldValue.setName(jsonObject.getString("fieldName"));
 		ddmFormFieldValue.setInstanceId(jsonObject.getString("instanceId"));
+		ddmFormFieldValue.setName(jsonObject.getString("fieldName"));
 
 		setDDMFormFieldValueValue(
 			jsonObject.getString("value"),

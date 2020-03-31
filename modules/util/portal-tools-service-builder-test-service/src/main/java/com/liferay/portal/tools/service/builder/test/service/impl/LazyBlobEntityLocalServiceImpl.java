@@ -35,8 +35,8 @@ public class LazyBlobEntityLocalServiceImpl
 		LazyBlobEntity lazyBlobEntity = lazyBlobEntityPersistence.create(
 			lazyBlobEntityId);
 
-		lazyBlobEntity.setUuid(serviceContext.getUuid());
 		lazyBlobEntity.setGroupId(groupId);
+		lazyBlobEntity.setUuid(serviceContext.getUuid());
 
 		UnsyncByteArrayInputStream unsyncByteArrayInputStream =
 			new UnsyncByteArrayInputStream(bytes);

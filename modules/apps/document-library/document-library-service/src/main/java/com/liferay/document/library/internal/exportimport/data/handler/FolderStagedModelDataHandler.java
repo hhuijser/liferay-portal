@@ -482,11 +482,11 @@ public class FolderStagedModelDataHandler
 			PortletDataException portletDataException =
 				new PortletDataException(PortletDataException.INVALID_GROUP);
 
-			portletDataException.setStagedModelDisplayName(folder.getName());
 			portletDataException.setStagedModelClassName(
 				folder.getModelClassName());
 			portletDataException.setStagedModelClassPK(
 				GetterUtil.getString(folder.getFolderId()));
+			portletDataException.setStagedModelDisplayName(folder.getName());
 
 			throw portletDataException;
 		}
@@ -501,12 +501,12 @@ public class FolderStagedModelDataHandler
 					new PortletDataException(
 						PortletDataException.STATUS_IN_TRASH);
 
-				portletDataException.setStagedModelDisplayName(
-					folder.getName());
 				portletDataException.setStagedModelClassName(
 					folder.getModelClassName());
 				portletDataException.setStagedModelClassPK(
 					GetterUtil.getString(folder.getFolderId()));
+				portletDataException.setStagedModelDisplayName(
+					folder.getName());
 
 				throw portletDataException;
 			}

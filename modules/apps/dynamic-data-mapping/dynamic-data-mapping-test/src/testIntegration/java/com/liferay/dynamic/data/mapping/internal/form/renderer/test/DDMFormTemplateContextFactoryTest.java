@@ -89,8 +89,8 @@ public class DDMFormTemplateContextFactoryTest {
 
 		ddmFormRenderingContext.setContainerId(containerId);
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
@@ -106,8 +106,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
@@ -123,8 +123,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
@@ -142,8 +142,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setPortletNamespace("_PORTLET_NAMESPACE_");
 
 		Map<String, Object> templateContext =
@@ -161,8 +161,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setReadOnly(true);
 
 		Map<String, Object> templateContext =
@@ -179,8 +179,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setShowRequiredFieldsWarning(false);
 
 		Map<String, Object> templateContext =
@@ -198,8 +198,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setShowSubmitButton(true);
 
 		Map<String, Object> templateContext =
@@ -216,10 +216,10 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
-		ddmFormRenderingContext.setShowSubmitButton(true);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setReadOnly(true);
+		ddmFormRenderingContext.setShowSubmitButton(true);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
@@ -233,8 +233,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
@@ -256,8 +256,8 @@ public class DDMFormTemplateContextFactoryTest {
 
 		String submitLabel = StringUtil.randomString();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setSubmitLabel(submitLabel);
 
 		Map<String, Object> templateContext =
@@ -268,8 +268,8 @@ public class DDMFormTemplateContextFactoryTest {
 
 		ddmFormRenderingContext = new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 
 		templateContext = _ddmFormTemplateContextFactory.create(
 			DDMFormTestUtil.createDDMForm(), ddmFormRenderingContext);
@@ -289,8 +289,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 
 		Map<String, Object> templateContext =
 			_ddmFormTemplateContextFactory.create(
@@ -349,8 +349,8 @@ public class DDMFormTemplateContextFactoryTest {
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
 
-		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setHttpServletRequest(_httpServletRequest);
+		ddmFormRenderingContext.setLocale(LocaleUtil.US);
 		ddmFormRenderingContext.setViewMode(true);
 
 		Map<String, Object> templateContext =

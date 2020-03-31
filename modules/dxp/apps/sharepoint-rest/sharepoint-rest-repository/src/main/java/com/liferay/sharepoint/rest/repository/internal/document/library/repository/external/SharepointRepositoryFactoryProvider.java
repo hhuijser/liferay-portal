@@ -125,14 +125,14 @@ public class SharepointRepositoryFactoryProvider {
 				_dlFolderLocalService);
 
 			sharepointExtRepositoryAdapter.setGroupId(repository.getGroupId());
-			sharepointExtRepositoryAdapter.setRepositoryId(
-				repository.getRepositoryId());
 			sharepointExtRepositoryAdapter.setRepositoryEntryLocalService(
 				_repositoryEntryLocalService);
-			sharepointExtRepositoryAdapter.setUserLocalService(
-				_userLocalService);
+			sharepointExtRepositoryAdapter.setRepositoryId(
+				repository.getRepositoryId());
 			sharepointExtRepositoryAdapter.setTypeSettingsProperties(
 				repository.getTypeSettingsProperties());
+			sharepointExtRepositoryAdapter.setUserLocalService(
+				_userLocalService);
 
 			sharepointExtRepositoryAdapter.initRepository();
 

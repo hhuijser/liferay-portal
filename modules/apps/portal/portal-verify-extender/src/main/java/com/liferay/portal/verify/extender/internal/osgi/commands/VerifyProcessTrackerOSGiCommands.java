@@ -306,8 +306,8 @@ public class VerifyProcessTrackerOSGiCommands {
 				_registerMarkerObject(verifyProcessName);
 			}
 			else {
-				release.setState(ReleaseConstants.STATE_VERIFY_FAILURE);
 				release.setVerified(false);
+				release.setState(ReleaseConstants.STATE_VERIFY_FAILURE);
 
 				releaseLocalService.updateRelease(release);
 			}

@@ -1,5 +1,25 @@
 {
+#if (${liferayVersion.startsWith("7.2")})
+	"config": {
+		"imports": {
+			"dynamic-data-mapping-form-field-type": {
+				"/": ">=4.0.25"
+			},
+			"frontend-taglib-clay": {
+				"clay-button": ">=2.9.0",
+				"clay-icon": ">=2.9.0"
+			}
+		}
+	},
+#end
 #if (${buildType} != "gradle")
-    "output": "target/classes/META-INF/resources",
-#end    "preset": "liferay-npm-bundler-preset-standard"
+	"output": "target/classes/META-INF/resources",
+#else
+	"output": "build/resources/main/META-INF/resources",
+#end
+#if (${liferayVersion.startsWith("7.2")})
+	"preset": "liferay-npm-bundler-preset-liferay-dev"
+#else
+	"preset": "liferay-npm-bundler-preset-standard"
+#end
 }

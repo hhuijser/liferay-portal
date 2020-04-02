@@ -45,6 +45,25 @@
 			<version>3.0.0</version>
 			<scope>provided</scope>
 		</dependency>
+#elseif (${liferayVersion.startsWith("7.2")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.dynamic.data.mapping.api</artifactId>
+			<version>5.7.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.frontend.js.loader.modules.extender.api</artifactId>
+			<version>3.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.liferay.portal</groupId>
+			<artifactId>com.liferay.portal.kernel</artifactId>
+			<version>4.4.0</version>
+			<scope>provided</scope>
+		</dependency>
 #end
 		<dependency>
 			<groupId>org.osgi</groupId>
@@ -55,7 +74,7 @@
 	</dependencies>
 	<build>
 		<plugins>
-#if (${liferayVersion.startsWith("7.1")})
+#if (${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>

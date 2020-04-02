@@ -14,7 +14,6 @@
 
 package com.liferay.project.templates.form.field.internal;
 
-import com.liferay.petra.string.StringPool;
 import com.liferay.project.templates.extensions.ProjectTemplateCustomizer;
 import com.liferay.project.templates.extensions.ProjectTemplatesArgs;
 
@@ -66,7 +65,7 @@ public class FormFieldProjectTemplateCustomizer
 
 			String[] folders = name.split("-");
 
-			String directory = (folders.length > 0) ? StringPool.BLANK : name;
+			String directory = (folders.length > 0) ? "" : name;
 
 			for (String folder : folders) {
 				directory += folder + "/";

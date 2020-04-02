@@ -26,16 +26,37 @@ Properties properties = request.properties
 
 String liferayVersion = properties.get("liferayVersion")
 
-if (!liferayVersion.startsWith("7.1")) {
-	String artifactId = properties.get("artifactId")
+List<String> fileNames = []
 
-	List<String> fileNames = [".babelrc", ".npmbundlerrc", "package.json", "src/main/resources/META-INF/resources/${artifactId}.es.js"]
+String artifactId = properties.get("artifactId")
 
-	for (fileName in fileNames) {
-		Path resourcePath = Paths.get(fileName)
+if (liferayVersion.startsWith("7.0")) {
+	fileNames = [".babelrc", ".npmbundlerrc", "package.json", "src/main/resources/META-INF/resources/"+ artifactId + ".es.js"]
+}
 
-		Path resourceFullPath = projectPath.resolve(resourcePath)
+if (liferayVersion.startsWith("7.2")) {
+	fileNames.add("src/main/resources/META-INF/resources/config.js")
+	fileNames.add("src/main/resources/META-INF/resources/"+ artifactId + "_field.js")
 
-		Files.deleteIfExists resourceFullPath
+	String [] folders = artifactId.split("-")
+
+	String directory = folders.length > 0 ? "" : artifactId
+
+	for (String folder : folders) {
+		directory += folder + "/"
 	}
+
+	String className = properties.get("className")
+
+	fileNames.add("src/main/java/"+ directory + "form/field/" + className + "DDMFormFieldRenderer.java")
+}else {
+	fileNames.add("src/main/resources/META-INF/resources/" + artifactId + "Register.soy")
+}
+
+for (fileName in fileNames) {
+	Path resourcePath = Paths.get(fileName)
+
+	Path resourceFullPath = projectPath.resolve(resourcePath)
+
+	Files.deleteIfExists resourceFullPath
 }

@@ -14,8 +14,15 @@
 
 package com.liferay.project.templates.panel.app;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
+
 import java.net.URI;
+
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -28,40 +35,21 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesPanelAppTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesPanelAppTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"7.0.6"},
-					{"7.1.3"},
-					{"7.2.1"},
-					{"7.3.0"}
-				});
-		}
-
-
-		public ProjectTemplatesPanelAppTest(
-				String liferayVersion) {
-
-				_liferayVersion = liferayVersion;
-			}
-
-	private final String _liferayVersion;
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
+	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -79,16 +67,25 @@ public class ProjectTemplatesPanelAppTest implements BaseProjectTemplatesTestCas
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
+	public ProjectTemplatesPanelAppTest(String liferayVersion) {
+		_liferayVersion = liferayVersion;
+	}
+
 	@Test
 	public void testBuildTemplatePanelApp() throws Exception {
 		String template = "panel-app";
 		String name = "gradle.test";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--liferay-version", _liferayVersion, "--class-name", "Foo");
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--liferay-version",
+			_liferayVersion, "--class-name", "Foo");
 
 		testExists(gradleProjectDir, "bnd.bnd");
 
@@ -100,8 +97,7 @@ public class ProjectTemplatesPanelAppTest implements BaseProjectTemplatesTestCas
 			gradleProjectDir, "bnd.bnd",
 			"Export-Package: gradle.test.constants");
 		testContains(
-			gradleProjectDir, "build.gradle",
-			DEPENDENCY_PORTAL_KERNEL);
+			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		testContains(
 			gradleProjectDir,
 			"src/main/java/gradle/test/application/list/FooPanelApp.java",
@@ -121,32 +117,34 @@ public class ProjectTemplatesPanelAppTest implements BaseProjectTemplatesTestCas
 			"javax.portlet.title.gradle_test_FooPortlet=Foo",
 			"foo.caption=Hello from Foo!");
 
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=Foo", "-Dpackage=gradle.test",
+			"-DliferayVersion=" + _liferayVersion);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		if (!_liferayVersion.equals("7.0.6")) {
+			testContains(
+				mavenProjectDir, "bnd.bnd",
+				"-contract: JavaPortlet,JavaServlet");
+		}
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=Foo", "-Dpackage=gradle.test", "-DliferayVersion=" + _liferayVersion);
+		if (isBuildProjects()) {
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
 
-			if (!_liferayVersion.equals("7.0.6")) {
-				testContains(
-					mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
-			}
-
-			if (isBuildProjects()) {
-				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-				File mavenOutputDir = new File(mavenProjectDir, "target");
-
-				buildProjects(
-					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:gradle.test" + GRADLE_TASK_PATH_BUILD);
-			}
-
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:gradle.test" + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule
@@ -154,5 +152,6 @@ public class ProjectTemplatesPanelAppTest implements BaseProjectTemplatesTestCas
 
 	private static URI _gradleDistribution;
 
+	private final String _liferayVersion;
 
 }

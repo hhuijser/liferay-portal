@@ -14,7 +14,13 @@
 
 package com.liferay.project.templates.war.mvc.portlet;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.net.URI;
+
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -27,40 +33,21 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesWarMvcPortletTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesWarMvcPortletTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"7.0.6"},
-					{"7.1.3"},
-					{"7.2.1"},
-					{"7.3.0"}
-				});
-		}
-
-
-		public ProjectTemplatesWarMvcPortletTest(
-				String liferayVersion) {
-
-				_liferayVersion = liferayVersion;
-			}
-
-	private final String _liferayVersion;
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
+	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -78,17 +65,25 @@ public class ProjectTemplatesWarMvcPortletTest implements BaseProjectTemplatesTe
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
+	public ProjectTemplatesWarMvcPortletTest(String liferayVersion) {
+		_liferayVersion = liferayVersion;
+	}
+
 	@Test
 	public void testBuildTemplateWarMvcPortlet() throws Exception {
 		String template = "war-mvc-portlet";
 		String name = "WarMVCPortlet";
 
-		testBuildTemplateProjectWarInWorkspace(temporaryFolder, _gradleDistribution, mavenExecutor, template, name, _liferayVersion);
-
+		testBuildTemplateProjectWarInWorkspace(
+			temporaryFolder, _gradleDistribution, mavenExecutor, template, name,
+			_liferayVersion);
 	}
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
+	private final String _liferayVersion;
+
 }

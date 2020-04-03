@@ -14,7 +14,13 @@
 
 package com.liferay.project.templates.npm.angular.portlet;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.net.URI;
+
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -27,50 +33,28 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesNpmAngularPortletTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesNpmAngularPortletTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}, {1}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"foo", "foo", "Foo", "7.0.6"},
-					{"foo", "foo", "Foo", "7.1.3"},
-					{"foo", "foo", "Foo", "7.2.1"},
-					{"foo", "foo", "Foo", "7.3.0"},
-					{"foo-bar", "foo.bar", "FooBar", "7.0.6"},
-					{"foo-bar", "foo.bar", "FooBar", "7.1.3"},
-					{"foo-bar", "foo.bar", "FooBar", "7.2.1"},
-					{"foo-bar", "foo.bar", "FooBar", "7.3.0"}
-				});
-		}
-
-
-		public ProjectTemplatesNpmAngularPortletTest(String name, String packageName, String className, String liferayVersion) {
-
-				_liferayVersion = liferayVersion;
-				_name = name;
-				_className = className;
-				_packageName = packageName;
-
-			}
-
-	private final String _name;
-	private final String _className;
-	private final String _packageName;
-	private final String _liferayVersion;
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}, {1}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {
+				{"foo", "foo", "Foo", "7.0.6"}, {"foo", "foo", "Foo", "7.1.3"},
+				{"foo", "foo", "Foo", "7.2.1"}, {"foo", "foo", "Foo", "7.3.0"},
+				{"foo-bar", "foo.bar", "FooBar", "7.0.6"},
+				{"foo-bar", "foo.bar", "FooBar", "7.1.3"},
+				{"foo-bar", "foo.bar", "FooBar", "7.2.1"},
+				{"foo-bar", "foo.bar", "FooBar", "7.3.0"}
+			});
+	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -88,15 +72,33 @@ public class ProjectTemplatesNpmAngularPortletTest implements BaseProjectTemplat
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
+	public ProjectTemplatesNpmAngularPortletTest(
+		String name, String packageName, String className,
+		String liferayVersion) {
+
+		_liferayVersion = liferayVersion;
+		_name = name;
+		_className = className;
+		_packageName = packageName;
+	}
+
 	@Test
 	public void testBuildTemplateNpmAngularPortlet() throws Exception {
 		String template = "npm-angular-portlet";
 
-		testBuildTemplateNpm(temporaryFolder, mavenExecutor, template, _name, _packageName, _className, _liferayVersion, _gradleDistribution);
+		testBuildTemplateNpm(
+			temporaryFolder, mavenExecutor, template, _name, _packageName,
+			_className, _liferayVersion, _gradleDistribution);
 	}
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
+	private final String _className;
+	private final String _liferayVersion;
+	private final String _name;
+	private final String _packageName;
+
 }

@@ -14,14 +14,14 @@
 
 package com.liferay.project.templates.activator;
 
+import aQute.bnd.header.Attrs;
+import aQute.bnd.header.Parameters;
+import aQute.bnd.osgi.Domain;
+
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
 import com.liferay.project.templates.extensions.util.Validator;
 import com.liferay.project.templates.util.FileTestUtil;
-
-import aQute.bnd.header.Attrs;
-import aQute.bnd.header.Parameters;
-import aQute.bnd.osgi.Domain;
 
 import java.io.File;
 
@@ -67,11 +67,15 @@ public class ProjectTemplatesActivatorTest
 		String template = "activator";
 		String name = "bar-activator";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name);
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name);
 
 		testExists(gradleProjectDir, "bnd.bnd");
 
@@ -79,15 +83,17 @@ public class ProjectTemplatesActivatorTest
 			gradleProjectDir, "src/main/java/bar/activator/BarActivator.java",
 			"public class BarActivator implements BundleActivator {");
 
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir =
-			newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=BarActivator", "-Dpackage=bar.activator");
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=BarActivator",
+			"-Dpackage=bar.activator");
 
 		if (isBuildProjects()) {
 			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
@@ -95,7 +101,8 @@ public class ProjectTemplatesActivatorTest
 
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:bar-activator" + GRADLE_TASK_PATH_BUILD);
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:bar-activator" + GRADLE_TASK_PATH_BUILD);
 
 			File jarFile = testExists(
 				gradleProjectDir, "build/libs/bar.activator-1.0.0.jar");
@@ -112,9 +119,9 @@ public class ProjectTemplatesActivatorTest
 		}
 	}
 
-
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
 }

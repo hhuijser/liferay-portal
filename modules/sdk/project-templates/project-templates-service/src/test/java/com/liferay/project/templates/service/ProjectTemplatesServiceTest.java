@@ -28,6 +28,7 @@ import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -52,6 +53,12 @@ public class ProjectTemplatesServiceTest
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
+	}
+
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		String gradleDistribution = System.getProperty("gradle.distribution");
@@ -68,67 +75,57 @@ public class ProjectTemplatesServiceTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"7.0.6"},
-					{"7.1.3"},
-					{"7.2.1"},
-					{"7.3.0"}
-				});
-		}
-
-
-		public ProjectTemplatesServiceTest(
-				String liferayVersion) {
-
-				_liferayVersion = liferayVersion;
-			}
-
-	private final String _liferayVersion;
+	public ProjectTemplatesServiceTest(String liferayVersion) {
+		_liferayVersion = liferayVersion;
+	}
 
 	@Test
 	public void testBuildTemplateService() throws Exception {
 		String template = "service";
 		String name = "servicepreaction";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--liferay-version", _liferayVersion, "--class-name", "FooAction",
-			"--service", "com.liferay.portal.kernel.events.LifecycleAction");
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--liferay-version",
+			_liferayVersion, "--class-name", "FooAction", "--service",
+			"com.liferay.portal.kernel.events.LifecycleAction");
 
 		testContains(
-			gradleProjectDir, "build.gradle",
-			DEPENDENCY_PORTAL_KERNEL);
+			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=FooAction", "-Dpackage=servicepreaction",
-					"-DserviceClass=com.liferay.portal.kernel.events.LifecycleAction", "-DliferayVersion=" + _liferayVersion);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=FooAction",
+			"-Dpackage=servicepreaction",
+			"-DserviceClass=com.liferay.portal.kernel.events.LifecycleAction",
+			"-DliferayVersion=" + _liferayVersion);
 
-			if (isBuildProjects()) {
-				_writeServiceClass(gradleProjectDir);
-				_writeServiceClass(mavenProjectDir);
+		if (isBuildProjects()) {
+			_writeServiceClass(gradleProjectDir);
+			_writeServiceClass(mavenProjectDir);
 
-				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-				File mavenOutputDir = new File(mavenProjectDir, "target");
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
 
-				buildProjects(
-					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:" + name + GRADLE_TASK_PATH_BUILD);
-			}
-
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule
@@ -177,5 +174,7 @@ public class ProjectTemplatesServiceTest
 	}
 
 	private static URI _gradleDistribution;
+
+	private final String _liferayVersion;
 
 }

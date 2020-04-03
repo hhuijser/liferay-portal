@@ -14,12 +14,22 @@
 
 package com.liferay.project.templates.service.builder;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.FileUtil;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.extensions.util.WorkspaceUtil;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
+
 import java.net.URI;
+
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.concurrent.Callable;
@@ -33,21 +43,45 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.FileUtil;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.extensions.util.WorkspaceUtil;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Gregory Amerson
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesServiceBuilderWorkspaceTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesServiceBuilderWorkspaceTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
+
+	@Parameterized.Parameters(
+		name = "Testcase-{index}: testing {0}, {1}, {2}, {3}"
+	)
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {
+				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.0.6"},
+				{"spring", "guestbook", "com.liferay.docs.guestbook", "7.1.3"},
+				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.2.1"},
+				{"ds", "guestbook", "com.liferay.docs.guestbook", "7.3.0"},
+				{
+					"spring", "backend-integration",
+					"com.liferay.docs.guestbook", "7.0.6"
+				},
+				{
+					"spring", "backend-integration",
+					"com.liferay.docs.guestbook", "7.1.3"
+				},
+				{"ds", "guestbook", "backend-integration", "7.2.1"},
+				{"ds", "guestbook", "backend-integration", "7.3.0"},
+				{"spring", "guestbook", "backend-integration", "7.2.1"},
+				{"spring", "guestbook", "backend-integration", "7.3.0"},
+				{"spring", "sample", "com.test.sample", "7.0.6"},
+				{"spring", "sample", "com.test.sample", "7.1.3"},
+				{"ds", "sample", "com.test.sample", "7.2.1"},
+				{"ds", "sample", "com.test.sample", "7.3.0"}
+			});
+	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -65,81 +99,58 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest implements BaseProjectT
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}, {1}, {2}, {3}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"spring", "guestbook", "com.liferay.docs.guestbook", "7.0.6"},
-					{"spring", "guestbook", "com.liferay.docs.guestbook", "7.1.3"},
-					{"ds", "guestbook", "com.liferay.docs.guestbook", "7.2.1"},
-					{"ds", "guestbook", "com.liferay.docs.guestbook", "7.3.0"},
-					{"spring", "backend-integration", "com.liferay.docs.guestbook", "7.0.6"},
-					{"spring", "backend-integration", "com.liferay.docs.guestbook", "7.1.3"},
-					{"ds", "guestbook", "backend-integration", "7.2.1"},
-					{"ds", "guestbook", "backend-integration", "7.3.0"},
-					{"spring", "guestbook", "backend-integration", "7.2.1"},
-					{"spring", "guestbook", "backend-integration", "7.3.0"},
-					{"spring", "sample", "com.test.sample", "7.0.6"},
-					{"spring", "sample", "com.test.sample", "7.1.3"},
-					{"ds", "sample", "com.test.sample", "7.2.1"},
-					{"ds", "sample", "com.test.sample", "7.3.0"}
-				});
-		}
-
-
 	public ProjectTemplatesServiceBuilderWorkspaceTest(
-			String dependencyInjector, String name, String packageName, String liferayVersion) {
+		String dependencyInjector, String name, String packageName,
+		String liferayVersion) {
 
 		_dependencyInjector = dependencyInjector;
 		_liferayVersion = liferayVersion;
 		_name = name;
 		_packageName = packageName;
-		}
-
-	private final String _dependencyInjector;
-	private final String _liferayVersion;
-	private final String _name;
-	private final String _packageName;
+	}
 
 	@Test
 	public void testBuildTemplateServiceBuilderWorkspace() throws Exception {
 		String template = "service-builder";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
 		File gradleProjectDir;
 
-		if(_name.contains("sample")) {
+		if (_name.contains("sample")) {
 			gradleWorkspaceModulesDir = new File(
 				gradleWorkspaceDir, "modules/nested/path");
 
 			Assert.assertTrue(gradleWorkspaceModulesDir.mkdirs());
 		}
 
-		gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, _name,  "--package-name",
-			_packageName, "--dependency-injector", _dependencyInjector, "--liferay-version", _liferayVersion);
+		gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, _name, "--package-name",
+			_packageName, "--dependency-injector", _dependencyInjector,
+			"--liferay-version", _liferayVersion);
 
-		if(_name.contains("sample")) {
-		testContains(
+		if (_name.contains("sample")) {
+			testContains(
 				gradleProjectDir, "sample-service/build.gradle",
 				"compileOnly project(\":modules:nested:path:sample:sample-api\")");
 		}
 
 		if (_dependencyInjector.equals("ds")) {
 			testContains(
-					gradleProjectDir, _name + "-service/service.xml",
-					"dependency-injector=\"ds\"");
+				gradleProjectDir, _name + "-service/service.xml",
+				"dependency-injector=\"ds\"");
 			testContains(
-					gradleProjectDir, _name + "-service/bnd.bnd",
-					"-dsannotations-options: inherit");
+				gradleProjectDir, _name + "-service/bnd.bnd",
+				"-dsannotations-options: inherit");
 
 			testNotContains(
-					gradleProjectDir, _name + "-service/build.gradle",
-					"com.liferay.portal.spring.extender");
+				gradleProjectDir, _name + "-service/build.gradle",
+				"com.liferay.portal.spring.extender");
 		}
 
 		if (_dependencyInjector.equals("spring")) {
@@ -151,34 +162,37 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest implements BaseProjectT
 				gradleProjectDir, _name + "-service/bnd.bnd",
 				"-dsannotations-options: inherit");
 			testNotContains(
-					gradleProjectDir, _name + "-service/service.xml",
-					"dependency-injector=\"ds\"");
+				gradleProjectDir, _name + "-service/service.xml",
+				"dependency-injector=\"ds\"");
 		}
 
-		if (_liferayVersion.equals("7.0.6") || _liferayVersion.equals("7.1.3")) {
+		if (_liferayVersion.equals("7.0.6") ||
+			_liferayVersion.equals("7.1.3")) {
+
 			testContains(
 				gradleProjectDir, _name + "-api/build.gradle",
-				DEPENDENCY_PORTAL_KERNEL,
-				"biz.aQute.bnd.annotation");
+				DEPENDENCY_PORTAL_KERNEL, "biz.aQute.bnd.annotation");
 			testContains(
-					gradleProjectDir, _name + "-service/build.gradle",
-					DEPENDENCY_PORTAL_KERNEL,
-					"biz.aQute.bnd.annotation");
+				gradleProjectDir, _name + "-service/build.gradle",
+				DEPENDENCY_PORTAL_KERNEL, "biz.aQute.bnd.annotation");
 
 			testNotContains(
-				gradleProjectDir, _name + "-api/build.gradle", "org.osgi.annotation.versioning");
+				gradleProjectDir, _name + "-api/build.gradle",
+				"org.osgi.annotation.versioning");
 			testNotContains(
-				gradleProjectDir, _name + "-service/build.gradle", "org.osgi.annotation.versioning");
+				gradleProjectDir, _name + "-service/build.gradle",
+				"org.osgi.annotation.versioning");
 		}
 		else {
 			testContains(
 				gradleProjectDir, _name + "-api/build.gradle",
-				DEPENDENCY_PORTAL_KERNEL,
-				"com.liferay.petra.lang", "com.liferay.petra.string", "org.osgi.annotation.versioning");
+				DEPENDENCY_PORTAL_KERNEL, "com.liferay.petra.lang",
+				"com.liferay.petra.string", "org.osgi.annotation.versioning");
 			testContains(
 				gradleProjectDir, _name + "-service/build.gradle",
-				DEPENDENCY_PORTAL_KERNEL,
-				"com.liferay.petra.lang", "com.liferay.petra.string", "org.osgi.annotation.versioning", "com.liferay.portal.aop.api");
+				DEPENDENCY_PORTAL_KERNEL, "com.liferay.petra.lang",
+				"com.liferay.petra.string", "org.osgi.annotation.versioning",
+				"com.liferay.portal.aop.api");
 
 			if (_liferayVersion.equals("7.3.1")) {
 				testContains(
@@ -187,46 +201,51 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest implements BaseProjectT
 			}
 
 			testNotContains(
-					gradleProjectDir, _name + "-api/build.gradle", "biz.aQute.bnd");
+				gradleProjectDir, _name + "-api/build.gradle", "biz.aQute.bnd");
 			testNotContains(
-					gradleProjectDir, _name + "-service/build.gradle", "biz.aQute.bnd");
-
+				gradleProjectDir, _name + "-service/build.gradle",
+				"biz.aQute.bnd");
 		}
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-			File mavenProjectDir;
+		File mavenProjectDir;
 
-			if(_name.contains("sample")) {
-				mavenModulesDir = new File(
-					mavenWorkspaceDir, "modules/nested/path");
+		if (_name.contains("sample")) {
+			mavenModulesDir = new File(
+				mavenWorkspaceDir, "modules/nested/path");
 
-				Assert.assertTrue(mavenModulesDir.mkdirs());
+			Assert.assertTrue(mavenModulesDir.mkdirs());
+		}
+
+		mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, _name, "com.test",
+			mavenExecutor, "-Dpackage=" + _packageName,
+			"-DdependencyInjector=" + _dependencyInjector,
+			"-DliferayVersion=" + _liferayVersion);
+
+		if (isBuildProjects()) {
+			String projectPath;
+
+			if (_name.contains("sample")) {
+				projectPath = ":modules:nested:path:sample";
+			}
+			else {
+				projectPath = "";
 			}
 
-			mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, _name, "com.test", mavenExecutor, "-Dpackage=" + _packageName, "-DdependencyInjector=" + _dependencyInjector, "-DliferayVersion=" + _liferayVersion);
-
-
-			if (isBuildProjects()) {
-				String projectPath;
-
-				if (_name.contains("sample")) {
-					projectPath = ":modules:nested:path:sample";
-				}
-				else {
-					projectPath = "";
-				}
-				_testBuildTemplateServiceBuilder(
-					gradleProjectDir, mavenProjectDir, gradleWorkspaceDir,
-					_name, _packageName, projectPath);
-			}
-
-
-
+			_testBuildTemplateServiceBuilder(
+				gradleProjectDir, mavenProjectDir, gradleWorkspaceDir, _name,
+				_packageName, projectPath);
+		}
 	}
+
+	@Rule
+	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private void _testBuildTemplateServiceBuilder(
 			File gradleProjectDir, File mavenProjectDir, final File rootProject,
@@ -366,12 +385,14 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest implements BaseProjectT
 			FileUtil.read(path));
 	}
 
-
-	@Rule
-	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+	private static final String _GRADLE_TASK_PATH_BUILD_SERVICE =
+		":buildService";
 
 	private static URI _gradleDistribution;
 
-	private static final String _GRADLE_TASK_PATH_BUILD_SERVICE =
-			":buildService";
+	private final String _dependencyInjector;
+	private final String _liferayVersion;
+	private final String _name;
+	private final String _packageName;
+
 }

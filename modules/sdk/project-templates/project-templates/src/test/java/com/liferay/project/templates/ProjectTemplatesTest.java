@@ -2708,7 +2708,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		if (isBuildProjects()) {
 			executeGradle(
-				gradleWorkspaceProjectDir, ProjectTemplatesTest._gradleDistribution,
+				gradleWorkspaceProjectDir,
+				ProjectTemplatesTest._gradleDistribution,
 				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
 
 			testExists(
@@ -2735,8 +2736,9 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		String gradleAntBndVersion = null;
 
-		Matcher matcher = BaseProjectTemplatesTestCase.antBndPluginVersionPattern.matcher(
-			gradleResult.get());
+		Matcher matcher =
+			BaseProjectTemplatesTestCase.antBndPluginVersionPattern.matcher(
+				gradleResult.get());
 
 		if (matcher.matches()) {
 			gradleAntBndVersion = matcher.group(1);
@@ -2759,10 +2761,12 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			temporaryFolder, getDefaultLiferayVersion());
 
 		Optional<String> result = executeGradle(
-			workspaceDir, true, ProjectTemplatesTest._gradleDistribution, ":tasks");
+			workspaceDir, true, ProjectTemplatesTest._gradleDistribution,
+			":tasks");
 
-		Matcher matcher = BaseProjectTemplatesTestCase.portalToolsBundleSupportVersionPattern.matcher(
-			result.get());
+		Matcher matcher =
+			BaseProjectTemplatesTestCase.portalToolsBundleSupportVersionPattern.
+				matcher(result.get());
 
 		String portalToolsBundleSupportVersion = null;
 
@@ -2899,7 +2903,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			nativeSassModulesDir, "mvc-portlet", "foo-portlet");
 
 		Optional<String> nativeSassResult = executeGradle(
-			nativeSassModulesDir, true, ProjectTemplatesTest._gradleDistribution,
+			nativeSassModulesDir, true,
+			ProjectTemplatesTest._gradleDistribution,
 			":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
 
 		String nativeSassOutput = nativeSassResult.toString();
@@ -2939,8 +2944,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
-	private static XPathExpression _pomXmlNpmInstallXPathExpression;
-	private static URI _gradleDistribution;
 
 	private static void _testPropertyKeyExists(File file, String key)
 		throws Exception {
@@ -2958,7 +2961,9 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	private void _addNpmrc(File projectDir) throws IOException {
 		File npmrcFile = new File(projectDir, ".npmrc");
 
-		String content = "sass_binary_site=" + BaseProjectTemplatesTestCase.NODEJS_NPM_CI_SASS_BINARY_SITE;
+		String content =
+			"sass_binary_site=" +
+				BaseProjectTemplatesTestCase.NODEJS_NPM_CI_SASS_BINARY_SITE;
 
 		Files.write(
 			npmrcFile.toPath(), content.getBytes(StandardCharsets.UTF_8));
@@ -2968,8 +2973,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		throws Exception {
 
 		buildProjects(
-			ProjectTemplatesTest._gradleDistribution, mavenExecutor, gradleProjectDir,
-			mavenProjectDir);
+			ProjectTemplatesTest._gradleDistribution, mavenExecutor,
+			gradleProjectDir, mavenProjectDir);
 	}
 
 	private File _buildTemplateWithGradle(
@@ -3042,8 +3047,10 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			document -> {
 				try {
 					NodeList nodeList =
-						(NodeList)ProjectTemplatesTest._pomXmlNpmInstallXPathExpression.evaluate(
-							document, XPathConstants.NODESET);
+						(NodeList)
+							ProjectTemplatesTest.
+								_pomXmlNpmInstallXPathExpression.evaluate(
+									document, XPathConstants.NODESET);
 
 					Node executionNode = nodeList.item(0);
 
@@ -3058,7 +3065,9 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 					configurationElement.appendChild(argumentsElement);
 
 					Text text = document.createTextNode(
-						"install --registry=" + BaseProjectTemplatesTestCase.NODEJS_NPM_CI_REGISTRY);
+						"install --registry=" +
+							BaseProjectTemplatesTestCase.
+								NODEJS_NPM_CI_REGISTRY);
 
 					argumentsElement.appendChild(text);
 				}
@@ -3969,7 +3978,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		if (isBuildProjects()) {
 			executeGradle(
-				workspaceDir, ProjectTemplatesTest._gradleDistribution, ":wars:" + name + ":build");
+				workspaceDir, ProjectTemplatesTest._gradleDistribution,
+				":wars:" + name + ":build");
 
 			testExists(workspaceProjectDir, "build/libs/" + name + ".war");
 		}
@@ -4027,8 +4037,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		throws Exception {
 
 		testBuildTemplateWithWorkspace(
-			temporaryFolder, ProjectTemplatesTest._gradleDistribution, template, name, jarFilePath,
-			args);
+			temporaryFolder, ProjectTemplatesTest._gradleDistribution, template,
+			name, jarFilePath, args);
 	}
 
 	private void _testCssOutput(File outputFile) throws IOException {
@@ -4056,5 +4066,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		return file;
 	}
+
+	private static URI _gradleDistribution;
+	private static XPathExpression _pomXmlNpmInstallXPathExpression;
 
 }

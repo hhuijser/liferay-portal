@@ -92,12 +92,15 @@ public class ProjectTemplatesSpringPortletMVCTest
 
 	@Test
 	public void testSpringPortletMVC() throws Exception {
-
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
 		File gradleWorkspaceWarsDir = new File(gradleWorkspaceDir, "wars");
 
-		File gradleProjectDir = _buildSpringMVCTemplate(gradleWorkspaceWarsDir, "gradle", _framework, _frameworkDependencies, _viewType, _liferayVersion);
+		File gradleProjectDir = _buildSpringMVCTemplate(
+			gradleWorkspaceWarsDir, "gradle", _framework,
+			_frameworkDependencies, _viewType, _liferayVersion);
 
 		testNotContains(
 			gradleProjectDir, "src/main/webapp/WEB-INF/web.xml", "false");
@@ -201,30 +204,34 @@ public class ProjectTemplatesSpringPortletMVCTest
 				"src/main/java/com/test/spring4/ServletContextFactory.java");
 		}
 
-		File mavenWorkspaceDir = newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
 		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
 
-		File mavenProjectDir = _buildSpringMVCTemplate(mavenWarsDir, "maven", _framework, _frameworkDependencies, _viewType, _liferayVersion);
+		File mavenProjectDir = _buildSpringMVCTemplate(
+			mavenWarsDir, "maven", _framework, _frameworkDependencies,
+			_viewType, _liferayVersion);
 
 		if (isBuildProjects()) {
-
 			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
 			File mavenOutputDir = new File(mavenProjectDir, "target");
 
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenProjectDir, gradleOutputDir, mavenOutputDir, ":wars:sampleSpringMVCPortlet" + GRADLE_TASK_PATH_BUILD);
-			}
-
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":wars:sampleSpringMVCPortlet" + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private File _buildSpringMVCTemplate(File destinationDir,
-			String buildType, String framework, String frameworkDependencies,
-			String viewType, String liferayVersion)
+	private File _buildSpringMVCTemplate(
+			File destinationDir, String buildType, String framework,
+			String frameworkDependencies, String viewType,
+			String liferayVersion)
 		throws Exception {
 
 		String template = "spring-mvc-portlet";
@@ -234,18 +241,18 @@ public class ProjectTemplatesSpringPortletMVCTest
 			String groupId = "com.test";
 
 			return buildTemplateWithMaven(
-				destinationDir, destinationDir, template, name, groupId, mavenExecutor,
-				"-Dpackage=com.test", "-DclassName=Sample",
+				destinationDir, destinationDir, template, name, groupId,
+				mavenExecutor, "-Dpackage=com.test", "-DclassName=Sample",
 				"-Dframework=" + framework,
 				"-DframeworkDependencies=" + frameworkDependencies,
 				"-DviewType=" + viewType, "-DliferayVersion=" + liferayVersion);
 		}
 
-		return buildTemplateWithGradle(destinationDir,
-			template, name, "--package-name", "com.test", "--class-name",
-			"Sample", "--framework", framework, "--framework-dependencies",
-			frameworkDependencies, "--view-type", viewType, "--liferay-version",
-			liferayVersion);
+		return buildTemplateWithGradle(
+			destinationDir, template, name, "--package-name", "com.test",
+			"--class-name", "Sample", "--framework", framework,
+			"--framework-dependencies", frameworkDependencies, "--view-type",
+			viewType, "--liferay-version", liferayVersion);
 	}
 
 	private static URI _gradleDistribution;

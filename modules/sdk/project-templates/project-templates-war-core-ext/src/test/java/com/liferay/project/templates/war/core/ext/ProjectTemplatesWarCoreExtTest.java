@@ -14,6 +14,9 @@
 
 package com.liferay.project.templates.war.core.ext;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+
 import java.io.File;
 
 import org.junit.ClassRule;
@@ -21,21 +24,22 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-
 /**
  * @author Lawrence Lee
  */
-public class ProjectTemplatesWarCoreExtTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesWarCoreExtTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
 	@Test
 	public void testBuildTemplateWarCoreExt() throws Exception {
-		File workspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "testWorkspace", getDefaultLiferayVersion(), mavenExecutor);
+		File workspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "testWorkspace",
+			getDefaultLiferayVersion(), mavenExecutor);
 
-		File modulesDir = new File (workspaceDir, "modules");
+		File modulesDir = new File(workspaceDir, "modules");
 
 		File projectDir = buildTemplateWithGradle(
 			modulesDir, "war-core-ext", "test-war-core-ext");
@@ -49,4 +53,5 @@ public class ProjectTemplatesWarCoreExtTest implements BaseProjectTemplatesTestC
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
+
 }

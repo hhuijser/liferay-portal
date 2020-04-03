@@ -14,9 +14,17 @@
 
 package com.liferay.project.templates.workspace;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.extensions.util.WorkspaceUtil;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
 import java.io.FileOutputStream;
+
 import java.net.URI;
+
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -26,16 +34,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.extensions.util.WorkspaceUtil;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
-public class ProjectTemplatesWorkspaceTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesWorkspaceTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
@@ -57,7 +61,9 @@ public class ProjectTemplatesWorkspaceTest implements BaseProjectTemplatesTestCa
 
 	@Test
 	public void testBuildTemplateWorkspace() throws Exception {
-		File workspaceProjectDir = newBuildWorkspace(temporaryFolder, "gradle", "foows", getDefaultLiferayVersion(), mavenExecutor);
+		File workspaceProjectDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "foows", getDefaultLiferayVersion(),
+			mavenExecutor);
 
 		testExists(workspaceProjectDir, "configs/dev/portal-ext.properties");
 		testExists(workspaceProjectDir, "gradle.properties");
@@ -105,7 +111,9 @@ public class ProjectTemplatesWorkspaceTest implements BaseProjectTemplatesTestCa
 
 	@Test
 	public void testBuildTemplateWorkspaceLocalProperties() throws Exception {
-		File workspaceProjectDir = newBuildWorkspace(temporaryFolder, "gradle", "foo", getDefaultLiferayVersion(), mavenExecutor);
+		File workspaceProjectDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "foo", getDefaultLiferayVersion(),
+			mavenExecutor);
 
 		testExists(workspaceProjectDir, "gradle-local.properties");
 
@@ -141,7 +149,9 @@ public class ProjectTemplatesWorkspaceTest implements BaseProjectTemplatesTestCa
 
 	@Test
 	public void testBuildTemplateWorkspaceWithPortlet() throws Exception {
-		File gradleWorkspaceProjectDir = newBuildWorkspace(temporaryFolder, "gradle", "withportlet", getDefaultLiferayVersion(), mavenExecutor);
+		File gradleWorkspaceProjectDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "withportlet",
+			getDefaultLiferayVersion(), mavenExecutor);
 
 		File gradleModulesDir = new File(gradleWorkspaceProjectDir, "modules");
 
@@ -179,4 +189,5 @@ public class ProjectTemplatesWorkspaceTest implements BaseProjectTemplatesTestCa
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
 }

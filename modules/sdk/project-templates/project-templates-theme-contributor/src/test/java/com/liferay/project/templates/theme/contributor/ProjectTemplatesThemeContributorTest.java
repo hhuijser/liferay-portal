@@ -22,6 +22,7 @@ import com.liferay.project.templates.util.FileTestUtil;
 import java.io.File;
 
 import java.net.URI;
+
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -44,6 +45,12 @@ public class ProjectTemplatesThemeContributorTest
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
+	}
+
 	@BeforeClass
 	public static void setUpClass() throws Exception {
 		String gradleDistribution = System.getProperty("gradle.distribution");
@@ -60,39 +67,25 @@ public class ProjectTemplatesThemeContributorTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"7.0.6"},
-					{"7.1.3"},
-					{"7.2.1"},
-					{"7.3.0"}
-				});
-		}
-
-
-	public ProjectTemplatesThemeContributorTest(
-			String liferayVersion) {
-
-			_liferayVersion = liferayVersion;
-		}
-
-	private final String _liferayVersion;
+	public ProjectTemplatesThemeContributorTest(String liferayVersion) {
+		_liferayVersion = liferayVersion;
+	}
 
 	@Test
 	public void testBuildTemplateThemeContributor() throws Exception {
 		String template = "theme-contributor";
 		String name = "my-contributor-custom";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--liferay-version", _liferayVersion, "--contributor-type",
-				"foo-bar");
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--liferay-version",
+			_liferayVersion, "--contributor-type", "foo-bar");
 
 		testContains(
 			gradleProjectDir, "bnd.bnd",
@@ -109,28 +102,34 @@ public class ProjectTemplatesThemeContributorTest
 			gradleProjectDir,
 			"src/main/resources/META-INF/resources/js/foo-bar.js");
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DcontributorType=foo-bar",
-					"-Dpackage=my.contributor.custom", "-DliferayVersion=" + _liferayVersion);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DcontributorType=foo-bar",
+			"-Dpackage=my.contributor.custom",
+			"-DliferayVersion=" + _liferayVersion);
 
-			if (isBuildProjects()) {
-				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-				File mavenOutputDir = new File(mavenProjectDir, "target");
+		if (isBuildProjects()) {
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
 
-				buildProjects(
-					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:" + name + GRADLE_TASK_PATH_BUILD);
-			}
-
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
+	private final String _liferayVersion;
 
 }

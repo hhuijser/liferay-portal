@@ -14,8 +14,18 @@
 
 package com.liferay.project.templates.api;
 
+import aQute.bnd.header.Parameters;
+import aQute.bnd.osgi.Domain;
+
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
+
 import java.net.URI;
+
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -25,19 +35,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
-import aQute.bnd.header.Parameters;
-import aQute.bnd.osgi.Domain;
-
 /**
  * @author Lawrence Lee
  */
-public class ProjectTemplatesApiTest
-	implements BaseProjectTemplatesTestCase {
+public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
@@ -64,11 +65,15 @@ public class ProjectTemplatesApiTest
 		String template = "api";
 		String name = "foo";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name);
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name);
 
 		testExists(gradleProjectDir, "bnd.bnd");
 
@@ -82,16 +87,16 @@ public class ProjectTemplatesApiTest
 			gradleProjectDir, "src/main/resources/foo/api/packageinfo",
 			"1.0.0");
 
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-
-		File mavenWorkspaceDir =
-			newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=Foo", "-Dpackage=foo");
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=Foo", "-Dpackage=foo");
 
 		if (isBuildProjects()) {
 			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
@@ -99,7 +104,8 @@ public class ProjectTemplatesApiTest
 
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:foo" + GRADLE_TASK_PATH_BUILD);
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:foo" + GRADLE_TASK_PATH_BUILD);
 
 			File jarFile = testExists(
 				gradleProjectDir, "build/libs/foo-1.0.0.jar");
@@ -122,32 +128,38 @@ public class ProjectTemplatesApiTest
 		String template = "api";
 		String name = "author-test";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--author", author);
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--author", author);
 
 		testContains(
 			gradleProjectDir, "src/main/java/author/test/api/AuthorTest.java",
 			"@author " + author);
 
-		File mavenWorkspaceDir =
-			newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-Dauthor=" + author, "-DclassName=AuthorTest",
-				"-Dpackage=author.test");
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-Dauthor=" + author, "-DclassName=AuthorTest",
+			"-Dpackage=author.test");
 
 		testContains(
 			mavenProjectDir, "src/main/java/author/test/api/AuthorTest.java",
 			"@author " + author);
 	}
 
-
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
 }

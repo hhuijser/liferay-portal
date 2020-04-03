@@ -14,8 +14,15 @@
 
 package com.liferay.project.templates.social.bookmark;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
+
 import java.net.URI;
+
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -25,15 +32,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
-public class ProjectTemplatesSocialBookmarkTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesSocialBookmarkTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
@@ -60,58 +64,64 @@ public class ProjectTemplatesSocialBookmarkTest implements BaseProjectTemplatesT
 		String name = "foo";
 		String packageName = "com.liferay.test";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--liferay-version", liferayVersion, "--package-name", packageName);
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--liferay-version",
+			liferayVersion, "--package-name", packageName);
 
 		testExists(gradleProjectDir, "bnd.bnd");
 		testExists(gradleProjectDir, "build.gradle");
 
 		testContains(
-				gradleProjectDir,
-				"src/main/java/com/liferay/test/social/bookmark" +
-					"/FooSocialBookmark.java",
-				"public class FooSocialBookmark implements SocialBookmark");
-			testContains(
-				gradleProjectDir, "src/main/resources/META-INF/resources/page.jsp",
-				"<clay:link");
-			testContains(
-				gradleProjectDir, "src/main/resources/content/Language.properties",
-				"foo=Foo");
-
-			testNotContains(
-				gradleProjectDir,
-				"src/main/java/com/liferay/test/social/bookmark" +
-					"/FooSocialBookmark.java",
-				"private ResourceBundleLoader");
-			testNotContains(
-				gradleProjectDir,
-				"src/main/java/com/liferay/test/social/bookmark" +
-					"/FooSocialBookmark.java",
-				"protected ResourceBundleLoader");
+			gradleProjectDir,
+			"src/main/java/com/liferay/test/social/bookmark" +
+				"/FooSocialBookmark.java",
+			"public class FooSocialBookmark implements SocialBookmark");
+		testContains(
+			gradleProjectDir, "src/main/resources/META-INF/resources/page.jsp",
+			"<clay:link");
+		testContains(
+			gradleProjectDir, "src/main/resources/content/Language.properties",
+			"foo=Foo");
 
 		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+			gradleProjectDir,
+			"src/main/java/com/liferay/test/social/bookmark" +
+				"/FooSocialBookmark.java",
+			"private ResourceBundleLoader");
+		testNotContains(
+			gradleProjectDir,
+			"src/main/java/com/liferay/test/social/bookmark" +
+				"/FooSocialBookmark.java",
+			"protected ResourceBundleLoader");
 
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=Foo", "-Dpackage=" + packageName, "-DliferayVersion=" + liferayVersion);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=Foo", "-Dpackage=" + packageName,
+			"-DliferayVersion=" + liferayVersion);
 
-			if (isBuildProjects()) {
-				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-				File mavenOutputDir = new File(mavenProjectDir, "target");
+		if (isBuildProjects()) {
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
 
-				buildProjects(
-					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:" + name + GRADLE_TASK_PATH_BUILD);
-			}
-
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule

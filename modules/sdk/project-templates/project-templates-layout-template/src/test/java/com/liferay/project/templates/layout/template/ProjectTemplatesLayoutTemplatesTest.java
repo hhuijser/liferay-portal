@@ -12,11 +12,17 @@
  * details.
  */
 
-
 package com.liferay.project.templates.layout.template;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
+
 import java.net.URI;
+
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -29,40 +35,21 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesLayoutTemplatesTest implements BaseProjectTemplatesTestCase{
+public class ProjectTemplatesLayoutTemplatesTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"7.0.6"},
-					{"7.1.3"},
-					{"7.2.1"},
-					{"7.3.0"}
-				});
-		}
-
-
-		public ProjectTemplatesLayoutTemplatesTest(
-				String liferayVersion) {
-
-				_liferayVersion = liferayVersion;
-			}
-
-	private final String _liferayVersion;
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(
+			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
+	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -80,17 +67,24 @@ public class ProjectTemplatesLayoutTemplatesTest implements BaseProjectTemplates
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
+	public ProjectTemplatesLayoutTemplatesTest(String liferayVersion) {
+		_liferayVersion = liferayVersion;
+	}
+
 	@Test
 	public void testBuildTemplateLayoutTemplate() throws Exception {
 		String template = "layout-template";
 		String name = "foo";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
 		File gradleWorkspaceWarsDir = new File(gradleWorkspaceDir, "wars");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceWarsDir, template, name, "--liferay-version", _liferayVersion);
-
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceWarsDir, template, name, "--liferay-version",
+			_liferayVersion);
 
 		testExists(gradleProjectDir, "src/main/webapp/foo.png");
 
@@ -107,33 +101,37 @@ public class ProjectTemplatesLayoutTemplatesTest implements BaseProjectTemplates
 			"src/main/webapp/WEB-INF/liferay-plugin-package.properties",
 			"name=foo");
 
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
 
-			File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenWarsDir, mavenWarsDir, template, name, "com.test",
+			mavenExecutor, "-DliferayVersion=" + _liferayVersion);
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenWarsDir, mavenWarsDir, template, name, "com.test", mavenExecutor, "-DliferayVersion=" + _liferayVersion);
+		createNewFiles(
+			"src/main/resources/.gitkeep", gradleProjectDir, mavenProjectDir);
 
-			createNewFiles(
-					"src/main/resources/.gitkeep", gradleProjectDir, mavenProjectDir);
+		if (isBuildProjects()) {
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
 
-			if (isBuildProjects()) {
-				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-				File mavenOutputDir = new File(mavenProjectDir, "target");
-
-				buildProjects(
-					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:foo-bar" + GRADLE_TASK_PATH_BUILD);
-			}
-
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:foo-bar" + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
+	private final String _liferayVersion;
+
 }

@@ -165,11 +165,15 @@ public class ProjectTemplatesServiceBuilderTest
 		String serviceProjectName = name + "-service";
 		String template = "service-builder";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name,  "--package-name",
+		buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--package-name",
 			packageName, "--liferay-version", liferayVersion);
 
 		Optional<String> gradleResult = executeGradle(
@@ -185,12 +189,14 @@ public class ProjectTemplatesServiceBuilderTest
 			gradleServiceBuilderVersion = matcher.group(1);
 		}
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-Dpackage=" + packageName);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-Dpackage=" + packageName);
 
 		String mavenResult = executeMaven(
 			new File(mavenProjectDir, serviceProjectName), mavenExecutor,

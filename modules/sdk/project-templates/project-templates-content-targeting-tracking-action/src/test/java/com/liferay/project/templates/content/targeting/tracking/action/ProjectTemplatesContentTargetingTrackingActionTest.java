@@ -14,8 +14,15 @@
 
 package com.liferay.project.templates.content.targeting.tracking.action;
 
+import com.liferay.maven.executor.MavenExecutor;
+import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.Validator;
+import com.liferay.project.templates.util.FileTestUtil;
+
 import java.io.File;
+
 import java.net.URI;
+
 import java.util.Arrays;
 import java.util.Properties;
 
@@ -28,38 +35,20 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import com.liferay.maven.executor.MavenExecutor;
-import com.liferay.project.templates.BaseProjectTemplatesTestCase;
-import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.util.FileTestUtil;
-
 /**
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesContentTargetingTrackingActionTest implements BaseProjectTemplatesTestCase {
+public class ProjectTemplatesContentTargetingTrackingActionTest
+	implements BaseProjectTemplatesTestCase {
+
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(
-			name = "Testcase-{index}: testing {0}"
-		)
-		public static Iterable<Object[]> data() {
-			return Arrays.asList(
-				new Object[][] {
-					{"7.0.6"},
-					{"7.1.3"}
-				});
-		}
-
-
-		public ProjectTemplatesContentTargetingTrackingActionTest(
-				String liferayVersion) {
-
-				_liferayVersion = liferayVersion;
-			}
-
-	private final String _liferayVersion;
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	public static Iterable<Object[]> data() {
+		return Arrays.asList(new Object[][] {{"7.0.6"}, {"7.1.3"}});
+	}
 
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -77,48 +66,60 @@ public class ProjectTemplatesContentTargetingTrackingActionTest implements BaseP
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
+	public ProjectTemplatesContentTargetingTrackingActionTest(
+		String liferayVersion) {
+
+		_liferayVersion = liferayVersion;
+	}
+
 	@Test
 	public void testBuildTemplateContentTargetingRule() throws Exception {
 		String template = "content-targeting-tracking-action";
 		String name = "foo-bar";
 
-		File gradleWorkspaceDir = newBuildWorkspace(temporaryFolder, "gradle", "gradleWS", _liferayVersion, mavenExecutor);
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
+			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(gradleWorkspaceDir, "modules");
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--liferay-version", _liferayVersion);
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--liferay-version",
+			_liferayVersion);
 
 		testExists(gradleProjectDir, "bnd.bnd");
 
 		testContains(
-			gradleProjectDir, "build.gradle",
-			DEPENDENCY_PORTAL_KERNEL);
+			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", _liferayVersion,
+			mavenExecutor);
 
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenWorkspaceDir =
-				newBuildWorkspace(temporaryFolder, "maven", "mavenWS", _liferayVersion, mavenExecutor);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=FooBar", "-Dpackage=foo.bar",
+			"-DliferayVersion=" + _liferayVersion);
 
-			File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		if (isBuildProjects()) {
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
 
-			File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=FooBar", "-Dpackage=foo.bar", "-DliferayVersion=" + _liferayVersion);
-
-
-			if (isBuildProjects()) {
-				File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-				File mavenOutputDir = new File(mavenProjectDir, "target");
-
-				buildProjects(
-					_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-					mavenProjectDir, gradleOutputDir, mavenOutputDir, ":modules:foo-bar" + GRADLE_TASK_PATH_BUILD);
-			}
-
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:foo-bar" + GRADLE_TASK_PATH_BUILD);
+		}
 	}
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static URI _gradleDistribution;
+
+	private final String _liferayVersion;
+
 }

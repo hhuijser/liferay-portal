@@ -11,15 +11,6 @@
 	<version>${version}</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-#if (${liferayVersion.startsWith("7.0")})
-		<com.liferay.frontend.css.common.version>2.0.3</com.liferay.frontend.css.common.version>
-#elseif (${liferayVersion.startsWith("7.1")})
-		<com.liferay.frontend.css.common.version>3.0.1</com.liferay.frontend.css.common.version>
-#elseif (${liferayVersion.startsWith("7.2")})
-		<com.liferay.frontend.css.common.version>4.0.0</com.liferay.frontend.css.common.version>
-#elseif (${liferayVersion.startsWith("7.3")})
-		<com.liferay.frontend.css.common.version>5.0.1</com.liferay.frontend.css.common.version>
-#end
 	</properties>
 	<build>
 		<plugins>
@@ -91,7 +82,6 @@
 		<dependency>## Ignore Dependency Comparison
 			<groupId>com.liferay</groupId>
 			<artifactId>com.liferay.frontend.css.common</artifactId>
-			<version>${com.liferay.frontend.css.common.version}</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

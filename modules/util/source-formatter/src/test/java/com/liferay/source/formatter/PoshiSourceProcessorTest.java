@@ -41,6 +41,11 @@ public class PoshiSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testIncorrectComments() throws Exception {
+		test("IncorrectComments.testmacro");
+	}
+
+	@Test
 	public void testIncorrectEmptyLines() throws Exception {
 		test("testIncorrectEmptyLines.testmacro");
 	}

@@ -1,0 +1,69 @@
+definition {
+
+	macro _addPage {
+		SitePages._selectPageType(
+			collectionName = "${collectionName}",
+			pageTemplateName = "${pageTemplateName}",
+			sitePageType = "${sitePageType}");
+
+		SelectFrame(locator1 = "IFrame#DIALOG");
+
+		SitePages._addPageToNavigationMenu(
+			assertCheckboxMissing = "${assertCheckboxMissing}",
+			navigationMenus = "${navigationMenus}");
+
+		PortletEntry.inputName(name = "${pageName}");
+
+		//if (isSet(categoryName)) {
+		//	AssetCategorization.addCategory(
+		//		categoryName = "${categoryName}",
+		//		vocabularyName = "${vocabularyName}");
+		//}
+
+		//Button.clickAdd();
+
+		// Ignore...
+
+		SelectFrame.selectFrameTop();
+
+		// Quarantine...
+
+		if ("${sitePageType}" == "Embedded") {
+			Type(
+				locator1 = "SitePagesEditPage#PAGE_TYPE_EMBEDDED_URL_FIELD",
+				value1 = "${pageTypeURL}");
+		}
+
+		if (isSet(inheritChanges)) {
+			Page.togglePageTemplateInheritChanges(toggleValue = "${inheritChanges}");
+		}
+
+		// Workaround...
+
+		VerifyElementPresent(locator1 = "Message#SUCCESS");
+
+		// This is a commit
+
+		AssertVisible(locator1 = "TextInput#NAME");
+
+		if (isSet(openGraph)) {
+			SitePages._configureOpenGraph(
+				customDescription = "${customDescription}",
+				customTitle = "${customTitle}");
+		}
+
+		Button.click(button = "Save");
+
+		WaitForSPARefresh();
+
+		// TODO find a better fix as we should not be navigating like this for every test. Workaround caused by LPS-104246
+
+		//ProductMenu.gotoPortlet(
+		//	category = "Site Builder",
+		//	panel = "Site Administration",
+		//	portlet = "Pages");
+
+		WaitForSPARefresh();
+	}
+
+}

@@ -20,6 +20,7 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
@@ -96,6 +97,10 @@ public class PoshiStylingCheck extends BaseFileCheck {
 				}
 
 				String comment = matcher.group(2);
+
+				if (Validator.isNull(comment)) {
+					continue;
+				}
 
 				sb.append(matcher.group(1));
 

@@ -117,9 +117,11 @@ public class PoshiStylingCheck extends BaseFileCheck {
 					 !comment.equals(StringPool.CLOSE_CURLY_BRACE))) {
 
 					sb.append(StringPool.SPACE);
+					sb.append(comment.trim());
 				}
-
-				sb.append(comment);
+				else {
+					sb.append(comment);
+				}
 
 				sb.append("\n");
 			}
@@ -137,6 +139,6 @@ public class PoshiStylingCheck extends BaseFileCheck {
 	private static final Pattern _multiLineStringPattern = Pattern.compile(
 		"'''.*?'''", Pattern.DOTALL);
 	private static final Pattern _singleLineCommentPattern = Pattern.compile(
-		"^([ \t]*//)[ \t]*(.*)");
+		"^([ \t]*//) *(\t*.*)");
 
 }

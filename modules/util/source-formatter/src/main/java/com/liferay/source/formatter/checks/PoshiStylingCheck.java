@@ -15,13 +15,17 @@
 package com.liferay.source.formatter.checks;
 
 import com.liferay.petra.string.CharPool;
+import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.kernel.io.unsync.UnsyncBufferedReader;
+import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.io.IOException;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -36,7 +40,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 
 		_checkLineBreak(fileName, content);
 
-		return content;
+		return _formatComments(content);
 	}
 
 	private void _checkLineBreak(String fileName, String content) {
@@ -73,9 +77,61 @@ public class PoshiStylingCheck extends BaseFileCheck {
 		}
 	}
 
+	private String _formatComments(String content) throws IOException {
+		StringBundler sb = new StringBundler();
+
+		try (UnsyncBufferedReader unsyncBufferedReader =
+				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
+
+			String line = null;
+
+			while ((line = unsyncBufferedReader.readLine()) != null) {
+				Matcher matcher = _singleLineCommentPattern.matcher(line);
+
+				if (!matcher.find()) {
+					sb.append(line);
+					sb.append("\n");
+
+					continue;
+				}
+
+				String comment = matcher.group(2);
+
+				sb.append(matcher.group(1));
+
+				if (comment.startsWith("Ignore") ||
+					comment.startsWith("Ignored") ||
+					comment.startsWith("Ignoring") ||
+					comment.startsWith("Quarantine") ||
+					comment.startsWith("TODO") ||
+					comment.startsWith("Workaround") ||
+					(!comment.endsWith(StringPool.COMMA) &&
+					 !comment.endsWith(StringPool.SEMICOLON) &&
+					 !comment.endsWith(StringPool.OPEN_PARENTHESIS) &&
+					 !comment.endsWith(StringPool.OPEN_CURLY_BRACE) &&
+					 !comment.equals(StringPool.CLOSE_CURLY_BRACE))) {
+
+					sb.append(StringPool.SPACE);
+				}
+
+				sb.append(comment);
+
+				sb.append("\n");
+			}
+		}
+
+		if (sb.length() > 0) {
+			sb.setIndex(sb.index() - 1);
+		}
+
+		return sb.toString();
+	}
+
 	private static final Pattern _multiLineCommentsPattern = Pattern.compile(
 		"[ \t]/\\*.*?\\*/", Pattern.DOTALL);
 	private static final Pattern _multiLineStringPattern = Pattern.compile(
 		"'''.*?'''", Pattern.DOTALL);
+	private static final Pattern _singleLineCommentPattern = Pattern.compile(
+		"^([ \t]*//)[ \t]*(.*)");
 
 }

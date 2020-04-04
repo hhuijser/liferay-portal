@@ -989,8 +989,12 @@ public interface BaseProjectTemplatesTestCase {
 			enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
 		}
 		else {
-			workspaceDir = buildMavenWorkspace(
-				temporaryFolder, liferayVersion, mavenExecutor, name,
+			File destinationDir = temporaryFolder.newFolder("mavenWorkspace");
+			String groupId = "com.test";
+
+			workspaceDir = buildTemplateWithMaven(
+				destinationDir, destinationDir, "workspace", name, groupId,
+				mavenExecutor, "-DliferayVersion=" + liferayVersion,
 				"-Dpackage=com.test");
 		}
 

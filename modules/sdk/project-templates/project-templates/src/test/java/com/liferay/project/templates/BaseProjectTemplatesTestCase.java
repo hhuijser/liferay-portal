@@ -749,7 +749,7 @@ public interface BaseProjectTemplatesTestCase {
 
 			if (!content.contains("allprojects")) {
 				content +=
-					"allprojects {\n\trepositories {\n\t\tmavenLocal()\n\t}\n}";
+					"\nallprojects {\n\trepositories {\n\t\tmavenLocal()\n\t}\n}";
 
 				Files.write(
 					buildFilePath, content.getBytes(StandardCharsets.UTF_8));

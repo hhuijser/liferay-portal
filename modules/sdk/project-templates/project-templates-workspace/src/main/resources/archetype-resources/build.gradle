@@ -1,0 +1,6 @@
+#if (${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
+subprojects { subproject ->
+	configurations.all {
+		resolutionStrategy.force 'javax.servlet:javax.servlet-api:3.0.1'
+	}
+}#end

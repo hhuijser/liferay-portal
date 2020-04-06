@@ -619,6 +619,7 @@
 			<category name="Bug Prevention" />
 			<description name="Checks that there is no HTML markup in language keys" />
 		</check>
+		<check name="PropertiesReleaseBuildCheck" />
 		<check name="PropertiesServiceKeysCheck" />
 		<check name="PropertiesVerifyPropertiesCheck" />
 	</source-processor>

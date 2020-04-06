@@ -34,13 +34,7 @@
 			<defaultValue>ds</defaultValue>
 			<validationRegex>(ds|spring)</validationRegex>
 		</requiredProperty>
-		<requiredProperty key="dependencyManagementEnabled">
-			<defaultValue>false</defaultValue>
-		</requiredProperty>
 		<requiredProperty key="liferayVersion">
-		</requiredProperty>
-		<requiredProperty key="projectType">
-			<defaultValue>standalone</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

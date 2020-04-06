@@ -41,9 +41,6 @@
 		</requiredProperty>
 		<requiredProperty key="className">
 		</requiredProperty>
-		<requiredProperty key="dependencyManagementEnabled">
-			<defaultValue>false</defaultValue>
-		</requiredProperty>
 		<requiredProperty key="framework">
 			<validationRegex>(springportletmvc)|(portletmvc4spring)</validationRegex>
 		</requiredProperty>
@@ -52,9 +49,6 @@
 			<validationRegex>(embedded)</validationRegex>
 		</requiredProperty>
 		<requiredProperty key="liferayVersion">
-		</requiredProperty>
-		<requiredProperty key="projectType">
-			<defaultValue>standalone</defaultValue>
 		</requiredProperty>
 		<requiredProperty key="viewType">
 			<validationRegex>(jsp)|(thymeleaf)</validationRegex>

@@ -21,3 +21,12 @@ Path projectPath = Paths.get(request.outputDirectory, request.artifactId)
 Path pomPath = projectPath.resolve("pom.xml")
 
 Files.deleteIfExists pomPath
+
+Properties properties = request.properties
+
+String template = properties.get("template")
+
+if (template.contains("-ext")) {
+	throw new IllegalArgumentException(
+		"EXT project is not supported for maven.")
+}

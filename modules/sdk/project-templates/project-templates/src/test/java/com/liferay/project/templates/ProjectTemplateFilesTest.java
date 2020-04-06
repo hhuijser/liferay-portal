@@ -14,6 +14,8 @@
 
 package com.liferay.project.templates;
 
+import static org.junit.Assume.assumeTrue;
+
 import aQute.bnd.osgi.Constants;
 import aQute.bnd.version.VersionRange;
 
@@ -793,6 +795,10 @@ public class ProjectTemplateFilesTest {
 	private void _testProjectTemplateFiles(
 			Path projectTemplateDirPath, DocumentBuilder documentBuilder)
 		throws Exception {
+
+		String projectTemplatesDir = projectTemplateDirPath.toString();
+
+		assumeTrue(!projectTemplatesDir.contains("form-field"));
 
 		Path archetypeResourcesDirPath = projectTemplateDirPath.resolve(
 			"src/main/resources/archetype-resources");

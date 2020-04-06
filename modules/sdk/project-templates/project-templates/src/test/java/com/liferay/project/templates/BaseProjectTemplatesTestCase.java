@@ -597,9 +597,7 @@ public interface BaseProjectTemplatesTestCase {
 	public default void configureExecutePackageManagerTask(File projectDir)
 		throws Exception {
 
-		File buildGradleFile = testContains(
-			projectDir, "build.gradle", "com.liferay.gradle.plugins",
-			"com.liferay.plugin");
+		File buildGradleFile = new File(projectDir, "build.gradle");
 
 		StringBuilder sb = new StringBuilder();
 
@@ -1328,10 +1326,10 @@ public interface BaseProjectTemplatesTestCase {
 		File mavenWorkspaceDir = newBuildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
-		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
 
 		File mavenProjectDir = buildTemplateWithMaven(
-			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenWarsDir, mavenWarsDir, template, name, "com.test",
 			mavenExecutor, "-DclassName=" + name, "-Dpackage=" + name,
 			"-DliferayVersion=" + liferayVersion);
 
@@ -1342,7 +1340,7 @@ public interface BaseProjectTemplatesTestCase {
 			buildProjects(
 				gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:" + name + GRADLE_TASK_PATH_BUILD);
+				":wars:" + name + GRADLE_TASK_PATH_BUILD);
 		}
 	}
 

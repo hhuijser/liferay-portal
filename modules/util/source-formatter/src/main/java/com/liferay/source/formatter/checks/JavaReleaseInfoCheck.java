@@ -14,6 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.StringBundler;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.source.formatter.parser.JavaTerm;
 
 import java.io.IOException;
@@ -57,6 +60,12 @@ public class JavaReleaseInfoCheck extends BaseJavaTermCheck {
 			return _fixVariable(javaTermContent, "@release.info.name@");
 		}
 
+		if (variableName.startsWith("RELEASE_") &&
+			variableName.endsWith("_BUILD_NUMBER")) {
+
+			return _fixReleaseBuildNumber(javaTermContent);
+		}
+
 		if (variableName.equals("_VERSION")) {
 			return _fixVariable(javaTermContent, "@release.info.version@");
 		}
@@ -74,12 +83,32 @@ public class JavaReleaseInfoCheck extends BaseJavaTermCheck {
 		return new String[] {JAVA_VARIABLE};
 	}
 
+	private String _fixReleaseBuildNumber(String content) {
+		Matcher matcher = _releaseBuildNumberVariablePattern.matcher(content);
+
+		if (matcher.find()) {
+			return StringUtil.replace(
+				content, matcher.group(),
+				StringBundler.concat(
+					matcher.group(1), matcher.group(2), matcher.group(3),
+					String.format(
+						"%02d", GetterUtil.getInteger(matcher.group(4))),
+					";"));
+		}
+
+		return content;
+	}
+
 	private String _fixVariable(String content, String expectedVariableValue) {
 		Matcher matcher = _variablePattern.matcher(content);
 
 		return matcher.replaceAll("$1" + expectedVariableValue + "\";");
 	}
 
+	private static final Pattern _releaseBuildNumberVariablePattern =
+		Pattern.compile(
+			"(RELEASE_([0-9]+)_([0-9]+)_([0-9]+)_BUILD_NUMBER\\s+=\\s+)[0-9]+" +
+				";");
 	private static final Pattern _variablePattern = Pattern.compile(
 		"(=\\s+\").*\";");
 

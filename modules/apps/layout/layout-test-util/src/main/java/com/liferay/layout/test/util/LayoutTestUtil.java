@@ -191,8 +191,6 @@ public class LayoutTestUtil {
 		String friendlyURL =
 			StringPool.SLASH + FriendlyURLNormalizerUtil.normalize(name);
 
-		Layout layout = null;
-
 		try {
 			return LayoutLocalServiceUtil.getFriendlyURLLayout(
 				groupId, false, friendlyURL);

@@ -114,7 +114,9 @@ public class PoshiStylingCheck extends BaseFileCheck {
 					 !comment.endsWith(StringPool.OPEN_CURLY_BRACE) &&
 					 !comment.endsWith(StringPool.OPEN_PARENTHESIS) &&
 					 !comment.endsWith(StringPool.SEMICOLON) &&
-					 !comment.equals(StringPool.CLOSE_CURLY_BRACE))) {
+					 !comment.equals(StringPool.CLOSE_CURLY_BRACE)) ||
+					(comment.endsWith(StringPool.COMMA) &&
+					 !comment.contains(" = "))) {
 
 					sb.append(StringPool.SPACE);
 					sb.append(comment.trim());

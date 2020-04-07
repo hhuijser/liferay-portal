@@ -1,3 +1,6 @@
+// this is a macro,
+// it contains _addPage.
+
 definition {
 
 	macro _addPage {
@@ -26,11 +29,11 @@ definition {
 		//
 		// Button.clickAdd();
 
-		//Ignore...
+		//ignore...
 
 		SelectFrame.selectFrameTop();
 
-		//Quarantine...
+		//quarantine...
 
 		if ("${sitePageType}" == "Embedded") {
 			Type(
@@ -42,7 +45,7 @@ definition {
 			Page.togglePageTemplateInheritChanges(toggleValue = "${inheritChanges}");
 		}
 
-		//Workaround...
+		//workaround...
 
 		VerifyElementPresent(locator1 = "Message#SUCCESS");
 

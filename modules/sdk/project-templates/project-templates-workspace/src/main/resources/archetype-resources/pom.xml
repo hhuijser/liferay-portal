@@ -163,22 +163,6 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<plugin>
-				<groupId>com.liferay</groupId>
-				<artifactId>com.liferay.css.builder</artifactId>
-				<version>@com.liferay.css.builder.version@</version>
-				<executions>
-					<execution>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<baseDir>src/main/resources</baseDir>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	<modules>

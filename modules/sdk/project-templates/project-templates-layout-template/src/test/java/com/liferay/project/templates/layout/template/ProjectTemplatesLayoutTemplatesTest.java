@@ -123,7 +123,7 @@ public class ProjectTemplatesLayoutTemplatesTest
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:foo-bar" + GRADLE_TASK_PATH_BUILD);
+				":wars:" + name + GRADLE_TASK_PATH_BUILD);
 		}
 	}
 

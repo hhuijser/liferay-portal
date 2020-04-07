@@ -235,7 +235,7 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 				projectPath = ":modules:nested:path:sample";
 			}
 			else {
-				projectPath = "";
+				projectPath = ":modules:" + _name;
 			}
 
 			_testBuildTemplateServiceBuilder(
@@ -255,15 +255,6 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 		String apiProjectName = name + "-api";
 		final String serviceProjectName = name + "-service";
 
-		boolean workspace = WorkspaceUtil.isWorkspace(gradleProjectDir);
-
-		if (!workspace) {
-			testContains(
-				gradleProjectDir, "settings.gradle",
-				"include \"" + apiProjectName + "\", \"" + serviceProjectName +
-					"\"");
-		}
-
 		testContains(
 			gradleProjectDir, apiProjectName + "/bnd.bnd", "Export-Package:\\",
 			packageName + ".exception,\\", packageName + ".model,\\",
@@ -272,12 +263,6 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 		testContains(
 			gradleProjectDir, serviceProjectName + "/bnd.bnd",
 			"Liferay-Service: true");
-
-		if (!workspace) {
-			testContains(
-				gradleProjectDir, serviceProjectName + "/build.gradle",
-				"compileOnly project(\":" + apiProjectName + "\")");
-		}
 
 		if (!isBuildProjects()) {
 			return;

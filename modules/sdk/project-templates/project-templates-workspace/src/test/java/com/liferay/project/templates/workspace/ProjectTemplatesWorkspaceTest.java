@@ -163,7 +163,7 @@ public class ProjectTemplatesWorkspaceTest
 
 		File mavenModulesDir = new File(mavenWorkspaceProjectDir, "modules");
 
-		buildTemplateWithMaven(
+		File mavenProjectDir = buildTemplateWithMaven(
 			mavenWorkspaceProjectDir.getParentFile(), mavenModulesDir,
 			"mvc-portlet", "foo-portlet", "com.test", mavenExecutor,
 			"-DclassName=Foo", "-Dpackage=foo.portlet",
@@ -178,7 +178,7 @@ public class ProjectTemplatesWorkspaceTest
 				gradleModulesDir,
 				"foo-portlet/build/libs/foo.portlet-1.0.0.jar");
 
-			executeMaven(mavenModulesDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
+			executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
 
 			testExists(
 				mavenModulesDir, "foo-portlet/target/foo-portlet-1.0.0.jar");

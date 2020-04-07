@@ -16,6 +16,7 @@ package com.liferay.project.templates.modules.ext;
 
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.ProjectTemplatesUtil;
 import com.liferay.project.templates.extensions.util.Validator;
 import com.liferay.project.templates.util.FileTestUtil;
 
@@ -25,7 +26,8 @@ import java.net.URI;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -99,8 +101,9 @@ public class ProjectTemplatesModulesExtTest
 		}
 	}
 
-	@Test(expected = IllegalArgumentException.class)
+	@Test
 	public void testBuildTemplateModulesExtMaven() throws Exception {
+		String groupId = "com.test";
 		String liferayVersion = getDefaultLiferayVersion();
 		String name = "foo-ext";
 		String template = "modules-ext";
@@ -108,19 +111,41 @@ public class ProjectTemplatesModulesExtTest
 		File mavenWorkspaceDir = newBuildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
-		File mavenExtDir = new File(mavenWorkspaceDir, "ext");
+		List<String> completeArgs = new ArrayList<>();
 
-		buildTemplateWithMaven(
-			mavenExtDir, mavenExtDir, template, name, "com.test",
-			mavenExecutor, "-DclassName=" + name, "-Dpackage=" + name,
-			"-DliferayVersion=" + liferayVersion,
-			"-DoriginalModuleName=com.liferay.login.web");
+		completeArgs.add("archetype:generate");
+		completeArgs.add("--batch-mode");
 
+		String archetypeArtifactId =
+			"com.liferay.project.templates." + template.replace('-', '.');
+
+		completeArgs.add("-DarchetypeArtifactId=" + archetypeArtifactId);
+
+		String projectTemplateVersion =
+			ProjectTemplatesUtil.getArchetypeVersion(archetypeArtifactId);
+
+		Assert.assertTrue(
+			"Unable to get project template version",
+			Validator.isNotNull(projectTemplateVersion));
+
+		completeArgs.add("-DarchetypeGroupId=com.liferay");
+		completeArgs.add("-DarchetypeVersion=" + projectTemplateVersion);
+		completeArgs.add("-DartifactId=" + name);
+		completeArgs.add("-Dauthor=" + System.getProperty("user.name"));
+		completeArgs.add("-DgroupId=" + groupId);
+		completeArgs.add("-DliferayVersion=" + liferayVersion);
+		completeArgs.add("-DoriginalModuleName=com.liferay.login.web");
+		completeArgs.add("-DoriginalModuleVersion=1.0.0");
+		completeArgs.add("-Dversion=1.0.0");
+
+		String mavenOutput = executeMaven(
+			mavenWorkspaceDir, true, mavenExecutor, completeArgs.toArray(new String[0]));
+
+		Assert.assertTrue(mavenOutput, mavenOutput.contains("java.io.EOFException: input contained no data"));
 	}
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
-
 
 	private static URI _gradleDistribution;
 

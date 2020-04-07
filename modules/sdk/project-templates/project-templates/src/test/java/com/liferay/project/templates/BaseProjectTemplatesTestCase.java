@@ -640,7 +640,7 @@ public interface BaseProjectTemplatesTestCase {
 	public default void configurePomNpmConfiguration(File projectDir)
 		throws Exception {
 
-		File pomXmlFile = new File(projectDir, "pom.xml");
+		File pomXmlFile = testExists(projectDir, "pom.xml");
 
 		editXml(
 			pomXmlFile,
@@ -1330,7 +1330,7 @@ public interface BaseProjectTemplatesTestCase {
 
 		File mavenProjectDir = buildTemplateWithMaven(
 			mavenWarsDir, mavenWarsDir, template, name, "com.test",
-			mavenExecutor, "-DclassName=" + name, "-Dpackage=" + name,
+			mavenExecutor, "-DclassName=" + name, "-Dpackage=" + name.toLowerCase(),
 			"-DliferayVersion=" + liferayVersion);
 
 		if (isBuildProjects()) {

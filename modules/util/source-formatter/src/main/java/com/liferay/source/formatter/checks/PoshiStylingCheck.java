@@ -111,9 +111,9 @@ public class PoshiStylingCheck extends BaseFileCheck {
 					comment.startsWith("TODO") ||
 					comment.startsWith("Workaround") ||
 					(!comment.endsWith(StringPool.COMMA) &&
-					 !comment.endsWith(StringPool.SEMICOLON) &&
-					 !comment.endsWith(StringPool.OPEN_PARENTHESIS) &&
 					 !comment.endsWith(StringPool.OPEN_CURLY_BRACE) &&
+					 !comment.endsWith(StringPool.OPEN_PARENTHESIS) &&
+					 !comment.endsWith(StringPool.SEMICOLON) &&
 					 !comment.equals(StringPool.CLOSE_CURLY_BRACE))) {
 
 					sb.append(StringPool.SPACE);

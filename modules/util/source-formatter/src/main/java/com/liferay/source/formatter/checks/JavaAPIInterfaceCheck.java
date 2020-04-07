@@ -34,8 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.osgi.service.component.annotations.Component;
-
 /**
  * @author Hugo Huijser
  */
@@ -257,9 +255,7 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 					else {
 						implementedCount++;
 
-						if (moduleJavaClass.hasAnnotation(
-								Component.class.getName())) {
-
+						if (moduleJavaClass.hasAnnotation("Component")) {
 							implementedAsComponentCount++;
 						}
 					}
@@ -283,9 +279,42 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 			}
 		}
 
-		// TODO: return correct type
+		if ((implementedInsideFrameworkCount > 0) &&
+			(implementedAsComponentCount > 0)) {
 
-		return null;
+			if (implementedCount == 0) {
+				//This one should be annotated with ProviderType
+
+				return InterfaceType.ENTRY_POINT;
+			}
+
+			/*If it is also implemented both by the framework and outside we
+			can't tell if it is a private interface or an extension point
+			because the difference is in the developers that make a
+			conscious decision about making an interface an extension.*/
+			if (javaClass.hasAnnotation("ProviderType")) {
+				return InterfaceType.PRIVATE_INTERFACE;
+			}
+
+			return InterfaceType.EXTENSION_POINT;
+		}
+		else if ((implementedCount > 0) && (implementedAsComponentCount > 0)) {
+			//Same thing here
+
+			if (javaClass.hasAnnotation("ProviderType")) {
+				return InterfaceType.PRIVATE_INTERFACE;
+			}
+
+			return InterfaceType.EXTENSION_POINT;
+		}
+		else if ((consumedInsideFrameworkCount > 0) &&
+				 (implementedAsComponentCount == 0) && (implementedCount > 0)) {
+
+			return InterfaceType.CALLBACK;
+		}
+		else {
+			return null; //¯\_(ツ)_/¯
+		}
 	}
 
 	private synchronized List<JavaClass> _getModuleJavaClasses(

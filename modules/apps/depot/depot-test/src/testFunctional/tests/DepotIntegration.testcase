@@ -112,7 +112,7 @@ definition {
 
 		DepotNavigator.gotoSites(depotName = "Test Depot Name");
 
-		// we need to add an assertion for the label that will later be developed and update the test description
+		// We need to add an assertion for the label that will later be developed and update the test description
 
 		Depot.viewConnectedSite(
 			depotName = "Test Depot Name",

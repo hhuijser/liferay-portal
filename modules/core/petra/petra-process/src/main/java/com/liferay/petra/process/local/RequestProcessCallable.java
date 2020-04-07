@@ -37,9 +37,7 @@ class RequestProcessCallable<T extends Serializable>
 		Throwable throwable = null;
 
 		try {
-			result = _processCallable.call();
-
-			return result;
+			return _processCallable.call();
 		}
 		catch (Throwable t) {
 			throwable = t;

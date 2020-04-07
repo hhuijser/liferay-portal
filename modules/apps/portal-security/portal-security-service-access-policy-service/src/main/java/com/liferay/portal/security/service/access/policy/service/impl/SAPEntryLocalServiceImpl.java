@@ -258,9 +258,7 @@ public class SAPEntryLocalServiceImpl extends SAPEntryLocalServiceBaseImpl {
 		sapEntry.setName(name);
 		sapEntry.setTitleMap(titleMap);
 
-		sapEntry = sapEntryPersistence.update(sapEntry, serviceContext);
-
-		return sapEntry;
+		return sapEntryPersistence.update(sapEntry, serviceContext);
 	}
 
 	@Activate

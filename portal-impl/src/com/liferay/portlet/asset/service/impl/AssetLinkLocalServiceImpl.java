@@ -456,9 +456,7 @@ public class AssetLinkLocalServiceImpl extends AssetLinkLocalServiceBaseImpl {
 			}
 		}
 
-		assetLinks = Collections.unmodifiableList(filteredAssetLinks);
-
-		return assetLinks;
+		return Collections.unmodifiableList(filteredAssetLinks);
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

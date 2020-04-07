@@ -458,7 +458,7 @@ public class JournalFolderFinderImpl
 	}
 
 	protected String updateSQL(String sql, long folderId) {
-		sql = StringUtil.replace(
+		return StringUtil.replace(
 			sql,
 			new String[] {
 				"[$ARTICLE_FOLDER_ID$]", "[$FOLDER_PARENT_FOLDER_ID$]"
@@ -467,8 +467,6 @@ public class JournalFolderFinderImpl
 				getFolderId(folderId, JournalArticleImpl.TABLE_NAME),
 				getFolderId(folderId, JournalFolderImpl.TABLE_NAME)
 			});
-
-		return sql;
 	}
 
 	@Reference

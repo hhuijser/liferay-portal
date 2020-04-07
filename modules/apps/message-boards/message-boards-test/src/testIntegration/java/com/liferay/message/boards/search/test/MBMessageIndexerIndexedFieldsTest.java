@@ -272,9 +272,7 @@ public class MBMessageIndexerIndexedFieldsTest {
 			content = BBCodeTranslatorUtil.getHTML(content);
 		}
 
-		content = HtmlUtil.extractText(content);
-
-		return content;
+		return HtmlUtil.extractText(content);
 	}
 
 	private Group _group;

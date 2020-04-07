@@ -304,10 +304,7 @@ public class FragmentCompositionLocalServiceImpl
 		fragmentComposition.setStatusByUserName(user.getFullName());
 		fragmentComposition.setStatusDate(new Date());
 
-		fragmentComposition = fragmentCompositionPersistence.update(
-			fragmentComposition);
-
-		return fragmentComposition;
+		return fragmentCompositionPersistence.update(fragmentComposition);
 	}
 
 	@Override
@@ -323,10 +320,7 @@ public class FragmentCompositionLocalServiceImpl
 
 		fragmentComposition.setName(name);
 
-		fragmentComposition = fragmentCompositionPersistence.update(
-			fragmentComposition);
-
-		return fragmentComposition;
+		return fragmentCompositionPersistence.update(fragmentComposition);
 	}
 
 	protected void validate(String name) throws PortalException {

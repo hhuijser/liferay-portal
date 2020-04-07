@@ -154,13 +154,11 @@ public abstract class BaseClientTestCase {
 			Invocation.Builder invocationBuilder = getInvocationBuilder(
 				hostname, webtarget);
 
-			invocationBuilder = invocationBuilder.accept(
+			return invocationBuilder.accept(
 				"text/html"
 			).cookie(
 				authenticatedCookie
 			);
-
-			return invocationBuilder;
 		};
 	}
 
@@ -325,9 +323,7 @@ public abstract class BaseClientTestCase {
 			invocationBuilder = invocationBuilderFunction.apply(
 				getAuthorizeDecisionWebTarget());
 
-			response = invocationBuilder.post(Entity.form(formData));
-
-			return response;
+			return invocationBuilder.post(Entity.form(formData));
 		};
 	}
 

@@ -184,12 +184,9 @@ public class JournalArticleExportImportContentProcessor
 			content = imageImportDDMFormFieldValueTransformer.getContent();
 		}
 
-		content =
-			_defaultTextExportImportContentProcessor.
-				replaceImportContentReferences(
-					portletDataContext, stagedModel, content);
-
-		return content;
+		return _defaultTextExportImportContentProcessor.
+			replaceImportContentReferences(
+				portletDataContext, stagedModel, content);
 	}
 
 	@Override

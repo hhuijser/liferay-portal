@@ -600,10 +600,8 @@ public class JavaParser {
 				curlyBracePositionList, detailAST.getFirstChild());
 		}
 
-		curlyBracePositionList = _getCurlyBracePositionList(
+		return _getCurlyBracePositionList(
 			curlyBracePositionList, detailAST.getNextSibling());
-
-		return curlyBracePositionList;
 	}
 
 	private static String _getExpectedIndent(

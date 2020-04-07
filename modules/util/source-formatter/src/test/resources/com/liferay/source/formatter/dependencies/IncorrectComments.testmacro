@@ -6,6 +6,9 @@ definition {
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}");
 
+		//this is a comment that ends with COMMA,
+		//add the comment for better readability.
+
 		SelectFrame(locator1 = "IFrame#DIALOG");
 
 		SitePages._addPageToNavigationMenu(

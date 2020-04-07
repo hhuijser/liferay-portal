@@ -53,11 +53,10 @@ public class VariableNameCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
-
-		String name = nameDetailAST.getText();
+		String name = _getVariableName(detailAST);
 
 		_checkCaps(detailAST, name);
+		_checkCountVariableName(detailAST, name);
 		_checkIsVariableName(detailAST, name);
 
 		DetailAST typeDetailAST = detailAST.findFirstToken(TokenTypes.TYPE);
@@ -188,6 +187,35 @@ public class VariableNameCheck extends BaseCheck {
 					name.substring(0, x) + array[0] + name.substring(y);
 
 				log(detailAST, MSG_RENAME_VARIABLE, name, newName);
+			}
+		}
+	}
+
+	private void _checkCountVariableName(DetailAST detailAST, String name) {
+		Matcher matcher = _countVariableNamePattern.matcher(name);
+
+		if (!matcher.find()) {
+			return;
+		}
+
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.OBJBLOCK) {
+			return;
+		}
+
+		List<DetailAST> variableDefinitionDetailASTList = getAllChildTokens(
+			parentDetailAST, false, TokenTypes.VARIABLE_DEF);
+
+		String match = matcher.group(1);
+
+		for (DetailAST variableDefinitionDetailAST :
+				variableDefinitionDetailASTList) {
+
+			if (match.equals(_getVariableName(variableDefinitionDetailAST))) {
+				log(detailAST, MSG_RENAME_VARIABLE, match, match + "1");
+
+				return;
 			}
 		}
 	}
@@ -525,6 +553,13 @@ public class VariableNameCheck extends BaseCheck {
 		return digits;
 	}
 
+	private String _getVariableName(DetailAST variableDefinitionDetailAST) {
+		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(
+			TokenTypes.IDENT);
+
+		return nameDetailAST.getText();
+	}
+
 	private boolean _isBooleanType(DetailAST typeDetailAST) {
 		DetailAST childDetailAST = typeDetailAST.getFirstChild();
 
@@ -561,6 +596,8 @@ public class VariableNameCheck extends BaseCheck {
 
 	private static final String _MSG_TYPO_VARIABLE = "variable.typo";
 
+	private static final Pattern _countVariableNamePattern = Pattern.compile(
+		"^(\\w+?)[0-9]+$");
 	private static final Pattern _isVariableNamePattern = Pattern.compile(
 		"(_?)(is|IS_)([A-Z])(.*)");
 

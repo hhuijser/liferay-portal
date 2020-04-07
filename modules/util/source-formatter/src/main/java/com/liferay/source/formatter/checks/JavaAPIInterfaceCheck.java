@@ -192,7 +192,7 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 		throws Exception {
 
 		int consumedCount = 0;
-		int consumedInsideFramworkCount = 0;
+		int consumedInsideFrameworkCount = 0;
 		int implementedCount = 0;
 		int implementedAsComponentCount = 0;
 		int implementedInsideFrameworkCount = 0;
@@ -274,7 +274,7 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 							javaClass.getName())) {
 
 					if (insideModuleFramework) {
-						consumedInsideFramworkCount++;
+						consumedInsideFrameworkCount++;
 					}
 					else {
 						consumedCount++;

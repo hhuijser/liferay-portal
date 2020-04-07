@@ -77,15 +77,13 @@ public class DynamicCSSUtil {
 			baseURL = baseURL.substring(0, baseURL.length() - 1);
 		}
 
-		parsedContent = StringUtil.replace(
+		return StringUtil.replace(
 			parsedContent,
 			new String[] {"@base_url@", "@portal_ctx@", "@theme_image_path@"},
 			new String[] {
 				baseURL, PortalUtil.getPathContext(),
 				_getThemeImagesPath(httpServletRequest, themeDisplay, theme)
 			});
-
-		return parsedContent;
 	}
 
 	/**

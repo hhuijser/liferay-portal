@@ -241,9 +241,7 @@ public class UserSearchFixture {
 
 		user.setJobTitle(RandomTestUtil.randomString());
 
-		user = UserLocalServiceUtil.updateUser(user);
-
-		return user;
+		return UserLocalServiceUtil.updateUser(user);
 	}
 
 	/**

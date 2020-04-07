@@ -57,9 +57,7 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 		sb.setIndex(sb.index() - 1);
 
-		content = _sortPathParameters(sb.toString());
-
-		return content;
+		return _sortPathParameters(sb.toString());
 	}
 
 	private List<String> _combineComments(

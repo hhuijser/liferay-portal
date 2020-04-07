@@ -150,9 +150,7 @@ public class EditUserMVCActionCommand extends BaseMVCActionCommand {
 
 		user.setComments(comments);
 
-		user = userLocalService.updateUser(user);
-
-		return user;
+		return userLocalService.updateUser(user);
 	}
 
 	protected void deleteRole(ActionRequest actionRequest) throws Exception {

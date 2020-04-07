@@ -125,11 +125,8 @@ public class XMLWebFileCheck extends BaseFileCheck {
 			sb.append("/c/portal/protected</url-pattern>\n");
 		}
 
-		newContent =
-			newContent.substring(0, x) + sb.toString() +
-				newContent.substring(y);
-
-		return newContent;
+		return newContent.substring(0, x) + sb.toString() +
+			newContent.substring(y);
 	}
 
 }

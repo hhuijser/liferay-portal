@@ -1375,9 +1375,7 @@ public class ServiceBuilder {
 				portletShortName.length());
 		}
 
-		noSuchEntityException = "NoSuch" + noSuchEntityException;
-
-		return noSuchEntityException;
+		return "NoSuch" + noSuchEntityException;
 	}
 
 	public String getParameterType(JavaParameter parameter) {

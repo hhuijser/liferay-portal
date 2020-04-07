@@ -29,9 +29,7 @@ public class JSPXSSVulnerabilitiesCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _fixXSSVulnerability(content);
-
-		return content;
+		return _fixXSSVulnerability(content);
 	}
 
 	private String _fixXSSVulnerability(String content) {

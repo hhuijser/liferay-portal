@@ -213,13 +213,10 @@ public class AlloyControllerInvokerManager {
 
 				};
 
-				alloyControllerInvokerClass =
-					(Class<? extends AlloyControllerInvoker>)
-						defineClassMethod.invoke(
-							customClassLoader, alloyControllerInvokerClassName,
-							classData, 0, classData.length);
-
-				return alloyControllerInvokerClass;
+				return (Class<? extends AlloyControllerInvoker>)
+					defineClassMethod.invoke(
+						customClassLoader, alloyControllerInvokerClassName,
+						classData, 0, classData.length);
 			}
 			catch (NoClassNecessaryException noClassNecessaryException) {
 				throw noClassNecessaryException;

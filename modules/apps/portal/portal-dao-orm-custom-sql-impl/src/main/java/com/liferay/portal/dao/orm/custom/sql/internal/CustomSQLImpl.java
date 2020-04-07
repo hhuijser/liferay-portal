@@ -458,9 +458,7 @@ public class CustomSQLImpl implements CustomSQL {
 				});
 		}
 
-		sql = replaceIsNull(sql);
-
-		return sql;
+		return replaceIsNull(sql);
 	}
 
 	@Override

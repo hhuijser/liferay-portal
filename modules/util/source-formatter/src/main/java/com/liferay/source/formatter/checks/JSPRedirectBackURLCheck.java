@@ -28,9 +28,7 @@ public class JSPRedirectBackURLCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _fixRedirectBackURL(content);
-
-		return content;
+		return _fixRedirectBackURL(content);
 	}
 
 	private String _fixRedirectBackURL(String content) {

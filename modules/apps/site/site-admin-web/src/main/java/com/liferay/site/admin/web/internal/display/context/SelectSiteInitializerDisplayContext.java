@@ -140,10 +140,8 @@ public class SelectSiteInitializerDisplayContext {
 			siteInitializerItems.add(siteInitializerItem);
 		}
 
-		siteInitializerItems = ListUtil.sort(
+		return ListUtil.sort(
 			siteInitializerItems, new SiteInitializerNameComparator(true));
-
-		return siteInitializerItems;
 	}
 
 	private String _backURL;

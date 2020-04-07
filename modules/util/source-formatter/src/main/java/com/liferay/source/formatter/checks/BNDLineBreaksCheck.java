@@ -35,9 +35,7 @@ public class BNDLineBreaksCheck extends BaseFileCheck {
 
 		String shortFileName = fileName.substring(pos + 1);
 
-		content = _formatLineBreaks(shortFileName, content);
-
-		return content;
+		return _formatLineBreaks(shortFileName, content);
 	}
 
 	private String _formatLineBreaks(

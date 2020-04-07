@@ -28,9 +28,7 @@ public class UnparameterizedClassCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _fixUnparameterizedClassType(content);
-
-		return content;
+		return _fixUnparameterizedClassType(content);
 	}
 
 	private String _fixUnparameterizedClassType(String content) {

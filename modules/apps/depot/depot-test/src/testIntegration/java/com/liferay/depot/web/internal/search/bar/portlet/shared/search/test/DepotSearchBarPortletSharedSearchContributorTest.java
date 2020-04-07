@@ -79,7 +79,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 
 	@Before
 	public void setUp() throws Exception {
-		_group = GroupTestUtil.addGroup();
+		_group1 = GroupTestUtil.addGroup();
 		_group2 = GroupTestUtil.addGroup();
 	}
 
@@ -88,7 +88,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		DepotEntry depotEntry = _addDepotEntry();
 
 		_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
-			depotEntry.getDepotEntryId(), _group.getGroupId());
+			depotEntry.getDepotEntryId(), _group1.getGroupId());
 
 		PortletSharedSearchSettings portletSharedSearchSettings =
 			_getPortletSharedSearchSettings();
@@ -96,7 +96,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		SearchContext searchContext =
 			portletSharedSearchSettings.getSearchContext();
 
-		searchContext.setGroupIds(new long[] {_group.getGroupId()});
+		searchContext.setGroupIds(new long[] {_group1.getGroupId()});
 
 		_depotSearchBarPortletSharedSearchContributor.contribute(
 			portletSharedSearchSettings);
@@ -105,7 +105,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 
 		Assert.assertEquals(Arrays.toString(groupIds), 2, groupIds.length);
 
-		Assert.assertEquals(_group.getGroupId(), groupIds[0]);
+		Assert.assertEquals(_group1.getGroupId(), groupIds[0]);
 		Assert.assertEquals(depotEntry.getGroupId(), groupIds[1]);
 	}
 
@@ -118,7 +118,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 				DepotEntry depotEntry = _addDepotEntry();
 
 				_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
-					depotEntry.getDepotEntryId(), _group.getGroupId());
+					depotEntry.getDepotEntryId(), _group1.getGroupId());
 
 				PortletSharedSearchSettings portletSharedSearchSettings =
 					_getPortletSharedSearchSettings();
@@ -126,7 +126,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 				SearchContext searchContext =
 					portletSharedSearchSettings.getSearchContext();
 
-				searchContext.setGroupIds(new long[] {_group.getGroupId()});
+				searchContext.setGroupIds(new long[] {_group1.getGroupId()});
 
 				_depotSearchBarPortletSharedSearchContributor.contribute(
 					portletSharedSearchSettings);
@@ -136,7 +136,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 				Assert.assertEquals(
 					Arrays.toString(groupIds), 1, groupIds.length);
 
-				Assert.assertEquals(_group.getGroupId(), groupIds[0]);
+				Assert.assertEquals(_group1.getGroupId(), groupIds[0]);
 			});
 	}
 
@@ -148,10 +148,10 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		DepotEntry depotEntry2 = _addDepotEntry();
 
 		_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
-			depotEntry1.getDepotEntryId(), _group.getGroupId());
+			depotEntry1.getDepotEntryId(), _group1.getGroupId());
 
 		_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
-			depotEntry2.getDepotEntryId(), _group.getGroupId());
+			depotEntry2.getDepotEntryId(), _group1.getGroupId());
 
 		PortletSharedSearchSettings portletSharedSearchSettings =
 			_getPortletSharedSearchSettings();
@@ -159,7 +159,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		SearchContext searchContext =
 			portletSharedSearchSettings.getSearchContext();
 
-		searchContext.setGroupIds(new long[] {_group.getGroupId()});
+		searchContext.setGroupIds(new long[] {_group1.getGroupId()});
 
 		_depotSearchBarPortletSharedSearchContributor.contribute(
 			portletSharedSearchSettings);
@@ -168,7 +168,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 
 		Assert.assertEquals(Arrays.toString(groupIds), 3, groupIds.length);
 
-		Assert.assertEquals(_group.getGroupId(), groupIds[0]);
+		Assert.assertEquals(_group1.getGroupId(), groupIds[0]);
 		Assert.assertEquals(depotEntry1.getGroupId(), groupIds[1]);
 		Assert.assertEquals(depotEntry2.getGroupId(), groupIds[2]);
 	}
@@ -193,7 +193,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		DepotEntry depotEntry2 = _addDepotEntry();
 
 		_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
-			depotEntry1.getDepotEntryId(), _group.getGroupId());
+			depotEntry1.getDepotEntryId(), _group1.getGroupId());
 
 		_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
 			depotEntry2.getDepotEntryId(), _group2.getGroupId());
@@ -205,7 +205,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 			portletSharedSearchSettings.getSearchContext();
 
 		searchContext.setGroupIds(
-			new long[] {_group.getGroupId(), _group2.getGroupId()});
+			new long[] {_group1.getGroupId(), _group2.getGroupId()});
 
 		_depotSearchBarPortletSharedSearchContributor.contribute(
 			portletSharedSearchSettings);
@@ -214,7 +214,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 
 		Assert.assertEquals(Arrays.toString(groupIds), 4, groupIds.length);
 
-		Assert.assertEquals(_group.getGroupId(), groupIds[0]);
+		Assert.assertEquals(_group1.getGroupId(), groupIds[0]);
 		Assert.assertEquals(_group2.getGroupId(), groupIds[1]);
 		Assert.assertEquals(depotEntry1.getGroupId(), groupIds[2]);
 		Assert.assertEquals(depotEntry2.getGroupId(), groupIds[3]);
@@ -228,7 +228,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		SearchContext searchContext =
 			portletSharedSearchSettings.getSearchContext();
 
-		searchContext.setGroupIds(new long[] {_group.getGroupId()});
+		searchContext.setGroupIds(new long[] {_group1.getGroupId()});
 
 		_depotSearchBarPortletSharedSearchContributor.contribute(
 			portletSharedSearchSettings);
@@ -237,7 +237,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 
 		Assert.assertEquals(Arrays.toString(groupIds), 1, groupIds.length);
 
-		Assert.assertEquals(_group.getGroupId(), groupIds[0]);
+		Assert.assertEquals(_group1.getGroupId(), groupIds[0]);
 	}
 
 	@Test
@@ -247,7 +247,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		DepotEntry depotEntry = _addDepotEntry();
 
 		_depotEntryGroupRelLocalService.addDepotEntryGroupRel(
-			depotEntry.getDepotEntryId(), _group.getGroupId(), false);
+			depotEntry.getDepotEntryId(), _group1.getGroupId(), false);
 
 		PortletSharedSearchSettings portletSharedSearchSettings =
 			_getPortletSharedSearchSettings();
@@ -255,7 +255,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		SearchContext searchContext =
 			portletSharedSearchSettings.getSearchContext();
 
-		searchContext.setGroupIds(new long[] {_group.getGroupId()});
+		searchContext.setGroupIds(new long[] {_group1.getGroupId()});
 
 		_depotSearchBarPortletSharedSearchContributor.contribute(
 			portletSharedSearchSettings);
@@ -264,7 +264,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 
 		Assert.assertEquals(Arrays.toString(groupIds), 1, groupIds.length);
 
-		Assert.assertEquals(_group.getGroupId(), groupIds[0]);
+		Assert.assertEquals(_group1.getGroupId(), groupIds[0]);
 	}
 
 	private DepotEntry _addDepotEntry() throws Exception {
@@ -288,10 +288,10 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		Layout layout = _layoutLocalService.addLayout(
-			TestPropsValues.getUserId(), _group.getGroupId(), false, 0, "name",
+			TestPropsValues.getUserId(), _group1.getGroupId(), false, 0, "name",
 			"title", "description", LayoutConstants.TYPE_PORTLET, false,
 			StringPool.BLANK,
-			ServiceContextTestUtil.getServiceContext(_group.getGroupId()));
+			ServiceContextTestUtil.getServiceContext(_group1.getGroupId()));
 
 		themeDisplay.setLayout(layout);
 
@@ -451,7 +451,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 		_depotSearchBarPortletSharedSearchContributor;
 
 	@DeleteAfterTestRun
-	private Group _group;
+	private Group _group1;
 
 	@DeleteAfterTestRun
 	private Group _group2;

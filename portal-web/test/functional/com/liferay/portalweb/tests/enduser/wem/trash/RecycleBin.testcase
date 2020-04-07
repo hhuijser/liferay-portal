@@ -258,7 +258,7 @@ definition {
 	test RecycleBinSearchBlogsEntries {
 		property portal.upstream = "quarantine";
 
-		//Quarantine for LPS-109573
+		// Quarantine for LPS-109573
 
 		Portlet.addPG(portletName = "Blogs");
 
@@ -458,7 +458,7 @@ definition {
 	test RecycleBinWebContent {
 		property portal.upstream = "quarantine";
 
-		//Quarantine for LRQA-57155
+		// Quarantine for LRQA-57155
 
 		WebContentStructures.openWebContentStructuresAdmin(siteURLKey = "site-name");
 

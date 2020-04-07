@@ -2897,7 +2897,7 @@ definition {
 		AppBuilderAdmin.openItem(itemName = "My Form View");
 		/*
 
-		//TODO: Remove this comment once LPS-110060 is fixed.
+		// TODO: Remove this comment once LPS-110060 is fixed.
 
 		FormViewBuilder.addFieldByDoubleClickFromObjectSidebar(fieldLabel = "Hobbies");
 

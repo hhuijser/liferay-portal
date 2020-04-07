@@ -112,7 +112,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property testray.component.names = "Breadcrumb";
 
-		//Quarantine for LPS-104367
+		// Quarantine for LPS-104367
 
 		JSONGroup.addGroup(groupName = "Site Name");
 
@@ -314,7 +314,7 @@ definition {
 	@priority = "5"
 	test DisableShowPage {
 
-		//Quarantine for LPS-104367
+		// Quarantine for LPS-104367
 
 		property portal.acceptance = "true";
 		property portal.upstream = "quarantine";
@@ -519,7 +519,7 @@ definition {
 		property test.name.skip.portal.instance = "Breadcrumb#EnableShowGuestSite";
 		property testray.component.names = "Breadcrumb";
 
-		//Quarantine for LPS-104367
+		// Quarantine for LPS-104367
 
 		ProductMenu.gotoPortlet(
 			category = "Site Builder",

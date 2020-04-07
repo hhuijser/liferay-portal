@@ -39,7 +39,7 @@ definition {
 	test PublishDeleteWCFolderWithArticleViaAP {
 		property portal.upstream = "quarantine";
 
-		//Quarantine for LRQA-57163
+		// Quarantine for LRQA-57163
 
 		Navigator.openSiteURL(siteName = "Site Name");
 

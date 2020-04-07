@@ -27,7 +27,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property portal.version = "7.2.1";
 
-		//Quarantine for LPS-110532
+		// Quarantine for LPS-110532
 
 		Upgrade.configurePageEditor();
 	}
@@ -39,7 +39,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property portal.version = "7.2.10.1";
 
-		//Quarantine for LPS-110532
+		// Quarantine for LPS-110532
 
 		Upgrade.configurePageEditor();
 	}

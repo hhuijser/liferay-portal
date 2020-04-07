@@ -391,7 +391,7 @@ definition {
 	test MapWebContentImageToLayoutSection {
 		property portal.upstream = "quarantine";
 
-		//Quarantine for LRQA-57159
+		// Quarantine for LRQA-57159
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 

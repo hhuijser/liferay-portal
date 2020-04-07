@@ -893,7 +893,7 @@ definition {
 		property testray.component.names = "Site Administration,Site Pages Administration";
 		var portalURL = PropsUtil.get("portal.url");
 
-		//Quarantine for LRQA-56385
+		// Quarantine for LRQA-56385
 
 		ProductMenu.gotoPortlet(
 			category = "Sites",

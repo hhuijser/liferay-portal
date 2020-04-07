@@ -1,3 +1,6 @@
+// This is a macro,
+// it contains _addPage.
+
 definition {
 
 	macro _addPage {
@@ -6,7 +9,7 @@ definition {
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}");
 
-		// this is a comment that ends with COMMA,
+		// This is a comment that ends with COMMA,
 		// add the comment for better readability.
 
 		SelectFrame(locator1 = "IFrame#DIALOG");

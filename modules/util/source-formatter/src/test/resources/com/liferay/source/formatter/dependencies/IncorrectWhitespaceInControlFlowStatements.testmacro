@@ -98,7 +98,7 @@ definition {
 	macro TestControlFlowStatementsFormatInMultilineComment {
 
 		/*
-		// if tatement
+		// If statement
 		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
 			("${check}" == "true") &&
 			("${check}" == "true")){
@@ -106,7 +106,7 @@ definition {
 			Alert.viewSuccessMessage();
 		}
 
-		// else if tatement
+		// Else if statement
 		if("${check}" == "true"){
 			Alert.viewSuccessMessage();
 		}
@@ -146,7 +146,7 @@ definition {
 			Alert.viewRequestFailedToComplete();
 		}
 
-		// while tatement
+		// While statement
 		while(!("${i}" == "${propertyNumber}")){
 			var i = MathUtil.sum("${i}", "1");
 		}
@@ -156,7 +156,7 @@ definition {
 			var i = MathUtil.sum("${i}", "1");
 		}
 
-		// for tatement
+		// For statement
 		for(var row:table "${rawTable}"){
 			TableEcho.echoTwoVars(
 				v0 = "${row[0]}",
@@ -170,7 +170,7 @@ definition {
 				v1 = "${row[1]}");
 		}
 
-		// task tatement
+		// Task statement
 		task("Task1"){
 			echo("## Task1");
 		}
@@ -186,7 +186,7 @@ definition {
 
 		var wikiPageContent = '''
 <pre>
-		// if tatement
+		// If statement
 		if((IsElementPresent(locator1 = "Blogs#ADD_BLOGS_ENTRY")) &&
 			("${check}" == "true") &&
 			("${check}" == "true")){
@@ -194,7 +194,7 @@ definition {
 			Alert.viewSuccessMessage();
 		}
 
-		// else if tatement
+		// Else if statement
 		if("${check}" == "true"){
 			Alert.viewSuccessMessage();
 		}
@@ -234,7 +234,7 @@ definition {
 			Alert.viewRequestFailedToComplete();
 		}
 
-		// while tatement
+		// While statement
 		while(!("${i}" == "${propertyNumber}")){
 			var i = MathUtil.sum("${i}", "1");
 		}
@@ -244,7 +244,7 @@ definition {
 			var i = MathUtil.sum("${i}", "1");
 		}
 
-		// for tatement
+		// For statement
 		for(var row:table "${rawTable}"){
 			TableEcho.echoTwoVars(
 				v0 = "${row[0]}",
@@ -258,7 +258,7 @@ definition {
 				v1 = "${row[1]}");
 		}
 
-		// task tatement
+		// Task statement
 		task("Task1"){
 			echo("## Task1");
 		}

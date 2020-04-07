@@ -213,7 +213,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property testray.component.names = "Localization,Web Content Administration";
 
-		//Quarantine for LPS-96630
+		// Quarantine for LPS-96630
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 
@@ -1356,7 +1356,7 @@ definition {
 		property portal.upstream = "quarantine";
 		property testray.component.names = "Web Content Administration";
 
-		//Quarantine for LRQA-57161
+		// Quarantine for LRQA-57161
 
 		WebContentNavigator.openWebContentAdmin(siteURLKey = "test-site-name");
 

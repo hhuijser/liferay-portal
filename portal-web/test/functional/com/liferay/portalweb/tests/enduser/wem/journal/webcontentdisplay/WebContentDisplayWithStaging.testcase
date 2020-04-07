@@ -99,7 +99,7 @@ definition {
 	test StagingPublishWCWithImageFieldEdit {
 		property portal.upstream = "quarantine";
 
-		//Quarantine for LRQA-57151
+		// Quarantine for LRQA-57151
 
 		JSONLayout.addPublicLayout(
 			groupName = "Test Site Name",

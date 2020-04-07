@@ -34,6 +34,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.osgi.service.component.annotations.Component;
+
 /**
  * @author Hugo Huijser
  */
@@ -192,6 +194,7 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 		int consumedCount = 0;
 		int consumedInsideFramworkCount = 0;
 		int implementedCount = 0;
+		int implementedAsComponentCount = 0;
 		int implementedInsideFrameworkCount = 0;
 
 		String bndSettingsFileName = bndSettings.getFileName();
@@ -253,6 +256,12 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 					}
 					else {
 						implementedCount++;
+
+						if (moduleJavaClass.hasAnnotation(
+								Component.class.getName())) {
+
+							implementedAsComponentCount++;
+						}
 					}
 
 					continue;

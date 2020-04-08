@@ -168,8 +168,6 @@ public class PermissionImporterImpl implements PermissionImporter {
 
 		String name = roleElement.attributeValue("name");
 
-		Role role = null;
-
 		if (ExportImportPermissionUtil.isTeamRoleName(name)) {
 			name = name.substring(
 				ExportImportPermissionUtil.ROLE_TEAM_PREFIX.length());
@@ -200,7 +198,7 @@ public class PermissionImporterImpl implements PermissionImporter {
 
 		LayoutCache layoutCache = _layoutCacheThreadLocal.get();
 
-		role = layoutCache.getUuidRole(companyId, uuid);
+		Role role = layoutCache.getUuidRole(companyId, uuid);
 
 		if (role == null) {
 			role = layoutCache.getNameRole(companyId, name);

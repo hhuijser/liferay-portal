@@ -22,7 +22,8 @@ import java.util.List;
 /**
  * @author Hugo Huijser
  */
-public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
+public class UnnecessaryVariableDeclarationCheck
+	extends BaseUnnecessaryStatementCheck {
 
 	@Override
 	public int[] getDefaultTokens() {
@@ -50,8 +51,9 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 
 		String variableName = nameDetailAST.getText();
 
-		_checkUnnecessaryStatementBeforeReturn(
-			detailAST, semiDetailAST, variableName);
+		checkUnnecessaryStatementBeforeReturn(
+			detailAST, semiDetailAST, variableName,
+			_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN);
 
 		DetailAST parentDetailAST = detailAST.getParent();
 
@@ -75,73 +77,10 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 			secondVariableCallerDetailAST = variableCallerDetailASTList.get(1);
 		}
 
-		_checkUnnecessaryStatementBeforeReassign(
+		checkUnnecessaryStatementBeforeReassign(
 			detailAST, firstVariableCallerDetailAST,
-			secondVariableCallerDetailAST, parentDetailAST, variableName);
-	}
-
-	private void _checkUnnecessaryStatementBeforeReassign(
-		DetailAST detailAST, DetailAST firstNextVariableCallerDetailAST,
-		DetailAST secondNextVariableCallerDetailAST, DetailAST slistDetailAST,
-		String variableName) {
-
-		if (firstNextVariableCallerDetailAST.getPreviousSibling() != null) {
-			return;
-		}
-
-		DetailAST parentDetailAST =
-			firstNextVariableCallerDetailAST.getParent();
-
-		if (parentDetailAST.getType() != TokenTypes.ASSIGN) {
-			return;
-		}
-
-		parentDetailAST = parentDetailAST.getParent();
-
-		if ((parentDetailAST.getType() != TokenTypes.EXPR) ||
-			!equals(parentDetailAST.getParent(), slistDetailAST)) {
-
-			return;
-		}
-
-		if ((secondNextVariableCallerDetailAST == null) ||
-			(secondNextVariableCallerDetailAST.getLineNo() > getEndLineNumber(
-				parentDetailAST))) {
-
-			log(
-				detailAST,
-				_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN,
-				variableName);
-		}
-	}
-
-	private void _checkUnnecessaryStatementBeforeReturn(
-		DetailAST detailAST, DetailAST semiDetailAST, String variableName) {
-
-		DetailAST nextSiblingDetailAST = semiDetailAST.getNextSibling();
-
-		if ((nextSiblingDetailAST == null) ||
-			(nextSiblingDetailAST.getType() != TokenTypes.LITERAL_RETURN) ||
-			(getHiddenBefore(nextSiblingDetailAST) != null)) {
-
-			return;
-		}
-
-		DetailAST firstChildDetailAST = nextSiblingDetailAST.getFirstChild();
-
-		if (firstChildDetailAST.getType() != TokenTypes.EXPR) {
-			return;
-		}
-
-		firstChildDetailAST = firstChildDetailAST.getFirstChild();
-
-		if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
-			variableName.equals(firstChildDetailAST.getText())) {
-
-			log(
-				detailAST, _MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN,
-				variableName);
-		}
+			secondVariableCallerDetailAST, parentDetailAST, variableName,
+			_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN);
 	}
 
 	private static final String

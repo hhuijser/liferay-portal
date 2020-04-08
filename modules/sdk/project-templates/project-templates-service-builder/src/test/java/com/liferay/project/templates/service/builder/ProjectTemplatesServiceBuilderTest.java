@@ -102,12 +102,21 @@ public class ProjectTemplatesServiceBuilderTest
 
 	@Test
 	public void testBuildTemplateServiceBuilderCheckExports() throws Exception {
+		String liferayVersion = getDefaultLiferayVersion();
 		String name = "guestbook";
 		String packageName = "com.liferay.docs.guestbook";
+		String template = "service-builder";
 
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"service-builder", name, "--package-name", packageName,
-			"--liferay-version", "7.3.0");
+		File gradleWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
+
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
+
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--package-name",
+			packageName, "--liferay-version", liferayVersion);
 
 		File gradleServiceXml = new File(
 			new File(gradleProjectDir, name + "-service"), "service.xml");
@@ -120,9 +129,16 @@ public class ProjectTemplatesServiceBuilderTest
 
 		editXml(gradleServiceXml, consumer);
 
+		File mavenWorkspaceDir = newBuildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion,
+			mavenExecutor);
+
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+
 		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "service-builder", name, "com.test", mavenExecutor,
-			"-Dpackage=" + packageName, "-DliferayVersion=7.3.0");
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-Dpackage=" + packageName,
+			"-DliferayVersion=" + liferayVersion);
 
 		File mavenServiceXml = new File(
 			new File(mavenProjectDir, name + "-service"), "service.xml");
@@ -136,8 +152,8 @@ public class ProjectTemplatesServiceBuilderTest
 
 		if (isBuildProjects()) {
 			Optional<String> stdOutput = executeGradle(
-				gradleProjectDir, false, true, _gradleDistribution,
-				name + "-service" + GRADLE_TASK_PATH_BUILD);
+				gradleWorkspaceDir, false, true, _gradleDistribution,
+				":modules:" + name + ":" + name + "-service" + GRADLE_TASK_PATH_BUILD);
 
 			Assert.assertTrue(stdOutput.isPresent());
 

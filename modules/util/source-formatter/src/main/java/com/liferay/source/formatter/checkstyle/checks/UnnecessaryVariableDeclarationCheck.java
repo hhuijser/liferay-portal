@@ -17,6 +17,8 @@ package com.liferay.source.formatter.checkstyle.checks;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.util.List;
+
 /**
  * @author Hugo Huijser
  */
@@ -50,6 +52,67 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 
 		_checkUnnecessaryStatementBeforeReturn(
 			detailAST, semiDetailAST, variableName);
+
+		DetailAST parentDetailAST = detailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.SLIST) {
+			return;
+		}
+
+		List<DetailAST> variableCallerDetailASTList =
+			getVariableCallerDetailASTList(detailAST, variableName);
+
+		if (variableCallerDetailASTList.isEmpty()) {
+			return;
+		}
+
+		DetailAST firstVariableCallerDetailAST =
+			variableCallerDetailASTList.get(0);
+
+		DetailAST secondVariableCallerDetailAST = null;
+
+		if (variableCallerDetailASTList.size() > 1) {
+			secondVariableCallerDetailAST = variableCallerDetailASTList.get(1);
+		}
+
+		_checkUnnecessaryStatementBeforeReassign(
+			detailAST, firstVariableCallerDetailAST,
+			secondVariableCallerDetailAST, parentDetailAST, variableName);
+	}
+
+	private void _checkUnnecessaryStatementBeforeReassign(
+		DetailAST detailAST, DetailAST firstNextVariableCallerDetailAST,
+		DetailAST secondNextVariableCallerDetailAST, DetailAST slistDetailAST,
+		String variableName) {
+
+		if (firstNextVariableCallerDetailAST.getPreviousSibling() != null) {
+			return;
+		}
+
+		DetailAST parentDetailAST =
+			firstNextVariableCallerDetailAST.getParent();
+
+		if (parentDetailAST.getType() != TokenTypes.ASSIGN) {
+			return;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if ((parentDetailAST.getType() != TokenTypes.EXPR) ||
+			!equals(parentDetailAST.getParent(), slistDetailAST)) {
+
+			return;
+		}
+
+		if ((secondNextVariableCallerDetailAST == null) ||
+			(secondNextVariableCallerDetailAST.getLineNo() > getEndLineNumber(
+				parentDetailAST))) {
+
+			log(
+				detailAST,
+				_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN,
+				variableName);
+		}
 	}
 
 	private void _checkUnnecessaryStatementBeforeReturn(
@@ -80,6 +143,10 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 				variableName);
 		}
 	}
+
+	private static final String
+		_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_REASSIGN =
+			"variable.declaration.unnecessary.before.reassign";
 
 	private static final String
 		_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN =

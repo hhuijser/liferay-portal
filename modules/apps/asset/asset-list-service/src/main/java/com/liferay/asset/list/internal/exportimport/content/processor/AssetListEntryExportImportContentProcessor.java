@@ -277,10 +277,8 @@ public class AssetListEntryExportImportContentProcessor
 						return newClassTypeId;
 					}
 
-					newClassTypeId = MapUtil.getLong(
+					return MapUtil.getLong(
 						dlFileEntryTypeIds, classTypeId, classTypeId);
-
-					return newClassTypeId;
 				}
 			).toArray();
 

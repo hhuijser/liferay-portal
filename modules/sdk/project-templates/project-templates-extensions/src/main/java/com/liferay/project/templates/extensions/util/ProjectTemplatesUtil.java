@@ -253,9 +253,7 @@ public class ProjectTemplatesUtil {
 			String templateName = name.substring(
 				projectTemplatesEndIndex, dashIndex);
 
-			templateName = templateName.replace('.', '-');
-
-			return templateName;
+			return templateName.replace('.', '-');
 		}
 		catch (Throwable th) {
 			return name;

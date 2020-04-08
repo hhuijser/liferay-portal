@@ -142,9 +142,7 @@ public class PortalSambaUtil {
 		String sambaLMPassword = StringUtil.bytesToHexString(
 			sambaLMPasswordBytes);
 
-		sambaLMPassword = StringUtil.toUpperCase(sambaLMPassword);
-
-		return sambaLMPassword;
+		return StringUtil.toUpperCase(sambaLMPassword);
 	}
 
 	private static String _encryptSambaNTPassword(String password)
@@ -159,9 +157,7 @@ public class PortalSambaUtil {
 		String sambaNTPassword = StringUtil.bytesToHexString(
 			sambaNTPasswordBytes);
 
-		sambaNTPassword = StringUtil.toUpperCase(sambaNTPassword);
-
-		return sambaNTPassword;
+		return StringUtil.toUpperCase(sambaNTPassword);
 	}
 
 	// KGS!@#$%

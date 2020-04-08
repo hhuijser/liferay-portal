@@ -518,11 +518,9 @@ public class WikiTestUtil {
 				WorkflowConstants.CONTEXT_URL, "http://localhost"
 			).build();
 
-		page = WikiPageLocalServiceUtil.updateStatus(
+		return WikiPageLocalServiceUtil.updateStatus(
 			page.getUserId(), page, WorkflowConstants.STATUS_APPROVED,
 			serviceContext, workflowContext);
-
-		return page;
 	}
 
 }

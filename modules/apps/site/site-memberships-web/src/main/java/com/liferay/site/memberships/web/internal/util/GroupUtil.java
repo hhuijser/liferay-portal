@@ -49,10 +49,8 @@ public class GroupUtil {
 		ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 			"content.Language", locale, GroupUtil.class);
 
-		resourceBundle = new AggregateResourceBundle(
+		return new AggregateResourceBundle(
 			resourceBundle, PortalUtil.getResourceBundle(locale));
-
-		return resourceBundle;
 	}
 
 }

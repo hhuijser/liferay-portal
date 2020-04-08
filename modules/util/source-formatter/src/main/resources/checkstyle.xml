@@ -503,7 +503,7 @@
 			<message key="assign.unnecessary" value="No need to assign call to variable ''{0}'', because ''{0}'' is not used after the call" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
-			<message key="variable.declaration.redundant" value="No need to declare variable ''{0}'' because it is returned right after" />
+			<message key="variable.declaration.unnecessary.before.return" value="No need to declare variable ''{0}'' because it is returned right after" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnprocessedExceptionCheck">
 			<message key="exception.unprocessed" value="Unprocessed exception ''{0}'', see LPS-36174" />

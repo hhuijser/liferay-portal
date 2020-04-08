@@ -18,7 +18,6 @@ import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
 import com.liferay.project.templates.extensions.util.FileUtil;
 import com.liferay.project.templates.extensions.util.Validator;
-import com.liferay.project.templates.extensions.util.WorkspaceUtil;
 import com.liferay.project.templates.util.FileTestUtil;
 
 import java.io.File;
@@ -72,10 +71,10 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 					"spring", "backend-integration",
 					"com.liferay.docs.guestbook", "7.1.3"
 				},
-				{"ds", "guestbook", "backend-integration", "7.2.1"},
-				{"ds", "guestbook", "backend-integration", "7.3.0"},
-				{"spring", "guestbook", "backend-integration", "7.2.1"},
-				{"spring", "guestbook", "backend-integration", "7.3.0"},
+				{"ds", "backend-integration", "com.liferay.docs.guestbook", "7.2.1"},
+				{"ds", "backend-integration", "com.liferay.docs.guestbook", "7.3.0"},
+				{"spring", "backend-integration", "com.liferay.docs.guestbook", "7.2.1"},
+				{"spring", "backend-integration", "com.liferay.docs.guestbook", "7.3.0"},
 				{"spring", "sample", "com.test.sample", "7.0.6"},
 				{"spring", "sample", "com.test.sample", "7.1.3"},
 				{"ds", "sample", "com.test.sample", "7.2.1"},

@@ -24,7 +24,7 @@ definition {
 		}
 	}
 
-	// quarantine because of the ticket LRQA-57503
+	// Quarantine because of the ticket LRQA-57503
 
 	@priority = "5"
 	test AddTemplateWithStructure {

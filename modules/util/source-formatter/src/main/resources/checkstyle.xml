@@ -500,6 +500,7 @@
 			<message key="try.with.resources.use" value="Use Try-With-Resources statement to declare ''{0}'' instead of closing the resource in the ''finally'' statement using ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">
+			<message key="assign.unnecessary.before.reassign" value="No need to assign call to variable ''{0}'', because ''{0}'' is reassigned another value without being used" />
 			<message key="assign.unnecessary.before.return" value="No need to assign call to variable ''{0}'', because ''{0}'' is returned right after" />
 			<message key="assign.unnecessary.unused" value="No need to assign call to variable ''{0}'', because ''{0}'' is not used after the call" />
 		</module>

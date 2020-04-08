@@ -402,9 +402,7 @@ public class PermissionCacheUtil {
 				hashCode = HashUtil.hash(hashCode, roleId);
 			}
 
-			hashCode = HashUtil.hash(hashCode, _actionId);
-
-			return hashCode;
+			return HashUtil.hash(hashCode, _actionId);
 		}
 
 		private PermissionKey(

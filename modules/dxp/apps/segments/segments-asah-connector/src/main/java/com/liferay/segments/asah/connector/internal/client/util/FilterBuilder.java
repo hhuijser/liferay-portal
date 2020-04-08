@@ -95,10 +95,8 @@ public class FilterBuilder {
 	private String _getValue(Object value) {
 		String valueString = (String)value;
 
-		valueString = valueString.replaceAll(
+		return valueString.replaceAll(
 			StringPool.APOSTROPHE, StringPool.DOUBLE_APOSTROPHE);
-
-		return valueString;
 	}
 
 	private final List<String> _filters = new ArrayList<>();

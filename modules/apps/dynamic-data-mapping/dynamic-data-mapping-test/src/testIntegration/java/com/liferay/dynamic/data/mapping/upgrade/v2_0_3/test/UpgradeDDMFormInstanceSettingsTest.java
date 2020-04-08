@@ -172,10 +172,8 @@ public class UpgradeDDMFormInstanceSettingsTest {
 
 		DDMFormInstanceLocalServiceUtil.updateDDMFormInstance(formInstance);
 
-		formInstance = DDMFormInstanceLocalServiceUtil.getFormInstance(
+		return DDMFormInstanceLocalServiceUtil.getFormInstance(
 			formInstance.getFormInstanceId());
-
-		return formInstance;
 	}
 
 	protected String createSettings(boolean hasSetting) {
@@ -232,10 +230,8 @@ public class UpgradeDDMFormInstanceSettingsTest {
 
 		EntityCacheUtil.clearCache();
 
-		formInstance = DDMFormInstanceLocalServiceUtil.getDDMFormInstance(
+		return DDMFormInstanceLocalServiceUtil.getDDMFormInstance(
 			formInstance.getFormInstanceId());
-
-		return formInstance;
 	}
 
 	protected void setUpUpgradeDDMFormInstanceSettings() {

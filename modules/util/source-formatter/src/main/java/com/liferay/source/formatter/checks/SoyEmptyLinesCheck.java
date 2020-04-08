@@ -23,9 +23,7 @@ public class SoyEmptyLinesCheck extends BaseEmptyLinesCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = fixEmptyLinesBetweenTags(content);
-
-		return content;
+		return fixEmptyLinesBetweenTags(content);
 	}
 
 }

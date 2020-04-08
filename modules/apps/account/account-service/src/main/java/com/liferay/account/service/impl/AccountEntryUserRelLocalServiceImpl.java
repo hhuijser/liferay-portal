@@ -72,9 +72,7 @@ public class AccountEntryUserRelLocalServiceImpl
 		accountEntryUserRel.setAccountEntryId(accountEntryId);
 		accountEntryUserRel.setAccountUserId(accountUserId);
 
-		accountEntryUserRel = addAccountEntryUserRel(accountEntryUserRel);
-
-		return accountEntryUserRel;
+		return addAccountEntryUserRel(accountEntryUserRel);
 	}
 
 	@Override

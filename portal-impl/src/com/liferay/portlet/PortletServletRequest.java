@@ -430,9 +430,7 @@ public class PortletServletRequest extends HttpServletRequestWrapper {
 			return null;
 		}
 
-		session = new PortletServletSession(session, _liferayPortletRequest);
-
-		return session;
+		return new PortletServletSession(session, _liferayPortletRequest);
 	}
 
 	@Override

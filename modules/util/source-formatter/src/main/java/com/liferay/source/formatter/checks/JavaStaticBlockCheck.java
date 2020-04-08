@@ -42,9 +42,7 @@ public class JavaStaticBlockCheck extends BaseJavaTermCheck {
 			classContent = _sortStaticBlocks(classContent, childJavaTerms);
 		}
 
-		classContent = _combineStaticBlocks(classContent, childJavaTerms);
-
-		return classContent;
+		return _combineStaticBlocks(classContent, childJavaTerms);
 	}
 
 	@Override

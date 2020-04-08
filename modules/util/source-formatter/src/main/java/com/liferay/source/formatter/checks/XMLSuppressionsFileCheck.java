@@ -73,10 +73,8 @@ public class XMLSuppressionsFileCheck extends BaseFileCheck {
 			fileName, sourceCheckElement, "suppress", "source-check",
 			suppressElementComparator);
 
-		content = _formatFilesPropertyValue(
+		return _formatFilesPropertyValue(
 			fileName, content, fileLocation, sourceCheckElement);
-
-		return content;
 	}
 
 	private void _addMessage(

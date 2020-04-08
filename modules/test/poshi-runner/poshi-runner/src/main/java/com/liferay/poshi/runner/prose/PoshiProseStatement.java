@@ -154,10 +154,8 @@ public class PoshiProseStatement extends BasePoshiProse {
 	protected String formatProseStatement(String proseStatement) {
 		String formattedProseStatement = proseStatement.trim();
 
-		formattedProseStatement = formattedProseStatement.replaceAll(
+		return formattedProseStatement.replaceAll(
 			_LINE_SEPARATOR + "\t\t", _LINE_SEPARATOR);
-
-		return formattedProseStatement;
 	}
 
 	protected String getProseStatementMatchingString() {

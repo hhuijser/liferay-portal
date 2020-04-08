@@ -792,9 +792,7 @@ public class LayoutLocalServiceStagingAdvice implements BeanFactoryAware {
 				}
 			}
 
-			returnValue = wrapReturnValue(returnValue, false);
-
-			return returnValue;
+			return wrapReturnValue(returnValue, false);
 		}
 
 		private LayoutLocalServiceStagingInvocationHandler(

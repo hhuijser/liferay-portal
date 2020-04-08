@@ -28,9 +28,7 @@ public class TLDTypeCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _formatTypes(fileName, content);
-
-		return content;
+		return _formatTypes(fileName, content);
 	}
 
 	private String _formatTypes(String fileName, String content) {

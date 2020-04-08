@@ -112,15 +112,13 @@ public class CommentUtil {
 			PortalUtil.getLayoutFullURL(themeDisplay), "p_l_mode",
 			Constants.EDIT);
 
-		serviceContextFunction = serviceContextFunction.andThen(
+		return serviceContextFunction.andThen(
 			serviceContext -> {
 				serviceContext.setAttribute("contentURL", notificationRedirect);
 				serviceContext.setAttribute("namespace", StringPool.BLANK);
 
 				return serviceContext;
 			});
-
-		return serviceContextFunction;
 	}
 
 	private static int _getWorkflowAction(ActionRequest actionRequest) {

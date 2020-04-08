@@ -194,10 +194,8 @@ public class LayoutTestUtil {
 		Layout layout = null;
 
 		try {
-			layout = LayoutLocalServiceUtil.getFriendlyURLLayout(
+			return LayoutLocalServiceUtil.getFriendlyURLLayout(
 				groupId, false, friendlyURL);
-
-			return layout;
 		}
 		catch (NoSuchLayoutException noSuchLayoutException) {
 		}

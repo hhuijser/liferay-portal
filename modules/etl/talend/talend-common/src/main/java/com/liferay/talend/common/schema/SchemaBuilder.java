@@ -101,10 +101,7 @@ public class SchemaBuilder {
 		JsonObject schemaJsonObject = _jsonFinder.getDescendantJsonObject(
 			jsonFinderPath, oasJsonObject);
 
-		schemaName = _stripSchemaName(
-			schemaJsonObject.getString(OASConstants.REF));
-
-		return schemaName;
+		return _stripSchemaName(schemaJsonObject.getString(OASConstants.REF));
 	}
 
 	public Schema getEntitySchema(String entityName, JsonObject oasJsonObject) {

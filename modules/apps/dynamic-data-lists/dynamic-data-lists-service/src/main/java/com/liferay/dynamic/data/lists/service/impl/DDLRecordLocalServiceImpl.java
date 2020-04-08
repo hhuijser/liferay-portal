@@ -829,9 +829,7 @@ public class DDLRecordLocalServiceImpl extends DDLRecordLocalServiceBaseImpl {
 
 		record.setVersion(version);
 
-		record = ddlRecordPersistence.update(record);
-
-		return record;
+		return ddlRecordPersistence.update(record);
 	}
 
 	/**

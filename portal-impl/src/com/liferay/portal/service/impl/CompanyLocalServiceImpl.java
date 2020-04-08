@@ -760,9 +760,7 @@ public class CompanyLocalServiceImpl extends CompanyLocalServiceBaseImpl {
 
 		// Virtual host
 
-		company = updateVirtualHostname(companyId, virtualHostname);
-
-		return company;
+		return updateVirtualHostname(companyId, virtualHostname);
 	}
 
 	/**

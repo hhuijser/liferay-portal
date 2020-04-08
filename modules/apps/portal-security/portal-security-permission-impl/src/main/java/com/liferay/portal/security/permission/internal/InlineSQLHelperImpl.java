@@ -589,7 +589,7 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 
 		int scope = ResourceConstants.SCOPE_INDIVIDUAL;
 
-		resourcePermissionSQL = StringUtil.replace(
+		return StringUtil.replace(
 			resourcePermissionSQL,
 			new String[] {
 				"[$CLASS_NAME$]", "[$COMPANY_ID$]",
@@ -599,8 +599,6 @@ public class InlineSQLHelperImpl implements InlineSQLHelper {
 				className, String.valueOf(permissionChecker.getCompanyId()),
 				String.valueOf(scope), roleIdsOrOwnerIdSQL
 			});
-
-		return resourcePermissionSQL;
 	}
 
 	private DSLQuery _insertResourcePermissionQuery(

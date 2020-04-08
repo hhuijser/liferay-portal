@@ -202,17 +202,14 @@ public class TOCTOUTest extends BaseClientTestCase {
 						oAuth2AScopeAliasesLocalServiceServiceReference);
 
 			try {
-				oAuth2Application =
-					oAuth2ApplicationLocalService.updateScopeAliases(
-						oAuth2Application.getUserId(),
-						oAuth2Application.getUserName(),
-						oAuth2Application.getOAuth2ApplicationId(),
-						oAuth2ApplicationScopeAliasesLocalService.
-							getScopeAliasesList(
-								oAuth2Application.
-									getOAuth2ApplicationScopeAliasesId()));
-
-				return oAuth2Application;
+				return oAuth2ApplicationLocalService.updateScopeAliases(
+					oAuth2Application.getUserId(),
+					oAuth2Application.getUserName(),
+					oAuth2Application.getOAuth2ApplicationId(),
+					oAuth2ApplicationScopeAliasesLocalService.
+						getScopeAliasesList(
+							oAuth2Application.
+								getOAuth2ApplicationScopeAliasesId()));
 			}
 			finally {
 				bundleContext.ungetService(

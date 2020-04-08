@@ -35,9 +35,7 @@ public class SessionKeysCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _fixSessionKeys(content, getPatterns());
-
-		return content;
+		return _fixSessionKeys(content, getPatterns());
 	}
 
 	protected List<Pattern> getPatterns() {

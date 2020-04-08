@@ -1223,9 +1223,7 @@ public class UsersAdminImpl implements UsersAdmin {
 		Role role = RoleLocalServiceUtil.getRole(
 			user.getCompanyId(), RoleConstants.USER);
 
-		roleIds = ArrayUtil.remove(roleIds, role.getRoleId());
-
-		return roleIds;
+		return ArrayUtil.remove(roleIds, role.getRoleId());
 	}
 
 	@Override

@@ -156,9 +156,7 @@ public class OrphanPortletsDisplayContext {
 				httpServletRequest.getServletContext(),
 				themeDisplay.getLocale(), orderByAsc);
 
-		orphanPortlets = ListUtil.sort(orphanPortlets, portletTitleComparator);
-
-		return orphanPortlets;
+		return ListUtil.sort(orphanPortlets, portletTitleComparator);
 	}
 
 	public SearchContainer getOrphanPortletsSearchContainer() {

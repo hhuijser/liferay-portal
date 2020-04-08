@@ -128,9 +128,7 @@ public class ShindigUtil {
 				basicSecurityToken);
 		}
 
-		securityToken = URLCodec.encodeURL(securityToken);
-
-		return securityToken;
+		return URLCodec.encodeURL(securityToken);
 	}
 
 	public static String getColumnUserPrefs(

@@ -30,9 +30,7 @@ public class JavaBooleanUsageCheck extends BaseFileCheck {
 	protected String doProcess(
 		String fileName, String absolutePath, String content) {
 
-		content = _fixIncorrectBooleanUse(content, "setAttribute");
-
-		return content;
+		return _fixIncorrectBooleanUse(content, "setAttribute");
 	}
 
 	private String _fixIncorrectBooleanUse(String content, String methodName) {

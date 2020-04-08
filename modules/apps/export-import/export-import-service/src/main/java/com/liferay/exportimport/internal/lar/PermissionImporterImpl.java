@@ -193,9 +193,7 @@ public class PermissionImporterImpl implements PermissionImporter {
 					userId, groupId, name, description, new ServiceContext());
 			}
 
-			role = _roleLocalService.getTeamRole(companyId, team.getTeamId());
-
-			return role;
+			return _roleLocalService.getTeamRole(companyId, team.getTeamId());
 		}
 
 		String uuid = roleElement.attributeValue("uuid");
@@ -229,11 +227,9 @@ public class PermissionImporterImpl implements PermissionImporter {
 
 		serviceContext.setUuid(uuid);
 
-		role = _roleLocalService.addRole(
+		return _roleLocalService.addRole(
 			userId, null, 0, name, titleMap, descriptionMap, type, subtype,
 			serviceContext);
-
-		return role;
 	}
 
 	private List<String> _getActions(Element element) {

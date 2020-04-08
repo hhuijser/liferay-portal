@@ -114,11 +114,9 @@ public class JavaTermOrderCheck extends BaseJavaTermCheck {
 					classContent, "\n" + previousJavaTerm.getContent(),
 					"\n" + javaTerm.getContent());
 
-				newClassContent = StringUtil.replaceLast(
+				return StringUtil.replaceLast(
 					newClassContent, "\n" + javaTerm.getContent(),
 					"\n" + previousJavaTerm.getContent());
-
-				return newClassContent;
 			}
 
 			previousJavaTerm = javaTerm;

@@ -165,10 +165,8 @@ public class ModulesJUnitBatchTestClassGroup extends JUnitBatchTestClassGroup {
 		String appTitle = appBndProperties.getProperty(
 			"Liferay-Releng-App-Title");
 
-		appTitle = appTitle.replace(
+		return appTitle.replace(
 			"${liferay.releng.app.title.prefix}", _getAppTitlePrefix());
-
-		return appTitle;
 	}
 
 	private String _getAppTitlePrefix() {

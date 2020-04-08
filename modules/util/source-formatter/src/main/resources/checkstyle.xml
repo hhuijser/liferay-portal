@@ -447,7 +447,7 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.RedundantBranchingStatementCheck">
 			<message key="branching.statement.redundant" value="Redundant ''{0}'' statement" />
 		</module>
-		<module name="com.liferay.source.formatter.checkstyle.checks.RedundantVariableDeclarationCheck">
+		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
 			<message key="variable.declaration.redundant" value="No need to declare variable ''{0}'' because it is returned right after" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ReferenceAnnotationCheck">

@@ -20,7 +20,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 /**
  * @author Hugo Huijser
  */
-public class RedundantVariableDeclarationCheck extends BaseCheck {
+public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 
 	@Override
 	public int[] getDefaultTokens() {

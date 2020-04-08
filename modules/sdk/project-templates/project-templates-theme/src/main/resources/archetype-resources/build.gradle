@@ -15,13 +15,18 @@ apply plugin: "com.liferay.portal.tools.theme.builder"
 dependencies {
 #if (${liferayVersion.startsWith("7.0")})
 	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "3.0.0"
+	
+	parentThemes group: "com.liferay", name: "com.liferay.frontend.theme.styled", version: "3.0.5"
+	parentThemes group: "com.liferay", name: "com.liferay.frontend.theme.unstyled", version: "3.0.6"
+
+	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common", version: "3.0.1"
 #else
 	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "@com.liferay.css.builder.version@"
-#end
+	
 	parentThemes group: "com.liferay", name: "com.liferay.frontend.theme.styled"
 	parentThemes group: "com.liferay", name: "com.liferay.frontend.theme.unstyled"
 
 	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common"
-
+#end
 	themeBuilder group: "com.liferay", name: "com.liferay.portal.tools.theme.builder", version: "@com.liferay.portal.tools.theme.builder.version@"
 }

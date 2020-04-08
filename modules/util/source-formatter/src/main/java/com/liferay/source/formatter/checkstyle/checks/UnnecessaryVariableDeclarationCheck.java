@@ -69,13 +69,15 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 
 			if (variableName.equals(firstChildDetailAST.getText())) {
 				log(
-					detailAST, _MSG_REDUNDANT_VARIABLE_DECLARATION,
+					detailAST,
+					_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN,
 					variableName);
 			}
 		}
 	}
 
-	private static final String _MSG_REDUNDANT_VARIABLE_DECLARATION =
-		"variable.declaration.redundant";
+	private static final String
+		_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN =
+			"variable.declaration.unnecessary.before.return";
 
 }

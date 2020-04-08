@@ -85,6 +85,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
 			String line = null;
+			String newComment = "";
 			String previousComment = "";
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
@@ -107,7 +108,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 					continue;
 				}
 
-				sb.append(matcher.group(1));
+				String indent = matcher.group(1);
 
 				if (comment.startsWith("Ignore") ||
 					comment.startsWith("Ignoring") ||
@@ -122,11 +123,11 @@ public class PoshiStylingCheck extends BaseFileCheck {
 					(comment.endsWith(StringPool.COMMA) &&
 					 !comment.contains(" = "))) {
 
-					sb.append(StringPool.SPACE);
-
 					String trimmedComment = comment.trim();
 
-					if (Validator.isNull(previousComment)) {
+					if (!previousComment.startsWith(
+							StringPool.DOUBLE_SLASH + StringPool.SPACE)) {
+
 						String upperCaseFirstChar = StringUtil.toUpperCase(
 							trimmedComment.substring(0, 1));
 
@@ -134,16 +135,29 @@ public class PoshiStylingCheck extends BaseFileCheck {
 							upperCaseFirstChar + trimmedComment.substring(1);
 					}
 
-					sb.append(trimmedComment);
+					if (previousComment.matches("//[^ ].+")) {
+						sb.append("\n");
+					}
 
-					previousComment = trimmedComment;
+					newComment =
+						StringPool.DOUBLE_SLASH + StringPool.SPACE +
+							trimmedComment;
 				}
 				else {
-					sb.append(comment);
-					previousComment = "";
+					if (previousComment.startsWith(
+							StringPool.DOUBLE_SLASH + StringPool.SPACE)) {
+
+						sb.append("\n");
+					}
+
+					newComment = StringPool.DOUBLE_SLASH + comment;
 				}
 
+				sb.append(indent);
+				sb.append(newComment);
+
 				sb.append("\n");
+				previousComment = newComment;
 			}
 		}
 
@@ -159,6 +173,6 @@ public class PoshiStylingCheck extends BaseFileCheck {
 	private static final Pattern _multiLineStringPattern = Pattern.compile(
 		"'''.*?'''", Pattern.DOTALL);
 	private static final Pattern _singleLineCommentPattern = Pattern.compile(
-		"^([ \t]*//) *(\t*.*)");
+		"^([ \t]*)// *(\t*.*)");
 
 }

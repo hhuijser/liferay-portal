@@ -12,33 +12,6 @@
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-#if (${liferayVersion.startsWith("7.0")})
-		<portal.kernel.version>2.6.0</portal.kernel.version>
-		<portlet.api.version>2.0</portlet.api.version>
-		<servlet.api.version>3.0.1</servlet.api.version>
-#elseif (${liferayVersion.startsWith("7.1")})
-		<portal.kernel.version>3.0.0</portal.kernel.version>
-#if (${framework.equals("springportletmvc")})
-		<portlet.api.version>2.0</portlet.api.version>
-#else
-		<portlet.api.version>3.0.0</portlet.api.version>
-#end
-		<servlet.api.version>3.1.0</servlet.api.version>
-#elseif (${liferayVersion.startsWith("7.2")} || ${liferayVersion.startsWith("7.3")})
-		<portal.kernel.version>4.4.0</portal.kernel.version>
-#if (${framework.equals("springportletmvc")})
-		<portlet.api.version>2.0</portlet.api.version>
-#else
-		<portlet.api.version>3.0.0</portlet.api.version>
-#end
-		<servlet.api.version>3.1.0</servlet.api.version>
-#if (${framework.equals("springportletmvc")})
-		<portlet.api.version>2.0</portlet.api.version>
-#else
-		<portlet.api.version>3.0.0</portlet.api.version>
-#end
-		<servlet.api.version>3.1.0</servlet.api.version>
-#end
 #if (${frameworkDependencies.equals("embedded")})
 		<spring.scope>compile</spring.scope>
 #else
@@ -55,7 +28,6 @@
 		<dependency>
 			<groupId>com.liferay.portal</groupId>
 			<artifactId>com.liferay.portal.kernel</artifactId>
-			<version>${portal.kernel.version}</version>
 			<scope>provided</scope>
 		</dependency>
 #if (${frameworkDependencies.equals("provided")})
@@ -74,13 +46,14 @@
 		<dependency>
 			<groupId>javax.portlet</groupId>
 			<artifactId>portlet-api</artifactId>
-			<version>${portlet.api.version}</version>
+#if (${framework.equals("springportletmvc")})
+			<version>2.0</version>
+#end
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet.api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -120,13 +93,11 @@
 		<dependency>
 			<groupId>org.osgi</groupId>
 			<artifactId>org.osgi.service.component.annotations</artifactId>
-			<version>1.3.0</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.25</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>

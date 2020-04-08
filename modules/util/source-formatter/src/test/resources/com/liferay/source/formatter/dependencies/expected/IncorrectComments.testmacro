@@ -9,10 +9,12 @@ definition {
 			pageTemplateName = "${pageTemplateName}",
 			sitePageType = "${sitePageType}");
 
+		//Button.clickAdd();
+
 		// This is a comment that ends with COMMA,
 		// add the comment for better readability.
 
-		SelectFrame(locator1 = "IFrame#DIALOG");
+		//SelectFrame(locator1 = "IFrame#DIALOG");
 
 		SitePages._addPageToNavigationMenu(
 			assertCheckboxMissing = "${assertCheckboxMissing}",

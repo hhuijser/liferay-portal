@@ -29,6 +29,8 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
+
 		DetailAST modifiersDetailAST = detailAST.findFirstToken(
 			TokenTypes.MODIFIERS);
 
@@ -36,15 +38,24 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 			return;
 		}
 
-		DetailAST nextSiblingDetailAST = detailAST.getNextSibling();
+		DetailAST semiDetailAST = detailAST.getNextSibling();
 
-		if ((nextSiblingDetailAST == null) ||
-			(nextSiblingDetailAST.getType() != TokenTypes.SEMI)) {
+		if ((semiDetailAST == null) ||
+			(semiDetailAST.getType() != TokenTypes.SEMI)) {
 
 			return;
 		}
 
-		nextSiblingDetailAST = nextSiblingDetailAST.getNextSibling();
+		String variableName = nameDetailAST.getText();
+
+		_checkUnnecessaryStatementBeforeReturn(
+			detailAST, semiDetailAST, variableName);
+	}
+
+	private void _checkUnnecessaryStatementBeforeReturn(
+		DetailAST detailAST, DetailAST semiDetailAST, String variableName) {
+
+		DetailAST nextSiblingDetailAST = semiDetailAST.getNextSibling();
 
 		if ((nextSiblingDetailAST == null) ||
 			(nextSiblingDetailAST.getType() != TokenTypes.LITERAL_RETURN) ||
@@ -61,18 +72,12 @@ public class UnnecessaryVariableDeclarationCheck extends BaseCheck {
 
 		firstChildDetailAST = firstChildDetailAST.getFirstChild();
 
-		if (firstChildDetailAST.getType() == TokenTypes.IDENT) {
-			DetailAST nameDetailAST = detailAST.findFirstToken(
-				TokenTypes.IDENT);
+		if ((firstChildDetailAST.getType() == TokenTypes.IDENT) &&
+			variableName.equals(firstChildDetailAST.getText())) {
 
-			String variableName = nameDetailAST.getText();
-
-			if (variableName.equals(firstChildDetailAST.getText())) {
-				log(
-					detailAST,
-					_MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN,
-					variableName);
-			}
+			log(
+				detailAST, _MSG_UNNECESSARY_VARIABLE_DECLARATION_BEFORE_RETURN,
+				variableName);
 		}
 	}
 

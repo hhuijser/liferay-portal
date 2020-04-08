@@ -1,18 +1,5 @@
-buildscript {
-	repositories {
-		maven {
-			url "https://repository-cdn.liferay.com/nexus/content/groups/public"
-		}
-	}
-
-	dependencies {
-		classpath group: "com.liferay", name: "com.liferay.gradle.plugins.css.builder", version: "@com.liferay.gradle.plugins.css.builder.version@"
-	}
-}
-
-apply plugin: "com.liferay.css.builder"
-
 dependencies {
+#if (${dependencyManagementEnabled} == "true")
 #if (${framework.equals("portletmvc4spring")} && ${frameworkDependencies.equals("embedded")})
 	compile group: "com.liferay.portletmvc4spring", name: "com.liferay.portletmvc4spring.framework"
 #end
@@ -86,9 +73,118 @@ dependencies {
 	compileOnly group: "org.springframework", name: "spring-webmvc-portlet"
 #end
 #end
+#elseif (${dependencyManagementEnabled} == "false")
+#if (${framework.equals("portletmvc4spring")} && ${frameworkDependencies.equals("embedded")})
+	compile group: "com.liferay.portletmvc4spring", name: "com.liferay.portletmvc4spring.framework", version: "5.2.0"
+#end
+#if (${framework.equals("portletmvc4spring")})
+	compile group: "com.liferay.portletmvc4spring", name: "com.liferay.portletmvc4spring.security", version: "5.2.0"
+#end
+#if (${framework.equals("portletmvc4spring")} && ${frameworkDependencies.equals("provided")})
+	compile group: "com.liferay.portletmvc4spring", name: "com.liferay.portletmvc4spring.thin", version: "5.2.2", transitive: false
+#end
+#if (${framework.equals("springportletmvc")} && ${frameworkDependencies.equals("provided")})
+	compile group: "com.liferay.portletmvc4spring", name: "com.liferay.portletmvc4spring.thin", version: "4.1.9", transitive: false
+#end
+#if (${liferayVersion.startsWith("7.0")} || ${liferayVersion.startsWith("7.1")})
+	compile group: "javax.validation", name: "validation-api", version: "2.0.1.Final"
+#end
+	compile(group: "org.hibernate.validator", name: "hibernate-validator", version: "6.0.14.Final") {
+		exclude group: "javax.validation", module: "validation-api"
+	}
+#if (${framework.equals("portletmvc4spring")} && ${frameworkDependencies.equals("embedded")})
+	compile group: "org.springframework", name: "spring-aop", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-beans", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-context", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-core", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-expression", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-jcl", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-web", version: "5.2.2.RELEASE"
+	compile group: "org.springframework", name: "spring-webmvc", version: "5.2.2.RELEASE"
+#elseif (${framework.equals("springportletmvc")} && ${frameworkDependencies.equals("embedded")})
+	compile group: "org.springframework", name: "spring-aop", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-beans", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-core", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-expression", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-web", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-webmvc", version: "4.1.9.RELEASE"
+	compile group: "org.springframework", name: "spring-webmvc-portlet", version: "4.1.9.RELEASE"
+#end
+#if (${framework.equals("portletmvc4spring")})
+	compile group: "org.springframework.security", name: "spring-security-config", version: "5.2.1.RELEASE"
+	compile group: "org.springframework.security", name: "spring-security-core", version: "5.2.1.RELEASE"
+	compile group: "org.springframework.security", name: "spring-security-web", version: "5.2.1.RELEASE"
+#end
+#if (${viewType.equals("thymeleaf")})
+	compile(group: "org.thymeleaf", name: "thymeleaf", version: "3.0.11.RELEASE") {
+		exclude group: "ognl", module: "ognl"
+		exclude group: "org.slf4j", module: "slf4j-api"
+	}
+#end
+#if (${viewType.equals("thymeleaf")} && ${framework.equals("portletmvc4spring")})
+	compile(group: "org.thymeleaf", name: "thymeleaf-spring5", version: "3.0.11.RELEASE") {
+		exclude group: "org.slf4j", module: "slf4j-api"
+	}
+#elseif (${viewType.equals("thymeleaf")} && ${framework.equals("springportletmvc")})
+	compile(group: "org.thymeleaf", name: "thymeleaf-spring4", version: "3.0.11.RELEASE") {
+		exclude group: "org.slf4j", module: "slf4j-api"
+	}
+#end
+#if (${liferayVersion.startsWith("7.0")})
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "2.6.0"
+#elseif (${liferayVersion.startsWith("7.1")})
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "3.0.0"
+#elseif (${liferayVersion.startsWith("7.2")} || ${liferayVersion.startsWith("7.3")})
+	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel", version: "4.4.0"
+#end
+#if (${framework.equals("portletmvc4spring")} && ${frameworkDependencies.equals("provided")})
+	compileOnly group: "com.liferay.portletmvc4spring", name: "com.liferay.portletmvc4spring.framework", version: "5.2.0"
+#end
+#if (${liferayVersion.startsWith("7.0")} || ${framework.equals("springportletmvc")})
+	compileOnly group: "javax.portlet", name: "portlet-api", version: "2.0"
+#else
+	compileOnly group: "javax.portlet", name: "portlet-api", version: "3.0.0"
+#end
+#if (${liferayVersion.startsWith("7.0")})
+	compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "3.0.1"
+#else
+	compileOnly group: "javax.servlet", name: "javax.servlet-api", version: "3.1.0"
+#end
+#if (${liferayVersion.startsWith("7.2")} || ${liferayVersion.startsWith("7.3")})
+	compileOnly group: "javax.validation", name: "validation-api", version: "2.0.1.Final"
+#end
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations", version: "1.3.0"
+	compileOnly group: "org.slf4j", name: "slf4j-api", version: "1.7.25"
+#if (${framework.equals("portletmvc4spring")} && ${frameworkDependencies.equqls("provided")})
+	compileOnly group: "org.springframework", name: "spring-aop", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-beans", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-context", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-core", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-expression", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-jcl", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-web", version: "5.2.2.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-webmvc", version: "5.2.2.RELEASE"
+#elseif (${framework.equals("springportletmvc")} && ${frameworkDependencies.equals("provided")})
+	compileOnly group: "org.springframework", name: "spring-aop", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-beans", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-context", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-core", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-expression", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-web", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-webmvc", version: "4.1.9.RELEASE"
+	compileOnly group: "org.springframework", name: "spring-webmvc-portlet", version: "4.1.9.RELEASE"
+#end
+#end
 	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "@com.liferay.css.builder.version@"
 
-	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common"
+#if (${liferayVersion.startsWith("7.0")})
+	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common", version: "2.0.3"
+#elseif (${liferayVersion.startsWith("7.1")})
+	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common", version: "3.0.1"
+#elseif (${liferayVersion.startsWith("7.2")} || ${liferayVersion.startsWith("7.3")})
+	portalCommonCSS group: "com.liferay", name: "com.liferay.frontend.css.common", version: "4.0.0"
+#end
 }
 
 war {

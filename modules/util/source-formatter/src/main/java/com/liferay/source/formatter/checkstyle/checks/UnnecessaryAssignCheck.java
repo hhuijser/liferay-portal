@@ -96,10 +96,10 @@ public class UnnecessaryAssignCheck extends BaseCheck {
 		if (ancestorDetailAST.getLineNo() <=
 				variableDefinitionDetailAST.getLineNo()) {
 
-			log(detailAST, _MSG_UNNECESSARY_ASSIGN, variableName);
+			log(detailAST, _MSG_UNNECESSARY_ASSIGN_UNUSED, variableName);
 		}
 	}
 
-	private static final String _MSG_UNNECESSARY_ASSIGN = "assign.unnecessary";
+	private static final String _MSG_UNNECESSARY_ASSIGN_UNUSED = "assign.unnecessary.unused";
 
 }

@@ -447,9 +447,6 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.RedundantBranchingStatementCheck">
 			<message key="branching.statement.redundant" value="Redundant ''{0}'' statement" />
 		</module>
-		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
-			<message key="variable.declaration.redundant" value="No need to declare variable ''{0}'' because it is returned right after" />
-		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ReferenceAnnotationCheck">
 			<message key="default.unbind.redundant" value="No need to specify default ''unbind'' method. See https://osgi.org/javadoc/r4v43/cmpn/org/osgi/service/component/annotations/Reference.html#unbind()" />
 			<message key="reference.move" value="Move @Reference from method ''{0}'' to field ''{1}''" />
@@ -504,6 +501,9 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">
 			<message key="assign.unnecessary" value="No need to assign call to variable ''{0}'', because ''{0}'' is not used after the call" />
+		</module>
+		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryVariableDeclarationCheck">
+			<message key="variable.declaration.redundant" value="No need to declare variable ''{0}'' because it is returned right after" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnprocessedExceptionCheck">
 			<message key="exception.unprocessed" value="Unprocessed exception ''{0}'', see LPS-36174" />

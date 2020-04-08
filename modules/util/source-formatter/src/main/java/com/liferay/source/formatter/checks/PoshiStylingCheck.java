@@ -110,7 +110,6 @@ public class PoshiStylingCheck extends BaseFileCheck {
 				sb.append(matcher.group(1));
 
 				if (comment.startsWith("Ignore") ||
-					comment.startsWith("Ignored") ||
 					comment.startsWith("Ignoring") ||
 					comment.startsWith("Quarantine") ||
 					comment.startsWith("TODO") ||

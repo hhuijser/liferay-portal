@@ -86,6 +86,8 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 		}
 
 		DetailAST firstNextVariableCallerDetailAST = null;
+		DetailAST secondNextVariableCallerDetailAST = null;
+
 		int endLineNumber = getEndLineNumber(detailAST);
 
 		for (int i = 0; i < variableCallerDetailASTList.size(); i++) {
@@ -98,7 +100,21 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 
 			firstNextVariableCallerDetailAST = variableCallerDetailAST;
 
+			if (i < (variableCallerDetailASTList.size() - 1)) {
+				secondNextVariableCallerDetailAST =
+					variableCallerDetailASTList.get(i + 1);
+			}
+
 			break;
+		}
+
+		if (firstNextVariableCallerDetailAST != null) {
+			checkUnnecessaryStatementBeforeReassign(
+				detailAST, firstNextVariableCallerDetailAST,
+				secondNextVariableCallerDetailAST, slistDetailAST, variableName,
+				_MSG_UNNECESSARY_ASSIGN_BEFORE_REASSIGN);
+
+			return;
 		}
 
 		DetailAST lastChildDetailAST = detailAST.getLastChild();
@@ -190,6 +206,9 @@ public class UnnecessaryAssignCheck extends BaseUnnecessaryStatementCheck {
 			}
 		}
 	}
+
+	private static final String _MSG_UNNECESSARY_ASSIGN_BEFORE_REASSIGN =
+		"assign.unnecessary.before.reassign";
 
 	private static final String _MSG_UNNECESSARY_ASSIGN_BEFORE_RETURN =
 		"assign.unnecessary.before.return";

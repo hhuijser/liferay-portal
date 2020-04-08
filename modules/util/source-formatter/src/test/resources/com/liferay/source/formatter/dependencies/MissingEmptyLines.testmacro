@@ -11,7 +11,7 @@ definition {
 	test AddDefaultExperienceWithBannerCenter {
 		//Call Navigator.openWithAppendToBaseURL()
 
-		//	Paremater: urlAppend
+		//	Parameter: urlAppend
 		Navigator.openWithAppendToBaseURL(urlAppend = "web/test-site-name/experience-content-page");
 		// Call ContentPages.clickPencil()
 		ContentPages.clickPencil();

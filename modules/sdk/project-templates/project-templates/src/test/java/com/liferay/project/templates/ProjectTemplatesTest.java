@@ -1505,9 +1505,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	private void _configureExecutePackageManagerTask(File projectDir)
 		throws Exception {
 
-		File buildGradleFile = testContains(
-			projectDir, "build.gradle", "com.liferay.gradle.plugins",
-			"com.liferay.plugin");
+		File buildGradleFile = new File(projectDir, "build.gradle");
 
 		StringBuilder sb = new StringBuilder();
 

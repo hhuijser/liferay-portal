@@ -1083,7 +1083,7 @@ public interface BaseProjectTemplatesTestCase {
 
 			buildProjects(
 				gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				mavenWorkspaceDir, gradleOutputDir, mavenOutputDir,
 				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 		}
 	}

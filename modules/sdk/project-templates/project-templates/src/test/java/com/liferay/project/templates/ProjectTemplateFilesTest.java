@@ -701,12 +701,10 @@ public class ProjectTemplateFilesTest {
 						dependencyChildElements, 3, "scope", "provided");
 				}
 			}
-			else {
-				if (buildGradleDependency.provided) {
-					XMLTestUtil.testXmlElement(
-						pomXmlPath, dependencyElementString,
-						dependencyChildElements, 2, "scope", "provided");
-				}
+			else if (buildGradleDependency.provided) {
+				XMLTestUtil.testXmlElement(
+					pomXmlPath, dependencyElementString,
+					dependencyChildElements, 2, "scope", "provided");
 			}
 		}
 

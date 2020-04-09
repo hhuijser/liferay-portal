@@ -85,14 +85,14 @@ public class PoshiStylingCheck extends BaseFileCheck {
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
 			String line = null;
-			String newComment = "";
-			String previousComment = "";
+			String newComment = StringPool.BLANK;
+			String previousComment = StringPool.BLANK;
 
 			while ((line = unsyncBufferedReader.readLine()) != null) {
 				Matcher matcher = _singleLineCommentPattern.matcher(line);
 
 				if (!matcher.find()) {
-					previousComment = "";
+					previousComment = StringPool.BLANK;
 
 					sb.append(line);
 					sb.append("\n");
@@ -103,7 +103,7 @@ public class PoshiStylingCheck extends BaseFileCheck {
 				String comment = matcher.group(2);
 
 				if (Validator.isNull(comment)) {
-					previousComment = "";
+					previousComment = StringPool.BLANK;
 
 					continue;
 				}

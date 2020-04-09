@@ -346,6 +346,7 @@
 		<check name="JavaHelperUtilCheck">
 			<property name="enabled" value="false" />
 		</check>
+		<check name="JavaIgnoreAnnotationCheck" />
 		<check name="JavaIllegalImportsCheck">
 			<property name="enforceJavaUtilFunctionImports" value="true" />
 		</check>

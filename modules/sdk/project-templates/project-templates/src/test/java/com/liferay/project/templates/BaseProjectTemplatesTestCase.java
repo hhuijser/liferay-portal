@@ -66,9 +66,11 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import net.diibadaaba.zipdiff.DifferenceCalculator;
 import net.diibadaaba.zipdiff.Differences;
@@ -162,7 +164,6 @@ public interface BaseProjectTemplatesTestCase {
 	public static final boolean TEST_DEBUG_BUNDLE_DIFFS = Boolean.getBoolean(
 		"test.debug.bundle.diffs");
 
-	public static final XPathExpression _pomXmlNpmInstallXPathExpression = null;
 	public static final Pattern antBndPluginVersionPattern = Pattern.compile(
 		".*com\\.liferay\\.ant\\.bnd[:-]([0-9]+\\.[0-9]+\\.[0-9]+).*",
 		Pattern.DOTALL | Pattern.MULTILINE);
@@ -646,8 +647,15 @@ public interface BaseProjectTemplatesTestCase {
 			pomXmlFile,
 			document -> {
 				try {
+					XPathFactory xPathFactory = XPathFactory.newInstance();
+
+					XPath xPath = xPathFactory.newXPath();
+
+					XPathExpression pomXmlNpmInstallXPathExpression = xPath.compile(
+						"//id[contains(text(),'npm-install')]/parent::*");
+
 					NodeList nodeList =
-						(NodeList)_pomXmlNpmInstallXPathExpression.evaluate(
+						(NodeList)pomXmlNpmInstallXPathExpression.evaluate(
 							document, XPathConstants.NODESET);
 
 					Node executionNode = nodeList.item(0);
@@ -1085,7 +1093,7 @@ public interface BaseProjectTemplatesTestCase {
 
 			buildProjects(
 				gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenWorkspaceDir, gradleOutputDir, mavenOutputDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
 				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 		}
 	}

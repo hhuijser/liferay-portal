@@ -11,15 +11,14 @@
 			}
 		}
 	},
+
+	"preset": "liferay-npm-bundler-preset-liferay-dev",
+#else
+	"preset": "liferay-npm-bundler-preset-standard",
 #end
 #if (${buildType} != "gradle")
-	"output": "target/classes/META-INF/resources",
+	"output": "target/classes/META-INF/resources"
 #else
-	"output": "build/resources/main/META-INF/resources",
-#end
-#if (${liferayVersion.startsWith("7.2")})
-	"preset": "liferay-npm-bundler-preset-liferay-dev"
-#else
-	"preset": "liferay-npm-bundler-preset-standard"
+	"output": "build/resources/main/META-INF/resources"
 #end
 }

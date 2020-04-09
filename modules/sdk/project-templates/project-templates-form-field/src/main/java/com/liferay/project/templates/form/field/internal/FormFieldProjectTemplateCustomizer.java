@@ -47,9 +47,9 @@ public class FormFieldProjectTemplateCustomizer
 
 		String liferayVersion = projectTemplatesArgs.getLiferayVersion();
 
-		String name = projectTemplatesArgs.getName();
-
 		List<String> fileNames = new ArrayList<>();
+
+		String name = projectTemplatesArgs.getName();
 
 		if (liferayVersion.startsWith("7.0")) {
 			fileNames.add(".babelrc");

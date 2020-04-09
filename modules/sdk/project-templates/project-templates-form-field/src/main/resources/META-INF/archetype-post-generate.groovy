@@ -49,7 +49,8 @@ if (liferayVersion.startsWith("7.2")) {
 	String className = properties.get("className")
 
 	fileNames.add("src/main/java/"+ directory + "form/field/" + className + "DDMFormFieldRenderer.java")
-}else {
+}
+else {
 	fileNames.add("src/main/resources/META-INF/resources/" + artifactId + "Register.soy")
 }
 

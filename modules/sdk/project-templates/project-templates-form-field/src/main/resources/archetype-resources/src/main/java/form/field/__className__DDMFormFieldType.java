@@ -22,7 +22,11 @@ import org.osgi.service.component.annotations.Reference;
 		"ddm.form.field.type.display.order:Integer=9",
 #elseif (${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")})
 		"ddm.form.field.type.description=${artifactId}-description",
+#if (${liferayVersion.startsWith("7.1")})
 		"ddm.form.field.type.display.order:Integer=10",
+#elseif (${liferayVersion.startsWith("7.2")})
+		"ddm.form.field.type.display.order:Integer=13",
+#end
 		"ddm.form.field.type.group=customized",
 #end
 		"ddm.form.field.type.icon=text",

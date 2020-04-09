@@ -1,8 +1,8 @@
 #if (${liferayVersion.startsWith("7.2")})
 import 'dynamic-data-mapping-form-field-type/FieldBase/FieldBase.es';
 import './${artifactId}Register.soy.js';
-import {Config} from 'metal-state';
 import templates from './${artifactId}.soy.js';
+import {Config} from 'metal-state';
 #end
 import Component from 'metal-component';
 import Soy from 'metal-soy';
@@ -15,7 +15,7 @@ import templates from './${artifactId}.soy';
  */
 class ${className} extends Component {}
 
-//Register component
+// Register component
 Soy.register(${className}, templates, 'render');
 
 if (!window.DDM${className}) {

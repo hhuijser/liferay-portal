@@ -22,6 +22,7 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.SetUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ArgumentsUtil;
 import com.liferay.portal.tools.GitException;
 import com.liferay.portal.tools.GitUtil;
@@ -139,7 +140,16 @@ public class SourceFormatter {
 
 			sourceFormatterArgs.setFormatLocalChanges(formatLocalChanges);
 
-			if (formatCurrentBranch) {
+			String gitId = ArgumentsUtil.getString(arguments, "git.id", null);
+
+			if (Validator.isNotNull(gitId)) {
+				sourceFormatterArgs.setFormatCurrentBranch(true);
+
+				sourceFormatterArgs.addRecentChangesFileNames(
+					GitUtil.getModifiedFileNamesSinceGitId(baseDirName, gitId),
+					baseDirName);
+			}
+			else if (formatCurrentBranch) {
 				String gitWorkingBranchName = ArgumentsUtil.getString(
 					arguments, "git.working.branch.name",
 					SourceFormatterArgs.GIT_WORKING_BRANCH_NAME);

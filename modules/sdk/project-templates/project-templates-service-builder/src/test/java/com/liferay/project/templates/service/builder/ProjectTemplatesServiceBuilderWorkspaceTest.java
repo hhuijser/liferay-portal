@@ -296,45 +296,47 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 			serviceProjectName + "/build/libs/" + packageName +
 				".service-1.0.0.jar");
 
-		_testChangePortletModelHintsXml(
-			mavenProjectDir, serviceProjectName,
-			new Callable<Void>() {
+		if (!name.contains("sample")) {
+			_testChangePortletModelHintsXml(
+				mavenProjectDir, serviceProjectName,
+				new Callable<Void>() {
 
-				@Override
-				public Void call() throws Exception {
-					executeMaven(
-						new File(mavenProjectDir, serviceProjectName),
-						mavenExecutor, MAVEN_GOAL_BUILD_SERVICE);
+					@Override
+					public Void call() throws Exception {
+						executeMaven(
+							new File(mavenProjectDir, serviceProjectName),
+							mavenExecutor, MAVEN_GOAL_BUILD_SERVICE);
 
-					return null;
-				}
+						return null;
+					}
 
-			});
+				});
 
-		File gradleServicePropertiesFile = new File(
-			gradleProjectDir,
-			serviceProjectName + "/src/main/resources/service.properties");
+			File gradleServicePropertiesFile = new File(
+				gradleProjectDir,
+				serviceProjectName + "/src/main/resources/service.properties");
 
-		File mavenServicePropertiesFile = new File(
-			mavenProjectDir,
-			serviceProjectName + "/src/main/resources/service.properties");
+			File mavenServicePropertiesFile = new File(
+				mavenProjectDir,
+				serviceProjectName + "/src/main/resources/service.properties");
 
-		Files.copy(
-			gradleServicePropertiesFile.toPath(),
-			mavenServicePropertiesFile.toPath(),
-			StandardCopyOption.REPLACE_EXISTING);
+			Files.copy(
+				gradleServicePropertiesFile.toPath(),
+				mavenServicePropertiesFile.toPath(),
+				StandardCopyOption.REPLACE_EXISTING);
 
-		executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
+			executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
 
-		File mavenApiBundleFile = testExists(
-			mavenProjectDir,
-			apiProjectName + "/target/" + name + "-api-1.0.0.jar");
-		File mavenServiceBundleFile = testExists(
-			mavenProjectDir,
-			serviceProjectName + "/target/" + name + "-service-1.0.0.jar");
+			File mavenApiBundleFile = testExists(
+				mavenProjectDir,
+				apiProjectName + "/target/" + name + "-api-1.0.0.jar");
+			File mavenServiceBundleFile = testExists(
+				mavenProjectDir,
+				serviceProjectName + "/target/" + name + "-service-1.0.0.jar");
 
-		testBundlesDiff(gradleApiBundleFile, mavenApiBundleFile);
-		testBundlesDiff(gradleServiceBundleFile, mavenServiceBundleFile);
+			testBundlesDiff(gradleApiBundleFile, mavenApiBundleFile);
+			testBundlesDiff(gradleServiceBundleFile, mavenServiceBundleFile);
+		}
 	}
 
 	private void _testChangePortletModelHintsXml(

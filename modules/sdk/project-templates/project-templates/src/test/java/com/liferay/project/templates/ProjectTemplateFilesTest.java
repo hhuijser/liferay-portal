@@ -14,8 +14,6 @@
 
 package com.liferay.project.templates;
 
-import static org.junit.Assume.assumeTrue;
-
 import aQute.bnd.osgi.Constants;
 import aQute.bnd.version.VersionRange;
 
@@ -692,10 +690,23 @@ public class ProjectTemplateFilesTest {
 				pomXmlPath, dependencyElementString, dependencyChildElements, 1,
 				"artifactId", buildGradleDependency.name);
 
-			if (buildGradleDependency.provided) {
+			if (buildGradleDependency.version != null) {
 				XMLTestUtil.testXmlElement(
-					pomXmlPath, dependencyElementString,
-					dependencyChildElements, 2, "scope", "provided");
+					pomXmlPath, dependencyElementString, dependencyChildElements, 2,
+					"version", buildGradleDependency.version);
+
+				if (buildGradleDependency.provided) {
+					XMLTestUtil.testXmlElement(
+						pomXmlPath, dependencyElementString,
+						dependencyChildElements, 3, "scope", "provided");
+				}
+			}
+			else {
+				if (buildGradleDependency.provided) {
+					XMLTestUtil.testXmlElement(
+						pomXmlPath, dependencyElementString,
+						dependencyChildElements, 2, "scope", "provided");
+				}
 			}
 		}
 
@@ -796,10 +807,6 @@ public class ProjectTemplateFilesTest {
 			Path projectTemplateDirPath, DocumentBuilder documentBuilder)
 		throws Exception {
 
-		String projectTemplatesDir = projectTemplateDirPath.toString();
-
-		assumeTrue(!projectTemplatesDir.contains("form-field"));
-
 		Path archetypeResourcesDirPath = projectTemplateDirPath.resolve(
 			"src/main/resources/archetype-resources");
 
@@ -819,7 +826,7 @@ public class ProjectTemplateFilesTest {
 
 		String pathString = archetypeResourcesDirPath.toString();
 
-		if (!pathString.contains("ext") & !pathString.contains("spring-mvc")) {
+		if (!pathString.contains("ext") && !pathString.contains("spring-mvc") && !pathString.contains("form-field")) {
 			_testPomXml(archetypeResourcesDirPath, documentBuilder);
 		}
 
@@ -899,11 +906,13 @@ public class ProjectTemplateFilesTest {
 		String archetypePostGenerateGroovy = _testArchetypePostGenerateGroovy(
 			projectTemplateDirPath);
 
+		if (!pathString.contains("form-field")) {
 		_testArchetypeMetadataXml(
 			projectTemplateDirPath, projectTemplateDirName,
 			archetypeResourcesDirPath, bndProperties,
 			requireAuthorProperty.get(), archetypePostGenerateGroovy,
 			archetypeResourceExpressions, documentBuilder);
+		}
 	}
 
 	private void _testPropertyValue(
@@ -1079,12 +1088,15 @@ public class ProjectTemplateFilesTest {
 
 			this.group = group;
 			this.name = name;
+			this.version = version;
 			this.provided = provided;
+
 		}
 
 		public final String group;
 		public final String name;
 		public final boolean provided;
+		public final String version;
 
 	}
 

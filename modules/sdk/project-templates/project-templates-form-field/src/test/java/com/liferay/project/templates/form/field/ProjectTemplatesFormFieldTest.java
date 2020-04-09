@@ -275,7 +275,7 @@ public class ProjectTemplatesFormFieldTest
 			"com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;",
 			"org.osgi.service.component.annotations.Reference;",
 			"ddm.form.field.type.description=foobar-description",
-			"ddm.form.field.type.display.order:Integer=10",
+			"ddm.form.field.type.display.order:Integer=13",
 			"ddm.form.field.type.group=customized",
 			"public String getModuleName()",
 			"public boolean isCustomDDMFormFieldType()",

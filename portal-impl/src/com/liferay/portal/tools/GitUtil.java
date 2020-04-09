@@ -122,6 +122,13 @@ public class GitUtil {
 		return fileNames;
 	}
 
+	public static List<String> getModifiedFileNamesSinceGitId(
+			String baseDirName, String commitId)
+		throws Exception {
+
+		return getFileNames(baseDirName, commitId);
+	}
+
 	public static List<String> getModifiedLastDayFileNames(String baseDirName)
 		throws Exception {
 

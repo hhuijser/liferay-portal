@@ -749,7 +749,9 @@ public interface BaseProjectTemplatesTestCase {
 
 			if (!content.contains("allprojects")) {
 				content +=
-					"\nallprojects {\n\trepositories {\n\t\tmavenLocal()\n\t}\n}";
+					"allprojects {\n\trepositories {\n\t\tmavenLocal()\n\t}\n" +
+						"\tconfigurations.all {\n\t\tresolutionStrategy.force " +
+						"'javax.servlet:javax.servlet-api:3.0.1'\n\t}\n}";
 
 				Files.write(
 					buildFilePath, content.getBytes(StandardCharsets.UTF_8));

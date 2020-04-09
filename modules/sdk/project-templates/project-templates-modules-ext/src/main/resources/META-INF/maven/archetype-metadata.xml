@@ -25,7 +25,5 @@
 	<requiredProperties>
 		<requiredProperty key="originalModuleName">
 		</requiredProperty>
-		<requiredProperty key="originalModuleVersion">
-		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

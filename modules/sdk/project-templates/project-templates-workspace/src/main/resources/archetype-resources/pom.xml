@@ -53,7 +53,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<pluginRepositories>
 		<pluginRepository>
 			<releases>
@@ -71,7 +71,7 @@
 			<url>https://repository-cdn.liferay.com/nexus/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<build>
 		<plugins>
 			<plugin>

@@ -21,16 +21,12 @@ import com.liferay.project.templates.extensions.util.WorkspaceUtil;
 import com.liferay.project.templates.util.FileTestUtil;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 import java.net.URI;
 
-import java.nio.charset.StandardCharsets;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 
 import java.util.Collections;
 import java.util.Map;
@@ -39,12 +35,6 @@ import java.util.Properties;
 import java.util.TreeMap;
 import java.util.regex.Matcher;
 
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
-import javax.xml.xpath.XPathExpressionException;
-import javax.xml.xpath.XPathFactory;
-
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -52,11 +42,6 @@ import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
 
 /**
  * @author Lawrence Lee
@@ -82,13 +67,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		Assert.assertTrue(gradleDistribution.contains(GRADLE_WRAPPER_VERSION));
 
 		_gradleDistribution = URI.create(gradleDistribution);
-
-		XPathFactory xPathFactory = XPathFactory.newInstance();
-
-		XPath xPath = xPathFactory.newXPath();
-
-		_pomXmlNpmInstallXPathExpression = xPath.compile(
-			"//id[contains(text(),'npm-install')]/parent::*");
 	}
 
 	@Test
@@ -519,328 +497,12 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL + "\n");
 	}
 
-	@Test
-	public void testBuildTemplateNpmAngularPortlet70() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo", "foo", "Foo", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortlet71() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo", "foo", "Foo", "7.1.3");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortlet72() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo", "foo", "Foo", "7.2.1");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortlet73() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo", "foo", "Foo", "7.3.0");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortletWithDashes70()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo-bar", "foo.bar", "FooBar", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortletWithDashes71()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo-bar", "foo.bar", "FooBar", "7.1.3");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortletWithDashes72()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo-bar", "foo.bar", "FooBar", "7.2.1");
-	}
-
-	@Test
-	public void testBuildTemplateNpmAngularPortletWithDashes73()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-angular-portlet", "foo-bar", "foo.bar", "FooBar", "7.3.0");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortlet70() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo", "foo", "Foo", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortlet71() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo", "foo", "Foo", "7.1.3");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortlet72() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo", "foo", "Foo", "7.2.1");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortlet73() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo", "foo", "Foo", "7.3.0");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortletWithBOM() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"npm-react-portlet", "react-portlet-dependency-management",
-			"--dependency-management-enabled", "--liferay-version", "7.3.0");
-
-		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
-
-		testContains(
-			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL + "\n");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortletWithDashes70()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo-bar", "foo.bar", "FooBar", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortletWithDashes71()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo-bar", "foo.bar", "FooBar", "7.1.3");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortletWithDashes72()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo-bar", "foo.bar", "FooBar", "7.2.1");
-	}
-
-	@Test
-	public void testBuildTemplateNpmReactPortletWithDashes73()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-react-portlet", "foo-bar", "foo.bar", "FooBar", "7.3.0");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortlet70() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo", "foo", "Foo", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortlet71() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo", "foo", "Foo", "7.1.3");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortlet72() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo", "foo", "Foo", "7.2.1");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortlet73() throws Exception {
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo", "foo", "Foo", "7.3.0");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortletWithBOM() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"npm-vuejs-portlet", "vuejs-portlet-dependency-management",
-			"--dependency-management-enabled", "--liferay-version", "7.3.0");
-
-		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
-
-		testContains(
-			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL + "\n");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortletWithDashes70()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo-bar", "foo.bar", "FooBar", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortletWithDashes71()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo-bar", "foo.bar", "FooBar", "7.1.3");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortletWithDashes72()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo-bar", "foo.bar", "FooBar", "7.2.1");
-	}
-
-	@Test
-	public void testBuildTemplateNpmVuejsPortletWithDashes73()
-		throws Exception {
-
-		_testBuildTemplateNpm(
-			"npm-vuejs-portlet", "foo-bar", "foo.bar", "FooBar", "7.3.0");
-	}
-
 	@Test(expected = IllegalArgumentException.class)
 	public void testBuildTemplateOnExistingDirectory() throws Exception {
 		File destinationDir = temporaryFolder.newFolder("gradle");
 
 		buildTemplateWithGradle(destinationDir, "activator", "dup-activator");
 		buildTemplateWithGradle(destinationDir, "activator", "dup-activator");
-	}
-
-	@Test
-	public void testBuildTemplatePortlet70() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"portlet", "foo.test", "--class-name", "Foo", "--liferay-version",
-			"7.0");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"",
-			DEPENDENCY_PORTAL_KERNEL + ", version: \"2.0.0");
-		testContains(
-			gradleProjectDir,
-			"src/main/java/foo/test/constants/FooPortletKeys.java",
-			"public class FooPortletKeys", "public static final String FOO",
-			"\"foo_test_FooPortlet\";");
-		testContains(
-			gradleProjectDir, "src/main/java/foo/test/portlet/FooPortlet.java",
-			"package foo.test.portlet;",
-			"javax.portlet.name=\" + FooPortletKeys.FOO",
-			"public class FooPortlet extends MVCPortlet {");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "portlet", "foo.test", "com.test", mavenExecutor,
-			"-DclassName=Foo", "-Dpackage=foo.test", "-DliferayVersion=7.0.6");
-
-		testNotContains(
-			mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplatePortlet71() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"portlet", "foo.test", "--class-name", "Foo", "--liferay-version",
-			"7.1");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"",
-			DEPENDENCY_PORTAL_KERNEL + ", version: \"3.0.0");
-		testContains(
-			gradleProjectDir,
-			"src/main/java/foo/test/constants/FooPortletKeys.java",
-			"public class FooPortletKeys", "public static final String FOO",
-			"\"foo_test_FooPortlet\";");
-		testContains(
-			gradleProjectDir, "src/main/java/foo/test/portlet/FooPortlet.java",
-			"package foo.test.portlet;",
-			"javax.portlet.name=\" + FooPortletKeys.FOO",
-			"public class FooPortlet extends MVCPortlet {");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "portlet", "foo.test", "com.test", mavenExecutor,
-			"-DclassName=Foo", "-Dpackage=foo.test", "-DliferayVersion=7.1.3");
-
-		testContains(
-			mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplatePortlet72() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"portlet", "foo.test", "--class-name", "Foo", "--liferay-version",
-			"7.2");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"",
-			DEPENDENCY_PORTAL_KERNEL + ", version: \"4.4.0");
-		testContains(
-			gradleProjectDir,
-			"src/main/java/foo/test/constants/FooPortletKeys.java",
-			"public class FooPortletKeys", "public static final String FOO",
-			"\"foo_test_FooPortlet\";");
-		testContains(
-			gradleProjectDir, "src/main/java/foo/test/portlet/FooPortlet.java",
-			"package foo.test.portlet;",
-			"javax.portlet.name=\" + FooPortletKeys.FOO",
-			"public class FooPortlet extends MVCPortlet {");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "portlet", "foo.test", "com.test", mavenExecutor,
-			"-DclassName=Foo", "-Dpackage=foo.test", "-DliferayVersion=7.2.1");
-
-		testContains(
-			mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplatePortlet73() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"portlet", "foo.test", "--class-name", "Foo", "--liferay-version",
-			"7.3.0");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"",
-			DEPENDENCY_PORTAL_KERNEL + ", version: \"5.4.0");
-		testContains(
-			gradleProjectDir,
-			"src/main/java/foo/test/constants/FooPortletKeys.java",
-			"public class FooPortletKeys", "public static final String FOO",
-			"\"foo_test_FooPortlet\";");
-		testContains(
-			gradleProjectDir, "src/main/java/foo/test/portlet/FooPortlet.java",
-			"package foo.test.portlet;",
-			"javax.portlet.name=\" + FooPortletKeys.FOO",
-			"public class FooPortlet extends MVCPortlet {");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "portlet", "foo.test", "com.test", mavenExecutor,
-			"-DclassName=Foo", "-Dpackage=foo.test", "-DliferayVersion=7.3.0");
-
-		testContains(
-			mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
 	}
 
 	@Test
@@ -852,24 +514,9 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 	@Test
 	public void testBuildTemplatePortletWithPortletName() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle("portlet", "portlet");
-
-		testExists(gradleProjectDir, "bnd.bnd");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"");
-		testContains(
-			gradleProjectDir,
-			"src/main/java/portlet/portlet/PortletPortlet.java",
-			"package portlet.portlet;",
-			"public class PortletPortlet extends MVCPortlet {");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "portlet", "portlet", "com.test", mavenExecutor,
-			"-DclassName=Portlet", "-Dpackage=portlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
+		_testBuildTemplateWithWorkspace(
+			"portlet", "portlet", "build/libs/portlet-1.0.0.jar",
+			"--dependency-management-enabled");
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -1032,205 +679,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			"-DclassName=Barfoo", "-Dpackage=foo.bar");
 
 		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplateWorkspace() throws Exception {
-		File workspaceProjectDir = _buildTemplateWithGradle(
-			WorkspaceUtil.WORKSPACE, "foows");
-
-		testExists(workspaceProjectDir, "configs/dev/portal-ext.properties");
-		testExists(workspaceProjectDir, "gradle.properties");
-		testExists(workspaceProjectDir, "modules");
-		testExists(workspaceProjectDir, "themes");
-		testExists(workspaceProjectDir, "wars");
-
-		testNotExists(workspaceProjectDir, "modules/pom.xml");
-		testNotExists(workspaceProjectDir, "themes/pom.xml");
-		testNotExists(workspaceProjectDir, "wars/pom.xml");
-
-		File moduleProjectDir = buildTemplateWithGradle(
-			new File(workspaceProjectDir, "modules"), "", "foo-portlet");
-
-		testNotContains(
-			moduleProjectDir, "build.gradle", "buildscript", "repositories");
-
-		if (isBuildProjects()) {
-			executeGradle(
-				workspaceProjectDir, ProjectTemplatesTest._gradleDistribution,
-				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
-
-			testExists(moduleProjectDir, "build/libs/foo.portlet-1.0.0.jar");
-		}
-	}
-
-	@Test(expected = IllegalArgumentException.class)
-	public void testBuildTemplateWorkspaceExistingFile() throws Exception {
-		File destinationDir = temporaryFolder.newFolder("existing-file");
-
-		_createNewFiles("foo", destinationDir);
-
-		buildTemplateWithGradle(destinationDir, WorkspaceUtil.WORKSPACE, "foo");
-	}
-
-	@Test
-	public void testBuildTemplateWorkspaceForce() throws Exception {
-		File destinationDir = temporaryFolder.newFolder("existing-file");
-
-		_createNewFiles("foo", destinationDir);
-
-		buildTemplateWithGradle(
-			destinationDir, WorkspaceUtil.WORKSPACE, "forced", "--force");
-	}
-
-	@Test
-	public void testBuildTemplateWorkspaceLocalProperties() throws Exception {
-		File workspaceProjectDir = _buildTemplateWithGradle(
-			WorkspaceUtil.WORKSPACE, "foo");
-
-		testExists(workspaceProjectDir, "gradle-local.properties");
-
-		Properties gradleLocalProperties = new Properties();
-
-		String homeDirName = "foo/bar/baz";
-		String modulesDirName = "qux/quux";
-
-		gradleLocalProperties.put("liferay.workspace.home.dir", homeDirName);
-		gradleLocalProperties.put(
-			"liferay.workspace.modules.dir", modulesDirName);
-
-		File gradleLocalPropertiesFile = new File(
-			workspaceProjectDir, "gradle-local.properties");
-
-		try (FileOutputStream fileOutputStream = new FileOutputStream(
-				gradleLocalPropertiesFile)) {
-
-			gradleLocalProperties.store(fileOutputStream, null);
-		}
-
-		buildTemplateWithGradle(
-			new File(workspaceProjectDir, modulesDirName), "", "foo-portlet");
-
-		executeGradle(
-			workspaceProjectDir, ProjectTemplatesTest._gradleDistribution,
-			":" + modulesDirName.replace('/', ':') + ":foo-portlet" +
-				BaseProjectTemplatesTestCase.GRADLE_TASK_PATH_DEPLOY);
-
-		testExists(
-			workspaceProjectDir, homeDirName + "/osgi/modules/foo.portlet.jar");
-	}
-
-	@Test
-	public void testBuildTemplateWorkspaceWith70() throws Exception {
-		File gradleWorkspaceProjectDir = _buildTemplateWithGradle(
-			WorkspaceUtil.WORKSPACE, "withportlet", "--liferay-version",
-			"7.0.6");
-
-		testContains(
-			gradleWorkspaceProjectDir, "gradle.properties", true,
-			".*liferay.workspace.bundle.url=.*liferay.com/portal/7.0.*");
-
-		File gradlePropertiesFile = new File(
-			gradleWorkspaceProjectDir, "gradle.properties");
-
-		_testPropertyKeyExists(
-			gradlePropertiesFile, "liferay.workspace.bundle.url");
-
-		File mavenWorkspaceProjectDir = buildTemplateWithMaven(
-			temporaryFolder, WorkspaceUtil.WORKSPACE, "withportlet", "com.test",
-			mavenExecutor, "-DliferayVersion=7.0.6");
-
-		testContains(
-			mavenWorkspaceProjectDir, "pom.xml",
-			"<liferay.workspace.bundle.url>", "liferay.com/portal/7.0.");
-	}
-
-	@Test
-	public void testBuildTemplateWorkspaceWith71() throws Exception {
-		File gradleWorkspaceProjectDir = _buildTemplateWithGradle(
-			WorkspaceUtil.WORKSPACE, "withportlet", "--liferay-version",
-			"7.1.3");
-
-		testContains(
-			gradleWorkspaceProjectDir, "gradle.properties", true,
-			".*liferay.workspace.bundle.url=.*liferay.com/portal/7.1.*");
-
-		File gradlePropertiesFile = new File(
-			gradleWorkspaceProjectDir, "gradle.properties");
-
-		_testPropertyKeyExists(
-			gradlePropertiesFile, "liferay.workspace.bundle.url");
-
-		File mavenWorkspaceProjectDir = buildTemplateWithMaven(
-			temporaryFolder, WorkspaceUtil.WORKSPACE, "withportlet", "com.test",
-			mavenExecutor, "-DliferayVersion=7.1.3");
-
-		testContains(
-			mavenWorkspaceProjectDir, "pom.xml",
-			"<liferay.workspace.bundle.url>", "liferay.com/portal/7.1");
-	}
-
-	@Test
-	public void testBuildTemplateWorkspaceWith72() throws Exception {
-		File gradleWorkspaceProjectDir = _buildTemplateWithGradle(
-			WorkspaceUtil.WORKSPACE, "withportlet", "--liferay-version",
-			"7.2.1");
-
-		testContains(
-			gradleWorkspaceProjectDir, "gradle.properties", true,
-			".*liferay.workspace.bundle.url=.*liferay.com/portal/7.2.*");
-
-		File gradlePropertiesFile = new File(
-			gradleWorkspaceProjectDir, "gradle.properties");
-
-		_testPropertyKeyExists(
-			gradlePropertiesFile, "liferay.workspace.bundle.url");
-
-		File mavenWorkspaceProjectDir = buildTemplateWithMaven(
-			temporaryFolder, WorkspaceUtil.WORKSPACE, "withportlet", "com.test",
-			mavenExecutor, "-DliferayVersion=7.2.1");
-
-		testContains(
-			mavenWorkspaceProjectDir, "pom.xml",
-			"<liferay.workspace.bundle.url>", "liferay.com/portal/7.2");
-	}
-
-	@Test
-	public void testBuildTemplateWorkspaceWithPortlet() throws Exception {
-		File gradleWorkspaceProjectDir = _buildTemplateWithGradle(
-			WorkspaceUtil.WORKSPACE, "withportlet");
-
-		File gradleModulesDir = new File(gradleWorkspaceProjectDir, "modules");
-
-		buildTemplateWithGradle(gradleModulesDir, "mvc-portlet", "foo-portlet");
-
-		File mavenWorkspaceProjectDir = buildTemplateWithMaven(
-			temporaryFolder, WorkspaceUtil.WORKSPACE, "withportlet", "com.test",
-			mavenExecutor);
-
-		File mavenModulesDir = new File(mavenWorkspaceProjectDir, "modules");
-
-		buildTemplateWithMaven(
-			mavenWorkspaceProjectDir.getParentFile(), mavenModulesDir,
-			"mvc-portlet", "foo-portlet", "com.test", mavenExecutor,
-			"-DclassName=Foo", "-Dpackage=foo.portlet",
-			"-DprojectType=workspace");
-
-		if (isBuildProjects()) {
-			executeGradle(
-				gradleWorkspaceProjectDir,
-				ProjectTemplatesTest._gradleDistribution,
-				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
-
-			testExists(
-				gradleModulesDir,
-				"foo-portlet/build/libs/foo.portlet-1.0.0.jar");
-
-			executeMaven(mavenModulesDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
-
-			testExists(
-				mavenModulesDir, "foo-portlet/target/foo-portlet-1.0.0.jar");
-		}
 	}
 
 	@Test
@@ -1455,30 +903,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
-	private static void _testPropertyKeyExists(File file, String key)
-		throws Exception {
-
-		Properties properties = FileTestUtil.readProperties(file);
-
-		String property = properties.getProperty(key);
-
-		Assert.assertNotNull(
-			"Expected key " + key + " to exist in properties " +
-				file.getAbsolutePath(),
-			property);
-	}
-
-	private void _addNpmrc(File projectDir) throws IOException {
-		File npmrcFile = new File(projectDir, ".npmrc");
-
-		String content =
-			"sass_binary_site=" +
-				BaseProjectTemplatesTestCase.NODEJS_NPM_CI_SASS_BINARY_SITE;
-
-		Files.write(
-			npmrcFile.toPath(), content.getBytes(StandardCharsets.UTF_8));
-	}
-
 	private void _buildProjects(File gradleProjectDir, File mavenProjectDir)
 		throws Exception {
 
@@ -1502,143 +926,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			temporaryFolder, template, name, groupId, mavenExecutor, args);
 	}
 
-	private void _configureExecutePackageManagerTask(File projectDir)
-		throws Exception {
-
-		File buildGradleFile = new File(projectDir, "build.gradle");
-
-		StringBuilder sb = new StringBuilder();
-
-		String lineSeparator = System.lineSeparator();
-
-		sb.append(lineSeparator);
-
-		sb.append(
-			"import com.liferay.gradle.plugins.node.tasks." +
-				"ExecutePackageManagerTask");
-		sb.append(lineSeparator);
-
-		sb.append("tasks.withType(ExecutePackageManagerTask) {");
-		sb.append(lineSeparator);
-
-		sb.append("\tregistry = '");
-		sb.append(BaseProjectTemplatesTestCase.NODEJS_NPM_CI_REGISTRY);
-		sb.append('\'');
-		sb.append(lineSeparator);
-
-		sb.append('}');
-		sb.append(lineSeparator);
-
-		sb.append("node {");
-		sb.append(lineSeparator);
-
-		sb.append("\tuseNpm = true");
-		sb.append(lineSeparator);
-
-		sb.append("}");
-
-		String executePackageManagerTaskScript = sb.toString();
-
-		Files.write(
-			buildGradleFile.toPath(),
-			executePackageManagerTaskScript.getBytes(StandardCharsets.UTF_8),
-			StandardOpenOption.APPEND);
-	}
-
-	private void _configurePomNpmConfiguration(File projectDir)
-		throws Exception {
-
-		File pomXmlFile = new File(projectDir, "pom.xml");
-
-		editXml(
-			pomXmlFile,
-			document -> {
-				try {
-					NodeList nodeList =
-						(NodeList)
-							ProjectTemplatesTest.
-								_pomXmlNpmInstallXPathExpression.evaluate(
-									document, XPathConstants.NODESET);
-
-					Node executionNode = nodeList.item(0);
-
-					Element configurationElement = document.createElement(
-						"configuration");
-
-					executionNode.appendChild(configurationElement);
-
-					Element argumentsElement = document.createElement(
-						"arguments");
-
-					configurationElement.appendChild(argumentsElement);
-
-					Text text = document.createTextNode(
-						"install --registry=" +
-							BaseProjectTemplatesTestCase.
-								NODEJS_NPM_CI_REGISTRY);
-
-					argumentsElement.appendChild(text);
-				}
-				catch (XPathExpressionException xPathExpressionException) {
-				}
-			});
-	}
-
-	private void _testBuildTemplateNpm(
-			String template, String name, String packageName, String className,
-			String liferayVersion)
-		throws Exception {
-
-		File gradleProjectDir = _buildTemplateWithGradle(
-			template, name, "--liferay-version", liferayVersion);
-
-		if (template.equals("npm-angular-portlet")) {
-			testContains(
-				gradleProjectDir, "package.json", "@angular/animations",
-				"liferay-npm-bundler\": \"2.18.2",
-				"build\": \"tsc && liferay-npm-bundler");
-
-			testExists(
-				gradleProjectDir,
-				"src/main/resources/META-INF/resources/lib/angular-loader.ts");
-		}
-		else {
-			testContains(
-				gradleProjectDir, "package.json",
-				"build/resources/main/META-INF/resources",
-				"liferay-npm-bundler\": \"2.18.2",
-				"\"main\": \"lib/index.es.js\"");
-		}
-
-		testNotContains(
-			gradleProjectDir, "package.json",
-			"target/classes/META-INF/resources");
-
-		File mavenProjectDir = _buildTemplateWithMaven(
-			template, name, "com.test", "-DclassName=" + className,
-			"-Dpackage=" + packageName, "-DliferayVersion=" + liferayVersion);
-
-		if (!template.equals("npm-angular-portlet")) {
-			testContains(
-				mavenProjectDir, "package.json",
-				"target/classes/META-INF/resources");
-		}
-
-		testNotContains(
-			mavenProjectDir, "package.json",
-			"build/resources/main/META-INF/resources");
-
-		if (Validator.isNotNull(System.getenv("JENKINS_HOME"))) {
-			_addNpmrc(gradleProjectDir);
-			_addNpmrc(mavenProjectDir);
-			_configureExecutePackageManagerTask(gradleProjectDir);
-			_configurePomNpmConfiguration(mavenProjectDir);
-		}
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-
 	private void _testBuildTemplateWithWorkspace(
 			String template, String name, String jarFilePath, String... args)
 		throws Exception {
@@ -1649,6 +936,5 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	}
 
 	private static URI _gradleDistribution;
-	private static XPathExpression _pomXmlNpmInstallXPathExpression;
 
 }

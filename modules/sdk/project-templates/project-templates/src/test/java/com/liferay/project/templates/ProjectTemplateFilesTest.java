@@ -123,7 +123,7 @@ public class ProjectTemplateFilesTest {
 			String configuration = matcher.group(1);
 			String dependencyGroup = matcher.group(2);
 			String dependencyName = matcher.group(3);
-			String dependencyVersion = matcher.group(4);
+			String dependencyVersion = matcher.group(5);
 
 			boolean provided = false;
 
@@ -1015,8 +1015,7 @@ public class ProjectTemplateFilesTest {
 		Pattern.compile("\\$\\{([^\\}]*)\\}");
 	private static final Pattern _buildGradleDependencyPattern =
 		Pattern.compile(
-			"(compile(?:Only)?) group: \"(.+)\", name: \"(.+)\"(?:, " +
-				"transitive: (?:true|false))?(?:, version: \"(.+)\")?");
+			"(compile(?:Only)?) group: \\\"(.+)\\\", name: \\\"([a-zA-Z0-9\\.\\-]+)\\\"((?:, version: )\"([0-9\\.]+)\")?(, transitive: (?: true|false))?");
 	private static final Pattern _bundleDescriptionPattern = Pattern.compile(
 		"Creates a .+\\.");
 	private static final Pattern _bundleNameSeparatorPattern = Pattern.compile(

@@ -606,6 +606,9 @@ public interface BaseProjectTemplatesTestCase {
 
 		sb.append(lineSeparator);
 
+		sb.append("apply plugin: \"com.liferay.node\"");
+		sb.append(lineSeparator);
+
 		sb.append(
 			"import com.liferay.gradle.plugins.node.tasks." +
 				"ExecutePackageManagerTask");

@@ -75,7 +75,7 @@ public class ProjectTemplatesContentTargetingReportTest
 		String template = "content-targeting-report";
 		String name = "foo-bar";
 
-		File gradleWorkspaceDir = newBuildWorkspace(
+		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -91,7 +91,7 @@ public class ProjectTemplatesContentTargetingReportTest
 		testContains(
 			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

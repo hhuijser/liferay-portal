@@ -43,10 +43,19 @@ public class ProjectTemplatesWarMvcPortletTest
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}, {1}")
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
-			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
+			new Object[][] {
+				{"portlet", "7.0.6"}, {"portlet", "7.1.3"},
+				{"portlet", "7.2.1"}, {"portlet", "7.3.0"},
+				{"customPackage", "7.0.6"}, {"customPackage", "7.1.3"},
+				{"customPackage", "7.2.1"}, {"customPackage", "7.3.0"},
+				{"portletName", "7.0.6"}, {"portletName", "7.1.3"},
+				{"portletName", "7.2.1"}, {"portletName", "7.3.0"},
+				{"portletSuffix", "7.0.6"}, {"portletSuffix", "7.1.3"},
+				{"portletSuffix", "7.2.1"}, {"portletSuffix", "7.3.0"}
+			});
 	}
 
 	@BeforeClass
@@ -65,17 +74,17 @@ public class ProjectTemplatesWarMvcPortletTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	public ProjectTemplatesWarMvcPortletTest(String liferayVersion) {
+	public ProjectTemplatesWarMvcPortletTest(String testModifier, String liferayVersion) {
+
+		_testModifier = testModifier;
 		_liferayVersion = liferayVersion;
 	}
 
 	@Test
 	public void testBuildTemplateWarMvcPortlet() throws Exception {
-		String template = "war-mvc-portlet";
-		String name = "WarMVCPortlet";
 
-		testBuildTemplateProjectWarInWorkspace(
-			temporaryFolder, _gradleDistribution, mavenExecutor, template, name,
+		testBuildTemplateProjectWarMVCPortletInWorkspace(
+			temporaryFolder, _testModifier, _gradleDistribution, mavenExecutor, "war-mvc-portlet", "WarMVCPortlet",
 			_liferayVersion);
 	}
 
@@ -85,5 +94,6 @@ public class ProjectTemplatesWarMvcPortletTest
 	private static URI _gradleDistribution;
 
 	private final String _liferayVersion;
+	private final String _testModifier;
 
 }

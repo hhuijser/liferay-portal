@@ -76,7 +76,7 @@ public class ProjectTemplatesThemeContributorTest
 		String template = "theme-contributor";
 		String name = "my-contributor-custom";
 
-		File gradleWorkspaceDir = newBuildWorkspace(
+		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -102,7 +102,7 @@ public class ProjectTemplatesThemeContributorTest
 			gradleProjectDir,
 			"src/main/resources/META-INF/resources/js/foo-bar.js");
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

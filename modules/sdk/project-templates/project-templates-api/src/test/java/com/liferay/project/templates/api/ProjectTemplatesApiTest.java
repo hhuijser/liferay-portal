@@ -65,7 +65,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 		String template = "api";
 		String name = "foo";
 
-		File gradleWorkspaceDir = newBuildWorkspace(
+		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -89,7 +89,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
@@ -128,7 +128,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 		String template = "api";
 		String name = "author-test";
 
-		File gradleWorkspaceDir = newBuildWorkspace(
+		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -142,7 +142,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 			gradleProjectDir, "src/main/java/author/test/api/AuthorTest.java",
 			"@author " + author);
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");

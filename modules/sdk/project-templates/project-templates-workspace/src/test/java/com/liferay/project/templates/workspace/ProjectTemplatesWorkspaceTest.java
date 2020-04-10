@@ -61,7 +61,7 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testBuildTemplateWorkspace() throws Exception {
-		File workspaceProjectDir = newBuildWorkspace(
+		File workspaceProjectDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "foows", getDefaultLiferayVersion(),
 			mavenExecutor);
 
@@ -111,7 +111,7 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testBuildTemplateWorkspaceLocalProperties() throws Exception {
-		File workspaceProjectDir = newBuildWorkspace(
+		File workspaceProjectDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "foo", getDefaultLiferayVersion(),
 			mavenExecutor);
 
@@ -149,7 +149,7 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testBuildTemplateWorkspaceWithPortlet() throws Exception {
-		File gradleWorkspaceProjectDir = newBuildWorkspace(
+		File gradleWorkspaceProjectDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "withportlet",
 			getDefaultLiferayVersion(), mavenExecutor);
 

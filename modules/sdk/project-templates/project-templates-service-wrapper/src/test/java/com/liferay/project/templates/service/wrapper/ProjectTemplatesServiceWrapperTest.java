@@ -76,7 +76,7 @@ public class ProjectTemplatesServiceWrapperTest
 		String template = "service-wrapper";
 		String name = "serviceoverride";
 
-		File gradleWorkspaceDir = newBuildWorkspace(
+		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -103,7 +103,7 @@ public class ProjectTemplatesServiceWrapperTest
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

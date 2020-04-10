@@ -70,33 +70,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	}
 
 	@Test
-	public void testBuildTemplate() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			null, "hello-world-portlet");
-
-		testExists(gradleProjectDir, "bnd.bnd");
-		testExists(
-			gradleProjectDir, "src/main/resources/META-INF/resources/init.jsp");
-		testExists(
-			gradleProjectDir, "src/main/resources/META-INF/resources/view.jsp");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"");
-		testContains(
-			gradleProjectDir,
-			"src/main/java/hello/world/portlet/portlet/HelloWorldPortlet.java",
-			"public class HelloWorldPortlet extends MVCPortlet {");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "mvc-portlet", "hello-world-portlet", "com.test",
-			mavenExecutor, "-DclassName=HelloWorld",
-			"-Dpackage=hello.world.portlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
 	public void testBuildTemplateContentDTDVersionLayoutTemplate70()
 		throws Exception {
 
@@ -453,6 +426,11 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			"--dependency-management-enabled");
 	}
 
+	@Test
+	public void testBuildTemplateInWorkspaceWithPackageName() throws Exception {
+		_testBuildTemplateWithWorkspace("", "barfoo", "build/libs/barfoo-1.0.0.jar", "--dependency-management-enabled");
+	}
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testBuildTemplateLiferayVersionInvalid62() throws Exception {
 		_buildTemplateWithGradle(
@@ -485,18 +463,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			"mvc-portlet", "test", "--liferay-version", "7.1.2");
 	}
 
-	@Test
-	public void testBuildTemplateNAPortletWithBOM() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"npm-angular-portlet", "angular-dependency-management",
-			"--dependency-management-enabled", "--liferay-version", "7.1.3");
-
-		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
-
-		testContains(
-			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL + "\n");
-	}
-
 	@Test(expected = IllegalArgumentException.class)
 	public void testBuildTemplateOnExistingDirectory() throws Exception {
 		File destinationDir = temporaryFolder.newFolder("gradle");
@@ -519,133 +485,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			"--dependency-management-enabled");
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testBuildTemplateSocialBookmark70() throws Exception {
-		_buildTemplateWithGradle(
-			"social-bookmark", "foo", "--package-name", "com.liferay.test",
-			"--liferay-version", "7.0.6");
-	}
-
-	@Test
-	public void testBuildTemplateSocialBookmark71() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"social-bookmark", "foo", "--package-name", "com.liferay.test",
-			"--liferay-version", "7.1.3");
-
-		testExists(gradleProjectDir, "bnd.bnd");
-		testExists(gradleProjectDir, "build.gradle");
-
-		testContains(
-			gradleProjectDir,
-			"src/main/java/com/liferay/test/social/bookmark" +
-				"/FooSocialBookmark.java",
-			"public class FooSocialBookmark implements SocialBookmark");
-		testContains(
-			gradleProjectDir, "src/main/resources/META-INF/resources/page.jsp",
-			"<clay:link");
-		testContains(
-			gradleProjectDir, "src/main/resources/content/Language.properties",
-			"foo=Foo");
-
-		testNotContains(
-			gradleProjectDir,
-			"src/main/java/com/liferay/test/social/bookmark" +
-				"/FooSocialBookmark.java",
-			"private ResourceBundleLoader");
-		testNotContains(
-			gradleProjectDir,
-			"src/main/java/com/liferay/test/social/bookmark" +
-				"/FooSocialBookmark.java",
-			"protected ResourceBundleLoader");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "social-bookmark", "foo", "com.test",
-			mavenExecutor, "-DclassName=Foo", "-Dpackage=com.liferay.test",
-			"-DliferayVersion=7.1.3");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplateWarMVCPortletWithPackage() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"war-mvc-portlet", "WarMVCPortlet", "--package-name",
-			"com.liferay.test");
-
-		testExists(gradleProjectDir, "src/main/webapp/init.jsp");
-		testExists(gradleProjectDir, "src/main/webapp/view.jsp");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.css.builder\"",
-			"apply plugin: \"war\"");
-		testContains(
-			gradleProjectDir,
-			"src/main/webapp/WEB-INF/liferay-plugin-package.properties",
-			"name=WarMVCPortlet");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "war-mvc-portlet", "WarMVCPortlet",
-			"com.liferay.test", mavenExecutor, "-DclassName=WarMVCPortlet",
-			"-Dpackage=com.liferay.test");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplateWarMVCPortletWithPortletName()
-		throws Exception {
-
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"war-mvc-portlet", "WarMVCPortlet");
-
-		testExists(gradleProjectDir, "src/main/webapp/init.jsp");
-		testExists(gradleProjectDir, "src/main/webapp/view.jsp");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.css.builder\"",
-			"apply plugin: \"war\"");
-		testContains(
-			gradleProjectDir,
-			"src/main/webapp/WEB-INF/liferay-plugin-package.properties",
-			"name=WarMVCPortlet");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "war-mvc-portlet", "WarMVCPortlet",
-			"warmvcportlet", mavenExecutor, "-DclassName=WarMVCPortlet",
-			"-Dpackage=WarMVCPortlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
-	public void testBuildTemplateWarMVCPortletWithPortletSuffix()
-		throws Exception {
-
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"war-mvc-portlet", "WarMVC-portlet");
-
-		testExists(gradleProjectDir, "src/main/webapp/init.jsp");
-		testExists(gradleProjectDir, "src/main/webapp/view.jsp");
-
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.css.builder\"",
-			"apply plugin: \"war\"");
-		testContains(
-			gradleProjectDir,
-			"src/main/webapp/WEB-INF/liferay-plugin-package.properties",
-			"name=WarMVC-portlet");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "war-mvc-portlet", "WarMVC-portlet",
-			"warmvc.portlet", mavenExecutor, "-DclassName=WarMVCPortlet",
-			"-Dpackage=WarMVC.portlet");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
 	@Test
 	public void testBuildTemplateWithGradle() throws Exception {
 		buildTemplateWithGradle(
@@ -659,38 +498,20 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	}
 
 	@Test
-	public void testBuildTemplateWithPackageName() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"", "barfoo", "--package-name", "foo.bar");
-
-		testExists(
-			gradleProjectDir, "src/main/resources/META-INF/resources/init.jsp");
-		testExists(
-			gradleProjectDir, "src/main/resources/META-INF/resources/view.jsp");
-
-		testContains(
-			gradleProjectDir, "bnd.bnd", "Bundle-SymbolicName: foo.bar");
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "mvc-portlet", "barfoo", "com.test", mavenExecutor,
-			"-DclassName=Barfoo", "-Dpackage=foo.bar");
-
-		_buildProjects(gradleProjectDir, mavenProjectDir);
-	}
-
-	@Test
 	public void testCompareAntBndPluginVersions() throws Exception {
 		String template = "mvc-portlet";
 		String name = "foo";
+		String liferayVersion = getDefaultLiferayVersion();
 
-		File gradleProjectDir = _buildTemplateWithGradle(template, name);
+		File workspaceDir = buildWorkspaceWithTPEnabled(temporaryFolder, "gradle", "gradleWS", liferayVersion, mavenExecutor);
+
+		File modulesDir = new File(workspaceDir, "modules");
+
+		buildTemplateWithGradle(modulesDir, template, name);
 
 		Optional<String> gradleResult = executeGradle(
-			gradleProjectDir, true, ProjectTemplatesTest._gradleDistribution,
-			GRADLE_TASK_PATH_BUILD);
+			workspaceDir, true, ProjectTemplatesTest._gradleDistribution,
+			":modules:foo" + GRADLE_TASK_PATH_BUILD);
 
 		String gradleAntBndVersion = null;
 
@@ -702,8 +523,11 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			gradleAntBndVersion = matcher.group(1);
 		}
 
-		File mavenProjectDir = _buildTemplateWithMaven(
-			template, name, name, "-DclassName=foo");
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+
+		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=foo");
 
 		testContains(
 			mavenProjectDir, "pom.xml",
@@ -852,8 +676,9 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 	@Test
 	public void testSassCompilerWorkspace() throws Exception {
-		File nativeSassWorkspaceDir = buildWorkspace(
-			temporaryFolder, getDefaultLiferayVersion());
+		String liferayVersion = getDefaultLiferayVersion();
+
+		File nativeSassWorkspaceDir = buildWorkspaceWithTPEnabled(temporaryFolder, "gradle", "nativeSassWorkspace", liferayVersion, mavenExecutor);
 
 		File nativeSassModulesDir = new File(nativeSassWorkspaceDir, "modules");
 
@@ -862,7 +687,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		Optional<String> nativeSassResult = executeGradle(
 			nativeSassModulesDir, true,
-			ProjectTemplatesTest._gradleDistribution,
+			_gradleDistribution,
 			":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
 
 		String nativeSassOutput = nativeSassResult.toString();
@@ -874,6 +699,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		File rubySassWorkspaceDir = _buildTemplateWithGradle(
 			WorkspaceUtil.WORKSPACE, "rubySassWorkspace");
 
+		enableTargetPlatformInWorkspace(rubySassWorkspaceDir, liferayVersion);
+
 		writeGradlePropertiesInWorkspace(
 			rubySassWorkspaceDir, "sass.compiler.class.name=ruby");
 
@@ -883,7 +710,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			rubySassModulesDir, "mvc-portlet", "foo-portlet");
 
 		Optional<String> rubySassResult = executeGradle(
-			rubySassModulesDir, true, ProjectTemplatesTest._gradleDistribution,
+			rubySassModulesDir, true, _gradleDistribution,
 			":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
 
 		String rubySassOutput = rubySassResult.toString();
@@ -907,7 +734,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		throws Exception {
 
 		buildProjects(
-			ProjectTemplatesTest._gradleDistribution, mavenExecutor,
+			_gradleDistribution, mavenExecutor,
 			gradleProjectDir, mavenProjectDir);
 	}
 
@@ -931,7 +758,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		throws Exception {
 
 		testBuildTemplateWithWorkspace(
-			temporaryFolder, ProjectTemplatesTest._gradleDistribution, template,
+			temporaryFolder, _gradleDistribution, template,
 			name, jarFilePath, args);
 	}
 

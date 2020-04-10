@@ -112,7 +112,7 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 	public void testBuildTemplateServiceBuilderWorkspace() throws Exception {
 		String template = "service-builder";
 
-		File gradleWorkspaceDir = newBuildWorkspace(
+		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -206,7 +206,7 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 				"biz.aQute.bnd");
 		}
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

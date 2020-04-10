@@ -108,7 +108,7 @@ public class ProjectTemplatesModulesExtTest
 		String name = "foo-ext";
 		String template = "modules-ext";
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		List<String> completeArgs = new ArrayList<>();

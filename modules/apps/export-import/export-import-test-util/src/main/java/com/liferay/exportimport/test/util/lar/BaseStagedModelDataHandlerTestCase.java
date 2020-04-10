@@ -129,7 +129,7 @@ public abstract class BaseStagedModelDataHandlerTestCase {
 
 		AssetTag assetTag = AssetTestUtil.addTag(stagingGroup.getGroupId());
 
-		assetEntry = AssetEntryLocalServiceUtil.updateEntry(
+		AssetEntryLocalServiceUtil.updateEntry(
 			TestPropsValues.getUserId(), stagingGroup.getGroupId(),
 			assetEntry.getCreateDate(), assetEntry.getModifiedDate(),
 			assetEntry.getClassName(), assetEntry.getClassPK(),

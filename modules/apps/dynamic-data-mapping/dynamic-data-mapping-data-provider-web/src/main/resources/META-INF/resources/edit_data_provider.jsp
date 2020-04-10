@@ -24,8 +24,6 @@ DDMDataProviderInstance ddmDataProviderInstance = ddmDataProviderDisplayContext.
 long dataProviderInstanceId = BeanParamUtil.getLong(ddmDataProviderInstance, request, "dataProviderInstanceId");
 
 long groupId = BeanParamUtil.getLong(ddmDataProviderInstance, request, "groupId", scopeGroupId);
-String name = BeanParamUtil.getString(ddmDataProviderInstance, request, "name");
-String description = BeanParamUtil.getString(ddmDataProviderInstance, request, "description");
 String type = BeanParamUtil.getString(ddmDataProviderInstance, request, "type");
 
 portletDisplay.setShowBackIcon(true);

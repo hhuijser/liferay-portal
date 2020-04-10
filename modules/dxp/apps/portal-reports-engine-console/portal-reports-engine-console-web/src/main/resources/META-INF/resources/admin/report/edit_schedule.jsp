@@ -19,8 +19,6 @@
 <%
 Definition definition = (Definition)request.getAttribute(ReportsEngineWebKeys.DEFINITION);
 
-long definitionId = BeanParamUtil.getLong(definition, request, "definitionId");
-
 String reportName = BeanParamUtil.getString(definition, request, "reportName");
 
 portletDisplay.setShowBackIcon(true);

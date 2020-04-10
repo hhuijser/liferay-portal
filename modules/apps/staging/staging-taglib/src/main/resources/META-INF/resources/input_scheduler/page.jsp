@@ -39,8 +39,6 @@
 		int startMonth = ParamUtil.get(request, "schedulerStartDateMonth", cal.get(Calendar.MONTH));
 		int startYear = ParamUtil.get(request, "schedulerStartDateYear", cal.get(Calendar.YEAR));
 
-		String cssClass = GetterUtil.getString((String)request.getAttribute("liferay-ui:input-repeat:cssClass"));
-
 		Recurrence recurrence = null;
 
 		int recurrenceType = ParamUtil.getInteger(request, "recurrenceType", Recurrence.NO_RECURRENCE);

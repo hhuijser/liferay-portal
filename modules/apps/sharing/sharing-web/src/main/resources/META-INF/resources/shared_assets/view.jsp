@@ -112,12 +112,13 @@ PortletURL viewAssetTypeURL = PortletURLUtil.clone(currentURLObj, liferayPortlet
 
 viewAssetTypeURL.setParameter("className", (String)null);
 
-Map<String, Object> context = new HashMap<>();
-
 PortletURL selectAssetTypeURL = sharedAssetsViewDisplayContext.getSelectAssetTypeURL();
 
-context.put("selectAssetTypeURL", selectAssetTypeURL.toString());
-context.put("viewAssetTypeURL", viewAssetTypeURL.toString());
+Map<String, Object> context = HashMapBuilder.<String, Object>put(
+	"selectAssetTypeURL", selectAssetTypeURL.toString()
+).put(
+	"viewAssetTypeURL", viewAssetTypeURL.toString()
+).build();
 %>
 
 <liferay-frontend:component

@@ -37,10 +37,11 @@ SelectOrganizationsDisplayContext selectOrganizationsDisplayContext = (SelectOrg
 		>
 
 			<%
-			Map<String, Object> data = new HashMap<>();
-
-			data.put("id", organization.getOrganizationId());
-			data.put("name", organization.getName());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"id", organization.getOrganizationId()
+			).put(
+				"name", organization.getName()
+			).build();
 
 			row.setData(data);
 			%>

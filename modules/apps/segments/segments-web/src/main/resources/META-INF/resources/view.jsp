@@ -57,9 +57,9 @@ SegmentsDisplayContext segmentsDisplayContext = (SegmentsDisplayContext)request.
 		>
 
 			<%
-			Map<String, Object> rowData = new HashMap<>();
-
-			rowData.put("actions", segmentsDisplayContext.getAvailableActions(segmentsEntry));
+			Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+				"actions", segmentsDisplayContext.getAvailableActions(segmentsEntry)
+			).build();
 
 			row.setData(rowData);
 			%>

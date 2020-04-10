@@ -51,10 +51,11 @@ SelectSegmentsEntryDisplayContext selectSegmentsEntryDisplayContext = (SelectSeg
 					<c:when test="<%= !ArrayUtil.contains(selectSegmentsEntryDisplayContext.getSelectedSegmentsEntryIds(), segmentsEntry.getSegmentsEntryId()) %>">
 
 						<%
-						Map<String, Object> data = new HashMap<>();
-
-						data.put("entityid", segmentsEntry.getSegmentsEntryId());
-						data.put("entityname", segmentsEntry.getName(locale));
+						Map<String, Object> data = HashMapBuilder.<String, Object>put(
+							"entityid", segmentsEntry.getSegmentsEntryId()
+						).put(
+							"entityname", segmentsEntry.getName(locale)
+						).build();
 						%>
 
 						<aui:a cssClass="selector-button" data="<%= data %>" href="javascript:;">

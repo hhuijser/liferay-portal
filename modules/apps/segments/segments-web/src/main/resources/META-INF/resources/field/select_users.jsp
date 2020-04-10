@@ -38,10 +38,11 @@ SelectUsersDisplayContext selectUsersDisplayContext = (SelectUsersDisplayContext
 		>
 
 			<%
-			Map<String, Object> data = new HashMap<>();
-
-			data.put("id", user2.getUserId());
-			data.put("name", user2.getFullName());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"id", user2.getUserId()
+			).put(
+				"name", user2.getFullName()
+			).build();
 
 			row.setData(data);
 			%>

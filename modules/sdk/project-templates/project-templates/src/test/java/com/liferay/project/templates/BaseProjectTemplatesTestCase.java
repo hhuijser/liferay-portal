@@ -615,7 +615,38 @@ public interface BaseProjectTemplatesTestCase {
 
 		sb.append(lineSeparator);
 
-		sb.append("apply plugin: \"com.liferay.node\"");
+		sb.append("buildscript {");
+		sb.append(lineSeparator);
+
+		sb.append("\tdependencies {");
+		sb.append(lineSeparator);
+
+		sb.append(
+			"\t\tclasspath group: \"com.liferay\", name: \"com.liferay." +
+				"gradle.plugins\", version: \"5.0.13\"");
+		sb.append(lineSeparator);
+
+		sb.append("\t}");
+		sb.append(lineSeparator);
+
+		sb.append("\trepositories {");
+		sb.append(lineSeparator);
+
+		sb.append("\t\tmaven {");
+		sb.append(lineSeparator);
+
+		sb.append(
+			"\t\t\turl \"https://repository-cdn.liferay.com/nexus/content" +
+				"/groups/public\"");
+		sb.append(lineSeparator);
+
+		sb.append("\t\t}");
+		sb.append(lineSeparator);
+
+		sb.append("\t}");
+		sb.append(lineSeparator);
+
+		sb.append("}");
 		sb.append(lineSeparator);
 
 		sb.append(

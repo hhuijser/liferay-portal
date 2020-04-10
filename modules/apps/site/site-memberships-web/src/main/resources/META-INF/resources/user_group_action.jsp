@@ -37,10 +37,11 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		</portlet:renderURL>
 
 		<%
-		Map<String, Object> assignData = new HashMap<>();
-
-		assignData.put("href", assignURL.toString());
-		assignData.put("usergroupid", userGroup.getUserGroupId());
+		Map<String, Object> assignData = HashMapBuilder.<String, Object>put(
+			"href", assignURL.toString()
+		).put(
+			"usergroupid", userGroup.getUserGroupId()
+		).build();
 		%>
 
 		<liferay-ui:icon
@@ -59,10 +60,11 @@ UserGroup userGroup = (UserGroup)row.getObject();
 		</portlet:renderURL>
 
 		<%
-		Map<String, Object> unassignData = new HashMap<>();
-
-		unassignData.put("href", unassignURL.toString());
-		unassignData.put("usergroupid", userGroup.getUserGroupId());
+		Map<String, Object> unassignData = HashMapBuilder.<String, Object>put(
+			"href", unassignURL.toString()
+		).put(
+			"usergroupid", userGroup.getUserGroupId()
+		).build();
 		%>
 
 		<liferay-ui:icon

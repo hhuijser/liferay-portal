@@ -39,14 +39,19 @@ long[] selectedGroupIds = GetterUtil.getLongValues(request.getAttribute("liferay
 		>
 
 			<%
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			data.put("groupdescriptivename", group.getDescriptiveName(locale));
-			data.put("groupid", group.getGroupId());
-			data.put("groupscopelabel", LanguageUtil.get(request, group.getScopeLabel(themeDisplay)));
-			data.put("grouptype", LanguageUtil.get(request, group.getTypeLabel()));
-			data.put("url", group.getDisplayURL(themeDisplay));
-			data.put("uuid", group.getUuid());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"groupdescriptivename", group.getDescriptiveName(locale)
+			).put(
+				"groupid", group.getGroupId()
+			).put(
+				"groupscopelabel", LanguageUtil.get(request, group.getScopeLabel(themeDisplay))
+			).put(
+				"grouptype", LanguageUtil.get(request, group.getTypeLabel())
+			).put(
+				"url", group.getDisplayURL(themeDisplay)
+			).put(
+				"uuid", group.getUuid()
+			).build();
 			%>
 
 			<c:choose>

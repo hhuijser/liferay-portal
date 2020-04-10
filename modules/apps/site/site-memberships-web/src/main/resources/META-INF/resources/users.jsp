@@ -77,9 +77,9 @@ Role role = usersDisplayContext.getRole();
 
 					boolean selectUsers = false;
 
-					Map<String, Object> rowData = new HashMap<>();
-
-					rowData.put("actions", usersManagementToolbarDisplayContext.getAvailableActions(user2));
+					Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+						"actions", usersManagementToolbarDisplayContext.getAvailableActions(user2)
+					).build();
 
 					row.setData(rowData);
 					%>

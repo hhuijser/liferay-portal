@@ -60,15 +60,21 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 			<%
 			List<Group> childGroups = GroupServiceUtil.getGroups(group.getCompanyId(), group.getGroupId(), true);
 
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			data.put("groupdescriptivename", group.getDescriptiveName(locale));
-			data.put("groupid", group.getGroupId());
-			data.put("groupscopelabel", LanguageUtil.get(resourceBundle, group.getScopeLabel(themeDisplay)));
-			data.put("grouptarget", target);
-			data.put("grouptype", LanguageUtil.get(resourceBundle, group.getTypeLabel()));
-			data.put("url", groupURLProvider.getGroupURL(group, liferayPortletRequest));
-			data.put("uuid", group.getUuid());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"groupdescriptivename", group.getDescriptiveName(locale)
+			).put(
+				"groupid", group.getGroupId()
+			).put(
+				"groupscopelabel", LanguageUtil.get(resourceBundle, group.getScopeLabel(themeDisplay))
+			).put(
+				"grouptarget", target
+			).put(
+				"grouptype", LanguageUtil.get(resourceBundle, group.getTypeLabel())
+			).put(
+				"url", groupURLProvider.getGroupURL(group, liferayPortletRequest)
+			).put(
+				"uuid", group.getUuid()
+			).build();
 
 			String childGroupsHREF = null;
 
@@ -127,9 +133,9 @@ GroupSearch groupSearch = siteItemSelectorViewDisplayContext.getGroupSearch();
 					<%
 					row.setCssClass("entry-card lfr-asset-item " + row.getCssClass());
 
-					Map<String, Object> linkData = new HashMap<>();
-
-					linkData.put("prevent-selection", true);
+					Map<String, Object> linkData = HashMapBuilder.<String, Object>put(
+						"prevent-selection", true
+					).build();
 
 					SiteVerticalCard siteVerticalCard = new SiteVerticalCard(group, liferayPortletRequest);
 					%>

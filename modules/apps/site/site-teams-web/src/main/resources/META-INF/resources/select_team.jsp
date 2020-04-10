@@ -36,11 +36,13 @@ SelectTeamDisplayContext selectTeamDisplayContext = new SelectTeamDisplayContext
 		>
 
 			<%
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			data.put("entityid", curTeam.getTeamId());
-			data.put("entityname", curTeam.getName());
-			data.put("teamdescription", curTeam.getDescription());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"entityid", curTeam.getTeamId()
+			).put(
+				"entityname", curTeam.getName()
+			).put(
+				"teamdescription", curTeam.getDescription()
+			).build();
 
 			Group group = themeDisplay.getScopeGroup();
 

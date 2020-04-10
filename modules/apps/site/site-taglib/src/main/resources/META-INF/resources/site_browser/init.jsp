@@ -27,13 +27,13 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.util.ArrayUtil" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.site.taglib.internal.display.context.SiteBrowserDisplayContext" %><%@
 page import="com.liferay.site.taglib.internal.display.context.SiteBrowserManagementToolbarDisplayContext" %><%@
 page import="com.liferay.site.taglib.internal.servlet.taglib.clay.SiteVerticalCard" %>
 
-<%@ page import="java.util.HashMap" %><%@
-page import="java.util.Map" %><%@
+<%@ page import="java.util.Map" %><%@
 page import="java.util.Objects" %>
 
 <liferay-frontend:defineObjects />

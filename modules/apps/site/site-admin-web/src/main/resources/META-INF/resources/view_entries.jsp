@@ -32,9 +32,9 @@
 
 		String siteImageURL = curGroup.getLogoURL(themeDisplay, false);
 
-		Map<String, Object> rowData = new HashMap<>();
-
-		rowData.put("actions", siteAdminManagementToolbarDisplayContext.getAvailableActions(curGroup));
+		Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+			"actions", siteAdminManagementToolbarDisplayContext.getAvailableActions(curGroup)
+		).build();
 
 		row.setData(rowData);
 		%>

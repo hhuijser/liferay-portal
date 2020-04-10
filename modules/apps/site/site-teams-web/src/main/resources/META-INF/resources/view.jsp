@@ -52,9 +52,9 @@ SiteTeamsManagementToolbarDisplayContext siteTeamsManagementToolbarDisplayContex
 				rowURL.setParameter("teamId", String.valueOf(team.getTeamId()));
 			}
 
-			Map<String, Object> rowData = new HashMap<>();
-
-			rowData.put("actions", siteTeamsManagementToolbarDisplayContext.getAvailableActions(team));
+			Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+				"actions", siteTeamsManagementToolbarDisplayContext.getAvailableActions(team)
+			).build();
 
 			row.setData(rowData);
 			%>

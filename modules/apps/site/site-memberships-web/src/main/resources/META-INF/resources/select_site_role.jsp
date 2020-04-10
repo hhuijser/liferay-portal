@@ -37,9 +37,9 @@ SelectRolesDisplayContext selectRolesDisplayContext = new SelectRolesDisplayCont
 		>
 
 			<%
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			data.put("id", role.getRoleId());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"id", role.getRoleId()
+			).build();
 			%>
 
 			<c:choose>

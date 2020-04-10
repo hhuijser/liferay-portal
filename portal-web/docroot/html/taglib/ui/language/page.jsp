@@ -17,13 +17,17 @@
 <%@ include file="/html/taglib/ui/language/init.jsp" %>
 
 <%
-Map<String, Object> contextObjects = new HashMap<String, Object>();
-
-contextObjects.put("formAction", formAction);
-contextObjects.put("formName", formName);
-contextObjects.put("languageId", languageId);
-contextObjects.put("name", name);
-contextObjects.put("namespace", namespace);
+Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
+	"formAction", formAction
+).put(
+	"formName", formName
+).put(
+	"languageId", languageId
+).put(
+	"name", name
+).put(
+	"namespace", namespace
+).build();
 %>
 
 <c:if test="<%= !languageEntries.isEmpty() %>">

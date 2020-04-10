@@ -190,15 +190,15 @@
 										for (DBType dbType : DBManagerUtil.getDBTypes()) {
 											String dbTypeString = dbType.toString();
 
-											Map<String, Object> data = new HashMap<String, Object>();
-
 											String driverClassName = PropsUtil.get(PropsKeys.SETUP_DATABASE_DRIVER_CLASS_NAME, new Filter(dbTypeString));
-
-											data.put("driverClassName", driverClassName);
 
 											String url = PropsUtil.get(PropsKeys.SETUP_DATABASE_URL, new Filter(dbTypeString));
 
-											data.put("url", url);
+											Map<String, Object> data = HashMapBuilder.<String, Object>put(
+												"driverClassName", driverClassName
+											).put(
+												"url", url
+											).build();
 										%>
 
 											<aui:option data="<%= data %>" label='<%= "database." + dbTypeString %>' selected="<%= PropsValues.JDBC_DEFAULT_URL.contains(dbTypeString) %>" value="<%= dbTypeString %>" />

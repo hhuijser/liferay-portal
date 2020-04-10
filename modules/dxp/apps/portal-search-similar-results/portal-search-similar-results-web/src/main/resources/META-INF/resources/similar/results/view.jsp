@@ -22,13 +22,13 @@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.util.WebKeys" %><%@
+<%@ page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
+page import="com.liferay.portal.kernel.util.WebKeys" %><%@
 page import="com.liferay.portal.search.similar.results.web.internal.configuration.SimilarResultsPortletInstanceConfiguration" %><%@
 page import="com.liferay.portal.search.similar.results.web.internal.display.context.SimilarResultsDisplayContext" %><%@
 page import="com.liferay.portal.search.similar.results.web.internal.display.context.SimilarResultsDocumentDisplayContext" %>
 
-<%@ page import="java.util.HashMap" %><%@
-page import="java.util.List" %><%@
+<%@ page import="java.util.List" %><%@
 page import="java.util.Map" %>
 
 <liferay-theme:defineObjects />
@@ -40,9 +40,9 @@ SimilarResultsDisplayContext similarResultsDisplayContext = (SimilarResultsDispl
 
 SimilarResultsPortletInstanceConfiguration similarResultsPortletInstanceConfiguration = similarResultsDisplayContext.getSimilarResultsPortletInstanceConfiguration();
 
-Map<String, Object> contextObjects = new HashMap<String, Object>();
-
-contextObjects.put("similarResultsDisplayContext", similarResultsDisplayContext);
+Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
+	"similarResultsDisplayContext", similarResultsDisplayContext
+).build();
 
 List<SimilarResultsDocumentDisplayContext> similarResultsDocumentDisplayContexts = similarResultsDisplayContext.getSimilarResultsDocumentDisplayContexts();
 

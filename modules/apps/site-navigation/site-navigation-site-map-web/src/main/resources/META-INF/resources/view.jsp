@@ -17,9 +17,9 @@
 <%@ include file="/init.jsp" %>
 
 <%
-Map<String, Object> contextObjects = new HashMap<String, Object>();
-
-contextObjects.put("siteNavigationSiteMapDisplayContext", siteNavigationSiteMapDisplayContext);
+Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
+	"siteNavigationSiteMapDisplayContext", siteNavigationSiteMapDisplayContext
+).build();
 %>
 
 <liferay-ddm:template-renderer

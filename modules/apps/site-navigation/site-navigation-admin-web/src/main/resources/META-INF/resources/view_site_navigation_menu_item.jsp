@@ -27,10 +27,11 @@ SiteNavigationMenuItemType siteNavigationMenuItemType = siteNavigationMenuItemTy
 
 String title = siteNavigationMenuItemType.getTitle(siteNavigationMenuItem, locale);
 
-Map<String, Object> data = new HashMap<String, Object>();
-
-data.put("site-navigation-menu-item-id", siteNavigationMenuItemId);
-data.put("title", HtmlUtil.escape(title));
+Map<String, Object> data = HashMapBuilder.<String, Object>put(
+	"site-navigation-menu-item-id", siteNavigationMenuItemId
+).put(
+	"title", HtmlUtil.escape(title)
+).build();
 
 request.setAttribute("edit_site_navigation_menu.jsp-siteNavigationMenuItemId", siteNavigationMenuItem.getSiteNavigationMenuItemId());
 %>

@@ -53,9 +53,9 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 						</button>
 
 						<%
-						Map<String, Object> data = new HashMap<>();
-
-						data.put("dropdownItems", siteNavigationAdminDisplayContext.getAddSiteNavigationMenuItemDropdownItems());
+						Map<String, Object> data = HashMapBuilder.<String, Object>put(
+							"dropdownItems", siteNavigationAdminDisplayContext.getAddSiteNavigationMenuItemDropdownItems()
+						).build();
 						%>
 
 						<react:component
@@ -126,15 +126,21 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 		</portlet:renderURL>
 
 		<%
-		Map<String, Object> data = new HashMap<>();
-
-		data.put("editSiteNavigationMenuItemParentURL", editSiteNavigationMenuItemParentURL.toString());
-		data.put("editSiteNavigationMenuItemURL", editSiteNavigationMenuItemURL.toString());
-		data.put("editSiteNavigationMenuSettingsURL", editSiteNavigationMenuSettingsURL.toString());
-		data.put("id", renderResponse.getNamespace() + "sidebar");
-		data.put("redirect", currentURL);
-		data.put("siteNavigationMenuId", siteNavigationAdminDisplayContext.getSiteNavigationMenuId());
-		data.put("siteNavigationMenuName", siteNavigationAdminDisplayContext.getSiteNavigationMenuName());
+		Map<String, Object> data = HashMapBuilder.<String, Object>put(
+			"editSiteNavigationMenuItemParentURL", editSiteNavigationMenuItemParentURL.toString()
+		).put(
+			"editSiteNavigationMenuItemURL", editSiteNavigationMenuItemURL.toString()
+		).put(
+			"editSiteNavigationMenuSettingsURL", editSiteNavigationMenuSettingsURL.toString()
+		).put(
+			"id", renderResponse.getNamespace() + "sidebar"
+		).put(
+			"redirect", currentURL
+		).put(
+			"siteNavigationMenuId", siteNavigationAdminDisplayContext.getSiteNavigationMenuId()
+		).put(
+			"siteNavigationMenuName", siteNavigationAdminDisplayContext.getSiteNavigationMenuName()
+		).build();
 		%>
 
 		<react:component

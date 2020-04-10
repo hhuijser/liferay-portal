@@ -28,6 +28,7 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.model.Group" %><%@
 page import="com.liferay.portal.kernel.service.GroupLocalServiceUtil" %><%@
+page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.StringUtil" %><%@
 page import="com.liferay.site.navigation.item.selector.web.internal.constants.SiteNavigationItemSelectorWebKeys" %><%@
@@ -36,7 +37,6 @@ page import="com.liferay.site.navigation.item.selector.web.internal.display.cont
 page import="com.liferay.site.navigation.item.selector.web.internal.display.context.SiteNavigationMenuItemSelectorViewManagementToolbarDisplayContext" %>
 
 <%@ page import="java.util.Date" %><%@
-page import="java.util.HashMap" %><%@
 page import="java.util.Map" %>
 
 <liferay-frontend:defineObjects />

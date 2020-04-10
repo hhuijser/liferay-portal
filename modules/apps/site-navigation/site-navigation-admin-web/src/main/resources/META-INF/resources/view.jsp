@@ -40,9 +40,9 @@ SiteNavigationAdminManagementToolbarDisplayContext siteNavigationAdminManagement
 		>
 
 			<%
-			Map<String, Object> rowData = new HashMap<>();
-
-			rowData.put("actions", siteNavigationAdminManagementToolbarDisplayContext.getAvailableActions(siteNavigationMenu));
+			Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+				"actions", siteNavigationAdminManagementToolbarDisplayContext.getAvailableActions(siteNavigationMenu)
+			).build();
 
 			row.setData(rowData);
 			%>

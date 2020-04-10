@@ -37,9 +37,9 @@ String displayStyle = siteNavigationMenuItemSelectorViewDisplayContext.getDispla
 		>
 
 			<%
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			data.put("id", siteNavigationMenu.getSiteNavigationMenuId());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"id", siteNavigationMenu.getSiteNavigationMenuId()
+			).build();
 
 			String name = siteNavigationMenu.getName();
 

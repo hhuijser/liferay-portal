@@ -51,11 +51,13 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		</portlet:actionURL>
 
 		<%
-		Map<String, Object> updateSiteNavigationMenuData = new HashMap<String, Object>();
-
-		updateSiteNavigationMenuData.put("form-submit-url", updateSiteNavigationMenuURL.toString());
-		updateSiteNavigationMenuData.put("id-field-value", siteNavigationMenu.getSiteNavigationMenuId());
-		updateSiteNavigationMenuData.put("main-field-value", siteNavigationMenu.getName());
+		Map<String, Object> updateSiteNavigationMenuData = HashMapBuilder.<String, Object>put(
+			"form-submit-url", updateSiteNavigationMenuURL.toString()
+		).put(
+			"id-field-value", siteNavigationMenu.getSiteNavigationMenuId()
+		).put(
+			"main-field-value", siteNavigationMenu.getName()
+		).build();
 		%>
 
 		<liferay-ui:icon

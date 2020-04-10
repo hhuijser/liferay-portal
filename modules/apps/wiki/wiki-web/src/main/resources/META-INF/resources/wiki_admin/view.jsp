@@ -142,9 +142,9 @@ WikiNodesManagementToolbarDisplayContext wikiNodesManagementToolbarDisplayContex
 				>
 
 					<%
-					Map<String, Object> rowData = new HashMap<>();
-
-					rowData.put("actions", StringUtil.merge(wikiNodesManagementToolbarDisplayContext.getAvailableActions(node)));
+					Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+						"actions", StringUtil.merge(wikiNodesManagementToolbarDisplayContext.getAvailableActions(node))
+					).build();
 
 					row.setData(rowData);
 

@@ -186,12 +186,15 @@ if (portletTitleBasedNavigation) {
 					formattedContent = wikiPage.getContent();
 				}
 
-				Map<String, Object> contextObjects = new HashMap<String, Object>();
-
-				contextObjects.put("assetEntry", layoutAssetEntry);
-				contextObjects.put("formattedContent", formattedContent);
-				contextObjects.put("viewURL", viewPageURL.toString());
-				contextObjects.put("wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration);
+				Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
+					"assetEntry", layoutAssetEntry
+				).put(
+					"formattedContent", formattedContent
+				).put(
+					"viewURL", viewPageURL.toString()
+				).put(
+					"wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration
+				).build();
 
 				// Deprecated
 

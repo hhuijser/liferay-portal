@@ -126,11 +126,11 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "details
 
 					<%
 					for (String conversion : conversions) {
-						Map<String, Object> data = new HashMap<>();
-
 						exportPageURL.setParameter("targetExtension", conversion);
 
-						data.put("resource-href", exportPageURL.toString());
+						Map<String, Object> data = HashMapBuilder.<String, Object>put(
+							"resource-href", exportPageURL.toString()
+						).build();
 					%>
 
 						<liferay-ui:icon

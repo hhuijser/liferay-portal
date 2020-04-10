@@ -43,7 +43,9 @@ public class ProjectTemplatesNpmReactPortletTest
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}, {1}")
+	@Parameterized.Parameters(
+		name = "Testcase-{index}: testing {0}, {1}, {2}, {3}"
+	)
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
 			new Object[][] {

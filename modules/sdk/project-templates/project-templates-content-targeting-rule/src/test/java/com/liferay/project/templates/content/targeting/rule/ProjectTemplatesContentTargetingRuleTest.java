@@ -109,7 +109,7 @@ public class ProjectTemplatesContentTargetingRuleTest
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:foo-bar" + GRADLE_TASK_PATH_BUILD);
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 		}
 	}
 

@@ -360,7 +360,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		Optional<String> gradleResult = executeGradle(
 			workspaceDir, true, ProjectTemplatesTest._gradleDistribution,
-			":modules:foo" + GRADLE_TASK_PATH_BUILD);
+			":modules:" + name + GRADLE_TASK_PATH_BUILD);
 
 		String gradleAntBndVersion = null;
 

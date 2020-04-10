@@ -105,7 +105,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:foo" + GRADLE_TASK_PATH_BUILD);
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 
 			File jarFile = testExists(
 				gradleProjectDir, "build/libs/foo-1.0.0.jar");

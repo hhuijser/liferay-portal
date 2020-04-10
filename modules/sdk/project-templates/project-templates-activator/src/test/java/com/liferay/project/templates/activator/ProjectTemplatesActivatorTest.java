@@ -102,7 +102,7 @@ public class ProjectTemplatesActivatorTest
 			buildProjects(
 				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:bar-activator" + GRADLE_TASK_PATH_BUILD);
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 
 			File jarFile = testExists(
 				gradleProjectDir, "build/libs/bar.activator-1.0.0.jar");

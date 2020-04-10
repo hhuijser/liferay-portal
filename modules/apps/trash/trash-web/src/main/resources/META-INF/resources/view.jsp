@@ -134,9 +134,9 @@ TrashManagementToolbarDisplayContext trashManagementToolbarDisplayContext = new 
 						viewContentURLString = viewContentURL.toString();
 					}
 
-					Map<String, Object> rowData = new HashMap<>();
-
-					rowData.put("actions", trashManagementToolbarDisplayContext.getAvailableActions(trashEntry));
+					Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+						"actions", trashManagementToolbarDisplayContext.getAvailableActions(trashEntry)
+					).build();
 
 					row.setData(rowData);
 					%>

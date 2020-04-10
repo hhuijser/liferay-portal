@@ -188,10 +188,11 @@
 					<span class="selected-labels" id="<portlet:namespace />selectedContent_<%= portlet.getPortletId() %>"></span>
 
 					<%
-					Map<String, Object> data = new HashMap<String, Object>();
-
-					data.put("portletid", portletId);
-					data.put("portlettitle", portletTitle);
+					Map<String, Object> data = HashMapBuilder.<String, Object>put(
+						"portletid", portletId
+					).put(
+						"portlettitle", portletTitle
+					).build();
 					%>
 
 					<span <%= !disableInputs ? StringPool.BLANK : "class=\"hide\"" %>>

@@ -70,10 +70,11 @@ PortletURL portletURL = userItemSelectorViewDisplayContext.getPortletURL();
 			<%
 			String userFullName = user.getFullName();
 
-			Map<String, Object> data = new HashMap<>();
-
-			data.put("id", user.getUserId());
-			data.put("name", userFullName);
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"id", user.getUserId()
+			).put(
+				"name", userFullName
+			).build();
 
 			row.setData(data);
 			%>

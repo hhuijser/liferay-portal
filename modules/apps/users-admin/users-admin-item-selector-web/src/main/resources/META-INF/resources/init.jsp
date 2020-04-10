@@ -22,12 +22,12 @@ taglib uri="http://liferay.com/tld/item-selector" prefix="liferay-item-selector"
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+<%@ page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
+page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.users.admin.item.selector.web.internal.constants.UserItemSelectorViewConstants" %><%@
 page import="com.liferay.users.admin.item.selector.web.internal.display.context.UserItemSelectorViewDisplayContext" %>
 
-<%@ page import="java.util.HashMap" %><%@
-page import="java.util.Map" %>
+<%@ page import="java.util.Map" %>
 
 <%@ page import="javax.portlet.PortletURL" %>
 

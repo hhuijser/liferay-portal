@@ -66,10 +66,11 @@ renderResponse.setTitle(LanguageUtil.get(request, "user-groups"));
 				<c:if test="<%= UserGroupMembershipPolicyUtil.isMembershipAllowed((selUser != null) ? selUser.getUserId() : 0, userGroup.getUserGroupId()) %>">
 
 					<%
-					Map<String, Object> data = new HashMap<String, Object>();
-
-					data.put("entityid", userGroup.getUserGroupId());
-					data.put("entityname", userGroup.getName());
+					Map<String, Object> data = HashMapBuilder.<String, Object>put(
+						"entityid", userGroup.getUserGroupId()
+					).put(
+						"entityname", userGroup.getName()
+					).build();
 
 					boolean disabled = false;
 

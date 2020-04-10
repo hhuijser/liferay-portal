@@ -62,6 +62,7 @@ page import="com.liferay.portal.kernel.service.UserLocalServiceUtil" %><%@
 page import="com.liferay.portal.kernel.service.permission.GroupPermissionUtil" %><%@
 page import="com.liferay.portal.kernel.service.permission.PortalPermissionUtil" %><%@
 page import="com.liferay.portal.kernel.service.permission.UserGroupPermissionUtil" %><%@
+page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
 page import="com.liferay.portal.kernel.util.ParamUtil" %><%@
 page import="com.liferay.portal.kernel.util.PortalUtil" %><%@
@@ -77,7 +78,6 @@ page import="com.liferay.user.groups.admin.web.internal.display.context.ViewUser
 page import="com.liferay.users.admin.constants.UsersAdminPortletKeys" %>
 
 <%@ page import="java.util.ArrayList" %><%@
-page import="java.util.HashMap" %><%@
 page import="java.util.LinkedHashMap" %><%@
 page import="java.util.List" %><%@
 page import="java.util.Map" %>

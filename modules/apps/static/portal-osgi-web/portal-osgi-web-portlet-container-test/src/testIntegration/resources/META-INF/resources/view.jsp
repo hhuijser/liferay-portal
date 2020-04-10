@@ -21,10 +21,10 @@ taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %>
 
 <%@ page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.util.GetterUtil" %><%@
+page import="com.liferay.portal.kernel.util.HashMapBuilder" %><%@
 page import="com.liferay.portal.osgi.web.portlet.container.test.TestPortlet" %>
 
 <%@ page import="java.util.Collections" %><%@
-page import="java.util.HashMap" %><%@
 page import="java.util.Map" %>
 
 <liferay-theme:defineObjects />
@@ -32,9 +32,9 @@ page import="java.util.Map" %>
 <portlet:defineObjects />
 
 <%
-Map<String, Object> contextObjects = new HashMap<>();
-
-contextObjects.put("testRuntimePortletId", "testRuntimePortletId");
+Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
+	"testRuntimePortletId", "testRuntimePortletId"
+).build();
 
 String displayStyle = GetterUtil.getString(portletPreferences.getValue("displayStyle", StringPool.BLANK));
 long displayStyleGroupId = GetterUtil.getLong(portletPreferences.getValue("displayStyleGroupId", null), scopeGroupId);

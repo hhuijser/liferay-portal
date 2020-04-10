@@ -32,12 +32,15 @@ TrashContainerModelDisplayContext trashContainerModelDisplayContext = new TrashC
 	<aui:button-row>
 
 		<%
-		Map<String, Object> data = new HashMap<String, Object>();
-
-		data.put("classname", trashContainerModelDisplayContext.getClassName());
-		data.put("classpk", trashContainerModelDisplayContext.getClassPK());
-		data.put("containermodelid", trashContainerModelDisplayContext.getContainerModelId());
-		data.put("redirect", trashContainerModelDisplayContext.getRedirect());
+		Map<String, Object> data = HashMapBuilder.<String, Object>put(
+			"classname", trashContainerModelDisplayContext.getClassName()
+		).put(
+			"classpk", trashContainerModelDisplayContext.getClassPK()
+		).put(
+			"containermodelid", trashContainerModelDisplayContext.getContainerModelId()
+		).put(
+			"redirect", trashContainerModelDisplayContext.getRedirect()
+		).build();
 		%>
 
 		<aui:button cssClass="selector-button" data="<%= data %>" value='<%= LanguageUtil.format(request, "choose-this-x", trashContainerModelDisplayContext.getContainerModelName()) %>' />
@@ -93,12 +96,15 @@ TrashContainerModelDisplayContext trashContainerModelDisplayContext = new TrashC
 			<liferay-ui:search-container-column-text>
 
 				<%
-				Map<String, Object> data = new HashMap<String, Object>();
-
-				data.put("classname", trashContainerModelDisplayContext.getClassName());
-				data.put("classpk", trashContainerModelDisplayContext.getClassPK());
-				data.put("containermodelid", curContainerModelId);
-				data.put("redirect", trashContainerModelDisplayContext.getRedirect());
+				Map<String, Object> data = HashMapBuilder.<String, Object>put(
+					"classname", trashContainerModelDisplayContext.getClassName()
+				).put(
+					"classpk", trashContainerModelDisplayContext.getClassPK()
+				).put(
+					"containermodelid", curContainerModelId
+				).put(
+					"redirect", trashContainerModelDisplayContext.getRedirect()
+				).build();
 				%>
 
 				<aui:button cssClass="selector-button" data="<%= data %>" value="choose" />

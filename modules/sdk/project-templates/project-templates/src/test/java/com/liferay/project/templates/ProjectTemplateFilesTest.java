@@ -1016,9 +1016,9 @@ public class ProjectTemplateFilesTest {
 		Pattern.compile("\\$\\{([^\\}]*)\\}");
 	private static final Pattern _buildGradleDependencyPattern =
 		Pattern.compile(
-			"(compile(?:Only)?) group: \\\"(.+)\\\", name: \\\"([a-zA-Z0-9\\." +
-				"\\-]+)\\\"((?:, version: )\"([0-9\\.]+)\")?(, transitive: " +
-					"(?: true|false))?");
+			"(compile(?:Only)?) \\(?group: \\\"(.+)\\\", name: \\\"([a-zA-Z" +
+				"0-9\\.\\-]+)\\\"((?:, version: )\\\"([0-9\\.]+)\\\")?(, " +
+					"transitive: (?: true|false))?(\\) \\{force = true\\})?");
 	private static final Pattern _bundleDescriptionPattern = Pattern.compile(
 		"Creates a .+\\.");
 	private static final Pattern _bundleNameSeparatorPattern = Pattern.compile(

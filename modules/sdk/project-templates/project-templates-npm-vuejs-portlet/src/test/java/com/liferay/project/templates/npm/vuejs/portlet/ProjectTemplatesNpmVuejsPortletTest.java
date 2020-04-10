@@ -76,10 +76,10 @@ public class ProjectTemplatesNpmVuejsPortletTest
 		String name, String packageName, String className,
 		String liferayVersion) {
 
-		_liferayVersion = liferayVersion;
 		_name = name;
-		_className = className;
 		_packageName = packageName;
+		_className = className;
+		_liferayVersion = liferayVersion;
 	}
 
 	@Test

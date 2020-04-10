@@ -207,22 +207,6 @@ public interface BaseProjectTemplatesTestCase {
 		return null;
 	}
 
-	public default void _createNewFiles(String fileName, File... dirs)
-		throws IOException {
-
-		for (File dir : dirs) {
-			File file = new File(dir, fileName);
-
-			File parentDir = file.getParentFile();
-
-			if (!parentDir.isDirectory()) {
-				Assert.assertTrue(parentDir.mkdirs());
-			}
-
-			Assert.assertTrue(file.createNewFile());
-		}
-	}
-
 	public default void addCssBuilderConfigurationElement(
 		Document document, String configurationName, String configurationText) {
 
@@ -595,6 +579,31 @@ public interface BaseProjectTemplatesTestCase {
 			liferayVersion);
 	}
 
+	public default File buildWorkspaceWithTPEnabled(
+			TemporaryFolder temporaryFolder, String buildType, String name,
+			String liferayVersion, MavenExecutor mavenExecutor)
+		throws Exception {
+
+		File workspaceDir;
+
+		if (buildType.equals("gradle")) {
+			workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+
+			enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
+		}
+		else {
+			File destinationDir = temporaryFolder.newFolder("mavenWorkspace");
+			String groupId = "com.test";
+
+			workspaceDir = buildTemplateWithMaven(
+				destinationDir, destinationDir, "workspace", name, groupId,
+				mavenExecutor, "-DliferayVersion=" + liferayVersion,
+				"-Dpackage=com.test");
+		}
+
+		return workspaceDir;
+	}
+
 	public default void configureExecutePackageManagerTask(File projectDir)
 		throws Exception {
 
@@ -654,8 +663,9 @@ public interface BaseProjectTemplatesTestCase {
 
 					XPath xPath = xPathFactory.newXPath();
 
-					XPathExpression pomXmlNpmInstallXPathExpression = xPath.compile(
-						"//id[contains(text(),'npm-install')]/parent::*");
+					XPathExpression pomXmlNpmInstallXPathExpression =
+						xPath.compile(
+							"//id[contains(text(),'npm-install')]/parent::*");
 
 					NodeList nodeList =
 						(NodeList)pomXmlNpmInstallXPathExpression.evaluate(
@@ -761,8 +771,9 @@ public interface BaseProjectTemplatesTestCase {
 			if (!content.contains("allprojects")) {
 				content +=
 					"allprojects {\n\trepositories {\n\t\tmavenLocal()\n\t}\n" +
-						"\tconfigurations.all {\n\t\tresolutionStrategy.force " +
-						"'javax.servlet:javax.servlet-api:3.0.1'\n\t}\n}";
+						"\tconfigurations.all {\n\t\tresolutionStrategy." +
+							"force 'javax.servlet:javax.servlet-api:3.0.1'" +
+								"\n\t}\n}";
 
 				Files.write(
 					buildFilePath, content.getBytes(StandardCharsets.UTF_8));
@@ -987,31 +998,6 @@ public interface BaseProjectTemplatesTestCase {
 		return false;
 	}
 
-	public default File buildWorkspaceWithTPEnabled(
-			TemporaryFolder temporaryFolder, String buildType, String name,
-			String liferayVersion, MavenExecutor mavenExecutor)
-		throws Exception {
-
-		File workspaceDir;
-
-		if (buildType.equals("gradle")) {
-			workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
-
-			enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
-		}
-		else {
-			File destinationDir = temporaryFolder.newFolder("mavenWorkspace");
-			String groupId = "com.test";
-
-			workspaceDir = buildTemplateWithMaven(
-				destinationDir, destinationDir, "workspace", name, groupId,
-				mavenExecutor, "-DliferayVersion=" + liferayVersion,
-				"-Dpackage=com.test");
-		}
-
-		return workspaceDir;
-	}
-
 	public default List<String> sanitizeLines(List<String> lines) {
 		List<String> sanitizedLines = new ArrayList<>();
 
@@ -1115,6 +1101,7 @@ public interface BaseProjectTemplatesTestCase {
 
 		File gradleWorkspaceModulesDir = new File(
 			gradleWorkspaceDir, "modules");
+
 		File gradleProjectDir;
 
 		if (testModifier.equals("portlet")) {
@@ -1129,12 +1116,14 @@ public interface BaseProjectTemplatesTestCase {
 		}
 		else if (testModifier.equals("portletName")) {
 			name = "portlet";
+
 			gradleProjectDir = buildTemplateWithGradle(
 				gradleWorkspaceModulesDir, template, name, "--liferay-version",
 				liferayVersion);
 		}
 		else {
 			name = "portlet-portlet";
+
 			gradleProjectDir = buildTemplateWithGradle(
 				gradleWorkspaceModulesDir, template, name, "--liferay-version",
 				liferayVersion);
@@ -1212,7 +1201,8 @@ public interface BaseProjectTemplatesTestCase {
 		else {
 			testContains(
 				gradleProjectDir,
-				"src/main/java/portlet/portlet/constants/PortletPortletKeys.java",
+				"src/main/java/portlet/portlet/constants" +
+					"/PortletPortletKeys.java",
 				"public class PortletPortletKeys",
 				"public static final String PORTLET",
 				"\"portlet_portlet_PortletPortlet\";");
@@ -1343,7 +1333,8 @@ public interface BaseProjectTemplatesTestCase {
 
 		File mavenProjectDir = buildTemplateWithMaven(
 			mavenWarsDir, mavenWarsDir, template, name, "com.test",
-			mavenExecutor, "-DclassName=" + name, "-Dpackage=" + name.toLowerCase(),
+			mavenExecutor, "-DclassName=" + name,
+			"-Dpackage=" + name.toLowerCase(),
 			"-DliferayVersion=" + liferayVersion);
 
 		if (isBuildProjects()) {
@@ -1358,17 +1349,16 @@ public interface BaseProjectTemplatesTestCase {
 	}
 
 	public default void testBuildTemplateProjectWarMVCPortletInWorkspace(
-			TemporaryFolder temporaryFolder, String testModifier, URI gradleDistribution,
-			MavenExecutor mavenExecutor, String template, String name,
-			String liferayVersion)
+			TemporaryFolder temporaryFolder, String testModifier,
+			URI gradleDistribution, MavenExecutor mavenExecutor,
+			String template, String name, String liferayVersion)
 		throws Exception {
 
 		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
-		File gradleWorkspaceWarsDir = new File(
-			gradleWorkspaceDir, "wars");
+		File gradleWorkspaceWarsDir = new File(gradleWorkspaceDir, "wars");
 
 		File gradleProjectDir;
 
@@ -1384,12 +1374,14 @@ public interface BaseProjectTemplatesTestCase {
 		}
 		else if (testModifier.equals("portletName")) {
 			name = "portlet";
+
 			gradleProjectDir = buildTemplateWithGradle(
 				gradleWorkspaceWarsDir, template, name, "--liferay-version",
 				liferayVersion);
 		}
 		else {
 			name = "portlet-portlet";
+
 			gradleProjectDir = buildTemplateWithGradle(
 				gradleWorkspaceWarsDir, template, name, "--liferay-version",
 				liferayVersion);
@@ -1414,25 +1406,25 @@ public interface BaseProjectTemplatesTestCase {
 
 		if (testModifier.equals("portlet")) {
 			mavenProjectDir = buildTemplateWithMaven(
-					mavenWarsDir, mavenWarsDir, template, name, "com.test",
+				mavenWarsDir, mavenWarsDir, template, name, "com.test",
 				mavenExecutor, "-DclassName=Foo", "-Dpackage=foo",
 				"-DliferayVersion=" + liferayVersion);
 		}
 		else if (testModifier.equals("customPackage")) {
 			mavenProjectDir = buildTemplateWithMaven(
-					mavenWarsDir, mavenWarsDir, template, name, "com.test",
+				mavenWarsDir, mavenWarsDir, template, name, "com.test",
 				mavenExecutor, "-DclassName=Foo", "-Dpackage=com.liferay.test",
 				"-DliferayVersion=" + liferayVersion);
 		}
 		else if (testModifier.equals("portletName")) {
 			mavenProjectDir = buildTemplateWithMaven(
-					mavenWarsDir, mavenWarsDir, template, name, "com.test",
+				mavenWarsDir, mavenWarsDir, template, name, "com.test",
 				mavenExecutor, "-DclassName=Portlet", "-Dpackage=portlet",
 				"-DliferayVersion=" + liferayVersion);
 		}
 		else {
 			mavenProjectDir = buildTemplateWithMaven(
-					mavenWarsDir, mavenWarsDir, template, name, "com.test",
+				mavenWarsDir, mavenWarsDir, template, name, "com.test",
 				mavenExecutor, "-DclassName=Portlet",
 				"-Dpackage=portlet.portlet",
 				"-DliferayVersion=" + liferayVersion);

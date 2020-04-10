@@ -692,8 +692,9 @@ public class ProjectTemplateFilesTest {
 
 			if (buildGradleDependency.version != null) {
 				XMLTestUtil.testXmlElement(
-					pomXmlPath, dependencyElementString, dependencyChildElements, 2,
-					"version", buildGradleDependency.version);
+					pomXmlPath, dependencyElementString,
+					dependencyChildElements, 2, "version",
+					buildGradleDependency.version);
 
 				if (buildGradleDependency.provided) {
 					XMLTestUtil.testXmlElement(
@@ -824,7 +825,9 @@ public class ProjectTemplateFilesTest {
 
 		String pathString = archetypeResourcesDirPath.toString();
 
-		if (!pathString.contains("ext") && !pathString.contains("spring-mvc") && !pathString.contains("form-field")) {
+		if (!pathString.contains("ext") && !pathString.contains("spring-mvc") &&
+			!pathString.contains("form-field")) {
+
 			_testPomXml(archetypeResourcesDirPath, documentBuilder);
 		}
 
@@ -905,11 +908,11 @@ public class ProjectTemplateFilesTest {
 			projectTemplateDirPath);
 
 		if (!pathString.contains("form-field")) {
-		_testArchetypeMetadataXml(
-			projectTemplateDirPath, projectTemplateDirName,
-			archetypeResourcesDirPath, bndProperties,
-			requireAuthorProperty.get(), archetypePostGenerateGroovy,
-			archetypeResourceExpressions, documentBuilder);
+			_testArchetypeMetadataXml(
+				projectTemplateDirPath, projectTemplateDirName,
+				archetypeResourcesDirPath, bndProperties,
+				requireAuthorProperty.get(), archetypePostGenerateGroovy,
+				archetypeResourceExpressions, documentBuilder);
 		}
 	}
 
@@ -1013,7 +1016,9 @@ public class ProjectTemplateFilesTest {
 		Pattern.compile("\\$\\{([^\\}]*)\\}");
 	private static final Pattern _buildGradleDependencyPattern =
 		Pattern.compile(
-			"(compile(?:Only)?) group: \\\"(.+)\\\", name: \\\"([a-zA-Z0-9\\.\\-]+)\\\"((?:, version: )\"([0-9\\.]+)\")?(, transitive: (?: true|false))?");
+			"(compile(?:Only)?) group: \\\"(.+)\\\", name: \\\"([a-zA-Z0-9\\." +
+				"\\-]+)\\\"((?:, version: )\"([0-9\\.]+)\")?(, transitive: " +
+					"(?: true|false))?");
 	private static final Pattern _bundleDescriptionPattern = Pattern.compile(
 		"Creates a .+\\.");
 	private static final Pattern _bundleNameSeparatorPattern = Pattern.compile(
@@ -1087,7 +1092,6 @@ public class ProjectTemplateFilesTest {
 			this.name = name;
 			this.version = version;
 			this.provided = provided;
-
 		}
 
 		public final String group;

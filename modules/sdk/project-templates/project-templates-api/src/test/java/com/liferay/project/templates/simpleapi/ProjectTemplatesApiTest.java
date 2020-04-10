@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.project.templates.api;
+package com.liferay.project.templates.simpleapi;
 
 import aQute.bnd.header.Parameters;
 import aQute.bnd.osgi.Domain;

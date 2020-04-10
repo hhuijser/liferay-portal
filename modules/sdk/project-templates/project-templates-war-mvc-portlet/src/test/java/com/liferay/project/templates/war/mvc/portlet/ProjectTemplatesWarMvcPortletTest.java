@@ -74,7 +74,8 @@ public class ProjectTemplatesWarMvcPortletTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	public ProjectTemplatesWarMvcPortletTest(String testModifier, String liferayVersion) {
+	public ProjectTemplatesWarMvcPortletTest(
+		String testModifier, String liferayVersion) {
 
 		_testModifier = testModifier;
 		_liferayVersion = liferayVersion;
@@ -82,10 +83,9 @@ public class ProjectTemplatesWarMvcPortletTest
 
 	@Test
 	public void testBuildTemplateWarMvcPortlet() throws Exception {
-
 		testBuildTemplateProjectWarMVCPortletInWorkspace(
-			temporaryFolder, _testModifier, _gradleDistribution, mavenExecutor, "war-mvc-portlet", "WarMVCPortlet",
-			_liferayVersion);
+			temporaryFolder, _testModifier, _gradleDistribution, mavenExecutor,
+			"war-mvc-portlet", "WarMVCPortlet", _liferayVersion);
 	}
 
 	@Rule

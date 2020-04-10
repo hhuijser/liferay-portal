@@ -94,7 +94,7 @@ public class ProjectTemplatesWorkspaceTest
 	public void testBuildTemplateWorkspaceExistingFile() throws Exception {
 		File destinationDir = temporaryFolder.newFolder("existing-file");
 
-		_createNewFiles("foo", destinationDir);
+		createNewFiles("foo", destinationDir);
 
 		buildTemplateWithGradle(destinationDir, WorkspaceUtil.WORKSPACE, "foo");
 	}
@@ -103,7 +103,7 @@ public class ProjectTemplatesWorkspaceTest
 	public void testBuildTemplateWorkspaceForce() throws Exception {
 		File destinationDir = temporaryFolder.newFolder("existing-file");
 
-		_createNewFiles("foo", destinationDir);
+		createNewFiles("foo", destinationDir);
 
 		buildTemplateWithGradle(
 			destinationDir, WorkspaceUtil.WORKSPACE, "forced", "--force");

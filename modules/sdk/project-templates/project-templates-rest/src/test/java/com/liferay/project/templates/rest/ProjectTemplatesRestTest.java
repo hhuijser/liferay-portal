@@ -89,15 +89,16 @@ public class ProjectTemplatesRestTest implements BaseProjectTemplatesTestCase {
 		testExists(gradleProjectDir, "bnd.bnd");
 
 		testContains(
-				gradleProjectDir, "build.gradle",
-				"compileOnly group: \"javax.ws.rs\", name: \"javax.ws.rs-api");
+			gradleProjectDir, "build.gradle",
+			"compileOnly group: \"javax.ws.rs\", name: \"javax.ws.rs-api");
 
 		if (_liferayVersion.equals("7.1.3") ||
-			_liferayVersion.equals("7.2.1") || _liferayVersion.equals("7.3.0")) {
+			_liferayVersion.equals("7.2.1") ||
+			_liferayVersion.equals("7.3.0")) {
 
 			testContains(
-					gradleProjectDir, "build.gradle",
-					"compileOnly group: \"org.osgi\", name: " +
+				gradleProjectDir, "build.gradle",
+				"compileOnly group: \"org.osgi\", name: " +
 					"\"org.osgi.service.jaxrs");
 		}
 

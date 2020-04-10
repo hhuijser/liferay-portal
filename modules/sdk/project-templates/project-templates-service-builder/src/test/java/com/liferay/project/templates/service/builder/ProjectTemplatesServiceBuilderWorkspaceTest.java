@@ -71,10 +71,22 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 					"spring", "backend-integration",
 					"com.liferay.docs.guestbook", "7.1.3"
 				},
-				{"ds", "backend-integration", "com.liferay.docs.guestbook", "7.2.1"},
-				{"ds", "backend-integration", "com.liferay.docs.guestbook", "7.3.0"},
-				{"spring", "backend-integration", "com.liferay.docs.guestbook", "7.2.1"},
-				{"spring", "backend-integration", "com.liferay.docs.guestbook", "7.3.0"},
+				{
+					"ds", "backend-integration", "com.liferay.docs.guestbook",
+					"7.2.1"
+				},
+				{
+					"ds", "backend-integration", "com.liferay.docs.guestbook",
+					"7.3.0"
+				},
+				{
+					"spring", "backend-integration",
+					"com.liferay.docs.guestbook", "7.2.1"
+				},
+				{
+					"spring", "backend-integration",
+					"com.liferay.docs.guestbook", "7.3.0"
+				},
 				{"spring", "sample", "com.test.sample", "7.0.6"},
 				{"spring", "sample", "com.test.sample", "7.1.3"},
 				{"ds", "sample", "com.test.sample", "7.2.1"},
@@ -103,9 +115,9 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 		String liferayVersion) {
 
 		_dependencyInjector = dependencyInjector;
-		_liferayVersion = liferayVersion;
 		_name = name;
 		_packageName = packageName;
+		_liferayVersion = liferayVersion;
 	}
 
 	@Test
@@ -136,7 +148,8 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 		if (_name.contains("sample")) {
 			testContains(
 				gradleProjectDir, "sample-service/build.gradle",
-				"compileOnly project(\":modules:nested:path:sample:sample-api\")");
+				"compileOnly project(\":modules:nested:path:sample:" +
+					"sample-api\")");
 		}
 
 		if (_dependencyInjector.equals("ds")) {

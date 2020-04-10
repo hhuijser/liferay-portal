@@ -130,8 +130,7 @@ public class ProjectTemplatesServiceBuilderTest
 		editXml(gradleServiceXml, consumer);
 
 		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
-			temporaryFolder, "maven", "mavenWS", liferayVersion,
-			mavenExecutor);
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
@@ -153,7 +152,8 @@ public class ProjectTemplatesServiceBuilderTest
 		if (isBuildProjects()) {
 			Optional<String> stdOutput = executeGradle(
 				gradleWorkspaceDir, false, true, _gradleDistribution,
-				":modules:" + name + ":" + name + "-service" + GRADLE_TASK_PATH_BUILD);
+				":modules:" + name + ":" + name + "-service" +
+					GRADLE_TASK_PATH_BUILD);
 
 			Assert.assertTrue(stdOutput.isPresent());
 

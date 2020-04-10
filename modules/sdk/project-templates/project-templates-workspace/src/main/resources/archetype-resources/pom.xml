@@ -27,7 +27,6 @@
 		<liferay.workspace.bundle.url>https://releases-cdn.liferay.com/portal/7.3.0-ga1/liferay-ce-portal-tomcat-7.3.0-ga1-20200127150653953.tar.gz</liferay.workspace.bundle.url>
 #end
 	</properties>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -53,7 +52,6 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
 	<pluginRepositories>
 		<pluginRepository>
 			<releases>
@@ -71,7 +69,6 @@
 			<url>https://repository-cdn.liferay.com/nexus/content/groups/public/</url>
 		</pluginRepository>
 	</pluginRepositories>
-
 	<build>
 		<plugins>
 			<plugin>

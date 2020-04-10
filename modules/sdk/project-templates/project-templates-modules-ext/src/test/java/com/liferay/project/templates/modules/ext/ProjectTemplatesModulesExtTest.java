@@ -26,6 +26,7 @@ import java.net.URI;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -97,7 +98,6 @@ public class ProjectTemplatesModulesExtTest
 			Assert.assertNotNull(gradleOutputPath);
 
 			Assert.assertTrue(Files.exists(gradleOutputPath));
-
 		}
 	}
 
@@ -139,9 +139,13 @@ public class ProjectTemplatesModulesExtTest
 		completeArgs.add("-Dversion=1.0.0");
 
 		String mavenOutput = executeMaven(
-			mavenWorkspaceDir, true, mavenExecutor, completeArgs.toArray(new String[0]));
+			mavenWorkspaceDir, true, mavenExecutor,
+			completeArgs.toArray(new String[0]));
 
-		Assert.assertTrue(mavenOutput, mavenOutput.contains("java.io.EOFException: input contained no data"));
+		Assert.assertTrue(
+			mavenOutput,
+			mavenOutput.contains(
+				"java.io.EOFException: input contained no data"));
 	}
 
 	@Rule

@@ -112,9 +112,9 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 					<liferay-ui:search-container-column-text>
 
 						<%
-						Map<String, Object> data = new HashMap<String, Object>();
-
-						data.put("groupid", group.getGroupId());
+						Map<String, Object> data = HashMapBuilder.<String, Object>put(
+							"groupid", group.getGroupId()
+						).build();
 						%>
 
 						<aui:button cssClass="group-selector-button" data="<%= data %>" value="choose" />
@@ -190,14 +190,19 @@ SearchContainer roleSearchContainer = selectRoleManagementToolbarDisplayContext.
 						<c:if test="<%= Validator.isNull(p_u_i_d) || SiteMembershipPolicyUtil.isRoleAllowed((selUser != null) ? selUser.getUserId() : 0, group.getGroupId(), role.getRoleId()) %>">
 
 							<%
-							Map<String, Object> data = new HashMap<String, Object>();
-
-							data.put("entityid", role.getRoleId());
-							data.put("entityname", role.getTitle(locale));
-							data.put("groupdescriptivename", group.getDescriptiveName(locale));
-							data.put("groupid", group.getGroupId());
-							data.put("iconcssclass", RolesAdminUtil.getIconCssClass(role));
-							data.put("searchcontainername", "siteRoles");
+							Map<String, Object> data = HashMapBuilder.<String, Object>put(
+								"entityid", role.getRoleId()
+							).put(
+								"entityname", role.getTitle(locale)
+							).put(
+								"groupdescriptivename", group.getDescriptiveName(locale)
+							).put(
+								"groupid", group.getGroupId()
+							).put(
+								"iconcssclass", RolesAdminUtil.getIconCssClass(role)
+							).put(
+								"searchcontainername", "siteRoles"
+							).build();
 
 							boolean disabled = false;
 

@@ -53,9 +53,9 @@ PersonalMenuEntryHelper personalMenuEntryHelper = (PersonalMenuEntryHelper)reque
 			</liferay-portlet:resourceURL>
 
 			<%
-			Map<String, Object> data = new HashMap<String, Object>();
-
-			data.put("resource-href", viewPermissionsResourceURL.toString());
+			Map<String, Object> data = HashMapBuilder.<String, Object>put(
+				"resource-href", viewPermissionsResourceURL.toString()
+			).build();
 			%>
 
 			<liferay-portlet:renderURL varImpl="viewPermissionsURL">

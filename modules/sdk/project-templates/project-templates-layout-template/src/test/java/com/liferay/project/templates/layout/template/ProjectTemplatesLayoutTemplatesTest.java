@@ -86,6 +86,31 @@ public class ProjectTemplatesLayoutTemplatesTest
 			gradleWorkspaceWarsDir, template, name, "--liferay-version",
 			_liferayVersion);
 
+		if (_liferayVersion.startsWith("7.0")) {
+			testContains(
+				gradleProjectDir,
+				"src/main/webapp/WEB-INF/liferay-layout-templates.xml",
+				"liferay-layout-templates_7_0_0.dtd");
+		}
+		else if (_liferayVersion.startsWith("7.1")) {
+			testContains(
+				gradleProjectDir,
+				"src/main/webapp/WEB-INF/liferay-layout-templates.xml",
+				"liferay-layout-templates_7_1_0.dtd");
+		}
+		else if (_liferayVersion.startsWith("7.2")) {
+			testContains(
+				gradleProjectDir,
+				"src/main/webapp/WEB-INF/liferay-layout-templates.xml",
+				"liferay-layout-templates_7_2_0.dtd");
+		}
+		else if (_liferayVersion.startsWith("7.3")) {
+			testContains(
+				gradleProjectDir,
+				"src/main/webapp/WEB-INF/liferay-layout-templates.xml",
+				"liferay-layout-templates_7_3_0.dtd");
+		}
+
 		testExists(gradleProjectDir, "src/main/webapp/foo.png");
 
 		testContains(

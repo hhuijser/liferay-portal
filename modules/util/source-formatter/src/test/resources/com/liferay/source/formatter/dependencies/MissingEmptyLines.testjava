@@ -50,9 +50,9 @@ public class MissingEmptyLines {
 	}
 
 	public String method4() {
-		String s1 = null;
+		String s1 = "Hello";
 
-		s1 = "Hello World";
-		return s1;
+		s1 = StringUtil.toLowerCase(s1);
+		return s1 + "World";
 	}
 }

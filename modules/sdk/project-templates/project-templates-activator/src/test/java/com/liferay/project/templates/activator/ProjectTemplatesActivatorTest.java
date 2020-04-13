@@ -67,7 +67,7 @@ public class ProjectTemplatesActivatorTest
 		String template = "activator";
 		String name = "bar-activator";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -85,7 +85,7 @@ public class ProjectTemplatesActivatorTest
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");

@@ -75,7 +75,7 @@ public class ProjectTemplatesRestTest implements BaseProjectTemplatesTestCase {
 		String template = "rest";
 		String name = "my-rest";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -139,7 +139,7 @@ public class ProjectTemplatesRestTest implements BaseProjectTemplatesTestCase {
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

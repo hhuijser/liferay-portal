@@ -77,7 +77,7 @@ public class ProjectTemplatesContentTargetingTrackingActionTest
 		String template = "content-targeting-tracking-action";
 		String name = "foo-bar";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -93,7 +93,7 @@ public class ProjectTemplatesContentTargetingTrackingActionTest
 		testContains(
 			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

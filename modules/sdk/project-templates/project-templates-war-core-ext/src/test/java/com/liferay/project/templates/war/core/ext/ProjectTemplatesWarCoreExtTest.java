@@ -35,7 +35,7 @@ public class ProjectTemplatesWarCoreExtTest
 
 	@Test
 	public void testBuildTemplateWarCoreExt() throws Exception {
-		File workspaceDir = buildWorkspaceWithTPEnabled(
+		File workspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "testWorkspace",
 			getDefaultLiferayVersion(), mavenExecutor);
 

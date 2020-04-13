@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.project.templates.simulation.panel.entry;
+package com.liferay.project.templates.freemarker.portlet;
 
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
@@ -39,7 +39,7 @@ import org.junit.runners.Parameterized;
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesSimulationPanelEntryTest
+public class ProjectTemplatesFreemarkerPortletCustomPackageTest
 	implements BaseProjectTemplatesTestCase {
 
 	@ClassRule
@@ -67,66 +67,25 @@ public class ProjectTemplatesSimulationPanelEntryTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	public ProjectTemplatesSimulationPanelEntryTest(String liferayVersion) {
+	public ProjectTemplatesFreemarkerPortletCustomPackageTest(
+		String liferayVersion) {
+
 		_liferayVersion = liferayVersion;
 	}
 
 	@Test
-	public void testBuildTemplateSimulationPanelEntry() throws Exception {
-		String template = "simulation-panel-entry";
-		String name = "simulator";
-		String packageName = "test.simulator";
+	public void testBuildTemplateFreemarkerPortletCustomPackage()
+		throws Exception {
 
-		File gradleWorkspaceDir = buildWorkspace(
-			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
-			mavenExecutor);
+		File gradleProjectDir = testBuildTemplatePortlet(
+			temporaryFolder, "freemarker-portlet", "foo", "com.liferay.test",
+			_liferayVersion, mavenExecutor, _gradleDistribution);
 
-		File gradleWorkspaceModulesDir = new File(
-			gradleWorkspaceDir, "modules");
-
-		File gradleProjectDir = buildTemplateWithGradle(
-			gradleWorkspaceModulesDir, template, name, "--liferay-version",
-			_liferayVersion, "--package-name", packageName);
-
-		testExists(gradleProjectDir, "bnd.bnd");
-
-		testContains(
-			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		testContains(
 			gradleProjectDir,
-			"src/main/java/test/simulator/application/list" +
-				"/SimulatorSimulationPanelApp.java",
-			"public class SimulatorSimulationPanelApp",
-			"extends BaseJSPPanelApp");
-
-		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
-
-		File mavenWorkspaceDir = buildWorkspace(
-			temporaryFolder, "maven", "mavenWS", _liferayVersion,
-			mavenExecutor);
-
-		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
-
-		File mavenProjectDir = buildTemplateWithMaven(
-			mavenModulesDir, mavenModulesDir, template, name, "com.test",
-			mavenExecutor, "-DclassName=Simulator", "-Dpackage=" + packageName,
-			"-DliferayVersion=" + _liferayVersion);
-
-		if (!_liferayVersion.equals("7.0.6")) {
-			testContains(
-				mavenProjectDir, "bnd.bnd",
-				"-contract: JavaPortlet,JavaServlet");
-		}
-
-		if (isBuildProjects()) {
-			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-			File mavenOutputDir = new File(mavenProjectDir, "target");
-
-			buildProjects(
-				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:" + name + GRADLE_TASK_PATH_BUILD);
-		}
+			"src/main/java/com/liferay/test/portlet/FooPortlet.java",
+			"javax.portlet.name=\" + FooPortletKeys.FOO",
+			"public class FooPortlet extends FreeMarkerPortlet {");
 	}
 
 	@Rule

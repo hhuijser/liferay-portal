@@ -106,7 +106,7 @@ public class ProjectTemplatesModulesExtTest
 		String name = "foo-ext";
 		String template = "modules-ext";
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		List<String> completeArgs = new ArrayList<>();
@@ -134,7 +134,6 @@ public class ProjectTemplatesModulesExtTest
 		completeArgs.add("-DliferayVersion=" + liferayVersion);
 		completeArgs.add("-DoriginalModuleName=com.liferay.login.web");
 		completeArgs.add("-DoriginalModuleVersion=1.0.0");
-		completeArgs.add("-Dversion=1.0.0");
 
 		String mavenOutput = executeMaven(
 			mavenWorkspaceDir, true, mavenExecutor,

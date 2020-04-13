@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.project.templates.simpleapi;
+package com.liferay.project.templates.api;
 
 import aQute.bnd.header.Parameters;
 import aQute.bnd.osgi.Domain;
@@ -65,7 +65,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 		String template = "api";
 		String name = "foo";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -89,7 +89,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
@@ -128,7 +128,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 		String template = "api";
 		String name = "author-test";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -142,7 +142,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 			gradleProjectDir, "src/main/java/author/test/api/AuthorTest.java",
 			"@author " + author);
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");

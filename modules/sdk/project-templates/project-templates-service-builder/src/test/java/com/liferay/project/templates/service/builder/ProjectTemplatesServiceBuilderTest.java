@@ -107,7 +107,7 @@ public class ProjectTemplatesServiceBuilderTest
 		String packageName = "com.liferay.docs.guestbook";
 		String template = "service-builder";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -129,7 +129,7 @@ public class ProjectTemplatesServiceBuilderTest
 
 		editXml(gradleServiceXml, consumer);
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
@@ -181,7 +181,7 @@ public class ProjectTemplatesServiceBuilderTest
 		String serviceProjectName = name + "-service";
 		String template = "service-builder";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -205,7 +205,7 @@ public class ProjectTemplatesServiceBuilderTest
 			gradleServiceBuilderVersion = matcher.group(1);
 		}
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");

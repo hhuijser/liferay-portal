@@ -350,7 +350,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 
 		String liferayVersion = getDefaultLiferayVersion();
 
-		File workspaceDir = buildWorkspaceWithTPEnabled(
+		File workspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -372,7 +372,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			gradleAntBndVersion = matcher.group(1);
 		}
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
@@ -530,7 +530,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	public void testSassCompilerWorkspace() throws Exception {
 		String liferayVersion = getDefaultLiferayVersion();
 
-		File nativeSassWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File nativeSassWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "nativeSassWorkspace", liferayVersion,
 			mavenExecutor);
 

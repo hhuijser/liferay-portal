@@ -579,7 +579,7 @@ public interface BaseProjectTemplatesTestCase {
 			liferayVersion);
 	}
 
-	public default File buildWorkspaceWithTPEnabled(
+	public default File buildWorkspace(
 			TemporaryFolder temporaryFolder, String buildType, String name,
 			String liferayVersion, MavenExecutor mavenExecutor)
 		throws Exception {
@@ -1028,7 +1028,7 @@ public interface BaseProjectTemplatesTestCase {
 			String liferayVersion, URI gradleDistribution)
 		throws Exception {
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -1061,7 +1061,7 @@ public interface BaseProjectTemplatesTestCase {
 			gradleProjectDir, "package.json",
 			"target/classes/META-INF/resources");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
@@ -1100,46 +1100,29 @@ public interface BaseProjectTemplatesTestCase {
 	}
 
 	public default File testBuildTemplatePortlet(
-			TemporaryFolder temporaryFolder, String testModifier,
-			String template, String portletClassName, String liferayVersion,
+			TemporaryFolder temporaryFolder,
+			String template, String name, String packageName, String liferayVersion,
 			MavenExecutor mavenExecutor, URI gradleDistribution)
 		throws Exception {
 
-		String name = "foo";
+		String className;
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		if (name.equals("portlet-portlet")) {
+			className = "Portlet";
+			packageName = "portlet.portlet";
+		}
+		else {
+			className = name.substring(0, 1).toUpperCase() + name.substring(1);
+		}
+
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
 		File gradleWorkspaceModulesDir = new File(
 			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir;
-
-		if (testModifier.equals("portlet")) {
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceModulesDir, template, name, "--liferay-version",
-				liferayVersion);
-		}
-		else if (testModifier.equals("customPackage")) {
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceModulesDir, template, name, "--liferay-version",
-				liferayVersion, "--package-name", "com.liferay.test");
-		}
-		else if (testModifier.equals("portletName")) {
-			name = "portlet";
-
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceModulesDir, template, name, "--liferay-version",
-				liferayVersion);
-		}
-		else {
-			name = "portlet-portlet";
-
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceModulesDir, template, name, "--liferay-version",
-				liferayVersion);
-		}
+		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--package-name", packageName);
 
 		String[] resourceFileNames;
 
@@ -1170,96 +1153,14 @@ public interface BaseProjectTemplatesTestCase {
 		testContains(
 			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 
-		if (testModifier.equals("portlet")) {
-			testContains(
-				gradleProjectDir, "bnd.bnd", "Export-Package: foo.constants");
-			testContains(
-				gradleProjectDir,
-				"src/main/java/foo/constants/FooPortletKeys.java",
-				"public class FooPortletKeys",
-				"public static final String FOO");
-			testContains(
-				gradleProjectDir, "src/main/java/foo/portlet/FooPortlet.java",
-				"javax.portlet.display-name=Foo",
-				"javax.portlet.name=\" + FooPortletKeys.FOO",
-				"public class FooPortlet extends " + portletClassName + " {");
-			testContains(
-				gradleProjectDir,
-				"src/main/resources/content/Language.properties",
-				"javax.portlet.title.foo_FooPortlet=Foo",
-				"foo.caption=Hello from Foo!");
-		}
-		else if (testModifier.equals("customPackage")) {
-			testContains(
-				gradleProjectDir,
-				"src/main/java/com/liferay/test/portlet/FooPortlet.java",
-				"javax.portlet.name=\" + FooPortletKeys.FOO",
-				"public class FooPortlet extends " + portletClassName + " {");
-		}
-		else if (testModifier.equals("portletName")) {
-			testContains(
-				gradleProjectDir,
-				"src/main/java/portlet/constants/PortletPortletKeys.java",
-				"public class PortletPortletKeys",
-				"public static final String PORTLET",
-				"\"portlet_PortletPortlet\";");
-			testContains(
-				gradleProjectDir,
-				"src/main/java/portlet/portlet/PortletPortlet.java",
-				"javax.portlet.name=\" + PortletPortletKeys.PORTLET",
-				"public class PortletPortlet extends " + portletClassName +
-					" {");
-		}
-		else {
-			testContains(
-				gradleProjectDir,
-				"src/main/java/portlet/portlet/constants" +
-					"/PortletPortletKeys.java",
-				"public class PortletPortletKeys",
-				"public static final String PORTLET",
-				"\"portlet_portlet_PortletPortlet\";");
-			testContains(
-				gradleProjectDir,
-				"src/main/java/portlet/portlet/portlet/PortletPortlet.java",
-				"javax.portlet.name=\" + PortletPortletKeys.PORTLET",
-				"public class PortletPortlet extends " + portletClassName +
-					" {");
-		}
-
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenProjectDir;
-
-		if (testModifier.equals("portlet")) {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenModulesDir, mavenModulesDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Foo", "-Dpackage=foo",
-				"-DliferayVersion=" + liferayVersion);
-		}
-		else if (testModifier.equals("customPackage")) {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenModulesDir, mavenModulesDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Foo", "-Dpackage=com.liferay.test",
-				"-DliferayVersion=" + liferayVersion);
-		}
-		else if (testModifier.equals("portletName")) {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenModulesDir, mavenModulesDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Portlet", "-Dpackage=portlet",
-				"-DliferayVersion=" + liferayVersion);
-		}
-		else {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenModulesDir, mavenModulesDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Portlet",
-				"-Dpackage=portlet.portlet",
-				"-DliferayVersion=" + liferayVersion);
-		}
+		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=" + className, "-Dpackage=" + packageName, "-DliferayVersion=" + liferayVersion);
 
 		if (!liferayVersion.equals("7.0.6")) {
 			testContains(
@@ -1357,7 +1258,7 @@ public interface BaseProjectTemplatesTestCase {
 			gradleProjectDir, "build.gradle", true, "^repositories \\{.*");
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
@@ -1385,7 +1286,7 @@ public interface BaseProjectTemplatesTestCase {
 			String template, String name, String liferayVersion)
 		throws Exception {
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -1465,7 +1366,7 @@ public interface BaseProjectTemplatesTestCase {
 				"liferay-portlet-app_7_3_0.dtd");
 		}
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");

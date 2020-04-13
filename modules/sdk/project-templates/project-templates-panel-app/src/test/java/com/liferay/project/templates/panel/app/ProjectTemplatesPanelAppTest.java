@@ -76,7 +76,7 @@ public class ProjectTemplatesPanelAppTest
 		String template = "panel-app";
 		String name = "gradle.test";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -119,7 +119,7 @@ public class ProjectTemplatesPanelAppTest
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

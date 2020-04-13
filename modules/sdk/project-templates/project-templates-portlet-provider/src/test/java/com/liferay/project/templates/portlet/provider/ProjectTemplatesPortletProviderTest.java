@@ -76,7 +76,7 @@ public class ProjectTemplatesPortletProviderTest
 		String template = "portlet-provider";
 		String name = "provider.test";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -116,7 +116,7 @@ public class ProjectTemplatesPortletProviderTest
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

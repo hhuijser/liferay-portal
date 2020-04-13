@@ -64,7 +64,7 @@ public class ProjectTemplatesSocialBookmarkTest
 		String name = "foo";
 		String packageName = "com.liferay.test";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
@@ -103,7 +103,7 @@ public class ProjectTemplatesSocialBookmarkTest
 
 		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
@@ -126,7 +126,7 @@ public class ProjectTemplatesSocialBookmarkTest
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testBuildTemplateSocialBookmark70() throws Exception {
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", "7.0.6", mavenExecutor);
 
 		File gradleWorkspaceModulesDir = new File(

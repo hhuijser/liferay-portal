@@ -92,7 +92,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 
 	@Test
 	public void testSpringPortletMVC() throws Exception {
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -204,7 +204,7 @@ public class ProjectTemplatesSpringPortletMVCTest
 				"src/main/java/com/test/spring4/ServletContextFactory.java");
 		}
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

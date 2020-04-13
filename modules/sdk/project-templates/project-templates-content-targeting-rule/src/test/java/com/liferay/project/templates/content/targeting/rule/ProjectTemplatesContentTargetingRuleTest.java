@@ -75,7 +75,7 @@ public class ProjectTemplatesContentTargetingRuleTest
 		String template = "content-targeting-rule";
 		String name = "foo-bar";
 
-		File gradleWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", _liferayVersion,
 			mavenExecutor);
 
@@ -91,7 +91,7 @@ public class ProjectTemplatesContentTargetingRuleTest
 		testContains(
 			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 
-		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
+		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", _liferayVersion,
 			mavenExecutor);
 

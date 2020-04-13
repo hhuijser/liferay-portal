@@ -287,6 +287,9 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 				return InterfaceType.ENTRY_POINT;
 			}
 
+			if (implementedCount == 1) {
+				return InterfaceType.ENTRY_POINT;
+			}
 			/*If it is also implemented both by the framework and outside we
 			can't tell if it is a private interface or an extension point
 			because the difference is in the developers that make a
@@ -299,6 +302,10 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 		}
 		else if ((implementedCount > 0) && (implementedAsComponentCount > 0)) {
 			//Same thing here
+
+			if (implementedCount == 1) {
+				return InterfaceType.ENTRY_POINT;
+			}
 
 			if (javaClass.hasAnnotation("ProviderType")) {
 				return InterfaceType.PRIVATE_INTERFACE;

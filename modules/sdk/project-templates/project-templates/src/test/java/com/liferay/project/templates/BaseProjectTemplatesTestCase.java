@@ -1492,7 +1492,7 @@ public interface BaseProjectTemplatesTestCase {
 				"liferay-portlet-app_7_3_0.dtd");
 		}
 
-		File mavenWorkspaceDir = newBuildWorkspace(
+		File mavenWorkspaceDir = buildWorkspaceWithTPEnabled(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");

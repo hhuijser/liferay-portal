@@ -121,8 +121,7 @@ public class JavaAPIInterfaceCheck extends BaseJavaTermCheck {
 		}
 
 		if (!absolutePath.contains("-api/") &&
-			(interfaceType.equals(InterfaceType.CALLBACK) ||
-			 interfaceType.equals(InterfaceType.ENTRY_POINT))) {
+			interfaceType.equals(InterfaceType.ENTRY_POINT)) {
 
 			addMessage(
 				fileName,

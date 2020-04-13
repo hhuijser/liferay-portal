@@ -23,8 +23,6 @@ String redirect = ParamUtil.getString(request, "redirect");
 
 FileEntry fileEntry = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
 
-long fileEntryId = fileEntry.getFileEntryId();
-
 long folderId = fileEntry.getFolderId();
 
 if (Validator.isNull(redirect)) {

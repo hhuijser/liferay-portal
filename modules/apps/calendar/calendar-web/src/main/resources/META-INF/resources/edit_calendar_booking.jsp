@@ -29,8 +29,6 @@ defaultStartTimeJCalendar.add(java.util.Calendar.HOUR, 1);
 
 defaultStartTimeJCalendar.set(java.util.Calendar.MINUTE, 0);
 
-long date = ParamUtil.getLong(request, "date", defaultStartTimeJCalendar.getTimeInMillis());
-
 long calendarBookingId = BeanPropertiesUtil.getLong(calendarBooking, "calendarBookingId");
 
 int instanceIndex = BeanParamUtil.getInteger(calendarBooking, request, "instanceIndex");

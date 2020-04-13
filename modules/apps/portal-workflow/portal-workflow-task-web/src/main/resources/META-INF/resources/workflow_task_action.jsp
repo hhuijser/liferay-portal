@@ -19,8 +19,6 @@
 <%
 String randomId = workflowTaskDisplayContext.getWorkflowTaskRandomId();
 
-String mvcPath = ParamUtil.getString(request, "mvcPath", "/view.jsp");
-
 String closeRedirect = ParamUtil.getString(request, "closeRedirect");
 
 ResultRow row = (ResultRow)request.getAttribute(WebKeys.SEARCH_CONTAINER_RESULT_ROW);

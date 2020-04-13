@@ -26,8 +26,6 @@ String backURL = ParamUtil.getString(request, "backURL", searchSourcesURL);
 
 Source source = (Source)request.getAttribute(ReportsEngineWebKeys.SOURCE);
 
-String name = BeanParamUtil.getString(source, request, "name");
-
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL);
 

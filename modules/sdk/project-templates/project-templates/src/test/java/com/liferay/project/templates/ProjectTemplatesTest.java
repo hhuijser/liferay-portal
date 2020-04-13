@@ -552,8 +552,6 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 		File rubySassWorkspaceDir = _buildTemplateWithGradle(
 			WorkspaceUtil.WORKSPACE, "rubySassWorkspace");
 
-		enableTargetPlatformInWorkspace(rubySassWorkspaceDir, liferayVersion);
-
 		writeGradlePropertiesInWorkspace(
 			rubySassWorkspaceDir, "sass.compiler.class.name=ruby");
 

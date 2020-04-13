@@ -588,8 +588,6 @@ public interface BaseProjectTemplatesTestCase {
 
 		if (buildType.equals("gradle")) {
 			workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
-
-			enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
 		}
 		else {
 			File destinationDir = temporaryFolder.newFolder("mavenWorkspace");
@@ -761,23 +759,6 @@ public interface BaseProjectTemplatesTestCase {
 		DOMSource domSource = new DOMSource(document);
 
 		transformer.transform(domSource, new StreamResult(xmlFile));
-	}
-
-	public default File enableTargetPlatformInWorkspace(
-			File workspaceDir, String liferayVersion)
-		throws IOException {
-
-		File gradlePropertiesFile = new File(workspaceDir, "gradle.properties");
-
-		String targetPlatformVersionProperty =
-			"\nliferay.workspace.target.platform.version=" + liferayVersion;
-
-		Files.write(
-			gradlePropertiesFile.toPath(),
-			targetPlatformVersionProperty.getBytes(),
-			StandardOpenOption.APPEND);
-
-		return gradlePropertiesFile;
 	}
 
 	public default Optional<String> executeGradle(
@@ -1310,26 +1291,18 @@ public interface BaseProjectTemplatesTestCase {
 		if (liferayVersion.equals("7.0.6")) {
 			gradleWorkspaceDir = buildWorkspace(
 				temporaryFolder, liferayVersion);
-
-			enableTargetPlatformInWorkspace(gradleWorkspaceDir, liferayVersion);
 		}
 		else if (liferayVersion.equals("7.1.3")) {
 			gradleWorkspaceDir = buildWorkspace(
 				temporaryFolder, liferayVersion);
-
-			enableTargetPlatformInWorkspace(gradleWorkspaceDir, liferayVersion);
 		}
 		else if (liferayVersion.equals("7.2.1")) {
 			gradleWorkspaceDir = buildWorkspace(
 				temporaryFolder, liferayVersion);
-
-			enableTargetPlatformInWorkspace(gradleWorkspaceDir, liferayVersion);
 		}
 		else {
 			gradleWorkspaceDir = buildWorkspace(
 				temporaryFolder, liferayVersion);
-
-			enableTargetPlatformInWorkspace(gradleWorkspaceDir, liferayVersion);
 		}
 
 		File warsDir = new File(gradleWorkspaceDir, "wars");
@@ -1547,25 +1520,16 @@ public interface BaseProjectTemplatesTestCase {
 
 		if (argsList.contains("7.0.6")) {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.0.6");
-
-			enableTargetPlatformInWorkspace(workspaceDir, "7.0.6");
 		}
 		else if (argsList.contains("7.1.3")) {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.1.3");
-
-			enableTargetPlatformInWorkspace(workspaceDir, "7.1.3");
 		}
 		else if (argsList.contains("7.2.1")) {
 			workspaceDir = buildWorkspace(temporaryFolder, "7.2.1");
-
-			enableTargetPlatformInWorkspace(workspaceDir, "7.2.1");
 		}
 		else {
 			workspaceDir = buildWorkspace(
 				temporaryFolder, getDefaultLiferayVersion());
-
-			enableTargetPlatformInWorkspace(
-				workspaceDir, getDefaultLiferayVersion());
 		}
 
 		File modulesDir = new File(workspaceDir, "modules");

@@ -69,8 +69,6 @@ public class ProjectTemplatesModulesExtTest
 
 		File workspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
 
-		enableTargetPlatformInWorkspace(workspaceDir, liferayVersion);
-
 		File workspaceProjectDir = buildTemplateWithGradle(
 			new File(workspaceDir, "ext"), "modules-ext", "loginExt",
 			"--original-module-name", "com.liferay.login.web",

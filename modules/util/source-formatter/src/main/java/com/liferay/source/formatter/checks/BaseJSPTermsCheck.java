@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.JSPSourceUtil;
@@ -122,8 +123,41 @@ public abstract class BaseJSPTermsCheck extends BaseFileCheck {
 		Matcher matcher = pattern.matcher(content);
 
 		while (matcher.find()) {
-			if (!JSPSourceUtil.isJavaSource(content, matcher.start()) ||
-				!ToolsUtil.isInsideQuotes(content, matcher.start() + 1)) {
+			if (type.equals("taglib")) {
+				count++;
+
+				continue;
+			}
+
+			int x = matcher.start() + 1;
+
+			if (JSPSourceUtil.isJavaSource(content, x)) {
+				if (!ToolsUtil.isInsideQuotes(content, x)) {
+					count++;
+				}
+
+				continue;
+			}
+
+			String line = StringUtil.trim(
+				getLine(content, getLineNumber(content, matcher.start())));
+
+			if (line.startsWith("function ")) {
+				continue;
+			}
+
+			int y = content.lastIndexOf("<%", x) + 2;
+			int z = content.lastIndexOf("%>", x);
+
+			if ((y == 1) || (z > y)) {
+				continue;
+			}
+
+			z = content.indexOf("%>", x);
+
+			if ((z == -1) ||
+				(getLineNumber(content, y) != getLineNumber(content, z)) ||
+				!ToolsUtil.isInsideQuotes(content.substring(y, z), x - y)) {
 
 				count++;
 			}

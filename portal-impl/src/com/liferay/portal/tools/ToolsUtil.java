@@ -265,7 +265,11 @@ public class ToolsUtil {
 					}
 				}
 			}
-			else if ((c == CharPool.APOSTROPHE) || (c == CharPool.QUOTE)) {
+			else if (((c == CharPool.APOSTROPHE) || (c == CharPool.QUOTE)) &&
+					 ((i == 0) ||
+					  ((i > 0) &&
+					   (line.charAt(i - 1) != CharPool.BACK_SLASH)))) {
+
 				delimeter = c;
 				insideQuotes = true;
 			}

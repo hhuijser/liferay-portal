@@ -75,9 +75,9 @@ public class JSPTaglibVariableCheck extends BaseJSPTermsCheck {
 				Set<String> includeFileNames = new HashSet<>();
 
 				if (hasUnusedJSPTerm(
-						fileName, newContent, "\\W" + variableName + "\\W",
-						"variable", checkedFileNames, includeFileNames,
-						getContentsMap())) {
+						fileName, newContent,
+						"\\b" + variableName + "\\b(?!\\()", "variable",
+						checkedFileNames, includeFileNames, getContentsMap())) {
 
 					return StringUtil.replaceFirst(
 						newContent, matcher.group(1), StringPool.BLANK,

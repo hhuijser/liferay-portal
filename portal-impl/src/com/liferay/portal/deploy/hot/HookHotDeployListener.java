@@ -2182,7 +2182,7 @@ public class HookHotDeployListener
 	private void _initServices(
 			String servletContextName, Constructor<?> serviceImplConstructor,
 			Object serviceProxy)
-		throws ReflectiveOperationException {
+		throws Exception {
 
 		Class<?> proxyClass = serviceProxy.getClass();
 

@@ -246,7 +246,7 @@ public class DBInspector {
 		return db.getSQLType(matcher.group(1));
 	}
 
-	private int _getColumnSize(String columnType) throws UpgradeException {
+	private int _getColumnSize(String columnType) throws Exception {
 		Matcher matcher = _columnSizePattern.matcher(columnType);
 
 		if (!matcher.matches()) {

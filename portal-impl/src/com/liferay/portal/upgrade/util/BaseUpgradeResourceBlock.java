@@ -26,7 +26,6 @@ import java.lang.reflect.Field;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * @author Preston Crary
@@ -61,7 +60,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	private void _addResourcePermissionBatch(
 			PreparedStatement ps, long companyId, String name, int scope,
 			long primKeyId, long roleId, long ownerId, long actionIds)
-		throws SQLException {
+		throws Exception {
 
 		ps.setLong(1, 0L);
 		ps.setLong(2, increment(ResourcePermission.class.getName()));
@@ -78,7 +77,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 		ps.addBatch();
 	}
 
-	private void _removeResourceBlocks(String className) throws SQLException {
+	private void _removeResourceBlocks(String className) throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"delete from ResourceTypePermission where name = ?")) {
 
@@ -121,7 +120,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	}
 
 	private void _upgradeCompanyScopePermissions(String className)
-		throws SQLException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(8);
 
@@ -161,7 +160,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	}
 
 	private void _upgradeGroupScopePermissions(String className)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement selectPS = connection.prepareStatement(
 				SQLTransformer.transform(
@@ -194,7 +193,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	}
 
 	private void _upgradeGroupTemplateScopePermissions(String className)
-		throws SQLException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(8);
 

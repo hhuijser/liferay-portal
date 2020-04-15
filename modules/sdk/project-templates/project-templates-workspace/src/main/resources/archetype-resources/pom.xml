@@ -23,8 +23,8 @@
 		<liferay.bom.version>7.2.1</liferay.bom.version>
 		<liferay.workspace.bundle.url>https://releases-cdn.liferay.com/portal/7.2.1-ga2/liferay-ce-portal-tomcat-7.2.1-ga2-20191111141448326.tar.gz</liferay.workspace.bundle.url>
 #elseif (${liferayVersion.startsWith("7.3")})
-		<liferay.bom.version>7.3.0</liferay.bom.version>
-		<liferay.workspace.bundle.url>https://releases-cdn.liferay.com/portal/7.3.0-ga1/liferay-ce-portal-tomcat-7.3.0-ga1-20200127150653953.tar.gz</liferay.workspace.bundle.url>
+		<liferay.bom.version>7.3.1</liferay.bom.version>
+		<liferay.workspace.bundle.url>https://releases-cdn.liferay.com/portal/7.3.1-ga2/liferay-ce-portal-tomcat-7.3.1-ga2-20200327090859603.tar.gz</liferay.workspace.bundle.url>
 #end
 	</properties>
 	<dependencyManagement>

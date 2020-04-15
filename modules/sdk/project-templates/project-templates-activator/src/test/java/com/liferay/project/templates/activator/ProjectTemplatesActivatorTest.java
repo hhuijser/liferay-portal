@@ -63,7 +63,7 @@ public class ProjectTemplatesActivatorTest
 
 	@Test
 	public void testBuildTemplateActivator() throws Exception {
-		String liferayVersion = "7.3.0";
+		String liferayVersion = getDefaultLiferayVersion();
 		String template = "activator";
 		String name = "bar-activator";
 

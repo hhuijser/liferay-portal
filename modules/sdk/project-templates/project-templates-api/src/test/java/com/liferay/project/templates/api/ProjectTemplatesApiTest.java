@@ -61,7 +61,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 
 	@Test
 	public void testBuildTemplateApi() throws Exception {
-		String liferayVersion = "7.3.0";
+		String liferayVersion = getDefaultLiferayVersion();
 		String template = "api";
 		String name = "foo";
 
@@ -124,7 +124,7 @@ public class ProjectTemplatesApiTest implements BaseProjectTemplatesTestCase {
 	@Test
 	public void testBuildTemplateApiContainsCorrectAuthor() throws Exception {
 		String author = "Test Author";
-		String liferayVersion = "7.3.0";
+		String liferayVersion = "7.3.1";
 		String template = "api";
 		String name = "author-test";
 

@@ -12,14 +12,12 @@
  * details.
  */
 
-package com.liferay.project.templates.war.hook;
+package com.liferay.project.templates.war.mvc.portlet;
 
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
 import com.liferay.project.templates.extensions.util.Validator;
 import com.liferay.project.templates.util.FileTestUtil;
-
-import java.io.File;
 
 import java.net.URI;
 
@@ -39,7 +37,7 @@ import org.junit.runners.Parameterized;
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesWarHookTest
+public class ProjectTemplatesWarMVCPortletCustomPackageTest
 	implements BaseProjectTemplatesTestCase {
 
 	@ClassRule
@@ -67,20 +65,17 @@ public class ProjectTemplatesWarHookTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	public ProjectTemplatesWarHookTest(String liferayVersion) {
+	public ProjectTemplatesWarMVCPortletCustomPackageTest(
+		String liferayVersion) {
+
 		_liferayVersion = liferayVersion;
 	}
 
 	@Test
-	public void testBuildTemplateWarHook() throws Exception {
-		String template = "war-hook";
-		String name = "WarHook";
-
-		File gradleProjectDir = testBuildTemplateProjectWarInWorkspace(
-			temporaryFolder, _gradleDistribution, mavenExecutor, template, name,
-			_liferayVersion);
-
-		testTemplateWarHookDTD(gradleProjectDir, _liferayVersion);
+	public void testBuildTemplateWarMvcPortlet() throws Exception {
+		testBuildTemplatePortlet(
+			temporaryFolder, "war-mvc-portlet", "foo", "com.liferay.test",
+			_liferayVersion, mavenExecutor, _gradleDistribution);
 	}
 
 	@Rule

@@ -12,12 +12,14 @@
  * details.
  */
 
-package com.liferay.project.templates.war.mvc.portlet;
+package com.liferay.project.templates.mvc.portlet;
 
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
 import com.liferay.project.templates.extensions.util.Validator;
 import com.liferay.project.templates.util.FileTestUtil;
+
+import java.io.File;
 
 import java.net.URI;
 
@@ -37,25 +39,16 @@ import org.junit.runners.Parameterized;
  * @author Lawrence Lee
  */
 @RunWith(Parameterized.class)
-public class ProjectTemplatesWarMvcPortletTest
+public class ProjectTemplatesMVCPortletSuffixTest
 	implements BaseProjectTemplatesTestCase {
 
 	@ClassRule
 	public static final MavenExecutor mavenExecutor = new MavenExecutor();
 
-	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}, {1}")
+	@Parameterized.Parameters(name = "Testcase-{index}: testing {0}")
 	public static Iterable<Object[]> data() {
 		return Arrays.asList(
-			new Object[][] {
-				{"portlet", "7.0.6"}, {"portlet", "7.1.3"},
-				{"portlet", "7.2.1"}, {"portlet", "7.3.0"},
-				{"customPackage", "7.0.6"}, {"customPackage", "7.1.3"},
-				{"customPackage", "7.2.1"}, {"customPackage", "7.3.0"},
-				{"portletName", "7.0.6"}, {"portletName", "7.1.3"},
-				{"portletName", "7.2.1"}, {"portletName", "7.3.0"},
-				{"portletSuffix", "7.0.6"}, {"portletSuffix", "7.1.3"},
-				{"portletSuffix", "7.2.1"}, {"portletSuffix", "7.3.0"}
-			});
+			new Object[][] {{"7.0.6"}, {"7.1.3"}, {"7.2.1"}, {"7.3.0"}});
 	}
 
 	@BeforeClass
@@ -74,18 +67,27 @@ public class ProjectTemplatesWarMvcPortletTest
 		_gradleDistribution = URI.create(gradleDistribution);
 	}
 
-	public ProjectTemplatesWarMvcPortletTest(
-		String testModifier, String liferayVersion) {
-
-		_testModifier = testModifier;
+	public ProjectTemplatesMVCPortletSuffixTest(String liferayVersion) {
 		_liferayVersion = liferayVersion;
 	}
 
 	@Test
-	public void testBuildTemplateWarMvcPortlet() throws Exception {
-		testBuildTemplateProjectWarMVCPortletInWorkspace(
-			temporaryFolder, _testModifier, _gradleDistribution, mavenExecutor,
-			"war-mvc-portlet", "WarMVCPortlet", _liferayVersion);
+	public void testBuildTemplateMVCPortlet() throws Exception {
+		File gradleProjectDir = testBuildTemplatePortlet(
+			temporaryFolder, "mvc-portlet", "portlet-portlet", "portlet",
+			_liferayVersion, mavenExecutor, _gradleDistribution);
+
+		testContains(
+			gradleProjectDir,
+			"src/main/java/portlet/portlet/constants/PortletPortletKeys.java",
+			"public class PortletPortletKeys",
+			"public static final String PORTLET",
+			"\"portlet_portlet_PortletPortlet\";");
+		testContains(
+			gradleProjectDir,
+			"src/main/java/portlet/portlet/portlet/PortletPortlet.java",
+			"javax.portlet.name=\" + PortletPortletKeys.PORTLET",
+			"public class PortletPortlet extends MVCPortlet {");
 	}
 
 	@Rule
@@ -94,6 +96,5 @@ public class ProjectTemplatesWarMvcPortletTest
 	private static URI _gradleDistribution;
 
 	private final String _liferayVersion;
-	private final String _testModifier;
 
 }

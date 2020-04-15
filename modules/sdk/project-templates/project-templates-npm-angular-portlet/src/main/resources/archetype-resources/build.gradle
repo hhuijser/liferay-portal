@@ -1,9 +1,5 @@
 dependencies {
-#if (${liferayVersion.startsWith("7.0")})
-	compileOnly (group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api", version: "1.0.2") {force = true}
-#else
 	compileOnly group: "com.liferay", name: "com.liferay.frontend.js.loader.modules.extender.api"
-#end
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.util.taglib"
 	compileOnly group: "javax.portlet", name: "portlet-api"

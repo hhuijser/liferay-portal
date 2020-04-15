@@ -613,51 +613,18 @@ public interface BaseProjectTemplatesTestCase {
 
 		sb.append(lineSeparator);
 
-		sb.append("buildscript {");
+		sb.append("plugins.withId('com.liferay.node') {");
 		sb.append(lineSeparator);
 
-		sb.append("\tdependencies {");
+		sb.append("\ttasks.named('packageRunBuild') {");
 		sb.append(lineSeparator);
 
-		sb.append(
-			"\t\tclasspath group: \"com.liferay\", name: \"com.liferay." +
-				"gradle.plugins\", version: \"5.0.13\"");
-		sb.append(lineSeparator);
-
-		sb.append("\t}");
-		sb.append(lineSeparator);
-
-		sb.append("\trepositories {");
-		sb.append(lineSeparator);
-
-		sb.append("\t\tmaven {");
-		sb.append(lineSeparator);
-
-		sb.append(
-			"\t\t\turl \"https://repository-cdn.liferay.com/nexus/content" +
-				"/groups/public\"");
-		sb.append(lineSeparator);
-
-		sb.append("\t\t}");
-		sb.append(lineSeparator);
-
-		sb.append("\t}");
-		sb.append(lineSeparator);
-
-		sb.append("}");
-		sb.append(lineSeparator);
-
-		sb.append(
-			"import com.liferay.gradle.plugins.node.tasks." +
-				"ExecutePackageManagerTask");
-		sb.append(lineSeparator);
-
-		sb.append("tasks.withType(ExecutePackageManagerTask) {");
-		sb.append(lineSeparator);
-
-		sb.append("\tregistry = '");
+		sb.append("\t\tregistry = '");
 		sb.append(NODEJS_NPM_CI_REGISTRY);
 		sb.append('\'');
+		sb.append(lineSeparator);
+
+		sb.append("\t}");
 		sb.append(lineSeparator);
 
 		sb.append('}');
@@ -1100,8 +1067,8 @@ public interface BaseProjectTemplatesTestCase {
 	}
 
 	public default File testBuildTemplatePortlet(
-			TemporaryFolder temporaryFolder,
-			String template, String name, String packageName, String liferayVersion,
+			TemporaryFolder temporaryFolder, String template, String name,
+			String packageName, String liferayVersion,
 			MavenExecutor mavenExecutor, URI gradleDistribution)
 		throws Exception {
 
@@ -1112,43 +1079,59 @@ public interface BaseProjectTemplatesTestCase {
 			packageName = "portlet.portlet";
 		}
 		else {
-			className = name.substring(0, 1).toUpperCase() + name.substring(1);
+			String firstChar = name.substring(0, 1);
+
+			className = firstChar.toUpperCase() + name.substring(1);
 		}
 
 		File gradleWorkspaceDir = buildWorkspace(
 			temporaryFolder, "gradle", "gradleWS", liferayVersion,
 			mavenExecutor);
 
-		File gradleWorkspaceModulesDir = new File(
-			gradleWorkspaceDir, "modules");
+		String modulesDir;
 
-		File gradleProjectDir = buildTemplateWithGradle(gradleWorkspaceModulesDir, template, name, "--package-name", packageName);
+		if (template.contains("war")) {
+			modulesDir = "wars";
+		}
+		else {
+			modulesDir = "modules";
+		}
+
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, modulesDir);
+
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name, "--package-name",
+			packageName, "--liferay-version", liferayVersion);
 
 		String[] resourceFileNames;
 
 		if (template.equals("freemarker-portlet")) {
 			resourceFileNames = new String[] {
-				"templates/init.ftl", "templates/view.ftl"
+				"resources/templates/init.ftl", "resources/templates/view.ftl",
+				"resources/META-INF/resources/css/main.scss"
 			};
 
 			testStartsWith(
 				gradleProjectDir, "src/main/resources/templates/view.ftl",
 				FREEMARKER_PORTLET_VIEW_FTL_PREFIX);
 		}
+		else if (template.equals("mvc-portlet")) {
+			resourceFileNames = new String[] {
+				"resources/META-INF/resources/init.jsp",
+				"resources/META-INF/resources/view.jsp",
+				"resources/META-INF/resources/css/main.scss"
+			};
+		}
 		else {
 			resourceFileNames = new String[] {
-				"META-INF/resources/init.jsp", "META-INF/resources/view.jsp"
+				"webapp/init.jsp", "webapp/view.jsp", "webapp/css/main.scss"
 			};
 		}
 
 		for (String resourceFileName : resourceFileNames) {
-			testExists(
-				gradleProjectDir, "src/main/resources/" + resourceFileName);
+			testExists(gradleProjectDir, "src/main/" + resourceFileName);
 		}
-
-		testExists(
-			gradleProjectDir,
-			"src/main/resources/META-INF/resources/css/main.scss");
 
 		testContains(
 			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
@@ -1158,11 +1141,14 @@ public interface BaseProjectTemplatesTestCase {
 		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
-		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
+		File mavenModulesDir = new File(mavenWorkspaceDir, modulesDir);
 
-		File mavenProjectDir = buildTemplateWithMaven(mavenModulesDir, mavenModulesDir, template, name, "com.test", mavenExecutor, "-DclassName=" + className, "-Dpackage=" + packageName, "-DliferayVersion=" + liferayVersion);
+		File mavenProjectDir = buildTemplateWithMaven(
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DclassName=" + className,
+			"-Dpackage=" + packageName, "-DliferayVersion=" + liferayVersion);
 
-		if (!liferayVersion.equals("7.0.6")) {
+		if (!liferayVersion.equals("7.0.6") && !template.contains("war")) {
 			testContains(
 				mavenProjectDir, "bnd.bnd",
 				"-contract: JavaPortlet,JavaServlet");
@@ -1175,36 +1161,20 @@ public interface BaseProjectTemplatesTestCase {
 			buildProjects(
 				gradleDistribution, mavenExecutor, gradleWorkspaceDir,
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":modules:" + name + GRADLE_TASK_PATH_BUILD);
+				":" + modulesDir + ":" + name + GRADLE_TASK_PATH_BUILD);
 		}
 
 		return gradleProjectDir;
 	}
 
-	public default void testBuildTemplateProjectWarInWorkspace(
+	public default File testBuildTemplateProjectWarInWorkspace(
 			TemporaryFolder temporaryFolder, URI gradleDistribution,
 			MavenExecutor mavenExecutor, String template, String name,
 			String liferayVersion)
 		throws Exception {
 
-		File gradleWorkspaceDir;
-
-		if (liferayVersion.equals("7.0.6")) {
-			gradleWorkspaceDir = buildWorkspace(
-				temporaryFolder, liferayVersion);
-		}
-		else if (liferayVersion.equals("7.1.3")) {
-			gradleWorkspaceDir = buildWorkspace(
-				temporaryFolder, liferayVersion);
-		}
-		else if (liferayVersion.equals("7.2.1")) {
-			gradleWorkspaceDir = buildWorkspace(
-				temporaryFolder, liferayVersion);
-		}
-		else {
-			gradleWorkspaceDir = buildWorkspace(
-				temporaryFolder, liferayVersion);
-		}
+		File gradleWorkspaceDir = buildWorkspace(
+			temporaryFolder, liferayVersion);
 
 		File warsDir = new File(gradleWorkspaceDir, "wars");
 
@@ -1223,33 +1193,6 @@ public interface BaseProjectTemplatesTestCase {
 				gradleProjectDir, "build.gradle", "buildscript {",
 				"apply plugin: \"com.liferay.portal.tools.theme.builder\"",
 				"repositories {");
-		}
-
-		if (template.equals("war-hook") && liferayVersion.startsWith("7.0")) {
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
-				"liferay-hook_7_0_0.dtd");
-		}
-		else if (template.equals("war-hook") &&
-				 liferayVersion.startsWith("7.1")) {
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
-				"liferay-hook_7_1_0.dtd");
-		}
-		else if (template.equals("war-hook") &&
-				 liferayVersion.startsWith("7.2")) {
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
-				"liferay-hook_7_2_0.dtd");
-		}
-		else if (template.equals("war-hook") &&
-				 liferayVersion.startsWith("7.3")) {
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
-				"liferay-hook_7_3_0.dtd");
 		}
 
 		testNotContains(
@@ -1278,136 +1221,8 @@ public interface BaseProjectTemplatesTestCase {
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
 				":wars:" + name + GRADLE_TASK_PATH_BUILD);
 		}
-	}
 
-	public default void testBuildTemplateProjectWarMVCPortletInWorkspace(
-			TemporaryFolder temporaryFolder, String testModifier,
-			URI gradleDistribution, MavenExecutor mavenExecutor,
-			String template, String name, String liferayVersion)
-		throws Exception {
-
-		File gradleWorkspaceDir = buildWorkspace(
-			temporaryFolder, "gradle", "gradleWS", liferayVersion,
-			mavenExecutor);
-
-		File gradleWorkspaceWarsDir = new File(gradleWorkspaceDir, "wars");
-
-		File gradleProjectDir;
-
-		if (testModifier.equals("portlet")) {
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceWarsDir, template, name, "--liferay-version",
-				liferayVersion);
-		}
-		else if (testModifier.equals("customPackage")) {
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceWarsDir, template, name, "--liferay-version",
-				liferayVersion, "--package-name", "com.liferay.test");
-		}
-		else if (testModifier.equals("portletName")) {
-			name = "portlet";
-
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceWarsDir, template, name, "--liferay-version",
-				liferayVersion);
-		}
-		else {
-			name = "portlet-portlet";
-
-			gradleProjectDir = buildTemplateWithGradle(
-				gradleWorkspaceWarsDir, template, name, "--liferay-version",
-				liferayVersion);
-		}
-
-		testContains(
-			gradleProjectDir, "build.gradle", "buildscript {",
-			"cssBuilder group", "portalCommonCSS group");
-
-		testNotContains(
-			gradleProjectDir, "build.gradle", "apply plugin: \"war\"");
-		testNotContains(
-			gradleProjectDir, "build.gradle", true, "^repositories \\{.*");
-		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
-
-		if (liferayVersion.startsWith("7.0")) {
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
-				"liferay-display_7_0_0.dtd");
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
-				"liferay-portlet-app_7_0_0.dtd");
-		}
-		else if (liferayVersion.startsWith("7.1")) {
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
-				"liferay-display_7_1_0.dtd");
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
-				"liferay-portlet-app_7_1_0.dtd");
-		}
-		else if (liferayVersion.startsWith("7.2")) {
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
-				"liferay-display_7_2_0.dtd");
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
-				"liferay-portlet-app_7_2_0.dtd");
-		}
-		else if (liferayVersion.startsWith("7.3")) {
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
-				"liferay-display_7_3_0.dtd");
-
-			testContains(
-				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
-				"liferay-portlet-app_7_3_0.dtd");
-		}
-
-		File mavenWorkspaceDir = buildWorkspace(
-			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
-
-		File mavenWarsDir = new File(mavenWorkspaceDir, "wars");
-
-		File mavenProjectDir;
-
-		if (testModifier.equals("portlet")) {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenWarsDir, mavenWarsDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Foo", "-Dpackage=foo",
-				"-DliferayVersion=" + liferayVersion);
-		}
-		else if (testModifier.equals("customPackage")) {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenWarsDir, mavenWarsDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Foo", "-Dpackage=com.liferay.test",
-				"-DliferayVersion=" + liferayVersion);
-		}
-		else if (testModifier.equals("portletName")) {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenWarsDir, mavenWarsDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Portlet", "-Dpackage=portlet",
-				"-DliferayVersion=" + liferayVersion);
-		}
-		else {
-			mavenProjectDir = buildTemplateWithMaven(
-				mavenWarsDir, mavenWarsDir, template, name, "com.test",
-				mavenExecutor, "-DclassName=Portlet",
-				"-Dpackage=portlet.portlet",
-				"-DliferayVersion=" + liferayVersion);
-		}
-
-		if (isBuildProjects()) {
-			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
-			File mavenOutputDir = new File(mavenProjectDir, "target");
-
-			buildProjects(
-				gradleDistribution, mavenExecutor, gradleWorkspaceDir,
-				mavenProjectDir, gradleOutputDir, mavenOutputDir,
-				":wars:" + name + GRADLE_TASK_PATH_BUILD);
-		}
+		return gradleProjectDir;
 	}
 
 	public default File testBuildTemplateWithWorkspace(
@@ -1596,6 +1411,74 @@ public interface BaseProjectTemplatesTestCase {
 			content.startsWith(prefix));
 
 		return file;
+	}
+
+	public default void testTemplateWarHookDTD(
+			File gradleProjectDir, String liferayVersion)
+		throws Exception {
+
+		if (liferayVersion.startsWith("7.0")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
+				"liferay-hook_7_0_0.dtd");
+		}
+		else if (liferayVersion.startsWith("7.1")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
+				"liferay-hook_7_1_0.dtd");
+		}
+		else if (liferayVersion.startsWith("7.2")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
+				"liferay-hook_7_2_0.dtd");
+		}
+		else if (liferayVersion.startsWith("7.3")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-hook.xml",
+				"liferay-hook_7_3_0.dtd");
+		}
+	}
+
+	public default void testTemplateWarPortletDTD(
+			File gradleProjectDir, String liferayVersion)
+		throws Exception {
+
+		if (liferayVersion.startsWith("7.0")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
+				"liferay-display_7_0_0.dtd");
+
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
+				"liferay-portlet-app_7_0_0.dtd");
+		}
+		else if (liferayVersion.startsWith("7.1")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
+				"liferay-display_7_1_0.dtd");
+
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
+				"liferay-portlet-app_7_1_0.dtd");
+		}
+		else if (liferayVersion.startsWith("7.2")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
+				"liferay-display_7_2_0.dtd");
+
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
+				"liferay-portlet-app_7_2_0.dtd");
+		}
+		else if (liferayVersion.startsWith("7.3")) {
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-display.xml",
+				"liferay-display_7_3_0.dtd");
+
+			testContains(
+				gradleProjectDir, "src/main/webapp/WEB-INF/liferay-portlet.xml",
+				"liferay-portlet-app_7_3_0.dtd");
+		}
 	}
 
 	public default void testWarsDiff(File warFile1, File warFile2)

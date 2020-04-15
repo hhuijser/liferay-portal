@@ -131,8 +131,6 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 		File gradleWorkspaceModulesDir = new File(
 			gradleWorkspaceDir, "modules");
 
-		File gradleProjectDir;
-
 		if (_name.contains("sample")) {
 			gradleWorkspaceModulesDir = new File(
 				gradleWorkspaceDir, "modules/nested/path");
@@ -140,7 +138,7 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 			Assert.assertTrue(gradleWorkspaceModulesDir.mkdirs());
 		}
 
-		gradleProjectDir = buildTemplateWithGradle(
+		File gradleProjectDir = buildTemplateWithGradle(
 			gradleWorkspaceModulesDir, template, _name, "--package-name",
 			_packageName, "--dependency-injector", _dependencyInjector,
 			"--liferay-version", _liferayVersion);
@@ -225,8 +223,6 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
-		File mavenProjectDir;
-
 		if (_name.contains("sample")) {
 			mavenModulesDir = new File(
 				mavenWorkspaceDir, "modules/nested/path");
@@ -234,7 +230,7 @@ public class ProjectTemplatesServiceBuilderWorkspaceTest
 			Assert.assertTrue(mavenModulesDir.mkdirs());
 		}
 
-		mavenProjectDir = buildTemplateWithMaven(
+		File mavenProjectDir = buildTemplateWithMaven(
 			mavenModulesDir, mavenModulesDir, template, _name, "com.test",
 			mavenExecutor, "-Dpackage=" + _packageName,
 			"-DdependencyInjector=" + _dependencyInjector,

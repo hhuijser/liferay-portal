@@ -133,7 +133,6 @@ public class ProjectTemplatesModulesExtTest
 		completeArgs.add("-DgroupId=" + groupId);
 		completeArgs.add("-DliferayVersion=" + liferayVersion);
 		completeArgs.add("-DoriginalModuleName=com.liferay.login.web");
-		completeArgs.add("-DoriginalModuleVersion=1.0.0");
 
 		String mavenOutput = executeMaven(
 			mavenWorkspaceDir, true, mavenExecutor,

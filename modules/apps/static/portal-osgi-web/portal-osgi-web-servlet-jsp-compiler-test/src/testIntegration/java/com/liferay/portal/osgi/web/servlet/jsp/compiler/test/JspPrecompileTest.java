@@ -41,7 +41,6 @@ import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 import com.liferay.portal.util.PropsValues;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -246,7 +245,7 @@ public class JspPrecompileTest {
 		return sb.toString();
 	}
 
-	private static InputStream _createTestBundle() throws IOException {
+	private static InputStream _createTestBundle() throws Exception {
 		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
 
@@ -320,7 +319,7 @@ public class JspPrecompileTest {
 
 	private static void _writeClasses(
 			JarOutputStream jarOutputStream, Class<?>... classes)
-		throws IOException {
+		throws Exception {
 
 		ClassLoader classLoader = JspPrecompileTest.class.getClassLoader();
 
@@ -370,7 +369,7 @@ public class JspPrecompileTest {
 	}
 
 	private void _invokeJSP(String jspFileName, String expectedMessage)
-		throws IOException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(9);
 

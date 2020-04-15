@@ -61,7 +61,7 @@ public class UpgradeJournalArticleDataFileEntryId extends UpgradeProcess {
 		}
 	}
 
-	private String _upgradeContent(String content) throws DocumentException {
+	private String _upgradeContent(String content) throws Exception {
 		Document document = SAXReaderUtil.read(content);
 
 		XPath xPath = SAXReaderUtil.createXPath(
@@ -96,7 +96,7 @@ public class UpgradeJournalArticleDataFileEntryId extends UpgradeProcess {
 	}
 
 	private void _upgradeJournalArticle(JournalArticle journalArticle)
-		throws UpgradeException {
+		throws Exception {
 
 		try {
 			String content = journalArticle.getContent();

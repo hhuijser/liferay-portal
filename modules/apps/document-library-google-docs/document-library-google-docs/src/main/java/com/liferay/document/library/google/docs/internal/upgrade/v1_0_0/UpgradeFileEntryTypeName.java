@@ -66,7 +66,7 @@ public class UpgradeFileEntryTypeName extends UpgradeProcess {
 
 	private void _upgradeGoogleDocsDLFileEntryType(
 			DLFileEntryType dlFileEntryType)
-		throws UpgradeException {
+		throws Exception {
 
 		try {
 			Locale locale = LocaleUtil.fromLanguageId(

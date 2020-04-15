@@ -91,7 +91,7 @@ public class EditInGoogleDriveMVCActionCommand extends BaseMVCActionCommand {
 	private DLOpenerGoogleDriveFileReference _addGoogleDriveFileEntry(
 			long repositoryId, long folderId, String contentType,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		String title = _uniqueFileEntryTitleProvider.provide(
 			serviceContext.getScopeGroupId(), folderId,
@@ -112,7 +112,7 @@ public class EditInGoogleDriveMVCActionCommand extends BaseMVCActionCommand {
 
 	private DLOpenerGoogleDriveFileReference _checkOutGoogleDriveFileEntry(
 			long fileEntryId, ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		_dlAppService.checkOutFileEntry(fileEntryId, serviceContext);
 
@@ -122,7 +122,7 @@ public class EditInGoogleDriveMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _executeCommand(ActionRequest actionRequest, long fileEntryId)
-		throws PortalException {
+		throws Exception {
 
 		String cmd = ParamUtil.getString(actionRequest, Constants.CMD);
 

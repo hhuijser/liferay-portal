@@ -458,7 +458,7 @@ public class MBMessageStagedModelDataHandler
 			PortletDataContext portletDataContext, long userId, long threadId,
 			long parentMessageId, MBMessage message,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		if (!message.isRoot()) {
 			MBDiscussion discussion =
@@ -546,7 +546,7 @@ public class MBMessageStagedModelDataHandler
 
 	private MBMessage _updateAnswer(
 			MBMessage message, MBMessage importedMessage)
-		throws PortalException {
+		throws Exception {
 
 		if (importedMessage.isAnswer() == message.isAnswer()) {
 			return importedMessage;

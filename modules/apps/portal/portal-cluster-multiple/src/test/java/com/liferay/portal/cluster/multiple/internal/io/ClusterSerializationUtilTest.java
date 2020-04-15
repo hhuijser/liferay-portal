@@ -129,7 +129,7 @@ public class ClusterSerializationUtilTest {
 		Serializable serializable = new Serializable() {
 
 			private void writeObject(ObjectOutputStream objectOutputStream)
-				throws IOException {
+				throws Exception {
 
 				throw ioException;
 			}

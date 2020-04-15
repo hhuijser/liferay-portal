@@ -243,7 +243,7 @@ public class JGroupsClusterChannelFactory implements ClusterChannelFactory {
 	}
 
 	private InputStream _getInputStream(String channelPropertiesLocation)
-		throws IOException {
+		throws Exception {
 
 		InputStream inputStream = ConfiguratorFactory.getConfigStream(
 			channelPropertiesLocation);

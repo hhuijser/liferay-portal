@@ -26,7 +26,6 @@ import com.liferay.layout.list.retriever.LayoutListRetrieverTracker;
 import com.liferay.layout.list.retriever.ListObjectReference;
 import com.liferay.layout.list.retriever.ListObjectReferenceFactory;
 import com.liferay.layout.list.retriever.ListObjectReferenceFactoryTracker;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -161,7 +160,7 @@ public class GetCollectionFieldMVCResourceCommand
 	private JSONObject _getDisplayObjectJSONObject(
 			InfoDisplayContributor infoDisplayContributor, Object object,
 			Locale locale)
-		throws PortalException {
+		throws Exception {
 
 		JSONObject displayObjectJSONObject = JSONFactoryUtil.createJSONObject();
 

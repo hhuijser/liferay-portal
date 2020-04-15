@@ -41,8 +41,6 @@ import com.liferay.portal.odata.filter.ExpressionConvert;
 import com.liferay.portal.odata.filter.FilterParserProvider;
 import com.liferay.portal.odata.sort.SortParserProvider;
 
-import java.io.IOException;
-
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -183,7 +181,7 @@ public class BatchEngineExportTaskExecutorImpl
 	private ZipOutputStream _getZipOutputStream(
 			String contentType,
 			UnsyncByteArrayOutputStream unsyncByteArrayOutputStream)
-		throws IOException {
+		throws Exception {
 
 		ZipOutputStream zipOutputStream = new ZipOutputStream(
 			unsyncByteArrayOutputStream);

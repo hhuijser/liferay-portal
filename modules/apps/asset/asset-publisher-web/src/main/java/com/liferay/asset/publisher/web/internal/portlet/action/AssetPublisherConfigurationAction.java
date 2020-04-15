@@ -863,7 +863,7 @@ public class AssetPublisherConfigurationAction
 	private AssetPublisherPortletInstanceConfiguration
 			_getAssetPublisherPortletInstanceConfiguration(
 				HttpServletRequest httpServletRequest)
-		throws ConfigurationException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(

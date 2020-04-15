@@ -24,7 +24,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.junit.Assert;
@@ -93,7 +92,7 @@ public class CleanServiceBuilderCommandTest extends BaseCommandTestCase {
 	private void _addReleaseRow(
 			PreparedStatement preparedStatement, long releaseId,
 			String servletContextName, int buildNumber)
-		throws SQLException {
+		throws Exception {
 
 		preparedStatement.setLong(1, 0);
 		preparedStatement.setLong(2, releaseId);
@@ -108,7 +107,7 @@ public class CleanServiceBuilderCommandTest extends BaseCommandTestCase {
 	private void _addServiceComponentRow(
 			PreparedStatement preparedStatement, long serviceComponentId,
 			String buildNamespace, int buildNumber)
-		throws SQLException {
+		throws Exception {
 
 		preparedStatement.setLong(1, 0);
 		preparedStatement.setLong(2, serviceComponentId);

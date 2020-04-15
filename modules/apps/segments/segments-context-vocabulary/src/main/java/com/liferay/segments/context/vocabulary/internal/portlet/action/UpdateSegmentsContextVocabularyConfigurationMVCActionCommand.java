@@ -115,7 +115,7 @@ public class UpdateSegmentsContextVocabularyConfigurationMVCActionCommand
 		}
 	}
 
-	private Configuration _getConfiguration(String pid) throws IOException {
+	private Configuration _getConfiguration(String pid) throws Exception {
 		if (Validator.isNull(pid)) {
 			if (_log.isDebugEnabled()) {
 				_log.debug("Creating factory PID");

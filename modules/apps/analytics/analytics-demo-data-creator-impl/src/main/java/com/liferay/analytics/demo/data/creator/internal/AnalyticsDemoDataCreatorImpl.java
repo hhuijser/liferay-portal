@@ -171,7 +171,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 	}
 
 	private long[] _addEntries(CSVRecord csvRecord, String header)
-		throws PortalException {
+		throws Exception {
 
 		String cell = csvRecord.get(header);
 
@@ -205,7 +205,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 		return ids;
 	}
 
-	private long[] _addOrganizations(String[] values) throws PortalException {
+	private long[] _addOrganizations(String[] values) throws Exception {
 		long[] ids = new long[values.length];
 
 		for (int i = 0; i < values.length; i++) {
@@ -238,7 +238,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 		return ids;
 	}
 
-	private long[] _addRoles(String[] values) throws PortalException {
+	private long[] _addRoles(String[] values) throws Exception {
 		long[] ids = new long[values.length];
 
 		for (int i = 0; i < values.length; i++) {
@@ -267,7 +267,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 		return ids;
 	}
 
-	private long[] _addTeams(String[] values) throws PortalException {
+	private long[] _addTeams(String[] values) throws Exception {
 		long[] ids = new long[values.length];
 
 		for (int i = 0; i < values.length; i++) {
@@ -296,7 +296,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 		return ids;
 	}
 
-	private User _addUser(CSVRecord csvRecord) throws PortalException {
+	private User _addUser(CSVRecord csvRecord) throws Exception {
 		String gender = csvRecord.get("gender");
 
 		boolean male = StringUtil.equalsIgnoreCase(gender, "male");
@@ -324,7 +324,7 @@ public class AnalyticsDemoDataCreatorImpl implements AnalyticsDemoDataCreator {
 		return user;
 	}
 
-	private long[] _addUserGroups(String[] values) throws PortalException {
+	private long[] _addUserGroups(String[] values) throws Exception {
 		long[] ids = new long[values.length];
 
 		for (int i = 0; i < values.length; i++) {

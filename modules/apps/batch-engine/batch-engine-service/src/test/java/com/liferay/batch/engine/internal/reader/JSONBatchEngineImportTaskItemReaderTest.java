@@ -18,7 +18,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -348,7 +347,7 @@ public class JSONBatchEngineImportTaskItemReaderTest
 	private JSONBatchEngineImportTaskItemReader
 			_getJSONBatchEngineImportTaskItemReader(
 				String[] cellNames, Object[][] rowValues)
-		throws IOException {
+		throws Exception {
 
 		return new JSONBatchEngineImportTaskItemReader(
 			new ByteArrayInputStream(_getContent(cellNames, rowValues)));

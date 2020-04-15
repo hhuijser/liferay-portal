@@ -28,8 +28,6 @@ import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceRegistration;
 
-import java.io.IOException;
-
 import java.net.HttpURLConnection;
 
 import java.util.Collections;
@@ -144,7 +142,7 @@ public class TransactionContainerRequestFilterTest {
 
 	}
 
-	private int _getResponseCode(String urlString) throws IOException {
+	private int _getResponseCode(String urlString) throws Exception {
 		HttpURLConnection httpURLConnection =
 			(HttpURLConnection)URLConnectionUtil.createURLConnection(urlString);
 

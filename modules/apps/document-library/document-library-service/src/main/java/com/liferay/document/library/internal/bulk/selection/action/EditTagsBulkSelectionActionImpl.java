@@ -107,7 +107,7 @@ public class EditTagsBulkSelectionActionImpl
 
 	private boolean _hasEditPermission(
 			AssetEntry assetEntry, PermissionChecker permissionChecker)
-		throws PortalException {
+		throws Exception {
 
 		AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
 

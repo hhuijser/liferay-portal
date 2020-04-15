@@ -18,7 +18,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 import java.util.Collections;
 import java.util.Date;
@@ -310,7 +309,7 @@ public class XLSBatchEngineImportTaskItemReaderTest
 	}
 
 	private byte[] _getContent(String[] cellNames, Object[][] rowValues)
-		throws IOException {
+		throws Exception {
 
 		try (XSSFWorkbook xssfWorkbook = new XSSFWorkbook()) {
 			Sheet sheet = xssfWorkbook.createSheet();
@@ -334,7 +333,7 @@ public class XLSBatchEngineImportTaskItemReaderTest
 	private XLSBatchEngineImportTaskItemReader
 			_getXLSBatchEngineImportTaskItemReader(
 				String[] cellNames, Object[][] rowValues)
-		throws IOException {
+		throws Exception {
 
 		return new XLSBatchEngineImportTaskItemReader(
 			new ByteArrayInputStream(_getContent(cellNames, rowValues)));

@@ -23,8 +23,6 @@ import com.liferay.portal.kernel.test.ReflectionTestUtil;
 import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.StringUtil;
 
-import java.io.IOException;
-
 import java.util.Dictionary;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -223,7 +221,7 @@ public class ConfigurationModelListenerTest {
 	}
 
 	private static Configuration _getConfiguration(String pid)
-		throws IOException {
+		throws Exception {
 
 		return OSGiServiceUtil.callService(
 			_bundleContext, ConfigurationAdmin.class,

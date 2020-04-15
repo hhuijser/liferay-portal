@@ -34,7 +34,6 @@ import com.liferay.portal.kernel.exception.NoSuchListTypeException;
 import com.liferay.portal.kernel.exception.NoSuchRegionException;
 import com.liferay.portal.kernel.exception.PhoneNumberException;
 import com.liferay.portal.kernel.exception.PhoneNumberExtensionException;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.exception.WebsiteURLException;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -318,7 +317,7 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 	}
 
 	private void _validateAvailableLanguages(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		UnicodeProperties unicodeProperties = PropertiesParamUtil.getProperties(
 			actionRequest, "settings--");
@@ -367,7 +366,7 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 	}
 
 	private void _validateDefaultLanguage(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		String languageId = ParamUtil.getString(
 			actionRequest, "languageId", StringPool.IS_NULL);

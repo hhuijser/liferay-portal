@@ -27,7 +27,6 @@ import com.liferay.portal.kernel.exception.NoSuchRegionException;
 import com.liferay.portal.kernel.exception.NoSuchUserException;
 import com.liferay.portal.kernel.exception.PhoneNumberException;
 import com.liferay.portal.kernel.exception.PhoneNumberExtensionException;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.UserEmailAddressException;
 import com.liferay.portal.kernel.exception.UserSmsException;
 import com.liferay.portal.kernel.exception.WebsiteURLException;
@@ -160,7 +159,7 @@ public class UpdateContactInformationMVCActionCommand
 
 	private void _checkPermission(
 			PermissionChecker permissionChecker, String className, long classPK)
-		throws PortalException {
+		throws Exception {
 
 		if (Objects.equals(className, Organization.class.getName())) {
 			OrganizationPermissionUtil.check(

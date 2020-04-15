@@ -488,7 +488,7 @@ public class DepotPermissionCheckerWrapperTest {
 			permissionChecker.isGroupOwner(TestPropsValues.getGroupId()));
 	}
 
-	private DepotEntry _addDepotEntry(long userId) throws PortalException {
+	private DepotEntry _addDepotEntry(long userId) throws Exception {
 		DepotEntry depotEntry = _depotEntryLocalService.addDepotEntry(
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()

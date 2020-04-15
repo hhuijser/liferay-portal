@@ -388,7 +388,7 @@ public class KBArticleStagedModelDataHandler
 			long userId, long parentResourceClassNameId,
 			long parentResourcePrimKey, KBArticle kbArticle, String[] sections,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		KBArticle importedKBArticle = _kbArticleLocalService.addKBArticle(
 			userId, parentResourceClassNameId, parentResourcePrimKey,
@@ -480,7 +480,7 @@ public class KBArticleStagedModelDataHandler
 			long userId, long resourcePrimKey, long parentResourceClassNameId,
 			long parentResourcePrimKey, KBArticle kbArticle, String[] sections,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		_kbArticleLocalService.updateKBArticle(
 			userId, resourcePrimKey, kbArticle.getTitle(),

@@ -61,7 +61,7 @@ public class UADApplicationExportController {
 	}
 
 	private File _exportApplicationData(String applicationKey, long userId)
-		throws PortalException {
+		throws Exception {
 
 		ZipWriter zipWriter = _getZipWriter(applicationKey, userId);
 
@@ -100,7 +100,7 @@ public class UADApplicationExportController {
 	}
 
 	private long _getApplicationDataCount(String applicationKey, long userId)
-		throws PortalException {
+		throws Exception {
 
 		long totalCount = 0;
 

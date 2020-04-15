@@ -18,7 +18,6 @@ import com.liferay.message.boards.model.MBDiscussion;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ClassNameLocalService;
 import com.liferay.portal.kernel.service.ClassNameLocalServiceUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
@@ -69,7 +68,7 @@ public class UpgradeDiscussionSubscriptionClassName extends UpgradeProcess {
 		}
 	}
 
-	private void _addSubscriptions() throws PortalException {
+	private void _addSubscriptions() throws Exception {
 		String newSubscriptionClassName =
 			MBDiscussion.class.getName() + StringPool.UNDERLINE +
 				_oldSubscriptionClassName;
@@ -91,7 +90,7 @@ public class UpgradeDiscussionSubscriptionClassName extends UpgradeProcess {
 		actionableDynamicQuery.performActions();
 	}
 
-	private void _deleteSubscriptions() throws PortalException {
+	private void _deleteSubscriptions() throws Exception {
 		ActionableDynamicQuery actionableDynamicQuery =
 			_subscriptionLocalService.getActionableDynamicQuery();
 

@@ -22,7 +22,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.dao.orm.common.SQLTransformer;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Image;
 import com.liferay.portal.kernel.model.Repository;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
@@ -36,7 +35,6 @@ import com.liferay.portal.kernel.util.MimeTypesUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -128,7 +126,7 @@ public class UpgradeBlogsImages extends UpgradeProcess {
 	}
 
 	private Folder _addFolder(long userId, long groupId, String folderName)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -144,7 +142,7 @@ public class UpgradeBlogsImages extends UpgradeProcess {
 			serviceContext);
 	}
 
-	private String _getContentType(byte[] bytes) throws IOException {
+	private String _getContentType(byte[] bytes) throws Exception {
 		File tempFile = FileUtil.createTempFile(bytes);
 
 		try {

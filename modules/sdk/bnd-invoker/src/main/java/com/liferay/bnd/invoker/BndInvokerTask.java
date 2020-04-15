@@ -20,7 +20,6 @@ import java.io.StringWriter;
 
 import java.lang.reflect.Method;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -67,7 +66,7 @@ public class BndInvokerTask extends Task {
 		_output = output;
 	}
 
-	private static Set<URL> _getStaticURLs() throws MalformedURLException {
+	private static Set<URL> _getStaticURLs() throws Exception {
 		if (_staticURLs == null) {
 			_staticURLs = new LinkedHashSet<>();
 

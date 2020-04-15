@@ -29,7 +29,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -105,7 +104,7 @@ public class UpgradeOAuth2ApplicationScopeAliases extends UpgradeProcess {
 	}
 
 	private ResultSet _getApplicationScopeAliases(long companyId)
-		throws SQLException {
+		throws Exception {
 
 		String sql = StringBundler.concat(
 			"select oa2asa.oA2AScopeAliasesId, oa2asa.scopeAliases from ",
@@ -122,7 +121,7 @@ public class UpgradeOAuth2ApplicationScopeAliases extends UpgradeProcess {
 
 	private ResultSet _getOAuth2ScopeGrantResultSet(
 			long oAuth2ApplicationScopeAliasesId)
-		throws SQLException {
+		throws Exception {
 
 		String sql =
 			"select * from OAuth2ScopeGrant where oA2AScopeAliasesId = ?";
@@ -136,7 +135,7 @@ public class UpgradeOAuth2ApplicationScopeAliases extends UpgradeProcess {
 
 	private void _updateOAuth2ScopeGrant(
 			long oAuth2ScopeGrantId, Set<String> scopeAliases)
-		throws SQLException {
+		throws Exception {
 
 		String sql =
 			"update OAuth2ScopeGrant set scopeAliases = ? where " +
@@ -161,7 +160,7 @@ public class UpgradeOAuth2ApplicationScopeAliases extends UpgradeProcess {
 			Map<LiferayOAuth2Scope, Set<String>>
 				liferayOAuth2ScopesScopeAliases,
 			Set<String> assignedScopeAliases)
-		throws SQLException {
+		throws Exception {
 
 		try (ResultSet resultSet = _getOAuth2ScopeGrantResultSet(
 				oAuth2ApplicationScopeAliasesId)) {

@@ -510,7 +510,7 @@ public class PoshiRunnerContext {
 
 	private static List<URL> _getPoshiURLs(
 			FileSystem fileSystem, String[] includes, String baseDirName)
-		throws IOException {
+		throws Exception {
 
 		List<URL> urls = null;
 

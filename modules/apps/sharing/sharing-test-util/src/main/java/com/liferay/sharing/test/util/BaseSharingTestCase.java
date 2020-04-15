@@ -822,7 +822,7 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 
 	private void _assertContainsPermission(
 			PermissionChecker permissionChecker, T model, String actionId)
-		throws PortalException {
+		throws Exception {
 
 		ModelResourcePermission<T> modelResourcePermission =
 			getModelResourcePermission();
@@ -835,7 +835,7 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 	private void _assertContainsSharingPermission(
 			PermissionChecker permissionChecker, T model,
 			SharingEntryAction sharingEntryAction)
-		throws PortalException {
+		throws Exception {
 
 		SharingPermissionChecker sharingPermissionChecker =
 			getSharingPermissionChecker();
@@ -849,7 +849,7 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 
 	private void _assertNotContainsPermission(
 			PermissionChecker permissionChecker, T model, String actionId)
-		throws PortalException {
+		throws Exception {
 
 		ModelResourcePermission<T> modelResourcePermission =
 			getModelResourcePermission();
@@ -862,7 +862,7 @@ public abstract class BaseSharingTestCase<T extends ClassedModel> {
 	private void _assertNotContainsSharingPermission(
 			PermissionChecker permissionChecker, T model,
 			SharingEntryAction sharingEntryAction)
-		throws PortalException {
+		throws Exception {
 
 		SharingPermissionChecker sharingPermissionChecker =
 			getSharingPermissionChecker();

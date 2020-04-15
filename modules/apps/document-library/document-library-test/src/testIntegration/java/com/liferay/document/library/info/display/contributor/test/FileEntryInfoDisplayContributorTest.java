@@ -228,7 +228,7 @@ public class FileEntryInfoDisplayContributorTest {
 	}
 
 	private void _addAssetDisplayPageEntry(FileEntry dlFileEntry)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());

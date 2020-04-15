@@ -19,7 +19,6 @@ import com.liferay.gradle.plugins.defaults.internal.util.GradleUtil;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 import java.io.Writer;
 
 import java.nio.charset.StandardCharsets;
@@ -161,7 +160,7 @@ public class WriteFindBugsProjectTask extends DefaultTask {
 
 	private void _writeFileElements(
 			Writer writer, String name, FileCollection fileCollection)
-		throws IOException {
+		throws Exception {
 
 		for (File file : fileCollection) {
 			if (!file.exists()) {

@@ -161,7 +161,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _cancelCheckedOutEntries(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long[] fileEntryIds = ParamUtil.getLongValues(
 			actionRequest, "rowIdsFileEntry");
@@ -171,9 +171,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	private void _checkInEntries(ActionRequest actionRequest)
-		throws PortalException {
-
+	private void _checkInEntries(ActionRequest actionRequest) throws Exception {
 		BulkSelection<FileShortcut> fileShortcutBulkSelection =
 			_fileShortcutBulkSelectionFactory.create(
 				actionRequest.getParameterMap());
@@ -203,7 +201,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _checkOutEntries(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		BulkSelection<FileShortcut> fileShortcutBulkSelection =
 			_fileShortcutBulkSelectionFactory.create(
@@ -227,7 +225,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private void _deleteEntries(
 			ActionRequest actionRequest, boolean moveToTrash)
-		throws PortalException {
+		throws Exception {
 
 		List<TrashedModel> trashedModels = new ArrayList<>();
 
@@ -334,9 +332,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	private void _moveEntries(ActionRequest actionRequest)
-		throws PortalException {
-
+	private void _moveEntries(ActionRequest actionRequest) throws Exception {
 		long newFolderId = ParamUtil.getLong(actionRequest, "newFolderId");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
@@ -368,7 +364,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _restoreTrashEntries(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long[] restoreTrashEntryIds = StringUtil.split(
 			ParamUtil.getString(actionRequest, "restoreTrashEntryIds"), 0L);

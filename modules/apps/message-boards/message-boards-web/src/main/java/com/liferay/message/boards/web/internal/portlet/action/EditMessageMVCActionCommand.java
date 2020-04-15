@@ -546,7 +546,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 			List<FileEntry> tempMBAttachmentFileEntries,
 			ThemeDisplay themeDisplay, String body, MBMessage message,
 			MBMessageFormatUploadHandler formatHandler)
-		throws PortalException {
+		throws Exception {
 
 		Folder folder = message.addAttachmentsFolder();
 
@@ -586,7 +586,7 @@ public class EditMessageMVCActionCommand extends BaseMVCActionCommand {
 	private List<FileEntry> _populateInputStreamOVPs(
 			ActionRequest actionRequest, long messageId,
 			List<ObjectValuePair<String, InputStream>> inputStreamOVPs)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

@@ -22,7 +22,6 @@ import com.liferay.document.library.kernel.service.DLAppServiceUtil;
 import com.liferay.document.library.versioning.VersionPurger;
 import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.portal.configuration.test.util.ConfigurationTemporarySwapper;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
@@ -236,7 +235,7 @@ public class LiferayVersioningCapabilityTest {
 	}
 
 	private FileEntry _addRandomFileEntry(ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		String content = StringUtil.randomString();
 
@@ -249,7 +248,7 @@ public class LiferayVersioningCapabilityTest {
 
 	private FileEntry _generateNewVersion(
 			FileEntry fileEntry, ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		String content = RandomTestUtil.randomString();
 

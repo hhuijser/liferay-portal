@@ -117,7 +117,6 @@ import java.util.Set;
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletConfig;
-import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 
 import javax.servlet.http.HttpServletRequest;
@@ -489,7 +488,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _cancelFileEntriesCheckOut(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
 
@@ -507,7 +506,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _checkInFileEntries(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
 
@@ -539,7 +538,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private void _checkOutFileEntries(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
 
@@ -601,7 +600,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private void _deleteFileEntry(
 			ActionRequest actionRequest, boolean moveToTrash)
-		throws PortalException {
+		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(actionRequest, "fileEntryId");
 
@@ -643,7 +642,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private void _deleteTempFileEntry(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -788,7 +787,7 @@ public class EditFileEntryMVCActionCommand extends BaseMVCActionCommand {
 	private String _getSaveAndContinueRedirect(
 			PortletConfig portletConfig, ActionRequest actionRequest,
 			FileEntry fileEntry, String redirect)
-		throws PortletException {
+		throws Exception {
 
 		LiferayPortletURL portletURL = PortletURLFactoryUtil.create(
 			actionRequest, portletConfig.getPortletName(),

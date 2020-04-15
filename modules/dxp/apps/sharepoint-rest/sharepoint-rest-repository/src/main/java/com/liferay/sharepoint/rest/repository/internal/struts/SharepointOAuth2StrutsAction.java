@@ -16,7 +16,6 @@ package com.liferay.sharepoint.rest.repository.internal.struts;
 
 import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.document.library.repository.authorization.capability.AuthorizationCapability;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.repository.Repository;
 import com.liferay.portal.kernel.repository.RepositoryProviderUtil;
 import com.liferay.portal.kernel.repository.model.Folder;
@@ -58,7 +57,7 @@ public class SharepointOAuth2StrutsAction implements StrutsAction {
 	}
 
 	private Repository _getRepository(HttpServletRequest httpServletRequest)
-		throws PortalException {
+		throws Exception {
 
 		SharepointRepositoryRequestState sharepointRepositoryRequestState =
 			SharepointRepositoryRequestState.get(httpServletRequest);

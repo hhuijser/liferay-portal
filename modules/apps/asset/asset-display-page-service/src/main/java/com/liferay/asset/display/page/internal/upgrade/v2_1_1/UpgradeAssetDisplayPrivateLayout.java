@@ -15,7 +15,6 @@
 package com.liferay.asset.display.page.internal.upgrade.v2_1_1;
 
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -43,7 +42,7 @@ public class UpgradeAssetDisplayPrivateLayout extends UpgradeProcess {
 		_upgradeAssetDisplayLayouts();
 	}
 
-	private void _addResources(long groupId, long plid) throws PortalException {
+	private void _addResources(long groupId, long plid) throws Exception {
 		Layout layout = _layoutLocalService.fetchLayout(plid);
 
 		_resourceLocalService.addResources(

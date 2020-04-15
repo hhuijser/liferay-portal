@@ -20,7 +20,6 @@ import com.liferay.depot.service.DepotEntryGroupRelLocalService;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.depot.test.util.DepotTestUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
@@ -281,7 +280,7 @@ public class DepotSearchBarPortletSharedSearchContributorTest {
 	}
 
 	private PortletSharedSearchSettings _getPortletSharedSearchSettings()
-		throws PortalException {
+		throws Exception {
 
 		SearchContext searchContext = new SearchContext();
 

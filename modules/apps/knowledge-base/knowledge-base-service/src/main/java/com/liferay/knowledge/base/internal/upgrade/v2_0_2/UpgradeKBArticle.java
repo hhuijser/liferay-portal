@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -87,7 +86,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 
 	private boolean _renameConflictingFriendlyURL(
 			String selectSQL, String updateSQL)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement ps1 =
 				AutoBatchPreparedStatementUtil.concurrentAutoBatch(
@@ -121,9 +120,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 		}
 	}
 
-	private boolean _renameConflictingKBArticleFriendlyURLs()
-		throws SQLException {
-
+	private boolean _renameConflictingKBArticleFriendlyURLs() throws Exception {
 		return _renameConflictingFriendlyURL(
 			StringBundler.concat(
 				"select distinct kbArticle2.kbArticleId, kbArticle2.urlTitle ",
@@ -135,9 +132,7 @@ public class UpgradeKBArticle extends UpgradeProcess {
 			"update KBArticle set urlTitle = ? where kbArticleId = ?");
 	}
 
-	private boolean _renameConflictingKBFolderFriendlyURLs()
-		throws SQLException {
-
+	private boolean _renameConflictingKBFolderFriendlyURLs() throws Exception {
 		return _renameConflictingFriendlyURL(
 			StringBundler.concat(
 				"select distinct kbArticle2.kbFolderId, kbArticle2.urlTitle ",

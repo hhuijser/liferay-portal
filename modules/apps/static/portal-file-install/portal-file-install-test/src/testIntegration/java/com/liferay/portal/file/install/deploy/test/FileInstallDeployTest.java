@@ -24,7 +24,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.util.PropsValues;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 import java.nio.file.Files;
@@ -342,7 +341,7 @@ public class FileInstallDeployTest {
 	private void _createJAR(
 			Path path, String symbolicName, Version version,
 			String fragmentHost)
-		throws IOException {
+		throws Exception {
 
 		try (OutputStream outputStream = Files.newOutputStream(path);
 			JarOutputStream jarOutputStream = new JarOutputStream(

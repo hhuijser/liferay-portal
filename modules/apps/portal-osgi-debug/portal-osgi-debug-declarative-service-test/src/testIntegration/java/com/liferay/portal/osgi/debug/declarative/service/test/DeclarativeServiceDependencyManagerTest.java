@@ -259,7 +259,7 @@ public class DeclarativeServiceDependencyManagerTest {
 		}
 	}
 
-	private InputStream _createBundle() throws IOException {
+	private InputStream _createBundle() throws Exception {
 		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
 
@@ -308,7 +308,7 @@ public class DeclarativeServiceDependencyManagerTest {
 
 	private void _writeClasses(
 			JarOutputStream jarOutputStream, Class<?>... classes)
-		throws IOException {
+		throws Exception {
 
 		for (Class<?> clazz : classes) {
 			String className = clazz.getName();
@@ -332,7 +332,7 @@ public class DeclarativeServiceDependencyManagerTest {
 
 	private void _writeServiceComponentFile(
 			JarOutputStream jarOutputStream, Class<?> clazz)
-		throws IOException {
+		throws Exception {
 
 		ClassLoader classLoader = clazz.getClassLoader();
 

@@ -309,7 +309,7 @@ public class ThemeBuilderCompareTest {
 		};
 	}
 
-	private static void _unzip(File file, File outputDir) throws IOException {
+	private static void _unzip(File file, File outputDir) throws Exception {
 		Path outputDirPath = outputDir.toPath();
 
 		try (ZipFile zipFile = new ZipFile(file)) {

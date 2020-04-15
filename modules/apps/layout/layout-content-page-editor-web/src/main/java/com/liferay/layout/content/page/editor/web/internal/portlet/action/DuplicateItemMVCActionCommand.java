@@ -30,7 +30,6 @@ import com.liferay.layout.content.page.editor.web.internal.util.layout.structure
 import com.liferay.layout.util.structure.FragmentLayoutStructureItem;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -142,7 +141,7 @@ public class DuplicateItemMVCActionCommand
 
 	private JSONObject _addDuplicateFragmentEntryLinkToLayoutDataJSONObject(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
@@ -214,7 +213,7 @@ public class DuplicateItemMVCActionCommand
 	private void _copyPortletPreferences(
 			HttpServletRequest httpServletRequest, String portletId,
 			String oldInstanceId, String newInstanceId)
-		throws PortalException {
+		throws Exception {
 
 		PortletPreferences portletPreferences =
 			_portletPreferencesFactory.getPortletPreferences(
@@ -238,7 +237,7 @@ public class DuplicateItemMVCActionCommand
 	private JSONObject _duplicateFragmentEntryLink(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			long fragmentEntryLinkId)
-		throws PortalException {
+		throws Exception {
 
 		FragmentEntryLink fragmentEntryLink =
 			_fragmentEntryLinkLocalService.getFragmentEntryLink(

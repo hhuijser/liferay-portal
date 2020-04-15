@@ -26,8 +26,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.taglib.util.IncludeTag;
 
-import java.io.IOException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -190,7 +188,7 @@ public class MetaTagsTag extends IncludeTag {
 	}
 
 	private void _writeMeta(String content, String lang, String name)
-		throws IOException {
+		throws Exception {
 
 		JspWriter jspWriter = pageContext.getOut();
 

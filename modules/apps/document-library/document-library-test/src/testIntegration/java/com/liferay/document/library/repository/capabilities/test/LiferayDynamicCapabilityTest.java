@@ -17,7 +17,6 @@ package com.liferay.document.library.repository.capabilities.test;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.document.library.kernel.service.DLAppLocalServiceUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.LocalRepository;
 import com.liferay.portal.kernel.repository.Repository;
@@ -408,7 +407,7 @@ public class LiferayDynamicCapabilityTest {
 	}
 
 	private FileEntry _addRandomFileEntry(ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		return DLAppLocalServiceUtil.addFileEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),

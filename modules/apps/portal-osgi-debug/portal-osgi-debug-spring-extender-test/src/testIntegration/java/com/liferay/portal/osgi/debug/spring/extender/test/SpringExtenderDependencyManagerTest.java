@@ -279,7 +279,7 @@ public class SpringExtenderDependencyManagerTest {
 		}
 	}
 
-	private InputStream _createBundle() throws IOException {
+	private InputStream _createBundle() throws Exception {
 		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
 
@@ -329,7 +329,7 @@ public class SpringExtenderDependencyManagerTest {
 
 	private void _writeClasses(
 			JarOutputStream jarOutputStream, Class<?>... classes)
-		throws IOException {
+		throws Exception {
 
 		for (Class<?> clazz : classes) {
 			String className = clazz.getName();

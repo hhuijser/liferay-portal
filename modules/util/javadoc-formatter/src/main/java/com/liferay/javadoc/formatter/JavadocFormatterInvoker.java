@@ -19,7 +19,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.Map;
 
@@ -57,7 +56,7 @@ public class JavadocFormatterInvoker {
 	}
 
 	private static String _getCanonicalPath(File baseDir, String fileName)
-		throws IOException {
+		throws Exception {
 
 		File file = new File(baseDir, fileName);
 

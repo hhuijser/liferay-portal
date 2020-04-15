@@ -14,7 +14,6 @@
 
 package com.liferay.segments.experiment.web.internal.portlet.action;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -96,7 +95,7 @@ public class RunSegmentsExperimentMVCActionCommand
 	}
 
 	private JSONObject _runSegmentsExperiment(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

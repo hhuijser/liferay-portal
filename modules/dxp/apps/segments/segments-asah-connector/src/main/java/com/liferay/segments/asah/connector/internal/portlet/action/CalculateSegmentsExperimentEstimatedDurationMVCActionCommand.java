@@ -14,7 +14,6 @@
 
 package com.liferay.segments.asah.connector.internal.portlet.action;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -125,7 +124,7 @@ public class CalculateSegmentsExperimentEstimatedDurationMVCActionCommand
 	private JSONObject
 			_calculateSegmentsExperimentEstimatedDaysDurationJSONObject(
 				ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		long segmentsExperimentId = ParamUtil.getLong(
 			actionRequest, "segmentsExperimentId");

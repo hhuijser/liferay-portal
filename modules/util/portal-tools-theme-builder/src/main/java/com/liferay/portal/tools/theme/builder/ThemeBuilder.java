@@ -169,7 +169,7 @@ public class ThemeBuilder {
 		jCommander.usage();
 	}
 
-	private void _copyTheme(final Path themeDirPath) throws IOException {
+	private void _copyTheme(final Path themeDirPath) throws Exception {
 		final Path outputDirPath = _outputDir.toPath();
 
 		Files.walkFileTree(
@@ -252,7 +252,7 @@ public class ThemeBuilder {
 		return false;
 	}
 
-	private void _writeLookAndFeelXml() throws IOException {
+	private void _writeLookAndFeelXml() throws Exception {
 		Path path = _outputDir.toPath();
 
 		path = path.resolve("WEB-INF/liferay-look-and-feel.xml");
@@ -278,7 +278,7 @@ public class ThemeBuilder {
 		Files.write(path, content.getBytes(StandardCharsets.UTF_8));
 	}
 
-	private void _writeScreenshotThumbnail() throws IOException {
+	private void _writeScreenshotThumbnail() throws Exception {
 		File file = new File(_outputDir, "images/screenshot.png");
 
 		if (!file.exists()) {

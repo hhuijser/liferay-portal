@@ -25,7 +25,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
 import com.liferay.portal.kernel.service.LayoutLocalService;
@@ -67,7 +66,7 @@ public class UpgradeAssetDisplayLayout extends UpgradeProcess {
 	private long _getPlid(
 			AssetEntry assetEntry, long userId, long groupId,
 			long layoutPageTemplateEntryId, ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		LayoutPageTemplateEntry layoutPageTemplateEntry = Optional.ofNullable(
 			_layoutPageTemplateEntryLocalService.fetchLayoutPageTemplateEntry(

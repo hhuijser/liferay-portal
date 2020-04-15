@@ -147,7 +147,7 @@ public class AddFragmentEntryLinkMVCActionCommand
 
 	private JSONObject _addFragmentEntryLinkToLayoutDataJSONObject(
 			ActionRequest actionRequest, long fragmentEntryLinkId)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

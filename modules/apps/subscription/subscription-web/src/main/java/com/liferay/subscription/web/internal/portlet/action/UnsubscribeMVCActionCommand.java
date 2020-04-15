@@ -125,7 +125,7 @@ public class UnsubscribeMVCActionCommand extends BaseMVCActionCommand {
 		}
 	}
 
-	private Ticket _getTicket(String key) throws PortalException {
+	private Ticket _getTicket(String key) throws Exception {
 		Ticket ticket = _ticketLocalService.getTicket(key);
 
 		if (ticket.getType() != SubscriptionConstants.TICKET_TYPE) {
@@ -142,7 +142,7 @@ public class UnsubscribeMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private String _getTitle(Locale locale, Subscription subscription)
-		throws PortalException {
+		throws Exception {
 
 		Group group = _groupLocalService.fetchGroup(subscription.getClassPK());
 
@@ -154,7 +154,7 @@ public class UnsubscribeMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private Subscription _unsubscribe(String key, long userId)
-		throws PortalException {
+		throws Exception {
 
 		Ticket ticket = _getTicket(key);
 

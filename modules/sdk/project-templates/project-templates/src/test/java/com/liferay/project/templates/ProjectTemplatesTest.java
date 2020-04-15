@@ -3592,7 +3592,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static void _createNewFiles(String fileName, File... dirs)
-		throws IOException {
+		throws Exception {
 
 		for (File dir : dirs) {
 			File file = new File(dir, fileName);
@@ -3620,7 +3620,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 			property);
 	}
 
-	private void _addNpmrc(File projectDir) throws IOException {
+	private void _addNpmrc(File projectDir) throws Exception {
 		File npmrcFile = new File(projectDir, ".npmrc");
 
 		String content = "sass_binary_site=" + _NODEJS_NPM_CI_SASS_BINARY_SITE;
@@ -4766,7 +4766,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	}
 
 	private File _testEquals(File dir, String fileName, String expectedContent)
-		throws IOException {
+		throws Exception {
 
 		File file = testExists(dir, fileName);
 
@@ -4778,7 +4778,7 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	}
 
 	private File _testStartsWith(File dir, String fileName, String prefix)
-		throws IOException {
+		throws Exception {
 
 		File file = testExists(dir, fileName);
 

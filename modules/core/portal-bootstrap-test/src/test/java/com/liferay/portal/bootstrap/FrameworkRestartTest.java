@@ -199,7 +199,7 @@ public class FrameworkRestartTest {
 	private static InputStream _createJAR(
 			String symbolicName, String version, String exportPackage,
 			String importPackage)
-		throws IOException {
+		throws Exception {
 
 		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
@@ -243,7 +243,7 @@ public class FrameworkRestartTest {
 		}
 	}
 
-	private static void _delete(Path path) throws IOException {
+	private static void _delete(Path path) throws Exception {
 		Files.walkFileTree(
 			path,
 			new SimpleFileVisitor<Path>() {

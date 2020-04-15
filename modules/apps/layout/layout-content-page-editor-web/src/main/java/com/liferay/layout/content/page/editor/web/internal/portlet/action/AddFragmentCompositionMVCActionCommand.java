@@ -28,7 +28,6 @@ import com.liferay.layout.content.page.editor.constants.ContentPageEditorPortlet
 import com.liferay.layout.content.page.editor.web.internal.constants.ContentPageEditorConstants;
 import com.liferay.layout.content.page.editor.web.internal.util.layout.structure.LayoutStructureUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -168,7 +167,7 @@ public class AddFragmentCompositionMVCActionCommand
 	private FileEntry _addPreviewImage(
 			long fragmentCompositionId, String url,
 			ServiceContext serviceContext, ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		byte[] bytes = {};
 

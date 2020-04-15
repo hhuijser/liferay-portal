@@ -146,7 +146,7 @@ public class WorkflowTaskDemoDataCreatorImpl
 
 	private Map<String, Serializable> _getWorkflowContext(
 			long companyId, long userId, long workflowTaskId)
-		throws PortalException {
+		throws Exception {
 
 		WorkflowTask workflowTask = _workflowTaskManager.getWorkflowTask(
 			companyId, workflowTaskId);

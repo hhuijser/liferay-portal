@@ -35,7 +35,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -166,7 +165,7 @@ public class ServiceComponentLocalServiceTest {
 
 	private String _normalizeTableName(
 			DatabaseMetaData databaseMetaData, String tableName)
-		throws SQLException {
+		throws Exception {
 
 		if (databaseMetaData.storesLowerCaseIdentifiers()) {
 			return StringUtil.toLowerCase(tableName);

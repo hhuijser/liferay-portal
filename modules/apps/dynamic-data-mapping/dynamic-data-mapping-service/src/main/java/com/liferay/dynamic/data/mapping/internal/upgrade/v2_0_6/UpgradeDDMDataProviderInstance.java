@@ -19,7 +19,6 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -109,7 +108,7 @@ public class UpgradeDDMDataProviderInstance extends UpgradeProcess {
 
 	private String _updateDDMDataProviderInstance(
 			long ddmDataProviderInstanceId, String definition, String uuid)
-		throws JSONException {
+		throws Exception {
 
 		String instanceId = StringUtil.randomString();
 

@@ -26,7 +26,6 @@ import com.liferay.portal.kernel.util.StreamUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Arrays;
@@ -211,7 +210,7 @@ public class ClassLoaderTrackerTest {
 
 	private void _writeClasses(
 			JarOutputStream jarOutputStream, Class<?>... classes)
-		throws IOException {
+		throws Exception {
 
 		for (Class<?> clazz : classes) {
 			String className = clazz.getName();
@@ -236,7 +235,7 @@ public class ClassLoaderTrackerTest {
 	private void _writeManifest(
 			String bundleSymbolicName, String bundleVersion,
 			JarOutputStream jarOutputStream)
-		throws IOException {
+		throws Exception {
 
 		Manifest manifest = new Manifest();
 

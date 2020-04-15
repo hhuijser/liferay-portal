@@ -746,7 +746,7 @@ public class DataLayoutTaglibUtil {
 				getDDMFormLayout();
 		}
 
-		private JSONArray _getDataRulesJSONArray() throws JSONException {
+		private JSONArray _getDataRulesJSONArray() throws Exception {
 			JSONArray dataRulesJSONArray = _jsonFactory.createJSONArray();
 
 			for (DataRule dataRule : _dataLayout.getDataRules()) {

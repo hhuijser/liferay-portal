@@ -47,7 +47,6 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.net.URL;
 
@@ -160,7 +159,7 @@ public class MasterLayoutsImporterTest {
 	}
 
 	private void _addZipWriterEntry(ZipWriter zipWriter, URL url)
-		throws IOException {
+		throws Exception {
 
 		String entryPath = url.getPath();
 
@@ -252,7 +251,7 @@ public class MasterLayoutsImporterTest {
 	}
 
 	private void _populateZipWriter(ZipWriter zipWriter, URL url)
-		throws IOException {
+		throws Exception {
 
 		String zipPath = StringUtil.removeSubstring(url.getFile(), _BASE_PATH);
 

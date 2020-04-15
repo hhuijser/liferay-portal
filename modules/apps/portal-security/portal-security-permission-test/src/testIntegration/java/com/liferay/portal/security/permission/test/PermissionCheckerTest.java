@@ -16,7 +16,6 @@ package com.liferay.portal.security.permission.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.exception.NoSuchResourcePermissionException;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Organization;
@@ -941,7 +940,7 @@ public class PermissionCheckerTest {
 	}
 
 	private void _deployRemotePortlet(long companyId, String portletName)
-		throws PortalException {
+		throws Exception {
 
 		Portlet portlet = _portletPersistence.create(0);
 
@@ -952,7 +951,7 @@ public class PermissionCheckerTest {
 	}
 
 	private void _destroyRemotePortlet(long companyId, String portletName)
-		throws PortalException {
+		throws Exception {
 
 		Portlet portlet = _portletLocalService.getPortletById(
 			companyId, portletName);

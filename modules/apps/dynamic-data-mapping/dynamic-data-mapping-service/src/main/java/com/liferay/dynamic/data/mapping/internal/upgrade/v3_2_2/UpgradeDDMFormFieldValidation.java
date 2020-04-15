@@ -16,7 +16,6 @@ package com.liferay.dynamic.data.mapping.internal.upgrade.v3_2_2;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.jdbc.AutoBatchPreparedStatementUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -190,9 +189,7 @@ public class UpgradeDDMFormFieldValidation extends UpgradeProcess {
 		).build();
 	}
 
-	private String _upgradeDefinition(String definition)
-		throws PortalException {
-
+	private String _upgradeDefinition(String definition) throws Exception {
 		JSONObject jsonObject = _jsonFactory.createJSONObject(definition);
 
 		_upgradeFields(

@@ -71,7 +71,6 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.Template;
 import freemarker.template.TemplateHashModel;
-import freemarker.template.TemplateModelException;
 
 import java.beans.Introspector;
 
@@ -2108,12 +2107,12 @@ public class ServiceBuilder {
 		return SAXReaderFactory.getSAXReader(null, false, false);
 	}
 
-	private static void _mkdir(File dir) throws IOException {
+	private static void _mkdir(File dir) throws Exception {
 		Files.createDirectories(dir.toPath());
 	}
 
 	private static void _move(File sourceFile, File destinationFile)
-		throws IOException {
+		throws Exception {
 
 		File parentFile = destinationFile.getParentFile();
 
@@ -2168,13 +2167,13 @@ public class ServiceBuilder {
 		}
 	}
 
-	private static void _touch(File file) throws IOException {
+	private static void _touch(File file) throws Exception {
 		_mkdir(file.getParentFile());
 
 		Files.createFile(file.toPath());
 	}
 
-	private static void _write(File file, String s) throws IOException {
+	private static void _write(File file, String s) throws Exception {
 		Path path = file.toPath();
 
 		Files.createDirectories(path.getParent());
@@ -4057,7 +4056,7 @@ public class ServiceBuilder {
 	private void _createSQLMappingTables(
 			File sqlFile, String newCreateTableString,
 			EntityMapping entityMapping, boolean addMissingTables)
-		throws IOException {
+		throws Exception {
 
 		if (!sqlFile.exists()) {
 			_touch(sqlFile);
@@ -4123,7 +4122,7 @@ public class ServiceBuilder {
 		}
 	}
 
-	private void _createSQLSequences() throws IOException {
+	private void _createSQLSequences() throws Exception {
 		File sqlDir = new File(_sqlDirName);
 
 		if (!sqlDir.exists()) {
@@ -4282,7 +4281,7 @@ public class ServiceBuilder {
 	private void _createSQLTables(
 			File sqlFile, String newCreateTableString, Entity entity,
 			boolean addMissingTables)
-		throws IOException {
+		throws Exception {
 
 		if (!sqlFile.exists()) {
 			_touch(sqlFile);
@@ -4507,7 +4506,7 @@ public class ServiceBuilder {
 		return null;
 	}
 
-	private String _fixHbmXml(String content) throws IOException {
+	private String _fixHbmXml(String content) throws Exception {
 		try (UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
@@ -4700,7 +4699,7 @@ public class ServiceBuilder {
 		return columnLengths;
 	}
 
-	private Properties _getCompatProperties(String version) throws IOException {
+	private Properties _getCompatProperties(String version) throws Exception {
 		Properties properties = new Properties();
 
 		try (InputStream is = ServiceBuilder.class.getResourceAsStream(
@@ -4712,7 +4711,7 @@ public class ServiceBuilder {
 		return properties;
 	}
 
-	private Map<String, Object> _getContext() throws TemplateModelException {
+	private Map<String, Object> _getContext() throws Exception {
 		Map<String, Object> context = HashMapBuilder.<String, Object>put(
 			"apiPackagePath", _apiPackagePath
 		).put(
@@ -5261,7 +5260,7 @@ public class ServiceBuilder {
 		return mappingPKEntityColumnDBNames;
 	}
 
-	private JavaClass _getJavaClass(String fileName) throws IOException {
+	private JavaClass _getJavaClass(String fileName) throws Exception {
 		fileName = _normalize(fileName);
 
 		int pos = 0;
@@ -5559,7 +5558,7 @@ public class ServiceBuilder {
 		return transients;
 	}
 
-	private List<Path> _getUpdateSQLFilePaths() throws IOException {
+	private List<Path> _getUpdateSQLFilePaths() throws Exception {
 		if (!_osgiModule) {
 			final List<Path> updateSQLFilePaths = new ArrayList<>();
 
@@ -5638,7 +5637,7 @@ public class ServiceBuilder {
 		return false;
 	}
 
-	private boolean _isCommercialPlugin(Path pluginPath) throws IOException {
+	private boolean _isCommercialPlugin(Path pluginPath) throws Exception {
 		if (pluginPath == null) {
 			return false;
 		}

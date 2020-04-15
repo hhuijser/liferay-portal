@@ -106,7 +106,7 @@ public class EditInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 
 	private DLOpenerOneDriveFileReference _checkOutOneDriveFileEntry(
 			long fileEntryId, ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		dlAppService.checkOutFileEntry(fileEntryId, serviceContext);
 
@@ -116,7 +116,7 @@ public class EditInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private JSONObject _executeCommand(PortletRequest portletRequest)
-		throws PortalException {
+		throws Exception {
 
 		String cmd = ParamUtil.getString(portletRequest, Constants.CMD);
 		long fileEntryId = ParamUtil.getLong(portletRequest, "fileEntryId");

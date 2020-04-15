@@ -24,7 +24,6 @@ import groovy.json.JsonSlurper;
 import groovy.lang.Writable;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -277,7 +276,7 @@ public class PublishNodeModuleTask extends ExecutePackageManagerTask {
 		return completeArgs;
 	}
 
-	private void _createNpmrcFile(File npmrcFile) throws IOException {
+	private void _createNpmrcFile(File npmrcFile) throws Exception {
 		List<String> npmrcContents = new ArrayList<>(2);
 
 		npmrcContents.add("_auth = " + _getNpmAuth());
@@ -305,9 +304,7 @@ public class PublishNodeModuleTask extends ExecutePackageManagerTask {
 		return new File(scriptFile.getParentFile(), ".npmrc");
 	}
 
-	private void _updatePackageJsonFile(Path packageJsonPath)
-		throws IOException {
-
+	private void _updatePackageJsonFile(Path packageJsonPath) throws Exception {
 		Logger logger = getLogger();
 
 		Map<String, Object> map = null;

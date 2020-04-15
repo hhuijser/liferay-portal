@@ -113,7 +113,7 @@ public class CreateInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 	private DLOpenerOneDriveFileReference _addDLOpenerOneDriveFileReference(
 			long userId, long repositoryId, long folderId, String mimeType,
 			String title, ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		String uniqueTitle = uniqueFileEntryTitleProvider.provide(
 			serviceContext.getScopeGroupId(), folderId, title);
@@ -137,7 +137,7 @@ public class CreateInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private JSONObject _executeCommand(PortletRequest portletRequest)
-		throws PortalException {
+		throws Exception {
 
 		try {
 			long repositoryId = ParamUtil.getLong(

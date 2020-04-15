@@ -68,7 +68,7 @@ public class PortalToolsTest {
 		}
 	}
 
-	private static void _initDependencies() throws IOException {
+	private static void _initDependencies() throws Exception {
 		Path libDirPath = Paths.get("../../../lib");
 
 		Files.walkFileTree(

@@ -20,7 +20,6 @@ import com.liferay.petra.string.StringUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -328,7 +327,7 @@ public class CSVBatchEngineImportTaskItemReaderTest
 	private CSVBatchEngineImportTaskItemReader
 			_getCSVBatchEngineImportTaskItemReader(
 				String[] cellNames, String delimiter, Object[][] rowValues)
-		throws IOException {
+		throws Exception {
 
 		return new CSVBatchEngineImportTaskItemReader(
 			delimiter,

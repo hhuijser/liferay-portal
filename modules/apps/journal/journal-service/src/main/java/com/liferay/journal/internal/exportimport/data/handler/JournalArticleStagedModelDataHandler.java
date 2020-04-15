@@ -1334,7 +1334,7 @@ public class JournalArticleStagedModelDataHandler
 
 	private void _exportAssetDisplayPage(
 			PortletDataContext portletDataContext, JournalArticle article)
-		throws PortletDataException {
+		throws Exception {
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
@@ -1351,7 +1351,7 @@ public class JournalArticleStagedModelDataHandler
 
 	private void _exportFriendlyURLEntries(
 			PortletDataContext portletDataContext, JournalArticle article)
-		throws PortletDataException {
+		throws Exception {
 
 		long classNameId = _portal.getClassNameId(JournalArticle.class);
 
@@ -1373,7 +1373,7 @@ public class JournalArticleStagedModelDataHandler
 	private void _importAssetDisplayPage(
 			PortletDataContext portletDataContext, JournalArticle article,
 			JournalArticle importedArticle)
-		throws PortalException {
+		throws Exception {
 
 		List<Element> assetDisplayPageEntryElements =
 			portletDataContext.getReferenceDataElements(
@@ -1424,7 +1424,7 @@ public class JournalArticleStagedModelDataHandler
 	private void _importFriendlyURLEntries(
 			PortletDataContext portletDataContext, JournalArticle article,
 			JournalArticle importedArticle)
-		throws PortalException {
+		throws Exception {
 
 		List<Element> friendlyURLEntryElements =
 			portletDataContext.getReferenceDataElements(

@@ -148,7 +148,7 @@ public class StandaloneAppDeployer implements AppDeployer {
 
 	protected ServletContext servletContext;
 
-	private Group _addGroup(long companyId, long appId) throws PortalException {
+	private Group _addGroup(long companyId, long appId) throws Exception {
 		Map<Locale, String> nameMap = Collections.singletonMap(
 			LocaleUtil.getDefault(), _getGroupName(appId));
 
@@ -163,7 +163,7 @@ public class StandaloneAppDeployer implements AppDeployer {
 
 	private Layout _addPublicLayout(
 			long companyId, long groupId, String portletName)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -200,7 +200,7 @@ public class StandaloneAppDeployer implements AppDeployer {
 
 	private ServiceRegistration<?> _deployLayoutTypeController(
 			long companyId, long appId, String appName, String portletName)
-		throws PortalException {
+		throws Exception {
 
 		Group group = _groupLocalService.fetchFriendlyURLGroup(
 			companyId, _getGroupFriendlyURL(appId));

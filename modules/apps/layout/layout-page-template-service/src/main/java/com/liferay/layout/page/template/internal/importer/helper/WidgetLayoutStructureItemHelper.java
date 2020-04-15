@@ -134,7 +134,7 @@ public class WidgetLayoutStructureItemHelper
 
 	private String _getPortletInstanceId(
 			Layout layout, String portletId, long segmentsExperienceId)
-		throws PortletIdException {
+		throws Exception {
 
 		Portlet portlet = PortletLocalServiceUtil.fetchPortletById(
 			layout.getCompanyId(), portletId);

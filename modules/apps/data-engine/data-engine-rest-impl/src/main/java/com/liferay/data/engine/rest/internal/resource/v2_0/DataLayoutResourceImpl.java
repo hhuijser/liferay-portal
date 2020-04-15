@@ -40,7 +40,6 @@ import com.liferay.dynamic.data.mapping.spi.converter.SPIDDMFormRuleConverter;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureLayoutCreateDateComparator;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureLayoutModifiedDateComparator;
 import com.liferay.dynamic.data.mapping.util.comparator.StructureLayoutNameComparator;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Sort;
@@ -227,7 +226,7 @@ public class DataLayoutResourceImpl
 	private void _addDataDefinitionFieldLinks(
 			long classNameId, long dataDefinitionId, long dataLayoutId,
 			List<String> fieldNames, long siteId)
-		throws PortalException {
+		throws Exception {
 
 		for (String fieldName : fieldNames) {
 			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(
@@ -266,7 +265,7 @@ public class DataLayoutResourceImpl
 	}
 
 	private void _deleteDataLayout(long dataLayoutId, DDMStructure ddmStructure)
-		throws PortalException {
+		throws Exception {
 
 		_ddmStructureLayoutLocalService.deleteDDMStructureLayout(dataLayoutId);
 
@@ -358,7 +357,7 @@ public class DataLayoutResourceImpl
 	}
 
 	private long _getDDMStructureVersionId(long deDataDefinitionId)
-		throws PortalException {
+		throws Exception {
 
 		DDMStructureVersion ddmStructureVersion =
 			_ddmStructureVersionLocalService.getLatestStructureVersion(

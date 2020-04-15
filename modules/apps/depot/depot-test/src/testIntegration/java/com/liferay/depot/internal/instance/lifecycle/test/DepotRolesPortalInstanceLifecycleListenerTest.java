@@ -18,7 +18,6 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.depot.constants.DepotRolesConstants;
 import com.liferay.portal.kernel.exception.NoSuchResourcePermissionException;
 import com.liferay.portal.kernel.exception.NoSuchRoleException;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.Role;
@@ -71,9 +70,7 @@ public class DepotRolesPortalInstanceLifecycleListenerTest {
 		}
 	}
 
-	private void _assertRole(long companyId, String name)
-		throws PortalException {
-
+	private void _assertRole(long companyId, String name) throws Exception {
 		try {
 			Role role = _roleLocalService.getRole(companyId, name);
 

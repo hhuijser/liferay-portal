@@ -251,7 +251,7 @@ public class NavigationMenuTag extends IncludeTag {
 	protected void setAttributes(HttpServletRequest httpServletRequest) {
 	}
 
-	private List<NavItem> _getBranchNavItems() throws PortalException {
+	private List<NavItem> _getBranchNavItems() throws Exception {
 		ThemeDisplay themeDisplay = (ThemeDisplay)request.getAttribute(
 			WebKeys.THEME_DISPLAY);
 

@@ -25,7 +25,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * @author Javier Gamarra
@@ -44,7 +43,7 @@ public class UpgradeUrlSubject extends UpgradeProcess {
 	}
 
 	private String _findUniqueUrlSubject(Connection con, String urlSubject)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement ps = con.prepareStatement(
 				"select count(*) from MBMessage where urlSubject like ?")) {
@@ -87,7 +86,7 @@ public class UpgradeUrlSubject extends UpgradeProcess {
 		return subject.substring(0, Math.min(subject.length(), 254));
 	}
 
-	private void _populateUrlSubject() throws SQLException {
+	private void _populateUrlSubject() throws Exception {
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select messageId, subject from MBMessage where (urlSubject " +
 					"is null) or (urlSubject = '')");

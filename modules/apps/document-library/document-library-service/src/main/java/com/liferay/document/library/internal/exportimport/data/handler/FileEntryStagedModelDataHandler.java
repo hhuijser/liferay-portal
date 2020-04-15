@@ -948,7 +948,7 @@ public class FileEntryStagedModelDataHandler
 
 	private void _exportAssetDisplayPage(
 			PortletDataContext portletDataContext, FileEntry fileEntry)
-		throws PortletDataException {
+		throws Exception {
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
@@ -966,7 +966,7 @@ public class FileEntryStagedModelDataHandler
 	private void _importAssetDisplayPage(
 			PortletDataContext portletDataContext, FileEntry fileEntry,
 			FileEntry importedFileEntry)
-		throws PortalException {
+		throws Exception {
 
 		List<Element> assetDisplayPageEntryElements =
 			portletDataContext.getReferenceDataElements(
@@ -1017,7 +1017,7 @@ public class FileEntryStagedModelDataHandler
 	private FileEntry _overrideFileVersion(
 			final FileEntry importedFileEntry, final String version,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContextThreadLocal.pushServiceContext(serviceContext);
 

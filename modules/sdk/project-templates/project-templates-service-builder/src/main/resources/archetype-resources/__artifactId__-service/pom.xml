@@ -34,6 +34,13 @@
 			<scope>provided</scope>
 		</dependency>
 #end
+#if (${liferayVersion.startsWith("7.3")})
+		<dependency>
+			<groupId>com.liferay</groupId>
+			<artifactId>com.liferay.petra.sql.dsl.api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+#end
 #if (${liferayVersion.startsWith("7.1")} || ${liferayVersion.startsWith("7.2")} || ${liferayVersion.startsWith("7.3")})
 		<dependency>
 			<groupId>com.liferay</groupId>

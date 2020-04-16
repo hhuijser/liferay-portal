@@ -55,6 +55,9 @@ public class JSPStylingCheck extends BaseStylingCheck {
 
 		content = content.replaceAll("'<%= (\"[^.(\\[\"]+\") %>'", "$1");
 
+		content = content.replaceAll(
+			"((['\"])<%= ((?<!%>).)*?)\\\\(\".+?)\\\\(\".*?%>\\2)", "$1$4$5");
+
 		return formatStyling(content);
 	}
 

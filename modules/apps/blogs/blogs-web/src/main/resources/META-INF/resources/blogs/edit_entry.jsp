@@ -145,7 +145,7 @@ renderResponse.setTitle((entry != null) ? BlogsEntryUtil.getDisplayTitle(resourc
 
 					<div class="col-md-8 col-md-offset-2">
 						<div class="entry-title form-group">
-							<aui:input autoSize="<%= true %>" cssClass="form-control-edit form-control-edit-title form-control-unstyled" label="" name="title" onChange='<%= renderResponse.getNamespace() + "onChangeTitle(event.target.value)" %>' placeholder="<%= LanguageUtil.get(request, "title") + StringPool.BLANK + \" *\" %>" required="<%= true %>" showRequiredLabel="<%= true %>" type="textarea" value="<%= HtmlUtil.escape(title) %>" />
+							<aui:input autoSize="<%= true %>" cssClass="form-control-edit form-control-edit-title form-control-unstyled" label="" name="title" onChange='<%= renderResponse.getNamespace() + "onChangeTitle(event.target.value)" %>' placeholder='<%= LanguageUtil.get(request, "title") + StringPool.BLANK + " *" %>' required="<%= true %>" showRequiredLabel="<%= true %>" type="textarea" value="<%= HtmlUtil.escape(title) %>" />
 						</div>
 
 						<div class="entry-subtitle">

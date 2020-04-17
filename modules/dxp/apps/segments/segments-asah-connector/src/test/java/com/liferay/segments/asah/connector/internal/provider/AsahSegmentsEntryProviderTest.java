@@ -70,9 +70,9 @@ public class AsahSegmentsEntryProviderTest {
 
 		List<SegmentsEntryRel> segmentsEntryRels = new ArrayList<>();
 
-		LongStream stream = Arrays.stream(segmentsEntryRelIds);
+		LongStream longStream = Arrays.stream(segmentsEntryRelIds);
 
-		stream.forEach(
+		longStream.forEach(
 			segmentsEntryRelId -> segmentsEntryRels.add(
 				_createSegmentsEntryRel(segmentsEntryRelId)));
 

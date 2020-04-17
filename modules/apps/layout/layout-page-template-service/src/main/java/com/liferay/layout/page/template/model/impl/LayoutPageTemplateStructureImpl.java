@@ -57,9 +57,9 @@ public class LayoutPageTemplateStructureImpl
 			return segmentsExperienceIds[0];
 		}
 
-		LongStream stream = Arrays.stream(segmentsExperienceIds);
+		LongStream longStream = Arrays.stream(segmentsExperienceIds);
 
-		return stream.filter(
+		return longStream.filter(
 			segmentsExperienceId -> {
 				LayoutPageTemplateStructureRel layoutPageTemplateStructureRel =
 					LayoutPageTemplateStructureRelLocalServiceUtil.

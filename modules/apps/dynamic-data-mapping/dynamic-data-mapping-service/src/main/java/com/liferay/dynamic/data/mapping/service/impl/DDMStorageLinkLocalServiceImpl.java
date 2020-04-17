@@ -113,11 +113,11 @@ public class DDMStorageLinkLocalServiceImpl
 
 		Stream<DDMStructureVersion> stream = structureVersions.stream();
 
-		LongStream structureVersionIdStream = stream.mapToLong(
+		LongStream structureVersionIdLongStream = stream.mapToLong(
 			structureVersion -> structureVersion.getStructureVersionId());
 
 		return ddmStorageLinkPersistence.findByStructureVersionId(
-			structureVersionIdStream.toArray());
+			structureVersionIdLongStream.toArray());
 	}
 
 	@Override
@@ -127,11 +127,11 @@ public class DDMStorageLinkLocalServiceImpl
 
 		Stream<DDMStructureVersion> stream = structureVersions.stream();
 
-		LongStream structureVersionIdStream = stream.mapToLong(
+		LongStream structureVersionIdLongStream = stream.mapToLong(
 			structureVersion -> structureVersion.getStructureVersionId());
 
 		return ddmStorageLinkPersistence.countByStructureVersionId(
-			structureVersionIdStream.toArray());
+			structureVersionIdLongStream.toArray());
 	}
 
 	@Override

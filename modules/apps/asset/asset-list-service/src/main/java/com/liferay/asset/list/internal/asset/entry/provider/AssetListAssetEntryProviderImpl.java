@@ -633,9 +633,9 @@ public class AssetListAssetEntryProviderImpl
 	private long _getFirstSegmentsEntryId(
 		AssetListEntry assetListEntry, long[] segmentsEntryIds) {
 
-		LongStream stream = Arrays.stream(segmentsEntryIds);
+		LongStream longStream = Arrays.stream(segmentsEntryIds);
 
-		return stream.filter(
+		return longStream.filter(
 			segmentsEntryId -> {
 				if (segmentsEntryId == SegmentsEntryConstants.ID_DEFAULT) {
 					return false;

@@ -278,12 +278,12 @@ public class SegmentsExperimentProductNavigationControlMenuEntry
 	private long _getSegmentsExperienceId(
 		HttpServletRequest httpServletRequest) {
 
-		LongStream stream = Arrays.stream(
+		LongStream longStream = Arrays.stream(
 			GetterUtil.getLongValues(
 				httpServletRequest.getAttribute(
 					SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS)));
 
-		return stream.findFirst(
+		return longStream.findFirst(
 		).orElse(
 			SegmentsExperienceConstants.ID_DEFAULT
 		);

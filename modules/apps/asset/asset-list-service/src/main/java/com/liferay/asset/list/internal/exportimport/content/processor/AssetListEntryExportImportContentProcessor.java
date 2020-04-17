@@ -85,9 +85,9 @@ public class AssetListEntryExportImportContentProcessor
 			StringUtil.split(
 				unicodeProperties.getProperty("classNameIds", null)));
 
-		LongStream classNameIdsStream = Arrays.stream(classNameIds);
+		LongStream classNameIdsLongStream = Arrays.stream(classNameIds);
 
-		String[] classNames = classNameIdsStream.mapToObj(
+		String[] classNames = classNameIdsLongStream.mapToObj(
 			classNameId -> _portal.getClassName(classNameId)
 		).toArray(
 			String[]::new
@@ -209,9 +209,9 @@ public class AssetListEntryExportImportContentProcessor
 		long[] oldGroupIds = GetterUtil.getLongValues(
 			StringUtil.split(unicodeProperties.getProperty("groupIds", null)));
 
-		LongStream oldGroupIdsStream = Arrays.stream(oldGroupIds);
+		LongStream oldGroupIdsLongStream = Arrays.stream(oldGroupIds);
 
-		long[] newGroupIds = oldGroupIdsStream.map(
+		long[] newGroupIds = oldGroupIdsLongStream.map(
 			oldGroupId -> MapUtil.getLong(groupIds, oldGroupId, oldGroupId)
 		).filter(
 			oldGroupId -> _groupLocalService.fetchGroup(oldGroupId) != null
@@ -259,7 +259,7 @@ public class AssetListEntryExportImportContentProcessor
 				continue;
 			}
 
-			LongStream classTypeIdsStream = Arrays.stream(classTypeIds);
+			LongStream classTypeIdsLongStream = Arrays.stream(classTypeIds);
 
 			Map<Long, Long> ddmStructureIds =
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
@@ -268,7 +268,7 @@ public class AssetListEntryExportImportContentProcessor
 				(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(
 					DLFileEntryType.class);
 
-			long[] newClassTypeIds = classTypeIdsStream.map(
+			long[] newClassTypeIds = classTypeIdsLongStream.map(
 				classTypeId -> {
 					long newClassTypeId = MapUtil.getLong(
 						ddmStructureIds, classTypeId, classTypeId);

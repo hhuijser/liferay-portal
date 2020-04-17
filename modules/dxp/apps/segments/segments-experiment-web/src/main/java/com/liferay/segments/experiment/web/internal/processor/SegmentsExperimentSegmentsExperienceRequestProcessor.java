@@ -131,9 +131,9 @@ public class SegmentsExperimentSegmentsExperienceRequestProcessor
 			httpServletRequest, httpServletResponse,
 			themeDisplay.getURLCurrent());
 
-		LongStream stream = Arrays.stream(segmentsExperienceIds);
+		LongStream longStream = Arrays.stream(segmentsExperienceIds);
 
-		segmentsExperienceId = stream.findFirst(
+		segmentsExperienceId = longStream.findFirst(
 		).orElse(
 			SegmentsExperienceConstants.ID_DEFAULT
 		);

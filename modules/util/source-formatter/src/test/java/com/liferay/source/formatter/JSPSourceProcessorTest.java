@@ -37,6 +37,11 @@ public class JSPSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testFormatTagAttributes() throws Exception {
+		test("FormatTagAttributes.testjsp");
+	}
+
+	@Test
 	public void testFormatTaglibs() throws Exception {
 		test("FormatTaglibs.testjsp");
 	}

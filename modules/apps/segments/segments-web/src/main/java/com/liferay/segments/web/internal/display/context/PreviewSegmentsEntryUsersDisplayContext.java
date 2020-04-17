@@ -118,10 +118,10 @@ public class PreviewSegmentsEntryUsersDisplayContext {
 						userSearchContainer.getStart(),
 						userSearchContainer.getEnd());
 
-				LongStream segmentsEntryClassPKsStream = Arrays.stream(
+				LongStream segmentsEntryClassPKsLongStream = Arrays.stream(
 					segmentsEntryClassPKs);
 
-				users = segmentsEntryClassPKsStream.boxed(
+				users = segmentsEntryClassPKsLongStream.boxed(
 				).map(
 					userId -> _userLocalService.fetchUser(userId)
 				).collect(

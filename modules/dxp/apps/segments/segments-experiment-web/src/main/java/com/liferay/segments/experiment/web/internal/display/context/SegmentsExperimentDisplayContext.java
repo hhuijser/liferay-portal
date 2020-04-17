@@ -483,12 +483,12 @@ public class SegmentsExperimentDisplayContext {
 			return _segmentsExperienceId;
 		}
 
-		LongStream stream = Arrays.stream(
+		LongStream longStream = Arrays.stream(
 			GetterUtil.getLongValues(
 				_httpServletRequest.getAttribute(
 					SegmentsWebKeys.SEGMENTS_EXPERIENCE_IDS)));
 
-		_segmentsExperienceId = stream.findFirst(
+		_segmentsExperienceId = longStream.findFirst(
 		).orElse(
 			SegmentsExperienceConstants.ID_DEFAULT
 		);

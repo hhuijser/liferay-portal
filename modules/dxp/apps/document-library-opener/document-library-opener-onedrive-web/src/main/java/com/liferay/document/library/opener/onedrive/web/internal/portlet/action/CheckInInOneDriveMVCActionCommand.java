@@ -19,7 +19,6 @@ import com.liferay.document.library.kernel.model.DLVersionNumberIncrease;
 import com.liferay.document.library.kernel.service.DLAppService;
 import com.liferay.document.library.opener.onedrive.web.internal.oauth.OAuth2Controller;
 import com.liferay.document.library.opener.onedrive.web.internal.oauth.OAuth2ControllerFactory;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.portlet.bridges.mvc.BaseMVCActionCommand;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -61,7 +60,7 @@ public class CheckInInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private JSONObject _executeCommand(PortletRequest portletRequest)
-		throws PortalException {
+		throws Exception {
 
 		long fileEntryId = ParamUtil.getLong(portletRequest, "fileEntryId");
 

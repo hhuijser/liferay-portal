@@ -20,7 +20,6 @@ import com.liferay.portal.upgrade.v7_3_x.util.CompanyTable;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * @author Alberto Chaparro
@@ -36,7 +35,7 @@ public class UpgradeSchema extends UpgradeProcess {
 		alter(CompanyTable.class, new AlterTableDropColumn("key_"));
 	}
 
-	private void _copyCompanyKey() throws SQLException {
+	private void _copyCompanyKey() throws Exception {
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select companyId, key_ from Company");
 			ResultSet rs = ps1.executeQuery();

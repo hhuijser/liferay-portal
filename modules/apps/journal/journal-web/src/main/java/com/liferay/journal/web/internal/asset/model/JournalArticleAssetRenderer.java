@@ -645,7 +645,7 @@ public class JournalArticleAssetRenderer
 	}
 
 	private boolean _isShowDisplayPage(long groupId, JournalArticle article)
-		throws PortalException {
+		throws Exception {
 
 		AssetRendererFactory assetRendererFactory = getAssetRendererFactory();
 

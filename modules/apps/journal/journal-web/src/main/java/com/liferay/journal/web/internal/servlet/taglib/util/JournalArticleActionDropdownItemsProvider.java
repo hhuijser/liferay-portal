@@ -666,7 +666,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		};
 	}
 
-	private String _getViewContentURL() throws PortalException {
+	private String _getViewContentURL() throws Exception {
 		if (!_isShowViewContentURL()) {
 			return StringPool.BLANK;
 		}
@@ -779,7 +779,7 @@ public class JournalArticleActionDropdownItemsProvider {
 		return false;
 	}
 
-	private boolean _isShowViewContentURL() throws PortalException {
+	private boolean _isShowViewContentURL() throws Exception {
 		if (_article == null) {
 			return false;
 		}

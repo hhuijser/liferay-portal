@@ -19,7 +19,6 @@ import com.liferay.layout.content.page.editor.web.internal.workflow.WorkflowUtil
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
@@ -82,7 +81,7 @@ public class DeleteFragmentEntryLinkCommentMVCActionCommand
 		return JSONUtil.put("deletedCommentId", commentId);
 	}
 
-	private void _deleteComment(long commentId) throws PortalException {
+	private void _deleteComment(long commentId) throws Exception {
 		List<Comment> childComments = _commentManager.getChildComments(
 			commentId, WorkflowConstants.STATUS_APPROVED, QueryUtil.ALL_POS,
 			QueryUtil.ALL_POS);

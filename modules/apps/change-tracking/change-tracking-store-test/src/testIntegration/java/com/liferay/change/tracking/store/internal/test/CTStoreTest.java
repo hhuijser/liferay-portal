@@ -825,9 +825,7 @@ public class CTStoreTest {
 		return version;
 	}
 
-	private void _addCTFile(String fileName, byte[] data)
-		throws PortalException {
-
+	private void _addCTFile(String fileName, byte[] data) throws Exception {
 		_ctStore.addFile(
 			_COMPANY_ID, _REPOSITORY_ID, fileName, _VERSION_1,
 			new UnsyncByteArrayInputStream(data));
@@ -843,7 +841,7 @@ public class CTStoreTest {
 			new UnsyncByteArrayInputStream(data));
 	}
 
-	private void _addCTSContents(String... files) throws PortalException {
+	private void _addCTSContents(String... files) throws Exception {
 		for (String file : files) {
 			List<String> parts = StringUtil.split(file, CharPool.COLON);
 
@@ -859,13 +857,13 @@ public class CTStoreTest {
 		}
 	}
 
-	private void _addFile(String fileName, byte[] data) throws PortalException {
+	private void _addFile(String fileName, byte[] data) throws Exception {
 		_fileSystemStore.addFile(
 			_COMPANY_ID, _REPOSITORY_ID, fileName, _toVersion(data),
 			new UnsyncByteArrayInputStream(data));
 	}
 
-	private void _addFiles(String... files) throws PortalException {
+	private void _addFiles(String... files) throws Exception {
 		for (String file : files) {
 			List<String> parts = StringUtil.split(file, CharPool.COLON);
 
@@ -882,7 +880,7 @@ public class CTStoreTest {
 	}
 
 	private void _assertCTContentNames(String dirName, String... fileNames)
-		throws PortalException {
+		throws Exception {
 
 		Set<String> ctsContentNameSet = new HashSet<>();
 
@@ -909,7 +907,7 @@ public class CTStoreTest {
 	}
 
 	private void _assertCTFileNames(String dirName, String... fileNames)
-		throws PortalException {
+		throws Exception {
 
 		Assert.assertArrayEquals(
 			fileNames,
@@ -926,7 +924,7 @@ public class CTStoreTest {
 	}
 
 	private void _assertCTFileVersions(String fileName, String... versions)
-		throws PortalException {
+		throws Exception {
 
 		Assert.assertArrayEquals(
 			versions,
@@ -957,7 +955,7 @@ public class CTStoreTest {
 	}
 
 	private void _assertFileNames(String dirName, String... fileNames)
-		throws PortalException {
+		throws Exception {
 
 		Assert.assertArrayEquals(
 			fileNames,
@@ -1068,7 +1066,7 @@ public class CTStoreTest {
 			_COMPANY_ID, _REPOSITORY_ID, fileName, version);
 	}
 
-	private void _publish(CTCollection ctCollection) throws PortalException {
+	private void _publish(CTCollection ctCollection) throws Exception {
 		_ctProcessLocalService.addCTProcess(
 			ctCollection.getUserId(), ctCollection.getCtCollectionId());
 	}

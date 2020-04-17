@@ -32,8 +32,6 @@ import com.liferay.portal.security.auth.AuthVerifierPipeline;
 import com.liferay.portal.servlet.filters.BasePortalFilter;
 import com.liferay.portal.util.PropsUtil;
 
-import java.io.IOException;
-
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -207,7 +205,7 @@ public class AuthVerifierFilter extends BasePortalFilter {
 	private boolean _isAccessAllowed(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
-		throws IOException {
+		throws Exception {
 
 		String remoteAddr = httpServletRequest.getRemoteAddr();
 
@@ -235,7 +233,7 @@ public class AuthVerifierFilter extends BasePortalFilter {
 	private boolean _isApplySSL(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
-		throws IOException {
+		throws Exception {
 
 		if (!_httpsRequired || PortalUtil.isSecure(httpServletRequest)) {
 			return false;

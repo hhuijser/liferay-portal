@@ -180,7 +180,7 @@ public class ActionUtil {
 	}
 
 	private static String _getHttpMethodName(Class clazz, String methodName)
-		throws NoSuchMethodException {
+		throws Exception {
 
 		for (Method method : clazz.getMethods()) {
 			if (!methodName.equals(method.getName())) {

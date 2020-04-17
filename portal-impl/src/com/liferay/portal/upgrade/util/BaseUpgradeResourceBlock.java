@@ -78,7 +78,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 		ps.addBatch();
 	}
 
-	private void _removeResourceBlocks(String className) throws SQLException {
+	private void _removeResourceBlocks(String className) throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"delete from ResourceTypePermission where name = ?")) {
 
@@ -121,7 +121,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	}
 
 	private void _upgradeCompanyScopePermissions(String className)
-		throws SQLException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(8);
 
@@ -161,7 +161,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	}
 
 	private void _upgradeGroupScopePermissions(String className)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement selectPS = connection.prepareStatement(
 				SQLTransformer.transform(
@@ -194,7 +194,7 @@ public abstract class BaseUpgradeResourceBlock extends UpgradeProcess {
 	}
 
 	private void _upgradeGroupTemplateScopePermissions(String className)
-		throws SQLException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(8);
 

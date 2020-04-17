@@ -180,7 +180,7 @@ public class FileServerTest {
 		}
 	}
 
-	private void _connectClient() throws InterruptedException {
+	private void _connectClient() throws Exception {
 		Bootstrap bootstrap = new Bootstrap();
 
 		bootstrap.group(_nioEventLoopGroup);
@@ -210,7 +210,7 @@ public class FileServerTest {
 		_clientChannel = channelFuture.channel();
 	}
 
-	private void _disconnectClient() throws InterruptedException {
+	private void _disconnectClient() throws Exception {
 		ChannelFuture channelFuture = _clientChannel.close();
 
 		channelFuture.sync();
@@ -268,7 +268,7 @@ public class FileServerTest {
 		throw new IllegalStateException("Unable to start server");
 	}
 
-	private void _stopServer() throws InterruptedException {
+	private void _stopServer() throws Exception {
 		try {
 			ChannelFuture channelFuture = _serverChannel.close();
 

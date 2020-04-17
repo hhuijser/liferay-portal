@@ -2184,7 +2184,7 @@ public class LayoutStagedModelDataHandler
 	private void _exportDraftLayout(
 			PortletDataContext portletDataContext, Layout layout,
 			Element layoutElement)
-		throws PortletDataException {
+		throws Exception {
 
 		Layout draftLayout = _layoutLocalService.fetchLayout(
 			_portal.getClassNameId(Layout.class), layout.getPlid());
@@ -2203,7 +2203,7 @@ public class LayoutStagedModelDataHandler
 
 	private void _exportLayoutPageTemplateStructure(
 			PortletDataContext portletDataContext, Layout layout)
-		throws PortletDataException {
+		throws Exception {
 
 		if (!layout.isTypeAssetDisplay() && !layout.isTypeContent()) {
 			return;
@@ -2237,7 +2237,7 @@ public class LayoutStagedModelDataHandler
 	private void _exportMasterLayout(
 			PortletDataContext portletDataContext, Layout layout,
 			Element layoutElement)
-		throws PortletDataException {
+		throws Exception {
 
 		if (layout.getMasterLayoutPlid() <= 0) {
 			return;
@@ -2290,7 +2290,7 @@ public class LayoutStagedModelDataHandler
 
 	private FragmentEntryLink _getOldFragmentEntryLink(
 			PortletDataContext portletDataContext, long newFragmentEntryLinkId)
-		throws PortalException {
+		throws Exception {
 
 		Map<Long, Long> fragmentEntryLinkIds =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(

@@ -236,7 +236,7 @@ public class LiferayVersioningCapabilityTest {
 	}
 
 	private FileEntry _addRandomFileEntry(ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		String content = StringUtil.randomString();
 

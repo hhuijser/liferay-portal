@@ -19,7 +19,6 @@ import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeCon
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -202,7 +201,7 @@ public class CopyLayoutPageTemplateEntryMVCActionCommandTest {
 		Assert.assertNotNull(secondTargetLayoutPageTemplateEntry);
 	}
 
-	private MockActionRequest _getMockActionRequest() throws PortalException {
+	private MockActionRequest _getMockActionRequest() throws Exception {
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		MockActionRequest mockActionRequest = new MockActionRequest(
@@ -238,7 +237,7 @@ public class CopyLayoutPageTemplateEntryMVCActionCommandTest {
 		return serviceContext;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

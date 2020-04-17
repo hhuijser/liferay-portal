@@ -21,7 +21,6 @@ import com.liferay.project.templates.util.FileTestUtil;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.IOException;
 
 import java.net.URI;
 
@@ -223,7 +222,7 @@ public class ProjectTemplatesServiceTest
 		return buildTemplateWithGradle(temporaryFolder, template, name, args);
 	}
 
-	private void _writeServiceClass(File projectDir) throws IOException {
+	private void _writeServiceClass(File projectDir) throws Exception {
 		String importLine =
 			"import com.liferay.portal.kernel.events.LifecycleAction;";
 		String classLine =

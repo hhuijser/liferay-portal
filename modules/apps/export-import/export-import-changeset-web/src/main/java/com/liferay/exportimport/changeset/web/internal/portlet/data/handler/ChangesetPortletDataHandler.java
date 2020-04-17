@@ -38,7 +38,6 @@ import com.liferay.exportimport.staged.model.repository.StagedModelRepositoryReg
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.ClassName;
@@ -238,7 +237,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	private void _exportAssetLinks(PortletDataContext portletDataContext)
-		throws PortletDataException {
+		throws Exception {
 
 		for (Long linkId : portletDataContext.getAssetLinkIds()) {
 			AssetLink assetLink = _assetLinkLocalService.fetchAssetLink(linkId);
@@ -258,7 +257,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	private void _exportChangesetCollection(
 			PortletDataContext portletDataContext,
 			ChangesetCollection changesetCollection)
-		throws PortalException {
+		throws Exception {
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			_changesetEntryLocalService.getActionableDynamicQuery();
@@ -280,7 +279,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	private boolean _exportStagedModel(
 			PortletDataContext portletDataContext,
 			ChangesetEntry changesetEntry)
-		throws PortalException {
+		throws Exception {
 
 		ClassName className = _classNameLocalService.getClassName(
 			changesetEntry.getClassNameId());

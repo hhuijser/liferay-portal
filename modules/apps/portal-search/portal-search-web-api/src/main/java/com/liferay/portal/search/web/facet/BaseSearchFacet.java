@@ -15,7 +15,6 @@
 package com.liferay.portal.search.web.facet;
 
 import com.liferay.portal.kernel.json.JSONArray;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.search.SearchContext;
@@ -123,7 +122,7 @@ public abstract class BaseSearchFacet implements SearchFacet {
 	protected abstract FacetFactory getFacetFactory();
 
 	private FacetConfiguration _getFacetConfiguration(String configuration)
-		throws JSONException {
+		throws Exception {
 
 		if (Validator.isNull(configuration)) {
 			return null;

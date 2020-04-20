@@ -28,6 +28,7 @@ import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.CompanyLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.servlet.HttpHeaders;
+import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.Http;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.StringBundler;
@@ -36,7 +37,6 @@ import com.liferay.portal.kernel.util.Validator;
 
 import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.osgi.service.component.annotations.Component;
@@ -215,10 +215,11 @@ public class AkismetClient {
 			Http.HTTP_WITH_SLASH + AkismetConstants.URL_REST +
 				AkismetConstants.PATH_VERIFY;
 
-		Map<String, String> parts = new HashMap<>();
-
-		parts.put("blog", _getPortalURL(companyId));
-		parts.put("key", apiKey);
+		Map<String, String> parts = HashMapBuilder.put(
+			"blog", _getPortalURL(companyId)
+		).put(
+			"key", apiKey
+		).build();
 
 		String response = _sendRequest(location, parts);
 
@@ -243,17 +244,25 @@ public class AkismetClient {
 			String userName, String emailAddress, String content)
 		throws PortalException {
 
-		Map<String, String> parts = new HashMap<>();
-
-		parts.put("blog", _getPortalURL(companyId));
-		parts.put("comment_author", userName);
-		parts.put("comment_author_email", emailAddress);
-		parts.put("comment_content", content);
-		parts.put("comment_type", commentType);
-		parts.put("permalink", permalink);
-		parts.put("referrer", referrer);
-		parts.put("user_agent", userAgent);
-		parts.put("user_ip", ipAddress);
+		Map<String, String> parts = HashMapBuilder.put(
+			"blog", _getPortalURL(companyId)
+		).put(
+			"comment_author", userName
+		).put(
+			"comment_author_email", emailAddress
+		).put(
+			"comment_content", content
+		).put(
+			"comment_type", commentType
+		).put(
+			"permalink", permalink
+		).put(
+			"referrer", referrer
+		).put(
+			"user_agent", userAgent
+		).put(
+			"user_ip", ipAddress
+		).build();
 
 		return _sendRequest(location, parts);
 	}

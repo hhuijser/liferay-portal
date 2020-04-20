@@ -1,15 +1,6 @@
-/**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
- *
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the Free
- * Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- *
- * This library is distributed in the hope that it will be useful, but WITHOUT
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
- * FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
- * details.
+/*
+ * SPDX-FileCopyrightText: © 2020 Liferay, Inc. <https://liferay.com>
+ * SPDX-License-Identifier: LGPL-2.1-or-later
  */
 
 package com.liferay.source.formatter.checks;
@@ -23,6 +14,9 @@ import com.liferay.source.formatter.util.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -67,6 +61,17 @@ public class CopyrightCheck extends BaseFileCheck {
 
 		String customCopyright = _getCustomCopyright(absolutePath);
 
+		StringBuffer stringBuffer = new StringBuffer();
+		Matcher matcher = _yearPattern.matcher(content);
+		String year = null;
+
+		if (matcher.find()) {
+			year = matcher.group();
+			matcher.appendReplacement(stringBuffer, _YEAR_VARIABLE);
+			matcher.appendTail(stringBuffer);
+			content = stringBuffer.toString();
+		}
+
 		if (!content.contains(copyright) &&
 			((customCopyright == null) || !content.contains(customCopyright))) {
 
@@ -91,6 +96,10 @@ public class CopyrightCheck extends BaseFileCheck {
 			content = StringUtil.replace(
 				content, "<%\n" + customCopyright + "\n%>",
 				"<%--\n" + customCopyright + "\n--%>");
+		}
+
+		if (year != null) {
+			content = StringUtil.replaceFirst(content, _YEAR_VARIABLE, year);
 		}
 
 		return content;
@@ -171,6 +180,10 @@ public class CopyrightCheck extends BaseFileCheck {
 	}
 
 	private static final String _COPYRIGHT_FILE_NAME_KEY = "copyrightFileName";
+
+	private static final String _YEAR_VARIABLE = "<%= YEAR %>";
+
+	private static final Pattern _yearPattern = Pattern.compile("\\d{4}");
 
 	private String _commercialCopyright;
 	private String _copyright;

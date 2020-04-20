@@ -7,7 +7,7 @@
 					"name": "buttonType",
 					"type": "select",
 					"typeOptions": {
-						"extra" : "value",
+						"extra": "value",
 						"validValues": [
 							{
 								"value": "primary"

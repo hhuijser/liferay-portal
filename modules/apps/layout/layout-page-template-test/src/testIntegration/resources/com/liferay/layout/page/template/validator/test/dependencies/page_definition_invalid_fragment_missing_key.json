@@ -1,15 +1,16 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"definition" : {
-					"fragment" : {
+				"definition": {
+					"fragment": {
 					}
 				},
-				"pageElements" : [],
-				"type" : "Fragment"
+				"pageElements": [
+				],
+				"type": "Fragment"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	}
 }

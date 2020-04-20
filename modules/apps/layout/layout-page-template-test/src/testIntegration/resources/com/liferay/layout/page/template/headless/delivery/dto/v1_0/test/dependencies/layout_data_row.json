@@ -4,7 +4,8 @@
 			"children": [
 				"896232e5-04a2-4bd1-a687-f1e0983f16bb"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "7b620b26-53f8-4fd2-a459-2c5aa85b90c1",
 			"parentId": "",
 			"type": "root"
@@ -23,7 +24,8 @@
 			"type": "row"
 		},
 		"955c2cf9-5506-4786-af78-ed0892c49b90": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 5
 			},
@@ -32,7 +34,8 @@
 			"type": "column"
 		},
 		"d5b689ac-fcdd-44ba-aed6-cf1f7dc2e933": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 7
 			},

@@ -1,23 +1,23 @@
 {
 	"com.liferay.fragment.entry.processor.freemarker.FreeMarkerFragmentEntryProcessor": {
-		"segments-experience-id-0" : {
-			"bodyAppliedStyle" : "dark",
-			"headingAppliedStyle" : "dark"
+		"segments-experience-id-0": {
+			"bodyAppliedStyle": "dark",
+			"headingAppliedStyle": "dark"
 		},
-		"segments-experience-id-1" : {
+		"segments-experience-id-1": {
 			"backgroundColor": {
 				"cssClass": "light",
 				"rgbValue": "rgb(0, 0, 0)"
 			},
-			"bodyAppliedStyle" : "dark",
+			"bodyAppliedStyle": "dark",
 			"bodyHideBody": true,
 			"bodyHideSubtitle": "false",
 			"bodyHideTitle": false,
-			"bodyNumberOfColumns" : 5,
-			"buttonTextDefault" : "Non default",
-			"buttonTextDouble" : 2.2,
-			"buttonTextInt" : 2,
-			"buttonTextString" : "Non Default Text String"
+			"bodyNumberOfColumns": 5,
+			"buttonTextDefault": "Non default",
+			"buttonTextDouble": 2.2,
+			"buttonTextInt": 2,
+			"buttonTextString": "Non Default Text String"
 		}
 	}
 }

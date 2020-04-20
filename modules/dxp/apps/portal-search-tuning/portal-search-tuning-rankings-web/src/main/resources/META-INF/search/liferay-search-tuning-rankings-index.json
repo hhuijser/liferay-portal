@@ -19,40 +19,40 @@
 					"type": "keyword"
 				},
 				"name": {
-					"fields" : {
-						"keyword" : {
-							"type" : "keyword"
+					"fields": {
+						"keyword": {
+							"type": "keyword"
 						}
 					},
 					"store": true,
 					"type": "text"
 				},
-				"pins" : {
-					"properties" : {
-						"position" : {
+				"pins": {
+					"properties": {
+						"position": {
 							"store": true,
-							"type" : "integer"
+							"type": "integer"
 						},
-						"uid" : {
+						"uid": {
 							"store": true,
-							"type" : "keyword"
+							"type": "keyword"
 						}
 					},
-					"type" : "nested"
+					"type": "nested"
 				},
 				"queryString": {
-					"fields" : {
-						"keyword" : {
-							"type" : "keyword"
+					"fields": {
+						"keyword": {
+							"type": "keyword"
 						}
 					},
 					"store": true,
 					"type": "text"
 				},
 				"queryStrings": {
-					"fields" : {
-						"keyword" : {
-							"type" : "keyword"
+					"fields": {
+						"keyword": {
+							"type": "keyword"
 						}
 					},
 					"store": true,

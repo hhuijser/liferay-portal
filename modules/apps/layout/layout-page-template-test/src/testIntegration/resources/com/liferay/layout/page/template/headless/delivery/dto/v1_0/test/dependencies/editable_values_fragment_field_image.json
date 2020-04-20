@@ -1,5 +1,6 @@
 {
-	"com.liferay.fragment.entry.processor.background.image.BackgroundImageFragmentEntryProcessor": {},
+	"com.liferay.fragment.entry.processor.background.image.BackgroundImageFragmentEntryProcessor": {
+	},
 	"com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor": {
 		"my-image": {
 			"config": {
@@ -11,5 +12,6 @@
 			"es_ES": "http://miejemplo.es/miejemplo.png"
 		}
 	},
-	"com.liferay.fragment.entry.processor.freemarker.FreeMarkerFragmentEntryProcessor": {}
+	"com.liferay.fragment.entry.processor.freemarker.FreeMarkerFragmentEntryProcessor": {
+	}
 }

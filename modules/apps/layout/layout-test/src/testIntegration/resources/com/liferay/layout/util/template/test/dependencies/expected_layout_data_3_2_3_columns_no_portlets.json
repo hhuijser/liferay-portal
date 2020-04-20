@@ -6,7 +6,8 @@
 				"ROOT-CONTAINER1",
 				"ROOT-CONTAINER2"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "ROOT",
 			"parentId": "",
 			"type": "root"
@@ -16,7 +17,8 @@
 				"ROOT-CONTAINER0-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -41,7 +43,8 @@
 			"type": "row"
 		},
 		"ROOT-CONTAINER0-ROW0-COLUMN0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},
@@ -50,7 +53,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER0-ROW0-COLUMN1": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},
@@ -59,7 +63,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER0-ROW0-COLUMN2": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},
@@ -72,7 +77,8 @@
 				"ROOT-CONTAINER1-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -96,7 +102,8 @@
 			"type": "row"
 		},
 		"ROOT-CONTAINER1-ROW0-COLUMN0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},
@@ -105,7 +112,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER1-ROW0-COLUMN1": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 8
 			},
@@ -118,7 +126,8 @@
 				"ROOT-CONTAINER2-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -143,7 +152,8 @@
 			"type": "row"
 		},
 		"ROOT-CONTAINER2-ROW0-COLUMN0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},
@@ -152,7 +162,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER2-ROW0-COLUMN1": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},
@@ -161,7 +172,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER2-ROW0-COLUMN2": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 4
 			},

@@ -1,7 +1,9 @@
 {
-	"pageElement" : {
-		"definition" : {},
-		"pageElements" : [],
-		"type" : "Root"
+	"pageElement": {
+		"definition": {
+		},
+		"pageElements": [
+		],
+		"type": "Root"
 	}
 }

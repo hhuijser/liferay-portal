@@ -1,32 +1,32 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"definition" : {
-					"fragment" : {
-						"key" : "my-key"
+				"definition": {
+					"fragment": {
+						"key": "my-key"
 					},
-					"fragmentFields" : [
+					"fragmentFields": [
 						{
-							"id" : "image-square",
+							"id": "image-square",
 							"value": {
 								"fragmentImage": {
-									"description" : {
+									"description": {
 										"value_i18n": {
-											"en_US" : "A greeting to Liferay",
-											"es_ES" : "Un saludo para Liferay España"
+											"en_US": "A greeting to Liferay",
+											"es_ES": "Un saludo para Liferay España"
 										}
 									},
-									"title" : {
+									"title": {
 										"value_i18n": {
-											"en_US" : "Hello Liferay!",
-											"es_ES" : "Hola Liferay!"
+											"en_US": "Hello Liferay!",
+											"es_ES": "Hola Liferay!"
 										}
 									},
-									"url" : {
+									"url": {
 										"value_i18n": {
-											"en_US" : "http://www.liferay.com/logo_en.png",
-											"es_ES" : "http://www.liferay.com/logo_es.png"
+											"en_US": "http://www.liferay.com/logo_en.png",
+											"es_ES": "http://www.liferay.com/logo_es.png"
 										}
 									}
 								},
@@ -40,10 +40,11 @@
 						}
 					]
 				},
-				"pageElements" : [],
-				"type" : "Fragment"
+				"pageElements": [
+				],
+				"type": "Fragment"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	}
 }

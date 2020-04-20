@@ -9,7 +9,7 @@
 					"typeOptions": {
 						"validValues": [
 							{
-								"extra" : "value",
+								"extra": "value",
 								"value": "primary"
 							}
 						]

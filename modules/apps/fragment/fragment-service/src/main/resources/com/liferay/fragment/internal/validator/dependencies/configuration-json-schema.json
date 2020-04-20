@@ -3,7 +3,7 @@
 	"$schema": "http://json-schema.org/draft-07/schema#",
 	"additionalProperties": false,
 	"definitions": {
-		"field" : {
+		"field": {
 			"additionalProperties": false,
 			"allOf": [
 				{
@@ -140,7 +140,7 @@
 		},
 		"fieldCheckbox": {
 			"properties": {
-				"defaultValue" : {
+				"defaultValue": {
 					"enum": [
 						"false",
 						"true",

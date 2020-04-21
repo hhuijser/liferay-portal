@@ -63,29 +63,46 @@ public class ProjectTemplatesFragmentTest
 
 	@Test
 	public void testBuildTemplateFragment() throws Exception {
-		File gradleProjectDir = _buildTemplateWithGradle(
-			"fragment", "loginhook", "--host-bundle-symbolic-name",
-			"com.liferay.login.web", "--host-bundle-version", "1.0.0");
+		String liferayVersion = getDefaultLiferayVersion();
+		String name = "loginhook";
+		String template = "fragment";
+
+		File gradleWorkspaceDir = buildWorkspace(
+			temporaryFolder, "gradle", "gradleWS", liferayVersion,
+			mavenExecutor);
+
+		File gradleWorkspaceModulesDir = new File(
+			gradleWorkspaceDir, "modules");
+
+		File gradleProjectDir = buildTemplateWithGradle(
+			gradleWorkspaceModulesDir, template, name,
+			"--host-bundle-symbolic-name", "com.liferay.login.web",
+			"--host-bundle-version", "1.0.0");
 
 		testContains(
 			gradleProjectDir, "bnd.bnd", "Bundle-SymbolicName: loginhook",
 			"Fragment-Host: com.liferay.login.web;bundle-version=\"1.0.0\"");
-		testContains(
-			gradleProjectDir, "build.gradle",
-			"apply plugin: \"com.liferay.plugin\"");
+
+		File mavenWorkspaceDir = buildWorkspace(
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
+
+		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
 		File mavenProjectDir = buildTemplateWithMaven(
-			temporaryFolder, "fragment", "loginhook", "com.test", mavenExecutor,
-			"-DhostBundleSymbolicName=com.liferay.login.web",
+			mavenModulesDir, mavenModulesDir, template, name, "com.test",
+			mavenExecutor, "-DhostBundleSymbolicName=com.liferay.login.web",
 			"-DhostBundleVersion=1.0.0", "-Dpackage=loginhook");
 
-		buildProjects(
-			_gradleDistribution, mavenExecutor, gradleProjectDir,
-			mavenProjectDir);
-
 		if (isBuildProjects()) {
-			File jarFile = testExists(
-				gradleProjectDir, "build/libs/loginhook-1.0.0.jar");
+			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
+			File mavenOutputDir = new File(mavenProjectDir, "target");
+
+			buildProjects(
+				_gradleDistribution, mavenExecutor, gradleWorkspaceDir,
+				mavenProjectDir, gradleOutputDir, mavenOutputDir,
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
+
+			File jarFile = testExists(gradleOutputDir, "loginhook-1.0.0.jar");
 
 			Domain domain = Domain.domain(jarFile);
 
@@ -101,13 +118,6 @@ public class ProjectTemplatesFragmentTest
 
 	@Rule
 	public TemporaryFolder temporaryFolder = new TemporaryFolder();
-
-	private File _buildTemplateWithGradle(
-			String template, String name, String... args)
-		throws Exception {
-
-		return buildTemplateWithGradle(temporaryFolder, template, name, args);
-	}
 
 	private static URI _gradleDistribution;
 

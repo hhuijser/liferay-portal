@@ -49,19 +49,19 @@ String referringPortletResource = ParamUtil.getString(request, "referringPortlet
 			<c:when test="<%= curArticle != null %>">
 
 				<%
-				Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
-					"actions", journalDisplayContext.getAvailableActions(curArticle)
-				).put(
-					"draggable", !BrowserSnifferUtil.isMobile(request) && (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE))
-				).build();
-
 				String title = curArticle.getTitle(locale);
 
 				if (Validator.isNull(title)) {
 					title = curArticle.getTitle(LocaleUtil.fromLanguageId(curArticle.getDefaultLanguageId()));
 				}
 
-				rowData.put("title", HtmlUtil.escape(title));
+				Map<String, Object> rowData = HashMapBuilder.<String, Object>put(
+					"actions", journalDisplayContext.getAvailableActions(curArticle)
+				).put(
+					"draggable", !BrowserSnifferUtil.isMobile(request) && (JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.DELETE) || JournalArticlePermission.contains(permissionChecker, curArticle, ActionKeys.UPDATE))
+				).put(
+					"title", HtmlUtil.escape(title)
+				).build();
 
 				row.setData(rowData);
 

@@ -30,5 +30,7 @@
 		<requiredProperty key="contributorType">
 			<defaultValue>${artifactId}</defaultValue>
 		</requiredProperty>
+		<requiredProperty key="liferayVersion">
+		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

@@ -31,5 +31,7 @@
 		</requiredProperty>
 		<requiredProperty key="className">
 		</requiredProperty>
+		<requiredProperty key="liferayVersion">
+		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

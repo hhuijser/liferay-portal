@@ -31,6 +31,8 @@
 		</requiredProperty>
 		<requiredProperty key="className">
 		</requiredProperty>
+		<requiredProperty key="liferayVersion">
+		</requiredProperty>
 		<requiredProperty key="serviceWrapperClass">
 		</requiredProperty>
 	</requiredProperties>

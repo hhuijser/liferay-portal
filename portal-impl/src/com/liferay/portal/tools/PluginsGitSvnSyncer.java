@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.FileImpl;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -94,7 +93,7 @@ public class PluginsGitSvnSyncer {
 		return _getExecOutput(process.getInputStream());
 	}
 
-	private String[] _getExecOutput(InputStream is) throws IOException {
+	private String[] _getExecOutput(InputStream is) throws Exception {
 		List<String> list = new ArrayList<>();
 
 		UnsyncBufferedReader unsyncBufferedReader = null;

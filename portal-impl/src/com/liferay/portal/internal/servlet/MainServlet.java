@@ -121,7 +121,6 @@ import java.util.TimeZone;
 
 import javax.portlet.PortletConfig;
 import javax.portlet.PortletContext;
-import javax.portlet.PortletException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -916,7 +915,7 @@ public class MainServlet extends HttpServlet {
 	}
 
 	private void _initPortletApp(Portlet portlet, ServletContext servletContext)
-		throws PortletException {
+		throws Exception {
 
 		PortletApp portletApp = portlet.getPortletApp();
 

@@ -361,7 +361,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 	}
 
 	private Path _getDeploymentDirPath(BundleContext bundleContext)
-		throws IOException {
+		throws Exception {
 
 		File deploymentDir = new File(
 			GetterUtil.getString(
@@ -495,7 +495,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 	}
 
 	private Properties _loadOverrideWarsProperties(BundleContext bundleContext)
-		throws IOException {
+		throws Exception {
 
 		Bundle bundle = bundleContext.getBundle(0);
 
@@ -548,7 +548,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 
 	private void _saveOverrideWarsProperties(
 			BundleContext bundleContext, Properties properties)
-		throws IOException {
+		throws Exception {
 
 		Bundle bundle = bundleContext.getBundle(0);
 
@@ -625,7 +625,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 
 	private Set<Bundle> _uninstallOrphanOverridingJars(
 			BundleContext bundleContext, List<File> jarFiles)
-		throws BundleException {
+		throws Exception {
 
 		Set<Bundle> removedBundles = new HashSet<>();
 
@@ -658,7 +658,7 @@ public class DefaultLPKGDeployer implements LPKGDeployer {
 
 	private void _uninstallOrphanOverridingWars(
 			BundleContext bundleContext, List<File> warFiles)
-		throws IOException {
+		throws Exception {
 
 		Properties properties = _loadOverrideWarsProperties(bundleContext);
 

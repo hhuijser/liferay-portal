@@ -188,7 +188,7 @@ public class VirtualHostAbsoluteRedirectsFilterTest {
 	}
 
 	private void _setupRequest(String hostname, String languageId)
-		throws AvailableLocaleException {
+		throws Exception {
 
 		_mockHttpServletRequest = new MockHttpServletRequest();
 

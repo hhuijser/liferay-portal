@@ -25,7 +25,6 @@ import com.liferay.fragment.service.FragmentEntryLinkLocalService;
 import com.liferay.fragment.service.FragmentEntryLocalService;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -175,7 +174,7 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 			new Class<?>[] {ActionRequest.class}, actionRequest);
 	}
 
-	private FragmentEntry _getFragmentEntry() throws PortalException {
+	private FragmentEntry _getFragmentEntry() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext();
 
@@ -194,7 +193,7 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 			serviceContext);
 	}
 
-	private MockActionRequest _getMockActionRequest() throws PortalException {
+	private MockActionRequest _getMockActionRequest() throws Exception {
 		MockActionRequest mockActionRequest = new MockActionRequest();
 
 		mockActionRequest.setAttribute(
@@ -206,7 +205,7 @@ public class AddFragmentEntryLinkMVCActionCommandTest {
 		return mockActionRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

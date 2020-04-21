@@ -303,7 +303,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private Map<String, String[]> _getParameterMap(ActionRequest actionRequest)
-		throws PortalException {
+		throws Exception {
 
 		Map<String, String[]> parameterMap = new HashMap<>(
 			actionRequest.getParameterMap());
@@ -418,7 +418,7 @@ public class EditEntryMVCActionCommand extends BaseMVCActionCommand {
 
 	private String _updateContent(
 			BlogsEntry entry, String content, ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		return _attachmentContentUpdater.updateContent(
 			content, ContentTypes.TEXT_HTML,

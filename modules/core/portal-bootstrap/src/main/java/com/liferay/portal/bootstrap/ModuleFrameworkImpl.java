@@ -59,9 +59,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -598,7 +596,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 	}
 
-	private static URL[] _getClassPathURLs() throws IOException {
+	private static URL[] _getClassPathURLs() throws Exception {
 		File coreDir = new File(PropsValues.MODULE_FRAMEWORK_BASE_DIR, "core");
 
 		File[] files = coreDir.listFiles();
@@ -684,7 +682,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 	}
 
 	private Map<String, String> _buildFrameworkProperties(Class<?> clazz)
-		throws URISyntaxException {
+		throws Exception {
 
 		if (_log.isDebugEnabled()) {
 			_log.debug("Building OSGi framework properties");
@@ -848,7 +846,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 	}
 
-	private void _cleanOSGiStateFolder() throws IOException {
+	private void _cleanOSGiStateFolder() throws Exception {
 		Files.walkFileTree(
 			Paths.get(PropsValues.MODULE_FRAMEWORK_STATE_DIR),
 			new SimpleFileVisitor<Path>() {
@@ -924,7 +922,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 
 	private Set<Bundle> _deployStaticBundlesFromFile(
 			File file, Set<String> overrideStaticFileNames)
-		throws IOException {
+		throws Exception {
 
 		Set<Bundle> bundles = new HashSet<>();
 
@@ -1182,7 +1180,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 	private void _installBundlesFromDir(
 			String dirPath, Map<String, Long> checksums,
 			Set<String> fragmentHosts)
-		throws IOException {
+		throws Exception {
 
 		BundleContext bundleContext = _framework.getBundleContext();
 
@@ -1285,7 +1283,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 		}
 	}
 
-	private Map<String, Long> _installDynamicBundles() throws IOException {
+	private Map<String, Long> _installDynamicBundles() throws Exception {
 		Map<String, Long> checksums = new HashMap<>();
 
 		Set<String> fragmentHosts = new HashSet<>();
@@ -1848,7 +1846,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 	}
 
 	private void _startConfigurationBundles(Collection<Bundle> bundles)
-		throws BundleException {
+		throws Exception {
 
 		Iterator<Bundle> iterator = bundles.iterator();
 
@@ -1983,9 +1981,7 @@ public class ModuleFrameworkImpl implements ModuleFramework {
 	}
 
 	@SuppressWarnings("deprecation")
-	private void _validateModuleFrameworkBaseDirForEquinox()
-		throws MalformedURLException {
-
+	private void _validateModuleFrameworkBaseDirForEquinox() throws Exception {
 		File baseDir = new File(PropsValues.MODULE_FRAMEWORK_BASE_DIR);
 
 		baseDir = baseDir.getAbsoluteFile();

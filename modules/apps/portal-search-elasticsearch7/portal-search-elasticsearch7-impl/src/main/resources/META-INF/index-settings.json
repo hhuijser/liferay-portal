@@ -40,12 +40,14 @@
 			},
 			"liferay_filter_synonym_en": {
 				"lenient": true,
-				"synonyms": [],
+				"synonyms": [
+				],
 				"type": "synonym_graph"
 			},
 			"liferay_filter_synonym_es": {
 				"lenient": true,
-				"synonyms": [],
+				"synonyms": [
+				],
 				"type": "synonym_graph"
 			},
 			"spanish_stemmer": {

@@ -1,8 +1,8 @@
 {
-	"pageElement" : {
-		"definition" : {
-			"extra" : "value"
+	"pageElement": {
+		"definition": {
+			"extra": "value"
 		},
-		"type" : "Root"
+		"type": "Root"
 	}
 }

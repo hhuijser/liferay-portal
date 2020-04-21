@@ -1,8 +1,10 @@
 {
 	"items": {
 		"newItemId": {
-			"children": [],
-			"config": {},
+			"children": [
+			],
+			"config": {
+			},
 			"itemId": "newItemId",
 			"parentId": "root",
 			"type": "fragment"
@@ -11,7 +13,8 @@
 			"children": [
 				"newItemId"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "root",
 			"parentId": null,
 			"type": "fragment"

@@ -1,7 +1,8 @@
 {
 	"items": {
 		"75d9f756-a7fb-4b9a-b949-601d5d4461e9": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "${FRAGMENT_ENTRY_LINK_ID}"
 			},
@@ -13,7 +14,8 @@
 			"children": [
 				"75d9f756-a7fb-4b9a-b949-601d5d4461e9"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "9ae245cb-f716-494b-b51c-b23836cff3fe",
 			"parentId": "",
 			"type": "root"

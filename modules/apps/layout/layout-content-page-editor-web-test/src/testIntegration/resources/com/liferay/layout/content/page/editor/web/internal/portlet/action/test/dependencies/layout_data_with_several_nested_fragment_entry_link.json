@@ -1,7 +1,8 @@
 {
 	"items": {
 		"nestedItemId1": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "[$FRAGMENT_ENTRY_LINK_ID_1$]"
 			},
@@ -10,7 +11,8 @@
 			"type": "fragment"
 		},
 		"nestedItemId2": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "[$FRAGMENT_ENTRY_LINK_ID_2$]"
 			},
@@ -23,7 +25,8 @@
 				"nestedItemId1",
 				"nestedItemId2"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "newItemId",
 			"parentId": "root",
 			"type": "fragment"
@@ -32,7 +35,8 @@
 			"children": [
 				"newItemId"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "root",
 			"parentId": null,
 			"type": "fragment"

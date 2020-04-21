@@ -3,7 +3,8 @@
 		"editable_text": {
 			"defaultValue": "test",
 			"mappedField": "ddmTemplate_TEMPLATE_KEY",
-			"segments-experience-id-0" : {}
+			"segments-experience-id-0": {
+			}
 		}
 	}
 }

@@ -4,7 +4,7 @@
 			"fields": [
 				{
 					"defaultValue": "primary",
-					"extra" : "value",
+					"extra": "value",
 					"name": "buttonType",
 					"type": "select",
 					"typeOptions": {

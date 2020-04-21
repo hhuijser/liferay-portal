@@ -93,8 +93,10 @@
 				"responses": {
 					"default": {
 						"content": {
-							"application/json": {},
-							"application/xml": {}
+							"application/json": {
+							},
+							"application/xml": {
+							}
 						},
 						"description": "default response"
 					}
@@ -165,8 +167,10 @@
 				"responses": {
 					"default": {
 						"content": {
-							"application/json": {},
-							"application/xml": {}
+							"application/json": {
+							},
+							"application/xml": {
+							}
 						},
 						"description": "default response"
 					}

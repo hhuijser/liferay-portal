@@ -4,13 +4,15 @@
 			"children": [
 				"ce501498-f2c9-4bc8-a684-bd82f4f29cd8"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "6124d33a-71fe-4601-8c0a-6c27c64bde13",
 			"parentId": "",
 			"type": "root"
 		},
 		"ce501498-f2c9-4bc8-a684-bd82f4f29cd8": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"allowNewFragmentEntries": true,
 				"fragmentEntryKeys": [

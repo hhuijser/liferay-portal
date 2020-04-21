@@ -352,7 +352,7 @@
 			{
 				"template_string_sortable": {
 					"mapping": {
-						"normalizer" : "keyword_lowercase",
+						"normalizer": "keyword_lowercase",
 						"store": true,
 						"type": "keyword"
 					},
@@ -921,7 +921,7 @@
 			{
 				"template_string_sortable": {
 					"mapping": {
-						"normalizer" : "keyword_lowercase",
+						"normalizer": "keyword_lowercase",
 						"store": true,
 						"type": "keyword"
 					},

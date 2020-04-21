@@ -1,56 +1,56 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"definition" : {
-					"gutters" : false,
-					"numberOfColumns" : 6
+				"definition": {
+					"gutters": false,
+					"numberOfColumns": 6
 				},
-				"pageElements" : [
+				"pageElements": [
 					{
-						"definition" : {
-							"size" : 2
+						"definition": {
+							"size": 2
 						},
-						"type" : "Column"
+						"type": "Column"
 					},
 					{
-						"definition" : {
-							"size" : 2
+						"definition": {
+							"size": 2
 						},
-						"type" : "Column"
+						"type": "Column"
 					},
 					{
-						"definition" : {
-							"size" : 2
+						"definition": {
+							"size": 2
 						},
-						"type" : "Column"
+						"type": "Column"
 					},
 					{
-						"definition" : {
-							"size" : 2
+						"definition": {
+							"size": 2
 						},
-						"type" : "Column"
+						"type": "Column"
 					},
 					{
-						"definition" : {
-							"size" : 2
+						"definition": {
+							"size": 2
 						},
-						"type" : "Column"
+						"type": "Column"
 					},
 					{
-						"definition" : {
-							"size" : 2
+						"definition": {
+							"size": 2
 						},
-						"type" : "Column"
+						"type": "Column"
 					}
 				],
-				"type" : "Row"
+				"type": "Row"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	},
-	"settings" : {
-		"colorSchemeName" : "01",
-		"themeName" : "Classic"
+	"settings": {
+		"colorSchemeName": "01",
+		"themeName": "Classic"
 	}
 }

@@ -26,7 +26,7 @@
 				"template_geolocation": {
 					"mapping": {
 						"fields": {
-							"geopoint" : {
+							"geopoint": {
 								"store": true,
 								"type": "keyword"
 							}
@@ -50,9 +50,9 @@
 			{
 				"template_expando_keyword": {
 					"mapping": {
-						"analyzer" : "keyword_lowercase",
+						"analyzer": "keyword_lowercase",
 						"fields": {
-							"raw" : {
+							"raw": {
 								"type": "keyword"
 							}
 						},
@@ -503,7 +503,7 @@
 			},
 			"assetTagNames": {
 				"fields": {
-					"raw" : {
+					"raw": {
 						"type": "keyword"
 					}
 				},
@@ -623,7 +623,7 @@
 			},
 			"geoLocation": {
 				"fields": {
-					"geopoint" : {
+					"geopoint": {
 						"store": true,
 						"type": "keyword"
 					}

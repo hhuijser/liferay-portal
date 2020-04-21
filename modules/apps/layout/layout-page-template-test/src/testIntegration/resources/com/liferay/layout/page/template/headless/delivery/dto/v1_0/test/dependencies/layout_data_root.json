@@ -1,8 +1,10 @@
 {
 	"items": {
 		"MAIN-UUID": {
-			"children": [],
-			"config": {},
+			"children": [
+			],
+			"config": {
+			},
 			"itemId": "MAIN-UUID",
 			"parentId": null,
 			"type": "root"

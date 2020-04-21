@@ -16,7 +16,8 @@
 				"ROW-UUID"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -27,7 +28,8 @@
 			"type": "container"
 		},
 		"DROP-ZONE-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"allowNewFragmentEntries": false,
 				"fragmentEntryKeys": [
@@ -43,7 +45,8 @@
 			"children": [
 				"CONTAINER-UUID"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "MAIN-UUID",
 			"parentId": "",
 			"type": "root"

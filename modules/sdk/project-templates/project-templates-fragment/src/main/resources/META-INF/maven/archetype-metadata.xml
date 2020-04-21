@@ -31,5 +31,7 @@
 		</requiredProperty>
 		<requiredProperty key="hostBundleVersion">
 		</requiredProperty>
+		<requiredProperty key="liferayVersion">
+		</requiredProperty>
 	</requiredProperties>
 </archetype-descriptor>

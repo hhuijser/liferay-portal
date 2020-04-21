@@ -26,7 +26,6 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelPipeline;
 
-import java.io.IOException;
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -261,7 +260,7 @@ public class AnnotatedObjectDecoderTest {
 			new ArrayList<ChannelHandler>(map.values()));
 	}
 
-	private ByteBuf _toByteBuf(Serializable serializable) throws IOException {
+	private ByteBuf _toByteBuf(Serializable serializable) throws Exception {
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();
 

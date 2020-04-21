@@ -25,7 +25,6 @@ import com.liferay.fragment.service.FragmentEntryLocalService;
 import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocalService;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Group;
@@ -363,14 +362,14 @@ public class DeleteItemMVCActionCommandTest {
 				fragmentEntryLink2.getFragmentEntryLinkId()));
 	}
 
-	private FragmentCollection _addFragmentCollection() throws PortalException {
+	private FragmentCollection _addFragmentCollection() throws Exception {
 		return _fragmentCollectionLocalService.addFragmentCollection(
 			TestPropsValues.getUserId(), _group.getGroupId(),
 			RandomTestUtil.randomString(), StringPool.BLANK, _serviceContext);
 	}
 
 	private FragmentEntry _addFragmentEntry(long fragmentCollectionId)
-		throws PortalException {
+		throws Exception {
 
 		return _fragmentEntryLocalService.addFragmentEntry(
 			TestPropsValues.getUserId(), _group.getGroupId(),

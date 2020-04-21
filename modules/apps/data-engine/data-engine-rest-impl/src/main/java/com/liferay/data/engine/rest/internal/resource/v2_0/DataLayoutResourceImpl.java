@@ -227,7 +227,7 @@ public class DataLayoutResourceImpl
 	private void _addDataDefinitionFieldLinks(
 			long classNameId, long dataDefinitionId, long dataLayoutId,
 			List<String> fieldNames, long siteId)
-		throws PortalException {
+		throws Exception {
 
 		for (String fieldName : fieldNames) {
 			_deDataDefinitionFieldLinkLocalService.addDEDataDefinitionFieldLink(
@@ -266,7 +266,7 @@ public class DataLayoutResourceImpl
 	}
 
 	private void _deleteDataLayout(long dataLayoutId, DDMStructure ddmStructure)
-		throws PortalException {
+		throws Exception {
 
 		_ddmStructureLayoutLocalService.deleteDDMStructureLayout(dataLayoutId);
 

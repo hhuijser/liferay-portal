@@ -33,12 +33,9 @@ import com.liferay.portal.test.log.CaptureAppender;
 import com.liferay.portal.test.log.Log4JLoggerTestUtil;
 import com.liferay.portal.test.rule.Inject;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
-
-import java.text.ParseException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -302,7 +299,7 @@ public class BatchEngineExportTaskExecutorTest
 	private void _assertExportedValues(
 			List<BlogsEntry> blogsEntries, List<String> fieldNames,
 			List<Object[]> rowValuesList)
-		throws ParseException {
+		throws Exception {
 
 		blogsEntries.sort(Comparator.comparing(BlogsEntry::getSubtitle));
 		rowValuesList.sort(
@@ -399,7 +396,7 @@ public class BatchEngineExportTaskExecutorTest
 	}
 
 	private ZipInputStream _getZipInputStream(InputStream inputStream)
-		throws IOException {
+		throws Exception {
 
 		ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 
@@ -411,7 +408,7 @@ public class BatchEngineExportTaskExecutorTest
 	private List<Object[]> _readRowValuesList(
 			Function<String, Object[]> filterFunction,
 			BatchEngineExportTask batchEngineExportTask)
-		throws IOException {
+		throws Exception {
 
 		UnsyncBufferedReader unsyncBufferedReader = new UnsyncBufferedReader(
 			new InputStreamReader(

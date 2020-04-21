@@ -65,7 +65,6 @@ import com.liferay.dynamic.data.mapping.util.comparator.StructureModifiedDateCom
 import com.liferay.dynamic.data.mapping.util.comparator.StructureNameComparator;
 import com.liferay.frontend.js.loader.modules.extender.npm.NPMResolver;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactory;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -578,7 +577,7 @@ public class DataDefinitionResourceImpl
 		return null;
 	}
 
-	private long _getClassNameId(long dataDefinitionId) throws PortalException {
+	private long _getClassNameId(long dataDefinitionId) throws Exception {
 		DDMStructure ddmStructure = _ddmStructureLocalService.getDDMStructure(
 			dataDefinitionId);
 
@@ -863,7 +862,7 @@ public class DataDefinitionResourceImpl
 
 	private void _updateDataListViews(
 			Set<Long> deDataListViewIds, String[] removedFieldNames)
-		throws PortalException {
+		throws Exception {
 
 		for (Long deDataListViewId : deDataListViewIds) {
 			DEDataListView deDataListView =

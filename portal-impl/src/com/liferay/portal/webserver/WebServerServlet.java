@@ -1578,7 +1578,7 @@ public class WebServerServlet extends HttpServlet {
 
 	private PermissionChecker _getPermissionChecker(
 			HttpServletRequest httpServletRequest)
-		throws PortalException {
+		throws Exception {
 
 		User user = PortalUtil.getUser(httpServletRequest);
 
@@ -1592,7 +1592,7 @@ public class WebServerServlet extends HttpServlet {
 
 	private String _getPortletId(
 			FileEntry fileEntry, HttpServletRequest httpServletRequest)
-		throws PortalException {
+		throws Exception {
 
 		if (fileEntry.isInTrash()) {
 			int status = ParamUtil.getInteger(

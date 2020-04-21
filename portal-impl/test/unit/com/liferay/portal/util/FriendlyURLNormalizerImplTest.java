@@ -18,8 +18,6 @@ import com.liferay.petra.nio.CharsetEncoderUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.HttpUtil;
 
-import java.io.UnsupportedEncodingException;
-
 import java.net.URLEncoder;
 
 import java.nio.charset.CharsetEncoder;
@@ -185,9 +183,7 @@ public class FriendlyURLNormalizerImplTest {
 			"wordnc", _friendlyURLNormalizerImpl.normalize("word\u00F1\u00C7"));
 	}
 
-	private void _testNormalizeWithEncodingUnicode(String s)
-		throws UnsupportedEncodingException {
-
+	private void _testNormalizeWithEncodingUnicode(String s) throws Exception {
 		Assert.assertEquals(
 			URLEncoder.encode(s, StringPool.UTF8),
 			_friendlyURLNormalizerImpl.normalizeWithEncoding(s));

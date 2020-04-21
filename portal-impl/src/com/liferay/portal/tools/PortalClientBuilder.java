@@ -115,7 +115,7 @@ public class PortalClientBuilder {
 	}
 
 	private HttpServlet _createAxisHttpServlet(final File docRootDir)
-		throws ServletException {
+		throws Exception {
 
 		AxisServlet axisServlet = new AxisServlet();
 

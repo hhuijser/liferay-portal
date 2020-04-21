@@ -58,7 +58,7 @@ public class CleanServiceBuilderMojoTest
 	private static void _preparePomXml(
 			File projectDir, File serviceXmlFile, String servletContextName,
 			String url)
-		throws IOException {
+		throws Exception {
 
 		String content = FileTestUtil.read(
 			CleanServiceBuilderMojoTest.class, "dependencies/pom_xml.tmpl");

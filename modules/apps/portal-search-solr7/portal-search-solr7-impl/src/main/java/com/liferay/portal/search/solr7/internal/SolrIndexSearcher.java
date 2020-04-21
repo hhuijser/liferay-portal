@@ -269,6 +269,7 @@ public class SolrIndexSearcher extends BaseIndexSearcher {
 			queryConfig.isAllFieldsSelected());
 		searchSearchRequest.setAlternateUidFieldName(
 			queryConfig.getAlternateUidFieldName());
+
 		searchSearchRequest.setGroupBy(searchContext.getGroupBy());
 		searchSearchRequest.setGroupByRequests(
 			searchRequest.getGroupByRequests());

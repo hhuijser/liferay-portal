@@ -185,6 +185,7 @@ public class FragmentDisplayContext {
 				fragmentEntries,
 				contributedFragmentEntriesSearchContainer.getStart(),
 				contributedFragmentEntriesSearchContainer.getEnd()));
+
 		contributedFragmentEntriesSearchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
 		contributedFragmentEntriesSearchContainer.setTotal(

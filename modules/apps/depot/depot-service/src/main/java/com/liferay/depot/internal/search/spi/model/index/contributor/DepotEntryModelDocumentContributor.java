@@ -45,6 +45,7 @@ public class DepotEntryModelDocumentContributor
 		Group group = _groupLocalService.fetchGroup(depotEntry.getGroupId());
 
 		document.addText(Field.DESCRIPTION, group.getDescription());
+
 		document.addDate(Field.MODIFIED_DATE, depotEntry.getModifiedDate());
 		document.addText(Field.NAME, group.getName());
 

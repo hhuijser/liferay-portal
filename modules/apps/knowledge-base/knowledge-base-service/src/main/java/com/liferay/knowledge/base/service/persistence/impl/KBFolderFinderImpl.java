@@ -247,6 +247,7 @@ public class KBFolderFinderImpl
 					KBArticle.class);
 
 				queryPos.add(classNameId);
+
 				queryPos.add(groupId);
 				queryPos.add(parentResourcePrimKey);
 				queryPos.add(true);

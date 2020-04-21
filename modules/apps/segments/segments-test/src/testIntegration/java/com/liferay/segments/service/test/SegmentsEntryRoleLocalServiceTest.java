@@ -72,6 +72,7 @@ public class SegmentsEntryRoleLocalServiceTest {
 				_serviceContext);
 
 		Assert.assertNotNull(segmentsEntryRole);
+
 		Assert.assertEquals(
 			1,
 			_segmentsEntryRoleLocalService.getSegmentsEntryRolesCount(

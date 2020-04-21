@@ -56,6 +56,7 @@ public class FieldMappingsDisplayBuilder {
 			getData(
 				fieldMappingIndexDisplayContexts, fieldMappings,
 				selectedIndexName));
+
 		fieldMappingsDisplayContext.setFieldMappingIndexDisplayContexts(
 			fieldMappingIndexDisplayContexts);
 		fieldMappingsDisplayContext.setFieldMappings(fieldMappings);

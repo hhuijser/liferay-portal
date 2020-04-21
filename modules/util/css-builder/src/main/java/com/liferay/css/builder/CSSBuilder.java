@@ -21,7 +21,6 @@ import com.liferay.css.builder.internal.util.CSSBuilderUtil;
 import com.liferay.css.builder.internal.util.FileUtil;
 import com.liferay.rtl.css.RTLCSSConverter;
 import com.liferay.sass.compiler.SassCompiler;
-import com.liferay.sass.compiler.SassCompilerException;
 import com.liferay.sass.compiler.jni.internal.JniSassCompiler;
 import com.liferay.sass.compiler.jsass.internal.JSassCompiler;
 import com.liferay.sass.compiler.ruby.internal.RubySassCompiler;
@@ -269,7 +268,7 @@ public class CSSBuilder implements AutoCloseable {
 		return rtlCss;
 	}
 
-	private String[] _getScssFiles(String baseDir) throws IOException {
+	private String[] _getScssFiles(String baseDir) throws Exception {
 		String[] includes = {"**/*.scss"};
 
 		String[] excludes = Arrays.copyOf(_excludes, _excludes.length + 1);
@@ -279,7 +278,7 @@ public class CSSBuilder implements AutoCloseable {
 		return FileUtil.getFilesFromDirectory(baseDir, includes, excludes);
 	}
 
-	private String[] _getScssFragments(String baseDir) throws IOException {
+	private String[] _getScssFragments(String baseDir) throws Exception {
 		String[] includes = {"**/_*.scss"};
 
 		return FileUtil.getFilesFromDirectory(baseDir, includes, _excludes);
@@ -365,7 +364,7 @@ public class CSSBuilder implements AutoCloseable {
 		return fileName;
 	}
 
-	private String _parseSass(String fileName) throws SassCompilerException {
+	private String _parseSass(String fileName) throws Exception {
 		File sassFile = new File(_cssBuilderArgs.getBaseDir(), fileName);
 
 		Path path = sassFile.toPath();
@@ -427,7 +426,7 @@ public class CSSBuilder implements AutoCloseable {
 		_writeOutputFile(fileName, rtlContent, true);
 	}
 
-	private File _unzipImport(File importFile) throws IOException {
+	private File _unzipImport(File importFile) throws Exception {
 		Path outputPath = _importPath.resolve(importFile.getName());
 
 		try (ZipFile zipFile = new ZipFile(importFile)) {

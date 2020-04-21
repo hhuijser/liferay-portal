@@ -270,7 +270,7 @@ public class LangBuilder {
 	}
 
 	private void _copyProperties(File file, String languageId)
-		throws IOException {
+		throws Exception {
 
 		Path path = Paths.get(
 			_langDirName,
@@ -586,7 +586,7 @@ public class LangBuilder {
 	}
 
 	private String _orderProperties(File propertiesFile, boolean checkExistence)
-		throws IOException {
+		throws Exception {
 
 		if (checkExistence && !propertiesFile.exists()) {
 			_write(propertiesFile, StringPool.BLANK);
@@ -680,7 +680,7 @@ public class LangBuilder {
 		return content;
 	}
 
-	private String _read(File file) throws IOException {
+	private String _read(File file) throws Exception {
 		String s = new String(
 			Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
 

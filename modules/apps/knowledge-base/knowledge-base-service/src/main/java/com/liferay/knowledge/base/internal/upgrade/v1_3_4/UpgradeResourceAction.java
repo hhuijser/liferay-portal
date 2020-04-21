@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * @author Adolfo Pérez
@@ -42,7 +41,7 @@ public class UpgradeResourceAction extends UpgradeProcess {
 		}
 	}
 
-	private boolean _hasViewFeedbackResourceAction() throws SQLException {
+	private boolean _hasViewFeedbackResourceAction() throws Exception {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select count(*) from ResourceAction where actionId = ?")) {
 

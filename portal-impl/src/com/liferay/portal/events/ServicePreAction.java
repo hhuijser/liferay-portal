@@ -28,7 +28,6 @@ import com.liferay.portal.kernel.exception.LayoutPermissionException;
 import com.liferay.portal.kernel.exception.NoSuchGroupException;
 import com.liferay.portal.kernel.exception.NoSuchLayoutException;
 import com.liferay.portal.kernel.exception.NoSuchUserException;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.image.ImageToolUtil;
 import com.liferay.portal.kernel.interval.IntervalActionProcessor;
 import com.liferay.portal.kernel.log.Log;
@@ -230,7 +229,7 @@ public class ServicePreAction extends Action {
 
 	private void _addDefaultLayoutsByLAR(
 			long userId, long groupId, boolean privateLayout, File larFile)
-		throws PortalException {
+		throws Exception {
 
 		User user = UserLocalServiceUtil.getUser(userId);
 
@@ -284,7 +283,7 @@ public class ServicePreAction extends Action {
 
 	private void _addDefaultUserPrivateLayoutByProperties(
 			long userId, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		String friendlyURL = _getFriendlyURL(
 			PropsValues.DEFAULT_USER_PRIVATE_LAYOUT_FRIENDLY_URL);
@@ -347,9 +346,7 @@ public class ServicePreAction extends Action {
 		}
 	}
 
-	private void _addDefaultUserPrivateLayouts(User user)
-		throws PortalException {
-
+	private void _addDefaultUserPrivateLayouts(User user) throws Exception {
 		Group group = user.getGroup();
 
 		if (privateLARFile != null) {
@@ -364,7 +361,7 @@ public class ServicePreAction extends Action {
 
 	private void _addDefaultUserPublicLayoutByProperties(
 			long userId, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		String friendlyURL = _getFriendlyURL(
 			PropsValues.DEFAULT_USER_PUBLIC_LAYOUT_FRIENDLY_URL);
@@ -426,9 +423,7 @@ public class ServicePreAction extends Action {
 		}
 	}
 
-	private void _addDefaultUserPublicLayouts(User user)
-		throws PortalException {
-
+	private void _addDefaultUserPublicLayouts(User user) throws Exception {
 		Group userGroup = user.getGroup();
 
 		if (publicLARFile != null) {
@@ -441,9 +436,7 @@ public class ServicePreAction extends Action {
 		}
 	}
 
-	private void _deleteDefaultUserPrivateLayouts(User user)
-		throws PortalException {
-
+	private void _deleteDefaultUserPrivateLayouts(User user) throws Exception {
 		Group group = user.getGroup();
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -452,9 +445,7 @@ public class ServicePreAction extends Action {
 			group.getGroupId(), true, serviceContext);
 	}
 
-	private void _deleteDefaultUserPublicLayouts(User user)
-		throws PortalException {
-
+	private void _deleteDefaultUserPublicLayouts(User user) throws Exception {
 		Group userGroup = user.getGroup();
 
 		ServiceContext serviceContext = new ServiceContext();
@@ -487,7 +478,7 @@ public class ServicePreAction extends Action {
 	}
 
 	private LayoutComposite _getDefaultUserSitesLayoutComposite(final User user)
-		throws PortalException {
+		throws Exception {
 
 		final LinkedHashMap<String, Object> groupParams =
 			LinkedHashMapBuilder.<String, Object>put(
@@ -550,7 +541,7 @@ public class ServicePreAction extends Action {
 			HttpServletRequest httpServletRequest, User user,
 			PermissionChecker permissionChecker, boolean signedIn,
 			boolean ignoreHiddenLayouts)
-		throws PortalException {
+		throws Exception {
 
 		LayoutComposite defaultLayoutComposite =
 			_getDefaultVirtualHostLayoutComposite(httpServletRequest);
@@ -593,7 +584,7 @@ public class ServicePreAction extends Action {
 
 	private LayoutComposite _getDefaultVirtualHostLayoutComposite(
 			HttpServletRequest httpServletRequest)
-		throws PortalException {
+		throws Exception {
 
 		Layout layout = null;
 		List<Layout> layouts = null;
@@ -654,7 +645,7 @@ public class ServicePreAction extends Action {
 	}
 
 	private LayoutComposite _getGuestSiteLayoutComposite(User user)
-		throws PortalException {
+		throws Exception {
 
 		Layout layout = null;
 
@@ -676,7 +667,7 @@ public class ServicePreAction extends Action {
 			HttpServletRequest httpServletRequest, User user,
 			PermissionChecker permissionChecker, Layout layout,
 			List<Layout> layouts, boolean ignoreHiddenLayouts)
-		throws PortalException {
+		throws Exception {
 
 		if ((layouts == null) || layouts.isEmpty()) {
 			return new LayoutComposite(layout, layouts);
@@ -730,7 +721,7 @@ public class ServicePreAction extends Action {
 	private boolean _hasAccessPermission(
 			PermissionChecker permissionChecker, Layout layout,
 			boolean checkViewableGroup)
-		throws PortalException {
+		throws Exception {
 
 		return LayoutPermissionUtil.contains(
 			permissionChecker, layout, checkViewableGroup, ActionKeys.VIEW);
@@ -1802,7 +1793,7 @@ public class ServicePreAction extends Action {
 			HttpServletRequest httpServletRequest, User user,
 			PermissionChecker permissionChecker, Layout layout,
 			List<Layout> layouts)
-		throws PortalException {
+		throws Exception {
 
 		if ((layout == null) || layout.isPrivateLayout()) {
 			return layouts;

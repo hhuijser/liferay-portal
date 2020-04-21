@@ -238,7 +238,7 @@ public class EditChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 
 	private List<String> _updateTypeSettingsProperties(
 			String channelId, String json, String[] selectedGroupIds)
-		throws PortalException {
+		throws Exception {
 
 		JSONObject responseJSONObject = JSONFactoryUtil.createJSONObject(json);
 

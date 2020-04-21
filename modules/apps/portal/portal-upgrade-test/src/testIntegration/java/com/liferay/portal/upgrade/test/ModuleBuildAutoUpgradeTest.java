@@ -18,7 +18,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayOutputStream;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.sql.Types;
@@ -69,7 +68,7 @@ public class ModuleBuildAutoUpgradeTest extends BaseBuildAutoUpgradeTestCase {
 	}
 
 	private byte[] _createBundleBytes(Object[][] tableColumns, int version)
-		throws IOException {
+		throws Exception {
 
 		try (UnsyncByteArrayOutputStream unsyncbyteArrayOutputStream =
 				new UnsyncByteArrayOutputStream();

@@ -16,7 +16,6 @@ package com.liferay.layout.content.page.editor.web.internal.portlet.action.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.layout.test.util.LayoutTestUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -137,7 +136,7 @@ public class AddSegmentsExperienceMVCActionCommandTest {
 
 	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(
 			String name, long segmentsEntryId)
-		throws PortalException {
+		throws Exception {
 
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			new MockLiferayPortletActionRequest();
@@ -151,7 +150,7 @@ public class AddSegmentsExperienceMVCActionCommandTest {
 		return mockLiferayPortletActionRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

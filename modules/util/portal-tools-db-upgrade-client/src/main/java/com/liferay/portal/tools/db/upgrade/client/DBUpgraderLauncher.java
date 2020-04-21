@@ -19,7 +19,6 @@ import java.io.ObjectInputStream;
 
 import java.lang.reflect.Method;
 
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -59,9 +58,7 @@ public class DBUpgraderLauncher {
 		}
 	}
 
-	private static URL[] _getClassPathURLs(String classPath)
-		throws MalformedURLException {
-
+	private static URL[] _getClassPathURLs(String classPath) throws Exception {
 		String[] paths = classPath.split(File.pathSeparator);
 
 		Set<URL> urls = new LinkedHashSet<>();

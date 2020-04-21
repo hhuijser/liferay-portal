@@ -142,7 +142,7 @@ public class DuplicateItemMVCActionCommand
 
 	private JSONObject _addDuplicateFragmentEntryLinkToLayoutDataJSONObject(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

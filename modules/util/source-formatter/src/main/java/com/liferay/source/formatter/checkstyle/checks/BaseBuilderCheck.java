@@ -307,6 +307,10 @@ public abstract class BaseBuilderCheck extends BaseChainedMethodCheck {
 		_checkInline(
 			parentDetailAST, methodVariableDetailASTList, builderClassName);
 
+		if (isJSPFile()) {
+			return;
+		}
+
 		firstChildDetailAST = assignDetailAST.getFirstChild();
 
 		DetailAST assignValueDetailAST = null;

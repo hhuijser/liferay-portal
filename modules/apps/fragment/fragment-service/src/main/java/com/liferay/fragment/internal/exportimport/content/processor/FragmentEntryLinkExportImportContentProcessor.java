@@ -219,7 +219,7 @@ public class FragmentEntryLinkExportImportContentProcessor
 	private void _exportPortletPreferencesSegmentsExperience(
 			PortletDataContext portletDataContext,
 			FragmentEntryLink fragmentEntryLink)
-		throws PortalException {
+		throws Exception {
 
 		List<PortletPreferences> portletPreferencesList =
 			_portletPreferencesLocalService.getPortletPreferences(
@@ -248,7 +248,7 @@ public class FragmentEntryLinkExportImportContentProcessor
 
 	private void _importPortletPreferencesSegmentsExperience(
 			PortletDataContext portletDataContext, long plid)
-		throws PortalException {
+		throws Exception {
 
 		Map<Long, Long> plids =
 			(Map<Long, Long>)portletDataContext.getNewPrimaryKeysMap(

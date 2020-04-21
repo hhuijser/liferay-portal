@@ -39,7 +39,6 @@ import com.liferay.source.formatter.util.SourceFormatterCheckUtil;
 import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.lang.reflect.Constructor;
 
@@ -329,7 +328,7 @@ public class SourceChecksUtil {
 			SourceChecksResult sourceChecksResult,
 			GradleFileCheck gradleFileCheck, GradleFile gradleFile,
 			String fileName, String absolutePath)
-		throws IOException {
+		throws Exception {
 
 		String content = gradleFileCheck.process(
 			fileName, absolutePath, gradleFile,

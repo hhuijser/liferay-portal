@@ -24,7 +24,6 @@ import com.liferay.headless.admin.taxonomy.dto.v1_0.ParentTaxonomyCategory;
 import com.liferay.headless.admin.taxonomy.dto.v1_0.ParentTaxonomyVocabulary;
 import com.liferay.headless.admin.taxonomy.dto.v1_0.TaxonomyCategory;
 import com.liferay.headless.admin.taxonomy.internal.dto.v1_0.util.CreatorUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.UserLocalService;
 import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.kernel.util.Portal;
@@ -88,7 +87,7 @@ public class TaxonomyCategoryDTOConverter
 	private TaxonomyCategory _toTaxonomyCategory(
 			DTOConverterContext dtoConverterContext,
 			AssetCategory assetCategory)
-		throws PortalException {
+		throws Exception {
 
 		return new TaxonomyCategory() {
 			{

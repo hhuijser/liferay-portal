@@ -192,7 +192,7 @@ public class PortletExtenderConfigurationAction
 	private DDMFormRenderingContext _createDDMFormRenderingContext(
 			HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse)
-		throws PortalException {
+		throws Exception {
 
 		DDMFormRenderingContext ddmFormRenderingContext =
 			new DDMFormRenderingContext();
@@ -284,7 +284,7 @@ public class PortletExtenderConfigurationAction
 	private void _setDDMFormValues(
 			DDMFormRenderingContext ddmFormRenderingContext,
 			ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		DDMFormValues ddmFormValues = new DDMFormValues(_ddmForm);
 

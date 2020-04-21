@@ -374,7 +374,7 @@ public class BlogsEntryStagedModelDataHandlerTest
 	}
 
 	private BlogsEntry _updateBlogsEntry(BlogsEntry blogsEntry)
-		throws PortalException {
+		throws Exception {
 
 		return BlogsEntryLocalServiceUtil.updateEntry(
 			blogsEntry.getUserId(), blogsEntry.getEntryId(),

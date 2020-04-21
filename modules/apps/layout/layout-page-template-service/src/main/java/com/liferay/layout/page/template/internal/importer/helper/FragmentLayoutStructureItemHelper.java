@@ -307,7 +307,7 @@ public class FragmentLayoutStructureItemHelper
 
 	private JSONObject _deepMerge(
 			JSONObject jsonObject1, JSONObject jsonObject2)
-		throws JSONException {
+		throws Exception {
 
 		if (jsonObject1 == null) {
 			return JSONFactoryUtil.createJSONObject(jsonObject2.toString());
@@ -351,7 +351,7 @@ public class FragmentLayoutStructureItemHelper
 	}
 
 	private Map<String, String> _getConfigurationTypes(String configuration)
-		throws JSONException {
+		throws Exception {
 
 		Map<String, String> configurationTypes = new HashMap<>();
 
@@ -432,7 +432,7 @@ public class FragmentLayoutStructureItemHelper
 
 	private String _replaceResources(
 			FragmentCollection fragmentCollection, String html)
-		throws PortalException {
+		throws Exception {
 
 		if (fragmentCollection == null) {
 			return html;

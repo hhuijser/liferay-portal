@@ -353,7 +353,7 @@ public class DataRecordResourceImpl
 
 	private BooleanFilter _getBooleanFilter(
 			Long dataListViewId, DDLRecordSet ddlRecordSet)
-		throws PortalException {
+		throws Exception {
 
 		BooleanFilter booleanFilter = new BooleanFilter();
 

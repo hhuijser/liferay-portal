@@ -567,7 +567,7 @@ public class FragmentEntryProcessorFreemarkerTest {
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest()
-		throws PortalException {
+		throws Exception {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -599,7 +599,7 @@ public class FragmentEntryProcessorFreemarkerTest {
 		return processedHTML;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

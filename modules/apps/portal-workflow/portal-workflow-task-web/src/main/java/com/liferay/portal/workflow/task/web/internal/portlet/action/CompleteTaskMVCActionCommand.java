@@ -14,7 +14,6 @@
 
 package com.liferay.portal.workflow.task.web.internal.portlet.action;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ParamUtil;
@@ -82,7 +81,7 @@ public class CompleteTaskMVCActionCommand
 
 	private Map<String, Serializable> _getWorkflowContext(
 			long companyId, long workflowTaskId)
-		throws PortalException {
+		throws Exception {
 
 		WorkflowTask workflowTask = workflowTaskManager.getWorkflowTask(
 			companyId, workflowTaskId);

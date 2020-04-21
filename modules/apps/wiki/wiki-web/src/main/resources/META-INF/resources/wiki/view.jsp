@@ -194,11 +194,12 @@ if (portletTitleBasedNavigation) {
 					"viewURL", viewPageURL.toString()
 				).put(
 					"wikiPortletInstanceConfiguration", wikiPortletInstanceConfiguration
-				).build();
 
 				// Deprecated
 
-				contextObjects.put("wikiPortletInstanceOverriddenConfiguration", wikiPortletInstanceConfiguration);
+				).put(
+					"wikiPortletInstanceOverriddenConfiguration", wikiPortletInstanceConfiguration
+				).build();
 				%>
 
 				<c:if test="<%= !portletTitleBasedNavigation %>">

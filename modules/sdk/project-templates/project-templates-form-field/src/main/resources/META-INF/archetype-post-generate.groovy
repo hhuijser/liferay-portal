@@ -24,7 +24,14 @@ Files.deleteIfExists buildGradlePath
 
 Properties properties = request.properties
 
+String buildType = properties.get("buildType");
+
 String liferayVersion = properties.get("liferayVersion")
+
+if (liferayVersion.startsWith("7.2") && buildType.equals("maven")) {
+	throw new IllegalArgumentException(
+		"Form Field project is not supported 7.2 for Maven")
+}
 
 List<String> fileNames = []
 

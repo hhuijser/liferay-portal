@@ -126,6 +126,11 @@ public class ProjectGenerator {
 				"EXT project is not supported for Maven");
 		}
 
+		if (buildType.equals("maven") && template.equals("form-field") && liferayVersion.startsWith("7.2")) {
+			throw new IllegalArgumentException(
+				"Form Field project is not supported 7.2 for Maven");
+		}
+
 		Properties properties = new Properties();
 
 		_setProperty(properties, "author", author);

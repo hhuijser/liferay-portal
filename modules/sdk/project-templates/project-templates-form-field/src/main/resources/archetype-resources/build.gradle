@@ -10,6 +10,7 @@ dependencies {
 
 	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
 #if (${liferayVersion.startsWith("7.2")})
+
 	jsCompile group: "com.liferay", name: "com.liferay.dynamic.data.mapping.form.field.type"
 #end
 }

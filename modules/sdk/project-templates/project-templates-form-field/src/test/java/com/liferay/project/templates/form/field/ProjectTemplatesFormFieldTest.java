@@ -16,14 +16,17 @@ package com.liferay.project.templates.form.field;
 
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
+import com.liferay.project.templates.extensions.util.ProjectTemplatesUtil;
 import com.liferay.project.templates.extensions.util.Validator;
 import com.liferay.project.templates.util.FileTestUtil;
 
 import java.io.File;
 
 import java.net.URI;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
@@ -66,7 +69,8 @@ public class ProjectTemplatesFormFieldTest
 		String name = "foobar";
 		String template = "form-field";
 
-		File gradleWorkspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+		File gradleWorkspaceDir = buildWorkspace(
+			temporaryFolder, liferayVersion);
 
 		File gradleProjectDir = buildTemplateWithGradle(
 			new File(gradleWorkspaceDir, "modules"), template, name,
@@ -76,8 +80,7 @@ public class ProjectTemplatesFormFieldTest
 			gradleProjectDir, "bnd.bnd", "Bundle-Name: " + name,
 			"Web-ContextPath: /dynamic-data-foobar-form-field");
 		testContains(
-			gradleProjectDir, "build.gradle",
-			DEPENDENCY_PORTAL_KERNEL);
+			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		testContains(
 			gradleProjectDir,
 			"src/main/java/foobar/form/field/FoobarDDMFormFieldRenderer.java",
@@ -111,18 +114,14 @@ public class ProjectTemplatesFormFieldTest
 			"Liferay.namespace('DDM.Field').Foobar = FoobarField;");
 
 		File mavenWorkspaceDir = buildWorkspace(
-			temporaryFolder, "maven", "mavenWS", liferayVersion,
-			mavenExecutor);
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
 		File mavenProjectDir = buildTemplateWithMaven(
 			mavenModulesDir, mavenModulesDir, template, name, "com.test",
-			mavenExecutor, "-DclassName=FooBar", "-Dpackage=foobar",
+			mavenExecutor, "-DclassName=Foobar", "-Dpackage=foobar",
 			"-DliferayVersion=" + liferayVersion);
-
-		testContains(
-			mavenProjectDir, "bnd.bnd", "-contract: JavaPortlet,JavaServlet");
 
 		if (isBuildProjects()) {
 			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
@@ -141,7 +140,8 @@ public class ProjectTemplatesFormFieldTest
 		String name = "foobar";
 		String template = "form-field";
 
-		File gradleWorkspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+		File gradleWorkspaceDir = buildWorkspace(
+			temporaryFolder, liferayVersion);
 
 		File gradleProjectDir = buildTemplateWithGradle(
 			new File(gradleWorkspaceDir, "modules"), template, name,
@@ -151,8 +151,7 @@ public class ProjectTemplatesFormFieldTest
 			gradleProjectDir, "bnd.bnd", "Bundle-Name: " + name,
 			"Web-ContextPath: /dynamic-data-foobar-form-field");
 		testContains(
-			gradleProjectDir, "build.gradle",
-			DEPENDENCY_PORTAL_KERNEL);
+			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		testContains(
 			gradleProjectDir, "package.json",
 			"\"name\": \"dynamic-data-foobar-form-field\"",
@@ -198,14 +197,13 @@ public class ProjectTemplatesFormFieldTest
 			"Liferay.namespace('DDM.Field').Foobar = FoobarField;");
 
 		File mavenWorkspaceDir = buildWorkspace(
-			temporaryFolder, "maven", "mavenWS", liferayVersion,
-			mavenExecutor);
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
 		File mavenProjectDir = buildTemplateWithMaven(
 			mavenModulesDir, mavenModulesDir, template, name, "com.test",
-			mavenExecutor, "-DclassName=FooBar", "-Dpackage=foobar",
+			mavenExecutor, "-DclassName=Foobar", "-Dpackage=foobar",
 			"-DliferayVersion=" + liferayVersion);
 
 		testContains(
@@ -228,31 +226,31 @@ public class ProjectTemplatesFormFieldTest
 		String name = "foo-bar";
 		String template = "form-field";
 
-		File gradleWorkspaceDir = buildWorkspace(temporaryFolder, liferayVersion);
+		File gradleWorkspaceDir = buildWorkspace(
+			temporaryFolder, liferayVersion);
 
 		File gradleProjectDir = buildTemplateWithGradle(
 			new File(gradleWorkspaceDir, "modules"), template, name,
 			"--liferay-version", liferayVersion);
 
 		testContains(
-				gradleProjectDir, "bnd.bnd", "Bundle-Name: " + name,
+			gradleProjectDir, "bnd.bnd", "Bundle-Name: " + name,
 			"Web-ContextPath: /dynamic-data-foo-bar-form-field");
 		testContains(
-				gradleProjectDir, "build.gradle",
-			DEPENDENCY_PORTAL_KERNEL);
+			gradleProjectDir, "build.gradle", DEPENDENCY_PORTAL_KERNEL);
 		testContains(
-				gradleProjectDir, "package.json",
+			gradleProjectDir, "package.json",
 			"\"name\": \"dynamic-data-foo-bar-form-field\"",
 			",foo-bar_field.js &&");
 		testContains(
-				gradleProjectDir,
+			gradleProjectDir,
 			"src/main/java/foo/bar/form/field/FooBarDDMFormFieldRenderer.java",
 			"property = \"ddm.form.field.type.name=fooBar\"",
 			"public class FooBarDDMFormFieldRenderer extends " +
 				"BaseDDMFormFieldRenderer {",
 			"DDMFooBar.render", "/META-INF/resources/foo-bar.soy");
 		testContains(
-				gradleProjectDir,
+			gradleProjectDir,
 			"src/main/java/foo/bar/form/field/FooBarDDMFormFieldType.java",
 			"ddm.form.field.type.description=foo-bar-description",
 			"ddm.form.field.type.js.class.name=Liferay.DDM.Field.FooBar",
@@ -266,27 +264,26 @@ public class ProjectTemplatesFormFieldTest
 			"field-foo-bar", "'foo-bar-form-field': {",
 			"path: 'foo-bar_field.js',");
 		testContains(
-				gradleProjectDir,
+			gradleProjectDir,
 			"src/main/resources/META-INF/resources/foo-bar.soy",
 			"{namespace DDMFooBar}", "variant=\"'fooBar'\"",
 			"foo-bar-form-field");
 		testContains(
-				gradleProjectDir,
+			gradleProjectDir,
 			"src/main/resources/META-INF/resources/foo-bar.es.js",
 			"import templates from './foo-bar.soy';", "* FooBar Component",
 			"class FooBar extends Component", "Soy.register(FooBar,",
 			"!window.DDMFooBar", "window.DDMFooBar",
 			"window.DDMFooBar.render = FooBar;", "export default FooBar;");
 		testContains(
-				gradleProjectDir,
+			gradleProjectDir,
 			"src/main/resources/META-INF/resources/foo-bar_field.js",
 			"'foo-bar-form-field',", "var FooBarField",
 			"value: 'foo-bar-form-field'", "NAME: 'foo-bar-form-field'",
 			"Liferay.namespace('DDM.Field').FooBar = FooBarField;");
 
 		File mavenWorkspaceDir = buildWorkspace(
-			temporaryFolder, "maven", "mavenWS", liferayVersion,
-			mavenExecutor);
+			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
 
 		File mavenModulesDir = new File(mavenWorkspaceDir, "modules");
 
@@ -307,7 +304,6 @@ public class ProjectTemplatesFormFieldTest
 				mavenProjectDir, gradleOutputDir, mavenOutputDir,
 				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 		}
-
 	}
 
 	@Test
@@ -326,9 +322,12 @@ public class ProjectTemplatesFormFieldTest
 			"type:String=\"LiferayFormField\"");
 		testContains(
 			gradleProjectDir, "build.gradle",
-			"compileOnly group: \"com.liferay\", name: \"com.liferay.frontend.js.loader.modules.extender.api\"",
-			"jsCompile group: \"com.liferay\", name: \"com.liferay.dynamic.data.mapping.form.field.type\"",
-			"compileOnly group: \"com.liferay\", name: \"com.liferay.dynamic.data.mapping.api\",",
+			"compileOnly group: \"com.liferay\", name: " +
+				"\"com.liferay.dynamic.data.mapping.api\"",
+			"compileOnly group: \"com.liferay\", name: " +
+				"\"com.liferay.frontend.js.loader.modules.extender.api\"",
+			"jsCompile group: \"com.liferay\", name: " +
+				"\"com.liferay.dynamic.data.mapping.form.field.type\"",
 			DEPENDENCY_PORTAL_KERNEL);
 		testContains(
 			gradleProjectDir,
@@ -357,12 +356,12 @@ public class ProjectTemplatesFormFieldTest
 
 		testNotContains(
 			gradleProjectDir, "build.gradle", true, "^repositories \\{.*");
-		testNotContains(
-			gradleProjectDir, "build.gradle", "version: \"[0-9].*");
+		testNotContains(gradleProjectDir, "build.gradle", "version: \"[0-9].*");
 
 		if (isBuildProjects()) {
 			executeGradle(
-				workspaceDir, _gradleDistribution, ":modules:" + name + GRADLE_TASK_PATH_BUILD);
+				workspaceDir, _gradleDistribution,
+				":modules:" + name + GRADLE_TASK_PATH_BUILD);
 
 			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
 
@@ -375,14 +374,12 @@ public class ProjectTemplatesFormFieldTest
 		}
 	}
 
-
-
 	@Test
 	public void testBuildTemplateFormField72Maven() throws Exception {
 		String groupId = "com.test";
-		String liferayVersion = getDefaultLiferayVersion();
-		String name = "foo-ext";
-		String template = "modules-ext";
+		String liferayVersion = "7.2.1";
+		String name = "foobar";
+		String template = "form-field";
 
 		File mavenWorkspaceDir = buildWorkspace(
 			temporaryFolder, "maven", "mavenWS", liferayVersion, mavenExecutor);
@@ -408,9 +405,9 @@ public class ProjectTemplatesFormFieldTest
 		completeArgs.add("-DarchetypeVersion=" + projectTemplateVersion);
 		completeArgs.add("-DartifactId=" + name);
 		completeArgs.add("-Dauthor=" + System.getProperty("user.name"));
+		completeArgs.add("-DclassName=FooBar");
 		completeArgs.add("-DgroupId=" + groupId);
 		completeArgs.add("-DliferayVersion=" + liferayVersion);
-		completeArgs.add("-DoriginalModuleName=com.liferay.login.web");
 
 		String mavenOutput = executeMaven(
 			mavenWorkspaceDir, true, mavenExecutor,
@@ -419,7 +416,7 @@ public class ProjectTemplatesFormFieldTest
 		Assert.assertTrue(
 			mavenOutput,
 			mavenOutput.contains(
-				"java.io.EOFException: input contained no data"));
+				"Form Field project is not supported 7.2 for Maven"));
 	}
 
 	@Rule

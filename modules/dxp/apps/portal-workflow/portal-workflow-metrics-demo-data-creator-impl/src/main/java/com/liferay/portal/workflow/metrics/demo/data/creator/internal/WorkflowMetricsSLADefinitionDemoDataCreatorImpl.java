@@ -154,7 +154,7 @@ public class WorkflowMetricsSLADefinitionDemoDataCreatorImpl
 			long companyId, long userId, Date createDate, long duration,
 			String name, long processId, String[] startNodeKeys,
 			String[] stopNodeKeys)
-		throws Exception {
+		throws PortalException {
 
 		WorkflowMetricsSLADefinition workflowMetricsSLADefinition =
 			_workflowMetricsSLADefinitionLocalService.

@@ -1,14 +1,14 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"definition" : {
-					"fragment" : {
-						"key" : "my-key"
+				"definition": {
+					"fragment": {
+						"key": "my-key"
 					},
-					"fragmentFields" : [
+					"fragmentFields": [
 						{
-							"id" : "element-text",
+							"id": "element-text",
 							"value": {
 								"fragmentLink": {
 									"href": {
@@ -18,18 +18,19 @@
 								},
 								"text": {
 									"value_i18n": {
-										"en_US" : "Hello Liferay!",
-										"es_ES" : "Hola Liferay!"
+										"en_US": "Hello Liferay!",
+										"es_ES": "Hola Liferay!"
 									}
 								}
 							}
 						}
 					]
 				},
-				"pageElements" : [],
-				"type" : "Fragment"
+				"pageElements": [
+				],
+				"type": "Fragment"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	}
 }

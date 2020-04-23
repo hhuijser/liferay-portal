@@ -1,5 +1,6 @@
 {
-	"config": {},
+	"config": {
+	},
 	"nextColumnId": 11,
 	"nextRowId": 5,
 	"structure": [
@@ -28,22 +29,26 @@
 			"columns": [
 				{
 					"columnId": "3",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				},
 				{
 					"columnId": "4",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				},
 				{
 					"columnId": "5",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				},
 				{
 					"columnId": "6",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				}
 			],
@@ -69,17 +74,20 @@
 				},
 				{
 					"columnId": "8",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				},
 				{
 					"columnId": "9",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				},
 				{
 					"columnId": "10",
-					"fragmentEntries": [],
+					"fragmentEntries": [
+					],
 					"size": "3"
 				}
 			],

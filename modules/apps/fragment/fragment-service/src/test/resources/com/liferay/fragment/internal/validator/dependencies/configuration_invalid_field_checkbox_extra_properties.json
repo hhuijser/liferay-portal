@@ -3,7 +3,7 @@
 		{
 			"fields": [
 				{
-					"extra" : "value",
+					"extra": "value",
 					"name": "hideBody",
 					"type": "checkbox"
 				}

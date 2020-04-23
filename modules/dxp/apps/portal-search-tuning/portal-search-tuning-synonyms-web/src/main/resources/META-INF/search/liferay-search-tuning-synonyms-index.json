@@ -7,9 +7,9 @@
 					"type": "keyword"
 				},
 				"synonyms": {
-					"fields" : {
-						"keyword" : {
-							"type" : "keyword"
+					"fields": {
+						"keyword": {
+							"type": "keyword"
 						}
 					},
 					"store": true,

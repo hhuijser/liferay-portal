@@ -1,8 +1,8 @@
 {
 	"com.liferay.fragment.entry.processor.freemarker.FreeMarkerFragmentEntryProcessor": {
-		"segments-experience-id-0" : {
-			"bodyAppliedStyle" : "dark",
-			"headingAppliedStyle" : "dark"
+		"segments-experience-id-0": {
+			"bodyAppliedStyle": "dark",
+			"headingAppliedStyle": "dark"
 		}
 	}
 }

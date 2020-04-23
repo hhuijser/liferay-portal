@@ -1,8 +1,10 @@
 {
 	"items": {
 		"dropZoneItemId": {
-			"children": [],
-			"config": {},
+			"children": [
+			],
+			"config": {
+			},
 			"itemId": "dropZoneItemId",
 			"parentId": "newItemId",
 			"type": "drop-zone"
@@ -11,7 +13,8 @@
 			"children": [
 				"dropZoneItemId"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "newItemId",
 			"parentId": "root",
 			"type": "container"
@@ -20,7 +23,8 @@
 			"children": [
 				"newItemId"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "root",
 			"parentId": null,
 			"type": "root"

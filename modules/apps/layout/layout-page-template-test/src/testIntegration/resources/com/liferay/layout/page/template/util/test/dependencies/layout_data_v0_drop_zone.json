@@ -1,6 +1,7 @@
 {
 	"allowNewFragmentEntries": false,
-	"config": {},
+	"config": {
+	},
 	"fragmentEntryKeys": [
 		"fragmentEntry1",
 		"fragmentEntry2"

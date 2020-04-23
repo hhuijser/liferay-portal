@@ -1,5 +1,6 @@
 {
-	"config": {},
+	"config": {
+	},
 	"nextColumnId": 10,
 	"nextRowId": 8,
 	"structure": [
@@ -38,11 +39,11 @@
 							"fragmentEntryKey": "BASIC_COMPONENT-spacer-4x"
 						},
 						{
-							"editableValues": "{\"com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor\":{\"element-text\":{\"defaultValue\":\"\\n\\t\\t\\tHeading Example\\n\\t\\t\",\"config\":{},\"segments-experience-id-0\":{\"en_US\":\"<span class=\\\"text-secondary\\\">Analytics Cloud<\/span>\"}}}}",
+							"editableValues": "{\"com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor\":{\"element-text\":{\"defaultValue\":\"\\n\\t\\t\\tHeading Example\\n\\t\\t\",\"config\":{},\"segments-experience-id-0\":{\"en_US\":\"<span class=\\\"text-secondary\\\">Analytics Cloud</span>\"}}}}",
 							"fragmentEntryKey": "BASIC_COMPONENT-heading-4"
 						},
 						{
-							"editableValues": "{\"com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor\":{\"element-text\":{\"segments-experience-id-0\":{\"en_US\":\"<p><span class=\\\"text-white\\\">Discover insights into the modern customer journey.<\/span><\/p>\\n\"},\"defaultValue\":\"\\n\\t\\t\\tHeading Example\\n\\t\\t\",\"config\":{}}}}",
+							"editableValues": "{\"com.liferay.fragment.entry.processor.editable.EditableFragmentEntryProcessor\":{\"element-text\":{\"segments-experience-id-0\":{\"en_US\":\"<p><span class=\\\"text-white\\\">Discover insights into the modern customer journey.</span></p>\\n\"},\"defaultValue\":\"\\n\\t\\t\\tHeading Example\\n\\t\\t\",\"config\":{}}}}",
 							"fragmentEntryKey": "BASIC_COMPONENT-heading-1"
 						},
 						{

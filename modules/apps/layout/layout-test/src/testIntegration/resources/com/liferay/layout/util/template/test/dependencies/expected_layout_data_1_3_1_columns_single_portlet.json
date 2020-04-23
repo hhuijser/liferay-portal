@@ -6,7 +6,8 @@
 				"ROOT-CONTAINER1",
 				"ROOT-CONTAINER2"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "ROOT",
 			"parentId": "",
 			"type": "root"
@@ -16,7 +17,8 @@
 				"ROOT-CONTAINER0-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -50,7 +52,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER0-ROW0-COLUMN0-FRAGMENT0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "column-1:com_liferay_chart_sample_web_portlet_ChartSamplePortlet"
 			},
@@ -63,7 +66,8 @@
 				"ROOT-CONTAINER1-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -99,7 +103,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER1-ROW0-COLUMN0-FRAGMENT0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "column-2:com_liferay_hello_velocity_web_portlet_HelloVelocityPortlet"
 			},
@@ -119,7 +124,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER1-ROW0-COLUMN1-FRAGMENT0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "column-3:com_liferay_hello_world_web_portlet_HelloWorldPortlet"
 			},
@@ -139,7 +145,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER1-ROW0-COLUMN2-FRAGMENT0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "column-4:com_liferay_chart_sample_web_portlet_ChartSamplePortlet"
 			},
@@ -152,7 +159,8 @@
 				"ROOT-CONTAINER2-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -186,7 +194,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER2-ROW0-COLUMN0-FRAGMENT0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "column-5:com_liferay_chart_sample_web_portlet_ChartSamplePortlet"
 			},

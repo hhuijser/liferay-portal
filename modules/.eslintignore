@@ -19,6 +19,7 @@
 	# to the repository, but as they are generated files the linter should
 	# not touch them.
 	#
+	copyright.js
 	*.soy.js
 	apps/frontend-editor/frontend-editor-tinymce-web
 	apps/frontend-js/frontend-js-jquery-web

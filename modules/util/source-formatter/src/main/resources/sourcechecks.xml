@@ -453,14 +453,8 @@
 		<check name="CompatClassImportsCheck" />
 	</source-processor>
 	<source-processor name="JSONSourceProcessor">
-		<check name="JSONIndentationCheck" />
-		<check name="JSONLineBreakCheck" />
-		<check name="JSONPropertyOrderCheck" />
 		<check name="JSONStylingCheck" />
 		<check name="JSONValidationCheck" />
-		<check name="JSONWhitespaceCheck">
-			<property name="allowLeadingSpaces" value="true" />
-		</check>
 
 		<!-- Liferay Source Checks -->
 

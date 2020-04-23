@@ -456,6 +456,7 @@
 		<check name="JSONIndentationCheck" />
 		<check name="JSONLineBreakCheck" />
 		<check name="JSONPropertyOrderCheck" />
+		<check name="JSONStylingCheck" />
 		<check name="JSONValidationCheck" />
 		<check name="JSONWhitespaceCheck">
 			<property name="allowLeadingSpaces" value="true" />

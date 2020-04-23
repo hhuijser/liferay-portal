@@ -117,7 +117,7 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 	}
 
 	private Set<Role> _getRoles(boolean completed, Long processId)
-		throws PortalException {
+		throws Exception {
 
 		Set<Long> assigneeIds = _getAssigneeIds(completed, processId);
 

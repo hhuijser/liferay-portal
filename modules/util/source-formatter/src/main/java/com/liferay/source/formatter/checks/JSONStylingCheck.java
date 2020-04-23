@@ -47,9 +47,12 @@ public class JSONStylingCheck extends BaseFileCheck {
 
 				return JSONUtil.toString(new JSONArrayImpl(content));
 			}
-			else {
-				return JSONUtil.toString(new JSONObjectImpl(content));
+
+			if (content.endsWith("\n") && fileName.endsWith("/package.json")) {
+				return JSONUtil.toString(new JSONObjectImpl(content)) + "\n";
 			}
+
+			return JSONUtil.toString(new JSONObjectImpl(content));
 		}
 		catch (JSONException jsonException) {
 			return content;

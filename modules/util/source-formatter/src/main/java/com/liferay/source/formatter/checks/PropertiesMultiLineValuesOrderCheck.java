@@ -51,11 +51,16 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 
 			Matcher matcher2 = _multiLineValuesPattern.matcher(match);
 
+			outerLoop:
 			while (matcher2.find()) {
 				String values = matcher2.group();
 
 				List<String> valuesList = ListUtil.fromArray(
 					values.split(",\\\\"));
+
+				if (StringUtil.count(values, "\n") != valuesList.size()) {
+					continue outerLoop;
+				}
 
 				Collections.sort(
 					valuesList, new NaturalOrderStringComparator());

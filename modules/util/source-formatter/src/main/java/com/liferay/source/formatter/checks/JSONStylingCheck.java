@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checks;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONArrayImpl;
 import com.liferay.portal.json.JSONObjectImpl;
@@ -22,11 +21,6 @@ import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
-import com.liferay.source.formatter.util.FileUtil;
-
-import java.io.IOException;
-
-import java.util.Objects;
 
 /**
  * @author Hugo Huijser
@@ -47,9 +41,12 @@ public class JSONStylingCheck extends BaseFileCheck {
 
 				return JSONUtil.toString(new JSONArrayImpl(content));
 			}
-			else {
-				return JSONUtil.toString(new JSONObjectImpl(content));
+
+			if (content.endsWith("\n") && fileName.endsWith("/package.json")) {
+				return JSONUtil.toString(new JSONObjectImpl(content)) + "\n";
 			}
+
+			return JSONUtil.toString(new JSONObjectImpl(content));
 		}
 		catch (JSONException jsonException) {
 			return content;

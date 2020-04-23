@@ -18,8 +18,8 @@ import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
-import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.source.formatter.checks.comparator.PropertyValueComparator;
 
 import java.io.IOException;
 
@@ -74,8 +74,7 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 					continue outerLoop;
 				}
 
-				Collections.sort(
-					valuesList, new NaturalOrderStringComparator());
+				Collections.sort(valuesList, new PropertyValueComparator());
 
 				String newValues = _splitValues(originalValues, valuesList);
 

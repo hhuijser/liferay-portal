@@ -14,6 +14,8 @@
 
 package com.liferay.project.templates.workspace;
 
+import static org.junit.Assume.assumeTrue;
+
 import com.liferay.maven.executor.MavenExecutor;
 import com.liferay.project.templates.BaseProjectTemplatesTestCase;
 import com.liferay.project.templates.extensions.util.Validator;
@@ -113,6 +115,8 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testBuildTemplateWorkspaceLocalProperties() throws Exception {
+		assumeTrue(isBuildProjects());
+
 		File workspaceProjectDir = buildWorkspace(
 			temporaryFolder, "gradle", "foo", getDefaultLiferayVersion(),
 			mavenExecutor);
@@ -151,6 +155,8 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testBuildTemplateWorkspaceWithPortlet() throws Exception {
+		assumeTrue(isBuildProjects());
+
 		File gradleWorkspaceProjectDir = buildWorkspace(
 			temporaryFolder, "gradle", "withportlet",
 			getDefaultLiferayVersion(), mavenExecutor);
@@ -171,24 +177,22 @@ public class ProjectTemplatesWorkspaceTest
 			"-DclassName=Foo", "-Dpackage=foo.portlet",
 			"-DprojectType=workspace");
 
-		if (isBuildProjects()) {
-			executeGradle(
-				gradleWorkspaceProjectDir, _gradleDistribution,
-				":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
+		executeGradle(
+			gradleWorkspaceProjectDir, _gradleDistribution,
+			":modules:foo-portlet" + GRADLE_TASK_PATH_BUILD);
 
-			testExists(
-				gradleModulesDir,
-				"foo-portlet/build/libs/foo.portlet-1.0.0.jar");
+		testExists(
+			gradleModulesDir, "foo-portlet/build/libs/foo.portlet-1.0.0.jar");
 
-			executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
+		executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
 
-			testExists(
-				mavenModulesDir, "foo-portlet/target/foo-portlet-1.0.0.jar");
-		}
+		testExists(mavenModulesDir, "foo-portlet/target/foo-portlet-1.0.0.jar");
 	}
 
 	@Test
 	public void testCompareAntBndPluginVersions() throws Exception {
+		assumeTrue(isBuildProjects());
+
 		String template = "mvc-portlet";
 		String name = "foo";
 
@@ -235,6 +239,8 @@ public class ProjectTemplatesWorkspaceTest
 	public void testComparePortalToolsBundleSupportPluginVersions()
 		throws Exception {
 
+		assumeTrue(isBuildProjects());
+
 		File workspaceDir = buildWorkspace(
 			temporaryFolder, getDefaultLiferayVersion());
 
@@ -263,6 +269,8 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testSassCompilerMavenWorkspace() throws Exception {
+		assumeTrue(isBuildProjects());
+
 		File nativeSassWorkspaceDir = buildTemplateWithMaven(
 			temporaryFolder, "workspace", "nativeSassMavenWS", "com.test",
 			mavenExecutor, "-DliferayVersion=" + getDefaultLiferayVersion());
@@ -320,6 +328,8 @@ public class ProjectTemplatesWorkspaceTest
 
 	@Test
 	public void testSassCompilerWorkspace() throws Exception {
+		assumeTrue(isBuildProjects());
+
 		String liferayVersion = getDefaultLiferayVersion();
 
 		File nativeSassWorkspaceDir = buildWorkspace(

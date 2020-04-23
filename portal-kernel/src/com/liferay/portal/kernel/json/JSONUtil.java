@@ -15,14 +15,18 @@
 package com.liferay.portal.kernel.json;
 
 import com.liferay.petra.function.UnsafeFunction;
+import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
 import java.lang.reflect.Array;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -35,6 +39,7 @@ import java.util.stream.Collector;
 /**
  * @author Brian Wing Shun Chan
  * @author Rachael Koestartyo
+ * @author Hugo Huijser
  */
 public class JSONUtil {
 
@@ -528,6 +533,14 @@ public class JSONUtil {
 		return values;
 	}
 
+	public static String toString(JSONArray jsonArray) {
+		return _toString(jsonArray, StringPool.TAB, 0);
+	}
+
+	public static String toString(JSONObject jsonObject) {
+		return _toString(jsonObject, StringPool.TAB, 0);
+	}
+
 	public static String[] toStringArray(JSONArray jsonArray) {
 		if (jsonArray == null) {
 			return new String[0];
@@ -638,6 +651,108 @@ public class JSONUtil {
 		throws JSONException {
 
 		return JSONFactoryUtil.createJSONObject(json);
+	}
+
+	private static String _getIndent(String indent, int level) {
+		StringBundler sb = new StringBundler(level);
+
+		for (int i = 0; i < level; i++) {
+			sb.append(indent);
+		}
+
+		return sb.toString();
+	}
+
+	private static String _getString(Object value, String indent, int level) {
+		if (value instanceof JSONArray) {
+			return _toString((JSONArray)value, indent, level);
+		}
+
+		if (value instanceof JSONObject) {
+			return _toString((JSONObject)value, indent, level);
+		}
+
+		if (value instanceof String) {
+			return StringBundler.concat(
+				StringPool.QUOTE,
+				StringUtil.replace(
+					(String)value, new String[] {"\\", "\"", "\n", "\r", "\t"},
+					new String[] {"\\\\", "\\\"", "\\n", "\\r", "\\t"}),
+				StringPool.QUOTE);
+		}
+
+		return value.toString();
+	}
+
+	private static String _toString(
+		JSONArray jsonArray, String indent, int level) {
+
+		if (jsonArray.length() == 0) {
+			return StringBundler.concat(
+				StringPool.OPEN_BRACKET, "\n", _getIndent(indent, level),
+				StringPool.CLOSE_BRACKET);
+		}
+
+		StringBundler sb = new StringBundler();
+
+		sb.append(StringPool.OPEN_BRACKET);
+		sb.append("\n");
+
+		for (Object value : toObjectList(jsonArray)) {
+			sb.append(_getIndent(indent, level + 1));
+			sb.append(_getString(value, indent, level + 1));
+			sb.append(StringPool.COMMA);
+			sb.append("\n");
+		}
+
+		sb.setIndex(sb.index() - 2);
+
+		sb.append("\n");
+
+		sb.append(_getIndent(indent, level));
+
+		sb.append(StringPool.CLOSE_BRACKET);
+
+		return sb.toString();
+	}
+
+	private static String _toString(
+		JSONObject jsonObject, String indent, int level) {
+
+		if (jsonObject.length() == 0) {
+			return StringBundler.concat(
+				StringPool.OPEN_CURLY_BRACE, "\n", _getIndent(indent, level),
+				StringPool.CLOSE_CURLY_BRACE);
+		}
+
+		StringBundler sb = new StringBundler();
+
+		sb.append(StringPool.OPEN_CURLY_BRACE);
+		sb.append("\n");
+
+		List<String> keys = new ArrayList<>(jsonObject.keySet());
+
+		Collections.sort(keys);
+
+		for (String key : keys) {
+			sb.append(_getIndent(indent, level + 1));
+			sb.append(StringPool.QUOTE);
+			sb.append(key);
+			sb.append("\": ");
+			sb.append(_getString(jsonObject.get(key), indent, level + 1));
+			sb.append(StringPool.COMMA);
+			sb.append("\n");
+		}
+
+		sb.setIndex(sb.index() - 2);
+
+		sb.append("\n");
+
+		sb.append(_getIndent(indent, level));
+
+		sb.append(StringPool.CLOSE_CURLY_BRACE);
+
+		return sb.toString();
 	}
 
 }

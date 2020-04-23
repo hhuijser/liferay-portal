@@ -14,7 +14,9 @@
 
 package com.liferay.source.formatter.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.ListUtil;
 import com.liferay.portal.kernel.util.NaturalOrderStringComparator;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -53,23 +55,33 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 
 			outerLoop:
 			while (matcher2.find()) {
-				String values = matcher2.group();
+				String originalValues = matcher2.group();
 
-				List<String> valuesList = ListUtil.fromArray(
-					values.split(",\\\\"));
+				String s = originalValues;
 
-				if (StringUtil.count(values, "\n") != valuesList.size()) {
+				if (originalValues.endsWith("\\") &&
+					!originalValues.endsWith(",\\")) {
+
+					s = StringUtil.replaceLast(
+						s, CharPool.BACK_SLASH, StringPool.BLANK);
+				}
+
+				List<String> valuesList = ListUtil.fromArray(s.split(",\\\\"));
+
+				if (StringUtil.count(originalValues, "\n") !=
+						valuesList.size()) {
+
 					continue outerLoop;
 				}
 
 				Collections.sort(
 					valuesList, new NaturalOrderStringComparator());
 
-				String newValues = _splitValues(values, valuesList);
+				String newValues = _splitValues(originalValues, valuesList);
 
-				if (!values.equals(newValues)) {
+				if (!originalValues.equals(newValues)) {
 					return StringUtil.replaceFirst(
-						content, values, newValues, matcher1.start());
+						content, originalValues, newValues, matcher1.start());
 				}
 			}
 		}
@@ -77,7 +89,9 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private String _splitValues(String values, List<String> valuesList) {
+	private String _splitValues(
+		String originalValues, List<String> valuesList) {
+
 		StringBundler sb = new StringBundler(valuesList.size() * 2);
 
 		for (String value : valuesList) {
@@ -85,7 +99,7 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 			sb.append(",\\");
 		}
 
-		if (!values.endsWith(",\\")) {
+		if (!originalValues.endsWith(",\\")) {
 			sb.setIndex(sb.index() - 1);
 		}
 

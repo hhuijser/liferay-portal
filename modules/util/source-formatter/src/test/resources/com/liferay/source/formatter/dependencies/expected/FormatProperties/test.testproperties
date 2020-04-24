@@ -1,0 +1,37 @@
+##
+## Analytics Cloud
+##
+
+    analytics.cloud.cucumber.options=\
+        --tags @priority_1 \
+        \
+        --tags ~@blocked \
+        --tags ~@prototype \
+        --tags ~@skip \
+        \
+        src/testIntegration/resources/features
+
+##
+## Test Batch
+##
+
+    #
+    # Blogs
+    #
+
+    test.batch.class.names.includes[blogs]=\
+        **/blogs-recent-bloggers-test/**/*Test.java,\
+        **/blogs-test/**/*Test.java,\
+        **/blogs-test-util/**/*Test.java,\
+        **/blogs-uad-test/**/*Test.java,\
+        **/blogs-web/**/*Test.java,\
+        **/blogs-web-test/**/*Test.java
+
+    #
+    # Roles
+    #
+
+    test.batch.class.names.includes[roles]=\
+        **/roles-admin-test/**/*Test.java,\
+        **/roles-test/**/*Test.java,\
+        **/roles-uad-test/**/*Test.java

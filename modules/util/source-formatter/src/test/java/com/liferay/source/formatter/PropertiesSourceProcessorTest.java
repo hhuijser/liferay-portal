@@ -28,6 +28,11 @@ public class PropertiesSourceProcessorTest extends BaseSourceProcessorTestCase {
 	}
 
 	@Test
+	public void testSortValuesCheck() throws Exception {
+		test("FormatProperties/test.testproperties");
+	}
+
+	@Test
 	public void testStylingCheck() throws Exception {
 		test("StylingCheck.testproperties");
 	}

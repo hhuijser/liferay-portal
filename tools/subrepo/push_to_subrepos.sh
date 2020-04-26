@@ -325,7 +325,6 @@ else
 	info "Updating ${TOTAL_BRANCHES} branches across ${TOTAL_SUBREPOS} subrepos..."
 fi
 
-
 MINIMUM_API_CALLS_PER_BRANCH=3
 MAXIMUM_API_CALLS_PER_BRANCH=7
 

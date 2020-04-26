@@ -183,7 +183,7 @@ info
 
 BRANCH_COUNTER=0
 
-for GITREPO_BRANCH in  "${GITREPO_BRANCHES[@]}"
+for GITREPO_BRANCH in "${GITREPO_BRANCHES[@]}"
 do
 	SUBREPO_BRANCH="${GITREPO_BRANCH%%:*}"
 	GITREPO_PATH="$(echo "${GITREPO_BRANCH}" | sed 's/:[^:]*$//' | sed 's/.*://')"

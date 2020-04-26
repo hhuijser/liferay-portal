@@ -33,6 +33,6 @@ public class SHSourceProcessor extends BaseSourceProcessor {
 		return _INCLUDES;
 	}
 
-	private static final String[] _INCLUDES = {"**/*.sh"};
+	private static final String[] _INCLUDES = {"**/*.expect", "**/*.sh"};
 
 }

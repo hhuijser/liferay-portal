@@ -624,6 +624,9 @@
 		<check name="PropertiesServiceKeysCheck" />
 		<check name="PropertiesVerifyPropertiesCheck" />
 	</source-processor>
+	<source-processor name="SHSourceProcessor">
+		<check name="WhitespaceCheck" />
+	</source-processor>
 	<source-processor name="SoySourceProcessor">
 		<check name="SoyEmptyLinesCheck" />
 		<check name="WhitespaceCheck" />

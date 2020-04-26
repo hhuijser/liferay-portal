@@ -143,7 +143,7 @@ then
 		ALL_GITREPOS=("${ALL_GITREPOS[@]}" "${GITREPO_SEARCH}")
 	done
 
-  ALL_GITREPOS=($(printf '%s\n' "${ALL_GITREPOS[@]}" | sort -u))
+	ALL_GITREPOS=($(printf '%s\n' "${ALL_GITREPOS[@]}" | sort -u))
 
 	if [[ -z "$(echo "${ALL_GITREPOS[@]}" | grep '[a-zA-Z]')" ]]
 	then

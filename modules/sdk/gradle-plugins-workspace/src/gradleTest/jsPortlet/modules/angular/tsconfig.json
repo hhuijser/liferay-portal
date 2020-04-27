@@ -23,7 +23,7 @@
 		],
 		"types": [
 			"jasmine",
-			 "node"
+			"node"
 		]
 	},
 	"include": [

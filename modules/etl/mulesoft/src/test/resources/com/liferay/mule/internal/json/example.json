@@ -1,6 +1,6 @@
 {
-	"fieldName1" : "value1",
-	"fieldName2" : {
+	"fieldName1": "value1",
+	"fieldName2": {
 		"nestedFieldName1": {
 			"nestedFieldNameWith/": "nestedValue1"
 		}

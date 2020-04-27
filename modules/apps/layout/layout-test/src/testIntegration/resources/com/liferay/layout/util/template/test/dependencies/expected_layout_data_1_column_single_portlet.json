@@ -4,7 +4,8 @@
 			"children": [
 				"ROOT-CONTAINER0"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "ROOT",
 			"parentId": "",
 			"type": "root"
@@ -14,7 +15,8 @@
 				"ROOT-CONTAINER0-ROW0"
 			],
 			"config": {
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -48,7 +50,8 @@
 			"type": "column"
 		},
 		"ROOT-CONTAINER0-ROW0-COLUMN0-FRAGMENT0": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "column-1:com_liferay_hello_world_web_portlet_HelloWorldPortlet"
 			},

@@ -12,7 +12,8 @@
 			"type": "column"
 		},
 		"COLUMN2-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 3
 			},
@@ -21,7 +22,8 @@
 			"type": "column"
 		},
 		"COLUMN3-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 3
 			},
@@ -30,7 +32,8 @@
 			"type": "column"
 		},
 		"COLUMN4-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"size": 3
 			},
@@ -39,7 +42,8 @@
 			"type": "column"
 		},
 		"FRAGMENT1-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": "${FRAGMENT_ENTRY_LINK1_ID}"
 			},
@@ -51,7 +55,8 @@
 			"children": [
 				"SECTION-UUID"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "MAIN-UUID",
 			"parentId": "",
 			"type": "root"
@@ -77,7 +82,8 @@
 			],
 			"config": {
 				"backgroundColorCssClass": "light",
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 6,
 				"paddingHorizontal": 8,
 				"paddingTop": 7,

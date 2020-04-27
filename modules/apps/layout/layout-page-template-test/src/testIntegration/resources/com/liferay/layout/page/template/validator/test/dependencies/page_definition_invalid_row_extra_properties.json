@@ -1,18 +1,18 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"pageElements" : [
+				"pageElements": [
 					{
-						"definition" : {
-							"extra" : "value"
+						"definition": {
+							"extra": "value"
 						},
-						"type" : "Row"
+						"type": "Row"
 					}
 				],
-				"type" : "Section"
+				"type": "Section"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	}
 }

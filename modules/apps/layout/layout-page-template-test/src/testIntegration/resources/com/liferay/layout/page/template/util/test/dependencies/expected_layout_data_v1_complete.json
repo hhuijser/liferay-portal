@@ -25,7 +25,8 @@
 			],
 			"config": {
 				"backgroundColorCssClass": "success",
-				"backgroundImage": {},
+				"backgroundImage": {
+				},
 				"paddingBottom": 3,
 				"paddingHorizontal": 3,
 				"paddingTop": 3,
@@ -75,7 +76,8 @@
 			"type": "container"
 		},
 		"FRAGMENT0-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 0
 			},
@@ -84,7 +86,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT1-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 1
 			},
@@ -93,7 +96,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT2-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 2
 			},
@@ -102,7 +106,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT3-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 3
 			},
@@ -111,7 +116,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT4-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 4
 			},
@@ -120,7 +126,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT5-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 5
 			},
@@ -129,7 +136,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT6-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 6
 			},
@@ -138,7 +146,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT7-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 7
 			},
@@ -147,7 +156,8 @@
 			"type": "fragment"
 		},
 		"FRAGMENT8-UUID": {
-			"children": [],
+			"children": [
+			],
 			"config": {
 				"fragmentEntryLinkId": 8
 			},
@@ -163,7 +173,8 @@
 				"CONTAINER3-UUID",
 				"FRAGMENT8-UUID"
 			],
-			"config": {},
+			"config": {
+			},
 			"itemId": "MAIN-UUID",
 			"parentId": "",
 			"type": "root"

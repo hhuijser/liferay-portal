@@ -1,15 +1,15 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"definition" : {
-					"backgroundImage" : {
-						"extra" : "value"
+				"definition": {
+					"backgroundImage": {
+						"extra": "value"
 					}
 				},
-				"type" : "Section"
+				"type": "Section"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	}
 }

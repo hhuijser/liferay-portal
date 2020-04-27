@@ -26,7 +26,7 @@ public interface RelatedEntryIndexerRegistry {
 
 	public List<RelatedEntryIndexer> getRelatedEntryIndexers();
 
-	public List<RelatedEntryIndexer> getRelatedEntryIndexers(Class clazz);
+	public List<RelatedEntryIndexer> getRelatedEntryIndexers(Class<?> clazz);
 
 	public List<RelatedEntryIndexer> getRelatedEntryIndexers(String className);
 

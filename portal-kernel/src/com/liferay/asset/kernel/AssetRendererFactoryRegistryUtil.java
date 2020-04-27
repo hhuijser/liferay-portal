@@ -214,7 +214,7 @@ public class AssetRendererFactoryRegistryUtil {
 				(serviceReference, emitter) -> {
 					Registry registry = RegistryUtil.getRegistry();
 
-					AssetRendererFactory assetRendererFactory =
+					AssetRendererFactory<?> assetRendererFactory =
 						registry.getService(serviceReference);
 
 					emitter.emit(assetRendererFactory.getClassName());
@@ -231,7 +231,7 @@ public class AssetRendererFactoryRegistryUtil {
 				(serviceReference, emitter) -> {
 					Registry registry = RegistryUtil.getRegistry();
 
-					AssetRendererFactory assetRendererFactory =
+					AssetRendererFactory<?> assetRendererFactory =
 						registry.getService(serviceReference);
 
 					emitter.emit(assetRendererFactory.getType());

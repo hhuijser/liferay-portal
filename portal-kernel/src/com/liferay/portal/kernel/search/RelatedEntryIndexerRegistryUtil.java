@@ -28,7 +28,7 @@ public class RelatedEntryIndexerRegistryUtil {
 	}
 
 	public static List<RelatedEntryIndexer> getRelatedEntryIndexers(
-		Class clazz) {
+		Class<?> clazz) {
 
 		return _relatedEntryIndexerRegistry.getRelatedEntryIndexers(clazz);
 	}

@@ -167,7 +167,8 @@
 				"responses": {
 					"default": {
 						"content": {
-							"application/json": {}
+							"application/json": {
+							}
 						}
 					}
 				}

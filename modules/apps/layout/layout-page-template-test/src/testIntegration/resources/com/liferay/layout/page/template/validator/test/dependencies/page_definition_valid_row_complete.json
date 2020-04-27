@@ -1,20 +1,21 @@
 {
-	"pageElement" : {
-		"pageElements" : [
+	"pageElement": {
+		"pageElements": [
 			{
-				"pageElements" : [
+				"pageElements": [
 					{
-						"definition" : {
-							"gutters" : false,
-							"numberOfColumns" : 6
+						"definition": {
+							"gutters": false,
+							"numberOfColumns": 6
 						},
-						"pageElements" : [],
-						"type" : "Row"
+						"pageElements": [
+						],
+						"type": "Row"
 					}
 				],
-				"type" : "Section"
+				"type": "Section"
 			}
 		],
-		"type" : "Root"
+		"type": "Root"
 	}
 }

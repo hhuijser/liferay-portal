@@ -137,7 +137,7 @@ public class CreateInOneDriveMVCActionCommand extends BaseMVCActionCommand {
 	}
 
 	private JSONObject _executeCommand(PortletRequest portletRequest)
-		throws PortalException {
+		throws Exception {
 
 		try {
 			long repositoryId = ParamUtil.getLong(

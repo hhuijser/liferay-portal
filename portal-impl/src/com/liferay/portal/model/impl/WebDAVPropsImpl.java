@@ -18,7 +18,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.kernel.webdav.WebDAVUtil;
 import com.liferay.portal.kernel.xml.Document;
-import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.Namespace;
 import com.liferay.portal.kernel.xml.QName;
@@ -132,7 +131,7 @@ public class WebDAVPropsImpl extends WebDAVPropsBaseImpl {
 		}
 	}
 
-	private Document _getPropsDocument() throws DocumentException {
+	private Document _getPropsDocument() throws Exception {
 		if (_document == null) {
 			_document = SAXReaderUtil.read(getProps());
 		}

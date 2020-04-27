@@ -145,7 +145,7 @@ public class SharingNotificationHelper {
 
 	private String _getEmailActionTitle(
 			SharingEntry sharingEntry, ResourceBundle resourceBundle)
-		throws PortalException {
+		throws Exception {
 
 		SharingEntryInterpreter sharingEntryInterpreter =
 			_getSharingEntryInterpreter(sharingEntry);

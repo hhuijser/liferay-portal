@@ -248,7 +248,7 @@ public class DeployUtil {
 	}
 
 	private String _getResourcePath(Set<Path> tempDirPaths, String resource)
-		throws IOException {
+		throws Exception {
 
 		Class<?> clazz = getClass();
 

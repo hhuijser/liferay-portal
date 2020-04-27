@@ -16,7 +16,6 @@ package com.liferay.batch.engine.internal.reader;
 
 import com.liferay.batch.engine.BatchEngineTaskContentType;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.zip.ZipInputStream;
@@ -65,7 +64,7 @@ public class BatchEngineImportTaskItemReaderFactory {
 	}
 
 	private InputStream _getZipInputStream(InputStream inputStream)
-		throws IOException {
+		throws Exception {
 
 		ZipInputStream zipInputStream = new ZipInputStream(inputStream);
 

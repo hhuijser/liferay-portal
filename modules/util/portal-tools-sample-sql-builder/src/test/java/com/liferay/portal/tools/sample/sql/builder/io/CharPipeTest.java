@@ -781,7 +781,7 @@ public class CharPipeTest {
 	}
 
 	private long _timestampedRead(Reader reader, char[] buffer)
-		throws IOException {
+		throws Exception {
 
 		reader.read(buffer);
 
@@ -789,7 +789,7 @@ public class CharPipeTest {
 	}
 
 	private long _timestampedSkip(Reader reader, int skipSize)
-		throws IOException {
+		throws Exception {
 
 		reader.skip(skipSize);
 

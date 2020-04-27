@@ -486,7 +486,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 
 		private void _setContextFields(
 				Field[] fields, Message message, Object resource)
-			throws IllegalAccessException {
+			throws Exception {
 
 			for (Field field : fields) {
 				String name = field.getName();

@@ -27,7 +27,6 @@ import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.function.UnsafeRunnable;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.test.util.ConfigurationTemporarySwapper;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -839,7 +838,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		Assert.assertEquals(0, elements.size());
 	}
 
-	private long _getDDMStructureId() throws PortalException {
+	private long _getDDMStructureId() throws Exception {
 		Group companyGroup = _groupLocalService.getCompanyGroup(
 			TestPropsValues.getCompanyId());
 
@@ -852,7 +851,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		return ddmStructure.getStructureId();
 	}
 
-	private HttpServletRequest _getHttpServletRequest() throws PortalException {
+	private HttpServletRequest _getHttpServletRequest() throws Exception {
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
 
@@ -866,7 +865,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 	}
 
 	private HttpServletRequest _getSignedInHttpServletRequest()
-		throws PortalException {
+		throws Exception {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -880,7 +879,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		return mockHttpServletRequest;
 	}
 
-	private ThemeDisplay _getSingedInThemeDisplay() throws PortalException {
+	private ThemeDisplay _getSingedInThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		themeDisplay.setSignedIn(true);
@@ -888,7 +887,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		return themeDisplay;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		Company company = _companyLocalService.getCompany(

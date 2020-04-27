@@ -102,7 +102,7 @@ public class AssetEntriesCheckerHelper {
 	private void _checkAssetEntries(
 			com.liferay.portal.kernel.model.PortletPreferences
 				portletPreferencesModel)
-		throws PortalException {
+		throws Exception {
 
 		Layout layout = _layoutLocalService.fetchLayout(
 			portletPreferencesModel.getPlid());
@@ -207,7 +207,7 @@ public class AssetEntriesCheckerHelper {
 
 	private List<AssetEntry> _getAssetEntries(
 			PortletPreferences portletPreferences, Layout layout)
-		throws PortalException {
+		throws Exception {
 
 		AssetPublisherWebConfiguration assetPublisherWebConfiguration =
 			_configurationProvider.getCompanyConfiguration(

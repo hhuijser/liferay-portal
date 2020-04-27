@@ -16,7 +16,6 @@ package com.liferay.portal.tools.theme.builder;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
 
 import java.net.URL;
 
@@ -137,7 +136,7 @@ public class ThemeBuilderTest {
 	}
 
 	private void _assertEquals(String fileName, String expected)
-		throws IOException {
+		throws Exception {
 
 		String content = _read(fileName);
 
@@ -153,7 +152,7 @@ public class ThemeBuilderTest {
 	}
 
 	private void _assertNotEquals(String fileName, String expected)
-		throws IOException {
+		throws Exception {
 
 		String content = _read(fileName);
 
@@ -168,7 +167,7 @@ public class ThemeBuilderTest {
 		return file;
 	}
 
-	private String _read(String fileName) throws IOException {
+	private String _read(String fileName) throws Exception {
 		File file = _assertExists(fileName);
 
 		return new String(

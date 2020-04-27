@@ -19,7 +19,6 @@ import com.liferay.portal.tools.theme.builder.ThemeBuilderTest;
 import com.liferay.portal.tools.theme.builder.internal.util.FileUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -57,7 +56,7 @@ public class BuildThemeMojoTest extends ThemeBuilderTest {
 			File projectDir, File diffsDir, String name, File outputDir,
 			File parentDir, String parentName, String templateExtension,
 			File unstyledDir)
-		throws IOException {
+		throws Exception {
 
 		String content = FileUtil.read(
 			BuildThemeMojoTest.class, "dependencies/pom_xml.tmpl");

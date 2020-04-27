@@ -112,8 +112,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		mockHttpServletRequest.setParameter(
 			"js", StringUtil.read(jsUrl.openStream()));
 
-		_processEvents(
-			mockHttpServletRequest, mockHttpServletResponse, _user);
+		_processEvents(mockHttpServletRequest, mockHttpServletResponse, _user);
 
 		_renderFragmentEntryStrutsAction.execute(
 			mockHttpServletRequest, pipingServletResponse);
@@ -142,8 +141,7 @@ public class RenderFragmentEntryStrutsActionTest {
 		MockHttpServletResponse mockHttpServletResponse =
 			new MockHttpServletResponse();
 
-		_processEvents(
-			mockHttpServletRequest, mockHttpServletResponse, _user);
+		_processEvents(mockHttpServletRequest, mockHttpServletResponse, _user);
 
 		mockHttpServletRequest.setParameter(
 			"groupId", String.valueOf(_group.getGroupId()));

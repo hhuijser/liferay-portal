@@ -105,7 +105,7 @@ public class DBBuilder {
 
 	private void _appendFile(
 			StringBundler sb, String sqlDir, String pathPrefix, DBType dbType)
-		throws IOException {
+		throws Exception {
 
 		String fileName = StringBundler.concat(
 			sqlDir, pathPrefix, dbType, ".sql");
@@ -115,7 +115,7 @@ public class DBBuilder {
 		}
 	}
 
-	private void _buildCreateFile(String sqlDir) throws IOException {
+	private void _buildCreateFile(String sqlDir) throws Exception {
 		for (DBType dbType : _dbTypes) {
 			if (dbType == DBType.HYPERSONIC) {
 				continue;

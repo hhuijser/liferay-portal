@@ -19,7 +19,6 @@ import com.liferay.headless.admin.user.client.dto.v1_0.Segment;
 import com.liferay.headless.admin.user.client.pagination.Page;
 import com.liferay.headless.admin.user.client.pagination.Pagination;
 import com.liferay.headless.admin.user.client.resource.v1_0.SegmentResource;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.Role;
@@ -188,9 +187,7 @@ public class SegmentResourceTest extends BaseSegmentResourceTestCase {
 			testGroup.getGroupId(), randomSegment());
 	}
 
-	private Segment _addSegment(Long siteId, Segment segment)
-		throws PortalException {
-
+	private Segment _addSegment(Long siteId, Segment segment) throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				siteId, _adminUser.getUserId());

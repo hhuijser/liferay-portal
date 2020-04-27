@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.Validator;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +50,7 @@ public class UpgradeKBFolder extends UpgradeProcess {
 	}
 
 	private String _findUniqueUrlTitle(Connection con, String urlTitle)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement ps = con.prepareStatement(
 				"select count(*) from KBFolder where KBFolder.urlTitle like " +
@@ -76,7 +75,7 @@ public class UpgradeKBFolder extends UpgradeProcess {
 	}
 
 	private Map<Long, String> _getInitialUrlTitles(Connection con)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement ps = con.prepareStatement(
 				"select kbFolderId, name from KBFolder where " +
@@ -125,7 +124,7 @@ public class UpgradeKBFolder extends UpgradeProcess {
 
 	private void _updateKBFolder(
 			Connection con, long kbFolderId, String urlTitle)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement ps = con.prepareStatement(
 				"update KBFolder set KBFolder.urlTitle = ? where " +

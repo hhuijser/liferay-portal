@@ -133,7 +133,7 @@ public class KBArticleStagedModelDataHandlerTest
 	private KBArticle _addKBArticle(
 			long parentResourcePrimKey, long parentResourceClassNameId,
 			ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		return KBArticleLocalServiceUtil.addKBArticle(
 			serviceContext.getUserId(), parentResourceClassNameId,
@@ -142,9 +142,7 @@ public class KBArticleStagedModelDataHandlerTest
 			StringUtil.randomString(), null, null, null, serviceContext);
 	}
 
-	private ServiceContext _createServiceContext(Group group)
-		throws PortalException {
-
+	private ServiceContext _createServiceContext(Group group) throws Exception {
 		return ServiceContextTestUtil.getServiceContext(group.getGroupId());
 	}
 

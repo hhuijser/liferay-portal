@@ -35,7 +35,6 @@ import com.liferay.dynamic.data.mapping.model.DDMFormRule;
 import com.liferay.dynamic.data.mapping.model.DDMStructureLayout;
 import com.liferay.dynamic.data.mapping.spi.converter.SPIDDMFormRuleConverter;
 import com.liferay.dynamic.data.mapping.spi.converter.model.SPIDDMFormRule;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -139,7 +138,7 @@ public class DataLayoutUtil {
 	}
 
 	private static JSONObject _serializeRule(DataRule dataRule)
-		throws JSONException {
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject();
 

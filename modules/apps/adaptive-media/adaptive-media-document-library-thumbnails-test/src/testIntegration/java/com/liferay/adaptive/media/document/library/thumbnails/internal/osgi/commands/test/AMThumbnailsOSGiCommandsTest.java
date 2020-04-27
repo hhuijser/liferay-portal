@@ -70,7 +70,6 @@ import org.junit.runner.RunWith;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
 import org.osgi.framework.FrameworkUtil;
 import org.osgi.service.component.runtime.ServiceComponentRuntime;
 import org.osgi.service.component.runtime.dto.ComponentDescriptionDTO;
@@ -259,7 +258,7 @@ public class AMThumbnailsOSGiCommandsTest {
 		promise.getValue();
 	}
 
-	private static void _disableDocumentLibraryAM() throws BundleException {
+	private static void _disableDocumentLibraryAM() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(
 			AMThumbnailsOSGiCommandsTest.class);
 
@@ -301,7 +300,7 @@ public class AMThumbnailsOSGiCommandsTest {
 		promise.getValue();
 	}
 
-	private static void _enableDocumentLibraryAM() throws BundleException {
+	private static void _enableDocumentLibraryAM() throws Exception {
 		Bundle bundle = FrameworkUtil.getBundle(
 			AMThumbnailsOSGiCommandsTest.class);
 

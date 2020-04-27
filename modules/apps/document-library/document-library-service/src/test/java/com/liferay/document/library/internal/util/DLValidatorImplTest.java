@@ -65,9 +65,7 @@ public class DLValidatorImplTest {
 		_validateFileExtension("test.GIF");
 	}
 
-	private void _validateFileExtension(String fileName)
-		throws FileExtensionException {
-
+	private void _validateFileExtension(String fileName) throws Exception {
 		Mockito.when(
 			_dlConfiguration.fileExtensions()
 		).thenReturn(

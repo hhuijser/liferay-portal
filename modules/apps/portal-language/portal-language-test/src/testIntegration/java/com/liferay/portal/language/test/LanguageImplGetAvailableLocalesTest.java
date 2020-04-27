@@ -15,7 +15,6 @@
 package com.liferay.portal.language.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -96,7 +95,7 @@ public class LanguageImplGetAvailableLocalesTest {
 		Assert.assertEquals(_locales, _language.getAvailableLocales(groupId));
 	}
 
-	private long _getGuestGroupId() throws PortalException {
+	private long _getGuestGroupId() throws Exception {
 		Group group = _groupLocalService.getGroup(
 			_company.getCompanyId(), GroupConstants.GUEST);
 

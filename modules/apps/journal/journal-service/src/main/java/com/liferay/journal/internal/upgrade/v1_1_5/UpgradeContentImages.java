@@ -214,7 +214,7 @@ public class UpgradeContentImages extends UpgradeProcess {
 	private FileEntry _getFileEntryById(
 			long userId, long groupId, long companyId, long resourcePrimKey,
 			String id)
-		throws PortalException {
+		throws Exception {
 
 		userId = PortalUtil.getValidUserId(companyId, userId);
 

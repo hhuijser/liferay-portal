@@ -20,7 +20,6 @@ import com.liferay.depot.constants.DepotConstants;
 import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryService;
 import com.liferay.depot.test.util.DepotTestUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
@@ -201,7 +200,7 @@ public class DepotEntryServiceTest {
 	}
 
 	private DepotEntry _updateDepotEntry(DepotEntry depotEntry, User user)
-		throws PortalException {
+		throws Exception {
 
 		return _depotEntryService.updateDepotEntry(
 			depotEntry.getDepotEntryId(),

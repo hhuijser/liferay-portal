@@ -25,7 +25,6 @@ import com.liferay.calendar.notification.NotificationType;
 import com.liferay.calendar.service.CalendarNotificationTemplateLocalServiceUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -210,7 +209,7 @@ public class NotificationTemplateContextFactory {
 
 	private static String _getCalendarBookingURL(
 			User user, long calendarBookingId)
-		throws PortalException {
+		throws Exception {
 
 		Group group = _groupLocalService.getGroup(
 			user.getCompanyId(), GroupConstants.GUEST);
@@ -243,7 +242,7 @@ public class NotificationTemplateContextFactory {
 	}
 
 	private static String _getPortalURL(long companyId, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		Company company = _companyLocalService.getCompany(companyId);
 

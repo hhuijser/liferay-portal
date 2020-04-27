@@ -17,7 +17,6 @@ package com.liferay.site.admin.web.internal.servlet.taglib.util;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
@@ -265,7 +264,7 @@ public class SiteActionDropdownItemsProvider {
 		};
 	}
 
-	private boolean _hasDeleteGroupPermission() throws PortalException {
+	private boolean _hasDeleteGroupPermission() throws Exception {
 		if (_group.isCompany()) {
 			return false;
 		}

@@ -177,6 +177,11 @@ public class ChainingCheck extends BaseCheck {
 
 			_checkRequiredChaining(methodCallDetailAST, chainedMethodNames);
 
+			if (dotDetailAST != null) {
+				_checkInlineMethodCall(
+					methodCallDetailAST, chainedMethodNames, detailAST);
+			}
+
 			int chainSize = chainedMethodNames.size();
 
 			if (chainSize == 1) {
@@ -270,6 +275,52 @@ public class ChainingCheck extends BaseCheck {
 		if (!unsortedNames.equals(middleMethodNames.toString())) {
 			log(methodCallDetailAST, _MSG_UNSORTED_RESPONSE);
 		}
+	}
+
+	private void _checkInlineMethodCall(
+		DetailAST methodCallDetailAST, List<String> chainedMethodNames,
+		DetailAST detailAST) {
+
+		DetailAST dotDetailAST = methodCallDetailAST.findFirstToken(
+			TokenTypes.DOT);
+
+		if (dotDetailAST == null) {
+			return;
+		}
+
+		DetailAST newDetailAST = dotDetailAST.getFirstChild();
+
+		if (newDetailAST.getType() != TokenTypes.LITERAL_NEW) {
+			return;
+		}
+
+		DetailAST lastChildDetailAST = newDetailAST.getLastChild();
+
+		if (lastChildDetailAST.getType() == TokenTypes.OBJBLOCK) {
+			return;
+		}
+
+		DetailAST parentDetailAST = methodCallDetailAST.getParent();
+
+		if (parentDetailAST == null) {
+			return;
+		}
+
+		parentDetailAST = parentDetailAST.getParent();
+
+		if (parentDetailAST.getType() == TokenTypes.LITERAL_RETURN) {
+			return;
+		}
+
+		if (_isAllowedChainingMethodCall(
+				methodCallDetailAST, chainedMethodNames, detailAST)) {
+
+			return;
+		}
+
+		log(
+			methodCallDetailAST, _MSG_AVOID_INLINE_METHOD_CHAINING,
+			getMethodName(methodCallDetailAST));
 	}
 
 	private void _checkMethodName(
@@ -882,6 +933,9 @@ public class ChainingCheck extends BaseCheck {
 	private static final String _APPLY_TO_TYPE_CAST_KEY = "applyToTypeCast";
 
 	private static final String _MSG_ALLOWED_CHAINING = "chaining.allowed";
+
+	private static final String _MSG_AVOID_INLINE_METHOD_CHAINING =
+		"chaining.avoid.inline.method";
 
 	private static final String _MSG_AVOID_METHOD_CHAINING =
 		"chaining.avoid.method";

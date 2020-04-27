@@ -238,6 +238,7 @@
 			<property name="category" value="Styling" />
 			<property name="description" value="Checks that chaining is only applied on certain types and methods" />
 			<message key="chaining.allowed" value="Chaining is allowed on ''{0}''" />
+			<message key="chaining.avoid.inline.method" value="Avoid inline chaining on method ''{0}''" />
 			<message key="chaining.avoid.method" value="Avoid chaining on method ''{0}''" />
 			<message key="chaining.avoid.type.cast" value="Avoid chaining on Type Cast" />
 			<message key="chaining.required" value="Chaining on ''{0}'' is preferred" />

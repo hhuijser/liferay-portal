@@ -1741,7 +1741,7 @@ public class OrganizationLocalServiceImpl
 			int end, Sort[] sorts)
 		throws PortalException {
 
-		Indexer indexer = OrganizationUsersSearcher.getInstance();
+		Indexer<?> indexer = OrganizationUsersSearcher.getInstance();
 
 		SearchContext searchContext = buildSearchContext(
 			companyId, parentOrganizationId, keywords, status, params, start,
@@ -1771,7 +1771,7 @@ public class OrganizationLocalServiceImpl
 			int status, LinkedHashMap<String, Object> params)
 		throws PortalException {
 
-		Indexer indexer = OrganizationUsersSearcher.getInstance();
+		Indexer<?> indexer = OrganizationUsersSearcher.getInstance();
 
 		SearchContext searchContext = buildSearchContext(
 			companyId, parentOrganizationId, keywords, status, params,

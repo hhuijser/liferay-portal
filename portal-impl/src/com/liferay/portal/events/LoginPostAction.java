@@ -119,7 +119,7 @@ public class LoginPostAction extends Action {
 				UserLocalServiceUtil.addDefaultRoles(userId);
 				UserLocalServiceUtil.addDefaultUserGroups(userId);
 
-				Indexer userIndexer = IndexerRegistryUtil.getIndexer(
+				Indexer<User> userIndexer = IndexerRegistryUtil.getIndexer(
 					User.class.getName());
 
 				userIndexer.reindex(User.class.getName(), userId);

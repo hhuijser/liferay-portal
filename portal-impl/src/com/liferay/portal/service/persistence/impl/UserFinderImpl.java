@@ -958,7 +958,7 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 		}
 	}
 
-	protected String getColumnNames(OrderByComparator obc) {
+	protected String getColumnNames(OrderByComparator<User> obc) {
 		if (obc == null) {
 			return "DISTINCT User_.userId AS userId";
 		}

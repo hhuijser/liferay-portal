@@ -95,7 +95,7 @@ public class DiffImpl implements com.liferay.portal.kernel.diff.Diff {
 
 		// Make a a Diff of these lines and iterate over their Differences.
 
-		Diff diff = new Diff(sourceStringList, targetStringList);
+		Diff<String> diff = new Diff(sourceStringList, targetStringList);
 
 		List<Difference> differences = diff.diff();
 

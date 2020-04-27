@@ -122,7 +122,7 @@ public class LiferayPropertyAccessor extends BasicPropertyAccessor {
 	}
 
 	private LiferayPropertyMutator _getLiferayPropertyMutator(
-		Class clazz, String name) {
+		Class<?> clazz, String name) {
 
 		ModelMutators modelMutators = _modelMutators.computeIfAbsent(
 			clazz,

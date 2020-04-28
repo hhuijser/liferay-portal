@@ -41,7 +41,9 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -75,6 +77,9 @@ public class TryWithResourcesCheck extends BaseCheck {
 	private void _checkFinallyStatement(
 		DetailAST literalTryDetailAST, DetailAST literalFinallyDetailAST) {
 
+		Map<Integer, String> cleanUpVariableNamesMap = new HashMap<>();
+		Map<Integer, String> closeVariableNamesMap = new HashMap<>();
+
 		DetailAST slistDetailAST = literalFinallyDetailAST.findFirstToken(
 			TokenTypes.SLIST);
 
@@ -89,14 +94,15 @@ public class TryWithResourcesCheck extends BaseCheck {
 				DetailAST typeDetailAST = getVariableTypeDetailAST(
 					literalTryDetailAST, cleanUpVariableName, false);
 
-				if (_useTryWithResources(
+				if (!_useTryWithResources(
 						cleanUpVariableName, typeDetailAST,
 						literalTryDetailAST)) {
 
-					log(
-						methodCallDetailAST, _MSG_USE_TRY_WITH_RESOURCES,
-						cleanUpVariableName, "DataAccess.cleanUp");
+					return;
 				}
+
+				cleanUpVariableNamesMap.put(
+					methodCallDetailAST.getLineNo(), cleanUpVariableName);
 			}
 
 			String closeVariableName = _getCloseVariableName(
@@ -112,18 +118,37 @@ public class TryWithResourcesCheck extends BaseCheck {
 			if (!_useTryWithResources(
 					closeVariableName, typeDetailAST, literalTryDetailAST)) {
 
-				continue;
+				return;
 			}
 
 			List<String> closeableTypeNames = _getCloseableTypeNames();
 
-			if (closeableTypeNames.contains(
+			if (!closeableTypeNames.contains(
 					_getFullyQualifiedTypeName(typeDetailAST, true))) {
 
-				log(
-					methodCallDetailAST, _MSG_USE_TRY_WITH_RESOURCES,
-					closeVariableName, closeVariableName + ".close");
+				return;
 			}
+
+			closeVariableNamesMap.put(
+				methodCallDetailAST.getLineNo(), closeVariableName);
+		}
+
+		for (Map.Entry<Integer, String> entry :
+				cleanUpVariableNamesMap.entrySet()) {
+
+			log(
+				entry.getKey(), _MSG_USE_TRY_WITH_RESOURCES, entry.getValue(),
+				"DataAccess.cleanUp");
+		}
+
+		for (Map.Entry<Integer, String> entry :
+				closeVariableNamesMap.entrySet()) {
+
+			String closeVariableName = entry.getValue();
+
+			log(
+				entry.getKey(), _MSG_USE_TRY_WITH_RESOURCES, closeVariableName,
+				closeVariableName + ".close");
 		}
 	}
 
@@ -433,11 +458,13 @@ public class TryWithResourcesCheck extends BaseCheck {
 
 		DetailAST parentDetailAST = typeDetailAST.getParent();
 
-		if (parentDetailAST.getType() != TokenTypes.VARIABLE_DEF) {
+		if ((parentDetailAST.getType() != TokenTypes.VARIABLE_DEF) ||
+			hasParentWithTokenType(typeDetailAST, TokenTypes.FOR_EACH_CLAUSE)) {
+
 			return false;
 		}
 
-		int lineNumber = literalTryDetailAST.getLineNo();
+		int endLineNumber = getEndLineNumber(literalTryDetailAST);
 
 		int assignCount = 0;
 
@@ -458,6 +485,12 @@ public class TryWithResourcesCheck extends BaseCheck {
 			getVariableCallerDetailASTList(parentDetailAST, variableName);
 
 		for (DetailAST variableCallerDetailAST : variableCallerDetailASTList) {
+			if (hasParentWithTokenType(
+					variableCallerDetailAST, TokenTypes.LAMBDA)) {
+
+				return false;
+			}
+
 			parentDetailAST = variableCallerDetailAST.getParent();
 
 			if (parentDetailAST.getType() == TokenTypes.ASSIGN) {
@@ -478,25 +511,23 @@ public class TryWithResourcesCheck extends BaseCheck {
 				assignCount++;
 			}
 
-			if (variableCallerDetailAST.getLineNo() > lineNumber) {
-				continue;
+			if (variableCallerDetailAST.getLineNo() > endLineNumber) {
+				return false;
 			}
 
 			DetailAST callerLiteralTryDetailAST = getParentWithTokenType(
 				variableCallerDetailAST, TokenTypes.LITERAL_TRY);
 
-			if ((callerLiteralTryDetailAST == null) ||
-				(callerLiteralTryDetailAST.getLineNo() > lineNumber)) {
-
+			if (callerLiteralTryDetailAST == null) {
 				continue;
 			}
 
-			DetailAST literalCatchDetailAST =
-				callerLiteralTryDetailAST.findFirstToken(
-					TokenTypes.LITERAL_CATCH);
-
-			if ((literalCatchDetailAST != null) &&
-				(callerLiteralTryDetailAST.getLineNo() < lineNumber)) {
+			if ((callerLiteralTryDetailAST.getLineNo() <
+					literalTryDetailAST.getLineNo()) ||
+				((callerLiteralTryDetailAST.getLineNo() ==
+					literalTryDetailAST.getLineNo()) &&
+				 hasParentWithTokenType(
+					 variableCallerDetailAST, TokenTypes.LITERAL_CATCH))) {
 
 				return false;
 			}

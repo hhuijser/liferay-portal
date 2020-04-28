@@ -1334,7 +1334,7 @@ public class JournalArticleStagedModelDataHandler
 
 	private void _exportAssetDisplayPage(
 			PortletDataContext portletDataContext, JournalArticle article)
-		throws PortletDataException {
+		throws Exception {
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
@@ -1351,7 +1351,7 @@ public class JournalArticleStagedModelDataHandler
 
 	private void _exportFriendlyURLEntries(
 			PortletDataContext portletDataContext, JournalArticle article)
-		throws PortletDataException {
+		throws Exception {
 
 		long classNameId = _portal.getClassNameId(JournalArticle.class);
 

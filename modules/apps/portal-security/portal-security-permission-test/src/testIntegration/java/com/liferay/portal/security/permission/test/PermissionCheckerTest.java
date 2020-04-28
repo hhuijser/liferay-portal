@@ -941,7 +941,7 @@ public class PermissionCheckerTest {
 	}
 
 	private void _deployRemotePortlet(long companyId, String portletName)
-		throws PortalException {
+		throws Exception {
 
 		Portlet portlet = _portletPersistence.create(0);
 

@@ -16,7 +16,6 @@ package com.liferay.portal.tools.db.support;
 
 import java.io.File;
 
-import java.net.URISyntaxException;
 import java.net.URL;
 
 import org.junit.Assert;
@@ -58,7 +57,7 @@ public class DBSupportArgsTest {
 		Assert.assertEquals(_CUSTOM_USER_NAME, dbSupportArgs.getUserName());
 	}
 
-	private static File _getFile(String fileName) throws URISyntaxException {
+	private static File _getFile(String fileName) throws Exception {
 		URL url = DBSupportArgsTest.class.getResource(
 			"dependencies/" + fileName);
 

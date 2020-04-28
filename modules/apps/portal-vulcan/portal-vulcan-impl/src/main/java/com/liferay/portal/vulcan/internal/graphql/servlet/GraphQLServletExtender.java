@@ -1030,7 +1030,7 @@ public class GraphQLServletExtender {
 
 	private Field _getFieldDefinitionsByNameField(
 			GraphQLObjectType graphQLObjectType)
-		throws NoSuchFieldException {
+		throws Exception {
 
 		Class<? extends GraphQLObjectType> clazz = graphQLObjectType.getClass();
 

@@ -25,7 +25,6 @@ import com.liferay.fragment.util.FragmentEntryTestUtil;
 import com.liferay.fragment.util.FragmentTestUtil;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -141,7 +140,7 @@ public class PropagateGroupFragmentEntryChangesMVCActionCommandTest {
 			_fragmentEntry.getJs(), persistedFragmentEntryLink.getJs());
 	}
 
-	private MockActionRequest _getMockActionRequest() throws PortalException {
+	private MockActionRequest _getMockActionRequest() throws Exception {
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		MockActionRequest mockActionRequest = new MockActionRequest(
@@ -165,7 +164,7 @@ public class PropagateGroupFragmentEntryChangesMVCActionCommandTest {
 		return mockActionRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

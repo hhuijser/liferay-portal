@@ -24,8 +24,6 @@ import com.liferay.portal.kernel.util.LocaleUtil;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
-import java.io.IOException;
-
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.Locale;
@@ -86,7 +84,7 @@ public class DeleteSegmentsContextVocabularyConfigurationMVCActionCommandTest {
 		}
 	}
 
-	private Configuration _addConfiguration() throws IOException {
+	private Configuration _addConfiguration() throws Exception {
 		Configuration configuration =
 			_configurationAdmin.createFactoryConfiguration(
 				"com.liferay.segments.context.vocabulary.internal." +

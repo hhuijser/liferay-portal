@@ -576,7 +576,7 @@ public class StagingBarPortlet extends MVCPortlet {
 	}
 
 	private void _deleteUnusedLayoutIconImage(LayoutRevision layoutRevision)
-		throws PortalException {
+		throws Exception {
 
 		Layout layout = _layoutLocalService.fetchLayout(
 			layoutRevision.getPlid());

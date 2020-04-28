@@ -27,7 +27,6 @@ import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.StringReader;
 
 import java.util.ArrayList;
@@ -128,7 +127,7 @@ public class PropertiesVerifyPropertiesCheck extends BaseFileCheck {
 		return content;
 	}
 
-	private static List<String> _getLines(String s) throws IOException {
+	private static List<String> _getLines(String s) throws Exception {
 		List<String> lines = new ArrayList<>();
 
 		try (UnsyncBufferedReader unsyncBufferedReader =

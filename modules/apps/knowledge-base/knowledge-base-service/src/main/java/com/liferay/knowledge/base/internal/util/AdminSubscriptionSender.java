@@ -20,7 +20,6 @@ import com.liferay.knowledge.base.service.KBArticleLocalServiceUtil;
 import com.liferay.knowledge.base.util.KnowledgeBaseUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Subscription;
 import com.liferay.portal.kernel.model.User;
@@ -125,7 +124,7 @@ public class AdminSubscriptionSender extends SubscriptionSender {
 	}
 
 	private Function<Locale, String> _getEmailKBArticleAttachmentsFunction()
-		throws PortalException {
+		throws Exception {
 
 		List<FileEntry> attachmentsFileEntries =
 			_kbArticle.getAttachmentsFileEntries();

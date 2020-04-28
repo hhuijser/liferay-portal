@@ -35,7 +35,6 @@ import java.util.Map;
 
 import javax.portlet.PortletURL;
 import javax.portlet.RenderResponse;
-import javax.portlet.WindowStateException;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -291,7 +290,7 @@ public class DLBreadcrumbUtil {
 			HttpServletRequest httpServletRequest, String parameterName,
 			String parameterValue, long groupId, boolean ignoreRootFolder,
 			PortletURL portletURL)
-		throws WindowStateException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)httpServletRequest.getAttribute(

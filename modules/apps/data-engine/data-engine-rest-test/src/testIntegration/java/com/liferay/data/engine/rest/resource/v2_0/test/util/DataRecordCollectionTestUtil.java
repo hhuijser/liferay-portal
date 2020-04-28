@@ -18,7 +18,6 @@ import com.liferay.dynamic.data.lists.model.DDLRecordSet;
 import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalServiceUtil;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.security.permission.ResourceActionsUtil;
 import com.liferay.portal.kernel.service.ResourceLocalService;
@@ -76,7 +75,7 @@ public class DataRecordCollectionTestUtil {
 	}
 
 	private static String _getResourceName(DDLRecordSet ddlRecordSet)
-		throws PortalException {
+		throws Exception {
 
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 

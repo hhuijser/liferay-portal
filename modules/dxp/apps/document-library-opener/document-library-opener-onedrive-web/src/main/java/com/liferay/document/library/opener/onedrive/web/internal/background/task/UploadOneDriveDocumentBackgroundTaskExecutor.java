@@ -181,7 +181,7 @@ public class UploadOneDriveDocumentBackgroundTaskExecutor
 	}
 
 	private AccessToken _getAccessToken(long companyId, long userId)
-		throws PortalException {
+		throws Exception {
 
 		Optional<AccessToken> accessTokenOptional =
 			_oAuth2Manager.getAccessTokenOptional(companyId, userId);
@@ -219,7 +219,7 @@ public class UploadOneDriveDocumentBackgroundTaskExecutor
 	}
 
 	private void _uploadFile(long userId, FileEntry fileEntry, Locale locale)
-		throws PortalException {
+		throws Exception {
 
 		AccessToken accessToken = _getAccessToken(
 			fileEntry.getCompanyId(), userId);

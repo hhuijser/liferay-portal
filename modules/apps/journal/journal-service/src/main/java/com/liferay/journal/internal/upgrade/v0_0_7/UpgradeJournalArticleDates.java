@@ -22,7 +22,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
@@ -37,7 +36,7 @@ public class UpgradeJournalArticleDates extends UpgradeProcess {
 		_updateModifiedDate();
 	}
 
-	private void _updateCreateDate() throws SQLException {
+	private void _updateCreateDate() throws Exception {
 		StringBundler sb = new StringBundler(3);
 
 		sb.append("select resourcePrimKey, min(createDate) from ");
@@ -69,7 +68,7 @@ public class UpgradeJournalArticleDates extends UpgradeProcess {
 		}
 	}
 
-	private void _updateModifiedDate() throws SQLException {
+	private void _updateModifiedDate() throws Exception {
 		StringBundler sb = new StringBundler(11);
 
 		sb.append("select classPK, version, AssetEntry.modifiedDate from ");

@@ -16,7 +16,6 @@ package com.liferay.mentions.web.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.mentions.constants.MentionsPortletKeys;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -252,7 +251,7 @@ public class MentionsPortletTest {
 
 	private MockLiferayResourceRequest _getMockLiferayResourceRequest(
 			String query)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
@@ -268,7 +267,7 @@ public class MentionsPortletTest {
 		return mockResourceRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(

@@ -31,7 +31,6 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -89,7 +88,7 @@ public class CTServicePublisher<T extends CTModel<T>> {
 
 	private int _getPreDeletedRowCount(
 			Connection connection, String tableName, String primaryKeyName)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement preparedStatement = connection.prepareStatement(
 				StringBundler.concat(

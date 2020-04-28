@@ -242,7 +242,7 @@ public class EditSegmentsEntryDisplayContext {
 		).build();
 	}
 
-	private Map<String, String> _getAvailableLocales() throws PortalException {
+	private Map<String, String> _getAvailableLocales() throws Exception {
 		Map<String, String> availableLocales = new HashMap<>();
 
 		for (Locale availableLocale :
@@ -258,7 +258,7 @@ public class EditSegmentsEntryDisplayContext {
 		return availableLocales;
 	}
 
-	private JSONArray _getContributorsJSONArray() throws PortalException {
+	private JSONArray _getContributorsJSONArray() throws Exception {
 		List<SegmentsCriteriaContributor> segmentsCriteriaContributors =
 			_getSegmentsCriteriaContributors();
 
@@ -292,7 +292,7 @@ public class EditSegmentsEntryDisplayContext {
 		return contributorsJSONArray;
 	}
 
-	private Criteria _getCriteria() throws PortalException {
+	private Criteria _getCriteria() throws Exception {
 		SegmentsEntry segmentsEntry = _getSegmentsEntry();
 
 		if ((segmentsEntry == null) ||
@@ -320,7 +320,7 @@ public class EditSegmentsEntryDisplayContext {
 		return criterion.getFilterString();
 	}
 
-	private String _getDefaultLanguageId() throws PortalException {
+	private String _getDefaultLanguageId() throws Exception {
 		Locale siteDefaultLocale = null;
 
 		try {
@@ -348,9 +348,7 @@ public class EditSegmentsEntryDisplayContext {
 			_themeDisplay.getScopeGroupId());
 	}
 
-	private JSONObject _getInitialSegmentsNameJSONObject()
-		throws PortalException {
-
+	private JSONObject _getInitialSegmentsNameJSONObject() throws Exception {
 		SegmentsEntry segmentsEntry = _getSegmentsEntry();
 
 		if (segmentsEntry == null) {
@@ -375,7 +373,7 @@ public class EditSegmentsEntryDisplayContext {
 		return portletURL.toString();
 	}
 
-	private JSONArray _getPropertyGroupsJSONArray() throws PortalException {
+	private JSONArray _getPropertyGroupsJSONArray() throws Exception {
 		List<SegmentsCriteriaContributor> segmentsCriteriaContributors =
 			_getSegmentsCriteriaContributors();
 
@@ -404,7 +402,7 @@ public class EditSegmentsEntryDisplayContext {
 	}
 
 	private List<SegmentsCriteriaContributor> _getSegmentsCriteriaContributors()
-		throws PortalException {
+		throws Exception {
 
 		return _segmentsCriteriaContributorRegistry.
 			getSegmentsCriteriaContributors(getType());
@@ -457,7 +455,7 @@ public class EditSegmentsEntryDisplayContext {
 		return resourceURL.toString();
 	}
 
-	private String _getSource() throws PortalException {
+	private String _getSource() throws Exception {
 		SegmentsEntry segmentsEntry = _getSegmentsEntry();
 
 		if (segmentsEntry != null) {
@@ -469,7 +467,7 @@ public class EditSegmentsEntryDisplayContext {
 			SegmentsEntryConstants.SOURCE_DEFAULT);
 	}
 
-	private boolean _hasUpdatePermission() throws PortalException {
+	private boolean _hasUpdatePermission() throws Exception {
 		SegmentsEntry segmentsEntry = _getSegmentsEntry();
 
 		if (segmentsEntry != null) {
@@ -481,7 +479,7 @@ public class EditSegmentsEntryDisplayContext {
 		return true;
 	}
 
-	private boolean _isInitialSegmentActive() throws PortalException {
+	private boolean _isInitialSegmentActive() throws Exception {
 		SegmentsEntry segmentsEntry = _getSegmentsEntry();
 
 		if (segmentsEntry != null) {

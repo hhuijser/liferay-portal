@@ -482,7 +482,7 @@ public class BundleSupportCommandsTest {
 	}
 
 	private static File _createFile(File dir, String fileName)
-		throws IOException {
+		throws Exception {
 
 		File file = new File(dir, fileName);
 
@@ -633,7 +633,7 @@ public class BundleSupportCommandsTest {
 		return httpProxyServerBootstrap.start();
 	}
 
-	private static HttpServer _startHttpServer() throws IOException {
+	private static HttpServer _startHttpServer() throws Exception {
 		HttpServer httpServer = HttpServer.create(
 			new InetSocketAddress(_HTTP_SERVER_PORT), 0);
 

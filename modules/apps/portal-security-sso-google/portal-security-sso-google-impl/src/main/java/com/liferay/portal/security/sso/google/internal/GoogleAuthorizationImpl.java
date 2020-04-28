@@ -386,7 +386,7 @@ public class GoogleAuthorizationImpl implements GoogleAuthorization {
 
 	private void _checkAllowUserCreation(
 			long companyId, Userinfoplus userinfoplus)
-		throws PortalException {
+		throws Exception {
 
 		Company company = _companyLocalService.getCompany(companyId);
 

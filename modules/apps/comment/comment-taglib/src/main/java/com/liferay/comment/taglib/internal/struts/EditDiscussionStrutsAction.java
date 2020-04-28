@@ -24,7 +24,6 @@ import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.comment.Comment;
 import com.liferay.portal.kernel.comment.CommentManager;
 import com.liferay.portal.kernel.comment.DiscussionPermission;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -293,7 +292,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 	private AssetEntry _getAssetEntry(
 			long commentId, String className, long classPK)
-		throws PortalException {
+		throws Exception {
 
 		if (Validator.isNotNull(className) && (classPK > 0)) {
 			return _assetEntryLocalService.getEntry(className, classPK);
@@ -307,7 +306,7 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 	private DiscussionPermission _getDiscussionPermission(
 			ThemeDisplay themeDisplay)
-		throws PrincipalException {
+		throws Exception {
 
 		DiscussionPermission discussionPermission =
 			_commentManager.getDiscussionPermission(

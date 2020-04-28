@@ -19,7 +19,6 @@ import com.liferay.layout.seo.kernel.LayoutSEOLinkManager;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutPrototype;
@@ -302,7 +301,7 @@ public class LayoutSEOLinkManagerPageTitleTest {
 		return _groupLocalService.updateGroup(group);
 	}
 
-	private Layout _addLayout() throws PortalException {
+	private Layout _addLayout() throws Exception {
 		Layout layout = _layoutLocalService.getLayout(
 			TestPropsValues.getPlid());
 

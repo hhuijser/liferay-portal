@@ -36,7 +36,6 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocal
 import com.liferay.layout.util.LayoutCopyHelper;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.comment.CommentManager;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -74,7 +73,6 @@ import com.liferay.site.navigation.type.SiteNavigationMenuItemType;
 import com.liferay.site.navigation.type.SiteNavigationMenuItemTypeRegistry;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.net.URL;
 
@@ -164,7 +162,7 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 	}
 
 	private void _addComments(FragmentEntryLink fragmentEntryLink)
-		throws PortalException {
+		throws Exception {
 
 		long parentCommentId1 = _commentManager.addComment(
 			fragmentEntryLink.getUserId(), fragmentEntryLink.getGroupId(),
@@ -628,7 +626,7 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 			_resourcesMap);
 	}
 
-	private String _readFile(String fileName) throws IOException {
+	private String _readFile(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		return StringUtil.read(clazz.getClassLoader(), _PATH + fileName);

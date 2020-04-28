@@ -153,7 +153,7 @@ public class BundleBlacklist {
 		}
 	}
 
-	private void _loadFromBlacklistFile() throws IOException {
+	private void _loadFromBlacklistFile() throws Exception {
 		if (!_blacklistFile.exists()) {
 			return;
 		}
@@ -215,7 +215,7 @@ public class BundleBlacklist {
 	}
 
 	private void _removeFromBlacklistFile(String symbolicName)
-		throws IOException {
+		throws Exception {
 
 		Properties blacklistProperties = new Properties();
 

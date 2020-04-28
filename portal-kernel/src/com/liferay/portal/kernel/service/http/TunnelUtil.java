@@ -30,7 +30,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.ProtectedClassLoaderObjectInputStream;
 
 import java.io.EOFException;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -98,7 +97,7 @@ public class TunnelUtil {
 	}
 
 	private static HttpURLConnection _getConnection(HttpPrincipal httpPrincipal)
-		throws IOException {
+		throws Exception {
 
 		if ((httpPrincipal == null) || (httpPrincipal.getUrl() == null)) {
 			return null;

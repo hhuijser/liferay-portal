@@ -14,7 +14,6 @@
 
 package com.liferay.adaptive.media.web.internal.portlet.action;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
@@ -47,7 +46,7 @@ public abstract class BaseMVCActionCommand
 	}
 
 	private void _checkPermission(PermissionChecker permissionChecker)
-		throws PortalException {
+		throws Exception {
 
 		if (!permissionChecker.isCompanyAdmin()) {
 			throw new PrincipalException();

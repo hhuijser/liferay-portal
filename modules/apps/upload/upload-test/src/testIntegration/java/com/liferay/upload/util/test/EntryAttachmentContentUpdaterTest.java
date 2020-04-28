@@ -33,7 +33,6 @@ import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.TempFileEntryUtil;
 import com.liferay.portal.kernel.xml.Attribute;
 import com.liferay.portal.kernel.xml.Document;
-import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
@@ -358,7 +357,7 @@ public class EntryAttachmentContentUpdaterTest {
 		return sb.toString();
 	}
 
-	private List<Element> _parseHtml(String html) throws DocumentException {
+	private List<Element> _parseHtml(String html) throws Exception {
 		Document document = SAXReaderUtil.read("<div>" + html + "</div>");
 
 		Element rootElement = document.getRootElement();

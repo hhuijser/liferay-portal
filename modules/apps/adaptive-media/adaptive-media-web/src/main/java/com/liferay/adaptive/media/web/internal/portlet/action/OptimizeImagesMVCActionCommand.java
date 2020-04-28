@@ -83,7 +83,7 @@ public class OptimizeImagesMVCActionCommand extends BaseMVCActionCommand {
 
 	private BackgroundTask _optimizeImages(
 			long userId, long companyId, String jobName)
-		throws PortalException {
+		throws Exception {
 
 		Map<String, Serializable> taskContextMap =
 			HashMapBuilder.<String, Serializable>put(
@@ -109,7 +109,7 @@ public class OptimizeImagesMVCActionCommand extends BaseMVCActionCommand {
 	private BackgroundTask _optimizeImagesSingleConfiguration(
 			long userId, long companyId, String jobName,
 			String configurationEntryUuid)
-		throws PortalException {
+		throws Exception {
 
 		Map<String, Serializable> taskContextMap =
 			HashMapBuilder.<String, Serializable>put(

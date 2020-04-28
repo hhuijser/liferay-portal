@@ -19,7 +19,6 @@ import com.liferay.layout.exception.LayoutConvertException;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.layout.util.BulkLayoutConverter;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutConstants;
@@ -270,7 +269,7 @@ public class BulkLayoutConverterTest {
 			LayoutConstants.TYPE_PORTLET, _publicLayout.getType());
 	}
 
-	private void _assertLayouts() throws PortalException {
+	private void _assertLayouts() throws Exception {
 		_contentLayout = _layoutLocalService.getLayoutByUuidAndGroupId(
 			_contentLayout.getUuid(), _contentLayout.getGroupId(),
 			_contentLayout.isPrivateLayout());

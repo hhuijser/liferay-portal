@@ -839,7 +839,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		Assert.assertEquals(0, elements.size());
 	}
 
-	private long _getDDMStructureId() throws PortalException {
+	private long _getDDMStructureId() throws Exception {
 		Group companyGroup = _groupLocalService.getCompanyGroup(
 			TestPropsValues.getCompanyId());
 
@@ -866,7 +866,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 	}
 
 	private HttpServletRequest _getSignedInHttpServletRequest()
-		throws PortalException {
+		throws Exception {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -880,7 +880,7 @@ public class OpenGraphTopHeadDynamicIncludeTest {
 		return mockHttpServletRequest;
 	}
 
-	private ThemeDisplay _getSingedInThemeDisplay() throws PortalException {
+	private ThemeDisplay _getSingedInThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		themeDisplay.setSignedIn(true);

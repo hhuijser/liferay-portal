@@ -20,7 +20,6 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.asset.kernel.model.AssetTag;
 import com.liferay.asset.test.util.AssetTestUtil;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.Group;
@@ -1108,7 +1107,7 @@ public class UserODataRetrieverTest {
 		Assert.assertEquals(_user1, users.get(0));
 	}
 
-	private Team _addTeam() throws PortalException {
+	private Team _addTeam() throws Exception {
 		return _teamLocalService.addTeam(
 			TestPropsValues.getUserId(), TestPropsValues.getGroupId(),
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
@@ -1124,7 +1123,7 @@ public class UserODataRetrieverTest {
 	}
 
 	private void _updateUserBirthday(User user, Date birthDate)
-		throws PortalException {
+		throws Exception {
 
 		Contact contact = user.getContact();
 

@@ -23,7 +23,6 @@ import com.liferay.account.service.AccountRoleLocalService;
 import com.liferay.counter.kernel.service.CounterLocalService;
 import com.liferay.portal.instance.lifecycle.BasePortalInstanceLifecycleListener;
 import com.liferay.portal.instance.lifecycle.PortalInstanceLifecycleListener;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Release;
 import com.liferay.portal.kernel.model.ResourceConstants;
@@ -91,7 +90,7 @@ public class AddDefaultAccountRolesPortalInstanceLifecycleListener
 	}
 
 	private AccountRole _addAccountRole(long userId, String roleName)
-		throws PortalException {
+		throws Exception {
 
 		AccountRole accountRole = _accountRoleLocalService.createAccountRole(
 			_counterLocalService.increment());
@@ -112,7 +111,7 @@ public class AddDefaultAccountRolesPortalInstanceLifecycleListener
 
 	private void _addResourcePermissions(
 			long roleId, Map<String, String[]> resourceActionsMap)
-		throws PortalException {
+		throws Exception {
 
 		for (Map.Entry<String, String[]> entry :
 				resourceActionsMap.entrySet()) {

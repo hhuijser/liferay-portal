@@ -27,7 +27,6 @@ import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryService;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -194,7 +193,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 	private String _buildFriendlyURL(
 			InfoDisplayContributor infoDisplayContributor,
 			JournalArticle article)
-		throws PortalException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(4);
 
@@ -210,7 +209,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 
 	private LayoutPageTemplateEntry _getLayoutPageTemplateEntry(
 			JournalArticle article, boolean defaultLayoutPageTemplateEntry)
-		throws PortalException {
+		throws Exception {
 
 		DDMStructure ddmStructure = article.getDDMStructure();
 
@@ -233,7 +232,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest()
-		throws PortalException {
+		throws Exception {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -244,7 +243,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 		return mockHttpServletRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

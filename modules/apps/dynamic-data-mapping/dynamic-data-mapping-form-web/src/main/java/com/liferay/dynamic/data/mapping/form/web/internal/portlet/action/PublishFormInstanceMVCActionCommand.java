@@ -185,7 +185,7 @@ public class PublishFormInstanceMVCActionCommand
 	}
 
 	private boolean _isFormInstancePublished(DDMFormInstance formInstance)
-		throws PortalException {
+		throws Exception {
 
 		DDMFormInstanceSettings ddmFormInstanceSettings =
 			formInstance.getSettingsModel();

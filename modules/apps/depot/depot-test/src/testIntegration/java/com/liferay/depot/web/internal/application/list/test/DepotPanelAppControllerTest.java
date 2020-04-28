@@ -22,7 +22,6 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.document.library.constants.DLPortletKeys;
 import com.liferay.journal.constants.JournalPortletKeys;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionCheckerFactoryUtil;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
@@ -184,7 +183,7 @@ public class DepotPanelAppControllerTest {
 	}
 
 	private void _assertIsDisplayed(long groupId, String parentPanelCategoryKey)
-		throws PortalException {
+		throws Exception {
 
 		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
 			parentPanelCategoryKey,
@@ -195,7 +194,7 @@ public class DepotPanelAppControllerTest {
 	}
 
 	private void _assertIsHiddenForADepotGroup(String parentPanelCategoryKey)
-		throws PortalException {
+		throws Exception {
 
 		List<PanelApp> panelApps = _panelAppRegistry.getPanelApps(
 			parentPanelCategoryKey,

@@ -35,7 +35,6 @@ import com.liferay.portal.odata.filter.ExpressionConvert;
 import com.liferay.portal.odata.filter.Filter;
 import com.liferay.portal.odata.filter.FilterParser;
 import com.liferay.portal.odata.filter.InvalidFilterException;
-import com.liferay.portal.odata.filter.expression.ExpressionVisitException;
 import com.liferay.segments.odata.search.ODataSearchAdapter;
 
 import java.util.Locale;
@@ -172,7 +171,7 @@ public class ODataSearchAdapterImpl implements ODataSearchAdapter {
 	private com.liferay.portal.kernel.search.filter.Filter _getSearchFilter(
 			String filterString, EntityModel entityModel,
 			FilterParser filterParser, Locale locale)
-		throws ExpressionVisitException {
+		throws Exception {
 
 		Filter filter = new Filter(filterParser.parse(filterString));
 

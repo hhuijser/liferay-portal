@@ -20,7 +20,6 @@ import com.liferay.document.library.kernel.service.DLAppLocalService;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.document.library.kernel.service.DLFolderLocalService;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.search.Hits;
@@ -333,7 +332,7 @@ public class WikiAttachmentsTest {
 			_page.getUserId(), _page.getNodeId(), _page.getTitle(), getClass());
 	}
 
-	private void _addFileEntry(String title) throws PortalException {
+	private void _addFileEntry(String title) throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
 

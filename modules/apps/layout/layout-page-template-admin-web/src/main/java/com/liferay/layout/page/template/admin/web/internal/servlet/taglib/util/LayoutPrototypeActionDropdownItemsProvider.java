@@ -19,7 +19,6 @@ import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.LayoutPrototype;
@@ -136,7 +135,7 @@ public class LayoutPrototypeActionDropdownItemsProvider {
 
 	private UnsafeConsumer<DropdownItem, Exception>
 			_getEditLayoutPrototypeActionUnsafeConsumer()
-		throws PortalException {
+		throws Exception {
 
 		Group layoutPrototypeGroup = _layoutPrototype.getGroup();
 

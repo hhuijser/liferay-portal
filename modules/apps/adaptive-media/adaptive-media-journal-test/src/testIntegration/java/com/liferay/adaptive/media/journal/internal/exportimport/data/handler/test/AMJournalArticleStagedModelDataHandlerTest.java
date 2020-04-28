@@ -387,7 +387,7 @@ public class AMJournalArticleStagedModelDataHandlerTest
 		return sb.toString();
 	}
 
-	private ServiceContext _getServiceContext() throws PortalException {
+	private ServiceContext _getServiceContext() throws Exception {
 		return ServiceContextTestUtil.getServiceContext(
 			stagingGroup.getGroupId(), TestPropsValues.getUserId());
 	}

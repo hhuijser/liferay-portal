@@ -20,7 +20,6 @@ import com.liferay.asset.publisher.web.internal.display.context.AssetPublisherDi
 import com.liferay.asset.publisher.web.internal.helper.AssetPublisherWebHelper;
 import com.liferay.asset.util.AssetHelper;
 import com.liferay.asset.util.AssetPublisherAddItemHolder;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
@@ -239,7 +238,7 @@ public class AssetPublisherPortletToolbarContributor
 	private boolean _isVisible(
 			AssetPublisherDisplayContext assetPublisherDisplayContext,
 			PortletRequest portletRequest)
-		throws PortalException {
+		throws Exception {
 
 		if (!assetPublisherDisplayContext.isShowAddContentButton()) {
 			return false;

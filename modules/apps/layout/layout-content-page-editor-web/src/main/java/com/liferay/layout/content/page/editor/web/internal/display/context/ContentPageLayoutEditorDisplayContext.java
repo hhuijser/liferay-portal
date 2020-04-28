@@ -29,7 +29,6 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocal
 import com.liferay.layout.page.template.service.LayoutPageTemplateStructureRelLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.comment.CommentManager;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -226,7 +225,7 @@ public class ContentPageLayoutEditorDisplayContext
 	}
 
 	private Map<String, Object> _getAvailableSegmentsExperiences()
-		throws PortalException {
+		throws Exception {
 
 		Map<String, Object> availableSegmentsExperiences = new HashMap<>();
 
@@ -301,7 +300,7 @@ public class ContentPageLayoutEditorDisplayContext
 		return availableSegmentsExperiences;
 	}
 
-	private String _getEditSegmentsEntryURL() throws PortalException {
+	private String _getEditSegmentsEntryURL() throws Exception {
 		if (_editSegmentsEntryURL != null) {
 			return _editSegmentsEntryURL;
 		}
@@ -322,9 +321,7 @@ public class ContentPageLayoutEditorDisplayContext
 		return _editSegmentsEntryURL;
 	}
 
-	private List<Map<String, Object>> _getLayoutDataList()
-		throws PortalException {
-
+	private List<Map<String, Object>> _getLayoutDataList() throws Exception {
 		LayoutPageTemplateStructure layoutPageTemplateStructure =
 			LayoutPageTemplateStructureLocalServiceUtil.
 				fetchLayoutPageTemplateStructure(
@@ -375,7 +372,7 @@ public class ContentPageLayoutEditorDisplayContext
 
 	private Optional<SegmentsExperiment> _getSegmentsExperimentOptional(
 			long segmentsExperienceId)
-		throws PortalException {
+		throws Exception {
 
 		Layout draftLayout = themeDisplay.getLayout();
 
@@ -391,7 +388,7 @@ public class ContentPageLayoutEditorDisplayContext
 
 	private Map<String, Object> _getSegmentsExperimentStatus(
 			long segmentsExperienceId)
-		throws PortalException {
+		throws Exception {
 
 		Optional<SegmentsExperiment> segmentsExperimentOptional =
 			_getSegmentsExperimentOptional(segmentsExperienceId);
@@ -446,7 +443,7 @@ public class ContentPageLayoutEditorDisplayContext
 	}
 
 	private boolean _hasDefaultSegmentsExperienceLockedSegmentsExperiment()
-		throws PortalException {
+		throws Exception {
 
 		Optional<SegmentsExperiment> segmentsExperimentOptional =
 			_getSegmentsExperimentOptional(
@@ -465,7 +462,7 @@ public class ContentPageLayoutEditorDisplayContext
 		return lockedStatusValuesList.contains(segmentsExperiment.getStatus());
 	}
 
-	private boolean _hasEditSegmentsEntryPermission() throws PortalException {
+	private boolean _hasEditSegmentsEntryPermission() throws Exception {
 		String editSegmentsEntryURL = _getEditSegmentsEntryURL();
 
 		if (Validator.isNull(editSegmentsEntryURL)) {
@@ -476,7 +473,7 @@ public class ContentPageLayoutEditorDisplayContext
 	}
 
 	private Boolean _isLockedSegmentsExperience(long segmentsExperienceId)
-		throws PortalException {
+		throws Exception {
 
 		if (_lockedSegmentsExperience != null) {
 			return _lockedSegmentsExperience;
@@ -498,7 +495,7 @@ public class ContentPageLayoutEditorDisplayContext
 		return _lockedSegmentsExperience;
 	}
 
-	private boolean _isShowSegmentsExperiences() throws PortalException {
+	private boolean _isShowSegmentsExperiences() throws Exception {
 		if (_showSegmentsExperiences != null) {
 			return _showSegmentsExperiences;
 		}

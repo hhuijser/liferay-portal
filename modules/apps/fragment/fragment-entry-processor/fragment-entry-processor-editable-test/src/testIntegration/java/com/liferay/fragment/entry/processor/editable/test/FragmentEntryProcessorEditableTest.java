@@ -414,7 +414,7 @@ public class FragmentEntryProcessorEditableTest {
 			serviceContext);
 	}
 
-	private Layout _addLayout(long groupId) throws PortalException {
+	private Layout _addLayout(long groupId) throws Exception {
 		String name = RandomTestUtil.randomString();
 
 		String friendlyURL =
@@ -457,7 +457,7 @@ public class FragmentEntryProcessorEditableTest {
 		return jsonObject.toString();
 	}
 
-	private String _getProcessedHTML(String fileName) throws IOException {
+	private String _getProcessedHTML(String fileName) throws Exception {
 		Document document = Jsoup.parseBodyFragment(_getFileAsString(fileName));
 
 		document.outputSettings(
@@ -472,7 +472,7 @@ public class FragmentEntryProcessorEditableTest {
 		return bodyElement.html();
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

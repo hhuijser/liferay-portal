@@ -17,7 +17,6 @@ package com.liferay.site.my.sites.web.internal.servlet.taglib.util;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItem;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.petra.function.UnsafeConsumer;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
@@ -196,7 +195,7 @@ public class SiteActionDropdownItemsProvider {
 		};
 	}
 
-	private boolean _isShowLeaveAction() throws PortalException {
+	private boolean _isShowLeaveAction() throws Exception {
 		if ((_group.getType() != GroupConstants.TYPE_SITE_OPEN) &&
 			(_group.getType() != GroupConstants.TYPE_SITE_RESTRICTED)) {
 
@@ -218,7 +217,7 @@ public class SiteActionDropdownItemsProvider {
 		return true;
 	}
 
-	private boolean _isShowMembershipRequestAction() throws PortalException {
+	private boolean _isShowMembershipRequestAction() throws Exception {
 		if (_group.getType() != GroupConstants.TYPE_SITE_RESTRICTED) {
 			return false;
 		}

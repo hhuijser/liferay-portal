@@ -15,7 +15,6 @@
 package com.liferay.portal.util.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
@@ -124,7 +123,7 @@ public class PortalImplControlPanelFullURLTest {
 				_group.getGroupId(), portletId, null));
 	}
 
-	private String _getPortalURL() throws PortalException {
+	private String _getPortalURL() throws Exception {
 		Company company = _companyLocalService.getCompany(
 			TestPropsValues.getCompanyId());
 

@@ -454,7 +454,7 @@ public class FacebookConnectStrutsAction implements StrutsAction {
 	}
 
 	private void _checkAllowUserCreation(long companyId, JSONObject jsonObject)
-		throws PortalException {
+		throws Exception {
 
 		Company company = _companyLocalService.getCompany(companyId);
 

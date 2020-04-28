@@ -14,7 +14,6 @@
 
 package com.liferay.saml.opensaml.integration.internal.resolver;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.UserEmailAddressException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.User;
@@ -244,7 +243,7 @@ public class DefaultUserResolverTest extends BaseSamlTestCase {
 		samlPeerEntityContext.setEntityId(IDP_ENTITY_ID);
 	}
 
-	private void _initUnknownUserHandling() throws PortalException {
+	private void _initUnknownUserHandling() throws Exception {
 		when(
 			_userLocalService.getUserByEmailAddress(
 				1, _SUBJECT_NAME_IDENTIFIER_EMAIL_ADDRESS)

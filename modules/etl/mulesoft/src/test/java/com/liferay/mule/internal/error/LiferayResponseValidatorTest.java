@@ -14,8 +14,6 @@
 
 package com.liferay.mule.internal.error;
 
-import java.io.IOException;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +96,7 @@ public class LiferayResponseValidatorTest {
 
 	private void assertThatResponseValidationProducesLiferayError(
 			HttpConstants.HttpStatus httpStatus, LiferayError liferayError)
-		throws IOException {
+		throws Exception {
 
 		try {
 			if (httpStatus != null) {

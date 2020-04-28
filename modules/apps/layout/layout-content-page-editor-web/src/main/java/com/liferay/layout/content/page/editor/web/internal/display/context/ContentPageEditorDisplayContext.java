@@ -1150,9 +1150,7 @@ public class ContentPageEditorDisplayContext {
 		return jsonArray;
 	}
 
-	private Map<String, Object> _getFragmentEntryLinks()
-		throws PortalException {
-
+	private Map<String, Object> _getFragmentEntryLinks() throws Exception {
 		if (_fragmentEntryLinks != null) {
 			return _fragmentEntryLinks;
 		}
@@ -1383,7 +1381,7 @@ public class ContentPageEditorDisplayContext {
 		return languageDirection;
 	}
 
-	private String _getLayoutData() throws PortalException {
+	private String _getLayoutData() throws Exception {
 		if (_layoutData != null) {
 			return _layoutData;
 		}
@@ -1401,9 +1399,7 @@ public class ContentPageEditorDisplayContext {
 		return _layoutData;
 	}
 
-	private Set<Map<String, Object>> _getMappedInfoItems()
-		throws PortalException {
-
+	private Set<Map<String, Object>> _getMappedInfoItems() throws Exception {
 		Set<Map<String, Object>> mappedInfoItems = new HashSet<>();
 
 		Set<InfoDisplayObjectProvider> infoDisplayObjectProviders =

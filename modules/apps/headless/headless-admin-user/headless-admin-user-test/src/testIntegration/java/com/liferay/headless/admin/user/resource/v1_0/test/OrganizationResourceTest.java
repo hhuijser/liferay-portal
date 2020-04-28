@@ -16,7 +16,6 @@ package com.liferay.headless.admin.user.resource.v1_0.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.headless.admin.user.client.dto.v1_0.Organization;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.User;
@@ -136,7 +135,7 @@ public class OrganizationResourceTest extends BaseOrganizationResourceTestCase {
 
 	private com.liferay.portal.kernel.model.Organization _addOrganization(
 			Organization organization, String parentOrganizationId)
-		throws PortalException {
+		throws Exception {
 
 		com.liferay.portal.kernel.model.Organization
 			serviceBuilderOrganization =

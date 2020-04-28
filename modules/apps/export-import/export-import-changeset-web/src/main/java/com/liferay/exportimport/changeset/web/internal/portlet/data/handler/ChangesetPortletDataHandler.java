@@ -235,7 +235,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	}
 
 	private void _exportAssetLinks(PortletDataContext portletDataContext)
-		throws PortletDataException {
+		throws Exception {
 
 		for (Long linkId : portletDataContext.getAssetLinkIds()) {
 			AssetLink assetLink = _assetLinkLocalService.fetchAssetLink(linkId);
@@ -255,7 +255,7 @@ public class ChangesetPortletDataHandler extends BasePortletDataHandler {
 	private void _exportChangesetCollection(
 			PortletDataContext portletDataContext,
 			ChangesetCollection changesetCollection)
-		throws PortalException {
+		throws Exception {
 
 		ActionableDynamicQuery actionableDynamicQuery =
 			_changesetEntryLocalService.getActionableDynamicQuery();

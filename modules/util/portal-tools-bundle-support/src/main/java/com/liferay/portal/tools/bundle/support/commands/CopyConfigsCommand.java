@@ -22,7 +22,6 @@ import com.liferay.portal.tools.bundle.support.constants.BundleSupportConstants;
 import com.liferay.portal.tools.bundle.support.internal.util.FileUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,7 +60,7 @@ public class CopyConfigsCommand extends BaseCommand {
 		_environment = environment;
 	}
 
-	private void _copyConfigs(File configsDir) throws IOException {
+	private void _copyConfigs(File configsDir) throws Exception {
 		if ((configsDir == null) || !configsDir.exists()) {
 			return;
 		}

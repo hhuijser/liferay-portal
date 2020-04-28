@@ -27,8 +27,6 @@ import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.SocketUtil;
 import com.liferay.portal.test.mail.impl.MailMessageImpl;
 
-import java.io.IOException;
-
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
@@ -41,7 +39,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.portlet.PortletPreferences;
-import javax.portlet.ReadOnlyException;
 
 /**
  * @author Adam Brandizzi
@@ -164,7 +161,7 @@ public class MailServiceTestUtil {
 		MailServiceUtil.clearSession();
 	}
 
-	private static int _getFreePort() throws IOException {
+	private static int _getFreePort() throws Exception {
 		try (ServerSocketChannel serverSocketChannel =
 				SocketUtil.createServerSocketChannel(
 					InetAddress.getLocalHost(), _START_PORT,
@@ -240,7 +237,7 @@ public class MailServiceTestUtil {
 
 		private void _setTemporaryValue(
 				PortletPreferences portletPreferences, String key, String value)
-			throws ReadOnlyException {
+			throws Exception {
 
 			PortletPreferences preferences =
 				PortalPreferencesLocalServiceUtil.getPreferences(

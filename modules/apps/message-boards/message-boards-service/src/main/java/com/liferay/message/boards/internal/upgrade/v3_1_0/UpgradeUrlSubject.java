@@ -87,7 +87,7 @@ public class UpgradeUrlSubject extends UpgradeProcess {
 		return subject.substring(0, Math.min(subject.length(), 254));
 	}
 
-	private void _populateUrlSubject() throws SQLException {
+	private void _populateUrlSubject() throws Exception {
 		try (PreparedStatement ps1 = connection.prepareStatement(
 				"select messageId, subject from MBMessage where (urlSubject " +
 					"is null) or (urlSubject = '')");

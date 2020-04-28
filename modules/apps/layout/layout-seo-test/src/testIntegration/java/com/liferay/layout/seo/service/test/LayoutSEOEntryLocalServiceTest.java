@@ -355,7 +355,7 @@ public class LayoutSEOEntryLocalServiceTest {
 		Assert.assertEquals(expected, value.getString(LocaleUtil.US));
 	}
 
-	private long _getDDMStructureId() throws PortalException {
+	private long _getDDMStructureId() throws Exception {
 		Group companyGroup = _groupLocalService.getCompanyGroup(
 			TestPropsValues.getCompanyId());
 

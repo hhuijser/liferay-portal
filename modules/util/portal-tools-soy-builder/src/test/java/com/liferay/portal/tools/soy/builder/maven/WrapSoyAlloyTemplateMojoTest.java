@@ -19,7 +19,6 @@ import com.liferay.portal.tools.soy.builder.commands.WrapSoyAlloyTemplateCommand
 import com.liferay.portal.tools.soy.builder.util.FileTestUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -53,7 +52,7 @@ public class WrapSoyAlloyTemplateMojoTest
 
 	private static void _preparePomXml(
 			File projectDir, File dir, String moduleName, String namespace)
-		throws IOException {
+		throws Exception {
 
 		String content = FileTestUtil.read(
 			WrapSoyAlloyTemplateMojoTest.class.getClassLoader(),

@@ -177,7 +177,7 @@ public class HypersonicServerClassTestRule extends ClassTestRule<Server> {
 	private HypersonicServerClassTestRule() {
 	}
 
-	private void _deleteFolder(Path folderPath) throws IOException {
+	private void _deleteFolder(Path folderPath) throws Exception {
 		if (!Files.exists(folderPath)) {
 			return;
 		}

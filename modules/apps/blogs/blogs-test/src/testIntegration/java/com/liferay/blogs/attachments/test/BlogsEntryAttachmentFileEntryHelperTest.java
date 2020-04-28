@@ -22,7 +22,6 @@ import com.liferay.blogs.test.util.BlogsTestUtil;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.editor.EditorConstants;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portletfilerepository.PortletFileRepository;
@@ -242,7 +241,7 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 			_addBlogsEntryAttachmentFileEntries(
 				long groupId, long userId, long blogsEntryId, long folderId,
 				List<FileEntry> tempFileEntries)
-		throws PortalException {
+		throws Exception {
 
 		List<BlogsEntryAttachmentFileEntryReference>
 			blogsEntryAttachmentFileEntryReferences = new ArrayList<>();
@@ -266,7 +265,7 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 	private FileEntry _addBlogsEntryAttachmentFileEntry(
 			long groupId, long userId, long blogsEntryId, long folderId,
 			String fileName, String mimeType, InputStream is)
-		throws PortalException {
+		throws Exception {
 
 		String uniqueFileName = _getUniqueFileName(groupId, fileName, folderId);
 
@@ -278,7 +277,7 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 
 	private List<FileEntry> _getTempBlogsEntryAttachmentFileEntries(
 			String content)
-		throws PortalException {
+		throws Exception {
 
 		List<FileEntry> tempBlogsEntryAttachmentFileEntries = new ArrayList<>();
 
@@ -301,7 +300,7 @@ public class BlogsEntryAttachmentFileEntryHelperTest {
 
 	private String _getUniqueFileName(
 			long groupId, String fileName, long folderId)
-		throws PortalException {
+		throws Exception {
 
 		return _uniqueFileNameProvider.provide(
 			fileName,

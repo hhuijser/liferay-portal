@@ -30,7 +30,6 @@ import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeCon
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.petra.function.UnsafeConsumer;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -366,7 +365,7 @@ public class LayoutPageTemplateEntryActionDropdownItemsProvider {
 
 	private UnsafeConsumer<DropdownItem, Exception>
 			_getRenameLayoutPageTemplateEntryActionUnsafeConsumer()
-		throws PortalException {
+		throws Exception {
 
 		if (Objects.equals(
 				_layoutPageTemplateEntry.getType(),

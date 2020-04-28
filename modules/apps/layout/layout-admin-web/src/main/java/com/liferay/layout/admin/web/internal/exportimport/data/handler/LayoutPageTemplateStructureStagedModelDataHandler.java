@@ -17,7 +17,6 @@ package com.liferay.layout.admin.web.internal.exportimport.data.handler;
 import com.liferay.exportimport.data.handler.base.BaseStagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.exportimport.kernel.lar.PortletDataException;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.staged.model.repository.StagedModelRepository;
@@ -142,7 +141,7 @@ public class LayoutPageTemplateStructureStagedModelDataHandler
 	private void _exportLayoutPageTemplateStructureRels(
 			PortletDataContext portletDataContext,
 			LayoutPageTemplateStructure layoutPageTemplateStructure)
-		throws PortletDataException {
+		throws Exception {
 
 		List<LayoutPageTemplateStructureRel> layoutPageTemplateStructureRels =
 			_layoutPageTemplateStructureRelLocalService.
@@ -163,7 +162,7 @@ public class LayoutPageTemplateStructureStagedModelDataHandler
 	private void _importLayoutPageTemplateStructureRels(
 			PortletDataContext portletDataContext,
 			LayoutPageTemplateStructure layoutPageTemplateStructure)
-		throws PortletDataException {
+		throws Exception {
 
 		List<Element> layoutPageTemplateStructureRelElements =
 			portletDataContext.getReferenceDataElements(

@@ -25,7 +25,6 @@ import com.liferay.bulk.selection.BulkSelection;
 import com.liferay.bulk.selection.BulkSelectionInputParameters;
 import com.liferay.bulk.selection.BulkSelectionRunner;
 import com.liferay.document.library.bulk.selection.EditTagsBulkSelectionAction;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
 import com.liferay.portal.kernel.security.permission.BaseModelPermissionCheckerUtil;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -133,7 +132,7 @@ public class KeywordResourceImpl extends BaseKeywordResourceImpl {
 
 	private void _update(
 			boolean append, KeywordBulkSelection keywordBulkSelection)
-		throws PortalException {
+		throws Exception {
 
 		BulkSelection<?> bulkSelection = _documentBulkSelectionFactory.create(
 			keywordBulkSelection.getDocumentBulkSelection());

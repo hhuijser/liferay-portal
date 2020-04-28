@@ -14,7 +14,6 @@
 
 package com.liferay.segments.asah.rest.internal.resource.v1_0;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextThreadLocal;
 import com.liferay.portal.kernel.util.BigDecimalUtil;
@@ -115,7 +114,7 @@ public class ExperimentRunResourceImpl extends BaseExperimentRunResourceImpl {
 
 	private ExperimentRun _toRunExperiment(
 			SegmentsExperiment segmentsExperiment)
-		throws PortalException {
+		throws Exception {
 
 		SegmentsExperimentConstants.Status segmentsExperimentConstantsStatus =
 			SegmentsExperimentConstants.Status.valueOf(

@@ -25,7 +25,6 @@ import com.liferay.portal.tools.ToolsUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.StringReader;
 
 import java.util.ArrayList;
@@ -89,7 +88,7 @@ public class PropertiesSourceFormatterFileCheck extends BaseFileCheck {
 
 	private String _formatSourceFormatterProperties(
 			String fileName, String content)
-		throws IOException {
+		throws Exception {
 
 		int level = ToolsUtil.PLUGINS_MAX_DIR_LEVEL;
 

@@ -21,7 +21,6 @@ import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.document.library.kernel.model.DLFolderConstants;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
@@ -259,7 +258,7 @@ public class PortletFileRepositoryTest {
 		}
 	}
 
-	private Folder _addPortletFolder(String name) throws PortalException {
+	private Folder _addPortletFolder(String name) throws Exception {
 		return PortletFileRepositoryUtil.addPortletFolder(
 			_group.getGroupId(), TestPropsValues.getUserId(), _portletId,
 			_folder.getFolderId(), name,

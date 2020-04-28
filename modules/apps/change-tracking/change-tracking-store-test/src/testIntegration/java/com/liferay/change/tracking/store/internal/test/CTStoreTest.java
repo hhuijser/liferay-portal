@@ -1068,7 +1068,7 @@ public class CTStoreTest {
 			_COMPANY_ID, _REPOSITORY_ID, fileName, version);
 	}
 
-	private void _publish(CTCollection ctCollection) throws PortalException {
+	private void _publish(CTCollection ctCollection) throws Exception {
 		_ctProcessLocalService.addCTProcess(
 			ctCollection.getUserId(), ctCollection.getCtCollectionId());
 	}

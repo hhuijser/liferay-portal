@@ -225,7 +225,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 
 	private Map.Entry<byte[], String> _getContentAndExtensionFromCompressedFile(
 			InputStream inputStream)
-		throws IOException {
+		throws Exception {
 
 		byte[] content = StreamUtil.toByteArray(inputStream);
 
@@ -246,7 +246,7 @@ public class ImportTaskResourceImpl extends BaseImportTaskResourceImpl {
 	private Map.Entry<byte[], String>
 			_getContentAndExtensionFromUncompressedFile(
 				String fileName, InputStream inputStream)
-		throws IOException {
+		throws Exception {
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			_getUnsyncByteArrayOutputStream(fileName, inputStream);

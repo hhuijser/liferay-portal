@@ -639,7 +639,7 @@ public class MediaQueryProviderImplTest {
 	private void _addAdaptiveMedias(
 			FileEntry fileEntry,
 			AdaptiveMedia<AMImageProcessor>... adaptiveMedias)
-		throws PortalException {
+		throws Exception {
 
 		Mockito.when(
 			_amImageFinder.getAdaptiveMediaStream(Mockito.any(Function.class))

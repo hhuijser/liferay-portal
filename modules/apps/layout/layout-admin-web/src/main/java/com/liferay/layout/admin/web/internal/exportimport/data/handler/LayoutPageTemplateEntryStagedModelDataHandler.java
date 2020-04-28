@@ -29,7 +29,6 @@ import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateCollectionLocalService;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.LayoutPrototype;
@@ -372,7 +371,7 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 	private LayoutPageTemplateEntry _addStagedModel(
 			PortletDataContext portletDataContext,
 			LayoutPageTemplateEntry layoutPageTemplateEntry)
-		throws PortalException {
+		throws Exception {
 
 		if (layoutPageTemplateEntry.isDefaultTemplate()) {
 			LayoutPageTemplateEntry defaultLayoutPageTemplateEntry =
@@ -394,7 +393,7 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 	private void _exportReferenceLayout(
 			LayoutPageTemplateEntry layoutPageTemplateEntry,
 			PortletDataContext portletDataContext)
-		throws PortletDataException {
+		throws Exception {
 
 		Layout layout = _layoutLocalService.fetchLayout(
 			layoutPageTemplateEntry.getPlid());
@@ -432,7 +431,7 @@ public class LayoutPageTemplateEntryStagedModelDataHandler
 			LayoutPageTemplateEntry layoutPageTemplateEntry,
 			LayoutPageTemplateEntry importedLayoutPageTemplateEntry,
 			LayoutPrototype layoutPrototype)
-		throws PortalException {
+		throws Exception {
 
 		if (ExportImportThreadLocal.isStagingInProcess() ||
 			(layoutPrototype == null)) {

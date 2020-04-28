@@ -491,7 +491,7 @@ public class ContentUtil {
 
 	private static JSONObject _getStatusJSONObject(
 			LayoutClassedModelUsage layoutClassedModelUsage)
-		throws PortalException {
+		throws Exception {
 
 		AssetRendererFactory assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.

@@ -15,7 +15,6 @@
 package com.liferay.sharing.web.internal.portlet.action;
 
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -119,7 +118,7 @@ public class SharingUserAutocompleteMVCResourceCommand
 	}
 
 	private JSONArray _getUsersJSONArray(HttpServletRequest httpServletRequest)
-		throws PortalException {
+		throws Exception {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

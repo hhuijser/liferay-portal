@@ -20,24 +20,33 @@ import antlr.CommonHiddenStreamToken;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
+import com.liferay.portal.json.JSONArrayImpl;
 import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.StringUtil;
+import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
 import com.liferay.source.formatter.checkstyle.util.DetailASTUtil;
 import com.liferay.source.formatter.util.DebugUtil;
+import com.liferay.source.formatter.util.FileUtil;
 import com.liferay.source.formatter.util.SourceFormatterCheckUtil;
+import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.FileContents;
+import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+
+import java.io.File;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -151,6 +160,45 @@ public abstract class BaseCheck extends AbstractCheck {
 		}
 
 		return endLineNumber;
+	}
+
+	protected String getFullyQualifiedTypeName(
+		DetailAST typeDetailAST, boolean checkPackage) {
+
+		String typeName = getTypeName(typeDetailAST, false);
+
+		if (typeName.contains(StringPool.PERIOD) &&
+			Character.isLowerCase(typeName.charAt(0))) {
+
+			return typeName;
+		}
+
+		List<String> importNames = getImportNames(typeDetailAST);
+
+		for (String importName : importNames) {
+			int x = importName.lastIndexOf(CharPool.PERIOD);
+
+			String className = importName.substring(x + 1);
+
+			if (typeName.equals(className)) {
+				return importName;
+			}
+
+			if (typeName.startsWith(className + ".")) {
+				return StringUtil.replaceLast(importName, className, typeName);
+			}
+		}
+
+		if (!checkPackage) {
+			return null;
+		}
+
+		FileContents fileContents = getFileContents();
+
+		FileText fileText = fileContents.getText();
+
+		return JavaSourceUtil.getPackageName((String)fileText.getFullText()) +
+			StringPool.PERIOD + typeName;
 	}
 
 	protected CommonHiddenStreamToken getHiddenBefore(DetailAST detailAST) {
@@ -432,6 +480,47 @@ public abstract class BaseCheck extends AbstractCheck {
 		sb.append(CharPool.GREATER_THAN);
 
 		return sb.toString();
+	}
+
+	protected Tuple getTypeNamesTuple(String fileName, String category) {
+		File typeNamesFile = SourceFormatterUtil.getFile(
+			getBaseDirName(),
+			"modules/util/source-formatter/src/main/resources/dependencies/" +
+				fileName,
+			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
+
+		JSONObject jsonObject = null;
+
+		try {
+			String content = null;
+
+			if (typeNamesFile != null) {
+				content = FileUtil.read(typeNamesFile);
+			}
+			else {
+				Class<?> clazz = getClass();
+
+				ClassLoader classLoader = clazz.getClassLoader();
+
+				content = StringUtil.read(
+					classLoader.getResourceAsStream(
+						"dependencies/" + fileName));
+			}
+
+			if (Validator.isNotNull(content)) {
+				jsonObject = new JSONObjectImpl(content);
+			}
+		}
+		catch (Exception exception) {
+		}
+
+		if (jsonObject == null) {
+			jsonObject = new JSONObjectImpl();
+
+			jsonObject.put(category, new JSONArrayImpl());
+		}
+
+		return new Tuple(jsonObject, typeNamesFile);
 	}
 
 	protected List<DetailAST> getVariableCallerDetailASTList(

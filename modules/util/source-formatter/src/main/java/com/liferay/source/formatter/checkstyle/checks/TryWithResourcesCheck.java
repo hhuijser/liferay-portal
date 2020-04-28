@@ -14,26 +14,17 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONArrayImpl;
 import com.liferay.portal.json.JSONObjectImpl;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
-import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
-import com.liferay.portal.kernel.util.Validator;
-import com.liferay.portal.tools.ToolsUtil;
-import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.util.FileUtil;
-import com.liferay.source.formatter.util.SourceFormatterUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
-import com.puppycrawl.tools.checkstyle.api.FileContents;
-import com.puppycrawl.tools.checkstyle.api.FileText;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
@@ -124,7 +115,7 @@ public class TryWithResourcesCheck extends BaseCheck {
 			List<String> closeableTypeNames = _getCloseableTypeNames();
 
 			if (!closeableTypeNames.contains(
-					_getFullyQualifiedTypeName(typeDetailAST, true))) {
+					getFullyQualifiedTypeName(typeDetailAST, true))) {
 
 				return;
 			}
@@ -209,7 +200,7 @@ public class TryWithResourcesCheck extends BaseCheck {
 			return _closeableTypeNamesTuple;
 		}
 
-		_closeableTypeNamesTuple = _getTypeNamesTuple(
+		_closeableTypeNamesTuple = getTypeNamesTuple(
 			_CLOSEABLE_TYPE_NAMES_FILE_NAME, _CLOSEABLE_TYPE_NAMES_CATEGORY);
 
 		return _closeableTypeNamesTuple;
@@ -296,86 +287,6 @@ public class TryWithResourcesCheck extends BaseCheck {
 		return null;
 	}
 
-	private String _getFullyQualifiedTypeName(
-		DetailAST typeDetailAST, boolean checkPackage) {
-
-		String typeName = getTypeName(typeDetailAST, false);
-
-		if (typeName.contains(StringPool.PERIOD) &&
-			Character.isLowerCase(typeName.charAt(0))) {
-
-			return typeName;
-		}
-
-		List<String> importNames = getImportNames(typeDetailAST);
-
-		for (String importName : importNames) {
-			int x = importName.lastIndexOf(CharPool.PERIOD);
-
-			String className = importName.substring(x + 1);
-
-			if (typeName.equals(className)) {
-				return importName;
-			}
-
-			if (typeName.startsWith(className + ".")) {
-				return StringUtil.replaceLast(importName, className, typeName);
-			}
-		}
-
-		if (!checkPackage) {
-			return null;
-		}
-
-		FileContents fileContents = getFileContents();
-
-		FileText fileText = fileContents.getText();
-
-		return JavaSourceUtil.getPackageName((String)fileText.getFullText()) +
-			StringPool.PERIOD + typeName;
-	}
-
-	private Tuple _getTypeNamesTuple(String fileName, String category) {
-		File typeNamesFile = SourceFormatterUtil.getFile(
-			getBaseDirName(),
-			"modules/util/source-formatter/src/main/resources/dependencies/" +
-				fileName,
-			ToolsUtil.PORTAL_MAX_DIR_LEVEL);
-
-		JSONObject jsonObject = null;
-
-		try {
-			String content = null;
-
-			if (typeNamesFile != null) {
-				content = FileUtil.read(typeNamesFile);
-			}
-			else {
-				Class<?> clazz = getClass();
-
-				ClassLoader classLoader = clazz.getClassLoader();
-
-				content = StringUtil.read(
-					classLoader.getResourceAsStream(
-						"dependencies/" + fileName));
-			}
-
-			if (Validator.isNotNull(content)) {
-				jsonObject = new JSONObjectImpl(content);
-			}
-		}
-		catch (Exception exception) {
-		}
-
-		if (jsonObject == null) {
-			jsonObject = new JSONObjectImpl();
-
-			jsonObject.put(category, new JSONArrayImpl());
-		}
-
-		return new Tuple(jsonObject, typeNamesFile);
-	}
-
 	private void _populateCloseableTypeNames(
 		DetailAST resourceSpecificationDetailAST) {
 
@@ -408,7 +319,7 @@ public class TryWithResourcesCheck extends BaseCheck {
 				continue;
 			}
 
-			String typeName = _getFullyQualifiedTypeName(typeDetailAST, false);
+			String typeName = getFullyQualifiedTypeName(typeDetailAST, false);
 
 			if ((typeName == null) || closeableTypeNames.contains(typeName)) {
 				continue;

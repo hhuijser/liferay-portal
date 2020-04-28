@@ -246,7 +246,7 @@ public class JspPrecompileTest {
 		return sb.toString();
 	}
 
-	private static InputStream _createTestBundle() throws IOException {
+	private static InputStream _createTestBundle() throws Exception {
 		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
 

@@ -18,7 +18,6 @@ import com.liferay.gradle.plugins.node.internal.util.FileUtil;
 import com.liferay.gradle.plugins.node.internal.util.GradleUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +62,7 @@ public class YarnInstallTask extends ExecutePackageManagerTask {
 		return completeArgs;
 	}
 
-	private void _createYarnrcFile(File yarnrcFile) throws IOException {
+	private void _createYarnrcFile(File yarnrcFile) throws Exception {
 		List<String> contents = new ArrayList<>(2);
 
 		contents.add("disable-self-update-check true");

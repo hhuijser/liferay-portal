@@ -71,7 +71,6 @@ import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapperBuilder;
 import freemarker.template.Template;
 import freemarker.template.TemplateHashModel;
-import freemarker.template.TemplateModelException;
 
 import java.beans.Introspector;
 
@@ -2113,7 +2112,7 @@ public class ServiceBuilder {
 	}
 
 	private static void _move(File sourceFile, File destinationFile)
-		throws IOException {
+		throws Exception {
 
 		File parentFile = destinationFile.getParentFile();
 
@@ -4057,7 +4056,7 @@ public class ServiceBuilder {
 	private void _createSQLMappingTables(
 			File sqlFile, String newCreateTableString,
 			EntityMapping entityMapping, boolean addMissingTables)
-		throws IOException {
+		throws Exception {
 
 		if (!sqlFile.exists()) {
 			_touch(sqlFile);
@@ -4507,7 +4506,7 @@ public class ServiceBuilder {
 		return null;
 	}
 
-	private String _fixHbmXml(String content) throws IOException {
+	private String _fixHbmXml(String content) throws Exception {
 		try (UnsyncBufferedReader unsyncBufferedReader =
 				new UnsyncBufferedReader(new UnsyncStringReader(content))) {
 
@@ -4712,7 +4711,7 @@ public class ServiceBuilder {
 		return properties;
 	}
 
-	private Map<String, Object> _getContext() throws TemplateModelException {
+	private Map<String, Object> _getContext() throws Exception {
 		Map<String, Object> context = HashMapBuilder.<String, Object>put(
 			"apiPackagePath", _apiPackagePath
 		).put(
@@ -5268,7 +5267,7 @@ public class ServiceBuilder {
 		return mappingPKEntityColumnDBNames;
 	}
 
-	private JavaClass _getJavaClass(String fileName) throws IOException {
+	private JavaClass _getJavaClass(String fileName) throws Exception {
 		fileName = _normalize(fileName);
 
 		int pos = 0;
@@ -5566,7 +5565,7 @@ public class ServiceBuilder {
 		return transients;
 	}
 
-	private List<Path> _getUpdateSQLFilePaths() throws IOException {
+	private List<Path> _getUpdateSQLFilePaths() throws Exception {
 		if (!_osgiModule) {
 			final List<Path> updateSQLFilePaths = new ArrayList<>();
 

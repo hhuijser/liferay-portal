@@ -29,7 +29,6 @@ import com.liferay.portal.xml.SAXReaderImpl;
 import java.io.IOException;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLStreamHandler;
@@ -122,7 +121,7 @@ public class WabURLConnectionTest {
 		wabURLConnection.getInputStream();
 	}
 
-	private String _getURIString(String fileName) throws URISyntaxException {
+	private String _getURIString(String fileName) throws Exception {
 		URL url = WabURLConnectionTest.class.getResource(fileName);
 
 		URI uri = url.toURI();

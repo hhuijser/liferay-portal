@@ -19,7 +19,6 @@ import com.liferay.account.model.AccountEntry;
 import com.liferay.account.rest.client.dto.v1_0.AccountUser;
 import com.liferay.account.service.AccountEntryLocalService;
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -141,7 +140,7 @@ public class AccountUserResourceTest extends BaseAccountUserResourceTestCase {
 		}
 	}
 
-	private AccountEntry _getAccountEntry() throws PortalException {
+	private AccountEntry _getAccountEntry() throws Exception {
 		return _accountEntryLocalService.addAccountEntry(
 			TestPropsValues.getUserId(),
 			AccountConstants.ACCOUNT_ENTRY_ID_DEFAULT,

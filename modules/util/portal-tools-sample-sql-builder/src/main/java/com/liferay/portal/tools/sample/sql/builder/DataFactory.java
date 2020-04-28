@@ -4476,7 +4476,7 @@ public class DataFactory {
 		return sb.toString();
 	}
 
-	private String _readFile(String resourceName) throws IOException {
+	private String _readFile(String resourceName) throws Exception {
 		List<String> lines = new ArrayList<>();
 
 		StringUtil.readLines(getResourceInputStream(resourceName), lines);

@@ -15,7 +15,6 @@
 package com.liferay.layout.search.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.model.User;
@@ -138,7 +137,7 @@ public class LayoutMultiLanguageSearchTest {
 	protected IndexerFixture<Layout> layoutIndexerFixture;
 	protected UserSearchFixture userSearchFixture;
 
-	private void _addLayoutMultiLanguage() throws PortalException {
+	private void _addLayoutMultiLanguage() throws Exception {
 		layoutFixture.createLayout(
 			new LocalizedValuesMap() {
 				{

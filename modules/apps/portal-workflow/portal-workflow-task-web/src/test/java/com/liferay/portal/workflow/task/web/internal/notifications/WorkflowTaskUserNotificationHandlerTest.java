@@ -16,7 +16,6 @@ package com.liferay.portal.workflow.task.web.internal.notifications;
 
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.json.JSONFactoryImpl;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.json.JSONUtil;
@@ -200,7 +199,7 @@ public class WorkflowTaskUserNotificationHandlerTest extends PowerMockito {
 					UserNotificationEventLocalService.class));
 	}
 
-	private static void _setUpWorkflowTaskManagerUtil() throws PortalException {
+	private static void _setUpWorkflowTaskManagerUtil() throws Exception {
 		WorkflowTaskManagerUtil workflowTaskManagerUtil =
 			new WorkflowTaskManagerUtil();
 

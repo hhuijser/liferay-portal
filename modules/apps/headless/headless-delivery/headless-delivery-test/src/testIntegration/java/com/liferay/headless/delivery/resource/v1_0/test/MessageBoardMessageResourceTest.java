@@ -21,7 +21,6 @@ import com.liferay.message.boards.model.MBMessage;
 import com.liferay.message.boards.model.MBThread;
 import com.liferay.message.boards.service.MBMessageLocalServiceUtil;
 import com.liferay.message.boards.test.util.MBTestUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -225,7 +224,7 @@ public class MessageBoardMessageResourceTest
 	}
 
 	private MBMessage _addMbMessage(Long siteId, String subject, String body)
-		throws PortalException {
+		throws Exception {
 
 		MBMessage mbMessage = MBTestUtil.addMessage(
 			siteId,

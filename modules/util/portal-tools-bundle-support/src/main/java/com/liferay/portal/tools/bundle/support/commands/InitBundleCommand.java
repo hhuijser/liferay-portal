@@ -116,7 +116,7 @@ public class InitBundleCommand extends DownloadCommand {
 		_stripComponents = stripComponents;
 	}
 
-	private void _copyProvidedModules() throws IOException {
+	private void _copyProvidedModules() throws Exception {
 		File liferayHomeDir = getLiferayHomeDir();
 
 		Path liferayHomeDirPath = liferayHomeDir.toPath();
@@ -130,13 +130,13 @@ public class InitBundleCommand extends DownloadCommand {
 		}
 	}
 
-	private void _deleteBundle() throws IOException {
+	private void _deleteBundle() throws Exception {
 		File dir = getLiferayHomeDir();
 
 		FileUtil.deleteDirectory(dir.toPath());
 	}
 
-	private void _fixPosixFilePermissions() throws IOException {
+	private void _fixPosixFilePermissions() throws Exception {
 		File dir = getLiferayHomeDir();
 
 		Path dirPath = dir.toPath();

@@ -181,7 +181,7 @@ public class AddPortletMVCActionCommand
 
 	private String _getPortletInstanceId(
 			Layout layout, String portletId, long segmentsExperienceId)
-		throws PortletIdException {
+		throws Exception {
 
 		Portlet portlet = _portletLocalService.getPortletById(portletId);
 

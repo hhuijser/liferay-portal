@@ -17,7 +17,6 @@ package com.liferay.portal.workflow.metrics.rest.internal.resource.v1_0;
 import com.liferay.portal.kernel.dao.orm.ActionableDynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.portal.kernel.service.UserLocalService;
@@ -117,7 +116,7 @@ public class RoleResourceImpl extends BaseRoleResourceImpl {
 	}
 
 	private Set<Role> _getRoles(boolean completed, Long processId)
-		throws PortalException {
+		throws Exception {
 
 		Set<Long> assigneeIds = _getAssigneeIds(completed, processId);
 

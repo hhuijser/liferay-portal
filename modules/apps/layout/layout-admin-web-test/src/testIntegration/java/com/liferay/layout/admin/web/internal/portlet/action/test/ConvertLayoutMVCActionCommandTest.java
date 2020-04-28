@@ -26,7 +26,6 @@ import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.layout.util.structure.RootLayoutStructureItem;
 import com.liferay.layout.util.structure.RowLayoutStructureItem;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -150,7 +149,7 @@ public class ConvertLayoutMVCActionCommandTest {
 	}
 
 	private MockActionRequest _getMockActionRequest(long plid)
-		throws PortalException {
+		throws Exception {
 
 		MockActionRequest mockActionRequest = new MockActionRequest();
 
@@ -177,7 +176,7 @@ public class ConvertLayoutMVCActionCommandTest {
 		return serviceContext;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

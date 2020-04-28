@@ -98,7 +98,6 @@ import com.liferay.view.count.service.persistence.ViewCountEntryPK;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import java.util.ArrayList;
@@ -616,7 +615,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 	private AssetCategory _getAssetCategory(
 			long userId, long companyId, long groupId, String name)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -678,7 +677,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	}
 
 	private CalendarResource _getCalendarResource(long companyId, long groupId)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext = new ServiceContext();
 
@@ -912,7 +911,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	private void _importCalendarBookingResourcePermission(
 			ResourcePermission resourcePermission, long calendarBookingId,
 			List<String> modelResourceActions)
-		throws PortalException {
+		throws Exception {
 
 		CalendarBooking calendarBooking =
 			_calendarBookingLocalService.getCalendarBooking(calendarBookingId);
@@ -929,7 +928,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 	private void _importCalendarBookingResourcePermissions(
 			long companyId, long eventId, long calendarBookingId)
-		throws PortalException {
+		throws Exception {
 
 		List<String> modelResourceActions =
 			ResourceActionsUtil.getModelResourceActions(
@@ -1081,7 +1080,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 
 	private void _importExpando(
 			long companyId, long eventId, long calendarBookingId)
-		throws PortalException {
+		throws Exception {
 
 		long oldClassNameId = _classNameLocalService.getClassNameId(
 			_CLASS_NAME);
@@ -1120,7 +1119,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	}
 
 	private void _importMBDiscussion(long eventId, long calendarBookingId)
-		throws PortalException {
+		throws Exception {
 
 		MBDiscussion mbDiscussion = _mbDiscussionLocalService.fetchDiscussion(
 			_CLASS_NAME, eventId);
@@ -1311,7 +1310,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	}
 
 	private boolean _isAssetLinkImported(long entryId1, long entryId2, int type)
-		throws SQLException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(3);
 

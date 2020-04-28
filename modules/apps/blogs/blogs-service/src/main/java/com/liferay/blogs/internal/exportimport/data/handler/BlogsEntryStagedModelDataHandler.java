@@ -22,7 +22,6 @@ import com.liferay.exportimport.content.processor.ExportImportContentProcessor;
 import com.liferay.exportimport.data.handler.base.BaseStagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.ExportImportPathUtil;
 import com.liferay.exportimport.kernel.lar.PortletDataContext;
-import com.liferay.exportimport.kernel.lar.PortletDataException;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandler;
 import com.liferay.exportimport.kernel.lar.StagedModelDataHandlerUtil;
 import com.liferay.exportimport.kernel.lar.StagedModelModifiedDateComparator;
@@ -369,7 +368,7 @@ public class BlogsEntryStagedModelDataHandler
 
 	private void _exportAssetDisplayPage(
 			PortletDataContext portletDataContext, BlogsEntry entry)
-		throws PortletDataException {
+		throws Exception {
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			_assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(
@@ -385,7 +384,7 @@ public class BlogsEntryStagedModelDataHandler
 
 	private void _exportFriendlyURLEntries(
 			PortletDataContext portletDataContext, BlogsEntry blogsEntry)
-		throws PortletDataException {
+		throws Exception {
 
 		long classNameId = _portal.getClassNameId(BlogsEntry.class);
 

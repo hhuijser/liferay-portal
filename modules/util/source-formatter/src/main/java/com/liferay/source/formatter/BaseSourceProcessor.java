@@ -598,7 +598,7 @@ public abstract class BaseSourceProcessor implements SourceProcessor {
 		processMessage(fileName, new SourceFormatterMessage(fileName, message));
 	}
 
-	private void _checkUTF8(File file, String fileName) throws IOException {
+	private void _checkUTF8(File file, String fileName) throws Exception {
 		byte[] bytes = FileUtil.getBytes(file);
 
 		try {

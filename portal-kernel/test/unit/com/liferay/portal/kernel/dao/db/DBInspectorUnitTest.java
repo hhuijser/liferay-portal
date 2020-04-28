@@ -20,7 +20,6 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -105,14 +104,14 @@ public class DBInspectorUnitTest {
 	}
 
 	private void _mockTableWithColumn(String tableName, String columnName)
-		throws SQLException {
+		throws Exception {
 
 		_mockTableWithOrWithoutColumn(tableName, columnName, true);
 	}
 
 	private void _mockTableWithOrWithoutColumn(
 			String tableName, String columnName, boolean hasColumn)
-		throws SQLException {
+		throws Exception {
 
 		Mockito.when(
 			_connection.getMetaData()
@@ -155,7 +154,7 @@ public class DBInspectorUnitTest {
 	}
 
 	private void _mockTableWithoutColumn(String tableName, String columnName)
-		throws SQLException {
+		throws Exception {
 
 		_mockTableWithOrWithoutColumn(tableName, columnName, false);
 	}

@@ -106,7 +106,7 @@ public class OSGiBundleBuilderCommandTest {
 	public final TemporaryFolder temporaryFolder = new TemporaryFolder();
 
 	private static void _compareJarDirs(File expectedDir, File actualDir)
-		throws IOException {
+		throws Exception {
 
 		final Path expectedDirPath = expectedDir.toPath();
 		final Path actualDirPath = actualDir.toPath();
@@ -148,7 +148,7 @@ public class OSGiBundleBuilderCommandTest {
 
 	private static void _compareManifestFiles(
 			File expectedFile, File actualFile)
-		throws IOException {
+		throws Exception {
 
 		Attributes expectedAttributes = _getManifestAttributes(expectedFile);
 		Attributes actualAttributes = _getManifestAttributes(actualFile);
@@ -165,7 +165,7 @@ public class OSGiBundleBuilderCommandTest {
 	}
 
 	private static Attributes _getManifestAttributes(File file)
-		throws IOException {
+		throws Exception {
 
 		try (InputStream inputStream = new FileInputStream(file)) {
 			Manifest manifest = new Manifest(inputStream);

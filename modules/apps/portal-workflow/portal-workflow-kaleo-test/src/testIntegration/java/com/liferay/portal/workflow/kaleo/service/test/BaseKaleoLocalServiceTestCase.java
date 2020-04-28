@@ -276,7 +276,7 @@ public abstract class BaseKaleoLocalServiceTestCase {
 
 	protected ServiceContext serviceContext;
 
-	private BlogsEntry _addBlogsEntry() throws PortalException {
+	private BlogsEntry _addBlogsEntry() throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					"com.liferay.petra.mail.MailEngine", Level.OFF)) {
@@ -303,7 +303,7 @@ public abstract class BaseKaleoLocalServiceTestCase {
 		}
 	}
 
-	private void _setUpServiceContext() throws PortalException {
+	private void _setUpServiceContext() throws Exception {
 		serviceContext = new ServiceContext();
 
 		serviceContext.setCompanyId(TestPropsValues.getCompanyId());

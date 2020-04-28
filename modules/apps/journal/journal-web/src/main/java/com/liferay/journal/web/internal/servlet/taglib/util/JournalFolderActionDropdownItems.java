@@ -200,7 +200,7 @@ public class JournalFolderActionDropdownItems {
 
 	private UnsafeConsumer<DropdownItem, Exception>
 			_getDeleteFolderActionUnsafeConsumer()
-		throws PortalException {
+		throws Exception {
 
 		String redirect = _getRedirect();
 

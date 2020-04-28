@@ -26,8 +26,6 @@ import com.liferay.taglib.aui.base.BaseATag;
 import com.liferay.taglib.util.InlineUtil;
 import com.liferay.taglib.util.TagResourceBundleUtil;
 
-import java.io.IOException;
-
 import java.util.Map;
 import java.util.ResourceBundle;
 
@@ -218,9 +216,7 @@ public class ATag extends BaseATag {
 		return StringPool.BLANK;
 	}
 
-	private void _writeDynamicAttributes(JspWriter jspWriter)
-		throws IOException {
-
+	private void _writeDynamicAttributes(JspWriter jspWriter) throws Exception {
 		String dynamicAttributesString = InlineUtil.buildDynamicAttributes(
 			getDynamicAttributes());
 

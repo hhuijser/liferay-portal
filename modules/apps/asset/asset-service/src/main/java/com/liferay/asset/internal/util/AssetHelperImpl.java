@@ -34,7 +34,6 @@ import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Group;
@@ -562,7 +561,7 @@ public class AssetHelperImpl implements AssetHelper {
 	}
 
 	private boolean _getDDMFormFieldLocalizable(String sortField)
-		throws PortalException {
+		throws Exception {
 
 		String[] sortFields = StringUtil.split(
 			sortField, DDMStructureManager.STRUCTURE_INDEXER_FIELD_SEPARATOR);
@@ -576,9 +575,7 @@ public class AssetHelperImpl implements AssetHelper {
 			ddmStructure.getFieldProperty(sortFields[3], "localizable"));
 	}
 
-	private String _getDDMFormFieldType(String sortField)
-		throws PortalException {
-
+	private String _getDDMFormFieldType(String sortField) throws Exception {
 		String[] sortFields = sortField.split(
 			DDMStructureManager.STRUCTURE_INDEXER_FIELD_SEPARATOR);
 

@@ -414,7 +414,7 @@ public abstract class BaseWorkflowMetricsIndexerTestCase
 	}
 
 	private Map<String, Serializable> _createWorkflowContext()
-		throws PortalException {
+		throws Exception {
 
 		return HashMapBuilder.<String, Serializable>put(
 			WorkflowConstants.CONTEXT_ENTRY_CLASS_NAME,

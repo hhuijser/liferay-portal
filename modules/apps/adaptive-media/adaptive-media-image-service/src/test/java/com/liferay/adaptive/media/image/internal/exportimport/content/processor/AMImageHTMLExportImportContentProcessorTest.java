@@ -500,7 +500,7 @@ public class AMImageHTMLExportImportContentProcessorTest {
 	}
 
 	private void _setUpFileEntryToExport(long fileEntryId, FileEntry fileEntry)
-		throws PortalException {
+		throws Exception {
 
 		Mockito.doReturn(
 			fileEntry

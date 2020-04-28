@@ -1050,7 +1050,7 @@ public class JavadocFormatter {
 		return comment;
 	}
 
-	private String _compactString(Node node) throws IOException {
+	private String _compactString(Node node) throws Exception {
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();
 
@@ -1188,7 +1188,7 @@ public class JavadocFormatter {
 		return text;
 	}
 
-	private String _formattedString(Node node) throws IOException {
+	private String _formattedString(Node node) throws Exception {
 		return Dom4jUtil.toString(node);
 	}
 
@@ -2374,7 +2374,7 @@ public class JavadocFormatter {
 		return text;
 	}
 
-	private void _write(File file, String s) throws IOException {
+	private void _write(File file, String s) throws Exception {
 		Files.write(file.toPath(), s.getBytes(StandardCharsets.UTF_8));
 	}
 

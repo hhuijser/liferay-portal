@@ -279,7 +279,7 @@ public class SpringExtenderDependencyManagerTest {
 		}
 	}
 
-	private InputStream _createBundle() throws IOException {
+	private InputStream _createBundle() throws Exception {
 		try (UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 				new UnsyncByteArrayOutputStream()) {
 

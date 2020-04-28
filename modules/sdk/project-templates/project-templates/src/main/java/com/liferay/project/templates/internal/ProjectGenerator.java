@@ -27,8 +27,6 @@ import com.liferay.project.templates.extensions.util.WorkspaceUtil;
 
 import java.io.File;
 
-import java.net.MalformedURLException;
-
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -186,7 +184,7 @@ public class ProjectGenerator {
 
 	private ProjectTemplateCustomizer _getProjectTemplateCustomizer(
 			String templateName)
-		throws MalformedURLException {
+		throws Exception {
 
 		ServiceLoader<ProjectTemplateCustomizer> serviceLoader =
 			ServiceLoader.load(ProjectTemplateCustomizer.class);

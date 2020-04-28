@@ -16,7 +16,6 @@ package com.liferay.layout.admin.web.internal.display.context;
 
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -245,7 +244,7 @@ public class MillerColumnsDisplayContext {
 
 	private JSONObject _getFirstLayoutColumn(
 			boolean privatePages, boolean active)
-		throws PortalException {
+		throws Exception {
 
 		String key = "public-pages";
 
@@ -280,7 +279,7 @@ public class MillerColumnsDisplayContext {
 
 	private JSONArray _getFirstLayoutColumnActionsJSONArray(
 			boolean privatePages)
-		throws PortalException {
+		throws Exception {
 
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 

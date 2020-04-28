@@ -29,7 +29,6 @@ import com.liferay.layout.util.structure.DropZoneLayoutStructureItem;
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Layout;
 import com.liferay.portal.kernel.util.Validator;
 
@@ -135,7 +134,7 @@ public class DropZoneLayoutStructureItemHelper
 				fragmentCollectionContributorTracker,
 			String fragmentKey, FragmentRendererTracker fragmentRendererTracker,
 			long groupId)
-		throws PortalException {
+		throws Exception {
 
 		FragmentEntry fragmentEntry =
 			FragmentEntryLocalServiceUtil.fetchFragmentEntry(

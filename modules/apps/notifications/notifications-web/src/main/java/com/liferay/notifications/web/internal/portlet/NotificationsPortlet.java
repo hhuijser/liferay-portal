@@ -37,8 +37,6 @@ import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.subscription.model.Subscription;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
-import java.io.IOException;
-
 import java.util.ResourceBundle;
 
 import javax.portlet.ActionRequest;
@@ -359,7 +357,7 @@ public class NotificationsPortlet extends MVCPortlet {
 	}
 
 	private void _deleteSubscription(long userId, long subscriptionId)
-		throws PortalException {
+		throws Exception {
 
 		Subscription subscription = _subscriptionLocalService.fetchSubscription(
 			subscriptionId);
@@ -377,7 +375,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 	private void _deleteUserNotificationEvent(
 			long userId, long userNotificationEventId)
-		throws PortalException {
+		throws Exception {
 
 		UserNotificationEvent userNotificationEvent =
 			_userNotificationEventLocalService.fetchUserNotificationEvent(
@@ -397,7 +395,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 	private void _sendRedirect(
 			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws IOException {
+		throws Exception {
 
 		String redirect = ParamUtil.getString(actionRequest, "redirect");
 
@@ -408,7 +406,7 @@ public class NotificationsPortlet extends MVCPortlet {
 
 	private void _updateUserNotificationDelivery(
 			long userId, long userNotificationDeliveryId, boolean deliver)
-		throws PortalException {
+		throws Exception {
 
 		UserNotificationDelivery userNotificationDelivery =
 			_userNotificationDeliveryLocalService.fetchUserNotificationDelivery(

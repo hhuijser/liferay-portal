@@ -24,7 +24,6 @@ import com.liferay.layout.page.template.service.LayoutPageTemplateStructureLocal
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -245,7 +244,7 @@ public class AddFragmentCompositionMVCActionCommandTest {
 		Assert.assertTrue(fragmentComposition.getPreviewFileEntryId() > 0);
 	}
 
-	private MockActionRequest _getMockActionRequest() throws PortalException {
+	private MockActionRequest _getMockActionRequest() throws Exception {
 		MockActionRequest mockActionRequest = new MockActionRequest();
 
 		mockActionRequest.setAttribute(
@@ -257,7 +256,7 @@ public class AddFragmentCompositionMVCActionCommandTest {
 		return mockActionRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

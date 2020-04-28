@@ -28,7 +28,6 @@ import com.liferay.dynamic.data.lists.model.DDLRecordSetConstants;
 import com.liferay.dynamic.data.lists.service.DDLRecordSetLocalService;
 import com.liferay.dynamic.data.mapping.model.DDMStructure;
 import com.liferay.dynamic.data.mapping.service.DDMStructureLocalService;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.language.LanguageUtil;
@@ -378,7 +377,7 @@ public class DataRecordCollectionResourceImpl
 	}
 
 	private String _getResourceName(DDLRecordSet ddlRecordSet)
-		throws PortalException {
+		throws Exception {
 
 		DDMStructure ddmStructure = ddlRecordSet.getDDMStructure();
 

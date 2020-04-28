@@ -49,7 +49,6 @@ import com.liferay.portal.upload.UploadPortletRequestImpl;
 import com.liferay.portal.upload.UploadServletRequestImpl;
 import com.liferay.portal.util.PropsValues;
 
-import java.io.IOException;
 import java.io.OutputStream;
 
 import java.net.URL;
@@ -205,7 +204,7 @@ public class ImportFragmentEntriesStrutsActionTest {
 		return mockMultipartHttpServletRequest;
 	}
 
-	private byte[] _getFileBytes() throws IOException {
+	private byte[] _getFileBytes() throws Exception {
 		Enumeration<URL> enumeration = _bundle.findEntries(
 			_RESOURCES_PATH, "*", true);
 

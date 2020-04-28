@@ -184,7 +184,7 @@ public abstract class BaseReplacePortletId extends BaseUpgradePortletId {
 	}
 
 	private void _deleteConflictingPreferences(String orClauses)
-		throws SQLException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler(4);
 

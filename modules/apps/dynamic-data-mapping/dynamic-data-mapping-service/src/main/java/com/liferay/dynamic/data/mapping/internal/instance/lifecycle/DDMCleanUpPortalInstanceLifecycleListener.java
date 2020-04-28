@@ -23,7 +23,6 @@ import com.liferay.dynamic.data.mapping.service.DDMTemplateLocalService;
 import com.liferay.dynamic.data.mapping.service.DDMTemplateVersionLocalService;
 import com.liferay.portal.instance.lifecycle.BasePortalInstanceLifecycleListener;
 import com.liferay.portal.instance.lifecycle.PortalInstanceLifecycleListener;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 
 import java.util.Deque;
@@ -82,9 +81,7 @@ public class DDMCleanUpPortalInstanceLifecycleListener
 		}
 	}
 
-	private void _deleteDDMTemplate(DDMTemplate ddmTemplate)
-		throws PortalException {
-
+	private void _deleteDDMTemplate(DDMTemplate ddmTemplate) throws Exception {
 		_ddmTemplateVersionLocalService.deleteTemplateVersions(
 			ddmTemplate.getTemplateId());
 

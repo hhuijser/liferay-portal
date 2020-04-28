@@ -100,7 +100,7 @@ public class WabBuildAutoUpgradeTest extends BaseBuildAutoUpgradeTestCase {
 	}
 
 	private File _createWabBundleFile(Object[][] tableColumns, int version)
-		throws IOException {
+		throws Exception {
 
 		File file = FileUtil.createTempFile("war");
 

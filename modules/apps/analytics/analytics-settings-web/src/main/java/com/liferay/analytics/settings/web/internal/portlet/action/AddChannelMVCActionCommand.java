@@ -258,9 +258,7 @@ public class AddChannelMVCActionCommand extends BaseAnalyticsMVCActionCommand {
 		return liferayAnalyticsGroupIds;
 	}
 
-	private void _updateTypeSettingsProperties(String json)
-		throws PortalException {
-
+	private void _updateTypeSettingsProperties(String json) throws Exception {
 		JSONArray channelsJSONArray = JSONFactoryUtil.createJSONArray(json);
 
 		for (int i = 0; i < channelsJSONArray.length(); i++) {

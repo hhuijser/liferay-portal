@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.search.Field;
 import com.liferay.portal.kernel.search.Indexer;
 import com.liferay.portal.kernel.search.IndexerRegistry;
 import com.liferay.portal.kernel.search.SearchContext;
-import com.liferay.portal.kernel.search.SearchException;
 import com.liferay.portal.kernel.security.permission.ResourceActions;
 import com.liferay.portal.kernel.test.util.PropsTestUtil;
 import com.liferay.portal.kernel.test.util.RandomTestUtil;
@@ -366,7 +365,7 @@ public class SearchResultsPortletTest {
 		);
 	}
 
-	private Indexer<?> _createIndexerWithSummary() throws SearchException {
+	private Indexer<?> _createIndexerWithSummary() throws Exception {
 		Indexer<?> indexer = Mockito.mock(Indexer.class);
 
 		Mockito.doReturn(

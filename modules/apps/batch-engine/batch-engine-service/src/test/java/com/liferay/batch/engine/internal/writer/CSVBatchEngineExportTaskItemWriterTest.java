@@ -86,7 +86,7 @@ public class CSVBatchEngineExportTaskItemWriterTest
 
 	private String _getExpectedContent(
 			List<String> fieldNames, List<Item> items)
-		throws IllegalAccessException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler();
 

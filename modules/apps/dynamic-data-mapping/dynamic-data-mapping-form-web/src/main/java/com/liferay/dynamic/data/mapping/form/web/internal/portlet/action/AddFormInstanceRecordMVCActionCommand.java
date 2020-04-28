@@ -203,7 +203,7 @@ public class AddFormInstanceRecordMVCActionCommand
 			ActionRequest actionRequest, DDMFormInstance ddmFormInstance,
 			DDMFormValues ddmFormValues, long groupId,
 			ServiceContext serviceContext, long userId)
-		throws PortalException {
+		throws Exception {
 
 		long ddmFormInstanceRecordId = ParamUtil.getLong(
 			actionRequest, "formInstanceRecordId");

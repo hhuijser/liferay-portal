@@ -35,7 +35,6 @@ import com.liferay.portal.instance.lifecycle.PortalInstanceLifecycleListener;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Property;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.ResourceConstants;
 import com.liferay.portal.kernel.model.ResourcePermission;
@@ -219,9 +218,7 @@ public class AnalyticsCloudPortalInstanceLifecycleListener
 			});
 	}
 
-	private void _addSAPEntries(long companyId, long userId)
-		throws PortalException {
-
+	private void _addSAPEntries(long companyId, long userId) throws Exception {
 		Class<?> clazz = getClass();
 
 		ResourceBundleLoader resourceBundleLoader =

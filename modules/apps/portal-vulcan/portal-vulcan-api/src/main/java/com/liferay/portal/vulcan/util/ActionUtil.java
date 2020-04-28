@@ -218,7 +218,7 @@ public class ActionUtil {
 	}
 
 	private static String _getHttpMethodName(Class clazz, Method method)
-		throws NoSuchMethodException {
+		throws Exception {
 
 		Class<?> superClass = clazz.getSuperclass();
 

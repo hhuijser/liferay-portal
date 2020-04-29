@@ -3,7 +3,6 @@
 <suppressions>
 	<checkstyle>
 		<suppress checks="ConstantNameCheck" files="jenkins-results-parser/src/main/java/com/liferay/jenkins/results/parser/AxisBuild\.java" />
-		<suppress checks="MethodNamingCheck" files="maven-executor/src/main/java/com/liferay/maven/executor/MavenExecutor\.java" />
 		<suppress checks="ParsePrimitiveTypeCheck" files="arquillian-extension-junit-bridge/src/main/java/com/liferay/arquillian/extension/junit/bridge/server/TestBundleActivator\.java" />
 	</checkstyle>
 	<source-check>

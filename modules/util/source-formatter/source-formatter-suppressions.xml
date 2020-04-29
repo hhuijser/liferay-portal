@@ -3,7 +3,6 @@
 <suppressions>
 	<checkstyle>
 		<suppress checks="ContractionsCheck" files="src/main/java/com/liferay/source/formatter/checkstyle/checks/ContractionsCheck\.java" />
-		<suppress checks="MethodNamingCheck" files="src/main/java/com/liferay/source/formatter/checkstyle/checks/MethodNamingCheck\.java" />
 	</checkstyle>
 	<source-check>
 		<suppress checks="CDNCheck" files="src/main/java/com/liferay/source/formatter/checks/CDNCheck\.java" />

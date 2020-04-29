@@ -130,7 +130,8 @@ public class RedirectEntryServiceImpl extends RedirectEntryServiceBaseImpl {
 
 		List<RedirectEntry> redirectEntries =
 			redirectEntryLocalService.
-				getRedirectEntriesByGroupIdAndDestinationURL(groupId, sourceURL);
+				getRedirectEntriesByGroupIdAndDestinationURL(
+					groupId, sourceURL);
 
 		for (RedirectEntry redirectEntry : redirectEntries) {
 			updateRedirectEntry(

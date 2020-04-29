@@ -65,7 +65,7 @@ public class DefaultScreenNameGenerator implements ScreenNameGenerator {
 		if (!_USERS_SCREEN_NAME_ALLOW_NUMERIC &&
 			Validator.isNumber(screenName)) {
 
-			screenName = _NON_NUMERICAL_PREFIX + screenName;
+			screenName = _NONNUMERICAL_PREFIX + screenName;
 		}
 
 		String[] reservedScreenNames = PrefsPropsUtil.getStringArray(
@@ -120,7 +120,7 @@ public class DefaultScreenNameGenerator implements ScreenNameGenerator {
 		StringUtil.splitLines(
 			PropsUtil.get(PropsKeys.ADMIN_RESERVED_SCREEN_NAMES));
 
-	private static final String _NON_NUMERICAL_PREFIX = "user.";
+	private static final String _NONNUMERICAL_PREFIX = "user.";
 
 	private static final boolean _USERS_SCREEN_NAME_ALLOW_NUMERIC =
 		GetterUtil.getBoolean(

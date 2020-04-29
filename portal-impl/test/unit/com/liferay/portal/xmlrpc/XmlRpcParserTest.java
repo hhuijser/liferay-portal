@@ -109,7 +109,7 @@ public class XmlRpcParserTest {
 		Assert.assertEquals("hello", parameterizedMethodArguments[1]);
 		Assert.assertEquals("world", parameterizedMethodArguments[2]);
 
-		for (String xml : _NON_PARAMETERIZED_METHODS) {
+		for (String xml : _NONPARAMETERIZED_METHODS) {
 			Tuple nonparameterizedMethodTuple = XmlRpcParser.parseMethod(xml);
 
 			Assert.assertEquals(
@@ -190,7 +190,7 @@ public class XmlRpcParserTest {
 
 	// Skip JavaParser
 
-	private static final String[] _NON_PARAMETERIZED_METHODS = {
+	private static final String[] _NONPARAMETERIZED_METHODS = {
 		StringBundler.concat(
 			"<?xml version=\"1.0\"?>",
 			"<methodCall>",

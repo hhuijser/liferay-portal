@@ -1095,7 +1095,7 @@ public class DefaultExportImportContentProcessorTest {
 	protected String replaceMultiLocaleLayoutFriendlyURLs(String content) {
 		return duplicateLinesWithParamNames(
 			content, _MULTI_LOCALE_LAYOUT_VARIABLES,
-			_NON_DEFAULT_MULTI_LOCALE_LAYOUT_VARIABLES);
+			_NONDEFAULT_MULTI_LOCALE_LAYOUT_VARIABLES);
 	}
 
 	protected String replaceParameters(String content, FileEntry fileEntry) {
@@ -1288,7 +1288,7 @@ public class DefaultExportImportContentProcessorTest {
 		"[$PRIVATE_LAYOUT_FRIENDLY_URL$]", "[$PUBLIC_LAYOUT_FRIENDLY_URL$]"
 	};
 
-	private static final String[] _NON_DEFAULT_MULTI_LOCALE_LAYOUT_VARIABLES = {
+	private static final String[] _NONDEFAULT_MULTI_LOCALE_LAYOUT_VARIABLES = {
 		"[$NON_DEFAULT_LIVE_PUBLIC_LAYOUT_FRIENDLY_URL$]",
 		"[$NON_DEFAULT_PRIVATE_LAYOUT_FRIENDLY_URL$]",
 		"[$NON_DEFAULT_PUBLIC_LAYOUT_FRIENDLY_URL$]"

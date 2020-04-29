@@ -452,9 +452,9 @@ public class ConstantsBeanFactoryImplTest {
 		public static void get_Void() {
 		}
 
-		public Object NON_STATIC_VALUE = new Object();
+		public Object NONSTATIC_VALUE = new Object();
 
-		protected static Object NON_PUBLIC_VALUE = new Object();
+		protected static Object NONPUBLIC_VALUE = new Object();
 
 	}
 

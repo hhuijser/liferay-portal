@@ -931,7 +931,7 @@ public class LocalProcessExecutorTest {
 							processLogs.add(processLog);
 						}
 					}),
-				Operations.PIPING_BACK_NON_PROCESS_CALLABLE);
+				Operations.PIPING_BACK_NONPROCESS_CALLABLE);
 
 		NoticeableFuture<Serializable> noticeableFuture =
 			processChannel.getProcessNoticeableFuture();
@@ -1428,7 +1428,7 @@ public class LocalProcessExecutorTest {
 			};
 
 		public static final ProcessCallable<Serializable>
-			PIPING_BACK_NON_PROCESS_CALLABLE = () -> {
+			PIPING_BACK_NONPROCESS_CALLABLE = () -> {
 				try {
 					UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 						new UnsyncByteArrayOutputStream();

@@ -38,16 +38,6 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		_checkName(
-			detailAST, "non", "nonProxyHost", "nonSerializableObjectHandler",
-			"nonSpringServlet");
-		_checkName(detailAST, "re", "reCaptcha");
-		_checkName(detailAST, "sub", "subSelect");
-	}
-
-	private void _checkName(
-		DetailAST detailAST, String s, String... allowedNames) {
-
 		if ((detailAST.getType() == TokenTypes.METHOD_DEF) &&
 			AnnotationUtil.containsAnnotation(detailAST, "Override")) {
 
@@ -57,6 +47,16 @@ public class CamelCaseNameCheck extends BaseCheck {
 		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
 		String name = nameDetailAST.getText();
+
+		_checkName(
+			detailAST, name, "non", "nonProxyHost",
+			"nonSerializableObjectHandler", "nonSpringServlet");
+		_checkName(detailAST, name, "re", "reCaptcha");
+		_checkName(detailAST, name, "sub", "subSelect");
+	}
+
+	private void _checkName(
+		DetailAST detailAST, String name, String s, String... allowedNames) {
 
 		String lowerCaseName = StringUtil.toLowerCase(name);
 

@@ -277,7 +277,7 @@ public class PortletBagFactory {
 	}
 
 	private javax.portlet.Portlet _getPortletInstance(Portlet portlet)
-		throws IllegalAccessException, InstantiationException {
+		throws Exception {
 
 		Class<?> portletClass = null;
 

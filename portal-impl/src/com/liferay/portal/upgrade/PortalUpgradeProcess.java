@@ -157,7 +157,7 @@ public class PortalUpgradeProcess extends UpgradeProcess {
 	}
 
 	private static void _initializeSchemaVersion(Connection connection)
-		throws SQLException {
+		throws Exception {
 
 		try (PreparedStatement ps = connection.prepareStatement(
 				"update Release_ set schemaVersion = ? where " +

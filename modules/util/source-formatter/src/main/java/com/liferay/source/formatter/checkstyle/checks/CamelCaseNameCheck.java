@@ -14,8 +14,8 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 
@@ -58,18 +58,23 @@ public class CamelCaseNameCheck extends BaseCheck {
 	private void _checkName(
 		DetailAST detailAST, String name, String s, String... allowedNames) {
 
-		String lowerCaseName = StringUtil.toLowerCase(name);
-
 		for (String allowedName : allowedNames) {
-			if (lowerCaseName.contains(StringUtil.toLowerCase(allowedName))) {
+			if (name.startsWith(allowedName) ||
+				name.startsWith("_" + allowedName) ||
+				name.contains(
+					TextFormatter.format(allowedName, TextFormatter.G))) {
+
 				return;
 			}
 
-			String formattedAllowedName = StringUtil.replace(
-				TextFormatter.format(allowedName, TextFormatter.K),
-				StringPool.DASH, StringPool.UNDERLINE);
+			String allowedNameConstantStyle = StringUtil.toUpperCase(
+				StringUtil.replace(
+					TextFormatter.format(allowedName, TextFormatter.K),
+					CharPool.DASH, CharPool.UNDERLINE));
 
-			if (name.contains(StringUtil.toUpperCase(formattedAllowedName))) {
+			if (name.startsWith(allowedNameConstantStyle) ||
+				name.contains("_" + allowedNameConstantStyle)) {
+
 				return;
 			}
 		}

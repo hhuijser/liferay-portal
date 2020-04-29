@@ -115,9 +115,9 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 		Matcher matcher = pattern.matcher(javaVariable.getContent());
 
 		if (matcher.find()) {
-			String nonAccessModifiers = matcher.group(1);
+			String nonaccessModifiers = matcher.group(1);
 
-			if (nonAccessModifiers.contains(modifier)) {
+			if (nonaccessModifiers.contains(modifier)) {
 				return true;
 			}
 		}

@@ -50,12 +50,12 @@ public class AMImageDemo extends BasePortalInstanceLifecycleListener {
 		Group group = _groupLocalService.getGroup(
 			company.getCompanyId(), "Guest");
 
-		Folder nonAMFolder = _rootFolderDemoDataCreator.create(
+		Folder nonamFolder = _rootFolderDemoDataCreator.create(
 			user.getUserId(), group.getGroupId(), "Non Adaptive Media");
 
 		for (int i = 0; i < 5; i++) {
 			FileEntry fileEntry = _fileEntryDemoDataCreator.create(
-				user.getUserId(), nonAMFolder.getFolderId());
+				user.getUserId(), nonamFolder.getFolderId());
 
 			if (_log.isInfoEnabled()) {
 				_log.info(

@@ -1121,12 +1121,12 @@ public class AMImageUpdateConfigurationTest
 			amImageConfigurationEntry1.getProperties());
 
 		Optional<AMImageConfigurationEntry>
-			nonExistantAMImageConfigurationEntry1Optional =
+			nonexistantAMImageConfigurationEntry1Optional =
 				_amImageConfigurationHelper.getAMImageConfigurationEntry(
 					TestPropsValues.getCompanyId(), "1");
 
 		Assert.assertFalse(
-			nonExistantAMImageConfigurationEntry1Optional.isPresent());
+			nonexistantAMImageConfigurationEntry1Optional.isPresent());
 
 		Optional<AMImageConfigurationEntry>
 			actualAMImageConfigurationEntry1Optional =
@@ -1409,12 +1409,12 @@ public class AMImageUpdateConfigurationTest
 			amImageConfigurationEntry2.getProperties());
 
 		Optional<AMImageConfigurationEntry>
-			nonExistantAMImageConfigurationEntry2Optional =
+			nonexistantAMImageConfigurationEntry2Optional =
 				_amImageConfigurationHelper.getAMImageConfigurationEntry(
 					TestPropsValues.getCompanyId(), "2");
 
 		Assert.assertFalse(
-			nonExistantAMImageConfigurationEntry2Optional.isPresent());
+			nonexistantAMImageConfigurationEntry2Optional.isPresent());
 
 		Optional<AMImageConfigurationEntry>
 			actualAMImageConfigurationEntry2Optional =

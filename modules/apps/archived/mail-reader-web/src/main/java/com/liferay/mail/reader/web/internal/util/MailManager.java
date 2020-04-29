@@ -435,13 +435,13 @@ public class MailManager {
 
 	public List<Folder> getFolders(
 			long accountId, boolean includeRequiredFolders,
-			boolean includeNonRequiredFolders)
+			boolean includeNonrequiredFolders)
 		throws PortalException {
 
 		List<Folder> folders = FolderLocalServiceUtil.getFolders(accountId);
 
 		List<Folder> requiredFolders = new ArrayList<>();
-		List<Folder> nonRequiredFolders = new ArrayList<>();
+		List<Folder> nonrequiredFolders = new ArrayList<>();
 
 		Account account = AccountLocalServiceUtil.getAccount(accountId);
 
@@ -454,19 +454,19 @@ public class MailManager {
 				requiredFolders.add(folder);
 			}
 			else {
-				nonRequiredFolders.add(folder);
+				nonrequiredFolders.add(folder);
 			}
 		}
 
-		if (includeRequiredFolders && includeNonRequiredFolders) {
-			requiredFolders.addAll(nonRequiredFolders);
+		if (includeRequiredFolders && includeNonrequiredFolders) {
+			requiredFolders.addAll(nonrequiredFolders);
 
 			// Required folders at front of list
 
 			return requiredFolders;
 		}
-		else if (includeNonRequiredFolders) {
-			return nonRequiredFolders;
+		else if (includeNonrequiredFolders) {
+			return nonrequiredFolders;
 		}
 
 		return requiredFolders;

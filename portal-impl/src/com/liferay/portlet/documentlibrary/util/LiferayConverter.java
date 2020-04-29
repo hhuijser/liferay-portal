@@ -110,16 +110,16 @@ public abstract class LiferayConverter {
 	}
 
 	protected int countNonKeyAfterKey(
-		IPacket inputIPacket, Boolean keyPacketFound, int nonKeyAfterKeyCount) {
+		IPacket inputIPacket, Boolean keyPacketFound, int nonkeyAfterKeyCount) {
 
 		if (inputIPacket.isKey()) {
-			nonKeyAfterKeyCount = 0;
+			nonkeyAfterKeyCount = 0;
 		}
 		else if (keyPacketFound) {
-			nonKeyAfterKeyCount++;
+			nonkeyAfterKeyCount++;
 		}
 
-		return nonKeyAfterKeyCount;
+		return nonkeyAfterKeyCount;
 	}
 
 	protected IAudioResampler createIAudioResampler(
@@ -596,7 +596,7 @@ public abstract class LiferayConverter {
 
 	protected boolean isStartDecoding(
 		IPacket inputIPacket, IStreamCoder inputIStreamCoder,
-		boolean keyPacketFound, int nonKeyAfterKeyCount,
+		boolean keyPacketFound, int nonkeyAfterKeyCount,
 		boolean onlyDecodeKeyPackets) {
 
 		if (onlyDecodeKeyPackets && !inputIPacket.isKey()) {
@@ -611,7 +611,7 @@ public abstract class LiferayConverter {
 		else if (iCodecID.equals(ICodec.ID.CODEC_ID_MPEG2VIDEO) ||
 				 iCodecID.equals(ICodec.ID.CODEC_ID_THEORA)) {
 
-			if (nonKeyAfterKeyCount != 1) {
+			if (nonkeyAfterKeyCount != 1) {
 				return true;
 			}
 

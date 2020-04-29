@@ -190,10 +190,10 @@ public class SiteMembershipPolicyRolesTest
 		List<UserGroupRole> initialUserGroupRoles =
 			UserGroupRoleLocalServiceUtil.getUserGroupRoles(user.getUserId());
 
-		List<UserGroupRole> emptyNonAbstractList = new ArrayList<>();
+		List<UserGroupRole> emptyNonabstractList = new ArrayList<>();
 
 		MembershipPolicyTestUtil.updateUser(
-			user, null, null, null, null, emptyNonAbstractList);
+			user, null, null, null, null, emptyNonabstractList);
 
 		List<UserGroupRole> currentUserGroupRoles =
 			UserGroupRoleLocalServiceUtil.getUserGroupRoles(user.getUserId());

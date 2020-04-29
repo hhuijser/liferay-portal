@@ -245,7 +245,7 @@ public class ThreadLocalDistributorTest {
 			new ThreadLocal<>();
 
 		@SuppressWarnings("unused")
-		private ThreadLocal<?> _nonStatic;
+		private ThreadLocal<?> _nonstatic;
 
 		@SuppressWarnings("unused")
 		private Object _object;

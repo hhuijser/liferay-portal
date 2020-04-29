@@ -44,6 +44,12 @@ public class CamelCaseNameCheck extends BaseCheck {
 	private void _checkName(
 		DetailAST detailAST, String s, String... allowedNames) {
 
+		if ((detailAST.getType() == TokenTypes.METHOD_DEF) &&
+			AnnotationUtil.containsAnnotation(detailAST, "Override")) {
+
+			return;
+		}
+
 		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
 		String name = nameDetailAST.getText();
@@ -56,27 +62,19 @@ public class CamelCaseNameCheck extends BaseCheck {
 			}
 		}
 
-		if (detailAST.getType() == TokenTypes.METHOD_DEF) {
-			if (!AnnotationUtil.containsAnnotation(detailAST, "Override")) {
-				String regex = StringBundler.concat(
-					"(^_", s, "|.*", TextFormatter.format(s, TextFormatter.G),
-					")[A-Z].*");
+		if (name.matches(
+				StringBundler.concat(
+					"(^_?", s, "|.*", TextFormatter.format(s, TextFormatter.G),
+					")[A-Z].*"))) {
 
-				if (name.matches(regex)) {
-					log(detailAST, _MSG_METHOD_INVALID_NAME, s, name);
-				}
+			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
+				log(detailAST, _MSG_METHOD_INVALID_NAME, s, name);
 			}
-		}
-		else {
-			String regex = StringBundler.concat("^_?", s, "[A-Z].*");
-
-			if (name.matches(regex)) {
-				if (detailAST.getType() == TokenTypes.PARAMETER_DEF) {
-					log(detailAST, _MSG_PARAMETER_INVALID_NAME, s, name);
-				}
-				else {
-					log(detailAST, _MSG_VARIABLE_INVALID_NAME, s, name);
-				}
+			else if (detailAST.getType() == TokenTypes.PARAMETER_DEF) {
+				log(detailAST, _MSG_PARAMETER_INVALID_NAME, s, name);
+			}
+			else {
+				log(detailAST, _MSG_VARIABLE_INVALID_NAME, s, name);
 			}
 		}
 	}

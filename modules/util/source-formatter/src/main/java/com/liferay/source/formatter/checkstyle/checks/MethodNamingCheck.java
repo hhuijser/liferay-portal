@@ -14,7 +14,6 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.kernel.util.StringUtil;
 
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
@@ -40,7 +39,6 @@ public class MethodNamingCheck extends BaseCheck {
 		String methodName = _getMethodName(detailAST);
 
 		_checkDoMethodName(detailAST, methodName);
-		_checkNonmethodName(detailAST, methodName);
 	}
 
 	private void _checkDoMethodName(DetailAST detailAST, String methodName) {
@@ -77,33 +75,6 @@ public class MethodNamingCheck extends BaseCheck {
 		log(detailAST, _MSG_RENAME_METHOD, methodName, noDoName);
 	}
 
-	private void _checkNonmethodName(DetailAST detailAST, String methodName) {
-		Matcher matcher = _nonmethodNamePattern.matcher(methodName);
-
-		if (!matcher.find()) {
-			return;
-		}
-
-		StringBundler sb = new StringBundler(4);
-
-		sb.append(matcher.group(1));
-		sb.append(StringUtil.lowerCase(matcher.group(2)));
-
-		String s = matcher.group(3);
-
-		int i = StringUtil.startsWithWeight(s, StringUtil.upperCase(s));
-
-		if (i == 0) {
-			sb.append(s);
-		}
-		else {
-			sb.append(StringUtil.lowerCase(s.substring(0, i - 1)));
-			sb.append(s.substring(i - 1));
-		}
-
-		log(detailAST, _MSG_RENAME_METHOD, methodName, sb.toString());
-	}
-
 	private String _getMethodName(DetailAST detailAST) {
 		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
@@ -114,7 +85,5 @@ public class MethodNamingCheck extends BaseCheck {
 
 	private static final Pattern _doMethodNamePattern = Pattern.compile(
 		"^_do([A-Z])(.*)$");
-	private static final Pattern _nonmethodNamePattern = Pattern.compile(
-		"(^non|.*Non)([A-Z])(.*)");
 
 }

@@ -15,6 +15,7 @@
 package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 
@@ -63,6 +64,14 @@ public class CamelCaseNameCheck extends BaseCheck {
 			if (lowerCaseName.contains(StringUtil.toLowerCase(allowedName))) {
 				return;
 			}
+
+			String formattedAllowedName = StringUtil.replace(
+				TextFormatter.format(allowedName, TextFormatter.K),
+				StringPool.DASH, StringPool.UNDERLINE);
+
+			if (name.contains(StringUtil.toUpperCase(formattedAllowedName))) {
+				return;
+			}
 		}
 
 		if (name.matches(
@@ -80,7 +89,19 @@ public class CamelCaseNameCheck extends BaseCheck {
 				log(detailAST, _MSG_VARIABLE_INVALID_NAME, s, name);
 			}
 		}
+		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
+				 name.matches(
+					 StringBundler.concat(
+						 "(.*_)?", StringUtil.toUpperCase(s), "_[A-Z].*"))) {
+
+			log(
+				detailAST, _MSG_CONSTANT_INVALID_NAME,
+				StringUtil.toUpperCase(s), name);
+		}
 	}
+
+	private static final String _MSG_CONSTANT_INVALID_NAME =
+		"constant.invalidName";
 
 	private static final String _MSG_METHOD_INVALID_NAME = "method.invalidName";
 

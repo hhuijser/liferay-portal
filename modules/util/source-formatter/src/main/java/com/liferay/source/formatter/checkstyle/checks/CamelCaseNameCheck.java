@@ -37,7 +37,7 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
-		_checkName(detailAST, "non");
+		_checkName(detailAST, "non", "nonProxyHost");
 		_checkName(detailAST, "re", "reCaptcha");
 		_checkName(detailAST, "sub", "subSelect");
 	}

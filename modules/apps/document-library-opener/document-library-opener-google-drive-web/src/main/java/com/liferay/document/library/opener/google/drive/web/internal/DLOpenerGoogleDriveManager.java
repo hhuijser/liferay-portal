@@ -127,10 +127,11 @@ public class DLOpenerGoogleDriveManager
 		throws PortalException {
 
 		try {
-			Drive drive = new Drive.Builder(
+			Drive.Builder driveBuilder = new Drive.Builder(
 				_netHttpTransport, _jsonFactory,
-				_getCredential(fileEntry.getCompanyId(), userId)
-			).build();
+				_getCredential(fileEntry.getCompanyId(), userId));
+
+			Drive drive = driveBuilder.build();
 
 			Drive.Files driveFiles = drive.files();
 
@@ -281,9 +282,10 @@ public class DLOpenerGoogleDriveManager
 			Credential credential = _getCredential(
 				fileEntry.getCompanyId(), userId);
 
-			Drive drive = new Drive.Builder(
-				_netHttpTransport, _jsonFactory, credential
-			).build();
+			Drive.Builder driveBuilder = new Drive.Builder(
+				_netHttpTransport, _jsonFactory, credential);
+
+			Drive drive = driveBuilder.build();
 
 			Drive.Files driveFiles = drive.files();
 
@@ -353,10 +355,11 @@ public class DLOpenerGoogleDriveManager
 
 	private String _getGoogleDriveFileTitle(long userId, FileEntry fileEntry) {
 		try {
-			Drive drive = new Drive.Builder(
+			Drive.Builder driveBuilder = new Drive.Builder(
 				_netHttpTransport, _jsonFactory,
-				_getCredential(fileEntry.getCompanyId(), userId)
-			).build();
+				_getCredential(fileEntry.getCompanyId(), userId));
+
+			Drive drive = driveBuilder.build();
 
 			Drive.Files driveFiles = drive.files();
 

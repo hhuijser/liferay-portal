@@ -64,7 +64,9 @@ public class RankingToDocumentTranslatorTest {
 
 	@Test
 	public void testDefaults() {
-		Ranking ranking1 = new Ranking.RankingBuilder().build();
+		Ranking.RankingBuilder rankingBuilder = new Ranking.RankingBuilder();
+
+		Ranking ranking1 = rankingBuilder.build();
 
 		Document document = translate(ranking1);
 

@@ -119,9 +119,10 @@ public class GoogleDriveConnectedAppProvider implements ConnectedAppProvider {
 
 	private String _getGoogleDriveUserEmailAddress(Credential credential) {
 		try {
-			Drive drive = new Drive.Builder(
-				_netHttpTransport, _jsonFactory, credential
-			).build();
+			Drive.Builder driveBuilder = new Drive.Builder(
+				_netHttpTransport, _jsonFactory, credential);
+
+			Drive drive = driveBuilder.build();
 
 			Drive.About driveAbout = drive.about();
 

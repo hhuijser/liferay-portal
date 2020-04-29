@@ -151,8 +151,10 @@ public abstract class BaseIndexingTestCase {
 	}
 
 	protected void addDocument(DocumentBuilder documentBuilder) {
+		DocumentTranslator documentTranslator = new DocumentTranslator();
+
 		addDocument(
-			new DocumentTranslator().toLegacyDocument(documentBuilder.build()));
+			documentTranslator.toLegacyDocument(documentBuilder.build()));
 	}
 
 	protected void addDocument(DocumentCreationHelper documentCreationHelper) {

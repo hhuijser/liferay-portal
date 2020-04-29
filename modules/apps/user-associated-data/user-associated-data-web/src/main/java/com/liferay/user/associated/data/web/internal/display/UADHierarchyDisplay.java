@@ -438,16 +438,16 @@ public class UADHierarchyDisplay {
 					parentContainerId, allUserItems));
 		}
 
-		for (UADDisplay nonContainerUADDisplay :
+		for (UADDisplay noncontainerUADDisplay :
 				_uadHierarchyDeclaration.getNoncontainerUADDisplays()) {
 
-			Class<?> typeClass = nonContainerUADDisplay.getTypeClass();
+			Class<?> typeClass = noncontainerUADDisplay.getTypeClass();
 
 			for (Object userItem : allUserItems) {
 				if ((userItem != null) &&
 					typeClass.isAssignableFrom(userItem.getClass()) &&
 					parentContainerId.equals(
-						nonContainerUADDisplay.getParentContainerId(
+						noncontainerUADDisplay.getParentContainerId(
 							userItem))) {
 
 					searchResults.add(userItem);

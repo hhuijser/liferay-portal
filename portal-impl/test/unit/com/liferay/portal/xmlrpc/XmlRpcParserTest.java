@@ -110,17 +110,17 @@ public class XmlRpcParserTest {
 		Assert.assertEquals("world", parameterizedMethodArguments[2]);
 
 		for (String xml : _NON_PARAMETERIZED_METHODS) {
-			Tuple nonParameterizedMethodTuple = XmlRpcParser.parseMethod(xml);
+			Tuple nonparameterizedMethodTuple = XmlRpcParser.parseMethod(xml);
 
 			Assert.assertEquals(
-				"noParams", nonParameterizedMethodTuple.getObject(0));
+				"noParams", nonparameterizedMethodTuple.getObject(0));
 
-			Object[] nonParameterizedMethodArguments =
-				(Object[])nonParameterizedMethodTuple.getObject(1);
+			Object[] nonparameterizedMethodArguments =
+				(Object[])nonparameterizedMethodTuple.getObject(1);
 
 			Assert.assertEquals(
-				Arrays.toString(nonParameterizedMethodArguments), 0,
-				nonParameterizedMethodArguments.length);
+				Arrays.toString(nonparameterizedMethodArguments), 0,
+				nonparameterizedMethodArguments.length);
 		}
 	}
 

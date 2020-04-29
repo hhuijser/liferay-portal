@@ -86,7 +86,7 @@ public class UserSearchTest {
 		User groupMemberUser = UserTestUtil.addGroupUser(
 			group, RoleConstants.SITE_MEMBER);
 
-		User nonGroupMemberUser = UserTestUtil.addUser();
+		User nongroupMemberUser = UserTestUtil.addUser();
 
 		_group = group;
 
@@ -94,7 +94,7 @@ public class UserSearchTest {
 
 		_groupMemberUser = groupMemberUser;
 
-		_nonGroupMemberUser = nonGroupMemberUser;
+		_nongroupMemberUser = nongroupMemberUser;
 	}
 
 	@Test
@@ -125,7 +125,7 @@ public class UserSearchTest {
 
 		List<Long> testUserIdsList = Arrays.asList(
 			_groupAdminUser.getUserId(), _groupMemberUser.getUserId(),
-			_nonGroupMemberUser.getUserId());
+			_nongroupMemberUser.getUserId());
 
 		Stream<Document> documentsStream = SearchStreamUtil.stream(
 			hits.toList());
@@ -196,6 +196,6 @@ public class UserSearchTest {
 	private User _groupMemberUser;
 
 	@DeleteAfterTestRun
-	private User _nonGroupMemberUser;
+	private User _nongroupMemberUser;
 
 }

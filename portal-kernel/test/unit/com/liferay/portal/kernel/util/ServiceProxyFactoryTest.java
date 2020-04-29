@@ -263,13 +263,13 @@ public class ServiceProxyFactoryTest {
 
 		TestService testService = new TestServiceImpl();
 
-		testServiceUtil.nonStaticField = testService;
+		testServiceUtil.nonstaticField = testService;
 
 		ServiceProxyFactory.newServiceTrackedInstance(
 			TestService.class, TestServiceUtil.class, testServiceUtil,
 			"nonStaticField", null, false);
 
-		Assert.assertSame(testService, testServiceUtil.nonStaticField);
+		Assert.assertSame(testService, testServiceUtil.nonstaticField);
 
 		// Test 5, test constructor
 
@@ -564,7 +564,7 @@ public class ServiceProxyFactoryTest {
 			newTestService = TestServiceUtil.testService;
 		}
 		else {
-			newTestService = testServiceUtil.nonStaticField;
+			newTestService = testServiceUtil.nonstaticField;
 		}
 
 		Assert.assertEquals(
@@ -630,7 +630,7 @@ public class ServiceProxyFactoryTest {
 
 		public static volatile TestService testService;
 
-		public volatile TestService nonStaticField;
+		public volatile TestService nonstaticField;
 
 	}
 

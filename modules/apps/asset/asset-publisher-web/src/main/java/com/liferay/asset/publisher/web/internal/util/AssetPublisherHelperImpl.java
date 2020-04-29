@@ -179,12 +179,12 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			PortletPreferences portletPreferences,
 			PermissionChecker permissionChecker, long[] groupIds,
 			boolean deleteMissingAssetEntries, boolean checkPermission,
-			boolean includeNonVisibleAssets)
+			boolean includeNonvisibleAssets)
 		throws Exception {
 
 		return getAssetEntries(
 			portletRequest, portletPreferences, permissionChecker, groupIds,
-			deleteMissingAssetEntries, checkPermission, includeNonVisibleAssets,
+			deleteMissingAssetEntries, checkPermission, includeNonvisibleAssets,
 			AssetRendererFactory.TYPE_LATEST_APPROVED);
 	}
 
@@ -194,7 +194,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 			PortletPreferences portletPreferences,
 			PermissionChecker permissionChecker, long[] groupIds,
 			boolean deleteMissingAssetEntries, boolean checkPermission,
-			boolean includeNonVisibleAssets, int type)
+			boolean includeNonvisibleAssets, int type)
 		throws Exception {
 
 		String[] assetEntryXmls = portletPreferences.getValues(
@@ -250,7 +250,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 				continue;
 			}
 
-			if (!assetEntry.isVisible() && !includeNonVisibleAssets) {
+			if (!assetEntry.isVisible() && !includeNonvisibleAssets) {
 				continue;
 			}
 
@@ -275,7 +275,7 @@ public class AssetPublisherHelperImpl implements AssetPublisherHelper {
 
 			if (checkPermission) {
 				if (!assetRenderer.isDisplayable() &&
-					!includeNonVisibleAssets) {
+					!includeNonvisibleAssets) {
 
 					continue;
 				}

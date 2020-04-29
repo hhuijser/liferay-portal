@@ -40,7 +40,7 @@ public class MethodNamingCheck extends BaseCheck {
 		String methodName = _getMethodName(detailAST);
 
 		_checkDoMethodName(detailAST, methodName);
-		_checkNonMethodName(detailAST, methodName);
+		_checkNonmethodName(detailAST, methodName);
 	}
 
 	private void _checkDoMethodName(DetailAST detailAST, String methodName) {
@@ -77,8 +77,8 @@ public class MethodNamingCheck extends BaseCheck {
 		log(detailAST, _MSG_RENAME_METHOD, methodName, noDoName);
 	}
 
-	private void _checkNonMethodName(DetailAST detailAST, String methodName) {
-		Matcher matcher = _nonMethodNamePattern.matcher(methodName);
+	private void _checkNonmethodName(DetailAST detailAST, String methodName) {
+		Matcher matcher = _nonmethodNamePattern.matcher(methodName);
 
 		if (!matcher.find()) {
 			return;
@@ -114,7 +114,7 @@ public class MethodNamingCheck extends BaseCheck {
 
 	private static final Pattern _doMethodNamePattern = Pattern.compile(
 		"^_do([A-Z])(.*)$");
-	private static final Pattern _nonMethodNamePattern = Pattern.compile(
+	private static final Pattern _nonmethodNamePattern = Pattern.compile(
 		"(^non|.*Non)([A-Z])(.*)");
 
 }

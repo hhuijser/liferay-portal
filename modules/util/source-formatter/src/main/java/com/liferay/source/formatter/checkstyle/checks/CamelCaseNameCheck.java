@@ -14,6 +14,7 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
+import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -22,6 +23,10 @@ import com.liferay.portal.kernel.util.TextFormatter;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
+
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Hugo Huijser
@@ -65,10 +70,19 @@ public class CamelCaseNameCheck extends BaseCheck {
 			return;
 		}
 
-		if (name.matches(
-				StringBundler.concat(
-					"(^_?", s, "|.*", TextFormatter.format(s, TextFormatter.G),
-					")[A-Z].*"))) {
+		Pattern pattern = Pattern.compile(
+			StringBundler.concat(
+				"(^_?", s, "|", TextFormatter.format(s, TextFormatter.G),
+				")([A-Z]([a-z]*|[A-Z]*))"));
+
+		Matcher matcher = pattern.matcher(name);
+
+		if (matcher.find()) {
+			if (_containsNameInAssignStatement(
+					detailAST, s + matcher.group(2))) {
+
+				return;
+			}
 
 			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 				log(
@@ -86,10 +100,19 @@ public class CamelCaseNameCheck extends BaseCheck {
 					"variable", name);
 			}
 		}
-		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
-				 name.matches(
-					 StringBundler.concat(
-						 "(.*_)?", StringUtil.toUpperCase(s), "_[A-Z].*"))) {
+
+		if (detailAST.getType() != TokenTypes.VARIABLE_DEF) {
+			return;
+		}
+
+		pattern = Pattern.compile(
+			StringBundler.concat(
+				"(\\A|_)(", StringUtil.toUpperCase(s), "_[A-Z]+)"));
+
+		matcher = pattern.matcher(name);
+
+		if (matcher.find() &&
+			!_containsNameInAssignStatement(detailAST, matcher.group(2))) {
 
 			log(
 				detailAST, _MSG_INCORRECT_FOLLOWING_UNDERSCORE,
@@ -104,7 +127,18 @@ public class CamelCaseNameCheck extends BaseCheck {
 			return;
 		}
 
-		if (name.matches("_?[^_]+" + s + ".*")) {
+		Pattern pattern = Pattern.compile(
+			"(((\\A|_)[a-z]+|[A-Z]([A-Z]+|[a-z]+))" + s + ")");
+
+		Matcher matcher = pattern.matcher(name);
+
+		if (matcher.find()) {
+			if (_containsNameInAssignStatement(
+					detailAST, StringUtil.toLowerCase(matcher.group(1)))) {
+
+				return;
+			}
+
 			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 				log(
 					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "method",
@@ -121,15 +155,92 @@ public class CamelCaseNameCheck extends BaseCheck {
 					name);
 			}
 		}
-		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
-				 name.matches(
-					 StringBundler.concat(
-						 "(.*[A-Z])", StringUtil.toUpperCase(s), ".*"))) {
+
+		if (detailAST.getType() != TokenTypes.VARIABLE_DEF) {
+			return;
+		}
+
+		pattern = Pattern.compile(
+			StringBundler.concat(
+				"(\\A|_)([A-Z]+", StringUtil.toUpperCase(s), ").*"));
+
+		matcher = pattern.matcher(name);
+
+		if (matcher.find() &&
+			!_containsNameInAssignStatement(detailAST, matcher.group(2))) {
 
 			log(
 				detailAST, _MSG_REQUIRED_PRECEDING_UNDERSCORE,
 				StringUtil.toUpperCase(s), name);
 		}
+	}
+
+	private boolean _containsNameInAssignStatement(
+		DetailAST detailAST, String name) {
+
+		DetailAST assignDetailAST = detailAST.findFirstToken(TokenTypes.ASSIGN);
+
+		if (assignDetailAST == null) {
+			return false;
+		}
+
+		String constantFormatName = _getConstantFormatName(name);
+
+		List<DetailAST> stringLiteralDetailASTlist = getAllChildTokens(
+			assignDetailAST, true, TokenTypes.STRING_LITERAL);
+
+		if (!stringLiteralDetailASTlist.isEmpty()) {
+			String camelCaseFormatName = _getCamelCaseFormatName(name);
+
+			if (camelCaseFormatName == null) {
+				return false;
+			}
+
+			String propertyFormatName = _getPropertyFormatName(
+				camelCaseFormatName);
+
+			for (DetailAST stringLiteralDetailAST :
+					stringLiteralDetailASTlist) {
+
+				String text = stringLiteralDetailAST.getText();
+
+				if (text.contains(camelCaseFormatName) ||
+					text.contains(constantFormatName) ||
+					text.contains(propertyFormatName)) {
+
+					return true;
+				}
+			}
+		}
+
+		List<DetailAST> identDetailASTlist = getAllChildTokens(
+			assignDetailAST, true, TokenTypes.IDENT);
+
+		for (DetailAST identDetailAST : identDetailASTlist) {
+			String text = identDetailAST.getText();
+
+			if (text.contains(constantFormatName)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private String _getCamelCaseFormatName(String name) {
+		if (name.startsWith(StringPool.UNDERLINE)) {
+			name = name.substring(1);
+		}
+
+		if (!StringUtil.isUpperCase(name)) {
+			return name;
+		}
+
+		name = TextFormatter.format(name, TextFormatter.O);
+
+		name = StringUtil.toLowerCase(name);
+
+		return TextFormatter.format(name, TextFormatter.M);
 	}
 
 	private String _getConstantFormatName(String name) {
@@ -146,6 +257,14 @@ public class CamelCaseNameCheck extends BaseCheck {
 		name = TextFormatter.format(name, TextFormatter.N);
 
 		return StringUtil.toUpperCase(name);
+	}
+
+	private String _getPropertyFormatName(String camelCaseName) {
+		String propertyFormatName = TextFormatter.format(
+			camelCaseName, TextFormatter.K);
+
+		return StringUtil.replace(
+			propertyFormatName, CharPool.DASH, CharPool.PERIOD);
 	}
 
 	private boolean _isAllowedName(String name, String[] allowedNames) {

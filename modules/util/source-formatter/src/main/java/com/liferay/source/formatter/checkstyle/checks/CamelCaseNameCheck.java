@@ -48,14 +48,14 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 		String name = nameDetailAST.getText();
 
-		_checkName(
+		_checkIncorrectCamelCase(
 			detailAST, name, "non", "nonProxyHost",
 			"nonSerializableObjectHandler", "nonSpringServlet");
-		_checkName(detailAST, name, "re", "reCaptcha");
-		_checkName(detailAST, name, "sub", "subSelect");
+		_checkIncorrectCamelCase(detailAST, name, "re", "reCaptcha");
+		_checkIncorrectCamelCase(detailAST, name, "sub", "subSelect");
 	}
 
-	private void _checkName(
+	private void _checkIncorrectCamelCase(
 		DetailAST detailAST, String name, String s, String... allowedNames) {
 
 		if (_isAllowedName(name, allowedNames)) {

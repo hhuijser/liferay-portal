@@ -225,7 +225,9 @@
 		<module name="com.liferay.source.formatter.checkstyle.checks.CamelCaseNameCheck">
 			<property name="enabled" value="false" />
 			<message key="following.underscore.incorrect" value="''{0}'' should not be followed by ''_'' for variable ''{1}''" />
-			<message key="following.uppercase.incorrect" value="''{0}'' should not be followed by an upper case character for {1} ''{2}''" />
+			<message key="following.uppercase.incorrect" value="''{0}'' should not be followed by an uppercase character for {1} ''{2}''" />
+			<message key="preceding.underscore.required" value="''{0}'' should be preceded by ''_'' for variable ''{1}''" />
+			<message key="starting.uppercase.required" value="''{0}'' should start with an uppercase character for {1} ''{2}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.ChainingCheck">
 			<property name="allowedClassNames" value="ActionSemantics,.*[Bb]uilder(s)?,Assertions,Awaitility,.*Consumer,CreationMenuBuilder,DSL.+FactoryUtil,EasyMock,Either,Filter,FormNavigatorEntryConfigurationRetriever,GenericUtil,JSONUtil,List,MemberMatcher,Option,Optional,Response,RestAssured,(Double|Int|Long)?Stream,.+Table,Try,Validation" />

@@ -53,6 +53,9 @@ public class CamelCaseNameCheck extends BaseCheck {
 			"nonSerializableObjectHandler", "nonSpringServlet");
 		_checkIncorrectCamelCase(detailAST, name, "re", "reCaptcha");
 		_checkIncorrectCamelCase(detailAST, name, "sub", "subSelect");
+
+		_checkRequiredCamelCase(
+			detailAST, name, "name", "hostname", "rename", "subname");
 	}
 
 	private void _checkIncorrectCamelCase(
@@ -90,6 +93,41 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 			log(
 				detailAST, _MSG_INCORRECT_FOLLOWING_UNDERSCORE,
+				StringUtil.toUpperCase(s), name);
+		}
+	}
+
+	private void _checkRequiredCamelCase(
+		DetailAST detailAST, String name, String s, String... allowedNames) {
+
+		if (_isAllowedName(name, allowedNames)) {
+			return;
+		}
+
+		if (name.matches("_?[^_]+" + s + ".*")) {
+			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
+				log(
+					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "method",
+					name);
+			}
+			else if (detailAST.getType() == TokenTypes.PARAMETER_DEF) {
+				log(
+					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "parameter",
+					name);
+			}
+			else {
+				log(
+					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "variable",
+					name);
+			}
+		}
+		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
+				 name.matches(
+					 StringBundler.concat(
+						 "(.*[A-Z])", StringUtil.toUpperCase(s), ".*"))) {
+
+			log(
+				detailAST, _MSG_REQUIRED_PRECEDING_UNDERSCORE,
 				StringUtil.toUpperCase(s), name);
 		}
 	}
@@ -137,5 +175,11 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 	private static final String _MSG_INCORRECT_FOLLOWING_UPPERCASE =
 		"following.uppercase.incorrect";
+
+	private static final String _MSG_REQUIRED_PRECEDING_UNDERSCORE =
+		"preceding.underscore.required";
+
+	private static final String _MSG_REQUIRED_STARTING_UPPERCASE =
+		"starting.uppercase.required";
 
 }

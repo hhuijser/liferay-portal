@@ -19,8 +19,8 @@ List<AssetRendererFactory<?>> availableAssetRendererFactories = ListUtil.filter(
 
 List<AssetRendererFactory<?>> classTypedAssetRendererFactories = ListUtil.filter(availableAssetRendererFactories, AssetRendererFactory::isSupportsClassTypes);
 
-long[] selectedClassNameIds = AssetVocabularySettingsHelper.DEFAULT_SELECTED_CLASSNAME_IDS;
-long[] selectedClassTypePKs = AssetVocabularySettingsHelper.DEFAULT_SELECTED_CLASSTYPE_PKS;
+long[] selectedClassNameIds = AssetVocabularySettingsHelper.DEFAULT_SELECTED_CLASS_NAME_IDS;
+long[] selectedClassTypePKs = AssetVocabularySettingsHelper.DEFAULT_SELECTED_CLASS_TYPE_PKS;
 
 if (vocabulary != null) {
 	selectedClassNameIds = vocabulary.getSelectedClassNameIds();

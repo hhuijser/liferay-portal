@@ -24,9 +24,24 @@ import java.util.Properties;
  */
 public interface PluginPackage {
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #REPOSITORY_XML_FILE_NAME_EXTENSION}
+	 */
+	@Deprecated
 	public static final String REPOSITORY_XML_FILENAME_EXTENSION = "xml";
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #REPOSITORY_XML_FILE_NAME_PREFIX}
+	 */
+	@Deprecated
 	public static final String REPOSITORY_XML_FILENAME_PREFIX =
+		"liferay-plugin-repository";
+
+	public static final String REPOSITORY_XML_FILE_NAME_EXTENSION = "xml";
+
+	public static final String REPOSITORY_XML_FILE_NAME_PREFIX =
 		"liferay-plugin-repository";
 
 	public String getArtifactId();

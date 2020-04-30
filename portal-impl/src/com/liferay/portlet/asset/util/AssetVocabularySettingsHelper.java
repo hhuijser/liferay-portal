@@ -31,10 +31,28 @@ import java.util.Set;
  */
 public class AssetVocabularySettingsHelper {
 
+	public static final long[] DEFAULT_SELECTED_CLASS_NAME_IDS = {
+		AssetCategoryConstants.ALL_CLASS_NAME_ID
+	};
+
+	public static final long[] DEFAULT_SELECTED_CLASS_TYPE_PKS = {
+		AssetCategoryConstants.ALL_CLASS_TYPE_PK
+	};
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #DEFAULT_SELECTED_CLASS_NAME_IDS}
+	 */
+	@Deprecated
 	public static final long[] DEFAULT_SELECTED_CLASSNAME_IDS = {
 		AssetCategoryConstants.ALL_CLASS_NAME_ID
 	};
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #DEFAULT_SELECTED_CLASS_TYPE_PKS}
+	 */
+	@Deprecated
 	public static final long[] DEFAULT_SELECTED_CLASSTYPE_PKS = {
 		AssetCategoryConstants.ALL_CLASS_TYPE_PK
 	};

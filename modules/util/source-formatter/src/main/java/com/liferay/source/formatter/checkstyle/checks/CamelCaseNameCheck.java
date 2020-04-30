@@ -68,13 +68,19 @@ public class CamelCaseNameCheck extends BaseCheck {
 					")[A-Z].*"))) {
 
 			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
-				log(detailAST, _MSG_METHOD_INVALID_NAME, s, name);
+				log(
+					detailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s, "method",
+					name);
 			}
 			else if (detailAST.getType() == TokenTypes.PARAMETER_DEF) {
-				log(detailAST, _MSG_PARAMETER_INVALID_NAME, s, name);
+				log(
+					detailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
+					"parameter", name);
 			}
 			else {
-				log(detailAST, _MSG_VARIABLE_INVALID_NAME, s, name);
+				log(
+					detailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
+					"variable", name);
 			}
 		}
 		else if ((detailAST.getType() == TokenTypes.VARIABLE_DEF) &&
@@ -83,7 +89,7 @@ public class CamelCaseNameCheck extends BaseCheck {
 						 "(.*_)?", StringUtil.toUpperCase(s), "_[A-Z].*"))) {
 
 			log(
-				detailAST, _MSG_CONSTANT_INVALID_NAME,
+				detailAST, _MSG_INCORRECT_FOLLOWING_UNDERSCORE,
 				StringUtil.toUpperCase(s), name);
 		}
 	}
@@ -126,15 +132,10 @@ public class CamelCaseNameCheck extends BaseCheck {
 		return false;
 	}
 
-	private static final String _MSG_CONSTANT_INVALID_NAME =
-		"constant.invalidName";
+	private static final String _MSG_INCORRECT_FOLLOWING_UNDERSCORE =
+		"following.underscore.incorrect";
 
-	private static final String _MSG_METHOD_INVALID_NAME = "method.invalidName";
-
-	private static final String _MSG_PARAMETER_INVALID_NAME =
-		"parameter.invalidName";
-
-	private static final String _MSG_VARIABLE_INVALID_NAME =
-		"variable.invalidName";
+	private static final String _MSG_INCORRECT_FOLLOWING_UPPERCASE =
+		"following.uppercase.incorrect";
 
 }

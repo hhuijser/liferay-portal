@@ -1432,7 +1432,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 	@Override
 	@Transactional(propagation = Propagation.SUPPORTS)
 	public long authenticateForDigest(
-			long companyId, String username, String realm, String nonce,
+			long companyId, String userName, String realm, String nonce,
 			String method, String uri, String response)
 		throws PortalException {
 
@@ -1442,15 +1442,15 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 
 		// Get User
 
-		User user = fetchUserByEmailAddress(companyId, username);
+		User user = fetchUserByEmailAddress(companyId, userName);
 
 		if (user == null) {
-			user = fetchUserByScreenName(companyId, username);
+			user = fetchUserByScreenName(companyId, userName);
 		}
 
 		if (user == null) {
 			user = userPersistence.fetchByPrimaryKey(
-				GetterUtil.getLong(username));
+				GetterUtil.getLong(userName));
 		}
 
 		if (user == null) {
@@ -1490,7 +1490,7 @@ public class UserLocalServiceImpl extends UserLocalServiceBaseImpl {
 		Company company = companyPersistence.findByPrimaryKey(companyId);
 
 		handleAuthenticationFailure(
-			username, company.getAuthType(), user,
+			userName, company.getAuthType(), user,
 			new HashMap<String, String[]>(), new HashMap<String, String[]>());
 
 		return 0;

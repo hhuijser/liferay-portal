@@ -51,7 +51,7 @@ public class RetryDataSourceWrapper extends DataSourceWrapper {
 	}
 
 	@Override
-	public Connection getConnection(String username, String password)
+	public Connection getConnection(String userName, String password)
 		throws SQLException {
 
 		int retries = PropsValues.RETRY_DATA_SOURCE_MAX_RETRIES;
@@ -60,7 +60,7 @@ public class RetryDataSourceWrapper extends DataSourceWrapper {
 
 		while (retries-- >= 0) {
 			try {
-				return super.getConnection(username, password);
+				return super.getConnection(userName, password);
 			}
 			catch (SQLException sqlException2) {
 				if (sqlException1 == null) {

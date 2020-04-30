@@ -96,7 +96,7 @@ public class HypersonicLoader {
 
 	public HypersonicLoader(
 			String databaseName, String sqlDir, String fileNames,
-			String username, String password)
+			String userName, String password)
 		throws Exception {
 
 		ToolDependencies.wireBasic();
@@ -110,7 +110,7 @@ public class HypersonicLoader {
 				StringBundler.concat(
 					"jdbc:hsqldb:", sqlDir, "/", databaseName,
 					";hsqldb.write_delay=false;shutdown=true"),
-				username, password)) {
+				userName, password)) {
 
 			if (Validator.isNull(fileNames)) {
 				loadHypersonic(con, sqlDir + "/portal/portal-hypersonic.sql");

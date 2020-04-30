@@ -38,10 +38,10 @@ public class DataSourceWrapper implements DataSource {
 	}
 
 	@Override
-	public Connection getConnection(String username, String password)
+	public Connection getConnection(String userName, String password)
 		throws SQLException {
 
-		return _dataSource.getConnection(username, password);
+		return _dataSource.getConnection(userName, password);
 	}
 
 	@Override

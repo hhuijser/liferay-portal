@@ -152,10 +152,10 @@ public class DBPartitionUtil {
 			}
 
 			@Override
-			public Connection getConnection(String username, String password)
+			public Connection getConnection(String userName, String password)
 				throws SQLException {
 
-				Connection connection = super.getConnection(username, password);
+				Connection connection = super.getConnection(userName, password);
 
 				_useSchema(connection);
 

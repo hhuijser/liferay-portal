@@ -1072,7 +1072,7 @@ public class ModulesStructureTest {
 		String projectPathPrefix = null;
 		String repositoryPrivatePassword = null;
 		String repositoryPrivateUrl = null;
-		String repositoryPrivateUsername = null;
+		String repositoryPrivateUserName = null;
 
 		String[] lines = StringUtil.split(gradleProperties, CharPool.NEW_LINE);
 
@@ -1123,7 +1123,7 @@ public class ModulesStructureTest {
 			else if ((dxpRepo || privateRepo) &&
 					 key.equals(_GIT_REPO_GRADLE_REPOSITORY_PRIVATE_USERNAME)) {
 
-				repositoryPrivateUsername = value;
+				repositoryPrivateUserName = value;
 			}
 			else {
 				Matcher matcher = gradlePropertiesPattern.matcher(key);
@@ -1205,7 +1205,7 @@ public class ModulesStructureTest {
 			_testGradleBuildProperty(
 				gradlePropertiesPath,
 				_GIT_REPO_GRADLE_REPOSITORY_PRIVATE_USERNAME,
-				repositoryPrivateUsername, "build.repository.private.username");
+				repositoryPrivateUserName, "build.repository.private.username");
 		}
 
 		if (Files.notExists(dirPath.resolve("settings-ext.gradle"))) {

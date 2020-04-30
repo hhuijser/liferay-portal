@@ -64,14 +64,14 @@ public class AutoLoginFilter extends BasePortalFilter {
 			return null;
 		}
 
-		String jUsername = credentials[0];
+		String jUserName = credentials[0];
 		String jPassword = credentials[1];
 
-		if (Validator.isNull(jUsername) || Validator.isNull(jPassword)) {
+		if (Validator.isNull(jUserName) || Validator.isNull(jPassword)) {
 			return null;
 		}
 
-		long userId = GetterUtil.getLong(jUsername);
+		long userId = GetterUtil.getLong(jUserName);
 
 		if (userId <= 0) {
 			return null;
@@ -92,7 +92,7 @@ public class AutoLoginFilter extends BasePortalFilter {
 				httpServletRequest, session);
 		}
 
-		session.setAttribute("j_username", jUsername);
+		session.setAttribute("j_username", jUserName);
 
 		// Not having access to the unencrypted password will not allow you to
 		// connect to external resources that require it (mail server)
@@ -110,7 +110,7 @@ public class AutoLoginFilter extends BasePortalFilter {
 			}
 		}
 
-		session.setAttribute("j_remoteuser", jUsername);
+		session.setAttribute("j_remoteuser", jUserName);
 
 		if (PropsValues.PORTAL_JAAS_ENABLE) {
 			String mainPath = PortalUtil.getPathMain();
@@ -136,7 +136,7 @@ public class AutoLoginFilter extends BasePortalFilter {
 			httpServletResponse.sendRedirect(redirect);
 		}
 
-		return jUsername;
+		return jUserName;
 	}
 
 	@Override

@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.model.role.RoleConstants;
 import com.liferay.portal.kernel.service.RoleLocalService;
 import com.liferay.users.admin.demo.data.creator.OmniAdminUserDemoDataCreator;
 
+import java.net.MalformedURLException;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -32,13 +34,15 @@ public class OmniAdminUserDemoDataCreatorImpl
 	extends BaseUserDemoDataCreator implements OmniAdminUserDemoDataCreator {
 
 	@Override
-	public User create(long companyId) throws PortalException {
+	public User create(long companyId)
+		throws MalformedURLException, PortalException {
+
 		return create(companyId, null);
 	}
 
 	@Override
 	public User create(long companyId, String emailAddress)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		User user = createUser(companyId, emailAddress);
 

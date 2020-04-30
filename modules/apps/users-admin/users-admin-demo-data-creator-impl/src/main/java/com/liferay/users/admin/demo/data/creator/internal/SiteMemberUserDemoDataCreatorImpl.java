@@ -21,6 +21,8 @@ import com.liferay.portal.kernel.service.GroupLocalService;
 import com.liferay.portal.kernel.service.UserGroupRoleLocalService;
 import com.liferay.users.admin.demo.data.creator.SiteMemberUserDemoDataCreator;
 
+import java.net.MalformedURLException;
+
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -32,13 +34,15 @@ public class SiteMemberUserDemoDataCreatorImpl
 	extends BaseUserDemoDataCreator implements SiteMemberUserDemoDataCreator {
 
 	@Override
-	public User create(long groupId) throws PortalException {
+	public User create(long groupId)
+		throws MalformedURLException, PortalException {
+
 		return create(groupId, null);
 	}
 
 	@Override
 	public User create(long groupId, String emailAddress)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		Group group = _groupLocalService.getGroup(groupId);
 
@@ -51,7 +55,7 @@ public class SiteMemberUserDemoDataCreatorImpl
 
 	@Override
 	public User create(long groupId, String emailAddress, long[] roleIds)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		User user = create(groupId, emailAddress);
 

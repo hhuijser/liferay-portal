@@ -17,6 +17,8 @@ package com.liferay.users.admin.demo.data.creator;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 
+import java.net.MalformedURLException;
+
 import org.osgi.annotation.versioning.ProviderType;
 
 /**
@@ -25,12 +27,13 @@ import org.osgi.annotation.versioning.ProviderType;
 @ProviderType
 public interface SiteMemberUserDemoDataCreator extends UserDemoDataCreator {
 
-	public User create(long groupId) throws PortalException;
+	public User create(long groupId)
+		throws MalformedURLException, PortalException;
 
 	public User create(long groupId, String emailAddress)
-		throws PortalException;
+		throws MalformedURLException, PortalException;
 
 	public User create(long groupId, String emailAddress, long[] roleIds)
-		throws PortalException;
+		throws MalformedURLException, PortalException;
 
 }

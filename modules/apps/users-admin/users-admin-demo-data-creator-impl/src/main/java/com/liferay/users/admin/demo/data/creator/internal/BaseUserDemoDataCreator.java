@@ -39,6 +39,7 @@ import com.liferay.users.admin.demo.data.creator.UserDemoDataCreator;
 import java.io.IOException;
 import java.io.InputStream;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.text.DateFormat;
@@ -59,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
 public abstract class BaseUserDemoDataCreator implements UserDemoDataCreator {
 
 	public User createUser(long companyId, String emailAddress)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		return createUser(
 			companyId, StringPool.BLANK, emailAddress, StringPool.BLANK,
@@ -69,7 +70,7 @@ public abstract class BaseUserDemoDataCreator implements UserDemoDataCreator {
 	public User createUser(
 			long companyId, String screenName, String emailAddress,
 			String firstName, String lastName)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		boolean male = true;
 		Date birthDate = new Date();

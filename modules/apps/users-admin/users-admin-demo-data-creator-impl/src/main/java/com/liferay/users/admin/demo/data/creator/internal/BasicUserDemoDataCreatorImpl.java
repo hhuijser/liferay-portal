@@ -18,6 +18,8 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.users.admin.demo.data.creator.BasicUserDemoDataCreator;
 
+import java.net.MalformedURLException;
+
 import org.osgi.service.component.annotations.Component;
 
 /**
@@ -28,13 +30,15 @@ public class BasicUserDemoDataCreatorImpl
 	extends BaseUserDemoDataCreator implements BasicUserDemoDataCreator {
 
 	@Override
-	public User create(long companyId) throws PortalException {
+	public User create(long companyId)
+		throws MalformedURLException, PortalException {
+
 		return create(companyId, null);
 	}
 
 	@Override
 	public User create(long companyId, String emailAddress)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		return createUser(companyId, emailAddress);
 	}
@@ -43,7 +47,7 @@ public class BasicUserDemoDataCreatorImpl
 	public User create(
 			long companyId, String screenName, String emailAddress,
 			String firstName, String lastName)
-		throws PortalException {
+		throws MalformedURLException, PortalException {
 
 		return createUser(
 			companyId, screenName, emailAddress, firstName, lastName);

@@ -14,8 +14,8 @@
 
 package com.liferay.source.formatter.checkstyle.checks;
 
-import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.TextFormatter;
 
@@ -58,25 +58,8 @@ public class CamelCaseNameCheck extends BaseCheck {
 	private void _checkName(
 		DetailAST detailAST, String name, String s, String... allowedNames) {
 
-		for (String allowedName : allowedNames) {
-			if (name.startsWith(allowedName) ||
-				name.startsWith("_" + allowedName) ||
-				name.contains(
-					TextFormatter.format(allowedName, TextFormatter.G))) {
-
-				return;
-			}
-
-			String allowedNameConstantStyle = StringUtil.toUpperCase(
-				StringUtil.replace(
-					TextFormatter.format(allowedName, TextFormatter.K),
-					CharPool.DASH, CharPool.UNDERLINE));
-
-			if (name.startsWith(allowedNameConstantStyle) ||
-				name.contains("_" + allowedNameConstantStyle)) {
-
-				return;
-			}
+		if (_isAllowedName(name, allowedNames)) {
+			return;
 		}
 
 		if (name.matches(
@@ -103,6 +86,44 @@ public class CamelCaseNameCheck extends BaseCheck {
 				detailAST, _MSG_CONSTANT_INVALID_NAME,
 				StringUtil.toUpperCase(s), name);
 		}
+	}
+
+	private String _getConstantFormatName(String name) {
+		if (name.startsWith(StringPool.UNDERLINE)) {
+			name = name.substring(1);
+		}
+
+		if (StringUtil.isUpperCase(name)) {
+			return name;
+		}
+
+		name = TextFormatter.format(name, TextFormatter.K);
+
+		name = TextFormatter.format(name, TextFormatter.N);
+
+		return StringUtil.toUpperCase(name);
+	}
+
+	private boolean _isAllowedName(String name, String[] allowedNames) {
+		for (String allowedName : allowedNames) {
+			if (name.startsWith(allowedName) ||
+				name.startsWith("_" + allowedName) ||
+				name.contains(
+					TextFormatter.format(allowedName, TextFormatter.G))) {
+
+				return true;
+			}
+
+			String constantFormatName = _getConstantFormatName(allowedName);
+
+			if (name.startsWith(constantFormatName) ||
+				name.contains("_" + constantFormatName)) {
+
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	private static final String _MSG_CONSTANT_INVALID_NAME =

@@ -135,9 +135,7 @@ public class CamelCaseNameCheck extends BaseCheck {
 		Matcher matcher = pattern.matcher(name);
 
 		if (matcher.find()) {
-			if (_containsNameInAssignStatement(
-					detailAST, StringUtil.toLowerCase(matcher.group(1)))) {
-
+			if (_containsNameInAssignStatement(detailAST, matcher.group(1))) {
 				return;
 			}
 
@@ -207,7 +205,7 @@ public class CamelCaseNameCheck extends BaseCheck {
 				String text = stringLiteralDetailAST.getText();
 
 				if (text.contains(camelCaseFormatName) ||
-					text.contains(constantFormatName) ||
+					text.contains(constantFormatName) || text.contains(name) ||
 					text.contains(propertyFormatName)) {
 
 					return true;
@@ -235,7 +233,7 @@ public class CamelCaseNameCheck extends BaseCheck {
 		}
 
 		if (!StringUtil.isUpperCase(name)) {
-			return name;
+			return TextFormatter.format(name, TextFormatter.I);
 		}
 
 		name = TextFormatter.format(name, TextFormatter.O);

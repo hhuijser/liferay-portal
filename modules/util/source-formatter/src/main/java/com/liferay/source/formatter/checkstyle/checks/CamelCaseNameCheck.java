@@ -52,21 +52,22 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 		DetailAST nameDetailAST = detailAST.findFirstToken(TokenTypes.IDENT);
 
-		String name = nameDetailAST.getText();
-
 		_checkIncorrectCamelCase(
-			detailAST, name, "non", "nonProxyHost",
+			detailAST, nameDetailAST, "non", "nonProxyHost",
 			"nonSerializableObjectHandler", "nonSpringServlet");
-		_checkIncorrectCamelCase(detailAST, name, "re", "reCaptcha");
-		_checkIncorrectCamelCase(detailAST, name, "sub", "subSelect");
+		_checkIncorrectCamelCase(detailAST, nameDetailAST, "re", "reCaptcha");
+		_checkIncorrectCamelCase(detailAST, nameDetailAST, "sub", "subSelect");
 
 		_checkRequiredCamelCase(
-			detailAST, name, "name", "filenameFilter", "hostname", "rename",
-			"subname");
+			detailAST, nameDetailAST, "name", "filenameFilter", "hostname",
+			"rename", "subname");
 	}
 
 	private void _checkIncorrectCamelCase(
-		DetailAST detailAST, String name, String s, String... allowedNames) {
+		DetailAST detailAST, DetailAST nameDetailAST, String s,
+		String... allowedNames) {
+
+		String name = nameDetailAST.getText();
 
 		if (_isAllowedName(name, allowedNames)) {
 			return;
@@ -88,17 +89,17 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 				log(
-					detailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s, "method",
-					name);
+					nameDetailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
+					"method", name);
 			}
 			else if (detailAST.getType() == TokenTypes.PARAMETER_DEF) {
 				log(
-					detailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
+					nameDetailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
 					"parameter", name);
 			}
 			else {
 				log(
-					detailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
+					nameDetailAST, _MSG_INCORRECT_FOLLOWING_UPPERCASE, s,
 					"variable", name);
 			}
 		}
@@ -117,13 +118,16 @@ public class CamelCaseNameCheck extends BaseCheck {
 			!_containsNameInAssignStatement(detailAST, matcher.group(2))) {
 
 			log(
-				detailAST, _MSG_INCORRECT_FOLLOWING_UNDERSCORE,
+				nameDetailAST, _MSG_INCORRECT_FOLLOWING_UNDERSCORE,
 				StringUtil.toUpperCase(s), name);
 		}
 	}
 
 	private void _checkRequiredCamelCase(
-		DetailAST detailAST, String name, String s, String... allowedNames) {
+		DetailAST detailAST, DetailAST nameDetailAST, String s,
+		String... allowedNames) {
+
+		String name = nameDetailAST.getText();
 
 		if (_isAllowedName(name, allowedNames)) {
 			return;
@@ -141,18 +145,18 @@ public class CamelCaseNameCheck extends BaseCheck {
 
 			if (detailAST.getType() == TokenTypes.METHOD_DEF) {
 				log(
-					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "method",
-					name);
+					nameDetailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s,
+					"method", name);
 			}
 			else if (detailAST.getType() == TokenTypes.PARAMETER_DEF) {
 				log(
-					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "parameter",
-					name);
+					nameDetailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s,
+					"parameter", name);
 			}
 			else {
 				log(
-					detailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s, "variable",
-					name);
+					nameDetailAST, _MSG_REQUIRED_STARTING_UPPERCASE, s,
+					"variable", name);
 			}
 		}
 
@@ -170,7 +174,7 @@ public class CamelCaseNameCheck extends BaseCheck {
 			!_containsNameInAssignStatement(detailAST, matcher.group(2))) {
 
 			log(
-				detailAST, _MSG_REQUIRED_PRECEDING_UNDERSCORE,
+				nameDetailAST, _MSG_REQUIRED_PRECEDING_UNDERSCORE,
 				StringUtil.toUpperCase(s), name);
 		}
 	}

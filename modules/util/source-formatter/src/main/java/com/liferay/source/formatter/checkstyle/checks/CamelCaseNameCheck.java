@@ -60,7 +60,8 @@ public class CamelCaseNameCheck extends BaseCheck {
 		_checkIncorrectCamelCase(detailAST, name, "sub", "subSelect");
 
 		_checkRequiredCamelCase(
-			detailAST, name, "name", "hostname", "rename", "subname");
+			detailAST, name, "name", "filenameFilter", "hostname", "rename",
+			"subname");
 	}
 
 	private void _checkIncorrectCamelCase(

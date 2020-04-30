@@ -38,10 +38,6 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		if (!fileName.endsWith("/test.properties")) {
-			return content;
-		}
-
 		return _sortValues(content);
 	}
 

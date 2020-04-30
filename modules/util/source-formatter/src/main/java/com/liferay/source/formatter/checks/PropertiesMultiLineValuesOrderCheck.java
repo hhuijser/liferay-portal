@@ -38,13 +38,22 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
-		return _sortValues(content);
+		return _sortValues(content, absolutePath);
 	}
 
-	private String _sortValues(String content) throws IOException {
+	private String _sortValues(String content, String absolutePath)
+		throws IOException {
+
+		List<String> propertyKeysWhitelist = getAttributeValues(
+			_PROPERTY_KEYS_WHITELIST, absolutePath);
+
 		Matcher matcher1 = _keyValuesPattern.matcher(content);
 
 		while (matcher1.find()) {
+			if (propertyKeysWhitelist.contains(matcher1.group(2))) {
+				continue;
+			}
+
 			String match = matcher1.group();
 
 			Matcher matcher2 = _multiLineValuesPattern.matcher(match);
@@ -101,8 +110,11 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 		return sb.toString();
 	}
 
+	private static final String _PROPERTY_KEYS_WHITELIST =
+		"propertyKeysWhitelist";
+
 	private static final Pattern _keyValuesPattern = Pattern.compile(
-		"(?<=\n)( *).+=\\\\(\n\\1    .+){2,}");
+		"(?<=\n)( *)(.+)=\\\\(\n\\1    .+){2,}");
 	private static final Pattern _multiLineValuesPattern = Pattern.compile(
 		"(\n +(?![\\\\# ]).*){2,}");
 

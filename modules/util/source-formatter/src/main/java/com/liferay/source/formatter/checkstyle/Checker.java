@@ -64,7 +64,10 @@ public class Checker extends com.puppycrawl.tools.checkstyle.Checker {
 
 		_configuration = configuration;
 		_auditListener = auditListener;
+
 		_checkstyleLogger = checkstyleLogger;
+
+		_checkstyleLogger.clearSourceFormatterMessages();
 
 		_filterSet = sourceFormatterSuppressions.getCheckstyleFilterSet();
 

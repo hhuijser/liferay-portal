@@ -46,13 +46,15 @@ public class CheckstyleLogger extends DefaultLogger {
 		super(new UnsyncByteArrayOutputStream(), OutputStreamOptions.CLOSE);
 
 		_baseDirName = baseDirName;
-
-		_sourceFormatterMessages.clear();
 	}
 
 	@Override
 	public void addError(AuditEvent auditEvent) {
 		addError(auditEvent, getRelativizedFileName(auditEvent));
+	}
+
+	public void clearSourceFormatterMessages() {
+		_sourceFormatterMessages.clear();
 	}
 
 	public Set<SourceFormatterMessage> getSourceFormatterMessages() {

@@ -192,12 +192,12 @@ public class AssetEntriesFacetedSearcherTest
 	}
 
 	protected void assertEntryClassNames(
-		List<String> entryclassnames, Hits hits, Facet facet,
+		List<String> entryclassNames, Hits hits, Facet facet,
 		SearchContext searchContext) {
 
 		DocumentsAssert.assertValuesIgnoreRelevance(
 			(String)searchContext.getAttribute("queryString"), hits.getDocs(),
-			facet.getFieldName(), entryclassnames);
+			facet.getFieldName(), entryclassNames);
 	}
 
 	protected Facet createFacet(SearchContext searchContext) {

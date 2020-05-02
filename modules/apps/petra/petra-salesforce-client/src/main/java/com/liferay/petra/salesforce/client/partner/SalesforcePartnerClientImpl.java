@@ -145,17 +145,17 @@ public class SalesforcePartnerClientImpl
 	}
 
 	@Override
-	public LoginResult login(String username, String password, int retryCount)
+	public LoginResult login(String userName, String password, int retryCount)
 		throws ConnectionException {
 
 		try {
 			PartnerConnection partnerConnection = getPartnerConnection();
 
-			return partnerConnection.login(username, password);
+			return partnerConnection.login(userName, password);
 		}
 		catch (ConnectionException connectionException) {
 			return login(
-				username, password,
+				userName, password,
 				getRetryCount(retryCount, connectionException));
 		}
 	}

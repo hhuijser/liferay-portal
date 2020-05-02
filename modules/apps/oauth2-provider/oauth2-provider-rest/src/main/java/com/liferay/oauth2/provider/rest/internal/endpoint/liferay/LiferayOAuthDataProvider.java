@@ -907,10 +907,10 @@ public class LiferayOAuthDataProvider
 	}
 
 	protected UserSubject populateUserSubject(
-		long companyId, long userId, String username) {
+		long companyId, long userId, String userName) {
 
 		UserSubject userSubject = new UserSubject(
-			username, String.valueOf(userId));
+			userName, String.valueOf(userId));
 
 		Map<String, String> properties = userSubject.getProperties();
 

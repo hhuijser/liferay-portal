@@ -63,7 +63,7 @@ public interface SalesforcePartnerClient extends SalesforceClient {
 
 	public GetUserInfoResult getUserInfo() throws ConnectionException;
 
-	public LoginResult login(String username, String password, int retryCount)
+	public LoginResult login(String userName, String password, int retryCount)
 		throws ConnectionException;
 
 	public QueryResult query(String queryString, int retryCount)

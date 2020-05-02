@@ -85,7 +85,7 @@ public class ModuleBuildAutoUpgradeTest extends BaseBuildAutoUpgradeTestCase {
 			attributes.putValue(
 				Constants.BUNDLE_NAME, "Build Auto Upgrade Test");
 			attributes.putValue(
-				Constants.BUNDLE_SYMBOLICNAME, BUNDLE_SYMBOLICNAME);
+				Constants.BUNDLE_SYMBOLICNAME, BUNDLE_SYMBOLIC_NAME);
 			attributes.putValue(Constants.BUNDLE_VERSION, "1.0.0");
 			attributes.putValue("Liferay-Require-SchemaVersion", "1.0.0");
 			attributes.putValue("Liferay-Service", Boolean.TRUE.toString());

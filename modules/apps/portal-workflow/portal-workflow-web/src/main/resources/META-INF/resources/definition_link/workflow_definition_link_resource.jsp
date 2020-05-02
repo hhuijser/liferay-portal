@@ -25,20 +25,20 @@ WorkflowDefinitionLinkSearchEntry workflowDefinitionLinkSearchEntry = (WorkflowD
 
 Map<String, String> resourceTooltips = (Map<String, String>)row.getParameter("resourceTooltips");
 
-String classname = workflowDefinitionLinkSearchEntry.getClassName();
+String className = workflowDefinitionLinkSearchEntry.getClassName();
 
 String resource = workflowDefinitionLinkSearchEntry.getResource();
 %>
 
 <c:choose>
-	<c:when test="<%= resourceTooltips.containsKey(classname) %>">
+	<c:when test="<%= resourceTooltips.containsKey(className) %>">
 		<div class="workflow-definition-link-resource">
 			<span id="<%= randomNamespace %>resourceTooltip">
 				<%= resource %>
 				<div class="clay-tooltip-right tooltip" id="<%= randomNamespace %>tooltip" role="tooltip">
 					<div class="arrow"></div>
 					<div class="tooltip-inner">
-						<div><%= resourceTooltips.get(classname) %></div>
+						<div><%= resourceTooltips.get(className) %></div>
 					</div>
 				</div>
 			</span>

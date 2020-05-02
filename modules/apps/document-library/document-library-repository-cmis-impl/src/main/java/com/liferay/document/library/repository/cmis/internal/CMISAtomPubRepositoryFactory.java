@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(
 	configurationPid = "com.liferay.document.library.repository.cmis.configuration.CMISRepositoryConfiguration",
 	configurationPolicy = ConfigurationPolicy.OPTIONAL,
-	property = "repository.target.class.name=" + CMISRepositoryConstants.CMIS_ATOMPUB_REPOSITORY_CLASSNAME,
+	property = "repository.target.class.name=" + CMISRepositoryConstants.CMIS_ATOMPUB_REPOSITORY_CLASS_NAME,
 	service = RepositoryFactory.class
 )
 public class CMISAtomPubRepositoryFactory

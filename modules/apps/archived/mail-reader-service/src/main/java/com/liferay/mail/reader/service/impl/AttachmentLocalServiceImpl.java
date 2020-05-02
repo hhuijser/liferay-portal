@@ -173,13 +173,13 @@ public class AttachmentLocalServiceImpl extends AttachmentLocalServiceBaseImpl {
 		return _DIRECTORY_PATH_PREFIX.concat(String.valueOf(messageId));
 	}
 
-	protected String getFilePath(long messageId, String filename) {
+	protected String getFilePath(long messageId, String fileName) {
 		return getDirectoryPath(
 			messageId
 		).concat(
 			StringPool.SLASH
 		).concat(
-			filename
+			fileName
 		);
 	}
 

@@ -21,7 +21,7 @@ public class CMISRepositoryConstants {
 
 	public static final String CMIS_ATOMPUB_CONFIGURATION = "ATOMPUB";
 
-	public static final String CMIS_ATOMPUB_REPOSITORY_CLASSNAME =
+	public static final String CMIS_ATOMPUB_REPOSITORY_CLASS_NAME =
 		"com.liferay.document.library.repository.cmis.internal." +
 			"CMISAtomPubRepository";
 
@@ -30,7 +30,7 @@ public class CMISRepositoryConstants {
 
 	public static final String CMIS_ATOMPUB_URL_PARAMETER = "ATOMPUB_URL";
 
-	public static final String CMIS_WEB_SERVICES_REPOSITORY_CLASSNAME =
+	public static final String CMIS_WEB_SERVICES_REPOSITORY_CLASS_NAME =
 		"com.liferay.document.library.repository.cmis.internal." +
 			"CMISWebServicesRepository";
 

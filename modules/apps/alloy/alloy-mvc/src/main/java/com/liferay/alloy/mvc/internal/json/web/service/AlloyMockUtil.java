@@ -579,7 +579,7 @@ public class AlloyMockUtil {
 		}
 
 		@Override
-		public void login(String username, String password) {
+		public void login(String userName, String password) {
 			throw new UnsupportedOperationException();
 		}
 

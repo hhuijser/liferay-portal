@@ -222,7 +222,7 @@ public class BaseCmisSearchQueryBuilderTest {
 	}
 
 	@Test
-	public void testExactFilenameQuery() throws Exception {
+	public void testExactFileNameQuery() throws Exception {
 		SearchContext searchContext = getSearchContext();
 
 		searchContext.setKeywords("test.jpg");

@@ -56,11 +56,11 @@ public class DDMTemplatePermission {
 			permissionChecker, groupId, classNameId, resourceClassNameId);
 	}
 
-	public static String getTemplateModelResourceName(long resourceClassnameId)
+	public static String getTemplateModelResourceName(long resourceClassNameId)
 		throws PortalException {
 
 		return _ddmPermissionSupport.getTemplateModelResourceName(
-			resourceClassnameId);
+			resourceClassNameId);
 	}
 
 	@Reference(unbind = "-")

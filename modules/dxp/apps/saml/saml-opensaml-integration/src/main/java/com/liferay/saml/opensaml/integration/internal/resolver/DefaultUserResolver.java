@@ -293,7 +293,7 @@ public class DefaultUserResolver implements UserResolver {
 			return _SUBJECT_NAME_TYPE_EMAIL_ADDRESS;
 		}
 
-		return _SUBJECT_NAME_TYPE_SCREENNAME;
+		return _SUBJECT_NAME_TYPE_SCREEN_NAME;
 	}
 
 	protected User getUser(
@@ -309,7 +309,7 @@ public class DefaultUserResolver implements UserResolver {
 					companyId, subjectNameIdentifier);
 			}
 			else if (subjectNameIdentifierType.endsWith(
-						_SUBJECT_NAME_TYPE_SCREENNAME)) {
+						_SUBJECT_NAME_TYPE_SCREEN_NAME)) {
 
 				return _userLocalService.getUserByScreenName(
 					companyId, subjectNameIdentifier);
@@ -537,7 +537,7 @@ public class DefaultUserResolver implements UserResolver {
 	private static final String _SUBJECT_NAME_TYPE_EMAIL_ADDRESS =
 		"emailAddress";
 
-	private static final String _SUBJECT_NAME_TYPE_SCREENNAME = "screenName";
+	private static final String _SUBJECT_NAME_TYPE_SCREEN_NAME = "screenName";
 
 	private static final String _SUBJECT_NAME_TYPE_UNSPECIFIED = "unspecified";
 

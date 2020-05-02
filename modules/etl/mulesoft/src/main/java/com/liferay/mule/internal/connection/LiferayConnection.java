@@ -51,13 +51,13 @@ import org.slf4j.LoggerFactory;
 public final class LiferayConnection {
 
 	public static LiferayConnection withBasicAuthentication(
-			HttpService httpService, String openApiSpecPath, String username,
+			HttpService httpService, String openApiSpecPath, String userName,
 			String password, ProxyConfig proxyConfig)
 		throws ConnectionException {
 
 		return new LiferayConnection(
 			httpService, openApiSpecPath,
-			new BasicAuthentication(username, password), proxyConfig);
+			new BasicAuthentication(userName, password), proxyConfig);
 	}
 
 	public static LiferayConnection withOAuth2Authentication(

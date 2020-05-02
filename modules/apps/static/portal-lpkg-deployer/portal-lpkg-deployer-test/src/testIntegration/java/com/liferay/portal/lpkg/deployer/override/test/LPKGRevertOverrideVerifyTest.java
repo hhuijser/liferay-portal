@@ -127,9 +127,9 @@ public class LPKGRevertOverrideVerifyTest {
 
 				@Override
 				public int compare(Map.Entry entry1, Map.Entry entry2) {
-					String entrySymbolicname = (String)entry1.getKey();
+					String entrySymbolicName = (String)entry1.getKey();
 
-					return entrySymbolicname.compareTo((String)entry2.getKey());
+					return entrySymbolicName.compareTo((String)entry2.getKey());
 				}
 
 			});

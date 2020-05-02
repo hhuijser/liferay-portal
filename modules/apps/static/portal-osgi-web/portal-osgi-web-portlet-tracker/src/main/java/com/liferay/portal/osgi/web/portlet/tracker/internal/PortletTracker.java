@@ -496,17 +496,17 @@ public class PortletTracker
 
 				String name = event;
 
-				String qname = null;
+				String uri = null;
 
 				String[] parts = StringUtil.split(event, CharPool.SEMICOLON);
 
 				if (parts.length >= 2) {
 					name = parts[0];
-					qname = parts[1];
+					uri = parts[1];
 				}
 
 				QName qName = getQName(
-					name, qname, portletApp.getDefaultNamespace());
+					name, uri, portletApp.getDefaultNamespace());
 
 				if (i == 0) {
 					String valueType = null;
@@ -1026,18 +1026,17 @@ public class PortletTracker
 
 		for (String supportedProcessingEvent : supportedProcessingEvents) {
 			String name = supportedProcessingEvent;
-			String qname = null;
+			String uri = null;
 
 			String[] parts = StringUtil.split(
 				supportedProcessingEvent, CharPool.SEMICOLON);
 
 			if (parts.length == 2) {
 				name = parts[0];
-				qname = parts[1];
+				uri = parts[1];
 			}
 
-			QName qName = getQName(
-				name, qname, portletApp.getDefaultNamespace());
+			QName qName = getQName(name, uri, portletApp.getDefaultNamespace());
 
 			processingEvents.add(qName);
 
@@ -1072,18 +1071,17 @@ public class PortletTracker
 				supportedPublicRenderParameters) {
 
 			String name = supportedPublicRenderParameter;
-			String qname = null;
+			String uri = null;
 
 			String[] parts = StringUtil.split(
 				supportedPublicRenderParameter, CharPool.SEMICOLON);
 
 			if (parts.length == 2) {
 				name = parts[0];
-				qname = parts[1];
+				uri = parts[1];
 			}
 
-			QName qName = getQName(
-				name, qname, portletApp.getDefaultNamespace());
+			QName qName = getQName(name, uri, portletApp.getDefaultNamespace());
 
 			PublicRenderParameter publicRenderParameter =
 				new PublicRenderParameterImpl(name, qName, portletApp);
@@ -1108,18 +1106,17 @@ public class PortletTracker
 
 		for (String supportedPublishingEvent : supportedPublishingEvents) {
 			String name = supportedPublishingEvent;
-			String qname = null;
+			String uri = null;
 
 			String[] parts = StringUtil.split(
 				supportedPublishingEvent, CharPool.SEMICOLON);
 
 			if (parts.length == 2) {
 				name = parts[0];
-				qname = parts[1];
+				uri = parts[1];
 			}
 
-			QName qName = getQName(
-				name, qname, portletApp.getDefaultNamespace());
+			QName qName = getQName(name, uri, portletApp.getDefaultNamespace());
 
 			publishingEvents.add(qName);
 		}

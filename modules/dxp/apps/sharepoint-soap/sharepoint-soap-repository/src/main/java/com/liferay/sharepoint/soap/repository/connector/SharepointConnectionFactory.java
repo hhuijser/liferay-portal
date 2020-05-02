@@ -22,12 +22,12 @@ public class SharepointConnectionFactory {
 	public static SharepointConnection getInstance(
 		SharepointConnection.ServerVersion serverVersion, String serverProtocol,
 		String serverAddress, int serverPort, String sitePath,
-		String libraryName, String libraryPath, String username,
+		String libraryName, String libraryPath, String userName,
 		String password) {
 
 		return new SharepointConnectionImpl(
 			serverVersion, serverProtocol, serverAddress, serverPort, sitePath,
-			libraryName, libraryPath, username, password);
+			libraryName, libraryPath, userName, password);
 	}
 
 }

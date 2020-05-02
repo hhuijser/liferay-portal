@@ -54,7 +54,7 @@ public class SharepointConnectionTest {
 		_sharepointConnection = SharepointConnectionFactory.getInstance(
 			_SERVER_VERSION, _SERVER_PROTOCOL,
 			SharepointConnectionTestUtil.getSharepointVMHostname(),
-			_SERVER_PORT, _SITE_PATH, _LIBRARY_NAME, _LIBRARY_PATH, _USERNAME,
+			_SERVER_PORT, _SITE_PATH, _LIBRARY_NAME, _LIBRARY_PATH, _USER_NAME,
 			_PASSWORD);
 	}
 
@@ -790,7 +790,7 @@ public class SharepointConnectionTest {
 
 	private static final long _TIMESTAMP = System.currentTimeMillis();
 
-	private static final String _USERNAME = "Administrator";
+	private static final String _USER_NAME = "Administrator";
 
 	private static SharepointConnection _sharepointConnection;
 

@@ -192,7 +192,7 @@ public class SourceServiceTest {
 
 				SourceLocalServiceUtil.addSource(
 					TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
-					_DRIVER_CLASSNAME, _URL, _USERNAME, _PASSWORD,
+					_DRIVER_CLASS_NAME, _URL, _USER_NAME, _PASSWORD,
 					serviceContext);
 			}
 
@@ -208,13 +208,13 @@ public class SourceServiceTest {
 
 				SourceLocalServiceUtil.addSource(
 					TestPropsValues.getUserId(), _group.getGroupId(), nameMap,
-					_DRIVER_CLASSNAME, _URL, _USERNAME, _PASSWORD,
+					_DRIVER_CLASS_NAME, _URL, _USER_NAME, _PASSWORD,
 					serviceContext);
 			}
 		}
 	}
 
-	private static final String _DRIVER_CLASSNAME =
+	private static final String _DRIVER_CLASS_NAME =
 		"org.hsqldb.jdbc.JDBCDriver";
 
 	private static final String _PASSWORD = StringPool.BLANK;
@@ -225,7 +225,7 @@ public class SourceServiceTest {
 
 	private static final String _URL = "jdbc:hsqldb:mem:testDB;shutdown=true";
 
-	private static final String _USERNAME = "sa";
+	private static final String _USER_NAME = "sa";
 
 	private PermissionChecker _adminPermissionChecker;
 

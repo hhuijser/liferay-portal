@@ -74,12 +74,12 @@ public class SharepointConnectionImpl implements SharepointConnection {
 			SharepointConnection.ServerVersion serverVersion,
 			String serverProtocol, String serverAddress, int serverPort,
 			String sitePath, String libraryName, String libraryPath,
-			String username, String password)
+			String userName, String password)
 		throws SharepointRuntimeException {
 
 		_sharepointConnectionInfo = new SharepointConnectionInfo(
 			serverVersion, serverProtocol, serverAddress, serverPort, sitePath,
-			libraryName, libraryPath, username, password);
+			libraryName, libraryPath, userName, password);
 
 		_initCopyStub();
 		_initListsStub();

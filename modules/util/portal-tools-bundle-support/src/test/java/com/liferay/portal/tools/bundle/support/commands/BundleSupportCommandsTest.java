@@ -641,8 +641,8 @@ public class BundleSupportCommandsTest {
 			_HTTP_SERVER_REALM) {
 
 			@Override
-			public boolean checkCredentials(String username, String password) {
-				if (username.equals(_HTTP_SERVER_USER_NAME) &&
+			public boolean checkCredentials(String userName, String password) {
+				if (userName.equals(_HTTP_SERVER_USER_NAME) &&
 					password.equals(_HTTP_SERVER_PASSWORD)) {
 
 					return true;

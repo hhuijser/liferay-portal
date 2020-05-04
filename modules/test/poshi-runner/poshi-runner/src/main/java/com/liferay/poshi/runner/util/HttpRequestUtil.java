@@ -244,23 +244,23 @@ public class HttpRequestUtil {
 
 	public static class BasicHttpAuthorization extends HttpAuthorization {
 
-		public BasicHttpAuthorization(String password, String username) {
+		public BasicHttpAuthorization(String password, String userName) {
 			super(Type.BASIC);
 
 			this.password = password;
-			this.username = username;
+			this.userName = userName;
 		}
 
 		@Override
 		public String toString() {
-			String authorization = StringUtil.combine(username, ":", password);
+			String authorization = StringUtil.combine(userName, ":", password);
 
 			return StringUtil.combine(
 				"Basic ", Base64.encodeBase64String(authorization.getBytes()));
 		}
 
 		protected String password;
-		protected String username;
+		protected String userName;
 
 	}
 

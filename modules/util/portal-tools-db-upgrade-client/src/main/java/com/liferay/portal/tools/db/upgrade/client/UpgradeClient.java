@@ -657,7 +657,7 @@ public class UpgradeClient {
 
 		System.out.println("Please enter your database username: ");
 
-		String username = _consoleReader.readLine();
+		String userName = _consoleReader.readLine();
 
 		System.out.println("Please enter your database password: ");
 
@@ -670,7 +670,7 @@ public class UpgradeClient {
 		_portalUpgradeDatabaseProperties.setProperty(
 			"jdbc.default.url", dataSource.getURL());
 		_portalUpgradeDatabaseProperties.setProperty(
-			"jdbc.default.username", username);
+			"jdbc.default.username", userName);
 	}
 
 	private void _verifyPortalUpgradeExtProperties() throws IOException {

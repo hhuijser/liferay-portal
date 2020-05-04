@@ -30,10 +30,10 @@ public class SharepointConnectionInfo {
 			SharepointConnection.ServerVersion serverVersion,
 			String serverProtocol, String serverAddress, int serverPort,
 			String sitePath, String libraryName, String libraryPath,
-			String username, String password)
+			String userName, String password)
 		throws SharepointRuntimeException {
 
-		validate(sitePath, username, password);
+		validate(sitePath, userName, password);
 
 		_serverVersion = serverVersion;
 		_serverProtocol = serverProtocol;
@@ -42,7 +42,7 @@ public class SharepointConnectionInfo {
 		_sitePath = sitePath;
 		_libraryName = libraryName;
 		_libraryPath = libraryPath;
-		_username = username;
+		_userName = userName;
 		_password = password;
 
 		_serviceURL = URLUtil.toURL(
@@ -83,11 +83,19 @@ public class SharepointConnectionInfo {
 		return _sitePath;
 	}
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #getUserName}
+	 */
+	@Deprecated
 	public String getUsername() {
-		return _username;
+		return _userName;
 	}
 
-	protected void validate(String sitePath, String username, String password) {
+	public String getUserName() {
+		return _userName;
+	}
+
+	protected void validate(String sitePath, String userName, String password) {
 		if (sitePath.equals(StringPool.BLANK)) {
 			return;
 		}
@@ -108,7 +116,7 @@ public class SharepointConnectionInfo {
 				"Site path must not end with a forward slash");
 		}
 
-		if (Validator.isNull(username)) {
+		if (Validator.isNull(userName)) {
 			throw new SharepointRuntimeException("Username is null");
 		}
 
@@ -126,6 +134,6 @@ public class SharepointConnectionInfo {
 	private final SharepointConnection.ServerVersion _serverVersion;
 	private final URL _serviceURL;
 	private final String _sitePath;
-	private final String _username;
+	private final String _userName;
 
 }

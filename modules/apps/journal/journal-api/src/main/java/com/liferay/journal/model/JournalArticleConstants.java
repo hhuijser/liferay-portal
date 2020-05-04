@@ -28,6 +28,13 @@ public class JournalArticleConstants {
 
 	public static final String CANONICAL_URL_SEPARATOR = "/-/";
 
+	public static final long CLASS_NAME_ID_DEFAULT = 0;
+
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
+	 *             #CLASS_NAME_ID_DEFAULT}
+	 */
+	@Deprecated
 	public static final long CLASSNAME_ID_DEFAULT = 0;
 
 	public static final long DDM_STRUCTURE_ID_ALL = -1;

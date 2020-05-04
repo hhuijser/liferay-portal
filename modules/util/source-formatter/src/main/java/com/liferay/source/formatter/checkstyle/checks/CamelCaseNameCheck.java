@@ -44,6 +44,8 @@ public class CamelCaseNameCheck extends BaseCheck {
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
 		if (AnnotationUtil.containsAnnotation(detailAST, "Deprecated") ||
+			AnnotationUtil.containsAnnotation(detailAST, "DisplayName") ||
+			AnnotationUtil.containsAnnotation(detailAST, "Meta.AD") ||
 			((detailAST.getType() == TokenTypes.METHOD_DEF) &&
 			 AnnotationUtil.containsAnnotation(detailAST, "Override"))) {
 

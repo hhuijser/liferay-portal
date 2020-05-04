@@ -32,15 +32,16 @@ import com.liferay.portal.vulcan.util.TransformUtil;
  */
 public class AccountRoleDisplaySearchContainerFactory {
 
-	public static SearchContainer create(
+	public static SearchContainer<AccountRoleDisplay> create(
 		long accountEntryId, LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
-		SearchContainer searchContainer = new SearchContainer(
-			liferayPortletRequest,
-			PortletURLUtil.getCurrent(
-				liferayPortletRequest, liferayPortletResponse),
-			null, "there-are-no-roles");
+		SearchContainer<AccountRoleDisplay> searchContainer =
+			new SearchContainer(
+				liferayPortletRequest,
+				PortletURLUtil.getCurrent(
+					liferayPortletRequest, liferayPortletResponse),
+				null, "there-are-no-roles");
 
 		searchContainer.setId("accountRoles");
 		searchContainer.setOrderByCol("name");

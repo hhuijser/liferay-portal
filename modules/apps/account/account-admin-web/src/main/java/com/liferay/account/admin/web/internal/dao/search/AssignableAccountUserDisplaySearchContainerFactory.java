@@ -42,16 +42,17 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = {})
 public class AssignableAccountUserDisplaySearchContainerFactory {
 
-	public static SearchContainer create(
+	public static SearchContainer<AccountUserDisplay> create(
 			long accountEntryId, LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
 
-		SearchContainer searchContainer = new SearchContainer(
-			liferayPortletRequest,
-			PortletURLUtil.getCurrent(
-				liferayPortletRequest, liferayPortletResponse),
-			null, "no-users-were-found");
+		SearchContainer<AccountUserDisplay> searchContainer =
+			new SearchContainer(
+				liferayPortletRequest,
+				PortletURLUtil.getCurrent(
+					liferayPortletRequest, liferayPortletResponse),
+				null, "no-users-were-found");
 
 		searchContainer.setId("accountUsers");
 

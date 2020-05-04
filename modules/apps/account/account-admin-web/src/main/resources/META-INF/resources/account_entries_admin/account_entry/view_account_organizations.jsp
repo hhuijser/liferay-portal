@@ -19,7 +19,7 @@
 <%
 AccountEntryDisplay accountEntryDisplay = (AccountEntryDisplay)request.getAttribute(AccountWebKeys.ACCOUNT_ENTRY_DISPLAY);
 
-SearchContainer accountOrganizationSearchContainer = AccountOrganizationSearchContainerFactory.create(accountEntryDisplay.getAccountEntryId(), liferayPortletRequest, liferayPortletResponse);
+SearchContainer<Organization> accountOrganizationSearchContainer = AccountOrganizationSearchContainerFactory.create(accountEntryDisplay.getAccountEntryId(), liferayPortletRequest, liferayPortletResponse);
 
 ViewAccountOrganizationsManagementToolbarDisplayContext viewAccountOrganizationsManagementToolbarDisplayContext = new ViewAccountOrganizationsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountOrganizationSearchContainer);
 

@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = {})
 public class AccountUserDisplaySearchContainerFactory {
 
-	public static SearchContainer create(
+	public static SearchContainer<AccountUserDisplay> create(
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
@@ -77,7 +77,7 @@ public class AccountUserDisplaySearchContainerFactory {
 			liferayPortletResponse);
 	}
 
-	public static SearchContainer create(
+	public static SearchContainer<AccountUserDisplay> create(
 			long accountEntryId, LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
@@ -94,7 +94,7 @@ public class AccountUserDisplaySearchContainerFactory {
 			liferayPortletRequest, liferayPortletResponse);
 	}
 
-	public static SearchContainer create(
+	public static SearchContainer<AccountUserDisplay> create(
 			long accountEntryId, long roleId,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
@@ -145,17 +145,18 @@ public class AccountUserDisplaySearchContainerFactory {
 		_usersAdmin = usersAdmin;
 	}
 
-	private static SearchContainer _create(
+	private static SearchContainer<AccountUserDisplay> _create(
 			long[] accountEntryIds, String emptyResultsMessage,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
 
-		SearchContainer accountUserDisplaySearchContainer = new SearchContainer(
-			liferayPortletRequest,
-			PortletURLUtil.getCurrent(
-				liferayPortletRequest, liferayPortletResponse),
-			null, emptyResultsMessage);
+		SearchContainer<AccountUserDisplay> accountUserDisplaySearchContainer =
+			new SearchContainer(
+				liferayPortletRequest,
+				PortletURLUtil.getCurrent(
+					liferayPortletRequest, liferayPortletResponse),
+				null, emptyResultsMessage);
 
 		accountUserDisplaySearchContainer.setId("accountUsers");
 

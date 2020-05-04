@@ -58,8 +58,8 @@ public class BasicAuthPoolingHttpClientFactory
 		_password = password;
 	}
 
-	public void setUsername(String username) {
-		_username = username;
+	public void setUserName(String userName) {
+		_userName = userName;
 	}
 
 	@Activate
@@ -87,12 +87,12 @@ public class BasicAuthPoolingHttpClientFactory
 		String basicAuthUserName =
 			_solrHttpClientFactoryConfiguration.basicAuthUserName();
 
-		setUsername(basicAuthUserName);
+		setUserName(basicAuthUserName);
 	}
 
 	@Override
 	protected void configure(HttpClientBuilder httpClientBuilder) {
-		if (Validator.isBlank(_username)) {
+		if (Validator.isBlank(_userName)) {
 			return;
 		}
 
@@ -108,7 +108,7 @@ public class BasicAuthPoolingHttpClientFactory
 			new BasicCredentialsProvider();
 
 		credentialsProvider.setCredentials(
-			_authScope, new UsernamePasswordCredentials(_username, _password));
+			_authScope, new UsernamePasswordCredentials(_userName, _password));
 
 		httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
 	}
@@ -146,6 +146,6 @@ public class BasicAuthPoolingHttpClientFactory
 	private String _password;
 	private volatile SolrHttpClientFactoryConfiguration
 		_solrHttpClientFactoryConfiguration;
-	private String _username;
+	private String _userName;
 
 }

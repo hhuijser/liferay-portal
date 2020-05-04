@@ -360,7 +360,7 @@ public class SharepointConnectionImpl implements SharepointConnection {
 		authenticator.setPassword(_sharepointConnectionInfo.getPassword());
 		authenticator.setPort(url.getPort());
 		authenticator.setPreemptiveAuthentication(true);
-		authenticator.setUsername(_sharepointConnectionInfo.getUsername());
+		authenticator.setUsername(_sharepointConnectionInfo.getUserName());
 
 		options.setProperty(HTTPConstants.AUTHENTICATE, authenticator);
 	}

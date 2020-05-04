@@ -125,7 +125,7 @@ public final class GetInputStreamOperation extends BaseOperation {
 						new AuthScope(
 							httpHost, url.getHost(), AuthSchemes.BASIC),
 						new UsernamePasswordCredentials(
-							sharepointConnectionInfo.getUsername(),
+							sharepointConnectionInfo.getUserName(),
 							sharepointConnectionInfo.getPassword()));
 				}
 			});

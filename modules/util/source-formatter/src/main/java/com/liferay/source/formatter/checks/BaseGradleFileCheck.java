@@ -36,7 +36,7 @@ public abstract class BaseGradleFileCheck
 	}
 
 	protected abstract String doProcess(
-			String filename, String absolutePath, GradleFile gradleFile,
+			String fileName, String absolutePath, GradleFile gradleFile,
 			String fileContent)
 		throws IOException;
 

@@ -48,7 +48,7 @@ public abstract class BaseJavaTermCheck
 	}
 
 	protected abstract String doProcess(
-			String filename, String absolutePath, JavaTerm javaTerm,
+			String fileName, String absolutePath, JavaTerm javaTerm,
 			String fileContent)
 		throws Exception;
 

@@ -311,12 +311,12 @@ public class BNDExportsCheck extends BaseFileCheck {
 						new FileFilter() {
 
 							@Override
-							public boolean accept(File pathname) {
-								if (!pathname.isFile()) {
+							public boolean accept(File file) {
+								if (!file.isFile()) {
 									return false;
 								}
 
-								String fileName = pathname.getName();
+								String fileName = file.getName();
 
 								if (fileName.endsWith(".java")) {
 									return true;
@@ -373,8 +373,8 @@ public class BNDExportsCheck extends BaseFileCheck {
 			new FileFilter() {
 
 				@Override
-				public boolean accept(File pathname) {
-					String fileName = pathname.getName();
+				public boolean accept(File file) {
+					String fileName = file.getName();
 
 					if (fileName.startsWith(".lfrbuild-") ||
 						fileName.equals("packageinfo")) {
@@ -382,7 +382,7 @@ public class BNDExportsCheck extends BaseFileCheck {
 						return false;
 					}
 
-					return pathname.isFile();
+					return file.isFile();
 				}
 
 			});
@@ -429,8 +429,8 @@ public class BNDExportsCheck extends BaseFileCheck {
 			new FileFilter() {
 
 				@Override
-				public boolean accept(File pathname) {
-					return pathname.isFile();
+				public boolean accept(File file) {
+					return file.isFile();
 				}
 
 			});

@@ -154,7 +154,7 @@ public interface BaseProjectTemplatesTestCase {
 	public static final String NODEJS_NPM_CI_SASS_BINARY_SITE =
 		System.getProperty("nodejs.npm.ci.sass.binary.site");
 
-	public static final String OUTPUT_FILENAME_GLOB_REGEX = "*.{jar,war}";
+	public static final String OUTPUT_FILE_NAME_GLOB_REGEX = "*.{jar,war}";
 
 	public static final String REPOSITORY_CDN_URL =
 		"https://repository-cdn.liferay.com/nexus/content/groups/public";
@@ -335,7 +335,7 @@ public interface BaseProjectTemplatesTestCase {
 		executeGradle(gradleProjectDir, gradleDistribution, gradleTaskPath);
 
 		Path gradleOutputPath = FileTestUtil.getFile(
-			gradleOutputDir.toPath(), OUTPUT_FILENAME_GLOB_REGEX, 1);
+			gradleOutputDir.toPath(), OUTPUT_FILE_NAME_GLOB_REGEX, 1);
 
 		Assert.assertNotNull(gradleOutputPath);
 
@@ -348,7 +348,7 @@ public interface BaseProjectTemplatesTestCase {
 		executeMaven(mavenProjectDir, mavenExecutor, MAVEN_GOAL_PACKAGE);
 
 		Path mavenOutputPath = FileTestUtil.getFile(
-			mavenOutputDir.toPath(), OUTPUT_FILENAME_GLOB_REGEX, 1);
+			mavenOutputDir.toPath(), OUTPUT_FILE_NAME_GLOB_REGEX, 1);
 
 		Assert.assertNotNull(mavenOutputPath);
 

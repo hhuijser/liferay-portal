@@ -366,7 +366,7 @@ public class ProjectTemplatesFormFieldTest
 			File gradleOutputDir = new File(gradleProjectDir, "build/libs");
 
 			Path gradleOutputPath = FileTestUtil.getFile(
-				gradleOutputDir.toPath(), OUTPUT_FILENAME_GLOB_REGEX, 1);
+				gradleOutputDir.toPath(), OUTPUT_FILE_NAME_GLOB_REGEX, 1);
 
 			Assert.assertNotNull(gradleOutputPath);
 

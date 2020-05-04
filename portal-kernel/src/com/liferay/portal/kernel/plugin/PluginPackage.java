@@ -24,6 +24,11 @@ import java.util.Properties;
  */
 public interface PluginPackage {
 
+	public static final String REPOSITORY_XML_FILE_NAME_EXTENSION = "xml";
+
+	public static final String REPOSITORY_XML_FILE_NAME_PREFIX =
+		"liferay-plugin-repository";
+
 	/**
 	 * @deprecated As of Athanasius (7.3.x), replaced by {@link
 	 *             #REPOSITORY_XML_FILE_NAME_EXTENSION}
@@ -37,11 +42,6 @@ public interface PluginPackage {
 	 */
 	@Deprecated
 	public static final String REPOSITORY_XML_FILENAME_PREFIX =
-		"liferay-plugin-repository";
-
-	public static final String REPOSITORY_XML_FILE_NAME_EXTENSION = "xml";
-
-	public static final String REPOSITORY_XML_FILE_NAME_PREFIX =
 		"liferay-plugin-repository";
 
 	public String getArtifactId();

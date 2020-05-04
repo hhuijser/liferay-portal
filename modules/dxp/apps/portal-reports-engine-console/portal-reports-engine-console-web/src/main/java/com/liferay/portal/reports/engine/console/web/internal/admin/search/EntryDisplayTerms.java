@@ -43,7 +43,7 @@ public class EntryDisplayTerms extends DisplayTerms {
 
 	public static final String START_DATE_YEAR = "startDateYear";
 
-	public static final String USERNAME = "userName";
+	public static final String USER_NAME = "userName";
 
 	public EntryDisplayTerms(PortletRequest portletRequest) {
 		super(portletRequest);
@@ -72,7 +72,7 @@ public class EntryDisplayTerms extends DisplayTerms {
 		startDateYear = ParamUtil.getInteger(
 			portletRequest, START_DATE_YEAR, calendar.get(Calendar.YEAR));
 
-		userName = ParamUtil.getString(portletRequest, USERNAME);
+		userName = ParamUtil.getString(portletRequest, USER_NAME);
 	}
 
 	public String getDefinitionName() {

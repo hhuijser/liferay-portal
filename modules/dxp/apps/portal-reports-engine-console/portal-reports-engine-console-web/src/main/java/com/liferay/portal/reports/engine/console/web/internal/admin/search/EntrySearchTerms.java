@@ -36,7 +36,7 @@ public class EntrySearchTerms extends EntryDisplayTerms {
 			portletRequest, START_DATE_MONTH);
 		startDateYear = DAOParamUtil.getInteger(
 			portletRequest, START_DATE_YEAR);
-		userName = DAOParamUtil.getString(portletRequest, USERNAME);
+		userName = DAOParamUtil.getString(portletRequest, USER_NAME);
 	}
 
 }

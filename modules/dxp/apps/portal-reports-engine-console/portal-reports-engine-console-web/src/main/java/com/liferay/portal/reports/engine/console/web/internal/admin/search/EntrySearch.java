@@ -76,7 +76,7 @@ public class EntrySearch extends SearchContainer<Entry> {
 			EntryDisplayTerms.START_DATE_YEAR,
 			String.valueOf(entryDisplayTerms.getStartDateYear()));
 		iteratorURL.setParameter(
-			EntryDisplayTerms.USERNAME, entryDisplayTerms.getUserName());
+			EntryDisplayTerms.USER_NAME, entryDisplayTerms.getUserName());
 
 		PortalPreferences preferences =
 			PortletPreferencesFactoryUtil.getPortalPreferences(portletRequest);

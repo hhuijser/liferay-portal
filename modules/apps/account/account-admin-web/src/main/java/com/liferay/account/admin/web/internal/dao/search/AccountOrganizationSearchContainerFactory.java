@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(service = {})
 public class AccountOrganizationSearchContainerFactory {
 
-	public static SearchContainer create(
+	public static SearchContainer<Organization> create(
 			long accountEntryId, LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
@@ -53,7 +53,7 @@ public class AccountOrganizationSearchContainerFactory {
 			emptyResultsMessage = "no-organizations-were-found";
 		}
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<Organization> searchContainer = new SearchContainer(
 			liferayPortletRequest,
 			PortletURLUtil.getCurrent(
 				liferayPortletRequest, liferayPortletResponse),

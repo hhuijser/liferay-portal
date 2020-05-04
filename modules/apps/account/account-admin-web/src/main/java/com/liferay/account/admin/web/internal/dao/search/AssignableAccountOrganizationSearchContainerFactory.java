@@ -34,12 +34,12 @@ import com.liferay.portal.kernel.util.WebKeys;
  */
 public class AssignableAccountOrganizationSearchContainerFactory {
 
-	public static SearchContainer create(
+	public static SearchContainer<Organization> create(
 			long accountEntryId, LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse)
 		throws PortalException {
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<Organization> searchContainer = new SearchContainer(
 			liferayPortletRequest,
 			PortletURLUtil.getCurrent(
 				liferayPortletRequest, liferayPortletResponse),

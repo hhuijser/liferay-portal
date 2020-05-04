@@ -29,7 +29,7 @@ if (accountRole != null) {
 	role = accountRole.getRole();
 }
 
-SearchContainer accountRoleUserDisplaySearchContainer = AccountUserDisplaySearchContainerFactory.create(accountEntryId, role.getRoleId(), liferayPortletRequest, liferayPortletResponse);
+SearchContainer<AccountUserDisplay> accountRoleUserDisplaySearchContainer = AccountUserDisplaySearchContainerFactory.create(accountEntryId, role.getRoleId(), liferayPortletRequest, liferayPortletResponse);
 
 ViewAccountRoleAssigneesManagementToolbarDisplayContext viewAccountRoleAssigneesManagementToolbarDisplayContext = new ViewAccountRoleAssigneesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountRoleUserDisplaySearchContainer);
 %>

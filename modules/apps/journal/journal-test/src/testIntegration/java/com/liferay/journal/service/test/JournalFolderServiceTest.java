@@ -128,7 +128,7 @@ public class JournalFolderServiceTest {
 		try {
 			JournalTestUtil.addArticleWithXMLContent(
 				_group.getGroupId(), folder.getFolderId(),
-				JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+				JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 				ddmStructure2.getStructureKey(), ddmTemplate2.getTemplateKey());
 
 			Assert.fail();
@@ -142,7 +142,7 @@ public class JournalFolderServiceTest {
 		try {
 			JournalTestUtil.addArticleWithXMLContent(
 				_group.getGroupId(), subfolder.getFolderId(),
-				JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+				JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 				ddmStructure2.getStructureKey(), ddmTemplate2.getTemplateKey());
 
 			Assert.fail();
@@ -185,7 +185,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), childFolder.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			childDDMStructure.getStructureKey(), ddmTemplate.getTemplateKey());
 
 		long[] childDDMStructureIds = {childDDMStructure.getStructureId()};
@@ -296,7 +296,7 @@ public class JournalFolderServiceTest {
 
 		JournalArticle article = JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), folder1.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructure1.getStructureKey(), ddmTemplate1.getTemplateKey());
 
 		JournalFolderLocalServiceUtil.moveFolderToTrash(
@@ -362,7 +362,7 @@ public class JournalFolderServiceTest {
 		JournalArticle article = JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructure1.getStructureKey(), ddmTemplate1.getTemplateKey());
 
 		JournalFolder folder = JournalTestUtil.addFolder(
@@ -430,7 +430,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), folder2.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructure1.getStructureKey(), ddmTemplate1.getTemplateKey());
 
 		JournalFolderLocalServiceUtil.moveFolderToTrash(
@@ -499,7 +499,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), folder1.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructure1.getStructureKey(), ddmTemplate1.getTemplateKey());
 
 		JournalFolder folder2 = JournalTestUtil.addFolder(
@@ -591,7 +591,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), childFolder.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			childDDMStructure.getStructureKey(),
 			childDDMTemplate.getTemplateKey());
 
@@ -668,7 +668,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), folder.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructure1.getStructureKey(), ddmTemplate1.getTemplateKey());
 
 		DDMStructure ddmStructure2 = DDMStructureTestUtil.addStructure(
@@ -698,7 +698,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), subfolder.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructure1.getStructureKey(), ddmTemplate1.getTemplateKey());
 
 		try {
@@ -764,7 +764,7 @@ public class JournalFolderServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			_group.getGroupId(), childFolder.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			childDDMStructure.getStructureKey(),
 			childDDMTemplate.getTemplateKey());
 

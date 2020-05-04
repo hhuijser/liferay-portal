@@ -73,7 +73,7 @@ public class JournalArticleAssetSearchTest extends BaseAssetSearchTestCase {
 		return JournalTestUtil.addArticle(
 			serviceContext.getScopeGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, titleMap, null,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, titleMap, null,
 			titleMap, LocaleUtil.getSiteDefault(), false, false,
 			serviceContext);
 	}

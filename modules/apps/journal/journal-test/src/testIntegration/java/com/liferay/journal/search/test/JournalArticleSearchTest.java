@@ -157,7 +157,7 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 
 		JournalArticle article = JournalTestUtil.addArticle(
 			group.getGroupId(), JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, articleId, false,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, articleId, false,
 			keywordsMap, keywordsMap, keywordsMap, null,
 			LocaleUtil.getDefault(), null, true, true, serviceContext);
 

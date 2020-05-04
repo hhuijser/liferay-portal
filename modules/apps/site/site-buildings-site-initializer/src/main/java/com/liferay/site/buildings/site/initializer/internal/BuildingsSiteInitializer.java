@@ -346,7 +346,7 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 					_serviceContext.getUserId(),
 					_serviceContext.getScopeGroupId(),
 					JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-					JournalArticleConstants.CLASSNAME_ID_DEFAULT, 0,
+					JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0,
 					jsonObject.getString("articleId"), false, 1,
 					Collections.singletonMap(
 						LocaleUtil.US, jsonObject.getString("name")),

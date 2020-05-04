@@ -436,7 +436,7 @@ public class JournalEditArticleDisplayContext {
 	}
 
 	public String getPublishButtonLabel() throws PortalException {
-		if (getClassNameId() > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+		if (getClassNameId() > JournalArticleConstants.CLASS_NAME_ID_DEFAULT) {
 			return "save";
 		}
 
@@ -650,7 +650,7 @@ public class JournalEditArticleDisplayContext {
 	}
 
 	private String _getTitle() {
-		if (getClassNameId() > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+		if (getClassNameId() > JournalArticleConstants.CLASS_NAME_ID_DEFAULT) {
 			return LanguageUtil.get(
 				_httpServletRequest, "structure-default-values");
 		}
@@ -696,7 +696,7 @@ public class JournalEditArticleDisplayContext {
 	}
 
 	private boolean _isWorkflowEnabled() throws PortalException {
-		if (getClassNameId() > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+		if (getClassNameId() > JournalArticleConstants.CLASS_NAME_ID_DEFAULT) {
 			return false;
 		}
 
@@ -748,7 +748,7 @@ public class JournalEditArticleDisplayContext {
 			portletDisplay.setURLBack(getRedirect());
 		}
 		else if ((getClassNameId() ==
-					JournalArticleConstants.CLASSNAME_ID_DEFAULT) &&
+					JournalArticleConstants.CLASS_NAME_ID_DEFAULT) &&
 				 (_article != null)) {
 
 			PortletURL backURL = _liferayPortletResponse.createRenderURL();

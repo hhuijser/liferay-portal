@@ -101,7 +101,7 @@ public class JournalTestUtil {
 		serviceContext.setLayoutFullURL("http://localhost");
 
 		return addArticle(
-			groupId, folderId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, folderId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			RandomTestUtil.randomString(), RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), LocaleUtil.getSiteDefault(), false,
 			false, serviceContext);
@@ -282,7 +282,7 @@ public class JournalTestUtil {
 		throws Exception {
 
 		return addArticle(
-			groupId, folderId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, folderId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			StringPool.BLANK, true,
 			_getLocalizedMap(RandomTestUtil.randomString()),
 			_getLocalizedMap(RandomTestUtil.randomString()),
@@ -311,7 +311,7 @@ public class JournalTestUtil {
 		throws Exception {
 
 		return addArticle(
-			groupId, folderId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, folderId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			articleId, autoArticleId,
 			_getLocalizedMap(RandomTestUtil.randomString()),
 			_getLocalizedMap(RandomTestUtil.randomString()),
@@ -351,7 +351,7 @@ public class JournalTestUtil {
 		serviceContext.setLayoutFullURL("http://localhost");
 
 		return addArticle(
-			groupId, folderId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, folderId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			title, description, content, defaultLocale, workflowEnabled,
 			approved, serviceContext);
 	}
@@ -372,8 +372,8 @@ public class JournalTestUtil {
 
 		return addArticle(
 			groupId, JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, title, title, content,
-			LocaleUtil.getSiteDefault(), expirationDate, false, false,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, title, title,
+			content, LocaleUtil.getSiteDefault(), expirationDate, false, false,
 			serviceContext);
 	}
 
@@ -393,8 +393,8 @@ public class JournalTestUtil {
 
 		return addArticle(
 			groupId, JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, title, title, content,
-			LocaleUtil.getSiteDefault(), false, false, serviceContext);
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, title, title,
+			content, LocaleUtil.getSiteDefault(), false, false, serviceContext);
 	}
 
 	public static JournalArticle addArticleWithWorkflow(
@@ -438,7 +438,7 @@ public class JournalTestUtil {
 		throws Exception {
 
 		return addArticle(
-			groupId, folderId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, folderId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			titleMap, descriptionMap, contentMap, LocaleUtil.getSiteDefault(),
 			workflowEnabled, approved, serviceContext);
 	}
@@ -559,7 +559,7 @@ public class JournalTestUtil {
 
 		return addArticleWithXMLContent(
 			groupId, JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml, ddmStructureKey,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml, ddmStructureKey,
 			ddmTemplateKey, LocaleUtil.getSiteDefault());
 	}
 
@@ -570,7 +570,7 @@ public class JournalTestUtil {
 		throws Exception {
 
 		return addArticleWithXMLContent(
-			parentFolderId, JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml,
+			parentFolderId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml,
 			ddmStructureKey, ddmTemplateKey, LocaleUtil.getSiteDefault(),
 			images, serviceContext);
 	}
@@ -582,7 +582,7 @@ public class JournalTestUtil {
 
 		return addArticleWithXMLContent(
 			serviceContext.getScopeGroupId(), parentFolderId,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml, ddmStructureKey,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml, ddmStructureKey,
 			ddmTemplateKey, LocaleUtil.getSiteDefault());
 	}
 
@@ -593,7 +593,7 @@ public class JournalTestUtil {
 		return addArticleWithXMLContent(
 			TestPropsValues.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml, ddmStructureKey,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml, ddmStructureKey,
 			ddmTemplateKey, LocaleUtil.getSiteDefault());
 	}
 
@@ -605,7 +605,7 @@ public class JournalTestUtil {
 		return addArticleWithXMLContent(
 			TestPropsValues.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xml, ddmStructureKey,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xml, ddmStructureKey,
 			ddmTemplateKey, defaultLocale);
 	}
 

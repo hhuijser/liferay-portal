@@ -72,7 +72,7 @@ public class JournalSubscriptionClassTypeTest
 		serviceContext.setLayoutFullURL("http://layout_url");
 
 		JournalArticle article = JournalTestUtil.addArticleWithXMLContent(
-			containerId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			containerId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			"<title>Test Article</title>", ddmStructure.getStructureKey(),
 			ddmTemplate.getTemplateKey(), LocaleUtil.getSiteDefault(), null,
 			serviceContext);

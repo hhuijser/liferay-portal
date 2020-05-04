@@ -139,7 +139,7 @@ public class JournalRSSHelper {
 
 		return _journalArticleLocalService.search(
 			companyId, groupId, folderIds,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, articleId, version,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, articleId, version,
 			title, description, content, ddmStructureKey, ddmTemplateKey,
 			displayDateGT, displayDateLT, status, reviewDate, andOperator,
 			start, end, obc);

@@ -405,7 +405,7 @@ public class AssetPublisherExportImportTest
 
 		JournalArticle journalArticle = JournalTestUtil.addArticle(
 			group.getGroupId(), JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, titleMap, titleMap,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, titleMap, titleMap,
 			contentMap, layout.getUuid(), LocaleUtil.getDefault(), null, false,
 			false, ServiceContextTestUtil.getServiceContext());
 

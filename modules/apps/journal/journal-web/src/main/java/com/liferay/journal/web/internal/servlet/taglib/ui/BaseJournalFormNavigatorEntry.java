@@ -65,7 +65,7 @@ public abstract class BaseJournalFormNavigatorEntry
 		long classNameId = BeanParamUtil.getLong(
 			article, portletRequest, "classNameId");
 
-		if (classNameId > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+		if (classNameId > JournalArticleConstants.CLASS_NAME_ID_DEFAULT) {
 			return true;
 		}
 

@@ -285,7 +285,7 @@ public class ActionUtil {
 				groupId, articleId, status);
 		}
 		else if ((classNameId > 0) &&
-				 (classPK > JournalArticleConstants.CLASSNAME_ID_DEFAULT)) {
+				 (classPK > JournalArticleConstants.CLASS_NAME_ID_DEFAULT)) {
 
 			String className = PortalUtil.getClassName(classNameId);
 
@@ -330,7 +330,7 @@ public class ActionUtil {
 				article.setId(0);
 				article.setGroupId(groupId);
 				article.setClassNameId(
-					JournalArticleConstants.CLASSNAME_ID_DEFAULT);
+					JournalArticleConstants.CLASS_NAME_ID_DEFAULT);
 				article.setClassPK(0);
 				article.setArticleId(null);
 				article.setVersion(0);

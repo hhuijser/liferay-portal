@@ -139,7 +139,7 @@ public class JournalArticleScheduledTest {
 		return JournalArticleLocalServiceUtil.addArticle(
 			TestPropsValues.getUserId(), groupId,
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, 0, StringPool.BLANK,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0, StringPool.BLANK,
 			true, JournalArticleConstants.VERSION_DEFAULT, titleMap,
 			descriptionMap, content, ddmStructure.getStructureKey(),
 			ddmTemplate.getTemplateKey(), null,

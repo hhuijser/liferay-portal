@@ -61,7 +61,7 @@ public class JournalFormNavigatorContextProvider
 		else if ((article != null) && (article.getId() > 0)) {
 			return "update";
 		}
-		else if (classNameId > JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+		else if (classNameId > JournalArticleConstants.CLASS_NAME_ID_DEFAULT) {
 			return "default.values";
 		}
 

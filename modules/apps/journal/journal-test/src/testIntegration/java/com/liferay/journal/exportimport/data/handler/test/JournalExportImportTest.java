@@ -246,7 +246,7 @@ public class JournalExportImportTest extends BasePortletExportImportTestCase {
 
 		return JournalTestUtil.addArticle(
 			groupId, JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, title, title,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, title, title,
 			RandomTestUtil.randomString(), LocaleUtil.getSiteDefault(), false,
 			false, serviceContext);
 	}

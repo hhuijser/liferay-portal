@@ -643,7 +643,7 @@ public class JournalArticleServiceTest {
 		return JournalArticleLocalServiceUtil.searchCount(
 			TestPropsValues.getCompanyId(), _group.getGroupId(),
 			ListUtil.fromArray(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, null, null, null,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, null, null, null,
 			null, keyword, "", "", null, null, status, null, true);
 	}
 
@@ -695,7 +695,7 @@ public class JournalArticleServiceTest {
 		return JournalArticleLocalServiceUtil.search(
 			TestPropsValues.getCompanyId(), _group.getGroupId(),
 			ListUtil.fromArray(JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, null, null, null,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, null, null, null,
 			null, keyword, "", "", null, null, status, null, false,
 			QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
@@ -737,7 +737,7 @@ public class JournalArticleServiceTest {
 
 		JournalTestUtil.addArticleWithXMLContent(
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, xmlContent,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, xmlContent,
 			ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey(),
 			LocaleUtil.fromLanguageId(ddmStructure.getDefaultLanguageId()),
 			serviceContext);

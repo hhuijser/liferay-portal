@@ -342,7 +342,7 @@ public class JournalArticleStagedModelDataHandlerTest
 
 		return JournalTestUtil.addArticleWithXMLContent(
 			group.getGroupId(), folder.getFolderId(),
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			DDMStructureTestUtil.getSampleStructuredContent(),
 			ddmStructure.getStructureKey(), ddmTemplate.getTemplateKey());
 	}

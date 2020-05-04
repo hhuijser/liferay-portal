@@ -50,5 +50,5 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 	classTypeId="<%= journalEditArticleDisplayContext.getDDMStructureId() %>"
 	groupId="<%= journalEditArticleDisplayContext.getGroupId() %>"
 	showPortletLayouts="<%= true %>"
-	showViewInContextLink="<%= journalEditArticleDisplayContext.getClassNameId() == JournalArticleConstants.CLASSNAME_ID_DEFAULT %>"
+	showViewInContextLink="<%= journalEditArticleDisplayContext.getClassNameId() == JournalArticleConstants.CLASS_NAME_ID_DEFAULT %>"
 />

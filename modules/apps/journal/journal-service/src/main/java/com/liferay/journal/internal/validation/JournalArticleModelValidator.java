@@ -134,7 +134,7 @@ public class JournalArticleModelValidator
 			}
 		}
 
-		if ((classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT) &&
+		if ((classNameId == JournalArticleConstants.CLASS_NAME_ID_DEFAULT) &&
 			(titleMap.isEmpty() ||
 			 Validator.isNull(titleMap.get(articleDefaultLocale)))) {
 
@@ -294,7 +294,8 @@ public class JournalArticleModelValidator
 
 			if (ddmStructure.getFieldRequired(field.getName()) &&
 				Validator.isNull(field.getValue(defaultlocale)) &&
-				(classNameId == JournalArticleConstants.CLASSNAME_ID_DEFAULT)) {
+				(classNameId ==
+					JournalArticleConstants.CLASS_NAME_ID_DEFAULT)) {
 
 				StringBundler sb = new StringBundler(6);
 

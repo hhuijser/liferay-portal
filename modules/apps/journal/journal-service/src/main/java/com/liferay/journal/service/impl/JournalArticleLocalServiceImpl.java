@@ -247,7 +247,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  classPK the primary key of the DDM structure, if the primary key
 	 *         of the DDMStructure class is given as the
@@ -567,7 +567,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  classPK the primary key of the DDM structure, if the primary key
 	 *         of the DDMStructure class is given as the
@@ -714,7 +714,7 @@ public class JournalArticleLocalServiceImpl
 
 		return journalArticleLocalService.addArticle(
 			userId, groupId, folderId,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, 0, StringPool.BLANK,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, 0, StringPool.BLANK,
 			true, 1, titleMap, descriptionMap, content, ddmStructureKey,
 			ddmTemplateKey, null, displayDateMonth, displayDateDay,
 			displayDateYear, displayDateHour, displayDateMinute, 0, 0, 0, 0, 0,
@@ -1601,7 +1601,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  className the DDMStructure class name if the web content article
 	 *         is related to a DDM structure, the primary key of the class name
 	 *         associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  classPK the primary key of the DDM structure, if the DDMStructure
 	 *         class name is given as the <code>className</code> parameter, the
@@ -2094,7 +2094,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  className the DDMStructure class name if the web content article
 	 *         is related to a DDM structure, the primary key of the class name
 	 *         associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  classPK the primary key of the DDM structure, if the DDMStructure
 	 *         class name is given as the <code>className</code> parameter, the
@@ -2817,7 +2817,7 @@ public class JournalArticleLocalServiceImpl
 			status, start, end, obc);
 
 		return journalArticleFinder.findByG_C_S_L(
-			groupId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			ddmStructureKey, LocaleUtil.getMostRelevantLocale(),
 			queryDefinition);
 	}
@@ -2841,7 +2841,7 @@ public class JournalArticleLocalServiceImpl
 			status, start, end, obc);
 
 		return journalArticleFinder.findByG_C_S_L(
-			groupId, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+			groupId, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 			ddmStructureKey, locale, queryDefinition);
 	}
 
@@ -3162,7 +3162,7 @@ public class JournalArticleLocalServiceImpl
 
 		articles.addAll(
 			journalArticleFinder.findByG_C_S_L(
-				0, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+				0, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 				ddmStructureKeys, LocaleUtil.getMostRelevantLocale(),
 				approvedQueryDefinition));
 
@@ -3173,7 +3173,7 @@ public class JournalArticleLocalServiceImpl
 
 		articles.addAll(
 			journalArticleFinder.findByG_C_S_L(
-				0, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+				0, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 				ddmStructureKeys, LocaleUtil.getMostRelevantLocale(),
 				trashQueryDefinition));
 
@@ -3197,7 +3197,7 @@ public class JournalArticleLocalServiceImpl
 
 		articles.addAll(
 			journalArticleFinder.findByG_C_S_L(
-				0, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+				0, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 				ddmStructureKeys, locale, approvedQueryDefinition));
 
 		QueryDefinition<JournalArticle> trashQueryDefinition =
@@ -3207,7 +3207,7 @@ public class JournalArticleLocalServiceImpl
 
 		articles.addAll(
 			journalArticleFinder.findByG_C_S_L(
-				0, JournalArticleConstants.CLASSNAME_ID_DEFAULT,
+				0, JournalArticleConstants.CLASS_NAME_ID_DEFAULT,
 				ddmStructureKeys, locale, trashQueryDefinition));
 
 		return articles;
@@ -3362,7 +3362,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  groupId the primary key of the web content article's group
 	 * @param  className the DDMStructure class name if the web content article
 	 *         is related to a DDM structure, the class name associated with the
-	 *         article, or JournalArticleConstants.CLASSNAME_ID_DEFAULT in the
+	 *         article, or JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the
 	 *         journal-api module otherwise
 	 * @param  classPK the primary key of the DDM structure, if the DDMStructure
 	 *         class name is given as the <code>className</code> parameter, the
@@ -4374,7 +4374,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  keywords the keywords (space separated), which may occur in the
 	 *         web content article ID, title, description, or content
@@ -4447,7 +4447,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  articleId the article ID keywords (space separated, optionally
 	 *         <code>null</code>)
@@ -4528,7 +4528,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  articleId the article ID keywords (space separated, optionally
 	 *         <code>null</code>)
@@ -4612,7 +4612,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  ddmStructureKey the primary key of the web content article's DDM
 	 *         structure, if the article is related to a DDM structure, or
@@ -4690,7 +4690,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  articleId the article ID keywords (space separated, optionally
 	 *         <code>null</code>)
@@ -4841,7 +4841,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  keywords the keywords (space separated), which may occur in the
 	 *         web content article ID, title, description, or content
@@ -4894,7 +4894,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  articleId the article ID keywords (space separated, optionally
 	 *         <code>null</code>)
@@ -4955,7 +4955,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param  classNameId the primary key of the DDMStructure class if the web
 	 *         content article is related to a DDM structure, the primary key of
 	 *         the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  articleId the article ID keywords (space separated, optionally
 	 *         <code>null</code>)
@@ -5035,7 +5035,7 @@ public class JournalArticleLocalServiceImpl
 	 *         (optionally {@link Collections#EMPTY_LIST})
 	 * @param  classNameId the primary key of the DDMStructure class, the
 	 *         primary key of the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  ddmStructureKey the primary key of the web content article's DDM
 	 *         structure
@@ -5123,7 +5123,7 @@ public class JournalArticleLocalServiceImpl
 	 *         (optionally {@link Collections#EMPTY_LIST})
 	 * @param  classNameId the primary key of the DDMStructure class, the
 	 *         primary key of the class name associated with the article, or
-	 *         JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *         JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *         module otherwise
 	 * @param  articleId the article ID keywords (space separated, optionally
 	 *         <code>null</code>)
@@ -6303,7 +6303,7 @@ public class JournalArticleLocalServiceImpl
 		boolean visible = article.isApproved();
 
 		if (article.getClassNameId() !=
-				JournalArticleConstants.CLASSNAME_ID_DEFAULT) {
+				JournalArticleConstants.CLASS_NAME_ID_DEFAULT) {
 
 			visible = false;
 		}
@@ -6403,7 +6403,7 @@ public class JournalArticleLocalServiceImpl
 	 * @param classNameId the primary key of the DDMStructure class if the web
 	 *        content article is related to a DDM structure, the primary key of
 	 *        the class name associated with the article, or
-	 *        JournalArticleConstants.CLASSNAME_ID_DEFAULT in the journal-api
+	 *        JournalArticleConstants.CLASS_NAME_ID_DEFAULT in the journal-api
 	 *        module otherwise
 	 * @param oldDDMTemplateKey the primary key of the web content article's old
 	 *        DDM template
@@ -6959,7 +6959,7 @@ public class JournalArticleLocalServiceImpl
 
 				dynamicQuery.add(
 					classNameIdProperty.eq(
-						JournalArticleConstants.CLASSNAME_ID_DEFAULT));
+						JournalArticleConstants.CLASS_NAME_ID_DEFAULT));
 
 				Property expirationDateProperty = PropertyFactoryUtil.forName(
 					"expirationDate");
@@ -7123,7 +7123,7 @@ public class JournalArticleLocalServiceImpl
 		}
 
 		List<JournalArticle> articles = journalArticleFinder.findByReviewDate(
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, reviewDate,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, reviewDate,
 			_previousCheckDate);
 
 		for (JournalArticle article : articles) {

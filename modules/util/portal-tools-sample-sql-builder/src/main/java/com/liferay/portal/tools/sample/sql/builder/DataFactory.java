@@ -2286,7 +2286,7 @@ public class DataFactory {
 		journalArticleModel.setCreateDate(new Date());
 		journalArticleModel.setModifiedDate(new Date());
 		journalArticleModel.setClassNameId(
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT);
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT);
 		journalArticleModel.setArticleId(
 			journalArticleResourceModel.getArticleId());
 		journalArticleModel.setTreePath("/");

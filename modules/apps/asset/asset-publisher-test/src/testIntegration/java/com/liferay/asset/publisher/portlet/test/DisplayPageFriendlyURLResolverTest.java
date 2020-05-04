@@ -127,7 +127,7 @@ public class DisplayPageFriendlyURLResolverTest {
 		_article = JournalTestUtil.addArticle(
 			_group.getGroupId(),
 			JournalFolderConstants.DEFAULT_PARENT_FOLDER_ID,
-			JournalArticleConstants.CLASSNAME_ID_DEFAULT, titleMap, titleMap,
+			JournalArticleConstants.CLASS_NAME_ID_DEFAULT, titleMap, titleMap,
 			contentMap, layout.getUuid(), LocaleUtil.US, null, false, false,
 			serviceContext);
 	}

@@ -413,7 +413,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 				Field.ARTICLE_ID, getKeywords()
 			).put(
 				Field.CLASS_NAME_ID,
-				JournalArticleConstants.CLASSNAME_ID_DEFAULT
+				JournalArticleConstants.CLASS_NAME_ID_DEFAULT
 			).put(
 				Field.CONTENT, getKeywords()
 			).put(

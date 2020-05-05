@@ -415,7 +415,7 @@ public class DDMRESTDataProviderTest extends PowerMockito {
 		DDMDataProviderResponse ddmDataProviderResponse =
 			_ddmRESTDataProvider.doGetData(ddmDataProviderRequest);
 
-		Optional<List> outputOptional =
+		Optional<List<String>> outputOptional =
 			ddmDataProviderResponse.getOutputOptional(
 				outputParameterId, List.class);
 

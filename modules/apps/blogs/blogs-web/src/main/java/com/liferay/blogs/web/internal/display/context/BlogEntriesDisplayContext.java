@@ -183,7 +183,7 @@ public class BlogEntriesDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		List entriesResults = null;
+		List<BlogsEntry> entriesResults = null;
 
 		long assetCategoryId = ParamUtil.getLong(
 			_httpServletRequest, "categoryId");

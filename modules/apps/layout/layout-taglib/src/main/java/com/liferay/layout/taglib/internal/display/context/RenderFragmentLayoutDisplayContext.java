@@ -156,7 +156,7 @@ public class RenderFragmentLayoutDisplayContext {
 		return StringPool.BLANK;
 	}
 
-	public List getCollection(
+	public List<Object> getCollection(
 		CollectionLayoutStructureItem collectionLayoutStructureItem,
 		long[] segmentsExperienceIds) {
 

@@ -134,7 +134,8 @@ public class ManagementToolbarTag extends BaseClayTag {
 			setShowResultsBar(true);
 		}
 		else {
-			List filterLabels = (List)context.get("filterLabels");
+			List<LabelItem> filterLabels = (List<LabelItem>)context.get(
+				"filterLabels");
 
 			if ((filterLabels != null) && !filterLabels.isEmpty()) {
 				setShowResultsBar(true);

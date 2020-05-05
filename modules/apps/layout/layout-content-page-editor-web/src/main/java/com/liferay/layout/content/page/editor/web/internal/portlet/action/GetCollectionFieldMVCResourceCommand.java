@@ -132,7 +132,7 @@ public class GetCollectionFieldMVCResourceCommand
 					listObjectReferenceFactory.getListObjectReference(
 						layoutObjectReferenceJSONObject);
 
-				List list = layoutListRetriever.getList(
+				List<Object> list = layoutListRetriever.getList(
 					listObjectReference, defaultLayoutListRetrieverContext);
 
 				// LPS-111037

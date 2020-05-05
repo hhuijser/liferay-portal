@@ -211,10 +211,11 @@ public class LayoutSetPrototypeDisplayContext {
 
 		searchContainer.setTotal(getTotal());
 
-		List results = LayoutSetPrototypeLocalServiceUtil.search(
-			themeDisplay.getCompanyId(), getActive(),
-			searchContainer.getStart(), searchContainer.getEnd(),
-			searchContainer.getOrderByComparator());
+		List<LayoutSetPrototype> results =
+			LayoutSetPrototypeLocalServiceUtil.search(
+				themeDisplay.getCompanyId(), getActive(),
+				searchContainer.getStart(), searchContainer.getEnd(),
+				searchContainer.getOrderByComparator());
 
 		searchContainer.setResults(results);
 

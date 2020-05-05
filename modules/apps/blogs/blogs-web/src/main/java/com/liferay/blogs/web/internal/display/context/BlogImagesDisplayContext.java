@@ -69,7 +69,7 @@ public class BlogImagesDisplayContext {
 				themeDisplay.getUserId(), themeDisplay.getScopeGroupId());
 
 		int total = 0;
-		List results = null;
+		List<FileEntry> results = null;
 
 		String keywords = ParamUtil.getString(_httpServletRequest, "keywords");
 

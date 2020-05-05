@@ -116,7 +116,7 @@ public class PortletLayoutDisplayContext {
 		return StringPool.BLANK;
 	}
 
-	public List getCollection(
+	public List<Object> getCollection(
 		CollectionLayoutStructureItem collectionLayoutStructureItem) {
 
 		JSONObject collectionJSONObject =

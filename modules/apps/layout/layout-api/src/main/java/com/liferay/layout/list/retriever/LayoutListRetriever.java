@@ -27,7 +27,7 @@ import org.osgi.annotation.versioning.ProviderType;
 public interface LayoutListRetriever
 	<T extends ItemSelectorReturnType, S extends ListObjectReference> {
 
-	public List getList(
+	public List<Object> getList(
 		S s, LayoutListRetrieverContext layoutListRetrieverContext);
 
 	public int getListCount(

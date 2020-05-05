@@ -451,7 +451,7 @@ public class DLAdminDisplayContext {
 		dlSearchContainer.setOrderByComparator(orderByComparator);
 		dlSearchContainer.setOrderByType(orderByType);
 
-		List<FileEntry> results = new ArrayList();
+		List<FileEntry> results = new ArrayList<>();
 		int total = 0;
 
 		if (fileEntryTypeId >= 0) {

@@ -314,7 +314,7 @@ public class JournalContentDisplayContext {
 		getCommentsContentMetadataAssetAddonEntries() {
 
 		List<ContentMetadataAssetAddonEntry>
-			commentsContentMetadataAssetAddonEntries = new ArrayList();
+			commentsContentMetadataAssetAddonEntries = new ArrayList<>();
 
 		ContentMetadataAssetAddonEntry
 			enableCommentsContentMetadataAssetAddonEntry =

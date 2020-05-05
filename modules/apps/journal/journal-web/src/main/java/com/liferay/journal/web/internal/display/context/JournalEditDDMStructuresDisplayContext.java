@@ -76,7 +76,9 @@ public class JournalEditDDMStructuresDisplayContext {
 		return _journalWebConfiguration.changeableDefaultLanguage();
 	}
 
-	public List<Map> getAdditionalPanels(String npmResolvedPackageName) {
+	public List<Map<String, Object>> getAdditionalPanels(
+		String npmResolvedPackageName) {
+
 		return ListUtil.fromArray(
 			HashMapBuilder.<String, Object>put(
 				"icon", "cog"

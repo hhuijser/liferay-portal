@@ -59,7 +59,7 @@ public class ViewAccountEntriesManagementToolbarDisplayContext
 		HttpServletRequest httpServletRequest,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
-		SearchContainer searchContainer) {
+		SearchContainer<AccountEntryDisplay> searchContainer) {
 
 		super(
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse,

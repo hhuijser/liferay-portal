@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-SearchContainer accountEntryDisplaySearchContainer = AccountEntryDisplaySearchContainerFactory.create(liferayPortletRequest, liferayPortletResponse);
+SearchContainer<AccountEntryDisplay> accountEntryDisplaySearchContainer = AccountEntryDisplaySearchContainerFactory.create(liferayPortletRequest, liferayPortletResponse);
 
 SelectAccountEntriesManagementToolbarDisplayContext selectAccountEntriesManagementToolbarDisplayContext = new SelectAccountEntriesManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse, accountEntryDisplaySearchContainer);
 %>

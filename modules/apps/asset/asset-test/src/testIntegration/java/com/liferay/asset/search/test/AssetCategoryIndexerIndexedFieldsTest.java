@@ -227,7 +227,9 @@ public class AssetCategoryIndexerIndexedFieldsTest {
 		return map;
 	}
 
-	private void _populateDates(AssetCategory assetCategory, Map map) {
+	private void _populateDates(
+		AssetCategory assetCategory, Map<String, String> map) {
+
 		_indexedFieldsFixture.populateDate(
 			Field.CREATE_DATE, assetCategory.getCreateDate(), map);
 		_indexedFieldsFixture.populateDate(

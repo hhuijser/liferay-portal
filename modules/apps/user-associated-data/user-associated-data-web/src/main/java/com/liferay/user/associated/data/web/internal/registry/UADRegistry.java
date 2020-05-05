@@ -230,10 +230,10 @@ public class UADRegistry {
 		Collection<UADAnonymizer> uadAnonymizers,
 		Stream<UADDisplay> uadDisplayStream) {
 
-		Stream<Class> typeClassStream = uadDisplayStream.map(
+		Stream<Class<?>> typeClassStream = uadDisplayStream.map(
 			UADDisplay::getTypeClass);
 
-		List<Class> uadDisplayTypeClasses = typeClassStream.collect(
+		List<Class<?>> uadDisplayTypeClasses = typeClassStream.collect(
 			Collectors.toList());
 
 		List<UADAnonymizer> nonreviewableUADAnonymizers = new ArrayList<>(

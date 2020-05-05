@@ -201,7 +201,7 @@ public class TestExecutorRunnable implements Runnable {
 		return null;
 	}
 
-	private static Class _getExpectedExceptionClass(Method method) {
+	private static Class<?> _getExpectedExceptionClass(Method method) {
 		Test test = method.getAnnotation(Test.class);
 
 		if (test == null) {

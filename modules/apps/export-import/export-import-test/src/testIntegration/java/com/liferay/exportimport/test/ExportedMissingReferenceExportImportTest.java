@@ -242,7 +242,7 @@ public class ExportedMissingReferenceExportImportTest
 		return getExportParameterMap();
 	}
 
-	protected int getPortletDataHandlerRank(Class portletDataHandlerClass) {
+	protected int getPortletDataHandlerRank(Class<?> portletDataHandlerClass) {
 		ServiceTrackerList<PortletDataHandler> portletDataHandlerInstances =
 			ServiceTrackerCollections.openList(portletDataHandlerClass);
 
@@ -257,7 +257,7 @@ public class ExportedMissingReferenceExportImportTest
 	}
 
 	protected List<PortletDataHandler> setPortletDataHandler(
-			String portletId, Class portletDataHandlerClass)
+			String portletId, Class<?> portletDataHandlerClass)
 		throws Exception {
 
 		ServiceTrackerList<PortletDataHandler> portletDataHandlerInstances =
@@ -282,7 +282,7 @@ public class ExportedMissingReferenceExportImportTest
 	}
 
 	protected void setPortletDataHandlerRank(
-		Class portletDataHandlerClass, int rank) {
+		Class<?> portletDataHandlerClass, int rank) {
 
 		ServiceTrackerList<PortletDataHandler> portletDataHandlerInstances =
 			ServiceTrackerCollections.openList(portletDataHandlerClass);

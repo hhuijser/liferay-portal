@@ -39,7 +39,7 @@ public abstract class LiferayAbstractComponentTestCase
 	}
 
 	protected void assertComponentIsRegistered(
-		Class componentClass, String name) {
+		Class<?> componentClass, String name) {
 
 		assertComponentIsRegistered(
 			ComponentDefinition.class, name, componentClass);

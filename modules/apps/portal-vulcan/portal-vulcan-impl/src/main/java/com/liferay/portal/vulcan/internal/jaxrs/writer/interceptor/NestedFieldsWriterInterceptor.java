@@ -297,7 +297,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 				Map.Entry<String, Class<?>> resourceMethodArgNameTypeEntry)
 			throws Exception {
 
-			List<Class> itemClasses = new ArrayList<>();
+			List<Class<?>> itemClasses = new ArrayList<>();
 
 			Class<?> itemClass = item.getClass();
 

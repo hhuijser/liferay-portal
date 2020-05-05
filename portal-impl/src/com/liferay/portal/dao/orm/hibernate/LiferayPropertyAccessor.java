@@ -204,7 +204,7 @@ public class LiferayPropertyAccessor extends BasicPropertyAccessor {
 	private static final Log _log = LogFactoryUtil.getLog(
 		LiferayPropertyAccessor.class);
 
-	private static final Map<Class, ModelMutators> _modelMutators =
+	private static final Map<Class<?>, ModelMutators> _modelMutators =
 		new ConcurrentReferenceValueHashMap<>(
 			FinalizeManager.WEAK_REFERENCE_FACTORY);
 

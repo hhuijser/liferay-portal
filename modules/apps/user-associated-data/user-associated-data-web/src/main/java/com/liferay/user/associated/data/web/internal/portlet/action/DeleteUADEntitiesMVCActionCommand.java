@@ -137,7 +137,7 @@ public class DeleteUADEntitiesMVCActionCommand extends BaseUADMVCActionCommand {
 						(ThemeDisplay)actionRequest.getAttribute(
 							WebKeys.THEME_DISPLAY);
 
-					Map<Class, String> exceptionMessageMap =
+					Map<Class<?>, String> exceptionMessageMap =
 						entityUADAnonymizer.getExceptionMessageMap(
 							themeDisplay.getLocale());
 

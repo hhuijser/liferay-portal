@@ -47,7 +47,7 @@ import javax.ws.rs.core.UriInfo;
 public class ActionUtil {
 
 	public static Map<String, String> addAction(
-		String actionName, Class clazz, GroupedModel groupedModel,
+		String actionName, Class<?> clazz, GroupedModel groupedModel,
 		String methodName, Object object, UriInfo uriInfo) {
 
 		return addAction(
@@ -64,7 +64,7 @@ public class ActionUtil {
 	 */
 	@Deprecated
 	public static Map<String, String> addAction(
-		String actionName, Class clazz, GroupedModel groupedModel,
+		String actionName, Class<?> clazz, GroupedModel groupedModel,
 		String methodName, UriInfo uriInfo) {
 
 		return addAction(
@@ -75,7 +75,7 @@ public class ActionUtil {
 	}
 
 	public static Map<String, String> addAction(
-		String actionName, Class clazz, Long id, String methodName,
+		String actionName, Class<?> clazz, Long id, String methodName,
 		Object object, Long ownerId, String permissionName, Long siteId,
 		UriInfo uriInfo) {
 
@@ -96,7 +96,7 @@ public class ActionUtil {
 	 */
 	@Deprecated
 	public static Map<String, String> addAction(
-		String actionName, Class clazz, Long id, String methodName,
+		String actionName, Class<?> clazz, Long id, String methodName,
 		String permissionName, Long siteId, UriInfo uriInfo) {
 
 		return addAction(
@@ -111,7 +111,7 @@ public class ActionUtil {
 	 */
 	@Deprecated
 	public static Map<String, String> addAction(
-		String actionName, Class clazz, Long id, String methodName,
+		String actionName, Class<?> clazz, Long id, String methodName,
 		String permissionName, Object object, Long siteId, UriInfo uriInfo) {
 
 		return addAction(
@@ -120,7 +120,7 @@ public class ActionUtil {
 	}
 
 	private static Map<String, String> _addAction(
-			String actionName, Class clazz, Long id, String methodName,
+			String actionName, Class<?> clazz, Long id, String methodName,
 			Object object, Long ownerId, String permissionName, Long siteId,
 			UriInfo uriInfo)
 		throws Exception {
@@ -217,7 +217,7 @@ public class ActionUtil {
 		).build();
 	}
 
-	private static String _getHttpMethodName(Class clazz, Method method)
+	private static String _getHttpMethodName(Class<?> clazz, Method method)
 		throws NoSuchMethodException {
 
 		Class<?> superClass = clazz.getSuperclass();
@@ -242,7 +242,7 @@ public class ActionUtil {
 		return null;
 	}
 
-	private static Method _getMethod(Class clazz, String methodName) {
+	private static Method _getMethod(Class<?> clazz, String methodName) {
 		for (Method method : clazz.getMethods()) {
 			if (!methodName.equals(method.getName())) {
 				continue;

@@ -152,7 +152,7 @@ public class IndexOnStartupIndexerServiceCustomizer
 		}
 	}
 
-	protected boolean isBaseSearcher(Class indexerClass) {
+	protected boolean isBaseSearcher(Class<?> indexerClass) {
 		while ((indexerClass != null) && !Object.class.equals(indexerClass)) {
 			if (indexerClass.equals(BaseSearcher.class)) {
 				return true;

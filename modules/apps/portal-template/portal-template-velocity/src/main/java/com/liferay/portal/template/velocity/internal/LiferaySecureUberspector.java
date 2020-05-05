@@ -195,7 +195,7 @@ public class LiferaySecureUberspector extends SecureUberspector {
 		}
 	}
 
-	private void _checkMethodIsRestricted(Class clazz, String methodName) {
+	private void _checkMethodIsRestricted(Class<?> clazz, String methodName) {
 		String className = clazz.getName();
 
 		if (_restrictedMethodNames.containsKey(className)) {

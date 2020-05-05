@@ -31,7 +31,7 @@ public class JaxRsLinkUtil {
 	 */
 	@Deprecated
 	public static String getJaxRsLink(
-		Class clazz, String methodName, UriInfo uriInfo, Object... values) {
+		Class<?> clazz, String methodName, UriInfo uriInfo, Object... values) {
 
 		String baseURIString = String.valueOf(uriInfo.getBaseUri());
 
@@ -54,8 +54,8 @@ public class JaxRsLinkUtil {
 	}
 
 	public static String getJaxRsLink(
-		String applicationPath, Class clazz, String methodName, UriInfo uriInfo,
-		Object... values) {
+		String applicationPath, Class<?> clazz, String methodName,
+		UriInfo uriInfo, Object... values) {
 
 		String baseURIString = String.valueOf(uriInfo.getBaseUri());
 

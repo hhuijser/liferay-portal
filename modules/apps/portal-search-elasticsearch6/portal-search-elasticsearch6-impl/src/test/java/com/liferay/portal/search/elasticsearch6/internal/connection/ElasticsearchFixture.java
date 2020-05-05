@@ -56,7 +56,7 @@ import org.osgi.framework.BundleContext;
  */
 public class ElasticsearchFixture implements ElasticsearchClientResolver {
 
-	public ElasticsearchFixture(Class clazz) {
+	public ElasticsearchFixture(Class<?> clazz) {
 		this(getSimpleName(clazz));
 	}
 
@@ -185,7 +185,7 @@ public class ElasticsearchFixture implements ElasticsearchClientResolver {
 			});
 	}
 
-	protected static String getSimpleName(Class clazz) {
+	protected static String getSimpleName(Class<?> clazz) {
 		while (clazz.isAnonymousClass()) {
 			clazz = clazz.getEnclosingClass();
 		}

@@ -92,7 +92,7 @@ public interface UADAnonymizer<T> extends UADComponent<T> {
 	 *
 	 * @param locale the locale of the language
 	 */
-	public default Map<Class, String> getExceptionMessageMap(Locale locale) {
+	public default Map<Class<?>, String> getExceptionMessageMap(Locale locale) {
 		return new HashMap<>();
 	}
 

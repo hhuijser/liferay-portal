@@ -85,7 +85,7 @@ public class SearchResponseImplTest {
 				)));
 	}
 
-	protected static Consumer instanceOf(Class clazz) {
+	protected static Consumer instanceOf(Class<?> clazz) {
 		return object -> Assert.assertTrue(clazz.isInstance(object));
 	}
 

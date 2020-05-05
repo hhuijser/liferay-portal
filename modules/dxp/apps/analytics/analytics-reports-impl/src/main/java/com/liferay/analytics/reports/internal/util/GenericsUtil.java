@@ -24,7 +24,7 @@ import java.lang.reflect.Type;
  */
 public class GenericsUtil {
 
-	public static Class<?> getItemClass(Class clazz) {
+	public static Class<?> getItemClass(Class<?> clazz) {
 		Type[] genericInterfaceTypes = clazz.getGenericInterfaces();
 
 		for (Type genericInterfaceType : genericInterfaceTypes) {

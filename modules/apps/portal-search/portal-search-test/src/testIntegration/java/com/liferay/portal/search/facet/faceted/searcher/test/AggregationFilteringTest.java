@@ -258,8 +258,8 @@ public class AggregationFilteringTest extends BaseFacetedSearcherTestCase {
 			});
 	}
 
-	protected static String[] getClassNames(Class... classes) {
-		Stream<Class> stream = Arrays.stream(classes);
+	protected static String[] getClassNames(Class<?>... classes) {
+		Stream<Class<?>> stream = Arrays.stream(classes);
 
 		return stream.map(
 			Class::getName

@@ -31,13 +31,13 @@ import java.util.Map;
 public class ParameterMapInvocationHandler<S> implements InvocationHandler {
 
 	public ParameterMapInvocationHandler(
-		Class clazz, Object bean, Map<String, String[]> parameterMap) {
+		Class<?> clazz, Object bean, Map<String, String[]> parameterMap) {
 
 		this(clazz, bean, parameterMap, StringPool.BLANK, StringPool.BLANK);
 	}
 
 	public ParameterMapInvocationHandler(
-		Class clazz, Object bean, Map<String, String[]> parameterMap,
+		Class<?> clazz, Object bean, Map<String, String[]> parameterMap,
 		String parameterPrefix, String parameterSuffix) {
 
 		_clazz = clazz;
@@ -183,7 +183,7 @@ public class ParameterMapInvocationHandler<S> implements InvocationHandler {
 	}
 
 	private final Object _bean;
-	private final Class _clazz;
+	private final Class<?> _clazz;
 	private final Map<String, String[]> _parameterMap;
 	private final String _parameterPrefix;
 	private final String _parameterSuffix;

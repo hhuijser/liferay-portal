@@ -112,7 +112,7 @@ public class ItemSelectorReturnTypeResolverHandlerImpl
 	}
 
 	private String _getKey(
-		Class itemSelectorReturnTypeClass, Class modelClass) {
+		Class<?> itemSelectorReturnTypeClass, Class<?> modelClass) {
 
 		String itemSelectorResolverReturnTypeClassName =
 			itemSelectorReturnTypeClass.getName();

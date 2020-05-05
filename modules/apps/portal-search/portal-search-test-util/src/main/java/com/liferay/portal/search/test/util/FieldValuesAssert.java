@@ -200,7 +200,7 @@ public class FieldValuesAssert {
 		return String.valueOf(value);
 	}
 
-	private static Map<String, String> _toStringValuesMap(Map map) {
+	private static Map<String, String> _toStringValuesMap(Map<String, ?> map) {
 		return _toStringValuesMap(map, FieldValuesAssert::_toObjectString);
 	}
 

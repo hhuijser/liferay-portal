@@ -161,12 +161,14 @@ public class SearchUtil {
 			UnsafeConsumer<SearchContext, Exception>
 				searchContextUnsafeConsumer,
 			UnsafeFunction<Document, T, Exception> transformUnsafeFunction,
-			Sort[] sorts, Map<String, Map> actions)
+			Sort[] sorts, Map<String, Map<String, String>> actions)
 		throws Exception {
 
-		Set<Map.Entry<String, Map>> entries = actions.entrySet();
+		Set<Map.Entry<String, Map<String, String>>> entries =
+			actions.entrySet();
 
-		Stream<Map.Entry<String, Map>> stream = entries.stream();
+		Stream<Map.Entry<String, Map<String, String>>> stream =
+			entries.stream();
 
 		return search(
 			stream.collect(

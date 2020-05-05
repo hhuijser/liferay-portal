@@ -22,6 +22,8 @@ import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.util.ListUtil;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -53,7 +55,8 @@ public class UADExportBackgroundTaskManagerUtil {
 
 		backgroundTaskModels = backgroundTaskModelsStream.filter(
 			backgroundTaskModel -> {
-				Map taskContextMap = backgroundTaskModel.getTaskContextMap();
+				Map<String, Serializable> taskContextMap =
+					backgroundTaskModel.getTaskContextMap();
 
 				return applicationKey.equals(
 					taskContextMap.get("applicationKey"));

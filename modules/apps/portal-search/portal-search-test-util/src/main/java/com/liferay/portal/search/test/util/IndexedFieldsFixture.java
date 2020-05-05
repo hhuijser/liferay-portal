@@ -80,13 +80,15 @@ public class IndexedFieldsFixture {
 		_documentBuilderFactory = documentBuilderFactory;
 	}
 
-	public void populateDate(String field, Date value, Map map) {
+	public void populateDate(
+		String field, Date value, Map<String, String> map) {
+
 		map.put(field, _dateFormat.format(value));
 
 		map.put(field.concat("_sortable"), String.valueOf(value.getTime()));
 	}
 
-	public void populateExpirationDateWithForever(Map map) {
+	public void populateExpirationDateWithForever(Map<String, String> map) {
 		populateDate(Field.EXPIRATION_DATE, new Date(Long.MAX_VALUE), map);
 
 		if (_isSearchEngineElasticsearch()) {
@@ -94,7 +96,7 @@ public class IndexedFieldsFixture {
 		}
 	}
 
-	public void populatePriority(String priority, Map map) {
+	public void populatePriority(String priority, Map<String, String> map) {
 		map.put(Field.PRIORITY, priority);
 
 		if (_isSearchEngineSolr()) {
@@ -104,7 +106,7 @@ public class IndexedFieldsFixture {
 
 	public void populateRoleIdFields(
 			long companyId, String className, long classPK, long groupId,
-			String viewActionId, Map map)
+			String viewActionId, Map<String, String> map)
 		throws Exception {
 
 		if (Validator.isNull(viewActionId)) {
@@ -133,7 +135,9 @@ public class IndexedFieldsFixture {
 		populateRoleIds(Field.ROLE_ID, roleIds, map);
 	}
 
-	public void populateUID(ClassedModel classedModel, Map map) {
+	public void populateUID(
+		ClassedModel classedModel, Map<String, String> map) {
+
 		DocumentBuilder documentBuilder = _documentBuilderFactory.builder();
 
 		_uidFactory.setUID(classedModel, documentBuilder);
@@ -149,7 +153,9 @@ public class IndexedFieldsFixture {
 		}
 	}
 
-	public void populateUID(String modelClassName, long id, Map map) {
+	public void populateUID(
+		String modelClassName, long id, Map<String, String> map) {
+
 		map.put(Field.UID, modelClassName + "_PORTLET_" + id);
 
 		if (_ENFORCE_STANDARD_UID) {
@@ -157,7 +163,8 @@ public class IndexedFieldsFixture {
 		}
 	}
 
-	public void populateViewCount(Class<?> clazz, long classPK, Map map)
+	public void populateViewCount(
+			Class<?> clazz, long classPK, Map<String, String> map)
 		throws Exception {
 
 		AssetRendererFactory assetRendererFactory =
@@ -193,7 +200,9 @@ public class IndexedFieldsFixture {
 		return document;
 	}
 
-	protected void populateRoleIds(String field, List<String> values, Map map) {
+	protected void populateRoleIds(
+		String field, List<String> values, Map<String, String> map) {
+
 		if (values.size() == 1) {
 			map.put(field, values.get(0));
 		}

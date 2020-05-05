@@ -451,7 +451,7 @@ public class DLAdminDisplayContext {
 		dlSearchContainer.setOrderByComparator(orderByComparator);
 		dlSearchContainer.setOrderByType(orderByType);
 
-		List<FileEntry> results = new ArrayList<>();
+		List<Object> results = new ArrayList<>();
 		int total = 0;
 
 		if (fileEntryTypeId >= 0) {
@@ -550,7 +550,8 @@ public class DLAdminDisplayContext {
 
 					dlSearchContainer.setTotal(total);
 
-					results = AssetEntryServiceUtil.getEntries(assetEntryQuery);
+					results.addAll(
+						AssetEntryServiceUtil.getEntries(assetEntryQuery));
 				}
 				else {
 					long repositoryId = getRepositoryId();

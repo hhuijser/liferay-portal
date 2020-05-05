@@ -139,6 +139,7 @@ public class UADHierarchyDisplayTest {
 				"", "name", "asc", QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 
 			Assert.assertEquals(
+				items.toString(),
 				(int)_userFolderAndItemCountMap.get(dummyContainer.getId()),
 				items.size());
 		}

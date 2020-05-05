@@ -101,7 +101,8 @@ public class AssetCategoryIndexerReindexTest {
 
 		String fieldName = Field.NAME;
 
-		Map map = Collections.singletonMap(fieldName, searchTerm);
+		Map<String, String> map = Collections.singletonMap(
+			fieldName, searchTerm);
 
 		assertFieldValues(fieldName, map, locale, searchTerm);
 

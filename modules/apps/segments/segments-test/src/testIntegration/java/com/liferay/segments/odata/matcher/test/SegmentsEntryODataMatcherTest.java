@@ -92,6 +92,6 @@ public class SegmentsEntryODataMatcherTest {
 		filter = "target.class.name=com.liferay.segments.model.SegmentsEntry",
 		type = ODataMatcher.class
 	)
-	private ODataMatcher<Map> _contextODataMatcher;
+	private ODataMatcher<Map<?, ?>> _contextODataMatcher;
 
 }

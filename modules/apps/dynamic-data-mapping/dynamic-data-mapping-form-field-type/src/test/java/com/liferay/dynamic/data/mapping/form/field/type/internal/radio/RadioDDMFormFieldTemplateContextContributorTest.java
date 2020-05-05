@@ -112,12 +112,12 @@ public class RadioDDMFormFieldTemplateContextContributorTest
 
 		Assert.assertEquals(options.toString(), 2, options.size());
 
-		Map option0 = (Map)options.get(0);
+		Map<String, String> option0 = (Map<String, String>)options.get(0);
 
 		Assert.assertEquals("Label 0", option0.get("label"));
 		Assert.assertEquals("Value 0", option0.get("value"));
 
-		Map option1 = (Map)options.get(1);
+		Map<String, String> option1 = (Map<String, String>)options.get(1);
 
 		Assert.assertEquals("Label 1", option1.get("label"));
 		Assert.assertEquals("Value 1", option1.get("value"));

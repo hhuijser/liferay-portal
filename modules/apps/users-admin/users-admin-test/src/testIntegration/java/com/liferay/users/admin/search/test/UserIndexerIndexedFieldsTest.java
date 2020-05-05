@@ -102,7 +102,7 @@ public class UserIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, Object> map = _getExpectedFieldValues(user2);
+		Map<String, String> map = _getExpectedFieldValues(user2);
 
 		_populateAddressFieldValues(user2, map);
 
@@ -123,7 +123,7 @@ public class UserIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, Object> map = _getExpectedFieldValues(user2);
+		Map<String, String> map = _getExpectedFieldValues(user2);
 
 		map.put("jobTitle", user2.getJobTitle());
 		map.put(
@@ -147,9 +147,11 @@ public class UserIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, Object> map = _getExpectedFieldValues(user);
+		Map<String, String> map = _getExpectedFieldValues(user);
 
-		map.put("organizationIds", _getValues(user.getOrganizationIds()));
+		map.put(
+			"organizationIds",
+			String.valueOf(_getValues(user.getOrganizationIds())));
 
 		FieldValuesAssert.assertFieldValues(map, document, searchTerm);
 	}
@@ -171,9 +173,10 @@ public class UserIndexerIndexedFieldsTest {
 
 		indexedFieldsFixture.postProcessDocument(document);
 
-		Map<String, Object> map = _getExpectedFieldValues(user);
+		Map<String, String> map = _getExpectedFieldValues(user);
 
-		map.put("userGroupIds", _getValues(user.getUserGroupIds()));
+		map.put(
+			"userGroupIds", String.valueOf(_getValues(user.getUserGroupIds())));
 
 		FieldValuesAssert.assertFieldValues(map, document, searchTerm);
 	}
@@ -258,29 +261,29 @@ public class UserIndexerIndexedFieldsTest {
 
 	protected UserSearchFixture userSearchFixture;
 
-	private Map<String, Object> _getExpectedFieldValues(User user)
+	private Map<String, String> _getExpectedFieldValues(User user)
 		throws Exception {
 
-		Long groupId = user.getGroupIds()[0];
+		String groupId = String.valueOf(user.getGroupIds()[0]);
 
-		Map<String, Object> map = HashMapBuilder.put(
-			Field.COMPANY_ID, (Object)user.getCompanyId()
+		Map<String, String> map = HashMapBuilder.put(
+			Field.COMPANY_ID, String.valueOf(user.getCompanyId())
 		).put(
 			Field.ENTRY_CLASS_NAME, User.class.getName()
 		).put(
-			Field.ENTRY_CLASS_PK, user.getUserId()
+			Field.ENTRY_CLASS_PK, String.valueOf(user.getUserId())
 		).put(
 			Field.GROUP_ID, groupId
 		).put(
 			Field.SCOPE_GROUP_ID, groupId
 		).put(
-			Field.STATUS, user.getStatus()
+			Field.STATUS, String.valueOf(user.getStatus())
 		).put(
-			Field.USER_ID, user.getUserId()
+			Field.USER_ID, String.valueOf(user.getUserId())
 		).put(
 			Field.USER_NAME, StringUtil.toLowerCase(user.getFullName())
 		).put(
-			"defaultUser", user.isDefaultUser()
+			"defaultUser", String.valueOf(user.isDefaultUser())
 		).put(
 			"emailAddress", user.getEmailAddress()
 		).put(
@@ -300,10 +303,10 @@ public class UserIndexerIndexedFieldsTest {
 			() -> {
 				long[] organizationIds = user.getOrganizationIds();
 
-				return organizationIds.length;
+				return String.valueOf(organizationIds.length);
 			}
 		).put(
-			"roleIds", _getValues(user.getRoleIds())
+			"roleIds", String.valueOf(_getValues(user.getRoleIds()))
 		).put(
 			"screenName", user.getScreenName()
 		).put(
@@ -344,7 +347,7 @@ public class UserIndexerIndexedFieldsTest {
 	}
 
 	private void _populateAddressFieldValues(
-		User user, Map<String, Object> map) {
+		User user, Map<String, String> map) {
 
 		List<String> cities = new ArrayList<>();
 		List<String> countries = new ArrayList<>();
@@ -368,11 +371,23 @@ public class UserIndexerIndexedFieldsTest {
 			zips.add(StringUtil.toLowerCase(address.getZip()));
 		}
 
-		map.put("city", cities);
-		map.put("country", countries);
-		map.put("region", regions);
-		map.put("street", streets);
-		map.put("zip", zips);
+		map.put("city", _toListString(cities));
+		map.put("country", _toListString(countries));
+		map.put("region", _toListString(regions));
+		map.put("street", _toListString(streets));
+		map.put("zip", _toListString(zips));
+	}
+
+	private String _toListString(List<String> values) {
+		if (values.isEmpty()) {
+			return "[]";
+		}
+
+		if (values.size() == 1) {
+			return values.get(0);
+		}
+
+		return String.valueOf(values);
 	}
 
 	@DeleteAfterTestRun

@@ -614,7 +614,8 @@ public class StagingImpl implements Staging {
 		Throwable cause = exception.getCause();
 
 		if (exception.getCause() instanceof ConnectException) {
-			Map settingsMap = exportImportConfiguration.getSettingsMap();
+			Map<String, Serializable> settingsMap =
+				exportImportConfiguration.getSettingsMap();
 
 			String remoteAddress = MapUtil.getString(
 				settingsMap, "remoteAddress");

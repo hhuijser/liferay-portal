@@ -66,7 +66,7 @@ public class SearchResponseImplTest {
 		return string -> Assert.assertEquals(StringPool.BLANK, string);
 	}
 
-	protected static Consumer<List> emptyList() {
+	protected static Consumer<List<?>> emptyList() {
 		return list -> Assert.assertEquals("[]", String.valueOf(list));
 	}
 

@@ -68,7 +68,7 @@ public class GroupSearchProvider {
 
 		Company company = themeDisplay.getCompany();
 
-		List results = null;
+		List<Group> results = null;
 
 		if (!searchTerms.hasSearchTerms() &&
 			isFilterManageableGroups(portletRequest) && (parentGroupId <= 0)) {

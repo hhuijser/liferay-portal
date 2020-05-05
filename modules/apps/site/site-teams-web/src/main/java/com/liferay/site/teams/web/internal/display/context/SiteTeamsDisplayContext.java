@@ -110,7 +110,7 @@ public class SiteTeamsDisplayContext {
 
 		searchContainer.setTotal(total);
 
-		List results = TeamServiceUtil.search(
+		List<Team> results = TeamServiceUtil.search(
 			themeDisplay.getScopeGroupId(), getKeywords(), getKeywords(),
 			new LinkedHashMap<>(), searchContainer.getStart(),
 			searchContainer.getEnd(), searchContainer.getOrderByComparator());

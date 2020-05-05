@@ -196,10 +196,11 @@ public class ViewMembershipRequestsDisplayContext {
 
 		siteMembershipSearch.setTotal(membershipRequestCount);
 
-		List results = MembershipRequestLocalServiceUtil.search(
-			themeDisplay.getSiteGroupIdOrLiveGroupId(), getStatusId(),
-			siteMembershipSearch.getStart(), siteMembershipSearch.getEnd(),
-			siteMembershipSearch.getOrderByComparator());
+		List<MembershipRequest> results =
+			MembershipRequestLocalServiceUtil.search(
+				themeDisplay.getSiteGroupIdOrLiveGroupId(), getStatusId(),
+				siteMembershipSearch.getStart(), siteMembershipSearch.getEnd(),
+				siteMembershipSearch.getOrderByComparator());
 
 		siteMembershipSearch.setResults(results);
 

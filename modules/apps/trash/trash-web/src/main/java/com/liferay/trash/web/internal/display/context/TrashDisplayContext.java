@@ -23,6 +23,7 @@ import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.model.ContainerModel;
+import com.liferay.portal.kernel.model.TrashedModel;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.portlet.PortletURLUtil;
@@ -251,7 +252,7 @@ public class TrashDisplayContext {
 		EntrySearchTerms searchTerms =
 			(EntrySearchTerms)entrySearch.getSearchTerms();
 
-		List trashEntries = null;
+		List<TrashEntry> trashEntries = null;
 
 		if (Validator.isNotNull(searchTerms.getKeywords())) {
 			Sort sort = SortFactoryUtil.getSort(
@@ -449,7 +450,7 @@ public class TrashDisplayContext {
 
 		TrashHandler trashHandler = getTrashHandler();
 
-		List results = trashHandler.getTrashModelTrashedModels(
+		List<TrashedModel> results = trashHandler.getTrashModelTrashedModels(
 			getClassPK(), searchContainer.getStart(), searchContainer.getEnd(),
 			searchContainer.getOrderByComparator());
 

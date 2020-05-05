@@ -412,7 +412,7 @@ public class ViewTreeManagementToolbarDisplayContext {
 		}
 
 		int total = 0;
-		List results = null;
+		List<Object> results = null;
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(

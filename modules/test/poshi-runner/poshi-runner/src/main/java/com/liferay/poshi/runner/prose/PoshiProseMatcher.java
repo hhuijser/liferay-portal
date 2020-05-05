@@ -92,7 +92,7 @@ public class PoshiProseMatcher {
 	private static List<String> _getPossibleAlternateStrings(
 		String proseString) {
 
-		List possibleAlternateStrings = new ArrayList<>();
+		List<String> possibleAlternateStrings = new ArrayList<>();
 
 		if (proseString == null) {
 			return possibleAlternateStrings;

@@ -113,7 +113,7 @@ public class DefaultMBAdminListDisplayContext
 			long searchCategoryId = ParamUtil.getLong(
 				_httpServletRequest, "searchCategoryId");
 
-			List categoryIds = new ArrayList();
+			List<Long> categoryIds = new ArrayList();
 
 			categoryIds.add(Long.valueOf(searchCategoryId));
 

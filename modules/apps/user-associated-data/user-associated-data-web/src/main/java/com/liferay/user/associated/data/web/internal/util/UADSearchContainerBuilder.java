@@ -130,7 +130,7 @@ public class UADSearchContainerBuilder {
 		try {
 			DisplayTerms displayTerms = searchContainer.getDisplayTerms();
 
-			List entities = uadDisplay.search(
+			List<UADEntity> entities = uadDisplay.search(
 				selectedUser.getUserId(), groupIds, displayTerms.getKeywords(),
 				searchContainer.getOrderByCol(),
 				searchContainer.getOrderByType(), searchContainer.getStart(),

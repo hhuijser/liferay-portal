@@ -32,8 +32,8 @@ import org.osgi.service.component.annotations.Component;
 public class MBMessageUADAnonymizer extends BaseMBMessageUADAnonymizer {
 
 	@Override
-	public Map<Class, String> getExceptionMessageMap(Locale locale) {
-		return HashMapBuilder.<Class, String>put(
+	public Map<Class<?>, String> getExceptionMessageMap(Locale locale) {
+		return HashMapBuilder.<Class<?>, String>put(
 			RequiredMessageException.class,
 			LanguageUtil.get(
 				ResourceBundleUtil.getBundle(

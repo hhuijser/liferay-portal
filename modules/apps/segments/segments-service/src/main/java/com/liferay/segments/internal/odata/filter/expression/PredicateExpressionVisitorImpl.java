@@ -323,7 +323,7 @@ public class PredicateExpressionVisitorImpl<T extends Map>
 			 Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			 Objects.equals(entityField.getType(), EntityField.Type.STRING))) {
 
-			Comparable<?> comparable = (Comparable)fieldValue;
+			Comparable<Object> comparable = (Comparable)fieldValue;
 
 			return p -> comparable.compareTo(p.get(entityField.getName())) <= 0;
 		}
@@ -344,7 +344,7 @@ public class PredicateExpressionVisitorImpl<T extends Map>
 			 Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			 Objects.equals(entityField.getType(), EntityField.Type.STRING))) {
 
-			Comparable<?> comparable = (Comparable)fieldValue;
+			Comparable<Object> comparable = (Comparable)fieldValue;
 
 			return p -> comparable.compareTo(p.get(entityField.getName())) < 0;
 		}
@@ -428,7 +428,7 @@ public class PredicateExpressionVisitorImpl<T extends Map>
 			 Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			 Objects.equals(entityField.getType(), EntityField.Type.STRING))) {
 
-			Comparable<?> comparable = (Comparable)fieldValue;
+			Comparable<Object> comparable = (Comparable)fieldValue;
 
 			return p -> comparable.compareTo(p.get(entityField.getName())) >= 0;
 		}
@@ -449,7 +449,7 @@ public class PredicateExpressionVisitorImpl<T extends Map>
 			 Objects.equals(entityField.getType(), EntityField.Type.INTEGER) ||
 			 Objects.equals(entityField.getType(), EntityField.Type.STRING))) {
 
-			Comparable<?> comparable = (Comparable)fieldValue;
+			Comparable<Object> comparable = (Comparable)fieldValue;
 
 			return p -> comparable.compareTo(p.get(entityField.getName())) > 0;
 		}

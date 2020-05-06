@@ -244,7 +244,8 @@ public class ExportedMissingReferenceExportImportTest
 
 	protected int getPortletDataHandlerRank(Class<?> portletDataHandlerClass) {
 		ServiceTrackerList<PortletDataHandler> portletDataHandlerInstances =
-			ServiceTrackerCollections.openList(portletDataHandlerClass);
+			ServiceTrackerCollections.openList(
+				(Class<PortletDataHandler>)portletDataHandlerClass);
 
 		Assert.assertEquals(
 			portletDataHandlerInstances.toString(), 1,
@@ -261,7 +262,8 @@ public class ExportedMissingReferenceExportImportTest
 		throws Exception {
 
 		ServiceTrackerList<PortletDataHandler> portletDataHandlerInstances =
-			ServiceTrackerCollections.openList(portletDataHandlerClass);
+			ServiceTrackerCollections.openList(
+				(Class<PortletDataHandler>)portletDataHandlerClass);
 
 		return setPortletDataHandler(portletId, portletDataHandlerInstances);
 	}
@@ -285,7 +287,8 @@ public class ExportedMissingReferenceExportImportTest
 		Class<?> portletDataHandlerClass, int rank) {
 
 		ServiceTrackerList<PortletDataHandler> portletDataHandlerInstances =
-			ServiceTrackerCollections.openList(portletDataHandlerClass);
+			ServiceTrackerCollections.openList(
+				(Class<PortletDataHandler>)portletDataHandlerClass);
 
 		Assert.assertEquals(
 			portletDataHandlerInstances.toString(), 1,

@@ -25,7 +25,7 @@ import org.apache.felix.cm.file.ConfigurationHandler;
  */
 public class ConfigurationExporter {
 
-	public static byte[] getPropertiesAsBytes(Dictionary properties)
+	public static byte[] getPropertiesAsBytes(Dictionary<?, ?> properties)
 		throws Exception {
 
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =

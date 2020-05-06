@@ -27,7 +27,7 @@ public class
 
 	public DuplicatedSegmentsContextVocabularyConfigurationModelListenerException(
 		String causeMessage, Class<?> configurationClass,
-		Class<?> listenerClass, Dictionary properties) {
+		Class<?> listenerClass, Dictionary<String, Object> properties) {
 
 		super(causeMessage, configurationClass, listenerClass, properties);
 	}

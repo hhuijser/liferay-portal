@@ -25,7 +25,7 @@ public class ConfigurationModelListenerException extends IOException {
 
 	public ConfigurationModelListenerException(
 		String causeMessage, Class<?> configurationClass,
-		Class<?> listenerClass, Dictionary properties) {
+		Class<?> listenerClass, Dictionary<String, Object> properties) {
 
 		super(
 			String.format(
@@ -41,6 +41,6 @@ public class ConfigurationModelListenerException extends IOException {
 	public final String causeMessage;
 	public final Class<?> configurationClass;
 	public final Class<?> listenerClass;
-	public final Dictionary properties;
+	public final Dictionary<String, Object> properties;
 
 }

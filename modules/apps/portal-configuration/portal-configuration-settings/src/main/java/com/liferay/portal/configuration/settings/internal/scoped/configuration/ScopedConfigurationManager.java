@@ -171,7 +171,8 @@ public class ScopedConfigurationManager implements ManagedServiceFactory {
 
 	private void _updateEntries(
 		String pid, Serializable scopePK,
-		ExtendedObjectClassDefinition.Scope scope, Dictionary properties) {
+		ExtendedObjectClassDefinition.Scope scope,
+		Dictionary<String, ?> properties) {
 
 		ScopeKey scopeKey = new ScopeKey(scopePK, scope);
 

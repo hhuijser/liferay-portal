@@ -78,7 +78,7 @@ public class ConfigurationPersistenceManager
 		ConfigurationModelListener configurationModelListener = null;
 
 		if (!pid.endsWith("factory") && hasPid(pid)) {
-			Dictionary dictionary = getDictionary(pid);
+			Dictionary<?, ?> dictionary = getDictionary(pid);
 
 			String pidKey = (String)dictionary.get(
 				ConfigurationAdmin.SERVICE_FACTORYPID);

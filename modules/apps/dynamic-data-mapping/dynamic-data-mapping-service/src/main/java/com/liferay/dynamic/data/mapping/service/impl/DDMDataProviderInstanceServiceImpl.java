@@ -248,10 +248,10 @@ public class DDMDataProviderInstanceServiceImpl
 	private JSONArray _filterFieldValues(JSONArray fieldValuesJSONArray) {
 		JSONArray filteredFieldValuesJSONArray = _jsonFactory.createJSONArray();
 
-		Iterator iterator = fieldValuesJSONArray.iterator();
+		Iterator<JSONObject> iterator = fieldValuesJSONArray.iterator();
 
 		while (iterator.hasNext()) {
-			JSONObject fieldValueJSONObject = (JSONObject)iterator.next();
+			JSONObject fieldValueJSONObject = iterator.next();
 
 			String fieldValueName = fieldValueJSONObject.getString("name");
 

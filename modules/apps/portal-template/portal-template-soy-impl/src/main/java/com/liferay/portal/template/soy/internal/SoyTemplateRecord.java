@@ -247,7 +247,7 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 
 			SoyListData soyListData = new SoyListData();
 
-			Iterator it = jsonArray.iterator();
+			Iterator<JSONObject> it = jsonArray.iterator();
 
 			it.forEachRemaining(value -> soyListData.add(_toSoyValue(value)));
 

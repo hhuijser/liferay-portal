@@ -379,12 +379,11 @@ public class DummyStagedModelRepository
 				CriteriaImpl detachedCriteriaImpl = (CriteriaImpl)method.invoke(
 					detachedCriteria);
 
-				Iterator iterator =
+				Iterator<CriteriaImpl.CriterionEntry> iterator =
 					detachedCriteriaImpl.iterateExpressionEntries();
 
 				while (iterator.hasNext()) {
-					CriteriaImpl.CriterionEntry criteriaImpl =
-						(CriteriaImpl.CriterionEntry)iterator.next();
+					CriteriaImpl.CriterionEntry criteriaImpl = iterator.next();
 
 					Stream<Dummy> dummiesStream = result.stream();
 

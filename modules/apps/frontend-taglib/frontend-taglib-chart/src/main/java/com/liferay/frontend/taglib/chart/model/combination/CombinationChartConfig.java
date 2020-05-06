@@ -20,6 +20,7 @@ import com.liferay.frontend.taglib.chart.model.TypedMultiValueColumn;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * @author Iván Zaera Avellón
@@ -27,13 +28,13 @@ import java.util.Collection;
 public class CombinationChartConfig extends ChartConfig<TypedMultiValueColumn> {
 
 	public void addGroup(Collection<String>... group) {
-		ArrayList groups = get("groups", ArrayList.class);
+		ArrayList<Collection<String>[]> groups = get("groups", ArrayList.class);
 
 		groups.add(group);
 	}
 
 	public void addGroup(String... group) {
-		ArrayList groups = get("groups", ArrayList.class);
+		ArrayList<List<String>> groups = get("groups", ArrayList.class);
 
 		groups.add(Arrays.asList(group));
 	}

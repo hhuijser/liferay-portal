@@ -23,7 +23,7 @@ import java.util.Collection;
 public class AxisXTick extends ChartObject {
 
 	public void addValue(Number value) {
-		ArrayList values = get("values", ArrayList.class);
+		ArrayList<Number> values = get("values", ArrayList.class);
 
 		values.add(value);
 	}

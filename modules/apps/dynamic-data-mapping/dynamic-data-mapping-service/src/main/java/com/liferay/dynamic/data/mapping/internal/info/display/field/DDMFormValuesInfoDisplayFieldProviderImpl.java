@@ -146,7 +146,7 @@ public class DDMFormValuesInfoDisplayFieldProviderImpl<T extends GroupedModel>
 		}
 
 		if (classTypeValues.containsKey(key)) {
-			Collection fieldValues = new ArrayList<>();
+			Collection<Object> fieldValues = new ArrayList<>();
 
 			Object classTypeValue = classTypeValues.get(key);
 

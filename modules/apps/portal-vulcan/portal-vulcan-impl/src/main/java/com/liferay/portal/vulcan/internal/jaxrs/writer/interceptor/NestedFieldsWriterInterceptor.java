@@ -553,7 +553,7 @@ public class NestedFieldsWriterInterceptor implements WriterInterceptor {
 		}
 
 		if (fieldType.isArray() && (value instanceof Collection)) {
-			Collection collection = (Collection)value;
+			Collection<Object> collection = (Collection)value;
 
 			value = Array.newInstance(
 				fieldType.getComponentType(), collection.size());

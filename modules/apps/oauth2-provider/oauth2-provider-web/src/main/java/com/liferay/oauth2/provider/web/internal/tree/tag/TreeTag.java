@@ -74,8 +74,8 @@ public class TreeTag extends SimpleTagSupport {
 		this.nodeJspFragment = nodeJspFragment;
 	}
 
-	public void setTrees(Collection trees) {
-		_trees = (Collection)trees;
+	public void setTrees(Collection<Tree<?>> trees) {
+		_trees = trees;
 	}
 
 	protected void renderTree(Tree<?> tree) throws IOException, JspException {

@@ -289,7 +289,7 @@ public class RoleLocalServiceTest {
 		actualRoles = new ArrayList(actualRoles);
 		expectedRoles = new ArrayList(expectedRoles);
 
-		Comparator roleIdComparator = new RoleRoleIdComparator();
+		Comparator<Role> roleIdComparator = new RoleRoleIdComparator();
 
 		Collections.sort(actualRoles, roleIdComparator);
 		Collections.sort(expectedRoles, roleIdComparator);

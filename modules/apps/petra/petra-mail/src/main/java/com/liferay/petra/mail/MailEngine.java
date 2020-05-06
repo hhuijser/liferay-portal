@@ -371,10 +371,11 @@ public class MailEngine {
 			}
 
 			if (internetHeaders != null) {
-				Enumeration enumeration = internetHeaders.getAllHeaders();
+				Enumeration<Header> enumeration =
+					internetHeaders.getAllHeaders();
 
 				while (enumeration.hasMoreElements()) {
-					Header header = (Header)enumeration.nextElement();
+					Header header = enumeration.nextElement();
 
 					message.setHeader(header.getName(), header.getValue());
 				}

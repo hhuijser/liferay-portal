@@ -251,8 +251,10 @@ public class ConfigurationProviderTest {
 
 		Assert.assertNotNull(configurationProperties);
 
-		for (Enumeration keys = properties.keys(); keys.hasMoreElements();) {
-			String key = (String)keys.nextElement();
+		for (Enumeration<String> keys = properties.keys();
+			 keys.hasMoreElements();) {
+
+			String key = keys.nextElement();
 
 			Assert.assertEquals(
 				properties.get(key), configurationProperties.get(key));

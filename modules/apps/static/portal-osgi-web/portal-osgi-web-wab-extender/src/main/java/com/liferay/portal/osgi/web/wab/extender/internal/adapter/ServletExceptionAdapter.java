@@ -94,7 +94,7 @@ public class ServletExceptionAdapter implements Servlet {
 			return _wrappedServletConfig.getInitParameter(name);
 		}
 
-		public Enumeration getInitParameterNames() {
+		public Enumeration<String> getInitParameterNames() {
 			return _wrappedServletConfig.getInitParameterNames();
 		}
 

@@ -449,7 +449,7 @@ public class Entity implements Comparable<Entity> {
 		return _name;
 	}
 
-	public Set getOverrideColumnNames() {
+	public Set<String> getOverrideColumnNames() {
 		Set<String> overrideColumnName = new HashSet<>();
 
 		if (isAttachedModel()) {

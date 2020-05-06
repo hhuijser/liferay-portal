@@ -247,9 +247,10 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 
 			SoyListData soyListData = new SoyListData();
 
-			Iterator<JSONObject> it = jsonArray.iterator();
+			Iterator<JSONObject> iterator = jsonArray.iterator();
 
-			it.forEachRemaining(value -> soyListData.add(_toSoyValue(value)));
+			iterator.forEachRemaining(
+				value -> soyListData.add(_toSoyValue(value)));
 
 			return soyListData;
 		}
@@ -258,9 +259,9 @@ public class SoyTemplateRecord extends SoyAbstractValue implements SoyRecord {
 
 			SoyMapData soyMapData = new SoyMapData();
 
-			Iterator<String> it = jsonObject.keys();
+			Iterator<String> iterator = jsonObject.keys();
 
-			it.forEachRemaining(
+			iterator.forEachRemaining(
 				key -> soyMapData.put(key, _toSoyValue(jsonObject.get(key))));
 
 			return soyMapData;

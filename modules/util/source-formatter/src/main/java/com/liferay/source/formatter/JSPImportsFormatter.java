@@ -21,6 +21,8 @@ import com.liferay.portal.tools.ImportPackage;
 
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +32,18 @@ import java.util.regex.Pattern;
  * @author Hugo Huijser
  */
 public class JSPImportsFormatter extends BaseImportsFormatter {
+
+	public static List<String> getImportNames(String content) {
+		List<String> importNames = new ArrayList<>();
+
+		Matcher matcher = _jspImportPattern.matcher(content);
+
+		while (matcher.find()) {
+			importNames.add(matcher.group(1));
+		}
+
+		return importNames;
+	}
 
 	@Override
 	protected ImportPackage createImportPackage(String line) {

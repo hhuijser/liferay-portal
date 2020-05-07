@@ -1,0 +1,28 @@
+{
+	"genericTypeNames": [
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.Class"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.ClassValue"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.Comparable"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.InheritableThreadLocal"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.Iterable"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.lang.ThreadLocal"
+		}
+	]
+}

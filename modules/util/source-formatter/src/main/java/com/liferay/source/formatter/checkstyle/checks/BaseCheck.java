@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Tuple;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.tools.ToolsUtil;
+import com.liferay.source.formatter.JSPImportsFormatter;
 import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.checkstyle.util.CheckstyleUtil;
@@ -47,6 +48,7 @@ import com.puppycrawl.tools.checkstyle.api.FullIdent;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 import java.io.File;
+import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -209,6 +211,10 @@ public abstract class BaseCheck extends AbstractCheck {
 	}
 
 	protected List<String> getImportNames(DetailAST detailAST) {
+		if (isJSPFile()) {
+			return _getJSPImportNames();
+		}
+
 		DetailAST rootDetailAST = detailAST;
 
 		while (true) {
@@ -223,7 +229,7 @@ public abstract class BaseCheck extends AbstractCheck {
 			}
 		}
 
-		List<String> importNamesList = new ArrayList<>();
+		List<String> importNames = new ArrayList<>();
 
 		DetailAST siblingDetailAST = rootDetailAST.getNextSibling();
 
@@ -231,13 +237,13 @@ public abstract class BaseCheck extends AbstractCheck {
 			if ((siblingDetailAST == null) ||
 				(siblingDetailAST.getType() != TokenTypes.IMPORT)) {
 
-				return importNamesList;
+				return importNames;
 			}
 
 			FullIdent importIdent = FullIdent.createFullIdentBelow(
 				siblingDetailAST);
 
-			importNamesList.add(importIdent.getText());
+			importNames.add(importIdent.getText());
 
 			siblingDetailAST = siblingDetailAST.getNextSibling();
 		}
@@ -874,6 +880,38 @@ public abstract class BaseCheck extends AbstractCheck {
 		TokenTypes.DEC, TokenTypes.INC, TokenTypes.LNOT, TokenTypes.POST_DEC,
 		TokenTypes.POST_INC, TokenTypes.UNARY_MINUS, TokenTypes.UNARY_PLUS
 	};
+
+	private List<String> _getJSPImportNames() {
+		String path = getAbsolutePath();
+
+		List<String> importNames = new ArrayList<>();
+
+		while (true) {
+			int x = path.lastIndexOf(CharPool.SLASH);
+
+			if (x == -1) {
+				return importNames;
+			}
+
+			File file = new File(path + "/init.jsp");
+
+			if (file.exists()) {
+				try {
+					importNames.addAll(
+						JSPImportsFormatter.getImportNames(
+							FileUtil.read(file)));
+				}
+				catch (IOException ioException) {
+				}
+			}
+
+			if (path.endsWith("/resources") || path.endsWith("/docroot")) {
+				return importNames;
+			}
+
+			path = path.substring(0, x);
+		}
+	}
 
 	private String _getVariableName(DetailAST variableDefinitionDetailAST) {
 		DetailAST nameDetailAST = variableDefinitionDetailAST.findFirstToken(

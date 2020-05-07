@@ -51,6 +51,7 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -893,15 +894,26 @@ public abstract class BaseCheck extends AbstractCheck {
 				return importNames;
 			}
 
-			File file = new File(path + "/init.jsp");
+			String fileName = path + "/init.jsp";
 
-			if (file.exists()) {
-				try {
-					importNames.addAll(
-						JSPImportsFormatter.getImportNames(
-							FileUtil.read(file)));
-				}
-				catch (IOException ioException) {
+			if (_jspImportNamesMap.containsKey(fileName)) {
+				importNames.addAll(_jspImportNamesMap.get(fileName));
+			}
+			else {
+				File file = new File(fileName);
+
+				if (file.exists()) {
+					try {
+						List<String> curImportNames =
+							JSPImportsFormatter.getImportNames(
+								FileUtil.read(file));
+
+						importNames.addAll(curImportNames);
+
+						_jspImportNamesMap.put(fileName, curImportNames);
+					}
+					catch (IOException ioException) {
+					}
 				}
 			}
 
@@ -928,5 +940,7 @@ public abstract class BaseCheck extends AbstractCheck {
 	private JSONObject _excludesJSONObject = new JSONObjectImpl();
 	private final Map<String, List<String>> _excludesValuesMap =
 		new ConcurrentHashMap<>();
+	private final Map<String, List<String>> _jspImportNamesMap =
+		new HashMap<>();
 
 }

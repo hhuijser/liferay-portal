@@ -72,7 +72,7 @@ pageContext.setAttribute("scopeAliasesDescriptionsMap", scopeAliasesDescriptions
 			<aui:form action="<%= assignScopesURL %>" name="fm">
 				<ul class="list-group">
 					<oauth2-tree:tree
-						trees="<%= scopeAliasTreeNode.getTrees() %>"
+						trees="<%= (Collection)scopeAliasTreeNode.getTrees() %>"
 					>
 						<jsp:attribute
 							name="nodeJspFragment"

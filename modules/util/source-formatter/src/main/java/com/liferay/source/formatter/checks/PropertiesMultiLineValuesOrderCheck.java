@@ -44,12 +44,12 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 	private String _sortValues(String content) throws IOException {
 		Matcher matcher1 = _keyValuesPattern.matcher(content);
 
+		outerLoop:
 		while (matcher1.find()) {
 			String match = matcher1.group();
 
 			Matcher matcher2 = _multiLineValuesPattern.matcher(match);
 
-			outerLoop:
 			while (matcher2.find()) {
 				String originalValues = matcher2.group();
 

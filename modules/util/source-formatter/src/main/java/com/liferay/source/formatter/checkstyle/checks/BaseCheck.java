@@ -213,7 +213,11 @@ public abstract class BaseCheck extends AbstractCheck {
 
 	protected List<String> getImportNames(DetailAST detailAST) {
 		if (isJSPFile()) {
-			return _getJSPImportNames();
+			String absolutePath = getAbsolutePath();
+
+			return _getJSPImportNames(
+				absolutePath.substring(
+					0, absolutePath.lastIndexOf(CharPool.SLASH)));
 		}
 
 		DetailAST rootDetailAST = detailAST;
@@ -882,47 +886,40 @@ public abstract class BaseCheck extends AbstractCheck {
 		TokenTypes.POST_INC, TokenTypes.UNARY_MINUS, TokenTypes.UNARY_PLUS
 	};
 
-	private List<String> _getJSPImportNames() {
-		String path = getAbsolutePath();
+	private List<String> _getJSPImportNames(String directoryName) {
+		if (_jspImportNamesMap.containsKey(directoryName)) {
+			return _jspImportNamesMap.get(directoryName);
+		}
 
 		List<String> importNames = new ArrayList<>();
 
-		while (true) {
-			int x = path.lastIndexOf(CharPool.SLASH);
+		String fileName = directoryName + "/init.jsp";
 
-			if (x == -1) {
-				return importNames;
+		File file = new File(fileName);
+
+		if (file.exists()) {
+			try {
+				List<String> curImportNames =
+					JSPImportsFormatter.getImportNames(FileUtil.read(file));
+
+				importNames.addAll(curImportNames);
 			}
-
-			String fileName = path + "/init.jsp";
-
-			if (_jspImportNamesMap.containsKey(fileName)) {
-				importNames.addAll(_jspImportNamesMap.get(fileName));
+			catch (IOException ioException) {
 			}
-			else {
-				File file = new File(fileName);
-
-				if (file.exists()) {
-					try {
-						List<String> curImportNames =
-							JSPImportsFormatter.getImportNames(
-								FileUtil.read(file));
-
-						importNames.addAll(curImportNames);
-
-						_jspImportNamesMap.put(fileName, curImportNames);
-					}
-					catch (IOException ioException) {
-					}
-				}
-			}
-
-			if (path.endsWith("/resources") || path.endsWith("/docroot")) {
-				return importNames;
-			}
-
-			path = path.substring(0, x);
 		}
+
+		int x = directoryName.lastIndexOf(CharPool.SLASH);
+
+		if ((x != -1) && !directoryName.endsWith("/resources") &&
+			!directoryName.endsWith("/docroot")) {
+
+			importNames.addAll(
+				_getJSPImportNames(directoryName.substring(0, x)));
+		}
+
+		_jspImportNamesMap.put(directoryName, importNames);
+
+		return importNames;
 	}
 
 	private String _getVariableName(DetailAST variableDefinitionDetailAST) {

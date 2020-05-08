@@ -38,6 +38,16 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 			String fileName, String absolutePath, String content)
 		throws IOException {
 
+		int pos = fileName.lastIndexOf(StringPool.SLASH);
+
+		String shortFileName = fileName.substring(pos + 1);
+
+		if (!shortFileName.matches(
+				"(ci|compatibility|system(-ext)?|test)\\.properties")) {
+
+			return content;
+		}
+
 		return _sortValues(content);
 	}
 

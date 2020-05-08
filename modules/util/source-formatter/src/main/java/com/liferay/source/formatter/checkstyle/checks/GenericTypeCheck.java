@@ -127,17 +127,15 @@ public class GenericTypeCheck extends BaseCheck {
 		int genericTypeCount = GetterUtil.getInteger(
 			genericTypeNamesMap.get(genericTypeName));
 
-		String typeName = getTypeName(typeDetailAST, false);
-
 		if (genericTypeCount == 1) {
 			log(
 				typeDetailAST, _MSG_PARAMETERIZE_GENERIC_TYPE, "type",
-				typeName);
+				genericTypeName);
 		}
 		else {
 			log(
 				typeDetailAST, _MSG_PARAMETERIZE_GENERIC_TYPE, "types",
-				typeName);
+				genericTypeName);
 		}
 	}
 

@@ -87,7 +87,8 @@ public class JavaVariableTypeCheck extends BaseJavaTermCheck {
 		if (isFinal) {
 			JavaClass parentJavaClass = javaClass.getParentJavaClass();
 
-			if ((parentJavaClass == null) && !javaVariable.isStatic() &&
+			if (!javaClass.isAnonymous() && (parentJavaClass == null) &&
+				!javaVariable.isStatic() &&
 				(_isImmutableField(fieldType, absolutePath) ||
 				 fieldType.matches("Pattern(\\[\\])*") ||
 				 (fieldType.equals("Log") &&

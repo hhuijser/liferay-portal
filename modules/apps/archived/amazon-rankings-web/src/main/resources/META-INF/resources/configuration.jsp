@@ -43,10 +43,10 @@ isbnsString = StringUtil.merge(isbns, StringPool.SPACE);
 				<liferay-ui:message key="the-following-are-invalid-isbn-numbers" />
 
 				<%
-				Enumeration enu = ve.getFailedKeys();
+				Enumeration<String> enu = ve.getFailedKeys();
 
 				while (enu.hasMoreElements()) {
-					String isbn = (String)enu.nextElement();
+					String isbn = enu.nextElement();
 				%>
 
 					<strong><%= HtmlUtil.escape(isbn) %></strong><%= enu.hasMoreElements() ? ", " : "." %>

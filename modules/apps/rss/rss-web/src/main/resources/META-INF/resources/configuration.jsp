@@ -40,10 +40,10 @@
 					<%
 					ValidatorException ve = (ValidatorException)errorException;
 
-					Enumeration enu = ve.getFailedKeys();
+					Enumeration<String> enu = ve.getFailedKeys();
 
 					while (enu.hasMoreElements()) {
-						String url = (String)enu.nextElement();
+						String url = enu.nextElement();
 					%>
 
 						<strong><%= HtmlUtil.escape(url) %></strong><%= enu.hasMoreElements() ? ", " : "." %>

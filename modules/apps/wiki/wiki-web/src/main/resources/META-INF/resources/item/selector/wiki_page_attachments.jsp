@@ -29,7 +29,7 @@ int end = startAndEnd[1];
 
 WikiPage wikiPage = wikiAttachmentItemSelectorViewDisplayContext.getWikiPage();
 
-List portletFileEntries = null;
+List<FileEntry> portletFileEntries = null;
 int portletFileEntriesCount = 0;
 
 String[] mimeTypes = wikiAttachmentItemSelectorViewDisplayContext.getMimeTypes();
@@ -54,7 +54,7 @@ if (wikiPage.getAttachmentsFolderId() != DLFolderConstants.DEFAULT_PARENT_FOLDER
 
 		Document[] docs = hits.getDocs();
 
-		portletFileEntries = new ArrayList(docs.length);
+		portletFileEntries = new ArrayList<>(docs.length);
 
 		for (Document doc : docs) {
 			long fileEntryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));

@@ -17,7 +17,7 @@
 <%
 JSONObject jsonObject = PortletSetupUtil.cssToJSONObject(portletSetup, portletSetupCss);
 
-List finalCSS = new ArrayList();
+List<String> finalCSS = new ArrayList<>();
 
 // Background data
 
@@ -304,7 +304,7 @@ out.print("#p_p_id_" + portlet.getPortletId() + "_ .portlet-content");
 
 out.print(" {\n");
 
-String[] finalCSSArray = (String[])finalCSS.toArray(new String[0]);
+String[] finalCSSArray = finalCSS.toArray(new String[0]);
 
 String finalCSSString = StringUtil.merge(finalCSSArray, ";\n");
 

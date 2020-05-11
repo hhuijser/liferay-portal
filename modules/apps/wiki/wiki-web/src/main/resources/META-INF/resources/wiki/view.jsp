@@ -171,7 +171,7 @@ if (portletTitleBasedNavigation) {
 				</c:if>
 
 				<%
-				List entries = new ArrayList();
+				List<WikiPage> entries = new ArrayList<>();
 
 				entries.add(wikiPage);
 

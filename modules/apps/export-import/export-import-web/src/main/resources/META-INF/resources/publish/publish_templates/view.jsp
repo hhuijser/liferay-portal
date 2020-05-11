@@ -38,13 +38,13 @@ boolean privateLayout = ParamUtil.getBoolean(request, "privateLayout");
 <%
 int exportImportConfigurationType = localPublishing ? ExportImportConfigurationConstants.TYPE_PUBLISH_LAYOUT_LOCAL : ExportImportConfigurationConstants.TYPE_PUBLISH_LAYOUT_REMOTE;
 
-SearchContainer exportImportConfigurationSearchContainer = new SearchContainer(renderRequest, portletURL, null, "there-are-no-saved-publish-templates");
+SearchContainer<ExportImportConfiguration> exportImportConfigurationSearchContainer = new SearchContainer(renderRequest, portletURL, null, "there-are-no-saved-publish-templates");
 
 exportImportConfigurationSearchContainer.setOrderByCol("name");
 exportImportConfigurationSearchContainer.setOrderByComparator(new ExportImportConfigurationNameComparator(true));
 exportImportConfigurationSearchContainer.setOrderByType("asc");
 
-List exportImportConfigurations = ExportImportConfigurationLocalServiceUtil.getExportImportConfigurations(company.getCompanyId(), groupId, keywords, exportImportConfigurationType, exportImportConfigurationSearchContainer.getStart(), exportImportConfigurationSearchContainer.getEnd(), exportImportConfigurationSearchContainer.getOrderByComparator());
+List<ExportImportConfiguration> exportImportConfigurations = ExportImportConfigurationLocalServiceUtil.getExportImportConfigurations(company.getCompanyId(), groupId, keywords, exportImportConfigurationType, exportImportConfigurationSearchContainer.getStart(), exportImportConfigurationSearchContainer.getEnd(), exportImportConfigurationSearchContainer.getOrderByComparator());
 int exportImportConfigurationsCount = ExportImportConfigurationLocalServiceUtil.getExportImportConfigurationsCount(company.getCompanyId(), groupId, keywords, exportImportConfigurationType);
 
 exportImportConfigurationSearchContainer.setResults(exportImportConfigurations);

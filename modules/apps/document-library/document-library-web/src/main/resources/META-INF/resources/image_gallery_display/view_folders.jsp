@@ -84,7 +84,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 			</a>
 
 			<%
-			List subfolders = DLAppServiceUtil.getFolders(repositoryId, curFolder.getFolderId(), 0, 5);
+			List<Folder> subfolders = DLAppServiceUtil.getFolders(repositoryId, curFolder.getFolderId(), 0, 5);
 			%>
 
 			<c:if test="<%= !subfolders.isEmpty() %>">
@@ -96,7 +96,7 @@ PortletURL portletURL = (PortletURL)request.getAttribute("view.jsp-portletURL");
 				int subfoldersCount = DLAppServiceUtil.getFoldersCount(repositoryId, curFolder.getFolderId());
 
 				for (int j = 0; j < subfolders.size(); j++) {
-					Folder subfolder = (Folder)subfolders.get(j);
+					Folder subfolder = subfolders.get(j);
 
 					String name = HtmlUtil.escape(subfolder.getName());
 

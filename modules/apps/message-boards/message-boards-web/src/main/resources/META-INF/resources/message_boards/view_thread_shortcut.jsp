@@ -109,13 +109,13 @@ if (threadFlag != null) {
 </c:if>
 
 <%
-List messages = treeWalker.getMessages();
+List<MBMessage> messages = treeWalker.getMessages();
 int[] range = treeWalker.getChildrenRange(message);
 
 depth++;
 
 for (int i = range[0]; i < range[1]; i++) {
-	MBMessage curMessage = (MBMessage)messages.get(i);
+	MBMessage curMessage = messages.get(i);
 
 	if (!MBUtil.isViewableMessage(themeDisplay, curMessage, message)) {
 		continue;

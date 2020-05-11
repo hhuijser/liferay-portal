@@ -29,7 +29,7 @@ int end = startAndEnd[1];
 
 long folderId = kbAttachmentItemSelectorViewDisplayContext.getAttachmentsFolderId();
 
-List portletFileEntries = null;
+List<FileEntry> portletFileEntries = null;
 int portletFileEntriesCount = 0;
 
 if (kbAttachmentItemSelectorViewDisplayContext.isSearch()) {

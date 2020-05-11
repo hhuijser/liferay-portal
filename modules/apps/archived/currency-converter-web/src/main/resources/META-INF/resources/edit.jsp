@@ -23,13 +23,13 @@
 	<aui:input name="symbols" type="hidden" value="" />
 
 	<%
-	List leftList = new ArrayList();
+	List<KeyValuePair> leftList = new ArrayList<>();
 
 	for (int i = 0; i < symbols.length; i++) {
 		leftList.add(new KeyValuePair(symbols[i], LanguageUtil.get(request, "currency." + symbols[i])));
 	}
 
-	List rightList = new ArrayList();
+	List<KeyValuePair> rightList = new ArrayList<>();
 
 	Arrays.sort(symbols);
 

@@ -95,7 +95,7 @@ catch (NoSuchFolderException nsfe) {
 
 							// Left list
 
-							List leftList = new ArrayList();
+							List<KeyValuePair> leftList = new ArrayList<>();
 
 							for (String folderColumn : folderColumns) {
 								leftList.add(new KeyValuePair(folderColumn, LanguageUtil.get(request, folderColumn)));
@@ -103,7 +103,7 @@ catch (NoSuchFolderException nsfe) {
 
 							// Right list
 
-							List rightList = new ArrayList();
+							List<KeyValuePair> rightList = new ArrayList<>();
 
 							Arrays.sort(folderColumns);
 
@@ -142,7 +142,7 @@ catch (NoSuchFolderException nsfe) {
 
 							// Left list
 
-							List leftList = new ArrayList();
+							List<KeyValuePair> leftList = new ArrayList<>();
 
 							for (int i = 0; i < entryColumns.length; i++) {
 								String entryColumn = entryColumns[i];
@@ -152,7 +152,7 @@ catch (NoSuchFolderException nsfe) {
 
 							// Right list
 
-							List rightList = new ArrayList();
+							List<KeyValuePair> rightList = new ArrayList<>();
 
 							Arrays.sort(entryColumns);
 

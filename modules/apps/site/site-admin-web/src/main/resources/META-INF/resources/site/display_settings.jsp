@@ -137,7 +137,7 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 
 		// Left list
 
-		List leftList = new ArrayList();
+		List<KeyValuePair> leftList = new ArrayList<>();
 
 		String groupLanguageIds = typeSettingsProperties.getProperty(PropsKeys.LOCALES);
 
@@ -154,7 +154,7 @@ if ((publicLayoutSet.isLayoutSetPrototypeLinkEnabled() || privateLayoutSet.isLay
 
 		// Right list
 
-		List rightList = new ArrayList();
+		List<KeyValuePair> rightList = new ArrayList<>();
 
 		for (Locale availableLocale : LanguageUtil.getAvailableLocales()) {
 			if (!siteAvailableLocales.contains(availableLocale)) {

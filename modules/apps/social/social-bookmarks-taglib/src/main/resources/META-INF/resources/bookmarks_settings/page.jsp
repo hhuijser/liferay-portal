@@ -28,7 +28,7 @@ if (Validator.isNull(displayStyle)) {
 
 // Left list
 
-List leftList = new ArrayList();
+List<KeyValuePair> leftList = new ArrayList<>();
 
 for (int i = 0; i < types.length; i++) {
 	SocialBookmark socialBookmark = SocialBookmarksRegistryUtil.getSocialBookmark(types[i]);
@@ -40,7 +40,7 @@ for (int i = 0; i < types.length; i++) {
 
 // Right list
 
-List rightList = new ArrayList();
+List<KeyValuePair> rightList = new ArrayList<>();
 
 Set<String> typesSet = new HashSet<>(Arrays.asList(types));
 

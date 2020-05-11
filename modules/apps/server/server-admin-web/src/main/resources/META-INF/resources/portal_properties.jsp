@@ -77,9 +77,9 @@ for (Map.Entry<Object, Object> entry : properties.entrySet()) {
 	}
 }
 
-List filteredPropertiesList = ListUtil.fromCollection(filteredProperties.entrySet());
+List<Map.Entry<String, String>> filteredPropertiesList = ListUtil.fromCollection(filteredProperties.entrySet());
 
-SearchContainer propertiesSearchContainer = new SearchContainer(liferayPortletRequest, serverURL, null, null);
+SearchContainer<Map.Entry<String, String>> propertiesSearchContainer = new SearchContainer(liferayPortletRequest, serverURL, null, null);
 
 propertiesSearchContainer.setResults(ListUtil.subList(filteredPropertiesList, propertiesSearchContainer.getStart(), propertiesSearchContainer.getEnd()));
 propertiesSearchContainer.setTotal(filteredPropertiesList.size());

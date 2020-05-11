@@ -143,7 +143,7 @@ wikiListPagesDisplayContext.populateResultsAndTotal(searchContainer);
 
 List<WikiPage> pages = searchContainer.getResults();
 
-List resultRows = searchContainer.getResultRows();
+List<ResultRow> resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < pages.size(); i++) {
 	WikiPage curWikiPage = pages.get(i);

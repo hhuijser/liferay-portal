@@ -45,7 +45,7 @@ if (Validator.isNotNull(portletResource)) {
 	}
 }
 
-List modelResources = null;
+List<String> modelResources = null;
 
 if (Validator.isNotNull(portletResource)) {
 	modelResources = ResourceActionsUtil.getPortletModelResources(portletResource);
@@ -143,7 +143,7 @@ if (Validator.isNotNull(portletResource)) {
 
 					searchContainer.setRowChecker(new ResourceActionRowChecker(liferayPortletResponse));
 
-					List resultRows = searchContainer.getResultRows();
+					List<ResultRow> resultRows = searchContainer.getResultRows();
 
 					List<TemplateHandler> templateHandlers = PortletDisplayTemplateUtil.getPortletDisplayTemplateHandlers();
 

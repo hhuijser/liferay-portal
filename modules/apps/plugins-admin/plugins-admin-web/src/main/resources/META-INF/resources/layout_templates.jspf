@@ -26,7 +26,7 @@
 </c:if>
 
 <%
-List layoutTemplates = LayoutTemplateLocalServiceUtil.getLayoutTemplates();
+List<LayoutTemplate> layoutTemplates = LayoutTemplateLocalServiceUtil.getLayoutTemplates();
 %>
 
 <div class="container-fluid container-fluid-max-xl container-view">

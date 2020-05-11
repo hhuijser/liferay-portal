@@ -32,11 +32,11 @@ if (Validator.isNotNull(curPortletResource)) {
 	curPortletId = curPortlet.getPortletId();
 }
 
-List resourceActions = ResourceActionsUtil.getResourceActions(curPortletResource, curModelResource);
+List<String> resourceActions = ResourceActionsUtil.getResourceActions(curPortletResource, curModelResource);
 
 resourceActions = ListUtil.sort(resourceActions, new ActionComparator(locale));
 
-List guestUnsupportedActions = ResourceActionsUtil.getResourceGuestUnsupportedActions(curPortletResource, curModelResource);
+List<String> guestUnsupportedActions = ResourceActionsUtil.getResourceGuestUnsupportedActions(curPortletResource, curModelResource);
 
 List<String> headerNames = new ArrayList<String>();
 
@@ -48,7 +48,7 @@ if (showScope) {
 	headerNames.add("scope");
 }
 
-SearchContainer searchContainer = new SearchContainer(liferayPortletRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, liferayPortletResponse.createRenderURL(), headerNames, "there-are-no-actions");
+SearchContainer<String> searchContainer = new SearchContainer(liferayPortletRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, liferayPortletResponse.createRenderURL(), headerNames, "there-are-no-actions");
 
 searchContainer.setRowChecker(new ResourceActionRowChecker(liferayPortletResponse));
 
@@ -56,11 +56,11 @@ int total = resourceActions.size();
 
 searchContainer.setTotal(total);
 
-List results = resourceActions;
+List<String> results = resourceActions;
 
 searchContainer.setResults(results);
 
-List resultRows = searchContainer.getResultRows();
+List<ResultRow> resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < results.size(); i++) {
 	String actionId = (String)results.get(i);

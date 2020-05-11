@@ -49,7 +49,7 @@
 
 		headerNames.add(StringPool.BLANK);
 
-		SearchContainer searchContainer = new SearchContainer(liferayPortletRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 50, permissionsAllURL, headerNames, "this-role-does-not-have-any-permissions");
+		SearchContainer<PermissionDisplay> searchContainer = new SearchContainer(liferayPortletRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 50, permissionsAllURL, headerNames, "this-role-does-not-have-any-permissions");
 
 		List<Permission> permissions = PermissionConverterUtil.convertPermissions(role);
 
@@ -83,10 +83,10 @@
 				curModelName = resource.getName();
 				curModelLabel = ResourceActionsUtil.getModelResource(request, curModelName);
 
-				List portletResources = ResourceActionsUtil.getModelPortletResources(curModelName);
+				List<String> portletResources = ResourceActionsUtil.getModelPortletResources(curModelName);
 
 				if (!portletResources.isEmpty()) {
-					curPortletName = (String)portletResources.get(0);
+					curPortletName = portletResources.get(0);
 				}
 			}
 
@@ -111,11 +111,11 @@
 
 		searchContainer.setTotal(total);
 
-		List results = ListUtil.subList(permissionDisplays, searchContainer.getStart(), searchContainer.getEnd());
+		List<PermissionDisplay> results = ListUtil.subList(permissionDisplays, searchContainer.getStart(), searchContainer.getEnd());
 
 		searchContainer.setResults(results);
 
-		List resultRows = searchContainer.getResultRows();
+		List<ResultRow> resultRows = searchContainer.getResultRows();
 
 		for (int i = 0; i < results.size(); i++) {
 			PermissionDisplay permissionDisplay = (PermissionDisplay)results.get(i);
@@ -134,7 +134,7 @@
 
 			ResultRow row = new ResultRow(new Object[] {permission, role}, actionId, i);
 
-			List groups = Collections.emptyList();
+			List<Group> groups = Collections.emptyList();
 
 			int scope;
 
@@ -218,7 +218,7 @@
 				sb = new StringBundler(groups.size() * 3 - 2);
 
 				for (int j = 0; j < groups.size(); j++) {
-					Group group = (Group)groups.get(j);
+					Group group = groups.get(j);
 
 					sb.append(HtmlUtil.escape(group.getDescriptiveName(locale)));
 

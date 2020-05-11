@@ -52,6 +52,7 @@ import com.liferay.users.admin.test.util.search.UserGroupSearchFixture;
 import com.liferay.users.admin.test.util.search.UserSearchFixture;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -386,6 +387,8 @@ public class UserIndexerIndexedFieldsTest {
 		if (values.size() == 1) {
 			return values.get(0);
 		}
+
+		Collections.sort(values);
 
 		return String.valueOf(values);
 	}

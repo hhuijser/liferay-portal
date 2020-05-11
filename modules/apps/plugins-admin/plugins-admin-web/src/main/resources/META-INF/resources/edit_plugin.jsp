@@ -68,7 +68,7 @@ renderResponse.setTitle(title);
 						<aui:field-wrapper helpMessage="edit-plugin-permissions-help" label="permissions">
 
 							<%
-							List resourceActions = ResourceActionsUtil.getResourceActions(portlet.getPortletId(), null);
+							List<String> resourceActions = ResourceActionsUtil.getResourceActions(portlet.getPortletId(), null);
 
 							int maxNumberOfRolesChecked = 500;
 

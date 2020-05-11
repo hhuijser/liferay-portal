@@ -26,7 +26,7 @@
 </c:if>
 
 <%
-List themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId());
+List<Theme> themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId());
 %>
 
 <div class="container-fluid container-max-xl container-view">
@@ -72,7 +72,7 @@ List themes = ThemeLocalServiceUtil.getThemes(company.getCompanyId());
 				</aui:a>
 
 				<%
-				List colorSchemes = curTheme.getColorSchemes();
+				List<ColorScheme> colorSchemes = curTheme.getColorSchemes();
 				%>
 
 				<c:if test="<%= !colorSchemes.isEmpty() %>">

@@ -25,7 +25,7 @@ Role role = (Role)objArray[0];
 String target = (String)objArray[3];
 Boolean supportsFilterByGroup = (Boolean)objArray[5];
 long[] groupIdsArray = (long[])objArray[7];
-List groupNames = (List)objArray[8];
+List<String> groupNames = (List<String>)objArray[8];
 String portletId = (String)objArray[9];
 %>
 

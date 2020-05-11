@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-List statsUsers = null;
+List<BlogsStatsUser> statsUsers = null;
 
 if (selectionMethod.equals("users")) {
 	if (organizationId > 0) {
@@ -53,10 +53,10 @@ else {
 
 		boolean statsUserRendered = false;
 
-		List resultRows = searchContainer.getResultRows();
+		List<ResultRow> resultRows = searchContainer.getResultRows();
 
 		for (int i = 0; i < statsUsers.size(); i++) {
-			BlogsStatsUser statsUser = (BlogsStatsUser)statsUsers.get(i);
+			BlogsStatsUser statsUser = statsUsers.get(i);
 
 			try {
 				Group group = GroupLocalServiceUtil.getGroup(statsUser.getGroupId());
@@ -64,7 +64,7 @@ else {
 
 				int entriesCount = BlogsEntryServiceUtil.getGroupUserEntriesCount(group.getGroupId(), user2.getUserId(), WorkflowConstants.STATUS_APPROVED);
 
-				List entries = BlogsEntryServiceUtil.getGroupUserEntries(group.getGroupId(), user2.getUserId(), WorkflowConstants.STATUS_APPROVED, 0, max, new EntryModifiedDateComparator());
+				List<BlogsEntry> entries = BlogsEntryServiceUtil.getGroupUserEntries(group.getGroupId(), user2.getUserId(), WorkflowConstants.STATUS_APPROVED, 0, max, new EntryModifiedDateComparator());
 
 				if (entries.isEmpty()) {
 					if (!selectionMethod.equals("users")) {
@@ -84,7 +84,7 @@ else {
 
 				statsUserRendered = true;
 
-				BlogsEntry entry = (BlogsEntry)entries.get(0);
+				BlogsEntry entry = entries.get(0);
 
 				StringBundler sb = new StringBundler(4);
 

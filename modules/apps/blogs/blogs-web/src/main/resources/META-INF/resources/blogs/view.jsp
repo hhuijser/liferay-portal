@@ -46,13 +46,13 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 
 int pageDelta = GetterUtil.getInteger(blogsPortletInstanceConfiguration.pageDelta());
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, pageDelta, currentURLObj, null, null);
+SearchContainer<Object> searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, pageDelta, currentURLObj, null, null);
 
 searchContainer.setDelta(pageDelta);
 searchContainer.setDeltaConfigurable(false);
 
 int total = 0;
-List results = null;
+List<Object> results = null;
 
 int notPublishedEntriesCount = BlogsEntryServiceUtil.getGroupUserEntriesCount(scopeGroupId, themeDisplay.getUserId(), new int[] {WorkflowConstants.STATUS_DRAFT, WorkflowConstants.STATUS_PENDING, WorkflowConstants.STATUS_SCHEDULED});
 

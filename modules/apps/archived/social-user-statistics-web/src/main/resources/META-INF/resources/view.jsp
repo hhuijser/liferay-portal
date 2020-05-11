@@ -32,7 +32,7 @@ if (socialUserStatisticsPortletInstanceConfiguration.rankByContribution()) {
 String[] rankingNames = rankingNamesList.toArray(new String[0]);
 
 if (!rankingNamesList.isEmpty()) {
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+	SearchContainer<Tuple> searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
 	int total = SocialActivityCounterLocalServiceUtil.getUserActivityCountersCount(scopeGroupId, rankingNames);
 
@@ -57,7 +57,7 @@ if (!rankingNamesList.isEmpty()) {
 
 	searchContainer.setResults(results);
 
-	List resultRows = searchContainer.getResultRows();
+	List<ResultRow> resultRows = searchContainer.getResultRows();
 
 	for (int i = 0; i < results.size(); i++) {
 		Tuple tuple = results.get(i);

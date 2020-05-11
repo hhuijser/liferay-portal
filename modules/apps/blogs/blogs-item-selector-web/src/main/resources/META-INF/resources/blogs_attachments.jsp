@@ -29,7 +29,7 @@ int end = startAndEnd[1];
 
 Folder folder = blogsItemSelectorViewDisplayContext.fetchAttachmentsFolder(themeDisplay.getUserId(), scopeGroupId);
 
-List portletFileEntries = null;
+List<FileEntry> portletFileEntries = null;
 int portletFileEntriesCount = 0;
 
 if (folder != null) {
@@ -46,7 +46,7 @@ if (folder != null) {
 
 		Document[] docs = hits.getDocs();
 
-		portletFileEntries = new ArrayList(docs.length);
+		portletFileEntries = new ArrayList<>(docs.length);
 
 		for (Document doc : docs) {
 			long fileEntryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));

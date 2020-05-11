@@ -33,9 +33,9 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 portletURL.setParameter("mvcRenderCommandName", "/blogs_aggregator/view");
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
+SearchContainer<BlogsEntry> searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, 5, portletURL, null, null);
 
-List entries = null;
+List<BlogsEntry> entries = null;
 
 if (selectionMethod.equals("users")) {
 	if (organizationId > 0) {
@@ -53,7 +53,7 @@ int total = entries.size();
 
 searchContainer.setTotal(total);
 
-List results = ListUtil.subList(entries, searchContainer.getStart(), searchContainer.getEnd());
+List<BlogsEntry> results = ListUtil.subList(entries, searchContainer.getStart(), searchContainer.getEnd());
 
 searchContainer.setResults(results);
 %>

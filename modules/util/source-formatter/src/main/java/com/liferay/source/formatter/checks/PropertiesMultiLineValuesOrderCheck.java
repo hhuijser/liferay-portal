@@ -54,7 +54,6 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 	private String _sortValues(String content) throws IOException {
 		Matcher matcher1 = _keyValuesPattern.matcher(content);
 
-		outerLoop:
 		while (matcher1.find()) {
 			String match = matcher1.group();
 
@@ -77,7 +76,7 @@ public class PropertiesMultiLineValuesOrderCheck extends BaseFileCheck {
 				if (StringUtil.count(originalValues, "\n") !=
 						valuesList.size()) {
 
-					continue outerLoop;
+					break;
 				}
 
 				Collections.sort(valuesList, new PropertyValueComparator());

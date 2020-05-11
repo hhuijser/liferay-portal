@@ -437,7 +437,7 @@ renderResponse.setTitle(headerTitle);
 						<aui:fieldset collapsed="<%= true %>" collapsible="<%= true %>" label="versioning">
 							<aui:input label="customize-the-version-number-increment-and-describe-my-changes" name="updateVersionDetails" type="toggle-switch" value="<%= updateVersionDetails %>" />
 
-							<div class="<%= updateVersionDetails ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />versionDetails">
+							<div class='<%= updateVersionDetails ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />versionDetails">
 								<aui:input checked="<%= dlVersionNumberIncrease == DLVersionNumberIncrease.MAJOR %>" label="major-version" name="versionIncrease" type="radio" value="<%= DLVersionNumberIncrease.MAJOR %>" />
 
 								<aui:input checked="<%= dlVersionNumberIncrease == DLVersionNumberIncrease.MINOR %>" label="minor-version" name="versionIncrease" type="radio" value="<%= DLVersionNumberIncrease.MINOR %>" />

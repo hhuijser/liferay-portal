@@ -24,7 +24,7 @@ String videoPosterURL = (String)request.getAttribute(DLPreviewVideoWebKeys.VIDEO
 <liferay-util:html-top
 	outputKey="document_library_preview_video_css"
 >
-	<link href="<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/preview/css/main.css") %>" rel="stylesheet" type="text/css" />
+	<link href='<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/preview/css/main.css") %>' rel="stylesheet" type="text/css" />
 </liferay-util:html-top>
 
 <div class="preview-file">

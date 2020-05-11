@@ -66,7 +66,7 @@
 							boolean removedScope = scopeAliases.isEmpty() && globalScopeAliases.isEmpty();
 						%>
 
-							<li class="list-group-item list-group-item-flex<c:if test="<%= removedScope %>"> removed-scope</c:if>">
+							<li class='list-group-item list-group-item-flex<c:if test="<%= removedScope %>"> removed-scope</c:if>'>
 								<div class="autofit-col">
 									<c:choose>
 										<c:when test="<%= assignedScopeAliases.isEmpty() && scopeAliases.isEmpty() %>">
@@ -188,8 +188,8 @@
 										for (String relatedScopeAlias : relatedScopeAliasesList) {
 										%>
 
-											<span class="badge badge-secondary<c:if test="<%= !scopeAliases.contains(relatedScopeAlias) && !globalScopeAliases.contains(relatedScopeAlias) %>"> removed-scope-alias</c:if>">
-												<span class="badge-item<c:if test="<%= !scopeAliases.contains(relatedScopeAlias) %>"> global-scope-alias-reference</c:if>">
+											<span class='badge badge-secondary<c:if test="<%= !scopeAliases.contains(relatedScopeAlias) && !globalScopeAliases.contains(relatedScopeAlias) %>"> removed-scope-alias</c:if>'>
+												<span class='badge-item<c:if test="<%= !scopeAliases.contains(relatedScopeAlias) %>"> global-scope-alias-reference</c:if>'>
 													<%= HtmlUtil.escapeAttribute(relatedScopeAlias) %>
 												</span>
 											</span>

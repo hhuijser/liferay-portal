@@ -30,7 +30,7 @@ List<Map<String, String>> selectedItems = (List<Map<String, String>>)data.get("s
 		for (Map<String, String> selectedItem : selectedItems) {
 		%>
 
-			<input name="<%= inputName %>" type="hidden" value="<%= selectedItem.get("value") %>" />
+			<input name="<%= inputName %>" type="hidden" value='<%= selectedItem.get("value") %>' />
 
 		<%
 		}

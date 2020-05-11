@@ -76,7 +76,7 @@ pageContext.setAttribute("scopeAliasesDescriptionsMap", scopeAliasesDescriptions
 								<jsp:attribute
 									name="nodeJspFragment"
 								>
-								<li class="borderless list-group-item<c:if test="${assignedDeletedScopeAliases.contains(tree.value)}"> removed-scope</c:if>" id="${tree.value}-container">
+								<li class='borderless list-group-item<c:if test="${assignedDeletedScopeAliases.contains(tree.value)}"> removed-scope</c:if>' id="${tree.value}-container">
 									<clay:row>
 											<c:choose>
 												<c:when test="${parentNodes.size() > 0}">
@@ -104,7 +104,7 @@ pageContext.setAttribute("scopeAliasesDescriptionsMap", scopeAliasesDescriptions
 								<jsp:attribute
 									name="leafJspFragment"
 								>
-								<li class="borderless list-group-item<c:if test="${assignedDeletedScopeAliases.contains(tree.value)}"> removed-scope</c:if>" id="${tree.value}-container">
+								<li class='borderless list-group-item<c:if test="${assignedDeletedScopeAliases.contains(tree.value)}"> removed-scope</c:if>' id="${tree.value}-container">
 									<clay:row>
 											<c:choose>
 												<c:when test="${parentNodes.size() > 0}">

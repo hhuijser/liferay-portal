@@ -51,7 +51,7 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 			<aui:option label="any" selected="<%= editAssetListDisplayContext.isAnyAssetType() %>" value="<%= true %>" />
 			<aui:option label='<%= LanguageUtil.get(request, "select-more-than-one") + StringPool.TRIPLE_PERIOD %>' selected="<%= !editAssetListDisplayContext.isAnyAssetType() && (classNameIds.length > 1) %>" value="<%= false %>" />
 
-			<optgroup label="<liferay-ui:message key="asset-type" />">
+			<optgroup label='<liferay-ui:message key="asset-type" />'>
 
 				<%
 				for (long classNameId : availableClassNameIdsSet) {
@@ -77,7 +77,7 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 		typesRightList = ListUtil.sort(typesRightList, new KeyValuePairComparator(false, true));
 		%>
 
-		<div class="<%= editAssetListDisplayContext.isAnyAssetType() ? "hide" : "" %>" id="<portlet:namespace />classNamesBoxes">
+		<div class='<%= editAssetListDisplayContext.isAnyAssetType() ? "hide" : "" %>' id="<portlet:namespace />classNamesBoxes">
 			<liferay-ui:input-move-boxes
 				leftBoxName="currentClassNameIds"
 				leftList="<%= typesLeftList %>"
@@ -204,7 +204,7 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 					</div>
 				</c:if>
 
-				<div class="<%= (assetSelectedClassTypeIds.length > 1) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace /><%= className %>Boxes">
+				<div class='<%= (assetSelectedClassTypeIds.length > 1) ? StringPool.BLANK : "hide" %>' id="<portlet:namespace /><%= className %>Boxes">
 					<liferay-ui:input-move-boxes
 						leftBoxName='<%= className + "currentClassTypeIds" %>'
 						leftList="<%= subtypesLeftList %>"
@@ -222,7 +222,7 @@ List<AssetRendererFactory<?>> classTypesAssetRendererFactories = new ArrayList<>
 		%>
 
 		<c:if test="<%= editAssetListDisplayContext.isShowSubtypeFieldsFilter() %>">
-			<div class="asset-subtypefield-selected <%= Validator.isNull(editAssetListDisplayContext.getDDMStructureFieldName()) ? "hide" : StringPool.BLANK %>">
+			<div class='asset-subtypefield-selected <%= Validator.isNull(editAssetListDisplayContext.getDDMStructureFieldName()) ? "hide" : StringPool.BLANK %>'>
 				<aui:input name="TypeSettingsProperties--ddmStructureFieldName--" type="hidden" value="<%= editAssetListDisplayContext.getDDMStructureFieldName() %>" />
 
 				<aui:input name="TypeSettingsProperties--ddmStructureFieldValue--" type="hidden" value="<%= editAssetListDisplayContext.getDDMStructureFieldValue() %>" />

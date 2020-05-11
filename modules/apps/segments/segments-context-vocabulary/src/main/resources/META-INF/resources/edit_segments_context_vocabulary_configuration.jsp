@@ -115,7 +115,7 @@ segmentsContextVocabularyConfigurationDisplayContext.addPortletBreadcrumbEntries
 
 						</aui:select>
 
-						<span class="form-text <%= segmentsContextVocabularyConfigurationDisplayContext.isDuplicated()? "text-danger" : "" %>">
+						<span class='form-text <%= segmentsContextVocabularyConfigurationDisplayContext.isDuplicated()? "text-danger" : "" %>'>
 							<c:if test="<%= segmentsContextVocabularyConfigurationDisplayContext.isDuplicated() %>">
 								<aui:icon image="exclamation-full" markupView="lexicon" />
 							</c:if>

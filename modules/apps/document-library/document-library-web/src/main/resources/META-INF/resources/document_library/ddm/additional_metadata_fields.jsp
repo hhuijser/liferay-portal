@@ -64,7 +64,7 @@ if (fileEntryType != null) {
 		/>
 
 		<liferay-ui:search-container-column-text>
-			<a class="modify-link" data-rowId="<%= curDDMStructure.getStructureId() %>" href="javascript:;" title="<%= LanguageUtil.get(request, "remove") %>"><%= removeStructureIcon %></a>
+			<a class="modify-link" data-rowId="<%= curDDMStructure.getStructureId() %>" href="javascript:;" title='<%= LanguageUtil.get(request, "remove") %>'><%= removeStructureIcon %></a>
 		</liferay-ui:search-container-column-text>
 	</liferay-ui:search-container-row>
 

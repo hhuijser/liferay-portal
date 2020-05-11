@@ -44,7 +44,7 @@ ConfigurationScopeDisplayContext configurationScopeDisplayContext = Configuratio
 		/>
 	</c:if>
 
-	<ul class="list-group <%= configurationCategorySectionDisplays.isEmpty() ? "hide" : StringPool.BLANK %>">
+	<ul class='list-group <%= configurationCategorySectionDisplays.isEmpty() ? "hide" : StringPool.BLANK %>'>
 
 		<%
 		for (ConfigurationCategorySectionDisplay configurationCategorySectionDisplay : configurationCategorySectionDisplays) {

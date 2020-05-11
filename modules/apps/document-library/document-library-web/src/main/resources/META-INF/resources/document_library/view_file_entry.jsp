@@ -147,7 +147,7 @@ if (portletTitleBasedNavigation) {
 		</c:otherwise>
 	</c:choose>
 
-	<div class="<%= portletTitleBasedNavigation ? "contextual-sidebar-content" : "sidenav-content" %>">
+	<div class='<%= portletTitleBasedNavigation ? "contextual-sidebar-content" : "sidenav-content" %>'>
 		<div class="alert alert-danger hide" id="<portlet:namespace />openMSOfficeError"></div>
 
 		<c:if test="<%= !portletTitleBasedNavigation %>">

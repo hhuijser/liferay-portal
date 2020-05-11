@@ -57,7 +57,7 @@
 		String scopeAliasesString = StringUtil.merge(scopeAliases, StringPool.SPACE);
 	%>
 
-		<div class="panel panel-secondary<c:if test="<%= scopeAliases.size() == 0 %>"> removed-scope</c:if>" data-master="<%= scopeAliasesString %>" id="<portlet:namespace /><%= id %>">
+		<div class='panel panel-secondary<c:if test="<%= scopeAliases.size() == 0 %>"> removed-scope</c:if>' data-master="<%= scopeAliasesString %>" id="<portlet:namespace /><%= id %>">
 			<div class="collapse-icon panel-header panel-header-link" id="<portlet:namespace />globalAccordionHeading<%= id %>">
 				<div class="inline">
 					<aui:input checked="<%= !assignedScopeAliases.isEmpty() %>" id='<%= "scopeAlias" + id %>' label="<%= sb.toString() %>" name="scopeAliases" onChange='<%= renderResponse.getNamespace() + "recalculateDependants(this)" %>' type="checkbox" value="<%= scopeAliasesString %>" />

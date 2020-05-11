@@ -183,7 +183,7 @@ int index = 0;
 					}
 					%>
 
-					<div class="<%= !fieldParamSelection.equals(String.valueOf(index + 1)) ? "hide" : StringPool.BLANK %> modified-custom-range" id="<%= randomNamespace %>customRange">
+					<div class='<%= !fieldParamSelection.equals(String.valueOf(index + 1)) ? "hide" : StringPool.BLANK %> modified-custom-range' id="<%= randomNamespace %>customRange">
 						<clay:col
 							id='<%= randomNamespace + "customRangeFrom" %>'
 							md="6"

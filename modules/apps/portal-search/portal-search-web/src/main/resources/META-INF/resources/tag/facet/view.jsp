@@ -107,7 +107,7 @@ List<AssetTagsSearchFacetTermDisplayContext> assetTagsSearchFacetTermDisplayCont
 													type="checkbox"
 												/>
 
-												<span class="custom-control-label term-name <%= assetTagsSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>">
+												<span class='custom-control-label term-name <%= assetTagsSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>'>
 													<span class="custom-control-label-text"><%= HtmlUtil.escape(assetTagsSearchFacetTermDisplayContext.getDisplayName()) %></span>
 												</span>
 

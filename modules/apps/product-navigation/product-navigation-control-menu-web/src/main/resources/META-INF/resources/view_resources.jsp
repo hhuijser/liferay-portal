@@ -58,7 +58,7 @@ if (Validator.isNotNull(keywords)) {
 				).build();
 			%>
 
-				<li class="num-item <%= (delta == curDelta) ? "active" : StringPool.BLANK %>">
+				<li class='num-item <%= (delta == curDelta) ? "active" : StringPool.BLANK %>'>
 					<aui:a cssClass="dropdown-item num-item" data="<%= data %>" href="javascript:;" label="<%= String.valueOf(curDelta) %>" />
 				</li>
 

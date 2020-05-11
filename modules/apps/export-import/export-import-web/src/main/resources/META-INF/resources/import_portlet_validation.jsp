@@ -34,7 +34,7 @@ String redirect = ParamUtil.getString(request, "redirect");
 	FileEntry fileEntry = ExportImportHelperUtil.getTempFileEntry(scopeGroupId, themeDisplay.getUserId(), ExportImportHelper.TEMP_FOLDER_NAME + selPortlet.getPortletId());
 	%>
 
-	<div class="lfr-dynamic-uploader <%= (fileEntry == null) ? "hide-dialog-footer" : StringPool.BLANK %>">
+	<div class='lfr-dynamic-uploader <%= (fileEntry == null) ? "hide-dialog-footer" : StringPool.BLANK %>'>
 		<clay:container>
 			<div class="lfr-upload-container" id="<portlet:namespace />fileUpload"></div>
 		</clay:container>

@@ -35,7 +35,7 @@ JournalDDMTemplateHelper journalDDMTemplateHelper = (JournalDDMTemplateHelper)re
 				md="3"
 			>
 				<div class="search" id="<portlet:namespace />paletteSearchContainer">
-					<input class="form-control mb-3" id="<portlet:namespace />paletteSearch" placeholder="<liferay-ui:message key="search" />" type="text" />
+					<input class="form-control mb-3" id="<portlet:namespace />paletteSearch" placeholder='<liferay-ui:message key="search" />' type="text" />
 				</div>
 
 				<div class="lfr-template-palette" id="<portlet:namespace />paletteDataContainer">

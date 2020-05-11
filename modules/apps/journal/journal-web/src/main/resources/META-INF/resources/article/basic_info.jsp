@@ -27,7 +27,7 @@ DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 <aui:input name="ddmStructureKey" type="hidden" value="<%= ddmStructure.getStructureKey() %>" />
 
 <c:if test="<%= journalWebConfiguration.changeableDefaultLanguage() %>">
-	<div id="<%= renderResponse.getNamespace() + "-change-default-language" %>">
+	<div id='<%= renderResponse.getNamespace() + "-change-default-language" %>'>
 		<react:component
 			data="<%= journalEditArticleDisplayContext.getChangeDefaultLanguageData() %>"
 			module="js/ChangeDefaultLanguage.es"

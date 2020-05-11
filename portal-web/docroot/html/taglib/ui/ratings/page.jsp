@@ -287,7 +287,7 @@ if (!inTrash) {
 								}
 								%>
 
-								<span class="btn-sm rating-element rating-thumb-up rating-<%= thumbUp ? "on" : "off" %>" title="<%= thumbsTitle %>">
+								<span class='btn-sm rating-element rating-thumb-up rating-<%= thumbUp ? "on" : "off" %>' title="<%= thumbsTitle %>">
 									<span class="inline-item inline-item-before">
 										<svg aria-hidden="true" class="lexicon-icon lexicon-icon-thumbs-up" role="img">
 											<use xlink:href="<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg#thumbs-up" />
@@ -298,7 +298,7 @@ if (!inTrash) {
 								</span>
 
 								<c:if test="<%= type.equals(RatingsType.THUMBS.getValue()) %>">
-									<span class="btn-sm rating-element rating-thumb-down rating-<%= thumbDown ? "on" : "off" %>" title="<%= thumbsTitle %>">
+									<span class='btn-sm rating-element rating-thumb-down rating-<%= thumbDown ? "on" : "off" %>' title="<%= thumbsTitle %>">
 										<span class="inline-item inline-item-before">
 											<svg aria-hidden="true" class="lexicon-icon lexicon-icon-thumbs-down" role="img">
 												<use xlink:href="<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg#thumbs-down" />
@@ -322,7 +322,7 @@ if (!inTrash) {
 								}
 								%>
 
-								<a class="btn btn-outline-borderless btn-outline-secondary btn-sm rating-element rating-thumb-up rating-<%= thumbUp ? "on" : "off" %>" href="javascript:;" title="<liferay-ui:message key="<%= positiveRatingMessage %>" />">
+								<a class='btn btn-outline-borderless btn-outline-secondary btn-sm rating-element rating-thumb-up rating-<%= thumbUp ? "on" : "off" %>' href="javascript:;" title='<liferay-ui:message key="<%= positiveRatingMessage %>" />'>
 									<span class="inline-item inline-item-before">
 										<svg aria-hidden="true" class="lexicon-icon lexicon-icon-thumbs-up" role="img">
 											<use xlink:href="<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg#thumbs-up" />
@@ -332,7 +332,7 @@ if (!inTrash) {
 								</a>
 
 								<c:if test="<%= type.equals(RatingsType.THUMBS.getValue()) %>">
-									<a class="btn btn-outline-borderless btn-outline-secondary btn-sm rating-element rating-thumb-down rating-<%= thumbDown ? "on" : "off" %>" href="javascript:;" title="<liferay-ui:message key='<%= thumbDown ? "you-have-rated-this-as-bad" : "rate-this-as-bad" %>' />">
+									<a class='btn btn-outline-borderless btn-outline-secondary btn-sm rating-element rating-thumb-down rating-<%= thumbDown ? "on" : "off" %>' href="javascript:;" title='<liferay-ui:message key='<%= thumbDown ? "you-have-rated-this-as-bad" : "rate-this-as-bad" %>' />'>
 										<span class="inline-item inline-item-before">
 											<svg aria-hidden="true" class="lexicon-icon lexicon-icon-thumbs-down" role="img">
 												<use xlink:href="<%= themeDisplay.getPathThemeImages() %>/lexicon/icons.svg#thumbs-down" />

@@ -24,7 +24,7 @@
 	boolean numberInputType = (type == ExpandoColumnConstants.DOUBLE) || (type == ExpandoColumnConstants.DOUBLE_ARRAY) || (type == ExpandoColumnConstants.FLOAT) || (type == ExpandoColumnConstants.FLOAT_ARRAY) || (type == ExpandoColumnConstants.INTEGER) || (type == ExpandoColumnConstants.INTEGER_ARRAY) || (type == ExpandoColumnConstants.LONG) || (type == ExpandoColumnConstants.LONG_ARRAY) || (type == ExpandoColumnConstants.SHORT) || (type == ExpandoColumnConstants.SHORT_ARRAY);
 	%>
 
-	<div class="<%= numberInputType ? "" : "hide" %>" id="<portlet:namespace />precisionTypeAdvanced">
+	<div class='<%= numberInputType ? "" : "hide" %>' id="<portlet:namespace />precisionTypeAdvanced">
 		<aui:field-wrapper cssClass="custom-precision-type-field-wrapper">
 			<aui:select disabled="<%= true %>" id="precisionTypeSelect" label="precision" name="precisionType" value="<%= ExpandoColumnConstants.getPrecisionType(type) %>">
 				<aui:option label="<%= ExpandoColumnConstants.PRECISION_64_BIT %>" />
@@ -77,14 +77,14 @@
 	%>
 
 	<aui:field-wrapper>
-		<div class="<%= textInputTypeSearch ? "" : "hide" %>" id="<portlet:namespace />searchableAsKeywordOrText">
+		<div class='<%= textInputTypeSearch ? "" : "hide" %>' id="<portlet:namespace />searchableAsKeywordOrText">
 			<aui:input disabled="<%= !((type == ExpandoColumnConstants.STRING) || (type == ExpandoColumnConstants.STRING_ARRAY) || (type == ExpandoColumnConstants.STRING_LOCALIZED)) ? true : false %>" id="searchableKeyWordOrText" label="searchable" name="searchable" type="toggle-switch" value="<%= (expandoColumn != null) ? (propertyIndexType != ExpandoColumnConstants.INDEX_TYPE_NONE) : true %>" />
 
 			<div class="form-text">
 				<liferay-ui:message key="custom-field-index-type-help" />
 			</div>
 
-			<div class="<%= (propertyIndexType != ExpandoColumnConstants.INDEX_TYPE_NONE) ? "" : "hide" %>" id="<portlet:namespace />propertyIndexType">
+			<div class='<%= (propertyIndexType != ExpandoColumnConstants.INDEX_TYPE_NONE) ? "" : "hide" %>' id="<portlet:namespace />propertyIndexType">
 				<div class="radio">
 					<aui:input checked="<%= true %>" disabled="<%= !((type == ExpandoColumnConstants.STRING) || (type == ExpandoColumnConstants.STRING_ARRAY) || (type == ExpandoColumnConstants.STRING_LOCALIZED)) ? true : false %>" id="indexTypeKeyword" label="as-keyword" name="Property--index-type--" type="radio" value="<%= ExpandoColumnConstants.INDEX_TYPE_KEYWORD %>" />
 				</div>
@@ -102,7 +102,7 @@
 			</aui:script>
 		</div>
 
-		<div class="<%= !textInputTypeSearch ? "" : "hide" %>" id="<portlet:namespace />searchableAsKeyword">
+		<div class='<%= !textInputTypeSearch ? "" : "hide" %>' id="<portlet:namespace />searchableAsKeyword">
 			<aui:input disabled="<%= !textInputTypeSearch ? false : true %>" id="indexTypeSearchableAsKeyword" name="Property--index-type--" type="hidden" value="<%= ExpandoColumnConstants.INDEX_TYPE_KEYWORD %>" />
 
 			<aui:input checked="<%= (expandoColumn != null) ? (propertyIndexType == ExpandoColumnConstants.INDEX_TYPE_KEYWORD) : true %>" disabled="<%= !textInputTypeSearch ? false : true %>" id="indexTypeSearchableAsKeywordToggleSwitch" label="searchable-as-keyword" name="searchable" type="toggle-switch" />

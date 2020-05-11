@@ -123,7 +123,7 @@ if (liveLayout != null) {
 					</c:choose>
 				</ul>
 
-				<button class="btn btn-monospaced staging-toggle" id="closeStagingOptions" title="<%= LanguageUtil.get(request, "view-page-staging-options") %>">
+				<button class="btn btn-monospaced staging-toggle" id="closeStagingOptions" title='<%= LanguageUtil.get(request, "view-page-staging-options") %>'>
 					<liferay-ui:icon
 						icon="info-circle"
 						markupView="lexicon"

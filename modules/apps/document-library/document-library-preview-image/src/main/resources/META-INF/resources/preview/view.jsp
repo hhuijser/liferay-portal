@@ -35,7 +35,7 @@ String previewURL = DLURLHelperUtil.getPreviewURL(fileVersion.getFileEntry(), fi
 <liferay-util:html-top
 	outputKey="document_library_preview_image_css"
 >
-	<link href="<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/preview/css/main.css") %>" rel="stylesheet" type="text/css" />
+	<link href='<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/preview/css/main.css") %>' rel="stylesheet" type="text/css" />
 </liferay-util:html-top>
 
 <c:choose>
@@ -54,7 +54,7 @@ String previewURL = DLURLHelperUtil.getPreviewURL(fileVersion.getFileEntry(), fi
 		).build();
 		%>
 
-		<div id="<%= renderResponse.getNamespace() + randomNamespace + "previewImage" %>">
+		<div id='<%= renderResponse.getNamespace() + randomNamespace + "previewImage" %>'>
 			<react:component
 				data="<%= data %>"
 				module="preview/js/ImagePreviewer.es"

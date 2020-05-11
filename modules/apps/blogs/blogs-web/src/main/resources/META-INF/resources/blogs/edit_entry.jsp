@@ -135,7 +135,7 @@ renderResponse.setTitle((entry != null) ? BlogsEntryUtil.getDisplayTitle(resourc
 						className="col-md-offset-2"
 						md="8"
 					>
-						<div class="cover-image-caption <%= (coverImageFileEntryId == 0) ? "invisible" : "" %>">
+						<div class='cover-image-caption <%= (coverImageFileEntryId == 0) ? "invisible" : "" %>'>
 							<small>
 								<liferay-editor:editor
 									contents="<%= coverImageCaption %>"

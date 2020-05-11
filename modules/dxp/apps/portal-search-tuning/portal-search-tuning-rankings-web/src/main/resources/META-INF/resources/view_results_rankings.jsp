@@ -116,7 +116,7 @@ RankingPortletDisplayContext rankingPortletDisplayContext = (RankingPortletDispl
 				cssClass="table-cell-expand-smallest table-cell-minw-150"
 				name="status"
 			>
-				<div class="label <%= rankingEntryDisplayContext.getInactive() ? "label-secondary" : "label-success" %>">
+				<div class='label <%= rankingEntryDisplayContext.getInactive() ? "label-secondary" : "label-success" %>'>
 					<span class="label-item label-item-expand">
 						<liferay-ui:message key='<%= rankingEntryDisplayContext.getInactive() ? "inactive" : "active" %>' />
 					</span>

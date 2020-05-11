@@ -42,7 +42,7 @@ SegmentsSimulationDisplayContext segmentsSimulationDisplayContext = new Segments
 							<span>
 								<div class="custom-checkbox">
 									<label class="position-relative text-light">
-										<input class="custom-control-input simulated-segment" name="<%= segmentsSimulationDisplayContext.getPortletNamespace() + "segmentsEntryId" %>" type="checkbox" value="<%= String.valueOf(segmentsEntry.getSegmentsEntryId()) %>" />
+										<input class="custom-control-input simulated-segment" name='<%= segmentsSimulationDisplayContext.getPortletNamespace() + "segmentsEntryId" %>' type="checkbox" value="<%= String.valueOf(segmentsEntry.getSegmentsEntryId()) %>" />
 
 										<span class="custom-control-label">
 											<span class="custom-control-label-text">

@@ -107,7 +107,7 @@ List<AssetEntriesSearchFacetTermDisplayContext> assetEntriesSearchFacetTermDispl
 													<%= assetEntriesSearchFacetTermDisplayContext.isSelected() ? "checked" : StringPool.BLANK %>
 												/>
 
-												<span class="custom-control-label term-name <%= assetEntriesSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>">
+												<span class='custom-control-label term-name <%= assetEntriesSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>'>
 													<span class="custom-control-label-text"><%= HtmlUtil.escape(assetEntriesSearchFacetTermDisplayContext.getTypeName()) %></span>
 												</span>
 

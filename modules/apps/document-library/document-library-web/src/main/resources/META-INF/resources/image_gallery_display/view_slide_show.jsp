@@ -27,7 +27,7 @@ if (folder != null) {
 	repositoryId = folder.getRepositoryId();
 }
 
-List fileEntries = DLAppServiceUtil.getFileEntries(repositoryId, folderId);
+List<FileEntry> fileEntries = DLAppServiceUtil.getFileEntries(repositoryId, folderId);
 
 int defaultSpeed = 3000;
 %>
@@ -71,7 +71,7 @@ int defaultSpeed = 3000;
 
 			<%
 			if (!fileEntries.isEmpty()) {
-				FileEntry fileEntry = (FileEntry)fileEntries.get(0);
+				FileEntry fileEntry = fileEntries.get(0);
 
 				String largeSrc = DLURLHelperUtil.getPreviewURL(fileEntry, fileEntry.getFileVersion(), themeDisplay, StringPool.BLANK);
 			%>

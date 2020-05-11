@@ -34,7 +34,7 @@ if (message.getMessageId() == selMessage.getMessageId()) {
 	request.setAttribute("view_thread_tree.jsp-messageFound", true);
 }
 
-List messages = treeWalker.getMessages();
+List<MBMessage> messages = treeWalker.getMessages();
 int[] range = treeWalker.getChildrenRange(message);
 
 MBMessageIterator mbMessageIterator = new MBMessageIterator(messages, range[0], range[1]);

@@ -39,7 +39,7 @@ else {
 	<c:otherwise>
 
 		<%
-		SearchContainer searchContainer = new SearchContainer();
+		SearchContainer<BlogsStatsUser> searchContainer = new SearchContainer();
 
 		List<String> headerNames = new ArrayList<String>();
 
@@ -53,7 +53,7 @@ else {
 
 		boolean statsUserRendered = false;
 
-		List<ResultRow> resultRows = searchContainer.getResultRows();
+		List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
 		for (int i = 0; i < statsUsers.size(); i++) {
 			BlogsStatsUser statsUser = statsUsers.get(i);

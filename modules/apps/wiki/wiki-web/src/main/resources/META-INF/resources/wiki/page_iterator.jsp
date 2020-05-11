@@ -120,7 +120,7 @@ String orderByType = ParamUtil.getString(request, "orderByType");
 
 SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA, currentURLObj, headerNames, wikiListPagesDisplayContext.getEmptyResultsMessage());
 
-Map orderableHeaders = new HashMap();
+Map<String, String> orderableHeaders = new HashMap<>();
 
 if (navigation.equals("all-pages") || navigation.equals("categorized-pages") || navigation.equals("tagged-pages")) {
 	orderableHeaders.put("date", "modifiedDate");

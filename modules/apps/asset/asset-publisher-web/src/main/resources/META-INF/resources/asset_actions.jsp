@@ -41,7 +41,7 @@ List<DropdownItem> dropdownItems = assetEntryActionDropdownItemsProvider.getActi
 
 				<%
 				for (DropdownItem dropdownItem : dropdownItems) {
-					Map data = (HashMap)dropdownItem.get("data");
+					Map<String, String> data = (HashMap<String, String>)dropdownItem.get("data");
 
 					boolean useDialog = GetterUtil.getBoolean(data.get("useDialog"));
 				%>
@@ -65,7 +65,7 @@ List<DropdownItem> dropdownItems = assetEntryActionDropdownItemsProvider.getActi
 			<%
 			DropdownItem dropdownItem = dropdownItems.get(0);
 
-			Map data = (HashMap)dropdownItem.get("data");
+			Map<String, String> data = (HashMap<String, String>)dropdownItem.get("data");
 
 			boolean useDialog = GetterUtil.getBoolean(data.get("useDialog"));
 			%>

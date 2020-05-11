@@ -52,6 +52,7 @@ import com.liferay.users.admin.test.util.search.UserGroupSearchFixture;
 import com.liferay.users.admin.test.util.search.UserSearchFixture;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -149,9 +150,7 @@ public class UserIndexerIndexedFieldsTest {
 
 		Map<String, String> map = _getExpectedFieldValues(user);
 
-		map.put(
-			"organizationIds",
-			String.valueOf(_getValues(user.getOrganizationIds())));
+		map.put("organizationIds", _getStringValue(user.getOrganizationIds()));
 
 		FieldValuesAssert.assertFieldValues(map, document, searchTerm);
 	}
@@ -175,8 +174,7 @@ public class UserIndexerIndexedFieldsTest {
 
 		Map<String, String> map = _getExpectedFieldValues(user);
 
-		map.put(
-			"userGroupIds", String.valueOf(_getValues(user.getUserGroupIds())));
+		map.put("userGroupIds", _getStringValue(user.getUserGroupIds()));
 
 		FieldValuesAssert.assertFieldValues(map, document, searchTerm);
 	}
@@ -306,7 +304,7 @@ public class UserIndexerIndexedFieldsTest {
 				return String.valueOf(organizationIds.length);
 			}
 		).put(
-			"roleIds", String.valueOf(_getValues(user.getRoleIds()))
+			"roleIds", _getStringValue(user.getRoleIds())
 		).put(
 			"screenName", user.getScreenName()
 		).put(
@@ -342,8 +340,30 @@ public class UserIndexerIndexedFieldsTest {
 		return countryNames;
 	}
 
-	private List<Long> _getValues(long[] longValues) {
-		return ListUtil.fromArray(longValues);
+	private String _getStringValue(List<String> values) {
+		if (values.isEmpty()) {
+			return "[]";
+		}
+
+		if (values.size() == 1) {
+			return values.get(0);
+		}
+
+		Collections.sort(values);
+
+		return String.valueOf(values);
+	}
+
+	private String _getStringValue(long[] longValues) {
+		if (longValues.length == 0) {
+			return "[]";
+		}
+
+		if (longValues.length == 1) {
+			return String.valueOf(longValues[0]);
+		}
+
+		return String.valueOf(ListUtil.fromArray(longValues));
 	}
 
 	private void _populateAddressFieldValues(
@@ -371,23 +391,11 @@ public class UserIndexerIndexedFieldsTest {
 			zips.add(StringUtil.toLowerCase(address.getZip()));
 		}
 
-		map.put("city", _toListString(cities));
-		map.put("country", _toListString(countries));
-		map.put("region", _toListString(regions));
-		map.put("street", _toListString(streets));
-		map.put("zip", _toListString(zips));
-	}
-
-	private String _toListString(List<String> values) {
-		if (values.isEmpty()) {
-			return "[]";
-		}
-
-		if (values.size() == 1) {
-			return values.get(0);
-		}
-
-		return String.valueOf(values);
+		map.put("city", _getStringValue(cities));
+		map.put("country", _getStringValue(countries));
+		map.put("region", _getStringValue(regions));
+		map.put("street", _getStringValue(streets));
+		map.put("zip", _getStringValue(zips));
 	}
 
 	@DeleteAfterTestRun

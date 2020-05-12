@@ -15,7 +15,7 @@
 --%>
 
 <%
-List<Long> subfolderIds = new ArrayList();
+List<Long> subfolderIds = new ArrayList<>();
 
 subfolderIds.add(Long.valueOf(curFolder.getFolderId()));
 

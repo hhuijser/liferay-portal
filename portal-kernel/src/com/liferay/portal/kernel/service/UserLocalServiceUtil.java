@@ -558,12 +558,12 @@ public class UserLocalServiceUtil {
 	 <code>0</code> otherwise
 	 */
 	public static long authenticateForDigest(
-			long companyId, String username, String realm, String nonce,
+			long companyId, String userName, String realm, String nonce,
 			String method, String uri, String response)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return getService().authenticateForDigest(
-			companyId, username, realm, nonce, method, uri, response);
+			companyId, userName, realm, nonce, method, uri, response);
 	}
 
 	/**

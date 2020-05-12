@@ -564,12 +564,12 @@ public class UserLocalServiceWrapper
 	 */
 	@Override
 	public long authenticateForDigest(
-			long companyId, String username, String realm, String nonce,
+			long companyId, String userName, String realm, String nonce,
 			String method, String uri, String response)
 		throws com.liferay.portal.kernel.exception.PortalException {
 
 		return _userLocalService.authenticateForDigest(
-			companyId, username, realm, nonce, method, uri, response);
+			companyId, userName, realm, nonce, method, uri, response);
 	}
 
 	/**

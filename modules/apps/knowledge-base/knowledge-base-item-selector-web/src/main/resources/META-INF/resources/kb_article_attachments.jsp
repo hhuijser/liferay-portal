@@ -29,7 +29,8 @@ int end = startAndEnd[1];
 
 long folderId = kbAttachmentItemSelectorViewDisplayContext.getAttachmentsFolderId();
 
-List<FileEntry> portletFileEntries = null;
+List<RepositoryEntry> portletFileEntries = new ArrayList<>();
+
 int portletFileEntriesCount = 0;
 
 if (kbAttachmentItemSelectorViewDisplayContext.isSearch()) {
@@ -46,8 +47,6 @@ if (kbAttachmentItemSelectorViewDisplayContext.isSearch()) {
 	portletFileEntriesCount = hits.getLength();
 
 	Document[] docs = hits.getDocs();
-
-	portletFileEntries = new ArrayList(docs.length);
 
 	for (Document doc : docs) {
 		long fileEntryId = GetterUtil.getLong(doc.get(Field.ENTRY_CLASS_PK));
@@ -69,7 +68,7 @@ if (kbAttachmentItemSelectorViewDisplayContext.isSearch()) {
 	}
 }
 else {
-	portletFileEntries = PortletFileRepositoryUtil.getPortletFileEntries(scopeGroupId, folderId, WorkflowConstants.STATUS_APPROVED, start, end, kbAttachmentItemSelectorViewDisplayContext.getOrderByComparator());
+	portletFileEntries.addAll(PortletFileRepositoryUtil.getPortletFileEntries(scopeGroupId, folderId, WorkflowConstants.STATUS_APPROVED, start, end, kbAttachmentItemSelectorViewDisplayContext.getOrderByComparator()));
 	portletFileEntriesCount = PortletFileRepositoryUtil.getPortletFileEntriesCount(scopeGroupId, folderId, WorkflowConstants.STATUS_APPROVED);
 }
 %>

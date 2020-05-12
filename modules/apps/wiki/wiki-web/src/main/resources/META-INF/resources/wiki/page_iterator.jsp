@@ -297,7 +297,7 @@ for (int i = 0; i < pages.size(); i++) {
 		<c:if test="<%= pages.size() > 1 %>">
 
 			<%
-			WikiPage latestWikiPage = (WikiPage)pages.get(1);
+			WikiPage latestWikiPage = pages.get(1);
 			%>
 
 			var compareButton = document.getElementById('<portlet:namespace />compare');

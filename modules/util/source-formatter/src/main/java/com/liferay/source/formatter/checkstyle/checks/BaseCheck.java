@@ -406,6 +406,13 @@ public abstract class BaseCheck extends AbstractCheck {
 		DetailAST typeArgumentsDetailAST = typeDetailAST.findFirstToken(
 			TokenTypes.TYPE_ARGUMENTS);
 
+		if ((typeArgumentsDetailAST == null) &&
+			(childDetailAST.getType() == TokenTypes.DOT)) {
+
+			typeArgumentsDetailAST = childDetailAST.findFirstToken(
+				TokenTypes.TYPE_ARGUMENTS);
+		}
+
 		if (typeArgumentsDetailAST == null) {
 			return sb.toString();
 		}

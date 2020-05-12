@@ -138,7 +138,7 @@ if (assetPublisherDisplayContext.isEnableTagBasedNavigation() && !assetPublisher
 </c:choose>
 
 <%
-SearchContainer searchContainer = assetPublisherDisplayContext.getSearchContainer();
+SearchContainer<AssetEntry> searchContainer = assetPublisherDisplayContext.getSearchContainer();
 %>
 
 <c:if test="<%= !assetPublisherDisplayContext.isPaginationTypeNone() && (searchContainer.getTotal() > searchContainer.getDelta()) %>">

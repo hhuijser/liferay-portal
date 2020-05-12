@@ -19,7 +19,7 @@
 	<%
 	int flag = announcementsDisplayContext.isShowReadEntries() ? AnnouncementsFlagConstants.HIDDEN : AnnouncementsFlagConstants.NOT_HIDDEN;
 
-	SearchContainer searchContainer = new SearchContainer(renderRequest, null, null, "cur1", announcementsDisplayContext.getPageDelta(), portletURL, null, "no-entries-were-found");
+	SearchContainer<AnnouncementsEntry> searchContainer = new SearchContainer(renderRequest, null, null, "cur1", announcementsDisplayContext.getPageDelta(), portletURL, null, "no-entries-were-found");
 
 	LinkedHashMap<Long, long[]> scopes = announcementsDisplayContext.getAnnouncementScopes();
 

@@ -143,7 +143,7 @@ if (Validator.isNotNull(portletResource)) {
 
 					searchContainer.setRowChecker(new ResourceActionRowChecker(liferayPortletResponse));
 
-					List<ResultRow> resultRows = searchContainer.getResultRows();
+					List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
 					List<TemplateHandler> templateHandlers = PortletDisplayTemplateUtil.getPortletDisplayTemplateHandlers();
 

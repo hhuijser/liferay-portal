@@ -60,7 +60,7 @@ List<String> results = resourceActions;
 
 searchContainer.setResults(results);
 
-List<ResultRow> resultRows = searchContainer.getResultRows();
+List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < results.size(); i++) {
 	String actionId = (String)results.get(i);

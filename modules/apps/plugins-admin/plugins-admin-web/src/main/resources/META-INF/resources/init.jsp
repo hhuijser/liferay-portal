@@ -28,11 +28,13 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 page import="com.liferay.petra.string.StringPool" %><%@
 page import="com.liferay.portal.kernel.language.LanguageUtil" %><%@
 page import="com.liferay.portal.kernel.model.ColorScheme" %><%@
+page import="com.liferay.portal.kernel.model.LayoutTemplate" %><%@
 page import="com.liferay.portal.kernel.model.Plugin" %><%@
 page import="com.liferay.portal.kernel.model.PluginSetting" %><%@
 page import="com.liferay.portal.kernel.model.Portlet" %><%@
 page import="com.liferay.portal.kernel.model.ResourceConstants" %><%@
 page import="com.liferay.portal.kernel.model.Role" %><%@
+page import="com.liferay.portal.kernel.model.Theme" %><%@
 page import="com.liferay.portal.kernel.model.role.RoleConstants" %><%@
 page import="com.liferay.portal.kernel.plugin.PluginPackage" %><%@
 page import="com.liferay.portal.kernel.portlet.PortletProvider" %><%@

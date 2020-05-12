@@ -29,11 +29,11 @@ int end = startAndEnd[1];
 
 JournalArticle journalArticle = journalItemSelectorViewDisplayContext.getJournalArticle();
 
-List<FileEntry> portletFileEntries = null;
+List<RepositoryEntry> portletFileEntries = new ArrayList<>();
 int portletFileEntriesCount = 0;
 
 if (journalArticle != null) {
-	portletFileEntries = journalArticle.getImagesFileEntries(start, end, journalItemSelectorViewDisplayContext.getOrderByComparator());
+	portletFileEntries.addAll(journalArticle.getImagesFileEntries(start, end, journalItemSelectorViewDisplayContext.getOrderByComparator()));
 	portletFileEntriesCount = journalArticle.getImagesFileEntriesCount();
 }
 %>

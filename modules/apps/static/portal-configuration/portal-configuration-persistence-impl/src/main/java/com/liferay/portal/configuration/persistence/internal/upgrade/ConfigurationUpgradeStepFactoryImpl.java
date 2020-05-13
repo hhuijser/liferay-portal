@@ -50,12 +50,12 @@ public class ConfigurationUpgradeStepFactoryImpl
 	public UpgradeStep createUpgradeStep(String oldPid, String newPid) {
 		return dbProcessContext -> {
 			try {
-				Enumeration<Dictionary<String, String>> dictionaries =
+				Enumeration<Dictionary<String, String>> enumeration =
 					_persistenceManager.getDictionaries();
 
-				while (dictionaries.hasMoreElements()) {
+				while (enumeration.hasMoreElements()) {
 					Dictionary<String, String> dictionary =
-						dictionaries.nextElement();
+						enumeration.nextElement();
 
 					String oldServicePid = dictionary.get("service.pid");
 

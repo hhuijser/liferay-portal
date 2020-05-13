@@ -581,10 +581,10 @@ public class WabProcessor {
 		Properties properties = PropsUtil.getProperties(
 			PropsKeys.MODULE_FRAMEWORK_WEB_GENERATOR_HEADERS, true);
 
-		Enumeration<Object> keys = properties.keys();
+		Enumeration<Object> enumeration = properties.keys();
 
-		while (keys.hasMoreElements()) {
-			String key = (String)keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = (String)enumeration.nextElement();
 
 			String value = properties.getProperty(key);
 

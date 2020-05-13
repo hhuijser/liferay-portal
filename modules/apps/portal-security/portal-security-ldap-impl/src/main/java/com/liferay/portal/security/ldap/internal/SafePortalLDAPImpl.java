@@ -105,7 +105,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 		SafeLdapContext safeLdapContext = getSafeLdapContext(
 			ldapServerId, companyId);
 
-		NamingEnumeration<SearchResult> enu = null;
+		NamingEnumeration<SearchResult> enumeration = null;
 
 		try {
 			if (safeLdapContext == null) {
@@ -133,8 +133,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 				LDAPUtil.getGroupsDNSafeLdapName(ldapServerConfiguration),
 				safeLdapFilter, searchControls);
 
-			if (enu.hasMoreElements()) {
-				return enu.nextElement();
+			if (enumeration.hasMoreElements()) {
+				return enumeration.nextElement();
 			}
 
 			return null;
@@ -368,16 +368,16 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 				break;
 			}
 
-			NamingEnumeration<? extends Attribute> enu = null;
+			NamingEnumeration<? extends Attribute> enumeration = null;
 
 			try {
 				enu = attributes.getAll();
 
-				if (!enu.hasMoreElements()) {
+				if (!enumeration.hasMoreElements()) {
 					break;
 				}
 
-				Attribute currentAttribute = enu.nextElement();
+				Attribute currentAttribute = enumeration.nextElement();
 
 				for (int i = 0; i < currentAttribute.size(); i++) {
 					attribute.add(currentAttribute.get(i));
@@ -500,7 +500,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 		SafeLdapContext safeLdapContext = getSafeLdapContext(
 			ldapServerId, companyId);
 
-		NamingEnumeration<SearchResult> enu = null;
+		NamingEnumeration<SearchResult> enumeration = null;
 
 		try {
 			if (safeLdapContext == null) {
@@ -563,8 +563,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 				LDAPUtil.getBaseDNSafeLdapName(ldapServerConfiguration),
 				safeLdapFilter, searchControls);
 
-			if (enu.hasMoreElements()) {
-				return enu.nextElement();
+			if (enumeration.hasMoreElements()) {
+				return enumeration.nextElement();
 			}
 
 			if (checkOriginalEmail) {
@@ -783,7 +783,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 		SafeLdapContext safeLdapContext = getSafeLdapContext(
 			ldapServerId, companyId);
 
-		NamingEnumeration<SearchResult> enu = null;
+		NamingEnumeration<SearchResult> enumeration = null;
 
 		try {
 			if (safeLdapContext == null) {
@@ -802,7 +802,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			enu = safeLdapContext.search(
 				groupSafeLdapName, safeLdapFilter, searchControls);
 
-			if (enu.hasMoreElements()) {
+			if (enumeration.hasMoreElements()) {
 				return true;
 			}
 		}
@@ -837,7 +837,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 		SafeLdapContext safeLdapContext = getSafeLdapContext(
 			ldapServerId, companyId);
 
-		NamingEnumeration<SearchResult> enu = null;
+		NamingEnumeration<SearchResult> enumeration = null;
 
 		try {
 			if (safeLdapContext == null) {
@@ -857,7 +857,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			enu = safeLdapContext.search(
 				userSafeLdapName, safeLdapFilter, searchControls);
 
-			if (enu.hasMoreElements()) {
+			if (enumeration.hasMoreElements()) {
 				return true;
 			}
 		}
@@ -895,7 +895,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			SearchControls.SUBTREE_SCOPE, maxResults, 0, attributeIds, false,
 			false);
 
-		NamingEnumeration<SearchResult> enu = null;
+		NamingEnumeration<SearchResult> enumeration = null;
 
 		try {
 			if (cookie != null) {
@@ -923,8 +923,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 				enu = safeLdapContext.search(
 					baseDNSafeLdapName, safeLdapFilter, searchControls);
 
-				while (enu.hasMoreElements()) {
-					searchResults.add(enu.nextElement());
+				while (enumeration.hasMoreElements()) {
+					searchResults.add(enumeration.nextElement());
 				}
 
 				return _getCookie(safeLdapContext.getResponseControls());
@@ -940,8 +940,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			enu = safeLdapContext.search(
 				baseDNSafeLdapName, safeLdapFilter, searchControls);
 
-			while (enu.hasMoreElements()) {
-				searchResults.add(enu.nextElement());
+			while (enumeration.hasMoreElements()) {
+				searchResults.add(enumeration.nextElement());
 			}
 		}
 		finally {
@@ -1006,7 +1006,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 
 			attributes = ldapContext.getAttributes(fullDNSafeLdapName);
 
-			NamingEnumeration<? extends Attribute> enu = null;
+			NamingEnumeration<? extends Attribute> enumeration = null;
 
 			try {
 				Attributes auditAttributes = ldapContext.getAttributes(
@@ -1014,8 +1014,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 
 				enu = auditAttributes.getAll();
 
-				while (enu.hasMoreElements()) {
-					attributes.put(enu.nextElement());
+				while (enumeration.hasMoreElements()) {
+					attributes.put(enumeration.nextElement());
 				}
 			}
 			finally {

@@ -228,10 +228,10 @@ public class FragmentAutoDeployListener implements AutoDeployListener {
 	}
 
 	private ZipEntry _getDeployZipEntry(ZipFile zipFile) {
-		Enumeration<? extends ZipEntry> iterator = zipFile.entries();
+		Enumeration<? extends ZipEntry> enumeration = zipFile.entries();
 
-		while (iterator.hasMoreElements()) {
-			ZipEntry zipEntry = iterator.nextElement();
+		while (enumeration.hasMoreElements()) {
+			ZipEntry zipEntry = enumeration.nextElement();
 
 			if (Objects.equals(
 					_getFileName(zipEntry.getName()),

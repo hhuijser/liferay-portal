@@ -40,10 +40,10 @@ public class FastExtendedProperties extends ExtendedProperties {
 
 		//putAll(extendedProperties);
 
-		Enumeration<String> keys = extendedProperties.keys();
+		Enumeration<String> enumeration = extendedProperties.keys();
 
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			Object value = extendedProperties.get(key);
 

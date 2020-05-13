@@ -65,10 +65,10 @@ public class LPKGLicensedBundleTrackerCustomizer
 		boolean hasLicense = false;
 
 		try (ZipFile zipFile = new ZipFile(file)) {
-			Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
+			Enumeration<? extends ZipEntry> enumeration = zipFile.entries();
 
-			while (zipEntries.hasMoreElements()) {
-				ZipEntry zipEntry = zipEntries.nextElement();
+			while (enumeration.hasMoreElements()) {
+				ZipEntry zipEntry = enumeration.nextElement();
 
 				String zipEntryName = zipEntry.getName();
 

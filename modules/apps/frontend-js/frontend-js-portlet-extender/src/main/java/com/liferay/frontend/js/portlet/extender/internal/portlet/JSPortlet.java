@@ -107,10 +107,10 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 
 		Map<String, Object> configuration = new HashMap<>();
 
-		Enumeration<String> keys = properties.keys();
+		Enumeration<String> enumeration = properties.keys();
 
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			if (key.equals("service.pid")) {
 				continue;
@@ -152,11 +152,10 @@ public class JSPortlet extends MVCPortlet implements ManagedService {
 		JSONObject portletPreferencesJSONObject =
 			_jsonFactory.createJSONObject();
 
-		Enumeration<String> portletPreferencesNames =
-			portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (portletPreferencesNames.hasMoreElements()) {
-			String key = portletPreferencesNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			if (!_portletPreferencesFieldNames.contains(key)) {
 				continue;

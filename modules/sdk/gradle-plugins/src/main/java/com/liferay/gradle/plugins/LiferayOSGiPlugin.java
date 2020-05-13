@@ -417,10 +417,10 @@ public class LiferayOSGiPlugin implements Plugin<Project> {
 		try (Processor processor = new Processor()) {
 			utf8Properties.load(file, processor);
 
-			Enumeration<Object> keys = utf8Properties.keys();
+			Enumeration<Object> enumeration = utf8Properties.keys();
 
-			while (keys.hasMoreElements()) {
-				String key = (String)keys.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String key = (String)enumeration.nextElement();
 
 				String value = utf8Properties.getProperty(key);
 

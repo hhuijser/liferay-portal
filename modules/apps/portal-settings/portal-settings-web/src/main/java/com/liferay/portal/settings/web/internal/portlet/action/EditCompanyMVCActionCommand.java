@@ -288,11 +288,11 @@ public class EditCompanyMVCActionCommand extends BaseFormMVCActionCommand {
 		PortletPreferences portletPreferences = _prefsProps.getPreferences(
 			companyId);
 
-		Enumeration<String> names = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
 		try {
-			while (names.hasMoreElements()) {
-				String name2 = names.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String name2 = enumeration.nextElement();
 
 				for (String discardLegacyKey : discardLegacyKeys) {
 					if (name2.startsWith(discardLegacyKey + "_")) {

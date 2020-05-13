@@ -106,10 +106,10 @@ public class LPKGIndependenceTest {
 		List<Bundle> bundles = new ArrayList<>();
 
 		try (ZipFile zipFile = new ZipFile(lpkgFile)) {
-			Enumeration<? extends ZipEntry> entries = zipFile.entries();
+			Enumeration<? extends ZipEntry> enumeration = zipFile.entries();
 
-			while (entries.hasMoreElements()) {
-				ZipEntry zipEntry = entries.nextElement();
+			while (enumeration.hasMoreElements()) {
+				ZipEntry zipEntry = enumeration.nextElement();
 
 				String name = zipEntry.getName();
 

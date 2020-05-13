@@ -149,12 +149,12 @@ public class ThemeContributorExtender
 
 		List<String> cssResourcePaths = new ArrayList<>();
 
-		Enumeration<URL> cssEntries = bundle.findEntries(
+		Enumeration<URL> enumeration = bundle.findEntries(
 			"/META-INF/resources", "*.css", true);
 
-		if (cssEntries != null) {
-			while (cssEntries.hasMoreElements()) {
-				URL url = cssEntries.nextElement();
+		if (enumeration != null) {
+			while (enumeration.hasMoreElements()) {
+				URL url = enumeration.nextElement();
 
 				String path = url.getFile();
 
@@ -172,12 +172,11 @@ public class ThemeContributorExtender
 
 		List<String> jsResourcePaths = new ArrayList<>();
 
-		Enumeration<URL> jsEntries = bundle.findEntries(
-			"/META-INF/resources", "*.js", true);
+		enumeration = bundle.findEntries("/META-INF/resources", "*.js", true);
 
-		if (jsEntries != null) {
-			while (jsEntries.hasMoreElements()) {
-				URL url = jsEntries.nextElement();
+		if (enumeration != null) {
+			while (enumeration.hasMoreElements()) {
+				URL url = enumeration.nextElement();
 
 				String path = url.getFile();
 

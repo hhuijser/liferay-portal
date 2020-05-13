@@ -223,10 +223,10 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 		actionRequest = ActionUtil.getWrappedActionRequest(
 			actionRequest, portletPreferences);
 
-		Enumeration<String> enu = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith(
 					PublicRenderParameterConfiguration.IGNORE_PREFIX) ||
@@ -704,10 +704,10 @@ public class PortletConfigurationPortlet extends MVCPortlet {
 
 		List<String> actionIds = new ArrayList<>();
 
-		Enumeration<String> enu = actionRequest.getParameterNames();
+		Enumeration<String> enumeration = actionRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith(roleId + ActionUtil.ACTION)) {
 				int pos = name.indexOf(ActionUtil.ACTION);

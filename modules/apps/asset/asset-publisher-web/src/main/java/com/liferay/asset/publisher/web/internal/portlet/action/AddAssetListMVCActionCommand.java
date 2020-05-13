@@ -122,10 +122,10 @@ public class AddAssetListMVCActionCommand extends BaseMVCActionCommand {
 
 		UnicodeProperties unicodeProperties = new UnicodeProperties(true);
 
-		Enumeration<String> names = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (names.hasMoreElements()) {
-			String name = names.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			String value = StringUtil.merge(
 				portletPreferences.getValues(name, null));

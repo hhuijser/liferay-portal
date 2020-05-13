@@ -186,10 +186,11 @@ public class ViewAuthorizationRequestMVCRenderCommand
 
 		Map<String, String> oAuth2Parameters = new HashMap<>();
 
-		Enumeration<String> names = httpServletRequest.getParameterNames();
+		Enumeration<String> enumeration =
+			httpServletRequest.getParameterNames();
 
-		while (names.hasMoreElements()) {
-			String name = names.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith("oauth2_")) {
 				oAuth2Parameters.put(

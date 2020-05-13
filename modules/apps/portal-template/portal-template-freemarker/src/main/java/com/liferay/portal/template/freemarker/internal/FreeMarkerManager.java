@@ -664,16 +664,17 @@ public class FreeMarkerManager extends BaseTemplateManager {
 		}
 
 		private Set<String> _getResourcePaths(String path) {
-			Enumeration<URL> entries = _bundle.findEntries(path, null, true);
+			Enumeration<URL> enumeration = _bundle.findEntries(
+				path, null, true);
 
-			if (entries == null) {
+			if (enumeration == null) {
 				return null;
 			}
 
 			Set<String> resourcePaths = new HashSet<>();
 
-			while (entries.hasMoreElements()) {
-				URL url = entries.nextElement();
+			while (enumeration.hasMoreElements()) {
+				URL url = enumeration.nextElement();
 
 				resourcePaths.add(url.getPath());
 			}

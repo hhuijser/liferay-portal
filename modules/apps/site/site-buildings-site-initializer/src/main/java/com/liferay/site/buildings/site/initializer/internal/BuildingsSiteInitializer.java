@@ -302,11 +302,11 @@ public class BuildingsSiteInitializer implements SiteInitializer {
 	}
 
 	private void _addJournalArticleDDMStructures() throws Exception {
-		Enumeration<URL> urls = _bundle.findEntries(
+		Enumeration<URL> enumeration = _bundle.findEntries(
 			_PATH + "/ddm", StringPool.STAR, false);
 
-		while (urls.hasMoreElements()) {
-			URL url = urls.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			Class<?> clazz = getClass();
 

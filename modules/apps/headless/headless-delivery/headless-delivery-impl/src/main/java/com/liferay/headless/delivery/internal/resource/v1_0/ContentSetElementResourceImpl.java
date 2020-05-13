@@ -86,11 +86,11 @@ public class ContentSetElementResourceImpl
 	private Context _createSegmentsContext() {
 		Context context = new Context();
 
-		Enumeration<String> headerNames =
+		Enumeration<String> enumeration =
 			contextHttpServletRequest.getHeaderNames();
 
-		while (headerNames.hasMoreElements()) {
-			String key = headerNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			String value = contextHttpServletRequest.getHeader(key);
 

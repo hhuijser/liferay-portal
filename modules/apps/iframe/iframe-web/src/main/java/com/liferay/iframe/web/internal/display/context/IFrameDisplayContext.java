@@ -187,10 +187,10 @@ public class IFrameDisplayContext {
 	public List<String> getIFrameVariables() {
 		List<String> iFrameVariables = new ArrayList<>();
 
-		Enumeration<String> enu = _request.getParameterNames();
+		Enumeration<String> enumeration = _request.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith(_IFRAME_PREFIX)) {
 				iFrameVariables.add(

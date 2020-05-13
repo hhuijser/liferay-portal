@@ -107,21 +107,21 @@ public class ConfigurationImpl implements Configuration {
 	public void postConstruct() {
 		_properties = new HashMap<>();
 
-		Enumeration<String> initParameterNames =
+		Enumeration<String> enumeration =
 			_portletConfig.getInitParameterNames();
 
-		while (initParameterNames.hasMoreElements()) {
-			String initParameterName = initParameterNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String initParameterName = enumeration.nextElement();
 
 			_properties.put(
 				initParameterName,
 				_portletConfig.getInitParameter(initParameterName));
 		}
 
-		initParameterNames = _portletContext.getInitParameterNames();
+		enumeration = _portletContext.getInitParameterNames();
 
-		while (initParameterNames.hasMoreElements()) {
-			String initParameterName = initParameterNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String initParameterName = enumeration.nextElement();
 
 			_properties.put(
 				initParameterName,

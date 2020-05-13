@@ -53,11 +53,11 @@ public class SpringScopedBeanManager {
 			StateAwareResponse stateAwareResponse =
 				(StateAwareResponse)_portletResponse;
 
-			Enumeration<String> attributeNames =
+			Enumeration<String> enumeration =
 				_portletRequest.getAttributeNames();
 
-			while (attributeNames.hasMoreElements()) {
-				String attributeName = attributeNames.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String attributeName = enumeration.nextElement();
 
 				if (!attributeName.startsWith(_ATTRIBUTE_NAME_PREFIX)) {
 					continue;
@@ -103,11 +103,11 @@ public class SpringScopedBeanManager {
 			PortletSession portletSession = _portletRequest.getPortletSession(
 				true);
 
-			Enumeration<String> attributeNames =
+			Enumeration<String> enumeration =
 				portletSession.getAttributeNames();
 
-			while (attributeNames.hasMoreElements()) {
-				String name = attributeNames.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String name = enumeration.nextElement();
 
 				Object value = portletSession.getAttribute(name);
 

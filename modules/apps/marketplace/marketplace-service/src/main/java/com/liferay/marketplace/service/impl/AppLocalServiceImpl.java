@@ -426,9 +426,9 @@ public class AppLocalServiceImpl extends AppLocalServiceBaseImpl {
 				"liferay-marketplace.properties");
 
 			if (zipEntry == null) {
-				Enumeration<? extends ZipEntry> zipEntries = zipFile.entries();
+				Enumeration<? extends ZipEntry> enumeration = zipFile.entries();
 
-				ZipEntry subsystemZipEntry = zipEntries.nextElement();
+				ZipEntry subsystemZipEntry = enumeration.nextElement();
 
 				if (StringUtil.endsWith(subsystemZipEntry.getName(), ".lpkg")) {
 					File file = null;

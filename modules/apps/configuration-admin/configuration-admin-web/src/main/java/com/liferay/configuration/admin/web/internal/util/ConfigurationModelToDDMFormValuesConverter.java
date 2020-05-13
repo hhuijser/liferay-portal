@@ -154,12 +154,12 @@ public class ConfigurationModelToDDMFormValuesConverter {
 
 		Dictionary<String, Object> properties = configuration.getProperties();
 
-		Enumeration<String> keys = properties.keys();
+		Enumeration<String> enumeration = properties.keys();
 
 		String attributeDefinitionID = attributeDefinition.getID();
 
-		while (keys.hasMoreElements()) {
-			if (attributeDefinitionID.equals(keys.nextElement())) {
+		while (enumeration.hasMoreElements()) {
+			if (attributeDefinitionID.equals(enumeration.nextElement())) {
 				return true;
 			}
 		}

@@ -1352,10 +1352,10 @@ public class PortletImportControllerImpl implements PortletImportController {
 		String[] dataPortletPreferences =
 			portletDataHandler.getDataPortletPreferences();
 
-		Enumeration<String> enu = jxPortletPreferences.getNames();
+		Enumeration<String> enumeration = jxPortletPreferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			String scopeType = portletDataContext.getScopeType();
 

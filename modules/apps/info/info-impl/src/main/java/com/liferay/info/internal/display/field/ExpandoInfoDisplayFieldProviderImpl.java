@@ -89,10 +89,10 @@ public class ExpandoInfoDisplayFieldProviderImpl
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
 			CompanyThreadLocal.getCompanyId(), className, 0L);
 
-		Enumeration<String> attributeNames = expandoBridge.getAttributeNames();
+		Enumeration<String> enumeration = expandoBridge.getAttributeNames();
 
-		while (attributeNames.hasMoreElements()) {
-			String attributeName = attributeNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String attributeName = enumeration.nextElement();
 
 			expandoInfoDisplayContributorFields.add(
 				new ExpandoInfoDisplayContributorField(

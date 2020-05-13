@@ -408,11 +408,10 @@ public class PortletParamProducer implements ApplicationContextAware {
 			HeaderParam.class);
 
 		if (headerParam != null) {
-			Enumeration<String> propertyNames =
-				portletRequest.getPropertyNames();
+			Enumeration<String> enumeration = portletRequest.getPropertyNames();
 
-			while (propertyNames.hasMoreElements()) {
-				String propertyName = propertyNames.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String propertyName = enumeration.nextElement();
 
 				if (Objects.equals(headerParam.value(), propertyName)) {
 					String headerValue = portletRequest.getProperty(

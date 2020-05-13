@@ -33,10 +33,10 @@ public class CustomFieldsUtil {
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
 			companyId, clazz.getName());
 
-		Enumeration<String> attributeNames = expandoBridge.getAttributeNames();
+		Enumeration<String> enumeration = expandoBridge.getAttributeNames();
 
-		while (attributeNames.hasMoreElements()) {
-			String attributeName = attributeNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String attributeName = enumeration.nextElement();
 
 			UnicodeProperties unicodeProperties =
 				expandoBridge.getAttributeProperties(attributeName);

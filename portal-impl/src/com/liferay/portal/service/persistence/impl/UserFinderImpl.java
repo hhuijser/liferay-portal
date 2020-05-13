@@ -406,10 +406,10 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 			queryPos.add(Boolean.FALSE);
 			queryPos.add(status);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -447,10 +447,10 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 
 			queryPos.add(userId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -594,10 +594,10 @@ public class UserFinderImpl extends UserFinderBaseImpl implements UserFinder {
 				}
 			}
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();

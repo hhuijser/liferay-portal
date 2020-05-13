@@ -306,10 +306,10 @@ public class OrganizationFinderImpl
 
 			int count = 0;
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Long l = itr.next();
+			while (iterator.hasNext()) {
+				Long l = iterator.next();
 
 				if (l != null) {
 					count += l.intValue();
@@ -365,10 +365,10 @@ public class OrganizationFinderImpl
 
 			int count = 0;
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Long l = itr.next();
+			while (iterator.hasNext()) {
+				Long l = iterator.next();
 
 				if (l != null) {
 					count += l.intValue();
@@ -620,11 +620,11 @@ public class OrganizationFinderImpl
 
 			List<Organization> organizations = new ArrayList<>();
 
-			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
+			Iterator<Long> iterator = (Iterator<Long>)QueryUtil.iterate(
 				sqlQuery, getDialect(), start, end);
 
-			while (itr.hasNext()) {
-				Long organizationId = itr.next();
+			while (iterator.hasNext()) {
+				Long organizationId = iterator.next();
 
 				Organization organization = OrganizationUtil.findByPrimaryKey(
 					organizationId.longValue());
@@ -684,12 +684,12 @@ public class OrganizationFinderImpl
 
 			List<Object> models = new ArrayList<>();
 
-			Iterator<Object[]> itr = (Iterator<Object[]>)QueryUtil.iterate(
+			Iterator<Object[]> iterator = (Iterator<Object[]>)QueryUtil.iterate(
 				sqlQuery, getDialect(), queryDefinition.getStart(),
 				queryDefinition.getEnd());
 
-			while (itr.hasNext()) {
-				Object[] array = itr.next();
+			while (iterator.hasNext()) {
+				Object[] array = iterator.next();
 
 				long organizationId = (Long)array[0];
 
@@ -737,10 +737,10 @@ public class OrganizationFinderImpl
 
 		queryPos.add(organizationId);
 
-		Iterator<Long> itr = sqlQuery.iterate();
+		Iterator<Long> iterator = sqlQuery.iterate();
 
-		if (itr.hasNext()) {
-			Long count = itr.next();
+		if (iterator.hasNext()) {
+			Long count = iterator.next();
 
 			if (count != null) {
 				return count.intValue();

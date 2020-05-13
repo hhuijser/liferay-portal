@@ -137,16 +137,16 @@ public class ChannelHubImpl implements ChannelHub {
 	public void destroy() throws ChannelException {
 		Set<Map.Entry<Long, Channel>> channels = _channels.entrySet();
 
-		Iterator<Map.Entry<Long, Channel>> itr = channels.iterator();
+		Iterator<Map.Entry<Long, Channel>> iterator = channels.iterator();
 
-		while (itr.hasNext()) {
-			Map.Entry<Long, Channel> entry = itr.next();
+		while (iterator.hasNext()) {
+			Map.Entry<Long, Channel> entry = iterator.next();
 
 			Channel channel = entry.getValue();
 
 			channel.close();
 
-			itr.remove();
+			iterator.remove();
 		}
 	}
 

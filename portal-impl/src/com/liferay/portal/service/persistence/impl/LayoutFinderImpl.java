@@ -143,10 +143,10 @@ public class LayoutFinderImpl
 
 			List<LayoutReference> layoutReferences = new ArrayList<>();
 
-			Iterator<Object[]> itr = sqlQuery.iterate();
+			Iterator<Object[]> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Object[] array = itr.next();
+			while (iterator.hasNext()) {
+				Object[] array = iterator.next();
 
 				Long layoutPlid = (Long)array[0];
 				String preferencesPortletId = (String)array[1];

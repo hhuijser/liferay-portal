@@ -159,13 +159,13 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 
 		themes = PluginUtil.restrictPlugins(themes, companyId, userId);
 
-		Iterator<Theme> itr = themes.iterator();
+		Iterator<Theme> iterator = themes.iterator();
 
-		while (itr.hasNext()) {
-			Theme theme = itr.next();
+		while (iterator.hasNext()) {
+			Theme theme = iterator.next();
 
 			if (!theme.isControlPanelTheme()) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -180,13 +180,13 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 
 		themes = PluginUtil.restrictPlugins(themes, companyId, userId);
 
-		Iterator<Theme> itr = themes.iterator();
+		Iterator<Theme> iterator = themes.iterator();
 
-		while (itr.hasNext()) {
-			Theme theme = itr.next();
+		while (iterator.hasNext()) {
+			Theme theme = iterator.next();
 
 			if (!theme.isPageTheme() || !theme.isGroupAvailable(groupId)) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -280,13 +280,13 @@ public class ThemeLocalServiceImpl extends ThemeLocalServiceBaseImpl {
 	public List<Theme> getWARThemes() {
 		List<Theme> themes = ListUtil.fromMapValues(_themes);
 
-		Iterator<Theme> itr = themes.iterator();
+		Iterator<Theme> iterator = themes.iterator();
 
-		while (itr.hasNext()) {
-			Theme theme = itr.next();
+		while (iterator.hasNext()) {
+			Theme theme = iterator.next();
 
 			if (!theme.isWARFile()) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

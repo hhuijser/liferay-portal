@@ -109,10 +109,10 @@ public class SocialActivityFinderImpl
 
 			queryPos.add(groupId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -146,10 +146,10 @@ public class SocialActivityFinderImpl
 
 			queryPos.add(groupId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -183,10 +183,10 @@ public class SocialActivityFinderImpl
 
 			queryPos.add(organizationId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -220,10 +220,10 @@ public class SocialActivityFinderImpl
 
 			queryPos.add(organizationId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -257,10 +257,10 @@ public class SocialActivityFinderImpl
 
 			queryPos.add(userId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -295,10 +295,10 @@ public class SocialActivityFinderImpl
 			queryPos.add(userId);
 			queryPos.add(type);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -334,10 +334,10 @@ public class SocialActivityFinderImpl
 			queryPos.add(userId);
 			queryPos.add(userId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -375,10 +375,10 @@ public class SocialActivityFinderImpl
 
 			int count = 0;
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Long l = itr.next();
+			while (iterator.hasNext()) {
+				Long l = iterator.next();
 
 				if (l != null) {
 					count += l.intValue();
@@ -412,10 +412,10 @@ public class SocialActivityFinderImpl
 
 			queryPos.add(userId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -668,11 +668,11 @@ public class SocialActivityFinderImpl
 
 			List<SocialActivity> socialActivities = new ArrayList<>();
 
-			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
+			Iterator<Long> iterator = (Iterator<Long>)QueryUtil.iterate(
 				sqlQuery, getDialect(), start, end);
 
-			while (itr.hasNext()) {
-				Long activityId = itr.next();
+			while (iterator.hasNext()) {
+				Long activityId = iterator.next();
 
 				SocialActivity socialActivity =
 					SocialActivityUtil.findByPrimaryKey(activityId);

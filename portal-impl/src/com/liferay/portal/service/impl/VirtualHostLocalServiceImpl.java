@@ -190,13 +190,13 @@ public class VirtualHostLocalServiceImpl
 			virtualHostPersistence.update(virtualHost);
 		}
 
-		Iterator<VirtualHost> itr = virtualHosts.iterator();
+		Iterator<VirtualHost> iterator = virtualHosts.iterator();
 
-		while (itr.hasNext()) {
-			VirtualHost virtualHost = itr.next();
+		while (iterator.hasNext()) {
+			VirtualHost virtualHost = iterator.next();
 
 			if (!hostnames.containsKey(virtualHost.getHostname())) {
-				itr.remove();
+				iterator.remove();
 
 				virtualHostPersistence.remove(virtualHost);
 			}

@@ -472,10 +472,10 @@ public class LicenseUtil {
 		Map<String, String> sortedMap = new TreeMap<>(
 			String.CASE_INSENSITIVE_ORDER);
 
-		Iterator<String> itr = productsJSONObject.keys();
+		Iterator<String> iterator = productsJSONObject.keys();
 
-		while (itr.hasNext()) {
-			String key = itr.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			sortedMap.put(key, productsJSONObject.getString(key));
 		}

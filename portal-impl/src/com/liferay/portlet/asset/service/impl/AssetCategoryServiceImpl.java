@@ -546,15 +546,15 @@ public class AssetCategoryServiceImpl extends AssetCategoryServiceBaseImpl {
 
 		categories = ListUtil.copy(categories);
 
-		Iterator<AssetCategory> itr = categories.iterator();
+		Iterator<AssetCategory> iterator = categories.iterator();
 
-		while (itr.hasNext()) {
-			AssetCategory category = itr.next();
+		while (iterator.hasNext()) {
+			AssetCategory category = iterator.next();
 
 			if (!AssetCategoryPermission.contains(
 					permissionChecker, category, ActionKeys.VIEW)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

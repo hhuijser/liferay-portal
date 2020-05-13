@@ -35,15 +35,15 @@ public class TransientTokenUtil {
 
 		Set<Map.Entry<Long, String>> tokens = _tokens.entrySet();
 
-		Iterator<Map.Entry<Long, String>> itr = tokens.iterator();
+		Iterator<Map.Entry<Long, String>> iterator = tokens.iterator();
 
-		while (itr.hasNext()) {
-			Map.Entry<Long, String> entry = itr.next();
+		while (iterator.hasNext()) {
+			Map.Entry<Long, String> entry = iterator.next();
 
 			String curToken = entry.getValue();
 
 			if (token.equals(curToken)) {
-				itr.remove();
+				iterator.remove();
 
 				return true;
 			}

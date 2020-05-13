@@ -196,17 +196,17 @@ public class UsersAdminImpl implements UsersAdmin {
 
 		List<Role> filteredGroupRoles = ListUtil.copy(roles);
 
-		Iterator<Role> itr = filteredGroupRoles.iterator();
+		Iterator<Role> iterator = filteredGroupRoles.iterator();
 
-		while (itr.hasNext()) {
-			Role groupRole = itr.next();
+		while (iterator.hasNext()) {
+			Role groupRole = iterator.next();
 
 			String roleName = groupRole.getName();
 
 			if (roleName.equals(RoleConstants.ORGANIZATION_USER) ||
 				roleName.equals(RoleConstants.SITE_MEMBER)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -227,10 +227,10 @@ public class UsersAdminImpl implements UsersAdmin {
 			return Collections.emptyList();
 		}
 
-		itr = filteredGroupRoles.iterator();
+		iterator = filteredGroupRoles.iterator();
 
-		while (itr.hasNext()) {
-			Role groupRole = itr.next();
+		while (iterator.hasNext()) {
+			Role groupRole = iterator.next();
 
 			String roleName = groupRole.getName();
 
@@ -242,7 +242,7 @@ public class UsersAdminImpl implements UsersAdmin {
 					permissionChecker, groupId, groupRole.getRoleId(),
 					ActionKeys.ASSIGN_MEMBERS)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -260,15 +260,15 @@ public class UsersAdminImpl implements UsersAdmin {
 
 		List<Group> filteredGroups = ListUtil.copy(groups);
 
-		Iterator<Group> itr = filteredGroups.iterator();
+		Iterator<Group> iterator = filteredGroups.iterator();
 
-		while (itr.hasNext()) {
-			Group group = itr.next();
+		while (iterator.hasNext()) {
+			Group group = iterator.next();
 
 			if (!GroupPermissionUtil.contains(
 					permissionChecker, group, ActionKeys.ASSIGN_MEMBERS)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -287,16 +287,16 @@ public class UsersAdminImpl implements UsersAdmin {
 
 		List<Organization> filteredOrganizations = ListUtil.copy(organizations);
 
-		Iterator<Organization> itr = filteredOrganizations.iterator();
+		Iterator<Organization> iterator = filteredOrganizations.iterator();
 
-		while (itr.hasNext()) {
-			Organization organization = itr.next();
+		while (iterator.hasNext()) {
+			Organization organization = iterator.next();
 
 			if (!OrganizationPermissionUtil.contains(
 					permissionChecker, organization,
 					ActionKeys.ASSIGN_MEMBERS)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -309,10 +309,10 @@ public class UsersAdminImpl implements UsersAdmin {
 
 		List<Role> filteredRoles = ListUtil.copy(roles);
 
-		Iterator<Role> itr = filteredRoles.iterator();
+		Iterator<Role> iterator = filteredRoles.iterator();
 
-		while (itr.hasNext()) {
-			Role role = itr.next();
+		while (iterator.hasNext()) {
+			Role role = iterator.next();
 
 			String roleName = role.getName();
 
@@ -322,7 +322,7 @@ public class UsersAdminImpl implements UsersAdmin {
 				roleName.equals(RoleConstants.SITE_MEMBER) ||
 				roleName.equals(RoleConstants.USER)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -330,16 +330,16 @@ public class UsersAdminImpl implements UsersAdmin {
 			return filteredRoles;
 		}
 
-		itr = filteredRoles.iterator();
+		iterator = filteredRoles.iterator();
 
-		while (itr.hasNext()) {
-			Role role = itr.next();
+		while (iterator.hasNext()) {
+			Role role = iterator.next();
 
 			if (!RolePermissionUtil.contains(
 					permissionChecker, role.getRoleId(),
 					ActionKeys.ASSIGN_MEMBERS)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -392,10 +392,10 @@ public class UsersAdminImpl implements UsersAdmin {
 		List<UserGroupRole> filteredUserGroupRoles = ListUtil.copy(
 			userGroupRoles);
 
-		Iterator<UserGroupRole> itr = filteredUserGroupRoles.iterator();
+		Iterator<UserGroupRole> iterator = filteredUserGroupRoles.iterator();
 
-		while (itr.hasNext()) {
-			UserGroupRole userGroupRole = itr.next();
+		while (iterator.hasNext()) {
+			UserGroupRole userGroupRole = iterator.next();
 
 			Role role = userGroupRole.getRole();
 
@@ -404,7 +404,7 @@ public class UsersAdminImpl implements UsersAdmin {
 			if (roleName.equals(RoleConstants.ORGANIZATION_USER) ||
 				roleName.equals(RoleConstants.SITE_MEMBER)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -412,16 +412,16 @@ public class UsersAdminImpl implements UsersAdmin {
 			return filteredUserGroupRoles;
 		}
 
-		itr = filteredUserGroupRoles.iterator();
+		iterator = filteredUserGroupRoles.iterator();
 
-		while (itr.hasNext()) {
-			UserGroupRole userGroupRole = itr.next();
+		while (iterator.hasNext()) {
+			UserGroupRole userGroupRole = iterator.next();
 
 			if (!UserGroupRolePermissionUtil.contains(
 					permissionChecker, userGroupRole.getGroupId(),
 					userGroupRole.getRoleId())) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -438,16 +438,16 @@ public class UsersAdminImpl implements UsersAdmin {
 
 		List<UserGroup> filteredUserGroups = ListUtil.copy(userGroups);
 
-		Iterator<UserGroup> itr = filteredUserGroups.iterator();
+		Iterator<UserGroup> iterator = filteredUserGroups.iterator();
 
-		while (itr.hasNext()) {
-			UserGroup userGroup = itr.next();
+		while (iterator.hasNext()) {
+			UserGroup userGroup = iterator.next();
 
 			if (!UserGroupPermissionUtil.contains(
 					permissionChecker, userGroup.getUserGroupId(),
 					ActionKeys.ASSIGN_MEMBERS)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

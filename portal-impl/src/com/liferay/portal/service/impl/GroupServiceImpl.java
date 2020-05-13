@@ -467,10 +467,10 @@ public class GroupServiceImpl extends GroupServiceBaseImpl {
 
 		List<Group> userSitesGroups = getUserSitesGroups(null, max);
 
-		Iterator<Group> itr = userSitesGroups.iterator();
+		Iterator<Group> iterator = userSitesGroups.iterator();
 
-		while (itr.hasNext()) {
-			Group group = itr.next();
+		while (iterator.hasNext()) {
+			Group group = iterator.next();
 
 			if (group.isSite() &&
 				PortletPermissionUtil.hasControlPanelAccessPermission(

@@ -217,13 +217,14 @@ public class ChannelImpl extends BaseChannelImpl {
 				return;
 			}
 
-			Iterator<NotificationEvent> itr = _notificationEvents.iterator();
+			Iterator<NotificationEvent> iterator =
+				_notificationEvents.iterator();
 
-			while (itr.hasNext()) {
-				NotificationEvent notificationEvent = itr.next();
+			while (iterator.hasNext()) {
+				NotificationEvent notificationEvent = iterator.next();
 
 				if (notificationEvent.getTimestamp() < timestamp) {
-					itr.remove();
+					iterator.remove();
 				}
 			}
 		}
@@ -298,15 +299,16 @@ public class ChannelImpl extends BaseChannelImpl {
 				return;
 			}
 
-			Iterator<NotificationEvent> itr = _notificationEvents.iterator();
+			Iterator<NotificationEvent> iterator =
+				_notificationEvents.iterator();
 
-			while (itr.hasNext()) {
-				NotificationEvent notificationEvent = itr.next();
+			while (iterator.hasNext()) {
+				NotificationEvent notificationEvent = iterator.next();
 
 				if (notificationEventUuidsSet.contains(
 						notificationEvent.getUuid())) {
 
-					itr.remove();
+					iterator.remove();
 				}
 			}
 		}
@@ -407,13 +409,14 @@ public class ChannelImpl extends BaseChannelImpl {
 			TreeSet<NotificationEvent> notificationEvents =
 				_getNotificationEvents();
 
-			Iterator<NotificationEvent> itr1 = notificationEvents.iterator();
+			Iterator<NotificationEvent> iterator1 =
+				notificationEvents.iterator();
 
-			while (itr1.hasNext()) {
-				NotificationEvent notificationEvent = itr1.next();
+			while (iterator1.hasNext()) {
+				NotificationEvent notificationEvent = iterator1.next();
 
 				if (isRemoveNotificationEvent(notificationEvent, currentTime)) {
-					itr1.remove();
+					iterator1.remove();
 				}
 			}
 
@@ -427,18 +430,18 @@ public class ChannelImpl extends BaseChannelImpl {
 				unconfirmedNotificationEventsSet =
 					unconfirmedNotificationEvents.entrySet();
 
-			Iterator<Map.Entry<String, NotificationEvent>> itr2 =
+			Iterator<Map.Entry<String, NotificationEvent>> iterator2 =
 				unconfirmedNotificationEventsSet.iterator();
 
-			while (itr2.hasNext()) {
-				Map.Entry<String, NotificationEvent> entry = itr2.next();
+			while (iterator2.hasNext()) {
+				Map.Entry<String, NotificationEvent> entry = iterator2.next();
 
 				NotificationEvent notificationEvent = entry.getValue();
 
 				if (isRemoveNotificationEvent(notificationEvent, currentTime)) {
 					invalidNotificationEventUuids.add(entry.getKey());
 
-					itr2.remove();
+					iterator2.remove();
 				}
 			}
 
@@ -496,11 +499,11 @@ public class ChannelImpl extends BaseChannelImpl {
 			unconfirmedNotificationEventsSet =
 				unconfirmedNotificationEvents.entrySet();
 
-		Iterator<Map.Entry<String, NotificationEvent>> itr =
+		Iterator<Map.Entry<String, NotificationEvent>> iterator =
 			unconfirmedNotificationEventsSet.iterator();
 
-		while (itr.hasNext()) {
-			Map.Entry<String, NotificationEvent> entry = itr.next();
+		while (iterator.hasNext()) {
+			Map.Entry<String, NotificationEvent> entry = iterator.next();
 
 			NotificationEvent notificationEvent = entry.getValue();
 
@@ -509,7 +512,7 @@ public class ChannelImpl extends BaseChannelImpl {
 
 				invalidNotificationEventUuids.add(notificationEvent.getUuid());
 
-				itr.remove();
+				iterator.remove();
 			}
 			else {
 				notificationEvents.add(entry.getValue());

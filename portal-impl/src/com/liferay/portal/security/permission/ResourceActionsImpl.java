@@ -687,13 +687,13 @@ public class ResourceActionsImpl implements ResourceActions {
 
 		// Guest default actions cannot reference guest unsupported actions
 
-		Iterator<String> itr = guestDefaultActions.iterator();
+		Iterator<String> iterator = guestDefaultActions.iterator();
 
-		while (itr.hasNext()) {
-			String actionId = itr.next();
+		while (iterator.hasNext()) {
+			String actionId = iterator.next();
 
 			if (guestUnsupportedActions.contains(actionId)) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 	}
@@ -755,14 +755,14 @@ public class ResourceActionsImpl implements ResourceActions {
 
 			});
 
-		Iterator<Element> itr = elements.iterator();
+		Iterator<Element> iterator = elements.iterator();
 
-		while (itr.hasNext()) {
-			Element modelNameElement = itr.next();
+		while (iterator.hasNext()) {
+			Element modelNameElement = iterator.next();
 
 			sb.append(modelNameElement.getTextTrim());
 
-			if (itr.hasNext()) {
+			if (iterator.hasNext()) {
 				sb.append(_COMPOSITE_MODEL_NAME_SEPARATOR);
 			}
 		}

@@ -626,20 +626,20 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 			return portlets;
 		}
 
-		Iterator<Portlet> itr = portlets.iterator();
+		Iterator<Portlet> iterator = portlets.iterator();
 
-		while (itr.hasNext()) {
-			Portlet portlet = itr.next();
+		while (iterator.hasNext()) {
+			Portlet portlet = iterator.next();
 
 			String portletId = portlet.getPortletId();
 
 			if (showPortal && portletId.equals(PortletKeys.PORTAL)) {
 			}
 			else if (!showPortal && portletId.equals(PortletKeys.PORTAL)) {
-				itr.remove();
+				iterator.remove();
 			}
 			else if (!showSystem && portlet.isSystem()) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -656,13 +656,13 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 	public List<Portlet> getScopablePortlets() {
 		List<Portlet> portlets = ListUtil.fromMapValues(_portletsMap);
 
-		Iterator<Portlet> itr = portlets.iterator();
+		Iterator<Portlet> iterator = portlets.iterator();
 
-		while (itr.hasNext()) {
-			Portlet portlet = itr.next();
+		while (iterator.hasNext()) {
+			Portlet portlet = iterator.next();
 
 			if (!portlet.isScopeable()) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -790,11 +790,10 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 
 			Set<Map.Entry<String, Portlet>> entrySet = _portletsMap.entrySet();
 
-			Iterator<Map.Entry<String, Portlet>> portletPoolsItr =
-				entrySet.iterator();
+			Iterator<Map.Entry<String, Portlet>> iterator = entrySet.iterator();
 
-			while (portletPoolsItr.hasNext()) {
-				Map.Entry<String, Portlet> entry = portletPoolsItr.next();
+			while (iterator.hasNext()) {
+				Map.Entry<String, Portlet> entry = iterator.next();
 
 				Portlet portletModel = entry.getValue();
 
@@ -810,7 +809,7 @@ public class PortletLocalServiceImpl extends PortletLocalServiceBaseImpl {
 					if (!Objects.equals(
 							portletModel.getPortletId(), portletId)) {
 
-						portletPoolsItr.remove();
+						iterator.remove();
 					}
 				}
 			}

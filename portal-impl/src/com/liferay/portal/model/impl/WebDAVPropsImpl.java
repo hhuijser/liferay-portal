@@ -146,10 +146,10 @@ public class WebDAVPropsImpl extends WebDAVPropsBaseImpl {
 
 		List<Element> elementsList = root.elements(qName);
 
-		Iterator<Element> itr = elementsList.iterator();
+		Iterator<Element> iterator = elementsList.iterator();
 
-		while (itr.hasNext()) {
-			Element el = itr.next();
+		while (iterator.hasNext()) {
+			Element el = iterator.next();
 
 			root.remove(el);
 		}

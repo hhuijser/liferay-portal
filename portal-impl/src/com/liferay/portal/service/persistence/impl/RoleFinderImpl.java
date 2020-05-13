@@ -174,10 +174,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			queryPos.add(groupId);
 			queryPos.add(userId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -242,10 +242,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			queryPos.add(groupId);
 			queryPos.add(userId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -704,10 +704,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 
 			Map<String, List<String>> roleMap = new HashMap<>();
 
-			Iterator<Object[]> itr = sqlQuery.iterate();
+			Iterator<Object[]> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Object[] array = itr.next();
+			while (iterator.hasNext()) {
+				Object[] array = iterator.next();
 
 				String roleName = (String)array[0];
 				String actionId = (String)array[1];
@@ -840,10 +840,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			queryPos.add(keywordsArray, 2);
 			queryPos.add(keywordsArray, 2);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -921,10 +921,10 @@ public class RoleFinderImpl extends RoleFinderBaseImpl implements RoleFinder {
 			queryPos.add(descriptions, 2);
 			queryPos.add(types);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();

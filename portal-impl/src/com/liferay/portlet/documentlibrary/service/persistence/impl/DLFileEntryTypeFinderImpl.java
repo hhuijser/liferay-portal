@@ -245,10 +245,10 @@ public class DLFileEntryTypeFinderImpl
 
 			int countValue = 0;
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Long count = itr.next();
+			while (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					countValue += count.intValue();
@@ -333,10 +333,10 @@ public class DLFileEntryTypeFinderImpl
 
 			int countValue = 0;
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			while (itr.hasNext()) {
-				Long count = itr.next();
+			while (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					countValue += count.intValue();

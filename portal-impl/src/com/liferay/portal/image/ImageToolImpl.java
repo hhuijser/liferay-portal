@@ -942,11 +942,11 @@ public class ImageToolImpl implements ImageTool {
 		ImageReaderSpi firstImageReaderSpi = null;
 		ImageReaderSpi secondImageReaderSpi = null;
 
-		Iterator<ImageReaderSpi> imageReaderSpis =
+		Iterator<ImageReaderSpi> iterator =
 			defaultIIORegistry.getServiceProviders(ImageReaderSpi.class, true);
 
-		while (imageReaderSpis.hasNext()) {
-			ImageReaderSpi imageReaderSpi = imageReaderSpis.next();
+		while (iterator.hasNext()) {
+			ImageReaderSpi imageReaderSpi = iterator.next();
 
 			if (imageReaderSpi instanceof CMYKJPEGImageReaderSpi) {
 				secondImageReaderSpi = imageReaderSpi;

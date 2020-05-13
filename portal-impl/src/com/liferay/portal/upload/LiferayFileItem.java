@@ -113,10 +113,10 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 	public String getHeader(String name) {
 		FileItemHeaders fileItemHeaders = getHeaders();
 
-		Iterator<String> itr = fileItemHeaders.getHeaders(name);
+		Iterator<String> iterator = fileItemHeaders.getHeaders(name);
 
-		if (itr.hasNext()) {
-			return itr.next();
+		if (iterator.hasNext()) {
+			return iterator.next();
 		}
 
 		return null;
@@ -128,9 +128,9 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 
 		FileItemHeaders fileItemHeaders = getHeaders();
 
-		Iterator<String> itr = fileItemHeaders.getHeaderNames();
+		Iterator<String> iterator = fileItemHeaders.getHeaderNames();
 
-		itr.forEachRemaining(headerNames::add);
+		iterator.forEachRemaining(headerNames::add);
 
 		return headerNames;
 	}
@@ -141,9 +141,9 @@ public class LiferayFileItem extends DiskFileItem implements FileItem {
 
 		FileItemHeaders fileItemHeaders = getHeaders();
 
-		Iterator<String> itr = fileItemHeaders.getHeaders(name);
+		Iterator<String> iterator = fileItemHeaders.getHeaders(name);
 
-		itr.forEachRemaining(headers::add);
+		iterator.forEachRemaining(headers::add);
 
 		return headers;
 	}

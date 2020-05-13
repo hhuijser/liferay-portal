@@ -116,10 +116,10 @@ public class AnnouncementsEntryFinderImpl
 				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -186,10 +186,10 @@ public class AnnouncementsEntryFinderImpl
 				queryPos.add(AnnouncementsFlagConstants.HIDDEN);
 			}
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();

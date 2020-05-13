@@ -172,13 +172,13 @@ public class PluginsGitSvnSyncer {
 
 		Collections.sort(ignores);
 
-		Iterator<String> itr = ignores.iterator();
+		Iterator<String> iterator = ignores.iterator();
 
-		while (itr.hasNext()) {
-			String ignore = itr.next();
+		while (iterator.hasNext()) {
+			String ignore = iterator.next();
 
 			if (ignore.equals("classes")) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

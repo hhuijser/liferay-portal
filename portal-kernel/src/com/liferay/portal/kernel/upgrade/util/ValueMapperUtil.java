@@ -39,17 +39,17 @@ public class ValueMapperUtil {
 					new FileWriter(
 						StringBundler.concat(tmpDir, "/", fileName, ".txt")))) {
 
-			Iterator<Object> itr = valueMapper.iterator();
+			Iterator<Object> iterator = valueMapper.iterator();
 
-			while (itr.hasNext()) {
-				Object oldValue = itr.next();
+			while (iterator.hasNext()) {
+				Object oldValue = iterator.next();
 
 				Object newValue = valueMapper.getNewValue(oldValue);
 
 				unsyncBufferedWriter.write(
 					oldValue + StringPool.EQUAL + newValue);
 
-				if (itr.hasNext()) {
+				if (iterator.hasNext()) {
 					unsyncBufferedWriter.write(StringPool.NEW_LINE);
 				}
 			}

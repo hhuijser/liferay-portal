@@ -170,16 +170,16 @@ public class AggregateClassLoader extends ClassLoader {
 		List<ClassLoader> classLoaders = new ArrayList<>(
 			_classLoaderReferences.size());
 
-		Iterator<EqualityWeakReference<ClassLoader>> itr =
+		Iterator<EqualityWeakReference<ClassLoader>> iterator =
 			_classLoaderReferences.iterator();
 
-		while (itr.hasNext()) {
-			WeakReference<ClassLoader> weakReference = itr.next();
+		while (iterator.hasNext()) {
+			WeakReference<ClassLoader> weakReference = iterator.next();
 
 			ClassLoader classLoader = weakReference.get();
 
 			if (classLoader == null) {
-				itr.remove();
+				iterator.remove();
 			}
 			else {
 				classLoaders.add(classLoader);

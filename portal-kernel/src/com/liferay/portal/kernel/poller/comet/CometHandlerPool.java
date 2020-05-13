@@ -61,11 +61,11 @@ public class CometHandlerPool {
 			Set<Map.Entry<String, CometHandler>> cometHandlers =
 				_cometHandlers.entrySet();
 
-			Iterator<Map.Entry<String, CometHandler>> itr =
+			Iterator<Map.Entry<String, CometHandler>> iterator =
 				cometHandlers.iterator();
 
-			while (itr.hasNext()) {
-				Map.Entry<String, CometHandler> entry = itr.next();
+			while (iterator.hasNext()) {
+				Map.Entry<String, CometHandler> entry = iterator.next();
 
 				CometHandler cometHandler = entry.getValue();
 
@@ -73,7 +73,7 @@ public class CometHandlerPool {
 					cometHandler.destroy();
 				}
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 		finally {

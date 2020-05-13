@@ -202,11 +202,11 @@ public class SetUtil {
 		return fromFile(new File(fileName));
 	}
 
-	public static <E> Set<E> fromIterator(Iterator<E> itr) {
+	public static <E> Set<E> fromIterator(Iterator<E> iterator) {
 		Set<E> set = new HashSet<>();
 
-		while (itr.hasNext()) {
-			set.add(itr.next());
+		while (iterator.hasNext()) {
+			set.add(iterator.next());
 		}
 
 		return set;

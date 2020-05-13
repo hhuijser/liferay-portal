@@ -106,13 +106,13 @@ public class ListUtil {
 
 		Set<E> set = new HashSet<>();
 
-		Iterator<? extends E> itr = list.iterator();
+		Iterator<? extends E> iterator = list.iterator();
 
-		while (itr.hasNext()) {
-			E obj = itr.next();
+		while (iterator.hasNext()) {
+			E obj = iterator.next();
 
 			if (!set.add(obj)) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

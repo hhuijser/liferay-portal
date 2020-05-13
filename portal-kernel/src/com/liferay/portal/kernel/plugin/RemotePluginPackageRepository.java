@@ -125,15 +125,15 @@ public class RemotePluginPackageRepository {
 			groupId, artifactId);
 
 		if (pluginPackages != null) {
-			Iterator<PluginPackage> itr = pluginPackages.iterator();
+			Iterator<PluginPackage> iterator = pluginPackages.iterator();
 
-			while (itr.hasNext()) {
-				PluginPackage pluginPackage = itr.next();
+			while (iterator.hasNext()) {
+				PluginPackage pluginPackage = iterator.next();
 
 				String pluginPackageModuleId = pluginPackage.getModuleId();
 
 				if (pluginPackageModuleId.equals(moduleId)) {
-					itr.remove();
+					iterator.remove();
 
 					break;
 				}

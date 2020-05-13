@@ -129,13 +129,13 @@ public class PortletCategory implements Serializable {
 			portletCategory.separate(portletIds);
 		}
 
-		Iterator<String> itr = _portletIds.iterator();
+		Iterator<String> iterator = _portletIds.iterator();
 
-		while (itr.hasNext()) {
-			String portletId = itr.next();
+		while (iterator.hasNext()) {
+			String portletId = iterator.next();
 
 			if (portletIds.contains(portletId)) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 	}

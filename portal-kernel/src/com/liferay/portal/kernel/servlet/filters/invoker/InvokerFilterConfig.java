@@ -52,15 +52,15 @@ public class InvokerFilterConfig implements FilterConfig {
 
 			@Override
 			public boolean hasMoreElements() {
-				return _keys.hasNext();
+				return _iterator.hasNext();
 			}
 
 			@Override
 			public String nextElement() {
-				return _keys.next();
+				return _iterator.next();
 			}
 
-			private final Iterator<String> _keys = _initParameterMap.keySet(
+			private final Iterator<String> _iterator = _initParameterMap.keySet(
 			).iterator();
 
 		};

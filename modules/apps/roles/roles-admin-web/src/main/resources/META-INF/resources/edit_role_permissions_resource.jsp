@@ -63,7 +63,7 @@ searchContainer.setResults(results);
 List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
 for (int i = 0; i < results.size(); i++) {
-	String actionId = (String)results.get(i);
+	String actionId = results.get(i);
 
 	if (role.getName().equals(RoleConstants.GUEST) && guestUnsupportedActions.contains(actionId)) {
 		continue;

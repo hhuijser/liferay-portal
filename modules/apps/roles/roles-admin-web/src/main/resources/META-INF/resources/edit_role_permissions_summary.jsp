@@ -118,7 +118,7 @@
 		List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
 		for (int i = 0; i < results.size(); i++) {
-			PermissionDisplay permissionDisplay = (PermissionDisplay)results.get(i);
+			PermissionDisplay permissionDisplay = results.get(i);
 
 			Permission permission = permissionDisplay.getPermission();
 

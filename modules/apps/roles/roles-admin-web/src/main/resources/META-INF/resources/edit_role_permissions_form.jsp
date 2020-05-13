@@ -103,7 +103,7 @@ if (Validator.isNotNull(portletResource)) {
 					modelResources = ListUtil.sort(modelResources, new ModelResourceWeightComparator());
 
 					for (int i = 0; i < modelResources.size(); i++) {
-						String curModelResource = (String)modelResources.get(i);
+						String curModelResource = modelResources.get(i);
 
 						String curModelResourceName = ResourceActionsUtil.getModelResource(request, curModelResource);
 					%>

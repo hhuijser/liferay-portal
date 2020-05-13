@@ -359,14 +359,14 @@ public class PortalHibernateConfiguration extends LocalSessionFactoryBean {
 		if (resource.startsWith("classpath*:")) {
 			String name = resource.substring("classpath*:".length());
 
-			Enumeration<URL> enu = classLoader.getResources(name);
+			Enumeration<URL> enumeration = classLoader.getResources(name);
 
-			if (_log.isDebugEnabled() && !enu.hasMoreElements()) {
+			if (_log.isDebugEnabled() && !enumeration.hasMoreElements()) {
 				_log.debug("No resources found for " + name);
 			}
 
-			while (enu.hasMoreElements()) {
-				URL url = enu.nextElement();
+			while (enumeration.hasMoreElements()) {
+				URL url = enumeration.nextElement();
 
 				InputStream inputStream = url.openStream();
 

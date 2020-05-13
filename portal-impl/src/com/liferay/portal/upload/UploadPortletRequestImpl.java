@@ -232,10 +232,10 @@ public class UploadPortletRequestImpl
 	public Map<String, String[]> getParameterMap() {
 		Map<String, String[]> map = new HashMap<>();
 
-		Enumeration<String> enu = getParameterNames();
+		Enumeration<String> enumeration = getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			map.put(name, getParameterValues(name));
 		}
@@ -247,10 +247,11 @@ public class UploadPortletRequestImpl
 	public Enumeration<String> getParameterNames() {
 		List<String> parameterNames = new ArrayList<>();
 
-		Enumeration<String> enu = _uploadServletRequest.getParameterNames();
+		Enumeration<String> enumeration =
+			_uploadServletRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith(_namespace)) {
 				parameterNames.add(name.substring(_namespace.length()));

@@ -507,10 +507,10 @@ public class UploadServletRequestImpl
 	public Map<String, String[]> getParameterMap() {
 		Map<String, String[]> map = new HashMap<>();
 
-		Enumeration<String> enu = getParameterNames();
+		Enumeration<String> enumeration = getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			String[] values = getParameterValues(name);
 
@@ -526,10 +526,10 @@ public class UploadServletRequestImpl
 	public Enumeration<String> getParameterNames() {
 		Set<String> parameterNames = new LinkedHashSet<>();
 
-		Enumeration<String> enu = super.getParameterNames();
+		Enumeration<String> enumeration = super.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			parameterNames.add(enu.nextElement());
+		while (enumeration.hasMoreElements()) {
+			parameterNames.add(enumeration.nextElement());
 		}
 
 		parameterNames.addAll(_regularParameters.keySet());

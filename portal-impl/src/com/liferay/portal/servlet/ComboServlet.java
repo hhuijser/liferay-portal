@@ -127,11 +127,11 @@ public class ComboServlet extends HttpServlet {
 		Map<String, String[]> parameterMap = HttpUtil.getParameterMap(
 			httpServletRequest.getQueryString());
 
-		Enumeration<String> enu = Collections.enumeration(
+		Enumeration<String> enumeration = Collections.enumeration(
 			parameterMap.keySet());
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (_protectedParameters.contains(name)) {
 				continue;

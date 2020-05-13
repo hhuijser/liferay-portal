@@ -118,10 +118,10 @@ public class PortletSessionImpl implements LiferayPortletSession {
 
 		List<String> attributeNames = new ArrayList<>();
 
-		Enumeration<String> enu = session.getAttributeNames();
+		Enumeration<String> enumeration = session.getAttributeNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith(scopePrefix)) {
 				name = name.substring(scopePrefix.length());

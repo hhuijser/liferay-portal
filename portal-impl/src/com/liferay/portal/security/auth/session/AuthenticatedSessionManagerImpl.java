@@ -460,17 +460,18 @@ public class AuthenticatedSessionManagerImpl
 
 		Map<String, String[]> headerMap = new HashMap<>();
 
-		Enumeration<String> enu1 = httpServletRequest.getHeaderNames();
+		Enumeration<String> enumeration1 = httpServletRequest.getHeaderNames();
 
-		while (enu1.hasMoreElements()) {
-			String name = enu1.nextElement();
+		while (enumeration1.hasMoreElements()) {
+			String name = enumeration1.nextElement();
 
-			Enumeration<String> enu2 = httpServletRequest.getHeaders(name);
+			Enumeration<String> enumeration2 = httpServletRequest.getHeaders(
+				name);
 
 			List<String> headers = new ArrayList<>();
 
-			while (enu2.hasMoreElements()) {
-				String value = enu2.nextElement();
+			while (enumeration2.hasMoreElements()) {
+				String value = enumeration2.nextElement();
 
 				headers.add(value);
 			}

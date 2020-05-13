@@ -50,10 +50,10 @@ public class PortletPreferencesSettings extends BaseModifiableSettings {
 	public Collection<String> getModifiedKeys() {
 		Set<String> keys = new HashSet<>();
 
-		Enumeration<String> names = _portletPreferences.getNames();
+		Enumeration<String> enumeration = _portletPreferences.getNames();
 
-		while (names.hasMoreElements()) {
-			keys.add(names.nextElement());
+		while (enumeration.hasMoreElements()) {
+			keys.add(enumeration.nextElement());
 		}
 
 		return keys;

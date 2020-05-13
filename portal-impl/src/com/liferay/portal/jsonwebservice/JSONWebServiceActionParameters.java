@@ -113,10 +113,11 @@ public class JSONWebServiceActionParameters {
 	private void _collectDefaultsFromRequestAttributes(
 		HttpServletRequest httpServletRequest) {
 
-		Enumeration<String> enu = httpServletRequest.getAttributeNames();
+		Enumeration<String> enumeration =
+			httpServletRequest.getAttributeNames();
 
-		while (enu.hasMoreElements()) {
-			String attributeName = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String attributeName = enumeration.nextElement();
 
 			Object value = httpServletRequest.getAttribute(attributeName);
 

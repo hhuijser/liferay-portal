@@ -420,10 +420,11 @@ public class ServiceContext implements Cloneable, Serializable {
 		if ((_headers == null) && (_httpServletRequest != null)) {
 			Map<String, String> headerMap = new HashMap<>();
 
-			Enumeration<String> enu = _httpServletRequest.getHeaderNames();
+			Enumeration<String> enumeration =
+				_httpServletRequest.getHeaderNames();
 
-			while (enu.hasMoreElements()) {
-				String header = enu.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String header = enumeration.nextElement();
 
 				String value = _httpServletRequest.getHeader(header);
 

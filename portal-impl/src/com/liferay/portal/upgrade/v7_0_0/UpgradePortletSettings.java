@@ -179,10 +179,11 @@ public abstract class UpgradePortletSettings extends UpgradeProcess {
 					PortletPreferencesFactoryUtil.fromDefaultXML(
 						portletPreferencesRow.getPreferences());
 
-				Enumeration<String> names = jxPortletPreferences.getNames();
+				Enumeration<String> enumeration =
+					jxPortletPreferences.getNames();
 
-				while (names.hasMoreElements()) {
-					String name = names.nextElement();
+				while (enumeration.hasMoreElements()) {
+					String name = enumeration.nextElement();
 
 					for (String key : settingsDescriptor.getAllKeys()) {
 						if (name.startsWith(key)) {

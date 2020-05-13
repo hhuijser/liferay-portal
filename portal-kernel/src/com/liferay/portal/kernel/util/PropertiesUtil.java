@@ -80,11 +80,11 @@ public class PropertiesUtil {
 
 		Properties newProperties = new Properties();
 
-		Enumeration<String> enu =
+		Enumeration<String> enumeration =
 			(Enumeration<String>)properties.propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String key = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			if (key.startsWith(prefix)) {
 				String value = properties.getProperty(key);
@@ -184,11 +184,11 @@ public class PropertiesUtil {
 	}
 
 	public static void merge(Properties properties1, Properties properties2) {
-		Enumeration<String> enu =
+		Enumeration<String> enumeration =
 			(Enumeration<String>)properties2.propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String key = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			String value = properties2.getProperty(key);
 
@@ -229,11 +229,11 @@ public class PropertiesUtil {
 			sb = new StringBundler(properties.size() * 4);
 		}
 
-		Enumeration<String> enu =
+		Enumeration<String> enumeration =
 			(Enumeration<String>)properties.propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String key = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			sb.append(key);
 
@@ -253,11 +253,11 @@ public class PropertiesUtil {
 	}
 
 	public static void trimKeys(Properties properties) {
-		Enumeration<String> enu =
+		Enumeration<String> enumeration =
 			(Enumeration<String>)properties.propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String key = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			String trimmedKey = key.trim();
 

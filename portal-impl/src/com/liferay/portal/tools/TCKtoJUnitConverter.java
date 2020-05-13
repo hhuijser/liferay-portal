@@ -137,11 +137,11 @@ public class TCKtoJUnitConverter {
 
 		Properties properties = new SortedProperties(System.getProperties());
 
-		Enumeration<String> keys =
+		Enumeration<String> enumeration =
 			(Enumeration<String>)properties.propertyNames();
 
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			String value = properties.getProperty(key);
 

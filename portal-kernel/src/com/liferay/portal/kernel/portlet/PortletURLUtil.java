@@ -386,10 +386,11 @@ public class PortletURLUtil {
 
 		PortletURL portletURL = liferayPortletResponse.createRenderURL();
 
-		Enumeration<String> enu = liferayPortletRequest.getParameterNames();
+		Enumeration<String> enumeration =
+			liferayPortletRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String param = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String param = enumeration.nextElement();
 
 			String[] values = liferayPortletRequest.getParameterValues(param);
 

@@ -2195,10 +2195,10 @@ public class StringUtil {
 		if (all) {
 			StringBundler sb = new StringBundler();
 
-			Enumeration<URL> enu = classLoader.getResources(name);
+			Enumeration<URL> enumeration = classLoader.getResources(name);
 
-			while (enu.hasMoreElements()) {
-				URL url = enu.nextElement();
+			while (enumeration.hasMoreElements()) {
+				URL url = enumeration.nextElement();
 
 				try (InputStream is = url.openStream()) {
 					String s = read(is);

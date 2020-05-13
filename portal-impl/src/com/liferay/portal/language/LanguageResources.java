@@ -239,14 +239,14 @@ public class LanguageResources {
 		try {
 			ClassLoader classLoader = LanguageResources.class.getClassLoader();
 
-			Enumeration<URL> enu = classLoader.getResources(name);
+			Enumeration<URL> enumeration = classLoader.getResources(name);
 
-			if (_log.isDebugEnabled() && !enu.hasMoreElements()) {
+			if (_log.isDebugEnabled() && !enumeration.hasMoreElements()) {
 				_log.debug("No resources found for " + name);
 			}
 
-			while (enu.hasMoreElements()) {
-				URL url = enu.nextElement();
+			while (enumeration.hasMoreElements()) {
+				URL url = enumeration.nextElement();
 
 				if (_log.isInfoEnabled()) {
 					_log.info(
@@ -405,10 +405,10 @@ public class LanguageResources {
 				locale = new Locale(StringPool.BLANK);
 			}
 
-			Enumeration<String> keys = resourceBundle.getKeys();
+			Enumeration<String> enumeration = resourceBundle.getKeys();
 
-			while (keys.hasMoreElements()) {
-				String key = keys.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String key = enumeration.nextElement();
 
 				String value = ResourceBundleUtil.getString(
 					resourceBundle, key);

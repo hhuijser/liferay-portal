@@ -31,10 +31,10 @@ public class DynamicFilterConfig implements FilterConfig {
 	public DynamicFilterConfig(FilterConfig filterConfig) {
 		this(null, null);
 
-		Enumeration<String> enu = filterConfig.getInitParameterNames();
+		Enumeration<String> enumeration = filterConfig.getInitParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			addInitParameter(name, filterConfig.getInitParameter(name));
 		}

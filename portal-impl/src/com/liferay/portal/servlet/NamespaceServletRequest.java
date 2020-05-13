@@ -93,10 +93,10 @@ public class NamespaceServletRequest extends DynamicServletRequest {
 	public Enumeration<String> getAttributeNames() {
 		List<String> names = new ArrayList<>();
 
-		Enumeration<String> enu = super.getAttributeNames();
+		Enumeration<String> enumeration = super.getAttributeNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.startsWith(_attrNamespace)) {
 				names.add(name.substring(_attrNamespace.length()));

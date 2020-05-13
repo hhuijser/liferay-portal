@@ -172,11 +172,13 @@ public class SetUtil {
 		return new HashSet<>(c);
 	}
 
-	public static <E> Set<E> fromEnumeration(Enumeration<? extends E> enu) {
+	public static <E> Set<E> fromEnumeration(
+		Enumeration<? extends E> enumeration) {
+
 		Set<E> set = new HashSet<>();
 
-		while (enu.hasMoreElements()) {
-			set.add(enu.nextElement());
+		while (enumeration.hasMoreElements()) {
+			set.add(enumeration.nextElement());
 		}
 
 		return set;

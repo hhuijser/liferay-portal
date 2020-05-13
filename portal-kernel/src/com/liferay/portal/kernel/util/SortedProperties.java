@@ -105,10 +105,10 @@ public class SortedProperties extends Properties {
 	public void list(PrintStream out) {
 		System.out.println("-- listing properties --");
 
-		Enumeration<String> enu = propertyNames();
+		Enumeration<String> enumeration = propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			out.println(name + StringPool.EQUAL + getProperty(name));
 		}
@@ -118,10 +118,10 @@ public class SortedProperties extends Properties {
 	public void list(PrintWriter out) {
 		System.out.println("-- listing properties --");
 
-		Enumeration<String> enu = propertyNames();
+		Enumeration<String> enumeration = propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			out.println(name + StringPool.EQUAL + getProperty(name));
 		}

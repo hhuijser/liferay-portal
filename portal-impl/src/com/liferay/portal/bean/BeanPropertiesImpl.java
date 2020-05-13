@@ -596,10 +596,11 @@ public class BeanPropertiesImpl implements BeanProperties {
 		Object bean, HttpServletRequest httpServletRequest,
 		String[] ignoreProperties) {
 
-		Enumeration<String> enu = httpServletRequest.getParameterNames();
+		Enumeration<String> enumeration =
+			httpServletRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (ArrayUtil.contains(ignoreProperties, name)) {
 				continue;

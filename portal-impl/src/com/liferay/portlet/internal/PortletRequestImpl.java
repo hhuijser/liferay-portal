@@ -158,15 +158,16 @@ public abstract class PortletRequestImpl implements LiferayPortletRequest {
 	public Enumeration<String> getAttributeNames() {
 		Set<String> names = new HashSet<>();
 
-		Enumeration<String> enu = _httpServletRequest.getAttributeNames();
+		Enumeration<String> enumeration =
+			_httpServletRequest.getAttributeNames();
 
-		_copyAttributeNames(names, enu);
+		_copyAttributeNames(names, enumeration);
 
 		if (_portletRequestDispatcherHttpServletRequest != null) {
-			enu =
+			enumeration =
 				_portletRequestDispatcherHttpServletRequest.getAttributeNames();
 
-			_copyAttributeNames(names, enu);
+			_copyAttributeNames(names, enumeration);
 		}
 
 		return Collections.enumeration(names);

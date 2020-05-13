@@ -2556,10 +2556,10 @@ public class ParamUtil {
 	 *        parameters
 	 */
 	public static void print(PortletRequest portletRequest) {
-		Enumeration<String> enu = portletRequest.getParameterNames();
+		Enumeration<String> enumeration = portletRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String param = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String param = enumeration.nextElement();
 
 			String[] values = portletRequest.getParameterValues(param);
 

@@ -63,26 +63,26 @@ public class SharedSessionWrapper implements HttpSession {
 	public Enumeration<String> getAttributeNames() {
 		HttpSession session = getSessionDelegate();
 
-		Enumeration<String> namesEnu = session.getAttributeNames();
+		Enumeration<String> namesEnumeration = session.getAttributeNames();
 
 		if (session == _portletSession) {
-			List<String> namesList = Collections.list(namesEnu);
+			List<String> namesList = Collections.list(namesEnumeration);
 
-			Enumeration<String> portalSessionNamesEnu =
+			Enumeration<String> portalSessionNamesEnumeration =
 				_portalSession.getAttributeNames();
 
-			while (portalSessionNamesEnu.hasMoreElements()) {
-				String name = portalSessionNamesEnu.nextElement();
+			while (portalSessionNamesEnumeration.hasMoreElements()) {
+				String name = portalSessionNamesEnumeration.nextElement();
 
 				if (containsSharedAttribute(name)) {
 					namesList.add(name);
 				}
 			}
 
-			namesEnu = Collections.enumeration(namesList);
+			namesEnumeration = Collections.enumeration(namesList);
 		}
 
-		return namesEnu;
+		return namesEnumeration;
 	}
 
 	@Override

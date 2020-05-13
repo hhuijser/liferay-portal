@@ -283,11 +283,13 @@ public class ListUtil {
 		return list;
 	}
 
-	public static <E> List<E> fromEnumeration(Enumeration<? extends E> enu) {
+	public static <E> List<E> fromEnumeration(
+		Enumeration<? extends E> enumeration) {
+
 		List<E> list = new ArrayList<>();
 
-		while (enu.hasMoreElements()) {
-			E obj = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			E obj = enumeration.nextElement();
 
 			list.add(obj);
 		}

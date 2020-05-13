@@ -85,16 +85,17 @@ public class InetAddressUtil {
 	}
 
 	public static InetAddress getLocalInetAddress() throws Exception {
-		Enumeration<NetworkInterface> enu1 =
+		Enumeration<NetworkInterface> enumeration1 =
 			NetworkInterface.getNetworkInterfaces();
 
-		while (enu1.hasMoreElements()) {
-			NetworkInterface networkInterface = enu1.nextElement();
+		while (enumeration1.hasMoreElements()) {
+			NetworkInterface networkInterface = enumeration1.nextElement();
 
-			Enumeration<InetAddress> enu2 = networkInterface.getInetAddresses();
+			Enumeration<InetAddress> enumeration2 =
+				networkInterface.getInetAddresses();
 
-			while (enu2.hasMoreElements()) {
-				InetAddress inetAddress = enu2.nextElement();
+			while (enumeration2.hasMoreElements()) {
+				InetAddress inetAddress = enumeration2.nextElement();
 
 				if (!inetAddress.isLoopbackAddress() &&
 					(inetAddress instanceof Inet4Address)) {

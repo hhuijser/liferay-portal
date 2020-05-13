@@ -63,10 +63,10 @@ public class HeaderFilter extends BasePortalFilter {
 
 		FilterConfig filterConfig = getFilterConfig();
 
-		Enumeration<String> enu = filterConfig.getInitParameterNames();
+		Enumeration<String> enumeration = filterConfig.getInitParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (!_requestHeaderIgnoreInitParams.contains(name)) {
 				_addHeader(

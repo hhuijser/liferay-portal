@@ -51,13 +51,14 @@ public class SessionClickAction implements Action {
 
 			HttpSession session = httpServletRequest.getSession();
 
-			Enumeration<String> enu = httpServletRequest.getParameterNames();
+			Enumeration<String> enumeration =
+				httpServletRequest.getParameterNames();
 
 			boolean useHttpSession = ParamUtil.getBoolean(
 				httpServletRequest, "useHttpSession");
 
-			while (enu.hasMoreElements()) {
-				String name = enu.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String name = enumeration.nextElement();
 
 				if (!name.equals("doAsUserId") && !name.equals("p_auth")) {
 					String value = ParamUtil.getString(

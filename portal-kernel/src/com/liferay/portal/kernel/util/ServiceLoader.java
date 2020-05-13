@@ -58,13 +58,13 @@ public class ServiceLoader {
 			Class<S> clazz)
 		throws Exception {
 
-		Enumeration<URL> enu = lookupClassLoader.getResources(
+		Enumeration<URL> enumeration = lookupClassLoader.getResources(
 			"META-INF/services/" + clazz.getName());
 
 		List<S> services = new ArrayList<>();
 
-		while (enu.hasMoreElements()) {
-			URL url = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			try {
 				_load(services, defineClassLoader, clazz, url);

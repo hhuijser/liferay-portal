@@ -261,10 +261,10 @@ public class PrefsPropsUtil {
 
 		Properties newProperties = new Properties();
 
-		Enumeration<String> enu = preferences.getNames();
+		Enumeration<String> enumeration = preferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String key = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			if (key.startsWith(prefix)) {
 				String value = preferences.getValue(key, StringPool.BLANK);

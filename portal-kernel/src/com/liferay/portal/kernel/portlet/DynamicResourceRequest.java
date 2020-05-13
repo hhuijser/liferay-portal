@@ -126,10 +126,10 @@ public class DynamicResourceRequest extends ResourceRequestWrapper {
 		Set<String> names = new LinkedHashSet<>();
 
 		if (_inherit) {
-			Enumeration<String> enu = super.getParameterNames();
+			Enumeration<String> enumeration = super.getParameterNames();
 
-			while (enu.hasMoreElements()) {
-				names.add(enu.nextElement());
+			while (enumeration.hasMoreElements()) {
+				names.add(enumeration.nextElement());
 			}
 		}
 

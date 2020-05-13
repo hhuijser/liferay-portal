@@ -257,11 +257,11 @@ public class DataSourceFactoryImpl implements DataSourceFactory {
 			comboPooledDataSource.setProperties(connectionProperties);
 		}
 
-		Enumeration<String> enu =
+		Enumeration<String> enumeration =
 			(Enumeration<String>)properties.propertyNames();
 
-		while (enu.hasMoreElements()) {
-			String key = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			String value = properties.getProperty(key);
 

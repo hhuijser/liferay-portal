@@ -94,11 +94,11 @@ public class PortletRenderer {
 
 		Map<String, Object> headerRequestAttributes = new HashMap<>();
 
-		Enumeration<String> attributeNames =
+		Enumeration<String> enumeration =
 			httpServletRequest.getAttributeNames();
 
-		while (attributeNames.hasMoreElements()) {
-			String attributeName = attributeNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String attributeName = enumeration.nextElement();
 
 			if (attributeName.contains(
 					"javax.portlet.faces.renderResponseOutput")) {

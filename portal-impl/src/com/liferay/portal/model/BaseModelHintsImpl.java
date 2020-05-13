@@ -71,14 +71,17 @@ public abstract class BaseModelHintsImpl implements ModelHints {
 				if (config.startsWith("classpath*:")) {
 					String name = config.substring("classpath*:".length());
 
-					Enumeration<URL> enu = classLoader.getResources(name);
+					Enumeration<URL> enumeration = classLoader.getResources(
+						name);
 
-					if (_log.isDebugEnabled() && !enu.hasMoreElements()) {
+					if (_log.isDebugEnabled() &&
+						!enumeration.hasMoreElements()) {
+
 						_log.debug("No resources found for " + name);
 					}
 
-					while (enu.hasMoreElements()) {
-						URL url = enu.nextElement();
+					while (enumeration.hasMoreElements()) {
+						URL url = enumeration.nextElement();
 
 						if (_log.isDebugEnabled()) {
 							_log.debug(

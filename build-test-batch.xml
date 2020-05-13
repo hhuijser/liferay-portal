@@ -6187,7 +6187,10 @@ information. Make sure to commit in all build services results.
 				<var name="format.current.branch" value="true" />
 
 				<if>
-					<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
+					<or>
+						<contains string="${git.diff}" substring="modules${file.separator}util${file.separator}source-formatter" />
+						<contains string="${git.diff}" substring="source-formatter.properties" />
+					</or>
 					<then>
 						<var name="format.current.branch" value="false" />
 

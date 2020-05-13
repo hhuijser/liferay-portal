@@ -2,6 +2,7 @@
 
 <suppressions>
 	<checkstyle>
+		<suppress checks="CamelCaseNameCheck" />
 		<suppress checks="ConstantNameCheck" />
 		<suppress checks="MemberNameCheck" />
 		<suppress checks="MethodNameCheck" />

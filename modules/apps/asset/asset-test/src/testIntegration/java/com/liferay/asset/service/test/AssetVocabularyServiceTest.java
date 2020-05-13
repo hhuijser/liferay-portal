@@ -306,7 +306,6 @@ public class AssetVocabularyServiceTest {
 		Assert.assertEquals(vocabularies.toString(), 1, vocabularies.size());
 	}
 
-	@Test
 	public void testLocalizedSiteAddDefaultVocabulary() throws Exception {
 		LocaleThreadLocal.setSiteDefaultLocale(LocaleUtil.SPAIN);
 

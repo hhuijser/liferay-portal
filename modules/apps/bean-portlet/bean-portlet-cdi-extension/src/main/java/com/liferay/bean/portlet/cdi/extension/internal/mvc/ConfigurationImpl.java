@@ -40,21 +40,20 @@ public class ConfigurationImpl implements Configuration {
 
 		_properties = new HashMap<>();
 
-		Enumeration<String> initParameterNames =
-			portletConfig.getInitParameterNames();
+		Enumeration<String> enumeration = portletConfig.getInitParameterNames();
 
-		while (initParameterNames.hasMoreElements()) {
-			String initParameterName = initParameterNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String initParameterName = enumeration.nextElement();
 
 			_properties.put(
 				initParameterName,
 				portletConfig.getInitParameter(initParameterName));
 		}
 
-		initParameterNames = portletContext.getInitParameterNames();
+		enumeration = portletContext.getInitParameterNames();
 
-		while (initParameterNames.hasMoreElements()) {
-			String initParameterName = initParameterNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String initParameterName = enumeration.nextElement();
 
 			_properties.put(
 				initParameterName,

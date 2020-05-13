@@ -229,10 +229,10 @@ public class EditQuestionMVCActionCommand extends BaseMVCActionCommand {
 
 		Set<String> readParameters = new HashSet<>();
 
-		Enumeration<String> enu = actionRequest.getParameterNames();
+		Enumeration<String> enumeration = actionRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String param = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String param = enumeration.nextElement();
 
 			if (!param.startsWith(CHOICE_DESCRIPTION_PREFIX)) {
 				continue;

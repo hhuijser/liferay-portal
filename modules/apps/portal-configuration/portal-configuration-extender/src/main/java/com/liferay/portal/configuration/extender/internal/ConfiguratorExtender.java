@@ -197,15 +197,15 @@ public class ConfiguratorExtender implements BundleTrackerCustomizer<Bundle> {
 			propertyFunction,
 		String filePattern) {
 
-		Enumeration<URL> entries = bundle.findEntries(
+		Enumeration<URL> enumeration = bundle.findEntries(
 			configurationPath, filePattern, true);
 
-		if (entries == null) {
+		if (enumeration == null) {
 			return;
 		}
 
-		while (entries.hasMoreElements()) {
-			URL url = entries.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			String name = url.getFile();
 

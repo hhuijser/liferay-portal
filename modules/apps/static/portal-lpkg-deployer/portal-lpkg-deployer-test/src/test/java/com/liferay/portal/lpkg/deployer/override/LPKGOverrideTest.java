@@ -81,11 +81,11 @@ public class LPKGOverrideTest {
 
 			for (Path lpkgPath : directoryStream) {
 				try (ZipFile zipFile = new ZipFile(lpkgPath.toFile())) {
-					Enumeration<? extends ZipEntry> zipEntries =
+					Enumeration<? extends ZipEntry> enumeration =
 						zipFile.entries();
 
-					while (zipEntries.hasMoreElements()) {
-						ZipEntry zipEntry = zipEntries.nextElement();
+					while (enumeration.hasMoreElements()) {
+						ZipEntry zipEntry = enumeration.nextElement();
 
 						String name = zipEntry.getName();
 

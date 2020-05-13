@@ -437,10 +437,10 @@ public class ConfigurationPersistenceManager
 
 		Dictionary<Object, Object> newDictionary = new HashMapDictionary<>();
 
-		Enumeration<?> keys = dictionary.keys();
+		Enumeration<?> enumeration = dictionary.keys();
 
-		while (keys.hasMoreElements()) {
-			Object key = keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			Object key = enumeration.nextElement();
 
 			newDictionary.put(key, dictionary.get(key));
 		}

@@ -88,10 +88,10 @@ public class MVCContextImpl implements MvcContext {
 
 		Map<String, String> headerMap = new HashMap<>();
 
-		Enumeration<String> propertyNames = _portletRequest.getPropertyNames();
+		Enumeration<String> enumeration = _portletRequest.getPropertyNames();
 
-		while (propertyNames.hasMoreElements()) {
-			String header = propertyNames.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String header = enumeration.nextElement();
 
 			headerMap.put(header, _portletRequest.getProperty(header));
 		}

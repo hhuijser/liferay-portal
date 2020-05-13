@@ -186,10 +186,10 @@ public class SamlProviderConfigurationHelperImpl
 			Dictionary<String, ?> systemProperties = getSystemProperties();
 
 			if (systemProperties != null) {
-				Enumeration<String> keys = systemProperties.keys();
+				Enumeration<String> enumeration = systemProperties.keys();
 
-				while (keys.hasMoreElements()) {
-					String key = keys.nextElement();
+				while (enumeration.hasMoreElements()) {
+					String key = enumeration.nextElement();
 
 					configurationProperties.put(key, systemProperties.get(key));
 				}

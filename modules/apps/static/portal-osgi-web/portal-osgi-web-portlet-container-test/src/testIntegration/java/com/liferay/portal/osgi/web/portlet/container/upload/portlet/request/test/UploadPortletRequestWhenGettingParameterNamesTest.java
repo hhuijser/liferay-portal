@@ -84,10 +84,10 @@ public class UploadPortletRequestWhenGettingParameterNamesTest {
 					fileParameters, regularParameters),
 				null, _portletNamespace);
 
-		Enumeration<String> parameterNames =
+		Enumeration<String> enumeration =
 			uploadPortletRequest.getParameterNames();
 
-		List<String> parameterNamesList = Collections.list(parameterNames);
+		List<String> parameterNamesList = Collections.list(enumeration);
 
 		for (Map.Entry<String, List<String>> entry :
 				regularParameters.entrySet()) {

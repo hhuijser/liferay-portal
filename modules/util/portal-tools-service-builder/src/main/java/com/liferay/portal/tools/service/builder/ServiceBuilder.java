@@ -388,10 +388,10 @@ public class ServiceBuilder {
 			if (config.startsWith("classpath*:")) {
 				String name = config.substring("classpath*:".length());
 
-				Enumeration<URL> enu = classLoader.getResources(name);
+				Enumeration<URL> enumeration = classLoader.getResources(name);
 
-				while (enu.hasMoreElements()) {
-					URL url = enu.nextElement();
+				while (enumeration.hasMoreElements()) {
+					URL url = enumeration.nextElement();
 
 					InputStream inputStream = url.openStream();
 
@@ -401,11 +401,11 @@ public class ServiceBuilder {
 				}
 			}
 			else {
-				Enumeration<URL> urls = classLoader.getResources(config);
+				Enumeration<URL> enumeration = classLoader.getResources(config);
 
-				if (urls.hasMoreElements()) {
-					while (urls.hasMoreElements()) {
-						URL url = urls.nextElement();
+				if (enumeration.hasMoreElements()) {
+					while (enumeration.hasMoreElements()) {
+						URL url = enumeration.nextElement();
 
 						try (InputStream inputStream = url.openStream()) {
 							_readResourceActionModels(

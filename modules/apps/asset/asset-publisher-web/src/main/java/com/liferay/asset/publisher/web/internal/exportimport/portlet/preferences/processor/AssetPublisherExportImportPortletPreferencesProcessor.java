@@ -746,10 +746,10 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 		Portlet portlet = portletLocalService.getPortletById(
 			portletDataContext.getCompanyId(), portletId);
 
-		Enumeration<String> enu = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			String value = GetterUtil.getString(
 				portletPreferences.getValue(name, null));
@@ -1058,10 +1058,10 @@ public class AssetPublisherExportImportPortletPreferencesProcessor
 		String anyAssetTypeClassName = portletPreferences.getValue(
 			"anyAssetType", StringPool.BLANK);
 
-		Enumeration<String> enu = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			String value = GetterUtil.getString(
 				portletPreferences.getValue(name, null));

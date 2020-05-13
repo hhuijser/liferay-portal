@@ -295,7 +295,7 @@ public class LDAPAuth implements Authenticator {
 			return FAILURE;
 		}
 
-		NamingEnumeration<SearchResult> enu = null;
+		NamingEnumeration<SearchResult> enumeration = null;
 
 		try {
 			LDAPServerConfiguration ldapServerConfiguration =
@@ -346,7 +346,7 @@ public class LDAPAuth implements Authenticator {
 				LDAPUtil.getBaseDNSafeLdapName(ldapServerConfiguration),
 				authSearchSafeLdapFilterTemplate, searchControls);
 
-			if (!enu.hasMoreElements()) {
+			if (!enumeration.hasMoreElements()) {
 				if (_log.isDebugEnabled()) {
 					_log.debug(
 						"No results found with search filter: " +
@@ -362,7 +362,7 @@ public class LDAPAuth implements Authenticator {
 						authSearchSafeLdapFilterTemplate);
 			}
 
-			SearchResult searchResult = enu.nextElement();
+			SearchResult searchResult = enumeration.nextElement();
 
 			Attributes attributes = _portalLDAP.getUserAttributes(
 				ldapServerId, companyId, safeLdapContext,

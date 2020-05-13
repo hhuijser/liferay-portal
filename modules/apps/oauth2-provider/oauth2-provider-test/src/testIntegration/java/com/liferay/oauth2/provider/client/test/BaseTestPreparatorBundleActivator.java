@@ -332,10 +332,10 @@ public abstract class BaseTestPreparatorBundleActivator
 			return false;
 		}
 
-		Enumeration<String> keys = properties1.keys();
+		Enumeration<String> enumeration = properties1.keys();
 
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			if (!Objects.deepEquals(
 					properties1.get(key), properties2.get(key))) {

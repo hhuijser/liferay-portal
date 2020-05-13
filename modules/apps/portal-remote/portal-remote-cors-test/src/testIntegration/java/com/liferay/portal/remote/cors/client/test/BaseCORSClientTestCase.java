@@ -181,10 +181,10 @@ public abstract class BaseCORSClientTestCase {
 							return;
 						}
 
-						Enumeration<String> keys = properties.keys();
+						Enumeration<String> enumeration = properties.keys();
 
-						while (keys.hasMoreElements()) {
-							String key = keys.nextElement();
+						while (enumeration.hasMoreElements()) {
+							String key = enumeration.nextElement();
 
 							if (!Objects.deepEquals(
 									properties.get(key),

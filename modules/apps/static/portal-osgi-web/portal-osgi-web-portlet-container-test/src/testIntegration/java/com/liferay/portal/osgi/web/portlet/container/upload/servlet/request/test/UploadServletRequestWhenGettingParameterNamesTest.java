@@ -81,10 +81,10 @@ public class UploadServletRequestWhenGettingParameterNamesTest {
 				(HttpServletRequest)liferayServletRequest.getRequest(),
 				fileParameters, regularParameters);
 
-		Enumeration<String> parameterNames =
+		Enumeration<String> enumeration =
 			uploadServletRequestImpl.getParameterNames();
 
-		List<String> parameterNamesList = Collections.list(parameterNames);
+		List<String> parameterNamesList = Collections.list(enumeration);
 
 		for (Map.Entry<String, List<String>> entry :
 				regularParameters.entrySet()) {

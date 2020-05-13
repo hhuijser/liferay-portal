@@ -251,10 +251,10 @@ public class BindConfigurationMVCActionCommand implements MVCActionCommand {
 						configuration.getProperties());
 			}
 
-			Enumeration<String> keys = properties.keys();
+			Enumeration<String> enumeration = properties.keys();
 
-			while (keys.hasMoreElements()) {
-				String key = keys.nextElement();
+			while (enumeration.hasMoreElements()) {
+				String key = enumeration.nextElement();
 
 				Object value = properties.get(key);
 

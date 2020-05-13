@@ -185,10 +185,10 @@ public class AssetCategoriesNavigationPortletPreferencesProcessor
 		Portlet portlet = _portletLocalService.getPortletById(
 			portletDataContext.getCompanyId(), portletId);
 
-		Enumeration<String> enu = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.equals("assetVocabularyIds")) {
 				updateExportPortletPreferencesClassPKs(
@@ -210,10 +210,10 @@ public class AssetCategoriesNavigationPortletPreferencesProcessor
 
 		Group companyGroup = company.getGroup();
 
-		Enumeration<String> enu = portletPreferences.getNames();
+		Enumeration<String> enumeration = portletPreferences.getNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (name.equals("assetVocabularyIds")) {
 				updateImportPortletPreferencesClassPKs(

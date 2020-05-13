@@ -84,10 +84,10 @@ public class DirectoryOpenSearchImpl extends HitsOpenSearchImpl {
 		ExpandoBridge expandoBridge = ExpandoBridgeFactoryUtil.getExpandoBridge(
 			companyId, User.class.getName());
 
-		Enumeration<String> enu = expandoBridge.getAttributeNames();
+		Enumeration<String> enumeration = expandoBridge.getAttributeNames();
 
-		while (enu.hasMoreElements()) {
-			String attributeName = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String attributeName = enumeration.nextElement();
 
 			UnicodeProperties unicodeProperties =
 				expandoBridge.getAttributeProperties(attributeName);

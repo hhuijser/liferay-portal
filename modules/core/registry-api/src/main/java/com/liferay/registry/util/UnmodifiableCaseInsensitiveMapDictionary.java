@@ -33,13 +33,13 @@ public class UnmodifiableCaseInsensitiveMapDictionary<V>
 			_map = Collections.unmodifiableMap(map);
 		}
 
-		_keys = Collections.enumeration(_map.keySet());
-		_elements = Collections.enumeration(_map.values());
+		_keysEnumeration = Collections.enumeration(_map.keySet());
+		_elementsEnumeration = Collections.enumeration(_map.values());
 	}
 
 	@Override
 	public Enumeration<V> elements() {
-		return _elements;
+		return _elementsEnumeration;
 	}
 
 	@Override
@@ -66,7 +66,7 @@ public class UnmodifiableCaseInsensitiveMapDictionary<V>
 
 	@Override
 	public Enumeration<String> keys() {
-		return _keys;
+		return _keysEnumeration;
 	}
 
 	@Override
@@ -84,8 +84,8 @@ public class UnmodifiableCaseInsensitiveMapDictionary<V>
 		return _map.size();
 	}
 
-	private final Enumeration<V> _elements;
-	private final Enumeration<String> _keys;
+	private final Enumeration<V> _elementsEnumeration;
+	private final Enumeration<String> _keysEnumeration;
 	private final Map<String, V> _map;
 
 }

@@ -120,10 +120,10 @@ public class UpdateWorkflowDefinitionLinkMVCActionCommand
 		String className = StringPool.BLANK;
 		String workflowDefinition = StringPool.BLANK;
 
-		Enumeration<String> enu = actionRequest.getParameterNames();
+		Enumeration<String> enumeration = actionRequest.getParameterNames();
 
-		while (enu.hasMoreElements()) {
-			String name = enu.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String name = enumeration.nextElement();
 
 			if (!name.startsWith(_PREFIX)) {
 				continue;

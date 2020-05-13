@@ -62,12 +62,12 @@ public class KeyStoreLoaderImpl implements KeyStoreLoader {
 	}
 
 	protected void dumpKeyStore(KeyStore keyStore) throws KeyStoreException {
-		Enumeration<String> aliases = keyStore.aliases();
+		Enumeration<String> enumeration = keyStore.aliases();
 
 		Log log = SanitizerLogWrapper.allowCRLF(_log);
 
-		while (aliases.hasMoreElements()) {
-			String alias = aliases.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String alias = enumeration.nextElement();
 
 			boolean certificateEntry = keyStore.isCertificateEntry(alias);
 

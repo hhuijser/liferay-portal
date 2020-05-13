@@ -357,10 +357,10 @@ public class RulesEngineImpl implements RulesEngine {
 
 		Map<String, String> rulesLanguageMap = new HashMap<>();
 
-		Enumeration<String> keys = properties.keys();
+		Enumeration<String> enumeration = properties.keys();
 
-		while (keys.hasMoreElements()) {
-			String key = keys.nextElement();
+		while (enumeration.hasMoreElements()) {
+			String key = enumeration.nextElement();
 
 			if (!key.startsWith("rules.engine.language.mapping")) {
 				continue;

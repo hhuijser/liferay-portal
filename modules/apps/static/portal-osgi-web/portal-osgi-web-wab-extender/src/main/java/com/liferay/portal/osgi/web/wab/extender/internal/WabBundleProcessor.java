@@ -185,11 +185,11 @@ public class WabBundleProcessor {
 
 				Map<String, Object> attributes = new HashMap<>();
 
-				Enumeration<String> attributeNames =
+				Enumeration<String> enumeration =
 					servletContext.getAttributeNames();
 
-				while (attributeNames.hasMoreElements()) {
-					String attributeName = attributeNames.nextElement();
+				while (enumeration.hasMoreElements()) {
+					String attributeName = enumeration.nextElement();
 
 					attributes.put(
 						attributeName,
@@ -644,17 +644,17 @@ public class WabBundleProcessor {
 			Set<Class<?>> annotatedClasses)
 		throws IOException {
 
-		Enumeration<URL> initializerResources = bundle.getResources(
+		Enumeration<URL> enumeration = bundle.getResources(
 			"META-INF/services/javax.servlet.ServletContainerInitializer");
 
-		if (initializerResources == null) {
+		if (enumeration == null) {
 			return;
 		}
 
 		BundleWiring bundleWiring = bundle.adapt(BundleWiring.class);
 
-		while (initializerResources.hasMoreElements()) {
-			URL url = initializerResources.nextElement();
+		while (enumeration.hasMoreElements()) {
+			URL url = enumeration.nextElement();
 
 			try (InputStream inputStream = url.openStream()) {
 				Collection<String> fqcns = new ArrayList<>();

@@ -37,6 +37,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 
 		content = _fixIncorrectClosingTag(content);
 
+		content = _fixIncorrectMethodCall(fileName, content);
+
 		content = _fixIncorrectSingleLineJavaSource(content);
 
 		content = StringUtil.replace(
@@ -83,6 +85,28 @@ public class JSPStylingCheck extends BaseStylingCheck {
 			return StringUtil.replaceFirst(
 				content, " />\n", "\n" + matcher.group(1) + "/>\n",
 				matcher.end(1));
+		}
+
+		return content;
+	}
+
+	private String _fixIncorrectMethodCall(String fileName, String content) {
+		Matcher matcher = _incorrectMethodCallPattern.matcher(content);
+
+		while (matcher.find()) {
+			String variableTypeName = getVariableTypeName(
+				content, content, matcher.group(1));
+
+			if ((variableTypeName != null) &&
+				variableTypeName.equals("LiferayPortletResponse")) {
+
+				return content;
+			}
+
+			addMessage(
+				fileName,
+				"Use tyep of 'LiferayPortletResponse' to call 'getNamespace()'",
+				getLineNumber(content, matcher.start()));
 		}
 
 		return content;
@@ -153,6 +177,8 @@ public class JSPStylingCheck extends BaseStylingCheck {
 		"=(\n\\s*).*;\n");
 	private static final Pattern _incorrectLineBreakPattern3 = Pattern.compile(
 		"(\n(\t*)<(\\w+)>)(<\\w+>.*)(</\\3>\n)");
+	private static final Pattern _incorrectMethodCallPattern = Pattern.compile(
+		"\\b(?!liferayPortlet)(\\w+Response)\\.getNamespace\\(\\)");
 	private static final Pattern _incorrectSingleLineJavaSourcePattern =
 		Pattern.compile("(\t*)(<% (.*) %>)\n");
 

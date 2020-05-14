@@ -78,7 +78,10 @@ public class GenericTypeCheck extends BaseCheck {
 			List<DetailAST> typeArgumentDetailASTList = getAllChildTokens(
 				typeArgumentsDetailAST, false, TokenTypes.TYPE_ARGUMENT);
 
-			_populateGenericTypeNames(typeDetailAST, typeArgumentDetailASTList);
+			if (isAttributeValue(_POPULATE_TYPE_NAMES_KEY)) {
+				_populateGenericTypeNames(
+					typeDetailAST, typeArgumentDetailASTList);
+			}
 
 			for (DetailAST typeArgumentDetailAST : typeArgumentDetailASTList) {
 				_checkType(detailAST, typeArgumentDetailAST);
@@ -312,6 +315,8 @@ public class GenericTypeCheck extends BaseCheck {
 
 	private static final String _MSG_PARAMETERIZE_GENERIC_TYPE =
 		"generic.type.parameterize";
+
+	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
 
 	private Tuple _genericTypeNamesTuple;
 

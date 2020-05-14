@@ -307,6 +307,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.GenericTypeCheck">
 			<property name="enabled" value="false" />
+			<property name="populateTypeNames" value="false" />
 			<message key="generic.type.parameterize" value="Parameterize the generic {0} for ''{1}'" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.InstanceofOrderCheck">
@@ -503,6 +504,7 @@
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.TryWithResourcesCheck">
 			<property name="enabled" value="false" />
+			<property name="populateTypeNames" value="false" />
 			<message key="try.with.resources.use" value="Use Try-With-Resources statement to declare ''{0}'' instead of closing the resource in the ''finally'' statement using ''{1}''" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.UnnecessaryAssignCheck">

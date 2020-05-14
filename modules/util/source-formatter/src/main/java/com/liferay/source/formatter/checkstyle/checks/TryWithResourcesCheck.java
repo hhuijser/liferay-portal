@@ -56,6 +56,10 @@ public class TryWithResourcesCheck extends BaseCheck {
 			_checkFinallyStatement(detailAST, literalFinallyDetailAST);
 		}
 
+		if (!isAttributeValue(_POPULATE_TYPE_NAMES_KEY)) {
+			return;
+		}
+
 		DetailAST firstChildDetailAST = detailAST.getFirstChild();
 
 		if (firstChildDetailAST.getType() ==
@@ -455,6 +459,8 @@ public class TryWithResourcesCheck extends BaseCheck {
 
 	private static final String _MSG_USE_TRY_WITH_RESOURCES =
 		"try.with.resources.use";
+
+	private static final String _POPULATE_TYPE_NAMES_KEY = "populateTypeNames";
 
 	private Tuple _closeableTypeNamesTuple;
 

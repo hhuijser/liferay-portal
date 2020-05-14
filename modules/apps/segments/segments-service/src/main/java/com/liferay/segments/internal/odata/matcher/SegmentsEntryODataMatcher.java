@@ -124,7 +124,7 @@ public class SegmentsEntryODataMatcher implements ODataMatcher<Map<?, ?>> {
 	private volatile EntityModel _entityModel;
 
 	@Reference(target = "(result.class.name=java.util.function.Predicate)")
-	private ExpressionConvert<Predicate> _expressionConvert;
+	private ExpressionConvert<Predicate<Map<?, ?>>> _expressionConvert;
 
 	private FilterParser _filterParser;
 

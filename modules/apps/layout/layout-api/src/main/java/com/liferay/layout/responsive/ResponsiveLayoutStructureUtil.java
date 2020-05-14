@@ -88,7 +88,8 @@ public class ResponsiveLayoutStructureUtil {
 
 		ViewportSize[] viewportSizes = ViewportSize.values();
 
-		Comparator comparator = Comparator.comparingInt(ViewportSize::getOrder);
+		Comparator<ViewportSize> comparator = Comparator.comparingInt(
+			ViewportSize::getOrder);
 
 		Arrays.sort(viewportSizes, comparator.reversed());
 

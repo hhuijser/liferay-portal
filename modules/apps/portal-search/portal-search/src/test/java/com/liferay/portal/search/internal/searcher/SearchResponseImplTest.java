@@ -62,7 +62,7 @@ public class SearchResponseImplTest {
 		consumer.accept(actual);
 	}
 
-	protected static Consumer blank() {
+	protected static Consumer<String> blank() {
 		return string -> Assert.assertEquals(StringPool.BLANK, string);
 	}
 
@@ -70,11 +70,11 @@ public class SearchResponseImplTest {
 		return list -> Assert.assertEquals("[]", String.valueOf(list));
 	}
 
-	protected static Consumer<Map> emptyMap() {
+	protected static Consumer<Map<String, ?>> emptyMap() {
 		return map -> Assert.assertEquals("{}", String.valueOf(map));
 	}
 
-	protected static Consumer<Stream> emptyStream() {
+	protected static Consumer<Stream<?>> emptyStream() {
 		return stream -> Assert.assertEquals(
 			"[]",
 			String.valueOf(
@@ -85,15 +85,15 @@ public class SearchResponseImplTest {
 				)));
 	}
 
-	protected static Consumer instanceOf(Class<?> clazz) {
+	protected static Consumer<Object> instanceOf(Class<?> clazz) {
 		return object -> Assert.assertTrue(clazz.isInstance(object));
 	}
 
-	protected static Consumer nullValue() {
+	protected static Consumer<Object> nullValue() {
 		return object -> Assert.assertNull(object);
 	}
 
-	protected static Consumer same(Object expected) {
+	protected static Consumer<Object> same(Object expected) {
 		return actual -> Assert.assertSame(expected, actual);
 	}
 

@@ -132,19 +132,19 @@ public class ContainerTag extends IncludeTag {
 	}
 
 	private String _getClassName() {
-		Set className = new LinkedHashSet();
+		Set<String> classNames = new LinkedHashSet();
 
-		className.add("container-fluid");
+		classNames.add("container-fluid");
 
 		if (Validator.isNotNull(_size)) {
-			className.add("container-fluid-max-" + _size);
+			classNames.add("container-fluid-max-" + _size);
 		}
 
 		if (Validator.isNotNull(_className)) {
-			className.addAll(StringUtil.split(_className, CharPool.SPACE));
+			classNames.addAll(StringUtil.split(_className, CharPool.SPACE));
 		}
 
-		return StringUtil.merge(className, StringPool.SPACE);
+		return StringUtil.merge(classNames, StringPool.SPACE);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "clay:container:";

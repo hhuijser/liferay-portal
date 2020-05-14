@@ -54,10 +54,10 @@ public class CheckboxMultipleDDMFormFieldTypeReportProcessor
 		JSONArray keysJSONArray = JSONFactoryUtil.createJSONArray(
 			value.getString(value.getDefaultLocale()));
 
-		Iterator iterator = keysJSONArray.iterator();
+		Iterator<String> iterator = keysJSONArray.iterator();
 
 		while (iterator.hasNext()) {
-			String key = (String)iterator.next();
+			String key = iterator.next();
 
 			int count = valuesJSONObject.getInt(key, 0);
 

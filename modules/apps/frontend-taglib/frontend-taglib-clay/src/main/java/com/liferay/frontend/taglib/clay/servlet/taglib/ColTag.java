@@ -172,37 +172,37 @@ public class ColTag extends IncludeTag {
 	}
 
 	private String _getClassName() {
-		Set className = new LinkedHashSet();
+		Set<String> classNames = new LinkedHashSet();
 
 		if (Validator.isNotNull(_size)) {
-			className.add("col-" + _size);
+			classNames.add("col-" + _size);
 		}
 
 		if (Validator.isNotNull(_lg)) {
-			className.add("col-lg-" + _lg);
+			classNames.add("col-lg-" + _lg);
 		}
 
 		if (Validator.isNotNull(_md)) {
-			className.add("col-md-" + _md);
+			classNames.add("col-md-" + _md);
 		}
 
 		if (Validator.isNotNull(_sm)) {
-			className.add("col-sm-" + _sm);
+			classNames.add("col-sm-" + _sm);
 		}
 
 		if (Validator.isNotNull(_xl)) {
-			className.add("col-xl-" + _xl);
+			classNames.add("col-xl-" + _xl);
 		}
 
-		if (className.isEmpty()) {
-			className.add("col");
+		if (classNames.isEmpty()) {
+			classNames.add("col");
 		}
 
 		if (Validator.isNotNull(_className)) {
-			className.addAll(StringUtil.split(_className, CharPool.SPACE));
+			classNames.addAll(StringUtil.split(_className, CharPool.SPACE));
 		}
 
-		return StringUtil.merge(className, StringPool.SPACE);
+		return StringUtil.merge(classNames, StringPool.SPACE);
 	}
 
 	private static final String _ATTRIBUTE_NAMESPACE = "clay:col:";

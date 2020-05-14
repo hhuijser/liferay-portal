@@ -109,7 +109,7 @@ public class ContextODataMatcher implements ODataMatcher<Context> {
 		Filter filter = new Filter(_filterParser.parse(filterString));
 
 		try {
-			return (Predicate<Context>)_expressionConvert.convert(
+			return _expressionConvert.convert(
 				filter.getExpression(), LocaleUtil.getDefault(), _entityModel);
 		}
 		catch (Exception exception) {
@@ -124,7 +124,7 @@ public class ContextODataMatcher implements ODataMatcher<Context> {
 	private volatile EntityModel _entityModel;
 
 	@Reference(target = "(result.class.name=java.util.function.Predicate)")
-	private ExpressionConvert<Predicate> _expressionConvert;
+	private ExpressionConvert<Predicate<Context>> _expressionConvert;
 
 	private FilterParser _filterParser;
 

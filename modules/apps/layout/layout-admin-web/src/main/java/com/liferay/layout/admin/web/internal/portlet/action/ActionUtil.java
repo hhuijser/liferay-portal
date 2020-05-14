@@ -50,13 +50,13 @@ public class ActionUtil {
 
 		Set<String> keys = typeSettingsUnicodeProperties.keySet();
 
-		Iterator<String> itr = keys.iterator();
+		Iterator<String> iterator = keys.iterator();
 
-		while (itr.hasNext()) {
-			String key = itr.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			if (key.startsWith(keyPrefix)) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 	}

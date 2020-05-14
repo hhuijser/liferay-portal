@@ -430,15 +430,15 @@ public class JournalFolderServiceImpl extends JournalFolderServiceBaseImpl {
 
 		ddmStructures = ListUtil.copy(ddmStructures);
 
-		Iterator<DDMStructure> itr = ddmStructures.iterator();
+		Iterator<DDMStructure> iterator = ddmStructures.iterator();
 
-		while (itr.hasNext()) {
-			DDMStructure ddmStructure = itr.next();
+		while (iterator.hasNext()) {
+			DDMStructure ddmStructure = iterator.next();
 
 			if (!_ddmStructureModelResourcePermission.contains(
 					permissionChecker, ddmStructure, ActionKeys.VIEW)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

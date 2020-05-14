@@ -175,17 +175,17 @@ public class DDMFormTemplateSynchonizer {
 		Map<String, DDMFormField> structureDDMFormFieldsMap,
 		List<DDMFormField> templateDDMFormFields, String templateMode) {
 
-		Iterator<DDMFormField> itr = templateDDMFormFields.iterator();
+		Iterator<DDMFormField> iterator = templateDDMFormFields.iterator();
 
-		while (itr.hasNext()) {
-			DDMFormField templateDDMFormField = itr.next();
+		while (iterator.hasNext()) {
+			DDMFormField templateDDMFormField = iterator.next();
 
 			String name = templateDDMFormField.getName();
 
 			if (Validator.isNotNull(templateDDMFormField.getDataType()) &&
 				!structureDDMFormFieldsMap.containsKey(name)) {
 
-				itr.remove();
+				iterator.remove();
 
 				continue;
 			}

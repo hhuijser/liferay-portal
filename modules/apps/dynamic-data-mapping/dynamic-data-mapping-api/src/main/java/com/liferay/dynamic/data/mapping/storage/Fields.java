@@ -97,10 +97,10 @@ public class Fields implements Iterable<Field>, Serializable {
 	public long getDDMStructureId() {
 		long ddmStructureId = 0;
 
-		Iterator<Field> itr = iterator();
+		Iterator<Field> iterator = iterator();
 
-		if (itr.hasNext()) {
-			Field field = itr.next();
+		if (iterator.hasNext()) {
+			Field field = iterator.next();
 
 			ddmStructureId = field.getDDMStructureId();
 		}
@@ -111,10 +111,10 @@ public class Fields implements Iterable<Field>, Serializable {
 	public Locale getDefaultLocale() {
 		Locale defaultLocale = LocaleUtil.getSiteDefault();
 
-		Iterator<Field> itr = iterator();
+		Iterator<Field> iterator = iterator();
 
-		if (itr.hasNext()) {
-			Field field = itr.next();
+		if (iterator.hasNext()) {
+			Field field = iterator.next();
 
 			defaultLocale = field.getDefaultLocale();
 		}

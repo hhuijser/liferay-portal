@@ -64,10 +64,10 @@ public class OptionsDDMFormFieldContextHelper {
 		try {
 			JSONObject jsonObject = _jsonFactory.createJSONObject(_value);
 
-			Iterator<String> itr = jsonObject.keys();
+			Iterator<String> iterator = jsonObject.keys();
 
-			while (itr.hasNext()) {
-				String languageId = itr.next();
+			while (iterator.hasNext()) {
+				String languageId = iterator.next();
 
 				List<Object> options = createOptions(
 					jsonObject.getJSONArray(languageId));

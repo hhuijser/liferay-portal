@@ -169,10 +169,10 @@ public class DDMXMLImpl implements DDMXML {
 				rootElement = document.addElement("root");
 			}
 
-			Iterator<Field> itr = fields.iterator(true);
+			Iterator<Field> iterator = fields.iterator(true);
 
-			while (itr.hasNext()) {
-				Field field = itr.next();
+			while (iterator.hasNext()) {
+				Field field = iterator.next();
 
 				List<Node> nodes = getElementsByName(document, field.getName());
 

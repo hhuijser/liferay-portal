@@ -71,10 +71,10 @@ public class JSONPackageJSONDependencyVersionCheck extends BaseFileCheck {
 		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
 			"dependencies");
 
-		Iterator<String> keys = dependenciesJSONObject.keys();
+		Iterator<String> iterator = dependenciesJSONObject.keys();
 
-		while (keys.hasNext()) {
-			String dependencyName = keys.next();
+		while (iterator.hasNext()) {
+			String dependencyName = iterator.next();
 
 			String actualVersion = dependenciesJSONObject.getString(
 				dependencyName);
@@ -113,10 +113,10 @@ public class JSONPackageJSONDependencyVersionCheck extends BaseFileCheck {
 		JSONObject dependenciesJSONObject = jsonObject.getJSONObject(
 			"dependencies");
 
-		Iterator<String> keys = dependenciesJSONObject.keys();
+		Iterator<String> iterator = dependenciesJSONObject.keys();
 
-		while (keys.hasNext()) {
-			String dependencyName = keys.next();
+		while (iterator.hasNext()) {
+			String dependencyName = iterator.next();
 
 			if (dependencyName.matches(regex)) {
 				dependencyVersionsMap.put(

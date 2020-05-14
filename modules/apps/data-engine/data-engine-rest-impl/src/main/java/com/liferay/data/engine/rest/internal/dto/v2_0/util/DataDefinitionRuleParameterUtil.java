@@ -32,10 +32,10 @@ public class DataDefinitionRuleParameterUtil {
 
 		Map<String, Object> dataDefinitionRuleParameters = new HashMap<>();
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String parameterKey = keys.next();
+		while (iterator.hasNext()) {
+			String parameterKey = iterator.next();
 
 			dataDefinitionRuleParameters.put(
 				parameterKey, jsonObject.get(parameterKey));

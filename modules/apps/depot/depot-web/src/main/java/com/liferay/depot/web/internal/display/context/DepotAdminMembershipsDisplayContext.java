@@ -164,19 +164,19 @@ public class DepotAdminMembershipsDisplayContext {
 
 		List<Group> groups = ListUtil.copy(_user.getGroups());
 
-		Iterator<Group> itr = groups.iterator();
+		Iterator<Group> iterator = groups.iterator();
 
-		while (itr.hasNext()) {
-			Group group = itr.next();
+		while (iterator.hasNext()) {
+			Group group = iterator.next();
 
 			if (group.getType() != GroupConstants.TYPE_DEPOT) {
-				itr.remove();
+				iterator.remove();
 			}
 			else if (!permissionChecker.isCompanyAdmin() &&
 					 !GroupPermissionUtil.contains(
 						 permissionChecker, group, ActionKeys.ASSIGN_MEMBERS)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

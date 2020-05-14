@@ -134,16 +134,16 @@ public class MultiVMEhcachePortalCacheManagerConfigurator
 					portalCacheConfiguration.
 						getPortalCacheListenerPropertiesSet();
 
-				Iterator<Properties> itr =
+				Iterator<Properties> iterator =
 					portalCacheListenerPropertiesSet.iterator();
 
-				while (itr.hasNext()) {
-					Properties properties = itr.next();
+				while (iterator.hasNext()) {
+					Properties properties = iterator.next();
 
 					if ((Boolean)properties.get(
 							PortalCacheReplicator.REPLICATOR)) {
 
-						itr.remove();
+						iterator.remove();
 					}
 				}
 

@@ -934,15 +934,15 @@ public class DDMDisplayContext {
 			templateHandlers =
 				PortletDisplayTemplateUtil.getPortletDisplayTemplateHandlers();
 
-			Iterator<TemplateHandler> itr = templateHandlers.iterator();
+			Iterator<TemplateHandler> iterator = templateHandlers.iterator();
 
-			while (itr.hasNext()) {
-				TemplateHandler templateHandler = itr.next();
+			while (iterator.hasNext()) {
+				TemplateHandler templateHandler = iterator.next();
 
 				if (!containsAddPortletDisplayTemplatePermission(
 						templateHandler.getResourceName())) {
 
-					itr.remove();
+					iterator.remove();
 				}
 			}
 		}

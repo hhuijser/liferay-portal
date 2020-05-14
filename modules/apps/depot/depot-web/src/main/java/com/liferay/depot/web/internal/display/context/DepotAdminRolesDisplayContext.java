@@ -218,17 +218,17 @@ public class DepotAdminRolesDisplayContext {
 		List<UserGroupRole> filteredUserGroupRoles = ListUtil.copy(
 			userGroupRoles);
 
-		Iterator<UserGroupRole> itr = filteredUserGroupRoles.iterator();
+		Iterator<UserGroupRole> iterator = filteredUserGroupRoles.iterator();
 
-		while (itr.hasNext()) {
-			UserGroupRole userGroupRole = itr.next();
+		while (iterator.hasNext()) {
+			UserGroupRole userGroupRole = iterator.next();
 
 			Role role = userGroupRole.getRole();
 
 			if (Objects.equals(
 					role.getName(), DepotRolesConstants.ASSET_LIBRARY_MEMBER)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 
@@ -236,11 +236,11 @@ public class DepotAdminRolesDisplayContext {
 			return filteredUserGroupRoles;
 		}
 
-		itr = filteredUserGroupRoles.iterator();
+		iterator = filteredUserGroupRoles.iterator();
 
-		while (itr.hasNext()) {
-			if (!_contains(itr.next())) {
-				itr.remove();
+		while (iterator.hasNext()) {
+			if (!_contains(iterator.next())) {
+				iterator.remove();
 			}
 		}
 

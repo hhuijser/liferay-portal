@@ -662,11 +662,11 @@ public class ClusterSchedulerEngine
 		Iterator
 			<Map.Entry
 				<String, ObjectValuePair<SchedulerResponse, TriggerState>>>
-					itr = memoryClusteredJobs.iterator();
+					iterator = memoryClusteredJobs.iterator();
 
-		while (itr.hasNext()) {
+		while (iterator.hasNext()) {
 			Map.Entry<String, ObjectValuePair<SchedulerResponse, TriggerState>>
-				entry = itr.next();
+				entry = iterator.next();
 
 			ObjectValuePair<SchedulerResponse, TriggerState>
 				memoryClusteredJob = entry.getValue();
@@ -674,7 +674,7 @@ public class ClusterSchedulerEngine
 			SchedulerResponse schedulerResponse = memoryClusteredJob.getKey();
 
 			if (groupName.equals(schedulerResponse.getGroupName())) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 	}

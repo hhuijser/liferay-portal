@@ -124,10 +124,10 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(userId);
 			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -164,10 +164,10 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(microblogsEntryUserId);
 			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -208,10 +208,10 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(userId);
 			queryPos.add(assetTagName);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -249,10 +249,10 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(creatorClassNameId);
 			queryPos.add(assetTagName);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -291,10 +291,10 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(type);
 			queryPos.add(microblogsEntryUserId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -336,10 +336,10 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(creatorClassPK);
 			queryPos.add(assetTagName);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -381,15 +381,15 @@ public class MicroblogsEntryFinderImpl
 			queryPos.add(userId);
 			queryPos.add(MicroblogsEntryConstants.TYPE_REPLY);
 
-			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
+			Iterator<Long> iterator = (Iterator<Long>)QueryUtil.iterate(
 				sqlQuery, getDialect(), start, end);
 
 			List<MicroblogsEntry> microblogsEntries = new ArrayList<>();
 
-			while (itr.hasNext()) {
+			while (iterator.hasNext()) {
 				microblogsEntries.add(
 					microblogsEntryPersistence.fetchByPrimaryKey(
-						(Long)itr.next()));
+						(Long)iterator.next()));
 			}
 
 			return microblogsEntries;

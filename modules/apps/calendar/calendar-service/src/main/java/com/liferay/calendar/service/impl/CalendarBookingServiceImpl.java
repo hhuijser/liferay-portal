@@ -897,13 +897,13 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 
 		calendarBookings = ListUtil.copy(calendarBookings);
 
-		Iterator<CalendarBooking> itr = calendarBookings.iterator();
+		Iterator<CalendarBooking> iterator = calendarBookings.iterator();
 
-		while (itr.hasNext()) {
-			CalendarBooking calendarBooking = itr.next();
+		while (iterator.hasNext()) {
+			CalendarBooking calendarBooking = iterator.next();
 
 			if (isPendingInWorkflow(calendarBooking)) {
-				itr.remove();
+				iterator.remove();
 
 				continue;
 			}
@@ -916,7 +916,7 @@ public class CalendarBookingServiceImpl extends CalendarBookingServiceBaseImpl {
 						getPermissionChecker(), calendarBooking.getCalendarId(),
 						actionId)) {
 
-					itr.remove();
+					iterator.remove();
 				}
 				else {
 					filterCalendarBooking(calendarBooking);

@@ -137,10 +137,10 @@ public class MicrosoftPushNotificationsSender
 	protected String getAttributes(JSONObject payloadJSONObject) {
 		StringBuilder sb = new StringBuilder();
 
-		Iterator<String> itr = payloadJSONObject.keys();
+		Iterator<String> iterator = payloadJSONObject.keys();
 
-		while (itr.hasNext()) {
-			String key = itr.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			sb.append(key);
 

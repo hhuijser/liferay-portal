@@ -119,10 +119,10 @@ public class LocalizedValueUtil {
 
 		Map<String, V> localizedValues = new HashMap<>();
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String key = keys.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			localizedValues.put(key, (V)jsonObject.get(key));
 		}

@@ -60,10 +60,10 @@ public class JSONObjectToDDMFormFieldTransformer {
 		JSONObject jsonObject, DDMFormFieldOptions ddmFormFieldOptions,
 		String optionValue) {
 
-		Iterator<String> itr = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (itr.hasNext()) {
-			String languageId = itr.next();
+		while (iterator.hasNext()) {
+			String languageId = iterator.next();
 
 			ddmFormFieldOptions.addOptionLabel(
 				optionValue, LocaleUtil.fromLanguageId(languageId),
@@ -161,10 +161,10 @@ public class JSONObjectToDDMFormFieldTransformer {
 		JSONObject jsonObject = _jsonFactory.createJSONObject(
 			serializedDDMFormFieldProperty);
 
-		Iterator<String> itr = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (itr.hasNext()) {
-			String languageId = itr.next();
+		while (iterator.hasNext()) {
+			String languageId = iterator.next();
 
 			localizedValue.addString(
 				LocaleUtil.fromLanguageId(languageId),

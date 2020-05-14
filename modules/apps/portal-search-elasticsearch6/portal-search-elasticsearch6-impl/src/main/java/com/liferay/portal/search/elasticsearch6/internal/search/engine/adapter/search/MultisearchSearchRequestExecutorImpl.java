@@ -80,7 +80,7 @@ public class MultisearchSearchRequestExecutorImpl
 		MultiSearchResponse multiSearchResponse =
 			multiSearchRequestBuilder.get();
 
-		Iterator<MultiSearchResponse.Item> multiSearchResponseItems =
+		Iterator<MultiSearchResponse.Item> iterator =
 			multiSearchResponse.iterator();
 
 		MultisearchSearchResponse multisearchSearchResponse =
@@ -88,9 +88,8 @@ public class MultisearchSearchRequestExecutorImpl
 
 		int counter = 0;
 
-		while (multiSearchResponseItems.hasNext()) {
-			MultiSearchResponse.Item multiSearchResponseItem =
-				multiSearchResponseItems.next();
+		while (iterator.hasNext()) {
+			MultiSearchResponse.Item multiSearchResponseItem = iterator.next();
 
 			SearchResponse searchResponse =
 				multiSearchResponseItem.getResponse();

@@ -117,10 +117,10 @@ public class YMLDefinitionOrderCheck extends BaseFileCheck {
 
 	private List<String> _removeDuplicateAttribute(List<String> list) {
 		List<String> definitions = new ArrayList<>();
-		Iterator<String> itr = list.iterator();
+		Iterator<String> iterator = list.iterator();
 
-		while (itr.hasNext()) {
-			String s = itr.next();
+		while (iterator.hasNext()) {
+			String s = iterator.next();
 
 			if (!definitions.contains(s) || s.startsWith("{{") ||
 				s.startsWith("#")) {

@@ -203,10 +203,10 @@ public class SourceFormatterCheckUtil {
 		boolean cacheValue = true;
 		String closestPropertiesFileLocation = null;
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String fileLocation = keys.next();
+		while (iterator.hasNext()) {
+			String fileLocation = iterator.next();
 
 			String curValue = _getJSONObjectValue(
 				jsonObject.getJSONObject(fileLocation), key);
@@ -280,10 +280,10 @@ public class SourceFormatterCheckUtil {
 
 		boolean cacheValues = true;
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String fileLocation = keys.next();
+		while (iterator.hasNext()) {
+			String fileLocation = iterator.next();
 
 			List<String> curValues = _getJSONObjectValues(
 				jsonObject.getJSONObject(fileLocation), key);

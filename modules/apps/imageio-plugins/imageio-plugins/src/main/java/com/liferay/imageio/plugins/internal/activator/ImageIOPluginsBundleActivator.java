@@ -46,11 +46,11 @@ public class ImageIOPluginsBundleActivator implements BundleActivator {
 	private <T> void _register(Class<T> clazz, Set<T> registeredProviders) {
 		IIORegistry iioRegistry = IIORegistry.getDefaultInstance();
 
-		Iterator<T> providers = ServiceRegistry.lookupProviders(
+		Iterator<T> iterator = ServiceRegistry.lookupProviders(
 			clazz, ImageIOPluginsBundleActivator.class.getClassLoader());
 
-		while (providers.hasNext()) {
-			registeredProviders.add(providers.next());
+		while (iterator.hasNext()) {
+			registeredProviders.add(iterator.next());
 		}
 
 		iioRegistry.registerServiceProviders(registeredProviders.iterator());

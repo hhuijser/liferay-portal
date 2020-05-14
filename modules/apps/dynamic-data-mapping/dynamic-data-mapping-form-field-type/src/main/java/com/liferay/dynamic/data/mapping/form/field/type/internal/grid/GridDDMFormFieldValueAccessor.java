@@ -98,10 +98,10 @@ public class GridDDMFormFieldValueAccessor
 	protected Set<String> getUniqueKeys(JSONObject jsonObject) {
 		Set<String> uniqueKeys = new HashSet<>();
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			uniqueKeys.add(keys.next());
+		while (iterator.hasNext()) {
+			uniqueKeys.add(iterator.next());
 		}
 
 		return uniqueKeys;

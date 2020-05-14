@@ -123,12 +123,12 @@ public class PortalUpgradeProcessTest {
 			_innerPortalUpgradeProcess, "getPendingSchemaVersions",
 			new Class<?>[] {Version.class}, _ORIGINAL_SCHEMA_VERSION);
 
-		Iterator<Version> itr = pendingSchemaVersions.iterator();
+		Iterator<Version> iterator = pendingSchemaVersions.iterator();
 
-		Version latestSchemaVersion = itr.next();
+		Version latestSchemaVersion = iterator.next();
 
-		while (itr.hasNext()) {
-			latestSchemaVersion = itr.next();
+		while (iterator.hasNext()) {
+			latestSchemaVersion = iterator.next();
 		}
 
 		Assert.assertEquals(

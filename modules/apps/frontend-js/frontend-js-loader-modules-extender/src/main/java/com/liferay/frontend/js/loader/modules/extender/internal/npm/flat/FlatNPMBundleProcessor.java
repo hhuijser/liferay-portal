@@ -357,10 +357,10 @@ public class FlatNPMBundleProcessor implements JSBundleProcessor {
 			key);
 
 		if (dependenciesJSONObject != null) {
-			Iterator<String> dependencyNames = dependenciesJSONObject.keys();
+			Iterator<String> iterator = dependenciesJSONObject.keys();
 
-			while (dependencyNames.hasNext()) {
-				String dependencyName = dependencyNames.next();
+			while (iterator.hasNext()) {
+				String dependencyName = iterator.next();
 
 				String versionConstraints = dependenciesJSONObject.getString(
 					dependencyName);

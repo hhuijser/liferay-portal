@@ -550,10 +550,10 @@ public class DDMImpl implements DDM {
 		String[] existingFieldsDisplayValues = splitFieldsDisplayValue(
 			existingFields.get(DDMImpl.FIELDS_DISPLAY_NAME));
 
-		Iterator<Field> itr = newFields.iterator(true);
+		Iterator<Field> iterator = newFields.iterator(true);
 
-		while (itr.hasNext()) {
-			Field newField = itr.next();
+		while (iterator.hasNext()) {
+			Field newField = iterator.next();
 
 			Field existingField = existingFields.get(newField.getName());
 

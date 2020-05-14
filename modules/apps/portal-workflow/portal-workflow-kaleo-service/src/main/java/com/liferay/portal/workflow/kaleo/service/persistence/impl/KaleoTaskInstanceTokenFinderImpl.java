@@ -92,10 +92,10 @@ public class KaleoTaskInstanceTokenFinderImpl
 			SQLQuery sqlQuery = buildKaleoTaskInstanceTokenQuerySQL(
 				kaleoTaskInstanceTokenQuery, true, session);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -127,12 +127,12 @@ public class KaleoTaskInstanceTokenFinderImpl
 			List<KaleoTaskInstanceToken> kaleoTaskInstanceTokens =
 				new ArrayList<>();
 
-			Iterator<Long> itr = (Iterator<Long>)QueryUtil.iterate(
+			Iterator<Long> iterator = (Iterator<Long>)QueryUtil.iterate(
 				sqlQuery, getDialect(), kaleoTaskInstanceTokenQuery.getStart(),
 				kaleoTaskInstanceTokenQuery.getEnd());
 
-			while (itr.hasNext()) {
-				long kaleoTaskInstanceTokenId = itr.next();
+			while (iterator.hasNext()) {
+				long kaleoTaskInstanceTokenId = iterator.next();
 
 				KaleoTaskInstanceToken kaleoTaskInstanceToken =
 					KaleoTaskInstanceTokenUtil.findByPrimaryKey(
@@ -571,12 +571,12 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 		sb.append("AND (KaleoTaskAssignmentInstance.assigneeClassPK IN (");
 
-		Iterator<Long> itr = roleIds.iterator();
+		Iterator<Long> iterator = roleIds.iterator();
 
-		while (itr.hasNext()) {
-			sb.append(itr.next());
+		while (iterator.hasNext()) {
+			sb.append(iterator.next());
 
-			if (itr.hasNext()) {
+			if (iterator.hasNext()) {
 				sb.append(", ");
 			}
 		}
@@ -705,12 +705,12 @@ public class KaleoTaskInstanceTokenFinderImpl
 
 					Set<Long> groupIds = entry.getValue();
 
-					Iterator<Long> itr = groupIds.iterator();
+					Iterator<Long> iterator = groupIds.iterator();
 
-					while (itr.hasNext()) {
-						sb.append(itr.next());
+					while (iterator.hasNext()) {
+						sb.append(iterator.next());
 
-						if (itr.hasNext()) {
+						if (iterator.hasNext()) {
 							sb.append(", ");
 						}
 					}

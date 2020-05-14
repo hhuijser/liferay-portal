@@ -65,10 +65,10 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 
 		Set<String> keys = typeSettingsUnicodeProperties.keySet();
 
-		Iterator<String> itr = keys.iterator();
+		Iterator<String> iterator = keys.iterator();
 
-		while (itr.hasNext()) {
-			String key = itr.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			if (StringUtil.startsWith(
 					key, LayoutTypePortletConstants.COLUMN_PREFIX) ||
@@ -91,7 +91,7 @@ public class UpgradePortletId extends BaseUpgradePortletId {
 						key, mergedPortletIds.concat(StringPool.COMMA));
 				}
 				else {
-					itr.remove();
+					iterator.remove();
 				}
 			}
 		}

@@ -106,10 +106,10 @@ public class GridDDMFormFieldValueValidator
 		JSONObject jsonObject = createJSONObject(
 			ddmFormFieldName, selectedValues);
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String key = keys.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			String value = jsonObject.getString(key);
 

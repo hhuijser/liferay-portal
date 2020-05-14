@@ -2095,10 +2095,10 @@ public class CMISRepository extends BaseCmisRepository {
 
 		ItemIterable<QueryResult> queryResults = session.query(query, false);
 
-		Iterator<QueryResult> itr = queryResults.iterator();
+		Iterator<QueryResult> iterator = queryResults.iterator();
 
-		if (itr.hasNext()) {
-			QueryResult queryResult = itr.next();
+		if (iterator.hasNext()) {
+			QueryResult queryResult = iterator.next();
 
 			PropertyData<String> propertyData = queryResult.getPropertyById(
 				PropertyIds.OBJECT_ID);

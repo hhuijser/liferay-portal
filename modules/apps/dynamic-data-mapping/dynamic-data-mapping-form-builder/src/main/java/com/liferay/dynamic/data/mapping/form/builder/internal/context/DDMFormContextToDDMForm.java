@@ -84,10 +84,10 @@ public class DDMFormContextToDDMForm
 
 		LocalizedValue localizedValue = new LocalizedValue(defaultLocale);
 
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (keys.hasNext()) {
-			String languageId = keys.next();
+		while (iterator.hasNext()) {
+			String languageId = iterator.next();
 
 			localizedValue.addString(
 				LocaleUtil.fromLanguageId(languageId),

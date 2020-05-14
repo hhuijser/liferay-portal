@@ -147,10 +147,10 @@ public class DDMFormContextToDDMFormValues
 	protected Value getLocalizedValue(JSONObject jsonObject) {
 		Value value = new LocalizedValue(LocaleUtil.getSiteDefault());
 
-		Iterator<String> itr = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (itr.hasNext()) {
-			String languageId = itr.next();
+		while (iterator.hasNext()) {
+			String languageId = iterator.next();
 
 			value.addString(
 				LocaleUtil.fromLanguageId(languageId),

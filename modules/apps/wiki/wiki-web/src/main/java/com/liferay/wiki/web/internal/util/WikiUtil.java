@@ -196,16 +196,16 @@ public class WikiUtil {
 
 		Arrays.sort(hiddenNodes);
 
-		Iterator<WikiNode> itr = nodes.iterator();
+		Iterator<WikiNode> iterator = nodes.iterator();
 
-		while (itr.hasNext()) {
-			WikiNode node = itr.next();
+		while (iterator.hasNext()) {
+			WikiNode node = iterator.next();
 
 			if (!(Arrays.binarySearch(hiddenNodes, node.getName()) < 0) ||
 				!_wikiNodeModelResourcePermission.contains(
 					permissionChecker, node, ActionKeys.VIEW)) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

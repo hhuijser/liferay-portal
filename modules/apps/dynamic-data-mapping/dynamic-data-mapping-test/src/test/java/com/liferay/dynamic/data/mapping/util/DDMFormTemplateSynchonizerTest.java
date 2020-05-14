@@ -320,13 +320,13 @@ public class DDMFormTemplateSynchonizerTest extends BaseDDMTestCase {
 	protected void removeDDMFormField(DDMForm ddmForm, String fieldName) {
 		List<DDMFormField> ddmFormFields = ddmForm.getDDMFormFields();
 
-		Iterator<DDMFormField> itr = ddmFormFields.iterator();
+		Iterator<DDMFormField> iterator = ddmFormFields.iterator();
 
-		while (itr.hasNext()) {
-			DDMFormField ddmFormField = itr.next();
+		while (iterator.hasNext()) {
+			DDMFormField ddmFormField = iterator.next();
 
 			if (fieldName.equals(ddmFormField.getName())) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 	}

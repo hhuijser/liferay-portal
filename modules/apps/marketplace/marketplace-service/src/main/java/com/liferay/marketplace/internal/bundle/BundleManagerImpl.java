@@ -80,13 +80,13 @@ public class BundleManagerImpl implements BundleManager {
 	public List<Bundle> getInstalledBundles() {
 		List<Bundle> bundles = getBundles();
 
-		Iterator<Bundle> itr = bundles.iterator();
+		Iterator<Bundle> iterator = bundles.iterator();
 
-		while (itr.hasNext()) {
-			Bundle bundle = itr.next();
+		while (iterator.hasNext()) {
+			Bundle bundle = iterator.next();
 
 			if (!isInstalled(bundle)) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

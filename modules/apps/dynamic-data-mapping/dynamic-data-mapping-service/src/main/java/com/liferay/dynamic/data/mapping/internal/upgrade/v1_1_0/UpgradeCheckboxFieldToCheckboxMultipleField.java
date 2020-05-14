@@ -173,10 +173,10 @@ public class UpgradeCheckboxFieldToCheckboxMultipleField
 		JSONObject newPredefinedValueJSONObject =
 			_jsonFactory.createJSONObject();
 
-		Iterator<String> languageKeys = oldPredefinedValueJSONObject.keys();
+		Iterator<String> iterator = oldPredefinedValueJSONObject.keys();
 
-		while (languageKeys.hasNext()) {
-			String languageKey = languageKeys.next();
+		while (iterator.hasNext()) {
+			String languageKey = iterator.next();
 
 			String predefinedValue = oldPredefinedValueJSONObject.getString(
 				languageKey);

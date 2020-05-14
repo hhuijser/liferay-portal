@@ -130,9 +130,9 @@ public class AssertUtils {
 
 	private static String _toString(JSONObject jsonObject) {
 		List<String> list = new ArrayList<>(jsonObject.length());
-		Iterator<String> keys = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		keys.forEachRemaining(
+		iterator.forEachRemaining(
 			key -> list.add(
 				_toString(key) + ":" + _toString(jsonObject.get(key))));
 

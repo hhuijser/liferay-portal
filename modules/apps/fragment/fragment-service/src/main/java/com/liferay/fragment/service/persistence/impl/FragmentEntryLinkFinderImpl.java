@@ -75,10 +75,10 @@ public class FragmentEntryLinkFinderImpl
 			queryPos.add(groupId);
 			queryPos.add(fragmentEntryId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -116,10 +116,10 @@ public class FragmentEntryLinkFinderImpl
 			queryPos.add(fragmentEntryId);
 			queryPos.add(classNameId);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();
@@ -159,10 +159,10 @@ public class FragmentEntryLinkFinderImpl
 			queryPos.add(classNameId);
 			queryPos.add(layoutPageTemplateEntryType);
 
-			Iterator<Long> itr = sqlQuery.iterate();
+			Iterator<Long> iterator = sqlQuery.iterate();
 
-			if (itr.hasNext()) {
-				Long count = itr.next();
+			if (iterator.hasNext()) {
+				Long count = iterator.next();
 
 				if (count != null) {
 					return count.intValue();

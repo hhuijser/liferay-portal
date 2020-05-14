@@ -308,17 +308,17 @@ public class FragmentEntryConfigurationParserImpl
 		List<FragmentConfigurationField> fragmentConfigurationFields =
 			new ArrayList<>();
 
-		Iterator<JSONObject> iteratorFieldSet = fieldSetsJSONArray.iterator();
+		Iterator<JSONObject> iterator1 = fieldSetsJSONArray.iterator();
 
-		iteratorFieldSet.forEachRemaining(
+		iterator1.forEachRemaining(
 			fieldSetJSONObject -> {
 				JSONArray fieldSetFieldsJSONArray =
 					fieldSetJSONObject.getJSONArray("fields");
 
-				Iterator<JSONObject> iteratorFieldSetFields =
+				Iterator<JSONObject> iterator2 =
 					fieldSetFieldsJSONArray.iterator();
 
-				iteratorFieldSetFields.forEachRemaining(
+				iterator2.forEachRemaining(
 					fieldSetFieldsJSONObject -> fragmentConfigurationFields.add(
 						new FragmentConfigurationField(
 							fieldSetFieldsJSONObject)));

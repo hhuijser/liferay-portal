@@ -314,17 +314,17 @@ public class JournalUtil {
 
 		Stack<JournalArticle> stack = _getRecentArticles(portletRequest);
 
-		Iterator<JournalArticle> itr = stack.iterator();
+		Iterator<JournalArticle> iterator = stack.iterator();
 
-		while (itr.hasNext()) {
-			JournalArticle journalArticle = itr.next();
+		while (iterator.hasNext()) {
+			JournalArticle journalArticle = iterator.next();
 
 			String journalArticleId = journalArticle.getArticleId();
 
 			if (journalArticleId.equals(articleId) &&
 				((journalArticle.getVersion() == version) || (version == 0))) {
 
-				itr.remove();
+				iterator.remove();
 			}
 		}
 	}

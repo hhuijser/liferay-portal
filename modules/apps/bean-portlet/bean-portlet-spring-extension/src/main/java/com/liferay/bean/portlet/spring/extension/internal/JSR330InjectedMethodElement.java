@@ -133,10 +133,10 @@ public class JSR330InjectedMethodElement
 							_configurableListableBeanFactory);
 
 						if (jsr330Beans.size() == parameterTypes.length) {
-							Iterator<String> it = jsr330Beans.iterator();
+							Iterator<String> iterator = jsr330Beans.iterator();
 
 							for (int i = 0; i < parameterTypes.length; i++) {
-								String autowiredBeanName = it.next();
+								String autowiredBeanName = iterator.next();
 
 								if (_configurableListableBeanFactory.
 										containsBean(autowiredBeanName) &&

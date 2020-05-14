@@ -113,10 +113,10 @@ public class JSPortletExtender {
 			return;
 		}
 
-		Iterator<String> keys = portletJSONObject.keys();
+		Iterator<String> iterator = portletJSONObject.keys();
 
-		while (keys.hasNext()) {
-			String key = keys.next();
+		while (iterator.hasNext()) {
+			String key = iterator.next();
 
 			Object value = portletJSONObject.get(key);
 

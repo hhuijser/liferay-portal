@@ -117,10 +117,10 @@ public class NPMResolverImpl implements NPMResolver {
 				JSONObject packagesJSONObject = jsonObject.getJSONObject(
 					"packages");
 
-				Iterator<String> packageIds = packagesJSONObject.keys();
+				Iterator<String> iterator = packagesJSONObject.keys();
 
-				while (packageIds.hasNext()) {
-					String packageId = packageIds.next();
+				while (iterator.hasNext()) {
+					String packageId = iterator.next();
 
 					JSONObject packageJSONObject =
 						packagesJSONObject.getJSONObject(packageId);

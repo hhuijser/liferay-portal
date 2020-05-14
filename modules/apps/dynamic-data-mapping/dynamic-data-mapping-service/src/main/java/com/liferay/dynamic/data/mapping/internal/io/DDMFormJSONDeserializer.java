@@ -107,10 +107,10 @@ public class DDMFormJSONDeserializer implements DDMFormDeserializer {
 		JSONObject jsonObject, DDMFormFieldOptions ddmFormFieldOptions,
 		String optionValue) {
 
-		Iterator<String> itr = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (itr.hasNext()) {
-			String languageId = itr.next();
+		while (iterator.hasNext()) {
+			String languageId = iterator.next();
 
 			ddmFormFieldOptions.addOptionLabel(
 				optionValue, LocaleUtil.fromLanguageId(languageId),
@@ -215,10 +215,10 @@ public class DDMFormJSONDeserializer implements DDMFormDeserializer {
 
 		JSONObject jsonObject = _jsonFactory.createJSONObject(value);
 
-		Iterator<String> itr = jsonObject.keys();
+		Iterator<String> iterator = jsonObject.keys();
 
-		while (itr.hasNext()) {
-			String languageId = itr.next();
+		while (iterator.hasNext()) {
+			String languageId = iterator.next();
 
 			localizedValue.addString(
 				LocaleUtil.fromLanguageId(languageId),

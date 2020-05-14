@@ -81,13 +81,13 @@ public class KBUtil {
 
 		kbFolders = new ArrayList<>(kbFolders);
 
-		Iterator<KBFolder> itr = kbFolders.iterator();
+		Iterator<KBFolder> iterator = kbFolders.iterator();
 
-		while (itr.hasNext()) {
-			KBFolder kbFolder = itr.next();
+		while (iterator.hasNext()) {
+			KBFolder kbFolder = iterator.next();
 
 			if (kbFolder.isEmpty()) {
-				itr.remove();
+				iterator.remove();
 			}
 		}
 

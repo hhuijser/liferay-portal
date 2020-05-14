@@ -279,10 +279,10 @@ public class JabberImpl implements Jabber {
 				return;
 			}
 
-			Iterator<Presence> presences = roster.getPresences(jabberId);
+			Iterator<Presence> iterator = roster.getPresences(jabberId);
 
-			while (presences.hasNext()) {
-				Presence presence = presences.next();
+			while (iterator.hasNext()) {
+				Presence presence = iterator.next();
 
 				String from = presence.getFrom();
 

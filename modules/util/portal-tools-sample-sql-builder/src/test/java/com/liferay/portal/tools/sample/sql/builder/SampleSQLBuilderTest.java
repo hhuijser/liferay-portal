@@ -193,16 +193,18 @@ public class SampleSQLBuilderTest {
 
 		DBManagerUtil.setDB(DBType.HYPERSONIC, null);
 
-		Enumeration<URL> tablesURLs = _getServiceComponentsTablesSQLURLs();
+		Enumeration<URL> tablesURLEnumeration =
+			_getServiceComponentsTablesSQLURLs();
 
-		while (tablesURLs.hasMoreElements()) {
-			_runSQL(connection, tablesURLs.nextElement());
+		while (tablesURLEnumeration.hasMoreElements()) {
+			_runSQL(connection, tablesURLEnumeration.nextElement());
 		}
 
-		Enumeration<URL> indexesURLs = _getServiceComponentsIndexesSQLURLs();
+		Enumeration<URL> indexesURLEnumeration =
+			_getServiceComponentsIndexesSQLURLs();
 
-		while (indexesURLs.hasMoreElements()) {
-			_runSQL(connection, indexesURLs.nextElement());
+		while (indexesURLEnumeration.hasMoreElements()) {
+			_runSQL(connection, indexesURLEnumeration.nextElement());
 		}
 	}
 

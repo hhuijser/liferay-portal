@@ -201,7 +201,7 @@ public class SampleSQLBuilderTest {
 
 		Enumeration<URL> indexesURLs = _getServiceComponentsIndexesSQLURLs();
 
-		while (tablesURLs.hasMoreElements()) {
+		while (indexesURLs.hasMoreElements()) {
 			_runSQL(connection, indexesURLs.nextElement());
 		}
 	}

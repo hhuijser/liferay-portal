@@ -241,7 +241,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = ldapContext.search(groupsDN, sb.toString(), searchControls);
+			enumeration = ldapContext.search(groupsDN, sb.toString(), searchControls);
 
 			if (enumeration.hasMoreElements()) {
 				return enumeration.nextElement();
@@ -250,8 +250,8 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			return null;
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (ldapContext != null) {
@@ -464,7 +464,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			NamingEnumeration<? extends Attribute> enumeration = null;
 
 			try {
-				enu = attributes.getAll();
+				enumeration = attributes.getAll();
 
 				if (!enumeration.hasMoreElements()) {
 					break;
@@ -485,8 +485,8 @@ public class DefaultPortalLDAP implements PortalLDAP {
 				}
 			}
 			finally {
-				if (enu != null) {
-					enu.close();
+				if (enumeration != null) {
+					enumeration.close();
 				}
 			}
 
@@ -589,7 +589,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = ldapContext.search(baseDN, sb.toString(), searchControls);
+			enumeration = ldapContext.search(baseDN, sb.toString(), searchControls);
 
 			if (enumeration.hasMoreElements()) {
 				return enumeration.nextElement();
@@ -620,8 +620,8 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			return null;
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (ldapContext != null) {
@@ -823,7 +823,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 
 			name.add(groupDN);
 
-			enu = ldapContext.search(name, sb.toString(), searchControls);
+			enumeration = ldapContext.search(name, sb.toString(), searchControls);
 
 			if (enumeration.hasMoreElements()) {
 				return true;
@@ -839,8 +839,8 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			}
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (ldapContext != null) {
@@ -881,7 +881,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = ldapContext.search(userDN, sb.toString(), searchControls);
+			enumeration = ldapContext.search(userDN, sb.toString(), searchControls);
 
 			if (enumeration.hasMoreElements()) {
 				return true;
@@ -897,8 +897,8 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			}
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (ldapContext != null) {
@@ -947,7 +947,7 @@ public class DefaultPortalLDAP implements PortalLDAP {
 						});
 				}
 
-				enu = ldapContext.search(baseDN, filter, searchControls);
+				enumeration = ldapContext.search(baseDN, filter, searchControls);
 
 				while (enumeration.hasMoreElements()) {
 					searchResults.add(enumeration.nextElement());
@@ -957,21 +957,21 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			}
 		}
 		catch (OperationNotSupportedException operationNotSupportedException) {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			ldapContext.setRequestControls(null);
 
-			enu = ldapContext.search(baseDN, filter, searchControls);
+			enumeration = ldapContext.search(baseDN, filter, searchControls);
 
 			while (enumeration.hasMoreElements()) {
 				searchResults.add(enumeration.nextElement());
 			}
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			ldapContext.setRequestControls(null);
@@ -1039,15 +1039,15 @@ public class DefaultPortalLDAP implements PortalLDAP {
 				Attributes auditAttributes = ldapContext.getAttributes(
 					fullDN, auditAttributeIds);
 
-				enu = auditAttributes.getAll();
+				enumeration = auditAttributes.getAll();
 
 				while (enumeration.hasMoreElements()) {
 					attributes.put(enumeration.nextElement());
 				}
 			}
 			finally {
-				if (enu != null) {
-					enu.close();
+				if (enumeration != null) {
+					enumeration.close();
 				}
 			}
 		}

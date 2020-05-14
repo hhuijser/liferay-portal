@@ -34,7 +34,7 @@ public abstract class BaseDataLayoutBuilderTag extends com.liferay.taglib.util.I
 		return super.doStartTag();
 	}
 
-	public java.util.List<java.util.Map> getAdditionalPanels() {
+	public java.util.List<java.util.Map<java.lang.String, java.lang.Object>> getAdditionalPanels() {
 		return _additionalPanels;
 	}
 
@@ -74,7 +74,7 @@ public abstract class BaseDataLayoutBuilderTag extends com.liferay.taglib.util.I
 		return _scopes;
 	}
 
-	public void setAdditionalPanels(java.util.List<java.util.Map> additionalPanels) {
+	public void setAdditionalPanels(java.util.List<java.util.Map<java.lang.String, java.lang.Object>> additionalPanels) {
 		_additionalPanels = additionalPanels;
 	}
 
@@ -169,7 +169,7 @@ public abstract class BaseDataLayoutBuilderTag extends com.liferay.taglib.util.I
 	private static final String _START_PAGE =
 		"/data_layout_builder/start.jsp";
 
-	private java.util.List<java.util.Map> _additionalPanels = null;
+	private java.util.List<java.util.Map<java.lang.String, java.lang.Object>> _additionalPanels = null;
 	private java.lang.String _componentId = null;
 	private java.lang.String _contentType = null;
 	private java.lang.Long _dataDefinitionId = null;

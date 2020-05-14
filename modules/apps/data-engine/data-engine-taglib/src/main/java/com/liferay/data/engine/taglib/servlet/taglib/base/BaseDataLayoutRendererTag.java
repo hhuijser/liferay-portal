@@ -50,7 +50,7 @@ public abstract class BaseDataLayoutRendererTag extends com.liferay.taglib.util.
 		return _dataRecordId;
 	}
 
-	public java.util.Map getDataRecordValues() {
+	public java.util.Map<java.lang.String, java.lang.Object> getDataRecordValues() {
 		return _dataRecordValues;
 	}
 
@@ -74,7 +74,7 @@ public abstract class BaseDataLayoutRendererTag extends com.liferay.taglib.util.
 		_dataRecordId = dataRecordId;
 	}
 
-	public void setDataRecordValues(java.util.Map dataRecordValues) {
+	public void setDataRecordValues(java.util.Map<java.lang.String, java.lang.Object> dataRecordValues) {
 		_dataRecordValues = dataRecordValues;
 	}
 
@@ -125,7 +125,7 @@ public abstract class BaseDataLayoutRendererTag extends com.liferay.taglib.util.
 	private java.lang.Long _dataDefinitionId = null;
 	private java.lang.Long _dataLayoutId = null;
 	private java.lang.Long _dataRecordId = null;
-	private java.util.Map _dataRecordValues = null;
+	private java.util.Map<java.lang.String, java.lang.Object> _dataRecordValues = null;
 	private java.lang.String _namespace = null;
 
 }

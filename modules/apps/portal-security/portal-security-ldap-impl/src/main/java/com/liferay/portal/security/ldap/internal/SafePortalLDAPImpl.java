@@ -129,7 +129,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = safeLdapContext.search(
+			enumeration = safeLdapContext.search(
 				LDAPUtil.getGroupsDNSafeLdapName(ldapServerConfiguration),
 				safeLdapFilter, searchControls);
 
@@ -140,8 +140,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			return null;
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (safeLdapContext != null) {
@@ -371,7 +371,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			NamingEnumeration<? extends Attribute> enumeration = null;
 
 			try {
-				enu = attributes.getAll();
+				enumeration = attributes.getAll();
 
 				if (!enumeration.hasMoreElements()) {
 					break;
@@ -392,8 +392,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 				}
 			}
 			finally {
-				if (enu != null) {
-					enu.close();
+				if (enumeration != null) {
+					enumeration.close();
 				}
 			}
 
@@ -559,7 +559,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = safeLdapContext.search(
+			enumeration = safeLdapContext.search(
 				LDAPUtil.getBaseDNSafeLdapName(ldapServerConfiguration),
 				safeLdapFilter, searchControls);
 
@@ -592,8 +592,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			return null;
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (safeLdapContext != null) {
@@ -799,7 +799,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = safeLdapContext.search(
+			enumeration = safeLdapContext.search(
 				groupSafeLdapName, safeLdapFilter, searchControls);
 
 			if (enumeration.hasMoreElements()) {
@@ -816,8 +816,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			}
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (safeLdapContext != null) {
@@ -854,7 +854,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			SearchControls searchControls = new SearchControls(
 				SearchControls.SUBTREE_SCOPE, 1, 0, null, false, false);
 
-			enu = safeLdapContext.search(
+			enumeration = safeLdapContext.search(
 				userSafeLdapName, safeLdapFilter, searchControls);
 
 			if (enumeration.hasMoreElements()) {
@@ -871,8 +871,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			}
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			if (safeLdapContext != null) {
@@ -920,7 +920,7 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 						});
 				}
 
-				enu = safeLdapContext.search(
+				enumeration = safeLdapContext.search(
 					baseDNSafeLdapName, safeLdapFilter, searchControls);
 
 				while (enumeration.hasMoreElements()) {
@@ -931,13 +931,13 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			}
 		}
 		catch (OperationNotSupportedException operationNotSupportedException) {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			safeLdapContext.setRequestControls(null);
 
-			enu = safeLdapContext.search(
+			enumeration = safeLdapContext.search(
 				baseDNSafeLdapName, safeLdapFilter, searchControls);
 
 			while (enumeration.hasMoreElements()) {
@@ -945,8 +945,8 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 			}
 		}
 		finally {
-			if (enu != null) {
-				enu.close();
+			if (enumeration != null) {
+				enumeration.close();
 			}
 
 			safeLdapContext.setRequestControls(null);
@@ -1012,15 +1012,15 @@ public class SafePortalLDAPImpl implements SafePortalLDAP {
 				Attributes auditAttributes = ldapContext.getAttributes(
 					fullDNSafeLdapName, auditAttributeIds);
 
-				enu = auditAttributes.getAll();
+				enumeration = auditAttributes.getAll();
 
 				while (enumeration.hasMoreElements()) {
 					attributes.put(enumeration.nextElement());
 				}
 			}
 			finally {
-				if (enu != null) {
-					enu.close();
+				if (enumeration != null) {
+					enumeration.close();
 				}
 			}
 		}

@@ -90,7 +90,9 @@ else {
 
 portletURL.setParameter("navigation", navigation);
 
-SearchContainer bookmarksSearchContainer = new SearchContainer(liferayPortletRequest, null, null, "curEntry", SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-bookmarks-in-this-folder");
+SearchContainer<Object> bookmarksSearchContainer = new SearchContainer(liferayPortletRequest, null, null, "curEntry", SearchContainer.DEFAULT_DELTA, portletURL, null, "there-are-no-bookmarks-in-this-folder");
+
+List<Object> results = new ArrayList<>();
 
 int total = 0;
 
@@ -110,7 +112,8 @@ if (Validator.isNotNull(keywords)) {
 	total = hits.getLength();
 
 	bookmarksSearchContainer.setTotal(total);
-	bookmarksSearchContainer.setResults(BookmarksUtil.getEntries(hits));
+
+	results.addAll(BookmarksUtil.getEntries(hits));
 }
 else if (navigation.equals("mine") || navigation.equals("recent")) {
 	long groupEntriesUserId = 0;
@@ -122,7 +125,8 @@ else if (navigation.equals("mine") || navigation.equals("recent")) {
 	total = BookmarksEntryServiceUtil.getGroupEntriesCount(scopeGroupId, groupEntriesUserId);
 
 	bookmarksSearchContainer.setTotal(total);
-	bookmarksSearchContainer.setResults(BookmarksEntryServiceUtil.getGroupEntries(scopeGroupId, groupEntriesUserId, bookmarksSearchContainer.getStart(), bookmarksSearchContainer.getEnd()));
+
+	results.addAll(BookmarksEntryServiceUtil.getGroupEntries(scopeGroupId, groupEntriesUserId, bookmarksSearchContainer.getStart(), bookmarksSearchContainer.getEnd()));
 }
 else if (useAssetEntryQuery) {
 	AssetEntryQuery assetEntryQuery = new AssetEntryQuery(BookmarksEntry.class.getName(), bookmarksSearchContainer);
@@ -139,14 +143,18 @@ else if (useAssetEntryQuery) {
 	total = AssetEntryServiceUtil.getEntriesCount(assetEntryQuery);
 
 	bookmarksSearchContainer.setTotal(total);
-	bookmarksSearchContainer.setResults(AssetEntryServiceUtil.getEntries(assetEntryQuery));
+
+	results.addAll(AssetEntryServiceUtil.getEntries(assetEntryQuery));
 }
 else {
 	total = BookmarksFolderServiceUtil.getFoldersAndEntriesCount(scopeGroupId, folderId);
 
 	bookmarksSearchContainer.setTotal(total);
-	bookmarksSearchContainer.setResults(BookmarksFolderServiceUtil.getFoldersAndEntries(scopeGroupId, folderId, WorkflowConstants.STATUS_APPROVED, bookmarksSearchContainer.getStart(), bookmarksSearchContainer.getEnd()));
+
+	results.addAll(BookmarksFolderServiceUtil.getFoldersAndEntries(scopeGroupId, folderId, WorkflowConstants.STATUS_APPROVED, bookmarksSearchContainer.getStart(), bookmarksSearchContainer.getEnd()));
 }
+
+bookmarksSearchContainer.setResults(results);
 
 request.setAttribute("view.jsp-folderId", String.valueOf(folderId));
 

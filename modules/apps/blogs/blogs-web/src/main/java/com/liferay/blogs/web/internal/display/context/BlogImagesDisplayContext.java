@@ -57,7 +57,7 @@ public class BlogImagesDisplayContext {
 		_httpServletRequest = _liferayPortletRequest.getHttpServletRequest();
 	}
 
-	public void populateResults(SearchContainer searchContainer)
+	public void populateResults(SearchContainer<FileEntry> searchContainer)
 		throws PortalException {
 
 		ThemeDisplay themeDisplay =

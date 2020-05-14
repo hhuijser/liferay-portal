@@ -35,7 +35,7 @@ portletURL.setParameter("orderByType", orderByType);
 
 request.setAttribute("view_images.jsp-portletURL", portletURL);
 
-SearchContainer blogImagesSearchContainer = new SearchContainer(renderRequest, PortletURLUtil.clone(portletURL, liferayPortletResponse), null, "no-images-were-found");
+SearchContainer<FileEntry> blogImagesSearchContainer = new SearchContainer(renderRequest, PortletURLUtil.clone(portletURL, liferayPortletResponse), null, "no-images-were-found");
 
 blogImagesSearchContainer.setOrderByComparator(DLUtil.getRepositoryModelOrderByComparator(orderByCol, orderByType));
 

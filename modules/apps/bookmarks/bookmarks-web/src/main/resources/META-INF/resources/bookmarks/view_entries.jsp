@@ -19,7 +19,7 @@
 <%
 long folderId = GetterUtil.getLong((String)request.getAttribute("view.jsp-folderId"));
 
-SearchContainer bookmarksSearchContainer = (SearchContainer)request.getAttribute("view.jsp-bookmarksSearchContainer");
+SearchContainer<Object> bookmarksSearchContainer = (SearchContainer)request.getAttribute("view.jsp-bookmarksSearchContainer");
 
 EntriesChecker entriesChecker = new EntriesChecker(liferayPortletRequest, liferayPortletResponse);
 

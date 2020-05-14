@@ -306,6 +306,7 @@
 			<message key="import.statement.use" value="Use import statement instead of Fully Qualified Name for ''{0}'" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.GenericTypeCheck">
+			<property name="enabled" value="false" />
 			<message key="generic.type.parameterize" value="Parameterize the generic {0} for ''{1}'" />
 		</module>
 		<module name="com.liferay.source.formatter.checkstyle.checks.InstanceofOrderCheck">

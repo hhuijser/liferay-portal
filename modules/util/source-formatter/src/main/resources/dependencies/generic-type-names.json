@@ -23,6 +23,230 @@
 		{
 			"genericTypeCount": 1,
 			"name": "java.lang.ThreadLocal"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.ArrayList"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Collection"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Comparator"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Deque"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.Dictionary"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.EnumMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.EnumSet"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Enumeration"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.HashMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.HashSet"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.Hashtable"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Iterator"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.LinkedHashMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.LinkedHashSet"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.LinkedList"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.List"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.ListIterator"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.Map"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.Map.Entry"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.NavigableMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.NavigableSet"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Optional"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Queue"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.ServiceLoader"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Set"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.SortedMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.SortedSet"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Stack"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.TreeMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.TreeSet"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.Vector"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.BlockingQueue"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.Callable"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.CompletableFuture"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.concurrent.ConcurrentHashMap"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.concurrent.ConcurrentMap"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.concurrent.ConcurrentNavigableMap"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.CopyOnWriteArrayList"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.DelayQueue"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.Exchanger"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.Future"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.FutureTask"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.SynchronousQueue"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.atomic.AtomicMarkableReference"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.concurrent.atomic.AtomicReference"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.function.BiConsumer"
+		},
+		{
+			"genericTypeCount": 3,
+			"name": "java.util.function.BiFunction"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.function.BiPredicate"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.function.Consumer"
+		},
+		{
+			"genericTypeCount": 2,
+			"name": "java.util.function.Function"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.function.IntFunction"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.function.Predicate"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.function.Supplier"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.function.UnaryOperator"
+		},
+		{
+			"genericTypeCount": 3,
+			"name": "java.util.stream.Collector"
+		},
+		{
+			"genericTypeCount": 1,
+			"name": "java.util.stream.Stream"
 		}
 	]
 }

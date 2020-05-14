@@ -152,7 +152,7 @@ public class DataLayoutBuilderTag extends BaseDataLayoutBuilderTag {
 				).build()
 			).build();
 
-		List<Map> additionalPanels = getAdditionalPanels();
+		List<Map<String, Object>> additionalPanels = getAdditionalPanels();
 
 		if (ListUtil.isEmpty(additionalPanels)) {
 			return sidebarPanels;

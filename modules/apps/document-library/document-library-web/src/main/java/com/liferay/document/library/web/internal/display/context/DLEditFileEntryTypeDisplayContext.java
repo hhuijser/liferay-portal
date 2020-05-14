@@ -69,12 +69,14 @@ public class DLEditFileEntryTypeDisplayContext {
 		_liferayPortletResponse = liferayPortletResponse;
 	}
 
-	public List<Map> getAdditionalPanels(String npmResolvedPackageName) {
+	public List<Map<String, Object>> getAdditionalPanels(
+		String npmResolvedPackageName) {
+
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_liferayPortletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		List<Map> additionalPanels = new ArrayList<>();
+		List<Map<String, Object>> additionalPanels = new ArrayList<>();
 
 		additionalPanels.add(
 			HashMapBuilder.<String, Object>put(

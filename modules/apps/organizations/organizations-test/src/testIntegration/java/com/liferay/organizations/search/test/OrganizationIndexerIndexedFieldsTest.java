@@ -204,10 +204,10 @@ public class OrganizationIndexerIndexedFieldsTest {
 	@Inject
 	protected UserLocalService userLocalService;
 
-	private Map<String, Object> _expectedFieldValues(Organization organization)
+	private Map<String, String> _expectedFieldValues(Organization organization)
 		throws Exception {
 
-		Map<String, Object> map = HashMapBuilder.put(
+		Map<String, String> map = HashMapBuilder.put(
 			Field.COMPANY_ID,
 			(Object)String.valueOf(organization.getCompanyId())
 		).put(
@@ -261,11 +261,11 @@ public class OrganizationIndexerIndexedFieldsTest {
 		return map;
 	}
 
-	private Map<String, Object> _expectedFieldValuesWithExpando(
+	private Map<String, String> _expectedFieldValuesWithExpando(
 			Organization organization)
 		throws Exception {
 
-		Map<String, Object> expectedFieldValues = _expectedFieldValues(
+		Map<String, String> expectedFieldValues = _expectedFieldValues(
 			organization);
 
 		expectedFieldValues.put(
@@ -279,7 +279,7 @@ public class OrganizationIndexerIndexedFieldsTest {
 	}
 
 	private void _populateDates(
-		Organization organization, Map<String, Object> map) {
+		Organization organization, Map<String, String> map) {
 
 		_indexedFieldsFixture.populateDate(
 			Field.CREATE_DATE, organization.getCreateDate(), map);
@@ -288,7 +288,7 @@ public class OrganizationIndexerIndexedFieldsTest {
 	}
 
 	private void _populateRoles(
-			Organization organization, Map<String, Object> map)
+			Organization organization, Map<String, String> map)
 		throws Exception {
 
 		_indexedFieldsFixture.populateRoleIdFields(

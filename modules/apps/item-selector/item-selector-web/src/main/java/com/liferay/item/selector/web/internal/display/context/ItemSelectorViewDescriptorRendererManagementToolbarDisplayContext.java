@@ -33,7 +33,7 @@ public class ItemSelectorViewDescriptorRendererManagementToolbarDisplayContext
 		HttpServletRequest httpServletRequest,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
-		SearchContainer searchContainer) {
+		SearchContainer<?> searchContainer) {
 
 		super(
 			httpServletRequest, liferayPortletRequest, liferayPortletResponse,

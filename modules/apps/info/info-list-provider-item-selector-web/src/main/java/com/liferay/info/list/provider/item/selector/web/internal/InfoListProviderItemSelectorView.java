@@ -194,7 +194,7 @@ public class InfoListProviderItemSelectorView
 		}
 
 		@Override
-		public SearchContainer getSearchContainer() {
+		public SearchContainer<InfoListProvider> getSearchContainer() {
 			PortletRequest portletRequest =
 				(PortletRequest)_httpServletRequest.getAttribute(
 					JavaConstants.JAVAX_PORTLET_REQUEST);
@@ -206,10 +206,11 @@ public class InfoListProviderItemSelectorView
 			ResourceBundle resourceBundle = ResourceBundleUtil.getBundle(
 				"content.Language", themeDisplay.getLocale(), getClass());
 
-			SearchContainer searchContainer = new SearchContainer<>(
-				portletRequest, _portletURL, null,
-				_language.get(
-					resourceBundle, "there-are-no-collection-providers"));
+			SearchContainer<InfoListProvider> searchContainer =
+				new SearchContainer<>(
+					portletRequest, _portletURL, null,
+					_language.get(
+						resourceBundle, "there-are-no-collection-providers"));
 
 			List<InfoListProvider> infoListProviders = new ArrayList<>();
 

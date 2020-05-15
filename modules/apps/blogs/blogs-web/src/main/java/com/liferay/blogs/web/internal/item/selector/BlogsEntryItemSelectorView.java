@@ -248,7 +248,7 @@ public class BlogsEntryItemSelectorView
 		}
 
 		@Override
-		public SearchContainer getSearchContainer() {
+		public SearchContainer<BlogsEntry> getSearchContainer() {
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)_httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);

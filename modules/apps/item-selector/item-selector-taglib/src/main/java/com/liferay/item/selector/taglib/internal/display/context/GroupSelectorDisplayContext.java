@@ -88,8 +88,8 @@ public class GroupSelectorDisplayContext {
 		return GroupItemSelectorTrackerUtil.getGroupItemSelectorProviderTypes();
 	}
 
-	public SearchContainer getSearchContainer() {
-		SearchContainer searchContainer = new GroupSearch(
+	public SearchContainer<Group> getSearchContainer() {
+		SearchContainer<Group> searchContainer = new GroupSearch(
 			_liferayPortletRequest, _getIteratorURL());
 
 		searchContainer.setEmptyResultsMessage(_getEmptyResultsMessage());

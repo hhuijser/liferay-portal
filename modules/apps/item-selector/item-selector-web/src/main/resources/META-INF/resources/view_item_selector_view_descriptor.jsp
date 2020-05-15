@@ -19,9 +19,9 @@
 <%
 ItemSelectorViewDescriptorRendererDisplayContext itemSelectorViewDescriptorRendererDisplayContext = (ItemSelectorViewDescriptorRendererDisplayContext)request.getAttribute(ItemSelectorViewDescriptorRendererDisplayContext.class.getName());
 
-ItemSelectorViewDescriptor itemSelectorViewDescriptor = itemSelectorViewDescriptorRendererDisplayContext.getItemSelectorViewDescriptor();
+ItemSelectorViewDescriptor<?> itemSelectorViewDescriptor = itemSelectorViewDescriptorRendererDisplayContext.getItemSelectorViewDescriptor();
 
-SearchContainer searchContainer = itemSelectorViewDescriptor.getSearchContainer();
+SearchContainer<?> searchContainer = itemSelectorViewDescriptor.getSearchContainer();
 %>
 
 <c:if test="<%= itemSelectorViewDescriptor.isShowManagementToolbar() %>">

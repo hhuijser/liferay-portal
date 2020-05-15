@@ -281,7 +281,9 @@ public class AssetListItemSelectorView
 		}
 
 		@Override
-		public SearchContainer getSearchContainer() throws PortalException {
+		public SearchContainer<AssetListEntry> getSearchContainer()
+			throws PortalException {
+
 			ThemeDisplay themeDisplay =
 				(ThemeDisplay)_httpServletRequest.getAttribute(
 					WebKeys.THEME_DISPLAY);

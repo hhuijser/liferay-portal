@@ -127,7 +127,9 @@ public class SharedAssetsFilterItemItemSelectorView
 				}
 
 				@Override
-				public SearchContainer getSearchContainer() {
+				public SearchContainer<SharedAssetsFilterItem>
+					getSearchContainer() {
+
 					SearchContainer<SharedAssetsFilterItem>
 						entriesSearchContainer = new SearchContainer<>(
 							(PortletRequest)servletRequest.getAttribute(

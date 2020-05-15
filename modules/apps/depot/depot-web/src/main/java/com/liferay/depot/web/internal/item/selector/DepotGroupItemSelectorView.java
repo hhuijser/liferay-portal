@@ -240,7 +240,7 @@ public class DepotGroupItemSelectorView
 		}
 
 		@Override
-		public SearchContainer getSearchContainer() {
+		public SearchContainer<Group> getSearchContainer() {
 			try {
 				PortletRequest portletRequest =
 					(PortletRequest)_httpServletRequest.getAttribute(

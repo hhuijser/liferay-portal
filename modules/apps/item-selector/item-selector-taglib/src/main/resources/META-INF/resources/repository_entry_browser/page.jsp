@@ -35,7 +35,7 @@ boolean showSearch = GetterUtil.getBoolean(request.getAttribute("liferay-item-se
 String tabName = GetterUtil.getString(request.getAttribute("liferay-item-selector:repository-entry-browser:tabName"));
 PortletURL uploadURL = (PortletURL)request.getAttribute("liferay-item-selector:repository-entry-browser:uploadURL");
 
-SearchContainer searchContainer = new SearchContainer(renderRequest, PortletURLUtil.clone(portletURL, liferayPortletResponse), null, emptyResultsMessage);
+SearchContainer<?> searchContainer = new SearchContainer(renderRequest, PortletURLUtil.clone(portletURL, liferayPortletResponse), null, emptyResultsMessage);
 
 String keywords = ParamUtil.getString(request, "keywords");
 

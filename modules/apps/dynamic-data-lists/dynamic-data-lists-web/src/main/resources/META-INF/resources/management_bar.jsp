@@ -28,7 +28,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 	disabled="<%= ddlDisplayContext.isDisabledManagementBar() %>"
 	filterDropdownItems="<%= ddlDisplayContext.getFilterItemsDropdownItems() %>"
 	itemsTotal="<%= ddlDisplayContext.getTotalItems() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= portletURL.toString() %>"
 	searchContainerId="<%= ddlDisplayContext.getSearchContainerId() %>"
 	searchFormName="fm1"

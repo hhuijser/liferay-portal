@@ -38,9 +38,9 @@ boolean anonymousAccount = ParamUtil.getBoolean(request, "anonymousUser");
 					<liferay-ui:message key="your-comment-has-already-been-posted.-would-you-like-to-create-an-account-with-the-provided-information" />
 				</div>
 
-				<aui:button onClick='<%= renderResponse.getNamespace() + "activateAccount();" %>' value="activate-account" />
+				<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "activateAccount();" %>' value="activate-account" />
 
-				<aui:button onClick='<%= renderResponse.getNamespace() + "closeDialog(window.parent.namespace);" %>' value="cancel" />
+				<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "closeDialog(window.parent.namespace);" %>' value="cancel" />
 			</aui:form>
 		</div>
 	</div>

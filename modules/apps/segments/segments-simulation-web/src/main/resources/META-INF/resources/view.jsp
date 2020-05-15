@@ -22,7 +22,7 @@ SegmentsSimulationDisplayContext segmentsSimulationDisplayContext = new Segments
 
 <clay:container-fluid
 	cssClass="segments-simulation"
-	id='<%= renderResponse.getNamespace() + "segmentsSimulationContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "segmentsSimulationContainer" %>'
 >
 	<c:choose>
 		<c:when test="<%= segmentsSimulationDisplayContext.isShowEmptyMessage() %>">

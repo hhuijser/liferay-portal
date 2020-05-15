@@ -33,7 +33,7 @@ List<UserGroupRole> siteRoles = userDisplayContext.getSiteRoles();
 List<UserGroupGroupRole> inheritedSiteRoles = userDisplayContext.getInheritedSiteRoles();
 List<Group> roleGroups = userDisplayContext.getRoleGroups();
 
-currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "roles");
+currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() + "roles");
 %>
 
 <liferay-util:dynamic-include key="com.liferay.users.admin.web#/user/roles.jsp#pre" />

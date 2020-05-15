@@ -25,7 +25,7 @@ long[] classNameIdValues = StringUtil.split(ParamUtil.getString(request, "classN
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveConfiguration();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="classNameIds" type="hidden" />
 

@@ -21,7 +21,7 @@ User selUser = userDisplayContext.getSelectedUser();
 List<Group> siteGroups = userDisplayContext.getSiteGroups();
 List<Group> inheritedSiteGroups = userDisplayContext.getInheritedSiteGroups();
 
-currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "sites");
+currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() + "sites");
 %>
 
 <liferay-ui:error-marker

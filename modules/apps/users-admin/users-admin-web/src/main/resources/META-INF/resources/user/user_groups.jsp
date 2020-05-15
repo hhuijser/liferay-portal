@@ -20,7 +20,7 @@
 User selUser = userDisplayContext.getSelectedUser();
 List<UserGroup> userGroups = userDisplayContext.getUserGroups();
 
-currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "userGroups");
+currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() + "userGroups");
 %>
 
 <liferay-ui:error-marker

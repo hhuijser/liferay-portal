@@ -97,7 +97,7 @@ String organizationIdsString = ParamUtil.getString(request, "organizationsSearch
 				/>
 
 				<%
-				String taglibOnClick = renderResponse.getNamespace() + "saveUser('unlock');";
+				String taglibOnClick = liferayPortletResponse.getNamespace() + "saveUser('unlock');";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="unlock" />

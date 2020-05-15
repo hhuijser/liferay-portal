@@ -102,7 +102,7 @@ Format timeFormat = FastDateFormatFactoryUtil.getSimpleDateFormat("HH:mm", local
 
 <liferay-ui:error key="<%= NoSuchListTypeException.class.getName() + Organization.class.getName() + ListTypeConstants.ORGANIZATION_SERVICE %>" message="please-select-a-type" />
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "services" %>'>
+<aui:fieldset id='<%= liferayPortletResponse.getNamespace() + "services" %>'>
 
 	<%
 	Calendar cal = CalendarFactoryUtil.getCalendar();

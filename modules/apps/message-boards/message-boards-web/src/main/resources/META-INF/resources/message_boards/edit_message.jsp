@@ -113,7 +113,7 @@ if (portletTitleBasedNavigation) {
 %>
 
 <clay:container-fluid
-	id='<%= renderResponse.getNamespace() + "mbEditPageContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "mbEditPageContainer" %>'
 >
 	<c:if test="<%= !portletTitleBasedNavigation %>">
 		<h3><%= headerTitle %></h3>

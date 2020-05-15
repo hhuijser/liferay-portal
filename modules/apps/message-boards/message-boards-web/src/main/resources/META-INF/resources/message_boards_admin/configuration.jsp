@@ -33,7 +33,7 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 	action="<%= configurationActionURL %>"
 	method="post"
 	name="fm"
-	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'
+	onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveConfiguration();" %>'
 >
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= configurationRenderURL %>" />
@@ -178,7 +178,7 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 									<aui:input name="defaultLanguage" type="resource" value="<%= defaultLocale.getDisplayName(defaultLocale) %>" />
 								</td>
 								<td>
-									<aui:select label="localized-language" name="prioritiesLanguageId" onChange='<%= renderResponse.getNamespace() + "updatePrioritiesLanguage();" %>' showEmptyOption="<%= true %>">
+									<aui:select label="localized-language" name="prioritiesLanguageId" onChange='<%= liferayPortletResponse.getNamespace() + "updatePrioritiesLanguage();" %>' showEmptyOption="<%= true %>">
 
 										<%
 										for (Locale curLocale : locales) {
@@ -279,13 +279,13 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 
 											<tr>
 												<td>
-													<aui:input label="" name='<%= "priorityName" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onPrioritiesChanged();" %>' size="15" title="priority-name" />
+													<aui:input label="" name='<%= "priorityName" + i + "_temp" %>' onChange='<%= liferayPortletResponse.getNamespace() + "onPrioritiesChanged();" %>' size="15" title="priority-name" />
 												</td>
 												<td>
-													<aui:input label="" name='<%= "priorityImage" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onPrioritiesChanged();" %>' size="40" title="priority-image" />
+													<aui:input label="" name='<%= "priorityImage" + i + "_temp" %>' onChange='<%= liferayPortletResponse.getNamespace() + "onPrioritiesChanged();" %>' size="40" title="priority-image" />
 												</td>
 												<td>
-													<aui:input label="" name='<%= "priorityValue" + i + "_temp" %>' onChange='<%= renderResponse.getNamespace() + "onPrioritiesChanged();" %>' size="4" title="priority-value" />
+													<aui:input label="" name='<%= "priorityValue" + i + "_temp" %>' onChange='<%= liferayPortletResponse.getNamespace() + "onPrioritiesChanged();" %>' size="4" title="priority-value" />
 												</td>
 											</tr>
 
@@ -354,7 +354,7 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 									<aui:input name="defaultLanguage" type="resource" value="<%= defaultLocale.getDisplayName(defaultLocale) %>" />
 								</td>
 								<td class="lfr-label">
-									<aui:select label="localized-language" name="ranksLanguageId" onChange='<%= renderResponse.getNamespace() + "updateRanksLanguage();" %>' showEmptyOption="<%= true %>">
+									<aui:select label="localized-language" name="ranksLanguageId" onChange='<%= liferayPortletResponse.getNamespace() + "updateRanksLanguage();" %>' showEmptyOption="<%= true %>">
 
 										<%
 										for (Locale curLocale : locales) {
@@ -391,7 +391,7 @@ mbGroupServiceSettings = MBGroupServiceSettings.getInstance(themeDisplay.getSite
 									}
 									%>
 
-									<aui:input cssClass="hide lfr-textarea-container" label="" name="ranks_temp" onChange='<%= renderResponse.getNamespace() + "onRanksChanged();" %>' title="ranks" type="textarea" />
+									<aui:input cssClass="hide lfr-textarea-container" label="" name="ranks_temp" onChange='<%= liferayPortletResponse.getNamespace() + "onRanksChanged();" %>' title="ranks" type="textarea" />
 								</td>
 							</tr>
 						</table>

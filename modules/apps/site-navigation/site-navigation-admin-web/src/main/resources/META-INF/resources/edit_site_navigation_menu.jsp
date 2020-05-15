@@ -105,7 +105,7 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 			<c:otherwise>
 				<liferay-frontend:empty-result-message
 					actionDropdownItems="<%= siteNavigationAdminDisplayContext.getAddSiteNavigationMenuItemDropdownItems() %>"
-					defaultEventHandler='<%= renderResponse.getNamespace() + "AddMenuDefaultEventHandler" %>'
+					defaultEventHandler='<%= liferayPortletResponse.getNamespace() + "AddMenuDefaultEventHandler" %>'
 					description='<%= LanguageUtil.get(request, "fortunately-it-is-very-easy-to-add-new-ones") %>'
 				/>
 			</c:otherwise>
@@ -135,7 +135,7 @@ renderResponse.setTitle(siteNavigationAdminDisplayContext.getSiteNavigationMenuN
 		).put(
 			"editSiteNavigationMenuSettingsURL", editSiteNavigationMenuSettingsURL.toString()
 		).put(
-			"id", renderResponse.getNamespace() + "sidebar"
+			"id", liferayPortletResponse.getNamespace() + "sidebar"
 		).put(
 			"redirect", currentURL
 		).put(

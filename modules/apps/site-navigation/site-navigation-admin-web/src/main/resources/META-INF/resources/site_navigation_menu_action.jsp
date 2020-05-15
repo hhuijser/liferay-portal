@@ -61,7 +61,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 		%>
 
 		<liferay-ui:icon
-			cssClass='<%= renderResponse.getNamespace() + "update-site-navigation-menu-action-option" %>'
+			cssClass='<%= liferayPortletResponse.getNamespace() + "update-site-navigation-menu-action-option" %>'
 			data="<%= updateSiteNavigationMenuData %>"
 			message="rename"
 			url="javascript:;"

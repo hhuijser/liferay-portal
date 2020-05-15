@@ -90,7 +90,7 @@ else {
 <c:if test="<%= record != null %>">
 	<clay:management-toolbar
 		infoPanelId="infoPanelId"
-		namespace="<%= renderResponse.getNamespace() %>"
+		namespace="<%= liferayPortletResponse.getNamespace() %>"
 		selectable="false"
 		showSearch="false"
 	/>
@@ -98,7 +98,7 @@ else {
 
 <clay:container
 	className="closed sidenav-container sidenav-right"
-	id='<%= renderResponse.getNamespace() + "infoPanelId" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "infoPanelId" %>'
 >
 	<c:if test="<%= recordVersion != null %>">
 		<div class="sidenav-menu-slider">
@@ -254,11 +254,11 @@ else {
 				%>
 
 				<c:if test="<%= ddlDisplayContext.isShowSaveRecordButton() %>">
-					<aui:button name="saveButton" onClick='<%= renderResponse.getNamespace() + "setWorkflowAction(true);" %>' primary="<%= false %>" type="submit" value="<%= saveButtonLabel %>" />
+					<aui:button name="saveButton" onClick='<%= liferayPortletResponse.getNamespace() + "setWorkflowAction(true);" %>' primary="<%= false %>" type="submit" value="<%= saveButtonLabel %>" />
 				</c:if>
 
 				<c:if test="<%= ddlDisplayContext.isShowPublishRecordButton() %>">
-					<aui:button disabled="<%= pending %>" name="publishButton" onClick='<%= renderResponse.getNamespace() + "setWorkflowAction(false);" %>' type="submit" value="<%= publishButtonLabel %>" />
+					<aui:button disabled="<%= pending %>" name="publishButton" onClick='<%= liferayPortletResponse.getNamespace() + "setWorkflowAction(false);" %>' type="submit" value="<%= publishButtonLabel %>" />
 				</c:if>
 
 				<c:if test="<%= ddlDisplayContext.isShowCancelButton() %>">

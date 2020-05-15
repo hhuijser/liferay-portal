@@ -99,7 +99,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 										StringBundler sb = new StringBundler(7);
 
 										sb.append("javascript:");
-										sb.append(renderResponse.getNamespace());
+										sb.append(liferayPortletResponse.getNamespace());
 										sb.append("selectRecordSet('");
 										sb.append(recordSet.getRecordSetId());
 										sb.append("','");
@@ -146,7 +146,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "asc");
 
 		<aui:form action="<%= configurationActionURL %>" method="post" name="fm">
 			<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
-			<aui:input name="redirect" type="hidden" value='<%= configurationRenderURL.toString() + StringPool.AMPERSAND + renderResponse.getNamespace() + "cur" + cur %>' />
+			<aui:input name="redirect" type="hidden" value='<%= configurationRenderURL.toString() + StringPool.AMPERSAND + liferayPortletResponse.getNamespace() + "cur" + cur %>' />
 			<aui:input name="preferences--recordSetId--" type="hidden" value="<%= recordSetId %>" />
 
 			<c:if test="<%= selRecordSet != null %>">

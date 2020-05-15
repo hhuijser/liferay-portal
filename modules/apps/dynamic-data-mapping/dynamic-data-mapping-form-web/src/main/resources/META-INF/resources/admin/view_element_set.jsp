@@ -25,7 +25,7 @@ FieldSetPermissionCheckerHelper fieldSetPermissionCheckerHelper = ddmFormAdminDi
 %>
 
 <clay:container-fluid
-	id='<%= renderResponse.getNamespace() + "formContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "formContainer" %>'
 >
 	<aui:form action="<%= portletURL.toString() %>" method="post" name="searchContainerForm">
 		<aui:input name="redirect" type="hidden" value="<%= portletURL.toString() %>" />

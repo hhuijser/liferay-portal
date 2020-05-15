@@ -15,7 +15,7 @@
 --%>
 
 <%
-String namespace = renderResponse.getNamespace();
+String namespace = liferayPortletResponse.getNamespace();
 
 if (Validator.isNotNull(portletResourceNamespace)) {
 	namespace = portletResourceNamespace;

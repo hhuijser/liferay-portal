@@ -84,7 +84,7 @@ boolean hasViewPermission = ddlDisplayContext.isAdminPortlet() && DDLRecordSetPe
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("javascript:");
-		sb.append(renderResponse.getNamespace());
+		sb.append(liferayPortletResponse.getNamespace());
 		sb.append("exportRecordSet('");
 		sb.append(exportRecordSetURL);
 		sb.append("');");

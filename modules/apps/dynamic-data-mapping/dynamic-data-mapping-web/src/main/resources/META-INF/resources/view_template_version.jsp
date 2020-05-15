@@ -69,7 +69,7 @@ backURL.setParameter("templateId", String.valueOf(template.getTemplateId()));
 			<%
 			DDMStructure structure = ddmDisplayContext.fetchStructure(template);
 
-			String portletResourceNamespace = ParamUtil.getString(request, "portletResourceNamespace", renderResponse.getNamespace());
+			String portletResourceNamespace = ParamUtil.getString(request, "portletResourceNamespace", liferayPortletResponse.getNamespace());
 
 			String script = templateVersion.getScript();
 

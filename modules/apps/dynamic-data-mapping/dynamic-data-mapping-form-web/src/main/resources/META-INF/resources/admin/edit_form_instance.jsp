@@ -134,7 +134,7 @@ renderResponse.setTitle((formInstance == null) ? LanguageUtil.get(request, "new-
 
 	<clay:container-fluid
 		cssClass="ddm-form-instance-settings hide"
-		id='<%= renderResponse.getNamespace() + "settings" %>'
+		id='<%= liferayPortletResponse.getNamespace() + "settings" %>'
 	>
 		<%= ddmFormAdminDisplayContext.serializeSettingsForm(pageContext) %>
 	</clay:container-fluid>

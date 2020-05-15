@@ -45,7 +45,7 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 	disabled="<%= ddlViewRecordsDisplayContext.isDisabledManagementBar() %>"
 	filterDropdownItems="<%= ddlViewRecordsDisplayContext.getFilterItemsDropdownItems() %>"
 	itemsTotal="<%= ddlViewRecordsDisplayContext.getTotalItems() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= ddlViewRecordsDisplayContext.getSearchActionURL() %>"
 	searchContainerId="<%= ddlViewRecordsDisplayContext.getSearchContainerId() %>"
 	searchFormName="fm1"
@@ -56,7 +56,7 @@ if (!ddlDisplayContext.isAdminPortlet()) {
 
 <clay:container-fluid
 	cssClass="view-records-container"
-	id='<%= renderResponse.getNamespace() + "formContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "formContainer" %>'
 >
 	<aui:form action="<%= portletURL.toString() %>" method="post" name="fm">
 		<aui:input name="recordIds" type="hidden" />

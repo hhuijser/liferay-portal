@@ -68,7 +68,7 @@ if (ddlDisplayContext.isAdminPortlet()) {
 	<portlet:param name="mvcPath" value="/edit_record_set.jsp" />
 </portlet:actionURL>
 
-<aui:form action="<%= (recordSet == null) ? addRecordSetURL : updateRecordSetURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveRecordSet();" %>'>
+<aui:form action="<%= (recordSet == null) ? addRecordSetURL : updateRecordSetURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveRecordSet();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="closeRedirect" type="hidden" value="<%= closeRedirect %>" />
 	<aui:input name="portletResource" type="hidden" value="<%= portletResource %>" />
@@ -105,7 +105,7 @@ if (ddlDisplayContext.isAdminPortlet()) {
 					label="<%= true %>"
 					linkCssClass="btn btn-secondary"
 					message="select"
-					url='<%= "javascript:" + renderResponse.getNamespace() + "openDDMStructureSelector();" %>'
+					url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "openDDMStructureSelector();" %>'
 				/>
 			</div>
 

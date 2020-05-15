@@ -17,7 +17,7 @@
 <%@ include file="/dynamic_include/init.jsp" %>
 
 <liferay-frontend:component
-	componentId='<%= renderResponse.getNamespace() + "DocumentLibraryOpener" %>'
+	componentId='<%= liferayPortletResponse.getNamespace() + "DocumentLibraryOpener" %>'
 	module="js/DocumentLibraryOpener.es"
 />
 

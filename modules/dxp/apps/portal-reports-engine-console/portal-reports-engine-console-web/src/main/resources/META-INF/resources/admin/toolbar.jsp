@@ -67,7 +67,7 @@ portletURL.setParameter("tabs1", tabs1);
 	disabled="<%= reportsEngineDisplayContext.isDisabled() %>"
 	filterDropdownItems="<%= reportsEngineDisplayContext.getFilterOptions() %>"
 	itemsTotal="<%= reportsEngineDisplayContext.getTotalItems() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= reportsEngineDisplayContext.getSearchURL() %>"
 	searchContainerId="reportsEngine"
 	searchFormName="fm1"

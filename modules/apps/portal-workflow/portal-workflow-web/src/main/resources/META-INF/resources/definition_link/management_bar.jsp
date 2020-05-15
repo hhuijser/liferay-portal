@@ -20,7 +20,7 @@
 	clearResultsURL="<%= workflowDefinitionLinkDisplayContext.getClearResultsURL() %>"
 	filterDropdownItems="<%= workflowDefinitionLinkDisplayContext.getFilterOptions(request) %>"
 	itemsTotal="<%= workflowDefinitionLinkDisplayContext.getTotalItems() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= workflowDefinitionLinkDisplayContext.getSearchURL() %>"
 	searchContainerId="workflowDefinitionLinks"
 	searchFormName="fm1"

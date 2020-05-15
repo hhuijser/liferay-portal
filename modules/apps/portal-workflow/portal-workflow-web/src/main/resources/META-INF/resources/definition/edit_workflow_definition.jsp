@@ -268,7 +268,7 @@ renderResponse.setTitle((workflowDefinition == null) ? LanguageUtil.get(request,
 
 							<clay:col
 								cssClass="workflow-definition-content-source-wrapper"
-								id='<%= renderResponse.getNamespace() + "contentSourceWrapper" %>'
+								id='<%= liferayPortletResponse.getNamespace() + "contentSourceWrapper" %>'
 								size="12"
 							>
 								<div class="workflow-definition-content-source" id="<portlet:namespace />contentEditor"></div>

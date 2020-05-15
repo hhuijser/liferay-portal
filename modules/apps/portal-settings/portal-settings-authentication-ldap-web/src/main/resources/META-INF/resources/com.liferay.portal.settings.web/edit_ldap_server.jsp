@@ -142,7 +142,7 @@ renderResponse.setTitle((ldapServerId == 0) ? LanguageUtil.get(resourceBundle, "
 
 <portlet:actionURL name="/portal_settings/edit_ldap_server" var="editLDAPServerURL" />
 
-<aui:form action="<%= editLDAPServerURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveEntry(false);" %>'>
+<aui:form action="<%= editLDAPServerURL %>" cssClass="container-fluid-1280" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveEntry(false);" %>'>
 	<liferay-ui:error exception="<%= DuplicateLDAPServerNameException.class %>" message="please-enter-a-unique-ldap-server-name" />
 	<liferay-ui:error exception="<%= LDAPFilterException.class %>" message="please-enter-a-valid-ldap-search-filter" />
 	<liferay-ui:error exception="<%= LDAPServerNameException.class %>" message="please-enter-a-valid-ldap-server-name" />
@@ -164,12 +164,12 @@ renderResponse.setTitle((ldapServerId == 0) ? LanguageUtil.get(resourceBundle, "
 			<h3><liferay-ui:message key="default-values" /></h3>
 
 			<aui:field-wrapper label="load-default-server-configuration-for">
-				<aui:input label="Apache Directory Server" name="defaultLdap" onClick='<%= renderResponse.getNamespace() + "updateDefaultLdap('apache');" %>' type="radio" value="apache" />
-				<aui:input label="Fedora Directory Server" name="defaultLdap" onClick='<%= renderResponse.getNamespace() + "updateDefaultLdap('fedora');" %>' type="radio" value="fedora" />
-				<aui:input label="Microsoft Active Directory Server" name="defaultLdap" onClick='<%= renderResponse.getNamespace() + "updateDefaultLdap('microsoft');" %>' type="radio" value="microsoft" />
-				<aui:input label="Novell eDirectory" name="defaultLdap" onClick='<%= renderResponse.getNamespace() + "updateDefaultLdap('novell');" %>' type="radio" value="novell" />
-				<aui:input label="OpenLDAP" name="defaultLdap" onClick='<%= renderResponse.getNamespace() + "updateDefaultLdap('open');" %>' type="radio" value="open" />
-				<aui:input label="other-directory-server" name="defaultLdap" onClick='<%= renderResponse.getNamespace() + "updateDefaultLdap('other');" %>' type="radio" value="other" />
+				<aui:input label="Apache Directory Server" name="defaultLdap" onClick='<%= liferayPortletResponse.getNamespace() + "updateDefaultLdap('apache');" %>' type="radio" value="apache" />
+				<aui:input label="Fedora Directory Server" name="defaultLdap" onClick='<%= liferayPortletResponse.getNamespace() + "updateDefaultLdap('fedora');" %>' type="radio" value="fedora" />
+				<aui:input label="Microsoft Active Directory Server" name="defaultLdap" onClick='<%= liferayPortletResponse.getNamespace() + "updateDefaultLdap('microsoft');" %>' type="radio" value="microsoft" />
+				<aui:input label="Novell eDirectory" name="defaultLdap" onClick='<%= liferayPortletResponse.getNamespace() + "updateDefaultLdap('novell');" %>' type="radio" value="novell" />
+				<aui:input label="OpenLDAP" name="defaultLdap" onClick='<%= liferayPortletResponse.getNamespace() + "updateDefaultLdap('open');" %>' type="radio" value="open" />
+				<aui:input label="other-directory-server" name="defaultLdap" onClick='<%= liferayPortletResponse.getNamespace() + "updateDefaultLdap('other');" %>' type="radio" value="other" />
 			</aui:field-wrapper>
 		</aui:fieldset>
 
@@ -187,7 +187,7 @@ renderResponse.setTitle((ldapServerId == 0) ? LanguageUtil.get(resourceBundle, "
 			<aui:button-row>
 
 				<%
-				String taglibOnClick = renderResponse.getNamespace() + "testSettings('ldapConnection');";
+				String taglibOnClick = liferayPortletResponse.getNamespace() + "testSettings('ldapConnection');";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="test-ldap-connection" />
@@ -232,7 +232,7 @@ renderResponse.setTitle((ldapServerId == 0) ? LanguageUtil.get(resourceBundle, "
 			<aui:button-row>
 
 				<%
-				String taglibOnClick = renderResponse.getNamespace() + "testSettings('ldapUsers');";
+				String taglibOnClick = liferayPortletResponse.getNamespace() + "testSettings('ldapUsers');";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="test-ldap-users" />
@@ -257,7 +257,7 @@ renderResponse.setTitle((ldapServerId == 0) ? LanguageUtil.get(resourceBundle, "
 			<aui:button-row>
 
 				<%
-				String taglibOnClick = renderResponse.getNamespace() + "testSettings('ldapGroups');";
+				String taglibOnClick = liferayPortletResponse.getNamespace() + "testSettings('ldapGroups');";
 				%>
 
 				<aui:button onClick="<%= taglibOnClick %>" value="test-ldap-groups" />
@@ -278,7 +278,7 @@ renderResponse.setTitle((ldapServerId == 0) ? LanguageUtil.get(resourceBundle, "
 	</aui:fieldset-group>
 
 	<aui:button-row>
-		<aui:button name="saveButton" onClick='<%= renderResponse.getNamespace() + "saveLdap();" %>' value="save" />
+		<aui:button name="saveButton" onClick='<%= liferayPortletResponse.getNamespace() + "saveLdap();" %>' value="save" />
 
 		<aui:button href="<%= redirect %>" name="cancelButton" type="cancel" />
 	</aui:button-row>

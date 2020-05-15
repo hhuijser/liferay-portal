@@ -75,7 +75,7 @@ SearchContainer<?> searchContainer = (SearchContainer)request.getAttribute("edit
 					<liferay-ui:icon
 						label="<%= true %>"
 						message="<%= String.valueOf(SegmentsEntryDisplayContext.getSegmentsEntryUsersCount(segmentsEntry.getSegmentsEntryId())) %>"
-						onClick='<%= renderResponse.getNamespace() + "openViewMembersDialog(event);" %>'
+						onClick='<%= liferayPortletResponse.getNamespace() + "openViewMembersDialog(event);" %>'
 						url="<%= viewMembersURL %>"
 					/>
 				</liferay-ui:search-container-column-text>
@@ -90,7 +90,7 @@ SearchContainer<?> searchContainer = (SearchContainer)request.getAttribute("edit
 					>
 						<liferay-ui:icon
 							message="view-members"
-							onClick='<%= renderResponse.getNamespace() + "openViewMembersDialog(event);" %>'
+							onClick='<%= liferayPortletResponse.getNamespace() + "openViewMembersDialog(event);" %>'
 							url="<%= viewMembersURL %>"
 						/>
 					</liferay-ui:icon-menu>

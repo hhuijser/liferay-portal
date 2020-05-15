@@ -61,7 +61,7 @@
 
 			<clay:row
 				cssClass="custom-devices d-lg-flex d-none hide"
-				id='<%= renderResponse.getNamespace() + "customDeviceContainer" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "customDeviceContainer" %>'
 			>
 				<aui:input cssClass="input-sm" inlineField="<%= true %>" label='<%= LanguageUtil.get(request, "height") + " (px):" %>' name="height" size="4" value="600" wrapperCssClass="col-6" />
 

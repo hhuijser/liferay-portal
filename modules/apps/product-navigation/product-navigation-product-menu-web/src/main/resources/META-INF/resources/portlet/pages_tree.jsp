@@ -20,7 +20,7 @@
 LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayContext(liferayPortletRequest);
 %>
 
-<div id="<%= renderResponse.getNamespace() + "-layout-finder" %>">
+<div id="<%= liferayPortletResponse.getNamespace() + "-layout-finder" %>">
 	<react:component
 		data="<%= layoutsTreeDisplayContext.getLayoutFinderData() %>"
 		module="js/LayoutFinder.es"
@@ -28,8 +28,8 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 	/>
 </div>
 
-<div id="<%= renderResponse.getNamespace() + "layoutsTree" %>">
-	<div id="<%= renderResponse.getNamespace() + "-page-type" %>">
+<div id="<%= liferayPortletResponse.getNamespace() + "layoutsTree" %>">
+	<div id="<%= liferayPortletResponse.getNamespace() + "-page-type" %>">
 		<react:component
 			data="<%= layoutsTreeDisplayContext.getPageTypeSelectorData() %>"
 			module="js/PageTypeSelector.es"
@@ -139,7 +139,7 @@ LayoutsTreeDisplayContext layoutsTreeDisplayContext = new LayoutsTreeDisplayCont
 
 <aui:script>
 	function handleDestroyPortlet() {
-		Liferay.destroyComponent('<%= renderResponse.getNamespace() %>pagesTree');
+		Liferay.destroyComponent('<%= liferayPortletResponse.getNamespace() %>pagesTree');
 		Liferay.destroyComponent(
 			'<%= ProductNavigationProductMenuWebKeys.PAGES_TREE_EVENT_HANDLER %>'
 		);

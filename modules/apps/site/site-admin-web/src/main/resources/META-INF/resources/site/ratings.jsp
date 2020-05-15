@@ -42,7 +42,7 @@ CompanyPortletRatingsDefinitionDisplayContext companyPortletRatingsDefinitionDis
 
 <p class="text-muted"><liferay-ui:message key="select-the-ratings-type-for-the-following-applications" /></p>
 
-<aui:fieldset id='<%= renderResponse.getNamespace() + "ratingsSettingsContainer" %>'>
+<aui:fieldset id='<%= liferayPortletResponse.getNamespace() + "ratingsSettingsContainer" %>'>
 
 	<%
 	Map<String, Map<String, RatingsType>> groupRatingsTypeMaps = groupPortletRatingsDefinitionDisplayContext.getGroupRatingsTypeMaps();

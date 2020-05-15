@@ -26,7 +26,7 @@ boolean showStripeMessage = workflowDefinitionLinkDisplayContext.showStripeMessa
 
 <clay:container-fluid
 	cssClass="workflow-definition-link-container"
-	id='<%= renderResponse.getNamespace() + "Container" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "Container" %>'
 >
 	<c:if test="<%= showStripeMessage %>">
 		<clay:alert

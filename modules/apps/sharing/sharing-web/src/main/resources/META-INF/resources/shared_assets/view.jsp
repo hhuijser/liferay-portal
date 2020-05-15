@@ -26,7 +26,7 @@ SharedAssetsViewDisplayContext sharedAssetsViewDisplayContext = (SharedAssetsVie
 />
 
 <clay:management-toolbar
-	defaultEventHandler='<%= renderResponse.getNamespace() + "SharedAssets" %>'
+	defaultEventHandler='<%= liferayPortletResponse.getNamespace() + "SharedAssets" %>'
 	filterDropdownItems="<%= sharedAssetsViewDisplayContext.getFilterDropdownItems() %>"
 	selectable="<%= false %>"
 	showSearch="<%= false %>"
@@ -123,7 +123,7 @@ Map<String, Object> context = HashMapBuilder.<String, Object>put(
 %>
 
 <liferay-frontend:component
-	componentId='<%= renderResponse.getNamespace() + "SharedAssets" %>'
+	componentId='<%= liferayPortletResponse.getNamespace() + "SharedAssets" %>'
 	context="<%= context %>"
 	module="SharedAssets.es"
 />

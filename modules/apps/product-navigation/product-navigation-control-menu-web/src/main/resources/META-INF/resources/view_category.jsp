@@ -78,7 +78,7 @@ for (String portletId : PortletCategoryUtil.getFirstChildPortletIds(portletCateg
 portlets = ListUtil.sort(portlets, new PortletTitleComparator(application, locale));
 
 if (!categories.isEmpty() || !portlets.isEmpty()) {
-	String panelId = renderResponse.getNamespace() + "portletCategory" + portletCategoryIndex;
+	String panelId = liferayPortletResponse.getNamespace() + "portletCategory" + portletCategoryIndex;
 	String title = Validator.isNotNull(externalPortletCategory) ? externalPortletCategory : LanguageUtil.get(request, portletCategory.getName());
 %>
 
@@ -142,7 +142,7 @@ if (!categories.isEmpty() || !portlets.isEmpty()) {
 								Map<String, Object> data = HashMapBuilder.<String, Object>put(
 									"draggable", true
 								).put(
-									"id", renderResponse.getNamespace() + "portletItem" + portlet.getPortletId()
+									"id", liferayPortletResponse.getNamespace() + "portletItem" + portlet.getPortletId()
 								).put(
 									"instanceable", portletInstanceable
 								).put(
@@ -201,7 +201,7 @@ if (!categories.isEmpty() || !portlets.isEmpty()) {
 											Map<String, Object> portletItemData = HashMapBuilder.<String, Object>put(
 												"draggable", true
 											).put(
-												"id", renderResponse.getNamespace() + "portletItem" + portletItem.getPortletItemId()
+												"id", liferayPortletResponse.getNamespace() + "portletItem" + portletItem.getPortletItemId()
 											).put(
 												"instanceable", portletInstanceable
 											).put(

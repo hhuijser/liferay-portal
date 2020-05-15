@@ -19,5 +19,5 @@
 <liferay-util:include page="/color_picker_input.jsp" servletContext="<%= application %>">
 	<liferay-util:param name="color" value="<%= portletConfigurationCSSPortletDisplayContext.getBackgroundColor() %>" />
 	<liferay-util:param name="label" value='<%= LanguageUtil.get(request, "background-color") %>' />
-	<liferay-util:param name="name" value='<%= renderResponse.getNamespace() + "backgroundColor" %>' />
+	<liferay-util:param name="name" value='<%= liferayPortletResponse.getNamespace() + "backgroundColor" %>' />
 </liferay-util:include>

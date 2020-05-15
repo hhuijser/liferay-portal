@@ -67,7 +67,7 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 
 <clay:container-fluid
 	cssClass="container-form-lg"
-	id='<%= renderResponse.getNamespace() + "permissionContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "permissionContainer" %>'
 >
 	<clay:row>
 		<c:if test="<%= !portletName.equals(PortletKeys.SERVER_ADMIN) %>">
@@ -80,7 +80,7 @@ if (!portletName.equals(PortletKeys.SERVER_ADMIN)) {
 
 		<clay:col
 			cssClass="lfr-permission-content-container"
-			id='<%= renderResponse.getNamespace() + "permissionContentContainer" %>'
+			id='<%= liferayPortletResponse.getNamespace() + "permissionContentContainer" %>'
 			md="<%= portletName.equals(PortletKeys.SERVER_ADMIN) ? String.valueOf(12) : String.valueOf(9) %>"
 		>
 			<c:choose>

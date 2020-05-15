@@ -26,7 +26,7 @@ RoleItemSelectorViewDisplayContext roleItemSelectorViewDisplayContext = (RoleIte
 
 <clay:container-fluid
 	cssClass="container-form-lg container-view"
-	id='<%= renderResponse.getNamespace() + "roleSelectorWrapper" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "roleSelectorWrapper" %>'
 >
 	<liferay-ui:search-container
 		searchContainer="<%= roleItemSelectorViewDisplayContext.getSearchContainer() %>"

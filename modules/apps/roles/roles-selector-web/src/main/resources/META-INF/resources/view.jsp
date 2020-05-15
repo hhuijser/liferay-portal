@@ -133,7 +133,7 @@ else {
 
 <clay:management-toolbar
 	clearResultsURL="<%= portletURL.toString() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= portletURL.toString() %>"
 	selectable="<%= false %>"
 	showCreationMenu="<%= false %>"
@@ -185,7 +185,7 @@ else {
 			<%
 			portletURL.setParameter("cur", String.valueOf(cur));
 
-			String taglibOnClick = renderResponse.getNamespace() + methodName + "('" + portletURL.toString() + "');";
+			String taglibOnClick = liferayPortletResponse.getNamespace() + methodName + "('" + portletURL.toString() + "');";
 			%>
 
 			<aui:button onClick="<%= taglibOnClick %>" primary="<%= true %>" value="update-associations" />

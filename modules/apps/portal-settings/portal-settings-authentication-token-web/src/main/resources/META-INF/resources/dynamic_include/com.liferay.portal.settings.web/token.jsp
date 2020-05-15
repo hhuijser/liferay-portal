@@ -46,7 +46,7 @@ String userTokenName = tokenConfiguration.userTokenName();
 		</aui:select>
 	</aui:fieldset>
 
-	<aui:fieldset id='<%= renderResponse.getNamespace() + "authenticationCookies" %>'>
+	<aui:fieldset id='<%= liferayPortletResponse.getNamespace() + "authenticationCookies" %>'>
 
 		<%
 		if (authenticationCookies == null) {

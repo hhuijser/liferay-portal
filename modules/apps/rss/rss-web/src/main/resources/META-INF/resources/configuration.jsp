@@ -132,7 +132,7 @@
 					>
 
 						<%
-						String taglibShowFeedImageOnClick = "if (this.checked) {document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "feedImageAlignment.disabled = '';} else {document." + renderResponse.getNamespace() + "fm." + renderResponse.getNamespace() + "feedImageAlignment.disabled = 'disabled';}";
+						String taglibShowFeedImageOnClick = "if (this.checked) {document." + liferayPortletResponse.getNamespace() + "fm." + liferayPortletResponse.getNamespace() + "feedImageAlignment.disabled = '';} else {document." + liferayPortletResponse.getNamespace() + "fm." + liferayPortletResponse.getNamespace() + "feedImageAlignment.disabled = 'disabled';}";
 						%>
 
 						<aui:input name="preferences--showFeedImage--" onClick="<%= taglibShowFeedImageOnClick %>" type="checkbox" value="<%= rssPortletInstanceConfiguration.showFeedImage() %>" />

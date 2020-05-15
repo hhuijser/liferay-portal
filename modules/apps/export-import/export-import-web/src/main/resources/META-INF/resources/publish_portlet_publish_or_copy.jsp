@@ -24,7 +24,7 @@ String tabs3 = ParamUtil.getString(request, "tabs3", "new-publication-process");
 boolean newPublication = tabs3.equals("new-publication-process");
 
 String defaultRange = ExportImportDateUtil.RANGE_ALL;
-String javascriptOnSubmitFunction = "event.halt(); " + renderResponse.getNamespace();
+String javascriptOnSubmitFunction = "event.halt(); " + liferayPortletResponse.getNamespace();
 long workingGroupId = liveGroupId;
 
 if (newPublication) {

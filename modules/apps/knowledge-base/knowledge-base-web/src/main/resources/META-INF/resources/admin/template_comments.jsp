@@ -34,7 +34,7 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 
 <c:if test="<%= themeDisplay.isSignedIn() %>">
 	<div class="kb-template-comments">
-		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateKBComment();" %>'>
+		<aui:form method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "updateKBComment();" %>'>
 			<aui:input name="<%= Constants.CMD %>" type="hidden" />
 			<aui:input name="kbCommentId" type="hidden" value="<%= kbCommentId %>" />
 			<aui:input name="classNameId" type="hidden" value="<%= PortalUtil.getClassNameId(KBTemplate.class) %>" />
@@ -48,14 +48,14 @@ boolean helpful = BeanParamUtil.getBoolean(kbComment, request, "helpful", true);
 				<c:if test="<%= themeDisplay.isSignedIn() %>">
 					<liferay-ui:panel-container
 						extended="<%= false %>"
-						id='<%= renderResponse.getNamespace() + "Template" + kbTemplate.getKbTemplateId() + "CommentsPanelContainer" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "Template" + kbTemplate.getKbTemplateId() + "CommentsPanelContainer" %>'
 						persistState="<%= true %>"
 					>
 						<liferay-ui:panel
 							collapsible="<%= true %>"
 							defaultState="closed"
 							extended="<%= true %>"
-							id='<%= renderResponse.getNamespace() + "Template" + kbTemplate.getKbTemplateId() + "CommentsPanel" %>'
+							id='<%= liferayPortletResponse.getNamespace() + "Template" + kbTemplate.getKbTemplateId() + "CommentsPanel" %>'
 							persistState="<%= true %>"
 							title="comments"
 						>

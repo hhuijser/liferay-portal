@@ -56,7 +56,7 @@ PortletURL portletURL = userGroupItemSelectorViewDisplayContext.getPortletURL();
 </liferay-frontend:management-bar>
 
 <clay:container
-	id='<%= renderResponse.getNamespace() + "userGroupSelectorWrapper" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "userGroupSelectorWrapper" %>'
 >
 	<liferay-ui:search-container
 		id="userGroups"

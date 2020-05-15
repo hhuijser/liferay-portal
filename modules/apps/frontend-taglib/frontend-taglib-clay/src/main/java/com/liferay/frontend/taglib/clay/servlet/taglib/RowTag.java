@@ -122,7 +122,7 @@ public class RowTag extends IncludeTag {
 	}
 
 	private String _getClassName() {
-		Set<String> classNames = new LinkedHashSet();
+		Set<String> classNames = new LinkedHashSet<>();
 
 		classNames.add("row");
 

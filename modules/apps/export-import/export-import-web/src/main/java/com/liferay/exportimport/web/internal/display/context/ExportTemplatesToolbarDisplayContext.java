@@ -102,7 +102,7 @@ public class ExportTemplatesToolbarDisplayContext
 		return searchActionURL.toString();
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<ExportImportConfiguration> getSearchContainer() {
 		return searchContainer;
 	}
 
@@ -110,21 +110,24 @@ public class ExportTemplatesToolbarDisplayContext
 		return liferayPortletResponse.createRenderURL();
 	}
 
-	protected SearchContainer searchContainer;
+	protected SearchContainer<ExportImportConfiguration> searchContainer;
 
-	private SearchContainer _createSearchContainer(
+	private SearchContainer<ExportImportConfiguration> _createSearchContainer(
 		long liveGroupId, Company company, PortletURL iteratorURL) {
 
 		ExportImportConfigurationSearchTerms
 			exportImportConfigurationSearchTerms =
 				new ExportImportConfigurationSearchTerms(liferayPortletRequest);
 
-		SearchContainer searchContainer = new SearchContainer(
-			liferayPortletRequest,
-			new ExportImportConfigurationDisplayTerms(liferayPortletRequest),
-			exportImportConfigurationSearchTerms,
-			SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA,
-			iteratorURL, null, "there-are-no-saved-export-templates");
+		SearchContainer<ExportImportConfiguration> searchContainer =
+			new SearchContainer(
+				liferayPortletRequest,
+				new ExportImportConfigurationDisplayTerms(
+					liferayPortletRequest),
+				exportImportConfigurationSearchTerms,
+				SearchContainer.DEFAULT_CUR_PARAM,
+				SearchContainer.DEFAULT_DELTA, iteratorURL, null,
+				"there-are-no-saved-export-templates");
 
 		searchContainer.setOrderByCol("name");
 		searchContainer.setOrderByComparator(

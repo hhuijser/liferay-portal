@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-SearchContainer searchContainer = (SearchContainer)request.getAttribute(WebKeys.SEARCH_CONTAINER);
+SearchContainer<?> searchContainer = (SearchContainer)request.getAttribute(WebKeys.SEARCH_CONTAINER);
 
 String redirect = searchContainer.getIteratorURL().toString();
 

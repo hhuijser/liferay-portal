@@ -17,7 +17,7 @@
 <%@ include file="/admin/init.jsp" %>
 
 <%
-long kaleoProcessId = ParamUtil.getLong(request, renderResponse.getNamespace() + "kaleoProcessId");
+long kaleoProcessId = ParamUtil.getLong(request, liferayPortletResponse.getNamespace() + "kaleoProcessId");
 %>
 
 <portlet:resourceURL id="kaleoProcess" var="exportURL">
@@ -28,7 +28,7 @@ long kaleoProcessId = ParamUtil.getLong(request, renderResponse.getNamespace() +
 StringBundler sb = new StringBundler(5);
 
 sb.append("javascript:");
-sb.append(renderResponse.getNamespace());
+sb.append(liferayPortletResponse.getNamespace());
 sb.append("exportKaleoProcess('");
 sb.append(exportURL);
 sb.append("');");

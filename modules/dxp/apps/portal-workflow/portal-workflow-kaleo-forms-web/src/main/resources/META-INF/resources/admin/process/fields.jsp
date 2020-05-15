@@ -18,7 +18,7 @@
 
 <%
 String redirect = ParamUtil.getString(request, "redirect");
-String backURL = HttpUtil.setParameter(currentURL, renderResponse.getNamespace() + "historyKey", "fields");
+String backURL = HttpUtil.setParameter(currentURL, liferayPortletResponse.getNamespace() + "historyKey", "fields");
 
 KaleoProcess kaleoProcess = (KaleoProcess)request.getAttribute(KaleoFormsWebKeys.KALEO_PROCESS);
 
@@ -99,7 +99,7 @@ JSONArray availableDefinitionsJSONArray = JSONFactoryUtil.createJSONArray();
 		</liferay-portlet:renderURL>
 
 		<aui:button-row>
-			<aui:button onClick='<%= "javascript:" + renderResponse.getNamespace() + "editStructure('" + LanguageUtil.format(request, "new-x", LanguageUtil.get(request, "field-set"), false) + "','" + addURL + "');" %>' primary="<%= true %>" value="add-field-set" />
+			<aui:button onClick='<%= "javascript:" + liferayPortletResponse.getNamespace() + "editStructure('" + LanguageUtil.format(request, "new-x", LanguageUtil.get(request, "field-set"), false) + "','" + addURL + "');" %>' primary="<%= true %>" value="add-field-set" />
 		</aui:button-row>
 	</c:if>
 

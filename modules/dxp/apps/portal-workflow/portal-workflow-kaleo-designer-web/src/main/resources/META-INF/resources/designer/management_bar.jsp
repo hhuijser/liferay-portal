@@ -21,7 +21,7 @@
 	creationMenu="<%= kaleoDesignerDisplayContext.getCreationMenu(pageContext) %>"
 	filterDropdownItems="<%= kaleoDesignerDisplayContext.getFilterItemsDropdownItems() %>"
 	itemsTotal="<%= kaleoDesignerDisplayContext.getTotalItems(displayedStatus) %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= kaleoDesignerDisplayContext.getSearchActionURL() %>"
 	searchContainerId="<%= kaleoDesignerDisplayContext.getSearchContainerId() %>"
 	searchFormName="fm1"

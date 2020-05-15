@@ -757,15 +757,15 @@ String successMessageKey = KaleoDesignerPortletKeys.KALEO_DESIGNER + "requestPro
 							<c:when test='<%= !Objects.equals(state, WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_STATE) && !Objects.equals(state, "view") %>'>
 								<aui:button-row>
 									<c:if test="<%= kaleoDesignerDisplayContext.isPublishKaleoDefinitionVersionButtonVisible(permissionChecker, kaleoDefinitionVersion) %>">
-										<aui:button onClick='<%= renderResponse.getNamespace() + "publishKaleoDefinitionVersion();" %>' primary="<%= true %>" value="<%= kaleoDesignerDisplayContext.getPublishKaleoDefinitionVersionButtonLabel(kaleoDefinitionVersion) %>" />
+										<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "publishKaleoDefinitionVersion();" %>' primary="<%= true %>" value="<%= kaleoDesignerDisplayContext.getPublishKaleoDefinitionVersionButtonLabel(kaleoDefinitionVersion) %>" />
 									</c:if>
 
 									<c:if test="<%= kaleoDesignerDisplayContext.isSaveKaleoDefinitionVersionButtonVisible(kaleoDefinitionVersion) %>">
-										<aui:button onClick='<%= renderResponse.getNamespace() + "saveKaleoDefinitionVersion();" %>' value="save" />
+										<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "saveKaleoDefinitionVersion();" %>' value="save" />
 									</c:if>
 
 									<c:if test="<%= Validator.isNotNull(closeRedirect) %>">
-										<aui:button onClick='<%= renderResponse.getNamespace() + "closeKaleoDialog();" %>' value="cancel" />
+										<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "closeKaleoDialog();" %>' value="cancel" />
 									</c:if>
 
 									<span class="lfr-portlet-workflowdesigner-message" id="<portlet:namespace />toolbarMessage"></span>

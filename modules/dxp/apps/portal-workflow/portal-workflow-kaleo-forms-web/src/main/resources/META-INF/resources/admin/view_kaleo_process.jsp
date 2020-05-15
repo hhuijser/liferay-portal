@@ -52,7 +52,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcess.getKaleoPr
 	creationMenu="<%= kaleoFormsViewRecordsDisplayContext.getCreationMenu() %>"
 	filterDropdownItems="<%= kaleoFormsViewRecordsDisplayContext.getFilterItemsDropdownItems() %>"
 	itemsTotal="<%= kaleoFormsViewRecordsDisplayContext.getTotalItems() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= kaleoFormsViewRecordsDisplayContext.getSearchActionURL() %>"
 	searchContainerId="<%= kaleoFormsViewRecordsDisplayContext.getSearchContainerId() %>"
 	searchFormName="fm"
@@ -61,7 +61,7 @@ portletURL.setParameter("kaleoProcessId", String.valueOf(kaleoProcess.getKaleoPr
 />
 
 <clay:container-fluid
-	id='<%= renderResponse.getNamespace() + "formContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "formContainer" %>'
 >
 	<aui:form action="<%= portletURL.toString() %>" method="post" name="searchContainerForm">
 		<aui:input name="ddlRecordIds" type="hidden" />

@@ -129,13 +129,13 @@ KaleoTaskFormPair initialStateKaleoTaskFormPair = KaleoFormsUtil.getInitialState
 					navigationStartsOn:
 						'<%= DDMNavigationHelper.SELECT_TEMPLATE %>',
 					portletResourceNamespace:
-						'<%= renderResponse.getNamespace() %>',
+						'<%= liferayPortletResponse.getNamespace() %>',
 					refererPortletName: '<%= portletDisplay.getId() %>',
 					resourceClassNameId: <%= scopeClassNameId %>,
 					showBackURL: false,
 					showHeader: false,
 					structureAvailableFields:
-						'<%= renderResponse.getNamespace() + "getAvailableFields" %>',
+						'<%= liferayPortletResponse.getNamespace() + "getAvailableFields" %>',
 					title: '<liferay-ui:message key="form" />',
 				},
 				function (event) {

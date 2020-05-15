@@ -24,7 +24,7 @@ AppBuilderApp appBuilderApp = (AppBuilderApp)request.getAttribute(AppBuilderWebK
 	<clay:container
 		className="edit-entry"
 	>
-		<div id="<%= renderResponse.getNamespace() %>-control-menu"></div>
+		<div id="<%= liferayPortletResponse.getNamespace() %>-control-menu"></div>
 
 		<clay:row
 			className="justify-content-center"
@@ -36,10 +36,10 @@ AppBuilderApp appBuilderApp = (AppBuilderApp)request.getAttribute(AppBuilderWebK
 					<div class="card-body pt-0">
 						<aui:form>
 							<liferay-data-engine:data-layout-renderer
-								containerId='<%= renderResponse.getNamespace() + "container" %>'
+								containerId='<%= liferayPortletResponse.getNamespace() + "container" %>'
 								dataLayoutId="<%= appBuilderApp.getDdmStructureLayoutId() %>"
 								dataRecordId='<%= ParamUtil.getLong(request, "dataRecordId") %>'
-								namespace="<%= renderResponse.getNamespace() %>"
+								namespace="<%= liferayPortletResponse.getNamespace() %>"
 							/>
 
 							<div id="<portlet:namespace />-edit-entry-app">
@@ -52,7 +52,7 @@ AppBuilderApp appBuilderApp = (AppBuilderApp)request.getAttribute(AppBuilderWebK
 								).put(
 									"basePortletURL", String.valueOf(renderResponse.createRenderURL())
 								).put(
-									"controlMenuElementId", renderResponse.getNamespace() + "-control-menu"
+									"controlMenuElementId", liferayPortletResponse.getNamespace() + "-control-menu"
 								).put(
 									"dataDefinitionId", appBuilderApp.getDdmStructureId()
 								).put(
@@ -62,7 +62,7 @@ AppBuilderApp appBuilderApp = (AppBuilderApp)request.getAttribute(AppBuilderWebK
 								).put(
 									"dataRecordId", ParamUtil.getLong(request, "dataRecordId")
 								).put(
-									"editEntryContainerElementId", renderResponse.getNamespace() + "container"
+									"editEntryContainerElementId", liferayPortletResponse.getNamespace() + "container"
 								).put(
 									"redirect", ParamUtil.getString(request, "redirect")
 								).put(

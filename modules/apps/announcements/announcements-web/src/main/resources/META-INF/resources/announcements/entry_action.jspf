@@ -53,10 +53,10 @@
 	<c:if test="<%= themeDisplay.isSignedIn() %>">
 
 		<%
-		String taglibMarkAsReadURL = "javascript:" + renderResponse.getNamespace() + "markEntry(" + entry.getEntryId() + ");";
+		String taglibMarkAsReadURL = "javascript:" + liferayPortletResponse.getNamespace() + "markEntry(" + entry.getEntryId() + ");";
 
 		if (flagValue == AnnouncementsFlagConstants.HIDDEN) {
-			taglibMarkAsReadURL = "javascript:" + renderResponse.getNamespace() + "unmarkEntry(" + entry.getEntryId() + ");";
+			taglibMarkAsReadURL = "javascript:" + liferayPortletResponse.getNamespace() + "unmarkEntry(" + entry.getEntryId() + ");";
 		}
 		%>
 

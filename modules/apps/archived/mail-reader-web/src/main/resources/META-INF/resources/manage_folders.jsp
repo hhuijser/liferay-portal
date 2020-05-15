@@ -26,7 +26,7 @@ long accountId = ParamUtil.getLong(request, "accountId");
 	<div class="add-folder-container">
 		<aui:input name="displayName" value="" />
 
-		<aui:button name="addFolder" onClick='<%= renderResponse.getNamespace() + "addFolder()" %>' value="add-folder" />
+		<aui:button name="addFolder" onClick='<%= liferayPortletResponse.getNamespace() + "addFolder()" %>' value="add-folder" />
 	</div>
 
 	<br />
@@ -45,9 +45,9 @@ long accountId = ParamUtil.getLong(request, "accountId");
 					<%= folder.getDisplayName() %>
 				</td>
 				<td class="action">
-					<aui:button cssClass="delete-folder" onClick='<%= renderResponse.getNamespace() + "deleteFolder(" + folder.getFolderId() + ")" %>' value="delete-folder" />
+					<aui:button cssClass="delete-folder" onClick='<%= liferayPortletResponse.getNamespace() + "deleteFolder(" + folder.getFolderId() + ")" %>' value="delete-folder" />
 
-					<aui:button cssClass="rename-folder" onClick='<%= renderResponse.getNamespace() + "renameFolder(" + folder.getFolderId() + ")" %>' value="rename-folder" />
+					<aui:button cssClass="rename-folder" onClick='<%= liferayPortletResponse.getNamespace() + "renameFolder(" + folder.getFolderId() + ")" %>' value="rename-folder" />
 				</td>
 			</tr>
 

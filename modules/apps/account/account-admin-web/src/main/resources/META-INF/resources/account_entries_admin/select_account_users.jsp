@@ -88,7 +88,7 @@ SelectAccountUsersManagementToolbarDisplayContext selectAccountUsersManagementTo
 		}
 
 		Liferay.Util.getOpener().Liferay.fire(
-			'<%= HtmlUtil.escapeJS(renderResponse.getNamespace() + "assignAccountUsers") %>',
+			'<%= HtmlUtil.escapeJS(liferayPortletResponse.getNamespace() + "assignAccountUsers") %>',
 			result
 		);
 	});

@@ -75,7 +75,7 @@ SelectAccountOrganizationsManagementToolbarDisplayContext selectAccountOrganizat
 		}
 
 		Liferay.Util.getOpener().Liferay.fire(
-			'<%= HtmlUtil.escapeJS(renderResponse.getNamespace() + "assignAccountOrganizations") %>',
+			'<%= HtmlUtil.escapeJS(liferayPortletResponse.getNamespace() + "assignAccountOrganizations") %>',
 			result
 		);
 	});

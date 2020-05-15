@@ -162,7 +162,7 @@ if (WebFormUtil.getTableRowsCount(company.getCompanyId(), databaseTableName) > 0
 								</liferay-portlet:actionURL>
 
 								<%
-								String taglibDelete = "submitForm(document." + renderResponse.getNamespace() + "fm, '" + deleteURL + "');";
+								String taglibDelete = "submitForm(document." + liferayPortletResponse.getNamespace() + "fm, '" + deleteURL + "');";
 								%>
 
 								<aui:button onClick="<%= taglibDelete %>" value="delete-data" />

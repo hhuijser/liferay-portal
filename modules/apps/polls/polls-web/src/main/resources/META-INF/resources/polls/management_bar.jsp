@@ -24,7 +24,7 @@
 	disabled="<%= pollsDisplayContext.isDisabledManagementBar() %>"
 	filterDropdownItems="<%= pollsDisplayContext.getFilterItemsDropdownItems() %>"
 	itemsTotal="<%= pollsDisplayContext.getTotalItems() %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= pollsDisplayContext.getSearchActionURL() %>"
 	searchContainerId="<%= pollsDisplayContext.getSearchContainerId() %>"
 	searchFormName="fm1"

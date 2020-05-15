@@ -19,7 +19,7 @@
 <%
 SegmentsDisplayContext segmentsDisplayContext = (SegmentsDisplayContext)request.getAttribute(SegmentsWebKeys.SEGMENTS_DISPLAY_CONTEXT);
 
-String eventName = renderResponse.getNamespace() + "assignSiteRoles";
+String eventName = liferayPortletResponse.getNamespace() + "assignSiteRoles";
 
 request.setAttribute("view.jsp-eventName", eventName);
 %>

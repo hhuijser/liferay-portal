@@ -35,7 +35,7 @@ renderResponse.setTitle(editSegmentsEntryDisplayContext.getTitle(locale));
 
 <portlet:actionURL name="updateSegmentsEntry" var="updateSegmentsEntryActionURL" />
 
-<aui:form action="<%= updateSegmentsEntryActionURL %>" method="post" name="editSegmentFm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveSegmentsEntry();" %>'>
+<aui:form action="<%= updateSegmentsEntryActionURL %>" method="post" name="editSegmentFm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveSegmentsEntry();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= editSegmentsEntryDisplayContext.getRedirect() %>" />
 	<aui:input name="segmentsEntryId" type="hidden" value="<%= editSegmentsEntryDisplayContext.getSegmentsEntryId() %>" />
 	<aui:input name="groupId" type="hidden" value="<%= editSegmentsEntryDisplayContext.getGroupId() %>" />
@@ -43,7 +43,7 @@ renderResponse.setTitle(editSegmentsEntryDisplayContext.getTitle(locale));
 	<aui:input name="type" type="hidden" value="<%= editSegmentsEntryDisplayContext.getType() %>" />
 	<aui:input name="dynamic" type="hidden" value="<%= true %>" />
 
-	<div id="<%= renderResponse.getNamespace() + "-segment-edit-root" %>">
+	<div id="<%= liferayPortletResponse.getNamespace() + "-segment-edit-root" %>">
 		<div class="inline-item my-5 p-5 w-100">
 			<span aria-hidden="true" class="loading-animation"></span>
 		</div>

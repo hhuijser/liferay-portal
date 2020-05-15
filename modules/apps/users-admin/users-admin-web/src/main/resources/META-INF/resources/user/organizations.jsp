@@ -23,7 +23,7 @@ List<Organization> organizations = userDisplayContext.getOrganizations();
 
 String organizationIdsString = ParamUtil.getString(request, "organizationsSearchContainerPrimaryKeys");
 
-currentURLObj.setParameter("historyKey", renderResponse.getNamespace() + "organizations");
+currentURLObj.setParameter("historyKey", liferayPortletResponse.getNamespace() + "organizations");
 %>
 
 <liferay-ui:error-marker

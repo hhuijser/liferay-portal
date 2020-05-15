@@ -17,7 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <%
-String questionsRootElementId = renderResponse.getNamespace() + "-questions-root";
+String questionsRootElementId = liferayPortletResponse.getNamespace() + "-questions-root";
 %>
 
 <portlet:renderURL var="basePortletURL" />

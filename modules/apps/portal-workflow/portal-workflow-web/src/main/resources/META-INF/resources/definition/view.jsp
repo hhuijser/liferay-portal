@@ -40,7 +40,7 @@ WorkflowDefinitionSearch workflowDefinitionSearch = new WorkflowDefinitionSearch
 	creationMenu="<%= workflowDefinitionDisplayContext.getCreationMenu(pageContext) %>"
 	filterDropdownItems="<%= workflowDefinitionDisplayContext.getFilterOptions(request) %>"
 	itemsTotal="<%= workflowDefinitionDisplayContext.getTotalItems(request, renderRequest, displayedStatus) %>"
-	namespace="<%= renderResponse.getNamespace() %>"
+	namespace="<%= liferayPortletResponse.getNamespace() %>"
 	searchActionURL="<%= workflowDefinitionDisplayContext.getSearchURL(request) %>"
 	searchContainerId="workflowDefinitions"
 	searchFormName="fm1"

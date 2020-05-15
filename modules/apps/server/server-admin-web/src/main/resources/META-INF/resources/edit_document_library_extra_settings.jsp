@@ -103,7 +103,7 @@ if (!dlFileEntries.isEmpty()) {
 		%>
 
 		<aui:button-row>
-			<aui:button onClick='<%= "javascript:" + renderResponse.getNamespace() + "convertDocumentLibraryExtraSettings(event)" %>' type="submit" />
+			<aui:button onClick='<%= "javascript:" + liferayPortletResponse.getNamespace() + "convertDocumentLibraryExtraSettings(event)" %>' type="submit" />
 		</aui:button-row>
 	</c:otherwise>
 </c:choose>

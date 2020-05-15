@@ -100,7 +100,7 @@ boolean previewBeforeRestore = WorkflowWebKeys.WORKFLOW_PREVIEW_BEFORE_RESTORE_S
 
 					<clay:col
 						className="workflow-definition-content-source-wrapper"
-						id='<%= renderResponse.getNamespace() + "contentSourceWrapper" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "contentSourceWrapper" %>'
 					>
 						<div class="workflow-definition-content-source" id="<portlet:namespace />contentEditor"></div>
 					</clay:col>

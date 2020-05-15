@@ -38,7 +38,7 @@ PowwowParticipant userPowwowParticipant = PowwowParticipantLocalServiceUtil.fetc
 		iconCssClass="icon-remove"
 		label="<%= true %>"
 		message="delete"
-		onClick='<%= renderResponse.getNamespace() + "deleteMeeting(" + String.valueOf(powwowMeeting.getPowwowMeetingId()) + ");" %>'
+		onClick='<%= liferayPortletResponse.getNamespace() + "deleteMeeting(" + String.valueOf(powwowMeeting.getPowwowMeetingId()) + ");" %>'
 		url="javascript:;"
 	/>
 </c:if>
@@ -70,7 +70,7 @@ PowwowParticipant userPowwowParticipant = PowwowParticipantLocalServiceUtil.fetc
 	iconCssClass="icon-search"
 	label="<%= true %>"
 	message="view-invitation"
-	onClick='<%= renderResponse.getNamespace() + "viewInvitation(" + String.valueOf(powwowMeeting.getPowwowMeetingId()) + ");" %>'
+	onClick='<%= liferayPortletResponse.getNamespace() + "viewInvitation(" + String.valueOf(powwowMeeting.getPowwowMeetingId()) + ");" %>'
 	url="javascript:;"
 />
 

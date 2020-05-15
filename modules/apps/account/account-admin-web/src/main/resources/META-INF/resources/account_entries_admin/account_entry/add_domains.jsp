@@ -24,7 +24,7 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 	<clay:alert
 		cssClass="hide"
 		displayType="danger"
-		id='<%= renderResponse.getNamespace() + "domainAlert" %>'
+		id='<%= liferayPortletResponse.getNamespace() + "domainAlert" %>'
 		message="please-enter-valid-mail-domains-separated-by-commas"
 	/>
 
@@ -37,7 +37,7 @@ String eventName = ParamUtil.getString(request, "eventName", liferayPortletRespo
 	</aui:field-wrapper>
 
 	<aui:button-row>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "addDomains();" %>' primary="<%= true %>" value="save" />
+		<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "addDomains();" %>' primary="<%= true %>" value="save" />
 
 		<aui:button type="cancel" />
 	</aui:button-row>

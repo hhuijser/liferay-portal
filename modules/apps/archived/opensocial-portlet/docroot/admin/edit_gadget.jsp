@@ -61,7 +61,7 @@ if (Validator.isNotNull(editorGadgetURL)) {
 
 <portlet:actionURL name="updateGadget" var="updateGadgetURL" />
 
-<aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGadget();" %>'>
+<aui:form action="<%= updateGadgetURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveGadget();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/admin/edit_gadget.jsp" />
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (gadget == null) ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />

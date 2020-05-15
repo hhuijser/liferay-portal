@@ -37,7 +37,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 
 <clay:container-fluid
 	cssClass="closed sidenav-container sidenav-right"
-	id='<%= renderResponse.getNamespace() + "infoPanelId" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "infoPanelId" %>'
 >
 	<liferay-portlet:resourceURL copyCurrentRenderParameters="<%= false %>" id="/adaptive_media/info_panel" var="sidebarPanelURL" />
 
@@ -151,7 +151,7 @@ PortletURL portletURL = renderResponse.createRenderURL();
 							Map<String, Object> data = HashMapBuilder.<String, Object>put(
 								"adaptedImages", Math.min(adaptedImages, totalImages)
 							).put(
-								"adaptiveMediaProgressComponentId", renderResponse.getNamespace() + "AdaptRemaining" + uuid
+								"adaptiveMediaProgressComponentId", liferayPortletResponse.getNamespace() + "AdaptRemaining" + uuid
 							).put(
 								"autoStartProgress", ((optimizeImagesAllConfigurationsBackgroundTasksCount > 0) && amImageConfigurationEntry.isEnabled()) || currentBackgroundTaskConfigurationEntryUuids.contains(uuid)
 							).put(

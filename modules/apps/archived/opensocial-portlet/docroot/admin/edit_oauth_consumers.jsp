@@ -62,7 +62,7 @@ int oAuthServiceCount = 0;
 
 <portlet:actionURL name="updateOAuthConsumers" var="updateOAuthConsumersURL" />
 
-<aui:form action="<%= updateOAuthConsumersURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveOAuthConsumers();" %>'>
+<aui:form action="<%= updateOAuthConsumersURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveOAuthConsumers();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/admin/edit_oauth_consumers.jsp" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="gadgetKey" type="hidden" value="<%= gadgetKey %>" />

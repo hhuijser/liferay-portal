@@ -55,7 +55,7 @@
 		rightTitle="available"
 	/>
 
-	<aui:button onClick='<%= renderResponse.getNamespace() + "saveCurrency();" %>' primary="<%= true %>" value="save" />
+	<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "saveCurrency();" %>' primary="<%= true %>" value="save" />
 </aui:form>
 
 <aui:script>

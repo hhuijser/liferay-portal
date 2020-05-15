@@ -25,7 +25,7 @@ List<Long> dataLayoutIds = (List<Long>)request.getAttribute(AppBuilderWebKeys.DA
 	<clay:container-fluid
 		cssClass="edit-entry"
 	>
-		<div id="<%= renderResponse.getNamespace() %>-control-menu"></div>
+		<div id="<%= liferayPortletResponse.getNamespace() %>-control-menu"></div>
 
 		<clay:row
 			cssClass="justify-content-center"
@@ -42,10 +42,10 @@ List<Long> dataLayoutIds = (List<Long>)request.getAttribute(AppBuilderWebKeys.DA
 							%>
 
 								<liferay-data-engine:data-layout-renderer
-									containerId='<%= renderResponse.getNamespace() + "container" %>'
+									containerId='<%= liferayPortletResponse.getNamespace() + "container" %>'
 									dataLayoutId="<%= dataLayoutId %>"
 									dataRecordId='<%= ParamUtil.getLong(request, "dataRecordId") %>'
-									namespace="<%= renderResponse.getNamespace() %>"
+									namespace="<%= liferayPortletResponse.getNamespace() %>"
 								/>
 
 							<%
@@ -67,7 +67,7 @@ List<Long> dataLayoutIds = (List<Long>)request.getAttribute(AppBuilderWebKeys.DA
 								).put(
 									"basePortletURL", String.valueOf(renderResponse.createRenderURL())
 								).put(
-									"controlMenuElementId", renderResponse.getNamespace() + "-control-menu"
+									"controlMenuElementId", liferayPortletResponse.getNamespace() + "-control-menu"
 								).put(
 									"dataDefinitionId", appBuilderApp.getDdmStructureId()
 								).put(
@@ -77,9 +77,9 @@ List<Long> dataLayoutIds = (List<Long>)request.getAttribute(AppBuilderWebKeys.DA
 								).put(
 									"dataRecordId", ParamUtil.getLong(request, "dataRecordId")
 								).put(
-									"editEntryContainerElementId", renderResponse.getNamespace() + "container"
+									"editEntryContainerElementId", liferayPortletResponse.getNamespace() + "container"
 								).put(
-									"namespace", renderResponse.getNamespace()
+									"namespace", liferayPortletResponse.getNamespace()
 								).put(
 									"redirect", ParamUtil.getString(request, "redirect")
 								).put(

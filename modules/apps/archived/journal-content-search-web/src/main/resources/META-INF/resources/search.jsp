@@ -44,7 +44,7 @@ request.setAttribute("search.jsp-returnToFullPageURL", portletDisplay.getURLBack
 	<portlet:param name="targetPortletId" value="<%= journalContentSearchPortletInstanceConfiguration.targetPortletId() %>" />
 </portlet:renderURL>
 
-<aui:form action="<%= searchURL %>" method="post" name="fm" onSubmit='<%= renderResponse.getNamespace() + "search(); event.preventDefault();" %>'>
+<aui:form action="<%= searchURL %>" method="post" name="fm" onSubmit='<%= liferayPortletResponse.getNamespace() + "search(); event.preventDefault();" %>'>
 	<div class="form-search">
 		<liferay-ui:input-search
 			name="keywords"

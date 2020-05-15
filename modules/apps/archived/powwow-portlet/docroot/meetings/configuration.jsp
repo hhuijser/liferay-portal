@@ -31,11 +31,11 @@ String emailBody = PrefsParamUtil.getString(portletPreferences, request, emailBo
 
 <liferay-portlet:actionURL portletConfiguration="<%= true %>" var="configurationActionURL" />
 
-<aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveConfiguration();" %>'>
+<aui:form action="<%= configurationActionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveConfiguration();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 
 	<aui:fieldset>
-		<aui:select label="language" name="languageId" onChange='<%= renderResponse.getNamespace() + "updateLanguage(this);" %>'>
+		<aui:select label="language" name="languageId" onChange='<%= liferayPortletResponse.getNamespace() + "updateLanguage(this);" %>'>
 
 			<%
 			Set<Locale> locales = LanguageUtil.getAvailableLocales(themeDisplay.getSiteGroupId());

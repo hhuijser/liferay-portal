@@ -45,7 +45,7 @@ String viewMode = ParamUtil.getString(request, "viewMode");
 				linkCssClass="btn btn-monospaced btn-outline-borderless btn-outline-secondary btn-sm"
 				markupView="lexicon"
 				message='<%= LanguageUtil.format(request, "print-x-x", new Object[] {"hide-accessible", HtmlUtil.escape(articleDisplay.getTitle())}, false) %>'
-				url='<%= "javascript:" + renderResponse.getNamespace() + "printPage();" %>'
+				url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "printPage();" %>'
 			/>
 		</clay:content-col>
 

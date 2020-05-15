@@ -61,7 +61,7 @@ if (user2 != null) {
 
 <div class="lfr-button-column" id="<portlet:namespace />buttonColumn">
 	<div class="lfr-button-column-content">
-		<aui:button-row cssClass="btn-group edit-toolbar" id='<%= renderResponse.getNamespace() + "userToolbar" %>' />
+		<aui:button-row cssClass="btn-group edit-toolbar" id='<%= liferayPortletResponse.getNamespace() + "userToolbar" %>' />
 
 		<div class="btn view-more-button">
 			<liferay-ui:icon

@@ -69,7 +69,7 @@ renderResponse.setTitle(journalEditDDMTemplateDisplayContext.getTitle());
 						<clay:button
 							borderless="<%= true %>"
 							icon="cog"
-							id='<%= renderResponse.getNamespace() + "contextualSidebarButton" %>'
+							id='<%= liferayPortletResponse.getNamespace() + "contextualSidebarButton" %>'
 							small="<%= true %>"
 						/>
 					</div>

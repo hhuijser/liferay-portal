@@ -50,7 +50,7 @@ else {
 editDDMStructureURL.setParameter("mvcPath", "/edit_ddm_structure.jsp");
 %>
 
-<aui:form action="<%= editDDMStructureURL.toString() %>" cssClass="edit-article-form" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
+<aui:form action="<%= editDDMStructureURL.toString() %>" cssClass="edit-article-form" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="dataDefinition" type="hidden" />
@@ -100,12 +100,12 @@ editDDMStructureURL.setParameter("mvcPath", "/edit_ddm_structure.jsp");
 
 			<liferay-data-engine:data-layout-builder
 				additionalPanels="<%= journalEditDDMStructuresDisplayContext.getAdditionalPanels(npmResolvedPackageName) %>"
-				componentId='<%= renderResponse.getNamespace() + "dataLayoutBuilder" %>'
+				componentId='<%= liferayPortletResponse.getNamespace() + "dataLayoutBuilder" %>'
 				contentType="journal"
 				dataDefinitionId="<%= ddmStructureId %>"
 				groupId="<%= groupId %>"
 				localizable="<%= true %>"
-				namespace="<%= renderResponse.getNamespace() %>"
+				namespace="<%= liferayPortletResponse.getNamespace() %>"
 				singlePage="<%= true %>"
 			/>
 		</clay:container-fluid>

@@ -27,7 +27,7 @@ DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 <aui:input name="ddmStructureKey" type="hidden" value="<%= ddmStructure.getStructureKey() %>" />
 
 <c:if test="<%= journalWebConfiguration.changeableDefaultLanguage() %>">
-	<div id="<%= renderResponse.getNamespace() + "-change-default-language" %>">
+	<div id="<%= liferayPortletResponse.getNamespace() + "-change-default-language" %>">
 		<react:component
 			data="<%= journalEditArticleDisplayContext.getChangeDefaultLanguageData() %>"
 			module="js/ChangeDefaultLanguage.es"
@@ -60,7 +60,7 @@ DDMStructure ddmStructure = journalEditArticleDisplayContext.getDDMStructure();
 			<aui:input label="" name="newArticleId" type="text" value="<%= (article != null) ? article.getArticleId() : StringPool.BLANK %>" wrapperCssClass="mb-1" />
 
 			<%
-			String taglibOnChange = "Liferay.Util.toggleDisabled('#" + renderResponse.getNamespace() + "newArticleId', event.target.checked);";
+			String taglibOnChange = "Liferay.Util.toggleDisabled('#" + liferayPortletResponse.getNamespace() + "newArticleId', event.target.checked);";
 			%>
 
 			<aui:input checked="<%= false %>" label="autogenerate-id" name="autoArticleId" onChange="<%= taglibOnChange %>" type="checkbox" value="<%= false %>" wrapperCssClass="mb-3" />

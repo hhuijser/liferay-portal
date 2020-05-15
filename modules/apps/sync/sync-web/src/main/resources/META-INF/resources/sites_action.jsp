@@ -36,7 +36,7 @@ String groupId = String.valueOf(group.getGroupId());
 			<liferay-ui:icon
 				label="<%= true %>"
 				message="default-file-permissions"
-				url='<%= "javascript:" + renderResponse.getNamespace() + "editDefaultFilePermissions(" + groupId + ");" %>'
+				url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "editDefaultFilePermissions(" + groupId + ");" %>'
 			/>
 
 			<portlet:actionURL name="updateSites" var="disableSiteURL">

@@ -61,7 +61,7 @@ if (kbArticle != null) {
 					/>
 
 					<%
-					String taglibURL = "javascript:" + renderResponse.getNamespace() + "deleteFileEntry('" + fileEntry.getFileEntryId() + "');";
+					String taglibURL = "javascript:" + liferayPortletResponse.getNamespace() + "deleteFileEntry('" + fileEntry.getFileEntryId() + "');";
 					%>
 
 					<liferay-ui:icon-delete

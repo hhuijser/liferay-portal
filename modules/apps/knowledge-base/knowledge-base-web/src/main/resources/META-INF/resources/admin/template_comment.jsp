@@ -61,7 +61,7 @@ KBComment kbComment = (KBComment)request.getAttribute("template_comment.jsp-kb_c
 
 					<liferay-ui:icon-delete
 						label="<%= true %>"
-						url='<%= "javascript:" + renderResponse.getNamespace() + "deleteKBComment(" + kbComment.getKbCommentId() + ");" %>'
+						url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "deleteKBComment(" + kbComment.getKbCommentId() + ");" %>'
 					/>
 				</c:if>
 			</td>

@@ -67,7 +67,7 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 											</li>
 											<li>
 												<clay:dropdown-actions
-													componentId='<%= renderResponse.getNamespace() + "actionsComponent" %>'
+													componentId='<%= liferayPortletResponse.getNamespace() + "actionsComponent" %>'
 													dropdownItems="<%= fragmentDisplayContext.getCollectionsDropdownItems() %>"
 												/>
 											</li>
@@ -224,7 +224,7 @@ List<FragmentCollectionContributor> fragmentCollectionContributors = fragmentDis
 								<liferay-frontend:empty-result-message
 									actionDropdownItems="<%= FragmentPermission.contains(permissionChecker, scopeGroupId, FragmentActionKeys.MANAGE_FRAGMENT_ENTRIES) ? fragmentDisplayContext.getActionDropdownItems() : null %>"
 									animationType="<%= EmptyResultMessageKeys.AnimationType.NONE %>"
-									componentId='<%= renderResponse.getNamespace() + "emptyResultMessageComponent" %>'
+									componentId='<%= liferayPortletResponse.getNamespace() + "emptyResultMessageComponent" %>'
 									description='<%= LanguageUtil.get(request, "collections-are-needed-to-create-fragments") %>'
 									elementType='<%= LanguageUtil.get(request, "collections") %>'
 								/>

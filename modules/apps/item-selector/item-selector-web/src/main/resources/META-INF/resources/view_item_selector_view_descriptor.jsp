@@ -32,7 +32,7 @@ SearchContainer<Object> searchContainer = itemSelectorViewDescriptor.getSearchCo
 
 <clay:container-fluid
 	cssClass="item-selector lfr-item-viewer"
-	id='<%= renderResponse.getNamespace() + "entriesContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "entriesContainer" %>'
 >
 	<c:if test="<%= itemSelectorViewDescriptor.isShowBreadcrumb() %>">
 		<liferay-site-navigation:breadcrumb

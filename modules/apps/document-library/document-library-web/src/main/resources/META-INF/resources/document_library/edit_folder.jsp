@@ -79,7 +79,7 @@ renderResponse.setTitle(headerTitle);
 		<portlet:param name="mvcRenderCommandName" value="/document_library/edit_folder" />
 	</portlet:actionURL>
 
-	<aui:form action="<%= editFolderURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "savePage();" %>'>
+	<aui:form action="<%= editFolderURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "savePage();" %>'>
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value='<%= rootFolder ? "updateWorkflowDefinitions" : ((folder == null) ? Constants.ADD : Constants.UPDATE) %>' />
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 		<aui:input name="portletResource" type="hidden" value='<%= ParamUtil.getString(request, "portletResource") %>' />
@@ -219,7 +219,7 @@ renderResponse.setTitle(headerTitle);
 								linkCssClass="btn btn-secondary"
 								markupView="lexicon"
 								message="select-document-type"
-								url='<%= "javascript:" + renderResponse.getNamespace() + "openFileEntryTypeSelector();" %>'
+								url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "openFileEntryTypeSelector();" %>'
 							/>
 
 							<aui:select cssClass='<%= !fileEntryTypes.isEmpty() ? "default-document-type" : "default-document-type hide" %>' helpMessage="default-document-type-help" label="default-document-type" name="defaultFileEntryTypeId">
@@ -228,7 +228,7 @@ renderResponse.setTitle(headerTitle);
 								for (DLFileEntryType fileEntryType : fileEntryTypes) {
 								%>
 
-									<aui:option id='<%= renderResponse.getNamespace() + "defaultFileEntryTypeId-" + fileEntryType.getFileEntryTypeId() %>' label="<%= HtmlUtil.escape(fileEntryType.getName(locale)) %>" selected="<%= fileEntryType.getFileEntryTypeId() == defaultFileEntryTypeId %>" value="<%= fileEntryType.getFileEntryTypeId() %>" />
+									<aui:option id='<%= liferayPortletResponse.getNamespace() + "defaultFileEntryTypeId-" + fileEntryType.getFileEntryTypeId() %>' label="<%= HtmlUtil.escape(fileEntryType.getName(locale)) %>" selected="<%= fileEntryType.getFileEntryTypeId() == defaultFileEntryTypeId %>" value="<%= fileEntryType.getFileEntryTypeId() %>" />
 
 								<%
 								}

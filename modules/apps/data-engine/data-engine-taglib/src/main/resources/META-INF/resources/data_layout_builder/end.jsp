@@ -30,7 +30,7 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 ).put(
 	"dataDefinitionId", dataDefinitionId
 ).put(
-	"dataLayoutBuilderElementId", renderResponse.getNamespace() + "-data-layout-builder"
+	"dataLayoutBuilderElementId", liferayPortletResponse.getNamespace() + "-data-layout-builder"
 ).put(
 	"dataLayoutBuilderId", componentId
 ).put(

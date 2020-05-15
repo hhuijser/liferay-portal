@@ -257,7 +257,7 @@ while (manageableCalendarsIterator.hasNext()) {
 
 <liferay-portlet:actionURL name="updateFormCalendarBooking" var="updateFormCalendarBookingURL" />
 
-<aui:form action="<%= updateFormCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "updateCalendarBooking();" %>'>
+<aui:form action="<%= updateFormCalendarBookingURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "updateCalendarBooking();" %>'>
 	<aui:input name="mvcPath" type="hidden" value="/edit_calendar_booking.jsp" />
 
 	<liferay-portlet:renderURL var="redirectURL">
@@ -446,7 +446,7 @@ while (manageableCalendarsIterator.hasNext()) {
 										<liferay-util:include page="/scheduler.jsp" servletContext="<%= application %>">
 											<liferay-util:param name="activeView" value="<%= activeView %>" />
 											<liferay-util:param name="date" value="<%= String.valueOf(startTime) %>" />
-											<liferay-util:param name="filterCalendarBookings" value='<%= renderResponse.getNamespace() + "filterCalendarBookings" %>' />
+											<liferay-util:param name="filterCalendarBookings" value='<%= liferayPortletResponse.getNamespace() + "filterCalendarBookings" %>' />
 											<liferay-util:param name="hideAgendaView" value="<%= Boolean.TRUE.toString() %>" />
 											<liferay-util:param name="hideMonthView" value="<%= Boolean.TRUE.toString() %>" />
 											<liferay-util:param name="preventPersistence" value="<%= Boolean.TRUE.toString() %>" />

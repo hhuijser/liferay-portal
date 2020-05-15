@@ -35,7 +35,7 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 	<portlet:param name="mvcRenderCommandName" value="/document_library/edit_file_entry_type_data_definition" />
 </portlet:actionURL>
 
-<aui:form action="<%= editFileEntryTypeURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'>
+<aui:form action="<%= editFileEntryTypeURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveStructure();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="fileEntryTypeId" type="hidden" value="<%= fileEntryTypeId %>" />
@@ -81,13 +81,13 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 
 			<liferay-data-engine:data-layout-builder
 				additionalPanels="<%= dlEditFileEntryTypeDataEngineDisplayContext.getAdditionalPanels(npmResolvedPackageName) %>"
-				componentId='<%= renderResponse.getNamespace() + "dataLayoutBuilder" %>'
+				componentId='<%= liferayPortletResponse.getNamespace() + "dataLayoutBuilder" %>'
 				contentType="document-library"
 				dataDefinitionId="<%= dataDefinitionId %>"
 				dataLayoutInputId="dataLayout"
 				groupId="<%= scopeGroupId %>"
 				localizable="<%= true %>"
-				namespace="<%= renderResponse.getNamespace() %>"
+				namespace="<%= liferayPortletResponse.getNamespace() %>"
 			/>
 		</clay:container-fluid>
 	</div>

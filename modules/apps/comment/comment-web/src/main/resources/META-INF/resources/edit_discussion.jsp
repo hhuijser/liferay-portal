@@ -56,9 +56,9 @@ if (comment instanceof WorkflowableComment) {
 />
 
 <clay:container-fluid>
-	<aui:form action='<%= themeDisplay.getPathMain() + "/portal/comment/discussion/edit" %>' enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveComment();" %>'>
+	<aui:form action='<%= themeDisplay.getPathMain() + "/portal/comment/discussion/edit" %>' enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveComment();" %>'>
 		<input name="p_auth" type="hidden" value="<%= AuthTokenUtil.getToken(request) %>" />
-		<input name="namespace" type="hidden" value="<%= renderResponse.getNamespace() %>" />
+		<input name="namespace" type="hidden" value="<%= liferayPortletResponse.getNamespace() %>" />
 
 		<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= Constants.UPDATE %>" />
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />

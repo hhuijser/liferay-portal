@@ -18,7 +18,7 @@
 
 <%
 long fileEntryTypeId = ParamUtil.getLong(request, "fileEntryTypeId");
-String eventName = ParamUtil.getString(request, "eventName", renderResponse.getNamespace() + "selectFileEntryType");
+String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectFileEntryType");
 
 long[] groupIds = PortalUtil.getCurrentAndAncestorSiteGroupIds(scopeGroupId);
 

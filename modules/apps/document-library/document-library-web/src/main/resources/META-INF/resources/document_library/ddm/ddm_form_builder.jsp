@@ -226,7 +226,7 @@ DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFil
 
 		portletNamespace: '<portlet:namespace />',
 		portletResourceNamespace:
-			'<%= HtmlUtil.escapeJS(renderResponse.getNamespace()) %>',
+			'<%= HtmlUtil.escapeJS(liferayPortletResponse.getNamespace()) %>',
 		readOnly: <%= ParamUtil.getBoolean(request, "formBuilderReadOnly") %>,
 		srcNode: '#<portlet:namespace />formBuilderContent',
 		translationManager: {
@@ -286,11 +286,11 @@ DLEditFileEntryTypeDisplayContext dlEditFileEntryTypeDisplayContext = (DLEditFil
 	Liferay.on('destroyPortlet', onDestroyPortlet);
 
 	window[
-		'<%= HtmlUtil.escapeJS(renderResponse.getNamespace()) %>formBuilder'
+		'<%= HtmlUtil.escapeJS(liferayPortletResponse.getNamespace()) %>formBuilder'
 	] = formBuilder;
 
 	window[
-		'<%= HtmlUtil.escapeJS(renderResponse.getNamespace()) %>getContentValue'
+		'<%= HtmlUtil.escapeJS(liferayPortletResponse.getNamespace()) %>getContentValue'
 	] = getContentValue;
 
 	Liferay.on('<portlet:namespace />saveTemplate', function (event) {

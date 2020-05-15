@@ -153,7 +153,7 @@ renderResponse.setTitle((entry != null) ? BlogsEntryUtil.getDisplayTitle(resourc
 						md="8"
 					>
 						<div class="entry-title form-group">
-							<aui:input autoSize="<%= true %>" cssClass="form-control-edit form-control-edit-title form-control-unstyled" label="" name="title" onChange='<%= renderResponse.getNamespace() + "onChangeTitle(event.target.value)" %>' placeholder='<%= LanguageUtil.get(request, "title") + StringPool.BLANK + " *" %>' required="<%= true %>" showRequiredLabel="<%= true %>" type="textarea" value="<%= HtmlUtil.escape(title) %>" />
+							<aui:input autoSize="<%= true %>" cssClass="form-control-edit form-control-edit-title form-control-unstyled" label="" name="title" onChange='<%= liferayPortletResponse.getNamespace() + "onChangeTitle(event.target.value)" %>' placeholder='<%= LanguageUtil.get(request, "title") + StringPool.BLANK + " *" %>' required="<%= true %>" showRequiredLabel="<%= true %>" type="textarea" value="<%= HtmlUtil.escape(title) %>" />
 						</div>
 
 						<div class="entry-subtitle">
@@ -252,7 +252,7 @@ renderResponse.setTitle((entry != null) ? BlogsEntryUtil.getDisplayTitle(resourc
 						</div>
 
 						<div class="entry-description form-group">
-							<aui:input disabled="<%= !customAbstract %>" label="description" name="description" onChange='<%= renderResponse.getNamespace() + "setCustomDescription(this.value);" %>' type="text" value="<%= description %>">
+							<aui:input disabled="<%= !customAbstract %>" label="description" name="description" onChange='<%= liferayPortletResponse.getNamespace() + "setCustomDescription(this.value);" %>' type="text" value="<%= description %>">
 								<aui:validator name="required" />
 							</aui:input>
 						</div>

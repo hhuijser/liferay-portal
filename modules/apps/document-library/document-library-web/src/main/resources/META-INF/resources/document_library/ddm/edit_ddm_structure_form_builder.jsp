@@ -50,7 +50,7 @@ renderResponse.setTitle(title);
 <portlet:actionURL name="/document_library/ddm/update_ddm_structure" var="updateDDMStructureURL" />
 
 <clay:container-fluid>
-	<aui:form action="<%= (ddmStructure == null) ? addDDMStructureURL : updateDDMStructureURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
+	<aui:form action="<%= (ddmStructure == null) ? addDDMStructureURL : updateDDMStructureURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 		<aui:input name="ddmStructureId" type="hidden" value="<%= ddmStructureId %>" />
 		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
@@ -162,9 +162,9 @@ renderResponse.setTitle(title);
 
 							<aui:input cssClass="lfr-input-text" disabled="<%= true %>" label="" name="parentDDMStructureName" type="text" value="<%= dlEditDDMStructureDisplayContext.getParentDDMStructureName() %>" />
 
-							<aui:button onClick='<%= renderResponse.getNamespace() + "openParentDDMStructureSelector();" %>' value="select" />
+							<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "openParentDDMStructureSelector();" %>' value="select" />
 
-							<aui:button disabled="<%= Validator.isNull(dlEditDDMStructureDisplayContext.getParentDDMStructureName()) %>" name="removeParentDDMStructureButton" onClick='<%= renderResponse.getNamespace() + "removeParentDDMStructure();" %>' value="remove" />
+							<aui:button disabled="<%= Validator.isNull(dlEditDDMStructureDisplayContext.getParentDDMStructureName()) %>" name="removeParentDDMStructureButton" onClick='<%= liferayPortletResponse.getNamespace() + "removeParentDDMStructure();" %>' value="remove" />
 						</aui:field-wrapper>
 
 						<c:if test="<%= ddmStructure != null %>">
@@ -187,7 +187,7 @@ renderResponse.setTitle(title);
 	</aui:form>
 
 	<aui:button-row>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
+		<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
 
 		<aui:button href="<%= redirect %>" type="cancel" />
 	</aui:button-row>

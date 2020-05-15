@@ -257,7 +257,7 @@ if (recurrence != null) {
 		limitCountInput: '#<portlet:namespace />count',
 		limitCountRadioButton: '[name=<portlet:namespace />ends][value=after]',
 		limitDateDatePicker: Liferay.component(
-			'<%= renderResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'
+			'<%= liferayPortletResponse.getNamespace() + HtmlUtil.getAUICompatibleId("untilDateDatePicker") %>'
 		),
 		limitDateRadioButton: '[name=<portlet:namespace />ends][value=on]',
 		monthlyRecurrenceOptions: '#<portlet:namespace />viewPositionInMonth',

@@ -88,7 +88,7 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 		<c:if test="<%= !displaySchedulerOnly %>">
 			<clay:col
 				cssClass='<%= "calendar-portlet-column-options " + (columnOptionsVisible ? StringPool.BLANK : "hide") %>'
-				id='<%= renderResponse.getNamespace() + "columnOptions" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "columnOptions" %>'
 				md="3"
 			>
 				<div class="calendar-portlet-mini-calendar" id="<portlet:namespace />miniCalendarContainer"></div>
@@ -145,13 +145,13 @@ boolean columnOptionsVisible = GetterUtil.getBoolean(SessionClicks.get(request, 
 
 		<clay:col
 			cssClass="calendar-portlet-column-grid"
-			id='<%= renderResponse.getNamespace() + "columnGrid" %>'
+			id='<%= liferayPortletResponse.getNamespace() + "columnGrid" %>'
 			md="<%= (columnOptionsVisible && !displaySchedulerOnly) ? String.valueOf(9) : String.valueOf(12) %>"
 		>
 			<c:if test="<%= !displaySchedulerOnly %>">
 				<div class="calendar-portlet-column-toggler" id="<portlet:namespace />columnToggler">
 					<clay:icon
-						id='<%= renderResponse.getNamespace() + "columnTogglerIcon" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "columnTogglerIcon" %>'
 						symbol='<%= columnOptionsVisible ? "caret-left" : "caret-right" %>'
 					/>
 				</div>

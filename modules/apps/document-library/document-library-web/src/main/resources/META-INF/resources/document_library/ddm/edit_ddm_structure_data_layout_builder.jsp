@@ -43,7 +43,7 @@ renderResponse.setTitle(title);
 
 <portlet:actionURL name="/document_library/ddm/update_data_definition" var="updateDataDefinitionURL" />
 
-<aui:form action="<%= (ddmStructure == null) ? addDataDefinitionURL : updateDataDefinitionURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
+<aui:form action="<%= (ddmStructure == null) ? addDataDefinitionURL : updateDataDefinitionURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="dataDefinitionId" type="hidden" value="<%= ddmStructureId %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
@@ -63,7 +63,7 @@ renderResponse.setTitle(title);
 					<div class="metadata-type-button-row tbar-section text-right">
 						<aui:button cssClass="btn-sm mr-3" href="<%= redirect %>" type="cancel" />
 
-						<aui:button cssClass="btn-sm mr-3" onClick='<%= renderResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
+						<aui:button cssClass="btn-sm mr-3" onClick='<%= liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
 					</div>
 				</li>
 			</ul>
@@ -88,13 +88,13 @@ renderResponse.setTitle(title);
 
 			<liferay-data-engine:data-layout-builder
 				additionalPanels="<%= dlEditDDMStructureDisplayContext.getAdditionalPanels(npmResolvedPackageName) %>"
-				componentId='<%= renderResponse.getNamespace() + "dataLayoutBuilder" %>'
+				componentId='<%= liferayPortletResponse.getNamespace() + "dataLayoutBuilder" %>'
 				contentType="document-library"
 				dataDefinitionId="<%= ddmStructureId %>"
 				dataLayoutInputId="dataLayout"
 				groupId="<%= groupId %>"
 				localizable="<%= true %>"
-				namespace="<%= renderResponse.getNamespace() %>"
+				namespace="<%= liferayPortletResponse.getNamespace() %>"
 			/>
 		</clay:container-fluid>
 	</div>

@@ -30,5 +30,5 @@ OAuth2Authorization oAuth2Authorization = (OAuth2Authorization)row.getObject();
 		<portlet:param name="oAuth2AuthorizationId" value="<%= String.valueOf(oAuth2Authorization.getOAuth2AuthorizationId()) %>" />
 	</portlet:actionURL>
 
-	<aui:button onClick='<%= renderResponse.getNamespace() + "revokeOAuth2Authorization(" + oAuth2Authorization.getOAuth2AuthorizationId() + ")" %>' value="revoke" />
+	<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "revokeOAuth2Authorization(" + oAuth2Authorization.getOAuth2AuthorizationId() + ")" %>' value="revoke" />
 </c:if>

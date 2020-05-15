@@ -65,7 +65,7 @@ SearchBarPortletDisplayContext searchBarPortletDisplayContext = (SearchBarPortle
 			List<SearchBarPortletDisplayContext> entries = new ArrayList<>();
 
 			Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-				"namespace", renderResponse.getNamespace()
+				"namespace", liferayPortletResponse.getNamespace()
 			).put(
 				"searchBarPortletDisplayContext", searchBarPortletDisplayContext
 			).build();

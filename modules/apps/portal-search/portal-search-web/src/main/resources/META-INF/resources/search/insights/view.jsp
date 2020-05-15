@@ -49,13 +49,13 @@ SearchInsightsDisplayContext searchInsightsDisplayContext = (SearchInsightsDispl
 		<div class="full-query">
 			<liferay-ui:panel-container
 				extended="<%= true %>"
-				id='<%= renderResponse.getNamespace() + "insightsPanelContainer" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "insightsPanelContainer" %>'
 				markupView="lexicon"
 				persistState="<%= true %>"
 			>
 				<liferay-ui:panel
 					collapsible="<%= true %>"
-					id='<%= renderResponse.getNamespace() + "insightsRequestPanel" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "insightsRequestPanel" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 					title="request-string"
@@ -67,7 +67,7 @@ SearchInsightsDisplayContext searchInsightsDisplayContext = (SearchInsightsDispl
 
 				<liferay-ui:panel
 					collapsible="<%= true %>"
-					id='<%= renderResponse.getNamespace() + "insightsResponsePanel" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "insightsResponsePanel" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 					title="response-string"

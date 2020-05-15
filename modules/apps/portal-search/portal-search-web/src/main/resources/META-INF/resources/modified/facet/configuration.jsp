@@ -81,7 +81,7 @@ JSONArray rangesJSONArray = modifiedFacetPortletPreferences.getRangesJSONArray()
 				collapsible="<%= true %>"
 				label="advanced-configuration"
 			>
-				<aui:fieldset id='<%= renderResponse.getNamespace() + "rangesId" %>'>
+				<aui:fieldset id='<%= liferayPortletResponse.getNamespace() + "rangesId" %>'>
 
 					<%
 					int[] rangesIndexes = new int[rangesJSONArray.length()];

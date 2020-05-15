@@ -20,7 +20,7 @@
 				<file-name>com.liferay.adaptive.media.image.impl.jar!xmpcore.jar</file-name>
 				<version>6.0.6</version>
 				<project-name>XMP Library for Java</project-name>
-				<project-url>http://www.adobe.com/devnet/xmp.html</project-url>
+				<project-url>https://zerowing.corp.adobe.com/display/granite</project-url>
 				<licenses>
 					<license>
 						<license-name>The BSD License</license-name>
@@ -90,25 +90,13 @@
 			</library>
 			<library>
 				<file-name>com.liferay.analytics.settings.web.jar!httpcore.jar</file-name>
-				<version>4.4.6</version>
+				<version>4.4.9</version>
 				<project-name>HttpComponents Apache HttpCore</project-name>
 				<project-url>http://hc.apache.org/httpcomponents-core-ga</project-url>
 				<licenses>
 					<license>
-						<license-name>The Apache Software License, Version 2.0</license-name>
-						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
-					</license>
-				</licenses>
-			</library>
-			<library>
-				<file-name>com.liferay.asset.auto.tagger.opennlp.impl.jar!opennlp-tools.jar</file-name>
-				<version>1.9.1</version>
-				<project-name>Apache OpenNLP Tools</project-name>
-				<project-url>https://www.apache.org/</project-url>
-				<licenses>
-					<license>
 						<license-name>Apache License, Version 2.0</license-name>
-						<license-url>https://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0.txt</license-url>
 					</license>
 				</licenses>
 			</library>
@@ -1885,8 +1873,92 @@
 				</licenses>
 			</library>
 			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-buffer.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Buffer</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-codec-http.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Codec/HTTP</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-codec.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Codec</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-common.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Common</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-handler.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Handler</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-resolver.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Resolver</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
+				<file-name>com.liferay.portal.odata.impl.jar!netty-transport.jar</file-name>
+				<version>4.1.43.Final</version>
+				<project-name>Netty/Transport</project-name>
+				<project-url>https://netty.io/</project-url>
+				<licenses>
+					<license>
+						<license-name>Apache License, Version 2.0</license-name>
+						<license-url>http://www.apache.org/licenses/LICENSE-2.0</license-url>
+					</license>
+				</licenses>
+			</library>
+			<library>
 				<file-name>com.liferay.portal.odata.impl.jar!odata-commons-api.jar</file-name>
-				<version>4.4.0</version>
+				<version>4.7.1</version>
 				<project-name>odata-commons-api</project-name>
 				<project-url>http://www.apache.org/</project-url>
 				<licenses>
@@ -1898,7 +1970,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.odata.impl.jar!odata-commons-core.jar</file-name>
-				<version>4.4.0</version>
+				<version>4.7.1</version>
 				<project-name>odata-commons-core</project-name>
 				<project-url>http://www.apache.org/</project-url>
 				<licenses>
@@ -1910,7 +1982,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.odata.impl.jar!odata-server-api.jar</file-name>
-				<version>4.4.0</version>
+				<version>4.7.1</version>
 				<project-name>odata-server-api</project-name>
 				<project-url>http://www.apache.org/</project-url>
 				<licenses>
@@ -1922,7 +1994,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.odata.impl.jar!odata-server-core-ext.jar</file-name>
-				<version>4.4.0</version>
+				<version>4.7.1</version>
 				<project-name>odata-server-core-ext</project-name>
 				<licenses>
 					<license>
@@ -1933,7 +2005,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.odata.impl.jar!odata-server-core.jar</file-name>
-				<version>4.4.0</version>
+				<version>4.7.1</version>
 				<project-name>odata-server-core</project-name>
 				<project-url>http://www.apache.org/</project-url>
 				<licenses>
@@ -2635,7 +2707,7 @@
 			</library>
 			<library>
 				<file-name>com.liferay.portal.search.elasticsearch6.impl.jar!netty-all.jar</file-name>
-				<version>4.1.43.Final</version>
+				<version>4.1.48.Final</version>
 				<project-name>Netty/All-in-One</project-name>
 				<licenses>
 					<license>

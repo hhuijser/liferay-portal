@@ -46,7 +46,7 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 	<portlet:param name="mvcRenderCommandName" value="/document_library/edit_file_entry_type" />
 </portlet:actionURL>
 
-<aui:form action="<%= editFileEntryTypeURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveStructure();" %>'>
+<aui:form action="<%= editFileEntryTypeURL %>" cssClass="edit-metadata-type-form" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveStructure();" %>'>
 	<aui:input name="<%= Constants.CMD %>" type="hidden" value="<%= (fileEntryType == null) ? Constants.ADD : Constants.UPDATE %>" />
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="fileEntryTypeId" type="hidden" value="<%= fileEntryTypeId %>" />
@@ -88,13 +88,13 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 
 		<liferay-data-engine:data-layout-builder
 			additionalPanels="<%= dlEditFileEntryTypeDisplayContext.getAdditionalPanels(npmResolvedPackageName) %>"
-			componentId='<%= renderResponse.getNamespace() + "dataLayoutBuilder" %>'
+			componentId='<%= liferayPortletResponse.getNamespace() + "dataLayoutBuilder" %>'
 			contentType="document-library"
 			dataDefinitionId="<%= ddmStructureId %>"
 			dataLayoutInputId="dataLayout"
 			groupId="<%= scopeGroupId %>"
 			localizable="<%= true %>"
-			namespace="<%= renderResponse.getNamespace() %>"
+			namespace="<%= liferayPortletResponse.getNamespace() %>"
 		/>
 	</clay:container>
 </aui:form>
@@ -102,7 +102,7 @@ renderResponse.setTitle((fileEntryType == null) ? LanguageUtil.get(request, "new
 <aui:script>
 	function <portlet:namespace />saveStructure() {
 		Liferay.componentReady(
-			'<%= renderResponse.getNamespace() + "dataLayoutBuilder" %>'
+			'<%= liferayPortletResponse.getNamespace() + "dataLayoutBuilder" %>'
 		).then(function (dataLayoutBuilder) {
 			var name =
 				document.<portlet:namespace />fm[

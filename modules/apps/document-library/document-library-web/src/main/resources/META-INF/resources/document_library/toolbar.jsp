@@ -21,7 +21,7 @@
 	clearResultsURL="<%= dlAdminManagementToolbarDisplayContext.getClearResultsURL() %>"
 	componentId="<%= dlAdminManagementToolbarDisplayContext.getComponentId() %>"
 	creationMenu="<%= dlAdminManagementToolbarDisplayContext.getCreationMenu() %>"
-	defaultEventHandler='<%= renderResponse.getNamespace() + "DocumentLibrary" %>'
+	defaultEventHandler='<%= liferayPortletResponse.getNamespace() + "DocumentLibrary" %>'
 	disabled="<%= dlAdminManagementToolbarDisplayContext.isDisabled() %>"
 	filterDropdownItems="<%= dlAdminManagementToolbarDisplayContext.getFilterDropdownItems() %>"
 	filterLabelItems="<%= dlAdminManagementToolbarDisplayContext.getFilterLabelItems() %>"

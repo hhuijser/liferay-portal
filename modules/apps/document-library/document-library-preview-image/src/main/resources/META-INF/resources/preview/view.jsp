@@ -54,7 +54,7 @@ String previewURL = DLURLHelperUtil.getPreviewURL(fileVersion.getFileEntry(), fi
 		).build();
 		%>
 
-		<div id="<%= renderResponse.getNamespace() + randomNamespace + "previewImage" %>">
+		<div id="<%= liferayPortletResponse.getNamespace() + randomNamespace + "previewImage" %>">
 			<react:component
 				data="<%= data %>"
 				module="preview/js/ImagePreviewer.es"

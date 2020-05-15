@@ -20,7 +20,7 @@
 FileEntry fileEntry = (FileEntry)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_ENTRY);
 FileVersion fileVersion = (FileVersion)request.getAttribute(WebKeys.DOCUMENT_LIBRARY_FILE_VERSION);
 
-String eventName = ParamUtil.getString(request, "eventName", renderResponse.getNamespace() + "selectFileVersionFm");
+String eventName = ParamUtil.getString(request, "eventName", liferayPortletResponse.getNamespace() + "selectFileVersionFm");
 
 int status = WorkflowConstants.STATUS_APPROVED;
 

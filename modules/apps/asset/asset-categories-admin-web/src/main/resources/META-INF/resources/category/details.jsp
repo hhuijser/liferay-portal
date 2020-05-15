@@ -121,7 +121,7 @@ renderResponse.setTitle((category == null) ? LanguageUtil.get(request, "add-new-
 								).put(
 									"groupIds", Collections.singletonList(scopeGroupId)
 								).put(
-									"namespace", renderResponse.getNamespace()
+									"namespace", liferayPortletResponse.getNamespace()
 								).put(
 									"portletURL", assetCategoriesDisplayContext.getCategorySelectorURL()
 								).put(

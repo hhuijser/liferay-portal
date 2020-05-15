@@ -24,14 +24,14 @@
 	<div class="sheet-text"><liferay-ui:message key="change-lists-help" /></div>
 
 	<div class="form-group">
-		<aui:input label="" name="enableChangeLists" onClick='<%= renderResponse.getNamespace() + "updateSubmitRedirectToOverview()" %>' type="toggle-switch" value="<%= changeListsConfigurationDisplayContext.isChangeListsEnabled() %>" />
+		<aui:input label="" name="enableChangeLists" onClick='<%= liferayPortletResponse.getNamespace() + "updateSubmitRedirectToOverview()" %>' type="toggle-switch" value="<%= changeListsConfigurationDisplayContext.isChangeListsEnabled() %>" />
 	</div>
 </clay:sheet-section>
 
 <clay:sheet-footer>
 	<aui:button primary="<%= true %>" type="submit" value="submit" />
 
-	<aui:button disabled="<%= !changeListsConfigurationDisplayContext.isChangeListsEnabled() %>" name="submitRedirectToOverview" onClick='<%= renderResponse.getNamespace() + "doSubmitRedirectToOverview()" %>' primary="<%= false %>" type="submit" value="save-and-go-to-overview" />
+	<aui:button disabled="<%= !changeListsConfigurationDisplayContext.isChangeListsEnabled() %>" name="submitRedirectToOverview" onClick='<%= liferayPortletResponse.getNamespace() + "doSubmitRedirectToOverview()" %>' primary="<%= false %>" type="submit" value="save-and-go-to-overview" />
 </clay:sheet-footer>
 
 <script>

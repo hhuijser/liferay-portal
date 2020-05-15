@@ -117,7 +117,7 @@ else {
 
 <clay:sheet-section
 	className='<%= (selLayout.getMasterLayoutPlid() <= 0) ? StringPool.BLANK : "hide" %>'
-	id='<%= renderResponse.getNamespace() + "themeContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "themeContainer" %>'
 >
 	<h3 class="sheet-subtitle"><liferay-ui:message key="theme" /></h3>
 

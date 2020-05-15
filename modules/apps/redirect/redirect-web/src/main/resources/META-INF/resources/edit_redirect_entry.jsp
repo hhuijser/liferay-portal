@@ -148,7 +148,7 @@ else {
 		<c:if test="<%= redirectEntry != null %>">
 			<clay:alert
 				cssClass="hide"
-				id='<%= renderResponse.getNamespace() + "typeInfoAlert" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "typeInfoAlert" %>'
 				message="changes-to-this-redirect-might-not-be-immediately-seen-for-users-whose-browsers-have-cached-the-old-redirect-configuration"
 			/>
 		</c:if>

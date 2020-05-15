@@ -86,7 +86,7 @@ PortletURL portletURL = editAssetListDisplayContext.getPortletURL();
 			continue;
 		}
 
-		String taglibOnClick = renderResponse.getNamespace() + "addRow('" + group.getGroupId() + "', '" + HtmlUtil.escapeJS(HtmlUtil.escape(group.getDescriptiveName(themeDisplay.getLocale()))) + "', '" + LanguageUtil.get(request, group.getScopeLabel(themeDisplay)) + "');";
+		String taglibOnClick = liferayPortletResponse.getNamespace() + "addRow('" + group.getGroupId() + "', '" + HtmlUtil.escapeJS(HtmlUtil.escape(group.getDescriptiveName(themeDisplay.getLocale()))) + "', '" + LanguageUtil.get(request, group.getScopeLabel(themeDisplay)) + "');";
 	%>
 
 		<liferay-ui:icon

@@ -386,14 +386,14 @@ renderResponse.setTitle(headerTitle);
 												%>
 
 												<liferay-data-engine:data-layout-renderer
-													containerId='<%= renderResponse.getNamespace() + "dataEngineLayoutRenderer" %>'
+													containerId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRenderer" %>'
 													dataDefinitionId="<%= ddmStructure.getStructureId() %>"
 													dataRecordValues="<%= ddmFormValuesToMapConverter.convert(ddmFormValues, DDMStructureLocalServiceUtil.getStructure(ddmStructure.getStructureId())) %>"
 													namespace="<%= liferayPortletResponse.getNamespace() %>"
 												/>
 
 												<liferay-frontend:component
-													componentId='<%= renderResponse.getNamespace() + "dataEngineLayoutRendererLanguageProxy" %>'
+													componentId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRendererLanguageProxy" %>'
 													module="document_library/js/dataEngineLayoutRendererLanguageProxy.es"
 													servletContext="<%= application %>"
 												/>

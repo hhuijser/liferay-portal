@@ -33,7 +33,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-collection"));
 
 <clay:container-fluid
 	cssClass="container-view"
-	id='<%= renderResponse.getNamespace() + "collections" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "collections" %>'
 >
 	<c:choose>
 		<c:when test="<%= selectLayoutCollectionDisplayContext.isCollections() %>">

@@ -37,7 +37,7 @@ SelectChangeListManagementToolbarDisplayContext selectChangeListManagementToolba
 </c:if>
 
 <clay:container-fluid
-	id='<%= renderResponse.getNamespace() + "selectChangeListContainer" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "selectChangeListContainer" %>'
 >
 	<div class="table-responsive">
 		<table class="change-lists-table select-change-list-table table table-autofit">

@@ -72,7 +72,7 @@ String groupId = String.valueOf(group.getGroupId());
 	function <portlet:namespace />editDefaultFilePermissions(groupId) {
 
 		<%
-		String selectEventName = renderResponse.getNamespace() + "itemSelected";
+		String selectEventName = liferayPortletResponse.getNamespace() + "itemSelected";
 		%>
 
 		<portlet:renderURL var="editDefaultFilePermissionsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">

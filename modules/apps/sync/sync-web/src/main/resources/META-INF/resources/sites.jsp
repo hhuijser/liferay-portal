@@ -247,7 +247,7 @@ portletURL.setParameter("delta", String.valueOf(delta));
 			if (groupIds) {
 
 				<%
-				String selectEventName = renderResponse.getNamespace() + "itemSelected";
+				String selectEventName = liferayPortletResponse.getNamespace() + "itemSelected";
 				%>
 
 				<portlet:renderURL var="editSitesDefaultFilePermissionsURL" windowState="<%= LiferayWindowState.POP_UP.toString() %>">

@@ -18,7 +18,7 @@
 
 <liferay-ui:icon
 	message="install-from-url"
-	onClick='<%= renderResponse.getNamespace() + "openInstallFromURLView()" %>'
+	onClick='<%= liferayPortletResponse.getNamespace() + "openInstallFromURLView()" %>'
 	url="javascript:;"
 />
 

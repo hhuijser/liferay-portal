@@ -18,7 +18,7 @@
 
 <liferay-ui:icon
 	message="upload"
-	onClick='<%= renderResponse.getNamespace() + "uploadUrlLink();" %>'
+	onClick='<%= liferayPortletResponse.getNamespace() + "uploadUrlLink();" %>'
 	url="javascript:;"
 />
 

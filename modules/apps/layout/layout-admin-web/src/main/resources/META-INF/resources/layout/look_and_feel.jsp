@@ -76,14 +76,14 @@ if ((layoutPageTemplateEntry == null) || !Objects.equals(layoutPageTemplateEntry
 			<clay:button
 				cssClass='<%= (masterLayoutPageTemplateEntry == null) ? "hide" : StringPool.BLANK %>'
 				displayType="secondary"
-				id='<%= renderResponse.getNamespace() + "editMasterLayoutButton" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "editMasterLayoutButton" %>'
 				label="edit-master"
 				small="<%= true %>"
 			/>
 
 			<clay:button
 				displaytype="secondary"
-				id='<%= renderResponse.getNamespace() + "changeMasterLayoutButton" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "changeMasterLayoutButton" %>'
 				label="change-master"
 				small="<%= true %>"
 			/>

@@ -95,9 +95,9 @@ String jobTitle = BeanParamUtil.getString(selUser, request, "jobTitle");
 		<liferay-ui:message arguments="<%= HtmlUtil.escape(emailAddress) %>" key="an-account-with-x-as-the-email-address-already-exists-in-the-portal.-do-you-want-to-associate-this-activity-with-that-account" translateArguments="<%= false %>" />
 	</div>
 
-	<aui:button name="updateUser" onClick='<%= renderResponse.getNamespace() + "updateUser();" %>' value="associate-account" />
+	<aui:button name="updateUser" onClick='<%= liferayPortletResponse.getNamespace() + "updateUser();" %>' value="associate-account" />
 
-	<aui:button name="resetUser" onClick='<%= renderResponse.getNamespace() + "resetUser();" %>' value="create-new-account" />
+	<aui:button name="resetUser" onClick='<%= liferayPortletResponse.getNamespace() + "resetUser();" %>' value="create-new-account" />
 </div>
 
 <aui:script>

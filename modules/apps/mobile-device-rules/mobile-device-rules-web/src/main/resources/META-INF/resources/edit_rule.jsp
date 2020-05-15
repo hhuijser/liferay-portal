@@ -103,7 +103,7 @@ renderResponse.setTitle(title);
 			</c:choose>
 		</aui:fieldset>
 
-		<div id="<%= renderResponse.getNamespace() %>typeSettings">
+		<div id="<%= liferayPortletResponse.getNamespace() %>typeSettings">
 			<c:if test="<%= Validator.isNotNull(editorJSP) %>">
 				<liferay-util:include page="<%= editorJSP %>" servletContext="<%= application %>" />
 			</c:if>

@@ -67,7 +67,7 @@ if (portletTitleBasedNavigation && (folderId != DLFolderConstants.DEFAULT_PARENT
 <div class="document-container" id="<portlet:namespace />entriesContainer">
 
 	<%
-	SearchContainer dlSearchContainer = dlAdminDisplayContext.getSearchContainer();
+	SearchContainer<Object> dlSearchContainer = dlAdminDisplayContext.getSearchContainer();
 	%>
 
 	<liferay-ui:search-container

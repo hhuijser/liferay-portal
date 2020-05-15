@@ -488,7 +488,7 @@ public class DLAdminManagementToolbarDisplayContext {
 	}
 
 	public int getTotalItems() {
-		SearchContainer searchContainer =
+		SearchContainer<Object> searchContainer =
 			_dlAdminDisplayContext.getSearchContainer();
 
 		return searchContainer.getTotal();

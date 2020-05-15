@@ -14,6 +14,7 @@
 
 package com.liferay.document.library.web.internal.display.context;
 
+import com.liferay.document.library.kernel.model.DLFileEntryType;
 import com.liferay.document.library.kernel.service.DLFileEntryTypeServiceUtil;
 import com.liferay.document.library.web.internal.security.permission.resource.DLPermission;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.CreationMenu;
@@ -84,7 +85,9 @@ public class DLViewFileEntryTypesDisplayContext {
 		return String.valueOf(getPortletURL());
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<DLFileEntryType> getSearchContainer()
+		throws PortalException {
+
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -93,7 +96,7 @@ public class DLViewFileEntryTypesDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<DLFileEntryType> searchContainer = new SearchContainer(
 			_renderRequest, new DisplayTerms(_httpServletRequest),
 			new DisplayTerms(_httpServletRequest),
 			SearchContainer.DEFAULT_CUR_PARAM, SearchContainer.DEFAULT_DELTA,
@@ -128,7 +131,7 @@ public class DLViewFileEntryTypesDisplayContext {
 	}
 
 	public int getTotalItems() throws PortalException {
-		SearchContainer searchContainer = getSearchContainer();
+		SearchContainer<DLFileEntryType> searchContainer = getSearchContainer();
 
 		return searchContainer.getTotal();
 	}
@@ -145,6 +148,6 @@ public class DLViewFileEntryTypesDisplayContext {
 
 	private final HttpServletRequest _httpServletRequest;
 	private final RenderRequest _renderRequest;
-	private SearchContainer _searchContainer;
+	private SearchContainer<DLFileEntryType> _searchContainer;
 
 }

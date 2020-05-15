@@ -117,7 +117,7 @@ public class DLAdminDisplayContextTest {
 			_addDLFileEntry("alpha_" + i + ".txt", "alpha");
 		}
 
-		SearchContainer searchContainer = _getSearchContainer(
+		SearchContainer<Object> searchContainer = _getSearchContainer(
 			_getMockLiferayPortletActionRequest());
 
 		Assert.assertEquals(25, searchContainer.getTotal());
@@ -129,7 +129,7 @@ public class DLAdminDisplayContextTest {
 			_addDLFileEntry("alpha_" + i + ".txt", "alpha");
 		}
 
-		SearchContainer searchContainer = _getSearchContainer(
+		SearchContainer<Object> searchContainer = _getSearchContainer(
 			_getMockLiferayPortletActionRequestWithSearch("alpha"));
 
 		Assert.assertEquals(25, searchContainer.getTotal());
@@ -183,7 +183,7 @@ public class DLAdminDisplayContextTest {
 		return mockLiferayPortletActionRequest;
 	}
 
-	private SearchContainer _getSearchContainer(
+	private SearchContainer<Object> _getSearchContainer(
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest) {
 
 		Object dlAdminDisplayContextProvider = _serviceTracker.getService();

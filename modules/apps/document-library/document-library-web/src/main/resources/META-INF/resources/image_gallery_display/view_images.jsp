@@ -17,7 +17,7 @@
 <%@ include file="/image_gallery_display/init.jsp" %>
 
 <%
-SearchContainer igSearchContainer = (SearchContainer)request.getAttribute("view.jsp-igSearchContainer");
+SearchContainer<?> igSearchContainer = (SearchContainer)request.getAttribute("view.jsp-igSearchContainer");
 
 DLPortletInstanceSettingsHelper dlPortletInstanceSettingsHelper = new DLPortletInstanceSettingsHelper(igRequestHelper);
 %>

@@ -83,7 +83,7 @@ SelectAccountEntriesManagementToolbarDisplayContext selectAccountEntriesManageme
 		}
 
 		Liferay.Util.getOpener().Liferay.fire(
-			'<%= HtmlUtil.escapeJS(renderResponse.getNamespace() + "selectAccountEntries") %>',
+			'<%= HtmlUtil.escapeJS(liferayPortletResponse.getNamespace() + "selectAccountEntries") %>',
 			result
 		);
 	});

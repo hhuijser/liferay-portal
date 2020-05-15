@@ -21,7 +21,7 @@ Gadget gadget = (Gadget)renderRequest.getAttribute(WebKeys.GADGET);
 String view = (String)renderRequest.getAttribute(WebKeys.VIEW);
 
 String ownerId = ShindigUtil.getOwnerId(layout);
-long moduleId = ShindigUtil.getModuleId(renderResponse.getNamespace());
+long moduleId = ShindigUtil.getModuleId(liferayPortletResponse.getNamespace());
 
 long gadgetId = gadget.getGadgetId();
 
@@ -44,7 +44,7 @@ boolean requiresPubsub = features.containsKey("pubsub-2");
 
 String secureToken = ShindigUtil.createSecurityToken(ownerId, themeDisplay.getUserId(), gadgetKey, PortalUtil.getPortalURL(themeDisplay), gadget.getUrl(), moduleId, currentURL);
 
-String userPrefsKey = ShindigUtil.getColumnUserPrefs(renderResponse.getNamespace(), themeDisplay);
+String userPrefsKey = ShindigUtil.getColumnUserPrefs(liferayPortletResponse.getNamespace(), themeDisplay);
 
 JSONObject userPrefsJSONObject = ExpandoValueServiceUtil.getJSONData(themeDisplay.getCompanyId(), Layout.class.getName(), ShindigUtil.getTableOpenSocial(), userPrefsKey, themeDisplay.getPlid());
 

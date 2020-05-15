@@ -60,7 +60,7 @@ OAuth2Application oAuth2Application = oAuth2AdminPortletDisplayContext.getOAuth2
 		%>
 
 		<clay:col
-			id='<%= renderResponse.getNamespace() + "allowedGrantTypesSection" %>'
+			id='<%= liferayPortletResponse.getNamespace() + "allowedGrantTypesSection" %>'
 			lg="7"
 		>
 			<h3 class="sheet-subtitle"><liferay-ui:message key="allowed-grant-types" /></h3>
@@ -114,7 +114,7 @@ OAuth2Application oAuth2Application = oAuth2AdminPortletDisplayContext.getOAuth2
 						<div class="allowedGrantType <%= cssClassesStr %>">
 							<c:choose>
 								<c:when test="<%= grantType.equals(GrantType.CLIENT_CREDENTIALS) %>">
-									<aui:input checked="<%= checked %>" data="<%= data %>" helpMessage="the-client-will-impersonate-the-selected-client-credential-user-but-will-be-restricted-to-the-selected-scopes" label="<%= grantType.name() %>" name="<%= clientCredentialsCheckboxName %>" onchange='<%= renderResponse.getNamespace() + "updateClientCredentialsSection();" %>' type="checkbox" />
+									<aui:input checked="<%= checked %>" data="<%= data %>" helpMessage="the-client-will-impersonate-the-selected-client-credential-user-but-will-be-restricted-to-the-selected-scopes" label="<%= grantType.name() %>" name="<%= clientCredentialsCheckboxName %>" onchange='<%= liferayPortletResponse.getNamespace() + "updateClientCredentialsSection();" %>' type="checkbox" />
 								</c:when>
 								<c:otherwise>
 									<aui:input checked="<%= checked %>" data="<%= data %>" label="<%= grantType.name() %>" name="<%= name %>" type="checkbox" />
@@ -151,7 +151,7 @@ OAuth2Application oAuth2Application = oAuth2AdminPortletDisplayContext.getOAuth2
 
 		<c:if test="<%= clientCredentialsCheckboxName != null %>">
 			<clay:col
-				id='<%= renderResponse.getNamespace() + "clientCredentialsSection" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "clientCredentialsSection" %>'
 				lg="5"
 			>
 				<h3 class="sheet-subtitle"><liferay-ui:message key="client-credentials-user" /></h3>

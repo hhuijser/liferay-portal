@@ -45,7 +45,7 @@ if (userSearchFacetDisplayContext.isRenderNothing()) {
 UserFacetPortletInstanceConfiguration userFacetPortletInstanceConfiguration = userSearchFacetDisplayContext.getUserFacetPortletInstanceConfiguration();
 
 Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"namespace", renderResponse.getNamespace()
+	"namespace", liferayPortletResponse.getNamespace()
 ).put(
 	"userSearchFacetDisplayContext", userSearchFacetDisplayContext
 ).build();
@@ -71,14 +71,14 @@ List<UserSearchFacetTermDisplayContext> userSearchFacetTermDisplayContexts = use
 			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"
-					id='<%= renderResponse.getNamespace() + "facetUserPanelContainer" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "facetUserPanelContainer" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 				>
 					<liferay-ui:panel
 						collapsible="<%= true %>"
 						cssClass="search-facet"
-						id='<%= renderResponse.getNamespace() + "facetUserPanel" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "facetUserPanel" %>'
 						markupView="lexicon"
 						persistState="<%= true %>"
 						title="user"

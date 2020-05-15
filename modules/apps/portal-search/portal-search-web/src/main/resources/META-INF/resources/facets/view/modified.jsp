@@ -223,7 +223,7 @@ int index = 0;
 						</clay:col>
 
 						<%
-						String taglibSearchCustomRange = "window['" + renderResponse.getNamespace() + HtmlUtil.escapeJS(facet.getFieldId()) + "searchCustomRange'](" + (index + 1) + ");";
+						String taglibSearchCustomRange = "window['" + liferayPortletResponse.getNamespace() + HtmlUtil.escapeJS(facet.getFieldId()) + "searchCustomRange'](" + (index + 1) + ");";
 						%>
 
 						<aui:button disabled="<%= toCalendar.getTimeInMillis() < fromCalendar.getTimeInMillis() %>" name="searchCustomRangeButton" onClick="<%= taglibSearchCustomRange %>" value="search" />
@@ -321,10 +321,10 @@ int index = 0;
 	var Util = Liferay.Util;
 
 	var customRangeFrom = Liferay.component(
-		'<%= renderResponse.getNamespace() %>modifiedfromDatePicker'
+		'<%= liferayPortletResponse.getNamespace() %>modifiedfromDatePicker'
 	);
 	var customRangeTo = Liferay.component(
-		'<%= renderResponse.getNamespace() %>modifiedtoDatePicker'
+		'<%= liferayPortletResponse.getNamespace() %>modifiedtoDatePicker'
 	);
 	var searchButton = A.one('#<portlet:namespace />searchCustomRangeButton');
 

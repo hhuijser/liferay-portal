@@ -68,7 +68,7 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 			collapsible="<%= true %>"
 			cssClass="search-admin-actions-panel"
 			extended="<%= true %>"
-			id='<%= renderResponse.getNamespace() + "adminSearchAdminIndexActionsPanel" %>'
+			id='<%= liferayPortletResponse.getNamespace() + "adminSearchAdminIndexActionsPanel" %>'
 			markupView="lexicon"
 			persistState="<%= true %>"
 			title="index-actions"
@@ -178,7 +178,7 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 		form: document.<portlet:namespace />fm,
 		indexActionWrapperSelector: '.index-action-wrapper',
 		indexActionsPanel:
-			'<%= '#' + renderResponse.getNamespace() + "adminSearchAdminIndexActionsPanel" %>',
+			'<%= '#' + liferayPortletResponse.getNamespace() + "adminSearchAdminIndexActionsPanel" %>',
 		namespace: '<portlet:namespace />',
 		redirectUrl: '<%= redirectURL %>',
 		submitButton: '.save-server-button',

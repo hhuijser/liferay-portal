@@ -458,7 +458,9 @@ DDMNavigationHelper ddmNavigationHelper = ddmDisplay.getDDMNavigationHelper();
 					});
 				}
 
-				Liferay.fire('<%= liferayPortletResponse.getNamespace() + "saveTemplate" %>');
+				Liferay.fire(
+					'<%= liferayPortletResponse.getNamespace() + "saveTemplate" %>'
+				);
 			}
 
 			function <portlet:namespace />saveAndContinueTemplate() {

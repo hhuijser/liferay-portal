@@ -92,7 +92,7 @@ if (layoutSetPrototypeId > 0) {
 	action="<%= editGroupURL %>"
 	method="post"
 	name="fm"
-	onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveGroup();" %>'
+	onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveGroup();" %>'
 >
 	<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 	<aui:input name="backURL" type="hidden" value="<%= backURL %>" />

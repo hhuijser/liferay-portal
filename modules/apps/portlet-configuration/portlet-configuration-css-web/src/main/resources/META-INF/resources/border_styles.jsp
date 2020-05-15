@@ -130,26 +130,26 @@
 			<liferay-util:include page="/color_picker_input.jsp" servletContext="<%= application %>">
 				<liferay-util:param name="color" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderProperty("top", "borderColor") %>' />
 				<liferay-util:param name="label" value='<%= LanguageUtil.get(request, "top") %>' />
-				<liferay-util:param name="name" value='<%= renderResponse.getNamespace() + "borderColorTop" %>' />
+				<liferay-util:param name="name" value='<%= liferayPortletResponse.getNamespace() + "borderColorTop" %>' />
 			</liferay-util:include>
 
 			<fieldset class="same-border-color" <%= portletConfigurationCSSPortletDisplayContext.isBorderSameForAll("borderColor") ? "disabled" : StringPool.BLANK %>>
 				<liferay-util:include page="/color_picker_input.jsp" servletContext="<%= application %>">
 					<liferay-util:param name="color" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderProperty("right", "borderColor") %>' />
 					<liferay-util:param name="label" value='<%= LanguageUtil.get(request, "right") %>' />
-					<liferay-util:param name="name" value='<%= renderResponse.getNamespace() + "borderColorRight" %>' />
+					<liferay-util:param name="name" value='<%= liferayPortletResponse.getNamespace() + "borderColorRight" %>' />
 				</liferay-util:include>
 
 				<liferay-util:include page="/color_picker_input.jsp" servletContext="<%= application %>">
 					<liferay-util:param name="color" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderProperty("bottom", "borderColor") %>' />
 					<liferay-util:param name="label" value='<%= LanguageUtil.get(request, "bottom") %>' />
-					<liferay-util:param name="name" value='<%= renderResponse.getNamespace() + "borderColorBottom" %>' />
+					<liferay-util:param name="name" value='<%= liferayPortletResponse.getNamespace() + "borderColorBottom" %>' />
 				</liferay-util:include>
 
 				<liferay-util:include page="/color_picker_input.jsp" servletContext="<%= application %>">
 					<liferay-util:param name="color" value='<%= portletConfigurationCSSPortletDisplayContext.getBorderProperty("left", "borderColor") %>' />
 					<liferay-util:param name="label" value='<%= LanguageUtil.get(request, "left") %>' />
-					<liferay-util:param name="name" value='<%= renderResponse.getNamespace() + "borderColorLeft" %>' />
+					<liferay-util:param name="name" value='<%= liferayPortletResponse.getNamespace() + "borderColorLeft" %>' />
 				</liferay-util:include>
 			</fieldset>
 		</aui:fieldset>

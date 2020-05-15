@@ -85,7 +85,7 @@ if (analyticsConfiguration != null) {
 		</span>
 	</h2>
 
-	<aui:form action="<%= editWorkspaceConnectionURL %>" data-senna-off="true" method="post" name="fm" onSubmit='<%= renderResponse.getNamespace() + "confirmation(event);" %>'>
+	<aui:form action="<%= editWorkspaceConnectionURL %>" data-senna-off="true" method="post" name="fm" onSubmit='<%= liferayPortletResponse.getNamespace() + "confirmation(event);" %>'>
 		<aui:input name="redirect" type="hidden" value="<%= currentURL %>" />
 
 		<c:if test="<%= connected %>">
@@ -94,7 +94,7 @@ if (analyticsConfiguration != null) {
 
 		<aui:fieldset>
 			<c:if test="<%= !connected %>">
-				<aui:input autocomplete="off" label="analytics-cloud-token" name="token" oninput='<%= renderResponse.getNamespace() + "validateTokenButton();" %>' placeholder="paste-token-here" value="<%= token %>" wrapperCssClass="mb-1" />
+				<aui:input autocomplete="off" label="analytics-cloud-token" name="token" oninput='<%= liferayPortletResponse.getNamespace() + "validateTokenButton();" %>' placeholder="paste-token-here" value="<%= token %>" wrapperCssClass="mb-1" />
 
 				<div class="form-text">
 					<liferay-ui:message key="analytics-cloud-token-help" />

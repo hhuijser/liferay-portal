@@ -46,7 +46,7 @@
 					</liferay-frontend:fieldset>
 
 					<liferay-frontend:fieldset
-						id='<%= renderResponse.getNamespace() + "checkBoxes" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "checkBoxes" %>'
 					>
 						<clay:col
 							md="6"

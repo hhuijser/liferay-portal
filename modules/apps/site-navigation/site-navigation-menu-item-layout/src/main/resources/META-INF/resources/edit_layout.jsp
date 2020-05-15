@@ -21,7 +21,7 @@ Layout selLayout = (Layout)request.getAttribute(WebKeys.SEL_LAYOUT);
 boolean setCustomName = GetterUtil.getBoolean(request.getAttribute(SiteNavigationMenuItemTypeLayoutWebKeys.SET_CUSTOM_NAME));
 SiteNavigationMenuItem siteNavigationMenuItem = (SiteNavigationMenuItem)request.getAttribute(SiteNavigationWebKeys.SITE_NAVIGATION_MENU_ITEM);
 
-String taglibOnChange = "Liferay.Util.toggleDisabled('#" + renderResponse.getNamespace() + "nameBoundingBox input, [for=" + renderResponse.getNamespace() + "name]', !event.target.checked)";
+String taglibOnChange = "Liferay.Util.toggleDisabled('#" + liferayPortletResponse.getNamespace() + "nameBoundingBox input, [for=" + liferayPortletResponse.getNamespace() + "name]', !event.target.checked)";
 %>
 
 <aui:fieldset>
@@ -66,7 +66,7 @@ String taglibOnChange = "Liferay.Util.toggleDisabled('#" + renderResponse.getNam
 <aui:button name="chooseLayout" value="choose" />
 
 <%
-String eventName = renderResponse.getNamespace() + "selectLayout";
+String eventName = liferayPortletResponse.getNamespace() + "selectLayout";
 
 ItemSelector itemSelector = (ItemSelector)request.getAttribute(SiteNavigationMenuItemTypeLayoutWebKeys.ITEM_SELECTOR);
 

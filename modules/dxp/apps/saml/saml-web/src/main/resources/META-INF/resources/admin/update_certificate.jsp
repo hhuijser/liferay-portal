@@ -151,7 +151,7 @@ X509Certificate x509Certificate = (X509Certificate)request.getAttribute(SamlWebK
 
 			<aui:button-row>
 				<aui:button cssClass="btn-lg" type="submit" value="save" />
-				<aui:button cssClass="btn-lg" onClick='<%= renderResponse.getNamespace() + "requestCloseDialog(false);" %>' type="cancel" value="cancel" />
+				<aui:button cssClass="btn-lg" onClick='<%= liferayPortletResponse.getNamespace() + "requestCloseDialog(false);" %>' type="cancel" value="cancel" />
 			</aui:button-row>
 		</c:when>
 		<c:otherwise>

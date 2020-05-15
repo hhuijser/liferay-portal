@@ -75,7 +75,7 @@ if ((layoutPageTemplateEntry == null) || !Objects.equals(layoutPageTemplateEntry
 		<div class="button-holder">
 			<clay:button
 				elementClasses='<%= (masterLayoutPageTemplateEntry == null) ? "btn-secondary hide" : "btn-secondary" %>'
-				id='<%= renderResponse.getNamespace() + "editMasterLayoutButton" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "editMasterLayoutButton" %>'
 				label='<%= LanguageUtil.get(request, "edit-master") %>'
 				size="sm"
 				style="<%= false %>"
@@ -83,7 +83,7 @@ if ((layoutPageTemplateEntry == null) || !Objects.equals(layoutPageTemplateEntry
 
 			<clay:button
 				elementClasses="btn-secondary"
-				id='<%= renderResponse.getNamespace() + "changeMasterLayoutButton" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "changeMasterLayoutButton" %>'
 				label='<%= LanguageUtil.get(request, "change-master") %>'
 				size="sm"
 				style="<%= false %>"

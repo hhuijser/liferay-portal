@@ -35,7 +35,7 @@ renderResponse.setTitle(LanguageUtil.get(request, "select-template"));
 
 <clay:container
 	className="container-view"
-	id='<%= renderResponse.getNamespace() + "layoutPageTemplateEntries" %>'
+	id='<%= liferayPortletResponse.getNamespace() + "layoutPageTemplateEntries" %>'
 >
 	<clay:row>
 		<clay:col

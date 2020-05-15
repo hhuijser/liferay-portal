@@ -1006,23 +1006,11 @@ public interface BaseProjectTemplatesTestCase {
 			gradleWorkspaceModulesDir, template, name, "--liferay-version",
 			liferayVersion);
 
-		if (template.equals("npm-angular-portlet")) {
-			testContains(
-				gradleProjectDir, "package.json", "@angular/animations",
-				"liferay-npm-bundler\": \"2.18.2",
-				"build\": \"tsc && liferay-npm-bundler");
-
-			testExists(
-				gradleProjectDir,
-				"src/main/resources/META-INF/resources/lib/angular-loader.ts");
-		}
-		else {
-			testContains(
-				gradleProjectDir, "package.json",
-				"build/resources/main/META-INF/resources",
-				"liferay-npm-bundler\": \"2.18.2",
-				"\"main\": \"lib/index.es.js\"");
-		}
+		testContains(
+			gradleProjectDir, "package.json",
+			"build/resources/main/META-INF/resources",
+			"liferay-npm-bundler\": \"2.18.2",
+			"\"main\": \"lib/index.es.js\"");
 
 		testNotContains(
 			gradleProjectDir, "package.json",
@@ -1038,11 +1026,9 @@ public interface BaseProjectTemplatesTestCase {
 			mavenExecutor, "-DclassName=" + className,
 			"-Dpackage=" + packageName, "-DliferayVersion=" + liferayVersion);
 
-		if (!template.equals("npm-angular-portlet")) {
-			testContains(
-				mavenProjectDir, "package.json",
-				"target/classes/META-INF/resources");
-		}
+		testContains(
+			mavenProjectDir, "package.json",
+			"target/classes/META-INF/resources");
 
 		testNotContains(
 			mavenProjectDir, "package.json",

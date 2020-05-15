@@ -19,9 +19,9 @@
 <div id="<portlet:namespace /><%= searchContainerMappingId %>">
 
 	<%
-	List<ResultRow> resultRows = searchContainer.getResultRows();
+	List<com.liferay.portal.kernel.dao.search.ResultRow> resultRows = searchContainer.getResultRows();
 
-	for (ResultRow resultRow : resultRows) {
+	for (com.liferay.portal.kernel.dao.search.ResultRow resultRow : resultRows) {
 		StagedModel stagedModel = (StagedModel)resultRow.getObject();
 
 		Map<String, Object> data = HashMapBuilder.<String, Object>put(

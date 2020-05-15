@@ -30,6 +30,7 @@ import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
 import com.liferay.portal.kernel.util.ListUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.portlet.PortletURL;
@@ -151,14 +152,14 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 	}
 
 	@Override
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<Object> getSearchContainer() {
 		return _searchContainer;
 	}
 
-	private SearchContainer _createSearchContainer(
+	private SearchContainer<Object> _createSearchContainer(
 		LiferayPortletRequest liferayPortletRequest) {
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<Object> searchContainer = new SearchContainer(
 			liferayPortletRequest, getPortletURL(), null, "no-apps-were-found");
 
 		searchContainer.setOrderByCol(getOrderByCol());
@@ -184,14 +185,16 @@ public class ViewAppsManagerManagementToolbarDisplayContext
 			end = appDisplays.size();
 		}
 
+		List<Object> results = new ArrayList<>(appDisplays);
+
 		searchContainer.setResults(
-			appDisplays.subList(searchContainer.getStart(), end));
+			results.subList(searchContainer.getStart(), end));
 
 		searchContainer.setTotal(appDisplays.size());
 
 		return searchContainer;
 	}
 
-	private final SearchContainer _searchContainer;
+	private final SearchContainer<Object> _searchContainer;
 
 }

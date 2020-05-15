@@ -34,7 +34,7 @@ ViewModuleManagementToolbarDisplayContext viewModuleManagementToolbarDisplayCont
 AppDisplay appDisplay = viewModuleManagementToolbarDisplayContext.getAppDisplay();
 Bundle bundle = viewModuleManagementToolbarDisplayContext.getBundle();
 String pluginType = viewModuleManagementToolbarDisplayContext.getPluginType();
-SearchContainer searchContainer = viewModuleManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<Object> searchContainer = viewModuleManagementToolbarDisplayContext.getSearchContainer();
 
 portletDisplay.setShowBackIcon(true);
 portletDisplay.setURLBack(backURL.toString());

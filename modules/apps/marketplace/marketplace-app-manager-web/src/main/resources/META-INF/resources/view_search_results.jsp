@@ -41,7 +41,7 @@ PortalUtil.addPortletBreadcrumbEntry(request, LanguageUtil.get(request, "search-
 AppManagerSearchResultsManagementToolbarDisplayContext
 	appManagerSearchResultsManagementToolbarDisplayContext = new AppManagerSearchResultsManagementToolbarDisplayContext(request, liferayPortletRequest, liferayPortletResponse);
 
-SearchContainer searchContainer = appManagerSearchResultsManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<Object> searchContainer = appManagerSearchResultsManagementToolbarDisplayContext.getSearchContainer();
 %>
 
 <clay:management-toolbar

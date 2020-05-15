@@ -23,7 +23,7 @@ ViewModulesManagementToolbarDisplayContext viewModulesManagementToolbarDisplayCo
 
 AppDisplay appDisplay = viewModulesManagementToolbarDisplayContext.getAppDisplay();
 
-SearchContainer searchContainer = viewModulesManagementToolbarDisplayContext.getSearchContainer();
+SearchContainer<Object> searchContainer = viewModulesManagementToolbarDisplayContext.getSearchContainer();
 
 PortletURL backURL = renderResponse.createRenderURL();
 

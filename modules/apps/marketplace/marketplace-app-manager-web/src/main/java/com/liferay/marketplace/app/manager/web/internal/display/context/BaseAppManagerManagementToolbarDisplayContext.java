@@ -108,7 +108,8 @@ public abstract class BaseAppManagerManagementToolbarDisplayContext
 		return searchActionURL.toString();
 	}
 
-	public abstract SearchContainer getSearchContainer() throws Exception;
+	public abstract SearchContainer<Object> getSearchContainer()
+		throws Exception;
 
 	public String getState() {
 		if (Validator.isNull(_state)) {

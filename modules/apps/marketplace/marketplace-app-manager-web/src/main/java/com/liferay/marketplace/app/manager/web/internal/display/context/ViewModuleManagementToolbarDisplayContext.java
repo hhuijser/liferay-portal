@@ -118,7 +118,7 @@ public class ViewModuleManagementToolbarDisplayContext
 	}
 
 	@Override
-	public SearchContainer getSearchContainer() throws Exception {
+	public SearchContainer<Object> getSearchContainer() throws Exception {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -131,7 +131,7 @@ public class ViewModuleManagementToolbarDisplayContext
 			emptyResultsMessage = "no-components-were-found";
 		}
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<Object> searchContainer = new SearchContainer(
 			liferayPortletRequest, getPortletURL(), null, emptyResultsMessage);
 
 		searchContainer.setOrderByCol(getOrderByCol());
@@ -178,8 +178,10 @@ public class ViewModuleManagementToolbarDisplayContext
 			end = serviceReferences.size();
 		}
 
+		List<Object> results = new ArrayList<>(serviceReferences);
+
 		searchContainer.setResults(
-			serviceReferences.subList(searchContainer.getStart(), end));
+			results.subList(searchContainer.getStart(), end));
 
 		searchContainer.setTotal(serviceReferences.size());
 
@@ -188,6 +190,6 @@ public class ViewModuleManagementToolbarDisplayContext
 		return _searchContainer;
 	}
 
-	private SearchContainer _searchContainer;
+	private SearchContainer<Object> _searchContainer;
 
 }

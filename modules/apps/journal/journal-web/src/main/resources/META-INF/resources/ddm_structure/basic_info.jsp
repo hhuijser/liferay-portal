@@ -43,9 +43,9 @@ if (ddmStructure != null) {
 <aui:input disabled="<%= true %>" label="parent-structure" name="parentDDMStructureName" type="text" value="<%= journalEditDDMStructuresDisplayContext.getParentDDMStructureName() %>" wrapperCssClass="mb-2" />
 
 <div class="form-group">
-	<aui:button cssClass="mr-3" onClick='<%= renderResponse.getNamespace() + "openParentDDMStructureSelector();" %>' value="select" />
+	<aui:button cssClass="mr-3" onClick='<%= liferayPortletResponse.getNamespace() + "openParentDDMStructureSelector();" %>' value="select" />
 
-	<aui:button disabled="<%= Validator.isNull(journalEditDDMStructuresDisplayContext.getParentDDMStructureName()) %>" name="removeParentDDMStructureButton" onClick='<%= renderResponse.getNamespace() + "removeParentDDMStructure();" %>' value="remove" />
+	<aui:button disabled="<%= Validator.isNull(journalEditDDMStructuresDisplayContext.getParentDDMStructureName()) %>" name="removeParentDDMStructureButton" onClick='<%= liferayPortletResponse.getNamespace() + "removeParentDDMStructure();" %>' value="remove" />
 </div>
 
 <c:if test="<%= ddmStructure != null %>">

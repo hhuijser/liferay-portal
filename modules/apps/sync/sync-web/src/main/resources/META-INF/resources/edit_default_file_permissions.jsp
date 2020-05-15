@@ -114,7 +114,7 @@ if (groupIds.length == 1) {
 					</portlet:actionURL>
 
 					<%
-					String setPermissions = renderResponse.getNamespace() + "setPermissions('" + setPermissionsURL + "');";
+					String setPermissions = liferayPortletResponse.getNamespace() + "setPermissions('" + setPermissionsURL + "');";
 					%>
 
 					<aui:button disabled="<%= currentPermissions == permissions %>" onClick="<%= setPermissions %>" value="choose" />

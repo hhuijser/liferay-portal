@@ -48,7 +48,7 @@ else {
 editDDMStructureURL.setParameter("mvcPath", "/edit_ddm_structure.jsp");
 %>
 
-<aui:form action="<%= editDDMStructureURL.toString() %>" cssClass="edit-article-form" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
+<aui:form action="<%= editDDMStructureURL.toString() %>" cssClass="edit-article-form" enctype="multipart/form-data" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>
 	<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 	<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
 	<aui:input name="ddmStructureId" type="hidden" value="<%= journalEditDDMStructuresDisplayContext.getDDMStructureId() %>" />
@@ -71,7 +71,7 @@ editDDMStructureURL.setParameter("mvcPath", "/edit_ddm_structure.jsp");
 
 						<clay:button
 							icon="cog"
-							id='<%= renderResponse.getNamespace() + "contextualSidebarButton" %>'
+							id='<%= liferayPortletResponse.getNamespace() + "contextualSidebarButton" %>'
 							monospaced="<%= true %>"
 							size="sm"
 							style="borderless"

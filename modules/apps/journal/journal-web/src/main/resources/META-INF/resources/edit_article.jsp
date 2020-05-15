@@ -89,7 +89,7 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 
 						<clay:button
 							icon="cog"
-							id='<%= renderResponse.getNamespace() + "contextualSidebarButton" %>'
+							id='<%= liferayPortletResponse.getNamespace() + "contextualSidebarButton" %>'
 							monospaced="<%= true %>"
 							size="sm"
 							style="borderless"
@@ -247,14 +247,14 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 					<c:choose>
 						<c:when test="<%= journalDisplayContext.useDataEngineEditor() %>">
 							<liferay-data-engine:data-layout-renderer
-								containerId='<%= renderResponse.getNamespace() + "dataEngineLayoutRenderer" %>'
+								containerId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRenderer" %>'
 								dataDefinitionId="<%= ddmStructure.getStructureId() %>"
 								dataRecordValues="<%= journalEditArticleDisplayContext.getValues(ddmStructure) %>"
-								namespace="<%= renderResponse.getNamespace() %>"
+								namespace="<%= liferayPortletResponse.getNamespace() %>"
 							/>
 
 							<liferay-frontend:component
-								componentId='<%= renderResponse.getNamespace() + "dataEngineLayoutRendererLanguageProxy" %>'
+								componentId='<%= liferayPortletResponse.getNamespace() + "dataEngineLayoutRendererLanguageProxy" %>'
 								module="js/dataEngineLayoutRendererLanguageProxy.es"
 								servletContext="<%= application %>"
 							/>
@@ -282,7 +282,7 @@ JournalEditArticleDisplayContext journalEditArticleDisplayContext = new JournalE
 </aui:form>
 
 <liferay-frontend:component
-	componentId='<%= renderResponse.getNamespace() + "JournalPortletComponent" %>'
+	componentId='<%= liferayPortletResponse.getNamespace() + "JournalPortletComponent" %>'
 	module="js/JournalPortlet.es"
 	servletContext="<%= application %>"
 />

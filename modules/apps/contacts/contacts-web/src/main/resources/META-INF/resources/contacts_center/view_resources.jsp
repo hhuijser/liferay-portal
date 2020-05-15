@@ -43,7 +43,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 				<span id="<portlet:namespace />contactsToolbar">
 					<div class="lfr-button-column">
 						<div class="lfr-button-column-content">
-							<aui:button-row cssClass="edit-toolbar" id='<%= renderResponse.getNamespace() + "entryToolbar" %>' />
+							<aui:button-row cssClass="edit-toolbar" id='<%= liferayPortletResponse.getNamespace() + "entryToolbar" %>' />
 						</div>
 					</div>
 
@@ -140,7 +140,7 @@ boolean portalUser = ParamUtil.getBoolean(request, "portalUser");
 					<c:when test="<%= showDetailView %>">
 						<div class="lfr-button-column">
 							<div class="lfr-button-column-content">
-								<aui:button-row cssClass="edit-toolbar" id='<%= renderResponse.getNamespace() + "userToolbar" %>' />
+								<aui:button-row cssClass="edit-toolbar" id='<%= liferayPortletResponse.getNamespace() + "userToolbar" %>' />
 							</div>
 						</div>
 

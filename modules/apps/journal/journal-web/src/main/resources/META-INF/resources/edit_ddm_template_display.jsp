@@ -31,7 +31,7 @@ JournalDDMTemplateHelper journalDDMTemplateHelper = (JournalDDMTemplateHelper)re
 		<c:if test="<%= journalEditDDMTemplateDisplayContext.isAutocompleteEnabled() %>">
 			<clay:col
 				className="lfr-template-palette-container"
-				id='<%= renderResponse.getNamespace() + "templatePaletteContainer" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "templatePaletteContainer" %>'
 				md="3"
 			>
 				<div class="search" id="<portlet:namespace />paletteSearchContainer">

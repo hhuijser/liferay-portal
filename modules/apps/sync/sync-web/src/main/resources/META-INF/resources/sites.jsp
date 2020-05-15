@@ -67,19 +67,19 @@ portletURL.setParameter("delta", String.valueOf(delta));
 
 	<liferay-frontend:management-bar-action-buttons>
 		<liferay-frontend:management-bar-button
-			href='<%= "javascript:" + renderResponse.getNamespace() + "enableSites();" %>'
+			href='<%= "javascript:" + liferayPortletResponse.getNamespace() + "enableSites();" %>'
 			icon="check"
 			label="enable-sync-sites"
 		/>
 
 		<liferay-frontend:management-bar-button
-			href='<%= "javascript:" + renderResponse.getNamespace() + "disableSites();" %>'
+			href='<%= "javascript:" + liferayPortletResponse.getNamespace() + "disableSites();" %>'
 			icon="times"
 			label="disable-sync-sites"
 		/>
 
 		<liferay-frontend:management-bar-button
-			href='<%= "javascript:" + renderResponse.getNamespace() + "editSitesDefaultFilePermissions();" %>'
+			href='<%= "javascript:" + liferayPortletResponse.getNamespace() + "editSitesDefaultFilePermissions();" %>'
 			icon="lock"
 			label="default-file-permissions"
 		/>

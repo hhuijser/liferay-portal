@@ -56,7 +56,7 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 ).put(
 	"modifiedFacetDisplayContext", modifiedFacetDisplayContext
 ).put(
-	"namespace", renderResponse.getNamespace()
+	"namespace", liferayPortletResponse.getNamespace()
 ).build();
 %>
 
@@ -74,14 +74,14 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 		>
 			<liferay-ui:panel-container
 				extended="<%= true %>"
-				id='<%= renderResponse.getNamespace() + "facetModifiedPanelContainer" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "facetModifiedPanelContainer" %>'
 				markupView="lexicon"
 				persistState="<%= true %>"
 			>
 				<liferay-ui:panel
 					collapsible="<%= true %>"
 					cssClass="search-facet"
-					id='<%= renderResponse.getNamespace() + "facetModifiedPanel" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "facetModifiedPanel" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 					title="last-modified"
@@ -92,7 +92,7 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 						for (ModifiedFacetTermDisplayContext modifiedFacetTermDisplayContext : modifiedFacetDisplayContext.getModifiedFacetTermDisplayContexts()) {
 						%>
 
-							<li class="facet-value" name="<%= renderResponse.getNamespace() + "range_" + modifiedFacetTermDisplayContext.getLabel() %>">
+							<li class="facet-value" name="<%= liferayPortletResponse.getNamespace() + "range_" + modifiedFacetTermDisplayContext.getLabel() %>">
 								<a href="<%= modifiedFacetTermDisplayContext.getRangeURL() %>">
 									<span class="term-name <%= modifiedFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>">
 										<liferay-ui:message key="<%= modifiedFacetTermDisplayContext.getLabel() %>" />
@@ -108,7 +108,7 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 						}
 						%>
 
-						<li class="facet-value" name="<%= renderResponse.getNamespace() + "range_" + customRangeModifiedFacetTermDisplayContext.getLabel() %>">
+						<li class="facet-value" name="<%= liferayPortletResponse.getNamespace() + "range_" + customRangeModifiedFacetTermDisplayContext.getLabel() %>">
 							<a href="<%= customRangeModifiedFacetTermDisplayContext.getRangeURL() %>" id="<portlet:namespace /><%= customRangeModifiedFacetTermDisplayContext.getLabel() + "-toggleLink" %>">
 								<span class="term-name <%= customRangeModifiedFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>"><liferay-ui:message key="<%= customRangeModifiedFacetTermDisplayContext.getLabel() %>" />&hellip;</span>
 
@@ -122,7 +122,7 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 
 						<div class="<%= !modifiedFacetCalendarDisplayContext.isSelected() ? "hide" : StringPool.BLANK %> modified-custom-range" id="<portlet:namespace />customRange">
 							<clay:col
-								id='<%= renderResponse.getNamespace() + "customRangeFrom" %>'
+								id='<%= liferayPortletResponse.getNamespace() + "customRangeFrom" %>'
 								md="6"
 							>
 								<aui:field-wrapper label="from">
@@ -142,7 +142,7 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 							</clay:col>
 
 							<clay:col
-								id='<%= renderResponse.getNamespace() + "customRangeTo" %>'
+								id='<%= liferayPortletResponse.getNamespace() + "customRangeTo" %>'
 								md="6"
 							>
 								<aui:field-wrapper label="to">

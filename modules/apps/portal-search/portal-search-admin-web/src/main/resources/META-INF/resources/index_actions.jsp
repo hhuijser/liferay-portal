@@ -160,7 +160,7 @@ portletURL.setParameter("mvcRenderCommandName", "/search_admin/view");
 		form: document.<portlet:namespace />fm,
 		indexActionWrapperSelector: '.index-action-wrapper',
 		indexActionsPanel:
-			'<%= '#' + renderResponse.getNamespace() + "adminSearchAdminIndexActionsPanel" %>',
+			'<%= '#' + liferayPortletResponse.getNamespace() + "adminSearchAdminIndexActionsPanel" %>',
 		namespace: '<portlet:namespace />',
 		redirectUrl: '<%= redirectURL %>',
 		submitButton: '.save-server-button',

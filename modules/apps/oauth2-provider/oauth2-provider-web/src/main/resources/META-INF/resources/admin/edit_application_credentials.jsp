@@ -96,7 +96,7 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 					<c:if test="<%= oAuth2Application != null %>">
 						<aui:fieldset style="margin-bottom: 1em; border-bottom: 2px solid #F0F0F0;">
 							<div class="pencil-wrapper">
-								<aui:button href="" onClick='<%= renderResponse.getNamespace() + "showEditClientIdModal();" %>' value="edit" />
+								<aui:button href="" onClick='<%= liferayPortletResponse.getNamespace() + "showEditClientIdModal();" %>' value="edit" />
 
 								<aui:input helpMessage="client-id-help" name="clientId" readonly="true" required="<%= true %>" type="text" />
 							</div>
@@ -104,7 +104,7 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 							<aui:input name="originalClientId" type="hidden" value="<%= clientId %>" />
 
 							<div class="pencil-wrapper">
-								<aui:button href="" onClick='<%= renderResponse.getNamespace() + "showEditClientSecretModal();" %>' value="edit" />
+								<aui:button href="" onClick='<%= liferayPortletResponse.getNamespace() + "showEditClientSecretModal();" %>' value="edit" />
 
 								<aui:input helpMessage="client-secret-help" name="clientSecret" readonly="true" type="password" value="<%= clientSecret %>" />
 							</div>
@@ -196,10 +196,10 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 				</div>
 			</div>
 
-			<aui:input helpMessage="client-id-help" label="client-id" name="newClientId" onKeyup='<%= renderResponse.getNamespace() + "updatePadlock('clientIdPadlock', this.value, '" + HtmlUtil.escapeJS(clientId) + "')" %>' type="text" value="<%= clientId %>" />
+			<aui:input helpMessage="client-id-help" label="client-id" name="newClientId" onKeyup='<%= liferayPortletResponse.getNamespace() + "updatePadlock('clientIdPadlock', this.value, '" + HtmlUtil.escapeJS(clientId) + "')" %>' type="text" value="<%= clientId %>" />
 
 			<aui:button-row>
-				<aui:button href="" icon="icon-undo" onClick='<%= renderResponse.getNamespace() + "setControlEqualTo('newClientId', 'originalClientId')" %>' value="revert" />
+				<aui:button href="" icon="icon-undo" onClick='<%= liferayPortletResponse.getNamespace() + "setControlEqualTo('newClientId', 'originalClientId')" %>' value="revert" />
 			</aui:button-row>
 		</div>
 	</div>
@@ -226,12 +226,12 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 				</div>
 			</div>
 
-			<aui:input helpMessage="client-secret-id" label="client-secret" name="newClientSecret" onKeyup='<%= renderResponse.getNamespace() + "updatePadlock('clientSecretPadlock', this.value, '" + HtmlUtil.escapeJS(clientSecret) + "')" %>' type="text" value="<%= clientSecret %>" />
+			<aui:input helpMessage="client-secret-id" label="client-secret" name="newClientSecret" onKeyup='<%= liferayPortletResponse.getNamespace() + "updatePadlock('clientSecretPadlock', this.value, '" + HtmlUtil.escapeJS(clientSecret) + "')" %>' type="text" value="<%= clientSecret %>" />
 
 			<aui:button-row>
-				<aui:button href="" icon="icon-plus" onClick='<%= renderResponse.getNamespace() + "generateRandomSecret()" %>' value="generate-new-secret" />
+				<aui:button href="" icon="icon-plus" onClick='<%= liferayPortletResponse.getNamespace() + "generateRandomSecret()" %>' value="generate-new-secret" />
 
-				<aui:button href="" icon="icon-undo" onClick='<%= renderResponse.getNamespace() + "setControlEqualTo('newClientSecret', 'originalClientSecret')" %>' value="revert" />
+				<aui:button href="" icon="icon-undo" onClick='<%= liferayPortletResponse.getNamespace() + "setControlEqualTo('newClientSecret', 'originalClientSecret')" %>' value="revert" />
 			</aui:button-row>
 		</div>
 	</div>
@@ -270,7 +270,7 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 			A.all(
 				'#<portlet:namespace />allowedGrantTypes .client-profile-' +
 					selectedClientProfile.val() +
-					' input:checked[name=<%= renderResponse.getNamespace() + "grant-" + GrantType.CLIENT_CREDENTIALS.name() %>]'
+					' input:checked[name=<%= liferayPortletResponse.getNamespace() + "grant-" + GrantType.CLIENT_CREDENTIALS.name() %>]'
 			).size() > 0
 		);
 	};

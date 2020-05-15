@@ -51,7 +51,7 @@ List<SearchResultSummaryDisplayContext> searchResultSummaryDisplayContexts = sea
 SearchContainer<Document> searchContainer = searchResultsPortletDisplayContext.getSearchContainer();
 
 Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
-	"namespace", renderResponse.getNamespace()
+	"namespace", liferayPortletResponse.getNamespace()
 ).put(
 	"searchContainer", searchContainer
 ).put(
@@ -80,7 +80,7 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 
 		<aui:form useNamespace="<%= false %>">
 			<liferay-ui:search-paginator
-				id='<%= renderResponse.getNamespace() + "searchContainerTag" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "searchContainerTag" %>'
 				markupView="lexicon"
 				searchContainer="<%= searchContainer %>"
 			/>

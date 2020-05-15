@@ -75,7 +75,7 @@ JSONArray fieldsJSONArray = sortPortletPreferences.getFieldsJSONArray();
 
 			<liferay-frontend:fieldset
 				collapsible="<%= true %>"
-				id='<%= renderResponse.getNamespace() + "fieldsId" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "fieldsId" %>'
 				label="advanced-configuration"
 			>
 

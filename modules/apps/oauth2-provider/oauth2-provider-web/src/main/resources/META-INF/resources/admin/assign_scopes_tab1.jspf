@@ -85,7 +85,7 @@
 											}
 											%>
 
-											<aui:input checked="<%= !assignedScopeAliases.isEmpty() %>" data="<%= data %>" id="<%= id %>" label="" name="scopeAliases" onChange='<%= renderResponse.getNamespace() + "recalculateDependants(this)" %>' title="<%= scopeAliasesString %>" type="checkbox" value="<%= scopeAliasesString %>" />
+											<aui:input checked="<%= !assignedScopeAliases.isEmpty() %>" data="<%= data %>" id="<%= id %>" label="" name="scopeAliases" onChange='<%= liferayPortletResponse.getNamespace() + "recalculateDependants(this)" %>' title="<%= scopeAliasesString %>" type="checkbox" value="<%= scopeAliasesString %>" />
 										</c:otherwise>
 									</c:choose>
 								</div>

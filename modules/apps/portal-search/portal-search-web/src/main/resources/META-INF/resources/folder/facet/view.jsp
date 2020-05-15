@@ -47,7 +47,7 @@ FolderFacetPortletInstanceConfiguration folderFacetPortletInstanceConfiguration 
 Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 	"folderSearchFacetDisplayContext", folderSearchFacetDisplayContext
 ).put(
-	"namespace", renderResponse.getNamespace()
+	"namespace", liferayPortletResponse.getNamespace()
 ).build();
 
 List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts = folderSearchFacetDisplayContext.getFolderSearchFacetTermDisplayContexts();
@@ -71,14 +71,14 @@ List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts =
 			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"
-					id='<%= renderResponse.getNamespace() + "facetFolderPanelContainer" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "facetFolderPanelContainer" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 				>
 					<liferay-ui:panel
 						collapsible="<%= true %>"
 						cssClass="search-facet"
-						id='<%= renderResponse.getNamespace() + "facetFolderPanel" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "facetFolderPanel" %>'
 						markupView="lexicon"
 						persistState="<%= true %>"
 						title="folder"

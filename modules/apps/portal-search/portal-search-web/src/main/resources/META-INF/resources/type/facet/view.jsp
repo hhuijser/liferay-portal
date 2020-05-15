@@ -47,7 +47,7 @@ TypeFacetPortletInstanceConfiguration typeFacetPortletInstanceConfiguration = as
 Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 	"assetEntriesSearchFacetDisplayContext", assetEntriesSearchFacetDisplayContext
 ).put(
-	"namespace", renderResponse.getNamespace()
+	"namespace", liferayPortletResponse.getNamespace()
 ).build();
 
 List<AssetEntriesSearchFacetTermDisplayContext> assetEntriesSearchFacetTermDisplayContexts = assetEntriesSearchFacetDisplayContext.getTermDisplayContexts();
@@ -71,14 +71,14 @@ List<AssetEntriesSearchFacetTermDisplayContext> assetEntriesSearchFacetTermDispl
 			>
 				<liferay-ui:panel-container
 					extended="<%= true %>"
-					id='<%= renderResponse.getNamespace() + "facetAssetEntriesPanelContainer" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "facetAssetEntriesPanelContainer" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 				>
 					<liferay-ui:panel
 						collapsible="<%= true %>"
 						cssClass="search-facet"
-						id='<%= renderResponse.getNamespace() + "facetAssetEntriesPanel" %>'
+						id='<%= liferayPortletResponse.getNamespace() + "facetAssetEntriesPanel" %>'
 						markupView="lexicon"
 						persistState="<%= true %>"
 						title="type"

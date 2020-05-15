@@ -45,7 +45,7 @@ CustomFilterPortletInstanceConfiguration
 Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 	"customFilterDisplayContext", customFilterDisplayContext
 ).put(
-	"namespace", renderResponse.getNamespace()
+	"namespace", liferayPortletResponse.getNamespace()
 ).build();
 %>
 
@@ -60,19 +60,19 @@ Map<String, Object> contextObjects = HashMapBuilder.<String, Object>put(
 		>
 			<liferay-ui:panel-container
 				extended="<%= true %>"
-				id='<%= renderResponse.getNamespace() + "filterCustomPanelContainer" %>'
+				id='<%= liferayPortletResponse.getNamespace() + "filterCustomPanelContainer" %>'
 				markupView="lexicon"
 				persistState="<%= true %>"
 			>
 				<liferay-ui:panel
 					collapsible="<%= true %>"
 					cssClass="search-facet"
-					id='<%= renderResponse.getNamespace() + "filterCustomPanel" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "filterCustomPanel" %>'
 					markupView="lexicon"
 					persistState="<%= true %>"
 					title="<%= HtmlUtil.escapeAttribute(customFilterDisplayContext.getHeading()) %>"
 				>
-					<aui:input cssClass="custom-filter-value-input" data-qa-id="customFilterValueInput" disabled="<%= customFilterDisplayContext.isImmutable() %>" id="<%= renderResponse.getNamespace() + StringUtil.randomId() %>" label="" name="<%= HtmlUtil.escapeAttribute(customFilterDisplayContext.getParameterName()) %>" useNamespace="<%= false %>" value="<%= HtmlUtil.escapeAttribute(customFilterDisplayContext.getFilterValue()) %>" />
+					<aui:input cssClass="custom-filter-value-input" data-qa-id="customFilterValueInput" disabled="<%= customFilterDisplayContext.isImmutable() %>" id="<%= liferayPortletResponse.getNamespace() + StringUtil.randomId() %>" label="" name="<%= HtmlUtil.escapeAttribute(customFilterDisplayContext.getParameterName()) %>" useNamespace="<%= false %>" value="<%= HtmlUtil.escapeAttribute(customFilterDisplayContext.getFilterValue()) %>" />
 
 					<clay:button
 						aria-label='<%= LanguageUtil.get(request, "apply") %>'

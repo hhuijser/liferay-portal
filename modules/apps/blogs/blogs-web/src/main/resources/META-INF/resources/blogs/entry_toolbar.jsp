@@ -37,7 +37,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 
 			<portlet:renderURL var="viewEntryCommentsURL">
 				<portlet:param name="mvcRenderCommandName" value="/blogs/view_entry" />
-				<portlet:param name="scroll" value='<%= renderResponse.getNamespace() + "discussionContainer" %>' />
+				<portlet:param name="scroll" value='<%= liferayPortletResponse.getNamespace() + "discussionContainer" %>' />
 
 				<c:choose>
 					<c:when test="<%= Validator.isNotNull(entry.getUrlTitle()) %>">

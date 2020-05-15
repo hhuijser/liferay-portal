@@ -48,7 +48,7 @@ renderResponse.setTitle(title);
 <portlet:actionURL name="/document_library/ddm/update_data_definition" var="updateDataDefinitionURL" />
 
 <clay:container>
-	<aui:form action="<%= (ddmStructure == null) ? addDataDefinitionURL : updateDataDefinitionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + renderResponse.getNamespace() + "saveDDMStructure();" %>'>
+	<aui:form action="<%= (ddmStructure == null) ? addDataDefinitionURL : updateDataDefinitionURL %>" method="post" name="fm" onSubmit='<%= "event.preventDefault(); " + liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>'>
 		<aui:input name="redirect" type="hidden" value="<%= redirect %>" />
 		<aui:input name="dataDefinitionId" type="hidden" value="<%= ddmStructureId %>" />
 		<aui:input name="groupId" type="hidden" value="<%= groupId %>" />
@@ -114,20 +114,20 @@ renderResponse.setTitle(title);
 				</liferay-ui:panel-container>
 
 				<liferay-data-engine:data-layout-builder
-					componentId='<%= renderResponse.getNamespace() + "dataLayoutBuilder" %>'
+					componentId='<%= liferayPortletResponse.getNamespace() + "dataLayoutBuilder" %>'
 					contentType="document-library"
 					dataDefinitionId="<%= ddmStructureId %>"
 					dataLayoutInputId="dataLayout"
 					groupId="<%= groupId %>"
 					localizable="<%= true %>"
-					namespace="<%= renderResponse.getNamespace() %>"
+					namespace="<%= liferayPortletResponse.getNamespace() %>"
 				/>
 			</aui:fieldset>
 		</aui:fieldset-group>
 	</aui:form>
 
 	<aui:button-row>
-		<aui:button onClick='<%= renderResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
+		<aui:button onClick='<%= liferayPortletResponse.getNamespace() + "saveDDMStructure();" %>' primary="<%= true %>" value='<%= LanguageUtil.get(request, "save") %>' />
 
 		<aui:button href="<%= redirect %>" type="cancel" />
 	</aui:button-row>

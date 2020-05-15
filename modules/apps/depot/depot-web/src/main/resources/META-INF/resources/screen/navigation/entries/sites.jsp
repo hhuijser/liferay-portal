@@ -31,7 +31,7 @@ List<DepotEntryGroupRel> depotEntryGroupRels = depotAdminSitesDisplayContext.get
 			<span class="heading-end">
 				<clay:button
 					elementClasses="btn-secondary"
-					id='<%= renderResponse.getNamespace() + "addConnectedSiteButton" %>'
+					id='<%= liferayPortletResponse.getNamespace() + "addConnectedSiteButton" %>'
 					label='<%= LanguageUtil.get(request, "add") %>'
 					size="sm"
 					style="secondary"

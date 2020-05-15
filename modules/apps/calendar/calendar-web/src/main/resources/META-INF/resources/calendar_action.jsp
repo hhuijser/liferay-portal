@@ -63,7 +63,7 @@ Calendar calendar = (Calendar)row.getObject();
 		StringBundler sb = new StringBundler(5);
 
 		sb.append("javascript:");
-		sb.append(renderResponse.getNamespace());
+		sb.append(liferayPortletResponse.getNamespace());
 		sb.append("importCalendar('");
 		sb.append(importURL);
 		sb.append("');");

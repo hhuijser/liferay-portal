@@ -169,7 +169,7 @@ BlogsPortletInstanceConfiguration blogsPortletInstanceConfiguration = BlogsPortl
 
 		<clay:container
 			className="widget-mode-detail-header"
-			id="<%= renderResponse.getNamespace() + entry.getEntryId() %>"
+			id="<%= liferayPortletResponse.getNamespace() + entry.getEntryId() %>"
 		>
 			<c:if test="<%= Validator.isNotNull(coverImageURL) %>">
 

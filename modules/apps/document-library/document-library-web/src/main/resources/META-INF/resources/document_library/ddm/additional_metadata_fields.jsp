@@ -79,7 +79,7 @@ if (fileEntryType != null) {
 	label="<%= true %>"
 	linkCssClass="btn btn-secondary"
 	message="select"
-	url='<%= "javascript:" + renderResponse.getNamespace() + "openDDMStructureSelector();" %>'
+	url='<%= "javascript:" + liferayPortletResponse.getNamespace() + "openDDMStructureSelector();" %>'
 />
 
 <aui:script>

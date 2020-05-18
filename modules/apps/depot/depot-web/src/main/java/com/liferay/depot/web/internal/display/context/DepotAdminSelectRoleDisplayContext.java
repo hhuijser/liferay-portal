@@ -165,7 +165,9 @@ public class DepotAdminSelectRoleDisplayContext {
 		}
 
 		@Override
-		public SearchContainer getSearchContainer() throws PortalException {
+		public SearchContainer<Group> getSearchContainer()
+			throws PortalException {
+
 			if (_groupSearch != null) {
 				return _groupSearch;
 			}
@@ -307,7 +309,9 @@ public class DepotAdminSelectRoleDisplayContext {
 			return _renderResponse.getNamespace() + "selectDepotRole";
 		}
 
-		public SearchContainer getSearchContainer() throws PortalException {
+		public SearchContainer<Role> getSearchContainer()
+			throws PortalException {
+
 			if (_roleSearch != null) {
 				return _roleSearch;
 			}
@@ -473,7 +477,7 @@ public class DepotAdminSelectRoleDisplayContext {
 
 	public interface Step {
 
-		public SearchContainer getSearchContainer() throws PortalException;
+		public SearchContainer<?> getSearchContainer() throws PortalException;
 
 		public int getType();
 

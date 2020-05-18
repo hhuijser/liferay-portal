@@ -34,7 +34,7 @@ public class DepotAdminSelectRoleManagementToolbarDisplayContext
 			HttpServletRequest httpServletRequest,
 			LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse,
-			SearchContainer searchContainer)
+			SearchContainer<?> searchContainer)
 		throws Exception {
 
 		super(

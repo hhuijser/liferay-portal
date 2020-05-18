@@ -222,7 +222,9 @@ public class FragmentEntryLinkDisplayContext {
 		return _redirect;
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<FragmentEntryLink> getSearchContainer()
+		throws PortalException {
+
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -230,9 +232,10 @@ public class FragmentEntryLinkDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		SearchContainer fragmentEntryLinksSearchContainer = new SearchContainer(
-			_renderRequest, getPortletURL(), null,
-			"there-are-no-fragment-usages");
+		SearchContainer<FragmentEntryLink> fragmentEntryLinksSearchContainer =
+			new SearchContainer(
+				_renderRequest, getPortletURL(), null,
+				"there-are-no-fragment-usages");
 
 		fragmentEntryLinksSearchContainer.setId(
 			"fragmentEntryLinks" + getFragmentCollectionId());
@@ -343,6 +346,6 @@ public class FragmentEntryLinkDisplayContext {
 	private String _redirect;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<FragmentEntryLink> _searchContainer;
 
 }

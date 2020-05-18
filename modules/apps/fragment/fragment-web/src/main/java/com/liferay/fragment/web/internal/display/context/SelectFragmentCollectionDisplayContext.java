@@ -63,7 +63,9 @@ public class SelectFragmentCollectionDisplayContext {
 		return _eventName;
 	}
 
-	public SearchContainer getFragmentCollectionsSearchContainer() {
+	public SearchContainer<FragmentCollection>
+		getFragmentCollectionsSearchContainer() {
+
 		if (_fragmentCollectionsSearchContainer != null) {
 			return _fragmentCollectionsSearchContainer;
 		}
@@ -72,7 +74,7 @@ public class SelectFragmentCollectionDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer fragmentCollectionsSearchContainer =
+		SearchContainer<FragmentCollection> fragmentCollectionsSearchContainer =
 			new SearchContainer(
 				_renderRequest, getPortletURL(), null,
 				"there-are-no-collections");
@@ -231,7 +233,8 @@ public class SelectFragmentCollectionDisplayContext {
 	}
 
 	private String _eventName;
-	private SearchContainer _fragmentCollectionsSearchContainer;
+	private SearchContainer<FragmentCollection>
+		_fragmentCollectionsSearchContainer;
 	private final HttpServletRequest _httpServletRequest;
 	private String _keywords;
 	private String _orderByCol;

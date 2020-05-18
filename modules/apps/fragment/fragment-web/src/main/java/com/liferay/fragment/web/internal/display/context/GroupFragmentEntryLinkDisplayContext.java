@@ -124,7 +124,7 @@ public class GroupFragmentEntryLinkDisplayContext {
 		return _redirect;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<Group> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -132,7 +132,7 @@ public class GroupFragmentEntryLinkDisplayContext {
 		ThemeDisplay themeDisplay = (ThemeDisplay)_renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);
 
-		SearchContainer groupsSearchContainer = new SearchContainer(
+		SearchContainer<Group> groupsSearchContainer = new SearchContainer(
 			_renderRequest, _renderResponse.createRenderURL(), null,
 			"there-are-no-fragment-usages");
 
@@ -207,6 +207,6 @@ public class GroupFragmentEntryLinkDisplayContext {
 	private String _redirect;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<Group> _searchContainer;
 
 }

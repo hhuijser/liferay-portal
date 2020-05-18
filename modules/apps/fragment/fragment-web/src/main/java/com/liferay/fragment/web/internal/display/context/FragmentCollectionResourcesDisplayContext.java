@@ -52,7 +52,9 @@ public class FragmentCollectionResourcesDisplayContext {
 			WebKeys.THEME_DISPLAY);
 	}
 
-	public SearchContainer getSearchContainer() throws PortalException {
+	public SearchContainer<FileEntry> getSearchContainer()
+		throws PortalException {
+
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -67,7 +69,7 @@ public class FragmentCollectionResourcesDisplayContext {
 			"fragmentCollectionId",
 			String.valueOf(_fragmentDisplayContext.getFragmentCollectionId()));
 
-		SearchContainer searchContainer = new SearchContainer(
+		SearchContainer<FileEntry> searchContainer = new SearchContainer(
 			_renderRequest, portletURL, null, "there-are-no-resources");
 
 		searchContainer.setRowChecker(
@@ -112,7 +114,7 @@ public class FragmentCollectionResourcesDisplayContext {
 	private final HttpServletRequest _httpServletRequest;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<FileEntry> _searchContainer;
 	private final ThemeDisplay _themeDisplay;
 
 }

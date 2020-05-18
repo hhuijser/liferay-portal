@@ -36,7 +36,7 @@ public abstract class FragmentManagementToolbarDisplayContext
 		HttpServletRequest httpServletRequest,
 		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse,
-		SearchContainer searchContainer,
+		SearchContainer<Object> searchContainer,
 		FragmentDisplayContext fragmentDisplayContext) {
 
 		super(

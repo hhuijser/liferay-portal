@@ -160,13 +160,15 @@ public class FragmentDisplayContext {
 		).build();
 	}
 
-	public SearchContainer getContributedFragmentEntriesSearchContainer() {
+	public SearchContainer<FragmentEntry>
+		getContributedFragmentEntriesSearchContainer() {
+
 		if (_contributedFragmentEntriesSearchContainer != null) {
 			return _contributedFragmentEntriesSearchContainer;
 		}
 
-		SearchContainer contributedFragmentEntriesSearchContainer =
-			new SearchContainer(
+		SearchContainer<FragmentEntry>
+			contributedFragmentEntriesSearchContainer = new SearchContainer(
 				_renderRequest, _getPortletURL(), null,
 				"there-are-no-fragments");
 
@@ -362,13 +364,15 @@ public class FragmentDisplayContext {
 		).build();
 	}
 
-	public SearchContainer getFragmentEntriesSearchContainer() {
+	public SearchContainer<Object> getFragmentEntriesSearchContainer() {
 		if (_fragmentEntriesSearchContainer != null) {
 			return _fragmentEntriesSearchContainer;
 		}
 
-		SearchContainer fragmentEntriesSearchContainer = new SearchContainer(
-			_renderRequest, _getPortletURL(), null, "there-are-no-fragments");
+		SearchContainer<Object> fragmentEntriesSearchContainer =
+			new SearchContainer(
+				_renderRequest, _getPortletURL(), null,
+				"there-are-no-fragments");
 
 		fragmentEntriesSearchContainer.setId(
 			"fragmentEntries" + getFragmentCollectionId());
@@ -776,13 +780,14 @@ public class FragmentDisplayContext {
 		return true;
 	}
 
-	private SearchContainer _contributedFragmentEntriesSearchContainer;
+	private SearchContainer<FragmentEntry>
+		_contributedFragmentEntriesSearchContainer;
 	private FragmentCollection _fragmentCollection;
 	private final FragmentCollectionContributorTracker
 		_fragmentCollectionContributorTracker;
 	private Long _fragmentCollectionId;
 	private String _fragmentCollectionKey;
-	private SearchContainer _fragmentEntriesSearchContainer;
+	private SearchContainer<Object> _fragmentEntriesSearchContainer;
 	private final HttpServletRequest _httpServletRequest;
 	private String _keywords;
 	private String _navigation;

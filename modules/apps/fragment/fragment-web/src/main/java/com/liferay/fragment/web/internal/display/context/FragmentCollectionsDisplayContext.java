@@ -74,7 +74,7 @@ public class FragmentCollectionsDisplayContext {
 		return _orderByType;
 	}
 
-	public SearchContainer getSearchContainer() {
+	public SearchContainer<FragmentCollection> getSearchContainer() {
 		if (_searchContainer != null) {
 			return _searchContainer;
 		}
@@ -83,8 +83,10 @@ public class FragmentCollectionsDisplayContext {
 			(ThemeDisplay)_httpServletRequest.getAttribute(
 				WebKeys.THEME_DISPLAY);
 
-		SearchContainer searchContainer = new SearchContainer(
-			_renderRequest, _getPortletURL(), null, "there-are-no-collections");
+		SearchContainer<FragmentCollection> searchContainer =
+			new SearchContainer(
+				_renderRequest, _getPortletURL(), null,
+				"there-are-no-collections");
 
 		searchContainer.setRowChecker(
 			new EmptyOnClickRowChecker(_renderResponse));
@@ -228,6 +230,6 @@ public class FragmentCollectionsDisplayContext {
 	private String _orderByType;
 	private final RenderRequest _renderRequest;
 	private final RenderResponse _renderResponse;
-	private SearchContainer _searchContainer;
+	private SearchContainer<FragmentCollection> _searchContainer;
 
 }

@@ -732,7 +732,7 @@ public class AssetListEntryLocalServiceImpl
 	}
 
 	private boolean _isSupportsItemSubtypes(String assetEntryType) {
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				assetEntryType);
 

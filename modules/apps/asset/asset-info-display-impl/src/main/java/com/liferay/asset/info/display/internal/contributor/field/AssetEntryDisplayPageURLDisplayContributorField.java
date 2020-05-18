@@ -65,7 +65,7 @@ public class AssetEntryDisplayPageURLDisplayContributorField
 
 	@Override
 	public String getValue(AssetEntry assetEntry, Locale locale) {
-		AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
+		AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
 
 		if (assetRenderer == null) {
 			return StringPool.BLANK;

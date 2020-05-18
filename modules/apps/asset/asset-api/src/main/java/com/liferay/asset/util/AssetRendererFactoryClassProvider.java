@@ -21,7 +21,7 @@ import com.liferay.asset.kernel.model.AssetRendererFactory;
  */
 public interface AssetRendererFactoryClassProvider {
 
-	public Class<? extends AssetRendererFactory> getClass(
-		AssetRendererFactory assetRendererFactory);
+	public Class<? extends AssetRendererFactory<?>> getClass(
+		AssetRendererFactory<?> assetRendererFactory);
 
 }

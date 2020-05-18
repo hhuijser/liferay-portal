@@ -63,7 +63,7 @@ public class ClassTypesInfoDisplayFieldProviderUtil {
 	}
 
 	private static ClassTypeReader _getClassTypeReader(String className) {
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 

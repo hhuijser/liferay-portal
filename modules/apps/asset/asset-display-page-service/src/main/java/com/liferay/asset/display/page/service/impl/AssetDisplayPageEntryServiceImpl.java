@@ -47,7 +47,7 @@ public class AssetDisplayPageEntryServiceImpl
 			ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
@@ -68,7 +68,7 @@ public class AssetDisplayPageEntryServiceImpl
 			long layoutPageTemplateEntryId, ServiceContext serviceContext)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
@@ -88,7 +88,7 @@ public class AssetDisplayPageEntryServiceImpl
 			long groupId, long classNameId, long classPK)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
@@ -107,7 +107,7 @@ public class AssetDisplayPageEntryServiceImpl
 			long groupId, long classNameId, long classPK)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 
@@ -150,7 +150,7 @@ public class AssetDisplayPageEntryServiceImpl
 			assetDisplayPageEntryPersistence.fetchByPrimaryKey(
 				assetDisplayPageEntryId);
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(
 					assetDisplayPageEntry.getClassNameId());

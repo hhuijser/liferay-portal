@@ -480,7 +480,7 @@ public class AssetListAssetEntryProviderImpl
 
 		long[] availableClassTypeIds = {};
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 

@@ -41,9 +41,9 @@
 		>
 
 			<%
-			AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
+			AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
 
-			AssetRendererFactory assetRendererFactory = assetRenderer.getAssetRendererFactory();
+			AssetRendererFactory<?> assetRendererFactory = assetRenderer.getAssetRendererFactory();
 
 			Group group = GroupLocalServiceUtil.getGroup(assetEntry.getGroupId());
 

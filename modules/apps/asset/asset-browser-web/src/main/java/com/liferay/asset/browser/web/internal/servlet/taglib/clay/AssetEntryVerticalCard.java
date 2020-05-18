@@ -175,8 +175,8 @@ public class AssetEntryVerticalCard implements VerticalCard {
 
 	private final AssetBrowserDisplayContext _assetBrowserDisplayContext;
 	private final AssetEntry _assetEntry;
-	private final AssetRenderer _assetRenderer;
-	private final AssetRendererFactory _assetRendererFactory;
+	private final AssetRenderer<?> _assetRenderer;
+	private final AssetRendererFactory<?> _assetRendererFactory;
 	private final RenderRequest _renderRequest;
 	private final ThemeDisplay _themeDisplay;
 

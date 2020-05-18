@@ -45,7 +45,7 @@ public class AssetEntryInfoDisplayFieldProviderImpl
 
 		Map<String, Object> infoDisplayFieldsValues = new HashMap<>();
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 

@@ -42,8 +42,9 @@ import javax.servlet.http.HttpServletRequest;
 public class AssetEntryActionDropdownItemsProvider {
 
 	public AssetEntryActionDropdownItemsProvider(
-		AssetRenderer assetRenderer, List<AssetEntryAction> assetEntryActions,
-		String fullContentRedirect, LiferayPortletRequest liferayPortletRequest,
+		AssetRenderer<?> assetRenderer,
+		List<AssetEntryAction> assetEntryActions, String fullContentRedirect,
+		LiferayPortletRequest liferayPortletRequest,
 		LiferayPortletResponse liferayPortletResponse) {
 
 		_assetRenderer = assetRenderer;
@@ -154,7 +155,7 @@ public class AssetEntryActionDropdownItemsProvider {
 	}
 
 	private final List<AssetEntryAction> _assetEntryActions;
-	private final AssetRenderer _assetRenderer;
+	private final AssetRenderer<?> _assetRenderer;
 	private final String _fullContentRedirect;
 	private final HttpServletRequest _httpServletRequest;
 	private final LiferayPortletRequest _liferayPortletRequest;

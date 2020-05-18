@@ -263,7 +263,7 @@ public class AssetListEntryStagedModelDataHandler
 				continue;
 			}
 
-			AssetRendererFactory assetRendererFactory =
+			AssetRendererFactory<?> assetRendererFactory =
 				assetRenderer.getAssetRendererFactory();
 
 			if ((assetRendererFactory != null) &&

@@ -236,7 +236,7 @@ public class AssetDisplayPageEntryLocalServiceImpl
 			return layoutPageTemplateEntry.getPlid();
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(classNameId);
 

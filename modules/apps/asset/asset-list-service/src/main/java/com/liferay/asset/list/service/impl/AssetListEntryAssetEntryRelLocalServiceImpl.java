@@ -326,7 +326,7 @@ public class AssetListEntryAssetEntryRelLocalServiceImpl
 					return false;
 				}
 
-				AssetRendererFactory assetRendererFactory =
+				AssetRendererFactory<?> assetRendererFactory =
 					AssetRendererFactoryRegistryUtil.
 						getAssetRendererFactoryByClassName(
 							assetEntry.getClassName());

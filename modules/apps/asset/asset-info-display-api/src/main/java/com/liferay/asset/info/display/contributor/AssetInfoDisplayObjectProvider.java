@@ -89,7 +89,7 @@ public class AssetInfoDisplayObjectProvider
 
 	@Override
 	public String getURLTitle(Locale locale) {
-		AssetRenderer assetRenderer = _assetEntry.getAssetRenderer();
+		AssetRenderer<?> assetRenderer = _assetEntry.getAssetRenderer();
 
 		return assetRenderer.getUrlTitle(locale);
 	}

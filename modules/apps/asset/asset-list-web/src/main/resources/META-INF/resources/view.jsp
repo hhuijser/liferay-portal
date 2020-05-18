@@ -84,7 +84,7 @@ AssetListManagementToolbarDisplayContext assetListManagementToolbarDisplayContex
 						long classTypeId = GetterUtil.getLong(assetListEntry.getAssetEntrySubtype());
 
 						if (classTypeId > 0) {
-							AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetListEntry.getAssetEntryType());
+							AssetRendererFactory<?> assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(assetListEntry.getAssetEntryType());
 
 							if ((assetRendererFactory != null) && assetRendererFactory.isSupportsClassTypes()) {
 								ClassTypeReader classTypeReader = assetRendererFactory.getClassTypeReader();

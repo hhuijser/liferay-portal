@@ -192,7 +192,7 @@ public class AssetBrowserManagementToolbarDisplayContext
 	}
 
 	private String _getAddButtonLabel() {
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			_assetBrowserDisplayContext.getAssetRendererFactory();
 
 		if (assetRendererFactory.isSupportsClassTypes() &&
@@ -213,7 +213,7 @@ public class AssetBrowserManagementToolbarDisplayContext
 			groupId = _themeDisplay.getScopeGroupId();
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			_assetBrowserDisplayContext.getAssetRendererFactory();
 
 		PortletURL addPortletURL = null;

@@ -1187,7 +1187,7 @@ public class AssetPublisherDisplayContext {
 						continue;
 					}
 
-					AssetRendererFactory assetRendererFactory =
+					AssetRendererFactory<?> assetRendererFactory =
 						AssetRendererFactoryRegistryUtil.
 							getAssetRendererFactoryByClassNameId(classNameId);
 

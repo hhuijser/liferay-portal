@@ -179,7 +179,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		String classNameId = PortalUtil.getClassName(
 			infoDisplayObjectProvider.getClassNameId());
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				classNameId);
 

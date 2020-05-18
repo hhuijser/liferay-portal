@@ -182,9 +182,10 @@ public class AssetAutoTaggerOSGiCommandsTest
 
 		String className = RandomTestUtil.randomString();
 
-		ServiceRegistration<AssetRendererFactory>
+		ServiceRegistration<AssetRendererFactory<?>>
 			assetRendererFactoryServiceRegistration = registry.registerService(
-				AssetRendererFactory.class,
+				(Class<AssetRendererFactory<?>>)
+					(Class<?>)AssetRendererFactory.class,
 				new TestAssetRendererFactory(className));
 
 		try {

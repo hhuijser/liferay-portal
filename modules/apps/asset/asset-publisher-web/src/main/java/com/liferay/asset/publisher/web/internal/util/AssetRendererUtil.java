@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AssetRendererUtil {
 
 	public static String getAssetRendererUserFullName(
-		AssetRenderer assetRenderer, HttpServletRequest httpServletRequest) {
+		AssetRenderer<?> assetRenderer, HttpServletRequest httpServletRequest) {
 
 		long assetRendererUserId = assetRenderer.getUserId();
 

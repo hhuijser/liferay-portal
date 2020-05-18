@@ -30,7 +30,7 @@ List<Tuple> assetLinkEntries = (List<Tuple>)request.getAttribute("liferay-asset:
 	for (Tuple tuple : assetLinkEntries) {
 		AssetEntry assetLinkEntry = (AssetEntry)tuple.getObject(0);
 
-		AssetRenderer assetRenderer = assetLinkEntry.getAssetRenderer();
+		AssetRenderer<?> assetRenderer = assetLinkEntry.getAssetRenderer();
 	%>
 
 		<li class="list-group-item list-group-item-flex">

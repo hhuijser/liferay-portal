@@ -66,10 +66,11 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			AssetEntry assetEntry, Locale locale)
 		throws PortalException {
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.
-				getAssetRendererFactoryByClassNameId(
-					assetEntry.getClassNameId());
+		AssetRendererFactory<T> assetRendererFactory =
+			(AssetRendererFactory<T>)
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassName(
+						assetEntry.getClassName());
 
 		AssetRenderer<T> assetRenderer = null;
 
@@ -105,14 +106,14 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 	public InfoDisplayObjectProvider getInfoDisplayObjectProvider(
 		long classPK) {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(
 					PortalUtil.getClassNameId(getClassName()));
 
 		try {
-			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-				classPK);
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(classPK);
 
 			AssetEntry assetEntry = assetRendererFactory.getAssetEntry(
 				getClassName(), assetRenderer.getClassPK());
@@ -129,12 +130,12 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			long groupId, String urlTitle)
 		throws PortalException {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(
 					PortalUtil.getClassNameId(getClassName()));
 
-		AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
+		AssetRenderer<?> assetRenderer = assetRendererFactory.getAssetRenderer(
 			groupId, urlTitle);
 
 		AssetEntry assetEntry = assetRendererFactory.getAssetEntry(
@@ -153,10 +154,11 @@ public abstract class BaseAssetInfoDisplayContributor<T>
 			AssetEntry assetEntry, long versionClassPK, Locale locale)
 		throws PortalException {
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.
-				getAssetRendererFactoryByClassNameId(
-					assetEntry.getClassNameId());
+		AssetRendererFactory<T> assetRendererFactory =
+			(AssetRendererFactory<T>)
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassNameId(
+						assetEntry.getClassNameId());
 
 		AssetRenderer<T> assetRenderer = assetRendererFactory.getAssetRenderer(
 			assetEntry.getClassPK());

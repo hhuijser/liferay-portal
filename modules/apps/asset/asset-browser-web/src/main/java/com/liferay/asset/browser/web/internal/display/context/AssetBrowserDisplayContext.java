@@ -155,7 +155,7 @@ public class AssetBrowserDisplayContext {
 		return assetBrowserSearch;
 	}
 
-	public AssetRendererFactory getAssetRendererFactory() {
+	public AssetRendererFactory<?> getAssetRendererFactory() {
 		if (_assetRendererFactory != null) {
 			return _assetRendererFactory;
 		}
@@ -460,7 +460,8 @@ public class AssetBrowserDisplayContext {
 			return _classNameIds;
 		}
 
-		AssetRendererFactory assetRendererFactory = getAssetRendererFactory();
+		AssetRendererFactory<?> assetRendererFactory =
+			getAssetRendererFactory();
 
 		if (assetRendererFactory != null) {
 			_classNameIds = new long[] {assetRendererFactory.getClassNameId()};
@@ -573,7 +574,7 @@ public class AssetBrowserDisplayContext {
 		AssetBrowserDisplayContext.class);
 
 	private final AssetHelper _assetHelper;
-	private AssetRendererFactory _assetRendererFactory;
+	private AssetRendererFactory<?> _assetRendererFactory;
 	private long[] _classNameIds;
 	private String _displayStyle;
 	private String _eventName;

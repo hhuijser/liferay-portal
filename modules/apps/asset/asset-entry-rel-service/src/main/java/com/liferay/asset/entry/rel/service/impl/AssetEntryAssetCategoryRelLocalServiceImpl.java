@@ -217,7 +217,7 @@ public class AssetEntryAssetCategoryRelLocalServiceImpl
 				return;
 			}
 
-			AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
+			AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
 
 			if (assetRenderer == null) {
 				return;

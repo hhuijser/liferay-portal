@@ -49,7 +49,7 @@ if (vocabulary != null) {
 		boolean exist = true;
 
 		if ((classNameId > 0) && (classTypePK != AssetCategoryConstants.ALL_CLASS_TYPE_PK)) {
-			AssetRendererFactory assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassNameId(classNameId);
+			AssetRendererFactory<?> assetRendererFactory = AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassNameId(classNameId);
 
 			ClassTypeReader classTypeReader = assetRendererFactory.getClassTypeReader();
 

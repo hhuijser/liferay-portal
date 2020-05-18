@@ -273,8 +273,8 @@ public class AssetLinksTag extends IncludeTag {
 	}
 
 	private String _getViewURL(
-			AssetEntry assetLinkEntry, AssetRenderer assetRenderer, String type,
-			LiferayPortletRequest liferayPortletRequest,
+			AssetEntry assetLinkEntry, AssetRenderer<?> assetRenderer,
+			String type, LiferayPortletRequest liferayPortletRequest,
 			LiferayPortletResponse liferayPortletResponse,
 			ThemeDisplay themeDisplay)
 		throws Exception {

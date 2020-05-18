@@ -38,7 +38,7 @@ public class AssetInfoEditURLProviderImpl implements AssetInfoEditURLProvider {
 	public String getURL(
 		String className, long classPK, HttpServletRequest httpServletRequest) {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 
@@ -47,8 +47,8 @@ public class AssetInfoEditURLProviderImpl implements AssetInfoEditURLProvider {
 		}
 
 		try {
-			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-				classPK);
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(classPK);
 
 			if (assetRenderer == null) {
 				return StringPool.BLANK;

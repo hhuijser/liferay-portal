@@ -109,10 +109,10 @@ public class AssetListEntryExportImportContentProcessor
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactories(
 				portletDataContext.getCompanyId());
 
-		for (AssetRendererFactory assetRendererFactory :
+		for (AssetRendererFactory<?> assetRendererFactory :
 				assetRendererFactories) {
 
-			Class<? extends AssetRendererFactory> clazz =
+			Class<? extends AssetRendererFactory<?>> clazz =
 				_assetRendererFactoryClassProvider.getClass(
 					assetRendererFactory);
 
@@ -244,7 +244,7 @@ public class AssetListEntryExportImportContentProcessor
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactories(
 				portletDataContext.getCompanyId());
 
-		for (AssetRendererFactory assetRendererFactory :
+		for (AssetRendererFactory<?> assetRendererFactory :
 				assetRendererFactories) {
 
 			Class<?> clazz = _assetRendererFactoryClassProvider.getClass(

@@ -134,12 +134,14 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 	}
 
 	private void _registerAssetRendererFactory(
-		AssetRendererFactory assetRendererFactory) {
+		AssetRendererFactory<?> assetRendererFactory) {
 
 		Registry registry = RegistryUtil.getRegistry();
 
 		_assetRendererFactoryServiceRegistration = registry.registerService(
-			AssetRendererFactory.class, assetRendererFactory);
+			(Class<AssetRendererFactory<?>>)
+				(Class<?>)AssetRendererFactory.class,
+			assetRendererFactory);
 	}
 
 	private void _registerTextExtractor(TextExtractor textExtractor) {
@@ -149,7 +151,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 			TextExtractor.class, textExtractor);
 	}
 
-	private ServiceRegistration<AssetRendererFactory>
+	private ServiceRegistration<AssetRendererFactory<?>>
 		_assetRendererFactoryServiceRegistration;
 	private String _className = RandomTestUtil.randomString();
 	private ServiceRegistration<TextExtractor>
@@ -166,7 +168,7 @@ public class OpenNLPDocumentAssetAutoTaggerTest
 		}
 
 		@Override
-		public AssetRenderer getAssetRenderer(long classPK, int type) {
+		public AssetRenderer<?> getAssetRenderer(long classPK, int type) {
 			return new BaseAssetRenderer() {
 
 				@Override

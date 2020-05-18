@@ -234,7 +234,7 @@ public class AssetListItemSelectorView
 						return StringPool.BLANK;
 					}
 
-					AssetRendererFactory assetRendererFactory =
+					AssetRendererFactory<?> assetRendererFactory =
 						AssetRendererFactoryRegistryUtil.
 							getAssetRendererFactoryByClassName(
 								assetListEntry.getAssetEntryType());

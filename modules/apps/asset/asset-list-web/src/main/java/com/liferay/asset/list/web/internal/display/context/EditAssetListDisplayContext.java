@@ -924,7 +924,7 @@ public class EditAssetListDisplayContext {
 						continue;
 					}
 
-					AssetRendererFactory assetRendererFactory =
+					AssetRendererFactory<?> assetRendererFactory =
 						AssetRendererFactoryRegistryUtil.
 							getAssetRendererFactoryByClassNameId(classNameId);
 

@@ -59,12 +59,13 @@ public class JournalArticleAbstractInfoItemRenderer
 		HttpServletResponse httpServletResponse) {
 
 		try {
-			AssetRendererFactory assetRendererFactory =
+			AssetRendererFactory<?> assetRendererFactory =
 				AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
 					JournalArticle.class);
 
-			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-				article.getResourcePrimKey());
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(
+					article.getResourcePrimKey());
 
 			httpServletRequest.setAttribute(
 				WebKeys.ASSET_RENDERER, assetRenderer);

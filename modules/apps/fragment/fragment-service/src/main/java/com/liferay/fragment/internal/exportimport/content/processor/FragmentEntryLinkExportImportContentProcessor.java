@@ -200,13 +200,13 @@ public class FragmentEntryLinkExportImportContentProcessor
 		AssetEntry assetEntry = _assetEntryLocalService.getEntry(
 			_portal.getClassName(classNameId), classPK);
 
-		AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
+		AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
 
 		if (assetRenderer == null) {
 			return;
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			assetRenderer.getAssetRendererFactory();
 
 		StagingGroupHelper stagingGroupHelper =
@@ -301,7 +301,7 @@ public class FragmentEntryLinkExportImportContentProcessor
 			}
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 

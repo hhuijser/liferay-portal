@@ -90,11 +90,11 @@ public class TasksUserNotificationHandler extends BaseUserNotificationHandler {
 
 		long tasksEntryId = jsonObject.getLong("classPK");
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				TasksEntry.class.getName());
 
-		AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
+		AssetRenderer<?> assetRenderer = assetRendererFactory.getAssetRenderer(
 			tasksEntryId);
 
 		return assetRenderer.getURLViewInContext(

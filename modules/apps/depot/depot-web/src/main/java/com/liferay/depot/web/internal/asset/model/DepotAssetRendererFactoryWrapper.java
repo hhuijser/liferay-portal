@@ -45,7 +45,7 @@ public class DepotAssetRendererFactoryWrapper<T>
 	implements AssetRendererFactoryWrapper<T> {
 
 	public DepotAssetRendererFactoryWrapper(
-		AssetRendererFactory assetRendererFactory,
+		AssetRendererFactory<T> assetRendererFactory,
 		DepotApplicationController depotApplicationController,
 		DepotEntryLocalService depotEntryLocalService,
 		GroupLocalService groupLocalService) {
@@ -245,7 +245,7 @@ public class DepotAssetRendererFactoryWrapper<T>
 		getAssetRendererFactory().setPortletId(portletId);
 	}
 
-	protected AssetRendererFactory getAssetRendererFactory() {
+	protected AssetRendererFactory<T> getAssetRendererFactory() {
 		return _assetRendererFactory;
 	}
 
@@ -266,7 +266,7 @@ public class DepotAssetRendererFactoryWrapper<T>
 		return _groupLocalService.fetchGroup(serviceContext.getScopeGroupId());
 	}
 
-	private final AssetRendererFactory _assetRendererFactory;
+	private final AssetRendererFactory<T> _assetRendererFactory;
 	private final DepotApplicationController _depotApplicationController;
 	private final DepotEntryLocalService _depotEntryLocalService;
 	private final GroupLocalService _groupLocalService;

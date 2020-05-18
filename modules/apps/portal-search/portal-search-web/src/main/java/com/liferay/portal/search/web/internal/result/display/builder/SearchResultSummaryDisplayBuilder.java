@@ -290,7 +290,7 @@ public class SearchResultSummaryDisplayBuilder {
 	}
 
 	protected String appendStagingLabel(
-		String title, AssetRenderer assetRenderer) {
+		String title, AssetRenderer<?> assetRenderer) {
 
 		Group group = _groupLocalService.fetchGroup(assetRenderer.getGroupId());
 

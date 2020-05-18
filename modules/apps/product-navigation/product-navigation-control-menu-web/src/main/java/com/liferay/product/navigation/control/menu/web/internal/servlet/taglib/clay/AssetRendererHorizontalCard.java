@@ -28,7 +28,7 @@ import com.liferay.portal.kernel.util.WebKeys;
 public class AssetRendererHorizontalCard implements HorizontalCard {
 
 	public AssetRendererHorizontalCard(
-		AssetRenderer assetRenderer,
+		AssetRenderer<?> assetRenderer,
 		LiferayPortletRequest liferayPortletRequest) {
 
 		_assetRenderer = assetRenderer;
@@ -65,7 +65,7 @@ public class AssetRendererHorizontalCard implements HorizontalCard {
 		return false;
 	}
 
-	private final AssetRenderer _assetRenderer;
+	private final AssetRenderer<?> _assetRenderer;
 	private final ThemeDisplay _themeDisplay;
 
 }

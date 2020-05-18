@@ -65,7 +65,7 @@ public class SummaryFactoryImpl implements SummaryFactory {
 	public Summary getSummary(String className, long classPK, Locale locale)
 		throws PortalException {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 
@@ -73,7 +73,7 @@ public class SummaryFactoryImpl implements SummaryFactory {
 			return null;
 		}
 
-		AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
+		AssetRenderer<?> assetRenderer = assetRendererFactory.getAssetRenderer(
 			classPK);
 
 		if (assetRenderer == null) {

@@ -167,7 +167,7 @@ public class IndexedFieldsFixture {
 			Class<?> clazz, long classPK, Map<String, String> map)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClass(
 				clazz);
 

@@ -90,7 +90,7 @@ public class LayoutClassedModelUsageStagedModelDataHandler
 		Element element = portletDataContext.getExportDataElement(
 			layoutClassedModelUsage);
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				layoutClassedModelUsage.getClassName());
 
@@ -103,7 +103,7 @@ public class LayoutClassedModelUsageStagedModelDataHandler
 				portletDataContext.getScopeGroupId(),
 				assetRendererFactory.getPortletId())) {
 
-			AssetRenderer assetRenderer = null;
+			AssetRenderer<?> assetRenderer = null;
 
 			try {
 				assetRenderer = assetRendererFactory.getAssetRenderer(

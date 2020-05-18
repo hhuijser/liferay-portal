@@ -109,7 +109,7 @@ public class EditTagsBulkSelectionActionImpl
 			AssetEntry assetEntry, PermissionChecker permissionChecker)
 		throws PortalException {
 
-		AssetRenderer assetRenderer = assetEntry.getAssetRenderer();
+		AssetRenderer<?> assetRenderer = assetEntry.getAssetRenderer();
 
 		if (assetRenderer != null) {
 			return assetRenderer.hasEditPermission(permissionChecker);

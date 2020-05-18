@@ -25,7 +25,7 @@ import com.liferay.sharing.model.SharingEntry;
  */
 public class AssetRendererSharingUtil {
 
-	public static AssetRenderer getAssetRenderer(SharingEntry sharingEntry)
+	public static AssetRenderer<?> getAssetRenderer(SharingEntry sharingEntry)
 		throws PortalException {
 
 		AssetRendererFactory<?> assetRendererFactory =

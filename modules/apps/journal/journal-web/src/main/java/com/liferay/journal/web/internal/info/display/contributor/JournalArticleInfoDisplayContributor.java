@@ -212,9 +212,11 @@ public class JournalArticleInfoDisplayContributor
 			return null;
 		}
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				JournalArticle.class.getName());
+		AssetRendererFactory<JournalArticle> assetRendererFactory =
+			(AssetRendererFactory<JournalArticle>)
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassName(
+						JournalArticle.class.getName());
 
 		AssetRenderer<JournalArticle> assetRenderer =
 			assetRendererFactory.getAssetRenderer(
@@ -234,9 +236,11 @@ public class JournalArticleInfoDisplayContributor
 			JournalArticle article, long versionClassPK, Locale locale)
 		throws PortalException {
 
-		AssetRendererFactory assetRendererFactory =
-			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
-				JournalArticle.class.getName());
+		AssetRendererFactory<JournalArticle> assetRendererFactory =
+			(AssetRendererFactory<JournalArticle>)
+				AssetRendererFactoryRegistryUtil.
+					getAssetRendererFactoryByClassName(
+						JournalArticle.class.getName());
 
 		AssetRenderer<JournalArticle> assetRenderer =
 			assetRendererFactory.getAssetRenderer(versionClassPK);

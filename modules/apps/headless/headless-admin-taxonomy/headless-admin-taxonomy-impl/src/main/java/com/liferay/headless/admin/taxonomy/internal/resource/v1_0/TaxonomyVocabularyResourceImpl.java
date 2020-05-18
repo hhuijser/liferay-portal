@@ -268,7 +268,7 @@ public class TaxonomyVocabularyResourceImpl
 							return "AllAssetSubtypes";
 						}
 
-						AssetRendererFactory assetRendererFactory =
+						AssetRendererFactory<?> assetRendererFactory =
 							AssetRendererFactoryRegistryUtil.
 								getAssetRendererFactoryByClassName(
 									_portal.getClassName(classNameId));
@@ -415,7 +415,7 @@ public class TaxonomyVocabularyResourceImpl
 			return AssetCategoryConstants.ALL_CLASS_TYPE_PK;
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				_portal.getClassName(classNameId));
 

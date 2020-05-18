@@ -174,7 +174,7 @@ public class AssetRendererFactoryRegistryUtil {
 	private static Map<String, AssetRendererFactory<?>>
 		_filterAssetRendererFactories(
 			long companyId,
-			ServiceTrackerMap<String, AssetRendererFactory>
+			ServiceTrackerMap<String, AssetRendererFactory<?>>
 				assetRendererFactories,
 			boolean filterSelectable) {
 
@@ -195,10 +195,10 @@ public class AssetRendererFactoryRegistryUtil {
 		return filteredAssetRendererFactories;
 	}
 
-	private static Comparator<ServiceReference<AssetRendererFactory>>
+	private static Comparator<ServiceReference<AssetRendererFactory<?>>>
 		_getServiceReferenceComparator() {
 
-		Comparator<ServiceReference<AssetRendererFactory>>
+		Comparator<ServiceReference<AssetRendererFactory<?>>>
 			serviceReferenceComparator = ServiceRankingUtil::compare;
 
 		return serviceReferenceComparator.reversed();
@@ -207,10 +207,12 @@ public class AssetRendererFactoryRegistryUtil {
 	private AssetRendererFactoryRegistryUtil() {
 	}
 
-	private static ServiceTrackerMap<String, AssetRendererFactory>
+	private static ServiceTrackerMap<String, AssetRendererFactory<?>>
 		_classNameAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
-				AssetRendererFactory.class, null,
+				(Class<AssetRendererFactory<?>>)
+					(Class<?>)AssetRendererFactory.class,
+				null,
 				(serviceReference, emitter) -> {
 					Registry registry = RegistryUtil.getRegistry();
 
@@ -224,10 +226,12 @@ public class AssetRendererFactoryRegistryUtil {
 	private static final ServiceRegistrationMap<AssetRendererFactory<?>>
 		_serviceRegistrations = new ServiceRegistrationMapImpl<>();
 
-	private static ServiceTrackerMap<String, AssetRendererFactory>
+	private static ServiceTrackerMap<String, AssetRendererFactory<?>>
 		_typeAssetRenderFactoriesServiceTrackerMap =
 			ServiceTrackerCollections.openSingleValueMap(
-				AssetRendererFactory.class, null,
+				(Class<AssetRendererFactory<?>>)
+					(Class<?>)AssetRendererFactory.class,
+				null,
 				(serviceReference, emitter) -> {
 					Registry registry = RegistryUtil.getRegistry();
 

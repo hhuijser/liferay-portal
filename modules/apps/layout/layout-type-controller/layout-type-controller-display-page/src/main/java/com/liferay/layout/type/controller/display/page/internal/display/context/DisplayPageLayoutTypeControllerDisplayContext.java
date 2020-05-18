@@ -72,7 +72,7 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 		_infoDisplayContributor = infoDisplayContributor;
 	}
 
-	public AssetRendererFactory getAssetRendererFactory() {
+	public AssetRendererFactory<?> getAssetRendererFactory() {
 		if (_infoDisplayContributor == null) {
 			return null;
 		}

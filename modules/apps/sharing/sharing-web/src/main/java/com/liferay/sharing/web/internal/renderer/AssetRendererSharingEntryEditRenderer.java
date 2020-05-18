@@ -38,7 +38,7 @@ public class AssetRendererSharingEntryEditRenderer
 		throws PortalException {
 
 		try {
-			AssetRenderer assetRenderer =
+			AssetRenderer<?> assetRenderer =
 				AssetRendererSharingUtil.getAssetRenderer(sharingEntry);
 
 			if (assetRenderer == null) {

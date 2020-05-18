@@ -75,11 +75,11 @@ public class JournalArticleActivityInterpreter
 			if ((liferayPortletRequest != null) &&
 				(liferayPortletResponse != null)) {
 
-				AssetRendererFactory journalArticleAssetRendererFactory =
+				AssetRendererFactory<?> journalArticleAssetRendererFactory =
 					AssetRendererFactoryRegistryUtil.
 						getAssetRendererFactoryByClass(JournalArticle.class);
 
-				AssetRenderer journalArticleAssetRenderer =
+				AssetRenderer<?> journalArticleAssetRenderer =
 					journalArticleAssetRendererFactory.getAssetRenderer(
 						activity.getClassPK());
 

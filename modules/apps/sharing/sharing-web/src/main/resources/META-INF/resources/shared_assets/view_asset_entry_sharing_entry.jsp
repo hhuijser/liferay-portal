@@ -17,9 +17,9 @@
 <%@ include file="/shared_assets/init.jsp" %>
 
 <%
-AssetRenderer assetRenderer = (AssetRenderer)renderRequest.getAttribute(AssetRenderer.class.getName());
+AssetRenderer<?> assetRenderer = (AssetRenderer<?>)renderRequest.getAttribute(AssetRenderer.class.getName());
 
-AssetRendererFactory assetRendererFactory = assetRenderer.getAssetRendererFactory();
+AssetRendererFactory<?> assetRendererFactory = assetRenderer.getAssetRendererFactory();
 
 AssetEntry assetEntry = assetRendererFactory.getAssetEntry(assetRendererFactory.getClassName(), assetRenderer.getClassPK());
 

@@ -59,7 +59,7 @@ import java.util.Locale;
  */
 public class MySubscriptionsUtil {
 
-	public static AssetRenderer getAssetRenderer(
+	public static AssetRenderer<?> getAssetRenderer(
 		String className, long classPK) {
 
 		try {
@@ -214,7 +214,7 @@ public class MySubscriptionsUtil {
 		return title;
 	}
 
-	protected static AssetRenderer doGetAssetRenderer(
+	protected static AssetRenderer<?> doGetAssetRenderer(
 			String className, long classPK)
 		throws Exception {
 
@@ -229,7 +229,7 @@ public class MySubscriptionsUtil {
 			classPK = mbThread.getRootMessageId();
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				className);
 

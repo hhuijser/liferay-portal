@@ -79,14 +79,14 @@ public class FileEntrySharingEntryMenuItemContributor
 		urlMenuItem.setLabel(
 			LanguageUtil.get(themeDisplay.getLocale(), "download"));
 
-		AssetRenderer assetRenderer = _getAssetEntryRenderer(sharingEntry);
+		AssetRenderer<?> assetRenderer = _getAssetEntryRenderer(sharingEntry);
 
 		urlMenuItem.setURL(assetRenderer.getURLDownload(themeDisplay));
 
 		return urlMenuItem;
 	}
 
-	private AssetRenderer _getAssetEntryRenderer(SharingEntry sharingEntry)
+	private AssetRenderer<?> _getAssetEntryRenderer(SharingEntry sharingEntry)
 		throws PortalException {
 
 		AssetRendererFactory<?> assetRendererFactory =

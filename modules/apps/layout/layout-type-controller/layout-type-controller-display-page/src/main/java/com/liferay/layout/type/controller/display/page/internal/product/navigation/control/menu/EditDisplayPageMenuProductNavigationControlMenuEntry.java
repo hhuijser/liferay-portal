@@ -112,12 +112,12 @@ public class EditDisplayPageMenuProductNavigationControlMenuEntry
 			return false;
 		}
 
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(
 					infoDisplayObjectProvider.getClassNameId());
 
-		AssetRenderer assetRenderer = null;
+		AssetRenderer<?> assetRenderer = null;
 
 		if (assetRendererFactory != null) {
 			assetRenderer = assetRendererFactory.getAssetRenderer(

@@ -127,8 +127,8 @@ public class KBArticleAssetEntriesUtil {
 
 	public static String getURL(
 			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay,
-			AssetRendererFactory assetRendererFactory,
-			AssetRenderer assetRenderer)
+			AssetRendererFactory<?> assetRendererFactory,
+			AssetRenderer<?> assetRenderer)
 		throws Exception {
 
 		long classPK = assetRenderer.getClassPK();

@@ -194,7 +194,7 @@ public class DisplayPageVerticalCard
 	}
 
 	private String _getSubtypeLabel() throws PortalException {
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.getAssetRendererFactoryByClassName(
 				_layoutPageTemplateEntry.getClassName());
 

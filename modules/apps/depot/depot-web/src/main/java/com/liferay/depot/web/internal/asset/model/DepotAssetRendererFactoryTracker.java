@@ -46,7 +46,9 @@ public class DepotAssetRendererFactoryTracker {
 	@Activate
 	protected void activate(BundleContext bundleContext) {
 		_serviceTracker = ServiceTrackerFactory.open(
-			bundleContext, AssetRendererFactory.class,
+			bundleContext,
+			(Class<AssetRendererFactory<?>>)
+				(Class<?>)AssetRendererFactory.class,
 			new DepotAssetRendererFactoryServiceTrackerCustomizer(
 				bundleContext, _serviceRegistrations));
 	}
@@ -55,7 +57,7 @@ public class DepotAssetRendererFactoryTracker {
 	protected void deactivate() {
 		_serviceTracker.close();
 
-		for (ServiceRegistration<AssetRendererFactory> serviceRegistration :
+		for (ServiceRegistration<AssetRendererFactory<?>> serviceRegistration :
 				_serviceRegistrations.values()) {
 
 			try {
@@ -82,21 +84,21 @@ public class DepotAssetRendererFactoryTracker {
 	private GroupLocalService _groupLocalService;
 
 	private final Map
-		<ServiceReference<AssetRendererFactory>,
-		 ServiceRegistration<AssetRendererFactory>> _serviceRegistrations =
+		<ServiceReference<AssetRendererFactory<?>>,
+		 ServiceRegistration<AssetRendererFactory<?>>> _serviceRegistrations =
 			new ConcurrentHashMap<>();
-	private ServiceTracker<AssetRendererFactory, AssetRendererFactory>
+	private ServiceTracker<AssetRendererFactory<?>, AssetRendererFactory<?>>
 		_serviceTracker;
 
 	private class DepotAssetRendererFactoryServiceTrackerCustomizer
 		implements ServiceTrackerCustomizer
-			<AssetRendererFactory, AssetRendererFactory> {
+			<AssetRendererFactory<?>, AssetRendererFactory<?>> {
 
 		public DepotAssetRendererFactoryServiceTrackerCustomizer(
 			BundleContext bundleContext,
 			Map
-				<ServiceReference<AssetRendererFactory>,
-				 ServiceRegistration<AssetRendererFactory>>
+				<ServiceReference<AssetRendererFactory<?>>,
+				 ServiceRegistration<AssetRendererFactory<?>>>
 					serviceRegistrations) {
 
 			_bundleContext = bundleContext;
@@ -105,9 +107,9 @@ public class DepotAssetRendererFactoryTracker {
 
 		@Override
 		public AssetRendererFactory addingService(
-			ServiceReference<AssetRendererFactory> serviceReference) {
+			ServiceReference<AssetRendererFactory<?>> serviceReference) {
 
-			AssetRendererFactory assetRendererFactory =
+			AssetRendererFactory<?> assetRendererFactory =
 				_bundleContext.getService(serviceReference);
 
 			if (assetRendererFactory instanceof
@@ -128,14 +130,15 @@ public class DepotAssetRendererFactoryTracker {
 			depotAssetRendererFactoryWrapperProperties.put(
 				"service.ranking", Integer.MAX_VALUE);
 
-			AssetRendererFactory depotAssetRendererFactoryWrapper =
+			AssetRendererFactory<?> depotAssetRendererFactoryWrapper =
 				new DepotAssetRendererFactoryWrapper(
 					assetRendererFactory, _depotApplicationController,
 					_depotEntryLocalService, _groupLocalService);
 
-			ServiceRegistration<AssetRendererFactory> serviceRegistration =
+			ServiceRegistration<AssetRendererFactory<?>> serviceRegistration =
 				_bundleContext.registerService(
-					AssetRendererFactory.class,
+					(Class<AssetRendererFactory<?>>)
+						(Class<?>)AssetRendererFactory.class,
 					depotAssetRendererFactoryWrapper,
 					depotAssetRendererFactoryWrapperProperties);
 
@@ -146,8 +149,8 @@ public class DepotAssetRendererFactoryTracker {
 
 		@Override
 		public void modifiedService(
-			ServiceReference<AssetRendererFactory> serviceReference,
-			AssetRendererFactory assetRendererFactory) {
+			ServiceReference<AssetRendererFactory<?>> serviceReference,
+			AssetRendererFactory<?> assetRendererFactory) {
 
 			removedService(serviceReference, assetRendererFactory);
 
@@ -156,10 +159,10 @@ public class DepotAssetRendererFactoryTracker {
 
 		@Override
 		public void removedService(
-			ServiceReference<AssetRendererFactory> serviceReference,
-			AssetRendererFactory assetRendererFactory) {
+			ServiceReference<AssetRendererFactory<?>> serviceReference,
+			AssetRendererFactory<?> assetRendererFactory) {
 
-			ServiceRegistration<AssetRendererFactory> serviceRegistration =
+			ServiceRegistration<AssetRendererFactory<?>> serviceRegistration =
 				_serviceRegistrations.remove(serviceReference);
 
 			if (serviceRegistration != null) {
@@ -169,8 +172,9 @@ public class DepotAssetRendererFactoryTracker {
 
 		private final BundleContext _bundleContext;
 		private final Map
-			<ServiceReference<AssetRendererFactory>,
-			 ServiceRegistration<AssetRendererFactory>> _serviceRegistrations;
+			<ServiceReference<AssetRendererFactory<?>>,
+			 ServiceRegistration<AssetRendererFactory<?>>>
+				_serviceRegistrations;
 
 	}
 

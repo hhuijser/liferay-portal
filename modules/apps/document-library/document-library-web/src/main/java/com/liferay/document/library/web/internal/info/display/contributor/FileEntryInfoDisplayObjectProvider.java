@@ -91,7 +91,7 @@ public class FileEntryInfoDisplayObjectProvider
 	}
 
 	private AssetEntry _getAssetEntry(FileEntry fileEntry) {
-		AssetRendererFactory assetRendererFactory =
+		AssetRendererFactory<?> assetRendererFactory =
 			AssetRendererFactoryRegistryUtil.
 				getAssetRendererFactoryByClassNameId(getClassNameId());
 
@@ -100,8 +100,9 @@ public class FileEntryInfoDisplayObjectProvider
 		}
 
 		try {
-			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-				fileEntry.getFileEntryId());
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(
+					fileEntry.getFileEntryId());
 
 			return assetRendererFactory.getAssetEntry(
 				DLFileEntryConstants.getClassName(),

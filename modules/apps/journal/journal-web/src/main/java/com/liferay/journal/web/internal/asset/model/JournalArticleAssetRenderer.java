@@ -647,7 +647,8 @@ public class JournalArticleAssetRenderer
 	private boolean _isShowDisplayPage(long groupId, JournalArticle article)
 		throws Exception {
 
-		AssetRendererFactory assetRendererFactory = getAssetRendererFactory();
+		AssetRendererFactory<JournalArticle> assetRendererFactory =
+			getAssetRendererFactory();
 
 		AssetEntry assetEntry = assetRendererFactory.getAssetEntry(
 			JournalArticle.class.getName(), getClassPK());

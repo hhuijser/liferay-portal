@@ -1080,8 +1080,9 @@ public class JournalContentDisplayContext {
 			AssetRendererFactory.TYPE_LATEST_APPROVED);
 
 		try {
-			AssetRenderer assetRenderer = assetRendererFactory.getAssetRenderer(
-				assetEntry.getClassPK(), previewType);
+			AssetRenderer<?> assetRenderer =
+				assetRendererFactory.getAssetRenderer(
+					assetEntry.getClassPK(), previewType);
 
 			return (JournalArticle)assetRenderer.getAssetObject();
 		}

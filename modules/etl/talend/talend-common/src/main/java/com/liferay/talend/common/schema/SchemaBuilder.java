@@ -334,8 +334,8 @@ public class SchemaBuilder {
 			schemaPropertiesJsonObject.entrySet();
 
 		for (Iterator<Map.Entry<String, JsonValue>> iterator =
-				entries.iterator(); iterator.hasNext();
-			 index.incrementAndGet()) {
+				entries.iterator();
+			 iterator.hasNext(); index.incrementAndGet()) {
 
 			Map.Entry<String, JsonValue> propertyEntry = iterator.next();
 

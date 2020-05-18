@@ -859,14 +859,10 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		SamlSsoRequestContext samlSsoRequestContext = new SamlSsoRequestContext(
 			SP_ENTITY_ID, null, idpMessageContext, userLocalService);
 
+		DateTime dateTime = new DateTime(DateTimeZone.UTC);
+
 		Conditions conditions = _webSsoProfileImpl.getSuccessConditions(
-			samlSsoRequestContext,
-			new DateTime(
-				DateTimeZone.UTC
-			).plusDays(
-				1
-			),
-			null);
+			samlSsoRequestContext, dateTime.plusDays(1), null);
 
 		prepareServiceProvider(SP_ENTITY_ID);
 
@@ -897,13 +893,10 @@ public class WebSsoProfileIntegrationTest extends BaseSamlTestCase {
 		SamlSsoRequestContext samlSsoRequestContext = new SamlSsoRequestContext(
 			SP_ENTITY_ID, null, idpMessageContext, userLocalService);
 
+		DateTime dateTime = new DateTime(DateTimeZone.UTC);
+
 		Conditions conditions = _webSsoProfileImpl.getSuccessConditions(
-			samlSsoRequestContext, null,
-			new DateTime(
-				DateTimeZone.UTC
-			).minusYears(
-				1
-			));
+			samlSsoRequestContext, null, dateTime.minusYears(1));
 
 		prepareServiceProvider(SP_ENTITY_ID);
 

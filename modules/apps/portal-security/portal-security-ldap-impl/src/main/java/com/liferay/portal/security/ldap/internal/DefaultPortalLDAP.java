@@ -1023,7 +1023,9 @@ public class DefaultPortalLDAP implements PortalLDAP {
 			String[] attributeIds)
 		throws Exception {
 
-		Name fullDN = new CompositeName().add(fullDistinguishedName);
+		Name name = new CompositeName();
+
+		Name fullDN = name.add(fullDistinguishedName);
 
 		Attributes attributes = null;
 

@@ -24,7 +24,9 @@ public class RankingTest {
 
 	@Test
 	public void testDefaults() {
-		Ranking ranking = new Ranking.RankingBuilder().build();
+		Ranking.RankingBuilder rankingBuilder = new Ranking.RankingBuilder();
+
+		Ranking ranking = rankingBuilder.build();
 
 		Assert.assertEquals("[]", String.valueOf(ranking.getAliases()));
 		Assert.assertEquals("[]", String.valueOf(ranking.getBlockIds()));

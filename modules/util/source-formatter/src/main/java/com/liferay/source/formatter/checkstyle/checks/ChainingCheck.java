@@ -54,12 +54,18 @@ public class ChainingCheck extends BaseCheck {
 	public int[] getDefaultTokens() {
 		return new int[] {
 			TokenTypes.CLASS_DEF, TokenTypes.ENUM_DEF, TokenTypes.INTERFACE_DEF,
-			TokenTypes.TYPECAST
+			TokenTypes.LITERAL_NEW, TokenTypes.TYPECAST
 		};
 	}
 
 	@Override
 	protected void doVisitToken(DetailAST detailAST) {
+		if (detailAST.getType() == TokenTypes.LITERAL_NEW) {
+			_checkInlineMethodCallOnNewInstance(detailAST);
+
+			return;
+		}
+
 		if ((detailAST.getType() == TokenTypes.TYPECAST) &&
 			isAttributeValue(_APPLY_TO_TYPE_CAST_KEY)) {
 
@@ -270,6 +276,56 @@ public class ChainingCheck extends BaseCheck {
 		if (!unsortedNames.equals(middleMethodNames.toString())) {
 			log(methodCallDetailAST, _MSG_UNSORTED_RESPONSE);
 		}
+	}
+
+	private void _checkInlineMethodCallOnNewInstance(DetailAST detailAST) {
+		DetailAST dotDetailAST = detailAST.getParent();
+
+		if (dotDetailAST.getType() != TokenTypes.DOT) {
+			return;
+		}
+
+		DetailAST methodCallDetailAST = dotDetailAST.getParent();
+
+		if (methodCallDetailAST.getType() != TokenTypes.METHOD_CALL) {
+			return;
+		}
+
+		List<String> chainedMethodNames = _getChainedMethodNames(
+			methodCallDetailAST);
+
+		if (_isAllowedChainingMethodCall(
+				methodCallDetailAST, chainedMethodNames, detailAST)) {
+
+			return;
+		}
+
+		String className = "";
+
+		DetailAST firstChildDetailAST = detailAST.getFirstChild();
+
+		if (firstChildDetailAST.getType() == TokenTypes.IDENT) {
+			className = firstChildDetailAST.getText();
+		}
+		else if (firstChildDetailAST.getType() == TokenTypes.DOT) {
+			List<DetailAST> identDetailASTList = getAllChildTokens(
+				firstChildDetailAST, true, TokenTypes.IDENT);
+
+			StringBundler sb = new StringBundler(identDetailASTList.size() * 2);
+
+			for (DetailAST identDetailAST : identDetailASTList) {
+				sb.append(identDetailAST.getText());
+				sb.append(StringPool.PERIOD);
+			}
+
+			sb.setIndex(sb.index() - 1);
+
+			className = sb.toString();
+		}
+
+		log(
+			methodCallDetailAST, _MSG_AVOID_INLINE_METHOD, className,
+			getMethodName(methodCallDetailAST));
 	}
 
 	private void _checkMethodName(
@@ -882,6 +938,9 @@ public class ChainingCheck extends BaseCheck {
 	private static final String _APPLY_TO_TYPE_CAST_KEY = "applyToTypeCast";
 
 	private static final String _MSG_ALLOWED_CHAINING = "chaining.allowed";
+
+	private static final String _MSG_AVOID_INLINE_METHOD =
+		"inline.avoid.method";
 
 	private static final String _MSG_AVOID_METHOD_CHAINING =
 		"chaining.avoid.method";

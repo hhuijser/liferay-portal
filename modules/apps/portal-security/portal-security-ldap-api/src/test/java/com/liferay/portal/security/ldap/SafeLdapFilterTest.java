@@ -108,14 +108,10 @@ public class SafeLdapFilterTest {
 
 	@Test
 	public void testGenerateFilter() {
+		StringBundler sb = new StringBundler("(key1=value1)(key2=value2)");
+
 		test(
-			new SafeLdapFilter(
-				new StringBundler(
-					"(key1=value1)"
-				).append(
-					"(key2=value2)"
-				),
-				Collections.emptyList()),
+			new SafeLdapFilter(sb, Collections.emptyList()),
 			"(key1=value1)(key2=value2)");
 	}
 
@@ -123,11 +119,10 @@ public class SafeLdapFilterTest {
 	public void testGetArguments() {
 		Object[] arguments = {new Object()};
 
-		Assert.assertArrayEquals(
-			arguments,
-			new SafeLdapFilter(
-				new StringBundler(), Arrays.asList(arguments)
-			).getArguments());
+		SafeLdapFilter safeLdapFilter = new SafeLdapFilter(
+			new StringBundler(), Arrays.asList(arguments));
+
+		Assert.assertArrayEquals(arguments, safeLdapFilter.getArguments());
 	}
 
 	@Test

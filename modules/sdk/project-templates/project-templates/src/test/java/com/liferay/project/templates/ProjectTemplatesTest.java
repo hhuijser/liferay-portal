@@ -117,8 +117,8 @@ public class ProjectTemplatesTest implements BaseProjectTemplatesTestCase {
 	public void testBuildTemplateOnExistingDirectory() throws Exception {
 		File destinationDir = temporaryFolder.newFolder("gradle");
 
-		buildTemplateWithGradle(destinationDir, "activator", "dup-activator");
-		buildTemplateWithGradle(destinationDir, "activator", "dup-activator");
+		buildTemplateWithGradle(destinationDir, "api", "dup-api");
+		buildTemplateWithGradle(destinationDir, "api", "dup-api");
 	}
 
 	@Test

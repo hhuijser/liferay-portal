@@ -68,7 +68,7 @@ public class GetCollectionMappingFieldsMVCResourceCommand
 			itemType = FileEntry.class.getName();
 		}
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(itemType);
 
 		if (infoDisplayContributor == null) {

@@ -145,9 +145,10 @@ public class GetCollectionFieldMVCResourceCommand
 					itemType = FileEntry.class.getName();
 				}
 
-				InfoDisplayContributor infoDisplayContributor =
-					_infoDisplayContributorTracker.getInfoDisplayContributor(
-						itemType);
+				InfoDisplayContributor<Object> infoDisplayContributor =
+					(InfoDisplayContributor<Object>)
+						_infoDisplayContributorTracker.
+							getInfoDisplayContributor(itemType);
 
 				for (Object object : list) {
 					jsonArray.put(
@@ -169,8 +170,8 @@ public class GetCollectionFieldMVCResourceCommand
 	}
 
 	private JSONObject _getDisplayObjectJSONObject(
-			InfoDisplayContributor infoDisplayContributor, Object object,
-			Locale locale)
+			InfoDisplayContributor<Object> infoDisplayContributor,
+			Object object, Locale locale)
 		throws PortalException {
 
 		JSONObject displayObjectJSONObject = JSONFactoryUtil.createJSONObject();

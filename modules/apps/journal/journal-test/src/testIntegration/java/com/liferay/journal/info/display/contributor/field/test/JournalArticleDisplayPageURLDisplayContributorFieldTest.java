@@ -191,7 +191,7 @@ public class JournalArticleDisplayPageURLDisplayContributorFieldTest {
 	}
 
 	private String _buildFriendlyURL(
-			InfoDisplayContributor infoDisplayContributor,
+			InfoDisplayContributor<JournalArticle> infoDisplayContributor,
 			JournalArticle article)
 		throws Exception {
 

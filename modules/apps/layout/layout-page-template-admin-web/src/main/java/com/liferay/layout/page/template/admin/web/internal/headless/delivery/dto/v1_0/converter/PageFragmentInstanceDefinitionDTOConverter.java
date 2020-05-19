@@ -458,8 +458,10 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 			return null;
 		}
 
-		InfoDisplayContributor infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
+		InfoDisplayContributor<Object> infoDisplayContributor =
+			(InfoDisplayContributor<Object>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					className);
 
 		if (infoDisplayContributor == null) {
 			return null;
@@ -468,8 +470,10 @@ public class PageFragmentInstanceDefinitionDTOConverter {
 		long classPK = jsonObject.getLong("classPK");
 
 		try {
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
-				infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
+			InfoDisplayObjectProvider<Object> infoDisplayObjectProvider =
+				(InfoDisplayObjectProvider<Object>)
+					infoDisplayContributor.getInfoDisplayObjectProvider(
+						classPK);
 
 			if (infoDisplayObjectProvider == null) {
 				return null;

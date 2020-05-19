@@ -498,7 +498,9 @@
 		<check name="JSPLanguageUtilCheck" />
 		<check name="JSPLineBreakCheck" />
 		<check name="JSPLogFileNameCheck" />
-		<check name="JSPMethodCallsCheck" />
+		<check name="JSPMethodCallsCheck">
+			<property name="enabled" value="false" />
+		</check>
 		<check name="JSPParenthesesCheck" />
 		<check name="JSPRedirectBackURLCheck" />
 		<check name="JSPSessionKeysCheck" />

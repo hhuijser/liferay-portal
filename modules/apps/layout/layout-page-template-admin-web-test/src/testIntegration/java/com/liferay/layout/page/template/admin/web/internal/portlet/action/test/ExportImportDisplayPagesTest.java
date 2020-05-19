@@ -97,7 +97,7 @@ public class ExportImportDisplayPagesTest {
 
 		long classNameId = _portal.getClassNameId(className);
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
 
 		long classTypeId = 0;

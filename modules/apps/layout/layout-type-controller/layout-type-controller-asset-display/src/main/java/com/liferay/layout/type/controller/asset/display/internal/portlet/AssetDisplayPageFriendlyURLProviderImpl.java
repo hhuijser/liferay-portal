@@ -42,14 +42,14 @@ public class AssetDisplayPageFriendlyURLProviderImpl
 			String className, long classPK, ThemeDisplay themeDisplay)
 		throws PortalException {
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
 
 		if (infoDisplayContributor == null) {
 			return null;
 		}
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 
 		if (infoDisplayObjectProvider == null) {

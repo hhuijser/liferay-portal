@@ -99,7 +99,7 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 
 		long classNameId = _portal.getClassNameId(className);
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
 
 		long classTypeId = 0;
@@ -175,7 +175,7 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 
 		long classNameId = _portal.getClassNameId(className);
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
 
 		long classTypeId = 0;
@@ -488,7 +488,7 @@ public class ExportDisplayPagesMVCResourceCommandTest {
 		}
 
 		if (_isDisplayPageFile(zipEntry.getName())) {
-			InfoDisplayContributor infoDisplayContributor =
+			InfoDisplayContributor<?> infoDisplayContributor =
 				_infoDisplayContributorTracker.getInfoDisplayContributor(
 					"com.liferay.journal.model.JournalArticle");
 

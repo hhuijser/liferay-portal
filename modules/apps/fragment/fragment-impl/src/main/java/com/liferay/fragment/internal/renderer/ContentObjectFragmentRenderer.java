@@ -157,11 +157,11 @@ public class ContentObjectFragmentRenderer implements FragmentRenderer {
 		String className, long classPK,
 		Optional<Object> displayObjectOptional) {
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
 
 		try {
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 				infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 
 			if (infoDisplayObjectProvider == null) {

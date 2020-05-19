@@ -196,7 +196,7 @@ public class AssetDisplayPageEntryLocalServiceImpl
 		long groupId, long classNameId, long classPK,
 		long layoutPageTemplateEntryId) {
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				_portal.getClassName(classNameId));
 
@@ -204,7 +204,7 @@ public class AssetDisplayPageEntryLocalServiceImpl
 			return LayoutConstants.DEFAULT_PLID;
 		}
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider = null;
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider = null;
 
 		try {
 			infoDisplayObjectProvider =

@@ -72,10 +72,10 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		HttpServletRequest httpServletRequest =
 			(HttpServletRequest)requestContext.get("request");
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_getInfoDisplayContributor(friendlyURL);
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			_getInfoDisplayObjectProvider(
 				infoDisplayContributor, groupId, friendlyURL);
 
@@ -131,10 +131,10 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 			Map<String, Object> requestContext)
 		throws PortalException {
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_getInfoDisplayContributor(friendlyURL);
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			_getInfoDisplayObjectProvider(
 				infoDisplayContributor, groupId, friendlyURL);
 
@@ -174,7 +174,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 	protected Portal portal;
 
 	private AssetEntry _getAssetEntry(
-		InfoDisplayObjectProvider infoDisplayObjectProvider) {
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider) {
 
 		String classNameId = PortalUtil.getClassName(
 			infoDisplayObjectProvider.getClassNameId());
@@ -214,13 +214,13 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		return null;
 	}
 
-	private InfoDisplayContributor _getInfoDisplayContributor(
+	private InfoDisplayContributor<?> _getInfoDisplayContributor(
 			String friendlyURL)
 		throws PortalException {
 
 		String infoURLSeparator = _getInfoURLSeparator(friendlyURL);
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			infoDisplayContributorTracker.
 				getInfoDisplayContributorByURLSeparator(infoURLSeparator);
 
@@ -233,8 +233,8 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 		return infoDisplayContributor;
 	}
 
-	private InfoDisplayObjectProvider _getInfoDisplayObjectProvider(
-			InfoDisplayContributor infoDisplayContributor, long groupId,
+	private InfoDisplayObjectProvider<?> _getInfoDisplayObjectProvider(
+			InfoDisplayContributor<?> infoDisplayContributor, long groupId,
 			String friendlyURL)
 		throws PortalException {
 
@@ -243,7 +243,7 @@ public abstract class BaseAssetDisplayPageFriendlyURLResolver
 	}
 
 	private Layout _getInfoDisplayObjectProviderLayout(
-		InfoDisplayObjectProvider infoDisplayObjectProvider) {
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider) {
 
 		AssetDisplayPageEntry assetDisplayPageEntry =
 			assetDisplayPageEntryLocalService.fetchAssetDisplayPageEntry(

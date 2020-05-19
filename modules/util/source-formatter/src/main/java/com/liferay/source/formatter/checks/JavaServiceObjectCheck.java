@@ -225,6 +225,7 @@ public class JavaServiceObjectCheck extends BaseJavaTermCheck {
 
 		try {
 			_populateServiceXMLElements("modules/apps", 6);
+			_populateServiceXMLElements("modules/dxp/apps", 6);
 			_populateServiceXMLElements("portal-impl/src/com/liferay", 4);
 		}
 		catch (DocumentException | IOException exception) {

@@ -214,7 +214,7 @@ public class DisplayPageTemplateServiceTest {
 	@DeleteAfterTestRun
 	private Group _group;
 
-	private ServiceRegistration<InfoDisplayContributor> _serviceRegistration;
+	private ServiceRegistration<InfoDisplayContributor<?>> _serviceRegistration;
 
 	private static class TestInfoDisplayContributor
 		implements InfoDisplayContributor<Object> {

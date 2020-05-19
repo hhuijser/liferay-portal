@@ -62,11 +62,11 @@ public class LayoutPageTemplateStructureRelModelListener
 			_portal.getClassNameId(LayoutPageTemplateStructure.class),
 			layoutPageTemplateStructure.getClassPK());
 
-		Set<InfoDisplayObjectProvider> infoDisplayObjectProviders =
+		Set<InfoDisplayObjectProvider<?>> infoDisplayObjectProviders =
 			ContentUtil.getLayoutMappedInfoDisplayObjectProviders(
 				layoutPageTemplateStructureRel.getData());
 
-		for (InfoDisplayObjectProvider infoDisplayObjectProvider :
+		for (InfoDisplayObjectProvider<?> infoDisplayObjectProvider :
 				infoDisplayObjectProviders) {
 
 			LayoutClassedModelUsage layoutClassedModelUsage =

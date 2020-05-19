@@ -35,19 +35,21 @@ public class InfoDisplayContributorTrackerImpl
 	implements InfoDisplayContributorTracker {
 
 	@Override
-	public InfoDisplayContributor getInfoDisplayContributor(String className) {
+	public InfoDisplayContributor<?> getInfoDisplayContributor(
+		String className) {
+
 		return _infoDisplayContributor.get(className);
 	}
 
 	@Override
-	public InfoDisplayContributor getInfoDisplayContributorByURLSeparator(
+	public InfoDisplayContributor<?> getInfoDisplayContributorByURLSeparator(
 		String urlSeparator) {
 
 		return _infoDisplayContributorByURLSeparator.get(urlSeparator);
 	}
 
 	@Override
-	public List<InfoDisplayContributor> getInfoDisplayContributors() {
+	public List<InfoDisplayContributor<?>> getInfoDisplayContributors() {
 		return new ArrayList(_infoDisplayContributor.values());
 	}
 
@@ -56,7 +58,7 @@ public class InfoDisplayContributorTrackerImpl
 		policy = ReferencePolicy.DYNAMIC
 	)
 	protected void setInfoDisplayContributor(
-		InfoDisplayContributor infoDisplayContributor) {
+		InfoDisplayContributor<?> infoDisplayContributor) {
 
 		_infoDisplayContributor.put(
 			infoDisplayContributor.getClassName(), infoDisplayContributor);
@@ -66,16 +68,16 @@ public class InfoDisplayContributorTrackerImpl
 	}
 
 	protected void unsetInfoDisplayContributor(
-		InfoDisplayContributor infoDisplayContributor) {
+		InfoDisplayContributor<?> infoDisplayContributor) {
 
 		_infoDisplayContributor.remove(infoDisplayContributor.getClassName());
 		_infoDisplayContributorByURLSeparator.remove(
 			infoDisplayContributor.getInfoURLSeparator());
 	}
 
-	private final Map<String, InfoDisplayContributor> _infoDisplayContributor =
-		new ConcurrentHashMap<>();
-	private final Map<String, InfoDisplayContributor>
+	private final Map<String, InfoDisplayContributor<?>>
+		_infoDisplayContributor = new ConcurrentHashMap<>();
+	private final Map<String, InfoDisplayContributor<?>>
 		_infoDisplayContributorByURLSeparator = new ConcurrentHashMap<>();
 
 }

@@ -109,8 +109,10 @@ public class FragmentEntryProcessorHelperImpl
 			className = FileEntry.class.getName();
 		}
 
-		InfoDisplayContributor infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
+		InfoDisplayContributor<Object> infoDisplayContributor =
+			(InfoDisplayContributor<Object>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					className);
 
 		if (infoDisplayContributor == null) {
 			return null;
@@ -151,8 +153,10 @@ public class FragmentEntryProcessorHelperImpl
 
 		String className = _portal.getClassName(classNameId);
 
-		InfoDisplayContributor infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(className);
+		InfoDisplayContributor<Object> infoDisplayContributor =
+			(InfoDisplayContributor<Object>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					className);
 
 		if (infoDisplayContributor == null) {
 			return null;
@@ -167,7 +171,7 @@ public class FragmentEntryProcessorHelperImpl
 			return null;
 		}
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider = null;
+		InfoDisplayObjectProvider<Object> infoDisplayObjectProvider = null;
 
 		if ((fragmentEntryProcessorContext.getPreviewClassPK() > 0) &&
 			_isSameClassedModel(

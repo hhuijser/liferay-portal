@@ -65,7 +65,7 @@ public class AssetInfoDisplayRequestAttributesContributor
 			return;
 		}
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				assetEntry.getClassName());
 
@@ -74,7 +74,7 @@ public class AssetInfoDisplayRequestAttributesContributor
 			infoDisplayContributor);
 
 		try {
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 				infoDisplayContributor.getInfoDisplayObjectProvider(
 					assetEntry.getClassPK());
 

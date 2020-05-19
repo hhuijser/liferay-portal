@@ -110,7 +110,7 @@ public class FragmentConfigurationField {
 				InfoDisplayContributorTracker infoDisplayContributorTracker =
 					_serviceTracker.getService();
 
-				InfoDisplayContributor infoDisplayContributor =
+				InfoDisplayContributor<?> infoDisplayContributor =
 					infoDisplayContributorTracker.getInfoDisplayContributor(
 						className);
 
@@ -120,7 +120,7 @@ public class FragmentConfigurationField {
 
 				long classPK = defaultValueJSONObject.getLong("classPK");
 
-				InfoDisplayObjectProvider infoDisplayObjectProvider =
+				InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 					infoDisplayContributor.getInfoDisplayObjectProvider(
 						classPK);
 

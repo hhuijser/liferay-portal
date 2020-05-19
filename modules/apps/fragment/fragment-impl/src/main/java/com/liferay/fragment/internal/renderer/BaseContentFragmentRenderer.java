@@ -60,8 +60,8 @@ public abstract class BaseContentFragmentRenderer implements FragmentRenderer {
 		Optional<Object> displayObjectOptional =
 			fragmentRendererContext.getDisplayObjectOptional();
 
-		InfoDisplayContributor infoDisplayContributor =
-			(InfoDisplayContributor)httpServletRequest.getAttribute(
+		InfoDisplayContributor<Object> infoDisplayContributor =
+			(InfoDisplayContributor<Object>)httpServletRequest.getAttribute(
 				InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR);
 
 		if (displayObjectOptional.isPresent() &&

@@ -122,12 +122,12 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 		entry.setScheduleRequest(schedulerRequest);
 		entry.setStartDate(startDate);
 		entry.setEndDate(endDate);
-		entry.setReportParameters(reportParameters);
 		entry.setRepeating(repeating);
 		entry.setRecurrence(recurrence);
 		entry.setEmailNotifications(emailNotifications);
 		entry.setEmailDelivery(emailDelivery);
 		entry.setPortletId(portletId);
+		entry.setReportParameters(reportParameters);
 
 		StringBundler sb = new StringBundler(5);
 
@@ -420,8 +420,8 @@ public class EntryLocalServiceImpl extends EntryLocalServiceBaseImpl {
 
 		Entry entry = entryLocalService.getEntry(entryId);
 
-		entry.setStatus(status.getValue());
 		entry.setErrorMessage(errorMessage);
+		entry.setStatus(status.getValue());
 
 		entryPersistence.update(entry);
 	}

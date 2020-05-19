@@ -151,7 +151,7 @@ public class SamlLoginAction extends BaseSamlStrutsAction {
 
 		for (SamlSpIdpConnection samlSpIdpConnection : samlSpIdpConnections) {
 			JSONObject samlIdpConnectionJSONObject = JSONUtil.put(
-				"enabled", samlSpIdpConnection.getEnabled()
+				"enabled", samlSpIdpConnection.isEnabled()
 			).put(
 				"entityId", samlSpIdpConnection.getSamlIdpEntityId()
 			).put(

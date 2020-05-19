@@ -61,8 +61,8 @@ public class SamlSpSessionLocalServiceImpl
 		samlSpSession.setUserName(user.getFullName());
 		samlSpSession.setCreateDate(now);
 		samlSpSession.setModifiedDate(now);
-		samlSpSession.setSamlSpSessionKey(samlSpSessionKey);
 		samlSpSession.setSamlIdpEntityId(samlIdpEntityId);
+		samlSpSession.setSamlSpSessionKey(samlSpSessionKey);
 		samlSpSession.setAssertionXml(assertionXml);
 		samlSpSession.setJSessionId(jSessionId);
 		samlSpSession.setNameIdFormat(nameIdFormat);
@@ -161,8 +161,8 @@ public class SamlSpSessionLocalServiceImpl
 		samlSpSession.setUserId(user.getUserId());
 		samlSpSession.setUserName(user.getFullName());
 		samlSpSession.setModifiedDate(new Date());
-		samlSpSession.setSamlSpSessionKey(samlSpSessionKey);
 		samlSpSession.setSamlIdpEntityId(samlIdpEntityId);
+		samlSpSession.setSamlSpSessionKey(samlSpSessionKey);
 		samlSpSession.setAssertionXml(assertionXml);
 		samlSpSession.setJSessionId(jSessionId);
 		samlSpSession.setNameIdFormat(nameIdFormat);

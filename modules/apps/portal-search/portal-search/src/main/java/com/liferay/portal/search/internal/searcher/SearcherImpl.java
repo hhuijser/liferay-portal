@@ -235,7 +235,7 @@ public class SearcherImpl implements Searcher {
 		}
 	}
 
-	protected Hits search(Indexer indexer, SearchContext searchContext) {
+	protected Hits search(Indexer<?> indexer, SearchContext searchContext) {
 		try {
 			return indexer.search(searchContext);
 		}
@@ -244,7 +244,9 @@ public class SearcherImpl implements Searcher {
 		}
 	}
 
-	protected long searchCount(Indexer indexer, SearchContext searchContext) {
+	protected long searchCount(
+		Indexer<?> indexer, SearchContext searchContext) {
+
 		try {
 			return indexer.searchCount(searchContext);
 		}

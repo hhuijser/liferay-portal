@@ -141,7 +141,8 @@ public class DepotAdminDisplayContext {
 			_liferayPortletRequest, _liferayPortletResponse, _getPortletURL(),
 			getSearchContainerId());
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(DepotEntry.class);
+		Indexer<DepotEntry> indexer = IndexerRegistryUtil.getIndexer(
+			DepotEntry.class);
 
 		SearchContext searchContext = SearchContextFactory.getInstance(
 			PortalUtil.getHttpServletRequest(_liferayPortletRequest));

@@ -74,8 +74,8 @@ public class SearchMVCRenderCommand implements MVCRenderCommand {
 
 		_clusterConfigurationModelIndexer.initialize();
 
-		Indexer indexer = _indexerRegistry.nullSafeGetIndexer(
-			ConfigurationModel.class);
+		Indexer<ConfigurationModel> indexer =
+			_indexerRegistry.nullSafeGetIndexer(ConfigurationModel.class);
 
 		SearchContext searchContext = new SearchContext();
 

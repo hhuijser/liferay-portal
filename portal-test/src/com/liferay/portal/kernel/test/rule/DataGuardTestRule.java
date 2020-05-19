@@ -550,7 +550,9 @@ public class DataGuardTestRule
 						return null;
 					});
 
-				Indexer indexer = IndexerRegistryUtil.getIndexer(modelClass);
+				Indexer<PersistedModel> indexer =
+					(Indexer<PersistedModel>)IndexerRegistryUtil.getIndexer(
+						modelClass);
 
 				if (indexer != null) {
 					indexer.delete(persistedModel);

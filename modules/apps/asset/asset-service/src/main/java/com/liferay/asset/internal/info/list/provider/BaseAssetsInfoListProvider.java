@@ -57,7 +57,7 @@ public abstract class BaseAssetsInfoListProvider {
 			availableClassNameId -> {
 				String className = portal.getClassName(availableClassNameId);
 
-				Indexer indexer = IndexerRegistryUtil.getIndexer(className);
+				Indexer<?> indexer = IndexerRegistryUtil.getIndexer(className);
 
 				if (indexer == null) {
 					return false;

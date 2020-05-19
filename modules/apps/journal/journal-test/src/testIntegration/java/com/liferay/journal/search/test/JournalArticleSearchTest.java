@@ -303,7 +303,8 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 
 		searchContext.setSorts(sort);
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(JournalArticle.class);
+		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
+			JournalArticle.class);
 
 		searchContext.setAttribute(Field.CONTENT, "some test");
 
@@ -333,7 +334,8 @@ public class JournalArticleSearchTest extends BaseSearchTestCase {
 
 		searchContext.setSorts(sort);
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(JournalArticle.class);
+		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
+			JournalArticle.class);
 
 		searchContext.setAttribute(Field.CONTENT, "test");
 

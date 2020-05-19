@@ -506,7 +506,7 @@ public class FragmentEntryConfigurationParserImpl
 			String className = GetterUtil.getString(
 				jsonObject.getString("className"));
 
-			InfoDisplayContributor infoDisplayContributor =
+			InfoDisplayContributor<?> infoDisplayContributor =
 				_infoDisplayContributorTracker.getInfoDisplayContributor(
 					className);
 
@@ -516,7 +516,7 @@ public class FragmentEntryConfigurationParserImpl
 
 			long classPK = GetterUtil.getLong(jsonObject.getString("classPK"));
 
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 				infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 
 			if (infoDisplayObjectProvider != null) {

@@ -316,7 +316,7 @@ public class SelectAssetDisplayPageDisplayContext {
 				InfoDisplayContributorTrackerUtil.
 					getInfoDisplayContributorTracker();
 
-			InfoDisplayContributor infoDisplayContributor =
+			InfoDisplayContributor<?> infoDisplayContributor =
 				infoDisplayContributorTracker.getInfoDisplayContributor(
 					PortalUtil.getClassName(_classNameId));
 
@@ -324,7 +324,7 @@ public class SelectAssetDisplayPageDisplayContext {
 				return false;
 			}
 
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 				infoDisplayContributor.getInfoDisplayObjectProvider(_classPK);
 
 			if (infoDisplayObjectProvider == null) {

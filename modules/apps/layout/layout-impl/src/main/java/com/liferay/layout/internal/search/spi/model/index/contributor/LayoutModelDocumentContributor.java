@@ -188,8 +188,7 @@ public class LayoutModelDocumentContributor
 		searchContext.setGroupIds(new long[] {stagingGroup.getGroupId()});
 		searchContext.setEntryClassNames(new String[] {Layout.class.getName()});
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(
-			Layout.class.getName());
+		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(Layout.class);
 
 		Hits hits = indexer.search(searchContext);
 

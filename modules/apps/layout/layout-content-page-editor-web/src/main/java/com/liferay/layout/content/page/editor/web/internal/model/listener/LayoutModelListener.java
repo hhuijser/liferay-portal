@@ -87,7 +87,8 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 		}
 
 		try {
-			Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
+			Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(
+				Layout.class);
 
 			indexer.delete(layout);
 		}
@@ -161,7 +162,7 @@ public class LayoutModelListener extends BaseModelListener<Layout> {
 	}
 
 	private void _reindexLayout(Layout layout) {
-		Indexer indexer = IndexerRegistryUtil.getIndexer(Layout.class);
+		Indexer<Layout> indexer = IndexerRegistryUtil.getIndexer(Layout.class);
 
 		if (indexer == null) {
 			return;

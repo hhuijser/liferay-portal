@@ -457,7 +457,7 @@ public class DLAdminDisplayContext {
 		int total = 0;
 
 		if (fileEntryTypeId >= 0) {
-			Indexer indexer = IndexerRegistryUtil.getIndexer(
+			Indexer<?> indexer = IndexerRegistryUtil.getIndexer(
 				DLFileEntryConstants.getClassName());
 
 			if (fileEntryTypeId > 0) {

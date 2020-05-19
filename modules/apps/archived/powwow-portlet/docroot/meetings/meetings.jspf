@@ -57,7 +57,7 @@ String orderByType = ParamUtil.getString(request, "orderByType", "desc");
 		<liferay-ui:search-container-results>
 
 			<%
-			Indexer indexer = IndexerRegistryUtil.getIndexer(PowwowMeeting.class);
+			Indexer<PowwowMeeting> indexer = IndexerRegistryUtil.getIndexer(PowwowMeeting.class);
 
 			SearchContext searchContext = SearchContextFactory.getInstance(request);
 

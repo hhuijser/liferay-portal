@@ -299,7 +299,7 @@ public class JournalArticleItemSelectorViewDisplayContext {
 					!orderByAsc);
 			}
 
-			Indexer indexer = JournalSearcher.getInstance();
+			Indexer<?> indexer = JournalSearcher.getInstance();
 
 			SearchContext searchContext = buildSearchContext(
 				folderIds, articleSearchContainer.getStart(),

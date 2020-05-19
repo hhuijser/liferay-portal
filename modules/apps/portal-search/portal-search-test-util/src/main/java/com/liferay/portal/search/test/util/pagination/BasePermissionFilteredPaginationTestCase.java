@@ -451,7 +451,7 @@ public abstract class BasePermissionFilteredPaginationTestCase
 				defaultSearchResultPermissionFilterConfiguration)
 		throws Exception {
 
-		Indexer indexer = Mockito.mock(Indexer.class);
+		Indexer<Object> indexer = Mockito.mock(Indexer.class);
 
 		Mockito.when(
 			indexer.hasPermission(

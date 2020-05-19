@@ -153,7 +153,7 @@ public class ReindexWhenIndexerIsDisabledTest {
 	protected BulkReindexer bulkReindexer;
 
 	@Mock
-	protected Indexer indexer;
+	protected Indexer<?> indexer;
 
 	private static final String _CLASS_NAME = RandomTestUtil.randomString();
 

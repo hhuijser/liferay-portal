@@ -47,7 +47,7 @@ public class StagingDocumentContributor implements DocumentContributor {
 			return;
 		}
 
-		Indexer indexer = indexerRegistry.getIndexer(className);
+		Indexer<?> indexer = indexerRegistry.getIndexer(className);
 
 		if (!indexer.isStagingAware()) {
 			return;

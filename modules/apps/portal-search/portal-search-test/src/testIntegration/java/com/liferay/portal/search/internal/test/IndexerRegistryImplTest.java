@@ -56,8 +56,8 @@ public class IndexerRegistryImplTest {
 		BundleContext bundleContext = bundle.getBundleContext();
 
 		_serviceRegistration = bundleContext.registerService(
-			Indexer.class, new TestIndexer(_CLASS_NAME),
-			new HashMapDictionary<>());
+			(Class<Indexer<?>>)(Class<?>)Indexer.class,
+			new TestIndexer(_CLASS_NAME), new HashMapDictionary<>());
 	}
 
 	@AfterClass
@@ -89,7 +89,7 @@ public class IndexerRegistryImplTest {
 
 	private static final String _CLASS_NAME = RandomTestUtil.randomString();
 
-	private static ServiceRegistration<Indexer> _serviceRegistration;
+	private static ServiceRegistration<Indexer<?>> _serviceRegistration;
 
 	@Inject
 	private IndexerRegistry _indexerRegistry;

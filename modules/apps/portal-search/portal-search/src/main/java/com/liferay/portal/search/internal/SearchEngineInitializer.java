@@ -135,11 +135,13 @@ public class SearchEngineInitializer implements Runnable {
 
 			if (_companyId == CompanyConstants.SYSTEM) {
 				_indexers = ServiceTrackerListFactory.open(
-					_bundleContext, Indexer.class, "(system.index=true)");
+					_bundleContext, (Class<Indexer<?>>)(Class<?>)Indexer.class,
+					"(system.index=true)");
 			}
 			else {
 				_indexers = ServiceTrackerListFactory.open(
-					_bundleContext, Indexer.class, "(!(system.index=true))");
+					_bundleContext, (Class<Indexer<?>>)(Class<?>)Indexer.class,
+					"(!(system.index=true))");
 			}
 
 			for (Indexer<?> indexer : _indexers) {
@@ -220,7 +222,7 @@ public class SearchEngineInitializer implements Runnable {
 	private final long _companyId;
 	private final CrossClusterReplicationHelper _crossClusterReplicationHelper;
 	private boolean _finished;
-	private ServiceTrackerList<Indexer, Indexer> _indexers;
+	private ServiceTrackerList<Indexer<?>, Indexer<?>> _indexers;
 	private final IndexNameBuilder _indexNameBuilder;
 	private final PortalExecutorManager _portalExecutorManager;
 	private final Set<String> _usedSearchEngineIds = new HashSet<>();

@@ -259,7 +259,7 @@ public class RedirectNotFoundEntriesDisplayContext {
 			RedirectNotFoundEntrySearch redirectNotFoundEntrySearch)
 		throws Exception {
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(
+		Indexer<RedirectNotFoundEntry> indexer = IndexerRegistryUtil.getIndexer(
 			RedirectNotFoundEntry.class);
 
 		SearchContext searchContext = SearchContextFactory.getInstance(

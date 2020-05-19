@@ -107,8 +107,8 @@ public class LayoutDisplayObjectFragmentRenderer implements FragmentRenderer {
 	}
 
 	private Object _getDisplayObject(HttpServletRequest httpServletRequest) {
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
-			(InfoDisplayObjectProvider)httpServletRequest.getAttribute(
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
+			(InfoDisplayObjectProvider<?>)httpServletRequest.getAttribute(
 				AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
 		if (infoDisplayObjectProvider == null) {

@@ -61,15 +61,15 @@ public class CopyrightCheck extends BaseFileCheck {
 
 		String customCopyright = _getCustomCopyright(absolutePath);
 
-		StringBuffer stringBuffer = new StringBuffer();
-		Matcher matcher = _yearPattern.matcher(content);
 		String year = null;
 
+		Matcher matcher = _copyrightPattern.matcher(content);
+
 		if (matcher.find()) {
-			year = matcher.group();
-			matcher.appendReplacement(stringBuffer, _YEAR_VARIABLE);
-			matcher.appendTail(stringBuffer);
-			content = stringBuffer.toString();
+			year = matcher.group(1);
+
+			content = StringUtil.replaceFirst(
+				content, year, _YEAR_REPLACEMENT, matcher.start());
 		}
 
 		if (!content.contains(copyright) &&
@@ -99,7 +99,7 @@ public class CopyrightCheck extends BaseFileCheck {
 		}
 
 		if (year != null) {
-			content = StringUtil.replaceFirst(content, _YEAR_VARIABLE, year);
+			content = StringUtil.replaceFirst(content, _YEAR_REPLACEMENT, year);
 		}
 
 		return content;
@@ -181,9 +181,10 @@ public class CopyrightCheck extends BaseFileCheck {
 
 	private static final String _COPYRIGHT_FILE_NAME_KEY = "copyrightFileName";
 
-	private static final String _YEAR_VARIABLE = "<%= YEAR %>";
+	private static final String _YEAR_REPLACEMENT = "<%= YEAR %>";
 
-	private static final Pattern _yearPattern = Pattern.compile("\\d{4}");
+	private static final Pattern _copyrightPattern = Pattern.compile(
+		"\\(c\\) (\\d{4}) Liferay");
 
 	private String _commercialCopyright;
 	private String _copyright;

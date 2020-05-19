@@ -37,7 +37,9 @@ public class UpgradeWorkflowTest {
 
 	@Test
 	public void testUpgrade() throws Exception {
-		new UpgradeWorkflow().upgrade();
+		UpgradeWorkflow upgradeWorkflow = new UpgradeWorkflow();
+
+		upgradeWorkflow.upgrade();
 	}
 
 }

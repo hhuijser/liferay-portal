@@ -1266,7 +1266,7 @@ public class JournalDisplayContext {
 					!orderByAsc);
 			}
 
-			Indexer indexer = JournalSearcher.getInstance();
+			Indexer<?> indexer = JournalSearcher.getInstance();
 
 			SearchContext searchContext = buildSearchContext(
 				folderIds, articleSearchContainer.getStart(),
@@ -1368,7 +1368,8 @@ public class JournalDisplayContext {
 
 		List<MBMessage> mbMessages = new ArrayList<>();
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(MBMessage.class);
+		Indexer<MBMessage> indexer = IndexerRegistryUtil.getIndexer(
+			MBMessage.class);
 
 		Hits hits = indexer.search(searchContext);
 
@@ -1489,7 +1490,8 @@ public class JournalDisplayContext {
 				!orderByAsc);
 		}
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(JournalArticle.class);
+		Indexer<JournalArticle> indexer = IndexerRegistryUtil.getIndexer(
+			JournalArticle.class);
 
 		SearchContext searchContext = buildSearchContext(
 			folderIds, articleVersionsSearchContainer.getStart(),

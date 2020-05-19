@@ -315,8 +315,8 @@ public class CalendarResourceLocalServiceImpl
 			calendarResource.getGroupId(),
 			calendarResource.getCalendarResourceId());
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(
-			Calendar.class.getName());
+		Indexer<Calendar> indexer = IndexerRegistryUtil.getIndexer(
+			Calendar.class);
 
 		for (Calendar calendar : calendars) {
 			indexer.reindex(calendar);

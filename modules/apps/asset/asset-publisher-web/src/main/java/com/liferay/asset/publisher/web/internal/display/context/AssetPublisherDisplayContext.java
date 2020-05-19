@@ -669,7 +669,7 @@ public class AssetPublisherDisplayContext {
 		_availableClassNameIds = ArrayUtil.filter(
 			availableClassNameIds,
 			availableClassNameId -> {
-				Indexer indexer = IndexerRegistryUtil.getIndexer(
+				Indexer<?> indexer = IndexerRegistryUtil.getIndexer(
 					PortalUtil.getClassName(availableClassNameId));
 
 				return indexer != null;

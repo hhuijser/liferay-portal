@@ -260,7 +260,7 @@ public class DLFileEntryIndexerLocalizedContentTest {
 			SearchContext searchContext = _getSearchContext(
 				searchTerm, locale, groupId);
 
-			Indexer indexer = indexerRegistry.getIndexer(
+			Indexer<?> indexer = indexerRegistry.getIndexer(
 				DLFileEntryConstants.getClassName());
 
 			Hits hits = indexer.search(searchContext);

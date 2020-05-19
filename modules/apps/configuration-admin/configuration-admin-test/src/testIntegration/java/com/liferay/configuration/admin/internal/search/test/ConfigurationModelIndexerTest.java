@@ -214,7 +214,7 @@ public class ConfigurationModelIndexerTest {
 	private final List<Document> _documents = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.ConfigurationModelIndexer")
-	private Indexer _indexer;
+	private Indexer<?> _indexer;
 
 	@Inject
 	private IndexWriterHelper _indexWriterHelper;

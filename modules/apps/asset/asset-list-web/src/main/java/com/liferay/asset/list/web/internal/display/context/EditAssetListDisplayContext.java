@@ -378,7 +378,7 @@ public class EditAssetListDisplayContext {
 		_availableClassNameIds = ArrayUtil.filter(
 			_availableClassNameIds,
 			availableClassNameId -> {
-				Indexer indexer = IndexerRegistryUtil.getIndexer(
+				Indexer<?> indexer = IndexerRegistryUtil.getIndexer(
 					PortalUtil.getClassName(availableClassNameId));
 
 				return indexer != null;

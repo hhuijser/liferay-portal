@@ -80,14 +80,18 @@ public class PortletLayoutDisplayContext {
 			long classPK = rowConfigJSONObject.getLong("classPK");
 
 			if ((classNameId != 0L) && (classPK != 0L)) {
-				InfoDisplayContributor infoDisplayContributor =
-					_infoDisplayContributorTracker.getInfoDisplayContributor(
-						PortalUtil.getClassName(classNameId));
+				InfoDisplayContributor<Object> infoDisplayContributor =
+					(InfoDisplayContributor<Object>)
+						_infoDisplayContributorTracker.
+							getInfoDisplayContributor(
+								PortalUtil.getClassName(classNameId));
 
 				if (infoDisplayContributor != null) {
-					InfoDisplayObjectProvider infoDisplayObjectProvider =
-						infoDisplayContributor.getInfoDisplayObjectProvider(
-							classPK);
+					InfoDisplayObjectProvider<Object>
+						infoDisplayObjectProvider =
+							(InfoDisplayObjectProvider<Object>)
+								infoDisplayContributor.
+									getInfoDisplayObjectProvider(classPK);
 
 					if (infoDisplayObjectProvider != null) {
 						Object object =

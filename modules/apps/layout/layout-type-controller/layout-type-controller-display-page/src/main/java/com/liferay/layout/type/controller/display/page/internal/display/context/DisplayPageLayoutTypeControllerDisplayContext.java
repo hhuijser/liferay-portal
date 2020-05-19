@@ -49,11 +49,11 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 		_httpServletRequest = httpServletRequest;
 
 		_infoDisplayObjectProvider =
-			(InfoDisplayObjectProvider)httpServletRequest.getAttribute(
+			(InfoDisplayObjectProvider<Object>)httpServletRequest.getAttribute(
 				AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
-		InfoDisplayContributor infoDisplayContributor =
-			(InfoDisplayContributor)_httpServletRequest.getAttribute(
+		InfoDisplayContributor<Object> infoDisplayContributor =
+			(InfoDisplayContributor<Object>)_httpServletRequest.getAttribute(
 				InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR);
 
 		if ((infoDisplayContributor == null) &&
@@ -64,9 +64,10 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 					ContentPageEditorWebKeys.ASSET_DISPLAY_CONTRIBUTOR_TRACKER);
 
 			infoDisplayContributor =
-				infoDisplayContributorTracker.getInfoDisplayContributor(
-					PortalUtil.getClassName(
-						_infoDisplayObjectProvider.getClassNameId()));
+				(InfoDisplayContributor<Object>)
+					infoDisplayContributorTracker.getInfoDisplayContributor(
+						PortalUtil.getClassName(
+							_infoDisplayObjectProvider.getClassNameId()));
 		}
 
 		_infoDisplayContributor = infoDisplayContributor;
@@ -121,7 +122,7 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 		return infoDisplayFieldsValues;
 	}
 
-	public InfoDisplayObjectProvider getInfoDisplayObjectProvider() {
+	public InfoDisplayObjectProvider<?> getInfoDisplayObjectProvider() {
 		return _infoDisplayObjectProvider;
 	}
 
@@ -162,9 +163,9 @@ public class DisplayPageLayoutTypeControllerDisplayContext {
 	}
 
 	private final HttpServletRequest _httpServletRequest;
-	private final InfoDisplayContributor _infoDisplayContributor;
+	private final InfoDisplayContributor<Object> _infoDisplayContributor;
 	private Map<Long, Map<String, Object>> _infoDisplayFieldsValuesMap =
 		new HashMap<>();
-	private final InfoDisplayObjectProvider _infoDisplayObjectProvider;
+	private final InfoDisplayObjectProvider<Object> _infoDisplayObjectProvider;
 
 }

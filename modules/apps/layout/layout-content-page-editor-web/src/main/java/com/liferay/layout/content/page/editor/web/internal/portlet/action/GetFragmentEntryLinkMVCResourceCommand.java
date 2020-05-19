@@ -99,19 +99,19 @@ public class GetFragmentEntryLinkMVCResourceCommand
 			HttpServletRequest httpServletRequest =
 				_portal.getHttpServletRequest(resourceRequest);
 
-			InfoDisplayContributor currentInfoDisplayContributor =
-				(InfoDisplayContributor)httpServletRequest.getAttribute(
+			InfoDisplayContributor<?> currentInfoDisplayContributor =
+				(InfoDisplayContributor<?>)httpServletRequest.getAttribute(
 					InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR);
 
 			if (Validator.isNotNull(collectionItemClassName) &&
 				(collectionItemClassPK > 0)) {
 
-				InfoDisplayContributor infoDisplayContributor =
+				InfoDisplayContributor<?> infoDisplayContributor =
 					_infoDisplayContributorTracker.getInfoDisplayContributor(
 						collectionItemClassName);
 
 				if (infoDisplayContributor != null) {
-					InfoDisplayObjectProvider infoDisplayObjectProvider =
+					InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 						infoDisplayContributor.getInfoDisplayObjectProvider(
 							collectionItemClassPK);
 

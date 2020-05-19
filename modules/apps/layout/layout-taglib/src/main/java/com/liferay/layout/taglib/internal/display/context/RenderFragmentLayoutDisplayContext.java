@@ -85,17 +85,21 @@ public class RenderFragmentLayoutDisplayContext {
 		String mappedField = rowConfigJSONObject.getString("mappedField");
 
 		if (Validator.isNotNull(mappedField)) {
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
-				(InfoDisplayObjectProvider)_httpServletRequest.getAttribute(
-					AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
+			InfoDisplayObjectProvider<Object> infoDisplayObjectProvider =
+				(InfoDisplayObjectProvider<Object>)
+					_httpServletRequest.getAttribute(
+						AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
 			if ((_infoDisplayContributorTracker != null) &&
 				(infoDisplayObjectProvider != null)) {
 
-				InfoDisplayContributor infoDisplayContributor =
-					_infoDisplayContributorTracker.getInfoDisplayContributor(
-						PortalUtil.getClassName(
-							infoDisplayObjectProvider.getClassNameId()));
+				InfoDisplayContributor<Object> infoDisplayContributor =
+					(InfoDisplayContributor<Object>)
+						_infoDisplayContributorTracker.
+							getInfoDisplayContributor(
+								PortalUtil.getClassName(
+									infoDisplayObjectProvider.
+										getClassNameId()));
 
 				if (infoDisplayContributor != null) {
 					Object object =
@@ -120,14 +124,18 @@ public class RenderFragmentLayoutDisplayContext {
 			long classPK = rowConfigJSONObject.getLong("classPK");
 
 			if ((classNameId != 0L) && (classPK != 0L)) {
-				InfoDisplayContributor infoDisplayContributor =
-					_infoDisplayContributorTracker.getInfoDisplayContributor(
-						PortalUtil.getClassName(classNameId));
+				InfoDisplayContributor<Object> infoDisplayContributor =
+					(InfoDisplayContributor<Object>)
+						_infoDisplayContributorTracker.
+							getInfoDisplayContributor(
+								PortalUtil.getClassName(classNameId));
 
 				if (infoDisplayContributor != null) {
-					InfoDisplayObjectProvider infoDisplayObjectProvider =
-						infoDisplayContributor.getInfoDisplayObjectProvider(
-							classPK);
+					InfoDisplayObjectProvider<Object>
+						infoDisplayObjectProvider =
+							(InfoDisplayObjectProvider<Object>)
+								infoDisplayContributor.
+									getInfoDisplayObjectProvider(classPK);
 
 					if (infoDisplayObjectProvider != null) {
 						Object object =
@@ -194,7 +202,7 @@ public class RenderFragmentLayoutDisplayContext {
 			listObjectReference, defaultLayoutListRetrieverContext);
 	}
 
-	public InfoDisplayContributor getCollectionInfoDisplayContributor(
+	public InfoDisplayContributor<?> getCollectionInfoDisplayContributor(
 		CollectionLayoutStructureItem collectionLayoutStructureItem) {
 
 		ListObjectReference listObjectReference = _getListObjectReference(

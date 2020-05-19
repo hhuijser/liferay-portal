@@ -54,7 +54,7 @@ String ppid = ParamUtil.getString(request, "p_p_id");
 		<%
 		AssetRendererFactory assetRendererFactory = displayPageLayoutTypeControllerDisplayContext.getAssetRendererFactory();
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider = displayPageLayoutTypeControllerDisplayContext.getInfoDisplayObjectProvider();
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider = displayPageLayoutTypeControllerDisplayContext.getInfoDisplayObjectProvider();
 		%>
 
 		<c:if test="<%= assetRendererFactory != null %>">

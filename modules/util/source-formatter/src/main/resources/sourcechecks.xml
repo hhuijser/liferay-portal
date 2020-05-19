@@ -201,6 +201,7 @@
 		</check>
 		<check name="CopyrightCheck">
 			<property name="copyrightFileName" value="copyright.txt" />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="EmptyCollectionCheck" />
 		<check name="GetterUtilCheck" />
@@ -472,6 +473,7 @@
 		</check>
 		<check name="CopyrightCheck">
 			<property name="copyrightFileName" value="copyright.txt" />
+			<property name="enabled" value="false" />
 		</check>
 		<check name="EmptyCollectionCheck" />
 		<check name="GetterUtilCheck" />

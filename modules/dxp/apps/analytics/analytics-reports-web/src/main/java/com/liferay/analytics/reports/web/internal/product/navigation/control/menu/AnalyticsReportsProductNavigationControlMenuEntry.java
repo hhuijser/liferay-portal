@@ -143,8 +143,8 @@ public class AnalyticsReportsProductNavigationControlMenuEntry
 				ReflectionUtil.throwException(windowStateException);
 			}
 
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
-				(InfoDisplayObjectProvider)httpServletRequest.getAttribute(
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
+				(InfoDisplayObjectProvider<?>)httpServletRequest.getAttribute(
 					AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
 			portletURL.setParameter(
@@ -258,8 +258,8 @@ public class AnalyticsReportsProductNavigationControlMenuEntry
 	private boolean _hasAnalyticsReportsInfoItem(
 		HttpServletRequest httpServletRequest) {
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
-			(InfoDisplayObjectProvider)httpServletRequest.getAttribute(
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
+			(InfoDisplayObjectProvider<?>)httpServletRequest.getAttribute(
 				AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
 		if (infoDisplayObjectProvider == null) {

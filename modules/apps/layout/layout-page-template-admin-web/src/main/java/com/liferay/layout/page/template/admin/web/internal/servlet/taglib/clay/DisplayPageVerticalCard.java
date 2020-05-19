@@ -215,7 +215,7 @@ public class DisplayPageVerticalCard
 	}
 
 	private String _getTypeLabel() {
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				_layoutPageTemplateEntry.getClassName());
 

@@ -220,11 +220,11 @@ public class FragmentEntryLinkModelListener
 			_portal.getClassNameId(FragmentEntryLink.class),
 			fragmentEntryLink.getClassPK());
 
-		Set<InfoDisplayObjectProvider> infoDisplayObjectProviders =
+		Set<InfoDisplayObjectProvider<?>> infoDisplayObjectProviders =
 			ContentUtil.getFragmentEntryLinkMappedInfoDisplayObjectProviders(
 				fragmentEntryLink);
 
-		for (InfoDisplayObjectProvider infoDisplayObjectProvider :
+		for (InfoDisplayObjectProvider<?> infoDisplayObjectProvider :
 				infoDisplayObjectProviders) {
 
 			LayoutClassedModelUsage layoutClassedModelUsage =

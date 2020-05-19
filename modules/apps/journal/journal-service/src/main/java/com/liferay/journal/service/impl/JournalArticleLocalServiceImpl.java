@@ -8820,7 +8820,7 @@ public class JournalArticleLocalServiceImpl
 
 		Map<String, String> friendlyURLMap = new HashMap<>();
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			_infoDisplayContributorTracker.getInfoDisplayContributor(
 				JournalArticle.class.getName());
 
@@ -8828,7 +8828,7 @@ public class JournalArticleLocalServiceImpl
 			return friendlyURLMap;
 		}
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			infoDisplayContributor.getInfoDisplayObjectProvider(
 				article.getResourcePrimKey());
 

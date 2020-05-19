@@ -33,7 +33,7 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 %>
 
 <liferay-util:html-top>
-	<link href="<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/css/main.css") %>" rel="stylesheet" type="text/css" />
+	<link href='<%= PortalUtil.getStaticResourceURL(request, application.getContextPath() + "/css/main.css") %>' rel="stylesheet" type="text/css" />
 </liferay-util:html-top>
 
 <portlet:actionURL copyCurrentRenderParameters="<%= true %>" name="/layout/edit_seo" var="editSEOURL" />
@@ -89,7 +89,7 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 							</aui:input>
 						</div>
 
-						<div class="<%= selLayoutSEOEntry.isCanonicalURLEnabled() ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />canonicalURLAlert">
+						<div class='<%= selLayoutSEOEntry.isCanonicalURLEnabled() ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />canonicalURLAlert">
 							<%= infoCanonicalURL %>
 						</div>
 
@@ -166,7 +166,7 @@ UnicodeProperties layoutTypeSettings = selLayout.getTypeSettingsProperties();
 			<c:if test="<%= PortalUtil.isLayoutSitemapable(selLayout) %>">
 				<h4><liferay-ui:message key="sitemap" /></h4>
 
-				<div class="alert alert-warning layout-prototype-info-message <%= selLayout.isLayoutPrototypeLinkActive() ? StringPool.BLANK : "hide" %>">
+				<div class='alert alert-warning layout-prototype-info-message <%= selLayout.isLayoutPrototypeLinkActive() ? StringPool.BLANK : "hide" %>'>
 					<liferay-ui:message arguments='<%= new String[] {"inherit-changes", "general"} %>' key="some-page-settings-are-unavailable-because-x-is-enabled" />
 				</div>
 

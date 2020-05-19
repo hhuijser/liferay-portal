@@ -106,7 +106,7 @@ List<UserSearchFacetTermDisplayContext> userSearchFacetTermDisplayContexts = use
 													type="checkbox"
 												/>
 
-												<span class="custom-control-label term-name <%= userSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>">
+												<span class='custom-control-label term-name <%= userSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>'>
 													<span class="custom-control-label-text">
 														<%= HtmlUtil.escape(userSearchFacetTermDisplayContext.getUserName()) %>
 													</span>

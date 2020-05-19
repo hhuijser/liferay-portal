@@ -57,11 +57,11 @@ ChangeListsManagementToolbarDisplayContext changeListsManagementToolbarDisplayCo
 						cssClass="autofit-col-expand"
 						href="<%= changeListsDisplayContext.getReviewChangesURL(ctCollection.getCtCollectionId()) %>"
 					>
-						<div class="change-list-name <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>">
+						<div class='change-list-name <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>'>
 							<%= ctCollection.getName() %>
 						</div>
 
-						<div class="change-list-description <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>">
+						<div class='change-list-description <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>'>
 							<%= ctCollection.getDescription() %>
 						</div>
 					</liferay-ui:search-container-column-text>
@@ -72,11 +72,11 @@ ChangeListsManagementToolbarDisplayContext changeListsManagementToolbarDisplayCo
 						href="<%= changeListsDisplayContext.getReviewChangesURL(ctCollection.getCtCollectionId()) %>"
 						name="publication"
 					>
-						<div class="change-list-name <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>">
+						<div class='change-list-name <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>'>
 							<%= ctCollection.getName() %>
 						</div>
 
-						<div class="change-list-description <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>">
+						<div class='change-list-description <%= (changeListsDisplayContext.getCtCollectionId() == ctCollection.getCtCollectionId()) ? "font-italic" : StringPool.BLANK %>'>
 							<%= ctCollection.getDescription() %>
 						</div>
 					</liferay-ui:search-container-column-text>

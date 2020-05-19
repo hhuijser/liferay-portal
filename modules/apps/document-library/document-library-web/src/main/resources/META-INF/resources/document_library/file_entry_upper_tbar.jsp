@@ -40,7 +40,7 @@ FileVersion fileVersion = (FileVersion)request.getAttribute("file_entry_upper_tb
 						</c:if>
 
 						<c:if test="<%= dlViewFileVersionDisplayContext.isShared() %>">
-							<span class="inline-item inline-item-after lfr-portal-tooltip state-icon" title="<%= LanguageUtil.get(request, "shared") %>">
+							<span class="inline-item inline-item-after lfr-portal-tooltip state-icon" title='<%= LanguageUtil.get(request, "shared") %>'>
 								<aui:icon image="users" markupView="lexicon" message="shared" />
 							</span>
 						</c:if>

@@ -106,7 +106,7 @@ if (forcePost && (portletURL != null)) {
 					%>
 
 						<li>
-							<a class="dropdown-icon" href="<%= HtmlUtil.escapeHREF(curDeltaURL) %>" onClick="<%= forcePost ? _getOnClick(namespace, deltaParam, curDelta) : "" %>">
+							<a class="dropdown-icon" href="<%= HtmlUtil.escapeHREF(curDeltaURL) %>" onClick='<%= forcePost ? _getOnClick(namespace, deltaParam, curDelta) : "" %>'>
 								<%= String.valueOf(curDelta) %>
 
 								<span class="sr-only"><liferay-ui:message key="entries-per-page" /></span>
@@ -127,7 +127,7 @@ if (forcePost && (portletURL != null)) {
 
 		<ul class="pagination">
 			<li class="page-item <%= (cur > 1) ? StringPool.BLANK : "disabled" %>">
-				<a class="page-link" href="<%= (cur > 1) ? _getHREF(formName, namespace + curParam, cur - 1, jsCall, url, urlAnchor) : "javascript:;" %>" onclick="<%= ((cur > 1) && forcePost) ? _getOnClick(namespace, curParam, cur -1) : "" %>">
+				<a class="page-link" href='<%= (cur > 1) ? _getHREF(formName, namespace + curParam, cur - 1, jsCall, url, urlAnchor) : "javascript:;" %>' onclick='<%= ((cur > 1) && forcePost) ? _getOnClick(namespace, curParam, cur -1) : "" %>'>
 					<liferay-ui:icon
 						icon="angle-left"
 						markupView="lexicon"
@@ -143,8 +143,8 @@ if (forcePost && (portletURL != null)) {
 					for (int i = 1; i <= pages; i++) {
 					%>
 
-						<li class="page-item <%= (i == cur) ? "active" : StringPool.BLANK %>">
-							<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
+						<li class='page-item <%= (i == cur) ? "active" : StringPool.BLANK %>'>
+							<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
 						</li>
 
 					<%
@@ -154,13 +154,13 @@ if (forcePost && (portletURL != null)) {
 				</c:when>
 				<c:when test="<%= cur == 1 %>">
 					<li class="active page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, 1) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span>1</a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, 1) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span>1</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 2, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, 2) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span>2</a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 2, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, 2) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span>2</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 3, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, 3) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span>3</a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 3, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, 3) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span>3</a>
 					</li>
 					<li class="dropdown page-item">
 						<a class="dropdown-toggle page-link page-link" data-toggle="liferay-dropdown" href="javascript:;">
@@ -180,7 +180,7 @@ if (forcePost && (portletURL != null)) {
 								%>
 
 									<li>
-										<a class="dropdown-icon" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
+										<a class="dropdown-icon" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
 									</li>
 
 								<%
@@ -191,12 +191,12 @@ if (forcePost && (portletURL != null)) {
 						</div>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, pages) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages %></a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, pages) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages %></a>
 					</li>
 				</c:when>
 				<c:when test="<%= cur == pages %>">
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, 1) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span>1</a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, 1) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span>1</a>
 					</li>
 					<li class="dropdown page-item">
 						<a class="dropdown-toggle page-link" data-toggle="liferay-dropdown" href="javascript:;">
@@ -213,7 +213,7 @@ if (forcePost && (portletURL != null)) {
 								%>
 
 									<li>
-										<a class="dropdown-icon" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
+										<a class="dropdown-icon" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
 									</li>
 
 								<%
@@ -224,18 +224,18 @@ if (forcePost && (portletURL != null)) {
 						</div>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages - 2, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, pages - 2) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages - 2 %></a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages - 2, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, pages - 2) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages - 2 %></a>
 					</li>
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages - 1, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, pages - 1) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages - 1 %></a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages - 1, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, pages - 1) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages - 1 %></a>
 					</li>
 					<li class="active page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, pages) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages %></a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, pages) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages %></a>
 					</li>
 				</c:when>
 				<c:otherwise>
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, 1) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span>1</a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, 1, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, 1) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span>1</a>
 					</li>
 
 					<c:if test="<%= (cur - 3) > 1 %>">
@@ -255,7 +255,7 @@ if (forcePost && (portletURL != null)) {
 					%>
 
 						<li class="page-item">
-							<a class="dropdown-icon page-link" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
+							<a class="dropdown-icon page-link" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
 						</li>
 
 					<%
@@ -270,17 +270,17 @@ if (forcePost && (portletURL != null)) {
 
 					<c:if test="<%= (cur - 1) > 1 %>">
 						<li class="page-item">
-							<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, cur - 1, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, cur - 1) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= cur - 1 %></a>
+							<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, cur - 1, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, cur - 1) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= cur - 1 %></a>
 						</li>
 					</c:if>
 
 					<li class="active page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, cur, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, cur) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= cur %></a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, cur, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, cur) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= cur %></a>
 					</li>
 
 					<c:if test="<%= (cur + 1) < pages %>">
 						<li class="page-item">
-							<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, cur + 1, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, cur + 1) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= cur + 1 %></a>
+							<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, cur + 1, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, cur + 1) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= cur + 1 %></a>
 						</li>
 					</c:if>
 
@@ -303,7 +303,7 @@ if (forcePost && (portletURL != null)) {
 					%>
 
 						<li class="page-item">
-							<a class="dropdown-icon page-link" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
+							<a class="dropdown-icon page-link" href="<%= _getHREF(formName, namespace + curParam, i, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, i) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= i %></a>
 						</li>
 
 					<%
@@ -317,13 +317,13 @@ if (forcePost && (portletURL != null)) {
 					</c:if>
 
 					<li class="page-item">
-						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages, jsCall, url, urlAnchor) %>" onclick="<%= forcePost ? _getOnClick(namespace, curParam, pages) : "" %>"><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages %></a>
+						<a class="page-link" href="<%= _getHREF(formName, namespace + curParam, pages, jsCall, url, urlAnchor) %>" onclick='<%= forcePost ? _getOnClick(namespace, curParam, pages) : "" %>'><span class="sr-only"><liferay-ui:message key="page" /></span><%= pages %></a>
 					</li>
 				</c:otherwise>
 			</c:choose>
 
 			<li class="page-item <%= (cur < pages) ? StringPool.BLANK : "disabled" %>">
-				<a class="page-link" href="<%= (cur < pages) ? _getHREF(formName, namespace + curParam, cur + 1, jsCall, url, urlAnchor) : "javascript:;" %>" onclick="<%= ((cur < pages) && forcePost) ? _getOnClick(namespace, curParam, cur + 1) : "" %>">
+				<a class="page-link" href='<%= (cur < pages) ? _getHREF(formName, namespace + curParam, cur + 1, jsCall, url, urlAnchor) : "javascript:;" %>' onclick='<%= ((cur < pages) && forcePost) ? _getOnClick(namespace, curParam, cur + 1) : "" %>'>
 					<liferay-ui:icon
 						icon="angle-right"
 						markupView="lexicon"

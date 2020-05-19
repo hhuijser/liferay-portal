@@ -168,7 +168,7 @@ User selUser = (User)request.getAttribute(UsersAdminWebKeys.SELECTED_USER);
 						/>
 					</c:when>
 					<c:otherwise>
-						<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="portrait" />" src="<%= selUser.getPortraitURL(themeDisplay) %>" />
+						<img alt='<liferay-ui:message escapeAttribute="<%= true %>" key="portrait" />' src="<%= selUser.getPortraitURL(themeDisplay) %>" />
 					</c:otherwise>
 				</c:choose>
 			</c:if>

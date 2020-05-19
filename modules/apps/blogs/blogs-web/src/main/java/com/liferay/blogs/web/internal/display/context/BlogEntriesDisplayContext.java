@@ -241,7 +241,8 @@ public class BlogEntriesDisplayContext {
 			}
 		}
 		else {
-			Indexer indexer = IndexerRegistryUtil.getIndexer(BlogsEntry.class);
+			Indexer<BlogsEntry> indexer = IndexerRegistryUtil.getIndexer(
+				BlogsEntry.class);
 
 			SearchContext searchContext = SearchContextFactory.getInstance(
 				_httpServletRequest);

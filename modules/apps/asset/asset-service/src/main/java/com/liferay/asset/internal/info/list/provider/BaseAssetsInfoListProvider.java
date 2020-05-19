@@ -67,7 +67,7 @@ public abstract class BaseAssetsInfoListProvider {
 					className = FileEntry.class.getName();
 				}
 
-				InfoDisplayContributor infoDisplayContributor =
+				InfoDisplayContributor<?> infoDisplayContributor =
 					infoDisplayContributorTracker.getInfoDisplayContributor(
 						className);
 

@@ -89,7 +89,7 @@ public class DefaultAssetDisplayPageFriendlyURLResolver
 		JournalArticle journalArticle = _getJournalArticle(
 			groupId, friendlyURL);
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			_getInfoDisplayObjectProvider(journalArticle);
 
 		if (Validator.isNull(journalArticle.getLayoutUuid()) &&
@@ -124,7 +124,7 @@ public class DefaultAssetDisplayPageFriendlyURLResolver
 		JournalArticle journalArticle = _getJournalArticle(
 			groupId, friendlyURL);
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			_getInfoDisplayObjectProvider(journalArticle);
 
 		if (Validator.isNull(journalArticle.getLayoutUuid()) &&
@@ -286,7 +286,7 @@ public class DefaultAssetDisplayPageFriendlyURLResolver
 			_portal.addPageDescription(pageDescription, httpServletRequest);
 		}
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
+		InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 			_getInfoDisplayObjectProvider(journalArticle);
 
 		if (infoDisplayObjectProvider == null) {
@@ -328,11 +328,11 @@ public class DefaultAssetDisplayPageFriendlyURLResolver
 		return friendlyURL.substring(urlSeparator.length());
 	}
 
-	private InfoDisplayObjectProvider _getInfoDisplayObjectProvider(
+	private InfoDisplayObjectProvider<?> _getInfoDisplayObjectProvider(
 			JournalArticle journalArticle)
 		throws PortalException {
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			infoDisplayContributorTracker.getInfoDisplayContributor(
 				JournalArticle.class.getName());
 

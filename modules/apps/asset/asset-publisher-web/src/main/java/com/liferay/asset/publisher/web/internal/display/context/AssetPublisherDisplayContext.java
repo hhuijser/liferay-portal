@@ -333,8 +333,8 @@ public class AssetPublisherDisplayContext {
 				new DefaultInfoListProviderContext(
 					_themeDisplay.getScopeGroup(), _themeDisplay.getUser());
 
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
-				(InfoDisplayObjectProvider)_portletRequest.getAttribute(
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
+				(InfoDisplayObjectProvider<?>)_portletRequest.getAttribute(
 					AssetDisplayPageWebKeys.INFO_DISPLAY_OBJECT_PROVIDER);
 
 			defaultInfoListProviderContext.setInfoDisplayObjectProvider(

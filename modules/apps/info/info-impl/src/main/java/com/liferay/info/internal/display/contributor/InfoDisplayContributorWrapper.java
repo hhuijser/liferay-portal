@@ -45,7 +45,7 @@ public class InfoDisplayContributorWrapper
 	implements InfoItemFormProvider, InfoItemProvider {
 
 	public InfoDisplayContributorWrapper(
-		InfoDisplayContributor infoDisplayContributor) {
+		InfoDisplayContributor<Object> infoDisplayContributor) {
 
 		_infoDisplayContributor = infoDisplayContributor;
 	}
@@ -113,7 +113,7 @@ public class InfoDisplayContributorWrapper
 	@Override
 	public Object getInfoItem(long itemClassPK) throws NoSuchInfoItemException {
 		try {
-			InfoDisplayObjectProvider infoDisplayObjectProvider =
+			InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 				_infoDisplayContributor.getInfoDisplayObjectProvider(
 					itemClassPK);
 
@@ -199,6 +199,6 @@ public class InfoDisplayContributorWrapper
 		return TextInfoFieldType.INSTANCE;
 	}
 
-	private final InfoDisplayContributor _infoDisplayContributor;
+	private final InfoDisplayContributor<Object> _infoDisplayContributor;
 
 }

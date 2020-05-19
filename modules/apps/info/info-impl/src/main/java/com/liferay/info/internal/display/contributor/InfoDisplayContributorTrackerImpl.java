@@ -45,12 +45,14 @@ public class InfoDisplayContributorTrackerImpl
 	implements InfoDisplayContributorTracker {
 
 	@Override
-	public InfoDisplayContributor getInfoDisplayContributor(String className) {
+	public InfoDisplayContributor<?> getInfoDisplayContributor(
+		String className) {
+
 		return _infoDisplayContributorMap.getService(className);
 	}
 
 	@Override
-	public InfoDisplayContributor getInfoDisplayContributorByURLSeparator(
+	public InfoDisplayContributor<?> getInfoDisplayContributorByURLSeparator(
 		String urlSeparator) {
 
 		return _infoDisplayContributorByURLSeparatorMap.getService(
@@ -58,7 +60,7 @@ public class InfoDisplayContributorTrackerImpl
 	}
 
 	@Override
-	public List<InfoDisplayContributor> getInfoDisplayContributors() {
+	public List<InfoDisplayContributor<?>> getInfoDisplayContributors() {
 		return new ArrayList(_infoDisplayContributorMap.values());
 	}
 
@@ -66,9 +68,12 @@ public class InfoDisplayContributorTrackerImpl
 	protected void activate(BundleContext bundleContext) {
 		_infoDisplayContributorMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, InfoDisplayContributor.class, null,
+				bundleContext,
+				(Class<InfoDisplayContributor<?>>)
+					(Class<?>)InfoDisplayContributor.class,
+				null,
 				(serviceReference, emitter) -> {
-					InfoDisplayContributor infoDisplayContributor =
+					InfoDisplayContributor<?> infoDisplayContributor =
 						bundleContext.getService(serviceReference);
 
 					try {
@@ -80,9 +85,12 @@ public class InfoDisplayContributorTrackerImpl
 				});
 		_infoDisplayContributorByURLSeparatorMap =
 			ServiceTrackerMapFactory.openSingleValueMap(
-				bundleContext, InfoDisplayContributor.class, null,
+				bundleContext,
+				(Class<InfoDisplayContributor<?>>)
+					(Class<?>)InfoDisplayContributor.class,
+				null,
 				(serviceReference, emitter) -> {
-					InfoDisplayContributor infoDisplayContributor =
+					InfoDisplayContributor<?> infoDisplayContributor =
 						bundleContext.getService(serviceReference);
 
 					try {
@@ -95,26 +103,29 @@ public class InfoDisplayContributorTrackerImpl
 				});
 
 		_infoDisplayContributorServiceTracker = ServiceTrackerFactory.open(
-			bundleContext, InfoDisplayContributor.class,
+			bundleContext,
+			(Class<InfoDisplayContributor<?>>)
+				(Class<?>)InfoDisplayContributor.class,
 			new ServiceTrackerCustomizer
-				<InfoDisplayContributor,
-				 ServiceRegistration<InfoDisplayContributor>>() {
+				<InfoDisplayContributor<?>,
+				 ServiceRegistration<InfoDisplayContributor<?>>>() {
 
 				@Override
-				public ServiceRegistration<InfoDisplayContributor>
+				public ServiceRegistration<InfoDisplayContributor<?>>
 					addingService(
-						ServiceReference<InfoDisplayContributor>
+						ServiceReference<InfoDisplayContributor<?>>
 							serviceReference) {
 
-					InfoDisplayContributor infoDisplayContributor =
-						bundleContext.getService(serviceReference);
+					InfoDisplayContributor<Object> infoDisplayContributor =
+						(InfoDisplayContributor<Object>)
+							bundleContext.getService(serviceReference);
 
 					try {
 						InfoItemFormProvider infoItemFormProvider =
 							new InfoDisplayContributorWrapper(
 								infoDisplayContributor);
 
-						return (ServiceRegistration<InfoDisplayContributor>)
+						return (ServiceRegistration<InfoDisplayContributor<?>>)
 							bundleContext.registerService(
 								new String[] {
 									InfoItemFormProvider.class.getName(),
@@ -133,8 +144,9 @@ public class InfoDisplayContributorTrackerImpl
 
 				@Override
 				public void modifiedService(
-					ServiceReference<InfoDisplayContributor> serviceReference,
-					ServiceRegistration<InfoDisplayContributor>
+					ServiceReference<InfoDisplayContributor<?>>
+						serviceReference,
+					ServiceRegistration<InfoDisplayContributor<?>>
 						serviceRegistration) {
 
 					serviceRegistration.setProperties(
@@ -144,8 +156,9 @@ public class InfoDisplayContributorTrackerImpl
 
 				@Override
 				public void removedService(
-					ServiceReference<InfoDisplayContributor> serviceReference,
-					ServiceRegistration<InfoDisplayContributor>
+					ServiceReference<InfoDisplayContributor<?>>
+						serviceReference,
+					ServiceRegistration<InfoDisplayContributor<?>>
 						serviceRegistration) {
 
 					bundleContext.ungetService(serviceReference);
@@ -163,7 +176,7 @@ public class InfoDisplayContributorTrackerImpl
 
 	private Dictionary<String, Object> _getServiceReferenceProperties(
 		BundleContext bundleContext,
-		ServiceReference<InfoDisplayContributor> serviceReference) {
+		ServiceReference<InfoDisplayContributor<?>> serviceReference) {
 
 		Dictionary<String, Object> dictionary = new Hashtable<>();
 
@@ -171,7 +184,7 @@ public class InfoDisplayContributorTrackerImpl
 			dictionary.put(key, serviceReference.getProperty(key));
 		}
 
-		InfoDisplayContributor infoDisplayContributor =
+		InfoDisplayContributor<?> infoDisplayContributor =
 			bundleContext.getService(serviceReference);
 
 		try {
@@ -186,12 +199,13 @@ public class InfoDisplayContributorTrackerImpl
 		return dictionary;
 	}
 
-	private ServiceTrackerMap<String, InfoDisplayContributor>
+	private ServiceTrackerMap<String, InfoDisplayContributor<?>>
 		_infoDisplayContributorByURLSeparatorMap;
-	private ServiceTrackerMap<String, InfoDisplayContributor>
+	private ServiceTrackerMap<String, InfoDisplayContributor<?>>
 		_infoDisplayContributorMap;
 	private ServiceTracker
-		<InfoDisplayContributor, ServiceRegistration<InfoDisplayContributor>>
+		<InfoDisplayContributor<?>,
+		 ServiceRegistration<InfoDisplayContributor<?>>>
 			_infoDisplayContributorServiceTracker;
 
 }

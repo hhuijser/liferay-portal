@@ -34,7 +34,7 @@ public interface InfoListProviderContext {
 
 	public Optional<Group> getGroupOptional();
 
-	public Optional<InfoDisplayObjectProvider>
+	public Optional<InfoDisplayObjectProvider<?>>
 		getInfoDisplayObjectProviderOptional();
 
 	public Optional<Layout> getLayoutOptional();

@@ -60,9 +60,10 @@ public class GetAssetMappingFieldsMVCResourceCommand
 
 		long classNameId = ParamUtil.getLong(resourceRequest, "classNameId");
 
-		InfoDisplayContributor infoDisplayContributor =
-			_infoDisplayContributorTracker.getInfoDisplayContributor(
-				_portal.getClassName(classNameId));
+		InfoDisplayContributor<InfoDisplayField> infoDisplayContributor =
+			(InfoDisplayContributor<InfoDisplayField>)
+				_infoDisplayContributorTracker.getInfoDisplayContributor(
+					_portal.getClassName(classNameId));
 
 		if (infoDisplayContributor == null) {
 			JSONPortletResponseUtil.writeJSON(
@@ -74,8 +75,9 @@ public class GetAssetMappingFieldsMVCResourceCommand
 
 		long classPK = ParamUtil.getLong(resourceRequest, "classPK");
 
-		InfoDisplayObjectProvider infoDisplayObjectProvider =
-			infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
+		InfoDisplayObjectProvider<InfoDisplayField> infoDisplayObjectProvider =
+			(InfoDisplayObjectProvider<InfoDisplayField>)
+				infoDisplayContributor.getInfoDisplayObjectProvider(classPK);
 
 		if (infoDisplayObjectProvider == null) {
 			JSONPortletResponseUtil.writeJSON(

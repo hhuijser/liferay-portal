@@ -119,7 +119,8 @@ public class ZoomAPICallbackServlet extends HttpServlet {
 
 		searchContext.setCompanyId(companyId);
 
-		Indexer indexer = IndexerRegistryUtil.getIndexer(PowwowMeeting.class);
+		Indexer<PowwowMeeting> indexer = IndexerRegistryUtil.getIndexer(
+			PowwowMeeting.class);
 
 		Hits hits = indexer.search(searchContext);
 

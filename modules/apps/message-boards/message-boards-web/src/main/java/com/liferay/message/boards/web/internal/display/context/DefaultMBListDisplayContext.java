@@ -186,7 +186,8 @@ public class DefaultMBListDisplayContext implements MBListDisplayContext {
 			long[] categoryIdsArray = StringUtil.split(
 				StringUtil.merge(categoryIds), 0L);
 
-			Indexer indexer = IndexerRegistryUtil.getIndexer(MBMessage.class);
+			Indexer<MBMessage> indexer = IndexerRegistryUtil.getIndexer(
+				MBMessage.class);
 
 			SearchContext searchContext = SearchContextFactory.getInstance(
 				_httpServletRequest);

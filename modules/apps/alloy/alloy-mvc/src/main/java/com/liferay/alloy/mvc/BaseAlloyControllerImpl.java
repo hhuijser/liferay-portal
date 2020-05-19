@@ -809,7 +809,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 
 		indexerClassName = indexer.getSearchClassNames()[0];
 
-		Indexer existingIndexer = IndexerRegistryUtil.getIndexer(
+		Indexer<?> existingIndexer = IndexerRegistryUtil.getIndexer(
 			indexerClassName);
 
 		if ((existingIndexer != null) && (existingIndexer == indexer)) {
@@ -1269,7 +1269,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected AlloySearchResult search(
-			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
+			Indexer<?> indexer, AlloyServiceInvoker alloyServiceInvoker,
 			HttpServletRequest httpServletRequest,
 			PortletRequest portletRequest, Map<String, Serializable> attributes,
 			String keywords, Sort[] sorts)
@@ -1281,7 +1281,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected AlloySearchResult search(
-			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
+			Indexer<?> indexer, AlloyServiceInvoker alloyServiceInvoker,
 			HttpServletRequest httpServletRequest,
 			PortletRequest portletRequest, Map<String, Serializable> attributes,
 			String keywords, Sort[] sorts, int start, int end)
@@ -1372,7 +1372,7 @@ public abstract class BaseAlloyControllerImpl implements AlloyController {
 	}
 
 	protected AlloySearchResult search(
-			Indexer indexer, AlloyServiceInvoker alloyServiceInvoker,
+			Indexer<?> indexer, AlloyServiceInvoker alloyServiceInvoker,
 			HttpServletRequest httpServletRequest,
 			PortletRequest portletRequest,
 			SearchContainer<? extends BaseModel<?>> searchContainer,

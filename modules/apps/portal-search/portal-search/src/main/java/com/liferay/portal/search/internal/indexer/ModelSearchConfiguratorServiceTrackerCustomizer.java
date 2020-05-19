@@ -126,9 +126,10 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 			modelSearchConfigurator, serviceRegistrationHolder,
 			serviceProperties);
 
-		ServiceRegistration<Indexer> indexerServiceRegistration =
+		ServiceRegistration<Indexer<?>> indexerServiceRegistration =
 			_bundleContext.registerService(
-				Indexer.class, defaultIndexer, serviceProperties);
+				(Class<Indexer<?>>)(Class<?>)Indexer.class, defaultIndexer,
+				serviceProperties);
 
 		serviceRegistrationHolder.setIndexerServiceRegistration(
 			indexerServiceRegistration);
@@ -463,7 +464,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 		}
 
 		public void setIndexerServiceRegistration(
-			ServiceRegistration<Indexer> indexerServiceRegistration) {
+			ServiceRegistration<Indexer<?>> indexerServiceRegistration) {
 
 			_indexerServiceRegistration = indexerServiceRegistration;
 		}
@@ -492,7 +493,7 @@ public class ModelSearchConfiguratorServiceTrackerCustomizer
 			_indexerQueryBuilderServiceRegistration;
 		private ServiceRegistration<IndexerSearcher>
 			_indexerSearcherServiceRegistration;
-		private ServiceRegistration<Indexer> _indexerServiceRegistration;
+		private ServiceRegistration<Indexer<?>> _indexerServiceRegistration;
 		private ServiceRegistration<IndexerSummaryBuilder>
 			_indexerSummaryBuilderServiceRegistration;
 		private ServiceRegistration<IndexerWriter>

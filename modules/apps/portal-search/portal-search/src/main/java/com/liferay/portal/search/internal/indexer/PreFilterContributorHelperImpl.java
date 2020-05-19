@@ -164,7 +164,7 @@ public class PreFilterContributorHelperImpl
 		return booleanFilter;
 	}
 
-	private ModelSearchSettings _getModelSearchSettings(Indexer indexer) {
+	private ModelSearchSettings _getModelSearchSettings(Indexer<?> indexer) {
 		ModelSearchSettingsImpl modelSearchSettingsImpl =
 			new ModelSearchSettingsImpl(indexer.getClassName());
 

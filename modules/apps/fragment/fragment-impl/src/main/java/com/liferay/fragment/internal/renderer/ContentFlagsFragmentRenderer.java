@@ -117,12 +117,12 @@ public class ContentFlagsFragmentRenderer
 							fragmentEntryLink.getEditableValues(),
 							"message"))));
 
-			InfoDisplayContributor infoDisplayContributor =
-				(InfoDisplayContributor)httpServletRequest.getAttribute(
+			InfoDisplayContributor<?> infoDisplayContributor =
+				(InfoDisplayContributor<?>)httpServletRequest.getAttribute(
 					InfoDisplayWebKeys.INFO_DISPLAY_CONTRIBUTOR);
 
 			if (infoDisplayContributor != null) {
-				InfoDisplayObjectProvider infoDisplayObjectProvider =
+				InfoDisplayObjectProvider<?> infoDisplayObjectProvider =
 					infoDisplayContributor.getInfoDisplayObjectProvider(
 						classPK);
 

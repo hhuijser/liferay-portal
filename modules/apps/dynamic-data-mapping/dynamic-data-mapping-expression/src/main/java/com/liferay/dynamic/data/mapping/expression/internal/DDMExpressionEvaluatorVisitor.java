@@ -565,9 +565,10 @@ public class DDMExpressionEvaluatorVisitor
 
 		Class<?>[] parameterTypes = method.getParameterTypes();
 
+		Object object = new Object();
+
 		if ((parameterTypes.length == 1) &&
-			(parameterTypes[0] == new Object().getClass()) &&
-			iterator.hasNext()) {
+			(parameterTypes[0] == object.getClass()) && iterator.hasNext()) {
 
 			return Optional.ofNullable(iterator.next());
 		}

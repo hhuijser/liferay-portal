@@ -45,17 +45,10 @@ if (liferayVersion.startsWith("7.2")) {
 	fileNames.add("src/main/resources/META-INF/resources/config.js")
 	fileNames.add("src/main/resources/META-INF/resources/"+ artifactId + "_field.js")
 
-	String [] folders = artifactId.split("-")
-
-	String directory = folders.length > 0 ? "" : artifactId
-
-	for (String folder : folders) {
-		directory += folder + "/"
-	}
-
 	String className = properties.get("className")
+	String packageName = properties.get("packageName")
 
-	fileNames.add("src/main/java/"+ directory + "form/field/" + className + "DDMFormFieldRenderer.java")
+	fileNames.add("src/main/java/"+ packageName.replaceAll("[.]", "/") + "/form/field/" + className + "DDMFormFieldRenderer.java")
 }
 else {
 	fileNames.add("src/main/resources/META-INF/resources/" + artifactId + "Register.soy")

@@ -63,25 +63,12 @@ public class FormFieldProjectTemplateCustomizer
 			fileNames.add(
 				"src/main/resources/META-INF/resources/" + name + "_field.js");
 
-			StringBuilder sb = new StringBuilder();
-
-			String[] nameParts = name.split("-");
-
-			if (nameParts.length == 0) {
-				sb.append(name);
-			}
-			else {
-				for (String namePart : nameParts) {
-					sb.append(namePart);
-					sb.append("/");
-				}
-			}
-
 			String className = projectTemplatesArgs.getClassName();
+			String packageName = projectTemplatesArgs.getPackageName();
 
 			fileNames.add(
-				"src/main/java/" + sb.toString() + "form/field/" + className +
-					"DDMFormFieldRenderer.java");
+				"src/main/java/" + packageName.replaceAll("[.]", "/") +
+					"/form/field/" + className + "DDMFormFieldRenderer.java");
 		}
 		else {
 			fileNames.add(

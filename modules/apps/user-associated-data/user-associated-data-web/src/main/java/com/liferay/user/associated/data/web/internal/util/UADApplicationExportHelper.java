@@ -62,10 +62,10 @@ public class UADApplicationExportHelper {
 	public UADApplicationExportDisplay getUADApplicationExportDisplay(
 		String applicationKey, long groupId, long userId) {
 
-		Stream<UADDisplay> uadDisplayStream =
+		Stream<UADDisplay<?>> uadDisplayStream =
 			_uadRegistry.getApplicationUADDisplayStream(applicationKey);
 
-		List<UADExporter> uadExporters = uadDisplayStream.map(
+		List<UADExporter<?>> uadExporters = uadDisplayStream.map(
 			UADDisplay::getTypeClass
 		).map(
 			Class::getName
@@ -77,7 +77,7 @@ public class UADApplicationExportHelper {
 
 		int applicationDataCount = 0;
 
-		for (UADExporter uadExporter : uadExporters) {
+		for (UADExporter<?> uadExporter : uadExporters) {
 			try {
 				applicationDataCount += (int)uadExporter.count(userId);
 			}

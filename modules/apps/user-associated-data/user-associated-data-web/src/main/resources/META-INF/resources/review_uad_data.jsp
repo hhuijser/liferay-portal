@@ -20,7 +20,7 @@
 List<ScopeDisplay> scopeDisplays = (List<ScopeDisplay>)request.getAttribute(UADWebKeys.SCOPE_DISPLAYS);
 int totalReviewableUADEntitiesCount = (int)request.getAttribute(UADWebKeys.TOTAL_UAD_ENTITIES_COUNT);
 List<UADApplicationSummaryDisplay> uadApplicationSummaryDisplays = (List<UADApplicationSummaryDisplay>)request.getAttribute(UADWebKeys.UAD_APPLICATION_SUMMARY_DISPLAY_LIST);
-List<UADDisplay> uadDisplays = (List<UADDisplay>)request.getAttribute(UADWebKeys.APPLICATION_UAD_DISPLAYS);
+List<UADDisplay<?>> uadDisplays = (List<UADDisplay<?>>)request.getAttribute(UADWebKeys.APPLICATION_UAD_DISPLAYS);
 ViewUADEntitiesDisplay viewUADEntitiesDisplay = (ViewUADEntitiesDisplay)request.getAttribute(UADWebKeys.VIEW_UAD_ENTITIES_DISPLAY);
 
 long[] groupIds = viewUADEntitiesDisplay.getGroupIds();
@@ -157,7 +157,7 @@ renderResponse.setTitle(StringBundler.concat(selectedUser.getFullName(), " - ", 
 									<c:otherwise>
 
 										<%
-										for (UADDisplay uadDisplay : uadDisplays) {
+										for (UADDisplay<?> uadDisplay : uadDisplays) {
 											long count = uadDisplay.searchCount(selectedUser.getUserId(), groupIds, null);
 										%>
 

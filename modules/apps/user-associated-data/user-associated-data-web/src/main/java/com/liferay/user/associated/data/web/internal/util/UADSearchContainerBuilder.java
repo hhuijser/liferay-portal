@@ -121,7 +121,7 @@ public class UADSearchContainerBuilder {
 	public SearchContainer<UADEntity> getSearchContainer(
 		LiferayPortletResponse liferayPortletResponse,
 		RenderRequest renderRequest, PortletURL currentURL, long[] groupIds,
-		User selectedUser, UADDisplay uadDisplay) {
+		User selectedUser, UADDisplay<UADEntity> uadDisplay) {
 
 		SearchContainer<UADEntity> searchContainer = _constructSearchContainer(
 			renderRequest, currentURL, "modifiedDate",
@@ -141,7 +141,7 @@ public class UADSearchContainerBuilder {
 
 			List<UADEntity> uadEntities = new ArrayList<>();
 
-			for (Object entity : entities) {
+			for (UADEntity entity : entities) {
 				uadEntities.add(
 					_constructUADEntity(
 						liferayPortletRequest, liferayPortletResponse, entity,

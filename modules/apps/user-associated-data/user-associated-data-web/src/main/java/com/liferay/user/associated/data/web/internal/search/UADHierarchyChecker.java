@@ -42,7 +42,7 @@ public class UADHierarchyChecker extends EmptyOnClickRowChecker {
 		boolean disabled, String name, String value, String checkBoxRowIds,
 		String checkBoxAllRowIds, String checkBoxPostOnClick) {
 
-		for (UADDisplay uadDisplay : _uadDisplays) {
+		for (UADDisplay<?> uadDisplay : _uadDisplays) {
 			try {
 				long primaryKey = GetterUtil.getLong(value);
 

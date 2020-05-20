@@ -79,8 +79,9 @@ public class DeleteUADEntitiesMVCActionCommand extends BaseUADMVCActionCommand {
 		for (String entityType : getEntityTypes(actionRequest)) {
 			String[] primaryKeys = getPrimaryKeys(actionRequest, entityType);
 
-			UADAnonymizer entityUADAnonymizer = getUADAnonymizer(
-				actionRequest, entityType);
+			UADAnonymizer<Object> entityUADAnonymizer =
+				(UADAnonymizer<Object>)getUADAnonymizer(
+					actionRequest, entityType);
 			UADDisplay<?> entityUADDisplay = getUADDisplay(
 				actionRequest, entityType);
 
@@ -120,9 +121,9 @@ public class DeleteUADEntitiesMVCActionCommand extends BaseUADMVCActionCommand {
 
 	private void _delete(
 			ActionRequest actionRequest, ActionResponse actionResponse,
-			UADAnonymizer entityUADAnonymizer, UADDisplay<?> entityUADDisplay,
-			String primaryKey, long selectedUserId,
-			UADHierarchyDisplay uadHierarchyDisplay)
+			UADAnonymizer<Object> entityUADAnonymizer,
+			UADDisplay<?> entityUADDisplay, String primaryKey,
+			long selectedUserId, UADHierarchyDisplay uadHierarchyDisplay)
 		throws Exception {
 
 		Object entity = entityUADDisplay.get(primaryKey);
@@ -171,11 +172,12 @@ public class DeleteUADEntitiesMVCActionCommand extends BaseUADMVCActionCommand {
 
 					Class<?> containerItemClass = entry.getKey();
 
-					UADAnonymizer containerItemUADAnonymizer =
-						uadRegistry.getUADAnonymizer(
+					UADAnonymizer<Object> containerItemUADAnonymizer =
+						(UADAnonymizer<Object>)uadRegistry.getUADAnonymizer(
 							containerItemClass.getName());
-					UADDisplay containerItemUADDisplay =
-						uadRegistry.getUADDisplay(containerItemClass.getName());
+					UADDisplay<Object> containerItemUADDisplay =
+						(UADDisplay<Object>)uadRegistry.getUADDisplay(
+							containerItemClass.getName());
 
 					doMultipleAction(
 						entry.getValue(),

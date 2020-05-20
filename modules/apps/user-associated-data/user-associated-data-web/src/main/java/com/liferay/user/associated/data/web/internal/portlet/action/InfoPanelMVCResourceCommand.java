@@ -74,7 +74,8 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 			String uadRegistryKey = ParamUtil.getString(
 				resourceRequest, "uadRegistryKey__" + entityType);
 
-			UADDisplay uadDisplay = _uadRegistry.getUADDisplay(uadRegistryKey);
+			UADDisplay<Object> uadDisplay =
+				(UADDisplay<Object>)_uadRegistry.getUADDisplay(uadRegistryKey);
 
 			String[] rowIds = ParamUtil.getStringValues(
 				resourceRequest, "rowIds" + entityType);
@@ -125,7 +126,7 @@ public class InfoPanelMVCResourceCommand extends BaseMVCResourceCommand {
 			}
 
 			uadInfoPanelDisplay.setUADDisplay(
-				_uadRegistry.getUADDisplay(uadRegistryKey));
+				(UADDisplay<Object>)_uadRegistry.getUADDisplay(uadRegistryKey));
 		}
 
 		boolean hierarchyView = ParamUtil.getBoolean(

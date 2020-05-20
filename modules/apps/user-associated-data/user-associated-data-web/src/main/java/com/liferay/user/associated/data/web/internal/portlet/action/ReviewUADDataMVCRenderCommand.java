@@ -107,7 +107,8 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 			String uadRegistryKey = _getUADRegistryKey(
 				applicationKey, renderRequest);
 
-			UADDisplay uadDisplay = _uadRegistry.getUADDisplay(uadRegistryKey);
+			UADDisplay<Object> uadDisplay =
+				(UADDisplay<Object>)_uadRegistry.getUADDisplay(uadRegistryKey);
 
 			renderRequest.setAttribute(
 				UADWebKeys.UAD_INFO_PANEL_DISPLAY,
@@ -197,8 +198,8 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 	private SearchContainer<UADEntity> _getSearchContainer(
 			String applicationKey, RenderRequest renderRequest,
 			RenderResponse renderResponse, ScopeDisplay scopeDisplay,
-			UADDisplay uadDisplay, UADHierarchyDisplay uadHierarchyDisplay,
-			User user)
+			UADDisplay<UADEntity> uadDisplay,
+			UADHierarchyDisplay uadHierarchyDisplay, User user)
 		throws Exception {
 
 		LiferayPortletResponse liferayPortletResponse =
@@ -231,14 +232,15 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 	}
 
 	private UADInfoPanelDisplay _getUADInfoPanelDisplay(
-		UADDisplay uadDisplay, UADHierarchyDisplay uadHierarchyDisplay) {
+		UADDisplay<Object> uadDisplay,
+		UADHierarchyDisplay uadHierarchyDisplay) {
 
 		UADInfoPanelDisplay uadInfoPanelDisplay = new UADInfoPanelDisplay();
 
 		if (uadHierarchyDisplay != null) {
 			uadInfoPanelDisplay.setHierarchyView(true);
 			uadInfoPanelDisplay.setUADDisplay(
-				uadHierarchyDisplay.getUADDisplays()[0]);
+				(UADDisplay<Object>)uadHierarchyDisplay.getUADDisplays()[0]);
 		}
 		else {
 			uadInfoPanelDisplay.setUADDisplay(uadDisplay);
@@ -265,7 +267,7 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 	private ViewUADEntitiesDisplay _getViewUADEntitiesDisplay(
 			String applicationKey, RenderRequest renderRequest,
 			RenderResponse renderResponse, ScopeDisplay scopeDisplay, User user,
-			UADDisplay uadDisplay, UADHierarchyDisplay uadHierarchyDisplay,
+			UADDisplay<?> uadDisplay, UADHierarchyDisplay uadHierarchyDisplay,
 			String uadRegistryKey)
 		throws Exception {
 
@@ -278,7 +280,7 @@ public class ReviewUADDataMVCRenderCommand implements MVCRenderCommand {
 		viewUADEntitiesDisplay.setSearchContainer(
 			_getSearchContainer(
 				applicationKey, renderRequest, renderResponse, scopeDisplay,
-				uadDisplay, uadHierarchyDisplay, user));
+				(UADDisplay<UADEntity>)uadDisplay, uadHierarchyDisplay, user));
 
 		if (uadHierarchyDisplay != null) {
 			viewUADEntitiesDisplay.setHierarchy(true);

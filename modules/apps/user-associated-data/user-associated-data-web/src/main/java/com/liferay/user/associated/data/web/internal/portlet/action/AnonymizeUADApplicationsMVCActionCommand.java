@@ -58,15 +58,19 @@ public class AnonymizeUADApplicationsMVCActionCommand
 		long[] groupIds = ParamUtil.getLongValues(actionRequest, "groupIds");
 
 		for (String applicationKey : getApplicationKeys(actionRequest)) {
-			for (UADDisplay uadDisplay :
+			for (UADDisplay<?> uadDisplay :
 					uadRegistry.getApplicationUADDisplays(applicationKey)) {
 
 				Class<?> typeClass = uadDisplay.getTypeClass();
 
-				UADAnonymizer uadAnonymizer = uadRegistry.getUADAnonymizer(
-					typeClass.getName());
+				UADAnonymizer<Object> uadAnonymizer =
+					(UADAnonymizer<Object>)uadRegistry.getUADAnonymizer(
+						typeClass.getName());
 
-				List<Object> entities = uadDisplay.search(
+				UADDisplay<Object> objectUADDisplay =
+					(UADDisplay<Object>)uadDisplay;
+
+				List<Object> entities = objectUADDisplay.search(
 					selectedUser.getUserId(), groupIds, null, null, null,
 					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
 

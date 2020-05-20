@@ -48,10 +48,10 @@ public class AnonymizeNonreviewableUADDataMVCActionCommand
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws Exception {
 
-		Collection<UADAnonymizer> uadAnonymizers =
+		Collection<UADAnonymizer<?>> uadAnonymizers =
 			_uadRegistry.getNonreviewableUADAnonymizers();
 
-		for (UADAnonymizer uadAnonymizer : uadAnonymizers) {
+		for (UADAnonymizer<?> uadAnonymizer : uadAnonymizers) {
 			User selectedUser = getSelectedUser(actionRequest);
 
 			User anonymousUser = _uadAnonymizerHelper.getAnonymousUser(

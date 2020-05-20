@@ -85,7 +85,7 @@ public class UADInfoPanelDisplay {
 		}
 	}
 
-	public UADDisplay getUADDisplay() {
+	public UADDisplay<Object> getUADDisplay() {
 		return _uadDisplay;
 	}
 
@@ -101,13 +101,13 @@ public class UADInfoPanelDisplay {
 		_topLevelView = topLevelView;
 	}
 
-	public void setUADDisplay(UADDisplay uadDisplay) {
+	public void setUADDisplay(UADDisplay<Object> uadDisplay) {
 		_uadDisplay = uadDisplay;
 	}
 
 	private boolean _hierarchyView;
 	private boolean _topLevelView = true;
-	private UADDisplay _uadDisplay;
+	private UADDisplay<Object> _uadDisplay;
 	private final List<UADEntity> _uadEntities = new ArrayList<>();
 
 }

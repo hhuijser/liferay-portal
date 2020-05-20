@@ -193,14 +193,14 @@ public abstract class BaseUADMVCActionCommand extends BaseMVCActionCommand {
 		return selectedUserHelper.getSelectedUserId(actionRequest);
 	}
 
-	protected UADAnonymizer getUADAnonymizer(
+	protected UADAnonymizer<?> getUADAnonymizer(
 		ActionRequest actionRequest, String entityType) {
 
 		return uadRegistry.getUADAnonymizer(
 			getUADRegistryKey(actionRequest, entityType));
 	}
 
-	protected UADDisplay getUADDisplay(
+	protected UADDisplay<?> getUADDisplay(
 		ActionRequest actionRequest, String entityType) {
 
 		return uadRegistry.getUADDisplay(

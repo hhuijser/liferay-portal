@@ -69,8 +69,9 @@ public class ViewUADHierarchyMVCRenderCommand implements MVCRenderCommand {
 			renderRequest.setAttribute(
 				UADWebKeys.UAD_HIERARCHY_DISPLAY, uadHierarchyDisplay);
 
-			UADDisplay uadDisplay = _uadRegistry.getUADDisplay(
-				ParamUtil.getString(renderRequest, "parentContainerClass"));
+			UADDisplay<Object> uadDisplay =
+				(UADDisplay<Object>)_uadRegistry.getUADDisplay(
+					ParamUtil.getString(renderRequest, "parentContainerClass"));
 
 			renderRequest.setAttribute(
 				UADWebKeys.UAD_INFO_PANEL_DISPLAY,
@@ -92,7 +93,9 @@ public class ViewUADHierarchyMVCRenderCommand implements MVCRenderCommand {
 		return _uadRegistry.getUADHierarchyDisplay(applicationKey);
 	}
 
-	private UADInfoPanelDisplay _getUADInfoPanelDisplay(UADDisplay uadDisplay) {
+	private UADInfoPanelDisplay _getUADInfoPanelDisplay(
+		UADDisplay<Object> uadDisplay) {
+
 		UADInfoPanelDisplay uadInfoPanelDisplay = new UADInfoPanelDisplay();
 
 		uadInfoPanelDisplay.setHierarchyView(true);
@@ -104,7 +107,7 @@ public class ViewUADHierarchyMVCRenderCommand implements MVCRenderCommand {
 
 	private ViewUADEntitiesDisplay _getViewUADEntitiesDisplay(
 			String applicationKey, RenderRequest renderRequest,
-			RenderResponse renderResponse, UADDisplay uadDisplay,
+			RenderResponse renderResponse, UADDisplay<?> uadDisplay,
 			UADHierarchyDisplay uadHierarchyDisplay)
 		throws Exception {
 

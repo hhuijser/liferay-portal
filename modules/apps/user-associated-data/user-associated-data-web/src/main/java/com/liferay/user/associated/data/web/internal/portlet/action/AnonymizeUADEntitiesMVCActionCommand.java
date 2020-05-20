@@ -67,10 +67,11 @@ public class AnonymizeUADEntitiesMVCActionCommand
 		for (String entityType : getEntityTypes(actionRequest)) {
 			String[] primaryKeys = getPrimaryKeys(actionRequest, entityType);
 
-			UADAnonymizer entityUADAnonymizer = getUADAnonymizer(
-				actionRequest, entityType);
-			UADDisplay<?> entityUADDisplay = getUADDisplay(
-				actionRequest, entityType);
+			UADAnonymizer<Object> entityUADAnonymizer =
+				(UADAnonymizer<Object>)getUADAnonymizer(
+					actionRequest, entityType);
+			UADDisplay<Object> entityUADDisplay =
+				(UADDisplay<Object>)getUADDisplay(actionRequest, entityType);
 
 			for (String primaryKey : primaryKeys) {
 				_anonymize(
@@ -83,8 +84,8 @@ public class AnonymizeUADEntitiesMVCActionCommand
 	}
 
 	private void _anonymize(
-			User anonymousUser, UADAnonymizer entityUADAnonymizer,
-			UADDisplay<?> entityUADDisplay, String primaryKey,
+			User anonymousUser, UADAnonymizer<Object> entityUADAnonymizer,
+			UADDisplay<Object> entityUADDisplay, String primaryKey,
 			long selectedUserId, UADHierarchyDisplay uadHierarchyDisplay)
 		throws Exception {
 
@@ -106,10 +107,12 @@ public class AnonymizeUADEntitiesMVCActionCommand
 
 				Class<?> containerItemClass = entry.getKey();
 
-				UADAnonymizer containerItemUADAnonymizer =
-					uadRegistry.getUADAnonymizer(containerItemClass.getName());
-				UADDisplay containerItemUADDisplay = uadRegistry.getUADDisplay(
-					containerItemClass.getName());
+				UADAnonymizer<Object> containerItemUADAnonymizer =
+					(UADAnonymizer<Object>)uadRegistry.getUADAnonymizer(
+						containerItemClass.getName());
+				UADDisplay<Object> containerItemUADDisplay =
+					(UADDisplay<Object>)uadRegistry.getUADDisplay(
+						containerItemClass.getName());
 
 				doMultipleAction(
 					entry.getValue(),

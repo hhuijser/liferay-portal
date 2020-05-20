@@ -68,7 +68,7 @@ public class UADApplicationExportController {
 		for (String uadRegistryKey :
 				_getApplicationUADEntityRegistryKeys(applicationKey)) {
 
-			UADExporter uadExporter = _uadRegistry.getUADExporter(
+			UADExporter<?> uadExporter = _uadRegistry.getUADExporter(
 				uadRegistryKey);
 
 			File file = uadExporter.exportAll(userId);
@@ -107,7 +107,7 @@ public class UADApplicationExportController {
 		for (String uadRegistryKey :
 				_getApplicationUADEntityRegistryKeys(applicationKey)) {
 
-			UADExporter uadExporter = _uadRegistry.getUADExporter(
+			UADExporter<?> uadExporter = _uadRegistry.getUADExporter(
 				uadRegistryKey);
 
 			totalCount += uadExporter.getExportDataCount(userId);
@@ -119,7 +119,7 @@ public class UADApplicationExportController {
 	private List<String> _getApplicationUADEntityRegistryKeys(
 		String applicationKey) {
 
-		Stream<UADDisplay> uadDisplayStream =
+		Stream<UADDisplay<?>> uadDisplayStream =
 			_uadRegistry.getApplicationUADDisplayStream(applicationKey);
 
 		return uadDisplayStream.map(

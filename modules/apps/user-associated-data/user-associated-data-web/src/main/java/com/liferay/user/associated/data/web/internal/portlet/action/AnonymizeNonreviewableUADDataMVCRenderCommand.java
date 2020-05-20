@@ -195,13 +195,13 @@ public class AnonymizeNonreviewableUADDataMVCRenderCommand
 		UADApplicationSummaryDisplay uadApplicationSummaryDisplay =
 			new UADApplicationSummaryDisplay();
 
-		Collection<UADAnonymizer> nonreviewableApplicationUADAnonymizers =
+		Collection<UADAnonymizer<?>> nonreviewableApplicationUADAnonymizers =
 			_uadRegistry.getNonreviewableApplicationUADAnonymizers(
 				applicationKey);
 
 		int count = 0;
 
-		for (UADAnonymizer uadAnonymizer :
+		for (UADAnonymizer<?> uadAnonymizer :
 				nonreviewableApplicationUADAnonymizers) {
 
 			count += uadAnonymizer.count(userId);

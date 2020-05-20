@@ -17,7 +17,6 @@ package com.liferay.redirect.web.internal.display.context;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemList;
 import com.liferay.frontend.taglib.clay.servlet.taglib.util.DropdownItemListBuilder;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.LanguageUtil;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
@@ -279,7 +278,7 @@ public class RedirectDisplayContext {
 	}
 
 	private void _populateWithDatabase(RedirectEntrySearch redirectEntrySearch)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay =
 			(ThemeDisplay)_httpServletRequest.getAttribute(
@@ -297,7 +296,7 @@ public class RedirectDisplayContext {
 
 	private void _populateWithSearchIndex(
 			RedirectEntrySearch redirectEntrySearch)
-		throws PortalException {
+		throws Exception {
 
 		Indexer indexer = IndexerRegistryUtil.getIndexer(RedirectEntry.class);
 

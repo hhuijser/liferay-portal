@@ -37,7 +37,6 @@ import io.github.firemaples.translate.Translate;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -281,14 +280,14 @@ public class LangBuilder {
 	}
 
 	private void _createProperties(String content, String languageId)
-		throws IOException {
+		throws Exception {
 
 		_createProperties(content, languageId, null);
 	}
 
 	private void _createProperties(
 			String content, String languageId, String parentLanguageId)
-		throws IOException {
+		throws Exception {
 
 		File propertiesFile = new File(
 			StringBundler.concat(
@@ -688,7 +687,7 @@ public class LangBuilder {
 			s, StringPool.RETURN_NEW_LINE, StringPool.NEW_LINE);
 	}
 
-	private Properties _readProperties(File file) throws IOException {
+	private Properties _readProperties(File file) throws Exception {
 		try (FileInputStream fileInputStream = new FileInputStream(file)) {
 			return PropertiesUtil.load(fileInputStream, StringPool.UTF8);
 		}
@@ -756,7 +755,7 @@ public class LangBuilder {
 		return toText;
 	}
 
-	private void _write(File file, String s) throws IOException {
+	private void _write(File file, String s) throws Exception {
 		FileUtils.writeStringToFile(file, s, StringPool.UTF8);
 	}
 

@@ -33,8 +33,6 @@ import com.liferay.journal.model.JournalArticle;
 import com.liferay.journal.test.util.JournalTestUtil;
 import com.liferay.layout.test.util.LayoutTestUtil;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
-import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Company;
@@ -68,8 +66,6 @@ import com.liferay.portal.kernel.workflow.WorkflowConstants;
 import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
-
-import java.io.IOException;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -441,7 +437,7 @@ public class FragmentEntryProcessorFreemarkerTest {
 
 	private FragmentEntry _addFragmentEntry(
 			String htmlFile, String configurationFile)
-		throws IOException, PortalException {
+		throws Exception {
 
 		return _addFragmentEntry(htmlFile, configurationFile, null);
 	}
@@ -449,7 +445,7 @@ public class FragmentEntryProcessorFreemarkerTest {
 	private FragmentEntry _addFragmentEntry(
 			String htmlFile, String configurationFile,
 			Map<String, String> values)
-		throws IOException, PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
@@ -476,12 +472,12 @@ public class FragmentEntryProcessorFreemarkerTest {
 			WorkflowConstants.STATUS_APPROVED, serviceContext);
 	}
 
-	private String _getFileAsString(String fileName) throws IOException {
+	private String _getFileAsString(String fileName) throws Exception {
 		return _getFileAsString(fileName, null);
 	}
 
 	private String _getFileAsString(String fileName, Map<String, String> values)
-		throws IOException {
+		throws Exception {
 
 		Class<?> clazz = getClass();
 
@@ -493,15 +489,13 @@ public class FragmentEntryProcessorFreemarkerTest {
 		return StringUtil.replace(template, "${", "}", values);
 	}
 
-	private String _getJsonFileAsString(String jsonFileName)
-		throws IOException, JSONException {
-
+	private String _getJsonFileAsString(String jsonFileName) throws Exception {
 		return _getJsonFileAsString(jsonFileName, null);
 	}
 
 	private String _getJsonFileAsString(
 			String jsonFileName, Map<String, String> values)
-		throws IOException, JSONException {
+		throws Exception {
 
 		JSONObject jsonObject = JSONFactoryUtil.createJSONObject(
 			_getFileAsString(jsonFileName, values));

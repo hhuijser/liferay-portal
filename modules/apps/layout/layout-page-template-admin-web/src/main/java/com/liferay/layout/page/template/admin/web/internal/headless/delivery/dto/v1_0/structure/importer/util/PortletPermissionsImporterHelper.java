@@ -14,7 +14,6 @@
 
 package com.liferay.layout.page.template.admin.web.internal.headless.delivery.dto.v1_0.structure.importer.util;
 
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.language.Language;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Layout;
@@ -156,9 +155,7 @@ public class PortletPermissionsImporterHelper {
 		}
 	}
 
-	private Role _getTeamRole(Layout layout, String roleKey)
-		throws PortalException {
-
+	private Role _getTeamRole(Layout layout, String roleKey) throws Exception {
 		Map<Team, Role> teamRoleMap = _roleLocalService.getTeamRoleMap(
 			layout.getGroupId());
 
@@ -174,7 +171,7 @@ public class PortletPermissionsImporterHelper {
 	}
 
 	private String _getWarningMessage(long groupId, String roleKey)
-		throws PortalException {
+		throws Exception {
 
 		Locale locale = null;
 

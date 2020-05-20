@@ -1190,7 +1190,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	}
 
 	private long _importMBThread(long threadId, long calendarBookingId)
-		throws PortalException {
+		throws Exception {
 
 		MBThread mbThread = _mbThreadLocalService.fetchMBThread(threadId);
 
@@ -1198,7 +1198,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	}
 
 	private long _importMBThread(MBThread mbThread, long calendarBookingId)
-		throws PortalException {
+		throws Exception {
 
 		long threadId = _counterLocalService.increment();
 
@@ -1342,7 +1342,7 @@ public class CalEventImporterVerifyProcess extends VerifyProcess {
 	}
 
 	private void _updateMBThreadRootMessageId(long threadId, long rootMessageId)
-		throws PortalException {
+		throws Exception {
 
 		MBThread mbThread = _mbThreadLocalService.getMBThread(threadId);
 

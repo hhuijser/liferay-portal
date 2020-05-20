@@ -320,13 +320,11 @@ public class WorkflowMetricsDemo extends BasePortalInstanceLifecycleListener {
 		return transitionName;
 	}
 
-	private List<Long> _createUsers(long groupId) throws PortalException {
+	private List<Long> _createUsers(long groupId) throws Exception {
 		return _createUsers(groupId, null);
 	}
 
-	private List<Long> _createUsers(long groupId, Role role)
-		throws PortalException {
-
+	private List<Long> _createUsers(long groupId, Role role) throws Exception {
 		List<Long> userIds = new ArrayList<>();
 
 		for (int i = 0; i < 10; i++) {

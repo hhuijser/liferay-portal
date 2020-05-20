@@ -41,7 +41,6 @@ import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.StringReader;
 
 import java.util.ArrayList;
@@ -62,8 +61,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.LinkedBlockingQueue;
-
-import org.dom4j.DocumentException;
 
 /**
  * @author Hugo Huijser
@@ -581,7 +578,7 @@ public class SourceFormatter {
 	}
 
 	private void _excludeWorkingDirCheckoutPrivateApps(File portalDir)
-		throws IOException {
+		throws Exception {
 
 		File file = new File(portalDir, "working.dir.properties");
 
@@ -704,7 +701,7 @@ public class SourceFormatter {
 		return null;
 	}
 
-	private String _getProjectPathPrefix() throws IOException {
+	private String _getProjectPathPrefix() throws Exception {
 		if (!_subrepository) {
 			return null;
 		}
@@ -731,7 +728,7 @@ public class SourceFormatter {
 		return null;
 	}
 
-	private Properties _getProperties(File file) throws IOException {
+	private Properties _getProperties(File file) throws Exception {
 		Properties properties = new Properties();
 
 		if (file.exists()) {
@@ -741,7 +738,7 @@ public class SourceFormatter {
 		return properties;
 	}
 
-	private void _init() throws DocumentException, IOException {
+	private void _init() throws Exception {
 		_sourceFormatterExcludes = new SourceFormatterExcludes(
 			SetUtil.fromArray(DEFAULT_EXCLUDE_SYNTAX_PATTERNS));
 
@@ -824,7 +821,7 @@ public class SourceFormatter {
 		}
 	}
 
-	private boolean _isSubrepository() throws IOException {
+	private boolean _isSubrepository() throws Exception {
 		if (_portalSource) {
 			return false;
 		}
@@ -868,7 +865,7 @@ public class SourceFormatter {
 		System.out.print(message + "\r");
 	}
 
-	private void _readProperties(File propertiesFile) throws IOException {
+	private void _readProperties(File propertiesFile) throws Exception {
 		Properties properties = _getProperties(propertiesFile);
 
 		if (properties.isEmpty()) {
@@ -911,7 +908,7 @@ public class SourceFormatter {
 	}
 
 	private void _readProperties(String content, String propertiesFileLocation)
-		throws IOException {
+		throws Exception {
 
 		Properties properties = new Properties();
 

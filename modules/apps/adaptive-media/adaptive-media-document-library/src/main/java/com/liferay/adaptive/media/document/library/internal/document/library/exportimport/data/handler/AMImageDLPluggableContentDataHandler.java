@@ -35,7 +35,6 @@ import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.xml.Element;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.util.Collection;
@@ -106,7 +105,7 @@ public class AMImageDLPluggableContentDataHandler
 
 	private void _exportMedia(
 			PortletDataContext portletDataContext, FileEntry fileEntry)
-		throws IOException, PortalException {
+		throws Exception {
 
 		FileVersion fileVersion = fileEntry.getFileVersion();
 
@@ -127,7 +126,7 @@ public class AMImageDLPluggableContentDataHandler
 	private void _exportMedia(
 			PortletDataContext portletDataContext, FileEntry fileEntry,
 			AdaptiveMedia<AMImageProcessor> adaptiveMedia)
-		throws IOException {
+		throws Exception {
 
 		Optional<String> configurationUuidOptional =
 			adaptiveMedia.getValueOptional(
@@ -242,7 +241,7 @@ public class AMImageDLPluggableContentDataHandler
 			PortletDataContext portletDataContext, FileEntry fileEntry,
 			FileEntry importedFileEntry,
 			AMImageConfigurationEntry amImageConfigurationEntry)
-		throws IOException, PortalException {
+		throws Exception {
 
 		String configuration = portletDataContext.getZipEntryAsString(
 			_getConfigurationEntryBinPath(amImageConfigurationEntry));

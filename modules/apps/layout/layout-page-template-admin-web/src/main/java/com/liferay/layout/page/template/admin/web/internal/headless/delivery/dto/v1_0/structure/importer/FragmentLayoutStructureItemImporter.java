@@ -37,7 +37,6 @@ import com.liferay.layout.page.template.admin.web.internal.headless.delivery.dto
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONException;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
@@ -452,7 +451,7 @@ public class FragmentLayoutStructureItemImporter
 	}
 
 	private String _getWarningMessage(long groupId, String fragmentKey)
-		throws PortalException {
+		throws Exception {
 
 		Locale locale = null;
 

@@ -31,7 +31,6 @@ import com.liferay.exportimport.kernel.service.ExportImportConfigurationLocalSer
 import com.liferay.exportimport.kernel.service.ExportImportLocalService;
 import com.liferay.exportimport.kernel.staging.Staging;
 import com.liferay.exportimport.kernel.staging.StagingURLHelper;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Portlet;
 import com.liferay.portal.kernel.model.User;
@@ -159,7 +158,7 @@ public class ExportImportChangesetMVCActionCommandImpl
 	private void _processExportAndPublishAction(
 			ActionRequest actionRequest, ActionResponse actionResponse,
 			String cmd, String changesetUuid)
-		throws IOException, PortalException {
+		throws Exception {
 
 		if (Validator.isNotNull(actionRequest.getParameter("changesetUuid"))) {
 			changesetUuid = ParamUtil.getString(actionRequest, "changesetUuid");

@@ -20,7 +20,6 @@ import com.liferay.petra.io.unsync.UnsyncByteArrayInputStream;
 import com.liferay.petra.io.unsync.UnsyncByteArrayOutputStream;
 import com.liferay.portal.kernel.util.ArrayUtil;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Assert;
@@ -166,9 +165,7 @@ public class SafePNGInputStreamTest {
 				new UnsyncByteArrayInputStream(ArrayUtil.append(bytes))));
 	}
 
-	private static byte[] _getBytes(InputStream inputStream)
-		throws IOException {
-
+	private static byte[] _getBytes(InputStream inputStream) throws Exception {
 		UnsyncByteArrayOutputStream unsyncByteArrayOutputStream =
 			new UnsyncByteArrayOutputStream();
 
@@ -177,7 +174,7 @@ public class SafePNGInputStreamTest {
 		return unsyncByteArrayOutputStream.toByteArray();
 	}
 
-	private static byte[] _getBytes(String fileName) throws IOException {
+	private static byte[] _getBytes(String fileName) throws Exception {
 		return _getBytes(
 			SafePNGInputStreamTest.class.getResourceAsStream(
 				"/com/liferay/document/library/internal/security/io" +

@@ -24,7 +24,6 @@ import com.liferay.multi.factor.authentication.email.otp.web.internal.configurat
 import com.liferay.multi.factor.authentication.email.otp.web.internal.constants.MFAEmailOTPPortletKeys;
 import com.liferay.multi.factor.authentication.email.otp.web.internal.constants.MFAEmailOTPWebKeys;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.model.Company;
@@ -40,8 +39,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HtmlUtil;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.kernel.util.PwdGenerator;
-
-import java.io.IOException;
 
 import javax.mail.internet.InternetAddress;
 
@@ -97,7 +94,7 @@ public class SendMFAEmailOTPMVCResourceCommand implements MVCResourceCommand {
 			String fromAddress, String fromName, String toAddress, User toUser,
 			String subject, String body,
 			MailTemplateContext mailTemplateContext)
-		throws IOException, PortalException {
+		throws Exception {
 
 		MailTemplate subjectMailTemplate =
 			MailTemplateFactoryUtil.createMailTemplate(subject, false);

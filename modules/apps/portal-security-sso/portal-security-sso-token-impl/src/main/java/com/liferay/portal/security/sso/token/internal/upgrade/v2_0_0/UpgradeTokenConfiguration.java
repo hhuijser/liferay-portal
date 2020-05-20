@@ -20,7 +20,6 @@ import com.liferay.portal.kernel.settings.CompanyServiceSettingsLocator;
 import com.liferay.portal.kernel.settings.ModifiableSettings;
 import com.liferay.portal.kernel.settings.Settings;
 import com.liferay.portal.kernel.settings.SettingsDescriptor;
-import com.liferay.portal.kernel.settings.SettingsException;
 import com.liferay.portal.kernel.settings.SettingsFactoryUtil;
 import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -30,12 +29,8 @@ import com.liferay.portal.security.sso.token.constants.LegacyTokenPropsKeys;
 import com.liferay.portal.security.sso.token.constants.TokenConfigurationKeys;
 import com.liferay.portal.security.sso.token.constants.TokenConstants;
 
-import java.io.IOException;
-
 import java.util.Dictionary;
 import java.util.List;
-
-import javax.portlet.ValidatorException;
 
 /**
  * @author Christopher Kian
@@ -50,7 +45,7 @@ public class UpgradeTokenConfiguration extends UpgradeProcess {
 	private void _storeSettings(
 			long companyId, String settingsId,
 			Dictionary<String, String> dictionary)
-		throws IOException, SettingsException, ValidatorException {
+		throws Exception {
 
 		Settings settings = SettingsFactoryUtil.getSettings(
 			new CompanyServiceSettingsLocator(companyId, settingsId));

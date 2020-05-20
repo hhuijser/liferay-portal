@@ -22,7 +22,6 @@ import com.liferay.application.list.constants.PanelCategoryKeys;
 import com.liferay.item.selector.ItemSelector;
 import com.liferay.item.selector.criteria.URLItemSelectorReturnType;
 import com.liferay.item.selector.criteria.group.criterion.GroupItemSelectorCriterion;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -81,7 +80,7 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 	private JSONArray _getChildPanelCategoriesJSONArray(
 			HttpServletRequest httpServletRequest, String key,
 			ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		JSONArray childPanelCategoriesJSONArray =
 			JSONFactoryUtil.createJSONArray();
@@ -117,7 +116,7 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 	private JSONObject _getGlobalMenuContextJSONObject(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws PortalException {
+		throws Exception {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			resourceRequest);
@@ -141,7 +140,7 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 	private JSONArray _getPanelAppsJSONArray(
 			HttpServletRequest httpServletRequest, String key,
 			ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		JSONArray panelAppsJSONArray = JSONFactoryUtil.createJSONArray();
 
@@ -167,7 +166,7 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 	private JSONArray _getPanelCategoriesJSONArray(
 			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		JSONArray panelCategoriesJSONArray = JSONFactoryUtil.createJSONArray();
 

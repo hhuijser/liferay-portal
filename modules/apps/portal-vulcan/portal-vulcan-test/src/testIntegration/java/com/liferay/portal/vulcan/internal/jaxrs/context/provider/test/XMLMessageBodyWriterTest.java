@@ -21,7 +21,6 @@ import com.liferay.portal.kernel.util.GetterUtil;
 import com.liferay.portal.kernel.util.HashMapBuilder;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.xml.Document;
-import com.liferay.portal.kernel.xml.DocumentException;
 import com.liferay.portal.kernel.xml.Element;
 import com.liferay.portal.kernel.xml.SAXReaderUtil;
 import com.liferay.portal.vulcan.internal.test.util.URLConnectionUtil;
@@ -29,7 +28,6 @@ import com.liferay.registry.Registry;
 import com.liferay.registry.RegistryUtil;
 import com.liferay.registry.ServiceRegistration;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URLConnection;
@@ -189,9 +187,7 @@ public class XMLMessageBodyWriterTest {
 
 	}
 
-	private Document _getDocument(String urlString)
-		throws DocumentException, IOException {
-
+	private Document _getDocument(String urlString) throws Exception {
 		URLConnection urlConnection = URLConnectionUtil.createURLConnection(
 			urlString);
 

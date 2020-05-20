@@ -126,7 +126,7 @@ public class AMImageHTMLExportImportContentProcessor
 
 	private String _replace(
 			String content, AMEmbeddedReferenceSet amEmbeddedReferenceSet)
-		throws PortalException {
+		throws Exception {
 
 		Document document = _parseDocument(content);
 

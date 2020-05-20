@@ -28,7 +28,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletRequest;
-import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.BodyContent;
@@ -107,7 +106,7 @@ public class HtmlTopTagTest {
 
 	private static void _testDataSennaTrackAttributeAdded(
 			final String element, String expectedDataSennaTrackValue)
-		throws IOException, JspException {
+		throws Exception {
 
 		HtmlTopTag htmlTopTag = new HtmlTopTag();
 

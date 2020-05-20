@@ -106,7 +106,7 @@ List<FolderSearchFacetTermDisplayContext> folderSearchFacetTermDisplayContexts =
 													type="checkbox" <%= folderSearchFacetTermDisplayContext.isSelected() ? "checked" : StringPool.BLANK %>
 												/>
 
-												<span class="custom-control-label term-name <%= folderSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>">
+												<span class='custom-control-label term-name <%= folderSearchFacetTermDisplayContext.isSelected() ? "facet-term-selected" : "facet-term-unselected" %>'>
 													<span class="custom-control-label-text">
 														<%= HtmlUtil.escape(folderSearchFacetTermDisplayContext.getDisplayName()) %>
 													</span>

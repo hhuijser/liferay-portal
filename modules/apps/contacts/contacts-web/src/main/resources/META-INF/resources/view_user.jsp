@@ -34,7 +34,7 @@ request.setAttribute("view_user.jsp-user", user2);
 %>
 
 <c:if test="<%= user2 != null %>">
-	<div class="contacts-profile <%= (user.getUserId() == user2.getUserId()) ? "my-profile" : StringPool.BLANK %>" id="<portlet:namespace />contactsProfile">
+	<div class='contacts-profile <%= (user.getUserId() == user2.getUserId()) ? "my-profile" : StringPool.BLANK %>' id="<portlet:namespace />contactsProfile">
 		<c:if test="<%= (displayStyle == ContactsConstants.DISPLAY_STYLE_BASIC) || (displayStyle == ContactsConstants.DISPLAY_STYLE_FULL) %>">
 			<clay:row>
 				<clay:col
@@ -50,7 +50,7 @@ request.setAttribute("view_user.jsp-user", user2);
 					<c:if test="<%= connection || follower || following %>">
 						<div class="lfr-asset-metadata">
 							<c:if test="<%= connection %>">
-								<span class="lfr-asset-icon lfr-asset-connection<%= (following || follower) ? StringPool.BLANK : " last" %>">
+								<span class='lfr-asset-icon lfr-asset-connection<%= (following || follower) ? StringPool.BLANK : " last" %>'>
 									<liferay-ui:icon
 										icon="user"
 										markupView="lexicon"
@@ -61,7 +61,7 @@ request.setAttribute("view_user.jsp-user", user2);
 							</c:if>
 
 							<c:if test="<%= following %>">
-								<span class="lfr-asset-icon lfr-asset-following<%= follower ? StringPool.BLANK : " last" %>">
+								<span class='lfr-asset-icon lfr-asset-following<%= follower ? StringPool.BLANK : " last" %>'>
 									<liferay-ui:icon
 										icon="user"
 										markupView="lexicon"
@@ -144,7 +144,7 @@ request.setAttribute("view_user.jsp-user", user2);
 				</clay:col>
 			</clay:row>
 
-			<div class="field-group lfr-detail-info" data-title="<%= LanguageUtil.get(request, "details") %>">
+			<div class="field-group lfr-detail-info" data-title='<%= LanguageUtil.get(request, "details") %>'>
 
 				<%
 				PortletURL editDetailsURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);
@@ -162,7 +162,7 @@ request.setAttribute("view_user.jsp-user", user2);
 					</div>
 				</c:if>
 
-				<div class="<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info">
+				<div class='<%= showIcon ? StringPool.BLANK : "no-icon" %> lfr-contact-info'>
 					<div class="lfr-contact-name">
 						<a href="<%= user2.getDisplayURL(themeDisplay) %>"><%= user2.getFullName() %></a>
 					</div>
@@ -299,7 +299,7 @@ request.setAttribute("view_user.jsp-user", user2);
 
 									<c:choose>
 										<c:when test="<%= !assetTags.isEmpty() %>">
-											<div class="field-group user-tags-wrapper" data-title="<%= LanguageUtil.get(request, "tags") %>">
+											<div class="field-group user-tags-wrapper" data-title='<%= LanguageUtil.get(request, "tags") %>'>
 
 												<%
 												PortletURL editCategorizationURL = PortletURLFactoryUtil.create(request, PortletKeys.MY_ACCOUNT, embeddedPersonalApplicationLayout, PortletRequest.RENDER_PHASE);

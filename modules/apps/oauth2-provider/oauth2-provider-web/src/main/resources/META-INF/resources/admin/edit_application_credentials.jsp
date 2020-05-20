@@ -143,7 +143,7 @@ String clientSecret = (oAuth2Application == null) ? "" : oAuth2Application.getCl
 									/>
 								</c:when>
 								<c:otherwise>
-									<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="portrait" />" src="<%= HtmlUtil.escapeAttribute(thumbnailURL) %>" />
+									<img alt='<liferay-ui:message escapeAttribute="<%= true %>" key="portrait" />' src="<%= HtmlUtil.escapeAttribute(thumbnailURL) %>" />
 								</c:otherwise>
 							</c:choose>
 						</clay:col>

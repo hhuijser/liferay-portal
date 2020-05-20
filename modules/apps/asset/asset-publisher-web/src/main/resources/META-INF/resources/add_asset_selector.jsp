@@ -50,7 +50,7 @@ String redirect = PortalUtil.getLayoutFullURL(layout, themeDisplay);
 				List<AssetPublisherAddItemHolder> assetPublisherAddItemHolders = entry.getValue();
 			%>
 
-				<div class="asset-entry-type <%= (groupId == scopeGroupId) ? StringPool.BLANK : "hide" %>" id="<%= liferayPortletResponse.getNamespace() + groupId %>">
+				<div class='asset-entry-type <%= (groupId == scopeGroupId) ? StringPool.BLANK : "hide" %>' id="<%= liferayPortletResponse.getNamespace() + groupId %>">
 					<aui:select cssClass="asset-entry-type-select" label="asset-entry-type" name="selectAssetEntryType">
 
 						<%

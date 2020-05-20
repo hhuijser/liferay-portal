@@ -25,7 +25,7 @@ String toolbarItem = ParamUtil.getString(request, "toolbar-item", "view-all");
 		<portlet:param name="mvcPath" value="/admin/view.jsp" />
 	</portlet:renderURL>
 
-	<span class="lfr-toolbar-button view-button <%= toolbarItem.equals("view-all") ? "current" : StringPool.BLANK %>">
+	<span class='lfr-toolbar-button view-button <%= toolbarItem.equals("view-all") ? "current" : StringPool.BLANK %>'>
 		<aui:a href="<%= viewApplicationsURL %>" label='<%= permissionChecker.isCompanyAdmin() ? "view-all" : "my-applications" %>' />
 	</span>
 
@@ -35,7 +35,7 @@ String toolbarItem = ParamUtil.getString(request, "toolbar-item", "view-all");
 			<portlet:param name="redirect" value="<%= currentURL %>" />
 		</portlet:renderURL>
 
-		<span class="lfr-toolbar-button add-button <%= toolbarItem.equals("add") ? "current" : StringPool.BLANK %>">
+		<span class='lfr-toolbar-button add-button <%= toolbarItem.equals("add") ? "current" : StringPool.BLANK %>'>
 			<aui:a href="<%= addApplicationURL %>" label="add" />
 		</span>
 	</c:if>

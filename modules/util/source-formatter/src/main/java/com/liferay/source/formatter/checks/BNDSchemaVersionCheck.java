@@ -144,19 +144,29 @@ public class BNDSchemaVersionCheck extends BaseFileCheck {
 				List<String> parameterList = JavaSourceUtil.getParameterList(
 					content.substring(x - 1));
 
-				try {
-					Version schemaVersion = new Version(
-						StringUtil.removeChar(
-							parameterList.get(1), CharPool.QUOTE));
+				if (parameterList.size() < 3) {
+					break;
+				}
+
+				for (int i = parameterList.size() - 2; i > 0; i--) {
+					Version schemaVersion = null;
+
+					try {
+						schemaVersion = new Version(
+							StringUtil.removeChar(
+								parameterList.get(i), CharPool.QUOTE));
+					}
+					catch (IllegalArgumentException illegalArgumentException) {
+						continue;
+					}
 
 					if ((expectedSchemaVersion == null) ||
 						(expectedSchemaVersion.compareTo(schemaVersion) < 0)) {
 
 						expectedSchemaVersion = schemaVersion;
 					}
-				}
-				catch (IllegalArgumentException illegalArgumentException) {
-					return null;
+
+					break;
 				}
 			}
 		}

@@ -1275,26 +1275,11 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	public String getLocation() throws Exception {
 		List<Exception> exceptions = new ArrayList<>();
 
+		LocationCallable callable = new LocationCallable();
+
 		for (int i = 0; i < PropsValues.GET_LOCATION_MAX_RETRIES; i++) {
 			FutureTask<String> futureTask = new FutureTask<>(
-				new Callable<String>() {
-
-					@Override
-					public String call() throws Exception {
-						return _webDriver.getCurrentUrl();
-					}
-
-					private Callable<String> _init(WebDriver webDriver)
-						throws Exception {
-
-						_webDriver = webDriver;
-
-						return this;
-					}
-
-					private WebDriver _webDriver;
-
-				}._init(this));
+				callable._init(this));
 
 			Thread thread = new Thread(futureTask);
 
@@ -4634,5 +4619,22 @@ public abstract class BaseWebDriverImpl implements LiferaySelenium, WebDriver {
 	private final String _sikuliImagesDirName;
 	private final String _testDependenciesDirName;
 	private final WebDriver _webDriver;
+
+	private class LocationCallable implements Callable<String> {
+
+		@Override
+		public String call() throws Exception {
+			return _webDriver.getCurrentUrl();
+		}
+
+		private Callable<String> _init(WebDriver webDriver) throws Exception {
+			_webDriver = webDriver;
+
+			return this;
+		}
+
+		private WebDriver _webDriver;
+
+	}
 
 }

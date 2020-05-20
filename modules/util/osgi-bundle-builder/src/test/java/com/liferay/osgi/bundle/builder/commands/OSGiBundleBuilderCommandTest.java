@@ -18,7 +18,6 @@ import com.liferay.osgi.bundle.builder.OSGiBundleBuilderArgs;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 
 import java.net.URL;
@@ -174,7 +173,7 @@ public class OSGiBundleBuilderCommandTest {
 		}
 	}
 
-	private static void _unzip(File file, File outputDir) throws IOException {
+	private static void _unzip(File file, File outputDir) throws Exception {
 		Path outputDirPath = outputDir.toPath();
 
 		try (ZipFile zipFile = new ZipFile(file)) {
@@ -220,7 +219,7 @@ public class OSGiBundleBuilderCommandTest {
 	}
 
 	private File _unzip(String resourceName, String outputDirName)
-		throws IOException {
+		throws Exception {
 
 		URL url = OSGiBundleBuilderCommandTest.class.getResource(resourceName);
 

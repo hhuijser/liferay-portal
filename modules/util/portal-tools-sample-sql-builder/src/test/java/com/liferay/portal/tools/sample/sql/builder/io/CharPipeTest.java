@@ -797,7 +797,7 @@ public class CharPipeTest {
 	}
 
 	private long _timestampedWrite(Writer writer, char[] data)
-		throws IOException {
+		throws Exception {
 
 		writer.write(data);
 
@@ -805,7 +805,7 @@ public class CharPipeTest {
 	}
 
 	private long _timestampedWrite(Writer writer, String data)
-		throws IOException {
+		throws Exception {
 
 		writer.write(data);
 

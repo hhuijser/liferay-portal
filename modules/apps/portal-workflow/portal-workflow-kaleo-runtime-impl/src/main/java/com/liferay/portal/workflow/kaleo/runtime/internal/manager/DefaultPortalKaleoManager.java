@@ -340,7 +340,7 @@ public class DefaultPortalKaleoManager
 	protected WorkflowComparatorFactory workflowComparatorFactory;
 
 	private String _getLocalizedTitle(long companyId, String definitionName)
-		throws PortalException {
+		throws Exception {
 
 		if (!Objects.equals(_DEFINITION_NAME, definitionName)) {
 			return LocalizationUtil.updateLocalization(

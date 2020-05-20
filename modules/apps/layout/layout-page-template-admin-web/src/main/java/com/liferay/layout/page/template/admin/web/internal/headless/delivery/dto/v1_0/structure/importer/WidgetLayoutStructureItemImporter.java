@@ -146,7 +146,7 @@ public class WidgetLayoutStructureItemImporter
 
 	private String _getPortletInstanceId(
 			Layout layout, String portletInstanceId, String portletId)
-		throws PortletIdException {
+		throws Exception {
 
 		Portlet portlet = _portletLocalService.fetchPortletById(
 			layout.getCompanyId(), portletId);

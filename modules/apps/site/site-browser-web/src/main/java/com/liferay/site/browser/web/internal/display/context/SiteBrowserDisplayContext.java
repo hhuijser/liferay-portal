@@ -386,7 +386,7 @@ public class SiteBrowserDisplayContext {
 
 	private List<Group> _filterGroups(
 			List<Group> groups, PermissionChecker permissionChecker)
-		throws PortalException {
+		throws Exception {
 
 		boolean filterManageableGroups = ParamUtil.getBoolean(
 			_httpServletRequest, "filterManageableGroups", true);

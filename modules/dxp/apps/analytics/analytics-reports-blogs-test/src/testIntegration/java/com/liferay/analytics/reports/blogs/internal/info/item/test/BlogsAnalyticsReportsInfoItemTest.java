@@ -25,7 +25,6 @@ import com.liferay.layout.page.template.constants.LayoutPageTemplateEntryTypeCon
 import com.liferay.layout.page.template.model.LayoutPageTemplateEntry;
 import com.liferay.layout.page.template.service.LayoutPageTemplateEntryLocalService;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
@@ -137,11 +136,11 @@ public class BlogsAnalyticsReportsInfoItemTest {
 			_analyticsReportsInfoItem.getTitle(blogsEntry, LocaleUtil.US));
 	}
 
-	private BlogsEntry _addBlogEntry() throws PortalException {
+	private BlogsEntry _addBlogEntry() throws Exception {
 		return _addBlogEntry(TestPropsValues.getUser());
 	}
 
-	private BlogsEntry _addBlogEntry(User user) throws PortalException {
+	private BlogsEntry _addBlogEntry(User user) throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group, user.getUserId());
 

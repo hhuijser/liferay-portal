@@ -27,7 +27,6 @@ import com.liferay.layout.util.structure.FragmentLayoutStructureItem;
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.PortletIdException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Company;
@@ -268,7 +267,7 @@ public class AddPortletMVCActionCommandTest {
 			fragmentLayoutStructureItem.getItemId(), childrenItemIds.get(0));
 	}
 
-	private Layout _addLayout() throws PortalException {
+	private Layout _addLayout() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				TestPropsValues.getGroupId(), TestPropsValues.getUserId());
@@ -281,7 +280,7 @@ public class AddPortletMVCActionCommandTest {
 			StringPool.BLANK, serviceContext);
 	}
 
-	private MockActionRequest _getMockActionRequest() throws PortalException {
+	private MockActionRequest _getMockActionRequest() throws Exception {
 		ThemeDisplay themeDisplay = _getThemeDisplay();
 
 		MockActionRequest mockActionRequest = new MockActionRequest(
@@ -299,7 +298,7 @@ public class AddPortletMVCActionCommandTest {
 		return mockActionRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

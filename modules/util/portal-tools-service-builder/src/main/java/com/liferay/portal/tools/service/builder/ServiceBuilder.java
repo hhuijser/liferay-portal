@@ -120,7 +120,6 @@ import java.util.regex.Pattern;
 
 import org.dom4j.Attribute;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.DocumentType;
 import org.dom4j.Element;
@@ -4611,9 +4610,7 @@ public class ServiceBuilder {
 		return sb.toString();
 	}
 
-	private String _formatXml(String xml)
-		throws DocumentException, IOException {
-
+	private String _formatXml(String xml) throws Exception {
 		String doctype = null;
 
 		int x = xml.indexOf("<!DOCTYPE");

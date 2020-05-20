@@ -600,7 +600,7 @@ public class AMImageEntryLocalServiceTest {
 
 	private AMImageConfigurationEntry _addAMImageConfigurationEntry(
 			long companyId, String uuid, int maxHeight, int maxWidth)
-		throws IOException, PortalException {
+		throws Exception {
 
 		Map<String, String> properties = HashMapBuilder.put(
 			"max-height", String.valueOf(maxHeight)
@@ -615,7 +615,7 @@ public class AMImageEntryLocalServiceTest {
 
 	private AMImageConfigurationEntry _addAMImageConfigurationEntry(
 			String uuid, int maxHeight, int maxWidth)
-		throws IOException, PortalException {
+		throws Exception {
 
 		return _addAMImageConfigurationEntry(
 			TestPropsValues.getCompanyId(), uuid, maxHeight, maxWidth);

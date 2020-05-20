@@ -235,7 +235,7 @@ public class AddFormInstanceRecordMVCActionCommand
 
 	private void _validatePublishStatus(
 			ActionRequest actionRequest, DDMFormInstance ddmFormInstance)
-		throws FormInstanceNotPublishedException, PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

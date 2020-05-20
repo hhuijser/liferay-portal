@@ -48,8 +48,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 
-import java.io.IOException;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -158,7 +156,7 @@ public class FragmentEntryProcessorDropZoneTest {
 			StringPool.BLANK, StringPool.BLANK, 0, null, _serviceContext);
 	}
 
-	private String _getFileAsString(String fileName) throws IOException {
+	private String _getFileAsString(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		return StringUtil.read(
@@ -167,7 +165,7 @@ public class FragmentEntryProcessorDropZoneTest {
 				"/" + fileName);
 	}
 
-	private String _getProcessedHTML(String fileName) throws IOException {
+	private String _getProcessedHTML(String fileName) throws Exception {
 		Document document = Jsoup.parseBodyFragment(_getFileAsString(fileName));
 
 		document.outputSettings(

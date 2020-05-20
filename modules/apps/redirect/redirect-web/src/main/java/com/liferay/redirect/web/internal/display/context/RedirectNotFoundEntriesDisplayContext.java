@@ -58,7 +58,6 @@ import java.util.stream.Stream;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionURL;
-import javax.portlet.PortletException;
 import javax.portlet.PortletURL;
 import javax.portlet.RenderURL;
 
@@ -212,7 +211,7 @@ public class RedirectNotFoundEntriesDisplayContext {
 			!orderByAsc);
 	}
 
-	private PortletURL _getPortletURL() throws PortletException {
+	private PortletURL _getPortletURL() throws Exception {
 		return PortletURLUtil.clone(
 			PortletURLUtil.getCurrent(
 				_liferayPortletRequest, _liferayPortletResponse),

@@ -29,7 +29,6 @@ import com.liferay.layout.util.structure.FragmentLayoutStructureItem;
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.petra.string.StringPool;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.model.Group;
@@ -65,8 +64,6 @@ import com.liferay.portal.test.rule.Inject;
 import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.test.rule.PermissionCheckerMethodTestRule;
 import com.liferay.segments.constants.SegmentsExperienceConstants;
-
-import java.io.IOException;
 
 import java.util.List;
 
@@ -482,7 +479,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 			serviceContext);
 	}
 
-	private Layout _addLayout() throws PortalException {
+	private Layout _addLayout() throws Exception {
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(
 				TestPropsValues.getGroupId(), TestPropsValues.getUserId());
@@ -495,7 +492,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 			StringPool.BLANK, serviceContext);
 	}
 
-	private String _getFileAsString(String fileName) throws IOException {
+	private String _getFileAsString(String fileName) throws Exception {
 		Class<?> clazz = getClass();
 
 		return StringUtil.read(
@@ -505,7 +502,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 	}
 
 	private MockHttpServletRequest _getMockHttpServletRequest()
-		throws PortalException {
+		throws Exception {
 
 		MockHttpServletRequest mockHttpServletRequest =
 			new MockHttpServletRequest();
@@ -521,7 +518,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 
 	private MockLiferayPortletActionRequest _getMockLiferayPortletActionRequest(
 			long groupId)
-		throws PortalException {
+		throws Exception {
 
 		MockLiferayPortletActionRequest mockLiferayPortletActionRequest =
 			new MockLiferayPortletActionRequest();
@@ -535,7 +532,7 @@ public class FragmentDropZoneMVCActionCommandTest {
 		return mockLiferayPortletActionRequest;
 	}
 
-	private ThemeDisplay _getThemeDisplay() throws PortalException {
+	private ThemeDisplay _getThemeDisplay() throws Exception {
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 
 		themeDisplay.setCompany(_company);

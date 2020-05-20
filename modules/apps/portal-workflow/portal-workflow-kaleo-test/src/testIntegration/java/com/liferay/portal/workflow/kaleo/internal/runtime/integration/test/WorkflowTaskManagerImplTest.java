@@ -1065,7 +1065,7 @@ public class WorkflowTaskManagerImplTest {
 
 	private void _activateSingleApproverWorkflow(
 			long groupId, String className, long classPK, long typePK)
-		throws PortalException {
+		throws Exception {
 
 		_activateWorkflow(
 			groupId, className, classPK, typePK, "Single Approver", 1);
@@ -1073,7 +1073,7 @@ public class WorkflowTaskManagerImplTest {
 
 	private void _activateSingleApproverWorkflow(
 			String className, long classPK, long typePK)
-		throws PortalException {
+		throws Exception {
 
 		_activateWorkflow(
 			_group.getGroupId(), className, classPK, typePK, "Single Approver",
@@ -1083,7 +1083,7 @@ public class WorkflowTaskManagerImplTest {
 	private void _activateWorkflow(
 			long groupId, String className, long classPK, long typePK,
 			String workflowDefinitionName, int workflowDefinitionVersion)
-		throws PortalException {
+		throws Exception {
 
 		_workflowDefinitionLinkLocalService.updateWorkflowDefinitionLink(
 			_adminUser.getUserId(), _company.getCompanyId(), groupId, className,
@@ -1093,18 +1093,18 @@ public class WorkflowTaskManagerImplTest {
 	private void _activateWorkflow(
 			String className, long classPK, long typePK,
 			String workflowDefinitionName, int workflowDefinitionVersion)
-		throws PortalException {
+		throws Exception {
 
 		_activateWorkflow(
 			_group.getGroupId(), className, classPK, typePK,
 			workflowDefinitionName, workflowDefinitionVersion);
 	}
 
-	private BlogsEntry _addBlogsEntry() throws PortalException {
+	private BlogsEntry _addBlogsEntry() throws Exception {
 		return _addBlogsEntry(_adminUser);
 	}
 
-	private BlogsEntry _addBlogsEntry(User user) throws PortalException {
+	private BlogsEntry _addBlogsEntry(User user) throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
@@ -1163,7 +1163,7 @@ public class WorkflowTaskManagerImplTest {
 		}
 	}
 
-	private Folder _addFolder() throws PortalException {
+	private Folder _addFolder() throws Exception {
 		return _dlAppService.addFolder(
 			_group.getGroupId(), 0, RandomTestUtil.randomString(),
 			RandomTestUtil.randomString(), _serviceContext);
@@ -1205,7 +1205,7 @@ public class WorkflowTaskManagerImplTest {
 		}
 	}
 
-	private JournalFolder _addJournalFolder() throws PortalException {
+	private JournalFolder _addJournalFolder() throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
@@ -1220,7 +1220,7 @@ public class WorkflowTaskManagerImplTest {
 
 	private JournalFolder _addJournalFolder(
 			long ddmStructureId, int restrictionType)
-		throws PortalException {
+		throws Exception {
 
 		long[] ddmStructureIds = {ddmStructureId};
 
@@ -1233,9 +1233,7 @@ public class WorkflowTaskManagerImplTest {
 			ddmStructureIds, restrictionType, false, _serviceContext);
 	}
 
-	private DDLRecord _addRecord(DDLRecordSet recordSet)
-		throws PortalException {
-
+	private DDLRecord _addRecord(DDLRecordSet recordSet) throws Exception {
 		try (CaptureAppender captureAppender =
 				Log4JLoggerTestUtil.configureLog4JLogger(
 					_MAIL_ENGINE_CLASS_NAME, Level.OFF)) {
@@ -1401,16 +1399,14 @@ public class WorkflowTaskManagerImplTest {
 		}
 	}
 
-	private Organization _createOrganization(boolean site)
-		throws PortalException {
-
+	private Organization _createOrganization(boolean site) throws Exception {
 		return _createOrganization(
 			OrganizationConstants.DEFAULT_PARENT_ORGANIZATION_ID, site);
 	}
 
 	private Organization _createOrganization(
 			long parentOrganizationId, boolean site)
-		throws PortalException {
+		throws Exception {
 
 		return _organizationLocalService.addOrganization(
 			_adminUser.getUserId(), parentOrganizationId,
@@ -1497,7 +1493,7 @@ public class WorkflowTaskManagerImplTest {
 
 	private void _deactivateWorkflow(
 			long groupId, String className, long classPK, long typePK)
-		throws PortalException {
+		throws Exception {
 
 		_workflowDefinitionLinkLocalService.updateWorkflowDefinitionLink(
 			_adminUser.getUserId(), _company.getCompanyId(), groupId, className,
@@ -1506,7 +1502,7 @@ public class WorkflowTaskManagerImplTest {
 
 	private void _deactivateWorkflow(
 			String className, long classPK, long typePK)
-		throws PortalException {
+		throws Exception {
 
 		_deactivateWorkflow(_group.getGroupId(), className, classPK, typePK);
 	}
@@ -1522,7 +1518,7 @@ public class WorkflowTaskManagerImplTest {
 
 	private WorkflowInstanceLink _fetchWorkflowInstanceLink(
 			String className, long classPK)
-		throws WorkflowException {
+		throws Exception {
 
 		return _workflowInstanceLinkLocalService.fetchWorkflowInstanceLink(
 			_adminUser.getCompanyId(), _adminUser.getGroupId(), className,
@@ -1540,14 +1536,14 @@ public class WorkflowTaskManagerImplTest {
 
 	private WorkflowInstance _getWorkflowInstance(
 			String className, long classPK)
-		throws WorkflowException {
+		throws Exception {
 
 		return _getWorkflowInstance(className, classPK, true);
 	}
 
 	private WorkflowInstance _getWorkflowInstance(
 			String className, long classPK, boolean completed)
-		throws WorkflowException {
+		throws Exception {
 
 		List<WorkflowInstance> workflowInstances =
 			_workflowInstanceManager.getWorkflowInstances(
@@ -1717,7 +1713,7 @@ public class WorkflowTaskManagerImplTest {
 	}
 
 	private Folder _updateFolder(Folder folder, int restrictionType)
-		throws PortalException {
+		throws Exception {
 
 		return _updateFolder(folder, restrictionType, -1, new HashMap<>());
 	}
@@ -1725,7 +1721,7 @@ public class WorkflowTaskManagerImplTest {
 	private Folder _updateFolder(
 			Folder folder, int restrictionType, long defaultFileEntryTypeId,
 			Map<String, String> dlFileEntryTypeMap)
-		throws PortalException {
+		throws Exception {
 
 		ServiceContext serviceContext =
 			ServiceContextTestUtil.getServiceContext(_group.getGroupId());
@@ -1755,7 +1751,7 @@ public class WorkflowTaskManagerImplTest {
 	private Folder _updateFolder(
 			Folder folder, int restrictionType,
 			Map<String, String> dlFileEntryTypeMap)
-		throws PortalException {
+		throws Exception {
 
 		return _updateFolder(folder, restrictionType, -1, dlFileEntryTypeMap);
 	}

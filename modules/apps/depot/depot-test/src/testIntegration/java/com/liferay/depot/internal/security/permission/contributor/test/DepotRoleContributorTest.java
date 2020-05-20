@@ -20,7 +20,6 @@ import com.liferay.depot.model.DepotEntry;
 import com.liferay.depot.service.DepotEntryGroupRelLocalService;
 import com.liferay.depot.service.DepotEntryLocalService;
 import com.liferay.depot.test.util.DepotTestUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Role;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
@@ -107,7 +106,7 @@ public class DepotRoleContributorTest {
 			});
 	}
 
-	private DepotEntry _addDepotEntry() throws PortalException {
+	private DepotEntry _addDepotEntry() throws Exception {
 		return _depotEntryLocalService.addDepotEntry(
 			HashMapBuilder.put(
 				LocaleUtil.getDefault(), RandomTestUtil.randomString()

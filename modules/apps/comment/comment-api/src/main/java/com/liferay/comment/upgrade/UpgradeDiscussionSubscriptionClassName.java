@@ -26,11 +26,8 @@ import com.liferay.portal.kernel.upgrade.UpgradeProcess;
 import com.liferay.subscription.model.Subscription;
 import com.liferay.subscription.service.SubscriptionLocalService;
 
-import java.io.IOException;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  * @author Roberto Díaz
@@ -100,7 +97,7 @@ public class UpgradeDiscussionSubscriptionClassName extends UpgradeProcess {
 		actionableDynamicQuery.performActions();
 	}
 
-	private void _updateSubscriptions() throws IOException, SQLException {
+	private void _updateSubscriptions() throws Exception {
 		String newSubscriptionClassName =
 			MBDiscussion.class.getName() + StringPool.UNDERLINE +
 				_oldSubscriptionClassName;

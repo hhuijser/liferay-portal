@@ -48,7 +48,6 @@ import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 
@@ -234,9 +233,7 @@ public class UploadGoogleDriveDocumentBackgroundTaskExecutor
 		return credential;
 	}
 
-	private File _getFileEntryFile(FileVersion fileVersion)
-		throws IOException, PortalException {
-
+	private File _getFileEntryFile(FileVersion fileVersion) throws Exception {
 		try (InputStream is = fileVersion.getContentStream(false)) {
 			return FileUtil.createTempFile(is);
 		}

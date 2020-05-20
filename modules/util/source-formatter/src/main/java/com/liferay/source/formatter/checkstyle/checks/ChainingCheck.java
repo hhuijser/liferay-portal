@@ -291,6 +291,13 @@ public class ChainingCheck extends BaseCheck {
 			return;
 		}
 
+		DetailAST arrayDeclaratorDetailAST = detailAST.findFirstToken(
+			TokenTypes.ARRAY_DECLARATOR);
+
+		if (arrayDeclaratorDetailAST != null) {
+			return;
+		}
+
 		List<String> chainedMethodNames = _getChainedMethodNames(
 			methodCallDetailAST);
 

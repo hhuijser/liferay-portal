@@ -65,7 +65,7 @@ public class DLFileEntryTypeUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<DLFileEntryType> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -79,6 +79,6 @@ public class DLFileEntryTypeUADExporterTest
 	private Portal _portal;
 
 	@Inject(filter = "component.name=*.DLFileEntryTypeUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<DLFileEntryType> _uadExporter;
 
 }

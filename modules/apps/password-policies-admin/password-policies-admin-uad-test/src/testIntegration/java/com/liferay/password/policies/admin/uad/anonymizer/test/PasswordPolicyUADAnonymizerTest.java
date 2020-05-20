@@ -66,7 +66,7 @@ public class PasswordPolicyUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<PasswordPolicy> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -106,6 +106,6 @@ public class PasswordPolicyUADAnonymizerTest
 	private PasswordPolicyLocalService _passwordPolicyLocalService;
 
 	@Inject(filter = "component.name=*.PasswordPolicyUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<PasswordPolicy> _uadAnonymizer;
 
 }

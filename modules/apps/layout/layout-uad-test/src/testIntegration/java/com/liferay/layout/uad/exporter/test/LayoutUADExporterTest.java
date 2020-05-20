@@ -59,7 +59,7 @@ public class LayoutUADExporterTest extends BaseUADExporterTestCase<Layout> {
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<Layout> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -70,6 +70,6 @@ public class LayoutUADExporterTest extends BaseUADExporterTestCase<Layout> {
 	private final List<Layout> _layouts = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.LayoutUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<Layout> _uadExporter;
 
 }

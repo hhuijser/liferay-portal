@@ -55,7 +55,7 @@ public class BlogsEntryUADDisplayTest
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<BlogsEntry> getUADDisplay() {
 		return _uadDisplay;
 	}
 
@@ -66,6 +66,6 @@ public class BlogsEntryUADDisplayTest
 	private BlogsEntryLocalService _blogsEntryLocalService;
 
 	@Inject(filter = "component.name=*.BlogsEntryUADDisplay")
-	private UADDisplay _uadDisplay;
+	private UADDisplay<BlogsEntry> _uadDisplay;
 
 }

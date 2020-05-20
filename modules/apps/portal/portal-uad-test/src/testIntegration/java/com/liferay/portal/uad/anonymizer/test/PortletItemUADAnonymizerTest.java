@@ -67,7 +67,7 @@ public class PortletItemUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<PortletItem> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -105,6 +105,6 @@ public class PortletItemUADAnonymizerTest
 	private final List<PortletItem> _portletItems = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.PortletItemUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<PortletItem> _uadAnonymizer;
 
 }

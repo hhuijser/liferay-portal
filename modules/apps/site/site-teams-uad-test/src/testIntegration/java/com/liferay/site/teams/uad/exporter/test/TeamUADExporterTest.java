@@ -63,7 +63,7 @@ public class TeamUADExporterTest extends BaseUADExporterTestCase<Team> {
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<Team> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -74,6 +74,6 @@ public class TeamUADExporterTest extends BaseUADExporterTestCase<Team> {
 	private TeamUADTestHelper _teamUADTestHelper;
 
 	@Inject(filter = "component.name=*.TeamUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<Team> _uadExporter;
 
 }

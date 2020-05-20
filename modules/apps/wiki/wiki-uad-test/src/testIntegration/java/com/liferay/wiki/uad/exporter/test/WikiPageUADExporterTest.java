@@ -80,12 +80,12 @@ public class WikiPageUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<WikiPage> getUADExporter() {
 		return _uadExporter;
 	}
 
 	@Inject(filter = "component.name=*.WikiPageUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<WikiPage> _uadExporter;
 
 	@DeleteAfterTestRun
 	private final List<WikiPage> _wikiPages = new ArrayList<>();

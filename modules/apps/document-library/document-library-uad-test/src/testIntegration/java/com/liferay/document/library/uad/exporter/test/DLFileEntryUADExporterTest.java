@@ -89,7 +89,7 @@ public class DLFileEntryUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<DLFileEntry> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -106,6 +106,6 @@ public class DLFileEntryUADExporterTest
 	private Group _group;
 
 	@Inject(filter = "component.name=*.DLFileEntryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<DLFileEntry> _uadExporter;
 
 }

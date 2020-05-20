@@ -83,7 +83,7 @@ public class BookmarksFolderUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<BookmarksFolder> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -129,6 +129,6 @@ public class BookmarksFolderUADAnonymizerTest
 	private final List<BookmarksFolder> _bookmarksFolders = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.BookmarksFolderUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<BookmarksFolder> _uadAnonymizer;
 
 }

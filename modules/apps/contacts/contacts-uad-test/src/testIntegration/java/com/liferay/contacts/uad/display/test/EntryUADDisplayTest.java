@@ -56,7 +56,7 @@ public class EntryUADDisplayTest extends BaseUADDisplayTestCase<Entry> {
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<Entry> getUADDisplay() {
 		return _uadDisplay;
 	}
 
@@ -67,6 +67,6 @@ public class EntryUADDisplayTest extends BaseUADDisplayTestCase<Entry> {
 	private EntryLocalService _entryLocalService;
 
 	@Inject(filter = "component.name=*.EntryUADDisplay")
-	private UADDisplay _uadDisplay;
+	private UADDisplay<Entry> _uadDisplay;
 
 }

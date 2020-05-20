@@ -81,7 +81,7 @@ public class BlogsEntryUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<BlogsEntry> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -124,6 +124,6 @@ public class BlogsEntryUADAnonymizerTest
 	private BlogsEntryLocalService _blogsEntryLocalService;
 
 	@Inject(filter = "component.name=*.BlogsEntryUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<BlogsEntry> _uadAnonymizer;
 
 }

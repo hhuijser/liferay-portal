@@ -88,6 +88,6 @@ public class BookmarksEntryUADExporterTest
 	private BookmarksEntryLocalService _bookmarksEntryLocalService;
 
 	@Inject(filter = "component.name=*.BookmarksEntryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<BookmarksEntry> _uadExporter;
 
 }

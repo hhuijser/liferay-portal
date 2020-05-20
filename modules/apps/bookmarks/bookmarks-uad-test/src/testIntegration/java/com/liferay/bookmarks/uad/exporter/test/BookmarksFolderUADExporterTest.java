@@ -77,7 +77,7 @@ public class BookmarksFolderUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<BookmarksFolder> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -88,6 +88,6 @@ public class BookmarksFolderUADExporterTest
 	private final List<BookmarksFolder> _bookmarksFolders = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.BookmarksFolderUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<BookmarksFolder> _uadExporter;
 
 }

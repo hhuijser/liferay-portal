@@ -83,7 +83,7 @@ public class LayoutFriendlyURLUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<LayoutFriendlyURL> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -128,6 +128,6 @@ public class LayoutFriendlyURLUADAnonymizerTest
 	private LayoutLocalService _layoutLocalService;
 
 	@Inject(filter = "component.name=*.LayoutFriendlyURLUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<LayoutFriendlyURL> _uadAnonymizer;
 
 }

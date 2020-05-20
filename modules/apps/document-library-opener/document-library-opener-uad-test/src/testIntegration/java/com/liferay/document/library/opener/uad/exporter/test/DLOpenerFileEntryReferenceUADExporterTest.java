@@ -56,7 +56,7 @@ public class DLOpenerFileEntryReferenceUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<DLOpenerFileEntryReference> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -65,6 +65,6 @@ public class DLOpenerFileEntryReferenceUADExporterTest
 		_dlOpenerFileEntryReferences = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.DLOpenerFileEntryReferenceUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<DLOpenerFileEntryReference> _uadExporter;
 
 }

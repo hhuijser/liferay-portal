@@ -75,6 +75,6 @@ public class AnnouncementsFlagUADExporterTest
 		new ArrayList<>();
 
 	@Inject(filter = "component.name=*.AnnouncementsFlagUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<AnnouncementsFlag> _uadExporter;
 
 }

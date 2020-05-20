@@ -66,12 +66,12 @@ public class WorkflowDefinitionLinkUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<WorkflowDefinitionLink> getUADExporter() {
 		return _uadExporter;
 	}
 
 	@Inject(filter = "component.name=*.WorkflowDefinitionLinkUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<WorkflowDefinitionLink> _uadExporter;
 
 	@Inject
 	private WorkflowDefinitionLinkLocalService

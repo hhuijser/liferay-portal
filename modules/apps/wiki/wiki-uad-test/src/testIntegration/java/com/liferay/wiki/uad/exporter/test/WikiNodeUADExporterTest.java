@@ -80,12 +80,12 @@ public class WikiNodeUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<WikiNode> getUADExporter() {
 		return _uadExporter;
 	}
 
 	@Inject(filter = "component.name=*.WikiNodeUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<WikiNode> _uadExporter;
 
 	@DeleteAfterTestRun
 	private final List<WikiNode> _wikiNodes = new ArrayList<>();

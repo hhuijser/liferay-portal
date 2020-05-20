@@ -99,7 +99,7 @@ public class MBThreadUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<MBThread> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -149,6 +149,6 @@ public class MBThreadUADAnonymizerTest
 	private final List<MBThread> _mbThreads = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.MBThreadUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<MBThread> _uadAnonymizer;
 
 }

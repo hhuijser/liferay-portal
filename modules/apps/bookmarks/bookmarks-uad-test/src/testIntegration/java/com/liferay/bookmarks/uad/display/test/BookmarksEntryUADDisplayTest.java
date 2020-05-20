@@ -56,7 +56,7 @@ public class BookmarksEntryUADDisplayTest
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<BookmarksEntry> getUADDisplay() {
 		return _uadDisplay;
 	}
 
@@ -67,6 +67,6 @@ public class BookmarksEntryUADDisplayTest
 	private BookmarksEntryLocalService _bookmarksEntryLocalService;
 
 	@Inject(filter = "component.name=*.BookmarksEntryUADDisplay")
-	private UADDisplay _uadDisplay;
+	private UADDisplay<BookmarksEntry> _uadDisplay;
 
 }

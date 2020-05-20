@@ -70,7 +70,7 @@ public class AnnouncementsEntryUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<AnnouncementsEntry> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -115,6 +115,6 @@ public class AnnouncementsEntryUADAnonymizerTest
 	private ClassNameLocalService _classNameLocalService;
 
 	@Inject(filter = "component.name=*.AnnouncementsEntryUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<AnnouncementsEntry> _uadAnonymizer;
 
 }

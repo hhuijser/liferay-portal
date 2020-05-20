@@ -77,7 +77,7 @@ public class UserGroupUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<UserGroup> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -108,7 +108,7 @@ public class UserGroupUADAnonymizerTest
 	}
 
 	@Inject(filter = "component.name=*.UserGroupUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<UserGroup> _uadAnonymizer;
 
 	@Inject
 	private UserGroupLocalService _userGroupLocalService;

@@ -69,7 +69,7 @@ public class LayoutFriendlyURLUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<LayoutFriendlyURL> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -84,6 +84,6 @@ public class LayoutFriendlyURLUADExporterTest
 	private LayoutLocalService _layoutLocalService;
 
 	@Inject(filter = "component.name=*.LayoutFriendlyURLUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<LayoutFriendlyURL> _uadExporter;
 
 }

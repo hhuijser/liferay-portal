@@ -194,7 +194,7 @@ public class DLFileEntryUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<DLFileEntry> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -290,6 +290,6 @@ public class DLFileEntryUADAnonymizerTest
 	private MBThreadLocalService _mbThreadLocalService;
 
 	@Inject(filter = "component.name=*.DLFileEntryUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<DLFileEntry> _uadAnonymizer;
 
 }

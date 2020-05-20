@@ -66,7 +66,7 @@ public class LayoutSetPrototypeUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<LayoutSetPrototype> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -78,6 +78,6 @@ public class LayoutSetPrototypeUADExporterTest
 		new ArrayList<>();
 
 	@Inject(filter = "component.name=*.LayoutSetPrototypeUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<LayoutSetPrototype> _uadExporter;
 
 }

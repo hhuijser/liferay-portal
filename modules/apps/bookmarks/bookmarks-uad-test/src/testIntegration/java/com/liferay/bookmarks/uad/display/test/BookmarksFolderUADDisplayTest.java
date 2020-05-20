@@ -56,7 +56,7 @@ public class BookmarksFolderUADDisplayTest
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<BookmarksFolder> getUADDisplay() {
 		return _uadDisplay;
 	}
 
@@ -67,6 +67,6 @@ public class BookmarksFolderUADDisplayTest
 	private final List<BookmarksFolder> _bookmarksFolders = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.BookmarksFolderUADDisplay")
-	private UADDisplay _uadDisplay;
+	private UADDisplay<BookmarksFolder> _uadDisplay;
 
 }

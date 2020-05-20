@@ -88,7 +88,7 @@ public class LayoutRevisionUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<LayoutRevision> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -102,7 +102,7 @@ public class LayoutRevisionUADExporterTest
 	private LayoutSetBranchLocalService _layoutSetBranchLocalService;
 
 	@Inject(filter = "component.name=*.LayoutRevisionUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<LayoutRevision> _uadExporter;
 
 	@Inject
 	private UserLocalService _userLocalService;

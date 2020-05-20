@@ -61,7 +61,7 @@ public class DLOpenerFileEntryReferenceUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<DLOpenerFileEntryReference> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -106,6 +106,6 @@ public class DLOpenerFileEntryReferenceUADAnonymizerTest
 		_dlOpenerFileEntryReferences = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.DLOpenerFileEntryReferenceUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<DLOpenerFileEntryReference> _uadAnonymizer;
 
 }

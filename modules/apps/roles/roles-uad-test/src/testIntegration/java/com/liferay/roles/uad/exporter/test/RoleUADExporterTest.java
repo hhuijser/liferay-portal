@@ -63,7 +63,7 @@ public class RoleUADExporterTest extends BaseUADExporterTestCase<Role> {
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<Role> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -74,6 +74,6 @@ public class RoleUADExporterTest extends BaseUADExporterTestCase<Role> {
 	private RoleUADTestHelper _roleUADTestHelper;
 
 	@Inject(filter = "component.name=*.RoleUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<Role> _uadExporter;
 
 }

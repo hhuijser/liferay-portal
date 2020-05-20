@@ -76,7 +76,7 @@ public class BlogsEntryUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<BlogsEntry> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -87,6 +87,6 @@ public class BlogsEntryUADExporterTest
 	private BlogsEntryLocalService _blogsEntryLocalService;
 
 	@Inject(filter = "component.name=*.BlogsEntryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<BlogsEntry> _uadExporter;
 
 }

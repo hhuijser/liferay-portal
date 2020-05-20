@@ -86,7 +86,7 @@ public class MBThreadUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<MBThread> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -103,6 +103,6 @@ public class MBThreadUADExporterTest
 	private final List<MBThread> _mbThreads = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.MBThreadUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<MBThread> _uadExporter;
 
 }

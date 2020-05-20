@@ -74,7 +74,7 @@ public class TeamUADAnonymizerTest extends BaseUADAnonymizerTestCase<Team> {
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<Team> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -114,6 +114,6 @@ public class TeamUADAnonymizerTest extends BaseUADAnonymizerTestCase<Team> {
 	private TeamUADTestHelper _teamUADTestHelper;
 
 	@Inject(filter = "component.name=*.TeamUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<Team> _uadAnonymizer;
 
 }

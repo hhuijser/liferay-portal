@@ -98,7 +98,7 @@ public class MBMessageUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<MBMessage> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -143,6 +143,6 @@ public class MBMessageUADAnonymizerTest
 	private final List<MBMessage> _mbMessages = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.MBMessageUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<MBMessage> _uadAnonymizer;
 
 }

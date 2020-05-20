@@ -77,12 +77,12 @@ public class UserGroupUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<UserGroup> getUADExporter() {
 		return _uadExporter;
 	}
 
 	@Inject(filter = "component.name=*.UserGroupUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<UserGroup> _uadExporter;
 
 	@DeleteAfterTestRun
 	private final List<UserGroup> _userGroups = new ArrayList<>();

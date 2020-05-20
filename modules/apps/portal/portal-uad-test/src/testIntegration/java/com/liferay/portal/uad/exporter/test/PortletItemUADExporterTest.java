@@ -62,7 +62,7 @@ public class PortletItemUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<PortletItem> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -73,6 +73,6 @@ public class PortletItemUADExporterTest
 	private final List<PortletItem> _portletItems = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.PortletItemUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<PortletItem> _uadExporter;
 
 }

@@ -61,7 +61,7 @@ public class EntryUADExporterTest extends BaseUADExporterTestCase<Entry> {
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<Entry> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -72,6 +72,6 @@ public class EntryUADExporterTest extends BaseUADExporterTestCase<Entry> {
 	private EntryLocalService _entryLocalService;
 
 	@Inject(filter = "component.name=*.EntryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<Entry> _uadExporter;
 
 }

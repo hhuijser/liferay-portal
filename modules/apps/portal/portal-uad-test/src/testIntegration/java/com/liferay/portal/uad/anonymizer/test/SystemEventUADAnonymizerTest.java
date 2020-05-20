@@ -73,7 +73,7 @@ public class SystemEventUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<SystemEvent> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -111,6 +111,6 @@ public class SystemEventUADAnonymizerTest
 	private final List<SystemEvent> _systemEvents = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.SystemEventUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<SystemEvent> _uadAnonymizer;
 
 }

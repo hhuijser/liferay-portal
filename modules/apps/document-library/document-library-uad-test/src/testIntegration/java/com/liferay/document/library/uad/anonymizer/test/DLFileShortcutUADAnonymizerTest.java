@@ -93,7 +93,7 @@ public class DLFileShortcutUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<DLFileShortcut> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -145,6 +145,6 @@ public class DLFileShortcutUADAnonymizerTest
 	private Group _group;
 
 	@Inject(filter = "component.name=*.DLFileShortcutUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<DLFileShortcut> _uadAnonymizer;
 
 }

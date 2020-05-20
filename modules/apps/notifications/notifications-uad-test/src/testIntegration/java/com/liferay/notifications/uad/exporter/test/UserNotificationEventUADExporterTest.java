@@ -66,12 +66,12 @@ public class UserNotificationEventUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<UserNotificationEvent> getUADExporter() {
 		return _uadExporter;
 	}
 
 	@Inject(filter = "component.name=*.UserNotificationEventUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<UserNotificationEvent> _uadExporter;
 
 	@Inject
 	private UserNotificationEventLocalService

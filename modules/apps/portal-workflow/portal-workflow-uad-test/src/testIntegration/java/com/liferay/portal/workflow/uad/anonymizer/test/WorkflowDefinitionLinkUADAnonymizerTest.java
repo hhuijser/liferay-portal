@@ -72,7 +72,7 @@ public class WorkflowDefinitionLinkUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<WorkflowDefinitionLink> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -109,7 +109,7 @@ public class WorkflowDefinitionLinkUADAnonymizerTest
 	}
 
 	@Inject(filter = "component.name=*.WorkflowDefinitionLinkUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<WorkflowDefinitionLink> _uadAnonymizer;
 
 	@Inject
 	private WorkflowDefinitionLinkLocalService

@@ -76,7 +76,7 @@ public class MBCategoryUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<MBCategory> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -87,6 +87,6 @@ public class MBCategoryUADExporterTest
 	private MBCategoryLocalService _mbCategoryLocalService;
 
 	@Inject(filter = "component.name=*.MBCategoryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<MBCategory> _uadExporter;
 
 }

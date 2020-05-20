@@ -58,12 +58,12 @@ public class WikiNodeUADDisplayTest extends BaseUADDisplayTestCase<WikiNode> {
 	}
 
 	@Override
-	protected UADDisplay getUADDisplay() {
+	protected UADDisplay<WikiNode> getUADDisplay() {
 		return _uadDisplay;
 	}
 
 	@Inject(filter = "component.name=*.WikiNodeUADDisplay")
-	private UADDisplay _uadDisplay;
+	private UADDisplay<WikiNode> _uadDisplay;
 
 	@DeleteAfterTestRun
 	private final List<WikiNode> _wikiNodes = new ArrayList<>();

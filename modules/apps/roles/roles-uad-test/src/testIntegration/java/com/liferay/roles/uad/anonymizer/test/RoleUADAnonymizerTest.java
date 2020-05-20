@@ -74,7 +74,7 @@ public class RoleUADAnonymizerTest extends BaseUADAnonymizerTestCase<Role> {
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<Role> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -114,6 +114,6 @@ public class RoleUADAnonymizerTest extends BaseUADAnonymizerTestCase<Role> {
 	private RoleUADTestHelper _roleUADTestHelper;
 
 	@Inject(filter = "component.name=*.RoleUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<Role> _uadAnonymizer;
 
 }

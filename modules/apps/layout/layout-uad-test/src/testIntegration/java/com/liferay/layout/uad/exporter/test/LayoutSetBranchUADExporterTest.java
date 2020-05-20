@@ -67,7 +67,7 @@ public class LayoutSetBranchUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<LayoutSetBranch> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -78,6 +78,6 @@ public class LayoutSetBranchUADExporterTest
 	private final List<LayoutSetBranch> _layoutSetBranchs = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.LayoutSetBranchUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<LayoutSetBranch> _uadExporter;
 
 }

@@ -89,6 +89,6 @@ public class DDMFormInstanceUADExporterTest
 	private Group _group;
 
 	@Inject(filter = "component.name=*.DDMFormInstanceUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<DDMFormInstance> _uadExporter;
 
 }

@@ -83,6 +83,6 @@ public class DDMFormInstanceUADDisplayTest
 	private Group _group;
 
 	@Inject(filter = "component.name=*.DDMFormInstanceUADDisplay")
-	private UADDisplay _uadDisplay;
+	private UADDisplay<DDMFormInstance> _uadDisplay;
 
 }

@@ -68,7 +68,7 @@ public class SystemEventUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<SystemEvent> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -79,6 +79,6 @@ public class SystemEventUADExporterTest
 	private final List<SystemEvent> _systemEvents = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.SystemEventUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<SystemEvent> _uadExporter;
 
 }

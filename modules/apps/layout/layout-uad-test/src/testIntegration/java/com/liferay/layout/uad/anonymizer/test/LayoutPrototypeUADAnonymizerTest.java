@@ -72,7 +72,7 @@ public class LayoutPrototypeUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<LayoutPrototype> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -112,6 +112,6 @@ public class LayoutPrototypeUADAnonymizerTest
 	private final List<LayoutPrototype> _layoutPrototypes = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.LayoutPrototypeUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<LayoutPrototype> _uadAnonymizer;
 
 }

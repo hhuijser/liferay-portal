@@ -78,7 +78,7 @@ public class DLFolderUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<DLFolder> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -92,6 +92,6 @@ public class DLFolderUADExporterTest
 	private Group _group;
 
 	@Inject(filter = "component.name=*.DLFolderUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<DLFolder> _uadExporter;
 
 }

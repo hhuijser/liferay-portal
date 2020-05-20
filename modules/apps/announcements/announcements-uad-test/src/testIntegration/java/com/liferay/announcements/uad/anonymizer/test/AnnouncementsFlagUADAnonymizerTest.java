@@ -68,7 +68,7 @@ public class AnnouncementsFlagUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<AnnouncementsFlag> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -106,6 +106,6 @@ public class AnnouncementsFlagUADAnonymizerTest
 		new ArrayList<>();
 
 	@Inject(filter = "component.name=*.AnnouncementsFlagUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<AnnouncementsFlag> _uadAnonymizer;
 
 }

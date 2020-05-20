@@ -59,7 +59,7 @@ public class PasswordPolicyUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<PasswordPolicy> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -67,6 +67,6 @@ public class PasswordPolicyUADExporterTest
 	private final List<PasswordPolicy> _passwordPolicies = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.PasswordPolicyUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<PasswordPolicy> _uadExporter;
 
 }

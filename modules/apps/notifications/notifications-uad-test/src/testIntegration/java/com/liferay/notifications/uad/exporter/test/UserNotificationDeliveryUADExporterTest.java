@@ -66,12 +66,12 @@ public class UserNotificationDeliveryUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<UserNotificationDelivery> getUADExporter() {
 		return _uadExporter;
 	}
 
 	@Inject(filter = "component.name=*.UserNotificationDeliveryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<UserNotificationDelivery> _uadExporter;
 
 	@DeleteAfterTestRun
 	private final List<UserNotificationDelivery> _userNotificationDeliveries =

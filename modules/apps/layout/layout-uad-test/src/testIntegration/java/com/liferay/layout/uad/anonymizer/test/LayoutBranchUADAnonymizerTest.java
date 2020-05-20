@@ -81,7 +81,7 @@ public class LayoutBranchUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<LayoutBranch> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -122,6 +122,6 @@ public class LayoutBranchUADAnonymizerTest
 	private LayoutSetBranchLocalService _layoutSetBranchLocalService;
 
 	@Inject(filter = "component.name=*.LayoutBranchUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<LayoutBranch> _uadAnonymizer;
 
 }

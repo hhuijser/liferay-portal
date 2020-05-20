@@ -84,7 +84,7 @@ public class BookmarksEntryUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<BookmarksEntry> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -126,6 +126,6 @@ public class BookmarksEntryUADAnonymizerTest
 	private BookmarksEntryLocalService _bookmarksEntryLocalService;
 
 	@Inject(filter = "component.name=*.BookmarksEntryUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<BookmarksEntry> _uadAnonymizer;
 
 }

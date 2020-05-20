@@ -85,7 +85,7 @@ public class MBMessageUADExporterTest
 	}
 
 	@Override
-	protected UADExporter getUADExporter() {
+	protected UADExporter<MBMessage> getUADExporter() {
 		return _uadExporter;
 	}
 
@@ -99,6 +99,6 @@ public class MBMessageUADExporterTest
 	private final List<MBMessage> _mbMessages = new ArrayList<>();
 
 	@Inject(filter = "component.name=*.MBMessageUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<MBMessage> _uadExporter;
 
 }

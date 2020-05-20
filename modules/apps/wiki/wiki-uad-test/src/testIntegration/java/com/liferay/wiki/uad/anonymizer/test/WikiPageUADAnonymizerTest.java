@@ -93,7 +93,7 @@ public class WikiPageUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<WikiPage> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -130,7 +130,7 @@ public class WikiPageUADAnonymizerTest
 	}
 
 	@Inject(filter = "component.name=*.WikiPageUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<WikiPage> _uadAnonymizer;
 
 	@Inject
 	private WikiPageLocalService _wikiPageLocalService;

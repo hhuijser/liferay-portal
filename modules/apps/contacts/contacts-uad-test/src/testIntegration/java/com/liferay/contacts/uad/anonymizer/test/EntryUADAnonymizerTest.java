@@ -66,7 +66,7 @@ public class EntryUADAnonymizerTest extends BaseUADAnonymizerTestCase<Entry> {
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<Entry> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -103,6 +103,6 @@ public class EntryUADAnonymizerTest extends BaseUADAnonymizerTestCase<Entry> {
 	private EntryLocalService _entryLocalService;
 
 	@Inject(filter = "component.name=*.EntryUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<Entry> _uadAnonymizer;
 
 }

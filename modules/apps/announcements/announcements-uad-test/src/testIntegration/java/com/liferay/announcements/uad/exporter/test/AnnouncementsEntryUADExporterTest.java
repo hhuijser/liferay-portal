@@ -78,6 +78,6 @@ public class AnnouncementsEntryUADExporterTest
 	private ClassNameLocalService _classNameLocalService;
 
 	@Inject(filter = "component.name=*.AnnouncementsEntryUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<AnnouncementsEntry> _uadExporter;
 
 }

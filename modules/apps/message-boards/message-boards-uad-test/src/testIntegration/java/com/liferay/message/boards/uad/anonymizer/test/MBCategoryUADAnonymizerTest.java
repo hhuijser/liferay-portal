@@ -81,7 +81,7 @@ public class MBCategoryUADAnonymizerTest
 	}
 
 	@Override
-	protected UADAnonymizer getUADAnonymizer() {
+	protected UADAnonymizer<MBCategory> getUADAnonymizer() {
 		return _uadAnonymizer;
 	}
 
@@ -122,6 +122,6 @@ public class MBCategoryUADAnonymizerTest
 	private MBCategoryLocalService _mbCategoryLocalService;
 
 	@Inject(filter = "component.name=*.MBCategoryUADAnonymizer")
-	private UADAnonymizer _uadAnonymizer;
+	private UADAnonymizer<MBCategory> _uadAnonymizer;
 
 }

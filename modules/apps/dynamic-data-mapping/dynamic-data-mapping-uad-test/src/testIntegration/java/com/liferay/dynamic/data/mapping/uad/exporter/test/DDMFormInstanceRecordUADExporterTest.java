@@ -71,6 +71,6 @@ public class DDMFormInstanceRecordUADExporterTest
 	private Group _group;
 
 	@Inject(filter = "component.name=*.DDMFormInstanceRecordUADExporter")
-	private UADExporter _uadExporter;
+	private UADExporter<DDMFormInstanceRecord> _uadExporter;
 
 }

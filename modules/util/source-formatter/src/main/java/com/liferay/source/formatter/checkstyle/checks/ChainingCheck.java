@@ -307,31 +307,11 @@ public class ChainingCheck extends BaseCheck {
 			return;
 		}
 
-		String className = "";
-
-		DetailAST firstChildDetailAST = detailAST.getFirstChild();
-
-		if (firstChildDetailAST.getType() == TokenTypes.IDENT) {
-			className = firstChildDetailAST.getText();
-		}
-		else if (firstChildDetailAST.getType() == TokenTypes.DOT) {
-			List<DetailAST> identDetailASTList = getAllChildTokens(
-				firstChildDetailAST, true, TokenTypes.IDENT);
-
-			StringBundler sb = new StringBundler(identDetailASTList.size() * 2);
-
-			for (DetailAST identDetailAST : identDetailASTList) {
-				sb.append(identDetailAST.getText());
-				sb.append(StringPool.PERIOD);
-			}
-
-			sb.setIndex(sb.index() - 1);
-
-			className = sb.toString();
-		}
+		FullIdent fullIdent = FullIdent.createFullIdent(
+			detailAST.getFirstChild());
 
 		log(
-			methodCallDetailAST, _MSG_AVOID_INLINE_METHOD, className,
+			methodCallDetailAST, _MSG_AVOID_INLINE_METHOD, fullIdent.getText(),
 			getMethodName(methodCallDetailAST));
 	}
 

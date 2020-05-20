@@ -16,7 +16,6 @@ package com.liferay.layout.admin.web.internal.display.context;
 
 import com.liferay.exportimport.kernel.staging.LayoutStagingUtil;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -244,7 +243,7 @@ public class MillerColumnsDisplayContext {
 		return layoutsJSONArray;
 	}
 
-	private JSONArray _getBreadcrumbEntriesJSONArray() throws PortalException {
+	private JSONArray _getBreadcrumbEntriesJSONArray() throws Exception {
 		JSONArray breadcrumbEntriesJSONArray =
 			JSONFactoryUtil.createJSONArray();
 
@@ -591,7 +590,7 @@ public class MillerColumnsDisplayContext {
 		return jsonArray;
 	}
 
-	private JSONArray _getLayoutSetBranchesJSONArray() throws PortalException {
+	private JSONArray _getLayoutSetBranchesJSONArray() throws Exception {
 		JSONArray jsonArray = JSONFactoryUtil.createJSONArray();
 
 		List<LayoutSetBranch> layoutSetBranches =

@@ -447,7 +447,7 @@ public class PortalImplCanonicalURLTest {
 
 	private ThemeDisplay _createThemeDisplay(
 			String portalDomain, Group group, int serverPort, boolean secure)
-		throws PortalException {
+		throws Exception {
 
 		ThemeDisplay themeDisplay = new ThemeDisplay();
 

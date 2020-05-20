@@ -37,13 +37,10 @@ import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.util.PortalImpl;
 import com.liferay.portal.util.PropsValues;
 
-import java.io.IOException;
-
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 
 import org.junit.After;
@@ -144,7 +141,7 @@ public class PortalImplLocaleTest {
 
 	private void _testLocaleForLanguageId(
 			String i18nLanguageId, Locale expectedLocale)
-		throws IOException, ServletException {
+		throws Exception {
 
 		_testLocaleForLanguageId(
 			i18nLanguageId, _group.getFriendlyURL() + _layout.getFriendlyURL(),
@@ -153,7 +150,7 @@ public class PortalImplLocaleTest {
 
 	private MockHttpServletResponse _testLocaleForLanguageId(
 			String i18nLanguageId, String pathInfo, Locale expectedLocale)
-		throws IOException, ServletException {
+		throws Exception {
 
 		MockServletContext mockServletContext = new MockServletContext() {
 		};

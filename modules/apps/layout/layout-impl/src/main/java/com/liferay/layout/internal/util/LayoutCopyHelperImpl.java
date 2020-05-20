@@ -31,7 +31,6 @@ import com.liferay.layout.util.structure.FragmentLayoutStructureItem;
 import com.liferay.layout.util.structure.LayoutStructure;
 import com.liferay.layout.util.structure.LayoutStructureItem;
 import com.liferay.portal.kernel.comment.CommentManager;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONObject;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.Image;
@@ -107,7 +106,7 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 
 	private void _copyAssetCategoryIdsAndAssetTagNames(
 			Layout sourceLayout, Layout targetLayout)
-		throws PortalException {
+		throws Exception {
 
 		if (_isDraft(sourceLayout)) {
 			return;
@@ -478,7 +477,7 @@ public class LayoutCopyHelperImpl implements LayoutCopyHelper {
 			String data, long classNameId, Layout targetLayout,
 			Map<Long, FragmentEntryLink> fragmentEntryLinkMap,
 			long targetSegmentsExperienceId, ServiceContext serviceContext)
-		throws PortalException {
+		throws Exception {
 
 		LayoutStructure layoutStructure = LayoutStructure.of(data);
 

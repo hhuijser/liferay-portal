@@ -182,7 +182,7 @@ public class AddPortletMVCActionCommand
 
 	private String _getPortletInstanceId(
 			String namespace, Layout layout, String portletId)
-		throws PortletIdException {
+		throws Exception {
 
 		Portlet portlet = _portletLocalService.getPortletById(portletId);
 

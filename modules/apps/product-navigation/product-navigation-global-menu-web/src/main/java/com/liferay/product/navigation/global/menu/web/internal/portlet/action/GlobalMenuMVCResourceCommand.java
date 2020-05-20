@@ -117,7 +117,7 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 	private JSONObject _getGlobalMenuContextJSONObject(
 			ResourceRequest resourceRequest, ResourceResponse resourceResponse)
-		throws PortalException {
+		throws Exception {
 
 		HttpServletRequest httpServletRequest = _portal.getHttpServletRequest(
 			resourceRequest);
@@ -167,7 +167,7 @@ public class GlobalMenuMVCResourceCommand extends BaseMVCResourceCommand {
 
 	private JSONArray _getPanelCategoriesJSONArray(
 			HttpServletRequest httpServletRequest, ThemeDisplay themeDisplay)
-		throws PortalException {
+		throws Exception {
 
 		JSONArray panelCategoriesJSONArray = JSONFactoryUtil.createJSONArray();
 

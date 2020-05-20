@@ -52,7 +52,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
@@ -2150,7 +2149,7 @@ public class JavadocFormatter {
 	}
 
 	private void _updateLanguageProperties(Document document, String className)
-		throws IOException {
+		throws Exception {
 
 		if (_languageProperties == null) {
 			return;
@@ -2214,7 +2213,7 @@ public class JavadocFormatter {
 	}
 
 	private void _updateLanguageProperties(String key, String value)
-		throws IOException {
+		throws Exception {
 
 		StringBundler sb = new StringBundler();
 

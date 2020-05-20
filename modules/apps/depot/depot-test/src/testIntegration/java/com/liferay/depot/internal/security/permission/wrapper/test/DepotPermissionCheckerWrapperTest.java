@@ -627,9 +627,7 @@ public class DepotPermissionCheckerWrapperTest {
 		return depotEntry;
 	}
 
-	private FileEntry _addFileEntry(DepotEntry depotEntry)
-		throws PortalException {
-
+	private FileEntry _addFileEntry(DepotEntry depotEntry) throws Exception {
 		return _dlAppLocalService.addFileEntry(
 			TestPropsValues.getUserId(), depotEntry.getGroupId(),
 			DLFolderConstants.DEFAULT_PARENT_FOLDER_ID,

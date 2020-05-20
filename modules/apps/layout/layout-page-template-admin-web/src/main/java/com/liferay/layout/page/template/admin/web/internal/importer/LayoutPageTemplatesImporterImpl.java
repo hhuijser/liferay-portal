@@ -208,7 +208,7 @@ public class LayoutPageTemplatesImporterImpl
 
 	private List<DisplayPageTemplateEntry> _getDisplayPageTemplateEntries(
 			long groupId, ZipFile zipFile)
-		throws IOException, PortalException {
+		throws Exception {
 
 		List<DisplayPageTemplateEntry> displayPageTemplateEntries =
 			new ArrayList<>();
@@ -427,7 +427,7 @@ public class LayoutPageTemplatesImporterImpl
 
 	private List<MasterPageEntry> _getMasterPageEntries(
 			long groupId, ZipFile zipFile)
-		throws IOException, PortalException {
+		throws Exception {
 
 		List<MasterPageEntry> masterPageEntries = new ArrayList<>();
 
@@ -528,7 +528,7 @@ public class LayoutPageTemplatesImporterImpl
 
 	private Map<String, PageTemplateCollectionEntry>
 			_getPageTemplateCollectionEntryMap(long groupId, ZipFile zipFile)
-		throws IOException, PortalException {
+		throws Exception {
 
 		Map<String, PageTemplateCollectionEntry> pageTemplateCollectionMap =
 			new HashMap<>();

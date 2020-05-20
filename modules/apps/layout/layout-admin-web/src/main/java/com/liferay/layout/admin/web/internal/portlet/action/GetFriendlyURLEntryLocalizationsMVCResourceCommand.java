@@ -21,7 +21,6 @@ import com.liferay.layout.admin.constants.LayoutAdminPortletKeys;
 import com.liferay.layout.admin.web.internal.util.comparator.FriendlyURLEntryLocalizationComparator;
 import com.liferay.layout.friendly.url.LayoutFriendlyURLEntryHelper;
 import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.json.JSONArray;
 import com.liferay.portal.kernel.json.JSONFactoryUtil;
 import com.liferay.portal.kernel.json.JSONObject;
@@ -82,7 +81,7 @@ public class GetFriendlyURLEntryLocalizationsMVCResourceCommand
 
 	private JSONObject _getFriendlyURLEntryLocalizationsJSONObject(
 			ResourceRequest resourceRequest)
-		throws PortalException {
+		throws Exception {
 
 		Layout layout = _layoutLocalService.getLayout(
 			ParamUtil.getLong(resourceRequest, "plid"));

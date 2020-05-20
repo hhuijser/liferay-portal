@@ -373,9 +373,7 @@ public class FileUtil {
 		return pathMap;
 	}
 
-	private static FileSystem _getJarFileSystem()
-		throws IOException, URISyntaxException {
-
+	private static FileSystem _getJarFileSystem() throws Exception {
 		URI jarUri = _getJarUri();
 
 		Path jarPath = Paths.get(jarUri);

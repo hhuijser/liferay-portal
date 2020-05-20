@@ -34,7 +34,7 @@ UADInfoPanelDisplay uadInfoPanelDisplay = (UADInfoPanelDisplay)request.getAttrib
 		<c:when test="<%= uadInfoPanelDisplay.getUADEntitiesCount() == 1 %>">
 
 			<%
-			UADDisplay<?> uadDisplay = uadInfoPanelDisplay.getUADDisplay();
+			UADDisplay<Object> uadDisplay = uadInfoPanelDisplay.getUADDisplay();
 			UADEntity uadEntity = uadInfoPanelDisplay.getFirstUADEntity();
 
 			Serializable primaryKey = uadEntity.getPrimaryKey();

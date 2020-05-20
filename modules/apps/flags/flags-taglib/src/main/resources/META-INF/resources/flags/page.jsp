@@ -24,7 +24,7 @@ String message = (String)request.getAttribute("liferay-flags:flags:message");
 boolean onlyIcon = GetterUtil.getBoolean(request.getAttribute("liferay-flags:flags:onlyIcon"));
 %>
 
-<div class="taglib-flags <%= Validator.isNotNull(elementClasses) ? elementClasses : "" %>" id="<%= id %>">
+<div class='taglib-flags <%= Validator.isNotNull(elementClasses) ? elementClasses : "" %>' id="<%= id %>">
 	<c:choose>
 		<c:when test="<%= onlyIcon %>">
 			<clay:button

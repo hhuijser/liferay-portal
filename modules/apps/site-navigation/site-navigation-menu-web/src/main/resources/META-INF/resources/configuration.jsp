@@ -91,7 +91,7 @@ else {
 									<%= siteNavigationMenuName %>
 								</c:if>
 							</span>
-							<span class="mt-1 <%= (siteNavigationMenuDisplayContext.isSiteNavigationMenuSelected() && (siteNavigationMenu != null)) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />removeSiteNavigationMenu" role="button">
+							<span class='mt-1 <%= (siteNavigationMenuDisplayContext.isSiteNavigationMenuSelected() && (siteNavigationMenu != null)) ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />removeSiteNavigationMenu" role="button">
 								<aui:icon cssClass="icon-monospaced" image="times-circle" markupView="lexicon" />
 							</span>
 						</div>
@@ -127,7 +127,7 @@ else {
 								<clay:col
 									md="3"
 								>
-									<div class="mt-4 <%= (rootMenuItemType.equals("parent-at-level") || rootMenuItemType.equals("relative-parent-up-by")) ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />rootMenuItemLevel">
+									<div class='mt-4 <%= (rootMenuItemType.equals("parent-at-level") || rootMenuItemType.equals("relative-parent-up-by")) ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />rootMenuItemLevel">
 										<aui:select label="" name="preferences--rootMenuItemLevel--">
 
 											<%
@@ -149,7 +149,7 @@ else {
 								<clay:col
 									md="10"
 								>
-									<div class="mb-3 <%= rootMenuItemType.equals("select") ? StringPool.BLANK : "hide" %>" id="<portlet:namespace />rootMenuItemIdPanel">
+									<div class='mb-3 <%= rootMenuItemType.equals("select") ? StringPool.BLANK : "hide" %>' id="<portlet:namespace />rootMenuItemIdPanel">
 										<aui:input id="rootMenuItemId" ignoreRequestValue="<%= true %>" name="preferences--rootMenuItemId--" type="hidden" value="<%= siteNavigationMenuDisplayContext.getRootMenuItemId() %>" />
 
 										<%

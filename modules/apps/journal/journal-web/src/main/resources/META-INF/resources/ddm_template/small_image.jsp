@@ -42,7 +42,7 @@ String smallImageSource = journalEditDDMTemplateDisplayContext.getSmallImageSour
 	<aui:option label="from-your-computer" value="file" />
 </aui:select>
 
-<div class="<%= Objects.equals(smallImageSource, "url") ? "" : "hide" %>" id="<portlet:namespace/>smallImageURLContainer">
+<div class='<%= Objects.equals(smallImageSource, "url") ? "" : "hide" %>' id="<portlet:namespace/>smallImageURLContainer">
 	<aui:input label="" name="smallImageURL" title="small-image-url" wrapperCssClass="mb-3" />
 
 	<c:if test="<%= journalEditDDMTemplateDisplayContext.isSmallImage() && (ddmTemplate != null) && Validator.isNotNull(ddmTemplate.getSmallImageURL()) %>">
@@ -51,12 +51,12 @@ String smallImageSource = journalEditDDMTemplateDisplayContext.getSmallImageSour
 		</p>
 
 		<div class="aspect-ratio aspect-ratio-16-to-9">
-			<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="preview" />" class="aspect-ratio-item-fluid" src="<%= HtmlUtil.escapeAttribute(ddmTemplate.getTemplateImageURL(themeDisplay)) %>" />
+			<img alt='<liferay-ui:message escapeAttribute="<%= true %>" key="preview" />' class="aspect-ratio-item-fluid" src="<%= HtmlUtil.escapeAttribute(ddmTemplate.getTemplateImageURL(themeDisplay)) %>" />
 		</div>
 	</c:if>
 </div>
 
-<div class="<%= Objects.equals(smallImageSource, "file") ? "" : "hide" %>" id="<portlet:namespace/>smallImageFileContainer">
+<div class='<%= Objects.equals(smallImageSource, "file") ? "" : "hide" %>' id="<portlet:namespace/>smallImageFileContainer">
 	<aui:input label="" name="smallImageFile" type="file" wrapperCssClass="mb-3" />
 
 	<c:if test="<%= journalEditDDMTemplateDisplayContext.isSmallImage() && (ddmTemplate != null) && (ddmTemplate.getSmallImageId() > 0) %>">
@@ -65,7 +65,7 @@ String smallImageSource = journalEditDDMTemplateDisplayContext.getSmallImageSour
 		</p>
 
 		<div class="aspect-ratio aspect-ratio-16-to-9">
-			<img alt="<liferay-ui:message escapeAttribute="<%= true %>" key="preview" />" class="aspect-ratio-item-fluid" src="<%= HtmlUtil.escapeAttribute(ddmTemplate.getTemplateImageURL(themeDisplay)) %>" />
+			<img alt='<liferay-ui:message escapeAttribute="<%= true %>" key="preview" />' class="aspect-ratio-item-fluid" src="<%= HtmlUtil.escapeAttribute(ddmTemplate.getTemplateImageURL(themeDisplay)) %>" />
 		</div>
 	</c:if>
 </div>

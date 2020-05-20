@@ -147,7 +147,7 @@ Format format = FastDateFormatFactoryUtil.getDateTime(locale, timeZone);
 					<portlet:param name="revert" value="true" />
 				</liferay-portlet:renderURL>
 
-				<a class="btn btn-secondary btn-sm <%= (status != BackgroundTaskConstants.STATUS_SUCCESSFUL) ? "disabled" : StringPool.BLANK %>" href="<%= revertURL %>" type="button">
+				<a class='btn btn-secondary btn-sm <%= (status != BackgroundTaskConstants.STATUS_SUCCESSFUL) ? "disabled" : StringPool.BLANK %>' href="<%= revertURL %>" type="button">
 					<liferay-ui:message key="revert" />
 				</a>
 			</liferay-ui:search-container-column-text>

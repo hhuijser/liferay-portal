@@ -94,7 +94,7 @@ Map<String, Object> data = HashMapBuilder.<String, Object>put(
 	<liferay-ui:message arguments="<%= HtmlUtil.escape(StringUtil.merge(mndfn.getDuplicatedFieldNames(), StringPool.COMMA_AND_SPACE)) %>" key="the-definition-field-name-x-was-defined-more-than-once" translateArguments="<%= false %>" />
 </liferay-ui:error>
 
-<div id="<%= componentId + "container" %>">
+<div id='<%= componentId + "container" %>'>
 	<react:component
 		data="<%= data %>"
 		module="data_layout_builder/js/App.es"

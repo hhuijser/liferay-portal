@@ -118,7 +118,7 @@ else if (metadataField.equals("view-count")) {
 			size="6"
 			sm="4"
 		>
-			<dt class="metadata-entry-label <%= showLabel ? StringPool.BLANK : "hide" %>"><%= label %></dt>
+			<dt class='metadata-entry-label <%= showLabel ? StringPool.BLANK : "hide" %>'><%= label %></dt>
 
 			<dd class="metadata-entry <%= metadataFieldCssClass %>">
 				<c:choose>

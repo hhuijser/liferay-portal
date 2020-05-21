@@ -140,16 +140,14 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		String moduleDirName = null;
+		int deeper = 2;
 
 		if (absolutePath.indexOf("/modules/dxp/") != -1) {
-			moduleDirName = absolutePath.replaceAll(
-				".*?/modules((/[^/]+){3}).*", "$1");
+			deeper = 3;
 		}
-		else {
-			moduleDirName = absolutePath.replaceAll(
-				".*?/modules((/[^/]+){2}).*", "$1");
-		}
+
+		String moduleDirName = absolutePath.replaceAll(
+			".*?/modules((/[^/]+){" + deeper + "}).*", "$1");
 
 		return moduleDirName.substring(1);
 	}

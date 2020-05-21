@@ -118,7 +118,7 @@ public abstract class BasePortalWorkspace
 
 		_pluginsWorkspaceGitRepository =
 			WorkspaceUtil.getDependencyWorkspaceGitRepository(
-				PortalPluginsWorkspaceGitRepository.TYPE,
+				PortalPluginsWorkspaceGitRepository.getType(),
 				_primaryPortalWorkspaceGitRepository);
 	}
 

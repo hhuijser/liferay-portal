@@ -38,7 +38,9 @@ public class GitRepositoryFactory {
 				pullRequest, upstreamBranchName);
 		}
 
-		if (repositoryType.equals(PortalPluginsWorkspaceGitRepository.TYPE)) {
+		if (repositoryType.equals(
+				PortalPluginsWorkspaceGitRepository.getType())) {
+
 			return new PortalPluginsWorkspaceGitRepository(
 				pullRequest, upstreamBranchName);
 		}
@@ -151,7 +153,9 @@ public class GitRepositoryFactory {
 			return new PluginsWorkspaceGitRepository(jsonObject);
 		}
 
-		if (jsonObjectType.equals(PortalPluginsWorkspaceGitRepository.TYPE)) {
+		if (jsonObjectType.equals(
+				PortalPluginsWorkspaceGitRepository.getType())) {
+
 			return new PortalPluginsWorkspaceGitRepository(jsonObject);
 		}
 

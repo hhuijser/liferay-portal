@@ -27,7 +27,6 @@ import com.liferay.exportimport.test.util.constants.DummyFolderPortletKeys;
 import com.liferay.exportimport.test.util.exportimport.data.handler.DummyFolderWithMissingDummyPortletDataHandler;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.kernel.util.FileUtil;
 import com.liferay.portal.kernel.xml.Attribute;
 import com.liferay.portal.kernel.xml.Document;
@@ -37,7 +36,6 @@ import com.liferay.portal.kernel.zip.ZipReader;
 import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.kernel.zip.ZipWriter;
 import com.liferay.portal.kernel.zip.ZipWriterFactoryUtil;
-import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import java.io.File;
 import java.io.Serializable;
@@ -53,7 +51,6 @@ import java.util.stream.Stream;
 import org.junit.After;
 import org.junit.Assume;
 import org.junit.Before;
-import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
@@ -66,11 +63,6 @@ import org.junit.runners.model.Statement;
 @RunWith(Arquillian.class)
 public class ExportedMissingReferenceBackwardCompatbilityExportImportTest
 	extends ExportedMissingReferenceExportImportTest {
-
-	@ClassRule
-	@Rule
-	public static final AggregateTestRule aggregateTestRule =
-		new LiferayIntegrationTestRule();
 
 	@Before
 	@Override

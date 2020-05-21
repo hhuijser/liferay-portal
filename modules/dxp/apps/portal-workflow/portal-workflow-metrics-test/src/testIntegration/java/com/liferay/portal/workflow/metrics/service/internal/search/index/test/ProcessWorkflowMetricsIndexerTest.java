@@ -15,14 +15,10 @@
 package com.liferay.portal.workflow.metrics.service.internal.search.index.test;
 
 import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
-import com.liferay.portal.kernel.test.rule.AggregateTestRule;
 import com.liferay.portal.test.rule.Inject;
-import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 import com.liferay.portal.workflow.metrics.search.index.name.WorkflowMetricsIndexNameBuilder;
 import com.liferay.portal.workflow.metrics.service.util.BaseWorkflowMetricsIndexerTestCase;
 
-import org.junit.ClassRule;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -32,11 +28,6 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ProcessWorkflowMetricsIndexerTest
 	extends BaseWorkflowMetricsIndexerTestCase {
-
-	@ClassRule
-	@Rule
-	public static final AggregateTestRule aggregateTestRule =
-		new LiferayIntegrationTestRule();
 
 	@Test
 	public void testAddProcess() throws Exception {

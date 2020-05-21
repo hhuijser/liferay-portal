@@ -32,8 +32,6 @@ public class ActionURLLogic extends RuntimeLogic {
 
 	public static final String CLOSE_1_TAG = "</runtime-action-url>";
 
-	public static final String CLOSE_2_TAG = "/>";
-
 	public static final String OPEN_TAG = "<runtime-action-url";
 
 	public ActionURLLogic(RenderResponse renderResponse) {

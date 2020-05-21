@@ -670,10 +670,10 @@ public abstract class PoshiElement
 			if (isBalancedPoshiScript(poshiScriptSnippet)) {
 				if (splitElseBlocks &&
 					(isValidPoshiScriptBlock(
-						ElseIfPoshiElement.blockNamePattern,
+						ElseIfPoshiElement.getBlockNamePattern(),
 						poshiScriptSnippet) ||
 					 isValidPoshiScriptBlock(
-						 ElsePoshiElement.blockNamePattern,
+						 ElsePoshiElement.getBlockNamePattern(),
 						 poshiScriptSnippet))) {
 
 					int lastIndex = poshiScriptSnippets.size() - 1;

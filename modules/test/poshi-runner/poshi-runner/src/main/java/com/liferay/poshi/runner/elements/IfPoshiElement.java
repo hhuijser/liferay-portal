@@ -157,6 +157,10 @@ public class IfPoshiElement extends PoshiElement {
 		return sb.toString();
 	}
 
+	protected Pattern getBlockNamePattern() {
+		return _blockNamePattern;
+	}
+
 	protected String getCondition(String poshiScript) {
 		return getParentheticalContent(poshiScript);
 	}
@@ -164,8 +168,6 @@ public class IfPoshiElement extends PoshiElement {
 	protected String getPoshiScriptKeyword() {
 		return getName();
 	}
-
-	protected static final Pattern blockNamePattern;
 
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String poshiScript) {
@@ -182,7 +184,7 @@ public class IfPoshiElement extends PoshiElement {
 			return false;
 		}
 
-		return isValidPoshiScriptBlock(blockNamePattern, poshiScript);
+		return isValidPoshiScriptBlock(_blockNamePattern, poshiScript);
 	}
 
 	private static final String[] _CONDITION_NAMES = {
@@ -193,8 +195,10 @@ public class IfPoshiElement extends PoshiElement {
 
 	private static final String _POSHI_SCRIPT_KEYWORD = _ELEMENT_NAME;
 
+	private static final Pattern _blockNamePattern;
+
 	static {
-		blockNamePattern = Pattern.compile(
+		_blockNamePattern = Pattern.compile(
 			"^" + _POSHI_SCRIPT_KEYWORD + BLOCK_NAME_PARAMETER_REGEX,
 			Pattern.DOTALL);
 	}

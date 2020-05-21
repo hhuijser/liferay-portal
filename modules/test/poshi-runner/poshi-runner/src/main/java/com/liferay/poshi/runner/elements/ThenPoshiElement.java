@@ -122,11 +122,11 @@ public class ThenPoshiElement extends PoshiElement {
 		}
 
 		if (isValidPoshiScriptBlock(
-				ElseIfPoshiElement.blockNamePattern, poshiScript) ||
+				ElseIfPoshiElement.getBlockNamePattern(), poshiScript) ||
 			isValidPoshiScriptBlock(
-				IfPoshiElement.blockNamePattern, poshiScript) ||
+				IfPoshiElement.getBlockNamePattern(), poshiScript) ||
 			isValidPoshiScriptBlock(
-				WhilePoshiElement.blockNamePattern, poshiScript)) {
+				WhilePoshiElement.getBlockNamePattern(), poshiScript)) {
 
 			return true;
 		}

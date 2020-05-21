@@ -48,8 +48,7 @@ import java.util.regex.Pattern;
 public class BNDSourceUtil {
 
 	public static Map<String, String> getBundleSymbolicNamesMap(
-			String rootDirName)
-		throws IOException {
+		String rootDirName) {
 
 		Map<String, String> bundleSymbolicNamesMap = new HashMap<>();
 
@@ -57,53 +56,58 @@ public class BNDSourceUtil {
 			return bundleSymbolicNamesMap;
 		}
 
-		File modulesDir = new File(rootDirName + "/modules");
+		try {
+			File modulesDir = new File(rootDirName + "/modules");
 
-		final List<File> files = new ArrayList<>();
+			final List<File> files = new ArrayList<>();
 
-		Files.walkFileTree(
-			modulesDir.toPath(),
-			new SimpleFileVisitor<Path>() {
+			Files.walkFileTree(
+				modulesDir.toPath(),
+				new SimpleFileVisitor<Path>() {
 
-				@Override
-				public FileVisitResult preVisitDirectory(
-					Path dirPath, BasicFileAttributes basicFileAttributes) {
+					@Override
+					public FileVisitResult preVisitDirectory(
+						Path dirPath, BasicFileAttributes basicFileAttributes) {
 
-					for (PathMatcher pathMatcher : _PATH_MATCHERS) {
-						if (pathMatcher.matches(dirPath)) {
-							return FileVisitResult.SKIP_SUBTREE;
+						for (PathMatcher pathMatcher : _PATH_MATCHERS) {
+							if (pathMatcher.matches(dirPath)) {
+								return FileVisitResult.SKIP_SUBTREE;
+							}
 						}
+
+						return FileVisitResult.CONTINUE;
 					}
 
-					return FileVisitResult.CONTINUE;
-				}
+					@Override
+					public FileVisitResult visitFile(
+						Path filePath,
+						BasicFileAttributes basicFileAttributes) {
 
-				@Override
-				public FileVisitResult visitFile(
-					Path filePath, BasicFileAttributes basicFileAttributes) {
+						if (_PATH_MATCHER.matches(filePath)) {
+							files.add(filePath.toFile());
+						}
 
-					if (_PATH_MATCHER.matches(filePath)) {
-						files.add(filePath.toFile());
+						return FileVisitResult.CONTINUE;
 					}
 
-					return FileVisitResult.CONTINUE;
+				});
+
+			for (File file : files) {
+				String content = FileUtil.read(file);
+
+				String bundleSymbolicName = getDefinitionValue(
+					content, "Bundle-SymbolicName");
+
+				if ((bundleSymbolicName != null) &&
+					bundleSymbolicName.startsWith("com.liferay")) {
+
+					bundleSymbolicNamesMap.put(
+						bundleSymbolicName,
+						SourceUtil.getAbsolutePath(file.getParentFile()));
 				}
-
-			});
-
-		for (File file : files) {
-			String content = FileUtil.read(file);
-
-			String bundleSymbolicName = getDefinitionValue(
-				content, "Bundle-SymbolicName");
-
-			if ((bundleSymbolicName != null) &&
-				bundleSymbolicName.startsWith("com.liferay")) {
-
-				bundleSymbolicNamesMap.put(
-					bundleSymbolicName,
-					SourceUtil.getAbsolutePath(file.getParentFile()));
 			}
+		}
+		catch (IOException ioException) {
 		}
 
 		return bundleSymbolicNamesMap;

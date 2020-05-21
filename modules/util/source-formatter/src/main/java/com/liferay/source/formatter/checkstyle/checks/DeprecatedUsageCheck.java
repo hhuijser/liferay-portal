@@ -16,10 +16,10 @@ package com.liferay.source.formatter.checkstyle.checks;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
-import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.util.StringUtil;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.source.formatter.checks.util.BNDSourceUtil;
+import com.liferay.source.formatter.checks.util.JavaSourceUtil;
 import com.liferay.source.formatter.checks.util.SourceUtil;
 import com.liferay.source.formatter.parser.JavaClass;
 import com.liferay.source.formatter.parser.JavaClassParser;
@@ -37,7 +37,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -515,9 +514,7 @@ public class DeprecatedUsageCheck extends BaseCheck {
 		return false;
 	}
 
-	private synchronized Map<String, String> _getBundleSymbolicNamesMap()
-		throws IOException {
-
+	private synchronized Map<String, String> _getBundleSymbolicNamesMap() {
 		if (_bundleSymbolicNamesMap != null) {
 			return _bundleSymbolicNamesMap;
 		}
@@ -617,7 +614,9 @@ public class DeprecatedUsageCheck extends BaseCheck {
 		}
 
 		if (file == null) {
-			file = _getFile(fullyQualifiedName);
+			file = JavaSourceUtil.getJavaFile(
+				fullyQualifiedName, _getRootDirName(),
+				_getBundleSymbolicNamesMap());
 		}
 
 		if (file != null) {
@@ -651,78 +650,6 @@ public class DeprecatedUsageCheck extends BaseCheck {
 
 		if (identDetailAST != null) {
 			return identDetailAST.getText();
-		}
-
-		return null;
-	}
-
-	private File _getFile(String fullyQualifiedName) {
-		if (fullyQualifiedName.contains(".kernel.")) {
-			File file = _getFile(
-				fullyQualifiedName, "portal-kernel/src/", "portal-test/src/",
-				"portal-impl/test/integration/", "portal-impl/test/unit/");
-
-			if (file != null) {
-				return file;
-			}
-		}
-
-		if (fullyQualifiedName.startsWith("com.liferay.portal.") ||
-			fullyQualifiedName.startsWith("com.liferay.portlet.")) {
-
-			File file = _getFile(
-				fullyQualifiedName, "portal-impl/src/", "portal-test/src/",
-				"portal-test-integration/src/", "portal-impl/test/integration/",
-				"portal-impl/test/unit/");
-
-			if (file != null) {
-				return file;
-			}
-		}
-
-		if (fullyQualifiedName.contains(".taglib.")) {
-			File file = _getFile(fullyQualifiedName, "util-taglib/src/");
-
-			if (file != null) {
-				return file;
-			}
-		}
-
-		try {
-			File file = _getModuleFile(
-				fullyQualifiedName, _getBundleSymbolicNamesMap());
-
-			if (file != null) {
-				return file;
-			}
-		}
-		catch (Exception exception) {
-		}
-
-		return null;
-	}
-
-	private File _getFile(String fullyQualifiedName, String... dirNames) {
-		String rootDirName = _getRootDirName();
-
-		if (Validator.isNull(rootDirName)) {
-			return null;
-		}
-
-		for (String dirName : dirNames) {
-			StringBundler sb = new StringBundler(5);
-
-			sb.append(rootDirName);
-			sb.append("/");
-			sb.append(dirName);
-			sb.append(StringUtil.replace(fullyQualifiedName, '.', '/'));
-			sb.append(".java");
-
-			File file = new File(sb.toString());
-
-			if (file.exists()) {
-				return file;
-			}
 		}
 
 		return null;
@@ -778,51 +705,6 @@ public class DeprecatedUsageCheck extends BaseCheck {
 		}
 
 		return packageName + "." + className;
-	}
-
-	private File _getModuleFile(
-		String fullyQualifiedName, Map<String, String> bundleSymbolicNamesMap) {
-
-		for (Map.Entry<String, String> entry :
-				bundleSymbolicNamesMap.entrySet()) {
-
-			String bundleSymbolicName = entry.getKey();
-
-			String modifiedBundleSymbolicName = bundleSymbolicName.replaceAll(
-				"\\.(api|impl|service|test)$", StringPool.BLANK);
-
-			if (!fullyQualifiedName.startsWith(modifiedBundleSymbolicName)) {
-				continue;
-			}
-
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(entry.getValue());
-			sb.append("/src/main/java/");
-			sb.append(StringUtil.replace(fullyQualifiedName, '.', '/'));
-			sb.append(".java");
-
-			File file = new File(sb.toString());
-
-			if (file.exists()) {
-				return file;
-			}
-
-			sb = new StringBundler(4);
-
-			sb.append(entry.getValue());
-			sb.append("/src/testIntegration/java/");
-			sb.append(StringUtil.replace(fullyQualifiedName, '.', '/'));
-			sb.append(".java");
-
-			file = new File(sb.toString());
-
-			if (file.exists()) {
-				return file;
-			}
-		}
-
-		return null;
 	}
 
 	private String _getPackageName(DetailAST detailAST) {

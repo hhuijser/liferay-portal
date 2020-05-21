@@ -18,13 +18,8 @@ import com.liferay.arquillian.extension.junit.bridge.junit.Arquillian;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
 import com.liferay.portal.kernel.dao.db.DBType;
-import com.liferay.portal.kernel.test.rule.AggregateTestRule;
-import com.liferay.portal.kernel.test.rule.AssumeTestRule;
-import com.liferay.portal.test.rule.LiferayIntegrationTestRule;
 
 import org.junit.Assume;
-import org.junit.ClassRule;
-import org.junit.Rule;
 import org.junit.runner.RunWith;
 
 /**
@@ -33,12 +28,6 @@ import org.junit.runner.RunWith;
 @RunWith(Arquillian.class)
 public class ExternalDataSourceControllerParentTest
 	extends ExternalDataSourceControllerTest {
-
-	@ClassRule
-	@Rule
-	public static final AggregateTestRule aggregateTestRule =
-		new AggregateTestRule(
-			new AssumeTestRule("assume"), new LiferayIntegrationTestRule());
 
 	public static void assume() {
 		DB db = DBManagerUtil.getDB();

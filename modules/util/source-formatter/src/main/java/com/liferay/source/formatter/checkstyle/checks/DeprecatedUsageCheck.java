@@ -968,27 +968,9 @@ public class DeprecatedUsageCheck extends BaseCheck {
 			return _rootDirName;
 		}
 
-		String absolutePath = getAbsolutePath();
+		_rootDirName = SourceUtil.getRootDirName(getAbsolutePath());
 
-		while (true) {
-			int x = absolutePath.lastIndexOf("/");
-
-			if (x == -1) {
-				_rootDirName = StringPool.BLANK;
-
-				return _rootDirName;
-			}
-
-			absolutePath = absolutePath.substring(0, x);
-
-			File file = new File(absolutePath + "/portal-impl");
-
-			if (file.exists()) {
-				_rootDirName = absolutePath;
-
-				return _rootDirName;
-			}
-		}
+		return _rootDirName;
 	}
 
 	private boolean _hasDeprecatedParent(DetailAST detailAST) {

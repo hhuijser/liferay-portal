@@ -16,6 +16,7 @@ package com.liferay.source.formatter.checks.util;
 
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.io.unsync.UnsyncStringReader;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.StringUtil;
@@ -145,6 +146,24 @@ public class SourceUtil {
 		}
 
 		return ArrayUtil.toIntArray(multiLinePositions);
+	}
+
+	public static String getRootDirName(String absolutePath) {
+		while (true) {
+			int x = absolutePath.lastIndexOf(CharPool.SLASH);
+
+			if (x == -1) {
+				return StringPool.BLANK;
+			}
+
+			absolutePath = absolutePath.substring(0, x);
+
+			File file = new File(absolutePath + "/portal-impl");
+
+			if (file.exists()) {
+				return absolutePath;
+			}
+		}
 	}
 
 	public static String getTitleCase(

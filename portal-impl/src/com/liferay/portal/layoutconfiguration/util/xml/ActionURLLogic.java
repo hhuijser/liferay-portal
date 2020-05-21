@@ -30,8 +30,16 @@ import javax.portlet.RenderResponse;
  */
 public class ActionURLLogic extends RuntimeLogic {
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #_CLOSE_1_TAG}
+	 */
+	@Deprecated
 	public static final String CLOSE_1_TAG = "</runtime-action-url>";
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #_OPEN_TAG}
+	 */
+	@Deprecated
 	public static final String OPEN_TAG = "<runtime-action-url";
 
 	public ActionURLLogic(RenderResponse renderResponse) {
@@ -40,7 +48,7 @@ public class ActionURLLogic extends RuntimeLogic {
 
 	@Override
 	public String getClose1Tag() {
-		return CLOSE_1_TAG;
+		return _CLOSE_1_TAG;
 	}
 
 	public String getLifecycle() {
@@ -49,7 +57,7 @@ public class ActionURLLogic extends RuntimeLogic {
 
 	@Override
 	public String getOpenTag() {
-		return OPEN_TAG;
+		return _OPEN_TAG;
 	}
 
 	@Override
@@ -83,7 +91,11 @@ public class ActionURLLogic extends RuntimeLogic {
 		return liferayPortletURL.toString();
 	}
 
+	private static final String _CLOSE_1_TAG = "</runtime-action-url>";
+
 	private static final String _LIFECYCLE = PortletRequest.ACTION_PHASE;
+
+	private static final String _OPEN_TAG = "<runtime-action-url";
 
 	private final LiferayRenderResponse _liferayRenderResponse;
 

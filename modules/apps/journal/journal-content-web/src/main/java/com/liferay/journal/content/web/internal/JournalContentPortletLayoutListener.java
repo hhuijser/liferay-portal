@@ -245,22 +245,26 @@ public class JournalContentPortletLayoutListener
 		Set<String> portletIds = new LinkedHashSet<>();
 
 		for (int index = 0;;) {
-			index = content.indexOf(PortletLogic.OPEN_TAG, index);
+			index = content.indexOf(PortletLogic.getOpenTag(), index);
 
 			if (index == -1) {
 				break;
 			}
 
-			int close1 = content.indexOf(PortletLogic.CLOSE_1_TAG, index);
-			int close2 = content.indexOf(PortletLogic.CLOSE_2_TAG, index);
+			int close1 = content.indexOf(PortletLogic.getClose1Tag(), index);
+			int close2 = content.indexOf(PortletLogic.getClose2Tag(), index);
 
 			int closeIndex = -1;
 
 			if ((close2 == -1) || ((close1 != -1) && (close1 < close2))) {
-				closeIndex = close1 + PortletLogic.CLOSE_1_TAG.length();
+				String close1Tag = PortletLogic.getClose1Tag();
+
+				closeIndex = close1 + close1Tag.length();
 			}
 			else {
-				closeIndex = close2 + PortletLogic.CLOSE_2_TAG.length();
+				String close2Tag = PortletLogic.getClose2Tag();
+
+				closeIndex = close2 + close2Tag.length();
 			}
 
 			if (closeIndex == -1) {

@@ -22,8 +22,16 @@ import javax.portlet.RenderResponse;
  */
 public class RenderURLLogic extends ActionURLLogic {
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #_CLOSE_1_TAG}
+	 */
+	@Deprecated
 	public static final String CLOSE_1_TAG = "</runtime-render-url>";
 
+	/**
+	 * @deprecated As of Athanasius (7.3.x), replaced by {@link #_OPEN_TAG}
+	 */
+	@Deprecated
 	public static final String OPEN_TAG = "<runtime-render-url";
 
 	public RenderURLLogic(RenderResponse renderResponse) {
@@ -32,7 +40,7 @@ public class RenderURLLogic extends ActionURLLogic {
 
 	@Override
 	public String getClose1Tag() {
-		return CLOSE_1_TAG;
+		return _CLOSE_1_TAG;
 	}
 
 	@Override
@@ -42,9 +50,13 @@ public class RenderURLLogic extends ActionURLLogic {
 
 	@Override
 	public String getOpenTag() {
-		return OPEN_TAG;
+		return _OPEN_TAG;
 	}
 
+	private static final String _CLOSE_1_TAG = "</runtime-render-url>";
+
 	private static final String _LIFECYCLE = PortletRequest.RENDER_PHASE;
+
+	private static final String _OPEN_TAG = "<runtime-render-url";
 
 }

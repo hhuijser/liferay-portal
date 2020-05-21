@@ -35,10 +35,6 @@ import org.junit.Test;
 public class ProcessCallableAssignmentFabricAgentSelectorTest
 	extends SystemPropertiesFilterFabricAgentSelectorTest {
 
-	@ClassRule
-	public static final CodeCoverageAssertor codeCoverageAssertor =
-		CodeCoverageAssertor.INSTANCE;
-
 	@Override
 	@Test
 	public void testSelect() {

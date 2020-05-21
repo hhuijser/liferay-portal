@@ -82,7 +82,9 @@ public class ElsePoshiElement extends ThenPoshiElement {
 		return "else";
 	}
 
-	protected static final Pattern blockNamePattern;
+	protected Pattern getBlockNamePattern() {
+		return _blockNamePattern;
+	}
 
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String poshiScript) {
@@ -91,17 +93,19 @@ public class ElsePoshiElement extends ThenPoshiElement {
 			return false;
 		}
 
-		return isValidPoshiScriptBlock(blockNamePattern, poshiScript);
+		return isValidPoshiScriptBlock(_blockNamePattern, poshiScript);
 	}
 
 	private static final String _ELEMENT_NAME = "else";
 
 	private static final String _POSHI_SCRIPT_KEYWORD;
 
+	private static final Pattern _blockNamePattern;
+
 	static {
 		_POSHI_SCRIPT_KEYWORD = _ELEMENT_NAME;
 
-		blockNamePattern = Pattern.compile("^" + _POSHI_SCRIPT_KEYWORD + "$");
+		_blockNamePattern = Pattern.compile("^" + _POSHI_SCRIPT_KEYWORD + "$");
 	}
 
 }

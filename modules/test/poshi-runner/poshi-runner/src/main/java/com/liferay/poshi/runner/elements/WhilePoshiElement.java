@@ -97,6 +97,11 @@ public class WhilePoshiElement extends IfPoshiElement {
 	}
 
 	@Override
+	protected Pattern getBlockNamePattern() {
+		return _blockNamePattern;
+	}
+
+	@Override
 	protected String getCondition(String poshiScript) {
 		String parentheticalContent = getParentheticalContent(poshiScript);
 
@@ -126,8 +131,6 @@ public class WhilePoshiElement extends IfPoshiElement {
 		return _ELEMENT_NAME;
 	}
 
-	protected static final Pattern blockNamePattern;
-
 	private boolean _isElementType(
 		PoshiElement parentPoshiElement, String poshiScript) {
 
@@ -143,15 +146,17 @@ public class WhilePoshiElement extends IfPoshiElement {
 			return false;
 		}
 
-		return isValidPoshiScriptBlock(blockNamePattern, poshiScript);
+		return isValidPoshiScriptBlock(_blockNamePattern, poshiScript);
 	}
 
 	private static final String _ELEMENT_NAME = "while";
 
 	private static final String _POSHI_SCRIPT_KEYWORD = _ELEMENT_NAME;
 
+	private static final Pattern _blockNamePattern;
+
 	static {
-		blockNamePattern = Pattern.compile(
+		_blockNamePattern = Pattern.compile(
 			"^" + _POSHI_SCRIPT_KEYWORD + BLOCK_NAME_PARAMETER_REGEX,
 			Pattern.DOTALL);
 	}

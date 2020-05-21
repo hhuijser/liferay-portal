@@ -17,7 +17,6 @@ package com.liferay.portal.fabric.agent.selectors;
 import com.liferay.portal.fabric.ExceptionProcessCallable;
 import com.liferay.portal.fabric.ReturnProcessCallable;
 import com.liferay.portal.fabric.agent.FabricAgent;
-import com.liferay.portal.kernel.test.rule.CodeCoverageAssertor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +25,6 @@ import java.util.Collections;
 import java.util.Iterator;
 
 import org.junit.Assert;
-import org.junit.ClassRule;
 import org.junit.Test;
 
 /**

@@ -144,11 +144,11 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 
 		if (absolutePath.indexOf("/modules/dxp/") != -1) {
 			moduleDirName = absolutePath.replaceAll(
-				".*?/modules((/[^/]+){3,3}).*", "$1");
+				".*?/modules((/[^/]+){3}).*", "$1");
 		}
 		else {
 			moduleDirName = absolutePath.replaceAll(
-				".*?/modules((/[^/]+){2,2}).*", "$1");
+				".*?/modules((/[^/]+){2}).*", "$1");
 		}
 
 		return moduleDirName.substring(1);

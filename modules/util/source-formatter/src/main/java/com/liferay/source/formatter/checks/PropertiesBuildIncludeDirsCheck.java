@@ -132,7 +132,7 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 	}
 
 	private String _getModuleDirName(Path dirPath) {
-		String absolutePath = SourceUtil.getAbsolutePath(dirPath) + "/";
+		String absolutePath = SourceUtil.getAbsolutePath(dirPath);
 
 		int x = absolutePath.indexOf("/modules/");
 
@@ -140,19 +140,18 @@ public class PropertiesBuildIncludeDirsCheck extends BaseFileCheck {
 			return null;
 		}
 
-		int y = absolutePath.indexOf("/", x + 9);
+		String moduleDirName = null;
 
-		if (y == -1) {
-			return null;
+		if (absolutePath.indexOf("/modules/dxp/") != -1) {
+			moduleDirName = absolutePath.replaceAll(
+				".*?/modules((/[^/]+){3,3}).*", "$1");
+		}
+		else {
+			moduleDirName = absolutePath.replaceAll(
+				".*?/modules((/[^/]+){2,2}).*", "$1");
 		}
 
-		y = absolutePath.indexOf("/", y + 1);
-
-		if (y != -1) {
-			return absolutePath.substring(x + 9, y);
-		}
-
-		return null;
+		return moduleDirName.substring(1);
 	}
 
 	private static final String[] _SKIP_DIR_NAMES = {

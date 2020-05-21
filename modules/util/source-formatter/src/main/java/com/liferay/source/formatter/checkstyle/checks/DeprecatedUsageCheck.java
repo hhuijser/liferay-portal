@@ -39,15 +39,6 @@ import com.puppycrawl.tools.checkstyle.utils.AnnotationUtil;
 import java.io.File;
 import java.io.IOException;
 
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.PathMatcher;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -531,62 +522,8 @@ public class DeprecatedUsageCheck extends BaseCheck {
 			return _bundleSymbolicNamesMap;
 		}
 
-		_bundleSymbolicNamesMap = new HashMap<>();
-
-		String rootDirName = _getRootDirName();
-
-		if (Validator.isNull(rootDirName)) {
-			return _bundleSymbolicNamesMap;
-		}
-
-		File modulesDir = new File(rootDirName + "/modules");
-
-		final List<File> files = new ArrayList<>();
-
-		Files.walkFileTree(
-			modulesDir.toPath(),
-			new SimpleFileVisitor<Path>() {
-
-				@Override
-				public FileVisitResult preVisitDirectory(
-					Path dirPath, BasicFileAttributes basicFileAttributes) {
-
-					for (PathMatcher pathMatcher : _PATH_MATCHERS) {
-						if (pathMatcher.matches(dirPath)) {
-							return FileVisitResult.SKIP_SUBTREE;
-						}
-					}
-
-					return FileVisitResult.CONTINUE;
-				}
-
-				@Override
-				public FileVisitResult visitFile(
-					Path filePath, BasicFileAttributes basicFileAttributes) {
-
-					if (_PATH_MATCHER.matches(filePath)) {
-						files.add(filePath.toFile());
-					}
-
-					return FileVisitResult.CONTINUE;
-				}
-
-			});
-
-		for (File file : files) {
-			String content = FileUtil.read(file);
-
-			String bundleSymbolicName = BNDSourceUtil.getDefinitionValue(
-				content, "Bundle-SymbolicName");
-
-			if ((bundleSymbolicName != null) &&
-				bundleSymbolicName.startsWith("com.liferay")) {
-
-				_bundleSymbolicNamesMap.put(
-					bundleSymbolicName,
-					SourceUtil.getAbsolutePath(file.getParentFile()));
-			}
-		}
+		_bundleSymbolicNamesMap = BNDSourceUtil.getBundleSymbolicNamesMap(
+			_getRootDirName());
 
 		return _bundleSymbolicNamesMap;
 	}
@@ -1033,8 +970,6 @@ public class DeprecatedUsageCheck extends BaseCheck {
 	private static final String _ALLOWED_FULLY_QUALIFIED_CLASS_NAMES_KEY =
 		"allowedFullyQualifiedClassNames";
 
-	private static final FileSystem _FILE_SYSTEM = FileSystems.getDefault();
-
 	private static final String _MSG_DEPRECATED_CONSTRUCTOR_CALL =
 		"constructor.call.deprecated";
 
@@ -1046,26 +981,6 @@ public class DeprecatedUsageCheck extends BaseCheck {
 
 	private static final String _MSG_DEPRECATED_TYPE_CALL =
 		"type.call.deprecated";
-
-	private static final PathMatcher _PATH_MATCHER =
-		_FILE_SYSTEM.getPathMatcher("glob:**/bnd.bnd");
-
-	private static final PathMatcher[] _PATH_MATCHERS = {
-		_FILE_SYSTEM.getPathMatcher("glob:**/.git/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/.gradle/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/.idea/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/.m2/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/.settings/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/bin/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/build/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/classes/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/sql/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/src/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/test-classes/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/test-coverage/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/test-results/**"),
-		_FILE_SYSTEM.getPathMatcher("glob:**/tmp/**")
-	};
 
 	private static final String _TYPE_UNKNOWN = "unknown";
 

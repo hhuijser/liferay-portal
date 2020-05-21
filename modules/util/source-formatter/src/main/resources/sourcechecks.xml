@@ -231,6 +231,7 @@
 		<check name="JavaConstructorSuperCallCheck" />
 		<check name="JavaDeserializationSecurityCheck" />
 		<check name="JavaDiamondOperatorCheck" />
+		<check name="JavaDuplicateVariableCheck" />
 		<check name="JavaElseStatementCheck" />
 		<check name="JavaEmptyLineAfterSuperCallCheck" />
 		<check name="JavaEmptyLinesCheck" />

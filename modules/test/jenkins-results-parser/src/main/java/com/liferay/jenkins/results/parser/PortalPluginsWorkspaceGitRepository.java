@@ -22,11 +22,9 @@ import org.json.JSONObject;
 public class PortalPluginsWorkspaceGitRepository
 	extends PluginsWorkspaceGitRepository {
 
-	public static final String TYPE = "portal.plugins";
-
 	@Override
 	public String getType() {
-		return TYPE;
+		return _TYPE;
 	}
 
 	protected PortalPluginsWorkspaceGitRepository(JSONObject jsonObject) {
@@ -44,5 +42,7 @@ public class PortalPluginsWorkspaceGitRepository
 
 		super(remoteGitRef, upstreamBranchName);
 	}
+
+	private static final String _TYPE = "portal.plugins";
 
 }

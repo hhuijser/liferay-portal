@@ -54,6 +54,7 @@ public class JavaDuplicateVariableCheck extends BaseJavaTermCheck {
 
 		for (JavaTerm childJavaTerm : javaClass.getChildJavaTerms()) {
 			if ((childJavaTerm instanceof JavaVariable) &&
+				!childJavaTerm.isFinal() &&
 				!childJavaTerm.hasAnnotation("Deprecated") &&
 				(childJavaTerm.isPublic() || childJavaTerm.isProtected())) {
 

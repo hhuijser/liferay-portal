@@ -21,9 +21,11 @@ public class JavaVariable extends BaseJavaTerm {
 
 	public JavaVariable(
 		String name, String content, String accessModifier, int lineNumber,
-		boolean isAbstract, boolean isStatic) {
+		boolean isAbstract, boolean isFinal, boolean isStatic) {
 
-		super(name, content, accessModifier, lineNumber, isAbstract, isStatic);
+		super(
+			name, content, accessModifier, lineNumber, isAbstract, isFinal,
+			isStatic);
 	}
 
 }

@@ -28,13 +28,14 @@ public abstract class BaseJavaTerm implements JavaTerm {
 
 	public BaseJavaTerm(
 		String name, String content, String accessModifier, int lineNumber,
-		boolean isAbstract, boolean isStatic) {
+		boolean isAbstract, boolean isFinal, boolean isStatic) {
 
 		_name = name;
 		_content = content;
 		_accessModifier = accessModifier;
 		_lineNumber = lineNumber;
 		_isAbstract = isAbstract;
+		_isFinal = isFinal;
 		_isStatic = isStatic;
 	}
 
@@ -103,6 +104,11 @@ public abstract class BaseJavaTerm implements JavaTerm {
 		}
 
 		return false;
+	}
+
+	@Override
+	public boolean isFinal() {
+		return _isFinal;
 	}
 
 	@Override
@@ -192,6 +198,7 @@ public abstract class BaseJavaTerm implements JavaTerm {
 	private final String _accessModifier;
 	private final String _content;
 	private final boolean _isAbstract;
+	private final boolean _isFinal;
 	private final boolean _isStatic;
 	private final int _lineNumber;
 	private final String _name;

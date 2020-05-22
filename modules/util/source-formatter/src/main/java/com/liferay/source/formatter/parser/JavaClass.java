@@ -26,10 +26,12 @@ public class JavaClass extends BaseJavaTerm {
 
 	public JavaClass(
 		String name, String content, String accessModifier, int lineNumber,
-		boolean isAbstract, boolean isStatic, boolean isInterface,
-		boolean anonymous) {
+		boolean isAbstract, boolean isFinal, boolean isStatic,
+		boolean isInterface, boolean anonymous) {
 
-		super(name, content, accessModifier, lineNumber, isAbstract, isStatic);
+		super(
+			name, content, accessModifier, lineNumber, isAbstract, isFinal,
+			isStatic);
 
 		_isInterface = isInterface;
 		_anonymous = anonymous;

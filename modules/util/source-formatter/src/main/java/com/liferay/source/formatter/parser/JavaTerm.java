@@ -52,6 +52,8 @@ public interface JavaTerm {
 
 	public boolean isDefault();
 
+	public boolean isFinal();
+
 	public boolean isJavaClass();
 
 	public boolean isJavaConstructor();
